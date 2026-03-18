@@ -61,6 +61,7 @@ const T = {
     legendSwatches: [
       ["rgba(0,184,212,0.28)", "rgba(0,200,220,0.65)", "Patent-listed APD"],
       ["rgba(179,136,255,0.22)", "rgba(179,136,255,0.55)", "Inferred APD"],
+      ["rgba(255,200,80,0.18)", "rgba(180,200,225,0.55)", "High-index glass"],
       ["rgba(200,215,240,0.14)", "rgba(180,200,225,0.40)", "Standard glass"],
     ],
     rayWidthScale: 1.0, elemStrokeIdle: 0.9, elemStrokeActive: 1.9,
@@ -112,6 +113,7 @@ const T = {
     legendSwatches: [
       ["rgba(0,120,160,0.18)", "rgba(0,96,128,0.60)", "Patent-listed APD"],
       ["rgba(90,40,180,0.13)", "rgba(90,40,180,0.50)", "Inferred APD"],
+      ["rgba(170,130,20,0.15)", "rgba(60,80,110,0.55)", "High-index glass"],
       ["rgba(40,80,140,0.10)", "rgba(60,80,110,0.40)", "Standard glass"],
     ],
     rayWidthScale: 1.0, elemStrokeIdle: 1.0, elemStrokeActive: 2.0,
@@ -163,6 +165,7 @@ const T = {
     legendSwatches: [
       ["rgba(0,200,230,0.35)", "rgba(0,220,240,0.75)", "Patent-listed APD"],
       ["rgba(190,150,255,0.28)", "rgba(190,150,255,0.65)", "Inferred APD"],
+      ["rgba(255,200,70,0.25)", "rgba(195,215,240,0.70)", "High-index glass"],
       ["rgba(210,225,250,0.18)", "rgba(195,215,240,0.50)", "Standard glass"],
     ],
     rayWidthScale: 1.25, elemStrokeIdle: 1.1, elemStrokeActive: 2.2,
@@ -214,6 +217,7 @@ const T = {
     legendSwatches: [
       ["rgba(0,105,145,0.24)", "rgba(0,80,112,0.70)", "Patent-listed APD"],
       ["rgba(75,30,165,0.18)", "rgba(75,30,165,0.60)", "Inferred APD"],
+      ["rgba(150,115,15,0.18)", "rgba(45,65,95,0.55)", "High-index glass"],
       ["rgba(30,65,125,0.14)", "rgba(45,65,95,0.50)", "Standard glass"],
     ],
     rayWidthScale: 1.25, elemStrokeIdle: 1.2, elemStrokeActive: 2.4,

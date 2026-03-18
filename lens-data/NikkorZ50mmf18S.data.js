@@ -160,11 +160,12 @@ const LENS_DATA = {
   // §4 — Aspherical coefficients
   //  Patent aspheric equation (¶0061):
   //    X(y) = (y²/R) / [1 + √(1 − (1+κ)y²/R²)] + A4·y⁴ + A6·y⁶ + A8·y⁸ + A10·y¹⁰
-  //  All surfaces have κ = 1.0 and coefficients through A10 only (A12 = A14 = 0).
+  //  Patent lists κ = 1.0 but uses convention where κ represents (1+K); standard K = 0.
+//  Coefficients through A10 only (A12 = A14 = 0).
 
   asph: {
     "6A": {
-      K:    1.00000,
+      K:    0,
       A4:  -4.74106e-07,
       A6:  -3.40824e-10,
       A8:   2.15394e-12,
@@ -173,7 +174,7 @@ const LENS_DATA = {
       A14:  0,
     },
     "16A": {
-      K:    1.00000,
+      K:    0,
       A4:  -1.95205e-07,
       A6:   1.94342e-08,
       A8:  -8.61846e-11,
@@ -182,7 +183,7 @@ const LENS_DATA = {
       A14:  0,
     },
     "17A": {
-      K:    1.00000,
+      K:    0,
       A4:   1.47643e-05,
       A6:   2.08671e-08,
       A8:   8.44852e-11,

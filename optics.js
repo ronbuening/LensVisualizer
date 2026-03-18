@@ -79,7 +79,7 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
       if (!ghost) break;
       clipped = true;
     }
-    const pt = [z + sag(Math.abs(y), R), y];
+    const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt); else pts.push(pt);
     const nn = nd === 1.0 ? 1.0 : nd;
     if (Math.abs(R) < FLAT_R_THRESHOLD && nn !== n) u = (n * u - y * (nn - n) / R) / nn;

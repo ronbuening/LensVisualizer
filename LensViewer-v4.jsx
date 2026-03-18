@@ -541,7 +541,7 @@ export default function LensVisualization() {
             borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
             fontSize: 10, color: t.selectorText, fontFamily: "inherit",
             letterSpacing: "0.06em", appearance: "none", outline: "none",
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${encodeURIComponent(t.selectorText)}'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${t.selectorText.replace("#", "%23")}'/%3E%3C/svg%3E")`,
             backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
             transition: "all 0.3s", flex: "0 1 300px",
           }}
@@ -553,9 +553,12 @@ export default function LensVisualization() {
           ))}
         </select>
 
-        {/* ── Mobile view toggle (narrow screens only) ── */}
-        {!isWide && (
-          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, marginLeft: "auto" }}>
+      </div>
+
+      {/* ── Mobile view toggle (narrow screens — own row for visibility) ── */}
+      {!isWide && (
+        <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, transition: "background 0.3s,border-color 0.3s" }}>
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}` }}>
             {[
               { label: "DIAGRAM", val: 'diagram' },
               { label: "ANALYSIS", val: 'description' },
@@ -563,16 +566,16 @@ export default function LensVisualization() {
               <button key={val} onClick={() => setMobileView(val)} style={{
                 background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
                 border: "none", borderRight: val === 'diagram' ? `1px solid ${t.toggleBorder}` : "none",
-                padding: "4px 12px", cursor: "pointer",
-                fontSize: 9, color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
+                padding: "6px 24px", cursor: "pointer",
+                fontSize: 10, color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
                 fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
               }}>
                 {label}
               </button>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ── Main content area ── */}
       {isWide ? (
