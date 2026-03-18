@@ -17,12 +17,15 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 ```
 LensVisualizer/
 ├── index.html              # HTML entry point
-├── main.jsx                # React root mount
-├── LensViewer-v4.jsx       # Main component (~1000 lines): UI, optics engine, themes
+├── main.jsx                # React root mount (wraps app in ErrorBoundary)
+├── ErrorBoundary.jsx       # React class-based error boundary with retry UI
+├── LensViewer-v4.jsx       # Main component (~770 lines): UI, optics engine, renderer
+├── themes.js               # Theme system — 4 themes via createTheme() factory
 ├── lens-data/              # Optical prescription data (one file per lens)
 │   ├── ApoLanthar50f2.data.js
 │   ├── Nokton50f1.data.js
 │   └── NikkorZ50mmf18S.js
+├── ARCHITECTURE-REVIEW.md  # Refactoring plan and architectural notes
 ├── vite.config.js          # Vite configuration
 └── package.json            # Dependencies and scripts
 ```
@@ -44,12 +47,21 @@ There are no tests, linters, or formatters configured.
 
 The main file is organized into numbered sections (`/* ═════ §N ════ */`):
 
-1. **§1 LENS CATALOG** — Registry mapping lens IDs to their data modules
+1. **§1 LENS CATALOG** — Auto-registered from `./lens-data/*.js` via `import.meta.glob`
 2. **§2 buildLens()** — Validates and constructs the runtime lens object `L`
-3. **§3 THEME PALETTES** — 4 themes: dark, light, darkHC, lightHC
-4. **§4 RENDERING HELPERS** — Sag curves, thickness, layout math
-5. **§5 OPTICS ENGINE** — Ray tracing, conjugate focus, refraction
-6. **§6 RENDERER** — React component with full UI and SVG output
+3. **§4 RENDERING HELPERS** — Sag curves, thickness, layout math
+4. **§5 OPTICS ENGINE** — Ray tracing, conjugate focus, refraction
+5. **§6 RENDERER** — React component with full UI and SVG output
+
+Note: §3 (themes) was extracted to `themes.js` — the section numbering in the file retains the original §4/§5/§6 labels.
+
+### themes.js — Theme System
+
+Four themes (dark, light, darkHC, lightHC) built via a `createTheme()` factory function. The factory takes a flat color-token object and generates closure-based properties (`elemFill`, `elemStroke`, `elemNum`, `grid`) to eliminate duplication across themes.
+
+### ErrorBoundary.jsx
+
+React class component wrapping the app. Catches render errors and shows a styled error message with a Retry button.
 
 ### Key Design Patterns
 
@@ -61,25 +73,28 @@ The main file is organized into numbered sections (`/* ═════ §N ═�
 
 ### Lens Data Format
 
-Each file in `lens-data/` exports a `LENS_DATA` object:
+Each file in `lens-data/` default-exports a `LENS_DATA` object with a `key` field:
 
 ```javascript
 {
+  key,                                       // Unique ID — used for auto-registration
   name, subtitle, specs,
   elements: [{ id, name, label, type, nd, vd, fl, glass, apd, role }],
   surfaces: [{ label, R, d, nd, elemId, sd }],
-  asph: { "LABEL": { K, A4, A6, ... } },   // Aspherical coefficients
+  asph: { "LABEL": { K, A4, A6, ... } },    // Aspherical coefficients
   var: { "LABEL": [min, max] },              // Variable surfaces (focus)
-  groups, doublets,                           // Annotations
-  svgW, svgH, maxRimAngleDeg,                // Rendering params
+  groups, doublets,                          // Annotations
+  svgW, svgH, maxRimAngleDeg,               // Rendering params
 }
 ```
 
 ### Adding a New Lens
 
-1. Create a new file in `lens-data/` exporting `LENS_DATA`
-2. Import it in `LensViewer-v4.jsx` at the top
-3. Add an entry to the `CATALOG` object in §1
+1. Create a new file in `lens-data/` that default-exports a `LENS_DATA` object
+2. Include a unique `key` field in the data object
+3. That's it — `import.meta.glob` auto-registers all `./lens-data/*.js` files
+
+No manual imports or catalog edits required.
 
 ## Code Conventions
 
@@ -88,6 +103,7 @@ Each file in `lens-data/` exports a `LENS_DATA` object:
 - **UPPER_CASE** for catalog-level constants
 - **No comments on obvious code** — comments reserved for optics formulas and section headers
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
+- **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory (e.g., `_fillHighNd`, `_strokeOn`)
 
 ## Gotchas
 
@@ -95,3 +111,4 @@ Each file in `lens-data/` exports a `LENS_DATA` object:
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
 - `buildLens()` performs validation; if lens data is malformed it throws descriptive errors
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
+- Section numbering in LensViewer-v4.jsx skips §3 (extracted to themes.js) — don't renumber
