@@ -383,7 +383,10 @@ export default function LensVisualization() {
   const [stopdownT, setStopdownT] = useState(0);
 
   /* ── Build lens from selected data ── */
-  const L = useMemo(() => buildLens(LENS_CATALOG[lensKey]), [lensKey]);
+  const buildResult = useMemo(() => {
+    try { return { L: buildLens(LENS_CATALOG[lensKey]) }; }
+    catch (e) { return { error: e }; }
+  }, [lensKey]);
 
   /* ── Reset interactive state on lens change ── */
   const switchLens = useCallback((key) => {
@@ -394,9 +397,28 @@ export default function LensVisualization() {
     setSel(null);
   }, []);
 
+  const t = T[dark ? (highContrast ? "darkHC" : "dark") : (highContrast ? "lightHC" : "light")];
+
+  if (buildResult.error) {
+    return (
+      <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ maxWidth: 520, padding: 32, textAlign: "center" }}>
+          <h1 style={{ color: "#ff6060", fontSize: 18, marginBottom: 8 }}>Failed to build lens</h1>
+          <pre style={{ background: "rgba(255,60,60,0.08)", border: "1px solid rgba(255,60,60,0.25)", borderRadius: 6, padding: 16, whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: 13, color: "#ffa0a0", marginBottom: 20, textAlign: "left" }}>
+            {buildResult.error.message}
+          </pre>
+          <label style={{ fontSize: 12, color: t.label, display: "block", marginBottom: 8 }}>Try another lens:</label>
+          <select value={lensKey} onChange={e => switchLens(e.target.value)} style={{ background: t.selectorBg, color: t.selectorText, border: `1px solid ${t.selectorBorder}`, borderRadius: 4, padding: "6px 10px", fontSize: 13, fontFamily: "inherit" }}>
+            {CATALOG_KEYS.map(k => <option key={k} value={k}>{LENS_CATALOG[k].name}</option>)}
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  const L = buildResult.L;
   const act = sel || hov;
   const info = act ? L.elements.find(e => e.id === act) : null;
-  const t = T[dark ? (highContrast ? "darkHC" : "dark") : (highContrast ? "lightHC" : "light")];
 
   const inf = useMemo(() => doLayout(0, L), [L]);
   const IMG_MM = inf.imgZ;
