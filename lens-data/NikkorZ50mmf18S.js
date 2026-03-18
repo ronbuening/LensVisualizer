@@ -9,6 +9,7 @@
 const LENS_DATA = {
 
   // §1 — Identity
+  key:      "nikkor-z-50f18s",
   name:     "NIKKOR Z 50mm f/1.8 S",
   subtitle: "Patent WO2019/220618 A1 — Example 9",
   specs:    ["12 elements / 9 groups", "EFL 51.6 mm", "f/1.85", "2ω = 45.8°", "2 Asph · 2 ED", "MFD 0.4 m"],

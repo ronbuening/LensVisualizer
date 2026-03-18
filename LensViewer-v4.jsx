@@ -22,24 +22,23 @@
 
 import { useState, useMemo, useCallback } from "react";
 
-import ApoLanthar50f2  from './lens-data/ApoLanthar50f2.data.js';
-import Nokton50f1      from './lens-data/Nokton50f1.data.js';
-import NikkorZ50mmf18S from './lens-data/NikkorZ50mmf18S.js';
+import T               from './themes.js';
 
 
 /* =====================================================================
- * §1  LENS CATALOG — Registry of available prescriptions
+ * §1  LENS CATALOG — Auto-registered from ./lens-data/*.js
  * =====================================================================
- *  Each lens prescription lives in its own file under ./lens-data/.
- *  To add a new lens, create a data file and add it to this map.
+ *  To add a new lens, create a data file in ./lens-data/ with a
+ *  `key` field in its default-exported LENS_DATA object.  It will
+ *  appear in the dropdown automatically — no imports or edits here.
  * ------------------------------------------------------------------- */
 
-const LENS_CATALOG = {
-  "apo-lanthar-50f2":  ApoLanthar50f2,
-  "nokton-50f1":       Nokton50f1,
-  "nikkor-z-50f18s":   NikkorZ50mmf18S,
-};
-
+const _modules = import.meta.glob('./lens-data/*.js', { eager: true });
+const LENS_CATALOG = {};
+for (const mod of Object.values(_modules)) {
+  const data = mod.default;
+  if (data?.key) LENS_CATALOG[data.key] = data;
+}
 const CATALOG_KEYS = Object.keys(LENS_CATALOG);
 
 
@@ -251,235 +250,6 @@ function buildLens(data) {
 }
 
 
-/* =====================================================================
- * §3  THEME PALETTES — Dark / Light × Default / Ultra High-Contrast
- * =====================================================================
- *  GENERIC — works for any lens without changes.
- * ------------------------------------------------------------------- */
-
-const T = {
-  dark: {
-    bg: "#0c0d10", headerBg: "linear-gradient(180deg,rgba(14,16,22,1),rgba(10,11,14,1))",
-    headerBorder: "rgba(0,200,220,0.22)", panelBg: "rgba(8,10,15,0.98)",
-    panelBorder: "rgba(0,200,220,0.16)", panelDivider: "rgba(0,200,220,0.10)",
-    infoBgActive: "rgba(12,18,30,0.8)", infoBgIdle: "transparent",
-    title: "#f4f6fa", subtitle: "#a0b8d0", specs: "#88a8c4",
-    body: "#e2e8f0", label: "#90aac4", muted: "#78a0be",
-    value: "#e8eef6", propLabel: "#88a0bb",
-    focusDist: "#f2f6fc", focusEndpoint: "#88a8c4",
-    sliderTrack: "rgba(40,60,90,0.6)", sliderAccent: "#00d4e6",
-    spacingVal: "#88a8c4", desc: "#78a0be",
-    apdPatentBg: "rgba(0,184,212,0.20)", apdPatentText: "#00e5ff",
-    apdInferBg: "rgba(179,136,255,0.16)", apdInferText: "#d0b8ff",
-    cementBg: "rgba(255,183,77,0.14)", cementText: "#ffc040",
-    apdNote: "#4dd0e1", role: "#90aabb", elemType: "#b0c4d8",
-    legendText: "#90aabb",
-    grid: (i) => i % 2 ? "rgba(30,42,60,0.45)" : "rgba(30,42,60,0.45)",
-    gridDash: (i) => i % 2 ? "2,5" : "none",
-    axis: "rgba(90,120,160,0.22)",
-    rayWarm: "rgba(255,100,30,0.50)", rayCool: "rgba(30,140,255,0.50)",
-    rayOffWarm: "rgba(200,255,60,0.45)", rayOffCool: "rgba(60,255,200,0.45)",
-    rayOffDash: "5,3",
-    stop: "#ff8c20", stopLabel: "#ffa040",
-    imgLine: "rgba(80,255,140,0.50)", imgLabel: "rgba(90,255,150,0.75)",
-    groupLabel: "rgba(120,160,210,0.55)", doubletLabel: "rgba(210,180,120,0.65)",
-    elemNum: (e) => e.apd ? "rgba(0,229,255,0.80)" : "rgba(180,200,220,0.70)",
-    elemNumActive: "#fff",
-    elemFill: (e, on) => {
-      if (on) return e.apd ? "rgba(0,200,220,0.38)" : "rgba(210,225,245,0.28)";
-      if (e.apd === "patent") return "rgba(0,184,212,0.28)";
-      if (e.apd === "inferred") return "rgba(179,136,255,0.22)";
-      if (e.nd > 1.78) return "rgba(255,200,80,0.18)";
-      if (e.nd > 1.6) return "rgba(200,215,240,0.14)";
-      return "rgba(200,235,225,0.12)";
-    },
-    elemStroke: (e, on) => {
-      if (on) return "#fff";
-      if (e.apd === "patent") return "rgba(0,200,220,0.85)";
-      if (e.apd === "inferred") return "rgba(179,136,255,0.70)";
-      return "rgba(180,200,225,0.55)";
-    },
-    toggleBg: "rgba(255,255,255,0.08)", toggleBorder: "rgba(255,255,255,0.16)",
-    toggleText: "#a0b4c8", toggleIcon: "☀️",
-    toggleActiveBg: "rgba(0,200,220,0.16)", toggleActiveBorder: "rgba(0,200,220,0.45)",
-    toggleActiveText: "#d0eef4", toggleInactiveText: "#607080",
-    legendSwatches: [
-      ["rgba(0,184,212,0.28)", "rgba(0,200,220,0.65)", "Patent-listed APD"],
-      ["rgba(179,136,255,0.22)", "rgba(179,136,255,0.55)", "Inferred APD"],
-      ["rgba(200,215,240,0.14)", "rgba(180,200,225,0.40)", "Standard glass"],
-    ],
-    rayWidthScale: 1.0, elemStrokeIdle: 0.9, elemStrokeActive: 1.9,
-    imgLineWidth: 1.0, gridStrokeWidth: 0.4,
-    selectorBg: "rgba(255,255,255,0.06)", selectorBorder: "rgba(0,200,220,0.25)",
-    selectorText: "#c0d4e8", selectorHover: "rgba(0,200,220,0.12)",
-  },
-  light: {
-    bg: "#ffffff", headerBg: "#f5f6f8",
-    headerBorder: "#c8cdd6", panelBg: "#f5f6f8",
-    panelBorder: "#c8cdd6", panelDivider: "#d0d5dc",
-    infoBgActive: "#e8ecf2", infoBgIdle: "transparent",
-    title: "#0a0f18", subtitle: "#3a4a5c", specs: "#44546a",
-    body: "#141c28", label: "#3a4e64", muted: "#2e4258",
-    value: "#141c28", propLabel: "#44566e",
-    focusDist: "#0a0f18", focusEndpoint: "#2e4258",
-    sliderTrack: "#c4cad4", sliderAccent: "#006878",
-    spacingVal: "#3a5068", desc: "#2e4258",
-    apdPatentBg: "rgba(0,96,128,0.14)", apdPatentText: "#005070",
-    apdInferBg: "rgba(90,26,176,0.10)", apdInferText: "#4a18a0",
-    cementBg: "rgba(138,106,16,0.10)", cementText: "#6a5010",
-    apdNote: "#006888", role: "#2e4258", elemType: "#2a3a50",
-    legendText: "#2a3a50",
-    grid: (i) => i % 2 ? "rgba(180,190,205,0.55)" : "rgba(165,178,195,0.6)",
-    gridDash: (i) => i % 2 ? "2,5" : "none",
-    axis: "rgba(100,120,150,0.35)",
-    rayWarm: "rgba(200,60,10,0.50)", rayCool: "rgba(10,80,200,0.45)",
-    rayOffWarm: "rgba(50,130,10,0.50)", rayOffCool: "rgba(10,130,80,0.50)",
-    rayOffDash: "5,3",
-    stop: "#d06010", stopLabel: "#c05810",
-    imgLine: "rgba(10,140,60,0.60)", imgLabel: "rgba(10,120,55,0.85)",
-    groupLabel: "rgba(50,80,120,0.65)", doubletLabel: "rgba(120,90,30,0.75)",
-    elemNum: (e) => e.apd ? "rgba(0,80,112,0.85)" : "rgba(50,70,95,0.75)",
-    elemNumActive: "#0a0f18",
-    elemFill: (e, on) => {
-      if (on) return e.apd ? "rgba(0,96,128,0.28)" : "rgba(60,80,110,0.20)";
-      if (e.apd === "patent") return "rgba(0,120,160,0.18)";
-      if (e.apd === "inferred") return "rgba(90,40,180,0.13)";
-      if (e.nd > 1.78) return "rgba(170,130,20,0.15)";
-      if (e.nd > 1.6) return "rgba(40,80,140,0.10)";
-      return "rgba(40,110,90,0.08)";
-    },
-    elemStroke: (e, on) => {
-      if (on) return "#0a0f18";
-      if (e.apd === "patent") return "rgba(0,96,128,0.80)";
-      if (e.apd === "inferred") return "rgba(90,40,180,0.65)";
-      return "rgba(60,80,110,0.55)";
-    },
-    toggleBg: "rgba(0,0,0,0.06)", toggleBorder: "rgba(0,0,0,0.14)",
-    toggleText: "#3a4e64", toggleIcon: "🌙",
-    toggleActiveBg: "rgba(0,96,128,0.12)", toggleActiveBorder: "rgba(0,96,128,0.45)",
-    toggleActiveText: "#005060", toggleInactiveText: "#8896a4",
-    legendSwatches: [
-      ["rgba(0,120,160,0.18)", "rgba(0,96,128,0.60)", "Patent-listed APD"],
-      ["rgba(90,40,180,0.13)", "rgba(90,40,180,0.50)", "Inferred APD"],
-      ["rgba(40,80,140,0.10)", "rgba(60,80,110,0.40)", "Standard glass"],
-    ],
-    rayWidthScale: 1.0, elemStrokeIdle: 1.0, elemStrokeActive: 2.0,
-    imgLineWidth: 1.0, gridStrokeWidth: 0.4,
-    selectorBg: "rgba(0,0,0,0.04)", selectorBorder: "rgba(0,0,0,0.14)",
-    selectorText: "#2a3a50", selectorHover: "rgba(0,96,128,0.08)",
-  },
-  darkHC: {
-    bg: "#000000", headerBg: "linear-gradient(180deg,rgba(8,10,14,1),rgba(0,0,0,1))",
-    headerBorder: "rgba(0,220,240,0.30)", panelBg: "rgba(4,5,8,0.99)",
-    panelBorder: "rgba(0,220,240,0.24)", panelDivider: "rgba(0,220,240,0.15)",
-    infoBgActive: "rgba(8,14,24,0.85)", infoBgIdle: "transparent",
-    title: "#ffffff", subtitle: "#c0d4e8", specs: "#a0bcd6",
-    body: "#f0f4fa", label: "#a8c0d8", muted: "#98bcd6",
-    value: "#f4f8ff", propLabel: "#a0b8d0",
-    focusDist: "#ffffff", focusEndpoint: "#a0bcd6",
-    sliderTrack: "rgba(50,70,100,0.7)", sliderAccent: "#00f0ff",
-    spacingVal: "#a0bcd6", desc: "#98bcd6",
-    apdPatentBg: "rgba(0,200,230,0.26)", apdPatentText: "#20f0ff",
-    apdInferBg: "rgba(190,150,255,0.22)", apdInferText: "#e0c8ff",
-    cementBg: "rgba(255,200,90,0.18)", cementText: "#ffd050",
-    apdNote: "#60e0f0", role: "#a8bcd0", elemType: "#c0d4e8",
-    legendText: "#a8bcd0",
-    grid: (i) => i % 2 ? "rgba(35,50,70,0.55)" : "rgba(35,50,70,0.55)",
-    gridDash: (i) => i % 2 ? "2,5" : "none",
-    axis: "rgba(100,135,180,0.28)",
-    rayWarm: "rgba(255,90,20,0.68)", rayCool: "rgba(20,130,255,0.68)",
-    rayOffWarm: "rgba(220,255,50,0.60)", rayOffCool: "rgba(50,255,220,0.60)",
-    rayOffDash: "5,3",
-    stop: "#ff9830", stopLabel: "#ffb050",
-    imgLine: "rgba(70,255,130,0.65)", imgLabel: "rgba(80,255,140,0.88)",
-    groupLabel: "rgba(140,180,230,0.70)", doubletLabel: "rgba(230,195,130,0.78)",
-    elemNum: (e) => e.apd ? "rgba(0,240,255,0.90)" : "rgba(200,215,235,0.80)",
-    elemNumActive: "#fff",
-    elemFill: (e, on) => {
-      if (on) return e.apd ? "rgba(0,220,240,0.45)" : "rgba(220,235,255,0.35)";
-      if (e.apd === "patent") return "rgba(0,200,230,0.35)";
-      if (e.apd === "inferred") return "rgba(190,150,255,0.28)";
-      if (e.nd > 1.78) return "rgba(255,200,70,0.25)";
-      if (e.nd > 1.6) return "rgba(210,225,250,0.18)";
-      return "rgba(210,245,235,0.15)";
-    },
-    elemStroke: (e, on) => {
-      if (on) return "#fff";
-      if (e.apd === "patent") return "rgba(0,220,240,0.92)";
-      if (e.apd === "inferred") return "rgba(190,150,255,0.80)";
-      return "rgba(195,215,240,0.70)";
-    },
-    toggleBg: "rgba(255,255,255,0.10)", toggleBorder: "rgba(255,255,255,0.20)",
-    toggleText: "#b0c4d8", toggleIcon: "☀️",
-    toggleActiveBg: "rgba(0,220,240,0.20)", toggleActiveBorder: "rgba(0,220,240,0.55)",
-    toggleActiveText: "#e0f4f8", toggleInactiveText: "#708090",
-    legendSwatches: [
-      ["rgba(0,200,230,0.35)", "rgba(0,220,240,0.75)", "Patent-listed APD"],
-      ["rgba(190,150,255,0.28)", "rgba(190,150,255,0.65)", "Inferred APD"],
-      ["rgba(210,225,250,0.18)", "rgba(195,215,240,0.50)", "Standard glass"],
-    ],
-    rayWidthScale: 1.25, elemStrokeIdle: 1.1, elemStrokeActive: 2.2,
-    imgLineWidth: 1.4, gridStrokeWidth: 0.55,
-    selectorBg: "rgba(255,255,255,0.08)", selectorBorder: "rgba(0,220,240,0.35)",
-    selectorText: "#e0f4f8", selectorHover: "rgba(0,220,240,0.18)",
-  },
-  lightHC: {
-    bg: "#ffffff", headerBg: "#f2f3f6",
-    headerBorder: "#b0b8c4", panelBg: "#f2f3f6",
-    panelBorder: "#b0b8c4", panelDivider: "#bcc2cc",
-    infoBgActive: "#e0e5ee", infoBgIdle: "transparent",
-    title: "#000000", subtitle: "#1e2e40", specs: "#283848",
-    body: "#080e16", label: "#1e3048", muted: "#1a3048",
-    value: "#080e16", propLabel: "#2a3e54",
-    focusDist: "#000000", focusEndpoint: "#1a3048",
-    sliderTrack: "#a8b0bc", sliderAccent: "#004858",
-    spacingVal: "#1e3854", desc: "#1a3048",
-    apdPatentBg: "rgba(0,80,112,0.18)", apdPatentText: "#003c58",
-    apdInferBg: "rgba(75,18,160,0.13)", apdInferText: "#380e88",
-    cementBg: "rgba(120,90,10,0.13)", cementText: "#504008",
-    apdNote: "#005068", role: "#1a3048", elemType: "#162838",
-    legendText: "#162838",
-    grid: (i) => i % 2 ? "rgba(160,172,190,0.65)" : "rgba(145,160,180,0.70)",
-    gridDash: (i) => i % 2 ? "2,5" : "none",
-    axis: "rgba(80,100,130,0.42)",
-    rayWarm: "rgba(185,45,0,0.65)", rayCool: "rgba(0,65,190,0.60)",
-    rayOffWarm: "rgba(35,115,0,0.62)", rayOffCool: "rgba(0,115,65,0.62)",
-    rayOffDash: "5,3",
-    stop: "#c05008", stopLabel: "#b04808",
-    imgLine: "rgba(0,125,50,0.72)", imgLabel: "rgba(0,110,45,0.92)",
-    groupLabel: "rgba(35,65,105,0.78)", doubletLabel: "rgba(105,78,20,0.85)",
-    elemNum: (e) => e.apd ? "rgba(0,65,95,0.92)" : "rgba(35,55,80,0.85)",
-    elemNumActive: "#000000",
-    elemFill: (e, on) => {
-      if (on) return e.apd ? "rgba(0,80,112,0.34)" : "rgba(45,65,95,0.26)";
-      if (e.apd === "patent") return "rgba(0,105,145,0.24)";
-      if (e.apd === "inferred") return "rgba(75,30,165,0.18)";
-      if (e.nd > 1.78) return "rgba(155,118,10,0.20)";
-      if (e.nd > 1.6) return "rgba(30,65,125,0.14)";
-      return "rgba(30,100,78,0.11)";
-    },
-    elemStroke: (e, on) => {
-      if (on) return "#000000";
-      if (e.apd === "patent") return "rgba(0,80,112,0.88)";
-      if (e.apd === "inferred") return "rgba(75,30,165,0.75)";
-      return "rgba(45,65,95,0.68)";
-    },
-    toggleBg: "rgba(0,0,0,0.08)", toggleBorder: "rgba(0,0,0,0.18)",
-    toggleText: "#1e3048", toggleIcon: "🌙",
-    toggleActiveBg: "rgba(0,80,112,0.15)", toggleActiveBorder: "rgba(0,80,112,0.55)",
-    toggleActiveText: "#003848", toggleInactiveText: "#748498",
-    legendSwatches: [
-      ["rgba(0,105,145,0.24)", "rgba(0,80,112,0.70)", "Patent-listed APD"],
-      ["rgba(75,30,165,0.18)", "rgba(75,30,165,0.60)", "Inferred APD"],
-      ["rgba(30,65,125,0.14)", "rgba(45,65,95,0.50)", "Standard glass"],
-    ],
-    rayWidthScale: 1.25, elemStrokeIdle: 1.2, elemStrokeActive: 2.4,
-    imgLineWidth: 1.4, gridStrokeWidth: 0.55,
-    selectorBg: "rgba(0,0,0,0.06)", selectorBorder: "rgba(0,0,0,0.18)",
-    selectorText: "#162838", selectorHover: "rgba(0,80,112,0.10)",
-  },
-};
-
 
 /* =====================================================================
  * §4  RENDERING HELPERS — Sag, layout, and shape utilities
@@ -611,7 +381,10 @@ export default function LensVisualization() {
   const [stopdownT, setStopdownT] = useState(0);
 
   /* ── Build lens from selected data ── */
-  const L = useMemo(() => buildLens(LENS_CATALOG[lensKey]), [lensKey]);
+  const buildResult = useMemo(() => {
+    try { return { L: buildLens(LENS_CATALOG[lensKey]) }; }
+    catch (e) { return { error: e }; }
+  }, [lensKey]);
 
   /* ── Reset interactive state on lens change ── */
   const switchLens = useCallback((key) => {
@@ -622,9 +395,28 @@ export default function LensVisualization() {
     setSel(null);
   }, []);
 
+  const t = T[dark ? (highContrast ? "darkHC" : "dark") : (highContrast ? "lightHC" : "light")];
+
+  if (buildResult.error) {
+    return (
+      <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ maxWidth: 520, padding: 32, textAlign: "center" }}>
+          <h1 style={{ color: "#ff6060", fontSize: 18, marginBottom: 8 }}>Failed to build lens</h1>
+          <pre style={{ background: "rgba(255,60,60,0.08)", border: "1px solid rgba(255,60,60,0.25)", borderRadius: 6, padding: 16, whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: 13, color: "#ffa0a0", marginBottom: 20, textAlign: "left" }}>
+            {buildResult.error.message}
+          </pre>
+          <label style={{ fontSize: 12, color: t.label, display: "block", marginBottom: 8 }}>Try another lens:</label>
+          <select value={lensKey} onChange={e => switchLens(e.target.value)} style={{ background: t.selectorBg, color: t.selectorText, border: `1px solid ${t.selectorBorder}`, borderRadius: 4, padding: "6px 10px", fontSize: 13, fontFamily: "inherit" }}>
+            {CATALOG_KEYS.map(k => <option key={k} value={k}>{LENS_CATALOG[k].name}</option>)}
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  const L = buildResult.L;
   const act = sel || hov;
   const info = act ? L.elements.find(e => e.id === act) : null;
-  const t = T[dark ? (highContrast ? "darkHC" : "dark") : (highContrast ? "lightHC" : "light")];
 
   const inf = useMemo(() => doLayout(0, L), [L]);
   const IMG_MM = inf.imgZ;
