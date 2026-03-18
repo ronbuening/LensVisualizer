@@ -22,25 +22,23 @@
 
 import { useState, useMemo, useCallback } from "react";
 
-import ApoLanthar50f2  from './lens-data/ApoLanthar50f2.data.js';
-import Nokton50f1      from './lens-data/Nokton50f1.data.js';
-import NikkorZ50mmf18S from './lens-data/NikkorZ50mmf18S.js';
 import T               from './themes.js';
 
 
 /* =====================================================================
- * §1  LENS CATALOG — Registry of available prescriptions
+ * §1  LENS CATALOG — Auto-registered from ./lens-data/*.js
  * =====================================================================
- *  Each lens prescription lives in its own file under ./lens-data/.
- *  To add a new lens, create a data file and add it to this map.
+ *  To add a new lens, create a data file in ./lens-data/ with a
+ *  `key` field in its default-exported LENS_DATA object.  It will
+ *  appear in the dropdown automatically — no imports or edits here.
  * ------------------------------------------------------------------- */
 
-const LENS_CATALOG = {
-  "apo-lanthar-50f2":  ApoLanthar50f2,
-  "nokton-50f1":       Nokton50f1,
-  "nikkor-z-50f18s":   NikkorZ50mmf18S,
-};
-
+const _modules = import.meta.glob('./lens-data/*.js', { eager: true });
+const LENS_CATALOG = {};
+for (const mod of Object.values(_modules)) {
+  const data = mod.default;
+  if (data?.key) LENS_CATALOG[data.key] = data;
+}
 const CATALOG_KEYS = Object.keys(LENS_CATALOG);
 
 
