@@ -10,13 +10,11 @@
  * ║  imports from a LENS_CATALOG, builds the runtime lens (L) on       ║
  * ║  selection, and renders.                                           ║
  * ║                                                                    ║
- * ║  Key refactor from v3.1:                                           ║
- * ║    • Module-level L eliminated — computed via useMemo.             ║
- * ║    • Every helper (renderSag, thick, layout, traceRay, etc.)       ║
- * ║      now accepts L as an explicit parameter.                       ║
- * ║    • Runtime lens switching via dropdown selector.                 ║
- * ║    • Theme system unchanged (generic across all lenses).           ║
- * ║    • Lens data fully externalized to ./lens-data/ files.           ║
+ * ║  Module structure:                                                 ║
+ * ║    • buildLens.js  — validation, label resolution, optical math    ║
+ * ║    • optics.js     — sag, layout, ray tracing, conjugates          ║
+ * ║    • themes.js     — theme factory + 4 theme definitions           ║
+ * ║    • lens-data/    — per-lens prescriptions + defaults.js          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -24,9 +22,12 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import T                  from './themes.js';
-import LENS_DEFAULTS      from './lens-data/defaults.js';
-import validateLensData   from './validateLensData.js';
+import T               from './themes.js';
+import LENS_DEFAULTS   from './lens-data/defaults.js';
+import buildLens       from './buildLens.js';
+import { sag, renderSag, gapTrimHeight, thick, doLayout,
+         traceRay, traceToImage, conjugateK, formatDist,
+         SVG_PATH_SUBDIVISIONS } from './optics.js';
 
 
 /* =====================================================================
@@ -68,310 +69,6 @@ function mdForKey(key) {
 }
 
 
-/* =====================================================================
- * §2  buildLens() — Validate, resolve, derive
- * =====================================================================
- *  Takes a LENS_DATA-shaped object and returns a frozen runtime object
- *  with all label→index resolution done, ES auto-derived, and optical
- *  constants computed.  Pure function — no side effects.
- * ------------------------------------------------------------------- */
-
-function buildLens(data) {
-  const validationErrors = validateLensData(data);
-  if (validationErrors.length > 0)
-    throw new Error(`Lens data "${data.key || '?'}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join('\n  • ')}`);
-
-  const S = data.surfaces.map(s => ({ ...s }));
-  const N = S.length;
-
-  const labelIdx = {};
-  for (let i = 0; i < N; i++) labelIdx[S[i].label] = i;
-
-  const asphByIdx = {};
-  for (const [label, coeffs] of Object.entries(data.asph || {}))
-    asphByIdx[labelIdx[label]] = coeffs;
-
-  const varByIdx = {};
-  for (const [label, range] of Object.entries(data.var || {}))
-    varByIdx[labelIdx[label]] = range;
-
-  const varLabels = (data.varLabels || []).map(([label, text]) =>
-    [labelIdx[label], text]);
-
-  const ES = [];
-  for (const elem of data.elements) {
-    let startIdx = -1;
-    for (let i = 0; i < N; i++) {
-      if (S[i].elemId === elem.id) { startIdx = i; break; }
-    }
-    ES.push([elem.id, startIdx, startIdx + 1]);
-  }
-
-  function resolveAnnotation(arr) {
-    return (arr || []).map(g => ({
-      text: g.text,
-      fromSurface: labelIdx[g.fromSurface],
-      toSurface: labelIdx[g.toSurface],
-    }));
-  }
-  const groups   = resolveAnnotation(data.groups);
-  const doublets = resolveAnnotation(data.doublets);
-
-  const stopIdx = S.findIndex(row => row.label === "STO");
-
-  if (data.nominalFno !== undefined) {
-    let y = 1, u = 0, n = 1.0;
-    for (let i = 0; i < stopIdx; i++) {
-      const { R, nd, d } = S[i];
-      const nn = nd === 1.0 ? 1.0 : nd;
-      if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-      n = nn;
-      y += d * u;
-    }
-    const yRatio = y;
-    let ye = 1, ue = 0, ne = 1.0;
-    for (let i = 0; i < N; i++) {
-      const { R, nd, d } = S[i];
-      const nn = nd === 1.0 ? 1.0 : nd;
-      if (Math.abs(R) < 1e10 && nn !== ne) ue = (ne * ue - ye * (nn - ne) / R) / nn;
-      ne = nn;
-      if (i < N - 1) ye += d * ue;
-    }
-    const efl = -1.0 / ue;
-    const epSD = efl / (2 * data.nominalFno);
-    S[stopIdx].sd = epSD * yRatio;
-  }
-
-  function computeEFL() {
-    let y = 1, u = 0, n = 1.0;
-    for (let i = 0; i < N; i++) {
-      const { R, nd, d } = S[i];
-      const nn = nd === 1.0 ? 1.0 : nd;
-      if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-      n = nn;
-      if (i < N - 1) y += d * u;
-    }
-    return -1.0 / u;
-  }
-
-  function computeEntrancePupil() {
-    let y = 1, u = 0, n = 1.0;
-    for (let i = 0; i < stopIdx; i++) {
-      const { R, nd, d } = S[i];
-      const nn = nd === 1.0 ? 1.0 : nd;
-      if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-      n = nn;
-      y += d * u;
-    }
-    return { epSD: S[stopIdx].sd / y, yRatio: y };
-  }
-
-  function computeFrontGroupB() {
-    let y = 0, u = 1, n = 1.0;
-    for (let i = 0; i < stopIdx; i++) {
-      const { R, nd, d } = S[i];
-      const nn = nd === 1.0 ? 1.0 : nd;
-      if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-      n = nn;
-      y += d * u;
-    }
-    return y;
-  }
-
-  function computeHalfField() {
-    function traceFull(y0, u0) {
-      const h = [];
-      let y = y0, u = u0, n = 1.0;
-      for (let i = 0; i < N; i++) {
-        h.push(y);
-        const { R, nd, d } = S[i];
-        const nn = nd === 1.0 ? 1.0 : nd;
-        if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-        n = nn;
-        if (i < N - 1) y += d * u;
-      }
-      return h;
-    }
-    const hA = traceFull(1, 0);
-    const hB = traceFull(0, 1);
-    const r = hB[stopIdx] / hA[stopIdx];
-    let minU = Infinity;
-    for (let i = 0; i < N; i++) {
-      if (i === stopIdx) continue;
-      const c = Math.abs(hB[i] - r * hA[i]);
-      if (c > 1e-8) {
-        const uMax = S[i].sd / c;
-        if (uMax < minU) minU = uMax;
-      }
-    }
-    return Math.atan(minU) * 180 / Math.PI;
-  }
-
-  const EFL  = computeEFL();
-  const EP   = computeEntrancePupil();
-  const B    = computeFrontGroupB();
-  const stopPhysSD = S[stopIdx].sd;
-  const FOPEN      = EFL / (2 * EP.epSD);
-  const halfField  = computeHalfField();
-
-  function layoutInf() {
-    const z = [0];
-    for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
-    return z[N - 1] + S[N - 1].d;
-  }
-  const totalTrack = layoutInf();
-  const maxSD = Math.max(...S.map(s => s.sd));
-
-  const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
-  const SC  = svgW * scFill / totalTrack;
-  const YSC = svgH * yScFill / maxSD;
-  const maxRimSin  = Math.sin(maxRimAngleDeg * Math.PI / 180);
-  const gridPitch  = totalTrack / 15;
-  const gridCount  = Math.ceil(svgW / (gridPitch * SC)) + 4;
-  const lyDoublet  = -1.10  * maxSD;
-  const lyImgLine  =  1.133 * maxSD;
-  const lyImgLabel = -1.233 * maxSD;
-  const lyElemNum  =  1.20  * maxSD;
-  const lyGroup    =  1.37  * maxSD;
-  const lyStoPad   =  0.12  * maxSD;
-
-  const rayHeights      = data.rayFractions.map(f => f * EP.epSD);
-  const rayLead         = totalTrack * data.rayLeadFrac;
-  const bladeStubFrac   = 1 - Math.max(...data.rayFractions.map(Math.abs));
-  const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
-  const offAxisHeights  = data.offAxisFractions.map(f => f * EP.epSD);
-
-  return Object.freeze({
-    data, S, N, ES,
-    elements: data.elements,
-    asphByIdx, varByIdx, varLabels,
-    groups, doublets,
-    stopIdx, stopPhysSD,
-    EFL, EP, B, FOPEN, halfField, totalTrack, maxSD,
-    svgW: data.svgW, svgH: data.svgH,
-    SC, YSC, maxRimSin, gapSagFrac, clipMargin,
-    gridPitch, gridCount,
-    lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyGroup, lyStoPad,
-    rayFractions: data.rayFractions, rayHeights, rayLead, bladeStubFrac,
-    offAxisFieldDeg, offAxisFractions: data.offAxisFractions, offAxisHeights,
-    closeFocusM: data.closeFocusM, focusStep: data.focusStep,
-    focusDescription: data.focusDescription,
-    maxFstop: data.maxFstop, apertureStep: data.apertureStep,
-    fstopSeries: data.fstopSeries,
-    labelIdx,
-  });
-}
-
-
-
-/* =====================================================================
- * §4  RENDERING HELPERS — Sag, layout, and shape utilities
- * =====================================================================
- *  v4: Every function accepts L as an explicit parameter.
- * ------------------------------------------------------------------- */
-
-function sag(h, R) {
-  if (Math.abs(R) > 1e10) return 0;
-  const c = 1 / R, h2 = h * h, d = 1 - c * c * h2;
-  return (c * h2) / (1 + Math.sqrt(d > 0 ? d : 0));
-}
-
-function renderSag(h, surfIdx, L) {
-  const R = L.S[surfIdx].R;
-  const a = L.asphByIdx[surfIdx];
-  if (!a) return sag(h, R);
-  if (Math.abs(R) > 1e10 && !a) return 0;
-  const c = Math.abs(R) > 1e10 ? 0 : 1.0 / R;
-  const h2 = h * h;
-  const d = 1 - (1 + a.K) * c * c * h2;
-  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-  const poly = a.A4*h2*h2 + a.A6*h2**3 + a.A8*h2**4
-             + a.A10*h2**5 + a.A12*h2**6 + a.A14*h2**7;
-  return conic + poly;
-}
-
-function gapTrimHeight(surfIdx, sd, maxSag, L) {
-  if (maxSag <= 0 || L.gapSagFrac <= 0) return sd;
-  if (Math.abs(renderSag(sd, surfIdx, L)) <= maxSag) return sd;
-  let lo = 0, hi = sd;
-  for (let j = 0; j < 30; j++) {
-    const mid = (lo + hi) / 2;
-    if (Math.abs(renderSag(mid, surfIdx, L)) > maxSag) hi = mid; else lo = mid;
-  }
-  return (lo + hi) / 2;
-}
-
-function thick(i, t, L) {
-  const v = L.varByIdx[i];
-  return v ? v[0] + (v[1] - v[0]) * t : L.S[i].d;
-}
-
-function doLayout(t, L) {
-  const th = L.S.map((_, i) => thick(i, t, L));
-  const z = [0];
-  for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
-  return { z, th, imgZ: z[z.length - 1] + th[th.length - 1] };
-}
-
-
-/* =====================================================================
- * §5  OPTICS ENGINE — Ray-trace and conjugate functions
- * =====================================================================
- *  v4: L passed explicitly.
- * ------------------------------------------------------------------- */
-
-function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
-  const pts = [];
-  const ghostPts = [];
-  pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
-  let y = y0, u = u0, n = 1.0;
-  let clipped = false;
-  for (let i = 0; i < L.N; i++) {
-    const { R, nd, sd } = L.S[i];
-    const z = zPos[i];
-    const isStop = i === L.stopIdx;
-    const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
-    if (!clipped && Math.abs(y) > clip) {
-      if (!ghost) break;
-      clipped = true;
-    }
-    const pt = [z + sag(Math.abs(y), R), y];
-    if (clipped) ghostPts.push(pt); else pts.push(pt);
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-    n = nn;
-    if (i < L.N - 1) y += thick(i, t, L) * u;
-  }
-  return { pts, ghostPts, y, u, clipped };
-}
-
-function traceToImage(y0, u0, t, L) {
-  let y = y0, u = u0, n = 1.0;
-  for (let i = 0; i < L.N; i++) {
-    const { R, nd } = L.S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (Math.abs(R) < 1e10 && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
-    n = nn;
-    y += thick(i, t, L) * u;
-  }
-  return y;
-}
-
-function conjugateK(t, L) {
-  const y10 = traceToImage(1, 0, t, L);
-  const y01 = traceToImage(0, 1, t, L);
-  if (Math.abs(y01) < 1e-15) return 0;
-  return -y10 / y01;
-}
-
-function formatDist(t, L) {
-  if (t < 0.003) return "∞";
-  const d = L.closeFocusM / t;
-  if (d >= 100) return `${Math.round(d)} m`;
-  if (d >= 10) return `${d.toFixed(1)} m`;
-  if (d >= 1) return `${d.toFixed(2)} m`;
-  return `${(d * 100).toFixed(0)} cm`;
-}
 
 
 /* ── useMediaQuery hook ── */
@@ -512,7 +209,7 @@ export default function LensVisualization() {
       const gapBefore = L.S[s1 - 1].d;
       trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
     }
-    const z1 = zPos[s1], z2 = zPos[s2], NN = 48;
+    const z1 = zPos[s1], z2 = zPos[s2], NN = SVG_PATH_SUBDIVISIONS;
     let d = "";
     for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
     for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
