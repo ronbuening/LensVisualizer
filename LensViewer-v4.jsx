@@ -20,7 +20,9 @@
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import T               from './themes.js';
 
@@ -40,6 +42,25 @@ for (const mod of Object.values(_modules)) {
   if (data?.key) LENS_CATALOG[data.key] = data;
 }
 const CATALOG_KEYS = Object.keys(LENS_CATALOG);
+
+const _mdModules = import.meta.glob('./lens-data/*.analysis.md', { eager: true, query: '?raw', import: 'default' });
+const MD_BY_STEM = {};
+for (const [path, raw] of Object.entries(_mdModules)) {
+  const stem = path.replace('./lens-data/', '').replace('.analysis.md', '');
+  MD_BY_STEM[stem] = raw;
+}
+
+/* Map lens key → data file stem so we can find the matching .analysis.md */
+const KEY_TO_STEM = {};
+for (const [path, mod] of Object.entries(_modules)) {
+  const stem = path.replace('./lens-data/', '').replace('.data.js', '').replace('.js', '');
+  if (mod.default?.key) KEY_TO_STEM[mod.default.key] = stem;
+}
+
+function mdForKey(key) {
+  const stem = KEY_TO_STEM[key];
+  return stem ? (MD_BY_STEM[stem] || null) : null;
+}
 
 
 /* =====================================================================
@@ -361,6 +382,63 @@ function formatDist(t, L) {
 }
 
 
+/* ── useMediaQuery hook ── */
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(query).matches : true
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const handler = (e) => setMatches(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, [query]);
+  return matches;
+}
+
+/* ── DescriptionPanel — renders markdown with theme-aware styling ── */
+function DescriptionPanel({ markdown, theme: t }) {
+  if (!markdown) {
+    return (
+      <div style={{ padding: 32, color: t.muted, fontSize: 12, fontStyle: "italic" }}>
+        No description available for this lens.
+      </div>
+    );
+  }
+  const components = {
+    h1: ({ children }) => <h1 style={{ fontSize: 18, fontWeight: 700, color: t.descH1, margin: "24px 0 12px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3, borderBottom: `1px solid ${t.descBorder}`, paddingBottom: 8 }}>{children}</h1>,
+    h2: ({ children }) => <h2 style={{ fontSize: 15, fontWeight: 600, color: t.descH2, margin: "20px 0 8px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3 }}>{children}</h2>,
+    h3: ({ children }) => <h3 style={{ fontSize: 13, fontWeight: 600, color: t.descH2, margin: "16px 0 6px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3 }}>{children}</h3>,
+    p: ({ children }) => <p style={{ fontSize: 12, color: t.descText, lineHeight: 1.7, margin: "8px 0" }}>{children}</p>,
+    a: ({ children, href }) => <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: t.descLinkColor, textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40` }}>{children}</a>,
+    em: ({ children }) => <em style={{ color: t.muted, fontStyle: "italic" }}>{children}</em>,
+    strong: ({ children }) => <strong style={{ color: t.descH1, fontWeight: 600 }}>{children}</strong>,
+    code: ({ children, className }) => {
+      const isBlock = className?.startsWith('language-');
+      if (isBlock) return <code style={{ fontSize: 11 }}>{children}</code>;
+      return <code style={{ background: t.descCodeBg, padding: "1px 5px", borderRadius: 3, fontSize: 11, color: t.descLinkColor }}>{children}</code>;
+    },
+    pre: ({ children }) => <pre style={{ background: t.descCodeBg, padding: 12, borderRadius: 6, overflow: "auto", margin: "10px 0", fontSize: 11, lineHeight: 1.5 }}>{children}</pre>,
+    ul: ({ children }) => <ul style={{ paddingLeft: 20, margin: "6px 0", fontSize: 12, color: t.descText, lineHeight: 1.7 }}>{children}</ul>,
+    ol: ({ children }) => <ol style={{ paddingLeft: 20, margin: "6px 0", fontSize: 12, color: t.descText, lineHeight: 1.7 }}>{children}</ol>,
+    li: ({ children }) => <li style={{ marginBottom: 3 }}>{children}</li>,
+    blockquote: ({ children }) => <blockquote style={{ borderLeft: `3px solid ${t.descLinkColor}`, paddingLeft: 14, margin: "10px 0", color: t.muted }}>{children}</blockquote>,
+    table: ({ children }) => <div style={{ overflowX: "auto", margin: "10px 0" }}><table style={{ borderCollapse: "collapse", width: "100%", fontSize: 11 }}>{children}</table></div>,
+    thead: ({ children }) => <thead style={{ background: t.descTableHeaderBg }}>{children}</thead>,
+    th: ({ children }) => <th style={{ border: `1px solid ${t.descTableBorder}`, padding: "6px 10px", textAlign: "left", color: t.descH2, fontWeight: 600, fontSize: 10.5 }}>{children}</th>,
+    td: ({ children }) => <td style={{ border: `1px solid ${t.descTableBorder}`, padding: "5px 10px", color: t.descText, fontSize: 10.5 }}>{children}</td>,
+    hr: () => <hr style={{ border: "none", borderTop: `1px solid ${t.descBorder}`, margin: "16px 0" }} />,
+  };
+  return (
+    <div style={{ padding: "16px 24px 24px", fontSize: 12, lineHeight: 1.7 }}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+        {markdown}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
+
 /* =====================================================================
  * §6  RENDERER — React component
  * =====================================================================
@@ -379,6 +457,10 @@ export default function LensVisualization() {
   const [showOffAxis, setShowOffAxis] = useState(false);
   const [rayTracksF, setRayTracksF] = useState(false);
   const [stopdownT, setStopdownT] = useState(0);
+  const [mobileView, setMobileView] = useState('diagram');
+
+  const isWide = useMediaQuery('(min-width: 900px)');
+  const markdown = useMemo(() => mdForKey(lensKey), [lensKey]);
 
   /* ── Build lens from selected data ── */
   const buildResult = useMemo(() => {
@@ -499,8 +581,9 @@ export default function LensVisualization() {
     return { label, val };
   });
 
-  return (
-    <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", transition: "background 0.3s,color 0.3s" }}>
+  /* ── Diagram panel content (reused in both layouts) ── */
+  const diagramContent = (
+    <>
       {/* ── Header ── */}
       <div style={{ padding: "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background 0.3s,border-color 0.3s" }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -513,26 +596,6 @@ export default function LensVisualization() {
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0 }}>
-          {/* ── Lens selector ── */}
-          <select
-            value={lensKey}
-            onChange={e => switchLens(e.target.value)}
-            style={{
-              background: t.selectorBg, border: `1px solid ${t.selectorBorder}`,
-              borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
-              fontSize: 10, color: t.selectorText, fontFamily: "inherit",
-              letterSpacing: "0.06em", appearance: "none", outline: "none",
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${encodeURIComponent(t.selectorText)}'/%3E%3C/svg%3E")`,
-              backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
-              transition: "all 0.3s", maxWidth: 260,
-            }}
-          >
-            {CATALOG_KEYS.map(k => (
-              <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-                {LENS_CATALOG[k].name}
-              </option>
-            ))}
-          </select>
           {/* ── Theme controls ── */}
           <div style={{ display: "flex", gap: 5 }}>
             <button onClick={() => setHighContrast(!highContrast)} style={{
@@ -578,8 +641,8 @@ export default function LensVisualization() {
           </div>
           <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
             {[
-              { label: "FROM ∞", val: false, icon: "∥" },
-              { label: "TRACKS FOCUS", val: true, icon: "⟩" },
+              { label: "FROM \u221e", val: false, icon: "\u2225" },
+              { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
             ].map(({ label, val, icon }) => (
               <button key={label} onClick={() => setRayTracksF(val)} style={{
                 background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
@@ -669,7 +732,7 @@ export default function LensVisualization() {
             <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>∞</span>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
             <input type="range" min="0" max="1" step={L.focusStep} value={focusT}
               onChange={e => setFocusT(parseFloat(e.target.value))}
               style={{ flex: 1, height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
@@ -696,7 +759,7 @@ export default function LensVisualization() {
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
           </div>
           <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>
-            EFL {L.EFL.toFixed(2)} mm · EP ⌀ {(L.EP.epSD * 2).toFixed(2)} mm · Stop ⌀ {(currentPhysStopSD * 2).toFixed(2)} mm
+            EFL {L.EFL.toFixed(2)} mm · EP {"\u2300"} {(L.EP.epSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
           </div>
           <div style={{ marginTop: 6, display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
             {L.fstopSeries.filter(n => n >= L.FOPEN - 0.1 && n <= L.maxFstop).map(n => (
@@ -729,7 +792,7 @@ export default function LensVisualization() {
               <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>{info.type}</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))", gap: "3px 18px", fontSize: 10.5, lineHeight: 1.8 }}>
                 <div><span style={{ color: t.propLabel }}>nd = </span><span style={{ color: t.value }}>{info.nd}</span></div>
-                <div><span style={{ color: t.propLabel }}>νd = </span><span style={{ color: t.value }}>{info.vd}</span></div>
+                <div><span style={{ color: t.propLabel }}>{"\u03bd"}d = </span><span style={{ color: t.value }}>{info.vd}</span></div>
                 <div><span style={{ color: t.propLabel }}>FL = </span><span style={{ color: t.value }}>{info.fl > 0 ? "+" : ""}{info.fl} mm</span></div>
                 <div><span style={{ color: t.propLabel }}>Glass: </span><span style={{ color: t.value }}>{info.glass}</span></div>
               </div>
@@ -753,11 +816,11 @@ export default function LensVisualization() {
                 </div>
                 {showOnAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                   <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="3" x2="14" y2="3" stroke={t.rayWarm} strokeWidth="1.5" /><line x1="0" y1="7" x2="14" y2="7" stroke={t.rayCool} strokeWidth="1.5" /></svg>
-                  <span style={{ color: t.legendText }}>On-axis rays{rayTracksF ? " (tracks focus)" : " (from ∞)"}</span>
+                  <span style={{ color: t.legendText }}>On-axis rays{rayTracksF ? " (tracks focus)" : " (from \u221e)"}</span>
                 </div>}
                 {showOffAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                   <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="3" x2="14" y2="3" stroke={t.rayOffWarm} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /><line x1="0" y1="7" x2="14" y2="7" stroke={t.rayOffCool} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /></svg>
-                  <span style={{ color: t.legendText }}>Off-axis rays ({L.offAxisFieldDeg.toFixed(1)}°){rayTracksF ? " tracks focus" : " from ∞"}</span>
+                  <span style={{ color: t.legendText }}>Off-axis rays ({L.offAxisFieldDeg.toFixed(1)}{"\u00b0"}){rayTracksF ? " tracks focus" : " from \u221e"}</span>
                 </div>}
                 {showOffAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                   <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="5" x2="14" y2="5" stroke={t.rayOffWarm} strokeWidth="0.8" strokeDasharray="3,4" opacity="0.35" /></svg>
@@ -768,6 +831,75 @@ export default function LensVisualization() {
           )}
         </div>
       </div>
+    </>
+  );
+
+  const descriptionContent = (
+    <div style={{ background: t.descBg, overflowY: "auto", transition: "background 0.3s" }}>
+      <DescriptionPanel markdown={markdown} theme={t} />
+    </div>
+  );
+
+  return (
+    <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", transition: "background 0.3s,color 0.3s" }}>
+      {/* ── Top bar: lens selector ── */}
+      <div style={{ padding: "10px 24px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, display: "flex", alignItems: "center", gap: 12, transition: "background 0.3s,border-color 0.3s" }}>
+        <select
+          value={lensKey}
+          onChange={e => switchLens(e.target.value)}
+          style={{
+            background: t.selectorBg, border: `1px solid ${t.selectorBorder}`,
+            borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
+            fontSize: 10, color: t.selectorText, fontFamily: "inherit",
+            letterSpacing: "0.06em", appearance: "none", outline: "none",
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${encodeURIComponent(t.selectorText)}'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
+            transition: "all 0.3s", flex: "0 1 300px",
+          }}
+        >
+          {CATALOG_KEYS.map(k => (
+            <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
+              {LENS_CATALOG[k].name}
+            </option>
+          ))}
+        </select>
+
+        {/* ── Mobile view toggle (narrow screens only) ── */}
+        {!isWide && (
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, marginLeft: "auto" }}>
+            {[
+              { label: "DIAGRAM", val: 'diagram' },
+              { label: "ANALYSIS", val: 'description' },
+            ].map(({ label, val }) => (
+              <button key={val} onClick={() => setMobileView(val)} style={{
+                background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
+                border: "none", borderRight: val === 'diagram' ? `1px solid ${t.toggleBorder}` : "none",
+                padding: "4px 12px", cursor: "pointer",
+                fontSize: 9, color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
+                fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+              }}>
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ── Main content area ── */}
+      {isWide ? (
+        /* Desktop: side-by-side */
+        <div style={{ display: "flex", minHeight: "calc(100vh - 42px)" }}>
+          <div style={{ flex: "0 0 60%", minWidth: 0, overflow: "hidden" }}>
+            {diagramContent}
+          </div>
+          <div style={{ flex: "0 0 40%", borderLeft: `1px solid ${t.descBorder}`, overflowY: "auto", maxHeight: "calc(100vh - 42px)" }}>
+            {descriptionContent}
+          </div>
+        </div>
+      ) : (
+        /* Mobile: toggle between views */
+        mobileView === 'diagram' ? diagramContent : descriptionContent
+      )}
     </div>
   );
 }

@@ -67,6 +67,10 @@ const T = {
     imgLineWidth: 1.0, gridStrokeWidth: 0.4,
     selectorBg: "rgba(255,255,255,0.06)", selectorBorder: "rgba(0,200,220,0.25)",
     selectorText: "#c0d4e8", selectorHover: "rgba(0,200,220,0.12)",
+    descBg: "rgba(8,10,15,0.98)", descBorder: "rgba(0,200,220,0.12)",
+    descCodeBg: "rgba(255,255,255,0.06)", descLinkColor: "#00d4e6",
+    descH1: "#f4f6fa", descH2: "#c0d4e8", descText: "#b8cce0",
+    descTableBorder: "rgba(0,200,220,0.15)", descTableHeaderBg: "rgba(0,200,220,0.08)",
     // closure color tokens
     _gridOdd: "rgba(30,42,60,0.45)", _gridEven: "rgba(30,42,60,0.45)",
     _elemNumApd: "rgba(0,229,255,0.80)", _elemNumStd: "rgba(180,200,220,0.70)",
@@ -114,6 +118,10 @@ const T = {
     imgLineWidth: 1.0, gridStrokeWidth: 0.4,
     selectorBg: "rgba(0,0,0,0.04)", selectorBorder: "rgba(0,0,0,0.14)",
     selectorText: "#2a3a50", selectorHover: "rgba(0,96,128,0.08)",
+    descBg: "#f8f9fb", descBorder: "rgba(0,0,0,0.10)",
+    descCodeBg: "rgba(0,0,0,0.04)", descLinkColor: "#006878",
+    descH1: "#0a0f18", descH2: "#2a3a50", descText: "#2e4258",
+    descTableBorder: "rgba(0,0,0,0.12)", descTableHeaderBg: "rgba(0,0,0,0.04)",
     // closure color tokens
     _gridOdd: "rgba(180,190,205,0.55)", _gridEven: "rgba(165,178,195,0.6)",
     _elemNumApd: "rgba(0,80,112,0.85)", _elemNumStd: "rgba(50,70,95,0.75)",
@@ -161,6 +169,10 @@ const T = {
     imgLineWidth: 1.4, gridStrokeWidth: 0.55,
     selectorBg: "rgba(255,255,255,0.08)", selectorBorder: "rgba(0,220,240,0.35)",
     selectorText: "#e0f4f8", selectorHover: "rgba(0,220,240,0.18)",
+    descBg: "rgba(4,5,8,0.99)", descBorder: "rgba(0,220,240,0.18)",
+    descCodeBg: "rgba(255,255,255,0.08)", descLinkColor: "#00f0ff",
+    descH1: "#ffffff", descH2: "#e0f4f8", descText: "#c8dced",
+    descTableBorder: "rgba(0,220,240,0.20)", descTableHeaderBg: "rgba(0,220,240,0.10)",
     // closure color tokens
     _gridOdd: "rgba(35,50,70,0.55)", _gridEven: "rgba(35,50,70,0.55)",
     _elemNumApd: "rgba(0,240,255,0.90)", _elemNumStd: "rgba(200,215,235,0.80)",
@@ -208,6 +220,10 @@ const T = {
     imgLineWidth: 1.4, gridStrokeWidth: 0.55,
     selectorBg: "rgba(0,0,0,0.06)", selectorBorder: "rgba(0,0,0,0.18)",
     selectorText: "#162838", selectorHover: "rgba(0,80,112,0.10)",
+    descBg: "#f5f6f8", descBorder: "rgba(0,0,0,0.14)",
+    descCodeBg: "rgba(0,0,0,0.05)", descLinkColor: "#004858",
+    descH1: "#000000", descH2: "#1e2e40", descText: "#1a3048",
+    descTableBorder: "rgba(0,0,0,0.16)", descTableHeaderBg: "rgba(0,0,0,0.05)",
     // closure color tokens
     _gridOdd: "rgba(160,172,190,0.65)", _gridEven: "rgba(145,160,180,0.70)",
     _elemNumApd: "rgba(0,65,95,0.92)", _elemNumStd: "rgba(35,55,80,0.85)",
