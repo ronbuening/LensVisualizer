@@ -284,40 +284,40 @@ export default function LensVisualization() {
             {L.data.specs.map((s, i) => <span key={i}>{s}</span>)}
           </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0 }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: 220 }}>
           {/* ── Theme controls ── */}
-          <div style={{ display: "flex", gap: 5 }}>
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
             <button onClick={() => setHighContrast(!highContrast)} style={{
-              background: highContrast ? t.toggleActiveBg : t.toggleBg,
-              border: `1px solid ${highContrast ? t.toggleActiveBorder : t.toggleBorder}`, borderRadius: 6,
-              padding: "5px 10px", cursor: "pointer", fontSize: 11,
-              color: highContrast ? t.toggleActiveText : t.toggleText,
-              display: "flex", alignItems: "center", gap: 5, transition: "all 0.3s",
-              fontFamily: "inherit", letterSpacing: "0.06em",
+              flex: 1, background: highContrast ? t.toggleActiveBg : t.toggleBg,
+              border: "none", borderRight: `1px solid ${t.toggleBorder}`,
+              padding: "5px 10px", cursor: "pointer", fontSize: 10,
+              color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.3s",
+              fontFamily: "inherit", letterSpacing: "0.08em",
             }}>
               <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span><span>HC</span>
             </button>
             <button onClick={() => setDark(!dark)} style={{
-              background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 6,
-              padding: "5px 10px", cursor: "pointer", fontSize: 11, color: t.toggleText,
-              display: "flex", alignItems: "center", gap: 5, transition: "all 0.3s",
-              fontFamily: "inherit", letterSpacing: "0.06em",
+              flex: 1, background: t.toggleBg, border: "none",
+              padding: "5px 10px", cursor: "pointer", fontSize: 10, color: t.toggleInactiveText,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.3s",
+              fontFamily: "inherit", letterSpacing: "0.08em",
             }}>
               <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span><span>{dark ? "Light" : "Dark"}</span>
             </button>
           </div>
           {/* ── Ray controls ── */}
-          <div style={{ display: "flex", gap: 5 }}>
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
             {[
               { label: "ON-AXIS", active: showOnAxis, set: setShowOnAxis, dotA: t.rayWarm, dotB: t.rayCool },
               { label: "OFF-AXIS", active: showOffAxis, set: setShowOffAxis, dotA: t.rayOffWarm, dotB: t.rayOffCool },
-            ].map(({ label, active, set, dotA, dotB }) => (
+            ].map(({ label, active, set, dotA, dotB }, idx) => (
               <button key={label} onClick={() => set(!active)} style={{
-                background: active ? t.toggleActiveBg : t.toggleBg,
-                border: `1px solid ${active ? t.toggleActiveBorder : t.toggleBorder}`,
-                borderRadius: 5, padding: "3px 8px", cursor: "pointer",
+                flex: 1, background: active ? t.toggleActiveBg : t.toggleBg,
+                border: "none", borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
+                padding: "5px 8px", cursor: "pointer",
                 fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
-                display: "flex", alignItems: "center", gap: 5, transition: "all 0.25s",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
                 fontFamily: "inherit", letterSpacing: "0.08em",
               }}>
                 <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
@@ -328,17 +328,18 @@ export default function LensVisualization() {
               </button>
             ))}
           </div>
-          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+          {/* ── Ray mode ── */}
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
             {[
               { label: "FROM \u221e", val: false, icon: "\u2225" },
               { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
             ].map(({ label, val, icon }) => (
               <button key={label} onClick={() => setRayTracksF(val)} style={{
-                background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
+                flex: 1, background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
                 border: "none", borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
-                padding: "3px 9px", cursor: "pointer",
+                padding: "5px 9px", cursor: "pointer",
                 fontSize: 9, color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
-                display: "flex", alignItems: "center", gap: 4, transition: "all 0.25s",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 4, transition: "all 0.25s",
                 fontFamily: "inherit", letterSpacing: "0.08em",
               }}>
                 <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>{icon}</span><span>{label}</span>
@@ -541,7 +542,7 @@ export default function LensVisualization() {
             borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
             fontSize: 10, color: t.selectorText, fontFamily: "inherit",
             letterSpacing: "0.06em", appearance: "none", outline: "none",
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${encodeURIComponent(t.selectorText)}'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='${t.selectorText.replace("#", "%23")}'/%3E%3C/svg%3E")`,
             backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
             transition: "all 0.3s", flex: "0 1 300px",
           }}
@@ -553,26 +554,29 @@ export default function LensVisualization() {
           ))}
         </select>
 
-        {/* ── Mobile view toggle (narrow screens only) ── */}
-        {!isWide && (
-          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, marginLeft: "auto" }}>
+      </div>
+
+      {/* ── Mobile view toggle (narrow screens — own row for visibility) ── */}
+      {!isWide && (
+        <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, transition: "background 0.3s,border-color 0.3s" }}>
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 220 }}>
             {[
               { label: "DIAGRAM", val: 'diagram' },
               { label: "ANALYSIS", val: 'description' },
             ].map(({ label, val }) => (
               <button key={val} onClick={() => setMobileView(val)} style={{
-                background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
+                flex: 1, background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
                 border: "none", borderRight: val === 'diagram' ? `1px solid ${t.toggleBorder}` : "none",
-                padding: "4px 12px", cursor: "pointer",
-                fontSize: 9, color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
+                padding: "6px 0", cursor: "pointer",
+                fontSize: 10, color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
                 fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
               }}>
                 {label}
               </button>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* ── Main content area ── */}
       {isWide ? (
