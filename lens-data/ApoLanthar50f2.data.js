@@ -133,29 +133,15 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM:       0.37,
-  focusStep:         0.004,
   focusDescription:  "Floating focus (F36 scheme) — front group, Jb, and Ja+LE move independently. Three variable air gaps adjust to maintain quasi-symmetric aberration balance.",
 
   /* ── Aperture configuration ── */
   nominalFno:   1.93,
-  maxFstop:     16,
-  apertureStep: 0.004,
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
-  /* ── Ray fan configuration ── */
-  rayFractions:     [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
-  rayLeadFrac:      0.19,
-  offAxisFieldFrac: 0.60,
-  offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75],
-
-  /* ── Layout tuning ── */
-  svgW:             1080,
-  svgH:             490,
+  /* ── Layout tuning (overrides defaults) ── */
   scFill:           0.52,
   yScFill:          0.32,
-  clipMargin:       1.0,
-  maxRimAngleDeg:   40,
-  gapSagFrac:       0.90,
 };
 
 export default LENS_DATA;

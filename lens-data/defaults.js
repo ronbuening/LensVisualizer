@@ -1,0 +1,30 @@
+/**
+ * Shared default values for lens data files.
+ *
+ * These are merged under each lens's own fields in the catalog builder:
+ *   { ...LENS_DEFAULTS, ...lensData }
+ * so any lens can override any default by declaring its own value.
+ */
+
+const LENS_DEFAULTS = {
+
+  /* ── Ray fan configuration ── */
+  rayFractions:     [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
+  rayLeadFrac:      0.19,
+  offAxisFieldFrac: 0.60,
+  offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75],
+
+  /* ── Layout tuning ── */
+  svgW:             1080,
+  svgH:             490,
+  clipMargin:       1.0,
+  maxRimAngleDeg:   40,
+  gapSagFrac:       0.90,
+
+  /* ── Controls ── */
+  focusStep:        0.004,
+  apertureStep:     0.004,
+  maxFstop:         16,
+};
+
+export default LENS_DEFAULTS;

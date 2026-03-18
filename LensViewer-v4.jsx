@@ -24,7 +24,9 @@ import { useState, useMemo, useCallback, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import T               from './themes.js';
+import T                  from './themes.js';
+import LENS_DEFAULTS      from './lens-data/defaults.js';
+import validateLensData   from './validateLensData.js';
 
 
 /* =====================================================================
@@ -33,13 +35,16 @@ import T               from './themes.js';
  *  To add a new lens, create a data file in ./lens-data/ with a
  *  `key` field in its default-exported LENS_DATA object.  It will
  *  appear in the dropdown automatically — no imports or edits here.
+ *
+ *  Shared defaults (rayFractions, svgW, etc.) come from defaults.js
+ *  and are merged under each lens's own fields so any lens can override.
  * ------------------------------------------------------------------- */
 
-const _modules = import.meta.glob('./lens-data/*.js', { eager: true });
+const _modules = import.meta.glob('./lens-data/*.data.js', { eager: true });
 const LENS_CATALOG = {};
 for (const mod of Object.values(_modules)) {
   const data = mod.default;
-  if (data?.key) LENS_CATALOG[data.key] = data;
+  if (data?.key) LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
 }
 const CATALOG_KEYS = Object.keys(LENS_CATALOG);
 
@@ -72,35 +77,26 @@ function mdForKey(key) {
  * ------------------------------------------------------------------- */
 
 function buildLens(data) {
+  const validationErrors = validateLensData(data);
+  if (validationErrors.length > 0)
+    throw new Error(`Lens data "${data.key || '?'}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join('\n  • ')}`);
+
   const S = data.surfaces.map(s => ({ ...s }));
   const N = S.length;
 
   const labelIdx = {};
-  for (let i = 0; i < N; i++) {
-    if (labelIdx[S[i].label] !== undefined)
-      throw new Error(`Duplicate surface label: "${S[i].label}"`);
-    labelIdx[S[i].label] = i;
-  }
+  for (let i = 0; i < N; i++) labelIdx[S[i].label] = i;
 
   const asphByIdx = {};
-  for (const [label, coeffs] of Object.entries(data.asph || {})) {
-    const idx = labelIdx[label];
-    if (idx === undefined) throw new Error(`ASPH label "${label}" not found in surfaces`);
-    asphByIdx[idx] = coeffs;
-  }
+  for (const [label, coeffs] of Object.entries(data.asph || {}))
+    asphByIdx[labelIdx[label]] = coeffs;
 
   const varByIdx = {};
-  for (const [label, range] of Object.entries(data.var || {})) {
-    const idx = labelIdx[label];
-    if (idx === undefined) throw new Error(`VAR label "${label}" not found in surfaces`);
-    varByIdx[idx] = range;
-  }
+  for (const [label, range] of Object.entries(data.var || {}))
+    varByIdx[labelIdx[label]] = range;
 
-  const varLabels = (data.varLabels || []).map(([label, text]) => {
-    const idx = labelIdx[label];
-    if (idx === undefined) throw new Error(`varLabels label "${label}" not found`);
-    return [idx, text];
-  });
+  const varLabels = (data.varLabels || []).map(([label, text]) =>
+    [labelIdx[label], text]);
 
   const ES = [];
   for (const elem of data.elements) {
@@ -108,24 +104,20 @@ function buildLens(data) {
     for (let i = 0; i < N; i++) {
       if (S[i].elemId === elem.id) { startIdx = i; break; }
     }
-    if (startIdx === -1) throw new Error(`Element ${elem.id} ("${elem.name}") has no surfaces`);
     ES.push([elem.id, startIdx, startIdx + 1]);
   }
 
   function resolveAnnotation(arr) {
-    return (arr || []).map(g => {
-      const from = labelIdx[g.fromSurface];
-      const to   = labelIdx[g.toSurface];
-      if (from === undefined) throw new Error(`Group/doublet label "${g.fromSurface}" not found`);
-      if (to === undefined)   throw new Error(`Group/doublet label "${g.toSurface}" not found`);
-      return { text: g.text, fromSurface: from, toSurface: to };
-    });
+    return (arr || []).map(g => ({
+      text: g.text,
+      fromSurface: labelIdx[g.fromSurface],
+      toSurface: labelIdx[g.toSurface],
+    }));
   }
   const groups   = resolveAnnotation(data.groups);
   const doublets = resolveAnnotation(data.doublets);
 
   const stopIdx = S.findIndex(row => row.label === "STO");
-  if (stopIdx === -1) throw new Error('No surface with label "STO" found');
 
   if (data.nominalFno !== undefined) {
     let y = 1, u = 0, n = 1.0;
