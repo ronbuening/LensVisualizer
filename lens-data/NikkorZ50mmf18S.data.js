@@ -222,29 +222,15 @@ const LENS_DATA = {
 
   // §8 — Focus configuration
   closeFocusM:       0.4,
-  focusStep:         0.004,
   focusDescription:  "Inner focus — G2 (L21 + L22 + L23) translates 7.9 mm toward the object. G1 and G3 remain fixed. Stepping motor (STM) drive.",
 
   // §9 — Aperture configuration
   nominalFno:   1.85,
-  maxFstop:     16,
-  apertureStep: 0.004,
   fstopSeries:  [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
 
-  // §10 — Ray fan configuration
-  rayFractions:     [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
-  rayLeadFrac:      0.19,
-  offAxisFieldFrac: 0.60,
-  offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75],
-
-  // §11 — Layout tuning
-  svgW:             1080,
-  svgH:             490,
+  // §10 — Layout tuning (overrides defaults)
   scFill:           0.52,
   yScFill:          0.32,
-  clipMargin:       1.0,
-  maxRimAngleDeg:   40,
-  gapSagFrac:       0.90,
 };
 
 export default LENS_DATA;
