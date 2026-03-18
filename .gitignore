@@ -36,7 +36,6 @@ coverage/
 .nyc_output/
 
 # IDEs and editors
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -102,12 +101,6 @@ temp/
 .rts2_cache_es/
 .rts2_cache_umd/
 
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
 # Yarn v2
 .yarn/cache
 .yarn/unplugged
@@ -132,13 +125,9 @@ firestore-debug.log
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# yarn v0 lock file
-yarn.lock
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
 *.suo
 *.ntvs*
 *.njsproj
