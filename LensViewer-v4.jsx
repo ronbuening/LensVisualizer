@@ -22,8 +22,9 @@
 
 import { useState, useMemo, useCallback } from "react";
 
-import ApoLanthar50f2 from './lens-data/ApoLanthar50f2.data.js';
-import Nokton50f1     from './lens-data/Nokton50f1.data.js';
+import ApoLanthar50f2  from './lens-data/ApoLanthar50f2.data.js';
+import Nokton50f1      from './lens-data/Nokton50f1.data.js';
+import NikkorZ50mmf18S from './lens-data/NikkorZ50mmf18S.js';
 
 
 /* =====================================================================
@@ -34,8 +35,9 @@ import Nokton50f1     from './lens-data/Nokton50f1.data.js';
  * ------------------------------------------------------------------- */
 
 const LENS_CATALOG = {
-  "apo-lanthar-50f2": ApoLanthar50f2,
-  "nokton-50f1":      Nokton50f1,
+  "apo-lanthar-50f2":  ApoLanthar50f2,
+  "nokton-50f1":       Nokton50f1,
+  "nikkor-z-50f18s":   NikkorZ50mmf18S,
 };
 
 const CATALOG_KEYS = Object.keys(LENS_CATALOG);
