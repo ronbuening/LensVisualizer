@@ -408,6 +408,7 @@ export default function LensVisualization() {
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: 17, fontWeight: 700, letterSpacing: "0.04em", margin: 0, color: t.title, fontFamily: "'DM Sans','Helvetica Neue',sans-serif", transition: "color 0.3s" }}>{L.data.name}</h1>
             <span style={{ fontSize: 10.5, color: t.subtitle, letterSpacing: "0.08em", transition: "color 0.3s" }}>{L.data.subtitle}</span>
+            <a href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`} target="_blank" rel="noopener noreferrer" title={`Search Flickr for "${L.data.name}"`} style={{ fontSize: 10, color: t.muted, letterSpacing: "0.08em", textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.3s" }}>flickr</a>
           </div>
           <div style={{ display: "flex", gap: 22, marginTop: 6, fontSize: 10, color: t.specs, letterSpacing: "0.06em", transition: "color 0.3s", flexWrap: "wrap" }}>
             {L.data.specs.map((s, i) => <span key={i}>{s}</span>)}
