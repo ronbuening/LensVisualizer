@@ -30,6 +30,7 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY } from './featureFlags.js';
+import ABOUT_ME_MD from './AboutMe.md?raw';
 
 
 /* =====================================================================
@@ -184,6 +185,7 @@ export default function LensVisualization() {
   const [stopdownT, setStopdownT] = useState(0);
   const [mobileView, setMobileView] = useState('diagram');
   const [desktopView, setDesktopView] = useState('both');
+  const [showAbout, setShowAbout] = useState(false);
 
   useEffect(() => {
     try {
@@ -193,6 +195,13 @@ export default function LensVisualization() {
       }));
     } catch { /* private browsing or quota — ignore */ }
   }, [dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB]);
+
+  useEffect(() => {
+    if (!showAbout) return;
+    const handleKey = (e) => { if (e.key === 'Escape') setShowAbout(false); };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [showAbout]);
 
   const isWide = useMediaQuery('(min-width: 900px)');
   const markdown = useMemo(() => mdForKey(lensKey), [lensKey]);
@@ -789,7 +798,21 @@ export default function LensVisualization() {
             </option>
           ))}
         </select>
-
+        <div style={{ flex: 1 }} />
+        <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>ABOUT</span>
+        <button
+          onClick={() => setShowAbout(true)}
+          style={{
+            backgroundColor: t.selectorBg, border: `1.5px solid ${t.sliderAccent}40`,
+            borderRadius: 6, padding: "5px 14px", cursor: "pointer",
+            fontSize: 11, color: t.selectorText, fontFamily: "inherit",
+            letterSpacing: "0.06em", outline: "none",
+            boxShadow: `0 0 6px ${t.sliderAccent}18`,
+            transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
+          }}
+        >
+          Author
+        </button>
       </div>
 
       {/* ── Mobile view toggle (narrow screens — own row for visibility) ── */}
@@ -857,6 +880,44 @@ export default function LensVisualization() {
       ) : (
         /* Mobile: toggle between views */
         mobileView === 'diagram' ? diagramContent : descriptionContent
+      )}
+
+      {/* ── About Me overlay ── */}
+      {showAbout && (
+        <div
+          onClick={() => setShowAbout(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.5)", display: "flex",
+            alignItems: "center", justifyContent: "center",
+            transition: "background 0.2s",
+          }}
+        >
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              background: t.descBg, borderRadius: 10,
+              maxWidth: 480, width: "90%", maxHeight: "70vh",
+              overflowY: "auto", position: "relative",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+              border: `1px solid ${t.descBorder}`,
+            }}
+          >
+            <button
+              onClick={() => setShowAbout(false)}
+              style={{
+                position: "sticky", top: 0, float: "right",
+                margin: "10px 10px 0 0", background: "none",
+                border: "none", color: t.muted, cursor: "pointer",
+                fontSize: 18, fontFamily: "inherit", lineHeight: 1,
+                padding: "2px 6px", borderRadius: 4, zIndex: 1,
+              }}
+            >
+              ×
+            </button>
+            <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
+          </div>
+        </div>
       )}
     </div>
   );
