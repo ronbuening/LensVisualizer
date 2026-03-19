@@ -236,17 +236,19 @@ describe('validateLensData', () => {
 });
 
 /* ── Production lens validation ── */
-import ApoLantharRaw from '../lens-data/ApoLanthar50f2.data.js';
-import NoktonRaw     from '../lens-data/Nokton50f1.data.js';
-import NikkorRaw     from '../lens-data/NikkorZ50mmf18S.data.js';
-import Nikkor105Raw  from '../lens-data/Nikkor105f14E.data.js';
+import ApoLantharRaw  from '../lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw      from '../lens-data/Nokton50f1.data.js';
+import NikkorRaw      from '../lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw   from '../lens-data/Nikkor105f14E.data.js';
+import Sonnar50f15Raw from '../lens-data/Sonnar50f15.data.js';
 
 describe('validateLensData — production lenses', () => {
   const lenses = [
-    ['ApoLanthar', { ...LENS_DEFAULTS, ...ApoLantharRaw }],
-    ['Nokton',     { ...LENS_DEFAULTS, ...NoktonRaw }],
-    ['NikkorZ50',  { ...LENS_DEFAULTS, ...NikkorRaw }],
-    ['Nikkor105',  { ...LENS_DEFAULTS, ...Nikkor105Raw }],
+    ['ApoLanthar',  { ...LENS_DEFAULTS, ...ApoLantharRaw }],
+    ['Nokton',      { ...LENS_DEFAULTS, ...NoktonRaw }],
+    ['NikkorZ50',   { ...LENS_DEFAULTS, ...NikkorRaw }],
+    ['Nikkor105',   { ...LENS_DEFAULTS, ...Nikkor105Raw }],
+    ['Sonnar50f15', { ...LENS_DEFAULTS, ...Sonnar50f15Raw }],
   ];
 
   for (const [name, data] of lenses) {
