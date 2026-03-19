@@ -63,7 +63,7 @@ const LENS_DATA = {
     { label: "3",   R:   32.975, d:  8.01, nd: 1.90043, elemId: 2, sd: 26.0  },
     { label: "4",   R:   84.150, d:  0.87, nd: 1.0,     elemId: 0, sd: 22.0  },
     { label: "5",   R:   58.596, d:  1.65, nd: 1.80518, elemId: 3, sd: 21.0  },
-    { label: "6",   R:   19.835, d: 12.05, nd: 1.0,     elemId: 0, sd: 18.5  },
+    { label: "6",   R:   19.835, d: 12.05, nd: 1.0,     elemId: 0, sd: 17.8  },
     { label: "STO", R:     1e15, d:  3.24, nd: 1.0,     elemId: 0, sd: 16.14 },
     { label: "8",   R:  -40.995, d:  1.55, nd: 1.76182, elemId: 4, sd: 17.0  },
     { label: "9",   R:   26.578, d: 10.80, nd: 1.88300, elemId: 5, sd: 17.0  },

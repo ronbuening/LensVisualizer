@@ -9,11 +9,12 @@
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. SDs estimated from         ║
- * ║    marginal ray trace at f/1.5 with 8–10% mechanical clearance,   ║
- * ║    constrained by surface radii (SD < 0.95×|R|) and the 1.25×    ║
- * ║    front/rear ratio rule. The steeply curved surfaces r6 and r9   ║
- * ║    (|R| ≈ 11 mm) are the binding constraints; all other SDs       ║
- * ║    are propagated outward from these limits.                       ║
+ * ║    marginal ray trace at f/1.5, verified against off-axis ray     ║
+ * ║    bundle at 60% half-field. The steeply curved surfaces r6       ║
+ * ║    and r9 (|R| ≈ 11 mm) are the binding constraints.  SDs are    ║
+ * ║    set so that off-axis clipping occurs at element edges (r6,     ║
+ * ║    r7) rather than inside cemented groups, and all sd/|R|         ║
+ * ║    ratios remain below 0.87 where feasible.                       ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Patent prescription is at f = 100 mm. All values here are      ║
@@ -73,19 +74,19 @@ const LENS_DATA = {
     { label: "2",   R:  208.385,  d: 0.25,  nd: 1.0,    elemId: 0, sd: 17.0 },  // L1 rear → air
 
     /* ── Front cemented triplet: L2 – L3 – L4 ── */
-    { label: "3",   R:   18.630,  d: 5.85,  nd: 1.6727, elemId: 2, sd: 16.5 },  // L2 front
-    { label: "4",   R:   52.170,  d: 3.80,  nd: 1.4075, elemId: 3, sd: 14.5 },  // L2→L3 junction (L3 front)
-    { label: "5",   R: -123.500,  d: 0.95,  nd: 1.6890, elemId: 4, sd: 12.5 },  // L3→L4 junction (L4 front)
-    { label: "6",   R:   11.070,  d: 1.00,  nd: 1.0,    elemId: 0, sd: 10.5 },  // L4 rear → air
+    { label: "3",   R:   18.630,  d: 5.85,  nd: 1.6727, elemId: 2, sd: 15.5 },  // L2 front
+    { label: "4",   R:   52.170,  d: 3.80,  nd: 1.4075, elemId: 3, sd: 13.0 },  // L2→L3 junction (L3 front)
+    { label: "5",   R: -123.500,  d: 0.95,  nd: 1.6890, elemId: 4, sd: 10.5 },  // L3→L4 junction (L4 front)
+    { label: "6",   R:   11.070,  d: 1.00,  nd: 1.0,    elemId: 0, sd:  8.5 },  // L4 rear → air
 
     /* ── Aperture stop (in the air gap between front and rear components) ── */
     { label: "STO", R:     1e15,  d: 5.95,  nd: 1.0,    elemId: 0, sd: 10.0 },
 
     /* ── Rear cemented triplet: L5 – L6 – L7 ── */
-    { label: "7",   R:  952.000,  d: 1.70,  nd: 1.5481, elemId: 5, sd: 14.0 },  // L5 front (nearly flat)
-    { label: "8",   R:   29.925,  d: 11.20, nd: 1.6578, elemId: 6, sd: 12.5 },  // L5→L6 junction (L6 front)
-    { label: "9",   R:  -11.030,  d: 4.20,  nd: 1.5488, elemId: 7, sd: 10.4 },  // L6→L7 junction (L7 front)
-    { label: "10",  R:  -44.530,  d: 35.20, nd: 1.0,    elemId: 0, sd: 12.5 },  // L7 rear → air (d = BFD)
+    { label: "7",   R:  952.000,  d: 1.70,  nd: 1.5481, elemId: 5, sd:  8.5 },  // L5 front (nearly flat)
+    { label: "8",   R:   29.925,  d: 11.20, nd: 1.6578, elemId: 6, sd:  8.5 },  // L5→L6 junction (L6 front)
+    { label: "9",   R:  -11.030,  d: 4.20,  nd: 1.5488, elemId: 7, sd:  9.5 },  // L6→L7 junction (L7 front)
+    { label: "10",  R:  -44.530,  d: 35.20, nd: 1.0,    elemId: 0, sd: 11.0 },  // L7 rear → air (d = BFD)
   ],
 
   /* ── Aspherical coefficients ── */

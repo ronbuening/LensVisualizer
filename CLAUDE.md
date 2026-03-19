@@ -119,7 +119,7 @@ No React dependencies — fully testable in isolation.
 
 ### validateLensData.js
 
-Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), and element SD consistency. Returns an array of error strings (empty = valid).
+Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, and surface sd/|R| ratio (≤ 0.90). Returns an array of error strings (empty = valid).
 
 ### themes.js — Theme System
 
@@ -183,8 +183,10 @@ Surface `sd` values are the most common source of rendering bugs. The validator 
 
 1. **Edge thickness**: For each element, `sag(sd, R_front) − sag(sd, R_rear)` must be less than center thickness `d`. Violation produces a bowtie-shaped element where surfaces cross at the rim.
 2. **SD consistency**: Front and rear surfaces of each element must have SDs within 25% of each other (ratio ≤ 1.25). Larger differences cause rays to appear outside the rendered element.
-3. **Cemented doublets**: Junction surfaces must have matching SDs — the bonded surfaces share a physical clear aperture.
-4. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
+3. **sd/|R| ratio**: Surface sd must not exceed 0.90 × |R|. As sd approaches |R|, the surface slope at the rim becomes extreme, causing total internal reflection (TIR) at glass-air boundaries and rendering artifacts.
+4. **Cemented doublets**: Junction surfaces must have matching SDs — the bonded surfaces share a physical clear aperture.
+5. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
+6. **Off-axis containment**: After estimating SDs from on-axis marginal rays, verify that off-axis ray bundles clip at element edges or air gaps — never inside cemented groups. Thick elements amplify off-axis beam divergence and may need tighter upstream SDs.
 
 See `lens-data/TEMPLATE.data.js.template` for detailed documentation and examples.
 
