@@ -2,14 +2,16 @@ import { describe, it, expect } from 'vitest';
 import buildLens, { paraxialTrace } from '../buildLens.js';
 import LENS_DEFAULTS from '../lens-data/defaults.js';
 
-/* ── Load all three production lens data files ── */
-import ApoLantharRaw from '../lens-data/ApoLanthar50f2.data.js';
-import NoktonRaw     from '../lens-data/Nokton50f1.data.js';
-import NikkorRaw     from '../lens-data/NikkorZ50mmf18S.data.js';
+/* ── Load all production lens data files ── */
+import ApoLantharRaw  from '../lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw      from '../lens-data/Nokton50f1.data.js';
+import NikkorRaw      from '../lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw   from '../lens-data/Nikkor105f14E.data.js';
 
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw };
-const Nokton     = { ...LENS_DEFAULTS, ...NoktonRaw };
-const Nikkor     = { ...LENS_DEFAULTS, ...NikkorRaw };
+const ApoLanthar  = { ...LENS_DEFAULTS, ...ApoLantharRaw };
+const Nokton      = { ...LENS_DEFAULTS, ...NoktonRaw };
+const Nikkor      = { ...LENS_DEFAULTS, ...NikkorRaw };
+const Nikkor105   = { ...LENS_DEFAULTS, ...Nikkor105Raw };
 
 
 describe('paraxialTrace', () => {
@@ -80,6 +82,11 @@ describe('buildLens — production lenses', () => {
     expect(isFinite(L.EFL)).toBe(true);
   });
 
+  it('Nikkor 105 f/1.4E EFL ≈ 102 mm', () => {
+    const L = buildLens(Nikkor105);
+    expect(L.EFL).toBeCloseTo(102, 0);
+  });
+
   /* ── f-number regression tests ── */
   it('ApoLanthar FOPEN ≈ f/1.93', () => {
     const L = buildLens(ApoLanthar);
@@ -98,14 +105,14 @@ describe('buildLens — production lenses', () => {
 
   /* ── Structural checks ── */
   it('all lenses have frozen output', () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor]) {
+    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105]) {
       const L = buildLens(data);
       expect(Object.isFrozen(L)).toBe(true);
     }
   });
 
   it('all lenses have a valid stopIdx', () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor]) {
+    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105]) {
       const L = buildLens(data);
       expect(L.stopIdx).toBeGreaterThanOrEqual(0);
       expect(L.stopIdx).toBeLessThan(L.N);
@@ -114,10 +121,26 @@ describe('buildLens — production lenses', () => {
   });
 
   it('all lenses have positive halfField', () => {
-    for (const data of [ApoLanthar, Nokton, Nikkor]) {
+    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105]) {
       const L = buildLens(data);
       expect(L.halfField).toBeGreaterThan(0);
       expect(L.halfField).toBeLessThan(90);
+    }
+  });
+
+  it('all lenses have ES entries with valid surface indices', () => {
+    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105]) {
+      const L = buildLens(data);
+      for (const [eid, s1, s2] of L.ES) {
+        expect(s1).toBeGreaterThanOrEqual(0);
+        expect(s2).toBeGreaterThanOrEqual(0);
+        expect(s1).toBeLessThan(L.N);
+        expect(s2).toBeLessThan(L.N);
+        expect(L.S[s1]).toBeDefined();
+        expect(L.S[s2]).toBeDefined();
+        expect(L.S[s1].sd).toBeGreaterThan(0);
+        expect(L.S[s2].sd).toBeGreaterThan(0);
+      }
     }
   });
 });
