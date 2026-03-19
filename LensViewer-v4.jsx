@@ -26,8 +26,9 @@ import T               from './themes.js';
 import LENS_DEFAULTS   from './lens-data/defaults.js';
 import buildLens       from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
-         traceRay, traceToImage, conjugateK, formatDist,
+         traceRay, traceRayChromatic, traceToImage, conjugateK, formatDist,
          SVG_PATH_SUBDIVISIONS } from './optics.js';
+import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING } from './featureFlags.js';
 
 
 /* =====================================================================
@@ -144,6 +145,10 @@ function loadPrefs() {
     if (typeof p.showOnAxis === 'boolean') out.showOnAxis = p.showOnAxis;
     if (typeof p.showOffAxis === 'boolean') out.showOffAxis = p.showOffAxis;
     if (typeof p.rayTracksF === 'boolean') out.rayTracksF = p.rayTracksF;
+    if (typeof p.showChromatic === 'boolean') out.showChromatic = p.showChromatic;
+    if (typeof p.chromR === 'boolean') out.chromR = p.chromR;
+    if (typeof p.chromG === 'boolean') out.chromG = p.chromG;
+    if (typeof p.chromB === 'boolean') out.chromB = p.chromB;
     if (typeof p.lensKey === 'string' && CATALOG_KEYS.includes(p.lensKey)) out.lensKey = p.lensKey;
     return out;
   } catch { return {}; }
@@ -171,6 +176,10 @@ export default function LensVisualization() {
   const [showOnAxis, setShowOnAxis] = useState(prefs.showOnAxis ?? true);
   const [showOffAxis, setShowOffAxis] = useState(prefs.showOffAxis ?? false);
   const [rayTracksF, setRayTracksF] = useState(prefs.rayTracksF ?? false);
+  const [showChromatic, setShowChromatic] = useState(prefs.showChromatic ?? DEFAULT_COLOR_TRACING);
+  const [chromR, setChromR] = useState(prefs.chromR ?? true);
+  const [chromG, setChromG] = useState(prefs.chromG ?? true);
+  const [chromB, setChromB] = useState(prefs.chromB ?? true);
   const [stopdownT, setStopdownT] = useState(0);
   const [mobileView, setMobileView] = useState('diagram');
 
@@ -178,9 +187,10 @@ export default function LensVisualization() {
     try {
       localStorage.setItem(PREFS_KEY, JSON.stringify({
         v: 1, dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF,
+        showChromatic, chromR, chromG, chromB,
       }));
     } catch { /* private browsing or quota — ignore */ }
-  }, [dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF]);
+  }, [dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB]);
 
   const isWide = useMediaQuery('(min-width: 900px)');
   const markdown = useMemo(() => mdForKey(lensKey), [lensKey]);
@@ -308,6 +318,39 @@ export default function LensVisualization() {
     return out;
   }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
 
+  const CHROM_FRACS = [0, 0.75, -0.75];
+  const chromaticRays = useMemo(() => {
+    if (!showChromatic) return [];
+    const channels = [];
+    if (chromR) channels.push('R');
+    if (chromG) channels.push('G');
+    if (chromB) channels.push('B');
+    if (channels.length === 0) return [];
+    const out = [];
+    for (const f of CHROM_FRACS) {
+      const h = f * currentEPSD;
+      const uIn = rayTracksF ? h * focusK : 0;
+      for (const ch of channels) {
+        const { pts, ghostPts, y, u, clipped } = traceRayChromatic(h, uIn, zPos, focusT, currentPhysStopSD, true, L, ch);
+        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+        let gp = [];
+        if (clipped && ghostPts.length > 0) {
+          const lastSolid = pts[pts.length - 1];
+          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
+          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
+          const lastGhost = ghostPts[ghostPts.length - 1];
+          if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+        }
+        if (!clipped) {
+          const last = pts[pts.length - 1];
+          if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+        }
+        out.push({ sp, gp, channel: ch });
+      }
+    }
+    return out;
+  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
+
   const varReadouts = L.varLabels.map(([idx, label]) => {
     const v = L.varByIdx[idx];
     const val = (v[0] + (v[1] - v[0]) * focusT).toFixed(2);
@@ -390,6 +433,43 @@ export default function LensVisualization() {
               </button>
             ))}
           </div>
+          {/* ── Chromatic color toggle ── */}
+          {ENABLE_COLOR_TRACING && (
+            <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
+              <button onClick={() => setShowChromatic(!showChromatic)} style={{
+                flex: 1, background: showChromatic ? t.toggleActiveBg : t.toggleBg,
+                border: "none", borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
+                padding: "5px 8px", cursor: "pointer",
+                fontSize: 9, color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
+                fontFamily: "inherit", letterSpacing: "0.08em",
+              }}>
+                <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+                  <line x1="0" y1="1" x2="14" y2="1" stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                  <line x1="0" y1="4" x2="14" y2="4" stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                  <line x1="0" y1="7" x2="14" y2="7" stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                </svg>
+                <span>COLOR</span>
+              </button>
+              {showChromatic && [
+                { ch: 'R', active: chromR, set: setChromR, color: t.rayChromR },
+                { ch: 'G', active: chromG, set: setChromG, color: t.rayChromG },
+                { ch: 'B', active: chromB, set: setChromB, color: t.rayChromB },
+              ].map(({ ch, active, set, color }, idx) => (
+                <button key={ch} onClick={() => set(!active)} style={{
+                  flex: 0.6, background: active ? t.toggleActiveBg : t.toggleBg,
+                  border: "none", borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
+                  padding: "5px 6px", cursor: "pointer",
+                  fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 3, transition: "all 0.25s",
+                  fontFamily: "inherit", letterSpacing: "0.08em",
+                }}>
+                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: active ? color : "rgba(128,128,128,0.3)", display: "inline-block" }} />
+                  <span>{ch}</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -425,6 +505,16 @@ export default function LensVisualization() {
               stroke={color} strokeWidth={1.1 * t.rayWidthScale} strokeDasharray={t.rayOffDash || "none"} />}
             {gp.length > 1 && <polyline points={gp.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
               stroke={color} strokeWidth={0.6 * t.rayWidthScale} strokeDasharray="3,4" opacity={0.3} />}
+          </g>;
+        })}
+
+        {showChromatic && chromaticRays.map(({ sp, gp, channel }, ri) => {
+          const color = channel === 'R' ? t.rayChromR : channel === 'G' ? t.rayChromG : t.rayChromB;
+          return <g key={`chrom${ri}`}>
+            {sp.length > 1 && <polyline points={sp.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
+              stroke={color} strokeWidth={1.0 * t.rayWidthScale} />}
+            {gp.length > 1 && <polyline points={gp.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
+              stroke={color} strokeWidth={0.5 * t.rayWidthScale} strokeDasharray="3,4" opacity={0.3} />}
           </g>;
         })}
 
@@ -564,6 +654,14 @@ export default function LensVisualization() {
                 {showOffAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                   <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="5" x2="14" y2="5" stroke={t.rayOffWarm} strokeWidth="0.8" strokeDasharray="3,4" opacity="0.35" /></svg>
                   <span style={{ color: t.legendText }}>Vignetted (ghost)</span>
+                </div>}
+                {showChromatic && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <svg width="14" height="10" viewBox="0 0 14 10">
+                    {chromR && <line x1="0" y1="2" x2="14" y2="2" stroke={t.rayChromR} strokeWidth="1.5" />}
+                    {chromG && <line x1="0" y1="5" x2="14" y2="5" stroke={t.rayChromG} strokeWidth="1.5" />}
+                    {chromB && <line x1="0" y1="8" x2="14" y2="8" stroke={t.rayChromB} strokeWidth="1.5" />}
+                  </svg>
+                  <span style={{ color: t.legendText }}>Chromatic (R/G/B)</span>
                 </div>}
               </div>
             </div>

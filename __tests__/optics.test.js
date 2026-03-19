@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { sag, renderSag, sagSlope, thick, doLayout, formatDist,
-         traceRay, traceToImage, conjugateK,
+         traceRay, traceRayChromatic, traceToImage, conjugateK,
+         wavelengthNd,
          FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../optics.js';
 
 describe('sag', () => {
@@ -211,6 +212,81 @@ describe('traceRay — exact Snell', () => {
     expect(clipped).toBe(false);
     // pts: lead point + 2 surface points + (no image extrapolation in traceRay itself)
     expect(pts.length).toBe(3);
+  });
+});
+
+describe('wavelengthNd', () => {
+  it('returns 1.0 for air regardless of channel', () => {
+    expect(wavelengthNd(1.0, 64.17, 'R')).toBe(1.0);
+    expect(wavelengthNd(1.0, 64.17, 'G')).toBe(1.0);
+    expect(wavelengthNd(1.0, 64.17, 'B')).toBe(1.0);
+  });
+
+  it('returns nd for green channel', () => {
+    expect(wavelengthNd(1.5168, 64.17, 'G')).toBe(1.5168);
+  });
+
+  it('red < nd < blue for dispersive glass', () => {
+    const nd = 1.5168, vd = 64.17;
+    expect(wavelengthNd(nd, vd, 'R')).toBeLessThan(nd);
+    expect(wavelengthNd(nd, vd, 'B')).toBeGreaterThan(nd);
+  });
+
+  it('computes BK7 dispersion approximately', () => {
+    // BK7: nd=1.5168, vd=64.17, nF-nC = (nd-1)/vd ≈ 0.00806
+    const nd = 1.5168, vd = 64.17;
+    const nR = wavelengthNd(nd, vd, 'R');
+    const nB = wavelengthNd(nd, vd, 'B');
+    expect(nB - nR).toBeCloseTo((nd - 1) / vd, 4);
+  });
+
+  it('returns nd when vd is undefined or 0', () => {
+    expect(wavelengthNd(1.5, undefined, 'R')).toBe(1.5);
+    expect(wavelengthNd(1.5, 0, 'B')).toBe(1.5);
+  });
+});
+
+describe('traceRayChromatic', () => {
+  const mkChromElement = () => ({
+    S: [
+      { R: 50, nd: 1.5168, sd: 15, d: 5 },
+      { R: -50, nd: 1.0, sd: 15, d: 80 },
+    ],
+    N: 2,
+    stopIdx: 0,
+    clipMargin: 1.0,
+    rayLead: 5,
+    asphByIdx: {},
+    varByIdx: {},
+    vdByIdx: { 0: 64.17 },
+  });
+
+  it('green channel matches traceRay exactly', () => {
+    const L = mkChromElement();
+    const zPos = [0, 5];
+    const ref = traceRay(5, 0, zPos, 0, 15, false, L);
+    const chrom = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'G');
+    expect(chrom.y).toBeCloseTo(ref.y, 10);
+    expect(chrom.u).toBeCloseTo(ref.u, 10);
+  });
+
+  it('blue ray bends more than red ray', () => {
+    const L = mkChromElement();
+    const zPos = [0, 5];
+    const red  = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'R');
+    const blue = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'B');
+    // Positive height, positive curvature → rays converge downward
+    // Higher index (blue) bends more → more negative u (steeper convergence)
+    expect(Math.abs(blue.u)).toBeGreaterThan(Math.abs(red.u));
+  });
+
+  it('all channels agree for on-axis ray', () => {
+    const L = mkChromElement();
+    const zPos = [0, 5];
+    const red  = traceRayChromatic(0, 0, zPos, 0, 15, false, L, 'R');
+    const blue = traceRayChromatic(0, 0, zPos, 0, 15, false, L, 'B');
+    expect(red.y).toBeCloseTo(0, 10);
+    expect(blue.y).toBeCloseTo(0, 10);
   });
 });
 

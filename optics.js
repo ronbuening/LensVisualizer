@@ -117,6 +117,55 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
 
+/**
+ * Refractive index adjusted for wavelength using Abbe number dispersion.
+ * channel: 'R' (C-line 656.3nm), 'G' (d-line 587.6nm), 'B' (F-line 486.1nm)
+ */
+export function wavelengthNd(nd, vd, channel) {
+  if (nd === 1.0) return 1.0;
+  if (!vd || channel === 'G') return nd;
+  const delta = (nd - 1) / (2 * vd);
+  return channel === 'R' ? nd - delta : nd + delta;
+}
+
+export function traceRayChromatic(y0, u0, zPos, t, stopSD, ghost, L, channel) {
+  const pts = [];
+  const ghostPts = [];
+  pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
+  let y = y0, n = 1.0;
+  let U = Math.atan(u0);
+  let clipped = false;
+  for (let i = 0; i < L.N; i++) {
+    const { R, nd, sd } = L.S[i];
+    const z = zPos[i];
+    const isStop = i === L.stopIdx;
+    const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
+    if (!clipped && Math.abs(y) > clip) {
+      if (!ghost) break;
+      clipped = true;
+    }
+    const pt = [z + renderSag(Math.abs(y), i, L), y];
+    if (clipped) ghostPts.push(pt); else pts.push(pt);
+    const nn = wavelengthNd(nd, L.vdByIdx[i], channel);
+    if (nn !== n) {
+      const absY = Math.abs(y);
+      const slope = sagSlope(absY, i, L);
+      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+      const I = U - alpha;
+      const sinIp = (n / nn) * Math.sin(I);
+      if (Math.abs(sinIp) > 1.0) {
+        if (!ghost) break;
+        clipped = true;
+      } else {
+        U = alpha + Math.asin(sinIp);
+      }
+    }
+    n = nn;
+    if (i < L.N - 1) y += thick(i, t, L) * Math.tan(U);
+  }
+  return { pts, ghostPts, y, u: Math.tan(U), clipped };
+}
+
 export function traceToImage(y0, u0, t, L) {
   let y = y0, u = u0, n = 1.0;
   for (let i = 0; i < L.N; i++) {
