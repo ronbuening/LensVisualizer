@@ -128,6 +128,27 @@ function DescriptionPanel({ markdown, theme: t }) {
 }
 
 
+/* ── Persistent preferences (localStorage) ── */
+
+const PREFS_KEY = 'lensvis:prefs';
+
+function loadPrefs() {
+  try {
+    const raw = localStorage.getItem(PREFS_KEY);
+    if (!raw) return {};
+    const p = JSON.parse(raw);
+    if (!p || typeof p !== 'object') return {};
+    const out = {};
+    if (typeof p.dark === 'boolean') out.dark = p.dark;
+    if (typeof p.highContrast === 'boolean') out.highContrast = p.highContrast;
+    if (typeof p.showOnAxis === 'boolean') out.showOnAxis = p.showOnAxis;
+    if (typeof p.showOffAxis === 'boolean') out.showOffAxis = p.showOffAxis;
+    if (typeof p.rayTracksF === 'boolean') out.rayTracksF = p.rayTracksF;
+    if (typeof p.lensKey === 'string' && CATALOG_KEYS.includes(p.lensKey)) out.lensKey = p.lensKey;
+    return out;
+  } catch { return {}; }
+}
+
 /* =====================================================================
  * §6  RENDERER — React component
  * =====================================================================
@@ -136,21 +157,30 @@ function DescriptionPanel({ markdown, theme: t }) {
  * ------------------------------------------------------------------- */
 
 export default function LensVisualization() {
-  const [lensKey, setLensKey] = useState(CATALOG_KEYS[0]);
-  const [dark, setDark] = useState(() =>
+  const [prefs] = useState(loadPrefs);
+  const [lensKey, setLensKey] = useState(prefs.lensKey ?? CATALOG_KEYS[0]);
+  const [dark, setDark] = useState(prefs.dark ?? (() =>
     typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true
-  );
-  const [highContrast, setHighContrast] = useState(() =>
+  ));
+  const [highContrast, setHighContrast] = useState(prefs.highContrast ?? (() =>
     typeof window !== 'undefined' ? window.matchMedia('(prefers-contrast: more)').matches : false
-  );
+  ));
   const [focusT, setFocusT] = useState(0);
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
-  const [showOnAxis, setShowOnAxis] = useState(true);
-  const [showOffAxis, setShowOffAxis] = useState(false);
-  const [rayTracksF, setRayTracksF] = useState(false);
+  const [showOnAxis, setShowOnAxis] = useState(prefs.showOnAxis ?? true);
+  const [showOffAxis, setShowOffAxis] = useState(prefs.showOffAxis ?? false);
+  const [rayTracksF, setRayTracksF] = useState(prefs.rayTracksF ?? false);
   const [stopdownT, setStopdownT] = useState(0);
   const [mobileView, setMobileView] = useState('diagram');
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify({
+        v: 1, dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF,
+      }));
+    } catch { /* private browsing or quota — ignore */ }
+  }, [dark, highContrast, lensKey, showOnAxis, showOffAxis, rayTracksF]);
 
   const isWide = useMediaQuery('(min-width: 900px)');
   const markdown = useMemo(() => mdForKey(lensKey), [lensKey]);
