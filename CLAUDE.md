@@ -21,15 +21,20 @@ LensVisualizer/
 ├── index.html              # HTML entry point
 ├── main.jsx                # React root mount (wraps app in ErrorBoundary)
 ├── ErrorBoundary.jsx       # React class-based error boundary with retry UI
-├── LensViewer-v4.jsx       # Main component (~598 lines): UI chrome, state, SVG renderer
+├── LensViewer-v4.jsx       # Main component (~819 lines): UI chrome, state, SVG renderer
 ├── buildLens.js            # Lens builder — validates data, computes EFL/pupil/field
 ├── optics.js               # Optics engine — ray tracing, sag curves, layout math
 ├── validateLensData.js     # Schema validation for lens data files
 ├── themes.js               # Theme system — 4 themes via createTheme() factory
+├── featureFlags.js         # Feature flags — controls feature availability and defaults
 ├── lens-data/              # Optical prescription data (one file per lens)
 │   ├── defaults.js         # Shared defaults (ray config, SVG sizing, control steps)
+│   ├── LENS_DATA_SPEC.md   # Full lens data format specification
+│   ├── TEMPLATE.data.js.template  # Annotated template for new lens files
 │   ├── ApoLanthar50f2.data.js
 │   ├── ApoLanthar50f2.analysis.md
+│   ├── Nikkor105f14E.data.js
+│   ├── Nikkor105f14E.analysis.md
 │   ├── Nokton50f1.data.js
 │   ├── Nokton50f1.analysis.md
 │   ├── NikkorZ50mmf18S.data.js
@@ -73,11 +78,12 @@ The codebase follows a layered extraction pattern. Core logic has been extracted
 
 | Module | Lines | Purpose |
 |--------|-------|---------|
-| `LensViewer-v4.jsx` | ~598 | UI component: state, SVG rendering, interaction |
-| `buildLens.js` | ~164 | Lens construction, EFL/pupil/field computation |
-| `optics.js` | ~120 | Ray tracing, sag curves, layout geometry |
-| `validateLensData.js` | ~133 | Schema validation for lens data |
-| `themes.js` | ~243 | Theme factory and 4 theme definitions |
+| `LensViewer-v4.jsx` | ~819 | UI component: state, SVG rendering, interaction |
+| `buildLens.js` | ~176 | Lens construction, EFL/pupil/field computation |
+| `optics.js` | ~221 | Ray tracing, sag curves, chromatic tracing, layout geometry |
+| `validateLensData.js` | ~193 | Schema validation for lens data |
+| `themes.js` | ~251 | Theme factory and 4 theme definitions |
+| `featureFlags.js` | ~10 | Feature flags for UI toggles |
 | `lens-data/defaults.js` | ~31 | Shared lens defaults merged into each lens |
 
 ### LensViewer-v4.jsx — Section Layout
@@ -100,9 +106,10 @@ Merges `LENS_DEFAULTS` from `lens-data/defaults.js` into each lens before proces
 ### optics.js
 
 Pure functions for optical calculations and SVG layout:
-- **Sag curves:** `sag()`, `renderSag()`
+- **Sag curves:** `sag()`, `renderSag()`, `sagSlope()`
 - **Layout:** `doLayout()`, `gapTrimHeight()`, `thick()`
 - **Ray tracing:** `traceRay()`, `traceToImage()`
+- **Chromatic tracing:** `wavelengthNd()`, `traceRayChromatic()`, `computeChromaticSpread()`
 - **Utilities:** `conjugateK()`, `formatDist()`
 - **Constants:** `FLAT_R_THRESHOLD`, `FOCUS_INFINITY_THRESHOLD`, `SVG_PATH_SUBDIVISIONS`
 
@@ -116,6 +123,12 @@ Pure validation function that checks all required fields, surface label uniquene
 
 Four themes (dark, light, darkHC, lightHC) built via a `createTheme()` factory function. The factory takes a flat color-token object and generates closure-based properties (`elemFill`, `elemStroke`, `elemNum`, `grid`) to eliminate duplication across themes.
 
+### featureFlags.js
+
+Feature flags controlling UI toggle visibility and defaults:
+- **`ENABLE_COLOR_TRACING`** — whether the color-tracing UI toggle appears
+- **`DEFAULT_COLOR_TRACING`** — initial state when no localStorage entry exists
+
 ### ErrorBoundary.jsx
 
 React class component wrapping the app. Catches render errors and shows a styled error message with a Retry button.
@@ -125,7 +138,11 @@ React class component wrapping the app. Catches render errors and shows a styled
 Each lens has two files in `lens-data/`:
 - **`.data.js`** — Default-exports a `LENS_DATA` object (see format below)
 - **`.analysis.md`** — Markdown design analysis, rendered in the app's description panel
-- **`defaults.js`** — Shared defaults (`rayFractions`, `svgW`, `svgH`, `clipMargin`, `maxRimAngleDeg`, `gapSagFrac`, `focusStep`, `apertureStep`, `maxFstop`) merged into each lens via `buildLens()`
+
+Supporting files in `lens-data/`:
+- **`defaults.js`** — Shared defaults (`rayFractions`, `rayLeadFrac`, `lensShiftFrac`, `offAxisFieldFrac`, `offAxisFractions`, `svgW`, `svgH`, `clipMargin`, `maxRimAngleDeg`, `gapSagFrac`, `focusStep`, `apertureStep`, `maxFstop`) merged into each lens via `buildLens()`
+- **`LENS_DATA_SPEC.md`** — Complete specification for all lens data fields, types, and validation rules
+- **`TEMPLATE.data.js.template`** — Annotated template with inline documentation for creating new lens files
 
 ### Key Design Patterns
 
@@ -144,11 +161,15 @@ Each `.data.js` file in `lens-data/` default-exports a `LENS_DATA` object with a
 {
   key,                                       // Unique ID — used for auto-registration
   name, subtitle, specs,
-  elements: [{ id, name, label, type, nd, vd, fl, glass, apd, role }],
+  nominalFno, closeFocusM,                   // Required: f-number and close focus
+  fstopSeries,                               // Required: f-stop quick-select values
+  elements: [{ id, name, label, type, nd, vd, fl, glass, apd, role, cemented }],
   surfaces: [{ label, R, d, nd, elemId, sd }],
   asph: { "LABEL": { K, A4, A6, ... } },    // Aspherical coefficients
-  var: { "LABEL": [min, max] },              // Variable surfaces (focus)
+  var: { "LABEL": [d_inf, d_close] },        // Variable surfaces (focus)
+  varLabels: [["LABEL", "display"]],         // Display labels for variable gaps
   groups, doublets,                          // Annotations
+  scFill, yScFill,                           // Required: layout fill fractions
   svgW, svgH, maxRimAngleDeg,               // Rendering params (override defaults)
 }
 ```
@@ -178,7 +199,7 @@ No manual imports or catalog edits required. Shared defaults from `lens-data/def
 
 Tests use **Vitest** and live in `__tests__/`:
 
-- **`buildLens.test.js`** — Tests `paraxialTrace()` with flat/refractive surfaces; validates `buildLens()` output (EFL, entrance pupil, half-field) against all three production lenses
+- **`buildLens.test.js`** — Tests `paraxialTrace()` with flat/refractive surfaces; validates `buildLens()` output (EFL, entrance pupil, half-field) against all four production lenses
 - **`optics.test.js`** — Tests `sag()`, `renderSag()` with aspherical coefficients; `conjugateK()`, `formatDist()`; `doLayout()` with variable surfaces
 - **`validateLensData.test.js`** — Tests schema validation against production lenses; verifies error reporting for missing fields, duplicate labels, invalid references
 
