@@ -11,7 +11,8 @@
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list SDs. Values estimated from paraxial        ║
  * ║    marginal + chief ray trace scaled to f/1.45 EP, with 12%       ║
- * ║    mechanical margin, capped at 82mm filter-thread physical limit. ║
+ * ║    mechanical margin for singletons (5% for cemented surfaces),   ║
+ * ║    capped at 82mm filter-thread physical limit.                    ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -66,24 +67,24 @@ const LENS_DATA = {
     { label: "3",   R:    98.03190, d:  9.004, nd: 1.49700, elemId: 2,  sd: 39.1 },
     { label: "4",   R:  -860.70550, d:  0.100, nd: 1.0,     elemId: 0,  sd: 37.3 },
     // L13+L14 cemented doublet (ED + lanthanum flint)
-    { label: "5",   R:    70.05610, d: 11.648, nd: 1.49700, elemId: 3,  sd: 37.3 },
-    { label: "6",   R:  -266.98950, d:  3.500, nd: 1.72047, elemId: 4,  sd: 32.8 },  // junction → L14 glass
-    { label: "7",   R:   168.27370, d:  7.956, nd: 1.0,     elemId: 0,  sd: 31.6 },  // L14 rear → air (D7, variable)
+    { label: "5",   R:    70.05610, d: 11.648, nd: 1.49700, elemId: 3,  sd: 35.0 },
+    { label: "6",   R:  -266.98950, d:  3.500, nd: 1.72047, elemId: 4,  sd: 30.8 },  // junction → L14 glass
+    { label: "7",   R:   168.27370, d:  7.956, nd: 1.0,     elemId: 0,  sd: 29.7 },  // L14 rear → air (D7, variable)
 
     /* ── G2: Focusing Group (Negative) ── */
     // L21+L22 cemented doublet (APD glass + borosilicate crown)
-    { label: "8",   R:  -156.94440, d:  4.000, nd: 1.65940, elemId: 5,  sd: 28.3 },
-    { label: "9",   R:   -74.82770, d:  2.500, nd: 1.51680, elemId: 6,  sd: 27.6 },  // junction → L22 glass
-    { label: "10",  R:    48.83690, d: 17.029, nd: 1.0,     elemId: 0,  sd: 27.0 },  // L22 rear → air (D10, variable)
+    { label: "8",   R:  -156.94440, d:  4.000, nd: 1.65940, elemId: 5,  sd: 26.6 },
+    { label: "9",   R:   -74.82770, d:  2.500, nd: 1.51680, elemId: 6,  sd: 25.9 },  // junction → L22 glass
+    { label: "10",  R:    48.83690, d: 17.029, nd: 1.0,     elemId: 0,  sd: 25.4 },  // L22 rear → air (D10, variable)
 
     /* ── G3: Rear Positive Group ── */
     // L31 — Biconvex positive (ultra-high-index, nd ≈ 2.001)
     { label: "11",  R:    59.41150, d:  7.084, nd: 2.00100, elemId: 7,  sd: 25.8 },
     { label: "12",  R: -9603.99850, d:  0.100, nd: 1.0,     elemId: 0,  sd: 24.0 },
     // L32+L33 cemented doublet (lanthanum crown + specialty flint)
-    { label: "13",  R:   101.99880, d:  8.889, nd: 1.69680, elemId: 8,  sd: 24.0 },
-    { label: "14",  R:   -54.38990, d:  1.800, nd: 1.71736, elemId: 9,  sd: 20.5 },  // junction → L33 glass
-    { label: "15",  R:    28.02300, d:  5.843, nd: 1.0,     elemId: 0,  sd: 19.8 },  // L33 rear → air
+    { label: "13",  R:   101.99880, d:  8.889, nd: 1.69680, elemId: 8,  sd: 22.5 },
+    { label: "14",  R:   -54.38990, d:  1.800, nd: 1.71736, elemId: 9,  sd: 19.2 },  // junction → L33 glass
+    { label: "15",  R:    28.02300, d:  5.843, nd: 1.0,     elemId: 0,  sd: 18.6 },  // L33 rear → air
 
     // Aperture stop
     { label: "STO", R:       1e15,  d:  1.600, nd: 1.0,     elemId: 0,  sd: 16.8 },
@@ -92,9 +93,9 @@ const LENS_DATA = {
     { label: "17",  R:   118.55000, d:  5.540, nd: 1.49700, elemId: 10, sd: 18.6 },
     { label: "18",  R:   -59.97360, d:  0.100, nd: 1.0,     elemId: 0,  sd: 17.7 },
     // L35+L36 cemented doublet (lanthanum flint + lanthanum heavy flint)
-    { label: "19",  R:   -74.13900, d:  1.600, nd: 1.72047, elemId: 11, sd: 17.7 },
-    { label: "20",  R:    23.56120, d:  8.119, nd: 1.76684, elemId: 12, sd: 17.5 },  // junction → L36 glass
-    { label: "21",  R:  -400.50550, d:  2.828, nd: 1.0,     elemId: 0,  sd: 16.4 },  // L36 rear → air
+    { label: "19",  R:   -74.13900, d:  1.600, nd: 1.72047, elemId: 11, sd: 16.6 },
+    { label: "20",  R:    23.56120, d:  8.119, nd: 1.76684, elemId: 12, sd: 16.4 },  // junction → L36 glass
+    { label: "21",  R:  -400.50550, d:  2.828, nd: 1.0,     elemId: 0,  sd: 15.4 },  // L36 rear → air
     // L37+L38 cemented doublet (titanium flint + ultra-high-index)
     { label: "22",  R:   -39.02080, d:  1.600, nd: 1.58144, elemId: 13, sd: 15.6 },
     { label: "23",  R:   124.06960, d:  5.332, nd: 2.00100, elemId: 14, sd: 15.6 },  // junction → L38 glass
