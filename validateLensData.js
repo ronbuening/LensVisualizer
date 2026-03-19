@@ -178,6 +178,22 @@ export default function validateLensData(data) {
       errors.push(`Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax/sdMin).toFixed(2)} exceeds 1.25 — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may cause rays outside element`);
   }
 
+  /* ── Surface sd/|R| ratio check ──
+   *  When sd approaches |R|, the surface extends near its geometric equator.
+   *  This causes extreme sag slopes that trigger TIR at high-index glass/air
+   *  boundaries and numerical instability in the ray tracer.
+   */
+  const SD_R_WARN = 0.90;
+  for (let i = 0; i < S.length; i++) {
+    const s = S[i];
+    if (typeof s.sd !== 'number' || typeof s.R !== 'number') continue;
+    const absR = Math.abs(s.R);
+    if (absR > 1e10 || absR < 1e-10) continue;
+    const ratio = s.sd / absR;
+    if (ratio > SD_R_WARN)
+      errors.push(`Surface "${s.label}": sd/|R| ratio ${ratio.toFixed(3)} exceeds ${SD_R_WARN} — risk of TIR and rendering artifacts at the rim (reduce sd or verify off-axis ray containment)`);
+  }
+
   return errors;
 }
 
