@@ -538,13 +538,13 @@ export default function LensVisualization() {
           value={lensKey}
           onChange={e => switchLens(e.target.value)}
           style={{
-            background: t.selectorBg, border: `1px solid ${t.selectorBorder}`,
+            backgroundColor: t.selectorBg, border: `1px solid ${t.selectorBorder}`,
             borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
             fontSize: 10, color: t.selectorText, fontFamily: "inherit",
             letterSpacing: "0.06em", appearance: "none", outline: "none",
             backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='${t.selectorText}'/></svg>`)}")`,
             backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
-            transition: "all 0.3s", flex: "0 1 300px",
+            transition: "background-color 0.3s, color 0.3s, border-color 0.3s", flex: "0 1 300px",
           }}
         >
           {CATALOG_KEYS.map(k => (
