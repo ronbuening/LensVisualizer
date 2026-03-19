@@ -28,7 +28,8 @@ import buildLens       from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
-import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING } from './featureFlags.js';
+import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
+         ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY } from './featureFlags.js';
 
 
 /* =====================================================================
@@ -182,6 +183,7 @@ export default function LensVisualization() {
   const [chromB, setChromB] = useState(prefs.chromB ?? true);
   const [stopdownT, setStopdownT] = useState(0);
   const [mobileView, setMobileView] = useState('diagram');
+  const [desktopView, setDesktopView] = useState('both');
 
   useEffect(() => {
     try {
@@ -194,6 +196,17 @@ export default function LensVisualization() {
 
   const isWide = useMediaQuery('(min-width: 900px)');
   const markdown = useMemo(() => mdForKey(lensKey), [lensKey]);
+
+  const desktopViewOptions = useMemo(() => {
+    if (!ENABLE_DESKTOP_VIEW_TOGGLE) return [];
+    const opts = [];
+    if (ENABLE_DIAGRAM_ONLY) opts.push({ label: "DIAGRAM", val: "diagram" });
+    opts.push({ label: "BOTH", val: "both" });
+    if (ENABLE_ANALYSIS_ONLY) opts.push({ label: "ANALYSIS", val: "analysis" });
+    return opts;
+  }, []);
+  const effectiveDesktopView = desktopViewOptions.some(o => o.val === desktopView) ? desktopView : 'both';
+  const showDesktopToggle = isWide && desktopViewOptions.length > 1;
 
   /* ── Build lens from selected data ── */
   const buildResult = useMemo(() => {
@@ -754,18 +767,20 @@ export default function LensVisualization() {
   return (
     <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", transition: "background 0.3s,color 0.3s" }}>
       {/* ── Top bar: lens selector ── */}
-      <div style={{ padding: "10px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", alignItems: "center", gap: 12, transition: "background-color 0.3s,border-color 0.3s" }}>
+      <div style={{ padding: "12px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", alignItems: "center", gap: 12, transition: "background-color 0.3s,border-color 0.3s" }}>
+        <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>LENS</span>
         <select
           value={lensKey}
           onChange={e => switchLens(e.target.value)}
           style={{
-            backgroundColor: t.selectorBg, border: `1px solid ${t.selectorBorder}`,
-            borderRadius: 6, padding: "5px 28px 5px 10px", cursor: "pointer",
-            fontSize: 10, color: t.selectorText, fontFamily: "inherit",
+            backgroundColor: t.selectorBg, border: `1.5px solid ${t.sliderAccent}40`,
+            borderRadius: 6, padding: "7px 32px 7px 12px", cursor: "pointer",
+            fontSize: 13, color: t.selectorText, fontFamily: "inherit",
             letterSpacing: "0.06em", appearance: "none", outline: "none",
-            backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='${t.selectorText}'/></svg>`)}")`,
-            backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center",
-            transition: "background-color 0.3s, color 0.3s, border-color 0.3s", flex: "0 1 300px",
+            boxShadow: `0 0 6px ${t.sliderAccent}18`,
+            backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7'><path d='M0 0l6 7 6-7z' fill='${t.selectorText}'/></svg>`)}")`,
+            backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center",
+            transition: "background-color 0.3s, color 0.3s, border-color 0.3s", flex: "0 1 360px",
           }}
         >
           {CATALOG_KEYS.map(k => (
@@ -799,17 +814,46 @@ export default function LensVisualization() {
         </div>
       )}
 
-      {/* ── Main content area ── */}
-      {isWide ? (
-        /* Desktop: side-by-side */
-        <div style={{ display: "flex", minHeight: "calc(100vh - 42px)" }}>
-          <div style={{ flex: "0 0 60%", minWidth: 0, overflow: "hidden" }}>
-            {diagramContent}
-          </div>
-          <div style={{ flex: "0 0 40%", borderLeft: `1px solid ${t.descBorder}`, overflowY: "auto", maxHeight: "calc(100vh - 42px)" }}>
-            {descriptionContent}
+      {/* ── Desktop view toggle (wide screens) ── */}
+      {showDesktopToggle && (
+        <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, transition: "background-color 0.3s,border-color 0.3s" }}>
+          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: desktopViewOptions.length * 110 }}>
+            {desktopViewOptions.map(({ label, val }, i) => (
+              <button key={val} onClick={() => setDesktopView(val)} style={{
+                flex: 1, background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
+                border: "none", borderRight: i < desktopViewOptions.length - 1 ? `1px solid ${t.toggleBorder}` : "none",
+                padding: "6px 0", cursor: "pointer",
+                fontSize: 10, color: effectiveDesktopView === val ? t.toggleActiveText : t.toggleInactiveText,
+                fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+              }}>
+                {label}
+              </button>
+            ))}
           </div>
         </div>
+      )}
+
+      {/* ── Main content area ── */}
+      {isWide ? (
+        effectiveDesktopView === 'diagram' ? (
+          <div style={{ minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+            {diagramContent}
+          </div>
+        ) : effectiveDesktopView === 'analysis' ? (
+          <div style={{ overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+            {descriptionContent}
+          </div>
+        ) : (
+          /* Both — side-by-side */
+          <div style={{ display: "flex", minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+            <div style={{ flex: "0 0 60%", minWidth: 0, overflow: "hidden" }}>
+              {diagramContent}
+            </div>
+            <div style={{ flex: "0 0 40%", borderLeft: `1px solid ${t.descBorder}`, overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+              {descriptionContent}
+            </div>
+          </div>
+        )
       ) : (
         /* Mobile: toggle between views */
         mobileView === 'diagram' ? diagramContent : descriptionContent
