@@ -347,6 +347,114 @@ describe('computeChromaticSpread', () => {
   });
 });
 
+/* ── Production lens ray tracing ── */
+import buildLens from '../buildLens.js';
+import LENS_DEFAULTS from '../lens-data/defaults.js';
+import Sonnar50f15Raw from '../lens-data/Sonnar50f15.data.js';
+
+describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
+  const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+  const { z: zPos, imgZ } = doLayout(0, L);
+
+  it('on-axis marginal ray at full aperture (f/1.5) traces without clipping', () => {
+    const h = L.EP.epSD;  // marginal ray at entrance pupil edge
+    const { clipped, pts } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+    expect(clipped).toBe(false);
+    expect(pts.length).toBeGreaterThan(2);
+  });
+
+  it('on-axis ray fan traces without TIR at default fractions', () => {
+    for (const f of L.rayFractions) {
+      const h = f * L.EP.epSD;
+      const { clipped } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+      expect(clipped).withContext(`fraction ${f}`).toBe(false);
+    }
+  });
+
+  it('on-axis ray converges to image plane (finite y at image)', () => {
+    const h = 0.5 * L.EP.epSD;
+    const { y, u, clipped } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+    expect(clipped).toBe(false);
+    // Extrapolate to image: y + (imgZ - zPos[last]) * u
+    const yAtImage = y + (imgZ - zPos[L.N - 1]) * u;
+    // For on-axis from infinity, should converge near axis
+    expect(Math.abs(yAtImage)).toBeLessThan(5.0);  // within 5mm of axis (significant SA expected at f/1.5)
+  });
+
+  it('paraxial and exact rays agree for small heights', () => {
+    const h = 0.01;  // very small ray height
+    const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+    const yParax = traceToImage(h, 0, 0, L);
+    const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
+    expect(yExactAtImage).toBeCloseTo(yParax, 2);
+  });
+
+  it('off-axis chief ray traces without clipping at 60% field', () => {
+    const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
+    const yChief = -(L.B / L.EP.yRatio) * uField;
+    const { clipped } = traceRay(yChief, uField, zPos, 0, L.stopPhysSD, false, L);
+    expect(clipped).toBe(false);
+  });
+
+  it('off-axis ray fan traces at 60% field (some may vignette but not all)', () => {
+    const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
+    const yChief = -(L.B / L.EP.yRatio) * uField;
+    let passCount = 0;
+    for (const f of L.offAxisFractions) {
+      const hOff = f * L.EP.epSD;
+      const y0 = yChief + hOff;
+      const { clipped } = traceRay(y0, uField, zPos, 0, L.stopPhysSD, false, L);
+      if (!clipped) passCount++;
+    }
+    // At least the chief ray (f=0) should pass; some marginal off-axis may vignette
+    expect(passCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('chromatic rays (R, G, B) trace without TIR at half-aperture', () => {
+    const h = 0.5 * L.EP.epSD;
+    for (const ch of ['R', 'G', 'B']) {
+      const { clipped } = traceRayChromatic(h, 0, zPos, 0, L.stopPhysSD, false, L, ch);
+      expect(clipped).withContext(`channel ${ch}`).toBe(false);
+    }
+  });
+
+  it('chromatic dispersion is measurable (LCA > 0)', () => {
+    const h = 0.75 * L.EP.epSD;
+    const marginalRays = {};
+    for (const ch of ['R', 'G', 'B']) {
+      marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, L.stopPhysSD, false, L, ch);
+    }
+    const lastSurfZ = zPos[L.N - 1];
+    const spread = computeChromaticSpread(marginalRays, imgZ, lastSurfZ);
+    // Should have measurable chromatic aberration (it's an f/1.5 Sonnar)
+    expect(Math.abs(spread.lcaMm)).toBeGreaterThan(0.01);
+  });
+
+  it('rays trace at close focus (t=1) without TIR', () => {
+    const { z: zClose, imgZ: imgZClose } = doLayout(1.0, L);
+    const h = 0.5 * L.EP.epSD;
+    const { clipped } = traceRay(h, 0, zClose, 1.0, L.stopPhysSD, false, L);
+    expect(clipped).toBe(false);
+  });
+
+  it('stopped-down rays (f/8) trace without issues', () => {
+    // At f/8, stop SD = EP_SD × (f_open / f_stop)
+    const stoppedSD = L.stopPhysSD * (L.FOPEN / 8);
+    const h = 0.83 * stoppedSD / L.EP.yRatio;  // scale to EP
+    const { clipped } = traceRay(h, 0, zPos, 0, stoppedSD, false, L);
+    expect(clipped).toBe(false);
+  });
+
+  it('ghost mode returns rendering points even when clipped', () => {
+    // Use a very large ray that will definitely clip
+    const h = 2.0 * L.EP.epSD;
+    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, L.stopPhysSD, true, L);
+    expect(clipped).toBe(true);
+    // Should still have some rendering points (pts from before clip + ghostPts after)
+    expect(pts.length + ghostPts.length).toBeGreaterThan(1);
+  });
+});
+
 describe('named constants', () => {
   it('FLAT_R_THRESHOLD is 1e10', () => {
     expect(FLAT_R_THRESHOLD).toBe(1e10);
