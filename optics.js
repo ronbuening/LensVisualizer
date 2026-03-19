@@ -36,6 +36,21 @@ export function renderSag(h, surfIdx, L) {
   return conic + poly;
 }
 
+export function sagSlope(h, surfIdx, L) {
+  const R = L.S[surfIdx].R;
+  const a = L.asphByIdx[surfIdx];
+  if (Math.abs(R) > FLAT_R_THRESHOLD && !a) return 0;
+  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
+  const K = a ? a.K : 0;
+  const h2 = h * h;
+  const denom2 = 1 - (1 + K) * c * c * h2;
+  const conicSlope = c * h / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
+  if (!a) return conicSlope;
+  const polySlope = h * (4*a.A4*h2 + 6*a.A6*h2*h2 + 8*a.A8*h2**3
+                       + 10*a.A10*h2**4 + 12*a.A12*h2**5 + 14*a.A14*h2**6);
+  return conicSlope + polySlope;
+}
+
 export function gapTrimHeight(surfIdx, sd, maxSag, L) {
   if (maxSag <= 0 || L.gapSagFrac <= 0) return sd;
   if (Math.abs(renderSag(sd, surfIdx, L)) <= maxSag) return sd;
@@ -68,7 +83,8 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
   const pts = [];
   const ghostPts = [];
   pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
-  let y = y0, u = u0, n = 1.0;
+  let y = y0, n = 1.0;
+  let U = Math.atan(u0);
   let clipped = false;
   for (let i = 0; i < L.N; i++) {
     const { R, nd, sd } = L.S[i];
@@ -82,11 +98,23 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt); else pts.push(pt);
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
+    if (nn !== n) {
+      const absY = Math.abs(y);
+      const slope = sagSlope(absY, i, L);
+      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+      const I = U - alpha;
+      const sinIp = (n / nn) * Math.sin(I);
+      if (Math.abs(sinIp) > 1.0) {
+        if (!ghost) break;
+        clipped = true;
+      } else {
+        U = alpha + Math.asin(sinIp);
+      }
+    }
     n = nn;
-    if (i < L.N - 1) y += thick(i, t, L) * u;
+    if (i < L.N - 1) y += thick(i, t, L) * Math.tan(U);
   }
-  return { pts, ghostPts, y, u, clipped };
+  return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
 
 export function traceToImage(y0, u0, t, L) {
