@@ -7,3 +7,7 @@
 
 export const ENABLE_COLOR_TRACING  = true;
 export const DEFAULT_COLOR_TRACING = false;
+
+export const ENABLE_DESKTOP_VIEW_TOGGLE = true;
+export const ENABLE_DIAGRAM_ONLY        = true;
+export const ENABLE_ANALYSIS_ONLY       = true;
