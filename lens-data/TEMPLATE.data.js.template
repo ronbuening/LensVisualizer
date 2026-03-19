@@ -1,0 +1,164 @@
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║           LENS DATA — [LENS NAME]                                  ║
+ * ╠══════════════════════════════════════════════════════════════════════╣
+ * ║  Data source: [Patent number] [Example number] ([Company/Author]). ║
+ * ║  [Brief description of the design].                                ║
+ * ║  [N] elements / [N] groups, [N] aspherical surfaces.              ║
+ * ║  Focus: [focus mechanism description].                             ║
+ * ║                                                                    ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                           ║
+ * ║    [Describe how SDs were determined — patent-listed, estimated    ║
+ * ║    from EP geometry, etc.]                                         ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
+const LENS_DATA = {
+
+  /* ── Identity ── */
+  key:      "unique-lens-key",                          // REQUIRED: unique ID for auto-registration
+  name:     "MANUFACTURER LENS-NAME FLmm f/N",          // REQUIRED: full display name
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: shown in UI header
+  specs: [                                               // optional: spec strings for header display
+    "N ELEMENTS / N GROUPS",
+    "f ≈ NN.N mm",
+    "F/N.N",
+    "2ω ≈ NN.N°",
+    "N ASPHERICAL SURFACES",
+  ],
+
+  /* ── Elements ──
+   *  One entry per physical glass element, front to rear.
+   *  Each element must have a unique `id` and be referenced by at least one surface.
+   *
+   *  Fields:
+   *    id       (number, REQUIRED)  Unique integer ID — referenced by surfaces via elemId
+   *    name     (string, REQUIRED)  Short name, e.g. "L1", "Lfa"
+   *    label    (string, REQUIRED)  Display label, e.g. "Element 1"
+   *    type     (string, REQUIRED)  Optical type, e.g. "Biconvex Positive", "Neg. Meniscus (2× Asph)"
+   *    nd       (number, REQUIRED)  Refractive index at d-line (587.6 nm)
+   *    vd       (number, REQUIRED)  Abbe number (dispersion)
+   *    fl       (number, REQUIRED)  Focal length in mm (positive or negative)
+   *    glass    (string, REQUIRED)  Glass designation or catalog match
+   *    apd      (string|false, optional)  Anomalous partial dispersion: false, "patent", or "inferred"
+   *    apdNote  (string, optional)  Additional APD details, e.g. "dPgF = +0.0376 (patent-listed)"
+   *    role     (string, optional)  Description of the element's optical role/function
+   *    cemented (string, optional)  Doublet/triplet group name if cemented, e.g. "Jb", "L4"
+   */
+  elements: [
+    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive",  nd: 1.00000, vd: 00.00, fl:  00.0, glass: "Glass Name (CATALOG)", apd: false, role: "Description of optical role" },
+    // ... one entry per glass element, front to rear
+  ],
+
+  /* ── Surface prescription ──
+   *  One entry per optical surface, in strict front-to-rear order.
+   *  Includes glass surfaces AND air gaps.
+   *  Exactly one surface must have label "STO" (the aperture stop).
+   *
+   *  Fields:
+   *    label   (string, REQUIRED)  Unique surface label — append "A" for aspherical (e.g. "3A")
+   *    R       (number, REQUIRED)  Radius of curvature in mm — use 1e15 for flat surfaces
+   *    d       (number, REQUIRED)  Axial thickness to next surface in mm
+   *    nd      (number, REQUIRED)  Refractive index of the medium FOLLOWING this surface
+   *                                (1.0 for air, glass nd for entering a glass element)
+   *    elemId  (number, REQUIRED)  Element ID this surface belongs to — 0 for air interfaces
+   *    sd      (number, REQUIRED)  Semi-diameter (half clear aperture) in mm
+   *
+   *  Sign conventions:
+   *    R > 0  →  center of curvature to the RIGHT of the surface
+   *    R < 0  →  center of curvature to the LEFT of the surface
+   *    R = 1e15 → flat surface (effectively infinite radius)
+   *    d is always positive (distance to next surface along the axis)
+   *    nd = 1.0 for air gaps; nd = glass refractive index for glass media
+   *
+   *  Pairing rules:
+   *    A glass element with N surfaces has N entries with the same elemId.
+   *    A single-element lens: front surface (nd = glass nd), rear surface (nd = 1.0 for air after).
+   *    Cemented doublet: front elem rear surface has nd = next elem's glass nd (no air gap).
+   *    The last surface's d is the back focal distance (BFD) to the image plane.
+   */
+  surfaces: [
+    { label: "1",   R:   00.000, d: 0.00, nd: 1.00000, elemId: 1, sd: 00.0 },
+    { label: "2",   R:   00.000, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },
+    // ...
+    { label: "STO", R:     1e15, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },  // aperture stop — EXACTLY ONE required
+    // ...
+  ],
+
+  /* ── Aspherical coefficients ──
+   *  Keyed by surface label.  Only include surfaces that are aspherical.
+   *  For all-spherical designs, set asph: {}
+   *
+   *  Sag equation:
+   *    Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
+   *
+   *  Set unused higher-order coefficients to 0.
+   */
+  asph: {
+    // "3A": {
+    //   K: 0,
+    //   A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0,
+    // },
+  },
+
+  /* ── Variable air spacings (focus mechanism) ──
+   *  Keyed by surface label.  Each value is [d_at_infinity, d_at_close_focus].
+   *  Only include surfaces whose air gap changes during focus.
+   *
+   *  Focus types:
+   *    Unit focus:     One variable gap (BFD changes, entire lens moves)
+   *    Inner focus:    2+ variable gaps (internal groups move)
+   *    Floating focus: 3+ variable gaps (multiple groups move independently)
+   *
+   *  The surface's `d` field should match the infinity-focus value (var[label][0]).
+   *
+   *  varLabels: Display labels for the focus slider UI.
+   *    Each entry is [surface_label, display_text].
+   */
+  var: {
+    // "17": [18.74, 22.59],    // [d_infinity, d_close]
+  },
+
+  varLabels: [
+    // ["17", "BF"],             // [surface_label, display_text]
+  ],
+
+  /* ── Group and doublet annotations ──
+   *  Purely visual — brackets shown in the SVG diagram.
+   *  fromSurface and toSurface must be valid surface labels.
+   */
+  groups: [
+    // { text: "FRONT", fromSurface: "1", toSurface: "8" },
+    // { text: "REAR",  fromSurface: "10", toSurface: "17" },
+  ],
+
+  doublets: [
+    // { text: "D1", fromSurface: "5", toSurface: "7" },
+  ],
+
+  /* ── Focus configuration ── */
+  closeFocusM:       0.45,       // REQUIRED: close focus distance in meters
+  focusDescription:  "Description of the focus mechanism.",  // optional: shown in UI
+
+  /* ── Aperture configuration ── */
+  nominalFno:   2.0,             // REQUIRED: nominal f-number — used to derive stop SD
+  fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
+
+  /* ── Layout tuning (overrides defaults from defaults.js) ──
+   *  Only include if the defaults don't work well for this lens.
+   *
+   *  scFill   (0–1)  Horizontal fill fraction for the lens diagram
+   *  yScFill  (0–1)  Vertical fill fraction for the lens diagram
+   *
+   *  Other overridable defaults (usually fine as-is):
+   *    svgW: 1080, svgH: 490, clipMargin: 1.0, maxRimAngleDeg: 40,
+   *    gapSagFrac: 0.90, focusStep: 0.004, apertureStep: 0.004, maxFstop: 16,
+   *    rayFractions: [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
+   *    rayLeadFrac: 0.19, offAxisFieldFrac: 0.60,
+   *    offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75]
+   */
+  scFill:           0.50,
+  yScFill:          0.30,
+};
+
+export default LENS_DATA;
