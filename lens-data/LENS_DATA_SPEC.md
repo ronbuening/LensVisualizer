@@ -58,16 +58,17 @@ These must be specified in every lens file — they have no defaults.
 
 ### Optional
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `subtitle` | `string` | Patent reference shown in UI header |
-| `specs` | `string[]` | Spec strings displayed in header |
-| `focusDescription` | `string` | Human-readable focus mechanism description |
-| `asph` | `object` | Aspherical coefficients (see below) |
-| `var` | `object` | Variable air gaps for focus (see below) |
-| `varLabels` | `array` | Display labels for variable gaps |
-| `groups` | `array` | Group annotations for SVG diagram |
-| `doublets` | `array` | Cemented doublet annotations for SVG diagram |
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
+| `subtitle` | `string` | | Patent reference shown in UI header |
+| `specs` | `string[]` | | Spec strings displayed in header |
+| `focusDescription` | `string` | | Human-readable focus mechanism description |
+| `asph` | `object` | | Aspherical coefficients (see below) |
+| `var` | `object` | | Variable air gaps for focus (see below) |
+| `varLabels` | `array` | | Display labels for variable gaps |
+| `groups` | `array` | | Group annotations for SVG diagram |
+| `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
 
 ---
 
