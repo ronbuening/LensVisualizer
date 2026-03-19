@@ -32,7 +32,7 @@ The Voigtländer APO-LANTHAR 50mm f/2.0 Aspherical exists in three mount version
 | Maximum aperture | f/2.0 | f/2.0 | f/2.0 |
 | Elements / Groups | 10 / 8 | 10 / 8 | 10 / 8 |
 | Aspherical elements | 2 (4 aspheric surfaces) | 2 (4 aspheric surfaces) | 2 (4 aspheric surfaces) |
-| APD elements | **5** (Voigtländer official) | **2** (Voigtländer official) | **5*(Voigtländer official page) |
+| APD elements | **5** (Voigtländer official) | **2** (Voigtländer official) | **5** (Voigtländer official page) |
 | Floating focus | Yes | Yes | Yes |
 | Image circle | Full-frame (43.2 mm diagonal) | Full-frame | Full-frame |
 
@@ -51,13 +51,13 @@ Example 5 matches the E-mount production lens on every verifiable structural cri
 | Total groups | 8 (5 front + 3 rear) | 8 | ✓ |
 | Aspherical elements | 2 (4 surfaces) | 2 (4 surfaces) | ✓ |
 | Aspheric placement | Element 2 (front) + Element 10 (rear) | "towards front and rear" | ✓ |
-| Patent-listed dPgF elements | 2 (Elements 3, 4) | 5 (E-mount) | see below |
+| Patent-listed dPgF elements | 2 (Elements 3, 4) | 5 (Z/E-mount) | see below |
 | Floating focus | Multiple schemes (F31–F36) | Yes | ✓ |
 | Image height | 21.60 mm (from aberration plots) | 21.6 mm (FF diagonal/2) | ✓ |
 
-Example 6 also matches the structural criteria of 10 elements / 8 groups at ~50 mm and ~f/2 (f = 48.73 mm, f/1.92). The distinguishing criterion is the glass selection: Example 5 uses two patent-flagged dPgF glasses — S-FPL51 (Element 3, dPgF = +0.0376) and K-GFK68 (Element 4, dPgF = +0.0195) — while Example 6 uses only S-FPL51. The inclusion of the Sumita specialty glass K-GFK68 in Example 5 is consistent with the E-mount lens's claim of five anomalous partial dispersion elements, making Example 5 the stronger production candidate.
+Example 6 also matches the structural criteria of 10 elements / 8 groups at ~50 mm and ~f/2 (f = 48.73 mm, f/1.92). The distinguishing criterion is the glass selection: Example 5 uses two patent-flagged dPgF glasses — S-FPL51 (Element 3, dPgF = +0.0376) and K-GFK68 (Element 4, dPgF = +0.0195) — while Example 6 uses only S-FPL51. The inclusion of the Sumita specialty glass K-GFK68 in Example 5 is consistent with the Z/E-mount lens's claim of five anomalous partial dispersion elements, making Example 5 the stronger production candidate.
 
-The patent prescription explicitly lists dPgF for only two of the ten elements. The manufacturer's E-mount specification of five APD elements implies that three additional elements (inferred to be Elements 1, 5, and 6 based on their glass-map positions and unmatched catalog status) use glasses with anomalous partial dispersion properties that the designer chose not to flag in the patent table. This is consistent with common patent practice: dPgF is typically listed only for glasses with the most extreme or design-critical anomalous partial dispersion values.
+The patent prescription explicitly lists dPgF for only two of the ten elements. The manufacturer's Z/E-mount specification of five APD elements implies that three additional elements (inferred to be Elements 1, 5, and 6 based on their glass-map positions and unmatched catalog status) use glasses with anomalous partial dispersion properties that the designer chose not to flag in the patent table. This is consistent with common patent practice: dPgF is typically listed only for glasses with the most extreme or design-critical anomalous partial dispersion values.
 
 Half-angle verification: arctan(21.60 / 49.28) = 23.7°, confirming the patent's stated value.
 Entrance pupil diameter: 49.28 / 1.93 = 25.5 mm.
@@ -127,7 +127,7 @@ At this position — the very front of the system — this element sees the full
 
 **Glass identification.** The nd/νd combination of 1.544/47.65 (glass code 544477) falls in a sparsely populated region of the glass map. It is too dispersive for standard crown glasses, too low in refractive index for barium or lanthanum flints at this Abbe number, and does not match any published KZFS series entry. The nearest cataloged glass across all surveyed manufacturers is N-KZFS2 (Schott, nd = 1.558, νd = 54.0), which differs by Δnd = 0.015 and Δνd = 6.4 — far outside patent rounding tolerances. Given the confirmed Sumita connection through Element 4 (see below), this is likely a Sumita proprietary type not included in publicly available catalog data.
 
-**APD status.** This element's identification as APD is inferential, not patent-stated. The inference rests on: (a) the E-mount manufacturer's claim of 5 APD elements; (b) the glass's failure to match any standard catalog type, consistent with a specialty APD formulation; and (c) the VM version's reduced APD count of 2, suggesting this element may use a conventional glass substitute in that version.
+**APD status.** This element's identification as APD is inferential, not patent-stated. The inference rests on: (a) the manufacturer's claim of 5 APD elements; (b) the glass's failure to match any standard catalog type, consistent with a specialty APD formulation; and (c) the VM version's reduced APD count of 2, suggesting this element may use a conventional glass substitute in that version.
 
 
 ### Element 2 — Lfa: Positive Meniscus, Double-Sided Aspheric
