@@ -26,8 +26,8 @@ function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeig
     if (recordHeights) heights.push(y);
     const { R, nd, d } = S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (Math.abs(R) < FLAT_R_THRESHOLD && nn !== n)
-      u = (n * u - y * (nn - n) / R) / nn;
+    if (nn !== n)
+      u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
     n = nn;
     const isLast = (i === N - 1);
     if (isLast && skipLastTransfer) { /* skip */ }

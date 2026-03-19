@@ -261,11 +261,21 @@ export default function LensVisualization() {
     for (const f of L.rayFractions) {
       const h = f * currentEPSD;
       const uIn = rayTracksF ? h * focusK : 0;
-      const { pts, y, u } = traceRay(h, uIn, zPos, focusT, currentPhysStopSD, false, L);
+      const { pts, ghostPts, y, u, clipped } = traceRay(h, uIn, zPos, focusT, currentPhysStopSD, true, L);
       const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-      const last = pts[pts.length - 1];
-      if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
-      out.push(sp);
+      let gp = [];
+      if (clipped && ghostPts.length > 0) {
+        const lastSolid = pts[pts.length - 1];
+        if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
+        gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
+        const lastGhost = ghostPts[ghostPts.length - 1];
+        if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+      }
+      if (!clipped) {
+        const last = pts[pts.length - 1];
+        if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+      }
+      out.push({ sp, gp });
     }
     return out;
   }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
@@ -398,10 +408,15 @@ export default function LensVisualization() {
         })}
         <line x1={8} y1={sy(0)} x2={L.svgW - 8} y2={sy(0)} stroke={t.axis} strokeWidth={0.5} strokeDasharray="6,4" />
 
-        {showOnAxis && rays.map((pts, ri) => pts.length > 1 && (
-          <polyline key={`on${ri}`} points={pts.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
-            stroke={ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm} strokeWidth={1.2 * t.rayWidthScale} />
-        ))}
+        {showOnAxis && rays.map(({ sp, gp }, ri) => {
+          const color = ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm;
+          return <g key={`on${ri}`}>
+            {sp.length > 1 && <polyline points={sp.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
+              stroke={color} strokeWidth={1.2 * t.rayWidthScale} />}
+            {gp.length > 1 && <polyline points={gp.map(p => `${p[0]},${p[1]}`).join(" ")} fill="none"
+              stroke={color} strokeWidth={0.6 * t.rayWidthScale} strokeDasharray="3,4" opacity={0.3} />}
+          </g>;
+        })}
 
         {showOffAxis && offAxisRays.map(({ sp, gp }, ri) => {
           const color = ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm;
