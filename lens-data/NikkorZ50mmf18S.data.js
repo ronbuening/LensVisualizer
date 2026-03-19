@@ -113,23 +113,24 @@ const LENS_DATA = {
   //  Surface 13 is a virtual (dummy) surface per patent ¶0128.
   //  The thin resin layer at surface 6A (elemId: 0) participates in the ray
   //  trace but is not rendered as a separate element — see §2 notes above.
-  //  Semi-diameters computed via paraxial marginal + chief ray trace at full
-  //  field (ω = 22.9°). Represents approximately vignetting-free clear aperture.
+  //  Semi-diameters estimated from f/1.85 entrance pupil geometry (EP SD ≈ 14 mm)
+  //  with 8–12% mechanical clearance.  Sized to ensure positive edge thickness
+  //  and smooth SD progression across cemented doublets.
 
   surfaces: [
     // ── G1 ────────────────────────────────────────────────────────
     //                  label       R              d       nd       elemId   sd
-    { label: "1",   R: -48.06457,  d:  2.000, nd: 1.67270, elemId: 1,  sd: 24.5 },  // L11 front
-    { label: "2",   R:  50.03333,  d:  2.861, nd: 1.94595, elemId: 2,  sd: 24.5 },  // L12 front (junction)
-    { label: "3",   R: 105.00000,  d:  2.805, nd: 1.0,     elemId: 0,  sd: 24.0 },  // L12 rear → air
-    { label: "4",   R:-226.31231,  d:  6.827, nd: 1.72916, elemId: 3,  sd: 24.0 },  // L13 front
-    { label: "5",   R: -47.98013,  d:  0.644, nd: 1.0,     elemId: 0,  sd: 24.5 },  // L13 rear → air
-    { label: "6A",  R:  36.64910,  d:  0.100, nd: 1.56093, elemId: 0,  sd: 24.0 },  // L14 resin layer (asph)
-    { label: "7",   R:  36.85687,  d:  5.622, nd: 1.80400, elemId: 4,  sd: 24.0 },  // L14 glass front
-    { label: "8",   R: 217.92780,  d:  0.200, nd: 1.0,     elemId: 0,  sd: 21.5 },  // L14 rear → air
-    { label: "9",   R:  28.49361,  d:  7.332, nd: 1.59319, elemId: 5,  sd: 21.5 },  // L15 front (ED)
-    { label: "10",  R:-161.37986,  d:  1.500, nd: 1.64769, elemId: 6,  sd: 16.0 },  // L16 front (junction)
-    { label: "11",  R:  20.99038,  d:  5.164, nd: 1.0,     elemId: 0,  sd: 15.0 },  // L16 rear → air
+    { label: "1",   R: -48.06457,  d:  2.000, nd: 1.67270, elemId: 1,  sd: 19.5 },  // L11 front
+    { label: "2",   R:  50.03333,  d:  2.861, nd: 1.94595, elemId: 2,  sd: 19.5 },  // L12 front (junction)
+    { label: "3",   R: 105.00000,  d:  2.805, nd: 1.0,     elemId: 0,  sd: 19.5 },  // L12 rear → air
+    { label: "4",   R:-226.31231,  d:  6.827, nd: 1.72916, elemId: 3,  sd: 19.0 },  // L13 front
+    { label: "5",   R: -47.98013,  d:  0.644, nd: 1.0,     elemId: 0,  sd: 19.0 },  // L13 rear → air
+    { label: "6A",  R:  36.64910,  d:  0.100, nd: 1.56093, elemId: 0,  sd: 18.5 },  // L14 resin layer (asph)
+    { label: "7",   R:  36.85687,  d:  5.622, nd: 1.80400, elemId: 4,  sd: 18.5 },  // L14 glass front
+    { label: "8",   R: 217.92780,  d:  0.200, nd: 1.0,     elemId: 0,  sd: 18.5 },  // L14 rear → air
+    { label: "9",   R:  28.49361,  d:  7.332, nd: 1.59319, elemId: 5,  sd: 17.5 },  // L15 front (ED)
+    { label: "10",  R:-161.37986,  d:  1.500, nd: 1.64769, elemId: 6,  sd: 17.5 },  // L16 front (junction)
+    { label: "11",  R:  20.99038,  d:  5.164, nd: 1.0,     elemId: 0,  sd: 17.0 },  // L16 rear → air
 
     // ── Aperture stop ─────────────────────────────────────────────
     { label: "STO", R: 1e15,       d: 10.320, nd: 1.0,     elemId: 0,  sd: 11.0 },  // stop (D12, variable)
@@ -139,22 +140,22 @@ const LENS_DATA = {
 
     // ── G2 (focusing group) ───────────────────────────────────────
     { label: "14",  R: -23.41799,  d:  1.100, nd: 1.64769, elemId: 7,  sd: 15.5 },  // L21 front
-    { label: "15",  R: 998.77224,  d:  0.200, nd: 1.0,     elemId: 0,  sd: 16.0 },  // L21 rear → air
+    { label: "15",  R: 998.77224,  d:  0.200, nd: 1.0,     elemId: 0,  sd: 15.5 },  // L21 rear → air
     { label: "16A", R:  85.12299,  d:  5.000, nd: 1.77377, elemId: 8,  sd: 16.0 },  // L22 front (asph)
-    { label: "17A", R: -35.29338,  d:  2.485, nd: 1.0,     elemId: 0,  sd: 18.0 },  // L22 rear (asph) → air
-    { label: "18",  R: -73.80381,  d:  6.400, nd: 1.49782, elemId: 9,  sd: 18.5 },  // L23 front (super ED)
-    { label: "19",  R: -23.23519,  d:  6.356, nd: 1.0,     elemId: 0,  sd: 20.0 },  // L23 rear → air (D19, var)
+    { label: "17A", R: -35.29338,  d:  2.485, nd: 1.0,     elemId: 0,  sd: 16.0 },  // L22 rear (asph) → air
+    { label: "18",  R: -73.80381,  d:  6.400, nd: 1.49782, elemId: 9,  sd: 17.0 },  // L23 front (super ED)
+    { label: "19",  R: -23.23519,  d:  6.356, nd: 1.0,     elemId: 0,  sd: 17.0 },  // L23 rear → air (D19, var)
 
     // ── G3 ────────────────────────────────────────────────────────
-    { label: "20",  R:-177.75440,  d:  2.927, nd: 1.94595, elemId: 10, sd: 19.5 },  // L31 front
-    { label: "21",  R: -63.69645,  d:  1.900, nd: 1.64769, elemId: 11, sd: 20.0 },  // L32 front (junction)
-    { label: "22",  R:-482.01125,  d:  2.887, nd: 1.0,     elemId: 0,  sd: 19.5 },  // L32 rear → air
-    { label: "23",  R: -50.20764,  d:  1.900, nd: 1.64769, elemId: 12, sd: 19.5 },  // L33 front
-    { label: "24",  R: 1e15,       d: 10.500, nd: 1.0,     elemId: 0,  sd: 19.5 },  // L33 rear → air
+    { label: "20",  R:-177.75440,  d:  2.927, nd: 1.94595, elemId: 10, sd: 18.0 },  // L31 front
+    { label: "21",  R: -63.69645,  d:  1.900, nd: 1.64769, elemId: 11, sd: 18.0 },  // L32 front (junction)
+    { label: "22",  R:-482.01125,  d:  2.887, nd: 1.0,     elemId: 0,  sd: 18.0 },  // L32 rear → air
+    { label: "23",  R: -50.20764,  d:  1.900, nd: 1.64769, elemId: 12, sd: 18.0 },  // L33 front
+    { label: "24",  R: 1e15,       d: 10.500, nd: 1.0,     elemId: 0,  sd: 18.0 },  // L33 rear → air
 
     // ── Filter + BFD ──────────────────────────────────────────────
-    { label: "25",  R: 1e15,       d:  1.600, nd: 1.51680, elemId: 0,  sd: 21.5 },  // FL front (BK7)
-    { label: "26",  R: 1e15,       d:  1.000, nd: 1.0,     elemId: 0,  sd: 21.5 },  // FL rear → image
+    { label: "25",  R: 1e15,       d:  1.600, nd: 1.51680, elemId: 0,  sd: 18.5 },  // FL front (BK7)
+    { label: "26",  R: 1e15,       d:  1.000, nd: 1.0,     elemId: 0,  sd: 18.5 },  // FL rear → image
   ],
 
   // §4 — Aspherical coefficients

@@ -165,4 +165,83 @@ describe('validateLensData', () => {
     const errors = validateLensData(data);
     expect(errors.length).toBeGreaterThanOrEqual(2);
   });
+
+  it('catches negative edge thickness (surface crossing)', () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: 'L1', label: 'E1', type: 'test', nd: 1.5, vd: 50, fl: 50, glass: 'test', apd: false, role: 'test' }],
+      surfaces: [
+        { label: '1', R: 30, d: 3, nd: 1.5, elemId: 1, sd: 20 },   // sag ≈ 7.5 at sd=20, d=3 → crossing
+        { label: '2', R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 20 },  // flat rear, same sd → edge = d - sag(20,30) < 0
+        { label: 'STO', R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 8 },
+      ],
+    });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('negative edge thickness'))).toBe(true);
+  });
+
+  it('catches SD ratio exceeding 1.25 within an element', () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: 'L1', label: 'E1', type: 'test', nd: 1.5, vd: 50, fl: 50, glass: 'test', apd: false, role: 'test' }],
+      surfaces: [
+        { label: '1', R: 100, d: 5, nd: 1.5, elemId: 1, sd: 20 },
+        { label: 'STO', R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: '2', R: -100, d: 50, nd: 1.0, elemId: 0, sd: 12 },  // ratio 20/12 = 1.67 > 1.25
+      ],
+    });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('SD ratio'))).toBe(true);
+  });
+
+  it('passes edge thickness check for valid element', () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: 'L1', label: 'E1', type: 'test', nd: 1.5, vd: 50, fl: 50, glass: 'test', apd: false, role: 'test' }],
+      surfaces: [
+        { label: '1', R: 100, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: 'STO', R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: '2', R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+    const errors = validateLensData(data);
+    expect(errors).toEqual([]);
+  });
+
+  it('uses aspherical coefficients in edge thickness check', () => {
+    // Element that crosses with spherical sag but is valid with aspherics
+    const data = makeValid({
+      elements: [{ id: 1, name: 'L1', label: 'E1', type: 'test', nd: 1.5, vd: 50, fl: 50, glass: 'test', apd: false, role: 'test' }],
+      surfaces: [
+        { label: '1', R: 85, d: 5, nd: 1.5, elemId: 1, sd: 16 },
+        { label: 'STO', R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: '2', R: -35, d: 50, nd: 1.0, elemId: 0, sd: 16 },
+      ],
+      asph: {
+        '2': { K: 0, A4: 1.5e-05, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      },
+    });
+    const errors = validateLensData(data);
+    // With the aspheric correction on surface '2', edge thickness should be positive
+    expect(errors.some(e => e.includes('negative edge thickness'))).toBe(false);
+  });
+});
+
+/* ── Production lens validation ── */
+import ApoLantharRaw from '../lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw     from '../lens-data/Nokton50f1.data.js';
+import NikkorRaw     from '../lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw  from '../lens-data/Nikkor105f14E.data.js';
+
+describe('validateLensData — production lenses', () => {
+  const lenses = [
+    ['ApoLanthar', { ...LENS_DEFAULTS, ...ApoLantharRaw }],
+    ['Nokton',     { ...LENS_DEFAULTS, ...NoktonRaw }],
+    ['NikkorZ50',  { ...LENS_DEFAULTS, ...NikkorRaw }],
+    ['Nikkor105',  { ...LENS_DEFAULTS, ...Nikkor105Raw }],
+  ];
+
+  for (const [name, data] of lenses) {
+    it(`${name} passes validation with no errors`, () => {
+      const errors = validateLensData(data);
+      expect(errors).toEqual([]);
+    });
+  }
 });

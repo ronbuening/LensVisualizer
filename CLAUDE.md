@@ -110,7 +110,7 @@ No React dependencies — fully testable in isolation.
 
 ### validateLensData.js
 
-Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, and STO surface presence. Returns an array of error strings (empty = valid).
+Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), and element SD consistency. Returns an array of error strings (empty = valid).
 
 ### themes.js — Theme System
 
@@ -153,11 +153,24 @@ Each `.data.js` file in `lens-data/` default-exports a `LENS_DATA` object with a
 }
 ```
 
+### Semi-Diameter Guidelines
+
+Surface `sd` values are the most common source of rendering bugs. The validator enforces these constraints automatically:
+
+1. **Edge thickness**: For each element, `sag(sd, R_front) − sag(sd, R_rear)` must be less than center thickness `d`. Violation produces a bowtie-shaped element where surfaces cross at the rim.
+2. **SD consistency**: Front and rear surfaces of each element must have SDs within 25% of each other (ratio ≤ 1.25). Larger differences cause rays to appear outside the rendered element.
+3. **Cemented doublets**: Junction surfaces must have matching SDs — the bonded surfaces share a physical clear aperture.
+4. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
+
+See `lens-data/TEMPLATE.data.js.template` for detailed documentation and examples.
+
 ### Adding a New Lens
 
-1. Create `lens-data/YourLens.data.js` that default-exports a `LENS_DATA` object with a unique `key`
-2. Optionally add `lens-data/YourLens.analysis.md` for the description panel
-3. That's it — `import.meta.glob` auto-registers all `./lens-data/*.data.js` files
+1. Copy `lens-data/TEMPLATE.data.js.template` to `lens-data/YourLens.data.js`
+2. Fill in the lens data following the template's field documentation
+3. Optionally add `lens-data/YourLens.analysis.md` for the description panel
+4. Run `npm run test` to verify the data passes all validation checks (including edge thickness and SD consistency)
+5. That's it — `import.meta.glob` auto-registers all `./lens-data/*.data.js` files
 
 No manual imports or catalog edits required. Shared defaults from `lens-data/defaults.js` are merged automatically — only override values that differ from defaults.
 
