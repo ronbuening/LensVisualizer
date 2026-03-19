@@ -68,6 +68,16 @@ export default function buildLens(data) {
     ES.push([elem.id, startIdx, startIdx + 1]);
   }
 
+  /* ── Per-surface Abbe number lookup (for chromatic tracing) ── */
+  const vdByIdx = {};
+  for (let i = 0; i < N; i++) {
+    const eid = S[i].elemId;
+    if (eid) {
+      const elem = data.elements.find(e => e.id === eid);
+      if (elem && elem.vd) vdByIdx[i] = elem.vd;
+    }
+  }
+
   function resolveAnnotation(arr) {
     return (arr || []).map(g => ({
       text: g.text,
@@ -143,7 +153,7 @@ export default function buildLens(data) {
   return Object.freeze({
     data, S, N, ES,
     elements: data.elements,
-    asphByIdx, varByIdx, varLabels,
+    asphByIdx, varByIdx, vdByIdx, varLabels,
     groups, doublets,
     stopIdx, stopPhysSD,
     EFL, EP, B, FOPEN, halfField, totalTrack, maxSD,

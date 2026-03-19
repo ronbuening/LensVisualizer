@@ -220,3 +220,36 @@ describe('buildLens — error handling', () => {
     expect(L.N).toBe(3);
   });
 });
+
+
+describe('buildLens — vdByIdx', () => {
+  it('all production lenses have vdByIdx with entries for glass surfaces', () => {
+    for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105]) {
+      const L = buildLens(data);
+      expect(L.vdByIdx).toBeDefined();
+      // At least one glass surface should have a vd entry
+      const entries = Object.keys(L.vdByIdx);
+      expect(entries.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('vdByIdx values match corresponding element vd', () => {
+    const L = buildLens(ApoLanthar);
+    for (const [idxStr, vd] of Object.entries(L.vdByIdx)) {
+      const idx = parseInt(idxStr);
+      const eid = L.S[idx].elemId;
+      expect(eid).toBeTruthy();
+      const elem = L.elements.find(e => e.id === eid);
+      expect(elem).toBeDefined();
+      expect(vd).toBe(elem.vd);
+    }
+  });
+
+  it('air surfaces (elemId=0) are not in vdByIdx', () => {
+    const L = buildLens(Nokton);
+    for (const [idxStr] of Object.entries(L.vdByIdx)) {
+      const idx = parseInt(idxStr);
+      expect(L.S[idx].elemId).not.toBe(0);
+    }
+  });
+});
