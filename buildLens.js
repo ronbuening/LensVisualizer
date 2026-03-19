@@ -151,6 +151,7 @@ export default function buildLens(data) {
     SC, YSC, maxRimSin, gapSagFrac, clipMargin,
     gridPitch, gridCount,
     lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyGroup, lyStoPad,
+    lensShiftFrac: data.lensShiftFrac || 0,
     rayFractions: data.rayFractions, rayHeights, rayLead, bladeStubFrac,
     offAxisFieldDeg, offAxisFractions: data.offAxisFractions, offAxisHeights,
     closeFocusM: data.closeFocusM, focusStep: data.focusStep,
