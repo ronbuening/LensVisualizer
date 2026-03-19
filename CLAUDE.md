@@ -160,6 +160,7 @@ Each `.data.js` file in `lens-data/` default-exports a `LENS_DATA` object with a
 ```javascript
 {
   key,                                       // Unique ID — used for auto-registration
+  visible,                                   // Optional: false hides from UI (default: true)
   name, subtitle, specs,
   nominalFno, closeFocusM,                   // Required: f-number and close focus
   fstopSeries,                               // Required: f-stop quick-select values

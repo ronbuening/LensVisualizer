@@ -8,6 +8,9 @@
 
 const LENS_DEFAULTS = {
 
+  /* ── Catalog visibility ── */
+  visible:          true,
+
   /* ── Ray fan configuration ── */
   rayFractions:     [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
   rayLeadFrac:      0.35,

@@ -65,6 +65,17 @@ describe('validateLensData', () => {
     expect(errors.some(e => e.includes('Duplicate surface label'))).toBe(true);
   });
 
+  it('catches non-boolean visible field', () => {
+    const data = makeValid({ visible: "false" });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('"visible" must be a boolean'))).toBe(true);
+  });
+
+  it('accepts boolean visible field', () => {
+    expect(validateLensData(makeValid({ visible: true }))).toEqual([]);
+    expect(validateLensData(makeValid({ visible: false }))).toEqual([]);
+  });
+
   it('catches missing STO surface', () => {
     const data = makeValid({
       surfaces: [

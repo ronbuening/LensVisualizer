@@ -37,6 +37,10 @@ export default function validateLensData(data) {
       errors.push(`Missing or empty required array field: "${f}"`);
   }
 
+  /* ── Optional boolean fields ── */
+  if (data.visible !== undefined && typeof data.visible !== 'boolean')
+    errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
+
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
 

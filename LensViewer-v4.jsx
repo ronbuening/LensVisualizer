@@ -49,7 +49,7 @@ for (const mod of Object.values(_modules)) {
   const data = mod.default;
   if (data?.key) LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
 }
-const CATALOG_KEYS = Object.keys(LENS_CATALOG);
+const CATALOG_KEYS = Object.keys(LENS_CATALOG).filter(k => LENS_CATALOG[k].visible !== false);
 
 const _mdModules = import.meta.glob('./lens-data/*.analysis.md', { eager: true, query: '?raw', import: 'default' });
 const MD_BY_STEM = {};
