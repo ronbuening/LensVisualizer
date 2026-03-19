@@ -199,7 +199,7 @@ export default function LensVisualization() {
   const dz = IMG_MM - cur.imgZ;
   const zPos = useMemo(() => cur.z.map(v => v + dz), [cur, dz]);
 
-  const MID = IMG_MM / 2, CX = L.svgW / 2, CY = L.svgH / 2;
+  const MID = IMG_MM / 2, CX = L.svgW / 2 + L.svgW * L.lensShiftFrac, CY = L.svgH / 2;
   const IX = CX + MID * L.SC;
   const sx = useCallback(z => IX - (IMG_MM - z) * L.SC, [IX, IMG_MM, L.SC]);
   const sy = useCallback(y => CY + y * L.YSC, [CY, L.YSC]);

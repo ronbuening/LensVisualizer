@@ -10,7 +10,8 @@ const LENS_DEFAULTS = {
 
   /* ── Ray fan configuration ── */
   rayFractions:     [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
-  rayLeadFrac:      0.19,
+  rayLeadFrac:      0.35,
+  lensShiftFrac:    0.08,
   offAxisFieldFrac: 0.60,
   offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75],
 
