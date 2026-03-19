@@ -71,11 +71,26 @@ const LENS_DATA = {
    *    d is always positive (distance to next surface along the axis)
    *    nd = 1.0 for air gaps; nd = glass refractive index for glass media
    *
-   *  Pairing rules:
-   *    A glass element with N surfaces has N entries with the same elemId.
-   *    A single-element lens: front surface (nd = glass nd), rear surface (nd = 1.0 for air after).
-   *    Cemented doublet: front elem rear surface has nd = next elem's glass nd (no air gap).
-   *    The last surface's d is the back focal distance (BFD) to the image plane.
+   *  elemId assignment rules:
+   *    - Each glass element gets EXACTLY ONE surface with its elemId: its front (entry) surface.
+   *    - Air gap surfaces (nd = 1.0 after a glass element) always use elemId: 0.
+   *    - The aperture stop (STO) uses elemId: 0.
+   *    - The last surface's d is the back focal distance (BFD) to the image plane.
+   *
+   *  Standalone element pattern:
+   *    { label: "1",  R: ..., d: ..., nd: 1.xxxxx, elemId: 1, sd: ... },  // L1 front — elemId: 1
+   *    { label: "2",  R: ..., d: ..., nd: 1.0,     elemId: 0, sd: ... },  // L1 rear → air — elemId: 0
+   *
+   *  Cemented doublet pattern (e.g. L3 + L4):
+   *    The junction surface carries the SECOND element's elemId.
+   *    Its nd = the second element's glass refractive index (the medium after the junction).
+   *    { label: "5",  R: ..., d: ..., nd: 1.49700, elemId: 3, sd: ... },  // L3 front — elemId: 3
+   *    { label: "6",  R: ..., d: ..., nd: 1.72047, elemId: 4, sd: ... },  // Junction — elemId: 4 (L4, second element)
+   *    { label: "7",  R: ..., d: ..., nd: 1.0,     elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
+   *
+   *  Why: buildLens.js finds the FIRST surface with each elemId and uses (index, index+1)
+   *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
+   *  non-zero elemId will cause rendering errors or crashes.
    */
   surfaces: [
     { label: "1",   R:   00.000, d: 0.00, nd: 1.00000, elemId: 1, sd: 00.0 },
