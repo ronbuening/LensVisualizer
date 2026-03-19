@@ -141,6 +141,7 @@ export default function buildLens(data) {
   const lyImgLine  =  1.133 * maxSD;
   const lyImgLabel = -1.233 * maxSD;
   const lyElemNum  =  1.20  * maxSD;
+  const lyVdBadge  =  1.30  * maxSD;
   const lyGroup    =  1.37  * maxSD;
   const lyStoPad   =  0.12  * maxSD;
 
@@ -160,7 +161,7 @@ export default function buildLens(data) {
     svgW: data.svgW, svgH: data.svgH,
     SC, YSC, maxRimSin, gapSagFrac, clipMargin,
     gridPitch, gridCount,
-    lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyGroup, lyStoPad,
+    lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyVdBadge, lyGroup, lyStoPad,
     lensShiftFrac: data.lensShiftFrac || 0,
     rayFractions: data.rayFractions, rayHeights, rayLead, bladeStubFrac,
     offAxisFieldDeg, offAxisFractions: data.offAxisFractions, offAxisHeights,
