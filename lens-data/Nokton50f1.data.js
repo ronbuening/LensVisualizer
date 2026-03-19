@@ -125,7 +125,7 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM:       0.70,
+  closeFocusM:       0.45,
   focusDescription:  "Unit focus assumed — entire lens advances as one piece. Patent does not disclose a floating-element mechanism for this embodiment.",
 
   /* ── Aperture configuration ── */
