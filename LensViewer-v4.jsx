@@ -26,8 +26,8 @@ import T               from './themes.js';
 import LENS_DEFAULTS   from './lens-data/defaults.js';
 import buildLens       from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
-         traceRay, traceRayChromatic, traceToImage, conjugateK, formatDist,
-         SVG_PATH_SUBDIVISIONS } from './optics.js';
+         traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
+         conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING } from './featureFlags.js';
 
 
@@ -345,11 +345,29 @@ export default function LensVisualization() {
           const last = pts[pts.length - 1];
           if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
         }
-        out.push({ sp, gp, channel: ch });
+        out.push({ sp, gp, channel: ch, y, u, clipped });
       }
     }
     return out;
   }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
+
+  const chromSpread = useMemo(() => {
+    if (!showChromatic || chromaticRays.length === 0) return null;
+    const channels = [];
+    if (chromR) channels.push('R');
+    if (chromG) channels.push('G');
+    if (chromB) channels.push('B');
+    if (channels.length < 2) return null;
+    const marginalRays = {};
+    for (let ci = 0; ci < channels.length; ci++) {
+      const rayIdx = 1 * channels.length + ci;
+      if (rayIdx < chromaticRays.length) {
+        const r = chromaticRays[rayIdx];
+        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
+      }
+    }
+    return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
+  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
 
   const varReadouts = L.varLabels.map(([idx, label]) => {
     const v = L.varByIdx[idx];
@@ -538,10 +556,54 @@ export default function LensVisualization() {
         <line x1={IX} y1={sy(-L.lyImgLine)} x2={IX} y2={sy(L.lyImgLine)} stroke={t.imgLine} strokeWidth={t.imgLineWidth} strokeDasharray="4,3" />
         <text x={IX} y={sy(L.lyImgLabel)} textAnchor="middle" fill={t.imgLabel} fontSize={7.5} fontFamily="inherit" style={{ letterSpacing: "0.12em" }}>IMG</text>
 
+        {showChromatic && chromSpread && chromSpread.lcaMm !== 0 && (() => {
+          const mag = Math.min(30 / Math.abs(chromSpread.lcaMm), 5000);
+          const insetX = IX + 8;
+          const insetY = sy(0) - 45;
+          const insetW = 52;
+          const insetH = 58;
+          const midX = insetX + insetW / 2;
+          const gRef = chromSpread.intercepts.G || IMG_MM;
+          return <g>
+            <rect x={insetX} y={insetY} width={insetW} height={insetH}
+              rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.5} opacity={0.92} />
+            <text x={midX} y={insetY + 9} textAnchor="middle" fill={t.muted}
+              fontSize={5.5} fontFamily="inherit" style={{ letterSpacing: "0.1em" }}>LCA</text>
+            <line x1={insetX + 4} y1={insetY + 24} x2={insetX + insetW - 4} y2={insetY + 24}
+              stroke={t.axis} strokeWidth={0.4} />
+            {['R', 'G', 'B'].filter(ch => chromSpread.intercepts[ch] !== undefined).map(ch => {
+              const offset = (chromSpread.intercepts[ch] - gRef) * mag * L.SC;
+              const color = ch === 'R' ? t.rayChromR : ch === 'G' ? t.rayChromG : t.rayChromB;
+              return <g key={ch}>
+                <line x1={midX + offset} y1={insetY + 14} x2={midX + offset} y2={insetY + 34}
+                  stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+                <text x={midX + offset} y={insetY + 41} textAnchor="middle" fill={color}
+                  fontSize={5.5} fontFamily="inherit" fontWeight={600}>{ch}</text>
+              </g>;
+            })}
+            <text x={midX} y={insetY + 50} textAnchor="middle" fill={t.value}
+              fontSize={6.5} fontFamily="inherit" fontWeight={600}>
+              {Math.abs(chromSpread.lcaMm * 1000) >= 1 ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m` : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
+            </text>
+            <text x={midX} y={insetY + 57} textAnchor="middle" fill={t.muted}
+              fontSize={5} fontFamily="inherit">{Math.round(mag)}{"\u00d7"}</text>
+          </g>;
+        })()}
+
         {shapes.map(({ eid, z1, z2 }) => {
           const e = L.elements.find(x => x.id === eid); const on = act === eid;
           return <text key={`n${eid}`} x={sx((z1 + z2) / 2)} y={sy(L.lyElemNum)} textAnchor="middle"
             fill={on ? t.elemNumActive : t.elemNum(e)} fontSize={7} fontFamily="inherit" fontWeight={on ? 700 : 400}>{eid}</text>;
+        })}
+
+        {showChromatic && shapes.map(({ eid, z1, z2 }) => {
+          const e = L.elements.find(x => x.id === eid);
+          if (!e || !e.vd) return null;
+          const on = act === eid;
+          const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
+          return <text key={`vd${eid}`} x={sx((z1 + z2) / 2)} y={sy(L.lyVdBadge)} textAnchor="middle"
+            fill={on ? t.elemNumActive : dispColor} fontSize={6} fontFamily="inherit"
+            fontWeight={on ? 600 : 400} opacity={on ? 1 : 0.75}>{"\u03bd"}{e.vd.toFixed(0)}</text>;
         })}
 
         {L.groups.map(({ text, fromSurface, toSurface }) => (
@@ -625,6 +687,18 @@ export default function LensVisualization() {
                 <div><span style={{ color: t.propLabel }}>FL = </span><span style={{ color: t.value }}>{info.fl > 0 ? "+" : ""}{info.fl} mm</span></div>
                 <div><span style={{ color: t.propLabel }}>Glass: </span><span style={{ color: t.value }}>{info.glass}</span></div>
               </div>
+              {showChromatic && info.vd && <div style={{ marginTop: 4, display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))", gap: "3px 18px", fontSize: 10.5, lineHeight: 1.8 }}>
+                <div><span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span><span style={{ color: t.value }}>{((info.nd - 1) / info.vd).toFixed(5)}</span></div>
+                <div>
+                  <span style={{ color: t.propLabel }}>n</span><span style={{ color: t.rayChromR }}>R</span><span style={{ color: t.propLabel }}> = </span>
+                  <span style={{ color: t.rayChromR }}>{(info.nd - (info.nd - 1) / (2 * info.vd)).toFixed(5)}</span>
+                  <span style={{ color: t.propLabel, marginLeft: 8 }}> n</span><span style={{ color: t.rayChromB }}>B</span><span style={{ color: t.propLabel }}> = </span>
+                  <span style={{ color: t.rayChromB }}>{(info.nd + (info.nd - 1) / (2 * info.vd)).toFixed(5)}</span>
+                </div>
+                <div><span style={{ color: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh }}>
+                  {info.vd >= 55 ? "Low dispersion" : info.vd >= 35 ? "Normal dispersion" : "High dispersion"}{info.vd >= 65 ? " (ED)" : ""}
+                </span></div>
+              </div>}
               {info.apdNote && <div style={{ fontSize: 9.5, color: t.apdNote, marginTop: 3, transition: "color 0.3s" }}>{info.apdNote}</div>}
               <div style={{ fontSize: 9.5, color: t.role, marginTop: 5, lineHeight: 1.5, transition: "color 0.3s" }}>{info.role}</div>
             </div>

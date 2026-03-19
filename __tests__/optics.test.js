@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { sag, renderSag, sagSlope, thick, doLayout, formatDist,
-         traceRay, traceRayChromatic, traceToImage, conjugateK,
-         wavelengthNd,
+         traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
+         conjugateK, wavelengthNd,
          FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../optics.js';
 
 describe('sag', () => {
@@ -287,6 +287,63 @@ describe('traceRayChromatic', () => {
     const blue = traceRayChromatic(0, 0, zPos, 0, 15, false, L, 'B');
     expect(red.y).toBeCloseTo(0, 10);
     expect(blue.y).toBeCloseTo(0, 10);
+  });
+});
+
+describe('computeChromaticSpread', () => {
+  it('returns zero LCA when all channels have same intercept', () => {
+    const marginalRays = {
+      R: { y: 1.0, u: -0.1, clipped: false },
+      G: { y: 1.0, u: -0.1, clipped: false },
+      B: { y: 1.0, u: -0.1, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 50, 40);
+    expect(result.lcaMm).toBeCloseTo(0, 10);
+    expect(result.tcaMm).toBeCloseTo(0, 10);
+  });
+
+  it('computes positive LCA when red focuses farther than blue', () => {
+    // Red ray: y=1, u=-0.05 => intercept = 40 - 1/(-0.05) = 60
+    // Blue ray: y=1, u=-0.06 => intercept = 40 - 1/(-0.06) = 56.67
+    const marginalRays = {
+      R: { y: 1.0, u: -0.05, clipped: false },
+      G: { y: 1.0, u: -0.055, clipped: false },
+      B: { y: 1.0, u: -0.06, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 65, 40);
+    expect(result.lcaMm).toBeGreaterThan(0);
+    expect(result.intercepts.R).toBeCloseTo(60, 4);
+    expect(result.intercepts.B).toBeCloseTo(40 + 1 / 0.06, 4);
+  });
+
+  it('computes image heights correctly', () => {
+    const marginalRays = {
+      R: { y: 0.5, u: 0.02, clipped: false },
+      B: { y: 0.5, u: 0.03, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 50, 40);
+    // R: 0.5 + 10*0.02 = 0.7
+    // B: 0.5 + 10*0.03 = 0.8
+    expect(result.imgHeights.R).toBeCloseTo(0.7, 8);
+    expect(result.imgHeights.B).toBeCloseTo(0.8, 8);
+    expect(result.tcaMm).toBeCloseTo(-0.1, 8);
+  });
+
+  it('handles missing channels gracefully', () => {
+    const marginalRays = { G: { y: 1.0, u: -0.1, clipped: false } };
+    const result = computeChromaticSpread(marginalRays, 50, 40);
+    expect(result.lcaMm).toBe(0);
+    expect(result.tcaMm).toBe(0);
+  });
+
+  it('skips clipped rays', () => {
+    const marginalRays = {
+      R: { y: 1.0, u: -0.05, clipped: true },
+      B: { y: 1.0, u: -0.06, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 50, 40);
+    expect(result.lcaMm).toBe(0);
+    expect(result.intercepts.R).toBeUndefined();
   });
 });
 

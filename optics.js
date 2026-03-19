@@ -166,6 +166,30 @@ export function traceRayChromatic(y0, u0, zPos, t, stopSD, ghost, L, channel) {
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
 
+/**
+ * Compute chromatic aberration metrics from marginal ray trace results.
+ * marginalRays: { R?: {y,u,clipped}, G?: {y,u,clipped}, B?: {y,u,clipped} }
+ * Returns { lcaMm, tcaMm, intercepts: {R?,G?,B?}, imgHeights: {R?,G?,B?} }
+ */
+export function computeChromaticSpread(marginalRays, imgZ, lastSurfZ) {
+  const intercepts = {};
+  const imgHeights = {};
+  for (const ch of ['R', 'G', 'B']) {
+    const ray = marginalRays[ch];
+    if (!ray || ray.clipped) continue;
+    if (Math.abs(ray.u) > 1e-15) {
+      intercepts[ch] = lastSurfZ - ray.y / ray.u;
+    }
+    const dz = imgZ - lastSurfZ;
+    imgHeights[ch] = ray.y + dz * ray.u;
+  }
+  const lcaMm = (intercepts.R !== undefined && intercepts.B !== undefined)
+    ? intercepts.R - intercepts.B : 0;
+  const tcaMm = (imgHeights.R !== undefined && imgHeights.B !== undefined)
+    ? imgHeights.R - imgHeights.B : 0;
+  return { lcaMm, tcaMm, intercepts, imgHeights };
+}
+
 export function traceToImage(y0, u0, t, L) {
   let y = y0, u = u0, n = 1.0;
   for (let i = 0; i < L.N; i++) {
