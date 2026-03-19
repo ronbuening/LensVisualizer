@@ -45,7 +45,3 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 - Inline SVG rendering (no canvas)
 - Vitest for unit testing
 - Deployed to GitHub Pages via GitHub Actions
-
-## License
-
-See [LICENSE](LICENSE) for details.
