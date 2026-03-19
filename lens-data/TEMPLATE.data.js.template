@@ -7,6 +7,11 @@
  * ║  [N] elements / [N] groups, [N] aspherical surfaces.              ║
  * ║  Focus: [focus mechanism description].                             ║
  * ║                                                                    ║
+ * ║  NOTE ON SCALING (if applicable):                                   ║
+ * ║    [If patent data is at a different focal length, note the scale  ║
+ * ║    factor applied to R, d, and sd values here.  E.g.:             ║
+ * ║    "Patent at f=100; all values scaled ×0.5 to f≈50 production."] ║
+ * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    [Describe how SDs were determined — patent-listed, estimated    ║
  * ║    from EP geometry, etc.]                                         ║
@@ -108,6 +113,13 @@ const LENS_DATA = {
    *    { label: "6",  R: ..., d: ..., nd: 1.72047, elemId: 4, sd: ... },  // Junction — elemId: 4 (L4, second element)
    *    { label: "7",  R: ..., d: ..., nd: 1.0,     elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
    *
+   *  Cemented triplet pattern (e.g. L2 + L3 + L4):
+   *    Each junction surface carries the NEXT element's elemId and nd.
+   *    { label: "3",  R: ..., d: ..., nd: 1.6727, elemId: 2, sd: ... },  // L2 front — elemId: 2
+   *    { label: "4",  R: ..., d: ..., nd: 1.4075, elemId: 3, sd: ... },  // L2→L3 junction — elemId: 3
+   *    { label: "5",  R: ..., d: ..., nd: 1.6890, elemId: 4, sd: ... },  // L3→L4 junction — elemId: 4
+   *    { label: "6",  R: ..., d: ..., nd: 1.0,    elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
+   *
    *  Why: buildLens.js finds the FIRST surface with each elemId and uses (index, index+1)
    *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
    *  non-zero elemId will cause rendering errors or crashes.
@@ -117,6 +129,10 @@ const LENS_DATA = {
     { label: "2",   R:   00.000, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },
     // ...
     { label: "STO", R:     1e15, d: 0.00, nd: 1.0,     elemId: 0, sd: 00.0 },  // aperture stop — EXACTLY ONE required
+    //  Stop placement: If the patent specifies the stop position, use it directly.
+    //  If not (common in older patents), infer from the patent figure and split the
+    //  air gap accordingly — preceding surface d = distance to stop, STO d = remainder.
+    //  Document the estimate in a comment (e.g. "STO position inferred from Fig. 1").
     // ...
   ],
 

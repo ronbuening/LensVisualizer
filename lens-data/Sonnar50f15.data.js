@@ -71,7 +71,7 @@ const LENS_DATA = {
   surfaces: [
     /* ── L1: standalone positive meniscus ── */
     { label: "1",   R:   32.500,  d: 5.25,  nd: 1.6375, elemId: 1, sd: 18.0 },  // L1 front
-    { label: "2",   R:  208.385,  d: 0.25,  nd: 1.0,    elemId: 0, sd: 17.0 },  // L1 rear → air
+    { label: "2",   R:  208.385,  d: 0.25,  nd: 1.0,    elemId: 0, sd: 17.0 },  // L1 rear → air  (patent text says "plane face r₂" but numerical example has finite R = 416.77 at f=100 — gentle meniscus, typical 1930s approximate language)
 
     /* ── Front cemented triplet: L2 – L3 – L4 ── */
     { label: "3",   R:   18.630,  d: 5.85,  nd: 1.6727, elemId: 2, sd: 15.5 },  // L2 front

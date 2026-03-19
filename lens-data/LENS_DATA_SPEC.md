@@ -141,12 +141,24 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
 
 - **Glass element entry:** Surface where light enters the glass — `nd` = glass refractive index, `elemId` = element ID
 - **Glass element exit (to air):** Surface where light exits — `nd = 1.0`, `elemId = 0`
-- **Cemented interface:** Rear surface of front element has `nd` = next element's glass, no air gap surface between them
+- **Cemented interface:** Rear surface of front element has `nd` = next element's glass, no air gap surface between them. The junction surface carries the second element's `elemId`.
+- **Cemented triplet:** Extends the doublet pattern — each junction surface carries the next element's `elemId` and `nd`:
+  ```javascript
+  // Cemented triplet: L2 + L3 + L4
+  { label: "3",  R: ..., d: ..., nd: 1.6727, elemId: 2, sd: ... },  // L2 front — elemId: 2
+  { label: "4",  R: ..., d: ..., nd: 1.4075, elemId: 3, sd: ... },  // L2→L3 junction — elemId: 3
+  { label: "5",  R: ..., d: ..., nd: 1.6890, elemId: 4, sd: ... },  // L3→L4 junction — elemId: 4
+  { label: "6",  R: ..., d: ..., nd: 1.0,    elemId: 0, sd: ... },  // L4 rear → air
+  ```
 - **Last surface:** `d` = back focal distance to image plane
 
 ### Aperture Stop
 
 Exactly one surface must have `label: "STO"`. This is typically a flat surface (`R: 1e15`) in an air gap (`nd: 1.0, elemId: 0`). The `sd` value is the physical stop semi-diameter — the renderer derives the entrance pupil from this via paraxial ray trace.
+
+**Determining stop position:**
+- **Patent specifies stop:** Use the exact surface index or gap from the patent table.
+- **Patent does not specify (common in older patents):** Estimate from the patent figure drawing. Split the air gap at the inferred iris location — the preceding surface's `d` is the distance from that surface to the stop, and the STO surface's `d` is the remaining distance to the next surface. Document the estimate in a code comment (e.g., "STO position inferred from Fig. 1 iris placement").
 
 ---
 
@@ -264,6 +276,9 @@ When transcribing from an optical patent:
 6. **Glass identification** — Match nd/vd pairs against catalogs (OHARA, SCHOTT, HOYA, Sumita). Note when matches are uncertain
 7. **Focal length** — Use the patent's stated EFL, or compute from the prescription via paraxial ray trace
 8. **F-number** — Use the patent's stated f-number. If the patent gives the stop diameter, compute `f/# = EFL / (2 × EP_SD)`
+9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor to ALL R, d, and sd values. Document the scale factor in the file header
+10. **EFL verification** — After transcribing all surfaces, verify the computed EFL (from `buildLens()` or tests) matches the patent's stated focal length (scaled if applicable). A mismatch usually indicates a sign error in R or a wrong nd value
+11. **Cross-reference patent text** — Compare the patent's prose element descriptions (e.g., "plano-convex", "biconcave") against your transcribed R values. Older patents sometimes use approximate language — "plane" may mean "very weakly curved" if the numerical example has a finite but large R
 
 ---
 
