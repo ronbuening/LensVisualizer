@@ -129,5 +129,65 @@ export default function validateLensData(data) {
     }
   }
 
+  /* ── Element geometry: edge thickness and SD consistency ──
+   *  For each element, find its front/rear surface pair (same logic as buildLens ES)
+   *  and check that (a) the element has positive edge thickness at the rendering SD,
+   *  and (b) the front/rear SDs are consistent (ratio ≤ 1.25).
+   */
+  const S = data.surfaces;
+  const labelToIdx = {};
+  for (let i = 0; i < S.length; i++) {
+    if (typeof S[i].label === 'string') labelToIdx[S[i].label] = i;
+  }
+
+  const asphByIdx = {};
+  if (data.asph && typeof data.asph === 'object') {
+    for (const [label, coeffs] of Object.entries(data.asph)) {
+      if (labelToIdx[label] !== undefined) asphByIdx[labelToIdx[label]] = coeffs;
+    }
+  }
+
+  for (const elem of data.elements) {
+    let s1 = -1;
+    for (let i = 0; i < S.length; i++) {
+      if (S[i].elemId === elem.id) { s1 = i; break; }
+    }
+    if (s1 < 0 || s1 + 1 >= S.length) continue;
+    const s2 = s1 + 1;
+    const front = S[s1], rear = S[s2];
+    if (typeof front.sd !== 'number' || typeof rear.sd !== 'number') continue;
+    if (typeof front.R !== 'number' || typeof rear.R !== 'number') continue;
+
+    const sd = Math.min(front.sd, rear.sd);
+
+    /* Edge thickness check (uses aspherical sag when available) */
+    const sagFront = _renderSag(sd, front.R, asphByIdx[s1]);
+    const sagRear  = _renderSag(sd, rear.R,  asphByIdx[s2]);
+    const edgeThickness = front.d + sagRear - sagFront;
+    if (edgeThickness <= 0)
+      errors.push(`Element ${elem.id} ("${elem.name}"): negative edge thickness (${edgeThickness.toFixed(3)} mm) at sd=${sd} — surfaces "${front.label}" / "${rear.label}" cross at the rim`);
+
+    /* SD consistency check */
+    const sdMax = Math.max(front.sd, rear.sd);
+    const sdMin = Math.min(front.sd, rear.sd);
+    if (sdMin > 0 && sdMax / sdMin > 1.25)
+      errors.push(`Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax/sdMin).toFixed(2)} exceeds 1.25 — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may cause rays outside element`);
+  }
+
   return errors;
+}
+
+/* ── Sag helper (spherical + aspherical) for geometry checks ── */
+function _renderSag(h, R, asph) {
+  const FLAT = 1e10;
+  if (Math.abs(R) > FLAT && !asph) return 0;
+  const c = Math.abs(R) > FLAT ? 0 : 1.0 / R;
+  const K = asph ? (asph.K || 0) : 0;
+  const h2 = h * h;
+  const d = 1 - (1 + K) * c * c * h2;
+  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
+  if (!asph) return conic;
+  return conic
+    + (asph.A4  || 0) * h2**2 + (asph.A6  || 0) * h2**3 + (asph.A8  || 0) * h2**4
+    + (asph.A10 || 0) * h2**5 + (asph.A12 || 0) * h2**6 + (asph.A14 || 0) * h2**7;
 }

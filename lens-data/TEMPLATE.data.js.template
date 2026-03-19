@@ -64,6 +64,18 @@ const LENS_DATA = {
    *    elemId  (number, REQUIRED)  Element ID this surface belongs to — 0 for air interfaces
    *    sd      (number, REQUIRED)  Semi-diameter (half clear aperture) in mm
    *
+   *  Semi-diameter constraints (1–2 validated automatically, 3–4 are guidance):
+   *    1. Edge thickness: For each element, sag(sd, R_front) − sag(sd, R_rear) must
+   *       be less than the center thickness d.  Otherwise the front and rear surfaces
+   *       cross at the rim, producing a bowtie-shaped element.  (Validated)
+   *    2. SD consistency: Front and rear surface SDs of each element should not differ
+   *       by more than 25% (ratio ≤ 1.25).  Larger ratios cause rays to appear outside
+   *       the rendered element boundary.  (Validated)
+   *    3. Cemented doublets: Junction surfaces should have nearly identical SDs on both
+   *       sides — the surfaces are physically bonded and share a common clear aperture.
+   *    4. Smooth progression: SDs should decrease smoothly toward the aperture stop and
+   *       increase smoothly after it.  Abrupt jumps indicate data errors.
+   *
    *  Sign conventions:
    *    R > 0  →  center of curvature to the RIGHT of the surface
    *    R < 0  →  center of curvature to the LEFT of the surface
