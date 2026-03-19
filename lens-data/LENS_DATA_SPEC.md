@@ -42,9 +42,19 @@ These are merged automatically. Override only when needed.
 | `apertureStep` | `0.004` | Aperture slider step size |
 | `maxFstop` | `16` | Maximum f-number for aperture slider |
 | `rayFractions` | `[-0.83, -0.50, -0.17, 0.17, 0.50, 0.83]` | On-axis ray fan heights |
-| `rayLeadFrac` | `0.19` | Ray lead distance (fraction of total track) |
+| `rayLeadFrac` | `0.35` | Ray lead distance (fraction of total track) |
+| `lensShiftFrac` | `0.08` | Horizontal lens shift (fraction of SVG width) |
 | `offAxisFieldFrac` | `0.60` | Off-axis field angle (fraction of max half-field) |
 | `offAxisFractions` | `[-0.75, -0.375, 0, 0.375, 0.75]` | Off-axis ray fan heights |
+
+### Required (per-lens, no defaults)
+
+These must be specified in every lens file — they have no defaults.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `scFill` | `number` | Horizontal fill fraction (0–1) — layout tuning |
+| `yScFill` | `number` | Vertical fill fraction (0–1) — layout tuning |
 
 ### Optional
 
@@ -58,8 +68,6 @@ These are merged automatically. Override only when needed.
 | `varLabels` | `array` | Display labels for variable gaps |
 | `groups` | `array` | Group annotations for SVG diagram |
 | `doublets` | `array` | Cemented doublet annotations for SVG diagram |
-| `scFill` | `number` | Horizontal fill fraction (0–1) — layout tuning |
-| `yScFill` | `number` | Vertical fill fraction (0–1) — layout tuning |
 
 ---
 
