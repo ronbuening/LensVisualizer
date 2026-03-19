@@ -32,17 +32,17 @@ The Voigtländer APO-LANTHAR 50mm f/2.0 Aspherical exists in three mount version
 | Maximum aperture | f/2.0 | f/2.0 | f/2.0 |
 | Elements / Groups | 10 / 8 | 10 / 8 | 10 / 8 |
 | Aspherical elements | 2 (4 aspheric surfaces) | 2 (4 aspheric surfaces) | 2 (4 aspheric surfaces) |
-| APD elements | **5** (Voigtländer official) | **2** (Voigtländer official) | **5** (CameraQuest, B&H) / **2** (Voigtländer official page) |
+| APD elements | **5** (Voigtländer official) | **2** (Voigtländer official) | **5*(Voigtländer official page) |
 | Floating focus | Yes | Yes | Yes |
 | Image circle | Full-frame (43.2 mm diagonal) | Full-frame | Full-frame |
 
-The discrepancy in APD element count between the E-mount (5) and VM (2) versions indicates that the VM design uses a modified glass selection — likely substituting conventional glasses in three positions to accommodate the shorter flange distance and smaller barrel diameter. The Z-mount versions appear to share the E-mount's optical formula (CameraQuest states this explicitly for the Z-mount II), though Voigtländer's own Z-mount product page lists only 2 APD elements, possibly in error or reflecting a different counting convention.
+The discrepancy in APD element count between the E-mount (5) and VM (2) versions indicates that the VM design uses a modified glass selection — likely substituting conventional glasses in three positions to accommodate the shorter flange distance and smaller barrel diameter. The Z-mount versions share the E-mount's optical formula (CameraQuest states this explicitly for the Z-mount II).
 
 ### 2.2 Structural Match
 
 Example 5 matches the E-mount production lens on every verifiable structural criterion:
 
-| Criterion | Example 5 | Production lens (E-mount) | Match |
+| Criterion | Example 5 | Production lens (Z/E-mount) | Match |
 |---|---|---|---|
 | Focal length | 49.28 mm | 50 mm | ✓ |
 | F-number | 1.93 | 2.0 | ✓ |

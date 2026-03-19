@@ -32,7 +32,7 @@ const LENS_DATA = {
     "F/1.93",
     "2ω ≈ 47.4°",
     "4 ASPHERICAL SURFACES",
-    "5 APD ELEMENTS (E-MOUNT)",
+    "5 APD ELEMENTS (Z/E-MOUNT)",
   ],
 
   /* ── Elements ── */
