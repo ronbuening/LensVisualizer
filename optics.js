@@ -82,7 +82,7 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt); else pts.push(pt);
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (Math.abs(R) < FLAT_R_THRESHOLD && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
     n = nn;
     if (i < L.N - 1) y += thick(i, t, L) * u;
   }
@@ -94,7 +94,7 @@ export function traceToImage(y0, u0, t, L) {
   for (let i = 0; i < L.N; i++) {
     const { R, nd } = L.S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (Math.abs(R) < FLAT_R_THRESHOLD && nn !== n) u = (n * u - y * (nn - n) / R) / nn;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
     n = nn;
     y += thick(i, t, L) * u;
   }
