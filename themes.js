@@ -31,7 +31,7 @@ function createTheme(t) {
 
 const T = {
   dark: createTheme({
-    bg: "#0c0d10", headerBg: "linear-gradient(180deg,rgba(14,16,22,1),rgba(10,11,14,1))",
+    bg: "#0c0d10", headerBgColor: "#0c0d12", headerBgImage: "linear-gradient(180deg,rgba(14,16,22,1),rgba(10,11,14,1))",
     headerBorder: "rgba(0,200,220,0.22)", panelBg: "rgba(8,10,15,0.98)",
     panelBorder: "rgba(0,200,220,0.16)", panelDivider: "rgba(0,200,220,0.10)",
     infoBgActive: "rgba(12,18,30,0.8)", infoBgIdle: "transparent",
@@ -83,7 +83,7 @@ const T = {
     _strokeInfer: "rgba(179,136,255,0.70)", _strokeDefault: "rgba(180,200,225,0.55)",
   }),
   light: createTheme({
-    bg: "#ffffff", headerBg: "#f5f6f8",
+    bg: "#ffffff", headerBgColor: "#f5f6f8", headerBgImage: "none",
     headerBorder: "#c8cdd6", panelBg: "#f5f6f8",
     panelBorder: "#c8cdd6", panelDivider: "#d0d5dc",
     infoBgActive: "#e8ecf2", infoBgIdle: "transparent",
@@ -135,7 +135,7 @@ const T = {
     _strokeInfer: "rgba(90,40,180,0.65)", _strokeDefault: "rgba(60,80,110,0.55)",
   }),
   darkHC: createTheme({
-    bg: "#000000", headerBg: "linear-gradient(180deg,rgba(8,10,14,1),rgba(0,0,0,1))",
+    bg: "#000000", headerBgColor: "#040507", headerBgImage: "linear-gradient(180deg,rgba(8,10,14,1),rgba(0,0,0,1))",
     headerBorder: "rgba(0,220,240,0.30)", panelBg: "rgba(4,5,8,0.99)",
     panelBorder: "rgba(0,220,240,0.24)", panelDivider: "rgba(0,220,240,0.15)",
     infoBgActive: "rgba(8,14,24,0.85)", infoBgIdle: "transparent",
@@ -187,7 +187,7 @@ const T = {
     _strokeInfer: "rgba(190,150,255,0.80)", _strokeDefault: "rgba(195,215,240,0.70)",
   }),
   lightHC: createTheme({
-    bg: "#ffffff", headerBg: "#f2f3f6",
+    bg: "#ffffff", headerBgColor: "#f2f3f6", headerBgImage: "none",
     headerBorder: "#b0b8c4", panelBg: "#f2f3f6",
     panelBorder: "#b0b8c4", panelDivider: "#bcc2cc",
     infoBgActive: "#e0e5ee", infoBgIdle: "transparent",

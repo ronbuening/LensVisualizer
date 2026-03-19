@@ -274,7 +274,7 @@ export default function LensVisualization() {
   const diagramContent = (
     <>
       {/* ── Header ── */}
-      <div style={{ padding: "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background 0.3s,border-color 0.3s" }}>
+      <div style={{ padding: "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s" }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: 17, fontWeight: 700, letterSpacing: "0.04em", margin: 0, color: t.title, fontFamily: "'DM Sans','Helvetica Neue',sans-serif", transition: "color 0.3s" }}>{L.data.name}</h1>
@@ -533,7 +533,7 @@ export default function LensVisualization() {
   return (
     <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", transition: "background 0.3s,color 0.3s" }}>
       {/* ── Top bar: lens selector ── */}
-      <div style={{ padding: "10px 24px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, display: "flex", alignItems: "center", gap: 12, transition: "background 0.3s,border-color 0.3s" }}>
+      <div style={{ padding: "10px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", alignItems: "center", gap: 12, transition: "background-color 0.3s,border-color 0.3s" }}>
         <select
           value={lensKey}
           onChange={e => switchLens(e.target.value)}
@@ -558,7 +558,7 @@ export default function LensVisualization() {
 
       {/* ── Mobile view toggle (narrow screens — own row for visibility) ── */}
       {!isWide && (
-        <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, background: t.headerBg, transition: "background 0.3s,border-color 0.3s" }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, transition: "background-color 0.3s,border-color 0.3s" }}>
           <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 220 }}>
             {[
               { label: "DIAGRAM", val: 'diagram' },
