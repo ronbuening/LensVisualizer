@@ -137,8 +137,12 @@ function DescriptionPanel({ markdown, theme: t }) {
 
 export default function LensVisualization() {
   const [lensKey, setLensKey] = useState(CATALOG_KEYS[0]);
-  const [dark, setDark] = useState(true);
-  const [highContrast, setHighContrast] = useState(false);
+  const [dark, setDark] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-color-scheme: dark)').matches : true
+  );
+  const [highContrast, setHighContrast] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(prefers-contrast: more)').matches : false
+  );
   const [focusT, setFocusT] = useState(0);
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
