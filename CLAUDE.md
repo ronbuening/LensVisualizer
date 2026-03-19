@@ -27,6 +27,8 @@ LensVisualizer/
 ├── validateLensData.js     # Schema validation for lens data files
 ├── themes.js               # Theme system — 4 themes via createTheme() factory
 ├── featureFlags.js         # Feature flags — controls feature availability and defaults
+├── AboutMe.md              # Author bio (rendered in About: Author overlay)
+├── AboutSite.md            # Site description (rendered in About: Site overlay)
 ├── lens-data/              # Optical prescription data (one file per lens)
 │   ├── defaults.js         # Shared defaults (ray config, SVG sizing, control steps)
 │   ├── LENS_DATA_SPEC.md   # Full lens data format specification
