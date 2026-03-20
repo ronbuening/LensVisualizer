@@ -150,11 +150,22 @@ export default function LensDiagramPanel({
       return L.ES.map(([eid, s1, s2]) => {
         const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
         const R1 = Math.abs(L.S[s1].R), R2 = Math.abs(L.S[s2].R);
-        let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin) : sd;
-        let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin) : sd;
+        /* Conic-aware max height: surface slope → ∞ at h = |R|/√(1+K) when K > 0 */
+        const K1 = L.asphByIdx[s1]?.K || 0;
+        const K2 = L.asphByIdx[s2]?.K || 0;
+        const hMax1 = (K1 > 0 && R1 < 1e10) ? R1 / Math.sqrt(1 + K1) * 0.98 : Infinity;
+        const hMax2 = (K2 > 0 && R2 < 1e10) ? R2 / Math.sqrt(1 + K2) * 0.98 : Infinity;
+        let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin, hMax1) : Math.min(sd, hMax1);
+        let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin, hMax2) : Math.min(sd, hMax2);
+        /* Trim front surface if it curves backward into preceding air gap */
         if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
           const gapBefore = L.S[s1 - 1].d;
           trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
+        }
+        /* Trim rear surface if it curves forward into following air gap */
+        if (L.S[s2].nd === 1.0 && L.gapSagFrac > 0 && renderSag(trim2, s2, L) > 0) {
+          const gapAfter = L.S[s2].d;
+          trim2 = gapTrimHeight(s2, trim2, gapAfter * L.gapSagFrac, L);
         }
         const z1 = zPos[s1], z2 = zPos[s2], NN = SVG_PATH_SUBDIVISIONS;
         let d = "";

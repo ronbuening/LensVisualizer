@@ -192,6 +192,44 @@ export default function validateLensData(data) {
     const ratio = s.sd / absR;
     if (ratio > SD_R_WARN)
       errors.push(`Surface "${s.label}": sd/|R| ratio ${ratio.toFixed(3)} exceeds ${SD_R_WARN} — risk of TIR and rendering artifacts at the rim (reduce sd or verify off-axis ray containment)`);
+
+    /* Conic h_max check: when K > 0, surface slope → ∞ at h = |R|/√(1+K) */
+    const asph = asphByIdx[i];
+    if (asph && asph.K > 0 && absR < 1e10) {
+      const hMax = absR / Math.sqrt(1 + asph.K);
+      if (s.sd > hMax * 0.98)
+        errors.push(`Surface "${s.label}": sd=${s.sd} exceeds conic h_max=${hMax.toFixed(2)} mm (K=${asph.K}) — sag curve will have a discontinuity at the rim`);
+    }
+  }
+
+  /* ── Cross-gap surface overlap check ──
+   *  For each air gap between elements, verify that the combined sag intrusion
+   *  from both bounding surfaces does not exceed the gap thickness.
+   */
+  for (let i = 0; i < S.length - 1; i++) {
+    const curr = S[i], next = S[i + 1];
+    if (typeof curr.nd !== 'number' || curr.nd !== 1.0) continue;    // only air gaps
+    if (curr.elemId !== 0) continue;                                  // skip cemented junctions
+    if (typeof curr.d !== 'number' || curr.d <= 0) continue;
+    if (typeof next.elemId !== 'number' || next.elemId === 0) continue; // next must be an element
+    /* Find the element whose rear surface is curr (surface i) */
+    let prevElemRear = -1;
+    for (let j = i - 1; j >= 0; j--) {
+      if (S[j].elemId !== 0) { prevElemRear = j + 1; break; }
+    }
+    if (prevElemRear < 0 || prevElemRear !== i) continue;             // curr isn't a rear surface
+    const prevFront = i - 1;  // front surface of preceding element
+    if (prevFront < 0 || S[prevFront].elemId === 0) continue;
+    /* Use the minimum SD at which both surfaces are rendered */
+    const sdPrev = Math.min(S[prevFront].sd || Infinity, curr.sd || Infinity);
+    const sdNext = Math.min(next.sd || Infinity, (i + 2 < S.length ? S[i + 2].sd : Infinity) || Infinity);
+    const sdCheck = Math.min(sdPrev, sdNext);
+    if (!isFinite(sdCheck) || sdCheck <= 0) continue;
+    const sagFwd  = _renderSag(sdCheck, curr.R, asphByIdx[i]);       // rear surface sag (positive = extends into gap)
+    const sagBack = _renderSag(sdCheck, next.R, asphByIdx[i + 1]);   // front surface sag (negative = extends into gap)
+    const intrusion = sagFwd - sagBack;
+    if (intrusion > curr.d * 1.10)
+      errors.push(`Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds gap thickness (${curr.d} mm) at sd=${sdCheck.toFixed(1)} — elements will overlap in rendering`);
   }
 
   return errors;
