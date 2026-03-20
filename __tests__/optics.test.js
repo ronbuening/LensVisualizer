@@ -350,6 +350,10 @@ describe('computeChromaticSpread', () => {
 /* ── Production lens ray tracing ── */
 import buildLens from '../buildLens.js';
 import LENS_DEFAULTS from '../lens-data/defaults.js';
+import ApoLantharRaw  from '../lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw      from '../lens-data/Nokton50f1.data.js';
+import NikkorRaw      from '../lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw   from '../lens-data/Nikkor105f14E.data.js';
 import Sonnar50f15Raw from '../lens-data/Sonnar50f15.data.js';
 
 describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
@@ -452,6 +456,41 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     expect(clipped).toBe(true);
     // Should still have some rendering points (pts from before clip + ghostPts after)
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);
+  });
+});
+
+/* ── conjugateK with real-ray trace ── */
+describe('conjugateK', () => {
+  const allLenses = [
+    ['ApoLanthar50f2',  buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw })],
+    ['Nokton50f1',      buildLens({ ...LENS_DEFAULTS, ...NoktonRaw })],
+    ['NikkorZ50mmf18S', buildLens({ ...LENS_DEFAULTS, ...NikkorRaw })],
+    ['Nikkor105f14E',   buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw })],
+    ['Sonnar50f15',     buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw })],
+  ];
+
+  it.each(allLenses)('%s: conjugateK(0) ≈ 0 at infinity', (name, L) => {
+    const K = conjugateK(0, L);
+    expect(Math.abs(K)).toBeLessThan(1e-4);
+  });
+
+  it('Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+    const K = conjugateK(0, L);
+    expect(Math.abs(K)).toBeLessThan(1e-4);
+  });
+
+  it.each(allLenses)('%s: conjugateK(1.0) is nonzero at close focus', (name, L) => {
+    const K = conjugateK(1.0, L);
+    expect(Math.abs(K)).toBeGreaterThan(1e-6);
+  });
+
+  it('returns 0 gracefully for TIR conditions', () => {
+    // Pathological lens that causes TIR at zonal height
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+    // Manually corrupt EP to trigger NaN path
+    const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
+    expect(conjugateK(0, badL)).toBe(0);
   });
 });
 
