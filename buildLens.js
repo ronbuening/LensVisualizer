@@ -100,19 +100,28 @@ export default function buildLens(data) {
   }
 
   /* ── Optical constants ── */
-  const EFL = -1.0 / paraxialTrace(S, 1, 0, { skipLastTransfer: true }).u;
+  const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
+  const EFL = -1.0 / eflTrace.u;
+  if (!isFinite(EFL))
+    throw new Error(`Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`);
 
   const epTrace = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
+  if (Math.abs(epTrace.y) < 1e-15)
+    throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
   const EP = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
 
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
 
   const stopPhysSD = S[stopIdx].sd;
   const FOPEN      = EFL / (2 * EP.epSD);
+  if (!isFinite(FOPEN))
+    throw new Error(`Lens "${data.key}": Wide-open f-number is not finite (EFL=${EFL}, epSD=${EP.epSD})`);
 
   /* ── Half-field angle (vignetting-limited) ── */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights;
+  if (Math.abs(hA[stopIdx]) < 1e-15)
+    throw new Error(`Lens "${data.key}": Chief-ray height ratio undefined — marginal ray height at stop ≈ 0`);
   const r = hB[stopIdx] / hA[stopIdx];
   let minU = Infinity;
   for (let i = 0; i < N; i++) {
@@ -124,6 +133,8 @@ export default function buildLens(data) {
     }
   }
   const halfField = Math.atan(minU) * 180 / Math.PI;
+  if (!isFinite(halfField))
+    throw new Error(`Lens "${data.key}": Half-field angle is not finite — vignetting computation failed`);
 
   /* ── Layout geometry ── */
   const z = [0];

@@ -10,9 +10,13 @@ import LENS_DEFAULTS from './lens-data/defaults.js';
 
 const _modules = import.meta.glob('./lens-data/*.data.js', { eager: true });
 const LENS_CATALOG = {};
-for (const mod of Object.values(_modules)) {
+for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
-  if (data?.key) LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
+  if (data?.key) {
+    LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
+  } else {
+    console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
+  }
 }
 const CATALOG_KEYS = Object.keys(LENS_CATALOG).filter(k => LENS_CATALOG[k].visible !== false);
 

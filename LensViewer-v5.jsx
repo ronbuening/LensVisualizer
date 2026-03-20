@@ -29,6 +29,7 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE } from './featureFlags.js';
 import { computeFocusPair, computeAperturePair, formatSharedFocusDist, sharedFNumber, snapToCommon } from './comparisonSliders.js';
 import { formatDist } from './optics.js';
+import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from './AboutMe.md?raw';
 import ABOUT_SITE_MD from './AboutSite.md?raw';
 
@@ -315,12 +316,12 @@ export default function LensVisualization() {
     if (!comparing) return null;
     try {
       return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) };
-    } catch { return null; }
+    } catch (e) { return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` }; }
   }, [comparing, lensKeyA, lensKeyB]);
 
   /* ── Normalized scale computation ── */
   const scaleRatios = useMemo(() => {
-    if (!comparisonLenses || scaleMode !== 'normalized') return null;
+    if (!comparisonLenses || comparisonLenses.error || scaleMode !== 'normalized') return null;
     const { LA, LB } = comparisonLenses;
     const minSC = Math.min(LA.SC, LB.SC);
     return { a: minSC / LA.SC, b: minSC / LB.SC };
@@ -328,12 +329,12 @@ export default function LensVisualization() {
 
   /* ── Per-lens focus/aperture from shared sliders ── */
   const focusPair = useMemo(() => {
-    if (!comparisonLenses) return null;
+    if (!comparisonLenses || comparisonLenses.error) return null;
     return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedFocusT, comparisonLenses]);
 
   const aperturePair = useMemo(() => {
-    if (!comparisonLenses) return null;
+    if (!comparisonLenses || comparisonLenses.error) return null;
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
 
@@ -499,8 +500,19 @@ export default function LensVisualization() {
     </div>
   ) : null;
 
+  /* ── Comparison error display ── */
+  const comparisonError = comparisonLenses?.error ? (
+    <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
+      <ErrorDisplay
+        error={comparisonLenses.error}
+        context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys }}
+        title="Failed to build lens for comparison"
+      />
+    </div>
+  ) : null;
+
   /* ── Comparison content ── */
-  const comparisonContent = comparing ? (
+  const comparisonContent = comparing ? (comparisonLenses?.error ? comparisonError :
     <div style={{ display: "flex", flexDirection: isWide ? "row" : "column" }}>
       <div style={{ flex: isWide ? "0 0 50%" : "none", borderRight: isWide ? `1px solid ${t.panelDivider}` : "none", borderBottom: !isWide ? `1px solid ${t.panelDivider}` : "none", minWidth: 0, overflow: "hidden" }}>
         <LensDiagramPanel
@@ -677,7 +689,7 @@ export default function LensVisualization() {
       {/* ── Main content area ── */}
       {comparing ? (<>
         {comparisonContent}
-        {comparisonLenses && focusPair && aperturePair && (
+        {comparisonLenses && !comparisonLenses.error && focusPair && aperturePair && (
           <SharedSlidersBar
             LA={comparisonLenses.LA} LB={comparisonLenses.LB}
             sharedFocusT={sharedFocusT} sharedStopdownT={sharedStopdownT}

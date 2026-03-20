@@ -7,13 +7,42 @@
  * aperture, ray toggles) from the parent.
  */
 
-import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, Component } from "react";
 import { LENS_CATALOG, CATALOG_KEYS } from './lensCatalog.js';
 import buildLens from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
 import { ENABLE_COLOR_TRACING } from './featureFlags.js';
+import { ErrorDisplay } from './ErrorBoundary.jsx';
+
+/* ── Panel-level error boundary — catches render errors within a single diagram ── */
+class PanelErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) { return { error }; }
+  componentDidCatch(error, info) {
+    console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, info?.componentStack);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.lensKey !== this.props.lensKey) this.setState({ error: null });
+  }
+  render() {
+    if (!this.state.error) return this.props.children;
+    return (
+      <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+        <ErrorDisplay
+          error={this.state.error}
+          context={{ component: "LensDiagramPanel", lensKey: this.props.lensKey }}
+          title="Diagram Rendering Error"
+          onRetry={() => this.setState({ error: null })}
+        />
+      </div>
+    );
+  }
+}
 
 export default function LensDiagramPanel({
   lensKey,
@@ -76,11 +105,12 @@ export default function LensDiagramPanel({
 
   if (buildResult.error) {
     return (
-      <div style={{ padding: 24, textAlign: "center" }}>
-        <h2 style={{ color: "#ff6060", fontSize: 15, marginBottom: 8 }}>Failed to build lens</h2>
-        <pre style={{ background: "rgba(255,60,60,0.08)", border: "1px solid rgba(255,60,60,0.25)", borderRadius: 6, padding: 12, whiteSpace: "pre-wrap", wordBreak: "break-word", fontSize: 12, color: "#ffa0a0", textAlign: "left" }}>
-          {buildResult.error.message}
-        </pre>
+      <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+        <ErrorDisplay
+          error={buildResult.error}
+          context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
+          title="Failed to build lens"
+        />
       </div>
     );
   }
@@ -105,21 +135,28 @@ export default function LensDiagramPanel({
   const sy = useCallback(y => CY + y * effectiveYSC, [CY, effectiveYSC]);
 
   /* ── Element shapes ── */
-  const shapes = useMemo(() => L.ES.map(([eid, s1, s2]) => {
-    const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
-    const R1 = Math.abs(L.S[s1].R), R2 = Math.abs(L.S[s2].R);
-    let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin) : sd;
-    let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin) : sd;
-    if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
-      const gapBefore = L.S[s1 - 1].d;
-      trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
+  const shapes = useMemo(() => {
+    try {
+      return L.ES.map(([eid, s1, s2]) => {
+        const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
+        const R1 = Math.abs(L.S[s1].R), R2 = Math.abs(L.S[s2].R);
+        let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin) : sd;
+        let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin) : sd;
+        if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
+          const gapBefore = L.S[s1 - 1].d;
+          trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
+        }
+        const z1 = zPos[s1], z2 = zPos[s2], NN = SVG_PATH_SUBDIVISIONS;
+        let d = "";
+        for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
+        for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
+        return { eid, d: d + "Z", z1, z2 };
+      });
+    } catch (e) {
+      console.error(`[LensDiagramPanel] Element shape computation failed for "${lensKey}":`, e);
+      return [];
     }
-    const z1 = zPos[s1], z2 = zPos[s2], NN = SVG_PATH_SUBDIVISIONS;
-    let d = "";
-    for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
-    for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
-    return { eid, d: d + "Z", z1, z2 };
-  }), [zPos, sx, sy, L]);
+  }, [zPos, sx, sy, L, lensKey]);
 
   /* ── Aperture ── */
   const stopZ = zPos[L.stopIdx];
@@ -130,73 +167,12 @@ export default function LensDiagramPanel({
 
   /* ── On-axis rays ── */
   const rays = useMemo(() => {
-    const out = [];
-    for (const f of L.rayFractions) {
-      const h = f * currentEPSD;
-      const uIn = rayTracksF ? h * focusK : 0;
-      const { pts, ghostPts, y, u, clipped } = traceRay(h, uIn, zPos, focusT, currentPhysStopSD, true, L);
-      const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-      let gp = [];
-      if (clipped && ghostPts.length > 0) {
-        const lastSolid = pts[pts.length - 1];
-        if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-        gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-        const lastGhost = ghostPts[ghostPts.length - 1];
-        if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
-      }
-      if (!clipped) {
-        const last = pts[pts.length - 1];
-        if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
-      }
-      out.push({ sp, gp });
-    }
-    return out;
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
-
-  /* ── Off-axis rays ── */
-  const offAxisRays = useMemo(() => {
-    const out = [];
-    const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
-    const yChief = -(L.B / L.EP.yRatio) * uField;
-    for (const f of L.offAxisFractions) {
-      const h = f * currentEPSD;
-      const y0 = yChief + h;
-      const uConverge = rayTracksF ? h * focusK : 0;
-      const uIn = uField + uConverge;
-      const { pts, ghostPts, y, u, clipped } = traceRay(y0, uIn, zPos, focusT, currentPhysStopSD, true, L);
-      const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-      let gp = [];
-      if (clipped && ghostPts.length > 0) {
-        const lastSolid = pts[pts.length - 1];
-        if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-        gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-        const lastGhost = ghostPts[ghostPts.length - 1];
-        if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
-      }
-      if (!clipped) {
-        const last = pts[pts.length - 1];
-        if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
-      }
-      out.push({ sp, gp });
-    }
-    return out;
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
-
-  /* ── Chromatic rays ── */
-  const CHROM_FRACS = [0, 0.75, -0.75];
-  const chromaticRays = useMemo(() => {
-    if (!showChromatic) return [];
-    const channels = [];
-    if (chromR) channels.push('R');
-    if (chromG) channels.push('G');
-    if (chromB) channels.push('B');
-    if (channels.length === 0) return [];
-    const out = [];
-    for (const f of CHROM_FRACS) {
-      const h = f * currentEPSD;
-      const uIn = rayTracksF ? h * focusK : 0;
-      for (const ch of channels) {
-        const { pts, ghostPts, y, u, clipped } = traceRayChromatic(h, uIn, zPos, focusT, currentPhysStopSD, true, L, ch);
+    try {
+      const out = [];
+      for (const f of L.rayFractions) {
+        const h = f * currentEPSD;
+        const uIn = rayTracksF ? h * focusK : 0;
+        const { pts, ghostPts, y, u, clipped } = traceRay(h, uIn, zPos, focusT, currentPhysStopSD, true, L);
         const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
         let gp = [];
         if (clipped && ghostPts.length > 0) {
@@ -210,11 +186,87 @@ export default function LensDiagramPanel({
           const last = pts[pts.length - 1];
           if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
         }
-        out.push({ sp, gp, channel: ch, y, u, clipped });
+        out.push({ sp, gp });
       }
+      return out;
+    } catch (e) {
+      console.error(`[LensDiagramPanel] On-axis ray trace failed for "${lensKey}":`, e);
+      return [];
     }
-    return out;
-  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM]);
+  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
+
+  /* ── Off-axis rays ── */
+  const offAxisRays = useMemo(() => {
+    try {
+      const out = [];
+      const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
+      const yChief = -(L.B / L.EP.yRatio) * uField;
+      for (const f of L.offAxisFractions) {
+        const h = f * currentEPSD;
+        const y0 = yChief + h;
+        const uConverge = rayTracksF ? h * focusK : 0;
+        const uIn = uField + uConverge;
+        const { pts, ghostPts, y, u, clipped } = traceRay(y0, uIn, zPos, focusT, currentPhysStopSD, true, L);
+        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+        let gp = [];
+        if (clipped && ghostPts.length > 0) {
+          const lastSolid = pts[pts.length - 1];
+          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
+          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
+          const lastGhost = ghostPts[ghostPts.length - 1];
+          if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+        }
+        if (!clipped) {
+          const last = pts[pts.length - 1];
+          if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+        }
+        out.push({ sp, gp });
+      }
+      return out;
+    } catch (e) {
+      console.error(`[LensDiagramPanel] Off-axis ray trace failed for "${lensKey}":`, e);
+      return [];
+    }
+  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
+
+  /* ── Chromatic rays ── */
+  const CHROM_FRACS = [0, 0.75, -0.75];
+  const chromaticRays = useMemo(() => {
+    if (!showChromatic) return [];
+    const channels = [];
+    if (chromR) channels.push('R');
+    if (chromG) channels.push('G');
+    if (chromB) channels.push('B');
+    if (channels.length === 0) return [];
+    try {
+      const out = [];
+      for (const f of CHROM_FRACS) {
+        const h = f * currentEPSD;
+        const uIn = rayTracksF ? h * focusK : 0;
+        for (const ch of channels) {
+          const { pts, ghostPts, y, u, clipped } = traceRayChromatic(h, uIn, zPos, focusT, currentPhysStopSD, true, L, ch);
+          const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+          let gp = [];
+          if (clipped && ghostPts.length > 0) {
+            const lastSolid = pts[pts.length - 1];
+            if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
+            gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
+            const lastGhost = ghostPts[ghostPts.length - 1];
+            if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+          }
+          if (!clipped) {
+            const last = pts[pts.length - 1];
+            if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+          }
+          out.push({ sp, gp, channel: ch, y, u, clipped });
+        }
+      }
+      return out;
+    } catch (e) {
+      console.error(`[LensDiagramPanel] Chromatic ray trace failed for "${lensKey}":`, e);
+      return [];
+    }
+  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
 
   /* ── Chromatic spread ── */
   const chromSpread = useMemo(() => {
@@ -245,7 +297,7 @@ export default function LensDiagramPanel({
   const filterId = `gl-${panelId}`;
 
   return (
-    <>
+    <PanelErrorBoundary lensKey={lensKey}>
       {/* ── Header ── */}
       <div ref={headerRef} style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s", ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}) }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -657,6 +709,6 @@ export default function LensDiagramPanel({
           </div>
         </div>
       )}
-    </>
+    </PanelErrorBoundary>
   );
 }
