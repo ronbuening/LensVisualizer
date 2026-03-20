@@ -202,11 +202,49 @@ export function traceToImage(y0, u0, t, L) {
   return y;
 }
 
+/**
+ * Real-ray trace to image plane — same interface as traceToImage but uses
+ * exact Snell's law and aspheric surface normals (sagSlope).  This makes
+ * conjugateK self-consistent with the rendering engine (traceRay).
+ */
+function traceToImageReal(y0, u0, t, L) {
+  let y = y0, n = 1.0;
+  let U = Math.atan(u0);
+  for (let i = 0; i < L.N; i++) {
+    const { nd } = L.S[i];
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) {
+      const absY = Math.abs(y);
+      const slope = sagSlope(absY, i, L);
+      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+      const I = U - alpha;
+      const sinIp = (n / nn) * Math.sin(I);
+      if (Math.abs(sinIp) > 1.0) return NaN;
+      U = alpha + Math.asin(sinIp);
+    }
+    n = nn;
+    y += thick(i, t, L) * Math.tan(U);
+  }
+  return y;
+}
+
+function realK(yRef, du, t, L) {
+  const y0 = traceToImageReal(yRef, 0, t, L);
+  const y1 = traceToImageReal(yRef, du, t, L);
+  if (isNaN(y0) || isNaN(y1)) return NaN;
+  const dydu = (y1 - y0) / du;
+  if (Math.abs(dydu) < 1e-15) return NaN;
+  return (-y0 / dydu) / yRef;
+}
+
 export function conjugateK(t, L) {
-  const y10 = traceToImage(1, 0, t, L);
-  const y01 = traceToImage(0, 1, t, L);
-  if (Math.abs(y01) < 1e-15) return 0;
-  return -y10 / y01;
+  if (t < FOCUS_INFINITY_THRESHOLD) return 0;
+  const yRef = L.EP.epSD * 0.7;
+  const du = 1e-5;
+  const Kt = realK(yRef, du, t, L);
+  const K0 = realK(yRef, du, 0, L);
+  if (isNaN(Kt) || isNaN(K0)) return 0;
+  return Kt - K0;
 }
 
 export function formatDist(t, L) {
