@@ -80,10 +80,13 @@ const LENS_DATA = {
    *    3. sd/|R| ratio: sd must not exceed 0.90 × |R|.  As sd approaches |R|, the
    *       surface slope at the rim becomes extreme, causing total internal reflection
    *       at glass–air boundaries and rendering artifacts.  (Validated)
-   *    4. Cross-gap overlap: For each air gap, the combined sag intrusion from the
-   *       preceding element's rear surface (curving forward) and the following
-   *       element's front surface (curving backward) must not exceed the gap
-   *       thickness.  Otherwise elements overlap in the rendered diagram.  (Validated)
+   *    4. Cross-gap overlap: For each air gap, the validator checks that the combined
+   *       sag intrusion from adjacent surfaces does not exceed the gap thickness.
+   *       The renderer also computes effective clearance by accounting for the
+   *       neighboring element's surface sag on both sides of the gap — a surface
+   *       curving away from the gap widens effective clearance, while one curving
+   *       into it narrows clearance.  This prevents both over-aggressive trimming
+   *       on fast lenses and visual overlap when both surfaces intrude.  (Validated)
    *    5. Conic height limit: For aspherical surfaces with K > 0, sd must not exceed
    *       0.98 × |R| / √(1+K).  Beyond this height the conic sag discriminant goes
    *       negative, producing a sag curve discontinuity.  (Validated)

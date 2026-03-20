@@ -261,7 +261,7 @@ doublets: [
 7. All `var` keys match existing surface labels with `[d_inf, d_close]` arrays
 8. All `varLabels` reference valid surface labels
 9. All `groups`/`doublets` reference valid surface labels
-10. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness
+10. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness. The renderer further refines this by computing effective clearance at each gap, accounting for the neighboring element's surface sag (surfaces curving away from the gap widen clearance; surfaces curving into it narrow clearance)
 11. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
 
 On failure, `buildLens()` throws with all errors listed.
