@@ -28,7 +28,8 @@ import { PREFS_KEY, loadPrefs } from '../utils/preferences.js';
 import { parseComparisonParams, buildComparisonURL } from '../utils/parseComparisonParams.js';
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY,
-         ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE } from '../utils/featureFlags.js';
+         ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE,
+         ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
@@ -78,6 +79,12 @@ export default function LensVisualization() {
   const [sharedFocusT, setSharedFocusT] = useState(0);
   const [sharedStopdownT, setSharedStopdownT] = useState(0);
   const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
+  const justEnteredCompare = useRef(false);
+
+  /* ── Sticky slider state (slider pauses at common-point demarcation lines) ── */
+  const focusStuck = useRef(false);
+  const apertureStuck = useRef(false);
+  const [flashPanel, setFlashPanel] = useState(null);   // 'a' | 'b' | null
 
   /* ── Persist preferences ── */
   useEffect(() => {
@@ -164,6 +171,20 @@ export default function LensVisualization() {
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
 
+  /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
+  useEffect(() => {
+    if (!justEnteredCompare.current || !comparisonLenses || comparisonLenses.error) return;
+    justEnteredCompare.current = false;
+    const { LA, LB } = comparisonLenses;
+    const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
+    const narrowerFOPEN = Math.max(LA.FOPEN, LB.FOPEN);
+    const sharedMaxFstop = Math.max(LA.maxFstop, LB.maxFstop);
+    const cp = Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
+      ? 0
+      : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
+    setSharedStopdownT(cp);
+  }, [comparisonLenses]);
+
   /* ── Enter/exit comparison mode ── */
   const toggleCompare = useCallback(() => {
     if (!comparing) {
@@ -172,9 +193,11 @@ export default function LensVisualization() {
         const idx = CATALOG_KEYS.indexOf(lensKeyA);
         setLensKeyB(CATALOG_KEYS[(idx + 1) % CATALOG_KEYS.length]);
       }
-      /* Snap shared sliders to common points */
       setSharedFocusT(0);
       setSharedStopdownT(0);
+      justEnteredCompare.current = true;
+      focusStuck.current = false;
+      apertureStuck.current = false;
     } else {
       /* Exiting: map shared values back to single-lens values */
       if (focusPair) setFocusT(focusPair.focusA);
@@ -182,6 +205,55 @@ export default function LensVisualization() {
     }
     setComparing(c => !c);
   }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair]);
+
+  /* ── Sticky slider handlers ── */
+  const triggerFlash = useCallback((panel) => {
+    if (!ENABLE_SLIDER_STICKY_FLASH) return;
+    setFlashPanel(panel);
+    setTimeout(() => setFlashPanel(null), 400);
+  }, []);
+
+  const handleSharedFocusChange = useCallback((rawT) => {
+    const cp = focusPair?.commonPoint;
+    if (ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99 && !focusStuck.current) {
+      const prev = sharedFocusT;
+      /* Crossing or reaching the common point from either side */
+      if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
+        setSharedFocusT(cp);
+        focusStuck.current = true;
+        /* The lens with longer MFD (less capable) is the one that stops */
+        const { LA, LB } = comparisonLenses;
+        triggerFlash(LA.closeFocusM > LB.closeFocusM ? 'a' : 'b');
+        return;
+      }
+    }
+    setSharedFocusT(snapToCommon(rawT, cp));
+  }, [focusPair, sharedFocusT, comparisonLenses, triggerFlash]);
+
+  const handleSharedStopdownChange = useCallback((rawT) => {
+    const cp = aperturePair?.commonPoint;
+    if (ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99 && !apertureStuck.current) {
+      const prev = sharedStopdownT;
+      /* Crossing or reaching the common point from either side */
+      if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
+        setSharedStopdownT(cp);
+        apertureStuck.current = true;
+        /* The slower lens (larger FOPEN) is the one that stops */
+        const { LA, LB } = comparisonLenses;
+        triggerFlash(LA.FOPEN > LB.FOPEN ? 'a' : 'b');
+        return;
+      }
+    }
+    setSharedStopdownT(snapToCommon(rawT, cp));
+  }, [aperturePair, sharedStopdownT, comparisonLenses, triggerFlash]);
+
+  const handleFocusPointerDown = useCallback(() => {
+    focusStuck.current = false;
+  }, []);
+
+  const handleAperturePointerDown = useCallback(() => {
+    apertureStuck.current = false;
+  }, []);
 
   /* ── Header height alignment callback ── */
   const handleHeaderHeight = useCallback((panelId, height) => {
@@ -354,6 +426,7 @@ export default function LensVisualization() {
           maxSvgHeight={isWide ? "54vh" : "42vh"}
           onHeaderHeight={handleHeaderHeight}
           minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
+          flashOverlay={flashPanel === 'a'}
         />
       </div>
       <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
@@ -370,6 +443,7 @@ export default function LensVisualization() {
           maxSvgHeight={isWide ? "54vh" : "42vh"}
           onHeaderHeight={handleHeaderHeight}
           minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
+          flashOverlay={flashPanel === 'b'}
         />
       </div>
     </div>
@@ -519,8 +593,10 @@ export default function LensVisualization() {
           <SharedSlidersBar
             LA={comparisonLenses.LA} LB={comparisonLenses.LB}
             sharedFocusT={sharedFocusT} sharedStopdownT={sharedStopdownT}
-            onSharedFocusChange={v => setSharedFocusT(snapToCommon(v, focusPair.commonPoint))}
-            onSharedStopdownChange={v => setSharedStopdownT(snapToCommon(v, aperturePair.commonPoint))}
+            onSharedFocusChange={handleSharedFocusChange}
+            onSharedStopdownChange={handleSharedStopdownChange}
+            onFocusPointerDown={handleFocusPointerDown}
+            onAperturePointerDown={handleAperturePointerDown}
             focusPair={focusPair} aperturePair={aperturePair}
             theme={t} isWide={isWide}
           />

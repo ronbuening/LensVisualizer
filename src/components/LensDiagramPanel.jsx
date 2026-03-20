@@ -78,11 +78,21 @@ export default function LensDiagramPanel({
   onDarkChange,
   onHighContrastChange,
   highContrast,
+  flashOverlay = false,
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
+  const [flashOpacity, setFlashOpacity] = useState(0);
 
   useEffect(() => { setHov(null); setSel(null); }, [lensKey]);
+
+  /* ── Flash overlay animation ── */
+  useEffect(() => {
+    if (!flashOverlay) return;
+    setFlashOpacity(0.18);
+    const timer = setTimeout(() => setFlashOpacity(0), 50);
+    return () => clearTimeout(timer);
+  }, [flashOverlay]);
 
   /* ── Header height reporting for alignment ── */
   const headerRef = useRef(null);
@@ -550,6 +560,13 @@ export default function LensDiagramPanel({
         {L.doublets.map(({ text, fromSurface, toSurface }) => (
           <text key={text} x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)} y={sy(L.lyDoublet)} textAnchor="middle" fill={t.doubletLabel} fontSize={7} fontFamily="inherit">{text}</text>
         ))}
+
+        {/* Flash overlay — brief highlight when slider sticks at common point */}
+        {flashOpacity > 0 && (
+          <rect x="0" y="0" width={L.svgW} height={L.svgH}
+            fill={dark ? "#ffffff" : "#000000"} opacity={flashOpacity}
+            style={{ transition: "opacity 0.35s ease-out", pointerEvents: "none" }} />
+        )}
       </svg>
 
       {/* ── Control panel ── */}

@@ -5,7 +5,7 @@
 import { formatSharedFocusDist, sharedFNumber } from '../utils/comparisonSliders.js';
 import { formatDist } from '../optics/optics.js';
 
-export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, onSharedFocusChange, onSharedStopdownChange, focusPair, aperturePair, theme: t, isWide }) {
+export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, onSharedFocusChange, onSharedStopdownChange, onFocusPointerDown, onAperturePointerDown, focusPair, aperturePair, theme: t, isWide }) {
   const { commonPoint: focusCP, minCloseFocus, maxCloseFocus } = focusPair;
   const { commonPoint: apertureCP, widerFOPEN, narrowerFOPEN, sharedMaxFstop } = aperturePair;
   const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
@@ -39,6 +39,7 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
               {showFocusCP && <div style={markerStyle(focusCP)} />}
               {showFocusCP && <div style={markerLineStyle(focusCP)} />}
               <input type="range" min="0" max="1" step="0.004" value={sharedFocusT}
+                onPointerDown={onFocusPointerDown}
                 onChange={e => onSharedFocusChange(parseFloat(e.target.value))}
                 style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
             </div>
@@ -65,6 +66,7 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
               {showApertureCP && <div style={markerStyle(apertureCP)} />}
               {showApertureCP && <div style={markerLineStyle(apertureCP)} />}
               <input type="range" min="0" max="1" step="0.004" value={sharedStopdownT}
+                onPointerDown={onAperturePointerDown}
                 onChange={e => onSharedStopdownChange(parseFloat(e.target.value))}
                 style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
             </div>

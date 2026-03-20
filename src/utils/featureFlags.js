@@ -14,3 +14,6 @@ export const ENABLE_ANALYSIS_ONLY       = true;
 
 export const ENABLE_COMPARISON        = true;
 export const ENABLE_COMPARISON_MOBILE = true;
+
+export const ENABLE_SLIDER_STICKY       = true;
+export const ENABLE_SLIDER_STICKY_FLASH = true;
