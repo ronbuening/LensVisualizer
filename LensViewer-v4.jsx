@@ -812,20 +812,21 @@ export default function LensVisualization() {
   return (
     <div style={{ background: t.bg, color: t.body, fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace", minHeight: "100vh", transition: "background 0.3s,color 0.3s" }}>
       {/* ── Top bar: lens selector ── */}
-      <div style={{ padding: "12px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", alignItems: "center", gap: 12, transition: "background-color 0.3s,border-color 0.3s" }}>
+      <div style={{ padding: isWide ? "12px 24px" : "10px 12px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", alignItems: "center", gap: isWide ? 12 : 8, transition: "background-color 0.3s,border-color 0.3s" }}>
         <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>LENS</span>
         <select
           value={lensKey}
           onChange={e => switchLens(e.target.value)}
           style={{
             backgroundColor: t.selectorBg, border: `1.5px solid ${t.sliderAccent}40`,
-            borderRadius: 6, padding: "7px 32px 7px 12px", cursor: "pointer",
-            fontSize: 13, color: t.selectorText, fontFamily: "inherit",
+            borderRadius: 6, padding: isWide ? "7px 32px 7px 12px" : "7px 28px 7px 8px", cursor: "pointer",
+            fontSize: isWide ? 13 : 12, color: t.selectorText, fontFamily: "inherit",
             letterSpacing: "0.06em", appearance: "none", outline: "none",
             boxShadow: `0 0 6px ${t.sliderAccent}18`,
             backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7'><path d='M0 0l6 7 6-7z' fill='${t.selectorText}'/></svg>`)}")`,
             backgroundRepeat: "no-repeat", backgroundPosition: "right 10px center",
-            transition: "background-color 0.3s, color 0.3s, border-color 0.3s", flex: "0 1 360px",
+            transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
+            flex: isWide ? "0 1 360px" : "1 1 0%", minWidth: 0,
           }}
         >
           {CATALOG_KEYS.map(k => (
@@ -834,15 +835,15 @@ export default function LensVisualization() {
             </option>
           ))}
         </select>
-        <div style={{ flex: 1 }} />
-        <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>ABOUT</span>
+        {isWide && <div style={{ flex: 1 }} />}
+        {isWide && <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>ABOUT</span>}
         <button
           onClick={() => setShowAboutSite(true)}
           style={{
             backgroundColor: t.selectorBg, border: `1.5px solid ${t.sliderAccent}40`,
-            borderRadius: 6, padding: "5px 14px", cursor: "pointer",
+            borderRadius: 6, padding: isWide ? "5px 14px" : "5px 10px", cursor: "pointer",
             fontSize: 11, color: t.selectorText, fontFamily: "inherit",
-            letterSpacing: "0.06em", outline: "none",
+            letterSpacing: "0.06em", outline: "none", flexShrink: 0,
             boxShadow: `0 0 6px ${t.sliderAccent}18`,
             transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
           }}
@@ -853,9 +854,9 @@ export default function LensVisualization() {
           onClick={() => setShowAbout(true)}
           style={{
             backgroundColor: t.selectorBg, border: `1.5px solid ${t.sliderAccent}40`,
-            borderRadius: 6, padding: "5px 14px", cursor: "pointer",
+            borderRadius: 6, padding: isWide ? "5px 14px" : "5px 10px", cursor: "pointer",
             fontSize: 11, color: t.selectorText, fontFamily: "inherit",
-            letterSpacing: "0.06em", outline: "none",
+            letterSpacing: "0.06em", outline: "none", flexShrink: 0,
             boxShadow: `0 0 6px ${t.sliderAccent}18`,
             transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
           }}
