@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { buildIssueURL, REPO_URL } from "./errorReporting.js";
+import { buildIssueURL, REPO_URL } from "../utils/errorReporting.js";
 
 /* ── Shared styles (dark fallback — used when theme is unavailable) ── */
 const FALLBACK = {

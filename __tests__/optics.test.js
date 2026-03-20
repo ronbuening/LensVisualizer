@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { sag, renderSag, sagSlope, thick, doLayout, formatDist,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, wavelengthNd,
-         FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../optics.js';
+         FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../src/optics/optics.js';
 
 describe('sag', () => {
   it('returns 0 for h = 0', () => {
@@ -348,13 +348,13 @@ describe('computeChromaticSpread', () => {
 });
 
 /* ── Production lens ray tracing ── */
-import buildLens from '../buildLens.js';
-import LENS_DEFAULTS from '../lens-data/defaults.js';
-import ApoLantharRaw  from '../lens-data/ApoLanthar50f2.data.js';
-import NoktonRaw      from '../lens-data/Nokton50f1.data.js';
-import NikkorRaw      from '../lens-data/NikkorZ50mmf18S.data.js';
-import Nikkor105Raw   from '../lens-data/Nikkor105f14E.data.js';
-import Sonnar50f15Raw from '../lens-data/Sonnar50f15.data.js';
+import buildLens from '../src/optics/buildLens.js';
+import LENS_DEFAULTS from '../src/lens-data/defaults.js';
+import ApoLantharRaw  from '../src/lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw      from '../src/lens-data/Nokton50f1.data.js';
+import NikkorRaw      from '../src/lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw   from '../src/lens-data/Nikkor105f14E.data.js';
+import Sonnar50f15Raw from '../src/lens-data/Sonnar50f15.data.js';
 
 describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });

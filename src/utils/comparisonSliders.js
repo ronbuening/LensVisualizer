@@ -6,7 +6,7 @@
  * different maximum apertures) with clamping past common points.
  */
 
-import { FOCUS_INFINITY_THRESHOLD } from './optics.js';
+import { FOCUS_INFINITY_THRESHOLD } from '../optics/optics.js';
 
 /**
  * Compute per-lens focusT values from a shared slider position.
