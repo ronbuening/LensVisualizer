@@ -82,16 +82,28 @@ export default function LensDiagramPanel({
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
-  const [flashOpacity, setFlashOpacity] = useState(0);
+  const [flashKey, setFlashKey] = useState(0);
+  const [flashVisible, setFlashVisible] = useState(false);
+  const [flashFading, setFlashFading] = useState(false);
 
   useEffect(() => { setHov(null); setSel(null); }, [lensKey]);
 
-  /* ── Flash overlay animation ── */
+  /* ── Flash overlay animation — two-phase: appear bright, then fade out ── */
   useEffect(() => {
     if (!flashOverlay) return;
-    setFlashOpacity(0.18);
-    const timer = setTimeout(() => setFlashOpacity(0), 50);
-    return () => clearTimeout(timer);
+    setFlashVisible(true);
+    setFlashFading(false);
+    setFlashKey(k => k + 1);
+    /* Phase 2: start fade after two frames so browser paints the bright state */
+    let raf1, raf2, timer;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        setFlashFading(true);
+        /* Phase 3: unmount after fade completes */
+        timer = setTimeout(() => setFlashVisible(false), 500);
+      });
+    });
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); clearTimeout(timer); };
   }, [flashOverlay]);
 
   /* ── Header height reporting for alignment ── */
@@ -573,10 +585,11 @@ export default function LensDiagramPanel({
         ))}
 
         {/* Flash overlay — brief highlight when slider sticks at common point */}
-        {flashOpacity > 0 && (
-          <rect x="0" y="0" width={L.svgW} height={L.svgH}
-            fill={dark ? "#ffffff" : "#000000"} opacity={flashOpacity}
-            style={{ transition: "opacity 0.35s ease-out", pointerEvents: "none" }} />
+        {flashVisible && (
+          <rect key={flashKey} x="0" y="0" width={L.svgW} height={L.svgH}
+            fill={dark ? "#ffffff" : "#000000"}
+            opacity={flashFading ? 0 : 0.22}
+            style={{ transition: flashFading ? "opacity 0.45s ease-out" : "none", pointerEvents: "none" }} />
         )}
       </svg>
 

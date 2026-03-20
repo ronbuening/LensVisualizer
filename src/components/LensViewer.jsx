@@ -84,6 +84,8 @@ export default function LensVisualization() {
   /* ── Sticky slider state (slider pauses at common-point demarcation lines) ── */
   const focusStuck = useRef(false);
   const apertureStuck = useRef(false);
+  const prevFocusT = useRef(0);
+  const prevStopdownT = useRef(0);
   const [flashPanel, setFlashPanel] = useState(null);   // 'a' | 'b' | null
 
   /* ── Persist preferences ── */
@@ -182,6 +184,7 @@ export default function LensVisualization() {
     const cp = Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
       ? 0
       : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
+    prevStopdownT.current = cp;
     setSharedStopdownT(cp);
   }, [comparisonLenses]);
 
@@ -195,6 +198,8 @@ export default function LensVisualization() {
       }
       setSharedFocusT(0);
       setSharedStopdownT(0);
+      prevFocusT.current = 0;
+      prevStopdownT.current = 0;
       justEnteredCompare.current = true;
       focusStuck.current = false;
       apertureStuck.current = false;
@@ -215,11 +220,20 @@ export default function LensVisualization() {
 
   const handleSharedFocusChange = useCallback((rawT) => {
     const cp = focusPair?.commonPoint;
-    if (ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99 && !focusStuck.current) {
-      const prev = sharedFocusT;
+    const stickyActive = ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99;
+
+    /* While stuck, reject all movement — hold at cp until pointerDown clears it */
+    if (stickyActive && focusStuck.current) {
+      setSharedFocusT(cp);
+      return;
+    }
+
+    if (stickyActive) {
+      const prev = prevFocusT.current;
       /* Crossing or reaching the common point from either side */
       if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
         setSharedFocusT(cp);
+        prevFocusT.current = cp;
         focusStuck.current = true;
         /* The lens with longer MFD (less capable) is the one that stops */
         const { LA, LB } = comparisonLenses;
@@ -227,16 +241,27 @@ export default function LensVisualization() {
         return;
       }
     }
-    setSharedFocusT(snapToCommon(rawT, cp));
-  }, [focusPair, sharedFocusT, comparisonLenses, triggerFlash]);
+    const v = snapToCommon(rawT, cp);
+    prevFocusT.current = v;
+    setSharedFocusT(v);
+  }, [focusPair, comparisonLenses, triggerFlash]);
 
   const handleSharedStopdownChange = useCallback((rawT) => {
     const cp = aperturePair?.commonPoint;
-    if (ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99 && !apertureStuck.current) {
-      const prev = sharedStopdownT;
+    const stickyActive = ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99;
+
+    /* While stuck, reject all movement — hold at cp until pointerDown clears it */
+    if (stickyActive && apertureStuck.current) {
+      setSharedStopdownT(cp);
+      return;
+    }
+
+    if (stickyActive) {
+      const prev = prevStopdownT.current;
       /* Crossing or reaching the common point from either side */
       if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
         setSharedStopdownT(cp);
+        prevStopdownT.current = cp;
         apertureStuck.current = true;
         /* The slower lens (larger FOPEN) is the one that stops */
         const { LA, LB } = comparisonLenses;
@@ -244,8 +269,10 @@ export default function LensVisualization() {
         return;
       }
     }
-    setSharedStopdownT(snapToCommon(rawT, cp));
-  }, [aperturePair, sharedStopdownT, comparisonLenses, triggerFlash]);
+    const v = snapToCommon(rawT, cp);
+    prevStopdownT.current = v;
+    setSharedStopdownT(v);
+  }, [aperturePair, comparisonLenses, triggerFlash]);
 
   const handleFocusPointerDown = useCallback(() => {
     focusStuck.current = false;
