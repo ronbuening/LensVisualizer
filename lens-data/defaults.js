@@ -24,6 +24,7 @@ const LENS_DEFAULTS = {
   clipMargin:       1.0,
   maxRimAngleDeg:   40,
   gapSagFrac:       0.90,
+  maxAspectRatio:   1.6,
 
   /* ── Controls ── */
   focusStep:        0.004,

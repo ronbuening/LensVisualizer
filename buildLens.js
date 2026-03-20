@@ -133,7 +133,9 @@ export default function buildLens(data) {
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
   const SC  = svgW * scFill / totalTrack;
-  const YSC = svgH * yScFill / maxSD;
+  let   YSC = svgH * yScFill / maxSD;
+  const maxAR = data.maxAspectRatio;
+  if (maxAR > 0 && YSC / SC > maxAR) YSC = SC * maxAR;
   const maxRimSin  = Math.sin(maxRimAngleDeg * Math.PI / 180);
   const gridPitch  = totalTrack / 15;
   const gridCount  = Math.ceil(svgW / (gridPitch * SC)) + 4;
