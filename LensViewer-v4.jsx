@@ -23,8 +23,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import T               from './themes.js';
-import LENS_DEFAULTS   from './lens-data/defaults.js';
 import buildLens       from './buildLens.js';
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from './lensCatalog.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
@@ -35,42 +35,8 @@ import ABOUT_SITE_MD from './AboutSite.md?raw';
 
 
 /* =====================================================================
- * §1  LENS CATALOG — Auto-registered from ./lens-data/*.js
- * =====================================================================
- *  To add a new lens, create a data file in ./lens-data/ with a
- *  `key` field in its default-exported LENS_DATA object.  It will
- *  appear in the dropdown automatically — no imports or edits here.
- *
- *  Shared defaults (rayFractions, svgW, etc.) come from defaults.js
- *  and are merged under each lens's own fields so any lens can override.
+ * §1  LENS CATALOG — imported from lensCatalog.js
  * ------------------------------------------------------------------- */
-
-const _modules = import.meta.glob('./lens-data/*.data.js', { eager: true });
-const LENS_CATALOG = {};
-for (const mod of Object.values(_modules)) {
-  const data = mod.default;
-  if (data?.key) LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
-}
-const CATALOG_KEYS = Object.keys(LENS_CATALOG).filter(k => LENS_CATALOG[k].visible !== false);
-
-const _mdModules = import.meta.glob('./lens-data/*.analysis.md', { eager: true, query: '?raw', import: 'default' });
-const MD_BY_STEM = {};
-for (const [path, raw] of Object.entries(_mdModules)) {
-  const stem = path.replace('./lens-data/', '').replace('.analysis.md', '');
-  MD_BY_STEM[stem] = raw;
-}
-
-/* Map lens key → data file stem so we can find the matching .analysis.md */
-const KEY_TO_STEM = {};
-for (const [path, mod] of Object.entries(_modules)) {
-  const stem = path.replace('./lens-data/', '').replace('.data.js', '').replace('.js', '');
-  if (mod.default?.key) KEY_TO_STEM[mod.default.key] = stem;
-}
-
-function mdForKey(key) {
-  const stem = KEY_TO_STEM[key];
-  return stem ? (MD_BY_STEM[stem] || null) : null;
-}
 
 
 
