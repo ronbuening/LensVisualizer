@@ -22,12 +22,18 @@ Created by **Ron Buening** — see [About This Site](AboutSite.md) for backgroun
 
 ## Available Lenses
 
-| Lens | Elements / Groups | Notes |
-|------|-------------------|-------|
-| NOKTON 50mm f/1.0 | 8 / 6 | Ultra-fast; 3 aspheric surfaces |
-| APO-LANTHAR 50mm f/2.0 | 10 / 8 | Floating focus; 2 double-sided aspherics; APD elements |
-| NIKKOR Z 50mm f/1.8 S | 12 / 9 | 2 aspherics + 2 ED elements |
-| NIKKOR 105mm f/1.4E ED | 14 / 9 | All-spherical; APD for secondary spectrum |
+| Lens | Elements | Notes |
+|------|----------|-------|
+| Voigtländer Heliar f/4 (1902) | 5 | Classic symmetric triplet; US 716,035 |
+| Carl Zeiss Tessar 144mm f/5.5 (1903) | 4 | Original Rudolph design; US 721,240 |
+| Carl Zeiss Sonnar 50mm f/1.5 | 7 | Two cemented triplets |
+| Carl Zeiss Jena Sonnar 50mm f/2 | 6 | Bertele's original; US 1,998,704 |
+| NIKKOR-N Auto 24mm f/2.8 | 9 | CRC (Close Range Correction) |
+| VOIGTLÄNDER NOKTON 50mm f/1.0 | 9 | Ultra-fast; 3 aspheric surfaces |
+| VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 | 10 | Floating focus; 2 double-sided aspherics; APD elements |
+| NIKKOR Z 50mm f/1.8 S | 12 | 2 aspherics + 2 ED elements |
+| NIKON NIKKOR Z 50mm f/1.2 S | 17+filter | 3 aspherics; multi-group AF; 6 APD elements |
+| NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
 
 New lenses are auto-registered — just add a `.data.js` file to `lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
 
@@ -69,7 +75,7 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 
 ```
 LensVisualizer/
-├── LensViewer-v4.jsx       # Main component: UI, state, SVG renderer
+├── LensViewer-v4.jsx       # Main component: UI, state, SVG renderer (~978 lines)
 ├── buildLens.js            # Lens builder — validates data, computes EFL/pupil/field
 ├── optics.js               # Optics engine — ray tracing, sag curves, layout math
 ├── validateLensData.js     # Schema validation for lens data files
@@ -78,9 +84,10 @@ LensVisualizer/
 ├── ErrorBoundary.jsx       # React error boundary with retry UI
 ├── AboutMe.md              # Author bio (rendered in About: Author overlay)
 ├── AboutSite.md            # Site description (rendered in About: Site overlay)
-├── lens-data/              # Optical prescription data (one file per lens)
+├── lens-data/              # Optical prescription data (10 lenses)
 │   ├── defaults.js         # Shared defaults merged into each lens
 │   ├── LENS_DATA_SPEC.md   # Full lens data format specification
-│   └── *.data.js           # Individual lens prescriptions
+│   ├── TEMPLATE.data.js.template  # Annotated template for new lens files
+│   └── *.data.js + *.analysis.md  # Lens prescriptions + design analyses
 └── __tests__/              # Vitest unit tests
 ```
