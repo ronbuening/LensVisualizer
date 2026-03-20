@@ -236,11 +236,11 @@ describe('validateLensData', () => {
 });
 
 /* ── Production lens validation ── */
-import ApoLantharRaw  from '../src/lens-data/ApoLanthar50f2.data.js';
-import NoktonRaw      from '../src/lens-data/Nokton50f1.data.js';
-import NikkorRaw      from '../src/lens-data/NikkorZ50mmf18S.data.js';
-import Nikkor105Raw   from '../src/lens-data/Nikkor105f14E.data.js';
-import Sonnar50f15Raw from '../src/lens-data/Sonnar50f15.data.js';
+import ApoLantharRaw  from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
+import NoktonRaw      from '../src/lens-data/VoigtlanderNokton50f1.data.js';
+import NikkorRaw      from '../src/lens-data/NikonNikkorZ50f18S.data.js';
+import Nikkor105Raw   from '../src/lens-data/NikonNikkor105f14E.data.js';
+import Sonnar50f15Raw from '../src/lens-data/ZeissSonnar50f15.data.js';
 
 describe('validateLensData — production lenses', () => {
   const lenses = [
