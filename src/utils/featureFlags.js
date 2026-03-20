@@ -18,4 +18,4 @@ export const ENABLE_COMPARISON_MOBILE = true;
 export const ENABLE_SLIDER_STICKY       = true;
 export const ENABLE_SLIDER_STICKY_FLASH = true;
 
-export const ENABLE_ASPH_DIAMOND_FILL   = true;
+export const ENABLE_ASPH_DIAMOND_FILL   = false;
