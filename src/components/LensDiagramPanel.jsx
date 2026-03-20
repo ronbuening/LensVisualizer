@@ -147,10 +147,23 @@ export default function LensDiagramPanel({
         const hMax2 = (K2 > 0 && R2 < 1e10) ? R2 / Math.sqrt(1 + K2) * 0.98 : Infinity;
         let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin, hMax1) : Math.min(sd, hMax1);
         let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin, hMax2) : Math.min(sd, hMax2);
-        /* Trim front surface if it curves backward into preceding air gap */
+        /* Trim front surface if it curves backward into preceding air gap.
+         * Mirror of the TRIM2 logic: the preceding element's rear surface
+         * may curve backward (negative sag) widening the effective clearance,
+         * or forward (positive sag) narrowing it. */
         if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
-          const gapBefore = L.S[s1 - 1].d;
-          trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
+          const prevES = L.ES.findLast(([, , ps2]) => ps2 < s1 && L.S[ps2].nd === 1.0);
+          const gapBefore = prevES ? zPos[s1] - zPos[prevES[2]] : L.S[s1 - 1].d;
+          let effectiveGap = gapBefore;
+          if (prevES) {
+            const ps2 = prevES[2], ps1 = prevES[1];
+            const prevSD = Math.min(L.S[ps1].sd, L.S[ps2].sd);
+            /* Negative renderSag on rear surface = curves backward = widens gap */
+            effectiveGap -= renderSag(Math.min(trim1, prevSD), ps2, L);
+          }
+          effectiveGap = Math.max(effectiveGap, 0);
+          if (Math.abs(renderSag(trim1, s1, L)) > effectiveGap * L.gapSagFrac)
+            trim1 = gapTrimHeight(s1, trim1, effectiveGap * L.gapSagFrac, L);
         }
         /* Trim rear surface if it actually overlaps with the following element.
          * A rear surface with positive sag curves forward into the gap, but the
