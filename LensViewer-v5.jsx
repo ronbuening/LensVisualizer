@@ -248,9 +248,18 @@ export default function LensVisualization() {
     showOnAxis, showOffAxis,
     showChromatic, chromR, chromG, chromB,
     rayTracksF,
-    theme: t, dark,
+    theme: t, dark, highContrast,
     onFocusChange: setFocusT,
     onStopdownChange: setStopdownT,
+    onShowOnAxisChange: setShowOnAxis,
+    onShowOffAxisChange: setShowOffAxis,
+    onRayTracksFChange: setRayTracksF,
+    onShowChromaticChange: setShowChromatic,
+    onChromRChange: setChromR,
+    onChromGChange: setChromG,
+    onChromBChange: setChromB,
+    onDarkChange: setDark,
+    onHighContrastChange: setHighContrast,
   };
 
   /* ── Selector style helper ── */
@@ -462,19 +471,6 @@ export default function LensVisualization() {
         )}
 
         {isWide && <div style={{ flex: 1 }} />}
-
-        {/* Theme controls in single-lens mode (in top bar area) */}
-        {!comparing && isWide && (
-          <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 120, transition: "border-color 0.3s" }}>
-            <button onClick={() => setHighContrast(!highContrast)} style={toggleBtnStyle(highContrast, true)}>
-              <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span><span>HC</span>
-            </button>
-            <button onClick={() => setDark(!dark)} style={toggleBtnStyle(false, false)}>
-              <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span><span>{dark ? "Light" : "Dark"}</span>
-            </button>
-          </div>
-        )}
-
         {isWide && <span style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}>ABOUT</span>}
         <button
           onClick={() => setShowAboutSite(true)}

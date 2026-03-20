@@ -35,6 +35,17 @@ export default function LensDiagramPanel({
   maxSvgHeight = "54vh",
   onFocusChange,
   onStopdownChange,
+  /* Ray/theme toggle callbacks (used in non-compact mode) */
+  onShowOnAxisChange,
+  onShowOffAxisChange,
+  onRayTracksFChange,
+  onShowChromaticChange,
+  onChromRChange,
+  onChromGChange,
+  onChromBChange,
+  onDarkChange,
+  onHighContrastChange,
+  highContrast,
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
@@ -239,10 +250,107 @@ export default function LensDiagramPanel({
             </div>
           )}
         </div>
-        {/* Theme + ray controls only in non-compact (single-lens) mode */}
+        {/* Theme + ray controls in non-compact (single-lens) mode */}
         {!compact && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: 220 }}>
-            {/* These are rendered by the parent in v5; kept here for standalone/v4 compat */}
+            {/* Theme controls */}
+            <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
+              <button onClick={() => onHighContrastChange?.(!highContrast)} style={{
+                flex: 1, background: highContrast ? t.toggleActiveBg : t.toggleBg,
+                border: "none", borderRight: `1px solid ${t.toggleBorder}`,
+                padding: "5px 10px", cursor: "pointer", fontSize: 10,
+                color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.3s",
+                fontFamily: "inherit", letterSpacing: "0.08em",
+              }}>
+                <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span><span>HC</span>
+              </button>
+              <button onClick={() => onDarkChange?.(!dark)} style={{
+                flex: 1, background: t.toggleBg, border: "none",
+                padding: "5px 10px", cursor: "pointer", fontSize: 10, color: t.toggleInactiveText,
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.3s",
+                fontFamily: "inherit", letterSpacing: "0.08em",
+              }}>
+                <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span><span>{dark ? "Light" : "Dark"}</span>
+              </button>
+            </div>
+            {/* Ray toggles */}
+            <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
+              {[
+                { label: "ON-AXIS", active: showOnAxis, set: onShowOnAxisChange, dotA: t.rayWarm, dotB: t.rayCool },
+                { label: "OFF-AXIS", active: showOffAxis, set: onShowOffAxisChange, dotA: t.rayOffWarm, dotB: t.rayOffCool },
+              ].map(({ label, active, set, dotA, dotB }, idx) => (
+                <button key={label} onClick={() => set?.(!active)} style={{
+                  flex: 1, background: active ? t.toggleActiveBg : t.toggleBg,
+                  border: "none", borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
+                  padding: "5px 8px", cursor: "pointer",
+                  fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
+                  fontFamily: "inherit", letterSpacing: "0.08em",
+                }}>
+                  <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+                    <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                    <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                  </svg>
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
+            {/* Ray mode */}
+            <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
+              {[
+                { label: "FROM \u221e", val: false, icon: "\u2225" },
+                { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
+              ].map(({ label, val, icon }) => (
+                <button key={label} onClick={() => onRayTracksFChange?.(val)} style={{
+                  flex: 1, background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
+                  border: "none", borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
+                  padding: "5px 9px", cursor: "pointer",
+                  fontSize: 9, color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 4, transition: "all 0.25s",
+                  fontFamily: "inherit", letterSpacing: "0.08em",
+                }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>{icon}</span><span>{label}</span>
+                </button>
+              ))}
+            </div>
+            {/* Chromatic */}
+            {ENABLE_COLOR_TRACING && (
+              <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
+                <button onClick={() => onShowChromaticChange?.(!showChromatic)} style={{
+                  flex: 1, background: showChromatic ? t.toggleActiveBg : t.toggleBg,
+                  border: "none", borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
+                  padding: "5px 8px", cursor: "pointer",
+                  fontSize: 9, color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
+                  fontFamily: "inherit", letterSpacing: "0.08em",
+                }}>
+                  <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+                    <line x1="0" y1="1" x2="14" y2="1" stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                    <line x1="0" y1="4" x2="14" y2="4" stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                    <line x1="0" y1="7" x2="14" y2="7" stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                  </svg>
+                  <span>COLOR</span>
+                </button>
+                {showChromatic && [
+                  { ch: 'R', active: chromR, set: onChromRChange, color: t.rayChromR },
+                  { ch: 'G', active: chromG, set: onChromGChange, color: t.rayChromG },
+                  { ch: 'B', active: chromB, set: onChromBChange, color: t.rayChromB },
+                ].map(({ ch, active, set, color }, idx) => (
+                  <button key={ch} onClick={() => set?.(!active)} style={{
+                    flex: 0.6, background: active ? t.toggleActiveBg : t.toggleBg,
+                    border: "none", borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
+                    padding: "5px 6px", cursor: "pointer",
+                    fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 3, transition: "all 0.25s",
+                    fontFamily: "inherit", letterSpacing: "0.08em",
+                  }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: active ? color : "rgba(128,128,128,0.3)", display: "inline-block" }} />
+                    <span>{ch}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
