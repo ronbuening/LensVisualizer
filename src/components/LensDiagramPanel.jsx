@@ -152,10 +152,23 @@ export default function LensDiagramPanel({
           const gapBefore = L.S[s1 - 1].d;
           trim1 = gapTrimHeight(s1, trim1, gapBefore * L.gapSagFrac, L);
         }
-        /* Trim rear surface if it curves forward into following air gap */
+        /* Trim rear surface if it actually overlaps with the following element.
+         * A rear surface with positive sag curves forward into the gap, but the
+         * next element's front surface may also curve forward (positive sag),
+         * widening the effective clearance; or backward (negative sag), narrowing
+         * it.  Account for both to avoid false trims on fast lenses. */
         if (L.S[s2].nd === 1.0 && L.gapSagFrac > 0 && renderSag(trim2, s2, L) > 0) {
-          const gapAfter = L.S[s2].d;
-          trim2 = gapTrimHeight(s2, trim2, gapAfter * L.gapSagFrac, L);
+          const nextES = L.ES.find(([, ns1]) => ns1 > s2);
+          const gapAfter = nextES ? zPos[nextES[1]] - zPos[s2] : L.S[s2].d;
+          let effectiveGap = gapAfter;
+          if (nextES) {
+            const ns1 = nextES[1], ns2 = ns1 + 1;
+            const nextSD = Math.min(L.S[ns1].sd, ns2 < L.N ? L.S[ns2].sd : Infinity);
+            effectiveGap += renderSag(Math.min(trim2, nextSD), ns1, L);
+          }
+          effectiveGap = Math.max(effectiveGap, 0);
+          if (renderSag(trim2, s2, L) > effectiveGap * L.gapSagFrac)
+            trim2 = gapTrimHeight(s2, trim2, effectiveGap * L.gapSagFrac, L);
         }
         const z1 = zPos[s1], z2 = zPos[s2], NN = SVG_PATH_SUBDIVISIONS;
         let d = "";
