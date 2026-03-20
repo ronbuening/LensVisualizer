@@ -15,7 +15,7 @@
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -27,6 +27,8 @@ import { parseComparisonParams, buildComparisonURL } from './parseComparisonPara
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE } from './featureFlags.js';
+import { computeFocusPair, computeAperturePair, formatSharedFocusDist, sharedFNumber, snapToCommon } from './comparisonSliders.js';
+import { formatDist } from './optics.js';
 import ABOUT_ME_MD from './AboutMe.md?raw';
 import ABOUT_SITE_MD from './AboutSite.md?raw';
 
@@ -82,6 +84,94 @@ function DescriptionPanel({ markdown, theme: t }) {
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
         {markdown}
       </ReactMarkdown>
+    </div>
+  );
+}
+
+
+/* ── SharedSlidersBar — unified focus/aperture controls for comparison mode ── */
+function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, onSharedFocusChange, onSharedStopdownChange, focusPair, aperturePair, theme: t, isWide }) {
+  const { commonPoint: focusCP, minCloseFocus, maxCloseFocus } = focusPair;
+  const { commonPoint: apertureCP, widerFOPEN, narrowerFOPEN, sharedMaxFstop } = aperturePair;
+  const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
+  const focusDistStr = formatSharedFocusDist(sharedFocusT, minCloseFocus);
+  const showFocusCP = focusCP > 0.01 && focusCP < 0.99;
+  const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
+
+  const sliderWrap = { position: "relative", flex: 1 };
+  const markerStyle = (pos) => ({
+    position: "absolute", left: `${pos * 100}%`, top: -2, transform: "translateX(-50%)",
+    width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent",
+    borderTop: `5px solid ${t.sliderAccent}`, opacity: 0.7, pointerEvents: "none",
+  });
+  const markerLineStyle = (pos) => ({
+    position: "absolute", left: `${pos * 100}%`, top: 0, bottom: 0, transform: "translateX(-50%)",
+    width: 1, background: `${t.sliderAccent}40`, pointerEvents: "none",
+  });
+
+  return (
+    <div style={{ padding: isWide ? "14px 24px" : "12px 14px", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, transition: "background 0.3s,border-color 0.3s" }}>
+      <div style={{ display: "flex", flexDirection: isWide ? "row" : "column", gap: isWide ? 32 : 16 }}>
+        {/* Focus slider */}
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 55 }}>FOCUS</span>
+            <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{focusDistStr}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
+            <div style={sliderWrap}>
+              {showFocusCP && <div style={markerStyle(focusCP)} />}
+              {showFocusCP && <div style={markerLineStyle(focusCP)} />}
+              <input type="range" min="0" max="1" step="0.004" value={sharedFocusT}
+                onChange={e => onSharedFocusChange(parseFloat(e.target.value))}
+                style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
+            </div>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minCloseFocus} m</span>
+          </div>
+          {/* Per-lens readouts */}
+          <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums" }}>
+            <span>A: {formatDist(focusPair.focusA, LA)}</span>
+            <span>B: {formatDist(focusPair.focusB, LB)}</span>
+          </div>
+        </div>
+
+        {/* Aperture slider */}
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+            <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 75 }}>APERTURE</span>
+            <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
+              f/{fNum < 10 ? fNum.toFixed(1) : Math.round(fNum)}
+            </span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{widerFOPEN.toFixed(1)}</span>
+            <div style={sliderWrap}>
+              {showApertureCP && <div style={markerStyle(apertureCP)} />}
+              {showApertureCP && <div style={markerLineStyle(apertureCP)} />}
+              <input type="range" min="0" max="1" step="0.004" value={sharedStopdownT}
+                onChange={e => onSharedStopdownChange(parseFloat(e.target.value))}
+                style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
+            </div>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{sharedMaxFstop}</span>
+          </div>
+          {/* f-stop quick-select (union of both series) */}
+          <div style={{ marginTop: 6, display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums" }}>
+            {[...new Set([...LA.fstopSeries, ...LB.fstopSeries])].sort((a, b) => a - b)
+              .filter(n => n >= widerFOPEN - 0.1 && n <= sharedMaxFstop)
+              .map(n => {
+                const stopT = Math.log(n / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
+                return (
+                  <span key={n}
+                    onClick={() => onSharedStopdownChange(Math.max(0, stopT))}
+                    style={{ cursor: "pointer", opacity: Math.abs(fNum - n) < 0.15 ? 1 : 0.55, transition: "opacity 0.15s" }}>
+                    f/{n}
+                  </span>
+                );
+              })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -158,6 +248,9 @@ export default function LensVisualization() {
   const [desktopView, setDesktopView] = useState('both');
   const [showAbout, setShowAbout] = useState(false);
   const [showAboutSite, setShowAboutSite] = useState(false);
+  const [sharedFocusT, setSharedFocusT] = useState(0);
+  const [sharedStopdownT, setSharedStopdownT] = useState(0);
+  const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
 
   /* ── Persist preferences ── */
   useEffect(() => {
@@ -225,22 +318,49 @@ export default function LensVisualization() {
         const idx = CATALOG_KEYS.indexOf(lensKeyA);
         setLensKeyB(CATALOG_KEYS[(idx + 1) % CATALOG_KEYS.length]);
       }
+      /* Snap shared sliders to common points */
+      setSharedFocusT(0);
+      setSharedStopdownT(0);
+    } else {
+      /* Exiting: map shared values back to single-lens values */
+      if (focusPair) setFocusT(focusPair.focusA);
+      if (aperturePair) setStopdownT(aperturePair.stopdownA);
     }
     setComparing(c => !c);
+  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair]);
+
+  /* ── Build both lenses for comparison computations ── */
+  const comparisonLenses = useMemo(() => {
+    if (!comparing) return null;
+    try {
+      return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) };
+    } catch { return null; }
   }, [comparing, lensKeyA, lensKeyB]);
 
   /* ── Normalized scale computation ── */
   const scaleRatios = useMemo(() => {
-    if (!comparing || scaleMode !== 'normalized') return null;
-    try {
-      const LA = buildLens(LENS_CATALOG[lensKeyA]);
-      const LB = buildLens(LENS_CATALOG[lensKeyB]);
-      const minSC = Math.min(LA.SC, LB.SC);
-      return { a: minSC / LA.SC, b: minSC / LB.SC };
-    } catch {
-      return null;
-    }
-  }, [comparing, scaleMode, lensKeyA, lensKeyB]);
+    if (!comparisonLenses || scaleMode !== 'normalized') return null;
+    const { LA, LB } = comparisonLenses;
+    const minSC = Math.min(LA.SC, LB.SC);
+    return { a: minSC / LA.SC, b: minSC / LB.SC };
+  }, [comparisonLenses, scaleMode]);
+
+  /* ── Per-lens focus/aperture from shared sliders ── */
+  const focusPair = useMemo(() => {
+    if (!comparisonLenses) return null;
+    return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedFocusT, comparisonLenses]);
+
+  const aperturePair = useMemo(() => {
+    if (!comparisonLenses) return null;
+    return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedStopdownT, comparisonLenses]);
+
+  /* ── Header height alignment callback ── */
+  const handleHeaderHeight = useCallback((panelId, height) => {
+    setHeaderHeights(prev => prev[panelId] === height ? prev : { ...prev, [panelId]: height });
+  }, []);
+  const maxHeaderHeight = Math.max(headerHeights.a, headerHeights.b);
 
   /* ── Shared panel props ── */
   const sharedProps = {
@@ -381,27 +501,37 @@ export default function LensVisualization() {
 
   /* ── Comparison content ── */
   const comparisonContent = comparing ? (
-    <div style={{ display: "flex", flexDirection: isWide ? "row" : "column", minHeight: isWide ? `calc(100vh - 100px)` : undefined }}>
+    <div style={{ display: "flex", flexDirection: isWide ? "row" : "column" }}>
       <div style={{ flex: isWide ? "0 0 50%" : "none", borderRight: isWide ? `1px solid ${t.panelDivider}` : "none", borderBottom: !isWide ? `1px solid ${t.panelDivider}` : "none", minWidth: 0, overflow: "hidden" }}>
         <LensDiagramPanel
           lensKey={lensKeyA}
           {...sharedProps}
+          focusT={focusPair?.focusA ?? 0}
+          stopdownT={aperturePair?.stopdownA ?? 0}
           scaleRatio={scaleRatios?.a ?? null}
           panelId="a"
           compact={true}
           showControls={true}
+          showSliders={false}
           maxSvgHeight={isWide ? "54vh" : "42vh"}
+          onHeaderHeight={handleHeaderHeight}
+          minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
         />
       </div>
       <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
         <LensDiagramPanel
           lensKey={lensKeyB}
           {...sharedProps}
+          focusT={focusPair?.focusB ?? 0}
+          stopdownT={aperturePair?.stopdownB ?? 0}
           scaleRatio={scaleRatios?.b ?? null}
           panelId="b"
           compact={true}
           showControls={true}
+          showSliders={false}
           maxSvgHeight={isWide ? "54vh" : "42vh"}
+          onHeaderHeight={handleHeaderHeight}
+          minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
         />
       </div>
     </div>
@@ -545,9 +675,19 @@ export default function LensVisualization() {
       )}
 
       {/* ── Main content area ── */}
-      {comparing ? (
-        comparisonContent
-      ) : isWide ? (
+      {comparing ? (<>
+        {comparisonContent}
+        {comparisonLenses && focusPair && aperturePair && (
+          <SharedSlidersBar
+            LA={comparisonLenses.LA} LB={comparisonLenses.LB}
+            sharedFocusT={sharedFocusT} sharedStopdownT={sharedStopdownT}
+            onSharedFocusChange={v => setSharedFocusT(snapToCommon(v, focusPair.commonPoint))}
+            onSharedStopdownChange={v => setSharedStopdownT(snapToCommon(v, aperturePair.commonPoint))}
+            focusPair={focusPair} aperturePair={aperturePair}
+            theme={t} isWide={isWide}
+          />
+        )}
+      </>) : isWide ? (
         effectiveDesktopView === 'diagram' ? (
           <div style={{ minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
             {singleDiagramContent}
