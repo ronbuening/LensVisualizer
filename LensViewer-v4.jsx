@@ -19,11 +19,8 @@
  */
 
 import { useState, useMemo, useCallback, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 import T               from './themes.js';
-import LENS_DEFAULTS   from './lens-data/defaults.js';
 import buildLens       from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
@@ -33,129 +30,10 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
 import ABOUT_ME_MD from './AboutMe.md?raw';
 import ABOUT_SITE_MD from './AboutSite.md?raw';
 
-
-/* =====================================================================
- * §1  LENS CATALOG — Auto-registered from ./lens-data/*.js
- * =====================================================================
- *  To add a new lens, create a data file in ./lens-data/ with a
- *  `key` field in its default-exported LENS_DATA object.  It will
- *  appear in the dropdown automatically — no imports or edits here.
- *
- *  Shared defaults (rayFractions, svgW, etc.) come from defaults.js
- *  and are merged under each lens's own fields so any lens can override.
- * ------------------------------------------------------------------- */
-
-const _modules = import.meta.glob('./lens-data/*.data.js', { eager: true });
-const LENS_CATALOG = {};
-for (const mod of Object.values(_modules)) {
-  const data = mod.default;
-  if (data?.key) LENS_CATALOG[data.key] = { ...LENS_DEFAULTS, ...data };
-}
-const CATALOG_KEYS = Object.keys(LENS_CATALOG).filter(k => LENS_CATALOG[k].visible !== false);
-
-const _mdModules = import.meta.glob('./lens-data/*.analysis.md', { eager: true, query: '?raw', import: 'default' });
-const MD_BY_STEM = {};
-for (const [path, raw] of Object.entries(_mdModules)) {
-  const stem = path.replace('./lens-data/', '').replace('.analysis.md', '');
-  MD_BY_STEM[stem] = raw;
-}
-
-/* Map lens key → data file stem so we can find the matching .analysis.md */
-const KEY_TO_STEM = {};
-for (const [path, mod] of Object.entries(_modules)) {
-  const stem = path.replace('./lens-data/', '').replace('.data.js', '').replace('.js', '');
-  if (mod.default?.key) KEY_TO_STEM[mod.default.key] = stem;
-}
-
-function mdForKey(key) {
-  const stem = KEY_TO_STEM[key];
-  return stem ? (MD_BY_STEM[stem] || null) : null;
-}
-
-
-
-
-/* ── useMediaQuery hook ── */
-function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia(query).matches : true
-  );
-  useEffect(() => {
-    const mql = window.matchMedia(query);
-    const handler = (e) => setMatches(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
-  }, [query]);
-  return matches;
-}
-
-/* ── DescriptionPanel — renders markdown with theme-aware styling ── */
-function DescriptionPanel({ markdown, theme: t }) {
-  if (!markdown) {
-    return (
-      <div style={{ padding: 32, color: t.muted, fontSize: 12, fontStyle: "italic" }}>
-        No description available for this lens.
-      </div>
-    );
-  }
-  const components = {
-    h1: ({ children }) => <h1 style={{ fontSize: 18, fontWeight: 700, color: t.descH1, margin: "24px 0 12px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3, borderBottom: `1px solid ${t.descBorder}`, paddingBottom: 8 }}>{children}</h1>,
-    h2: ({ children }) => <h2 style={{ fontSize: 15, fontWeight: 600, color: t.descH2, margin: "20px 0 8px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3 }}>{children}</h2>,
-    h3: ({ children }) => <h3 style={{ fontSize: 13, fontWeight: 600, color: t.descH2, margin: "16px 0 6px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", lineHeight: 1.3 }}>{children}</h3>,
-    p: ({ children }) => <p style={{ fontSize: 12, color: t.descText, lineHeight: 1.7, margin: "8px 0" }}>{children}</p>,
-    a: ({ children, href }) => <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: t.descLinkColor, textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40` }}>{children}</a>,
-    em: ({ children }) => <em style={{ color: t.muted, fontStyle: "italic" }}>{children}</em>,
-    strong: ({ children }) => <strong style={{ color: t.descH1, fontWeight: 600 }}>{children}</strong>,
-    code: ({ children, className }) => {
-      const isBlock = className?.startsWith('language-');
-      if (isBlock) return <code style={{ fontSize: 11 }}>{children}</code>;
-      return <code style={{ background: t.descCodeBg, padding: "1px 5px", borderRadius: 3, fontSize: 11, color: t.descLinkColor }}>{children}</code>;
-    },
-    pre: ({ children }) => <pre style={{ background: t.descCodeBg, padding: 12, borderRadius: 6, overflow: "auto", margin: "10px 0", fontSize: 11, lineHeight: 1.5 }}>{children}</pre>,
-    ul: ({ children }) => <ul style={{ paddingLeft: 20, margin: "6px 0", fontSize: 12, color: t.descText, lineHeight: 1.7 }}>{children}</ul>,
-    ol: ({ children }) => <ol style={{ paddingLeft: 20, margin: "6px 0", fontSize: 12, color: t.descText, lineHeight: 1.7 }}>{children}</ol>,
-    li: ({ children }) => <li style={{ marginBottom: 3 }}>{children}</li>,
-    blockquote: ({ children }) => <blockquote style={{ borderLeft: `3px solid ${t.descLinkColor}`, paddingLeft: 14, margin: "10px 0", color: t.muted }}>{children}</blockquote>,
-    table: ({ children }) => <div style={{ overflowX: "auto", margin: "10px 0" }}><table style={{ borderCollapse: "collapse", width: "100%", fontSize: 11 }}>{children}</table></div>,
-    thead: ({ children }) => <thead style={{ background: t.descTableHeaderBg }}>{children}</thead>,
-    th: ({ children }) => <th style={{ border: `1px solid ${t.descTableBorder}`, padding: "6px 10px", textAlign: "left", color: t.descH2, fontWeight: 600, fontSize: 10.5 }}>{children}</th>,
-    td: ({ children }) => <td style={{ border: `1px solid ${t.descTableBorder}`, padding: "5px 10px", color: t.descText, fontSize: 10.5 }}>{children}</td>,
-    hr: () => <hr style={{ border: "none", borderTop: `1px solid ${t.descBorder}`, margin: "16px 0" }} />,
-  };
-  return (
-    <div style={{ padding: "16px 24px 24px", fontSize: 12, lineHeight: 1.7 }}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-        {markdown}
-      </ReactMarkdown>
-    </div>
-  );
-}
-
-
-/* ── Persistent preferences (localStorage) ── */
-
-const PREFS_KEY = 'lensvis:prefs';
-
-function loadPrefs() {
-  try {
-    const raw = localStorage.getItem(PREFS_KEY);
-    if (!raw) return {};
-    const p = JSON.parse(raw);
-    if (!p || typeof p !== 'object') return {};
-    const out = {};
-    if (typeof p.dark === 'boolean') out.dark = p.dark;
-    if (typeof p.highContrast === 'boolean') out.highContrast = p.highContrast;
-    if (typeof p.showOnAxis === 'boolean') out.showOnAxis = p.showOnAxis;
-    if (typeof p.showOffAxis === 'boolean') out.showOffAxis = p.showOffAxis;
-    if (typeof p.rayTracksF === 'boolean') out.rayTracksF = p.rayTracksF;
-    if (typeof p.showChromatic === 'boolean') out.showChromatic = p.showChromatic;
-    if (typeof p.chromR === 'boolean') out.chromR = p.chromR;
-    if (typeof p.chromG === 'boolean') out.chromG = p.chromG;
-    if (typeof p.chromB === 'boolean') out.chromB = p.chromB;
-    if (typeof p.lensKey === 'string' && CATALOG_KEYS.includes(p.lensKey)) out.lensKey = p.lensKey;
-    return out;
-  } catch { return {}; }
-}
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from './catalog.js';
+import useMediaQuery from './useMediaQuery.js';
+import DescriptionPanel from './DescriptionPanel.jsx';
+import { PREFS_KEY, loadPrefs } from './prefs.js';
 
 /* =====================================================================
  * §6  RENDERER — React component
