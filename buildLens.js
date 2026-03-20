@@ -141,7 +141,7 @@ export default function buildLens(data) {
   const lyImgLine  =  1.133 * maxSD;
   const lyImgLabel = -1.233 * maxSD;
   const lyElemNum  =  1.20  * maxSD;
-  const lyVdBadge  =  1.30  * maxSD;
+  const lyVdBadge  =  1.36  * maxSD;
   const lyGroup    =  1.37  * maxSD;
   const lyStoPad   =  0.12  * maxSD;
 
