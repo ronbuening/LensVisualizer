@@ -13,7 +13,7 @@ import buildLens from '../optics/buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ── */
@@ -209,7 +209,26 @@ export default function LensDiagramPanel({
         let d = "";
         for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
         for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
-        return { eid, d: d + "Z", z1, z2 };
+        /* Aspheric surface overlay paths + diamond half-fill paths */
+        const asphPaths = [];
+        const midX = sx((z1 + z2) / 2);
+        if (L.asphByIdx[s1]) {
+          let p = "";
+          for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
+          /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
+          let hp = p + `L${midX},${sy(sd)} L${midX},${sy(-sd)} Z`;
+          asphPaths.push({ surfIdx: s1, pathD: p, halfPathD: hp, labelX: sx(z1 + renderSag(Math.min(sd, trim1), s1, L)), labelY: sy(-sd) - 4 });
+        }
+        if (L.asphByIdx[s2]) {
+          let p = "";
+          for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
+          /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
+          let hp = `M${midX},${sy(-sd)} L${midX},${sy(sd)} `;
+          for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; hp += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
+          hp += "Z";
+          asphPaths.push({ surfIdx: s2, pathD: p, halfPathD: hp, labelX: sx(z2 + renderSag(Math.min(sd, trim2), s2, L)), labelY: sy(-sd) - 4 });
+        }
+        return { eid, d: d + "Z", z1, z2, asphPaths };
       });
     } catch (e) {
       console.error(`[LensDiagramPanel] Element shape computation failed for "${lensKey}":`, e);
@@ -490,6 +509,11 @@ export default function LensDiagramPanel({
           ) : (
             <filter id={filterId}><feGaussianBlur stdDeviation="3" result="b" /><feFlood floodColor="#1070c0" floodOpacity="0.12" result="c" /><feComposite in="c" in2="b" operator="in" result="d" /><feMerge><feMergeNode in="d" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
           )}
+          {ENABLE_ASPH_DIAMOND_FILL && (
+            <pattern id={`${filterId}-asph-dm`} width="7" height="7" patternUnits="userSpaceOnUse">
+              <polygon points="3.5,1 6,3.5 3.5,6 1,3.5" fill={t.asphDiamondFill} />
+            </pattern>
+          )}
         </defs>
         {Array.from({ length: L.gridCount }, (_, i) => {
           const x = CX - (L.gridCount / 2) * L.gridPitch * effectiveSC + i * L.gridPitch * effectiveSC;
@@ -534,6 +558,33 @@ export default function LensDiagramPanel({
             onMouseEnter={() => setHov(eid)} onMouseLeave={() => setHov(null)}
             onClick={() => setSel(sel === eid ? null : eid)} />;
         })}
+
+        {/* Aspheric diamond half-fill */}
+        {ENABLE_ASPH_DIAMOND_FILL && shapes.flatMap(({ asphPaths }) =>
+          (asphPaths || []).map(({ surfIdx, halfPathD }) => (
+            <path key={`asph-df-${surfIdx}`} d={halfPathD}
+              fill={`url(#${filterId}-asph-dm)`} stroke="none"
+              style={{ pointerEvents: "none" }} />
+          ))
+        )}
+
+        {/* Aspheric surface accent strokes */}
+        {shapes.flatMap(({ asphPaths }) =>
+          (asphPaths || []).map(({ surfIdx, pathD }) => (
+            <path key={`asph-${surfIdx}`} d={pathD} fill="none"
+              stroke={t.asphStroke} strokeWidth={t.asphStrokeWidth} strokeLinecap="round"
+              style={{ pointerEvents: "none" }} />
+          ))
+        )}
+
+        {/* Aspheric "A" labels */}
+        {shapes.flatMap(({ asphPaths }) =>
+          (asphPaths || []).map(({ surfIdx, labelX, labelY }) => (
+            <text key={`asph-lbl-${surfIdx}`} x={labelX} y={labelY}
+              textAnchor="middle" fill={t.asphLabel} fontSize={6.5} fontFamily="inherit"
+              fontWeight={500} style={{ pointerEvents: "none", letterSpacing: "0.06em" }}>A</text>
+          ))
+        )}
 
         {(() => {
           const bladeInner = Math.min(currentPhysStopSD, L.stopPhysSD * (1 - L.bladeStubFrac));
@@ -684,6 +735,19 @@ export default function LensDiagramPanel({
                     fontSize: 8, padding: "2px 6px", borderRadius: 3,
                     background: t.cementBg, color: t.cementText, letterSpacing: "0.08em", transition: "all 0.3s"
                   }}>DOUBLET {info.cemented}</span>}
+                  {(() => {
+                    const es = L.ES.find(([id]) => id === info.id);
+                    if (!es) return null;
+                    const [, s1, s2] = es;
+                    const a1 = L.asphByIdx[s1], a2 = L.asphByIdx[s2];
+                    if (!a1 && !a2) return null;
+                    const count = (a1 ? 1 : 0) + (a2 ? 1 : 0);
+                    return <span style={{
+                      fontSize: 8, padding: "2px 6px", borderRadius: 3,
+                      background: `${t.asphStroke}22`, color: t.asphLabel,
+                      letterSpacing: "0.08em", fontWeight: 600, transition: "all 0.3s"
+                    }}>{count === 2 ? "ASPH \u00d72" : "ASPH"}</span>;
+                  })()}
                 </div>
                 <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>{info.type}</div>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))", gap: "3px 18px", fontSize: 10.5, lineHeight: 1.8 }}>
@@ -691,6 +755,25 @@ export default function LensDiagramPanel({
                   <div><span style={{ color: t.propLabel }}>{"\u03bd"}d = </span><span style={{ color: t.value }}>{info.vd}</span></div>
                   <div><span style={{ color: t.propLabel }}>FL = </span><span style={{ color: t.value }}>{info.fl > 0 ? "+" : ""}{info.fl} mm</span></div>
                   <div><span style={{ color: t.propLabel }}>Glass: </span><span style={{ color: t.value }}>{info.glass}</span></div>
+                  {(() => {
+                    const es = L.ES.find(([id]) => id === info.id);
+                    if (!es) return null;
+                    const [, s1, s2] = es;
+                    const entries = [];
+                    if (L.asphByIdx[s1]) entries.push({ label: "front", coeffs: L.asphByIdx[s1] });
+                    if (L.asphByIdx[s2]) entries.push({ label: "rear", coeffs: L.asphByIdx[s2] });
+                    if (entries.length === 0) return null;
+                    return entries.map(({ label, coeffs }) => (
+                      <div key={label} style={{ gridColumn: "1 / -1" }}>
+                        <span style={{ color: t.asphLabel, fontSize: 9.5 }}>Asph ({label}): </span>
+                        <span style={{ color: t.muted, fontSize: 9 }}>
+                          K={coeffs.K?.toExponential(2)}
+                          {coeffs.A4 ? ` A4=${coeffs.A4.toExponential(2)}` : ""}
+                          {coeffs.A6 ? ` A6=${coeffs.A6.toExponential(2)}` : ""}
+                        </span>
+                      </div>
+                    ));
+                  })()}
                 </div>
                 {showChromatic && info.vd && <div style={{ marginTop: 4, display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))", gap: "3px 18px", fontSize: 10.5, lineHeight: 1.8 }}>
                   <div><span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span><span style={{ color: t.value }}>{((info.nd - 1) / info.vd).toFixed(5)}</span></div>
@@ -718,6 +801,16 @@ export default function LensDiagramPanel({
                       <div style={{ width: 11, height: 11, borderRadius: 2, background: bg, border: `1px solid ${bd}`, transition: "all 0.3s" }} /><span style={{ color: t.legendText, transition: "color 0.3s" }}>{lb}</span>
                     </div>
                   ))}
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <svg width="11" height="11" viewBox="0 0 11 11">
+                      {ENABLE_ASPH_DIAMOND_FILL && <>
+                        <defs><pattern id="legend-asph-dm" width="4" height="4" patternUnits="userSpaceOnUse"><polygon points="2,0.5 3.5,2 2,3.5 0.5,2" fill={t.asphDiamondFill} /></pattern></defs>
+                        <rect x="5" y="0" width="6" height="11" fill="url(#legend-asph-dm)" />
+                      </>}
+                      <path d="M5,1 Q2,5.5 5,10" fill="none" stroke={t.asphStroke} strokeWidth={1.6} strokeLinecap="round" />
+                    </svg>
+                    <span style={{ color: t.legendText }}>Aspheric surface</span>
+                  </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <div style={{ width: 3, height: 11, background: t.stop, borderRadius: 1 }} /><span style={{ color: t.legendText }}>Stop</span>
                   </div>
