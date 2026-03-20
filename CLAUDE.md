@@ -163,7 +163,7 @@ No React dependencies — fully testable in isolation.
 
 ### validateLensData.js
 
-Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, and surface sd/|R| ratio (≤ 0.90). Returns an array of error strings (empty = valid).
+Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, surface sd/|R| ratio (≤ 0.90), cross-gap surface overlap, and conic height limits (K > 0). Returns an array of error strings (empty = valid).
 
 ### themes.js — Theme System
 
@@ -236,9 +236,11 @@ Surface `sd` values are the most common source of rendering bugs. The validator 
 1. **Edge thickness**: For each element, `sag(sd, R_front) − sag(sd, R_rear)` must be less than center thickness `d`. Violation produces a bowtie-shaped element where surfaces cross at the rim.
 2. **SD consistency**: Front and rear surfaces of each element must have SDs within 25% of each other (ratio ≤ 1.25). Larger differences cause rays to appear outside the rendered element.
 3. **sd/|R| ratio**: Surface sd must not exceed 0.90 × |R|. As sd approaches |R|, the surface slope at the rim becomes extreme, causing total internal reflection (TIR) at glass-air boundaries and rendering artifacts.
-4. **Cemented doublets**: Junction surfaces must have matching SDs — the bonded surfaces share a physical clear aperture.
-5. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
-6. **Off-axis containment**: After estimating SDs from on-axis marginal rays, verify that off-axis ray bundles clip at element edges or air gaps — never inside cemented groups. Thick elements amplify off-axis beam divergence and may need tighter upstream SDs.
+4. **Cross-gap overlap**: For each air gap, the validator checks that the combined sag intrusion from adjacent surfaces does not exceed the gap thickness. The renderer goes further: when deciding whether to trim an element's rim, it computes the **effective clearance** at each gap by accounting for the neighboring element's surface sag. A rear surface curving forward into a gap has more clearance if the next element's front surface also curves forward (away from the gap), and less if it curves backward (into the gap). The symmetric logic applies to front surfaces curving backward. This prevents both false trims (over-aggressive clipping on fast lenses) and missed trims (visual overlap when both adjacent surfaces intrude into the gap).
+5. **Conic height limit**: For aspherical surfaces with K > 0, sd must not exceed 0.98 × |R| / √(1+K). Beyond this height the conic sag discriminant goes negative, producing a sag curve discontinuity.
+6. **Cemented doublets**: Junction surfaces must have matching SDs — the bonded surfaces share a physical clear aperture.
+7. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
+8. **Off-axis containment**: After estimating SDs from on-axis marginal rays, verify that off-axis ray bundles clip at element edges or air gaps — never inside cemented groups. Thick elements amplify off-axis beam divergence and may need tighter upstream SDs.
 
 See `src/lens-data/TEMPLATE.data.js.template` for detailed documentation and examples.
 
@@ -247,7 +249,7 @@ See `src/lens-data/TEMPLATE.data.js.template` for detailed documentation and exa
 1. Copy `src/lens-data/TEMPLATE.data.js.template` to `src/lens-data/YourLens.data.js`
 2. Fill in the lens data following the template's field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
-4. Run `npm run test` to verify the data passes all validation checks (including edge thickness and SD consistency)
+4. Run `npm run test` to verify the data passes all validation checks (including edge thickness, SD consistency, cross-gap overlap, and conic height limits)
 5. That's it — `import.meta.glob` auto-registers all `src/lens-data/*.data.js` files
 
 No manual imports or catalog edits required. Shared defaults from `src/lens-data/defaults.js` are merged automatically — only override values that differ from defaults.
