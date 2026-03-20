@@ -13,7 +13,7 @@ import buildLens from '../optics/buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ── */
@@ -209,17 +209,24 @@ export default function LensDiagramPanel({
         let d = "";
         for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
         for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
-        /* Aspheric surface overlay paths */
+        /* Aspheric surface overlay paths + diamond half-fill paths */
         const asphPaths = [];
+        const midX = sx((z1 + z2) / 2);
         if (L.asphByIdx[s1]) {
           let p = "";
           for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `; }
-          asphPaths.push({ surfIdx: s1, pathD: p, labelX: sx(z1 + renderSag(Math.min(sd, trim1), s1, L)), labelY: sy(-sd) - 4 });
+          /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
+          let hp = p + `L${midX},${sy(sd)} L${midX},${sy(-sd)} Z`;
+          asphPaths.push({ surfIdx: s1, pathD: p, halfPathD: hp, labelX: sx(z1 + renderSag(Math.min(sd, trim1), s1, L)), labelY: sy(-sd) - 4 });
         }
         if (L.asphByIdx[s2]) {
           let p = "";
           for (let i = 0; i <= NN; i++) { const y = -sd + 2 * sd * i / NN; p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
-          asphPaths.push({ surfIdx: s2, pathD: p, labelX: sx(z2 + renderSag(Math.min(sd, trim2), s2, L)), labelY: sy(-sd) - 4 });
+          /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
+          let hp = `M${midX},${sy(-sd)} L${midX},${sy(sd)} `;
+          for (let i = NN; i >= 0; i--) { const y = -sd + 2 * sd * i / NN; hp += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `; }
+          hp += "Z";
+          asphPaths.push({ surfIdx: s2, pathD: p, halfPathD: hp, labelX: sx(z2 + renderSag(Math.min(sd, trim2), s2, L)), labelY: sy(-sd) - 4 });
         }
         return { eid, d: d + "Z", z1, z2, asphPaths };
       });
@@ -502,6 +509,11 @@ export default function LensDiagramPanel({
           ) : (
             <filter id={filterId}><feGaussianBlur stdDeviation="3" result="b" /><feFlood floodColor="#1070c0" floodOpacity="0.12" result="c" /><feComposite in="c" in2="b" operator="in" result="d" /><feMerge><feMergeNode in="d" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
           )}
+          {ENABLE_ASPH_DIAMOND_FILL && (
+            <pattern id={`${filterId}-asph-dm`} width="7" height="7" patternUnits="userSpaceOnUse">
+              <polygon points="3.5,1 6,3.5 3.5,6 1,3.5" fill={t.asphDiamondFill} />
+            </pattern>
+          )}
         </defs>
         {Array.from({ length: L.gridCount }, (_, i) => {
           const x = CX - (L.gridCount / 2) * L.gridPitch * effectiveSC + i * L.gridPitch * effectiveSC;
@@ -546,6 +558,15 @@ export default function LensDiagramPanel({
             onMouseEnter={() => setHov(eid)} onMouseLeave={() => setHov(null)}
             onClick={() => setSel(sel === eid ? null : eid)} />;
         })}
+
+        {/* Aspheric diamond half-fill */}
+        {ENABLE_ASPH_DIAMOND_FILL && shapes.flatMap(({ asphPaths }) =>
+          (asphPaths || []).map(({ surfIdx, halfPathD }) => (
+            <path key={`asph-df-${surfIdx}`} d={halfPathD}
+              fill={`url(#${filterId}-asph-dm)`} stroke="none"
+              style={{ pointerEvents: "none" }} />
+          ))
+        )}
 
         {/* Aspheric surface accent strokes */}
         {shapes.flatMap(({ asphPaths }) =>
@@ -781,7 +802,13 @@ export default function LensDiagramPanel({
                     </div>
                   ))}
                   <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <svg width="11" height="11" viewBox="0 0 11 11"><path d="M5,1 Q2,5.5 5,10" fill="none" stroke={t.asphStroke} strokeWidth={1.6} strokeLinecap="round" /></svg>
+                    <svg width="11" height="11" viewBox="0 0 11 11">
+                      {ENABLE_ASPH_DIAMOND_FILL && <>
+                        <defs><pattern id="legend-asph-dm" width="4" height="4" patternUnits="userSpaceOnUse"><polygon points="2,0.5 3.5,2 2,3.5 0.5,2" fill={t.asphDiamondFill} /></pattern></defs>
+                        <rect x="5" y="0" width="6" height="11" fill="url(#legend-asph-dm)" />
+                      </>}
+                      <path d="M5,1 Q2,5.5 5,10" fill="none" stroke={t.asphStroke} strokeWidth={1.6} strokeLinecap="round" />
+                    </svg>
                     <span style={{ color: t.legendText }}>Aspheric surface</span>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
