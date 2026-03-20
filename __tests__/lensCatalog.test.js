@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from '../lensCatalog.js';
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from '../src/utils/lensCatalog.js';
 
 describe('lensCatalog', () => {
   it('CATALOG_KEYS is non-empty', () => {

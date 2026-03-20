@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import validateLensData from '../validateLensData.js';
-import LENS_DEFAULTS from '../lens-data/defaults.js';
+import validateLensData from '../src/optics/validateLensData.js';
+import LENS_DEFAULTS from '../src/lens-data/defaults.js';
 
 function makeValid(overrides = {}) {
   return {
@@ -236,11 +236,11 @@ describe('validateLensData', () => {
 });
 
 /* ── Production lens validation ── */
-import ApoLantharRaw  from '../lens-data/ApoLanthar50f2.data.js';
-import NoktonRaw      from '../lens-data/Nokton50f1.data.js';
-import NikkorRaw      from '../lens-data/NikkorZ50mmf18S.data.js';
-import Nikkor105Raw   from '../lens-data/Nikkor105f14E.data.js';
-import Sonnar50f15Raw from '../lens-data/Sonnar50f15.data.js';
+import ApoLantharRaw  from '../src/lens-data/ApoLanthar50f2.data.js';
+import NoktonRaw      from '../src/lens-data/Nokton50f1.data.js';
+import NikkorRaw      from '../src/lens-data/NikkorZ50mmf18S.data.js';
+import Nikkor105Raw   from '../src/lens-data/Nikkor105f14E.data.js';
+import Sonnar50f15Raw from '../src/lens-data/Sonnar50f15.data.js';
 
 describe('validateLensData — production lenses', () => {
   const lenses = [

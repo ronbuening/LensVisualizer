@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Interactive web-based optical lens cross-section visualizer and ray-tracing tool. Renders 2D cross-sections of real camera lenses (from optical patents), with real-time ray tracing, focus/aperture adjustment, element inspection, and multiple themes. Deployed to GitHub Pages.
+Interactive web-based optical lens cross-section visualizer and ray-tracing tool. Renders 2D cross-sections of real camera lenses (from optical patents), with real-time ray tracing, focus/aperture adjustment, element inspection, lens comparison, and multiple themes. Deployed to GitHub Pages.
 
 ## Tech Stack
 
@@ -18,41 +18,51 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 
 ```
 LensVisualizer/
-├── index.html              # HTML entry point
-├── main.jsx                # React root mount (wraps app in ErrorBoundary)
-├── ErrorBoundary.jsx       # React class-based error boundary with retry UI
-├── LensViewer-v4.jsx       # Main component (~978 lines): UI chrome, state, SVG renderer
-├── buildLens.js            # Lens builder — validates data, computes EFL/pupil/field
-├── optics.js               # Optics engine — ray tracing, sag curves, layout math
-├── validateLensData.js     # Schema validation for lens data files
-├── themes.js               # Theme system — 4 themes via createTheme() factory
-├── featureFlags.js         # Feature flags — controls feature availability and defaults
-├── AboutMe.md              # Author bio (rendered in About: Author overlay)
-├── AboutSite.md            # Site description (rendered in About: Site overlay)
-├── lens-data/              # Optical prescription data (one file per lens)
-│   ├── defaults.js         # Shared defaults (ray config, SVG sizing, control steps)
-│   ├── LENS_DATA_SPEC.md   # Full lens data format specification
-│   ├── TEMPLATE.data.js.template  # Annotated template for new lens files
-│   ├── ApoLanthar50f2.data.js     (+.analysis.md)
-│   ├── BerteleSonnar50f2.data.js  (+.analysis.md)
-│   ├── Heliar-US716035.data.js    (+.analysis.md)
-│   ├── Nikkor105f14E.data.js      (+.analysis.md)
-│   ├── NikkorAIS24f28.data.js     (+.analysis.md)
-│   ├── NikkorZ50f12.data.js       (+.analysis.md)
-│   ├── NikkorZ50mmf18S.data.js    (+.analysis.md)
-│   ├── Nokton50f1.data.js         (+.analysis.md)
-│   ├── Sonnar50f15.data.js        (+.analysis.md)
-│   └── ZeissTessar-US721240.data.js (+.analysis.md)
-├── __tests__/              # Vitest unit tests
-│   ├── buildLens.test.js   # Paraxial trace, EFL, entrance pupil tests
-│   ├── optics.test.js      # Sag, ray trace, layout tests
-│   └── validateLensData.test.js  # Schema validation tests
+├── index.html                          # HTML entry point (loads src/main.jsx)
+├── vite.config.js                      # Vite config (base: '/' for dev)
+├── package.json                        # Dependencies and scripts
+├── CLAUDE.md                           # This file
+├── README.md                           # Project readme
+├── public/
+│   └── CNAME                           # GitHub Pages custom domain
 ├── .github/workflows/
-│   └── deploy.yml          # GitHub Actions — builds and deploys to GitHub Pages
-├── ARCHITECTURE-REVIEW.md  # Refactoring plan and architectural notes
-├── PLAN-description-panel-and-deploy.md  # Description panel implementation plan
-├── vite.config.js          # Vite config (base: '/' for dev; deploy.yml handles GH Pages)
-└── package.json            # Dependencies and scripts
+│   └── deploy.yml                      # GitHub Actions → GitHub Pages
+├── src/
+│   ├── main.jsx                        # React root mount (ErrorBoundary wrapper)
+│   ├── components/
+│   │   ├── LensViewer.jsx              # Orchestration: top bar, comparison, overlays, prefs
+│   │   ├── LensDiagramPanel.jsx        # Self-contained diagram: SVG, rays, elements, controls
+│   │   ├── DescriptionPanel.jsx        # Markdown renderer with theme-aware styling
+│   │   ├── SharedSlidersBar.jsx        # Unified focus/aperture controls for comparison mode
+│   │   └── ErrorBoundary.jsx           # Error boundary + reusable ErrorDisplay component
+│   ├── optics/
+│   │   ├── optics.js                   # Ray tracing, sag curves, layout math, chromatic
+│   │   ├── buildLens.js                # Lens construction, EFL/pupil/field computation
+│   │   └── validateLensData.js         # Schema validation for lens data files
+│   ├── utils/
+│   │   ├── themes.js                   # 4 themes via createTheme() factory
+│   │   ├── featureFlags.js             # Feature flag controls
+│   │   ├── lensCatalog.js              # Auto-registers lens data via import.meta.glob
+│   │   ├── comparisonSliders.js        # Comparison mode slider math
+│   │   ├── parseComparisonParams.js    # URL parameter parsing (?a=&b=, ?lens=)
+│   │   ├── errorReporting.js           # GitHub issue URL builder
+│   │   ├── useMediaQuery.js            # Responsive breakpoint hook
+│   │   └── preferences.js             # localStorage persistence
+│   ├── content/
+│   │   ├── AboutMe.md                  # Author bio (rendered in overlay)
+│   │   └── AboutSite.md               # Site description (rendered in overlay)
+│   └── lens-data/                      # Optical prescription data (one file per lens)
+│       ├── defaults.js                 # Shared defaults (ray config, SVG sizing, control steps)
+│       ├── LENS_DATA_SPEC.md           # Full lens data format specification
+│       ├── TEMPLATE.data.js.template   # Annotated template for new lens files
+│       └── *.data.js + *.analysis.md   # 10 lens prescriptions + analyses
+├── __tests__/                          # Vitest unit tests
+│   ├── buildLens.test.js               # Paraxial trace, EFL, entrance pupil tests
+│   ├── optics.test.js                  # Sag, ray trace, layout tests
+│   ├── validateLensData.test.js        # Schema validation tests
+│   ├── lensCatalog.test.js             # Catalog loading tests
+│   ├── comparisonSliders.test.js       # Comparison slider math tests
+│   └── parseComparisonParams.test.js   # URL parameter parsing tests
 ```
 
 ## Commands
@@ -78,34 +88,66 @@ No linters or formatters are configured.
 
 ### Module Organization
 
-The codebase follows a layered extraction pattern. Core logic has been extracted from the original monolithic component into pure-function modules:
+```
+src/components/     — React UI components
+src/optics/         — Pure-function optical engine (no React dependencies)
+src/utils/          — Shared utilities, hooks, and configuration
+src/content/        — Static markdown content
+src/lens-data/      — Lens prescription data files
+```
 
-| Module | Lines | Purpose |
-|--------|-------|---------|
-| `LensViewer-v4.jsx` | ~978 | UI component: state, SVG rendering, interaction |
-| `buildLens.js` | ~178 | Lens construction, EFL/pupil/field computation |
-| `optics.js` | ~259 | Ray tracing, sag curves, chromatic tracing, layout geometry |
-| `validateLensData.js` | ~213 | Schema validation for lens data |
-| `themes.js` | ~251 | Theme factory and 4 theme definitions |
-| `featureFlags.js` | ~13 | Feature flags for UI toggles |
-| `lens-data/defaults.js` | ~35 | Shared lens defaults merged into each lens |
+| Module | Location | Purpose |
+|--------|----------|---------|
+| `LensViewer.jsx` | `src/components/` | Orchestration: comparison mode, top bar, overlays, prefs |
+| `LensDiagramPanel.jsx` | `src/components/` | Diagram rendering: SVG, rays, elements, controls |
+| `DescriptionPanel.jsx` | `src/components/` | Markdown panel with themed styling |
+| `SharedSlidersBar.jsx` | `src/components/` | Comparison mode shared focus/aperture controls |
+| `ErrorBoundary.jsx` | `src/components/` | Error boundary + reusable ErrorDisplay |
+| `optics.js` | `src/optics/` | Ray tracing, sag curves, chromatic, layout geometry |
+| `buildLens.js` | `src/optics/` | Lens construction, EFL/pupil/field computation |
+| `validateLensData.js` | `src/optics/` | Schema validation for lens data |
+| `themes.js` | `src/utils/` | Theme factory + 4 theme definitions |
+| `lensCatalog.js` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
+| `comparisonSliders.js` | `src/utils/` | Shared slider math for comparison mode |
+| `parseComparisonParams.js` | `src/utils/` | URL deep-link parsing |
+| `featureFlags.js` | `src/utils/` | Feature flag controls |
+| `errorReporting.js` | `src/utils/` | GitHub issue URL builder |
+| `useMediaQuery.js` | `src/utils/` | Responsive breakpoint hook |
+| `preferences.js` | `src/utils/` | localStorage load/save |
 
-### LensViewer-v4.jsx — Section Layout
+### LensViewer.jsx — Orchestration Layer
 
-The main file retains numbered section headers (`/* ═════ §N ════ */`):
+The main component handles:
+- Lens selection (single + comparison mode)
+- Theme switching (dark/light × normal/high-contrast)
+- Ray toggle controls (on-axis, off-axis, chromatic)
+- Comparison mode: side-by-side (desktop) / stacked (mobile)
+- URL deep links (`?a=&b=` for comparison, `?lens=` for single)
+- Desktop view toggle (diagram / both / analysis)
+- Mobile view toggle (diagram / analysis)
+- About overlays (site + author)
+- localStorage preference persistence
 
-1. **§1 LENS CATALOG** — Auto-registered from `./lens-data/*.data.js` via `import.meta.glob`; also loads matching `.analysis.md` files via a second glob
-2. **§6 RENDERER** — `useMediaQuery` hook, `DescriptionPanel` sub-component (ReactMarkdown with themed styles), and the main `LensVisualization` component with full UI and SVG output
+Diagram rendering is delegated to `LensDiagramPanel`.
 
-Note: §2 (`buildLens`) was extracted to `buildLens.js`, §3 (themes) to `themes.js`, §4–§5 (optics/rendering helpers) to `optics.js`. Section numbering is preserved — don't renumber.
+### LensDiagramPanel.jsx — Diagram Renderer
+
+Self-contained component that owns:
+- Lens building (`buildLens()` call)
+- Layout computation (`doLayout()`)
+- Coordinate transforms (SVG ↔ optical space)
+- Ray tracing (on-axis, off-axis, chromatic)
+- Element rendering (filled SVG paths with hover/click)
+- Control panel (focus/aperture sliders, element inspector, legend)
+- Panel-level error boundary
+
+Receives shared control state (focus, aperture, ray toggles) from LensViewer.
 
 ### buildLens.js
 
 Exports:
 - **`buildLens(data)`** — Validates lens data, constructs frozen runtime lens object `L` with computed EFL, entrance pupil, half-field angle, and layout geometry
 - **`paraxialTrace(surfaces, y0, u0, options)`** — Low-level paraxial ray trace (exported for testing)
-
-Merges `LENS_DEFAULTS` from `lens-data/defaults.js` into each lens before processing.
 
 ### optics.js
 
@@ -135,19 +177,23 @@ Feature flags controlling UI toggle visibility and defaults:
 - **`ENABLE_DESKTOP_VIEW_TOGGLE`** — whether the diagram/analysis/both view toggle appears on desktop
 - **`ENABLE_DIAGRAM_ONLY`** — whether "diagram only" view mode is available
 - **`ENABLE_ANALYSIS_ONLY`** — whether "analysis only" view mode is available
+- **`ENABLE_COMPARISON`** — whether lens comparison mode is available
+- **`ENABLE_COMPARISON_MOBILE`** — whether comparison mode is available on mobile
 
 ### ErrorBoundary.jsx
 
-React class component wrapping the app. Catches render errors and shows a styled error message with a Retry button.
+Exports:
+- **`ErrorBoundary`** (default) — React class component wrapping the app, catches render errors
+- **`ErrorDisplay`** (named) — Reusable error UI with retry button and GitHub issue link
 
 ### Lens Data Files
 
-Each lens has two files in `lens-data/`:
+Each lens has two files in `src/lens-data/`:
 - **`.data.js`** — Default-exports a `LENS_DATA` object (see format below)
 - **`.analysis.md`** — Markdown design analysis, rendered in the app's description panel
 
-Supporting files in `lens-data/`:
-- **`defaults.js`** — Shared defaults (`rayFractions`, `rayLeadFrac`, `lensShiftFrac`, `offAxisFieldFrac`, `offAxisFractions`, `svgW`, `svgH`, `clipMargin`, `maxRimAngleDeg`, `gapSagFrac`, `maxAspectRatio`, `focusStep`, `apertureStep`, `maxFstop`) merged into each lens via `buildLens()`
+Supporting files in `src/lens-data/`:
+- **`defaults.js`** — Shared defaults merged into each lens via `lensCatalog.js`
 - **`LENS_DATA_SPEC.md`** — Complete specification for all lens data fields, types, and validation rules
 - **`TEMPLATE.data.js.template`** — Annotated template with inline documentation for creating new lens files
 
@@ -159,10 +205,11 @@ Supporting files in `lens-data/`:
 - **Pure functions** for all optical calculations (no side effects)
 - **Inline styles only** — color palettes defined in theme objects
 - **Responsive layout** — desktop: side-by-side diagram/analysis; mobile (<900px): tab toggle
+- **Auto-registration** — lens data files discovered via `import.meta.glob`
 
 ### Lens Data Format
 
-Each `.data.js` file in `lens-data/` default-exports a `LENS_DATA` object with a `key` field:
+Each `.data.js` file in `src/lens-data/` default-exports a `LENS_DATA` object with a `key` field:
 
 ```javascript
 {
@@ -193,17 +240,17 @@ Surface `sd` values are the most common source of rendering bugs. The validator 
 5. **Smooth progression**: SDs should decrease smoothly toward the aperture stop and increase smoothly after it.
 6. **Off-axis containment**: After estimating SDs from on-axis marginal rays, verify that off-axis ray bundles clip at element edges or air gaps — never inside cemented groups. Thick elements amplify off-axis beam divergence and may need tighter upstream SDs.
 
-See `lens-data/TEMPLATE.data.js.template` for detailed documentation and examples.
+See `src/lens-data/TEMPLATE.data.js.template` for detailed documentation and examples.
 
 ### Adding a New Lens
 
-1. Copy `lens-data/TEMPLATE.data.js.template` to `lens-data/YourLens.data.js`
+1. Copy `src/lens-data/TEMPLATE.data.js.template` to `src/lens-data/YourLens.data.js`
 2. Fill in the lens data following the template's field documentation
-3. Optionally add `lens-data/YourLens.analysis.md` for the description panel
+3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
 4. Run `npm run test` to verify the data passes all validation checks (including edge thickness and SD consistency)
-5. That's it — `import.meta.glob` auto-registers all `./lens-data/*.data.js` files
+5. That's it — `import.meta.glob` auto-registers all `src/lens-data/*.data.js` files
 
-No manual imports or catalog edits required. Shared defaults from `lens-data/defaults.js` are merged automatically — only override values that differ from defaults.
+No manual imports or catalog edits required. Shared defaults from `src/lens-data/defaults.js` are merged automatically — only override values that differ from defaults.
 
 ## Testing
 
@@ -212,6 +259,9 @@ Tests use **Vitest** and live in `__tests__/`:
 - **`buildLens.test.js`** — Tests `paraxialTrace()` with flat/refractive surfaces; validates `buildLens()` output (EFL, entrance pupil, half-field) against production lenses
 - **`optics.test.js`** — Tests `sag()`, `renderSag()` with aspherical coefficients; `conjugateK()`, `formatDist()`; `doLayout()` with variable surfaces
 - **`validateLensData.test.js`** — Tests schema validation against production lenses; verifies error reporting for missing fields, duplicate labels, invalid references
+- **`lensCatalog.test.js`** — Tests catalog auto-registration, key filtering, and `mdForKey()` lookup
+- **`comparisonSliders.test.js`** — Tests focus/aperture pair computation, common points, clamping
+- **`parseComparisonParams.test.js`** — Tests URL parameter parsing and deep-link generation
 
 Run with `npm run test`. Tests cover the extracted pure-function modules; the React UI layer is not unit-tested.
 
@@ -230,7 +280,7 @@ Run with `npm run test`. Tests cover the extracted pure-function modules; the Re
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
-- Section numbering in LensViewer-v4.jsx skips §2–§5 (extracted to separate modules) — don't renumber
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
 - Lens data globs match `*.data.js`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
-- `lens-data/defaults.js` values are merged under each lens — per-lens values in `.data.js` take precedence
+- `src/lens-data/defaults.js` values are merged under each lens — per-lens values in `.data.js` take precedence
+- Glob paths in `lensCatalog.js` are relative to the file's location (`../lens-data/`)

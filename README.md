@@ -4,7 +4,7 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 
 **Live app:** [ronbuening.github.io/LensVisualizer](https://ronbuening.github.io/LensVisualizer/)
 
-Created by **Ron Buening** — see [About This Site](AboutSite.md) for background on how the project is built.
+Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) for background on how the project is built.
 
 ## Features
 
@@ -35,7 +35,7 @@ Created by **Ron Buening** — see [About This Site](AboutSite.md) for backgroun
 | NIKON NIKKOR Z 50mm f/1.2 S | 17+filter | 3 aspherics; multi-group AF; 6 APD elements |
 | NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
 
-New lenses are auto-registered — just add a `.data.js` file to `lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
+New lenses are auto-registered — just add a `.data.js` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
 
 ## Getting Started
 
@@ -51,13 +51,13 @@ Requires Node.js 18+.
 
 ## Adding a New Lens
 
-1. Copy `lens-data/TEMPLATE.data.js.template` to `lens-data/YourLens.data.js`
+1. Copy `src/lens-data/TEMPLATE.data.js.template` to `src/lens-data/YourLens.data.js`
 2. Fill in the lens data following the template's field documentation
-3. Optionally add `lens-data/YourLens.analysis.md` for the description panel
+3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
 4. Run `npm run test` to verify validation passes
-5. That's it — `import.meta.glob` auto-registers all `./lens-data/*.data.js` files
+5. That's it — `import.meta.glob` auto-registers all `src/lens-data/*.data.js` files
 
-See `lens-data/LENS_DATA_SPEC.md` for the full data format specification.
+See `src/lens-data/LENS_DATA_SPEC.md` for the full data format specification.
 
 ## Request a Lens
 
@@ -75,19 +75,21 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 
 ```
 LensVisualizer/
-├── LensViewer-v4.jsx       # Main component: UI, state, SVG renderer (~978 lines)
-├── buildLens.js            # Lens builder — validates data, computes EFL/pupil/field
-├── optics.js               # Optics engine — ray tracing, sag curves, layout math
-├── validateLensData.js     # Schema validation for lens data files
-├── themes.js               # Theme system — 4 themes via createTheme() factory
-├── featureFlags.js         # Feature flags — controls feature availability
-├── ErrorBoundary.jsx       # React error boundary with retry UI
-├── AboutMe.md              # Author bio (rendered in About: Author overlay)
-├── AboutSite.md            # Site description (rendered in About: Site overlay)
-├── lens-data/              # Optical prescription data (10 lenses)
-│   ├── defaults.js         # Shared defaults merged into each lens
-│   ├── LENS_DATA_SPEC.md   # Full lens data format specification
-│   ├── TEMPLATE.data.js.template  # Annotated template for new lens files
-│   └── *.data.js + *.analysis.md  # Lens prescriptions + design analyses
-└── __tests__/              # Vitest unit tests
+├── index.html                          # HTML entry point
+├── src/
+│   ├── main.jsx                        # React root mount
+│   ├── components/
+│   │   ├── LensViewer.jsx              # Orchestration: top bar, comparison, overlays
+│   │   ├── LensDiagramPanel.jsx        # SVG diagram renderer with ray tracing
+│   │   ├── DescriptionPanel.jsx        # Themed markdown renderer
+│   │   ├── SharedSlidersBar.jsx        # Comparison mode controls
+│   │   └── ErrorBoundary.jsx           # Error boundary with retry UI
+│   ├── optics/
+│   │   ├── optics.js                   # Ray tracing, sag curves, layout math
+│   │   ├── buildLens.js                # Lens construction, EFL/pupil/field
+│   │   └── validateLensData.js         # Schema validation
+│   ├── utils/                          # Themes, feature flags, catalog, hooks
+│   ├── content/                        # AboutMe.md, AboutSite.md
+│   └── lens-data/                      # 10 lens prescriptions + analyses
+└── __tests__/                          # Vitest unit tests (6 files)
 ```

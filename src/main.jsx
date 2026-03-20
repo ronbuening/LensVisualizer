@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
-import ErrorBoundary from "./ErrorBoundary.jsx";
-import LensVisualization from "./LensViewer-v5.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import LensVisualization from "./components/LensViewer.jsx";
 
 createRoot(document.getElementById("root")).render(
   <ErrorBoundary>

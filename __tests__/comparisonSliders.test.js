@@ -5,7 +5,7 @@ import {
   formatSharedFocusDist,
   sharedFNumber,
   snapToCommon,
-} from '../comparisonSliders.js';
+} from '../src/utils/comparisonSliders.js';
 
 /* ── Mock lens objects (only the fields these functions use) ── */
 const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16 };

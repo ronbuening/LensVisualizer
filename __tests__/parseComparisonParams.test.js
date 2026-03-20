@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseComparisonParams, buildComparisonURL } from '../parseComparisonParams.js';
+import { parseComparisonParams, buildComparisonURL } from '../src/utils/parseComparisonParams.js';
 
 const KEYS = ['NikkorZ50f12', 'Nokton50f1', 'ApoLanthar50f2', 'Sonnar50f15'];
 

@@ -1,19 +1,19 @@
 /**
  * LensDiagramPanel — Self-contained lens diagram renderer.
  *
- * Extracted from LensViewer-v4.jsx §6.  Owns its own lens building,
+ * Self-contained lens diagram renderer.  Owns its own lens building,
  * layout, coordinate transforms, ray tracing, element inspection,
  * and all SVG rendering.  Receives shared control state (focus,
  * aperture, ray toggles) from the parent.
  */
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, Component } from "react";
-import { LENS_CATALOG, CATALOG_KEYS } from './lensCatalog.js';
-import buildLens from './buildLens.js';
+import { LENS_CATALOG, CATALOG_KEYS } from '../utils/lensCatalog.js';
+import buildLens from '../optics/buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
-         conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from './optics.js';
-import { ENABLE_COLOR_TRACING } from './featureFlags.js';
+         conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
+import { ENABLE_COLOR_TRACING } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ── */
