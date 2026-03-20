@@ -7,7 +7,7 @@
  * aperture, ray toggles) from the parent.
  */
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { LENS_CATALOG, CATALOG_KEYS } from './lensCatalog.js';
 import buildLens from './buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout,
@@ -32,9 +32,12 @@ export default function LensDiagramPanel({
   panelId,
   compact,
   showControls = true,
+  showSliders = true,
   maxSvgHeight = "54vh",
+  minHeaderHeight,
   onFocusChange,
   onStopdownChange,
+  onHeaderHeight,
   /* Ray/theme toggle callbacks (used in non-compact mode) */
   onShowOnAxisChange,
   onShowOffAxisChange,
@@ -51,6 +54,19 @@ export default function LensDiagramPanel({
   const [sel, setSel] = useState(null);
 
   useEffect(() => { setHov(null); setSel(null); }, [lensKey]);
+
+  /* ── Header height reporting for alignment ── */
+  const headerRef = useRef(null);
+  useLayoutEffect(() => {
+    if (!onHeaderHeight || !headerRef.current) return;
+    const el = headerRef.current;
+    const report = () => onHeaderHeight(panelId, el.scrollHeight);
+    report();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(report);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [onHeaderHeight, panelId, lensKey]);
 
   /* ── Build lens from catalog ── */
   const buildResult = useMemo(() => {
@@ -231,7 +247,7 @@ export default function LensDiagramPanel({
   return (
     <>
       {/* ── Header ── */}
-      <div style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s" }}>
+      <div ref={headerRef} style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s", ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}) }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 12, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: compact ? 14 : 17, fontWeight: 700, letterSpacing: "0.04em", margin: 0, color: t.title, fontFamily: "'DM Sans','Helvetica Neue',sans-serif", transition: "color 0.3s" }}>{L.data.name}</h1>
@@ -487,7 +503,7 @@ export default function LensDiagramPanel({
       {/* ── Control panel ── */}
       {showControls && (
         <div style={{ display: "flex", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, flexWrap: "wrap", transition: "background 0.3s,border-color 0.3s" }}>
-          <div style={{ flex: "1 1 260px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
+          {showSliders && <div style={{ flex: "1 1 260px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>FOCUS</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
@@ -503,9 +519,9 @@ export default function LensDiagramPanel({
             <div style={{ marginTop: 6, display: "flex", gap: 14, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
               {varReadouts.map(({ label, val }) => <span key={label}>{label} {val}</span>)}
             </div>
-          </div>
+          </div>}
 
-          <div style={{ flex: "1 1 220px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
+          {showSliders && <div style={{ flex: "1 1 220px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>APERTURE</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
@@ -531,7 +547,7 @@ export default function LensDiagramPanel({
                 </span>
               ))}
             </div>
-          </div>
+          </div>}
 
           <div style={{ flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }}>
             {info ? (
