@@ -310,25 +310,6 @@ export default function LensVisualization() {
     setLensKeyB(key);
   }, []);
 
-  /* ── Enter/exit comparison mode ── */
-  const toggleCompare = useCallback(() => {
-    if (!comparing) {
-      /* Entering comparison: pick next lens if A===B */
-      if (lensKeyA === lensKeyB) {
-        const idx = CATALOG_KEYS.indexOf(lensKeyA);
-        setLensKeyB(CATALOG_KEYS[(idx + 1) % CATALOG_KEYS.length]);
-      }
-      /* Snap shared sliders to common points */
-      setSharedFocusT(0);
-      setSharedStopdownT(0);
-    } else {
-      /* Exiting: map shared values back to single-lens values */
-      if (focusPair) setFocusT(focusPair.focusA);
-      if (aperturePair) setStopdownT(aperturePair.stopdownA);
-    }
-    setComparing(c => !c);
-  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair]);
-
   /* ── Build both lenses for comparison computations ── */
   const comparisonLenses = useMemo(() => {
     if (!comparing) return null;
@@ -355,6 +336,25 @@ export default function LensVisualization() {
     if (!comparisonLenses) return null;
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
+
+  /* ── Enter/exit comparison mode ── */
+  const toggleCompare = useCallback(() => {
+    if (!comparing) {
+      /* Entering comparison: pick next lens if A===B */
+      if (lensKeyA === lensKeyB) {
+        const idx = CATALOG_KEYS.indexOf(lensKeyA);
+        setLensKeyB(CATALOG_KEYS[(idx + 1) % CATALOG_KEYS.length]);
+      }
+      /* Snap shared sliders to common points */
+      setSharedFocusT(0);
+      setSharedStopdownT(0);
+    } else {
+      /* Exiting: map shared values back to single-lens values */
+      if (focusPair) setFocusT(focusPair.focusA);
+      if (aperturePair) setStopdownT(aperturePair.stopdownA);
+    }
+    setComparing(c => !c);
+  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair]);
 
   /* ── Header height alignment callback ── */
   const handleHeaderHeight = useCallback((panelId, height) => {
