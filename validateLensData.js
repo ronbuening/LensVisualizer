@@ -17,7 +17,7 @@ export default function validateLensData(data) {
   const requiredNumbers = [
     'nominalFno', 'closeFocusM', 'focusStep', 'maxFstop', 'apertureStep',
     'svgW', 'svgH', 'scFill', 'yScFill', 'clipMargin', 'maxRimAngleDeg',
-    'gapSagFrac', 'rayLeadFrac', 'offAxisFieldFrac',
+    'gapSagFrac', 'rayLeadFrac', 'offAxisFieldFrac', 'maxAspectRatio',
   ];
   const requiredArrays = [
     'elements', 'surfaces', 'fstopSeries',

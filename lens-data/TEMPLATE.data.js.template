@@ -203,7 +203,8 @@ const LENS_DATA = {
    *
    *  Other overridable defaults (usually fine as-is):
    *    svgW: 1080, svgH: 490, clipMargin: 1.0, maxRimAngleDeg: 40,
-   *    gapSagFrac: 0.90, focusStep: 0.004, apertureStep: 0.004, maxFstop: 16,
+   *    gapSagFrac: 0.90, maxAspectRatio: 1.6,
+   *    focusStep: 0.004, apertureStep: 0.004, maxFstop: 16,
    *    rayFractions: [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],
    *    rayLeadFrac: 0.35, lensShiftFrac: 0.08, offAxisFieldFrac: 0.60,
    *    offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75]

@@ -38,6 +38,7 @@ These are merged automatically. Override only when needed.
 | `clipMargin` | `1.0` | Clipping margin for element trimming |
 | `maxRimAngleDeg` | `40` | Max rim angle (degrees) |
 | `gapSagFrac` | `0.90` | Sag rendering fraction for air gaps |
+| `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
 | `focusStep` | `0.004` | Focus slider step size |
 | `apertureStep` | `0.004` | Aperture slider step size |
 | `maxFstop` | `16` | Maximum f-number for aperture slider |
