@@ -9,8 +9,11 @@
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    SDs estimated from paraxial marginal + chief ray trace at      ║
- * ║    ω = 38.2° with ~8% mechanical clearance.  Patent does not      ║
- * ║    list semi-diameters.                                            ║
+ * ║    ω = 38.2° with clearance.  Patent does not list SDs.           ║
+ * ║    Front group SDs reduced to avoid cross-gap surface overlap     ║
+ * ║    (deep asph on S02 extends into 2.46 mm air gap).  D2 SDs      ║
+ * ║    matched at junction for consistent rendering.  L23 rear SD     ║
+ * ║    kept below conic h_max (K = +7.28).                            ║
  * ║                                                                    ║
  * ║  NOTE ON BFD:                                                      ║
  * ║    Patent surface 11 d = 12.807 mm (to filter).  Filter: 1.40 mm ║
@@ -76,21 +79,21 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── Front group LO ──
-    { label: "1",   R:  17.034,  d: 0.70,  nd: 1.51633,  elemId: 1, sd: 8.1 },   // L11 front
-    { label: "2A",  R:  10.894,  d: 2.46,  nd: 1.0,      elemId: 0, sd: 7.6 },   // L11 rear → air (asph)
-    { label: "3",   R: -18.486,  d: 0.60,  nd: 1.63980,  elemId: 2, sd: 5.8 },   // L12 front
-    { label: "4",   R:   8.332,  d: 2.75,  nd: 1.88100,  elemId: 3, sd: 5.6 },   // L12→L13 junction
+    { label: "1",   R:  17.034,  d: 0.70,  nd: 1.51633,  elemId: 1, sd: 6.0 },   // L11 front
+    { label: "2A",  R:  10.894,  d: 2.46,  nd: 1.0,      elemId: 0, sd: 5.5 },   // L11 rear → air (asph)
+    { label: "3",   R: -18.486,  d: 0.60,  nd: 1.63980,  elemId: 2, sd: 5.2 },   // L12 front
+    { label: "4",   R:   8.332,  d: 2.75,  nd: 1.88100,  elemId: 3, sd: 5.0 },   // L12→L13 junction
     { label: "5",   R: -25.206,  d: 1.10,  nd: 1.0,      elemId: 0, sd: 4.6 },   // L13 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R:   1e15,   d: 1.20,  nd: 1.0,      elemId: 0, sd: 3.4 },   // stop (sd from marginal ray)
 
     // ── Rear group LI ──
-    { label: "7",   R:  13.099,  d: 2.76,  nd: 1.88100,  elemId: 4, sd: 4.5 },   // L21 front
-    { label: "8",   R:  -8.666,  d: 0.50,  nd: 1.69895,  elemId: 5, sd: 5.2 },   // L21→L22 junction
-    { label: "9",   R:  12.744,  d: 1.52,  nd: 1.0,      elemId: 0, sd: 5.3 },   // L22 rear → air
-    { label: "10A", R: -16.835,  d: 1.00,  nd: 1.88202,  elemId: 6, sd: 6.2 },   // L23 front (asph)
-    { label: "11A", R: -17.510,  d: 14.907, nd: 1.0,     elemId: 0, sd: 6.7 },   // L23 rear → air (asph) — BFD to image
+    { label: "7",   R:  13.099,  d: 2.76,  nd: 1.88100,  elemId: 4, sd: 4.8 },   // L21 front
+    { label: "8",   R:  -8.666,  d: 0.50,  nd: 1.69895,  elemId: 5, sd: 4.8 },   // L21→L22 junction
+    { label: "9",   R:  12.744,  d: 1.52,  nd: 1.0,      elemId: 0, sd: 5.0 },   // L22 rear → air
+    { label: "10A", R: -16.835,  d: 1.00,  nd: 1.88202,  elemId: 6, sd: 6.0 },   // L23 front (asph)
+    { label: "11A", R: -17.510,  d: 14.907, nd: 1.0,     elemId: 0, sd: 5.9 },   // L23 rear → air (asph) — BFD to image
   ],
 
   /* ── Aspherical coefficients ──
@@ -160,7 +163,7 @@ const LENS_DATA = {
 
   /* ── Layout tuning ── */
   scFill:           0.42,
-  yScFill:          0.35,
+  yScFill:          0.45,
 };
 
 export default LENS_DATA;
