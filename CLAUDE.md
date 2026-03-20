@@ -21,7 +21,7 @@ LensVisualizer/
 ├── index.html              # HTML entry point
 ├── main.jsx                # React root mount (wraps app in ErrorBoundary)
 ├── ErrorBoundary.jsx       # React class-based error boundary with retry UI
-├── LensViewer-v4.jsx       # Main component (~819 lines): UI chrome, state, SVG renderer
+├── LensViewer-v4.jsx       # Main component (~978 lines): UI chrome, state, SVG renderer
 ├── buildLens.js            # Lens builder — validates data, computes EFL/pupil/field
 ├── optics.js               # Optics engine — ray tracing, sag curves, layout math
 ├── validateLensData.js     # Schema validation for lens data files
@@ -33,14 +33,16 @@ LensVisualizer/
 │   ├── defaults.js         # Shared defaults (ray config, SVG sizing, control steps)
 │   ├── LENS_DATA_SPEC.md   # Full lens data format specification
 │   ├── TEMPLATE.data.js.template  # Annotated template for new lens files
-│   ├── ApoLanthar50f2.data.js
-│   ├── ApoLanthar50f2.analysis.md
-│   ├── Nikkor105f14E.data.js
-│   ├── Nikkor105f14E.analysis.md
-│   ├── Nokton50f1.data.js
-│   ├── Nokton50f1.analysis.md
-│   ├── NikkorZ50mmf18S.data.js
-│   └── NikkorZ50mmf18S.analysis.md
+│   ├── ApoLanthar50f2.data.js     (+.analysis.md)
+│   ├── BerteleSonnar50f2.data.js  (+.analysis.md)
+│   ├── Heliar-US716035.data.js    (+.analysis.md)
+│   ├── Nikkor105f14E.data.js      (+.analysis.md)
+│   ├── NikkorAIS24f28.data.js     (+.analysis.md)
+│   ├── NikkorZ50f12.data.js       (+.analysis.md)
+│   ├── NikkorZ50mmf18S.data.js    (+.analysis.md)
+│   ├── Nokton50f1.data.js         (+.analysis.md)
+│   ├── Sonnar50f15.data.js        (+.analysis.md)
+│   └── ZeissTessar-US721240.data.js (+.analysis.md)
 ├── __tests__/              # Vitest unit tests
 │   ├── buildLens.test.js   # Paraxial trace, EFL, entrance pupil tests
 │   ├── optics.test.js      # Sag, ray trace, layout tests
@@ -49,7 +51,7 @@ LensVisualizer/
 │   └── deploy.yml          # GitHub Actions — builds and deploys to GitHub Pages
 ├── ARCHITECTURE-REVIEW.md  # Refactoring plan and architectural notes
 ├── PLAN-description-panel-and-deploy.md  # Description panel implementation plan
-├── vite.config.js          # Vite config (base: '/LensVisualizer/' for GH Pages)
+├── vite.config.js          # Vite config (base: '/' for dev; deploy.yml handles GH Pages)
 └── package.json            # Dependencies and scripts
 ```
 
@@ -70,7 +72,7 @@ No linters or formatters are configured.
 - **GitHub Pages** via GitHub Actions (`.github/workflows/deploy.yml`)
 - Triggers on push to `main` or manual dispatch
 - Builds with `npm ci && npm run build`, deploys `dist/` to Pages
-- Base path set to `/LensVisualizer/` in `vite.config.js`
+- Base path set to `/` in `vite.config.js` (GitHub Actions deploy handles the Pages base path)
 
 ## Architecture
 
@@ -80,13 +82,13 @@ The codebase follows a layered extraction pattern. Core logic has been extracted
 
 | Module | Lines | Purpose |
 |--------|-------|---------|
-| `LensViewer-v4.jsx` | ~819 | UI component: state, SVG rendering, interaction |
-| `buildLens.js` | ~176 | Lens construction, EFL/pupil/field computation |
-| `optics.js` | ~221 | Ray tracing, sag curves, chromatic tracing, layout geometry |
-| `validateLensData.js` | ~193 | Schema validation for lens data |
+| `LensViewer-v4.jsx` | ~978 | UI component: state, SVG rendering, interaction |
+| `buildLens.js` | ~178 | Lens construction, EFL/pupil/field computation |
+| `optics.js` | ~259 | Ray tracing, sag curves, chromatic tracing, layout geometry |
+| `validateLensData.js` | ~213 | Schema validation for lens data |
 | `themes.js` | ~251 | Theme factory and 4 theme definitions |
-| `featureFlags.js` | ~10 | Feature flags for UI toggles |
-| `lens-data/defaults.js` | ~31 | Shared lens defaults merged into each lens |
+| `featureFlags.js` | ~13 | Feature flags for UI toggles |
+| `lens-data/defaults.js` | ~35 | Shared lens defaults merged into each lens |
 
 ### LensViewer-v4.jsx — Section Layout
 
@@ -130,6 +132,9 @@ Four themes (dark, light, darkHC, lightHC) built via a `createTheme()` factory f
 Feature flags controlling UI toggle visibility and defaults:
 - **`ENABLE_COLOR_TRACING`** — whether the color-tracing UI toggle appears
 - **`DEFAULT_COLOR_TRACING`** — initial state when no localStorage entry exists
+- **`ENABLE_DESKTOP_VIEW_TOGGLE`** — whether the diagram/analysis/both view toggle appears on desktop
+- **`ENABLE_DIAGRAM_ONLY`** — whether "diagram only" view mode is available
+- **`ENABLE_ANALYSIS_ONLY`** — whether "analysis only" view mode is available
 
 ### ErrorBoundary.jsx
 
@@ -142,7 +147,7 @@ Each lens has two files in `lens-data/`:
 - **`.analysis.md`** — Markdown design analysis, rendered in the app's description panel
 
 Supporting files in `lens-data/`:
-- **`defaults.js`** — Shared defaults (`rayFractions`, `rayLeadFrac`, `lensShiftFrac`, `offAxisFieldFrac`, `offAxisFractions`, `svgW`, `svgH`, `clipMargin`, `maxRimAngleDeg`, `gapSagFrac`, `focusStep`, `apertureStep`, `maxFstop`) merged into each lens via `buildLens()`
+- **`defaults.js`** — Shared defaults (`rayFractions`, `rayLeadFrac`, `lensShiftFrac`, `offAxisFieldFrac`, `offAxisFractions`, `svgW`, `svgH`, `clipMargin`, `maxRimAngleDeg`, `gapSagFrac`, `maxAspectRatio`, `focusStep`, `apertureStep`, `maxFstop`) merged into each lens via `buildLens()`
 - **`LENS_DATA_SPEC.md`** — Complete specification for all lens data fields, types, and validation rules
 - **`TEMPLATE.data.js.template`** — Annotated template with inline documentation for creating new lens files
 
@@ -204,7 +209,7 @@ No manual imports or catalog edits required. Shared defaults from `lens-data/def
 
 Tests use **Vitest** and live in `__tests__/`:
 
-- **`buildLens.test.js`** — Tests `paraxialTrace()` with flat/refractive surfaces; validates `buildLens()` output (EFL, entrance pupil, half-field) against all four production lenses
+- **`buildLens.test.js`** — Tests `paraxialTrace()` with flat/refractive surfaces; validates `buildLens()` output (EFL, entrance pupil, half-field) against production lenses
 - **`optics.test.js`** — Tests `sag()`, `renderSag()` with aspherical coefficients; `conjugateK()`, `formatDist()`; `doLayout()` with variable surfaces
 - **`validateLensData.test.js`** — Tests schema validation against production lenses; verifies error reporting for missing fields, duplicate labels, invalid references
 
@@ -226,6 +231,6 @@ Run with `npm run test`. Tests cover the extracted pure-function modules; the Re
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - Section numbering in LensViewer-v4.jsx skips §2–§5 (extracted to separate modules) — don't renumber
-- `vite.config.js` sets `base: '/LensVisualizer/'` — required for GitHub Pages; local dev is unaffected
+- `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
 - Lens data globs match `*.data.js`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
 - `lens-data/defaults.js` values are merged under each lens — per-lens values in `.data.js` take precedence
