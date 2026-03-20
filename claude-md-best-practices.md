@@ -1,22 +1,5 @@
 # CLAUDE.md Best Practices
 
-## What It Is
-
-CLAUDE.md is a configuration file that Claude Code automatically loads at the start of every session. Because the model is stateless, it knows nothing about your codebase without it. The file is the primary mechanism for persistent project context.
-
----
-
-## Hard Architectural Limits
-
-| Constraint | Threshold |
-|---|---|
-| Max reliable instructions | ~150–200 (thinking models); fewer for smaller/non-thinking models |
-| Recommended max file length | ~200 lines; compliance is not guaranteed even at 60 |
-| Code snippets | Avoid — they go stale quickly |
-| Negations without alternatives | Avoid — they cause the agent to get stuck |
-
----
-
 ## What to Include
 
 Structure content around three axes:
