@@ -5,7 +5,7 @@
  * ║  Data source: JP2025-069516A Example 2 (Ricoh / Takahiro Nakayama) ║
  * ║  Quasi-symmetric positive–negative wide-angle for APS-C compact.   ║
  * ║  7 elements / 5 groups, 5 aspherical surfaces (3 asph elements).   ║
- * ║  Focus: G1+G2 translate as unit; G3 fixed to sensor.               ║
+ * ║  Focus: G1+G2 translate forward as unit; G3 fixed to sensor.        ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    No scaling applied — patent prescription is at production       ║
@@ -136,13 +136,13 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (focus mechanism) ──
-   *  Front focus: G1+G2 (surfaces 1–11A) translate toward sensor for close focus.
+   *  Front focus: G1+G2 (surfaces 1–11A) translate forward for close focus.
    *  G3 (surfaces 12A–13A) is fixed relative to the sensor.
    *  Only the D23 air gap (surface 11A) changes.
-   *  Close-focus value computed by paraxial ray trace at 0.12 m object distance.
+   *  Paraxial trace at 0.12 m: G1+G2 extend +2.07 mm, D23 increases to 5.17 mm.
    */
   var: {
-    "11A": [3.10, 1.27],   // [d_infinity, d_close_0.12m]
+    "11A": [3.10, 5.17],   // [d_infinity, d_close_0.12m]
   },
 
   varLabels: [
@@ -163,7 +163,7 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM:       0.12,
-  focusDescription:  "Front focus — G1+G2 translate as a unit toward the sensor for close focus (D23 decreases from 3.10 to 1.27 mm). G3 remains fixed. Macro mode: 0.12 m.",
+  focusDescription:  "Front focus — G1+G2 translate forward as a unit for close focus (D23 increases from 3.10 to 5.17 mm). G3 remains fixed. Macro mode: 0.12 m.",
 
   /* ── Aperture configuration ── */
   nominalFno:   2.8,
