@@ -41,4 +41,10 @@ describe('lensCatalog', () => {
   it('mdForKey returns null for unknown keys', () => {
     expect(mdForKey('nonexistent_lens_key_xyz')).toBeNull();
   });
+
+  it('CATALOG_KEYS is sorted alphabetically by display name', () => {
+    const names = CATALOG_KEYS.map(k => LENS_CATALOG[k].name);
+    const sorted = [...names].sort((a, b) => a.localeCompare(b));
+    expect(names).toEqual(sorted);
+  });
 });
