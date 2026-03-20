@@ -260,3 +260,48 @@ describe('buildLens — vdByIdx', () => {
     }
   });
 });
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  Scale ratio computation (for normalized comparison mode)
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe('scaleRatio for normalized comparison', () => {
+  it('produces ratios in (0, 1] for two different lenses', () => {
+    const LA = buildLens(ApoLanthar);
+    const LB = buildLens(Nokton);
+    const minSC = Math.min(LA.SC, LB.SC);
+    const ratioA = minSC / LA.SC;
+    const ratioB = minSC / LB.SC;
+    expect(ratioA).toBeGreaterThan(0);
+    expect(ratioA).toBeLessThanOrEqual(1);
+    expect(ratioB).toBeGreaterThan(0);
+    expect(ratioB).toBeLessThanOrEqual(1);
+    /* Exactly one ratio should be 1 (the lens with the smaller SC) */
+    expect(Math.max(ratioA, ratioB)).toBeCloseTo(1, 10);
+  });
+
+  it('produces ratio=1 for the same lens compared to itself', () => {
+    const L = buildLens(Nokton);
+    const ratio = Math.min(L.SC, L.SC) / L.SC;
+    expect(ratio).toBe(1);
+  });
+
+  it('effectiveSC and effectiveYSC scale proportionally', () => {
+    const L = buildLens(ApoLanthar);
+    const ratio = 0.75;
+    const effectiveSC = L.SC * ratio;
+    const effectiveYSC = L.YSC * ratio;
+    /* The aspect ratio SC:YSC should be preserved */
+    expect(effectiveSC / effectiveYSC).toBeCloseTo(L.SC / L.YSC, 10);
+  });
+
+  it('all production lenses have positive SC and YSC', () => {
+    const lenses = [ApoLanthar, Nokton];
+    for (const data of lenses) {
+      const L = buildLens(data);
+      expect(L.SC).toBeGreaterThan(0);
+      expect(L.YSC).toBeGreaterThan(0);
+    }
+  });
+});
