@@ -301,11 +301,11 @@ export default function LensDiagramPanel({
       {/* ── Header ── */}
       <div ref={headerRef} style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s", ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}) }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 12, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 10, flexWrap: "wrap" }}>
             <h1 style={{ fontSize: compact ? 14 : 17, fontWeight: 700, letterSpacing: "0.04em", margin: 0, color: t.title, fontFamily: "'DM Sans','Helvetica Neue',sans-serif", transition: "color 0.3s" }}>{L.data.name}</h1>
-            <span style={{ fontSize: compact ? 9 : 10.5, color: t.subtitle, letterSpacing: "0.08em", transition: "color 0.3s" }}>{L.data.subtitle}</span>
-            {!compact && <a href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`} target="_blank" rel="noopener noreferrer" title={`Search Flickr for "${L.data.name}"`} style={{ fontSize: 10, color: t.muted, letterSpacing: "0.08em", textDecoration: "none", whiteSpace: "nowrap", transition: "color 0.3s" }}>flickr</a>}
+            {!compact && <a href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`} target="_blank" rel="noopener noreferrer" title={`Search Flickr for "${L.data.name}"`} style={{ fontSize: 11, color: t.descLinkColor, letterSpacing: "0.06em", textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40`, whiteSpace: "nowrap", transition: "color 0.3s, border-color 0.3s" }}>flickr ↗</a>}
           </div>
+          <span style={{ display: "block", fontSize: compact ? 9 : 10.5, color: t.subtitle, letterSpacing: "0.08em", marginTop: compact ? 2 : 3, transition: "color 0.3s" }}>{L.data.subtitle}</span>
           <div style={{ display: "flex", gap: compact ? 14 : 22, marginTop: compact ? 4 : 6, fontSize: compact ? 9 : 10, color: t.specs, letterSpacing: "0.06em", transition: "color 0.3s", flexWrap: "wrap" }}>
             {L.data.specs.map((s, i) => <span key={i}>{s}</span>)}
           </div>
