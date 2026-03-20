@@ -582,36 +582,41 @@ export default function LensVisualization() {
         <text x={IX} y={sy(L.lyImgLabel)} textAnchor="middle" fill={t.imgLabel} fontSize={7.5} fontFamily="inherit" style={{ letterSpacing: "0.12em" }}>IMG</text>
 
         {showChromatic && chromSpread && chromSpread.lcaMm !== 0 && (() => {
-          const mag = Math.min(30 / Math.abs(chromSpread.lcaMm), 5000);
-          const insetX = IX + 8;
-          const insetY = sy(0) - 45;
-          const insetW = 52;
-          const insetH = 58;
-          const midX = insetX + insetW / 2;
+          const insetW = 90;
+          const insetH = 100;
           const gRef = chromSpread.intercepts.G || IMG_MM;
+          const activeChans = ['R', 'G', 'B'].filter(ch => chromSpread.intercepts[ch] !== undefined);
+          const offsets = activeChans.map(ch => Math.abs(chromSpread.intercepts[ch] - gRef));
+          const maxOff = Math.max(...offsets, 1e-9);
+          const maxPixelSpan = (insetW - 24) / 2;
+          const mag = Math.min(maxPixelSpan / (maxOff * L.SC), 5000);
+          let insetX = IX + 10;
+          if (insetX + insetW > L.svgW - 4) insetX = IX - insetW - 10;
+          const insetY = sy(0) - 55;
+          const midX = insetX + insetW / 2;
           return <g>
             <rect x={insetX} y={insetY} width={insetW} height={insetH}
-              rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.5} opacity={0.92} />
-            <text x={midX} y={insetY + 9} textAnchor="middle" fill={t.muted}
-              fontSize={5.5} fontFamily="inherit" style={{ letterSpacing: "0.1em" }}>LCA</text>
-            <line x1={insetX + 4} y1={insetY + 24} x2={insetX + insetW - 4} y2={insetY + 24}
-              stroke={t.axis} strokeWidth={0.4} />
-            {['R', 'G', 'B'].filter(ch => chromSpread.intercepts[ch] !== undefined).map(ch => {
+              rx={4} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.6} opacity={0.94} />
+            <text x={midX} y={insetY + 14} textAnchor="middle" fill={t.muted}
+              fontSize={8.5} fontFamily="inherit" style={{ letterSpacing: "0.1em" }}>LCA</text>
+            <line x1={insetX + 6} y1={insetY + 40} x2={insetX + insetW - 6} y2={insetY + 40}
+              stroke={t.axis} strokeWidth={0.5} />
+            {activeChans.map(ch => {
               const offset = (chromSpread.intercepts[ch] - gRef) * mag * L.SC;
               const color = ch === 'R' ? t.rayChromR : ch === 'G' ? t.rayChromG : t.rayChromB;
               return <g key={ch}>
-                <line x1={midX + offset} y1={insetY + 14} x2={midX + offset} y2={insetY + 34}
-                  stroke={color} strokeWidth={1.5} strokeLinecap="round" />
-                <text x={midX + offset} y={insetY + 41} textAnchor="middle" fill={color}
-                  fontSize={5.5} fontFamily="inherit" fontWeight={600}>{ch}</text>
+                <line x1={midX + offset} y1={insetY + 22} x2={midX + offset} y2={insetY + 56}
+                  stroke={color} strokeWidth={2} strokeLinecap="round" />
+                <text x={midX + offset} y={insetY + 67} textAnchor="middle" fill={color}
+                  fontSize={8.5} fontFamily="inherit" fontWeight={600}>{ch}</text>
               </g>;
             })}
-            <text x={midX} y={insetY + 50} textAnchor="middle" fill={t.value}
-              fontSize={6.5} fontFamily="inherit" fontWeight={600}>
+            <text x={midX} y={insetY + 82} textAnchor="middle" fill={t.value}
+              fontSize={10} fontFamily="inherit" fontWeight={600}>
               {Math.abs(chromSpread.lcaMm * 1000) >= 1 ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m` : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
             </text>
-            <text x={midX} y={insetY + 57} textAnchor="middle" fill={t.muted}
-              fontSize={5} fontFamily="inherit">{Math.round(mag)}{"\u00d7"}</text>
+            <text x={midX} y={insetY + 95} textAnchor="middle" fill={t.muted}
+              fontSize={7.5} fontFamily="inherit">{Math.round(mag)}{"\u00d7"}</text>
           </g>;
         })()}
 
@@ -627,8 +632,8 @@ export default function LensVisualization() {
           const on = act === eid;
           const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
           return <text key={`vd${eid}`} x={sx((z1 + z2) / 2)} y={sy(L.lyVdBadge)} textAnchor="middle"
-            fill={on ? t.elemNumActive : dispColor} fontSize={6} fontFamily="inherit"
-            fontWeight={on ? 600 : 400} opacity={on ? 1 : 0.75}>{"\u03bd"}{e.vd.toFixed(0)}</text>;
+            fill={on ? t.elemNumActive : dispColor} fontSize={8.5} fontFamily="inherit"
+            fontWeight={on ? 600 : 500} opacity={on ? 1 : 0.90}>{"\u03bd"}{e.vd.toFixed(0)}</text>;
         })}
 
         {L.groups.map(({ text, fromSurface, toSurface }) => (
@@ -720,7 +725,9 @@ export default function LensVisualization() {
                   <span style={{ color: t.propLabel, marginLeft: 8 }}> n</span><span style={{ color: t.rayChromB }}>B</span><span style={{ color: t.propLabel }}> = </span>
                   <span style={{ color: t.rayChromB }}>{(info.nd + (info.nd - 1) / (2 * info.vd)).toFixed(5)}</span>
                 </div>
-                <div><span style={{ color: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh, display: "inline-block", flexShrink: 0 }} />
+                  <span style={{ color: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh }}>
                   {info.vd >= 55 ? "Low dispersion" : info.vd >= 35 ? "Normal dispersion" : "High dispersion"}{info.vd >= 65 ? " (ED)" : ""}
                 </span></div>
               </div>}
@@ -754,14 +761,40 @@ export default function LensVisualization() {
                   <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="5" x2="14" y2="5" stroke={t.rayOffWarm} strokeWidth="0.8" strokeDasharray="3,4" opacity="0.35" /></svg>
                   <span style={{ color: t.legendText }}>Vignetted (ghost)</span>
                 </div>}
-                {showChromatic && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                  <svg width="14" height="10" viewBox="0 0 14 10">
-                    {chromR && <line x1="0" y1="2" x2="14" y2="2" stroke={t.rayChromR} strokeWidth="1.5" />}
-                    {chromG && <line x1="0" y1="5" x2="14" y2="5" stroke={t.rayChromG} strokeWidth="1.5" />}
-                    {chromB && <line x1="0" y1="8" x2="14" y2="8" stroke={t.rayChromB} strokeWidth="1.5" />}
+                {showChromatic && (() => {
+                  const activeCh = [chromR && 'R', chromG && 'G', chromB && 'B'].filter(Boolean);
+                  const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join('/')})` : 'Chromatic (none)';
+                  const lcaStr = chromSpread && chromSpread.lcaMm !== 0
+                    ? ` · LCA ${Math.abs(chromSpread.lcaMm * 1000) >= 1 ? Math.abs(chromSpread.lcaMm * 1000).toFixed(0) : Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`
+                    : '';
+                  return <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                  <svg width="22" height="14" viewBox="0 0 22 14">
+                    {chromR && <line x1="0" y1="3" x2="22" y2="3" stroke={t.rayChromR} strokeWidth="1.8" />}
+                    {chromG && <line x1="0" y1="7" x2="22" y2="7" stroke={t.rayChromG} strokeWidth="1.8" />}
+                    {chromB && <line x1="0" y1="11" x2="22" y2="11" stroke={t.rayChromB} strokeWidth="1.8" />}
                   </svg>
-                  <span style={{ color: t.legendText }}>Chromatic (R/G/B)</span>
-                </div>}
+                  <span style={{ color: t.legendText }}>{chromLabel}{lcaStr}</span>
+                </div>;})()}
+                {showChromatic && chromSpread && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 4, flexBasis: "100%" }}>
+                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>LCA</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: t.value, fontVariantNumeric: "tabular-nums" }}>
+                      {chromSpread.lcaMm !== 0
+                        ? (Math.abs(chromSpread.lcaMm * 1000) >= 1
+                          ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} µm`
+                          : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`)
+                        : '< 0.1 µm'}
+                    </span>
+                    {chromSpread.tcaMm !== 0 && <>
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", marginLeft: 6 }}>TCA</span>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: t.value, fontVariantNumeric: "tabular-nums" }}>
+                        {Math.abs(chromSpread.tcaMm * 1000) >= 1
+                          ? `${Math.abs(chromSpread.tcaMm * 1000).toFixed(0)} µm`
+                          : `${Math.abs(chromSpread.tcaMm * 1000).toFixed(1)} µm`}
+                      </span>
+                    </>}
+                  </div>
+                )}
               </div>
             </div>
           )}
