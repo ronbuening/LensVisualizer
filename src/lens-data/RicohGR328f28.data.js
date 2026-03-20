@@ -132,10 +132,12 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (focus mechanism) ──
    *  Unit focus: entire lens translates; only BFD changes.
-   *  Close focus ≈ 0.10 m (normal mode); BFD shortens by ~4.1 mm.
+   *  Close focus ≈ 0.10 m (normal mode); BFD extends by ~3.8 mm.
+   *  Paraxial trace: air-equiv BFD 14.431 → 18.216 mm (+3.785 mm).
+   *  Physical BFD includes filter path (0.476 mm shift).
    */
   var: {
-    "11A": [14.907, 10.80],
+    "11A": [14.907, 18.69],
   },
 
   varLabels: [
