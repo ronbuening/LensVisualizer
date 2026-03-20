@@ -34,6 +34,9 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | NIKKOR Z 50mm f/1.8 S | 12 | 2 aspherics + 2 ED elements |
 | NIKON NIKKOR Z 50mm f/1.2 S | 17+filter | 3 aspherics; multi-group AF; 6 APD elements |
 | NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
+| RICOH GR 28mm f/2.8 | 7 | Retrofocus; 1 aspheric; US 5,760,973 |
+| RICOH GR III 18.3mm f/2.8 | 6 | Compact retrofocus; US 2019/0154946 A1 |
+| RICOH GR IV 18.3mm f/2.8 | 7 | Compact retrofocus; JP2025-069516A |
 
 New lenses are auto-registered — just add a `.data.js` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
 
@@ -90,6 +93,7 @@ LensVisualizer/
 │   │   └── validateLensData.js         # Schema validation
 │   ├── utils/                          # Themes, feature flags, catalog, hooks
 │   ├── content/                        # AboutMe.md, AboutSite.md
-│   └── lens-data/                      # 10 lens prescriptions + analyses
-└── __tests__/                          # Vitest unit tests (6 files)
+│   └── lens-data/                      # Lens prescriptions + analyses
+├── agent_docs/                         # Documentation for AI coding assistants
+└── __tests__/                          # Vitest unit tests
 ```
