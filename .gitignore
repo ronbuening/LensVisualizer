@@ -1,5 +1,8 @@
 # React .gitignore Template - Updated 2025
 
+# Claude Code
+.claude/
+
 # Dependencies
 node_modules/
 npm-debug.log*
