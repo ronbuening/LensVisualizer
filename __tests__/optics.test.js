@@ -58,16 +58,37 @@ describe('formatDist', () => {
 describe('thick', () => {
   it('returns surface d when no variable spacing', () => {
     const L = { S: [{ d: 5.0 }], varByIdx: {} };
-    expect(thick(0, 0, L)).toBe(5.0);
-    expect(thick(0, 0.5, L)).toBe(5.0);
-    expect(thick(0, 1.0, L)).toBe(5.0);
+    expect(thick(0, 0, 0, L)).toBe(5.0);
+    expect(thick(0, 0.5, 0, L)).toBe(5.0);
+    expect(thick(0, 1.0, 0, L)).toBe(5.0);
   });
 
   it('interpolates variable spacing', () => {
     const L = { S: [{ d: 5.0 }], varByIdx: { 0: [5.0, 10.0] } };
-    expect(thick(0, 0, L)).toBe(5.0);
-    expect(thick(0, 0.5, L)).toBe(7.5);
-    expect(thick(0, 1.0, L)).toBe(10.0);
+    expect(thick(0, 0, 0, L)).toBe(5.0);
+    expect(thick(0, 0.5, 0, L)).toBe(7.5);
+    expect(thick(0, 1.0, 0, L)).toBe(10.0);
+  });
+
+  it('interpolates zoom variable spacing', () => {
+    const L = {
+      S: [{ d: 2.0 }],
+      varByIdx: { 0: [[2.0, 4.0], [6.0, 8.0], [10.0, 12.0]] },
+      isZoom: true,
+    };
+    // zoomT=0, focusT=0 → wide, infinity → 2.0
+    expect(thick(0, 0, 0, L)).toBe(2.0);
+    // zoomT=0, focusT=1 → wide, close → 4.0
+    expect(thick(0, 1, 0, L)).toBe(4.0);
+    // zoomT=1, focusT=0 → tele, infinity → 10.0
+    expect(thick(0, 0, 1, L)).toBe(10.0);
+    // zoomT=1, focusT=1 → tele, close → 12.0
+    expect(thick(0, 1, 1, L)).toBe(12.0);
+    // zoomT=0.5, focusT=0 → mid zoom, infinity → lerp(2,6,0) at z0→z1 then lerp(6,10,0) — at 0.5 we're at z1 = 6.0
+    expect(thick(0, 0, 0.5, L)).toBe(6.0);
+    // zoomT=0.25, focusT=0.5 → between z0 and z1, mid focus
+    // d_inf = 2 + (6-2)*0.5 = 4, d_close = 4 + (8-4)*0.5 = 6, result = 4 + (6-4)*0.5 = 5
+    expect(thick(0, 0.5, 0.25, L)).toBe(5.0);
   });
 });
 
@@ -77,7 +98,7 @@ describe('doLayout', () => {
       S: [{ d: 2.0 }, { d: 3.0 }, { d: 5.0 }],
       varByIdx: {},
     };
-    const { z, imgZ } = doLayout(0, L);
+    const { z, imgZ } = doLayout(0, 0, L);
     expect(z).toEqual([0, 2.0, 5.0]);
     expect(imgZ).toBe(10.0);
   });
@@ -150,7 +171,7 @@ describe('traceRay — exact Snell', () => {
   it('on-axis ray (h=0, u=0) passes through unchanged', () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
-    const { y, u, clipped } = traceRay(0, 0, zPos, 0, 15, false, L);
+    const { y, u, clipped } = traceRay(0, 0, zPos, 0, 0, 15, false, L);
     expect(y).toBeCloseTo(0, 10);
     expect(u).toBeCloseTo(0, 10);
     expect(clipped).toBe(false);
@@ -160,13 +181,13 @@ describe('traceRay — exact Snell', () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
     const h = 0.1;  // very small height
-    const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 15, false, L);
+    const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // traceRay stops at last surface; traceToImage propagates through final gap
     // Extrapolate real ray to image plane for comparison
     const imgZ = 5 + 80;  // last surface z + last d
     const lastSurfZ = zPos[1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
-    const yParax = traceToImage(h, 0, 0, L);
+    const yParax = traceToImage(h, 0, 0, 0, L);
     expect(yRealAtImage).toBeCloseTo(yParax, 3);
   });
 
@@ -174,13 +195,13 @@ describe('traceRay — exact Snell', () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
     const h = 12;  // near full aperture
-    const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 15, false, L);
+    const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // Extrapolate real ray to image plane
     const imgZ = 5 + 80;
     const lastSurfZ = zPos[1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     // Paraxial image height
-    const yParax = traceToImage(h, 0, 0, L);
+    const yParax = traceToImage(h, 0, 0, 0, L);
     // Real ray at paraxial image plane should differ from paraxial (spherical aberration)
     expect(Math.abs(yRealAtImage - yParax)).toBeGreaterThan(0.01);
   });
@@ -201,14 +222,14 @@ describe('traceRay — exact Snell', () => {
     };
     const zPos = [0, 5];
     // Ray at steep angle entering high-index glass, then hitting flat exit surface
-    const { clipped } = traceRay(9, 0.5, zPos, 0, 20, true, L);
+    const { clipped } = traceRay(9, 0.5, zPos, 0, 0, 20, true, L);
     expect(clipped).toBe(true);
   });
 
   it('generates rendering points for each surface', () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
-    const { pts, clipped } = traceRay(5, 0, zPos, 0, 15, false, L);
+    const { pts, clipped } = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     expect(clipped).toBe(false);
     // pts: lead point + 2 surface points + (no image extrapolation in traceRay itself)
     expect(pts.length).toBe(3);
@@ -264,8 +285,8 @@ describe('traceRayChromatic', () => {
   it('green channel matches traceRay exactly', () => {
     const L = mkChromElement();
     const zPos = [0, 5];
-    const ref = traceRay(5, 0, zPos, 0, 15, false, L);
-    const chrom = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'G');
+    const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L);
+    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'G');
     expect(chrom.y).toBeCloseTo(ref.y, 10);
     expect(chrom.u).toBeCloseTo(ref.u, 10);
   });
@@ -273,8 +294,8 @@ describe('traceRayChromatic', () => {
   it('blue ray bends more than red ray', () => {
     const L = mkChromElement();
     const zPos = [0, 5];
-    const red  = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'R');
-    const blue = traceRayChromatic(5, 0, zPos, 0, 15, false, L, 'B');
+    const red  = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'R');
+    const blue = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'B');
     // Positive height, positive curvature → rays converge downward
     // Higher index (blue) bends more → more negative u (steeper convergence)
     expect(Math.abs(blue.u)).toBeGreaterThan(Math.abs(red.u));
@@ -283,8 +304,8 @@ describe('traceRayChromatic', () => {
   it('all channels agree for on-axis ray', () => {
     const L = mkChromElement();
     const zPos = [0, 5];
-    const red  = traceRayChromatic(0, 0, zPos, 0, 15, false, L, 'R');
-    const blue = traceRayChromatic(0, 0, zPos, 0, 15, false, L, 'B');
+    const red  = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, 'R');
+    const blue = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, 'B');
     expect(red.y).toBeCloseTo(0, 10);
     expect(blue.y).toBeCloseTo(0, 10);
   });
@@ -358,11 +379,11 @@ import Sonnar50f15Raw from '../src/lens-data/ZeissSonnar50f15.data.js';
 
 describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
-  const { z: zPos, imgZ } = doLayout(0, L);
+  const { z: zPos, imgZ } = doLayout(0, 0, L);
 
   it('on-axis marginal ray at full aperture (f/1.5) traces without clipping', () => {
     const h = L.EP.epSD;  // marginal ray at entrance pupil edge
-    const { clipped, pts } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+    const { clipped, pts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
     expect(pts.length).toBeGreaterThan(2);
   });
@@ -370,14 +391,14 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   it('on-axis ray fan traces without TIR at default fractions', () => {
     for (const f of L.rayFractions) {
       const h = f * L.EP.epSD;
-      const { clipped } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+      const { clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
       expect(clipped).withContext(`fraction ${f}`).toBe(false);
     }
   });
 
   it('on-axis ray converges to image plane (finite y at image)', () => {
     const h = 0.5 * L.EP.epSD;
-    const { y, u, clipped } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
+    const { y, u, clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
     // Extrapolate to image: y + (imgZ - zPos[last]) * u
     const yAtImage = y + (imgZ - zPos[L.N - 1]) * u;
@@ -387,8 +408,8 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
 
   it('paraxial and exact rays agree for small heights', () => {
     const h = 0.01;  // very small ray height
-    const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, L.stopPhysSD, false, L);
-    const yParax = traceToImage(h, 0, 0, L);
+    const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
+    const yParax = traceToImage(h, 0, 0, 0, L);
     const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
     expect(yExactAtImage).toBeCloseTo(yParax, 2);
   });
@@ -396,7 +417,7 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   it('off-axis chief ray traces without clipping at 60% field', () => {
     const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
     const yChief = -(L.B / L.EP.yRatio) * uField;
-    const { clipped } = traceRay(yChief, uField, zPos, 0, L.stopPhysSD, false, L);
+    const { clipped } = traceRay(yChief, uField, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
   });
 
@@ -407,7 +428,7 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     for (const f of L.offAxisFractions) {
       const hOff = f * L.EP.epSD;
       const y0 = yChief + hOff;
-      const { clipped } = traceRay(y0, uField, zPos, 0, L.stopPhysSD, false, L);
+      const { clipped } = traceRay(y0, uField, zPos, 0, 0, L.stopPhysSD, false, L);
       if (!clipped) passCount++;
     }
     // At least the chief ray (f=0) should pass; some marginal off-axis may vignette
@@ -417,7 +438,7 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   it('chromatic rays (R, G, B) trace without TIR at half-aperture', () => {
     const h = 0.5 * L.EP.epSD;
     for (const ch of ['R', 'G', 'B']) {
-      const { clipped } = traceRayChromatic(h, 0, zPos, 0, L.stopPhysSD, false, L, ch);
+      const { clipped } = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
       expect(clipped).withContext(`channel ${ch}`).toBe(false);
     }
   });
@@ -426,7 +447,7 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     const h = 0.75 * L.EP.epSD;
     const marginalRays = {};
     for (const ch of ['R', 'G', 'B']) {
-      marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, L.stopPhysSD, false, L, ch);
+      marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
     }
     const lastSurfZ = zPos[L.N - 1];
     const spread = computeChromaticSpread(marginalRays, imgZ, lastSurfZ);
@@ -435,9 +456,9 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   });
 
   it('rays trace at close focus (t=1) without TIR', () => {
-    const { z: zClose, imgZ: imgZClose } = doLayout(1.0, L);
+    const { z: zClose, imgZ: imgZClose } = doLayout(1.0, 0, L);
     const h = 0.5 * L.EP.epSD;
-    const { clipped } = traceRay(h, 0, zClose, 1.0, L.stopPhysSD, false, L);
+    const { clipped } = traceRay(h, 0, zClose, 1.0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
   });
 
@@ -445,14 +466,14 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     // At f/8, stop SD = EP_SD × (f_open / f_stop)
     const stoppedSD = L.stopPhysSD * (L.FOPEN / 8);
     const h = 0.83 * stoppedSD / L.EP.yRatio;  // scale to EP
-    const { clipped } = traceRay(h, 0, zPos, 0, stoppedSD, false, L);
+    const { clipped } = traceRay(h, 0, zPos, 0, 0, stoppedSD, false, L);
     expect(clipped).toBe(false);
   });
 
   it('ghost mode returns rendering points even when clipped', () => {
     // Use a very large ray that will definitely clip
     const h = 2.0 * L.EP.epSD;
-    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, L.stopPhysSD, true, L);
+    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
     expect(clipped).toBe(true);
     // Should still have some rendering points (pts from before clip + ghostPts after)
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);
@@ -470,18 +491,18 @@ describe('conjugateK', () => {
   ];
 
   it.each(allLenses)('%s: conjugateK(0) ≈ 0 at infinity', (name, L) => {
-    const K = conjugateK(0, L);
+    const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
 
   it('Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)', () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
-    const K = conjugateK(0, L);
+    const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
 
   it.each(allLenses)('%s: conjugateK(1.0) is nonzero at close focus', (name, L) => {
-    const K = conjugateK(1.0, L);
+    const K = conjugateK(1.0, 0, L);
     expect(Math.abs(K)).toBeGreaterThan(1e-6);
   });
 
@@ -490,7 +511,7 @@ describe('conjugateK', () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
     // Manually corrupt EP to trigger NaN path
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
-    expect(conjugateK(0, badL)).toBe(0);
+    expect(conjugateK(0, 0, badL)).toBe(0);
   });
 });
 

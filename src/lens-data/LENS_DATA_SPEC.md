@@ -70,6 +70,9 @@ These must be specified in every lens file — they have no defaults.
 | `varLabels` | `array` | | Display labels for variable gaps |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
+| `zoomPositions` | `number[]` | | Focal lengths in mm at each zoom position (see Zoom Lens Fields) |
+| `zoomStep` | `number` | `0.004` | Zoom slider step size |
+| `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
 
 ---
 
@@ -196,7 +199,9 @@ Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h�
 
 ## Variable Air Spacings (`var`)
 
-Describes air gaps that change during focus.
+Describes air gaps that change during focus (and optionally zoom).
+
+### Prime Lens Format (no `zoomPositions`)
 
 ```javascript
 var: {
@@ -211,19 +216,85 @@ varLabels: [
 ],
 ```
 
-**Rules:**
+### Zoom Lens Format (with `zoomPositions`)
+
+When `zoomPositions` is present, each `var` value becomes an array of `[d_infinity, d_close]` pairs — one per zoom position:
+
+```javascript
+zoomPositions: [24, 50, 70],   // 3 zoom positions
+var: {
+  "5":  [[2.0, 2.5], [4.0, 4.8], [3.5, 4.2]],   // one [d_inf, d_close] pair per zoom position
+  "10": [[8.0, 6.5], [5.0, 3.2], [6.5, 5.0]],
+  "15": [[12.0, 14.5], [15.0, 17.8], [13.5, 16.0]],
+},
+```
+
+For zoom-only movements (no focus variation at that gap), use identical inf/close values:
+
+```javascript
+  "5":  [[1.0, 1.0], [3.0, 3.0], [2.5, 2.5]],   // zoom only, no focus change
+```
+
+**Detection:** `zoomPositions` present → zoom format. Absent → prime format.
+
+The surface's `d` field should equal `var[label][0][0]` (infinity focus at the first zoom position).
+
+### Rules
+
 - Keys must match existing surface labels
-- Each value is `[d_infinity, d_close]` — exactly 2 numbers
-- The surface's `d` field should equal `var[label][0]` (infinity value)
+- **Prime:** Each value is `[d_infinity, d_close]` — exactly 2 numbers
+- **Zoom:** Each value is an array of `[d_inf, d_close]` pairs, length matching `zoomPositions.length`
 - `varLabels` entries must reference keys present in `var`
 
-**Focus types by number of variable gaps:**
+### Focus types by number of variable gaps
 
 | Gaps | Type | Description |
 |------|------|-------------|
 | 1 | Unit focus | Entire lens moves; only BFD changes |
 | 2 | Inner focus | Internal group moves; 2 gaps change |
 | 3+ | Floating focus | Multiple groups move independently |
+
+---
+
+## Zoom Lens Fields
+
+Optional fields that enable zoom lens support. When `zoomPositions` is absent, the lens is treated as a prime (fixed focal length) — all existing prime lenses work unchanged.
+
+### `zoomPositions` (required for zoom)
+
+Array of focal lengths in mm at each defined zoom position. Must have at least 2 entries, monotonically increasing.
+
+```javascript
+zoomPositions: [24, 50, 70],
+```
+
+These are interpolation control points, not discrete stops. The zoom slider is continuous — between any two defined positions, spacing values are linearly interpolated, giving smooth movement at every intermediate focal length.
+
+**Non-monotonic (reversing) groups:** Some zoom designs have groups that move forward then reverse direction. This is naturally handled by the piecewise-linear interpolation — if a gap's spacing goes `[2.0, 5.0, 3.0]` across three zoom positions, the interpolation correctly produces the forward-then-backward motion. Include enough zoom positions to bracket any reversals (standard zoom patents provide 3–5 positions, which is sufficient).
+
+### `zoomStep` (optional)
+
+Zoom slider step size. Default: `0.004`.
+
+### `zoomLabels` (optional)
+
+Endpoint labels for the zoom slider, e.g. `["Wide", "Tele"]`.
+
+### Computed fields (by `buildLens`)
+
+These are computed automatically and added to the frozen lens object:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `isZoom` | `boolean` | `true` when `zoomPositions` is present |
+| `zoomEFLs` | `number[]` | Computed EFL at each zoom position via paraxial trace |
+
+### Validation
+
+When `zoomPositions` is present:
+1. Must be an array of at least 2 finite numbers
+2. Must be monotonically increasing
+3. All `var` values must be arrays of `[d_inf, d_close]` pairs with length matching `zoomPositions.length`
 
 ---
 
@@ -258,8 +329,9 @@ doublets: [
 4. Every element is referenced by at least one surface
 5. All surface `elemId` values reference valid elements (or `0` for air)
 6. All `asph` keys match existing surface labels
-7. All `var` keys match existing surface labels with `[d_inf, d_close]` arrays
+7. All `var` keys match existing surface labels with correct format (prime: `[d_inf, d_close]`; zoom: array of pairs matching `zoomPositions.length`)
 8. All `varLabels` reference valid surface labels
+12. `zoomPositions` (when present): array of ≥2 finite, monotonically increasing numbers
 9. All `groups`/`doublets` reference valid surface labels
 10. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness. The renderer further refines this by computing effective clearance at each gap, accounting for the neighboring element's surface sag (surfaces curving away from the gap widen clearance; surfaces curving into it narrow clearance)
 11. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)

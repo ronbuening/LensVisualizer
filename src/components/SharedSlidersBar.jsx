@@ -1,17 +1,18 @@
 /**
- * SharedSlidersBar — unified focus/aperture controls for comparison mode.
+ * SharedSlidersBar — unified focus/aperture/zoom controls for comparison mode.
  */
 
 import { formatSharedFocusDist, sharedFNumber } from '../utils/comparisonSliders.js';
-import { formatDist } from '../optics/optics.js';
+import { formatDist, eflAtZoom } from '../optics/optics.js';
 
-export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, onSharedFocusChange, onSharedStopdownChange, onFocusPointerDown, onAperturePointerDown, focusPair, aperturePair, theme: t, isWide }) {
+export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, sharedZoomT, onSharedFocusChange, onSharedStopdownChange, onSharedZoomChange, onFocusPointerDown, onAperturePointerDown, onSliderPointerUp, focusPair, aperturePair, zoomPair, theme: t, isWide }) {
   const { commonPoint: focusCP, minCloseFocus, maxCloseFocus } = focusPair;
   const { commonPoint: apertureCP, widerFOPEN, narrowerFOPEN, sharedMaxFstop } = aperturePair;
   const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
   const focusDistStr = formatSharedFocusDist(sharedFocusT, minCloseFocus);
   const showFocusCP = focusCP > 0.01 && focusCP < 0.99;
   const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
+  const showZoom = zoomPair?.showZoom;
 
   const sliderWrap = { position: "relative", flex: 1 };
   const markerStyle = (pos) => ({
@@ -24,9 +25,39 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
     width: 1, background: `${t.sliderAccent}40`, pointerEvents: "none",
   });
 
+  /* Zoom readout helpers */
+  const zoomReadoutA = LA.isZoom ? `${eflAtZoom(zoomPair?.zoomA ?? 0, LA).toFixed(0)} mm` : "\u2014";
+  const zoomReadoutB = LB.isZoom ? `${eflAtZoom(zoomPair?.zoomB ?? 0, LB).toFixed(0)} mm` : "\u2014";
+  const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
+  const zoomEfl = zoomLens ? eflAtZoom(sharedZoomT, zoomLens).toFixed(0) : "";
+
   return (
     <div style={{ padding: isWide ? "14px 24px" : "12px 14px", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, transition: "background 0.3s,border-color 0.3s" }}>
       <div style={{ display: "flex", flexDirection: isWide ? "row" : "column", gap: isWide ? 32 : 16 }}>
+        {/* Zoom slider (only when at least one lens is a zoom) */}
+        {showZoom && (
+          <div style={{ flex: 1 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+              <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 55 }}>ZOOM</span>
+              <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{zoomEfl} mm</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomLens.zoomPositions[0]} mm</span>
+              <div style={sliderWrap}>
+                <input type="range" min="0" max="1" step="0.004" value={sharedZoomT}
+                  onChange={e => onSharedZoomChange(parseFloat(e.target.value))}
+                  onPointerUp={onSliderPointerUp}
+                  style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
+              </div>
+              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomLens.zoomPositions[zoomLens.zoomPositions.length - 1]} mm</span>
+            </div>
+            <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums" }}>
+              <span>A: {zoomReadoutA}</span>
+              <span>B: {zoomReadoutB}</span>
+            </div>
+          </div>
+        )}
+
         {/* Focus slider */}
         <div style={{ flex: 1 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
@@ -41,6 +72,7 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
               <input type="range" min="0" max="1" step="0.004" value={sharedFocusT}
                 onPointerDown={onFocusPointerDown}
                 onChange={e => onSharedFocusChange(parseFloat(e.target.value))}
+                onPointerUp={onSliderPointerUp}
                 style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
             </div>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minCloseFocus} m</span>
@@ -68,6 +100,7 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
               <input type="range" min="0" max="1" step="0.004" value={sharedStopdownT}
                 onPointerDown={onAperturePointerDown}
                 onChange={e => onSharedStopdownChange(parseFloat(e.target.value))}
+                onPointerUp={onSliderPointerUp}
                 style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
             </div>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{sharedMaxFstop}</span>
@@ -80,7 +113,7 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
                 const stopT = Math.log(n / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
                 return (
                   <span key={n}
-                    onClick={() => onSharedStopdownChange(Math.max(0, stopT))}
+                    onClick={() => { onSharedStopdownChange(Math.max(0, stopT)); onSliderPointerUp?.(); }}
                     style={{ cursor: "pointer", opacity: Math.abs(fNum - n) < 0.15 ? 1 : 0.55, transition: "opacity 0.15s" }}>
                     f/{n}
                   </span>

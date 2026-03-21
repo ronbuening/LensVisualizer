@@ -97,3 +97,17 @@ export function snapToCommon(rawT, commonPoint, snapRange = 0.008) {
   if (commonPoint <= 0 || commonPoint >= 1) return rawT;
   return Math.abs(rawT - commonPoint) < snapRange ? commonPoint : rawT;
 }
+
+/**
+ * Compute per-lens zoomT values from a shared slider position.
+ *
+ * Returns { zoomA, zoomB, showZoom }
+ */
+export function computeZoomPair(sharedZoomT, LA, LB) {
+  const aIsZoom = !!LA.isZoom;
+  const bIsZoom = !!LB.isZoom;
+  if (!aIsZoom && !bIsZoom) return { zoomA: 0, zoomB: 0, showZoom: false };
+  if (aIsZoom && !bIsZoom) return { zoomA: sharedZoomT, zoomB: 0, showZoom: true };
+  if (!aIsZoom && bIsZoom) return { zoomA: 0, zoomB: sharedZoomT, showZoom: true };
+  return { zoomA: sharedZoomT, zoomB: sharedZoomT, showZoom: true };
+}

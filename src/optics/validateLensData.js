@@ -101,13 +101,42 @@ export default function validateLensData(data) {
     }
   }
 
+  /* ── Zoom lens fields ── */
+  const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
+  if (data.zoomPositions !== undefined) {
+    if (!Array.isArray(data.zoomPositions) || data.zoomPositions.length < 2)
+      errors.push(`"zoomPositions" must be an array of at least 2 focal lengths`);
+    else {
+      if (!data.zoomPositions.every(n => typeof n === 'number' && isFinite(n)))
+        errors.push(`"zoomPositions" must contain only finite numbers`);
+      for (let i = 1; i < data.zoomPositions.length; i++) {
+        if (data.zoomPositions[i] <= data.zoomPositions[i - 1]) {
+          errors.push(`"zoomPositions" must be monotonically increasing`);
+          break;
+        }
+      }
+    }
+  }
+
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === 'object') {
+    const nz = isZoom ? data.zoomPositions.length : 0;
     for (const [label, range] of Object.entries(data.var)) {
       if (!surfaceLabels.has(label))
         errors.push(`var key "${label}" does not match any surface label`);
-      if (!Array.isArray(range) || range.length !== 2)
-        errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
+      if (isZoom) {
+        if (!Array.isArray(range) || range.length !== nz)
+          errors.push(`var["${label}"]: expected array of ${nz} [d_inf, d_close] pairs (one per zoom position)`);
+        else {
+          for (let zi = 0; zi < nz; zi++) {
+            if (!Array.isArray(range[zi]) || range[zi].length !== 2)
+              errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
+          }
+        }
+      } else {
+        if (!Array.isArray(range) || range.length !== 2)
+          errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
+      }
     }
   }
 

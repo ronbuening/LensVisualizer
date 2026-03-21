@@ -163,26 +163,51 @@ const LENS_DATA = {
   },
 
   /* ── Variable air spacings (focus mechanism) ──
-   *  Keyed by surface label.  Each value is [d_at_infinity, d_at_close_focus].
-   *  Only include surfaces whose air gap changes during focus.
+   *  Keyed by surface label.  Only include surfaces whose air gap changes during focus/zoom.
+   *
+   *  Prime lens format (no zoomPositions):
+   *    Each value is [d_at_infinity, d_at_close_focus].
+   *    The surface's `d` field should match var[label][0].
+   *
+   *  Zoom lens format (with zoomPositions):
+   *    Each value is an array of [d_inf, d_close] pairs, one per zoom position.
+   *    The surface's `d` field should match var[label][0][0].
+   *    For zoom-only gaps (no focus change), use identical inf/close values:
+   *      "5": [[1.0, 1.0], [3.0, 3.0]]
    *
    *  Focus types:
    *    Unit focus:     One variable gap (BFD changes, entire lens moves)
    *    Inner focus:    2+ variable gaps (internal groups move)
    *    Floating focus: 3+ variable gaps (multiple groups move independently)
    *
-   *  The surface's `d` field should match the infinity-focus value (var[label][0]).
-   *
    *  varLabels: Display labels for the focus slider UI.
    *    Each entry is [surface_label, display_text].
    */
   var: {
-    // "17": [18.74, 22.59],    // [d_infinity, d_close]
+    // Prime:  "17": [18.74, 22.59],                            // [d_infinity, d_close]
+    // Zoom:   "17": [[18.74, 22.59], [16.00, 20.00], [19.50, 23.80]],  // one pair per zoom position
   },
 
   varLabels: [
     // ["17", "BF"],             // [surface_label, display_text]
   ],
+
+  /* ── Zoom lens fields (optional — omit entirely for prime lenses) ──
+   *  When zoomPositions is present, the lens is treated as a zoom and a zoom slider
+   *  is shown in the UI.  When absent, the lens is a prime — no zoom slider.
+   *
+   *  zoomPositions: Array of focal lengths in mm at each defined zoom position.
+   *    Must have ≥2 entries, monotonically increasing. These are interpolation
+   *    control points — the slider is continuous between them.
+   *    For groups that reverse direction mid-zoom, include a position near the
+   *    reversal point (standard zoom patents provide 3-5 positions).
+   *
+   *  zoomStep: Zoom slider step size (default 0.004).
+   *  zoomLabels: Optional endpoint labels, e.g. ["Wide", "Tele"].
+   */
+  // zoomPositions: [24, 50, 70],
+  // zoomStep: 0.004,
+  // zoomLabels: ["Wide", "Tele"],
 
   /* ── Group and doublet annotations ──
    *  Purely visual — brackets shown in the SVG diagram.
