@@ -52,6 +52,8 @@ export default function buildLens(data) {
   for (const [label, coeffs] of Object.entries(data.asph || {}))
     asphByIdx[labelIdx[label]] = coeffs;
 
+  const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
+
   const varByIdx = {};
   for (const [label, range] of Object.entries(data.var || {}))
     varByIdx[labelIdx[label]] = range;
@@ -164,6 +166,22 @@ export default function buildLens(data) {
   const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
   const offAxisHeights  = data.offAxisFractions.map(f => f * EP.epSD);
 
+  /* ── Zoom-lens derived constants ── */
+  let zoomEFLs = null;
+  if (isZoom) {
+    const nz = data.zoomPositions.length;
+    zoomEFLs = [];
+    for (let zi = 0; zi < nz; zi++) {
+      const tmpS = S.map((s, i) => {
+        const v = varByIdx[i];
+        if (!v) return s;
+        return { ...s, d: v[zi][0] };
+      });
+      const { u: ue } = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
+      zoomEFLs.push(-1.0 / ue);
+    }
+  }
+
   return Object.freeze({
     data, S, N, ES,
     elements: data.elements,
@@ -182,6 +200,11 @@ export default function buildLens(data) {
     focusDescription: data.focusDescription,
     maxFstop: data.maxFstop, apertureStep: data.apertureStep,
     fstopSeries: data.fstopSeries,
+    isZoom,
+    zoomPositions: isZoom ? data.zoomPositions : null,
+    zoomEFLs,
+    zoomStep: data.zoomStep || 0.004,
+    zoomLabels: data.zoomLabels || null,
     labelIdx,
   });
 }

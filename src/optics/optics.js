@@ -62,16 +62,34 @@ export function gapTrimHeight(surfIdx, sd, maxSag, L) {
   return (lo + hi) / 2;
 }
 
-export function thick(i, t, L) {
+export function thick(i, focusT, zoomT, L) {
   const v = L.varByIdx[i];
-  return v ? v[0] + (v[1] - v[0]) * t : L.S[i].d;
+  if (!v) return L.S[i].d;
+  if (!L.isZoom) return v[0] + (v[1] - v[0]) * focusT;
+  /* Piecewise-linear interpolation across zoom positions, then focus */
+  const nz = v.length;
+  const zp = zoomT * (nz - 1);
+  const zi = Math.min(Math.floor(zp), nz - 2);
+  const zf = zp - zi;
+  const d_inf   = v[zi][0] + (v[zi + 1][0] - v[zi][0]) * zf;
+  const d_close = v[zi][1] + (v[zi + 1][1] - v[zi][1]) * zf;
+  return d_inf + (d_close - d_inf) * focusT;
 }
 
-export function doLayout(t, L) {
-  const th = L.S.map((_, i) => thick(i, t, L));
+export function doLayout(focusT, zoomT, L) {
+  const th = L.S.map((_, i) => thick(i, focusT, zoomT, L));
   const z = [0];
   for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
   return { z, th, imgZ: z[z.length - 1] + th[th.length - 1] };
+}
+
+export function eflAtZoom(zoomT, L) {
+  if (!L.isZoom) return L.EFL;
+  const zp = L.zoomEFLs;
+  const pos = zoomT * (zp.length - 1);
+  const idx = Math.min(Math.floor(pos), zp.length - 2);
+  const frac = pos - idx;
+  return zp[idx] + (zp[idx + 1] - zp[idx]) * frac;
 }
 
 
@@ -79,7 +97,7 @@ export function doLayout(t, L) {
  * §5  OPTICS ENGINE — Ray-trace and conjugate functions
  * =================================================================== */
 
-export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
+export function traceRay(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L) {
   const pts = [];
   const ghostPts = [];
   pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
@@ -112,7 +130,7 @@ export function traceRay(y0, u0, zPos, t, stopSD, ghost, L) {
       }
     }
     n = nn;
-    if (i < L.N - 1) y += thick(i, t, L) * Math.tan(U);
+    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
   }
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
@@ -128,7 +146,7 @@ export function wavelengthNd(nd, vd, channel) {
   return channel === 'R' ? nd - delta : nd + delta;
 }
 
-export function traceRayChromatic(y0, u0, zPos, t, stopSD, ghost, L, channel) {
+export function traceRayChromatic(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel) {
   const pts = [];
   const ghostPts = [];
   pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
@@ -161,7 +179,7 @@ export function traceRayChromatic(y0, u0, zPos, t, stopSD, ghost, L, channel) {
       }
     }
     n = nn;
-    if (i < L.N - 1) y += thick(i, t, L) * Math.tan(U);
+    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
   }
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
@@ -190,14 +208,14 @@ export function computeChromaticSpread(marginalRays, imgZ, lastSurfZ) {
   return { lcaMm, tcaMm, intercepts, imgHeights };
 }
 
-export function traceToImage(y0, u0, t, L) {
+export function traceToImage(y0, u0, focusT, zoomT, L) {
   let y = y0, u = u0, n = 1.0;
   for (let i = 0; i < L.N; i++) {
     const { R, nd } = L.S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
     if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
     n = nn;
-    y += thick(i, t, L) * u;
+    y += thick(i, focusT, zoomT, L) * u;
   }
   return y;
 }
@@ -207,7 +225,7 @@ export function traceToImage(y0, u0, t, L) {
  * exact Snell's law and aspheric surface normals (sagSlope).  This makes
  * conjugateK self-consistent with the rendering engine (traceRay).
  */
-function traceToImageReal(y0, u0, t, L) {
+function traceToImageReal(y0, u0, focusT, zoomT, L) {
   let y = y0, n = 1.0;
   let U = Math.atan(u0);
   for (let i = 0; i < L.N; i++) {
@@ -223,26 +241,26 @@ function traceToImageReal(y0, u0, t, L) {
       U = alpha + Math.asin(sinIp);
     }
     n = nn;
-    y += thick(i, t, L) * Math.tan(U);
+    y += thick(i, focusT, zoomT, L) * Math.tan(U);
   }
   return y;
 }
 
-function realK(yRef, du, t, L) {
-  const y0 = traceToImageReal(yRef, 0, t, L);
-  const y1 = traceToImageReal(yRef, du, t, L);
+function realK(yRef, du, focusT, zoomT, L) {
+  const y0 = traceToImageReal(yRef, 0, focusT, zoomT, L);
+  const y1 = traceToImageReal(yRef, du, focusT, zoomT, L);
   if (isNaN(y0) || isNaN(y1)) return NaN;
   const dydu = (y1 - y0) / du;
   if (Math.abs(dydu) < 1e-15) return NaN;
   return (-y0 / dydu) / yRef;
 }
 
-export function conjugateK(t, L) {
-  if (t < FOCUS_INFINITY_THRESHOLD) return 0;
+export function conjugateK(focusT, zoomT, L) {
+  if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
   const yRef = L.EP.epSD * 0.7;
   const du = 1e-5;
-  const Kt = realK(yRef, du, t, L);
-  const K0 = realK(yRef, du, 0, L);
+  const Kt = realK(yRef, du, focusT, zoomT, L);
+  const K0 = realK(yRef, du, 0, zoomT, L);
   if (isNaN(Kt) || isNaN(K0)) return 0;
   return Kt - K0;
 }

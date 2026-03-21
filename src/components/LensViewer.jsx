@@ -25,12 +25,12 @@ import DescriptionPanel from './DescriptionPanel.jsx';
 import SharedSlidersBar from './SharedSlidersBar.jsx';
 import useMediaQuery   from '../utils/useMediaQuery.js';
 import { PREFS_KEY, loadPrefs } from '../utils/preferences.js';
-import { parseComparisonParams, buildComparisonURL } from '../utils/parseComparisonParams.js';
+import { parseComparisonParams, buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from '../utils/parseComparisonParams.js';
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH } from '../utils/featureFlags.js';
-import { computeFocusPair, computeAperturePair, snapToCommon } from '../utils/comparisonSliders.js';
+import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
 import ABOUT_SITE_MD from '../content/AboutSite.md?raw';
@@ -63,7 +63,8 @@ export default function LensVisualization() {
   const [highContrast, setHighContrast] = useState(prefs.highContrast ?? (() =>
     typeof window !== 'undefined' ? window.matchMedia('(prefers-contrast: more)').matches : false
   ));
-  const [focusT, setFocusT] = useState(0);
+  const [focusT, setFocusT] = useState(urlState.focus ?? 0);
+  const [zoomT, setZoomT] = useState(0);  // initialized from URL after lens builds
   const [showOnAxis, setShowOnAxis] = useState(prefs.showOnAxis ?? true);
   const [showOffAxis, setShowOffAxis] = useState(prefs.showOffAxis ?? false);
   const [rayTracksF, setRayTracksF] = useState(prefs.rayTracksF ?? false);
@@ -71,13 +72,14 @@ export default function LensVisualization() {
   const [chromR, setChromR] = useState(prefs.chromR ?? true);
   const [chromG, setChromG] = useState(prefs.chromG ?? true);
   const [chromB, setChromB] = useState(prefs.chromB ?? true);
-  const [stopdownT, setStopdownT] = useState(0);
+  const [stopdownT, setStopdownT] = useState(urlState.aperture ?? 0);
   const [mobileView, setMobileView] = useState('diagram');
   const [desktopView, setDesktopView] = useState('both');
   const [showAbout, setShowAbout] = useState(false);
   const [showAboutSite, setShowAboutSite] = useState(false);
-  const [sharedFocusT, setSharedFocusT] = useState(0);
-  const [sharedStopdownT, setSharedStopdownT] = useState(0);
+  const [sharedFocusT, setSharedFocusT] = useState(urlState.comparing ? (urlState.focus ?? 0) : 0);
+  const [sharedStopdownT, setSharedStopdownT] = useState(urlState.comparing ? (urlState.aperture ?? 0) : 0);
+  const [sharedZoomT, setSharedZoomT] = useState(0);  // zoom initialized from URL after lenses build
   const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
   const justEnteredCompare = useRef(false);
 
@@ -100,7 +102,11 @@ export default function LensVisualization() {
     } catch { /* private browsing or quota — ignore */ }
   }, [dark, highContrast, lensKeyA, lensKeyB, comparing, scaleMode, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB]);
 
-  /* ── Update URL on comparison state change ── */
+  /* ── URL update refs ── */
+  const urlUpdateTimer = useRef(null);
+  const urlZoomInitialized = useRef(false);
+
+  /* ── Update URL immediately on lens selection change ── */
   useEffect(() => {
     const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
     const current = window.location.search;
@@ -138,6 +144,7 @@ export default function LensVisualization() {
     setLensKeyA(key);
     if (!comparing) {
       setFocusT(0);
+      setZoomT(0);
       setStopdownT(0);
     }
   }, [comparing]);
@@ -153,6 +160,66 @@ export default function LensVisualization() {
       return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) };
     } catch (e) { return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` }; }
   }, [comparing, lensKeyA, lensKeyB]);
+
+  /* ── Initialize zoomT from URL after lens builds (need L to convert mm → zoomT) ── */
+  useEffect(() => {
+    if (urlZoomInitialized.current || urlState.zoom == null) return;
+    if (comparing && comparisonLenses && !comparisonLenses.error) {
+      const { LA, LB } = comparisonLenses;
+      const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
+      if (zoomLens) {
+        setSharedZoomT(focalLengthToZoomT(urlState.zoom, zoomLens));
+      }
+      urlZoomInitialized.current = true;
+    }
+  }, [comparisonLenses, comparing, urlState.zoom]);
+
+  /* ── Build a single-lens L for zoom URL initialization ── */
+  const singleLensForZoomInit = useMemo(() => {
+    if (comparing || urlZoomInitialized.current || urlState.zoom == null) return null;
+    try { return buildLens(LENS_CATALOG[lensKeyA]); } catch { return null; }
+  }, [lensKeyA, comparing, urlState.zoom]);
+
+  useEffect(() => {
+    if (urlZoomInitialized.current || urlState.zoom == null || !singleLensForZoomInit) return;
+    if (singleLensForZoomInit.isZoom) {
+      setZoomT(focalLengthToZoomT(urlState.zoom, singleLensForZoomInit));
+    }
+    urlZoomInitialized.current = true;
+  }, [singleLensForZoomInit, urlState.zoom]);
+
+  /* ── Update URL (sliders on pointer-up with 300ms delay) ── */
+  const updateURLWithSliders = useCallback(() => {
+    clearTimeout(urlUpdateTimer.current);
+    urlUpdateTimer.current = setTimeout(() => {
+      const sliderState = {};
+      if (comparing) {
+        if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
+        if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
+        if (comparisonLenses && !comparisonLenses.error) {
+          const { LA, LB } = comparisonLenses;
+          const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
+          if (zoomLens && sharedZoomT > 0) {
+            sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
+          }
+        }
+      } else {
+        if (focusT > 0) sliderState.focus = focusT;
+        if (stopdownT > 0) sliderState.aperture = stopdownT;
+        try {
+          const L = buildLens(LENS_CATALOG[lensKeyA]);
+          if (L.isZoom && zoomT > 0) {
+            sliderState.zoom = zoomTToFocalLength(zoomT, L);
+          }
+        } catch { /* ignore */ }
+      }
+      const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
+      const current = window.location.search;
+      if (url !== current) {
+        history.replaceState(null, '', url || window.location.pathname);
+      }
+    }, 300);
+  }, [comparing, lensKeyA, lensKeyB, focusT, stopdownT, zoomT, sharedFocusT, sharedStopdownT, sharedZoomT, comparisonLenses]);
 
   /* ── Normalized scale computation ── */
   const scaleRatios = useMemo(() => {
@@ -172,6 +239,11 @@ export default function LensVisualization() {
     if (!comparisonLenses || comparisonLenses.error) return null;
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
+
+  const zoomPair = useMemo(() => {
+    if (!comparisonLenses || comparisonLenses.error) return null;
+    return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedZoomT, comparisonLenses]);
 
   /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
@@ -290,13 +362,15 @@ export default function LensVisualization() {
 
   /* ── Shared panel props ── */
   const sharedProps = {
-    focusT, stopdownT,
+    focusT, zoomT, stopdownT,
     showOnAxis, showOffAxis,
     showChromatic, chromR, chromG, chromB,
     rayTracksF,
     theme: t, dark, highContrast,
     onFocusChange: setFocusT,
+    onZoomChange: setZoomT,
     onStopdownChange: setStopdownT,
+    onSliderPointerUp: updateURLWithSliders,
     onShowOnAxisChange: setShowOnAxis,
     onShowOffAxisChange: setShowOffAxis,
     onRayTracksFChange: setRayTracksF,
@@ -444,6 +518,7 @@ export default function LensVisualization() {
           lensKey={lensKeyA}
           {...sharedProps}
           focusT={focusPair?.focusA ?? 0}
+          zoomT={zoomPair?.zoomA ?? 0}
           stopdownT={aperturePair?.stopdownA ?? 0}
           scaleRatio={scaleRatios?.a ?? null}
           panelId="a"
@@ -461,6 +536,7 @@ export default function LensVisualization() {
           lensKey={lensKeyB}
           {...sharedProps}
           focusT={focusPair?.focusB ?? 0}
+          zoomT={zoomPair?.zoomB ?? 0}
           stopdownT={aperturePair?.stopdownB ?? 0}
           scaleRatio={scaleRatios?.b ?? null}
           panelId="b"
@@ -620,11 +696,15 @@ export default function LensVisualization() {
           <SharedSlidersBar
             LA={comparisonLenses.LA} LB={comparisonLenses.LB}
             sharedFocusT={sharedFocusT} sharedStopdownT={sharedStopdownT}
+            sharedZoomT={sharedZoomT}
             onSharedFocusChange={handleSharedFocusChange}
             onSharedStopdownChange={handleSharedStopdownChange}
+            onSharedZoomChange={setSharedZoomT}
             onFocusPointerDown={handleFocusPointerDown}
             onAperturePointerDown={handleAperturePointerDown}
             focusPair={focusPair} aperturePair={aperturePair}
+            zoomPair={zoomPair}
+            onSliderPointerUp={updateURLWithSliders}
             theme={t} isWide={isWide}
           />
         )}
