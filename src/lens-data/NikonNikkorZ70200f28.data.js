@@ -210,9 +210,9 @@ const LENS_DATA = {
   fstopSeries:  [2.8, 3.2, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],
 
   /* ── Layout tuning ── */
-  scFill:           0.42,
+  scFill:           0.52,
   yScFill:          0.38,
-  maxAspectRatio:   2.5,
+  maxAspectRatio:   3.0,
 };
 
 export default LENS_DATA;
