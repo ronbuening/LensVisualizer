@@ -33,8 +33,7 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH,
          ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
          ENABLE_EDGE_PROJECTION,
-         ENABLE_SIDE_PANEL_LAYOUT,
-         ENABLE_COLLAPSIBLE_HEADER_INFO } from '../utils/featureFlags.js';
+         ENABLE_SIDE_PANEL_LAYOUT } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
