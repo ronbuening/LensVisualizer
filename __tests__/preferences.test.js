@@ -76,6 +76,30 @@ describe('loadPrefs', () => {
     expect(prefs.showOnAxis).toBeUndefined();
   });
 
+  it('loads collapsible panel preferences', () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({
+      focusExpanded: true, apertureExpanded: false,
+      headerControlsExpanded: true, legendExpanded: false,
+    }));
+    const prefs = loadPrefs(KEYS);
+    expect(prefs.focusExpanded).toBe(true);
+    expect(prefs.apertureExpanded).toBe(false);
+    expect(prefs.headerControlsExpanded).toBe(true);
+    expect(prefs.legendExpanded).toBe(false);
+  });
+
+  it('ignores non-boolean values for collapsible panel fields', () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({
+      focusExpanded: 'yes', apertureExpanded: 1,
+      headerControlsExpanded: null, legendExpanded: 'true',
+    }));
+    const prefs = loadPrefs(KEYS);
+    expect(prefs.focusExpanded).toBeUndefined();
+    expect(prefs.apertureExpanded).toBeUndefined();
+    expect(prefs.headerControlsExpanded).toBeUndefined();
+    expect(prefs.legendExpanded).toBeUndefined();
+  });
+
   it('validates lensKeyA against catalog keys', () => {
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKeyA: 'nikon_58' }));
     expect(loadPrefs(KEYS).lensKeyA).toBe('nikon_58');

@@ -27,7 +27,7 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION, ENABLE_COLLAPSIBLE_PANELS } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -119,6 +119,15 @@ export default function LensDiagramPanel({
   flashOverlay = false,
   onSliderPointerUp,
   sideLayoutEnabled = false,
+  isWide = true,
+  focusExpanded = true,
+  onFocusExpandedChange,
+  apertureExpanded = true,
+  onApertureExpandedChange,
+  headerControlsExpanded = false,
+  onHeaderControlsExpandedChange,
+  legendExpanded = false,
+  onLegendExpandedChange,
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
@@ -532,8 +541,23 @@ export default function LensDiagramPanel({
         </div>
         {/* Theme + ray controls in non-compact (single-lens) mode */}
         {!compact && (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: 220 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: isWide ? 220 : (ENABLE_COLLAPSIBLE_PANELS && !headerControlsExpanded ? "auto" : 220) }}>
+            {/* Mobile collapse toggle for controls */}
+            {ENABLE_COLLAPSIBLE_PANELS && !isWide && (
+              <button onClick={() => onHeaderControlsExpandedChange?.(!headerControlsExpanded)} style={{
+                background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 5,
+                padding: "5px 12px", cursor: "pointer", fontSize: 9, color: t.toggleInactiveText,
+                display: "flex", alignItems: "center", gap: 5, transition: "all 0.25s",
+                fontFamily: "inherit", letterSpacing: "0.08em", width: headerControlsExpanded ? "100%" : "auto",
+                justifyContent: "center",
+              }}>
+                <span style={{ fontSize: 11, lineHeight: 1 }}>⚙</span>
+                <span>CONTROLS</span>
+                <span style={{ fontSize: 8, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
+              </button>
+            )}
             {/* Theme controls */}
+            {(isWide || !ENABLE_COLLAPSIBLE_PANELS || headerControlsExpanded) && <>
             <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
               <button onClick={() => onHighContrastChange?.(!highContrast)} style={{
                 flex: 1, background: highContrast ? t.toggleActiveBg : t.toggleBg,
@@ -640,6 +664,7 @@ export default function LensDiagramPanel({
                 ))}
               </div>
             )}
+            </>}
           </div>
         )}
       </div>
@@ -859,6 +884,10 @@ export default function LensDiagramPanel({
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>FOCUS</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
+              {ENABLE_COLLAPSIBLE_PANELS && <button onClick={() => onFocusExpandedChange?.(!focusExpanded)} style={{
+                marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
+                fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
+              }}>{focusExpanded ? "▴" : "▾"}</button>}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
@@ -868,10 +897,12 @@ export default function LensDiagramPanel({
                 style={{ flex: 1, height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
             </div>
+            {(!ENABLE_COLLAPSIBLE_PANELS || focusExpanded) && <>
             <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>{L.focusDescription}</div>
             <div style={{ marginTop: 6, display: "flex", gap: 14, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
               {varReadouts.map(({ label, val }) => <span key={label}>{label} {val}</span>)}
             </div>
+            </>}
           </div>}
 
           {showSliders && <div style={useSideLayout
@@ -883,6 +914,10 @@ export default function LensDiagramPanel({
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
                 f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
               </span>
+              {ENABLE_COLLAPSIBLE_PANELS && <button onClick={() => onApertureExpandedChange?.(!apertureExpanded)} style={{
+                marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
+                fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
+              }}>{apertureExpanded ? "▴" : "▾"}</button>}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.FOPEN.toFixed(1)}</span>
@@ -892,6 +927,7 @@ export default function LensDiagramPanel({
                 style={{ flex: 1, height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
             </div>
+            {(!ENABLE_COLLAPSIBLE_PANELS || apertureExpanded) && <>
             <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>
               EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"} {(epAtZoom(zoomT, L) * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
             </div>
@@ -904,11 +940,12 @@ export default function LensDiagramPanel({
                 </span>
               ))}
             </div>
+            </>}
           </div>}
 
           <div style={useSideLayout
-            ? { flex: 1, padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
-            : { flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+            ? { flex: 1, padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_PANELS && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+            : { flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_PANELS && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
           }>
             {info ? (
               <div>
@@ -984,8 +1021,15 @@ export default function LensDiagramPanel({
               </div>
             ) : (
               <div style={{ padding: "6px 0" }}>
-                <div style={{ fontSize: 10.5, color: t.muted, marginBottom: 8, transition: "color 0.3s" }}>Hover or tap an element for optical details</div>
-                <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: ENABLE_COLLAPSIBLE_PANELS && !isWide && !legendExpanded ? 0 : 8 }}>
+                  <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>{isWide ? "Hover" : "Tap"} an element for optical details</span>
+                  {ENABLE_COLLAPSIBLE_PANELS && !isWide && <button onClick={() => onLegendExpandedChange?.(!legendExpanded)} style={{
+                    marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 6px",
+                    fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
+                    display: "flex", alignItems: "center", gap: 4,
+                  }}>LEGEND <span style={{ fontSize: 8 }}>{legendExpanded ? "▴" : "▾"}</span></button>}
+                </div>
+                {(!ENABLE_COLLAPSIBLE_PANELS || isWide || legendExpanded) && <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
                   {t.legendSwatches.map(([bg, bd, lb]) => (
                     <div key={lb} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                       <div style={{ width: 11, height: 11, borderRadius: 2, background: bg, border: `1px solid ${bd}`, transition: "all 0.3s" }} /><span style={{ color: t.legendText, transition: "color 0.3s" }}>{lb}</span>
@@ -1053,7 +1097,7 @@ export default function LensDiagramPanel({
                       </>}
                     </div>
                   )}
-                </div>
+                </div>}
               </div>
             )}
           </div>

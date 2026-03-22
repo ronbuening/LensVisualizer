@@ -27,3 +27,5 @@ export const ENABLE_DYNAMIC_DIAGRAM_HEIGHT = true;
 export const ENABLE_EDGE_PROJECTION     = true;
 
 export const ENABLE_SIDE_PANEL_LAYOUT   = true;
+
+export const ENABLE_COLLAPSIBLE_PANELS  = true;
