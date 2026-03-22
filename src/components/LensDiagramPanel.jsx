@@ -27,7 +27,7 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -374,7 +374,7 @@ export default function LensDiagramPanel({
       /* Paraxial image height for "edge" mode */
       const edgeImgH = eflAtZoom(zoomT, L) * Math.tan(currentOffAxisDeg * Math.PI / 180);
       const edgeEnd = [sx(IMG_MM), sy(edgeImgH)];
-      const useEdge = showOffAxis === 'edge';
+      const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === 'edge';
 
       for (const f of L.offAxisFractions) {
         const h = f * currentEPSD;
@@ -524,40 +524,34 @@ export default function LensDiagramPanel({
             </div>
             {/* Ray toggles */}
             <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
-              <button onClick={() => onShowOnAxisChange?.(!showOnAxis)} style={{
-                flex: 1, background: showOnAxis ? t.toggleActiveBg : t.toggleBg,
-                border: "none", borderRight: `1px solid ${t.toggleBorder}`,
-                padding: "5px 8px", cursor: "pointer",
-                fontSize: 9, color: showOnAxis ? t.toggleActiveText : t.toggleInactiveText,
-                display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
-                fontFamily: "inherit", letterSpacing: "0.08em",
-              }}>
-                <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                  <line x1="0" y1="4" x2="14" y2="4" stroke={showOnAxis ? t.rayWarm : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-                  <line x1="0" y1="7" x2="14" y2="7" stroke={showOnAxis ? t.rayCool : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-                </svg>
-                <span>ON-AXIS</span>
-              </button>
-              {[
-                { key: 'trueAngle', label: 'TRUE \u2220' },
-                { key: 'edge', label: 'EDGE PROJ' },
-              ].map(({ key, label }, idx) => {
-                const active = showOffAxis === key;
-                return <button key={key} onClick={() => onShowOffAxisChange?.(active ? 'off' : key)} style={{
-                  flex: 1, background: active ? t.toggleActiveBg : t.toggleBg,
-                  border: "none", borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "5px 8px", cursor: "pointer",
-                  fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
-                  fontFamily: "inherit", letterSpacing: "0.08em",
-                }}>
-                  <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                    <line x1="0" y1="4" x2="14" y2="4" stroke={active ? t.rayOffWarm : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-                    <line x1="0" y1="7" x2="14" y2="7" stroke={active ? t.rayOffCool : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-                  </svg>
-                  <span>{label}</span>
-                </button>;
-              })}
+              {(() => {
+                const offAxisActive = showOffAxis !== 'off';
+                const offAxisCycle = ENABLE_EDGE_PROJECTION
+                  ? () => onShowOffAxisChange?.(showOffAxis === 'off' ? 'trueAngle' : showOffAxis === 'trueAngle' ? 'edge' : 'off')
+                  : () => onShowOffAxisChange?.(offAxisActive ? 'off' : 'trueAngle');
+                const offAxisLabel = ENABLE_EDGE_PROJECTION
+                  ? (showOffAxis === 'edge' ? 'EDGE PROJ' : showOffAxis === 'trueAngle' ? 'TRUE \u2220' : 'OFF-AXIS')
+                  : 'OFF-AXIS';
+                return [
+                  { label: "ON-AXIS", active: showOnAxis, onClick: () => onShowOnAxisChange?.(!showOnAxis), dotA: t.rayWarm, dotB: t.rayCool },
+                  { label: offAxisLabel, active: offAxisActive, onClick: offAxisCycle, dotA: t.rayOffWarm, dotB: t.rayOffCool },
+                ].map(({ label, active, onClick, dotA, dotB }, idx) => (
+                  <button key={idx} onClick={onClick} style={{
+                    flex: 1, background: active ? t.toggleActiveBg : t.toggleBg,
+                    border: "none", borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
+                    padding: "5px 8px", cursor: "pointer",
+                    fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 5, transition: "all 0.25s",
+                    fontFamily: "inherit", letterSpacing: "0.08em",
+                  }}>
+                    <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+                      <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                      <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                    </svg>
+                    <span>{label}</span>
+                  </button>
+                ));
+              })()}
             </div>
             {/* Ray mode */}
             <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
@@ -971,7 +965,7 @@ export default function LensDiagramPanel({
                   </div>}
                   {showOffAxis !== 'off' && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="3" x2="14" y2="3" stroke={t.rayOffWarm} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /><line x1="0" y1="7" x2="14" y2="7" stroke={t.rayOffCool} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /></svg>
-                    <span style={{ color: t.legendText }}>Off-axis rays ({(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}{"\u00b0"}{showOffAxis === 'edge' ? ', edge proj' : ''}){rayTracksF ? " tracks focus" : " from \u221e"}</span>
+                    <span style={{ color: t.legendText }}>Off-axis rays ({(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}{"\u00b0"}{ENABLE_EDGE_PROJECTION && showOffAxis === 'edge' ? ', edge proj' : ''}){rayTracksF ? " tracks focus" : " from \u221e"}</span>
                   </div>}
                   {showOffAxis !== 'off' && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="5" x2="14" y2="5" stroke={t.rayOffWarm} strokeWidth="0.8" strokeDasharray="3,4" opacity="0.35" /></svg>

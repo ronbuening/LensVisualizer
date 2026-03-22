@@ -23,3 +23,5 @@ export const ENABLE_SLIDER_STICKY_FLASH = true;
 export const ENABLE_ASPH_DIAMOND_FILL   = false;
 
 export const ENABLE_DYNAMIC_DIAGRAM_HEIGHT = true;
+
+export const ENABLE_EDGE_PROJECTION     = false;
