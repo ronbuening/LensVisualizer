@@ -43,6 +43,10 @@ export function loadPrefs(catalogKeys) {
     if (typeof p.comparing === 'boolean') out.comparing = p.comparing;
     if (p.scaleMode === 'independent' || p.scaleMode === 'normalized') out.scaleMode = p.scaleMode;
     if (typeof p.desktopView === 'string' && ['diagram', 'both', 'analysis'].includes(p.desktopView)) out.desktopView = p.desktopView;
+    if (typeof p.focusExpanded === 'boolean') out.focusExpanded = p.focusExpanded;
+    if (typeof p.apertureExpanded === 'boolean') out.apertureExpanded = p.apertureExpanded;
+    if (typeof p.headerControlsExpanded === 'boolean') out.headerControlsExpanded = p.headerControlsExpanded;
+    if (typeof p.legendExpanded === 'boolean') out.legendExpanded = p.legendExpanded;
     return out;
   } catch { return {}; }
 }
