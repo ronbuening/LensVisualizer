@@ -88,6 +88,8 @@ export default function LensVisualization() {
   const [showAbout, setShowAbout] = useState(false);
   const [showAboutSite, setShowAboutSite] = useState(false);
 
+  const isWide = useMediaQuery('(min-width: 900px)');
+
   /* ── Collapsible panel states (mobile optimization) ── */
   const [focusExpanded, setFocusExpanded] = useState(prefs.focusExpanded ?? isWide);
   const [apertureExpanded, setApertureExpanded] = useState(prefs.apertureExpanded ?? isWide);
@@ -152,7 +154,6 @@ export default function LensVisualization() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [showAbout, showAboutSite]);
 
-  const isWide = useMediaQuery('(min-width: 900px)');
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
   const desktopViewOptions = useMemo(() => {
