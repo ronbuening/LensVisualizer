@@ -288,6 +288,10 @@ These are computed automatically and added to the frozen lens object:
 |-------|------|-------------|
 | `isZoom` | `boolean` | `true` when `zoomPositions` is present |
 | `zoomEFLs` | `number[]` | Computed EFL at each zoom position via paraxial trace |
+| `zoomEPs` | `number[]` | Entrance pupil SD at each zoom position |
+| `zoomHalfFields` | `number[]` | Vignetting-limited half-field angle at each zoom position |
+| `zoomYRatios` | `number[]` | Marginal ray height ratio at stop for each zoom position |
+| `zoomBs` | `number[]` | Chief ray height at stop for each zoom position |
 
 ### Validation
 
@@ -295,6 +299,8 @@ When `zoomPositions` is present:
 1. Must be an array of at least 2 finite numbers
 2. Must be monotonically increasing
 3. All `var` values must be arrays of `[d_inf, d_close]` pairs with length matching `zoomPositions.length`
+4. `zoomStep` (if present) must be a finite positive number
+5. `zoomLabels` (if present) must be an array of strings
 
 ---
 
@@ -330,11 +336,13 @@ doublets: [
 5. All surface `elemId` values reference valid elements (or `0` for air)
 6. All `asph` keys match existing surface labels
 7. All `var` keys match existing surface labels with correct format (prime: `[d_inf, d_close]`; zoom: array of pairs matching `zoomPositions.length`)
-8. All `varLabels` reference valid surface labels
-12. `zoomPositions` (when present): array of ≥2 finite, monotonically increasing numbers
-9. All `groups`/`doublets` reference valid surface labels
-10. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness. The renderer further refines this by computing effective clearance at each gap, accounting for the neighboring element's surface sag (surfaces curving away from the gap widen clearance; surfaces curving into it narrow clearance)
-11. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
+8. All `var` thickness values are non-negative (d ≥ 0)
+9. Surface `d` matches the `var` infinity value at the first zoom position (tolerance 1e-6)
+10. All `varLabels` reference valid surface labels
+11. `zoomPositions` (when present): array of ≥2 finite, monotonically increasing numbers; `zoomStep` must be finite positive; `zoomLabels` must be array of strings
+12. All `groups`/`doublets` reference valid surface labels
+13. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness — checked at all zoom positions for zoom lenses
+14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
 
 On failure, `buildLens()` throws with all errors listed.
 
