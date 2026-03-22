@@ -24,6 +24,7 @@ import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, Com
 import { LENS_CATALOG, CATALOG_KEYS } from '../utils/lensCatalog.js';
 import buildLens from '../optics/buildLens.js';
 import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
+         epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
 import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL } from '../utils/featureFlags.js';
@@ -299,7 +300,9 @@ export default function LensDiagramPanel({
   const stopZ = zPos[L.stopIdx];
   const fNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const currentPhysStopSD = L.stopPhysSD * L.FOPEN / fNumber;
-  const currentEPSD = L.EP.epSD * L.FOPEN / fNumber;
+  /* Use zoom-aware EP for correct ray heights across the zoom range */
+  const baseEPSD = epAtZoom(zoomT, L);
+  const currentEPSD = baseEPSD * L.FOPEN / fNumber;
   const focusK = useMemo(() => rayTracksF ? conjugateK(focusT, zoomT, L) : 0, [focusT, zoomT, rayTracksF, L]);
 
   /* ── On-axis rays ──
@@ -344,8 +347,10 @@ export default function LensDiagramPanel({
   const offAxisRays = useMemo(() => {
     try {
       const out = [];
-      const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
-      const yChief = -(L.B / L.EP.yRatio) * uField;
+      /* Zoom-aware field angle and chief ray entry position */
+      const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
+      const uField = -Math.tan(currentOffAxisDeg * Math.PI / 180);
+      const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
       for (const f of L.offAxisFractions) {
         const h = f * currentEPSD;
         const y0 = yChief + h;
@@ -809,7 +814,7 @@ export default function LensDiagramPanel({
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
             </div>
             <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>
-              EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"} {(L.EP.epSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
+              EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"} {(epAtZoom(zoomT, L) * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
             </div>
             <div style={{ marginTop: 6, display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
               {L.fstopSeries.filter(n => n >= L.FOPEN - 0.1 && n <= L.maxFstop).map(n => (
@@ -926,7 +931,7 @@ export default function LensDiagramPanel({
                   </div>}
                   {showOffAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="3" x2="14" y2="3" stroke={t.rayOffWarm} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /><line x1="0" y1="7" x2="14" y2="7" stroke={t.rayOffCool} strokeWidth="1.5" strokeDasharray={t.rayOffDash || "none"} /></svg>
-                    <span style={{ color: t.legendText }}>Off-axis rays ({L.offAxisFieldDeg.toFixed(1)}{"\u00b0"}){rayTracksF ? " tracks focus" : " from \u221e"}</span>
+                    <span style={{ color: t.legendText }}>Off-axis rays ({(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}{"\u00b0"}){rayTracksF ? " tracks focus" : " from \u221e"}</span>
                   </div>}
                   {showOffAxis && <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                     <svg width="14" height="10" viewBox="0 0 14 10"><line x1="0" y1="5" x2="14" y2="5" stroke={t.rayOffWarm} strokeWidth="0.8" strokeDasharray="3,4" opacity="0.35" /></svg>

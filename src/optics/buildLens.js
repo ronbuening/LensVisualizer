@@ -185,10 +185,27 @@ export default function buildLens(data) {
    *  YSC = vertical scale (pixels per mm perpendicular to axis)
    *  maxAspectRatio caps YSC/SC to prevent extremely tall, narrow lenses
    *  from dominating the viewport.
+   *  For zoom lenses, use the maximum total track across all positions to
+   *  ensure the SVG viewport never clips at any zoom setting.
    */
-  const z = [0];
-  for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
-  const totalTrack = z[N - 1] + S[N - 1].d;
+  let totalTrack;
+  if (isZoom) {
+    const nz = data.zoomPositions.length;
+    let maxTrack = 0;
+    for (let zi = 0; zi < nz; zi++) {
+      let track = 0;
+      for (let i = 0; i < N; i++) {
+        const v = varByIdx[i];
+        track += v ? v[zi][0] : S[i].d;
+      }
+      maxTrack = Math.max(maxTrack, track);
+    }
+    totalTrack = maxTrack;
+  } else {
+    const z = [0];
+    for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
+    totalTrack = z[N - 1] + S[N - 1].d;
+  }
   const maxSD = Math.max(...S.map(s => s.sd));
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
@@ -214,22 +231,55 @@ export default function buildLens(data) {
   const offAxisHeights  = data.offAxisFractions.map(f => f * EP.epSD);
 
   /* ── Zoom-lens derived constants ──
-   *  Pre-compute the EFL at each zoom position by constructing a temporary
-   *  surface array with the infinity-focus thickness for that zoom index,
-   *  then running a paraxial marginal ray trace to get EFL = −1/u.
+   *  Pre-compute optical properties at each zoom position by constructing
+   *  a temporary surface array with the infinity-focus thickness for that
+   *  zoom index, then running paraxial traces.
+   *  - zoomEFLs:      EFL at each position (EFL = −1/u)
+   *  - zoomEPs:       entrance pupil SD at each position
+   *  - zoomHalfFields: vignetting-limited half-field angle at each position
+   *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
+   *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
-  let zoomEFLs = null;
+  let zoomEFLs = null, zoomEPs = null, zoomHalfFields = null;
+  let zoomYRatios = null, zoomBs = null;
   if (isZoom) {
     const nz = data.zoomPositions.length;
-    zoomEFLs = [];
+    zoomEFLs = []; zoomEPs = []; zoomHalfFields = [];
+    zoomYRatios = []; zoomBs = [];
     for (let zi = 0; zi < nz; zi++) {
       const tmpS = S.map((s, i) => {
         const v = varByIdx[i];
         if (!v) return s;
         return { ...s, d: v[zi][0] };
       });
+
+      /* EFL */
       const { u: ue } = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
       zoomEFLs.push(-1.0 / ue);
+
+      /* Entrance pupil and yRatio */
+      const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
+      const epSD = Math.abs(epT.y) > 1e-15 ? tmpS[stopIdx].sd / epT.y : EP.epSD;
+      zoomEPs.push(epSD);
+      zoomYRatios.push(epT.y);
+
+      /* Chief ray height at stop */
+      zoomBs.push(paraxialTrace(tmpS, 0, 1, { stopAt: stopIdx }).y);
+
+      /* Half-field (vignetting-limited) */
+      const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights;
+      const zB = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights;
+      const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB[stopIdx] / zA[stopIdx] : r;
+      let zMinU = Infinity;
+      for (let j = 0; j < N; j++) {
+        if (j === stopIdx) continue;
+        const coeff = Math.abs(zB[j] - zr * zA[j]);
+        if (coeff > 1e-8) {
+          const uMax = tmpS[j].sd / coeff;
+          if (uMax < zMinU) zMinU = uMax;
+        }
+      }
+      zoomHalfFields.push(Math.atan(zMinU) * 180 / Math.PI);
     }
   }
 
@@ -246,14 +296,15 @@ export default function buildLens(data) {
     lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyVdBadge, lyGroup, lyStoPad,
     lensShiftFrac: data.lensShiftFrac || 0,
     rayFractions: data.rayFractions, rayHeights, rayLead, bladeStubFrac,
-    offAxisFieldDeg, offAxisFractions: data.offAxisFractions, offAxisHeights,
+    offAxisFieldDeg, offAxisFieldFrac: data.offAxisFieldFrac,
+    offAxisFractions: data.offAxisFractions, offAxisHeights,
     closeFocusM: data.closeFocusM, focusStep: data.focusStep,
     focusDescription: data.focusDescription,
     maxFstop: data.maxFstop, apertureStep: data.apertureStep,
     fstopSeries: data.fstopSeries,
     isZoom,
     zoomPositions: isZoom ? data.zoomPositions : null,
-    zoomEFLs,
+    zoomEFLs, zoomEPs, zoomHalfFields, zoomYRatios, zoomBs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,
