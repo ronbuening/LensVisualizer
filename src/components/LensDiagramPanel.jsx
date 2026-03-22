@@ -363,7 +363,7 @@ export default function LensDiagramPanel({
       const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
 
       /* Paraxial image height for "edge" mode */
-      const edgeImgH = eflAtZoom(zoomT, L) * Math.tan(currentOffAxisDeg * Math.PI / 180);
+      const edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan(currentOffAxisDeg * Math.PI / 180));
       const edgeEnd = [sx(IMG_MM), sy(edgeImgH)];
       const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === 'edge';
 
