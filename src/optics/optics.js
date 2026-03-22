@@ -131,6 +131,7 @@ export function thick(i, focusT, zoomT, L) {
   if (!L.isZoom) return v[0] + (v[1] - v[0]) * focusT;
   /* Piecewise-linear interpolation across zoom positions, then focus */
   const nz = v.length;
+  if (nz === 1) return v[0][0] + (v[0][1] - v[0][0]) * focusT;
   const zp = zoomT * (nz - 1);
   const zi = Math.min(Math.floor(zp), nz - 2);
   const zf = zp - zi;
