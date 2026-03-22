@@ -18,4 +18,4 @@ The result is a collaboration between human domain knowledge — understanding w
 
 ---
 
-**[View on GitHub](https://github.com/ronbuening/LensVisualizer)** · **[Request a Lens](https://github.com/ronbuening/LensVisualizer/issues/new)**
+**[View on GitHub](https://github.com/ronbuening/LensVisualizer)** · **[Request a Lens](https://github.com/ronbuening/LensVisualizer/issues/new?labels=new+lens&title=New+Lens:+&body=Patent+%23:+)**
