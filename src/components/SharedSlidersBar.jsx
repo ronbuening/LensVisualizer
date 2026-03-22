@@ -1,5 +1,31 @@
 /**
  * SharedSlidersBar — unified focus/aperture/zoom controls for comparison mode.
+ *
+ * When two lenses are compared, each has different capabilities (close-focus
+ * distance, max aperture, zoom range). This bar maps a single shared slider
+ * position to per-lens values via the pure functions in comparisonSliders.js.
+ *
+ * Visual markers (▼ triangles + vertical lines) show the "common point" —
+ * the slider position where the less-capable lens reaches its limit. Beyond
+ * this point, that lens is clamped while the other continues.
+ *
+ * @param {Object}   props
+ * @param {Object}   props.LA                   — built lens object for Lens A
+ * @param {Object}   props.LB                   — built lens object for Lens B
+ * @param {number}   props.sharedFocusT          — shared focus slider [0 = ∞, 1 = closest]
+ * @param {number}   props.sharedStopdownT       — shared aperture slider [0 = wide open, 1 = max]
+ * @param {number}   props.sharedZoomT            — shared zoom slider [0..1]
+ * @param {Function} props.onSharedFocusChange    — callback when focus slider moves
+ * @param {Function} props.onSharedStopdownChange — callback when aperture slider moves
+ * @param {Function} props.onSharedZoomChange     — callback when zoom slider moves
+ * @param {Function} props.onFocusPointerDown     — pointer-down on focus (for sticky logic)
+ * @param {Function} props.onAperturePointerDown  — pointer-down on aperture (for sticky logic)
+ * @param {Function} props.onSliderPointerUp      — pointer-up on any slider (ends sticky)
+ * @param {Object}   props.focusPair              — { focusA, focusB, commonPoint, ... }
+ * @param {Object}   props.aperturePair           — { stopdownA, stopdownB, commonPoint, ... }
+ * @param {Object}   props.zoomPair               — { zoomA, zoomB, showZoom, ... }
+ * @param {Object}   props.theme                  — active theme object
+ * @param {boolean}  props.isWide                  — true when viewport is desktop-width
  */
 
 import { formatSharedFocusDist, sharedFNumber } from '../utils/comparisonSliders.js';
@@ -10,16 +36,21 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
   const { commonPoint: apertureCP, widerFOPEN, narrowerFOPEN, sharedMaxFstop } = aperturePair;
   const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
   const focusDistStr = formatSharedFocusDist(sharedFocusT, minCloseFocus);
+  /* Only show the common-point marker when it falls in a visible range
+   * (not at the extreme ends of the slider where it would be meaningless) */
   const showFocusCP = focusCP > 0.01 && focusCP < 0.99;
   const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
   const showZoom = zoomPair?.showZoom;
 
+  /* ── Common-point marker styles ── */
   const sliderWrap = { position: "relative", flex: 1 };
+  /* Downward-pointing triangle above the slider at the common-point position */
   const markerStyle = (pos) => ({
     position: "absolute", left: `${pos * 100}%`, top: -2, transform: "translateX(-50%)",
     width: 0, height: 0, borderLeft: "4px solid transparent", borderRight: "4px solid transparent",
     borderTop: `5px solid ${t.sliderAccent}`, opacity: 0.7, pointerEvents: "none",
   });
+  /* Vertical hairline through the slider track at the common-point position */
   const markerLineStyle = (pos) => ({
     position: "absolute", left: `${pos * 100}%`, top: 0, bottom: 0, transform: "translateX(-50%)",
     width: 1, background: `${t.sliderAccent}40`, pointerEvents: "none",
@@ -107,6 +138,10 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
           </div>
           {/* f-stop quick-select (union of both series) */}
           <div style={{ marginTop: 6, display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums" }}>
+            {/* Merge both lenses' f-stop series into a sorted union, filter to the
+              valid shared range, then compute each f-number's slider position.
+              stopT = log(f/fOpen) / log(fMax/fOpen) maps f-number → [0..1] via
+              the logarithmic f-stop scale (each full stop is a √2 factor). */}
             {[...new Set([...LA.fstopSeries, ...LB.fstopSeries])].sort((a, b) => a - b)
               .filter(n => n >= widerFOPEN - 0.1 && n <= sharedMaxFstop)
               .map(n => {
