@@ -29,7 +29,8 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
 import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION,
          ENABLE_COLLAPSIBLE_HEADER_CONTROLS, ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE,
-         ENABLE_COLLAPSIBLE_LEGEND, ENABLE_COLLAPSIBLE_HEADER_INFO } from '../utils/featureFlags.js';
+         ENABLE_COLLAPSIBLE_LEGEND, ENABLE_COLLAPSIBLE_HEADER_INFO,
+         ENABLE_MOBILE_CONTROLS_STRIP } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -552,8 +553,10 @@ export default function LensDiagramPanel({
           )}
           </>}
         </div>
-        {/* Theme + ray controls in non-compact (single-lens) mode */}
-        {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && !compact && (
+        {/* Theme + ray controls in non-compact (single-lens) mode.
+           Hidden on mobile when ENABLE_MOBILE_CONTROLS_STRIP is active
+           (controls live in the always-visible strip instead). */}
+        {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && !compact && !(ENABLE_MOBILE_CONTROLS_STRIP && !isWide) && (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: isWide ? 220 : (ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !headerControlsExpanded ? "auto" : 220) }}>
             {/* Mobile collapse toggle for controls */}
             {ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !isWide && (

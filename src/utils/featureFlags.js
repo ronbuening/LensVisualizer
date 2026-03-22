@@ -33,3 +33,5 @@ export const ENABLE_COLLAPSIBLE_FOCUS           = true;
 export const ENABLE_COLLAPSIBLE_APERTURE        = true;
 export const ENABLE_COLLAPSIBLE_LEGEND          = true;
 export const ENABLE_COLLAPSIBLE_HEADER_INFO     = true;
+
+export const ENABLE_MOBILE_CONTROLS_STRIP       = true;
