@@ -120,7 +120,7 @@ const LENS_DATA = {
     { label: "10",  R:  -19.156, d: 2.45, nd: 1.0,     elemId: 0, sd: 5.8 },  // L6 rear → air
 
     // ── Component L4: single negative meniscus, aspherical front ──
-    { label: "11A", R:   -9.270, d: 1.20, nd: 1.60342, elemId: 7, sd: 7.5 },  // L7 front (asph)
+    { label: "11A", R:   -9.270, d: 1.20, nd: 1.60342, elemId: 7, sd: 7.3 },  // L7 front (asph)
     { label: "12",  R:  -16.394, d: 17.22,nd: 1.0,     elemId: 0, sd: 7.8 },  // L7 rear → BFD
   ],
 
