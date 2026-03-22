@@ -1,10 +1,23 @@
 /**
  * LensDiagramPanel — Self-contained lens diagram renderer.
  *
- * Self-contained lens diagram renderer.  Owns its own lens building,
- * layout, coordinate transforms, ray tracing, element inspection,
- * and all SVG rendering.  Receives shared control state (focus,
- * aperture, ray toggles) from the parent.
+ * Owns its own lens building, layout computation, coordinate transforms,
+ * ray tracing, element inspection, and all SVG rendering.  Receives
+ * shared control state (focus, aperture, ray toggles, theme) from the
+ * parent (LensViewer).
+ *
+ * Data flow:
+ *   LensViewer → props (lensKey, focusT, zoomT, stopdownT, theme, …)
+ *   LensDiagramPanel:
+ *     1. buildLens(LENS_CATALOG[lensKey]) → frozen lens object L
+ *     2. doLayout(focusT, zoomT, L)       → surface z-positions
+ *     3. traceRay / traceRayChromatic     → ray paths through the system
+ *     4. SVG rendering of elements, rays, aperture, image plane, insets
+ *
+ * In comparison mode, two instances of this component are rendered
+ * side-by-side, each with its own lensKey. The `scaleRatio` prop
+ * enables normalized scale mode so both diagrams share the same
+ * physical mm-per-pixel ratio.
  */
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, Component } from "react";
@@ -16,7 +29,9 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
 import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
-/* ── Panel-level error boundary — catches render errors within a single diagram ── */
+/* ── Panel-level error boundary — catches render errors within a single diagram ──
+ * Separate from the app-wide ErrorBoundary so that one broken lens doesn't
+ * crash the entire comparison view. Resets automatically when lensKey changes. */
 class PanelErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +59,26 @@ class PanelErrorBoundary extends Component {
   }
 }
 
+/**
+ * @param {Object}  props
+ * @param {string}  props.lensKey       — catalog key identifying the lens to render
+ * @param {number}  props.focusT        — focus position [0 = ∞, 1 = closest focus]
+ * @param {number}  props.zoomT         — zoom position [0..1] (ignored for primes)
+ * @param {number}  props.stopdownT     — aperture stopdown [0 = wide open, 1 = max]
+ * @param {boolean} props.showOnAxis    — render on-axis ray fan
+ * @param {boolean} props.showOffAxis   — render off-axis ray fan
+ * @param {boolean} props.showChromatic — render chromatic (R/G/B) ray fans
+ * @param {boolean} props.chromR/G/B    — per-channel toggles for chromatic rays
+ * @param {boolean} props.rayTracksF    — true: rays converge at focus distance;
+ *                                        false: rays arrive from ∞ (parallel)
+ * @param {number|null} props.scaleRatio — if non-null, scales the diagram by this
+ *                                         factor (used in normalized comparison mode)
+ * @param {Object}  props.theme         — active theme object from themes.js
+ * @param {boolean} props.dark          — true when a dark theme is active
+ * @param {string}  props.panelId       — unique ID for SVG filter namespacing ("a"/"b"/"main")
+ * @param {boolean} props.compact       — true in comparison mode (smaller header/controls)
+ * @param {boolean} props.flashOverlay  — trigger a brief highlight flash (sticky slider feedback)
+ */
 export default function LensDiagramPanel({
   lensKey,
   focusT,
@@ -144,14 +179,22 @@ export default function LensDiagramPanel({
   const act = sel || hov;
   const info = act ? L.elements.find(e => e.id === act) : null;
 
-  /* ── Layout ── */
+  /* ── Layout ──
+   * Compute surface z-positions twice: once at infinity focus (to fix the image
+   * plane position) and once at the current focusT. The difference `dz` shifts
+   * the current layout so the image plane stays at a fixed SVG position. */
   const inf = useMemo(() => doLayout(0, zoomT, L), [zoomT, L]);
   const IMG_MM = inf.imgZ;
   const cur = useMemo(() => doLayout(focusT, zoomT, L), [focusT, zoomT, L]);
   const dz = IMG_MM - cur.imgZ;
   const zPos = useMemo(() => cur.z.map(v => v + dz), [cur, dz]);
 
-  /* ── Coordinate transforms (with scaleRatio for normalized mode) ── */
+  /* ── Coordinate transforms (optical mm → SVG pixels) ──
+   * SC  = horizontal scale (mm → px), YSC = vertical scale.
+   * In normalized comparison mode, scaleRatio adjusts both so two lenses
+   * share the same physical mm-per-pixel, making sizes visually comparable.
+   * sx(z) maps an axial position z (mm) to an SVG x coordinate.
+   * sy(y) maps a ray height y (mm) to an SVG y coordinate (Y inverted). */
   const effectiveSC  = scaleRatio != null ? L.SC * scaleRatio : L.SC;
   const effectiveYSC = scaleRatio != null ? L.YSC * scaleRatio : L.YSC;
   const MID = IMG_MM / 2, CX = L.svgW / 2 + L.svgW * L.lensShiftFrac, CY = L.svgH / 2;
@@ -159,7 +202,15 @@ export default function LensDiagramPanel({
   const sx = useCallback(z => IX - (IMG_MM - z) * effectiveSC, [IX, IMG_MM, effectiveSC]);
   const sy = useCallback(y => CY + y * effectiveYSC, [CY, effectiveYSC]);
 
-  /* ── Element shapes ── */
+  /* ── Element shapes ──
+   * For each element [eid, frontSurfIdx, rearSurfIdx], build a closed SVG path:
+   *   front arc (top→bottom) + rear arc (bottom→top) → closed polygon.
+   *
+   * Trimming logic prevents surfaces from visually overlapping neighboring
+   * elements. Two trim passes handle front (backward-curving into preceding gap)
+   * and rear (forward-curving into following gap) surfaces independently.
+   * Each surface is also clamped to its conic height limit to avoid rendering
+   * artifacts where the conic slope approaches infinity. */
   const shapes = useMemo(() => {
     try {
       return L.ES.map(([eid, s1, s2]) => {
@@ -239,14 +290,23 @@ export default function LensDiagramPanel({
     }
   }, [zPos, sx, sy, L, lensKey]);
 
-  /* ── Aperture ── */
+  /* ── Aperture ──
+   * Compute the current f-number and physical stop/entrance-pupil diameters
+   * from the stopdown slider position. Uses a logarithmic mapping so
+   * equal slider increments produce equal f-stop steps.
+   * focusK = convergence curvature at the entrance pupil for "tracks focus"
+   * ray mode; 0 when rays arrive from infinity. */
   const stopZ = zPos[L.stopIdx];
   const fNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const currentPhysStopSD = L.stopPhysSD * L.FOPEN / fNumber;
   const currentEPSD = L.EP.epSD * L.FOPEN / fNumber;
   const focusK = useMemo(() => rayTracksF ? conjugateK(focusT, zoomT, L) : 0, [focusT, zoomT, rayTracksF, L]);
 
-  /* ── On-axis rays ── */
+  /* ── On-axis rays ──
+   * Trace a fan of rays parallel to the optical axis (or converging if
+   * rayTracksF is true). Each ray enters at height h = fraction × EP radius.
+   * "Solid" segments (sp) show the real traced path; "ghost" segments (gp)
+   * show the extrapolated path of rays clipped by the aperture stop. */
   const rays = useMemo(() => {
     try {
       const out = [];
@@ -276,7 +336,11 @@ export default function LensDiagramPanel({
     }
   }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
 
-  /* ── Off-axis rays ── */
+  /* ── Off-axis rays ──
+   * Trace rays entering at an angle corresponding to offAxisFieldDeg.
+   * uField is the incoming ray slope; yChief is the height at the entrance
+   * pupil plane so the chief ray passes through the center of the stop.
+   * These rays visualize field coverage and vignetting. */
   const offAxisRays = useMemo(() => {
     try {
       const out = [];
@@ -310,7 +374,10 @@ export default function LensDiagramPanel({
     }
   }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
 
-  /* ── Chromatic rays ── */
+  /* ── Chromatic rays ──
+   * Trace the same ray heights as on-axis but through wavelength-dependent
+   * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
+   * lower marginal] — shows both axial and lateral color (LCA and TCA). */
   const CHROM_FRACS = [0, 0.75, -0.75];
   const chromaticRays = useMemo(() => {
     if (!showChromatic) return [];
@@ -349,7 +416,9 @@ export default function LensDiagramPanel({
     }
   }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
 
-  /* ── Chromatic spread ── */
+  /* ── Chromatic spread ──
+   * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
+   * from the marginal chromatic rays. Requires at least 2 active channels. */
   const chromSpread = useMemo(() => {
     if (!showChromatic || chromaticRays.length === 0) return null;
     const channels = [];
@@ -504,7 +573,10 @@ export default function LensDiagramPanel({
         )}
       </div>
 
-      {/* ── SVG viewport ── */}
+      {/* ── SVG viewport ──
+        * All optical geometry is rendered into a fixed viewBox (L.svgW × L.svgH).
+        * The SVG scales to fill the container width while respecting maxSvgHeight.
+        * Dark themes use a simple glow filter; light themes add a blue shadow. */}
       <svg viewBox={`0 0 ${L.svgW} ${L.svgH}`} width="100%" style={{ display: "block", maxHeight: maxSvgHeight, minHeight: compact ? 200 : 290, background: t.bg, transition: "background 0.3s" }}>
         <defs>
           {dark ? (
@@ -554,6 +626,8 @@ export default function LensDiagramPanel({
           </g>;
         })}
 
+        {/* Element filled shapes — clickable for inspection, highlighted on hover.
+          * Hit-testing uses SVG's native pointer events on the <path> elements. */}
         {shapes.map(({ eid, d: path }) => {
           const e = L.elements.find(x => x.id === eid); const on = act === eid;
           return <path key={eid} d={path} fill={t.elemFill(e, on)} stroke={t.elemStroke(e, on)}
@@ -589,6 +663,8 @@ export default function LensDiagramPanel({
           ))
         )}
 
+        {/* Aperture stop blades — drawn as two thick lines (top and bottom) from
+          * the physical stop edge inward to the current aperture opening */}
         {(() => {
           const bladeInner = Math.min(currentPhysStopSD, L.stopPhysSD * (1 - L.bladeStubFrac));
           return <>
@@ -601,6 +677,11 @@ export default function LensDiagramPanel({
         <line x1={IX} y1={sy(-L.lyImgLine)} x2={IX} y2={sy(L.lyImgLine)} stroke={t.imgLine} strokeWidth={t.imgLineWidth} strokeDasharray="4,3" />
         <text x={IX} y={sy(L.lyImgLabel)} textAnchor="middle" fill={t.imgLabel} fontSize={7.5} fontFamily="inherit" style={{ letterSpacing: "0.12em" }}>IMG</text>
 
+        {/* ── LCA inset widget ──
+          * Magnified view of where each wavelength's marginal ray crosses the axis.
+          * Green (G/d-line) is the reference; R and B offsets show longitudinal
+          * chromatic aberration. `mag` scales the tiny mm differences to fill the
+          * inset box, clamped at 5000× to avoid pixel overflow for sub-micron LCA. */}
         {showChromatic && chromSpread && chromSpread.lcaMm !== 0 && (() => {
           const insetW = 90;
           const insetH = 100;
@@ -646,6 +727,8 @@ export default function LensDiagramPanel({
             fill={on ? t.elemNumActive : t.elemNum(e)} fontSize={7} fontFamily="inherit" fontWeight={on ? 700 : 400}>{eid}</text>;
         })}
 
+        {/* Abbe number (νd) badges — color-coded by dispersion class:
+          * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown/ED) */}
         {showChromatic && shapes.map(({ eid, z1, z2 }) => {
           const e = L.elements.find(x => x.id === eid);
           if (!e || !e.vd) return null;
