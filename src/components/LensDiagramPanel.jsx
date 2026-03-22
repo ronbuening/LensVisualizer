@@ -164,31 +164,20 @@ export default function LensDiagramPanel({
     catch (e) { return { error: e }; }
   }, [lensKey]);
 
-  if (buildResult.error) {
-    return (
-      <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-        <ErrorDisplay
-          error={buildResult.error}
-          context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
-          title="Failed to build lens"
-        />
-      </div>
-    );
-  }
-
   const L = buildResult.L;
-  const act = sel || hov;
-  const info = act ? L.elements.find(e => e.id === act) : null;
+  const buildError = buildResult.error;
+  const act = L ? (sel || hov) : null;
+  const info = (act && L) ? L.elements.find(e => e.id === act) : null;
 
   /* ── Layout ──
    * Compute surface z-positions twice: once at infinity focus (to fix the image
    * plane position) and once at the current focusT. The difference `dz` shifts
    * the current layout so the image plane stays at a fixed SVG position. */
-  const inf = useMemo(() => doLayout(0, zoomT, L), [zoomT, L]);
-  const IMG_MM = inf.imgZ;
-  const cur = useMemo(() => doLayout(focusT, zoomT, L), [focusT, zoomT, L]);
-  const dz = IMG_MM - cur.imgZ;
-  const zPos = useMemo(() => cur.z.map(v => v + dz), [cur, dz]);
+  const inf = useMemo(() => L ? doLayout(0, zoomT, L) : null, [zoomT, L]);
+  const IMG_MM = inf ? inf.imgZ : 0;
+  const cur = useMemo(() => L ? doLayout(focusT, zoomT, L) : null, [focusT, zoomT, L]);
+  const dz = (inf && cur) ? IMG_MM - cur.imgZ : 0;
+  const zPos = useMemo(() => cur ? cur.z.map(v => v + dz) : [], [cur, dz]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ──
    * SC  = horizontal scale (mm → px), YSC = vertical scale.
@@ -196,9 +185,9 @@ export default function LensDiagramPanel({
    * share the same physical mm-per-pixel, making sizes visually comparable.
    * sx(z) maps an axial position z (mm) to an SVG x coordinate.
    * sy(y) maps a ray height y (mm) to an SVG y coordinate (Y inverted). */
-  const effectiveSC  = scaleRatio != null ? L.SC * scaleRatio : L.SC;
-  const effectiveYSC = scaleRatio != null ? L.YSC * scaleRatio : L.YSC;
-  const MID = IMG_MM / 2, CX = L.svgW / 2 + L.svgW * L.lensShiftFrac, CY = L.svgH / 2;
+  const effectiveSC  = L ? (scaleRatio != null ? L.SC * scaleRatio : L.SC) : 1;
+  const effectiveYSC = L ? (scaleRatio != null ? L.YSC * scaleRatio : L.YSC) : 1;
+  const MID = IMG_MM / 2, CX = L ? L.svgW / 2 + L.svgW * L.lensShiftFrac : 0, CY = L ? L.svgH / 2 : 0;
   const IX = CX + MID * effectiveSC;
   const sx = useCallback(z => IX - (IMG_MM - z) * effectiveSC, [IX, IMG_MM, effectiveSC]);
   const sy = useCallback(y => CY + y * effectiveYSC, [CY, effectiveYSC]);
@@ -206,7 +195,7 @@ export default function LensDiagramPanel({
   /* Maximum ray height (optical mm) that fits within the SVG viewport.
    * Rays projecting beyond this are terminated at the viewport edge so they
    * exit at their true angle rather than extending to an invisible point. */
-  const yViewMax = (L.svgH / 2 - 10) / effectiveYSC;
+  const yViewMax = L ? (L.svgH / 2 - 10) / effectiveYSC : 100;
   const clampedRayEnd = useCallback((lastZ, lastY, u, targetZ) => {
     const yImg = lastY + (targetZ - lastZ) * u;
     const yClamped = Math.max(-yViewMax, Math.min(yViewMax, yImg));
@@ -227,6 +216,7 @@ export default function LensDiagramPanel({
    * Each surface is also clamped to its conic height limit to avoid rendering
    * artifacts where the conic slope approaches infinity. */
   const shapes = useMemo(() => {
+    if (!L) return [];
     try {
       return L.ES.map(([eid, s1, s2]) => {
         const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
@@ -311,13 +301,13 @@ export default function LensDiagramPanel({
    * equal slider increments produce equal f-stop steps.
    * focusK = convergence curvature at the entrance pupil for "tracks focus"
    * ray mode; 0 when rays arrive from infinity. */
-  const stopZ = zPos[L.stopIdx];
-  const fNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
-  const currentPhysStopSD = L.stopPhysSD * L.FOPEN / fNumber;
+  const stopZ = L ? zPos[L.stopIdx] : 0;
+  const fNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
+  const currentPhysStopSD = L ? L.stopPhysSD * L.FOPEN / fNumber : 0;
   /* Use zoom-aware EP for correct ray heights across the zoom range */
-  const baseEPSD = epAtZoom(zoomT, L);
-  const currentEPSD = baseEPSD * L.FOPEN / fNumber;
-  const focusK = useMemo(() => rayTracksF ? conjugateK(focusT, zoomT, L) : 0, [focusT, zoomT, rayTracksF, L]);
+  const baseEPSD = L ? epAtZoom(zoomT, L) : 0;
+  const currentEPSD = L ? baseEPSD * L.FOPEN / fNumber : 0;
+  const focusK = useMemo(() => (L && rayTracksF) ? conjugateK(focusT, zoomT, L) : 0, [focusT, zoomT, rayTracksF, L]);
 
   /* ── On-axis rays ──
    * Trace a fan of rays parallel to the optical axis (or converging if
@@ -325,6 +315,7 @@ export default function LensDiagramPanel({
    * "Solid" segments (sp) show the real traced path; "ghost" segments (gp)
    * show the extrapolated path of rays clipped by the aperture stop. */
   const rays = useMemo(() => {
+    if (!L) return [];
     try {
       const out = [];
       for (const f of L.rayFractions) {
@@ -363,7 +354,7 @@ export default function LensDiagramPanel({
    *   "trueAngle" — extend at the ray's natural exit slope, clamped to viewport
    *   "edge"      — project to the paraxial image height on the image plane */
   const offAxisRays = useMemo(() => {
-    if (showOffAxis === 'off') return [];
+    if (!L || showOffAxis === 'off') return [];
     try {
       const out = [];
       /* Zoom-aware field angle and chief ray entry position */
@@ -410,7 +401,7 @@ export default function LensDiagramPanel({
    * lower marginal] — shows both axial and lateral color (LCA and TCA). */
   const CHROM_FRACS = [0, 0.75, -0.75];
   const chromaticRays = useMemo(() => {
-    if (!showChromatic) return [];
+    if (!L || !showChromatic) return [];
     const channels = [];
     if (chromR) channels.push('R');
     if (chromG) channels.push('G');
@@ -450,7 +441,7 @@ export default function LensDiagramPanel({
    * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
    * from the marginal chromatic rays. Requires at least 2 active channels. */
   const chromSpread = useMemo(() => {
-    if (!showChromatic || chromaticRays.length === 0) return null;
+    if (!L || !showChromatic || chromaticRays.length === 0) return null;
     const channels = [];
     if (chromR) channels.push('R');
     if (chromG) channels.push('G');
@@ -468,15 +459,24 @@ export default function LensDiagramPanel({
   }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
 
   /* ── Variable gap readouts ── */
-  const varReadouts = L.varLabels.map(([idx, label]) => {
+  const varReadouts = L ? L.varLabels.map(([idx, label]) => {
     const val = thick(idx, focusT, zoomT, L).toFixed(2);
     return { label, val };
-  });
+  }) : [];
 
   const filterId = `gl-${panelId}`;
 
   return (
     <PanelErrorBoundary lensKey={lensKey}>
+      {buildError ? (
+        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+          <ErrorDisplay
+            error={buildError}
+            context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
+            title="Failed to build lens"
+          />
+        </div>
+      ) : <>
       {/* ── Header ── */}
       <div ref={headerRef} style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s", ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}) }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -1011,6 +1011,7 @@ export default function LensDiagramPanel({
           </div>
         </div>
       )}
+      </>}
     </PanelErrorBoundary>
   );
 }
