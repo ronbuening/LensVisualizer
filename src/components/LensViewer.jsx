@@ -32,7 +32,8 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH,
          ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
-         ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
+         ENABLE_EDGE_PROJECTION,
+         ENABLE_SIDE_PANEL_LAYOUT } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
@@ -609,6 +610,7 @@ export default function LensVisualization() {
       panelId="main"
       compact={false}
       showControls={true}
+      sideLayoutEnabled={ENABLE_SIDE_PANEL_LAYOUT && isWide && effectiveDesktopView === 'diagram'}
     />
   ) : null;
 

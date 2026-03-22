@@ -118,9 +118,13 @@ export default function LensDiagramPanel({
   highContrast,
   flashOverlay = false,
   onSliderPointerUp,
+  sideLayoutEnabled = false,
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
+  const [useSideLayout, setUseSideLayout] = useState(false);
+  const panelContainerRef = useRef(null);
+  const sideLayoutRef = useRef(false);
   const [flashKey, setFlashKey] = useState(0);
   const [flashVisible, setFlashVisible] = useState(false);
   const [flashFading, setFlashFading] = useState(false);
@@ -157,6 +161,34 @@ export default function LensDiagramPanel({
     ro.observe(el);
     return () => ro.disconnect();
   }, [onHeaderHeight, panelId, lensKey]);
+
+  /* ── Side-panel overflow detection ── */
+  useLayoutEffect(() => {
+    sideLayoutRef.current = useSideLayout;
+  }, [useSideLayout]);
+
+  useLayoutEffect(() => {
+    if (!sideLayoutEnabled || !panelContainerRef.current) {
+      setUseSideLayout(false);
+      return;
+    }
+    const el = panelContainerRef.current;
+    const check = () => {
+      const rect = el.getBoundingClientRect();
+      const available = window.innerHeight - rect.top;
+      if (!sideLayoutRef.current) {
+        if (el.scrollHeight > available + 10) setUseSideLayout(true);
+      } else {
+        if (available > el.scrollHeight + 200) setUseSideLayout(false);
+      }
+    };
+    check();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    window.addEventListener('resize', check);
+    return () => { ro.disconnect(); window.removeEventListener('resize', check); };
+  }, [sideLayoutEnabled, lensKey, showSliders, showControls, showChromatic]);
 
   /* ── Build lens from catalog ── */
   const buildResult = useMemo(() => {
@@ -476,7 +508,7 @@ export default function LensDiagramPanel({
             title="Failed to build lens"
           />
         </div>
-      ) : <>
+      ) : <div ref={panelContainerRef}>
       {/* ── Header ── */}
       <div ref={headerRef} style={{ padding: compact ? "12px 16px 8px" : "18px 24px 10px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", justifyContent: "space-between", alignItems: "flex-start", transition: "background-color 0.3s,border-color 0.3s", ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}) }}>
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -612,11 +644,11 @@ export default function LensDiagramPanel({
         )}
       </div>
 
-      {/* ── SVG viewport ──
-        * All optical geometry is rendered into a fixed viewBox (L.svgW × L.svgH).
-        * The SVG scales to fill the container width while respecting maxSvgHeight.
-        * Dark themes use a simple glow filter; light themes add a blue shadow. */}
-      <svg viewBox={`0 0 ${L.svgW} ${L.svgH}`} width="100%" style={{ display: "block", maxHeight: maxSvgHeight, minHeight: compact ? 200 : 290, background: t.bg, transition: "background 0.3s" }}>
+      {/* ── SVG + controls body (side-by-side when overflowing) ── */}
+      <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
+      {/* ── SVG viewport ── */}
+      <div style={useSideLayout ? { flex: 1, minWidth: 0 } : undefined}>
+      <svg viewBox={`0 0 ${L.svgW} ${L.svgH}`} width="100%" style={{ display: "block", maxHeight: useSideLayout ? `calc(100vh - ${headerRef.current?.offsetHeight || 80}px - 20px)` : maxSvgHeight, minHeight: compact ? 200 : 290, background: t.bg, transition: "background 0.3s" }}>
         <defs>
           {dark ? (
             <filter id={filterId}><feGaussianBlur stdDeviation="2.5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
@@ -794,11 +826,18 @@ export default function LensDiagramPanel({
             style={{ transition: flashFading ? "opacity 0.45s ease-out" : "none", pointerEvents: "none" }} />
         )}
       </svg>
+      </div>{/* end SVG wrapper */}
 
       {/* ── Control panel ── */}
       {showControls && (
-        <div style={{ display: "flex", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, flexWrap: "wrap", transition: "background 0.3s,border-color 0.3s" }}>
-          {showSliders && L.isZoom && <div style={{ flex: "1 1 200px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
+        <div style={useSideLayout
+          ? { flex: "0 0 340px", borderLeft: `1px solid ${t.panelBorder}`, overflowY: "auto", maxHeight: `calc(100vh - ${headerRef.current?.offsetHeight || 80}px - 20px)`, display: "flex", flexDirection: "column", background: t.panelBg, transition: "background 0.3s,border-color 0.3s" }
+          : { display: "flex", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, flexWrap: "wrap", transition: "background 0.3s,border-color 0.3s" }
+        }>
+          {showSliders && L.isZoom && <div style={useSideLayout
+            ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
+            : { flex: "1 1 200px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }
+          }>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 55, transition: "color 0.3s" }}>ZOOM</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>
@@ -813,7 +852,10 @@ export default function LensDiagramPanel({
             </div>
           </div>}
 
-          {showSliders && <div style={{ flex: "1 1 260px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
+          {showSliders && <div style={useSideLayout
+            ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
+            : { flex: "1 1 260px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }
+          }>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>FOCUS</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
@@ -832,7 +874,10 @@ export default function LensDiagramPanel({
             </div>
           </div>}
 
-          {showSliders && <div style={{ flex: "1 1 220px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }}>
+          {showSliders && <div style={useSideLayout
+            ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
+            : { flex: "1 1 220px", padding: compact ? "10px 14px" : "14px 22px", borderRight: `1px solid ${t.panelDivider}` }
+          }>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>APERTURE</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
@@ -861,7 +906,10 @@ export default function LensDiagramPanel({
             </div>
           </div>}
 
-          <div style={{ flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }}>
+          <div style={useSideLayout
+            ? { flex: 1, padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+            : { flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : 125, transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+          }>
             {info ? (
               <div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
@@ -1011,7 +1059,8 @@ export default function LensDiagramPanel({
           </div>
         </div>
       )}
-      </>}
+      </div>{/* end side-layout flex wrapper */}
+      </div>}
     </PanelErrorBoundary>
   );
 }
