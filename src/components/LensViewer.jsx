@@ -33,8 +33,7 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH,
          ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
          ENABLE_EDGE_PROJECTION,
-         ENABLE_SIDE_PANEL_LAYOUT,
-         ENABLE_COLLAPSIBLE_PANELS } from '../utils/featureFlags.js';
+         ENABLE_SIDE_PANEL_LAYOUT } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
@@ -95,6 +94,7 @@ export default function LensVisualization() {
   const [apertureExpanded, setApertureExpanded] = useState(prefs.apertureExpanded ?? isWide);
   const [headerControlsExpanded, setHeaderControlsExpanded] = useState(prefs.headerControlsExpanded ?? false);
   const [legendExpanded, setLegendExpanded] = useState(prefs.legendExpanded ?? false);
+  const [headerInfoExpanded, setHeaderInfoExpanded] = useState(prefs.headerInfoExpanded ?? true);
   const [sharedFocusT, setSharedFocusT] = useState(urlState.comparing ? (urlState.focus ?? 0) : 0);
   const [sharedStopdownT, setSharedStopdownT] = useState(urlState.comparing ? (urlState.aperture ?? 0) : 0);
   const [sharedZoomT, setSharedZoomT] = useState(0);  // zoom initialized from URL after lenses build
@@ -128,10 +128,10 @@ export default function LensVisualization() {
         showOnAxis, showOffAxis, rayTracksF,
         showChromatic, chromR, chromG, chromB,
         desktopView,
-        focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded,
+        focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded,
       }));
     } catch { /* private browsing or quota — ignore */ }
-  }, [dark, highContrast, lensKeyA, lensKeyB, comparing, scaleMode, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, desktopView, focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded]);
+  }, [dark, highContrast, lensKeyA, lensKeyB, comparing, scaleMode, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, desktopView, focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded]);
 
   /* ── URL update refs ── */
   const urlUpdateTimer = useRef(null);
@@ -430,6 +430,7 @@ export default function LensVisualization() {
     apertureExpanded, onApertureExpandedChange: setApertureExpanded,
     headerControlsExpanded, onHeaderControlsExpandedChange: setHeaderControlsExpanded,
     legendExpanded, onLegendExpandedChange: setLegendExpanded,
+    headerInfoExpanded, onHeaderInfoExpandedChange: setHeaderInfoExpanded,
   };
 
   /* ── Selector style helper ── */

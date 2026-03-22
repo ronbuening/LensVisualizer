@@ -28,4 +28,8 @@ export const ENABLE_EDGE_PROJECTION     = true;
 
 export const ENABLE_SIDE_PANEL_LAYOUT   = true;
 
-export const ENABLE_COLLAPSIBLE_PANELS  = true;
+export const ENABLE_COLLAPSIBLE_HEADER_CONTROLS = true;
+export const ENABLE_COLLAPSIBLE_FOCUS           = true;
+export const ENABLE_COLLAPSIBLE_APERTURE        = true;
+export const ENABLE_COLLAPSIBLE_LEGEND          = true;
+export const ENABLE_COLLAPSIBLE_HEADER_INFO     = true;
