@@ -24,7 +24,7 @@ export const ENABLE_ASPH_DIAMOND_FILL   = false;
 
 export const ENABLE_DYNAMIC_DIAGRAM_HEIGHT = true;
 
-export const ENABLE_EDGE_PROJECTION     = true;
+export const ENABLE_EDGE_PROJECTION     = false;
 
 export const ENABLE_SIDE_PANEL_LAYOUT   = true;
 
