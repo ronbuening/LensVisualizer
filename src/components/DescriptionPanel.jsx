@@ -1,10 +1,22 @@
 /**
  * DescriptionPanel — renders lens analysis markdown with theme-aware styling.
+ *
+ * Each lens can ship an optional `.analysis.md` file (loaded by lensCatalog.js).
+ * This component renders that markdown via react-markdown with GFM support,
+ * overriding every HTML element with inline-styled equivalents so the output
+ * follows the active theme without any external CSS.
+ *
+ * Used by LensViewer in the "analysis" pane (desktop right column / mobile tab).
  */
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+/**
+ * @param {Object}  props
+ * @param {string}  props.markdown — raw markdown string (may be null/undefined)
+ * @param {Object}  props.theme    — active theme object from themes.js
+ */
 export default function DescriptionPanel({ markdown, theme: t }) {
   if (!markdown) {
     return (
@@ -13,6 +25,8 @@ export default function DescriptionPanel({ markdown, theme: t }) {
       </div>
     );
   }
+  /* Override every markdown element with theme-colored inline styles.
+   * react-markdown passes each tag through these custom renderers. */
   const components = {
     h1: ({ children }) => <h1 style={{ fontSize: 16, fontWeight: 700, color: t.descH1, margin: "14px 0 6px", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", letterSpacing: "0.02em" }}>{children}</h1>,
     h2: ({ children }) => <h2 style={{ fontSize: 13, fontWeight: 600, color: t.descH2, margin: "14px 0 4px", letterSpacing: "0.06em" }}>{children}</h2>,
@@ -20,6 +34,7 @@ export default function DescriptionPanel({ markdown, theme: t }) {
     p: ({ children }) => <p style={{ margin: "6px 0", fontSize: 12, color: t.descText, lineHeight: 1.7 }}>{children}</p>,
     strong: ({ children }) => <strong style={{ color: t.descH2, fontWeight: 600 }}>{children}</strong>,
     a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: t.descLinkColor, textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40` }}>{children}</a>,
+    /* Distinguish fenced code blocks (language-*) from inline `code` spans */
     code: ({ className, children }) => {
       const isBlock = className?.startsWith('language-');
       if (isBlock) return <code style={{ fontSize: 11 }}>{children}</code>;
