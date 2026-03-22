@@ -33,7 +33,8 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH,
          ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
          ENABLE_EDGE_PROJECTION,
-         ENABLE_SIDE_PANEL_LAYOUT } from '../utils/featureFlags.js';
+         ENABLE_SIDE_PANEL_LAYOUT,
+         ENABLE_MOBILE_CONTROLS_STRIP } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 import ABOUT_ME_MD from '../content/AboutMe.md?raw';
@@ -616,6 +617,89 @@ export default function LensVisualization() {
     </div>
   ) : null;
 
+  /* ── Mobile controls strip (always-visible toggles on narrow screens) ── */
+  const mobileControlsStrip = ENABLE_MOBILE_CONTROLS_STRIP && !isWide && !comparing && mobileView === 'diagram' ? (
+    <div style={{ padding: "6px 12px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center", justifyContent: "center", transition: "background-color 0.3s,border-color 0.3s" }}>
+      {/* Theme controls */}
+      <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        <button onClick={() => setHighContrast(!highContrast)} style={toggleBtnStyle(highContrast, true)}>
+          <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span><span>HC</span>
+        </button>
+        <button onClick={() => setDark(!dark)} style={toggleBtnStyle(false, false)}>
+          <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span><span>{dark ? "Light" : "Dark"}</span>
+        </button>
+      </div>
+
+      {/* Ray toggles */}
+      <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        {(() => {
+          const offAxisActive = showOffAxis !== 'off';
+          const offAxisCycle = ENABLE_EDGE_PROJECTION
+            ? () => setShowOffAxis(showOffAxis === 'off' ? 'trueAngle' : showOffAxis === 'trueAngle' ? 'edge' : 'off')
+            : () => setShowOffAxis(offAxisActive ? 'off' : 'trueAngle');
+          const offAxisLabel = ENABLE_EDGE_PROJECTION
+            ? (showOffAxis === 'edge' ? 'EDGE' : showOffAxis === 'trueAngle' ? 'TRUE\u2220' : 'OFF')
+            : 'OFF';
+          return [
+            { label: "ON", active: showOnAxis, onClick: () => setShowOnAxis(!showOnAxis), dotA: t.rayWarm, dotB: t.rayCool },
+            { label: offAxisLabel, active: offAxisActive, onClick: offAxisCycle, dotA: t.rayOffWarm, dotB: t.rayOffCool },
+          ].map(({ label, active, onClick, dotA, dotB }, idx) => (
+            <button key={idx} onClick={onClick} style={toggleBtnStyle(active, idx === 0)}>
+              <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+                <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+                <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+              </svg>
+              <span>{label}</span>
+            </button>
+          ));
+        })()}
+      </div>
+
+      {/* Ray mode */}
+      <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        {[
+          { label: "\u221e", val: false },
+          { label: "\u27e9 F", val: true },
+        ].map(({ label, val }, idx) => (
+          <button key={label} onClick={() => setRayTracksF(val)} style={toggleBtnStyle(rayTracksF === val, idx === 0)}>
+            <span>{label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Chromatic */}
+      {ENABLE_COLOR_TRACING && (
+        <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+          <button onClick={() => setShowChromatic(!showChromatic)} style={toggleBtnStyle(showChromatic, showChromatic)}>
+            <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+              <line x1="0" y1="1" x2="14" y2="1" stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+              <line x1="0" y1="4" x2="14" y2="4" stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+              <line x1="0" y1="7" x2="14" y2="7" stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+            </svg>
+            <span>COLOR</span>
+          </button>
+          {showChromatic && [
+            { ch: 'R', active: chromR, set: setChromR, color: t.rayChromR },
+            { ch: 'G', active: chromG, set: setChromG, color: t.rayChromG },
+            { ch: 'B', active: chromB, set: setChromB, color: t.rayChromB },
+          ].map(({ ch, active, set, color }, idx) => (
+            <button key={ch} onClick={() => set(!active)} style={{
+              flex: 0.6, background: active ? t.toggleActiveBg : t.toggleBg,
+              border: "none", borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
+              padding: "5px 6px", cursor: "pointer",
+              fontSize: 9, color: active ? t.toggleActiveText : t.toggleInactiveText,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 3, transition: "all 0.25s",
+              fontFamily: "inherit", letterSpacing: "0.08em",
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: "50%", background: active ? color : "rgba(128,128,128,0.3)", display: "inline-block" }} />
+              <span>{ch}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  ) : null;
+
   /* ── Single-lens diagram content ── */
   const singleDiagramContent = !comparing ? (
     <LensDiagramPanel
@@ -753,6 +837,9 @@ export default function LensVisualization() {
           </div>
         </div>
       )}
+
+      {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
+      {mobileControlsStrip}
 
       {/* ── Main content area ── */}
       {comparing ? (<>
