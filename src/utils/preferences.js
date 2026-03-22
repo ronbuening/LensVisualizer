@@ -47,6 +47,7 @@ export function loadPrefs(catalogKeys) {
     if (typeof p.apertureExpanded === 'boolean') out.apertureExpanded = p.apertureExpanded;
     if (typeof p.headerControlsExpanded === 'boolean') out.headerControlsExpanded = p.headerControlsExpanded;
     if (typeof p.legendExpanded === 'boolean') out.legendExpanded = p.legendExpanded;
+    if (typeof p.headerInfoExpanded === 'boolean') out.headerInfoExpanded = p.headerInfoExpanded;
     return out;
   } catch { return {}; }
 }

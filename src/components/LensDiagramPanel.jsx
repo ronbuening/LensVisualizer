@@ -27,7 +27,9 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION, ENABLE_COLLAPSIBLE_PANELS } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION,
+         ENABLE_COLLAPSIBLE_HEADER_CONTROLS, ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE,
+         ENABLE_COLLAPSIBLE_LEGEND, ENABLE_COLLAPSIBLE_HEADER_INFO } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -128,6 +130,8 @@ export default function LensDiagramPanel({
   onHeaderControlsExpandedChange,
   legendExpanded = false,
   onLegendExpandedChange,
+  headerInfoExpanded = true,
+  onHeaderInfoExpandedChange,
 }) {
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
@@ -525,7 +529,14 @@ export default function LensDiagramPanel({
             <h1 style={{ fontSize: compact ? 14 : 17, fontWeight: 700, letterSpacing: "0.04em", margin: 0, color: t.title, fontFamily: "'DM Sans','Helvetica Neue',sans-serif", transition: "color 0.3s" }}>{L.data.name}</h1>
             {!compact && <a href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`} target="_blank" rel="noopener noreferrer" title={`Search Flickr for "${L.data.name}"`} style={{ fontSize: 11, color: t.descLinkColor, letterSpacing: "0.06em", textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40`, whiteSpace: "nowrap", transition: "color 0.3s, border-color 0.3s" }}>flickr ↗</a>}
           </div>
-          <span style={{ display: "block", fontSize: compact ? 9 : 10.5, color: t.subtitle, letterSpacing: "0.08em", marginTop: compact ? 2 : 3, transition: "color 0.3s" }}>{L.data.subtitle}</span>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
+            <span style={{ fontSize: compact ? 9 : 10.5, color: t.subtitle, letterSpacing: "0.08em", transition: "color 0.3s" }}>{L.data.subtitle}</span>
+            {ENABLE_COLLAPSIBLE_HEADER_INFO && !isWide && <button onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)} style={{
+              background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
+              fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
+            }}>{headerInfoExpanded ? "▴" : "▾"}</button>}
+          </div>
+          {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && <>
           <div style={{ display: "flex", gap: compact ? 14 : 22, marginTop: compact ? 4 : 6, fontSize: compact ? 9 : 10, color: t.specs, letterSpacing: "0.06em", transition: "color 0.3s", flexWrap: "wrap" }}>
             {L.data.specs.map((s, i) => <span key={i}>{s}</span>)}
           </div>
@@ -538,12 +549,13 @@ export default function LensDiagramPanel({
               <span>EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}</span>
             </div>
           )}
+          </>}
         </div>
         {/* Theme + ray controls in non-compact (single-lens) mode */}
-        {!compact && (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: isWide ? 220 : (ENABLE_COLLAPSIBLE_PANELS && !headerControlsExpanded ? "auto" : 220) }}>
+        {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && !compact && (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, flexShrink: 0, width: isWide ? 220 : (ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !headerControlsExpanded ? "auto" : 220) }}>
             {/* Mobile collapse toggle for controls */}
-            {ENABLE_COLLAPSIBLE_PANELS && !isWide && (
+            {ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !isWide && (
               <button onClick={() => onHeaderControlsExpandedChange?.(!headerControlsExpanded)} style={{
                 background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 5,
                 padding: "5px 12px", cursor: "pointer", fontSize: 9, color: t.toggleInactiveText,
@@ -557,7 +569,7 @@ export default function LensDiagramPanel({
               </button>
             )}
             {/* Theme controls */}
-            {(isWide || !ENABLE_COLLAPSIBLE_PANELS || headerControlsExpanded) && <>
+            {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && <>
             <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: "100%", transition: "border-color 0.3s" }}>
               <button onClick={() => onHighContrastChange?.(!highContrast)} style={{
                 flex: 1, background: highContrast ? t.toggleActiveBg : t.toggleBg,
@@ -884,7 +896,7 @@ export default function LensDiagramPanel({
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>FOCUS</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
-              {ENABLE_COLLAPSIBLE_PANELS && <button onClick={() => onFocusExpandedChange?.(!focusExpanded)} style={{
+              {ENABLE_COLLAPSIBLE_FOCUS && <button onClick={() => onFocusExpandedChange?.(!focusExpanded)} style={{
                 marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
                 fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
               }}>{focusExpanded ? "▴" : "▾"}</button>}
@@ -897,7 +909,7 @@ export default function LensDiagramPanel({
                 style={{ flex: 1, height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
             </div>
-            {(!ENABLE_COLLAPSIBLE_PANELS || focusExpanded) && <>
+            {(!ENABLE_COLLAPSIBLE_FOCUS || focusExpanded) && <>
             <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>{L.focusDescription}</div>
             <div style={{ marginTop: 6, display: "flex", gap: 14, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
               {varReadouts.map(({ label, val }) => <span key={label}>{label} {val}</span>)}
@@ -914,7 +926,7 @@ export default function LensDiagramPanel({
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>
                 f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
               </span>
-              {ENABLE_COLLAPSIBLE_PANELS && <button onClick={() => onApertureExpandedChange?.(!apertureExpanded)} style={{
+              {ENABLE_COLLAPSIBLE_APERTURE && <button onClick={() => onApertureExpandedChange?.(!apertureExpanded)} style={{
                 marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
                 fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
               }}>{apertureExpanded ? "▴" : "▾"}</button>}
@@ -927,7 +939,7 @@ export default function LensDiagramPanel({
                 style={{ flex: 1, height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
             </div>
-            {(!ENABLE_COLLAPSIBLE_PANELS || apertureExpanded) && <>
+            {(!ENABLE_COLLAPSIBLE_APERTURE || apertureExpanded) && <>
             <div style={{ marginTop: 8, fontSize: 9.5, color: t.desc, lineHeight: 1.6, transition: "color 0.3s" }}>
               EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"} {(epAtZoom(zoomT, L) * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
             </div>
@@ -944,8 +956,8 @@ export default function LensDiagramPanel({
           </div>}
 
           <div style={useSideLayout
-            ? { flex: 1, padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_PANELS && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
-            : { flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_PANELS && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+            ? { flex: 1, padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
+            : { flex: "1 1 360px", padding: compact ? "10px 14px" : "14px 22px", minHeight: compact ? 100 : (ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded ? 40 : 125), transition: "background 0.2s", background: info ? t.infoBgActive : t.infoBgIdle }
           }>
             {info ? (
               <div>
@@ -1021,15 +1033,15 @@ export default function LensDiagramPanel({
               </div>
             ) : (
               <div style={{ padding: "6px 0" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: ENABLE_COLLAPSIBLE_PANELS && !isWide && !legendExpanded ? 0 : 8 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: ENABLE_COLLAPSIBLE_LEGEND && !isWide && !legendExpanded ? 0 : 8 }}>
                   <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>{isWide ? "Hover" : "Tap"} an element for optical details</span>
-                  {ENABLE_COLLAPSIBLE_PANELS && !isWide && <button onClick={() => onLegendExpandedChange?.(!legendExpanded)} style={{
+                  {ENABLE_COLLAPSIBLE_LEGEND && !isWide && <button onClick={() => onLegendExpandedChange?.(!legendExpanded)} style={{
                     marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 6px",
                     fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
                     display: "flex", alignItems: "center", gap: 4,
                   }}>LEGEND <span style={{ fontSize: 8 }}>{legendExpanded ? "▴" : "▾"}</span></button>}
                 </div>
-                {(!ENABLE_COLLAPSIBLE_PANELS || isWide || legendExpanded) && <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
+                {(!ENABLE_COLLAPSIBLE_LEGEND || isWide || legendExpanded) && <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
                   {t.legendSwatches.map(([bg, bd, lb]) => (
                     <div key={lb} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                       <div style={{ width: 11, height: 11, borderRadius: 2, background: bg, border: `1px solid ${bd}`, transition: "all 0.3s" }} /><span style={{ color: t.legendText, transition: "color 0.3s" }}>{lb}</span>
