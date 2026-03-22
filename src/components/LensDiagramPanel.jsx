@@ -203,6 +203,20 @@ export default function LensDiagramPanel({
   const sx = useCallback(z => IX - (IMG_MM - z) * effectiveSC, [IX, IMG_MM, effectiveSC]);
   const sy = useCallback(y => CY + y * effectiveYSC, [CY, effectiveYSC]);
 
+  /* Maximum ray height (optical mm) that fits within the SVG viewport.
+   * Rays projecting beyond this are terminated at the viewport edge so they
+   * exit at their true angle rather than extending to an invisible point. */
+  const yViewMax = (L.svgH / 2 - 10) / effectiveYSC;
+  const clampedRayEnd = useCallback((lastZ, lastY, u, targetZ) => {
+    const yImg = lastY + (targetZ - lastZ) * u;
+    const yClamped = Math.max(-yViewMax, Math.min(yViewMax, yImg));
+    if (yClamped !== yImg && Math.abs(u) > 1e-9) {
+      const zEdge = lastZ + (yClamped - lastY) / u;
+      return [sx(zEdge), sy(yClamped)];
+    }
+    return [sx(targetZ), sy(yImg)];
+  }, [yViewMax, sx, sy]);
+
   /* ── Element shapes ──
    * For each element [eid, frontSurfIdx, rearSurfIdx], build a closed SVG path:
    *   front arc (top→bottom) + rear arc (bottom→top) → closed polygon.
@@ -324,11 +338,11 @@ export default function LensDiagramPanel({
           if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
           gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
           const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+          if (lastGhost) { gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM)); }
         }
         if (!clipped) {
           const last = pts[pts.length - 1];
-          if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+          if (last) { sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM)); }
         }
         out.push({ sp, gp });
       }
@@ -337,7 +351,7 @@ export default function LensDiagramPanel({
       console.error(`[LensDiagramPanel] On-axis ray trace failed for "${lensKey}":`, e);
       return [];
     }
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
+  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
 
   /* ── Off-axis rays ──
    * Trace rays entering at an angle corresponding to offAxisFieldDeg.
@@ -364,11 +378,11 @@ export default function LensDiagramPanel({
           if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
           gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
           const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+          if (lastGhost) { gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM)); }
         }
         if (!clipped) {
           const last = pts[pts.length - 1];
-          if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+          if (last) { sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM)); }
         }
         out.push({ sp, gp });
       }
@@ -377,7 +391,7 @@ export default function LensDiagramPanel({
       console.error(`[LensDiagramPanel] Off-axis ray trace failed for "${lensKey}":`, e);
       return [];
     }
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
+  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
 
   /* ── Chromatic rays ──
    * Trace the same ray heights as on-axis but through wavelength-dependent
@@ -405,11 +419,11 @@ export default function LensDiagramPanel({
             if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
             gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
             const lastGhost = ghostPts[ghostPts.length - 1];
-            if (lastGhost) { const dzI = IMG_MM - lastGhost[0]; gp.push([sx(IMG_MM), sy(lastGhost[1] + dzI * u)]); }
+            if (lastGhost) { gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM)); }
           }
           if (!clipped) {
             const last = pts[pts.length - 1];
-            if (last) { const dzI = IMG_MM - last[0]; sp.push([sx(IMG_MM), sy(last[1] + dzI * u)]); }
+            if (last) { sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM)); }
           }
           out.push({ sp, gp, channel: ch, y, u, clipped });
         }
@@ -419,7 +433,7 @@ export default function LensDiagramPanel({
       console.error(`[LensDiagramPanel] Chromatic ray trace failed for "${lensKey}":`, e);
       return [];
     }
-  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey]);
+  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
 
   /* ── Chromatic spread ──
    * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
