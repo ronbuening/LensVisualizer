@@ -101,7 +101,18 @@ export function snapToCommon(rawT, commonPoint, snapRange = 0.008) {
 /**
  * Compute per-lens zoomT values from a shared slider position.
  *
- * Returns { zoomA, zoomB, showZoom }
+ * For single-zoom + prime: passes sharedZoomT directly to the zoom lens.
+ * For dual-zoom: maps the shared slider to a focal length in the union
+ * range (logarithmic interpolation for perceptual uniformity), then converts
+ * to per-lens zoomT via inverse EFL lookup.  Lenses outside their range
+ * are clamped at 0 or 1.
+ *
+ * @param {number} sharedZoomT  — shared zoom slider [0..1]
+ * @param {Object} LA           — built lens object for Lens A
+ * @param {Object} LB           — built lens object for Lens B
+ * @returns {{ zoomA: number, zoomB: number, showZoom: boolean,
+ *             sharedFL?: number, minFL?: number, maxFL?: number,
+ *             commonPointLow?: number, commonPointHigh?: number }}
  */
 export function computeZoomPair(sharedZoomT, LA, LB) {
   const aIsZoom = !!LA.isZoom;
@@ -109,5 +120,44 @@ export function computeZoomPair(sharedZoomT, LA, LB) {
   if (!aIsZoom && !bIsZoom) return { zoomA: 0, zoomB: 0, showZoom: false };
   if (aIsZoom && !bIsZoom) return { zoomA: sharedZoomT, zoomB: 0, showZoom: true };
   if (!aIsZoom && bIsZoom) return { zoomA: 0, zoomB: sharedZoomT, showZoom: true };
-  return { zoomA: sharedZoomT, zoomB: sharedZoomT, showZoom: true };
+
+  /* Both are zoom lenses — map by focal length in the union range */
+  const aEFLs = LA.zoomEFLs, bEFLs = LB.zoomEFLs;
+  const minFL = Math.min(aEFLs[0], bEFLs[0]);
+  const maxFL = Math.max(aEFLs[aEFLs.length - 1], bEFLs[bEFLs.length - 1]);
+
+  /* Logarithmic interpolation: perceptually uniform across the zoom range */
+  const sharedFL = minFL * Math.pow(maxFL / minFL, sharedZoomT);
+
+  const zoomA = _eflToZoomT(sharedFL, aEFLs);
+  const zoomB = _eflToZoomT(sharedFL, bEFLs);
+
+  /* Common points: where each lens reaches its range boundary */
+  const logRange = Math.log(maxFL / minFL);
+  const commonPointLow = Math.max(
+    aEFLs[0] > minFL ? Math.log(aEFLs[0] / minFL) / logRange : 0,
+    bEFLs[0] > minFL ? Math.log(bEFLs[0] / minFL) / logRange : 0,
+  );
+  const commonPointHigh = Math.min(
+    aEFLs[aEFLs.length - 1] < maxFL ? Math.log(aEFLs[aEFLs.length - 1] / minFL) / logRange : 1,
+    bEFLs[bEFLs.length - 1] < maxFL ? Math.log(bEFLs[bEFLs.length - 1] / minFL) / logRange : 1,
+  );
+
+  return { zoomA, zoomB, showZoom: true, sharedFL, minFL, maxFL, commonPointLow, commonPointHigh };
+}
+
+/**
+ * Convert a focal length to zoomT [0,1] via the lens's pre-computed zoomEFLs.
+ * Uses piecewise-linear inverse interpolation.  Clamps to [0, 1] outside range.
+ */
+function _eflToZoomT(fl, efls) {
+  if (fl <= efls[0]) return 0;
+  if (fl >= efls[efls.length - 1]) return 1;
+  for (let i = 0; i < efls.length - 1; i++) {
+    if (fl >= efls[i] && fl <= efls[i + 1]) {
+      const frac = (fl - efls[i]) / (efls[i + 1] - efls[i]);
+      return (i + frac) / (efls.length - 1);
+    }
+  }
+  return 1;
 }
