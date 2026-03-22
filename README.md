@@ -36,6 +36,7 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
 | RICOH GR 28mm f/2.8 | 7 | Retrofocus; 1 aspheric; US 5,760,973 |
 | RICOH GR III 18.3mm f/2.8 | 6 | Compact retrofocus; US 2019/0154946 A1 |
+| NIKON NIKKOR Z 70-200mm f/2.8 VR S | 21 | Internal zoom; 2 aspherics; 7 APD elements; WO 2020/105104 A1 |
 | RICOH GR IV 18.3mm f/2.8 | 7 | Compact retrofocus; JP2025-069516A |
 
 New lenses are auto-registered — just add a `.data.js` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
