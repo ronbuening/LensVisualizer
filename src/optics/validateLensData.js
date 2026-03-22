@@ -128,6 +128,22 @@ export default function validateLensData(data) {
     }
   }
 
+  /* ── Optional zoom fields ── */
+  if (data.zoomStep !== undefined) {
+    if (typeof data.zoomStep !== 'number' || !isFinite(data.zoomStep) || data.zoomStep <= 0)
+      errors.push(`"zoomStep" must be a finite positive number (got ${data.zoomStep})`);
+  }
+  if (data.zoomLabels !== undefined) {
+    if (!Array.isArray(data.zoomLabels) || !data.zoomLabels.every(s => typeof s === 'string'))
+      errors.push(`"zoomLabels" must be an array of strings`);
+  }
+
+  /* ── Build label→index map for var/geometry checks below ── */
+  const labelToIdx = {};
+  for (let i = 0; i < data.surfaces.length; i++) {
+    if (typeof data.surfaces[i].label === 'string') labelToIdx[data.surfaces[i].label] = i;
+  }
+
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === 'object') {
     const nz = isZoom ? data.zoomPositions.length : 0;
@@ -141,11 +157,29 @@ export default function validateLensData(data) {
           for (let zi = 0; zi < nz; zi++) {
             if (!Array.isArray(range[zi]) || range[zi].length !== 2)
               errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
+            else {
+              /* Non-negative thickness — negative gaps are physically impossible */
+              if (range[zi][0] < 0) errors.push(`var["${label}"][${zi}]: d_infinity=${range[zi][0]} is negative`);
+              if (range[zi][1] < 0) errors.push(`var["${label}"][${zi}]: d_close=${range[zi][1]} is negative`);
+            }
           }
         }
       } else {
         if (!Array.isArray(range) || range.length !== 2)
           errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
+        else {
+          if (range[0] < 0) errors.push(`var["${label}"]: d_infinity=${range[0]} is negative`);
+          if (range[1] < 0) errors.push(`var["${label}"]: d_close=${range[1]} is negative`);
+        }
+      }
+      /* Surface d should match the var infinity value at the first zoom position */
+      if (surfaceLabels.has(label)) {
+        const surfD = data.surfaces[labelToIdx[label]].d;
+        const varInf = isZoom
+          ? (Array.isArray(range) && Array.isArray(range[0]) ? range[0][0] : null)
+          : (Array.isArray(range) ? range[0] : null);
+        if (typeof surfD === 'number' && typeof varInf === 'number' && Math.abs(surfD - varInf) > 1e-6)
+          errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
       }
     }
   }
@@ -178,10 +212,6 @@ export default function validateLensData(data) {
    *  and (b) the front/rear SDs are consistent (ratio ≤ 1.25).
    */
   const S = data.surfaces;
-  const labelToIdx = {};
-  for (let i = 0; i < S.length; i++) {
-    if (typeof S[i].label === 'string') labelToIdx[S[i].label] = i;
-  }
 
   const asphByIdx = {};
   if (data.asph && typeof data.asph === 'object') {
