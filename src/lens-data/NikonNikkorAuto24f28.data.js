@@ -41,7 +41,7 @@ const LENS_DATA = {
 
   /* ── Identity ── */
   key:      "nikkor-24f28",
-  name:     "NIKKOR-N Auto 24mm f/2.8",
+  name:     "Nikon NIKKOR-N Auto 24mm f/2.8",
   subtitle: "US 3,622,227 Example I — Nippon Kogaku / Yoshiyuki Shimizu",
   specs: [
     "9 ELEMENTS / 7 GROUPS",
