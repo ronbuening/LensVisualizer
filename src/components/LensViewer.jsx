@@ -82,7 +82,7 @@ export default function LensVisualization() {
   const [chromB, setChromB] = useState(prefs.chromB ?? true);
   const [stopdownT, setStopdownT] = useState(urlState.aperture ?? 0);
   const [mobileView, setMobileView] = useState('diagram');
-  const [desktopView, setDesktopView] = useState('both');
+  const [desktopView, setDesktopView] = useState(prefs.desktopView || 'both');
   const [showAbout, setShowAbout] = useState(false);
   const [showAboutSite, setShowAboutSite] = useState(false);
   const [sharedFocusT, setSharedFocusT] = useState(urlState.comparing ? (urlState.focus ?? 0) : 0);
@@ -117,9 +117,10 @@ export default function LensVisualization() {
         lensKeyA, lensKeyB, comparing, scaleMode,
         showOnAxis, showOffAxis, rayTracksF,
         showChromatic, chromR, chromG, chromB,
+        desktopView,
       }));
     } catch { /* private browsing or quota — ignore */ }
-  }, [dark, highContrast, lensKeyA, lensKeyB, comparing, scaleMode, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB]);
+  }, [dark, highContrast, lensKeyA, lensKeyB, comparing, scaleMode, showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, desktopView]);
 
   /* ── URL update refs ── */
   const urlUpdateTimer = useRef(null);

@@ -42,6 +42,7 @@ export function loadPrefs(catalogKeys) {
     if (typeof p.lensKeyB === 'string' && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
     if (typeof p.comparing === 'boolean') out.comparing = p.comparing;
     if (p.scaleMode === 'independent' || p.scaleMode === 'normalized') out.scaleMode = p.scaleMode;
+    if (typeof p.desktopView === 'string' && ['diagram', 'both', 'analysis'].includes(p.desktopView)) out.desktopView = p.desktopView;
     return out;
   } catch { return {}; }
 }
