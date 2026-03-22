@@ -131,6 +131,7 @@ export function thick(i, focusT, zoomT, L) {
   if (!L.isZoom) return v[0] + (v[1] - v[0]) * focusT;
   /* Piecewise-linear interpolation across zoom positions, then focus */
   const nz = v.length;
+  if (nz === 1) return v[0][0] + (v[0][1] - v[0][0]) * focusT;
   const zp = zoomT * (nz - 1);
   const zi = Math.min(Math.floor(zp), nz - 2);
   const zf = zp - zi;
@@ -167,11 +168,67 @@ export function doLayout(focusT, zoomT, L) {
  */
 export function eflAtZoom(zoomT, L) {
   if (!L.isZoom) return L.EFL;
-  const zp = L.zoomEFLs;
-  const pos = zoomT * (zp.length - 1);
-  const idx = Math.min(Math.floor(pos), zp.length - 2);
+  return _lerpZoomArray(zoomT, L.zoomEFLs);
+}
+
+/**
+ * Interpolate entrance pupil SD at a given zoom position.
+ *
+ * @param {number} zoomT  — zoom slider [0 = wide, 1 = tele]
+ * @param {Object} L      — runtime lens object
+ * @returns {number}         entrance pupil SD in mm
+ */
+export function epAtZoom(zoomT, L) {
+  if (!L.isZoom) return L.EP.epSD;
+  return _lerpZoomArray(zoomT, L.zoomEPs);
+}
+
+/**
+ * Interpolate half-field angle at a given zoom position.
+ *
+ * @param {number} zoomT  — zoom slider [0 = wide, 1 = tele]
+ * @param {Object} L      — runtime lens object
+ * @returns {number}         half-field angle in degrees
+ */
+export function halfFieldAtZoom(zoomT, L) {
+  if (!L.isZoom) return L.halfField;
+  return _lerpZoomArray(zoomT, L.zoomHalfFields);
+}
+
+/**
+ * Interpolate marginal ray height ratio at stop for a given zoom position.
+ *
+ * @param {number} zoomT  — zoom slider [0 = wide, 1 = tele]
+ * @param {Object} L      — runtime lens object
+ * @returns {number}         yRatio at the stop surface
+ */
+export function yRatioAtZoom(zoomT, L) {
+  if (!L.isZoom) return L.EP.yRatio;
+  return _lerpZoomArray(zoomT, L.zoomYRatios);
+}
+
+/**
+ * Interpolate chief ray height at stop for a given zoom position.
+ *
+ * @param {number} zoomT  — zoom slider [0 = wide, 1 = tele]
+ * @param {Object} L      — runtime lens object
+ * @returns {number}         B (chief ray height at stop)
+ */
+export function bAtZoom(zoomT, L) {
+  if (!L.isZoom) return L.B;
+  return _lerpZoomArray(zoomT, L.zoomBs);
+}
+
+/**
+ * Piecewise-linear interpolation across a pre-computed zoom array.
+ * Shared helper for eflAtZoom, epAtZoom, halfFieldAtZoom, etc.
+ */
+function _lerpZoomArray(zoomT, arr) {
+  if (arr.length === 1) return arr[0];
+  const pos = zoomT * (arr.length - 1);
+  const idx = Math.min(Math.floor(pos), arr.length - 2);
   const frac = pos - idx;
-  return zp[idx] + (zp[idx + 1] - zp[idx]) * frac;
+  return arr[idx] + (arr[idx + 1] - arr[idx]) * frac;
 }
 
 

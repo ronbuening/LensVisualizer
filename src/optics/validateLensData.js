@@ -128,6 +128,22 @@ export default function validateLensData(data) {
     }
   }
 
+  /* ── Optional zoom fields ── */
+  if (data.zoomStep !== undefined) {
+    if (typeof data.zoomStep !== 'number' || !isFinite(data.zoomStep) || data.zoomStep <= 0)
+      errors.push(`"zoomStep" must be a finite positive number (got ${data.zoomStep})`);
+  }
+  if (data.zoomLabels !== undefined) {
+    if (!Array.isArray(data.zoomLabels) || !data.zoomLabels.every(s => typeof s === 'string'))
+      errors.push(`"zoomLabels" must be an array of strings`);
+  }
+
+  /* ── Build label→index map for var/geometry checks below ── */
+  const labelToIdx = {};
+  for (let i = 0; i < data.surfaces.length; i++) {
+    if (typeof data.surfaces[i].label === 'string') labelToIdx[data.surfaces[i].label] = i;
+  }
+
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === 'object') {
     const nz = isZoom ? data.zoomPositions.length : 0;
@@ -141,11 +157,29 @@ export default function validateLensData(data) {
           for (let zi = 0; zi < nz; zi++) {
             if (!Array.isArray(range[zi]) || range[zi].length !== 2)
               errors.push(`var["${label}"][${zi}]: expected [d_infinity, d_close] array of length 2`);
+            else {
+              /* Non-negative thickness — negative gaps are physically impossible */
+              if (range[zi][0] < 0) errors.push(`var["${label}"][${zi}]: d_infinity=${range[zi][0]} is negative`);
+              if (range[zi][1] < 0) errors.push(`var["${label}"][${zi}]: d_close=${range[zi][1]} is negative`);
+            }
           }
         }
       } else {
         if (!Array.isArray(range) || range.length !== 2)
           errors.push(`var["${label}"]: expected [d_infinity, d_close] array of length 2`);
+        else {
+          if (range[0] < 0) errors.push(`var["${label}"]: d_infinity=${range[0]} is negative`);
+          if (range[1] < 0) errors.push(`var["${label}"]: d_close=${range[1]} is negative`);
+        }
+      }
+      /* Surface d should match the var infinity value at the first zoom position */
+      if (surfaceLabels.has(label)) {
+        const surfD = data.surfaces[labelToIdx[label]].d;
+        const varInf = isZoom
+          ? (Array.isArray(range) && Array.isArray(range[0]) ? range[0][0] : null)
+          : (Array.isArray(range) ? range[0] : null);
+        if (typeof surfD === 'number' && typeof varInf === 'number' && Math.abs(surfD - varInf) > 1e-6)
+          errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
       }
     }
   }
@@ -178,10 +212,6 @@ export default function validateLensData(data) {
    *  and (b) the front/rear SDs are consistent (ratio ≤ 1.25).
    */
   const S = data.surfaces;
-  const labelToIdx = {};
-  for (let i = 0; i < S.length; i++) {
-    if (typeof S[i].label === 'string') labelToIdx[S[i].label] = i;
-  }
 
   const asphByIdx = {};
   if (data.asph && typeof data.asph === 'object') {
@@ -245,33 +275,68 @@ export default function validateLensData(data) {
    *  For each air gap between elements, verify that the combined sag intrusion
    *  from both bounding surfaces does not exceed the gap thickness.
    */
+  _checkCrossGapOverlap(S, asphByIdx, null, errors, '');
+
+  /* For zoom lenses, also check at each zoom position's variable thickness.
+   * Air gaps can change dramatically across zoom positions. */
+  if (isZoom && data.var) {
+    const nz = data.zoomPositions.length;
+    /* Build a var lookup keyed by surface index for efficient gap-d overrides */
+    const varByIdx = {};
+    for (const [label, range] of Object.entries(data.var)) {
+      if (labelToIdx[label] !== undefined) varByIdx[labelToIdx[label]] = range;
+    }
+    for (let zi = 0; zi < nz; zi++) {
+      const gapOverrides = {};
+      for (const [idx, range] of Object.entries(varByIdx)) {
+        if (Array.isArray(range[zi])) gapOverrides[idx] = range[zi][0]; // infinity-focus thickness
+      }
+      _checkCrossGapOverlap(S, asphByIdx, gapOverrides, errors,
+        ` at zoom position ${zi} (${data.zoomPositions[zi]} mm)`);
+    }
+  }
+
+  return errors;
+}
+
+/**
+ * Check cross-gap surface overlap for a set of air gaps.
+ *
+ * Verifies that the combined sag intrusion from adjacent element surfaces
+ * does not exceed the air gap thickness.  Called once with fixed d values,
+ * then again per zoom position with overridden gap thicknesses.
+ *
+ * @param {Object[]} S             — surface array
+ * @param {Object}   asphByIdx     — aspheric coefficients by surface index
+ * @param {Object|null} gapOverrides — { surfIdx: overrideD } for variable gaps, or null
+ * @param {string[]} errors        — error accumulator (mutated)
+ * @param {string}   context       — suffix for error messages (e.g. " at zoom position 0")
+ */
+function _checkCrossGapOverlap(S, asphByIdx, gapOverrides, errors, context) {
   for (let i = 0; i < S.length - 1; i++) {
     const curr = S[i], next = S[i + 1];
-    if (typeof curr.nd !== 'number' || curr.nd !== 1.0) continue;    // only air gaps
-    if (curr.elemId !== 0) continue;                                  // skip cemented junctions
-    if (typeof curr.d !== 'number' || curr.d <= 0) continue;
-    if (typeof next.elemId !== 'number' || next.elemId === 0) continue; // next must be an element
-    /* Find the element whose rear surface is curr (surface i) */
+    if (typeof curr.nd !== 'number' || curr.nd !== 1.0) continue;
+    if (curr.elemId !== 0) continue;
+    const gapD = gapOverrides ? (gapOverrides[i] ?? curr.d) : curr.d;
+    if (typeof gapD !== 'number' || gapD <= 0) continue;
+    if (typeof next.elemId !== 'number' || next.elemId === 0) continue;
     let prevElemRear = -1;
     for (let j = i - 1; j >= 0; j--) {
       if (S[j].elemId !== 0) { prevElemRear = j + 1; break; }
     }
-    if (prevElemRear < 0 || prevElemRear !== i) continue;             // curr isn't a rear surface
-    const prevFront = i - 1;  // front surface of preceding element
+    if (prevElemRear < 0 || prevElemRear !== i) continue;
+    const prevFront = i - 1;
     if (prevFront < 0 || S[prevFront].elemId === 0) continue;
-    /* Use the minimum SD at which both surfaces are rendered */
     const sdPrev = Math.min(S[prevFront].sd || Infinity, curr.sd || Infinity);
     const sdNext = Math.min(next.sd || Infinity, (i + 2 < S.length ? S[i + 2].sd : Infinity) || Infinity);
     const sdCheck = Math.min(sdPrev, sdNext);
     if (!isFinite(sdCheck) || sdCheck <= 0) continue;
-    const sagFwd  = _renderSag(sdCheck, curr.R, asphByIdx[i]);       // rear surface sag (positive = extends into gap)
-    const sagBack = _renderSag(sdCheck, next.R, asphByIdx[i + 1]);   // front surface sag (negative = extends into gap)
+    const sagFwd  = _renderSag(sdCheck, curr.R, asphByIdx[i]);
+    const sagBack = _renderSag(sdCheck, next.R, asphByIdx[i + 1]);
     const intrusion = sagFwd - sagBack;
-    if (intrusion > curr.d * 1.10)
-      errors.push(`Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds gap thickness (${curr.d} mm) at sd=${sdCheck.toFixed(1)} — elements will overlap in rendering`);
+    if (intrusion > gapD * 1.10)
+      errors.push(`Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds gap thickness (${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`);
   }
-
-  return errors;
 }
 
 /**

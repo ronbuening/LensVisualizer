@@ -30,7 +30,7 @@ const LENS_DATA = {
   key:      "nikkor-z70-200f28",
   name:     "NIKON NIKKOR Z 70-200mm f/2.8 VR S",
   subtitle: "WO 2020/105104 A1 EXAMPLE 1 — NIKON",
-  visible: false,
+  visible: true,
   specs: [
     "21 ELEMENTS / 9 GROUPS",
     "f = 71.5–196 mm",

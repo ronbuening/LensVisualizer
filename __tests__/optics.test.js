@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { sag, renderSag, sagSlope, thick, doLayout, formatDist,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
-         conjugateK, wavelengthNd,
+         conjugateK, wavelengthNd, eflAtZoom, epAtZoom, halfFieldAtZoom,
          FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../src/optics/optics.js';
 
 describe('sag', () => {
@@ -371,11 +371,12 @@ describe('computeChromaticSpread', () => {
 /* ── Production lens ray tracing ── */
 import buildLens from '../src/optics/buildLens.js';
 import LENS_DEFAULTS from '../src/lens-data/defaults.js';
-import ApoLantharRaw  from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
-import NoktonRaw      from '../src/lens-data/VoigtlanderNokton50f1.data.js';
-import NikkorRaw      from '../src/lens-data/NikonNikkorZ50f18S.data.js';
-import Nikkor105Raw   from '../src/lens-data/NikonNikkor105f14E.data.js';
-import Sonnar50f15Raw from '../src/lens-data/ZeissSonnar50f15.data.js';
+import ApoLantharRaw   from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
+import NoktonRaw       from '../src/lens-data/VoigtlanderNokton50f1.data.js';
+import NikkorRaw       from '../src/lens-data/NikonNikkorZ50f18S.data.js';
+import Nikkor105Raw    from '../src/lens-data/NikonNikkor105f14E.data.js';
+import Sonnar50f15Raw  from '../src/lens-data/ZeissSonnar50f15.data.js';
+import NikkorZ70200Raw from '../src/lens-data/NikonNikkorZ70200f28.data.js';
 
 describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
@@ -512,6 +513,78 @@ describe('conjugateK', () => {
     // Manually corrupt EP to trigger NaN path
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
     expect(conjugateK(0, 0, badL)).toBe(0);
+  });
+});
+
+describe('thick — zoom edge cases', () => {
+  it('handles zoomT=1.0 at tele end correctly', () => {
+    const L = {
+      S: [{ d: 2.0 }],
+      varByIdx: { 0: [[2.0, 4.0], [6.0, 8.0], [10.0, 12.0]] },
+      isZoom: true,
+    };
+    expect(thick(0, 0, 1.0, L)).toBe(10.0);
+    expect(thick(0, 1, 1.0, L)).toBe(12.0);
+  });
+
+  it('handles single-position zoom defensively', () => {
+    const L = {
+      S: [{ d: 5.0 }],
+      varByIdx: { 0: [[5.0, 8.0]] },
+      isZoom: true,
+    };
+    expect(thick(0, 0, 0, L)).toBe(5.0);
+    expect(thick(0, 1, 0, L)).toBe(8.0);
+    expect(thick(0, 0.5, 0.5, L)).toBe(6.5);
+  });
+});
+
+describe('eflAtZoom', () => {
+  it('returns L.EFL for prime lenses regardless of zoomT', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
+    expect(eflAtZoom(0, L)).toBe(L.EFL);
+    expect(eflAtZoom(0.5, L)).toBe(L.EFL);
+    expect(eflAtZoom(1, L)).toBe(L.EFL);
+  });
+
+  it('returns wide EFL at zoomT=0 and tele EFL at zoomT=1', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
+    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs[0], 5);
+    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs[2], 5);
+  });
+
+  it('interpolates monotonically between wide and tele', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
+    const efl = eflAtZoom(0.5, L);
+    expect(efl).toBeGreaterThan(L.zoomEFLs[0]);
+    expect(efl).toBeLessThan(L.zoomEFLs[2]);
+  });
+
+  it('handles single-element zoomEFLs defensively', () => {
+    const L = { isZoom: true, zoomEFLs: [50], EFL: 50 };
+    expect(eflAtZoom(0, L)).toBe(50);
+    expect(eflAtZoom(1, L)).toBe(50);
+  });
+});
+
+describe('epAtZoom / halfFieldAtZoom', () => {
+  it('returns static values for prime lenses', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
+    expect(epAtZoom(0, L)).toBe(L.EP.epSD);
+    expect(epAtZoom(0.5, L)).toBe(L.EP.epSD);
+    expect(halfFieldAtZoom(0, L)).toBe(L.halfField);
+  });
+
+  it('interpolates across zoom positions', () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
+    const epWide = epAtZoom(0, L);
+    const epTele = epAtZoom(1, L);
+    const epMid  = epAtZoom(0.5, L);
+    expect(epWide).toBeCloseTo(L.zoomEPs[0], 5);
+    expect(epTele).toBeCloseTo(L.zoomEPs[2], 5);
+    /* Mid should be between wide and tele (or equal) */
+    expect(epMid).toBeGreaterThanOrEqual(Math.min(epWide, epTele) - 0.01);
+    expect(epMid).toBeLessThanOrEqual(Math.max(epWide, epTele) + 0.01);
   });
 });
 

@@ -258,3 +258,87 @@ describe('validateLensData — production lenses', () => {
     });
   }
 });
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  Zoom-specific validation
+ * ═══════════════════════════════════════════════════════════════════ */
+import NikkorZ70200Raw from '../src/lens-data/NikonNikkorZ70200f28.data.js';
+
+describe('validateLensData — zoom lens paths', () => {
+  it('Nikkor Z 70-200 zoom lens passes validation', () => {
+    const data = { ...LENS_DEFAULTS, ...NikkorZ70200Raw };
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it('catches negative var thickness in zoom format', () => {
+    const data = makeValid({
+      zoomPositions: [24, 70],
+      var: { 'STO': [[-1, 3], [4, 5]] },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('negative'))).toBe(true);
+  });
+
+  it('catches negative var thickness in prime format', () => {
+    const data = makeValid({ var: { 'STO': [2, -1] } });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('negative'))).toBe(true);
+  });
+
+  it('catches surface d / var infinity mismatch (prime)', () => {
+    /* STO surface has d=2, but var infinity value is 5 */
+    const data = makeValid({ var: { 'STO': [5, 3] } });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('does not match'))).toBe(true);
+  });
+
+  it('catches surface d / var infinity mismatch (zoom)', () => {
+    /* STO surface has d=2, but var[0][0] = 5 */
+    const data = makeValid({
+      zoomPositions: [24, 70],
+      var: { 'STO': [[5, 3], [4, 5]] },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('does not match'))).toBe(true);
+  });
+
+  it('accepts matching surface d / var infinity', () => {
+    const data = makeValid({ var: { 'STO': [2, 3] } });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('does not match'))).toBe(false);
+  });
+
+  it('catches invalid zoomStep', () => {
+    const data = makeValid({ zoomStep: -0.1 });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('zoomStep'))).toBe(true);
+  });
+
+  it('catches non-string zoomLabels', () => {
+    const data = makeValid({ zoomLabels: [1, 2] });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('zoomLabels'))).toBe(true);
+  });
+
+  it('accepts valid zoomLabels', () => {
+    const data = makeValid({ zoomLabels: ['Wide', 'Tele'] });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('zoomLabels'))).toBe(false);
+  });
+
+  it('catches non-monotonic zoomPositions', () => {
+    const data = makeValid({ zoomPositions: [70, 50, 24] });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('monotonically'))).toBe(true);
+  });
+
+  it('catches var length mismatch with zoomPositions', () => {
+    const data = makeValid({
+      zoomPositions: [24, 50, 70],
+      var: { 'STO': [[2, 3], [4, 5]] },  // only 2 pairs, needs 3
+    });
+    const errors = validateLensData(data);
+    expect(errors.some(e => e.includes('3 [d_inf, d_close] pairs'))).toBe(true);
+  });
+});

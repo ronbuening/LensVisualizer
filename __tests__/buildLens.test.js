@@ -3,11 +3,12 @@ import buildLens, { paraxialTrace } from '../src/optics/buildLens.js';
 import LENS_DEFAULTS from '../src/lens-data/defaults.js';
 
 /* ── Load all production lens data files ── */
-import ApoLantharRaw  from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
-import NoktonRaw      from '../src/lens-data/VoigtlanderNokton50f1.data.js';
-import NikkorRaw      from '../src/lens-data/NikonNikkorZ50f18S.data.js';
-import Nikkor105Raw   from '../src/lens-data/NikonNikkor105f14E.data.js';
-import Sonnar50f15Raw from '../src/lens-data/ZeissSonnar50f15.data.js';
+import ApoLantharRaw   from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
+import NoktonRaw       from '../src/lens-data/VoigtlanderNokton50f1.data.js';
+import NikkorRaw       from '../src/lens-data/NikonNikkorZ50f18S.data.js';
+import Nikkor105Raw    from '../src/lens-data/NikonNikkor105f14E.data.js';
+import Sonnar50f15Raw  from '../src/lens-data/ZeissSonnar50f15.data.js';
+import NikkorZ70200Raw from '../src/lens-data/NikonNikkorZ70200f28.data.js';
 
 const ApoLanthar  = { ...LENS_DEFAULTS, ...ApoLantharRaw };
 const Nokton      = { ...LENS_DEFAULTS, ...NoktonRaw };
@@ -303,5 +304,78 @@ describe('scaleRatio for normalized comparison', () => {
       expect(L.SC).toBeGreaterThan(0);
       expect(L.YSC).toBeGreaterThan(0);
     }
+  });
+});
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  Zoom lens building
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe('buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)', () => {
+  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw };
+  const L = buildLens(NikkorZ70200);
+
+  it('builds successfully and is frozen', () => {
+    expect(Object.isFrozen(L)).toBe(true);
+    expect(L.isZoom).toBe(true);
+  });
+
+  it('has correct zoomPositions', () => {
+    expect(L.zoomPositions).toEqual([71.5, 135, 196]);
+  });
+
+  it('has zoomEFLs of correct length with plausible values', () => {
+    expect(L.zoomEFLs).toHaveLength(3);
+    /* Wide end EFL should be near 71.5 mm */
+    expect(L.zoomEFLs[0]).toBeGreaterThan(50);
+    expect(L.zoomEFLs[0]).toBeLessThan(100);
+    /* Tele end EFL should be near 196 mm */
+    expect(L.zoomEFLs[2]).toBeGreaterThan(150);
+    expect(L.zoomEFLs[2]).toBeLessThan(250);
+    /* EFLs should increase from wide to tele */
+    expect(L.zoomEFLs[1]).toBeGreaterThan(L.zoomEFLs[0]);
+    expect(L.zoomEFLs[2]).toBeGreaterThan(L.zoomEFLs[1]);
+  });
+
+  it('has zoomEPs array with positive values', () => {
+    expect(L.zoomEPs).toHaveLength(3);
+    for (const ep of L.zoomEPs) {
+      expect(ep).toBeGreaterThan(0);
+      expect(isFinite(ep)).toBe(true);
+    }
+  });
+
+  it('has zoomHalfFields with wider field at wide end', () => {
+    expect(L.zoomHalfFields).toHaveLength(3);
+    /* Wide end should have larger half-field than tele */
+    expect(L.zoomHalfFields[0]).toBeGreaterThan(L.zoomHalfFields[2]);
+    for (const hf of L.zoomHalfFields) {
+      expect(hf).toBeGreaterThan(0);
+      expect(hf).toBeLessThan(90);
+    }
+  });
+
+  it('has zoomYRatios and zoomBs arrays', () => {
+    expect(L.zoomYRatios).toHaveLength(3);
+    expect(L.zoomBs).toHaveLength(3);
+    for (const yr of L.zoomYRatios) expect(isFinite(yr)).toBe(true);
+    for (const b of L.zoomBs) expect(isFinite(b)).toBe(true);
+  });
+
+  it('exports offAxisFieldFrac', () => {
+    expect(typeof L.offAxisFieldFrac).toBe('number');
+    expect(L.offAxisFieldFrac).toBeGreaterThan(0);
+    expect(L.offAxisFieldFrac).toBeLessThanOrEqual(1);
+  });
+
+  it('prime lenses have null zoom arrays', () => {
+    const LP = buildLens(ApoLanthar);
+    expect(LP.isZoom).toBe(false);
+    expect(LP.zoomEFLs).toBeNull();
+    expect(LP.zoomEPs).toBeNull();
+    expect(LP.zoomHalfFields).toBeNull();
+    expect(LP.zoomYRatios).toBeNull();
+    expect(LP.zoomBs).toBeNull();
   });
 });

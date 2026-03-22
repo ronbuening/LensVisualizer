@@ -56,11 +56,23 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
     width: 1, background: `${t.sliderAccent}40`, pointerEvents: "none",
   });
 
-  /* Zoom readout helpers */
+  /* Zoom readout helpers — dual-zoom uses the shared focal length from
+   * computeZoomPair; single-zoom reads from the one zoom lens directly. */
   const zoomReadoutA = LA.isZoom ? `${eflAtZoom(zoomPair?.zoomA ?? 0, LA).toFixed(0)} mm` : "\u2014";
   const zoomReadoutB = LB.isZoom ? `${eflAtZoom(zoomPair?.zoomB ?? 0, LB).toFixed(0)} mm` : "\u2014";
+  const bothZoom = LA.isZoom && LB.isZoom;
   const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
-  const zoomEfl = zoomLens ? eflAtZoom(sharedZoomT, zoomLens).toFixed(0) : "";
+  const zoomEfl = bothZoom && zoomPair?.sharedFL
+    ? zoomPair.sharedFL.toFixed(0)
+    : (zoomLens ? eflAtZoom(sharedZoomT, zoomLens).toFixed(0) : "");
+  /* Slider endpoints: dual-zoom uses the union range; single-zoom uses the lens's positions */
+  const zoomMinLabel = bothZoom && zoomPair?.minFL
+    ? `${zoomPair.minFL.toFixed(0)} mm` : (zoomLens ? `${zoomLens.zoomPositions[0]} mm` : "");
+  const zoomMaxLabel = bothZoom && zoomPair?.maxFL
+    ? `${zoomPair.maxFL.toFixed(0)} mm` : (zoomLens ? `${zoomLens.zoomPositions[zoomLens.zoomPositions.length - 1]} mm` : "");
+  /* Common-point markers for dual-zoom (where one lens reaches its range boundary) */
+  const showZoomCPLow = bothZoom && zoomPair?.commonPointLow > 0.01;
+  const showZoomCPHigh = bothZoom && zoomPair?.commonPointHigh < 0.99;
 
   return (
     <div style={{ padding: isWide ? "14px 24px" : "12px 14px", borderTop: `1px solid ${t.panelBorder}`, background: t.panelBg, transition: "background 0.3s,border-color 0.3s" }}>
@@ -73,14 +85,18 @@ export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{zoomEfl} mm</span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomLens.zoomPositions[0]} mm</span>
+              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMinLabel}</span>
               <div style={sliderWrap}>
+                {showZoomCPLow && <div style={markerStyle(zoomPair.commonPointLow)} />}
+                {showZoomCPLow && <div style={markerLineStyle(zoomPair.commonPointLow)} />}
+                {showZoomCPHigh && <div style={markerStyle(zoomPair.commonPointHigh)} />}
+                {showZoomCPHigh && <div style={markerLineStyle(zoomPair.commonPointHigh)} />}
                 <input type="range" min="0" max="1" step="0.004" value={sharedZoomT}
                   onChange={e => onSharedZoomChange(parseFloat(e.target.value))}
                   onPointerUp={onSliderPointerUp}
                   style={{ width: "100%", height: 4, appearance: "none", background: t.sliderTrack, borderRadius: 2, outline: "none", cursor: "pointer", accentColor: t.sliderAccent }} />
               </div>
-              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomLens.zoomPositions[zoomLens.zoomPositions.length - 1]} mm</span>
+              <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMaxLabel}</span>
             </div>
             <div style={{ marginTop: 6, display: "flex", gap: 16, fontSize: 9, color: t.spacingVal, fontVariantNumeric: "tabular-nums" }}>
               <span>A: {zoomReadoutA}</span>
