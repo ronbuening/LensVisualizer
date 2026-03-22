@@ -532,9 +532,10 @@ export default function LensDiagramPanel({
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
             <span style={{ fontSize: compact ? 9 : 10.5, color: t.subtitle, letterSpacing: "0.08em", transition: "color 0.3s" }}>{L.data.subtitle}</span>
             {ENABLE_COLLAPSIBLE_HEADER_INFO && !isWide && <button onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)} style={{
-              background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
-              fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
-            }}>{headerInfoExpanded ? "▴" : "▾"}</button>}
+              background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 10,
+              cursor: "pointer", padding: "3px 8px", display: "flex", alignItems: "center", gap: 4,
+              fontSize: 8, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+            }}><span>{headerInfoExpanded ? "LESS" : "MORE"}</span><span style={{ fontSize: 11, lineHeight: 1 }}>{headerInfoExpanded ? "▴" : "▾"}</span></button>}
           </div>
           {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && <>
           <div style={{ display: "flex", gap: compact ? 14 : 22, marginTop: compact ? 4 : 6, fontSize: compact ? 9 : 10, color: t.specs, letterSpacing: "0.06em", transition: "color 0.3s", flexWrap: "wrap" }}>
@@ -565,7 +566,7 @@ export default function LensDiagramPanel({
               }}>
                 <span style={{ fontSize: 11, lineHeight: 1 }}>⚙</span>
                 <span>CONTROLS</span>
-                <span style={{ fontSize: 8, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
+                <span style={{ fontSize: 11, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
               </button>
             )}
             {/* Theme controls */}
@@ -897,9 +898,10 @@ export default function LensDiagramPanel({
               <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 85, transition: "color 0.3s" }}>FOCUS</span>
               <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums", transition: "color 0.3s" }}>{formatDist(focusT, L)}</span>
               {ENABLE_COLLAPSIBLE_FOCUS && <button onClick={() => onFocusExpandedChange?.(!focusExpanded)} style={{
-                marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
-                fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
-              }}>{focusExpanded ? "▴" : "▾"}</button>}
+                marginLeft: "auto", background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 10,
+                cursor: "pointer", padding: "3px 8px", display: "flex", alignItems: "center", gap: 4,
+                fontSize: 8, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+              }}><span>{focusExpanded ? "LESS" : "MORE"}</span><span style={{ fontSize: 11, lineHeight: 1 }}>{focusExpanded ? "▴" : "▾"}</span></button>}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
@@ -927,9 +929,10 @@ export default function LensDiagramPanel({
                 f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
               </span>
               {ENABLE_COLLAPSIBLE_APERTURE && <button onClick={() => onApertureExpandedChange?.(!apertureExpanded)} style={{
-                marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 4px",
-                fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
-              }}>{apertureExpanded ? "▴" : "▾"}</button>}
+                marginLeft: "auto", background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 10,
+                cursor: "pointer", padding: "3px 8px", display: "flex", alignItems: "center", gap: 4,
+                fontSize: 8, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+              }}><span>{apertureExpanded ? "LESS" : "MORE"}</span><span style={{ fontSize: 11, lineHeight: 1 }}>{apertureExpanded ? "▴" : "▾"}</span></button>}
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.FOPEN.toFixed(1)}</span>
@@ -1036,10 +1039,10 @@ export default function LensDiagramPanel({
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: ENABLE_COLLAPSIBLE_LEGEND && !isWide && !legendExpanded ? 0 : 8 }}>
                   <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>{isWide ? "Hover" : "Tap"} an element for optical details</span>
                   {ENABLE_COLLAPSIBLE_LEGEND && !isWide && <button onClick={() => onLegendExpandedChange?.(!legendExpanded)} style={{
-                    marginLeft: "auto", background: "none", border: "none", cursor: "pointer", padding: "2px 6px",
-                    fontSize: 9, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "color 0.3s",
-                    display: "flex", alignItems: "center", gap: 4,
-                  }}>LEGEND <span style={{ fontSize: 8 }}>{legendExpanded ? "▴" : "▾"}</span></button>}
+                    marginLeft: "auto", background: t.toggleBg, border: `1px solid ${t.toggleBorder}`, borderRadius: 10,
+                    cursor: "pointer", padding: "3px 8px", display: "flex", alignItems: "center", gap: 4,
+                    fontSize: 8, color: t.muted, fontFamily: "inherit", letterSpacing: "0.08em", transition: "all 0.25s",
+                  }}>LEGEND <span style={{ fontSize: 11, lineHeight: 1 }}>{legendExpanded ? "▴" : "▾"}</span></button>}
                 </div>
                 {(!ENABLE_COLLAPSIBLE_LEGEND || isWide || legendExpanded) && <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
                   {t.legendSwatches.map(([bg, bd, lb]) => (
