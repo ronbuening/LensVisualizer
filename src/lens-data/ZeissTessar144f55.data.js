@@ -35,7 +35,7 @@ const LENS_DATA = {
   key:      "zeiss-tessar-144f55",
   name:     "CARL ZEISS TESSAR 144mm f/5.5",
   subtitle: "US 721,240 — CARL ZEISS / PAUL RUDOLPH (1903)",
-  visible: false,  // not visible in UI since this is a scaled interpretation of the patent rather than a specific production Tessar model
+  visible: true,
   specs: [
     "4 ELEMENTS / 3 GROUPS",
     "f ≈ 144 mm (scaled from normalized patent)",
