@@ -31,6 +31,7 @@ import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH,
+         ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
          ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
 import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from '../utils/comparisonSliders.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
@@ -571,7 +572,7 @@ export default function LensVisualization() {
           compact={true}
           showControls={true}
           showSliders={false}
-          maxSvgHeight={isWide ? "54vh" : "42vh"}
+          maxSvgHeight={isWide ? (ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh") : "42vh"}
           onHeaderHeight={handleHeaderHeight}
           minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
           flashOverlay={flashPanel === 'a'}
@@ -589,7 +590,7 @@ export default function LensVisualization() {
           compact={true}
           showControls={true}
           showSliders={false}
-          maxSvgHeight={isWide ? "54vh" : "42vh"}
+          maxSvgHeight={isWide ? (ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh") : "42vh"}
           onHeaderHeight={handleHeaderHeight}
           minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
           flashOverlay={flashPanel === 'b'}
@@ -766,10 +767,10 @@ export default function LensVisualization() {
         ) : (
           /* Both — side-by-side */
           <div style={{ display: "flex", minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
-            <div style={{ flex: "0 0 60%", minWidth: 0, overflow: "hidden" }}>
+            <div style={{ flex: "0 0 65%", minWidth: 0, overflow: "hidden" }}>
               {singleDiagramContent}
             </div>
-            <div style={{ flex: "0 0 40%", borderLeft: `1px solid ${t.descBorder}`, overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+            <div style={{ flex: "0 0 35%", borderLeft: `1px solid ${t.descBorder}`, overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
               {descriptionContent}
             </div>
           </div>

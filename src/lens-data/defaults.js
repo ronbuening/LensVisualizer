@@ -21,6 +21,7 @@ const LENS_DEFAULTS = {
   /* ── Layout tuning ── */
   svgW:             1080,
   svgH:             490,
+  scFill:           0.55,
   clipMargin:       1.0,
   maxRimAngleDeg:   40,
   gapSagFrac:       0.90,

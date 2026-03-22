@@ -27,7 +27,7 @@ import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
          traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
-import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
+import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION } from '../utils/featureFlags.js';
 import { ErrorDisplay } from './ErrorBoundary.jsx';
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -99,7 +99,7 @@ export default function LensDiagramPanel({
   compact,
   showControls = true,
   showSliders = true,
-  maxSvgHeight = "54vh",
+  maxSvgHeight = ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh",
   minHeaderHeight,
   onFocusChange,
   onZoomChange,
