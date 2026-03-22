@@ -4,6 +4,16 @@
 
 export const PREFS_KEY = 'lensvis:prefs';
 
+/**
+ * Load persisted user preferences from localStorage.
+ *
+ * Validates each field individually — corrupt or unexpected values are
+ * silently dropped.  Lens keys are checked against the current catalog
+ * to avoid referencing lenses that no longer exist.
+ *
+ * @param {string[]} catalogKeys  — valid lens keys from the current catalog
+ * @returns {Object}                sanitized preferences (partial — only valid fields)
+ */
 export function loadPrefs(catalogKeys) {
   try {
     const raw = localStorage.getItem(PREFS_KEY);

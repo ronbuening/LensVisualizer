@@ -1,3 +1,19 @@
+/**
+ * ErrorBoundary — error handling UI with two exports.
+ *
+ * • ErrorDisplay (named export) — reusable error card with a pre-filled
+ *   "Report Issue" link to GitHub. Used standalone inside LensDiagramPanel's
+ *   panel-level boundary and anywhere else an error needs rendering.
+ *
+ * • ErrorBoundary (default export) — React class-based error boundary that
+ *   wraps the entire app in main.jsx. Catches unhandled render-phase errors
+ *   and displays ErrorDisplay as a full-page fallback.
+ *
+ * Both use hardcoded dark-theme colors (FALLBACK) so they render correctly
+ * even when the theme context is unavailable (e.g. the error occurred
+ * before the theme loaded).
+ */
+
 import { Component } from "react";
 import { buildIssueURL, REPO_URL } from "../utils/errorReporting.js";
 
@@ -23,8 +39,17 @@ const FALLBACK = {
  * Can be used standalone (e.g. inside LensDiagramPanel) or by
  * the ErrorBoundary class.  When no theme is provided, uses
  * hardcoded dark-theme colors.
+ *
+ * @param {Object}   props
+ * @param {Error}    props.error    — the caught error object
+ * @param {Object}   props.context  — extra context passed to the GitHub issue builder
+ *                                    (e.g. { component, lensKey })
+ * @param {Function} [props.onRetry] — if provided, shows a "Retry" button that
+ *                                     resets error state in the parent boundary
+ * @param {string}   [props.title]   — heading text shown above the error message
  */
 export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error" }) {
+  /* Build a pre-filled GitHub issue URL; fall back to bare /issues/new on failure */
   let issueURL;
   try { issueURL = buildIssueURL(error, context); } catch { issueURL = `${REPO_URL}/issues/new`; }
 
@@ -103,10 +128,14 @@ export default class ErrorBoundary extends Component {
     this.state = { error: null, componentStack: null };
   }
 
+  /* React calls this during the render phase — synchronously captures the error
+   * so the next render can show the fallback UI instead of the broken tree. */
   static getDerivedStateFromError(error) {
     return { error };
   }
 
+  /* Called after the error is committed — used for logging and capturing the
+   * component stack trace (which component tree led to the error). */
   componentDidCatch(error, info) {
     console.error("[LensVisualizer] Uncaught render error:", error, info?.componentStack);
     this.setState({ componentStack: info?.componentStack || null });

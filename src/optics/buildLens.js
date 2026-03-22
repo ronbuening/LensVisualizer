@@ -9,13 +9,25 @@ import validateLensData from './validateLensData.js';
 import { FLAT_R_THRESHOLD } from './optics.js';
 
 
-/* ── Paraxial trace primitive ──
- *  Traces a paraxial ray through a surface array.
+/**
+ * Paraxial ray trace through a surface array.
  *
- *  Options:
- *    stopAt          — trace only surfaces [0..stopAt) instead of all N
- *    skipLastTransfer — omit final y += d*u (for EFL-type computations)
- *    recordHeights   — return per-surface y values in a heights array
+ * Applies the paraxial refraction formula at each surface:
+ *   u' = (n·u − y·(n'−n)/R) / n'   (for curved surfaces)
+ *   u' = (n·u) / n'                  (for flat surfaces, |R| > FLAT_R_THRESHOLD)
+ * then transfers: y += d·u
+ *
+ * Used internally by buildLens() to derive EFL, entrance pupil, and
+ * vignetting-limited field angle.
+ *
+ * @param {Object[]} S    — surface array (each with R, nd, d properties)
+ * @param {number}   y0   — initial ray height (mm)
+ * @param {number}   u0   — initial ray slope (angle in paraxial approx)
+ * @param {Object}   [opts]
+ * @param {number}   [opts.stopAt]           — trace only surfaces [0..stopAt)
+ * @param {boolean}  [opts.skipLastTransfer] — omit final y += d·u (for EFL computation)
+ * @param {boolean}  [opts.recordHeights]    — collect per-surface y values
+ * @returns {{ y: number, u: number, n: number, heights: number[]|null }}
  */
 function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeights = false } = {}) {
   const N = stopAt !== undefined ? stopAt : S.length;
@@ -37,6 +49,20 @@ function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeig
 }
 
 
+/**
+ * Build a frozen runtime lens object from validated LENS_DATA.
+ *
+ * Pipeline: validate → resolve label indices → derive optical constants
+ * (EFL, entrance pupil, f-number, half-field) → compute layout geometry
+ * → freeze and return.
+ *
+ * The returned object L is immutable and contains everything the renderer
+ * and ray tracer need — no further data lookups are required at render time.
+ *
+ * @param {Object} data  — LENS_DATA object (after defaults merging)
+ * @returns {Object}       frozen runtime lens object (L)
+ * @throws {Error}         if validation finds any issues
+ */
 export default function buildLens(data) {
   const validationErrors = validateLensData(data);
   if (validationErrors.length > 0)
@@ -92,7 +118,11 @@ export default function buildLens(data) {
 
   const stopIdx = S.findIndex(row => row.label === "STO");
 
-  /* ── Derive stop SD from nominal f-number ── */
+  /* ── Derive stop SD from nominal f-number ──
+   *  When the lens data specifies nominalFno instead of an explicit stop SD,
+   *  we back-compute it:  epSD = EFL / (2·Fno), then scale by the marginal
+   *  ray height ratio at the stop to get the physical stop semi-diameter.
+   */
   if (data.nominalFno !== undefined) {
     const { y: yRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
     const { u: ue }     = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
@@ -101,25 +131,37 @@ export default function buildLens(data) {
     S[stopIdx].sd = epSD * yRatio;
   }
 
-  /* ── Optical constants ── */
+  /* ── Optical constants ──
+   *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
+   *  exit slope u; EFL = −1/u (standard paraxial formula). */
   const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const EFL = -1.0 / eflTrace.u;
   if (!isFinite(EFL))
     throw new Error(`Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`);
 
+  /* Entrance pupil: trace marginal ray to the stop; the height ratio
+   * epTrace.y maps between entrance pupil SD and physical stop SD.
+   * EP.epSD = stop SD / yRatio = entrance pupil semi-diameter in object space. */
   const epTrace = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   if (Math.abs(epTrace.y) < 1e-15)
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
   const EP = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
 
+  /* B = chief ray height at stop (for vignetting computation below) */
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
 
   const stopPhysSD = S[stopIdx].sd;
-  const FOPEN      = EFL / (2 * EP.epSD);
+  const FOPEN      = EFL / (2 * EP.epSD); /* wide-open f-number */
   if (!isFinite(FOPEN))
     throw new Error(`Lens "${data.key}": Wide-open f-number is not finite (EFL=${EFL}, epSD=${EP.epSD})`);
 
-  /* ── Half-field angle (vignetting-limited) ── */
+  /* ── Half-field angle (vignetting-limited) ──
+   *  Find the maximum chief-ray angle (field angle) before any surface
+   *  clips the ray.  Uses two basis rays (marginal hA and chief hB) to
+   *  build a linear model of ray height vs field angle at each surface.
+   *  The minimum sd/|coefficient| across all surfaces gives the
+   *  vignetting-limited half-field angle.
+   */
   const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights;
   const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights;
   if (Math.abs(hA[stopIdx]) < 1e-15)
@@ -138,7 +180,12 @@ export default function buildLens(data) {
   if (!isFinite(halfField))
     throw new Error(`Lens "${data.key}": Half-field angle is not finite — vignetting computation failed`);
 
-  /* ── Layout geometry ── */
+  /* ── Layout geometry ──
+   *  SC  = horizontal scale (pixels per mm along optical axis)
+   *  YSC = vertical scale (pixels per mm perpendicular to axis)
+   *  maxAspectRatio caps YSC/SC to prevent extremely tall, narrow lenses
+   *  from dominating the viewport.
+   */
   const z = [0];
   for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
   const totalTrack = z[N - 1] + S[N - 1].d;
@@ -166,7 +213,11 @@ export default function buildLens(data) {
   const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
   const offAxisHeights  = data.offAxisFractions.map(f => f * EP.epSD);
 
-  /* ── Zoom-lens derived constants ── */
+  /* ── Zoom-lens derived constants ──
+   *  Pre-compute the EFL at each zoom position by constructing a temporary
+   *  surface array with the infinity-focus thickness for that zoom index,
+   *  then running a paraxial marginal ray trace to get EFL = −1/u.
+   */
   let zoomEFLs = null;
   if (isZoom) {
     const nz = data.zoomPositions.length;

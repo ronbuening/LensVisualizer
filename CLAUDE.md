@@ -51,6 +51,7 @@ Read the relevant file before starting work on that area:
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
 - **`src/lens-data/LENS_DATA_SPEC.md`** — Complete lens data format specification
 - **`src/lens-data/TEMPLATE.data.js.template`** — Annotated template with SD guidelines
+- **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 
 ## Key Design Patterns
 
@@ -80,7 +81,7 @@ Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building
 - **camelCase** for functions and variables (`buildLens`, `traceRay`, `focusT`)
 - **Short math variables** in optics code: `y`, `u`, `n`, `R`, `K` (standard optics notation)
 - **UPPER_CASE** for catalog-level constants and exported constants
-- **No comments on obvious code** — comments reserved for optics formulas and section headers
+- **No comments on obvious code** — see `agent_docs/commenting_guide.md` for full commenting standards
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
 - **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory
 - **Pure-function modules** (`optics.js`, `buildLens.js`, `validateLensData.js`) have no React dependencies

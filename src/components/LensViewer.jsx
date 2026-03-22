@@ -46,7 +46,9 @@ import ABOUT_SITE_MD from '../content/AboutSite.md?raw';
 export default function LensVisualization() {
   const [prefs] = useState(() => loadPrefs(CATALOG_KEYS));
 
-  /* ── URL params take precedence over localStorage ── */
+  /* ── URL params take precedence over localStorage ──
+   * State precedence: URL query params > localStorage prefs > defaults.
+   * This allows shareable deep links to override local user preferences. */
   const urlState = useMemo(() => {
     if (typeof window === 'undefined') return {};
     return parseComparisonParams(window.location.search, CATALOG_KEYS);
@@ -83,7 +85,18 @@ export default function LensVisualization() {
   const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
   const justEnteredCompare = useRef(false);
 
-  /* ── Sticky slider state (slider pauses at common-point demarcation lines) ── */
+  /* ── Sticky slider state (slider pauses at common-point demarcation lines) ──
+   * State machine for each shared slider (focus and aperture):
+   *
+   *   Normal → slider moves freely, prevT tracks position
+   *   Stuck  → slider crossed or reached the common point (CP);
+   *            all movement is rejected and value is held at CP.
+   *            A brief flash highlights which panel hit its limit.
+   *   Released → on next pointerDown, stuck is cleared and slider
+   *             continues moving freely from wherever the user drags.
+   *
+   * This gives haptic-like feedback: the slider "catches" at the point
+   * where one lens reaches its limit, then releases on the next drag. */
   const focusStuck = useRef(false);
   const apertureStuck = useRef(false);
   const prevFocusT = useRef(0);
@@ -137,6 +150,7 @@ export default function LensVisualization() {
   const effectiveDesktopView = desktopViewOptions.some(o => o.val === desktopView) ? desktopView : 'both';
   const showDesktopToggle = isWide && !comparing && desktopViewOptions.length > 1;
 
+  /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast */
   const t = T[dark ? (highContrast ? "darkHC" : "dark") : (highContrast ? "lightHC" : "light")];
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
@@ -153,7 +167,10 @@ export default function LensVisualization() {
     setLensKeyB(key);
   }, []);
 
-  /* ── Build both lenses for comparison computations ── */
+  /* ── Build both lenses for comparison computations ──
+   * Built eagerly when comparison mode is active so we can compute
+   * shared slider mappings (focus/aperture/zoom pairs). Both lenses
+   * are also needed for normalized scale ratios. */
   const comparisonLenses = useMemo(() => {
     if (!comparing) return null;
     try {
@@ -161,7 +178,11 @@ export default function LensVisualization() {
     } catch (e) { return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` }; }
   }, [comparing, lensKeyA, lensKeyB]);
 
-  /* ── Initialize zoomT from URL after lens builds (need L to convert mm → zoomT) ── */
+  /* ── Initialize zoomT from URL after lens builds ──
+   * URL stores zoom as focal length (mm), but the slider needs zoomT [0..1].
+   * Conversion requires a built lens object (for zoomPositions), so this
+   * must be deferred until after buildLens succeeds. Uses a ref to ensure
+   * one-time initialization — prevents re-triggering on subsequent renders. */
   useEffect(() => {
     if (urlZoomInitialized.current || urlState.zoom == null) return;
     if (comparing && comparisonLenses && !comparisonLenses.error) {
@@ -188,7 +209,10 @@ export default function LensVisualization() {
     urlZoomInitialized.current = true;
   }, [singleLensForZoomInit, urlState.zoom]);
 
-  /* ── Update URL (sliders on pointer-up with 300ms delay) ── */
+  /* ── Update URL (sliders on pointer-up with 300ms debounce) ──
+   * Updates the browser URL with slider state for deep-linking. Debounced
+   * to avoid excessive history.replaceState calls during rapid slider moves.
+   * Zoom is stored as focal length (mm) rather than raw zoomT for readability. */
   const updateURLWithSliders = useCallback(() => {
     clearTimeout(urlUpdateTimer.current);
     urlUpdateTimer.current = setTimeout(() => {
@@ -221,7 +245,10 @@ export default function LensVisualization() {
     }, 300);
   }, [comparing, lensKeyA, lensKeyB, focusT, stopdownT, zoomT, sharedFocusT, sharedStopdownT, sharedZoomT, comparisonLenses]);
 
-  /* ── Normalized scale computation ── */
+  /* ── Normalized scale computation ──
+   * In normalized mode, both panels use the same mm-per-pixel ratio so lens
+   * sizes are visually comparable. Each panel's SC is scaled down to match
+   * whichever lens has the smaller (more zoomed-out) SC value. */
   const scaleRatios = useMemo(() => {
     if (!comparisonLenses || comparisonLenses.error || scaleMode !== 'normalized') return null;
     const { LA, LB } = comparisonLenses;
@@ -510,7 +537,11 @@ export default function LensVisualization() {
     </div>
   ) : null;
 
-  /* ── Comparison content ── */
+  /* ── Comparison content ──
+   * Desktop: side-by-side (50/50 flex row) with a vertical divider.
+   * Mobile: stacked (column) with a horizontal divider.
+   * Each panel gets its own per-lens focus/zoom/aperture from the shared
+   * slider pair computations, and an optional scaleRatio for normalized mode. */
   const comparisonContent = comparing ? (comparisonLenses?.error ? comparisonError :
     <div style={{ display: "flex", flexDirection: isWide ? "row" : "column" }}>
       <div style={{ flex: isWide ? "0 0 50%" : "none", borderRight: isWide ? `1px solid ${t.panelDivider}` : "none", borderBottom: !isWide ? `1px solid ${t.panelDivider}` : "none", minWidth: 0, overflow: "hidden" }}>

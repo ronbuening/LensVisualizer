@@ -7,6 +7,9 @@
 
 import LENS_DEFAULTS from '../lens-data/defaults.js';
 
+/* Eagerly import all *.data.js files — Vite resolves the glob at build time.
+ * Each module's default export is a LENS_DATA object; defaults are merged
+ * underneath so per-lens values take precedence. */
 const _modules = import.meta.glob('../lens-data/*.data.js', { eager: true });
 const LENS_CATALOG = {};
 for (const [path, mod] of Object.entries(_modules)) {
@@ -17,6 +20,7 @@ for (const [path, mod] of Object.entries(_modules)) {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
   }
 }
+/* Visible lenses sorted alphabetically by display name */
 const CATALOG_KEYS = Object.keys(LENS_CATALOG)
   .filter(k => LENS_CATALOG[k].visible !== false)
   .sort((a, b) => LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name));
@@ -35,6 +39,12 @@ for (const [path, mod] of Object.entries(_modules)) {
   if (mod.default?.key) KEY_TO_STEM[mod.default.key] = stem;
 }
 
+/**
+ * Look up the raw markdown analysis content for a lens key.
+ *
+ * @param {string} key  — lens catalog key (e.g. "nikon-z-50-f12")
+ * @returns {string|null}  raw markdown string, or null if no analysis file exists
+ */
 function mdForKey(key) {
   const stem = KEY_TO_STEM[key];
   return stem ? (MD_BY_STEM[stem] || null) : null;

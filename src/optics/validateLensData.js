@@ -9,6 +9,16 @@
  * rather than throwing on the first problem.
  */
 
+/**
+ * Validate a LENS_DATA object for structural correctness.
+ *
+ * Checks are ordered from fast/cheap (missing fields) to slow/expensive
+ * (geometry: edge thickness, sag overlap).  All errors are collected
+ * before returning so the user sees every issue at once.
+ *
+ * @param {Object} data  — LENS_DATA object (after defaults merging)
+ * @returns {string[]}     array of human-readable error messages (empty = valid)
+ */
 export default function validateLensData(data) {
   const errors = [];
 
@@ -212,7 +222,7 @@ export default function validateLensData(data) {
    *  This causes extreme sag slopes that trigger TIR at high-index glass/air
    *  boundaries and numerical instability in the ray tracer.
    */
-  const SD_R_WARN = 0.90;
+  const SD_R_WARN = 0.90; /* threshold beyond which sag slope becomes extreme */
   for (let i = 0; i < S.length; i++) {
     const s = S[i];
     if (typeof s.sd !== 'number' || typeof s.R !== 'number') continue;
@@ -264,7 +274,16 @@ export default function validateLensData(data) {
   return errors;
 }
 
-/* ── Sag helper (spherical + aspherical) for geometry checks ── */
+/**
+ * Local sag helper for geometry validation — duplicates renderSag logic
+ * from optics.js to avoid a circular dependency (optics.js imports from
+ * buildLens.js which imports this module).
+ *
+ * @param {number} h     — ray height (mm)
+ * @param {number} R     — radius of curvature (mm)
+ * @param {Object} asph  — aspheric coefficients {K, A4, A6, ...} or undefined
+ * @returns {number}       sag in mm
+ */
 function _renderSag(h, R, asph) {
   const FLAT = 1e10;
   if (Math.abs(R) > FLAT && !asph) return 0;

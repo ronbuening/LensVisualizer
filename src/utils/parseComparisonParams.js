@@ -11,8 +11,11 @@
 
 /**
  * Parse URL search string into lens + slider state.
- * @param {string} search - window.location.search
- * @param {string[]} catalogKeys - valid lens keys
+ *
+ * @param {string}   search      — window.location.search
+ * @param {string[]} catalogKeys — valid lens keys (used to reject stale URLs)
+ * @returns {Object} parsed state with { comparing, lensKeyA?, lensKeyB?,
+ *   singleLens?, zoom?, focus?, aperture? }
  */
 export function parseComparisonParams(search, catalogKeys) {
   const params = new URLSearchParams(search);
@@ -41,6 +44,12 @@ export function parseComparisonParams(search, catalogKeys) {
 
 /**
  * Build a URL search string from lens + slider state.
+ *
+ * @param {boolean} comparing  — true for comparison mode (?a=...&b=...)
+ * @param {string}  lensKeyA   — first lens key
+ * @param {string}  lensKeyB   — second lens key (comparison mode only)
+ * @param {Object}  [sliders]  — optional slider values { zoom, focus, aperture }
+ * @returns {string}             URL search string (e.g. "?a=...&b=...&focus=0.300")
  */
 export function buildComparisonURL(comparing, lensKeyA, lensKeyB, { zoom, focus, aperture } = {}) {
   let url;
@@ -58,7 +67,14 @@ export function buildComparisonURL(comparing, lensKeyA, lensKeyB, { zoom, focus,
 }
 
 /**
- * Convert a focal length in mm to normalized zoomT using a lens's zoomPositions.
+ * Convert a focal length in mm to normalized zoomT [0..1].
+ *
+ * Performs piecewise-linear inverse interpolation across the lens's
+ * zoomPositions array.  Clamps to [0, 1] for out-of-range values.
+ *
+ * @param {number} fl  — focal length in mm
+ * @param {Object} L   — runtime lens object (needs isZoom, zoomPositions)
+ * @returns {number}     normalized zoom position [0..1]
  */
 export function focalLengthToZoomT(fl, L) {
   if (!L.isZoom) return 0;
@@ -74,7 +90,11 @@ export function focalLengthToZoomT(fl, L) {
 }
 
 /**
- * Convert normalized zoomT to focal length in mm.
+ * Convert normalized zoomT [0..1] to focal length in mm.
+ *
+ * @param {number} zoomT  — normalized zoom position [0..1]
+ * @param {Object} L      — runtime lens object (needs isZoom, zoomPositions)
+ * @returns {number|null}    focal length in mm, or null for prime lenses
  */
 export function zoomTToFocalLength(zoomT, L) {
   if (!L.isZoom) return null;

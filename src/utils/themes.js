@@ -6,6 +6,20 @@
  * that previously existed across 4 hand-written theme blocks.
  */
 
+/**
+ * Build a theme object with closure-based element styling functions.
+ *
+ * Takes a flat object of color tokens (including _-prefixed internal tokens)
+ * and adds four computed properties:
+ *   gridDash(i)       — SVG dash pattern for grid line i
+ *   grid(i)           — grid line color (alternating odd/even)
+ *   elemNum(e)        — element number color (APD vs standard)
+ *   elemFill(e, on)   — element fill based on glass type, APD status, and hover
+ *   elemStroke(e, on) — element stroke based on APD status and hover
+ *
+ * @param {Object} t  — flat color token object (see _-prefixed tokens below)
+ * @returns {Object}    complete theme with color tokens + computed functions
+ */
 function createTheme(t) {
   return {
     ...t,
@@ -29,6 +43,11 @@ function createTheme(t) {
   };
 }
 
+/* ── Theme variants: Dark / Light × Default / High-Contrast ──
+ *  Each variant uses the same createTheme() factory with different color tokens.
+ *  Token naming: semantic prefixes (ray*, elem*, desc*, toggle*) group by purpose;
+ *  _-prefixed tokens are consumed only by createTheme's closure functions.
+ */
 const T = {
   dark: createTheme({
     bg: "#0c0d10", headerBgColor: "#0c0d12", headerBgImage: "linear-gradient(180deg,rgba(14,16,22,1),rgba(10,11,14,1))",
