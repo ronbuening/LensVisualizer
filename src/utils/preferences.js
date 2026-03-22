@@ -24,7 +24,13 @@ export function loadPrefs(catalogKeys) {
     if (typeof p.dark === 'boolean') out.dark = p.dark;
     if (typeof p.highContrast === 'boolean') out.highContrast = p.highContrast;
     if (typeof p.showOnAxis === 'boolean') out.showOnAxis = p.showOnAxis;
-    if (typeof p.showOffAxis === 'boolean') out.showOffAxis = p.showOffAxis;
+    /* showOffAxis: v2 stored boolean (true→"trueAngle", false→"off"),
+       v3+ stores string "off"|"trueAngle"|"edge" */
+    if (typeof p.showOffAxis === 'string' && ['off', 'trueAngle', 'edge'].includes(p.showOffAxis)) {
+      out.showOffAxis = p.showOffAxis;
+    } else if (typeof p.showOffAxis === 'boolean') {
+      out.showOffAxis = p.showOffAxis ? 'trueAngle' : 'off';
+    }
     if (typeof p.rayTracksF === 'boolean') out.rayTracksF = p.rayTracksF;
     if (typeof p.showChromatic === 'boolean') out.showChromatic = p.showChromatic;
     if (typeof p.chromR === 'boolean') out.chromR = p.chromR;
