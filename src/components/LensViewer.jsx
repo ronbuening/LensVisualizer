@@ -69,7 +69,7 @@ export default function LensVisualization() {
   const [focusT, setFocusT] = useState(urlState.focus ?? 0);
   const [zoomT, setZoomT] = useState(0);  // initialized from URL after lens builds
   const [showOnAxis, setShowOnAxis] = useState(prefs.showOnAxis ?? true);
-  const [showOffAxis, setShowOffAxis] = useState(prefs.showOffAxis ?? false);
+  const [showOffAxis, setShowOffAxis] = useState(prefs.showOffAxis ?? 'off');
   const [rayTracksF, setRayTracksF] = useState(prefs.rayTracksF ?? false);
   const [showChromatic, setShowChromatic] = useState(prefs.showChromatic ?? DEFAULT_COLOR_TRACING);
   const [chromR, setChromR] = useState(prefs.chromR ?? true);
@@ -456,19 +456,28 @@ export default function LensVisualization() {
       </div>
 
       {/* Ray toggles */}
-      <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 180, transition: "border-color 0.3s" }}>
+      <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 280, transition: "border-color 0.3s" }}>
+        <button onClick={() => setShowOnAxis(!showOnAxis)} style={toggleBtnStyle(showOnAxis, true)}>
+          <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+            <line x1="0" y1="4" x2="14" y2="4" stroke={showOnAxis ? t.rayWarm : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+            <line x1="0" y1="7" x2="14" y2="7" stroke={showOnAxis ? t.rayCool : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+          </svg>
+          <span>ON-AXIS</span>
+        </button>
         {[
-          { label: "ON-AXIS", active: showOnAxis, set: setShowOnAxis, dotA: t.rayWarm, dotB: t.rayCool },
-          { label: "OFF-AXIS", active: showOffAxis, set: setShowOffAxis, dotA: t.rayOffWarm, dotB: t.rayOffCool },
-        ].map(({ label, active, set, dotA, dotB }, idx) => (
-          <button key={label} onClick={() => set(!active)} style={toggleBtnStyle(active, idx === 0)}>
+          { key: 'trueAngle', label: 'TRUE \u2220' },
+          { key: 'edge', label: 'EDGE PROJ' },
+        ].map(({ key, label }, idx) => {
+          const active = showOffAxis === key;
+          const dotA = t.rayOffWarm, dotB = t.rayOffCool;
+          return <button key={key} onClick={() => setShowOffAxis(active ? 'off' : key)} style={toggleBtnStyle(active, idx === 0)}>
             <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
               <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
               <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
             </svg>
             <span>{label}</span>
-          </button>
-        ))}
+          </button>;
+        })}
       </div>
 
       {/* Ray mode */}

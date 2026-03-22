@@ -58,7 +58,7 @@ describe('loadPrefs', () => {
     expect(prefs.dark).toBe(true);
     expect(prefs.highContrast).toBe(false);
     expect(prefs.showOnAxis).toBe(true);
-    expect(prefs.showOffAxis).toBe(false);
+    expect(prefs.showOffAxis).toBe('off');
     expect(prefs.rayTracksF).toBe(true);
     expect(prefs.showChromatic).toBe(true);
     expect(prefs.chromR).toBe(false);
