@@ -27,6 +27,7 @@ import useMediaQuery   from '../utils/useMediaQuery.js';
 import { PREFS_KEY, loadPrefs } from '../utils/preferences.js';
 import { parseComparisonParams, buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from '../utils/parseComparisonParams.js';
 import { ENABLE_COLOR_TRACING, DEFAULT_COLOR_TRACING,
+         ENABLE_ANALYSIS_VIEW,
          ENABLE_DESKTOP_VIEW_TOGGLE, ENABLE_DIAGRAM_ONLY, ENABLE_ANALYSIS_ONLY,
          ENABLE_COMPARISON, ENABLE_COMPARISON_MOBILE,
          ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH } from '../utils/featureFlags.js';
@@ -143,11 +144,12 @@ export default function LensVisualization() {
     if (!ENABLE_DESKTOP_VIEW_TOGGLE) return [];
     const opts = [];
     if (ENABLE_DIAGRAM_ONLY) opts.push({ label: "DIAGRAM", val: "diagram" });
-    opts.push({ label: "BOTH", val: "both" });
-    if (ENABLE_ANALYSIS_ONLY) opts.push({ label: "ANALYSIS", val: "analysis" });
+    if (ENABLE_ANALYSIS_VIEW) opts.push({ label: "BOTH", val: "both" });
+    if (ENABLE_ANALYSIS_VIEW && ENABLE_ANALYSIS_ONLY) opts.push({ label: "ANALYSIS", val: "analysis" });
     return opts;
   }, []);
-  const effectiveDesktopView = desktopViewOptions.some(o => o.val === desktopView) ? desktopView : 'both';
+  const defaultDesktopView = ENABLE_ANALYSIS_VIEW ? 'both' : 'diagram';
+  const effectiveDesktopView = desktopViewOptions.some(o => o.val === desktopView) ? desktopView : defaultDesktopView;
   const showDesktopToggle = isWide && !comparing && desktopViewOptions.length > 1;
 
   /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast */
@@ -680,7 +682,7 @@ export default function LensVisualization() {
       {sharedControlsBar}
 
       {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
-      {!isWide && !comparing && (
+      {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
         <div style={{ display: "flex", justifyContent: "center", padding: "8px 24px", borderBottom: `1px solid ${t.headerBorder}`, backgroundColor: t.headerBgColor, backgroundImage: t.headerBgImage, transition: "background-color 0.3s,border-color 0.3s" }}>
           <div style={{ display: "flex", gap: 0, borderRadius: 5, overflow: "hidden", border: `1px solid ${t.toggleBorder}`, width: 220 }}>
             {[
@@ -761,7 +763,7 @@ export default function LensVisualization() {
         )
       ) : (
         /* Mobile: toggle between views */
-        mobileView === 'diagram' ? singleDiagramContent : descriptionContent
+        !ENABLE_ANALYSIS_VIEW || mobileView === 'diagram' ? singleDiagramContent : descriptionContent
       )}
 
       {/* ── About Site overlay ── */}
