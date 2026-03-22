@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   computeFocusPair,
   computeAperturePair,
+  computeZoomPair,
   formatSharedFocusDist,
   sharedFNumber,
   snapToCommon,
@@ -152,5 +153,81 @@ describe('snapToCommon', () => {
 
   it('returns raw value when commonPoint is 1', () => {
     expect(snapToCommon(0.998, 1, 0.008)).toBe(0.998);
+  });
+});
+
+
+/* ── computeZoomPair ── */
+describe('computeZoomPair', () => {
+  const primeA = { isZoom: false };
+  const primeB = { isZoom: false };
+  const zoomA = {
+    isZoom: true,
+    zoomPositions: [24, 50, 70],
+    zoomEFLs: [24, 50, 70],
+  };
+  const zoomB = {
+    isZoom: true,
+    zoomPositions: [70, 135, 200],
+    zoomEFLs: [70, 135, 200],
+  };
+
+  it('returns showZoom=false for two primes', () => {
+    const r = computeZoomPair(0, primeA, primeB);
+    expect(r.showZoom).toBe(false);
+    expect(r.zoomA).toBe(0);
+    expect(r.zoomB).toBe(0);
+  });
+
+  it('passes sharedZoomT directly when only A is zoom', () => {
+    const r = computeZoomPair(0.5, zoomA, primeB);
+    expect(r.showZoom).toBe(true);
+    expect(r.zoomA).toBe(0.5);
+    expect(r.zoomB).toBe(0);
+  });
+
+  it('passes sharedZoomT directly when only B is zoom', () => {
+    const r = computeZoomPair(0.5, primeA, zoomB);
+    expect(r.showZoom).toBe(true);
+    expect(r.zoomA).toBe(0);
+    expect(r.zoomB).toBe(0.5);
+  });
+
+  it('maps by focal length for dual-zoom', () => {
+    const r = computeZoomPair(0.5, zoomA, zoomB);
+    expect(r.showZoom).toBe(true);
+    expect(r.zoomA).toBeGreaterThanOrEqual(0);
+    expect(r.zoomA).toBeLessThanOrEqual(1);
+    expect(r.zoomB).toBeGreaterThanOrEqual(0);
+    expect(r.zoomB).toBeLessThanOrEqual(1);
+    /* Should have a shared focal length */
+    expect(r.sharedFL).toBeGreaterThan(0);
+    expect(r.minFL).toBe(24);
+    expect(r.maxFL).toBe(200);
+  });
+
+  it('clamps lens outside its range at extremes', () => {
+    /* At sharedZoomT=0 (24mm), zoomB (70-200) is below its range → zoomB=0 */
+    const r0 = computeZoomPair(0, zoomA, zoomB);
+    expect(r0.zoomA).toBe(0);
+    expect(r0.zoomB).toBe(0);
+
+    /* At sharedZoomT=1 (200mm), zoomA (24-70) is above its range → zoomA=1 */
+    const r1 = computeZoomPair(1, zoomA, zoomB);
+    expect(r1.zoomA).toBe(1);
+    expect(r1.zoomB).toBe(1);
+  });
+
+  it('provides common point markers for non-overlapping ranges', () => {
+    const r = computeZoomPair(0.5, zoomA, zoomB);
+    expect(r.commonPointLow).toBeGreaterThanOrEqual(0);
+    expect(r.commonPointHigh).toBeLessThanOrEqual(1);
+  });
+
+  it('handles identical zoom ranges (both lenses same range)', () => {
+    const same = { isZoom: true, zoomPositions: [24, 70], zoomEFLs: [24, 70] };
+    const r = computeZoomPair(0.5, same, same);
+    expect(r.showZoom).toBe(true);
+    expect(r.zoomA).toBeCloseTo(r.zoomB, 5);
   });
 });
