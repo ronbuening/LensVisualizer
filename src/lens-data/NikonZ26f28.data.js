@@ -14,12 +14,12 @@
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. Values estimated via        ║
- * ║    paraxial marginal + chief ray trace at 60% of the full          ║
- * ║    40.3° half-field angle, with ~10% mechanical clearance,          ║
- * ║    then constrained to satisfy all renderer validation limits       ║
- * ║    (sd/|R| < 0.90, conic height, element ratio ≤ 1.25,             ║
- * ║    cross-gap sag). Off-axis vignetting is expected at the           ║
- * ║    full field, consistent with production lens behavior.            ║
+ * ║    paraxial marginal + chief ray trace at the full 40.3°            ║
+ * ║    half-field angle, with ~8–10% mechanical clearance, then         ║
+ * ║    constrained to satisfy all renderer validation limits.           ║
+ * ║    Cross-gap sag checks account for intrusion direction:            ║
+ * ║    surfaces that curve away from the gap contribute zero            ║
+ * ║    intrusion. Tightest constraint: gap S9→S10A (both intrude).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -157,22 +157,22 @@ const LENS_DATA = {
    *  L8 composite: surface 14 = resin front (asph), 15 = resin/glass junction, 16 = glass rear.
    */
   surfaces: [
-    { label: "1A", R: 11.70227, d: 1.27, nd: 1.58913, elemId: 1, sd: 6.4 }, // L1 front (asph, K=1.0)
-    { label: "2", R: 13.3834, d: 1.62, nd: 1.0, elemId: 0, sd: 5.8 }, // L1 rear → air
+    { label: "1A", R: 11.70227, d: 1.27, nd: 1.58913, elemId: 1, sd: 7.8 }, // L1 front (asph, K=1.0)
+    { label: "2", R: 13.3834, d: 1.62, nd: 1.0, elemId: 0, sd: 7.2 }, // L1 rear → air
     { label: "STO", R: 1e15, d: 1.59, nd: 1.0, elemId: 0, sd: 4.6 }, // Aperture stop (patent surface 3)
-    { label: "4", R: -37.934, d: 0.7, nd: 1.5927, elemId: 2, sd: 5.6 }, // L2 front (D1 neg.)
-    { label: "5", R: 11.35394, d: 2.8, nd: 1.883, elemId: 3, sd: 5.9 }, // L2→L3 junction (D1 pos.)
-    { label: "6", R: -46.90284, d: 0.31, nd: 1.0, elemId: 0, sd: 6.5 }, // L3 rear → air
-    { label: "7", R: 58.38846, d: 3.87, nd: 1.816, elemId: 4, sd: 6.6 }, // L4 front (D2 pos.)
-    { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 7.1 }, // L4→L5 junction (D2 neg.)
-    { label: "9", R: 39.69665, d: 2.92, nd: 1.0, elemId: 0, sd: 5.8 }, // L5 rear → air
-    { label: "10A", R: -9.52831, d: 1.1, nd: 1.58313, elemId: 6, sd: 5.8 }, // L6 front (asph, K=0.2964)
+    { label: "4", R: -37.934, d: 0.7, nd: 1.5927, elemId: 2, sd: 6.2 }, // L2 front (D1 neg.)
+    { label: "5", R: 11.35394, d: 2.8, nd: 1.883, elemId: 3, sd: 6.6 }, // L2→L3 junction (D1 pos.)
+    { label: "6", R: -46.90284, d: 0.31, nd: 1.0, elemId: 0, sd: 7.4 }, // L3 rear → air
+    { label: "7", R: 58.38846, d: 3.87, nd: 1.816, elemId: 4, sd: 8.0 }, // L4 front (D2 pos.)
+    { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 7.5 }, // L4→L5 junction (D2 neg.)
+    { label: "9", R: 39.69665, d: 2.92, nd: 1.0, elemId: 0, sd: 6.2 }, // L5 rear → air
+    { label: "10A", R: -9.52831, d: 1.1, nd: 1.58313, elemId: 6, sd: 6.1 }, // L6 front (asph, K=0.2964)
     { label: "11A", R: -9.47003, d: 2.17, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → air (asph, K=1.0)
-    { label: "12", R: -9.36192, d: 1.0, nd: 1.7552, elemId: 7, sd: 5.6 }, // L7 front
-    { label: "13", R: -25.39515, d: 0.71, nd: 1.0, elemId: 0, sd: 7.0 }, // L7 rear → air
+    { label: "12", R: -9.36192, d: 1.0, nd: 1.7552, elemId: 7, sd: 5.9 }, // L7 front
+    { label: "13", R: -25.39515, d: 0.71, nd: 1.0, elemId: 0, sd: 7.2 }, // L7 rear → air
     { label: "14A", R: -45.8666, d: 0.1, nd: 1.56093, elemId: 8, sd: 9.4 }, // L8 resin front (asph, K=1.0)
-    { label: "15", R: -59.69914, d: 6.53, nd: 1.883, elemId: 9, sd: 9.6 }, // L8 resin→glass junction
-    { label: "16", R: -18.98009, d: 10.76, nd: 1.0, elemId: 0, sd: 12.0 }, // L8 glass rear → BFD
+    { label: "15", R: -59.69914, d: 6.53, nd: 1.883, elemId: 9, sd: 10.5 }, // L8 resin→glass junction
+    { label: "16", R: -18.98009, d: 10.76, nd: 1.0, elemId: 0, sd: 13.0 }, // L8 glass rear → BFD
   ],
 
   /* ── Aspherical coefficients ──
