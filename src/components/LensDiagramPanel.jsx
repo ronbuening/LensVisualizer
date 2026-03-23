@@ -1,23 +1,17 @@
 /**
- * LensDiagramPanel — Self-contained lens diagram renderer.
+ * LensDiagramPanel — Composition layer for the lens diagram.
  *
- * Owns its own lens building, layout computation, coordinate transforms,
- * ray tracing, element inspection, and all SVG rendering.  Receives
- * shared control state (focus, aperture, ray toggles, theme) from the
- * parent (LensViewer).
+ * Orchestrates sub-components and custom hooks:
+ *   useLensComputation  → lens building, layout, transforms, shapes, aperture
+ *   useRayTracing       → on-axis, off-axis, chromatic ray fans
+ *   DiagramHeader       → title, specs, theme/ray toggle controls
+ *   DiagramSVG          → full SVG rendering of the optical system
+ *   DiagramControls     → zoom, focus, aperture sliders
+ *   ElementInspector    → selected element property display
+ *   DiagramLegend       → legend with color swatches and ray descriptions
  *
- * Data flow:
- *   LensViewer → props (lensKey, focusT, zoomT, stopdownT, theme, …)
- *   LensDiagramPanel:
- *     1. buildLens(LENS_CATALOG[lensKey]) → frozen lens object L
- *     2. doLayout(focusT, zoomT, L)       → surface z-positions
- *     3. traceRay / traceRayChromatic     → ray paths through the system
- *     4. SVG rendering of elements, rays, aperture, image plane, insets
- *
- * In comparison mode, two instances of this component are rendered
- * side-by-side, each with its own lensKey. The `scaleRatio` prop
- * enables normalized scale mode so both diagrams share the same
- * physical mm-per-pixel ratio.
+ * Owns only: hover/selection state, flash animation, side-layout detection,
+ * header height reporting, and the structural layout that wires sub-components.
  */
 
 import { useState, useEffect, useLayoutEffect, useRef, Component } from "react";
@@ -34,13 +28,7 @@ import {
 } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 
-/* =====================================================================
- * §1  ERROR BOUNDARY
- * ===================================================================== */
-
-/* ── Panel-level error boundary — catches render errors within a single diagram ──
- * Separate from the app-wide ErrorBoundary so that one broken lens doesn't
- * crash the entire comparison view. Resets automatically when lensKey changes. */
+/* ── Panel-level error boundary — resets automatically when lensKey changes ── */
 class PanelErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -70,30 +58,6 @@ class PanelErrorBoundary extends Component {
   }
 }
 
-/* =====================================================================
- * §2  COMPONENT — State, memos, ray tracing, and computed data
- * ===================================================================== */
-
-/**
- * @param {Object}  props
- * @param {string}  props.lensKey       — catalog key identifying the lens to render
- * @param {number}  props.focusT        — focus position [0 = ∞, 1 = closest focus]
- * @param {number}  props.zoomT         — zoom position [0..1] (ignored for primes)
- * @param {number}  props.stopdownT     — aperture stopdown [0 = wide open, 1 = max]
- * @param {boolean} props.showOnAxis    — render on-axis ray fan
- * @param {string}  props.showOffAxis   — off-axis mode: "off"|"trueAngle"|"edge"
- * @param {boolean} props.showChromatic — render chromatic (R/G/B) ray fans
- * @param {boolean} props.chromR/G/B    — per-channel toggles for chromatic rays
- * @param {boolean} props.rayTracksF    — true: rays converge at focus distance;
- *                                        false: rays arrive from ∞ (parallel)
- * @param {number|null} props.scaleRatio — if non-null, scales the diagram by this
- *                                         factor (used in normalized comparison mode)
- * @param {Object}  props.theme         — active theme object from themes.js
- * @param {boolean} props.dark          — true when a dark theme is active
- * @param {string}  props.panelId       — unique ID for SVG filter namespacing ("a"/"b"/"main")
- * @param {boolean} props.compact       — true in comparison mode (smaller header/controls)
- * @param {boolean} props.flashOverlay  — trigger a brief highlight flash (sticky slider feedback)
- */
 export default function LensDiagramPanel({
   lensKey,
   focusT,
@@ -270,9 +234,6 @@ export default function LensDiagramPanel({
     lensKey,
   });
 
-  /* =====================================================================
-   * §3  RENDER — Header, SVG diagram, controls, and inspector
-   * ===================================================================== */
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (
@@ -408,31 +369,17 @@ export default function LensDiagramPanel({
                 />
 
                 <div
-                  style={
-                    useSideLayout
-                      ? {
-                          flex: 1,
-                          padding: compact ? "10px 14px" : "14px 22px",
-                          minHeight: compact
-                            ? 100
-                            : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
-                              ? 40
-                              : 125,
-                          transition: "background 0.2s",
-                          background: info ? t.infoBgActive : t.infoBgIdle,
-                        }
-                      : {
-                          flex: "1 1 360px",
-                          padding: compact ? "10px 14px" : "14px 22px",
-                          minHeight: compact
-                            ? 100
-                            : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
-                              ? 40
-                              : 125,
-                          transition: "background 0.2s",
-                          background: info ? t.infoBgActive : t.infoBgIdle,
-                        }
-                  }
+                  style={{
+                    flex: useSideLayout ? 1 : "1 1 360px",
+                    padding: compact ? "10px 14px" : "14px 22px",
+                    minHeight: compact
+                      ? 100
+                      : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
+                        ? 40
+                        : 125,
+                    transition: "background 0.2s",
+                    background: info ? t.infoBgActive : t.infoBgIdle,
+                  }}
                 >
                   {info ? (
                     <ElementInspector info={info} L={L} t={t} showChromatic={showChromatic} />
