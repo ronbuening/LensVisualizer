@@ -61,53 +61,17 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../utils/lensReducer.js";
-
-/* =====================================================================
- * §1  HOISTED STYLES — static style objects extracted from render
- * ===================================================================== */
-const TOGGLE_GROUP_BASE = {
-  display: "flex",
-  gap: 0,
-  borderRadius: 5,
-  overflow: "hidden",
-};
-
-const OVERLAY_BACKDROP = {
-  position: "fixed",
-  inset: 0,
-  zIndex: 9999,
-  background: "rgba(0,0,0,0.5)",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  transition: "background 0.2s",
-};
-
-const OVERLAY_MODAL_BASE = {
-  borderRadius: 10,
-  maxWidth: 480,
-  width: "90%",
-  maxHeight: "70vh",
-  overflowY: "auto",
-  position: "relative",
-  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-};
-
-const CLOSE_BTN_BASE = {
-  position: "sticky",
-  top: 0,
-  float: "right",
-  margin: "10px 10px 0 0",
-  background: "none",
-  border: "none",
-  cursor: "pointer",
-  fontSize: 18,
-  fontFamily: "inherit",
-  lineHeight: 1,
-  padding: "2px 6px",
-  borderRadius: 4,
-  zIndex: 1,
-};
+import {
+  OVERLAY_BACKDROP,
+  toggleGroup,
+  toggleBtn,
+  chromChannelBtn,
+  selector,
+  headerStrip,
+  topBarBtn,
+  overlayModal,
+  closeBtn,
+} from "../utils/styles.js";
 
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
@@ -278,49 +242,8 @@ export default function LensVisualization() {
   );
 
   /* =====================================================================
-   * §3  RENDER HELPERS — style factories and pre-built JSX fragments
+   * §3  RENDER HELPERS — pre-built JSX fragments
    * ===================================================================== */
-
-  /* ── Selector style helper ── */
-  const selectorStyle = (wide) => ({
-    backgroundColor: t.selectorBg,
-    border: `1.5px solid ${t.sliderAccent}40`,
-    borderRadius: 6,
-    padding: wide ? "7px 32px 7px 12px" : "7px 28px 7px 8px",
-    cursor: "pointer",
-    fontSize: wide ? 13 : 12,
-    color: t.selectorText,
-    fontFamily: "inherit",
-    letterSpacing: "0.06em",
-    appearance: "none",
-    outline: "none",
-    boxShadow: `0 0 6px ${t.sliderAccent}18`,
-    backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7'><path d='M0 0l6 7 6-7z' fill='${t.selectorText}'/></svg>`)}")`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "right 10px center",
-    transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
-  });
-
-  /* ── Toggle button style helper ── */
-  const toggleBtnStyle = (active, hasRightBorder = true) => ({
-    flex: 1,
-    background: active ? t.toggleActiveBg : t.toggleBg,
-    border: "none",
-    borderRight: hasRightBorder ? `1px solid ${t.toggleBorder}` : "none",
-    padding: "5px 8px",
-    cursor: "pointer",
-    fontSize: 9,
-    color: active ? t.toggleActiveText : t.toggleInactiveText,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 5,
-    transition: "all 0.25s",
-    whiteSpace: "nowrap",
-    fontFamily: "inherit",
-    letterSpacing: "0.08em",
-    minHeight: 28,
-  });
 
   const showCompareBtn = ENABLE_COMPARISON && (isWide || ENABLE_COMPARISON_MOBILE);
 
@@ -335,49 +258,31 @@ export default function LensVisualization() {
   const sharedControlsBar = comparing ? (
     <div
       style={{
-        padding: "8px 16px",
-        borderBottom: `1px solid ${t.headerBorder}`,
-        backgroundColor: t.headerBgColor,
-        backgroundImage: t.headerBgImage,
+        ...headerStrip(t, { padding: "8px 16px" }),
         display: "flex",
         flexWrap: "wrap",
         gap: 8,
         alignItems: "center",
         justifyContent: "center",
-        transition: "background-color 0.3s,border-color 0.3s",
       }}
     >
       {/* Theme controls */}
-      <div
-        style={{
-          ...TOGGLE_GROUP_BASE,
-          border: `1px solid ${t.toggleBorder}`,
-          width: 120,
-          transition: "border-color 0.3s",
-        }}
-      >
+      <div style={toggleGroup(t, { width: 120 })}>
         <button
           onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-          style={toggleBtnStyle(highContrast, true)}
+          style={toggleBtn(t, highContrast)}
         >
           <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
           <span>HC</span>
         </button>
-        <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtnStyle(false, false)}>
+        <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtn(t, false, { hasRightBorder: false })}>
           <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
           <span>{dark ? "Light" : "Dark"}</span>
         </button>
       </div>
 
       {/* Ray toggles */}
-      <div
-        style={{
-          ...TOGGLE_GROUP_BASE,
-          border: `1px solid ${t.toggleBorder}`,
-          width: 180,
-          transition: "border-color 0.3s",
-        }}
-      >
+      <div style={toggleGroup(t, { width: 180 })}>
         {(() => {
           const offAxisActive = showOffAxis !== "off";
           const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -412,7 +317,7 @@ export default function LensVisualization() {
               dotB: t.rayOffCool,
             },
           ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-            <button key={idx} onClick={onClick} style={toggleBtnStyle(active, idx === 0)}>
+            <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
               <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
                 <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
                 <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
@@ -424,14 +329,7 @@ export default function LensVisualization() {
       </div>
 
       {/* Ray mode */}
-      <div
-        style={{
-          ...TOGGLE_GROUP_BASE,
-          border: `1px solid ${t.toggleBorder}`,
-          width: 180,
-          transition: "border-color 0.3s",
-        }}
-      >
+      <div style={toggleGroup(t, { width: 180 })}>
         {[
           { label: "FROM \u221e", val: false, icon: "\u2225" },
           { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
@@ -439,7 +337,7 @@ export default function LensVisualization() {
           <button
             key={label}
             onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
-            style={toggleBtnStyle(rayTracksF === val, !val)}
+            style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val })}
           >
             <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>
               {icon}
@@ -451,17 +349,10 @@ export default function LensVisualization() {
 
       {/* Chromatic */}
       {ENABLE_COLOR_TRACING && (
-        <div
-          style={{
-            ...TOGGLE_GROUP_BASE,
-            border: `1px solid ${t.toggleBorder}`,
-            width: showChromatic ? 220 : 90,
-            transition: "border-color 0.3s, width 0.3s",
-          }}
-        >
+        <div style={{ ...toggleGroup(t, { width: showChromatic ? 220 : 90 }), transition: "border-color 0.3s, width 0.3s" }}>
           <button
             onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-            style={toggleBtnStyle(showChromatic, showChromatic)}
+            style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
           >
             <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
               <line
@@ -500,24 +391,7 @@ export default function LensVisualization() {
               <button
                 key={ch}
                 onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-                style={{
-                  flex: 0.6,
-                  background: active ? t.toggleActiveBg : t.toggleBg,
-                  border: "none",
-                  borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "5px 6px",
-                  cursor: "pointer",
-                  fontSize: 9,
-                  color: active ? t.toggleActiveText : t.toggleInactiveText,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minHeight: 28,
-                  gap: 3,
-                  transition: "all 0.25s",
-                  fontFamily: "inherit",
-                  letterSpacing: "0.08em",
-                }}
+                style={chromChannelBtn(t, active, idx < 2)}
               >
                 <span
                   style={{
@@ -537,10 +411,7 @@ export default function LensVisualization() {
       {/* Scale mode toggle */}
       <div
         style={{
-          ...TOGGLE_GROUP_BASE,
-          border: `1px solid ${t.toggleBorder}`,
-          width: 190,
-          transition: "border-color 0.3s",
+          ...toggleGroup(t, { width: 190 }),
         }}
       >
         {[
@@ -550,7 +421,7 @@ export default function LensVisualization() {
           <button
             key={val}
             onClick={() => dispatch({ type: SET_SCALE_MODE, scaleMode: val })}
-            style={toggleBtnStyle(scaleMode === val, idx === 0)}
+            style={toggleBtn(t, scaleMode === val, { hasRightBorder: idx === 0 })}
           >
             <span>{label}</span>
           </button>
@@ -631,35 +502,31 @@ export default function LensVisualization() {
     ENABLE_MOBILE_CONTROLS_STRIP && !isWide && !comparing && mobileView === "diagram" ? (
       <div
         style={{
-          padding: "6px 12px",
-          borderBottom: `1px solid ${t.headerBorder}`,
-          backgroundColor: t.headerBgColor,
-          backgroundImage: t.headerBgImage,
+          ...headerStrip(t, { padding: "6px 12px" }),
           display: "flex",
           flexWrap: "wrap",
           gap: 6,
           alignItems: "center",
           justifyContent: "center",
-          transition: "background-color 0.3s,border-color 0.3s",
         }}
       >
         {/* Theme controls */}
-        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        <div style={toggleGroup(t)}>
           <button
             onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-            style={toggleBtnStyle(highContrast, true)}
+            style={toggleBtn(t, highContrast)}
           >
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
           </button>
-          <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtnStyle(false, false)}>
+          <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtn(t, false, { hasRightBorder: false })}>
             <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
             <span>{dark ? "Light" : "Dark"}</span>
           </button>
         </div>
 
         {/* Ray toggles */}
-        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        <div style={toggleGroup(t)}>
           {(() => {
             const offAxisActive = showOffAxis !== "off";
             const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -698,7 +565,7 @@ export default function LensVisualization() {
                 dotB: t.rayOffCool,
               },
             ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-              <button key={idx} onClick={onClick} style={toggleBtnStyle(active, idx === 0)}>
+              <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
                 <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
                   <line
                     x1="0"
@@ -724,7 +591,7 @@ export default function LensVisualization() {
         </div>
 
         {/* Ray mode */}
-        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+        <div style={toggleGroup(t)}>
           {[
             { label: "\u221e", val: false },
             { label: "\u27e9 F", val: true },
@@ -732,7 +599,7 @@ export default function LensVisualization() {
             <button
               key={label}
               onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
-              style={toggleBtnStyle(rayTracksF === val, idx === 0)}
+              style={toggleBtn(t, rayTracksF === val, { hasRightBorder: idx === 0 })}
             >
               <span>{label}</span>
             </button>
@@ -741,10 +608,10 @@ export default function LensVisualization() {
 
         {/* Chromatic */}
         {ENABLE_COLOR_TRACING && (
-          <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
+          <div style={toggleGroup(t)}>
             <button
               onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-              style={toggleBtnStyle(showChromatic, showChromatic)}
+              style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
             >
               <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
                 <line
@@ -783,24 +650,7 @@ export default function LensVisualization() {
                 <button
                   key={ch}
                   onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-                  style={{
-                    flex: 0.6,
-                    background: active ? t.toggleActiveBg : t.toggleBg,
-                    border: "none",
-                    borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
-                    padding: "5px 6px",
-                    cursor: "pointer",
-                    fontSize: 9,
-                    color: active ? t.toggleActiveText : t.toggleInactiveText,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    minHeight: 28,
-                    gap: 3,
-                    transition: "all 0.25s",
-                    fontFamily: "inherit",
-                    letterSpacing: "0.08em",
-                  }}
+                  style={chromChannelBtn(t, active, idx < 2)}
                 >
                   <span
                     style={{
@@ -849,15 +699,11 @@ export default function LensVisualization() {
           {/* ── Top bar: lens selector(s) + compare button ── */}
           <div
             style={{
-              padding: isWide ? "12px 24px" : "10px 12px",
-              borderBottom: `1px solid ${t.headerBorder}`,
-              backgroundColor: t.headerBgColor,
-              backgroundImage: t.headerBgImage,
+              ...headerStrip(t, { padding: isWide ? "12px 24px" : "10px 12px" }),
               display: "flex",
               alignItems: "center",
               gap: isWide ? 12 : 8,
               flexWrap: "wrap",
-              transition: "background-color 0.3s,border-color 0.3s",
             }}
           >
             <span
@@ -874,7 +720,7 @@ export default function LensVisualization() {
             <select
               value={lensKeyA}
               onChange={(e) => switchLensA(e.target.value)}
-              style={{ ...selectorStyle(isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
+              style={{ ...selector(t, isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
             >
               {CATALOG_KEYS.map((k) => (
                 <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
@@ -899,7 +745,7 @@ export default function LensVisualization() {
                 <select
                   value={lensKeyB}
                   onChange={(e) => switchLensB(e.target.value)}
-                  style={{ ...selectorStyle(isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
+                  style={{ ...selector(t, isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
                 >
                   {CATALOG_KEYS.map((k) => (
                     <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
@@ -949,41 +795,13 @@ export default function LensVisualization() {
             )}
             <button
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
-              style={{
-                backgroundColor: t.selectorBg,
-                border: `1.5px solid ${t.sliderAccent}40`,
-                borderRadius: 6,
-                padding: isWide ? "5px 14px" : "5px 10px",
-                cursor: "pointer",
-                fontSize: 11,
-                color: t.selectorText,
-                fontFamily: "inherit",
-                letterSpacing: "0.06em",
-                outline: "none",
-                flexShrink: 0,
-                boxShadow: `0 0 6px ${t.sliderAccent}18`,
-                transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
-              }}
+              style={topBarBtn(t, isWide)}
             >
               Site
             </button>
             <button
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
-              style={{
-                backgroundColor: t.selectorBg,
-                border: `1.5px solid ${t.sliderAccent}40`,
-                borderRadius: 6,
-                padding: isWide ? "5px 14px" : "5px 10px",
-                cursor: "pointer",
-                fontSize: 11,
-                color: t.selectorText,
-                fontFamily: "inherit",
-                letterSpacing: "0.06em",
-                outline: "none",
-                flexShrink: 0,
-                boxShadow: `0 0 6px ${t.sliderAccent}18`,
-                transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
-              }}
+              style={topBarBtn(t, isWide)}
             >
               Author
             </button>
@@ -996,16 +814,12 @@ export default function LensVisualization() {
           {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
             <div
               style={{
+                ...headerStrip(t, { padding: "8px 24px" }),
                 display: "flex",
                 justifyContent: "center",
-                padding: "8px 24px",
-                borderBottom: `1px solid ${t.headerBorder}`,
-                backgroundColor: t.headerBgColor,
-                backgroundImage: t.headerBgImage,
-                transition: "background-color 0.3s,border-color 0.3s",
               }}
             >
-              <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, width: 220 }}>
+              <div style={toggleGroup(t, { width: 220 })}>
                 {[
                   { label: "DIAGRAM", val: "diagram" },
                   { label: "ANALYSIS", val: "description" },
@@ -1013,20 +827,10 @@ export default function LensVisualization() {
                   <button
                     key={val}
                     onClick={() => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
-                    style={{
-                      flex: 1,
-                      background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
-                      border: "none",
-                      borderRight: val === "diagram" ? `1px solid ${t.toggleBorder}` : "none",
+                    style={toggleBtn(t, mobileView === val, {
+                      hasRightBorder: val === "diagram",
                       padding: "5px 0",
-                      cursor: "pointer",
-                      fontSize: 9,
-                      color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
-                      fontFamily: "inherit",
-                      letterSpacing: "0.08em",
-                      transition: "all 0.25s",
-                      minHeight: 28,
-                    }}
+                    })}
                   >
                     {label}
                   </button>
@@ -1039,43 +843,20 @@ export default function LensVisualization() {
           {showDesktopToggle && (
             <div
               style={{
+                ...headerStrip(t, { padding: "8px 24px" }),
                 display: "flex",
                 justifyContent: "center",
-                padding: "8px 24px",
-                borderBottom: `1px solid ${t.headerBorder}`,
-                backgroundColor: t.headerBgColor,
-                backgroundImage: t.headerBgImage,
-                transition: "background-color 0.3s,border-color 0.3s",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  gap: 0,
-                  borderRadius: 5,
-                  overflow: "hidden",
-                  border: `1px solid ${t.toggleBorder}`,
-                  width: desktopViewOptions.length * 110,
-                }}
-              >
+              <div style={toggleGroup(t, { width: desktopViewOptions.length * 110 })}>
                 {desktopViewOptions.map(({ label, val }, i) => (
                   <button
                     key={val}
                     onClick={() => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
-                    style={{
-                      flex: 1,
-                      background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
-                      border: "none",
-                      borderRight: i < desktopViewOptions.length - 1 ? `1px solid ${t.toggleBorder}` : "none",
+                    style={toggleBtn(t, effectiveDesktopView === val, {
+                      hasRightBorder: i < desktopViewOptions.length - 1,
                       padding: "5px 0",
-                      cursor: "pointer",
-                      fontSize: 9,
-                      color: effectiveDesktopView === val ? t.toggleActiveText : t.toggleInactiveText,
-                      fontFamily: "inherit",
-                      letterSpacing: "0.08em",
-                      transition: "all 0.25s",
-                      minHeight: 28,
-                    }}
+                    })}
                   >
                     {label}
                   </button>
@@ -1150,11 +931,11 @@ export default function LensVisualization() {
             >
               <div
                 onClick={(e) => e.stopPropagation()}
-                style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
+                style={overlayModal(t)}
               >
                 <button
                   onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-                  style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+                  style={closeBtn(t)}
                 >
                   ×
                 </button>
@@ -1171,11 +952,11 @@ export default function LensVisualization() {
             >
               <div
                 onClick={(e) => e.stopPropagation()}
-                style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
+                style={overlayModal(t)}
               >
                 <button
                   onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-                  style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+                  style={closeBtn(t)}
                 >
                   ×
                 </button>
