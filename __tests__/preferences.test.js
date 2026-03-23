@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { loadPrefs, PREFS_KEY } from '../src/utils/preferences.js';
 
 const KEYS = ['nikon_58', 'canon_50'];

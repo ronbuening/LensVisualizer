@@ -21,11 +21,11 @@
  */
 
 import { useState, useMemo, useCallback, useEffect, useLayoutEffect, useRef, Component } from "react";
-import { LENS_CATALOG, CATALOG_KEYS } from '../utils/lensCatalog.js';
+import { LENS_CATALOG } from '../utils/lensCatalog.js';
 import buildLens from '../optics/buildLens.js';
-import { sag, renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
+import { renderSag, gapTrimHeight, thick, doLayout, eflAtZoom,
          epAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom,
-         traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
+         traceRay, traceRayChromatic, computeChromaticSpread,
          conjugateK, formatDist, SVG_PATH_SUBDIVISIONS } from '../optics/optics.js';
 import { ENABLE_COLOR_TRACING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_EDGE_PROJECTION,
          ENABLE_COLLAPSIBLE_HEADER_CONTROLS, ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE,
@@ -367,7 +367,7 @@ export default function LensDiagramPanel({
       for (const f of L.rayFractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const { pts, ghostPts, y, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const { pts, ghostPts, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
         const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
         let gp = [];
         if (clipped && ghostPts.length > 0) {
@@ -418,7 +418,7 @@ export default function LensDiagramPanel({
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
         const uIn = uField + uConverge;
-        const { pts, ghostPts, y, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const { pts, ghostPts, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
         const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
         let gp = [];
         if (clipped && ghostPts.length > 0) {

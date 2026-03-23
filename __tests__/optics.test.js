@@ -457,7 +457,7 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
   });
 
   it('rays trace at close focus (t=1) without TIR', () => {
-    const { z: zClose, imgZ: imgZClose } = doLayout(1.0, 0, L);
+    const { z: zClose } = doLayout(1.0, 0, L);
     const h = 0.5 * L.EP.epSD;
     const { clipped } = traceRay(h, 0, zClose, 1.0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);

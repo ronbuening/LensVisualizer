@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { buildIssueURL, REPO_URL } from '../src/utils/errorReporting.js';
 
 describe('REPO_URL', () => {

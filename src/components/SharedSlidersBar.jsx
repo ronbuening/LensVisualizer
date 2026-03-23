@@ -32,8 +32,8 @@ import { formatSharedFocusDist, sharedFNumber } from '../utils/comparisonSliders
 import { formatDist, eflAtZoom } from '../optics/optics.js';
 
 export default function SharedSlidersBar({ LA, LB, sharedFocusT, sharedStopdownT, sharedZoomT, onSharedFocusChange, onSharedStopdownChange, onSharedZoomChange, onFocusPointerDown, onAperturePointerDown, onSliderPointerUp, focusPair, aperturePair, zoomPair, theme: t, isWide }) {
-  const { commonPoint: focusCP, minCloseFocus, maxCloseFocus } = focusPair;
-  const { commonPoint: apertureCP, widerFOPEN, narrowerFOPEN, sharedMaxFstop } = aperturePair;
+  const { commonPoint: focusCP, minCloseFocus } = focusPair;
+  const { commonPoint: apertureCP, widerFOPEN, sharedMaxFstop } = aperturePair;
   const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
   const focusDistStr = formatSharedFocusDist(sharedFocusT, minCloseFocus);
   /* Only show the common-point marker when it falls in a visible range

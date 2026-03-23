@@ -139,7 +139,7 @@ describe('buildLens — production lenses', () => {
   it('all lenses have ES entries with valid surface indices', () => {
     for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
       const L = buildLens(data);
-      for (const [eid, s1, s2] of L.ES) {
+      for (const [, s1, s2] of L.ES) {
         expect(s1).toBeGreaterThanOrEqual(0);
         expect(s2).toBeGreaterThanOrEqual(0);
         expect(s1).toBeLessThan(L.N);

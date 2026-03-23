@@ -265,7 +265,7 @@ export function traceRay(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L) {
   let U = Math.atan(u0);
   let clipped = false;
   for (let i = 0; i < L.N; i++) {
-    const { R, nd, sd } = L.S[i];
+    const { nd, sd } = L.S[i];
     const z = zPos[i];
     const isStop = i === L.stopIdx;
     const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
@@ -339,7 +339,7 @@ export function traceRayChromatic(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L,
   let U = Math.atan(u0);
   let clipped = false;
   for (let i = 0; i < L.N; i++) {
-    const { R, nd, sd } = L.S[i];
+    const { nd, sd } = L.S[i];
     const z = zPos[i];
     const isStop = i === L.stopIdx;
     const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
