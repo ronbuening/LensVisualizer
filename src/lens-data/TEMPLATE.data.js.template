@@ -7,6 +7,12 @@
  * ║  [N] elements / [N] groups, [N] aspherical surfaces.              ║
  * ║  Focus: [focus mechanism description].                             ║
  * ║                                                                    ║
+ * ║  FOR ZOOM LENSES, also document:                                   ║
+ * ║    Internal zoom (constant overall length N mm).  [if applicable] ║
+ * ║    Zoom variable gaps: D5, D13 (zoom only).                       ║
+ * ║    Focus variable gaps: D30, D34 (zoom + focus).                  ║
+ * ║    Reversing groups: D34 (non-monotonic).         [if applicable] ║
+ * ║                                                                    ║
  * ║  NOTE ON SCALING (if applicable):                                   ║
  * ║    [If patent data is at a different focal length, note the scale  ║
  * ║    factor applied to R, d, and sd values here.  E.g.:             ║
@@ -233,8 +239,8 @@ const LENS_DATA = {
   /* ── Layout tuning (overrides defaults from defaults.js) ──
    *  Only include if the defaults don't work well for this lens.
    *
-   *  scFill   (0–1)  Horizontal fill fraction for the lens diagram
-   *  yScFill  (0–1)  Vertical fill fraction for the lens diagram
+   *  scFill   (0–1)  Horizontal fill fraction (default: 0.55 from defaults.js)
+   *  yScFill  (0–1)  Vertical fill fraction (no default — must be specified per lens)
    *
    *  Other overridable defaults (usually fine as-is):
    *    svgW: 1080, svgH: 490, clipMargin: 1.0, maxRimAngleDeg: 40,
@@ -244,7 +250,7 @@ const LENS_DATA = {
    *    rayLeadFrac: 0.35, lensShiftFrac: 0.08, offAxisFieldFrac: 0.60,
    *    offAxisFractions: [-0.75, -0.375, 0, 0.375, 0.75]
    */
-  scFill:           0.50,
+  scFill:           0.50,   // override default 0.55 if needed
   yScFill:          0.30,
 };
 

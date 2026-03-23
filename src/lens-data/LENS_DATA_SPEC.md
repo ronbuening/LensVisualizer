@@ -4,7 +4,7 @@ Reference for creating new `*.data.js` files in `lens-data/`.
 
 ## Quick Start
 
-1. Copy `TEMPLATE.data.js` to `YourLens.data.js`
+1. Copy `TEMPLATE.data.js.template` to `YourLens.data.js`
 2. Fill in all fields following this spec
 3. Optionally add `YourLens.analysis.md` for the description panel
 4. Auto-registration picks it up — no imports or catalog edits needed
@@ -47,6 +47,7 @@ These are merged automatically. Override only when needed.
 | `lensShiftFrac` | `0.08` | Horizontal lens shift (fraction of SVG width) |
 | `offAxisFieldFrac` | `0.60` | Off-axis field angle (fraction of max half-field) |
 | `offAxisFractions` | `[-0.75, -0.375, 0, 0.375, 0.75]` | Off-axis ray fan heights |
+| `scFill` | `0.55` | Horizontal fill fraction (0–1) — layout tuning |
 
 ### Required (per-lens, no defaults)
 
@@ -54,7 +55,6 @@ These must be specified in every lens file — they have no defaults.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `scFill` | `number` | Horizontal fill fraction (0–1) — layout tuning |
 | `yScFill` | `number` | Vertical fill fraction (0–1) — layout tuning |
 
 ### Optional
@@ -364,6 +364,13 @@ When transcribing from an optical patent:
 10. **EFL verification** — After transcribing all surfaces, verify the computed EFL (from `buildLens()` or tests) matches the patent's stated focal length (scaled if applicable). A mismatch usually indicates a sign error in R or a wrong nd value
 11. **Cross-reference patent text** — Compare the patent's prose element descriptions (e.g., "plano-convex", "biconcave") against your transcribed R values. Older patents sometimes use approximate language — "plane" may mean "very weakly curved" if the numerical example has a finite but large R
 
+### Zoom-Specific Sourcing (additional steps for zoom lenses)
+
+12. **Variable spacing tables at multiple focal lengths** — Look for tables giving air gap values at 3–5 focal length positions (wide/mid/tele). The column header focal lengths become `zoomPositions`; each gap row provides the per-position `var` pairs
+13. **Zoom-only vs zoom+focus gaps** — Identify which variable gaps change only with zoom (the patent's infinity-focus spacing varies across focal lengths, but the close-focus table shows the same change pattern) vs gaps that change with both zoom and focus (different infinity/close values at each position). Document which is which in the file header
+14. **Non-monotonic (reversing) groups** — Check whether any gap's spacing goes up then down (or vice versa) across zoom positions — e.g., `[28.12, 22.59, 27.71]`. This is handled automatically by piecewise-linear interpolation, but include enough zoom positions to bracket any reversals. Note reversals in the file header
+15. **EFL verification at each zoom position** — After transcribing all surfaces and variable gaps, verify the computed EFL at each zoom position (from `buildLens()` → `zoomEFLs`) against the patent's stated focal lengths. Mismatches usually indicate a transcription error in the variable gap table
+
 ---
 
 ## Example: Minimal All-Spherical Singlet
@@ -393,3 +400,33 @@ const LENS_DATA = {
 };
 export default LENS_DATA;
 ```
+
+---
+
+## Example: Zoom Lens Variable-Gap Structure
+
+The zoom-specific fields added alongside normal lens fields. For a complete working example, see `NikonNikkorZ70200f28.data.js`.
+
+```javascript
+// Zoom positions — focal lengths in mm (≥2, monotonically increasing)
+zoomPositions: [24, 50, 70],
+zoomStep: 0.004,
+zoomLabels: ["Wide", "Tele"],
+
+// Variable air spacings — one [d_inf, d_close] pair per zoom position
+var: {
+  // Zoom-only gap: identical inf/close values at each position
+  "5":  [[2.0, 2.0], [5.0, 5.0], [3.5, 3.5]],
+  // Zoom + focus gap: different inf/close values
+  "10": [[8.0, 6.5], [5.0, 3.2], [6.5, 5.0]],
+  // Another zoom + focus gap
+  "15": [[12.0, 14.5], [15.0, 17.8], [13.5, 16.0]],
+},
+varLabels: [
+  ["5",  "D5"],
+  ["10", "D10"],
+  ["15", "BF"],
+],
+```
+
+Each surface's `d` field must equal its first zoom position's infinity value — e.g., surface `"5"` has `d: 2.0` (matching `var["5"][0][0]`).
