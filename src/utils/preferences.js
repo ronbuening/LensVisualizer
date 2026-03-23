@@ -2,7 +2,7 @@
  * Persistent user preferences via localStorage.
  */
 
-export const PREFS_KEY = 'lensvis:prefs';
+export const PREFS_KEY = "lensvis:prefs";
 
 /**
  * Load persisted user preferences from localStorage.
@@ -19,35 +19,38 @@ export function loadPrefs(catalogKeys) {
     const raw = localStorage.getItem(PREFS_KEY);
     if (!raw) return {};
     const p = JSON.parse(raw);
-    if (!p || typeof p !== 'object') return {};
+    if (!p || typeof p !== "object") return {};
     const out = {};
-    if (typeof p.dark === 'boolean') out.dark = p.dark;
-    if (typeof p.highContrast === 'boolean') out.highContrast = p.highContrast;
-    if (typeof p.showOnAxis === 'boolean') out.showOnAxis = p.showOnAxis;
+    if (typeof p.dark === "boolean") out.dark = p.dark;
+    if (typeof p.highContrast === "boolean") out.highContrast = p.highContrast;
+    if (typeof p.showOnAxis === "boolean") out.showOnAxis = p.showOnAxis;
     /* showOffAxis: v2 stored boolean (true→"trueAngle", false→"off"),
        v3+ stores string "off"|"trueAngle"|"edge" */
-    if (typeof p.showOffAxis === 'string' && ['off', 'trueAngle', 'edge'].includes(p.showOffAxis)) {
+    if (typeof p.showOffAxis === "string" && ["off", "trueAngle", "edge"].includes(p.showOffAxis)) {
       out.showOffAxis = p.showOffAxis;
-    } else if (typeof p.showOffAxis === 'boolean') {
-      out.showOffAxis = p.showOffAxis ? 'trueAngle' : 'off';
+    } else if (typeof p.showOffAxis === "boolean") {
+      out.showOffAxis = p.showOffAxis ? "trueAngle" : "off";
     }
-    if (typeof p.rayTracksF === 'boolean') out.rayTracksF = p.rayTracksF;
-    if (typeof p.showChromatic === 'boolean') out.showChromatic = p.showChromatic;
-    if (typeof p.chromR === 'boolean') out.chromR = p.chromR;
-    if (typeof p.chromG === 'boolean') out.chromG = p.chromG;
-    if (typeof p.chromB === 'boolean') out.chromB = p.chromB;
+    if (typeof p.rayTracksF === "boolean") out.rayTracksF = p.rayTracksF;
+    if (typeof p.showChromatic === "boolean") out.showChromatic = p.showChromatic;
+    if (typeof p.chromR === "boolean") out.chromR = p.chromR;
+    if (typeof p.chromG === "boolean") out.chromG = p.chromG;
+    if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     /* v1 compat: lensKey → lensKeyA */
     const key = p.lensKeyA || p.lensKey;
-    if (typeof key === 'string' && catalogKeys.includes(key)) out.lensKeyA = key;
-    if (typeof p.lensKeyB === 'string' && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
-    if (typeof p.comparing === 'boolean') out.comparing = p.comparing;
-    if (p.scaleMode === 'independent' || p.scaleMode === 'normalized') out.scaleMode = p.scaleMode;
-    if (typeof p.desktopView === 'string' && ['diagram', 'both', 'analysis'].includes(p.desktopView)) out.desktopView = p.desktopView;
-    if (typeof p.focusExpanded === 'boolean') out.focusExpanded = p.focusExpanded;
-    if (typeof p.apertureExpanded === 'boolean') out.apertureExpanded = p.apertureExpanded;
-    if (typeof p.headerControlsExpanded === 'boolean') out.headerControlsExpanded = p.headerControlsExpanded;
-    if (typeof p.legendExpanded === 'boolean') out.legendExpanded = p.legendExpanded;
-    if (typeof p.headerInfoExpanded === 'boolean') out.headerInfoExpanded = p.headerInfoExpanded;
+    if (typeof key === "string" && catalogKeys.includes(key)) out.lensKeyA = key;
+    if (typeof p.lensKeyB === "string" && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
+    if (typeof p.comparing === "boolean") out.comparing = p.comparing;
+    if (p.scaleMode === "independent" || p.scaleMode === "normalized") out.scaleMode = p.scaleMode;
+    if (typeof p.desktopView === "string" && ["diagram", "both", "analysis"].includes(p.desktopView))
+      out.desktopView = p.desktopView;
+    if (typeof p.focusExpanded === "boolean") out.focusExpanded = p.focusExpanded;
+    if (typeof p.apertureExpanded === "boolean") out.apertureExpanded = p.apertureExpanded;
+    if (typeof p.headerControlsExpanded === "boolean") out.headerControlsExpanded = p.headerControlsExpanded;
+    if (typeof p.legendExpanded === "boolean") out.legendExpanded = p.legendExpanded;
+    if (typeof p.headerInfoExpanded === "boolean") out.headerInfoExpanded = p.headerInfoExpanded;
     return out;
-  } catch { return {}; }
+  } catch {
+    return {};
+  }
 }

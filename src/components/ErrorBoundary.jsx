@@ -51,22 +51,38 @@ const FALLBACK = {
 export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error" }) {
   /* Build a pre-filled GitHub issue URL; fall back to bare /issues/new on failure */
   let issueURL;
-  try { issueURL = buildIssueURL(error, context); } catch { issueURL = `${REPO_URL}/issues/new`; }
+  try {
+    issueURL = buildIssueURL(error, context);
+  } catch {
+    issueURL = `${REPO_URL}/issues/new`;
+  }
 
   return (
-    <div style={{
-      maxWidth: 560, padding: 24, textAlign: "center",
-      fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
-    }}>
-      <h2 style={{ color: FALLBACK.errorTitle, fontSize: 16, marginBottom: 10 }}>
-        {title}
-      </h2>
-      <pre style={{
-        background: FALLBACK.errorBg, border: `1px solid ${FALLBACK.errorBorder}`,
-        borderRadius: 6, padding: 14, whiteSpace: "pre-wrap", wordBreak: "break-word",
-        fontSize: 12, color: FALLBACK.errorText, marginBottom: 12, textAlign: "left",
-        maxHeight: 180, overflowY: "auto",
-      }}>
+    <div
+      style={{
+        maxWidth: 560,
+        padding: 24,
+        textAlign: "center",
+        fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
+      }}
+    >
+      <h2 style={{ color: FALLBACK.errorTitle, fontSize: 16, marginBottom: 10 }}>{title}</h2>
+      <pre
+        style={{
+          background: FALLBACK.errorBg,
+          border: `1px solid ${FALLBACK.errorBorder}`,
+          borderRadius: 6,
+          padding: 14,
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word",
+          fontSize: 12,
+          color: FALLBACK.errorText,
+          marginBottom: 12,
+          textAlign: "left",
+          maxHeight: 180,
+          overflowY: "auto",
+        }}
+      >
         {error?.message || String(error)}
       </pre>
 
@@ -75,11 +91,20 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
           <summary style={{ cursor: "pointer", fontSize: 11, color: FALLBACK.mutedText, marginBottom: 6 }}>
             Stack trace
           </summary>
-          <pre style={{
-            background: FALLBACK.errorBg, border: `1px solid ${FALLBACK.errorBorder}`,
-            borderRadius: 6, padding: 10, whiteSpace: "pre-wrap", wordBreak: "break-word",
-            fontSize: 10, color: FALLBACK.mutedText, maxHeight: 200, overflowY: "auto",
-          }}>
+          <pre
+            style={{
+              background: FALLBACK.errorBg,
+              border: `1px solid ${FALLBACK.errorBorder}`,
+              borderRadius: 6,
+              padding: 10,
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+              fontSize: 10,
+              color: FALLBACK.mutedText,
+              maxHeight: 200,
+              overflowY: "auto",
+            }}
+          >
             {error.stack}
           </pre>
         </details>
@@ -90,8 +115,14 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
           <button
             onClick={onRetry}
             style={{
-              background: FALLBACK.btnBg, color: FALLBACK.btnText, border: "none", borderRadius: 4,
-              padding: "7px 18px", cursor: "pointer", fontSize: 12, fontWeight: 600,
+              background: FALLBACK.btnBg,
+              color: FALLBACK.btnText,
+              border: "none",
+              borderRadius: 4,
+              padding: "7px 18px",
+              cursor: "pointer",
+              fontSize: 12,
+              fontWeight: 600,
               fontFamily: "inherit",
             }}
           >
@@ -103,11 +134,17 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            display: "inline-block", background: FALLBACK.linkBg,
-            border: `1.5px solid ${FALLBACK.linkBorder}`, borderRadius: 4,
-            padding: "6px 16px", fontSize: 12, fontWeight: 600,
-            color: FALLBACK.linkText, textDecoration: "none",
-            fontFamily: "inherit", cursor: "pointer",
+            display: "inline-block",
+            background: FALLBACK.linkBg,
+            border: `1.5px solid ${FALLBACK.linkBorder}`,
+            borderRadius: 4,
+            padding: "6px 16px",
+            fontSize: 12,
+            fontWeight: 600,
+            color: FALLBACK.linkText,
+            textDecoration: "none",
+            fontFamily: "inherit",
+            cursor: "pointer",
           }}
         >
           Report Issue on GitHub
@@ -116,7 +153,6 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
     </div>
   );
 }
-
 
 /**
  * Top-level React error boundary.
@@ -144,11 +180,17 @@ export default class ErrorBoundary extends Component {
   render() {
     if (!this.state.error) return this.props.children;
     return (
-      <div style={{
-        background: FALLBACK.bg, color: FALLBACK.text, minHeight: "100vh",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
-      }}>
+      <div
+        style={{
+          background: FALLBACK.bg,
+          color: FALLBACK.text,
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
+        }}
+      >
         <ErrorDisplay
           error={this.state.error}
           context={{ component: "ErrorBoundary (top-level)" }}

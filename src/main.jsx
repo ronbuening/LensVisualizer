@@ -5,5 +5,5 @@ import LensVisualization from "./components/LensViewer.jsx";
 createRoot(document.getElementById("root")).render(
   <ErrorBoundary>
     <LensVisualization />
-  </ErrorBoundary>
+  </ErrorBoundary>,
 );

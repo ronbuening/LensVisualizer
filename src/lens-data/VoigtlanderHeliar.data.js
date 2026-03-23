@@ -31,19 +31,12 @@
  */
 
 const LENS_DATA = {
-
   /* ── Identity ── */
-  key:      "heliar-symmetric-1902",
-  name:     "VOIGTLÄNDER HELIAR (Symmetric) f/4",
+  key: "heliar-symmetric-1902",
+  name: "VOIGTLÄNDER HELIAR (Symmetric) f/4",
   subtitle: "US 716,035 — Harting / Voigtländer & Sohn AG (1902)",
   visible: true,
-  specs: [
-    "5 ELEMENTS / 3 GROUPS",
-    "f = 100 (normalized)",
-    "F/4.0",
-    "2ω ≈ 43.6°",
-    "ALL SPHERICAL",
-  ],
+  specs: ["5 ELEMENTS / 3 GROUPS", "f = 100 (normalized)", "F/4.0", "2ω ≈ 43.6°", "ALL SPHERICAL"],
 
   /* ── Elements ──
    *  Five elements: front cemented doublet (a + b), central biconcave (c),
@@ -52,44 +45,64 @@ const LENS_DATA = {
    */
   elements: [
     {
-      id: 1, name: "La", label: "Element a (front)",
+      id: 1,
+      name: "La",
+      label: "Element a (front)",
       type: "Negative Meniscus",
-      nd: 1.5638, vd: 42.0, fl: -122.9,
+      nd: 1.5638,
+      vd: 42.0,
+      fl: -122.9,
       glass: "Light Flint (LF, probable discontinued Schott type)",
       apd: false,
       role: "Dispersive (flint) component of front achromatic doublet. Weak negative power; meniscus shape contributes to field flattening.",
       cemented: "D1",
     },
     {
-      id: 2, name: "Lb", label: "Element b (front)",
+      id: 2,
+      name: "Lb",
+      label: "Element b (front)",
       type: "Biconvex Positive",
-      nd: 1.6080, vd: 57.0, fl: 40.6,
+      nd: 1.608,
+      vd: 57.0,
+      fl: 40.6,
       glass: "Dense Crown (SK, high-confidence match: Schott N-SK2, Δnd = 0.0006)",
       apd: false,
       role: "Primary positive power-contributor. Dense barium crown provides maximum power per unit chromatic aberration. Nearly all power comes from the cemented interface.",
       cemented: "D1",
     },
     {
-      id: 3, name: "Lc", label: "Element c (central)",
+      id: 3,
+      name: "Lc",
+      label: "Element c (central)",
       type: "Biconcave Negative",
-      nd: 1.5638, vd: 42.0, fl: -39.7,
+      nd: 1.5638,
+      vd: 42.0,
+      fl: -39.7,
       glass: "Light Flint (LF, same glass as elements a/a′)",
       apd: false,
       role: "Central negative element (Cooke Triplet inheritance). Controls Petzval sum, spherical aberration balance, and power leverage. No chromatic correction role — all achromatism is at the doublet interfaces.",
     },
     {
-      id: 4, name: "Lb'", label: "Element b′ (rear)",
+      id: 4,
+      name: "Lb'",
+      label: "Element b′ (rear)",
       type: "Biconvex Positive",
-      nd: 1.6080, vd: 57.0, fl: 40.6,
+      nd: 1.608,
+      vd: 57.0,
+      fl: 40.6,
       glass: "Dense Crown (SK, Schott N-SK2)",
       apd: false,
       role: "Mirror image of element b. Primary positive power in rear group.",
       cemented: "D2",
     },
     {
-      id: 5, name: "La'", label: "Element a′ (rear)",
+      id: 5,
+      name: "La'",
+      label: "Element a′ (rear)",
       type: "Negative Meniscus",
-      nd: 1.5638, vd: 42.0, fl: -122.9,
+      nd: 1.5638,
+      vd: 42.0,
+      fl: -122.9,
       glass: "Light Flint (LF, same glass as elements a/c)",
       apd: false,
       role: "Mirror image of element a. Dispersive component of rear achromatic doublet.",
@@ -107,21 +120,21 @@ const LENS_DATA = {
    */
   surfaces: [
     /* ── Front cemented doublet (D1: a + b) ── */
-    { label: "1",   R:    41.00,  d:  1.60, nd: 1.5638, elemId: 1, sd: 13.5 },  // a front
-    { label: "2",   R:    25.76,  d:  3.60, nd: 1.6080, elemId: 2, sd: 12.5 },  // a|b cement junction
-    { label: "3",   R:  -583.80,  d:  8.10, nd: 1.0,    elemId: 0, sd: 12.5 },  // b rear → air
+    { label: "1", R: 41.0, d: 1.6, nd: 1.5638, elemId: 1, sd: 13.5 }, // a front
+    { label: "2", R: 25.76, d: 3.6, nd: 1.608, elemId: 2, sd: 12.5 }, // a|b cement junction
+    { label: "3", R: -583.8, d: 8.1, nd: 1.0, elemId: 0, sd: 12.5 }, // b rear → air
 
     /* ── Central biconcave (c) ── */
-    { label: "4",   R:   -44.76,  d:  1.60, nd: 1.5638, elemId: 3, sd: 11.5 },  // c front
-    { label: "5",   R:    44.76,  d:  0.00, nd: 1.0,    elemId: 0, sd: 11.5 },  // c rear → air
+    { label: "4", R: -44.76, d: 1.6, nd: 1.5638, elemId: 3, sd: 11.5 }, // c front
+    { label: "5", R: 44.76, d: 0.0, nd: 1.0, elemId: 0, sd: 11.5 }, // c rear → air
 
     /* ── Aperture stop ── */
-    { label: "STO", R:      1e15, d:  8.10, nd: 1.0,    elemId: 0, sd: 10.2 },  // stop (directly behind c)
+    { label: "STO", R: 1e15, d: 8.1, nd: 1.0, elemId: 0, sd: 10.2 }, // stop (directly behind c)
 
     /* ── Rear cemented doublet (D2: b′ + a′) ── */
-    { label: "6",   R:   583.80,  d:  3.60, nd: 1.6080, elemId: 4, sd: 12.5 },  // b′ front
-    { label: "7",   R:   -25.76,  d:  1.60, nd: 1.5638, elemId: 5, sd: 12.5 },  // b′|a′ cement junction
-    { label: "8",   R:   -41.00,  d: 85.52, nd: 1.0,    elemId: 0, sd: 13.5 },  // a′ rear → air (BFD)
+    { label: "6", R: 583.8, d: 3.6, nd: 1.608, elemId: 4, sd: 12.5 }, // b′ front
+    { label: "7", R: -25.76, d: 1.6, nd: 1.5638, elemId: 5, sd: 12.5 }, // b′|a′ cement junction
+    { label: "8", R: -41.0, d: 85.52, nd: 1.0, elemId: 0, sd: 13.5 }, // a′ rear → air (BFD)
   ],
 
   /* ── Aspherical coefficients ──
@@ -137,18 +150,16 @@ const LENS_DATA = {
    *    BFD_close = 85.52 + 11.14 = 96.66
    */
   var: {
-    "8": [85.52, 96.66],
+    8: [85.52, 96.66],
   },
 
-  varLabels: [
-    ["8", "BF"],
-  ],
+  varLabels: [["8", "BF"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1 (FRONT)",  fromSurface: "1",  toSurface: "3"  },
-    { text: "G2 (CENTER)", fromSurface: "4",  toSurface: "5"  },
-    { text: "G3 (REAR)",   fromSurface: "6",  toSurface: "8"  },
+    { text: "G1 (FRONT)", fromSurface: "1", toSurface: "3" },
+    { text: "G2 (CENTER)", fromSurface: "4", toSurface: "5" },
+    { text: "G3 (REAR)", fromSurface: "6", toSurface: "8" },
   ],
 
   doublets: [
@@ -157,16 +168,17 @@ const LENS_DATA = {
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM:       1.0,
-  focusDescription:  "Unit focus — entire lens moves via bellows extension or helicoid. Air gaps between groups remain constant. Patent does not specify close focus; 1.0 m assumed for a 100 mm focal length interpretation.",
+  closeFocusM: 1.0,
+  focusDescription:
+    "Unit focus — entire lens moves via bellows extension or helicoid. Air gaps between groups remain constant. Patent does not specify close focus; 1.0 m assumed for a 100 mm focal length interpretation.",
 
   /* ── Aperture configuration ── */
-  nominalFno:   4.0,
-  fstopSeries:  [4, 4.5, 5.6, 8, 11, 16, 22, 32],
+  nominalFno: 4.0,
+  fstopSeries: [4, 4.5, 5.6, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */
-  scFill:           0.50,
-  yScFill:          0.42,
+  scFill: 0.5,
+  yScFill: 0.42,
 };
 
 export default LENS_DATA;
