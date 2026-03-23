@@ -9,6 +9,12 @@
  * rather than throwing on the first problem.
  */
 
+import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
+
+/* Validation operates on untrusted data — use a permissive record type
+ * so dynamic-key checks compile without casts on every property access. */
+type UntrustedLensData = Record<string, any>;
+
 /**
  * Validate a LENS_DATA object for structural correctness.
  *
@@ -16,11 +22,11 @@
  * (geometry: edge thickness, sag overlap).  All errors are collected
  * before returning so the user sees every issue at once.
  *
- * @param {Object} data  — LENS_DATA object (after defaults merging)
- * @returns {string[]}     array of human-readable error messages (empty = valid)
+ * @param data  — LENS_DATA object (after defaults merging)
+ * @returns       array of human-readable error messages (empty = valid)
  */
-export default function validateLensData(data) {
-  const errors = [];
+export default function validateLensData(data: UntrustedLensData): string[] {
+  const errors: string[] = [];
 
   /* ── Required top-level scalars ── */
   const requiredStrings = ["key", "name"];
@@ -62,7 +68,7 @@ export default function validateLensData(data) {
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;
 
   /* ── Surface labels: unique, exactly one STO ── */
-  const surfaceLabels = new Set();
+  const surfaceLabels = new Set<string>();
   let stoCount = 0;
   for (let i = 0; i < data.surfaces.length; i++) {
     const s = data.surfaces[i];
@@ -83,7 +89,7 @@ export default function validateLensData(data) {
   if (stoCount > 1) errors.push(`Multiple surfaces with label "STO" found (${stoCount})`);
 
   /* ── Element IDs: unique ── */
-  const elemIds = new Set();
+  const elemIds = new Set<number>();
   for (let i = 0; i < data.elements.length; i++) {
     const e = data.elements[i];
     if (e.id === undefined || e.id === null) {
@@ -102,7 +108,7 @@ export default function validateLensData(data) {
   }
 
   /* ── Each element has at least one surface referencing it ── */
-  const referencedElems = new Set(data.surfaces.map((s) => s.elemId).filter((id) => id !== 0));
+  const referencedElems = new Set(data.surfaces.map((s: SurfaceData) => s.elemId).filter((id: number) => id !== 0));
   for (const e of data.elements) {
     if (!referencedElems.has(e.id)) errors.push(`Element ${e.id} ("${e.name}") has no surfaces referencing it`);
   }
@@ -120,7 +126,7 @@ export default function validateLensData(data) {
     if (!Array.isArray(data.zoomPositions) || data.zoomPositions.length < 2)
       errors.push(`"zoomPositions" must be an array of at least 2 focal lengths`);
     else {
-      if (!data.zoomPositions.every((n) => typeof n === "number" && isFinite(n)))
+      if (!data.zoomPositions.every((n: number) => typeof n === "number" && isFinite(n)))
         errors.push(`"zoomPositions" must contain only finite numbers`);
       for (let i = 1; i < data.zoomPositions.length; i++) {
         if (data.zoomPositions[i] <= data.zoomPositions[i - 1]) {
@@ -137,12 +143,12 @@ export default function validateLensData(data) {
       errors.push(`"zoomStep" must be a finite positive number (got ${data.zoomStep})`);
   }
   if (data.zoomLabels !== undefined) {
-    if (!Array.isArray(data.zoomLabels) || !data.zoomLabels.every((s) => typeof s === "string"))
+    if (!Array.isArray(data.zoomLabels) || !data.zoomLabels.every((s: string) => typeof s === "string"))
       errors.push(`"zoomLabels" must be an array of strings`);
   }
 
   /* ── Build label→index map for var/geometry checks below ── */
-  const labelToIdx = {};
+  const labelToIdx: Record<string, number> = {};
   for (let i = 0; i < data.surfaces.length; i++) {
     if (typeof data.surfaces[i].label === "string") labelToIdx[data.surfaces[i].label] = i;
   }
@@ -150,7 +156,7 @@ export default function validateLensData(data) {
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === "object") {
     const nz = isZoom ? data.zoomPositions.length : 0;
-    for (const [label, range] of Object.entries(data.var)) {
+    for (const [label, range] of Object.entries(data.var) as [string, unknown][]) {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)
@@ -178,11 +184,11 @@ export default function validateLensData(data) {
       if (surfaceLabels.has(label)) {
         const surfD = data.surfaces[labelToIdx[label]].d;
         const varInf = isZoom
-          ? Array.isArray(range) && Array.isArray(range[0])
-            ? range[0][0]
+          ? Array.isArray(range) && Array.isArray((range as unknown[])[0])
+            ? (range as number[][])[0][0]
             : null
           : Array.isArray(range)
-            ? range[0]
+            ? (range as number[])[0]
             : null;
         if (typeof surfD === "number" && typeof varInf === "number" && Math.abs(surfD - varInf) > 1e-6)
           errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
@@ -201,7 +207,7 @@ export default function validateLensData(data) {
   }
 
   /* ── groups and doublets reference real surface labels ── */
-  for (const kind of ["groups", "doublets"]) {
+  for (const kind of ["groups", "doublets"] as const) {
     if (!Array.isArray(data[kind])) continue;
     for (let i = 0; i < data[kind].length; i++) {
       const g = data[kind][i];
@@ -219,10 +225,10 @@ export default function validateLensData(data) {
    */
   const S = data.surfaces;
 
-  const asphByIdx = {};
+  const asphByIdx: Record<number, AsphericCoefficients> = {};
   if (data.asph && typeof data.asph === "object") {
     for (const [label, coeffs] of Object.entries(data.asph)) {
-      if (labelToIdx[label] !== undefined) asphByIdx[labelToIdx[label]] = coeffs;
+      if (labelToIdx[label] !== undefined) asphByIdx[labelToIdx[label]] = coeffs as AsphericCoefficients;
     }
   }
 
@@ -300,14 +306,15 @@ export default function validateLensData(data) {
   if (isZoom && data.var) {
     const nz = data.zoomPositions.length;
     /* Build a var lookup keyed by surface index for efficient gap-d overrides */
-    const varByIdx = {};
+    const varByIdx: Record<number, unknown> = {};
     for (const [label, range] of Object.entries(data.var)) {
       if (labelToIdx[label] !== undefined) varByIdx[labelToIdx[label]] = range;
     }
     for (let zi = 0; zi < nz; zi++) {
-      const gapOverrides = {};
+      const gapOverrides: Record<number, number> = {};
       for (const [idx, range] of Object.entries(varByIdx)) {
-        if (Array.isArray(range[zi])) gapOverrides[idx] = range[zi][0]; // infinity-focus thickness
+        const r = range as number[][];
+        if (Array.isArray(r[zi])) gapOverrides[Number(idx)] = r[zi][0]; // infinity-focus thickness
       }
       _checkCrossGapOverlap(
         S,
@@ -329,13 +336,19 @@ export default function validateLensData(data) {
  * does not exceed the air gap thickness.  Called once with fixed d values,
  * then again per zoom position with overridden gap thicknesses.
  *
- * @param {Object[]} S             — surface array
- * @param {Object}   asphByIdx     — aspheric coefficients by surface index
- * @param {Object|null} gapOverrides — { surfIdx: overrideD } for variable gaps, or null
- * @param {string[]} errors        — error accumulator (mutated)
- * @param {string}   context       — suffix for error messages (e.g. " at zoom position 0")
+ * @param S             — surface array
+ * @param asphByIdx     — aspheric coefficients by surface index
+ * @param gapOverrides  — { surfIdx: overrideD } for variable gaps, or null
+ * @param errors        — error accumulator (mutated)
+ * @param context       — suffix for error messages (e.g. " at zoom position 0")
  */
-function _checkCrossGapOverlap(S, asphByIdx, gapOverrides, errors, context) {
+function _checkCrossGapOverlap(
+  S: UntrustedLensData[],
+  asphByIdx: Record<number, AsphericCoefficients>,
+  gapOverrides: Record<number, number> | null,
+  errors: string[],
+  context: string,
+): void {
   for (let i = 0; i < S.length - 1; i++) {
     const curr = S[i],
       next = S[i + 1];
@@ -373,12 +386,12 @@ function _checkCrossGapOverlap(S, asphByIdx, gapOverrides, errors, context) {
  * from optics.js to avoid a circular dependency (optics.js imports from
  * buildLens.js which imports this module).
  *
- * @param {number} h     — ray height (mm)
- * @param {number} R     — radius of curvature (mm)
- * @param {Object} asph  — aspheric coefficients {K, A4, A6, ...} or undefined
- * @returns {number}       sag in mm
+ * @param h     — ray height (mm)
+ * @param R     — radius of curvature (mm)
+ * @param asph  — aspheric coefficients {K, A4, A6, ...} or undefined
+ * @returns       sag in mm
  */
-function _renderSag(h, R, asph) {
+function _renderSag(h: number, R: number, asph: AsphericCoefficients | undefined): number {
   const FLAT = 1e10;
   if (Math.abs(R) > FLAT && !asph) return 0;
   const c = Math.abs(R) > FLAT ? 0 : 1.0 / R;
