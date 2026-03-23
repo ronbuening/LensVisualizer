@@ -1,4 +1,4 @@
 dist/
 node_modules/
 *.md
-*.data.js
+src/lens-data/
