@@ -21,13 +21,8 @@
  */
 
 import { useState, useMemo, useEffect, useLayoutEffect, useRef, Component } from "react";
-import { LENS_CATALOG } from "../utils/lensCatalog.js";
-import buildLens from "../optics/buildLens.js";
 import {
-  thick,
-  doLayout,
   eflAtZoom,
-  epAtZoom,
   halfFieldAtZoom,
   yRatioAtZoom,
   bAtZoom,
@@ -37,7 +32,7 @@ import {
   conjugateK,
   formatDist,
 } from "../optics/optics.js";
-import { createCoordinateTransforms, computeElementShapes } from "../optics/diagramGeometry.js";
+import useLensComputation from "./useLensComputation.js";
 import {
   ENABLE_COLOR_TRACING,
   ENABLE_ASPH_DIAMOND_FILL,
@@ -297,78 +292,30 @@ export default function LensDiagramPanel({
     };
   }, [sideLayoutEnabled, lensKey, showSliders, showControls, showChromatic]);
 
-  /* ── Build lens from catalog ── */
-  const buildResult = useMemo(() => {
-    try {
-      return { L: buildLens(LENS_CATALOG[lensKey]) };
-    } catch (e) {
-      return { error: e };
-    }
-  }, [lensKey]);
+  /* ── Lens computation (build, layout, transforms, shapes, aperture) ── */
+  const {
+    L,
+    buildError,
+    IMG_MM,
+    zPos,
+    sx,
+    sy,
+    clampedRayEnd,
+    CX,
+    IX,
+    effectiveSC,
+    shapes,
+    stopZ,
+    fNumber,
+    currentPhysStopSD,
+    baseEPSD,
+    currentEPSD,
+    varReadouts,
+    filterId,
+  } = useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
-  const L = buildResult.L;
-  const buildError = buildResult.error;
   const act = L ? sel || hov : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
-
-  /* ── Layout ──
-   * Compute surface z-positions with a fixed reference: infinity focus at the
-   * wide-end zoom position (focusT=0, zoomT=0). The difference `dz` shifts
-   * the current layout so the image plane stays at a fixed SVG position
-   * regardless of focus or zoom changes. */
-  const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
-  const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L) : null), [focusT, zoomT, L]);
-  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
-  const zPos = useMemo(() => (cur ? cur.z.map((v) => v + dz) : []), [cur, dz]);
-
-  /* ── Coordinate transforms (optical mm → SVG pixels) ── */
-  const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
-    () =>
-      L
-        ? createCoordinateTransforms({
-            svgW: L.svgW,
-            svgH: L.svgH,
-            SC: L.SC,
-            YSC: L.YSC,
-            lensShiftFrac: L.lensShiftFrac,
-            imgMM: IMG_MM,
-            scaleRatio,
-          })
-        : {
-            sx: () => 0,
-            sy: () => 0,
-            clampedRayEnd: () => [0, 0],
-            CX: 0,
-            IX: 0,
-            effectiveSC: 1,
-          },
-    [L, IMG_MM, scaleRatio],
-  );
-
-  /* ── Element shapes ── */
-  const shapes = useMemo(() => {
-    if (!L) return [];
-    try {
-      return computeElementShapes(L, zPos, sx, sy);
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Element shape computation failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [L, zPos, sx, sy, lensKey]);
-
-  /* ── Aperture ──
-   * Compute the current f-number and physical stop/entrance-pupil diameters
-   * from the stopdown slider position. Uses a logarithmic mapping so
-   * equal slider increments produce equal f-stop steps.
-   * focusK = convergence curvature at the entrance pupil for "tracks focus"
-   * ray mode; 0 when rays arrive from infinity. */
-  const stopZ = L ? zPos[L.stopIdx] : 0;
-  const fNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
-  const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
-  /* Use zoom-aware EP for correct ray heights across the zoom range */
-  const baseEPSD = L ? epAtZoom(zoomT, L) : 0;
-  const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
   const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
 
   /* ── On-axis rays ──
@@ -573,16 +520,6 @@ export default function LensDiagramPanel({
     }
     return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
   }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
-
-  /* ── Variable gap readouts ── */
-  const varReadouts = L
-    ? L.varLabels.map(([idx, label]) => {
-        const val = thick(idx, focusT, zoomT, L).toFixed(2);
-        return { label, val };
-      })
-    : [];
-
-  const filterId = `gl-${panelId}`;
 
   /* =====================================================================
    * §3  RENDER — Header, SVG diagram, controls, and inspector
@@ -1654,7 +1591,7 @@ export default function LensDiagramPanel({
                           }}
                         >
                           EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"}{" "}
-                          {(epAtZoom(zoomT, L) * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
+                          {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
                           {(currentPhysStopSD * 2).toFixed(2)} mm
                         </div>
                         <div
