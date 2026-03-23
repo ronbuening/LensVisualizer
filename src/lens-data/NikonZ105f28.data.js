@@ -12,6 +12,9 @@
  * ║    Patent does not list SDs.  Estimated via paraxial marginal +   ║
  * ║    chief ray trace at 60% field (offAxisFieldFrac), ×1.08         ║
  * ║    mechanical clearance.  Cemented pairs matched to max SD.       ║
+ * ║    SDs capped at edge-thickness limit (≥ 0.3 mm) for elements    ║
+ * ║    with strong curvatures (L13, L14, L23, L33) and for the       ║
+ * ║    L21-rear → L22-front air gap overlap constraint.               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -244,20 +247,20 @@ const LENS_DATA = {
     { label: "1", R: 1598.6404, d: 3.33, nd: 1.83481, elemId: 1, sd: 28.9 }, // L11 front
     { label: "2", R: -179.4707, d: 0.2, nd: 1.0, elemId: 0, sd: 28.9 }, // L11 rear → air
     // ── G1: L12 + L13 (cemented doublet D1) ──
-    { label: "3", R: 80.9451, d: 1.2, nd: 1.85451, elemId: 2, sd: 28.5 }, // L12 front
-    { label: "4", R: 38.973, d: 7.07, nd: 1.59319, elemId: 3, sd: 28.5 }, // L12→L13 junction
-    { label: "5", R: 865.5813, d: 0.2, nd: 1.0, elemId: 0, sd: 28.5 }, // L13 rear → air
+    { label: "3", R: 80.9451, d: 1.2, nd: 1.85451, elemId: 2, sd: 22.0 }, // L12 front
+    { label: "4", R: 38.973, d: 7.07, nd: 1.59319, elemId: 3, sd: 22.0 }, // L12→L13 junction
+    { label: "5", R: 865.5813, d: 0.2, nd: 1.0, elemId: 0, sd: 22.0 }, // L13 rear → air
     // ── G1: L14 (singlet) ──
-    { label: "6", R: 47.0836, d: 4.57, nd: 1.59319, elemId: 4, sd: 26.3 }, // L14 front
-    { label: "7", R: 210.081, d: 3.662, nd: 1.0, elemId: 0, sd: 24.3 }, // L14 rear → air (D7, variable)
+    { label: "6", R: 47.0836, d: 4.57, nd: 1.59319, elemId: 4, sd: 21.8 }, // L14 front
+    { label: "7", R: 210.081, d: 3.662, nd: 1.0, elemId: 0, sd: 21.5 }, // L14 rear → air (D7, variable)
 
     // ── G2: L21 (singlet) ──
-    { label: "8", R: -242.9579, d: 1.1, nd: 1.5186, elemId: 5, sd: 21.9 }, // L21 front
-    { label: "9", R: 48.3271, d: 1.613, nd: 1.0, elemId: 0, sd: 21.5 }, // L21 rear → air
+    { label: "8", R: -242.9579, d: 1.1, nd: 1.5186, elemId: 5, sd: 21.0 }, // L21 front
+    { label: "9", R: 48.3271, d: 1.613, nd: 1.0, elemId: 0, sd: 20.5 }, // L21 rear → air
     // ── G2: L22 + L23 (cemented doublet D2) ──
-    { label: "10", R: 122.3852, d: 1.1, nd: 1.72047, elemId: 6, sd: 20.9 }, // L22 front
-    { label: "11", R: 28.609, d: 2.66, nd: 1.94595, elemId: 7, sd: 20.9 }, // L22→L23 junction
-    { label: "12", R: 44.8866, d: 25.484, nd: 1.0, elemId: 0, sd: 20.9 }, // L23 rear → air (D12, variable)
+    { label: "10", R: 122.3852, d: 1.1, nd: 1.72047, elemId: 6, sd: 16.0 }, // L22 front
+    { label: "11", R: 28.609, d: 2.66, nd: 1.94595, elemId: 7, sd: 16.0 }, // L22→L23 junction
+    { label: "12", R: 44.8866, d: 25.484, nd: 1.0, elemId: 0, sd: 16.0 }, // L23 rear → air (D12, variable)
 
     // ── Aperture Stop ──
     { label: "STO", R: 1e15, d: 24.986, nd: 1.0, elemId: 0, sd: 12.6 }, // D13 (variable)
@@ -266,9 +269,9 @@ const LENS_DATA = {
     { label: "14", R: 85.768, d: 2.4, nd: 1.83481, elemId: 8, sd: 17.5 }, // L31 front
     { label: "15", R: -644.4854, d: 0.2, nd: 1.0, elemId: 0, sd: 17.4 }, // L31 rear → air
     // ── G3: L32 + L33 (cemented doublet D3) ──
-    { label: "16", R: 79.2129, d: 1.1, nd: 1.85451, elemId: 9, sd: 17.4 }, // L32 front
-    { label: "17", R: 32.895, d: 5.48, nd: 1.59319, elemId: 10, sd: 17.4 }, // L32→L33 junction
-    { label: "18", R: -109.8711, d: 2.206, nd: 1.0, elemId: 0, sd: 17.4 }, // L33 rear → air (D18, variable)
+    { label: "16", R: 79.2129, d: 1.1, nd: 1.85451, elemId: 9, sd: 15.7 }, // L32 front
+    { label: "17", R: 32.895, d: 5.48, nd: 1.59319, elemId: 10, sd: 15.7 }, // L32→L33 junction
+    { label: "18", R: -109.8711, d: 2.206, nd: 1.0, elemId: 0, sd: 15.7 }, // L33 rear → air (D18, variable)
 
     // ── G4: L41 (singlet) ──
     { label: "19", R: 163.4895, d: 1.1, nd: 1.95375, elemId: 11, sd: 16.6 }, // L41 front
