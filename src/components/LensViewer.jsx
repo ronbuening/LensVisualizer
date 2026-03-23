@@ -24,7 +24,7 @@ import LensDiagramPanel from "./LensDiagramPanel.jsx";
 import DescriptionPanel from "./DescriptionPanel.jsx";
 import SharedSlidersBar from "./SharedSlidersBar.jsx";
 import usePreferences from "../utils/usePreferences.js";
-import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "../utils/parseComparisonParams.js";
+import useURLSync from "../utils/useURLSync.js";
 import {
   ENABLE_COLOR_TRACING,
   ENABLE_ANALYSIS_VIEW,
@@ -160,26 +160,7 @@ export default function LensVisualization() {
   /* ── Persist preferences to localStorage ── */
   usePreferences(state);
 
-  /* ── URL update refs ── */
-  const urlUpdateTimer = useRef(null);
-  const urlZoomInitialized = useRef(false);
-
-  /* ── URL state for zoom initialization (parsed once) ── */
-  const urlState = useMemo(() => {
-    if (typeof window === "undefined") return {};
-    const params = new URLSearchParams(window.location.search);
-    const zoom = parseFloat(params.get("zoom"));
-    return { zoom: isFinite(zoom) && zoom > 0 ? zoom : null };
-  }, []);
-
-  /* ── Update URL immediately on lens selection change ── */
-  useEffect(() => {
-    const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
-    const current = window.location.search;
-    if (url !== current) {
-      history.replaceState(null, "", url || window.location.pathname);
-    }
-  }, [comparing, lensKeyA, lensKeyB]);
+  /* ── URL synchronization (lens selection, slider deep links, zoom init) ── */
 
   /* ── Escape key closes overlays ── */
   useEffect(() => {
@@ -236,89 +217,7 @@ export default function LensVisualization() {
     }
   }, [comparing, lensKeyA, lensKeyB]);
 
-  /* ── Initialize zoomT from URL after lens builds ──
-   * URL stores zoom as focal length (mm), but the slider needs zoomT [0..1].
-   * Conversion requires a built lens object (for zoomPositions), so this
-   * must be deferred until after buildLens succeeds. Uses a ref to ensure
-   * one-time initialization — prevents re-triggering on subsequent renders. */
-  useEffect(() => {
-    if (urlZoomInitialized.current || urlState.zoom == null) return;
-    if (comparing && comparisonLenses && !comparisonLenses.error) {
-      const { LA, LB } = comparisonLenses;
-      const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
-      if (zoomLens) {
-        dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlState.zoom, zoomLens) });
-      }
-      urlZoomInitialized.current = true;
-    }
-  }, [comparisonLenses, comparing, urlState.zoom, dispatch]);
-
-  /* ── Build a single-lens L for zoom URL initialization ── */
-  const singleLensForZoomInit = useMemo(() => {
-    if (comparing || urlZoomInitialized.current || urlState.zoom == null) return null;
-    try {
-      return buildLens(LENS_CATALOG[lensKeyA]);
-    } catch {
-      return null;
-    }
-  }, [lensKeyA, comparing, urlState.zoom]);
-
-  useEffect(() => {
-    if (urlZoomInitialized.current || urlState.zoom == null || !singleLensForZoomInit) return;
-    if (singleLensForZoomInit.isZoom) {
-      dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(urlState.zoom, singleLensForZoomInit) });
-    }
-    urlZoomInitialized.current = true;
-  }, [singleLensForZoomInit, urlState.zoom, dispatch]);
-
-  /* ── Update URL (sliders on pointer-up with 300ms debounce) ──
-   * Updates the browser URL with slider state for deep-linking. Debounced
-   * to avoid excessive history.replaceState calls during rapid slider moves.
-   * Zoom is stored as focal length (mm) rather than raw zoomT for readability. */
-  const updateURLWithSliders = useCallback(() => {
-    clearTimeout(urlUpdateTimer.current);
-    urlUpdateTimer.current = setTimeout(() => {
-      const sliderState = {};
-      if (comparing) {
-        if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
-        if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
-        if (comparisonLenses && !comparisonLenses.error) {
-          const { LA, LB } = comparisonLenses;
-          const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
-          if (zoomLens && sharedZoomT > 0) {
-            sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
-          }
-        }
-      } else {
-        if (focusT > 0) sliderState.focus = focusT;
-        if (stopdownT > 0) sliderState.aperture = stopdownT;
-        try {
-          const L = buildLens(LENS_CATALOG[lensKeyA]);
-          if (L.isZoom && zoomT > 0) {
-            sliderState.zoom = zoomTToFocalLength(zoomT, L);
-          }
-        } catch {
-          /* ignore */
-        }
-      }
-      const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
-      const current = window.location.search;
-      if (url !== current) {
-        history.replaceState(null, "", url || window.location.pathname);
-      }
-    }, 300);
-  }, [
-    comparing,
-    lensKeyA,
-    lensKeyB,
-    focusT,
-    stopdownT,
-    zoomT,
-    sharedFocusT,
-    sharedStopdownT,
-    sharedZoomT,
-    comparisonLenses,
-  ]);
+  const { updateURLWithSliders } = useURLSync(state, dispatch, comparisonLenses);
 
   /* ── Normalized scale computation ──
    * In normalized mode, both panels use the same mm-per-pixel ratio so lens
