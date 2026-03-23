@@ -28,21 +28,30 @@
 | `errorReporting.js` | `src/utils/` | GitHub issue URL builder |
 | `useMediaQuery.js` | `src/utils/` | Responsive breakpoint hook |
 | `preferences.js` | `src/utils/` | localStorage load/save |
+| `lensReducer.js` | `src/utils/` | Pure reducer: sliced state shape + action types |
+| `useLensState.js` | `src/utils/` | Hook: useReducer wrapper with prefs/URL initialization |
+| `usePreferences.js` | `src/utils/` | Hook: localStorage persistence from reducer state |
+| `useURLSync.js` | `src/utils/` | Hook: URL read/write/zoom-init |
+| `useStickySliders.js` | `src/utils/` | Hook: comparison slider sticky state machine |
+| `LensContext.js` | `src/utils/` | React Context: LensStateContext + LensDispatchContext |
 
 ## LensViewer.jsx — Orchestration Layer
 
 The main component handles:
 - Lens selection (single + comparison mode)
 - Theme switching (dark/light x normal/high-contrast)
-- Ray toggle controls (on-axis, off-axis, chromatic)
+- Ray toggle controls (on-axis, off-axis, chromatic) in comparison/mobile control bars
 - Comparison mode: side-by-side (desktop) / stacked (mobile)
-- URL deep links (`?a=&b=` for comparison, `?lens=` for single, `&zoom=&focus=&aperture=` for slider state)
 - Desktop view toggle (diagram / both / analysis)
 - Mobile view toggle (diagram / analysis)
 - About overlays (site + author)
-- localStorage preference persistence
 
-Diagram rendering is delegated to `LensDiagramPanel`.
+**State management** is organized via `useReducer` (wrapped in `useLensState`), with state split into 7 slices: `lens`, `display`, `rays`, `sliders`, `sharedSliders`, `panels`, `overlays`. Extracted hooks:
+- `usePreferences(state)` — persists preferences to localStorage
+- `useURLSync(state, dispatch, comparisonLenses)` — URL deep links + zoom init
+- `useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses)` — comparison slider state machine
+
+State is provided to children via `LensStateContext` (state + theme + isWide) and `LensDispatchContext` (stable dispatch ref). Diagram rendering is delegated to `LensDiagramPanel`.
 
 ## LensDiagramPanel.jsx — Diagram Composition Layer
 
@@ -57,7 +66,7 @@ Sub-modules (all in `src/components/`):
 - **`ElementInspector.jsx`** — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.jsx`** — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 
-Receives shared control state (focus, aperture, zoom, ray toggles) from LensViewer.
+Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
 ## buildLens.js
 
