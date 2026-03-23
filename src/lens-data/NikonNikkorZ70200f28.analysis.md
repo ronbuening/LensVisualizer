@@ -187,7 +187,7 @@ At the telephoto end, the patent specifies:
 - G8 movement: mTF2 = +11.525 mm (object-side)
 - Movement ratio: mTF1/mTF2 = −1.000
 
-The equal-and-opposite movement of G7 and G8 is an elegant design feature: the total track length of the system remains constant during focus, and the mechanical cam design is symmetric, simplifying the focusing mechanism.
+The equal-and-opposite movement of G7 and G8 is an elegant design feature. The system's total track length (TL = 199.886 mm, first surface to image) is constant across all zoom and focus positions. The three focus gaps D30+D34+D36 sum to exactly 35.730 mm at every zoom and focus position — the focus groups rearrange within a fixed-length envelope, and the back focal distance (BF = 32.547 mm) remains constant.
 
 ### 4.2 Variable Air Spacings During Focus
 
@@ -199,7 +199,7 @@ At the telephoto end (f = 196 mm), the three air gaps that change during focus b
 | D34 | G7 → G8 | 27.710 mm | 4.659 mm | −23.051 mm |
 | D36 | G8 → G9 | 3.913 mm | 15.438 mm | +11.525 mm |
 
-The gap before G7 (D30) increases as G7 retreats; the gap between G7 and G8 (D34) decreases dramatically as both groups converge toward each other; and the gap after G8 (D36) increases as G8 advances forward. The net effect is that the focusing elements "squeeze together" in the center while the surrounding air spaces expand symmetrically.
+The gap before G7 (D30) increases as G7 retreats; the gap between G7 and G8 (D34) decreases dramatically as both groups converge toward each other; and the gap after G8 (D36) increases as G8 advances forward. The net effect is that the focusing elements "squeeze together" in the center while the surrounding air spaces expand symmetrically. Note that D30+D34+D36 = 35.730 mm in both rows — this is a general invariant of the design, holding at all three zoom positions and all focus distances.
 
 ### 4.3 Advantages of Dual-Group Focus
 

@@ -7,10 +7,12 @@
  * ║  21 elements / 9 groups (18 marketing groups), 2 aspherical sfc.  ║
  * ║  Focus: dual-group inner focus (G7−, G8+) — opposite directions.  ║
  * ║                                                                    ║
- * ║  Internal zoom (constant overall length).                          ║
+ * ║  Internal zoom (constant overall length, TL = 199.886 mm).        ║
  * ║  Zoom variable gaps: D5, D13, D15, D19, D23 (zoom only).         ║
- * ║  Focus variable gaps: D30, D34, D36, D40/BF (zoom + focus).      ║
- * ║  D36 close-focus: non-monotonic (15.67 → 11.66 → 15.44).        ║
+ * ║  Focus variable gaps: D30, D34, D36 (zoom + focus).              ║
+ * ║  BF (D40) = 32.5469 mm constant (all zoom/focus positions).      ║
+ * ║  D30+D34+D36 = 35.730 mm constant (focus groups rearrange        ║
+ * ║  within a fixed total envelope).                                   ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    SDs estimated via paraxial marginal ray trace at tele/infinity  ║
@@ -25,13 +27,7 @@ const LENS_DATA = {
   key: "nikkor-z-70-200f28",
   name: "NIKON NIKKOR Z 70-200mm f/2.8 VR S",
   subtitle: "WO2020/105104 EXAMPLE 1 — NIKON / KEN UEHARA",
-  specs: [
-    "21 ELEMENTS / 18 GROUPS",
-    "f = 71.5–196 mm",
-    "F/2.88",
-    "2ω = 33.8°–12.3°",
-    "2 ASPHERICAL SURFACES",
-  ],
+  specs: ["21 ELEMENTS / 18 GROUPS", "f = 71.5–196 mm", "F/2.88", "2ω = 33.8°–12.3°", "2 ASPHERICAL SURFACES"],
 
   /* ── Elements ── */
   elements: [
@@ -320,23 +316,23 @@ const LENS_DATA = {
     { label: "10", R: 41.08366, d: 3.7, nd: 1.66382, elemId: 6, sd: 21.0 }, // L23 front (SR)
     { label: "11", R: 64.00891, d: 5.5, nd: 1.0, elemId: 0, sd: 20.5 }, // L23 rear → air
     { label: "12", R: -71.62319, d: 1.9, nd: 1.49782, elemId: 7, sd: 20.0 }, // L24 front (ED)
-    { label: "13", R: 88.67881, d: 37.80321, nd: 1.0, elemId: 0, sd: 19.5 }, // L24 rear → air [VAR zoom]
+    { label: "13", R: 88.67881, d: 37.80333, nd: 1.0, elemId: 0, sd: 19.5 }, // L24 rear → air [VAR zoom]
 
     // ── G3: Compensator (positive, f = +110.7 mm) — moves during zoom ──
     { label: "14", R: 69.46271, d: 3.2, nd: 1.94595, elemId: 8, sd: 19.5 }, // L31 front
-    { label: "15", R: 201.8299, d: 14.1, nd: 1.0, elemId: 0, sd: 19.0 }, // L31 rear → air [VAR zoom]
+    { label: "15", R: 201.8299, d: 14.09965, nd: 1.0, elemId: 0, sd: 19.0 }, // L31 rear → air [VAR zoom]
 
     // ── G4: Fixed relay (positive, f = +69.8 mm) ──
     { label: "16", R: 126.26563, d: 4.7, nd: 1.49782, elemId: 9, sd: 19.5 }, // L41 front (ED)
     { label: "17", R: -126.26563, d: 0.1, nd: 1.0, elemId: 0, sd: 19.5 }, // L41 rear → air
     { label: "18", R: 47.66354, d: 3.85, nd: 1.49782, elemId: 10, sd: 19.0 }, // L42 front (ED)
-    { label: "19", R: 122.86616, d: 4.25, nd: 1.0, elemId: 0, sd: 18.5 }, // L42 rear → air [VAR zoom]
+    { label: "19", R: 122.86616, d: 4.24982, nd: 1.0, elemId: 0, sd: 18.5 }, // L42 rear → air [VAR zoom]
 
     // ── G5: Moving group with aperture stop (negative, f = −62.6 mm) ──
     { label: "STO", R: 1e15, d: 3.5, nd: 1.0, elemId: 0, sd: 13.0 }, // Aperture stop
     { label: "21", R: -84.82141, d: 1.8, nd: 1.92286, elemId: 11, sd: 14.0 }, // L51 front
     { label: "22", R: 52.171, d: 5.0, nd: 1.49782, elemId: 12, sd: 14.0 }, // L51→L52 junction
-    { label: "23", R: -170.93248, d: 5.35665, nd: 1.0, elemId: 0, sd: 14.0 }, // L52 rear → air [VAR zoom]
+    { label: "23", R: -170.93248, d: 5.35666, nd: 1.0, elemId: 0, sd: 14.0 }, // L52 rear → air [VAR zoom]
 
     // ── G6: Fixed relay (positive, f = +56.9 mm) ──
     { label: "24", R: 111.64091, d: 1.7, nd: 1.85026, elemId: 13, sd: 15.5 }, // L61 front
@@ -345,43 +341,43 @@ const LENS_DATA = {
     { label: "27", R: -55.839, d: 1.7, nd: 1.62004, elemId: 15, sd: 15.5 }, // L62→L63 junction
     { label: "28", R: -95.85894, d: 1.3, nd: 1.0, elemId: 0, sd: 15.0 }, // L63 rear → air
     { label: "29", R: 58.0393, d: 2.7, nd: 1.801, elemId: 16, sd: 15.0 }, // L64 front
-    { label: "30", R: 135.30037, d: 11.66041, nd: 1.0, elemId: 0, sd: 14.5 }, // L64 rear → air [VAR zoom+focus]
+    { label: "30", R: 135.30037, d: 3.81632, nd: 1.0, elemId: 0, sd: 14.5 }, // L64 rear → air [VAR zoom+focus]
 
     // ── G7: Focus group 1 (negative, f = −87.3 mm) — moves toward image ──
     { label: "31", R: -369.28597, d: 2.0, nd: 1.94595, elemId: 17, sd: 14.0 }, // L71 front
     { label: "32", R: -98.65201, d: 0.8, nd: 1.0, elemId: 0, sd: 14.0 }, // L71 rear → air
     { label: "33", R: 1344.92022, d: 1.25, nd: 1.713, elemId: 18, sd: 13.5 }, // L72 front
-    { label: "34", R: 37.13115, d: 15.00085, nd: 1.0, elemId: 0, sd: 13.0 }, // L72 rear → air [VAR zoom+focus]
+    { label: "34", R: 37.13115, d: 28.12371, nd: 1.0, elemId: 0, sd: 13.0 }, // L72 rear → air [VAR zoom+focus]
 
     // ── G8: Focus group 2 (positive, f = +66.6 mm) — moves toward object ──
     { label: "35", R: 119.39985, d: 3.85, nd: 1.90265, elemId: 19, sd: 12.5 }, // L81 front
-    { label: "36", R: -119.39985, d: 9.06837, nd: 1.0, elemId: 0, sd: 12.5 }, // L81 rear → air [VAR zoom+focus]
+    { label: "36", R: -119.39985, d: 3.7896, nd: 1.0, elemId: 0, sd: 12.5 }, // L81 rear → air [VAR zoom+focus]
 
     // ── G9: Fixed field corrector (negative, f = −76.3 mm) ──
     { label: "37A", R: -83.23047, d: 1.9, nd: 1.51696, elemId: 20, sd: 18.0 }, // L91 front [ASPH]
     { label: "38", R: -335.27926, d: 4.1, nd: 1.0, elemId: 0, sd: 18.5 }, // L91 rear → air
     { label: "39", R: -54.71091, d: 1.9, nd: 1.56384, elemId: 21, sd: 19.0 }, // L92 front
-    { label: "40", R: -276.64763, d: 16.24001, nd: 1.0, elemId: 0, sd: 19.5 }, // L92 rear → BF [VAR zoom+focus]
+    { label: "40", R: -276.64763, d: 32.5469, nd: 1.0, elemId: 0, sd: 19.5 }, // L92 rear → BF (constant)
   ],
 
   /* ── Aspherical coefficients ── */
   asph: {
     "26A": {
       K: 0,
-      A4: -2.0038e-6,
-      A6: 8.31219e-10,
-      A8: -6.83049e-12,
-      A10: 2.63176e-14,
-      A12: -3.55064e-17,
+      A4: -2.0e-6,
+      A6: 8.31e-10,
+      A8: -6.83e-12,
+      A10: 2.63e-14,
+      A12: -3.55e-17,
       A14: 0,
     },
     "37A": {
       K: 0,
-      A4: 1.17932e-6,
-      A6: 1.62709e-9,
-      A8: -7.32279e-12,
-      A10: 2.40767e-14,
-      A12: -2.65267e-17,
+      A4: 1.18e-6,
+      A6: 1.63e-9,
+      A8: -7.32e-12,
+      A10: 2.41e-14,
+      A12: -2.65e-17,
       A14: 0,
     },
   },
@@ -391,56 +387,52 @@ const LENS_DATA = {
    *  one per zoom position (wide / mid / tele).
    *
    *  D5, D13, D15, D19, D23: zoom only (identical inf/close values).
-   *  D30, D34, D36, D40: zoom + focus (different inf/close values).
+   *  D30, D34, D36: zoom + focus (different inf/close values).
+   *  BF (D40) = 32.5469 constant — not included here.
    */
   var: {
     // ── Zoom-only gaps ──
-    "5": [
+    5: [
       [1.59716, 1.59716],
-      [33.49886, 33.49886],
+      [33.49859, 33.49859],
       [49.53103, 49.53103],
     ], // G1→G2
-    "13": [
-      [37.80321, 37.80321],
-      [11.65165, 11.65165],
-      [1.60507, 1.60507],
+    13: [
+      [37.80333, 37.80333],
+      [11.65214, 11.65214],
+      [1.60516, 1.60516],
     ], // G2→G3
-    "15": [
-      [14.1, 14.1],
-      [8.3487, 8.3487],
-      [2.36438, 2.36438],
+    15: [
+      [14.09965, 14.09965],
+      [8.34942, 8.34942],
+      [2.36395, 2.36395],
     ], // G3→G4
-    "19": [
-      [4.25, 4.25],
-      [7.0803, 7.0803],
-      [8.12302, 8.12302],
+    19: [
+      [4.24982, 4.24982],
+      [7.0795, 7.0795],
+      [8.12305, 8.12305],
     ], // G4→STO/G5
-    "23": [
-      [5.35665, 5.35665],
-      [2.52658, 2.52658],
-      [1.48301, 1.48301],
+    23: [
+      [5.35666, 5.35666],
+      [2.52698, 2.52698],
+      [1.48342, 1.48342],
     ], // G5→G6
     // ── Zoom + focus gaps ──
-    "30": [
-      [11.66041, 18.32549],
-      [8.48543, 20.01086],
+    30: [
+      [3.81632, 5.10137],
+      [6.22894, 11.89468],
       [4.10722, 15.63265],
     ], // G6→G7
-    "34": [
-      [15.00085, 1.73284],
-      [21.85684, 4.06023],
+    34: [
+      [28.12371, 24.58984],
+      [22.59291, 10.97816],
       [27.70989, 4.65903],
     ], // G7→G8
-    "36": [
-      [9.06837, 15.6713],
-      [5.38736, 11.65854],
+    36: [
+      [3.7896, 6.03843],
+      [6.90778, 12.8568],
       [3.91252, 15.43795],
     ], // G8→G9
-    "40": [
-      [16.24001, 9.57493],
-      [18.15175, 6.62649],
-      [18.15175, 6.62649],
-    ], // BF
   },
 
   varLabels: [
@@ -452,7 +444,6 @@ const LENS_DATA = {
     ["30", "D30"],
     ["34", "D34"],
     ["36", "D36"],
-    ["40", "BF"],
   ],
 
   /* ── Zoom fields ── */
