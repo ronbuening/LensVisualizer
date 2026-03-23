@@ -20,19 +20,10 @@
  * physical mm-per-pixel ratio.
  */
 
-import { useState, useMemo, useEffect, useLayoutEffect, useRef, Component } from "react";
-import {
-  eflAtZoom,
-  halfFieldAtZoom,
-  yRatioAtZoom,
-  bAtZoom,
-  traceRay,
-  traceRayChromatic,
-  computeChromaticSpread,
-  conjugateK,
-  formatDist,
-} from "../optics/optics.js";
+import { useState, useEffect, useLayoutEffect, useRef, Component } from "react";
+import { eflAtZoom, halfFieldAtZoom, formatDist } from "../optics/optics.js";
 import useLensComputation from "./useLensComputation.js";
+import useRayTracing from "./useRayTracing.js";
 import {
   ENABLE_COLOR_TRACING,
   ENABLE_ASPH_DIAMOND_FILL,
@@ -316,210 +307,26 @@ export default function LensDiagramPanel({
 
   const act = L ? sel || hov : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
-  const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
-
-  /* ── On-axis rays ──
-   * Trace a fan of rays parallel to the optical axis (or converging if
-   * rayTracksF is true). Each ray enters at height h = fraction × EP radius.
-   * "Solid" segments (sp) show the real traced path; "ghost" segments (gp)
-   * show the extrapolated path of rays clipped by the aperture stop. */
-  const rays = useMemo(() => {
-    if (!L) return [];
-    try {
-      const out = [];
-      for (const f of L.rayFractions) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        const { pts, ghostPts, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] On-axis ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
-
-  /* ── Off-axis rays ──
-   * Trace rays entering at an angle corresponding to offAxisFieldDeg.
-   * uField is the incoming ray slope; yChief is the height at the entrance
-   * pupil plane so the chief ray passes through the center of the stop.
-   * These rays visualize field coverage and vignetting.
-   *
-   * Two projection modes after the last surface:
-   *   "trueAngle" — extend at the ray's natural exit slope, clamped to viewport
-   *   "edge"      — project to the paraxial image height on the image plane */
-  const offAxisRays = useMemo(() => {
-    if (!L || showOffAxis === "off") return [];
-    try {
-      const out = [];
-      /* Zoom-aware field angle and chief ray entry position */
-      const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
-      const uField = -Math.tan((currentOffAxisDeg * Math.PI) / 180);
-      const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
-
-      /* Paraxial image height for "edge" mode */
-      const edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      const edgeEnd = [sx(IMG_MM), sy(edgeImgH)];
-      const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
-
-      for (const f of L.offAxisFractions) {
-        const h = f * currentEPSD;
-        const y0 = yChief + h;
-        const uConverge = rayTracksF ? h * focusK : 0;
-        const uIn = uField + uConverge;
-        const { pts, ghostPts, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(useEdge ? edgeEnd : clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(useEdge ? edgeEnd : clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Off-axis ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [
-    showOffAxis,
+  /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
+  const { rays, offAxisRays, chromaticRays, chromSpread } = useRayTracing({
+    L,
     zPos,
+    IMG_MM,
     focusT,
+    zoomT,
     sx,
     sy,
+    clampedRayEnd,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,
-    focusK,
-    L,
-    IMG_MM,
-    lensKey,
-    clampedRayEnd,
-    zoomT,
-  ]);
-
-  /* ── Chromatic rays ──
-   * Trace the same ray heights as on-axis but through wavelength-dependent
-   * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
-   * lower marginal] — shows both axial and lateral color (LCA and TCA). */
-  const CHROM_FRACS = [0, 0.75, -0.75];
-  const chromaticRays = useMemo(() => {
-    if (!L || !showChromatic) return [];
-    const channels = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
-    if (channels.length === 0) return [];
-    try {
-      const out = [];
-      for (const f of CHROM_FRACS) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        for (const ch of channels) {
-          const { pts, ghostPts, y, u, clipped } = traceRayChromatic(
-            h,
-            uIn,
-            zPos,
-            focusT,
-            zoomT,
-            currentPhysStopSD,
-            true,
-            L,
-            ch,
-          );
-          const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-          let gp = [];
-          if (clipped && ghostPts.length > 0) {
-            const lastSolid = pts[pts.length - 1];
-            if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-            gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-            const lastGhost = ghostPts[ghostPts.length - 1];
-            if (lastGhost) {
-              gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-            }
-          }
-          if (!clipped) {
-            const last = pts[pts.length - 1];
-            if (last) {
-              sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-            }
-          }
-          out.push({ sp, gp, channel: ch, y, u, clipped });
-        }
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Chromatic ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [
+    showOffAxis,
     showChromatic,
     chromR,
     chromG,
     chromB,
-    zPos,
-    focusT,
-    sx,
-    sy,
-    currentPhysStopSD,
-    currentEPSD,
-    rayTracksF,
-    focusK,
-    L,
-    IMG_MM,
     lensKey,
-    clampedRayEnd,
-  ]);
-
-  /* ── Chromatic spread ──
-   * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
-   * from the marginal chromatic rays. Requires at least 2 active channels. */
-  const chromSpread = useMemo(() => {
-    if (!L || !showChromatic || chromaticRays.length === 0) return null;
-    const channels = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
-    if (channels.length < 2) return null;
-    const marginalRays = {};
-    for (let ci = 0; ci < channels.length; ci++) {
-      const rayIdx = 1 * channels.length + ci;
-      if (rayIdx < chromaticRays.length) {
-        const r = chromaticRays[rayIdx];
-        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
-      }
-    }
-    return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
-  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
+  });
 
   /* =====================================================================
    * §3  RENDER — Header, SVG diagram, controls, and inspector
