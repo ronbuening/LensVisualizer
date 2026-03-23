@@ -198,7 +198,7 @@ export default function SharedSlidersBar({
         <div style={{ flex: 1 }}>
           <div style={LABEL_ROW}>
             <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 75 }}>APERTURE</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
+            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, minWidth: "3.5em" }}>
               f/{fNum < 10 ? fNum.toFixed(1) : Math.round(fNum)}
             </span>
           </div>
