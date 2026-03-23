@@ -306,13 +306,14 @@ export default function LensDiagramPanel({
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
 
   /* ── Layout ──
-   * Compute surface z-positions twice: once at infinity focus (to fix the image
-   * plane position) and once at the current focusT. The difference `dz` shifts
-   * the current layout so the image plane stays at a fixed SVG position. */
-  const inf = useMemo(() => (L ? doLayout(0, zoomT, L) : null), [zoomT, L]);
-  const IMG_MM = inf ? inf.imgZ : 0;
+   * Compute surface z-positions with a fixed reference: infinity focus at the
+   * wide-end zoom position (focusT=0, zoomT=0). The difference `dz` shifts
+   * the current layout so the image plane stays at a fixed SVG position
+   * regardless of focus or zoom changes. */
+  const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
+  const IMG_MM = ref ? ref.imgZ : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L) : null), [focusT, zoomT, L]);
-  const dz = inf && cur ? IMG_MM - cur.imgZ : 0;
+  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
   const zPos = useMemo(() => (cur ? cur.z.map((v) => v + dz) : []), [cur, dz]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
