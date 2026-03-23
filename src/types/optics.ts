@@ -86,7 +86,7 @@ export interface LensData {
   svgW: number;
   svgH: number;
   scFill: number;
-  yScFill?: number;
+  yScFill: number;
   clipMargin: number;
   maxRimAngleDeg: number;
   gapSagFrac: number;

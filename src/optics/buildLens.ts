@@ -7,6 +7,25 @@
 
 import validateLensData from "./validateLensData.js";
 import { FLAT_R_THRESHOLD } from "./optics.js";
+import type {
+  LensData,
+  SurfaceData,
+  AsphericCoefficients,
+  VarRange,
+  ElementData,
+  AnnotationData,
+  ResolvedAnnotation,
+  ElementSpan,
+  EntrancePupil,
+  RuntimeLens,
+  ParaxialTraceResult,
+} from "../types/optics.js";
+
+interface ParaxialTraceOpts {
+  stopAt?: number;
+  skipLastTransfer?: boolean;
+  recordHeights?: boolean;
+}
 
 /**
  * Paraxial ray trace through a surface array.
@@ -19,24 +38,26 @@ import { FLAT_R_THRESHOLD } from "./optics.js";
  * Used internally by buildLens() to derive EFL, entrance pupil, and
  * vignetting-limited field angle.
  *
- * @param {Object[]} S    — surface array (each with R, nd, d properties)
- * @param {number}   y0   — initial ray height (mm)
- * @param {number}   u0   — initial ray slope (angle in paraxial approx)
- * @param {Object}   [opts]
- * @param {number}   [opts.stopAt]           — trace only surfaces [0..stopAt)
- * @param {boolean}  [opts.skipLastTransfer] — omit final y += d·u (for EFL computation)
- * @param {boolean}  [opts.recordHeights]    — collect per-surface y values
- * @returns {{ y: number, u: number, n: number, heights: number[]|null }}
+ * @param S    — surface array (each with R, nd, d properties)
+ * @param y0   — initial ray height (mm)
+ * @param u0   — initial ray slope (angle in paraxial approx)
+ * @param opts — optional { stopAt, skipLastTransfer, recordHeights }
+ * @returns { y, u, n, heights }
  */
-function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeights = false } = {}) {
+function paraxialTrace(
+  S: SurfaceData[],
+  y0: number,
+  u0: number,
+  { stopAt, skipLastTransfer = false, recordHeights = false }: ParaxialTraceOpts = {},
+): ParaxialTraceResult {
   const N = stopAt !== undefined ? stopAt : S.length;
   const total = S.length;
-  const heights = recordHeights ? [] : null;
+  const heights: number[] | null = recordHeights ? [] : null;
   let y = y0,
     u = u0,
     n = 1.0;
   for (let i = 0; i < N; i++) {
-    if (recordHeights) heights.push(y);
+    if (recordHeights) heights!.push(y);
     const { R, nd, d } = S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
     if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
@@ -59,34 +80,36 @@ function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeig
  * The returned object L is immutable and contains everything the renderer
  * and ray tracer need — no further data lookups are required at render time.
  *
- * @param {Object} data  — LENS_DATA object (after defaults merging)
- * @returns {Object}       frozen runtime lens object (L)
- * @throws {Error}         if validation finds any issues
+ * @param data  — LENS_DATA object (after defaults merging)
+ * @returns       frozen runtime lens object (L)
+ * @throws        if validation finds any issues
  */
-export default function buildLens(data) {
-  const validationErrors = validateLensData(data);
+export default function buildLens(data: LensData): RuntimeLens {
+  const validationErrors = validateLensData(data as Record<string, any>);
   if (validationErrors.length > 0)
     throw new Error(
       `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
     );
 
-  const S = data.surfaces.map((s) => ({ ...s }));
+  const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
 
-  const labelIdx = {};
+  const labelIdx: Record<string, number> = {};
   for (let i = 0; i < N; i++) labelIdx[S[i].label] = i;
 
-  const asphByIdx = {};
+  const asphByIdx: Record<number, AsphericCoefficients> = {};
   for (const [label, coeffs] of Object.entries(data.asph || {})) asphByIdx[labelIdx[label]] = coeffs;
 
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
 
-  const varByIdx = {};
+  const varByIdx: Record<number, VarRange> = {};
   for (const [label, range] of Object.entries(data.var || {})) varByIdx[labelIdx[label]] = range;
 
-  const varLabels = (data.varLabels || []).map(([label, text]) => [labelIdx[label], text]);
+  const varLabels: [number, string][] = (data.varLabels || []).map(
+    ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
+  );
 
-  const ES = [];
+  const ES: ElementSpan[] = [];
   for (const elem of data.elements) {
     let startIdx = -1;
     for (let i = 0; i < N; i++) {
@@ -99,16 +122,16 @@ export default function buildLens(data) {
   }
 
   /* ── Per-surface Abbe number lookup (for chromatic tracing) ── */
-  const vdByIdx = {};
+  const vdByIdx: Record<number, number> = {};
   for (let i = 0; i < N; i++) {
     const eid = S[i].elemId;
     if (eid) {
-      const elem = data.elements.find((e) => e.id === eid);
+      const elem = data.elements.find((e: ElementData) => e.id === eid);
       if (elem && elem.vd) vdByIdx[i] = elem.vd;
     }
   }
 
-  function resolveAnnotation(arr) {
+  function resolveAnnotation(arr: AnnotationData[] | undefined): ResolvedAnnotation[] {
     return (arr || []).map((g) => ({
       text: g.text,
       fromSurface: labelIdx[g.fromSurface],
@@ -149,7 +172,7 @@ export default function buildLens(data) {
   const epTrace = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   if (Math.abs(epTrace.y) < 1e-15)
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
-  const EP = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
+  const EP: EntrancePupil = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
 
   /* B = chief ray height at stop (for vignetting computation below) */
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
@@ -166,8 +189,8 @@ export default function buildLens(data) {
    *  The minimum sd/|coefficient| across all surfaces gives the
    *  vignetting-limited half-field angle.
    */
-  const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights;
-  const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights;
+  const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
   if (Math.abs(hA[stopIdx]) < 1e-15)
     throw new Error(`Lens "${data.key}": Chief-ray height ratio undefined — marginal ray height at stop ≈ 0`);
   const r = hB[stopIdx] / hA[stopIdx];
@@ -192,15 +215,15 @@ export default function buildLens(data) {
    *  For zoom lenses, use the maximum total track across all positions to
    *  ensure the SVG viewport never clips at any zoom setting.
    */
-  let totalTrack;
+  let totalTrack: number;
   if (isZoom) {
-    const nz = data.zoomPositions.length;
+    const nz = data.zoomPositions!.length;
     let maxTrack = 0;
     for (let zi = 0; zi < nz; zi++) {
       let track = 0;
       for (let i = 0; i < N; i++) {
         const v = varByIdx[i];
-        track += v ? v[zi][0] : S[i].d;
+        track += v ? (v as [number, number][])[zi][0] : S[i].d;
       }
       maxTrack = Math.max(maxTrack, track);
     }
@@ -228,11 +251,11 @@ export default function buildLens(data) {
   const lyGroup = 1.37 * maxSD;
   const lyStoPad = 0.12 * maxSD;
 
-  const rayHeights = data.rayFractions.map((f) => f * EP.epSD);
+  const rayHeights = data.rayFractions.map((f: number) => f * EP.epSD);
   const rayLead = totalTrack * data.rayLeadFrac;
   const bladeStubFrac = 1 - Math.max(...data.rayFractions.map(Math.abs));
   const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
-  const offAxisHeights = data.offAxisFractions.map((f) => f * EP.epSD);
+  const offAxisHeights = data.offAxisFractions.map((f: number) => f * EP.epSD);
 
   /* ── Zoom-lens derived constants ──
    *  Pre-compute optical properties at each zoom position by constructing
@@ -244,13 +267,13 @@ export default function buildLens(data) {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
-  let zoomEFLs = null,
-    zoomEPs = null,
-    zoomHalfFields = null;
-  let zoomYRatios = null,
-    zoomBs = null;
+  let zoomEFLs: number[] | null = null,
+    zoomEPs: number[] | null = null,
+    zoomHalfFields: number[] | null = null;
+  let zoomYRatios: number[] | null = null,
+    zoomBs: number[] | null = null;
   if (isZoom) {
-    const nz = data.zoomPositions.length;
+    const nz = data.zoomPositions!.length;
     zoomEFLs = [];
     zoomEPs = [];
     zoomHalfFields = [];
@@ -260,7 +283,7 @@ export default function buildLens(data) {
       const tmpS = S.map((s, i) => {
         const v = varByIdx[i];
         if (!v) return s;
-        return { ...s, d: v[zi][0] };
+        return { ...s, d: (v as [number, number][])[zi][0] };
       });
 
       /* EFL */
@@ -277,8 +300,8 @@ export default function buildLens(data) {
       zoomBs.push(paraxialTrace(tmpS, 0, 1, { stopAt: stopIdx }).y);
 
       /* Half-field (vignetting-limited) */
-      const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights;
-      const zB = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights;
+      const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
+      const zB = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
       const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB[stopIdx] / zA[stopIdx] : r;
       let zMinU = Infinity;
       for (let j = 0; j < N; j++) {
@@ -346,7 +369,7 @@ export default function buildLens(data) {
     apertureStep: data.apertureStep,
     fstopSeries: data.fstopSeries,
     isZoom,
-    zoomPositions: isZoom ? data.zoomPositions : null,
+    zoomPositions: isZoom ? data.zoomPositions! : null,
     zoomEFLs,
     zoomEPs,
     zoomHalfFields,
@@ -355,7 +378,7 @@ export default function buildLens(data) {
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,
-  });
+  }) as RuntimeLens;
 }
 
 export { paraxialTrace };
