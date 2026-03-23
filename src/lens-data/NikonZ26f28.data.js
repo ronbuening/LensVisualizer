@@ -163,8 +163,8 @@ const LENS_DATA = {
     { label: "4", R: -37.934, d: 0.7, nd: 1.5927, elemId: 2, sd: 6.2 }, // L2 front (D1 neg.)
     { label: "5", R: 11.35394, d: 2.8, nd: 1.883, elemId: 3, sd: 6.6 }, // L2→L3 junction (D1 pos.)
     { label: "6", R: -46.90284, d: 0.31, nd: 1.0, elemId: 0, sd: 7.4 }, // L3 rear → air
-    { label: "7", R: 58.38846, d: 3.87, nd: 1.816, elemId: 4, sd: 8.0 }, // L4 front (D2 pos.)
-    { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 7.5 }, // L4→L5 junction (D2 neg.)
+    { label: "7", R: 58.38846, d: 3.87, nd: 1.816, elemId: 4, sd: 7.5 }, // L4 front (D2 pos.)
+    { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 6.8 }, // L4→L5 junction (D2 neg.)
     { label: "9", R: 39.69665, d: 2.92, nd: 1.0, elemId: 0, sd: 6.2 }, // L5 rear → air
     { label: "10A", R: -9.52831, d: 1.1, nd: 1.58313, elemId: 6, sd: 6.1 }, // L6 front (asph, K=0.2964)
     { label: "11A", R: -9.47003, d: 2.17, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → air (asph, K=1.0)
