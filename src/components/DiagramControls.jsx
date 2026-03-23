@@ -158,7 +158,7 @@ export default function DiagramControls({
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
             <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>APERTURE</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
+            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, minWidth: "3.5em" }}>
               f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
             </span>
             {ENABLE_COLLAPSIBLE_APERTURE && (
