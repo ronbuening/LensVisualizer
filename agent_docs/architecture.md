@@ -5,7 +5,14 @@
 | Module | Location | Purpose |
 |--------|----------|---------|
 | `LensViewer.jsx` | `src/components/` | Orchestration: comparison mode, top bar, overlays, prefs |
-| `LensDiagramPanel.jsx` | `src/components/` | Diagram rendering: SVG, rays, elements, controls |
+| `LensDiagramPanel.jsx` | `src/components/` | Diagram composition: wires hooks + sub-components |
+| `useLensComputation.js` | `src/components/` | Hook: lens building, layout, transforms, shapes, aperture |
+| `useRayTracing.js` | `src/components/` | Hook: on-axis, off-axis, chromatic ray tracing |
+| `DiagramHeader.jsx` | `src/components/` | Header: title, specs, theme/ray toggle controls |
+| `DiagramSVG.jsx` | `src/components/` | SVG rendering: elements, rays, labels, overlays |
+| `DiagramControls.jsx` | `src/components/` | Zoom, focus, aperture sliders |
+| `ElementInspector.jsx` | `src/components/` | Selected element property display |
+| `DiagramLegend.jsx` | `src/components/` | Legend with swatches, ray descriptions, aberration readouts |
 | `DescriptionPanel.jsx` | `src/components/` | Markdown panel with themed styling |
 | `SharedSlidersBar.jsx` | `src/components/` | Comparison mode shared focus/aperture/zoom controls |
 | `ErrorBoundary.jsx` | `src/components/` | Error boundary + reusable ErrorDisplay |
@@ -37,16 +44,18 @@ The main component handles:
 
 Diagram rendering is delegated to `LensDiagramPanel`.
 
-## LensDiagramPanel.jsx — Diagram Renderer
+## LensDiagramPanel.jsx — Diagram Composition Layer
 
-Self-contained component that owns:
-- Lens building (`buildLens()` call)
-- Layout computation (`doLayout()`)
-- Coordinate transforms (SVG <-> optical space)
-- Ray tracing (on-axis, off-axis, chromatic)
-- Element rendering (filled SVG paths with hover/click)
-- Control panel (focus/aperture sliders, element inspector, legend)
-- Panel-level error boundary
+Orchestrates sub-components and custom hooks. Owns only hover/selection state, flash animation, side-layout detection, header height reporting, and structural layout wiring.
+
+Sub-modules (all in `src/components/`):
+- **`useLensComputation.js`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations
+- **`useRayTracing.js`** — Hook: on-axis, off-axis, and chromatic ray tracing + chromatic spread
+- **`DiagramHeader.jsx`** — Title, specs, theme/ray toggle controls (uses `forwardRef` for height measurement)
+- **`DiagramSVG.jsx`** — Full SVG rendering: defs, grid, rays, elements, aspheric overlays, aperture stop, image plane, LCA inset, labels, flash overlay
+- **`DiagramControls.jsx`** — Zoom, focus, and aperture sliders
+- **`ElementInspector.jsx`** — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
+- **`DiagramLegend.jsx`** — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 
 Receives shared control state (focus, aperture, zoom, ray toggles) from LensViewer.
 
