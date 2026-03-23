@@ -617,6 +617,7 @@ export default function LensVisualization() {
     justifyContent: "center",
     gap: 5,
     transition: "all 0.25s",
+    whiteSpace: "nowrap",
     fontFamily: "inherit",
     letterSpacing: "0.08em",
     minHeight: 28,
