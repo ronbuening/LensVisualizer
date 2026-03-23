@@ -33,14 +33,13 @@ import {
   ENABLE_ANALYSIS_ONLY,
   ENABLE_COMPARISON,
   ENABLE_COMPARISON_MOBILE,
-  ENABLE_SLIDER_STICKY,
-  ENABLE_SLIDER_STICKY_FLASH,
   ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
   ENABLE_EDGE_PROJECTION,
   ENABLE_SIDE_PANEL_LAYOUT,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } from "../utils/comparisonSliders.js";
+import { computeFocusPair, computeAperturePair, computeZoomPair } from "../utils/comparisonSliders.js";
+import useStickySliders from "../utils/useStickySliders.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
@@ -57,7 +56,6 @@ import {
   SET_FOCUS_T,
   SET_ZOOM_T,
   SET_STOPDOWN_T,
-  SET_SHARED_FOCUS_T,
   SET_SHARED_STOPDOWN_T,
   SET_SHARED_ZOOM_T,
   SET_PANEL_EXPANDED,
@@ -139,23 +137,7 @@ export default function LensVisualization() {
   const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
   const justEnteredCompare = useRef(false);
 
-  /* ── Sticky slider state (slider pauses at common-point demarcation lines) ──
-   * State machine for each shared slider (focus and aperture):
-   *
-   *   Normal → slider moves freely, prevT tracks position
-   *   Stuck  → slider crossed or reached the common point (CP);
-   *            all movement is rejected and value is held at CP.
-   *            A brief flash highlights which panel hit its limit.
-   *   Released → on next pointerDown, stuck is cleared and slider
-   *             continues moving freely from wherever the user drags.
-   *
-   * This gives haptic-like feedback: the slider "catches" at the point
-   * where one lens reaches its limit, then releases on the next drag. */
-  const focusStuck = useRef(false);
-  const apertureStuck = useRef(false);
-  const prevFocusT = useRef(0);
-  const prevStopdownT = useRef(0);
-  const [flashPanel, setFlashPanel] = useState(null); // 'a' | 'b' | null
+  /* ── Sticky slider state machine (see useStickySliders for docs) ── */
 
   /* ── Persist preferences to localStorage ── */
   usePreferences(state);
@@ -246,6 +228,17 @@ export default function LensVisualization() {
     return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedZoomT, comparisonLenses]);
 
+  /* ── Sticky slider state machine ── */
+  const {
+    handleSharedFocusChange,
+    handleSharedStopdownChange,
+    handleFocusPointerDown,
+    handleAperturePointerDown,
+    flashPanel,
+    resetSticky,
+    prevStopdownT,
+  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses);
+
   /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
     if (!justEnteredCompare.current || !comparisonLenses || comparisonLenses.error) return;
@@ -260,17 +253,14 @@ export default function LensVisualization() {
         : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
     prevStopdownT.current = cp;
     dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-  }, [comparisonLenses, dispatch]);
+  }, [comparisonLenses, dispatch, prevStopdownT]);
 
   /* ── Enter/exit comparison mode ── */
   const toggleCompare = useCallback(() => {
     if (!comparing) {
       dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
-      prevFocusT.current = 0;
-      prevStopdownT.current = 0;
+      resetSticky();
       justEnteredCompare.current = true;
-      focusStuck.current = false;
-      apertureStuck.current = false;
     } else {
       dispatch({
         type: EXIT_COMPARE,
@@ -278,81 +268,7 @@ export default function LensVisualization() {
         stopdownA: aperturePair?.stopdownA,
       });
     }
-  }, [comparing, focusPair, aperturePair, dispatch]);
-
-  /* ── Sticky slider handlers ── */
-  const triggerFlash = useCallback((panel) => {
-    if (!ENABLE_SLIDER_STICKY_FLASH) return;
-    setFlashPanel(panel);
-    setTimeout(() => setFlashPanel(null), 400);
-  }, []);
-
-  const handleSharedFocusChange = useCallback(
-    (rawT) => {
-      const cp = focusPair?.commonPoint;
-      const stickyActive = ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99;
-
-      /* While stuck, reject all movement — hold at cp until pointerDown clears it */
-      if (stickyActive && focusStuck.current) {
-        dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
-        return;
-      }
-
-      if (stickyActive) {
-        const prev = prevFocusT.current;
-        /* Crossing or reaching the common point from either side */
-        if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
-          dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
-          prevFocusT.current = cp;
-          focusStuck.current = true;
-          /* The lens with longer MFD (less capable) is the one that stops */
-          const { LA, LB } = comparisonLenses;
-          triggerFlash(LA.closeFocusM > LB.closeFocusM ? "a" : "b");
-          return;
-        }
-      }
-      const v = snapToCommon(rawT, cp);
-      prevFocusT.current = v;
-      dispatch({ type: SET_SHARED_FOCUS_T, value: v });
-    },
-    [focusPair, comparisonLenses, triggerFlash, dispatch],
-  );
-
-  const handleSharedStopdownChange = useCallback(
-    (rawT) => {
-      const cp = aperturePair?.commonPoint;
-      const stickyActive = ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99;
-
-      if (stickyActive && apertureStuck.current) {
-        dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-        return;
-      }
-
-      if (stickyActive) {
-        const prev = prevStopdownT.current;
-        if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
-          dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-          prevStopdownT.current = cp;
-          apertureStuck.current = true;
-          const { LA, LB } = comparisonLenses;
-          triggerFlash(LA.FOPEN > LB.FOPEN ? "a" : "b");
-          return;
-        }
-      }
-      const v = snapToCommon(rawT, cp);
-      prevStopdownT.current = v;
-      dispatch({ type: SET_SHARED_STOPDOWN_T, value: v });
-    },
-    [aperturePair, comparisonLenses, triggerFlash, dispatch],
-  );
-
-  const handleFocusPointerDown = useCallback(() => {
-    focusStuck.current = false;
-  }, []);
-
-  const handleAperturePointerDown = useCallback(() => {
-    apertureStuck.current = false;
-  }, []);
+  }, [comparing, focusPair, aperturePair, dispatch, resetSticky]);
 
   /* ── Header height alignment callback ── */
   const handleHeaderHeight = useCallback((panelId, height) => {
