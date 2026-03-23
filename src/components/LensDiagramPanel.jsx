@@ -52,7 +52,9 @@ import {
 } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 
-/* ── Hoisted static / near-static styles ── */
+/* =====================================================================
+ * §1  HOISTED STYLES & ERROR BOUNDARY
+ * ===================================================================== */
 const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em", transition: "color 0.3s" };
 const SLIDER_VALUE_BASE = {
   fontSize: 14,
@@ -139,6 +141,10 @@ class PanelErrorBoundary extends Component {
     );
   }
 }
+
+/* =====================================================================
+ * §2  COMPONENT — State, memos, ray tracing, and computed data
+ * ===================================================================== */
 
 /**
  * @param {Object}  props
@@ -578,6 +584,9 @@ export default function LensDiagramPanel({
 
   const filterId = `gl-${panelId}`;
 
+  /* =====================================================================
+   * §3  RENDER — Header, SVG diagram, controls, and inspector
+   * ===================================================================== */
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (

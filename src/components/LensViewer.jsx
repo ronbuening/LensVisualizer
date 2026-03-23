@@ -52,7 +52,9 @@ import { ErrorDisplay } from "./ErrorBoundary.jsx";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 
-/* ── Hoisted static / near-static styles ── */
+/* =====================================================================
+ * §1  HOISTED STYLES — static style objects extracted from render
+ * ===================================================================== */
 const TOGGLE_GROUP_BASE = {
   display: "flex",
   gap: 0,
@@ -98,7 +100,7 @@ const CLOSE_BTN_BASE = {
 };
 
 /* =====================================================================
- * §6  RENDERER — React component
+ * §2  COMPONENT — State, effects, and orchestration logic
  * =====================================================================
  *  Diagram rendering delegated to LensDiagramPanel.  This component
  *  handles orchestration, comparison mode, shared controls, and chrome.
@@ -581,6 +583,10 @@ export default function LensVisualization() {
     headerInfoExpanded,
     onHeaderInfoExpandedChange: setHeaderInfoExpanded,
   };
+
+  /* =====================================================================
+   * §3  RENDER HELPERS — style factories and pre-built JSX fragments
+   * ===================================================================== */
 
   /* ── Selector style helper ── */
   const selectorStyle = (wide) => ({
@@ -1102,6 +1108,9 @@ export default function LensVisualization() {
     />
   ) : null;
 
+  /* =====================================================================
+   * §4  JSX — Top bar, comparison chrome, diagram panels, overlays
+   * ===================================================================== */
   return (
     <div
       style={{

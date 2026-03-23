@@ -87,7 +87,7 @@ Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building
 - **No comments on obvious code** — see `agent_docs/commenting_guide.md` for full commenting standards
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
 - **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory
-- **Pure-function modules** (`optics.js`, `buildLens.js`, `validateLensData.js`) have no React dependencies
+- **Pure-function modules** (`optics.js`, `buildLens.js`, `validateLensData.js`, `diagramGeometry.js`) have no React dependencies
 - **ESLint 9 + Prettier** enforce code quality and formatting — run `npm run lint` and `npm run format:check`
 - **Double quotes** for strings, **120-char** print width (enforced by Prettier)
 - **Prefix unused parameters with `_`** (`_e`, `_info`) to satisfy `no-unused-vars`
