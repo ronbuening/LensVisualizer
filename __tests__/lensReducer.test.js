@@ -1,0 +1,348 @@
+import { describe, it, expect, beforeEach } from "vitest";
+import lensReducer, {
+  createInitialState,
+  SET_LENS_A,
+  SET_LENS_B,
+  SET_SCALE_MODE,
+  SET_DARK,
+  SET_HIGH_CONTRAST,
+  SET_MOBILE_VIEW,
+  SET_DESKTOP_VIEW,
+  SET_RAY_TOGGLE,
+  SET_FOCUS_T,
+  SET_ZOOM_T,
+  SET_STOPDOWN_T,
+  SET_SHARED_FOCUS_T,
+  SET_SHARED_STOPDOWN_T,
+  SET_SHARED_ZOOM_T,
+  RESET_SLIDERS,
+  SET_PANEL_EXPANDED,
+  SET_OVERLAY,
+  CLOSE_ALL_OVERLAYS,
+  ENTER_COMPARE,
+  EXIT_COMPARE,
+} from "../src/utils/lensReducer.js";
+
+const CATALOG_KEYS = ["nikon_58", "canon_50", "zeiss_35"];
+
+/** Helper: build a default state for testing */
+function makeState(overrides = {}) {
+  return createInitialState({}, {}, true, CATALOG_KEYS, overrides);
+}
+
+describe("createInitialState", () => {
+  it("uses defaults when prefs and URL are empty", () => {
+    const state = createInitialState({}, {}, true, CATALOG_KEYS);
+    expect(state.lens.lensKeyA).toBe("nikon_58");
+    expect(state.lens.lensKeyB).toBe("canon_50");
+    expect(state.lens.comparing).toBe(false);
+    expect(state.lens.scaleMode).toBe("independent");
+    expect(state.sliders.focusT).toBe(0);
+    expect(state.sliders.zoomT).toBe(0);
+    expect(state.sliders.stopdownT).toBe(0);
+    expect(state.rays.showOnAxis).toBe(true);
+    expect(state.rays.showOffAxis).toBe("off");
+    expect(state.panels.focusExpanded).toBe(true); // isWide = true
+    expect(state.overlays.showAbout).toBe(false);
+  });
+
+  it("URL params override prefs", () => {
+    const prefs = { lensKeyA: "canon_50", comparing: false };
+    const urlState = { singleLens: "zeiss_35", focus: 0.5, aperture: 0.3 };
+    const state = createInitialState(prefs, urlState, true, CATALOG_KEYS);
+    expect(state.lens.lensKeyA).toBe("zeiss_35");
+    expect(state.sliders.focusT).toBe(0.5);
+    expect(state.sliders.stopdownT).toBe(0.3);
+  });
+
+  it("prefs override defaults", () => {
+    const prefs = { dark: false, showOnAxis: false, desktopView: "diagram" };
+    const state = createInitialState(prefs, {}, false, CATALOG_KEYS);
+    expect(state.display.dark).toBe(false);
+    expect(state.rays.showOnAxis).toBe(false);
+    expect(state.display.desktopView).toBe("diagram");
+  });
+
+  it("comparison URL sets shared sliders from URL params", () => {
+    const urlState = { comparing: true, lensKeyA: "nikon_58", lensKeyB: "canon_50", focus: 0.7, aperture: 0.4 };
+    const state = createInitialState({}, urlState, true, CATALOG_KEYS);
+    expect(state.lens.comparing).toBe(true);
+    expect(state.sharedSliders.sharedFocusT).toBe(0.7);
+    expect(state.sharedSliders.sharedStopdownT).toBe(0.4);
+  });
+
+  it("non-comparison URL does not set shared sliders", () => {
+    const urlState = { comparing: false, focus: 0.5 };
+    const state = createInitialState({}, urlState, true, CATALOG_KEYS);
+    expect(state.sharedSliders.sharedFocusT).toBe(0);
+    expect(state.sharedSliders.sharedStopdownT).toBe(0);
+  });
+
+  it("panel expanded defaults to isWide", () => {
+    const narrow = createInitialState({}, {}, false, CATALOG_KEYS);
+    expect(narrow.panels.focusExpanded).toBe(false);
+    expect(narrow.panels.apertureExpanded).toBe(false);
+
+    const wide = createInitialState({}, {}, true, CATALOG_KEYS);
+    expect(wide.panels.focusExpanded).toBe(true);
+    expect(wide.panels.apertureExpanded).toBe(true);
+  });
+
+  it("lensKeyB defaults to second catalog entry", () => {
+    const state = createInitialState({}, {}, true, ["only_one"]);
+    expect(state.lens.lensKeyB).toBe("only_one"); // Math.min(1, 0) = 0
+  });
+});
+
+describe("lensReducer", () => {
+  let state;
+  beforeEach(() => {
+    state = makeState();
+  });
+
+  /* ── Lens selection ── */
+  describe("SET_LENS_A", () => {
+    it("updates lensKeyA", () => {
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.lens.lensKeyA).toBe("canon_50");
+    });
+
+    it("resets sliders in single mode", () => {
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0 });
+    });
+
+    it("does NOT reset sliders in comparison mode", () => {
+      state.lens.comparing = true;
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.sliders.focusT).toBe(0.5);
+    });
+  });
+
+  describe("SET_LENS_B", () => {
+    it("updates lensKeyB", () => {
+      const next = lensReducer(state, { type: SET_LENS_B, key: "zeiss_35" });
+      expect(next.lens.lensKeyB).toBe("zeiss_35");
+    });
+  });
+
+  describe("SET_SCALE_MODE", () => {
+    it("updates scaleMode", () => {
+      const next = lensReducer(state, { type: SET_SCALE_MODE, scaleMode: "normalized" });
+      expect(next.lens.scaleMode).toBe("normalized");
+    });
+  });
+
+  /* ── Display ── */
+  describe("SET_DARK", () => {
+    it("toggles dark mode", () => {
+      const next = lensReducer(state, { type: SET_DARK, dark: false });
+      expect(next.display.dark).toBe(false);
+    });
+  });
+
+  describe("SET_HIGH_CONTRAST", () => {
+    it("toggles high contrast", () => {
+      const next = lensReducer(state, { type: SET_HIGH_CONTRAST, highContrast: true });
+      expect(next.display.highContrast).toBe(true);
+    });
+  });
+
+  describe("SET_MOBILE_VIEW", () => {
+    it("sets mobile view", () => {
+      const next = lensReducer(state, { type: SET_MOBILE_VIEW, mobileView: "description" });
+      expect(next.display.mobileView).toBe("description");
+    });
+  });
+
+  describe("SET_DESKTOP_VIEW", () => {
+    it("sets desktop view", () => {
+      const next = lensReducer(state, { type: SET_DESKTOP_VIEW, desktopView: "analysis" });
+      expect(next.display.desktopView).toBe("analysis");
+    });
+  });
+
+  /* ── Ray toggles ── */
+  describe("SET_RAY_TOGGLE", () => {
+    it("sets valid ray field", () => {
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "showOnAxis", value: false });
+      expect(next.rays.showOnAxis).toBe(false);
+    });
+
+    it("sets showOffAxis string value", () => {
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
+      expect(next.rays.showOffAxis).toBe("trueAngle");
+    });
+
+    it("ignores invalid field", () => {
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField", value: true });
+      expect(next).toBe(state); // same reference = no change
+    });
+  });
+
+  /* ── Single-lens sliders ── */
+  describe("SET_FOCUS_T", () => {
+    it("sets focusT", () => {
+      const next = lensReducer(state, { type: SET_FOCUS_T, value: 0.75 });
+      expect(next.sliders.focusT).toBe(0.75);
+    });
+  });
+
+  describe("SET_ZOOM_T", () => {
+    it("sets zoomT", () => {
+      const next = lensReducer(state, { type: SET_ZOOM_T, value: 0.5 });
+      expect(next.sliders.zoomT).toBe(0.5);
+    });
+  });
+
+  describe("SET_STOPDOWN_T", () => {
+    it("sets stopdownT", () => {
+      const next = lensReducer(state, { type: SET_STOPDOWN_T, value: 0.3 });
+      expect(next.sliders.stopdownT).toBe(0.3);
+    });
+  });
+
+  describe("RESET_SLIDERS", () => {
+    it("resets all sliders to 0", () => {
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      const next = lensReducer(state, { type: RESET_SLIDERS });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0 });
+    });
+  });
+
+  /* ── Shared sliders ── */
+  describe("SET_SHARED_FOCUS_T", () => {
+    it("sets sharedFocusT", () => {
+      const next = lensReducer(state, { type: SET_SHARED_FOCUS_T, value: 0.6 });
+      expect(next.sharedSliders.sharedFocusT).toBe(0.6);
+    });
+  });
+
+  describe("SET_SHARED_STOPDOWN_T", () => {
+    it("sets sharedStopdownT", () => {
+      const next = lensReducer(state, { type: SET_SHARED_STOPDOWN_T, value: 0.4 });
+      expect(next.sharedSliders.sharedStopdownT).toBe(0.4);
+    });
+  });
+
+  describe("SET_SHARED_ZOOM_T", () => {
+    it("sets sharedZoomT", () => {
+      const next = lensReducer(state, { type: SET_SHARED_ZOOM_T, value: 0.8 });
+      expect(next.sharedSliders.sharedZoomT).toBe(0.8);
+    });
+  });
+
+  /* ── Panels ── */
+  describe("SET_PANEL_EXPANDED", () => {
+    it("sets valid panel", () => {
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: false });
+      expect(next.panels.focusExpanded).toBe(false);
+    });
+
+    it("ignores invalid panel", () => {
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus", expanded: true });
+      expect(next).toBe(state);
+    });
+  });
+
+  /* ── Overlays ── */
+  describe("SET_OVERLAY", () => {
+    it("opens overlay", () => {
+      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showAbout", visible: true });
+      expect(next.overlays.showAbout).toBe(true);
+    });
+
+    it("ignores invalid overlay", () => {
+      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo", visible: true });
+      expect(next).toBe(state);
+    });
+  });
+
+  describe("CLOSE_ALL_OVERLAYS", () => {
+    it("closes all overlays", () => {
+      state.overlays = { showAbout: true, showAboutSite: true };
+      const next = lensReducer(state, { type: CLOSE_ALL_OVERLAYS });
+      expect(next.overlays.showAbout).toBe(false);
+      expect(next.overlays.showAboutSite).toBe(false);
+    });
+  });
+
+  /* ── Comparison mode transitions ── */
+  describe("ENTER_COMPARE", () => {
+    it("sets comparing to true and resets shared sliders", () => {
+      state.sharedSliders = { sharedFocusT: 0.5, sharedStopdownT: 0.3, sharedZoomT: 0.2 };
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      expect(next.lens.comparing).toBe(true);
+      expect(next.sharedSliders).toEqual({ sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0 });
+    });
+
+    it("picks next lens if A===B", () => {
+      state.lens.lensKeyA = "nikon_58";
+      state.lens.lensKeyB = "nikon_58";
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      expect(next.lens.lensKeyB).toBe("canon_50"); // index 1
+    });
+
+    it("wraps around catalog if A is last entry", () => {
+      state.lens.lensKeyA = "zeiss_35";
+      state.lens.lensKeyB = "zeiss_35";
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      expect(next.lens.lensKeyB).toBe("nikon_58"); // wraps to 0
+    });
+
+    it("does not change lensKeyB when A !== B", () => {
+      state.lens.lensKeyA = "nikon_58";
+      state.lens.lensKeyB = "canon_50";
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      expect(next.lens.lensKeyB).toBe("canon_50");
+    });
+  });
+
+  describe("EXIT_COMPARE", () => {
+    it("sets comparing to false and maps shared values back", () => {
+      state.lens.comparing = true;
+      const next = lensReducer(state, { type: EXIT_COMPARE, focusA: 0.3, stopdownA: 0.5 });
+      expect(next.lens.comparing).toBe(false);
+      expect(next.sliders.focusT).toBe(0.3);
+      expect(next.sliders.stopdownT).toBe(0.5);
+    });
+
+    it("keeps existing slider values when payload is undefined", () => {
+      state.lens.comparing = true;
+      state.sliders = { focusT: 0.2, zoomT: 0.1, stopdownT: 0.4 };
+      const next = lensReducer(state, { type: EXIT_COMPARE });
+      expect(next.sliders.focusT).toBe(0.2);
+      expect(next.sliders.stopdownT).toBe(0.4);
+    });
+
+    it("preserves zoomT on exit", () => {
+      state.lens.comparing = true;
+      state.sliders.zoomT = 0.7;
+      const next = lensReducer(state, { type: EXIT_COMPARE, focusA: 0, stopdownA: 0 });
+      expect(next.sliders.zoomT).toBe(0.7);
+    });
+  });
+
+  /* ── Immutability ── */
+  describe("immutability", () => {
+    it("returns same reference for unknown action", () => {
+      const next = lensReducer(state, { type: "UNKNOWN_ACTION" });
+      expect(next).toBe(state);
+    });
+
+    it("produces new top-level object on change", () => {
+      const next = lensReducer(state, { type: SET_DARK, dark: !state.display.dark });
+      expect(next).not.toBe(state);
+      expect(next.display).not.toBe(state.display);
+    });
+
+    it("does not mutate unchanged slices", () => {
+      const next = lensReducer(state, { type: SET_DARK, dark: !state.display.dark });
+      expect(next.lens).toBe(state.lens);
+      expect(next.rays).toBe(state.rays);
+      expect(next.sliders).toBe(state.sliders);
+    });
+  });
+});
