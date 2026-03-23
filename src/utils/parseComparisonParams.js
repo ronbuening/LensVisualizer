@@ -19,12 +19,12 @@
  */
 export function parseComparisonParams(search, catalogKeys) {
   const params = new URLSearchParams(search);
-  const a = params.get('a');
-  const b = params.get('b');
+  const a = params.get("a");
+  const b = params.get("b");
 
-  const zoom = parseFloat(params.get('zoom'));
-  const focus = parseFloat(params.get('focus'));
-  const aperture = parseFloat(params.get('aperture'));
+  const zoom = parseFloat(params.get("zoom"));
+  const focus = parseFloat(params.get("focus"));
+  const aperture = parseFloat(params.get("aperture"));
 
   const sliders = {
     zoom: isFinite(zoom) && zoom > 0 ? zoom : null,
@@ -35,7 +35,7 @@ export function parseComparisonParams(search, catalogKeys) {
   if (a && b && catalogKeys.includes(a) && catalogKeys.includes(b)) {
     return { comparing: true, lensKeyA: a, lensKeyB: b, ...sliders };
   }
-  const single = params.get('lens');
+  const single = params.get("lens");
   if (single && catalogKeys.includes(single)) {
     return { comparing: false, singleLens: single, ...sliders };
   }
@@ -58,7 +58,7 @@ export function buildComparisonURL(comparing, lensKeyA, lensKeyB, { zoom, focus,
   } else if (lensKeyA) {
     url = `?lens=${encodeURIComponent(lensKeyA)}`;
   } else {
-    return '';
+    return "";
   }
   if (zoom != null && zoom > 0) url += `&zoom=${zoom}`;
   if (focus != null && focus > 0) url += `&focus=${focus.toFixed(3)}`;

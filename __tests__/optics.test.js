@@ -1,33 +1,48 @@
-import { describe, it, expect } from 'vitest';
-import { sag, renderSag, sagSlope, thick, doLayout, formatDist,
-         traceRay, traceRayChromatic, computeChromaticSpread, traceToImage,
-         conjugateK, wavelengthNd, eflAtZoom, epAtZoom, halfFieldAtZoom,
-         FLAT_R_THRESHOLD, FOCUS_INFINITY_THRESHOLD } from '../src/optics/optics.js';
+import { describe, it, expect } from "vitest";
+import {
+  sag,
+  renderSag,
+  sagSlope,
+  thick,
+  doLayout,
+  formatDist,
+  traceRay,
+  traceRayChromatic,
+  computeChromaticSpread,
+  traceToImage,
+  conjugateK,
+  wavelengthNd,
+  eflAtZoom,
+  epAtZoom,
+  halfFieldAtZoom,
+  FLAT_R_THRESHOLD,
+  FOCUS_INFINITY_THRESHOLD,
+} from "../src/optics/optics.js";
 
-describe('sag', () => {
-  it('returns 0 for h = 0', () => {
+describe("sag", () => {
+  it("returns 0 for h = 0", () => {
     expect(sag(0, 50)).toBe(0);
     expect(sag(0, -100)).toBeCloseTo(0, 10);
   });
 
-  it('returns 0 for flat surface (R > threshold)', () => {
+  it("returns 0 for flat surface (R > threshold)", () => {
     expect(sag(10, 1e15)).toBe(0);
     expect(sag(10, -1e15)).toBe(0);
     expect(sag(10, Infinity)).toBe(0);
   });
 
-  it('computes correct sag for positive R', () => {
+  it("computes correct sag for positive R", () => {
     const result = sag(10, 50);
     // sag = (c·h²) / (1 + √(1 - c²·h²)), c = 1/50
     expect(result).toBeCloseTo(1.0102, 3);
   });
 
-  it('computes correct sag for negative R', () => {
+  it("computes correct sag for negative R", () => {
     const result = sag(10, -50);
     expect(result).toBeCloseTo(-1.0102, 3);
   });
 
-  it('handles h near R (large angle)', () => {
+  it("handles h near R (large angle)", () => {
     // h = R * sin(45°) ≈ 35.36 for R=50
     const h = 50 * Math.sin(Math.PI / 4);
     const result = sag(h, 50);
@@ -36,44 +51,50 @@ describe('sag', () => {
   });
 });
 
-describe('formatDist', () => {
+describe("formatDist", () => {
   const mockL = { closeFocusM: 0.4 };
 
-  it('returns ∞ for t near zero', () => {
-    expect(formatDist(0, mockL)).toBe('∞');
-    expect(formatDist(0.001, mockL)).toBe('∞');
+  it("returns ∞ for t near zero", () => {
+    expect(formatDist(0, mockL)).toBe("∞");
+    expect(formatDist(0.001, mockL)).toBe("∞");
   });
 
-  it('formats meters for moderate distances', () => {
+  it("formats meters for moderate distances", () => {
     // t=0.1 → d = 0.4/0.1 = 4.0 m
-    expect(formatDist(0.1, mockL)).toBe('4.00 m');
+    expect(formatDist(0.1, mockL)).toBe("4.00 m");
   });
 
-  it('formats cm for close distances', () => {
+  it("formats cm for close distances", () => {
     // t=1.0 → d = 0.4/1 = 0.4 m = 40 cm
-    expect(formatDist(1.0, mockL)).toBe('40 cm');
+    expect(formatDist(1.0, mockL)).toBe("40 cm");
   });
 });
 
-describe('thick', () => {
-  it('returns surface d when no variable spacing', () => {
+describe("thick", () => {
+  it("returns surface d when no variable spacing", () => {
     const L = { S: [{ d: 5.0 }], varByIdx: {} };
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(5.0);
     expect(thick(0, 1.0, 0, L)).toBe(5.0);
   });
 
-  it('interpolates variable spacing', () => {
+  it("interpolates variable spacing", () => {
     const L = { S: [{ d: 5.0 }], varByIdx: { 0: [5.0, 10.0] } };
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(7.5);
     expect(thick(0, 1.0, 0, L)).toBe(10.0);
   });
 
-  it('interpolates zoom variable spacing', () => {
+  it("interpolates zoom variable spacing", () => {
     const L = {
       S: [{ d: 2.0 }],
-      varByIdx: { 0: [[2.0, 4.0], [6.0, 8.0], [10.0, 12.0]] },
+      varByIdx: {
+        0: [
+          [2.0, 4.0],
+          [6.0, 8.0],
+          [10.0, 12.0],
+        ],
+      },
       isZoom: true,
     };
     // zoomT=0, focusT=0 → wide, infinity → 2.0
@@ -92,8 +113,8 @@ describe('thick', () => {
   });
 });
 
-describe('doLayout', () => {
-  it('computes cumulative z positions', () => {
+describe("doLayout", () => {
+  it("computes cumulative z positions", () => {
     const L = {
       S: [{ d: 2.0 }, { d: 3.0 }, { d: 5.0 }],
       varByIdx: {},
@@ -104,36 +125,36 @@ describe('doLayout', () => {
   });
 });
 
-describe('sagSlope', () => {
-  it('returns 0 at h = 0', () => {
+describe("sagSlope", () => {
+  it("returns 0 at h = 0", () => {
     const L = { S: [{ R: 50 }], asphByIdx: {} };
     expect(sagSlope(0, 0, L)).toBe(0);
   });
 
-  it('returns 0 for flat surface', () => {
+  it("returns 0 for flat surface", () => {
     const L = { S: [{ R: 1e15 }], asphByIdx: {} };
     expect(sagSlope(10, 0, L)).toBe(0);
   });
 
-  it('computes correct slope for spherical surface', () => {
+  it("computes correct slope for spherical surface", () => {
     const R = 50;
     const h = 10;
     const L = { S: [{ R }], asphByIdx: {} };
     const c = 1 / R;
-    const expected = c * h / Math.sqrt(1 - c * c * h * h);
+    const expected = (c * h) / Math.sqrt(1 - c * c * h * h);
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
   });
 
-  it('computes correct slope for negative R', () => {
+  it("computes correct slope for negative R", () => {
     const R = -50;
     const h = 10;
     const L = { S: [{ R }], asphByIdx: {} };
     const c = 1 / R;
-    const expected = c * h / Math.sqrt(1 - c * c * h * h);
+    const expected = (c * h) / Math.sqrt(1 - c * c * h * h);
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
   });
 
-  it('matches finite-difference of renderSag for spherical surface', () => {
+  it("matches finite-difference of renderSag for spherical surface", () => {
     const R = 30;
     const h = 8;
     const eps = 1e-6;
@@ -142,7 +163,7 @@ describe('sagSlope', () => {
     expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 5);
   });
 
-  it('matches finite-difference of renderSag for aspheric surface', () => {
+  it("matches finite-difference of renderSag for aspheric surface", () => {
     const R = 40;
     const h = 6;
     const eps = 1e-6;
@@ -153,12 +174,12 @@ describe('sagSlope', () => {
   });
 });
 
-describe('traceRay — exact Snell', () => {
+describe("traceRay — exact Snell", () => {
   // Single positive element: two spherical surfaces with glass between
   const mkSingleElement = () => ({
     S: [
-      { R: 50, nd: 1.5168, sd: 15, d: 5 },   // front surface
-      { R: -50, nd: 1.0, sd: 15, d: 80 },     // rear surface
+      { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
+      { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
     ],
     N: 2,
     stopIdx: 0,
@@ -168,7 +189,7 @@ describe('traceRay — exact Snell', () => {
     varByIdx: {},
   });
 
-  it('on-axis ray (h=0, u=0) passes through unchanged', () => {
+  it("on-axis ray (h=0, u=0) passes through unchanged", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
     const { y, u, clipped } = traceRay(0, 0, zPos, 0, 0, 15, false, L);
@@ -177,24 +198,24 @@ describe('traceRay — exact Snell', () => {
     expect(clipped).toBe(false);
   });
 
-  it('small-h ray agrees closely with paraxial trace', () => {
+  it("small-h ray agrees closely with paraxial trace", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
-    const h = 0.1;  // very small height
+    const h = 0.1; // very small height
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // traceRay stops at last surface; traceToImage propagates through final gap
     // Extrapolate real ray to image plane for comparison
-    const imgZ = 5 + 80;  // last surface z + last d
+    const imgZ = 5 + 80; // last surface z + last d
     const lastSurfZ = zPos[1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     const yParax = traceToImage(h, 0, 0, 0, L);
     expect(yRealAtImage).toBeCloseTo(yParax, 3);
   });
 
-  it('marginal ray shows undercorrected SA (focuses shorter than paraxial)', () => {
+  it("marginal ray shows undercorrected SA (focuses shorter than paraxial)", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
-    const h = 12;  // near full aperture
+    const h = 12; // near full aperture
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // Extrapolate real ray to image plane
     const imgZ = 5 + 80;
@@ -206,7 +227,7 @@ describe('traceRay — exact Snell', () => {
     expect(Math.abs(yRealAtImage - yParax)).toBeGreaterThan(0.01);
   });
 
-  it('returns clipped=true on total internal reflection', () => {
+  it("returns clipped=true on total internal reflection", () => {
     // Extreme case: high-index to low-index at steep angle
     const L = {
       S: [
@@ -226,7 +247,7 @@ describe('traceRay — exact Snell', () => {
     expect(clipped).toBe(true);
   });
 
-  it('generates rendering points for each surface', () => {
+  it("generates rendering points for each surface", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
     const { pts, clipped } = traceRay(5, 0, zPos, 0, 0, 15, false, L);
@@ -236,38 +257,40 @@ describe('traceRay — exact Snell', () => {
   });
 });
 
-describe('wavelengthNd', () => {
-  it('returns 1.0 for air regardless of channel', () => {
-    expect(wavelengthNd(1.0, 64.17, 'R')).toBe(1.0);
-    expect(wavelengthNd(1.0, 64.17, 'G')).toBe(1.0);
-    expect(wavelengthNd(1.0, 64.17, 'B')).toBe(1.0);
+describe("wavelengthNd", () => {
+  it("returns 1.0 for air regardless of channel", () => {
+    expect(wavelengthNd(1.0, 64.17, "R")).toBe(1.0);
+    expect(wavelengthNd(1.0, 64.17, "G")).toBe(1.0);
+    expect(wavelengthNd(1.0, 64.17, "B")).toBe(1.0);
   });
 
-  it('returns nd for green channel', () => {
-    expect(wavelengthNd(1.5168, 64.17, 'G')).toBe(1.5168);
+  it("returns nd for green channel", () => {
+    expect(wavelengthNd(1.5168, 64.17, "G")).toBe(1.5168);
   });
 
-  it('red < nd < blue for dispersive glass', () => {
-    const nd = 1.5168, vd = 64.17;
-    expect(wavelengthNd(nd, vd, 'R')).toBeLessThan(nd);
-    expect(wavelengthNd(nd, vd, 'B')).toBeGreaterThan(nd);
+  it("red < nd < blue for dispersive glass", () => {
+    const nd = 1.5168,
+      vd = 64.17;
+    expect(wavelengthNd(nd, vd, "R")).toBeLessThan(nd);
+    expect(wavelengthNd(nd, vd, "B")).toBeGreaterThan(nd);
   });
 
-  it('computes BK7 dispersion approximately', () => {
+  it("computes BK7 dispersion approximately", () => {
     // BK7: nd=1.5168, vd=64.17, nF-nC = (nd-1)/vd ≈ 0.00806
-    const nd = 1.5168, vd = 64.17;
-    const nR = wavelengthNd(nd, vd, 'R');
-    const nB = wavelengthNd(nd, vd, 'B');
+    const nd = 1.5168,
+      vd = 64.17;
+    const nR = wavelengthNd(nd, vd, "R");
+    const nB = wavelengthNd(nd, vd, "B");
     expect(nB - nR).toBeCloseTo((nd - 1) / vd, 4);
   });
 
-  it('returns nd when vd is undefined or 0', () => {
-    expect(wavelengthNd(1.5, undefined, 'R')).toBe(1.5);
-    expect(wavelengthNd(1.5, 0, 'B')).toBe(1.5);
+  it("returns nd when vd is undefined or 0", () => {
+    expect(wavelengthNd(1.5, undefined, "R")).toBe(1.5);
+    expect(wavelengthNd(1.5, 0, "B")).toBe(1.5);
   });
 });
 
-describe('traceRayChromatic', () => {
+describe("traceRayChromatic", () => {
   const mkChromElement = () => ({
     S: [
       { R: 50, nd: 1.5168, sd: 15, d: 5 },
@@ -282,37 +305,37 @@ describe('traceRayChromatic', () => {
     vdByIdx: { 0: 64.17 },
   });
 
-  it('green channel matches traceRay exactly', () => {
+  it("green channel matches traceRay exactly", () => {
     const L = mkChromElement();
     const zPos = [0, 5];
     const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L);
-    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'G');
+    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G");
     expect(chrom.y).toBeCloseTo(ref.y, 10);
     expect(chrom.u).toBeCloseTo(ref.u, 10);
   });
 
-  it('blue ray bends more than red ray', () => {
+  it("blue ray bends more than red ray", () => {
     const L = mkChromElement();
     const zPos = [0, 5];
-    const red  = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'R');
-    const blue = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, 'B');
+    const red = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "R");
+    const blue = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "B");
     // Positive height, positive curvature → rays converge downward
     // Higher index (blue) bends more → more negative u (steeper convergence)
     expect(Math.abs(blue.u)).toBeGreaterThan(Math.abs(red.u));
   });
 
-  it('all channels agree for on-axis ray', () => {
+  it("all channels agree for on-axis ray", () => {
     const L = mkChromElement();
     const zPos = [0, 5];
-    const red  = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, 'R');
-    const blue = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, 'B');
+    const red = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, "R");
+    const blue = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, "B");
     expect(red.y).toBeCloseTo(0, 10);
     expect(blue.y).toBeCloseTo(0, 10);
   });
 });
 
-describe('computeChromaticSpread', () => {
-  it('returns zero LCA when all channels have same intercept', () => {
+describe("computeChromaticSpread", () => {
+  it("returns zero LCA when all channels have same intercept", () => {
     const marginalRays = {
       R: { y: 1.0, u: -0.1, clipped: false },
       G: { y: 1.0, u: -0.1, clipped: false },
@@ -323,7 +346,7 @@ describe('computeChromaticSpread', () => {
     expect(result.tcaMm).toBeCloseTo(0, 10);
   });
 
-  it('computes positive LCA when red focuses farther than blue', () => {
+  it("computes positive LCA when red focuses farther than blue", () => {
     // Red ray: y=1, u=-0.05 => intercept = 40 - 1/(-0.05) = 60
     // Blue ray: y=1, u=-0.06 => intercept = 40 - 1/(-0.06) = 56.67
     const marginalRays = {
@@ -337,7 +360,7 @@ describe('computeChromaticSpread', () => {
     expect(result.intercepts.B).toBeCloseTo(40 + 1 / 0.06, 4);
   });
 
-  it('computes image heights correctly', () => {
+  it("computes image heights correctly", () => {
     const marginalRays = {
       R: { y: 0.5, u: 0.02, clipped: false },
       B: { y: 0.5, u: 0.03, clipped: false },
@@ -350,14 +373,14 @@ describe('computeChromaticSpread', () => {
     expect(result.tcaMm).toBeCloseTo(-0.1, 8);
   });
 
-  it('handles missing channels gracefully', () => {
+  it("handles missing channels gracefully", () => {
     const marginalRays = { G: { y: 1.0, u: -0.1, clipped: false } };
     const result = computeChromaticSpread(marginalRays, 50, 40);
     expect(result.lcaMm).toBe(0);
     expect(result.tcaMm).toBe(0);
   });
 
-  it('skips clipped rays', () => {
+  it("skips clipped rays", () => {
     const marginalRays = {
       R: { y: 1.0, u: -0.05, clipped: true },
       B: { y: 1.0, u: -0.06, clipped: false },
@@ -369,27 +392,27 @@ describe('computeChromaticSpread', () => {
 });
 
 /* ── Production lens ray tracing ── */
-import buildLens from '../src/optics/buildLens.js';
-import LENS_DEFAULTS from '../src/lens-data/defaults.js';
-import ApoLantharRaw   from '../src/lens-data/VoigtlanderApoLanthar50f2.data.js';
-import NoktonRaw       from '../src/lens-data/VoigtlanderNokton50f1.data.js';
-import NikkorRaw       from '../src/lens-data/NikonNikkorZ50f18S.data.js';
-import Nikkor105Raw    from '../src/lens-data/NikonNikkor105f14E.data.js';
-import Sonnar50f15Raw  from '../src/lens-data/ZeissSonnar50f15.data.js';
-import NikkorZ70200Raw from '../src/lens-data/NikonNikkorZ70200f28.data.js';
+import buildLens from "../src/optics/buildLens.js";
+import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
+import NoktonRaw from "../src/lens-data/VoigtlanderNokton50f1.data.js";
+import NikkorRaw from "../src/lens-data/NikonNikkorZ50f18S.data.js";
+import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
+import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
+import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 
-describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
+describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
-  it('on-axis marginal ray at full aperture (f/1.5) traces without clipping', () => {
-    const h = L.EP.epSD;  // marginal ray at entrance pupil edge
+  it("on-axis marginal ray at full aperture (f/1.5) traces without clipping", () => {
+    const h = L.EP.epSD; // marginal ray at entrance pupil edge
     const { clipped, pts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
     expect(pts.length).toBeGreaterThan(2);
   });
 
-  it('on-axis ray fan traces without TIR at default fractions', () => {
+  it("on-axis ray fan traces without TIR at default fractions", () => {
     for (const f of L.rayFractions) {
       const h = f * L.EP.epSD;
       const { clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
@@ -397,33 +420,33 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     }
   });
 
-  it('on-axis ray converges to image plane (finite y at image)', () => {
+  it("on-axis ray converges to image plane (finite y at image)", () => {
     const h = 0.5 * L.EP.epSD;
     const { y, u, clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
     // Extrapolate to image: y + (imgZ - zPos[last]) * u
     const yAtImage = y + (imgZ - zPos[L.N - 1]) * u;
     // For on-axis from infinity, should converge near axis
-    expect(Math.abs(yAtImage)).toBeLessThan(5.0);  // within 5mm of axis (significant SA expected at f/1.5)
+    expect(Math.abs(yAtImage)).toBeLessThan(5.0); // within 5mm of axis (significant SA expected at f/1.5)
   });
 
-  it('paraxial and exact rays agree for small heights', () => {
-    const h = 0.01;  // very small ray height
+  it("paraxial and exact rays agree for small heights", () => {
+    const h = 0.01; // very small ray height
     const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
     const yParax = traceToImage(h, 0, 0, 0, L);
     const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
     expect(yExactAtImage).toBeCloseTo(yParax, 2);
   });
 
-  it('off-axis chief ray traces without clipping at 60% field', () => {
-    const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
+  it("off-axis chief ray traces without clipping at 60% field", () => {
+    const uField = -Math.tan((L.offAxisFieldDeg * Math.PI) / 180);
     const yChief = -(L.B / L.EP.yRatio) * uField;
     const { clipped } = traceRay(yChief, uField, zPos, 0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
   });
 
-  it('off-axis ray fan traces at 60% field (some may vignette but not all)', () => {
-    const uField = -Math.tan(L.offAxisFieldDeg * Math.PI / 180);
+  it("off-axis ray fan traces at 60% field (some may vignette but not all)", () => {
+    const uField = -Math.tan((L.offAxisFieldDeg * Math.PI) / 180);
     const yChief = -(L.B / L.EP.yRatio) * uField;
     let passCount = 0;
     for (const f of L.offAxisFractions) {
@@ -436,18 +459,18 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     expect(passCount).toBeGreaterThanOrEqual(1);
   });
 
-  it('chromatic rays (R, G, B) trace without TIR at half-aperture', () => {
+  it("chromatic rays (R, G, B) trace without TIR at half-aperture", () => {
     const h = 0.5 * L.EP.epSD;
-    for (const ch of ['R', 'G', 'B']) {
+    for (const ch of ["R", "G", "B"]) {
       const { clipped } = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
       expect(clipped).withContext(`channel ${ch}`).toBe(false);
     }
   });
 
-  it('chromatic dispersion is measurable (LCA > 0)', () => {
+  it("chromatic dispersion is measurable (LCA > 0)", () => {
     const h = 0.75 * L.EP.epSD;
     const marginalRays = {};
-    for (const ch of ['R', 'G', 'B']) {
+    for (const ch of ["R", "G", "B"]) {
       marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
     }
     const lastSurfZ = zPos[L.N - 1];
@@ -456,22 +479,22 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
     expect(Math.abs(spread.lcaMm)).toBeGreaterThan(0.01);
   });
 
-  it('rays trace at close focus (t=1) without TIR', () => {
+  it("rays trace at close focus (t=1) without TIR", () => {
     const { z: zClose } = doLayout(1.0, 0, L);
     const h = 0.5 * L.EP.epSD;
     const { clipped } = traceRay(h, 0, zClose, 1.0, 0, L.stopPhysSD, false, L);
     expect(clipped).toBe(false);
   });
 
-  it('stopped-down rays (f/8) trace without issues', () => {
+  it("stopped-down rays (f/8) trace without issues", () => {
     // At f/8, stop SD = EP_SD × (f_open / f_stop)
     const stoppedSD = L.stopPhysSD * (L.FOPEN / 8);
-    const h = 0.83 * stoppedSD / L.EP.yRatio;  // scale to EP
+    const h = (0.83 * stoppedSD) / L.EP.yRatio; // scale to EP
     const { clipped } = traceRay(h, 0, zPos, 0, 0, stoppedSD, false, L);
     expect(clipped).toBe(false);
   });
 
-  it('ghost mode returns rendering points even when clipped', () => {
+  it("ghost mode returns rendering points even when clipped", () => {
     // Use a very large ray that will definitely clip
     const h = 2.0 * L.EP.epSD;
     const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
@@ -482,32 +505,32 @@ describe('traceRay — Sonnar 50 f/1.5 production lens', () => {
 });
 
 /* ── conjugateK with real-ray trace ── */
-describe('conjugateK', () => {
+describe("conjugateK", () => {
   const allLenses = [
-    ['ApoLanthar50f2',  buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw })],
-    ['Nokton50f1',      buildLens({ ...LENS_DEFAULTS, ...NoktonRaw })],
-    ['NikkorZ50mmf18S', buildLens({ ...LENS_DEFAULTS, ...NikkorRaw })],
-    ['Nikkor105f14E',   buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw })],
-    ['Sonnar50f15',     buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw })],
+    ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw })],
+    ["Nokton50f1", buildLens({ ...LENS_DEFAULTS, ...NoktonRaw })],
+    ["NikkorZ50mmf18S", buildLens({ ...LENS_DEFAULTS, ...NikkorRaw })],
+    ["Nikkor105f14E", buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw })],
+    ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw })],
   ];
 
-  it.each(allLenses)('%s: conjugateK(0) ≈ 0 at infinity', (name, L) => {
+  it.each(allLenses)("%s: conjugateK(0) ≈ 0 at infinity", (name, L) => {
     const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
 
-  it('Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)', () => {
+  it("Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
     const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
 
-  it.each(allLenses)('%s: conjugateK(1.0) is nonzero at close focus', (name, L) => {
+  it.each(allLenses)("%s: conjugateK(1.0) is nonzero at close focus", (name, L) => {
     const K = conjugateK(1.0, 0, L);
     expect(Math.abs(K)).toBeGreaterThan(1e-6);
   });
 
-  it('returns 0 gracefully for TIR conditions', () => {
+  it("returns 0 gracefully for TIR conditions", () => {
     // Pathological lens that causes TIR at zonal height
     const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
     // Manually corrupt EP to trigger NaN path
@@ -516,18 +539,24 @@ describe('conjugateK', () => {
   });
 });
 
-describe('thick — zoom edge cases', () => {
-  it('handles zoomT=1.0 at tele end correctly', () => {
+describe("thick — zoom edge cases", () => {
+  it("handles zoomT=1.0 at tele end correctly", () => {
     const L = {
       S: [{ d: 2.0 }],
-      varByIdx: { 0: [[2.0, 4.0], [6.0, 8.0], [10.0, 12.0]] },
+      varByIdx: {
+        0: [
+          [2.0, 4.0],
+          [6.0, 8.0],
+          [10.0, 12.0],
+        ],
+      },
       isZoom: true,
     };
     expect(thick(0, 0, 1.0, L)).toBe(10.0);
     expect(thick(0, 1, 1.0, L)).toBe(12.0);
   });
 
-  it('handles single-position zoom defensively', () => {
+  it("handles single-position zoom defensively", () => {
     const L = {
       S: [{ d: 5.0 }],
       varByIdx: { 0: [[5.0, 8.0]] },
@@ -539,47 +568,47 @@ describe('thick — zoom edge cases', () => {
   });
 });
 
-describe('eflAtZoom', () => {
-  it('returns L.EFL for prime lenses regardless of zoomT', () => {
+describe("eflAtZoom", () => {
+  it("returns L.EFL for prime lenses regardless of zoomT", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
     expect(eflAtZoom(0, L)).toBe(L.EFL);
     expect(eflAtZoom(0.5, L)).toBe(L.EFL);
     expect(eflAtZoom(1, L)).toBe(L.EFL);
   });
 
-  it('returns wide EFL at zoomT=0 and tele EFL at zoomT=1', () => {
+  it("returns wide EFL at zoomT=0 and tele EFL at zoomT=1", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
     expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs[0], 5);
     expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs[2], 5);
   });
 
-  it('interpolates monotonically between wide and tele', () => {
+  it("interpolates monotonically between wide and tele", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
     const efl = eflAtZoom(0.5, L);
     expect(efl).toBeGreaterThan(L.zoomEFLs[0]);
     expect(efl).toBeLessThan(L.zoomEFLs[2]);
   });
 
-  it('handles single-element zoomEFLs defensively', () => {
+  it("handles single-element zoomEFLs defensively", () => {
     const L = { isZoom: true, zoomEFLs: [50], EFL: 50 };
     expect(eflAtZoom(0, L)).toBe(50);
     expect(eflAtZoom(1, L)).toBe(50);
   });
 });
 
-describe('epAtZoom / halfFieldAtZoom', () => {
-  it('returns static values for prime lenses', () => {
+describe("epAtZoom / halfFieldAtZoom", () => {
+  it("returns static values for prime lenses", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
     expect(epAtZoom(0, L)).toBe(L.EP.epSD);
     expect(epAtZoom(0.5, L)).toBe(L.EP.epSD);
     expect(halfFieldAtZoom(0, L)).toBe(L.halfField);
   });
 
-  it('interpolates across zoom positions', () => {
+  it("interpolates across zoom positions", () => {
     const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
     const epWide = epAtZoom(0, L);
     const epTele = epAtZoom(1, L);
-    const epMid  = epAtZoom(0.5, L);
+    const epMid = epAtZoom(0.5, L);
     expect(epWide).toBeCloseTo(L.zoomEPs[0], 5);
     expect(epTele).toBeCloseTo(L.zoomEPs[2], 5);
     /* Mid should be between wide and tele (or equal) */
@@ -588,12 +617,12 @@ describe('epAtZoom / halfFieldAtZoom', () => {
   });
 });
 
-describe('named constants', () => {
-  it('FLAT_R_THRESHOLD is 1e10', () => {
+describe("named constants", () => {
+  it("FLAT_R_THRESHOLD is 1e10", () => {
     expect(FLAT_R_THRESHOLD).toBe(1e10);
   });
 
-  it('FOCUS_INFINITY_THRESHOLD is 0.003', () => {
+  it("FOCUS_INFINITY_THRESHOLD is 0.003", () => {
     expect(FOCUS_INFINITY_THRESHOLD).toBe(0.003);
   });
 });

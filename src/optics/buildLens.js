@@ -5,9 +5,8 @@
  * a frozen runtime lens object L.  Pure function — no side effects.
  */
 
-import validateLensData from './validateLensData.js';
-import { FLAT_R_THRESHOLD } from './optics.js';
-
+import validateLensData from "./validateLensData.js";
+import { FLAT_R_THRESHOLD } from "./optics.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -33,21 +32,22 @@ function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeig
   const N = stopAt !== undefined ? stopAt : S.length;
   const total = S.length;
   const heights = recordHeights ? [] : null;
-  let y = y0, u = u0, n = 1.0;
+  let y = y0,
+    u = u0,
+    n = 1.0;
   for (let i = 0; i < N; i++) {
     if (recordHeights) heights.push(y);
     const { R, nd, d } = S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n)
-      u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
     n = nn;
-    const isLast = (i === N - 1);
-    if (isLast && skipLastTransfer) { /* skip */ }
-    else if (i < total - 1) y += d * u;
+    const isLast = i === N - 1;
+    if (isLast && skipLastTransfer) {
+      /* skip */
+    } else if (i < total - 1) y += d * u;
   }
   return { y, u, n, heights };
 }
-
 
 /**
  * Build a frozen runtime lens object from validated LENS_DATA.
@@ -66,32 +66,34 @@ function paraxialTrace(S, y0, u0, { stopAt, skipLastTransfer = false, recordHeig
 export default function buildLens(data) {
   const validationErrors = validateLensData(data);
   if (validationErrors.length > 0)
-    throw new Error(`Lens data "${data.key || '?'}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join('\n  • ')}`);
+    throw new Error(
+      `Lens data "${data.key || "?"}" has ${validationErrors.length} error(s):\n  • ${validationErrors.join("\n  • ")}`,
+    );
 
-  const S = data.surfaces.map(s => ({ ...s }));
+  const S = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
 
   const labelIdx = {};
   for (let i = 0; i < N; i++) labelIdx[S[i].label] = i;
 
   const asphByIdx = {};
-  for (const [label, coeffs] of Object.entries(data.asph || {}))
-    asphByIdx[labelIdx[label]] = coeffs;
+  for (const [label, coeffs] of Object.entries(data.asph || {})) asphByIdx[labelIdx[label]] = coeffs;
 
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
 
   const varByIdx = {};
-  for (const [label, range] of Object.entries(data.var || {}))
-    varByIdx[labelIdx[label]] = range;
+  for (const [label, range] of Object.entries(data.var || {})) varByIdx[labelIdx[label]] = range;
 
-  const varLabels = (data.varLabels || []).map(([label, text]) =>
-    [labelIdx[label], text]);
+  const varLabels = (data.varLabels || []).map(([label, text]) => [labelIdx[label], text]);
 
   const ES = [];
   for (const elem of data.elements) {
     let startIdx = -1;
     for (let i = 0; i < N; i++) {
-      if (S[i].elemId === elem.id) { startIdx = i; break; }
+      if (S[i].elemId === elem.id) {
+        startIdx = i;
+        break;
+      }
     }
     ES.push([elem.id, startIdx, startIdx + 1]);
   }
@@ -101,22 +103,22 @@ export default function buildLens(data) {
   for (let i = 0; i < N; i++) {
     const eid = S[i].elemId;
     if (eid) {
-      const elem = data.elements.find(e => e.id === eid);
+      const elem = data.elements.find((e) => e.id === eid);
       if (elem && elem.vd) vdByIdx[i] = elem.vd;
     }
   }
 
   function resolveAnnotation(arr) {
-    return (arr || []).map(g => ({
+    return (arr || []).map((g) => ({
       text: g.text,
       fromSurface: labelIdx[g.fromSurface],
       toSurface: labelIdx[g.toSurface],
     }));
   }
-  const groups   = resolveAnnotation(data.groups);
+  const groups = resolveAnnotation(data.groups);
   const doublets = resolveAnnotation(data.doublets);
 
-  const stopIdx = S.findIndex(row => row.label === "STO");
+  const stopIdx = S.findIndex((row) => row.label === "STO");
 
   /* ── Derive stop SD from nominal f-number ──
    *  When the lens data specifies nominalFno instead of an explicit stop SD,
@@ -125,8 +127,8 @@ export default function buildLens(data) {
    */
   if (data.nominalFno !== undefined) {
     const { y: yRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
-    const { u: ue }     = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
-    const efl  = -1.0 / ue;
+    const { u: ue } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
+    const efl = -1.0 / ue;
     const epSD = efl / (2 * data.nominalFno);
     S[stopIdx].sd = epSD * yRatio;
   }
@@ -137,7 +139,9 @@ export default function buildLens(data) {
   const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const EFL = -1.0 / eflTrace.u;
   if (!isFinite(EFL))
-    throw new Error(`Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`);
+    throw new Error(
+      `Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`,
+    );
 
   /* Entrance pupil: trace marginal ray to the stop; the height ratio
    * epTrace.y maps between entrance pupil SD and physical stop SD.
@@ -151,7 +155,7 @@ export default function buildLens(data) {
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
 
   const stopPhysSD = S[stopIdx].sd;
-  const FOPEN      = EFL / (2 * EP.epSD); /* wide-open f-number */
+  const FOPEN = EFL / (2 * EP.epSD); /* wide-open f-number */
   if (!isFinite(FOPEN))
     throw new Error(`Lens "${data.key}": Wide-open f-number is not finite (EFL=${EFL}, epSD=${EP.epSD})`);
 
@@ -176,7 +180,7 @@ export default function buildLens(data) {
       if (uMax < minU) minU = uMax;
     }
   }
-  const halfField = Math.atan(minU) * 180 / Math.PI;
+  const halfField = (Math.atan(minU) * 180) / Math.PI;
   if (!isFinite(halfField))
     throw new Error(`Lens "${data.key}": Half-field angle is not finite — vignetting computation failed`);
 
@@ -206,29 +210,29 @@ export default function buildLens(data) {
     for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
     totalTrack = z[N - 1] + S[N - 1].d;
   }
-  const maxSD = Math.max(...S.map(s => s.sd));
+  const maxSD = Math.max(...S.map((s) => s.sd));
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
-  const SC  = svgW * scFill / totalTrack;
-  let   YSC = svgH * yScFill / maxSD;
+  const SC = (svgW * scFill) / totalTrack;
+  let YSC = (svgH * yScFill) / maxSD;
   const maxAR = data.maxAspectRatio;
   if (maxAR > 0 && YSC / SC > maxAR) YSC = SC * maxAR;
-  const maxRimSin  = Math.sin(maxRimAngleDeg * Math.PI / 180);
-  const gridPitch  = totalTrack / 15;
-  const gridCount  = Math.ceil(svgW / (gridPitch * SC)) + 4;
-  const lyDoublet  = -1.10  * maxSD;
-  const lyImgLine  =  1.133 * maxSD;
+  const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+  const gridPitch = totalTrack / 15;
+  const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
+  const lyDoublet = -1.1 * maxSD;
+  const lyImgLine = 1.133 * maxSD;
   const lyImgLabel = -1.233 * maxSD;
-  const lyElemNum  =  1.20  * maxSD;
-  const lyVdBadge  =  1.36  * maxSD;
-  const lyGroup    =  1.37  * maxSD;
-  const lyStoPad   =  0.12  * maxSD;
+  const lyElemNum = 1.2 * maxSD;
+  const lyVdBadge = 1.36 * maxSD;
+  const lyGroup = 1.37 * maxSD;
+  const lyStoPad = 0.12 * maxSD;
 
-  const rayHeights      = data.rayFractions.map(f => f * EP.epSD);
-  const rayLead         = totalTrack * data.rayLeadFrac;
-  const bladeStubFrac   = 1 - Math.max(...data.rayFractions.map(Math.abs));
+  const rayHeights = data.rayFractions.map((f) => f * EP.epSD);
+  const rayLead = totalTrack * data.rayLeadFrac;
+  const bladeStubFrac = 1 - Math.max(...data.rayFractions.map(Math.abs));
   const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
-  const offAxisHeights  = data.offAxisFractions.map(f => f * EP.epSD);
+  const offAxisHeights = data.offAxisFractions.map((f) => f * EP.epSD);
 
   /* ── Zoom-lens derived constants ──
    *  Pre-compute optical properties at each zoom position by constructing
@@ -240,12 +244,18 @@ export default function buildLens(data) {
    *  - zoomYRatios:   marginal ray height ratio at stop (for EP scaling)
    *  - zoomBs:        chief ray height at stop (for off-axis ray placement)
    */
-  let zoomEFLs = null, zoomEPs = null, zoomHalfFields = null;
-  let zoomYRatios = null, zoomBs = null;
+  let zoomEFLs = null,
+    zoomEPs = null,
+    zoomHalfFields = null;
+  let zoomYRatios = null,
+    zoomBs = null;
   if (isZoom) {
     const nz = data.zoomPositions.length;
-    zoomEFLs = []; zoomEPs = []; zoomHalfFields = [];
-    zoomYRatios = []; zoomBs = [];
+    zoomEFLs = [];
+    zoomEPs = [];
+    zoomHalfFields = [];
+    zoomYRatios = [];
+    zoomBs = [];
     for (let zi = 0; zi < nz; zi++) {
       const tmpS = S.map((s, i) => {
         const v = varByIdx[i];
@@ -279,32 +289,69 @@ export default function buildLens(data) {
           if (uMax < zMinU) zMinU = uMax;
         }
       }
-      zoomHalfFields.push(Math.atan(zMinU) * 180 / Math.PI);
+      zoomHalfFields.push((Math.atan(zMinU) * 180) / Math.PI);
     }
   }
 
   return Object.freeze({
-    data, S, N, ES,
+    data,
+    S,
+    N,
+    ES,
     elements: data.elements,
-    asphByIdx, varByIdx, vdByIdx, varLabels,
-    groups, doublets,
-    stopIdx, stopPhysSD,
-    EFL, EP, B, FOPEN, halfField, totalTrack, maxSD,
-    svgW: data.svgW, svgH: data.svgH,
-    SC, YSC, maxRimSin, gapSagFrac, clipMargin,
-    gridPitch, gridCount,
-    lyDoublet, lyImgLine, lyImgLabel, lyElemNum, lyVdBadge, lyGroup, lyStoPad,
+    asphByIdx,
+    varByIdx,
+    vdByIdx,
+    varLabels,
+    groups,
+    doublets,
+    stopIdx,
+    stopPhysSD,
+    EFL,
+    EP,
+    B,
+    FOPEN,
+    halfField,
+    totalTrack,
+    maxSD,
+    svgW: data.svgW,
+    svgH: data.svgH,
+    SC,
+    YSC,
+    maxRimSin,
+    gapSagFrac,
+    clipMargin,
+    gridPitch,
+    gridCount,
+    lyDoublet,
+    lyImgLine,
+    lyImgLabel,
+    lyElemNum,
+    lyVdBadge,
+    lyGroup,
+    lyStoPad,
     lensShiftFrac: data.lensShiftFrac || 0,
-    rayFractions: data.rayFractions, rayHeights, rayLead, bladeStubFrac,
-    offAxisFieldDeg, offAxisFieldFrac: data.offAxisFieldFrac,
-    offAxisFractions: data.offAxisFractions, offAxisHeights,
-    closeFocusM: data.closeFocusM, focusStep: data.focusStep,
+    rayFractions: data.rayFractions,
+    rayHeights,
+    rayLead,
+    bladeStubFrac,
+    offAxisFieldDeg,
+    offAxisFieldFrac: data.offAxisFieldFrac,
+    offAxisFractions: data.offAxisFractions,
+    offAxisHeights,
+    closeFocusM: data.closeFocusM,
+    focusStep: data.focusStep,
     focusDescription: data.focusDescription,
-    maxFstop: data.maxFstop, apertureStep: data.apertureStep,
+    maxFstop: data.maxFstop,
+    apertureStep: data.apertureStep,
     fstopSeries: data.fstopSeries,
     isZoom,
     zoomPositions: isZoom ? data.zoomPositions : null,
-    zoomEFLs, zoomEPs, zoomHalfFields, zoomYRatios, zoomBs,
+    zoomEFLs,
+    zoomEPs,
+    zoomHalfFields,
+    zoomYRatios,
+    zoomBs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,

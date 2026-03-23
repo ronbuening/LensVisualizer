@@ -24,10 +24,9 @@
  */
 
 const LENS_DATA = {
-
   /* ── Identity ── */
-  key:      "ricoh-gr3-28f28",
-  name:     "RICOH GR III  18.3mm f/2.8",
+  key: "ricoh-gr3-28f28",
+  name: "RICOH GR III  18.3mm f/2.8",
   subtitle: "US 2019/0154946 A1, Example 5 — Ohashi / Ricoh",
   specs: [
     "6 ELEMENTS / 4 GROUPS",
@@ -42,34 +41,87 @@ const LENS_DATA = {
    *  Rear group LI:  L21+L22 (cemented doublet), L23 (singlet)
    */
   elements: [
-    { id: 1, name: "L11", label: "Element 1 (L11)", type: "Neg. Meniscus (1× Asph)",
-      nd: 1.51633, vd: 64.06, fl: -60.9, glass: "OHARA L-BSL7 (PGM)",
-      apd: false, role: "Front negative meniscus; introduces weak retrofocus property for exit pupil control. Aspherical rear surface (S02) corrects spherical aberration and field curvature." },
-
-    { id: 2, name: "L12", label: "Element 2 (L12)", type: "Biconcave Negative",
-      nd: 1.63980, vd: 34.47, fl: -8.9, glass: "OHARA S-TIM27",
-      apd: false, cemented: "D1",
-      role: "Negative flint component of front cemented doublet; provides chromatic correction for L13." },
-
-    { id: 3, name: "L13", label: "Element 3 (L13)", type: "Biconvex Positive",
-      nd: 1.88100, vd: 40.14, fl: 7.4, glass: "HOYA TAFD33",
-      apd: false, cemented: "D1",
-      role: "Positive high-index element of front doublet; primary converging power in front group." },
-
-    { id: 4, name: "L21", label: "Element 4 (L21)", type: "Biconvex Positive",
-      nd: 1.88100, vd: 40.14, fl: 6.3, glass: "HOYA TAFD33",
-      apd: false, cemented: "D2",
-      role: "Positive high-index element of rear doublet; strongest individual element in system (f ≈ +6.3 mm)." },
-
-    { id: 5, name: "L22", label: "Element 5 (L22)", type: "Biconcave Negative",
-      nd: 1.69895, vd: 30.13, fl: -7.3, glass: "OHARA S-TIM35",
-      apd: false, cemented: "D2",
-      role: "Negative dense flint in rear doublet; highest dispersion glass in system (νd = 30.1) for chromatic balance." },
-
-    { id: 6, name: "L23", label: "Element 6 (L23)", type: "Neg. Meniscus (2× Asph)",
-      nd: 1.88202, vd: 37.22, fl: -1620, glass: "HOYA M-TAFD307 (PGM)",
+    {
+      id: 1,
+      name: "L11",
+      label: "Element 1 (L11)",
+      type: "Neg. Meniscus (1× Asph)",
+      nd: 1.51633,
+      vd: 64.06,
+      fl: -60.9,
+      glass: "OHARA L-BSL7 (PGM)",
       apd: false,
-      role: "Double-aspherical corrector plate; near-zero paraxial power (f ≈ −1620 mm). Both surfaces aspherical — S10 fine-tunes field curvature, S11 (K = +7.28) provides final correction of astigmatism, coma, and distortion." },
+      role: "Front negative meniscus; introduces weak retrofocus property for exit pupil control. Aspherical rear surface (S02) corrects spherical aberration and field curvature.",
+    },
+
+    {
+      id: 2,
+      name: "L12",
+      label: "Element 2 (L12)",
+      type: "Biconcave Negative",
+      nd: 1.6398,
+      vd: 34.47,
+      fl: -8.9,
+      glass: "OHARA S-TIM27",
+      apd: false,
+      cemented: "D1",
+      role: "Negative flint component of front cemented doublet; provides chromatic correction for L13.",
+    },
+
+    {
+      id: 3,
+      name: "L13",
+      label: "Element 3 (L13)",
+      type: "Biconvex Positive",
+      nd: 1.881,
+      vd: 40.14,
+      fl: 7.4,
+      glass: "HOYA TAFD33",
+      apd: false,
+      cemented: "D1",
+      role: "Positive high-index element of front doublet; primary converging power in front group.",
+    },
+
+    {
+      id: 4,
+      name: "L21",
+      label: "Element 4 (L21)",
+      type: "Biconvex Positive",
+      nd: 1.881,
+      vd: 40.14,
+      fl: 6.3,
+      glass: "HOYA TAFD33",
+      apd: false,
+      cemented: "D2",
+      role: "Positive high-index element of rear doublet; strongest individual element in system (f ≈ +6.3 mm).",
+    },
+
+    {
+      id: 5,
+      name: "L22",
+      label: "Element 5 (L22)",
+      type: "Biconcave Negative",
+      nd: 1.69895,
+      vd: 30.13,
+      fl: -7.3,
+      glass: "OHARA S-TIM35",
+      apd: false,
+      cemented: "D2",
+      role: "Negative dense flint in rear doublet; highest dispersion glass in system (νd = 30.1) for chromatic balance.",
+    },
+
+    {
+      id: 6,
+      name: "L23",
+      label: "Element 6 (L23)",
+      type: "Neg. Meniscus (2× Asph)",
+      nd: 1.88202,
+      vd: 37.22,
+      fl: -1620,
+      glass: "HOYA M-TAFD307 (PGM)",
+      apd: false,
+      role: "Double-aspherical corrector plate; near-zero paraxial power (f ≈ −1620 mm). Both surfaces aspherical — S10 fine-tunes field curvature, S11 (K = +7.28) provides final correction of astigmatism, coma, and distortion.",
+    },
   ],
 
   /* ── Surface prescription ──
@@ -79,21 +131,21 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── Front group LO ──
-    { label: "1",   R:  17.034,  d: 0.70,  nd: 1.51633,  elemId: 1, sd: 6.0 },   // L11 front
-    { label: "2A",  R:  10.894,  d: 2.46,  nd: 1.0,      elemId: 0, sd: 5.5 },   // L11 rear → air (asph)
-    { label: "3",   R: -18.486,  d: 0.60,  nd: 1.63980,  elemId: 2, sd: 5.2 },   // L12 front
-    { label: "4",   R:   8.332,  d: 2.75,  nd: 1.88100,  elemId: 3, sd: 5.0 },   // L12→L13 junction
-    { label: "5",   R: -25.206,  d: 1.10,  nd: 1.0,      elemId: 0, sd: 4.6 },   // L13 rear → air
+    { label: "1", R: 17.034, d: 0.7, nd: 1.51633, elemId: 1, sd: 6.0 }, // L11 front
+    { label: "2A", R: 10.894, d: 2.46, nd: 1.0, elemId: 0, sd: 5.5 }, // L11 rear → air (asph)
+    { label: "3", R: -18.486, d: 0.6, nd: 1.6398, elemId: 2, sd: 5.2 }, // L12 front
+    { label: "4", R: 8.332, d: 2.75, nd: 1.881, elemId: 3, sd: 5.0 }, // L12→L13 junction
+    { label: "5", R: -25.206, d: 1.1, nd: 1.0, elemId: 0, sd: 4.6 }, // L13 rear → air
 
     // ── Aperture stop ──
-    { label: "STO", R:   1e15,   d: 1.20,  nd: 1.0,      elemId: 0, sd: 3.4 },   // stop (sd from marginal ray)
+    { label: "STO", R: 1e15, d: 1.2, nd: 1.0, elemId: 0, sd: 3.4 }, // stop (sd from marginal ray)
 
     // ── Rear group LI ──
-    { label: "7",   R:  13.099,  d: 2.76,  nd: 1.88100,  elemId: 4, sd: 4.8 },   // L21 front
-    { label: "8",   R:  -8.666,  d: 0.50,  nd: 1.69895,  elemId: 5, sd: 4.8 },   // L21→L22 junction
-    { label: "9",   R:  12.744,  d: 1.52,  nd: 1.0,      elemId: 0, sd: 5.0 },   // L22 rear → air
-    { label: "10A", R: -16.835,  d: 1.00,  nd: 1.88202,  elemId: 6, sd: 6.0 },   // L23 front (asph)
-    { label: "11A", R: -17.510,  d: 14.907, nd: 1.0,     elemId: 0, sd: 5.9 },   // L23 rear → air (asph) — BFD to image
+    { label: "7", R: 13.099, d: 2.76, nd: 1.881, elemId: 4, sd: 4.8 }, // L21 front
+    { label: "8", R: -8.666, d: 0.5, nd: 1.69895, elemId: 5, sd: 4.8 }, // L21→L22 junction
+    { label: "9", R: 12.744, d: 1.52, nd: 1.0, elemId: 0, sd: 5.0 }, // L22 rear → air
+    { label: "10A", R: -16.835, d: 1.0, nd: 1.88202, elemId: 6, sd: 6.0 }, // L23 front (asph)
+    { label: "11A", R: -17.51, d: 14.907, nd: 1.0, elemId: 0, sd: 5.9 }, // L23 rear → air (asph) — BFD to image
   ],
 
   /* ── Aspherical coefficients ──
@@ -102,31 +154,31 @@ const LENS_DATA = {
    */
   asph: {
     "2A": {
-      K:    0.0,
-      A4:   2.49546e-04,
-      A6:   5.30767e-06,
-      A8:  -1.77772e-07,
-      A10:  2.52567e-08,
-      A12: -9.46560e-10,
-      A14:  1.70552e-11,
+      K: 0.0,
+      A4: 2.49546e-4,
+      A6: 5.30767e-6,
+      A8: -1.77772e-7,
+      A10: 2.52567e-8,
+      A12: -9.4656e-10,
+      A14: 1.70552e-11,
     },
     "10A": {
-      K:    0.0,
-      A4:   2.21965e-04,
-      A6:  -7.84181e-07,
-      A8:   0,
-      A10:  0,
-      A12:  0,
-      A14:  0,
+      K: 0.0,
+      A4: 2.21965e-4,
+      A6: -7.84181e-7,
+      A8: 0,
+      A10: 0,
+      A12: 0,
+      A14: 0,
     },
     "11A": {
-      K:    7.28422,
-      A4:   6.02712e-04,
-      A6:   8.85505e-06,
-      A8:  -5.39399e-08,
-      A10:  4.60086e-09,
-      A12:  0,
-      A14:  0,
+      K: 7.28422,
+      A4: 6.02712e-4,
+      A6: 8.85505e-6,
+      A8: -5.39399e-8,
+      A10: 4.60086e-9,
+      A12: 0,
+      A14: 0,
     },
   },
 
@@ -140,32 +192,31 @@ const LENS_DATA = {
     "11A": [14.907, 18.69],
   },
 
-  varLabels: [
-    ["11A", "BF"],
-  ],
+  varLabels: [["11A", "BF"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (LO)",  fromSurface: "1",  toSurface: "5"   },
-    { text: "REAR (LI)",   fromSurface: "7",  toSurface: "11A" },
+    { text: "FRONT (LO)", fromSurface: "1", toSurface: "5" },
+    { text: "REAR (LI)", fromSurface: "7", toSurface: "11A" },
   ],
 
   doublets: [
-    { text: "D1", fromSurface: "3",  toSurface: "5"  },
-    { text: "D2", fromSurface: "7",  toSurface: "9"  },
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "7", toSurface: "9" },
   ],
 
   /* ── Focus configuration ── */
-  closeFocusM:      0.10,
-  focusDescription: "Unit focus — entire lens assembly translates along axis. Normal mode 0.10 m to ∞; macro mode extends to 0.06 m.",
+  closeFocusM: 0.1,
+  focusDescription:
+    "Unit focus — entire lens assembly translates along axis. Normal mode 0.10 m to ∞; macro mode extends to 0.06 m.",
 
   /* ── Aperture configuration ── */
-  nominalFno:   2.87,
-  fstopSeries:  [2.8, 3.2, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
+  nominalFno: 2.87,
+  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
 
   /* ── Layout tuning ── */
-  scFill:           0.42,
-  yScFill:          0.45,
+  scFill: 0.42,
+  yScFill: 0.45,
 };
 
 export default LENS_DATA;

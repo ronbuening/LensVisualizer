@@ -6,11 +6,10 @@
  */
 
 /* ── Named constants ── */
-export const FLAT_R_THRESHOLD   = 1e10;  /* surfaces with |R| above this are treated as flat (plano) */
-const SVG_PATH_SUBDIVISIONS     = 48;    /* arc segments per surface when building SVG paths */
-const BISECT_ITERATIONS         = 30;    /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
+export const FLAT_R_THRESHOLD = 1e10; /* surfaces with |R| above this are treated as flat (plano) */
+const SVG_PATH_SUBDIVISIONS = 48; /* arc segments per surface when building SVG paths */
+const BISECT_ITERATIONS = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD = 0.003; /* focusT values below this are treated as infinity focus */
-
 
 /* =====================================================================
  * §4  RENDERING HELPERS — Sag, layout, and shape utilities
@@ -29,7 +28,9 @@ export const FOCUS_INFINITY_THRESHOLD = 0.003; /* focusT values below this are t
  */
 export function sag(h, R) {
   if (Math.abs(R) > FLAT_R_THRESHOLD) return 0;
-  const c = 1 / R, h2 = h * h, d = 1 - c * c * h2;
+  const c = 1 / R,
+    h2 = h * h,
+    d = 1 - c * c * h2;
   return (c * h2) / (1 + Math.sqrt(d > 0 ? d : 0));
 }
 
@@ -56,8 +57,7 @@ export function renderSag(h, surfIdx, L) {
   const h2 = h * h;
   const d = 1 - (1 + a.K) * c * c * h2;
   const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-  const poly = a.A4*h2*h2 + a.A6*h2**3 + a.A8*h2**4
-             + a.A10*h2**5 + a.A12*h2**6 + a.A14*h2**7;
+  const poly = a.A4 * h2 * h2 + a.A6 * h2 ** 3 + a.A8 * h2 ** 4 + a.A10 * h2 ** 5 + a.A12 * h2 ** 6 + a.A14 * h2 ** 7;
   return conic + poly;
 }
 
@@ -80,10 +80,16 @@ export function sagSlope(h, surfIdx, L) {
   const K = a ? a.K : 0;
   const h2 = h * h;
   const denom2 = 1 - (1 + K) * c * c * h2;
-  const conicSlope = c * h / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
+  const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
   if (!a) return conicSlope;
-  const polySlope = h * (4*a.A4*h2 + 6*a.A6*h2*h2 + 8*a.A8*h2**3
-                       + 10*a.A10*h2**4 + 12*a.A12*h2**5 + 14*a.A14*h2**6);
+  const polySlope =
+    h *
+    (4 * a.A4 * h2 +
+      6 * a.A6 * h2 * h2 +
+      8 * a.A8 * h2 ** 3 +
+      10 * a.A10 * h2 ** 4 +
+      12 * a.A12 * h2 ** 5 +
+      14 * a.A14 * h2 ** 6);
   return conicSlope + polySlope;
 }
 
@@ -103,10 +109,12 @@ export function sagSlope(h, surfIdx, L) {
 export function gapTrimHeight(surfIdx, sd, maxSag, L) {
   if (maxSag <= 0 || L.gapSagFrac <= 0) return sd;
   if (Math.abs(renderSag(sd, surfIdx, L)) <= maxSag) return sd;
-  let lo = 0, hi = sd;
+  let lo = 0,
+    hi = sd;
   for (let j = 0; j < BISECT_ITERATIONS; j++) {
     const mid = (lo + hi) / 2;
-    if (Math.abs(renderSag(mid, surfIdx, L)) > maxSag) hi = mid; else lo = mid;
+    if (Math.abs(renderSag(mid, surfIdx, L)) > maxSag) hi = mid;
+    else lo = mid;
   }
   return (lo + hi) / 2;
 }
@@ -135,7 +143,7 @@ export function thick(i, focusT, zoomT, L) {
   const zp = zoomT * (nz - 1);
   const zi = Math.min(Math.floor(zp), nz - 2);
   const zf = zp - zi;
-  const d_inf   = v[zi][0] + (v[zi + 1][0] - v[zi][0]) * zf;
+  const d_inf = v[zi][0] + (v[zi + 1][0] - v[zi][0]) * zf;
   const d_close = v[zi][1] + (v[zi + 1][1] - v[zi][1]) * zf;
   return d_inf + (d_close - d_inf) * focusT;
 }
@@ -231,7 +239,6 @@ function _lerpZoomArray(zoomT, arr) {
   return arr[idx] + (arr[idx + 1] - arr[idx]) * frac;
 }
 
-
 /* =====================================================================
  * §5  OPTICS ENGINE — Ray-trace and conjugate functions
  * =================================================================== */
@@ -261,20 +268,22 @@ export function traceRay(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L) {
   const pts = [];
   const ghostPts = [];
   pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
-  let y = y0, n = 1.0;
+  let y = y0,
+    n = 1.0;
   let U = Math.atan(u0);
   let clipped = false;
   for (let i = 0; i < L.N; i++) {
     const { nd, sd } = L.S[i];
     const z = zPos[i];
     const isStop = i === L.stopIdx;
-    const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
+    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
     if (!clipped && Math.abs(y) > clip) {
       if (!ghost) break;
       clipped = true;
     }
     const pt = [z + renderSag(Math.abs(y), i, L), y];
-    if (clipped) ghostPts.push(pt); else pts.push(pt);
+    if (clipped) ghostPts.push(pt);
+    else pts.push(pt);
     const nn = nd === 1.0 ? 1.0 : nd;
     if (nn !== n) {
       /* Exact Snell's law refraction:
@@ -307,9 +316,9 @@ export function traceRay(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L) {
  */
 export function wavelengthNd(nd, vd, channel) {
   if (nd === 1.0) return 1.0;
-  if (!vd || channel === 'G') return nd;
+  if (!vd || channel === "G") return nd;
   const delta = (nd - 1) / (2 * vd);
-  return channel === 'R' ? nd - delta : nd + delta;
+  return channel === "R" ? nd - delta : nd + delta;
 }
 
 /**
@@ -335,20 +344,22 @@ export function traceRayChromatic(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L,
   const pts = [];
   const ghostPts = [];
   pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
-  let y = y0, n = 1.0;
+  let y = y0,
+    n = 1.0;
   let U = Math.atan(u0);
   let clipped = false;
   for (let i = 0; i < L.N; i++) {
     const { nd, sd } = L.S[i];
     const z = zPos[i];
     const isStop = i === L.stopIdx;
-    const clip = (isStop && stopSD !== undefined) ? stopSD : sd * L.clipMargin;
+    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
     if (!clipped && Math.abs(y) > clip) {
       if (!ghost) break;
       clipped = true;
     }
     const pt = [z + renderSag(Math.abs(y), i, L), y];
-    if (clipped) ghostPts.push(pt); else pts.push(pt);
+    if (clipped) ghostPts.push(pt);
+    else pts.push(pt);
     const nn = wavelengthNd(nd, L.vdByIdx[i], channel);
     if (nn !== n) {
       const absY = Math.abs(y);
@@ -377,7 +388,7 @@ export function traceRayChromatic(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L,
 export function computeChromaticSpread(marginalRays, imgZ, lastSurfZ) {
   const intercepts = {};
   const imgHeights = {};
-  for (const ch of ['R', 'G', 'B']) {
+  for (const ch of ["R", "G", "B"]) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
     if (Math.abs(ray.u) > 1e-15) {
@@ -386,10 +397,8 @@ export function computeChromaticSpread(marginalRays, imgZ, lastSurfZ) {
     const dz = imgZ - lastSurfZ;
     imgHeights[ch] = ray.y + dz * ray.u;
   }
-  const lcaMm = (intercepts.R !== undefined && intercepts.B !== undefined)
-    ? intercepts.R - intercepts.B : 0;
-  const tcaMm = (imgHeights.R !== undefined && imgHeights.B !== undefined)
-    ? imgHeights.R - imgHeights.B : 0;
+  const lcaMm = intercepts.R !== undefined && intercepts.B !== undefined ? intercepts.R - intercepts.B : 0;
+  const tcaMm = imgHeights.R !== undefined && imgHeights.B !== undefined ? imgHeights.R - imgHeights.B : 0;
   return { lcaMm, tcaMm, intercepts, imgHeights };
 }
 
@@ -409,11 +418,13 @@ export function computeChromaticSpread(marginalRays, imgZ, lastSurfZ) {
  * @returns {number}         ray height at image plane (mm)
  */
 export function traceToImage(y0, u0, focusT, zoomT, L) {
-  let y = y0, u = u0, n = 1.0;
+  let y = y0,
+    u = u0,
+    n = 1.0;
   for (let i = 0; i < L.N; i++) {
     const { R, nd } = L.S[i];
     const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - y * (nn - n) / R) / nn : (n * u) / nn;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
     n = nn;
     y += thick(i, focusT, zoomT, L) * u;
   }
@@ -426,7 +437,8 @@ export function traceToImage(y0, u0, focusT, zoomT, L) {
  * conjugateK self-consistent with the rendering engine (traceRay).
  */
 function traceToImageReal(y0, u0, focusT, zoomT, L) {
-  let y = y0, n = 1.0;
+  let y = y0,
+    n = 1.0;
   let U = Math.atan(u0);
   for (let i = 0; i < L.N; i++) {
     const { nd } = L.S[i];
@@ -460,7 +472,7 @@ function realK(yRef, du, focusT, zoomT, L) {
   if (isNaN(y0) || isNaN(y1)) return NaN;
   const dydu = (y1 - y0) / du;
   if (Math.abs(dydu) < 1e-15) return NaN;
-  return (-y0 / dydu) / yRef;
+  return -y0 / dydu / yRef;
 }
 
 /**
