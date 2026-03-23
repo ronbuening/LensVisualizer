@@ -5,35 +5,7 @@
 
 import { eflAtZoom, formatDist } from "../optics/optics.js";
 import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../utils/featureFlags.js";
-
-/* ── Hoisted styles ── */
-const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em", transition: "color 0.3s" };
-const SLIDER_VALUE_BASE = {
-  fontSize: 14,
-  fontWeight: 700,
-  fontVariantNumeric: "tabular-nums",
-  transition: "color 0.3s",
-};
-const SLIDER_INPUT_BASE = {
-  flex: 1,
-  height: 4,
-  appearance: "none",
-  borderRadius: 2,
-  outline: "none",
-  cursor: "pointer",
-};
-const COLLAPSE_BTN_BASE = {
-  borderRadius: 10,
-  cursor: "pointer",
-  padding: "3px 8px",
-  display: "flex",
-  alignItems: "center",
-  gap: 4,
-  fontSize: 8,
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-};
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, collapseBtn, sliderInput } from "../utils/styles.js";
 
 export default function DiagramControls({
   L,
@@ -89,7 +61,7 @@ export default function DiagramControls({
               value={zoomT}
               onChange={(e) => onZoomChange?.(parseFloat(e.target.value))}
               onPointerUp={onSliderPointerUp}
-              style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
+              style={sliderInput(t)}
             />
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>
               {L.zoomPositions[L.zoomPositions.length - 1]} mm
@@ -116,13 +88,7 @@ export default function DiagramControls({
             {ENABLE_COLLAPSIBLE_FOCUS && (
               <button
                 onClick={() => onFocusExpandedChange?.(!focusExpanded)}
-                style={{
-                  ...COLLAPSE_BTN_BASE,
-                  marginLeft: "auto",
-                  background: t.toggleBg,
-                  border: `1px solid ${t.toggleBorder}`,
-                  color: t.muted,
-                }}
+                style={{ ...collapseBtn(t), marginLeft: "auto" }}
               >
                 <span>{focusExpanded ? "LESS" : "MORE"}</span>
                 <span style={{ fontSize: 11, lineHeight: 1 }}>{focusExpanded ? "▴" : "▾"}</span>
@@ -139,7 +105,7 @@ export default function DiagramControls({
               value={focusT}
               onChange={(e) => onFocusChange?.(parseFloat(e.target.value))}
               onPointerUp={onSliderPointerUp}
-              style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
+              style={sliderInput(t)}
             />
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
           </div>
@@ -198,13 +164,7 @@ export default function DiagramControls({
             {ENABLE_COLLAPSIBLE_APERTURE && (
               <button
                 onClick={() => onApertureExpandedChange?.(!apertureExpanded)}
-                style={{
-                  ...COLLAPSE_BTN_BASE,
-                  marginLeft: "auto",
-                  background: t.toggleBg,
-                  border: `1px solid ${t.toggleBorder}`,
-                  color: t.muted,
-                }}
+                style={{ ...collapseBtn(t), marginLeft: "auto" }}
               >
                 <span>{apertureExpanded ? "LESS" : "MORE"}</span>
                 <span style={{ fontSize: 11, lineHeight: 1 }}>{apertureExpanded ? "▴" : "▾"}</span>
@@ -221,7 +181,7 @@ export default function DiagramControls({
               value={stopdownT}
               onChange={(e) => onStopdownChange?.(parseFloat(e.target.value))}
               onPointerUp={onSliderPointerUp}
-              style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
+              style={sliderInput(t)}
             />
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
           </div>

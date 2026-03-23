@@ -19,40 +19,7 @@ import {
   ENABLE_COLLAPSIBLE_HEADER_INFO,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
-
-/* ── Hoisted style constants ── */
-const COLLAPSE_BTN_BASE = {
-  borderRadius: 10,
-  cursor: "pointer",
-  padding: "3px 8px",
-  display: "flex",
-  alignItems: "center",
-  gap: 4,
-  fontSize: 8,
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-};
-const TOGGLE_GROUP_BASE = {
-  display: "flex",
-  gap: 0,
-  borderRadius: 5,
-  overflow: "hidden",
-  width: "100%",
-  transition: "border-color 0.3s",
-};
-const TOGGLE_BTN_BASE = {
-  border: "none",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-  minHeight: 28,
-  fontSize: 9,
-};
+import { toggleGroup, toggleBtn, chromChannelBtn, collapseBtn, headerStrip } from "../utils/styles.js";
 
 const DiagramHeader = forwardRef(function DiagramHeader(
   {
@@ -93,14 +60,10 @@ const DiagramHeader = forwardRef(function DiagramHeader(
     <div
       ref={ref}
       style={{
-        padding: compact ? "12px 16px 8px" : "18px 24px 10px",
-        borderBottom: `1px solid ${t.headerBorder}`,
-        backgroundColor: t.headerBgColor,
-        backgroundImage: t.headerBgImage,
+        ...headerStrip(t, { padding: compact ? "12px 16px 8px" : "18px 24px 10px" }),
         display: "flex",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        transition: "background-color 0.3s,border-color 0.3s",
         ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}),
       }}
     >
@@ -151,15 +114,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
             {L.data.subtitle}
           </span>
           {ENABLE_COLLAPSIBLE_HEADER_INFO && !isWide && (
-            <button
-              onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)}
-              style={{
-                ...COLLAPSE_BTN_BASE,
-                background: t.toggleBg,
-                border: `1px solid ${t.toggleBorder}`,
-                color: t.muted,
-              }}
-            >
+            <button onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)} style={collapseBtn(t)}>
               <span>{headerInfoExpanded ? "LESS" : "MORE"}</span>
               <span style={{ fontSize: 11, lineHeight: 1 }}>{headerInfoExpanded ? "▴" : "▾"}</span>
             </button>
@@ -226,21 +181,9 @@ const DiagramHeader = forwardRef(function DiagramHeader(
               <button
                 onClick={() => onHeaderControlsExpandedChange?.(!headerControlsExpanded)}
                 style={{
-                  background: t.toggleBg,
-                  border: `1px solid ${t.toggleBorder}`,
+                  ...toggleBtn(t, false, { hasRightBorder: false, padding: "5px 12px" }),
                   borderRadius: 5,
-                  padding: "5px 12px",
-                  cursor: "pointer",
-                  fontSize: 9,
-                  color: t.toggleInactiveText,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 5,
-                  transition: "all 0.25s",
-                  fontFamily: "inherit",
-                  letterSpacing: "0.08em",
                   width: headerControlsExpanded ? "100%" : "auto",
-                  justifyContent: "center",
                 }}
               >
                 <span style={{ fontSize: 11, lineHeight: 1 }}>⚙</span>
@@ -251,39 +194,18 @@ const DiagramHeader = forwardRef(function DiagramHeader(
             {/* Theme controls */}
             {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && (
               <>
-                <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
-                  <button
-                    onClick={() => onHighContrastChange?.(!highContrast)}
-                    style={{
-                      ...TOGGLE_BTN_BASE,
-                      flex: 1,
-                      background: highContrast ? t.toggleActiveBg : t.toggleBg,
-                      borderRight: `1px solid ${t.toggleBorder}`,
-                      padding: "5px 8px",
-                      color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
-                      gap: 5,
-                    }}
-                  >
+                <div style={toggleGroup(t, { width: "100%" })}>
+                  <button onClick={() => onHighContrastChange?.(!highContrast)} style={toggleBtn(t, highContrast)}>
                     <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
                     <span>HC</span>
                   </button>
-                  <button
-                    onClick={() => onDarkChange?.(!dark)}
-                    style={{
-                      ...TOGGLE_BTN_BASE,
-                      flex: 1,
-                      background: t.toggleBg,
-                      padding: "5px 8px",
-                      color: t.toggleInactiveText,
-                      gap: 5,
-                    }}
-                  >
+                  <button onClick={() => onDarkChange?.(!dark)} style={toggleBtn(t, false, { hasRightBorder: false })}>
                     <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
                     <span>{dark ? "Light" : "Dark"}</span>
                   </button>
                 </div>
                 {/* Ray toggles */}
-                <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
+                <div style={toggleGroup(t, { width: "100%" })}>
                   {(() => {
                     const offAxisActive = showOffAxis !== "off";
                     const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -315,19 +237,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                         dotB: t.rayOffCool,
                       },
                     ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-                      <button
-                        key={idx}
-                        onClick={onClick}
-                        style={{
-                          ...TOGGLE_BTN_BASE,
-                          flex: 1,
-                          background: active ? t.toggleActiveBg : t.toggleBg,
-                          borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
-                          padding: "5px 8px",
-                          color: active ? t.toggleActiveText : t.toggleInactiveText,
-                          gap: 5,
-                        }}
-                      >
+                      <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
                         <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
                           <line
                             x1="0"
@@ -352,7 +262,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                   })()}
                 </div>
                 {/* Ray mode */}
-                <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
+                <div style={toggleGroup(t, { width: "100%" })}>
                   {[
                     { label: "FROM \u221e", val: false, icon: "\u2225" },
                     { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
@@ -360,15 +270,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                     <button
                       key={label}
                       onClick={() => onRayTracksFChange?.(val)}
-                      style={{
-                        ...TOGGLE_BTN_BASE,
-                        flex: 1,
-                        background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
-                        borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
-                        padding: "5px 8px",
-                        color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
-                        gap: 4,
-                      }}
+                      style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
                     >
                       <span
                         style={{
@@ -386,18 +288,10 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                 </div>
                 {/* Chromatic */}
                 {ENABLE_COLOR_TRACING && (
-                  <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
+                  <div style={toggleGroup(t, { width: "100%" })}>
                     <button
                       onClick={() => onShowChromaticChange?.(!showChromatic)}
-                      style={{
-                        ...TOGGLE_BTN_BASE,
-                        flex: 1,
-                        background: showChromatic ? t.toggleActiveBg : t.toggleBg,
-                        borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
-                        padding: "5px 8px",
-                        color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
-                        gap: 5,
-                      }}
+                      style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
                     >
                       <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
                         <line
@@ -433,19 +327,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                         { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
                         { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
                       ].map(({ ch, active, set, color }, idx) => (
-                        <button
-                          key={ch}
-                          onClick={() => set?.(!active)}
-                          style={{
-                            ...TOGGLE_BTN_BASE,
-                            flex: 0.6,
-                            background: active ? t.toggleActiveBg : t.toggleBg,
-                            borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
-                            padding: "5px 6px",
-                            color: active ? t.toggleActiveText : t.toggleInactiveText,
-                            gap: 3,
-                          }}
-                        >
+                        <button key={ch} onClick={() => set?.(!active)} style={chromChannelBtn(t, active, idx < 2)}>
                           <span
                             style={{
                               width: 6,

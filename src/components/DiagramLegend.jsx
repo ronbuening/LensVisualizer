@@ -8,19 +8,7 @@
 
 import { halfFieldAtZoom } from "../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
-
-const COLLAPSE_BTN_BASE = {
-  borderRadius: 10,
-  cursor: "pointer",
-  padding: "3px 8px",
-  display: "flex",
-  alignItems: "center",
-  gap: 4,
-  fontSize: 8,
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-};
+import { collapseBtn } from "../utils/styles.js";
 
 export default function DiagramLegend({
   L,
@@ -54,13 +42,7 @@ export default function DiagramLegend({
         {ENABLE_COLLAPSIBLE_LEGEND && !isWide && (
           <button
             onClick={() => onLegendExpandedChange?.(!legendExpanded)}
-            style={{
-              ...COLLAPSE_BTN_BASE,
-              marginLeft: "auto",
-              background: t.toggleBg,
-              border: `1px solid ${t.toggleBorder}`,
-              color: t.muted,
-            }}
+            style={{ ...collapseBtn(t), marginLeft: "auto" }}
           >
             LEGEND <span style={{ fontSize: 11, lineHeight: 1 }}>{legendExpanded ? "▴" : "▾"}</span>
           </button>
