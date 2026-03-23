@@ -619,6 +619,7 @@ export default function LensVisualization() {
     transition: "all 0.25s",
     fontFamily: "inherit",
     letterSpacing: "0.08em",
+    minHeight: 28,
   });
 
   const showCompareBtn = ENABLE_COMPARISON && (isWide || ENABLE_COMPARISON_MOBILE);
@@ -795,6 +796,7 @@ export default function LensVisualization() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  minHeight: 28,
                   gap: 3,
                   transition: "all 0.25s",
                   fontFamily: "inherit",
@@ -1062,6 +1064,7 @@ export default function LensVisualization() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    minHeight: 28,
                     gap: 3,
                     transition: "all 0.25s",
                     fontFamily: "inherit",
@@ -1274,13 +1277,14 @@ export default function LensVisualization() {
                   background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
                   border: "none",
                   borderRight: val === "diagram" ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "6px 0",
+                  padding: "5px 0",
                   cursor: "pointer",
-                  fontSize: 10,
+                  fontSize: 9,
                   color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
                   fontFamily: "inherit",
                   letterSpacing: "0.08em",
                   transition: "all 0.25s",
+                  minHeight: 28,
                 }}
               >
                 {label}
@@ -1322,13 +1326,14 @@ export default function LensVisualization() {
                   background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
                   border: "none",
                   borderRight: i < desktopViewOptions.length - 1 ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "6px 0",
+                  padding: "5px 0",
                   cursor: "pointer",
-                  fontSize: 10,
+                  fontSize: 9,
                   color: effectiveDesktopView === val ? t.toggleActiveText : t.toggleInactiveText,
                   fontFamily: "inherit",
                   letterSpacing: "0.08em",
                   transition: "all 0.25s",
+                  minHeight: 28,
                 }}
               >
                 {label}
