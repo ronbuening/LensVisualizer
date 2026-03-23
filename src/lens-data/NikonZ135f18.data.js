@@ -238,13 +238,13 @@ const LENS_DATA = {
     /* ── G1: Front group — L1 through L6 ── */
     { label: "1", R: 73.0739, d: 8.258, nd: 1.66382, elemId: 1, sd: 42.0 }, // L1 front (SR)
     { label: "2", R: 173.9425, d: 1.0, nd: 1.0, elemId: 0, sd: 41.5 }, // L1 rear → air
-    { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 41.5 }, // L2 front (ED)
+    { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 39 }, // L2 front (ED)
     { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 42.0 }, // L2 rear → air
-    { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 42.0 }, // L3 front (ED)
+    { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 39.5 }, // L3 front (ED)
     { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 43.5 }, // L3 rear → air
-    { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 44.0 }, // L4 front (ED, cemented D1)
-    { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 44.0 }, // L4→L5 junction — elemId: 5
-    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 42.0 }, // L5 rear → air
+    { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 30.5 }, // L4 front (ED, cemented D1)
+    { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 30.5 }, // L4→L5 junction — elemId: 5
+    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 38.0 }, // L5 rear → air
 
     /* ── Aperture stop ── */
     { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 36.0 }, // Patent surface 10
@@ -276,7 +276,7 @@ const LENS_DATA = {
     { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 24.0 }, // L14 front
     { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 24.0 }, // L14 rear → air
     { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 24.0 }, // L15 front
-    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 24.5 }, // L15 rear → air
+    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 21 }, // L15 rear → air
     { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 25.0 }, // L16 front
     { label: "31", R: -2372.9554, d: 14.4393, nd: 1.0, elemId: 0, sd: 25.0 }, // L16 rear → image (BFD incl. filter)
   ],
