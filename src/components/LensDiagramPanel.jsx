@@ -1,118 +1,31 @@
 /**
- * LensDiagramPanel — Self-contained lens diagram renderer.
+ * LensDiagramPanel — Composition layer for the lens diagram.
  *
- * Owns its own lens building, layout computation, coordinate transforms,
- * ray tracing, element inspection, and all SVG rendering.  Receives
- * shared control state (focus, aperture, ray toggles, theme) from the
- * parent (LensViewer).
+ * Orchestrates sub-components and custom hooks:
+ *   useLensComputation  → lens building, layout, transforms, shapes, aperture
+ *   useRayTracing       → on-axis, off-axis, chromatic ray fans
+ *   DiagramHeader       → title, specs, theme/ray toggle controls
+ *   DiagramSVG          → full SVG rendering of the optical system
+ *   DiagramControls     → zoom, focus, aperture sliders
+ *   ElementInspector    → selected element property display
+ *   DiagramLegend       → legend with color swatches and ray descriptions
  *
- * Data flow:
- *   LensViewer → props (lensKey, focusT, zoomT, stopdownT, theme, …)
- *   LensDiagramPanel:
- *     1. buildLens(LENS_CATALOG[lensKey]) → frozen lens object L
- *     2. doLayout(focusT, zoomT, L)       → surface z-positions
- *     3. traceRay / traceRayChromatic     → ray paths through the system
- *     4. SVG rendering of elements, rays, aperture, image plane, insets
- *
- * In comparison mode, two instances of this component are rendered
- * side-by-side, each with its own lensKey. The `scaleRatio` prop
- * enables normalized scale mode so both diagrams share the same
- * physical mm-per-pixel ratio.
+ * Owns only: hover/selection state, flash animation, side-layout detection,
+ * header height reporting, and the structural layout that wires sub-components.
  */
 
-import { useState, useMemo, useEffect, useLayoutEffect, useRef, Component } from "react";
-import { LENS_CATALOG } from "../utils/lensCatalog.js";
-import buildLens from "../optics/buildLens.js";
-import {
-  thick,
-  doLayout,
-  eflAtZoom,
-  epAtZoom,
-  halfFieldAtZoom,
-  yRatioAtZoom,
-  bAtZoom,
-  traceRay,
-  traceRayChromatic,
-  computeChromaticSpread,
-  conjugateK,
-  formatDist,
-} from "../optics/optics.js";
-import { createCoordinateTransforms, computeElementShapes } from "../optics/diagramGeometry.js";
-import {
-  ENABLE_COLOR_TRACING,
-  ENABLE_ASPH_DIAMOND_FILL,
-  ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
-  ENABLE_EDGE_PROJECTION,
-  ENABLE_COLLAPSIBLE_HEADER_CONTROLS,
-  ENABLE_COLLAPSIBLE_FOCUS,
-  ENABLE_COLLAPSIBLE_APERTURE,
-  ENABLE_COLLAPSIBLE_LEGEND,
-  ENABLE_COLLAPSIBLE_HEADER_INFO,
-  ENABLE_MOBILE_CONTROLS_STRIP,
-} from "../utils/featureFlags.js";
+import { useState, useEffect, useLayoutEffect, useRef, Component } from "react";
+import useLensComputation from "./useLensComputation.js";
+import useRayTracing from "./useRayTracing.js";
+import DiagramControls from "./DiagramControls.jsx";
+import ElementInspector from "./ElementInspector.jsx";
+import DiagramLegend from "./DiagramLegend.jsx";
+import DiagramSVG from "./DiagramSVG.jsx";
+import DiagramHeader from "./DiagramHeader.jsx";
+import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 
-/* =====================================================================
- * §1  HOISTED STYLES & ERROR BOUNDARY
- * ===================================================================== */
-const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em", transition: "color 0.3s" };
-const SLIDER_VALUE_BASE = {
-  fontSize: 14,
-  fontWeight: 700,
-  fontVariantNumeric: "tabular-nums",
-  transition: "color 0.3s",
-};
-const SLIDER_INPUT_BASE = {
-  flex: 1,
-  height: 4,
-  appearance: "none",
-  borderRadius: 2,
-  outline: "none",
-  cursor: "pointer",
-};
-const COLLAPSE_BTN_BASE = {
-  borderRadius: 10,
-  cursor: "pointer",
-  padding: "3px 8px",
-  display: "flex",
-  alignItems: "center",
-  gap: 4,
-  fontSize: 8,
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-};
-const INSPECTOR_GRID = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))",
-  gap: "3px 18px",
-  fontSize: 10.5,
-  lineHeight: 1.8,
-};
-const TOGGLE_GROUP_BASE = {
-  display: "flex",
-  gap: 0,
-  borderRadius: 5,
-  overflow: "hidden",
-  width: "100%",
-  transition: "border-color 0.3s",
-};
-const TOGGLE_BTN_BASE = {
-  border: "none",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontFamily: "inherit",
-  letterSpacing: "0.08em",
-  transition: "all 0.25s",
-  minHeight: 28,
-  fontSize: 9,
-};
-
-/* ── Panel-level error boundary — catches render errors within a single diagram ──
- * Separate from the app-wide ErrorBoundary so that one broken lens doesn't
- * crash the entire comparison view. Resets automatically when lensKey changes. */
+/* ── Panel-level error boundary — resets automatically when lensKey changes ── */
 class PanelErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -142,30 +55,6 @@ class PanelErrorBoundary extends Component {
   }
 }
 
-/* =====================================================================
- * §2  COMPONENT — State, memos, ray tracing, and computed data
- * ===================================================================== */
-
-/**
- * @param {Object}  props
- * @param {string}  props.lensKey       — catalog key identifying the lens to render
- * @param {number}  props.focusT        — focus position [0 = ∞, 1 = closest focus]
- * @param {number}  props.zoomT         — zoom position [0..1] (ignored for primes)
- * @param {number}  props.stopdownT     — aperture stopdown [0 = wide open, 1 = max]
- * @param {boolean} props.showOnAxis    — render on-axis ray fan
- * @param {string}  props.showOffAxis   — off-axis mode: "off"|"trueAngle"|"edge"
- * @param {boolean} props.showChromatic — render chromatic (R/G/B) ray fans
- * @param {boolean} props.chromR/G/B    — per-channel toggles for chromatic rays
- * @param {boolean} props.rayTracksF    — true: rays converge at focus distance;
- *                                        false: rays arrive from ∞ (parallel)
- * @param {number|null} props.scaleRatio — if non-null, scales the diagram by this
- *                                         factor (used in normalized comparison mode)
- * @param {Object}  props.theme         — active theme object from themes.js
- * @param {boolean} props.dark          — true when a dark theme is active
- * @param {string}  props.panelId       — unique ID for SVG filter namespacing ("a"/"b"/"main")
- * @param {boolean} props.compact       — true in comparison mode (smaller header/controls)
- * @param {boolean} props.flashOverlay  — trigger a brief highlight flash (sticky slider feedback)
- */
 export default function LensDiagramPanel({
   lensKey,
   focusT,
@@ -297,296 +186,51 @@ export default function LensDiagramPanel({
     };
   }, [sideLayoutEnabled, lensKey, showSliders, showControls, showChromatic]);
 
-  /* ── Build lens from catalog ── */
-  const buildResult = useMemo(() => {
-    try {
-      return { L: buildLens(LENS_CATALOG[lensKey]) };
-    } catch (e) {
-      return { error: e };
-    }
-  }, [lensKey]);
-
-  const L = buildResult.L;
-  const buildError = buildResult.error;
-  const act = L ? sel || hov : null;
-  const info = act && L ? L.elements.find((e) => e.id === act) : null;
-
-  /* ── Layout ──
-   * Compute surface z-positions with a fixed reference: infinity focus at the
-   * wide-end zoom position (focusT=0, zoomT=0). The difference `dz` shifts
-   * the current layout so the image plane stays at a fixed SVG position
-   * regardless of focus or zoom changes. */
-  const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
-  const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L) : null), [focusT, zoomT, L]);
-  const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
-  const zPos = useMemo(() => (cur ? cur.z.map((v) => v + dz) : []), [cur, dz]);
-
-  /* ── Coordinate transforms (optical mm → SVG pixels) ── */
-  const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
-    () =>
-      L
-        ? createCoordinateTransforms({
-            svgW: L.svgW,
-            svgH: L.svgH,
-            SC: L.SC,
-            YSC: L.YSC,
-            lensShiftFrac: L.lensShiftFrac,
-            imgMM: IMG_MM,
-            scaleRatio,
-          })
-        : {
-            sx: () => 0,
-            sy: () => 0,
-            clampedRayEnd: () => [0, 0],
-            CX: 0,
-            IX: 0,
-            effectiveSC: 1,
-          },
-    [L, IMG_MM, scaleRatio],
-  );
-
-  /* ── Element shapes ── */
-  const shapes = useMemo(() => {
-    if (!L) return [];
-    try {
-      return computeElementShapes(L, zPos, sx, sy);
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Element shape computation failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [L, zPos, sx, sy, lensKey]);
-
-  /* ── Aperture ──
-   * Compute the current f-number and physical stop/entrance-pupil diameters
-   * from the stopdown slider position. Uses a logarithmic mapping so
-   * equal slider increments produce equal f-stop steps.
-   * focusK = convergence curvature at the entrance pupil for "tracks focus"
-   * ray mode; 0 when rays arrive from infinity. */
-  const stopZ = L ? zPos[L.stopIdx] : 0;
-  const fNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
-  const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
-  /* Use zoom-aware EP for correct ray heights across the zoom range */
-  const baseEPSD = L ? epAtZoom(zoomT, L) : 0;
-  const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
-  const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
-
-  /* ── On-axis rays ──
-   * Trace a fan of rays parallel to the optical axis (or converging if
-   * rayTracksF is true). Each ray enters at height h = fraction × EP radius.
-   * "Solid" segments (sp) show the real traced path; "ghost" segments (gp)
-   * show the extrapolated path of rays clipped by the aperture stop. */
-  const rays = useMemo(() => {
-    if (!L) return [];
-    try {
-      const out = [];
-      for (const f of L.rayFractions) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        const { pts, ghostPts, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] On-axis ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
-
-  /* ── Off-axis rays ──
-   * Trace rays entering at an angle corresponding to offAxisFieldDeg.
-   * uField is the incoming ray slope; yChief is the height at the entrance
-   * pupil plane so the chief ray passes through the center of the stop.
-   * These rays visualize field coverage and vignetting.
-   *
-   * Two projection modes after the last surface:
-   *   "trueAngle" — extend at the ray's natural exit slope, clamped to viewport
-   *   "edge"      — project to the paraxial image height on the image plane */
-  const offAxisRays = useMemo(() => {
-    if (!L || showOffAxis === "off") return [];
-    try {
-      const out = [];
-      /* Zoom-aware field angle and chief ray entry position */
-      const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
-      const uField = -Math.tan((currentOffAxisDeg * Math.PI) / 180);
-      const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
-
-      /* Paraxial image height for "edge" mode */
-      const edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      const edgeEnd = [sx(IMG_MM), sy(edgeImgH)];
-      const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
-
-      for (const f of L.offAxisFractions) {
-        const h = f * currentEPSD;
-        const y0 = yChief + h;
-        const uConverge = rayTracksF ? h * focusK : 0;
-        const uIn = uField + uConverge;
-        const { pts, ghostPts, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(useEdge ? edgeEnd : clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(useEdge ? edgeEnd : clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Off-axis ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [
-    showOffAxis,
+  /* ── Lens computation (build, layout, transforms, shapes, aperture) ── */
+  const {
+    L,
+    buildError,
+    IMG_MM,
     zPos,
-    focusT,
     sx,
     sy,
+    clampedRayEnd,
+    CX,
+    IX,
+    effectiveSC,
+    shapes,
+    stopZ,
+    fNumber,
+    currentPhysStopSD,
+    baseEPSD,
+    currentEPSD,
+    varReadouts,
+    filterId,
+  } = useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId });
+
+  const act = L ? sel || hov : null;
+  const info = act && L ? L.elements.find((e) => e.id === act) : null;
+  /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
+  const { rays, offAxisRays, chromaticRays, chromSpread } = useRayTracing({
+    L,
+    zPos,
+    IMG_MM,
+    focusT,
+    zoomT,
+    sx,
+    sy,
+    clampedRayEnd,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,
-    focusK,
-    L,
-    IMG_MM,
-    lensKey,
-    clampedRayEnd,
-    zoomT,
-  ]);
-
-  /* ── Chromatic rays ──
-   * Trace the same ray heights as on-axis but through wavelength-dependent
-   * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
-   * lower marginal] — shows both axial and lateral color (LCA and TCA). */
-  const CHROM_FRACS = [0, 0.75, -0.75];
-  const chromaticRays = useMemo(() => {
-    if (!L || !showChromatic) return [];
-    const channels = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
-    if (channels.length === 0) return [];
-    try {
-      const out = [];
-      for (const f of CHROM_FRACS) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        for (const ch of channels) {
-          const { pts, ghostPts, y, u, clipped } = traceRayChromatic(
-            h,
-            uIn,
-            zPos,
-            focusT,
-            zoomT,
-            currentPhysStopSD,
-            true,
-            L,
-            ch,
-          );
-          const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-          let gp = [];
-          if (clipped && ghostPts.length > 0) {
-            const lastSolid = pts[pts.length - 1];
-            if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-            gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-            const lastGhost = ghostPts[ghostPts.length - 1];
-            if (lastGhost) {
-              gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-            }
-          }
-          if (!clipped) {
-            const last = pts[pts.length - 1];
-            if (last) {
-              sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-            }
-          }
-          out.push({ sp, gp, channel: ch, y, u, clipped });
-        }
-      }
-      return out;
-    } catch (e) {
-      console.error(`[LensDiagramPanel] Chromatic ray trace failed for "${lensKey}":`, e);
-      return [];
-    }
-  }, [
+    showOffAxis,
     showChromatic,
     chromR,
     chromG,
     chromB,
-    zPos,
-    focusT,
-    sx,
-    sy,
-    currentPhysStopSD,
-    currentEPSD,
-    rayTracksF,
-    focusK,
-    L,
-    IMG_MM,
     lensKey,
-    clampedRayEnd,
-  ]);
+  });
 
-  /* ── Chromatic spread ──
-   * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
-   * from the marginal chromatic rays. Requires at least 2 active channels. */
-  const chromSpread = useMemo(() => {
-    if (!L || !showChromatic || chromaticRays.length === 0) return null;
-    const channels = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
-    if (channels.length < 2) return null;
-    const marginalRays = {};
-    for (let ci = 0; ci < channels.length; ci++) {
-      const rayIdx = 1 * channels.length + ci;
-      if (rayIdx < chromaticRays.length) {
-        const r = chromaticRays[rayIdx];
-        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
-      }
-    }
-    return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
-  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
-
-  /* ── Variable gap readouts ── */
-  const varReadouts = L
-    ? L.varLabels.map(([idx, label]) => {
-        const val = thick(idx, focusT, zoomT, L).toFixed(2);
-        return { label, val };
-      })
-    : [];
-
-  const filterId = `gl-${panelId}`;
-
-  /* =====================================================================
-   * §3  RENDER — Header, SVG diagram, controls, and inspector
-   * ===================================================================== */
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (
@@ -600,857 +244,77 @@ export default function LensDiagramPanel({
       ) : (
         <div ref={panelContainerRef}>
           {/* ── Header ── */}
-          <div
+          <DiagramHeader
             ref={headerRef}
-            style={{
-              padding: compact ? "12px 16px 8px" : "18px 24px 10px",
-              borderBottom: `1px solid ${t.headerBorder}`,
-              backgroundColor: t.headerBgColor,
-              backgroundImage: t.headerBgImage,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              transition: "background-color 0.3s,border-color 0.3s",
-              ...(minHeaderHeight ? { minHeight: minHeaderHeight } : {}),
-            }}
-          >
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: compact ? 8 : 10, flexWrap: "wrap" }}>
-                <h1
-                  style={{
-                    fontSize: compact ? 14 : 17,
-                    fontWeight: 700,
-                    letterSpacing: "0.04em",
-                    margin: 0,
-                    color: t.title,
-                    fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
-                    transition: "color 0.3s",
-                  }}
-                >
-                  {L.data.name}
-                </h1>
-                {!compact && (
-                  <a
-                    href={`https://www.flickr.com/search/?text=${encodeURIComponent(L.data.name)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={`Search Flickr for "${L.data.name}"`}
-                    style={{
-                      fontSize: 11,
-                      color: t.descLinkColor,
-                      letterSpacing: "0.06em",
-                      textDecoration: "none",
-                      borderBottom: `1px solid ${t.descLinkColor}40`,
-                      whiteSpace: "nowrap",
-                      transition: "color 0.3s, border-color 0.3s",
-                    }}
-                  >
-                    flickr ↗
-                  </a>
-                )}
-              </div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
-                <span
-                  style={{
-                    fontSize: compact ? 9 : 10.5,
-                    color: t.subtitle,
-                    letterSpacing: "0.08em",
-                    transition: "color 0.3s",
-                  }}
-                >
-                  {L.data.subtitle}
-                </span>
-                {ENABLE_COLLAPSIBLE_HEADER_INFO && !isWide && (
-                  <button
-                    onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)}
-                    style={{
-                      ...COLLAPSE_BTN_BASE,
-                      background: t.toggleBg,
-                      border: `1px solid ${t.toggleBorder}`,
-                      color: t.muted,
-                    }}
-                  >
-                    <span>{headerInfoExpanded ? "LESS" : "MORE"}</span>
-                    <span style={{ fontSize: 11, lineHeight: 1 }}>{headerInfoExpanded ? "▴" : "▾"}</span>
-                  </button>
-                )}
-              </div>
-              {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && (
-                <>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: compact ? 14 : 22,
-                      marginTop: compact ? 4 : 6,
-                      fontSize: compact ? 9 : 10,
-                      color: t.specs,
-                      letterSpacing: "0.06em",
-                      transition: "color 0.3s",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    {L.data.specs.map((s, i) => (
-                      <span key={i}>{s}</span>
-                    ))}
-                  </div>
-                  {/* Per-panel readouts in compact mode */}
-                  {compact && (
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: 16,
-                        marginTop: 6,
-                        fontSize: 10,
-                        color: t.value,
-                        letterSpacing: "0.04em",
-                        fontVariantNumeric: "tabular-nums",
-                      }}
-                    >
-                      {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
-                      <span>{formatDist(focusT, L)}</span>
-                      <span>f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}</span>
-                      <span>EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}</span>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-            {/* Theme + ray controls in non-compact (single-lens) mode.
-           Hidden on mobile when ENABLE_MOBILE_CONTROLS_STRIP is active
-           (controls live in the always-visible strip instead). */}
-            {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) &&
-              !compact &&
-              !(ENABLE_MOBILE_CONTROLS_STRIP && !isWide) && (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                    gap: 8,
-                    flexShrink: 0,
-                    width: isWide ? 220 : ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !headerControlsExpanded ? "auto" : 220,
-                  }}
-                >
-                  {/* Mobile collapse toggle for controls */}
-                  {ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !isWide && (
-                    <button
-                      onClick={() => onHeaderControlsExpandedChange?.(!headerControlsExpanded)}
-                      style={{
-                        background: t.toggleBg,
-                        border: `1px solid ${t.toggleBorder}`,
-                        borderRadius: 5,
-                        padding: "5px 12px",
-                        cursor: "pointer",
-                        fontSize: 9,
-                        color: t.toggleInactiveText,
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 5,
-                        transition: "all 0.25s",
-                        fontFamily: "inherit",
-                        letterSpacing: "0.08em",
-                        width: headerControlsExpanded ? "100%" : "auto",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <span style={{ fontSize: 11, lineHeight: 1 }}>⚙</span>
-                      <span>CONTROLS</span>
-                      <span style={{ fontSize: 11, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
-                    </button>
-                  )}
-                  {/* Theme controls */}
-                  {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && (
-                    <>
-                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
-                        <button
-                          onClick={() => onHighContrastChange?.(!highContrast)}
-                          style={{
-                            ...TOGGLE_BTN_BASE,
-                            flex: 1,
-                            background: highContrast ? t.toggleActiveBg : t.toggleBg,
-                            borderRight: `1px solid ${t.toggleBorder}`,
-                            padding: "5px 8px",
-                            color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
-                            gap: 5,
-                          }}
-                        >
-                          <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-                          <span>HC</span>
-                        </button>
-                        <button
-                          onClick={() => onDarkChange?.(!dark)}
-                          style={{
-                            ...TOGGLE_BTN_BASE,
-                            flex: 1,
-                            background: t.toggleBg,
-                            padding: "5px 8px",
-                            color: t.toggleInactiveText,
-                            gap: 5,
-                          }}
-                        >
-                          <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-                          <span>{dark ? "Light" : "Dark"}</span>
-                        </button>
-                      </div>
-                      {/* Ray toggles */}
-                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
-                        {(() => {
-                          const offAxisActive = showOffAxis !== "off";
-                          const offAxisCycle = ENABLE_EDGE_PROJECTION
-                            ? () =>
-                                onShowOffAxisChange?.(
-                                  showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
-                                )
-                            : () => onShowOffAxisChange?.(offAxisActive ? "off" : "trueAngle");
-                          const offAxisLabel = ENABLE_EDGE_PROJECTION
-                            ? showOffAxis === "edge"
-                              ? "EDGE PROJ"
-                              : showOffAxis === "trueAngle"
-                                ? "TRUE \u2220"
-                                : "OFF-AXIS"
-                            : "OFF-AXIS";
-                          return [
-                            {
-                              label: "ON-AXIS",
-                              active: showOnAxis,
-                              onClick: () => onShowOnAxisChange?.(!showOnAxis),
-                              dotA: t.rayWarm,
-                              dotB: t.rayCool,
-                            },
-                            {
-                              label: offAxisLabel,
-                              active: offAxisActive,
-                              onClick: offAxisCycle,
-                              dotA: t.rayOffWarm,
-                              dotB: t.rayOffCool,
-                            },
-                          ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-                            <button
-                              key={idx}
-                              onClick={onClick}
-                              style={{
-                                ...TOGGLE_BTN_BASE,
-                                flex: 1,
-                                background: active ? t.toggleActiveBg : t.toggleBg,
-                                borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
-                                padding: "5px 8px",
-                                color: active ? t.toggleActiveText : t.toggleInactiveText,
-                                gap: 5,
-                              }}
-                            >
-                              <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                                <line
-                                  x1="0"
-                                  y1="4"
-                                  x2="14"
-                                  y2="4"
-                                  stroke={active ? dotA : "rgba(128,128,128,0.3)"}
-                                  strokeWidth="1.5"
-                                />
-                                <line
-                                  x1="0"
-                                  y1="7"
-                                  x2="14"
-                                  y2="7"
-                                  stroke={active ? dotB : "rgba(128,128,128,0.3)"}
-                                  strokeWidth="1.5"
-                                />
-                              </svg>
-                              <span>{label}</span>
-                            </button>
-                          ));
-                        })()}
-                      </div>
-                      {/* Ray mode */}
-                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
-                        {[
-                          { label: "FROM \u221e", val: false, icon: "\u2225" },
-                          { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-                        ].map(({ label, val, icon }) => (
-                          <button
-                            key={label}
-                            onClick={() => onRayTracksFChange?.(val)}
-                            style={{
-                              ...TOGGLE_BTN_BASE,
-                              flex: 1,
-                              background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
-                              borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
-                              padding: "5px 8px",
-                              color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
-                              gap: 4,
-                            }}
-                          >
-                            <span
-                              style={{
-                                fontSize: 11,
-                                fontWeight: 700,
-                                lineHeight: 1,
-                                opacity: rayTracksF === val ? 1 : 0.4,
-                              }}
-                            >
-                              {icon}
-                            </span>
-                            <span>{label}</span>
-                          </button>
-                        ))}
-                      </div>
-                      {/* Chromatic */}
-                      {ENABLE_COLOR_TRACING && (
-                        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
-                          <button
-                            onClick={() => onShowChromaticChange?.(!showChromatic)}
-                            style={{
-                              ...TOGGLE_BTN_BASE,
-                              flex: 1,
-                              background: showChromatic ? t.toggleActiveBg : t.toggleBg,
-                              borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
-                              padding: "5px 8px",
-                              color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
-                              gap: 5,
-                            }}
-                          >
-                            <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                              <line
-                                x1="0"
-                                y1="1"
-                                x2="14"
-                                y2="1"
-                                stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-                                strokeWidth="1.5"
-                              />
-                              <line
-                                x1="0"
-                                y1="4"
-                                x2="14"
-                                y2="4"
-                                stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-                                strokeWidth="1.5"
-                              />
-                              <line
-                                x1="0"
-                                y1="7"
-                                x2="14"
-                                y2="7"
-                                stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-                                strokeWidth="1.5"
-                              />
-                            </svg>
-                            <span>COLOR</span>
-                          </button>
-                          {showChromatic &&
-                            [
-                              { ch: "R", active: chromR, set: onChromRChange, color: t.rayChromR },
-                              { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
-                              { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
-                            ].map(({ ch, active, set, color }, idx) => (
-                              <button
-                                key={ch}
-                                onClick={() => set?.(!active)}
-                                style={{
-                                  ...TOGGLE_BTN_BASE,
-                                  flex: 0.6,
-                                  background: active ? t.toggleActiveBg : t.toggleBg,
-                                  borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
-                                  padding: "5px 6px",
-                                  color: active ? t.toggleActiveText : t.toggleInactiveText,
-                                  gap: 3,
-                                }}
-                              >
-                                <span
-                                  style={{
-                                    width: 6,
-                                    height: 6,
-                                    borderRadius: "50%",
-                                    background: active ? color : "rgba(128,128,128,0.3)",
-                                    display: "inline-block",
-                                  }}
-                                />
-                                <span>{ch}</span>
-                              </button>
-                            ))}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              )}
-          </div>
-
+            L={L}
+            t={t}
+            dark={dark}
+            compact={compact}
+            isWide={isWide}
+            focusT={focusT}
+            zoomT={zoomT}
+            fNumber={fNumber}
+            showOnAxis={showOnAxis}
+            onShowOnAxisChange={onShowOnAxisChange}
+            showOffAxis={showOffAxis}
+            onShowOffAxisChange={onShowOffAxisChange}
+            rayTracksF={rayTracksF}
+            onRayTracksFChange={onRayTracksFChange}
+            showChromatic={showChromatic}
+            onShowChromaticChange={onShowChromaticChange}
+            chromR={chromR}
+            chromG={chromG}
+            chromB={chromB}
+            onChromRChange={onChromRChange}
+            onChromGChange={onChromGChange}
+            onChromBChange={onChromBChange}
+            onDarkChange={onDarkChange}
+            onHighContrastChange={onHighContrastChange}
+            highContrast={highContrast}
+            headerControlsExpanded={headerControlsExpanded}
+            onHeaderControlsExpandedChange={onHeaderControlsExpandedChange}
+            headerInfoExpanded={headerInfoExpanded}
+            onHeaderInfoExpandedChange={onHeaderInfoExpandedChange}
+            minHeaderHeight={minHeaderHeight}
+          />
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
           <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
             {/* ── SVG viewport ── */}
             <div style={useSideLayout ? { flex: 1, minWidth: 0 } : undefined}>
-              <svg
-                viewBox={`0 0 ${L.svgW} ${L.svgH}`}
-                width="100%"
-                style={{
-                  display: "block",
-                  maxHeight: useSideLayout
-                    ? `calc(100vh - ${headerRef.current?.offsetHeight || 80}px - 20px)`
-                    : maxSvgHeight,
-                  minHeight: compact ? 200 : 290,
-                  background: t.bg,
-                  transition: "background 0.3s",
-                }}
-              >
-                <defs>
-                  {dark ? (
-                    <filter id={filterId}>
-                      <feGaussianBlur stdDeviation="2.5" result="b" />
-                      <feMerge>
-                        <feMergeNode in="b" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  ) : (
-                    <filter id={filterId}>
-                      <feGaussianBlur stdDeviation="3" result="b" />
-                      <feFlood floodColor="#1070c0" floodOpacity="0.12" result="c" />
-                      <feComposite in="c" in2="b" operator="in" result="d" />
-                      <feMerge>
-                        <feMergeNode in="d" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                  )}
-                  {ENABLE_ASPH_DIAMOND_FILL && (
-                    <pattern id={`${filterId}-asph-dm`} width="7" height="7" patternUnits="userSpaceOnUse">
-                      <polygon points="3.5,1 6,3.5 3.5,6 1,3.5" fill={t.asphDiamondFill} />
-                    </pattern>
-                  )}
-                </defs>
-                {Array.from({ length: L.gridCount }, (_, i) => {
-                  const x = CX - (L.gridCount / 2) * L.gridPitch * effectiveSC + i * L.gridPitch * effectiveSC;
-                  return x > 0 && x < L.svgW ? (
-                    <line
-                      key={i}
-                      x1={x}
-                      y1={20}
-                      x2={x}
-                      y2={L.svgH - 20}
-                      stroke={t.grid(i)}
-                      strokeWidth={t.gridStrokeWidth}
-                      strokeDasharray={t.gridDash(i)}
-                    />
-                  ) : null;
-                })}
-                <line
-                  x1={8}
-                  y1={sy(0)}
-                  x2={L.svgW - 8}
-                  y2={sy(0)}
-                  stroke={t.axis}
-                  strokeWidth={0.5}
-                  strokeDasharray="6,4"
-                />
-
-                {showOnAxis &&
-                  rays.map(({ sp, gp }, ri) => {
-                    const color = ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm;
-                    return (
-                      <g key={`on${ri}`}>
-                        {sp.length > 1 && (
-                          <polyline
-                            points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={1.2 * t.rayWidthScale}
-                          />
-                        )}
-                        {gp.length > 1 && (
-                          <polyline
-                            points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={0.6 * t.rayWidthScale}
-                            strokeDasharray="3,4"
-                            opacity={0.3}
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-
-                {showOffAxis !== "off" &&
-                  offAxisRays.map(({ sp, gp }, ri) => {
-                    const color = ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm;
-                    return (
-                      <g key={`off${ri}`}>
-                        {sp.length > 1 && (
-                          <polyline
-                            points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={1.1 * t.rayWidthScale}
-                            strokeDasharray={t.rayOffDash || "none"}
-                          />
-                        )}
-                        {gp.length > 1 && (
-                          <polyline
-                            points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={0.6 * t.rayWidthScale}
-                            strokeDasharray="3,4"
-                            opacity={0.3}
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-
-                {showChromatic &&
-                  chromaticRays.map(({ sp, gp, channel }, ri) => {
-                    const color = channel === "R" ? t.rayChromR : channel === "G" ? t.rayChromG : t.rayChromB;
-                    return (
-                      <g key={`chrom${ri}`}>
-                        {sp.length > 1 && (
-                          <polyline
-                            points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={1.0 * t.rayWidthScale}
-                          />
-                        )}
-                        {gp.length > 1 && (
-                          <polyline
-                            points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={0.5 * t.rayWidthScale}
-                            strokeDasharray="3,4"
-                            opacity={0.3}
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-
-                {/* Element filled shapes — clickable for inspection, highlighted on hover.
-                 * Hit-testing uses SVG's native pointer events on the <path> elements. */}
-                {shapes.map(({ eid, d: path }) => {
-                  const e = L.elements.find((x) => x.id === eid);
-                  const on = act === eid;
-                  return (
-                    <path
-                      key={eid}
-                      d={path}
-                      fill={t.elemFill(e, on)}
-                      stroke={t.elemStroke(e, on)}
-                      strokeWidth={on ? t.elemStrokeActive : t.elemStrokeIdle}
-                      style={{ cursor: "pointer", transition: "all 0.12s", filter: on ? `url(#${filterId})` : "none" }}
-                      onMouseEnter={() => setHov(eid)}
-                      onMouseLeave={() => setHov(null)}
-                      onClick={() => setSel(sel === eid ? null : eid)}
-                    />
-                  );
-                })}
-
-                {/* Aspheric diamond half-fill */}
-                {ENABLE_ASPH_DIAMOND_FILL &&
-                  shapes.flatMap(({ asphPaths }) =>
-                    (asphPaths || []).map(({ surfIdx, halfPathD }) => (
-                      <path
-                        key={`asph-df-${surfIdx}`}
-                        d={halfPathD}
-                        fill={`url(#${filterId}-asph-dm)`}
-                        stroke="none"
-                        style={{ pointerEvents: "none" }}
-                      />
-                    )),
-                  )}
-
-                {/* Aspheric surface accent strokes */}
-                {shapes.flatMap(({ asphPaths }) =>
-                  (asphPaths || []).map(({ surfIdx, pathD }) => (
-                    <path
-                      key={`asph-${surfIdx}`}
-                      d={pathD}
-                      fill="none"
-                      stroke={t.asphStroke}
-                      strokeWidth={t.asphStrokeWidth}
-                      strokeLinecap="round"
-                      style={{ pointerEvents: "none" }}
-                    />
-                  )),
-                )}
-
-                {/* Aspheric "A" labels */}
-                {shapes.flatMap(({ asphPaths }) =>
-                  (asphPaths || []).map(({ surfIdx, labelX, labelY }) => (
-                    <text
-                      key={`asph-lbl-${surfIdx}`}
-                      x={labelX}
-                      y={labelY}
-                      textAnchor="middle"
-                      fill={t.asphLabel}
-                      fontSize={6.5}
-                      fontFamily="inherit"
-                      fontWeight={500}
-                      style={{ pointerEvents: "none", letterSpacing: "0.06em" }}
-                    >
-                      A
-                    </text>
-                  )),
-                )}
-
-                {/* Aperture stop blades — drawn as two thick lines (top and bottom) from
-                 * the physical stop edge inward to the current aperture opening */}
-                {(() => {
-                  const bladeInner = Math.min(currentPhysStopSD, L.stopPhysSD * (1 - L.bladeStubFrac));
-                  return (
-                    <>
-                      <line
-                        x1={sx(stopZ)}
-                        y1={sy(-L.stopPhysSD)}
-                        x2={sx(stopZ)}
-                        y2={sy(-bladeInner)}
-                        stroke={t.stop}
-                        strokeWidth={2.2}
-                        strokeLinecap="round"
-                      />
-                      <line
-                        x1={sx(stopZ)}
-                        y1={sy(L.stopPhysSD)}
-                        x2={sx(stopZ)}
-                        y2={sy(bladeInner)}
-                        stroke={t.stop}
-                        strokeWidth={2.2}
-                        strokeLinecap="round"
-                      />
-                    </>
-                  );
-                })()}
-                <text
-                  x={sx(stopZ)}
-                  y={sy(-L.stopPhysSD - L.lyStoPad)}
-                  textAnchor="middle"
-                  fill={t.stopLabel}
-                  fontSize={7.5}
-                  fontFamily="inherit"
-                  style={{ letterSpacing: "0.1em" }}
-                >
-                  STO
-                </text>
-
-                <line
-                  x1={IX}
-                  y1={sy(-L.lyImgLine)}
-                  x2={IX}
-                  y2={sy(L.lyImgLine)}
-                  stroke={t.imgLine}
-                  strokeWidth={t.imgLineWidth}
-                  strokeDasharray="4,3"
-                />
-                <text
-                  x={IX}
-                  y={sy(L.lyImgLabel)}
-                  textAnchor="middle"
-                  fill={t.imgLabel}
-                  fontSize={7.5}
-                  fontFamily="inherit"
-                  style={{ letterSpacing: "0.12em" }}
-                >
-                  IMG
-                </text>
-
-                {/* ── LCA inset widget ──
-                 * Magnified view of where each wavelength's marginal ray crosses the axis.
-                 * Green (G/d-line) is the reference; R and B offsets show longitudinal
-                 * chromatic aberration. `mag` scales the tiny mm differences to fill the
-                 * inset box, clamped at 5000× to avoid pixel overflow for sub-micron LCA. */}
-                {showChromatic &&
-                  chromSpread &&
-                  chromSpread.lcaMm !== 0 &&
-                  (() => {
-                    const insetW = 90;
-                    const insetH = 100;
-                    const gRef = chromSpread.intercepts.G || IMG_MM;
-                    const activeChans = ["R", "G", "B"].filter((ch) => chromSpread.intercepts[ch] !== undefined);
-                    const offsets = activeChans.map((ch) => Math.abs(chromSpread.intercepts[ch] - gRef));
-                    const maxOff = Math.max(...offsets, 1e-9);
-                    const maxPixelSpan = (insetW - 24) / 2;
-                    const mag = Math.min(maxPixelSpan / (maxOff * effectiveSC), 5000);
-                    let insetX = IX + 10;
-                    if (insetX + insetW > L.svgW - 4) insetX = IX - insetW - 10;
-                    const insetY = sy(0) - 55;
-                    const midX = insetX + insetW / 2;
-                    return (
-                      <g>
-                        <rect
-                          x={insetX}
-                          y={insetY}
-                          width={insetW}
-                          height={insetH}
-                          rx={4}
-                          fill={t.panelBg}
-                          stroke={t.panelBorder}
-                          strokeWidth={0.6}
-                          opacity={0.94}
-                        />
-                        <text
-                          x={midX}
-                          y={insetY + 14}
-                          textAnchor="middle"
-                          fill={t.muted}
-                          fontSize={8.5}
-                          fontFamily="inherit"
-                          style={{ letterSpacing: "0.1em" }}
-                        >
-                          LCA
-                        </text>
-                        <line
-                          x1={insetX + 6}
-                          y1={insetY + 40}
-                          x2={insetX + insetW - 6}
-                          y2={insetY + 40}
-                          stroke={t.axis}
-                          strokeWidth={0.5}
-                        />
-                        {activeChans.map((ch) => {
-                          const offset = (chromSpread.intercepts[ch] - gRef) * mag * effectiveSC;
-                          const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
-                          return (
-                            <g key={ch}>
-                              <line
-                                x1={midX + offset}
-                                y1={insetY + 22}
-                                x2={midX + offset}
-                                y2={insetY + 56}
-                                stroke={color}
-                                strokeWidth={2}
-                                strokeLinecap="round"
-                              />
-                              <text
-                                x={midX + offset}
-                                y={insetY + 67}
-                                textAnchor="middle"
-                                fill={color}
-                                fontSize={8.5}
-                                fontFamily="inherit"
-                                fontWeight={600}
-                              >
-                                {ch}
-                              </text>
-                            </g>
-                          );
-                        })}
-                        <text
-                          x={midX}
-                          y={insetY + 82}
-                          textAnchor="middle"
-                          fill={t.value}
-                          fontSize={10}
-                          fontFamily="inherit"
-                          fontWeight={600}
-                        >
-                          {Math.abs(chromSpread.lcaMm * 1000) >= 1
-                            ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m`
-                            : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
-                        </text>
-                        <text
-                          x={midX}
-                          y={insetY + 95}
-                          textAnchor="middle"
-                          fill={t.muted}
-                          fontSize={7.5}
-                          fontFamily="inherit"
-                        >
-                          {Math.round(mag)}
-                          {"\u00d7"}
-                        </text>
-                      </g>
-                    );
-                  })()}
-
-                {shapes.map(({ eid, z1, z2 }) => {
-                  const e = L.elements.find((x) => x.id === eid);
-                  const on = act === eid;
-                  return (
-                    <text
-                      key={`n${eid}`}
-                      x={sx((z1 + z2) / 2)}
-                      y={sy(L.lyElemNum)}
-                      textAnchor="middle"
-                      fill={on ? t.elemNumActive : t.elemNum(e)}
-                      fontSize={7}
-                      fontFamily="inherit"
-                      fontWeight={on ? 700 : 400}
-                    >
-                      {eid}
-                    </text>
-                  );
-                })}
-
-                {/* Abbe number (νd) badges — color-coded by dispersion class:
-                 * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown/ED) */}
-                {showChromatic &&
-                  shapes.map(({ eid, z1, z2 }) => {
-                    const e = L.elements.find((x) => x.id === eid);
-                    if (!e || !e.vd) return null;
-                    const on = act === eid;
-                    const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
-                    return (
-                      <text
-                        key={`vd${eid}`}
-                        x={sx((z1 + z2) / 2)}
-                        y={sy(L.lyVdBadge)}
-                        textAnchor="middle"
-                        fill={on ? t.elemNumActive : dispColor}
-                        fontSize={8.5}
-                        fontFamily="inherit"
-                        fontWeight={on ? 600 : 500}
-                        opacity={on ? 1 : 0.9}
-                      >
-                        {"\u03bd"}
-                        {e.vd.toFixed(0)}
-                      </text>
-                    );
-                  })}
-
-                {L.groups.map(({ text, fromSurface, toSurface }) => (
-                  <text
-                    key={text}
-                    x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-                    y={sy(L.lyGroup)}
-                    fill={t.groupLabel}
-                    fontSize={7}
-                    fontFamily="inherit"
-                    textAnchor="middle"
-                    style={{ letterSpacing: "0.08em" }}
-                  >
-                    {text}
-                  </text>
-                ))}
-
-                {L.doublets.map(({ text, fromSurface, toSurface }) => (
-                  <text
-                    key={text}
-                    x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-                    y={sy(L.lyDoublet)}
-                    textAnchor="middle"
-                    fill={t.doubletLabel}
-                    fontSize={7}
-                    fontFamily="inherit"
-                  >
-                    {text}
-                  </text>
-                ))}
-
-                {/* Flash overlay — brief highlight when slider sticks at common point */}
-                {flashVisible && (
-                  <rect
-                    key={flashKey}
-                    x="0"
-                    y="0"
-                    width={L.svgW}
-                    height={L.svgH}
-                    fill={dark ? "#ffffff" : "#000000"}
-                    opacity={flashFading ? 0 : 0.22}
-                    style={{ transition: flashFading ? "opacity 0.45s ease-out" : "none", pointerEvents: "none" }}
-                  />
-                )}
-              </svg>
+              <DiagramSVG
+                L={L}
+                t={t}
+                dark={dark}
+                sx={sx}
+                sy={sy}
+                CX={CX}
+                IX={IX}
+                effectiveSC={effectiveSC}
+                zPos={zPos}
+                IMG_MM={IMG_MM}
+                shapes={shapes}
+                filterId={filterId}
+                stopZ={stopZ}
+                currentPhysStopSD={currentPhysStopSD}
+                rays={rays}
+                offAxisRays={offAxisRays}
+                chromaticRays={chromaticRays}
+                chromSpread={chromSpread}
+                showOnAxis={showOnAxis}
+                showOffAxis={showOffAxis}
+                showChromatic={showChromatic}
+                act={act}
+                onHover={setHov}
+                onSelect={(eid) => setSel(sel === eid ? null : eid)}
+                sel={sel}
+                maxSvgHeight={maxSvgHeight}
+                useSideLayout={useSideLayout}
+                headerHeight={headerRef.current?.offsetHeight || 80}
+                compact={compact}
+                flashVisible={flashVisible}
+                flashKey={flashKey}
+                flashFading={flashFading}
+              />
             </div>
             {/* end SVG wrapper */}
 
@@ -1478,641 +342,61 @@ export default function LensDiagramPanel({
                       }
                 }
               >
-                {showSliders && L.isZoom && (
-                  <div
-                    style={
-                      useSideLayout
-                        ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-                        : {
-                            flex: "1 1 200px",
-                            padding: compact ? "10px 14px" : "14px 22px",
-                            borderRight: `1px solid ${t.panelDivider}`,
-                          }
-                    }
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>ZOOM</span>
-                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
-                        {eflAtZoom(zoomT, L).toFixed(0)} mm
-                      </span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.zoomPositions[0]} mm</span>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step={L.zoomStep}
-                        value={zoomT}
-                        onChange={(e) => onZoomChange?.(parseFloat(e.target.value))}
-                        onPointerUp={onSliderPointerUp}
-                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
-                      />
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>
-                        {L.zoomPositions[L.zoomPositions.length - 1]} mm
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {showSliders && (
-                  <div
-                    style={
-                      useSideLayout
-                        ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-                        : {
-                            flex: "1 1 260px",
-                            padding: compact ? "10px 14px" : "14px 22px",
-                            borderRight: `1px solid ${t.panelDivider}`,
-                          }
-                    }
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>FOCUS</span>
-                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{formatDist(focusT, L)}</span>
-                      {ENABLE_COLLAPSIBLE_FOCUS && (
-                        <button
-                          onClick={() => onFocusExpandedChange?.(!focusExpanded)}
-                          style={{
-                            ...COLLAPSE_BTN_BASE,
-                            marginLeft: "auto",
-                            background: t.toggleBg,
-                            border: `1px solid ${t.toggleBorder}`,
-                            color: t.muted,
-                          }}
-                        >
-                          <span>{focusExpanded ? "LESS" : "MORE"}</span>
-                          <span style={{ fontSize: 11, lineHeight: 1 }}>{focusExpanded ? "▴" : "▾"}</span>
-                        </button>
-                      )}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step={L.focusStep}
-                        value={focusT}
-                        onChange={(e) => onFocusChange?.(parseFloat(e.target.value))}
-                        onPointerUp={onSliderPointerUp}
-                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
-                      />
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
-                    </div>
-                    {(!ENABLE_COLLAPSIBLE_FOCUS || focusExpanded) && (
-                      <>
-                        <div
-                          style={{
-                            marginTop: 8,
-                            fontSize: 9.5,
-                            color: t.desc,
-                            lineHeight: 1.6,
-                            transition: "color 0.3s",
-                          }}
-                        >
-                          {L.focusDescription}
-                        </div>
-                        <div
-                          style={{
-                            marginTop: 6,
-                            display: "flex",
-                            gap: 14,
-                            fontSize: 9,
-                            color: t.spacingVal,
-                            fontVariantNumeric: "tabular-nums",
-                            transition: "color 0.3s",
-                          }}
-                        >
-                          {varReadouts.map(({ label, val }) => (
-                            <span key={label}>
-                              {label} {val}
-                            </span>
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-
-                {showSliders && (
-                  <div
-                    style={
-                      useSideLayout
-                        ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-                        : {
-                            flex: "1 1 220px",
-                            padding: compact ? "10px 14px" : "14px 22px",
-                            borderRight: `1px solid ${t.panelDivider}`,
-                          }
-                    }
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>APERTURE</span>
-                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
-                        f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
-                      </span>
-                      {ENABLE_COLLAPSIBLE_APERTURE && (
-                        <button
-                          onClick={() => onApertureExpandedChange?.(!apertureExpanded)}
-                          style={{
-                            ...COLLAPSE_BTN_BASE,
-                            marginLeft: "auto",
-                            background: t.toggleBg,
-                            border: `1px solid ${t.toggleBorder}`,
-                            color: t.muted,
-                          }}
-                        >
-                          <span>{apertureExpanded ? "LESS" : "MORE"}</span>
-                          <span style={{ fontSize: 11, lineHeight: 1 }}>{apertureExpanded ? "▴" : "▾"}</span>
-                        </button>
-                      )}
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.FOPEN.toFixed(1)}</span>
-                      <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step={L.apertureStep}
-                        value={stopdownT}
-                        onChange={(e) => onStopdownChange?.(parseFloat(e.target.value))}
-                        onPointerUp={onSliderPointerUp}
-                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
-                      />
-                      <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
-                    </div>
-                    {(!ENABLE_COLLAPSIBLE_APERTURE || apertureExpanded) && (
-                      <>
-                        <div
-                          style={{
-                            marginTop: 8,
-                            fontSize: 9.5,
-                            color: t.desc,
-                            lineHeight: 1.6,
-                            transition: "color 0.3s",
-                          }}
-                        >
-                          EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"}{" "}
-                          {(epAtZoom(zoomT, L) * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
-                          {(currentPhysStopSD * 2).toFixed(2)} mm
-                        </div>
-                        <div
-                          style={{
-                            marginTop: 6,
-                            display: "flex",
-                            gap: 14,
-                            flexWrap: "wrap",
-                            fontSize: 9,
-                            color: t.spacingVal,
-                            fontVariantNumeric: "tabular-nums",
-                            transition: "color 0.3s",
-                          }}
-                        >
-                          {L.fstopSeries
-                            .filter((n) => n >= L.FOPEN - 0.1 && n <= L.maxFstop)
-                            .map((n) => (
-                              <span
-                                key={n}
-                                onClick={() => {
-                                  onStopdownChange?.(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
-                                  onSliderPointerUp?.();
-                                }}
-                                style={{
-                                  cursor: "pointer",
-                                  opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
-                                  transition: "opacity 0.15s",
-                                }}
-                              >
-                                f/{n}
-                              </span>
-                            ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
+                <DiagramControls
+                  L={L}
+                  t={t}
+                  compact={compact}
+                  useSideLayout={useSideLayout}
+                  zoomT={zoomT}
+                  onZoomChange={onZoomChange}
+                  focusT={focusT}
+                  onFocusChange={onFocusChange}
+                  focusExpanded={focusExpanded}
+                  onFocusExpandedChange={onFocusExpandedChange}
+                  varReadouts={varReadouts}
+                  stopdownT={stopdownT}
+                  onStopdownChange={onStopdownChange}
+                  fNumber={fNumber}
+                  currentPhysStopSD={currentPhysStopSD}
+                  baseEPSD={baseEPSD}
+                  apertureExpanded={apertureExpanded}
+                  onApertureExpandedChange={onApertureExpandedChange}
+                  onSliderPointerUp={onSliderPointerUp}
+                  showSliders={showSliders}
+                />
 
                 <div
-                  style={
-                    useSideLayout
-                      ? {
-                          flex: 1,
-                          padding: compact ? "10px 14px" : "14px 22px",
-                          minHeight: compact
-                            ? 100
-                            : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
-                              ? 40
-                              : 125,
-                          transition: "background 0.2s",
-                          background: info ? t.infoBgActive : t.infoBgIdle,
-                        }
-                      : {
-                          flex: "1 1 360px",
-                          padding: compact ? "10px 14px" : "14px 22px",
-                          minHeight: compact
-                            ? 100
-                            : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
-                              ? 40
-                              : 125,
-                          transition: "background 0.2s",
-                          background: info ? t.infoBgActive : t.infoBgIdle,
-                        }
-                  }
+                  style={{
+                    flex: useSideLayout ? 1 : "1 1 360px",
+                    padding: compact ? "10px 14px" : "14px 22px",
+                    minHeight: compact
+                      ? 100
+                      : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
+                        ? 40
+                        : 125,
+                    transition: "background 0.2s",
+                    background: info ? t.infoBgActive : t.infoBgIdle,
+                  }}
                 >
                   {info ? (
-                    <div>
-                      <div
-                        style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap" }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 14,
-                            fontWeight: 700,
-                            color: t.title,
-                            fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
-                            transition: "color 0.3s",
-                          }}
-                        >
-                          {info.label}
-                        </span>
-                        <span style={{ fontSize: 11, color: t.muted, transition: "color 0.3s" }}>{info.name}</span>
-                        {info.apd && (
-                          <span
-                            style={{
-                              fontSize: 8,
-                              padding: "2px 6px",
-                              borderRadius: 3,
-                              background: info.apd === "patent" ? t.apdPatentBg : t.apdInferBg,
-                              color: info.apd === "patent" ? t.apdPatentText : t.apdInferText,
-                              letterSpacing: "0.08em",
-                              fontWeight: 600,
-                              transition: "all 0.3s",
-                            }}
-                          >
-                            {info.apd === "patent" ? "APD (PATENT)" : "APD (INFERRED)"}
-                          </span>
-                        )}
-                        {info.cemented && (
-                          <span
-                            style={{
-                              fontSize: 8,
-                              padding: "2px 6px",
-                              borderRadius: 3,
-                              background: t.cementBg,
-                              color: t.cementText,
-                              letterSpacing: "0.08em",
-                              transition: "all 0.3s",
-                            }}
-                          >
-                            DOUBLET {info.cemented}
-                          </span>
-                        )}
-                        {(() => {
-                          const es = L.ES.find(([id]) => id === info.id);
-                          if (!es) return null;
-                          const [, s1, s2] = es;
-                          const a1 = L.asphByIdx[s1],
-                            a2 = L.asphByIdx[s2];
-                          if (!a1 && !a2) return null;
-                          const count = (a1 ? 1 : 0) + (a2 ? 1 : 0);
-                          return (
-                            <span
-                              style={{
-                                fontSize: 8,
-                                padding: "2px 6px",
-                                borderRadius: 3,
-                                background: `${t.asphStroke}22`,
-                                color: t.asphLabel,
-                                letterSpacing: "0.08em",
-                                fontWeight: 600,
-                                transition: "all 0.3s",
-                              }}
-                            >
-                              {count === 2 ? "ASPH \u00d72" : "ASPH"}
-                            </span>
-                          );
-                        })()}
-                      </div>
-                      <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>
-                        {info.type}
-                      </div>
-                      <div style={INSPECTOR_GRID}>
-                        <div>
-                          <span style={{ color: t.propLabel }}>nd = </span>
-                          <span style={{ color: t.value }}>{info.nd}</span>
-                        </div>
-                        <div>
-                          <span style={{ color: t.propLabel }}>{"\u03bd"}d = </span>
-                          <span style={{ color: t.value }}>{info.vd}</span>
-                        </div>
-                        <div>
-                          <span style={{ color: t.propLabel }}>FL = </span>
-                          <span style={{ color: t.value }}>
-                            {info.fl > 0 ? "+" : ""}
-                            {info.fl} mm
-                          </span>
-                        </div>
-                        <div>
-                          <span style={{ color: t.propLabel }}>Glass: </span>
-                          <span style={{ color: t.value }}>{info.glass}</span>
-                        </div>
-                        {(() => {
-                          const es = L.ES.find(([id]) => id === info.id);
-                          if (!es) return null;
-                          const [, s1, s2] = es;
-                          const entries = [];
-                          if (L.asphByIdx[s1]) entries.push({ label: "front", coeffs: L.asphByIdx[s1] });
-                          if (L.asphByIdx[s2]) entries.push({ label: "rear", coeffs: L.asphByIdx[s2] });
-                          if (entries.length === 0) return null;
-                          return entries.map(({ label, coeffs }) => (
-                            <div key={label} style={{ gridColumn: "1 / -1" }}>
-                              <span style={{ color: t.asphLabel, fontSize: 9.5 }}>Asph ({label}): </span>
-                              <span style={{ color: t.muted, fontSize: 9 }}>
-                                K={coeffs.K?.toExponential(2)}
-                                {coeffs.A4 ? ` A4=${coeffs.A4.toExponential(2)}` : ""}
-                                {coeffs.A6 ? ` A6=${coeffs.A6.toExponential(2)}` : ""}
-                              </span>
-                            </div>
-                          ));
-                        })()}
-                      </div>
-                      {showChromatic && info.vd && (
-                        <div style={{ ...INSPECTOR_GRID, marginTop: 4 }}>
-                          <div>
-                            <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
-                            <span style={{ color: t.value }}>{((info.nd - 1) / info.vd).toFixed(5)}</span>
-                          </div>
-                          <div>
-                            <span style={{ color: t.propLabel }}>n</span>
-                            <span style={{ color: t.rayChromR }}>R</span>
-                            <span style={{ color: t.propLabel }}> = </span>
-                            <span style={{ color: t.rayChromR }}>
-                              {(info.nd - (info.nd - 1) / (2 * info.vd)).toFixed(5)}
-                            </span>
-                            <span style={{ color: t.propLabel, marginLeft: 8 }}> n</span>
-                            <span style={{ color: t.rayChromB }}>B</span>
-                            <span style={{ color: t.propLabel }}> = </span>
-                            <span style={{ color: t.rayChromB }}>
-                              {(info.nd + (info.nd - 1) / (2 * info.vd)).toFixed(5)}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                            <span
-                              style={{
-                                width: 7,
-                                height: 7,
-                                borderRadius: "50%",
-                                background:
-                                  info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
-                                display: "inline-block",
-                                flexShrink: 0,
-                              }}
-                            />
-                            <span
-                              style={{
-                                color:
-                                  info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
-                              }}
-                            >
-                              {info.vd >= 55
-                                ? "Low dispersion"
-                                : info.vd >= 35
-                                  ? "Normal dispersion"
-                                  : "High dispersion"}
-                              {info.vd >= 65 ? " (ED)" : ""}
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                      {info.apdNote && (
-                        <div style={{ fontSize: 9.5, color: t.apdNote, marginTop: 3, transition: "color 0.3s" }}>
-                          {info.apdNote}
-                        </div>
-                      )}
-                      <div
-                        style={{
-                          fontSize: 9.5,
-                          color: t.role,
-                          marginTop: 5,
-                          lineHeight: 1.5,
-                          transition: "color 0.3s",
-                        }}
-                      >
-                        {info.role}
-                      </div>
-                    </div>
+                    <ElementInspector info={info} L={L} t={t} showChromatic={showChromatic} />
                   ) : (
-                    <div style={{ padding: "6px 0" }}>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 8,
-                          marginBottom: ENABLE_COLLAPSIBLE_LEGEND && !isWide && !legendExpanded ? 0 : 8,
-                        }}
-                      >
-                        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
-                          {isWide ? "Hover" : "Tap"} an element for optical details
-                        </span>
-                        {ENABLE_COLLAPSIBLE_LEGEND && !isWide && (
-                          <button
-                            onClick={() => onLegendExpandedChange?.(!legendExpanded)}
-                            style={{
-                              ...COLLAPSE_BTN_BASE,
-                              marginLeft: "auto",
-                              background: t.toggleBg,
-                              border: `1px solid ${t.toggleBorder}`,
-                              color: t.muted,
-                            }}
-                          >
-                            LEGEND <span style={{ fontSize: 11, lineHeight: 1 }}>{legendExpanded ? "▴" : "▾"}</span>
-                          </button>
-                        )}
-                      </div>
-                      {(!ENABLE_COLLAPSIBLE_LEGEND || isWide || legendExpanded) && (
-                        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
-                          {t.legendSwatches.map(([bg, bd, lb]) => (
-                            <div key={lb} style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                              <div
-                                style={{
-                                  width: 11,
-                                  height: 11,
-                                  borderRadius: 2,
-                                  background: bg,
-                                  border: `1px solid ${bd}`,
-                                  transition: "all 0.3s",
-                                }}
-                              />
-                              <span style={{ color: t.legendText, transition: "color 0.3s" }}>{lb}</span>
-                            </div>
-                          ))}
-                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                            <svg width="11" height="11" viewBox="0 0 11 11">
-                              {ENABLE_ASPH_DIAMOND_FILL && (
-                                <>
-                                  <defs>
-                                    <pattern id="legend-asph-dm" width="4" height="4" patternUnits="userSpaceOnUse">
-                                      <polygon points="2,0.5 3.5,2 2,3.5 0.5,2" fill={t.asphDiamondFill} />
-                                    </pattern>
-                                  </defs>
-                                  <rect x="5" y="0" width="6" height="11" fill="url(#legend-asph-dm)" />
-                                </>
-                              )}
-                              <path
-                                d="M5,1 Q2,5.5 5,10"
-                                fill="none"
-                                stroke={t.asphStroke}
-                                strokeWidth={1.6}
-                                strokeLinecap="round"
-                              />
-                            </svg>
-                            <span style={{ color: t.legendText }}>Aspheric surface</span>
-                          </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                            <div style={{ width: 3, height: 11, background: t.stop, borderRadius: 1 }} />
-                            <span style={{ color: t.legendText }}>Stop</span>
-                          </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                            <div style={{ width: 11, height: 1, background: t.imgLine }} />
-                            <span style={{ color: t.legendText }}>Image plane (fixed)</span>
-                          </div>
-                          {showOnAxis && (
-                            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                              <svg width="14" height="10" viewBox="0 0 14 10">
-                                <line x1="0" y1="3" x2="14" y2="3" stroke={t.rayWarm} strokeWidth="1.5" />
-                                <line x1="0" y1="7" x2="14" y2="7" stroke={t.rayCool} strokeWidth="1.5" />
-                              </svg>
-                              <span style={{ color: t.legendText }}>
-                                On-axis rays{rayTracksF ? " (tracks focus)" : " (from \u221e)"}
-                              </span>
-                            </div>
-                          )}
-                          {showOffAxis !== "off" && (
-                            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                              <svg width="14" height="10" viewBox="0 0 14 10">
-                                <line
-                                  x1="0"
-                                  y1="3"
-                                  x2="14"
-                                  y2="3"
-                                  stroke={t.rayOffWarm}
-                                  strokeWidth="1.5"
-                                  strokeDasharray={t.rayOffDash || "none"}
-                                />
-                                <line
-                                  x1="0"
-                                  y1="7"
-                                  x2="14"
-                                  y2="7"
-                                  stroke={t.rayOffCool}
-                                  strokeWidth="1.5"
-                                  strokeDasharray={t.rayOffDash || "none"}
-                                />
-                              </svg>
-                              <span style={{ color: t.legendText }}>
-                                Off-axis rays ({(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}
-                                {"\u00b0"}
-                                {ENABLE_EDGE_PROJECTION && showOffAxis === "edge" ? ", edge proj" : ""})
-                                {rayTracksF ? " tracks focus" : " from \u221e"}
-                              </span>
-                            </div>
-                          )}
-                          {showOffAxis !== "off" && (
-                            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                              <svg width="14" height="10" viewBox="0 0 14 10">
-                                <line
-                                  x1="0"
-                                  y1="5"
-                                  x2="14"
-                                  y2="5"
-                                  stroke={t.rayOffWarm}
-                                  strokeWidth="0.8"
-                                  strokeDasharray="3,4"
-                                  opacity="0.35"
-                                />
-                              </svg>
-                              <span style={{ color: t.legendText }}>Vignetted (ghost)</span>
-                            </div>
-                          )}
-                          {showChromatic &&
-                            (() => {
-                              const activeCh = [chromR && "R", chromG && "G", chromB && "B"].filter(Boolean);
-                              const chromLabel =
-                                activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
-                              const lcaStr =
-                                chromSpread && chromSpread.lcaMm !== 0
-                                  ? ` · LCA ${Math.abs(chromSpread.lcaMm * 1000) >= 1 ? Math.abs(chromSpread.lcaMm * 1000).toFixed(0) : Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`
-                                  : "";
-                              return (
-                                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                                  <svg width="22" height="14" viewBox="0 0 22 14">
-                                    {chromR && (
-                                      <line x1="0" y1="3" x2="22" y2="3" stroke={t.rayChromR} strokeWidth="1.8" />
-                                    )}
-                                    {chromG && (
-                                      <line x1="0" y1="7" x2="22" y2="7" stroke={t.rayChromG} strokeWidth="1.8" />
-                                    )}
-                                    {chromB && (
-                                      <line x1="0" y1="11" x2="22" y2="11" stroke={t.rayChromB} strokeWidth="1.8" />
-                                    )}
-                                  </svg>
-                                  <span style={{ color: t.legendText }}>
-                                    {chromLabel}
-                                    {lcaStr}
-                                  </span>
-                                </div>
-                              );
-                            })()}
-                          {showChromatic && chromSpread && (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: 10,
-                                marginTop: 4,
-                                flexBasis: "100%",
-                              }}
-                            >
-                              <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>LCA</span>
-                              <span
-                                style={{
-                                  fontSize: 13,
-                                  fontWeight: 600,
-                                  color: t.value,
-                                  fontVariantNumeric: "tabular-nums",
-                                }}
-                              >
-                                {chromSpread.lcaMm !== 0
-                                  ? Math.abs(chromSpread.lcaMm * 1000) >= 1
-                                    ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} µm`
-                                    : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`
-                                  : "< 0.1 µm"}
-                              </span>
-                              {chromSpread.tcaMm !== 0 && (
-                                <>
-                                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", marginLeft: 6 }}>
-                                    TCA
-                                  </span>
-                                  <span
-                                    style={{
-                                      fontSize: 13,
-                                      fontWeight: 600,
-                                      color: t.value,
-                                      fontVariantNumeric: "tabular-nums",
-                                    }}
-                                  >
-                                    {Math.abs(chromSpread.tcaMm * 1000) >= 1
-                                      ? `${Math.abs(chromSpread.tcaMm * 1000).toFixed(0)} µm`
-                                      : `${Math.abs(chromSpread.tcaMm * 1000).toFixed(1)} µm`}
-                                  </span>
-                                </>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
+                    <DiagramLegend
+                      L={L}
+                      t={t}
+                      isWide={isWide}
+                      zoomT={zoomT}
+                      showOnAxis={showOnAxis}
+                      showOffAxis={showOffAxis}
+                      showChromatic={showChromatic}
+                      chromR={chromR}
+                      chromG={chromG}
+                      chromB={chromB}
+                      chromSpread={chromSpread}
+                      rayTracksF={rayTracksF}
+                      legendExpanded={legendExpanded}
+                      onLegendExpandedChange={onLegendExpandedChange}
+                    />
                   )}
                 </div>
               </div>
