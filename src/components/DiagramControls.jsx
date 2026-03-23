@@ -4,10 +4,7 @@
  */
 
 import { eflAtZoom, formatDist } from "../optics/optics.js";
-import {
-  ENABLE_COLLAPSIBLE_FOCUS,
-  ENABLE_COLLAPSIBLE_APERTURE,
-} from "../utils/featureFlags.js";
+import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../utils/featureFlags.js";
 
 /* ── Hoisted styles ── */
 const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em", transition: "color 0.3s" };
@@ -80,9 +77,7 @@ export default function DiagramControls({
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
             <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>ZOOM</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
-              {eflAtZoom(zoomT, L).toFixed(0)} mm
-            </span>
+            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.zoomPositions[0]} mm</span>
@@ -242,8 +237,7 @@ export default function DiagramControls({
                 }}
               >
                 EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"}{" "}
-                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
-                {(currentPhysStopSD * 2).toFixed(2)} mm
+                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
                 style={{

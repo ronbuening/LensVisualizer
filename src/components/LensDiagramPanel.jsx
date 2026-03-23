@@ -22,10 +22,7 @@ import ElementInspector from "./ElementInspector.jsx";
 import DiagramLegend from "./DiagramLegend.jsx";
 import DiagramSVG from "./DiagramSVG.jsx";
 import DiagramHeader from "./DiagramHeader.jsx";
-import {
-  ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
-  ENABLE_COLLAPSIBLE_LEGEND,
-} from "../utils/featureFlags.js";
+import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 
 /* ── Panel-level error boundary — resets automatically when lensKey changes ── */

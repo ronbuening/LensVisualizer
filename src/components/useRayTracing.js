@@ -228,7 +228,25 @@ export default function useRayTracing({
       console.error(`[useRayTracing] Chromatic ray trace failed for "${lensKey}":`, e);
       return [];
     }
-  }, [showChromatic, chromR, chromG, chromB, zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd, zoomT]);
+  }, [
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    zPos,
+    focusT,
+    sx,
+    sy,
+    currentPhysStopSD,
+    currentEPSD,
+    rayTracksF,
+    focusK,
+    L,
+    IMG_MM,
+    lensKey,
+    clampedRayEnd,
+    zoomT,
+  ]);
 
   /* ── Chromatic spread ──
    * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
