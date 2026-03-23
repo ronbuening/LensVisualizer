@@ -104,6 +104,8 @@ const TOGGLE_BTN_BASE = {
   fontFamily: "inherit",
   letterSpacing: "0.08em",
   transition: "all 0.25s",
+  minHeight: 28,
+  fontSize: 9,
 };
 
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
@@ -757,8 +759,7 @@ export default function LensDiagramPanel({
                             flex: 1,
                             background: highContrast ? t.toggleActiveBg : t.toggleBg,
                             borderRight: `1px solid ${t.toggleBorder}`,
-                            padding: "5px 10px",
-                            fontSize: 10,
+                            padding: "5px 8px",
                             color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
                             gap: 5,
                           }}
@@ -772,8 +773,7 @@ export default function LensDiagramPanel({
                             ...TOGGLE_BTN_BASE,
                             flex: 1,
                             background: t.toggleBg,
-                            padding: "5px 10px",
-                            fontSize: 10,
+                            padding: "5px 8px",
                             color: t.toggleInactiveText,
                             gap: 5,
                           }}
@@ -824,7 +824,6 @@ export default function LensDiagramPanel({
                                 background: active ? t.toggleActiveBg : t.toggleBg,
                                 borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
                                 padding: "5px 8px",
-                                fontSize: 9,
                                 color: active ? t.toggleActiveText : t.toggleInactiveText,
                                 gap: 5,
                               }}
@@ -866,8 +865,7 @@ export default function LensDiagramPanel({
                               flex: 1,
                               background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
                               borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
-                              padding: "5px 9px",
-                              fontSize: 9,
+                              padding: "5px 8px",
                               color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
                               gap: 4,
                             }}
@@ -897,7 +895,6 @@ export default function LensDiagramPanel({
                               background: showChromatic ? t.toggleActiveBg : t.toggleBg,
                               borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
                               padding: "5px 8px",
-                              fontSize: 9,
                               color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
                               gap: 5,
                             }}
@@ -945,7 +942,6 @@ export default function LensDiagramPanel({
                                   background: active ? t.toggleActiveBg : t.toggleBg,
                                   borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
                                   padding: "5px 6px",
-                                  fontSize: 9,
                                   color: active ? t.toggleActiveText : t.toggleInactiveText,
                                   gap: 3,
                                 }}
