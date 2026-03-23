@@ -50,6 +50,18 @@ export function createCoordinateTransforms({ svgW, svgH, SC, YSC, lensShiftFrac,
  * and rear (forward-curving into following gap) surfaces independently.
  * Each surface is also clamped to its conic height limit to avoid rendering
  * artifacts where the conic slope approaches infinity. */
+
+/**
+ * Build closed SVG paths for each glass element, with surface trimming
+ * and aspheric overlay paths.
+ *
+ * @param {Object}   L    — frozen runtime lens object from buildLens()
+ * @param {number[]} zPos — axial z-position of each surface (mm, shifted for focus/zoom)
+ * @param {Function} sx   — optical z (mm) → SVG x coordinate
+ * @param {Function} sy   — optical y (mm) → SVG y coordinate
+ * @returns {Array<{eid: number, d: string, z1: number, z2: number, asphPaths: Array}>}
+ *   One entry per element with its closed SVG path string and any aspheric overlay paths.
+ */
 export function computeElementShapes(L, zPos, sx, sy) {
   return L.ES.map(([eid, s1, s2]) => {
     const sd = Math.min(L.S[s1].sd, L.S[s2].sd);

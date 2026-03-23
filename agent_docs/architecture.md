@@ -12,6 +12,7 @@
 | `optics.js` | `src/optics/` | Ray tracing, sag curves, chromatic, layout geometry |
 | `buildLens.js` | `src/optics/` | Lens construction, EFL/pupil/field computation |
 | `validateLensData.js` | `src/optics/` | Schema validation for lens data |
+| `diagramGeometry.js` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `themes.js` | `src/utils/` | Theme factory + 4 theme definitions |
 | `lensCatalog.js` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `comparisonSliders.js` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
@@ -72,6 +73,14 @@ No React dependencies — fully testable in isolation.
 ## validateLensData.js
 
 Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, surface sd/|R| ratio, cross-gap surface overlap, conic height limits, and zoom lens fields (`zoomPositions` monotonicity, polymorphic `var` format). Returns an array of error strings (empty = valid).
+
+## diagramGeometry.js
+
+Pure-function utilities extracted from LensDiagramPanel for testability:
+- **`createCoordinateTransforms()`** — Builds optical mm → SVG pixel mapping functions (`sx`, `sy`, `clampedRayEnd`) from viewport and scale parameters. Handles normalized comparison scaling via `scaleRatio`.
+- **`computeElementShapes()`** — Builds closed SVG path strings for each glass element with front/rear surface trimming (prevents visual overlap into neighboring air gaps) and aspheric overlay paths. Clamps surfaces to conic height limits when K > 0.
+
+No React dependencies — fully testable in isolation.
 
 ## themes.js — Theme System
 
