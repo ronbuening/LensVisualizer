@@ -23,17 +23,10 @@ import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/lensCatalog.js";
 import LensDiagramPanel from "./LensDiagramPanel.jsx";
 import DescriptionPanel from "./DescriptionPanel.jsx";
 import SharedSlidersBar from "./SharedSlidersBar.jsx";
-import useMediaQuery from "../utils/useMediaQuery.js";
-import { PREFS_KEY, loadPrefs } from "../utils/preferences.js";
-import {
-  parseComparisonParams,
-  buildComparisonURL,
-  focalLengthToZoomT,
-  zoomTToFocalLength,
-} from "../utils/parseComparisonParams.js";
+import { PREFS_KEY } from "../utils/preferences.js";
+import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "../utils/parseComparisonParams.js";
 import {
   ENABLE_COLOR_TRACING,
-  DEFAULT_COLOR_TRACING,
   ENABLE_ANALYSIS_VIEW,
   ENABLE_DESKTOP_VIEW_TOGGLE,
   ENABLE_DIAGRAM_ONLY,
@@ -51,6 +44,28 @@ import { computeFocusPair, computeAperturePair, computeZoomPair, snapToCommon } 
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
+import useLensState from "../utils/useLensState.js";
+import {
+  SET_LENS_A,
+  SET_LENS_B,
+  SET_SCALE_MODE,
+  SET_DARK,
+  SET_HIGH_CONTRAST,
+  SET_MOBILE_VIEW,
+  SET_DESKTOP_VIEW,
+  SET_RAY_TOGGLE,
+  SET_FOCUS_T,
+  SET_ZOOM_T,
+  SET_STOPDOWN_T,
+  SET_SHARED_FOCUS_T,
+  SET_SHARED_STOPDOWN_T,
+  SET_SHARED_ZOOM_T,
+  SET_PANEL_EXPANDED,
+  SET_OVERLAY,
+  CLOSE_ALL_OVERLAYS,
+  ENTER_COMPARE,
+  EXIT_COMPARE,
+} from "../utils/lensReducer.js";
 
 /* =====================================================================
  * §1  HOISTED STYLES — static style objects extracted from render
@@ -102,67 +117,25 @@ const CLOSE_BTN_BASE = {
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
  * =====================================================================
+ *
  *  Diagram rendering delegated to LensDiagramPanel.  This component
  *  handles orchestration, comparison mode, shared controls, and chrome.
  * ------------------------------------------------------------------- */
 
 export default function LensVisualization() {
-  const [prefs] = useState(() => loadPrefs(CATALOG_KEYS));
+  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS);
 
-  /* ── URL params take precedence over localStorage ──
-   * State precedence: URL query params > localStorage prefs > defaults.
-   * This allows shareable deep links to override local user preferences. */
-  const urlState = useMemo(() => {
-    if (typeof window === "undefined") return {};
-    return parseComparisonParams(window.location.search, CATALOG_KEYS);
-  }, []);
+  /* ── Destructure state slices for convenient access ── */
+  const { lens, display, rays, sliders, sharedSliders, panels, overlays } = state;
+  const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
+  const { dark, highContrast, mobileView, desktopView } = display;
+  const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB } = rays;
+  const { focusT, zoomT, stopdownT } = sliders;
+  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
+  const { showAbout, showAboutSite } = overlays;
 
-  const [lensKeyA, setLensKeyA] = useState(
-    urlState.singleLens || urlState.lensKeyA || prefs.lensKeyA || CATALOG_KEYS[0],
-  );
-  const [lensKeyB, setLensKeyB] = useState(
-    urlState.lensKeyB || prefs.lensKeyB || CATALOG_KEYS[Math.min(1, CATALOG_KEYS.length - 1)],
-  );
-  const [comparing, setComparing] = useState(urlState.comparing || prefs.comparing || false);
-  const [scaleMode, setScaleMode] = useState(prefs.scaleMode || "independent");
-
-  const [dark, setDark] = useState(
-    prefs.dark ??
-      (() => (typeof window !== "undefined" ? window.matchMedia("(prefers-color-scheme: dark)").matches : true)),
-  );
-  const [highContrast, setHighContrast] = useState(
-    prefs.highContrast ??
-      (() => (typeof window !== "undefined" ? window.matchMedia("(prefers-contrast: more)").matches : false)),
-  );
-  const [focusT, setFocusT] = useState(urlState.focus ?? 0);
-  const [zoomT, setZoomT] = useState(0); // initialized from URL after lens builds
-  const [showOnAxis, setShowOnAxis] = useState(prefs.showOnAxis ?? true);
-  const [showOffAxis, setShowOffAxis] = useState(() => {
-    const v = prefs.showOffAxis ?? "off";
-    return !ENABLE_EDGE_PROJECTION && v === "edge" ? "trueAngle" : v;
-  });
-  const [rayTracksF, setRayTracksF] = useState(prefs.rayTracksF ?? false);
-  const [showChromatic, setShowChromatic] = useState(prefs.showChromatic ?? DEFAULT_COLOR_TRACING);
-  const [chromR, setChromR] = useState(prefs.chromR ?? true);
-  const [chromG, setChromG] = useState(prefs.chromG ?? true);
-  const [chromB, setChromB] = useState(prefs.chromB ?? true);
-  const [stopdownT, setStopdownT] = useState(urlState.aperture ?? 0);
-  const [mobileView, setMobileView] = useState("diagram");
-  const [desktopView, setDesktopView] = useState(prefs.desktopView || "both");
-  const [showAbout, setShowAbout] = useState(false);
-  const [showAboutSite, setShowAboutSite] = useState(false);
-
-  const isWide = useMediaQuery("(min-width: 900px)");
-
-  /* ── Collapsible panel states (mobile optimization) ── */
-  const [focusExpanded, setFocusExpanded] = useState(prefs.focusExpanded ?? isWide);
-  const [apertureExpanded, setApertureExpanded] = useState(prefs.apertureExpanded ?? isWide);
-  const [headerControlsExpanded, setHeaderControlsExpanded] = useState(prefs.headerControlsExpanded ?? false);
-  const [legendExpanded, setLegendExpanded] = useState(prefs.legendExpanded ?? false);
-  const [headerInfoExpanded, setHeaderInfoExpanded] = useState(prefs.headerInfoExpanded ?? true);
-  const [sharedFocusT, setSharedFocusT] = useState(urlState.comparing ? (urlState.focus ?? 0) : 0);
-  const [sharedStopdownT, setSharedStopdownT] = useState(urlState.comparing ? (urlState.aperture ?? 0) : 0);
-  const [sharedZoomT, setSharedZoomT] = useState(0); // zoom initialized from URL after lenses build
+  /* ── Comparison mode header height alignment ── */
   const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
   const justEnteredCompare = useRef(false);
 
@@ -241,6 +214,14 @@ export default function LensVisualization() {
   const urlUpdateTimer = useRef(null);
   const urlZoomInitialized = useRef(false);
 
+  /* ── URL state for zoom initialization (parsed once) ── */
+  const urlState = useMemo(() => {
+    if (typeof window === "undefined") return {};
+    const params = new URLSearchParams(window.location.search);
+    const zoom = parseFloat(params.get("zoom"));
+    return { zoom: isFinite(zoom) && zoom > 0 ? zoom : null };
+  }, []);
+
   /* ── Update URL immediately on lens selection change ── */
   useEffect(() => {
     const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
@@ -254,14 +235,11 @@ export default function LensVisualization() {
   useEffect(() => {
     if (!showAbout && !showAboutSite) return;
     const handleKey = (e) => {
-      if (e.key === "Escape") {
-        setShowAbout(false);
-        setShowAboutSite(false);
-      }
+      if (e.key === "Escape") dispatch({ type: CLOSE_ALL_OVERLAYS });
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [showAbout, showAboutSite]);
+  }, [showAbout, showAboutSite, dispatch]);
 
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
@@ -283,19 +261,17 @@ export default function LensVisualization() {
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
   const switchLensA = useCallback(
     (key) => {
-      setLensKeyA(key);
-      if (!comparing) {
-        setFocusT(0);
-        setZoomT(0);
-        setStopdownT(0);
-      }
+      dispatch({ type: SET_LENS_A, key });
     },
-    [comparing],
+    [dispatch],
   );
 
-  const switchLensB = useCallback((key) => {
-    setLensKeyB(key);
-  }, []);
+  const switchLensB = useCallback(
+    (key) => {
+      dispatch({ type: SET_LENS_B, key });
+    },
+    [dispatch],
+  );
 
   /* ── Build both lenses for comparison computations ──
    * Built eagerly when comparison mode is active so we can compute
@@ -321,11 +297,11 @@ export default function LensVisualization() {
       const { LA, LB } = comparisonLenses;
       const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
       if (zoomLens) {
-        setSharedZoomT(focalLengthToZoomT(urlState.zoom, zoomLens));
+        dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlState.zoom, zoomLens) });
       }
       urlZoomInitialized.current = true;
     }
-  }, [comparisonLenses, comparing, urlState.zoom]);
+  }, [comparisonLenses, comparing, urlState.zoom, dispatch]);
 
   /* ── Build a single-lens L for zoom URL initialization ── */
   const singleLensForZoomInit = useMemo(() => {
@@ -340,10 +316,10 @@ export default function LensVisualization() {
   useEffect(() => {
     if (urlZoomInitialized.current || urlState.zoom == null || !singleLensForZoomInit) return;
     if (singleLensForZoomInit.isZoom) {
-      setZoomT(focalLengthToZoomT(urlState.zoom, singleLensForZoomInit));
+      dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(urlState.zoom, singleLensForZoomInit) });
     }
     urlZoomInitialized.current = true;
-  }, [singleLensForZoomInit, urlState.zoom]);
+  }, [singleLensForZoomInit, urlState.zoom, dispatch]);
 
   /* ── Update URL (sliders on pointer-up with 300ms debounce) ──
    * Updates the browser URL with slider state for deep-linking. Debounced
@@ -434,31 +410,26 @@ export default function LensVisualization() {
         ? 0
         : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
     prevStopdownT.current = cp;
-    setSharedStopdownT(cp);
-  }, [comparisonLenses]);
+    dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
+  }, [comparisonLenses, dispatch]);
 
   /* ── Enter/exit comparison mode ── */
   const toggleCompare = useCallback(() => {
     if (!comparing) {
-      /* Entering comparison: pick next lens if A===B */
-      if (lensKeyA === lensKeyB) {
-        const idx = CATALOG_KEYS.indexOf(lensKeyA);
-        setLensKeyB(CATALOG_KEYS[(idx + 1) % CATALOG_KEYS.length]);
-      }
-      setSharedFocusT(0);
-      setSharedStopdownT(0);
+      dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       prevFocusT.current = 0;
       prevStopdownT.current = 0;
       justEnteredCompare.current = true;
       focusStuck.current = false;
       apertureStuck.current = false;
     } else {
-      /* Exiting: map shared values back to single-lens values */
-      if (focusPair) setFocusT(focusPair.focusA);
-      if (aperturePair) setStopdownT(aperturePair.stopdownA);
+      dispatch({
+        type: EXIT_COMPARE,
+        focusA: focusPair?.focusA,
+        stopdownA: aperturePair?.stopdownA,
+      });
     }
-    setComparing((c) => !c);
-  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair]);
+  }, [comparing, focusPair, aperturePair, dispatch]);
 
   /* ── Sticky slider handlers ── */
   const triggerFlash = useCallback((panel) => {
@@ -474,7 +445,7 @@ export default function LensVisualization() {
 
       /* While stuck, reject all movement — hold at cp until pointerDown clears it */
       if (stickyActive && focusStuck.current) {
-        setSharedFocusT(cp);
+        dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
         return;
       }
 
@@ -482,7 +453,7 @@ export default function LensVisualization() {
         const prev = prevFocusT.current;
         /* Crossing or reaching the common point from either side */
         if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
-          setSharedFocusT(cp);
+          dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
           prevFocusT.current = cp;
           focusStuck.current = true;
           /* The lens with longer MFD (less capable) is the one that stops */
@@ -493,9 +464,9 @@ export default function LensVisualization() {
       }
       const v = snapToCommon(rawT, cp);
       prevFocusT.current = v;
-      setSharedFocusT(v);
+      dispatch({ type: SET_SHARED_FOCUS_T, value: v });
     },
-    [focusPair, comparisonLenses, triggerFlash],
+    [focusPair, comparisonLenses, triggerFlash, dispatch],
   );
 
   const handleSharedStopdownChange = useCallback(
@@ -503,20 +474,17 @@ export default function LensVisualization() {
       const cp = aperturePair?.commonPoint;
       const stickyActive = ENABLE_SLIDER_STICKY && cp > 0.01 && cp < 0.99;
 
-      /* While stuck, reject all movement — hold at cp until pointerDown clears it */
       if (stickyActive && apertureStuck.current) {
-        setSharedStopdownT(cp);
+        dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
         return;
       }
 
       if (stickyActive) {
         const prev = prevStopdownT.current;
-        /* Crossing or reaching the common point from either side */
         if ((prev < cp && rawT >= cp) || (prev > cp && rawT <= cp)) {
-          setSharedStopdownT(cp);
+          dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
           prevStopdownT.current = cp;
           apertureStuck.current = true;
-          /* The slower lens (larger FOPEN) is the one that stops */
           const { LA, LB } = comparisonLenses;
           triggerFlash(LA.FOPEN > LB.FOPEN ? "a" : "b");
           return;
@@ -524,9 +492,9 @@ export default function LensVisualization() {
       }
       const v = snapToCommon(rawT, cp);
       prevStopdownT.current = v;
-      setSharedStopdownT(v);
+      dispatch({ type: SET_SHARED_STOPDOWN_T, value: v });
     },
-    [aperturePair, comparisonLenses, triggerFlash],
+    [aperturePair, comparisonLenses, triggerFlash, dispatch],
   );
 
   const handleFocusPointerDown = useCallback(() => {
@@ -558,30 +526,31 @@ export default function LensVisualization() {
     theme: t,
     dark,
     highContrast,
-    onFocusChange: setFocusT,
-    onZoomChange: setZoomT,
-    onStopdownChange: setStopdownT,
+    onFocusChange: (v) => dispatch({ type: SET_FOCUS_T, value: v }),
+    onZoomChange: (v) => dispatch({ type: SET_ZOOM_T, value: v }),
+    onStopdownChange: (v) => dispatch({ type: SET_STOPDOWN_T, value: v }),
     onSliderPointerUp: updateURLWithSliders,
-    onShowOnAxisChange: setShowOnAxis,
-    onShowOffAxisChange: setShowOffAxis,
-    onRayTracksFChange: setRayTracksF,
-    onShowChromaticChange: setShowChromatic,
-    onChromRChange: setChromR,
-    onChromGChange: setChromG,
-    onChromBChange: setChromB,
-    onDarkChange: setDark,
-    onHighContrastChange: setHighContrast,
+    onShowOnAxisChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
+    onShowOffAxisChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
+    onRayTracksFChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v }),
+    onShowChromaticChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v }),
+    onChromRChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v }),
+    onChromGChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
+    onChromBChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
+    onDarkChange: (v) => dispatch({ type: SET_DARK, dark: v }),
+    onHighContrastChange: (v) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v }),
     isWide,
     focusExpanded,
-    onFocusExpandedChange: setFocusExpanded,
+    onFocusExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v }),
     apertureExpanded,
-    onApertureExpandedChange: setApertureExpanded,
+    onApertureExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "apertureExpanded", expanded: v }),
     headerControlsExpanded,
-    onHeaderControlsExpandedChange: setHeaderControlsExpanded,
+    onHeaderControlsExpandedChange: (v) =>
+      dispatch({ type: SET_PANEL_EXPANDED, panel: "headerControlsExpanded", expanded: v }),
     legendExpanded,
-    onLegendExpandedChange: setLegendExpanded,
+    onLegendExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v }),
     headerInfoExpanded,
-    onHeaderInfoExpandedChange: setHeaderInfoExpanded,
+    onHeaderInfoExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v }),
   };
 
   /* =====================================================================
@@ -663,11 +632,14 @@ export default function LensVisualization() {
           transition: "border-color 0.3s",
         }}
       >
-        <button onClick={() => setHighContrast(!highContrast)} style={toggleBtnStyle(highContrast, true)}>
+        <button
+          onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
+          style={toggleBtnStyle(highContrast, true)}
+        >
           <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
           <span>HC</span>
         </button>
-        <button onClick={() => setDark(!dark)} style={toggleBtnStyle(false, false)}>
+        <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtnStyle(false, false)}>
           <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
           <span>{dark ? "Light" : "Dark"}</span>
         </button>
@@ -685,8 +657,14 @@ export default function LensVisualization() {
         {(() => {
           const offAxisActive = showOffAxis !== "off";
           const offAxisCycle = ENABLE_EDGE_PROJECTION
-            ? () => setShowOffAxis(showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off")
-            : () => setShowOffAxis(offAxisActive ? "off" : "trueAngle");
+            ? () =>
+                dispatch({
+                  type: SET_RAY_TOGGLE,
+                  field: "showOffAxis",
+                  value: showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
+                })
+            : () =>
+                dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: offAxisActive ? "off" : "trueAngle" });
           const offAxisLabel = ENABLE_EDGE_PROJECTION
             ? showOffAxis === "edge"
               ? "EDGE PROJ"
@@ -698,7 +676,7 @@ export default function LensVisualization() {
             {
               label: "ON-AXIS",
               active: showOnAxis,
-              onClick: () => setShowOnAxis(!showOnAxis),
+              onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: !showOnAxis }),
               dotA: t.rayWarm,
               dotB: t.rayCool,
             },
@@ -734,7 +712,11 @@ export default function LensVisualization() {
           { label: "FROM \u221e", val: false, icon: "\u2225" },
           { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
         ].map(({ label, val, icon }) => (
-          <button key={label} onClick={() => setRayTracksF(val)} style={toggleBtnStyle(rayTracksF === val, !val)}>
+          <button
+            key={label}
+            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
+            style={toggleBtnStyle(rayTracksF === val, !val)}
+          >
             <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>
               {icon}
             </span>
@@ -753,7 +735,10 @@ export default function LensVisualization() {
             transition: "border-color 0.3s, width 0.3s",
           }}
         >
-          <button onClick={() => setShowChromatic(!showChromatic)} style={toggleBtnStyle(showChromatic, showChromatic)}>
+          <button
+            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
+            style={toggleBtnStyle(showChromatic, showChromatic)}
+          >
             <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
               <line
                 x1="0"
@@ -784,13 +769,13 @@ export default function LensVisualization() {
           </button>
           {showChromatic &&
             [
-              { ch: "R", active: chromR, set: setChromR, color: t.rayChromR },
-              { ch: "G", active: chromG, set: setChromG, color: t.rayChromG },
-              { ch: "B", active: chromB, set: setChromB, color: t.rayChromB },
-            ].map(({ ch, active, set, color }, idx) => (
+              { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
+              { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
+              { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
+            ].map(({ ch, active, field, color }, idx) => (
               <button
                 key={ch}
-                onClick={() => set(!active)}
+                onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
                 style={{
                   flex: 0.6,
                   background: active ? t.toggleActiveBg : t.toggleBg,
@@ -838,7 +823,11 @@ export default function LensVisualization() {
           { label: "INDEPENDENT", val: "independent" },
           { label: "NORMALIZED", val: "normalized" },
         ].map(({ label, val }, idx) => (
-          <button key={val} onClick={() => setScaleMode(val)} style={toggleBtnStyle(scaleMode === val, idx === 0)}>
+          <button
+            key={val}
+            onClick={() => dispatch({ type: SET_SCALE_MODE, scaleMode: val })}
+            style={toggleBtnStyle(scaleMode === val, idx === 0)}
+          >
             <span>{label}</span>
           </button>
         ))}
@@ -934,11 +923,14 @@ export default function LensVisualization() {
       >
         {/* Theme controls */}
         <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
-          <button onClick={() => setHighContrast(!highContrast)} style={toggleBtnStyle(highContrast, true)}>
+          <button
+            onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
+            style={toggleBtnStyle(highContrast, true)}
+          >
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
           </button>
-          <button onClick={() => setDark(!dark)} style={toggleBtnStyle(false, false)}>
+          <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtnStyle(false, false)}>
             <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
             <span>{dark ? "Light" : "Dark"}</span>
           </button>
@@ -949,8 +941,18 @@ export default function LensVisualization() {
           {(() => {
             const offAxisActive = showOffAxis !== "off";
             const offAxisCycle = ENABLE_EDGE_PROJECTION
-              ? () => setShowOffAxis(showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off")
-              : () => setShowOffAxis(offAxisActive ? "off" : "trueAngle");
+              ? () =>
+                  dispatch({
+                    type: SET_RAY_TOGGLE,
+                    field: "showOffAxis",
+                    value: showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
+                  })
+              : () =>
+                  dispatch({
+                    type: SET_RAY_TOGGLE,
+                    field: "showOffAxis",
+                    value: offAxisActive ? "off" : "trueAngle",
+                  });
             const offAxisLabel = ENABLE_EDGE_PROJECTION
               ? showOffAxis === "edge"
                 ? "EDGE"
@@ -962,7 +964,7 @@ export default function LensVisualization() {
               {
                 label: "ON",
                 active: showOnAxis,
-                onClick: () => setShowOnAxis(!showOnAxis),
+                onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: !showOnAxis }),
                 dotA: t.rayWarm,
                 dotB: t.rayCool,
               },
@@ -1007,7 +1009,7 @@ export default function LensVisualization() {
           ].map(({ label, val }, idx) => (
             <button
               key={label}
-              onClick={() => setRayTracksF(val)}
+              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
               style={toggleBtnStyle(rayTracksF === val, idx === 0)}
             >
               <span>{label}</span>
@@ -1019,7 +1021,7 @@ export default function LensVisualization() {
         {ENABLE_COLOR_TRACING && (
           <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
             <button
-              onClick={() => setShowChromatic(!showChromatic)}
+              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
               style={toggleBtnStyle(showChromatic, showChromatic)}
             >
               <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
@@ -1052,13 +1054,13 @@ export default function LensVisualization() {
             </button>
             {showChromatic &&
               [
-                { ch: "R", active: chromR, set: setChromR, color: t.rayChromR },
-                { ch: "G", active: chromG, set: setChromG, color: t.rayChromG },
-                { ch: "B", active: chromB, set: setChromB, color: t.rayChromB },
-              ].map(({ ch, active, set, color }, idx) => (
+                { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
+                { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
+                { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
+              ].map(({ ch, active, field, color }, idx) => (
                 <button
                   key={ch}
-                  onClick={() => set(!active)}
+                  onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
                   style={{
                     flex: 0.6,
                     background: active ? t.toggleActiveBg : t.toggleBg,
@@ -1217,7 +1219,7 @@ export default function LensVisualization() {
           </span>
         )}
         <button
-          onClick={() => setShowAboutSite(true)}
+          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
           style={{
             backgroundColor: t.selectorBg,
             border: `1.5px solid ${t.sliderAccent}40`,
@@ -1237,7 +1239,7 @@ export default function LensVisualization() {
           Site
         </button>
         <button
-          onClick={() => setShowAbout(true)}
+          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
           style={{
             backgroundColor: t.selectorBg,
             border: `1.5px solid ${t.sliderAccent}40`,
@@ -1281,7 +1283,7 @@ export default function LensVisualization() {
             ].map(({ label, val }) => (
               <button
                 key={val}
-                onClick={() => setMobileView(val)}
+                onClick={() => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
                 style={{
                   flex: 1,
                   background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
@@ -1330,7 +1332,7 @@ export default function LensVisualization() {
             {desktopViewOptions.map(({ label, val }, i) => (
               <button
                 key={val}
-                onClick={() => setDesktopView(val)}
+                onClick={() => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
                 style={{
                   flex: 1,
                   background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
@@ -1369,7 +1371,7 @@ export default function LensVisualization() {
               sharedZoomT={sharedZoomT}
               onSharedFocusChange={handleSharedFocusChange}
               onSharedStopdownChange={handleSharedStopdownChange}
-              onSharedZoomChange={setSharedZoomT}
+              onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
               onFocusPointerDown={handleFocusPointerDown}
               onAperturePointerDown={handleAperturePointerDown}
               focusPair={focusPair}
@@ -1413,12 +1415,18 @@ export default function LensVisualization() {
 
       {/* ── About Site overlay ── */}
       {showAboutSite && (
-        <div onClick={() => setShowAboutSite(false)} style={OVERLAY_BACKDROP}>
+        <div
+          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
+          style={OVERLAY_BACKDROP}
+        >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
           >
-            <button onClick={() => setShowAboutSite(false)} style={{ ...CLOSE_BTN_BASE, color: t.muted }}>
+            <button
+              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
+              style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+            >
               ×
             </button>
             <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
@@ -1428,12 +1436,18 @@ export default function LensVisualization() {
 
       {/* ── About Me overlay ── */}
       {showAbout && (
-        <div onClick={() => setShowAbout(false)} style={OVERLAY_BACKDROP}>
+        <div
+          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
+          style={OVERLAY_BACKDROP}
+        >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
           >
-            <button onClick={() => setShowAbout(false)} style={{ ...CLOSE_BTN_BASE, color: t.muted }}>
+            <button
+              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
+              style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+            >
               ×
             </button>
             <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
