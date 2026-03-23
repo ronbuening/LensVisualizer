@@ -21,6 +21,7 @@
 | `validateLensData.js` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.js` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `themes.js` | `src/utils/` | Theme factory + 4 theme definitions |
+| `styles.js` | `src/utils/` | Shared style-object factories and static constants for reusable UI patterns |
 | `lensCatalog.js` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `comparisonSliders.js` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
 | `parseComparisonParams.js` | `src/utils/` | URL deep-link parsing + slider state persistence |
