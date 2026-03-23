@@ -30,18 +30,9 @@
 
 import { formatSharedFocusDist, sharedFNumber } from "../utils/comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/styles.js";
 
-/* ── Hoisted static styles ── */
-const SLIDER_INPUT_BASE = {
-  width: "100%",
-  height: 4,
-  appearance: "none",
-  borderRadius: 2,
-  outline: "none",
-  cursor: "pointer",
-};
-const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em" };
-const SLIDER_VALUE_BASE = { fontSize: 14, fontWeight: 700, fontVariantNumeric: "tabular-nums" };
+/* ── Hoisted static styles (unique to this component) ── */
 const SLIDER_ROW = { display: "flex", alignItems: "center", gap: 8 };
 const READOUT_ROW = { marginTop: 6, display: "flex", gap: 16, fontSize: 9, fontVariantNumeric: "tabular-nums" };
 const LABEL_ROW = { display: "flex", alignItems: "center", gap: 10, marginBottom: 8 };
@@ -159,7 +150,7 @@ export default function SharedSlidersBar({
                   value={sharedZoomT}
                   onChange={(e) => onSharedZoomChange(parseFloat(e.target.value))}
                   onPointerUp={onSliderPointerUp}
-                  style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
+                  style={sliderInput(t, { sizing: "full" })}
                 />
               </div>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMaxLabel}</span>
@@ -191,16 +182,7 @@ export default function SharedSlidersBar({
                 onPointerDown={onFocusPointerDown}
                 onChange={(e) => onSharedFocusChange(parseFloat(e.target.value))}
                 onPointerUp={onSliderPointerUp}
-                style={{
-                  width: "100%",
-                  height: 4,
-                  appearance: "none",
-                  background: t.sliderTrack,
-                  borderRadius: 2,
-                  outline: "none",
-                  cursor: "pointer",
-                  accentColor: t.sliderAccent,
-                }}
+                style={sliderInput(t, { sizing: "full" })}
               />
             </div>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minCloseFocus} m</span>
@@ -234,16 +216,7 @@ export default function SharedSlidersBar({
                 onPointerDown={onAperturePointerDown}
                 onChange={(e) => onSharedStopdownChange(parseFloat(e.target.value))}
                 onPointerUp={onSliderPointerUp}
-                style={{
-                  width: "100%",
-                  height: 4,
-                  appearance: "none",
-                  background: t.sliderTrack,
-                  borderRadius: 2,
-                  outline: "none",
-                  cursor: "pointer",
-                  accentColor: t.sliderAccent,
-                }}
+                style={sliderInput(t, { sizing: "full" })}
               />
             </div>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{sharedMaxFstop}</span>
