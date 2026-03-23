@@ -25,6 +25,7 @@ import DescriptionPanel from "./DescriptionPanel.jsx";
 import SharedSlidersBar from "./SharedSlidersBar.jsx";
 import usePreferences from "../utils/usePreferences.js";
 import useURLSync from "../utils/useURLSync.js";
+import { LensStateContext, LensDispatchContext } from "../utils/LensContext.js";
 import {
   ENABLE_COLOR_TRACING,
   ENABLE_ANALYSIS_VIEW,
@@ -53,12 +54,8 @@ import {
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
   SET_RAY_TOGGLE,
-  SET_FOCUS_T,
-  SET_ZOOM_T,
-  SET_STOPDOWN_T,
   SET_SHARED_STOPDOWN_T,
   SET_SHARED_ZOOM_T,
-  SET_PANEL_EXPANDED,
   SET_OVERLAY,
   CLOSE_ALL_OVERLAYS,
   ENTER_COMPARE,
@@ -124,13 +121,11 @@ export default function LensVisualization() {
   const [state, dispatch, isWide] = useLensState(CATALOG_KEYS);
 
   /* ── Destructure state slices for convenient access ── */
-  const { lens, display, rays, sliders, sharedSliders, panels, overlays } = state;
+  const { lens, display, rays, sharedSliders, overlays } = state;
   const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
   const { dark, highContrast, mobileView, desktopView } = display;
   const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB } = rays;
-  const { focusT, zoomT, stopdownT } = sliders;
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
-  const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
   const { showAbout, showAboutSite } = overlays;
 
   /* ── Comparison mode header height alignment ── */
@@ -276,47 +271,11 @@ export default function LensVisualization() {
   }, []);
   const maxHeaderHeight = Math.max(headerHeights.a, headerHeights.b);
 
-  /* ── Shared panel props ── */
-  const sharedProps = {
-    focusT,
-    zoomT,
-    stopdownT,
-    showOnAxis,
-    showOffAxis,
-    showChromatic,
-    chromR,
-    chromG,
-    chromB,
-    rayTracksF,
-    theme: t,
-    dark,
-    highContrast,
-    onFocusChange: (v) => dispatch({ type: SET_FOCUS_T, value: v }),
-    onZoomChange: (v) => dispatch({ type: SET_ZOOM_T, value: v }),
-    onStopdownChange: (v) => dispatch({ type: SET_STOPDOWN_T, value: v }),
-    onSliderPointerUp: updateURLWithSliders,
-    onShowOnAxisChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
-    onShowOffAxisChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
-    onRayTracksFChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v }),
-    onShowChromaticChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v }),
-    onChromRChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v }),
-    onChromGChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
-    onChromBChange: (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
-    onDarkChange: (v) => dispatch({ type: SET_DARK, dark: v }),
-    onHighContrastChange: (v) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v }),
-    isWide,
-    focusExpanded,
-    onFocusExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v }),
-    apertureExpanded,
-    onApertureExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "apertureExpanded", expanded: v }),
-    headerControlsExpanded,
-    onHeaderControlsExpandedChange: (v) =>
-      dispatch({ type: SET_PANEL_EXPANDED, panel: "headerControlsExpanded", expanded: v }),
-    legendExpanded,
-    onLegendExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v }),
-    headerInfoExpanded,
-    onHeaderInfoExpandedChange: (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v }),
-  };
+  /* ── Context value (replaces sharedProps prop drilling) ── */
+  const ctxValue = useMemo(
+    () => ({ state, theme: t, isWide, updateURLWithSliders }),
+    [state, t, isWide, updateURLWithSliders],
+  );
 
   /* =====================================================================
    * §3  RENDER HELPERS — style factories and pre-built JSX fragments
@@ -632,7 +591,6 @@ export default function LensVisualization() {
         >
           <LensDiagramPanel
             lensKey={lensKeyA}
-            {...sharedProps}
             focusT={focusPair?.focusA ?? 0}
             zoomT={zoomPair?.zoomA ?? 0}
             stopdownT={aperturePair?.stopdownA ?? 0}
@@ -650,7 +608,6 @@ export default function LensVisualization() {
         <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
           <LensDiagramPanel
             lensKey={lensKeyB}
-            {...sharedProps}
             focusT={focusPair?.focusB ?? 0}
             zoomT={zoomPair?.zoomB ?? 0}
             stopdownT={aperturePair?.stopdownB ?? 0}
@@ -866,7 +823,6 @@ export default function LensVisualization() {
   const singleDiagramContent = !comparing ? (
     <LensDiagramPanel
       lensKey={lensKeyA}
-      {...sharedProps}
       scaleRatio={null}
       panelId="main"
       compact={false}
@@ -879,48 +835,31 @@ export default function LensVisualization() {
    * §4  JSX — Top bar, comparison chrome, diagram panels, overlays
    * ===================================================================== */
   return (
-    <div
-      style={{
-        background: t.bg,
-        color: t.body,
-        fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
-        minHeight: "100vh",
-        transition: "background 0.3s,color 0.3s",
-      }}
-    >
-      {/* ── Top bar: lens selector(s) + compare button ── */}
-      <div
-        style={{
-          padding: isWide ? "12px 24px" : "10px 12px",
-          borderBottom: `1px solid ${t.headerBorder}`,
-          backgroundColor: t.headerBgColor,
-          backgroundImage: t.headerBgImage,
-          display: "flex",
-          alignItems: "center",
-          gap: isWide ? 12 : 8,
-          flexWrap: "wrap",
-          transition: "background-color 0.3s,border-color 0.3s",
-        }}
-      >
-        <span
-          style={{ fontSize: 9, letterSpacing: "0.12em", color: t.muted, fontFamily: "inherit", whiteSpace: "nowrap" }}
+    <LensStateContext.Provider value={ctxValue}>
+      <LensDispatchContext.Provider value={dispatch}>
+        <div
+          style={{
+            background: t.bg,
+            color: t.body,
+            fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
+            minHeight: "100vh",
+            transition: "background 0.3s,color 0.3s",
+          }}
         >
-          {comparing ? "LENS A" : "LENS"}
-        </span>
-        <select
-          value={lensKeyA}
-          onChange={(e) => switchLensA(e.target.value)}
-          style={{ ...selectorStyle(isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
-        >
-          {CATALOG_KEYS.map((k) => (
-            <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-              {LENS_CATALOG[k].name}
-            </option>
-          ))}
-        </select>
-
-        {comparing && (
-          <>
+          {/* ── Top bar: lens selector(s) + compare button ── */}
+          <div
+            style={{
+              padding: isWide ? "12px 24px" : "10px 12px",
+              borderBottom: `1px solid ${t.headerBorder}`,
+              backgroundColor: t.headerBgColor,
+              backgroundImage: t.headerBgImage,
+              display: "flex",
+              alignItems: "center",
+              gap: isWide ? 12 : 8,
+              flexWrap: "wrap",
+              transition: "background-color 0.3s,border-color 0.3s",
+            }}
+          >
             <span
               style={{
                 fontSize: 9,
@@ -930,11 +869,11 @@ export default function LensVisualization() {
                 whiteSpace: "nowrap",
               }}
             >
-              LENS B
+              {comparing ? "LENS A" : "LENS"}
             </span>
             <select
-              value={lensKeyB}
-              onChange={(e) => switchLensB(e.target.value)}
+              value={lensKeyA}
+              onChange={(e) => switchLensA(e.target.value)}
               style={{ ...selectorStyle(isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
             >
               {CATALOG_KEYS.map((k) => (
@@ -943,282 +882,309 @@ export default function LensVisualization() {
                 </option>
               ))}
             </select>
-          </>
-        )}
 
-        {showCompareBtn && (
-          <button
-            onClick={toggleCompare}
-            style={{
-              backgroundColor: comparing ? t.toggleActiveBg : t.selectorBg,
-              border: `1.5px solid ${comparing ? t.sliderAccent : `${t.sliderAccent}40`}`,
-              borderRadius: 6,
-              padding: isWide ? "5px 14px" : "5px 10px",
-              cursor: "pointer",
-              fontSize: 10,
-              color: comparing ? t.toggleActiveText : t.selectorText,
-              fontFamily: "inherit",
-              letterSpacing: "0.08em",
-              outline: "none",
-              flexShrink: 0,
-              boxShadow: `0 0 6px ${t.sliderAccent}18`,
-              transition: "all 0.3s",
-            }}
-          >
-            {comparing ? "EXIT COMPARE" : "COMPARE"}
-          </button>
-        )}
+            {comparing && (
+              <>
+                <span
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.12em",
+                    color: t.muted,
+                    fontFamily: "inherit",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  LENS B
+                </span>
+                <select
+                  value={lensKeyB}
+                  onChange={(e) => switchLensB(e.target.value)}
+                  style={{ ...selectorStyle(isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
+                >
+                  {CATALOG_KEYS.map((k) => (
+                    <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
+                      {LENS_CATALOG[k].name}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
 
-        {isWide && <div style={{ flex: 1 }} />}
-        {isWide && (
-          <span
-            style={{
-              fontSize: 9,
-              letterSpacing: "0.12em",
-              color: t.muted,
-              fontFamily: "inherit",
-              whiteSpace: "nowrap",
-            }}
-          >
-            ABOUT
-          </span>
-        )}
-        <button
-          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
-          style={{
-            backgroundColor: t.selectorBg,
-            border: `1.5px solid ${t.sliderAccent}40`,
-            borderRadius: 6,
-            padding: isWide ? "5px 14px" : "5px 10px",
-            cursor: "pointer",
-            fontSize: 11,
-            color: t.selectorText,
-            fontFamily: "inherit",
-            letterSpacing: "0.06em",
-            outline: "none",
-            flexShrink: 0,
-            boxShadow: `0 0 6px ${t.sliderAccent}18`,
-            transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
-          }}
-        >
-          Site
-        </button>
-        <button
-          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
-          style={{
-            backgroundColor: t.selectorBg,
-            border: `1.5px solid ${t.sliderAccent}40`,
-            borderRadius: 6,
-            padding: isWide ? "5px 14px" : "5px 10px",
-            cursor: "pointer",
-            fontSize: 11,
-            color: t.selectorText,
-            fontFamily: "inherit",
-            letterSpacing: "0.06em",
-            outline: "none",
-            flexShrink: 0,
-            boxShadow: `0 0 6px ${t.sliderAccent}18`,
-            transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
-          }}
-        >
-          Author
-        </button>
-      </div>
-
-      {/* ── Shared controls bar (comparison mode only) ── */}
-      {sharedControlsBar}
-
-      {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
-      {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "8px 24px",
-            borderBottom: `1px solid ${t.headerBorder}`,
-            backgroundColor: t.headerBgColor,
-            backgroundImage: t.headerBgImage,
-            transition: "background-color 0.3s,border-color 0.3s",
-          }}
-        >
-          <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, width: 220 }}>
-            {[
-              { label: "DIAGRAM", val: "diagram" },
-              { label: "ANALYSIS", val: "description" },
-            ].map(({ label, val }) => (
+            {showCompareBtn && (
               <button
-                key={val}
-                onClick={() => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+                onClick={toggleCompare}
                 style={{
-                  flex: 1,
-                  background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
-                  border: "none",
-                  borderRight: val === "diagram" ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "5px 0",
+                  backgroundColor: comparing ? t.toggleActiveBg : t.selectorBg,
+                  border: `1.5px solid ${comparing ? t.sliderAccent : `${t.sliderAccent}40`}`,
+                  borderRadius: 6,
+                  padding: isWide ? "5px 14px" : "5px 10px",
                   cursor: "pointer",
-                  fontSize: 9,
-                  color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
+                  fontSize: 10,
+                  color: comparing ? t.toggleActiveText : t.selectorText,
                   fontFamily: "inherit",
                   letterSpacing: "0.08em",
-                  transition: "all 0.25s",
-                  minHeight: 28,
+                  outline: "none",
+                  flexShrink: 0,
+                  boxShadow: `0 0 6px ${t.sliderAccent}18`,
+                  transition: "all 0.3s",
                 }}
               >
-                {label}
+                {comparing ? "EXIT COMPARE" : "COMPARE"}
               </button>
-            ))}
-          </div>
-        </div>
-      )}
+            )}
 
-      {/* ── Desktop view toggle (wide screens, single-lens only) ── */}
-      {showDesktopToggle && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "8px 24px",
-            borderBottom: `1px solid ${t.headerBorder}`,
-            backgroundColor: t.headerBgColor,
-            backgroundImage: t.headerBgImage,
-            transition: "background-color 0.3s,border-color 0.3s",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: 0,
-              borderRadius: 5,
-              overflow: "hidden",
-              border: `1px solid ${t.toggleBorder}`,
-              width: desktopViewOptions.length * 110,
-            }}
-          >
-            {desktopViewOptions.map(({ label, val }, i) => (
-              <button
-                key={val}
-                onClick={() => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
+            {isWide && <div style={{ flex: 1 }} />}
+            {isWide && (
+              <span
                 style={{
-                  flex: 1,
-                  background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
-                  border: "none",
-                  borderRight: i < desktopViewOptions.length - 1 ? `1px solid ${t.toggleBorder}` : "none",
-                  padding: "5px 0",
-                  cursor: "pointer",
                   fontSize: 9,
-                  color: effectiveDesktopView === val ? t.toggleActiveText : t.toggleInactiveText,
+                  letterSpacing: "0.12em",
+                  color: t.muted,
                   fontFamily: "inherit",
-                  letterSpacing: "0.08em",
-                  transition: "all 0.25s",
-                  minHeight: 28,
+                  whiteSpace: "nowrap",
                 }}
               >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
-      {mobileControlsStrip}
-
-      {/* ── Main content area ── */}
-      {comparing ? (
-        <>
-          {comparisonContent}
-          {comparisonLenses && !comparisonLenses.error && focusPair && aperturePair && (
-            <SharedSlidersBar
-              LA={comparisonLenses.LA}
-              LB={comparisonLenses.LB}
-              sharedFocusT={sharedFocusT}
-              sharedStopdownT={sharedStopdownT}
-              sharedZoomT={sharedZoomT}
-              onSharedFocusChange={handleSharedFocusChange}
-              onSharedStopdownChange={handleSharedStopdownChange}
-              onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
-              onFocusPointerDown={handleFocusPointerDown}
-              onAperturePointerDown={handleAperturePointerDown}
-              focusPair={focusPair}
-              aperturePair={aperturePair}
-              zoomPair={zoomPair}
-              onSliderPointerUp={updateURLWithSliders}
-              theme={t}
-              isWide={isWide}
-            />
-          )}
-        </>
-      ) : isWide ? (
-        effectiveDesktopView === "diagram" ? (
-          <div style={{ minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>{singleDiagramContent}</div>
-        ) : effectiveDesktopView === "analysis" ? (
-          <div style={{ overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
-            {descriptionContent}
-          </div>
-        ) : (
-          /* Both — side-by-side */
-          <div style={{ display: "flex", minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
-            <div style={{ flex: "0 0 65%", minWidth: 0, overflow: "hidden" }}>{singleDiagramContent}</div>
-            <div
+                ABOUT
+              </span>
+            )}
+            <button
+              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
               style={{
-                flex: "0 0 35%",
-                borderLeft: `1px solid ${t.descBorder}`,
-                overflowY: "auto",
-                maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)`,
+                backgroundColor: t.selectorBg,
+                border: `1.5px solid ${t.sliderAccent}40`,
+                borderRadius: 6,
+                padding: isWide ? "5px 14px" : "5px 10px",
+                cursor: "pointer",
+                fontSize: 11,
+                color: t.selectorText,
+                fontFamily: "inherit",
+                letterSpacing: "0.06em",
+                outline: "none",
+                flexShrink: 0,
+                boxShadow: `0 0 6px ${t.sliderAccent}18`,
+                transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
               }}
             >
-              {descriptionContent}
+              Site
+            </button>
+            <button
+              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
+              style={{
+                backgroundColor: t.selectorBg,
+                border: `1.5px solid ${t.sliderAccent}40`,
+                borderRadius: 6,
+                padding: isWide ? "5px 14px" : "5px 10px",
+                cursor: "pointer",
+                fontSize: 11,
+                color: t.selectorText,
+                fontFamily: "inherit",
+                letterSpacing: "0.06em",
+                outline: "none",
+                flexShrink: 0,
+                boxShadow: `0 0 6px ${t.sliderAccent}18`,
+                transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
+              }}
+            >
+              Author
+            </button>
+          </div>
+
+          {/* ── Shared controls bar (comparison mode only) ── */}
+          {sharedControlsBar}
+
+          {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
+          {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "8px 24px",
+                borderBottom: `1px solid ${t.headerBorder}`,
+                backgroundColor: t.headerBgColor,
+                backgroundImage: t.headerBgImage,
+                transition: "background-color 0.3s,border-color 0.3s",
+              }}
+            >
+              <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, width: 220 }}>
+                {[
+                  { label: "DIAGRAM", val: "diagram" },
+                  { label: "ANALYSIS", val: "description" },
+                ].map(({ label, val }) => (
+                  <button
+                    key={val}
+                    onClick={() => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+                    style={{
+                      flex: 1,
+                      background: mobileView === val ? t.toggleActiveBg : t.toggleBg,
+                      border: "none",
+                      borderRight: val === "diagram" ? `1px solid ${t.toggleBorder}` : "none",
+                      padding: "5px 0",
+                      cursor: "pointer",
+                      fontSize: 9,
+                      color: mobileView === val ? t.toggleActiveText : t.toggleInactiveText,
+                      fontFamily: "inherit",
+                      letterSpacing: "0.08em",
+                      transition: "all 0.25s",
+                      minHeight: 28,
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )
-      ) : /* Mobile: toggle between views */
-      !ENABLE_ANALYSIS_VIEW || mobileView === "diagram" ? (
-        singleDiagramContent
-      ) : (
-        descriptionContent
-      )}
+          )}
 
-      {/* ── About Site overlay ── */}
-      {showAboutSite && (
-        <div
-          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-          style={OVERLAY_BACKDROP}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
-          >
-            <button
+          {/* ── Desktop view toggle (wide screens, single-lens only) ── */}
+          {showDesktopToggle && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "8px 24px",
+                borderBottom: `1px solid ${t.headerBorder}`,
+                backgroundColor: t.headerBgColor,
+                backgroundImage: t.headerBgImage,
+                transition: "background-color 0.3s,border-color 0.3s",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: 0,
+                  borderRadius: 5,
+                  overflow: "hidden",
+                  border: `1px solid ${t.toggleBorder}`,
+                  width: desktopViewOptions.length * 110,
+                }}
+              >
+                {desktopViewOptions.map(({ label, val }, i) => (
+                  <button
+                    key={val}
+                    onClick={() => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
+                    style={{
+                      flex: 1,
+                      background: effectiveDesktopView === val ? t.toggleActiveBg : t.toggleBg,
+                      border: "none",
+                      borderRight: i < desktopViewOptions.length - 1 ? `1px solid ${t.toggleBorder}` : "none",
+                      padding: "5px 0",
+                      cursor: "pointer",
+                      fontSize: 9,
+                      color: effectiveDesktopView === val ? t.toggleActiveText : t.toggleInactiveText,
+                      fontFamily: "inherit",
+                      letterSpacing: "0.08em",
+                      transition: "all 0.25s",
+                      minHeight: 28,
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
+          {mobileControlsStrip}
+
+          {/* ── Main content area ── */}
+          {comparing ? (
+            <>
+              {comparisonContent}
+              {comparisonLenses && !comparisonLenses.error && focusPair && aperturePair && (
+                <SharedSlidersBar
+                  LA={comparisonLenses.LA}
+                  LB={comparisonLenses.LB}
+                  sharedFocusT={sharedFocusT}
+                  sharedStopdownT={sharedStopdownT}
+                  sharedZoomT={sharedZoomT}
+                  onSharedFocusChange={handleSharedFocusChange}
+                  onSharedStopdownChange={handleSharedStopdownChange}
+                  onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
+                  onFocusPointerDown={handleFocusPointerDown}
+                  onAperturePointerDown={handleAperturePointerDown}
+                  focusPair={focusPair}
+                  aperturePair={aperturePair}
+                  zoomPair={zoomPair}
+                  onSliderPointerUp={updateURLWithSliders}
+                  theme={t}
+                  isWide={isWide}
+                />
+              )}
+            </>
+          ) : isWide ? (
+            effectiveDesktopView === "diagram" ? (
+              <div style={{ minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>{singleDiagramContent}</div>
+            ) : effectiveDesktopView === "analysis" ? (
+              <div style={{ overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+                {descriptionContent}
+              </div>
+            ) : (
+              /* Both — side-by-side */
+              <div style={{ display: "flex", minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
+                <div style={{ flex: "0 0 65%", minWidth: 0, overflow: "hidden" }}>{singleDiagramContent}</div>
+                <div
+                  style={{
+                    flex: "0 0 35%",
+                    borderLeft: `1px solid ${t.descBorder}`,
+                    overflowY: "auto",
+                    maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)`,
+                  }}
+                >
+                  {descriptionContent}
+                </div>
+              </div>
+            )
+          ) : /* Mobile: toggle between views */
+          !ENABLE_ANALYSIS_VIEW || mobileView === "diagram" ? (
+            singleDiagramContent
+          ) : (
+            descriptionContent
+          )}
+
+          {/* ── About Site overlay ── */}
+          {showAboutSite && (
+            <div
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-              style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+              style={OVERLAY_BACKDROP}
             >
-              ×
-            </button>
-            <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
-          </div>
-        </div>
-      )}
+              <div
+                onClick={(e) => e.stopPropagation()}
+                style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
+              >
+                <button
+                  onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
+                  style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+                >
+                  ×
+                </button>
+                <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
+              </div>
+            </div>
+          )}
 
-      {/* ── About Me overlay ── */}
-      {showAbout && (
-        <div
-          onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-          style={OVERLAY_BACKDROP}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
-          >
-            <button
+          {/* ── About Me overlay ── */}
+          {showAbout && (
+            <div
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-              style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+              style={OVERLAY_BACKDROP}
             >
-              ×
-            </button>
-            <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
-          </div>
+              <div
+                onClick={(e) => e.stopPropagation()}
+                style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
+              >
+                <button
+                  onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
+                  style={{ ...CLOSE_BTN_BASE, color: t.muted }}
+                >
+                  ×
+                </button>
+                <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </LensDispatchContext.Provider>
+    </LensStateContext.Provider>
   );
 }

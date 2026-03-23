@@ -24,6 +24,16 @@ import DiagramSVG from "./DiagramSVG.jsx";
 import DiagramHeader from "./DiagramHeader.jsx";
 import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
+import { useLensCtx, useLensDispatch } from "../utils/LensContext.js";
+import {
+  SET_FOCUS_T,
+  SET_ZOOM_T,
+  SET_STOPDOWN_T,
+  SET_RAY_TOGGLE,
+  SET_DARK,
+  SET_HIGH_CONTRAST,
+  SET_PANEL_EXPANDED,
+} from "../utils/lensReducer.js";
 
 /* ── Panel-level error boundary — resets automatically when lensKey changes ── */
 class PanelErrorBoundary extends Component {
@@ -56,56 +66,57 @@ class PanelErrorBoundary extends Component {
 }
 
 export default function LensDiagramPanel({
+  /* Per-instance props (differ between comparison panels) */
   lensKey,
-  focusT,
-  zoomT = 0,
-  stopdownT,
-  showOnAxis,
-  showOffAxis,
-  showChromatic,
-  chromR,
-  chromG,
-  chromB,
-  rayTracksF,
+  focusT: focusTProp,
+  zoomT: zoomTProp,
+  stopdownT: stopdownTProp,
   scaleRatio,
-  theme: t,
-  dark,
   panelId,
   compact,
   showControls = true,
   showSliders = true,
   maxSvgHeight = ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh",
   minHeaderHeight,
-  onFocusChange,
-  onZoomChange,
-  onStopdownChange,
   onHeaderHeight,
-  /* Ray/theme toggle callbacks (used in non-compact mode) */
-  onShowOnAxisChange,
-  onShowOffAxisChange,
-  onRayTracksFChange,
-  onShowChromaticChange,
-  onChromRChange,
-  onChromGChange,
-  onChromBChange,
-  onDarkChange,
-  onHighContrastChange,
-  highContrast,
   flashOverlay = false,
-  onSliderPointerUp,
   sideLayoutEnabled = false,
-  isWide = true,
-  focusExpanded = true,
-  onFocusExpandedChange,
-  apertureExpanded = true,
-  onApertureExpandedChange,
-  headerControlsExpanded = false,
-  onHeaderControlsExpandedChange,
-  legendExpanded = false,
-  onLegendExpandedChange,
-  headerInfoExpanded = true,
-  onHeaderInfoExpandedChange,
 }) {
+  /* ── Read shared state from context ── */
+  const { state, theme: t, isWide, updateURLWithSliders } = useLensCtx();
+  const dispatch = useLensDispatch();
+  const { rays: raysState, display, panels, sliders } = state;
+  const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF } = raysState;
+  const { dark, highContrast } = display;
+  const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
+
+  /* Per-instance sliders: use props if provided (comparison mode), else context */
+  const focusT = focusTProp ?? sliders.focusT;
+  const zoomT = zoomTProp ?? sliders.zoomT;
+  const stopdownT = stopdownTProp ?? sliders.stopdownT;
+
+  /* Callback adapters: dispatch actions instead of calling prop callbacks */
+  const onFocusChange = (v) => dispatch({ type: SET_FOCUS_T, value: v });
+  const onZoomChange = (v) => dispatch({ type: SET_ZOOM_T, value: v });
+  const onStopdownChange = (v) => dispatch({ type: SET_STOPDOWN_T, value: v });
+  const onSliderPointerUp = updateURLWithSliders;
+  const onShowOnAxisChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v });
+  const onShowOffAxisChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v });
+  const onRayTracksFChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v });
+  const onShowChromaticChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v });
+  const onChromRChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v });
+  const onChromGChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v });
+  const onChromBChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v });
+  const onDarkChange = (v) => dispatch({ type: SET_DARK, dark: v });
+  const onHighContrastChange = (v) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v });
+  const onFocusExpandedChange = (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v });
+  const onApertureExpandedChange = (v) =>
+    dispatch({ type: SET_PANEL_EXPANDED, panel: "apertureExpanded", expanded: v });
+  const onHeaderControlsExpandedChange = (v) =>
+    dispatch({ type: SET_PANEL_EXPANDED, panel: "headerControlsExpanded", expanded: v });
+  const onLegendExpandedChange = (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v });
+  const onHeaderInfoExpandedChange = (v) =>
+    dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v });
   const [hov, setHov] = useState(null);
   const [sel, setSel] = useState(null);
   const [useSideLayout, setUseSideLayout] = useState(false);
