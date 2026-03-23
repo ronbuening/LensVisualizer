@@ -23,7 +23,7 @@ import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/lensCatalog.js";
 import LensDiagramPanel from "./LensDiagramPanel.jsx";
 import DescriptionPanel from "./DescriptionPanel.jsx";
 import SharedSlidersBar from "./SharedSlidersBar.jsx";
-import { PREFS_KEY } from "../utils/preferences.js";
+import usePreferences from "../utils/usePreferences.js";
 import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "../utils/parseComparisonParams.js";
 import {
   ENABLE_COLOR_TRACING,
@@ -157,58 +157,8 @@ export default function LensVisualization() {
   const prevStopdownT = useRef(0);
   const [flashPanel, setFlashPanel] = useState(null); // 'a' | 'b' | null
 
-  /* ── Persist preferences ── */
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        PREFS_KEY,
-        JSON.stringify({
-          v: 2,
-          dark,
-          highContrast,
-          lensKeyA,
-          lensKeyB,
-          comparing,
-          scaleMode,
-          showOnAxis,
-          showOffAxis,
-          rayTracksF,
-          showChromatic,
-          chromR,
-          chromG,
-          chromB,
-          desktopView,
-          focusExpanded,
-          apertureExpanded,
-          headerControlsExpanded,
-          legendExpanded,
-          headerInfoExpanded,
-        }),
-      );
-    } catch {
-      /* private browsing or quota — ignore */
-    }
-  }, [
-    dark,
-    highContrast,
-    lensKeyA,
-    lensKeyB,
-    comparing,
-    scaleMode,
-    showOnAxis,
-    showOffAxis,
-    rayTracksF,
-    showChromatic,
-    chromR,
-    chromG,
-    chromB,
-    desktopView,
-    focusExpanded,
-    apertureExpanded,
-    headerControlsExpanded,
-    legendExpanded,
-    headerInfoExpanded,
-  ]);
+  /* ── Persist preferences to localStorage ── */
+  usePreferences(state);
 
   /* ── URL update refs ── */
   const urlUpdateTimer = useRef(null);
