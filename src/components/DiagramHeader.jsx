@@ -199,10 +199,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                     <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
                     <span>HC</span>
                   </button>
-                  <button
-                    onClick={() => onDarkChange?.(!dark)}
-                    style={toggleBtn(t, false, { hasRightBorder: false })}
-                  >
+                  <button onClick={() => onDarkChange?.(!dark)} style={toggleBtn(t, false, { hasRightBorder: false })}>
                     <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
                     <span>{dark ? "Light" : "Dark"}</span>
                   </button>

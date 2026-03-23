@@ -275,7 +275,10 @@ export default function LensVisualization() {
           <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
           <span>HC</span>
         </button>
-        <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtn(t, false, { hasRightBorder: false })}>
+        <button
+          onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
+          style={toggleBtn(t, false, { hasRightBorder: false })}
+        >
           <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
           <span>{dark ? "Light" : "Dark"}</span>
         </button>
@@ -349,7 +352,12 @@ export default function LensVisualization() {
 
       {/* Chromatic */}
       {ENABLE_COLOR_TRACING && (
-        <div style={{ ...toggleGroup(t, { width: showChromatic ? 220 : 90 }), transition: "border-color 0.3s, width 0.3s" }}>
+        <div
+          style={{
+            ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
+            transition: "border-color 0.3s, width 0.3s",
+          }}
+        >
           <button
             onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
             style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
@@ -519,7 +527,10 @@ export default function LensVisualization() {
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
           </button>
-          <button onClick={() => dispatch({ type: SET_DARK, dark: !dark })} style={toggleBtn(t, false, { hasRightBorder: false })}>
+          <button
+            onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
+            style={toggleBtn(t, false, { hasRightBorder: false })}
+          >
             <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
             <span>{dark ? "Light" : "Dark"}</span>
           </button>
@@ -929,10 +940,7 @@ export default function LensVisualization() {
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
               style={OVERLAY_BACKDROP}
             >
-              <div
-                onClick={(e) => e.stopPropagation()}
-                style={overlayModal(t)}
-              >
+              <div onClick={(e) => e.stopPropagation()} style={overlayModal(t)}>
                 <button
                   onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
                   style={closeBtn(t)}
@@ -950,10 +958,7 @@ export default function LensVisualization() {
               onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
               style={OVERLAY_BACKDROP}
             >
-              <div
-                onClick={(e) => e.stopPropagation()}
-                style={overlayModal(t)}
-              >
+              <div onClick={(e) => e.stopPropagation()} style={overlayModal(t)}>
                 <button
                   onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
                   style={closeBtn(t)}
