@@ -31,6 +31,21 @@
 import { formatSharedFocusDist, sharedFNumber } from "../utils/comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
 
+/* ── Hoisted static styles ── */
+const SLIDER_INPUT_BASE = {
+  width: "100%",
+  height: 4,
+  appearance: "none",
+  borderRadius: 2,
+  outline: "none",
+  cursor: "pointer",
+};
+const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em" };
+const SLIDER_VALUE_BASE = { fontSize: 14, fontWeight: 700, fontVariantNumeric: "tabular-nums" };
+const SLIDER_ROW = { display: "flex", alignItems: "center", gap: 8 };
+const READOUT_ROW = { marginTop: 6, display: "flex", gap: 16, fontSize: 9, fontVariantNumeric: "tabular-nums" };
+const LABEL_ROW = { display: "flex", alignItems: "center", gap: 10, marginBottom: 8 };
+
 export default function SharedSlidersBar({
   LA,
   LB,
@@ -125,13 +140,11 @@ export default function SharedSlidersBar({
         {/* Zoom slider (only when at least one lens is a zoom) */}
         {showZoom && (
           <div style={{ flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-              <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 55 }}>ZOOM</span>
-              <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
-                {zoomEfl} mm
-              </span>
+            <div style={LABEL_ROW}>
+              <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>ZOOM</span>
+              <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{zoomEfl} mm</span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={SLIDER_ROW}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMinLabel}</span>
               <div style={sliderWrap}>
                 {showZoomCPLow && <div style={markerStyle(zoomPair.commonPointLow)} />}
@@ -146,30 +159,12 @@ export default function SharedSlidersBar({
                   value={sharedZoomT}
                   onChange={(e) => onSharedZoomChange(parseFloat(e.target.value))}
                   onPointerUp={onSliderPointerUp}
-                  style={{
-                    width: "100%",
-                    height: 4,
-                    appearance: "none",
-                    background: t.sliderTrack,
-                    borderRadius: 2,
-                    outline: "none",
-                    cursor: "pointer",
-                    accentColor: t.sliderAccent,
-                  }}
+                  style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
                 />
               </div>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMaxLabel}</span>
             </div>
-            <div
-              style={{
-                marginTop: 6,
-                display: "flex",
-                gap: 16,
-                fontSize: 9,
-                color: t.spacingVal,
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
+            <div style={{ ...READOUT_ROW, color: t.spacingVal }}>
               <span>A: {zoomReadoutA}</span>
               <span>B: {zoomReadoutB}</span>
             </div>
@@ -178,13 +173,11 @@ export default function SharedSlidersBar({
 
         {/* Focus slider */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 55 }}>FOCUS</span>
-            <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
-              {focusDistStr}
-            </span>
+          <div style={LABEL_ROW}>
+            <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>FOCUS</span>
+            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{focusDistStr}</span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={SLIDER_ROW}>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
             <div style={sliderWrap}>
               {showFocusCP && <div style={markerStyle(focusCP)} />}
@@ -213,16 +206,7 @@ export default function SharedSlidersBar({
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minCloseFocus} m</span>
           </div>
           {/* Per-lens readouts */}
-          <div
-            style={{
-              marginTop: 6,
-              display: "flex",
-              gap: 16,
-              fontSize: 9,
-              color: t.spacingVal,
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
+          <div style={{ ...READOUT_ROW, color: t.spacingVal }}>
             <span>A: {formatDist(focusPair.focusA, LA)}</span>
             <span>B: {formatDist(focusPair.focusB, LB)}</span>
           </div>
@@ -230,13 +214,13 @@ export default function SharedSlidersBar({
 
         {/* Aperture slider */}
         <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <span style={{ fontSize: 9.5, color: t.label, letterSpacing: "0.1em", minWidth: 75 }}>APERTURE</span>
-            <span style={{ fontSize: 14, color: t.focusDist, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
+          <div style={LABEL_ROW}>
+            <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 75 }}>APERTURE</span>
+            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
               f/{fNum < 10 ? fNum.toFixed(1) : Math.round(fNum)}
             </span>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={SLIDER_ROW}>
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{widerFOPEN.toFixed(1)}</span>
             <div style={sliderWrap}>
               {showApertureCP && <div style={markerStyle(apertureCP)} />}
@@ -265,17 +249,7 @@ export default function SharedSlidersBar({
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{sharedMaxFstop}</span>
           </div>
           {/* f-stop quick-select (union of both series) */}
-          <div
-            style={{
-              marginTop: 6,
-              display: "flex",
-              gap: 14,
-              flexWrap: "wrap",
-              fontSize: 9,
-              color: t.spacingVal,
-              fontVariantNumeric: "tabular-nums",
-            }}
-          >
+          <div style={{ ...READOUT_ROW, gap: 14, flexWrap: "wrap", color: t.spacingVal }}>
             {/* Merge both lenses' f-stop series into a sorted union, filter to the
               valid shared range, then compute each f-number's slider position.
               stopT = log(f/fOpen) / log(fMax/fOpen) maps f-number → [0..1] via

@@ -52,6 +52,60 @@ import {
 } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.jsx";
 
+/* ── Hoisted static / near-static styles ── */
+const SLIDER_LABEL = { fontSize: 9.5, letterSpacing: "0.1em", transition: "color 0.3s" };
+const SLIDER_VALUE_BASE = {
+  fontSize: 14,
+  fontWeight: 700,
+  fontVariantNumeric: "tabular-nums",
+  transition: "color 0.3s",
+};
+const SLIDER_INPUT_BASE = {
+  flex: 1,
+  height: 4,
+  appearance: "none",
+  borderRadius: 2,
+  outline: "none",
+  cursor: "pointer",
+};
+const COLLAPSE_BTN_BASE = {
+  borderRadius: 10,
+  cursor: "pointer",
+  padding: "3px 8px",
+  display: "flex",
+  alignItems: "center",
+  gap: 4,
+  fontSize: 8,
+  fontFamily: "inherit",
+  letterSpacing: "0.08em",
+  transition: "all 0.25s",
+};
+const INSPECTOR_GRID = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))",
+  gap: "3px 18px",
+  fontSize: 10.5,
+  lineHeight: 1.8,
+};
+const TOGGLE_GROUP_BASE = {
+  display: "flex",
+  gap: 0,
+  borderRadius: 5,
+  overflow: "hidden",
+  width: "100%",
+  transition: "border-color 0.3s",
+};
+const TOGGLE_BTN_BASE = {
+  border: "none",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontFamily: "inherit",
+  letterSpacing: "0.08em",
+  transition: "all 0.25s",
+};
+
 /* ── Panel-level error boundary — catches render errors within a single diagram ──
  * Separate from the app-wide ErrorBoundary so that one broken lens doesn't
  * crash the entire comparison view. Resets automatically when lensKey changes. */
@@ -598,19 +652,10 @@ export default function LensDiagramPanel({
                   <button
                     onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)}
                     style={{
+                      ...COLLAPSE_BTN_BASE,
                       background: t.toggleBg,
                       border: `1px solid ${t.toggleBorder}`,
-                      borderRadius: 10,
-                      cursor: "pointer",
-                      padding: "3px 8px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 4,
-                      fontSize: 8,
                       color: t.muted,
-                      fontFamily: "inherit",
-                      letterSpacing: "0.08em",
-                      transition: "all 0.25s",
                     }}
                   >
                     <span>{headerInfoExpanded ? "LESS" : "MORE"}</span>
@@ -704,35 +749,18 @@ export default function LensDiagramPanel({
                   {/* Theme controls */}
                   {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && (
                     <>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 0,
-                          borderRadius: 5,
-                          overflow: "hidden",
-                          border: `1px solid ${t.toggleBorder}`,
-                          width: "100%",
-                          transition: "border-color 0.3s",
-                        }}
-                      >
+                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
                         <button
                           onClick={() => onHighContrastChange?.(!highContrast)}
                           style={{
+                            ...TOGGLE_BTN_BASE,
                             flex: 1,
                             background: highContrast ? t.toggleActiveBg : t.toggleBg,
-                            border: "none",
                             borderRight: `1px solid ${t.toggleBorder}`,
                             padding: "5px 10px",
-                            cursor: "pointer",
                             fontSize: 10,
                             color: highContrast ? t.toggleActiveText : t.toggleInactiveText,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
                             gap: 5,
-                            transition: "all 0.3s",
-                            fontFamily: "inherit",
-                            letterSpacing: "0.08em",
                           }}
                         >
                           <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
@@ -741,20 +769,13 @@ export default function LensDiagramPanel({
                         <button
                           onClick={() => onDarkChange?.(!dark)}
                           style={{
+                            ...TOGGLE_BTN_BASE,
                             flex: 1,
                             background: t.toggleBg,
-                            border: "none",
                             padding: "5px 10px",
-                            cursor: "pointer",
                             fontSize: 10,
                             color: t.toggleInactiveText,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
                             gap: 5,
-                            transition: "all 0.3s",
-                            fontFamily: "inherit",
-                            letterSpacing: "0.08em",
                           }}
                         >
                           <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
@@ -762,17 +783,7 @@ export default function LensDiagramPanel({
                         </button>
                       </div>
                       {/* Ray toggles */}
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 0,
-                          borderRadius: 5,
-                          overflow: "hidden",
-                          border: `1px solid ${t.toggleBorder}`,
-                          width: "100%",
-                          transition: "border-color 0.3s",
-                        }}
-                      >
+                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
                         {(() => {
                           const offAxisActive = showOffAxis !== "off";
                           const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -808,21 +819,14 @@ export default function LensDiagramPanel({
                               key={idx}
                               onClick={onClick}
                               style={{
+                                ...TOGGLE_BTN_BASE,
                                 flex: 1,
                                 background: active ? t.toggleActiveBg : t.toggleBg,
-                                border: "none",
                                 borderRight: idx === 0 ? `1px solid ${t.toggleBorder}` : "none",
                                 padding: "5px 8px",
-                                cursor: "pointer",
                                 fontSize: 9,
                                 color: active ? t.toggleActiveText : t.toggleInactiveText,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
                                 gap: 5,
-                                transition: "all 0.25s",
-                                fontFamily: "inherit",
-                                letterSpacing: "0.08em",
                               }}
                             >
                               <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
@@ -849,17 +853,7 @@ export default function LensDiagramPanel({
                         })()}
                       </div>
                       {/* Ray mode */}
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 0,
-                          borderRadius: 5,
-                          overflow: "hidden",
-                          border: `1px solid ${t.toggleBorder}`,
-                          width: "100%",
-                          transition: "border-color 0.3s",
-                        }}
-                      >
+                      <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
                         {[
                           { label: "FROM \u221e", val: false, icon: "\u2225" },
                           { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
@@ -868,21 +862,14 @@ export default function LensDiagramPanel({
                             key={label}
                             onClick={() => onRayTracksFChange?.(val)}
                             style={{
+                              ...TOGGLE_BTN_BASE,
                               flex: 1,
                               background: rayTracksF === val ? t.toggleActiveBg : t.toggleBg,
-                              border: "none",
                               borderRight: !val ? `1px solid ${t.toggleBorder}` : "none",
                               padding: "5px 9px",
-                              cursor: "pointer",
                               fontSize: 9,
                               color: rayTracksF === val ? t.toggleActiveText : t.toggleInactiveText,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
                               gap: 4,
-                              transition: "all 0.25s",
-                              fontFamily: "inherit",
-                              letterSpacing: "0.08em",
                             }}
                           >
                             <span
@@ -901,35 +888,18 @@ export default function LensDiagramPanel({
                       </div>
                       {/* Chromatic */}
                       {ENABLE_COLOR_TRACING && (
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: 0,
-                            borderRadius: 5,
-                            overflow: "hidden",
-                            border: `1px solid ${t.toggleBorder}`,
-                            width: "100%",
-                            transition: "border-color 0.3s",
-                          }}
-                        >
+                        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}` }}>
                           <button
                             onClick={() => onShowChromaticChange?.(!showChromatic)}
                             style={{
+                              ...TOGGLE_BTN_BASE,
                               flex: 1,
                               background: showChromatic ? t.toggleActiveBg : t.toggleBg,
-                              border: "none",
                               borderRight: showChromatic ? `1px solid ${t.toggleBorder}` : "none",
                               padding: "5px 8px",
-                              cursor: "pointer",
                               fontSize: 9,
                               color: showChromatic ? t.toggleActiveText : t.toggleInactiveText,
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
                               gap: 5,
-                              transition: "all 0.25s",
-                              fontFamily: "inherit",
-                              letterSpacing: "0.08em",
                             }}
                           >
                             <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
@@ -970,21 +940,14 @@ export default function LensDiagramPanel({
                                 key={ch}
                                 onClick={() => set?.(!active)}
                                 style={{
+                                  ...TOGGLE_BTN_BASE,
                                   flex: 0.6,
                                   background: active ? t.toggleActiveBg : t.toggleBg,
-                                  border: "none",
                                   borderRight: idx < 2 ? `1px solid ${t.toggleBorder}` : "none",
                                   padding: "5px 6px",
-                                  cursor: "pointer",
                                   fontSize: 9,
                                   color: active ? t.toggleActiveText : t.toggleInactiveText,
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
                                   gap: 3,
-                                  transition: "all 0.25s",
-                                  fontFamily: "inherit",
-                                  letterSpacing: "0.08em",
                                 }}
                               >
                                 <span
@@ -1522,26 +1485,8 @@ export default function LensDiagramPanel({
                     }
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span
-                        style={{
-                          fontSize: 9.5,
-                          color: t.label,
-                          letterSpacing: "0.1em",
-                          minWidth: 55,
-                          transition: "color 0.3s",
-                        }}
-                      >
-                        ZOOM
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 14,
-                          color: t.focusDist,
-                          fontWeight: 700,
-                          fontVariantNumeric: "tabular-nums",
-                          transition: "color 0.3s",
-                        }}
-                      >
+                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>ZOOM</span>
+                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
                         {eflAtZoom(zoomT, L).toFixed(0)} mm
                       </span>
                     </div>
@@ -1555,16 +1500,7 @@ export default function LensDiagramPanel({
                         value={zoomT}
                         onChange={(e) => onZoomChange?.(parseFloat(e.target.value))}
                         onPointerUp={onSliderPointerUp}
-                        style={{
-                          flex: 1,
-                          height: 4,
-                          appearance: "none",
-                          background: t.sliderTrack,
-                          borderRadius: 2,
-                          outline: "none",
-                          cursor: "pointer",
-                          accentColor: t.sliderAccent,
-                        }}
+                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
                       />
                       <span style={{ fontSize: 9, color: t.focusEndpoint }}>
                         {L.zoomPositions[L.zoomPositions.length - 1]} mm
@@ -1586,46 +1522,17 @@ export default function LensDiagramPanel({
                     }
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span
-                        style={{
-                          fontSize: 9.5,
-                          color: t.label,
-                          letterSpacing: "0.1em",
-                          minWidth: 85,
-                          transition: "color 0.3s",
-                        }}
-                      >
-                        FOCUS
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 14,
-                          color: t.focusDist,
-                          fontWeight: 700,
-                          fontVariantNumeric: "tabular-nums",
-                          transition: "color 0.3s",
-                        }}
-                      >
-                        {formatDist(focusT, L)}
-                      </span>
+                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>FOCUS</span>
+                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{formatDist(focusT, L)}</span>
                       {ENABLE_COLLAPSIBLE_FOCUS && (
                         <button
                           onClick={() => onFocusExpandedChange?.(!focusExpanded)}
                           style={{
+                            ...COLLAPSE_BTN_BASE,
                             marginLeft: "auto",
                             background: t.toggleBg,
                             border: `1px solid ${t.toggleBorder}`,
-                            borderRadius: 10,
-                            cursor: "pointer",
-                            padding: "3px 8px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 4,
-                            fontSize: 8,
                             color: t.muted,
-                            fontFamily: "inherit",
-                            letterSpacing: "0.08em",
-                            transition: "all 0.25s",
                           }}
                         >
                           <span>{focusExpanded ? "LESS" : "MORE"}</span>
@@ -1643,16 +1550,7 @@ export default function LensDiagramPanel({
                         value={focusT}
                         onChange={(e) => onFocusChange?.(parseFloat(e.target.value))}
                         onPointerUp={onSliderPointerUp}
-                        style={{
-                          flex: 1,
-                          height: 4,
-                          appearance: "none",
-                          background: t.sliderTrack,
-                          borderRadius: 2,
-                          outline: "none",
-                          cursor: "pointer",
-                          accentColor: t.sliderAccent,
-                        }}
+                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
                       />
                       <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
                     </div>
@@ -1704,46 +1602,19 @@ export default function LensDiagramPanel({
                     }
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                      <span
-                        style={{
-                          fontSize: 9.5,
-                          color: t.label,
-                          letterSpacing: "0.1em",
-                          minWidth: 85,
-                          transition: "color 0.3s",
-                        }}
-                      >
-                        APERTURE
-                      </span>
-                      <span
-                        style={{
-                          fontSize: 14,
-                          color: t.focusDist,
-                          fontWeight: 700,
-                          fontVariantNumeric: "tabular-nums",
-                          transition: "color 0.3s",
-                        }}
-                      >
+                      <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>APERTURE</span>
+                      <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>
                         f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
                       </span>
                       {ENABLE_COLLAPSIBLE_APERTURE && (
                         <button
                           onClick={() => onApertureExpandedChange?.(!apertureExpanded)}
                           style={{
+                            ...COLLAPSE_BTN_BASE,
                             marginLeft: "auto",
                             background: t.toggleBg,
                             border: `1px solid ${t.toggleBorder}`,
-                            borderRadius: 10,
-                            cursor: "pointer",
-                            padding: "3px 8px",
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 4,
-                            fontSize: 8,
                             color: t.muted,
-                            fontFamily: "inherit",
-                            letterSpacing: "0.08em",
-                            transition: "all 0.25s",
                           }}
                         >
                           <span>{apertureExpanded ? "LESS" : "MORE"}</span>
@@ -1761,16 +1632,7 @@ export default function LensDiagramPanel({
                         value={stopdownT}
                         onChange={(e) => onStopdownChange?.(parseFloat(e.target.value))}
                         onPointerUp={onSliderPointerUp}
-                        style={{
-                          flex: 1,
-                          height: 4,
-                          appearance: "none",
-                          background: t.sliderTrack,
-                          borderRadius: 2,
-                          outline: "none",
-                          cursor: "pointer",
-                          accentColor: t.sliderAccent,
-                        }}
+                        style={{ ...SLIDER_INPUT_BASE, background: t.sliderTrack, accentColor: t.sliderAccent }}
                       />
                       <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
                     </div>
@@ -1929,15 +1791,7 @@ export default function LensDiagramPanel({
                       <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>
                         {info.type}
                       </div>
-                      <div
-                        style={{
-                          display: "grid",
-                          gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))",
-                          gap: "3px 18px",
-                          fontSize: 10.5,
-                          lineHeight: 1.8,
-                        }}
-                      >
+                      <div style={INSPECTOR_GRID}>
                         <div>
                           <span style={{ color: t.propLabel }}>nd = </span>
                           <span style={{ color: t.value }}>{info.nd}</span>
@@ -1978,16 +1832,7 @@ export default function LensDiagramPanel({
                         })()}
                       </div>
                       {showChromatic && info.vd && (
-                        <div
-                          style={{
-                            marginTop: 4,
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))",
-                            gap: "3px 18px",
-                            fontSize: 10.5,
-                            lineHeight: 1.8,
-                          }}
-                        >
+                        <div style={{ ...INSPECTOR_GRID, marginTop: 4 }}>
                           <div>
                             <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
                             <span style={{ color: t.value }}>{((info.nd - 1) / info.vd).toFixed(5)}</span>
@@ -2068,20 +1913,11 @@ export default function LensDiagramPanel({
                           <button
                             onClick={() => onLegendExpandedChange?.(!legendExpanded)}
                             style={{
+                              ...COLLAPSE_BTN_BASE,
                               marginLeft: "auto",
                               background: t.toggleBg,
                               border: `1px solid ${t.toggleBorder}`,
-                              borderRadius: 10,
-                              cursor: "pointer",
-                              padding: "3px 8px",
-                              display: "flex",
-                              alignItems: "center",
-                              gap: 4,
-                              fontSize: 8,
                               color: t.muted,
-                              fontFamily: "inherit",
-                              letterSpacing: "0.08em",
-                              transition: "all 0.25s",
                             }}
                           >
                             LEGEND <span style={{ fontSize: 11, lineHeight: 1 }}>{legendExpanded ? "▴" : "▾"}</span>

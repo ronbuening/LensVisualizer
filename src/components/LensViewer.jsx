@@ -52,6 +52,51 @@ import { ErrorDisplay } from "./ErrorBoundary.jsx";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 
+/* ── Hoisted static / near-static styles ── */
+const TOGGLE_GROUP_BASE = {
+  display: "flex",
+  gap: 0,
+  borderRadius: 5,
+  overflow: "hidden",
+};
+
+const OVERLAY_BACKDROP = {
+  position: "fixed",
+  inset: 0,
+  zIndex: 9999,
+  background: "rgba(0,0,0,0.5)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "background 0.2s",
+};
+
+const OVERLAY_MODAL_BASE = {
+  borderRadius: 10,
+  maxWidth: 480,
+  width: "90%",
+  maxHeight: "70vh",
+  overflowY: "auto",
+  position: "relative",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+};
+
+const CLOSE_BTN_BASE = {
+  position: "sticky",
+  top: 0,
+  float: "right",
+  margin: "10px 10px 0 0",
+  background: "none",
+  border: "none",
+  cursor: "pointer",
+  fontSize: 18,
+  fontFamily: "inherit",
+  lineHeight: 1,
+  padding: "2px 6px",
+  borderRadius: 4,
+  zIndex: 1,
+};
+
 /* =====================================================================
  * §6  RENDERER — React component
  * =====================================================================
@@ -604,10 +649,7 @@ export default function LensVisualization() {
       {/* Theme controls */}
       <div
         style={{
-          display: "flex",
-          gap: 0,
-          borderRadius: 5,
-          overflow: "hidden",
+          ...TOGGLE_GROUP_BASE,
           border: `1px solid ${t.toggleBorder}`,
           width: 120,
           transition: "border-color 0.3s",
@@ -626,10 +668,7 @@ export default function LensVisualization() {
       {/* Ray toggles */}
       <div
         style={{
-          display: "flex",
-          gap: 0,
-          borderRadius: 5,
-          overflow: "hidden",
+          ...TOGGLE_GROUP_BASE,
           border: `1px solid ${t.toggleBorder}`,
           width: 180,
           transition: "border-color 0.3s",
@@ -677,10 +716,7 @@ export default function LensVisualization() {
       {/* Ray mode */}
       <div
         style={{
-          display: "flex",
-          gap: 0,
-          borderRadius: 5,
-          overflow: "hidden",
+          ...TOGGLE_GROUP_BASE,
           border: `1px solid ${t.toggleBorder}`,
           width: 180,
           transition: "border-color 0.3s",
@@ -703,10 +739,7 @@ export default function LensVisualization() {
       {ENABLE_COLOR_TRACING && (
         <div
           style={{
-            display: "flex",
-            gap: 0,
-            borderRadius: 5,
-            overflow: "hidden",
+            ...TOGGLE_GROUP_BASE,
             border: `1px solid ${t.toggleBorder}`,
             width: showChromatic ? 220 : 90,
             transition: "border-color 0.3s, width 0.3s",
@@ -786,10 +819,7 @@ export default function LensVisualization() {
       {/* Scale mode toggle */}
       <div
         style={{
-          display: "flex",
-          gap: 0,
-          borderRadius: 5,
-          overflow: "hidden",
+          ...TOGGLE_GROUP_BASE,
           border: `1px solid ${t.toggleBorder}`,
           width: 190,
           transition: "border-color 0.3s",
@@ -894,16 +924,7 @@ export default function LensVisualization() {
         }}
       >
         {/* Theme controls */}
-        <div
-          style={{
-            display: "flex",
-            gap: 0,
-            borderRadius: 5,
-            overflow: "hidden",
-            border: `1px solid ${t.toggleBorder}`,
-            transition: "border-color 0.3s",
-          }}
-        >
+        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
           <button onClick={() => setHighContrast(!highContrast)} style={toggleBtnStyle(highContrast, true)}>
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
@@ -915,16 +936,7 @@ export default function LensVisualization() {
         </div>
 
         {/* Ray toggles */}
-        <div
-          style={{
-            display: "flex",
-            gap: 0,
-            borderRadius: 5,
-            overflow: "hidden",
-            border: `1px solid ${t.toggleBorder}`,
-            transition: "border-color 0.3s",
-          }}
-        >
+        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
           {(() => {
             const offAxisActive = showOffAxis !== "off";
             const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -979,16 +991,7 @@ export default function LensVisualization() {
         </div>
 
         {/* Ray mode */}
-        <div
-          style={{
-            display: "flex",
-            gap: 0,
-            borderRadius: 5,
-            overflow: "hidden",
-            border: `1px solid ${t.toggleBorder}`,
-            transition: "border-color 0.3s",
-          }}
-        >
+        <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
           {[
             { label: "\u221e", val: false },
             { label: "\u27e9 F", val: true },
@@ -1005,16 +1008,7 @@ export default function LensVisualization() {
 
         {/* Chromatic */}
         {ENABLE_COLOR_TRACING && (
-          <div
-            style={{
-              display: "flex",
-              gap: 0,
-              borderRadius: 5,
-              overflow: "hidden",
-              border: `1px solid ${t.toggleBorder}`,
-              transition: "border-color 0.3s",
-            }}
-          >
+          <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, transition: "border-color 0.3s" }}>
             <button
               onClick={() => setShowChromatic(!showChromatic)}
               style={toggleBtnStyle(showChromatic, showChromatic)}
@@ -1267,16 +1261,7 @@ export default function LensVisualization() {
             transition: "background-color 0.3s,border-color 0.3s",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              gap: 0,
-              borderRadius: 5,
-              overflow: "hidden",
-              border: `1px solid ${t.toggleBorder}`,
-              width: 220,
-            }}
-          >
+          <div style={{ ...TOGGLE_GROUP_BASE, border: `1px solid ${t.toggleBorder}`, width: 220 }}>
             {[
               { label: "DIAGRAM", val: "diagram" },
               { label: "ANALYSIS", val: "description" },
@@ -1413,52 +1398,12 @@ export default function LensVisualization() {
 
       {/* ── About Site overlay ── */}
       {showAboutSite && (
-        <div
-          onClick={() => setShowAboutSite(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "background 0.2s",
-          }}
-        >
+        <div onClick={() => setShowAboutSite(false)} style={OVERLAY_BACKDROP}>
           <div
             onClick={(e) => e.stopPropagation()}
-            style={{
-              background: t.descBg,
-              borderRadius: 10,
-              maxWidth: 480,
-              width: "90%",
-              maxHeight: "70vh",
-              overflowY: "auto",
-              position: "relative",
-              boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-              border: `1px solid ${t.descBorder}`,
-            }}
+            style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
           >
-            <button
-              onClick={() => setShowAboutSite(false)}
-              style={{
-                position: "sticky",
-                top: 0,
-                float: "right",
-                margin: "10px 10px 0 0",
-                background: "none",
-                border: "none",
-                color: t.muted,
-                cursor: "pointer",
-                fontSize: 18,
-                fontFamily: "inherit",
-                lineHeight: 1,
-                padding: "2px 6px",
-                borderRadius: 4,
-                zIndex: 1,
-              }}
-            >
+            <button onClick={() => setShowAboutSite(false)} style={{ ...CLOSE_BTN_BASE, color: t.muted }}>
               ×
             </button>
             <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
@@ -1468,52 +1413,12 @@ export default function LensVisualization() {
 
       {/* ── About Me overlay ── */}
       {showAbout && (
-        <div
-          onClick={() => setShowAbout(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "background 0.2s",
-          }}
-        >
+        <div onClick={() => setShowAbout(false)} style={OVERLAY_BACKDROP}>
           <div
             onClick={(e) => e.stopPropagation()}
-            style={{
-              background: t.descBg,
-              borderRadius: 10,
-              maxWidth: 480,
-              width: "90%",
-              maxHeight: "70vh",
-              overflowY: "auto",
-              position: "relative",
-              boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-              border: `1px solid ${t.descBorder}`,
-            }}
+            style={{ ...OVERLAY_MODAL_BASE, background: t.descBg, border: `1px solid ${t.descBorder}` }}
           >
-            <button
-              onClick={() => setShowAbout(false)}
-              style={{
-                position: "sticky",
-                top: 0,
-                float: "right",
-                margin: "10px 10px 0 0",
-                background: "none",
-                border: "none",
-                color: t.muted,
-                cursor: "pointer",
-                fontSize: 18,
-                fontFamily: "inherit",
-                lineHeight: 1,
-                padding: "2px 6px",
-                borderRadius: 4,
-                zIndex: 1,
-              }}
-            >
+            <button onClick={() => setShowAbout(false)} style={{ ...CLOSE_BTN_BASE, color: t.muted }}>
               ×
             </button>
             <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
