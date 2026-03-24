@@ -1,7 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Quality Checks"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -17,14 +19,20 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # For workflow_run: only deploy when quality checks passed.
+    # For workflow_dispatch: always allow manual deploys.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Check out the exact commit that passed quality checks, not just HEAD.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20.19.0"
           cache: npm
       - run: npm ci
       - run: npm run build
