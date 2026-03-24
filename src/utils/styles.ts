@@ -47,6 +47,18 @@ export const OVERLAY_MODAL_BASE: Readonly<CSSProperties> = Object.freeze({
   boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
 });
 
+/** Panel-scoped overlay backdrop (absolute within nearest positioned ancestor). */
+export const PANEL_OVERLAY_BACKDROP: Readonly<CSSProperties> = Object.freeze({
+  position: "absolute",
+  inset: 0,
+  zIndex: 100,
+  background: "rgba(0,0,0,0.45)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "background 0.2s",
+});
+
 /** Slider label typography (e.g., "FOCUS", "APERTURE", "ZOOM"). */
 export const SLIDER_LABEL: Readonly<CSSProperties> = Object.freeze({
   fontSize: 9.5,
@@ -241,6 +253,24 @@ export function overlayModal(t: Theme, maxWidth?: number): CSSProperties {
     ...(maxWidth != null ? { maxWidth } : {}),
     background: t.descBg,
     border: `1px solid ${t.descBorder}`,
+  };
+}
+
+/**
+ * Panel-scoped overlay content panel with theme background.
+ */
+export function panelOverlayContent(t: Theme): CSSProperties {
+  return {
+    width: "90%",
+    height: "90%",
+    background: t.descBg,
+    border: `1px solid ${t.descBorder}`,
+    borderRadius: 10,
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    overflowY: "auto",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
   };
 }
 

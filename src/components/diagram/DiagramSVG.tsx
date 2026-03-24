@@ -62,6 +62,7 @@ interface DiagramSVGProps {
   flashVisible: boolean;
   flashKey: number;
   flashFading: boolean;
+  onLcaInsetClick?: () => void;
 }
 
 export default function DiagramSVG({
@@ -98,6 +99,7 @@ export default function DiagramSVG({
   flashVisible,
   flashKey,
   flashFading,
+  onLcaInsetClick,
 }: DiagramSVGProps) {
   return (
     <svg
@@ -307,6 +309,7 @@ export default function DiagramSVG({
           svgW={L.svgW}
           sy={sy}
           t={t}
+          onClick={onLcaInsetClick}
         />
       )}
 

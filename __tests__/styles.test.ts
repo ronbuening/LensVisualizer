@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   OVERLAY_BACKDROP,
   OVERLAY_MODAL_BASE,
+  PANEL_OVERLAY_BACKDROP,
   SLIDER_LABEL,
   SLIDER_VALUE_BASE,
   toggleGroup,
@@ -13,6 +14,7 @@ import {
   headerStrip,
   topBarBtn,
   overlayModal,
+  panelOverlayContent,
   closeBtn,
 } from "../src/utils/styles.js";
 import type { Theme } from "../src/types/theme.js";
@@ -49,6 +51,12 @@ describe("static constants", () => {
     expect(Object.isFrozen(OVERLAY_MODAL_BASE)).toBe(true);
     expect(OVERLAY_MODAL_BASE.borderRadius).toBe(10);
     expect(OVERLAY_MODAL_BASE.maxWidth).toBe(480);
+  });
+
+  it("PANEL_OVERLAY_BACKDROP is frozen with absolute positioning", () => {
+    expect(Object.isFrozen(PANEL_OVERLAY_BACKDROP)).toBe(true);
+    expect(PANEL_OVERLAY_BACKDROP.position).toBe("absolute");
+    expect(PANEL_OVERLAY_BACKDROP.zIndex).toBe(100);
   });
 
   it("SLIDER_LABEL is frozen with expected typography", () => {
@@ -239,6 +247,18 @@ describe("overlayModal(t)", () => {
     expect(s.maxWidth).toBe(OVERLAY_MODAL_BASE.maxWidth);
     expect(s.background).toBe(mockTheme.descBg);
     expect(s.border).toContain(mockTheme.descBorder);
+  });
+});
+
+describe("panelOverlayContent(t)", () => {
+  it("returns 90% width/height with theme colors", () => {
+    const s = panelOverlayContent(mockTheme);
+    expect(s.width).toBe("90%");
+    expect(s.height).toBe("90%");
+    expect(s.background).toBe(mockTheme.descBg);
+    expect(s.border).toContain(mockTheme.descBorder);
+    expect(s.borderRadius).toBe(10);
+    expect(s.position).toBe("relative");
   });
 });
 
