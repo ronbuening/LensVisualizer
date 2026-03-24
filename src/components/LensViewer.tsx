@@ -136,10 +136,7 @@ export default function LensVisualization() {
   const t = T[dark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"];
 
   /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
-  const catalogNames = useMemo(
-    () => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])),
-    [],
-  );
+  const catalogNames = useMemo(() => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])), []);
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
   const switchLensA = useCallback(
@@ -280,8 +277,6 @@ export default function LensVisualization() {
     scaleMode,
     dispatch,
   } as const;
-
-
 
   /* ── Single-lens diagram content ── */
   const singleDiagramContent = !comparing ? (
