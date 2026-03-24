@@ -21,7 +21,7 @@ src/optics/         — Pure-function optical engine (.ts, no React deps)
 src/utils/          — Themes, feature flags, catalog, hooks (.ts)
 src/lens-data/      — Lens prescription data (auto-registered *.data.js)
 src/content/        — Static markdown content
-__tests__/          — Vitest unit tests (.js)
+__tests__/          — Vitest unit tests (.ts, type-checked by tsc)
 agent_docs/         — Detailed architecture and task guides
 ```
 
@@ -81,6 +81,8 @@ See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conven
 
 Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, and extracted UI component module contracts. Full DOM-based component rendering is not tested.
 
+Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`. Intentionally partial mock objects use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal. Lens data files (`.data.js`) are declared in `__tests__/globals.d.ts` via a wildcard module so tsc can resolve those imports.
+
 ## Code Conventions
 
 - **camelCase** for functions and variables (`buildLens`, `traceRay`, `focusT`)
@@ -107,8 +109,8 @@ Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building
 - `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.js` take precedence
 - Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
 - Lens data files stay as `.data.js` (not TypeScript) for glob pattern compatibility — validated at runtime by `validateLensData()`
-- Test files stay as `.js` — Vitest resolves `.js` imports to `.ts` automatically
-- `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.js` files are excluded from tsc checking
+- Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
+- `tsconfig.json` uses `strict: true` with `allowJs: false`; `__tests__/` is included but lens data `.data.js` files are excluded via `__tests__/globals.d.ts` wildcard module declaration
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
 
 ## Compaction Instructions

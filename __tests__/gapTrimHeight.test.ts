@@ -1,16 +1,17 @@
 import { describe, it, expect } from "vitest";
 import { gapTrimHeight, renderSag } from "../src/optics/optics.js";
+import type { RuntimeLens, AsphericCoefficients } from "../src/types/optics.js";
 
 /**
  * Minimal lens-like object for gapTrimHeight tests.
  * gapTrimHeight needs: L.gapSagFrac, L.S[surfIdx].R, L.asphByIdx[surfIdx]
  */
-function makeLens(R, gapSagFrac = 0.9, asph = null) {
+function makeLens(R: number, gapSagFrac: number = 0.9, asph: AsphericCoefficients | null = null): RuntimeLens {
   return {
     gapSagFrac,
     S: [{ R }],
     asphByIdx: { 0: asph },
-  };
+  } as unknown as RuntimeLens;
 }
 
 describe("gapTrimHeight", () => {

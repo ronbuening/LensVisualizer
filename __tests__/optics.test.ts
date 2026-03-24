@@ -18,6 +18,7 @@ import {
   FLAT_R_THRESHOLD,
   FOCUS_INFINITY_THRESHOLD,
 } from "../src/optics/optics.js";
+import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../src/types/optics.js";
 
 describe("sag", () => {
   it("returns 0 for h = 0", () => {
@@ -52,7 +53,7 @@ describe("sag", () => {
 });
 
 describe("formatDist", () => {
-  const mockL = { closeFocusM: 0.4 };
+  const mockL = { closeFocusM: 0.4 } as unknown as RuntimeLens;
 
   it("returns ∞ for t near zero", () => {
     expect(formatDist(0, mockL)).toBe("∞");
@@ -72,14 +73,14 @@ describe("formatDist", () => {
 
 describe("thick", () => {
   it("returns surface d when no variable spacing", () => {
-    const L = { S: [{ d: 5.0 }], varByIdx: {} };
+    const L = { S: [{ d: 5.0 }], varByIdx: {} } as unknown as RuntimeLens;
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(5.0);
     expect(thick(0, 1.0, 0, L)).toBe(5.0);
   });
 
   it("interpolates variable spacing", () => {
-    const L = { S: [{ d: 5.0 }], varByIdx: { 0: [5.0, 10.0] } };
+    const L = { S: [{ d: 5.0 }], varByIdx: { 0: [5.0, 10.0] } } as unknown as RuntimeLens;
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(7.5);
     expect(thick(0, 1.0, 0, L)).toBe(10.0);
@@ -96,7 +97,7 @@ describe("thick", () => {
         ],
       },
       isZoom: true,
-    };
+    } as unknown as RuntimeLens;
     // zoomT=0, focusT=0 → wide, infinity → 2.0
     expect(thick(0, 0, 0, L)).toBe(2.0);
     // zoomT=0, focusT=1 → wide, close → 4.0
@@ -118,7 +119,7 @@ describe("doLayout", () => {
     const L = {
       S: [{ d: 2.0 }, { d: 3.0 }, { d: 5.0 }],
       varByIdx: {},
-    };
+    } as unknown as RuntimeLens;
     const { z, imgZ } = doLayout(0, 0, L);
     expect(z).toEqual([0, 2.0, 5.0]);
     expect(imgZ).toBe(10.0);
@@ -127,19 +128,19 @@ describe("doLayout", () => {
 
 describe("sagSlope", () => {
   it("returns 0 at h = 0", () => {
-    const L = { S: [{ R: 50 }], asphByIdx: {} };
+    const L = { S: [{ R: 50 }], asphByIdx: {} } as unknown as RuntimeLens;
     expect(sagSlope(0, 0, L)).toBe(0);
   });
 
   it("returns 0 for flat surface", () => {
-    const L = { S: [{ R: 1e15 }], asphByIdx: {} };
+    const L = { S: [{ R: 1e15 }], asphByIdx: {} } as unknown as RuntimeLens;
     expect(sagSlope(10, 0, L)).toBe(0);
   });
 
   it("computes correct slope for spherical surface", () => {
     const R = 50;
     const h = 10;
-    const L = { S: [{ R }], asphByIdx: {} };
+    const L = { S: [{ R }], asphByIdx: {} } as unknown as RuntimeLens;
     const c = 1 / R;
     const expected = (c * h) / Math.sqrt(1 - c * c * h * h);
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
@@ -148,7 +149,7 @@ describe("sagSlope", () => {
   it("computes correct slope for negative R", () => {
     const R = -50;
     const h = 10;
-    const L = { S: [{ R }], asphByIdx: {} };
+    const L = { S: [{ R }], asphByIdx: {} } as unknown as RuntimeLens;
     const c = 1 / R;
     const expected = (c * h) / Math.sqrt(1 - c * c * h * h);
     expect(sagSlope(h, 0, L)).toBeCloseTo(expected, 10);
@@ -158,7 +159,7 @@ describe("sagSlope", () => {
     const R = 30;
     const h = 8;
     const eps = 1e-6;
-    const L = { S: [{ R }], asphByIdx: {} };
+    const L = { S: [{ R }], asphByIdx: {} } as unknown as RuntimeLens;
     const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
     expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 5);
   });
@@ -168,7 +169,7 @@ describe("sagSlope", () => {
     const h = 6;
     const eps = 1e-6;
     const asph = { K: -0.5, A4: 1e-5, A6: -2e-8, A8: 0, A10: 0, A12: 0, A14: 0 };
-    const L = { S: [{ R }], asphByIdx: { 0: asph } };
+    const L = { S: [{ R }], asphByIdx: { 0: asph } } as unknown as RuntimeLens;
     const fd = (renderSag(h + eps, 0, L) - renderSag(h - eps, 0, L)) / (2 * eps);
     expect(sagSlope(h, 0, L)).toBeCloseTo(fd, 4);
   });
@@ -176,18 +177,19 @@ describe("sagSlope", () => {
 
 describe("traceRay — exact Snell", () => {
   // Single positive element: two spherical surfaces with glass between
-  const mkSingleElement = () => ({
-    S: [
-      { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
-      { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-  });
+  const mkSingleElement = (): RuntimeLens =>
+    ({
+      S: [
+        { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
+        { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 5,
+      asphByIdx: {},
+      varByIdx: {},
+    }) as unknown as RuntimeLens;
 
   it("on-axis ray (h=0, u=0) passes through unchanged", () => {
     const L = mkSingleElement();
@@ -240,7 +242,7 @@ describe("traceRay — exact Snell", () => {
       rayLead: 1,
       asphByIdx: {},
       varByIdx: {},
-    };
+    } as unknown as RuntimeLens;
     const zPos = [0, 5];
     // Ray at steep angle entering high-index glass, then hitting flat exit surface
     const { clipped } = traceRay(9, 0.5, zPos, 0, 0, 20, true, L);
@@ -291,19 +293,20 @@ describe("wavelengthNd", () => {
 });
 
 describe("traceRayChromatic", () => {
-  const mkChromElement = () => ({
-    S: [
-      { R: 50, nd: 1.5168, sd: 15, d: 5 },
-      { R: -50, nd: 1.0, sd: 15, d: 80 },
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-    vdByIdx: { 0: 64.17 },
-  });
+  const mkChromElement = (): RuntimeLens =>
+    ({
+      S: [
+        { R: 50, nd: 1.5168, sd: 15, d: 5 },
+        { R: -50, nd: 1.0, sd: 15, d: 80 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 5,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 64.17 },
+    }) as unknown as RuntimeLens;
 
   it("green channel matches traceRay exactly", () => {
     const L = mkChromElement();
@@ -402,7 +405,7 @@ import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 
 describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
-  const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+  const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
   it("on-axis marginal ray at full aperture (f/1.5) traces without clipping", () => {
@@ -416,7 +419,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
     for (const f of L.rayFractions) {
       const h = f * L.EP.epSD;
       const { clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
-      expect(clipped).withContext(`fraction ${f}`).toBe(false);
+      expect(clipped, `fraction ${f}`).toBe(false);
     }
   });
 
@@ -461,16 +464,16 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
 
   it("chromatic rays (R, G, B) trace without TIR at half-aperture", () => {
     const h = 0.5 * L.EP.epSD;
-    for (const ch of ["R", "G", "B"]) {
+    for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
       const { clipped } = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
-      expect(clipped).withContext(`channel ${ch}`).toBe(false);
+      expect(clipped, `channel ${ch}`).toBe(false);
     }
   });
 
   it("chromatic dispersion is measurable (LCA > 0)", () => {
     const h = 0.75 * L.EP.epSD;
-    const marginalRays = {};
-    for (const ch of ["R", "G", "B"]) {
+    const marginalRays: Record<ChromaticChannel, RayTraceResult> = {} as Record<ChromaticChannel, RayTraceResult>;
+    for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
       marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
     }
     const lastSurfZ = zPos[L.N - 1];
@@ -506,12 +509,12 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
 
 /* ── conjugateK with real-ray trace ── */
 describe("conjugateK", () => {
-  const allLenses = [
-    ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw })],
-    ["Nokton50f1", buildLens({ ...LENS_DEFAULTS, ...NoktonRaw })],
-    ["NikkorZ50mmf18S", buildLens({ ...LENS_DEFAULTS, ...NikkorRaw })],
-    ["Nikkor105f14E", buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw })],
-    ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw })],
+  const allLenses: [string, RuntimeLens][] = [
+    ["ApoLanthar50f2", buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData)],
+    ["Nokton50f1", buildLens({ ...LENS_DEFAULTS, ...NoktonRaw } as LensData)],
+    ["NikkorZ50mmf18S", buildLens({ ...LENS_DEFAULTS, ...NikkorRaw } as LensData)],
+    ["Nikkor105f14E", buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData)],
+    ["Sonnar50f15", buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData)],
   ];
 
   it.each(allLenses)("%s: conjugateK(0) ≈ 0 at infinity", (name, L) => {
@@ -520,7 +523,7 @@ describe("conjugateK", () => {
   });
 
   it("Sonnar50f15 regression: |K(0)| < 1e-4 (was 0.00442 with paraxial)", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
     const K = conjugateK(0, 0, L);
     expect(Math.abs(K)).toBeLessThan(1e-4);
   });
@@ -532,10 +535,30 @@ describe("conjugateK", () => {
 
   it("returns 0 gracefully for TIR conditions", () => {
     // Pathological lens that causes TIR at zonal height
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
     // Manually corrupt EP to trigger NaN path
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
     expect(conjugateK(0, 0, badL)).toBe(0);
+  });
+
+  it.each(allLenses)("%s: conjugateK returns finite values at intermediate focus", (name, L) => {
+    for (const t of [0.25, 0.5, 0.75]) {
+      const K = conjugateK(t, 0, L);
+      expect(isFinite(K), `${name}: conjugateK(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("Sonnar50f15: |conjugateK| increases monotonically from t=0 to t=1", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
+    const K0 = Math.abs(conjugateK(0, 0, L)); // ≈ 0
+    const K25 = Math.abs(conjugateK(0.25, 0, L));
+    const K50 = Math.abs(conjugateK(0.5, 0, L));
+    const K75 = Math.abs(conjugateK(0.75, 0, L));
+    const K1 = Math.abs(conjugateK(1.0, 0, L));
+    expect(K0).toBeLessThan(K25);
+    expect(K25).toBeLessThan(K50);
+    expect(K50).toBeLessThan(K75);
+    expect(K75).toBeLessThan(K1);
   });
 });
 
@@ -551,7 +574,7 @@ describe("thick — zoom edge cases", () => {
         ],
       },
       isZoom: true,
-    };
+    } as unknown as RuntimeLens;
     expect(thick(0, 0, 1.0, L)).toBe(10.0);
     expect(thick(0, 1, 1.0, L)).toBe(12.0);
   });
@@ -561,7 +584,7 @@ describe("thick — zoom edge cases", () => {
       S: [{ d: 5.0 }],
       varByIdx: { 0: [[5.0, 8.0]] },
       isZoom: true,
-    };
+    } as unknown as RuntimeLens;
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 1, 0, L)).toBe(8.0);
     expect(thick(0, 0.5, 0.5, L)).toBe(6.5);
@@ -570,27 +593,27 @@ describe("thick — zoom edge cases", () => {
 
 describe("eflAtZoom", () => {
   it("returns L.EFL for prime lenses regardless of zoomT", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
     expect(eflAtZoom(0, L)).toBe(L.EFL);
     expect(eflAtZoom(0.5, L)).toBe(L.EFL);
     expect(eflAtZoom(1, L)).toBe(L.EFL);
   });
 
   it("returns wide EFL at zoomT=0 and tele EFL at zoomT=1", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
-    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs[0], 5);
-    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs[2], 5);
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs![0], 5);
+    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs![2], 5);
   });
 
   it("interpolates monotonically between wide and tele", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
     const efl = eflAtZoom(0.5, L);
-    expect(efl).toBeGreaterThan(L.zoomEFLs[0]);
-    expect(efl).toBeLessThan(L.zoomEFLs[2]);
+    expect(efl).toBeGreaterThan(L.zoomEFLs![0]);
+    expect(efl).toBeLessThan(L.zoomEFLs![2]);
   });
 
   it("handles single-element zoomEFLs defensively", () => {
-    const L = { isZoom: true, zoomEFLs: [50], EFL: 50 };
+    const L = { isZoom: true, zoomEFLs: [50], EFL: 50 } as unknown as RuntimeLens;
     expect(eflAtZoom(0, L)).toBe(50);
     expect(eflAtZoom(1, L)).toBe(50);
   });
@@ -598,19 +621,19 @@ describe("eflAtZoom", () => {
 
 describe("epAtZoom / halfFieldAtZoom", () => {
   it("returns static values for prime lenses", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
     expect(epAtZoom(0, L)).toBe(L.EP.epSD);
     expect(epAtZoom(0.5, L)).toBe(L.EP.epSD);
     expect(halfFieldAtZoom(0, L)).toBe(L.halfField);
   });
 
   it("interpolates across zoom positions", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw });
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
     const epWide = epAtZoom(0, L);
     const epTele = epAtZoom(1, L);
     const epMid = epAtZoom(0.5, L);
-    expect(epWide).toBeCloseTo(L.zoomEPs[0], 5);
-    expect(epTele).toBeCloseTo(L.zoomEPs[2], 5);
+    expect(epWide).toBeCloseTo(L.zoomEPs![0], 5);
+    expect(epTele).toBeCloseTo(L.zoomEPs![2], 5);
     /* Mid should be between wide and tele (or equal) */
     expect(epMid).toBeGreaterThanOrEqual(Math.min(epWide, epTele) - 0.01);
     expect(epMid).toBeLessThanOrEqual(Math.max(epWide, epTele) + 0.01);

@@ -301,17 +301,27 @@ export function traceRay(
        *   I  = angle of incidence = ray angle − normal tilt
        *   I' = angle of refraction via n·sin(I) = n'·sin(I')
        *   U' = α + I'  (new ray angle after refraction)
-       * |sin(I')| > 1 means total internal reflection → clip the ray. */
+       * |sin(I')| > 1 means total internal reflection → clip the ray.
+       *
+       * Guard: if the ray is a ghost and |y| exceeds the sphere's geometric
+       * extent (|y| > |R|, so the sag discriminant would go negative), the
+       * surface normal is undefined.  Skip refraction and propagate straight
+       * rather than letting the 1e-12 clamp in sagSlope produce a garbage angle. */
       const absY = Math.abs(y);
-      const slope = sagSlope(absY, i, L);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const I = U - alpha;
-      const sinIp = (n / nn) * Math.sin(I);
-      if (Math.abs(sinIp) > 1.0) {
-        if (!ghost) break;
-        clipped = true;
+      const R = L.S[i].R;
+      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && absY * absY > R * R) {
+        /* ghost ray beyond sphere extent — propagate straight, no refraction */
       } else {
-        U = alpha + Math.asin(sinIp);
+        const slope = sagSlope(absY, i, L);
+        const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+        const I = U - alpha;
+        const sinIp = (n / nn) * Math.sin(I);
+        if (Math.abs(sinIp) > 1.0) {
+          if (!ghost) break;
+          clipped = true;
+        } else {
+          U = alpha + Math.asin(sinIp);
+        }
       }
     }
     n = nn;
@@ -382,15 +392,20 @@ export function traceRayChromatic(
     const nn = wavelengthNd(nd, L.vdByIdx[i], channel);
     if (nn !== n) {
       const absY = Math.abs(y);
-      const slope = sagSlope(absY, i, L);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const I = U - alpha;
-      const sinIp = (n / nn) * Math.sin(I);
-      if (Math.abs(sinIp) > 1.0) {
-        if (!ghost) break;
-        clipped = true;
+      const R = L.S[i].R;
+      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && absY * absY > R * R) {
+        /* ghost ray beyond sphere extent — propagate straight, no refraction */
       } else {
-        U = alpha + Math.asin(sinIp);
+        const slope = sagSlope(absY, i, L);
+        const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+        const I = U - alpha;
+        const sinIp = (n / nn) * Math.sin(I);
+        if (Math.abs(sinIp) > 1.0) {
+          if (!ghost) break;
+          clipped = true;
+        } else {
+          U = alpha + Math.asin(sinIp);
+        }
       }
     }
     n = nn;

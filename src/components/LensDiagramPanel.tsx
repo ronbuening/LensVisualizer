@@ -4,25 +4,30 @@
  * Orchestrates sub-components and custom hooks:
  *   useLensComputation  → lens building, layout, transforms, shapes, aperture
  *   useRayTracing       → on-axis, off-axis, chromatic ray fans
+ *   useFlashOverlay     → flash animation state machine
+ *   useSideLayoutDetection → overflow-based side layout switching
  *   DiagramHeader       → title, specs, theme/ray toggle controls
  *   DiagramSVG          → full SVG rendering of the optical system
  *   DiagramControls     → zoom, focus, aperture sliders
  *   ElementInspector    → selected element property display
  *   DiagramLegend       → legend with color swatches and ray descriptions
+ *   PanelErrorBoundary  → panel-level error boundary
  *
- * Owns only: hover/selection state, flash animation, side-layout detection,
- * header height reporting, and the structural layout that wires sub-components.
+ * Owns only: hover/selection state, header height reporting, and the
+ * structural layout that wires sub-components.
  */
 
-import { useState, useEffect, useLayoutEffect, useRef, Component } from "react";
-import type { ReactNode, ErrorInfo } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import useLensComputation from "./useLensComputation.js";
 import useRayTracing from "./useRayTracing.js";
+import useFlashOverlay from "./useFlashOverlay.js";
+import useSideLayoutDetection from "./useSideLayoutDetection.js";
 import DiagramControls from "./DiagramControls.js";
 import ElementInspector from "./ElementInspector.js";
 import DiagramLegend from "./DiagramLegend.js";
 import DiagramSVG from "./DiagramSVG.js";
 import DiagramHeader from "./DiagramHeader.js";
+import PanelErrorBoundary from "./PanelErrorBoundary.js";
 import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
 import { ErrorDisplay } from "./ErrorBoundary.js";
 import { useLensCtx, useLensDispatch } from "../utils/LensContext.js";
@@ -35,46 +40,6 @@ import {
   SET_HIGH_CONTRAST,
   SET_PANEL_EXPANDED,
 } from "../utils/lensReducer.js";
-
-/* ── Panel-level error boundary — resets automatically when lensKey changes ── */
-
-interface PanelErrorBoundaryProps {
-  lensKey: string;
-  children: ReactNode;
-}
-
-interface PanelErrorBoundaryState {
-  error: Error | null;
-}
-
-class PanelErrorBoundary extends Component<PanelErrorBoundaryProps, PanelErrorBoundaryState> {
-  constructor(props: PanelErrorBoundaryProps) {
-    super(props);
-    this.state = { error: null };
-  }
-  static getDerivedStateFromError(error: Error): Partial<PanelErrorBoundaryState> {
-    return { error };
-  }
-  componentDidCatch(error: Error, info: ErrorInfo): void {
-    console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, info?.componentStack);
-  }
-  componentDidUpdate(prevProps: PanelErrorBoundaryProps): void {
-    if (prevProps.lensKey !== this.props.lensKey) this.setState({ error: null });
-  }
-  render() {
-    if (!this.state.error) return this.props.children;
-    return (
-      <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-        <ErrorDisplay
-          error={this.state.error}
-          context={{ component: "LensDiagramPanel", lensKey: this.props.lensKey }}
-          title="Diagram Rendering Error"
-          onRetry={() => this.setState({ error: null })}
-        />
-      </div>
-    );
-  }
-}
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -148,39 +113,15 @@ export default function LensDiagramPanel({
     dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v });
   const [hov, setHov] = useState<number | null>(null);
   const [sel, setSel] = useState<number | null>(null);
-  const [useSideLayout, setUseSideLayout] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
-  const sideLayoutRef = useRef(false);
-  const [flashKey, setFlashKey] = useState(0);
-  const [flashVisible, setFlashVisible] = useState(false);
-  const [flashFading, setFlashFading] = useState(false);
 
   useEffect(() => {
     setHov(null);
     setSel(null);
   }, [lensKey]);
 
-  /* ── Flash overlay animation — two-phase: appear bright, then fade out ── */
-  useEffect(() => {
-    if (!flashOverlay) return;
-    setFlashVisible(true);
-    setFlashFading(false);
-    setFlashKey((k) => k + 1);
-    /* Phase 2: start fade after two frames so browser paints the bright state */
-    let raf1: number, raf2: number, timer: ReturnType<typeof setTimeout>;
-    raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => {
-        setFlashFading(true);
-        /* Phase 3: unmount after fade completes */
-        timer = setTimeout(() => setFlashVisible(false), 500);
-      });
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
-      clearTimeout(timer);
-    };
-  }, [flashOverlay]);
+  /* ── Flash overlay animation ── */
+  const { flashKey, flashVisible, flashFading } = useFlashOverlay(flashOverlay);
 
   /* ── Header height reporting for alignment ── */
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -196,35 +137,11 @@ export default function LensDiagramPanel({
   }, [onHeaderHeight, panelId, lensKey]);
 
   /* ── Side-panel overflow detection ── */
-  useLayoutEffect(() => {
-    sideLayoutRef.current = useSideLayout;
-  }, [useSideLayout]);
-
-  useLayoutEffect(() => {
-    if (!sideLayoutEnabled || !panelContainerRef.current) {
-      setUseSideLayout(false);
-      return;
-    }
-    const el = panelContainerRef.current;
-    const check = () => {
-      const rect = el.getBoundingClientRect();
-      const available = window.innerHeight - rect.top;
-      if (!sideLayoutRef.current) {
-        if (el.scrollHeight > available + 10) setUseSideLayout(true);
-      } else {
-        if (available > el.scrollHeight + 200) setUseSideLayout(false);
-      }
-    };
-    check();
-    if (typeof ResizeObserver === "undefined") return;
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    window.addEventListener("resize", check);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", check);
-    };
-  }, [sideLayoutEnabled, lensKey, showSliders, showControls, showChromatic]);
+  const useSideLayout = useSideLayoutDetection({
+    enabled: sideLayoutEnabled,
+    containerRef: panelContainerRef,
+    deps: [lensKey, showSliders, showControls, showChromatic],
+  });
 
   /* ── Lens computation (build, layout, transforms, shapes, aperture) ── */
   const {

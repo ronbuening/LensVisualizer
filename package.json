@@ -12,8 +12,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.js\" \"*.config.js\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.js\" \"*.config.js\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts}\" \"*.config.js\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts}\" \"*.config.js\""
   },
   "dependencies": {
     "react": "^18.3.1",

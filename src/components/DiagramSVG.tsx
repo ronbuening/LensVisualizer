@@ -2,16 +2,19 @@
  * DiagramSVG — Pure SVG rendering component for the lens cross-section diagram.
  *
  * Renders the full `<svg>` element including: defs (glow filter + aspheric diamond
- * pattern), grid lines, optical axis, on-axis/off-axis/chromatic ray polylines,
- * glass element paths (clickable), aspheric overlays and labels, aperture stop
- * blades, image plane, LCA inset widget, element number labels, Abbe badges,
- * group labels, doublet labels, and flash overlay.
+ * pattern), grid lines, optical axis, ray polylines, glass element paths (clickable),
+ * aspheric overlays and labels, aperture stop, image plane, LCA inset widget,
+ * element annotations, and flash overlay.
  *
  * This is a pure rendering component — all data arrives via props, no internal
  * state or side effects. Interaction callbacks (onHover, onSelect) are passed
  * through from the parent LensDiagramPanel.
  */
 import { ENABLE_ASPH_DIAMOND_FILL } from "../utils/featureFlags.js";
+import RayPolylines from "./RayPolylines.js";
+import ApertureStop from "./ApertureStop.js";
+import ElementAnnotations from "./ElementAnnotations.js";
+import LCAInsetWidget from "./LCAInsetWidget.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread, ChromaticChannel } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 
@@ -131,6 +134,8 @@ export default function DiagramSVG({
           </pattern>
         )}
       </defs>
+
+      {/* Grid lines */}
       {Array.from({ length: L.gridCount }, (_, i) => {
         const x = CX - (L.gridCount / 2) * L.gridPitch * effectiveSC + i * L.gridPitch * effectiveSC;
         return x > 0 && x < L.svgW ? (
@@ -146,89 +151,46 @@ export default function DiagramSVG({
           />
         ) : null;
       })}
+
+      {/* Optical axis */}
       <line x1={8} y1={sy(0)} x2={L.svgW - 8} y2={sy(0)} stroke={t.axis} strokeWidth={0.5} strokeDasharray="6,4" />
 
-      {showOnAxis &&
-        rays.map(({ sp, gp }, ri) => {
-          const color = ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm;
-          return (
-            <g key={`on${ri}`}>
-              {sp.length > 1 && (
-                <polyline
-                  points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={1.2 * t.rayWidthScale}
-                />
-              )}
-              {gp.length > 1 && (
-                <polyline
-                  points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={0.6 * t.rayWidthScale}
-                  strokeDasharray="3,4"
-                  opacity={0.3}
-                />
-              )}
-            </g>
-          );
-        })}
+      {/* On-axis rays */}
+      {showOnAxis && (
+        <RayPolylines
+          rays={rays}
+          colorFn={(ri) => (ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm)}
+          solidWidth={1.2}
+          rayWidthScale={t.rayWidthScale}
+          keyPrefix="on"
+        />
+      )}
 
-      {showOffAxis !== "off" &&
-        offAxisRays.map(({ sp, gp }, ri) => {
-          const color = ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm;
-          return (
-            <g key={`off${ri}`}>
-              {sp.length > 1 && (
-                <polyline
-                  points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={1.1 * t.rayWidthScale}
-                  strokeDasharray={t.rayOffDash || "none"}
-                />
-              )}
-              {gp.length > 1 && (
-                <polyline
-                  points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={0.6 * t.rayWidthScale}
-                  strokeDasharray="3,4"
-                  opacity={0.3}
-                />
-              )}
-            </g>
-          );
-        })}
+      {/* Off-axis rays */}
+      {showOffAxis !== "off" && (
+        <RayPolylines
+          rays={offAxisRays}
+          colorFn={(ri) => (ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm)}
+          solidWidth={1.1}
+          rayWidthScale={t.rayWidthScale}
+          solidDash={t.rayOffDash || undefined}
+          keyPrefix="off"
+        />
+      )}
 
-      {showChromatic &&
-        chromaticRays.map(({ sp, gp, channel }, ri) => {
-          const color = channel === "R" ? t.rayChromR : channel === "G" ? t.rayChromG : t.rayChromB;
-          return (
-            <g key={`chrom${ri}`}>
-              {sp.length > 1 && (
-                <polyline
-                  points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={1.0 * t.rayWidthScale}
-                />
-              )}
-              {gp.length > 1 && (
-                <polyline
-                  points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
-                  fill="none"
-                  stroke={color}
-                  strokeWidth={0.5 * t.rayWidthScale}
-                  strokeDasharray="3,4"
-                  opacity={0.3}
-                />
-              )}
-            </g>
-          );
-        })}
+      {/* Chromatic rays */}
+      {showChromatic && (
+        <RayPolylines
+          rays={chromaticRays}
+          colorFn={(ri) => {
+            const ch = chromaticRays[ri]?.channel;
+            return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
+          }}
+          solidWidth={1.0}
+          rayWidthScale={t.rayWidthScale}
+          keyPrefix="chrom"
+        />
+      )}
 
       {/* Element filled shapes — clickable for inspection, highlighted on hover.
        * Hit-testing uses SVG's native pointer events on the <path> elements. */}
@@ -298,45 +260,19 @@ export default function DiagramSVG({
         )),
       )}
 
-      {/* Aperture stop blades — drawn as two thick lines (top and bottom) from
-       * the physical stop edge inward to the current aperture opening */}
-      {(() => {
-        const bladeInner = Math.min(currentPhysStopSD, L.stopPhysSD * (1 - L.bladeStubFrac));
-        return (
-          <>
-            <line
-              x1={sx(stopZ)}
-              y1={sy(-L.stopPhysSD)}
-              x2={sx(stopZ)}
-              y2={sy(-bladeInner)}
-              stroke={t.stop}
-              strokeWidth={2.2}
-              strokeLinecap="round"
-            />
-            <line
-              x1={sx(stopZ)}
-              y1={sy(L.stopPhysSD)}
-              x2={sx(stopZ)}
-              y2={sy(bladeInner)}
-              stroke={t.stop}
-              strokeWidth={2.2}
-              strokeLinecap="round"
-            />
-          </>
-        );
-      })()}
-      <text
-        x={sx(stopZ)}
-        y={sy(-L.stopPhysSD - L.lyStoPad)}
-        textAnchor="middle"
-        fill={t.stopLabel}
-        fontSize={7.5}
-        fontFamily="inherit"
-        style={{ letterSpacing: "0.1em" }}
-      >
-        STO
-      </text>
+      {/* Aperture stop blades + STO label */}
+      <ApertureStop
+        sx={sx}
+        sy={sy}
+        stopZ={stopZ}
+        stopPhysSD={L.stopPhysSD}
+        currentPhysStopSD={currentPhysStopSD}
+        bladeStubFrac={L.bladeStubFrac}
+        lyStoPad={L.lyStoPad}
+        t={t}
+      />
 
+      {/* Image plane */}
       <line
         x1={IX}
         y1={sy(-L.lyImgLine)}
@@ -358,183 +294,30 @@ export default function DiagramSVG({
         IMG
       </text>
 
-      {/* ── LCA inset widget ──
-       * Magnified view of where each wavelength's marginal ray crosses the axis.
-       * Green (G/d-line) is the reference; R and B offsets show longitudinal
-       * chromatic aberration. `mag` scales the tiny mm differences to fill the
-       * inset box, clamped at 5000× to avoid pixel overflow for sub-micron LCA. */}
-      {showChromatic &&
-        chromSpread &&
-        chromSpread.lcaMm !== 0 &&
-        (() => {
-          const insetW = 90;
-          const insetH = 100;
-          const gRef = chromSpread.intercepts.G || IMG_MM;
-          const activeChans = (["R", "G", "B"] as ChromaticChannel[]).filter(
-            (ch) => chromSpread.intercepts[ch] !== undefined,
-          );
-          const offsets = activeChans.map((ch) => Math.abs((chromSpread.intercepts[ch] ?? 0) - gRef));
-          const maxOff = Math.max(...offsets, 1e-9);
-          const maxPixelSpan = (insetW - 24) / 2;
-          const mag = Math.min(maxPixelSpan / (maxOff * effectiveSC), 5000);
-          let insetX = IX + 10;
-          if (insetX + insetW > L.svgW - 4) insetX = IX - insetW - 10;
-          const insetY = sy(0) - 55;
-          const midX = insetX + insetW / 2;
-          return (
-            <g>
-              <rect
-                x={insetX}
-                y={insetY}
-                width={insetW}
-                height={insetH}
-                rx={4}
-                fill={t.panelBg}
-                stroke={t.panelBorder}
-                strokeWidth={0.6}
-                opacity={0.94}
-              />
-              <text
-                x={midX}
-                y={insetY + 14}
-                textAnchor="middle"
-                fill={t.muted}
-                fontSize={8.5}
-                fontFamily="inherit"
-                style={{ letterSpacing: "0.1em" }}
-              >
-                LCA
-              </text>
-              <line
-                x1={insetX + 6}
-                y1={insetY + 40}
-                x2={insetX + insetW - 6}
-                y2={insetY + 40}
-                stroke={t.axis}
-                strokeWidth={0.5}
-              />
-              {activeChans.map((ch) => {
-                const offset = ((chromSpread.intercepts[ch] ?? 0) - gRef) * mag * effectiveSC;
-                const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
-                return (
-                  <g key={ch}>
-                    <line
-                      x1={midX + offset}
-                      y1={insetY + 22}
-                      x2={midX + offset}
-                      y2={insetY + 56}
-                      stroke={color}
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                    />
-                    <text
-                      x={midX + offset}
-                      y={insetY + 67}
-                      textAnchor="middle"
-                      fill={color}
-                      fontSize={8.5}
-                      fontFamily="inherit"
-                      fontWeight={600}
-                    >
-                      {ch}
-                    </text>
-                  </g>
-                );
-              })}
-              <text
-                x={midX}
-                y={insetY + 82}
-                textAnchor="middle"
-                fill={t.value}
-                fontSize={10}
-                fontFamily="inherit"
-                fontWeight={600}
-              >
-                {Math.abs(chromSpread.lcaMm * 1000) >= 1
-                  ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m`
-                  : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
-              </text>
-              <text x={midX} y={insetY + 95} textAnchor="middle" fill={t.muted} fontSize={7.5} fontFamily="inherit">
-                {Math.round(mag)}
-                {"\u00d7"}
-              </text>
-            </g>
-          );
-        })()}
+      {/* LCA inset widget */}
+      {showChromatic && chromSpread && chromSpread.lcaMm !== 0 && (
+        <LCAInsetWidget
+          chromSpread={chromSpread}
+          effectiveSC={effectiveSC}
+          IMG_MM={IMG_MM}
+          IX={IX}
+          svgW={L.svgW}
+          sy={sy}
+          t={t}
+        />
+      )}
 
-      {shapes.map(({ eid, z1, z2 }) => {
-        const e = L.elements.find((x) => x.id === eid)!;
-        const on = act === eid;
-        return (
-          <text
-            key={`n${eid}`}
-            x={sx((z1 + z2) / 2)}
-            y={sy(L.lyElemNum)}
-            textAnchor="middle"
-            fill={on ? t.elemNumActive : t.elemNum(e)}
-            fontSize={7}
-            fontFamily="inherit"
-            fontWeight={on ? 700 : 400}
-          >
-            {eid}
-          </text>
-        );
-      })}
-
-      {/* Abbe number (νd) badges — color-coded by dispersion class:
-       * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown/ED) */}
-      {showChromatic &&
-        shapes.map(({ eid, z1, z2 }) => {
-          const e = L.elements.find((x) => x.id === eid);
-          if (!e || !e.vd) return null;
-          const on = act === eid;
-          const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
-          return (
-            <text
-              key={`vd${eid}`}
-              x={sx((z1 + z2) / 2)}
-              y={sy(L.lyVdBadge)}
-              textAnchor="middle"
-              fill={on ? t.elemNumActive : dispColor}
-              fontSize={8.5}
-              fontFamily="inherit"
-              fontWeight={on ? 600 : 500}
-              opacity={on ? 1 : 0.9}
-            >
-              {"\u03bd"}
-              {e.vd.toFixed(0)}
-            </text>
-          );
-        })}
-
-      {L.groups.map(({ text, fromSurface, toSurface }) => (
-        <text
-          key={text}
-          x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-          y={sy(L.lyGroup)}
-          fill={t.groupLabel}
-          fontSize={7}
-          fontFamily="inherit"
-          textAnchor="middle"
-          style={{ letterSpacing: "0.08em" }}
-        >
-          {text}
-        </text>
-      ))}
-
-      {L.doublets.map(({ text, fromSurface, toSurface }) => (
-        <text
-          key={text}
-          x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-          y={sy(L.lyDoublet)}
-          textAnchor="middle"
-          fill={t.doubletLabel}
-          fontSize={7}
-          fontFamily="inherit"
-        >
-          {text}
-        </text>
-      ))}
+      {/* Element numbers, Abbe badges, group/doublet labels */}
+      <ElementAnnotations
+        L={L}
+        t={t}
+        shapes={shapes}
+        sx={sx}
+        sy={sy}
+        zPos={zPos}
+        act={act}
+        showChromatic={showChromatic}
+      />
 
       {/* Flash overlay — brief highlight when slider sticks at common point */}
       {flashVisible && (

@@ -14,12 +14,13 @@ import { forwardRef } from "react";
 import { eflAtZoom, formatDist } from "../optics/optics.js";
 import {
   ENABLE_COLOR_TRACING,
-  ENABLE_EDGE_PROJECTION,
   ENABLE_COLLAPSIBLE_HEADER_CONTROLS,
   ENABLE_COLLAPSIBLE_HEADER_INFO,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
-import { toggleGroup, toggleBtn, chromChannelBtn, collapseBtn, headerStrip } from "../utils/styles.js";
+import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../utils/styles.js";
+import RayToggles from "./RayToggles.js";
+import ChromaticControls from "./ChromaticControls.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 
@@ -240,62 +241,13 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                   </button>
                 </div>
                 {/* Ray toggles */}
-                <div style={toggleGroup(t, { width: "100%" })}>
-                  {(() => {
-                    const offAxisActive = showOffAxis !== "off";
-                    const offAxisCycle = ENABLE_EDGE_PROJECTION
-                      ? () =>
-                          onShowOffAxisChange?.(
-                            showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
-                          )
-                      : () => onShowOffAxisChange?.(offAxisActive ? "off" : "trueAngle");
-                    const offAxisLabel = ENABLE_EDGE_PROJECTION
-                      ? showOffAxis === "edge"
-                        ? "EDGE PROJ"
-                        : showOffAxis === "trueAngle"
-                          ? "TRUE \u2220"
-                          : "OFF-AXIS"
-                      : "OFF-AXIS";
-                    return [
-                      {
-                        label: "ON-AXIS",
-                        active: showOnAxis,
-                        onClick: () => onShowOnAxisChange?.(!showOnAxis),
-                        dotA: t.rayWarm,
-                        dotB: t.rayCool,
-                      },
-                      {
-                        label: offAxisLabel,
-                        active: offAxisActive,
-                        onClick: offAxisCycle,
-                        dotA: t.rayOffWarm,
-                        dotB: t.rayOffCool,
-                      },
-                    ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-                      <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
-                        <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                          <line
-                            x1="0"
-                            y1="4"
-                            x2="14"
-                            y2="4"
-                            stroke={active ? dotA : "rgba(128,128,128,0.3)"}
-                            strokeWidth="1.5"
-                          />
-                          <line
-                            x1="0"
-                            y1="7"
-                            x2="14"
-                            y2="7"
-                            stroke={active ? dotB : "rgba(128,128,128,0.3)"}
-                            strokeWidth="1.5"
-                          />
-                        </svg>
-                        <span>{label}</span>
-                      </button>
-                    ));
-                  })()}
-                </div>
+                <RayToggles
+                  t={t}
+                  showOnAxis={showOnAxis}
+                  onShowOnAxisChange={onShowOnAxisChange}
+                  showOffAxis={showOffAxis}
+                  onShowOffAxisChange={onShowOffAxisChange}
+                />
                 {/* Ray mode */}
                 <div style={toggleGroup(t, { width: "100%" })}>
                   {[
@@ -323,59 +275,17 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                 </div>
                 {/* Chromatic */}
                 {ENABLE_COLOR_TRACING && (
-                  <div style={toggleGroup(t, { width: "100%" })}>
-                    <button
-                      onClick={() => onShowChromaticChange?.(!showChromatic)}
-                      style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
-                    >
-                      <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                        <line
-                          x1="0"
-                          y1="1"
-                          x2="14"
-                          y2="1"
-                          stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-                          strokeWidth="1.5"
-                        />
-                        <line
-                          x1="0"
-                          y1="4"
-                          x2="14"
-                          y2="4"
-                          stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-                          strokeWidth="1.5"
-                        />
-                        <line
-                          x1="0"
-                          y1="7"
-                          x2="14"
-                          y2="7"
-                          stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                      <span>COLOR</span>
-                    </button>
-                    {showChromatic &&
-                      [
-                        { ch: "R", active: chromR, set: onChromRChange, color: t.rayChromR },
-                        { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
-                        { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
-                      ].map(({ ch, active, set, color }, idx) => (
-                        <button key={ch} onClick={() => set?.(!active)} style={chromChannelBtn(t, active, idx < 2)}>
-                          <span
-                            style={{
-                              width: 6,
-                              height: 6,
-                              borderRadius: "50%",
-                              background: active ? color : "rgba(128,128,128,0.3)",
-                              display: "inline-block",
-                            }}
-                          />
-                          <span>{ch}</span>
-                        </button>
-                      ))}
-                  </div>
+                  <ChromaticControls
+                    t={t}
+                    showChromatic={showChromatic}
+                    onShowChromaticChange={onShowChromaticChange}
+                    chromR={chromR}
+                    chromG={chromG}
+                    chromB={chromB}
+                    onChromRChange={onChromRChange}
+                    onChromGChange={onChromGChange}
+                    onChromBChange={onChromBChange}
+                  />
                 )}
               </>
             )}

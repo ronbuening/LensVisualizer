@@ -15,6 +15,7 @@ import {
   overlayModal,
   closeBtn,
 } from "../src/utils/styles.js";
+import type { Theme } from "../src/types/theme.js";
 
 /* Minimal mock theme with just the tokens factories consume */
 const mockTheme = {
@@ -33,7 +34,7 @@ const mockTheme = {
   headerBgImage: "none",
   descBg: "#101010",
   descBorder: "#333",
-};
+} as unknown as Theme;
 
 /* ── Static constants ── */
 
