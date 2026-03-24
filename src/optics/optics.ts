@@ -423,8 +423,10 @@ interface MarginalRayData {
 
 /**
  * Compute chromatic aberration metrics from marginal ray trace results.
- * marginalRays: { R?: {y,u,clipped}, G?: {y,u,clipped}, B?: {y,u,clipped} }
- * Returns { lcaMm, tcaMm, intercepts: {R?,G?,B?}, imgHeights: {R?,G?,B?} }
+ *
+ * lcaMm prefers the full R−B span; falls back to R−G or G−B when one channel
+ * is toggled off, so the widget remains visible with any 2-channel combination.
+ * lcaMm is 0 only when fewer than 2 channels have valid intercepts.
  */
 export function computeChromaticSpread(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
@@ -442,8 +444,17 @@ export function computeChromaticSpread(
     const dz = imgZ - lastSurfZ;
     imgHeights[ch] = ray.y + dz * ray.u;
   }
-  const lcaMm = intercepts.R !== undefined && intercepts.B !== undefined ? intercepts.R - intercepts.B : 0;
-  const tcaMm = imgHeights.R !== undefined && imgHeights.B !== undefined ? imgHeights.R - imgHeights.B : 0;
+  // Prefer R−B; fall back to partial pairs so the widget stays visible
+  // when the user toggles individual wavelength channels off.
+  let lcaMm = 0;
+  if (intercepts.R !== undefined && intercepts.B !== undefined) lcaMm = intercepts.R - intercepts.B;
+  else if (intercepts.R !== undefined && intercepts.G !== undefined) lcaMm = intercepts.R - intercepts.G;
+  else if (intercepts.G !== undefined && intercepts.B !== undefined) lcaMm = intercepts.G - intercepts.B;
+
+  let tcaMm = 0;
+  if (imgHeights.R !== undefined && imgHeights.B !== undefined) tcaMm = imgHeights.R - imgHeights.B;
+  else if (imgHeights.R !== undefined && imgHeights.G !== undefined) tcaMm = imgHeights.R - imgHeights.G;
+  else if (imgHeights.G !== undefined && imgHeights.B !== undefined) tcaMm = imgHeights.G - imgHeights.B;
   return { lcaMm, tcaMm, intercepts, imgHeights };
 }
 
