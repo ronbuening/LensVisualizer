@@ -4,38 +4,38 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `LensViewer.tsx` | `src/components/` | Orchestration: state management, context provision, layout composition |
-| `TopBar.tsx` | `src/components/` | Lens selectors, compare button, about buttons |
-| `ControlsBar.tsx` | `src/components/` | Theme/ray/chromatic/scale toggles (compact + full modes) |
-| `ViewToggleBar.tsx` | `src/components/` | Generic view-mode toggle (mobile + desktop) |
-| `ComparisonLayout.tsx` | `src/components/` | Side-by-side (desktop) / stacked (mobile) comparison panels |
-| `OverlayModal.tsx` | `src/components/` | Generic backdrop + modal + close button |
-| `LensDiagramPanel.tsx` | `src/components/` | Diagram composition: wires hooks + sub-components |
-| `PanelErrorBoundary.tsx` | `src/components/` | Panel-level error boundary, resets on lens change |
-| `useLensComputation.ts` | `src/components/` | Hook: lens building, layout, transforms, shapes, aperture |
-| `useRayTracing.ts` | `src/components/` | Hook: orchestrates on-axis, off-axis, chromatic ray sub-hooks |
-| `useOnAxisRays.ts` | `src/components/` | Hook: on-axis ray fan computation |
-| `useOffAxisRays.ts` | `src/components/` | Hook: off-axis field ray computation |
-| `useChromaticRays.ts` | `src/components/` | Hook: chromatic tracing + spread computation |
-| `useFlashOverlay.ts` | `src/components/` | Hook: flash animation state machine for sticky slider feedback |
-| `useSideLayoutDetection.ts` | `src/components/` | Hook: ResizeObserver overflow detection with hysteresis |
-| `DiagramHeader.tsx` | `src/components/` | Header: title, specs, composes RayToggles + ChromaticControls |
-| `RayToggles.tsx` | `src/components/` | On-axis/off-axis toggle buttons with cycling logic |
-| `ChromaticControls.tsx` | `src/components/` | COLOR master toggle + R/G/B channel buttons |
-| `DiagramSVG.tsx` | `src/components/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget |
-| `RayPolylines.tsx` | `src/components/` | Consolidated ray segment polyline rendering |
-| `ApertureStop.tsx` | `src/components/` | Aperture stop blades + STO label |
-| `ElementAnnotations.tsx` | `src/components/` | Element numbers, Abbe νd badges, group/doublet labels |
-| `LCAInsetWidget.tsx` | `src/components/` | Magnified LCA inset with auto-scaled wavelength offsets |
-| `DiagramControls.tsx` | `src/components/` | Zoom, focus, aperture sliders (composes SliderControl) |
-| `SliderControl.tsx` | `src/components/` | Reusable slider with label, endpoints, collapsible content |
-| `ElementInspector.tsx` | `src/components/` | Selected element property display |
-| `DiagramLegend.tsx` | `src/components/` | Legend with swatches, ray descriptions, aberration readouts |
-| `AboutButtonRow.tsx` | `src/components/` | Shared about button group (Optics, Site, Author) |
-| `AboutFooter.tsx` | `src/components/` | Mobile-only footer rendering about buttons at page bottom |
-| `DescriptionPanel.tsx` | `src/components/` | Markdown panel with themed styling |
-| `SharedSlidersBar.tsx` | `src/components/` | Comparison mode shared focus/aperture/zoom controls |
-| `ErrorBoundary.tsx` | `src/components/` | Error boundary + reusable ErrorDisplay |
+| `LensViewer.tsx` | `src/components/layout/` | Orchestration: state management, context provision, layout composition |
+| `TopBar.tsx` | `src/components/layout/` | Lens selectors, compare button, about buttons |
+| `ControlsBar.tsx` | `src/components/layout/` | Theme/ray/chromatic/scale toggles (compact + full modes) |
+| `ViewToggleBar.tsx` | `src/components/layout/` | Generic view-mode toggle (mobile + desktop) |
+| `ComparisonLayout.tsx` | `src/components/layout/` | Side-by-side (desktop) / stacked (mobile) comparison panels |
+| `OverlayModal.tsx` | `src/components/layout/` | Generic backdrop + modal + close button |
+| `LensDiagramPanel.tsx` | `src/components/layout/` | Diagram composition: wires hooks + sub-components |
+| `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling |
+| `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
+| `useLensComputation.ts` | `src/components/hooks/` | Hook: lens building, layout, transforms, shapes, aperture |
+| `useRayTracing.ts` | `src/components/hooks/` | Hook: orchestrates on-axis, off-axis, chromatic ray sub-hooks |
+| `useOnAxisRays.ts` | `src/components/hooks/` | Hook: on-axis ray fan computation |
+| `useOffAxisRays.ts` | `src/components/hooks/` | Hook: off-axis field ray computation |
+| `useChromaticRays.ts` | `src/components/hooks/` | Hook: chromatic tracing + spread computation |
+| `useFlashOverlay.ts` | `src/components/hooks/` | Hook: flash animation state machine for sticky slider feedback |
+| `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
+| `DiagramHeader.tsx` | `src/components/controls/` | Header: title, specs, composes RayToggles + ChromaticControls |
+| `RayToggles.tsx` | `src/components/controls/` | On-axis/off-axis toggle buttons with cycling logic |
+| `ChromaticControls.tsx` | `src/components/controls/` | COLOR master toggle + R/G/B channel buttons |
+| `DiagramControls.tsx` | `src/components/controls/` | Zoom, focus, aperture sliders (composes SliderControl) |
+| `SliderControl.tsx` | `src/components/controls/` | Reusable slider with label, endpoints, collapsible content |
+| `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget |
+| `RayPolylines.tsx` | `src/components/diagram/` | Consolidated ray segment polyline rendering |
+| `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label |
+| `ElementAnnotations.tsx` | `src/components/diagram/` | Element numbers, Abbe νd badges, group/doublet labels |
+| `LCAInsetWidget.tsx` | `src/components/diagram/` | Magnified LCA inset with auto-scaled wavelength offsets |
+| `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
+| `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
+| `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
+| `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
+| `ErrorBoundary.tsx` | `src/components/errors/` | Error boundary + reusable ErrorDisplay |
+| `PanelErrorBoundary.tsx` | `src/components/errors/` | Panel-level error boundary, resets on lens change |
 | `optics.ts` | `src/optics/` | Ray tracing, sag curves, chromatic, layout geometry |
 | `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation |
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
@@ -79,7 +79,7 @@ State is provided to children via `LensStateContext` (state + theme + isWide) an
 
 Orchestrates sub-components and custom hooks. Owns only hover/selection state, header height reporting, and structural layout wiring.
 
-Extracted hooks (all in `src/components/`):
+Extracted hooks (all in `src/components/hooks/`):
 - **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations
 - **`useRayTracing.ts`** — Hook: orchestrates ray sub-hooks (useOnAxisRays, useOffAxisRays, useChromaticRays)
 - **`useOnAxisRays.ts`** — Hook: on-axis ray fan computation + coordinate transform
@@ -88,20 +88,20 @@ Extracted hooks (all in `src/components/`):
 - **`useFlashOverlay.ts`** — Hook: two-phase flash animation state machine for sticky slider feedback
 - **`useSideLayoutDetection.ts`** — Hook: ResizeObserver-based overflow detection with hysteresis for side-by-side layout
 
-Sub-components (all in `src/components/`):
-- **`PanelErrorBoundary.tsx`** — Panel-level error boundary that resets automatically on lens change
-- **`DiagramHeader.tsx`** — Title, specs, composes RayToggles + ChromaticControls (uses `forwardRef` for height measurement)
+Sub-components:
+- **`PanelErrorBoundary.tsx`** (`src/components/errors/`) — Panel-level error boundary that resets automatically on lens change
+- **`DiagramHeader.tsx`** (`src/components/controls/`) — Title, specs, composes RayToggles + ChromaticControls (uses `forwardRef` for height measurement)
   - **`RayToggles.tsx`** — On-axis/off-axis toggle buttons with off-axis cycling logic and feature flag awareness
   - **`ChromaticControls.tsx`** — COLOR master toggle + individual R/G/B channel buttons
-- **`DiagramSVG.tsx`** — SVG rendering: defs, grid, composes RayPolylines, element shapes, aspheric overlays, ApertureStop, image plane, LCAInsetWidget, ElementAnnotations, flash overlay
+- **`DiagramSVG.tsx`** (`src/components/diagram/`) — SVG rendering: defs, grid, composes RayPolylines, element shapes, aspheric overlays, ApertureStop, image plane, LCAInsetWidget, ElementAnnotations, flash overlay
   - **`RayPolylines.tsx`** — Consolidated ray segment polyline rendering (solid + ghost paths)
   - **`ApertureStop.tsx`** — Aperture stop blades + STO label
   - **`ElementAnnotations.tsx`** — Element number labels, Abbe νd badges, group/doublet labels
   - **`LCAInsetWidget.tsx`** — Magnified LCA inset with auto-scaled wavelength offsets (clamped at 5000×)
-- **`DiagramControls.tsx`** — Zoom, focus, aperture sliders (composes SliderControl)
+- **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
-- **`ElementInspector.tsx`** — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
-- **`DiagramLegend.tsx`** — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
+- **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
+- **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
