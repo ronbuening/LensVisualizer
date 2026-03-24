@@ -212,6 +212,14 @@ const LENS_DATA = {
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
 
+  /* ── Off-axis ray tuning ──
+   *  Default offAxisFractions (±0.75) places the upper marginal ray at
+   *  yChief + 0.75×epSD ≈ 11.4 + 22.8 = 34.1 mm, which exceeds the front
+   *  element SD of 32 mm and causes an immediate ghost that traverses the
+   *  entire lens.  Cap at ±0.6 (→ y0_max ≈ 29.6 mm) for a clean trace.
+   */
+  offAxisFractions: [-0.6, -0.3, 0, 0.3, 0.6],
+
   /* ── Layout tuning ── */
   scFill: 0.52,
   yScFill: 0.38,
