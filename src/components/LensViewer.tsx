@@ -33,7 +33,6 @@ import {
   ENABLE_ANALYSIS_ONLY,
   ENABLE_COMPARISON,
   ENABLE_COMPARISON_MOBILE,
-  ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
   ENABLE_SIDE_PANEL_LAYOUT,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
@@ -44,6 +43,7 @@ import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
+import ComparisonLayout from "./ComparisonLayout.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
@@ -282,74 +282,6 @@ export default function LensVisualization() {
     dispatch,
   } as const;
 
-  /* ── Comparison error display ── */
-  const comparisonError = comparisonLenses?.error ? (
-    <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
-      <ErrorDisplay
-        error={
-          comparisonLenses.error instanceof Error ? comparisonLenses.error : new Error(String(comparisonLenses.error))
-        }
-        context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys ?? "" }}
-        title="Failed to build lens for comparison"
-      />
-    </div>
-  ) : null;
-
-  /* ── Comparison content ──
-   * Desktop: side-by-side (50/50 flex row) with a vertical divider.
-   * Mobile: stacked (column) with a horizontal divider.
-   * Each panel gets its own per-lens focus/zoom/aperture from the shared
-   * slider pair computations, and an optional scaleRatio for normalized mode. */
-  const comparisonContent = comparing ? (
-    comparisonLenses?.error ? (
-      comparisonError
-    ) : (
-      <div style={{ display: "flex", flexDirection: isWide ? "row" : "column" }}>
-        <div
-          style={{
-            flex: isWide ? "0 0 50%" : "none",
-            borderRight: isWide ? `1px solid ${t.panelDivider}` : "none",
-            borderBottom: !isWide ? `1px solid ${t.panelDivider}` : "none",
-            minWidth: 0,
-            overflow: "hidden",
-          }}
-        >
-          <LensDiagramPanel
-            lensKey={lensKeyA}
-            focusT={focusPair?.focusA ?? 0}
-            zoomT={zoomPair?.zoomA ?? 0}
-            stopdownT={aperturePair?.stopdownA ?? 0}
-            scaleRatio={scaleRatios?.a ?? null}
-            panelId="a"
-            compact={true}
-            showControls={true}
-            showSliders={false}
-            maxSvgHeight={isWide ? (ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh") : "42vh"}
-            onHeaderHeight={handleHeaderHeight}
-            minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
-            flashOverlay={flashPanel === "a"}
-          />
-        </div>
-        <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
-          <LensDiagramPanel
-            lensKey={lensKeyB}
-            focusT={focusPair?.focusB ?? 0}
-            zoomT={zoomPair?.zoomB ?? 0}
-            stopdownT={aperturePair?.stopdownB ?? 0}
-            scaleRatio={scaleRatios?.b ?? null}
-            panelId="b"
-            compact={true}
-            showControls={true}
-            showSliders={false}
-            maxSvgHeight={isWide ? (ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh") : "42vh"}
-            onHeaderHeight={handleHeaderHeight}
-            minHeaderHeight={isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined}
-            flashOverlay={flashPanel === "b"}
-          />
-        </div>
-      </div>
-    )
-  ) : null;
 
 
   /* ── Single-lens diagram content ── */
@@ -431,7 +363,38 @@ export default function LensVisualization() {
           {/* ── Main content area ── */}
           {comparing ? (
             <>
-              {comparisonContent}
+              {comparisonLenses?.error ? (
+                <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
+                  <ErrorDisplay
+                    error={
+                      comparisonLenses.error instanceof Error
+                        ? comparisonLenses.error
+                        : new Error(String(comparisonLenses.error))
+                    }
+                    context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys ?? "" }}
+                    title="Failed to build lens for comparison"
+                  />
+                </div>
+              ) : (
+                isComparisonOk(comparisonLenses) &&
+                focusPair &&
+                aperturePair &&
+                zoomPair && (
+                  <ComparisonLayout
+                    theme={t}
+                    isWide={isWide}
+                    lensKeyA={lensKeyA}
+                    lensKeyB={lensKeyB}
+                    focusPair={focusPair}
+                    aperturePair={aperturePair}
+                    zoomPair={zoomPair}
+                    scaleRatios={scaleRatios}
+                    maxHeaderHeight={maxHeaderHeight}
+                    onHeaderHeight={handleHeaderHeight}
+                    flashPanel={flashPanel}
+                  />
+                )
+              )}
               {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
                 <SharedSlidersBar
                   LA={comparisonLenses.LA}
