@@ -42,6 +42,7 @@ import useStickySliders from "../utils/useStickySliders.js";
 import { ErrorDisplay } from "./ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
+import TopBar from "./TopBar.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
@@ -57,7 +58,7 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../utils/lensReducer.js";
-import { toggleGroup, toggleBtn, selector, headerStrip, topBarBtn } from "../utils/styles.js";
+import { toggleGroup, toggleBtn, headerStrip } from "../utils/styles.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 interface ComparisonLensesOk {
@@ -134,6 +135,12 @@ export default function LensVisualization() {
 
   /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast */
   const t = T[dark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"];
+
+  /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
+  const catalogNames = useMemo(
+    () => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])),
+    [],
+  );
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
   const switchLensA = useCallback(
@@ -373,115 +380,21 @@ export default function LensVisualization() {
           }}
         >
           {/* ── Top bar: lens selector(s) + compare button ── */}
-          <div
-            style={{
-              ...headerStrip(t, { padding: isWide ? "12px 24px" : "10px 12px" }),
-              display: "flex",
-              alignItems: "center",
-              gap: isWide ? 12 : 8,
-              flexWrap: "wrap",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 9,
-                letterSpacing: "0.12em",
-                color: t.muted,
-                fontFamily: "inherit",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {comparing ? "LENS A" : "LENS"}
-            </span>
-            <select
-              value={lensKeyA}
-              onChange={(e) => switchLensA(e.target.value)}
-              style={{ ...selector(t, isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
-            >
-              {CATALOG_KEYS.map((k) => (
-                <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-                  {LENS_CATALOG[k].name}
-                </option>
-              ))}
-            </select>
-
-            {comparing && (
-              <>
-                <span
-                  style={{
-                    fontSize: 9,
-                    letterSpacing: "0.12em",
-                    color: t.muted,
-                    fontFamily: "inherit",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  LENS B
-                </span>
-                <select
-                  value={lensKeyB}
-                  onChange={(e) => switchLensB(e.target.value)}
-                  style={{ ...selector(t, isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 }}
-                >
-                  {CATALOG_KEYS.map((k) => (
-                    <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-                      {LENS_CATALOG[k].name}
-                    </option>
-                  ))}
-                </select>
-              </>
-            )}
-
-            {showCompareBtn && (
-              <button
-                onClick={toggleCompare}
-                style={{
-                  backgroundColor: comparing ? t.toggleActiveBg : t.selectorBg,
-                  border: `1.5px solid ${comparing ? t.sliderAccent : `${t.sliderAccent}40`}`,
-                  borderRadius: 6,
-                  padding: isWide ? "5px 14px" : "5px 10px",
-                  cursor: "pointer",
-                  fontSize: 10,
-                  color: comparing ? t.toggleActiveText : t.selectorText,
-                  fontFamily: "inherit",
-                  letterSpacing: "0.08em",
-                  outline: "none",
-                  flexShrink: 0,
-                  boxShadow: `0 0 6px ${t.sliderAccent}18`,
-                  transition: "all 0.3s",
-                }}
-              >
-                {comparing ? "EXIT COMPARE" : "COMPARE"}
-              </button>
-            )}
-
-            {isWide && <div style={{ flex: 1 }} />}
-            {isWide && (
-              <span
-                style={{
-                  fontSize: 9,
-                  letterSpacing: "0.12em",
-                  color: t.muted,
-                  fontFamily: "inherit",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                ABOUT
-              </span>
-            )}
-            <button
-              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
-              style={topBarBtn(t, isWide)}
-            >
-              Site
-            </button>
-            <button
-              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
-              style={topBarBtn(t, isWide)}
-            >
-              Author
-            </button>
-          </div>
+          <TopBar
+            theme={t}
+            isWide={isWide}
+            lensKeyA={lensKeyA}
+            lensKeyB={lensKeyB}
+            comparing={comparing}
+            showCompareBtn={showCompareBtn}
+            onSwitchLensA={switchLensA}
+            onSwitchLensB={switchLensB}
+            onToggleCompare={toggleCompare}
+            onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
+            onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
+            catalogKeys={CATALOG_KEYS}
+            catalogNames={catalogNames}
+          />
 
           {/* ── Shared controls bar (comparison mode only) ── */}
           {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}
