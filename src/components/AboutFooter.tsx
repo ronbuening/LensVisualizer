@@ -38,6 +38,17 @@ export default function AboutFooter({
         gap: 10,
       }}
     >
+      <span
+        style={{
+          fontSize: 9,
+          letterSpacing: "0.12em",
+          color: t.muted,
+          fontFamily: "inherit",
+          whiteSpace: "nowrap",
+        }}
+      >
+        ABOUT
+      </span>
       {!ENABLE_ABOUT_BUTTONS_IN_TOPBAR && (
         <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
           Optics
