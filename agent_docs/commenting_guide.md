@@ -18,18 +18,18 @@ code already says.
 Every file starts with a `/** ... */` block. State the module's **purpose**,
 **scope**, and **relationship to other modules**.
 
-```js
+```ts
 /**
  * SharedSlidersBar — unified focus/aperture/zoom controls for comparison mode.
  *
  * Renders a horizontal bar of shared sliders when two lenses are being
  * compared. Slider values are mapped to per-lens values by the pure
- * functions in comparisonSliders.js; this component only handles UI.
+ * functions in comparisonSliders.ts; this component only handles UI.
  */
 ```
 
 For large orchestration files (>500 lines), use the ASCII box-art header
-already established in `LensViewer.jsx`.
+already established in `LensViewer.tsx`.
 
 ### 2. Section Header (light)
 
@@ -56,35 +56,36 @@ longer than ~300 lines. Number sections sequentially.
 ### 4. Function JSDoc
 
 All **exported** and **public** functions get a JSDoc block with `@param` and
-`@returns`. Use inline type annotations (no TypeScript).
+`@returns`. TypeScript provides the type annotations — JSDoc documents the
+**semantics** (units, valid ranges, domain meaning).
 
-```js
+```ts
 /**
  * Compute the sag (axial displacement) of a spherical surface at height h.
  *
  * Uses the standard sag formula: z = c·h² / (1 + √(1 − c²·h²))
  * where c = 1/R. Returns 0 for flat surfaces (|R| > FLAT_R_THRESHOLD).
  *
- * @param {number} h      — ray height (mm)
- * @param {number} R      — radius of curvature (mm, signed)
- * @returns {number}        sag in mm (positive = toward image)
+ * @param h  — ray height (mm)
+ * @param R  — radius of curvature (mm, signed)
+ * @returns    sag in mm (positive = toward image)
  */
-export function sag(h, R) { ... }
+export function sag(h: number, R: number): number { ... }
 ```
 
-For React component functions, document the **props interface** rather than
-individual parameters:
+For React components, define a **Props interface** at the top of the file.
+JSDoc on the component function is optional since the interface is self-documenting:
 
-```js
-/**
- * @param {Object} props
- * @param {string}   props.lensKey      — catalog key identifying the lens
- * @param {number}   props.focusT       — focus slider position [0 = ∞, 1 = close]
- * @param {number}   props.zoomT        — zoom slider position [0..1]
- * @param {number}   props.stopdownT    — aperture stopdown [0 = wide open, 1 = max]
- * @param {Object}   props.theme        — active theme object from themes.js
- * ...
- */
+```ts
+interface DiagramControlsProps {
+  L: RuntimeLens;
+  t: Theme;
+  focusT: number;      // [0 = ∞, 1 = close focus]
+  zoomT: number;       // [0 = wide, 1 = tele]
+  stopdownT: number;   // [0 = wide open, 1 = max]
+  dispatch: Dispatch<LensAction>;
+  // ...
+}
 ```
 
 Internal helper functions (not exported) need JSDoc only when their
@@ -176,7 +177,7 @@ Use sparingly. Always include context on **what** and **why**.
 
 ### Feature Flags
 - **Note what enabling/disabling changes** in the rendering or behavior
-- Reference the flag name from `featureFlags.js`
+- Reference the flag name from `featureFlags.ts`
 
 ---
 

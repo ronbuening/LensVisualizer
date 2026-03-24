@@ -14,17 +14,17 @@ No manual imports or catalog edits required.
 
 - **Full format specification:** `src/lens-data/LENS_DATA_SPEC.md`
 - **Annotated template:** `src/lens-data/TEMPLATE.data.js.template`
-- **Shared defaults:** `src/lens-data/defaults.js`
+- **Shared defaults:** `src/lens-data/defaults.ts`
 
 ## Key Details
 
 ### Auto-Registration
 
-`src/utils/lensCatalog.js` uses `import.meta.glob` to discover all `*.data.js` files in `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field. Analysis files are matched by `*.analysis.md` glob.
+`src/utils/lensCatalog.ts` uses `import.meta.glob` to discover all `*.data.js` files in `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field. Analysis files are matched by `*.analysis.md` glob.
 
 ### Defaults Merge
 
-Shared defaults from `src/lens-data/defaults.js` are merged automatically under each lens. Only override values in your `.data.js` that differ from defaults (e.g., `svgW`, `svgH`, `maxRimAngleDeg`).
+Shared defaults from `src/lens-data/defaults.ts` are merged automatically under each lens. Only override values in your `.data.js` that differ from defaults (e.g., `svgW`, `svgH`, `maxRimAngleDeg`).
 
 ### Naming Conventions
 

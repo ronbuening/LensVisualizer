@@ -12,7 +12,7 @@ This site is created by **Ron Buening**. The optical prescriptions are translate
 
 - **Patent translation** — Extracting and converting surface data, glass specifications, and aspherical coefficients from patent documents into structured lens prescriptions
 - **Optical math** — Paraxial ray tracing, sag curve computation, entrance pupil calculation, and chromatic dispersion modeling
-- **Site development** — React components, SVG rendering logic, theme system, and the interactive controls that bring the lens data to life
+- **Site development** — TypeScript React components, SVG rendering logic, theme system, and the interactive controls that bring the lens data to life
 
 The result is a collaboration between human domain knowledge — understanding what matters in a lens design and why — and AI capability in handling the tedious, error-prone arithmetic and code that connects patent data to a visual, interactive experience.
 
