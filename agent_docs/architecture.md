@@ -128,4 +128,4 @@ Type definitions are centralized in `src/types/`:
 - **`theme.ts`** — `ThemeColorTokens`, `ThemeInternalTokens`, `Theme` (tokens + closure functions), `ThemeVariant`
 - **`index.ts`** — Barrel re-exports from all three
 
-Lens data files (`.data.js`) remain JavaScript — they are loaded via `import.meta.glob` and validated at runtime by `validateLensData()`. Test files also remain `.js`.
+Lens data files (`.data.js`) remain JavaScript — they are loaded via `import.meta.glob` and validated at runtime by `validateLensData()`. Test files are TypeScript (`.ts`) and are included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`.

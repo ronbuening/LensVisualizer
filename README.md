@@ -38,6 +38,7 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | NIKKOR Z 50mm f/1.8 S | 12 | 2 aspherics + 2 ED elements |
 | NIKON NIKKOR Z 50mm f/1.2 S | 17+filter | 3 aspherics; multi-group AF; 6 APD elements |
 | NIKON NIKKOR Z MC 105mm f/2.8 VR S | 16 | Macro; 1 aspheric; 3 APD elements; WO 2022/097401 A1 |
+| NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED | 12 | Macro; 2 aspherics; 1 ED element; US 7,898,744 B2 |
 | NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
 | NIKON NIKKOR Z 135mm f/1.8 S Plena | 16 | 1 aspheric; 7 APD elements; WO 2024/147268 A1 |
 | RICOH GR 28mm f/2.8 | 7 | Retrofocus; 1 aspheric; US 5,760,973 |
@@ -78,7 +79,7 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 
 ## Tech Stack
 
-- React 18 + Vite 6
+- React 18 + TypeScript + Vite 6
 - Inline SVG rendering (no canvas)
 - Vitest for unit testing
 - react-markdown + remark-gfm for in-app analysis rendering
@@ -90,21 +91,34 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 LensVisualizer/
 ├── index.html                          # HTML entry point
 ├── src/
-│   ├── main.jsx                        # React root mount
+│   ├── main.tsx                        # React root mount
+│   ├── types/                          # Shared TypeScript type definitions
 │   ├── components/
-│   │   ├── LensViewer.jsx              # Orchestration: top bar, comparison, overlays
-│   │   ├── LensDiagramPanel.jsx        # SVG diagram renderer with ray tracing
-│   │   ├── DescriptionPanel.jsx        # Themed markdown renderer
-│   │   ├── SharedSlidersBar.jsx        # Comparison mode controls
-│   │   └── ErrorBoundary.jsx           # Error boundary with retry UI
+│   │   ├── LensViewer.tsx              # Orchestration: state, context, layout
+│   │   ├── TopBar.tsx                  # Lens selectors, compare/about buttons
+│   │   ├── ControlsBar.tsx             # Theme/ray/chromatic/scale toggles
+│   │   ├── ViewToggleBar.tsx           # View-mode toggle (mobile + desktop)
+│   │   ├── ComparisonLayout.tsx        # Side-by-side / stacked comparison panels
+│   │   ├── OverlayModal.tsx            # Generic backdrop + modal overlay
+│   │   ├── LensDiagramPanel.tsx        # Diagram composition layer
+│   │   ├── DiagramHeader.tsx           # Title, specs, controls header
+│   │   ├── DiagramSVG.tsx              # Full SVG rendering
+│   │   ├── DiagramControls.tsx         # Zoom, focus, aperture sliders
+│   │   ├── ElementInspector.tsx        # Selected element property display
+│   │   ├── DiagramLegend.tsx           # Legend with aberration readouts
+│   │   ├── DescriptionPanel.tsx        # Themed markdown renderer
+│   │   ├── SharedSlidersBar.tsx        # Comparison mode shared controls
+│   │   ├── ErrorBoundary.tsx           # Error boundary with retry UI
+│   │   ├── useLensComputation.ts       # Hook: lens building, layout, shapes
+│   │   └── useRayTracing.ts            # Hook: on-axis, off-axis, chromatic rays
 │   ├── optics/
-│   │   ├── optics.js                   # Ray tracing, sag curves, layout math
-│   │   ├── buildLens.js                # Lens construction, EFL/pupil/field
-│   │   ├── validateLensData.js         # Schema validation
-│   │   └── diagramGeometry.js          # Coordinate transforms, element shapes
+│   │   ├── optics.ts                   # Ray tracing, sag curves, layout math
+│   │   ├── buildLens.ts                # Lens construction, EFL/pupil/field
+│   │   ├── validateLensData.ts         # Schema validation
+│   │   └── diagramGeometry.ts          # Coordinate transforms, element shapes
 │   ├── utils/                          # Themes, feature flags, catalog, hooks
 │   ├── content/                        # AboutMe.md, AboutSite.md
 │   └── lens-data/                      # Lens prescriptions + analyses
 ├── agent_docs/                         # Documentation for AI coding assistants
-└── __tests__/                          # Vitest unit tests
+└── __tests__/                          # Vitest unit tests (TypeScript)
 ```
