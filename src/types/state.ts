@@ -106,7 +106,8 @@ export type LensAction =
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
   | { type: "ENTER_COMPARE"; catalogKeys?: string[] }
-  | { type: "EXIT_COMPARE"; focusA?: number; stopdownA?: number };
+  | { type: "EXIT_COMPARE"; focusA?: number; stopdownA?: number }
+  | { type: "SWAP_LENSES" };
 
 /* ── Preferences (from localStorage) ── */
 
