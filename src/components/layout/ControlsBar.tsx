@@ -6,7 +6,7 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { SET_HIGH_CONTRAST, SET_DARK, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -24,6 +24,7 @@ interface ControlsBarProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  showPupils: boolean;
   dark: boolean;
   highContrast: boolean;
   scaleMode: "independent" | "normalized";
@@ -41,6 +42,7 @@ export default function ControlsBar({
   chromR,
   chromG,
   chromB,
+  showPupils,
   dark,
   highContrast,
   scaleMode,
@@ -94,6 +96,16 @@ export default function ControlsBar({
       dotB: t.rayOffCool,
     },
   ];
+
+  if (ENABLE_PUPIL_TOGGLE) {
+    rayToggles.push({
+      label: "PUPILS",
+      active: showPupils,
+      onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils" as RayField, value: !showPupils }),
+      dotA: t.stopLabel,
+      dotB: t.stopLabel,
+    });
+  }
 
   /* ── Ray mode descriptors ── */
   const rayModes = compact
