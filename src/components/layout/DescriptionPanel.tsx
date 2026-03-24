@@ -13,7 +13,7 @@ import { useMemo } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { Theme } from "../types/theme.js";
+import type { Theme } from "../../types/theme.js";
 
 interface DescriptionPanelProps {
   markdown: string | null | undefined;

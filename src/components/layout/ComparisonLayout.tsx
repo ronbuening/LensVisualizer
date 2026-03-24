@@ -4,9 +4,9 @@
  */
 
 import LensDiagramPanel from "./LensDiagramPanel.js";
-import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT } from "../utils/featureFlags.js";
-import type { Theme } from "../types/theme.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../utils/comparisonSliders.js";
+import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT } from "../../utils/featureFlags.js";
+import type { Theme } from "../../types/theme.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../../utils/comparisonSliders.js";
 
 interface ComparisonLayoutProps {
   theme: Theme;

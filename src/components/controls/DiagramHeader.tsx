@@ -11,18 +11,18 @@
  */
 
 import { forwardRef } from "react";
-import { eflAtZoom, formatDist } from "../optics/optics.js";
+import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import {
   ENABLE_COLOR_TRACING,
   ENABLE_COLLAPSIBLE_HEADER_CONTROLS,
   ENABLE_COLLAPSIBLE_HEADER_INFO,
   ENABLE_MOBILE_CONTROLS_STRIP,
-} from "../utils/featureFlags.js";
-import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../utils/styles.js";
+} from "../../utils/featureFlags.js";
+import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../../utils/styles.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
-import type { RuntimeLens } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface DiagramHeaderProps {
   L: RuntimeLens;

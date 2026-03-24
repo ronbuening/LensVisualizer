@@ -7,8 +7,8 @@
  */
 
 import type { CSSProperties } from "react";
-import type { RuntimeLens, ElementData } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { RuntimeLens, ElementData } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface ElementInspectorProps {
   info: ElementData;

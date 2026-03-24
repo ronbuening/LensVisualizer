@@ -7,9 +7,9 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { eflAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom, traceRay } from "../optics/optics.js";
-import { ENABLE_EDGE_PROJECTION } from "../utils/featureFlags.js";
-import type { RuntimeLens } from "../types/optics.js";
+import { eflAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom, traceRay } from "../../optics/optics.js";
+import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import type { RuntimeLens } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 
 interface UseOffAxisRaysParams {

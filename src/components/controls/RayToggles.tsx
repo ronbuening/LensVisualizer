@@ -4,9 +4,9 @@
  * Handles the off-axis cycling logic (off → trueAngle → edge → off)
  * with feature flag awareness for edge projection mode.
  */
-import { ENABLE_EDGE_PROJECTION } from "../utils/featureFlags.js";
-import { toggleGroup, toggleBtn } from "../utils/styles.js";
-import type { Theme } from "../types/theme.js";
+import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import { toggleGroup, toggleBtn } from "../../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
 
 interface RayTogglesProps {
   t: Theme;

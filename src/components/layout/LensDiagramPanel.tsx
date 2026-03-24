@@ -18,19 +18,19 @@
  */
 
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import useLensComputation from "./useLensComputation.js";
-import useRayTracing from "./useRayTracing.js";
-import useFlashOverlay from "./useFlashOverlay.js";
-import useSideLayoutDetection from "./useSideLayoutDetection.js";
-import DiagramControls from "./DiagramControls.js";
-import ElementInspector from "./ElementInspector.js";
-import DiagramLegend from "./DiagramLegend.js";
-import DiagramSVG from "./DiagramSVG.js";
-import DiagramHeader from "./DiagramHeader.js";
-import PanelErrorBoundary from "./PanelErrorBoundary.js";
-import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
-import { ErrorDisplay } from "./ErrorBoundary.js";
-import { useLensCtx, useLensDispatch } from "../utils/LensContext.js";
+import useLensComputation from "../hooks/useLensComputation.js";
+import useRayTracing from "../hooks/useRayTracing.js";
+import useFlashOverlay from "../hooks/useFlashOverlay.js";
+import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
+import DiagramControls from "../controls/DiagramControls.js";
+import ElementInspector from "../display/ElementInspector.js";
+import DiagramLegend from "../display/DiagramLegend.js";
+import DiagramSVG from "../diagram/DiagramSVG.js";
+import DiagramHeader from "../controls/DiagramHeader.js";
+import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
+import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../../utils/featureFlags.js";
+import { ErrorDisplay } from "../errors/ErrorBoundary.js";
+import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import {
   SET_FOCUS_T,
   SET_ZOOM_T,
@@ -39,7 +39,7 @@ import {
   SET_DARK,
   SET_HIGH_CONTRAST,
   SET_PANEL_EXPANDED,
-} from "../utils/lensReducer.js";
+} from "../../utils/lensReducer.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;

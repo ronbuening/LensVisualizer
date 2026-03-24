@@ -7,13 +7,13 @@
  */
 
 import { useMemo } from "react";
-import { conjugateK } from "../optics/optics.js";
+import { conjugateK } from "../../optics/optics.js";
 import useOnAxisRays from "./useOnAxisRays.js";
 import useOffAxisRays from "./useOffAxisRays.js";
 import useChromaticRays from "./useChromaticRays.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticRaySegment } from "./useChromaticRays.js";
-import type { RuntimeLens, ChromaticSpread } from "../types/optics.js";
+import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 
 interface UseRayTracingParams {
   L: RuntimeLens | undefined;

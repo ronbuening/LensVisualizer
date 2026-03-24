@@ -15,14 +15,20 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 ## Project Structure
 
 ```
-src/types/          — Shared TypeScript type definitions (optics, state, theme)
-src/components/     — React UI (.tsx components + .ts hooks)
-src/optics/         — Pure-function optical engine (.ts, no React deps)
-src/utils/          — Themes, feature flags, catalog, hooks (.ts)
-src/lens-data/      — Lens prescription data (auto-registered *.data.js)
-src/content/        — Static markdown content
-__tests__/          — Vitest unit tests (.ts, type-checked by tsc)
-agent_docs/         — Detailed architecture and task guides
+src/types/                — Shared TypeScript type definitions (optics, state, theme)
+src/components/           — React UI components and hooks
+  components/layout/      — Top-level layout and orchestration components
+  components/diagram/     — SVG rendering components
+  components/controls/    — Sliders, toggles, and header controls
+  components/display/     — Data display (inspector, legend, about)
+  components/errors/      — Error boundary components
+  components/hooks/       — Custom React hooks for computation and state
+src/optics/               — Pure-function optical engine (.ts, no React deps)
+src/utils/                — Themes, feature flags, catalog, hooks (.ts)
+src/lens-data/            — Lens prescription data (auto-registered *.data.js)
+src/content/              — Static markdown content
+__tests__/                — Vitest unit tests (.ts, type-checked by tsc)
+agent_docs/               — Detailed architecture and task guides
 ```
 
 ## Commands

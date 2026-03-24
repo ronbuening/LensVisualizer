@@ -2,8 +2,8 @@
  * ElementAnnotations — Element number labels, Abbe νd badges, group labels,
  * and doublet labels rendered in the SVG diagram.
  */
-import type { RuntimeLens, ElementShape } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { RuntimeLens, ElementShape } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface ElementAnnotationsProps {
   L: RuntimeLens;

@@ -6,8 +6,8 @@
  * lower marginal] — shows both axial and lateral color (LCA and TCA).
  */
 import { useMemo } from "react";
-import { traceRayChromatic, computeChromaticSpread } from "../optics/optics.js";
-import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../types/optics.js";
+import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
+import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 
 /** Chief ray + upper/lower marginal fractions for chromatic tracing */

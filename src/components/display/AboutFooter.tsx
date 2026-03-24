@@ -7,9 +7,9 @@
  *   - flag ON: only Site and Author (Optics is in the top bar)
  */
 
-import type { Theme } from "../types/theme.js";
-import { headerStrip, topBarBtn } from "../utils/styles.js";
-import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../utils/featureFlags.js";
+import type { Theme } from "../../types/theme.js";
+import { headerStrip, topBarBtn } from "../../utils/styles.js";
+import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../../utils/featureFlags.js";
 
 interface AboutFooterProps {
   theme: Theme;

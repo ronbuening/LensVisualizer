@@ -3,8 +3,8 @@
  * Shared between TopBar (inline) and AboutFooter (standalone strip).
  */
 
-import type { Theme } from "../types/theme.js";
-import { topBarBtn } from "../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
+import { topBarBtn } from "../../utils/styles.js";
 
 interface AboutButtonRowProps {
   theme: Theme;

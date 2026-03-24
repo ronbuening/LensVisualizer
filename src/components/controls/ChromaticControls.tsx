@@ -4,8 +4,8 @@
  * Shows a "COLOR" master toggle with an RGB icon, and when active,
  * individual R/G/B channel buttons for selective wavelength display.
  */
-import { toggleGroup, toggleBtn, chromChannelBtn } from "../utils/styles.js";
-import type { Theme } from "../types/theme.js";
+import { toggleGroup, toggleBtn, chromChannelBtn } from "../../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
 
 interface ChromaticControlsProps {
   t: Theme;

@@ -18,7 +18,7 @@ const mockTheme = {
 
 describe("OverlayModal", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../src/components/OverlayModal.js");
+    const mod = await import("../src/components/layout/OverlayModal.js");
     expect(typeof mod.default).toBe("function");
     expect(mod.default.name).toBe("OverlayModal");
   });

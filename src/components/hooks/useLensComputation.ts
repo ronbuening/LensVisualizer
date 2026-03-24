@@ -8,11 +8,11 @@
  */
 
 import { useMemo } from "react";
-import { LENS_CATALOG } from "../utils/lensCatalog.js";
-import buildLens from "../optics/buildLens.js";
-import { thick, doLayout, epAtZoom } from "../optics/optics.js";
-import { createCoordinateTransforms, computeElementShapes } from "../optics/diagramGeometry.js";
-import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../types/optics.js";
+import { LENS_CATALOG } from "../../utils/lensCatalog.js";
+import buildLens from "../../optics/buildLens.js";
+import { thick, doLayout, epAtZoom } from "../../optics/optics.js";
+import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
+import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 
 interface UseLensComputationParams {
   lensKey: string;
