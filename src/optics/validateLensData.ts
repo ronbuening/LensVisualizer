@@ -156,7 +156,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === "object") {
     const nz = isZoom ? data.zoomPositions.length : 0;
-    for (const [label, range] of Object.entries(data.var) as [string, unknown][]) {
+    for (const [label, range] of Object.entries(data.var)) {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
         if (!Array.isArray(range) || range.length !== nz)

@@ -123,7 +123,21 @@ export default function useRayTracing({
       console.error(`[useRayTracing] On-axis ray trace failed for "${lensKey}":`, e);
       return [];
     }
-  }, [zPos, focusT, sx, sy, currentPhysStopSD, currentEPSD, rayTracksF, focusK, L, IMG_MM, lensKey, clampedRayEnd]);
+  }, [
+    zPos,
+    focusT,
+    zoomT,
+    sx,
+    sy,
+    currentPhysStopSD,
+    currentEPSD,
+    rayTracksF,
+    focusK,
+    L,
+    IMG_MM,
+    lensKey,
+    clampedRayEnd,
+  ]);
 
   /* ── Off-axis rays ──
    * Trace rays entering at an angle corresponding to offAxisFieldDeg.
