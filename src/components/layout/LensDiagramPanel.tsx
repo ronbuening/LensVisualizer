@@ -28,6 +28,8 @@ import DiagramLegend from "../display/DiagramLegend.js";
 import DiagramSVG from "../diagram/DiagramSVG.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
+import OverlayModal from "./OverlayModal.js";
+import AbbeDiagram from "../display/AbbeDiagram.js";
 import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../../utils/featureFlags.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
@@ -113,11 +115,13 @@ export default function LensDiagramPanel({
     dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v });
   const [hov, setHov] = useState<number | null>(null);
   const [sel, setSel] = useState<number | null>(null);
+  const [showAbbeDiagram, setShowAbbeDiagram] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHov(null);
     setSel(null);
+    setShowAbbeDiagram(false);
   }, [lensKey]);
 
   /* ── Flash overlay animation ── */
@@ -353,6 +357,7 @@ export default function LensDiagramPanel({
                       rayTracksF={rayTracksF}
                       legendExpanded={legendExpanded}
                       onLegendExpandedChange={onLegendExpandedChange}
+                      onOpenAbbeDiagram={() => setShowAbbeDiagram(true)}
                     />
                   )}
                 </div>
@@ -362,6 +367,11 @@ export default function LensDiagramPanel({
           {/* end side-layout flex wrapper */}
         </div>
       ) : null}
+      {showAbbeDiagram && L && (
+        <OverlayModal onClose={() => setShowAbbeDiagram(false)} theme={t} maxWidth={580}>
+          <AbbeDiagram L={L} t={t} />
+        </OverlayModal>
+      )}
     </PanelErrorBoundary>
   );
 }
