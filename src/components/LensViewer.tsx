@@ -3,15 +3,14 @@
  * ║           INTERACTIVE LENS CROSS-SECTION VISUALIZATION             ║
  * ║                      — Orchestration Layer —                       ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Diagram rendering lives in LensDiagramPanel.  This file handles   ║
- * ║  top bar, comparison mode, shared controls, view toggles, overlays,║
- * ║  and localStorage persistence.                                     ║
- * ║                                                                    ║
- * ║  Features:                                                         ║
- * ║    • Side-by-side lens comparison (desktop) / stacked (mobile)     ║
- * ║    • Independent + normalized scale modes                          ║
- * ║    • URL deep links (?a=&b= for comparison, ?lens= for single)    ║
- * ║    • Shared controls bar in comparison mode                        ║
+ * ║  State management, context provision, and layout composition.      ║
+ * ║  All UI rendering is delegated to child components:                ║
+ * ║    • TopBar — lens selectors, compare button, about buttons       ║
+ * ║    • ControlsBar — theme/ray/chromatic/scale toggles              ║
+ * ║    • ViewToggleBar — desktop/mobile view mode switching           ║
+ * ║    • ComparisonLayout — side-by-side/stacked lens panels          ║
+ * ║    • OverlayModal — about site/author overlay modals              ║
+ * ║  Diagram rendering lives in LensDiagramPanel.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 

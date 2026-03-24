@@ -79,7 +79,7 @@ See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conven
 
 ## Testing
 
-Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, comparison sliders, and URL parsing. React UI is not unit-tested.
+Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, and extracted UI component module contracts. Full DOM-based component rendering is not tested.
 
 ## Code Conventions
 
