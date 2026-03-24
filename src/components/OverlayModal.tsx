@@ -1,6 +1,7 @@
 /**
  * Generic overlay modal — full-viewport backdrop with a centered modal panel
- * and close button. Used for "About Site" and "About Author" overlays.
+ * and close button. Optional `maxWidth` overrides the default 480px width.
+ * Used for "About Site", "About Author", and "Optics Primer" overlays.
  */
 
 import type { ReactNode } from "react";
@@ -11,12 +12,13 @@ interface OverlayModalProps {
   onClose: () => void;
   theme: Theme;
   children: ReactNode;
+  maxWidth?: number;
 }
 
-export default function OverlayModal({ onClose, theme, children }: OverlayModalProps) {
+export default function OverlayModal({ onClose, theme, children, maxWidth }: OverlayModalProps) {
   return (
     <div onClick={onClose} style={OVERLAY_BACKDROP}>
-      <div onClick={(e) => e.stopPropagation()} style={overlayModal(theme)}>
+      <div onClick={(e) => e.stopPropagation()} style={overlayModal(theme, maxWidth)}>
         <button onClick={onClose} style={closeBtn(theme)}>
           ×
         </button>

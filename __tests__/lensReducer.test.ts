@@ -255,6 +255,11 @@ describe("lensReducer", () => {
       expect(next.overlays.showAbout).toBe(true);
     });
 
+    it("opens optics primer overlay", () => {
+      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: true });
+      expect(next.overlays.showOpticsPrimer).toBe(true);
+    });
+
     it("ignores invalid overlay", () => {
       const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo" as OverlayField, visible: true });
       expect(next).toBe(state);
@@ -263,10 +268,11 @@ describe("lensReducer", () => {
 
   describe("CLOSE_ALL_OVERLAYS", () => {
     it("closes all overlays", () => {
-      state.overlays = { showAbout: true, showAboutSite: true };
+      state.overlays = { showAbout: true, showAboutSite: true, showOpticsPrimer: true };
       const next = lensReducer(state, { type: CLOSE_ALL_OVERLAYS });
       expect(next.overlays.showAbout).toBe(false);
       expect(next.overlays.showAboutSite).toBe(false);
+      expect(next.overlays.showOpticsPrimer).toBe(false);
     });
   });
 

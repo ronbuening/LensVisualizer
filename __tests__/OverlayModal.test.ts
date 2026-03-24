@@ -38,6 +38,11 @@ describe("OverlayModal", () => {
     expect(style.background).toBe(mockTheme.descBg);
   });
 
+  it("overlayModal(theme, maxWidth) overrides maxWidth when provided", () => {
+    const style = overlayModal(mockTheme, 640);
+    expect(style.maxWidth).toBe(640);
+  });
+
   it("closeBtn(theme) returns a sticky-positioned button style", () => {
     const style = closeBtn(mockTheme);
     expect(style.position).toBe("sticky");

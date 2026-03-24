@@ -31,6 +31,8 @@
 | `SliderControl.tsx` | `src/components/` | Reusable slider with label, endpoints, collapsible content |
 | `ElementInspector.tsx` | `src/components/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/` | Legend with swatches, ray descriptions, aberration readouts |
+| `AboutButtonRow.tsx` | `src/components/` | Shared about button group (Optics, Site, Author) |
+| `AboutFooter.tsx` | `src/components/` | Mobile-only footer rendering about buttons at page bottom |
 | `DescriptionPanel.tsx` | `src/components/` | Markdown panel with themed styling |
 | `SharedSlidersBar.tsx` | `src/components/` | Comparison mode shared focus/aperture/zoom controls |
 | `ErrorBoundary.tsx` | `src/components/` | Error boundary + reusable ErrorDisplay |
@@ -62,7 +64,9 @@ The main component owns state management, context provision, and layout composit
 - **`ControlsBar`** — Theme/ray/chromatic/scale toggles. Unified component with `compact` prop (full labels for comparison mode, condensed for mobile). `showScaleMode` controls whether the scale mode toggle is rendered.
 - **`ViewToggleBar`** — Generic view-mode toggle. Used for both mobile (DIAGRAM/ANALYSIS) and desktop (DIAGRAM/BOTH/ANALYSIS) switching.
 - **`ComparisonLayout`** — Renders two `LensDiagramPanel` instances side-by-side (desktop) or stacked (mobile) with dividers.
-- **`OverlayModal`** — Generic backdrop + modal + close button. Used for "About Site" and "About Author" overlays.
+- **`OverlayModal`** — Generic backdrop + modal + close button with optional `maxWidth` override. Used for "About Site", "About Author", and "Optics Primer" overlays.
+- **`AboutButtonRow`** — Shared button group (Optics, Site, Author) with optional label. Used by TopBar (inline on desktop) and AboutFooter (standalone on mobile).
+- **`AboutFooter`** — Mobile-only footer rendering about buttons at the page bottom. Respects `ENABLE_ABOUT_BUTTONS_IN_TOPBAR` feature flag to determine which buttons to show.
 
 **State management** is organized via `useReducer` (wrapped in `useLensState`), with state split into 7 slices: `lens`, `display`, `rays`, `sliders`, `sharedSliders`, `panels`, `overlays`. Extracted hooks:
 - `usePreferences(state)` — persists preferences to localStorage

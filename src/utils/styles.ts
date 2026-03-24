@@ -235,9 +235,10 @@ export function topBarBtn(t: Theme, wide: boolean): CSSProperties {
 /**
  * Overlay modal with theme-derived background and border.
  */
-export function overlayModal(t: Theme): CSSProperties {
+export function overlayModal(t: Theme, maxWidth?: number): CSSProperties {
   return {
     ...OVERLAY_MODAL_BASE,
+    ...(maxWidth != null ? { maxWidth } : {}),
     background: t.descBg,
     border: `1px solid ${t.descBorder}`,
   };
