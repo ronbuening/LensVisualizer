@@ -46,19 +46,21 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | RICOH GR IV 18.3mm f/2.8 | 7 | Compact retrofocus; JP2025-069516A |
 | NIKON NIKKOR Z 24-70mm f/2.8 S | 17 | Internal zoom; 4 aspherics; 4 APD elements; WO 2020/136749 A1 |
 | NIKON NIKKOR Z 70-200mm f/2.8 VR S | 21 | Internal zoom; 2 aspherics; 7 APD elements; WO 2020/105104 A1 |
+| NIKON NIKKOR 85mm f/1.4G | 10 | All-spherical; US 7,760,444 B2 |
 
 New lenses are auto-registered — just add a `.data.js` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
 
 ## Getting Started
 
 ```bash
-npm install        # Install dependencies
-npm run dev        # Start dev server at http://localhost:5173
-npm run build      # Production build → dist/
-npm run preview    # Preview production build
-npm run test       # Run Vitest unit tests
-npm run lint       # Run ESLint
-npm run format     # Format code with Prettier
+npm install           # Install dependencies
+npm run dev           # Start dev server at http://localhost:5173
+npm run build         # Production build → dist/
+npm run preview       # Preview production build
+npm run test          # Run Vitest unit tests
+npm run test:coverage # Run Vitest with v8 coverage report
+npm run lint          # Run ESLint
+npm run format        # Format code with Prettier
 ```
 
 Requires Node.js 18+.
@@ -94,43 +96,51 @@ LensVisualizer/
 │   ├── main.tsx                        # React root mount
 │   ├── types/                          # Shared TypeScript type definitions
 │   ├── components/
-│   │   ├── LensViewer.tsx              # Orchestration: state, context, layout
-│   │   ├── TopBar.tsx                  # Lens selectors, compare/about buttons
-│   │   ├── ControlsBar.tsx             # Theme/ray/chromatic/scale toggles
-│   │   ├── ViewToggleBar.tsx           # View-mode toggle (mobile + desktop)
-│   │   ├── ComparisonLayout.tsx        # Side-by-side / stacked comparison panels
-│   │   ├── OverlayModal.tsx            # Generic backdrop + modal overlay
-│   │   ├── LensDiagramPanel.tsx        # Diagram composition layer
-│   │   ├── PanelErrorBoundary.tsx      # Panel-level error boundary
-│   │   ├── DiagramHeader.tsx           # Title, specs, controls header
-│   │   ├── RayToggles.tsx              # On-axis/off-axis toggle buttons
-│   │   ├── ChromaticControls.tsx       # COLOR toggle + R/G/B channels
-│   │   ├── DiagramSVG.tsx              # Full SVG rendering
-│   │   ├── RayPolylines.tsx            # Consolidated ray segment rendering
-│   │   ├── ApertureStop.tsx            # Aperture stop blades + STO label
-│   │   ├── ElementAnnotations.tsx      # Element numbers, Abbe badges, labels
-│   │   ├── LCAInsetWidget.tsx          # Magnified LCA inset
-│   │   ├── DiagramControls.tsx         # Zoom, focus, aperture sliders
-│   │   ├── SliderControl.tsx           # Reusable slider component
-│   │   ├── ElementInspector.tsx        # Selected element property display
-│   │   ├── DiagramLegend.tsx           # Legend with aberration readouts
-│   │   ├── DescriptionPanel.tsx        # Themed markdown renderer
-│   │   ├── SharedSlidersBar.tsx        # Comparison mode shared controls
-│   │   ├── ErrorBoundary.tsx           # Error boundary with retry UI
-│   │   ├── useLensComputation.ts       # Hook: lens building, layout, shapes
-│   │   ├── useRayTracing.ts            # Hook: ray tracing orchestrator
-│   │   ├── useOnAxisRays.ts            # Hook: on-axis ray fan
-│   │   ├── useOffAxisRays.ts           # Hook: off-axis field rays
-│   │   ├── useChromaticRays.ts         # Hook: chromatic tracing + spread
-│   │   ├── useFlashOverlay.ts          # Hook: flash animation state machine
-│   │   └── useSideLayoutDetection.ts   # Hook: overflow-based side layout
+│   │   ├── layout/                     # Orchestration + top-level layout
+│   │   │   ├── LensViewer.tsx          # State, context, layout composition
+│   │   │   ├── TopBar.tsx              # Lens selectors, compare/about buttons
+│   │   │   ├── ControlsBar.tsx         # Theme/ray/chromatic/scale toggles
+│   │   │   ├── ViewToggleBar.tsx       # View-mode toggle (mobile + desktop)
+│   │   │   ├── ComparisonLayout.tsx    # Side-by-side / stacked comparison panels
+│   │   │   ├── OverlayModal.tsx        # Generic backdrop + modal overlay
+│   │   │   ├── LensDiagramPanel.tsx    # Diagram composition layer
+│   │   │   ├── DescriptionPanel.tsx    # Themed markdown renderer
+│   │   │   └── SharedSlidersBar.tsx    # Comparison mode shared controls
+│   │   ├── diagram/                    # SVG rendering
+│   │   │   ├── DiagramSVG.tsx          # Full SVG rendering
+│   │   │   ├── RayPolylines.tsx        # Consolidated ray segment rendering
+│   │   │   ├── ApertureStop.tsx        # Aperture stop blades + STO label
+│   │   │   ├── ElementAnnotations.tsx  # Element numbers, Abbe badges, labels
+│   │   │   └── LCAInsetWidget.tsx      # Magnified LCA inset
+│   │   ├── controls/                   # Sliders, toggles, header controls
+│   │   │   ├── DiagramControls.tsx     # Zoom, focus, aperture sliders
+│   │   │   ├── DiagramHeader.tsx       # Title, specs, controls header
+│   │   │   ├── SliderControl.tsx       # Reusable slider component
+│   │   │   ├── RayToggles.tsx          # On-axis/off-axis toggle buttons
+│   │   │   └── ChromaticControls.tsx   # COLOR toggle + R/G/B channels
+│   │   ├── display/                    # Data display
+│   │   │   ├── ElementInspector.tsx    # Selected element property display
+│   │   │   ├── DiagramLegend.tsx       # Legend with aberration readouts
+│   │   │   ├── AboutButtonRow.tsx      # Shared about button group
+│   │   │   └── AboutFooter.tsx         # Mobile-only footer about buttons
+│   │   ├── errors/                     # Error boundaries
+│   │   │   ├── ErrorBoundary.tsx       # App-level error boundary
+│   │   │   └── PanelErrorBoundary.tsx  # Panel-level error boundary
+│   │   └── hooks/                      # Custom React hooks
+│   │       ├── useLensComputation.ts   # Lens building, layout, shapes
+│   │       ├── useRayTracing.ts        # Ray tracing orchestrator
+│   │       ├── useOnAxisRays.ts        # On-axis ray fan
+│   │       ├── useOffAxisRays.ts       # Off-axis field rays
+│   │       ├── useChromaticRays.ts     # Chromatic tracing + spread
+│   │       ├── useFlashOverlay.ts      # Flash animation state machine
+│   │       └── useSideLayoutDetection.ts # Overflow-based side layout
 │   ├── optics/
 │   │   ├── optics.ts                   # Ray tracing, sag curves, layout math
 │   │   ├── buildLens.ts                # Lens construction, EFL/pupil/field
 │   │   ├── validateLensData.ts         # Schema validation
 │   │   └── diagramGeometry.ts          # Coordinate transforms, element shapes
-│   ├── utils/                          # Themes, feature flags, catalog, hooks
-│   ├── content/                        # AboutMe.md, AboutSite.md
+│   ├── utils/                          # Themes, styles, feature flags, catalog, state hooks
+│   ├── content/                        # AboutMe.md, AboutSite.md, OpticsPrimer*.md
 │   └── lens-data/                      # Lens prescriptions + analyses
 ├── agent_docs/                         # Documentation for AI coding assistants
 └── __tests__/                          # Vitest unit tests (TypeScript)

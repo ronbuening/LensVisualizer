@@ -18,15 +18,35 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 src/types/                — Shared TypeScript type definitions (optics, state, theme)
 src/components/           — React UI components and hooks
   components/layout/      — Top-level layout and orchestration components
+                            (LensViewer, TopBar, ControlsBar, ViewToggleBar,
+                             ComparisonLayout, OverlayModal, LensDiagramPanel,
+                             DescriptionPanel, SharedSlidersBar)
   components/diagram/     — SVG rendering components
+                            (DiagramSVG, RayPolylines, ApertureStop,
+                             ElementAnnotations, LCAInsetWidget)
   components/controls/    — Sliders, toggles, and header controls
+                            (DiagramControls, DiagramHeader, SliderControl,
+                             RayToggles, ChromaticControls)
   components/display/     — Data display (inspector, legend, about)
+                            (ElementInspector, DiagramLegend,
+                             AboutButtonRow, AboutFooter)
   components/errors/      — Error boundary components
+                            (ErrorBoundary, PanelErrorBoundary)
   components/hooks/       — Custom React hooks for computation and state
+                            (useLensComputation, useRayTracing, useOnAxisRays,
+                             useOffAxisRays, useChromaticRays, useFlashOverlay,
+                             useSideLayoutDetection)
 src/optics/               — Pure-function optical engine (.ts, no React deps)
-src/utils/                — Themes, feature flags, catalog, hooks (.ts)
+src/utils/                — Themes, styles, feature flags, catalog, state hooks (.ts)
+                            (themes, styles, featureFlags, lensCatalog,
+                             lensReducer, useLensState, LensContext,
+                             useURLSync, useStickySliders, comparisonSliders,
+                             parseComparisonParams, usePreferences, preferences,
+                             errorReporting, useMediaQuery)
 src/lens-data/            — Lens prescription data (auto-registered *.data.js)
 src/content/              — Static markdown content
+                            (AboutMe.md, AboutSite.md,
+                             OpticsPrimerSimple.md, OpticsPrimerIntermediate.md)
 __tests__/                — Vitest unit tests (.ts, type-checked by tsc)
 agent_docs/               — Detailed architecture and task guides
 ```
@@ -34,16 +54,17 @@ agent_docs/               — Detailed architecture and task guides
 ## Commands
 
 ```bash
-npm install        # Install dependencies
-npm run dev        # Start dev server (http://localhost:5173)
-npm run build      # Production build → dist/
-npm run preview    # Preview production build
-npm run test         # Run Vitest unit tests
-npm run typecheck    # Run TypeScript type checking (tsc --noEmit)
-npm run lint         # Run ESLint
-npm run lint:fix     # Run ESLint with auto-fix
-npm run format       # Format code with Prettier
-npm run format:check # Check formatting (CI uses this)
+npm install           # Install dependencies
+npm run dev           # Start dev server (http://localhost:5173)
+npm run build         # Production build → dist/
+npm run preview       # Preview production build
+npm run test          # Run Vitest unit tests
+npm run test:coverage # Run Vitest with v8 coverage report
+npm run typecheck     # Run TypeScript type checking (tsc --noEmit)
+npm run lint          # Run ESLint
+npm run lint:fix      # Run ESLint with auto-fix
+npm run format        # Format code with Prettier
+npm run format:check  # Check formatting (CI uses this)
 ```
 
 ## Deployment
@@ -85,7 +106,7 @@ See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conven
 
 ## Testing
 
-Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, and extracted UI component module contracts. Full DOM-based component rendering is not tested.
+Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, themes, styles, state management (reducer, preferences, URL sync, sticky sliders), zoom optics helpers, error reporting, and extracted UI component module contracts. Full DOM-based component rendering is not tested. Run `npm run test:coverage` for a v8 coverage report (coverage scope is `src/optics/**`).
 
 Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`. Intentionally partial mock objects use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal. Lens data files (`.data.js`) are declared in `__tests__/globals.d.ts` via a wildcard module so tsc can resolve those imports.
 
