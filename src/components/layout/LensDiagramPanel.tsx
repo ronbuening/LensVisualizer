@@ -252,7 +252,7 @@ export default function LensDiagramPanel({
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
           <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
             {/* ── SVG viewport ── */}
-            <div style={useSideLayout ? { flex: 1, minWidth: 0 } : undefined}>
+            <div style={useSideLayout ? { flex: 1, minWidth: 0, position: "relative" } : { position: "relative" }}>
               <DiagramSVG
                 L={L}
                 t={t}
@@ -289,6 +289,11 @@ export default function LensDiagramPanel({
                 flashFading={flashFading}
                 onLcaInsetClick={ENABLE_LCA_OVERLAY ? () => setShowLcaOverlay(true) : undefined}
               />
+              {ENABLE_LCA_OVERLAY && showLcaOverlay && showChromatic && chromSpread && (
+                <PanelOverlay onClose={() => setShowLcaOverlay(false)} theme={t}>
+                  <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
+                </PanelOverlay>
+              )}
             </div>
             {/* end SVG wrapper */}
 
@@ -378,11 +383,6 @@ export default function LensDiagramPanel({
             )}
           </div>
           {/* end side-layout flex wrapper */}
-          {ENABLE_LCA_OVERLAY && showLcaOverlay && showChromatic && chromSpread && (
-            <PanelOverlay onClose={() => setShowLcaOverlay(false)} theme={t}>
-              <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
-            </PanelOverlay>
-          )}
         </div>
       ) : null}
       {showAbbeDiagram && L && (
