@@ -4,9 +4,10 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, selector, topBarBtn } from "../../utils/styles.js";
+import { headerStrip, topBarBtn } from "../../utils/styles.js";
 import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../../utils/featureFlags.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
+import LensSelector from "../controls/LensSelector.js";
 
 interface TopBarProps {
   theme: Theme;
@@ -51,7 +52,7 @@ export default function TopBar({
     whiteSpace: "nowrap" as const,
   };
 
-  const selectStyle = { ...selector(t, isWide), flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 };
+  const selectorStyle = { flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 };
 
   return (
     <div
@@ -64,13 +65,14 @@ export default function TopBar({
       }}
     >
       <span style={labelStyle}>{comparing ? "LENS A" : "LENS"}</span>
-      <select value={lensKeyA} onChange={(e) => onSwitchLensA(e.target.value)} style={selectStyle}>
-        {catalogKeys.map((k) => (
-          <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-            {catalogNames[k]}
-          </option>
-        ))}
-      </select>
+      <LensSelector
+        theme={t}
+        isWide={isWide}
+        value={lensKeyA}
+        options={catalogKeys.map((k) => ({ key: k, label: catalogNames[k] }))}
+        onChange={onSwitchLensA}
+        style={selectorStyle}
+      />
 
       {comparing && (
         <button
@@ -97,13 +99,14 @@ export default function TopBar({
       {comparing && (
         <>
           <span style={labelStyle}>LENS B</span>
-          <select value={lensKeyB} onChange={(e) => onSwitchLensB(e.target.value)} style={selectStyle}>
-            {catalogKeys.map((k) => (
-              <option key={k} value={k} style={{ background: t.bg, color: t.body }}>
-                {catalogNames[k]}
-              </option>
-            ))}
-          </select>
+          <LensSelector
+            theme={t}
+            isWide={isWide}
+            value={lensKeyB}
+            options={catalogKeys.map((k) => ({ key: k, label: catalogNames[k] }))}
+            onChange={onSwitchLensB}
+            style={selectorStyle}
+          />
         </>
       )}
 
