@@ -103,14 +103,7 @@ export default function LCAInsetWidget({
       >
         LCA
       </text>
-      <line
-        x1={insetX + 6}
-        y1={yAxis}
-        x2={insetX + insetW - 6}
-        y2={yAxis}
-        stroke={t.axis}
-        strokeWidth={0.5}
-      />
+      <line x1={insetX + 6} y1={yAxis} x2={insetX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
         const offset = barOffsets[ch] ?? 0;
         const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
