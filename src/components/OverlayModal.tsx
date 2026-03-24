@@ -1,6 +1,7 @@
 /**
  * Generic overlay modal — full-viewport backdrop with a centered modal panel
- * and close button. Used for "About Site" and "About Author" overlays.
+ * and close button. Optional `maxWidth` overrides the default 480px width.
+ * Used for "About Site", "About Author", and "Optics Primer" overlays.
  */
 
 import type { ReactNode } from "react";

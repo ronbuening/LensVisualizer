@@ -9,7 +9,8 @@
  * ║    • ControlsBar — theme/ray/chromatic/scale toggles              ║
  * ║    • ViewToggleBar — desktop/mobile view mode switching           ║
  * ║    • ComparisonLayout — side-by-side/stacked lens panels          ║
- * ║    • OverlayModal — about site/author overlay modals              ║
+ * ║    • AboutFooter — mobile-only page-bottom about buttons          ║
+ * ║    • OverlayModal — about site/author/optics primer modals        ║
  * ║  Diagram rendering lives in LensDiagramPanel.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
