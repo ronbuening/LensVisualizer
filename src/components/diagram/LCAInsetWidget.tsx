@@ -5,8 +5,8 @@
  * the G/d-line reference. Magnification is auto-scaled and clamped at 5000x
  * to avoid pixel overflow for sub-micron LCA.
  */
-import type { ChromaticSpread, ChromaticChannel } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface LCAInsetWidgetProps {
   chromSpread: ChromaticSpread;

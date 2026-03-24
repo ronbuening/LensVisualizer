@@ -3,10 +3,10 @@
  * Receives named callbacks so it has no knowledge of the reducer shape.
  */
 
-import type { Theme } from "../types/theme.js";
-import { headerStrip, selector, topBarBtn } from "../utils/styles.js";
-import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../utils/featureFlags.js";
-import AboutButtonRow from "./AboutButtonRow.js";
+import type { Theme } from "../../types/theme.js";
+import { headerStrip, selector, topBarBtn } from "../../utils/styles.js";
+import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../../utils/featureFlags.js";
+import AboutButtonRow from "../display/AboutButtonRow.js";
 
 interface TopBarProps {
   theme: Theme;

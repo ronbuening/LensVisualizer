@@ -17,15 +17,15 @@
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 
-import T from "../utils/themes.js";
-import buildLens from "../optics/buildLens.js";
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/lensCatalog.js";
+import T from "../../utils/themes.js";
+import buildLens from "../../optics/buildLens.js";
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
 import LensDiagramPanel from "./LensDiagramPanel.js";
 import DescriptionPanel from "./DescriptionPanel.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
-import usePreferences from "../utils/usePreferences.js";
-import useURLSync from "../utils/useURLSync.js";
-import { LensStateContext, LensDispatchContext } from "../utils/LensContext.js";
+import usePreferences from "../../utils/usePreferences.js";
+import useURLSync from "../../utils/useURLSync.js";
+import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
 import {
   ENABLE_ANALYSIS_VIEW,
   ENABLE_DESKTOP_VIEW_TOGGLE,
@@ -35,21 +35,21 @@ import {
   ENABLE_COMPARISON_MOBILE,
   ENABLE_SIDE_PANEL_LAYOUT,
   ENABLE_MOBILE_CONTROLS_STRIP,
-} from "../utils/featureFlags.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "../utils/comparisonSliders.js";
-import useStickySliders from "../utils/useStickySliders.js";
-import { ErrorDisplay } from "./ErrorBoundary.js";
+} from "../../utils/featureFlags.js";
+import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../utils/comparisonSliders.js";
+import useStickySliders from "../../utils/useStickySliders.js";
+import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
 import ComparisonLayout from "./ComparisonLayout.js";
-import ABOUT_ME_MD from "../content/AboutMe.md?raw";
-import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
-import OPTICS_PRIMER_SIMPLE_MD from "../content/OpticsPrimerSimple.md?raw";
-import OPTICS_PRIMER_INTERMEDIATE_MD from "../content/OpticsPrimerIntermediate.md?raw";
-import AboutFooter from "./AboutFooter.js";
-import useLensState from "../utils/useLensState.js";
+import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
+import ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
+import OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
+import OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermediate.md?raw";
+import AboutFooter from "../display/AboutFooter.js";
+import useLensState from "../../utils/useLensState.js";
 import {
   SET_LENS_A,
   SET_LENS_B,
@@ -61,8 +61,8 @@ import {
   CLOSE_ALL_OVERLAYS,
   ENTER_COMPARE,
   EXIT_COMPARE,
-} from "../utils/lensReducer.js";
-import type { RuntimeLens } from "../types/optics.js";
+} from "../../utils/lensReducer.js";
+import type { RuntimeLens } from "../../types/optics.js";
 
 interface ComparisonLensesOk {
   LA: RuntimeLens;

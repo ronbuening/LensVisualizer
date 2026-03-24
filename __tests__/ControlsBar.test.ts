@@ -8,7 +8,7 @@ import { describe, it, expect } from "vitest";
 
 describe("ControlsBar", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../src/components/ControlsBar.js");
+    const mod = await import("../src/components/layout/ControlsBar.js");
     expect(typeof mod.default).toBe("function");
     expect(mod.default.name).toBe("ControlsBar");
   });

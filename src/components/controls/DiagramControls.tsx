@@ -3,11 +3,11 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { eflAtZoom, formatDist } from "../optics/optics.js";
-import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../utils/featureFlags.js";
+import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../../utils/featureFlags.js";
 import SliderControl from "./SliderControl.js";
-import type { RuntimeLens } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { RuntimeLens } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface VarReadout {
   label: string;

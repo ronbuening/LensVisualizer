@@ -4,7 +4,7 @@
  * Drawn as two thick lines (top and bottom) from the physical stop edge
  * inward to the current aperture opening, plus the "STO" label above.
  */
-import type { Theme } from "../types/theme.js";
+import type { Theme } from "../../types/theme.js";
 
 interface ApertureStopProps {
   sx: (z: number) => number;

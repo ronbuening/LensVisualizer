@@ -6,11 +6,11 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION } from "../utils/featureFlags.js";
-import { SET_HIGH_CONTRAST, SET_DARK, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../utils/lensReducer.js";
-import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../utils/styles.js";
-import type { Theme } from "../types/theme.js";
-import type { LensAction, RayField } from "../types/state.js";
+import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import { SET_HIGH_CONTRAST, SET_DARK, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
+import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
+import type { LensAction, RayField } from "../../types/state.js";
 import type { Dispatch } from "react";
 
 interface ControlsBarProps {

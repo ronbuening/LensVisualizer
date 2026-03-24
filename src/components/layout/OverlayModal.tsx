@@ -5,8 +5,8 @@
  */
 
 import type { ReactNode } from "react";
-import type { Theme } from "../types/theme.js";
-import { OVERLAY_BACKDROP, overlayModal, closeBtn } from "../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
+import { OVERLAY_BACKDROP, overlayModal, closeBtn } from "../../utils/styles.js";
 
 interface OverlayModalProps {
   onClose: () => void;

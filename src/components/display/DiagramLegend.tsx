@@ -6,11 +6,15 @@
  * Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { halfFieldAtZoom } from "../optics/optics.js";
-import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
-import { collapseBtn } from "../utils/styles.js";
-import type { RuntimeLens, ChromaticSpread } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import { halfFieldAtZoom } from "../../optics/optics.js";
+import {
+  ENABLE_ASPH_DIAMOND_FILL,
+  ENABLE_EDGE_PROJECTION,
+  ENABLE_COLLAPSIBLE_LEGEND,
+} from "../../utils/featureFlags.js";
+import { collapseBtn } from "../../utils/styles.js";
+import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface DiagramLegendProps {
   L: RuntimeLens;

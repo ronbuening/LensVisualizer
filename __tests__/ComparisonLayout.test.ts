@@ -26,7 +26,7 @@ const lensB = {
 
 describe("ComparisonLayout", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../src/components/ComparisonLayout.js");
+    const mod = await import("../src/components/layout/ComparisonLayout.js");
     expect(typeof mod.default).toBe("function");
     expect(mod.default.name).toBe("ComparisonLayout");
   });

@@ -7,8 +7,8 @@
  * show the extrapolated path of rays clipped by the aperture stop.
  */
 import { useMemo } from "react";
-import { traceRay } from "../optics/optics.js";
-import type { RuntimeLens } from "../types/optics.js";
+import { traceRay } from "../../optics/optics.js";
+import type { RuntimeLens } from "../../types/optics.js";
 
 export interface RaySegment {
   sp: number[][];

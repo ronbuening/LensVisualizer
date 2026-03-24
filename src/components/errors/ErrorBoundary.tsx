@@ -16,7 +16,7 @@
 
 import { Component } from "react";
 import type { ReactNode, ErrorInfo, CSSProperties } from "react";
-import { buildIssueURL, REPO_URL } from "../utils/errorReporting.js";
+import { buildIssueURL, REPO_URL } from "../../utils/errorReporting.js";
 
 interface ErrorDisplayProps {
   error: Error | null;

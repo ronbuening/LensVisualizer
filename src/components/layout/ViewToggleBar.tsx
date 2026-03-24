@@ -4,8 +4,8 @@
  * (DIAGRAM/BOTH/ANALYSIS) view switching.
  */
 
-import type { Theme } from "../types/theme.js";
-import { headerStrip, toggleGroup, toggleBtn } from "../utils/styles.js";
+import type { Theme } from "../../types/theme.js";
+import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
 
 interface ViewToggleBarProps {
   theme: Theme;

@@ -10,13 +10,13 @@
  * state or side effects. Interaction callbacks (onHover, onSelect) are passed
  * through from the parent LensDiagramPanel.
  */
-import { ENABLE_ASPH_DIAMOND_FILL } from "../utils/featureFlags.js";
+import { ENABLE_ASPH_DIAMOND_FILL } from "../../utils/featureFlags.js";
 import RayPolylines from "./RayPolylines.js";
 import ApertureStop from "./ApertureStop.js";
 import ElementAnnotations from "./ElementAnnotations.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
-import type { RuntimeLens, ElementShape, ChromaticSpread, ChromaticChannel } from "../types/optics.js";
-import type { Theme } from "../types/theme.js";
+import type { RuntimeLens, ElementShape, ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
+import type { Theme } from "../../types/theme.js";
 
 interface RaySegment {
   sp: number[][];

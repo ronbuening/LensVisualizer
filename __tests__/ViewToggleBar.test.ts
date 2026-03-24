@@ -22,7 +22,7 @@ const mockTheme = {
 
 describe("ViewToggleBar", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../src/components/ViewToggleBar.js");
+    const mod = await import("../src/components/layout/ViewToggleBar.js");
     expect(typeof mod.default).toBe("function");
     expect(mod.default.name).toBe("ViewToggleBar");
   });
