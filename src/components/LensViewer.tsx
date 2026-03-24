@@ -43,6 +43,7 @@ import { ErrorDisplay } from "./ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
+import ViewToggleBar from "./ViewToggleBar.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
@@ -58,7 +59,6 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../utils/lensReducer.js";
-import { toggleGroup, toggleBtn, headerStrip } from "../utils/styles.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 interface ComparisonLensesOk {
@@ -401,57 +401,26 @@ export default function LensVisualization() {
 
           {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
           {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
-            <div
-              style={{
-                ...headerStrip(t, { padding: "8px 24px" }),
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div style={toggleGroup(t, { width: 220 })}>
-                {[
-                  { label: "DIAGRAM", val: "diagram" },
-                  { label: "ANALYSIS", val: "description" },
-                ].map(({ label, val }) => (
-                  <button
-                    key={val}
-                    onClick={() => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
-                    style={toggleBtn(t, mobileView === val, {
-                      hasRightBorder: val === "diagram",
-                      padding: "5px 0",
-                    })}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <ViewToggleBar
+              theme={t}
+              options={[
+                { label: "DIAGRAM", val: "diagram" },
+                { label: "ANALYSIS", val: "description" },
+              ]}
+              activeValue={mobileView}
+              onChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+              width={220}
+            />
           )}
 
           {/* ── Desktop view toggle (wide screens, single-lens only) ── */}
           {showDesktopToggle && (
-            <div
-              style={{
-                ...headerStrip(t, { padding: "8px 24px" }),
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div style={toggleGroup(t, { width: desktopViewOptions.length * 110 })}>
-                {desktopViewOptions.map(({ label, val }, i) => (
-                  <button
-                    key={val}
-                    onClick={() => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
-                    style={toggleBtn(t, effectiveDesktopView === val, {
-                      hasRightBorder: i < desktopViewOptions.length - 1,
-                      padding: "5px 0",
-                    })}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <ViewToggleBar
+              theme={t}
+              options={desktopViewOptions}
+              activeValue={effectiveDesktopView}
+              onChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
+            />
           )}
 
           {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
