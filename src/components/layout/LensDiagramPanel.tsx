@@ -80,7 +80,7 @@ export default function LensDiagramPanel({
   const { state, theme: t, isWide, updateURLWithSliders } = useLensCtx();
   const dispatch = useLensDispatch();
   const { rays: raysState, display, panels, sliders } = state;
-  const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF } = raysState;
+  const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const { dark, highContrast } = display;
   const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
 
@@ -101,6 +101,7 @@ export default function LensDiagramPanel({
   const onChromRChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v });
   const onChromGChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v });
   const onChromBChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v });
+  const onShowPupilsChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v });
   const onDarkChange = (v: boolean) => dispatch({ type: SET_DARK, dark: v });
   const onHighContrastChange = (v: boolean) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v });
   const onFocusExpandedChange = (v: boolean) =>
@@ -229,6 +230,8 @@ export default function LensDiagramPanel({
             onChromRChange={onChromRChange}
             onChromGChange={onChromGChange}
             onChromBChange={onChromBChange}
+            showPupils={showPupils}
+            onShowPupilsChange={onShowPupilsChange}
             onDarkChange={onDarkChange}
             onHighContrastChange={onHighContrastChange}
             highContrast={highContrast}
@@ -264,6 +267,7 @@ export default function LensDiagramPanel({
                 showOnAxis={showOnAxis}
                 showOffAxis={showOffAxis}
                 showChromatic={showChromatic}
+                showPupils={showPupils}
                 act={act}
                 onHover={setHov}
                 onSelect={(eid) => setSel(sel === eid ? null : eid)}

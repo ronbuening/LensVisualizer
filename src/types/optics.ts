@@ -169,6 +169,12 @@ export interface RuntimeLens {
   readonly zoomHalfFields: number[] | null;
   readonly zoomYRatios: number[] | null;
   readonly zoomBs: number[] | null;
+  readonly epZRelStop: number;
+  readonly xpZRelLastSurf: number;
+  readonly xpSD: number;
+  readonly zoomEpZRelStops: number[] | null;
+  readonly zoomXpZRelLastSurfs: number[] | null;
+  readonly zoomXpSDs: number[] | null;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;

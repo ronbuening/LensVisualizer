@@ -17,6 +17,7 @@ import {
   ENABLE_COLLAPSIBLE_HEADER_CONTROLS,
   ENABLE_COLLAPSIBLE_HEADER_INFO,
   ENABLE_MOBILE_CONTROLS_STRIP,
+  ENABLE_PUPIL_TOGGLE,
 } from "../../utils/featureFlags.js";
 import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../../utils/styles.js";
 import RayToggles from "./RayToggles.js";
@@ -47,6 +48,8 @@ interface DiagramHeaderProps {
   onChromRChange?: (value: boolean) => void;
   onChromGChange?: (value: boolean) => void;
   onChromBChange?: (value: boolean) => void;
+  showPupils: boolean;
+  onShowPupilsChange?: (value: boolean) => void;
   onDarkChange?: (value: boolean) => void;
   onHighContrastChange?: (value: boolean) => void;
   highContrast: boolean;
@@ -81,6 +84,8 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
     onChromRChange,
     onChromGChange,
     onChromBChange,
+    showPupils,
+    onShowPupilsChange,
     onDarkChange,
     onHighContrastChange,
     highContrast,
@@ -247,6 +252,8 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                   onShowOnAxisChange={onShowOnAxisChange}
                   showOffAxis={showOffAxis}
                   onShowOffAxisChange={onShowOffAxisChange}
+                  showPupils={showPupils}
+                  onShowPupilsChange={ENABLE_PUPIL_TOGGLE ? onShowPupilsChange : undefined}
                 />
                 {/* Ray mode */}
                 <div style={toggleGroup(t, { width: "100%" })}>
