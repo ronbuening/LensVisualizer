@@ -11,12 +11,13 @@ interface OverlayModalProps {
   onClose: () => void;
   theme: Theme;
   children: ReactNode;
+  maxWidth?: number;
 }
 
-export default function OverlayModal({ onClose, theme, children }: OverlayModalProps) {
+export default function OverlayModal({ onClose, theme, children, maxWidth }: OverlayModalProps) {
   return (
     <div onClick={onClose} style={OVERLAY_BACKDROP}>
-      <div onClick={(e) => e.stopPropagation()} style={overlayModal(theme)}>
+      <div onClick={(e) => e.stopPropagation()} style={overlayModal(theme, maxWidth)}>
         <button onClick={onClose} style={closeBtn(theme)}>
           ×
         </button>
