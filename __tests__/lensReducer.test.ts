@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import type { LensState, LensAction, RayField, PanelField, OverlayField } from "../src/types/state.js";
 import lensReducer, {
   createInitialState,
   SET_LENS_A,
@@ -26,8 +27,8 @@ import lensReducer, {
 const CATALOG_KEYS = ["nikon_58", "canon_50", "zeiss_35"];
 
 /** Helper: build a default state for testing */
-function makeState(overrides = {}) {
-  return createInitialState({}, {}, true, CATALOG_KEYS, overrides);
+function makeState() {
+  return createInitialState({}, {}, true, CATALOG_KEYS);
 }
 
 describe("createInitialState", () => {
@@ -95,7 +96,7 @@ describe("createInitialState", () => {
 });
 
 describe("lensReducer", () => {
-  let state;
+  let state: LensState;
   beforeEach(() => {
     state = makeState();
   });
@@ -177,7 +178,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid field", () => {
-      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField", value: true });
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField" as RayField, value: true });
       expect(next).toBe(state); // same reference = no change
     });
   });
@@ -242,7 +243,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid panel", () => {
-      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus", expanded: true });
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus" as PanelField, expanded: true });
       expect(next).toBe(state);
     });
   });
@@ -255,7 +256,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid overlay", () => {
-      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo", visible: true });
+      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo" as OverlayField, visible: true });
       expect(next).toBe(state);
     });
   });
@@ -328,7 +329,7 @@ describe("lensReducer", () => {
   /* ── Immutability ── */
   describe("immutability", () => {
     it("returns same reference for unknown action", () => {
-      const next = lensReducer(state, { type: "UNKNOWN_ACTION" });
+      const next = lensReducer(state, { type: "UNKNOWN_ACTION" } as unknown as LensAction);
       expect(next).toBe(state);
     });
 
@@ -344,5 +345,68 @@ describe("lensReducer", () => {
       expect(next.rays).toBe(state.rays);
       expect(next.sliders).toBe(state.sliders);
     });
+  });
+});
+
+/* ── Action constant exhaustiveness ── */
+describe("lensReducer — action constant exports", () => {
+  it("exports all 20 expected action type constants", () => {
+    const EXPECTED = [
+      SET_LENS_A,
+      SET_LENS_B,
+      SET_SCALE_MODE,
+      SET_DARK,
+      SET_HIGH_CONTRAST,
+      SET_MOBILE_VIEW,
+      SET_DESKTOP_VIEW,
+      SET_RAY_TOGGLE,
+      SET_FOCUS_T,
+      SET_ZOOM_T,
+      SET_STOPDOWN_T,
+      SET_SHARED_FOCUS_T,
+      SET_SHARED_STOPDOWN_T,
+      SET_SHARED_ZOOM_T,
+      RESET_SLIDERS,
+      SET_PANEL_EXPANDED,
+      SET_OVERLAY,
+      CLOSE_ALL_OVERLAYS,
+      ENTER_COMPARE,
+      EXIT_COMPARE,
+    ];
+    // Each constant must be a non-empty string
+    for (const c of EXPECTED) {
+      expect(typeof c).toBe("string");
+      expect(c.length).toBeGreaterThan(0);
+    }
+    // The full set must be exactly 20 unique values
+    expect(new Set(EXPECTED).size).toBe(20);
+  });
+
+  it("every action constant's string value matches its export name", () => {
+    const constants = {
+      SET_LENS_A,
+      SET_LENS_B,
+      SET_SCALE_MODE,
+      SET_DARK,
+      SET_HIGH_CONTRAST,
+      SET_MOBILE_VIEW,
+      SET_DESKTOP_VIEW,
+      SET_RAY_TOGGLE,
+      SET_FOCUS_T,
+      SET_ZOOM_T,
+      SET_STOPDOWN_T,
+      SET_SHARED_FOCUS_T,
+      SET_SHARED_STOPDOWN_T,
+      SET_SHARED_ZOOM_T,
+      RESET_SLIDERS,
+      SET_PANEL_EXPANDED,
+      SET_OVERLAY,
+      CLOSE_ALL_OVERLAYS,
+      ENTER_COMPARE,
+      EXIT_COMPARE,
+    };
+    for (const [name, value] of Object.entries(constants)) {
+      expect(value).toBe(name);
+    }
   });
 });

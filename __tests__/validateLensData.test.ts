@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import validateLensData from "../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 
-function makeValid(overrides = {}) {
+function makeValid(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     ...LENS_DEFAULTS,
     key: "test",
@@ -308,7 +308,7 @@ import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 
 describe("validateLensData — production lenses", () => {
-  const lenses = [
+  const lenses: [string, Record<string, unknown>][] = [
     ["ApoLanthar", { ...LENS_DEFAULTS, ...ApoLantharRaw }],
     ["Nokton", { ...LENS_DEFAULTS, ...NoktonRaw }],
     ["NikkorZ50", { ...LENS_DEFAULTS, ...NikkorRaw }],

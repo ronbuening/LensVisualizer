@@ -5,6 +5,7 @@ import {
   focalLengthToZoomT,
   zoomTToFocalLength,
 } from "../src/utils/parseComparisonParams.js";
+import type { RuntimeLens } from "../src/types/optics.js";
 
 const KEYS = ["NikkorZ50f12", "Nokton50f1", "ApoLanthar50f2", "Sonnar50f15"];
 
@@ -100,13 +101,13 @@ describe("buildComparisonURL", () => {
   });
 
   it("builds single-lens URL with ?lens=", () => {
-    const url = buildComparisonURL(false, "Sonnar50f15");
+    const url = buildComparisonURL(false, "Sonnar50f15", "");
     expect(url).toBe("?lens=Sonnar50f15");
   });
 
   it("returns empty string when no key provided", () => {
-    expect(buildComparisonURL(false, "")).toBe("");
-    expect(buildComparisonURL(false, null)).toBe("");
+    expect(buildComparisonURL(false, "", "")).toBe("");
+    expect(buildComparisonURL(false, "", "")).toBe("");
   });
 
   it("encodes special characters in keys", () => {
@@ -116,12 +117,12 @@ describe("buildComparisonURL", () => {
   });
 
   it("appends slider params when provided", () => {
-    const url = buildComparisonURL(false, "Sonnar50f15", null, { zoom: 50, focus: 0.3, aperture: 0.5 });
+    const url = buildComparisonURL(false, "Sonnar50f15", "", { zoom: 50, focus: 0.3, aperture: 0.5 });
     expect(url).toBe("?lens=Sonnar50f15&zoom=50&focus=0.300&aperture=0.500");
   });
 
   it("omits zero/null slider params", () => {
-    const url = buildComparisonURL(false, "Sonnar50f15", null, { zoom: null, focus: 0, aperture: 0 });
+    const url = buildComparisonURL(false, "Sonnar50f15", "", { zoom: null, focus: 0, aperture: 0 });
     expect(url).toBe("?lens=Sonnar50f15");
   });
 
@@ -132,8 +133,8 @@ describe("buildComparisonURL", () => {
 });
 
 describe("focalLengthToZoomT / zoomTToFocalLength", () => {
-  const zoomLens = { isZoom: true, zoomPositions: [24, 50, 70] };
-  const primeLens = { isZoom: false };
+  const zoomLens = { isZoom: true, zoomPositions: [24, 50, 70] } as unknown as RuntimeLens;
+  const primeLens = { isZoom: false } as unknown as RuntimeLens;
 
   it("returns 0 for prime lenses", () => {
     expect(focalLengthToZoomT(50, primeLens)).toBe(0);

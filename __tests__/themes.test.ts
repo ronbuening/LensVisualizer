@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
 import T from "../src/utils/themes.js";
+import type { ThemeVariant } from "../src/types/theme.js";
 
-const THEME_NAMES = ["dark", "light", "darkHC", "lightHC"];
+const THEME_NAMES: ThemeVariant[] = ["dark", "light", "darkHC", "lightHC"];
 
 describe("theme definitions", () => {
   it("exports all four themes", () => {
@@ -32,7 +33,7 @@ describe("theme definitions", () => {
     ];
     for (const name of THEME_NAMES) {
       for (const prop of required) {
-        expect(T[name][prop], `${name}.${prop}`).toBeTruthy();
+        expect((T[name] as unknown as Record<string, unknown>)[prop], `${name}.${prop}`).toBeTruthy();
       }
     }
   });
@@ -77,7 +78,7 @@ describe("createTheme closure functions", () => {
     it("returns APD color for APD elements", () => {
       for (const name of THEME_NAMES) {
         const apd = T[name].elemNum({ apd: "patent" });
-        const std = T[name].elemNum({ apd: null });
+        const std = T[name].elemNum({ apd: undefined });
         expect(typeof apd).toBe("string");
         expect(typeof std).toBe("string");
         expect(apd).not.toBe(std);
@@ -123,7 +124,7 @@ describe("createTheme closure functions", () => {
   describe("elemStroke(e, on)", () => {
     it("returns active stroke when on=true", () => {
       for (const name of THEME_NAMES) {
-        const stroke = T[name].elemStroke({ nd: 1.5 }, true);
+        const stroke = T[name].elemStroke({}, true);
         expect(typeof stroke).toBe("string");
       }
     });

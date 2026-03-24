@@ -4,27 +4,27 @@ import { loadPrefs, PREFS_KEY } from "../src/utils/preferences.js";
 const KEYS = ["nikon_58", "canon_50"];
 
 /* Minimal localStorage mock */
-let store = {};
+let store: Record<string, string> = {};
 const mockLocalStorage = {
-  getItem: (key) => (key in store ? store[key] : null),
-  setItem: (key, val) => {
+  getItem: (key: string): string | null => (key in store ? store[key] : null),
+  setItem: (key: string, val: string): void => {
     store[key] = String(val);
   },
-  clear: () => {
+  clear: (): void => {
     store = {};
   },
-  removeItem: (key) => {
+  removeItem: (key: string): void => {
     delete store[key];
   },
 };
 
 beforeEach(() => {
   store = {};
-  globalThis.localStorage = mockLocalStorage;
+  (globalThis as Record<string, unknown>).localStorage = mockLocalStorage;
 });
 
 afterEach(() => {
-  delete globalThis.localStorage;
+  delete (globalThis as Record<string, unknown>).localStorage;
 });
 
 describe("PREFS_KEY", () => {
@@ -142,7 +142,7 @@ describe("loadPrefs", () => {
 
   it("migrates v1 lensKey to lensKeyA", () => {
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKey: "canon_50" }));
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs(KEYS) as Record<string, unknown>;
     expect(prefs.lensKeyA).toBe("canon_50");
     expect(prefs.lensKey).toBeUndefined();
   });
@@ -193,7 +193,7 @@ describe("loadPrefs", () => {
         hacky: 42,
       }),
     );
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs(KEYS) as Record<string, unknown>;
     expect(prefs.dark).toBe(true);
     expect(prefs.unknownProp).toBeUndefined();
     expect(prefs.hacky).toBeUndefined();
