@@ -38,6 +38,7 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | NIKKOR Z 50mm f/1.8 S | 12 | 2 aspherics + 2 ED elements |
 | NIKON NIKKOR Z 50mm f/1.2 S | 17+filter | 3 aspherics; multi-group AF; 6 APD elements |
 | NIKON NIKKOR Z MC 105mm f/2.8 VR S | 16 | Macro; 1 aspheric; 3 APD elements; WO 2022/097401 A1 |
+| NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED | 12 | Macro; 2 aspherics; 1 ED element; US 7,898,744 B2 |
 | NIKKOR 105mm f/1.4E ED | 14 | All-spherical; APD for secondary spectrum |
 | NIKON NIKKOR Z 135mm f/1.8 S Plena | 16 | 1 aspheric; 7 APD elements; WO 2024/147268 A1 |
 | RICOH GR 28mm f/2.8 | 7 | Retrofocus; 1 aspheric; US 5,760,973 |
