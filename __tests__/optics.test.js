@@ -537,6 +537,26 @@ describe("conjugateK", () => {
     const badL = { ...L, EP: { ...L.EP, epSD: 1e6 } };
     expect(conjugateK(0, 0, badL)).toBe(0);
   });
+
+  it.each(allLenses)("%s: conjugateK returns finite values at intermediate focus", (name, L) => {
+    for (const t of [0.25, 0.5, 0.75]) {
+      const K = conjugateK(t, 0, L);
+      expect(isFinite(K), `${name}: conjugateK(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("Sonnar50f15: |conjugateK| increases monotonically from t=0 to t=1", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw });
+    const K0 = Math.abs(conjugateK(0, 0, L)); // ≈ 0
+    const K25 = Math.abs(conjugateK(0.25, 0, L));
+    const K50 = Math.abs(conjugateK(0.5, 0, L));
+    const K75 = Math.abs(conjugateK(0.75, 0, L));
+    const K1 = Math.abs(conjugateK(1.0, 0, L));
+    expect(K0).toBeLessThan(K25);
+    expect(K25).toBeLessThan(K50);
+    expect(K50).toBeLessThan(K75);
+    expect(K75).toBeLessThan(K1);
+  });
 });
 
 describe("thick — zoom edge cases", () => {

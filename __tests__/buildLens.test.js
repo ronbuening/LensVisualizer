@@ -151,6 +151,86 @@ describe("buildLens — production lenses", () => {
   });
 });
 
+/* ── RuntimeLens shape verification ── */
+describe("buildLens — RuntimeLens property shape", () => {
+  it("returned object has all required numeric scalar properties", () => {
+    const L = buildLens(Sonnar50f15);
+    // Core optics scalars
+    expect(typeof L.N).toBe("number");
+    expect(typeof L.EFL).toBe("number");
+    expect(typeof L.B).toBe("number");
+    expect(typeof L.FOPEN).toBe("number");
+    expect(typeof L.stopIdx).toBe("number");
+    expect(typeof L.stopPhysSD).toBe("number");
+    expect(typeof L.halfField).toBe("number");
+    expect(typeof L.totalTrack).toBe("number");
+    expect(typeof L.maxSD).toBe("number");
+    // Layout scalars
+    expect(typeof L.SC).toBe("number");
+    expect(typeof L.YSC).toBe("number");
+    expect(typeof L.svgW).toBe("number");
+    expect(typeof L.svgH).toBe("number");
+    expect(typeof L.gridPitch).toBe("number");
+    expect(typeof L.lensShiftFrac).toBe("number");
+    // Focus / aperture scalars
+    expect(typeof L.closeFocusM).toBe("number");
+    expect(typeof L.maxFstop).toBe("number");
+    expect(typeof L.focusStep).toBe("number");
+    expect(typeof L.apertureStep).toBe("number");
+    // Zoom scalars
+    expect(typeof L.isZoom).toBe("boolean");
+    expect(typeof L.zoomStep).toBe("number");
+  });
+
+  it("returned object has correct array-typed properties", () => {
+    const L = buildLens(Sonnar50f15);
+    expect(Array.isArray(L.S)).toBe(true);
+    expect(L.S.length).toBe(L.N);
+    expect(Array.isArray(L.ES)).toBe(true);
+    expect(Array.isArray(L.elements)).toBe(true);
+    expect(Array.isArray(L.groups)).toBe(true);
+    expect(Array.isArray(L.doublets)).toBe(true);
+    expect(Array.isArray(L.varLabels)).toBe(true);
+    expect(Array.isArray(L.rayFractions)).toBe(true);
+    expect(Array.isArray(L.rayHeights)).toBe(true);
+    expect(Array.isArray(L.offAxisFractions)).toBe(true);
+    expect(Array.isArray(L.offAxisHeights)).toBe(true);
+    expect(Array.isArray(L.fstopSeries)).toBe(true);
+  });
+
+  it("EP entrance pupil has epSD and yRatio numeric fields", () => {
+    const L = buildLens(ApoLanthar);
+    expect(typeof L.EP).toBe("object");
+    expect(typeof L.EP.epSD).toBe("number");
+    expect(typeof L.EP.yRatio).toBe("number");
+    expect(L.EP.epSD).toBeGreaterThan(0);
+    expect(isFinite(L.EP.yRatio)).toBe(true);
+  });
+
+  it("asphByIdx, varByIdx, vdByIdx, and labelIdx are plain objects", () => {
+    const L = buildLens(Sonnar50f15);
+    expect(typeof L.asphByIdx).toBe("object");
+    expect(typeof L.varByIdx).toBe("object");
+    expect(typeof L.vdByIdx).toBe("object");
+    expect(typeof L.labelIdx).toBe("object");
+    // labelIdx maps string surface labels to integer indices
+    expect(typeof L.labelIdx["STO"]).toBe("number");
+    expect(L.labelIdx["STO"]).toBe(L.stopIdx);
+  });
+
+  it("prime (non-zoom) lens has null zoom arrays", () => {
+    const L = buildLens(Sonnar50f15);
+    expect(L.isZoom).toBe(false);
+    expect(L.zoomPositions).toBeNull();
+    expect(L.zoomEFLs).toBeNull();
+    expect(L.zoomEPs).toBeNull();
+    expect(L.zoomHalfFields).toBeNull();
+    expect(L.zoomYRatios).toBeNull();
+    expect(L.zoomBs).toBeNull();
+    expect(L.zoomLabels).toBeNull();
+  });
+});
+
 describe("buildLens — error handling", () => {
   function makeMinimalData(overrides = {}) {
     return {

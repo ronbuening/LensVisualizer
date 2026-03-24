@@ -346,3 +346,66 @@ describe("lensReducer", () => {
     });
   });
 });
+
+/* ── Action constant exhaustiveness ── */
+describe("lensReducer — action constant exports", () => {
+  it("exports all 20 expected action type constants", () => {
+    const EXPECTED = [
+      SET_LENS_A,
+      SET_LENS_B,
+      SET_SCALE_MODE,
+      SET_DARK,
+      SET_HIGH_CONTRAST,
+      SET_MOBILE_VIEW,
+      SET_DESKTOP_VIEW,
+      SET_RAY_TOGGLE,
+      SET_FOCUS_T,
+      SET_ZOOM_T,
+      SET_STOPDOWN_T,
+      SET_SHARED_FOCUS_T,
+      SET_SHARED_STOPDOWN_T,
+      SET_SHARED_ZOOM_T,
+      RESET_SLIDERS,
+      SET_PANEL_EXPANDED,
+      SET_OVERLAY,
+      CLOSE_ALL_OVERLAYS,
+      ENTER_COMPARE,
+      EXIT_COMPARE,
+    ];
+    // Each constant must be a non-empty string
+    for (const c of EXPECTED) {
+      expect(typeof c).toBe("string");
+      expect(c.length).toBeGreaterThan(0);
+    }
+    // The full set must be exactly 20 unique values
+    expect(new Set(EXPECTED).size).toBe(20);
+  });
+
+  it("every action constant's string value matches its export name", () => {
+    const constants = {
+      SET_LENS_A,
+      SET_LENS_B,
+      SET_SCALE_MODE,
+      SET_DARK,
+      SET_HIGH_CONTRAST,
+      SET_MOBILE_VIEW,
+      SET_DESKTOP_VIEW,
+      SET_RAY_TOGGLE,
+      SET_FOCUS_T,
+      SET_ZOOM_T,
+      SET_STOPDOWN_T,
+      SET_SHARED_FOCUS_T,
+      SET_SHARED_STOPDOWN_T,
+      SET_SHARED_ZOOM_T,
+      RESET_SLIDERS,
+      SET_PANEL_EXPANDED,
+      SET_OVERLAY,
+      CLOSE_ALL_OVERLAYS,
+      ENTER_COMPARE,
+      EXIT_COMPARE,
+    };
+    for (const [name, value] of Object.entries(constants)) {
+      expect(value).toBe(name);
+    }
+  });
+});
