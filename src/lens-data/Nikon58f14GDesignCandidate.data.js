@@ -34,9 +34,9 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-af-s-58f14g",
   name: "NIKON AF-S NIKKOR 58mm f/1.4G",
-  subtitle: "JP2013-019993A EXAMPLE 2 — NIKON / HARUO SATO",
+  subtitle: "JP2013-019993A EXAMPLE 2 (NEAR MATCH) — NIKON / HARUO SATO",
   specs: [
-    "9 ELEMENTS / 4 GROUPS (patent) · 6 GROUPS (production)",
+    "9 ELEMENTS / 5 GROUPS (patent) · 6 GROUPS (production)",
     "f ≈ 58.0 mm",
     "F/1.4",
     "2ω ≈ 41.7°",
