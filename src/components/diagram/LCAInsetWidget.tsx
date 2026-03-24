@@ -68,6 +68,17 @@ export default function LCAInsetWidget({
 
   const fs = (base: number) => base * fontScale;
 
+  // Y positions scale proportionally with insetH so the layout works at any size
+  // (small 100px inset and large 256px overlay). Fractions match the original
+  // fixed values: 14/100, 22/100, 40/100, 56/100, 67/100, 82/100, 95/100.
+  const yTitle = insetY + insetH * 0.14;
+  const yLineTop = insetY + insetH * 0.22;
+  const yAxis = insetY + insetH * 0.4;
+  const yLineBot = insetY + insetH * 0.56;
+  const yLabel = insetY + insetH * 0.67;
+  const yMagnitude = insetY + insetH * 0.82;
+  const yMagScale = insetY + insetH * 0.95;
+
   return (
     <g onClick={onClick} style={onClick ? { cursor: "pointer" } : undefined}>
       <rect
@@ -83,7 +94,7 @@ export default function LCAInsetWidget({
       />
       <text
         x={midX}
-        y={insetY + 14}
+        y={yTitle}
         textAnchor="middle"
         fill={t.muted}
         fontSize={fs(8.5)}
@@ -94,9 +105,9 @@ export default function LCAInsetWidget({
       </text>
       <line
         x1={insetX + 6}
-        y1={insetY + 40}
+        y1={yAxis}
         x2={insetX + insetW - 6}
-        y2={insetY + 40}
+        y2={yAxis}
         stroke={t.axis}
         strokeWidth={0.5}
       />
@@ -107,16 +118,16 @@ export default function LCAInsetWidget({
           <g key={ch}>
             <line
               x1={midX + offset}
-              y1={insetY + 22}
+              y1={yLineTop}
               x2={midX + offset}
-              y2={insetY + 56}
+              y2={yLineBot}
               stroke={color}
               strokeWidth={2}
               strokeLinecap="round"
             />
             <text
               x={midX + offset}
-              y={insetY + 67}
+              y={yLabel}
               textAnchor="middle"
               fill={color}
               fontSize={fs(8.5)}
@@ -130,7 +141,7 @@ export default function LCAInsetWidget({
       })}
       <text
         x={midX}
-        y={insetY + 82}
+        y={yMagnitude}
         textAnchor="middle"
         fill={t.value}
         fontSize={fs(10)}
@@ -141,7 +152,7 @@ export default function LCAInsetWidget({
           ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m`
           : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
       </text>
-      <text x={midX} y={insetY + 95} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
+      <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}
         {"\u00d7"}
       </text>
