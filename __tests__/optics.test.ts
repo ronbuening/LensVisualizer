@@ -389,8 +389,32 @@ describe("computeChromaticSpread", () => {
       B: { y: 1.0, u: -0.06, clipped: false },
     };
     const result = computeChromaticSpread(marginalRays, 50, 40);
+    // R is clipped → only B+G fallback not available (no G), so lcaMm = 0
     expect(result.lcaMm).toBe(0);
     expect(result.intercepts.R).toBeUndefined();
+  });
+
+  it("falls back to R−G when B is missing", () => {
+    const marginalRays = {
+      R: { y: 1.0, u: -0.05, clipped: false },
+      G: { y: 1.0, u: -0.055, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 65, 40);
+    // R intercept: 40 - 1/(-0.05) = 60, G intercept: 40 - 1/(-0.055) ≈ 58.18
+    expect(result.lcaMm).toBeCloseTo(60 - (40 + 1 / 0.055), 4);
+    expect(result.lcaMm).not.toBe(0);
+  });
+
+  it("falls back to G−B when R is missing", () => {
+    const marginalRays = {
+      G: { y: 1.0, u: -0.055, clipped: false },
+      B: { y: 1.0, u: -0.06, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 65, 40);
+    const gIntercept = 40 - 1.0 / -0.055;
+    const bIntercept = 40 - 1.0 / -0.06;
+    expect(result.lcaMm).toBeCloseTo(gIntercept - bIntercept, 4);
+    expect(result.lcaMm).not.toBe(0);
   });
 });
 

@@ -2,11 +2,13 @@
  * LCAInsetWidget — Magnified inset showing longitudinal chromatic aberration.
  *
  * Displays where each wavelength's marginal ray crosses the axis relative to
- * the G/d-line reference. Magnification is auto-scaled and clamped at 5000x
- * to avoid pixel overflow for sub-micron LCA.
+ * the G/d-line reference. Uses a fixed reference scale (from lcaScaling) so
+ * lenses with worse CA show wider bars and well-corrected lenses show narrower
+ * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
 import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { computeLcaBarOffsets } from "../../optics/lcaScaling.js";
 
 interface LCAInsetWidgetProps {
   chromSpread: ChromaticSpread;
@@ -16,17 +18,30 @@ interface LCAInsetWidgetProps {
   svgW: number;
   sy: (y: number) => number;
   t: Theme;
+  /** Override default 90px width — for a future larger overlay view. */
+  width?: number;
+  /** Override default 100px height — for a future larger overlay view. */
+  height?: number;
 }
 
-export default function LCAInsetWidget({ chromSpread, effectiveSC, IMG_MM, IX, svgW, sy, t }: LCAInsetWidgetProps) {
-  const insetW = 90;
-  const insetH = 100;
-  const gRef = chromSpread.intercepts.G || IMG_MM;
+export default function LCAInsetWidget({
+  chromSpread,
+  effectiveSC,
+  IMG_MM,
+  IX,
+  svgW,
+  sy,
+  t,
+  width,
+  height,
+}: LCAInsetWidgetProps) {
+  const insetW = width ?? 90;
+  const insetH = height ?? 100;
+  const gRef = chromSpread.intercepts.G ?? IMG_MM;
+  const viewWidthPx = insetW - 24;
+  const { barOffsets, mag } = computeLcaBarOffsets(chromSpread.intercepts, gRef, viewWidthPx, effectiveSC);
   const activeChans = (["R", "G", "B"] as ChromaticChannel[]).filter((ch) => chromSpread.intercepts[ch] !== undefined);
-  const offsets = activeChans.map((ch) => Math.abs((chromSpread.intercepts[ch] ?? 0) - gRef));
-  const maxOff = Math.max(...offsets, 1e-9);
-  const maxPixelSpan = (insetW - 24) / 2;
-  const mag = Math.min(maxPixelSpan / (maxOff * effectiveSC), 5000);
+
   let insetX = IX + 10;
   if (insetX + insetW > svgW - 4) insetX = IX - insetW - 10;
   const insetY = sy(0) - 55;
@@ -65,7 +80,7 @@ export default function LCAInsetWidget({ chromSpread, effectiveSC, IMG_MM, IX, s
         strokeWidth={0.5}
       />
       {activeChans.map((ch) => {
-        const offset = ((chromSpread.intercepts[ch] ?? 0) - gRef) * mag * effectiveSC;
+        const offset = barOffsets[ch] ?? 0;
         const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
         return (
           <g key={ch}>

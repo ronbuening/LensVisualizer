@@ -298,7 +298,7 @@ export default function DiagramSVG({
       </text>
 
       {/* LCA inset widget */}
-      {showChromatic && chromSpread && chromSpread.lcaMm !== 0 && (
+      {showChromatic && chromSpread && Object.keys(chromSpread.intercepts).length >= 2 && (
         <LCAInsetWidget
           chromSpread={chromSpread}
           effectiveSC={effectiveSC}
