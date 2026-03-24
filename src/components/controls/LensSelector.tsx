@@ -117,6 +117,7 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
               boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
               zIndex: 9999,
               fontFamily: "inherit",
+              willChange: "transform",
             }}
           >
             {options.map((o) => {
