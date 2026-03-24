@@ -5,6 +5,17 @@
  */
 
 import { renderSag, gapTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
+import type { RuntimeLens, CoordinateTransforms, ElementShape, AsphPathData, ElementSpan } from "../types/optics.js";
+
+interface CoordTransformParams {
+  svgW: number;
+  svgH: number;
+  SC: number;
+  YSC: number;
+  lensShiftFrac: number;
+  imgMM: number;
+  scaleRatio: number | null;
+}
 
 /* ── Coordinate transforms (optical mm → SVG pixels) ──
  * SC  = horizontal scale (mm → px), YSC = vertical scale.
@@ -12,7 +23,15 @@ import { renderSag, gapTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
  * share the same physical mm-per-pixel, making sizes visually comparable.
  * sx(z) maps an axial position z (mm) to an SVG x coordinate.
  * sy(y) maps a ray height y (mm) to an SVG y coordinate (Y inverted). */
-export function createCoordinateTransforms({ svgW, svgH, SC, YSC, lensShiftFrac, imgMM, scaleRatio }) {
+export function createCoordinateTransforms({
+  svgW,
+  svgH,
+  SC,
+  YSC,
+  lensShiftFrac,
+  imgMM,
+  scaleRatio,
+}: CoordTransformParams): CoordinateTransforms {
   const effectiveSC = scaleRatio != null ? SC * scaleRatio : SC;
   const effectiveYSC = scaleRatio != null ? YSC * scaleRatio : YSC;
   const MID = imgMM / 2;
@@ -20,15 +39,15 @@ export function createCoordinateTransforms({ svgW, svgH, SC, YSC, lensShiftFrac,
   const CY = svgH / 2;
   const IX = CX + MID * effectiveSC;
 
-  const sx = (z) => IX - (imgMM - z) * effectiveSC;
-  const sy = (y) => CY + y * effectiveYSC;
+  const sx = (z: number): number => IX - (imgMM - z) * effectiveSC;
+  const sy = (y: number): number => CY + y * effectiveYSC;
 
   /* Maximum ray height (optical mm) that fits within the SVG viewport.
    * Rays projecting beyond this are terminated at the viewport edge so they
    * exit at their true angle rather than extending to an invisible point. */
   const yViewMax = (svgH / 2 - 10) / effectiveYSC;
 
-  const clampedRayEnd = (lastZ, lastY, u, targetZ) => {
+  const clampedRayEnd = (lastZ: number, lastY: number, u: number, targetZ: number): [number, number] => {
     const yImg = lastY + (targetZ - lastZ) * u;
     const yClamped = Math.max(-yViewMax, Math.min(yViewMax, yImg));
     if (yClamped !== yImg && Math.abs(u) > 1e-9) {
@@ -55,15 +74,19 @@ export function createCoordinateTransforms({ svgW, svgH, SC, YSC, lensShiftFrac,
  * Build closed SVG paths for each glass element, with surface trimming
  * and aspheric overlay paths.
  *
- * @param {Object}   L    — frozen runtime lens object from buildLens()
- * @param {number[]} zPos — axial z-position of each surface (mm, shifted for focus/zoom)
- * @param {Function} sx   — optical z (mm) → SVG x coordinate
- * @param {Function} sy   — optical y (mm) → SVG y coordinate
- * @returns {Array<{eid: number, d: string, z1: number, z2: number, asphPaths: Array}>}
- *   One entry per element with its closed SVG path string and any aspheric overlay paths.
+ * @param L    — frozen runtime lens object from buildLens()
+ * @param zPos — axial z-position of each surface (mm, shifted for focus/zoom)
+ * @param sx   — optical z (mm) → SVG x coordinate
+ * @param sy   — optical y (mm) → SVG y coordinate
+ * @returns One entry per element with its closed SVG path string and any aspheric overlay paths.
  */
-export function computeElementShapes(L, zPos, sx, sy) {
-  return L.ES.map(([eid, s1, s2]) => {
+export function computeElementShapes(
+  L: RuntimeLens,
+  zPos: number[],
+  sx: (z: number) => number,
+  sy: (y: number) => number,
+): ElementShape[] {
+  return L.ES.map(([eid, s1, s2]: ElementSpan) => {
     const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
     const R1 = Math.abs(L.S[s1].R),
       R2 = Math.abs(L.S[s2].R);
@@ -79,7 +102,7 @@ export function computeElementShapes(L, zPos, sx, sy) {
      * may curve backward (negative sag) widening the effective clearance,
      * or forward (positive sag) narrowing it. */
     if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
-      const prevES = L.ES.findLast(([, , ps2]) => ps2 < s1 && L.S[ps2].nd === 1.0);
+      const prevES = L.ES.findLast(([, , ps2]: ElementSpan) => ps2 < s1 && L.S[ps2].nd === 1.0);
       const gapBefore = prevES ? zPos[s1] - zPos[prevES[2]] : L.S[s1 - 1].d;
       let effectiveGap = gapBefore;
       if (prevES) {
@@ -99,7 +122,7 @@ export function computeElementShapes(L, zPos, sx, sy) {
      * widening the effective clearance; or backward (negative sag), narrowing
      * it.  Account for both to avoid false trims on fast lenses. */
     if (L.S[s2].nd === 1.0 && L.gapSagFrac > 0 && renderSag(trim2, s2, L) > 0) {
-      const nextES = L.ES.find(([, ns1]) => ns1 > s2);
+      const nextES = L.ES.find(([, ns1]: ElementSpan) => ns1 > s2);
       const gapAfter = nextES ? zPos[nextES[1]] - zPos[s2] : L.S[s2].d;
       let effectiveGap = gapAfter;
       if (nextES) {
@@ -125,7 +148,7 @@ export function computeElementShapes(L, zPos, sx, sy) {
       d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
-    const asphPaths = [];
+    const asphPaths: AsphPathData[] = [];
     const midX = sx((z1 + z2) / 2);
     if (L.asphByIdx[s1]) {
       let p = "";
@@ -134,7 +157,7 @@ export function computeElementShapes(L, zPos, sx, sy) {
         p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `;
       }
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
-      let hp = p + `L${midX},${sy(sd)} L${midX},${sy(-sd)} Z`;
+      const hp = p + `L${midX},${sy(sd)} L${midX},${sy(-sd)} Z`;
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
