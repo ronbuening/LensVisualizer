@@ -35,3 +35,5 @@ export const ENABLE_COLLAPSIBLE_LEGEND = true;
 export const ENABLE_COLLAPSIBLE_HEADER_INFO = true;
 
 export const ENABLE_MOBILE_CONTROLS_STRIP = true;
+
+export const ENABLE_ABOUT_BUTTONS_IN_TOPBAR = false;
