@@ -4,7 +4,12 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `LensViewer.tsx` | `src/components/` | Orchestration: comparison mode, top bar, overlays, prefs |
+| `LensViewer.tsx` | `src/components/` | Orchestration: state management, context provision, layout composition |
+| `TopBar.tsx` | `src/components/` | Lens selectors, compare button, about buttons |
+| `ControlsBar.tsx` | `src/components/` | Theme/ray/chromatic/scale toggles (compact + full modes) |
+| `ViewToggleBar.tsx` | `src/components/` | Generic view-mode toggle (mobile + desktop) |
+| `ComparisonLayout.tsx` | `src/components/` | Side-by-side (desktop) / stacked (mobile) comparison panels |
+| `OverlayModal.tsx` | `src/components/` | Generic backdrop + modal + close button |
 | `LensDiagramPanel.tsx` | `src/components/` | Diagram composition: wires hooks + sub-components |
 | `useLensComputation.ts` | `src/components/` | Hook: lens building, layout, transforms, shapes, aperture |
 | `useRayTracing.ts` | `src/components/` | Hook: on-axis, off-axis, chromatic ray tracing |
@@ -38,14 +43,13 @@
 
 ## LensViewer.tsx — Orchestration Layer
 
-The main component handles:
-- Lens selection (single + comparison mode)
-- Theme switching (dark/light x normal/high-contrast)
-- Ray toggle controls (on-axis, off-axis, chromatic) in comparison/mobile control bars
-- Comparison mode: side-by-side (desktop) / stacked (mobile)
-- Desktop view toggle (diagram / both / analysis)
-- Mobile view toggle (diagram / analysis)
-- About overlays (site + author)
+The main component owns state management, context provision, and layout composition. All UI rendering is delegated to child components:
+
+- **`TopBar`** — Lens selectors, compare button, about buttons. Receives named callbacks (no reducer knowledge).
+- **`ControlsBar`** — Theme/ray/chromatic/scale toggles. Unified component with `compact` prop (full labels for comparison mode, condensed for mobile). `showScaleMode` controls whether the scale mode toggle is rendered.
+- **`ViewToggleBar`** — Generic view-mode toggle. Used for both mobile (DIAGRAM/ANALYSIS) and desktop (DIAGRAM/BOTH/ANALYSIS) switching.
+- **`ComparisonLayout`** — Renders two `LensDiagramPanel` instances side-by-side (desktop) or stacked (mobile) with dividers.
+- **`OverlayModal`** — Generic backdrop + modal + close button. Used for "About Site" and "About Author" overlays.
 
 **State management** is organized via `useReducer` (wrapped in `useLensState`), with state split into 7 slices: `lens`, `display`, `rays`, `sliders`, `sharedSliders`, `panels`, `overlays`. Extracted hooks:
 - `usePreferences(state)` — persists preferences to localStorage
