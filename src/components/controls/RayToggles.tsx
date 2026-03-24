@@ -14,6 +14,8 @@ interface RayTogglesProps {
   onShowOnAxisChange?: (value: boolean) => void;
   showOffAxis: string;
   onShowOffAxisChange?: (value: string) => void;
+  showPupils: boolean;
+  onShowPupilsChange?: (value: boolean) => void;
 }
 
 export default function RayToggles({
@@ -22,6 +24,8 @@ export default function RayToggles({
   onShowOnAxisChange,
   showOffAxis,
   onShowOffAxisChange,
+  showPupils,
+  onShowPupilsChange,
 }: RayTogglesProps) {
   const offAxisActive = showOffAxis !== "off";
   const offAxisCycle = ENABLE_EDGE_PROJECTION
@@ -40,26 +44,72 @@ export default function RayToggles({
       label: "ON-AXIS",
       active: showOnAxis,
       onClick: () => onShowOnAxisChange?.(!showOnAxis),
-      dotA: t.rayWarm,
-      dotB: t.rayCool,
+      icon: (active: boolean) => (
+        <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+          <line x1="0" y1="4" x2="14" y2="4" stroke={active ? t.rayWarm : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+          <line x1="0" y1="7" x2="14" y2="7" stroke={active ? t.rayCool : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
+        </svg>
+      ),
     },
     {
       label: offAxisLabel,
       active: offAxisActive,
       onClick: offAxisCycle,
-      dotA: t.rayOffWarm,
-      dotB: t.rayOffCool,
+      icon: (active: boolean) => (
+        <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+          <line
+            x1="0"
+            y1="4"
+            x2="14"
+            y2="4"
+            stroke={active ? t.rayOffWarm : "rgba(128,128,128,0.3)"}
+            strokeWidth="1.5"
+          />
+          <line
+            x1="0"
+            y1="7"
+            x2="14"
+            y2="7"
+            stroke={active ? t.rayOffCool : "rgba(128,128,128,0.3)"}
+            strokeWidth="1.5"
+          />
+        </svg>
+      ),
+    },
+    {
+      label: "PUPILS",
+      active: showPupils,
+      onClick: () => onShowPupilsChange?.(!showPupils),
+      icon: (active: boolean) => (
+        <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+          <line
+            x1="3"
+            y1="1"
+            x2="3"
+            y2="7"
+            stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <line
+            x1="11"
+            y1="1"
+            x2="11"
+            y2="7"
+            stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      ),
     },
   ];
 
   return (
     <div style={toggleGroup(t, { width: "100%" })}>
-      {buttons.map(({ label, active, onClick, dotA, dotB }, idx) => (
-        <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
-          <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-            <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-            <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-          </svg>
+      {buttons.map(({ label, active, onClick, icon }, idx) => (
+        <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx < buttons.length - 1 })}>
+          {icon(active)}
           <span>{label}</span>
         </button>
       ))}
