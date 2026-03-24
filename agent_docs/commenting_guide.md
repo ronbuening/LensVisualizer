@@ -83,7 +83,7 @@ interface DiagramControlsProps {
   focusT: number;      // [0 = ∞, 1 = close focus]
   zoomT: number;       // [0 = wide, 1 = tele]
   stopdownT: number;   // [0 = wide open, 1 = max]
-  dispatch: Dispatch<LensAction>;
+  onFocusChange?: (value: number) => void;
   // ...
 }
 ```
