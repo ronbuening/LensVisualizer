@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { createCoordinateTransforms, computeElementShapes } from "../src/optics/diagramGeometry.js";
 import { SVG_PATH_SUBDIVISIONS } from "../src/optics/optics.js";
+import type { RuntimeLens, AsphericCoefficients } from "../src/types/optics.js";
 
 /* ═══════════════════════════════════════════════════════════════════
  * §1  createCoordinateTransforms
@@ -109,15 +110,22 @@ describe("createCoordinateTransforms", () => {
 
 describe("computeElementShapes", () => {
   /* Identity transforms for interpretable coordinates */
-  const sx = (z) => z;
-  const sy = (y) => y;
+  const sx = (z: number): number => z;
+  const sy = (y: number): number => y;
 
   /**
    * Minimal lens-like object builder.
    * computeElementShapes accesses: L.ES, L.S[].sd, L.S[].R, L.S[].nd, L.S[].d,
    * L.asphByIdx, L.maxRimSin, L.gapSagFrac, L.N
    */
-  function makeSingleElementLens({ R1 = 50, R2 = 1e15, sd = 15, nd = 1.5, asph1 = null, asph2 = null } = {}) {
+  function makeSingleElementLens({
+    R1 = 50,
+    R2 = 1e15,
+    sd = 15,
+    nd = 1.5,
+    asph1 = null as AsphericCoefficients | null,
+    asph2 = null as AsphericCoefficients | null,
+  } = {}): RuntimeLens {
     return {
       ES: [[0, 0, 1]],
       S: [
@@ -128,7 +136,7 @@ describe("computeElementShapes", () => {
       maxRimSin: 0.95,
       gapSagFrac: 0.9,
       N: 2,
-    };
+    } as unknown as RuntimeLens;
   }
 
   it("returns empty array for empty ES", () => {
@@ -166,23 +174,23 @@ describe("computeElementShapes", () => {
     const zPos = [0, 5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     // With identity sx and flat surfaces (sag ≈ 0), all front-arc x-coords ≈ z1=0
-    const coords = shapes[0].d.match(/[ML]([\d.e+-]+),([\d.e+-]+)/g);
+    const coords = shapes[0].d.match(/[ML]([\d.e+-]+),([\d.e+-]+)/g)!;
     const NN = SVG_PATH_SUBDIVISIONS;
     // First NN+1 coords are front surface at z1=0
     for (let i = 0; i <= NN; i++) {
-      const match = coords[i].match(/[ML]([\d.e+-]+)/);
+      const match = coords[i].match(/[ML]([\d.e+-]+)/)!;
       expect(parseFloat(match[1])).toBeCloseTo(0, 3);
     }
     // Last NN+1 coords are rear surface at z2=5
     for (let i = NN + 1; i < coords.length; i++) {
-      const match = coords[i].match(/[ML]([\d.e+-]+)/);
+      const match = coords[i].match(/[ML]([\d.e+-]+)/)!;
       expect(parseFloat(match[1])).toBeCloseTo(5, 3);
     }
   });
 
   it("conic height limit is applied when K > 0", () => {
     // With K=3 and R=20: hMax = 20/√4 * 0.98 = 9.8, which is less than sd=15
-    const L = makeSingleElementLens({ R1: 20, sd: 15, asph1: { K: 3 } });
+    const L = makeSingleElementLens({ R1: 20, sd: 15, asph1: { K: 3, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } });
     const zPos = [0, 5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     // The path should exist (no error)
@@ -197,7 +205,7 @@ describe("computeElementShapes", () => {
   });
 
   it("aspheric front surface produces asphPaths entry", () => {
-    const L = makeSingleElementLens({ R1: 50, asph1: { K: -1 } });
+    const L = makeSingleElementLens({ R1: 50, asph1: { K: -1, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } });
     const zPos = [0, 5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
 
@@ -211,7 +219,12 @@ describe("computeElementShapes", () => {
   });
 
   it("both surfaces aspheric produces two asphPaths entries", () => {
-    const L = makeSingleElementLens({ R1: 50, R2: -50, asph1: { K: -1 }, asph2: { K: -0.5 } });
+    const L = makeSingleElementLens({
+      R1: 50,
+      R2: -50,
+      asph1: { K: -1, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      asph2: { K: -0.5, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+    });
     const zPos = [0, 5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
 
@@ -239,7 +252,7 @@ describe("computeElementShapes", () => {
       maxRimSin: 0.95,
       gapSagFrac: 0.9,
       N: 6,
-    };
+    } as unknown as RuntimeLens;
     const zPos = [0, 3, 5, 9, 11, 14];
     const shapes = computeElementShapes(L, zPos, sx, sy);
 
@@ -268,7 +281,7 @@ describe("computeElementShapes", () => {
       maxRimSin: 0.95,
       gapSagFrac: 0.9,
       N: 4,
-    };
+    } as unknown as RuntimeLens;
     const zPos = [0, 3, 3.5, 6.5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);
@@ -294,7 +307,7 @@ describe("computeElementShapes", () => {
       maxRimSin: 0.95,
       gapSagFrac: 0.9,
       N: 4,
-    };
+    } as unknown as RuntimeLens;
     const zPos = [0, 3, 3.5, 6.5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);

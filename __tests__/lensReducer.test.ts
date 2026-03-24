@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
+import type { LensState, LensAction, RayField, PanelField, OverlayField } from "../src/types/state.js";
 import lensReducer, {
   createInitialState,
   SET_LENS_A,
@@ -26,8 +27,8 @@ import lensReducer, {
 const CATALOG_KEYS = ["nikon_58", "canon_50", "zeiss_35"];
 
 /** Helper: build a default state for testing */
-function makeState(overrides = {}) {
-  return createInitialState({}, {}, true, CATALOG_KEYS, overrides);
+function makeState() {
+  return createInitialState({}, {}, true, CATALOG_KEYS);
 }
 
 describe("createInitialState", () => {
@@ -95,7 +96,7 @@ describe("createInitialState", () => {
 });
 
 describe("lensReducer", () => {
-  let state;
+  let state: LensState;
   beforeEach(() => {
     state = makeState();
   });
@@ -177,7 +178,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid field", () => {
-      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField", value: true });
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField" as RayField, value: true });
       expect(next).toBe(state); // same reference = no change
     });
   });
@@ -242,7 +243,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid panel", () => {
-      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus", expanded: true });
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus" as PanelField, expanded: true });
       expect(next).toBe(state);
     });
   });
@@ -255,7 +256,7 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid overlay", () => {
-      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo", visible: true });
+      const next = lensReducer(state, { type: SET_OVERLAY, overlay: "showFoo" as OverlayField, visible: true });
       expect(next).toBe(state);
     });
   });
@@ -328,7 +329,7 @@ describe("lensReducer", () => {
   /* ── Immutability ── */
   describe("immutability", () => {
     it("returns same reference for unknown action", () => {
-      const next = lensReducer(state, { type: "UNKNOWN_ACTION" });
+      const next = lensReducer(state, { type: "UNKNOWN_ACTION" } as unknown as LensAction);
       expect(next).toBe(state);
     });
 

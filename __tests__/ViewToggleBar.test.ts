@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { toggleGroup, toggleBtn } from "../src/utils/styles.js";
+import type { Theme } from "../src/types/theme.js";
 
 /**
  * ViewToggleBar is a generic view-mode toggle component used for both
@@ -17,7 +18,7 @@ const mockTheme = {
   headerBorder: "#333",
   headerBgColor: "#111",
   headerBgImage: "none",
-};
+} as unknown as Theme;
 
 describe("ViewToggleBar", () => {
   it("exports a default function component", async () => {

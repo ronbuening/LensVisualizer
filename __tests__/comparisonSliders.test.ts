@@ -7,10 +7,11 @@ import {
   sharedFNumber,
   snapToCommon,
 } from "../src/utils/comparisonSliders.js";
+import type { RuntimeLens } from "../src/types/optics.js";
 
 /* ── Mock lens objects (only the fields these functions use) ── */
-const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16 };
-const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16 };
+const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16 } as unknown as RuntimeLens;
+const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16 } as unknown as RuntimeLens;
 
 describe("computeFocusPair", () => {
   it("returns 0 for both at infinity (sharedT=0)", () => {
@@ -45,7 +46,7 @@ describe("computeFocusPair", () => {
   });
 
   it("identical lenses: commonPoint=1, both track equally", () => {
-    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 };
+    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 } as unknown as RuntimeLens;
     const r = computeFocusPair(0.6, same, same);
     expect(r.commonPoint).toBeCloseTo(1.0, 5);
     expect(r.focusA).toBeCloseTo(0.6, 5);
@@ -99,7 +100,7 @@ describe("computeAperturePair", () => {
   });
 
   it("identical lenses: commonPoint=0, both track equally", () => {
-    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 };
+    const same = { closeFocusM: 0.45, FOPEN: 1.2, maxFstop: 16 } as unknown as RuntimeLens;
     const r = computeAperturePair(0.5, same, same);
     expect(r.commonPoint).toBe(0);
     expect(r.stopdownA).toBeCloseTo(r.stopdownB, 5);
@@ -158,18 +159,18 @@ describe("snapToCommon", () => {
 
 /* ── computeZoomPair ── */
 describe("computeZoomPair", () => {
-  const primeA = { isZoom: false };
-  const primeB = { isZoom: false };
+  const primeA = { isZoom: false } as unknown as RuntimeLens;
+  const primeB = { isZoom: false } as unknown as RuntimeLens;
   const zoomA = {
     isZoom: true,
     zoomPositions: [24, 50, 70],
     zoomEFLs: [24, 50, 70],
-  };
+  } as unknown as RuntimeLens;
   const zoomB = {
     isZoom: true,
     zoomPositions: [70, 135, 200],
     zoomEFLs: [70, 135, 200],
-  };
+  } as unknown as RuntimeLens;
 
   it("returns showZoom=false for two primes", () => {
     const r = computeZoomPair(0, primeA, primeB);
@@ -224,7 +225,7 @@ describe("computeZoomPair", () => {
   });
 
   it("handles identical zoom ranges (both lenses same range)", () => {
-    const same = { isZoom: true, zoomPositions: [24, 70], zoomEFLs: [24, 70] };
+    const same = { isZoom: true, zoomPositions: [24, 70], zoomEFLs: [24, 70] } as unknown as RuntimeLens;
     const r = computeZoomPair(0.5, same, same);
     expect(r.showZoom).toBe(true);
     expect(r.zoomA).toBeCloseTo(r.zoomB, 5);

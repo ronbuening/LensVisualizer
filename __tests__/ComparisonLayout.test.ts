@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/utils/comparisonSliders.js";
+import type { RuntimeLens } from "../src/types/optics.js";
 
 /**
  * ComparisonLayout renders two LensDiagramPanel instances in a side-by-side
@@ -8,8 +9,8 @@ import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/u
  */
 
 /* Mock lens objects matching the fields these functions require */
-const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16, isZoom: false, zoomPositions: null };
-const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16, isZoom: false, zoomPositions: null };
+const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16, isZoom: false, zoomPositions: null } as unknown as RuntimeLens;
+const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16, isZoom: false, zoomPositions: null } as unknown as RuntimeLens;
 
 describe("ComparisonLayout", () => {
   it("exports a default function component", async () => {

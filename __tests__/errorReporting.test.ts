@@ -9,7 +9,7 @@ describe("REPO_URL", () => {
 
 describe("buildIssueURL", () => {
   // Stub navigator.userAgent for deterministic output
-  let origNavigator;
+  let origNavigator: unknown;
   beforeEach(() => {
     origNavigator = globalThis.navigator;
     Object.defineProperty(globalThis, "navigator", {
@@ -53,7 +53,7 @@ describe("buildIssueURL", () => {
     const titleParam = new URL(url).searchParams.get("title");
     // Title = "[Bug] Unknown: " + truncated msg. The msg part should end with "..."
     expect(titleParam).toContain("...");
-    expect(titleParam.length).toBeLessThanOrEqual(200); // reasonable cap
+    expect(titleParam!.length).toBeLessThanOrEqual(200); // reasonable cap
   });
 
   it("includes stack trace in body when available", () => {
@@ -90,17 +90,17 @@ describe("buildIssueURL", () => {
     const url = buildIssueURL(err);
     const body = new URL(url).searchParams.get("body");
     expect(body).toContain("truncated");
-    expect(body.length).toBeLessThanOrEqual(6100); // 6000 + truncation message
+    expect(body!.length).toBeLessThanOrEqual(6100); // 6000 + truncation message
   });
 
   it("handles null/undefined error gracefully", () => {
-    const url = buildIssueURL(null);
+    const url = buildIssueURL(null as unknown as Error);
     const titleParam = new URL(url).searchParams.get("title");
     expect(titleParam).toContain("Unknown error");
   });
 
   it("handles error with no stack", () => {
-    const err = { message: "no stack" };
+    const err = { message: "no stack" } as unknown as Error;
     const url = buildIssueURL(err);
     const body = new URL(url).searchParams.get("body");
     expect(body).not.toContain("Stack trace");

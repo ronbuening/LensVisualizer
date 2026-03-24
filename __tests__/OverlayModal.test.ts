@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, overlayModal, closeBtn } from "../src/utils/styles.js";
+import type { Theme } from "../src/types/theme.js";
 
 /**
  * OverlayModal is a React component, so we test its structural contract
@@ -13,7 +14,7 @@ const mockTheme = {
   descBg: "#1a1a1a",
   descBorder: "#444",
   muted: "#888",
-};
+} as unknown as Theme;
 
 describe("OverlayModal", () => {
   it("exports a default function component", async () => {

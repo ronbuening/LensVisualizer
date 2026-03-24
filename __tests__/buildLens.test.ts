@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import buildLens, { paraxialTrace } from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import type { LensData, SurfaceData } from "../src/types/optics.js";
 
 /* ── Load all production lens data files ── */
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
@@ -10,23 +11,23 @@ import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 
-const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw };
-const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw };
-const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw };
-const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw };
-const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw };
+const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;
+const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw } as LensData;
+const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
+const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
 
 describe("paraxialTrace", () => {
   const simpleSurfaces = [
     { R: 100, nd: 1.5, d: 5 },
     { R: -100, nd: 1.0, d: 50 },
-  ];
+  ] as unknown as SurfaceData[];
 
   it("returns y=1, u=0 for a trace through flat surfaces", () => {
     const flat = [
       { R: 1e15, nd: 1.5, d: 5 },
       { R: 1e15, nd: 1.0, d: 50 },
-    ];
+    ] as unknown as SurfaceData[];
     const { y, u } = paraxialTrace(flat, 1, 0, {});
     // Flat surfaces don't refract → u stays 0, y stays 1
     expect(u).toBe(0);
@@ -44,7 +45,7 @@ describe("paraxialTrace", () => {
       { R: 100, nd: 1.5, d: 5 },
       { R: -200, nd: 1.0, d: 10 },
       { R: 50, nd: 1.5, d: 20 },
-    ];
+    ] as unknown as SurfaceData[];
     // stopAt: 2 traces surfaces 0 and 1; surface 1's d=10 transfer
     // is the "last" transfer
     const full = paraxialTrace(threeSurfaces, 1, 0, { stopAt: 2 });
@@ -57,7 +58,7 @@ describe("paraxialTrace", () => {
   it("recordHeights returns per-surface heights", () => {
     const { heights } = paraxialTrace(simpleSurfaces, 1, 0, { recordHeights: true });
     expect(heights).toHaveLength(2);
-    expect(heights[0]).toBe(1); // initial y
+    expect(heights![0]).toBe(1); // initial y
   });
 });
 
@@ -232,7 +233,7 @@ describe("buildLens — RuntimeLens property shape", () => {
 });
 
 describe("buildLens — error handling", () => {
-  function makeMinimalData(overrides = {}) {
+  function makeMinimalData(overrides: Record<string, unknown> = {}): Record<string, unknown> {
     return {
       ...LENS_DEFAULTS,
       key: "test",
@@ -278,7 +279,7 @@ describe("buildLens — error handling", () => {
         { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
       ],
     });
-    expect(() => buildLens(data)).toThrow(/Duplicate surface label/);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/Duplicate surface label/);
   });
 
   it("throws when STO is missing", () => {
@@ -288,32 +289,32 @@ describe("buildLens — error handling", () => {
         { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
       ],
     });
-    expect(() => buildLens(data)).toThrow(/STO/);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/STO/);
   });
 
   it("throws on invalid asph reference", () => {
     const data = makeMinimalData({
       asph: { NOPE: { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
     });
-    expect(() => buildLens(data)).toThrow(/asph key "NOPE"/);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/asph key "NOPE"/);
   });
 
   it("throws on invalid var reference", () => {
     const data = makeMinimalData({
       var: { MISSING: [1, 2] },
     });
-    expect(() => buildLens(data)).toThrow(/var key "MISSING"/);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/var key "MISSING"/);
   });
 
   it("throws when required field is missing", () => {
     const data = makeMinimalData();
     delete data.key;
-    expect(() => buildLens(data)).toThrow(/key/);
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/key/);
   });
 
   it("builds successfully with valid minimal data", () => {
     const data = makeMinimalData();
-    const L = buildLens(data);
+    const L = buildLens(data as unknown as LensData);
     expect(L.EFL).toBeGreaterThan(0);
     expect(L.N).toBe(3);
   });
@@ -338,7 +339,7 @@ describe("buildLens — vdByIdx", () => {
       expect(eid).toBeTruthy();
       const elem = L.elements.find((e) => e.id === eid);
       expect(elem).toBeDefined();
-      expect(vd).toBe(elem.vd);
+      expect(vd).toBe(elem!.vd);
     }
   });
 
@@ -400,7 +401,7 @@ describe("scaleRatio for normalized comparison", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
-  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw };
+  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData;
   const L = buildLens(NikkorZ70200);
 
   it("builds successfully and is frozen", () => {
@@ -415,19 +416,19 @@ describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
   it("has zoomEFLs of correct length with plausible values", () => {
     expect(L.zoomEFLs).toHaveLength(3);
     /* Wide end EFL should be near 71.5 mm */
-    expect(L.zoomEFLs[0]).toBeGreaterThan(50);
-    expect(L.zoomEFLs[0]).toBeLessThan(100);
+    expect(L.zoomEFLs![0]).toBeGreaterThan(50);
+    expect(L.zoomEFLs![0]).toBeLessThan(100);
     /* Tele end EFL should be near 196 mm */
-    expect(L.zoomEFLs[2]).toBeGreaterThan(150);
-    expect(L.zoomEFLs[2]).toBeLessThan(250);
+    expect(L.zoomEFLs![2]).toBeGreaterThan(150);
+    expect(L.zoomEFLs![2]).toBeLessThan(250);
     /* EFLs should increase from wide to tele */
-    expect(L.zoomEFLs[1]).toBeGreaterThan(L.zoomEFLs[0]);
-    expect(L.zoomEFLs[2]).toBeGreaterThan(L.zoomEFLs[1]);
+    expect(L.zoomEFLs![1]).toBeGreaterThan(L.zoomEFLs![0]);
+    expect(L.zoomEFLs![2]).toBeGreaterThan(L.zoomEFLs![1]);
   });
 
   it("has zoomEPs array with positive values", () => {
     expect(L.zoomEPs).toHaveLength(3);
-    for (const ep of L.zoomEPs) {
+    for (const ep of L.zoomEPs!) {
       expect(ep).toBeGreaterThan(0);
       expect(isFinite(ep)).toBe(true);
     }
@@ -436,8 +437,8 @@ describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
   it("has zoomHalfFields with wider field at wide end", () => {
     expect(L.zoomHalfFields).toHaveLength(3);
     /* Wide end should have larger half-field than tele */
-    expect(L.zoomHalfFields[0]).toBeGreaterThan(L.zoomHalfFields[2]);
-    for (const hf of L.zoomHalfFields) {
+    expect(L.zoomHalfFields![0]).toBeGreaterThan(L.zoomHalfFields![2]);
+    for (const hf of L.zoomHalfFields!) {
       expect(hf).toBeGreaterThan(0);
       expect(hf).toBeLessThan(90);
     }
@@ -446,8 +447,8 @@ describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
   it("has zoomYRatios and zoomBs arrays", () => {
     expect(L.zoomYRatios).toHaveLength(3);
     expect(L.zoomBs).toHaveLength(3);
-    for (const yr of L.zoomYRatios) expect(isFinite(yr)).toBe(true);
-    for (const b of L.zoomBs) expect(isFinite(b)).toBe(true);
+    for (const yr of L.zoomYRatios!) expect(isFinite(yr)).toBe(true);
+    for (const b of L.zoomBs!) expect(isFinite(b)).toBe(true);
   });
 
   it("exports offAxisFieldFrac", () => {

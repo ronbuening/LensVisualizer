@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "types": ["vite/client"]
   },
-  "include": ["src"],
+  "include": ["src", "__tests__"],
   "exclude": ["node_modules", "dist", "src/lens-data/*.data.js"]
 }
