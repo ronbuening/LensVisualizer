@@ -5,7 +5,7 @@
 
 import { eflAtZoom, formatDist } from "../optics/optics.js";
 import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../utils/featureFlags.js";
-import { SLIDER_LABEL, SLIDER_VALUE_BASE, collapseBtn, sliderInput } from "../utils/styles.js";
+import SliderControl from "./SliderControl.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 
@@ -62,79 +62,42 @@ export default function DiagramControls({
   return (
     <>
       {showSliders && L.isZoom && (
-        <div
-          style={
-            useSideLayout
-              ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-              : {
-                  flex: "1 1 200px",
-                  padding: compact ? "10px 14px" : "14px 22px",
-                  borderRight: `1px solid ${t.panelDivider}`,
-                }
-          }
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 55 }}>ZOOM</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.zoomPositions![0]} mm</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step={L.zoomStep}
-              value={zoomT}
-              onChange={(e) => onZoomChange?.(parseFloat(e.target.value))}
-              onPointerUp={onSliderPointerUp}
-              style={sliderInput(t)}
-            />
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>
-              {L.zoomPositions![L.zoomPositions!.length - 1]} mm
-            </span>
-          </div>
-        </div>
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label="ZOOM"
+          labelMinWidth={55}
+          displayValue={`${eflAtZoom(zoomT, L).toFixed(0)} mm`}
+          value={zoomT}
+          step={L.zoomStep}
+          onChange={onZoomChange}
+          onPointerUp={onSliderPointerUp}
+          minLabel={`${L.zoomPositions![0]} mm`}
+          maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
+          flexBasis="200px"
+        />
       )}
 
       {showSliders && (
-        <div
-          style={
-            useSideLayout
-              ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-              : {
-                  flex: "1 1 260px",
-                  padding: compact ? "10px 14px" : "14px 22px",
-                  borderRight: `1px solid ${t.panelDivider}`,
-                }
-          }
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label="FOCUS"
+          labelMinWidth={85}
+          displayValue={formatDist(focusT, L)}
+          value={focusT}
+          step={L.focusStep}
+          onChange={onFocusChange}
+          onPointerUp={onSliderPointerUp}
+          minLabel={"\u221e"}
+          maxLabel={`${L.closeFocusM} m`}
+          flexBasis="260px"
+          collapsible={ENABLE_COLLAPSIBLE_FOCUS}
+          expanded={focusExpanded}
+          onExpandedChange={onFocusExpandedChange}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>FOCUS</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{formatDist(focusT, L)}</span>
-            {ENABLE_COLLAPSIBLE_FOCUS && (
-              <button
-                onClick={() => onFocusExpandedChange?.(!focusExpanded)}
-                style={{ ...collapseBtn(t), marginLeft: "auto" }}
-              >
-                <span>{focusExpanded ? "LESS" : "MORE"}</span>
-                <span style={{ fontSize: 11, lineHeight: 1 }}>{focusExpanded ? "▴" : "▾"}</span>
-              </button>
-            )}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{"\u221e"}</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step={L.focusStep}
-              value={focusT}
-              onChange={(e) => onFocusChange?.(parseFloat(e.target.value))}
-              onPointerUp={onSliderPointerUp}
-              style={sliderInput(t)}
-            />
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.closeFocusM} m</span>
-          </div>
           {(!ENABLE_COLLAPSIBLE_FOCUS || focusExpanded) && (
             <>
               <div
@@ -167,50 +130,29 @@ export default function DiagramControls({
               </div>
             </>
           )}
-        </div>
+        </SliderControl>
       )}
 
       {showSliders && (
-        <div
-          style={
-            useSideLayout
-              ? { padding: compact ? "10px 14px" : "14px 22px", borderBottom: `1px solid ${t.panelDivider}` }
-              : {
-                  flex: "1 1 220px",
-                  padding: compact ? "10px 14px" : "14px 22px",
-                  borderRight: `1px solid ${t.panelDivider}`,
-                }
-          }
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label="APERTURE"
+          labelMinWidth={85}
+          displayValue={`f/${fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}`}
+          displayValueStyle={{ minWidth: "3.5em" }}
+          value={stopdownT}
+          step={L.apertureStep}
+          onChange={onStopdownChange}
+          onPointerUp={onSliderPointerUp}
+          minLabel={`f/${L.FOPEN.toFixed(1)}`}
+          maxLabel={`f/${L.maxFstop}`}
+          flexBasis="220px"
+          collapsible={ENABLE_COLLAPSIBLE_APERTURE}
+          expanded={apertureExpanded}
+          onExpandedChange={onApertureExpandedChange}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-            <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: 85 }}>APERTURE</span>
-            <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, minWidth: "3.5em" }}>
-              f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}
-            </span>
-            {ENABLE_COLLAPSIBLE_APERTURE && (
-              <button
-                onClick={() => onApertureExpandedChange?.(!apertureExpanded)}
-                style={{ ...collapseBtn(t), marginLeft: "auto" }}
-              >
-                <span>{apertureExpanded ? "LESS" : "MORE"}</span>
-                <span style={{ fontSize: 11, lineHeight: 1 }}>{apertureExpanded ? "▴" : "▾"}</span>
-              </button>
-            )}
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.FOPEN.toFixed(1)}</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step={L.apertureStep}
-              value={stopdownT}
-              onChange={(e) => onStopdownChange?.(parseFloat(e.target.value))}
-              onPointerUp={onSliderPointerUp}
-              style={sliderInput(t)}
-            />
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>f/{L.maxFstop}</span>
-          </div>
           {(!ENABLE_COLLAPSIBLE_APERTURE || apertureExpanded) && (
             <>
               <div
@@ -258,7 +200,7 @@ export default function DiagramControls({
               </div>
             </>
           )}
-        </div>
+        </SliderControl>
       )}
     </>
   );

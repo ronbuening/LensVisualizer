@@ -101,16 +101,29 @@ LensVisualizer/
 │   │   ├── ComparisonLayout.tsx        # Side-by-side / stacked comparison panels
 │   │   ├── OverlayModal.tsx            # Generic backdrop + modal overlay
 │   │   ├── LensDiagramPanel.tsx        # Diagram composition layer
+│   │   ├── PanelErrorBoundary.tsx      # Panel-level error boundary
 │   │   ├── DiagramHeader.tsx           # Title, specs, controls header
+│   │   ├── RayToggles.tsx              # On-axis/off-axis toggle buttons
+│   │   ├── ChromaticControls.tsx       # COLOR toggle + R/G/B channels
 │   │   ├── DiagramSVG.tsx              # Full SVG rendering
+│   │   ├── RayPolylines.tsx            # Consolidated ray segment rendering
+│   │   ├── ApertureStop.tsx            # Aperture stop blades + STO label
+│   │   ├── ElementAnnotations.tsx      # Element numbers, Abbe badges, labels
+│   │   ├── LCAInsetWidget.tsx          # Magnified LCA inset
 │   │   ├── DiagramControls.tsx         # Zoom, focus, aperture sliders
+│   │   ├── SliderControl.tsx           # Reusable slider component
 │   │   ├── ElementInspector.tsx        # Selected element property display
 │   │   ├── DiagramLegend.tsx           # Legend with aberration readouts
 │   │   ├── DescriptionPanel.tsx        # Themed markdown renderer
 │   │   ├── SharedSlidersBar.tsx        # Comparison mode shared controls
 │   │   ├── ErrorBoundary.tsx           # Error boundary with retry UI
 │   │   ├── useLensComputation.ts       # Hook: lens building, layout, shapes
-│   │   └── useRayTracing.ts            # Hook: on-axis, off-axis, chromatic rays
+│   │   ├── useRayTracing.ts            # Hook: ray tracing orchestrator
+│   │   ├── useOnAxisRays.ts            # Hook: on-axis ray fan
+│   │   ├── useOffAxisRays.ts           # Hook: off-axis field rays
+│   │   ├── useChromaticRays.ts         # Hook: chromatic tracing + spread
+│   │   ├── useFlashOverlay.ts          # Hook: flash animation state machine
+│   │   └── useSideLayoutDetection.ts   # Hook: overflow-based side layout
 │   ├── optics/
 │   │   ├── optics.ts                   # Ray tracing, sag curves, layout math
 │   │   ├── buildLens.ts                # Lens construction, EFL/pupil/field
