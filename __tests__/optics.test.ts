@@ -177,18 +177,19 @@ describe("sagSlope", () => {
 
 describe("traceRay — exact Snell", () => {
   // Single positive element: two spherical surfaces with glass between
-  const mkSingleElement = (): RuntimeLens => ({
-    S: [
-      { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
-      { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-  } as unknown as RuntimeLens);
+  const mkSingleElement = (): RuntimeLens =>
+    ({
+      S: [
+        { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
+        { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 5,
+      asphByIdx: {},
+      varByIdx: {},
+    }) as unknown as RuntimeLens;
 
   it("on-axis ray (h=0, u=0) passes through unchanged", () => {
     const L = mkSingleElement();
@@ -292,19 +293,20 @@ describe("wavelengthNd", () => {
 });
 
 describe("traceRayChromatic", () => {
-  const mkChromElement = (): RuntimeLens => ({
-    S: [
-      { R: 50, nd: 1.5168, sd: 15, d: 5 },
-      { R: -50, nd: 1.0, sd: 15, d: 80 },
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-    vdByIdx: { 0: 64.17 },
-  } as unknown as RuntimeLens);
+  const mkChromElement = (): RuntimeLens =>
+    ({
+      S: [
+        { R: 50, nd: 1.5168, sd: 15, d: 5 },
+        { R: -50, nd: 1.0, sd: 15, d: 80 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 5,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 64.17 },
+    }) as unknown as RuntimeLens;
 
   it("green channel matches traceRay exactly", () => {
     const L = mkChromElement();

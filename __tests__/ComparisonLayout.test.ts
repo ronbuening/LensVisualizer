@@ -9,8 +9,20 @@ import type { RuntimeLens } from "../src/types/optics.js";
  */
 
 /* Mock lens objects matching the fields these functions require */
-const lensA = { closeFocusM: 0.45, FOPEN: 1.0, maxFstop: 16, isZoom: false, zoomPositions: null } as unknown as RuntimeLens;
-const lensB = { closeFocusM: 0.9, FOPEN: 1.93, maxFstop: 16, isZoom: false, zoomPositions: null } as unknown as RuntimeLens;
+const lensA = {
+  closeFocusM: 0.45,
+  FOPEN: 1.0,
+  maxFstop: 16,
+  isZoom: false,
+  zoomPositions: null,
+} as unknown as RuntimeLens;
+const lensB = {
+  closeFocusM: 0.9,
+  FOPEN: 1.93,
+  maxFstop: 16,
+  isZoom: false,
+  zoomPositions: null,
+} as unknown as RuntimeLens;
 
 describe("ComparisonLayout", () => {
   it("exports a default function component", async () => {
