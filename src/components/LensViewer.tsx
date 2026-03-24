@@ -42,6 +42,7 @@ import {
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../utils/comparisonSliders.js";
 import useStickySliders from "../utils/useStickySliders.js";
 import { ErrorDisplay } from "./ErrorBoundary.js";
+import OverlayModal from "./OverlayModal.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
@@ -61,17 +62,7 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../utils/lensReducer.js";
-import {
-  OVERLAY_BACKDROP,
-  toggleGroup,
-  toggleBtn,
-  chromChannelBtn,
-  selector,
-  headerStrip,
-  topBarBtn,
-  overlayModal,
-  closeBtn,
-} from "../utils/styles.js";
+import { toggleGroup, toggleBtn, chromChannelBtn, selector, headerStrip, topBarBtn } from "../utils/styles.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 interface ComparisonLensesOk {
@@ -963,38 +954,22 @@ export default function LensVisualization() {
 
           {/* ── About Site overlay ── */}
           {showAboutSite && (
-            <div
-              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-              style={OVERLAY_BACKDROP}
+            <OverlayModal
+              onClose={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
+              theme={t}
             >
-              <div onClick={(e) => e.stopPropagation()} style={overlayModal(t)}>
-                <button
-                  onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-                  style={closeBtn(t)}
-                >
-                  ×
-                </button>
-                <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
-              </div>
-            </div>
+              <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
+            </OverlayModal>
           )}
 
           {/* ── About Me overlay ── */}
           {showAbout && (
-            <div
-              onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-              style={OVERLAY_BACKDROP}
+            <OverlayModal
+              onClose={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
+              theme={t}
             >
-              <div onClick={(e) => e.stopPropagation()} style={overlayModal(t)}>
-                <button
-                  onClick={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-                  style={closeBtn(t)}
-                >
-                  ×
-                </button>
-                <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
-              </div>
-            </div>
+              <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
+            </OverlayModal>
           )}
         </div>
       </LensDispatchContext.Provider>
