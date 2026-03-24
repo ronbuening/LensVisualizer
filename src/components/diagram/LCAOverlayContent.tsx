@@ -54,9 +54,9 @@ export default function LCAOverlayContent({ chromSpread, effectiveSC, IMG_MM, t 
         }}
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
-        different distances along the optical axis. The colored bars show where red (C-line, 656 nm), green (d-line,
-        588 nm), and blue (F-line, 486 nm) marginal rays cross the axis relative to the reference focus. Wider
-        separation indicates greater chromatic defocus.
+        different distances along the optical axis. The colored bars show where red (C-line, 656 nm), green (d-line, 588
+        nm), and blue (F-line, 486 nm) marginal rays cross the axis relative to the reference focus. Wider separation
+        indicates greater chromatic defocus.
       </p>
     </div>
   );
