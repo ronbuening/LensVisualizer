@@ -31,16 +31,7 @@ export const ENTER_COMPARE = "ENTER_COMPARE";
 export const EXIT_COMPARE = "EXIT_COMPARE";
 
 /* ── Valid fields for generic actions (runtime guards for JS consumers) ── */
-const RAY_FIELDS = new Set([
-  "showOnAxis",
-  "showOffAxis",
-  "rayTracksF",
-  "showChromatic",
-  "chromR",
-  "chromG",
-  "chromB",
-  "showPupils",
-]);
+const RAY_FIELDS = new Set(["showOnAxis", "showOffAxis", "rayTracksF", "showChromatic", "chromR", "chromG", "chromB"]);
 const PANEL_FIELDS = new Set([
   "focusExpanded",
   "apertureExpanded",
@@ -87,7 +78,6 @@ export function createInitialState(
       chromR: prefs.chromR ?? true,
       chromG: prefs.chromG ?? true,
       chromB: prefs.chromB ?? true,
-      showPupils: prefs.showPupils ?? false,
     },
     sliders: {
       focusT: urlState.focus ?? 0,

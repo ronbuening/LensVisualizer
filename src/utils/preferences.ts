@@ -38,7 +38,6 @@ export function loadPrefs(catalogKeys: string[]): Partial<Preferences> {
     if (typeof p.chromR === "boolean") out.chromR = p.chromR;
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
-    if (typeof p.showPupils === "boolean") out.showPupils = p.showPupils;
     /* v1 compat: lensKey → lensKeyA */
     const key: unknown = p.lensKeyA || p.lensKey;
     if (typeof key === "string" && catalogKeys.includes(key)) out.lensKeyA = key;

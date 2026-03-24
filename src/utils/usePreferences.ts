@@ -31,7 +31,6 @@ export default function usePreferences(state: LensState): void {
       chromR: rays.chromR,
       chromG: rays.chromG,
       chromB: rays.chromB,
-      showPupils: rays.showPupils,
       focusExpanded: panels.focusExpanded,
       apertureExpanded: panels.apertureExpanded,
       headerControlsExpanded: panels.headerControlsExpanded,
