@@ -177,6 +177,27 @@ export default function buildLens(data: LensData): RuntimeLens {
   /* B = chief ray height at stop (for vignetting computation below) */
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
 
+  /* Entrance pupil z-position (absolute from z=0) = B / yRatio, derived from
+   * the two-ray decomposition: a chief ray through the stop center (y_stop=0)
+   * satisfies y_in = -(B/yRatio)·u_in, which crosses the axis at z = B/yRatio.
+   * epZRelStop is the offset from the stop's baseline z-position. */
+  let zStopBaseline = 0;
+  for (let i = 0; i < stopIdx; i++) zStopBaseline += S[i].d;
+  const epZRelStop = Math.abs(epTrace.y) > 1e-9 ? B / epTrace.y - zStopBaseline : 0;
+
+  /* Exit pupil: construct the chief ray that actually passes through the stop
+   * center (y=0 at stop) by combining the two full-system basis rays.
+   * The basis chief ray (y=0, u=1) hits the stop at y=B ≠ 0, so we use the
+   * two-ray decomposition: the stop-center chief ray at z=0 is (y=−B, u=yRatio).
+   * At the last surface this gives y_last = yRatio·chiefFull.y − eflTrace.y·B
+   * and u_last = yRatio·chiefFull.u − eflTrace.u·B.  Back-projecting finds XP.
+   * xpSD scales the unit marginal ray height to physical mm via EP.epSD. */
+  const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
+  const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
+  const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
+  const xpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : 0;
+  const xpSD = Math.abs(eflTrace.y + eflTrace.u * xpZRelLastSurf) * EP.epSD;
+
   const stopPhysSD = S[stopIdx].sd;
   const FOPEN = EFL / (2 * EP.epSD); /* wide-open f-number */
   if (!isFinite(FOPEN))
@@ -286,6 +307,9 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomHalfFields: number[] | null = null;
   let zoomYRatios: number[] | null = null,
     zoomBs: number[] | null = null;
+  let zoomEpZRelStops: number[] | null = null,
+    zoomXpZRelLastSurfs: number[] | null = null,
+    zoomXpSDs: number[] | null = null;
   if (isZoom) {
     const nz = data.zoomPositions!.length;
     zoomEFLs = [];
@@ -293,6 +317,9 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomHalfFields = [];
     zoomYRatios = [];
     zoomBs = [];
+    zoomEpZRelStops = [];
+    zoomXpZRelLastSurfs = [];
+    zoomXpSDs = [];
     for (let zi = 0; zi < nz; zi++) {
       const tmpS = S.map((s, i) => {
         const v = varByIdx[i];
@@ -300,9 +327,9 @@ export default function buildLens(data: LensData): RuntimeLens {
         return { ...s, d: (v as [number, number][])[zi][0] };
       });
 
-      /* EFL */
-      const { u: ue } = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
-      zoomEFLs.push(-1.0 / ue);
+      /* EFL — capture y and u at last surface for exit pupil computation */
+      const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
+      zoomEFLs.push(-1.0 / zMargLast.u);
 
       /* Entrance pupil and yRatio */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
@@ -311,7 +338,20 @@ export default function buildLens(data: LensData): RuntimeLens {
       zoomYRatios.push(epT.y);
 
       /* Chief ray height at stop */
-      zoomBs.push(paraxialTrace(tmpS, 0, 1, { stopAt: stopIdx }).y);
+      const zBValue = paraxialTrace(tmpS, 0, 1, { stopAt: stopIdx }).y;
+      zoomBs.push(zBValue);
+
+      /* Pupil positions at this zoom position (same derivation as baseline) */
+      let zStopBaselineZ = 0;
+      for (let i = 0; i < stopIdx; i++) zStopBaselineZ += tmpS[i].d;
+      const zEpRelStop = Math.abs(epT.y) > 1e-9 ? zBValue / epT.y - zStopBaselineZ : 0;
+      zoomEpZRelStops.push(zEpRelStop);
+      const zChiefFull = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true });
+      const zXpNumer = -(epT.y * zChiefFull.y - zMargLast.y * zBValue);
+      const zXpDenom = epT.y * zChiefFull.u - zMargLast.u * zBValue;
+      const zXpRelLast = Math.abs(zXpDenom) > 1e-9 ? zXpNumer / zXpDenom : 0;
+      zoomXpZRelLastSurfs.push(zXpRelLast);
+      zoomXpSDs.push(Math.abs(zMargLast.y + zMargLast.u * zXpRelLast) * epSD);
 
       /* Half-field (vignetting-limited) */
       const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
@@ -390,6 +430,12 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomHalfFields,
     zoomYRatios,
     zoomBs,
+    epZRelStop,
+    xpZRelLastSurf,
+    xpSD,
+    zoomEpZRelStops,
+    zoomXpZRelLastSurfs,
+    zoomXpSDs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,
