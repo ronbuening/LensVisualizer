@@ -17,12 +17,15 @@
  *   • Runtime-conditional layout (compact padding, side-layout borders)
  */
 
+import type { CSSProperties } from "react";
+import type { Theme } from "../types/theme.js";
+
 /* =====================================================================
  * §1  STATIC CONSTANTS — no theme parameter, frozen for safety
  * ===================================================================== */
 
 /** Full-viewport overlay backdrop with centered content. */
-export const OVERLAY_BACKDROP = Object.freeze({
+export const OVERLAY_BACKDROP: Readonly<CSSProperties> = Object.freeze({
   position: "fixed",
   inset: 0,
   zIndex: 9999,
@@ -34,7 +37,7 @@ export const OVERLAY_BACKDROP = Object.freeze({
 });
 
 /** Base modal container (border-radius, sizing, shadow). */
-export const OVERLAY_MODAL_BASE = Object.freeze({
+export const OVERLAY_MODAL_BASE: Readonly<CSSProperties> = Object.freeze({
   borderRadius: 10,
   maxWidth: 480,
   width: "90%",
@@ -45,14 +48,14 @@ export const OVERLAY_MODAL_BASE = Object.freeze({
 });
 
 /** Slider label typography (e.g., "FOCUS", "APERTURE", "ZOOM"). */
-export const SLIDER_LABEL = Object.freeze({
+export const SLIDER_LABEL: Readonly<CSSProperties> = Object.freeze({
   fontSize: 9.5,
   letterSpacing: "0.1em",
   transition: "color 0.3s",
 });
 
 /** Bold numeric readout next to sliders (e.g., "50 mm", "f/2.8"). */
-export const SLIDER_VALUE_BASE = Object.freeze({
+export const SLIDER_VALUE_BASE: Readonly<CSSProperties> = Object.freeze({
   fontSize: 14,
   fontWeight: 700,
   fontVariantNumeric: "tabular-nums",
@@ -65,11 +68,8 @@ export const SLIDER_VALUE_BASE = Object.freeze({
 
 /**
  * Toggle button group container (rounded pill wrapping multiple buttons).
- * @param {Object} t     — theme object
- * @param {Object} [opts]
- * @param {number|string} [opts.width] — fixed width (e.g., 220, "100%")
  */
-export function toggleGroup(t, opts) {
+export function toggleGroup(t: Theme, opts?: { width?: number | string }): CSSProperties {
   return {
     display: "flex",
     gap: 0,
@@ -83,15 +83,12 @@ export function toggleGroup(t, opts) {
 
 /**
  * Individual toggle button within a toggle group.
- * @param {Object}  t      — theme object
- * @param {boolean} active — whether this button is currently selected
- * @param {Object}  [opts]
- * @param {boolean} [opts.hasRightBorder=true] — show right border separator
- * @param {number}  [opts.flex=1]
- * @param {string}  [opts.padding="5px 8px"]
- * @param {number}  [opts.gap=5]
  */
-export function toggleBtn(t, active, opts) {
+export function toggleBtn(
+  t: Theme,
+  active: boolean,
+  opts?: { hasRightBorder?: boolean; flex?: number; padding?: string; gap?: number },
+): CSSProperties {
   const { hasRightBorder = true, flex = 1, padding = "5px 8px", gap = 5 } = opts || {};
   return {
     flex,
@@ -116,11 +113,8 @@ export function toggleBtn(t, active, opts) {
 
 /**
  * Chromatic channel toggle button (R / G / B) — smaller variant of toggleBtn.
- * @param {Object}  t               — theme object
- * @param {boolean} active          — channel is on
- * @param {boolean} hasRightBorder  — show right border separator
  */
-export function chromChannelBtn(t, active, hasRightBorder) {
+export function chromChannelBtn(t: Theme, active: boolean, hasRightBorder: boolean): CSSProperties {
   return {
     flex: 0.6,
     background: active ? t.toggleActiveBg : t.toggleBg,
@@ -143,9 +137,8 @@ export function chromChannelBtn(t, active, hasRightBorder) {
 
 /**
  * Collapse/expand pill button (LESS/MORE, LEGEND, CONTROLS, etc.).
- * @param {Object} t — theme object
  */
-export function collapseBtn(t) {
+export function collapseBtn(t: Theme): CSSProperties {
   return {
     borderRadius: 10,
     cursor: "pointer",
@@ -165,12 +158,9 @@ export function collapseBtn(t) {
 
 /**
  * Slider `<input type="range">` element style.
- * @param {Object} t      — theme object
- * @param {Object} [opts]
- * @param {"flex"|"full"} [opts.sizing="flex"] — "flex" → flex:1, "full" → width:"100%"
  */
-export function sliderInput(t, opts) {
-  const sizing = opts?.sizing === "full" ? { width: "100%" } : { flex: 1 };
+export function sliderInput(t: Theme, opts?: { sizing?: "flex" | "full" }): CSSProperties {
+  const sizing: CSSProperties = opts?.sizing === "full" ? { width: "100%" } : { flex: 1 };
   return {
     ...sizing,
     height: 4,
@@ -185,10 +175,8 @@ export function sliderInput(t, opts) {
 
 /**
  * Lens selector `<select>` dropdown.
- * @param {Object}  t    — theme object
- * @param {boolean} wide — desktop (true) vs mobile (false) sizing
  */
-export function selector(t, wide) {
+export function selector(t: Theme, wide: boolean): CSSProperties {
   return {
     backgroundColor: t.selectorBg,
     border: `1.5px solid ${t.sliderAccent}40`,
@@ -212,11 +200,8 @@ export function selector(t, wide) {
 /**
  * Header/control strip background bar (shared by header, comparison bar,
  * mobile strip, view toggle rows).
- * @param {Object} t      — theme object
- * @param {Object} [opts]
- * @param {string} [opts.padding] — custom padding (e.g., "8px 16px")
  */
-export function headerStrip(t, opts) {
+export function headerStrip(t: Theme, opts?: { padding?: string }): CSSProperties {
   return {
     borderBottom: `1px solid ${t.headerBorder}`,
     backgroundColor: t.headerBgColor,
@@ -228,10 +213,8 @@ export function headerStrip(t, opts) {
 
 /**
  * Top-bar action button (Site, Author, Compare-inactive).
- * @param {Object}  t    — theme object
- * @param {boolean} wide — desktop (true) vs mobile (false)
  */
-export function topBarBtn(t, wide) {
+export function topBarBtn(t: Theme, wide: boolean): CSSProperties {
   return {
     backgroundColor: t.selectorBg,
     border: `1.5px solid ${t.sliderAccent}40`,
@@ -251,9 +234,8 @@ export function topBarBtn(t, wide) {
 
 /**
  * Overlay modal with theme-derived background and border.
- * @param {Object} t — theme object
  */
-export function overlayModal(t) {
+export function overlayModal(t: Theme): CSSProperties {
   return {
     ...OVERLAY_MODAL_BASE,
     background: t.descBg,
@@ -262,10 +244,9 @@ export function overlayModal(t) {
 }
 
 /**
- * Overlay close button (sticky "×") with theme color.
- * @param {Object} t — theme object
+ * Overlay close button (sticky "x") with theme color.
  */
-export function closeBtn(t) {
+export function closeBtn(t: Theme): CSSProperties {
   return {
     position: "sticky",
     top: 0,

@@ -18,31 +18,51 @@ import {
   conjugateK,
 } from "../optics/optics.js";
 import { ENABLE_EDGE_PROJECTION } from "../utils/featureFlags.js";
+import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../types/optics.js";
 
 /** Chief ray + upper/lower marginal fractions for chromatic tracing */
-const CHROM_FRACS = [0, 0.75, -0.75];
+const CHROM_FRACS: number[] = [0, 0.75, -0.75];
 
-/**
- * @param {Object}  params
- * @param {Object}  params.L              — built lens object
- * @param {Array}   params.zPos           — shifted surface z-positions
- * @param {number}  params.IMG_MM         — image plane z-position (mm)
- * @param {number}  params.focusT         — focus position [0..1]
- * @param {number}  params.zoomT          — zoom position [0..1]
- * @param {Function} params.sx            — optical z → SVG x transform
- * @param {Function} params.sy            — optical y → SVG y transform
- * @param {Function} params.clampedRayEnd — ray endpoint clamped to viewport
- * @param {number}  params.currentPhysStopSD — current physical stop diameter
- * @param {number}  params.currentEPSD    — current entrance pupil diameter
- * @param {boolean} params.rayTracksF     — true: rays converge at focus distance
- * @param {string}  params.showOnAxis     — on-axis ray toggle (unused for gating, always computed)
- * @param {string}  params.showOffAxis    — off-axis mode: "off"|"trueAngle"|"edge"
- * @param {boolean} params.showChromatic  — chromatic ray toggle
- * @param {boolean} params.chromR         — red channel toggle
- * @param {boolean} params.chromG         — green channel toggle
- * @param {boolean} params.chromB         — blue channel toggle
- * @param {string}  params.lensKey        — catalog key (for error logging)
- */
+interface RaySegment {
+  sp: number[][];
+  gp: number[][];
+}
+
+interface ChromaticRaySegment extends RaySegment {
+  channel: ChromaticChannel;
+  y: number;
+  u: number;
+  clipped: boolean;
+}
+
+interface UseRayTracingParams {
+  L: RuntimeLens | undefined;
+  zPos: number[];
+  IMG_MM: number;
+  focusT: number;
+  zoomT: number;
+  sx: (z: number) => number;
+  sy: (y: number) => number;
+  clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  currentPhysStopSD: number;
+  currentEPSD: number;
+  rayTracksF: boolean;
+  showOffAxis: string;
+  showChromatic: boolean;
+  chromR: boolean;
+  chromG: boolean;
+  chromB: boolean;
+  lensKey: string;
+}
+
+interface UseRayTracingResult {
+  focusK: number;
+  rays: RaySegment[];
+  offAxisRays: RaySegment[];
+  chromaticRays: ChromaticRaySegment[];
+  chromSpread: ChromaticSpread | null;
+}
+
 export default function useRayTracing({
   L,
   zPos,
@@ -61,7 +81,7 @@ export default function useRayTracing({
   chromG,
   chromB,
   lensKey,
-}) {
+}: UseRayTracingParams): UseRayTracingResult {
   /* focusK = convergence curvature at the entrance pupil for "tracks focus"
    * ray mode; 0 when rays arrive from infinity. */
   const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
@@ -71,16 +91,16 @@ export default function useRayTracing({
    * rayTracksF is true). Each ray enters at height h = fraction × EP radius.
    * "Solid" segments (sp) show the real traced path; "ghost" segments (gp)
    * show the extrapolated path of rays clipped by the aperture stop. */
-  const rays = useMemo(() => {
+  const rays = useMemo((): RaySegment[] => {
     if (!L) return [];
     try {
-      const out = [];
+      const out: RaySegment[] = [];
       for (const f of L.rayFractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
         const { pts, ghostPts, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
+        const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+        let gp: number[][] = [];
         if (clipped && ghostPts.length > 0) {
           const lastSolid = pts[pts.length - 1];
           if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
@@ -114,10 +134,10 @@ export default function useRayTracing({
    * Two projection modes after the last surface:
    *   "trueAngle" — extend at the ray's natural exit slope, clamped to viewport
    *   "edge"      — project to the paraxial image height on the image plane */
-  const offAxisRays = useMemo(() => {
+  const offAxisRays = useMemo((): RaySegment[] => {
     if (!L || showOffAxis === "off") return [];
     try {
-      const out = [];
+      const out: RaySegment[] = [];
       /* Zoom-aware field angle and chief ray entry position */
       const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
       const uField = -Math.tan((currentOffAxisDeg * Math.PI) / 180);
@@ -125,7 +145,7 @@ export default function useRayTracing({
 
       /* Paraxial image height for "edge" mode */
       const edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      const edgeEnd = [sx(IMG_MM), sy(edgeImgH)];
+      const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
       const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
 
       for (const f of L.offAxisFractions) {
@@ -134,8 +154,8 @@ export default function useRayTracing({
         const uConverge = rayTracksF ? h * focusK : 0;
         const uIn = uField + uConverge;
         const { pts, ghostPts, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp = [];
+        const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+        let gp: number[][] = [];
         if (clipped && ghostPts.length > 0) {
           const lastSolid = pts[pts.length - 1];
           if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
@@ -179,15 +199,15 @@ export default function useRayTracing({
    * Trace the same ray heights as on-axis but through wavelength-dependent
    * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
    * lower marginal] — shows both axial and lateral color (LCA and TCA). */
-  const chromaticRays = useMemo(() => {
+  const chromaticRays = useMemo((): ChromaticRaySegment[] => {
     if (!L || !showChromatic) return [];
-    const channels = [];
+    const channels: ChromaticChannel[] = [];
     if (chromR) channels.push("R");
     if (chromG) channels.push("G");
     if (chromB) channels.push("B");
     if (channels.length === 0) return [];
     try {
-      const out = [];
+      const out: ChromaticRaySegment[] = [];
       for (const f of CHROM_FRACS) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
@@ -203,8 +223,8 @@ export default function useRayTracing({
             L,
             ch,
           );
-          const sp = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-          let gp = [];
+          const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
+          let gp: number[][] = [];
           if (clipped && ghostPts.length > 0) {
             const lastSolid = pts[pts.length - 1];
             if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
@@ -251,14 +271,14 @@ export default function useRayTracing({
   /* ── Chromatic spread ──
    * Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
    * from the marginal chromatic rays. Requires at least 2 active channels. */
-  const chromSpread = useMemo(() => {
+  const chromSpread = useMemo((): ChromaticSpread | null => {
     if (!L || !showChromatic || chromaticRays.length === 0) return null;
-    const channels = [];
+    const channels: ChromaticChannel[] = [];
     if (chromR) channels.push("R");
     if (chromG) channels.push("G");
     if (chromB) channels.push("B");
     if (channels.length < 2) return null;
-    const marginalRays = {};
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
     for (let ci = 0; ci < channels.length; ci++) {
       const rayIdx = 1 * channels.length + ci;
       if (rayIdx < chromaticRays.length) {

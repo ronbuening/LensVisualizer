@@ -6,7 +6,9 @@
  * so any lens can override any default by declaring its own value.
  */
 
-const LENS_DEFAULTS = {
+import type { LensData } from "../types/optics.js";
+
+const LENS_DEFAULTS: Partial<LensData> = {
   /* ── Catalog visibility ── */
   visible: true,
 

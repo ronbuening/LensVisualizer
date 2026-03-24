@@ -8,13 +8,11 @@
 
 import { useEffect, useRef } from "react";
 import { PREFS_KEY } from "./preferences.js";
+import type { LensState } from "../types/state.js";
 
-/**
- * @param {Object} state — full reducer state from useLensState
- */
-export default function usePreferences(state) {
+export default function usePreferences(state: LensState): void {
   const { lens, display, rays, panels } = state;
-  const prevRef = useRef(null);
+  const prevRef = useRef<string | null>(null);
 
   useEffect(() => {
     const prefs = {

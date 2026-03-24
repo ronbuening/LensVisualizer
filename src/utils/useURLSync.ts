@@ -6,32 +6,48 @@
  * 3. One-time zoom initialization from URL after lens builds
  */
 
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
 import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "./parseComparisonParams.js";
 import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
 import { SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
+import type { LensState, LensAction } from "../types/state.js";
+import type { RuntimeLens } from "../types/optics.js";
 
-/**
- * @param {Object}        state            — full reducer state
- * @param {Function}      dispatch         — reducer dispatch
- * @param {Object|null}   comparisonLenses — { LA, LB } or { error } or null
- * @returns {{ updateURLWithSliders: Function }}
- */
-export default function useURLSync(state, dispatch, comparisonLenses) {
+interface ComparisonLenses {
+  LA: RuntimeLens;
+  LB: RuntimeLens;
+  error?: undefined;
+}
+
+interface ComparisonError {
+  error: unknown;
+}
+
+type ComparisonLensesParam = ComparisonLenses | ComparisonError | null;
+
+interface UseURLSyncResult {
+  updateURLWithSliders: () => void;
+}
+
+export default function useURLSync(
+  state: LensState,
+  dispatch: Dispatch<LensAction>,
+  comparisonLenses: ComparisonLensesParam,
+): UseURLSyncResult {
   const { lens, sliders, sharedSliders } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
   const { focusT, zoomT, stopdownT } = sliders;
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
 
   /* ── Refs ── */
-  const urlUpdateTimer = useRef(null);
-  const urlZoomInitialized = useRef(false);
+  const urlUpdateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const urlZoomInitialized = useRef<boolean>(false);
 
   /* ── Parse zoom from URL once ── */
-  const urlZoom = useMemo(() => {
+  const urlZoom = useMemo((): number | null => {
     if (typeof window === "undefined") return null;
-    const zoom = parseFloat(new URLSearchParams(window.location.search).get("zoom"));
+    const zoom = parseFloat(new URLSearchParams(window.location.search).get("zoom")!);
     return isFinite(zoom) && zoom > 0 ? zoom : null;
   }, []);
 
@@ -48,7 +64,7 @@ export default function useURLSync(state, dispatch, comparisonLenses) {
   useEffect(() => {
     if (urlZoomInitialized.current || urlZoom == null) return;
     if (comparing && comparisonLenses && !comparisonLenses.error) {
-      const { LA, LB } = comparisonLenses;
+      const { LA, LB } = comparisonLenses as ComparisonLenses;
       const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
       if (zoomLens) {
         dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
@@ -58,7 +74,7 @@ export default function useURLSync(state, dispatch, comparisonLenses) {
   }, [comparisonLenses, comparing, urlZoom, dispatch]);
 
   /* ── 3b. Zoom init — single-lens mode ── */
-  const singleLensForZoomInit = useMemo(() => {
+  const singleLensForZoomInit = useMemo((): RuntimeLens | null => {
     if (comparing || urlZoomInitialized.current || urlZoom == null) return null;
     try {
       return buildLens(LENS_CATALOG[lensKeyA]);
@@ -79,15 +95,15 @@ export default function useURLSync(state, dispatch, comparisonLenses) {
    * Uses a ref-based approach: the callback reads current values from
    * its closure, and is recreated when deps change. The 300ms debounce
    * timer prevents excessive history.replaceState calls. */
-  const updateURLWithSliders = useCallback(() => {
-    clearTimeout(urlUpdateTimer.current);
+  const updateURLWithSliders = useCallback((): void => {
+    if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
     urlUpdateTimer.current = setTimeout(() => {
-      const sliderState = {};
+      const sliderState: { zoom?: number | null; focus?: number; aperture?: number } = {};
       if (comparing) {
         if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
         if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
         if (comparisonLenses && !comparisonLenses.error) {
-          const { LA, LB } = comparisonLenses;
+          const { LA, LB } = comparisonLenses as ComparisonLenses;
           const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
           if (zoomLens && sharedZoomT > 0) {
             sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);

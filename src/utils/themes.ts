@@ -6,6 +6,8 @@
  * that previously existed across 4 hand-written theme blocks.
  */
 
+import type { ThemeColorTokens, Theme } from "../types/theme.js";
+
 /**
  * Build a theme object with closure-based element styling functions.
  *
@@ -16,11 +18,8 @@
  *   elemNum(e)        — element number color (APD vs standard)
  *   elemFill(e, on)   — element fill based on glass type, APD status, and hover
  *   elemStroke(e, on) — element stroke based on APD status and hover
- *
- * @param {Object} t  — flat color token object (see _-prefixed tokens below)
- * @returns {Object}    complete theme with color tokens + computed functions
  */
-function createTheme(t) {
+function createTheme(t: ThemeColorTokens): Theme {
   return {
     ...t,
     gridDash: (i) => (i % 2 ? "2,5" : "none"),
@@ -48,7 +47,7 @@ function createTheme(t) {
  *  Token naming: semantic prefixes (ray*, elem*, desc*, toggle*) group by purpose;
  *  _-prefixed tokens are consumed only by createTheme's closure functions.
  */
-const T = {
+const T: { dark: Theme; light: Theme; darkHC: Theme; lightHC: Theme } = {
   dark: createTheme({
     bg: "#0c0d10",
     headerBgColor: "#0c0d12",

@@ -12,19 +12,53 @@ import { LENS_CATALOG } from "../utils/lensCatalog.js";
 import buildLens from "../optics/buildLens.js";
 import { thick, doLayout, epAtZoom } from "../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../optics/diagramGeometry.js";
+import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../types/optics.js";
 
-/**
- * @param {Object}  params
- * @param {string}  params.lensKey    — catalog key identifying the lens
- * @param {number}  params.focusT     — focus position [0 = ∞, 1 = closest]
- * @param {number}  params.zoomT      — zoom position [0..1]
- * @param {number}  params.stopdownT  — aperture stopdown [0 = wide, 1 = max]
- * @param {number|null} params.scaleRatio — normalized comparison scale factor
- * @param {string}  params.panelId    — unique ID for SVG filter namespacing
- */
-export default function useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId }) {
+interface UseLensComputationParams {
+  lensKey: string;
+  focusT: number;
+  zoomT: number;
+  stopdownT: number;
+  scaleRatio: number | null;
+  panelId: string;
+}
+
+interface VarReadout {
+  label: string;
+  val: string;
+}
+
+interface UseLensComputationResult {
+  L: RuntimeLens | undefined;
+  buildError: unknown;
+  IMG_MM: number;
+  zPos: number[];
+  sx: (z: number) => number;
+  sy: (y: number) => number;
+  clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  CX: number;
+  IX: number;
+  effectiveSC: number;
+  shapes: ElementShape[];
+  stopZ: number;
+  fNumber: number;
+  currentPhysStopSD: number;
+  baseEPSD: number;
+  currentEPSD: number;
+  varReadouts: VarReadout[];
+  filterId: string;
+}
+
+export default function useLensComputation({
+  lensKey,
+  focusT,
+  zoomT,
+  stopdownT,
+  scaleRatio,
+  panelId,
+}: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
-  const buildResult = useMemo(() => {
+  const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     try {
       return { L: buildLens(LENS_CATALOG[lensKey]) };
     } catch (e) {
@@ -48,7 +82,7 @@ export default function useLensComputation({ lensKey, focusT, zoomT, stopdownT, 
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
-    () =>
+    (): CoordinateTransforms =>
       L
         ? createCoordinateTransforms({
             svgW: L.svgW,
@@ -60,9 +94,10 @@ export default function useLensComputation({ lensKey, focusT, zoomT, stopdownT, 
             scaleRatio,
           })
         : {
-            sx: () => 0,
-            sy: () => 0,
-            clampedRayEnd: () => [0, 0],
+            sx: (_z: number) => 0,
+            sy: (_y: number) => 0,
+            clampedRayEnd: (_lastZ: number, _lastY: number, _u: number, _targetZ: number): [number, number] => [0, 0],
+            yViewMax: 0,
             CX: 0,
             IX: 0,
             effectiveSC: 1,
@@ -71,7 +106,7 @@ export default function useLensComputation({ lensKey, focusT, zoomT, stopdownT, 
   );
 
   /* ── Element shapes ── */
-  const shapes = useMemo(() => {
+  const shapes = useMemo((): ElementShape[] => {
     if (!L) return [];
     try {
       return computeElementShapes(L, zPos, sx, sy);
@@ -93,7 +128,7 @@ export default function useLensComputation({ lensKey, focusT, zoomT, stopdownT, 
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
-  const varReadouts = L
+  const varReadouts: VarReadout[] = L
     ? L.varLabels.map(([idx, label]) => {
         const val = thick(idx, focusT, zoomT, L).toFixed(2);
         return { label, val };
