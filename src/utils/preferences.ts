@@ -39,12 +39,11 @@ export function loadPrefs(catalogKeys: string[]): Partial<Preferences> {
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     /* v1 compat: lensKey → lensKeyA */
-    const key: unknown = (p as Record<string, unknown>).lensKeyA || (p as Record<string, unknown>).lensKey;
+    const key: unknown = p.lensKeyA || p.lensKey;
     if (typeof key === "string" && catalogKeys.includes(key)) out.lensKeyA = key;
     if (typeof p.lensKeyB === "string" && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
     if (typeof p.comparing === "boolean") out.comparing = p.comparing;
-    if (p.scaleMode === "independent" || p.scaleMode === "normalized")
-      out.scaleMode = p.scaleMode as "independent" | "normalized";
+    if (p.scaleMode === "independent" || p.scaleMode === "normalized") out.scaleMode = p.scaleMode;
     if (typeof p.desktopView === "string" && ["diagram", "both", "analysis"].includes(p.desktopView))
       out.desktopView = p.desktopView;
     if (typeof p.focusExpanded === "boolean") out.focusExpanded = p.focusExpanded;

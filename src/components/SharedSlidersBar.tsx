@@ -171,10 +171,10 @@ export default function SharedSlidersBar({
             <div style={SLIDER_ROW}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMinLabel}</span>
               <div style={sliderWrap}>
-                {showZoomCPLow && <div style={markerStyle(zoomPair!.commonPointLow!)} />}
-                {showZoomCPLow && <div style={markerLineStyle(zoomPair!.commonPointLow!)} />}
-                {showZoomCPHigh && <div style={markerStyle(zoomPair!.commonPointHigh!)} />}
-                {showZoomCPHigh && <div style={markerLineStyle(zoomPair!.commonPointHigh!)} />}
+                {showZoomCPLow && <div style={markerStyle(zoomPair.commonPointLow!)} />}
+                {showZoomCPLow && <div style={markerLineStyle(zoomPair.commonPointLow!)} />}
+                {showZoomCPHigh && <div style={markerStyle(zoomPair.commonPointHigh!)} />}
+                {showZoomCPHigh && <div style={markerLineStyle(zoomPair.commonPointHigh!)} />}
                 <input
                   type="range"
                   min="0"
