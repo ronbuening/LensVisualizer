@@ -6,6 +6,7 @@
  */
 
 import { ENABLE_EDGE_PROJECTION, DEFAULT_COLOR_TRACING } from "./featureFlags.js";
+import type { LensState, LensAction, Preferences, URLState } from "../types/state.js";
 
 /* ── Action type constants ── */
 export const SET_LENS_A = "SET_LENS_A";
@@ -29,7 +30,7 @@ export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
 export const ENTER_COMPARE = "ENTER_COMPARE";
 export const EXIT_COMPARE = "EXIT_COMPARE";
 
-/* ── Valid fields for generic actions ── */
+/* ── Valid fields for generic actions (runtime guards for JS consumers) ── */
 const RAY_FIELDS = new Set(["showOnAxis", "showOffAxis", "rayTracksF", "showChromatic", "chromR", "chromG", "chromB"]);
 const PANEL_FIELDS = new Set([
   "focusExpanded",
@@ -42,14 +43,13 @@ const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite"]);
 
 /**
  * Build the initial state by merging URL > prefs > defaults.
- *
- * @param {Object}   prefs       — sanitized localStorage preferences
- * @param {Object}   urlState    — parsed URL parameters
- * @param {boolean}  isWide      — initial media query result
- * @param {string[]} catalogKeys — valid lens keys from the catalog
- * @returns {Object} complete initial state
  */
-export function createInitialState(prefs, urlState, isWide, catalogKeys) {
+export function createInitialState(
+  prefs: Partial<Preferences>,
+  urlState: Partial<URLState>,
+  isWide: boolean,
+  catalogKeys: string[],
+): LensState {
   const showOffAxisRaw = prefs.showOffAxis ?? "off";
   const showOffAxis = !ENABLE_EDGE_PROJECTION && showOffAxisRaw === "edge" ? "trueAngle" : showOffAxisRaw;
 
@@ -105,12 +105,8 @@ export function createInitialState(prefs, urlState, isWide, catalogKeys) {
 
 /**
  * Lens state reducer.
- *
- * @param {Object} state   — current state
- * @param {Object} action  — { type, ...payload }
- * @returns {Object} next state
  */
-export default function lensReducer(state, action) {
+export default function lensReducer(state: LensState, action: LensAction): LensState {
   switch (action.type) {
     /* ── Lens selection ── */
     case SET_LENS_A: {
@@ -173,9 +169,9 @@ export default function lensReducer(state, action) {
 
     /* ── Comparison mode transitions ── */
     case ENTER_COMPARE: {
-      const lens = { ...state.lens, comparing: true };
+      const lens = { ...state.lens, comparing: true as const };
       /* Pick next lens if A===B */
-      if (state.lens.lensKeyA === state.lens.lensKeyB && action.catalogKeys?.length > 1) {
+      if (state.lens.lensKeyA === state.lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
         const idx = action.catalogKeys.indexOf(state.lens.lensKeyA);
         lens.lensKeyB = action.catalogKeys[(idx + 1) % action.catalogKeys.length];
       }
