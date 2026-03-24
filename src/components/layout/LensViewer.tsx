@@ -53,6 +53,7 @@ import useLensState from "../../utils/useLensState.js";
 import {
   SET_LENS_A,
   SET_LENS_B,
+  SWAP_LENSES,
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
   SET_SHARED_STOPDOWN_T,
@@ -162,6 +163,10 @@ export default function LensVisualization() {
     },
     [dispatch],
   );
+
+  const swapLenses = useCallback(() => {
+    dispatch({ type: SWAP_LENSES });
+  }, [dispatch]);
 
   /* ── Build both lenses for comparison computations ──
    * Built eagerly when comparison mode is active so we can compute
@@ -325,6 +330,7 @@ export default function LensVisualization() {
             showCompareBtn={showCompareBtn}
             onSwitchLensA={switchLensA}
             onSwitchLensB={switchLensB}
+            onSwapLenses={swapLenses}
             onToggleCompare={toggleCompare}
             onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
             onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}

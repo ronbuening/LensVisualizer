@@ -17,6 +17,7 @@ interface TopBarProps {
   showCompareBtn: boolean;
   onSwitchLensA: (key: string) => void;
   onSwitchLensB: (key: string) => void;
+  onSwapLenses: () => void;
   onToggleCompare: () => void;
   onOpenAboutSite: () => void;
   onOpenAboutAuthor: () => void;
@@ -34,6 +35,7 @@ export default function TopBar({
   showCompareBtn,
   onSwitchLensA,
   onSwitchLensB,
+  onSwapLenses,
   onToggleCompare,
   onOpenAboutSite,
   onOpenAboutAuthor,
@@ -69,6 +71,28 @@ export default function TopBar({
           </option>
         ))}
       </select>
+
+      {comparing && (
+        <button
+          onClick={onSwapLenses}
+          title="Swap lenses"
+          style={{
+            background: "none",
+            border: `1.5px solid ${t.sliderAccent}40`,
+            borderRadius: 6,
+            padding: "4px 8px",
+            cursor: "pointer",
+            color: t.muted,
+            fontFamily: "inherit",
+            fontSize: 14,
+            lineHeight: 1,
+            flexShrink: 0,
+            outline: "none",
+          }}
+        >
+          ⇄
+        </button>
+      )}
 
       {comparing && (
         <>

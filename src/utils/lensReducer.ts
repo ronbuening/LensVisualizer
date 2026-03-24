@@ -11,6 +11,7 @@ import type { LensState, LensAction, Preferences, URLState } from "../types/stat
 /* ── Action type constants ── */
 export const SET_LENS_A = "SET_LENS_A";
 export const SET_LENS_B = "SET_LENS_B";
+export const SWAP_LENSES = "SWAP_LENSES";
 export const SET_SCALE_MODE = "SET_SCALE_MODE";
 export const SET_DARK = "SET_DARK";
 export const SET_HIGH_CONTRAST = "SET_HIGH_CONTRAST";
@@ -130,6 +131,8 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     }
     case SET_LENS_B:
       return { ...state, lens: { ...state.lens, lensKeyB: action.key } };
+    case SWAP_LENSES:
+      return { ...state, lens: { ...state.lens, lensKeyA: state.lens.lensKeyB, lensKeyB: state.lens.lensKeyA } };
     case SET_SCALE_MODE:
       return { ...state, lens: { ...state.lens, scaleMode: action.scaleMode } };
 
