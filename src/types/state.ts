@@ -18,15 +18,7 @@ export interface DisplaySlice {
   desktopView: string;
 }
 
-export type RayField =
-  | "showOnAxis"
-  | "showOffAxis"
-  | "rayTracksF"
-  | "showChromatic"
-  | "chromR"
-  | "chromG"
-  | "chromB"
-  | "showPupils";
+export type RayField = "showOnAxis" | "showOffAxis" | "rayTracksF" | "showChromatic" | "chromR" | "chromG" | "chromB";
 
 export interface RaysSlice {
   showOnAxis: boolean;
@@ -36,7 +28,6 @@ export interface RaysSlice {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
-  showPupils: boolean;
 }
 
 export interface SlidersSlice {
@@ -125,7 +116,6 @@ export interface Preferences {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
-  showPupils: boolean;
   focusExpanded: boolean;
   apertureExpanded: boolean;
   headerControlsExpanded: boolean;
