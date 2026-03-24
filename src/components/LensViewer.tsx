@@ -45,6 +45,9 @@ import ViewToggleBar from "./ViewToggleBar.js";
 import ComparisonLayout from "./ComparisonLayout.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
+import OPTICS_PRIMER_SIMPLE_MD from "../content/OpticsPrimerSimple.md?raw";
+import OPTICS_PRIMER_INTERMEDIATE_MD from "../content/OpticsPrimerIntermediate.md?raw";
+import AboutFooter from "./AboutFooter.js";
 import useLensState from "../utils/useLensState.js";
 import {
   SET_LENS_A,
@@ -95,7 +98,10 @@ export default function LensVisualization() {
   const { dark, highContrast, mobileView, desktopView } = display;
   const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB } = rays;
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
-  const { showAbout, showAboutSite } = overlays;
+  const { showAbout, showAboutSite, showOpticsPrimer } = overlays;
+
+  /* ── Local transient state for primer level (resets when overlay closes) ── */
+  const [primerLevel, setPrimerLevel] = useState<"simple" | "intermediate">("simple");
 
   /* ── Comparison mode header height alignment ── */
   const [headerHeights, setHeaderHeights] = useState<Record<string, number>>({ a: 0, b: 0 });
@@ -110,13 +116,16 @@ export default function LensVisualization() {
 
   /* ── Escape key closes overlays ── */
   useEffect(() => {
-    if (!showAbout && !showAboutSite) return;
+    if (!showAbout && !showAboutSite && !showOpticsPrimer) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") dispatch({ type: CLOSE_ALL_OVERLAYS });
+      if (e.key === "Escape") {
+        dispatch({ type: CLOSE_ALL_OVERLAYS });
+        setPrimerLevel("simple");
+      }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [showAbout, showAboutSite, dispatch]);
+  }, [showAbout, showAboutSite, showOpticsPrimer, dispatch]);
 
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
@@ -318,6 +327,7 @@ export default function LensVisualization() {
             onToggleCompare={toggleCompare}
             onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
             onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
+            onOpenOpticsPrimer={() => dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: true })}
             catalogKeys={CATALOG_KEYS}
             catalogNames={catalogNames}
           />
@@ -440,6 +450,15 @@ export default function LensVisualization() {
             descriptionContent
           )}
 
+          {/* ── About buttons footer (mobile only) ── */}
+          <AboutFooter
+            theme={t}
+            isWide={isWide}
+            onOpenOpticsPrimer={() => dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: true })}
+            onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
+            onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
+          />
+
           {/* ── About Site overlay ── */}
           {showAboutSite && (
             <OverlayModal
@@ -457,6 +476,42 @@ export default function LensVisualization() {
               theme={t}
             >
               <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
+            </OverlayModal>
+          )}
+
+          {/* ── Optics Primer overlay ── */}
+          {showOpticsPrimer && (
+            <OverlayModal
+              onClose={() => {
+                dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: false });
+                setPrimerLevel("simple");
+              }}
+              theme={t}
+              maxWidth={isWide ? 640 : 480}
+            >
+              <DescriptionPanel
+                markdown={primerLevel === "simple" ? OPTICS_PRIMER_SIMPLE_MD : OPTICS_PRIMER_INTERMEDIATE_MD}
+                theme={t}
+              />
+              <div style={{ padding: "0 24px 20px", textAlign: "center" }}>
+                <button
+                  onClick={() => setPrimerLevel(primerLevel === "simple" ? "intermediate" : "simple")}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: t.descLinkColor,
+                    cursor: "pointer",
+                    fontSize: 12,
+                    fontFamily: "inherit",
+                    borderBottom: `1px solid ${t.descLinkColor}40`,
+                    padding: "4px 0",
+                  }}
+                >
+                  {primerLevel === "simple"
+                    ? "Want more detail? Read the Intermediate Primer \u2192"
+                    : "\u2190 Back to Simple Primer"}
+                </button>
+              </div>
             </OverlayModal>
           )}
         </div>
