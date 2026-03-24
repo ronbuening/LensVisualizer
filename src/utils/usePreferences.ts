@@ -1,0 +1,51 @@
+/**
+ * Persists user preferences to localStorage whenever persistable state changes.
+ *
+ * Only writes the fields that should survive a page reload (lens selection,
+ * display settings, ray toggles, panel expand states). Slider positions
+ * and overlay visibility are intentionally excluded.
+ */
+
+import { useEffect, useRef } from "react";
+import { PREFS_KEY } from "./preferences.js";
+import type { LensState } from "../types/state.js";
+
+export default function usePreferences(state: LensState): void {
+  const { lens, display, rays, panels } = state;
+  const prevRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const prefs = {
+      v: 2,
+      dark: display.dark,
+      highContrast: display.highContrast,
+      desktopView: display.desktopView,
+      lensKeyA: lens.lensKeyA,
+      lensKeyB: lens.lensKeyB,
+      comparing: lens.comparing,
+      scaleMode: lens.scaleMode,
+      showOnAxis: rays.showOnAxis,
+      showOffAxis: rays.showOffAxis,
+      rayTracksF: rays.rayTracksF,
+      showChromatic: rays.showChromatic,
+      chromR: rays.chromR,
+      chromG: rays.chromG,
+      chromB: rays.chromB,
+      focusExpanded: panels.focusExpanded,
+      apertureExpanded: panels.apertureExpanded,
+      headerControlsExpanded: panels.headerControlsExpanded,
+      legendExpanded: panels.legendExpanded,
+      headerInfoExpanded: panels.headerInfoExpanded,
+    };
+
+    const json = JSON.stringify(prefs);
+    if (json === prevRef.current) return;
+    prevRef.current = json;
+
+    try {
+      localStorage.setItem(PREFS_KEY, json);
+    } catch {
+      /* private browsing or quota — ignore */
+    }
+  }, [lens, display, rays, panels]);
+}

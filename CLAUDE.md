@@ -6,7 +6,7 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 
 ## Tech Stack
 
-- **React 18** (functional components, hooks) — no TypeScript
+- **React 18** (functional components, hooks) + **TypeScript** (strict mode)
 - **Vite 6** (dev server + build)
 - **Vitest** (unit testing)
 - **SVG rendering** — all visuals are inline SVG, no canvas
@@ -15,12 +15,13 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 ## Project Structure
 
 ```
-src/components/     — React UI (5 components)
-src/optics/         — Pure-function optical engine (no React deps)
-src/utils/          — Themes, feature flags, catalog, hooks
+src/types/          — Shared TypeScript type definitions (optics, state, theme)
+src/components/     — React UI (.tsx components + .ts hooks)
+src/optics/         — Pure-function optical engine (.ts, no React deps)
+src/utils/          — Themes, feature flags, catalog, hooks (.ts)
 src/lens-data/      — Lens prescription data (auto-registered *.data.js)
 src/content/        — Static markdown content
-__tests__/          — Vitest unit tests
+__tests__/          — Vitest unit tests (.js)
 agent_docs/         — Detailed architecture and task guides
 ```
 
@@ -32,6 +33,7 @@ npm run dev        # Start dev server (http://localhost:5173)
 npm run build      # Production build → dist/
 npm run preview    # Preview production build
 npm run test         # Run Vitest unit tests
+npm run typecheck    # Run TypeScript type checking (tsc --noEmit)
 npm run lint         # Run ESLint
 npm run lint:fix     # Run ESLint with auto-fix
 npm run format       # Format code with Prettier
@@ -44,7 +46,7 @@ npm run format:check # Check formatting (CI uses this)
 - Triggers on push to `main` or manual dispatch
 - Builds with `npm ci && npm run build`, deploys `dist/` to Pages
 - Base path set to `/` in `vite.config.js` (GitHub Actions deploy handles the Pages base path)
-- **Quality checks** run on PRs via `.github/workflows/quality.yml` (lint, format, test, build)
+- **Quality checks** run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, build)
 
 ## Agent Docs
 
@@ -87,8 +89,11 @@ Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building
 - **No comments on obvious code** — see `agent_docs/commenting_guide.md` for full commenting standards
 - **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
 - **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory
-- **Pure-function modules** (`optics.js`, `buildLens.js`, `validateLensData.js`, `diagramGeometry.js`) have no React dependencies
-- **ESLint 9 + Prettier** enforce code quality and formatting — run `npm run lint` and `npm run format:check`
+- **Pure-function modules** (`optics.ts`, `buildLens.ts`, `validateLensData.ts`, `diagramGeometry.ts`) have no React dependencies
+- **Type definitions** centralized in `src/types/` — `optics.ts` (RuntimeLens, LensData, etc.), `state.ts` (LensState, LensAction), `theme.ts` (Theme, ThemeColorTokens)
+- **Props interfaces** defined at the top of each `.tsx` component file
+- **`import type`** for type-only imports to keep runtime bundles clean
+- **ESLint 9 + Prettier + TypeScript** enforce code quality — run `npm run lint`, `npm run format:check`, and `npm run typecheck`
 - **Double quotes** for strings, **120-char** print width (enforced by Prettier)
 - **Prefix unused parameters with `_`** (`_e`, `_info`) to satisfy `no-unused-vars`
 
@@ -99,8 +104,11 @@ Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
 - Lens data globs match `*.data.js`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
-- `src/lens-data/defaults.js` values are merged under each lens — per-lens values in `.data.js` take precedence
-- Glob paths in `lensCatalog.js` are relative to the file's location (`../lens-data/`)
+- `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.js` take precedence
+- Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
+- Lens data files stay as `.data.js` (not TypeScript) for glob pattern compatibility — validated at runtime by `validateLensData()`
+- Test files stay as `.js` — Vitest resolves `.js` imports to `.ts` automatically
+- `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.js` files are excluded from tsc checking
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
 
 ## Compaction Instructions

@@ -1,0 +1,41 @@
+export type {
+  SurfaceData,
+  AsphericCoefficients,
+  ElementData,
+  AnnotationData,
+  ResolvedAnnotation,
+  PrimeVarRange,
+  ZoomVarRange,
+  VarRange,
+  LensData,
+  EntrancePupil,
+  ElementSpan,
+  RuntimeLens,
+  RayTraceResult,
+  ParaxialTraceResult,
+  LayoutResult,
+  ChromaticChannel,
+  ChromaticSpread,
+  CoordinateTransforms,
+  AsphPathData,
+  ElementShape,
+} from "./optics.js";
+
+export type {
+  LensSlice,
+  DisplaySlice,
+  RayField,
+  RaysSlice,
+  SlidersSlice,
+  SharedSlidersSlice,
+  PanelField,
+  PanelsSlice,
+  OverlayField,
+  OverlaysSlice,
+  LensState,
+  LensAction,
+  Preferences,
+  URLState,
+} from "./state.js";
+
+export type { ThemeInternalTokens, ThemeColorTokens, Theme, ThemeVariant } from "./theme.js";
