@@ -29,8 +29,14 @@ import DiagramSVG from "../diagram/DiagramSVG.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
+import PanelOverlay from "./PanelOverlay.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
-import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../../utils/featureFlags.js";
+import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
+import {
+  ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
+  ENABLE_COLLAPSIBLE_LEGEND,
+  ENABLE_LCA_OVERLAY,
+} from "../../utils/featureFlags.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import {
@@ -117,12 +123,14 @@ export default function LensDiagramPanel({
   const [hov, setHov] = useState<number | null>(null);
   const [sel, setSel] = useState<number | null>(null);
   const [showAbbeDiagram, setShowAbbeDiagram] = useState(false);
+  const [showLcaOverlay, setShowLcaOverlay] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHov(null);
     setSel(null);
     setShowAbbeDiagram(false);
+    setShowLcaOverlay(false);
   }, [lensKey]);
 
   /* ── Flash overlay animation ── */
@@ -204,7 +212,7 @@ export default function LensDiagramPanel({
           />
         </div>
       ) : L ? (
-        <div ref={panelContainerRef}>
+        <div ref={panelContainerRef} style={{ position: "relative" }}>
           {/* ── Header ── */}
           <DiagramHeader
             ref={headerRef}
@@ -279,6 +287,7 @@ export default function LensDiagramPanel({
                 flashVisible={flashVisible}
                 flashKey={flashKey}
                 flashFading={flashFading}
+                onLcaInsetClick={ENABLE_LCA_OVERLAY ? () => setShowLcaOverlay(true) : undefined}
               />
             </div>
             {/* end SVG wrapper */}
@@ -369,6 +378,11 @@ export default function LensDiagramPanel({
             )}
           </div>
           {/* end side-layout flex wrapper */}
+          {ENABLE_LCA_OVERLAY && showLcaOverlay && showChromatic && chromSpread && (
+            <PanelOverlay onClose={() => setShowLcaOverlay(false)} theme={t}>
+              <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
+            </PanelOverlay>
+          )}
         </div>
       ) : null}
       {showAbbeDiagram && L && (
