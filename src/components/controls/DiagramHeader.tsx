@@ -37,6 +37,8 @@ interface DiagramHeaderProps {
   onShowOnAxisChange?: (value: boolean) => void;
   showOffAxis: string;
   onShowOffAxisChange?: (value: string) => void;
+  showPupils: boolean;
+  onShowPupilsChange?: (value: boolean) => void;
   rayTracksF: boolean;
   onRayTracksFChange?: (value: boolean) => void;
   showChromatic: boolean;
@@ -71,6 +73,8 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
     onShowOnAxisChange,
     showOffAxis,
     onShowOffAxisChange,
+    showPupils,
+    onShowPupilsChange,
     rayTracksF,
     onRayTracksFChange,
     showChromatic,
@@ -247,6 +251,8 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                   onShowOnAxisChange={onShowOnAxisChange}
                   showOffAxis={showOffAxis}
                   onShowOffAxisChange={onShowOffAxisChange}
+                  showPupils={showPupils}
+                  onShowPupilsChange={onShowPupilsChange}
                 />
                 {/* Ray mode */}
                 <div style={toggleGroup(t, { width: "100%" })}>

@@ -49,6 +49,7 @@ interface DiagramSVGProps {
   showOnAxis: boolean;
   showOffAxis: string;
   showChromatic: boolean;
+  showPupils: boolean;
   act: number | null;
   onHover: (eid: number | null) => void;
   onSelect: (eid: number | null) => void;
@@ -84,6 +85,7 @@ export default function DiagramSVG({
   showOnAxis,
   showOffAxis,
   showChromatic,
+  showPupils,
   act,
   onHover,
   onSelect,
@@ -271,6 +273,111 @@ export default function DiagramSVG({
         lyStoPad={L.lyStoPad}
         t={t}
       />
+
+      {/* Entrance and exit pupil markers */}
+      {showPupils &&
+        (() => {
+          const epX = sx(zPos[L.stopIdx] + L.epZRelStop);
+          const xpX = sx(zPos[L.N - 1] + L.xpZRelLastSurf);
+          const epTopY = sy(-L.EP.epSD);
+          const epBotY = sy(L.EP.epSD);
+          const xpTopY = sy(-L.xpSD);
+          const xpBotY = sy(L.xpSD);
+          const midY = sy(0);
+          const tickLen = 4;
+          const color = t.stopLabel;
+          const labelStyle = {
+            pointerEvents: "none" as const,
+            letterSpacing: "0.1em",
+          };
+          return (
+            <>
+              {/* Entrance pupil */}
+              <line
+                x1={epX}
+                y1={epTopY}
+                x2={epX}
+                y2={epBotY}
+                stroke={color}
+                strokeWidth={1.2}
+                strokeDasharray="3,2"
+                style={{ pointerEvents: "none" }}
+              />
+              <line
+                x1={epX - tickLen}
+                y1={epTopY}
+                x2={epX + tickLen}
+                y2={epTopY}
+                stroke={color}
+                strokeWidth={1.2}
+                style={{ pointerEvents: "none" }}
+              />
+              <line
+                x1={epX - tickLen}
+                y1={epBotY}
+                x2={epX + tickLen}
+                y2={epBotY}
+                stroke={color}
+                strokeWidth={1.2}
+                style={{ pointerEvents: "none" }}
+              />
+              <text
+                x={epX}
+                y={epTopY - L.lyStoPad}
+                textAnchor="middle"
+                fill={color}
+                fontSize={7.5}
+                fontFamily="inherit"
+                style={labelStyle}
+              >
+                EP
+              </text>
+              {/* Exit pupil */}
+              <line
+                x1={xpX}
+                y1={xpTopY}
+                x2={xpX}
+                y2={xpBotY}
+                stroke={color}
+                strokeWidth={1.2}
+                strokeDasharray="3,2"
+                style={{ pointerEvents: "none" }}
+              />
+              <line
+                x1={xpX - tickLen}
+                y1={xpTopY}
+                x2={xpX + tickLen}
+                y2={xpTopY}
+                stroke={color}
+                strokeWidth={1.2}
+                style={{ pointerEvents: "none" }}
+              />
+              <line
+                x1={xpX - tickLen}
+                y1={xpBotY}
+                x2={xpX + tickLen}
+                y2={xpBotY}
+                stroke={color}
+                strokeWidth={1.2}
+                style={{ pointerEvents: "none" }}
+              />
+              <text
+                x={xpX}
+                y={xpTopY - L.lyStoPad}
+                textAnchor="middle"
+                fill={color}
+                fontSize={7.5}
+                fontFamily="inherit"
+                style={labelStyle}
+              >
+                XP
+              </text>
+              {/* Axis dots at pupil positions */}
+              <circle cx={epX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+              <circle cx={xpX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+            </>
+          );
+        })()}
 
       {/* Image plane */}
       <line
