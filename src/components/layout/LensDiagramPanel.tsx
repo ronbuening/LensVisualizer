@@ -32,10 +32,12 @@ import OverlayModal from "./OverlayModal.js";
 import PanelOverlay from "./PanelOverlay.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
+import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
 import {
   ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
   ENABLE_COLLAPSIBLE_LEGEND,
   ENABLE_LCA_OVERLAY,
+  ENABLE_PETZVAL_OVERLAY,
 } from "../../utils/featureFlags.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
@@ -124,6 +126,7 @@ export default function LensDiagramPanel({
   const [sel, setSel] = useState<number | null>(null);
   const [showAbbeDiagram, setShowAbbeDiagram] = useState(false);
   const [showLcaOverlay, setShowLcaOverlay] = useState(false);
+  const [showPetzvalOverlay, setShowPetzvalOverlay] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -131,6 +134,7 @@ export default function LensDiagramPanel({
     setSel(null);
     setShowAbbeDiagram(false);
     setShowLcaOverlay(false);
+    setShowPetzvalOverlay(false);
   }, [lensKey]);
 
   /* ── Flash overlay animation ── */
@@ -288,10 +292,16 @@ export default function LensDiagramPanel({
                 flashKey={flashKey}
                 flashFading={flashFading}
                 onLcaInsetClick={ENABLE_LCA_OVERLAY ? () => setShowLcaOverlay(true) : undefined}
+                onPetzvalBadgeClick={ENABLE_PETZVAL_OVERLAY ? () => setShowPetzvalOverlay(true) : undefined}
               />
               {ENABLE_LCA_OVERLAY && showLcaOverlay && showChromatic && chromSpread && (
                 <PanelOverlay onClose={() => setShowLcaOverlay(false)} theme={t}>
                   <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
+                </PanelOverlay>
+              )}
+              {ENABLE_PETZVAL_OVERLAY && showPetzvalOverlay && L && (
+                <PanelOverlay onClose={() => setShowPetzvalOverlay(false)} theme={t}>
+                  <PetzvalOverlayContent L={L} t={t} />
                 </PanelOverlay>
               )}
             </div>

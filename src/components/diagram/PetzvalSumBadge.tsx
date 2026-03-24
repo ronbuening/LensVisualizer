@@ -11,6 +11,7 @@ import type { Theme } from "../../types/theme.js";
 interface PetzvalSumBadgeProps {
   L: RuntimeLens;
   t: Theme;
+  onClick?: () => void;
 }
 
 function formatPetzvalRadius(P: number): string {
@@ -21,7 +22,7 @@ function formatPetzvalRadius(P: number): string {
   return `R = ${R < 0 ? "\u2212" : ""}${formatted} mm`;
 }
 
-export default function PetzvalSumBadge({ L, t }: PetzvalSumBadgeProps) {
+export default function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps) {
   const P = L.petzvalSum;
   const sign = P >= 0 ? "+" : "\u2212";
   const pStr = `${sign}${Math.abs(P).toFixed(4)} mm\u207b\u00b9`;
@@ -33,7 +34,7 @@ export default function PetzvalSumBadge({ L, t }: PetzvalSumBadgeProps) {
   const h = 52;
 
   return (
-    <g style={{ pointerEvents: "none" }}>
+    <g onClick={onClick} style={onClick ? { cursor: "pointer" } : { pointerEvents: "none" }}>
       <rect
         x={x}
         y={y}
