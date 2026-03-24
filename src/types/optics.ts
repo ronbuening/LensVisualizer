@@ -35,6 +35,7 @@ export interface ElementData {
   glass?: string;
   role?: string;
   apd?: "patent" | "inferred";
+  apdNote?: string;
   cemented?: boolean;
 }
 

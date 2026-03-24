@@ -6,7 +6,18 @@
  * Extracted from LensDiagramPanel for separation of concerns.
  */
 
-const INSPECTOR_GRID = {
+import type { CSSProperties } from "react";
+import type { RuntimeLens, ElementData } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
+
+interface ElementInspectorProps {
+  info: ElementData;
+  L: RuntimeLens;
+  t: Theme;
+  showChromatic: boolean;
+}
+
+const INSPECTOR_GRID: CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit,minmax(125px,1fr))",
   gap: "3px 18px",
@@ -14,7 +25,7 @@ const INSPECTOR_GRID = {
   lineHeight: 1.8,
 };
 
-export default function ElementInspector({ info, L, t, showChromatic }) {
+export default function ElementInspector({ info, L, t, showChromatic }: ElementInspectorProps) {
   return (
     <div>
       <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
@@ -100,7 +111,7 @@ export default function ElementInspector({ info, L, t, showChromatic }) {
         <div>
           <span style={{ color: t.propLabel }}>FL = </span>
           <span style={{ color: t.value }}>
-            {info.fl > 0 ? "+" : ""}
+            {(info.fl ?? 0) > 0 ? "+" : ""}
             {info.fl} mm
           </span>
         </div>

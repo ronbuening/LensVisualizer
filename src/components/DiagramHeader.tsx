@@ -20,8 +20,43 @@ import {
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, collapseBtn, headerStrip } from "../utils/styles.js";
+import type { RuntimeLens } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
 
-const DiagramHeader = forwardRef(function DiagramHeader(
+interface DiagramHeaderProps {
+  L: RuntimeLens;
+  t: Theme;
+  dark: boolean;
+  compact: boolean;
+  isWide: boolean;
+  focusT: number;
+  zoomT: number;
+  fNumber: number;
+  showOnAxis: boolean;
+  onShowOnAxisChange?: (value: boolean) => void;
+  showOffAxis: string;
+  onShowOffAxisChange?: (value: string) => void;
+  rayTracksF: boolean;
+  onRayTracksFChange?: (value: boolean) => void;
+  showChromatic: boolean;
+  onShowChromaticChange?: (value: boolean) => void;
+  chromR: boolean;
+  chromG: boolean;
+  chromB: boolean;
+  onChromRChange?: (value: boolean) => void;
+  onChromGChange?: (value: boolean) => void;
+  onChromBChange?: (value: boolean) => void;
+  onDarkChange?: (value: boolean) => void;
+  onHighContrastChange?: (value: boolean) => void;
+  highContrast: boolean;
+  headerControlsExpanded: boolean;
+  onHeaderControlsExpandedChange?: (value: boolean) => void;
+  headerInfoExpanded: boolean;
+  onHeaderInfoExpandedChange?: (value: boolean) => void;
+  minHeaderHeight?: number;
+}
+
+const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function DiagramHeader(
   {
     L,
     t,
@@ -134,7 +169,7 @@ const DiagramHeader = forwardRef(function DiagramHeader(
                 flexWrap: "wrap",
               }}
             >
-              {L.data.specs.map((s, i) => (
+              {L.data.specs?.map((s, i) => (
                 <span key={i}>{s}</span>
               ))}
             </div>

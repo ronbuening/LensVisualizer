@@ -15,15 +15,16 @@
  */
 
 import { useState, useEffect, useLayoutEffect, useRef, Component } from "react";
+import type { ReactNode, ErrorInfo } from "react";
 import useLensComputation from "./useLensComputation.js";
 import useRayTracing from "./useRayTracing.js";
-import DiagramControls from "./DiagramControls.jsx";
-import ElementInspector from "./ElementInspector.jsx";
-import DiagramLegend from "./DiagramLegend.jsx";
-import DiagramSVG from "./DiagramSVG.jsx";
-import DiagramHeader from "./DiagramHeader.jsx";
+import DiagramControls from "./DiagramControls.js";
+import ElementInspector from "./ElementInspector.js";
+import DiagramLegend from "./DiagramLegend.js";
+import DiagramSVG from "./DiagramSVG.js";
+import DiagramHeader from "./DiagramHeader.js";
 import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
-import { ErrorDisplay } from "./ErrorBoundary.jsx";
+import { ErrorDisplay } from "./ErrorBoundary.js";
 import { useLensCtx, useLensDispatch } from "../utils/LensContext.js";
 import {
   SET_FOCUS_T,
@@ -36,18 +37,28 @@ import {
 } from "../utils/lensReducer.js";
 
 /* ── Panel-level error boundary — resets automatically when lensKey changes ── */
-class PanelErrorBoundary extends Component {
-  constructor(props) {
+
+interface PanelErrorBoundaryProps {
+  lensKey: string;
+  children: ReactNode;
+}
+
+interface PanelErrorBoundaryState {
+  error: Error | null;
+}
+
+class PanelErrorBoundary extends Component<PanelErrorBoundaryProps, PanelErrorBoundaryState> {
+  constructor(props: PanelErrorBoundaryProps) {
     super(props);
     this.state = { error: null };
   }
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error): Partial<PanelErrorBoundaryState> {
     return { error };
   }
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: ErrorInfo): void {
     console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, info?.componentStack);
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: PanelErrorBoundaryProps): void {
     if (prevProps.lensKey !== this.props.lensKey) this.setState({ error: null });
   }
   render() {
@@ -65,8 +76,24 @@ class PanelErrorBoundary extends Component {
   }
 }
 
+interface LensDiagramPanelProps {
+  lensKey: string;
+  focusT?: number;
+  zoomT?: number;
+  stopdownT?: number;
+  scaleRatio: number | null;
+  panelId: string;
+  compact: boolean;
+  showControls?: boolean;
+  showSliders?: boolean;
+  maxSvgHeight?: string;
+  minHeaderHeight?: number;
+  onHeaderHeight?: (panelId: string, height: number) => void;
+  flashOverlay?: boolean;
+  sideLayoutEnabled?: boolean;
+}
+
 export default function LensDiagramPanel({
-  /* Per-instance props (differ between comparison panels) */
   lensKey,
   focusT: focusTProp,
   zoomT: zoomTProp,
@@ -81,7 +108,7 @@ export default function LensDiagramPanel({
   onHeaderHeight,
   flashOverlay = false,
   sideLayoutEnabled = false,
-}) {
+}: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide, updateURLWithSliders } = useLensCtx();
   const dispatch = useLensDispatch();
@@ -96,31 +123,33 @@ export default function LensDiagramPanel({
   const stopdownT = stopdownTProp ?? sliders.stopdownT;
 
   /* Callback adapters: dispatch actions instead of calling prop callbacks */
-  const onFocusChange = (v) => dispatch({ type: SET_FOCUS_T, value: v });
-  const onZoomChange = (v) => dispatch({ type: SET_ZOOM_T, value: v });
-  const onStopdownChange = (v) => dispatch({ type: SET_STOPDOWN_T, value: v });
+  const onFocusChange = (v: number) => dispatch({ type: SET_FOCUS_T, value: v });
+  const onZoomChange = (v: number) => dispatch({ type: SET_ZOOM_T, value: v });
+  const onStopdownChange = (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v });
   const onSliderPointerUp = updateURLWithSliders;
-  const onShowOnAxisChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v });
-  const onShowOffAxisChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v });
-  const onRayTracksFChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v });
-  const onShowChromaticChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v });
-  const onChromRChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v });
-  const onChromGChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v });
-  const onChromBChange = (v) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v });
-  const onDarkChange = (v) => dispatch({ type: SET_DARK, dark: v });
-  const onHighContrastChange = (v) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v });
-  const onFocusExpandedChange = (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v });
-  const onApertureExpandedChange = (v) =>
+  const onShowOnAxisChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v });
+  const onShowOffAxisChange = (v: string) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v });
+  const onRayTracksFChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v });
+  const onShowChromaticChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v });
+  const onChromRChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v });
+  const onChromGChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v });
+  const onChromBChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v });
+  const onDarkChange = (v: boolean) => dispatch({ type: SET_DARK, dark: v });
+  const onHighContrastChange = (v: boolean) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v });
+  const onFocusExpandedChange = (v: boolean) =>
+    dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v });
+  const onApertureExpandedChange = (v: boolean) =>
     dispatch({ type: SET_PANEL_EXPANDED, panel: "apertureExpanded", expanded: v });
-  const onHeaderControlsExpandedChange = (v) =>
+  const onHeaderControlsExpandedChange = (v: boolean) =>
     dispatch({ type: SET_PANEL_EXPANDED, panel: "headerControlsExpanded", expanded: v });
-  const onLegendExpandedChange = (v) => dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v });
-  const onHeaderInfoExpandedChange = (v) =>
+  const onLegendExpandedChange = (v: boolean) =>
+    dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v });
+  const onHeaderInfoExpandedChange = (v: boolean) =>
     dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v });
-  const [hov, setHov] = useState(null);
-  const [sel, setSel] = useState(null);
+  const [hov, setHov] = useState<number | null>(null);
+  const [sel, setSel] = useState<number | null>(null);
   const [useSideLayout, setUseSideLayout] = useState(false);
-  const panelContainerRef = useRef(null);
+  const panelContainerRef = useRef<HTMLDivElement | null>(null);
   const sideLayoutRef = useRef(false);
   const [flashKey, setFlashKey] = useState(0);
   const [flashVisible, setFlashVisible] = useState(false);
@@ -138,7 +167,7 @@ export default function LensDiagramPanel({
     setFlashFading(false);
     setFlashKey((k) => k + 1);
     /* Phase 2: start fade after two frames so browser paints the bright state */
-    let raf1, raf2, timer;
+    let raf1: number, raf2: number, timer: ReturnType<typeof setTimeout>;
     raf1 = requestAnimationFrame(() => {
       raf2 = requestAnimationFrame(() => {
         setFlashFading(true);
@@ -154,7 +183,7 @@ export default function LensDiagramPanel({
   }, [flashOverlay]);
 
   /* ── Header height reporting for alignment ── */
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
     if (!onHeaderHeight || !headerRef.current) return;
     const el = headerRef.current;
@@ -247,12 +276,12 @@ export default function LensDiagramPanel({
       {buildError ? (
         <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
           <ErrorDisplay
-            error={buildError}
+            error={buildError instanceof Error ? buildError : new Error(String(buildError))}
             context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
             title="Failed to build lens"
           />
         </div>
-      ) : (
+      ) : L ? (
         <div ref={panelContainerRef}>
           {/* ── Header ── */}
           <DiagramHeader
@@ -415,7 +444,7 @@ export default function LensDiagramPanel({
           </div>
           {/* end side-layout flex wrapper */}
         </div>
-      )}
+      ) : null}
     </PanelErrorBoundary>
   );
 }

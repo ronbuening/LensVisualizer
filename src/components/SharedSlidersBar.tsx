@@ -28,14 +28,43 @@
  * @param {boolean}  props.isWide                  — true when viewport is desktop-width
  */
 
+import type { CSSProperties } from "react";
 import { formatSharedFocusDist, sharedFNumber } from "../utils/comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../utils/comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
 import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/styles.js";
+import type { RuntimeLens } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
+
+interface SharedSlidersBarProps {
+  LA: RuntimeLens;
+  LB: RuntimeLens;
+  sharedFocusT: number;
+  sharedStopdownT: number;
+  sharedZoomT: number;
+  onSharedFocusChange: (value: number) => void;
+  onSharedStopdownChange: (value: number) => void;
+  onSharedZoomChange: (value: number) => void;
+  onFocusPointerDown: () => void;
+  onAperturePointerDown: () => void;
+  onSliderPointerUp?: () => void;
+  focusPair: FocusPairResult;
+  aperturePair: AperturePairResult;
+  zoomPair: ZoomPairResult | null;
+  theme: Theme;
+  isWide: boolean;
+}
 
 /* ── Hoisted static styles (unique to this component) ── */
-const SLIDER_ROW = { display: "flex", alignItems: "center", gap: 8 };
-const READOUT_ROW = { marginTop: 6, display: "flex", gap: 16, fontSize: 9, fontVariantNumeric: "tabular-nums" };
-const LABEL_ROW = { display: "flex", alignItems: "center", gap: 10, marginBottom: 8 };
+const SLIDER_ROW: CSSProperties = { display: "flex", alignItems: "center", gap: 8 };
+const READOUT_ROW: CSSProperties = {
+  marginTop: 6,
+  display: "flex",
+  gap: 16,
+  fontSize: 9,
+  fontVariantNumeric: "tabular-nums",
+};
+const LABEL_ROW: CSSProperties = { display: "flex", alignItems: "center", gap: 10, marginBottom: 8 };
 
 export default function SharedSlidersBar({
   LA,
@@ -54,7 +83,7 @@ export default function SharedSlidersBar({
   zoomPair,
   theme: t,
   isWide,
-}) {
+}: SharedSlidersBarProps) {
   const { commonPoint: focusCP, minCloseFocus } = focusPair;
   const { commonPoint: apertureCP, widerFOPEN, sharedMaxFstop } = aperturePair;
   const fNum = sharedFNumber(sharedStopdownT, widerFOPEN, sharedMaxFstop);
@@ -66,9 +95,9 @@ export default function SharedSlidersBar({
   const showZoom = zoomPair?.showZoom;
 
   /* ── Common-point marker styles ── */
-  const sliderWrap = { position: "relative", flex: 1 };
+  const sliderWrap: CSSProperties = { position: "relative", flex: 1 };
   /* Downward-pointing triangle above the slider at the common-point position */
-  const markerStyle = (pos) => ({
+  const markerStyle = (pos: number): CSSProperties => ({
     position: "absolute",
     left: `${pos * 100}%`,
     top: -2,
@@ -82,7 +111,7 @@ export default function SharedSlidersBar({
     pointerEvents: "none",
   });
   /* Vertical hairline through the slider track at the common-point position */
-  const markerLineStyle = (pos) => ({
+  const markerLineStyle = (pos: number): CSSProperties => ({
     position: "absolute",
     left: `${pos * 100}%`,
     top: 0,
@@ -107,16 +136,20 @@ export default function SharedSlidersBar({
         : "";
   /* Slider endpoints: dual-zoom uses the union range; single-zoom uses the lens's positions */
   const zoomMinLabel =
-    bothZoom && zoomPair?.minFL ? `${zoomPair.minFL.toFixed(0)} mm` : zoomLens ? `${zoomLens.zoomPositions[0]} mm` : "";
+    bothZoom && zoomPair?.minFL
+      ? `${zoomPair.minFL.toFixed(0)} mm`
+      : zoomLens?.zoomPositions
+        ? `${zoomLens.zoomPositions[0]} mm`
+        : "";
   const zoomMaxLabel =
     bothZoom && zoomPair?.maxFL
       ? `${zoomPair.maxFL.toFixed(0)} mm`
-      : zoomLens
+      : zoomLens?.zoomPositions
         ? `${zoomLens.zoomPositions[zoomLens.zoomPositions.length - 1]} mm`
         : "";
   /* Common-point markers for dual-zoom (where one lens reaches its range boundary) */
-  const showZoomCPLow = bothZoom && zoomPair?.commonPointLow > 0.01;
-  const showZoomCPHigh = bothZoom && zoomPair?.commonPointHigh < 0.99;
+  const showZoomCPLow = bothZoom && (zoomPair?.commonPointLow ?? 0) > 0.01;
+  const showZoomCPHigh = bothZoom && (zoomPair?.commonPointHigh ?? 1) < 0.99;
 
   return (
     <div
@@ -138,10 +171,10 @@ export default function SharedSlidersBar({
             <div style={SLIDER_ROW}>
               <span style={{ fontSize: 9, color: t.focusEndpoint }}>{zoomMinLabel}</span>
               <div style={sliderWrap}>
-                {showZoomCPLow && <div style={markerStyle(zoomPair.commonPointLow)} />}
-                {showZoomCPLow && <div style={markerLineStyle(zoomPair.commonPointLow)} />}
-                {showZoomCPHigh && <div style={markerStyle(zoomPair.commonPointHigh)} />}
-                {showZoomCPHigh && <div style={markerLineStyle(zoomPair.commonPointHigh)} />}
+                {showZoomCPLow && <div style={markerStyle(zoomPair!.commonPointLow!)} />}
+                {showZoomCPLow && <div style={markerLineStyle(zoomPair!.commonPointLow!)} />}
+                {showZoomCPHigh && <div style={markerStyle(zoomPair!.commonPointHigh!)} />}
+                {showZoomCPHigh && <div style={markerLineStyle(zoomPair!.commonPointHigh!)} />}
                 <input
                   type="range"
                   min="0"

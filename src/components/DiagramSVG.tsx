@@ -12,6 +12,52 @@
  * through from the parent LensDiagramPanel.
  */
 import { ENABLE_ASPH_DIAMOND_FILL } from "../utils/featureFlags.js";
+import type { RuntimeLens, ElementShape, ChromaticSpread, ChromaticChannel } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
+
+interface RaySegment {
+  sp: number[][];
+  gp: number[][];
+}
+
+interface ChromaticRaySegment extends RaySegment {
+  channel: ChromaticChannel;
+}
+
+interface DiagramSVGProps {
+  L: RuntimeLens;
+  t: Theme;
+  dark: boolean;
+  sx: (z: number) => number;
+  sy: (y: number) => number;
+  CX: number;
+  IX: number;
+  effectiveSC: number;
+  zPos: number[];
+  IMG_MM: number;
+  shapes: ElementShape[];
+  filterId: string;
+  stopZ: number;
+  currentPhysStopSD: number;
+  rays: RaySegment[];
+  offAxisRays: RaySegment[];
+  chromaticRays: ChromaticRaySegment[];
+  chromSpread: ChromaticSpread | null;
+  showOnAxis: boolean;
+  showOffAxis: string;
+  showChromatic: boolean;
+  act: number | null;
+  onHover: (eid: number | null) => void;
+  onSelect: (eid: number | null) => void;
+  sel: number | null;
+  maxSvgHeight: string;
+  useSideLayout: boolean;
+  headerHeight: number;
+  compact: boolean;
+  flashVisible: boolean;
+  flashKey: number;
+  flashFading: boolean;
+}
 
 export default function DiagramSVG({
   L,
@@ -46,7 +92,7 @@ export default function DiagramSVG({
   flashVisible,
   flashKey,
   flashFading,
-}) {
+}: DiagramSVGProps) {
   return (
     <svg
       viewBox={`0 0 ${L.svgW} ${L.svgH}`}
@@ -187,7 +233,7 @@ export default function DiagramSVG({
       {/* Element filled shapes — clickable for inspection, highlighted on hover.
        * Hit-testing uses SVG's native pointer events on the <path> elements. */}
       {shapes.map(({ eid, d: path }) => {
-        const e = L.elements.find((x) => x.id === eid);
+        const e = L.elements.find((x) => x.id === eid)!;
         const on = act === eid;
         return (
           <path
@@ -324,8 +370,10 @@ export default function DiagramSVG({
           const insetW = 90;
           const insetH = 100;
           const gRef = chromSpread.intercepts.G || IMG_MM;
-          const activeChans = ["R", "G", "B"].filter((ch) => chromSpread.intercepts[ch] !== undefined);
-          const offsets = activeChans.map((ch) => Math.abs(chromSpread.intercepts[ch] - gRef));
+          const activeChans = (["R", "G", "B"] as ChromaticChannel[]).filter(
+            (ch) => chromSpread.intercepts[ch] !== undefined,
+          );
+          const offsets = activeChans.map((ch) => Math.abs((chromSpread.intercepts[ch] ?? 0) - gRef));
           const maxOff = Math.max(...offsets, 1e-9);
           const maxPixelSpan = (insetW - 24) / 2;
           const mag = Math.min(maxPixelSpan / (maxOff * effectiveSC), 5000);
@@ -366,7 +414,7 @@ export default function DiagramSVG({
                 strokeWidth={0.5}
               />
               {activeChans.map((ch) => {
-                const offset = (chromSpread.intercepts[ch] - gRef) * mag * effectiveSC;
+                const offset = ((chromSpread.intercepts[ch] ?? 0) - gRef) * mag * effectiveSC;
                 const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
                 return (
                   <g key={ch}>
@@ -415,7 +463,7 @@ export default function DiagramSVG({
         })()}
 
       {shapes.map(({ eid, z1, z2 }) => {
-        const e = L.elements.find((x) => x.id === eid);
+        const e = L.elements.find((x) => x.id === eid)!;
         const on = act === eid;
         return (
           <text

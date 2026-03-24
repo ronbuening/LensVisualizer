@@ -6,22 +6,49 @@
 import { eflAtZoom, formatDist } from "../optics/optics.js";
 import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../utils/featureFlags.js";
 import { SLIDER_LABEL, SLIDER_VALUE_BASE, collapseBtn, sliderInput } from "../utils/styles.js";
+import type { RuntimeLens } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
+
+interface VarReadout {
+  label: string;
+  val: string;
+}
+
+interface DiagramControlsProps {
+  L: RuntimeLens;
+  t: Theme;
+  compact: boolean;
+  useSideLayout: boolean;
+  zoomT: number;
+  onZoomChange?: (value: number) => void;
+  focusT: number;
+  onFocusChange?: (value: number) => void;
+  focusExpanded: boolean;
+  onFocusExpandedChange?: (value: boolean) => void;
+  varReadouts: VarReadout[];
+  stopdownT: number;
+  onStopdownChange?: (value: number) => void;
+  fNumber: number;
+  currentPhysStopSD: number;
+  baseEPSD: number;
+  apertureExpanded: boolean;
+  onApertureExpandedChange?: (value: boolean) => void;
+  onSliderPointerUp?: () => void;
+  showSliders: boolean;
+}
 
 export default function DiagramControls({
   L,
   t,
   compact,
   useSideLayout,
-  /* Zoom */
   zoomT,
   onZoomChange,
-  /* Focus */
   focusT,
   onFocusChange,
   focusExpanded,
   onFocusExpandedChange,
   varReadouts,
-  /* Aperture */
   stopdownT,
   onStopdownChange,
   fNumber,
@@ -29,10 +56,9 @@ export default function DiagramControls({
   baseEPSD,
   apertureExpanded,
   onApertureExpandedChange,
-  /* Shared */
   onSliderPointerUp,
   showSliders,
-}) {
+}: DiagramControlsProps) {
   return (
     <>
       {showSliders && L.isZoom && (
@@ -52,7 +78,7 @@ export default function DiagramControls({
             <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist }}>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.zoomPositions[0]} mm</span>
+            <span style={{ fontSize: 9, color: t.focusEndpoint }}>{L.zoomPositions![0]} mm</span>
             <input
               type="range"
               min="0"
@@ -64,7 +90,7 @@ export default function DiagramControls({
               style={sliderInput(t)}
             />
             <span style={{ fontSize: 9, color: t.focusEndpoint }}>
-              {L.zoomPositions[L.zoomPositions.length - 1]} mm
+              {L.zoomPositions![L.zoomPositions!.length - 1]} mm
             </span>
           </div>
         </div>

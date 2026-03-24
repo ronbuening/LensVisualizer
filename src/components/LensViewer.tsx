@@ -20,9 +20,9 @@ import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import T from "../utils/themes.js";
 import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/lensCatalog.js";
-import LensDiagramPanel from "./LensDiagramPanel.jsx";
-import DescriptionPanel from "./DescriptionPanel.jsx";
-import SharedSlidersBar from "./SharedSlidersBar.jsx";
+import LensDiagramPanel from "./LensDiagramPanel.js";
+import DescriptionPanel from "./DescriptionPanel.js";
+import SharedSlidersBar from "./SharedSlidersBar.js";
 import usePreferences from "../utils/usePreferences.js";
 import useURLSync from "../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../utils/LensContext.js";
@@ -41,7 +41,7 @@ import {
 } from "../utils/featureFlags.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../utils/comparisonSliders.js";
 import useStickySliders from "../utils/useStickySliders.js";
-import { ErrorDisplay } from "./ErrorBoundary.jsx";
+import { ErrorDisplay } from "./ErrorBoundary.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
@@ -72,6 +72,25 @@ import {
   overlayModal,
   closeBtn,
 } from "../utils/styles.js";
+import type { RuntimeLens } from "../types/optics.js";
+
+interface ComparisonLensesOk {
+  LA: RuntimeLens;
+  LB: RuntimeLens;
+  error?: undefined;
+  failedKeys?: undefined;
+}
+interface ComparisonLensesErr {
+  error: unknown;
+  failedKeys: string;
+  LA?: undefined;
+  LB?: undefined;
+}
+type ComparisonLensesResult = ComparisonLensesOk | ComparisonLensesErr | null;
+
+function isComparisonOk(cl: ComparisonLensesResult): cl is ComparisonLensesOk {
+  return cl !== null && !cl.error;
+}
 
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
@@ -93,7 +112,7 @@ export default function LensVisualization() {
   const { showAbout, showAboutSite } = overlays;
 
   /* ── Comparison mode header height alignment ── */
-  const [headerHeights, setHeaderHeights] = useState({ a: 0, b: 0 });
+  const [headerHeights, setHeaderHeights] = useState<Record<string, number>>({ a: 0, b: 0 });
   const justEnteredCompare = useRef(false);
 
   /* ── Sticky slider state machine (see useStickySliders for docs) ── */
@@ -106,7 +125,7 @@ export default function LensVisualization() {
   /* ── Escape key closes overlays ── */
   useEffect(() => {
     if (!showAbout && !showAboutSite) return;
-    const handleKey = (e) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") dispatch({ type: CLOSE_ALL_OVERLAYS });
     };
     window.addEventListener("keydown", handleKey);
@@ -132,14 +151,14 @@ export default function LensVisualization() {
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
   const switchLensA = useCallback(
-    (key) => {
+    (key: string) => {
       dispatch({ type: SET_LENS_A, key });
     },
     [dispatch],
   );
 
   const switchLensB = useCallback(
-    (key) => {
+    (key: string) => {
       dispatch({ type: SET_LENS_B, key });
     },
     [dispatch],
@@ -149,23 +168,23 @@ export default function LensVisualization() {
    * Built eagerly when comparison mode is active so we can compute
    * shared slider mappings (focus/aperture/zoom pairs). Both lenses
    * are also needed for normalized scale ratios. */
-  const comparisonLenses = useMemo(() => {
+  const comparisonLenses: ComparisonLensesResult = useMemo(() => {
     if (!comparing) return null;
     try {
-      return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) };
+      return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) } as ComparisonLensesOk;
     } catch (e) {
-      return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` };
+      return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` } as ComparisonLensesErr;
     }
   }, [comparing, lensKeyA, lensKeyB]);
 
-  const { updateURLWithSliders } = useURLSync(state, dispatch, comparisonLenses);
+  const { updateURLWithSliders } = useURLSync(state, dispatch, comparisonLenses as Parameters<typeof useURLSync>[2]);
 
   /* ── Normalized scale computation ──
    * In normalized mode, both panels use the same mm-per-pixel ratio so lens
    * sizes are visually comparable. Each panel's SC is scaled down to match
    * whichever lens has the smaller (more zoomed-out) SC value. */
   const scaleRatios = useMemo(() => {
-    if (!comparisonLenses || comparisonLenses.error || scaleMode !== "normalized") return null;
+    if (!isComparisonOk(comparisonLenses) || scaleMode !== "normalized") return null;
     const { LA, LB } = comparisonLenses;
     const minSC = Math.min(LA.SC, LB.SC);
     return { a: minSC / LA.SC, b: minSC / LB.SC };
@@ -173,17 +192,17 @@ export default function LensVisualization() {
 
   /* ── Per-lens focus/aperture from shared sliders ── */
   const focusPair = useMemo(() => {
-    if (!comparisonLenses || comparisonLenses.error) return null;
+    if (!isComparisonOk(comparisonLenses)) return null;
     return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedFocusT, comparisonLenses]);
 
   const aperturePair = useMemo(() => {
-    if (!comparisonLenses || comparisonLenses.error) return null;
+    if (!isComparisonOk(comparisonLenses)) return null;
     return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedStopdownT, comparisonLenses]);
 
   const zoomPair = useMemo(() => {
-    if (!comparisonLenses || comparisonLenses.error) return null;
+    if (!isComparisonOk(comparisonLenses)) return null;
     return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedZoomT, comparisonLenses]);
 
@@ -196,11 +215,11 @@ export default function LensVisualization() {
     flashPanel,
     resetSticky,
     prevStopdownT,
-  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses);
+  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
 
   /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
-    if (!justEnteredCompare.current || !comparisonLenses || comparisonLenses.error) return;
+    if (!justEnteredCompare.current || !isComparisonOk(comparisonLenses)) return;
     justEnteredCompare.current = false;
     const { LA, LB } = comparisonLenses;
     const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
@@ -230,7 +249,7 @@ export default function LensVisualization() {
   }, [comparing, focusPair, aperturePair, dispatch, resetSticky]);
 
   /* ── Header height alignment callback ── */
-  const handleHeaderHeight = useCallback((panelId, height) => {
+  const handleHeaderHeight = useCallback((panelId: string, height: number) => {
     setHeaderHeights((prev) => (prev[panelId] === height ? prev : { ...prev, [panelId]: height }));
   }, []);
   const maxHeaderHeight = Math.max(headerHeights.a, headerHeights.b);
@@ -391,11 +410,13 @@ export default function LensVisualization() {
             <span>COLOR</span>
           </button>
           {showChromatic &&
-            [
-              { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
-              { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
-              { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
-            ].map(({ ch, active, field, color }, idx) => (
+            (
+              [
+                { ch: "R", active: chromR, field: "chromR" as const, color: t.rayChromR },
+                { ch: "G", active: chromG, field: "chromG" as const, color: t.rayChromG },
+                { ch: "B", active: chromB, field: "chromB" as const, color: t.rayChromB },
+              ] as const
+            ).map(({ ch, active, field, color }, idx) => (
               <button
                 key={ch}
                 onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
@@ -422,10 +443,12 @@ export default function LensVisualization() {
           ...toggleGroup(t, { width: 190 }),
         }}
       >
-        {[
-          { label: "INDEPENDENT", val: "independent" },
-          { label: "NORMALIZED", val: "normalized" },
-        ].map(({ label, val }, idx) => (
+        {(
+          [
+            { label: "INDEPENDENT", val: "independent" as const },
+            { label: "NORMALIZED", val: "normalized" as const },
+          ] as const
+        ).map(({ label, val }, idx) => (
           <button
             key={val}
             onClick={() => dispatch({ type: SET_SCALE_MODE, scaleMode: val })}
@@ -442,8 +465,10 @@ export default function LensVisualization() {
   const comparisonError = comparisonLenses?.error ? (
     <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
       <ErrorDisplay
-        error={comparisonLenses.error}
-        context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys }}
+        error={
+          comparisonLenses.error instanceof Error ? comparisonLenses.error : new Error(String(comparisonLenses.error))
+        }
+        context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys ?? "" }}
         title="Failed to build lens for comparison"
       />
     </div>
@@ -653,11 +678,13 @@ export default function LensVisualization() {
               <span>COLOR</span>
             </button>
             {showChromatic &&
-              [
-                { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
-                { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
-                { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
-              ].map(({ ch, active, field, color }, idx) => (
+              (
+                [
+                  { ch: "R", active: chromR, field: "chromR" as const, color: t.rayChromR },
+                  { ch: "G", active: chromG, field: "chromG" as const, color: t.rayChromG },
+                  { ch: "B", active: chromB, field: "chromB" as const, color: t.rayChromB },
+                ] as const
+              ).map(({ ch, active, field, color }, idx) => (
                 <button
                   key={ch}
                   onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
@@ -883,7 +910,7 @@ export default function LensVisualization() {
           {comparing ? (
             <>
               {comparisonContent}
-              {comparisonLenses && !comparisonLenses.error && focusPair && aperturePair && (
+              {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
                 <SharedSlidersBar
                   LA={comparisonLenses.LA}
                   LB={comparisonLenses.LB}

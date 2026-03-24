@@ -9,6 +9,25 @@
 import { halfFieldAtZoom } from "../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_COLLAPSIBLE_LEGEND } from "../utils/featureFlags.js";
 import { collapseBtn } from "../utils/styles.js";
+import type { RuntimeLens, ChromaticSpread } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
+
+interface DiagramLegendProps {
+  L: RuntimeLens;
+  t: Theme;
+  isWide: boolean;
+  zoomT: number;
+  showOnAxis: boolean;
+  showOffAxis: string;
+  showChromatic: boolean;
+  chromR: boolean;
+  chromG: boolean;
+  chromB: boolean;
+  chromSpread: ChromaticSpread | null;
+  rayTracksF: boolean;
+  legendExpanded: boolean;
+  onLegendExpandedChange?: (expanded: boolean) => void;
+}
 
 export default function DiagramLegend({
   L,
@@ -25,7 +44,7 @@ export default function DiagramLegend({
   rayTracksF,
   legendExpanded,
   onLegendExpandedChange,
-}) {
+}: DiagramLegendProps) {
   return (
     <div style={{ padding: "6px 0" }}>
       <div

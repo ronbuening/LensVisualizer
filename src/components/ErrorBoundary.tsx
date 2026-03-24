@@ -15,7 +15,24 @@
  */
 
 import { Component } from "react";
+import type { ReactNode, ErrorInfo, CSSProperties } from "react";
 import { buildIssueURL, REPO_URL } from "../utils/errorReporting.js";
+
+interface ErrorDisplayProps {
+  error: Error | null;
+  context: Record<string, string>;
+  onRetry?: () => void;
+  title?: string;
+}
+
+interface ErrorBoundaryProps {
+  children: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  error: Error | null;
+  componentStack: string | null;
+}
 
 /* ── Shared styles (dark fallback — used when theme is unavailable) ── */
 const FALLBACK = {
@@ -34,14 +51,14 @@ const FALLBACK = {
 };
 
 /* ── Hoisted static styles (all reference FALLBACK, which is module-level) ── */
-const ERROR_DISPLAY_CONTAINER = {
+const ERROR_DISPLAY_CONTAINER: CSSProperties = {
   maxWidth: 560,
   padding: 24,
   textAlign: "center",
   fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
 };
 
-const ERROR_PRE_BASE = {
+const ERROR_PRE_BASE: CSSProperties = {
   background: FALLBACK.errorBg,
   border: `1px solid ${FALLBACK.errorBorder}`,
   borderRadius: 6,
@@ -51,9 +68,9 @@ const ERROR_PRE_BASE = {
   overflowY: "auto",
 };
 
-const ERROR_ACTIONS_ROW = { display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" };
+const ERROR_ACTIONS_ROW: CSSProperties = { display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" };
 
-const RETRY_BTN_STYLE = {
+const RETRY_BTN_STYLE: CSSProperties = {
   background: FALLBACK.btnBg,
   color: FALLBACK.btnText,
   border: "none",
@@ -65,7 +82,7 @@ const RETRY_BTN_STYLE = {
   fontFamily: "inherit",
 };
 
-const REPORT_LINK_STYLE = {
+const REPORT_LINK_STYLE: CSSProperties = {
   display: "inline-block",
   background: FALLBACK.linkBg,
   border: `1.5px solid ${FALLBACK.linkBorder}`,
@@ -79,7 +96,7 @@ const REPORT_LINK_STYLE = {
   cursor: "pointer",
 };
 
-const BOUNDARY_WRAPPER = {
+const BOUNDARY_WRAPPER: CSSProperties = {
   background: FALLBACK.bg,
   color: FALLBACK.text,
   minHeight: "100vh",
@@ -104,11 +121,11 @@ const BOUNDARY_WRAPPER = {
  *                                     resets error state in the parent boundary
  * @param {string}   [props.title]   — heading text shown above the error message
  */
-export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error" }) {
+export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error" }: ErrorDisplayProps) {
   /* Build a pre-filled GitHub issue URL; fall back to bare /issues/new on failure */
   let issueURL;
   try {
-    issueURL = buildIssueURL(error, context);
+    issueURL = buildIssueURL(error!, context);
   } catch {
     issueURL = `${REPO_URL}/issues/new`;
   }
@@ -158,21 +175,21 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
  * Top-level React error boundary.
  * Wraps the entire app in main.jsx.  Catches unhandled render-phase errors.
  */
-export default class ErrorBoundary extends Component {
-  constructor(props) {
+export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { error: null, componentStack: null };
   }
 
   /* React calls this during the render phase — synchronously captures the error
    * so the next render can show the fallback UI instead of the broken tree. */
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
     return { error };
   }
 
   /* Called after the error is committed — used for logging and capturing the
    * component stack trace (which component tree led to the error). */
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: ErrorInfo): void {
     console.error("[LensVisualizer] Uncaught render error:", error, info?.componentStack);
     this.setState({ componentStack: info?.componentStack || null });
   }
