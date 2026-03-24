@@ -34,7 +34,17 @@ export default function PetzvalSumBadge({ L, t }: PetzvalSumBadgeProps) {
 
   return (
     <g style={{ pointerEvents: "none" }}>
-      <rect x={x} y={y} width={w} height={h} rx={4} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.6} opacity={0.94} />
+      <rect
+        x={x}
+        y={y}
+        width={w}
+        height={h}
+        rx={4}
+        fill={t.panelBg}
+        stroke={t.panelBorder}
+        strokeWidth={0.6}
+        opacity={0.94}
+      />
       <text
         x={x + w / 2}
         y={y + 14}
@@ -46,7 +56,15 @@ export default function PetzvalSumBadge({ L, t }: PetzvalSumBadgeProps) {
       >
         PETZVAL
       </text>
-      <text x={x + w / 2} y={y + 30} textAnchor="middle" fill={t.value} fontSize={10} fontFamily="inherit" fontWeight={600}>
+      <text
+        x={x + w / 2}
+        y={y + 30}
+        textAnchor="middle"
+        fill={t.value}
+        fontSize={10}
+        fontFamily="inherit"
+        fontWeight={600}
+      >
         {pStr}
       </text>
       <text x={x + w / 2} y={y + 44} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
