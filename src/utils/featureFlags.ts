@@ -41,3 +41,5 @@ export const ENABLE_ABOUT_BUTTONS_IN_TOPBAR = false;
 export const ENABLE_PUPIL_TOGGLE = true;
 
 export const ENABLE_LCA_OVERLAY = true;
+
+export const ENABLE_PETZVAL_OVERLAY = true;

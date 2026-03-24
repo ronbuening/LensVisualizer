@@ -10,7 +10,7 @@
  * state or side effects. Interaction callbacks (onHover, onSelect) are passed
  * through from the parent LensDiagramPanel.
  */
-import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
+import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_PUPIL_TOGGLE, ENABLE_PETZVAL_OVERLAY } from "../../utils/featureFlags.js";
 import RayPolylines from "./RayPolylines.js";
 import ApertureStop from "./ApertureStop.js";
 import ElementAnnotations from "./ElementAnnotations.js";
@@ -63,6 +63,7 @@ interface DiagramSVGProps {
   flashKey: number;
   flashFading: boolean;
   onLcaInsetClick?: () => void;
+  onPetzvalBadgeClick?: () => void;
 }
 
 export default function DiagramSVG({
@@ -100,6 +101,7 @@ export default function DiagramSVG({
   flashKey,
   flashFading,
   onLcaInsetClick,
+  onPetzvalBadgeClick,
 }: DiagramSVGProps) {
   return (
     <svg
@@ -430,7 +432,7 @@ export default function DiagramSVG({
         })()}
 
       {/* Petzval sum badge — upper-left corner */}
-      <PetzvalSumBadge L={L} t={t} />
+      <PetzvalSumBadge L={L} t={t} onClick={ENABLE_PETZVAL_OVERLAY ? onPetzvalBadgeClick : undefined} />
 
       {/* Flash overlay — brief highlight when slider sticks at common point */}
       {flashVisible && (
