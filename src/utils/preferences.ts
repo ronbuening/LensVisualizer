@@ -2,7 +2,9 @@
  * Persistent user preferences via localStorage.
  */
 
-export const PREFS_KEY = "lensvis:prefs";
+import type { Preferences } from "../types/state.js";
+
+export const PREFS_KEY: string = "lensvis:prefs";
 
 /**
  * Load persisted user preferences from localStorage.
@@ -11,16 +13,16 @@ export const PREFS_KEY = "lensvis:prefs";
  * silently dropped.  Lens keys are checked against the current catalog
  * to avoid referencing lenses that no longer exist.
  *
- * @param {string[]} catalogKeys  — valid lens keys from the current catalog
- * @returns {Object}                sanitized preferences (partial — only valid fields)
+ * @param catalogKeys — valid lens keys from the current catalog
+ * @returns sanitized preferences (partial — only valid fields)
  */
-export function loadPrefs(catalogKeys) {
+export function loadPrefs(catalogKeys: string[]): Partial<Preferences> {
   try {
-    const raw = localStorage.getItem(PREFS_KEY);
+    const raw: string | null = localStorage.getItem(PREFS_KEY);
     if (!raw) return {};
-    const p = JSON.parse(raw);
+    const p: Record<string, unknown> = JSON.parse(raw);
     if (!p || typeof p !== "object") return {};
-    const out = {};
+    const out: Partial<Preferences> = {};
     if (typeof p.dark === "boolean") out.dark = p.dark;
     if (typeof p.highContrast === "boolean") out.highContrast = p.highContrast;
     if (typeof p.showOnAxis === "boolean") out.showOnAxis = p.showOnAxis;
@@ -37,11 +39,12 @@ export function loadPrefs(catalogKeys) {
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     /* v1 compat: lensKey → lensKeyA */
-    const key = p.lensKeyA || p.lensKey;
+    const key: unknown = (p as Record<string, unknown>).lensKeyA || (p as Record<string, unknown>).lensKey;
     if (typeof key === "string" && catalogKeys.includes(key)) out.lensKeyA = key;
     if (typeof p.lensKeyB === "string" && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
     if (typeof p.comparing === "boolean") out.comparing = p.comparing;
-    if (p.scaleMode === "independent" || p.scaleMode === "normalized") out.scaleMode = p.scaleMode;
+    if (p.scaleMode === "independent" || p.scaleMode === "normalized")
+      out.scaleMode = p.scaleMode as "independent" | "normalized";
     if (typeof p.desktopView === "string" && ["diagram", "both", "analysis"].includes(p.desktopView))
       out.desktopView = p.desktopView;
     if (typeof p.focusExpanded === "boolean") out.focusExpanded = p.focusExpanded;
