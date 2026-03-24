@@ -78,7 +78,7 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 
 ## Tech Stack
 
-- React 18 + Vite 6
+- React 18 + TypeScript + Vite 6
 - Inline SVG rendering (no canvas)
 - Vitest for unit testing
 - react-markdown + remark-gfm for in-app analysis rendering
@@ -90,21 +90,34 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 LensVisualizer/
 ├── index.html                          # HTML entry point
 ├── src/
-│   ├── main.jsx                        # React root mount
+│   ├── main.tsx                        # React root mount
+│   ├── types/                          # Shared TypeScript type definitions
 │   ├── components/
-│   │   ├── LensViewer.jsx              # Orchestration: top bar, comparison, overlays
-│   │   ├── LensDiagramPanel.jsx        # SVG diagram renderer with ray tracing
-│   │   ├── DescriptionPanel.jsx        # Themed markdown renderer
-│   │   ├── SharedSlidersBar.jsx        # Comparison mode controls
-│   │   └── ErrorBoundary.jsx           # Error boundary with retry UI
+│   │   ├── LensViewer.tsx              # Orchestration: state, context, layout
+│   │   ├── TopBar.tsx                  # Lens selectors, compare/about buttons
+│   │   ├── ControlsBar.tsx             # Theme/ray/chromatic/scale toggles
+│   │   ├── ViewToggleBar.tsx           # View-mode toggle (mobile + desktop)
+│   │   ├── ComparisonLayout.tsx        # Side-by-side / stacked comparison panels
+│   │   ├── OverlayModal.tsx            # Generic backdrop + modal overlay
+│   │   ├── LensDiagramPanel.tsx        # Diagram composition layer
+│   │   ├── DiagramHeader.tsx           # Title, specs, controls header
+│   │   ├── DiagramSVG.tsx              # Full SVG rendering
+│   │   ├── DiagramControls.tsx         # Zoom, focus, aperture sliders
+│   │   ├── ElementInspector.tsx        # Selected element property display
+│   │   ├── DiagramLegend.tsx           # Legend with aberration readouts
+│   │   ├── DescriptionPanel.tsx        # Themed markdown renderer
+│   │   ├── SharedSlidersBar.tsx        # Comparison mode shared controls
+│   │   ├── ErrorBoundary.tsx           # Error boundary with retry UI
+│   │   ├── useLensComputation.ts       # Hook: lens building, layout, shapes
+│   │   └── useRayTracing.ts            # Hook: on-axis, off-axis, chromatic rays
 │   ├── optics/
-│   │   ├── optics.js                   # Ray tracing, sag curves, layout math
-│   │   ├── buildLens.js                # Lens construction, EFL/pupil/field
-│   │   ├── validateLensData.js         # Schema validation
-│   │   └── diagramGeometry.js          # Coordinate transforms, element shapes
+│   │   ├── optics.ts                   # Ray tracing, sag curves, layout math
+│   │   ├── buildLens.ts                # Lens construction, EFL/pupil/field
+│   │   ├── validateLensData.ts         # Schema validation
+│   │   └── diagramGeometry.ts          # Coordinate transforms, element shapes
 │   ├── utils/                          # Themes, feature flags, catalog, hooks
 │   ├── content/                        # AboutMe.md, AboutSite.md
 │   └── lens-data/                      # Lens prescriptions + analyses
 ├── agent_docs/                         # Documentation for AI coding assistants
-└── __tests__/                          # Vitest unit tests
+└── __tests__/                          # Vitest unit tests (TypeScript)
 ```
