@@ -15,6 +15,7 @@ import {
 import { collapseBtn } from "../../utils/styles.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { CSSProperties } from "react";
 
 interface DiagramLegendProps {
   L: RuntimeLens;
@@ -31,6 +32,7 @@ interface DiagramLegendProps {
   rayTracksF: boolean;
   legendExpanded: boolean;
   onLegendExpandedChange?: (expanded: boolean) => void;
+  onOpenAbbeDiagram?: () => void;
 }
 
 export default function DiagramLegend({
@@ -48,7 +50,9 @@ export default function DiagramLegend({
   rayTracksF,
   legendExpanded,
   onLegendExpandedChange,
+  onOpenAbbeDiagram,
 }: DiagramLegendProps) {
+  const hasAbbeData = L.elements.some((e) => e.vd != null);
   return (
     <div style={{ padding: "6px 0" }}>
       <div
@@ -192,6 +196,15 @@ export default function DiagramLegend({
                 </div>
               );
             })()}
+          {onOpenAbbeDiagram && hasAbbeData && (
+            <button
+              onClick={onOpenAbbeDiagram}
+              style={{ ...collapseBtn(t), marginLeft: "auto" } as CSSProperties}
+              title="Open Abbe glass map"
+            >
+              Abbe ↗
+            </button>
+          )}
           {showChromatic && chromSpread && (
             <div
               style={{
