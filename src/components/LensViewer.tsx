@@ -27,7 +27,6 @@ import usePreferences from "../utils/usePreferences.js";
 import useURLSync from "../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../utils/LensContext.js";
 import {
-  ENABLE_COLOR_TRACING,
   ENABLE_ANALYSIS_VIEW,
   ENABLE_DESKTOP_VIEW_TOGGLE,
   ENABLE_DIAGRAM_ONLY,
@@ -35,7 +34,6 @@ import {
   ENABLE_COMPARISON,
   ENABLE_COMPARISON_MOBILE,
   ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
-  ENABLE_EDGE_PROJECTION,
   ENABLE_SIDE_PANEL_LAYOUT,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../utils/featureFlags.js";
@@ -43,18 +41,15 @@ import { computeFocusPair, computeAperturePair, computeZoomPair } from "../utils
 import useStickySliders from "../utils/useStickySliders.js";
 import { ErrorDisplay } from "./ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
+import ControlsBar from "./ControlsBar.js";
 import ABOUT_ME_MD from "../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../content/AboutSite.md?raw";
 import useLensState from "../utils/useLensState.js";
 import {
   SET_LENS_A,
   SET_LENS_B,
-  SET_SCALE_MODE,
-  SET_DARK,
-  SET_HIGH_CONTRAST,
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
-  SET_RAY_TOGGLE,
   SET_SHARED_STOPDOWN_T,
   SET_SHARED_ZOOM_T,
   SET_OVERLAY,
@@ -62,7 +57,7 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../utils/lensReducer.js";
-import { toggleGroup, toggleBtn, chromChannelBtn, selector, headerStrip, topBarBtn } from "../utils/styles.js";
+import { toggleGroup, toggleBtn, selector, headerStrip, topBarBtn } from "../utils/styles.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 interface ComparisonLensesOk {
@@ -264,193 +259,21 @@ export default function LensVisualization() {
     </div>
   );
 
-  /* ── Shared controls bar (comparison mode) ── */
-  const sharedControlsBar = comparing ? (
-    <div
-      style={{
-        ...headerStrip(t, { padding: "8px 16px" }),
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 8,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {/* Theme controls */}
-      <div style={toggleGroup(t, { width: 120 })}>
-        <button
-          onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-          style={toggleBtn(t, highContrast)}
-        >
-          <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-          <span>HC</span>
-        </button>
-        <button
-          onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
-          style={toggleBtn(t, false, { hasRightBorder: false })}
-        >
-          <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-          <span>{dark ? "Light" : "Dark"}</span>
-        </button>
-      </div>
-
-      {/* Ray toggles */}
-      <div style={toggleGroup(t, { width: 180 })}>
-        {(() => {
-          const offAxisActive = showOffAxis !== "off";
-          const offAxisCycle = ENABLE_EDGE_PROJECTION
-            ? () =>
-                dispatch({
-                  type: SET_RAY_TOGGLE,
-                  field: "showOffAxis",
-                  value: showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
-                })
-            : () =>
-                dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: offAxisActive ? "off" : "trueAngle" });
-          const offAxisLabel = ENABLE_EDGE_PROJECTION
-            ? showOffAxis === "edge"
-              ? "EDGE PROJ"
-              : showOffAxis === "trueAngle"
-                ? "TRUE \u2220"
-                : "OFF-AXIS"
-            : "OFF-AXIS";
-          return [
-            {
-              label: "ON-AXIS",
-              active: showOnAxis,
-              onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: !showOnAxis }),
-              dotA: t.rayWarm,
-              dotB: t.rayCool,
-            },
-            {
-              label: offAxisLabel,
-              active: offAxisActive,
-              onClick: offAxisCycle,
-              dotA: t.rayOffWarm,
-              dotB: t.rayOffCool,
-            },
-          ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-            <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
-              <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-                <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
-              </svg>
-              <span>{label}</span>
-            </button>
-          ));
-        })()}
-      </div>
-
-      {/* Ray mode */}
-      <div style={toggleGroup(t, { width: 180 })}>
-        {[
-          { label: "FROM \u221e", val: false, icon: "\u2225" },
-          { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-        ].map(({ label, val, icon }) => (
-          <button
-            key={label}
-            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
-            style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val })}
-          >
-            <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>
-              {icon}
-            </span>
-            <span>{label}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Chromatic */}
-      {ENABLE_COLOR_TRACING && (
-        <div
-          style={{
-            ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
-            transition: "border-color 0.3s, width 0.3s",
-          }}
-        >
-          <button
-            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-            style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
-          >
-            <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-              <line
-                x1="0"
-                y1="1"
-                x2="14"
-                y2="1"
-                stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
-              />
-              <line
-                x1="0"
-                y1="4"
-                x2="14"
-                y2="4"
-                stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
-              />
-              <line
-                x1="0"
-                y1="7"
-                x2="14"
-                y2="7"
-                stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
-              />
-            </svg>
-            <span>COLOR</span>
-          </button>
-          {showChromatic &&
-            (
-              [
-                { ch: "R", active: chromR, field: "chromR" as const, color: t.rayChromR },
-                { ch: "G", active: chromG, field: "chromG" as const, color: t.rayChromG },
-                { ch: "B", active: chromB, field: "chromB" as const, color: t.rayChromB },
-              ] as const
-            ).map(({ ch, active, field, color }, idx) => (
-              <button
-                key={ch}
-                onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-                style={chromChannelBtn(t, active, idx < 2)}
-              >
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: active ? color : "rgba(128,128,128,0.3)",
-                    display: "inline-block",
-                  }}
-                />
-                <span>{ch}</span>
-              </button>
-            ))}
-        </div>
-      )}
-
-      {/* Scale mode toggle */}
-      <div
-        style={{
-          ...toggleGroup(t, { width: 190 }),
-        }}
-      >
-        {(
-          [
-            { label: "INDEPENDENT", val: "independent" as const },
-            { label: "NORMALIZED", val: "normalized" as const },
-          ] as const
-        ).map(({ label, val }, idx) => (
-          <button
-            key={val}
-            onClick={() => dispatch({ type: SET_SCALE_MODE, scaleMode: val })}
-            style={toggleBtn(t, scaleMode === val, { hasRightBorder: idx === 0 })}
-          >
-            <span>{label}</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  ) : null;
+  /* ── Controls bar props (shared between comparison and mobile instances) ── */
+  const controlsBarProps = {
+    theme: t,
+    showOnAxis,
+    showOffAxis,
+    rayTracksF,
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    dark,
+    highContrast,
+    scaleMode,
+    dispatch,
+  } as const;
 
   /* ── Comparison error display ── */
   const comparisonError = comparisonLenses?.error ? (
@@ -521,182 +344,6 @@ export default function LensVisualization() {
     )
   ) : null;
 
-  /* ── Mobile controls strip (always-visible toggles on narrow screens) ── */
-  const mobileControlsStrip =
-    ENABLE_MOBILE_CONTROLS_STRIP && !isWide && !comparing && mobileView === "diagram" ? (
-      <div
-        style={{
-          ...headerStrip(t, { padding: "6px 12px" }),
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 6,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* Theme controls */}
-        <div style={toggleGroup(t)}>
-          <button
-            onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-            style={toggleBtn(t, highContrast)}
-          >
-            <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-            <span>HC</span>
-          </button>
-          <button
-            onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
-            style={toggleBtn(t, false, { hasRightBorder: false })}
-          >
-            <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-            <span>{dark ? "Light" : "Dark"}</span>
-          </button>
-        </div>
-
-        {/* Ray toggles */}
-        <div style={toggleGroup(t)}>
-          {(() => {
-            const offAxisActive = showOffAxis !== "off";
-            const offAxisCycle = ENABLE_EDGE_PROJECTION
-              ? () =>
-                  dispatch({
-                    type: SET_RAY_TOGGLE,
-                    field: "showOffAxis",
-                    value: showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
-                  })
-              : () =>
-                  dispatch({
-                    type: SET_RAY_TOGGLE,
-                    field: "showOffAxis",
-                    value: offAxisActive ? "off" : "trueAngle",
-                  });
-            const offAxisLabel = ENABLE_EDGE_PROJECTION
-              ? showOffAxis === "edge"
-                ? "EDGE"
-                : showOffAxis === "trueAngle"
-                  ? "TRUE\u2220"
-                  : "OFF"
-              : "OFF";
-            return [
-              {
-                label: "ON",
-                active: showOnAxis,
-                onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: !showOnAxis }),
-                dotA: t.rayWarm,
-                dotB: t.rayCool,
-              },
-              {
-                label: offAxisLabel,
-                active: offAxisActive,
-                onClick: offAxisCycle,
-                dotA: t.rayOffWarm,
-                dotB: t.rayOffCool,
-              },
-            ].map(({ label, active, onClick, dotA, dotB }, idx) => (
-              <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
-                <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                  <line
-                    x1="0"
-                    y1="4"
-                    x2="14"
-                    y2="4"
-                    stroke={active ? dotA : "rgba(128,128,128,0.3)"}
-                    strokeWidth="1.5"
-                  />
-                  <line
-                    x1="0"
-                    y1="7"
-                    x2="14"
-                    y2="7"
-                    stroke={active ? dotB : "rgba(128,128,128,0.3)"}
-                    strokeWidth="1.5"
-                  />
-                </svg>
-                <span>{label}</span>
-              </button>
-            ));
-          })()}
-        </div>
-
-        {/* Ray mode */}
-        <div style={toggleGroup(t)}>
-          {[
-            { label: "\u221e", val: false },
-            { label: "\u27e9 F", val: true },
-          ].map(({ label, val }, idx) => (
-            <button
-              key={label}
-              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
-              style={toggleBtn(t, rayTracksF === val, { hasRightBorder: idx === 0 })}
-            >
-              <span>{label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Chromatic */}
-        {ENABLE_COLOR_TRACING && (
-          <div style={toggleGroup(t)}>
-            <button
-              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-              style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
-            >
-              <svg width="12" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-                <line
-                  x1="0"
-                  y1="1"
-                  x2="14"
-                  y2="1"
-                  stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="0"
-                  y1="4"
-                  x2="14"
-                  y2="4"
-                  stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="0"
-                  y1="7"
-                  x2="14"
-                  y2="7"
-                  stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-                  strokeWidth="1.5"
-                />
-              </svg>
-              <span>COLOR</span>
-            </button>
-            {showChromatic &&
-              (
-                [
-                  { ch: "R", active: chromR, field: "chromR" as const, color: t.rayChromR },
-                  { ch: "G", active: chromG, field: "chromG" as const, color: t.rayChromG },
-                  { ch: "B", active: chromB, field: "chromB" as const, color: t.rayChromB },
-                ] as const
-              ).map(({ ch, active, field, color }, idx) => (
-                <button
-                  key={ch}
-                  onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-                  style={chromChannelBtn(t, active, idx < 2)}
-                >
-                  <span
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: "50%",
-                      background: active ? color : "rgba(128,128,128,0.3)",
-                      display: "inline-block",
-                    }}
-                  />
-                  <span>{ch}</span>
-                </button>
-              ))}
-          </div>
-        )}
-      </div>
-    ) : null;
 
   /* ── Single-lens diagram content ── */
   const singleDiagramContent = !comparing ? (
@@ -837,7 +484,7 @@ export default function LensVisualization() {
           </div>
 
           {/* ── Shared controls bar (comparison mode only) ── */}
-          {sharedControlsBar}
+          {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}
 
           {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
           {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
@@ -895,7 +542,9 @@ export default function LensVisualization() {
           )}
 
           {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
-          {mobileControlsStrip}
+          {ENABLE_MOBILE_CONTROLS_STRIP && !isWide && !comparing && mobileView === "diagram" && (
+            <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
+          )}
 
           {/* ── Main content area ── */}
           {comparing ? (
