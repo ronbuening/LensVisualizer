@@ -128,6 +128,7 @@ export interface RuntimeLens {
   readonly B: number;
   readonly FOPEN: number;
   readonly halfField: number;
+  readonly petzvalSum: number;
   readonly totalTrack: number;
   readonly maxSD: number;
   readonly svgW: number;

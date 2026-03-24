@@ -15,6 +15,7 @@ import RayPolylines from "./RayPolylines.js";
 import ApertureStop from "./ApertureStop.js";
 import ElementAnnotations from "./ElementAnnotations.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
+import PetzvalSumBadge from "./PetzvalSumBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -318,6 +319,9 @@ export default function DiagramSVG({
         act={act}
         showChromatic={showChromatic}
       />
+
+      {/* Petzval sum badge — upper-left corner */}
+      <PetzvalSumBadge L={L} t={t} />
 
       {/* Flash overlay — brief highlight when slider sticks at common point */}
       {flashVisible && (

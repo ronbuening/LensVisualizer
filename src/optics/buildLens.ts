@@ -207,6 +207,20 @@ export default function buildLens(data: LensData): RuntimeLens {
   if (!isFinite(halfField))
     throw new Error(`Lens "${data.key}": Half-field angle is not finite — vignetting computation failed`);
 
+  /* ── Petzval sum ──
+   * P = Σ (n'−n) / (n'·n·R) over all refracting surfaces.
+   * Contribution is zero for flat surfaces (|R| ≥ FLAT_R_THRESHOLD). */
+  let petzvalSum = 0;
+  let nPetz = 1.0;
+  for (let i = 0; i < N; i++) {
+    const { R, nd } = S[i];
+    const nNext = nd === 1.0 ? 1.0 : nd;
+    if (nNext !== nPetz && Math.abs(R) < FLAT_R_THRESHOLD) {
+      petzvalSum += (nNext - nPetz) / (nNext * nPetz * R);
+    }
+    nPetz = nNext;
+  }
+
   /* ── Layout geometry ──
    *  SC  = horizontal scale (pixels per mm along optical axis)
    *  YSC = vertical scale (pixels per mm perpendicular to axis)
@@ -335,6 +349,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     B,
     FOPEN,
     halfField,
+    petzvalSum,
     totalTrack,
     maxSD,
     svgW: data.svgW,
