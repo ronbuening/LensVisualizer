@@ -62,86 +62,89 @@ export default function LensPage() {
         jsonLd={lensJsonLd(lens, slug)}
       />
 
-      {/* Interactive visualizer — client-only */}
-      <ClientOnly>
+      {/* Interactive visualizer — client-only; SEO text content shown as fallback during SSR */}
+      <ClientOnly
+        fallback={
+          <div style={CONTENT_STYLE}>
+            <nav style={NAV_STYLE}>
+              <Link to="/" style={NAV_LINK_STYLE}>
+                Home
+              </Link>
+              {" / "}
+              <Link to="/lenses" style={NAV_LINK_STYLE}>
+                Lenses
+              </Link>
+              {" / "}
+              <Link to={`/makers/${maker.slug}`} style={NAV_LINK_STYLE}>
+                {maker.display}
+              </Link>
+              {` / ${lens.name}`}
+            </nav>
+
+            <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
+
+            {lens.subtitle && (
+              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{lens.subtitle}</p>
+            )}
+
+            {lens.specs && lens.specs.length > 0 && (
+              <table style={SPEC_TABLE_STYLE}>
+                <tbody>
+                  {lens.specs.map((spec, i) => (
+                    <tr key={i}>
+                      <td style={TD_STYLE}>{spec}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+
+            {lens.focusDescription && (
+              <section style={{ marginBottom: "1rem" }}>
+                <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.25rem" }}>Focus Mechanism</h2>
+                <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>{lens.focusDescription}</p>
+              </section>
+            )}
+
+            {lens.elements && lens.elements.length > 0 && (
+              <section style={{ marginBottom: "1rem" }}>
+                <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
+                  Optical Elements ({lens.elements.length})
+                </h2>
+                <table style={SPEC_TABLE_STYLE}>
+                  <thead>
+                    <tr>
+                      <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Element</th>
+                      <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Type</th>
+                      <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Glass</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {lens.elements.map((el) => (
+                      <tr key={el.id}>
+                        <td style={TD_STYLE}>{el.name || el.label}</td>
+                        <td style={TD_STYLE}>{el.type}</td>
+                        <td style={TD_STYLE}>{el.glass || "—"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            )}
+
+            {analysis && (
+              <section style={{ marginBottom: "1rem" }}>
+                <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>Analysis</h2>
+                <p style={{ fontSize: "0.8rem", color: "#999" }}>
+                  Detailed analysis available in the interactive viewer above.
+                </p>
+              </section>
+            )}
+          </div>
+        }
+      >
         <LensVisualization initialLensKey={slug} />
       </ClientOnly>
-
-      {/* SEO text content — renders during SSR for crawlers */}
-      <div style={CONTENT_STYLE}>
-        <nav style={NAV_STYLE}>
-          <Link to="/" style={NAV_LINK_STYLE}>
-            Home
-          </Link>
-          {" / "}
-          <Link to="/lenses" style={NAV_LINK_STYLE}>
-            Lenses
-          </Link>
-          {" / "}
-          <Link to={`/makers/${maker.slug}`} style={NAV_LINK_STYLE}>
-            {maker.display}
-          </Link>
-          {` / ${lens.name}`}
-        </nav>
-
-        <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
-
-        {lens.subtitle && <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{lens.subtitle}</p>}
-
-        {lens.specs && lens.specs.length > 0 && (
-          <table style={SPEC_TABLE_STYLE}>
-            <tbody>
-              {lens.specs.map((spec, i) => (
-                <tr key={i}>
-                  <td style={TD_STYLE}>{spec}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-
-        {lens.focusDescription && (
-          <section style={{ marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.25rem" }}>Focus Mechanism</h2>
-            <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: 1.5 }}>{lens.focusDescription}</p>
-          </section>
-        )}
-
-        {lens.elements && lens.elements.length > 0 && (
-          <section style={{ marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-              Optical Elements ({lens.elements.length})
-            </h2>
-            <table style={SPEC_TABLE_STYLE}>
-              <thead>
-                <tr>
-                  <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Element</th>
-                  <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Type</th>
-                  <th style={{ ...TD_STYLE, fontWeight: 600, fontSize: "0.75rem" }}>Glass</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lens.elements.map((el) => (
-                  <tr key={el.id}>
-                    <td style={TD_STYLE}>{el.name || el.label}</td>
-                    <td style={TD_STYLE}>{el.type}</td>
-                    <td style={TD_STYLE}>{el.glass || "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        )}
-
-        {analysis && (
-          <section style={{ marginBottom: "1rem" }}>
-            <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>Analysis</h2>
-            <p style={{ fontSize: "0.8rem", color: "#999" }}>
-              Detailed analysis available in the interactive viewer above.
-            </p>
-          </section>
-        )}
-      </div>
     </>
   );
 }
