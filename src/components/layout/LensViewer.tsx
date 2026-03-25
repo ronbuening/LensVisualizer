@@ -438,7 +438,12 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
           {/* ── Aberrations Primer overlay ── */}
           {showAberrationsPrimer && (
-            <OverlayModal onClose={closeAberrationsPrimer} theme={t} maxWidth={isWide ? 640 : 480} scrollKey={aberrationsLevel}>
+            <OverlayModal
+              onClose={closeAberrationsPrimer}
+              theme={t}
+              maxWidth={isWide ? 640 : 480}
+              scrollKey={aberrationsLevel}
+            >
               <DescriptionPanel
                 markdown={
                   aberrationsLevel === "simple" ? ABERRATIONS_PRIMER_SIMPLE_MD : ABERRATIONS_PRIMER_INTERMEDIATE_MD
