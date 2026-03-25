@@ -71,6 +71,100 @@ function paraxialTrace(
 }
 
 /**
+ * Surface-normal slope dz/dh from raw parameters (R, aspheric coefficients).
+ *
+ * Same math as sagSlope() in optics.ts but operates on raw surface parameters
+ * instead of a RuntimeLens object — needed during buildLens() before L exists.
+ */
+function _sagSlope(h: number, R: number, asph: AsphericCoefficients | undefined): number {
+  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
+  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
+  const K = asph ? asph.K : 0;
+  const h2 = h * h;
+  const denom2 = 1 - (1 + K) * c * c * h2;
+  const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
+  if (!asph) return conicSlope;
+  return (
+    conicSlope +
+    h *
+      (4 * asph.A4 * h2 +
+        6 * asph.A6 * h2 * h2 +
+        8 * asph.A8 * h2 ** 3 +
+        10 * asph.A10 * h2 ** 4 +
+        12 * asph.A12 * h2 ** 5 +
+        14 * asph.A14 * h2 ** 6)
+  );
+}
+
+/**
+ * Real (exact Snell's law) ray trace from the first surface to the stop.
+ *
+ * Unlike paraxialTrace which uses the linear u' = (n·u − y·φ)/n' formula,
+ * this applies exact Snell's law with aspheric surface normals — matching
+ * the rendering engine (_traceRayCore in optics.ts).  Used to compute a
+ * corrected entrance pupil SD that accounts for spherical aberration and
+ * aspheric deviations from the paraxial model.
+ *
+ * @returns ray height at the stop surface, or NaN on TIR
+ */
+function realTraceToStop(
+  S: SurfaceData[],
+  asphByIdx: Record<number, AsphericCoefficients>,
+  y0: number,
+  u0: number,
+  stopIdx: number,
+): number {
+  let y = y0,
+    U = Math.atan(u0),
+    n = 1.0;
+  for (let i = 0; i < stopIdx; i++) {
+    const { R, nd, d } = S[i];
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) {
+      const absY = Math.abs(y);
+      const slope = _sagSlope(absY, R, asphByIdx[i]);
+      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+      const sinIp = (n / nn) * Math.sin(U - alpha);
+      if (Math.abs(sinIp) > 1.0) return NaN;
+      U = alpha + Math.asin(sinIp);
+    }
+    n = nn;
+    y += d * Math.tan(U);
+  }
+  return y;
+}
+
+/**
+ * Refine a paraxial entrance pupil estimate using real ray tracing.
+ *
+ * Iteratively adjusts the EP SD so that a real marginal ray (traced with
+ * exact Snell's law including aspherics) arrives at the stop at exactly
+ * the physical stop SD.  Converges in 2-3 iterations for typical lenses.
+ *
+ * Only *decreases* the EP — when real rays overshoot the stop (the visual
+ * bug this fixes).  If the real trace shows rays arriving *below* the stop
+ * SD, the paraxial EP is kept: the stop isn't the true limiting aperture
+ * and increasing the EP would push rays past element semi-diameters.
+ */
+function refineEPWithRealTrace(
+  S: SurfaceData[],
+  asphByIdx: Record<number, AsphericCoefficients>,
+  paraxialEPSD: number,
+  stopSD: number,
+  stopIdx: number,
+): number {
+  let ep = paraxialEPSD;
+  for (let iter = 0; iter < 3; iter++) {
+    const realY = realTraceToStop(S, asphByIdx, ep, 0, stopIdx);
+    if (!isFinite(realY) || Math.abs(realY) < 1e-15) break;
+    ep *= stopSD / realY;
+    if (ep >= paraxialEPSD) break; /* rays undershoot stop — stop isn't the limit */
+  }
+  /* Only shrink — never enlarge beyond the paraxial EP */
+  return Math.min(ep, paraxialEPSD);
+}
+
+/**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
  * Pipeline: validate → resolve label indices → derive optical constants
@@ -173,6 +267,10 @@ export default function buildLens(data: LensData): RuntimeLens {
   if (Math.abs(epTrace.y) < 1e-15)
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
   const EP: EntrancePupil = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
+
+  /* Real EP refinement: the paraxial EP ignores aspherics and higher-order
+   * aberrations.  Refine so a real marginal ray exactly fills the stop. */
+  EP.epSD = refineEPWithRealTrace(S, asphByIdx, EP.epSD, S[stopIdx].sd, stopIdx);
 
   /* B = chief ray height at stop (for vignetting computation below) */
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
@@ -333,7 +431,8 @@ export default function buildLens(data: LensData): RuntimeLens {
 
       /* Entrance pupil and yRatio */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
-      const epSD = Math.abs(epT.y) > 1e-15 ? tmpS[stopIdx].sd / epT.y : EP.epSD;
+      let epSD = Math.abs(epT.y) > 1e-15 ? tmpS[stopIdx].sd / epT.y : EP.epSD;
+      epSD = refineEPWithRealTrace(tmpS, asphByIdx, epSD, tmpS[stopIdx].sd, stopIdx);
       zoomEPs.push(epSD);
       zoomYRatios.push(epT.y);
 
