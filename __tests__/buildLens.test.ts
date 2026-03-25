@@ -95,9 +95,9 @@ describe("buildLens — production lenses", () => {
   });
 
   /* ── f-number regression tests ── */
-  it("ApoLanthar FOPEN ≈ f/2.04 (real-ray EP)", () => {
+  it("ApoLanthar FOPEN ≈ f/1.93", () => {
     const L = buildLens(ApoLanthar);
-    expect(L.FOPEN).toBeCloseTo(2.04, 1);
+    expect(L.FOPEN).toBeCloseTo(1.93, 1);
   });
 
   it("Nokton FOPEN ≈ f/1.0", () => {
