@@ -181,7 +181,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (!OVERLAY_FIELDS.has(action.overlay)) return state;
       return { ...state, overlays: { ...state.overlays, [action.overlay]: action.visible } };
     case CLOSE_ALL_OVERLAYS:
-      return { ...state, overlays: { showAbout: false, showAboutSite: false, showOpticsPrimer: false, showAberrationsPrimer: false } };
+      return {
+        ...state,
+        overlays: { showAbout: false, showAboutSite: false, showOpticsPrimer: false, showAberrationsPrimer: false },
+      };
 
     /* ── Comparison mode transitions ── */
     case ENTER_COMPARE: {

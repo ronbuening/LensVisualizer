@@ -12,6 +12,7 @@ function makeParams(overrides: Record<string, unknown> = {}) {
     showAbout: false,
     showAboutSite: false,
     showOpticsPrimer: false,
+    showAberrationsPrimer: false,
     dispatch: vi.fn() as unknown as Dispatch<LensAction>,
     ...overrides,
   };

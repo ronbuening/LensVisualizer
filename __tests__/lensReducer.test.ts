@@ -268,11 +268,12 @@ describe("lensReducer", () => {
 
   describe("CLOSE_ALL_OVERLAYS", () => {
     it("closes all overlays", () => {
-      state.overlays = { showAbout: true, showAboutSite: true, showOpticsPrimer: true };
+      state.overlays = { showAbout: true, showAboutSite: true, showOpticsPrimer: true, showAberrationsPrimer: true };
       const next = lensReducer(state, { type: CLOSE_ALL_OVERLAYS });
       expect(next.overlays.showAbout).toBe(false);
       expect(next.overlays.showAboutSite).toBe(false);
       expect(next.overlays.showOpticsPrimer).toBe(false);
+      expect(next.overlays.showAberrationsPrimer).toBe(false);
     });
   });
 
