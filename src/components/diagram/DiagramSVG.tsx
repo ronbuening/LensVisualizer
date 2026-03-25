@@ -273,6 +273,7 @@ export default function DiagramSVG({
         sy={sy}
         stopZ={stopZ}
         stopPhysSD={L.stopPhysSD}
+        stopHousingSD={L.stopHousingSD}
         currentPhysStopSD={currentPhysStopSD}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}

@@ -173,6 +173,7 @@ export interface RuntimeLens {
   readonly rayHeights: number[];
   readonly rayLead: number;
   readonly bladeStubFrac: number;
+  readonly stopHousingSD: number;
   readonly offAxisFieldDeg: number;
   readonly offAxisFieldFrac: number;
   readonly offAxisFractions: number[];

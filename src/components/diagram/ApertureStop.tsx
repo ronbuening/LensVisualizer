@@ -1,7 +1,7 @@
 /**
  * ApertureStop — Renders the aperture stop blades and STO label in the SVG diagram.
  *
- * Drawn as two thick lines (top and bottom) from the physical stop edge
+ * Drawn as two thick lines (top and bottom) from the physical housing edge
  * inward to the current aperture opening, plus the "STO" label above.
  */
 import type { Theme } from "../../types/theme.js";
@@ -11,6 +11,7 @@ interface ApertureStopProps {
   sy: (y: number) => number;
   stopZ: number;
   stopPhysSD: number;
+  stopHousingSD: number;
   currentPhysStopSD: number;
   bladeStubFrac: number;
   lyStoPad: number;
@@ -22,6 +23,7 @@ export default function ApertureStop({
   sy,
   stopZ,
   stopPhysSD,
+  stopHousingSD,
   currentPhysStopSD,
   bladeStubFrac,
   lyStoPad,
@@ -32,7 +34,7 @@ export default function ApertureStop({
     <>
       <line
         x1={sx(stopZ)}
-        y1={sy(-stopPhysSD)}
+        y1={sy(-stopHousingSD)}
         x2={sx(stopZ)}
         y2={sy(-bladeInner)}
         stroke={t.stop}
@@ -41,7 +43,7 @@ export default function ApertureStop({
       />
       <line
         x1={sx(stopZ)}
-        y1={sy(stopPhysSD)}
+        y1={sy(stopHousingSD)}
         x2={sx(stopZ)}
         y2={sy(bladeInner)}
         stroke={t.stop}
@@ -50,7 +52,7 @@ export default function ApertureStop({
       />
       <text
         x={sx(stopZ)}
-        y={sy(-stopPhysSD - lyStoPad)}
+        y={sy(-stopHousingSD - lyStoPad)}
         textAnchor="middle"
         fill={t.stopLabel}
         fontSize={7.5}

@@ -64,7 +64,7 @@
 |--------|----------|---------|
 | `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget |
 | `RayPolylines.tsx` | `src/components/diagram/` | Consolidated ray segment polyline rendering |
-| `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label |
+| `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label; outer edge extends to `stopHousingSD` (adjacent surface min-SD) for visibility on fast lenses |
 | `ElementAnnotations.tsx` | `src/components/diagram/` | Element numbers, Abbe νd badges, group/doublet labels |
 | `LCAInsetWidget.tsx` | `src/components/diagram/` | Magnified LCA inset with auto-scaled wavelength offsets |
 | `LCAOverlayContent.tsx` | `src/components/diagram/` | Enlarged LCA visualization with description, rendered inside PanelOverlay |
@@ -177,7 +177,7 @@ Sub-components:
   - **`ChromaticControls.tsx`** — COLOR master toggle + individual R/G/B channel buttons
 - **`DiagramSVG.tsx`** (`src/components/diagram/`) — SVG rendering: defs, grid, composes RayPolylines, element shapes, aspheric overlays, ApertureStop, image plane, LCAInsetWidget, ElementAnnotations, flash overlay
   - **`RayPolylines.tsx`** — Consolidated ray segment polyline rendering (solid + ghost paths)
-  - **`ApertureStop.tsx`** — Aperture stop blades + STO label
+  - **`ApertureStop.tsx`** — Aperture stop blades + STO label; outer edge at `stopHousingSD` (min of adjacent surface SDs, floored at `stopPhysSD`)
   - **`ElementAnnotations.tsx`** — Element number labels, Abbe νd badges, group/doublet labels
   - **`LCAInsetWidget.tsx`** — Magnified LCA inset with auto-scaled wavelength offsets (clamped at 5000×)
   - **`LCAOverlayContent.tsx`** — Enlarged LCA visualization with description, rendered inside PanelOverlay on click
@@ -195,7 +195,7 @@ Reads shared state (rays, display, panels) from `LensContext`. Per-instance prop
 
 ## buildLens.ts
 
-- **`buildLens(data)`** — Validates lens data, constructs frozen runtime lens object `L` with computed EFL, entrance pupil, half-field angle, layout geometry, and zoom fields (`isZoom`, `zoomPositions`, `zoomEFLs`, `zoomEPs`, `zoomHalfFields`, `zoomYRatios`, `zoomBs`). For zoom lenses, `totalTrack` uses the maximum across all zoom positions.
+- **`buildLens(data)`** — Validates lens data, constructs frozen runtime lens object `L` with computed EFL, entrance pupil, half-field angle, layout geometry, and zoom fields (`isZoom`, `zoomPositions`, `zoomEFLs`, `zoomEPs`, `zoomHalfFields`, `zoomYRatios`, `zoomBs`). For zoom lenses, `totalTrack` uses the maximum across all zoom positions. Also derives `stopPhysSD` (physical aperture SD via real ray trace), `bladeStubFrac` (aberration-corrected blade inner edge position), and `stopHousingSD` (iris housing outer boundary = min of adjacent surface SDs, floored at `stopPhysSD`).
 - **`paraxialTrace(surfaces, y0, u0, options)`** — Low-level paraxial ray trace (exported for testing)
 
 ## optics.ts
