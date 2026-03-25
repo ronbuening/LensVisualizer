@@ -56,12 +56,13 @@ describe("usePreferences — persisted fields", () => {
     expect(typeof parsed.highContrast).toBe("boolean");
   });
 
-  it("persists lens selection keys", () => {
+  it("does not persist lens selection keys", () => {
     const state = makeState();
     renderHook(() => usePreferences(state));
     const parsed = JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>;
-    expect(parsed.lensKeyA).toBe(CATALOG_KEYS[0]);
-    expect(parsed.lensKeyB).toBe(CATALOG_KEYS[1]);
+    expect(parsed.lensKeyA).toBeUndefined();
+    expect(parsed.lensKeyB).toBeUndefined();
+    expect(parsed.comparing).toBeUndefined();
   });
 
   it("persists ray toggle flags", () => {
@@ -191,26 +192,6 @@ describe("usePreferences — error handling", () => {
 /* ── Value accuracy ── */
 
 describe("usePreferences — value accuracy", () => {
-  it("persists the actual lensKeyA value", () => {
-    const state: LensState = {
-      ...makeState(),
-      lens: { ...makeState().lens, lensKeyA: "zeiss_35" },
-    };
-    renderHook(() => usePreferences(state));
-    const parsed = JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>;
-    expect(parsed.lensKeyA).toBe("zeiss_35");
-  });
-
-  it("persists comparing=true correctly", () => {
-    const state: LensState = {
-      ...makeState(),
-      lens: { ...makeState().lens, comparing: true },
-    };
-    renderHook(() => usePreferences(state));
-    const parsed = JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>;
-    expect(parsed.comparing).toBe(true);
-  });
-
   it("persists showOffAxis string value", () => {
     const state: LensState = {
       ...makeState(),

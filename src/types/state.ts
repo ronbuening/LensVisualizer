@@ -113,9 +113,6 @@ export type LensAction =
 /* ── Preferences (from localStorage) ── */
 
 export interface Preferences {
-  lensKeyA: string;
-  lensKeyB: string;
-  comparing: boolean;
   scaleMode: "independent" | "normalized";
   dark: boolean;
   highContrast: boolean;

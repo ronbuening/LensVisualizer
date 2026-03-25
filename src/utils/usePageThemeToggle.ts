@@ -9,7 +9,6 @@
 import { useState, useEffect, useCallback } from "react";
 import T from "./themes.js";
 import { loadPrefs, PREFS_KEY } from "./preferences.js";
-import { CATALOG_KEYS } from "./lensCatalog.js";
 import type { Theme } from "../types/theme.js";
 
 interface PageThemeToggle {
@@ -29,7 +28,7 @@ export function usePageThemeToggle(): PageThemeToggle {
   const [highContrast, setHighContrast] = useState(false);
 
   useEffect(() => {
-    const prefs = loadPrefs(CATALOG_KEYS);
+    const prefs = loadPrefs();
     const d = prefs.dark ?? window.matchMedia("(prefers-color-scheme: dark)").matches;
     const hc = prefs.highContrast ?? window.matchMedia("(prefers-contrast: more)").matches;
     setDark(d);

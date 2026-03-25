@@ -33,7 +33,7 @@ export default function useLensState(
       initialLensKey?: string;
       initialLensKeyB?: string;
     }) => {
-      const prefs = loadPrefs(keys);
+      const prefs = loadPrefs();
       const parsed = typeof window !== "undefined" ? parseComparisonParams(window.location.search, keys) : {};
       /* Extract slider values from query params (null → undefined for URLState compat) */
       const sliders: Partial<URLState> = {};

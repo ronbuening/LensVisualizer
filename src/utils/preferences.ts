@@ -10,13 +10,12 @@ export const PREFS_KEY: string = "lensvis:prefs";
  * Load persisted user preferences from localStorage.
  *
  * Validates each field individually — corrupt or unexpected values are
- * silently dropped.  Lens keys are checked against the current catalog
- * to avoid referencing lenses that no longer exist.
+ * silently dropped. Lens selection (lensKeyA, lensKeyB, comparing) is
+ * intentionally not restored — it comes from the URL.
  *
- * @param catalogKeys — valid lens keys from the current catalog
  * @returns sanitized preferences (partial — only valid fields)
  */
-export function loadPrefs(catalogKeys: string[]): Partial<Preferences> {
+export function loadPrefs(): Partial<Preferences> {
   try {
     const raw: string | null = localStorage.getItem(PREFS_KEY);
     if (!raw) return {};
@@ -39,11 +38,9 @@ export function loadPrefs(catalogKeys: string[]): Partial<Preferences> {
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     if (typeof p.showPupils === "boolean") out.showPupils = p.showPupils;
-    /* v1 compat: lensKey → lensKeyA */
-    const key: unknown = p.lensKeyA || p.lensKey;
-    if (typeof key === "string" && catalogKeys.includes(key)) out.lensKeyA = key;
-    if (typeof p.lensKeyB === "string" && catalogKeys.includes(p.lensKeyB)) out.lensKeyB = p.lensKeyB;
-    if (typeof p.comparing === "boolean") out.comparing = p.comparing;
+    /* Lens selection (lensKeyA, lensKeyB, comparing) is intentionally NOT
+       restored from preferences — it comes from the URL so the homepage
+       isn't hijacked by a previously-viewed lens. */
     if (p.scaleMode === "independent" || p.scaleMode === "normalized") out.scaleMode = p.scaleMode;
     if (typeof p.desktopView === "string" && ["diagram", "both", "analysis"].includes(p.desktopView))
       out.desktopView = p.desktopView;
