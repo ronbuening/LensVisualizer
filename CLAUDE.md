@@ -58,7 +58,7 @@ src/utils/                — Themes, styles, feature flags, catalog, state hook
                              useURLSync, useStickySliders, comparisonSliders,
                              parseComparisonParams, usePreferences, preferences,
                              errorReporting, useMediaQuery)
-src/lens-data/            — Lens prescription data (auto-registered *.data.js)
+src/lens-data/            — Lens prescription data (auto-registered *.data.ts)
 src/content/              — Static markdown content
                             (AboutMe.md, AboutSite.md,
                              OpticsPrimerSimple.md, OpticsPrimerIntermediate.md)
@@ -103,7 +103,7 @@ Read the relevant file before starting work on that area:
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
 - **`src/lens-data/LENS_DATA_SPEC.md`** — Complete lens data format specification
-- **`src/lens-data/TEMPLATE.data.js.template`** — Annotated template with SD guidelines
+- **`src/lens-data/TEMPLATE.data.ts.template`** — Annotated template with SD guidelines
 - **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 
 ## Key Design Patterns
@@ -122,10 +122,10 @@ Read the relevant file before starting work on that area:
 
 ## Adding a New Lens
 
-1. Copy `src/lens-data/TEMPLATE.data.js.template` to `src/lens-data/YourLens.data.js`
+1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
 2. Fill in the lens data following the template's field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
-4. Run `npm run test` to verify validation passes
+4. Run `npm run typecheck && npm run test` to verify types and validation pass
 
 See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conventions, and SD troubleshooting.
 
@@ -133,7 +133,7 @@ See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conven
 
 Run `npm run test`. Tests in `__tests__/` (31 test files) cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, themes, styles, state management (reducer, preferences, URL sync, sticky sliders), zoom optics helpers, error reporting, diagram geometry, LCA scaling, lens metadata, media queries, feature flags, and extracted UI component module contracts. Full DOM-based component rendering is not tested. Run `npm run test:coverage` for a v8 coverage report (coverage scope is `src/optics/**` and `src/utils/**`).
 
-Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`. Intentionally partial mock objects use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal. Lens data files (`.data.js`) are declared in `__tests__/globals.d.ts` via a wildcard module so tsc can resolve those imports.
+Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`. Intentionally partial mock objects use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal. Lens data files (`.data.ts`) are type-checked by tsc directly — each file uses `satisfies LensDataInput` for compile-time validation.
 
 ## Code Conventions
 
@@ -157,12 +157,12 @@ Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run ty
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
-- Lens data globs match `*.data.js`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
-- `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.js` take precedence
+- Lens data globs match `*.data.ts`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
+- `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
 - Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
-- Lens data files stay as `.data.js` (not TypeScript) for glob pattern compatibility — validated at runtime by `validateLensData()`
+- Lens data files are TypeScript (`.data.ts`) with `satisfies LensDataInput` for compile-time type checking — also validated at runtime by `validateLensData()`
 - Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
-- `tsconfig.json` uses `strict: true` with `allowJs: false`; `__tests__/` is included but lens data `.data.js` files are excluded via `__tests__/globals.d.ts` wildcard module declaration
+- `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
 
 ## Compaction Instructions

@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON AF-S NIKKOR 105mm f/1.4E ED           ║
@@ -315,6 +317,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.55,
   yScFill: 0.32,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

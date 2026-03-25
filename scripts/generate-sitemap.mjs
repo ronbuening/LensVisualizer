@@ -50,7 +50,7 @@ function generateSitemap() {
     process.exit(1);
   }
 
-  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.js"));
+  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
   const lensKeys = [];
   const makers = new Set();
 

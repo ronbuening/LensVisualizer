@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON NIKKOR Z 26mm f/2.8                    ║
@@ -259,6 +261,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.55,
   yScFill: 0.35,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

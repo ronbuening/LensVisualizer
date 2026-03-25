@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKKOR-N Auto 24mm f/2.8                     ║
@@ -248,6 +250,6 @@ const LENS_DATA = {
    */
   scFill: 0.55,
   yScFill: 0.48,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

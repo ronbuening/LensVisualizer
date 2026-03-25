@@ -3,7 +3,7 @@
  * runtime lens objects, ray-trace results, and diagram geometry.
  */
 
-/* ── Raw lens data types (as declared in .data.js files) ── */
+/* ── Raw lens data types (as declared in .data.ts files) ── */
 
 export interface SurfaceData {
   label: string;
@@ -34,9 +34,9 @@ export interface ElementData {
   fl?: number;
   glass?: string;
   role?: string;
-  apd?: "patent" | "inferred";
+  apd?: "patent" | "inferred" | false;
   apdNote?: string;
-  cemented?: boolean;
+  cemented?: string;
 }
 
 export interface AnnotationData {
@@ -99,6 +99,26 @@ export interface LensData {
   offAxisFieldFrac: number;
   offAxisFractions: number[];
 }
+
+/** Fields provided by LENS_DEFAULTS — optional in raw lens data files */
+type DefaultedFields =
+  | "rayFractions"
+  | "rayLeadFrac"
+  | "offAxisFieldFrac"
+  | "offAxisFractions"
+  | "svgW"
+  | "svgH"
+  | "scFill"
+  | "clipMargin"
+  | "maxRimAngleDeg"
+  | "gapSagFrac"
+  | "maxAspectRatio"
+  | "focusStep"
+  | "apertureStep"
+  | "maxFstop";
+
+/** Raw lens data shape before defaults merging (used in .data.ts files) */
+export type LensDataInput = Omit<LensData, DefaultedFields> & Partial<Pick<LensData, DefaultedFields>>;
 
 /** Entrance pupil data */
 export interface EntrancePupil {

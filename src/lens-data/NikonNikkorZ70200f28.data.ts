@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON NIKKOR Z 70-200mm f/2.8 VR S          ║
@@ -483,6 +485,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.65,
   yScFill: 0.42,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED      ║
@@ -299,6 +301,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.45,
   yScFill: 0.35,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

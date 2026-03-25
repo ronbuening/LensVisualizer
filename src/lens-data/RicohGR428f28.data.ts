@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — RICOH GR IV 18.3mm f/2.8                     ║
@@ -250,6 +252,6 @@ const LENS_DATA = {
    */
   scFill: 0.55,
   yScFill: 0.45,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKKOR Z 135mm f/1.8 S Plena                ║
@@ -336,6 +338,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.5,
   yScFill: 0.35,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

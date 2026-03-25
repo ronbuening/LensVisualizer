@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKKOR Z 24-70mm f/2.8 S                     ║
@@ -445,6 +447,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.48,
   yScFill: 0.3,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;
