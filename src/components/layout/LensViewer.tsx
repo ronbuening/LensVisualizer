@@ -409,7 +409,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
           {/* ── Optics Primer overlay ── */}
           {showOpticsPrimer && (
-            <OverlayModal onClose={closeOpticsPrimer} theme={t} maxWidth={isWide ? 640 : 480}>
+            <OverlayModal onClose={closeOpticsPrimer} theme={t} maxWidth={isWide ? 640 : 480} scrollKey={primerLevel}>
               <DescriptionPanel
                 markdown={primerLevel === "simple" ? OPTICS_PRIMER_SIMPLE_MD : OPTICS_PRIMER_INTERMEDIATE_MD}
                 theme={t}
@@ -438,7 +438,12 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
           {/* ── Aberrations Primer overlay ── */}
           {showAberrationsPrimer && (
-            <OverlayModal onClose={closeAberrationsPrimer} theme={t} maxWidth={isWide ? 640 : 480}>
+            <OverlayModal
+              onClose={closeAberrationsPrimer}
+              theme={t}
+              maxWidth={isWide ? 640 : 480}
+              scrollKey={aberrationsLevel}
+            >
               <DescriptionPanel
                 markdown={
                   aberrationsLevel === "simple" ? ABERRATIONS_PRIMER_SIMPLE_MD : ABERRATIONS_PRIMER_INTERMEDIATE_MD
