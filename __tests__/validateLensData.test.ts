@@ -420,4 +420,106 @@ describe("validateLensData — zoom lens paths", () => {
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("3 [d_inf, d_close] pairs"))).toBe(true);
   });
+
+  it("catches zoomPositions with fewer than 2 entries", () => {
+    const data = makeValid({ zoomPositions: [50] });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("at least 2"))).toBe(true);
+  });
+
+  it("catches non-finite values in zoomPositions", () => {
+    const data = makeValid({ zoomPositions: [24, NaN, 70] });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("finite numbers"))).toBe(true);
+  });
+
+  it("catches zoomPositions with Infinity", () => {
+    const data = makeValid({ zoomPositions: [24, Infinity] });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("finite numbers"))).toBe(true);
+  });
+
+  it("catches zoom var entry that is not a [d_inf, d_close] pair", () => {
+    const data = makeValid({
+      zoomPositions: [24, 70],
+      var: {
+        STO: [
+          [2, 3],
+          5, // not a pair
+        ],
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+  });
+
+  it("catches zoom var entry with wrong-length inner array", () => {
+    const data = makeValid({
+      zoomPositions: [24, 70],
+      var: {
+        STO: [
+          [2, 3],
+          [4, 5, 6], // length 3, should be 2
+        ],
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("[d_infinity, d_close]"))).toBe(true);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  Conic h_max discontinuity warning
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe("validateLensData — conic h_max", () => {
+  it("warns when sd exceeds conic h_max for K > 0", () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 20, d: 5, nd: 1.5, elemId: 1, sd: 15 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      asph: {
+        1: { K: 3, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      },
+    });
+    /* K=3, R=20 → hMax = 20/√4 = 10, sd=15 > 10*0.98 = 9.8 */
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("conic h_max"))).toBe(true);
+  });
+
+  it("does not warn when sd is within conic h_max for K > 0", () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 50, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      asph: {
+        1: { K: 1, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      },
+    });
+    /* K=1, R=50 → hMax = 50/√2 ≈ 35.4, sd=10 << 35.4*0.98 */
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("conic h_max"))).toBe(false);
+  });
+
+  it("does not warn for K <= 0 (hyperbolic/parabolic)", () => {
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 20, d: 5, nd: 1.5, elemId: 1, sd: 15 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      asph: {
+        1: { K: -1, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("conic h_max"))).toBe(false);
+  });
 });

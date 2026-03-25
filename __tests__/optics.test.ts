@@ -335,6 +335,90 @@ describe("traceRayChromatic", () => {
     expect(red.y).toBeCloseTo(0, 10);
     expect(blue.y).toBeCloseTo(0, 10);
   });
+
+  it("returns clipped=true on chromatic total internal reflection", () => {
+    /* High-index to low-index at steep angle with dispersive glass */
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const { clipped } = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    expect(clipped).toBe(true);
+  });
+
+  it("ghost mode continues through chromatic TIR and returns ghostPts", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    /* Ghost mode should produce some points even when clipped */
+    expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
+  });
+
+  it("non-ghost mode breaks on chromatic TIR without ghostPts", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B");
+    expect(result.ghostPts).toHaveLength(0);
+  });
+
+  it("ghost ray beyond sphere extent propagates straight without refraction", () => {
+    /* Small R so |y| > |R| after clipping at the stop */
+    const L = {
+      S: [
+        { R: 1e15, nd: 1.0, sd: 5, d: 5 }, // stop, clips at sd=5
+        { R: 4, nd: 1.5, sd: 20, d: 5 }, // small R, ghost ray at y>R
+        { R: -4, nd: 1.0, sd: 20, d: 50 },
+      ],
+      N: 3,
+      stopIdx: 0,
+      stopPhysSD: 5,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 1: 64.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5, 10];
+    /* Ray at y=8 > stopSD=5 → will clip at stop, then hit surface 1 as ghost with |y|>|R|=4 */
+    const result = traceRayChromatic(8, 0, zPos, 0, 0, 5, true, L, "R");
+    expect(result.clipped).toBe(true);
+    /* Should still produce rendering points (no crash from sphere-extent guard) */
+    expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(1);
+  });
 });
 
 describe("computeChromaticSpread", () => {

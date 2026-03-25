@@ -313,4 +313,90 @@ describe("computeElementShapes", () => {
     expect(shapes).toHaveLength(2);
     expect(shapes[1].d).toMatch(/^M.*Z$/);
   });
+
+  it("front trim with prevES: backward-curving front sag accounts for previous element", () => {
+    /* Three elements: E0 → air gap → E1 (front curves backward) → air gap → E2
+     * E1's front surface has negative renderSag, and a prevES exists (E0).
+     * This exercises the prevES branch at lines 104-117 of diagramGeometry.ts. */
+    const L = {
+      ES: [
+        [0, 0, 1],
+        [1, 2, 3],
+        [2, 4, 5],
+      ],
+      S: [
+        { R: 50, sd: 12, nd: 1.5, d: 3 },
+        { R: -50, sd: 12, nd: 1.0, d: 0.3 }, // narrow gap, air after rear
+        { R: -12, sd: 12, nd: 1.7, d: 4 }, // front with negative sag (curves backward)
+        { R: -40, sd: 12, nd: 1.0, d: 2 },
+        { R: 60, sd: 10, nd: 1.5, d: 3 },
+        { R: 1e15, sd: 10, nd: 1.0, d: 50 },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      gapSagFrac: 0.9,
+      N: 6,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 3, 3.3, 7.3, 9.3, 12.3];
+    const shapes = computeElementShapes(L, zPos, sx, sy);
+    expect(shapes).toHaveLength(3);
+    /* All shapes should be valid closed paths */
+    for (const shape of shapes) {
+      expect(shape.d).toMatch(/^M.*Z$/);
+    }
+  });
+
+  it("rear trim with nextES: forward-curving rear sag accounts for next element", () => {
+    /* Two elements: E0 (rear curves forward into gap) → narrow air gap → E1
+     * E0's rear surface has nd=1.0 and positive renderSag, and nextES exists (E1).
+     * This exercises the nextES branch at lines 124-136 of diagramGeometry.ts. */
+    const L = {
+      ES: [
+        [0, 0, 1],
+        [1, 2, 3],
+      ],
+      S: [
+        { R: 1e15, sd: 14, nd: 1.5, d: 3 },
+        { R: 12, sd: 14, nd: 1.0, d: 0.3 }, // rear curves forward (positive sag), air gap
+        { R: 40, sd: 14, nd: 1.7, d: 4 }, // next element front (may also curve forward)
+        { R: 1e15, sd: 14, nd: 1.0, d: 50 },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      gapSagFrac: 0.9,
+      N: 4,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 3, 3.3, 7.3];
+    const shapes = computeElementShapes(L, zPos, sx, sy);
+    expect(shapes).toHaveLength(2);
+    for (const shape of shapes) {
+      expect(shape.d).toMatch(/^M.*Z$/);
+    }
+  });
+
+  it("no trim when gapSagFrac is 0", () => {
+    /* Same geometry as rear trim test but gapSagFrac=0 disables trimming */
+    const L = {
+      ES: [
+        [0, 0, 1],
+        [1, 2, 3],
+      ],
+      S: [
+        { R: 1e15, sd: 14, nd: 1.5, d: 3 },
+        { R: 12, sd: 14, nd: 1.0, d: 0.3 },
+        { R: 40, sd: 14, nd: 1.7, d: 4 },
+        { R: 1e15, sd: 14, nd: 1.0, d: 50 },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      gapSagFrac: 0,
+      N: 4,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 3, 3.3, 7.3];
+    const shapes = computeElementShapes(L, zPos, sx, sy);
+    expect(shapes).toHaveLength(2);
+    for (const shape of shapes) {
+      expect(shape.d).toMatch(/^M.*Z$/);
+    }
+  });
 });

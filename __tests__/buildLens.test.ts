@@ -318,6 +318,35 @@ describe("buildLens — error handling", () => {
     expect(L.EFL).toBeGreaterThan(0);
     expect(L.N).toBe(3);
   });
+
+  it("throws when EFL is not finite (afocal system)", () => {
+    /* Two flat surfaces produce u=0, so EFL = -1/0 = -Infinity */
+    const data = makeMinimalData({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 10 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+    expect(() => buildLens(data as unknown as LensData)).toThrow(/EFL is not finite/);
+  });
+
+  it("paraxialTrace produces zero y at stop for relay-type system", () => {
+    /* Instead of testing the exact error path in buildLens (which requires passing
+     * validation with exotic geometry), verify the guard condition directly:
+     * paraxialTrace can produce y ≈ 0 at a specific surface with relay-type optics. */
+    const relaySurfaces = [
+      { R: 50, nd: 1.5, d: 5 },
+      { R: 1e15, nd: 1.0, d: 95 }, // long air gap → ray converges to ~0
+      { R: 1e15, nd: 1.0, d: 5 }, // "stop" position at index 2
+    ] as unknown as SurfaceData[];
+    const trace = paraxialTrace(relaySurfaces, 1, 0, { stopAt: 2 });
+    /* The refracted marginal ray crosses zero near z = EFL ≈ 100.
+     * At d=95, y should be near zero, validating that this geometry
+     * would trigger the EP guard in buildLens. */
+    expect(Math.abs(trace.y)).toBeLessThan(0.5);
+  });
 });
 
 describe("buildLens — vdByIdx", () => {
