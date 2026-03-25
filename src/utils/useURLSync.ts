@@ -35,6 +35,7 @@ export default function useURLSync(
   dispatch: Dispatch<LensAction>,
   comparisonLenses: ComparisonLensesParam,
   isLensPage?: boolean,
+  isComparePage?: boolean,
 ): UseURLSyncResult {
   const { lens, sliders, sharedSliders } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
@@ -56,12 +57,14 @@ export default function useURLSync(
   useEffect(() => {
     // On lens pages in single-lens mode, navigation is handled by LensViewer via React Router
     if (isLensPage && !comparing) return;
+    // On compare pages, navigation is handled by LensViewer via React Router
+    if (isComparePage) return;
     const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
     const current = window.location.search;
     if (url !== current) {
       history.replaceState(null, "", url || window.location.pathname);
     }
-  }, [comparing, lensKeyA, lensKeyB, isLensPage]);
+  }, [comparing, lensKeyA, lensKeyB, isLensPage, isComparePage]);
 
   /* ── 3a. Zoom init — comparison mode ── */
   useEffect(() => {
@@ -124,8 +127,8 @@ export default function useURLSync(
           /* ignore */
         }
       }
-      if (isLensPage && !comparing) {
-        // On lens pages, only encode slider params — the pathname already has the lens key
+      if ((isLensPage && !comparing) || isComparePage) {
+        // On lens/compare pages, only encode slider params — the pathname already has the lens key(s)
         const params = new URLSearchParams();
         if (sliderState.zoom != null && sliderState.zoom > 0) params.set("zoom", String(sliderState.zoom));
         if (sliderState.focus != null && sliderState.focus > 0) params.set("focus", sliderState.focus.toFixed(3));
@@ -155,6 +158,7 @@ export default function useURLSync(
     sharedZoomT,
     comparisonLenses,
     isLensPage,
+    isComparePage,
   ]);
 
   return { updateURLWithSliders };

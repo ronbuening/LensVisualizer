@@ -121,6 +121,24 @@ export function focalLengthToZoomT(fl: number, L: RuntimeLens): number {
  * @param L     — runtime lens object (needs isZoom, zoomPositions)
  * @returns focal length in mm, or null for prime lenses
  */
+/**
+ * Build a pathname-based comparison URL.
+ *
+ * @param slugA   — first lens key
+ * @param slugB   — second lens key
+ * @param sliders — optional slider values { zoom, focus, aperture }
+ * @returns URL path (e.g. "/compare/slugA/slugB?focus=0.300")
+ */
+export function buildComparePath(slugA: string, slugB: string, sliders: BuildURLSliders = {}): string {
+  const { zoom, focus, aperture } = sliders;
+  const params = new URLSearchParams();
+  if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
+  if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
+  if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
+  const search = params.toString() ? `?${params.toString()}` : "";
+  return `/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`;
+}
+
 export function zoomTToFocalLength(zoomT: number, L: RuntimeLens): number | null {
   if (!L.isZoom) return null;
   const zp: number[] = L.zoomPositions!;

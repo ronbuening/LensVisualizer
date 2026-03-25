@@ -10,21 +10,43 @@ import lensReducer, { createInitialState } from "./lensReducer.js";
 import { loadPrefs } from "./preferences.js";
 import { parseComparisonParams } from "./parseComparisonParams.js";
 import useMediaQuery from "./useMediaQuery.js";
-import type { LensState, LensAction } from "../types/state.js";
+import type { LensState, LensAction, URLState } from "../types/state.js";
 
 export default function useLensState(
   catalogKeys: string[],
   initialLensKey?: string,
+  initialLensKeyB?: string,
 ): [LensState, Dispatch<LensAction>, boolean] {
   const isWide = useMediaQuery("(min-width: 900px)");
 
   const [state, dispatch] = useReducer(
     lensReducer,
-    { catalogKeys, isWide, initialLensKey },
-    ({ catalogKeys: keys, isWide: wide, initialLensKey: initKey }) => {
+    { catalogKeys, isWide, initialLensKey, initialLensKeyB },
+    ({
+      catalogKeys: keys,
+      isWide: wide,
+      initialLensKey: initKeyA,
+      initialLensKeyB: initKeyB,
+    }: {
+      catalogKeys: string[];
+      isWide: boolean;
+      initialLensKey?: string;
+      initialLensKeyB?: string;
+    }) => {
       const prefs = loadPrefs(keys);
       const parsed = typeof window !== "undefined" ? parseComparisonParams(window.location.search, keys) : {};
-      const urlState = initKey && keys.includes(initKey) ? { ...parsed, singleLens: initKey } : parsed;
+      /* Extract slider values from query params (null → undefined for URLState compat) */
+      const sliders: Partial<URLState> = {};
+      if ("focus" in parsed && parsed.focus != null) sliders.focus = parsed.focus as number;
+      if ("aperture" in parsed && parsed.aperture != null) sliders.aperture = parsed.aperture as number;
+      let urlState: Partial<URLState>;
+      if (initKeyA && initKeyB && keys.includes(initKeyA) && keys.includes(initKeyB)) {
+        urlState = { ...sliders, comparing: true, lensKeyA: initKeyA, lensKeyB: initKeyB };
+      } else if (initKeyA && keys.includes(initKeyA)) {
+        urlState = { ...sliders, singleLens: initKeyA };
+      } else {
+        urlState = initKeyA ? sliders : { ...sliders, ...parsed };
+      }
       return createInitialState(prefs, urlState, wide, keys);
     },
   );

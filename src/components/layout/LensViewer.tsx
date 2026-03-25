@@ -74,12 +74,14 @@ import useOverlays from "../hooks/useOverlays.js";
 
 interface LensVisualizationProps {
   initialLensKey?: string;
+  initialLensKeyB?: string;
 }
 
-export default function LensVisualization({ initialLensKey }: LensVisualizationProps) {
+export default function LensVisualization({ initialLensKey, initialLensKeyB }: LensVisualizationProps) {
   const navigate = useNavigate();
-  const isLensPage = !!initialLensKey;
-  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey);
+  const isComparePage = !!initialLensKey && !!initialLensKeyB;
+  const isLensPage = !!initialLensKey && !initialLensKeyB;
+  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
   const { lens, display, rays, sharedSliders, overlays } = state;
@@ -114,6 +116,7 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
     dispatch,
     comparisonLenses as Parameters<typeof useURLSync>[2],
     isLensPage,
+    isComparePage,
   );
 
   /* ── Sticky slider state machine ── */
@@ -150,14 +153,24 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
       dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       resetSticky();
       justEnteredCompare.current = true;
+      /* Navigate to the comparison route — pick lensKeyB from the reducer
+       * (which auto-selects a different lens if A===B). We read it from
+       * the state that will be produced, but since the reducer runs sync
+       * we use the current values + the same auto-select logic. */
+      const autoB =
+        lensKeyA === lensKeyB && CATALOG_KEYS.length > 1
+          ? CATALOG_KEYS[(CATALOG_KEYS.indexOf(lensKeyA) + 1) % CATALOG_KEYS.length]
+          : lensKeyB;
+      void navigate(`/compare/${lensKeyA}/${autoB}`, { replace: false });
     } else {
       dispatch({
         type: EXIT_COMPARE,
         focusA: focusPair?.focusA,
         stopdownA: aperturePair?.stopdownA,
       });
+      void navigate(`/lens/${lensKeyA}`, { replace: false });
     }
-  }, [comparing, focusPair, aperturePair, dispatch, resetSticky]);
+  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair, dispatch, resetSticky, navigate]);
 
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
@@ -183,23 +196,31 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
   const switchLensA = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
-      if (isLensPage && !state.lens.comparing) {
+      if (isComparePage) {
+        void navigate(`/compare/${key}/${lensKeyB}`, { replace: true });
+      } else if (isLensPage && !state.lens.comparing) {
         void navigate(`/lens/${key}`, { replace: true });
       }
     },
-    [dispatch, isLensPage, state.lens.comparing, navigate],
+    [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate],
   );
 
   const switchLensB = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_B, key });
+      if (isComparePage) {
+        void navigate(`/compare/${lensKeyA}/${key}`, { replace: true });
+      }
     },
-    [dispatch],
+    [dispatch, isComparePage, lensKeyA, navigate],
   );
 
   const swapLenses = useCallback(() => {
     dispatch({ type: SWAP_LENSES });
-  }, [dispatch]);
+    if (isComparePage) {
+      void navigate(`/compare/${lensKeyB}/${lensKeyA}`, { replace: true });
+    }
+  }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate]);
 
   /* ── Context value (replaces sharedProps prop drilling) ── */
   const ctxValue = useMemo(
