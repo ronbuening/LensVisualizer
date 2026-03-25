@@ -26,6 +26,10 @@ No manual imports or catalog edits required.
 
 Shared defaults from `src/lens-data/defaults.ts` are merged automatically under each lens. Only override values in your `.data.js` that differ from defaults (e.g., `svgW`, `svgH`, `maxRimAngleDeg`).
 
+### Maker Field
+
+Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Zeiss"`). This is used for maker pages (`/makers/:slug`) and SEO metadata. If omitted, `lensMetadata.ts` derives the maker from the lens `name` via prefix matching against `MAKER_PREFIXES`. Explicit `maker` is preferred for accuracy — especially for lenses whose `name` doesn't start with a recognized prefix.
+
 ### Naming Conventions
 
 - Lens data: `*.data.js` (required for auto-registration)

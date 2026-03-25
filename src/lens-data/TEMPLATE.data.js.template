@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   /* ── Identity ── */
   key:      "unique-lens-key",                          // REQUIRED: unique ID for auto-registration
+  maker:    "Manufacturer",                             // optional: maker name for SEO/routing (e.g. "Nikon", "Voigtländer"); if omitted, derived from name
   // visible: true,                                     // optional: set to false to hide from the UI dropdown (default: true)
   name:     "MANUFACTURER LENS-NAME FLmm f/N",          // REQUIRED: full display name
   subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: shown in UI header
@@ -136,7 +137,7 @@ const LENS_DATA = {
    *    { label: "5",  R: ..., d: ..., nd: 1.6890, elemId: 4, sd: ... },  // L3→L4 junction — elemId: 4
    *    { label: "6",  R: ..., d: ..., nd: 1.0,    elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
    *
-   *  Why: buildLens.js finds the FIRST surface with each elemId and uses (index, index+1)
+   *  Why: buildLens.ts finds the FIRST surface with each elemId and uses (index, index+1)
    *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
    *  non-zero elemId will cause rendering errors or crashes.
    */
@@ -236,10 +237,10 @@ const LENS_DATA = {
   nominalFno:   2.0,             // REQUIRED: nominal f-number — used to derive stop SD
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
 
-  /* ── Layout tuning (overrides defaults from defaults.js) ──
+  /* ── Layout tuning (overrides defaults from defaults.ts) ──
    *  Only include if the defaults don't work well for this lens.
    *
-   *  scFill   (0–1)  Horizontal fill fraction (default: 0.55 from defaults.js)
+   *  scFill   (0–1)  Horizontal fill fraction (default: 0.55 from defaults.ts)
    *  yScFill  (0–1)  Vertical fill fraction (no default — must be specified per lens)
    *
    *  Other overridable defaults (usually fine as-is):
