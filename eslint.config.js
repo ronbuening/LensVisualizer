@@ -104,9 +104,9 @@ export default [
     },
   },
 
-  // Config files — node globals
+  // Config files and build scripts — node globals
   {
-    files: ["*.config.js", "*.config.mjs"],
+    files: ["*.config.js", "*.config.mjs", "scripts/**/*.mjs"],
     languageOptions: {
       globals: {
         ...globals.node,
