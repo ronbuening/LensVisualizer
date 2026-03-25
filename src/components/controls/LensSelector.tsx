@@ -5,9 +5,9 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
 import type { Theme } from "../../types/theme.js";
 import { selector } from "../../utils/styles.js";
+import DropdownPanel from "../layout/DropdownPanel.js";
 
 interface LensSelectorProps {
   theme: Theme;
@@ -57,29 +57,6 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
     listRef.current.scrollTop = Math.max(0, targetScroll);
   }, [open, options, value, dropdownPos]);
 
-  // Close on outside click or Escape
-  useEffect(() => {
-    if (!open) return;
-
-    const handleMouseDown = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (triggerRef.current?.contains(target)) return;
-      if (listRef.current?.contains(target)) return;
-      setOpen(false);
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open]);
-
   const handleSelect = useCallback(
     (key: string) => {
       onChange(key);
@@ -99,71 +76,51 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
     whiteSpace: "nowrap",
   };
 
-  const dropdown =
-    open && dropdownPos
-      ? ReactDOM.createPortal(
-          <div
-            ref={listRef}
-            style={{
-              position: "fixed",
-              top: dropdownPos.top,
-              left: dropdownPos.left,
-              width: dropdownPos.width,
-              maxHeight: dropdownPos.maxHeight,
-              overflowY: "scroll",
-              backgroundColor: t.selectorBg,
-              backdropFilter: t.selectorBlur ? "blur(20px)" : undefined,
-              WebkitBackdropFilter: t.selectorBlur ? "blur(20px)" : undefined,
-              border: `1.5px solid ${t.sliderAccent}40`,
-              borderRadius: 6,
-              boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-              zIndex: 9999,
-              fontFamily: "inherit",
-              willChange: "transform",
-            }}
-          >
-            {options.map((o) => {
-              const isSelected = o.key === value;
-              const isHovered = o.key === hoveredKey;
-              return (
-                <div
-                  key={o.key}
-                  onMouseDown={() => handleSelect(o.key)}
-                  onMouseEnter={() => setHoveredKey(o.key)}
-                  onMouseLeave={() => setHoveredKey(null)}
-                  style={{
-                    height: ITEM_HEIGHT,
-                    lineHeight: `${ITEM_HEIGHT}px`,
-                    padding: "0 12px",
-                    cursor: "pointer",
-                    fontSize: isWide ? 13 : 12,
-                    letterSpacing: "0.06em",
-                    color: isSelected ? t.sliderAccent : t.selectorText,
-                    backgroundColor: isSelected ? `${t.sliderAccent}20` : isHovered ? t.selectorHover : "transparent",
-                    fontWeight: isSelected ? "bold" : "normal",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    boxSizing: "border-box",
-                    borderLeft: isSelected ? `2px solid ${t.sliderAccent}` : "2px solid transparent",
-                    transition: "background-color 0.1s",
-                  }}
-                >
-                  {o.label}
-                </div>
-              );
-            })}
-          </div>,
-          document.body,
-        )
-      : null;
-
   return (
     <>
       <button ref={triggerRef} onClick={open ? () => setOpen(false) : openDropdown} style={triggerStyle}>
         {selectedLabel}
       </button>
-      {dropdown}
+      <DropdownPanel
+        ref={listRef}
+        open={open}
+        pos={dropdownPos}
+        triggerRef={triggerRef}
+        onClose={() => setOpen(false)}
+        theme={t}
+      >
+        {options.map((o) => {
+          const isSelected = o.key === value;
+          const isHovered = o.key === hoveredKey;
+          return (
+            <div
+              key={o.key}
+              onMouseDown={() => handleSelect(o.key)}
+              onMouseEnter={() => setHoveredKey(o.key)}
+              onMouseLeave={() => setHoveredKey(null)}
+              style={{
+                height: ITEM_HEIGHT,
+                lineHeight: `${ITEM_HEIGHT}px`,
+                padding: "0 12px",
+                cursor: "pointer",
+                fontSize: isWide ? 13 : 12,
+                letterSpacing: "0.06em",
+                color: isSelected ? t.sliderAccent : t.selectorText,
+                backgroundColor: isSelected ? `${t.sliderAccent}20` : isHovered ? t.selectorHover : "transparent",
+                fontWeight: isSelected ? "bold" : "normal",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                boxSizing: "border-box",
+                borderLeft: isSelected ? `2px solid ${t.sliderAccent}` : "2px solid transparent",
+                transition: "background-color 0.1s",
+              }}
+            >
+              {o.label}
+            </div>
+          );
+        })}
+      </DropdownPanel>
     </>
   );
 }

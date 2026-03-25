@@ -3,14 +3,14 @@
  *
  * Renders above the TopBar in the LensViewer, matching the breadcrumb
  * pattern used on the multipage layout pages (LensPage, MakerPage, etc.).
- * Includes a right-aligned Settings button that expands a collapsible panel
- * with theme controls (Dark/Light and High Contrast toggles).
+ * Includes a right-aligned Settings button that opens a portal-based overlay
+ * panel with theme controls (Dark/Light and High Contrast toggles).
  *
  * Reads theme state and dispatches theme changes directly via context,
  * consistent with how LensDiagramPanel and ControlsBar wire theme actions.
  */
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/styles.js";
@@ -18,6 +18,8 @@ import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/lensReducer.js";
+import DropdownPanel from "./DropdownPanel.js";
+import type { DropdownPanelPos } from "./DropdownPanel.js";
 
 interface BreadcrumbBarProps {
   theme: Theme;
@@ -27,9 +29,18 @@ interface BreadcrumbBarProps {
 
 export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbBarProps) {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsPos, setSettingsPos] = useState<DropdownPanelPos | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const { state } = useLensCtx();
   const dispatch = useLensDispatch();
   const { dark, highContrast } = state.display;
+
+  const openSettings = useCallback(() => {
+    if (!triggerRef.current) return;
+    const rect = triggerRef.current.getBoundingClientRect();
+    setSettingsPos({ top: rect.bottom + 2, right: window.innerWidth - rect.right });
+    setSettingsOpen(true);
+  }, []);
 
   const { comparing, lensKeyB } = state.lens;
   const lensA = LENS_CATALOG[lensKey];
@@ -99,7 +110,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </div>
 
         <button
-          onClick={() => setSettingsOpen((o) => !o)}
+          ref={triggerRef}
+          onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
           style={{
             ...topBarBtn(t, isWide),
             marginLeft: 12,
@@ -125,16 +137,14 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </button>
       </nav>
 
-      {settingsOpen && (
-        <div
-          style={{
-            ...headerStrip(t, { padding }),
-            display: "flex",
-            gap: 8,
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
+      <DropdownPanel
+        open={settingsOpen}
+        pos={settingsPos}
+        triggerRef={triggerRef}
+        onClose={() => setSettingsOpen(false)}
+        theme={t}
+      >
+        <div style={{ padding: 10 }}>
           <div style={toggleGroup(t)}>
             <button
               onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
@@ -152,7 +162,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
             </button>
           </div>
         </div>
-      )}
+      </DropdownPanel>
     </div>
   );
 }
