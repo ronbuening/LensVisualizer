@@ -361,8 +361,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const rayLead = totalTrack * data.rayLeadFrac;
   const maxFrac = Math.max(...data.rayFractions.map(Math.abs));
   const outerRealY = realTraceToStop(S, asphByIdx, maxFrac * nominalEPSD, 0, stopIdx);
-  const outerRatio =
-    isFinite(outerRealY) && Math.abs(stopPhysSD) > 1e-15 ? Math.abs(outerRealY) / stopPhysSD : maxFrac;
+  const outerRatio = isFinite(outerRealY) && Math.abs(stopPhysSD) > 1e-15 ? Math.abs(outerRealY) / stopPhysSD : maxFrac;
   const bladeStubFrac = Math.max(0.02, 1 - outerRatio);
   const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
   const offAxisHeights = data.offAxisFractions.map((f: number) => f * EP.epSD);
