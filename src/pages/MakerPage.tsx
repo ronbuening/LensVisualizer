@@ -86,8 +86,7 @@ export default function MakerPage() {
       {details && (
         <div style={{ marginBottom: "1.5rem" }}>
           <p style={{ fontSize: "0.8rem", color: "#888", marginBottom: "0.75rem" }}>
-            Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
-            {lenses.length === 1 ? "lens" : "lenses"}
+            Est. {details.founded} · {details.headquarters} · {lenses.length} {lenses.length === 1 ? "lens" : "lenses"}
           </p>
           {details.history.split("\n\n").map((paragraph, i) => (
             <p key={i} style={{ fontSize: "0.85rem", color: "#ccc", lineHeight: 1.6, marginBottom: "0.75rem" }}>

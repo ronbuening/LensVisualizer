@@ -120,17 +120,25 @@ export default function LensIndexPage() {
               <span style={{ ...SPEC_STYLE, fontWeight: 400 }}> ({group.lenses.length})</span>
             </h2>
             {details && (
-              <p style={{ fontSize: "0.8rem", color: "#999", lineHeight: 1.4, marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#999",
+                  lineHeight: 1.4,
+                  marginTop: "-0.5rem",
+                  marginBottom: "0.75rem",
+                }}
+              >
                 {details.summary}
               </p>
             )}
             {group.lenses.map(({ key, data }) => (
-            <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
-              {data.name}
-              {data.specs && data.specs.length > 0 && (
-                <span style={SPEC_STYLE}>— {data.specs.slice(0, 2).join(", ")}</span>
-              )}
-            </Link>
+              <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
+                {data.name}
+                {data.specs && data.specs.length > 0 && (
+                  <span style={SPEC_STYLE}>— {data.specs.slice(0, 2).join(", ")}</span>
+                )}
+              </Link>
             ))}
           </section>
         );
