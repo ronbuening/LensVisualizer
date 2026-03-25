@@ -186,68 +186,65 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
       {/* Theme + ray controls in non-compact (single-lens) mode.
            Hidden on mobile (controls live in the always-visible strip instead). */}
       {isWide && !compact && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-end",
-              gap: 8,
-              flexShrink: 0,
-              width: 220,
-            }}
-          >
-            {/* Ray toggles + controls */}
-            <>
-              {/* Ray toggles */}
-                <RayToggles
-                  t={t}
-                  showOnAxis={showOnAxis}
-                  onShowOnAxisChange={onShowOnAxisChange}
-                  showOffAxis={showOffAxis}
-                  onShowOffAxisChange={onShowOffAxisChange}
-                  showPupils={showPupils}
-                  onShowPupilsChange={ENABLE_PUPIL_TOGGLE ? onShowPupilsChange : undefined}
-                />
-                {/* Ray mode */}
-                <div style={toggleGroup(t, { width: "100%" })}>
-                  {[
-                    { label: "FROM \u221e", val: false, icon: "\u2225" },
-                    { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-                  ].map(({ label, val, icon }) => (
-                    <button
-                      key={label}
-                      onClick={() => onRayTracksFChange?.(val)}
-                      style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
-                    >
-                      <span
-                        style={{
-                          fontSize: 11,
-                          fontWeight: 700,
-                          lineHeight: 1,
-                          opacity: rayTracksF === val ? 1 : 0.4,
-                        }}
-                      >
-                        {icon}
-                      </span>
-                      <span>{label}</span>
-                    </button>
-                  ))}
-                </div>
-                {/* Chromatic */}
-                <ChromaticControls
-                  t={t}
-                  showChromatic={showChromatic}
-                  onShowChromaticChange={onShowChromaticChange}
-                  chromR={chromR}
-                  chromG={chromG}
-                  chromB={chromB}
-                  onChromRChange={onChromRChange}
-                  onChromGChange={onChromGChange}
-                  onChromBChange={onChromBChange}
-                />
-            </>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            gap: 8,
+            flexShrink: 0,
+            width: 220,
+          }}
+        >
+          {/* Ray toggles */}
+          <RayToggles
+            t={t}
+            showOnAxis={showOnAxis}
+            onShowOnAxisChange={onShowOnAxisChange}
+            showOffAxis={showOffAxis}
+            onShowOffAxisChange={onShowOffAxisChange}
+            showPupils={showPupils}
+            onShowPupilsChange={ENABLE_PUPIL_TOGGLE ? onShowPupilsChange : undefined}
+          />
+          {/* Ray mode */}
+          <div style={toggleGroup(t, { width: "100%" })}>
+            {[
+              { label: "FROM \u221e", val: false, icon: "\u2225" },
+              { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
+            ].map(({ label, val, icon }) => (
+              <button
+                key={label}
+                onClick={() => onRayTracksFChange?.(val)}
+                style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
+              >
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    opacity: rayTracksF === val ? 1 : 0.4,
+                  }}
+                >
+                  {icon}
+                </span>
+                <span>{label}</span>
+              </button>
+            ))}
           </div>
-        )}
+          {/* Chromatic */}
+          <ChromaticControls
+            t={t}
+            showChromatic={showChromatic}
+            onShowChromaticChange={onShowChromaticChange}
+            chromR={chromR}
+            chromG={chromG}
+            chromB={chromB}
+            onChromRChange={onChromRChange}
+            onChromGChange={onChromGChange}
+            onChromBChange={onChromBChange}
+          />
+        </div>
+      )}
     </div>
   );
 });
