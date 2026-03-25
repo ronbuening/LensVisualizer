@@ -44,8 +44,21 @@ function extractLensInfo(filePath) {
 /** Collect all routes to prerender. */
 function collectRoutes() {
   const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
-  const routes = ["/", "/lenses", "/makers"];
+  const routes = ["/", "/lenses", "/makers", "/articles"];
   const makers = new Set();
+
+  /* Article slugs for standalone article pages */
+  const articleSlugs = [
+    "optics-primer",
+    "optics-primer-intermediate",
+    "aberrations-primer",
+    "aberrations-primer-intermediate",
+    "about-site",
+    "about-author",
+  ];
+  for (const slug of articleSlugs) {
+    routes.push(`/articles/${slug}`);
+  }
 
   for (const file of dataFiles) {
     const { key, name } = extractLensInfo(join(LENS_DATA_DIR, file));
