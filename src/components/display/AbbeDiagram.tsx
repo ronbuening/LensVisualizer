@@ -12,10 +12,13 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { toggleGroup, toggleBtn } from "../../utils/styles.js";
 
 interface AbbeDiagramProps {
   L: RuntimeLens;
   t: Theme;
+  showGlassType: boolean;
+  onToggleGlassType: () => void;
 }
 
 /* ── Chart geometry constants ── */
@@ -53,7 +56,7 @@ function labelAnchor(px: number): { anchor: "start" | "end"; dx: number } {
   return px > SVG_W - 130 ? { anchor: "end", dx: -12 } : { anchor: "start", dx: 12 };
 }
 
-export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
+export default function AbbeDiagram({ L, t, showGlassType, onToggleGlassType }: AbbeDiagramProps) {
   const allElements = L.elements;
   const plotElements = allElements.filter((e) => e.vd != null && e.nd != null);
   const missingCount = allElements.length - plotElements.length;
@@ -183,9 +186,11 @@ export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
                 {e.name}
               </text>
               {/* Glass type label — above and offset from dot */}
-              <text x={px + dx} y={py - 11} textAnchor={anchor} fontSize={7.5} fill={mutedColor} fontFamily="inherit">
-                {glassLabel}
-              </text>
+              {showGlassType && (
+                <text x={px + dx} y={py - 11} textAnchor={anchor} fontSize={7.5} fill={mutedColor} fontFamily="inherit">
+                  {glassLabel}
+                </text>
+              )}
             </g>
           );
         })}
@@ -204,6 +209,13 @@ export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
           </text>
         )}
       </svg>
+      <div style={{ display: "flex", justifyContent: "center", padding: "6px 0 4px" }}>
+        <div style={toggleGroup(t, { width: 160 })}>
+          <button style={toggleBtn(t, showGlassType, { hasRightBorder: false })} onClick={onToggleGlassType}>
+            GLASS TYPE
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

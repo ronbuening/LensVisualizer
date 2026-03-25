@@ -76,7 +76,7 @@ export default function LensDiagramPanel({
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const { dark } = display;
-  const { focusExpanded, apertureExpanded, legendExpanded, headerInfoExpanded } = panels;
+  const { focusExpanded, apertureExpanded, legendExpanded, headerInfoExpanded, abbeShowGlassType } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
   const focusT = focusTProp ?? sliders.focusT;
@@ -293,7 +293,12 @@ export default function LensDiagramPanel({
       ) : null}
       {overlays.showAbbeDiagram && L && (
         <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
-          <AbbeDiagram L={L} t={t} />
+          <AbbeDiagram
+            L={L}
+            t={t}
+            showGlassType={abbeShowGlassType}
+            onToggleGlassType={() => adapters.onAbbeShowGlassTypeChange(!abbeShowGlassType)}
+          />
         </OverlayModal>
       )}
     </PanelErrorBoundary>

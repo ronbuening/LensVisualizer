@@ -49,6 +49,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.headerControlsExpanded === "boolean") out.headerControlsExpanded = p.headerControlsExpanded;
     if (typeof p.legendExpanded === "boolean") out.legendExpanded = p.legendExpanded;
     if (typeof p.headerInfoExpanded === "boolean") out.headerInfoExpanded = p.headerInfoExpanded;
+    if (typeof p.abbeShowGlassType === "boolean") out.abbeShowGlassType = p.abbeShowGlassType;
     return out;
   } catch {
     return {};
