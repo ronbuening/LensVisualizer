@@ -49,15 +49,31 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return [];
     try {
       const out: RaySegment[] = [];
-      /* Zoom-aware field angle and chief ray entry position */
+      /* Zoom-aware field angle and chief ray entry position.
+       * Note: yChief uses the paraxial EP position (B/yRatio), which is
+       * field-independent.  Real entrance pupils shift with field angle due
+       * to pupil aberration (pupil coma), but computing the field-dependent
+       * EP requires iterative real ray tracing — deferred as a known
+       * limitation since the error is small for typical visualization angles. */
       const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
       const uField = -Math.tan((currentOffAxisDeg * Math.PI) / 180);
       const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
 
-      /* Paraxial image height for "edge" mode */
-      const edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
+      /* Image height for "edge" mode — trace a real chief ray to account for
+       * distortion, falling back to the paraxial estimate on failure. */
       const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
+      let edgeImgH: number;
+      if (useEdge) {
+        const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L);
+        const lastSurfZ = zPos[L.N - 1];
+        const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - lastSurfZ);
+        edgeImgH = isFinite(chiefEndY)
+          ? chiefEndY
+          : -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
+      } else {
+        edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
+      }
+      const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
 
       for (const f of L.offAxisFractions) {
         const h = f * currentEPSD;
