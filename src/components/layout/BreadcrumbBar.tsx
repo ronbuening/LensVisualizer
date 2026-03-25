@@ -31,10 +31,12 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
   const dispatch = useLensDispatch();
   const { dark, highContrast } = state.display;
 
-  const lens = LENS_CATALOG[lensKey];
-  if (!lens) return null;
+  const { comparing, lensKeyB } = state.lens;
+  const lensA = LENS_CATALOG[lensKey];
+  const lensB = comparing ? LENS_CATALOG[lensKeyB] : null;
+  if (!lensA) return null;
 
-  const maker = deriveMaker(lens.name, lens.maker);
+  const maker = deriveMaker(lensA.name, lensA.maker);
   const padding = isWide ? "6px 24px" : "6px 12px";
 
   const linkStyle: React.CSSProperties = {
@@ -71,15 +73,29 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
             Home
           </Link>
           <span style={separatorStyle}>/</span>
-          <Link to="/makers" style={linkStyle}>
-            Makers
-          </Link>
-          <span style={separatorStyle}>/</span>
-          <Link to={`/makers/${maker.slug}`} style={linkStyle}>
-            {maker.display}
-          </Link>
-          <span style={separatorStyle}>/</span>
-          <span style={{ color: t.body }}>{lens.name}</span>
+          {comparing && lensB ? (
+            <>
+              <Link to="/lenses" style={linkStyle}>
+                Lenses
+              </Link>
+              <span style={separatorStyle}>/</span>
+              <span style={{ color: t.body }}>
+                {lensA.name} vs {lensB.name}
+              </span>
+            </>
+          ) : (
+            <>
+              <Link to="/makers" style={linkStyle}>
+                Makers
+              </Link>
+              <span style={separatorStyle}>/</span>
+              <Link to={`/makers/${maker.slug}`} style={linkStyle}>
+                {maker.display}
+              </Link>
+              <span style={separatorStyle}>/</span>
+              <span style={{ color: t.body }}>{lensA.name}</span>
+            </>
+          )}
         </div>
 
         <button

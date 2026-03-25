@@ -8,6 +8,9 @@ import {
   lensCanonicalURL,
   makerCanonicalURL,
   lensJsonLd,
+  comparePageTitle,
+  comparePageDescription,
+  compareCanonicalURL,
   SITE_NAME,
   SITE_URL,
 } from "../src/utils/lensMetadata.js";
@@ -184,5 +187,45 @@ describe("lensJsonLd", () => {
     const lens = makeLens();
     const ld = lensJsonLd(lens, "nikkor-z-50mm");
     expect(ld.description).toBe(lensPageDescription(lens));
+  });
+});
+
+/* ── comparePageTitle ── */
+
+describe("comparePageTitle", () => {
+  it("returns 'Lens A vs Lens B' title", () => {
+    const lensA = makeLens({ name: "NIKON NIKKOR Z 50mm f/1.2 S" });
+    const lensB = makeLens({ name: "Voigtländer Nokton 50mm f/1.0" });
+    const title = comparePageTitle(lensA, lensB);
+    expect(title).toContain("NIKON NIKKOR Z 50mm f/1.2 S vs Voigtländer Nokton 50mm f/1.0");
+    expect(title).toContain(SITE_NAME);
+  });
+});
+
+/* ── comparePageDescription ── */
+
+describe("comparePageDescription", () => {
+  it("mentions both lens names", () => {
+    const lensA = makeLens({ name: "Lens A" });
+    const lensB = makeLens({ name: "Lens B" });
+    const desc = comparePageDescription(lensA, lensB);
+    expect(desc).toContain("Lens A");
+    expect(desc).toContain("Lens B");
+    expect(desc).toContain("Compare");
+  });
+
+  it("does not exceed 160 characters", () => {
+    const lensA = makeLens({ name: "A Very Long Lens Name That Goes On And On" });
+    const lensB = makeLens({ name: "Another Very Long Lens Name That Also Goes On" });
+    const desc = comparePageDescription(lensA, lensB);
+    expect(desc.length).toBeLessThanOrEqual(160);
+  });
+});
+
+/* ── compareCanonicalURL ── */
+
+describe("compareCanonicalURL", () => {
+  it("returns SITE_URL/compare/<slugA>/<slugB>", () => {
+    expect(compareCanonicalURL("nikkor-z-50mm", "nokton-50mm")).toBe(`${SITE_URL}/compare/nikkor-z-50mm/nokton-50mm`);
   });
 });

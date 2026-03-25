@@ -23,6 +23,19 @@ export default function HomePage() {
     const lensKey = searchParams.get("lens");
     if (lensKey && CATALOG_KEYS.includes(lensKey)) {
       void navigate(`/lens/${lensKey}`, { replace: true });
+      return;
+    }
+    /* Redirect legacy ?a=KEY&b=KEY comparison URLs to /compare/KEY/KEY */
+    const a = searchParams.get("a");
+    const b = searchParams.get("b");
+    if (a && b && CATALOG_KEYS.includes(a) && CATALOG_KEYS.includes(b)) {
+      const params = new URLSearchParams();
+      for (const key of ["focus", "aperture", "zoom"]) {
+        const val = searchParams.get(key);
+        if (val) params.set(key, val);
+      }
+      const search = params.toString() ? `?${params.toString()}` : "";
+      void navigate(`/compare/${a}/${b}${search}`, { replace: true });
     }
   }, [searchParams, navigate]);
 
