@@ -42,6 +42,7 @@ import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
+import BreadcrumbBar from "./BreadcrumbBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
 import ComparisonLayout from "./ComparisonLayout.js";
 import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
@@ -325,6 +326,9 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
             transition: "background 0.3s,color 0.3s",
           }}
         >
+          {/* ── Breadcrumb navigation ── */}
+          <BreadcrumbBar theme={t} isWide={isWide} lensKey={lensKeyA} />
+
           {/* ── Top bar: lens selector(s) + compare button ── */}
           <TopBar
             theme={t}
