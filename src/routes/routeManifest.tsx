@@ -12,6 +12,8 @@ import LensIndexPage from "../pages/LensIndexPage.js";
 import MakersIndexPage from "../pages/MakersIndexPage.js";
 import MakerPage from "../pages/MakerPage.js";
 import ComparePage from "../pages/ComparePage.js";
+import ArticlesPage from "../pages/ArticlesPage.js";
+import ArticlePage from "../pages/ArticlePage.js";
 import NotFoundPage from "../pages/NotFoundPage.js";
 
 export interface RouteManifestEntry {
@@ -26,6 +28,8 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/compare/:slugA/:slugB", element: <ComparePage /> },
   { path: "/makers", element: <MakersIndexPage /> },
   { path: "/makers/:maker", element: <MakerPage /> },
+  { path: "/articles", element: <ArticlesPage /> },
+  { path: "/articles/:slug", element: <ArticlePage /> },
   { path: "*", element: <NotFoundPage /> },
 ];
 

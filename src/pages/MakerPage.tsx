@@ -6,10 +6,11 @@
 
 import { useParams, Navigate, Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
+import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
-import { usePageTheme } from "../utils/usePageTheme.js";
+import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -24,12 +25,11 @@ function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
 const PAGE_BASE_STYLE = {
   maxWidth: 960,
   margin: "0 auto",
-  padding: "2rem 1.5rem",
+  padding: "0 1.5rem 2rem",
   fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
   minHeight: "100vh",
 } satisfies React.CSSProperties;
 
-const NAV_STYLE: React.CSSProperties = { marginBottom: "1.5rem", fontSize: "0.8rem" };
 const LENS_LINK_BASE_STYLE = {
   display: "block",
   padding: "0.5rem 0.75rem",
@@ -41,7 +41,7 @@ const LENS_LINK_BASE_STYLE = {
 
 export default function MakerPage() {
   const { maker } = useParams<{ maker: string }>();
-  const t = usePageTheme();
+  const { theme: t, dark, highContrast, toggleDark, toggleHC } = usePageThemeToggle();
 
   if (!maker) return <Navigate to="/makers" replace />;
 
@@ -56,61 +56,67 @@ export default function MakerPage() {
     : `Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
 
   return (
-    <div style={{ ...PAGE_BASE_STYLE, backgroundColor: t.bg, color: t.body }}>
+    <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
         title={`${displayName} Lenses — ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={makerCanonicalURL(maker)}
       />
 
-      <nav style={NAV_STYLE}>
+      <PageNavBar theme={t} dark={dark} highContrast={highContrast} onToggleDark={toggleDark} onToggleHC={toggleHC}>
         <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Home
         </Link>
-        {" / "}
+        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         <Link to="/makers" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Makers
         </Link>
-        {` / ${displayName}`}
-      </nav>
+        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
+        <span style={{ color: t.body }}>{displayName}</span>
+      </PageNavBar>
 
-      <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginBottom: "0.5rem" }}>{displayName} Lenses</h1>
+      <div style={PAGE_BASE_STYLE}>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
+          {displayName} Lenses
+        </h1>
 
-      {details && (
-        <div style={{ marginBottom: "1.5rem" }}>
-          <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-            Est. {details.founded} · {details.headquarters} · {lenses.length} {lenses.length === 1 ? "lens" : "lenses"}
-          </p>
-          {details.history.split("\n\n").map((paragraph, i) => (
-            <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
-              {paragraph}
+        {details && (
+          <div style={{ marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
+              Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
+              {lenses.length === 1 ? "lens" : "lenses"}
             </p>
-          ))}
-          {details.notableDesigns && (
-            <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
-              Notable designs: {details.notableDesigns}
-            </p>
-          )}
-        </div>
-      )}
-
-      {!details && (
-        <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-          {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
-        </p>
-      )}
-
-      <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-        {lenses.map(({ key, data }) => (
-          <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-            {data.name}
-            {data.specs && data.specs.length > 0 && (
-              <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                — {data.specs.slice(0, 3).join(", ")}
-              </span>
+            {details.history.split("\n\n").map((paragraph, i) => (
+              <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
+                {paragraph}
+              </p>
+            ))}
+            {details.notableDesigns && (
+              <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
+                Notable designs: {details.notableDesigns}
+              </p>
             )}
-          </Link>
-        ))}
+          </div>
+        )}
+
+        {!details && (
+          <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
+            {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
+          </p>
+        )}
+
+        <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
+          {lenses.map(({ key, data }) => (
+            <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+              {data.name}
+              {data.specs && data.specs.length > 0 && (
+                <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                  — {data.specs.slice(0, 3).join(", ")}
+                </span>
+              )}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
