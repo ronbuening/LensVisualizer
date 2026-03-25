@@ -224,8 +224,6 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
     chromG,
     chromB,
     showPupils,
-    dark,
-    highContrast,
     scaleMode,
     dispatch,
   } as const;

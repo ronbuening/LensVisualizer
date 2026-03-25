@@ -28,7 +28,6 @@ import type { Theme } from "../../types/theme.js";
 interface DiagramHeaderProps {
   L: RuntimeLens;
   t: Theme;
-  dark: boolean;
   compact: boolean;
   isWide: boolean;
   focusT: number;
@@ -50,9 +49,6 @@ interface DiagramHeaderProps {
   onChromBChange?: (value: boolean) => void;
   showPupils: boolean;
   onShowPupilsChange?: (value: boolean) => void;
-  onDarkChange?: (value: boolean) => void;
-  onHighContrastChange?: (value: boolean) => void;
-  highContrast: boolean;
   headerControlsExpanded: boolean;
   onHeaderControlsExpandedChange?: (value: boolean) => void;
   headerInfoExpanded: boolean;
@@ -64,7 +60,6 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
   {
     L,
     t,
-    dark,
     compact,
     isWide,
     focusT,
@@ -86,9 +81,6 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
     onChromBChange,
     showPupils,
     onShowPupilsChange,
-    onDarkChange,
-    onHighContrastChange,
-    highContrast,
     headerControlsExpanded,
     onHeaderControlsExpandedChange,
     headerInfoExpanded,
@@ -232,19 +224,9 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                 <span style={{ fontSize: 11, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
               </button>
             )}
-            {/* Theme controls */}
+            {/* Ray toggles + controls */}
             {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && (
               <>
-                <div style={toggleGroup(t, { width: "100%" })}>
-                  <button onClick={() => onHighContrastChange?.(!highContrast)} style={toggleBtn(t, highContrast)}>
-                    <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-                    <span>HC</span>
-                  </button>
-                  <button onClick={() => onDarkChange?.(!dark)} style={toggleBtn(t, false, { hasRightBorder: false })}>
-                    <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-                    <span>{dark ? "Light" : "Dark"}</span>
-                  </button>
-                </div>
                 {/* Ray toggles */}
                 <RayToggles
                   t={t}

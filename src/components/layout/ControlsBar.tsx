@@ -7,7 +7,7 @@
  */
 
 import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
-import { SET_HIGH_CONTRAST, SET_DARK, SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
 import type { LensAction, RayField } from "../../types/state.js";
@@ -25,8 +25,6 @@ interface ControlsBarProps {
   chromG: boolean;
   chromB: boolean;
   showPupils: boolean;
-  dark: boolean;
-  highContrast: boolean;
   scaleMode: "independent" | "normalized";
   dispatch: Dispatch<LensAction>;
 }
@@ -43,8 +41,6 @@ export default function ControlsBar({
   chromG,
   chromB,
   showPupils,
-  dark,
-  highContrast,
   scaleMode,
   dispatch,
 }: ControlsBarProps) {
@@ -136,24 +132,6 @@ export default function ControlsBar({
         justifyContent: "center",
       }}
     >
-      {/* Theme controls */}
-      <div style={toggleGroup(t, compact ? undefined : { width: 120 })}>
-        <button
-          onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
-          style={toggleBtn(t, highContrast)}
-        >
-          <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
-          <span>HC</span>
-        </button>
-        <button
-          onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
-          style={toggleBtn(t, false, { hasRightBorder: false })}
-        >
-          <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-          <span>{dark ? "Light" : "Dark"}</span>
-        </button>
-      </div>
-
       {/* Ray toggles */}
       <div style={toggleGroup(t, compact ? undefined : { width: 180 })}>
         {rayToggles.map(({ label, active, onClick, dotA, dotB }, idx) => (
