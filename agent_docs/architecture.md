@@ -30,6 +30,7 @@
 | `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
 | `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
+| `DiagramControlPanel.tsx` | `src/components/layout/` | Sliders, inspector, and legend panel extracted from LensDiagramPanel |
 
 ### Hooks
 
@@ -42,6 +43,9 @@
 | `useChromaticRays.ts` | `src/components/hooks/` | Hook: chromatic tracing + spread computation |
 | `useFlashOverlay.ts` | `src/components/hooks/` | Hook: flash animation state machine for sticky slider feedback |
 | `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
+| `useDispatchAdapters.ts` | `src/components/hooks/` | Hook: context dispatch callback wiring for LensDiagramPanel children |
+| `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset |
+| `useHeaderHeight.ts` | `src/components/hooks/` | Hook: header ResizeObserver height tracking for multi-panel alignment |
 
 ### Controls
 
@@ -152,7 +156,7 @@ State is provided to children via `LensStateContext` (state + theme + isWide) an
 
 ## LensDiagramPanel.tsx — Diagram Composition Layer
 
-Orchestrates sub-components and custom hooks. Owns only hover/selection state, header height reporting, and structural layout wiring.
+Orchestrates sub-components and custom hooks. Owns only hover/selection state and structural layout wiring.
 
 Extracted hooks (all in `src/components/hooks/`):
 - **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations
@@ -162,6 +166,9 @@ Extracted hooks (all in `src/components/hooks/`):
 - **`useChromaticRays.ts`** — Hook: chromatic tracing across R/G/B channels + LCA/TCA spread computation
 - **`useFlashOverlay.ts`** — Hook: two-phase flash animation state machine for sticky slider feedback
 - **`useSideLayoutDetection.ts`** — Hook: ResizeObserver-based overflow detection with hysteresis for side-by-side layout
+- **`useDispatchAdapters.ts`** — Hook: reads context dispatch and returns named callback adapters for child components
+- **`useOverlayState.ts`** — Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset
+- **`useHeaderHeight.ts`** — Hook: header ResizeObserver height tracking for multi-panel alignment
 
 Sub-components:
 - **`PanelErrorBoundary.tsx`** (`src/components/errors/`) — Panel-level error boundary that resets automatically on lens change
@@ -177,6 +184,7 @@ Sub-components:
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
 - **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
+- **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, and legend section extracted from LensDiagramPanel; composes DiagramControls, ElementInspector, and DiagramLegend
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
