@@ -34,6 +34,7 @@ export default function useURLSync(
   state: LensState,
   dispatch: Dispatch<LensAction>,
   comparisonLenses: ComparisonLensesParam,
+  isLensPage?: boolean,
 ): UseURLSyncResult {
   const { lens, sliders, sharedSliders } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
@@ -53,12 +54,14 @@ export default function useURLSync(
 
   /* ── 1. Immediate URL update on lens selection change ── */
   useEffect(() => {
+    // On lens pages in single-lens mode, navigation is handled by LensViewer via React Router
+    if (isLensPage && !comparing) return;
     const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
     const current = window.location.search;
     if (url !== current) {
       history.replaceState(null, "", url || window.location.pathname);
     }
-  }, [comparing, lensKeyA, lensKeyB]);
+  }, [comparing, lensKeyA, lensKeyB, isLensPage]);
 
   /* ── 3a. Zoom init — comparison mode ── */
   useEffect(() => {
@@ -121,10 +124,23 @@ export default function useURLSync(
           /* ignore */
         }
       }
-      const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
-      const current = window.location.search;
-      if (url !== current) {
-        history.replaceState(null, "", url || window.location.pathname);
+      if (isLensPage && !comparing) {
+        // On lens pages, only encode slider params — the pathname already has the lens key
+        const params = new URLSearchParams();
+        if (sliderState.zoom != null && sliderState.zoom > 0) params.set("zoom", String(sliderState.zoom));
+        if (sliderState.focus != null && sliderState.focus > 0) params.set("focus", sliderState.focus.toFixed(3));
+        if (sliderState.aperture != null && sliderState.aperture > 0)
+          params.set("aperture", sliderState.aperture.toFixed(3));
+        const search = params.toString() ? `?${params.toString()}` : "";
+        if (search !== window.location.search) {
+          history.replaceState(null, "", window.location.pathname + search);
+        }
+      } else {
+        const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
+        const current = window.location.search;
+        if (url !== current) {
+          history.replaceState(null, "", url || window.location.pathname);
+        }
       }
     }, 300);
   }, [
@@ -138,6 +154,7 @@ export default function useURLSync(
     sharedStopdownT,
     sharedZoomT,
     comparisonLenses,
+    isLensPage,
   ]);
 
   return { updateURLWithSliders };
