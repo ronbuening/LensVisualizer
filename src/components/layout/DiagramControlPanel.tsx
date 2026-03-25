@@ -8,7 +8,6 @@
 import DiagramControls from "../controls/DiagramControls.js";
 import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
-import { ENABLE_COLLAPSIBLE_LEGEND } from "../../utils/featureFlags.js";
 import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -140,7 +139,7 @@ export default function DiagramControlPanel({
         style={{
           flex: useSideLayout ? 1 : "1 1 360px",
           padding: compact ? "10px 14px" : "14px 22px",
-          minHeight: compact ? 100 : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded ? 40 : 125,
+          minHeight: compact ? 100 : !isWide && !info && !legendExpanded ? 40 : 125,
           transition: "background 0.2s",
           background: info ? t.infoBgActive : t.infoBgIdle,
         }}

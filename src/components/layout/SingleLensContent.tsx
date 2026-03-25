@@ -7,7 +7,6 @@
 
 import LensDiagramPanel from "./LensDiagramPanel.js";
 import DescriptionPanel from "./DescriptionPanel.js";
-import { ENABLE_ANALYSIS_VIEW, ENABLE_SIDE_PANEL_LAYOUT } from "../../utils/featureFlags.js";
 import type { Theme } from "../../types/theme.js";
 
 interface SingleLensContentProps {
@@ -36,7 +35,7 @@ export default function SingleLensContent({
       panelId="main"
       compact={false}
       showControls={true}
-      sideLayoutEnabled={ENABLE_SIDE_PANEL_LAYOUT && isWide && effectiveDesktopView === "diagram"}
+      sideLayoutEnabled={isWide && effectiveDesktopView === "diagram"}
     />
   );
 
@@ -74,7 +73,7 @@ export default function SingleLensContent({
   }
 
   /* Mobile: toggle between views */
-  if (!ENABLE_ANALYSIS_VIEW || mobileView === "diagram") {
+  if (mobileView === "diagram") {
     return singleDiagramContent;
   }
   return descriptionContent;

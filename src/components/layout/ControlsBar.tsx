@@ -6,7 +6,7 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
+import { ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -164,70 +164,68 @@ export default function ControlsBar({
       </div>
 
       {/* Chromatic */}
-      {ENABLE_COLOR_TRACING && (
-        <div
-          style={
-            compact
-              ? toggleGroup(t)
-              : {
-                  ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
-                  transition: "border-color 0.3s, width 0.3s",
-                }
-          }
+      <div
+        style={
+          compact
+            ? toggleGroup(t)
+            : {
+                ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
+                transition: "border-color 0.3s, width 0.3s",
+              }
+        }
+      >
+        <button
+          onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
+          style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
         >
-          <button
-            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-            style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
-          >
-            <svg width={svgW} height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-              <line
-                x1="0"
-                y1="1"
-                x2="14"
-                y2="1"
-                stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
+          <svg width={svgW} height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+            <line
+              x1="0"
+              y1="1"
+              x2="14"
+              y2="1"
+              stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
+              strokeWidth="1.5"
+            />
+            <line
+              x1="0"
+              y1="4"
+              x2="14"
+              y2="4"
+              stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
+              strokeWidth="1.5"
+            />
+            <line
+              x1="0"
+              y1="7"
+              x2="14"
+              y2="7"
+              stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
+              strokeWidth="1.5"
+            />
+          </svg>
+          <span>COLOR</span>
+        </button>
+        {showChromatic &&
+          chromChannels.map(({ ch, active, field, color }, idx) => (
+            <button
+              key={ch}
+              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
+              style={chromChannelBtn(t, active, idx < 2)}
+            >
+              <span
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: active ? color : "rgba(128,128,128,0.3)",
+                  display: "inline-block",
+                }}
               />
-              <line
-                x1="0"
-                y1="4"
-                x2="14"
-                y2="4"
-                stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
-              />
-              <line
-                x1="0"
-                y1="7"
-                x2="14"
-                y2="7"
-                stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-                strokeWidth="1.5"
-              />
-            </svg>
-            <span>COLOR</span>
-          </button>
-          {showChromatic &&
-            chromChannels.map(({ ch, active, field, color }, idx) => (
-              <button
-                key={ch}
-                onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-                style={chromChannelBtn(t, active, idx < 2)}
-              >
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: active ? color : "rgba(128,128,128,0.3)",
-                    display: "inline-block",
-                  }}
-                />
-                <span>{ch}</span>
-              </button>
-            ))}
-        </div>
-      )}
+              <span>{ch}</span>
+            </button>
+          ))}
+      </div>
 
       {/* Scale mode toggle */}
       {showScaleMode && (

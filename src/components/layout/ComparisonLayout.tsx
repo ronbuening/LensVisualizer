@@ -4,7 +4,6 @@
  */
 
 import LensDiagramPanel from "./LensDiagramPanel.js";
-import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT } from "../../utils/featureFlags.js";
 import type { Theme } from "../../types/theme.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../../utils/comparisonSliders.js";
 
@@ -35,7 +34,7 @@ export default function ComparisonLayout({
   onHeaderHeight,
   flashPanel,
 }: ComparisonLayoutProps) {
-  const maxSvgHeight = isWide ? (ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh") : "42vh";
+  const maxSvgHeight = isWide ? "calc(100vh - 260px)" : "42vh";
   const minHeaderHeight = isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined;
 
   return (

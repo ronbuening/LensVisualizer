@@ -4,7 +4,6 @@
  */
 
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
-import { ENABLE_COLLAPSIBLE_FOCUS, ENABLE_COLLAPSIBLE_APERTURE } from "../../utils/featureFlags.js";
 import SliderControl from "./SliderControl.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -94,11 +93,11 @@ export default function DiagramControls({
           minLabel={"\u221e"}
           maxLabel={`${L.closeFocusM} m`}
           flexBasis="260px"
-          collapsible={ENABLE_COLLAPSIBLE_FOCUS}
+          collapsible={true}
           expanded={focusExpanded}
           onExpandedChange={onFocusExpandedChange}
         >
-          {(!ENABLE_COLLAPSIBLE_FOCUS || focusExpanded) && (
+          {focusExpanded && (
             <>
               <div
                 style={{
@@ -149,11 +148,11 @@ export default function DiagramControls({
           minLabel={`f/${L.FOPEN.toFixed(1)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
-          collapsible={ENABLE_COLLAPSIBLE_APERTURE}
+          collapsible={true}
           expanded={apertureExpanded}
           onExpandedChange={onApertureExpandedChange}
         >
-          {(!ENABLE_COLLAPSIBLE_APERTURE || apertureExpanded) && (
+          {apertureExpanded && (
             <>
               <div
                 style={{
