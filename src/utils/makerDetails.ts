@@ -35,7 +35,8 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Japan's preeminent optical manufacturer, known for the Nikkor lens line spanning seven decades of innovation from rangefinder-era designs through modern computational optics.",
     history:
       "Nippon Kogaku K.K. (later renamed Nikon Corporation) was established in 1917 through the merger of three leading Japanese optical manufacturers, with the goal of producing military-grade optics domestically. German optical engineers were brought in as consultants, and the company's early output focused on binoculars, periscopes, and aerial lenses. The name \"Nikkor\" first appeared on aerial photography lenses in the 1930s.\n\nPost-war, Nikon pivoted to civilian cameras and lenses. The Nikon rangefinder cameras, beginning with the Nikon I (1948), and their Nikkor lenses earned international recognition when photojournalists covering the Korean War praised their optical quality. The Nikon F SLR system (1959) established the F-mount — a lens interface that would remain mechanically compatible for over 60 years across manual focus, autofocus, and digital generations.\n\nNikon's optical design philosophy evolved from adapted double-Gauss and Sonnar derivatives in the manual-focus era to increasingly complex aspherical and ED glass designs in the AF and digital periods. The transition to the Z-mount mirrorless system (2018) brought a shorter flange distance and wider throat, enabling new design freedoms visible in lenses like the Nikkor Z 50mm f/1.2 S and Z 135mm f/1.8 S Plena.",
-    notableDesigns: "Noct-Nikkor 58mm f/1.2, Nikkor 13mm f/5.6, AI Nikkor 105mm f/2.5, AF-S 14-24mm f/2.8G, Nikkor Z 58mm f/0.95 S Noct",
+    notableDesigns:
+      "Noct-Nikkor 58mm f/1.2, Nikkor 13mm f/5.6, AI Nikkor 105mm f/2.5, AF-S 14-24mm f/2.8G, Nikkor Z 58mm f/0.95 S Noct",
   },
   ricoh: {
     founded: 1936,
