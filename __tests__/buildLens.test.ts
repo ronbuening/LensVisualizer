@@ -520,4 +520,11 @@ describe("bladeStubFrac — aberration-aware blade position", () => {
       expect(L.bladeStubFrac).toBeLessThan(1);
     }
   });
+
+  it("stopHousingSD >= stopPhysSD for all test lenses", () => {
+    for (const data of [Sonnar50f15, Nokton, Nikkor105]) {
+      const L = buildLens(data);
+      expect(L.stopHousingSD).toBeGreaterThanOrEqual(L.stopPhysSD);
+    }
+  });
 });
