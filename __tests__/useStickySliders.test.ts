@@ -5,7 +5,9 @@ import { renderHook, act } from "@testing-library/react";
 import useStickySliders from "../src/utils/useStickySliders.js";
 import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "../src/utils/lensReducer.js";
 import type { RuntimeLens } from "../src/types/optics.js";
+import type { LensAction } from "../src/types/state.js";
 import type { FocusPairResult, AperturePairResult } from "../src/utils/comparisonSliders.js";
+import type { Dispatch } from "react";
 
 /* ── Mock helpers ── */
 
@@ -25,10 +27,12 @@ const LA = makeLens(0.3, 1.4);
 const LB = makeLens(0.5, 2.0);
 
 describe("useStickySliders", () => {
-  let dispatch: ReturnType<typeof vi.fn>;
+  let dispatch: Dispatch<LensAction>;
+  let dispatchMock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    dispatch = vi.fn();
+    dispatchMock = vi.fn();
+    dispatch = dispatchMock as unknown as Dispatch<LensAction>;
   });
 
   it("returns expected interface shape", () => {
@@ -47,7 +51,7 @@ describe("useStickySliders", () => {
     act(() => {
       result.current.handleSharedFocusChange(0.5);
     });
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: expect.any(Number) });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: expect.any(Number) });
   });
 
   it("dispatches SET_SHARED_STOPDOWN_T on stopdown change without sticky", () => {
@@ -56,7 +60,7 @@ describe("useStickySliders", () => {
     act(() => {
       result.current.handleSharedStopdownChange(0.3);
     });
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: expect.any(Number) });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: expect.any(Number) });
   });
 
   it("sticks at focus common point when crossing it", () => {
@@ -67,12 +71,12 @@ describe("useStickySliders", () => {
     act(() => {
       result.current.handleSharedFocusChange(0.3); // below CP, sets prevT
     });
-    dispatch.mockClear();
+    dispatchMock.mockClear();
 
     act(() => {
       result.current.handleSharedFocusChange(0.6); // crosses 0.5
     });
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.5 });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.5 });
   });
 
   it("stays stuck after crossing focus common point until pointerDown", () => {
@@ -82,19 +86,19 @@ describe("useStickySliders", () => {
     /* Cross the CP to get stuck */
     act(() => result.current.handleSharedFocusChange(0.3));
     act(() => result.current.handleSharedFocusChange(0.6));
-    dispatch.mockClear();
+    dispatchMock.mockClear();
 
     /* While stuck, further moves are rejected (held at CP) */
     act(() => result.current.handleSharedFocusChange(0.8));
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.5 });
-    dispatch.mockClear();
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.5 });
+    dispatchMock.mockClear();
 
     /* pointerDown releases the stick */
     act(() => result.current.handleFocusPointerDown());
     act(() => result.current.handleSharedFocusChange(0.8));
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: expect.any(Number) });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: expect.any(Number) });
     /* Should NOT be held at 0.5 anymore */
-    const lastCall = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+    const lastCall = dispatchMock.mock.calls[dispatchMock.mock.calls.length - 1][0];
     expect(lastCall.value).not.toBe(0.5);
   });
 
@@ -103,10 +107,10 @@ describe("useStickySliders", () => {
     const { result } = renderHook(() => useStickySliders(dispatch, null, aperturePair, { LA, LB }));
 
     act(() => result.current.handleSharedStopdownChange(0.2));
-    dispatch.mockClear();
+    dispatchMock.mockClear();
 
     act(() => result.current.handleSharedStopdownChange(0.5));
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.4 });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.4 });
   });
 
   it("resetSticky clears stuck state", () => {
@@ -116,14 +120,14 @@ describe("useStickySliders", () => {
     /* Get stuck */
     act(() => result.current.handleSharedFocusChange(0.3));
     act(() => result.current.handleSharedFocusChange(0.6));
-    dispatch.mockClear();
+    dispatchMock.mockClear();
 
     /* Reset sticky */
     act(() => result.current.resetSticky());
 
     /* Should move freely now (prevT reset to 0, stuck=false) */
     act(() => result.current.handleSharedFocusChange(0.8));
-    const lastCall = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+    const lastCall = dispatchMock.mock.calls[dispatchMock.mock.calls.length - 1][0];
     expect(lastCall.type).toBe(SET_SHARED_FOCUS_T);
   });
 
@@ -135,20 +139,20 @@ describe("useStickySliders", () => {
     const { result } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
 
     act(() => result.current.handleSharedFocusChange(0.001));
-    dispatch.mockClear();
+    dispatchMock.mockClear();
 
     /* Move well beyond CP — should NOT get stuck */
     act(() => result.current.handleSharedFocusChange(0.5));
-    expect(dispatch).toHaveBeenCalled();
+    expect(dispatchMock).toHaveBeenCalled();
     /* Verify it dispatched the value directly (not stuck at CP) */
-    const lastCall = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+    const lastCall = dispatchMock.mock.calls[dispatchMock.mock.calls.length - 1][0];
     expect(lastCall.value).toBe(0.5);
 
     /* Further moves should work freely (not stuck) */
-    dispatch.mockClear();
+    dispatchMock.mockClear();
     act(() => result.current.handleSharedFocusChange(0.8));
-    expect(dispatch).toHaveBeenCalled();
-    const nextCall = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+    expect(dispatchMock).toHaveBeenCalled();
+    const nextCall = dispatchMock.mock.calls[dispatchMock.mock.calls.length - 1][0];
     expect(nextCall.value).toBe(0.8);
   });
 });

@@ -29,7 +29,10 @@ function createMockMQL(query: string) {
 beforeEach(() => {
   listeners = [];
   currentMatches = false;
-  vi.stubGlobal("matchMedia", vi.fn((query: string) => createMockMQL(query)));
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn((query: string) => createMockMQL(query)),
+  );
 });
 
 afterEach(() => {
@@ -40,7 +43,10 @@ describe("useMediaQuery", () => {
   it("returns initial match state", () => {
     currentMatches = true;
     // Re-stub with updated currentMatches
-    vi.stubGlobal("matchMedia", vi.fn((query: string) => createMockMQL(query)));
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn((query: string) => createMockMQL(query)),
+    );
     const { result } = renderHook(() => useMediaQuery("(min-width: 900px)"));
     expect(result.current).toBe(true);
   });
