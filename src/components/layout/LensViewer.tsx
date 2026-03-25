@@ -16,6 +16,7 @@
  */
 
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 
 import T from "../../utils/themes.js";
 import buildLens from "../../optics/buildLens.js";
@@ -97,6 +98,8 @@ interface LensVisualizationProps {
 }
 
 export default function LensVisualization({ initialLensKey }: LensVisualizationProps) {
+  const navigate = useNavigate();
+  const isLensPage = !!initialLensKey;
   const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey);
 
   /* ── Destructure state slices for convenient access ── */
@@ -158,8 +161,11 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
   const switchLensA = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
+      if (isLensPage && !state.lens.comparing) {
+        void navigate(`/lens/${key}`, { replace: true });
+      }
     },
-    [dispatch],
+    [dispatch, isLensPage, state.lens.comparing, navigate],
   );
 
   const switchLensB = useCallback(
@@ -186,7 +192,12 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
     }
   }, [comparing, lensKeyA, lensKeyB]);
 
-  const { updateURLWithSliders } = useURLSync(state, dispatch, comparisonLenses as Parameters<typeof useURLSync>[2]);
+  const { updateURLWithSliders } = useURLSync(
+    state,
+    dispatch,
+    comparisonLenses as Parameters<typeof useURLSync>[2],
+    isLensPage,
+  );
 
   /* ── Normalized scale computation ──
    * In normalized mode, both panels use the same mm-per-pixel ratio so lens
