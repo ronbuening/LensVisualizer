@@ -88,13 +88,7 @@ npm run seo:audit     # Run SEO audit on built output
 
 ## Deployment
 
-- **GitHub Pages** via GitHub Actions (`.github/workflows/deploy.yml`)
-- Triggers on push to `main` or manual dispatch
-- Builds with `npm ci && npm run build`, deploys `dist/` to Pages
-- Base path set to `/` in `vite.config.js` (GitHub Actions deploy handles the Pages base path)
-- **Quality checks** run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
-- Deploy workflow is conditional — only runs after quality checks pass (or on manual dispatch)
-- Build pipeline: `vite build` → `prerender.mjs` (SSR static HTML) → `generate-sitemap.mjs`
+**GitHub Pages** via GitHub Actions — push to `main` builds and deploys (only after quality checks pass). See `agent_docs/workflow.md` for CI pipeline details.
 
 ## Agent Docs
 
@@ -102,24 +96,20 @@ Read the relevant file before starting work on that area:
 
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
+- **`agent_docs/workflow.md`** — Commit style, pre-commit checks, and deployment pipeline
 - **`agent_docs/code_conventions.md`** — Naming, TypeScript, formatting, and architecture constraints
 - **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
+- **`agent_docs/gotchas.md`** — Common pitfalls and non-obvious constraints
 - **`src/lens-data/LENS_DATA_SPEC.md`** — Complete lens data format specification
 - **`src/lens-data/TEMPLATE.data.ts.template`** — Annotated template with SD guidelines
 
 ## Key Design Patterns
 
-- All helper functions accept lens object `L` as explicit parameter — no module-level state
-- `useMemo` for expensive computations (lens building, layout, ray traces)
-- `useCallback` for event handlers and coordinate transforms
-- Pure functions for all optical calculations (no side effects)
-- Inline styles only — color palettes defined in theme objects
-- Responsive layout — desktop: side-by-side diagram/analysis; mobile (<900px): tab toggle
+- Helper functions accept lens object `L` as explicit parameter — no module-level state
+- `useMemo`/`useCallback` for expensive computations and event handlers
 - Auto-registration — lens data files discovered via `import.meta.glob`
-- Page-level routing — `src/pages/` components handle URL routes; `src/router.tsx` defines the route tree
-- SSR pre-rendering — `entry-server.tsx` + `scripts/prerender.mjs` generate static HTML for SEO
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
-- `SEOHead` — per-page meta tags via react-helmet-async
+- See `agent_docs/architecture.md` for full component relationships and data flow
 
 ## Adding a New Lens
 
@@ -140,30 +130,15 @@ See `agent_docs/code_conventions.md` for full standards. Critical non-defaults: 
 
 ## Pre-Commit Checklist
 
-Before every commit and before opening a PR, all of the following must pass:
+Before every commit and PR — prefer small, staged commits pushed frequently (see `agent_docs/workflow.md`):
 
 ```bash
-npm run typecheck     # Zero TypeScript errors
-npm run format:check  # Prettier formatting passes (run npm run format to fix)
-npm run lint          # ESLint passes (run npm run lint:fix to auto-fix)
-npm run test          # All tests pass
+npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
-
-CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy.
 
 ## Gotchas
 
-- Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
-- Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
-- `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
-- Lens data globs match `*.data.ts`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
-- `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
-- Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
-- Lens data files are TypeScript (`.data.ts`) with `satisfies LensDataInput` for compile-time type checking — also validated at runtime by `validateLensData()`
-- Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
-- `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
-- `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
+See `agent_docs/gotchas.md` for common pitfalls. Key items: update all 4 themes when changing colors; lens data globs require `*.data.ts` naming; `satisfies LensDataInput` enables compile-time validation.
 
 ## Compaction Instructions
 
