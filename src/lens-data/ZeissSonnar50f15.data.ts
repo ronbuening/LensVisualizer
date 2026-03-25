@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — CARL ZEISS SONNAR 50mm f/1.5                 ║
@@ -206,6 +208,6 @@ const LENS_DATA = {
    */
   scFill: 0.55,
   yScFill: 0.42,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

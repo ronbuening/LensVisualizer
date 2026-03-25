@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON NIKKOR Z 85mm f/1.8 S                  ║
@@ -305,6 +307,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.5,
   yScFill: 0.32,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

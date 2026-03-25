@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — [LENS NAME]                                  ║
@@ -253,6 +255,6 @@ const LENS_DATA = {
    */
   scFill:           0.50,   // override default 0.55 if needed
   yScFill:          0.30,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

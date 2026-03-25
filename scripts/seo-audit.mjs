@@ -38,7 +38,7 @@ function ok(msg) {
 
 /** Extract all lens keys from data files. */
 function getLensKeys() {
-  const files = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.js"));
+  const files = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
   const keys = [];
   for (const file of files) {
     const content = readFileSync(join(LENS_DATA_DIR, file), "utf-8");

@@ -43,7 +43,7 @@ function extractLensInfo(filePath) {
 
 /** Collect all routes to prerender. */
 function collectRoutes() {
-  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.js"));
+  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
   const routes = ["/", "/lenses", "/makers"];
   const makers = new Set();
 

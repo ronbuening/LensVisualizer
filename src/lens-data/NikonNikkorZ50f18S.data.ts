@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 // =============================================================================
 //  NIKKOR Z 50mm f/1.8 S — Patent WO2019/220618 A1, Example 9
 //  Inventors: Saburo Masugi, Tomoyuki Koshima (Nikon Corporation)
@@ -318,6 +320,6 @@ const LENS_DATA = {
   // §10 — Layout tuning (overrides defaults)
   scFill: 0.52,
   yScFill: 0.32,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

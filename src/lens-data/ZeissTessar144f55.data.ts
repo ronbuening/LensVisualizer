@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — CARL ZEISS TESSAR 144mm f/5.5               ║
@@ -177,6 +179,6 @@ const LENS_DATA = {
    */
   scFill: 0.65,
   yScFill: 0.5,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

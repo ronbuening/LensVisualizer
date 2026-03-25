@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NIKON AI NIKKOR 85mm f/1.4S                  ║
@@ -194,6 +196,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.5,
   yScFill: 0.35,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

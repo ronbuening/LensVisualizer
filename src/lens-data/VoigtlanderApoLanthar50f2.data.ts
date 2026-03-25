@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — APO-LANTHAR 50mm f/2.0 Aspherical            ║
@@ -275,6 +277,6 @@ const LENS_DATA = {
   /* ── Layout tuning (overrides defaults) ── */
   scFill: 0.52,
   yScFill: 0.32,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

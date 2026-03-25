@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║  LENS DATA — NIKON AF-S NIKKOR 58mm f/1.4G (Design Candidate)     ║
@@ -252,6 +254,6 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.5,
   yScFill: 0.32,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

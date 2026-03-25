@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 /**
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║           LENS DATA — NOKTON 50mm f/1.0                            ║
@@ -243,6 +245,6 @@ const LENS_DATA = {
   /* ── Layout tuning (overrides defaults) ── */
   scFill: 0.5,
   yScFill: 0.3,
-};
+} satisfies LensDataInput;
 
 export default LENS_DATA;

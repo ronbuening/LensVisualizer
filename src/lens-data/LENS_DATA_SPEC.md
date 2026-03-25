@@ -1,15 +1,15 @@
 # Lens Data Specification
 
-Reference for creating new `*.data.js` files in `lens-data/`.
+Reference for creating new `*.data.ts` files in `lens-data/`.
 
 ## Quick Start
 
-1. Copy `TEMPLATE.data.js.template` to `YourLens.data.js`
+1. Copy `TEMPLATE.data.ts.template` to `YourLens.data.ts`
 2. Fill in all fields following this spec
 3. Optionally add `YourLens.analysis.md` for the description panel
 4. Auto-registration picks it up — no imports or catalog edits needed
 
-File naming: `lens-data/*.data.js` (glob pattern used for auto-discovery).
+File naming: `lens-data/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking.
 
 ---
 
@@ -406,7 +406,7 @@ export default LENS_DATA;
 
 ## Example: Zoom Lens Variable-Gap Structure
 
-The zoom-specific fields added alongside normal lens fields. For a complete working example, see `NikonNikkorZ70200f28.data.js`.
+The zoom-specific fields added alongside normal lens fields. For a complete working example, see `NikonNikkorZ70200f28.data.ts`.
 
 ```javascript
 // Zoom positions — focal lengths in mm (≥2, monotonically increasing)
