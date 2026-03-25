@@ -14,8 +14,6 @@ import {
   SET_ZOOM_T,
   SET_STOPDOWN_T,
   SET_RAY_TOGGLE,
-  SET_DARK,
-  SET_HIGH_CONTRAST,
   SET_PANEL_EXPANDED,
 } from "../../utils/lensReducer.js";
 
@@ -32,8 +30,6 @@ export interface DispatchAdapters {
   onChromGChange: (v: boolean) => void;
   onChromBChange: (v: boolean) => void;
   onShowPupilsChange: (v: boolean) => void;
-  onDarkChange: (v: boolean) => void;
-  onHighContrastChange: (v: boolean) => void;
   onFocusExpandedChange: (v: boolean) => void;
   onApertureExpandedChange: (v: boolean) => void;
   onHeaderControlsExpandedChange: (v: boolean) => void;
@@ -60,8 +56,6 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onChromGChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
       onChromBChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
       onShowPupilsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v }),
-      onDarkChange: (v: boolean) => dispatch({ type: SET_DARK, dark: v }),
-      onHighContrastChange: (v: boolean) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v }),
       onFocusExpandedChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v }),
       onApertureExpandedChange: (v: boolean) =>

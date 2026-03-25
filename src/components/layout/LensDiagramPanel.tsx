@@ -76,7 +76,7 @@ export default function LensDiagramPanel({
   const { state, theme: t, isWide } = useLensCtx();
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
-  const { dark, highContrast } = display;
+  const { dark } = display;
   const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -170,7 +170,6 @@ export default function LensDiagramPanel({
             ref={headerRef}
             L={L}
             t={t}
-            dark={dark}
             compact={compact}
             isWide={isWide}
             focusT={focusT}
@@ -192,9 +191,6 @@ export default function LensDiagramPanel({
             onChromBChange={adapters.onChromBChange}
             showPupils={showPupils}
             onShowPupilsChange={adapters.onShowPupilsChange}
-            onDarkChange={adapters.onDarkChange}
-            onHighContrastChange={adapters.onHighContrastChange}
-            highContrast={highContrast}
             headerControlsExpanded={headerControlsExpanded}
             onHeaderControlsExpandedChange={adapters.onHeaderControlsExpandedChange}
             headerInfoExpanded={headerInfoExpanded}
