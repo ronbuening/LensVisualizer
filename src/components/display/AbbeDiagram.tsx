@@ -142,7 +142,7 @@ export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
           fontFamily="inherit"
           letterSpacing="0.06em"
         >
-          Abbe number Vd → (low dispersion)
+          Abbe number Vd →
         </text>
         <text
           x={14}
@@ -169,7 +169,7 @@ export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
           return (
             <g key={e.id}>
               {/* Dot */}
-              <circle cx={px} cy={py} r={7} fill={fill} stroke={stroke} strokeWidth={1.5} />
+              <circle cx={px} cy={py} r={8} fill={fill} stroke={stroke} strokeWidth={1.5} />
               {/* Element name inside dot */}
               <text
                 x={px}
@@ -182,19 +182,8 @@ export default function AbbeDiagram({ L, t }: AbbeDiagramProps) {
               >
                 {e.name}
               </text>
-              {/* Glass label (element name + glass type) */}
-              <text
-                x={px + dx}
-                y={py - 5}
-                textAnchor={anchor}
-                fontSize={8.5}
-                fontWeight={600}
-                fill={labelColor}
-                fontFamily="inherit"
-              >
-                {e.name}
-              </text>
-              <text x={px + dx} y={py + 6} textAnchor={anchor} fontSize={7.5} fill={mutedColor} fontFamily="inherit">
+              {/* Glass type label — above and offset from dot */}
+              <text x={px + dx} y={py - 11} textAnchor={anchor} fontSize={7.5} fill={mutedColor} fontFamily="inherit">
                 {glassLabel}
               </text>
             </g>
