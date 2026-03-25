@@ -158,7 +158,7 @@ function useMarkdownComponents(t: Theme) {
 
 export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
-  const { theme: t, dark, highContrast, toggleDark, toggleHC } = usePageThemeToggle();
+  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const components = useMarkdownComponents(t);
 
   if (!slug || !ARTICLE_CONTENT[slug]) {
@@ -175,7 +175,13 @@ export default function ArticlePage() {
         canonicalURL={`${SITE_URL}/articles/${slug}`}
       />
 
-      <PageNavBar theme={t} dark={dark} highContrast={highContrast} onToggleDark={toggleDark} onToggleHC={toggleHC}>
+      <PageNavBar
+        theme={t}
+        themeMode={themeMode}
+        highContrast={highContrast}
+        onToggleTheme={toggleTheme}
+        onToggleHC={toggleHC}
+      >
         <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Home
         </Link>

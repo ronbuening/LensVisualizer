@@ -73,9 +73,8 @@ export function createInitialState(
       scaleMode: prefs.scaleMode || "independent",
     },
     display: {
-      dark:
-        prefs.dark ??
-        (typeof window !== "undefined" ? window.matchMedia("(prefers-color-scheme: dark)").matches : true),
+      /* null = "auto" (follow system preference). Only a stored boolean overrides. */
+      dark: prefs.dark !== undefined ? prefs.dark : null,
       highContrast:
         prefs.highContrast ??
         (typeof window !== "undefined" ? window.matchMedia("(prefers-contrast: more)").matches : false),

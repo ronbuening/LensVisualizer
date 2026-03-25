@@ -13,11 +13,27 @@
 import { useCallback, useRef, useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import type { ThemeMode } from "../../utils/usePageThemeToggle.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/styles.js";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/lensReducer.js";
+
+const THEME_ICON: Record<ThemeMode, string> = { auto: "◑", dark: "🌙", light: "☀️" };
+const THEME_LABEL: Record<ThemeMode, string> = { auto: "AUTO", dark: "DARK", light: "LIGHT" };
+
+function nextThemeMode(current: ThemeMode): ThemeMode {
+  if (current === "auto") return "dark";
+  if (current === "dark") return "light";
+  return "auto";
+}
+
+function darkPrefFromMode(mode: ThemeMode): boolean | null {
+  if (mode === "dark") return true;
+  if (mode === "light") return false;
+  return null;
+}
 import DropdownPanel from "./DropdownPanel.js";
 import type { DropdownPanelPos } from "./DropdownPanel.js";
 
@@ -34,6 +50,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
   const { state } = useLensCtx();
   const dispatch = useLensDispatch();
   const { dark, highContrast } = state.display;
+  const themeMode: ThemeMode = dark === true ? "dark" : dark === false ? "light" : "auto";
 
   const openSettings = useCallback(() => {
     if (!triggerRef.current) return;
@@ -154,11 +171,11 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
               <span>HC</span>
             </button>
             <button
-              onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
+              onClick={() => dispatch({ type: SET_DARK, dark: darkPrefFromMode(nextThemeMode(themeMode)) })}
               style={toggleBtn(t, false, { hasRightBorder: false })}
             >
-              <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-              <span>{dark ? "Light" : "Dark"}</span>
+              <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{THEME_ICON[themeMode]}</span>
+              <span>{THEME_LABEL[themeMode]}</span>
             </button>
           </div>
         </div>

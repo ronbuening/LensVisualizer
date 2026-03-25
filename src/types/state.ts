@@ -12,7 +12,7 @@ export interface LensSlice {
 }
 
 export interface DisplaySlice {
-  dark: boolean;
+  dark: boolean | null; // null = auto (follow system preference)
   highContrast: boolean;
   mobileView: string;
   desktopView: string;
@@ -93,7 +93,7 @@ export type LensAction =
   | { type: "SET_LENS_A"; key: string }
   | { type: "SET_LENS_B"; key: string }
   | { type: "SET_SCALE_MODE"; scaleMode: "independent" | "normalized" }
-  | { type: "SET_DARK"; dark: boolean }
+  | { type: "SET_DARK"; dark: boolean | null }
   | { type: "SET_HIGH_CONTRAST"; highContrast: boolean }
   | { type: "SET_MOBILE_VIEW"; mobileView: string }
   | { type: "SET_DESKTOP_VIEW"; desktopView: string }
@@ -116,7 +116,7 @@ export type LensAction =
 
 export interface Preferences {
   scaleMode: "independent" | "normalized";
-  dark: boolean;
+  dark: boolean | null; // null = auto
   highContrast: boolean;
   desktopView: string;
   showOnAxis: boolean;

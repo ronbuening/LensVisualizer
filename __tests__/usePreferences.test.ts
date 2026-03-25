@@ -52,7 +52,8 @@ describe("usePreferences — persisted fields", () => {
     const state = makeState();
     renderHook(() => usePreferences(state));
     const parsed = JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>;
-    expect(typeof parsed.dark).toBe("boolean");
+    // dark is boolean | null (null = auto mode)
+    expect(parsed.dark === null || typeof parsed.dark === "boolean").toBe(true);
     expect(typeof parsed.highContrast).toBe("boolean");
   });
 

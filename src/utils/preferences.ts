@@ -22,7 +22,7 @@ export function loadPrefs(): Partial<Preferences> {
     const p: Record<string, unknown> = JSON.parse(raw);
     if (!p || typeof p !== "object") return {};
     const out: Partial<Preferences> = {};
-    if (typeof p.dark === "boolean") out.dark = p.dark;
+    if (p.dark === null || typeof p.dark === "boolean") out.dark = p.dark;
     if (typeof p.highContrast === "boolean") out.highContrast = p.highContrast;
     if (typeof p.showOnAxis === "boolean") out.showOnAxis = p.showOnAxis;
     /* showOffAxis: v2 stored boolean (true→"trueAngle", false→"off"),

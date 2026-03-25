@@ -30,7 +30,7 @@ const PAGE_BASE_STYLE = {
 export default function HomePage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { theme: t, dark, highContrast, toggleDark, toggleHC } = usePageThemeToggle();
+  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   /* Redirect legacy ?lens=KEY URLs to /lens/KEY */
   useEffect(() => {
@@ -64,7 +64,13 @@ export default function HomePage() {
         canonicalURL={`${SITE_URL}/`}
       />
 
-      <PageNavBar theme={t} dark={dark} highContrast={highContrast} onToggleDark={toggleDark} onToggleHC={toggleHC}>
+      <PageNavBar
+        theme={t}
+        themeMode={themeMode}
+        highContrast={highContrast}
+        onToggleTheme={toggleTheme}
+        onToggleHC={toggleHC}
+      >
         <Link to="/" style={{ color: t.title, textDecoration: "none", fontWeight: 600 }}>
           Optical Bench
         </Link>

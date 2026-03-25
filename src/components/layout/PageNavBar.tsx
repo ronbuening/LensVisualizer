@@ -2,7 +2,7 @@
  * PageNavBar — shared navigation bar for static pages.
  *
  * Renders a top bar with breadcrumb content on the left and theme toggle
- * buttons (Dark/Light + High Contrast) on the right. Used on all static
+ * buttons (Auto/Dark/Light + High Contrast) on the right. Used on all static
  * pages (homepage, articles, lenses index, makers index, etc.).
  *
  * The interactive LensViewer keeps its own BreadcrumbBar which has
@@ -11,23 +11,36 @@
 
 import type { ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
+import type { ThemeMode } from "../../utils/usePageThemeToggle.js";
 import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface PageNavBarProps {
   theme: Theme;
-  dark: boolean;
+  themeMode: ThemeMode;
   highContrast: boolean;
-  onToggleDark: () => void;
+  onToggleTheme: () => void;
   onToggleHC: () => void;
   children?: ReactNode;
 }
 
+const THEME_ICON: Record<ThemeMode, string> = {
+  auto: "◑",
+  dark: "🌙",
+  light: "☀️",
+};
+
+const THEME_LABEL: Record<ThemeMode, string> = {
+  auto: "AUTO",
+  dark: "DARK",
+  light: "LIGHT",
+};
+
 export default function PageNavBar({
   theme: t,
-  dark,
+  themeMode,
   highContrast,
-  onToggleDark,
+  onToggleTheme,
   onToggleHC,
   children,
 }: PageNavBarProps) {
@@ -65,9 +78,9 @@ export default function PageNavBar({
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
             <span>HC</span>
           </button>
-          <button onClick={onToggleDark} style={toggleBtn(t, false, { hasRightBorder: false })}>
-            <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>
-            <span>{dark ? "Light" : "Dark"}</span>
+          <button onClick={onToggleTheme} style={toggleBtn(t, false, { hasRightBorder: false })}>
+            <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{THEME_ICON[themeMode]}</span>
+            <span>{THEME_LABEL[themeMode]}</span>
           </button>
         </div>
       </div>
