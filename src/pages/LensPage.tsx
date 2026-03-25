@@ -49,7 +49,7 @@ export default function LensPage() {
   }
 
   const lens = LENS_CATALOG[slug];
-  const maker = deriveMaker(lens.name);
+  const maker = deriveMaker(lens.name, lens.maker);
   const analysis = mdForKey(slug);
 
   return (

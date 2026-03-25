@@ -11,7 +11,9 @@ import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME } from "../
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
-  return CATALOG_KEYS.filter((key) => deriveMaker(LENS_CATALOG[key].name).slug === makerSlug).map((key) => ({
+  return CATALOG_KEYS.filter(
+    (key) => deriveMaker(LENS_CATALOG[key].name, LENS_CATALOG[key].maker).slug === makerSlug,
+  ).map((key) => ({
     key,
     data: LENS_CATALOG[key],
   }));

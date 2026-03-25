@@ -20,7 +20,7 @@ function groupByMaker(): MakerGroup[] {
   const groups = new Map<string, MakerGroup>();
   for (const key of CATALOG_KEYS) {
     const data = LENS_CATALOG[key];
-    const maker = deriveMaker(data.name);
+    const maker = deriveMaker(data.name, data.maker);
     if (!groups.has(maker.slug)) {
       groups.set(maker.slug, { display: maker.display, slug: maker.slug, lenses: [] });
     }

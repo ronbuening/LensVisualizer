@@ -29,6 +29,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-85f14-ais",
+  maker: "Nikon",
   name: "NIKON AI NIKKOR 85mm f/1.4S",
   subtitle: "US 4,396,256 Embodiment 1 — Nippon Kogaku / Fujie",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 85.0 mm", "F/1.4", "2ω ≈ 28.5°", "ALL SPHERICAL"],

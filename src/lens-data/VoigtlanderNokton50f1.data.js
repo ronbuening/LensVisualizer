@@ -24,6 +24,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nokton-50f1",
+  maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 50mm f/1.0",
   subtitle: "JP2023063766A EXAMPLE 1 — COSINA / OGINO",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 50.0 mm", "F/1.0", "2ω ≈ 46.8°", "3 ASPHERICAL SURFACES"],

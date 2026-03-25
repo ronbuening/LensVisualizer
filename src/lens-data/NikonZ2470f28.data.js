@@ -21,6 +21,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-z-24-70-f28",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 24-70mm f/2.8 S",
   subtitle: "WO2020/136749 A1 EXAMPLE 1 — NIKON / MACHIDA, GOMIBUCHI",
   specs: ["17 ELEMENTS / 15 GROUPS", "f = 24.8–67.9 mm", "F/2.92", "2ω = 85.10°–33.84°", "4 ASPHERICAL SURFACES"],

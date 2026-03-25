@@ -18,7 +18,8 @@ interface MakerEntry {
 function getAllMakers(): MakerEntry[] {
   const counts = new Map<string, MakerEntry>();
   for (const key of CATALOG_KEYS) {
-    const maker = deriveMaker(LENS_CATALOG[key].name);
+    const data = LENS_CATALOG[key];
+    const maker = deriveMaker(data.name, data.maker);
     const existing = counts.get(maker.slug);
     if (existing) {
       existing.count++;

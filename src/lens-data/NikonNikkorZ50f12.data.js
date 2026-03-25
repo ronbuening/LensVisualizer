@@ -27,6 +27,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-z50f12",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 50mm f/1.2 S",
   subtitle: "WO 2021/241230 A1 EXAMPLE 1 — NIKON / HARADA Hiroki",
   specs: ["17 ELEMENTS / 15 GROUPS", "f = 51.29 mm", "F/1.23", "2ω ≈ 45.6°", "3 ASPHERICAL SURFACES"],

@@ -63,6 +63,7 @@ export type VarRange = PrimeVarRange | ZoomVarRange;
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   key: string;
+  maker?: string;
   name: string;
   subtitle?: string;
   specs?: string[];

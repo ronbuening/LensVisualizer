@@ -26,6 +26,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "sonnar-50f15",
+  maker: "Carl Zeiss",
   name: "CARL ZEISS SONNAR 50mm f/1.5",
   subtitle: "US 1,975,678 — ZEISS IKON / LUDWIG BERTELE (1932)",
   specs: ["7 ELEMENTS / 3 GROUPS", "f ≈ 50.2 mm", "F/1.5", "2ω ≈ 46.8°", "ALL SPHERICAL"],

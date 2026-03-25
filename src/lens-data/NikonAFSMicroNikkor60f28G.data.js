@@ -27,6 +27,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-micro-60f28g",
+  maker: "Nikon",
   name: "NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED",
   subtitle: "US 7,898,744 B2 Example 2 — Wada / Nikon Corporation",
   specs: [

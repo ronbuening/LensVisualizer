@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts}\" \"scripts/**/*.mjs\" \"*.config.js\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts}\" \"scripts/**/*.mjs\" \"*.config.js\""
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"__tests__/**/*.{js,ts}\" \"scripts/**/*.mjs\" \"*.config.js\"",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

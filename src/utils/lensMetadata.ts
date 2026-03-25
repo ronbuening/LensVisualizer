@@ -23,13 +23,20 @@ export interface MakerInfo {
   slug: string;
 }
 
-/** Derive maker info from a lens name. */
-export function deriveMaker(name: string): MakerInfo {
-  const upper = name.toUpperCase();
+/** Derive maker info from a lens's maker field or name. */
+export function deriveMaker(nameOrMaker: string, makerField?: string): MakerInfo {
+  /* Use explicit maker field if provided */
+  if (makerField) {
+    const entry = MAKER_PREFIXES.find((m) => m.display === makerField);
+    if (entry) return { display: entry.display, slug: entry.slug };
+    return { display: makerField, slug: makerField.toLowerCase().replace(/\s+/g, "-") };
+  }
+  /* Fall back to deriving from lens name */
+  const upper = nameOrMaker.toUpperCase();
   for (const { prefix, display, slug } of MAKER_PREFIXES) {
     if (upper.startsWith(prefix)) return { display, slug };
   }
-  const firstWord = name.split(/\s+/)[0];
+  const firstWord = nameOrMaker.split(/\s+/)[0];
   return { display: firstWord, slug: firstWord.toLowerCase() };
 }
 
@@ -81,7 +88,7 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
       "@type": "Product",
       name: lens.name,
       category: "Camera Lens",
-      manufacturer: { "@type": "Organization", name: deriveMaker(lens.name).display },
+      manufacturer: { "@type": "Organization", name: deriveMaker(lens.name, lens.maker).display },
     },
   };
 }

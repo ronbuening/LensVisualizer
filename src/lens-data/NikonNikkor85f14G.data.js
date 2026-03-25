@@ -20,6 +20,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-85f14g",
+  maker: "Nikon",
   name: "NIKON AF-S NIKKOR 85mm f/1.4G",
   subtitle: "US 8,767,319 B2 EXAMPLE 1 — KONICA MINOLTA / NIKON",
   specs: ["10 ELEMENTS / 9 GROUPS", "f = 85.0 mm", "F/1.4", "2ω ≈ 28.6°", "ALL SPHERICAL"],
