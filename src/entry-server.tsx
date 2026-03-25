@@ -2,7 +2,8 @@
  * Server entry point for static prerendering.
  *
  * Renders a given URL path to an HTML string using StaticRouter and
- * react-helmet-async for head extraction.
+ * react-helmet-async for head extraction. Route definitions come from
+ * `src/routes/routeManifest.tsx` — the shared source of truth.
  */
 
 import { renderToString } from "react-dom/server";
@@ -10,12 +11,7 @@ import { StaticRouter } from "react-router";
 import { HelmetProvider, HelmetData } from "react-helmet-async";
 import type { HelmetServerState } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
-import HomePage from "./pages/HomePage.js";
-import LensPage from "./pages/LensPage.js";
-import LensIndexPage from "./pages/LensIndexPage.js";
-import MakersIndexPage from "./pages/MakersIndexPage.js";
-import MakerPage from "./pages/MakerPage.js";
-import NotFoundPage from "./pages/NotFoundPage.js";
+import routeManifest from "./routes/routeManifest.js";
 import { Routes, Route } from "react-router";
 
 export interface RenderResult {
@@ -31,12 +27,9 @@ export function render(url: string): RenderResult {
       <HelmetProvider context={helmetData.context}>
         <StaticRouter location={url}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/lenses" element={<LensIndexPage />} />
-            <Route path="/lens/:slug" element={<LensPage />} />
-            <Route path="/makers" element={<MakersIndexPage />} />
-            <Route path="/makers/:maker" element={<MakerPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            {routeManifest.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
           </Routes>
         </StaticRouter>
       </HelmetProvider>

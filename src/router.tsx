@@ -1,25 +1,13 @@
 /**
- * Application route definitions.
+ * Client-side browser router.
  *
- * Path-based routing for SEO-friendly URLs. The home page at / renders the
- * full interactive visualizer; /lens/:slug pre-selects a specific lens.
+ * Route definitions live in `src/routes/routeManifest.tsx` — the shared
+ * source of truth used by both the client router and SSR renderer.
  */
 
 import { createBrowserRouter } from "react-router";
-import HomePage from "./pages/HomePage.js";
-import LensPage from "./pages/LensPage.js";
-import LensIndexPage from "./pages/LensIndexPage.js";
-import MakersIndexPage from "./pages/MakersIndexPage.js";
-import MakerPage from "./pages/MakerPage.js";
-import NotFoundPage from "./pages/NotFoundPage.js";
+import routeManifest from "./routes/routeManifest.js";
 
-const router = createBrowserRouter([
-  { path: "/", element: <HomePage /> },
-  { path: "/lenses", element: <LensIndexPage /> },
-  { path: "/lens/:slug", element: <LensPage /> },
-  { path: "/makers", element: <MakersIndexPage /> },
-  { path: "/makers/:maker", element: <MakerPage /> },
-  { path: "*", element: <NotFoundPage /> },
-]);
+const router = createBrowserRouter(routeManifest);
 
 export default router;
