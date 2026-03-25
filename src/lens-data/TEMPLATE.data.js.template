@@ -28,6 +28,7 @@ const LENS_DATA = {
 
   /* ── Identity ── */
   key:      "unique-lens-key",                          // REQUIRED: unique ID for auto-registration
+  maker:    "Manufacturer",                             // optional: maker name for SEO/routing (e.g. "Nikon", "Voigtländer"); if omitted, derived from name
   // visible: true,                                     // optional: set to false to hide from the UI dropdown (default: true)
   name:     "MANUFACTURER LENS-NAME FLmm f/N",          // REQUIRED: full display name
   subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: shown in UI header

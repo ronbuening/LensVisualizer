@@ -61,6 +61,7 @@ These must be specified in every lens file — they have no defaults.
 
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
+| `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
 | `subtitle` | `string` | | Patent reference shown in UI header |
 | `specs` | `string[]` | | Spec strings displayed in header |
