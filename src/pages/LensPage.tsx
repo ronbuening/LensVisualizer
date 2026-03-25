@@ -83,7 +83,9 @@ export default function LensPage() {
 
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
 
-            {lens.subtitle && <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{lens.subtitle}</p>}
+            {lens.subtitle && (
+              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{lens.subtitle}</p>
+            )}
 
             {lens.specs && lens.specs.length > 0 && (
               <table style={SPEC_TABLE_STYLE}>
