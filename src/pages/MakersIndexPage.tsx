@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
+import { getMakerDetails } from "../utils/makerDetails.js";
 
 interface MakerEntry {
   display: string;
@@ -63,26 +64,37 @@ export default function MakersIndexPage() {
 
       <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginBottom: "1.5rem" }}>Lens Makers</h1>
 
-      {makers.map((maker) => (
-        <Link
-          key={maker.slug}
-          to={`/makers/${maker.slug}`}
-          style={{
-            display: "block",
-            padding: "0.75rem",
-            marginBottom: "0.5rem",
-            color: "#7ec8e3",
-            textDecoration: "none",
-            fontSize: "1rem",
-            borderRadius: 4,
-          }}
-        >
-          {maker.display}
-          <span style={{ color: "#888", fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-            ({maker.count} {maker.count === 1 ? "lens" : "lenses"})
-          </span>
-        </Link>
-      ))}
+      {makers.map((maker) => {
+        const details = getMakerDetails(maker.slug);
+        return (
+          <div
+            key={maker.slug}
+            style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: "1px solid #333" }}
+          >
+            <Link
+              to={`/makers/${maker.slug}`}
+              style={{ color: "#7ec8e3", textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+            >
+              {maker.display}
+            </Link>
+            {details ? (
+              <>
+                <div style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.25rem" }}>
+                  Est. {details.founded} · {details.headquarters} · {maker.count}{" "}
+                  {maker.count === 1 ? "lens" : "lenses"}
+                </div>
+                <p style={{ fontSize: "0.8rem", color: "#bbb", lineHeight: 1.5, marginTop: "0.5rem" }}>
+                  {details.summary}
+                </p>
+              </>
+            ) : (
+              <span style={{ color: "#888", fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                ({maker.count} {maker.count === 1 ? "lens" : "lenses"})
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
