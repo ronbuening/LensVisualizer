@@ -99,6 +99,7 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   selectorBorder: string;
   selectorText: string;
   selectorHover: string;
+  selectorBlur: boolean;
   descBg: string;
   descBorder: string;
   descCodeBg: string;

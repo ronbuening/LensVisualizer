@@ -112,6 +112,8 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
               maxHeight: dropdownPos.maxHeight,
               overflowY: "scroll",
               backgroundColor: t.selectorBg,
+              backdropFilter: t.selectorBlur ? "blur(20px)" : undefined,
+              WebkitBackdropFilter: t.selectorBlur ? "blur(20px)" : undefined,
               border: `1.5px solid ${t.sliderAccent}40`,
               borderRadius: 6,
               boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
