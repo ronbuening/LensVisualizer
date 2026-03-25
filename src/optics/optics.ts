@@ -474,7 +474,9 @@ export function computeChromaticSpread(
  * Uses the paraxial (small-angle) refraction formula:
  *   u' = (n·u − y·(n'−n)/R) / n'
  * This is faster than traceRay but only accurate for rays near the axis.
- * Used by conjugateK as a fast initial estimate.
+ * Not used in production code paths — conjugateK uses traceToImageReal
+ * for self-consistency with the rendering engine.  Retained as a paraxial
+ * reference for testing (e.g. comparing real vs paraxial image heights).
  *
  * @param y0      — initial ray height (mm)
  * @param u0      — initial ray slope
