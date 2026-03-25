@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
+import { getMakerDetails } from "../utils/makerDetails.js";
 import type { LensData } from "../types/optics.js";
 
 interface MakerGroup {
@@ -108,24 +109,40 @@ export default function LensIndexPage() {
       <h1 style={H1_STYLE}>Lens Library</h1>
       <p style={SUBTITLE_STYLE}>{totalLenses} interactive optical cross-section diagrams built from patent data.</p>
 
-      {groups.map((group) => (
-        <section key={group.slug}>
-          <h2 style={MAKER_HEADING_STYLE}>
-            <Link to={`/makers/${group.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-              {group.display}
-            </Link>
-            <span style={{ ...SPEC_STYLE, fontWeight: 400 }}> ({group.lenses.length})</span>
-          </h2>
-          {group.lenses.map(({ key, data }) => (
-            <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
-              {data.name}
-              {data.specs && data.specs.length > 0 && (
-                <span style={SPEC_STYLE}>— {data.specs.slice(0, 2).join(", ")}</span>
-              )}
-            </Link>
-          ))}
-        </section>
-      ))}
+      {groups.map((group) => {
+        const details = getMakerDetails(group.slug);
+        return (
+          <section key={group.slug}>
+            <h2 style={MAKER_HEADING_STYLE}>
+              <Link to={`/makers/${group.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                {group.display}
+              </Link>
+              <span style={{ ...SPEC_STYLE, fontWeight: 400 }}> ({group.lenses.length})</span>
+            </h2>
+            {details && (
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#999",
+                  lineHeight: 1.4,
+                  marginTop: "-0.5rem",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {details.summary}
+              </p>
+            )}
+            {group.lenses.map(({ key, data }) => (
+              <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
+                {data.name}
+                {data.specs && data.specs.length > 0 && (
+                  <span style={SPEC_STYLE}>— {data.specs.slice(0, 2).join(", ")}</span>
+                )}
+              </Link>
+            ))}
+          </section>
+        );
+      })}
     </div>
   );
 }

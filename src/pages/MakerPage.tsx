@@ -8,6 +8,7 @@ import { useParams, Navigate, Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME } from "../utils/lensMetadata.js";
+import { getMakerDetails } from "../utils/makerDetails.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -55,12 +56,17 @@ export default function MakerPage() {
   if (!displayName) return <Navigate to="/makers" replace />;
 
   const lenses = lensesForMaker(maker);
+  const details = getMakerDetails(maker);
+
+  const seoDescription = details
+    ? `${details.summary} Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`
+    : `Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
 
   return (
     <div style={PAGE_STYLE}>
       <SEOHead
         title={`${displayName} Lenses — ${SITE_NAME}`}
-        description={`Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`}
+        description={seoDescription}
         canonicalURL={makerCanonicalURL(maker)}
       />
 
@@ -76,16 +82,41 @@ export default function MakerPage() {
       </nav>
 
       <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginBottom: "0.5rem" }}>{displayName} Lenses</h1>
-      <p style={{ fontSize: "0.875rem", color: "#999", marginBottom: "1.5rem" }}>
-        {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
-      </p>
 
-      {lenses.map(({ key, data }) => (
-        <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
-          {data.name}
-          {data.specs && data.specs.length > 0 && <span style={SPEC_STYLE}>— {data.specs.slice(0, 3).join(", ")}</span>}
-        </Link>
-      ))}
+      {details && (
+        <div style={{ marginBottom: "1.5rem" }}>
+          <p style={{ fontSize: "0.8rem", color: "#888", marginBottom: "0.75rem" }}>
+            Est. {details.founded} · {details.headquarters} · {lenses.length} {lenses.length === 1 ? "lens" : "lenses"}
+          </p>
+          {details.history.split("\n\n").map((paragraph, i) => (
+            <p key={i} style={{ fontSize: "0.85rem", color: "#ccc", lineHeight: 1.6, marginBottom: "0.75rem" }}>
+              {paragraph}
+            </p>
+          ))}
+          {details.notableDesigns && (
+            <p style={{ fontSize: "0.8rem", color: "#999", fontStyle: "italic", marginBottom: "0.5rem" }}>
+              Notable designs: {details.notableDesigns}
+            </p>
+          )}
+        </div>
+      )}
+
+      {!details && (
+        <p style={{ fontSize: "0.875rem", color: "#999", marginBottom: "1.5rem" }}>
+          {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
+        </p>
+      )}
+
+      <div style={{ borderTop: "1px solid #333", paddingTop: "1rem" }}>
+        {lenses.map(({ key, data }) => (
+          <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
+            {data.name}
+            {data.specs && data.specs.length > 0 && (
+              <span style={SPEC_STYLE}>— {data.specs.slice(0, 3).join(", ")}</span>
+            )}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
