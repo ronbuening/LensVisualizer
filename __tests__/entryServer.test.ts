@@ -1,0 +1,189 @@
+/**
+ * Integration tests for SSR rendering, route matching, and SEO metadata.
+ *
+ * Calls the real `render(url)` function from entry-server.tsx and asserts
+ * on HTML content and react-helmet-async metadata for representative routes.
+ *
+ * Runs in Node environment (not jsdom) because react-helmet-async uses
+ * client-side behavior in browser-like environments, which prevents the
+ * server-side helmet context from being populated.
+ */
+
+import { describe, it, expect } from "vitest";
+import { render } from "../src/entry-server.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
+import { allMakerSlugs, makerDisplayName, SITE_NAME, SITE_URL } from "../src/utils/lensMetadata.js";
+
+/* ── Fixtures (dynamic, drawn from real catalog) ── */
+
+const TEST_LENS_SLUG = CATALOG_KEYS[0];
+const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
+const TEST_MAKER_SLUG = allMakerSlugs()[0];
+const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+
+/* ── Preconditions ── */
+
+describe("SSR test preconditions", () => {
+  it("catalog has at least one lens and one maker", () => {
+    expect(CATALOG_KEYS.length).toBeGreaterThan(0);
+    expect(allMakerSlugs().length).toBeGreaterThan(0);
+    expect(TEST_MAKER_DISPLAY).toBeTruthy();
+  });
+});
+
+/* ── All routes produce valid helmet metadata ── */
+
+describe("SSR render — all routes produce valid helmet output", () => {
+  const routes = [
+    ["/", "home"],
+    ["/lenses", "lens index"],
+    [`/lens/${TEST_LENS_SLUG}`, "lens page"],
+    ["/makers", "makers index"],
+    [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/this-route-does-not-exist", "404"],
+  ] as const;
+
+  it.each(routes)("%s (%s) returns helmet with title, description, and canonical", (url) => {
+    const { helmet } = render(url);
+    expect(helmet).not.toBeNull();
+    expect(helmet.title.toString()).toContain("<title");
+    expect(helmet.meta.toString()).toContain('name="description"');
+    expect(helmet.link.toString()).toContain('rel="canonical"');
+  });
+});
+
+/* ── Routes with visible SSR content produce non-empty HTML ── */
+
+describe("SSR render — content pages produce non-empty HTML", () => {
+  const contentRoutes = [
+    ["/lenses", "lens index"],
+    [`/lens/${TEST_LENS_SLUG}`, "lens page"],
+    ["/makers", "makers index"],
+    [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+  ] as const;
+
+  it.each(contentRoutes)("%s (%s) returns non-empty html", (url) => {
+    const { html } = render(url);
+    expect(html.length).toBeGreaterThan(0);
+  });
+});
+
+/* ── Home page ── */
+
+describe("SSR render — home page /", () => {
+  it("title contains site name", () => {
+    const { helmet } = render("/");
+    expect(helmet.title.toString()).toContain(SITE_NAME);
+  });
+
+  it("canonical points to site root", () => {
+    const { helmet } = render("/");
+    expect(helmet.link.toString()).toContain(`${SITE_URL}/`);
+  });
+
+  it("includes Open Graph and Twitter meta tags", () => {
+    const { helmet } = render("/");
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:title"');
+    expect(meta).toContain('property="og:description"');
+    expect(meta).toContain('name="twitter:card"');
+  });
+});
+
+/* ── Lens index ── */
+
+describe("SSR render — lens index /lenses", () => {
+  it("title contains 'All Lenses'", () => {
+    const { helmet } = render("/lenses");
+    expect(helmet.title.toString()).toContain("All Lenses");
+  });
+
+  it("canonical contains /lenses", () => {
+    const { helmet } = render("/lenses");
+    expect(helmet.link.toString()).toContain("/lenses");
+  });
+});
+
+/* ── Lens page ── */
+
+describe("SSR render — lens page /lens/:slug", () => {
+  it("title contains the lens name", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    expect(helmet.title.toString()).toContain(TEST_LENS.name);
+  });
+
+  it("canonical contains the lens slug", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    expect(helmet.link.toString()).toContain(`/lens/${TEST_LENS_SLUG}`);
+  });
+
+  it("includes JSON-LD with TechArticle type", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    expect(helmet.script.toString()).toContain("TechArticle");
+  });
+
+  it("og:type is article", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    expect(helmet.meta.toString()).toContain("article");
+  });
+
+  it("SSR fallback HTML contains the lens name", () => {
+    const { html } = render(`/lens/${TEST_LENS_SLUG}`);
+    expect(html).toContain(TEST_LENS.name);
+  });
+});
+
+/* ── Makers index ── */
+
+describe("SSR render — makers index /makers", () => {
+  it("title contains 'Lens Makers'", () => {
+    const { helmet } = render("/makers");
+    expect(helmet.title.toString()).toContain("Lens Makers");
+  });
+
+  it("canonical contains /makers", () => {
+    const { helmet } = render("/makers");
+    expect(helmet.link.toString()).toContain("/makers");
+  });
+});
+
+/* ── Maker page ── */
+
+describe("SSR render — maker page /makers/:maker", () => {
+  it("title contains the maker display name", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    expect(helmet.title.toString()).toContain(TEST_MAKER_DISPLAY);
+  });
+
+  it("canonical contains the maker slug", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    expect(helmet.link.toString()).toContain(`/makers/${TEST_MAKER_SLUG}`);
+  });
+
+  it("HTML contains the maker display name", () => {
+    const { html } = render(`/makers/${TEST_MAKER_SLUG}`);
+    expect(html).toContain(TEST_MAKER_DISPLAY);
+  });
+});
+
+/* ── 404 page ── */
+
+describe("SSR render — 404 page", () => {
+  it("title contains 'Page Not Found'", () => {
+    const { helmet } = render("/this-route-does-not-exist");
+    expect(helmet.title.toString()).toContain("Page Not Found");
+  });
+
+  it("HTML contains 'not found' text", () => {
+    const { html } = render("/this-route-does-not-exist");
+    expect(html.toLowerCase()).toContain("not found");
+  });
+});
+
+/*
+ * Comparison deep-links (?a=KEY&b=KEY&focus=X) are NOT tested here.
+ * HomePage's comparison logic uses useSearchParams + useEffect, which
+ * do not execute during SSR renderToString. The SSR output for
+ * /?a=X&b=Y is identical to /. Client-side URL parsing is already
+ * covered by parseComparisonParams.test.ts and useURLSync.test.ts.
+ */
