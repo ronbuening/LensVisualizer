@@ -22,6 +22,7 @@ interface TopBarProps {
   onOpenAboutSite: () => void;
   onOpenAboutAuthor: () => void;
   onOpenOpticsPrimer: () => void;
+  onOpenAberrationsPrimer: () => void;
   catalogKeys: string[];
   catalogNames: Record<string, string>;
 }
@@ -40,6 +41,7 @@ export default function TopBar({
   onOpenAboutSite,
   onOpenAboutAuthor,
   onOpenOpticsPrimer,
+  onOpenAberrationsPrimer,
   catalogKeys,
   catalogNames,
 }: TopBarProps) {
@@ -138,6 +140,7 @@ export default function TopBar({
           theme={t}
           isWide={isWide}
           onOpenOpticsPrimer={onOpenOpticsPrimer}
+          onOpenAberrationsPrimer={onOpenAberrationsPrimer}
           onOpenAboutSite={onOpenAboutSite}
           onOpenAboutAuthor={onOpenAboutAuthor}
           showLabel

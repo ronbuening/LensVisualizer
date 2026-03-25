@@ -66,12 +66,13 @@ export interface PanelsSlice {
   headerInfoExpanded: boolean;
 }
 
-export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer";
+export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";
 
 export interface OverlaysSlice {
   showAbout: boolean;
   showAboutSite: boolean;
   showOpticsPrimer: boolean;
+  showAberrationsPrimer: boolean;
 }
 
 export interface LensState {

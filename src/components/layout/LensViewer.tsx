@@ -39,6 +39,8 @@ import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
 import OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
 import OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermediate.md?raw";
+import ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.md?raw";
+import ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
 import AboutFooter from "../display/AboutFooter.js";
 import useLensState from "../../utils/useLensState.js";
 import {
@@ -80,7 +82,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const { dark, highContrast, mobileView, desktopView } = display;
   const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, showPupils } = rays;
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
-  const { showAbout, showAboutSite, showOpticsPrimer } = overlays;
+  const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
 
   /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
   const { comparisonLenses, scaleRatios, focusPair, aperturePair, zoomPair, handleHeaderHeight, maxHeaderHeight } =
@@ -90,13 +92,17 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const {
     primerLevel,
     togglePrimerLevel,
+    aberrationsLevel,
+    toggleAberrationsLevel,
     openAboutSite,
     openAboutAuthor,
     openOpticsPrimer,
+    openAberrationsPrimer,
     closeAboutSite,
     closeAboutAuthor,
     closeOpticsPrimer,
-  } = useOverlays({ showAbout, showAboutSite, showOpticsPrimer, dispatch });
+    closeAberrationsPrimer,
+  } = useOverlays({ showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer, dispatch });
 
   /* ── Persist preferences to localStorage ── */
   usePreferences(state);
@@ -272,6 +278,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
             onOpenAboutSite={openAboutSite}
             onOpenAboutAuthor={openAboutAuthor}
             onOpenOpticsPrimer={openOpticsPrimer}
+            onOpenAberrationsPrimer={openAberrationsPrimer}
             catalogKeys={CATALOG_KEYS}
             catalogNames={catalogNames}
           />
@@ -381,6 +388,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
             theme={t}
             isWide={isWide}
             onOpenOpticsPrimer={openOpticsPrimer}
+            onOpenAberrationsPrimer={openAberrationsPrimer}
             onOpenAboutSite={openAboutSite}
             onOpenAboutAuthor={openAboutAuthor}
           />
@@ -421,6 +429,37 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                   }}
                 >
                   {primerLevel === "simple"
+                    ? "Want more detail? Read the Intermediate Primer \u2192"
+                    : "\u2190 Back to Simple Primer"}
+                </button>
+              </div>
+            </OverlayModal>
+          )}
+
+          {/* ── Aberrations Primer overlay ── */}
+          {showAberrationsPrimer && (
+            <OverlayModal onClose={closeAberrationsPrimer} theme={t} maxWidth={isWide ? 640 : 480}>
+              <DescriptionPanel
+                markdown={
+                  aberrationsLevel === "simple" ? ABERRATIONS_PRIMER_SIMPLE_MD : ABERRATIONS_PRIMER_INTERMEDIATE_MD
+                }
+                theme={t}
+              />
+              <div style={{ padding: "0 24px 20px", textAlign: "center" }}>
+                <button
+                  onClick={toggleAberrationsLevel}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: t.descLinkColor,
+                    cursor: "pointer",
+                    fontSize: 12,
+                    fontFamily: "inherit",
+                    borderBottom: `1px solid ${t.descLinkColor}40`,
+                    padding: "4px 0",
+                  }}
+                >
+                  {aberrationsLevel === "simple"
                     ? "Want more detail? Read the Intermediate Primer \u2192"
                     : "\u2190 Back to Simple Primer"}
                 </button>

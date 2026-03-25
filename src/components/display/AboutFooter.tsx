@@ -12,6 +12,7 @@ interface AboutFooterProps {
   theme: Theme;
   isWide: boolean;
   onOpenOpticsPrimer: () => void;
+  onOpenAberrationsPrimer: () => void;
   onOpenAboutSite: () => void;
   onOpenAboutAuthor: () => void;
 }
@@ -20,6 +21,7 @@ export default function AboutFooter({
   theme: t,
   isWide,
   onOpenOpticsPrimer,
+  onOpenAberrationsPrimer,
   onOpenAboutSite,
   onOpenAboutAuthor,
 }: AboutFooterProps) {
@@ -48,6 +50,9 @@ export default function AboutFooter({
       </span>
       <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
         Optics
+      </button>
+      <button onClick={onOpenAberrationsPrimer} style={topBarBtn(t, false)}>
+        Aberrations
       </button>
       <button onClick={onOpenAboutSite} style={topBarBtn(t, false)}>
         Site
