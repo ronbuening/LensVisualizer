@@ -9,6 +9,7 @@ import SEOHead from "../components/SEOHead.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
+import { usePageTheme } from "../utils/usePageTheme.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -20,35 +21,27 @@ function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
   }));
 }
 
-const PAGE_STYLE: React.CSSProperties = {
+const PAGE_BASE_STYLE = {
   maxWidth: 960,
   margin: "0 auto",
   padding: "2rem 1.5rem",
   fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  color: "#e0e0e0",
-  backgroundColor: "#1a1a2e",
   minHeight: "100vh",
-};
+} satisfies React.CSSProperties;
 
 const NAV_STYLE: React.CSSProperties = { marginBottom: "1.5rem", fontSize: "0.8rem" };
-const NAV_LINK_STYLE: React.CSSProperties = { color: "#7ec8e3", textDecoration: "none" };
-const LENS_LINK_STYLE: React.CSSProperties = {
+const LENS_LINK_BASE_STYLE = {
   display: "block",
   padding: "0.5rem 0.75rem",
   marginBottom: "0.25rem",
-  color: "#7ec8e3",
   textDecoration: "none",
   borderRadius: 4,
   fontSize: "0.875rem",
-};
-const SPEC_STYLE: React.CSSProperties = {
-  color: "#888",
-  fontSize: "0.75rem",
-  marginLeft: "0.5rem",
-};
+} satisfies React.CSSProperties;
 
 export default function MakerPage() {
   const { maker } = useParams<{ maker: string }>();
+  const t = usePageTheme();
 
   if (!maker) return <Navigate to="/makers" replace />;
 
@@ -63,7 +56,7 @@ export default function MakerPage() {
     : `Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
 
   return (
-    <div style={PAGE_STYLE}>
+    <div style={{ ...PAGE_BASE_STYLE, backgroundColor: t.bg, color: t.body }}>
       <SEOHead
         title={`${displayName} Lenses — ${SITE_NAME}`}
         description={seoDescription}
@@ -71,11 +64,11 @@ export default function MakerPage() {
       />
 
       <nav style={NAV_STYLE}>
-        <Link to="/" style={NAV_LINK_STYLE}>
+        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Home
         </Link>
         {" / "}
-        <Link to="/makers" style={NAV_LINK_STYLE}>
+        <Link to="/makers" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Makers
         </Link>
         {` / ${displayName}`}
@@ -85,16 +78,16 @@ export default function MakerPage() {
 
       {details && (
         <div style={{ marginBottom: "1.5rem" }}>
-          <p style={{ fontSize: "0.8rem", color: "#888", marginBottom: "0.75rem" }}>
+          <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
             Est. {details.founded} · {details.headquarters} · {lenses.length} {lenses.length === 1 ? "lens" : "lenses"}
           </p>
           {details.history.split("\n\n").map((paragraph, i) => (
-            <p key={i} style={{ fontSize: "0.85rem", color: "#ccc", lineHeight: 1.6, marginBottom: "0.75rem" }}>
+            <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
               {paragraph}
             </p>
           ))}
           {details.notableDesigns && (
-            <p style={{ fontSize: "0.8rem", color: "#999", fontStyle: "italic", marginBottom: "0.5rem" }}>
+            <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
               Notable designs: {details.notableDesigns}
             </p>
           )}
@@ -102,17 +95,19 @@ export default function MakerPage() {
       )}
 
       {!details && (
-        <p style={{ fontSize: "0.875rem", color: "#999", marginBottom: "1.5rem" }}>
+        <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
           {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
         </p>
       )}
 
-      <div style={{ borderTop: "1px solid #333", paddingTop: "1rem" }}>
+      <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
         {lenses.map(({ key, data }) => (
-          <Link key={key} to={`/lens/${key}`} style={LENS_LINK_STYLE}>
+          <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
             {data.name}
             {data.specs && data.specs.length > 0 && (
-              <span style={SPEC_STYLE}>— {data.specs.slice(0, 3).join(", ")}</span>
+              <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                — {data.specs.slice(0, 3).join(", ")}
+              </span>
             )}
           </Link>
         ))}

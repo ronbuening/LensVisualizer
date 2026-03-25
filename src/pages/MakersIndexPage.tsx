@@ -9,6 +9,7 @@ import SEOHead from "../components/SEOHead.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
+import { usePageTheme } from "../utils/usePageTheme.js";
 
 interface MakerEntry {
   display: string;
@@ -31,24 +32,22 @@ function getAllMakers(): MakerEntry[] {
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
 }
 
-const PAGE_STYLE: React.CSSProperties = {
+const PAGE_BASE_STYLE = {
   maxWidth: 960,
   margin: "0 auto",
   padding: "2rem 1.5rem",
   fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  color: "#e0e0e0",
-  backgroundColor: "#1a1a2e",
   minHeight: "100vh",
-};
+} satisfies React.CSSProperties;
 
 const NAV_STYLE: React.CSSProperties = { marginBottom: "1.5rem", fontSize: "0.8rem" };
-const NAV_LINK_STYLE: React.CSSProperties = { color: "#7ec8e3", textDecoration: "none" };
 
 export default function MakersIndexPage() {
   const makers = getAllMakers();
+  const t = usePageTheme();
 
   return (
-    <div style={PAGE_STYLE}>
+    <div style={{ ...PAGE_BASE_STYLE, backgroundColor: t.bg, color: t.body }}>
       <SEOHead
         title={`Lens Makers — ${SITE_NAME}`}
         description={`Browse lenses by maker: ${makers.map((m) => m.display).join(", ")}. Interactive cross-section diagrams with ray tracing and element inspection.`}
@@ -56,7 +55,7 @@ export default function MakersIndexPage() {
       />
 
       <nav style={NAV_STYLE}>
-        <Link to="/" style={NAV_LINK_STYLE}>
+        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Home
         </Link>
         {" / Makers"}
@@ -69,26 +68,26 @@ export default function MakersIndexPage() {
         return (
           <div
             key={maker.slug}
-            style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: "1px solid #333" }}
+            style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
           >
             <Link
               to={`/makers/${maker.slug}`}
-              style={{ color: "#7ec8e3", textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+              style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
             >
               {maker.display}
             </Link>
             {details ? (
               <>
-                <div style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.25rem" }}>
+                <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
                   Est. {details.founded} · {details.headquarters} · {maker.count}{" "}
                   {maker.count === 1 ? "lens" : "lenses"}
                 </div>
-                <p style={{ fontSize: "0.8rem", color: "#bbb", lineHeight: 1.5, marginTop: "0.5rem" }}>
+                <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
                   {details.summary}
                 </p>
               </>
             ) : (
-              <span style={{ color: "#888", fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+              <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
                 ({maker.count} {maker.count === 1 ? "lens" : "lenses"})
               </span>
             )}
