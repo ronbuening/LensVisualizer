@@ -10,6 +10,7 @@
  */
 
 import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
+import { conicPolySag } from "./optics.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -250,8 +251,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     const sd = Math.min(front.sd, rear.sd);
 
     /* Edge thickness check (uses aspherical sag when available) */
-    const sagFront = _renderSag(sd, front.R, asphByIdx[s1]);
-    const sagRear = _renderSag(sd, rear.R, asphByIdx[s2]);
+    const sagFront = conicPolySag(sd, front.R, asphByIdx[s1]);
+    const sagRear = conicPolySag(sd, rear.R, asphByIdx[s2]);
     const edgeThickness = front.d + sagRear - sagFront;
     if (edgeThickness <= 0)
       errors.push(
@@ -371,42 +372,12 @@ function _checkCrossGapOverlap(
     const sdNext = Math.min(next.sd || Infinity, (i + 2 < S.length ? S[i + 2].sd : Infinity) || Infinity);
     const sdCheck = Math.min(sdPrev, sdNext);
     if (!isFinite(sdCheck) || sdCheck <= 0) continue;
-    const sagFwd = _renderSag(sdCheck, curr.R, asphByIdx[i]);
-    const sagBack = _renderSag(sdCheck, next.R, asphByIdx[i + 1]);
+    const sagFwd = conicPolySag(sdCheck, curr.R, asphByIdx[i]);
+    const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);
     const intrusion = sagFwd - sagBack;
     if (intrusion > gapD * 1.1)
       errors.push(
         `Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds gap thickness (${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`,
       );
   }
-}
-
-/**
- * Local sag helper for geometry validation — duplicates renderSag logic
- * from optics.js to avoid a circular dependency (optics.js imports from
- * buildLens.js which imports this module).
- *
- * @param h     — ray height (mm)
- * @param R     — radius of curvature (mm)
- * @param asph  — aspheric coefficients {K, A4, A6, ...} or undefined
- * @returns       sag in mm
- */
-function _renderSag(h: number, R: number, asph: AsphericCoefficients | undefined): number {
-  const FLAT = 1e10;
-  if (Math.abs(R) > FLAT && !asph) return 0;
-  const c = Math.abs(R) > FLAT ? 0 : 1.0 / R;
-  const K = asph ? asph.K || 0 : 0;
-  const h2 = h * h;
-  const d = 1 - (1 + K) * c * c * h2;
-  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-  if (!asph) return conic;
-  return (
-    conic +
-    (asph.A4 || 0) * h2 ** 2 +
-    (asph.A6 || 0) * h2 ** 3 +
-    (asph.A8 || 0) * h2 ** 4 +
-    (asph.A10 || 0) * h2 ** 5 +
-    (asph.A12 || 0) * h2 ** 6 +
-    (asph.A14 || 0) * h2 ** 7
-  );
 }

@@ -5,7 +5,14 @@
  * No React dependencies — this module is fully testable in isolation.
  */
 
-import type { RuntimeLens, RayTraceResult, LayoutResult, ChromaticChannel, ChromaticSpread } from "../types/optics.js";
+import type {
+  RuntimeLens,
+  RayTraceResult,
+  LayoutResult,
+  ChromaticChannel,
+  ChromaticSpread,
+  AsphericCoefficients,
+} from "../types/optics.js";
 
 /* ── Named constants ── */
 export const FLAT_R_THRESHOLD: number = 1e10; /* surfaces with |R| above this are treated as flat (plano) */
@@ -37,10 +44,40 @@ export function sag(h: number, R: number): number {
 }
 
 /**
- * Aspherical sag — extends the conic sag with even-order polynomial deformation.
+ * Conic + even-order polynomial sag from raw parameters.
  *
  * Conic sag: z = c·h² / (1 + √(1 − (1+K)·c²·h²))
  * Polynomial: + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
+ *
+ * Shared primitive used by renderSag (runtime) and validateLensData
+ * (geometry checks).  Handles both spherical-only (asph=undefined)
+ * and full aspheric surfaces.
+ *
+ * @param h     — ray height from axis (mm)
+ * @param R     — radius of curvature (mm, signed)
+ * @param asph  — aspheric coefficients, or undefined for spherical
+ * @returns       sag in mm
+ */
+export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | undefined): number {
+  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
+  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
+  const K = asph ? asph.K : 0;
+  const h2 = h * h;
+  const d = 1 - (1 + K) * c * c * h2;
+  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
+  if (!asph) return conic;
+  const poly =
+    asph.A4 * h2 * h2 +
+    asph.A6 * h2 ** 3 +
+    asph.A8 * h2 ** 4 +
+    asph.A10 * h2 ** 5 +
+    asph.A12 * h2 ** 6 +
+    asph.A14 * h2 ** 7;
+  return conic + poly;
+}
+
+/**
+ * Aspherical sag at a surface, looked up from the runtime lens object.
  *
  * Falls back to plain spherical sag when no aspheric coefficients exist
  * for the given surface index.
@@ -54,13 +91,7 @@ export function renderSag(h: number, surfIdx: number, L: RuntimeLens): number {
   const R = L.S[surfIdx].R;
   const a = L.asphByIdx[surfIdx];
   if (!a) return sag(h, R);
-  if (Math.abs(R) > FLAT_R_THRESHOLD && !a) return 0;
-  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
-  const h2 = h * h;
-  const d = 1 - (1 + a.K) * c * c * h2;
-  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-  const poly = a.A4 * h2 * h2 + a.A6 * h2 ** 3 + a.A8 * h2 ** 4 + a.A10 * h2 ** 5 + a.A12 * h2 ** 6 + a.A14 * h2 ** 7;
-  return conic + poly;
+  return conicPolySag(h, R, a);
 }
 
 /**
@@ -246,7 +277,21 @@ function _lerpZoomArray(zoomT: number, arr: number[]): number {
  * =================================================================== */
 
 /**
- * Trace a single ray through the lens system using exact (real) Snell's law.
+ * Refractive index adjusted for wavelength using Abbe number dispersion.
+ * channel: 'R' (C-line 656.3nm), 'G' (d-line 587.6nm), 'B' (F-line 486.1nm)
+ */
+export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
+  if (nd === 1.0) return 1.0;
+  if (!vd || channel === "G") return nd;
+  const delta = (nd - 1) / (2 * vd);
+  return channel === "R" ? nd - delta : nd + delta;
+}
+
+/**
+ * Core ray-trace implementation using exact (real) Snell's law.
+ *
+ * When channel is undefined, uses the d-line refractive index directly.
+ * When channel is provided, adjusts nd per wavelength via Abbe dispersion.
  *
  * Ray starts at height y0 with slope u0 (tan of angle to axis).
  * At each surface, the surface normal is computed from sagSlope() and
@@ -255,17 +300,8 @@ function _lerpZoomArray(zoomT: number, arr: number[]): number {
  *
  * Clipping: rays exceeding a surface's semi-diameter are either stopped
  * (ghost=false) or continued as ghost rays (ghost=true) for visualization.
- *
- * @param y0      — initial ray height (mm)
- * @param u0      — initial ray slope (tan of angle)
- * @param zPos    — axial position of each surface (from doLayout)
- * @param focusT  — focus slider [0..1]
- * @param zoomT   — zoom slider [0..1]
- * @param stopSD  — aperture stop semi-diameter (mm), or undefined for full open
- * @param ghost   — if true, continue tracing clipped rays as ghost paths
- * @param L       — runtime lens object
  */
-export function traceRay(
+function _traceRayCore(
   y0: number,
   u0: number,
   zPos: number[],
@@ -274,6 +310,7 @@ export function traceRay(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
 ): RayTraceResult {
   const pts: number[][] = [];
   const ghostPts: number[][] = [];
@@ -294,7 +331,7 @@ export function traceRay(
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt);
     else pts.push(pt);
-    const nn = nd === 1.0 ? 1.0 : nd;
+    const nn = channel ? wavelengthNd(nd, L.vdByIdx[i], channel) : nd === 1.0 ? 1.0 : nd;
     if (nn !== n) {
       /* Exact Snell's law refraction:
        *   α  = surface normal tilt angle (from sagSlope)
@@ -331,19 +368,33 @@ export function traceRay(
 }
 
 /**
- * Refractive index adjusted for wavelength using Abbe number dispersion.
- * channel: 'R' (C-line 656.3nm), 'G' (d-line 587.6nm), 'B' (F-line 486.1nm)
+ * Trace a single ray through the lens system using exact (real) Snell's law.
+ *
+ * @param y0      — initial ray height (mm)
+ * @param u0      — initial ray slope (tan of angle)
+ * @param zPos    — axial position of each surface (from doLayout)
+ * @param focusT  — focus slider [0..1]
+ * @param zoomT   — zoom slider [0..1]
+ * @param stopSD  — aperture stop semi-diameter (mm), or undefined for full open
+ * @param ghost   — if true, continue tracing clipped rays as ghost paths
+ * @param L       — runtime lens object
  */
-export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
-  if (nd === 1.0) return 1.0;
-  if (!vd || channel === "G") return nd;
-  const delta = (nd - 1) / (2 * vd);
-  return channel === "R" ? nd - delta : nd + delta;
+export function traceRay(
+  y0: number,
+  u0: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+): RayTraceResult {
+  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined);
 }
 
 /**
- * Chromatic ray trace — same as traceRay but adjusts refractive index per
- * wavelength channel using Abbe number dispersion (wavelengthNd).
+ * Chromatic ray trace — adjusts refractive index per wavelength channel
+ * using Abbe number dispersion (wavelengthNd).
  *
  * Channels: 'R' = C-line 656nm, 'G' = d-line 588nm, 'B' = F-line 486nm.
  * The difference between R and B traces reveals longitudinal/transverse
@@ -370,48 +421,7 @@ export function traceRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
 ): RayTraceResult {
-  const pts: number[][] = [];
-  const ghostPts: number[][] = [];
-  pts.push([zPos[0] - L.rayLead, y0 - u0 * L.rayLead]);
-  let y = y0,
-    n = 1.0;
-  let U = Math.atan(u0);
-  let clipped = false;
-  for (let i = 0; i < L.N; i++) {
-    const { nd, sd } = L.S[i];
-    const z = zPos[i];
-    const isStop = i === L.stopIdx;
-    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && Math.abs(y) > clip) {
-      if (!ghost) break;
-      clipped = true;
-    }
-    const pt = [z + renderSag(Math.abs(y), i, L), y];
-    if (clipped) ghostPts.push(pt);
-    else pts.push(pt);
-    const nn = wavelengthNd(nd, L.vdByIdx[i], channel);
-    if (nn !== n) {
-      const absY = Math.abs(y);
-      const R = L.S[i].R;
-      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && absY * absY > R * R) {
-        /* ghost ray beyond sphere extent — propagate straight, no refraction */
-      } else {
-        const slope = sagSlope(absY, i, L);
-        const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-        const I = U - alpha;
-        const sinIp = (n / nn) * Math.sin(I);
-        if (Math.abs(sinIp) > 1.0) {
-          if (!ghost) break;
-          clipped = true;
-        } else {
-          U = alpha + Math.asin(sinIp);
-        }
-      }
-    }
-    n = nn;
-    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
-  }
-  return { pts, ghostPts, y, u: Math.tan(U), clipped };
+  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel);
 }
 
 /** Marginal ray data for one chromatic channel */
