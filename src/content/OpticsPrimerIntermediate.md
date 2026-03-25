@@ -1,3 +1,10 @@
+---
+slug: optics-primer-intermediate
+title: Optics In More Detail
+summary: A deeper look at optical design principles including Petzval sums, field curvature correction, and retrofocus designs.
+tag: guide
+---
+
 # Optics Primer — Foundations of Lens Design
 
 This companion guide introduces the optical concepts, symbols, and relationships that underpin the lens cross-section diagrams on this site. It assumes you are comfortable with the conceptual primer and want a more precise understanding of how the numbers in the element-detail panel and the ray-trace overlay relate to one another.

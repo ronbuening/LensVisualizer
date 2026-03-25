@@ -1,3 +1,10 @@
+---
+slug: aberrations-primer-intermediate
+title: Aberrations In Depth
+summary: Advanced aberration concepts including higher-order effects, balancing strategies, and aspherical surfaces.
+tag: guide
+---
+
 # Aberrations — Foundations of Optical Error
 
 This guide expands on the conceptual aberration primer with the mathematical framework that lens designers use to classify, quantify, and correct the imperfections of real optical systems. It assumes familiarity with the terms and symbols introduced in the optics primers (particularly *nd*, *νd*, EFL, the paraxial ray-trace equations, and the asphere sag formula).

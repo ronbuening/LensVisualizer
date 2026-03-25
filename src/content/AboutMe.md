@@ -1,3 +1,10 @@
+---
+slug: about-author
+title: About the Author
+summary: Meet the creator of Optical Bench — background in photography and optical engineering.
+tag: article
+---
+
 # About Me
 
 I'm Ron Buening, a photographer and optics enthusiast based in the Tampa Bay area. My work is rooted in a simple conviction: understanding the instrument is inseparable from understanding the image. That conviction drives both my photography and everything written here.

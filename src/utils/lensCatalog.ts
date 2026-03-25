@@ -52,4 +52,21 @@ function mdForKey(key: string): string | null {
   return stem ? MD_BY_STEM[stem] || null : null;
 }
 
-export { LENS_CATALOG, CATALOG_KEYS, mdForKey };
+/* ── Recent lenses (derived from build-time git dates) ─────────────── */
+
+import buildMeta from "../generated/build-metadata.json";
+
+interface RecentLensEntry {
+  key: string;
+  date: string;
+}
+
+/** Up to 5 most recently added lenses, newest-first. */
+const RECENT_LENS_KEYS: RecentLensEntry[] = Object.entries(buildMeta.lensDates as Record<string, string>)
+  .filter(([key]) => CATALOG_KEYS.includes(key))
+  .sort(([, a], [, b]) => b.localeCompare(a))
+  .slice(0, 5)
+  .map(([key, date]) => ({ key, date }));
+
+export { LENS_CATALOG, CATALOG_KEYS, mdForKey, RECENT_LENS_KEYS };
+export type { RecentLensEntry };

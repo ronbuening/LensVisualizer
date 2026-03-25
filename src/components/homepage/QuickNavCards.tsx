@@ -7,7 +7,7 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../utils/lensCatalog.js";
+import { CATALOG_KEYS, LENS_CATALOG, RECENT_LENS_KEYS } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
@@ -32,15 +32,15 @@ interface CardDef {
 export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
   const isWide = useMediaQuery("(min-width: 720px)");
   const makerCount = countMakers();
-  const firstLens = CATALOG_KEYS[0];
+  const viewerLens = RECENT_LENS_KEYS.length > 0 ? RECENT_LENS_KEYS[0].key : CATALOG_KEYS[0];
 
   const cards: CardDef[] = [
     { title: "Lens Library", subtitle: `${CATALOG_KEYS.length} interactive diagrams`, to: "/lenses" },
     { title: "Browse by Maker", subtitle: `${makerCount} manufacturers`, to: "/makers" },
     {
       title: "Open Viewer",
-      subtitle: firstLens ? LENS_CATALOG[firstLens].name : "Explore a lens",
-      to: firstLens ? `/lens/${firstLens}` : "/lenses",
+      subtitle: viewerLens ? LENS_CATALOG[viewerLens].name : "Explore a lens",
+      to: viewerLens ? `/lens/${viewerLens}` : "/lenses",
     },
   ];
 

@@ -14,10 +14,10 @@ import QuickNavCards from "../components/homepage/QuickNavCards.js";
 import ArticleList from "../components/homepage/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
-import { CATALOG_KEYS } from "../utils/lensCatalog.js";
+import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLES, LENS_ANNOUNCEMENTS, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
+import { ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
 
 const PAGE_BASE_STYLE = {
   maxWidth: 960,
@@ -74,7 +74,7 @@ export default function HomePage() {
         <HeroSection theme={t} />
         <QuickNavCards theme={t} />
         <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
-        <RecentLenses announcements={LENS_ANNOUNCEMENTS.slice(0, 4)} theme={t} />
+        <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
         <HomeFooter theme={t} />
       </div>
     </div>
