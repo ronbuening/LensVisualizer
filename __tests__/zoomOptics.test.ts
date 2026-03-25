@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { yRatioAtZoom, bAtZoom } from "../src/optics/optics.js";
+import { yRatioAtZoom, bAtZoom, eflAtZoom, epAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
@@ -7,12 +7,25 @@ import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Minimal mock helpers ── */
 
-function makeNonZoomLens(yRatio = 0.75, B = 8.5): RuntimeLens {
-  return { isZoom: false, EP: { yRatio, epSD: 12 }, B } as unknown as RuntimeLens;
+function makeNonZoomLens(yRatio = 0.75, B = 8.5, EFL = 50, epSD = 12, halfField = 23): RuntimeLens {
+  return { isZoom: false, EP: { yRatio, epSD }, B, EFL, halfField } as unknown as RuntimeLens;
 }
 
-function makeZoomLens(yRatios: number[], bs: number[]): RuntimeLens {
-  return { isZoom: true, zoomYRatios: yRatios, zoomBs: bs } as unknown as RuntimeLens;
+function makeZoomLens(
+  yRatios: number[],
+  bs: number[],
+  efls: number[] = [70, 200],
+  eps: number[] = [25, 25],
+  halfFields: number[] = [17, 6.2],
+): RuntimeLens {
+  return {
+    isZoom: true,
+    zoomYRatios: yRatios,
+    zoomBs: bs,
+    zoomEFLs: efls,
+    zoomEPs: eps,
+    zoomHalfFields: halfFields,
+  } as unknown as RuntimeLens;
 }
 
 /* ── yRatioAtZoom ── */
@@ -197,5 +210,150 @@ describe("yRatioAtZoom / bAtZoom — production zoom lens (Nikkor Z 70-200mm f/2
     const hi = Math.max(wide, tele);
     expect(mid).toBeGreaterThanOrEqual(lo);
     expect(mid).toBeLessThanOrEqual(hi);
+  });
+});
+
+/* ── eflAtZoom ── */
+
+describe("eflAtZoom — non-zoom lens", () => {
+  it("returns L.EFL regardless of zoomT", () => {
+    const L = makeNonZoomLens(0.75, 8.5, 50);
+    expect(eflAtZoom(0, L)).toBe(50);
+    expect(eflAtZoom(0.5, L)).toBe(50);
+    expect(eflAtZoom(1, L)).toBe(50);
+  });
+});
+
+describe("eflAtZoom — zoom lens", () => {
+  it("returns first EFL at zoomT = 0", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    expect(eflAtZoom(0, L)).toBeCloseTo(70, 10);
+  });
+
+  it("returns last EFL at zoomT = 1", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    expect(eflAtZoom(1, L)).toBeCloseTo(200, 10);
+  });
+
+  it("interpolates linearly at zoomT = 0.5", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    expect(eflAtZoom(0.5, L)).toBeCloseTo(135, 10);
+  });
+
+  it("interpolates three-position zoom", () => {
+    const L = makeZoomLens([0.3, 0.6, 0.9], [2, 5, 8], [24, 70, 120], [20, 18, 16], [42, 17, 10]);
+    expect(eflAtZoom(0, L)).toBeCloseTo(24, 10);
+    expect(eflAtZoom(0.5, L)).toBeCloseTo(70, 10);
+    expect(eflAtZoom(1, L)).toBeCloseTo(120, 10);
+    // zoomT=0.25: pos=0.5, idx=0, frac=0.5 → 24 + 0.5*(70-24) = 47
+    expect(eflAtZoom(0.25, L)).toBeCloseTo(47, 10);
+  });
+});
+
+/* ── epAtZoom ── */
+
+describe("epAtZoom — non-zoom lens", () => {
+  it("returns L.EP.epSD regardless of zoomT", () => {
+    const L = makeNonZoomLens(0.75, 8.5, 50, 25);
+    expect(epAtZoom(0, L)).toBe(25);
+    expect(epAtZoom(0.5, L)).toBe(25);
+    expect(epAtZoom(1, L)).toBe(25);
+  });
+});
+
+describe("epAtZoom — zoom lens", () => {
+  it("returns first EP at zoomT = 0", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 35], [17, 6.2]);
+    expect(epAtZoom(0, L)).toBeCloseTo(25, 10);
+  });
+
+  it("returns last EP at zoomT = 1", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 35], [17, 6.2]);
+    expect(epAtZoom(1, L)).toBeCloseTo(35, 10);
+  });
+
+  it("interpolates linearly at zoomT = 0.5", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 35], [17, 6.2]);
+    expect(epAtZoom(0.5, L)).toBeCloseTo(30, 10);
+  });
+});
+
+/* ── halfFieldAtZoom ── */
+
+describe("halfFieldAtZoom — non-zoom lens", () => {
+  it("returns L.halfField regardless of zoomT", () => {
+    const L = makeNonZoomLens(0.75, 8.5, 50, 12, 23.5);
+    expect(halfFieldAtZoom(0, L)).toBe(23.5);
+    expect(halfFieldAtZoom(0.5, L)).toBe(23.5);
+    expect(halfFieldAtZoom(1, L)).toBe(23.5);
+  });
+});
+
+describe("halfFieldAtZoom — zoom lens", () => {
+  it("returns first halfField at zoomT = 0", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    expect(halfFieldAtZoom(0, L)).toBeCloseTo(17, 10);
+  });
+
+  it("returns last halfField at zoomT = 1", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    expect(halfFieldAtZoom(1, L)).toBeCloseTo(6.2, 10);
+  });
+
+  it("interpolates linearly at zoomT = 0.5", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2]);
+    // 17 + 0.5*(6.2-17) = 11.6
+    expect(halfFieldAtZoom(0.5, L)).toBeCloseTo(11.6, 10);
+  });
+
+  it("interpolates three-position zoom", () => {
+    const L = makeZoomLens([0.3, 0.6, 0.9], [2, 5, 8], [24, 70, 120], [20, 18, 16], [42, 17, 10]);
+    expect(halfFieldAtZoom(0, L)).toBeCloseTo(42, 10);
+    expect(halfFieldAtZoom(0.5, L)).toBeCloseTo(17, 10);
+    expect(halfFieldAtZoom(1, L)).toBeCloseTo(10, 10);
+  });
+});
+
+/* ── Production zoom lens: eflAtZoom, epAtZoom, halfFieldAtZoom ── */
+
+describe("eflAtZoom / epAtZoom / halfFieldAtZoom — production zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
+  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData;
+  const L = buildLens(NikkorZ70200);
+
+  it("eflAtZoom returns finite values across zoom range", () => {
+    for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+      expect(isFinite(eflAtZoom(t, L)), `eflAtZoom(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("eflAtZoom matches L.zoomEFLs endpoints exactly", () => {
+    expect(eflAtZoom(0, L)).toBeCloseTo(L.zoomEFLs![0], 10);
+    expect(eflAtZoom(1, L)).toBeCloseTo(L.zoomEFLs![L.zoomEFLs!.length - 1], 10);
+  });
+
+  it("eflAtZoom increases from wide to tele (positive zoom range)", () => {
+    const wide = eflAtZoom(0, L);
+    const tele = eflAtZoom(1, L);
+    expect(tele).toBeGreaterThan(wide);
+  });
+
+  it("epAtZoom returns finite values across zoom range", () => {
+    for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+      expect(isFinite(epAtZoom(t, L)), `epAtZoom(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("halfFieldAtZoom returns finite positive values across zoom range", () => {
+    for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+      const val = halfFieldAtZoom(t, L);
+      expect(isFinite(val), `halfFieldAtZoom(${t}) must be finite`).toBe(true);
+      expect(val).toBeGreaterThan(0);
+    }
+  });
+
+  it("halfFieldAtZoom decreases from wide to tele", () => {
+    const wide = halfFieldAtZoom(0, L);
+    const tele = halfFieldAtZoom(1, L);
+    expect(wide).toBeGreaterThan(tele);
   });
 });
