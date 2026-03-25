@@ -9,20 +9,18 @@
  * ║    • ControlsBar — theme/ray/chromatic/scale toggles              ║
  * ║    • ViewToggleBar — desktop/mobile view mode switching           ║
  * ║    • ComparisonLayout — side-by-side/stacked lens panels          ║
+ * ║    • SingleLensContent — desktop/mobile single-lens layout        ║
  * ║    • AboutFooter — mobile-only page-bottom about buttons          ║
  * ║    • OverlayModal — about site/author/optics primer modals        ║
  * ║  Diagram rendering lives in LensDiagramPanel.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useMemo, useCallback, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 
 import T from "../../utils/themes.js";
-import buildLens from "../../optics/buildLens.js";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
-import LensDiagramPanel from "./LensDiagramPanel.js";
-import DescriptionPanel from "./DescriptionPanel.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
@@ -34,10 +32,8 @@ import {
   ENABLE_ANALYSIS_ONLY,
   ENABLE_COMPARISON,
   ENABLE_COMPARISON_MOBILE,
-  ENABLE_SIDE_PANEL_LAYOUT,
   ENABLE_MOBILE_CONTROLS_STRIP,
 } from "../../utils/featureFlags.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../utils/comparisonSliders.js";
 import useStickySliders from "../../utils/useStickySliders.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
@@ -46,6 +42,8 @@ import TopBar from "./TopBar.js";
 import BreadcrumbBar from "./BreadcrumbBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
 import ComparisonLayout from "./ComparisonLayout.js";
+import SingleLensContent from "./SingleLensContent.js";
+import DescriptionPanel from "./DescriptionPanel.js";
 import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
 import OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
@@ -60,30 +58,11 @@ import {
   SET_DESKTOP_VIEW,
   SET_SHARED_STOPDOWN_T,
   SET_SHARED_ZOOM_T,
-  SET_OVERLAY,
-  CLOSE_ALL_OVERLAYS,
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../../utils/lensReducer.js";
-import type { RuntimeLens } from "../../types/optics.js";
-
-interface ComparisonLensesOk {
-  LA: RuntimeLens;
-  LB: RuntimeLens;
-  error?: undefined;
-  failedKeys?: undefined;
-}
-interface ComparisonLensesErr {
-  error: unknown;
-  failedKeys: string;
-  LA?: undefined;
-  LB?: undefined;
-}
-type ComparisonLensesResult = ComparisonLensesOk | ComparisonLensesErr | null;
-
-function isComparisonOk(cl: ComparisonLensesResult): cl is ComparisonLensesOk {
-  return cl !== null && !cl.error;
-}
+import useComparisonMode, { isComparisonOk } from "../hooks/useComparisonMode.js";
+import useOverlays from "../hooks/useOverlays.js";
 
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
@@ -110,32 +89,75 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer } = overlays;
 
-  /* ── Local transient state for primer level (resets when overlay closes) ── */
-  const [primerLevel, setPrimerLevel] = useState<"simple" | "intermediate">("simple");
+  /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
+  const { comparisonLenses, scaleRatios, focusPair, aperturePair, zoomPair, handleHeaderHeight, maxHeaderHeight } =
+    useComparisonMode({ comparing, lensKeyA, lensKeyB, scaleMode, sharedFocusT, sharedStopdownT, sharedZoomT });
 
-  /* ── Comparison mode header height alignment ── */
-  const [headerHeights, setHeaderHeights] = useState<Record<string, number>>({ a: 0, b: 0 });
-  const justEnteredCompare = useRef(false);
-
-  /* ── Sticky slider state machine (see useStickySliders for docs) ── */
+  /* ── Overlay management: primer level, escape key, open/close callbacks ── */
+  const {
+    primerLevel,
+    togglePrimerLevel,
+    openAboutSite,
+    openAboutAuthor,
+    openOpticsPrimer,
+    closeAboutSite,
+    closeAboutAuthor,
+    closeOpticsPrimer,
+  } = useOverlays({ showAbout, showAboutSite, showOpticsPrimer, dispatch });
 
   /* ── Persist preferences to localStorage ── */
   usePreferences(state);
 
   /* ── URL synchronization (lens selection, slider deep links, zoom init) ── */
+  const { updateURLWithSliders } = useURLSync(
+    state,
+    dispatch,
+    comparisonLenses as Parameters<typeof useURLSync>[2],
+    isLensPage,
+  );
 
-  /* ── Escape key closes overlays ── */
+  /* ── Sticky slider state machine ── */
+  const justEnteredCompare = useRef(false);
+  const {
+    handleSharedFocusChange,
+    handleSharedStopdownChange,
+    handleFocusPointerDown,
+    handleAperturePointerDown,
+    flashPanel,
+    resetSticky,
+    prevStopdownT,
+  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
+
+  /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
-    if (!showAbout && !showAboutSite && !showOpticsPrimer) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        dispatch({ type: CLOSE_ALL_OVERLAYS });
-        setPrimerLevel("simple");
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [showAbout, showAboutSite, showOpticsPrimer, dispatch]);
+    if (!justEnteredCompare.current || !isComparisonOk(comparisonLenses)) return;
+    justEnteredCompare.current = false;
+    const { LA, LB } = comparisonLenses;
+    const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
+    const narrowerFOPEN = Math.max(LA.FOPEN, LB.FOPEN);
+    const sharedMaxFstop = Math.max(LA.maxFstop, LB.maxFstop);
+    const cp =
+      Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
+        ? 0
+        : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
+    prevStopdownT.current = cp;
+    dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
+  }, [comparisonLenses, dispatch, prevStopdownT]);
+
+  /* ── Enter/exit comparison mode ── */
+  const toggleCompare = useCallback(() => {
+    if (!comparing) {
+      dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
+      resetSticky();
+      justEnteredCompare.current = true;
+    } else {
+      dispatch({
+        type: EXIT_COMPARE,
+        focusA: focusPair?.focusA,
+        stopdownA: aperturePair?.stopdownA,
+      });
+    }
+  }, [comparing, focusPair, aperturePair, dispatch, resetSticky]);
 
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
@@ -179,101 +201,6 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
     dispatch({ type: SWAP_LENSES });
   }, [dispatch]);
 
-  /* ── Build both lenses for comparison computations ──
-   * Built eagerly when comparison mode is active so we can compute
-   * shared slider mappings (focus/aperture/zoom pairs). Both lenses
-   * are also needed for normalized scale ratios. */
-  const comparisonLenses: ComparisonLensesResult = useMemo(() => {
-    if (!comparing) return null;
-    try {
-      return { LA: buildLens(LENS_CATALOG[lensKeyA]), LB: buildLens(LENS_CATALOG[lensKeyB]) } as ComparisonLensesOk;
-    } catch (e) {
-      return { error: e, failedKeys: `${lensKeyA} vs ${lensKeyB}` } as ComparisonLensesErr;
-    }
-  }, [comparing, lensKeyA, lensKeyB]);
-
-  const { updateURLWithSliders } = useURLSync(
-    state,
-    dispatch,
-    comparisonLenses as Parameters<typeof useURLSync>[2],
-    isLensPage,
-  );
-
-  /* ── Normalized scale computation ──
-   * In normalized mode, both panels use the same mm-per-pixel ratio so lens
-   * sizes are visually comparable. Each panel's SC is scaled down to match
-   * whichever lens has the smaller (more zoomed-out) SC value. */
-  const scaleRatios = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses) || scaleMode !== "normalized") return null;
-    const { LA, LB } = comparisonLenses;
-    const minSC = Math.min(LA.SC, LB.SC);
-    return { a: minSC / LA.SC, b: minSC / LB.SC };
-  }, [comparisonLenses, scaleMode]);
-
-  /* ── Per-lens focus/aperture from shared sliders ── */
-  const focusPair = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses)) return null;
-    return computeFocusPair(sharedFocusT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedFocusT, comparisonLenses]);
-
-  const aperturePair = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses)) return null;
-    return computeAperturePair(sharedStopdownT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedStopdownT, comparisonLenses]);
-
-  const zoomPair = useMemo(() => {
-    if (!isComparisonOk(comparisonLenses)) return null;
-    return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
-  }, [sharedZoomT, comparisonLenses]);
-
-  /* ── Sticky slider state machine ── */
-  const {
-    handleSharedFocusChange,
-    handleSharedStopdownChange,
-    handleFocusPointerDown,
-    handleAperturePointerDown,
-    flashPanel,
-    resetSticky,
-    prevStopdownT,
-  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
-
-  /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
-  useEffect(() => {
-    if (!justEnteredCompare.current || !isComparisonOk(comparisonLenses)) return;
-    justEnteredCompare.current = false;
-    const { LA, LB } = comparisonLenses;
-    const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
-    const narrowerFOPEN = Math.max(LA.FOPEN, LB.FOPEN);
-    const sharedMaxFstop = Math.max(LA.maxFstop, LB.maxFstop);
-    const cp =
-      Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
-        ? 0
-        : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
-    prevStopdownT.current = cp;
-    dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-  }, [comparisonLenses, dispatch, prevStopdownT]);
-
-  /* ── Enter/exit comparison mode ── */
-  const toggleCompare = useCallback(() => {
-    if (!comparing) {
-      dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
-      resetSticky();
-      justEnteredCompare.current = true;
-    } else {
-      dispatch({
-        type: EXIT_COMPARE,
-        focusA: focusPair?.focusA,
-        stopdownA: aperturePair?.stopdownA,
-      });
-    }
-  }, [comparing, focusPair, aperturePair, dispatch, resetSticky]);
-
-  /* ── Header height alignment callback ── */
-  const handleHeaderHeight = useCallback((panelId: string, height: number) => {
-    setHeaderHeights((prev) => (prev[panelId] === height ? prev : { ...prev, [panelId]: height }));
-  }, []);
-  const maxHeaderHeight = Math.max(headerHeights.a, headerHeights.b);
-
   /* ── Context value (replaces sharedProps prop drilling) ── */
   const ctxValue = useMemo(
     () => ({ state, theme: t, isWide, updateURLWithSliders }),
@@ -285,13 +212,6 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
    * ===================================================================== */
 
   const showCompareBtn = ENABLE_COMPARISON && (isWide || ENABLE_COMPARISON_MOBILE);
-
-  /* ── Description content (only in single-lens mode) ── */
-  const descriptionContent = (
-    <div style={{ background: t.descBg, overflowY: "auto", transition: "background 0.3s" }}>
-      <DescriptionPanel markdown={markdown} theme={t} />
-    </div>
-  );
 
   /* ── Controls bar props (shared between comparison and mobile instances) ── */
   const controlsBarProps = {
@@ -309,18 +229,6 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
     scaleMode,
     dispatch,
   } as const;
-
-  /* ── Single-lens diagram content ── */
-  const singleDiagramContent = !comparing ? (
-    <LensDiagramPanel
-      lensKey={lensKeyA}
-      scaleRatio={null}
-      panelId="main"
-      compact={false}
-      showControls={true}
-      sideLayoutEnabled={ENABLE_SIDE_PANEL_LAYOUT && isWide && effectiveDesktopView === "diagram"}
-    />
-  ) : null;
 
   /* =====================================================================
    * §4  JSX — Top bar, comparison chrome, diagram panels, overlays
@@ -352,9 +260,9 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
             onSwitchLensB={switchLensB}
             onSwapLenses={swapLenses}
             onToggleCompare={toggleCompare}
-            onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
-            onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
-            onOpenOpticsPrimer={() => dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: true })}
+            onOpenAboutSite={openAboutSite}
+            onOpenAboutAuthor={openAboutAuthor}
+            onOpenOpticsPrimer={openOpticsPrimer}
             catalogKeys={CATALOG_KEYS}
             catalogNames={catalogNames}
           />
@@ -447,82 +355,51 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
                 />
               )}
             </>
-          ) : isWide ? (
-            effectiveDesktopView === "diagram" ? (
-              <div style={{ minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>{singleDiagramContent}</div>
-            ) : effectiveDesktopView === "analysis" ? (
-              <div style={{ overflowY: "auto", maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
-                {descriptionContent}
-              </div>
-            ) : (
-              /* Both — side-by-side */
-              <div style={{ display: "flex", minHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)` }}>
-                <div style={{ flex: "0 0 65%", minWidth: 0, overflow: "hidden" }}>{singleDiagramContent}</div>
-                <div
-                  style={{
-                    flex: "0 0 35%",
-                    borderLeft: `1px solid ${t.descBorder}`,
-                    overflowY: "auto",
-                    maxHeight: `calc(100vh - ${showDesktopToggle ? 82 : 45}px)`,
-                  }}
-                >
-                  {descriptionContent}
-                </div>
-              </div>
-            )
-          ) : /* Mobile: toggle between views */
-          !ENABLE_ANALYSIS_VIEW || mobileView === "diagram" ? (
-            singleDiagramContent
           ) : (
-            descriptionContent
+            <SingleLensContent
+              theme={t}
+              isWide={isWide}
+              effectiveDesktopView={effectiveDesktopView}
+              showDesktopToggle={showDesktopToggle}
+              mobileView={mobileView}
+              lensKeyA={lensKeyA}
+              markdown={markdown}
+            />
           )}
 
           {/* ── About buttons footer (mobile only) ── */}
           <AboutFooter
             theme={t}
             isWide={isWide}
-            onOpenOpticsPrimer={() => dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: true })}
-            onOpenAboutSite={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: true })}
-            onOpenAboutAuthor={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: true })}
+            onOpenOpticsPrimer={openOpticsPrimer}
+            onOpenAboutSite={openAboutSite}
+            onOpenAboutAuthor={openAboutAuthor}
           />
 
           {/* ── About Site overlay ── */}
           {showAboutSite && (
-            <OverlayModal
-              onClose={() => dispatch({ type: SET_OVERLAY, overlay: "showAboutSite", visible: false })}
-              theme={t}
-            >
+            <OverlayModal onClose={closeAboutSite} theme={t}>
               <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
             </OverlayModal>
           )}
 
           {/* ── About Me overlay ── */}
           {showAbout && (
-            <OverlayModal
-              onClose={() => dispatch({ type: SET_OVERLAY, overlay: "showAbout", visible: false })}
-              theme={t}
-            >
+            <OverlayModal onClose={closeAboutAuthor} theme={t}>
               <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
             </OverlayModal>
           )}
 
           {/* ── Optics Primer overlay ── */}
           {showOpticsPrimer && (
-            <OverlayModal
-              onClose={() => {
-                dispatch({ type: SET_OVERLAY, overlay: "showOpticsPrimer", visible: false });
-                setPrimerLevel("simple");
-              }}
-              theme={t}
-              maxWidth={isWide ? 640 : 480}
-            >
+            <OverlayModal onClose={closeOpticsPrimer} theme={t} maxWidth={isWide ? 640 : 480}>
               <DescriptionPanel
                 markdown={primerLevel === "simple" ? OPTICS_PRIMER_SIMPLE_MD : OPTICS_PRIMER_INTERMEDIATE_MD}
                 theme={t}
               />
               <div style={{ padding: "0 24px 20px", textAlign: "center" }}>
                 <button
-                  onClick={() => setPrimerLevel(primerLevel === "simple" ? "intermediate" : "simple")}
+                  onClick={togglePrimerLevel}
                   style={{
                     background: "none",
                     border: "none",
