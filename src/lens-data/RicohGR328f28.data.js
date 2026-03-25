@@ -26,6 +26,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gr3-28f28",
+  maker: "Ricoh",
   name: "RICOH GR III  18.3mm f/2.8",
   subtitle: "US 2019/0154946 A1, Example 5 — Ohashi / Ricoh",
   specs: [

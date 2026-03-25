@@ -21,6 +21,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-z-mc-105f28",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z MC 105mm f/2.8 VR S",
   subtitle: "WO 2022/097401 A1 EXAMPLE 1 — NIKON / KURIBAYASHI",
   specs: ["16 ELEMENTS / 11 GROUPS", "f ≈ 102.9 mm", "F/2.89", "2ω ≈ 24.1°", "1 ASPHERICAL SURFACE"],

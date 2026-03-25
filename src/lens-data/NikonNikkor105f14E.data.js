@@ -19,6 +19,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-105-f14e-ed",
+  maker: "Nikon",
   name: "NIKON AF-S NIKKOR 105mm f/1.4E ED",
   subtitle: "WO2019/116563 A1 Example 3 — Nikon / Yamashita, Ito et al.",
   specs: ["14 ELEMENTS / 9 GROUPS", "f ≈ 102.1 mm", "F/1.45", "2ω ≈ 23.8°", "ALL SPHERICAL"],

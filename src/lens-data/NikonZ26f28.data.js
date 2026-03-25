@@ -26,6 +26,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-z-26f28",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 26mm f/2.8",
   subtitle: "WO 2023/190222 A1 Example 1 — NIKON / MAKIDA",
   specs: ["8 ELEMENTS / 4 GROUPS", "f = 26.78 mm", "F/2.8", "2ω ≈ 80.6°", "4 ASPHERICAL SURFACES"],

@@ -27,6 +27,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-z-85f18s",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 85mm f/1.8 S",
   subtitle: "JP2020-173366A EXAMPLE 3 — KONICA MINOLTA / NIKON",
   specs: [

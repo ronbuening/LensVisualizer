@@ -19,6 +19,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-z-135f18-plena",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 135mm f/1.8 S Plena",
   subtitle: "WO 2024/147268 A1 Example 1 — NIKON / MURATANI",
   specs: ["16 ELEMENTS / 14 GROUPS", "f ≈ 132.3 mm", "F/1.85", "2ω ≈ 18.6°", "1 ASPHERICAL SURFACE"],

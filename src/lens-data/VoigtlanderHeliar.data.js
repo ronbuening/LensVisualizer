@@ -33,6 +33,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "heliar-symmetric-1902",
+  maker: "Voigtländer",
   name: "VOIGTLÄNDER HELIAR (Symmetric) f/4",
   subtitle: "US 716,035 — Harting / Voigtländer & Sohn AG (1902)",
   visible: true,

@@ -18,6 +18,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-85f14d",
+  maker: "Nikon",
   name: "NIKON AF NIKKOR 85mm f/1.4D IF",
   subtitle: "US 5,640,277 Example 2 — Nikon / Koichi Ohshita",
   specs: ["9 ELEMENTS / 8 GROUPS", "f = 85.0 mm", "F/1.4", "2ω = 28°30'", "ALL SPHERICAL"],

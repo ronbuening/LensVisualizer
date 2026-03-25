@@ -25,6 +25,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-z-70-200f28",
+  maker: "Nikon",
   name: "NIKON NIKKOR Z 70-200mm f/2.8 VR S",
   subtitle: "WO2020/105104 EXAMPLE 1 — NIKON / KEN UEHARA",
   specs: ["21 ELEMENTS / 18 GROUPS", "f = 71.5–196 mm", "F/2.88", "2ω = 33.8°–12.3°", "2 ASPHERICAL SURFACES"],

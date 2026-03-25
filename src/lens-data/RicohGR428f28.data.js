@@ -27,6 +27,7 @@
 const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gr4-28f28",
+  maker: "Ricoh",
   name: "RICOH GR IV 18.3mm f/2.8",
   subtitle: "JP2025-069516A EXAMPLE 2 — RICOH / NAKAYAMA",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 18.35 mm", "F/2.89", "2ω ≈ 76.0°", "5 ASPHERICAL SURFACES (3 ELEMENTS)"],
