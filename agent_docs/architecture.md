@@ -2,6 +2,21 @@
 
 ## Module Organization
 
+### Pages & Routing
+
+| Module | Location | Purpose |
+|--------|----------|---------|
+| `router.tsx` | `src/` | React Router route definitions (createBrowserRouter) |
+| `entry-server.tsx` | `src/` | SSR render function for static prerendering |
+| `HomePage.tsx` | `src/pages/` | Interactive LensViewer; handles legacy `?lens=KEY` → `/lens/KEY` redirects |
+| `LensPage.tsx` | `src/pages/` | Individual lens page at `/lens/:slug` with SEO content + interactive visualizer |
+| `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`, grouped by maker |
+| `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker's lenses |
+| `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists all makers with lens counts |
+| `NotFoundPage.tsx` | `src/pages/` | 404 catch-all with navigation links |
+
+### Layout Components
+
 | Module | Location | Purpose |
 |--------|----------|---------|
 | `LensViewer.tsx` | `src/components/layout/` | Orchestration: state management, context provision, layout composition |
@@ -13,6 +28,13 @@
 | `LensDiagramPanel.tsx` | `src/components/layout/` | Diagram composition: wires hooks + sub-components |
 | `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling |
 | `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
+| `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
+| `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
+
+### Hooks
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `useLensComputation.ts` | `src/components/hooks/` | Hook: lens building, layout, transforms, shapes, aperture |
 | `useRayTracing.ts` | `src/components/hooks/` | Hook: orchestrates on-axis, off-axis, chromatic ray sub-hooks |
 | `useOnAxisRays.ts` | `src/components/hooks/` | Hook: on-axis ray fan computation |
@@ -20,29 +42,68 @@
 | `useChromaticRays.ts` | `src/components/hooks/` | Hook: chromatic tracing + spread computation |
 | `useFlashOverlay.ts` | `src/components/hooks/` | Hook: flash animation state machine for sticky slider feedback |
 | `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
+
+### Controls
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `DiagramHeader.tsx` | `src/components/controls/` | Header: title, specs, composes RayToggles + ChromaticControls |
 | `RayToggles.tsx` | `src/components/controls/` | On-axis/off-axis toggle buttons with cycling logic |
 | `ChromaticControls.tsx` | `src/components/controls/` | COLOR master toggle + R/G/B channel buttons |
 | `DiagramControls.tsx` | `src/components/controls/` | Zoom, focus, aperture sliders (composes SliderControl) |
 | `SliderControl.tsx` | `src/components/controls/` | Reusable slider with label, endpoints, collapsible content |
+| `LensSelector.tsx` | `src/components/controls/` | Custom dropdown with portal-based rendering, viewport-aware positioning, keyboard escape |
+
+### Diagram (SVG)
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget |
 | `RayPolylines.tsx` | `src/components/diagram/` | Consolidated ray segment polyline rendering |
 | `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label |
 | `ElementAnnotations.tsx` | `src/components/diagram/` | Element numbers, Abbe νd badges, group/doublet labels |
 | `LCAInsetWidget.tsx` | `src/components/diagram/` | Magnified LCA inset with auto-scaled wavelength offsets |
+| `LCAOverlayContent.tsx` | `src/components/diagram/` | Enlarged LCA visualization with description, rendered inside PanelOverlay |
+| `PetzvalOverlayContent.tsx` | `src/components/diagram/` | Enlarged Petzval sum visualization with description, rendered inside PanelOverlay |
+| `PetzvalSumBadge.tsx` | `src/components/diagram/` | SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) |
+
+### Display
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
+| `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
+
+### Utility Components
+
+| Module | Location | Purpose |
+|--------|----------|---------|
+| `ClientOnly.tsx` | `src/components/` | SSR-safe wrapper that renders children only after hydration |
+| `SEOHead.tsx` | `src/components/` | Per-page meta tags (title, OG, Twitter Card, JSON-LD) via react-helmet-async |
 | `ErrorBoundary.tsx` | `src/components/errors/` | Error boundary + reusable ErrorDisplay |
 | `PanelErrorBoundary.tsx` | `src/components/errors/` | Panel-level error boundary, resets on lens change |
+
+### Optics Engine
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `optics.ts` | `src/optics/` | Ray tracing, sag curves, chromatic, layout geometry |
 | `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation |
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
+| `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
+
+### Utilities
+
+| Module | Location | Purpose |
+|--------|----------|---------|
 | `themes.ts` | `src/utils/` | Theme factory + 4 theme definitions |
 | `styles.ts` | `src/utils/` | Shared style-object factories and static constants for reusable UI patterns |
 | `lensCatalog.ts` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
+| `lensMetadata.ts` | `src/utils/` | SEO metadata: maker extraction, page titles/descriptions, canonical URLs, JSON-LD |
 | `comparisonSliders.ts` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
 | `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing + slider state persistence |
 | `featureFlags.ts` | `src/utils/` | Feature flag controls |
@@ -56,11 +117,25 @@
 | `useStickySliders.ts` | `src/utils/` | Hook: comparison slider sticky state machine |
 | `LensContext.ts` | `src/utils/` | React Context: LensStateContext + LensDispatchContext |
 
+## Routing & SSR
+
+The app uses React Router 7 with client-side routing and static prerendering for SEO:
+
+- **`router.tsx`** — Defines 6 routes: `/` (HomePage), `/lenses` (LensIndexPage), `/lens/:slug` (LensPage), `/makers` (MakersIndexPage), `/makers/:maker` (MakerPage), `*` (NotFoundPage)
+- **`entry-server.tsx`** — Exports `render(url): { html, helmet }` using `StaticRouter` + `react-helmet-async` for `scripts/prerender.mjs` to generate static HTML
+- **`main.tsx`** — Client entry: mounts `RouterProvider` with the browser router
+- **`ClientOnly.tsx`** — Wraps components that must not render during SSR (e.g., the interactive visualizer). Renders `null` until after hydration via `useEffect` mount detection.
+- **`SEOHead.tsx`** — Sets per-page `<title>`, `<meta>`, Open Graph, Twitter Card, canonical URL, and JSON-LD structured data via react-helmet-async
+- **`lensMetadata.ts`** — Pure functions for SEO: `deriveMaker()` extracts maker info from lens names, `lensPageTitle()` / `lensPageDescription()` / `lensCanonicalURL()` / `lensJsonLd()` generate page metadata. Defines `MAKER_PREFIXES` mapping and `SITE_NAME` / `SITE_URL` constants.
+
+**Page flow:** `HomePage` renders the interactive `LensViewer` (handles legacy `?lens=KEY` redirects). `LensPage` renders SEO-friendly static content (specs, element table, analysis markdown) plus a `ClientOnly`-wrapped interactive visualizer. Index pages (`LensIndexPage`, `MakersIndexPage`, `MakerPage`) provide crawlable navigation.
+
 ## LensViewer.tsx — Orchestration Layer
 
 The main component owns state management, context provision, and layout composition. All UI rendering is delegated to child components:
 
-- **`TopBar`** — Lens selectors, compare button, about buttons. Receives named callbacks (no reducer knowledge).
+- **`BreadcrumbBar`** — Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) rendered above TopBar on lens pages using react-router Links.
+- **`TopBar`** — Lens selectors, compare button, about buttons. Receives named callbacks (no reducer knowledge). Uses `LensSelector` (portal-based custom dropdown with viewport-aware positioning and keyboard escape).
 - **`ControlsBar`** — Theme/ray/chromatic/scale toggles. Unified component with `compact` prop (full labels for comparison mode, condensed for mobile). `showScaleMode` controls whether the scale mode toggle is rendered.
 - **`ViewToggleBar`** — Generic view-mode toggle. Used for both mobile (DIAGRAM/ANALYSIS) and desktop (DIAGRAM/BOTH/ANALYSIS) switching.
 - **`ComparisonLayout`** — Renders two `LensDiagramPanel` instances side-by-side (desktop) or stacked (mobile) with dividers.
@@ -98,10 +173,15 @@ Sub-components:
   - **`ApertureStop.tsx`** — Aperture stop blades + STO label
   - **`ElementAnnotations.tsx`** — Element number labels, Abbe νd badges, group/doublet labels
   - **`LCAInsetWidget.tsx`** — Magnified LCA inset with auto-scaled wavelength offsets (clamped at 5000×)
+  - **`LCAOverlayContent.tsx`** — Enlarged LCA visualization with description, rendered inside PanelOverlay on click
+  - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
+- **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
+- **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
+- **`AbbeDiagram.tsx`** (`src/components/display/`) — Abbe glass map plotting each element on standard Vd × Nd axes with grid, scaling, and element labels
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
@@ -122,6 +202,13 @@ Pure functions for optical calculations and SVG layout:
 - **Constants:** `FLAT_R_THRESHOLD`, `FOCUS_INFINITY_THRESHOLD`, `SVG_PATH_SUBDIVISIONS`
 
 All trace/layout functions accept a `zoomT` parameter (default `0`). For prime lenses, `zoomT` has no effect.
+
+No React dependencies — fully testable in isolation.
+
+## lcaScaling.ts
+
+Pure-function LCA scaling for consistent magnification across different lenses:
+- **`computeLcaBarOffsets(spread, effectiveSC)`** — Computes pixel offsets for LCA wavelength bars using a fixed reference (`REFERENCE_LCA_MM = 0.15 mm`) rather than auto-scaling per lens. This ensures visual consistency: the same physical LCA always produces the same visual offset.
 
 No React dependencies — fully testable in isolation.
 
@@ -156,7 +243,7 @@ Supporting files:
 
 Type definitions are centralized in `src/types/`:
 - **`optics.ts`** — `SurfaceData`, `ElementData`, `AsphericCoefficients`, `LensData`, `RuntimeLens`, `RayTraceResult`, `ParaxialTraceResult`, `LayoutResult`, `ChromaticChannel`, `ChromaticSpread`, `CoordinateTransforms`, `ElementShape`
-- **`state.ts`** — `LensState` (7 slices), `LensAction` (discriminated union with ~20 variants), `Preferences`, `URLState`, field-string unions (`RayField`, `PanelField`, `OverlayField`)
+- **`state.ts`** — `LensState` (7 slices including `SharedSlidersSlice`), `LensAction` (discriminated union with ~20 variants), `Preferences`, `URLState`, field-string unions (`RayField`, `PanelField`, `OverlayField`)
 - **`theme.ts`** — `ThemeColorTokens`, `ThemeInternalTokens`, `Theme` (tokens + closure functions), `ThemeVariant`
 - **`index.ts`** — Barrel re-exports from all three
 

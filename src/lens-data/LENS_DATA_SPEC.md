@@ -27,7 +27,7 @@ File naming: `lens-data/*.data.js` (glob pattern used for auto-discovery).
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
 
-### Required but have defaults (from `defaults.js`)
+### Required but have defaults (from `defaults.ts`)
 
 These are merged automatically. Override only when needed.
 
