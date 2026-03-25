@@ -251,18 +251,18 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── Gr1: Front group (fixed) ──
-    { label: "1", R: 70.017, d: 2.5, nd: 1.68893, elemId: 1, sd: 35.5 }, // L11 front
-    { label: "2", R: 29.64, d: 10.58, nd: 1.0, elemId: 0, sd: 33.0 }, // L11 rear → air
+    { label: "1", R: 70.017, d: 2.5, nd: 1.68893, elemId: 1, sd: 30.0 }, // L11 front
+    { label: "2", R: 29.64, d: 10.58, nd: 1.0, elemId: 0, sd: 25.0 }, // L11 rear → air (sd<0.9×R to avoid TIR)
     { label: "3", R: 94.105, d: 2.4, nd: 1.713, elemId: 2, sd: 29.5 }, // L12 glass front
-    { label: "4", R: 31.773, d: 0.05, nd: 1.5138, elemId: 3, sd: 29.0 }, // L12 glass→resin junction
-    { label: "5A", R: 27.197, d: 9.49, nd: 1.0, elemId: 0, sd: 29.0 }, // L12 resin rear → air (asph)
-    { label: "6", R: 164.736, d: 4.94, nd: 1.84666, elemId: 4, sd: 29.0 }, // L13 front
-    { label: "7", R: -131.025, d: 4.85, nd: 1.0, elemId: 0, sd: 28.5 }, // L13 rear → air
+    { label: "4", R: 31.773, d: 0.05, nd: 1.5138, elemId: 3, sd: 26.0 }, // L12 glass→resin junction
+    { label: "5A", R: 27.197, d: 9.49, nd: 1.0, elemId: 0, sd: 21.0 }, // L12 resin rear → air (asph; sd<0.9×R)
+    { label: "6", R: 164.736, d: 4.94, nd: 1.84666, elemId: 4, sd: 25.5 }, // L13 front
+    { label: "7", R: -131.025, d: 4.85, nd: 1.0, elemId: 0, sd: 25.5 }, // L13 rear → air
     { label: "8", R: -46.832, d: 2.15, nd: 1.56883, elemId: 5, sd: 27.5 }, // L14 front (LS doublet)
     { label: "9", R: 134.737, d: 4.17, nd: 1.883, elemId: 6, sd: 27.5 }, // L14→L15 cemented junction
     { label: "10", R: -366.912, d: 3.03, nd: 1.0, elemId: 0, sd: 28.0 }, // L15 rear → air
-    { label: "11", R: 70.316, d: 7.09, nd: 1.7725, elemId: 7, sd: 28.0 }, // L16 front
-    { label: "12", R: -99.338, d: 7.7, nd: 1.0, elemId: 0, sd: 26.5 }, // L16 rear → air [VARIABLE: Gr1→Gr2]
+    { label: "11", R: 70.316, d: 7.09, nd: 1.7725, elemId: 7, sd: 23.0 }, // L16 front
+    { label: "12", R: -99.338, d: 7.7, nd: 1.0, elemId: 0, sd: 22.0 }, // L16 rear → air [VARIABLE: Gr1→Gr2]
 
     // ── Gr2: Rear group (focusing, moves as unit toward object) ──
     { label: "13", R: 55.349, d: 4.2, nd: 1.72916, elemId: 8, sd: 24.0 }, // L21 front
