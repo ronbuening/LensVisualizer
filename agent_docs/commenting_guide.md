@@ -191,4 +191,4 @@ When commenting an existing file:
 4. Add **inline comments** for non-obvious logic, formulas, and domain knowledge
 5. Remove any **stale or misleading** comments
 6. Verify **no functional code** was changed — comments only
-7. Run `npm run test` to confirm syntax is intact
+7. Run `npm run typecheck && npm run format:check && npm run test` to confirm no type errors, formatting issues, or broken tests

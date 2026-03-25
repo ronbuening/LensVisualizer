@@ -102,9 +102,10 @@ Read the relevant file before starting work on that area:
 
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
+- **`agent_docs/code_conventions.md`** — Naming, TypeScript, formatting, and architecture constraints
+- **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 - **`src/lens-data/LENS_DATA_SPEC.md`** — Complete lens data format specification
 - **`src/lens-data/TEMPLATE.data.ts.template`** — Annotated template with SD guidelines
-- **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 
 ## Key Design Patterns
 
@@ -125,31 +126,30 @@ Read the relevant file before starting work on that area:
 1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
 2. Fill in the lens data following the template's field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
-4. Run `npm run typecheck && npm run test` to verify types and validation pass
+4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
 
 See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conventions, and SD troubleshooting.
 
 ## Testing
 
-Run `npm run test`. Tests in `__tests__/` (31 test files) cover the optics engine, lens building, validation, catalog loading, comparison sliders, URL parsing, themes, styles, state management (reducer, preferences, URL sync, sticky sliders), zoom optics helpers, error reporting, diagram geometry, LCA scaling, lens metadata, media queries, feature flags, and extracted UI component module contracts. Full DOM-based component rendering is not tested. Run `npm run test:coverage` for a v8 coverage report (coverage scope is `src/optics/**` and `src/utils/**`).
-
-Test files are TypeScript (`.ts`) and included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`. Intentionally partial mock objects use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal. Lens data files (`.data.ts`) are type-checked by tsc directly — each file uses `satisfies LensDataInput` for compile-time validation.
+Run `npm run test`. Tests in `__tests__/` cover the optics engine, lens building, validation, catalog loading, and all utils. Full DOM-based component rendering is not tested. Test files are TypeScript (`.ts`), type-checked by tsc alongside `src/` — use `as unknown as RuntimeLens` for intentionally partial mock objects. Run `npm run test:coverage` for a v8 coverage report.
 
 ## Code Conventions
 
-- **camelCase** for functions and variables (`buildLens`, `traceRay`, `focusT`)
-- **Short math variables** in optics code: `y`, `u`, `n`, `R`, `K` (standard optics notation)
-- **UPPER_CASE** for catalog-level constants and exported constants
-- **No comments on obvious code** — see `agent_docs/commenting_guide.md` for full commenting standards
-- **Monospace font stack** for UI: `'JetBrains Mono','SF Mono','Fira Code'`
-- **Theme color tokens** prefixed with `_` are internal to the `createTheme()` factory
-- **Pure-function modules** (`optics.ts`, `buildLens.ts`, `validateLensData.ts`, `diagramGeometry.ts`, `lcaScaling.ts`) have no React dependencies
-- **Type definitions** centralized in `src/types/` — `optics.ts` (RuntimeLens, LensData, etc.), `state.ts` (LensState, LensAction), `theme.ts` (Theme, ThemeColorTokens)
-- **Props interfaces** defined at the top of each `.tsx` component file
-- **`import type`** for type-only imports to keep runtime bundles clean
-- **ESLint 9 + Prettier + TypeScript** enforce code quality — run `npm run lint`, `npm run format:check`, and `npm run typecheck`
-- **Double quotes** for strings, **120-char** print width (enforced by Prettier)
-- **Prefix unused parameters with `_`** (`_e`, `_info`) to satisfy `no-unused-vars`
+See `agent_docs/code_conventions.md` for full standards. Critical non-defaults: **double quotes**, **120-char** print width, **`import type`** for type-only imports, **`_`-prefixed unused params**, inline styles only (no CSS files).
+
+## Pre-Commit Checklist
+
+Before every commit and before opening a PR, all of the following must pass:
+
+```bash
+npm run typecheck     # Zero TypeScript errors
+npm run format:check  # Prettier formatting passes (run npm run format to fix)
+npm run lint          # ESLint passes (run npm run lint:fix to auto-fix)
+npm run test          # All tests pass
+```
+
+CI enforces the same checks via `.github/workflows/quality.yml` — failing them blocks deploy.
 
 ## Gotchas
 
