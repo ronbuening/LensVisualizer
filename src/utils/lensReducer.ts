@@ -66,9 +66,9 @@ export function createInitialState(
 
   return {
     lens: {
-      lensKeyA: urlState.singleLens || urlState.lensKeyA || prefs.lensKeyA || catalogKeys[0],
-      lensKeyB: urlState.lensKeyB || prefs.lensKeyB || catalogKeys[Math.min(1, catalogKeys.length - 1)],
-      comparing: urlState.comparing || prefs.comparing || false,
+      lensKeyA: urlState.singleLens || urlState.lensKeyA || catalogKeys[0],
+      lensKeyB: urlState.lensKeyB || catalogKeys[Math.min(1, catalogKeys.length - 1)],
+      comparing: urlState.comparing || false,
       scaleMode: prefs.scaleMode || "independent",
     },
     display: {

@@ -48,7 +48,7 @@ describe("createInitialState", () => {
   });
 
   it("URL params override prefs", () => {
-    const prefs = { lensKeyA: "canon_50", comparing: false };
+    const prefs = {};
     const urlState = { singleLens: "zeiss_35", focus: 0.5, aperture: 0.3 };
     const state = createInitialState(prefs, urlState, true, CATALOG_KEYS);
     expect(state.lens.lensKeyA).toBe("zeiss_35");

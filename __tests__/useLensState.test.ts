@@ -89,11 +89,12 @@ describe("useLensState — URL params override defaults", () => {
 /* ── Preferences initialization ── */
 
 describe("useLensState — localStorage prefs override defaults", () => {
-  it("uses saved lensKeyA from prefs", () => {
+  it("ignores saved lensKeyA from prefs (lens selection is URL-only)", () => {
     const targetKey = CATALOG_KEYS[Math.min(2, CATALOG_KEYS.length - 1)];
     localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, lensKeyA: targetKey }));
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].lens.lensKeyA).toBe(targetKey);
+    // lensKeyA should be the catalog default, not the saved key
+    expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
   });
 
   it("applies dark=true from prefs", () => {
@@ -108,17 +109,10 @@ describe("useLensState — localStorage prefs override defaults", () => {
     expect(result.current[0].display.dark).toBe(false);
   });
 
-  it("applies comparing=true from prefs", () => {
+  it("ignores comparing from prefs (comparison is URL-only)", () => {
     localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, comparing: true }));
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    expect(result.current[0].lens.comparing).toBe(true);
-  });
-
-  it("ignores saved lensKeyA that is not in catalog", () => {
-    localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, lensKeyA: "deleted_lens_xyz" }));
-    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    // Falls back to catalog default
-    expect(CATALOG_KEYS).toContain(result.current[0].lens.lensKeyA);
+    expect(result.current[0].lens.comparing).toBe(false);
   });
 
   it("ignores corrupted prefs JSON and uses defaults", () => {
@@ -131,10 +125,8 @@ describe("useLensState — localStorage prefs override defaults", () => {
 /* ── URL > prefs precedence ── */
 
 describe("useLensState — URL params take precedence over prefs", () => {
-  it("URL ?lens= overrides saved lensKeyA in prefs", () => {
-    const prefKey = CATALOG_KEYS[1];
+  it("URL ?lens= sets lensKeyA (prefs no longer store lens selection)", () => {
     const urlKey = CATALOG_KEYS[2] ?? CATALOG_KEYS[0];
-    localStorage.setItem(PREFS_KEY, JSON.stringify({ v: 2, lensKeyA: prefKey }));
     window.history.replaceState({}, "", `?lens=${urlKey}`);
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     expect(result.current[0].lens.lensKeyA).toBe(urlKey);

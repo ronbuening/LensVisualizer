@@ -1,8 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { loadPrefs, PREFS_KEY } from "../src/utils/preferences.js";
 
-const KEYS = ["nikon_58", "canon_50"];
-
 /* Minimal localStorage mock */
 let store: Record<string, string> = {};
 const mockLocalStorage = {
@@ -36,22 +34,22 @@ describe("PREFS_KEY", () => {
 
 describe("loadPrefs", () => {
   it("returns empty object when nothing stored", () => {
-    expect(loadPrefs(KEYS)).toEqual({});
+    expect(loadPrefs()).toEqual({});
   });
 
   it("returns empty object for non-JSON data", () => {
     mockLocalStorage.setItem(PREFS_KEY, "not json");
-    expect(loadPrefs(KEYS)).toEqual({});
+    expect(loadPrefs()).toEqual({});
   });
 
   it("returns empty object for JSON null", () => {
     mockLocalStorage.setItem(PREFS_KEY, "null");
-    expect(loadPrefs(KEYS)).toEqual({});
+    expect(loadPrefs()).toEqual({});
   });
 
   it("returns empty object for JSON array", () => {
     mockLocalStorage.setItem(PREFS_KEY, "[1,2,3]");
-    expect(loadPrefs(KEYS)).toEqual({});
+    expect(loadPrefs()).toEqual({});
   });
 
   it("loads boolean preferences", () => {
@@ -69,7 +67,7 @@ describe("loadPrefs", () => {
         chromB: true,
       }),
     );
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs();
     expect(prefs.dark).toBe(true);
     expect(prefs.highContrast).toBe(false);
     expect(prefs.showOnAxis).toBe(true);
@@ -90,7 +88,7 @@ describe("loadPrefs", () => {
         showOnAxis: null,
       }),
     );
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs();
     expect(prefs.dark).toBeUndefined();
     expect(prefs.highContrast).toBeUndefined();
     expect(prefs.showOnAxis).toBeUndefined();
@@ -106,7 +104,7 @@ describe("loadPrefs", () => {
         legendExpanded: false,
       }),
     );
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs();
     expect(prefs.focusExpanded).toBe(true);
     expect(prefs.apertureExpanded).toBe(false);
     expect(prefs.headerControlsExpanded).toBe(true);
@@ -123,65 +121,35 @@ describe("loadPrefs", () => {
         legendExpanded: "true",
       }),
     );
-    const prefs = loadPrefs(KEYS);
+    const prefs = loadPrefs();
     expect(prefs.focusExpanded).toBeUndefined();
     expect(prefs.apertureExpanded).toBeUndefined();
     expect(prefs.headerControlsExpanded).toBeUndefined();
     expect(prefs.legendExpanded).toBeUndefined();
   });
 
-  it("validates lensKeyA against catalog keys", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKeyA: "nikon_58" }));
-    expect(loadPrefs(KEYS).lensKeyA).toBe("nikon_58");
-  });
-
-  it("rejects lensKeyA not in catalog", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKeyA: "unknown_lens" }));
-    expect(loadPrefs(KEYS).lensKeyA).toBeUndefined();
-  });
-
-  it("migrates v1 lensKey to lensKeyA", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKey: "canon_50" }));
-    const prefs = loadPrefs(KEYS) as Record<string, unknown>;
-    expect(prefs.lensKeyA).toBe("canon_50");
-    expect(prefs.lensKey).toBeUndefined();
-  });
-
-  it("prefers lensKeyA over v1 lensKey", () => {
+  it("no longer restores lens selection from localStorage", () => {
     mockLocalStorage.setItem(
       PREFS_KEY,
-      JSON.stringify({
-        lensKey: "canon_50",
-        lensKeyA: "nikon_58",
-      }),
+      JSON.stringify({ lensKeyA: "nikon_58", lensKeyB: "canon_50", comparing: true }),
     );
-    expect(loadPrefs(KEYS).lensKeyA).toBe("nikon_58");
-  });
-
-  it("validates lensKeyB against catalog keys", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKeyB: "canon_50" }));
-    expect(loadPrefs(KEYS).lensKeyB).toBe("canon_50");
-
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ lensKeyB: "bad_key" }));
-    expect(loadPrefs(KEYS).lensKeyB).toBeUndefined();
-  });
-
-  it("loads comparing boolean", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ comparing: true }));
-    expect(loadPrefs(KEYS).comparing).toBe(true);
+    const prefs = loadPrefs() as Record<string, unknown>;
+    expect(prefs.lensKeyA).toBeUndefined();
+    expect(prefs.lensKeyB).toBeUndefined();
+    expect(prefs.comparing).toBeUndefined();
   });
 
   it("loads valid scaleMode values", () => {
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ scaleMode: "independent" }));
-    expect(loadPrefs(KEYS).scaleMode).toBe("independent");
+    expect(loadPrefs().scaleMode).toBe("independent");
 
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ scaleMode: "normalized" }));
-    expect(loadPrefs(KEYS).scaleMode).toBe("normalized");
+    expect(loadPrefs().scaleMode).toBe("normalized");
   });
 
   it("rejects invalid scaleMode values", () => {
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ scaleMode: "bogus" }));
-    expect(loadPrefs(KEYS).scaleMode).toBeUndefined();
+    expect(loadPrefs().scaleMode).toBeUndefined();
   });
 
   it("strips unknown properties", () => {
@@ -193,7 +161,7 @@ describe("loadPrefs", () => {
         hacky: 42,
       }),
     );
-    const prefs = loadPrefs(KEYS) as Record<string, unknown>;
+    const prefs = loadPrefs() as Record<string, unknown>;
     expect(prefs.dark).toBe(true);
     expect(prefs.unknownProp).toBeUndefined();
     expect(prefs.hacky).toBeUndefined();
