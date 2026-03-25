@@ -30,6 +30,7 @@ jobs:
         with:
           # Check out the exact commit that passed quality checks, not just HEAD.
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20.19.0"

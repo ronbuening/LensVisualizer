@@ -3,6 +3,9 @@
 # Claude Code
 .claude/
 
+# Generated build metadata
+src/generated/
+
 # Dependencies
 node_modules/
 npm-debug.log*

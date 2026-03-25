@@ -1,3 +1,10 @@
+---
+slug: optics-primer
+title: How Camera Lenses Work
+summary: A gentle introduction to refraction, focal length, and how multiple glass elements combine to form an image.
+tag: guide
+---
+
 # Optics Primer — A Conceptual Introduction
 
 Every camera lens is a carefully arranged sequence of glass pieces — called **elements** — that work together to bend light from a scene onto a flat sensor or film plane. When you look at a cross-section diagram like the ones on this site, each filled shape represents one of these elements. The shapes are not arbitrary: their curves correspond to the actual curvature of each glass surface, derived from optical patent data. Light enters from the left, passes through each element in turn, and converges at the **image plane** (labeled **IMG**) on the right.

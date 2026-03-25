@@ -1,18 +1,18 @@
 /**
- * RecentLenses — section showing recently added lens announcements.
+ * RecentLenses — section showing recently added lenses.
  *
- * Each announcement references a lens catalog key; name and specs
- * are derived from the catalog automatically. Entries with invalid
- * keys are silently skipped.
+ * Entries are auto-generated from git history at build time.
+ * Name and specs are derived from the catalog automatically.
+ * Entries with invalid keys are silently skipped.
  */
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import type { LensAnnouncement } from "../../utils/homepageContent.js";
+import type { RecentLensEntry } from "../../utils/lensCatalog.js";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 
 interface RecentLensesProps {
-  announcements: LensAnnouncement[];
+  entries: RecentLensEntry[];
   theme: Theme;
 }
 
@@ -21,8 +21,8 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export default function RecentLenses({ announcements, theme: t }: RecentLensesProps) {
-  const valid = announcements.filter((a) => LENS_CATALOG[a.lensKey]);
+export default function RecentLenses({ entries, theme: t }: RecentLensesProps) {
+  const valid = entries.filter((e) => LENS_CATALOG[e.key]);
   if (valid.length === 0) return null;
 
   return (
@@ -39,12 +39,12 @@ export default function RecentLenses({ announcements, theme: t }: RecentLensesPr
       >
         Recently Added
       </h2>
-      {valid.map((a) => {
-        const lens = LENS_CATALOG[a.lensKey];
+      {valid.map((e) => {
+        const lens = LENS_CATALOG[e.key];
         return (
           <Link
-            key={a.lensKey}
-            to={`/lens/${a.lensKey}`}
+            key={e.key}
+            to={`/lens/${e.key}`}
             style={{
               display: "block",
               padding: "0.75rem 1rem",
@@ -57,13 +57,12 @@ export default function RecentLenses({ announcements, theme: t }: RecentLensesPr
             }}
           >
             <div style={{ fontSize: "0.875rem", fontWeight: 600, color: t.descLinkColor }}>{lens.name}</div>
-            <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDate(a.date)}</div>
+            <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDate(e.date)}</div>
             {lens.specs && lens.specs.length > 0 && (
               <div style={{ fontSize: "0.75rem", color: t.muted, marginBottom: "0.2rem" }}>
                 {lens.specs.slice(0, 3).join(" · ")}
               </div>
             )}
-            <div style={{ fontSize: "0.8rem", color: t.muted, lineHeight: 1.5 }}>{a.blurb}</div>
           </Link>
         );
       })}

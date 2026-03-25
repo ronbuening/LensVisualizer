@@ -1,22 +1,23 @@
 /**
- * Homepage content registry — articles, announcements, and article page content.
+ * Homepage content registry — articles and article page content.
+ *
+ * Articles are auto-discovered from src/content/*.md files with YAML
+ * frontmatter. Dates are derived from git history at build time via
+ * scripts/generate-build-metadata.mjs.
  *
  * Adding a new article:
- *   1. Add an entry to the ARTICLES array (newest first)
- *   2. If it has a standalone page, add an entry to ARTICLE_CONTENT
- *   3. The homepage shows the first HOMEPAGE_ARTICLE_LIMIT entries
- *
- * Adding a new lens announcement:
- *   1. Add an entry to the LENS_ANNOUNCEMENTS array (newest first)
- *   2. The lensKey must match a key in LENS_CATALOG
+ *   1. Create a markdown file in src/content/ with frontmatter:
+ *      ---
+ *      slug: my-article
+ *      title: My Article Title
+ *      summary: A short description for cards.
+ *      tag: guide
+ *      ---
+ *   2. Run `npm run generate:metadata` (or it runs automatically on build/dev)
+ *   3. The article will appear on the homepage and /articles page automatically
  */
 
-import opticsPrimer from "../content/OpticsPrimerSimple.md?raw";
-import opticsPrimerIntermediate from "../content/OpticsPrimerIntermediate.md?raw";
-import aberrationsPrimer from "../content/AberrationsPrimerSimple.md?raw";
-import aberrationsPrimerIntermediate from "../content/AberrationsPrimerIntermediate.md?raw";
-import aboutSite from "../content/AboutSite.md?raw";
-import aboutMe from "../content/AboutMe.md?raw";
+import buildMeta from "../generated/build-metadata.json";
 
 /* ── Types ─────────────────────────────────────────────────────────── */
 
@@ -35,15 +36,6 @@ export interface HomepageArticle {
   tag?: "article" | "announcement" | "guide";
 }
 
-export interface LensAnnouncement {
-  /** Lens catalog key — must exist in LENS_CATALOG */
-  lensKey: string;
-  /** ISO date string */
-  date: string;
-  /** Short announcement text */
-  blurb: string;
-}
-
 export interface ArticleContentEntry {
   title: string;
   description: string;
@@ -55,116 +47,53 @@ export interface ArticleContentEntry {
 /** Maximum articles shown on the homepage before "View all" link appears */
 export const HOMEPAGE_ARTICLE_LIMIT = 5;
 
+/* ── Auto-discovered markdown content ──────────────────────────────── */
+
+const _mdModules = import.meta.glob<string>("../content/*.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+
+/** Map filename → raw markdown content (with frontmatter stripped). */
+const MD_BY_FILE: Record<string, string> = {};
+for (const [path, raw] of Object.entries(_mdModules)) {
+  const file = path.replace("../content/", "");
+  // Strip YAML frontmatter before storing
+  MD_BY_FILE[file] = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+}
+
+/* ── Articles (auto-generated from build metadata) ─────────────────── */
+
+/**
+ * Articles ordered newest-first, built from generated metadata.
+ * The homepage shows the first HOMEPAGE_ARTICLE_LIMIT entries;
+ * the /articles page shows all.
+ */
+export const ARTICLES: HomepageArticle[] = buildMeta.articles
+  .filter((a) => MD_BY_FILE[a.file])
+  .map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    date: a.date,
+    summary: a.summary,
+    linkTo: `/articles/${a.slug}`,
+    tag: a.tag as HomepageArticle["tag"],
+  }));
+
 /* ── Article Content Registry ──────────────────────────────────────── */
 
 /**
  * Maps article slugs to their full page content.
  * Used by ArticlePage to render standalone article pages.
  */
-export const ARTICLE_CONTENT: Record<string, ArticleContentEntry> = {
-  "optics-primer": {
-    title: "How Camera Lenses Work",
-    description:
-      "A gentle introduction to refraction, focal length, and how multiple glass elements combine to form an image.",
-    markdown: opticsPrimer,
-  },
-  "optics-primer-intermediate": {
-    title: "Optics In More Detail",
-    description:
-      "A deeper look at optical design principles including Petzval sums, field curvature correction, and retrofocus designs.",
-    markdown: opticsPrimerIntermediate,
-  },
-  "aberrations-primer": {
-    title: "Understanding Aberrations",
-    description:
-      "An introduction to the optical aberrations that lens designers work to minimize — spherical, coma, astigmatism, and more.",
-    markdown: aberrationsPrimer,
-  },
-  "aberrations-primer-intermediate": {
-    title: "Aberrations In Depth",
-    description:
-      "Advanced aberration concepts including higher-order effects, balancing strategies, and how aspherical surfaces help.",
-    markdown: aberrationsPrimerIntermediate,
-  },
-  "about-site": {
-    title: "About Optical Bench",
-    description: "How this interactive lens visualization tool was built and what makes it unique.",
-    markdown: aboutSite,
-  },
-  "about-author": {
-    title: "About the Author",
-    description: "Meet the creator of Optical Bench — background in photography and optical engineering.",
-    markdown: aboutMe,
-  },
-};
-
-/* ── Articles ──────────────────────────────────────────────────────── */
-
-/**
- * Articles ordered newest-first. Add new entries at the top.
- * The homepage shows the first HOMEPAGE_ARTICLE_LIMIT entries;
- * the /articles page shows all.
- */
-export const ARTICLES: HomepageArticle[] = [
-  {
-    slug: "aberrations-primer-intermediate",
-    title: "Aberrations In Depth",
-    date: "2026-03-20",
-    summary:
-      "Advanced aberration concepts including higher-order effects, balancing strategies, and aspherical surfaces.",
-    linkTo: "/articles/aberrations-primer-intermediate",
-    tag: "guide",
-  },
-  {
-    slug: "aberrations-primer",
-    title: "Understanding Aberrations",
-    date: "2026-03-18",
-    summary:
-      "An introduction to the optical aberrations that lens designers work to minimize — spherical, coma, astigmatism, and more.",
-    linkTo: "/articles/aberrations-primer",
-    tag: "guide",
-  },
-  {
-    slug: "optics-primer-intermediate",
-    title: "Optics In More Detail",
-    date: "2026-03-15",
-    summary:
-      "A deeper look at optical design principles including Petzval sums, field curvature correction, and retrofocus designs.",
-    linkTo: "/articles/optics-primer-intermediate",
-    tag: "guide",
-  },
-  {
-    slug: "optics-primer",
-    title: "How Camera Lenses Work",
-    date: "2026-03-12",
-    summary:
-      "A gentle introduction to refraction, focal length, and how multiple glass elements combine to form an image.",
-    linkTo: "/articles/optics-primer",
-    tag: "guide",
-  },
-  {
-    slug: "about-site",
-    title: "About Optical Bench",
-    date: "2026-03-10",
-    summary: "How this interactive lens visualization tool was built and what makes it unique.",
-    linkTo: "/articles/about-site",
-    tag: "article",
-  },
-  {
-    slug: "about-author",
-    title: "About the Author",
-    date: "2026-03-08",
-    summary: "Meet the creator of Optical Bench — background in photography and optical engineering.",
-    linkTo: "/articles/about-author",
-    tag: "article",
-  },
-];
-
-/* ── Lens Announcements ────────────────────────────────────────────── */
-
-/**
- * Recent lens additions, newest-first.
- * Each references a CATALOG_KEYS entry — the homepage component
- * derives name/specs from the catalog automatically.
- */
-export const LENS_ANNOUNCEMENTS: LensAnnouncement[] = [];
+export const ARTICLE_CONTENT: Record<string, ArticleContentEntry> = {};
+for (const a of buildMeta.articles) {
+  const md = MD_BY_FILE[a.file];
+  if (!md) continue;
+  ARTICLE_CONTENT[a.slug] = {
+    title: a.title,
+    description: a.summary,
+    markdown: md,
+  };
+}

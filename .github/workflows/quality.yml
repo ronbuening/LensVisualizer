@@ -23,22 +23,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20.19.0"
           cache: npm
       - run: npm ci
+      - run: npm run generate:metadata
       - run: npm run typecheck
 
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20.19.0"
           cache: npm
       - run: npm ci
+      - run: npm run generate:metadata
       - run: npm run test
 
   audit:
@@ -57,6 +63,8 @@ jobs:
     needs: [lint-format, typecheck, test, audit]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: "20.19.0"

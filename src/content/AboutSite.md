@@ -1,3 +1,10 @@
+---
+slug: about-site
+title: About Optical Bench
+summary: How this interactive lens visualization tool was built and what makes it unique.
+tag: article
+---
+
 # About This Site
 
 LensVisualizer is an interactive tool for exploring the optical design of real camera lenses. Each lens displayed here is derived from a published optical patent — the same surface prescriptions, glass types, and element arrangements that define the physical lens.

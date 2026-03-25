@@ -1,3 +1,10 @@
+---
+slug: aberrations-primer
+title: Understanding Aberrations
+summary: An introduction to the optical aberrations that lens designers work to minimize — spherical, coma, astigmatism, and more.
+tag: guide
+---
+
 # Aberrations — A Conceptual Introduction
 
 A perfect lens would take every ray of light from a single point in the scene and bring them all together at exactly one point on the sensor, regardless of where that ray entered the lens or what color it was. Real lenses cannot do this. The residual failures — the ways in which rays miss their ideal meeting point — are called **aberrations**. Understanding them is the key to understanding why photographic lenses contain so many elements and why different designs render images differently.
