@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import buildLens, { paraxialTrace } from "../src/optics/buildLens.js";
+import buildLens, { paraxialTrace, realTraceToStop } from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData, SurfaceData } from "../src/types/optics.js";
 
@@ -494,5 +494,30 @@ describe("buildLens — zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
     expect(LP.zoomHalfFields).toBeNull();
     expect(LP.zoomYRatios).toBeNull();
     expect(LP.zoomBs).toBeNull();
+  });
+});
+
+describe("bladeStubFrac — aberration-aware blade position", () => {
+  it("blade inner edge >= real-traced outermost ray height at stop", () => {
+    const L = buildLens(Sonnar50f15);
+    const maxFrac = Math.max(...L.rayFractions.map(Math.abs));
+    const realY = realTraceToStop(L.S, L.asphByIdx, maxFrac * L.EP.epSD, 0, L.stopIdx);
+    const bladeInnerMM = L.stopPhysSD * (1 - L.bladeStubFrac);
+    expect(bladeInnerMM).toBeGreaterThanOrEqual(Math.abs(realY) - 1e-6);
+  });
+
+  it("Sonnar 50 f/1.5 bladeStubFrac differs from linear assumption", () => {
+    const L = buildLens(Sonnar50f15);
+    const maxFrac = Math.max(...L.rayFractions.map(Math.abs));
+    const linearStubFrac = 1 - maxFrac;
+    expect(L.bladeStubFrac).toBeLessThan(linearStubFrac);
+  });
+
+  it("bladeStubFrac is clamped to minimum 0.02", () => {
+    for (const data of [Sonnar50f15, Nokton, Nikkor105]) {
+      const L = buildLens(data);
+      expect(L.bladeStubFrac).toBeGreaterThanOrEqual(0.02);
+      expect(L.bladeStubFrac).toBeLessThan(1);
+    }
   });
 });
