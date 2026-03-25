@@ -5,7 +5,7 @@
 1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
 2. Fill in the lens data following the template's inline field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
-4. Run `npm run test` to verify validation passes
+4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
 5. Done — `import.meta.glob` auto-registers all `src/lens-data/*.data.ts` files
 
 No manual imports or catalog edits required.
