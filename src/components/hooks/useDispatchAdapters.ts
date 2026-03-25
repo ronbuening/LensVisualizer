@@ -35,6 +35,7 @@ export interface DispatchAdapters {
   onHeaderControlsExpandedChange: (v: boolean) => void;
   onLegendExpandedChange: (v: boolean) => void;
   onHeaderInfoExpandedChange: (v: boolean) => void;
+  onAbbeShowGlassTypeChange: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -66,6 +67,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v }),
       onHeaderInfoExpandedChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v }),
+      onAbbeShowGlassTypeChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "abbeShowGlassType", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );
