@@ -4,52 +4,40 @@
  * Orchestrates sub-components and custom hooks:
  *   useLensComputation  → lens building, layout, transforms, shapes, aperture
  *   useRayTracing       → on-axis, off-axis, chromatic ray fans
+ *   useDispatchAdapters → context dispatch callback wiring
+ *   useOverlayState     → Abbe/LCA/Petzval overlay open/close state
+ *   useHeaderHeight     → header ResizeObserver + height reporting
  *   useFlashOverlay     → flash animation state machine
  *   useSideLayoutDetection → overflow-based side layout switching
  *   DiagramHeader       → title, specs, theme/ray toggle controls
  *   DiagramSVG          → full SVG rendering of the optical system
- *   DiagramControls     → zoom, focus, aperture sliders
- *   ElementInspector    → selected element property display
- *   DiagramLegend       → legend with color swatches and ray descriptions
+ *   DiagramControlPanel → sliders, inspector, legend
  *   PanelErrorBoundary  → panel-level error boundary
  *
- * Owns only: hover/selection state, header height reporting, and the
- * structural layout that wires sub-components.
+ * Owns only: hover/selection state and the structural layout that
+ * wires sub-components.
  */
 
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useRayTracing from "../hooks/useRayTracing.js";
+import useDispatchAdapters from "../hooks/useDispatchAdapters.js";
+import useOverlayState from "../hooks/useOverlayState.js";
+import useHeaderHeight from "../hooks/useHeaderHeight.js";
 import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
-import DiagramControls from "../controls/DiagramControls.js";
-import ElementInspector from "../display/ElementInspector.js";
-import DiagramLegend from "../display/DiagramLegend.js";
 import DiagramSVG from "../diagram/DiagramSVG.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
+import DiagramControlPanel from "./DiagramControlPanel.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import PanelOverlay from "./PanelOverlay.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
-import {
-  ENABLE_DYNAMIC_DIAGRAM_HEIGHT,
-  ENABLE_COLLAPSIBLE_LEGEND,
-  ENABLE_LCA_OVERLAY,
-  ENABLE_PETZVAL_OVERLAY,
-} from "../../utils/featureFlags.js";
+import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_LCA_OVERLAY, ENABLE_PETZVAL_OVERLAY } from "../../utils/featureFlags.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
-import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
-import {
-  SET_FOCUS_T,
-  SET_ZOOM_T,
-  SET_STOPDOWN_T,
-  SET_RAY_TOGGLE,
-  SET_DARK,
-  SET_HIGH_CONTRAST,
-  SET_PANEL_EXPANDED,
-} from "../../utils/lensReducer.js";
+import { useLensCtx } from "../../utils/LensContext.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -85,8 +73,7 @@ export default function LensDiagramPanel({
   sideLayoutEnabled = false,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
-  const { state, theme: t, isWide, updateURLWithSliders } = useLensCtx();
-  const dispatch = useLensDispatch();
+  const { state, theme: t, isWide } = useLensCtx();
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const { dark, highContrast } = display;
@@ -97,61 +84,21 @@ export default function LensDiagramPanel({
   const zoomT = zoomTProp ?? sliders.zoomT;
   const stopdownT = stopdownTProp ?? sliders.stopdownT;
 
-  /* Callback adapters: dispatch actions instead of calling prop callbacks */
-  const onFocusChange = (v: number) => dispatch({ type: SET_FOCUS_T, value: v });
-  const onZoomChange = (v: number) => dispatch({ type: SET_ZOOM_T, value: v });
-  const onStopdownChange = (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v });
-  const onSliderPointerUp = updateURLWithSliders;
-  const onShowOnAxisChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v });
-  const onShowOffAxisChange = (v: string) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v });
-  const onRayTracksFChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v });
-  const onShowChromaticChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v });
-  const onChromRChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v });
-  const onChromGChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v });
-  const onChromBChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v });
-  const onShowPupilsChange = (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v });
-  const onDarkChange = (v: boolean) => dispatch({ type: SET_DARK, dark: v });
-  const onHighContrastChange = (v: boolean) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v });
-  const onFocusExpandedChange = (v: boolean) =>
-    dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v });
-  const onApertureExpandedChange = (v: boolean) =>
-    dispatch({ type: SET_PANEL_EXPANDED, panel: "apertureExpanded", expanded: v });
-  const onHeaderControlsExpandedChange = (v: boolean) =>
-    dispatch({ type: SET_PANEL_EXPANDED, panel: "headerControlsExpanded", expanded: v });
-  const onLegendExpandedChange = (v: boolean) =>
-    dispatch({ type: SET_PANEL_EXPANDED, panel: "legendExpanded", expanded: v });
-  const onHeaderInfoExpandedChange = (v: boolean) =>
-    dispatch({ type: SET_PANEL_EXPANDED, panel: "headerInfoExpanded", expanded: v });
+  /* ── Extracted hooks ── */
+  const adapters = useDispatchAdapters();
+  const overlays = useOverlayState(lensKey);
+  const { headerRef, headerHeight } = useHeaderHeight({ panelId, lensKey, onHeaderHeight });
+  const { flashKey, flashVisible, flashFading } = useFlashOverlay(flashOverlay);
+
+  /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
   const [sel, setSel] = useState<number | null>(null);
-  const [showAbbeDiagram, setShowAbbeDiagram] = useState(false);
-  const [showLcaOverlay, setShowLcaOverlay] = useState(false);
-  const [showPetzvalOverlay, setShowPetzvalOverlay] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHov(null);
     setSel(null);
-    setShowAbbeDiagram(false);
-    setShowLcaOverlay(false);
-    setShowPetzvalOverlay(false);
   }, [lensKey]);
-
-  /* ── Flash overlay animation ── */
-  const { flashKey, flashVisible, flashFading } = useFlashOverlay(flashOverlay);
-
-  /* ── Header height reporting for alignment ── */
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  useLayoutEffect(() => {
-    if (!onHeaderHeight || !headerRef.current) return;
-    const el = headerRef.current;
-    const report = () => onHeaderHeight(panelId, el.scrollHeight);
-    report();
-    if (typeof ResizeObserver === "undefined") return;
-    const ro = new ResizeObserver(report);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [onHeaderHeight, panelId, lensKey]);
 
   /* ── Side-panel overflow detection ── */
   const useSideLayout = useSideLayoutDetection({
@@ -184,6 +131,7 @@ export default function LensDiagramPanel({
 
   const act = L ? sel || hov : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
+
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
   const { rays, offAxisRays, chromaticRays, chromSpread } = useRayTracing({
     L,
@@ -229,28 +177,28 @@ export default function LensDiagramPanel({
             zoomT={zoomT}
             fNumber={fNumber}
             showOnAxis={showOnAxis}
-            onShowOnAxisChange={onShowOnAxisChange}
+            onShowOnAxisChange={adapters.onShowOnAxisChange}
             showOffAxis={showOffAxis}
-            onShowOffAxisChange={onShowOffAxisChange}
+            onShowOffAxisChange={adapters.onShowOffAxisChange}
             rayTracksF={rayTracksF}
-            onRayTracksFChange={onRayTracksFChange}
+            onRayTracksFChange={adapters.onRayTracksFChange}
             showChromatic={showChromatic}
-            onShowChromaticChange={onShowChromaticChange}
+            onShowChromaticChange={adapters.onShowChromaticChange}
             chromR={chromR}
             chromG={chromG}
             chromB={chromB}
-            onChromRChange={onChromRChange}
-            onChromGChange={onChromGChange}
-            onChromBChange={onChromBChange}
+            onChromRChange={adapters.onChromRChange}
+            onChromGChange={adapters.onChromGChange}
+            onChromBChange={adapters.onChromBChange}
             showPupils={showPupils}
-            onShowPupilsChange={onShowPupilsChange}
-            onDarkChange={onDarkChange}
-            onHighContrastChange={onHighContrastChange}
+            onShowPupilsChange={adapters.onShowPupilsChange}
+            onDarkChange={adapters.onDarkChange}
+            onHighContrastChange={adapters.onHighContrastChange}
             highContrast={highContrast}
             headerControlsExpanded={headerControlsExpanded}
-            onHeaderControlsExpandedChange={onHeaderControlsExpandedChange}
+            onHeaderControlsExpandedChange={adapters.onHeaderControlsExpandedChange}
             headerInfoExpanded={headerInfoExpanded}
-            onHeaderInfoExpandedChange={onHeaderInfoExpandedChange}
+            onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
             minHeaderHeight={minHeaderHeight}
           />
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
@@ -286,21 +234,21 @@ export default function LensDiagramPanel({
                 sel={sel}
                 maxSvgHeight={maxSvgHeight}
                 useSideLayout={useSideLayout}
-                headerHeight={headerRef.current?.offsetHeight || 80}
+                headerHeight={headerHeight}
                 compact={compact}
                 flashVisible={flashVisible}
                 flashKey={flashKey}
                 flashFading={flashFading}
-                onLcaInsetClick={ENABLE_LCA_OVERLAY ? () => setShowLcaOverlay(true) : undefined}
-                onPetzvalBadgeClick={ENABLE_PETZVAL_OVERLAY ? () => setShowPetzvalOverlay(true) : undefined}
+                onLcaInsetClick={ENABLE_LCA_OVERLAY ? overlays.openLcaOverlay : undefined}
+                onPetzvalBadgeClick={ENABLE_PETZVAL_OVERLAY ? overlays.openPetzvalOverlay : undefined}
               />
-              {ENABLE_LCA_OVERLAY && showLcaOverlay && showChromatic && chromSpread && (
-                <PanelOverlay onClose={() => setShowLcaOverlay(false)} theme={t}>
+              {ENABLE_LCA_OVERLAY && overlays.showLcaOverlay && showChromatic && chromSpread && (
+                <PanelOverlay onClose={overlays.closeLcaOverlay} theme={t}>
                   <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
                 </PanelOverlay>
               )}
-              {ENABLE_PETZVAL_OVERLAY && showPetzvalOverlay && L && (
-                <PanelOverlay onClose={() => setShowPetzvalOverlay(false)} theme={t}>
+              {ENABLE_PETZVAL_OVERLAY && overlays.showPetzvalOverlay && L && (
+                <PanelOverlay onClose={overlays.closePetzvalOverlay} theme={t}>
                   <PetzvalOverlayContent L={L} t={t} />
                 </PanelOverlay>
               )}
@@ -309,94 +257,49 @@ export default function LensDiagramPanel({
 
             {/* ── Control panel ── */}
             {showControls && (
-              <div
-                style={
-                  useSideLayout
-                    ? {
-                        flex: "0 0 340px",
-                        borderLeft: `1px solid ${t.panelBorder}`,
-                        overflowY: "auto",
-                        maxHeight: `calc(100vh - ${headerRef.current?.offsetHeight || 80}px - 20px)`,
-                        display: "flex",
-                        flexDirection: "column",
-                        background: t.panelBg,
-                        transition: "background 0.3s,border-color 0.3s",
-                      }
-                    : {
-                        display: "flex",
-                        borderTop: `1px solid ${t.panelBorder}`,
-                        background: t.panelBg,
-                        flexWrap: "wrap",
-                        transition: "background 0.3s,border-color 0.3s",
-                      }
-                }
-              >
-                <DiagramControls
-                  L={L}
-                  t={t}
-                  compact={compact}
-                  useSideLayout={useSideLayout}
-                  zoomT={zoomT}
-                  onZoomChange={onZoomChange}
-                  focusT={focusT}
-                  onFocusChange={onFocusChange}
-                  focusExpanded={focusExpanded}
-                  onFocusExpandedChange={onFocusExpandedChange}
-                  varReadouts={varReadouts}
-                  stopdownT={stopdownT}
-                  onStopdownChange={onStopdownChange}
-                  fNumber={fNumber}
-                  currentPhysStopSD={currentPhysStopSD}
-                  baseEPSD={baseEPSD}
-                  apertureExpanded={apertureExpanded}
-                  onApertureExpandedChange={onApertureExpandedChange}
-                  onSliderPointerUp={onSliderPointerUp}
-                  showSliders={showSliders}
-                />
-
-                <div
-                  style={{
-                    flex: useSideLayout ? 1 : "1 1 360px",
-                    padding: compact ? "10px 14px" : "14px 22px",
-                    minHeight: compact
-                      ? 100
-                      : ENABLE_COLLAPSIBLE_LEGEND && !isWide && !info && !legendExpanded
-                        ? 40
-                        : 125,
-                    transition: "background 0.2s",
-                    background: info ? t.infoBgActive : t.infoBgIdle,
-                  }}
-                >
-                  {info ? (
-                    <ElementInspector info={info} L={L} t={t} showChromatic={showChromatic} />
-                  ) : (
-                    <DiagramLegend
-                      L={L}
-                      t={t}
-                      isWide={isWide}
-                      zoomT={zoomT}
-                      showOnAxis={showOnAxis}
-                      showOffAxis={showOffAxis}
-                      showChromatic={showChromatic}
-                      chromR={chromR}
-                      chromG={chromG}
-                      chromB={chromB}
-                      chromSpread={chromSpread}
-                      rayTracksF={rayTracksF}
-                      legendExpanded={legendExpanded}
-                      onLegendExpandedChange={onLegendExpandedChange}
-                      onOpenAbbeDiagram={() => setShowAbbeDiagram(true)}
-                    />
-                  )}
-                </div>
-              </div>
+              <DiagramControlPanel
+                L={L}
+                t={t}
+                compact={compact}
+                isWide={isWide}
+                useSideLayout={useSideLayout}
+                headerHeight={headerHeight}
+                showSliders={showSliders}
+                zoomT={zoomT}
+                focusT={focusT}
+                stopdownT={stopdownT}
+                fNumber={fNumber}
+                currentPhysStopSD={currentPhysStopSD}
+                baseEPSD={baseEPSD}
+                varReadouts={varReadouts}
+                focusExpanded={focusExpanded}
+                apertureExpanded={apertureExpanded}
+                legendExpanded={legendExpanded}
+                onZoomChange={adapters.onZoomChange}
+                onFocusChange={adapters.onFocusChange}
+                onStopdownChange={adapters.onStopdownChange}
+                onFocusExpandedChange={adapters.onFocusExpandedChange}
+                onApertureExpandedChange={adapters.onApertureExpandedChange}
+                onLegendExpandedChange={adapters.onLegendExpandedChange}
+                onSliderPointerUp={adapters.onSliderPointerUp}
+                info={info ?? null}
+                showOnAxis={showOnAxis}
+                showOffAxis={showOffAxis}
+                showChromatic={showChromatic}
+                chromR={chromR}
+                chromG={chromG}
+                chromB={chromB}
+                chromSpread={chromSpread ?? null}
+                rayTracksF={rayTracksF}
+                onOpenAbbeDiagram={overlays.openAbbeDiagram}
+              />
             )}
           </div>
           {/* end side-layout flex wrapper */}
         </div>
       ) : null}
-      {showAbbeDiagram && L && (
-        <OverlayModal onClose={() => setShowAbbeDiagram(false)} theme={t} maxWidth={580}>
+      {overlays.showAbbeDiagram && L && (
+        <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
           <AbbeDiagram L={L} t={t} />
         </OverlayModal>
       )}
