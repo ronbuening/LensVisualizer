@@ -135,36 +135,6 @@ function realTraceToStop(
 }
 
 /**
- * Refine a paraxial entrance pupil estimate using real ray tracing.
- *
- * Iteratively adjusts the EP SD so that a real marginal ray (traced with
- * exact Snell's law including aspherics) arrives at the stop at exactly
- * the physical stop SD.  Converges in 2-3 iterations for typical lenses.
- *
- * Only *decreases* the EP — when real rays overshoot the stop (the visual
- * bug this fixes).  If the real trace shows rays arriving *below* the stop
- * SD, the paraxial EP is kept: the stop isn't the true limiting aperture
- * and increasing the EP would push rays past element semi-diameters.
- */
-function refineEPWithRealTrace(
-  S: SurfaceData[],
-  asphByIdx: Record<number, AsphericCoefficients>,
-  paraxialEPSD: number,
-  stopSD: number,
-  stopIdx: number,
-): number {
-  let ep = paraxialEPSD;
-  for (let iter = 0; iter < 3; iter++) {
-    const realY = realTraceToStop(S, asphByIdx, ep, 0, stopIdx);
-    if (!isFinite(realY) || Math.abs(realY) < 1e-15) break;
-    ep *= stopSD / realY;
-    if (ep >= paraxialEPSD) break; /* rays undershoot stop — stop isn't the limit */
-  }
-  /* Only shrink — never enlarge beyond the paraxial EP */
-  return Math.min(ep, paraxialEPSD);
-}
-
-/**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
  * Pipeline: validate → resolve label indices → derive optical constants
@@ -237,18 +207,20 @@ export default function buildLens(data: LensData): RuntimeLens {
 
   const stopIdx = S.findIndex((row) => row.label === "STO");
 
-  /* ── Derive stop SD from nominal f-number ──
-   *  When the lens data specifies nominalFno instead of an explicit stop SD,
-   *  we back-compute it:  epSD = EFL / (2·Fno), then scale by the marginal
-   *  ray height ratio at the stop to get the physical stop semi-diameter.
-   */
-  if (data.nominalFno !== undefined) {
-    const { y: yRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
-    const { u: ue } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
-    const efl = -1.0 / ue;
-    const epSD = efl / (2 * data.nominalFno);
-    S[stopIdx].sd = epSD * yRatio;
-  }
+  /* ── Derive stop SD and entrance pupil from nominal f-number ──
+   *  nominalFno is a required field (validated).  We back-compute:
+   *    epSD = EFL / (2·Fno)  →  the entrance pupil semi-diameter
+   *  then trace a real (Snell's law) ray at that height to the stop to get
+   *  the physical stop SD.  This accounts for aspherics and higher-order
+   *  aberrations that the paraxial model ignores — without it, real rays
+   *  overshoot the stop on lenses with strong aspherics (e.g. Nikon 60mm).
+   *  Falls back to the paraxial yRatio if the real trace hits TIR. */
+  const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
+  const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
+  const nomEFL = -1.0 / nomUe;
+  const nominalEPSD = nomEFL / (2 * data.nominalFno!);
+  const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx);
+  S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
 
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
@@ -268,9 +240,10 @@ export default function buildLens(data: LensData): RuntimeLens {
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
   const EP: EntrancePupil = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
 
-  /* Real EP refinement: the paraxial EP ignores aspherics and higher-order
-   * aberrations.  Refine so a real marginal ray exactly fills the stop. */
-  EP.epSD = refineEPWithRealTrace(S, asphByIdx, EP.epSD, S[stopIdx].sd, stopIdx);
+  /* Override EP with the nominal value.  The paraxial EP.epSD (= stopSD /
+   * paraxialYRatio) is inconsistent because the stop SD was set via real trace
+   * while yRatio is paraxial.  The correct EP is nominalEPSD = EFL / (2·Fno). */
+  EP.epSD = nominalEPSD;
 
   /* B = chief ray height at stop (for vignetting computation below) */
   const B = paraxialTrace(S, 0, 1, { stopAt: stopIdx }).y;
@@ -429,11 +402,13 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
       zoomEFLs.push(-1.0 / zMargLast.u);
 
-      /* Entrance pupil and yRatio */
+      /* Entrance pupil and yRatio — use real trace for EP, same as baseline */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
-      let epSD = Math.abs(epT.y) > 1e-15 ? tmpS[stopIdx].sd / epT.y : EP.epSD;
-      epSD = refineEPWithRealTrace(tmpS, asphByIdx, epSD, tmpS[stopIdx].sd, stopIdx);
-      zoomEPs.push(epSD);
+      const zEfl = -1.0 / zMargLast.u;
+      const zNomEP = zEfl / (2 * data.nominalFno!);
+      const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
+      if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
+      zoomEPs.push(zNomEP);
       zoomYRatios.push(epT.y);
 
       /* Chief ray height at stop */
@@ -450,7 +425,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zXpDenom = epT.y * zChiefFull.u - zMargLast.u * zBValue;
       const zXpRelLast = Math.abs(zXpDenom) > 1e-9 ? zXpNumer / zXpDenom : 0;
       zoomXpZRelLastSurfs.push(zXpRelLast);
-      zoomXpSDs.push(Math.abs(zMargLast.y + zMargLast.u * zXpRelLast) * epSD);
+      zoomXpSDs.push(Math.abs(zMargLast.y + zMargLast.u * zXpRelLast) * zNomEP);
 
       /* Half-field (vignetting-limited) */
       const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
