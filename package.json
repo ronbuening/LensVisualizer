@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html && node scripts/generate-sitemap.mjs",
+    "build": "vite build && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",

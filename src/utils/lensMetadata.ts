@@ -67,4 +67,23 @@ export function makerCanonicalURL(makerSlug: string): string {
   return `${SITE_URL}/makers/${makerSlug}`;
 }
 
+/** Generate JSON-LD structured data for a lens page. */
+export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: lens.name,
+    description: lensPageDescription(lens),
+    url: lensCanonicalURL(lensKey),
+    author: { "@type": "Person", name: "Ron Buening" },
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    about: {
+      "@type": "Product",
+      name: lens.name,
+      category: "Camera Lens",
+      manufacturer: { "@type": "Organization", name: deriveMaker(lens.name).display },
+    },
+  };
+}
+
 export { SITE_NAME, SITE_URL };

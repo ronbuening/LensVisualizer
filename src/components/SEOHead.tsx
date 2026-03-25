@@ -12,9 +12,10 @@ interface SEOHeadProps {
   description: string;
   canonicalURL: string;
   ogType?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
-export default function SEOHead({ title, description, canonicalURL, ogType = "website" }: SEOHeadProps) {
+export default function SEOHead({ title, description, canonicalURL, ogType = "website", jsonLd }: SEOHeadProps) {
   return (
     <Helmet>
       <title>{title}</title>
@@ -30,6 +31,8 @@ export default function SEOHead({ title, description, canonicalURL, ogType = "we
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+
+      {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
     </Helmet>
   );
 }

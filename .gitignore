@@ -20,6 +20,7 @@ pids
 # Build outputs
 build/
 dist/
+dist-server/
 out/
 .next/
 .vercel/
