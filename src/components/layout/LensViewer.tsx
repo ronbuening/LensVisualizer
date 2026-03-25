@@ -91,8 +91,12 @@ function isComparisonOk(cl: ComparisonLensesResult): cl is ComparisonLensesOk {
  *  handles orchestration, comparison mode, shared controls, and chrome.
  * ------------------------------------------------------------------- */
 
-export default function LensVisualization() {
-  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS);
+interface LensVisualizationProps {
+  initialLensKey?: string;
+}
+
+export default function LensVisualization({ initialLensKey }: LensVisualizationProps) {
+  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey);
 
   /* ── Destructure state slices for convenient access ── */
   const { lens, display, rays, sharedSliders, overlays } = state;
