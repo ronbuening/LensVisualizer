@@ -5,6 +5,9 @@
  * pattern used on the multipage layout pages (LensPage, MakerPage, etc.).
  * Includes a right-aligned Settings button that expands a collapsible panel
  * with theme controls (Dark/Light and High Contrast toggles).
+ *
+ * Reads theme state and dispatches theme changes directly via context,
+ * consistent with how LensDiagramPanel and ControlsBar wire theme actions.
  */
 
 import { useState } from "react";
@@ -13,27 +16,20 @@ import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/styles.js";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
+import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
+import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/lensReducer.js";
 
 interface BreadcrumbBarProps {
   theme: Theme;
   isWide: boolean;
   lensKey: string;
-  dark: boolean;
-  highContrast: boolean;
-  onDarkChange?: (value: boolean) => void;
-  onHighContrastChange?: (value: boolean) => void;
 }
 
-export default function BreadcrumbBar({
-  theme: t,
-  isWide,
-  lensKey,
-  dark,
-  highContrast,
-  onDarkChange,
-  onHighContrastChange,
-}: BreadcrumbBarProps) {
+export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbBarProps) {
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const { state } = useLensCtx();
+  const dispatch = useLensDispatch();
+  const { dark, highContrast } = state.display;
 
   const lens = LENS_CATALOG[lensKey];
   if (!lens) return null;
@@ -98,11 +94,7 @@ export default function BreadcrumbBar({
             padding: isWide ? "4px 12px" : "4px 8px",
           }}
         >
-          {isWide ? (
-            <span>SETTINGS</span>
-          ) : (
-            <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>
-          )}
+          {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
           <span
             style={{
               display: "inline-block",
@@ -129,14 +121,14 @@ export default function BreadcrumbBar({
         >
           <div style={toggleGroup(t)}>
             <button
-              onClick={() => onHighContrastChange?.(!highContrast)}
+              onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
               style={toggleBtn(t, highContrast)}
             >
               <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>
               <span>HC</span>
             </button>
             <button
-              onClick={() => onDarkChange?.(!dark)}
+              onClick={() => dispatch({ type: SET_DARK, dark: !dark })}
               style={toggleBtn(t, false, { hasRightBorder: false })}
             >
               <span style={{ fontSize: 14, lineHeight: 1 }}>{t.toggleIcon}</span>

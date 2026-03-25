@@ -60,8 +60,6 @@ import {
   SET_SHARED_ZOOM_T,
   ENTER_COMPARE,
   EXIT_COMPARE,
-  SET_DARK,
-  SET_HIGH_CONTRAST,
 } from "../../utils/lensReducer.js";
 import useComparisonMode, { isComparisonOk } from "../hooks/useComparisonMode.js";
 import useOverlays from "../hooks/useOverlays.js";
@@ -246,15 +244,7 @@ export default function LensVisualization({ initialLensKey }: LensVisualizationP
           }}
         >
           {/* ── Breadcrumb navigation ── */}
-          <BreadcrumbBar
-            theme={t}
-            isWide={isWide}
-            lensKey={lensKeyA}
-            dark={dark}
-            highContrast={highContrast}
-            onDarkChange={(v) => dispatch({ type: SET_DARK, dark: v })}
-            onHighContrastChange={(v) => dispatch({ type: SET_HIGH_CONTRAST, highContrast: v })}
-          />
+          <BreadcrumbBar theme={t} isWide={isWide} lensKey={lensKeyA} />
 
           {/* ── Top bar: lens selector(s) + compare button ── */}
           <TopBar
