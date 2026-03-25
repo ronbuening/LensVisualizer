@@ -6,7 +6,7 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_COLOR_TRACING, ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
+import { ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -164,17 +164,16 @@ export default function ControlsBar({
       </div>
 
       {/* Chromatic */}
-      {ENABLE_COLOR_TRACING && (
-        <div
-          style={
-            compact
-              ? toggleGroup(t)
-              : {
-                  ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
-                  transition: "border-color 0.3s, width 0.3s",
-                }
-          }
-        >
+      <div
+        style={
+          compact
+            ? toggleGroup(t)
+            : {
+                ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
+                transition: "border-color 0.3s, width 0.3s",
+              }
+        }
+      >
           <button
             onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
             style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
@@ -226,8 +225,7 @@ export default function ControlsBar({
                 <span>{ch}</span>
               </button>
             ))}
-        </div>
-      )}
+      </div>
 
       {/* Scale mode toggle */}
       {showScaleMode && (

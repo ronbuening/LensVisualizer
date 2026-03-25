@@ -5,7 +5,8 @@
  * No React dependencies — all functions are pure and testable.
  */
 
-import { ENABLE_EDGE_PROJECTION, DEFAULT_COLOR_TRACING } from "./featureFlags.js";
+import { ENABLE_EDGE_PROJECTION } from "./featureFlags.js";
+import { DEFAULT_COLOR_TRACING } from "./appConfig.js";
 import type { LensState, LensAction, Preferences, URLState } from "../types/state.js";
 
 /* ── Action type constants ── */

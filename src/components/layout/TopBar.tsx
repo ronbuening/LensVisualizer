@@ -4,8 +4,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn } from "../../utils/styles.js";
-import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../../utils/featureFlags.js";
+import { headerStrip } from "../../utils/styles.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
 import LensSelector from "../controls/LensSelector.js";
 
@@ -134,7 +133,7 @@ export default function TopBar({
       )}
 
       {isWide && <div style={{ flex: 1 }} />}
-      {isWide ? (
+      {isWide && (
         <AboutButtonRow
           theme={t}
           isWide={isWide}
@@ -143,12 +142,6 @@ export default function TopBar({
           onOpenAboutAuthor={onOpenAboutAuthor}
           showLabel
         />
-      ) : (
-        ENABLE_ABOUT_BUTTONS_IN_TOPBAR && (
-          <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, isWide)}>
-            Optics Primer
-          </button>
-        )
       )}
     </div>
   );

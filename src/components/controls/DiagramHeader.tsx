@@ -12,13 +12,7 @@
 
 import { forwardRef } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
-import {
-  ENABLE_COLOR_TRACING,
-  ENABLE_COLLAPSIBLE_HEADER_CONTROLS,
-  ENABLE_COLLAPSIBLE_HEADER_INFO,
-  ENABLE_MOBILE_CONTROLS_STRIP,
-  ENABLE_PUPIL_TOGGLE,
-} from "../../utils/featureFlags.js";
+import { ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../../utils/styles.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
@@ -49,8 +43,6 @@ interface DiagramHeaderProps {
   onChromBChange?: (value: boolean) => void;
   showPupils: boolean;
   onShowPupilsChange?: (value: boolean) => void;
-  headerControlsExpanded: boolean;
-  onHeaderControlsExpandedChange?: (value: boolean) => void;
   headerInfoExpanded: boolean;
   onHeaderInfoExpandedChange?: (value: boolean) => void;
   minHeaderHeight?: number;
@@ -81,8 +73,6 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
     onChromBChange,
     showPupils,
     onShowPupilsChange,
-    headerControlsExpanded,
-    onHeaderControlsExpandedChange,
     headerInfoExpanded,
     onHeaderInfoExpandedChange,
     minHeaderHeight,
@@ -146,14 +136,14 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
           >
             {L.data.subtitle}
           </span>
-          {ENABLE_COLLAPSIBLE_HEADER_INFO && !isWide && (
+          {!isWide && (
             <button onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)} style={collapseBtn(t)}>
               <span>{headerInfoExpanded ? "LESS" : "MORE"}</span>
               <span style={{ fontSize: 11, lineHeight: 1 }}>{headerInfoExpanded ? "▴" : "▾"}</span>
             </button>
           )}
         </div>
-        {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) && (
+        {(isWide || headerInfoExpanded) && (
           <>
             <div
               style={{
@@ -194,11 +184,8 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
         )}
       </div>
       {/* Theme + ray controls in non-compact (single-lens) mode.
-           Hidden on mobile when ENABLE_MOBILE_CONTROLS_STRIP is active
-           (controls live in the always-visible strip instead). */}
-      {(!ENABLE_COLLAPSIBLE_HEADER_INFO || isWide || headerInfoExpanded) &&
-        !compact &&
-        !(ENABLE_MOBILE_CONTROLS_STRIP && !isWide) && (
+           Hidden on mobile (controls live in the always-visible strip instead). */}
+      {isWide && !compact && (
           <div
             style={{
               display: "flex",
@@ -206,28 +193,12 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
               alignItems: "flex-end",
               gap: 8,
               flexShrink: 0,
-              width: isWide ? 220 : ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !headerControlsExpanded ? "auto" : 220,
+              width: 220,
             }}
           >
-            {/* Mobile collapse toggle for controls */}
-            {ENABLE_COLLAPSIBLE_HEADER_CONTROLS && !isWide && (
-              <button
-                onClick={() => onHeaderControlsExpandedChange?.(!headerControlsExpanded)}
-                style={{
-                  ...toggleBtn(t, false, { hasRightBorder: false, padding: "5px 12px" }),
-                  borderRadius: 5,
-                  width: headerControlsExpanded ? "100%" : "auto",
-                }}
-              >
-                <span style={{ fontSize: 11, lineHeight: 1 }}>⚙</span>
-                <span>CONTROLS</span>
-                <span style={{ fontSize: 11, lineHeight: 1 }}>{headerControlsExpanded ? "▴" : "▾"}</span>
-              </button>
-            )}
             {/* Ray toggles + controls */}
-            {(isWide || !ENABLE_COLLAPSIBLE_HEADER_CONTROLS || headerControlsExpanded) && (
-              <>
-                {/* Ray toggles */}
+            <>
+              {/* Ray toggles */}
                 <RayToggles
                   t={t}
                   showOnAxis={showOnAxis}
@@ -263,21 +234,18 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
                   ))}
                 </div>
                 {/* Chromatic */}
-                {ENABLE_COLOR_TRACING && (
-                  <ChromaticControls
-                    t={t}
-                    showChromatic={showChromatic}
-                    onShowChromaticChange={onShowChromaticChange}
-                    chromR={chromR}
-                    chromG={chromG}
-                    chromB={chromB}
-                    onChromRChange={onChromRChange}
-                    onChromGChange={onChromGChange}
-                    onChromBChange={onChromBChange}
-                  />
-                )}
-              </>
-            )}
+                <ChromaticControls
+                  t={t}
+                  showChromatic={showChromatic}
+                  onShowChromaticChange={onShowChromaticChange}
+                  chromR={chromR}
+                  chromG={chromG}
+                  chromB={chromB}
+                  onChromRChange={onChromRChange}
+                  onChromGChange={onChromGChange}
+                  onChromBChange={onChromBChange}
+                />
+            </>
           </div>
         )}
     </div>

@@ -2,14 +2,11 @@
  * AboutFooter — renders about buttons at the bottom of the page on mobile.
  *
  * On desktop the buttons live in TopBar, so this component renders nothing.
- * On mobile the set of buttons depends on the ENABLE_ABOUT_BUTTONS_IN_TOPBAR flag:
- *   - flag OFF (default): all three buttons (Optics, Site, Author)
- *   - flag ON: only Site and Author (Optics is in the top bar)
+ * On mobile all three buttons (Optics, Site, Author) are shown.
  */
 
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn } from "../../utils/styles.js";
-import { ENABLE_ABOUT_BUTTONS_IN_TOPBAR } from "../../utils/featureFlags.js";
 
 interface AboutFooterProps {
   theme: Theme;
@@ -49,11 +46,9 @@ export default function AboutFooter({
       >
         ABOUT
       </span>
-      {!ENABLE_ABOUT_BUTTONS_IN_TOPBAR && (
-        <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
-          Optics
-        </button>
-      )}
+      <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
+        Optics
+      </button>
       <button onClick={onOpenAboutSite} style={topBarBtn(t, false)}>
         Site
       </button>

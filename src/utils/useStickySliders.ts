@@ -11,7 +11,6 @@
  */
 
 import { useState, useRef, useCallback, type Dispatch, type MutableRefObject } from "react";
-import { ENABLE_SLIDER_STICKY, ENABLE_SLIDER_STICKY_FLASH } from "./featureFlags.js";
 import { snapToCommon } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult } from "./comparisonSliders.js";
 import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "./lensReducer.js";
@@ -46,7 +45,6 @@ export default function useStickySliders(
   const [flashPanel, setFlashPanel] = useState<string | null>(null);
 
   const triggerFlash = useCallback((panel: string): void => {
-    if (!ENABLE_SLIDER_STICKY_FLASH) return;
     setFlashPanel(panel);
     setTimeout(() => setFlashPanel(null), 400);
   }, []);
@@ -54,7 +52,7 @@ export default function useStickySliders(
   const handleSharedFocusChange = useCallback(
     (rawT: number): void => {
       const cp = focusPair?.commonPoint;
-      const stickyActive = ENABLE_SLIDER_STICKY && cp != null && cp > 0.01 && cp < 0.99;
+      const stickyActive = cp != null && cp > 0.01 && cp < 0.99;
 
       if (stickyActive && focusStuck.current) {
         dispatch({ type: SET_SHARED_FOCUS_T, value: cp });
@@ -82,7 +80,7 @@ export default function useStickySliders(
   const handleSharedStopdownChange = useCallback(
     (rawT: number): void => {
       const cp = aperturePair?.commonPoint;
-      const stickyActive = ENABLE_SLIDER_STICKY && cp != null && cp > 0.01 && cp < 0.99;
+      const stickyActive = cp != null && cp > 0.01 && cp < 0.99;
 
       if (stickyActive && apertureStuck.current) {
         dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });

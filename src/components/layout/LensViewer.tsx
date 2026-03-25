@@ -25,15 +25,6 @@ import SharedSlidersBar from "./SharedSlidersBar.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
-import {
-  ENABLE_ANALYSIS_VIEW,
-  ENABLE_DESKTOP_VIEW_TOGGLE,
-  ENABLE_DIAGRAM_ONLY,
-  ENABLE_ANALYSIS_ONLY,
-  ENABLE_COMPARISON,
-  ENABLE_COMPARISON_MOBILE,
-  ENABLE_MOBILE_CONTROLS_STRIP,
-} from "../../utils/featureFlags.js";
 import useStickySliders from "../../utils/useStickySliders.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
@@ -175,14 +166,13 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
   const desktopViewOptions = useMemo(() => {
-    if (!ENABLE_DESKTOP_VIEW_TOGGLE) return [];
-    const opts = [];
-    if (ENABLE_DIAGRAM_ONLY) opts.push({ label: "DIAGRAM", val: "diagram" });
-    if (ENABLE_ANALYSIS_VIEW) opts.push({ label: "BOTH", val: "both" });
-    if (ENABLE_ANALYSIS_VIEW && ENABLE_ANALYSIS_ONLY) opts.push({ label: "ANALYSIS", val: "analysis" });
-    return opts;
+    return [
+      { label: "DIAGRAM", val: "diagram" },
+      { label: "BOTH", val: "both" },
+      { label: "ANALYSIS", val: "analysis" },
+    ];
   }, []);
-  const defaultDesktopView = ENABLE_ANALYSIS_VIEW ? "both" : "diagram";
+  const defaultDesktopView = "both";
   const effectiveDesktopView = desktopViewOptions.some((o) => o.val === desktopView) ? desktopView : defaultDesktopView;
   const showDesktopToggle = isWide && !comparing && desktopViewOptions.length > 1;
 
@@ -232,7 +222,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
    * §3  RENDER HELPERS — pre-built JSX fragments
    * ===================================================================== */
 
-  const showCompareBtn = ENABLE_COMPARISON && (isWide || ENABLE_COMPARISON_MOBILE);
+  const showCompareBtn = true;
 
   /* ── Controls bar props (shared between comparison and mobile instances) ── */
   const controlsBarProps = {
@@ -290,7 +280,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
           {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}
 
           {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
-          {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
+          {!isWide && !comparing && (
             <ViewToggleBar
               theme={t}
               options={[
@@ -314,7 +304,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
           )}
 
           {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
-          {ENABLE_MOBILE_CONTROLS_STRIP && !isWide && !comparing && mobileView === "diagram" && (
+          {!isWide && !comparing && mobileView === "diagram" && (
             <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
           )}
 

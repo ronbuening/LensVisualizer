@@ -7,11 +7,7 @@
  */
 
 import { halfFieldAtZoom } from "../../optics/optics.js";
-import {
-  ENABLE_ASPH_DIAMOND_FILL,
-  ENABLE_EDGE_PROJECTION,
-  ENABLE_COLLAPSIBLE_LEGEND,
-} from "../../utils/featureFlags.js";
+import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/styles.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -60,13 +56,13 @@ export default function DiagramLegend({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          marginBottom: ENABLE_COLLAPSIBLE_LEGEND && !isWide && !legendExpanded ? 0 : 8,
+          marginBottom: !isWide && !legendExpanded ? 0 : 8,
         }}
       >
         <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
           {isWide ? "Hover" : "Tap"} an element for optical details
         </span>
-        {ENABLE_COLLAPSIBLE_LEGEND && !isWide && (
+        {!isWide && (
           <button
             onClick={() => onLegendExpandedChange?.(!legendExpanded)}
             style={{ ...collapseBtn(t), marginLeft: "auto" }}
@@ -75,7 +71,7 @@ export default function DiagramLegend({
           </button>
         )}
       </div>
-      {(!ENABLE_COLLAPSIBLE_LEGEND || isWide || legendExpanded) && (
+      {(isWide || legendExpanded) && (
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap", fontSize: 9.5 }}>
           {t.legendSwatches.map(([bg, bd, lb]) => (
             <div key={lb} style={{ display: "flex", alignItems: "center", gap: 4 }}>

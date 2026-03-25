@@ -35,7 +35,6 @@ import PanelOverlay from "./PanelOverlay.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
-import { ENABLE_DYNAMIC_DIAGRAM_HEIGHT, ENABLE_LCA_OVERLAY, ENABLE_PETZVAL_OVERLAY } from "../../utils/featureFlags.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 
@@ -66,7 +65,7 @@ export default function LensDiagramPanel({
   compact,
   showControls = true,
   showSliders = true,
-  maxSvgHeight = ENABLE_DYNAMIC_DIAGRAM_HEIGHT ? "calc(100vh - 260px)" : "54vh",
+  maxSvgHeight = "calc(100vh - 260px)",
   minHeaderHeight,
   onHeaderHeight,
   flashOverlay = false,
@@ -77,7 +76,7 @@ export default function LensDiagramPanel({
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const { dark } = display;
-  const { focusExpanded, apertureExpanded, headerControlsExpanded, legendExpanded, headerInfoExpanded } = panels;
+  const { focusExpanded, apertureExpanded, legendExpanded, headerInfoExpanded } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
   const focusT = focusTProp ?? sliders.focusT;
@@ -191,8 +190,6 @@ export default function LensDiagramPanel({
             onChromBChange={adapters.onChromBChange}
             showPupils={showPupils}
             onShowPupilsChange={adapters.onShowPupilsChange}
-            headerControlsExpanded={headerControlsExpanded}
-            onHeaderControlsExpandedChange={adapters.onHeaderControlsExpandedChange}
             headerInfoExpanded={headerInfoExpanded}
             onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
             minHeaderHeight={minHeaderHeight}
@@ -235,15 +232,15 @@ export default function LensDiagramPanel({
                 flashVisible={flashVisible}
                 flashKey={flashKey}
                 flashFading={flashFading}
-                onLcaInsetClick={ENABLE_LCA_OVERLAY ? overlays.openLcaOverlay : undefined}
-                onPetzvalBadgeClick={ENABLE_PETZVAL_OVERLAY ? overlays.openPetzvalOverlay : undefined}
+                onLcaInsetClick={overlays.openLcaOverlay}
+                onPetzvalBadgeClick={overlays.openPetzvalOverlay}
               />
-              {ENABLE_LCA_OVERLAY && overlays.showLcaOverlay && showChromatic && chromSpread && (
+              {overlays.showLcaOverlay && showChromatic && chromSpread && (
                 <PanelOverlay onClose={overlays.closeLcaOverlay} theme={t}>
                   <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
                 </PanelOverlay>
               )}
-              {ENABLE_PETZVAL_OVERLAY && overlays.showPetzvalOverlay && L && (
+              {overlays.showPetzvalOverlay && L && (
                 <PanelOverlay onClose={overlays.closePetzvalOverlay} theme={t}>
                   <PetzvalOverlayContent L={L} t={t} />
                 </PanelOverlay>
