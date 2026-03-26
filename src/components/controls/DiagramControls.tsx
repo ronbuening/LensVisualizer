@@ -33,6 +33,7 @@ interface DiagramControlsProps {
   stopdownT: number;
   onStopdownChange?: (value: number) => void;
   fNumber: number;
+  currentFOPEN: number;
   currentPhysStopSD: number;
   baseEPSD: number;
   dynamicEFL: number;
@@ -60,6 +61,7 @@ export default function DiagramControls({
   stopdownT,
   onStopdownChange,
   fNumber,
+  currentFOPEN,
   currentPhysStopSD,
   baseEPSD,
   dynamicEFL,
@@ -175,7 +177,7 @@ export default function DiagramControls({
           step={L.apertureStep}
           onChange={onStopdownChange}
           onPointerUp={onSliderPointerUp}
-          minLabel={`f/${L.FOPEN.toFixed(1)}`}
+          minLabel={`f/${currentFOPEN.toFixed(1)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
           collapsible={true}
@@ -209,7 +211,7 @@ export default function DiagramControls({
                 }}
               >
                 {L.fstopSeries
-                  .filter((n) => n >= L.FOPEN - 0.1 && n <= L.maxFstop)
+                  .filter((n) => n >= currentFOPEN - 0.1 && n <= L.maxFstop)
                   .map((n) => (
                     <span
                       key={n}

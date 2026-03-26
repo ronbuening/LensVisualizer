@@ -75,7 +75,7 @@ export interface LensData {
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
-  nominalFno?: number;
+  nominalFno?: number | number[];
   closeFocusM: number;
   focusStep: number;
   maxFstop: number;
@@ -204,6 +204,7 @@ export interface RuntimeLens {
   readonly zoomEpZRelStops: number[] | null;
   readonly zoomXpZRelLastSurfs: number[] | null;
   readonly zoomXpSDs: number[] | null;
+  readonly zoomFOPENs: number[] | null;
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;

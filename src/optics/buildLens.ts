@@ -276,7 +276,8 @@ export default function buildLens(data: LensData): RuntimeLens {
   const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
-  const nominalEPSD = nomEFL / (2 * data.nominalFno!);
+  const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
+  const nominalEPSD = nomEFL / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx);
   S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
 
@@ -520,7 +521,8 @@ export default function buildLens(data: LensData): RuntimeLens {
       /* Entrance pupil and yRatio — use real trace for EP, same as baseline */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
       const zEfl = -1.0 / zMargLast.u;
-      const zNomEP = zEfl / (2 * data.nominalFno!);
+      const zNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno!;
+      const zNomEP = zEfl / (2 * zNomFno);
       const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx);
       if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
       zoomEPs.push(zNomEP);
@@ -599,6 +601,16 @@ export default function buildLens(data: LensData): RuntimeLens {
     }
   }
 
+  /* ── Zoom-dependent wide-open f-numbers ──
+   * Compute FOPEN at each zoom position from pre-computed EFL and EP arrays.
+   * For variable-aperture zooms (nominalFno is an array), the per-position
+   * FOPENs differ; L.FOPEN is set to the widest (minimum) value so the
+   * aperture slider range covers the full available range. */
+  let zoomFOPENs: number[] | null = null;
+  if (isZoom && zoomEFLs && zoomEPs) {
+    zoomFOPENs = zoomEFLs.map((efl, i) => efl / (2 * zoomEPs![i]));
+  }
+
   return Object.freeze({
     data,
     S,
@@ -666,6 +678,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomEpZRelStops,
     zoomXpZRelLastSurfs,
     zoomXpSDs,
+    zoomFOPENs,
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,

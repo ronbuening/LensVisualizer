@@ -238,6 +238,21 @@ export function epAtZoom(zoomT: number, L: RuntimeLens): number {
 }
 
 /**
+ * Interpolate wide-open f-number at a given zoom position.
+ * For variable-aperture zooms (e.g. f/4.5-5.6), this returns
+ * the zoom-dependent maximum aperture. For constant-aperture
+ * zooms and primes, returns L.FOPEN unchanged.
+ *
+ * @param zoomT  — zoom slider [0 = wide, 1 = tele]
+ * @param L      — runtime lens object
+ * @returns         wide-open f-number at this zoom position
+ */
+export function fopenAtZoom(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom || !L.zoomFOPENs) return L.FOPEN;
+  return _lerpZoomArray(zoomT, L.zoomFOPENs);
+}
+
+/**
  * Interpolate half-field angle at a given zoom position.
  *
  * @param zoomT  — zoom slider [0 = wide, 1 = tele]
