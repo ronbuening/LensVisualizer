@@ -41,6 +41,14 @@ const LENS_DATA = {
   visible: true,
   specs: ["5 ELEMENTS / 3 GROUPS", "f = 100 (normalized)", "F/4.0", "2ω ≈ 43.6°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 100,
+  focalLengthDesign: 100.0,
+  apertureMarketing: 4.0,
+  apertureDesign: 4.0,
+  patentYear: 1902,
+  elementCount: 5,
+  groupCount: 3,
+
   /* ── Elements ──
    *  Five elements: front cemented doublet (a + b), central biconcave (c),
    *  rear cemented doublet (b′ + a′). Symmetric about the aperture stop.

@@ -42,6 +42,26 @@ const LENS_DATA = {
     "N ASPHERICAL SURFACES",
   ],
 
+  /* ── Explicit metadata fields ──
+   *  focalLengthMarketing  Marketed/nominal focal length in mm.
+   *                        Single number for primes (e.g. 50); [wide, tele] tuple for zooms (e.g. [70, 200]).
+   *  focalLengthDesign     Patent/computed EFL in mm. Same format as focalLengthMarketing.
+   *                        Omit if identical to focalLengthMarketing.
+   *  apertureMarketing     Marketed/nominal max f-number (e.g. 1.8 for an "f/1.8" lens).
+   *  apertureDesign        Patent/computed max f-number (precise value, e.g. 1.85).
+   *                        Omit if identical to apertureMarketing.
+   *  patentYear            Year the patent was published or granted (e.g. 2019).
+   *  elementCount          Total number of glass elements.
+   *  groupCount            Total number of air-separated groups.
+   */
+  focalLengthMarketing: 50,             // or [70, 200] for zooms
+  focalLengthDesign:    51.2,           // omit if same as focalLengthMarketing
+  apertureMarketing:    1.8,
+  apertureDesign:       1.85,           // omit if same as apertureMarketing
+  patentYear:           2019,
+  elementCount:         12,
+  groupCount:           9,
+
   /* ── Elements ──
    *  One entry per physical glass element, front to rear.
    *  Each element must have a unique `id` and be referenced by at least one surface.

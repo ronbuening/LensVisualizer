@@ -39,6 +39,14 @@ const LENS_DATA = {
     "3 ASPHERICAL SURFACES (2 PGM ELEMENTS)",
   ],
 
+  focalLengthMarketing: 18.3,
+  focalLengthDesign: 18.3,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.87,
+  patentYear: 2019,
+  elementCount: 6,
+  groupCount: 4,
+
   /* ── Elements ──
    *  Front group LO: L11 (singlet), L12+L13 (cemented doublet)
    *  Rear group LI:  L21+L22 (cemented doublet), L23 (singlet)

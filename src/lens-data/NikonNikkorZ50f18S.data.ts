@@ -16,6 +16,14 @@ const LENS_DATA = {
   subtitle: "Patent WO2019/220618 A1 — Example 9",
   specs: ["12 elements / 9 groups", "EFL 51.6 mm", "f/1.85", "2ω = 45.8°", "2 Asph · 2 ED", "MFD 0.4 m"],
 
+  focalLengthMarketing: 50,
+  focalLengthDesign: 51.6,
+  apertureMarketing: 1.8,
+  apertureDesign: 1.85,
+  patentYear: 2019,
+  elementCount: 12,
+  groupCount: 9,
+
   // §2 — Elements (front-to-rear, one per physical glass element)
   //
   // elemId mapping notes:

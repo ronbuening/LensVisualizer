@@ -33,6 +33,14 @@ const LENS_DATA = {
   subtitle: "WO 2023/190222 A1 Example 1 — NIKON / MAKIDA",
   specs: ["8 ELEMENTS / 4 GROUPS", "f = 26.78 mm", "F/2.8", "2ω ≈ 80.6°", "4 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: 26,
+  focalLengthDesign: 26.78,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.8,
+  patentYear: 2023,
+  elementCount: 8,
+  groupCount: 4,
+
   /* ── Elements ──
    *  L8 is physically one composite element (resin + glass) per patent §0199.
    *  Modeled as L8a (resin) + L8b (glass body) for the renderer.

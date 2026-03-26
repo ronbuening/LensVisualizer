@@ -47,6 +47,14 @@ const LENS_DATA = {
   subtitle: "US 3,622,227 Example I — Nippon Kogaku / Yoshiyuki Shimizu",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 24.0 mm", "F/2.8", "2ω ≈ 84°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 24,
+  focalLengthDesign: 24.0,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.8,
+  patentYear: 1971,
+  elementCount: 9,
+  groupCount: 7,
+
   /* ── Elements ──
    *  9 elements, front to rear. Five glass types.
    *  L4+L5 cemented (doublet D1), L7+L8 cemented (doublet D2).

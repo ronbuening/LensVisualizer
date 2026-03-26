@@ -28,6 +28,14 @@ const LENS_DATA = {
   subtitle: "WO 2022/097401 A1 EXAMPLE 1 — NIKON / KURIBAYASHI",
   specs: ["16 ELEMENTS / 11 GROUPS", "f ≈ 102.9 mm", "F/2.89", "2ω ≈ 24.1°", "1 ASPHERICAL SURFACE"],
 
+  focalLengthMarketing: 105,
+  focalLengthDesign: 102.9,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.89,
+  patentYear: 2022,
+  elementCount: 16,
+  groupCount: 11,
+
   /* ── Elements ── */
   elements: [
     // ── G1: Front positive group (f = +56.05 mm) ──

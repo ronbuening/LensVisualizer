@@ -28,6 +28,14 @@ const LENS_DATA = {
   subtitle: "WO2020/136749 A1 EXAMPLE 1 — NIKON / MACHIDA, GOMIBUCHI",
   specs: ["17 ELEMENTS / 15 GROUPS", "f = 24.8–67.9 mm", "F/2.92", "2ω = 85.10°–33.84°", "4 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: [24, 70],
+  focalLengthDesign: [24.8, 67.9],
+  apertureMarketing: 2.8,
+  apertureDesign: 2.92,
+  patentYear: 2020,
+  elementCount: 17,
+  groupCount: 15,
+
   /* ── Elements ── */
   elements: [
     // ── Group 1 — Front Positive (f = +119.1 mm) ──

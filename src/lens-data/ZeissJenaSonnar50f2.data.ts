@@ -31,6 +31,14 @@ const LENS_DATA = {
   subtitle: "US 1,998,704 EXAMPLE I — BERTELE / ZEISS IKON (1932) — SCALED 0.5× TO 50mm",
   specs: ["6 ELEMENTS / 3 GROUPS", "f ≈ 50.0 mm (scaled from 100mm patent)", "F/2.0", "2ω ≈ 46.8°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 50,
+  focalLengthDesign: 50.0,
+  apertureMarketing: 2.0,
+  apertureDesign: 2.0,
+  patentYear: 1935,
+  elementCount: 6,
+  groupCount: 3,
+
   /* ── Elements ──
    *  Six elements in three groups: 1-3-2 (singlet, cemented triplet, cemented doublet).
    *  Focal lengths are half the patent values.

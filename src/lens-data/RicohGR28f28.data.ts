@@ -29,6 +29,14 @@ const LENS_DATA = {
   subtitle: "US 5,760,973 EXAMPLE 1 — RICOH / KAWAMURA",
   specs: ["7 ELEMENTS / 4 GROUPS", "f ≈ 28.1 mm", "F/2.86", "2ω ≈ 74.4°", "2 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: 28,
+  focalLengthDesign: 28.1,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.86,
+  patentYear: 1998,
+  elementCount: 7,
+  groupCount: 4,
+
   /* ── Elements ──
    *  Patent notation: L(I,J) = J-th element in I-th component.
    *  L1 = component 1 (negative), L2 = component 2 (positive doublet),

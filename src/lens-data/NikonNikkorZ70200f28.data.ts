@@ -32,6 +32,14 @@ const LENS_DATA = {
   subtitle: "WO2020/105104 EXAMPLE 1 — NIKON / KEN UEHARA",
   specs: ["21 ELEMENTS / 18 GROUPS", "f = 71.5–196 mm", "F/2.88", "2ω = 33.8°–12.3°", "2 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: [70, 200],
+  focalLengthDesign: [71.5, 196],
+  apertureMarketing: 2.8,
+  apertureDesign: 2.88,
+  patentYear: 2020,
+  elementCount: 21,
+  groupCount: 18,
+
   /* ── Elements ── */
   elements: [
     {

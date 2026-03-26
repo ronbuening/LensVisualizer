@@ -34,6 +34,14 @@ const LENS_DATA = {
   subtitle: "WO 2021/241230 A1 EXAMPLE 1 — NIKON / HARADA Hiroki",
   specs: ["17 ELEMENTS / 15 GROUPS", "f = 51.29 mm", "F/1.23", "2ω ≈ 45.6°", "3 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: 50,
+  focalLengthDesign: 51.29,
+  apertureMarketing: 1.2,
+  apertureDesign: 1.23,
+  patentYear: 2021,
+  elementCount: 17,
+  groupCount: 15,
+
   /* ── Elements ──
    *  17 optical elements + 1 filter plate, front to rear.
    *  Patent element labels: L11–L19 (front group A), L21–L22 (F1),
