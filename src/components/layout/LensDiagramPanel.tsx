@@ -225,7 +225,14 @@ export default function LensDiagramPanel({
                 showPupils={showPupils}
                 act={act}
                 onHover={setHov}
-                onSelect={(eid) => setSel(sel === eid ? null : eid)}
+                onSelect={(eid) => {
+                  if (sel === eid) {
+                    setSel(null);
+                    setHov(null);
+                  } else {
+                    setSel(eid);
+                  }
+                }}
                 sel={sel}
                 maxSvgHeight={maxSvgHeight}
                 useSideLayout={useSideLayout}
