@@ -18,6 +18,7 @@ import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
+import useMediaQuery from "../utils/useMediaQuery.js";
 
 const PAGE_BASE_STYLE = {
   maxWidth: 960,
@@ -53,6 +54,8 @@ export default function HomePage() {
     }
   }, [searchParams, navigate]);
 
+  const isDesktop = useMediaQuery("(min-width: 720px)");
+
   const displayedArticles = ARTICLES.slice(0, HOMEPAGE_ARTICLE_LIMIT);
   const showMoreLink = ARTICLES.length > HOMEPAGE_ARTICLE_LIMIT;
 
@@ -79,8 +82,14 @@ export default function HomePage() {
       <div style={PAGE_BASE_STYLE}>
         <HeroSection theme={t} />
         <QuickNavCards theme={t} />
-        <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
-        <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
+        <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+            <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
+          </div>
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+            <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
+          </div>
+        </div>
         <HomeFooter theme={t} />
       </div>
     </div>
