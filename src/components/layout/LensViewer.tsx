@@ -8,7 +8,7 @@
  * ║    • TopBar — lens selectors, compare button, about buttons       ║
  * ║    • ControlsBar — theme/ray/chromatic/scale toggles              ║
  * ║    • ViewToggleBar — desktop/mobile view mode switching           ║
- * ║    • ComparisonLayout — side-by-side/stacked lens panels          ║
+ * ║    • ComparisonContent — comparison-mode panels and sliders       ║
  * ║    • SingleLensContent — desktop/mobile single-lens layout        ║
  * ║    • AboutFooter — mobile-only page-bottom about buttons          ║
  * ║    • OverlayModal — about site/author/optics primer modals        ║
@@ -16,23 +16,20 @@
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useMemo, useCallback, useEffect, useRef } from "react";
+import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
 import T from "../../utils/themes.js";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
-import SharedSlidersBar from "../../comparison/SharedSlidersBar.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
-import useStickySliders from "../../comparison/useStickySliders.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
 import BreadcrumbBar from "./BreadcrumbBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
-import ComparisonLayout from "../../comparison/ComparisonLayout.js";
 import SingleLensContent from "./SingleLensContent.js";
 import DescriptionPanel from "./DescriptionPanel.js";
 import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
@@ -44,18 +41,9 @@ import ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerI
 import AboutFooter from "../display/AboutFooter.js";
 import useLensState from "../../utils/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
-import {
-  SET_LENS_A,
-  SET_LENS_B,
-  SWAP_LENSES,
-  SET_MOBILE_VIEW,
-  SET_DESKTOP_VIEW,
-  SET_SHARED_STOPDOWN_T,
-  SET_SHARED_ZOOM_T,
-  ENTER_COMPARE,
-  EXIT_COMPARE,
-} from "../../utils/lensReducer.js";
-import useComparisonMode, { isComparisonOk } from "../../comparison/useComparisonMode.js";
+import { SET_LENS_A, SET_LENS_B, SWAP_LENSES, SET_MOBILE_VIEW, SET_DESKTOP_VIEW } from "../../utils/lensReducer.js";
+import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
+import ComparisonContent from "../../comparison/ComparisonContent.js";
 import useOverlays from "../hooks/useOverlays.js";
 
 /* =====================================================================
@@ -85,9 +73,22 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
 
-  /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
-  const { comparisonLenses, scaleRatios, focusPair, aperturePair, zoomPair, handleHeaderHeight, maxHeaderHeight } =
-    useComparisonMode({ comparing, lensKeyA, lensKeyB, scaleMode, sharedFocusT, sharedStopdownT, sharedZoomT });
+  /* ── Comparison mode orchestration ── */
+  const {
+    comparisonLenses,
+    scaleRatios,
+    focusPair,
+    aperturePair,
+    zoomPair,
+    handleHeaderHeight,
+    maxHeaderHeight,
+    flashPanel,
+    handleSharedFocusChange,
+    handleSharedStopdownChange,
+    handleFocusPointerDown,
+    handleAperturePointerDown,
+    toggleCompare,
+  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: CATALOG_KEYS });
 
   /* ── Overlay management: primer level, escape key, open/close callbacks ── */
   const {
@@ -116,59 +117,6 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     isLensPage,
     isComparePage,
   );
-
-  /* ── Sticky slider state machine ── */
-  const justEnteredCompare = useRef(false);
-  const {
-    handleSharedFocusChange,
-    handleSharedStopdownChange,
-    handleFocusPointerDown,
-    handleAperturePointerDown,
-    flashPanel,
-    resetSticky,
-    prevStopdownT,
-  } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
-
-  /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
-  useEffect(() => {
-    if (!justEnteredCompare.current || !isComparisonOk(comparisonLenses)) return;
-    justEnteredCompare.current = false;
-    const { LA, LB } = comparisonLenses;
-    const widerFOPEN = Math.min(LA.FOPEN, LB.FOPEN);
-    const narrowerFOPEN = Math.max(LA.FOPEN, LB.FOPEN);
-    const sharedMaxFstop = Math.max(LA.maxFstop, LB.maxFstop);
-    const cp =
-      Math.abs(widerFOPEN - narrowerFOPEN) < 0.01
-        ? 0
-        : Math.log(narrowerFOPEN / widerFOPEN) / Math.log(sharedMaxFstop / widerFOPEN);
-    prevStopdownT.current = cp;
-    dispatch({ type: SET_SHARED_STOPDOWN_T, value: cp });
-  }, [comparisonLenses, dispatch, prevStopdownT]);
-
-  /* ── Enter/exit comparison mode ── */
-  const toggleCompare = useCallback(() => {
-    if (!comparing) {
-      dispatch({ type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
-      resetSticky();
-      justEnteredCompare.current = true;
-      /* Navigate to the comparison route — pick lensKeyB from the reducer
-       * (which auto-selects a different lens if A===B). We read it from
-       * the state that will be produced, but since the reducer runs sync
-       * we use the current values + the same auto-select logic. */
-      const autoB =
-        lensKeyA === lensKeyB && CATALOG_KEYS.length > 1
-          ? CATALOG_KEYS[(CATALOG_KEYS.indexOf(lensKeyA) + 1) % CATALOG_KEYS.length]
-          : lensKeyB;
-      void navigate(`/compare/${lensKeyA}/${autoB}`, { replace: false });
-    } else {
-      dispatch({
-        type: EXIT_COMPARE,
-        focusA: focusPair?.focusA,
-        stopdownA: aperturePair?.stopdownA,
-      });
-      void navigate(`/lens/${lensKeyA}`, { replace: false });
-    }
-  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair, dispatch, resetSticky, navigate]);
 
   const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
 
@@ -321,60 +269,29 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
           {/* ── Main content area ── */}
           {comparing ? (
-            <>
-              {comparisonLenses?.error ? (
-                <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
-                  <ErrorDisplay
-                    error={
-                      comparisonLenses.error instanceof Error
-                        ? comparisonLenses.error
-                        : new Error(String(comparisonLenses.error))
-                    }
-                    context={{ component: "Comparison Mode", lensKey: comparisonLenses.failedKeys ?? "" }}
-                    title="Failed to build lens for comparison"
-                  />
-                </div>
-              ) : (
-                isComparisonOk(comparisonLenses) &&
-                focusPair &&
-                aperturePair &&
-                zoomPair && (
-                  <ComparisonLayout
-                    theme={t}
-                    isWide={isWide}
-                    lensKeyA={lensKeyA}
-                    lensKeyB={lensKeyB}
-                    focusPair={focusPair}
-                    aperturePair={aperturePair}
-                    zoomPair={zoomPair}
-                    scaleRatios={scaleRatios}
-                    maxHeaderHeight={maxHeaderHeight}
-                    onHeaderHeight={handleHeaderHeight}
-                    flashPanel={flashPanel}
-                  />
-                )
-              )}
-              {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
-                <SharedSlidersBar
-                  LA={comparisonLenses.LA}
-                  LB={comparisonLenses.LB}
-                  sharedFocusT={sharedFocusT}
-                  sharedStopdownT={sharedStopdownT}
-                  sharedZoomT={sharedZoomT}
-                  onSharedFocusChange={handleSharedFocusChange}
-                  onSharedStopdownChange={handleSharedStopdownChange}
-                  onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
-                  onFocusPointerDown={handleFocusPointerDown}
-                  onAperturePointerDown={handleAperturePointerDown}
-                  focusPair={focusPair}
-                  aperturePair={aperturePair}
-                  zoomPair={zoomPair}
-                  onSliderPointerUp={updateURLWithSliders}
-                  theme={t}
-                  isWide={isWide}
-                />
-              )}
-            </>
+            <ComparisonContent
+              theme={t}
+              isWide={isWide}
+              lensKeyA={lensKeyA}
+              lensKeyB={lensKeyB}
+              comparisonLenses={comparisonLenses}
+              focusPair={focusPair}
+              aperturePair={aperturePair}
+              zoomPair={zoomPair}
+              scaleRatios={scaleRatios}
+              maxHeaderHeight={maxHeaderHeight}
+              onHeaderHeight={handleHeaderHeight}
+              flashPanel={flashPanel}
+              sharedFocusT={sharedFocusT}
+              sharedStopdownT={sharedStopdownT}
+              sharedZoomT={sharedZoomT}
+              onSharedFocusChange={handleSharedFocusChange}
+              onSharedStopdownChange={handleSharedStopdownChange}
+              onFocusPointerDown={handleFocusPointerDown}
+              onAperturePointerDown={handleAperturePointerDown}
+              onSliderPointerUp={updateURLWithSliders}
+              dispatch={dispatch}
+            />
           ) : (
             <SingleLensContent
               theme={t}

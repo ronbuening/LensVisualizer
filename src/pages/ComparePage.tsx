@@ -10,7 +10,8 @@ import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { comparePageTitle, comparePageDescription, compareCanonicalURL, deriveMaker } from "../utils/lensMetadata.js";
+import { deriveMaker } from "../utils/lensMetadata.js";
+import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
