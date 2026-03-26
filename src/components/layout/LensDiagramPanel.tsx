@@ -37,6 +37,7 @@ import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
+import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -75,7 +76,8 @@ export default function LensDiagramPanel({
   const { state, theme: t, isWide } = useLensCtx();
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
-  const { dark } = display;
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const dark = display.dark !== null ? display.dark : systemDark;
   const { focusExpanded, apertureExpanded, legendExpanded, headerInfoExpanded, abbeShowGlassType } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
