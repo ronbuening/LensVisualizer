@@ -7,6 +7,7 @@
  */
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { formatPetzvalRadius } from "../../optics/optics.js";
 
 interface PetzvalSumBadgeProps {
   L: RuntimeLens;
@@ -14,19 +15,11 @@ interface PetzvalSumBadgeProps {
   onClick?: () => void;
 }
 
-function formatPetzvalRadius(P: number): string {
-  if (Math.abs(P) < 1e-6) return "R = \u221e";
-  const R = 1 / P;
-  const absR = Math.abs(R);
-  const formatted = absR < 10 ? absR.toFixed(1) : Math.round(absR).toString();
-  return `R = ${R < 0 ? "\u2212" : ""}${formatted} mm`;
-}
-
 export default function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps) {
   const P = L.petzvalSum;
   const sign = P >= 0 ? "+" : "\u2212";
   const pStr = `${sign}${Math.abs(P).toFixed(4)} mm\u207b\u00b9`;
-  const rStr = formatPetzvalRadius(P);
+  const rStr = formatPetzvalRadius(P, false);
 
   const x = 8;
   const y = 8;

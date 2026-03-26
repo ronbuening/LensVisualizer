@@ -585,4 +585,20 @@ export function formatDist(t: number, L: RuntimeLens): string {
   return `${(d * 100).toFixed(0)} cm`;
 }
 
+/**
+ * Format the Petzval field radius for display.
+ *
+ * @param P         — Petzval sum (mm⁻¹)
+ * @param subscript — true → subscripted label "Rₚₜₓ =", false → plain "R ="
+ * @returns formatted string, e.g. "Rₚₜₓ = −42 mm" or "R = ∞"
+ */
+export function formatPetzvalRadius(P: number, subscript = true): string {
+  const label = subscript ? "R\u209a\u209c\u2093" : "R";
+  if (Math.abs(P) < 1e-6) return `${label} = \u221e`;
+  const R = 1 / P;
+  const absR = Math.abs(R);
+  const formatted = absR < 10 ? absR.toFixed(1) : Math.round(absR).toString();
+  return `${label} = ${R < 0 ? "\u2212" : ""}${formatted} mm`;
+}
+
 export { SVG_PATH_SUBDIVISIONS };
