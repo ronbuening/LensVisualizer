@@ -14,6 +14,9 @@ import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import routeManifest from "./routes/routeManifest.js";
 import { Routes, Route } from "react-router";
 
+/** Route patterns from the manifest (excluding the catch-all wildcard). */
+export const manifestPaths = routeManifest.map((r) => r.path).filter((p) => p !== "*");
+
 export interface RenderResult {
   html: string;
   helmet: HelmetServerState;

@@ -4,75 +4,55 @@
  * Builds the server entry with Vite SSR mode, then renders each route
  * to static HTML and writes it to the dist/ directory.
  *
+ * Routes are read from src/generated/build-metadata.json (produced by
+ * generate-build-metadata.mjs). After importing the SSR bundle, the
+ * script validates that every route pattern in the React Router manifest
+ * is covered by the generated route list — catching silent omissions
+ * when new routes are added.
+ *
  * Run after `vite build` (client) via the build pipeline.
  */
 
-import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
-const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
+const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
 
-/** Known maker prefixes for generating maker page routes. */
-const MAKER_PREFIXES = [
-  { prefix: "CARL ZEISS", slug: "carl-zeiss" },
-  { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
-  { prefix: "NIKON", slug: "nikon" },
-  { prefix: "RICOH", slug: "ricoh" },
-];
+/**
+ * Validate that every route pattern from the React Router manifest is
+ * covered by the concrete route list from build-metadata.json.
+ *
+ * - Static paths (no `:` params) must appear verbatim.
+ * - Parameterized patterns (e.g. `/lens/:slug`) must have at least one
+ *   expanded route with a matching prefix.
+ * - Patterns in CLIENT_ONLY_PATTERNS are skipped — these are rendered
+ *   exclusively on the client (e.g. comparison pages with arbitrary pairs).
+ */
+const CLIENT_ONLY_PATTERNS = ["/compare/:slugA/:slugB"];
 
-function deriveMakerSlug(name) {
-  const upper = name.toUpperCase();
-  for (const { prefix, slug } of MAKER_PREFIXES) {
-    if (upper.startsWith(prefix)) return slug;
-  }
-  return name.split(/\s+/)[0].toLowerCase();
-}
-
-/** Extract key and name from a lens data file. */
-function extractLensInfo(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const keyMatch = content.match(/key:\s*"([^"]+)"/);
-  const nameMatch = content.match(/name:\s*"([^"]+)"/);
-  return {
-    key: keyMatch ? keyMatch[1] : null,
-    name: nameMatch ? nameMatch[1] : null,
-  };
-}
-
-/** Collect all routes to prerender. */
-function collectRoutes() {
-  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
-  const routes = ["/", "/lenses", "/makers", "/articles"];
-  const makers = new Set();
-
-  /* Article slugs for standalone article pages */
-  const articleSlugs = [
-    "optics-primer",
-    "optics-primer-intermediate",
-    "aberrations-primer",
-    "aberrations-primer-intermediate",
-    "about-site",
-    "about-author",
-  ];
-  for (const slug of articleSlugs) {
-    routes.push(`/articles/${slug}`);
-  }
-
-  for (const file of dataFiles) {
-    const { key, name } = extractLensInfo(join(LENS_DATA_DIR, file));
-    if (key) routes.push(`/lens/${key}`);
-    if (name) {
-      const slug = deriveMakerSlug(name);
-      if (!makers.has(slug)) {
-        makers.add(slug);
-        routes.push(`/makers/${slug}`);
+function validateManifestCoverage(manifestPaths, routes) {
+  const missing = [];
+  for (const pattern of manifestPaths) {
+    if (CLIENT_ONLY_PATTERNS.includes(pattern)) continue;
+    if (pattern.includes(":")) {
+      const prefix = pattern.slice(0, pattern.indexOf(":"));
+      if (!routes.some((r) => r.startsWith(prefix))) {
+        missing.push(pattern);
+      }
+    } else {
+      if (!routes.includes(pattern)) {
+        missing.push(pattern);
       }
     }
   }
-
-  return routes;
+  if (missing.length > 0) {
+    console.error("Manifest routes not covered by build-metadata routes:");
+    for (const m of missing) console.error(`  ${m}`);
+    console.error("Update generate-build-metadata.mjs to expand these patterns.");
+    process.exit(1);
+  }
 }
 
 async function prerender() {
@@ -80,6 +60,14 @@ async function prerender() {
     console.error("dist/ not found. Run client build first.");
     process.exit(1);
   }
+  if (!existsSync(META_PATH)) {
+    console.error("build-metadata.json not found. Run generate-build-metadata.mjs first.");
+    process.exit(1);
+  }
+
+  /* Read routes from the single source of truth */
+  const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
+  const routes = buildMeta.routes;
 
   /* Build server entry with Vite */
   console.log("Building server entry...");
@@ -102,12 +90,15 @@ async function prerender() {
   });
 
   /* Import the built server module */
-  const { render } = await import(join(ROOT, "dist-server", "entry-server.js"));
+  const serverModule = await import(join(ROOT, "dist-server", "entry-server.js"));
+  const { render, manifestPaths } = serverModule;
+
+  /* Validate manifest coverage before rendering */
+  validateManifestCoverage(manifestPaths, routes);
 
   /* Read the client HTML template */
   const template = readFileSync(join(DIST_DIR, "index.html"), "utf-8");
 
-  const routes = collectRoutes();
   console.log(`Prerendering ${routes.length} routes...`);
 
   for (const route of routes) {

@@ -1,47 +1,27 @@
 /**
  * Build-time sitemap.xml generator.
  *
- * Reads all lens data files, extracts keys, and writes sitemap.xml to dist/.
- * Run after `vite build` via the `build:sitemap` npm script.
+ * Reads route data from src/generated/build-metadata.json (produced by
+ * generate-build-metadata.mjs) and writes sitemap.xml to dist/.
+ *
+ * Run after `vite build` + `prerender.mjs` via the build pipeline.
  */
 
-import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const SITE_URL = "https://opticalbench.net";
-const LENS_DATA_DIR = join(import.meta.dirname, "..", "src", "lens-data");
+const META_PATH = join(import.meta.dirname, "..", "src", "generated", "build-metadata.json");
 const DIST_DIR = join(import.meta.dirname, "..", "dist");
 
-/** Extract the `key` value from a lens data file using a regex. */
-function extractKey(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const match = content.match(/key:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-/** Extract the `name` value from a lens data file using a regex. */
-function extractName(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const match = content.match(/name:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-/** Known maker prefixes in lens names, mapped to URL-safe slugs. */
-const MAKER_PREFIXES = [
-  { prefix: "CARL ZEISS", slug: "carl-zeiss" },
-  { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
-  { prefix: "NIKON", slug: "nikon" },
-  { prefix: "RICOH", slug: "ricoh" },
-];
-
-/** Derive maker slug from lens name using known prefixes. */
-function deriveMaker(name) {
-  if (!name) return null;
-  const upper = name.toUpperCase();
-  for (const { prefix, slug } of MAKER_PREFIXES) {
-    if (upper.startsWith(prefix)) return slug;
-  }
-  return name.split(/\s+/)[0].toLowerCase();
+/** Assign sitemap priority based on route path prefix. */
+function routePriority(route) {
+  if (route === "/") return "1.0";
+  if (route === "/lenses") return "0.9";
+  if (route.startsWith("/lens/")) return "0.8";
+  if (route === "/makers" || route === "/articles") return "0.7";
+  if (route.startsWith("/makers/") || route.startsWith("/articles/")) return "0.6";
+  return "0.5";
 }
 
 function generateSitemap() {
@@ -49,34 +29,19 @@ function generateSitemap() {
     console.error("dist/ directory not found. Run `vite build` first.");
     process.exit(1);
   }
-
-  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
-  const lensKeys = [];
-  const makers = new Set();
-
-  for (const file of dataFiles) {
-    const filePath = join(LENS_DATA_DIR, file);
-    const key = extractKey(filePath);
-    const name = extractName(filePath);
-    if (key) {
-      lensKeys.push(key);
-      const maker = deriveMaker(name);
-      if (maker) makers.add(maker);
-    }
+  if (!existsSync(META_PATH)) {
+    console.error("build-metadata.json not found. Run generate-build-metadata.mjs first.");
+    process.exit(1);
   }
 
-  lensKeys.sort();
+  const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
+  const routes = buildMeta.routes;
   const today = new Date().toISOString().split("T")[0];
 
-  const urls = [
-    { loc: `${SITE_URL}/`, priority: "1.0" },
-    { loc: `${SITE_URL}/lenses`, priority: "0.9" },
-    { loc: `${SITE_URL}/makers`, priority: "0.7" },
-    ...Array.from(makers)
-      .sort()
-      .map((maker) => ({ loc: `${SITE_URL}/makers/${maker}`, priority: "0.6" })),
-    ...lensKeys.map((key) => ({ loc: `${SITE_URL}/lens/${key}`, priority: "0.8" })),
-  ];
+  const urls = routes.map((route) => ({
+    loc: `${SITE_URL}${route}`,
+    priority: routePriority(route),
+  }));
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
