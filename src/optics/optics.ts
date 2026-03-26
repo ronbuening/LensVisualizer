@@ -105,25 +105,38 @@ export function renderSag(h: number, surfIdx: number, L: RuntimeLens): number {
  * @param L        — runtime lens object
  * @returns          dz/dh (dimensionless slope)
  */
-export function sagSlope(h: number, surfIdx: number, L: RuntimeLens): number {
-  const R = L.S[surfIdx].R;
-  const a = L.asphByIdx[surfIdx];
-  if (Math.abs(R) > FLAT_R_THRESHOLD && !a) return 0;
+/**
+ * Surface-normal slope dz/dh from raw parameters.
+ *
+ * Core math shared by sagSlope() (runtime) and buildLens (build-time).
+ * Exported for use in buildLens.ts where no RuntimeLens is available yet.
+ *
+ * @param h    — ray height from axis (mm)
+ * @param R    — radius of curvature (mm)
+ * @param asph — aspheric coefficients, or undefined for spherical surfaces
+ * @returns      dz/dh (dimensionless slope)
+ */
+export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | undefined): number {
+  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
   const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
-  const K = a ? a.K : 0;
+  const K = asph ? asph.K : 0;
   const h2 = h * h;
   const denom2 = 1 - (1 + K) * c * c * h2;
   const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
-  if (!a) return conicSlope;
+  if (!asph) return conicSlope;
   const polySlope =
     h *
-    (4 * a.A4 * h2 +
-      6 * a.A6 * h2 * h2 +
-      8 * a.A8 * h2 ** 3 +
-      10 * a.A10 * h2 ** 4 +
-      12 * a.A12 * h2 ** 5 +
-      14 * a.A14 * h2 ** 6);
+    (4 * asph.A4 * h2 +
+      6 * asph.A6 * h2 * h2 +
+      8 * asph.A8 * h2 ** 3 +
+      10 * asph.A10 * h2 ** 4 +
+      12 * asph.A12 * h2 ** 5 +
+      14 * asph.A14 * h2 ** 6);
   return conicSlope + polySlope;
+}
+
+export function sagSlope(h: number, surfIdx: number, L: RuntimeLens): number {
+  return sagSlopeRaw(h, L.S[surfIdx].R, L.asphByIdx[surfIdx]);
 }
 
 /**

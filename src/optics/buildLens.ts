@@ -6,7 +6,7 @@
  */
 
 import validateLensData from "./validateLensData.js";
-import { FLAT_R_THRESHOLD } from "./optics.js";
+import { FLAT_R_THRESHOLD, sagSlopeRaw } from "./optics.js";
 import type {
   LensData,
   SurfaceData,
@@ -70,32 +70,6 @@ function paraxialTrace(
   return { y, u, n, heights };
 }
 
-/**
- * Surface-normal slope dz/dh from raw parameters (R, aspheric coefficients).
- *
- * Same math as sagSlope() in optics.ts but operates on raw surface parameters
- * instead of a RuntimeLens object — needed during buildLens() before L exists.
- */
-function _sagSlope(h: number, R: number, asph: AsphericCoefficients | undefined): number {
-  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
-  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
-  const K = asph ? asph.K : 0;
-  const h2 = h * h;
-  const denom2 = 1 - (1 + K) * c * c * h2;
-  const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
-  if (!asph) return conicSlope;
-  return (
-    conicSlope +
-    h *
-      (4 * asph.A4 * h2 +
-        6 * asph.A6 * h2 * h2 +
-        8 * asph.A8 * h2 ** 3 +
-        10 * asph.A10 * h2 ** 4 +
-        12 * asph.A12 * h2 ** 5 +
-        14 * asph.A14 * h2 ** 6)
-  );
-}
-
 /** Result of a real ray trace to an intermediate surface. */
 interface RealTraceToStopResult {
   y: number;
@@ -130,7 +104,7 @@ function realTraceToStopFull(
     const nn = nd === 1.0 ? 1.0 : nd;
     if (nn !== n) {
       const absY = Math.abs(y);
-      const slope = _sagSlope(absY, R, asphByIdx[i]);
+      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
       const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
       const sinIp = (n / nn) * Math.sin(U - alpha);
       if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN };
@@ -206,7 +180,7 @@ function realTraceFullSystemDetailed(
     const nn = nd === 1.0 ? 1.0 : nd;
     if (nn !== n) {
       const absY = Math.abs(y);
-      const slope = _sagSlope(absY, R, asphByIdx[i]);
+      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
       const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
       const sinIp = (n / nn) * Math.sin(U - alpha);
       if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN, heights, clipped: true };
