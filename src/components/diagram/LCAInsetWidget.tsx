@@ -47,7 +47,7 @@ export default function LCAInsetWidget({
   onClick,
   fontScale = 1,
 }: LCAInsetWidgetProps) {
-  const insetW = width ?? 90;
+  const insetW = width ?? 110;
   const insetH = height ?? 100;
   const gRef = chromSpread.intercepts.G ?? IMG_MM;
   const viewWidthPx = insetW - 24;
