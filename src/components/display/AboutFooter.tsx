@@ -6,7 +6,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn } from "../../utils/styles.js";
+import { headerStrip, topBarBtn, labelStyle } from "../../utils/styles.js";
 
 interface AboutFooterProps {
   theme: Theme;
@@ -37,17 +37,7 @@ export default function AboutFooter({
         gap: 10,
       }}
     >
-      <span
-        style={{
-          fontSize: 9,
-          letterSpacing: "0.12em",
-          color: t.muted,
-          fontFamily: "inherit",
-          whiteSpace: "nowrap",
-        }}
-      >
-        ABOUT
-      </span>
+      <span style={labelStyle(t)}>ABOUT</span>
       <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
         Optics
       </button>
