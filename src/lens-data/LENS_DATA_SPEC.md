@@ -23,7 +23,7 @@ File naming: `lens-data/*.data.ts` (glob pattern used for auto-discovery). Each 
 | `name` | `string` | Full display name (e.g. `"VOIGTLÄNDER NOKTON 50mm f/1.0"`) |
 | `elements` | `array` | Glass elements, front to rear (min 1) |
 | `surfaces` | `array` | Optical surfaces, front to rear (min 1) |
-| `nominalFno` | `number` | Nominal f-number for the design |
+| `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
 

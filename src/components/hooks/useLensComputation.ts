@@ -10,7 +10,7 @@
 import { useMemo } from "react";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
-import { thick, doLayout, epAtZoom, eflAtFocus, effectiveFNumber } from "../../optics/optics.js";
+import { thick, doLayout, epAtZoom, fopenAtZoom, eflAtFocus, effectiveFNumber } from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 
@@ -41,6 +41,7 @@ interface UseLensComputationResult {
   effectiveSC: number;
   shapes: ElementShape[];
   stopZ: number;
+  currentFOPEN: number;
   fNumber: number;
   currentPhysStopSD: number;
   baseEPSD: number;
@@ -123,7 +124,13 @@ export default function useLensComputation({
    * from the stopdown slider position. Uses a logarithmic mapping so
    * equal slider increments produce equal f-stop steps. */
   const stopZ = L ? zPos[L.stopIdx] : 0;
-  const fNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
+  /* Zoom-aware wide-open f-number (varies for variable-aperture zooms) */
+  const currentFOPEN = L ? fopenAtZoom(zoomT, L) : 1;
+  /* Base formula uses L.FOPEN (widest across zoom range) so that a set
+   * f-number stays constant when zooming.  Clamp to currentFOPEN — the
+   * lens can't open wider than the zoom position allows. */
+  const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
+  const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
   /* Use zoom-aware EP for correct ray heights across the zoom range */
   const baseEPSD = L ? epAtZoom(zoomT, L) : 0;
@@ -161,6 +168,7 @@ export default function useLensComputation({
     effectiveSC,
     shapes,
     stopZ,
+    currentFOPEN,
     fNumber,
     currentPhysStopSD,
     baseEPSD,

@@ -28,6 +28,7 @@ interface DiagramControlPanelProps {
   focusT: number;
   stopdownT: number;
   fNumber: number;
+  currentFOPEN: number;
   currentPhysStopSD: number;
   baseEPSD: number;
   dynamicEFL: number;
@@ -69,6 +70,7 @@ export default function DiagramControlPanel({
   focusT,
   stopdownT,
   fNumber,
+  currentFOPEN,
   currentPhysStopSD,
   baseEPSD,
   dynamicEFL,
@@ -135,6 +137,7 @@ export default function DiagramControlPanel({
         stopdownT={stopdownT}
         onStopdownChange={onStopdownChange}
         fNumber={fNumber}
+        currentFOPEN={currentFOPEN}
         currentPhysStopSD={currentPhysStopSD}
         baseEPSD={baseEPSD}
         dynamicEFL={dynamicEFL}

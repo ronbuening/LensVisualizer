@@ -266,6 +266,8 @@ const LENS_DATA = {
 
   /* ── Aperture configuration ── */
   nominalFno:   2.0,             // REQUIRED: nominal f-number — used to derive stop SD
+                                   //   For variable-aperture zooms, use an array with one value
+                                   //   per zoom position: e.g. [4.5, 5.76] for f/4.5-5.6
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
 
   /* ── Layout tuning (overrides defaults from defaults.ts) ──
