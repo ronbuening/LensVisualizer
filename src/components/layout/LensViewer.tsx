@@ -44,6 +44,7 @@ import { SET_LENS_A, SET_LENS_B, SWAP_LENSES, SET_MOBILE_VIEW, SET_DESKTOP_VIEW 
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
 import ComparisonContent from "../../comparison/ComparisonContent.js";
 import useOverlays from "../hooks/useOverlays.js";
+import PrimerToggleButton from "./PrimerToggleButton.js";
 
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
@@ -334,25 +335,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 markdown={primerLevel === "simple" ? OPTICS_PRIMER_SIMPLE_MD : OPTICS_PRIMER_INTERMEDIATE_MD}
                 theme={t}
               />
-              <div style={{ padding: "0 24px 20px", textAlign: "center" }}>
-                <button
-                  onClick={togglePrimerLevel}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: t.descLinkColor,
-                    cursor: "pointer",
-                    fontSize: 12,
-                    fontFamily: "inherit",
-                    borderBottom: `1px solid ${t.descLinkColor}40`,
-                    padding: "4px 0",
-                  }}
-                >
-                  {primerLevel === "simple"
-                    ? "Want more detail? Read the Intermediate Primer \u2192"
-                    : "\u2190 Back to Simple Primer"}
-                </button>
-              </div>
+              <PrimerToggleButton level={primerLevel} onToggle={togglePrimerLevel} theme={t} />
             </OverlayModal>
           )}
 
@@ -370,25 +353,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 }
                 theme={t}
               />
-              <div style={{ padding: "0 24px 20px", textAlign: "center" }}>
-                <button
-                  onClick={toggleAberrationsLevel}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: t.descLinkColor,
-                    cursor: "pointer",
-                    fontSize: 12,
-                    fontFamily: "inherit",
-                    borderBottom: `1px solid ${t.descLinkColor}40`,
-                    padding: "4px 0",
-                  }}
-                >
-                  {aberrationsLevel === "simple"
-                    ? "Want more detail? Read the Intermediate Primer \u2192"
-                    : "\u2190 Back to Simple Primer"}
-                </button>
-              </div>
+              <PrimerToggleButton level={aberrationsLevel} onToggle={toggleAberrationsLevel} theme={t} />
             </OverlayModal>
           )}
         </div>
