@@ -146,11 +146,11 @@ export default function LensIndexPage() {
     padding: "0.25rem 0.75rem",
     fontSize: "0.8rem",
     fontFamily: "inherit",
-    border: `1px solid ${t.panelBorder}`,
+    border: `1px solid ${active ? t.toggleActiveBorder : t.toggleBorder}`,
     borderRadius: 4,
     cursor: "pointer",
-    backgroundColor: active ? t.accent : t.bg,
-    color: active ? t.bg : t.body,
+    backgroundColor: active ? t.toggleActiveBg : t.toggleBg,
+    color: active ? t.toggleActiveText : t.toggleInactiveText,
     fontWeight: active ? 600 : 400,
   });
 
