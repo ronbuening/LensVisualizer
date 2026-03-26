@@ -9,6 +9,7 @@
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { compileRaySegment } from "./raySegmentUtils.js";
 
 export interface RaySegment {
   sp: number[][];
@@ -53,25 +54,10 @@ export default function useOnAxisRays({
       for (const f of L.rayFractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const { pts, ghostPts, u, clipped } = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp: number[][] = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
+        const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        out.push(
+          compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
+        );
       }
       return out;
     } catch (e) {
