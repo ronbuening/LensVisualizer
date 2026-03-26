@@ -83,11 +83,11 @@ export default function HomePage() {
         <HeroSection theme={t} />
         <QuickNavCards theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
-            <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
-          </div>
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 1 } : {}}>
             <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
+          </div>
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 0 } : {}}>
+            <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
           </div>
         </div>
         <HomeFooter theme={t} />
