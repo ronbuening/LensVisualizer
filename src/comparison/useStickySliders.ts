@@ -13,7 +13,7 @@
 import { useState, useRef, useCallback, type Dispatch, type MutableRefObject } from "react";
 import { snapToCommon } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult } from "./comparisonSliders.js";
-import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "./lensReducer.js";
+import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "./comparisonReducer.js";
 import type { LensAction } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
 

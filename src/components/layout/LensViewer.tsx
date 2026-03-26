@@ -21,18 +21,18 @@ import { useNavigate } from "react-router";
 
 import T from "../../utils/themes.js";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
-import SharedSlidersBar from "./SharedSlidersBar.js";
+import SharedSlidersBar from "../../comparison/SharedSlidersBar.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
-import useStickySliders from "../../utils/useStickySliders.js";
+import useStickySliders from "../../comparison/useStickySliders.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
 import BreadcrumbBar from "./BreadcrumbBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
-import ComparisonLayout from "./ComparisonLayout.js";
+import ComparisonLayout from "../../comparison/ComparisonLayout.js";
 import SingleLensContent from "./SingleLensContent.js";
 import DescriptionPanel from "./DescriptionPanel.js";
 import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
@@ -55,7 +55,7 @@ import {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../../utils/lensReducer.js";
-import useComparisonMode, { isComparisonOk } from "../hooks/useComparisonMode.js";
+import useComparisonMode, { isComparisonOk } from "../../comparison/useComparisonMode.js";
 import useOverlays from "../hooks/useOverlays.js";
 
 /* =====================================================================

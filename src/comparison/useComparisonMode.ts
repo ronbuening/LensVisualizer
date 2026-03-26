@@ -12,11 +12,11 @@
  */
 
 import { useMemo, useState, useCallback } from "react";
-import buildLens from "../../optics/buildLens.js";
-import { LENS_CATALOG } from "../../utils/lensCatalog.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "../../utils/comparisonSliders.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../../utils/comparisonSliders.js";
-import type { RuntimeLens } from "../../types/optics.js";
+import buildLens from "../optics/buildLens.js";
+import { LENS_CATALOG } from "../utils/lensCatalog.js";
+import { computeFocusPair, computeAperturePair, computeZoomPair } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { RuntimeLens } from "../types/optics.js";
 
 /* ── Comparison result types ── */
 
