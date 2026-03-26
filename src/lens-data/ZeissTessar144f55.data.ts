@@ -40,6 +40,14 @@ const LENS_DATA = {
   visible: true,
   specs: ["4 ELEMENTS / 3 GROUPS", "f ≈ 144 mm (scaled from normalized patent)", "F/5.5", "2ω ≈ 60°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 144,
+  focalLengthDesign: 144.0,
+  apertureMarketing: 5.5,
+  apertureDesign: 5.5,
+  patentYear: 1903,
+  elementCount: 4,
+  groupCount: 3,
+
   /* ── Elements ──
    *  Four elements in three groups.  Front group: L1 (positive singlet) +
    *  L2 (negative singlet) separated by air.  Rear group: L3 + L4 cemented

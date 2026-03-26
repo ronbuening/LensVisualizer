@@ -27,6 +27,14 @@ const LENS_DATA = {
   subtitle: "US 8,767,319 B2 EXAMPLE 1 — KONICA MINOLTA / NIKON",
   specs: ["10 ELEMENTS / 9 GROUPS", "f = 85.0 mm", "F/1.4", "2ω ≈ 28.6°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 85,
+  focalLengthDesign: 85.0,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.45,
+  patentYear: 2014,
+  elementCount: 10,
+  groupCount: 9,
+
   /* ── Elements ── */
   elements: [
     {

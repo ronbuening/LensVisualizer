@@ -41,6 +41,14 @@ const LENS_DATA = {
     "1 ED ELEMENT (L7)",
   ],
 
+  focalLengthMarketing: 60,
+  focalLengthDesign: 58.0,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.88,
+  patentYear: 2011,
+  elementCount: 12,
+  groupCount: 9,
+
   /* ── Elements ── */
   elements: [
     {

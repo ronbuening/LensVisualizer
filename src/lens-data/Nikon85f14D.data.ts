@@ -25,6 +25,14 @@ const LENS_DATA = {
   subtitle: "US 5,640,277 Example 2 — Nikon / Koichi Ohshita",
   specs: ["9 ELEMENTS / 8 GROUPS", "f = 85.0 mm", "F/1.4", "2ω = 28°30'", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 85,
+  focalLengthDesign: 85.0,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.43,
+  patentYear: 1997,
+  elementCount: 9,
+  groupCount: 8,
+
   /* ── Elements ── */
   elements: [
     {

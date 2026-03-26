@@ -65,6 +65,13 @@ These must be specified in every lens file — they have no defaults.
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
 | `subtitle` | `string` | | Patent reference shown in UI header |
 | `specs` | `string[]` | | Spec strings displayed in header |
+| `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
+| `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
+| `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
+| `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
+| `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
+| `elementCount` | `number` | | Total number of glass elements in the design. |
+| `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |

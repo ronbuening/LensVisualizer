@@ -33,6 +33,14 @@ const LENS_DATA = {
   subtitle: "US 1,975,678 — ZEISS IKON / LUDWIG BERTELE (1932)",
   specs: ["7 ELEMENTS / 3 GROUPS", "f ≈ 50.2 mm", "F/1.5", "2ω ≈ 46.8°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 50,
+  focalLengthDesign: 50.2,
+  apertureMarketing: 1.5,
+  apertureDesign: 1.5,
+  patentYear: 1934,
+  elementCount: 7,
+  groupCount: 3,
+
   /* ── Elements ──
    *  Prescription scaled from patent (f=100) to production (f≈50) by ×0.5.
    *  Glass identifications are inferential — see analysis document.

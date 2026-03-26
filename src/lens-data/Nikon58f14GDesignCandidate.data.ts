@@ -46,6 +46,14 @@ const LENS_DATA = {
     "2 ASPHERICAL SURFACES",
   ],
 
+  focalLengthMarketing: 58,
+  focalLengthDesign: 58.0,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.4,
+  patentYear: 2013,
+  elementCount: 9,
+  groupCount: 5,
+
   /* ── Elements ──
    *  9 elements, front to rear. Patent group designations noted.
    *  Glass identifications are INFERENTIAL from nd/νd catalog matching.

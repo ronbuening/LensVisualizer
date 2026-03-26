@@ -39,6 +39,14 @@ const LENS_DATA = {
     "2 ED ELEMENTS (S-FPM2)",
   ],
 
+  focalLengthMarketing: 28,
+  focalLengthDesign: 28.4,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.45,
+  patentYear: 2017,
+  elementCount: 14,
+  groupCount: 11,
+
   /* ── Elements ──
    *  15 entries for 14 patent elements (L12 compound asphere = 2 entries).
    *  Glass identifications: inferential, matched by nd/νd against OHARA catalog.

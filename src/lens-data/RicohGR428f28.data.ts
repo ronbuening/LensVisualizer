@@ -34,6 +34,14 @@ const LENS_DATA = {
   subtitle: "JP2025-069516A EXAMPLE 2 — RICOH / NAKAYAMA",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 18.35 mm", "F/2.89", "2ω ≈ 76.0°", "5 ASPHERICAL SURFACES (3 ELEMENTS)"],
 
+  focalLengthMarketing: 18.3,
+  focalLengthDesign: 18.35,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.89,
+  patentYear: 2025,
+  elementCount: 7,
+  groupCount: 5,
+
   /* ── Elements ──
    *  Patent nomenclature: G1 = L11 + (L12–L13), G2 = (L21–L22) + L23, G3 = L31.
    *  Production "5 groups" counts air-separated groups:

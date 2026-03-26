@@ -40,6 +40,14 @@ const LENS_DATA = {
     "ALL SPHERICAL · 2 ED ELEMENTS",
   ],
 
+  focalLengthMarketing: 85,
+  focalLengthDesign: 83.0,
+  apertureMarketing: 1.8,
+  apertureDesign: 1.85,
+  patentYear: 2020,
+  elementCount: 12,
+  groupCount: 8,
+
   /* ── Elements ──
    *  12 glass elements, front to rear.
    *  Gr1 (positive, fixed): L11, L12, L13+L14 cemented doublet

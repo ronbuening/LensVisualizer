@@ -29,6 +29,14 @@ const LENS_DATA = {
   subtitle: "WO 2022/071249 A1 Example 2 — Nikon / SHIMADA",
   specs: ["9 ELEMENTS / 8 GROUPS", "f ≈ 28.8 mm", "F/2.8", "2ω ≈ 76.1°", "3 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: 28,
+  focalLengthDesign: 28.8,
+  apertureMarketing: 2.8,
+  apertureDesign: 2.8,
+  patentYear: 2022,
+  elementCount: 9,
+  groupCount: 8,
+
   /* ── Elements ──
    *  Nikon counts 9 physical elements in 8 groups.
    *  The data format requires separate entries for the L24 glass body and resin

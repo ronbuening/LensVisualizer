@@ -26,6 +26,14 @@ const LENS_DATA = {
   subtitle: "WO2019/116563 A1 Example 3 — Nikon / Yamashita, Ito et al.",
   specs: ["14 ELEMENTS / 9 GROUPS", "f ≈ 102.1 mm", "F/1.45", "2ω ≈ 23.8°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 105,
+  focalLengthDesign: 102.1,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.45,
+  patentYear: 2019,
+  elementCount: 14,
+  groupCount: 9,
+
   /* ── Elements ── */
   elements: [
     {

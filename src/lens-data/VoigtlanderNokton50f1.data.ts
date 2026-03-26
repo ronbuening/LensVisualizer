@@ -31,6 +31,14 @@ const LENS_DATA = {
   subtitle: "JP2023063766A EXAMPLE 1 — COSINA / OGINO",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 50.0 mm", "F/1.0", "2ω ≈ 46.8°", "3 ASPHERICAL SURFACES"],
 
+  focalLengthMarketing: 50,
+  focalLengthDesign: 50.0,
+  apertureMarketing: 1.0,
+  apertureDesign: 1.0,
+  patentYear: 2023,
+  elementCount: 9,
+  groupCount: 7,
+
   /* ── Elements ── */
   elements: [
     {

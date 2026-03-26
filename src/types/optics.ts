@@ -67,6 +67,13 @@ export interface LensData {
   name: string;
   subtitle?: string;
   specs?: string[];
+  focalLengthMarketing?: number | [number, number];
+  focalLengthDesign?: number | [number, number];
+  apertureMarketing?: number;
+  apertureDesign?: number;
+  patentYear?: number;
+  elementCount?: number;
+  groupCount?: number;
   visible?: boolean;
   nominalFno?: number;
   closeFocusM: number;

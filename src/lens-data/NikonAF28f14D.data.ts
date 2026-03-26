@@ -33,6 +33,14 @@ const LENS_DATA = {
   subtitle: "US 5,315,441 EXAMPLE 1 — NIKON / HORI & TATSUNO",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 28.6 mm", "F/1.4", "2ω ≈ 75.4°", "1 ASPHERICAL SURFACE (GROUND GLASS)"],
 
+  focalLengthMarketing: 28,
+  focalLengthDesign: 28.6,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.4,
+  patentYear: 1994,
+  elementCount: 11,
+  groupCount: 8,
+
   /* ── Elements ──
    *  11 physical glass elements in 8 air-spaced groups (4 functional macro-groups).
    *  Three cemented doublets: L4 (G2), L6 (G3), L8 (G4).

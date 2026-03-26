@@ -26,6 +26,14 @@ const LENS_DATA = {
   subtitle: "WO 2024/147268 A1 Example 1 — NIKON / MURATANI",
   specs: ["16 ELEMENTS / 14 GROUPS", "f ≈ 132.3 mm", "F/1.85", "2ω ≈ 18.6°", "1 ASPHERICAL SURFACE"],
 
+  focalLengthMarketing: 135,
+  focalLengthDesign: 132.3,
+  apertureMarketing: 1.8,
+  apertureDesign: 1.85,
+  patentYear: 2024,
+  elementCount: 16,
+  groupCount: 14,
+
   /* ── Elements ── */
   elements: [
     {

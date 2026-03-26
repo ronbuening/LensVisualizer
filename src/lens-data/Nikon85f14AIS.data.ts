@@ -36,6 +36,14 @@ const LENS_DATA = {
   subtitle: "US 4,396,256 Embodiment 1 — Nippon Kogaku / Fujie",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 85.0 mm", "F/1.4", "2ω ≈ 28.5°", "ALL SPHERICAL"],
 
+  focalLengthMarketing: 85,
+  focalLengthDesign: 85.0,
+  apertureMarketing: 1.4,
+  apertureDesign: 1.4,
+  patentYear: 1983,
+  elementCount: 7,
+  groupCount: 5,
+
   /* ── Elements ──
    *  7 elements in 5 groups: L1, L2, L3(a+b cemented), L4(a+b cemented), L5
    */
