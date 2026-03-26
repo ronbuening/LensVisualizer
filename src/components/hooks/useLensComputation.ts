@@ -10,7 +10,7 @@
 import { useMemo } from "react";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
-import { thick, doLayout, epAtZoom } from "../../optics/optics.js";
+import { thick, doLayout, epAtZoom, eflAtFocus, effectiveFNumber } from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 
@@ -46,6 +46,8 @@ interface UseLensComputationResult {
   baseEPSD: number;
   currentEPSD: number;
   varReadouts: VarReadout[];
+  dynamicEFL: number;
+  effectiveFNum: number;
   filterId: string;
 }
 
@@ -135,6 +137,15 @@ export default function useLensComputation({
       })
     : [];
 
+  /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
+  const dynamicEFL = useMemo(() => (L ? eflAtFocus(focusT, zoomT, L) : 0), [L, focusT, zoomT]);
+
+  /* ── Effective f-number (bellows factor correction at close focus) ── */
+  const effectiveFNum = useMemo(
+    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L) : fNumber),
+    [L, fNumber, focusT, zoomT],
+  );
+
   const filterId = `gl-${panelId}`;
 
   return {
@@ -155,6 +166,8 @@ export default function useLensComputation({
     baseEPSD,
     currentEPSD,
     varReadouts,
+    dynamicEFL,
+    effectiveFNum,
     filterId,
   };
 }

@@ -13,6 +13,11 @@ interface VarReadout {
   val: string;
 }
 
+/** Format f-number for display: one decimal below f/10, rounded above. */
+function fmtF(f: number): string {
+  return f < 10 ? f.toFixed(1) : String(Math.round(f));
+}
+
 interface DiagramControlsProps {
   L: RuntimeLens;
   t: Theme;
@@ -30,6 +35,10 @@ interface DiagramControlsProps {
   fNumber: number;
   currentPhysStopSD: number;
   baseEPSD: number;
+  dynamicEFL: number;
+  effectiveFNum: number;
+  showEffectiveAperture: boolean;
+  onToggleEffectiveAperture?: () => void;
   apertureExpanded: boolean;
   onApertureExpandedChange?: (value: boolean) => void;
   onSliderPointerUp?: () => void;
@@ -53,11 +62,19 @@ export default function DiagramControls({
   fNumber,
   currentPhysStopSD,
   baseEPSD,
+  dynamicEFL,
+  effectiveFNum,
+  showEffectiveAperture,
+  onToggleEffectiveAperture,
   apertureExpanded,
   onApertureExpandedChange,
   onSliderPointerUp,
   showSliders,
 }: DiagramControlsProps) {
+  const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
+  const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
+
   return (
     <>
       {showSliders && L.isZoom && (
@@ -127,6 +144,19 @@ export default function DiagramControls({
                   </span>
                 ))}
               </div>
+              {eflChanged && (
+                <div
+                  style={{
+                    marginTop: 6,
+                    fontSize: 9,
+                    color: t.spacingVal,
+                    fontVariantNumeric: "tabular-nums",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  EFL {dynamicEFL.toFixed(2)} mm
+                </div>
+              )}
             </>
           )}
         </SliderControl>
@@ -139,7 +169,7 @@ export default function DiagramControls({
           useSideLayout={useSideLayout}
           label="APERTURE"
           labelMinWidth={85}
-          displayValue={`f/${fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}`}
+          displayValue={`f/${fmtF(fNumber)}${showEffectiveAperture && effApertureDiffers ? ` (eff. f/${fmtF(effectiveFNum)})` : ""}`}
           displayValueStyle={{ minWidth: "3.5em" }}
           value={stopdownT}
           step={L.apertureStep}
@@ -163,8 +193,8 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(2)} mm · EP {"\u2300"}{" "}
-                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
+                EFL {dynamicEFL.toFixed(2)} mm · EP {"\u2300"} {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
+                {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
                 style={{
@@ -196,6 +226,21 @@ export default function DiagramControls({
                       f/{n}
                     </span>
                   ))}
+              </div>
+              <div
+                style={{
+                  marginTop: 8,
+                  fontSize: 9,
+                  color: t.desc,
+                  cursor: "pointer",
+                  userSelect: "none",
+                  transition: "color 0.3s",
+                }}
+                onClick={onToggleEffectiveAperture}
+              >
+                <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
+                  {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+                </span>
               </div>
             </>
           )}

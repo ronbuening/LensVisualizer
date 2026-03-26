@@ -273,6 +273,12 @@ export function bAtZoom(zoomT: number, L: RuntimeLens): number {
   return _lerpZoomArray(zoomT, L.zoomBs!);
 }
 
+/** Interpolate exit pupil SD at a given zoom position. */
+export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.xpSD;
+  return _lerpZoomArray(zoomT, L.zoomXpSDs!);
+}
+
 /**
  * Piecewise-linear interpolation across a pre-computed zoom array.
  * Shared helper for eflAtZoom, epAtZoom, halfFieldAtZoom, etc.
@@ -283,6 +289,62 @@ function _lerpZoomArray(zoomT: number, arr: number[]): number {
   const idx = Math.min(Math.floor(pos), arr.length - 2);
   const frac = pos - idx;
   return arr[idx] + (arr[idx + 1] - arr[idx]) * frac;
+}
+
+/**
+ * Compute the effective focal length at a given focus/zoom position.
+ *
+ * At infinity focus, returns the static EFL (or zoom-interpolated EFL).
+ * At closer focus distances, variable gaps change the spacing between
+ * lens groups, which shifts the overall optical power.  This is especially
+ * noticeable in internal-focusing designs where only a subset of elements move.
+ *
+ * Uses a paraxial marginal ray (y=1, u=0) with focus-aware thicknesses,
+ * skipping the last transfer: EFL = −1/u_final.
+ */
+export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens): number {
+  if (focusT < FOCUS_INFINITY_THRESHOLD) {
+    return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  }
+  let y = 1,
+    u = 0,
+    n = 1.0;
+  for (let i = 0; i < L.N; i++) {
+    const { R, nd } = L.S[i];
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
+    n = nn;
+    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * u;
+  }
+  if (Math.abs(u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  return -1.0 / u;
+}
+
+/**
+ * Compute the effective f-number accounting for the bellows extension factor.
+ *
+ * As a lens focuses closer, the image-side working distance increases,
+ * reducing the effective light-gathering ability.  The correction is:
+ *   f_eff = f_nominal × (1 + |m| / p)
+ * where m is the image magnification and p is the pupil magnification
+ * (exit pupil SD / entrance pupil SD).
+ *
+ * At infinity focus (m ≈ 0), returns the nominal f-number unchanged.
+ */
+export function effectiveFNumber(nominalFNumber: number, focusT: number, zoomT: number, L: RuntimeLens): number {
+  if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
+
+  const efl = eflAtFocus(focusT, zoomT, L);
+  const focusDistMm = (L.closeFocusM / focusT) * 1000;
+  const denom = focusDistMm - efl;
+  if (Math.abs(denom) < 1e-10) return nominalFNumber;
+  const m = -efl / denom;
+
+  const epSD = L.isZoom ? epAtZoom(zoomT, L) : L.EP.epSD;
+  const xpSD = L.isZoom ? xpAtZoom(zoomT, L) : L.xpSD;
+  const p = Math.abs(epSD) > 1e-10 ? Math.abs(xpSD) / Math.abs(epSD) : 1;
+
+  return nominalFNumber * (1 + Math.abs(m) / (p > 1e-10 ? p : 1));
 }
 
 /* =====================================================================
