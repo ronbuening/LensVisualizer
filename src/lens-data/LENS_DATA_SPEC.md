@@ -307,6 +307,22 @@ These are computed automatically and added to the frozen lens object:
 | `zoomHalfFields` | `number[]` | Vignetting-limited half-field angle at each zoom position |
 | `zoomYRatios` | `number[]` | Marginal ray height ratio at stop for each zoom position |
 | `zoomBs` | `number[]` | Chief ray height at stop for each zoom position |
+| `zoomFOPENs` | `number[]` | Wide-open f-number at each zoom position (derived from `zoomEFLs` and `zoomEPs`) |
+
+### Variable-Aperture Zooms
+
+Zoom lenses with a variable maximum aperture (e.g., f/4.5-5.6) use an array for `nominalFno` with one value per zoom position:
+
+```javascript
+zoomPositions: [103.09, 388.17],
+nominalFno:    [4.5,    5.76],    // f/4.5 at wide, f/5.76 at tele
+```
+
+The array length must match `zoomPositions.length`. Each entry is the nominal wide-open f-number at that focal length. `buildLens` uses per-position values to compute correct entrance pupil and stop diameters at each zoom position, and stores the results in `zoomFOPENs`.
+
+At runtime, `fopenAtZoom(zoomT, L)` interpolates between the per-position values. The aperture slider clamps the f-number to the zoom-dependent FOPEN — so f/8 stays at f/8 when zooming, but wide-open at tele correctly shows f/5.76 instead of f/4.5. F-stop quick-select buttons below the current FOPEN are hidden.
+
+For constant-aperture zooms (e.g., f/2.8), keep `nominalFno` as a single number — no changes needed.
 
 ### Validation
 
@@ -314,8 +330,9 @@ When `zoomPositions` is present:
 1. Must be an array of at least 2 finite numbers
 2. Must be monotonically increasing
 3. All `var` values must be arrays of `[d_inf, d_close]` pairs with length matching `zoomPositions.length`
-4. `zoomStep` (if present) must be a finite positive number
-5. `zoomLabels` (if present) must be an array of strings
+4. `nominalFno` (if array) must have length matching `zoomPositions.length`; if lens has no `zoomPositions`, `nominalFno` must be a single number
+5. `zoomStep` (if present) must be a finite positive number
+6. `zoomLabels` (if present) must be an array of strings
 
 ---
 
