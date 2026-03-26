@@ -22,7 +22,7 @@ const PAGE_BASE_STYLE = {
 } satisfies React.CSSProperties;
 
 export default function ArticlesPage() {
-  const { theme: t, dark, highContrast, toggleDark, toggleHC } = usePageThemeToggle();
+  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -32,7 +32,13 @@ export default function ArticlesPage() {
         canonicalURL={`${SITE_URL}/articles`}
       />
 
-      <PageNavBar theme={t} dark={dark} highContrast={highContrast} onToggleDark={toggleDark} onToggleHC={toggleHC}>
+      <PageNavBar
+        theme={t}
+        themeMode={themeMode}
+        highContrast={highContrast}
+        onToggleTheme={toggleTheme}
+        onToggleHC={toggleHC}
+      >
         <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Home
         </Link>

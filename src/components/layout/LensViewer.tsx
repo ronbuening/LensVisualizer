@@ -43,6 +43,7 @@ import ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.
 import ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
 import AboutFooter from "../display/AboutFooter.js";
 import useLensState from "../../utils/useLensState.js";
+import useMediaQuery from "../../utils/useMediaQuery.js";
 import {
   SET_LENS_A,
   SET_LENS_B,
@@ -182,8 +183,11 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const effectiveDesktopView = desktopViewOptions.some((o) => o.val === desktopView) ? desktopView : defaultDesktopView;
   const showDesktopToggle = isWide && !comparing && desktopViewOptions.length > 1;
 
-  /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast */
-  const t = T[dark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"];
+  /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast.
+     dark===null means "auto" — resolved reactively via system media query. */
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const resolvedDark = dark !== null ? dark : systemDark;
+  const t = T[resolvedDark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"];
 
   /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
   const catalogNames = useMemo(() => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])), []);
