@@ -9,6 +9,7 @@
 import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/styles.js";
+import CollapseButton from "../controls/CollapseButton.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { CSSProperties } from "react";
@@ -63,12 +64,13 @@ export default function DiagramLegend({
           {isWide ? "Hover" : "Tap"} an element for optical details
         </span>
         {!isWide && (
-          <button
-            onClick={() => onLegendExpandedChange?.(!legendExpanded)}
-            style={{ ...collapseBtn(t), marginLeft: "auto" }}
-          >
-            LEGEND <span style={{ fontSize: 11, lineHeight: 1 }}>{legendExpanded ? "▴" : "▾"}</span>
-          </button>
+          <CollapseButton
+            expanded={legendExpanded}
+            onToggle={() => onLegendExpandedChange?.(!legendExpanded)}
+            theme={t}
+            label="LEGEND"
+            style={{ marginLeft: "auto" }}
+          />
         )}
       </div>
       {(isWide || legendExpanded) && (
