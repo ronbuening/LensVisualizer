@@ -15,11 +15,16 @@ import { getMakerDetails } from "../utils/makerDetails.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import type { LensData } from "../types/optics.js";
 
-type GroupMode = "maker" | "focal";
+type GroupMode = "maker" | "focal" | "year-asc" | "year-desc";
 
 interface MakerGroup {
   display: string;
   slug: string;
+  lenses: { key: string; data: LensData }[];
+}
+
+interface YearGroup {
+  decade: string;
   lenses: { key: string; data: LensData }[];
 }
 
@@ -103,6 +108,26 @@ function groupByFocalLength(): PrimeZoomSection[] {
   return sections;
 }
 
+function groupByPatentYear(dir: "asc" | "desc"): YearGroup[] {
+  const sorted = [...CATALOG_KEYS]
+    .map((key) => ({ key, data: LENS_CATALOG[key] }))
+    .sort((a, b) => {
+      const ya = a.data.patentYear ?? (dir === "asc" ? Infinity : -Infinity);
+      const yb = b.data.patentYear ?? (dir === "asc" ? Infinity : -Infinity);
+      if (ya !== yb) return dir === "asc" ? ya - yb : yb - ya;
+      return a.data.name.localeCompare(b.data.name);
+    });
+
+  const groups = new Map<string, { key: string; data: LensData }[]>();
+  for (const item of sorted) {
+    const year = item.data.patentYear;
+    const decade = year !== undefined ? `${Math.floor(year / 10) * 10}s` : "Unknown Year";
+    if (!groups.has(decade)) groups.set(decade, []);
+    groups.get(decade)!.push(item);
+  }
+  return Array.from(groups.entries()).map(([decade, lenses]) => ({ decade, lenses }));
+}
+
 const PAGE_BASE_STYLE = {
   maxWidth: 960,
   margin: "0 auto",
@@ -139,6 +164,8 @@ export default function LensIndexPage() {
   const [groupMode, setGroupMode] = useState<GroupMode>("maker");
   const makerGroups = groupByMaker();
   const focalSections = groupByFocalLength();
+  const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
+  const yearGroups = groupByPatentYear(yearDir);
   const totalLenses = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
@@ -195,6 +222,20 @@ export default function LensIndexPage() {
             </button>
             <button style={toggleButtonStyle(groupMode === "focal")} onClick={() => setGroupMode("focal")}>
               By Focal Length
+            </button>
+            <button
+              style={toggleButtonStyle(groupMode === "year-asc" || groupMode === "year-desc")}
+              onClick={() =>
+                setGroupMode(
+                  groupMode === "year-asc" ? "year-desc" : groupMode === "year-desc" ? "year-asc" : "year-asc",
+                )
+              }
+            >
+              {groupMode === "year-asc"
+                ? "By Patent Year ↑"
+                : groupMode === "year-desc"
+                  ? "By Patent Year ↓"
+                  : "By Patent Year"}
             </button>
           </div>
         </div>
@@ -282,6 +323,27 @@ export default function LensIndexPage() {
                     </Link>
                   ))}
                 </div>
+              ))}
+            </section>
+          ))}
+        {(groupMode === "year-asc" || groupMode === "year-desc") &&
+          yearGroups.map((group) => (
+            <section key={group.decade}>
+              <h2 style={{ ...MAKER_HEADING_BASE_STYLE, borderBottom: `1px solid ${t.panelBorder}` }}>
+                {group.decade}
+                <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+                  ({group.lenses.length})
+                </span>
+              </h2>
+              {group.lenses.map(({ key, data }) => (
+                <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+                  {data.name}
+                  {data.patentYear !== undefined && (
+                    <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                      — {data.patentYear}
+                    </span>
+                  )}
+                </Link>
               ))}
             </section>
           ))}
