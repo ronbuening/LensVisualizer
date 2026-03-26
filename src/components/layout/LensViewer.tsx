@@ -66,7 +66,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
-  const { lens, display, rays, sharedSliders, overlays } = state;
+  const { lens, display, rays, sharedSliders, panels, overlays } = state;
   const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
   const { dark, highContrast, mobileView, desktopView } = display;
   const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, showPupils } = rays;
@@ -291,6 +291,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
               onAperturePointerDown={handleAperturePointerDown}
               onSliderPointerUp={updateURLWithSliders}
               dispatch={dispatch}
+              showEffectiveAperture={panels.showEffectiveAperture}
             />
           ) : (
             <SingleLensContent

@@ -115,6 +115,7 @@ export function createInitialState(
       legendExpanded: prefs.legendExpanded ?? false,
       headerInfoExpanded: prefs.headerInfoExpanded ?? true,
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
+      showEffectiveAperture: prefs.showEffectiveAperture ?? false,
     },
     overlays: {
       showAbout: false,

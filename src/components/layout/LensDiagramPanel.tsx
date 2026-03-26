@@ -78,7 +78,14 @@ export default function LensDiagramPanel({
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = display.dark !== null ? display.dark : systemDark;
-  const { focusExpanded, apertureExpanded, legendExpanded, headerInfoExpanded, abbeShowGlassType } = panels;
+  const {
+    focusExpanded,
+    apertureExpanded,
+    legendExpanded,
+    headerInfoExpanded,
+    abbeShowGlassType,
+    showEffectiveAperture,
+  } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
   const focusT = focusTProp ?? sliders.focusT;
@@ -127,6 +134,8 @@ export default function LensDiagramPanel({
     baseEPSD,
     currentEPSD,
     varReadouts,
+    dynamicEFL,
+    effectiveFNum,
     filterId,
   } = useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
@@ -273,6 +282,10 @@ export default function LensDiagramPanel({
                 fNumber={fNumber}
                 currentPhysStopSD={currentPhysStopSD}
                 baseEPSD={baseEPSD}
+                dynamicEFL={dynamicEFL}
+                effectiveFNum={effectiveFNum}
+                showEffectiveAperture={showEffectiveAperture}
+                onToggleEffectiveAperture={() => adapters.onEffectiveApertureChange(!showEffectiveAperture)}
                 varReadouts={varReadouts}
                 focusExpanded={focusExpanded}
                 apertureExpanded={apertureExpanded}

@@ -35,6 +35,7 @@ export default function usePreferences(state: LensState): void {
       legendExpanded: panels.legendExpanded,
       headerInfoExpanded: panels.headerInfoExpanded,
       abbeShowGlassType: panels.abbeShowGlassType,
+      showEffectiveAperture: panels.showEffectiveAperture,
     };
 
     const json = JSON.stringify(prefs);

@@ -51,6 +51,12 @@ interface SharedSlidersBarProps {
   focusPair: FocusPairResult;
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult | null;
+  dynamicEflA: number;
+  dynamicEflB: number;
+  effectiveFNumA: number;
+  effectiveFNumB: number;
+  showEffectiveAperture: boolean;
+  onToggleEffectiveAperture?: () => void;
   theme: Theme;
   isWide: boolean;
 }
@@ -81,6 +87,12 @@ export default function SharedSlidersBar({
   focusPair,
   aperturePair,
   zoomPair,
+  dynamicEflA,
+  dynamicEflB,
+  effectiveFNumA,
+  effectiveFNumB,
+  showEffectiveAperture,
+  onToggleEffectiveAperture,
   theme: t,
   isWide,
 }: SharedSlidersBarProps) {
@@ -222,8 +234,18 @@ export default function SharedSlidersBar({
           </div>
           {/* Per-lens readouts */}
           <div style={{ ...READOUT_ROW, color: t.spacingVal }}>
-            <span>A: {formatDist(focusPair.focusA, LA)}</span>
-            <span>B: {formatDist(focusPair.focusB, LB)}</span>
+            <span>
+              A: {formatDist(focusPair.focusA, LA)}
+              {focusPair.focusA > 0.003 && Math.abs(dynamicEflA - (LA.isZoom ? eflAtZoom(0, LA) : LA.EFL)) > 0.1 && (
+                <span style={{ opacity: 0.7 }}> ({dynamicEflA.toFixed(1)} mm)</span>
+              )}
+            </span>
+            <span>
+              B: {formatDist(focusPair.focusB, LB)}
+              {focusPair.focusB > 0.003 && Math.abs(dynamicEflB - (LB.isZoom ? eflAtZoom(0, LB) : LB.EFL)) > 0.1 && (
+                <span style={{ opacity: 0.7 }}> ({dynamicEflB.toFixed(1)} mm)</span>
+              )}
+            </span>
           </div>
         </div>
 
@@ -282,6 +304,21 @@ export default function SharedSlidersBar({
                   </span>
                 );
               })}
+          </div>
+          {showEffectiveAperture &&
+            (Math.abs(effectiveFNumA - fNum) > 0.05 || Math.abs(effectiveFNumB - fNum) > 0.05) && (
+              <div style={{ ...READOUT_ROW, color: t.spacingVal }}>
+                <span>A eff. f/{effectiveFNumA < 10 ? effectiveFNumA.toFixed(1) : Math.round(effectiveFNumA)}</span>
+                <span>B eff. f/{effectiveFNumB < 10 ? effectiveFNumB.toFixed(1) : Math.round(effectiveFNumB)}</span>
+              </div>
+            )}
+          <div
+            style={{ marginTop: 6, fontSize: 9, color: t.desc, cursor: "pointer", userSelect: "none" }}
+            onClick={onToggleEffectiveAperture}
+          >
+            <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
+              {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
+            </span>
           </div>
         </div>
       </div>

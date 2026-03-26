@@ -5,12 +5,14 @@
  * and SharedSlidersBar (unified slider controls).
  */
 
-import type { Dispatch } from "react";
+import { useMemo, type Dispatch } from "react";
 import ComparisonLayout from "./ComparisonLayout.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import { SET_SHARED_ZOOM_T } from "./comparisonReducer.js";
 import { ErrorDisplay } from "../components/errors/ErrorBoundary.js";
+import { eflAtFocus, effectiveFNumber } from "../optics/optics.js";
+import { sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
 import type { Theme } from "../types/theme.js";
 import type { LensAction } from "../types/state.js";
@@ -37,6 +39,7 @@ interface ComparisonContentProps {
   onAperturePointerDown: () => void;
   onSliderPointerUp: () => void;
   dispatch: Dispatch<LensAction>;
+  showEffectiveAperture: boolean;
 }
 
 export default function ComparisonContent({
@@ -61,7 +64,36 @@ export default function ComparisonContent({
   onAperturePointerDown,
   onSliderPointerUp,
   dispatch,
+  showEffectiveAperture,
 }: ComparisonContentProps) {
+  /* ── Dynamic EFL and effective aperture for both lenses ── */
+  const ok = isComparisonOk(comparisonLenses);
+  const LA = ok ? comparisonLenses.LA : null;
+  const LB = ok ? comparisonLenses.LB : null;
+  const focusA = focusPair?.focusA ?? 0;
+  const focusB = focusPair?.focusB ?? 0;
+  const zoomA = zoomPair?.zoomA ?? 0;
+  const zoomB = zoomPair?.zoomB ?? 0;
+
+  const dynamicEflA = useMemo(() => (LA ? eflAtFocus(focusA, zoomA, LA) : 0), [LA, focusA, zoomA]);
+  const dynamicEflB = useMemo(() => (LB ? eflAtFocus(focusB, zoomB, LB) : 0), [LB, focusB, zoomB]);
+
+  const fNumShared = aperturePair
+    ? sharedFNumber(sharedStopdownT, aperturePair.widerFOPEN, aperturePair.sharedMaxFstop)
+    : 1;
+  /* Per-lens nominal f-numbers at their individual stopdownT positions */
+  const fNumA = LA ? LA.FOPEN * Math.pow(LA.maxFstop / LA.FOPEN, aperturePair?.stopdownA ?? 0) : fNumShared;
+  const fNumB = LB ? LB.FOPEN * Math.pow(LB.maxFstop / LB.FOPEN, aperturePair?.stopdownB ?? 0) : fNumShared;
+
+  const effectiveFNumA = useMemo(
+    () => (LA ? effectiveFNumber(fNumA, focusA, zoomA, LA) : fNumA),
+    [LA, fNumA, focusA, zoomA],
+  );
+  const effectiveFNumB = useMemo(
+    () => (LB ? effectiveFNumber(fNumB, focusB, zoomB, LB) : fNumB),
+    [LB, fNumB, focusB, zoomB],
+  );
+
   return (
     <>
       {comparisonLenses?.error ? (
@@ -112,6 +144,14 @@ export default function ComparisonContent({
           aperturePair={aperturePair}
           zoomPair={zoomPair}
           onSliderPointerUp={onSliderPointerUp}
+          dynamicEflA={dynamicEflA}
+          dynamicEflB={dynamicEflB}
+          effectiveFNumA={effectiveFNumA}
+          effectiveFNumB={effectiveFNumB}
+          showEffectiveAperture={showEffectiveAperture}
+          onToggleEffectiveAperture={() =>
+            dispatch({ type: "SET_PANEL_EXPANDED", panel: "showEffectiveAperture", expanded: !showEffectiveAperture })
+          }
           theme={t}
           isWide={isWide}
         />

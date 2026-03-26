@@ -13,8 +13,11 @@ import {
   conjugateK,
   wavelengthNd,
   eflAtZoom,
+  eflAtFocus,
+  effectiveFNumber,
   epAtZoom,
   halfFieldAtZoom,
+  xpAtZoom,
   FLAT_R_THRESHOLD,
   FOCUS_INFINITY_THRESHOLD,
 } from "../src/optics/optics.js";
@@ -755,5 +758,82 @@ describe("named constants", () => {
 
   it("FOCUS_INFINITY_THRESHOLD is 0.003", () => {
     expect(FOCUS_INFINITY_THRESHOLD).toBe(0.003);
+  });
+});
+
+describe("eflAtFocus", () => {
+  it("returns static EFL at infinity focus for prime lenses", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    expect(eflAtFocus(0, 0, L)).toBe(L.EFL);
+    expect(eflAtFocus(0.001, 0, L)).toBe(L.EFL); // below threshold
+  });
+
+  it("returns a different EFL at close focus for internal-focusing lenses", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData);
+    const eflInf = eflAtFocus(0, 0, L);
+    const eflClose = eflAtFocus(1, 0, L);
+    expect(eflInf).toBeCloseTo(L.EFL, 2);
+    /* EFL changes at close focus (direction depends on lens design) */
+    expect(Math.abs(eflClose - eflInf)).toBeGreaterThan(0.1);
+  });
+
+  it("returns zoom-interpolated EFL at infinity for zoom lenses", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    expect(eflAtFocus(0, 0, L)).toBeCloseTo(eflAtZoom(0, L), 5);
+    expect(eflAtFocus(0, 1, L)).toBeCloseTo(eflAtZoom(1, L), 5);
+  });
+
+  it("returns finite positive value at close focus", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const efl = eflAtFocus(1, 0, L);
+    expect(isFinite(efl)).toBe(true);
+    expect(efl).toBeGreaterThan(0);
+  });
+});
+
+describe("effectiveFNumber", () => {
+  it("returns nominal f-number at infinity focus", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    expect(effectiveFNumber(2.0, 0, 0, L)).toBe(2.0);
+    expect(effectiveFNumber(2.0, 0.001, 0, L)).toBe(2.0); // below threshold
+  });
+
+  it("returns higher effective f-number at close focus", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const nominalF = 2.0;
+    const effF = effectiveFNumber(nominalF, 1, 0, L);
+    expect(effF).toBeGreaterThan(nominalF);
+  });
+
+  it("increases monotonically as focus gets closer", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    const f1 = effectiveFNumber(2.0, 0.3, 0, L);
+    const f2 = effectiveFNumber(2.0, 0.6, 0, L);
+    const f3 = effectiveFNumber(2.0, 1.0, 0, L);
+    expect(f2).toBeGreaterThan(f1);
+    expect(f3).toBeGreaterThan(f2);
+  });
+
+  it("works with zoom lenses", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    const effF = effectiveFNumber(2.8, 1, 0, L);
+    expect(effF).toBeGreaterThan(2.8);
+    expect(isFinite(effF)).toBe(true);
+  });
+});
+
+describe("xpAtZoom", () => {
+  it("returns static xpSD for prime lenses", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData);
+    expect(xpAtZoom(0, L)).toBe(L.xpSD);
+    expect(xpAtZoom(0.5, L)).toBe(L.xpSD);
+  });
+
+  it("interpolates across zoom positions", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData);
+    const xpWide = xpAtZoom(0, L);
+    const xpTele = xpAtZoom(1, L);
+    expect(xpWide).toBeCloseTo(L.zoomXpSDs![0], 5);
+    expect(xpTele).toBeCloseTo(L.zoomXpSDs![2], 5);
   });
 });
