@@ -129,6 +129,7 @@ export default function LensDiagramPanel({
     effectiveSC,
     shapes,
     stopZ,
+    currentFOPEN,
     fNumber,
     currentPhysStopSD,
     baseEPSD,
@@ -280,6 +281,7 @@ export default function LensDiagramPanel({
                 focusT={focusT}
                 stopdownT={stopdownT}
                 fNumber={fNumber}
+                currentFOPEN={currentFOPEN}
                 currentPhysStopSD={currentPhysStopSD}
                 baseEPSD={baseEPSD}
                 dynamicEFL={dynamicEFL}

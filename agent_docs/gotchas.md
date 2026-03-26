@@ -11,5 +11,6 @@
 - Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
 - `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
+- `nominalFno` can be a single number or an array (one per zoom position) for variable-aperture zooms — array length must match `zoomPositions.length`; using an array on a non-zoom lens will fail validation
 - `prerender.mjs` validates that every route pattern in `routeManifest.tsx` is covered by routes in `build-metadata.json` — adding a new route pattern without updating `generate-build-metadata.mjs` will fail the build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`
 - `MAKER_PREFIXES` exists in two places: `src/utils/lensMetadata.ts` (runtime, includes `display` field) and `scripts/generate-build-metadata.mjs` (build-time). Both have cross-reference comments; the `buildRouteSync` test catches drift

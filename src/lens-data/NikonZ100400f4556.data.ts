@@ -51,7 +51,7 @@ const LENS_DATA = {
   focalLengthMarketing: [100, 400],
   focalLengthDesign: [103.09, 388.17],
   apertureMarketing: 4.5,
-  // apertureDesign omitted — patent states Fnot=5.76 (tele only); wide-end f/# not given
+  // apertureDesign omitted — patent states Fnot=5.76 (tele only); wide-end f/4.5 from marketing spec
   patentYear: 2022,
   elementCount: 25,
   groupCount: 20,
@@ -570,7 +570,7 @@ const LENS_DATA = {
     "Floating inner focus — G5 (cemented doublet) and G6 (2 singlets) move along independent trajectories toward image. G5 moves +30.6mm at tele; G6 moves +0.4mm. Total gap sum constant — true internal focusing.",
 
   /* ── Aperture configuration ── */
-  nominalFno: 5.76,
+  nominalFno: [4.5, 5.76],
   fstopSeries: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32],
 
   /* ── Layout tuning ── */

@@ -32,7 +32,6 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── Required top-level scalars ── */
   const requiredStrings = ["key", "name"];
   const requiredNumbers = [
-    "nominalFno",
     "closeFocusM",
     "focusStep",
     "maxFstop",
@@ -59,6 +58,27 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
   for (const f of requiredArrays) {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
+  }
+
+  /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */
+  if (typeof data.nominalFno === "number") {
+    if (!isFinite(data.nominalFno)) errors.push(`"nominalFno" must be a finite number`);
+  } else if (Array.isArray(data.nominalFno)) {
+    if (data.nominalFno.length === 0) errors.push(`"nominalFno" array must not be empty`);
+    for (let i = 0; i < data.nominalFno.length; i++) {
+      if (typeof data.nominalFno[i] !== "number" || !isFinite(data.nominalFno[i]))
+        errors.push(`"nominalFno[${i}]" must be a finite number`);
+    }
+    if (Array.isArray(data.zoomPositions) && data.nominalFno.length !== data.zoomPositions.length)
+      errors.push(
+        `"nominalFno" array length (${data.nominalFno.length}) must match "zoomPositions" length (${data.zoomPositions.length})`,
+      );
+    if (!Array.isArray(data.zoomPositions) || data.zoomPositions.length === 0)
+      errors.push(
+        `"nominalFno" is an array but lens has no "zoomPositions" — only zoom lenses support variable aperture`,
+      );
+  } else {
+    errors.push(`Missing or invalid required field: "nominalFno" (must be number or number[])`);
   }
 
   /* ── Optional boolean fields ── */

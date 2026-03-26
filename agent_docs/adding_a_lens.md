@@ -62,10 +62,18 @@ If the patent describes a variable focal-length lens with spacing tables at mult
 
 **File header:** Document which gaps are zoom-only vs zoom+focus, and note any non-monotonic (reversing) groups. See the header in `src/lens-data/NikonNikkorZ70200f28.data.ts` for an example.
 
+**Variable-aperture zooms:** If the lens has a variable maximum aperture (e.g., f/4.5-5.6), set `nominalFno` to an array with one value per zoom position:
+```typescript
+zoomPositions: [103.09, 388.17],
+nominalFno:    [4.5,    5.76],    // f/4.5 at wide, f/5.76 at tele
+```
+For constant-aperture zooms (e.g., f/2.8), keep `nominalFno` as a single number. See `src/lens-data/NikonZ100400f4556.data.ts` for a working variable-aperture example.
+
 **Zoom-specific validation:**
 - `zoomPositions` must be monotonically increasing finite numbers
 - `var` pair count must match `zoomPositions.length`
+- `nominalFno` array length (if array) must match `zoomPositions.length`
 - Surface `d` must match `var[label][0][0]` (first zoom position, infinity focus)
 - Cross-gap overlap is checked at every zoom position
 
-**References:** Zoom Lens Fields section in `src/lens-data/LENS_DATA_SPEC.md`, zoom fields section in the template, and `src/lens-data/NikonNikkorZ70200f28.data.ts` as a working example.
+**References:** Zoom Lens Fields section in `src/lens-data/LENS_DATA_SPEC.md`, zoom fields section in the template, `src/lens-data/NikonNikkorZ70200f28.data.ts` (constant-aperture zoom), and `src/lens-data/NikonZ100400f4556.data.ts` (variable-aperture zoom).
