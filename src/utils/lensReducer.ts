@@ -57,6 +57,7 @@ const PANEL_FIELDS = new Set([
   "legendExpanded",
   "headerInfoExpanded",
   "abbeShowGlassType",
+  "showEffectiveAperture",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
 
