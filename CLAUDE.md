@@ -19,70 +19,29 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 
 ```
 src/main.tsx              — React entry point
-src/router.tsx            — React Router route definitions
-src/routes/routeManifest.tsx — Single source of truth for route definitions
+src/router.tsx            — Route definitions (via routes/routeManifest.tsx)
 src/entry-server.tsx      — SSR entry point for pre-rendering
 src/pages/                — Page-level route components
-                            (HomePage, LensPage, LensIndexPage,
-                             MakerPage, MakersIndexPage, ComparePage,
-                             ArticlePage, ArticlesPage, NotFoundPage)
 src/types/                — Shared TypeScript type definitions (optics, state, theme)
 src/comparison/           — Comparison mode feature module
-                            (ComparisonContent, SharedSlidersBar,
-                             comparisonSliders, comparisonReducer, comparisonTypes,
-                             comparisonURLSync, useComparisonMode,
-                             useComparisonOrchestration, useStickySliders)
 src/components/           — React UI components and hooks
-  components/             — Root utility components (ClientOnly, SEOHead)
-  components/layout/      — Top-level layout and orchestration components
-                            (LensViewer, TopBar, ControlsBar, ViewToggleBar,
-                             OverlayModal, LensDiagramPanel, SingleLensContent,
-                             DescriptionPanel, BreadcrumbBar, PageNavBar,
-                             PanelOverlay, DiagramControlPanel, DropdownPanel,
-                             PrimerToggleButton)
+  components/layout/      — Top-level layout and orchestration (LensViewer, TopBar, etc.)
   components/diagram/     — SVG rendering components
-                            (DiagramSVG, RayPolylines, ApertureStop,
-                             ElementAnnotations, LCAInsetWidget,
-                             LCAOverlayContent, PetzvalOverlayContent,
-                             PetzvalSumBadge)
-  components/controls/    — Sliders, toggles, and header controls
-                            (DiagramControls, DiagramHeader, SliderControl,
-                             RayToggles, ChromaticControls, LensSelector,
-                             CollapseButton)
+  components/controls/    — Sliders, toggles, shared UI (CollapseButton, etc.)
   components/display/     — Data display (inspector, legend, about)
-                            (ElementInspector, DiagramLegend, AbbeDiagram,
-                             AboutButtonRow, AboutFooter)
   components/errors/      — Error boundary components
-                            (ErrorBoundary, PanelErrorBoundary)
-  components/hooks/       — Custom React hooks for computation and state
-                            (useLensComputation, useRayTracing, useOnAxisRays,
-                             useOffAxisRays, useChromaticRays, useFlashOverlay,
-                             useSideLayoutDetection, useOverlays,
-                             useOverlayState, useDispatchAdapters,
-                             useHeaderHeight, raySegmentUtils)
+  components/hooks/       — Custom hooks + shared utilities (raySegmentUtils, etc.)
 src/optics/               — Pure-function optical engine (.ts, no React deps)
-                            (optics, buildLens, validateLensData,
-                             diagramGeometry, lcaScaling)
-src/utils/                — Themes, styles, feature flags, catalog, state hooks (.ts)
-                            (themes, styles, featureFlags, lensCatalog,
-                             lensMetadata, lensReducer, useLensState, LensContext,
-                             useURLSync, zoomConversion, parseComparisonParams,
-                             usePreferences, preferences, errorReporting,
-                             useMediaQuery, usePageTheme, usePageThemeToggle,
-                             themeConstants, appConfig, homepageContent,
-                             makerDetails)
+src/utils/                — Themes, styles, feature flags, catalog, state hooks
 src/lens-data/            — Lens prescription data (auto-registered *.data.ts)
-src/content/              — Static markdown content
-                            (AboutMe.md, AboutSite.md,
-                             OpticsPrimerSimple.md, OpticsPrimerIntermediate.md,
-                             AberrationsPrimerSimple.md, AberrationsPrimerIntermediate.md)
-scripts/                  — Build utilities
-                            (prerender.mjs, generate-sitemap.mjs,
-                             generate-build-metadata.mjs, seo-audit.mjs)
+src/content/              — Static markdown content (primers, about pages)
+scripts/                  — Build utilities (prerender, sitemap, metadata, SEO audit)
 public/                   — Static assets (CNAME, robots.txt)
 __tests__/                — Vitest unit tests (.ts, type-checked by tsc)
 agent_docs/               — Detailed architecture and task guides
 ```
+
+See `agent_docs/architecture.md` for the complete module-by-module breakdown.
 
 ## Commands
 
@@ -115,6 +74,7 @@ Read the relevant file before starting work on that area:
 - **`agent_docs/code_conventions.md`** — Naming, TypeScript, formatting, and architecture constraints
 - **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 - **`agent_docs/gotchas.md`** — Common pitfalls and non-obvious constraints
+- **`agent_docs/claude-md-best-practices.md`** — Guidelines for maintaining this file (progressive disclosure, size limits)
 - **`src/lens-data/LENS_DATA_SPEC.md`** — Complete lens data format specification
 - **`src/lens-data/TEMPLATE.data.ts.template`** — Annotated template with SD guidelines
 
@@ -124,8 +84,7 @@ Read the relevant file before starting work on that area:
 - `useMemo`/`useCallback` for expensive computations and event handlers
 - Auto-registration — lens data files discovered via `import.meta.glob`
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
-- Shared utilities extracted to avoid duplication: `compileRaySegment()` + `filterChannels()` in `raySegmentUtils.ts`, `sagSlopeRaw()` in `optics.ts`, `encodeSliderParams()` in `parseComparisonParams.ts`, `formatPetzvalRadius()` in `optics.ts`
-- Shared UI components: `CollapseButton` (LESS/MORE toggle), `PrimerToggleButton` (primer level switch), `AboutButtonRow` (about button group), `labelStyle()` + `themeConstants` in utils
+- Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - See `agent_docs/architecture.md` for full component relationships and data flow
 
 ## Adding a New Lens
