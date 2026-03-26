@@ -8,6 +8,7 @@
  *   2026-03-25  Audit corrections: Voigtländer HQ, Ricoh founding narrative,
  *               Carl Zeiss Ernemann/reunification, Nikon rangefinder date,
  *               Ricoh GR IV update.
+ *   2026-03-26  Added Canon maker entry.
  */
 
 export interface MakerDetails {
@@ -19,6 +20,16 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  canon: {
+    founded: 1937,
+    headquarters: "Tokyo, Japan",
+    summary:
+      "Japan's largest camera and lens manufacturer, whose EF and RF mount systems redefined autofocus and optical engineering across four decades of professional and consumer photography.",
+    history:
+      "Canon's origins trace to 1934, when Goro Yoshida and Saburo Uchida built the Kwanon — Japan's first 35mm focal-plane shutter camera, named after the Buddhist goddess of mercy — as a proof of concept. Precision Optical Instruments Co., Ltd. was formally founded in 1937 to commercialise the design, and the company renamed itself Canon Camera Co., Ltd. in 1947.\n\nThrough the 1950s and 1960s, Canon produced competitive rangefinder and SLR cameras, but the landmark product of the era was the AE-1 (1976). Its CPU-controlled exposure automation, made possible by Canon's early investment in microelectronics, democratised SLR photography and became the best-selling SLR of the decade. The Canon F-1 (1971) and New F-1 (1981) served professional photojournalists and studio photographers during the same period.\n\nThe EOS system (1987) was a deliberate architectural break: Canon abandoned the FD mount and introduced the EF mount with a fully electronic lens-body interface and a wide 54 mm throat. Every EF lens drives its own autofocus motor internally, removing the mechanical body-to-lens coupling that limited earlier AF designs. The EOS 1 series and a succession of fast L-series telephotos made Canon the dominant force in professional sport and press photography through the 1990s and 2000s. Canon also introduced in-lens Image Stabilisation in 1995 and Diffractive Optics (DO) elements in 2000.\n\nThe RF mount system, launched with the EOS R (2018), shortened the flange distance to 20 mm and widened the mount throat to 54 mm, enabling shorter back-focus lens designs. The RF 50mm f/1.2L USM and RF 85mm f/1.2L USM demonstrated what this freedom enabled at wide apertures, while the RF 100mm f/2.8L Macro IS USM introduced an SA (spherical aberration) control ring — an adjustable element group that allows photographers to dial in or out foreground and background bokeh character at any focus distance.",
+    notableDesigns:
+      "EF 50mm f/1.0L USM, EF 85mm f/1.2L II USM, EF 200mm f/2L IS USM, RF 50mm f/1.2L USM, RF 100mm f/2.8L Macro IS USM",
+  },
   "carl-zeiss": {
     founded: 1846,
     headquarters: "Oberkochen, Germany",

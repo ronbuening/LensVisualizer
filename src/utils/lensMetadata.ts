@@ -13,6 +13,7 @@ const SITE_URL = "https://opticalbench.net";
 /* Known maker prefixes in lens names, mapped to display names and URL-safe slugs.
    Build-time copy: scripts/generate-build-metadata.mjs MAKER_PREFIXES */
 const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
+  { prefix: "CANON", display: "Canon", slug: "canon" },
   { prefix: "CARL ZEISS", display: "Carl Zeiss", slug: "carl-zeiss" },
   { prefix: "VOIGTLÄNDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },

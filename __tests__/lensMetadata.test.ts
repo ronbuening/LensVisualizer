@@ -78,11 +78,12 @@ describe("deriveMaker", () => {
 describe("allMakerSlugs", () => {
   it("returns an array of known maker slugs", () => {
     const slugs = allMakerSlugs();
+    expect(slugs).toContain("canon");
     expect(slugs).toContain("nikon");
     expect(slugs).toContain("carl-zeiss");
     expect(slugs).toContain("voigtlander");
     expect(slugs).toContain("ricoh");
-    expect(slugs.length).toBe(4);
+    expect(slugs.length).toBe(5);
   });
 });
 
