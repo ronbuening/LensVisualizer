@@ -13,6 +13,7 @@ import type { ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
 import type { ThemeMode } from "../../utils/usePageThemeToggle.js";
 import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
+import { THEME_ICON, THEME_LABEL } from "../../utils/themeConstants.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface PageNavBarProps {
@@ -23,18 +24,6 @@ interface PageNavBarProps {
   onToggleHC: () => void;
   children?: ReactNode;
 }
-
-const THEME_ICON: Record<ThemeMode, string> = {
-  auto: "◑",
-  dark: "🌙",
-  light: "☀️",
-};
-
-const THEME_LABEL: Record<ThemeMode, string> = {
-  auto: "AUTO",
-  dark: "DARK",
-  light: "LIGHT",
-};
 
 export default function PageNavBar({
   theme: t,
