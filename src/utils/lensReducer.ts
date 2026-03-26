@@ -3,17 +3,19 @@
  *
  * Organizes 24 formerly-independent useState values into 7 logical slices.
  * No React dependencies — all functions are pure and testable.
+ *
+ * Comparison-specific actions are delegated to comparisonReducer.
  */
 
 import { ENABLE_EDGE_PROJECTION } from "./featureFlags.js";
 import { DEFAULT_COLOR_TRACING } from "./appConfig.js";
 import type { LensState, LensAction, Preferences, URLState } from "../types/state.js";
+import comparisonReducer from "../comparison/comparisonReducer.js";
 
 /* ── Action type constants ── */
 export const SET_LENS_A = "SET_LENS_A";
 export const SET_LENS_B = "SET_LENS_B";
 export const SWAP_LENSES = "SWAP_LENSES";
-export const SET_SCALE_MODE = "SET_SCALE_MODE";
 export const SET_DARK = "SET_DARK";
 export const SET_HIGH_CONTRAST = "SET_HIGH_CONTRAST";
 export const SET_MOBILE_VIEW = "SET_MOBILE_VIEW";
@@ -22,15 +24,20 @@ export const SET_RAY_TOGGLE = "SET_RAY_TOGGLE";
 export const SET_FOCUS_T = "SET_FOCUS_T";
 export const SET_ZOOM_T = "SET_ZOOM_T";
 export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
-export const SET_SHARED_FOCUS_T = "SET_SHARED_FOCUS_T";
-export const SET_SHARED_STOPDOWN_T = "SET_SHARED_STOPDOWN_T";
-export const SET_SHARED_ZOOM_T = "SET_SHARED_ZOOM_T";
 export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
-export const ENTER_COMPARE = "ENTER_COMPARE";
-export const EXIT_COMPARE = "EXIT_COMPARE";
+
+/* Re-export comparison action constants for backward compatibility */
+export {
+  SET_SCALE_MODE,
+  SET_SHARED_FOCUS_T,
+  SET_SHARED_STOPDOWN_T,
+  SET_SHARED_ZOOM_T,
+  ENTER_COMPARE,
+  EXIT_COMPARE,
+} from "../comparison/comparisonReducer.js";
 
 /* ── Valid fields for generic actions (runtime guards for JS consumers) ── */
 const RAY_FIELDS = new Set([
@@ -120,8 +127,14 @@ export function createInitialState(
 
 /**
  * Lens state reducer.
+ *
+ * Comparison-specific actions are delegated to comparisonReducer.
  */
 export default function lensReducer(state: LensState, action: LensAction): LensState {
+  /* Try comparison sub-reducer first */
+  const comparisonResult = comparisonReducer(state, action);
+  if (comparisonResult !== null) return comparisonResult;
+
   switch (action.type) {
     /* ── Lens selection ── */
     case SET_LENS_A: {
@@ -136,8 +149,6 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return { ...state, lens: { ...state.lens, lensKeyB: action.key } };
     case SWAP_LENSES:
       return { ...state, lens: { ...state.lens, lensKeyA: state.lens.lensKeyB, lensKeyB: state.lens.lensKeyA } };
-    case SET_SCALE_MODE:
-      return { ...state, lens: { ...state.lens, scaleMode: action.scaleMode } };
 
     /* ── Display ── */
     case SET_DARK:
@@ -164,14 +175,6 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case RESET_SLIDERS:
       return { ...state, sliders: { focusT: 0, zoomT: 0, stopdownT: 0 } };
 
-    /* ── Shared sliders (comparison mode) ── */
-    case SET_SHARED_FOCUS_T:
-      return { ...state, sharedSliders: { ...state.sharedSliders, sharedFocusT: action.value } };
-    case SET_SHARED_STOPDOWN_T:
-      return { ...state, sharedSliders: { ...state.sharedSliders, sharedStopdownT: action.value } };
-    case SET_SHARED_ZOOM_T:
-      return { ...state, sharedSliders: { ...state.sharedSliders, sharedZoomT: action.value } };
-
     /* ── Panel expand/collapse (generic) ── */
     case SET_PANEL_EXPANDED:
       if (!PANEL_FIELDS.has(action.panel)) return state;
@@ -185,31 +188,6 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return {
         ...state,
         overlays: { showAbout: false, showAboutSite: false, showOpticsPrimer: false, showAberrationsPrimer: false },
-      };
-
-    /* ── Comparison mode transitions ── */
-    case ENTER_COMPARE: {
-      const lens = { ...state.lens, comparing: true as const };
-      /* Pick next lens if A===B */
-      if (state.lens.lensKeyA === state.lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
-        const idx = action.catalogKeys.indexOf(state.lens.lensKeyA);
-        lens.lensKeyB = action.catalogKeys[(idx + 1) % action.catalogKeys.length];
-      }
-      return {
-        ...state,
-        lens,
-        sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0 },
-      };
-    }
-    case EXIT_COMPARE:
-      return {
-        ...state,
-        lens: { ...state.lens, comparing: false },
-        sliders: {
-          ...state.sliders,
-          focusT: action.focusA ?? state.sliders.focusT,
-          stopdownT: action.stopdownA ?? state.sliders.stopdownT,
-        },
       };
 
     default:

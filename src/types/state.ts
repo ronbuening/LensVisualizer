@@ -2,6 +2,11 @@
  * Type definitions for state management: reducer state, actions, preferences.
  */
 
+import type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
+
+/* Re-export comparison types for backward compatibility */
+export type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
+
 /* ── State slices ── */
 
 export interface LensSlice {
@@ -45,12 +50,6 @@ export interface SlidersSlice {
   stopdownT: number;
 }
 
-export interface SharedSlidersSlice {
-  sharedFocusT: number;
-  sharedStopdownT: number;
-  sharedZoomT: number;
-}
-
 export type PanelField =
   | "focusExpanded"
   | "apertureExpanded"
@@ -92,7 +91,6 @@ export interface LensState {
 export type LensAction =
   | { type: "SET_LENS_A"; key: string }
   | { type: "SET_LENS_B"; key: string }
-  | { type: "SET_SCALE_MODE"; scaleMode: "independent" | "normalized" }
   | { type: "SET_DARK"; dark: boolean | null }
   | { type: "SET_HIGH_CONTRAST"; highContrast: boolean }
   | { type: "SET_MOBILE_VIEW"; mobileView: string }
@@ -101,16 +99,12 @@ export type LensAction =
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
   | { type: "SET_STOPDOWN_T"; value: number }
-  | { type: "SET_SHARED_FOCUS_T"; value: number }
-  | { type: "SET_SHARED_STOPDOWN_T"; value: number }
-  | { type: "SET_SHARED_ZOOM_T"; value: number }
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
-  | { type: "ENTER_COMPARE"; catalogKeys?: string[] }
-  | { type: "EXIT_COMPARE"; focusA?: number; stopdownA?: number }
-  | { type: "SWAP_LENSES" };
+  | { type: "SWAP_LENSES" }
+  | ComparisonAction;
 
 /* ── Preferences (from localStorage) ── */
 

@@ -9,7 +9,11 @@
  *   &aperture=0.5          — stopdownT 0-1
  */
 
-import type { RuntimeLens } from "../types/optics.js";
+/* Re-export zoom utilities (moved to dedicated module) for backward compatibility */
+export { focalLengthToZoomT, zoomTToFocalLength } from "./zoomConversion.js";
+
+/* Re-export buildComparePath (moved to comparison module) for backward compatibility */
+export { buildComparePath } from "../comparison/comparisonURLSync.js";
 
 interface ParsedSliders {
   zoom: number | null;
@@ -24,7 +28,7 @@ interface ParsedComparisonParams extends ParsedSliders {
   singleLens?: string;
 }
 
-interface BuildURLSliders {
+export interface BuildURLSliders {
   zoom?: number | null;
   focus?: number | null;
   aperture?: number | null;
@@ -89,61 +93,4 @@ export function buildComparisonURL(
   if (focus != null && focus > 0) url += `&focus=${focus.toFixed(3)}`;
   if (aperture != null && aperture > 0) url += `&aperture=${aperture.toFixed(3)}`;
   return url;
-}
-
-/**
- * Convert a focal length in mm to normalized zoomT [0..1].
- *
- * Performs piecewise-linear inverse interpolation across the lens's
- * zoomPositions array.  Clamps to [0, 1] for out-of-range values.
- *
- * @param fl — focal length in mm
- * @param L  — runtime lens object (needs isZoom, zoomPositions)
- * @returns normalized zoom position [0..1]
- */
-export function focalLengthToZoomT(fl: number, L: RuntimeLens): number {
-  if (!L.isZoom) return 0;
-  const zp: number[] = L.zoomPositions!;
-  if (fl <= zp[0]) return 0;
-  if (fl >= zp[zp.length - 1]) return 1;
-  for (let i: number = 0; i < zp.length - 1; i++) {
-    if (fl >= zp[i] && fl <= zp[i + 1]) {
-      return (i + (fl - zp[i]) / (zp[i + 1] - zp[i])) / (zp.length - 1);
-    }
-  }
-  return 0;
-}
-
-/**
- * Convert normalized zoomT [0..1] to focal length in mm.
- *
- * @param zoomT — normalized zoom position [0..1]
- * @param L     — runtime lens object (needs isZoom, zoomPositions)
- * @returns focal length in mm, or null for prime lenses
- */
-/**
- * Build a pathname-based comparison URL.
- *
- * @param slugA   — first lens key
- * @param slugB   — second lens key
- * @param sliders — optional slider values { zoom, focus, aperture }
- * @returns URL path (e.g. "/compare/slugA/slugB?focus=0.300")
- */
-export function buildComparePath(slugA: string, slugB: string, sliders: BuildURLSliders = {}): string {
-  const { zoom, focus, aperture } = sliders;
-  const params = new URLSearchParams();
-  if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
-  if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
-  if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
-  const search = params.toString() ? `?${params.toString()}` : "";
-  return `/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`;
-}
-
-export function zoomTToFocalLength(zoomT: number, L: RuntimeLens): number | null {
-  if (!L.isZoom) return null;
-  const zp: number[] = L.zoomPositions!;
-  const pos: number = zoomT * (zp.length - 1);
-  const idx: number = Math.min(Math.floor(pos), zp.length - 2);
-  const frac: number = pos - idx;
-  return zp[idx] + (zp[idx + 1] - zp[idx]) * frac;
 }

@@ -93,20 +93,7 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
   };
 }
 
-/** Title for a comparison page. */
-export function comparePageTitle(lensA: LensData, lensB: LensData): string {
-  return `${lensA.name} vs ${lensB.name} — Lens Comparison | ${SITE_NAME}`;
-}
-
-/** Meta description for a comparison page. */
-export function comparePageDescription(lensA: LensData, lensB: LensData): string {
-  const base = `Compare ${lensA.name} and ${lensB.name} side by side. Interactive ray tracing, aperture, focus, and chromatic aberration comparison.`;
-  return base.length > 160 ? base.slice(0, 157) + "..." : base;
-}
-
-/** Canonical URL for a comparison page. */
-export function compareCanonicalURL(slugA: string, slugB: string): string {
-  return `${SITE_URL}/compare/${slugA}/${slugB}`;
-}
+/* Re-export comparison metadata (moved to comparison module) for backward compatibility */
+export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
 export { SITE_NAME, SITE_URL };
