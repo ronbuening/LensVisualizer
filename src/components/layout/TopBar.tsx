@@ -4,7 +4,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip } from "../../utils/styles.js";
+import { headerStrip, labelStyle as makeLabelStyle } from "../../utils/styles.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
 import LensSelector from "../controls/LensSelector.js";
 
@@ -45,13 +45,7 @@ export default function TopBar({
   catalogKeys,
   catalogNames,
 }: TopBarProps) {
-  const labelStyle = {
-    fontSize: 9,
-    letterSpacing: "0.12em",
-    color: t.muted,
-    fontFamily: "inherit" as const,
-    whiteSpace: "nowrap" as const,
-  };
+  const lStyle = makeLabelStyle(t);
 
   const selectorStyle = { flex: isWide ? "0 1 280px" : "1 1 0%", minWidth: 0 };
 
@@ -65,7 +59,7 @@ export default function TopBar({
         flexWrap: "wrap",
       }}
     >
-      <span style={labelStyle}>{comparing ? "LENS A" : "LENS"}</span>
+      <span style={lStyle}>{comparing ? "LENS A" : "LENS"}</span>
       <LensSelector
         theme={t}
         isWide={isWide}
@@ -99,7 +93,7 @@ export default function TopBar({
 
       {comparing && (
         <>
-          <span style={labelStyle}>LENS B</span>
+          <span style={lStyle}>LENS B</span>
           <LensSelector
             theme={t}
             isWide={isWide}

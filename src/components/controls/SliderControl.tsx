@@ -3,7 +3,8 @@
  * endpoint labels, and optional collapsible description section.
  */
 import type { ReactNode } from "react";
-import { SLIDER_LABEL, SLIDER_VALUE_BASE, collapseBtn, sliderInput } from "../../utils/styles.js";
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/styles.js";
+import CollapseButton from "./CollapseButton.js";
 import type { Theme } from "../../types/theme.js";
 
 interface SliderControlProps {
@@ -66,10 +67,12 @@ export default function SliderControl({
         <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: labelMinWidth }}>{label}</span>
         <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, ...displayValueStyle }}>{displayValue}</span>
         {collapsible && (
-          <button onClick={() => onExpandedChange?.(!expanded)} style={{ ...collapseBtn(t), marginLeft: "auto" }}>
-            <span>{expanded ? "LESS" : "MORE"}</span>
-            <span style={{ fontSize: 11, lineHeight: 1 }}>{expanded ? "▴" : "▾"}</span>
-          </button>
+          <CollapseButton
+            expanded={!!expanded}
+            onToggle={() => onExpandedChange?.(!expanded)}
+            theme={t}
+            style={{ marginLeft: "auto" }}
+          />
         )}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

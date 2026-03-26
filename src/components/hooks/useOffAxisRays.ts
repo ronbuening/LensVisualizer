@@ -11,6 +11,7 @@ import { eflAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom, traceRay } from "../
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
+import { compileRaySegment } from "./raySegmentUtils.js";
 
 interface UseOffAxisRaysParams {
   L: RuntimeLens | undefined;
@@ -80,25 +81,20 @@ export default function useOffAxisRays({
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
         const uIn = uField + uConverge;
-        const { pts, ghostPts, u, clipped } = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-        const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-        let gp: number[][] = [];
-        if (clipped && ghostPts.length > 0) {
-          const lastSolid = pts[pts.length - 1];
-          if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-          gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-          const lastGhost = ghostPts[ghostPts.length - 1];
-          if (lastGhost) {
-            gp.push(useEdge ? edgeEnd : clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-          }
-        }
-        if (!clipped) {
-          const last = pts[pts.length - 1];
-          if (last) {
-            sp.push(useEdge ? edgeEnd : clampedRayEnd(last[0], last[1], u, IMG_MM));
-          }
-        }
-        out.push({ sp, gp });
+        const result = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        out.push(
+          compileRaySegment(
+            result.pts,
+            result.ghostPts,
+            result.u,
+            result.clipped,
+            sx,
+            sy,
+            clampedRayEnd,
+            IMG_MM,
+            useEdge ? edgeEnd : undefined,
+          ),
+        );
       }
       return out;
     } catch (e) {

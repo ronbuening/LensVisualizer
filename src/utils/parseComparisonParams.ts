@@ -67,6 +67,20 @@ export function parseComparisonParams(search: string, catalogKeys: string[]): Pa
 }
 
 /**
+ * Encode slider values into URLSearchParams.
+ *
+ * Shared encoding logic used by buildComparisonURL, buildComparePath,
+ * and the debounced URL updater in useURLSync.
+ */
+export function encodeSliderParams({ zoom, focus, aperture }: BuildURLSliders): URLSearchParams {
+  const params = new URLSearchParams();
+  if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
+  if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
+  if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
+  return params;
+}
+
+/**
  * Build a URL search string from lens + slider state.
  *
  * @param comparing — true for comparison mode (?a=...&b=...)
@@ -79,7 +93,7 @@ export function buildComparisonURL(
   comparing: boolean,
   lensKeyA: string,
   lensKeyB: string,
-  { zoom, focus, aperture }: BuildURLSliders = {},
+  sliders: BuildURLSliders = {},
 ): string {
   let url: string;
   if (comparing && lensKeyA && lensKeyB) {
@@ -89,8 +103,8 @@ export function buildComparisonURL(
   } else {
     return "";
   }
-  if (zoom != null && zoom > 0) url += `&zoom=${zoom}`;
-  if (focus != null && focus > 0) url += `&focus=${focus.toFixed(3)}`;
-  if (aperture != null && aperture > 0) url += `&aperture=${aperture.toFixed(3)}`;
+  const params = encodeSliderParams(sliders);
+  const suffix = params.toString();
+  if (suffix) url += `&${suffix}`;
   return url;
 }

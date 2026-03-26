@@ -5,15 +5,11 @@
  */
 
 import type { LensData } from "../types/optics.js";
+import type { BuildURLSliders } from "../utils/parseComparisonParams.js";
+import { encodeSliderParams } from "../utils/parseComparisonParams.js";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
-
-interface BuildURLSliders {
-  zoom?: number | null;
-  focus?: number | null;
-  aperture?: number | null;
-}
 
 /**
  * Build a pathname-based comparison URL.
@@ -24,11 +20,7 @@ interface BuildURLSliders {
  * @returns URL path (e.g. "/compare/slugA/slugB?focus=0.300")
  */
 export function buildComparePath(slugA: string, slugB: string, sliders: BuildURLSliders = {}): string {
-  const { zoom, focus, aperture } = sliders;
-  const params = new URLSearchParams();
-  if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
-  if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
-  if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
+  const params = encodeSliderParams(sliders);
   const search = params.toString() ? `?${params.toString()}` : "";
   return `/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`;
 }

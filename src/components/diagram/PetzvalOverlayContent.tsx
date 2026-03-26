@@ -8,6 +8,7 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { formatPetzvalRadius } from "../../optics/optics.js";
 
 interface PetzvalOverlayContentProps {
   L: RuntimeLens;
@@ -16,14 +17,6 @@ interface PetzvalOverlayContentProps {
 
 const SVG_W = 340;
 const SVG_H = 180;
-
-function formatPetzvalRadius(P: number): string {
-  if (Math.abs(P) < 1e-6) return "R = \u221e";
-  const R = 1 / P;
-  const absR = Math.abs(R);
-  const formatted = absR < 10 ? absR.toFixed(1) : Math.round(absR).toString();
-  return `R\u209a\u209c\u2093 = ${R < 0 ? "\u2212" : ""}${formatted} mm`;
-}
 
 export default function PetzvalOverlayContent({ L, t }: PetzvalOverlayContentProps) {
   const P = L.petzvalSum;

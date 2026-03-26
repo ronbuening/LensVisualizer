@@ -2,11 +2,13 @@
  * AboutFooter — renders about buttons at the bottom of the page on mobile.
  *
  * On desktop the buttons live in TopBar, so this component renders nothing.
- * On mobile all three buttons (Optics, Site, Author) are shown.
+ * On mobile all four buttons (Optics, Aberrations, Site, Author) are shown
+ * via the shared AboutButtonRow.
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn } from "../../utils/styles.js";
+import { headerStrip } from "../../utils/styles.js";
+import AboutButtonRow from "./AboutButtonRow.js";
 
 interface AboutFooterProps {
   theme: Theme;
@@ -37,29 +39,15 @@ export default function AboutFooter({
         gap: 10,
       }}
     >
-      <span
-        style={{
-          fontSize: 9,
-          letterSpacing: "0.12em",
-          color: t.muted,
-          fontFamily: "inherit",
-          whiteSpace: "nowrap",
-        }}
-      >
-        ABOUT
-      </span>
-      <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, false)}>
-        Optics
-      </button>
-      <button onClick={onOpenAberrationsPrimer} style={topBarBtn(t, false)}>
-        Aberrations
-      </button>
-      <button onClick={onOpenAboutSite} style={topBarBtn(t, false)}>
-        Site
-      </button>
-      <button onClick={onOpenAboutAuthor} style={topBarBtn(t, false)}>
-        Author
-      </button>
+      <AboutButtonRow
+        theme={t}
+        isWide={false}
+        onOpenOpticsPrimer={onOpenOpticsPrimer}
+        onOpenAberrationsPrimer={onOpenAberrationsPrimer}
+        onOpenAboutSite={onOpenAboutSite}
+        onOpenAboutAuthor={onOpenAboutAuthor}
+        showLabel
+      />
     </div>
   );
 }

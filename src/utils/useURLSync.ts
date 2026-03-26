@@ -7,7 +7,12 @@
  */
 
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
-import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "./parseComparisonParams.js";
+import {
+  buildComparisonURL,
+  encodeSliderParams,
+  focalLengthToZoomT,
+  zoomTToFocalLength,
+} from "./parseComparisonParams.js";
 import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
 import { SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
@@ -129,11 +134,7 @@ export default function useURLSync(
       }
       if ((isLensPage && !comparing) || isComparePage) {
         // On lens/compare pages, only encode slider params — the pathname already has the lens key(s)
-        const params = new URLSearchParams();
-        if (sliderState.zoom != null && sliderState.zoom > 0) params.set("zoom", String(sliderState.zoom));
-        if (sliderState.focus != null && sliderState.focus > 0) params.set("focus", sliderState.focus.toFixed(3));
-        if (sliderState.aperture != null && sliderState.aperture > 0)
-          params.set("aperture", sliderState.aperture.toFixed(3));
+        const params = encodeSliderParams(sliderState);
         const search = params.toString() ? `?${params.toString()}` : "";
         if (search !== window.location.search) {
           history.replaceState(null, "", window.location.pathname + search);

@@ -13,7 +13,8 @@
 import { forwardRef } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
-import { toggleGroup, toggleBtn, collapseBtn, headerStrip } from "../../utils/styles.js";
+import { toggleGroup, toggleBtn, headerStrip } from "../../utils/styles.js";
+import CollapseButton from "./CollapseButton.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -137,10 +138,11 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
             {L.data.subtitle}
           </span>
           {!isWide && (
-            <button onClick={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)} style={collapseBtn(t)}>
-              <span>{headerInfoExpanded ? "LESS" : "MORE"}</span>
-              <span style={{ fontSize: 11, lineHeight: 1 }}>{headerInfoExpanded ? "▴" : "▾"}</span>
-            </button>
+            <CollapseButton
+              expanded={headerInfoExpanded}
+              onToggle={() => onHeaderInfoExpandedChange?.(!headerInfoExpanded)}
+              theme={t}
+            />
           )}
         </div>
         {(isWide || headerInfoExpanded) && (

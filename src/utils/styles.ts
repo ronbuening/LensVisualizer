@@ -277,6 +277,17 @@ export function panelOverlayContent(t: Theme): CSSProperties {
 /**
  * Overlay close button (sticky "x") with theme color.
  */
+/** Tiny uppercase label used in TopBar, AboutButtonRow, and AboutFooter. */
+export function labelStyle(t: Theme): CSSProperties {
+  return {
+    fontSize: 9,
+    letterSpacing: "0.12em",
+    color: t.muted,
+    fontFamily: "inherit",
+    whiteSpace: "nowrap",
+  };
+}
+
 export function closeBtn(t: Theme): CSSProperties {
   return {
     position: "sticky",

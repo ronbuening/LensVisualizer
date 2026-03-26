@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
+import { compileRaySegment, filterChannels } from "./raySegmentUtils.js";
 
 /** Chief ray + upper/lower marginal fractions for chromatic tracing */
 const CHROM_FRACS: number[] = [0, 0.75, -0.75];
@@ -66,10 +67,7 @@ export default function useChromaticRays({
 }: UseChromaticRaysParams): UseChromaticRaysResult {
   const chromaticRays = useMemo((): ChromaticRaySegment[] => {
     if (!L || !showChromatic) return [];
-    const channels: ChromaticChannel[] = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
+    const channels = filterChannels(chromR, chromG, chromB);
     if (channels.length === 0) return [];
     try {
       const out: ChromaticRaySegment[] = [];
@@ -77,35 +75,18 @@ export default function useChromaticRays({
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
         for (const ch of channels) {
-          const { pts, ghostPts, y, u, clipped } = traceRayChromatic(
-            h,
-            uIn,
-            zPos,
-            focusT,
-            zoomT,
-            currentPhysStopSD,
-            true,
-            L,
-            ch,
+          const result = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+          const seg = compileRaySegment(
+            result.pts,
+            result.ghostPts,
+            result.u,
+            result.clipped,
+            sx,
+            sy,
+            clampedRayEnd,
+            IMG_MM,
           );
-          const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
-          let gp: number[][] = [];
-          if (clipped && ghostPts.length > 0) {
-            const lastSolid = pts[pts.length - 1];
-            if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-            gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-            const lastGhost = ghostPts[ghostPts.length - 1];
-            if (lastGhost) {
-              gp.push(clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
-            }
-          }
-          if (!clipped) {
-            const last = pts[pts.length - 1];
-            if (last) {
-              sp.push(clampedRayEnd(last[0], last[1], u, IMG_MM));
-            }
-          }
-          out.push({ sp, gp, channel: ch, y, u, clipped });
+          out.push({ ...seg, channel: ch, y: result.y, u: result.u, clipped: result.clipped });
         }
       }
       return out;
@@ -137,10 +118,7 @@ export default function useChromaticRays({
    * from the marginal chromatic rays. Requires at least 2 active channels. */
   const chromSpread = useMemo((): ChromaticSpread | null => {
     if (!L || !showChromatic || chromaticRays.length === 0) return null;
-    const channels: ChromaticChannel[] = [];
-    if (chromR) channels.push("R");
-    if (chromG) channels.push("G");
-    if (chromB) channels.push("B");
+    const channels = filterChannels(chromR, chromG, chromB);
     if (channels.length < 2) return null;
     const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
     for (let ci = 0; ci < channels.length; ci++) {

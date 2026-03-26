@@ -4,7 +4,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { topBarBtn } from "../../utils/styles.js";
+import { topBarBtn, labelStyle } from "../../utils/styles.js";
 
 interface AboutButtonRowProps {
   theme: Theme;
@@ -25,17 +25,9 @@ export default function AboutButtonRow({
   onOpenAboutAuthor,
   showLabel = false,
 }: AboutButtonRowProps) {
-  const labelStyle = {
-    fontSize: 9,
-    letterSpacing: "0.12em",
-    color: t.muted,
-    fontFamily: "inherit" as const,
-    whiteSpace: "nowrap" as const,
-  };
-
   return (
     <>
-      {showLabel && <span style={labelStyle}>ABOUT</span>}
+      {showLabel && <span style={labelStyle(t)}>ABOUT</span>}
       <button onClick={onOpenOpticsPrimer} style={topBarBtn(t, isWide)}>
         Optics
       </button>
