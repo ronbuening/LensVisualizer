@@ -29,6 +29,7 @@ const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 
 /* Keep in sync with src/utils/lensMetadata.ts MAKER_PREFIXES */
 const MAKER_PREFIXES = [
+  { prefix: "CANON", slug: "canon" },
   { prefix: "CARL ZEISS", slug: "carl-zeiss" },
   { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
   { prefix: "NIKON", slug: "nikon" },
