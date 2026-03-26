@@ -29,12 +29,12 @@
  */
 
 import type { CSSProperties } from "react";
-import { formatSharedFocusDist, sharedFNumber } from "../../utils/comparisonSliders.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../../utils/comparisonSliders.js";
-import { formatDist, eflAtZoom } from "../../optics/optics.js";
-import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/styles.js";
-import type { RuntimeLens } from "../../types/optics.js";
-import type { Theme } from "../../types/theme.js";
+import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/styles.js";
+import type { RuntimeLens } from "../types/optics.js";
+import type { Theme } from "../types/theme.js";
 
 interface SharedSlidersBarProps {
   LA: RuntimeLens;

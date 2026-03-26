@@ -2,10 +2,7 @@
 
 import { describe, it, expect } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import useComparisonMode, {
-  isComparisonOk,
-  type ComparisonLensesResult,
-} from "../src/components/hooks/useComparisonMode.js";
+import useComparisonMode, { isComparisonOk, type ComparisonLensesResult } from "../src/comparison/useComparisonMode.js";
 import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
 
 /* Pick two valid catalog keys for testing */

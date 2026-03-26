@@ -2,11 +2,11 @@
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import useStickySliders from "../src/utils/useStickySliders.js";
-import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "../src/utils/lensReducer.js";
+import useStickySliders from "../src/comparison/useStickySliders.js";
+import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "../src/comparison/comparisonReducer.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { LensAction } from "../src/types/state.js";
-import type { FocusPairResult, AperturePairResult } from "../src/utils/comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult } from "../src/comparison/comparisonSliders.js";
 import type { Dispatch } from "react";
 
 /* ── Mock helpers ── */

@@ -6,7 +6,7 @@ import {
   formatSharedFocusDist,
   sharedFNumber,
   snapToCommon,
-} from "../src/utils/comparisonSliders.js";
+} from "../src/comparison/comparisonSliders.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 
 /* ── Mock lens objects (only the fields these functions use) ── */

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/utils/comparisonSliders.js";
+import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/comparison/comparisonSliders.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 
 /**
@@ -26,13 +26,13 @@ const lensB = {
 
 describe("ComparisonLayout", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../src/components/layout/ComparisonLayout.js");
+    const mod = await import("../src/comparison/ComparisonLayout.js");
     expect(typeof mod.default).toBe("function");
     expect(mod.default.name).toBe("ComparisonLayout");
   });
 
   it("imports comparison slider functions from comparisonSliders", async () => {
-    const mod = await import("../src/utils/comparisonSliders.js");
+    const mod = await import("../src/comparison/comparisonSliders.js");
     expect(typeof mod.computeFocusPair).toBe("function");
     expect(typeof mod.computeAperturePair).toBe("function");
     expect(typeof mod.computeZoomPair).toBe("function");

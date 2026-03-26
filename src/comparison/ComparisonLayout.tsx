@@ -3,9 +3,9 @@
  * (desktop) or stacked (mobile) with a divider between them.
  */
 
-import LensDiagramPanel from "./LensDiagramPanel.js";
-import type { Theme } from "../../types/theme.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "../../utils/comparisonSliders.js";
+import LensDiagramPanel from "../components/layout/LensDiagramPanel.js";
+import type { Theme } from "../types/theme.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
 
 interface ComparisonLayoutProps {
   theme: Theme;

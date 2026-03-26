@@ -25,12 +25,17 @@ src/pages/                — Page-level route components
                             (HomePage, LensPage, LensIndexPage,
                              MakerPage, MakersIndexPage, NotFoundPage)
 src/types/                — Shared TypeScript type definitions (optics, state, theme)
+src/comparison/           — Comparison mode feature module
+                            (ComparisonLayout, ComparisonContent, SharedSlidersBar,
+                             comparisonSliders, comparisonReducer, comparisonTypes,
+                             comparisonURLSync, useComparisonMode,
+                             useComparisonOrchestration, useStickySliders)
 src/components/           — React UI components and hooks
   components/             — Root utility components (ClientOnly, SEOHead)
   components/layout/      — Top-level layout and orchestration components
                             (LensViewer, TopBar, ControlsBar, ViewToggleBar,
-                             ComparisonLayout, OverlayModal, LensDiagramPanel,
-                             DescriptionPanel, SharedSlidersBar, BreadcrumbBar,
+                             OverlayModal, LensDiagramPanel,
+                             DescriptionPanel, BreadcrumbBar,
                              PanelOverlay)
   components/diagram/     — SVG rendering components
                             (DiagramSVG, RayPolylines, ApertureStop,
@@ -55,9 +60,9 @@ src/optics/               — Pure-function optical engine (.ts, no React deps)
 src/utils/                — Themes, styles, feature flags, catalog, state hooks (.ts)
                             (themes, styles, featureFlags, lensCatalog,
                              lensMetadata, lensReducer, useLensState, LensContext,
-                             useURLSync, useStickySliders, comparisonSliders,
-                             parseComparisonParams, usePreferences, preferences,
-                             errorReporting, useMediaQuery)
+                             useURLSync, zoomConversion, parseComparisonParams,
+                             usePreferences, preferences, errorReporting,
+                             useMediaQuery)
 src/lens-data/            — Lens prescription data (auto-registered *.data.ts)
 src/content/              — Static markdown content
                             (AboutMe.md, AboutSite.md,
