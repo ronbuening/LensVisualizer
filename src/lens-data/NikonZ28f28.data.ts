@@ -12,12 +12,12 @@ import type { LensDataInput } from "../types/optics.js";
  * ║  G1 and G4 fixed; aperture stop fixed between G1 and G2.          ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. All SDs estimated via      ║
+ * ║    Patent does not list semi-diameters. Initial SDs estimated via  ║
  * ║    paraxial marginal + chief ray trace at full field (ω = 38°),   ║
- * ║    with distortion correction factor (patent Y / paraxial Y) and  ║
- * ║    10% mechanical clearance. L24g front SD enlarged slightly to    ║
- * ║    satisfy the 1.25 SD-ratio constraint on the 6.55 mm thick      ║
- * ║    glass body.                                                     ║
+ * ║    with distortion correction factor and 10% mechanical clearance. ║
+ * ║    G2 and G3 SDs then reduced to satisfy renderer constraints:     ║
+ * ║    positive edge thickness (L21, L24g, L32), sd/|R| ≤ 0.9         ║
+ * ║    (L23 front, L24 junction/rear), and cross-gap clearance.        ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -199,20 +199,20 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 4.85, nd: 1.0, elemId: 0, sd: 5.1 }, // D5, variable
 
     // ── G2 — First focusing group / GF1 (positive, f = +34.7 mm) ──
-    { label: "6", R: 39.03942, d: 3.0, nd: 2.001, elemId: 3, sd: 9.5 }, // L21 front
-    { label: "7", R: -14.018, d: 0.7, nd: 1.80518, elemId: 4, sd: 10.0 }, // L21→L22 junction
-    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 10.5 }, // L22 rear → air
-    { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 12.5 }, // L23 front
-    { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 13.0 }, // L23 rear → air
-    { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 14.5 }, // L24g front (flat)
-    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 17.0 }, // L24g/resin junction
-    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 17.0 }, // L24r rear (asph) → air — D13, variable
+    { label: "6", R: 39.03942, d: 3.0, nd: 2.001, elemId: 3, sd: 7.0 }, // L21 front
+    { label: "7", R: -14.018, d: 0.7, nd: 1.80518, elemId: 4, sd: 7.5 }, // L21→L22 junction
+    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 9.0 }, // L22 rear → air
+    { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 9.5 }, // L23 front
+    { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 11.5 }, // L23 rear → air
+    { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 13.0 }, // L24g front (flat)
+    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 15.5 }, // L24g/resin junction
+    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 14.5 }, // L24r rear (asph) → air — D13, variable
 
     // ── G3 — Second focusing group / GF2 (positive, f = +46.6 mm) ──
     { label: "14A", R: -26.85154, d: 2.0, nd: 1.53113, elemId: 8, sd: 18.5 }, // L31 front (asph)
     { label: "15A", R: -28.96313, d: 0.2, nd: 1.0, elemId: 0, sd: 19.5 }, // L31 rear (asph) → air
-    { label: "16", R: 1e15, d: 4.5, nd: 1.804, elemId: 9, sd: 19.5 }, // L32 front (flat)
-    { label: "17", R: -36.85132, d: 3.7, nd: 1.0, elemId: 0, sd: 20.5 }, // L32 rear → air — D17, variable
+    { label: "16", R: 1e15, d: 4.5, nd: 1.804, elemId: 9, sd: 17.0 }, // L32 front (flat)
+    { label: "17", R: -36.85132, d: 3.7, nd: 1.0, elemId: 0, sd: 17.5 }, // L32 rear → air — D17, variable
 
     // ── G4 — Rear negative group (fixed, f = −44.3 mm) ──
     { label: "18", R: -34.46648, d: 1.2, nd: 1.64769, elemId: 10, sd: 20.0 }, // L41 front
@@ -233,7 +233,7 @@ const LENS_DATA = {
       K: 0,
       A4: 2.85655e-5,
       A6: -1.38279e-8,
-      A8: 5.7928899999999996e-10,
+      A8: 5.79289e-10,
       A10: 9.06875e-13,
       A12: -2.2576e-15,
       A14: 1.3307e-17,

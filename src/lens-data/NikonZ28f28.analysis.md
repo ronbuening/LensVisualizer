@@ -417,15 +417,17 @@ The NIKKOR Z 28mm f/2.8 represents a deliberate exercise in compact, cost-effect
 
 ## 9. Semi-Diameter Estimation
 
-The patent does not list semi-diameters (clear aperture half-widths) for any surface. Semi-diameters were estimated via paraxial marginal ray trace (y₀ = EP semi-diameter = 4.95 mm, u₀ = 0) and paraxial chief ray trace (full-field, ω = 38.029°) through the complete prescription. The chief ray heights were corrected by a distortion factor of Y_patent / Y_paraxial = 21.700 / 22.543 = 0.963 to account for the paraxial approximation overestimating ray heights at large field angles.
+The patent does not list semi-diameters (clear aperture half-widths) for any surface. Semi-diameters were initially estimated via paraxial marginal ray trace (y₀ = EP semi-diameter = 4.95 mm, u₀ = 0) and paraxial chief ray trace (full-field, ω = 38.029°) through the complete prescription. The chief ray heights were corrected by a distortion factor of Y_patent / Y_paraxial = 21.700 / 22.543 = 0.963 to account for the paraxial approximation overestimating ray heights at large field angles.
 
-The combined semi-diameter at each surface is SD = (|y_marginal| + |y_chief_corrected|) × 1.10, where the 1.10 factor provides 10% mechanical clearance. The stop SD = |y_marginal| directly (no chief ray contribution, no clearance factor). Specific adjustments:
+The initial combined semi-diameter at each surface was SD = (|y_marginal| + |y_chief_corrected|) × 1.10, where the 1.10 factor provides 10% mechanical clearance. The stop SD = |y_marginal| directly (no chief ray contribution, no clearance factor). However, several initial estimates exceeded the renderer's geometric constraints and were reduced:
 
-- **Cemented doublet L21+L22** (surfaces 6–8): SD varies smoothly from 9.5 to 10.5 mm; front/rear ratio within 1.25× constraint.
-- **Hybrid composite L24** (surfaces 11–13A): The 6.55 mm glass body thickness causes significant chief ray divergence (height grows from ~12 mm to ~16 mm). Front SD was increased from the computed 13.2 to 14.5 mm to maintain the SD-ratio constraint (17.0/14.5 = 1.17).
+- **Cemented doublet L21+L22** (surfaces 6–8): SDs reduced from 9.5–10.5 to 7.0–9.0 mm to maintain positive edge thickness on L21 (the strongly curved R₂ = −14.018 mm junction surface causes the front/rear surfaces to cross at the rim for sd > ~7.5 mm given the 3.0 mm center thickness).
+- **L23** (surfaces 9–10): Front SD reduced from 12.5 to 9.5 mm to satisfy the sd/|R| ≤ 0.9 constraint (|R₁| = 11.08 mm → max sd = 9.97 mm). Rear SD reduced from 13.0 to 11.5 mm for front/rear ratio consistency.
+- **Hybrid composite L24** (surfaces 11–13A): Glass body front SD reduced from 14.5 to 13.0 mm to maintain positive edge thickness (the concave R = −17.50 mm rear surface crosses the flat front at sd ≈ 13.8 mm given the 6.55 mm center thickness). Junction and resin-layer SDs reduced from 17.0 to 15.5 and 14.5 mm respectively for sd/|R| compliance (|R| = 17.50 and 16.28 mm). The aspherical departure on surface 13A (+1.2 mm at the rim) keeps the resin layer's edge thickness positive.
+- **L32** (surfaces 16–17): SDs reduced from 19.5–20.5 to 17.0–17.5 mm to maintain positive edge thickness (the concave R = −36.85 mm rear surface crosses the flat front at sd ≈ 18.2 mm given the 4.5 mm center thickness).
 - **Sensor cover glass** (surfaces 20–21): SD set to 21.7 mm (the patent image height Y).
 
-The rear-heavy power distribution produces an unusual SD progression: front elements have small SDs (≈8–9 mm) while the rear elements are large (≈18–21 mm), reflecting the inverted beam diameter profile characteristic of this design.
+The rear-heavy power distribution produces an unusual SD progression: front elements have small SDs (≈7–9 mm in G2) while the rear elements are larger (≈17–20 mm in G3/G4), reflecting the inverted beam diameter profile characteristic of this design. The SD reductions relative to the initial ray-trace estimates are most significant in G2, where the ultra-high-index cemented doublet (L21+L22) and the thick hybrid composite (L24) have strongly curved surfaces that impose tight geometric constraints.
 
 ---
 
