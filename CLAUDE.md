@@ -85,6 +85,7 @@ Read the relevant file before starting work on that area:
 - Auto-registration — lens data files discovered via `import.meta.glob`
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
+- **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
 - See `agent_docs/architecture.md` for full component relationships and data flow
 
 ## Adding a New Lens
@@ -114,7 +115,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 
 ## Gotchas
 
-See `agent_docs/gotchas.md` for common pitfalls. Key items: update all 4 themes when changing colors; lens data globs require `*.data.ts` naming; `satisfies LensDataInput` enables compile-time validation.
+See `agent_docs/gotchas.md` for common pitfalls. Key items: update all 4 themes when changing colors; lens data globs require `*.data.ts` naming; `satisfies LensDataInput` enables compile-time validation; adding new route patterns to `routeManifest.tsx` requires updating `generate-build-metadata.mjs` route expansion (build fails if you forget).
 
 ## Compaction Instructions
 

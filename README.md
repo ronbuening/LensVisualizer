@@ -111,16 +111,16 @@ Want to see a specific lens added? [Open an issue](https://github.com/ronbuening
 ```
 LensVisualizer/
 ├── index.html                          # HTML entry point
-├── scripts/                            # Build utilities
-│   ├── prerender.mjs                   # Static HTML pre-rendering for SEO
-│   ├── generate-sitemap.mjs            # Sitemap generation
-│   ├── generate-build-metadata.mjs    # Build metadata (lens dates, article data)
-│   └── seo-audit.mjs                   # SEO audit script
+├── scripts/                            # Build utilities (unified route pipeline)
+│   ├── generate-build-metadata.mjs    # Single source of truth: routes, lens dates, article metadata
+│   ├── prerender.mjs                   # SSR pre-rendering + manifest validation
+│   ├── generate-sitemap.mjs            # Sitemap generation (reads routes from metadata)
+│   └── seo-audit.mjs                   # SEO audit across all routes
 ├── src/
 │   ├── main.tsx                        # React client entry (RouterProvider)
 │   ├── router.tsx                      # React Router route definitions
 │   ├── routes/routeManifest.tsx        # Single source of truth for routes
-│   ├── entry-server.tsx                # SSR entry for pre-rendering
+│   ├── entry-server.tsx                # SSR entry for pre-rendering (exports manifestPaths for validation)
 │   ├── pages/                          # Page-level route components
 │   │   ├── HomePage.tsx                # Interactive LensViewer + legacy redirects
 │   │   ├── LensPage.tsx                # Individual lens page (/lens/:slug)
