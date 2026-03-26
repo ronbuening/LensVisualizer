@@ -13,6 +13,9 @@
 | `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`, grouped by maker |
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker's lenses |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists all makers with lens counts |
+| `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO metadata |
+| `ArticlePage.tsx` | `src/pages/` | Individual article page at `/articles/:slug` |
+| `ArticlesPage.tsx` | `src/pages/` | Articles index at `/articles` |
 | `NotFoundPage.tsx` | `src/pages/` | 404 catch-all with navigation links |
 
 ### Layout Components
@@ -29,8 +32,12 @@
 | `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling |
 | `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
+| `PageNavBar.tsx` | `src/components/layout/` | Shared navigation bar for static pages with theme toggle |
 | `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
 | `DiagramControlPanel.tsx` | `src/components/layout/` | Sliders, inspector, and legend panel extracted from LensDiagramPanel |
+| `SingleLensContent.tsx` | `src/components/layout/` | Single-lens diagram + description layout |
+| `DropdownPanel.tsx` | `src/components/layout/` | Portal-based dropdown panel for settings/theme overlays |
+| `PrimerToggleButton.tsx` | `src/components/layout/` | Shared button for switching between simple/intermediate primer levels |
 
 ### Hooks
 
@@ -45,7 +52,9 @@
 | `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
 | `useDispatchAdapters.ts` | `src/components/hooks/` | Hook: context dispatch callback wiring for LensDiagramPanel children |
 | `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset |
+| `useOverlays.ts` | `src/components/hooks/` | Hook: combines overlay state with dispatch adapters for LensViewer |
 | `useHeaderHeight.ts` | `src/components/hooks/` | Hook: header ResizeObserver height tracking for multi-panel alignment |
+| `raySegmentUtils.ts` | `src/components/hooks/` | Pure utilities: `compileRaySegment()` (shared ray segment compilation) and `filterChannels()` (chromatic channel filter) |
 
 ### Controls
 
@@ -56,6 +65,7 @@
 | `ChromaticControls.tsx` | `src/components/controls/` | COLOR master toggle + R/G/B channel buttons |
 | `DiagramControls.tsx` | `src/components/controls/` | Zoom, focus, aperture sliders (composes SliderControl) |
 | `SliderControl.tsx` | `src/components/controls/` | Reusable slider with label, endpoints, collapsible content |
+| `CollapseButton.tsx` | `src/components/controls/` | Shared LESS/MORE toggle pill used by DiagramHeader, SliderControl, and DiagramLegend |
 | `LensSelector.tsx` | `src/components/controls/` | Custom dropdown with portal-based rendering, viewport-aware positioning, keyboard escape |
 
 ### Diagram (SVG)
@@ -105,11 +115,12 @@
 | Module | Location | Purpose |
 |--------|----------|---------|
 | `themes.ts` | `src/utils/` | Theme factory + 4 theme definitions |
-| `styles.ts` | `src/utils/` | Shared style-object factories and static constants for reusable UI patterns |
+| `styles.ts` | `src/utils/` | Shared style-object factories (`labelStyle`, `collapseBtn`, `toggleBtn`, etc.) and static constants for reusable UI patterns |
+| `themeConstants.ts` | `src/utils/` | Shared theme-toggle display constants (`THEME_ICON`, `THEME_LABEL`) used by PageNavBar and BreadcrumbBar |
 | `lensCatalog.ts` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `lensMetadata.ts` | `src/utils/` | SEO metadata: maker extraction, page titles/descriptions, canonical URLs, JSON-LD |
 | `comparisonSliders.ts` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
-| `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing + slider state persistence |
+| `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing, `encodeSliderParams()` (shared slider→URL encoding), and slider state persistence |
 | `featureFlags.ts` | `src/utils/` | Feature flag controls |
 | `errorReporting.ts` | `src/utils/` | GitHub issue URL builder |
 | `useMediaQuery.ts` | `src/utils/` | Responsive breakpoint hook |
@@ -120,12 +131,18 @@
 | `useURLSync.ts` | `src/utils/` | Hook: URL read/write/zoom-init |
 | `useStickySliders.ts` | `src/utils/` | Hook: comparison slider sticky state machine |
 | `LensContext.ts` | `src/utils/` | React Context: LensStateContext + LensDispatchContext |
+| `usePageTheme.ts` | `src/utils/` | Hook: resolves theme from dark/HC preferences + system media query |
+| `usePageThemeToggle.ts` | `src/utils/` | Hook: extends usePageTheme with dark/HC toggle cycling (auto→dark→light) |
+| `zoomConversion.ts` | `src/utils/` | Pure functions: `focalLengthToZoomT()` and `zoomTToFocalLength()` for URL zoom encoding |
+| `appConfig.ts` | `src/utils/` | Application-level configuration constants |
+| `homepageContent.ts` | `src/utils/` | Homepage content configuration and featured lens data |
+| `makerDetails.ts` | `src/utils/` | Maker display names, descriptions, and metadata |
 
 ## Routing & SSR
 
 The app uses React Router 7 with client-side routing and static prerendering for SEO:
 
-- **`router.tsx`** — Defines 6 routes: `/` (HomePage), `/lenses` (LensIndexPage), `/lens/:slug` (LensPage), `/makers` (MakersIndexPage), `/makers/:maker` (MakerPage), `*` (NotFoundPage)
+- **`router.tsx`** — Defines routes via `routeManifest.tsx`: `/` (HomePage), `/lenses` (LensIndexPage), `/lens/:slug` (LensPage), `/compare/:slugA/:slugB` (ComparePage), `/makers` (MakersIndexPage), `/makers/:maker` (MakerPage), `/articles` (ArticlesPage), `/articles/:slug` (ArticlePage), `*` (NotFoundPage)
 - **`entry-server.tsx`** — Exports `render(url): { html, helmet }` using `StaticRouter` + `react-helmet-async` for `scripts/prerender.mjs` to generate static HTML
 - **`main.tsx`** — Client entry: mounts `RouterProvider` with the browser router
 - **`ClientOnly.tsx`** — Wraps components that must not render during SSR (e.g., the interactive visualizer). Renders `null` until after hydration via `useEffect` mount detection.
@@ -145,7 +162,8 @@ The main component owns state management, context provision, and layout composit
 - **`ComparisonLayout`** — Renders two `LensDiagramPanel` instances side-by-side (desktop) or stacked (mobile) with dividers.
 - **`OverlayModal`** — Generic backdrop + modal + close button with optional `maxWidth` override. Used for "About Site", "About Author", and "Optics Primer" overlays.
 - **`AboutButtonRow`** — Shared button group (Optics, Site, Author) with optional label. Used by TopBar (inline on desktop) and AboutFooter (standalone on mobile).
-- **`AboutFooter`** — Mobile-only footer rendering about buttons at the page bottom. Respects `ENABLE_ABOUT_BUTTONS_IN_TOPBAR` feature flag to determine which buttons to show.
+- **`AboutFooter`** — Mobile-only footer delegating to `AboutButtonRow` with `showLabel` for consistent button rendering.
+- **`PrimerToggleButton`** — Shared link-styled button for switching between simple/intermediate primer levels in overlay modals.
 
 **State management** is organized via `useReducer` (wrapped in `useLensState`), with state split into 7 slices: `lens`, `display`, `rays`, `sliders`, `sharedSliders`, `panels`, `overlays`. Extracted hooks:
 - `usePreferences(state)` — persists preferences to localStorage
@@ -201,12 +219,12 @@ Reads shared state (rays, display, panels) from `LensContext`. Per-instance prop
 ## optics.ts
 
 Pure functions for optical calculations and SVG layout:
-- **Sag curves:** `sag()`, `renderSag()`, `sagSlope()`
+- **Sag curves:** `sag()`, `renderSag()`, `sagSlope()`, `sagSlopeRaw()` (shared core math also used by `buildLens.ts`)
 - **Layout:** `doLayout(focusT, zoomT, L)`, `gapTrimHeight()`, `thick(i, focusT, zoomT, L)`
 - **Ray tracing:** `traceRay(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L)`, `traceToImage(y0, u0, focusT, zoomT, L)`
 - **Chromatic tracing:** `wavelengthNd()`, `traceRayChromatic(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel)`, `computeChromaticSpread()`
 - **Zoom interpolation:** `eflAtZoom(zoomT, L)`, `epAtZoom(zoomT, L)`, `halfFieldAtZoom(zoomT, L)`, `yRatioAtZoom(zoomT, L)`, `bAtZoom(zoomT, L)` — piecewise-linear interpolation of derived constants across zoom positions
-- **Utilities:** `conjugateK(focusT, zoomT, L)`, `formatDist()`
+- **Utilities:** `conjugateK(focusT, zoomT, L)`, `formatDist()`, `formatPetzvalRadius()` (shared Petzval field radius formatter)
 - **Constants:** `FLAT_R_THRESHOLD`, `FOCUS_INFINITY_THRESHOLD`, `SVG_PATH_SUBDIVISIONS`
 
 All trace/layout functions accept a `zoomT` parameter (default `0`). For prime lenses, `zoomT` has no effect.
@@ -239,13 +257,13 @@ Four themes (dark, light, darkHC, lightHC) built via a `createTheme()` factory f
 ## Lens Data Files
 
 Each lens has two files in `src/lens-data/`:
-- **`.data.js`** — Default-exports a `LENS_DATA` object
+- **`.data.ts`** — Default-exports a `LENS_DATA` object with `satisfies LensDataInput` for compile-time validation
 - **`.analysis.md`** — Markdown design analysis, rendered in the app's description panel
 
 Supporting files:
 - **`defaults.ts`** — Shared defaults merged into each lens via `lensCatalog.ts`
 - **`LENS_DATA_SPEC.md`** — Complete specification for all lens data fields
-- **`TEMPLATE.data.js.template`** — Annotated template for creating new lens files
+- **`TEMPLATE.data.ts.template`** — Annotated template for creating new lens files
 
 ## Type System
 
@@ -255,4 +273,4 @@ Type definitions are centralized in `src/types/`:
 - **`theme.ts`** — `ThemeColorTokens`, `ThemeInternalTokens`, `Theme` (tokens + closure functions), `ThemeVariant`
 - **`index.ts`** — Barrel re-exports from all three
 
-Lens data files (`.data.js`) remain JavaScript — they are loaded via `import.meta.glob` and validated at runtime by `validateLensData()`. Test files are TypeScript (`.ts`) and are included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`.
+Lens data files (`.data.ts`) are TypeScript with `satisfies LensDataInput` for compile-time validation. They are loaded via `import.meta.glob` and also validated at runtime by `validateLensData()`. Test files are TypeScript (`.ts`) and are included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`.

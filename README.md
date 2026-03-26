@@ -56,8 +56,14 @@ Created by **Ron Buening** — see [About This Site](src/content/AboutSite.md) f
 | RICOH GR 28mm f/2.8 | 7 | Retrofocus; 1 aspheric; US 5,760,973 |
 | RICOH GR III 18.3mm f/2.8 | 6 | Compact retrofocus; US 2019/0154946 A1 |
 | RICOH GR IV 18.3mm f/2.8 | 7 | Compact retrofocus; JP2025-069516A |
+| NIKON AF NIKKOR 28mm f/1.4D | 11 | US 5,315,441 |
+| NIKON AF-S NIKKOR 28mm f/1.4E ED | 14 | JP2017-227799A |
+| NIKON NIKKOR Z 28mm f/2.8 | 9 | WO 2022/071249 A1 |
+| NIKON NIKKOR Z 58mm f/0.95 S Noct | 17 | WO2019/229849 A1 |
+| Voigtländer Ultron 50mm f/2 | 6 | US 2,627,204 |
+| Voigtländer Ultron Vintage Line 28mm f/2 | 10 | JP2022-100641A |
 
-New lenses are auto-registered — just add a `.data.js` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
+New lenses are auto-registered — just add a `.data.ts` file to `src/lens-data/`. See [Adding a New Lens](#adding-a-new-lens) below.
 
 ## Getting Started
 
@@ -78,11 +84,11 @@ Requires Node.js 18+.
 
 ## Adding a New Lens
 
-1. Copy `src/lens-data/TEMPLATE.data.js.template` to `src/lens-data/YourLens.data.js`
+1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
 2. Fill in the lens data following the template's field documentation
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
-4. Run `npm run test` to verify validation passes
-5. That's it — `import.meta.glob` auto-registers all `src/lens-data/*.data.js` files
+4. Run `npm run typecheck && npm run test` to verify types and validation pass
+5. That's it — `import.meta.glob` auto-registers all `src/lens-data/*.data.ts` files
 
 See `src/lens-data/LENS_DATA_SPEC.md` for the full data format specification.
 
@@ -108,10 +114,12 @@ LensVisualizer/
 ├── scripts/                            # Build utilities
 │   ├── prerender.mjs                   # Static HTML pre-rendering for SEO
 │   ├── generate-sitemap.mjs            # Sitemap generation
+│   ├── generate-build-metadata.mjs    # Build metadata (lens dates, article data)
 │   └── seo-audit.mjs                   # SEO audit script
 ├── src/
 │   ├── main.tsx                        # React client entry (RouterProvider)
 │   ├── router.tsx                      # React Router route definitions
+│   ├── routes/routeManifest.tsx        # Single source of truth for routes
 │   ├── entry-server.tsx                # SSR entry for pre-rendering
 │   ├── pages/                          # Page-level route components
 │   │   ├── HomePage.tsx                # Interactive LensViewer + legacy redirects
@@ -119,6 +127,9 @@ LensVisualizer/
 │   │   ├── LensIndexPage.tsx           # Browsable lens library (/lenses)
 │   │   ├── MakerPage.tsx               # Maker lens list (/makers/:maker)
 │   │   ├── MakersIndexPage.tsx         # Maker index (/makers)
+│   │   ├── ComparePage.tsx            # Lens comparison (/compare/:slugA/:slugB)
+│   │   ├── ArticlePage.tsx            # Individual article (/articles/:slug)
+│   │   ├── ArticlesPage.tsx           # Articles index (/articles)
 │   │   └── NotFoundPage.tsx            # 404 catch-all
 │   ├── types/                          # Shared TypeScript type definitions
 │   ├── components/
@@ -135,7 +146,12 @@ LensVisualizer/
 │   │   │   ├── PanelOverlay.tsx        # Panel-scoped overlay for LCA/Petzval
 │   │   │   ├── LensDiagramPanel.tsx    # Diagram composition layer
 │   │   │   ├── DescriptionPanel.tsx    # Themed markdown renderer
-│   │   │   └── SharedSlidersBar.tsx    # Comparison mode shared controls
+│   │   │   ├── SharedSlidersBar.tsx    # Comparison mode shared controls
+│   │   │   ├── PrimerToggleButton.tsx  # Shared primer level toggle button
+│   │   │   ├── PageNavBar.tsx          # Navigation bar for static pages
+│   │   │   ├── SingleLensContent.tsx   # Single-lens diagram + description
+│   │   │   ├── DiagramControlPanel.tsx # Sliders, inspector, legend panel
+│   │   │   └── DropdownPanel.tsx       # Portal-based dropdown panel
 │   │   ├── diagram/                    # SVG rendering
 │   │   │   ├── DiagramSVG.tsx          # Full SVG rendering
 │   │   │   ├── RayPolylines.tsx        # Consolidated ray segment rendering
@@ -151,7 +167,8 @@ LensVisualizer/
 │   │   │   ├── SliderControl.tsx       # Reusable slider component
 │   │   │   ├── LensSelector.tsx        # Portal-based custom dropdown
 │   │   │   ├── RayToggles.tsx          # On-axis/off-axis toggle buttons
-│   │   │   └── ChromaticControls.tsx   # COLOR toggle + R/G/B channels
+│   │   │   ├── ChromaticControls.tsx   # COLOR toggle + R/G/B channels
+│   │   │   └── CollapseButton.tsx     # Shared LESS/MORE toggle pill
 │   │   ├── display/                    # Data display
 │   │   │   ├── ElementInspector.tsx    # Selected element property display
 │   │   │   ├── DiagramLegend.tsx       # Legend with aberration readouts
@@ -168,7 +185,12 @@ LensVisualizer/
 │   │       ├── useOffAxisRays.ts       # Off-axis field rays
 │   │       ├── useChromaticRays.ts     # Chromatic tracing + spread
 │   │       ├── useFlashOverlay.ts      # Flash animation state machine
-│   │       └── useSideLayoutDetection.ts # Overflow-based side layout
+│   │       ├── useSideLayoutDetection.ts # Overflow-based side layout
+│   │       ├── useOverlays.ts         # Overlay state + dispatch adapters
+│   │       ├── useOverlayState.ts     # Abbe/LCA/Petzval overlay state
+│   │       ├── useDispatchAdapters.ts # Context dispatch callback wiring
+│   │       ├── useHeaderHeight.ts     # Header height tracking
+│   │       └── raySegmentUtils.ts     # Shared ray segment compilation
 │   ├── optics/
 │   │   ├── optics.ts                   # Ray tracing, sag curves, layout math
 │   │   ├── buildLens.ts                # Lens construction, EFL/pupil/field
@@ -176,7 +198,7 @@ LensVisualizer/
 │   │   ├── diagramGeometry.ts          # Coordinate transforms, element shapes
 │   │   └── lcaScaling.ts              # LCA bar offset computation
 │   ├── utils/                          # Themes, styles, feature flags, catalog, state hooks
-│   ├── content/                        # AboutMe.md, AboutSite.md, OpticsPrimer*.md
+│   ├── content/                        # AboutMe.md, AboutSite.md, OpticsPrimer*.md, AberrationsPrimer*.md
 │   └── lens-data/                      # Lens prescriptions + analyses
 ├── agent_docs/                         # Documentation for AI coding assistants
 └── __tests__/                          # Vitest unit tests (TypeScript)
