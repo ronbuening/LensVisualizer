@@ -257,7 +257,7 @@ export default function DiagramSVG({
             y={labelY}
             textAnchor="middle"
             fill={t.asphLabel}
-            fontSize={6.5}
+            fontSize={9}
             fontFamily="inherit"
             fontWeight={500}
             style={{ pointerEvents: "none", letterSpacing: "0.06em" }}
@@ -295,7 +295,7 @@ export default function DiagramSVG({
         y={sy(L.lyImgLabel)}
         textAnchor="middle"
         fill={t.imgLabel}
-        fontSize={7.5}
+        fontSize={9.5}
         fontFamily="inherit"
         style={{ letterSpacing: "0.12em" }}
       >

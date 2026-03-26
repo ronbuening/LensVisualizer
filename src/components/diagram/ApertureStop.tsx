@@ -55,7 +55,7 @@ export default function ApertureStop({
         y={sy(-stopHousingSD - lyStoPad)}
         textAnchor="middle"
         fill={t.stopLabel}
-        fontSize={7.5}
+        fontSize={9.5}
         fontFamily="inherit"
         style={{ letterSpacing: "0.1em" }}
       >

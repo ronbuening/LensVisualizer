@@ -39,7 +39,7 @@ export default function ElementAnnotations({
             y={sy(L.lyElemNum)}
             textAnchor="middle"
             fill={on ? t.elemNumActive : t.elemNum(e)}
-            fontSize={7}
+            fontSize={9}
             fontFamily="inherit"
             fontWeight={on ? 700 : 400}
           >
@@ -81,7 +81,7 @@ export default function ElementAnnotations({
           x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
           y={sy(L.lyGroup)}
           fill={t.groupLabel}
-          fontSize={7}
+          fontSize={9}
           fontFamily="inherit"
           textAnchor="middle"
           style={{ letterSpacing: "0.08em" }}
@@ -98,7 +98,7 @@ export default function ElementAnnotations({
           y={sy(L.lyDoublet)}
           textAnchor="middle"
           fill={t.doubletLabel}
-          fontSize={7}
+          fontSize={9}
           fontFamily="inherit"
         >
           {text}
