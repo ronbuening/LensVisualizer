@@ -155,6 +155,13 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   { label: "5",  R: ..., d: ..., nd: 1.6890, elemId: 4, sd: ... },  // L3→L4 junction — elemId: 4
   { label: "6",  R: ..., d: ..., nd: 1.0,    elemId: 0, sd: ... },  // L4 rear → air
   ```
+- **Hybrid composite (glass + resin):** A glass body with a thin aspherical resin layer bonded to one surface. Treated identically to a cemented doublet — the glass body and resin layer are separate elements with a junction surface. The resin layer's outer surface is typically aspherical. Use `cemented: "H1"` (or similar) on both elements to annotate the hybrid group. Note: the resin layer is very thin (typically 0.1–0.2 mm center thickness), so edge thickness validation may only pass when the aspherical departure at the rim compensates for the curvature mismatch between the junction and outer surfaces. Verify with tests.
+  ```javascript
+  // Hybrid composite: L5 glass body + L5r resin layer
+  { label: "9",   R: 1e15,    d: 6.55, nd: 1.804,   elemId: 5, sd: ... },  // Glass front (flat)
+  { label: "10",  R: -17.503, d: 0.14, nd: 1.56093, elemId: 6, sd: ... },  // Glass/resin junction — elemId: 6
+  { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
+  ```
 - **Last surface:** `d` = back focal distance to image plane
 
 ### Aperture Stop

@@ -139,6 +139,15 @@ const LENS_DATA = {
    *    { label: "5",  R: ..., d: ..., nd: 1.6890, elemId: 4, sd: ... },  // L3→L4 junction — elemId: 4
    *    { label: "6",  R: ..., d: ..., nd: 1.0,    elemId: 0, sd: ... },  // L4 rear → air — elemId: 0
    *
+   *  Hybrid composite pattern (glass body + resin layer):
+   *    Treated like a cemented doublet. The glass body and resin layer are separate elements.
+   *    The resin layer's outer surface is typically aspherical. Use cemented: "H1" on both.
+   *    NOTE: Resin layers are very thin (~0.1–0.2 mm). Edge thickness may only pass when
+   *    the aspherical departure compensates for curvature mismatch. Verify with tests.
+   *    { label: "9",   R: 1e15,    d: 6.55, nd: 1.804,   elemId: 5, sd: ... },  // Glass front
+   *    { label: "10",  R: -17.503, d: 0.14, nd: 1.56093, elemId: 6, sd: ... },  // Glass/resin junction
+   *    { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
+   *
    *  Why: buildLens.ts finds the FIRST surface with each elemId and uses (index, index+1)
    *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
    *  non-zero elemId will cause rendering errors or crashes.
