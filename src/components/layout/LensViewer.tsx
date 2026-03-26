@@ -24,7 +24,6 @@ import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
-import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
