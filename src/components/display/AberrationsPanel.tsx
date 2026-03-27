@@ -42,6 +42,12 @@ function formatSaUm(saUm: number): string {
   return "< 0.1 µm";
 }
 
+function saCorrectionLabel(saMm: number): "undercorrected" | "overcorrected" | "corrected" {
+  if (saMm < 0) return "undercorrected";
+  if (saMm > 0) return "overcorrected";
+  return "corrected";
+}
+
 // ── LSA diagram layout (viewBox units) ───────────────────────────────────────
 const VB_W = 280;
 const VB_H = 200;
@@ -72,8 +78,8 @@ function buildPolylinePoints(profile: SAProfilePoint[], xRangeUm: number): strin
 /**
  * Longitudinal SA profile diagram — SVG chart of focus shift (µm) vs. pupil zone.
  *
- * A near-vertical curve means well-corrected; sweeping right = undercorrected
- * (typical for fast primes); sweeping left = overcorrected.
+ * A near-vertical curve means well-corrected; sweeping left = undercorrected
+ * (typical for fast primes); sweeping right = overcorrected.
  */
 function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
   const maxSaUm = Math.max(...profile.map((p) => Math.abs(p.saMm * 1000)));
@@ -100,8 +106,8 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        LSA profile: longitudinal spherical aberration vs. pupil zone. Near-vertical = well-corrected; rightward sweep =
-        undercorrected; leftward sweep = overcorrected.
+        LSA profile: longitudinal spherical aberration vs. pupil zone. Near-vertical = well-corrected; leftward sweep =
+        undercorrected; rightward sweep = overcorrected.
       </title>
       {/* Plot area background */}
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
@@ -205,7 +211,7 @@ export default function AberrationsPanel({
             style={{ display: "flex", alignItems: "center", gap: 10 }}
             title={
               "Longitudinal spherical aberration: axial focus shift of a marginal ray " +
-              "vs. paraxial reference. Positive = undercorrected (real focus farther from lens)."
+              "vs. paraxial reference. Negative = undercorrected (real focus closer to lens)."
             }
           >
             <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>SA</span>
@@ -222,7 +228,7 @@ export default function AberrationsPanel({
             </span>
             {saResult && (
               <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>
-                ({saResult.saMm > 0 ? "undercorrected" : saResult.saMm < 0 ? "overcorrected" : "corrected"})
+                ({saCorrectionLabel(saResult.saMm)})
               </span>
             )}
           </div>

@@ -1,11 +1,23 @@
 import { describe, it, expect } from "vitest";
-import { computeSphericalAberration, computeSAProfile } from "../src/optics/aberrationAnalysis.js";
-import { doLayout, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
+import {
+  LEGACY_NEAR_AXIS_REAL_FRAC,
+  computeSphericalAberration,
+  computeSAProfile,
+} from "../src/optics/aberrationAnalysis.js";
+import {
+  doLayout,
+  entrancePupilAtState,
+  epAtZoom,
+  fopenAtZoom,
+  traceParaxialRay,
+  traceRay,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import NikonAF28f14DRaw from "../src/lens-data/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Helpers ── */
@@ -24,6 +36,25 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
   const baseEPSD = epAtZoom(zoomT, L);
   const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
   return { currentPhysStopSD, currentEPSD };
+}
+
+function axialIntercept(y: number, u: number, lastSurfZ: number): number {
+  return lastSurfZ - y / u;
+}
+
+function mkSingleElement(): RuntimeLens {
+  return {
+    S: [
+      { label: "1", R: 50, nd: 1.5168, sd: 15, d: 5, elemId: 1 },
+      { label: "2", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 1 },
+    ],
+    N: 2,
+    stopIdx: 0,
+    clipMargin: 1.0,
+    rayLead: 5,
+    asphByIdx: {},
+    varByIdx: {},
+  } as unknown as RuntimeLens;
 }
 
 describe("computeSphericalAberration", () => {
@@ -75,6 +106,31 @@ describe("computeSphericalAberration", () => {
     expect(result).not.toBeNull();
     /* Fast lens should have measurable SA */
     expect(Math.abs(result!.saUm)).toBeGreaterThan(1);
+  });
+
+  it("simple positive element reports negative SA for undercorrected spherical aberration", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const result = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
+    expect(result).not.toBeNull();
+    expect(result!.saMm).toBeLessThan(0);
+  });
+
+  it("uses a true paraxial reference instead of a near-axis real ray on fast lenses", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD } = apertureAt(L, 0, 0);
+    const lastSurfZ = zPos[L.N - 1];
+
+    const legacyRay = traceRay(LEGACY_NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L);
+    expect(legacyRay.clipped).toBe(false);
+    const legacyIntercept = axialIntercept(legacyRay.y, legacyRay.u, lastSurfZ);
+
+    const paraxialRay = traceParaxialRay(1, 0, 0, 0, L);
+    const paraxialIntercept = axialIntercept(paraxialRay.y, paraxialRay.u, lastSurfZ);
+
+    expect(Math.abs(paraxialIntercept - legacyIntercept)).toBeGreaterThan(1e-6);
   });
 
   /* ── SA decreases with smaller aperture ── */
@@ -234,6 +290,14 @@ describe("computeSAProfile", () => {
     expect(profile).toEqual([]);
   });
 
+  it("returns empty array when fewer than two zone samples survive clipping", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const profile = computeSAProfile(L, zPos, 0, 0, 12, 1.5);
+    expect(profile).toEqual([]);
+  });
+
   /* ── Aperture sensitivity ── */
 
   it("returns fewer or equal valid points when stopped down (clipping removes outer zones)", () => {
@@ -259,5 +323,26 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
     expect(profile.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe("entrancePupilAtState", () => {
+  it("scales linearly with the physical stop at a fixed optical state", () => {
+    const L = build(NikkorZ70200Raw);
+
+    const wideOpen = entrancePupilAtState(L.stopPhysSD, 0, 1, L);
+    const halfStop = entrancePupilAtState(L.stopPhysSD * 0.5, 0, 1, L);
+
+    expect(halfStop.epSD).toBeCloseTo(wideOpen.epSD * 0.5, 6);
+  });
+
+  it("changes with focus on a floating-focus design", () => {
+    const L = build(NikonAF28f14DRaw);
+
+    const atInfinity = entrancePupilAtState(L.stopPhysSD, 0, 0, L);
+    const atCloseFocus = entrancePupilAtState(L.stopPhysSD, 0.8, 0, L);
+
+    expect(Math.abs(atCloseFocus.epSD - atInfinity.epSD)).toBeGreaterThan(1e-4);
+    expect(Math.abs(atCloseFocus.epSD - epAtZoom(0, L))).toBeGreaterThan(1e-4);
   });
 });

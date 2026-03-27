@@ -2,6 +2,17 @@
 
 Features that can be implemented using only the data and computation engine already present in the codebase. Organized by estimated implementation effort.
 
+## Already Shipped
+
+These analysis features are already implemented in the current app and should be treated as baseline behavior, not future ideas:
+
+- **Spherical aberration metric + LSA profile** — `src/optics/aberrationAnalysis.ts` + `src/components/display/AberrationsPanel.tsx`
+- **Distortion curve** — `src/optics/distortionAnalysis.ts` + `src/components/display/DistortionTab.tsx`
+- **Focus breathing metric** — `src/components/display/FocusBreathingTab.tsx`
+- **Vignetting / relative illumination curve** — `src/optics/vignetteAnalysis.ts` + `src/components/display/VignettingTab.tsx`
+- **Petzval sum display** — runtime metric + diagram overlay
+- **Glass map (Abbe diagram)** — `src/components/display/AbbeDiagram.tsx`
+
 ---
 
 ## Tier 1 — Quick Wins (S: under 2 hours each)
@@ -31,12 +42,12 @@ Require new computation functions but leverage the existing ray tracing infrastr
 |---|---------|-------------|-----------------|-------------|
 | 11 | **Entrance & Exit Pupil Positions** | Z-position of the entrance and exit pupils along the optical axis. Can be drawn as markers on the diagram. | Diagram overlay markers + readout | Paraxial marginal ray trace: pupil position = `z_stop - y_stop / u_stop` (before/after stop) |
 | 12 | **Principal Plane Positions (H, H')** | Cardinal points of the optical system. H and H' define where the lens "acts" as a thin lens. Nodal points coincide with principal planes when the lens is in air. | Diagram overlay markers + readout | From paraxial marginal ray: `H = z_img + EFL`, `H' = z_img - (y_img / u_img)` |
-| 13 | **Petzval Sum** | `Σ (n' - n) / (n' × n × R)` across all refracting surfaces. Predicts native field curvature of the design. Lower = flatter field. | Analysis panel metric | Sum over all surfaces where `R ≠ ∞` |
+| 13 | **Petzval Sum** | `Σ (n' - n) / (n' × n × R)` across all refracting surfaces. Predicts native field curvature of the design. Lower = flatter field. | Already implemented | Already implemented |
 | 14 | **Optical Power per Element** | Individual element contribution to total system power. Shows which elements converge/diverge light. | Element inspector grid (new row) | Thick-lens formula: `φ = φ_front + φ_rear - (d/n) × φ_front × φ_rear` per element |
-| 15 | **Spherical Aberration Metric** | Difference between where the real marginal ray crosses the axis vs. the paraxial prediction. The primary on-axis image quality indicator. | Analysis panel metric | `traceToImageReal()` vs `traceToImage()` — compare axial intercepts |
-| 16 | **Distortion Curve** | Percentage deviation of real image height from ideal (`EFL × tan(θ)`) at multiple field angles. Shows barrel/pincushion character. | Analysis panel SVG chart or modal | Trace chief ray at 5–7 field angles via `traceRay()`, compare to ideal |
+| 15 | **Spherical Aberration Metric** | Difference between where the real marginal ray crosses the axis vs. the paraxial prediction. The primary on-axis image quality indicator. | Already implemented | Already implemented |
+| 16 | **Distortion Curve** | Percentage deviation of real image height from ideal (`EFL × tan(θ)`) at multiple field angles. Shows barrel/pincushion character. | Already implemented | Already implemented |
 | 17 | **Optical Path Layout Table** | Complete tabular view of all surfaces: label, R, d, nd, sd, element assignment, surface power. The "prescription data" view. | Analysis panel or modal (scrollable table) | Format existing `L.S[]` array data with computed `φ = (n' - n) / R` per surface |
-| 18 | **Glass Map (Abbe Diagram)** | SVG scatter plot with nd on Y-axis and vd on X-axis. Each element is a dot, colored by APD status or dispersion class. Standard optical engineering visualization. | Modal or analysis panel | Plot `elements[].nd` vs `elements[].vd` in a new SVG component |
+| 18 | **Glass Map (Abbe Diagram)** | SVG scatter plot with nd on Y-axis and vd on X-axis. Each element is a dot, colored by APD status or dispersion class. Standard optical engineering visualization. | Already implemented | Already implemented |
 | 19 | **Aspheric Departure Profile** | For each aspheric surface, plot the difference between the full aspheric sag and a best-fit sphere vs. radial height. Shows how much the asphere departs from spherical. | Element inspector expansion or modal | `renderSag(h, idx, L) - sag(h, R)` at 20–30 heights per surface |
 | 20 | **Chromatic Focal Shift Curve** | Plot of focus position vs. wavelength across the visible spectrum. Shows how well the design corrects color. | Analysis panel SVG line chart | Trace paraxial focus at ~10 wavelengths between F-line (486nm) and C-line (656nm) using Abbe dispersion model |
 | 21 | **Zoom Characteristic Curves** | For zoom lenses: plot EFL, f-number, and half-field angle vs. zoom position. Shows how the lens changes across its range. | Analysis panel (zoom lenses only) | Data already exists in `zoomEFLs`, `zoomEPs`, `zoomHalfFields` — just needs charting |
@@ -51,7 +62,7 @@ Require new ray-trace analysis loops, new reusable SVG chart components, and car
 |---|---------|-------------|-----------------|-------------|
 | 22 | **Longitudinal SA Plot** | Ray height (Y-axis) vs. axial focus shift (X-axis). The classic spherochromatism diagnostic. Shows how focus changes with aperture zone. | Modal or analysis panel | Trace real rays at 10–15 pupil heights via `traceRay()`; find each ray's axial intercept; new SVG chart component |
 | 23 | **Transverse Ray Fan Plot** | Transverse ray error (Δy) vs. pupil coordinate. The standard aberration diagnostic showing SA slope, coma asymmetry, and higher-order structure. | Modal or analysis panel | Trace dense ray fan (20+ rays) on-axis and off-axis; compute Δy = (real_y - ideal_y) at image plane |
-| 24 | **Vignetting / Relative Illumination** | How much light reaches the image at each field angle. Combines geometric vignetting (ray clipping) with cos⁴ falloff. | Analysis panel SVG chart | Trace full ray fan at 7+ field angles; count surviving (non-clipped) rays; multiply by cos⁴(θ) |
+| 24 | **Vignetting / Relative Illumination** | How much light reaches the image at each field angle. Combines geometric vignetting (ray clipping) with cos⁴ falloff. | Already implemented | Already implemented |
 | 25 | **Spot Diagram** | 2D scatter of ray intersections at the image plane from a grid of rays across the pupil. Shows the shape and size of the blur at each field point. | Dedicated modal | Trace 100+ rays (polar or rectangular grid) through pupil; collect (x, y) at image plane; plot as SVG dots |
 | 26 | **Field Curvature + Astigmatism Plot** | Tangential and sagittal focal surface positions vs. field angle. Two curves showing how the "best focus" surface bends and splits. | Modal or analysis panel | Trace tangential fan (meridional plane) and sagittal fan at multiple field angles; find best focus for each |
 | 27 | **Coma Visualization** | Off-axis ray fan showing the asymmetric flare pattern. Upper and lower marginal rays arrive at different heights, creating the comet-shaped blur. | Diagram overlay or modal | Dense off-axis ray trace; measure upper vs. lower ray spread at image plane |

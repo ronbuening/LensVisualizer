@@ -10,7 +10,14 @@
 import { useMemo } from "react";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
-import { thick, doLayout, epAtZoom, fopenAtZoom, eflAtFocus, effectiveFNumber } from "../../optics/optics.js";
+import {
+  thick,
+  doLayout,
+  entrancePupilAtState,
+  fopenAtZoom,
+  eflAtFocus,
+  effectiveFNumber,
+} from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 
@@ -132,8 +139,8 @@ export default function useLensComputation({
   const rawFNumber = L ? L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT) : 1;
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
-  /* Use zoom-aware EP for correct ray heights across the zoom range */
-  const baseEPSD = L ? epAtZoom(zoomT, L) : 0;
+  /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
+  const baseEPSD = L ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD : 0;
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
