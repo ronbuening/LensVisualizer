@@ -18,7 +18,7 @@ vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
-  computeComaPreview: mockComputeComaPreview,
+  computeEstimatedComaPreview: mockComputeComaPreview,
 }));
 
 const theme = {
@@ -55,7 +55,8 @@ describe("AberrationsPanel", () => {
     mockComputeComaPreview.mockReturnValue({
       fieldFractions: [0, 0.25, 0.5, 0.75],
       usableFieldCount: 4,
-      sharedRelativeHalfRangeMm: 0.06,
+      sharedTangentialHalfRangeMm: 0.06,
+      normalizedSagittalHalfRange: 1,
       fields: [
         {
           fieldFraction: 0,
@@ -68,10 +69,10 @@ describe("AberrationsPanel", () => {
           minRelativeIntercept: -0.01,
           maxRelativeIntercept: 0.01,
           usable: true,
-          samples: [
-            { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.01, relativeImageHeight: -0.01, clipped: false },
-            { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
-            { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.01, relativeImageHeight: 0.01, clipped: false },
+          points: [
+            { index: 0, sourceSampleIndex: 0, tangentialImageHeight: -0.01, sagittalNormalized: -0.5, weight: 0.1 },
+            { index: 1, sourceSampleIndex: 25, tangentialImageHeight: 0, sagittalNormalized: 0, weight: 0.2 },
+            { index: 2, sourceSampleIndex: 50, tangentialImageHeight: 0.01, sagittalNormalized: 0.5, weight: 0.1 },
           ],
         },
         {
@@ -85,7 +86,7 @@ describe("AberrationsPanel", () => {
           minRelativeIntercept: -0.03,
           maxRelativeIntercept: 0.04,
           usable: true,
-          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.02, relativeImageHeight: 0, clipped: false }],
+          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.04, sagittalNormalized: 0, weight: 0.2 }],
         },
         {
           fieldFraction: 0.5,
@@ -98,7 +99,7 @@ describe("AberrationsPanel", () => {
           minRelativeIntercept: -0.05,
           maxRelativeIntercept: 0.06,
           usable: true,
-          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.05, relativeImageHeight: 0, clipped: false }],
+          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.06, sagittalNormalized: 0, weight: 0.2 }],
         },
         {
           fieldFraction: 0.75,
@@ -111,7 +112,7 @@ describe("AberrationsPanel", () => {
           minRelativeIntercept: -0.06,
           maxRelativeIntercept: 0.05,
           usable: true,
-          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.09, relativeImageHeight: 0, clipped: false }],
+          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.05, sagittalNormalized: 0, weight: 0.2 }],
         },
       ],
     });
@@ -182,7 +183,7 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getAllByText("Coma Preview").length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Representative meridional coma preview/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Estimated 2D coma appearance/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText("Center").length).toBeGreaterThan(0);
     expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
     expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
@@ -205,7 +206,7 @@ describe("AberrationsPanel", () => {
     mockComputeComaPreview.mockReturnValue(null);
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute a representative coma preview/i)).toBeTruthy();
+    expect(screen.getByText(/Unable to compute an estimated 2D coma appearance/i)).toBeTruthy();
   });
 
   it("shows fallback copy when coma computation fails", () => {
