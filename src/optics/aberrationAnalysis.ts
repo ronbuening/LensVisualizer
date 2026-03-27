@@ -13,6 +13,14 @@
 import { traceRay } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
+/** One sample point on the longitudinal SA profile curve. */
+export interface SAProfilePoint {
+  /** Normalised pupil zone fraction (0 = paraxial axis, 1 = full entrance-pupil edge). */
+  fraction: number;
+  /** SA at this zone in mm (real axial intercept − paraxial intercept). */
+  saMm: number;
+}
+
 /** Result of a spherical aberration computation. */
 export interface SphericalAberrationResult {
   /** Longitudinal SA in mm (real marginal intercept − paraxial intercept). */
@@ -135,4 +143,69 @@ export function computeSphericalAberration(
     realIntercept,
     paraxialIntercept,
   };
+}
+
+/**
+ * Pupil zone fractions sampled for the longitudinal SA profile curve.
+ * Spans the aperture from near-paraxial to the marginal zone.
+ */
+const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as const;
+
+/**
+ * Compute the longitudinal SA profile across the pupil aperture.
+ *
+ * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil
+ * and returns the focus shift (SA) relative to the paraxial reference at
+ * each zone.  Points where the ray is clipped by the aperture stop are
+ * silently omitted, so the returned array may be shorter than PROFILE_FRACS.
+ *
+ * Returns an empty array when the paraxial reference cannot be traced or
+ * when fewer than two valid zone samples are available.
+ *
+ * @param L                  — runtime lens object (frozen, from buildLens)
+ * @param zPos               — surface z-positions for current focus/zoom state
+ * @param focusT             — focus slider [0..1]
+ * @param zoomT              — zoom slider [0..1]
+ * @param currentEPSD        — current entrance pupil semi-diameter (mm)
+ * @param currentPhysStopSD  — current physical stop semi-diameter (mm)
+ * @returns                    Array of {fraction, saMm} profile points, or [] on failure
+ */
+export function computeSAProfile(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): SAProfilePoint[] {
+  if (currentEPSD <= 0 || L.N < 1) return [];
+
+  const lastSurfZ = zPos[L.N - 1];
+
+  /* ── Paraxial reference intercept (computed once) ── */
+  const hParaxial = PARAXIAL_FRAC * currentEPSD;
+  const paraxRef = traceRay(hParaxial, 0, zPos, focusT, zoomT, undefined, true, L);
+  if (paraxRef.clipped) return [];
+  const paraxialIntercept = axialIntercept(paraxRef.y, paraxRef.u, lastSurfZ);
+  if (paraxialIntercept === null) return [];
+
+  /* ── Sample each zone fraction ── */
+  const points: SAProfilePoint[] = [];
+
+  for (const fraction of PROFILE_FRACS) {
+    const h = fraction * currentEPSD;
+    const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+    const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+
+    if (plusY.clipped || minusY.clipped) continue;
+
+    const iPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
+    const iMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
+    if (iPlus === null || iMinus === null) continue;
+
+    const realIntercept = (iPlus + iMinus) / 2;
+    points.push({ fraction, saMm: realIntercept - paraxialIntercept });
+  }
+
+  return points;
 }

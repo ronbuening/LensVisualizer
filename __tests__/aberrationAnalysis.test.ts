@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeSphericalAberration } from "../src/optics/aberrationAnalysis.js";
+import { computeSphericalAberration, computeSAProfile } from "../src/optics/aberrationAnalysis.js";
 import { doLayout, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -167,5 +167,97 @@ describe("computeSphericalAberration", () => {
     const tinyStopSD = currentEPSD * 0.01;
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, tinyStopSD);
     expect(result).toBeNull();
+  });
+});
+
+describe("computeSAProfile", () => {
+  /* ── Nominal computation ── */
+
+  it("returns ≥ 2 points for Sonnar 50/1.5 at infinity focus", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(profile.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("all fraction values are in (0, 1]", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    for (const { fraction } of profile) {
+      expect(fraction).toBeGreaterThan(0);
+      expect(fraction).toBeLessThanOrEqual(1);
+    }
+  });
+
+  it("all saMm values are finite", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    for (const { saMm } of profile) {
+      expect(isFinite(saMm)).toBe(true);
+    }
+  });
+
+  it("inner zones have less SA than outer zones (monotone for undercorrected lens)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(profile.length).toBeGreaterThan(1);
+    /* Sonnar 50/1.5 is undercorrected: SA grows in magnitude toward the marginal zone */
+    const innerAbs = Math.abs(profile[0].saMm);
+    const outerAbs = Math.abs(profile[profile.length - 1].saMm);
+    expect(outerAbs).toBeGreaterThan(innerAbs);
+  });
+
+  /* ── Edge cases ── */
+
+  it("returns empty array when currentEPSD is zero", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const profile = computeSAProfile(L, zPos, 0, 0, 0, 0);
+    expect(profile).toEqual([]);
+  });
+
+  it("returns empty array for a degenerate lens with no surfaces", () => {
+    const L = { N: 0, S: [] } as unknown as RuntimeLens;
+    const profile = computeSAProfile(L, [], 0, 0, 10, 5);
+    expect(profile).toEqual([]);
+  });
+
+  /* ── Aperture sensitivity ── */
+
+  it("returns fewer or equal valid points when stopped down (clipping removes outer zones)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const wideOpen = apertureAt(L, 0, 0);
+    const stoppedDown = apertureAt(L, 0, 0.8);
+
+    const wideProfile = computeSAProfile(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stoppedProfile = computeSAProfile(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    /* Stopping down shrinks the pupil so it shouldn't produce more valid zones */
+    expect(stoppedProfile.length).toBeLessThanOrEqual(wideProfile.length);
+  });
+
+  /* ── Zoom lens ── */
+
+  it("returns ≥ 2 points for zoom lens (Nikkor Z 70-200/2.8) at tele end", () => {
+    const L = build(NikkorZ70200Raw);
+    const { z: zPos } = doLayout(0, 1, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
+
+    const profile = computeSAProfile(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
+    expect(profile.length).toBeGreaterThanOrEqual(2);
   });
 });
