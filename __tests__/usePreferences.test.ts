@@ -4,6 +4,7 @@ import { renderHook, act } from "@testing-library/react";
 import usePreferences from "../src/utils/usePreferences.js";
 import { createInitialState } from "../src/utils/lensReducer.js";
 import { PREFS_KEY } from "../src/utils/preferences.js";
+import { clearBrowserState, installMatchMediaMock } from "./testUtils.js";
 import type { LensState } from "../src/types/state.js";
 
 const CATALOG_KEYS = ["nikon_58", "canon_50", "zeiss_35"];
@@ -15,16 +16,9 @@ function makeState(overrides: Partial<LensState> = {}): LensState {
 /* ── Environment setup ── */
 
 beforeEach(() => {
-  localStorage.clear();
+  clearBrowserState();
   vi.clearAllMocks();
-
-  // createInitialState reads window.matchMedia for dark/contrast defaults when prefs are absent
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: vi
-      .fn()
-      .mockImplementation(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })),
-  });
+  installMatchMediaMock(false);
 });
 
 /* ── Basic write-on-mount ── */

@@ -1,25 +1,16 @@
 // @vitest-environment jsdom
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useLensState from "../src/utils/useLensState.js";
 import { PREFS_KEY } from "../src/utils/preferences.js";
 import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
+import { clearBrowserState, installMatchMediaMock } from "./testUtils.js";
 
 /* ── Mock window.matchMedia (not implemented in jsdom) ── */
 
 beforeEach(() => {
-  // Reset URL to bare path before each test
-  window.history.replaceState({}, "", "/");
-  localStorage.clear();
-
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: vi.fn().mockImplementation((query: string) => ({
-      matches: query.includes("900px"),
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-    })),
-  });
+  clearBrowserState();
+  installMatchMediaMock(true);
 });
 
 /* ── Default state initialization ── */

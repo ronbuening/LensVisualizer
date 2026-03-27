@@ -4,6 +4,7 @@ import { renderHook, act } from "@testing-library/react";
 import useURLSync from "../src/utils/useURLSync.js";
 import { createInitialState } from "../src/utils/lensReducer.js";
 import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
+import { clearBrowserState, installMatchMediaMock, mockReplaceState } from "./testUtils.js";
 import type { Dispatch } from "react";
 import type { LensState, LensAction } from "../src/types/state.js";
 
@@ -16,17 +17,10 @@ function makeState(overrides: Partial<LensState> = {}): LensState {
 let replaceStateSpy: ReturnType<typeof vi.spyOn>;
 
 beforeEach(() => {
-  window.history.replaceState({}, "", "/");
-  replaceStateSpy = vi.spyOn(history, "replaceState");
+  clearBrowserState();
+  replaceStateSpy = mockReplaceState();
   vi.useFakeTimers();
-
-  // createInitialState reads window.matchMedia for dark/contrast defaults when prefs are absent
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: vi
-      .fn()
-      .mockImplementation(() => ({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() })),
-  });
+  installMatchMediaMock(false);
 });
 
 afterEach(() => {
