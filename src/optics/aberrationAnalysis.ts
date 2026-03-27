@@ -105,6 +105,44 @@ export interface MeridionalComaResult {
   samples: MeridionalComaSample[];
 }
 
+/** One field sample for the representative coma preview grid. */
+export interface ComaPreviewFieldResult {
+  /** Field position as a fraction of the current half-field in [0, 1]. */
+  fieldFraction: number;
+  /** Human-readable label for the tile. */
+  label: string;
+  /** Field angle used for this preview tile (deg). */
+  fieldAngleDeg: number;
+  /** Total dense pupil samples attempted. */
+  sampleCount: number;
+  /** Number of valid image-plane intercept samples. */
+  validSampleCount: number;
+  /** Number of clipped/invalid samples. */
+  clippedSampleCount: number;
+  /** Chief-ray-centered intercept height at the image plane (mm). */
+  chiefIntercept: number;
+  /** Lowest valid chief-ray-centered sample height (mm). */
+  minRelativeIntercept: number;
+  /** Highest valid chief-ray-centered sample height (mm). */
+  maxRelativeIntercept: number;
+  /** Dense pupil samples with chief-ray-centered relative offsets for rendering. */
+  samples: Array<MeridionalComaSample & { relativeImageHeight: number | null }>;
+  /** Whether this tile has enough data to render. */
+  usable: boolean;
+}
+
+/** Shared representative coma preview data for the current lens state. */
+export interface ComaPreviewResult {
+  /** Fixed field fractions represented in the preview tiles. */
+  fieldFractions: readonly number[];
+  /** Preview tiles in display order. */
+  fields: ComaPreviewFieldResult[];
+  /** Largest absolute chief-ray-centered offset across all usable tiles (mm). */
+  sharedRelativeHalfRangeMm: number;
+  /** Number of usable preview tiles. */
+  usableFieldCount: number;
+}
+
 /**
  * Candidate fractions of the entrance pupil for the marginal ray sample,
  * tried in descending order.  The first unclipped pair wins.
@@ -389,6 +427,133 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
 /** Dense pupil sweep count for the meridional coma view. Must remain odd to include the chief ray sample. */
 export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 
+/** Fixed field positions shown in the representative coma preview grid. */
+export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+
+const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[number], string> = {
+  0: "Center",
+  0.25: "25%",
+  0.5: "50%",
+  0.75: "75%",
+};
+
+interface MeridionalComaFieldSample extends MeridionalComaSample {
+  relativeImageHeight: number | null;
+}
+
+interface MeridionalComaFieldFootprint {
+  fieldFraction: number;
+  fieldAngleDeg: number;
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  centerIntercept: number;
+  minIntercept: number;
+  maxIntercept: number;
+  minRelativeIntercept: number;
+  maxRelativeIntercept: number;
+  lowerIntercept: number;
+  upperIntercept: number;
+  spanMm: number;
+  spanUm: number;
+  samples: MeridionalComaFieldSample[];
+}
+
+function computeMeridionalComaFieldFootprint(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  fieldFraction: number,
+): MeridionalComaFieldFootprint | null {
+  if (currentEPSD <= 0 || L.N < 1) return null;
+
+  const halfFieldDeg = halfFieldAtZoom(zoomT, L);
+  if (!isFinite(halfFieldDeg) || halfFieldDeg < 0) return null;
+
+  const yRatio = yRatioAtZoom(zoomT, L);
+  if (!isFinite(yRatio) || Math.abs(yRatio) < 1e-12) return null;
+
+  if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
+
+  const fieldAngleDeg = halfFieldDeg * fieldFraction;
+  if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
+
+  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
+  const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(imagePlaneZ)) return null;
+
+  const samples: MeridionalComaFieldSample[] = [];
+  const validSamples: Array<MeridionalComaFieldSample & { imageHeight: number }> = [];
+
+  for (let i = 0; i < MERIDIONAL_COMA_SAMPLE_COUNT; i++) {
+    const pupilFraction = -1 + (2 * i) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
+    const launchHeight = yChief + pupilFraction * currentEPSD;
+    const trace = traceRay(launchHeight, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+    const projectedHeight = trace.clipped ? null : imagePlaneIntercept(trace.y, trace.u, lastSurfZ, imagePlaneZ);
+    const sample: MeridionalComaFieldSample = {
+      index: i,
+      pupilFraction,
+      launchHeight,
+      imageHeight: projectedHeight,
+      relativeImageHeight: null,
+      clipped: trace.clipped || projectedHeight === null,
+    };
+    samples.push(sample);
+    if (sample.imageHeight !== null && !sample.clipped) {
+      validSamples.push(sample as MeridionalComaFieldSample & { imageHeight: number });
+    }
+  }
+
+  if (validSamples.length < 3) return null;
+
+  const centerSample =
+    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
+    validSamples.reduce((best, sample) =>
+      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
+    );
+  const centerIntercept = centerSample.imageHeight;
+
+  for (const sample of samples) {
+    sample.relativeImageHeight = sample.imageHeight === null ? null : sample.imageHeight - centerIntercept;
+  }
+
+  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
+  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
+
+  if (!lowerSample || !upperSample) return null;
+
+  const intercepts = validSamples.map((sample) => sample.imageHeight);
+  const relativeIntercepts = validSamples.map((sample) => sample.imageHeight - centerIntercept);
+  const minIntercept = Math.min(...intercepts);
+  const maxIntercept = Math.max(...intercepts);
+  const minRelativeIntercept = Math.min(...relativeIntercepts);
+  const maxRelativeIntercept = Math.max(...relativeIntercepts);
+  const spanMm = upperSample.imageHeight - lowerSample.imageHeight;
+
+  return {
+    fieldFraction,
+    fieldAngleDeg,
+    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    validSampleCount: validSamples.length,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSamples.length,
+    centerIntercept,
+    minIntercept,
+    maxIntercept,
+    minRelativeIntercept,
+    maxRelativeIntercept,
+    lowerIntercept: lowerSample.imageHeight,
+    upperIntercept: upperSample.imageHeight,
+    spanMm,
+    spanUm: spanMm * 1000,
+    samples,
+  };
+}
+
 /**
  * Compute a real-ray on-axis transverse SA profile across the pupil aperture.
  *
@@ -474,73 +639,110 @@ export function computeMeridionalComa(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): MeridionalComaResult | null {
-  if (currentEPSD <= 0 || L.N < 1) return null;
-
-  const halfFieldDeg = halfFieldAtZoom(zoomT, L);
-  if (!isFinite(halfFieldDeg) || halfFieldDeg <= 0) return null;
-
-  const yRatio = yRatioAtZoom(zoomT, L);
-  if (!isFinite(yRatio) || Math.abs(yRatio) < 1e-12) return null;
-
-  const fieldAngleDeg = halfFieldDeg * L.offAxisFieldFrac;
-  if (!isFinite(fieldAngleDeg) || fieldAngleDeg <= 0) return null;
-
-  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
-  const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
-  const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
-  if (!isFinite(imagePlaneZ)) return null;
-
-  const samples: MeridionalComaSample[] = [];
-  const validSamples: Array<MeridionalComaSample & { imageHeight: number }> = [];
-
-  for (let i = 0; i < MERIDIONAL_COMA_SAMPLE_COUNT; i++) {
-    const pupilFraction = -1 + (2 * i) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
-    const launchHeight = yChief + pupilFraction * currentEPSD;
-    const trace = traceRay(launchHeight, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-    const projectedHeight = trace.clipped ? null : imagePlaneIntercept(trace.y, trace.u, lastSurfZ, imagePlaneZ);
-    const sample: MeridionalComaSample = {
-      index: i,
-      pupilFraction,
-      launchHeight,
-      imageHeight: projectedHeight,
-      clipped: trace.clipped || projectedHeight === null,
-    };
-    samples.push(sample);
-    if (sample.imageHeight !== null && !sample.clipped) {
-      validSamples.push(sample as MeridionalComaSample & { imageHeight: number });
-    }
-  }
-
-  if (validSamples.length < 3) return null;
-
-  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
-  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
-  const centerSample =
-    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
-    validSamples.reduce((best, sample) =>
-      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
-    );
-
-  if (!lowerSample || !upperSample || !centerSample) return null;
-
-  const intercepts = validSamples.map((sample) => sample.imageHeight);
-  const minIntercept = Math.min(...intercepts);
-  const maxIntercept = Math.max(...intercepts);
-  const spanMm = upperSample.imageHeight - lowerSample.imageHeight;
+  const footprint = computeMeridionalComaFieldFootprint(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    L.offAxisFieldFrac,
+  );
+  if (footprint === null || footprint.fieldAngleDeg <= 0) return null;
 
   return {
-    fieldAngleDeg,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-    validSampleCount: validSamples.length,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSamples.length,
-    centerIntercept: centerSample.imageHeight,
-    minIntercept,
-    maxIntercept,
-    spanMm,
-    spanUm: spanMm * 1000,
-    lowerIntercept: lowerSample.imageHeight,
-    upperIntercept: upperSample.imageHeight,
-    samples,
+    fieldAngleDeg: footprint.fieldAngleDeg,
+    sampleCount: footprint.sampleCount,
+    validSampleCount: footprint.validSampleCount,
+    clippedSampleCount: footprint.clippedSampleCount,
+    centerIntercept: footprint.centerIntercept,
+    minIntercept: footprint.minIntercept,
+    maxIntercept: footprint.maxIntercept,
+    spanMm: footprint.spanMm,
+    spanUm: footprint.spanUm,
+    lowerIntercept: footprint.lowerIntercept,
+    upperIntercept: footprint.upperIntercept,
+    samples: footprint.samples.map(({ relativeImageHeight: _relativeImageHeight, ...sample }) => sample),
+  };
+}
+
+/**
+ * Compute a representative coma preview at fixed fractions of the current half-field.
+ *
+ * This remains a meridional-only visualization built from the same real-ray
+ * launch convention as the existing coma diagnostic. The preview centers each
+ * tile on the chief-ray intercept so users can compare asymmetric spread
+ * growth across the field.
+ */
+export function computeComaPreview(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): ComaPreviewResult | null {
+  const fields = COMA_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
+    const footprint = computeMeridionalComaFieldFootprint(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldFraction,
+    );
+
+    if (footprint === null) {
+      return {
+        fieldFraction,
+        label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
+        fieldAngleDeg: 0,
+        sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+        validSampleCount: 0,
+        clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+        chiefIntercept: 0,
+        minRelativeIntercept: 0,
+        maxRelativeIntercept: 0,
+        samples: Array.from({ length: MERIDIONAL_COMA_SAMPLE_COUNT }, (_, index) => ({
+          index,
+          pupilFraction: -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1),
+          launchHeight: 0,
+          imageHeight: null,
+          relativeImageHeight: null,
+          clipped: true,
+        })),
+        usable: false,
+      } satisfies ComaPreviewFieldResult;
+    }
+
+    return {
+      fieldFraction,
+      label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
+      fieldAngleDeg: footprint.fieldAngleDeg,
+      sampleCount: footprint.sampleCount,
+      validSampleCount: footprint.validSampleCount,
+      clippedSampleCount: footprint.clippedSampleCount,
+      chiefIntercept: footprint.centerIntercept,
+      minRelativeIntercept: footprint.minRelativeIntercept,
+      maxRelativeIntercept: footprint.maxRelativeIntercept,
+      samples: footprint.samples,
+      usable: true,
+    } satisfies ComaPreviewFieldResult;
+  });
+
+  const usableFields = fields.filter((field) => field.usable);
+  if (usableFields.length < 2) return null;
+
+  const sharedRelativeHalfRangeMm = Math.max(
+    0.01,
+    ...usableFields.map((field) => Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept))),
+  );
+
+  return {
+    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fields,
+    sharedRelativeHalfRangeMm,
+    usableFieldCount: usableFields.length,
   };
 }

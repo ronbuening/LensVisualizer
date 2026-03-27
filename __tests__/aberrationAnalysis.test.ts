@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
 import {
+  COMA_PREVIEW_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
+  computeComaPreview,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
@@ -490,6 +492,89 @@ describe("computeMeridionalComa", () => {
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
     expect(atClose!.spanMm).not.toBeCloseTo(atInfinity!.spanMm, 6);
+  });
+
+  it("preserves the configured off-axis field fraction after the helper refactor", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeCloseTo(L.halfField * L.offAxisFieldFrac, 6);
+  });
+});
+
+describe("computeComaPreview", () => {
+  it("returns four ordered preview fields for the current lens state", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
+    expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
+    expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%"]);
+    expect(result!.fields).toHaveLength(4);
+  });
+
+  it("returns dense samples for each usable preview tile", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
+
+    for (const field of result!.fields.filter((sample) => sample.usable)) {
+      expect(field.samples).toHaveLength(MERIDIONAL_COMA_SAMPLE_COUNT);
+      expect(field.validSampleCount).toBeGreaterThanOrEqual(3);
+      expect(field.fieldAngleDeg).toBeGreaterThanOrEqual(0);
+    }
+  });
+
+  it("keeps the center field finite and chief-ray centered", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.fieldFraction).toBe(0);
+    expect(centerField.usable).toBe(true);
+    expect(centerField.fieldAngleDeg).toBeCloseTo(0, 8);
+    expect(isFinite(centerField.chiefIntercept)).toBe(true);
+
+    const chiefSample = centerField.samples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ?? null;
+    expect(chiefSample).not.toBeNull();
+    expect(chiefSample!.relativeImageHeight).toBeCloseTo(0, 8);
+  });
+
+  it("exposes a shared normalization range across usable tiles", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.sharedRelativeHalfRangeMm).toBeGreaterThan(0);
+
+    for (const field of result!.fields.filter((sample) => sample.usable)) {
+      expect(Math.abs(field.minRelativeIntercept)).toBeLessThanOrEqual(result!.sharedRelativeHalfRangeMm + 1e-9);
+      expect(Math.abs(field.maxRelativeIntercept)).toBeLessThanOrEqual(result!.sharedRelativeHalfRangeMm + 1e-9);
+    }
+  });
+
+  it("returns null when fewer than two preview tiles are usable", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const result = computeComaPreview(L, zPos, 0, 0, 12, 1);
+    expect(result).toBeNull();
   });
 });
 
