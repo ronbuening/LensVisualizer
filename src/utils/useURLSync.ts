@@ -13,11 +13,11 @@ import {
   focalLengthToZoomT,
   zoomTToFocalLength,
 } from "./parseComparisonParams.js";
-import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
 import { SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
 import type { LensState, LensAction } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
+import type { ZoomConvertibleLens } from "./zoomConversion.js";
 
 interface ComparisonLenses {
   LA: RuntimeLens;
@@ -33,6 +33,21 @@ type ComparisonLensesParam = ComparisonLenses | ComparisonError | null;
 
 interface UseURLSyncResult {
   updateURLWithSliders: () => void;
+}
+
+function getComparisonZoomLens(comparisonLenses: ComparisonLensesParam): ZoomConvertibleLens | null {
+  if (!comparisonLenses || comparisonLenses.error) return null;
+  const { LA, LB } = comparisonLenses as ComparisonLenses;
+  return LA.isZoom ? LA : LB.isZoom ? LB : null;
+}
+
+function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
+  const lensData = LENS_CATALOG[lensKey];
+  if (!lensData || !Array.isArray(lensData.zoomPositions) || lensData.zoomPositions.length < 2) return null;
+  return {
+    isZoom: true,
+    zoomPositions: lensData.zoomPositions,
+  };
 }
 
 export default function useURLSync(
@@ -74,33 +89,23 @@ export default function useURLSync(
   /* ── 3a. Zoom init — comparison mode ── */
   useEffect(() => {
     if (urlZoomInitialized.current || urlZoom == null) return;
-    if (comparing && comparisonLenses && !comparisonLenses.error) {
-      const { LA, LB } = comparisonLenses as ComparisonLenses;
-      const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
-      if (zoomLens) {
-        dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
-      }
-      urlZoomInitialized.current = true;
+    if (!comparing) return;
+    const zoomLens = getComparisonZoomLens(comparisonLenses);
+    if (zoomLens) {
+      dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
     }
+    urlZoomInitialized.current = true;
   }, [comparisonLenses, comparing, urlZoom, dispatch]);
 
   /* ── 3b. Zoom init — single-lens mode ── */
-  const singleLensForZoomInit = useMemo((): RuntimeLens | null => {
-    if (comparing || urlZoomInitialized.current || urlZoom == null) return null;
-    try {
-      return buildLens(LENS_CATALOG[lensKeyA]);
-    } catch {
-      return null;
-    }
-  }, [lensKeyA, comparing, urlZoom]);
-
   useEffect(() => {
-    if (urlZoomInitialized.current || urlZoom == null || !singleLensForZoomInit) return;
-    if (singleLensForZoomInit.isZoom) {
-      dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(urlZoom, singleLensForZoomInit) });
+    if (urlZoomInitialized.current || urlZoom == null || comparing) return;
+    const zoomLens = getCatalogZoomLens(lensKeyA);
+    if (zoomLens) {
+      dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
     }
     urlZoomInitialized.current = true;
-  }, [singleLensForZoomInit, urlZoom, dispatch]);
+  }, [lensKeyA, comparing, urlZoom, dispatch]);
 
   /* ── 2. Debounced slider URL update ──
    * Uses a ref-based approach: the callback reads current values from
@@ -113,23 +118,16 @@ export default function useURLSync(
       if (comparing) {
         if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
         if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
-        if (comparisonLenses && !comparisonLenses.error) {
-          const { LA, LB } = comparisonLenses as ComparisonLenses;
-          const zoomLens = LA.isZoom ? LA : LB.isZoom ? LB : null;
-          if (zoomLens && sharedZoomT > 0) {
-            sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
-          }
+        const zoomLens = getComparisonZoomLens(comparisonLenses);
+        if (zoomLens && sharedZoomT > 0) {
+          sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
         }
       } else {
         if (focusT > 0) sliderState.focus = focusT;
         if (stopdownT > 0) sliderState.aperture = stopdownT;
-        try {
-          const L = buildLens(LENS_CATALOG[lensKeyA]);
-          if (L.isZoom && zoomT > 0) {
-            sliderState.zoom = zoomTToFocalLength(zoomT, L);
-          }
-        } catch {
-          /* ignore */
+        const zoomLens = getCatalogZoomLens(lensKeyA);
+        if (zoomLens && zoomT > 0) {
+          sliderState.zoom = zoomTToFocalLength(zoomT, zoomLens);
         }
       }
       if ((isLensPage && !comparing) || isComparePage) {

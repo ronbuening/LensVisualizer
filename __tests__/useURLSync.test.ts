@@ -3,14 +3,20 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useURLSync from "../src/utils/useURLSync.js";
 import { createInitialState } from "../src/utils/lensReducer.js";
-import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock, mockReplaceState } from "./testUtils.js";
+import { focalLengthToZoomT } from "../src/utils/zoomConversion.js";
 import type { Dispatch } from "react";
 import type { LensState, LensAction } from "../src/types/state.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
   return { ...createInitialState({}, {}, true, CATALOG_KEYS), ...overrides };
 }
+
+const zoomLensKey = CATALOG_KEYS.find(
+  (key) => Array.isArray(LENS_CATALOG[key].zoomPositions) && LENS_CATALOG[key].zoomPositions!.length >= 2,
+)!;
+const zoomLensPositions = LENS_CATALOG[zoomLensKey].zoomPositions!;
 
 /* ── Setup / teardown ── */
 
@@ -106,6 +112,49 @@ describe("useURLSync — immediate URL update on lens change", () => {
     });
 
     expect(replaceStateSpy.mock.calls.length).toBeGreaterThan(callsBefore);
+  });
+});
+
+describe("useURLSync — zoom initialization", () => {
+  it("initializes shared zoom from the URL in comparison mode", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, comparing: true },
+    };
+    const zoomLens = { isZoom: true, zoomPositions: zoomLensPositions } as any;
+    const urlZoom = zoomLensPositions[1];
+    window.history.replaceState({}, "", `?zoom=${urlZoom}`);
+
+    renderHook(() =>
+      useURLSync(
+        state,
+        dispatch,
+        { LA: zoomLens, LB: { isZoom: false, zoomPositions: null } as any },
+      ),
+    );
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "SET_SHARED_ZOOM_T",
+      value: focalLengthToZoomT(urlZoom, zoomLens),
+    });
+  });
+
+  it("initializes single-lens zoom from catalog zoom positions without building a runtime lens", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, lensKeyA: zoomLensKey, comparing: false },
+    };
+    const urlZoom = zoomLensPositions[1];
+    window.history.replaceState({}, "", `?zoom=${urlZoom}`);
+
+    renderHook(() => useURLSync(state, dispatch, null));
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "SET_ZOOM_T",
+      value: focalLengthToZoomT(urlZoom, { isZoom: true, zoomPositions: zoomLensPositions }),
+    });
   });
 });
 
@@ -240,6 +289,25 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(urlArg).not.toContain("focus=");
     expect(urlArg).not.toContain("aperture=");
   });
+
+  it("encodes zoom for single-lens zoom pages after debounce", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, lensKeyA: zoomLensKey },
+      sliders: { focusT: 0, zoomT: 0.5, stopdownT: 0 },
+    };
+    const { result } = renderHook(() => useURLSync(state, dispatch, null));
+
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(300);
+    });
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    const urlArg = lastCall[2] as string;
+    expect(urlArg).toContain("zoom=");
+  });
 });
 
 /* ── Comparison mode slider URL update ── */
@@ -284,5 +352,27 @@ describe("useURLSync — comparison mode slider URL", () => {
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
     expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?focus=0.400&aperture=0.200`);
+  });
+
+  it("encodes shared zoom for comparison mode after debounce", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, comparing: true },
+      sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0.5 },
+    };
+    const zoomLens = { isZoom: true, zoomPositions: zoomLensPositions } as any;
+    const { result } = renderHook(() =>
+      useURLSync(state, dispatch, { LA: zoomLens, LB: { isZoom: false, zoomPositions: null } as any }),
+    );
+
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(300);
+    });
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    const urlArg = lastCall[2] as string;
+    expect(urlArg).toContain("zoom=");
   });
 });
