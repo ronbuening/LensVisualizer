@@ -56,7 +56,6 @@ interface DiagramControlPanelProps {
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
-  onOpenAnalysisDrawer: () => void;
 }
 
 export default function DiagramControlPanel({
@@ -99,7 +98,6 @@ export default function DiagramControlPanel({
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
-  onOpenAnalysisDrawer,
 }: DiagramControlPanelProps) {
   return (
     <div
@@ -182,41 +180,6 @@ export default function DiagramControlPanel({
             onOpenAbbeDiagram={onOpenAbbeDiagram}
           />
         )}
-      </div>
-
-      {/* ── Analysis drawer launch button ── */}
-      <div
-        style={{
-          flex: useSideLayout ? "0 0 auto" : "1 1 100%",
-          padding: compact ? "6px 14px" : "6px 22px",
-          borderTop: `1px solid ${t.panelBorder}`,
-          transition: "background 0.2s, border-color 0.3s",
-          background: t.infoBgIdle,
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <button
-          onClick={onOpenAnalysisDrawer}
-          style={{
-            borderRadius: 10,
-            cursor: "pointer",
-            padding: "4px 10px",
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            fontSize: 9,
-            fontFamily: "inherit",
-            letterSpacing: "0.08em",
-            transition: "all 0.25s",
-            background: t.toggleBg,
-            border: `1px solid ${t.toggleBorder}`,
-            color: t.muted,
-          }}
-        >
-          <span>ANALYSIS</span>
-          <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
-        </button>
       </div>
     </div>
   );

@@ -276,6 +276,34 @@ export default function LensDiagramPanel({
                   <PetzvalOverlayContent L={L} t={t} />
                 </PanelOverlay>
               )}
+              {/* ── Analysis drawer launch button (lower-left of SVG viewport) ── */}
+              {!analysisDrawerOpen && (
+                <button
+                  onClick={() => adapters.onAnalysisDrawerToggle(true)}
+                  style={{
+                    position: "absolute",
+                    bottom: 10,
+                    left: 10,
+                    zIndex: 5,
+                    borderRadius: 10,
+                    cursor: "pointer",
+                    padding: "4px 10px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 5,
+                    fontSize: 9,
+                    fontFamily: "inherit",
+                    letterSpacing: "0.08em",
+                    transition: "all 0.25s",
+                    background: t.toggleBg,
+                    border: `1px solid ${t.toggleBorder}`,
+                    color: t.muted,
+                  }}
+                >
+                  <span>ANALYSIS</span>
+                  <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
+                </button>
+              )}
               {/* ── Analysis drawer ── */}
               <AnalysisDrawer
                 open={analysisDrawerOpen}
@@ -356,7 +384,6 @@ export default function LensDiagramPanel({
                 chromSpread={chromSpread ?? null}
                 rayTracksF={rayTracksF}
                 onOpenAbbeDiagram={overlays.openAbbeDiagram}
-                onOpenAnalysisDrawer={() => adapters.onAnalysisDrawerToggle(true)}
               />
             )}
           </div>
