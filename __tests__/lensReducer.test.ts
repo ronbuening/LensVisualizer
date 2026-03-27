@@ -18,6 +18,7 @@ import lensReducer, {
   SET_SHARED_ZOOM_T,
   RESET_SLIDERS,
   SET_PANEL_EXPANDED,
+  SET_ANALYSIS_TAB,
   SET_OVERLAY,
   CLOSE_ALL_OVERLAYS,
   ENTER_COMPARE,
@@ -44,6 +45,8 @@ describe("createInitialState", () => {
     expect(state.rays.showOnAxis).toBe(true);
     expect(state.rays.showOffAxis).toBe("off");
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
+    expect(state.panels.analysisDrawerOpen).toBe(false);
+    expect(state.panels.analysisDrawerTab).toBe("aberrations");
     expect(state.overlays.showAbout).toBe(false);
   });
 
@@ -256,6 +259,25 @@ describe("lensReducer", () => {
       });
       expect(next.panels.aberrationsExpanded).toBe(true);
     });
+
+    it("toggles analysisDrawerOpen", () => {
+      expect(state.panels.analysisDrawerOpen).toBe(false);
+      const next = lensReducer(state, {
+        type: SET_PANEL_EXPANDED,
+        panel: "analysisDrawerOpen",
+        expanded: true,
+      });
+      expect(next.panels.analysisDrawerOpen).toBe(true);
+    });
+  });
+
+  /* ── Analysis drawer tab ── */
+  describe("SET_ANALYSIS_TAB", () => {
+    it("updates analysisDrawerTab", () => {
+      expect(state.panels.analysisDrawerTab).toBe("aberrations");
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "distortion" });
+      expect(next.panels.analysisDrawerTab).toBe("distortion");
+    });
   });
 
   /* ── Overlays ── */
@@ -367,7 +389,7 @@ describe("lensReducer", () => {
 
 /* ── Action constant exhaustiveness ── */
 describe("lensReducer — action constant exports", () => {
-  it("exports all 20 expected action type constants", () => {
+  it("exports all 21 expected action type constants", () => {
     const EXPECTED = [
       SET_LENS_A,
       SET_LENS_B,
@@ -385,6 +407,7 @@ describe("lensReducer — action constant exports", () => {
       SET_SHARED_ZOOM_T,
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
+      SET_ANALYSIS_TAB,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,
       ENTER_COMPARE,
@@ -395,8 +418,8 @@ describe("lensReducer — action constant exports", () => {
       expect(typeof c).toBe("string");
       expect(c.length).toBeGreaterThan(0);
     }
-    // The full set must be exactly 20 unique values
-    expect(new Set(EXPECTED).size).toBe(20);
+    // The full set must be exactly 21 unique values
+    expect(new Set(EXPECTED).size).toBe(21);
   });
 
   it("every action constant's string value matches its export name", () => {
@@ -417,6 +440,7 @@ describe("lensReducer — action constant exports", () => {
       SET_SHARED_ZOOM_T,
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
+      SET_ANALYSIS_TAB,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,
       ENTER_COMPARE,

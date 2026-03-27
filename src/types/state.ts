@@ -58,7 +58,8 @@ export type PanelField =
   | "headerInfoExpanded"
   | "abbeShowGlassType"
   | "showEffectiveAperture"
-  | "aberrationsExpanded";
+  | "aberrationsExpanded"
+  | "analysisDrawerOpen";
 
 export interface PanelsSlice {
   focusExpanded: boolean;
@@ -69,6 +70,8 @@ export interface PanelsSlice {
   abbeShowGlassType: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
+  analysisDrawerOpen: boolean;
+  analysisDrawerTab: string;
 }
 
 export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";
@@ -105,6 +108,7 @@ export type LensAction =
   | { type: "SET_STOPDOWN_T"; value: number }
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
+  | { type: "SET_ANALYSIS_TAB"; tab: string }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
   | { type: "SWAP_LENSES" }
@@ -133,6 +137,7 @@ export interface Preferences {
   abbeShowGlassType: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
+  analysisDrawerTab: string;
 }
 
 /* ── URL state (from query params) ── */

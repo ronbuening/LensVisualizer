@@ -52,6 +52,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.abbeShowGlassType === "boolean") out.abbeShowGlassType = p.abbeShowGlassType;
     if (typeof p.showEffectiveAperture === "boolean") out.showEffectiveAperture = p.showEffectiveAperture;
     if (typeof p.aberrationsExpanded === "boolean") out.aberrationsExpanded = p.aberrationsExpanded;
+    if (typeof p.analysisDrawerTab === "string") out.analysisDrawerTab = p.analysisDrawerTab;
     return out;
   } catch {
     return {};
