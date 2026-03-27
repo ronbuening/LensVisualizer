@@ -53,7 +53,7 @@ export function computeDistortionCurve(
   focusT: number,
   zoomT: number,
   dynamicEFL: number,
-  currentPhysStopSD: number,
+  _currentPhysStopSD: number,
 ): DistortionSample[] {
   if (L.N < 1 || dynamicEFL === 0) return [];
 

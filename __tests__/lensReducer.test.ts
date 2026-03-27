@@ -123,6 +123,12 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.sliders.focusT).toBe(0.5);
     });
+
+    it("closes analysis drawer when switching lens in single mode", () => {
+      state.panels = { ...state.panels, analysisDrawerOpen: true };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.panels.analysisDrawerOpen).toBe(false);
+    });
   });
 
   describe("SET_LENS_B", () => {

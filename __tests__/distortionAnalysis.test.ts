@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { computeDistortionCurve } from "../src/optics/distortionAnalysis.js";
-import { doLayout, eflAtFocus, epAtZoom, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
+import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";

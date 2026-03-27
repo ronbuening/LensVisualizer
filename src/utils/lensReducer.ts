@@ -147,9 +147,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     /* ── Lens selection ── */
     case SET_LENS_A: {
       const next = { ...state, lens: { ...state.lens, lensKeyA: action.key } };
-      /* In single mode, reset sliders when switching lenses */
+      /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
         next.sliders = { focusT: 0, zoomT: 0, stopdownT: 0 };
+        next.panels = { ...state.panels, analysisDrawerOpen: false };
       }
       return next;
     }
