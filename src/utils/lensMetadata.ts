@@ -6,6 +6,7 @@
  */
 
 import type { LensData } from "../types/optics.js";
+import buildMeta from "../generated/build-metadata.json";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
@@ -85,14 +86,22 @@ export function makerCanonicalURL(makerSlug: string): string {
 
 /** Generate JSON-LD structured data for a lens page. */
 export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
+  const freshness = (buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>)[lensKey];
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline: lens.name,
     description: lensPageDescription(lens),
     url: lensCanonicalURL(lensKey),
+    mainEntityOfPage: lensCanonicalURL(lensKey),
     author: { "@type": "Person", name: "Ron Buening" },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    ...(freshness
+      ? {
+          datePublished: freshness.publishedOn,
+          dateModified: freshness.lastModified,
+        }
+      : {}),
     about: {
       "@type": "Product",
       name: lens.name,

@@ -18,6 +18,7 @@ import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
+import { publisherJsonLd, websiteJsonLd } from "../utils/structuredData.js";
 import useMediaQuery from "../utils/useMediaQuery.js";
 
 const PAGE_BASE_STYLE = {
@@ -65,6 +66,7 @@ export default function HomePage() {
         title={`${SITE_NAME} — Interactive Lens Cross-Section Visualizer`}
         description="Explore real camera lens designs with interactive cross-section diagrams, ray tracing, focus and aperture adjustment, element inspection, and chromatic aberration analysis. Built from optical patent data."
         canonicalURL={`${SITE_URL}/`}
+        jsonLd={[websiteJsonLd(), publisherJsonLd()]}
       />
 
       <PageNavBar

@@ -32,6 +32,8 @@ export interface HomepageArticle {
   summary: string;
   /** Where the card links to: internal path (e.g. "/articles/optics-primer") */
   linkTo: string;
+  /** Last modified date used for structured data */
+  lastModified: string;
   /** Optional category tag displayed on the card */
   tag?: "article" | "announcement" | "guide";
 }
@@ -40,6 +42,8 @@ export interface ArticleContentEntry {
   title: string;
   description: string;
   markdown: string;
+  publishedOn: string;
+  lastModified: string;
 }
 
 /* ── Constants ─────────────────────────────────────────────────────── */
@@ -78,6 +82,7 @@ export const ARTICLES: HomepageArticle[] = buildMeta.articles
     date: a.publishedOn,
     summary: a.summary,
     linkTo: `/articles/${a.slug}`,
+    lastModified: a.lastModified,
     tag: a.tag as HomepageArticle["tag"],
   }));
 
@@ -95,5 +100,7 @@ for (const a of buildMeta.articles) {
     title: a.title,
     description: a.summary,
     markdown: md,
+    publishedOn: a.publishedOn,
+    lastModified: a.lastModified,
   };
 }

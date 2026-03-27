@@ -12,6 +12,7 @@ import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import type { LensData } from "../types/optics.js";
 
@@ -168,6 +169,7 @@ export default function LensIndexPage() {
   const yearGroups = groupByPatentYear(yearDir);
   const totalLenses = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const seoDescription = `Browse ${totalLenses} interactive lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more. Each lens features ray tracing, element inspection, and aberration analysis.`;
 
   const toggleButtonStyle = (active: boolean): React.CSSProperties => ({
     padding: "0.25rem 0.75rem",
@@ -185,8 +187,24 @@ export default function LensIndexPage() {
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
         title={`All Lenses — ${SITE_NAME}`}
-        description={`Browse ${totalLenses} interactive lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more. Each lens features ray tracing, element inspection, and aberration analysis.`}
+        description={seoDescription}
         canonicalURL={`${SITE_URL}/lenses`}
+        jsonLd={[
+          collectionPageJsonLd({
+            name: "Lens Library",
+            description: seoDescription,
+            url: `${SITE_URL}/lenses`,
+            route: "/lenses",
+          }),
+          itemListJsonLd({
+            name: "Lens Library",
+            url: `${SITE_URL}/lenses`,
+            items: CATALOG_KEYS.map((key) => ({
+              name: LENS_CATALOG[key].name,
+              url: `${SITE_URL}/lens/${key}`,
+            })),
+          }),
+        ]}
       />
 
       <PageNavBar

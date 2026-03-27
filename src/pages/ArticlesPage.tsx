@@ -10,6 +10,7 @@ import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import ArticleCard from "../components/homepage/ArticleCard.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLES } from "../utils/homepageContent.js";
 
@@ -23,13 +24,30 @@ const PAGE_BASE_STYLE = {
 
 export default function ArticlesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const seoDescription = `${ARTICLES.length} articles and guides about optical design, lens aberrations, and how camera lenses work.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
         title={`Articles — ${SITE_NAME}`}
-        description={`${ARTICLES.length} articles and guides about optical design, lens aberrations, and how camera lenses work.`}
+        description={seoDescription}
         canonicalURL={`${SITE_URL}/articles`}
+        jsonLd={[
+          collectionPageJsonLd({
+            name: "Articles",
+            description: seoDescription,
+            url: `${SITE_URL}/articles`,
+            route: "/articles",
+          }),
+          itemListJsonLd({
+            name: "Articles",
+            url: `${SITE_URL}/articles`,
+            items: ARTICLES.map((article) => ({
+              name: article.title,
+              url: `${SITE_URL}/articles/${article.slug}`,
+            })),
+          }),
+        ]}
       />
 
       <PageNavBar

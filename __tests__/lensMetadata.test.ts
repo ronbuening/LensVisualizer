@@ -173,6 +173,7 @@ describe("lensJsonLd", () => {
     expect(ld["@type"]).toBe("TechArticle");
     expect(ld.headline).toBe(lens.name);
     expect(ld.url).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
+    expect(ld.mainEntityOfPage).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
     expect((ld.author as Record<string, unknown>).name).toBe("Ron Buening");
     expect((ld.publisher as Record<string, unknown>).name).toBe(SITE_NAME);
   });
@@ -189,6 +190,13 @@ describe("lensJsonLd", () => {
     const lens = makeLens();
     const ld = lensJsonLd(lens, "nikkor-z-50mm");
     expect(ld.description).toBe(lensPageDescription(lens));
+  });
+
+  it("includes freshness fields when metadata is available", () => {
+    const lens = makeLens();
+    const ld = lensJsonLd(lens, "nikkor-z-50f18s");
+    expect(ld.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(ld.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });
 

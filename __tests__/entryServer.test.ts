@@ -98,6 +98,13 @@ describe("SSR render — home page /", () => {
     expect(meta).toContain('property="og:image:width" content="1200"');
     expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
   });
+
+  it("includes WebSite and publisher structured data", () => {
+    const { helmet } = render("/");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"WebSite"');
+    expect(scripts).toContain('"@type":"Organization"');
+  });
 });
 
 /* ── Compare page ── */
@@ -128,6 +135,13 @@ describe("SSR render — lens index /lenses", () => {
     const { helmet } = render("/lenses");
     expect(helmet.link.toString()).toContain("/lenses");
   });
+
+  it("includes CollectionPage and ItemList structured data", () => {
+    const { helmet } = render("/lenses");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"ItemList"');
+  });
 });
 
 /* ── Lens page ── */
@@ -146,6 +160,14 @@ describe("SSR render — lens page /lens/:slug", () => {
   it("includes JSON-LD with TechArticle type", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     expect(helmet.script.toString()).toContain("TechArticle");
+  });
+
+  it("includes BreadcrumbList structured data and freshness fields", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"datePublished"');
+    expect(scripts).toContain('"dateModified"');
   });
 
   it("og:type is article", () => {
@@ -178,6 +200,13 @@ describe("SSR render — makers index /makers", () => {
     const { helmet } = render("/makers");
     expect(helmet.link.toString()).toContain("/makers");
   });
+
+  it("includes CollectionPage and ItemList structured data", () => {
+    const { helmet } = render("/makers");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"ItemList"');
+  });
 });
 
 /* ── Maker page ── */
@@ -204,6 +233,13 @@ describe("SSR render — maker page /makers/:maker", () => {
     expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
     expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
   });
+
+  it("includes CollectionPage and BreadcrumbList structured data", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+  });
 });
 
 /* ── Article page ── */
@@ -221,6 +257,15 @@ describe("SSR render — article page /articles/:slug", () => {
     const meta = helmet.meta.toString();
     expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
     expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
+  it("includes Article and BreadcrumbList structured data", () => {
+    const { helmet } = render(url);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"Article"');
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"datePublished"');
+    expect(scripts).toContain('"dateModified"');
   });
 });
 
