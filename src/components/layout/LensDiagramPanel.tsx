@@ -36,6 +36,7 @@ import AnalysisDrawer from "./AnalysisDrawer.js";
 import type { AnalysisTab } from "./AnalysisDrawer.js";
 import AberrationsPanel from "../display/AberrationsPanel.js";
 import DistortionTab from "../display/DistortionTab.js";
+import VignettingTab from "../display/VignettingTab.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
@@ -46,6 +47,7 @@ import useMediaQuery from "../../utils/useMediaQuery.js";
 const ANALYSIS_TABS: AnalysisTab[] = [
   { id: "aberrations", label: "ABERRATIONS" },
   { id: "distortion", label: "DISTORTION" },
+  { id: "vignetting", label: "VIGNETTING" },
 ];
 
 interface LensDiagramPanelProps {
@@ -335,6 +337,17 @@ export default function LensDiagramPanel({
                     focusT={focusT}
                     zoomT={zoomT}
                     dynamicEFL={dynamicEFL}
+                    currentPhysStopSD={currentPhysStopSD}
+                  />
+                )}
+                {analysisDrawerTab === "vignetting" && (
+                  <VignettingTab
+                    L={L}
+                    t={t}
+                    zPos={zPos}
+                    focusT={focusT}
+                    zoomT={zoomT}
+                    currentEPSD={currentEPSD}
                     currentPhysStopSD={currentPhysStopSD}
                   />
                 )}
