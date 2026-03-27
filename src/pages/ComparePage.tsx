@@ -60,6 +60,7 @@ export default function ComparePage() {
         title={comparePageTitle(lensA, lensB)}
         description={comparePageDescription(lensA, lensB)}
         canonicalURL={compareCanonicalURL(slugA, slugB)}
+        robots="noindex,follow"
         ogType="article"
       />
 

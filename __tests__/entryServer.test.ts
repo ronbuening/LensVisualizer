@@ -38,17 +38,17 @@ describe("SSR render — all routes produce valid helmet output", () => {
     ["/", "home"],
     ["/lenses", "lens index"],
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
+    [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
     ["/this-route-does-not-exist", "404"],
   ] as const;
 
-  it.each(routes)("%s (%s) returns helmet with title, description, and canonical", (url) => {
+  it.each(routes)("%s (%s) returns helmet with title and description", (url) => {
     const { helmet } = render(url);
     expect(helmet).not.toBeNull();
     expect(helmet.title.toString()).toContain("<title");
     expect(helmet.meta.toString()).toContain('name="description"');
-    expect(helmet.link.toString()).toContain('rel="canonical"');
   });
 });
 
@@ -87,6 +87,22 @@ describe("SSR render — home page /", () => {
     expect(meta).toContain('property="og:title"');
     expect(meta).toContain('property="og:description"');
     expect(meta).toContain('name="twitter:card"');
+  });
+});
+
+/* ── Compare page ── */
+
+describe("SSR render — compare page /compare/:slugA/:slugB", () => {
+  const url = `/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`;
+
+  it("uses a self canonical URL", () => {
+    const { helmet } = render(url);
+    expect(helmet.link.toString()).toContain(url);
+  });
+
+  it("marks compare pages as noindex", () => {
+    const { helmet } = render(url);
+    expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
   });
 });
 
@@ -172,6 +188,16 @@ describe("SSR render — 404 page", () => {
   it("title contains 'Page Not Found'", () => {
     const { helmet } = render("/this-route-does-not-exist");
     expect(helmet.title.toString()).toContain("Page Not Found");
+  });
+
+  it("does not emit a canonical URL", () => {
+    const { helmet } = render("/this-route-does-not-exist");
+    expect(helmet.link.toString()).not.toContain('rel="canonical"');
+  });
+
+  it("marks the page as noindex", () => {
+    const { helmet } = render("/this-route-does-not-exist");
+    expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
   });
 
   it("HTML contains 'not found' text", () => {
