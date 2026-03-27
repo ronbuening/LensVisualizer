@@ -47,6 +47,7 @@ export default function comparisonReducer(state: LensState, action: LensAction):
       return {
         ...state,
         lens,
+        panels: { ...state.panels, analysisDrawerOpen: false },
         sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0 },
       };
     }

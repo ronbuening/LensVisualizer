@@ -37,6 +37,7 @@ export default function usePreferences(state: LensState): void {
       abbeShowGlassType: panels.abbeShowGlassType,
       showEffectiveAperture: panels.showEffectiveAperture,
       aberrationsExpanded: panels.aberrationsExpanded,
+      analysisDrawerTab: panels.analysisDrawerTab,
     };
 
     const json = JSON.stringify(prefs);

@@ -154,6 +154,16 @@ describe("loadPrefs", () => {
     expect(loadPrefs().scaleMode).toBeUndefined();
   });
 
+  it("loads analysisDrawerTab preference", () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: "distortion" }));
+    expect(loadPrefs().analysisDrawerTab).toBe("distortion");
+  });
+
+  it("ignores non-string analysisDrawerTab", () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: 42 }));
+    expect(loadPrefs().analysisDrawerTab).toBeUndefined();
+  });
+
   it("strips unknown properties", () => {
     mockLocalStorage.setItem(
       PREFS_KEY,

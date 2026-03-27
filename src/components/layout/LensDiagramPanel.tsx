@@ -32,12 +32,21 @@ import DiagramControlPanel from "./DiagramControlPanel.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
 import PanelOverlay from "./PanelOverlay.js";
+import AnalysisDrawer from "./AnalysisDrawer.js";
+import type { AnalysisTab } from "./AnalysisDrawer.js";
+import AberrationsPanel from "../display/AberrationsPanel.js";
+import DistortionTab from "../display/DistortionTab.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
+
+const ANALYSIS_TABS: AnalysisTab[] = [
+  { id: "aberrations", label: "ABERRATIONS" },
+  { id: "distortion", label: "DISTORTION" },
+];
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -86,6 +95,8 @@ export default function LensDiagramPanel({
     abbeShowGlassType,
     showEffectiveAperture,
     aberrationsExpanded,
+    analysisDrawerOpen,
+    analysisDrawerTab,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -265,6 +276,41 @@ export default function LensDiagramPanel({
                   <PetzvalOverlayContent L={L} t={t} />
                 </PanelOverlay>
               )}
+              {/* ── Analysis drawer ── */}
+              <AnalysisDrawer
+                open={analysisDrawerOpen}
+                onClose={() => adapters.onAnalysisDrawerToggle(false)}
+                activeTab={analysisDrawerTab}
+                onTabChange={adapters.onAnalysisTabChange}
+                tabs={ANALYSIS_TABS}
+                t={t}
+                isWide={isWide}
+              >
+                {analysisDrawerTab === "aberrations" && (
+                  <AberrationsPanel
+                    L={L}
+                    t={t}
+                    zPos={zPos}
+                    focusT={focusT}
+                    zoomT={zoomT}
+                    currentEPSD={currentEPSD}
+                    currentPhysStopSD={currentPhysStopSD}
+                    expanded={aberrationsExpanded}
+                    onExpandedChange={adapters.onAberrationsExpandedChange}
+                  />
+                )}
+                {analysisDrawerTab === "distortion" && (
+                  <DistortionTab
+                    L={L}
+                    t={t}
+                    zPos={zPos}
+                    focusT={focusT}
+                    zoomT={zoomT}
+                    dynamicEFL={dynamicEFL}
+                    currentPhysStopSD={currentPhysStopSD}
+                  />
+                )}
+              </AnalysisDrawer>
             </div>
             {/* end SVG wrapper */}
 
@@ -310,10 +356,7 @@ export default function LensDiagramPanel({
                 chromSpread={chromSpread ?? null}
                 rayTracksF={rayTracksF}
                 onOpenAbbeDiagram={overlays.openAbbeDiagram}
-                zPos={zPos}
-                currentEPSD={currentEPSD}
-                aberrationsExpanded={aberrationsExpanded}
-                onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
+                onOpenAnalysisDrawer={() => adapters.onAnalysisDrawerToggle(true)}
               />
             )}
           </div>

@@ -15,6 +15,7 @@ import {
   SET_STOPDOWN_T,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
+  SET_ANALYSIS_TAB,
 } from "../../utils/lensReducer.js";
 
 export interface DispatchAdapters {
@@ -38,6 +39,8 @@ export interface DispatchAdapters {
   onAbbeShowGlassTypeChange: (v: boolean) => void;
   onEffectiveApertureChange: (v: boolean) => void;
   onAberrationsExpandedChange: (v: boolean) => void;
+  onAnalysisDrawerToggle: (v: boolean) => void;
+  onAnalysisTabChange: (tab: string) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -75,6 +78,9 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "showEffectiveAperture", expanded: v }),
       onAberrationsExpandedChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "aberrationsExpanded", expanded: v }),
+      onAnalysisDrawerToggle: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
+      onAnalysisTabChange: (tab: string) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
     }),
     [dispatch, updateURLWithSliders],
   );
