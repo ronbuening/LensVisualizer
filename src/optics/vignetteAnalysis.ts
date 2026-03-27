@@ -101,7 +101,7 @@ export function computeVignettingCurve(
     let surviving = 0;
     for (let j = 0; j < N_PUPIL; j++) {
       /* Map j ∈ [0, N_PUPIL−1] → pupilFrac ∈ [−1, +1] */
-      const pupilFrac = N_PUPIL === 1 ? 0 : -1 + (2 * j) / (N_PUPIL - 1);
+      const pupilFrac = -1 + (2 * j) / (N_PUPIL - 1);
       const y0 = yChief + pupilFrac * currentEPSD;
       const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
       if (!trace.clipped) surviving++;
