@@ -17,7 +17,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## Current Scope
 
-- `34` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
+- `39` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, and Ricoh
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
@@ -33,6 +33,9 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 - **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
 - **Glass inspection**: element metadata, Abbe-number plotting, APD tagging, and lens role annotations
 - **SEO-friendly multipage app**: prerendered routes for lenses, makers, articles, comparison pages, and static content
+- **Structured metadata**: WebSite, CollectionPage, ItemList, Article, TechArticle, and BreadcrumbList JSON-LD across the crawlable pages
+- **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults
+- **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
 - **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links
 
 ## Tech Stack
@@ -73,6 +76,14 @@ npm run seo:audit     # SEO audit over built output
 ```
 
 Requires Node.js 18+.
+
+## SEO Pipeline
+
+- Route-level metadata is managed through [`src/components/SEOHead.tsx`](src/components/SEOHead.tsx), including canonical URLs, robots directives, social image tags, and JSON-LD payloads.
+- Build metadata is generated before dev/build runs and tracks lens/article freshness for sitemap and structured-data use.
+- Production builds prerender the crawlable routes, write a freshness-aware sitemap, and generate a real `404.html` with `noindex,follow`.
+- [`public/og-default.png`](public/og-default.png) is the shared social preview asset used across public routes.
+- `npm run seo:audit` validates the built output for metadata presence, sitemap coverage, route freshness, internal links, and 404 behavior.
 
 ## Project Structure
 
@@ -123,6 +134,8 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 Before opening a PR, run:
 
 ```bash
+npm run build
+npm run seo:audit
 npm run typecheck
 npm run format:check
 npm run lint
