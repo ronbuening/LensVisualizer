@@ -437,6 +437,11 @@ const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[nu
   0.75: "75%",
 };
 
+interface ComaPreviewFieldMeta {
+  fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
+  label: string;
+}
+
 interface MeridionalComaFieldSample extends MeridionalComaSample {
   relativeImageHeight: number | null;
 }
@@ -457,6 +462,89 @@ interface MeridionalComaFieldFootprint {
   spanMm: number;
   spanUm: number;
   samples: MeridionalComaFieldSample[];
+}
+
+interface FixedComaPreviewFootprint {
+  fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
+  label: string;
+  footprint: MeridionalComaFieldFootprint | null;
+}
+
+function fixedComaPreviewFieldMeta(): ComaPreviewFieldMeta[] {
+  return COMA_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => ({
+    fieldFraction,
+    label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
+  }));
+}
+
+function buildFixedComaPreviewFootprints(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): FixedComaPreviewFootprint[] {
+  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+    fieldFraction,
+    label,
+    footprint: computeMeridionalComaFieldFootprint(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldFraction,
+    ),
+  }));
+}
+
+function emptyComaPreviewFieldResult({ fieldFraction, label }: ComaPreviewFieldMeta): ComaPreviewFieldResult {
+  return {
+    fieldFraction,
+    label,
+    fieldAngleDeg: 0,
+    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    validSampleCount: 0,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    chiefIntercept: 0,
+    minRelativeIntercept: 0,
+    maxRelativeIntercept: 0,
+    samples: Array.from({ length: MERIDIONAL_COMA_SAMPLE_COUNT }, (_, index) => ({
+      index,
+      pupilFraction: -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1),
+      launchHeight: 0,
+      imageHeight: null,
+      relativeImageHeight: null,
+      clipped: true,
+    })),
+    usable: false,
+  };
+}
+
+function comaPreviewFieldResultFromFootprint({
+  fieldFraction,
+  label,
+  footprint,
+}: FixedComaPreviewFootprint): ComaPreviewFieldResult {
+  if (footprint === null) {
+    return emptyComaPreviewFieldResult({ fieldFraction, label });
+  }
+
+  return {
+    fieldFraction,
+    label,
+    fieldAngleDeg: footprint.fieldAngleDeg,
+    sampleCount: footprint.sampleCount,
+    validSampleCount: footprint.validSampleCount,
+    clippedSampleCount: footprint.clippedSampleCount,
+    chiefIntercept: footprint.centerIntercept,
+    minRelativeIntercept: footprint.minRelativeIntercept,
+    maxRelativeIntercept: footprint.maxRelativeIntercept,
+    samples: footprint.samples,
+    usable: true,
+  };
 }
 
 function computeMeridionalComaFieldFootprint(
@@ -682,54 +770,14 @@ export function computeComaPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): ComaPreviewResult | null {
-  const fields = COMA_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
-    const footprint = computeMeridionalComaFieldFootprint(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldFraction,
-    );
-
-    if (footprint === null) {
-      return {
-        fieldFraction,
-        label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
-        fieldAngleDeg: 0,
-        sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-        validSampleCount: 0,
-        clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-        chiefIntercept: 0,
-        minRelativeIntercept: 0,
-        maxRelativeIntercept: 0,
-        samples: Array.from({ length: MERIDIONAL_COMA_SAMPLE_COUNT }, (_, index) => ({
-          index,
-          pupilFraction: -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1),
-          launchHeight: 0,
-          imageHeight: null,
-          relativeImageHeight: null,
-          clipped: true,
-        })),
-        usable: false,
-      } satisfies ComaPreviewFieldResult;
-    }
-
-    return {
-      fieldFraction,
-      label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
-      fieldAngleDeg: footprint.fieldAngleDeg,
-      sampleCount: footprint.sampleCount,
-      validSampleCount: footprint.validSampleCount,
-      clippedSampleCount: footprint.clippedSampleCount,
-      chiefIntercept: footprint.centerIntercept,
-      minRelativeIntercept: footprint.minRelativeIntercept,
-      maxRelativeIntercept: footprint.maxRelativeIntercept,
-      samples: footprint.samples,
-      usable: true,
-    } satisfies ComaPreviewFieldResult;
-  });
+  const fields = buildFixedComaPreviewFootprints(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  ).map(comaPreviewFieldResultFromFootprint);
 
   const usableFields = fields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;
