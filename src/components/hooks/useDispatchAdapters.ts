@@ -37,6 +37,7 @@ export interface DispatchAdapters {
   onHeaderInfoExpandedChange: (v: boolean) => void;
   onAbbeShowGlassTypeChange: (v: boolean) => void;
   onEffectiveApertureChange: (v: boolean) => void;
+  onAberrationsExpandedChange: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -72,6 +73,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "abbeShowGlassType", expanded: v }),
       onEffectiveApertureChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "showEffectiveAperture", expanded: v }),
+      onAberrationsExpandedChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "aberrationsExpanded", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );

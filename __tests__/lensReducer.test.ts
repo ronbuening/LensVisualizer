@@ -246,6 +246,16 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "bogus" as PanelField, expanded: true });
       expect(next).toBe(state);
     });
+
+    it("toggles aberrationsExpanded", () => {
+      expect(state.panels.aberrationsExpanded).toBe(false);
+      const next = lensReducer(state, {
+        type: SET_PANEL_EXPANDED,
+        panel: "aberrationsExpanded",
+        expanded: true,
+      });
+      expect(next.panels.aberrationsExpanded).toBe(true);
+    });
   });
 
   /* ── Overlays ── */

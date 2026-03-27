@@ -58,6 +58,7 @@ const PANEL_FIELDS = new Set([
   "headerInfoExpanded",
   "abbeShowGlassType",
   "showEffectiveAperture",
+  "aberrationsExpanded",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
 
@@ -117,6 +118,7 @@ export function createInitialState(
       headerInfoExpanded: prefs.headerInfoExpanded ?? true,
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
+      aberrationsExpanded: prefs.aberrationsExpanded ?? false,
     },
     overlays: {
       showAbout: false,
