@@ -24,7 +24,10 @@ export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | 
     asph.A8 * h2 ** 4 +
     asph.A10 * h2 ** 5 +
     asph.A12 * h2 ** 6 +
-    asph.A14 * h2 ** 7;
+    asph.A14 * h2 ** 7 +
+    (asph.A16 ?? 0) * h2 ** 8 +
+    (asph.A18 ?? 0) * h2 ** 9 +
+    (asph.A20 ?? 0) * h2 ** 10;
   return conic + poly;
 }
 
@@ -43,6 +46,9 @@ export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | u
       8 * asph.A8 * h2 ** 3 +
       10 * asph.A10 * h2 ** 4 +
       12 * asph.A12 * h2 ** 5 +
-      14 * asph.A14 * h2 ** 6);
+      14 * asph.A14 * h2 ** 6 +
+      16 * (asph.A16 ?? 0) * h2 ** 7 +
+      18 * (asph.A18 ?? 0) * h2 ** 8 +
+      20 * (asph.A20 ?? 0) * h2 ** 9);
   return conicSlope + polySlope;
 }

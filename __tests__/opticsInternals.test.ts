@@ -6,6 +6,7 @@ import {
   firstInfinityThickness,
   resolveVariableThickness,
 } from "../src/optics/internal/lensState.js";
+import { conicPolySag, sagSlopeRaw } from "../src/optics/internal/surfaceMath.js";
 import { traceSurfacesReal } from "../src/optics/internal/traceSurfaces.js";
 import type { AsphericCoefficients, SurfaceData } from "../src/types/optics.js";
 
@@ -120,5 +121,35 @@ describe("traceSurfacesReal", () => {
     expect(result.clipped).toBe(true);
     expect(result.y).toBeCloseTo(2.5, 10);
     expect(result.u).toBeCloseTo(0.1, 10);
+  });
+});
+
+describe("surfaceMath helpers", () => {
+  it("includes optional higher-order asphere terms in sag and slope calculations", () => {
+    const asphere: AsphericCoefficients = {
+      K: -0.5,
+      A4: 1e-5,
+      A6: -2e-7,
+      A8: 3e-9,
+      A10: -4e-11,
+      A12: 5e-13,
+      A14: -6e-15,
+      A16: 7e-17,
+      A18: -8e-19,
+      A20: 9e-21,
+    };
+
+    const withoutHighOrder: AsphericCoefficients = {
+      ...asphere,
+      A16: 0,
+      A18: 0,
+      A20: 0,
+    };
+
+    const h = 4;
+    const R = 32;
+
+    expect(conicPolySag(h, R, asphere)).not.toBeCloseTo(conicPolySag(h, R, withoutHighOrder), 12);
+    expect(sagSlopeRaw(h, R, asphere)).not.toBeCloseTo(sagSlopeRaw(h, R, withoutHighOrder), 12);
   });
 });
