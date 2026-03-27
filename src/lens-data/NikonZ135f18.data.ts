@@ -15,6 +15,10 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    f/1.85, full field (Y = 21.70 mm), with 8% mechanical          ║
  * ║    clearance.  Capped to sd/|R| ≤ 0.85 where needed.  Cemented   ║
  * ║    junction SDs matched.  Not patent-listed.                       ║
+ * ║    Corrected: surface "9" (L5 rear) 38→25 mm and STO 36→25 mm     ║
+ * ║    to prevent stop/L5 collision (sag at h=25 = 6.7 mm < 8.24 mm  ║
+ * ║    gap).  Surfaces "13"/"14" (L7) 33→20 mm to prevent L7/L8       ║
+ * ║    close-focus overlap (intrusion 13.5 mm → 6.7 mm at h=20).      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -255,18 +259,18 @@ const LENS_DATA = {
     { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 43.5 }, // L3 rear → air
     { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 30.5 }, // L4 front (ED, cemented D1)
     { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 30.5 }, // L4→L5 junction — elemId: 5
-    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 38.0 }, // L5 rear → air
+    { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 25.0 }, // L5 rear → air
 
     /* ── Aperture stop ── */
-    { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 36.0 }, // Patent surface 10
+    { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25.0 }, // Patent surface 10
 
     /* ── L6 (aspherical) ── */
     { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 36.0 }, // L6 front — aspherical
     { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 36.5 }, // L6 rear → air (D12, variable)
 
     /* ── G2: Focus group 1 — L7 ── */
-    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 33.0 }, // L7 front
-    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 33.0 }, // L7 rear → air (D14, variable)
+    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.0 }, // L7 front
+    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.0 }, // L7 rear → air (D14, variable)
 
     /* ── G3: Fixed rear corrector — L8 through L12 ── */
     { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 28.0 }, // L8 front
