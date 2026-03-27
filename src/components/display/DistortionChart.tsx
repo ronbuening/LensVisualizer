@@ -1,6 +1,6 @@
 /**
  * DistortionChart — Reusable SVG line chart plotting distortion %
- * versus field angle. Shows a zero reference line, sample dots,
+ * versus normalized image height. Shows a zero reference line, sample dots,
  * barrel/pincushion labels, and axis annotations.
  */
 
@@ -30,7 +30,6 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   const plotH = height - MARGIN.top - MARGIN.bottom;
 
   /* ── Axis ranges ── */
-  const maxAngle = samples[samples.length - 1].fieldAngleDeg;
   const distortions = samples.map((s) => s.distortionPercent);
   const minD = Math.min(0, ...distortions);
   const maxD = Math.max(0, ...distortions);
@@ -40,13 +39,14 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   const yMax = dRange * 1.2;
 
   /* ── Scale helpers ── */
-  const xScale = (angle: number) => MARGIN.left + (angle / maxAngle) * plotW;
+  const xScale = (normalizedImageHeight: number) => MARGIN.left + normalizedImageHeight * plotW;
   const yScale = (d: number) => MARGIN.top + ((yMax - d) / (yMax - yMin)) * plotH;
 
   /* ── Curve path ── */
   const pathD = samples
     .map(
-      (s, i) => `${i === 0 ? "M" : "L"}${xScale(s.fieldAngleDeg).toFixed(1)},${yScale(s.distortionPercent).toFixed(1)}`,
+      (s, i) =>
+        `${i === 0 ? "M" : "L"}${xScale(s.normalizedImageHeight).toFixed(1)},${yScale(s.distortionPercent).toFixed(1)}`,
     )
     .join(" ");
 
@@ -62,7 +62,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   const yTicks = generateTicks(yMin, yMax);
 
   /* ── X-axis tick values ── */
-  const xTicks = generateAngleTicks(maxAngle);
+  const xTicks = generateImageHeightTicks();
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} width="100%" style={{ maxWidth: width, display: "block" }}>
@@ -111,22 +111,22 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
       {xTicks.map((tick) => (
         <g key={`x-${tick}`}>
           <line
-            x1={xScale(tick)}
+            x1={xScale(tick / 100)}
             y1={MARGIN.top + plotH}
-            x2={xScale(tick)}
+            x2={xScale(tick / 100)}
             y2={MARGIN.top + plotH + 4}
             stroke={t.muted}
             strokeWidth={0.5}
           />
           <text
-            x={xScale(tick)}
+            x={xScale(tick / 100)}
             y={MARGIN.top + plotH + 14}
             textAnchor="middle"
             fill={t.muted}
             fontSize={8}
             fontFamily="inherit"
           >
-            {tick.toFixed(0)}°
+            {tick.toFixed(0)}%
           </text>
         </g>
       ))}
@@ -156,7 +156,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
       {samples.map((s, i) => (
         <circle
           key={i}
-          cx={xScale(s.fieldAngleDeg)}
+          cx={xScale(s.normalizedImageHeight)}
           cy={yScale(s.distortionPercent)}
           r={2.5}
           fill={t.sliderAccent}
@@ -166,7 +166,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
 
       {/* ── Edge value annotation ── */}
       <text
-        x={xScale(edgeSample.fieldAngleDeg)}
+        x={xScale(edgeSample.normalizedImageHeight)}
         y={yScale(edgeSample.distortionPercent) + (edgeSample.distortionPercent >= 0 ? -10 : 14)}
         textAnchor="end"
         fill={t.value}
@@ -187,7 +187,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
         fontFamily="inherit"
         letterSpacing="0.05em"
       >
-        Field angle (°)
+        Image height (% of edge)
       </text>
       <text
         x={10}
@@ -235,18 +235,9 @@ function generateTicks(yMin: number, yMax: number): number[] {
   return ticks;
 }
 
-/** Generate x-axis tick values. */
-function generateAngleTicks(maxAngle: number): number[] {
-  const rawStep = maxAngle / 5;
-  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
-  const niceSteps = [1, 2, 5, 10];
-  const step = niceSteps.find((s) => s * mag >= rawStep)! * mag;
-
-  const ticks: number[] = [];
-  for (let v = 0; v <= maxAngle; v += step) {
-    ticks.push(v);
-  }
-  return ticks;
+/** Generate x-axis tick values in percent of edge image height. */
+function generateImageHeightTicks(): number[] {
+  return [0, 20, 40, 60, 80, 100];
 }
 
 /** Format a tick value, avoiding unnecessary decimals. */
