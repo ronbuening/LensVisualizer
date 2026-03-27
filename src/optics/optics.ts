@@ -68,7 +68,7 @@ export function sag(h: number, R: number): number {
  * Conic + even-order polynomial sag from raw parameters.
  *
  * Conic sag: z = c·h² / (1 + √(1 − (1+K)·c²·h²))
- * Polynomial: + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
+ * Polynomial: + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴ [+ A16·h¹⁶ + A18·h¹⁸ + A20·h²⁰]
  *
  * Shared primitive used by renderSag (runtime) and validateLensData
  * (geometry checks).  Handles both spherical-only (asph=undefined)
@@ -93,7 +93,10 @@ export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | 
     asph.A8 * h2 ** 4 +
     asph.A10 * h2 ** 5 +
     asph.A12 * h2 ** 6 +
-    asph.A14 * h2 ** 7;
+    asph.A14 * h2 ** 7 +
+    (asph.A16 ?? 0) * h2 ** 8 +
+    (asph.A18 ?? 0) * h2 ** 9 +
+    (asph.A20 ?? 0) * h2 ** 10;
   return conic + poly;
 }
 
@@ -152,7 +155,10 @@ export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | u
       8 * asph.A8 * h2 ** 3 +
       10 * asph.A10 * h2 ** 4 +
       12 * asph.A12 * h2 ** 5 +
-      14 * asph.A14 * h2 ** 6);
+      14 * asph.A14 * h2 ** 6 +
+      16 * (asph.A16 ?? 0) * h2 ** 7 +
+      18 * (asph.A18 ?? 0) * h2 ** 8 +
+      20 * (asph.A20 ?? 0) * h2 ** 9);
   return conicSlope + polySlope;
 }
 

@@ -1,274 +1,350 @@
-import type { LensDataInput } from "../types/optics.js";
-
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║           LENS DATA — NIKON NIKKOR Z 26mm f/2.8                    ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: WO 2023/190222 A1, Example 1 (Nikon / Makida).      ║
- * ║  Compact non-retrofocus wide-angle for Nikon Z mount (FX).         ║
- * ║  8 elements / 4 groups (patent); 4 aspherical surfaces.            ║
- * ║  Focus: unit focus (entire optical system translates).              ║
- * ║                                                                    ║
- * ║  L8 is a composite aspherical element: a UV-curing resin layer     ║
- * ║  (surface 14, aspherical) bonded to a glass body (S-LAH58).        ║
- * ║  Modeled as two sub-elements (L8a resin + L8b glass) for the       ║
- * ║  renderer's cemented-pair surface convention.                      ║
- * ║                                                                    ║
- * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Values estimated via        ║
- * ║    paraxial marginal + chief ray trace at the full 40.3°            ║
- * ║    half-field angle, with ~8–10% mechanical clearance, then         ║
- * ║    constrained to satisfy all renderer validation limits.           ║
- * ║    Cross-gap sag checks account for intrusion direction:            ║
- * ║    surfaces that curve away from the gap contribute zero            ║
- * ║    intrusion. Tightest constraint: gap S9→S10A (both intrude).     ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * Fujifilm XF 80mm f/2.8 R LM OIS WR Macro
+ *
+ * Source: US 2018/0246292 A1 — Example 1
+ * Inventors: Ryoko Tomioka, Daiki Kawamura (Fujifilm Corporation)
+ * Filed: 2018-02-27 | Priority: JP 2017-036188, 2017-02-28
+ *
+ * Patent-scale prescription (f ≈ 78.79 mm); NOT rescaled to marketing 80 mm.
+ * Computed EFL: 78.786 mm | Patent stated: 78.79 mm
+ *
+ * 16 elements in 12 groups — 4 group P-N-P-N architecture.
+ * Floating focus (G2 + G3 move independently).
+ * OIS via G4a perpendicular shift.
+ *
+ * Semi-diameters estimated via combined marginal + chief ray trace at
+ * f/2.88, ω = 10.1°, with ~50% field vignetting and 8% mechanical clearance.
+ * Patent does not list semi-diameters.
  */
 
+import type { LensDataInput } from "../types/optics.js";
+
 const LENS_DATA = {
-  /* ── Identity ── */
-  key: "fujifilm-xf-80f28",
+  key: "fujifilm-xf80-f28-macro",
+  name: "FUJINON XF 80mm f/2.8 R LM OIS WR Macro",
   maker: "Fujifilm",
-  name: "FUJIFILM XF 80mm f/2.8 R LM OIS WR Macro",
-  subtitle: "Issue #338 attachment merge — Fuji XF 80mm class macro",
-  specs: ["8 ELEMENTS / 4 GROUPS", "f = 80.0 mm", "F/2.8", "MACRO PRIME", "4 ASPHERICAL SURFACES"],
-
+  subtitle: "US 2018/0246292 A1 — Example 1",
+  specs: ["16 elements / 12 groups", "1 aspherical (2 surfaces)", "1 Super ED + 3 ED", "Floating IF + 5-stop OIS"],
   focalLengthMarketing: 80,
-  focalLengthDesign: 80.0,
+  focalLengthDesign: 78.79,
   apertureMarketing: 2.8,
-  apertureDesign: 2.8,
-  patentYear: 2026,
-  elementCount: 8,
-  groupCount: 4,
+  apertureDesign: 2.88,
+  patentYear: 2018,
+  elementCount: 16,
+  groupCount: 12,
+  focusDescription:
+    "Floating focus: G2 moves toward image, G3 moves toward object; G1 and G4 stationary. OIS via G4a lateral shift.",
 
-  /* ── Elements ──
-   *  L8 is physically one composite element (resin + glass) per patent §0199.
-   *  Modeled as L8a (resin) + L8b (glass body) for the renderer.
-   */
   elements: [
+    // ── Group 1 — Front positive (stationary) ───────────────────────────
     {
       id: 1,
-      name: "L1",
+      name: "L1a",
       label: "Element 1",
-      type: "Pos. Meniscus (1× Asph)",
-      nd: 1.58913,
-      vd: 61.1,
-      fl: 123.5,
-      glass: "S-BAL35 (OHARA)",
-      apd: false,
-      role: "Weak positive field lens ahead of the stop; aspherical front corrects marginal ray refraction angles for spherical aberration control",
+      type: "Biconvex Positive",
+      nd: 1.72916,
+      vd: 54.67,
+      fl: 82.2,
+      glass: "S-LAL18 (OHARA lanthanum crown)",
+      role: "Front collector; symmetric biconvex minimizes coma at design conjugate.",
     },
     {
       id: 2,
-      name: "L2",
+      name: "L1b",
       label: "Element 2",
-      type: "Biconcave Negative",
-      nd: 1.5927,
-      vd: 35.3,
-      fl: -14.7,
-      glass: "S-TIM2 (OHARA)",
-      apd: false,
-      cemented: "D1",
-      role: "Negative element of 1st cemented doublet; low-νd flint provides chromatic correction paired with L3",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.54,
+      fl: 75.7,
+      glass: "S-FPL51 (OHARA ED fluorophosphate)",
+      apd: "inferred",
+      apdNote: "νd = 81.54, anomalous partial dispersion; designated ED by Fujifilm.",
+      role: "Primary chromatic corrector in G1. Paired with L1c (Δν = 45.8) for longitudinal achromatization and secondary spectrum reduction.",
     },
     {
       id: 3,
-      name: "L3",
+      name: "L1c",
       label: "Element 3",
-      type: "Biconvex Positive",
-      nd: 1.883,
-      vd: 40.7,
-      fl: 10.6,
-      glass: "S-LAH58 (OHARA)",
-      apd: false,
-      cemented: "D1",
-      role: "Positive element of 1st cemented doublet; high-index lanthanum dense flint provides strong power with moderate curvature",
+      type: "Biconcave Negative",
+      nd: 1.62588,
+      vd: 35.7,
+      fl: -31.0,
+      glass: "S-TIM35 (OHARA dense flint)",
+      role: "Chromatic counterpart to L1b. Strong negative power also corrects Petzval sum for flat-field macro performance.",
     },
     {
       id: 4,
-      name: "L4",
+      name: "L1d",
       label: "Element 4",
-      type: "Biconvex Positive",
-      nd: 1.816,
-      vd: 46.6,
-      fl: 9.7,
-      glass: "S-LAL18 (OHARA)",
-      apd: false,
-      cemented: "D2",
-      role: "Positive element of 2nd cemented doublet; mirror-symmetric arrangement with D1 for coma correction",
+      type: "Biconvex Pos. (2× Asph)",
+      nd: 1.58313,
+      vd: 59.46,
+      fl: 32.4,
+      glass: "S-BAL41 (OHARA barium crown)",
+      role: "Sole aspherical element (both surfaces). Strongest positive in G1, placed at large marginal ray height for maximum SA correction leverage.",
     },
+
+    // ── Group 2 — Negative focusing group (moves toward image) ──────────
     {
       id: 5,
-      name: "L5",
+      name: "L2a",
       label: "Element 5",
       type: "Biconcave Negative",
-      nd: 1.62004,
-      vd: 36.4,
-      fl: -11.7,
-      glass: "N-F2 (Schott)",
-      apd: false,
-      cemented: "D2",
-      role: "Negative element of 2nd cemented doublet; Δνd = 10.2 provides aggressive chromatic correction in the converging beam",
+      nd: 1.58913,
+      vd: 61.13,
+      fl: -31.2,
+      glass: "S-BSM2 (OHARA barium crown)",
+      role: "Leading element of front focus group. Strongly curved rear surface (R = +21.9 mm) does the diverging.",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L2b",
       label: "Element 6",
-      type: "Pos. Meniscus (2× Asph)",
-      nd: 1.58313,
-      vd: 59.5,
-      fl: 333.9,
-      glass: "L-BAL42 (OHARA, PGM)",
-      apd: false,
-      role: "Double-aspherical corrector plate; near-zero paraxial power (fl ≈ 334mm), heavy asph departure corrects residual higher-order SA, coma, and field curvature",
+      type: "Negative Meniscus",
+      nd: 1.673,
+      vd: 38.15,
+      fl: -29.3,
+      glass: "Barium flint (nearest: HOYA NBFD3; no exact OHARA match)",
+      cemented: "D1",
+      role: "Front element of G2 cemented pair. Near-zero net power with L2c; primary role is chromatic balance during focus shift.",
     },
     {
       id: 7,
-      name: "L7",
+      name: "L2c",
       label: "Element 7",
-      type: "Negative Meniscus",
-      nd: 1.7552,
-      vd: 27.6,
-      fl: -20.2,
-      glass: "S-TIH6 (OHARA)",
-      apd: false,
-      role: "Field flattener and primary Petzval corrector; highest dispersion in the design (νd = 27.6), dominant negative Petzval contributor",
+      type: "Positive Meniscus",
+      nd: 2.00069,
+      vd: 25.46,
+      fl: 29.1,
+      glass: "S-NPH5 (OHARA ultra-high-index dense flint, nd > 2.0)",
+      cemented: "D1",
+      role: "Rear element of G2 cemented pair. Ultra-high index enables strong correction at the cemented junction with minimal curvature.",
     },
+
+    // ── Group 3 — Positive focusing group (moves toward object) ─────────
     {
       id: 8,
-      name: "L8a",
-      label: "Element 8a (resin)",
-      type: "Asph. Resin Layer (1× Asph)",
-      nd: 1.56093,
-      vd: 36.6,
-      fl: -353.8,
-      glass: "UV-curing resin (composite asphere)",
-      apd: false,
-      cemented: "L8",
-      role: "Aspherical resin layer bonded to L8b glass body; reshapes wavefront for field curvature and astigmatism correction",
+      name: "L3a",
+      label: "Element 8",
+      type: "Biconvex Positive",
+      nd: 1.43875,
+      vd: 94.66,
+      fl: 67.4,
+      glass: "S-FPL55 (OHARA Super ED — calcium-fluoride equivalent)",
+      apd: "inferred",
+      apdNote: "νd = 94.66, extreme anomalous partial dispersion; designated Super ED by Fujifilm.",
+      role: "Most exotic element in design. Fluorite-equivalent APD corrects secondary spectrum across the full focus range.",
     },
     {
       id: 9,
-      name: "L8b",
-      label: "Element 8b (glass)",
+      name: "L3b",
+      label: "Element 9",
+      type: "Biconvex Positive",
+      nd: 1.497,
+      vd: 81.54,
+      fl: 41.1,
+      glass: "S-FPL51 (OHARA ED fluorophosphate)",
+      apd: "inferred",
+      apdNote: "νd = 81.54; designated ED by Fujifilm.",
+      cemented: "D2",
+      role: "Powerhouse achromatic crown of G3 cemented pair. Δν = 57.8 with L3c — largest achromatic lever in the design.",
+    },
+    {
+      id: 10,
+      name: "L3c",
+      label: "Element 10",
+      type: "Negative Meniscus",
+      nd: 1.84666,
+      vd: 23.78,
+      fl: -90.7,
+      glass: "S-NPH4 (OHARA high-index dense flint)",
+      cemented: "D2",
+      role: "Achromatic flint of G3. High-index, high-dispersion partner to the ED crown L3b.",
+    },
+
+    // ── Group 4a — OIS vibration-proof group (perpendicular shift) ──────
+    {
+      id: 11,
+      name: "L4aa",
+      label: "Element 11",
       type: "Positive Meniscus",
-      nd: 1.883,
-      vd: 40.7,
-      fl: 29.3,
-      glass: "S-LAH58 (OHARA)",
-      apd: false,
-      cemented: "L8",
-      role: "Glass body of composite L8; strong positive power converges the beam to the image plane, high nd enables moderate curvature",
+      nd: 2.00272,
+      vd: 19.32,
+      fl: 52.6,
+      glass: "S-NPH7 (OHARA ultra-high-index dense flint, nd > 2.0)",
+      cemented: "D3",
+      role: "VR cemented doublet front. nd = 2.003 enables strong correction at modest curvatures.",
+    },
+    {
+      id: 12,
+      name: "L4ab",
+      label: "Element 12",
+      type: "Biconcave Negative",
+      nd: 1.697,
+      vd: 48.52,
+      fl: -24.3,
+      glass: "S-LAM66 (OHARA lanthanum crown)",
+      cemented: "D3",
+      role: "VR cemented doublet rear. Symmetric radii (|R| = 33.867 mm). Internal VR achromatization (Δν = 29.2).",
+    },
+    {
+      id: 13,
+      name: "L4ac",
+      label: "Element 13",
+      type: "Negative Meniscus",
+      nd: 1.53775,
+      vd: 74.7,
+      fl: -63.3,
+      glass: "S-FPM2 (OHARA fluorophosphate)",
+      apd: "inferred",
+      apdNote: "νd = 74.70 satisfies patent Cond. (9); moderate APD. Probable third ED per Fujifilm spec.",
+      role: "Third VR element. High-νd fluorophosphate provides chromatic fine-tuning during lateral OIS shift.",
+    },
+
+    // ── Group 4b — Rear fixed group (stationary) ────────────────────────
+    {
+      id: 14,
+      name: "L4ba",
+      label: "Element 14",
+      type: "Positive Meniscus",
+      nd: 1.95375,
+      vd: 32.32,
+      fl: 41.5,
+      glass: "S-LAH79 (OHARA ultra-high-index lanthanum)",
+      role: "Strong positive meniscus partially counteracts G4a negative power. Petzval sum control.",
+    },
+    {
+      id: 15,
+      name: "L4bb",
+      label: "Element 15",
+      type: "Biconvex Positive",
+      nd: 1.5168,
+      vd: 64.2,
+      fl: 48.2,
+      glass: "S-BSL7 / N-BK7 (standard borosilicate crown)",
+      cemented: "D4",
+      role: "Standard borosilicate carrier for cemented junction with L4bc.",
+    },
+    {
+      id: 16,
+      name: "L4bc",
+      label: "Element 16",
+      type: "Negative Meniscus",
+      nd: 1.95906,
+      vd: 17.47,
+      fl: -48.9,
+      glass: "S-NPH53 (OHARA ultra-high-index dense flint, lowest νd in design)",
+      cemented: "D4",
+      role: "Final chromatic trim near image plane. νd = 17.47 provides extreme chromatic leverage for lateral color control.",
     },
   ],
 
-  /* ── Surface prescription ──
-   *  16 optical surfaces from patent Table 1.
-   *  Aperture stop (surface 3) is explicitly listed in the patent prescription (開口絞り).
-   *  L8 composite: surface 14 = resin front (asph), 15 = resin/glass junction, 16 = glass rear.
-   */
   surfaces: [
-    { label: "1A", R: 11.70227, d: 1.27, nd: 1.58913, elemId: 1, sd: 7.8 }, // L1 front (asph, K=1.0)
-    { label: "2", R: 13.3834, d: 1.62, nd: 1.0, elemId: 0, sd: 7.2 }, // L1 rear → air
-    { label: "STO", R: 1e15, d: 1.59, nd: 1.0, elemId: 0, sd: 4.6 }, // Aperture stop (patent surface 3)
-    { label: "4", R: -37.934, d: 0.7, nd: 1.5927, elemId: 2, sd: 6.2 }, // L2 front (D1 neg.)
-    { label: "5", R: 11.35394, d: 2.8, nd: 1.883, elemId: 3, sd: 6.6 }, // L2→L3 junction (D1 pos.)
-    { label: "6", R: -46.90284, d: 0.31, nd: 1.0, elemId: 0, sd: 7.4 }, // L3 rear → air
-    { label: "7", R: 58.38846, d: 3.87, nd: 1.816, elemId: 4, sd: 7.5 }, // L4 front (D2 pos.)
-    { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 6.8 }, // L4→L5 junction (D2 neg.)
-    { label: "9", R: 39.69665, d: 2.92, nd: 1.0, elemId: 0, sd: 6.2 }, // L5 rear → air
-    { label: "10A", R: -9.52831, d: 1.1, nd: 1.58313, elemId: 6, sd: 6.1 }, // L6 front (asph, K=0.2964)
-    { label: "11A", R: -9.47003, d: 2.17, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → air (asph, K=1.0)
-    { label: "12", R: -9.36192, d: 1.0, nd: 1.7552, elemId: 7, sd: 5.9 }, // L7 front
-    { label: "13", R: -25.39515, d: 0.71, nd: 1.0, elemId: 0, sd: 7.2 }, // L7 rear → air
-    { label: "14A", R: -45.8666, d: 0.1, nd: 1.56093, elemId: 8, sd: 9.4 }, // L8 resin front (asph, K=1.0)
-    { label: "15", R: -59.69914, d: 6.53, nd: 1.883, elemId: 9, sd: 10.5 }, // L8 resin→glass junction
-    { label: "16", R: -18.98009, d: 10.76, nd: 1.0, elemId: 0, sd: 13.0 }, // L8 glass rear → BFD
+    // ── Group 1 ─────────────────────────────────────────────────────────
+    { label: "1", R: 119.8423, d: 5.44, nd: 1.72916, elemId: 1, sd: 20.5 },
+    { label: "2", R: -119.8423, d: 0.8, nd: 1.0, elemId: 0, sd: 20.5 },
+    { label: "3", R: 59.8966, d: 5.67, nd: 1.497, elemId: 2, sd: 19.5 },
+    { label: "4", R: -101.2948, d: 0.71, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "5", R: -67.2399, d: 1.25, nd: 1.62588, elemId: 3, sd: 17.5 },
+    { label: "6", R: 27.2189, d: 0.8, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "7A", R: 25.2054, d: 8.7, nd: 1.58313, elemId: 4, sd: 17.0 },
+    { label: "8A", R: -75.345, d: 2.34, nd: 1.0, elemId: 0, sd: 15.5 },
+
+    // ── Group 2 ─────────────────────────────────────────────────────────
+    { label: "9", R: -115.0082, d: 1.0, nd: 1.58913, elemId: 5, sd: 13.5 },
+    { label: "10", R: 21.8873, d: 3.2, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "11", R: -168.1721, d: 0.96, nd: 1.673, elemId: 6, sd: 11.0 },
+    { label: "12", R: 22.32, d: 3.54, nd: 2.00069, elemId: 7, sd: 11.0 },
+    { label: "13", R: 95.1317, d: 20.39, nd: 1.0, elemId: 0, sd: 11.5 },
+
+    // ── Aperture Stop ───────────────────────────────────────────────────
+    { label: "STO", R: 1e15, d: 19.53, nd: 1.0, elemId: 0, sd: 9.6 },
+
+    // ── Group 3 ─────────────────────────────────────────────────────────
+    { label: "15", R: 75.2429, d: 3.52, nd: 1.43875, elemId: 8, sd: 12.5 },
+    { label: "16", R: -48.6919, d: 0.1, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "17", R: 51.9815, d: 4.34, nd: 1.497, elemId: 9, sd: 12.5 },
+    { label: "18", R: -33.69, d: 1.1, nd: 1.84666, elemId: 10, sd: 11.5 },
+    { label: "19", R: -60.0019, d: 6.5, nd: 1.0, elemId: 0, sd: 11.0 },
+
+    // ── Group 4a — OIS group ────────────────────────────────────────────
+    { label: "20", R: -94.7357, d: 2.57, nd: 2.00272, elemId: 11, sd: 10.5 },
+    { label: "21", R: -33.867, d: 0.91, nd: 1.697, elemId: 12, sd: 10.5 },
+    { label: "22", R: 33.867, d: 1.56, nd: 1.0, elemId: 0, sd: 10.0 },
+    { label: "23", R: 395.2263, d: 0.9, nd: 1.53775, elemId: 13, sd: 10.0 },
+    { label: "24", R: 31.3496, d: 3.6, nd: 1.0, elemId: 0, sd: 10.0 },
+
+    // ── Group 4b — Fixed rear ───────────────────────────────────────────
+    { label: "25", R: 37.5229, d: 3.41, nd: 1.95375, elemId: 14, sd: 11.5 },
+    { label: "26", R: 709.7839, d: 0.1, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "27", R: 59.0208, d: 4.9, nd: 1.5168, elemId: 15, sd: 11.5 },
+    { label: "28", R: -43.109, d: 1.07, nd: 1.95906, elemId: 16, sd: 11.0 },
+    { label: "29", R: -528.8086, d: 27.42, nd: 1.0, elemId: 0, sd: 11.0 },
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Patent Table 1 asph data. Sag equation per §0206:
-   *    S(y) = (y²/r) / {1 + (1 − K×y²/r²)^(1/2)} + A4·y⁴ + A6·y⁶ + ...
-   *  Note: patent lists up to A18 for surface 10.
-   *  A2 = 0 for all surfaces (per §0204).
-   */
   asph: {
-    "1A": {
-      K: 1.0,
-      A4: -6.3e-5,
-      A6: -1.02e-6,
-      A8: -1.93e-8,
-      A10: 0,
-      A12: 0,
-      A14: 0,
+    "7A": {
+      K: 0,
+      A4: -3.4416765e-6,
+      A6: -1.0271248e-8,
+      A8: 7.8474028e-11,
+      A10: -1.3012707e-12,
+      A12: 5.9808897e-15,
+      A14: 1.5649754e-17,
+      A16: -3.3871063e-19,
+      A18: 1.5229577e-21,
+      A20: -2.5292727e-24,
     },
-    "10A": {
-      K: 0.2964,
-      A4: -1.07e-4,
-      A6: 1.09e-5,
-      A8: -1.04e-7,
-      A10: -6.74e-9,
-      A12: 1.76e-10,
-      A14: 8.59e-14,
-      // Note: patent also lists A16 = -9.66E-14 and A18 = 1.31E-15;
-      // renderer supports up to A14, higher terms omitted (negligible at these SDs)
-    },
-    "11A": {
-      K: 1.0,
-      A4: 1.94e-4,
-      A6: 9.62e-6,
-      A8: 1.86e-8,
-      A10: -3.79e-9,
-      A12: 3.78e-11,
-      A14: 0,
-    },
-    "14A": {
-      K: 1.0,
-      A4: 4.28e-5,
-      A6: -3.34e-7,
-      A8: 1.25e-9,
-      A10: -3.2e-12,
-      A12: 3.14e-15,
-      A14: 0,
+    "8A": {
+      K: 0,
+      A4: -5.6320686e-7,
+      A6: -7.1694496e-9,
+      A8: 5.3448304e-11,
+      A10: -8.255492e-13,
+      A12: 2.069052e-15,
+      A14: 8.6700401e-18,
+      A16: -2.1215378e-20,
+      A18: -2.8133141e-22,
+      A20: 7.4217077e-25,
     },
   },
 
-  /* ── Variable air spacings (focus mechanism) ──
-   *  Unit focus: entire optical system translates along the optical axis.
-   *  Only the back focal distance (surface 16) changes.
-   *  Patent §0201: "光学系全体を光軸に沿って移動させることにより合焦を行う"
-   *  Bf: infinity = 10.760 mm, close focus = 15.873 mm (patent Table 1).
-   */
+  // Floating focus: G2 moves image-ward, G3 moves object-ward
+  // Sum conserved: 48.76 mm at both infinity and β = −1.0
   var: {
-    16: [10.76, 15.873],
+    "8A": [2.34, 17.69],
+    "13": [20.39, 5.04],
+    STO: [19.53, 3.58],
+    "19": [6.5, 22.45],
   },
-  varLabels: [["16", "BF"]],
+  varLabels: [
+    ["8A", "G1→G2"],
+    ["13", "G2→Stop"],
+    ["STO", "Stop→G3"],
+    ["19", "G3→G4"],
+  ],
 
-  /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1", fromSurface: "1A", toSurface: "2" },
-    { text: "G2", fromSurface: "4", toSurface: "11A" },
-    { text: "G3", fromSurface: "12", toSurface: "13" },
-    { text: "G4", fromSurface: "14A", toSurface: "16" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "8A" },
+    { text: "G2 (−)", fromSurface: "9", toSurface: "13" },
+    { text: "G3 (+)", fromSurface: "15", toSurface: "19" },
+    { text: "G4a (−) OIS", fromSurface: "20", toSurface: "24" },
+    { text: "G4b (+)", fromSurface: "25", toSurface: "29" },
   ],
   doublets: [
-    { text: "D1", fromSurface: "4", toSurface: "6" },
-    { text: "D2", fromSurface: "7", toSurface: "9" },
-    { text: "L8", fromSurface: "14A", toSurface: "16" },
+    { text: "D1", fromSurface: "11", toSurface: "13" },
+    { text: "D2", fromSurface: "17", toSurface: "19" },
+    { text: "D3", fromSurface: "20", toSurface: "22" },
+    { text: "D4", fromSurface: "27", toSurface: "29" },
   ],
 
-  /* ── Focus configuration ── */
-  closeFocusM: 0.2,
-  focusDescription:
-    "Unit focus — entire optical system translates along the optical axis (extends ~5mm at MFD).",
-
-  /* ── Aperture configuration ── */
+  closeFocusM: 0.25,
   nominalFno: 2.8,
-  fstopSeries: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 16],
+  fstopSeries: [2.8, 4, 5.6, 8, 11, 16, 22],
 
-  /* ── Layout tuning ── */
-  scFill: 0.55,
-  yScFill: 0.35,
+  scFill: 0.5,
+  yScFill: 0.4,
+  maxAspectRatio: 1.8,
 } satisfies LensDataInput;
 
 export default LENS_DATA;

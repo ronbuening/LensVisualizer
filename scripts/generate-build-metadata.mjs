@@ -31,10 +31,11 @@ const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const MAKER_PREFIXES = [
   { prefix: "CANON", slug: "canon" },
   { prefix: "CARL ZEISS", slug: "carl-zeiss" },
+  { prefix: "FUJIFILM", slug: "fujifilm" },
+  { prefix: "FUJINON", slug: "fujifilm" },
   { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
   { prefix: "NIKON", slug: "nikon" },
   { prefix: "RICOH", slug: "ricoh" },
-  { prefix: "FUJIFILM", slug: "fujifilm" },
 ];
 
 /** Derive a URL-safe maker slug from a lens display name. */
