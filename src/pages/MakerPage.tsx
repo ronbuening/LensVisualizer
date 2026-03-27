@@ -8,8 +8,9 @@ import { useParams, Navigate, Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME } from "../utils/lensMetadata.js";
+import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import type { LensData } from "../types/optics.js";
 
@@ -61,6 +62,19 @@ export default function MakerPage() {
         title={`${displayName} Lenses — ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={makerCanonicalURL(maker)}
+        jsonLd={[
+          collectionPageJsonLd({
+            name: `${displayName} Lenses`,
+            description: seoDescription,
+            url: makerCanonicalURL(maker),
+            route: `/makers/${maker}`,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Makers", url: `${SITE_URL}/makers` },
+            { name: displayName, url: makerCanonicalURL(maker) },
+          ]),
+        ]}
       />
 
       <PageNavBar

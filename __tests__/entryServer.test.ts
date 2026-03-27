@@ -11,6 +11,7 @@
 
 import { describe, it, expect } from "vitest";
 import { render } from "../src/entry-server.js";
+import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { allMakerSlugs, makerDisplayName, SITE_NAME, SITE_URL } from "../src/utils/lensMetadata.js";
 
@@ -20,6 +21,7 @@ const TEST_LENS_SLUG = CATALOG_KEYS[0];
 const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
 const TEST_MAKER_SLUG = allMakerSlugs()[0];
 const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+const TEST_ARTICLE = ARTICLES[0];
 
 /* ── Preconditions ── */
 
@@ -38,17 +40,17 @@ describe("SSR render — all routes produce valid helmet output", () => {
     ["/", "home"],
     ["/lenses", "lens index"],
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
+    [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
     ["/this-route-does-not-exist", "404"],
   ] as const;
 
-  it.each(routes)("%s (%s) returns helmet with title, description, and canonical", (url) => {
+  it.each(routes)("%s (%s) returns helmet with title and description", (url) => {
     const { helmet } = render(url);
     expect(helmet).not.toBeNull();
     expect(helmet.title.toString()).toContain("<title");
     expect(helmet.meta.toString()).toContain('name="description"');
-    expect(helmet.link.toString()).toContain('rel="canonical"');
   });
 });
 
@@ -88,6 +90,37 @@ describe("SSR render — home page /", () => {
     expect(meta).toContain('property="og:description"');
     expect(meta).toContain('name="twitter:card"');
   });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render("/");
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('property="og:image:width" content="1200"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
+  it("includes WebSite and publisher structured data", () => {
+    const { helmet } = render("/");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"WebSite"');
+    expect(scripts).toContain('"@type":"Organization"');
+  });
+});
+
+/* ── Compare page ── */
+
+describe("SSR render — compare page /compare/:slugA/:slugB", () => {
+  const url = `/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`;
+
+  it("uses a self canonical URL", () => {
+    const { helmet } = render(url);
+    expect(helmet.link.toString()).toContain(url);
+  });
+
+  it("marks compare pages as noindex", () => {
+    const { helmet } = render(url);
+    expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
+  });
 });
 
 /* ── Lens index ── */
@@ -101,6 +134,13 @@ describe("SSR render — lens index /lenses", () => {
   it("canonical contains /lenses", () => {
     const { helmet } = render("/lenses");
     expect(helmet.link.toString()).toContain("/lenses");
+  });
+
+  it("includes CollectionPage and ItemList structured data", () => {
+    const { helmet } = render("/lenses");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"ItemList"');
   });
 });
 
@@ -122,9 +162,24 @@ describe("SSR render — lens page /lens/:slug", () => {
     expect(helmet.script.toString()).toContain("TechArticle");
   });
 
+  it("includes BreadcrumbList structured data and freshness fields", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"datePublished"');
+    expect(scripts).toContain('"dateModified"');
+  });
+
   it("og:type is article", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     expect(helmet.meta.toString()).toContain("article");
+  });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
   });
 
   it("SSR fallback HTML contains the lens name", () => {
@@ -145,6 +200,13 @@ describe("SSR render — makers index /makers", () => {
     const { helmet } = render("/makers");
     expect(helmet.link.toString()).toContain("/makers");
   });
+
+  it("includes CollectionPage and ItemList structured data", () => {
+    const { helmet } = render("/makers");
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"ItemList"');
+  });
 });
 
 /* ── Maker page ── */
@@ -164,6 +226,47 @@ describe("SSR render — maker page /makers/:maker", () => {
     const { html } = render(`/makers/${TEST_MAKER_SLUG}`);
     expect(html).toContain(TEST_MAKER_DISPLAY);
   });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
+  it("includes CollectionPage and BreadcrumbList structured data", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+  });
+});
+
+/* ── Article page ── */
+
+describe("SSR render — article page /articles/:slug", () => {
+  const url = `/articles/${TEST_ARTICLE.slug}`;
+
+  it("title contains the article title", () => {
+    const { helmet } = render(url);
+    expect(helmet.title.toString()).toContain(TEST_ARTICLE.title);
+  });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render(url);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
+  it("includes Article and BreadcrumbList structured data", () => {
+    const { helmet } = render(url);
+    const scripts = helmet.script.toString();
+    expect(scripts).toContain('"@type":"Article"');
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"datePublished"');
+    expect(scripts).toContain('"dateModified"');
+  });
 });
 
 /* ── 404 page ── */
@@ -172,6 +275,16 @@ describe("SSR render — 404 page", () => {
   it("title contains 'Page Not Found'", () => {
     const { helmet } = render("/this-route-does-not-exist");
     expect(helmet.title.toString()).toContain("Page Not Found");
+  });
+
+  it("does not emit a canonical URL", () => {
+    const { helmet } = render("/this-route-does-not-exist");
+    expect(helmet.link.toString()).not.toContain('rel="canonical"');
+  });
+
+  it("marks the page as noindex", () => {
+    const { helmet } = render("/this-route-does-not-exist");
+    expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
   });
 
   it("HTML contains 'not found' text", () => {

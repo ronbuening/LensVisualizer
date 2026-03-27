@@ -81,6 +81,31 @@ function auditSitemap(routes) {
   if (missing === 0) {
     ok(`sitemap.xml contains all ${routes.length} URLs`);
   }
+
+  const routeFreshness = buildMeta.routeFreshness || {};
+  const sitemapBlocks = [...content.matchAll(/<url>\s*<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>[\s\S]*?<\/url>/g)];
+  const lastmodByLoc = Object.fromEntries(sitemapBlocks.map(([, loc, lastmod]) => [loc, lastmod]));
+  let lastmodMismatches = 0;
+
+  for (const route of routes) {
+    const loc = `https://opticalbench.net${route}`;
+    const expectedLastmod = routeFreshness[route]?.lastModified;
+    if (!expectedLastmod) {
+      error(`routeFreshness missing lastModified for ${route}`);
+      lastmodMismatches++;
+      continue;
+    }
+    if (lastmodByLoc[loc] !== expectedLastmod) {
+      error(
+        `sitemap.xml lastmod mismatch for ${route}: expected ${expectedLastmod}, found ${lastmodByLoc[loc] || "missing"}`,
+      );
+      lastmodMismatches++;
+    }
+  }
+
+  if (lastmodMismatches === 0) {
+    ok("sitemap.xml lastmod values match build metadata");
+  }
 }
 
 function auditAllPrerenderedPages(routes) {
@@ -231,7 +256,20 @@ function audit404() {
   if (!existsSync(path)) {
     error("404.html not found in dist/");
   } else {
-    ok("404.html exists (GitHub Pages SPA fallback)");
+    const html = readFileSync(path, "utf-8");
+    if (!html.includes("Page Not Found")) {
+      error("404.html does not contain 404 metadata/content");
+    }
+    if (html.includes('rel="canonical"')) {
+      error("404.html should not emit a canonical URL");
+    }
+    if (!html.includes('name="robots" content="noindex,follow"')) {
+      error("404.html missing noindex robots directive");
+    }
+    if (html.includes("Interactive Lens Cross-Section Visualizer")) {
+      warn("404.html still contains home page branding copy; verify fallback metadata");
+    }
+    ok("404.html exists with real 404 metadata and noindex policy");
   }
 }
 

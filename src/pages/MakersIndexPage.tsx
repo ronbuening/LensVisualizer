@@ -10,6 +10,7 @@ import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 
 interface MakerEntry {
@@ -44,13 +45,30 @@ const PAGE_BASE_STYLE = {
 export default function MakersIndexPage() {
   const makers = getAllMakers();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const seoDescription = `Browse lenses by maker: ${makers.map((m) => m.display).join(", ")}. Interactive cross-section diagrams with ray tracing and element inspection.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
         title={`Lens Makers — ${SITE_NAME}`}
-        description={`Browse lenses by maker: ${makers.map((m) => m.display).join(", ")}. Interactive cross-section diagrams with ray tracing and element inspection.`}
+        description={seoDescription}
         canonicalURL={`${SITE_URL}/makers`}
+        jsonLd={[
+          collectionPageJsonLd({
+            name: "Lens Makers",
+            description: seoDescription,
+            url: `${SITE_URL}/makers`,
+            route: "/makers",
+          }),
+          itemListJsonLd({
+            name: "Lens Makers",
+            url: `${SITE_URL}/makers`,
+            items: makers.map((maker) => ({
+              name: maker.display,
+              url: `${SITE_URL}/makers/${maker.slug}`,
+            })),
+          }),
+        ]}
       />
 
       <PageNavBar

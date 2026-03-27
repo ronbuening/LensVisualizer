@@ -5,14 +5,14 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
+import { SITE_NAME } from "../utils/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 
 export default function NotFoundPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
-      <SEOHead title={`Page Not Found — ${SITE_NAME}`} description="Page not found." canonicalURL={SITE_URL} />
+      <SEOHead title={`Page Not Found — ${SITE_NAME}`} description="Page not found." robots="noindex,follow" />
 
       <PageNavBar
         theme={t}

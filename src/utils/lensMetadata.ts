@@ -6,9 +6,15 @@
  */
 
 import type { LensData } from "../types/optics.js";
+import buildMeta from "../generated/build-metadata.json";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
+const SOCIAL_IMAGE_PATH = "/og-default.png";
+const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
+const SOCIAL_IMAGE_ALT = "Optical Bench social card showing a stylized lens diagram and ray traces.";
+const SOCIAL_IMAGE_WIDTH = 1200;
+const SOCIAL_IMAGE_HEIGHT = 630;
 
 /* Known maker prefixes in lens names, mapped to display names and URL-safe slugs.
    Build-time copy: scripts/generate-build-metadata.mjs MAKER_PREFIXES */
@@ -80,14 +86,22 @@ export function makerCanonicalURL(makerSlug: string): string {
 
 /** Generate JSON-LD structured data for a lens page. */
 export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
+  const freshness = (buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>)[lensKey];
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     headline: lens.name,
     description: lensPageDescription(lens),
     url: lensCanonicalURL(lensKey),
+    mainEntityOfPage: lensCanonicalURL(lensKey),
     author: { "@type": "Person", name: "Ron Buening" },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    ...(freshness
+      ? {
+          datePublished: freshness.publishedOn,
+          dateModified: freshness.lastModified,
+        }
+      : {}),
     about: {
       "@type": "Product",
       name: lens.name,
@@ -100,4 +114,12 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
 /* Re-export comparison metadata (moved to comparison module) for backward compatibility */
 export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
-export { SITE_NAME, SITE_URL };
+export {
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_IMAGE_PATH,
+  SOCIAL_IMAGE_URL,
+  SOCIAL_IMAGE_ALT,
+  SOCIAL_IMAGE_WIDTH,
+  SOCIAL_IMAGE_HEIGHT,
+};

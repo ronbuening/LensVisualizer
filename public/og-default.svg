@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Optical Bench social card</title>
+  <desc id="desc">A stylized camera lens cross-section with ray traces and the Optical Bench brand text.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081321" />
+      <stop offset="55%" stop-color="#0f2135" />
+      <stop offset="100%" stop-color="#172f45" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10263a" stop-opacity="0.96" />
+      <stop offset="100%" stop-color="#132d42" stop-opacity="0.72" />
+    </linearGradient>
+    <linearGradient id="rayBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7cd3ff" stop-opacity="0.15" />
+      <stop offset="45%" stop-color="#7cd3ff" stop-opacity="0.96" />
+      <stop offset="100%" stop-color="#f0f8ff" stop-opacity="0.92" />
+    </linearGradient>
+    <linearGradient id="rayAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb35c" stop-opacity="0.15" />
+      <stop offset="45%" stop-color="#ffb35c" stop-opacity="0.94" />
+      <stop offset="100%" stop-color="#ffe3b5" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" />
+    </filter>
+    <filter id="bigGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="34" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="170" cy="110" r="220" fill="#5fc6ff" fill-opacity="0.08" filter="url(#bigGlow)" />
+  <circle cx="1040" cy="520" r="260" fill="#ffb35c" fill-opacity="0.08" filter="url(#bigGlow)" />
+
+  <g stroke="#26435c" stroke-opacity="0.45" stroke-width="1">
+    <path d="M0 118h1200" />
+    <path d="M0 512h1200" />
+    <path d="M148 0v630" />
+    <path d="M1030 0v630" />
+  </g>
+
+  <g opacity="0.2" stroke="#7cd3ff" stroke-width="1">
+    <path d="M36 74h320" />
+    <path d="M36 556h420" />
+    <path d="M900 74h260" />
+  </g>
+
+  <rect x="500" y="56" width="640" height="518" rx="26" fill="url(#panel)" stroke="#5c87a8" stroke-opacity="0.18" />
+
+  <g transform="translate(92 116)">
+    <rect x="0" y="0" width="360" height="398" rx="22" fill="#0b1d2d" fill-opacity="0.56" stroke="#33526d" stroke-opacity="0.42" />
+    <g transform="translate(34 28)">
+      <g fill="none" stroke="#ffb35c" stroke-width="6">
+        <path d="M62 40c-16 64-16 232 0 296" />
+        <path d="M108 16c-24 68-24 280 0 344" />
+        <path d="M160 64c18 48 18 192 0 248" />
+        <path d="M222 22c30 58 30 278 0 360" />
+        <path d="M282 76c24 54 24 172 0 232" />
+      </g>
+      <g fill="#ffb35c">
+        <circle cx="62" cy="188" r="4" />
+        <circle cx="108" cy="188" r="4" />
+        <circle cx="160" cy="188" r="4" />
+        <circle cx="222" cy="188" r="4" />
+        <circle cx="282" cy="188" r="4" />
+      </g>
+      <g fill="none" stroke="#5d7c95" stroke-width="2">
+        <path d="M34 28h286" />
+        <path d="M34 348h286" />
+        <path d="M34 188h286" stroke-opacity="0.32" />
+      </g>
+
+      <g fill="none" stroke-linecap="round" stroke-width="4">
+        <path d="M-10 84h46c24 0 50 8 72 24l42 32c20 16 46 24 72 24h124" stroke="url(#rayBlue)" />
+        <path d="M-10 188h66c28 0 54 0 82 0h226" stroke="url(#rayAmber)" />
+        <path d="M-10 292h48c24 0 50-8 72-24l42-32c20-16 46-24 72-24h124" stroke="url(#rayBlue)" />
+      </g>
+      <g stroke-linecap="round" stroke-width="10" opacity="0.55" filter="url(#softGlow)">
+        <path d="M-8 84h372" stroke="#7cd3ff" />
+        <path d="M-8 188h372" stroke="#ffb35c" />
+        <path d="M-8 292h372" stroke="#7cd3ff" />
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(556 132)" fill="#f5fbff">
+    <text x="0" y="0" font-size="22" font-family="Helvetica, Arial, sans-serif" letter-spacing="5" fill="#89b2cf">
+      INTERACTIVE OPTICAL DESIGN VIEWER
+    </text>
+    <text x="0" y="108" font-size="76" font-weight="700" font-family="Helvetica, Arial, sans-serif">
+      Optical Bench
+    </text>
+    <text x="0" y="162" font-size="34" font-family="Helvetica, Arial, sans-serif" fill="#d7e7f2">
+      Lens diagrams, ray tracing, and aberration analysis
+    </text>
+
+    <g transform="translate(0 214)">
+      <rect width="548" height="152" rx="22" fill="#0b1d2d" fill-opacity="0.44" stroke="#34526c" stroke-opacity="0.48" />
+      <text x="30" y="46" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#9fc2d9">
+        Patent-derived camera lens cross-sections with
+      </text>
+      <text x="30" y="84" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#9fc2d9">
+        focus and aperture controls, chromatic rays,
+      </text>
+      <text x="30" y="122" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#9fc2d9">
+        distortion, coma, spherical aberration, and more.
+      </text>
+    </g>
+
+    <g transform="translate(0 400)">
+      <rect width="254" height="52" rx="26" fill="#10263a" stroke="#4d6c86" stroke-opacity="0.52" />
+      <circle cx="30" cy="26" r="6" fill="#7cd3ff" />
+      <circle cx="52" cy="26" r="6" fill="#ffb35c" />
+      <text x="78" y="34" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#e8f2f8">
+        opticalbench.net
+      </text>
+    </g>
+  </g>
+</svg>

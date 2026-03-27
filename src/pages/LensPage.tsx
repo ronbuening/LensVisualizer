@@ -16,7 +16,9 @@ import {
   lensCanonicalURL,
   lensJsonLd,
   deriveMaker,
+  SITE_URL,
 } from "../utils/lensMetadata.js";
+import { breadcrumbJsonLd } from "../utils/structuredData.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
@@ -59,7 +61,15 @@ export default function LensPage() {
         description={lensPageDescription(lens)}
         canonicalURL={lensCanonicalURL(slug)}
         ogType="article"
-        jsonLd={lensJsonLd(lens, slug)}
+        jsonLd={[
+          lensJsonLd(lens, slug),
+          breadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Makers", url: `${SITE_URL}/makers` },
+            { name: maker.display, url: `${SITE_URL}/makers/${maker.slug}` },
+            { name: lens.name, url: lensCanonicalURL(slug) },
+          ]),
+        ]}
       />
 
       {/* Interactive visualizer — client-only; SEO text content shown as fallback during SSR */}

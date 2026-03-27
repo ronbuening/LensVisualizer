@@ -17,13 +17,14 @@
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { execSync } from "node:child_process";
+import { buildRouteFreshness, combineFreshnessEntries, getGitFileFreshness } from "./build-metadata-lib.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
 const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
+const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "makerDetails.ts");
 
 /* ── Maker derivation ────────────────────────────────────────────────── */
 
@@ -48,23 +49,6 @@ function deriveMakerSlug(name) {
 }
 
 /* ── Helpers ──────────────────────────────────────────────────────────── */
-
-/** Get the ISO date a file was first committed (--diff-filter=A). */
-function getFirstCommitDate(filePath) {
-  try {
-    const raw = execSync(`git log --diff-filter=A --follow --format=%aI -- "${filePath}"`, {
-      cwd: ROOT,
-      encoding: "utf-8",
-    }).trim();
-    // git log may return multiple lines if file was re-added; take the oldest (last line)
-    const lines = raw.split("\n").filter(Boolean);
-    if (lines.length === 0) return null;
-    const iso = lines[lines.length - 1];
-    return iso.slice(0, 10); // YYYY-MM-DD
-  } catch {
-    return null;
-  }
-}
 
 /** Extract the `key` value from a lens data file using a regex. */
 function extractLensKey(filePath) {
@@ -97,25 +81,33 @@ function parseFrontmatter(filePath) {
 /* ── Lens data collection ─────────────────────────────────────────────── */
 
 /**
- * Scan all lens data files and return dates, keys, and names.
+ * Scan all lens data files and return freshness, keys, and names.
  * Single filesystem pass — avoids redundant reads by downstream scripts.
  */
-function collectLensData() {
+function collectLensData(fallbackDate) {
   const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
-  const dates = {};
-  const lenses = []; // { key, name }
+  const lenses = []; // { key, name, makerSlug, freshness }
 
   for (const file of dataFiles) {
     const filePath = join(LENS_DATA_DIR, file);
     const key = extractLensKey(filePath);
     if (!key) continue;
     const name = extractLensName(filePath);
-    lenses.push({ key, name });
-    const date = getFirstCommitDate(filePath);
-    if (date) dates[key] = date;
+    const stem = file.replace(".data.ts", "");
+    const analysisPath = join(LENS_DATA_DIR, `${stem}.analysis.md`);
+    const dataFreshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
+    const analysisFreshness = existsSync(analysisPath)
+      ? getGitFileFreshness(analysisPath, { cwd: ROOT, fallbackDate })
+      : null;
+    lenses.push({
+      key,
+      name,
+      makerSlug: deriveMakerSlug(name || key),
+      freshness: combineFreshnessEntries([dataFreshness, analysisFreshness], fallbackDate),
+    });
   }
 
-  return { dates, lenses };
+  return lenses;
 }
 
 /* ── Route collection ────────────────────────────────────────────────── */
@@ -135,7 +127,7 @@ function collectRoutes(lenses, articles, makerSlugs) {
 
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
-function collectArticles() {
+function collectArticles(fallbackDate) {
   const mdFiles = readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
   const articles = [];
 
@@ -144,19 +136,20 @@ function collectArticles() {
     const meta = parseFrontmatter(filePath);
     if (!meta || !meta.slug || !meta.title) continue;
 
-    const date = getFirstCommitDate(filePath);
+    const freshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
     articles.push({
       slug: meta.slug,
       title: meta.title,
       summary: meta.summary || "",
       tag: meta.tag || undefined,
-      date: date || new Date().toISOString().slice(0, 10),
+      publishedOn: freshness.publishedOn,
+      lastModified: freshness.lastModified,
       file,
     });
   }
 
   // Sort newest-first by date
-  articles.sort((a, b) => b.date.localeCompare(a.date));
+  articles.sort((a, b) => b.publishedOn.localeCompare(a.publishedOn));
   return articles;
 }
 
@@ -164,15 +157,24 @@ function collectArticles() {
 
 function main() {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
+  const fallbackDate = new Date().toISOString().slice(0, 10);
 
-  const { dates: lensDates, lenses } = collectLensData();
-  const articles = collectArticles();
+  const lenses = collectLensData(fallbackDate);
+  const articles = collectArticles(fallbackDate);
 
   const lensKeys = lenses.map((l) => l.key).sort();
-  const makerSlugs = [...new Set(lenses.map((l) => deriveMakerSlug(l.name || l.key)))].sort();
+  const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs);
-
-  const metadata = { lensDates, articles, lensKeys, makerSlugs, routes };
+  const makerDetailsFreshness = getGitFileFreshness(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate });
+  const routeFreshness = buildRouteFreshness({
+    lenses,
+    articles,
+    makerSlugs,
+    makerDetailsFreshness,
+    fallbackDate,
+  });
+  const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
+  const metadata = { lensFreshness, articles, lensKeys, makerSlugs, routes, routeFreshness };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
 
   console.log(

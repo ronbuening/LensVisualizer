@@ -13,6 +13,7 @@ import remarkGfm from "remark-gfm";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
+import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLE_CONTENT } from "../utils/homepageContent.js";
 import type { Theme } from "../types/theme.js";
@@ -173,6 +174,19 @@ export default function ArticlePage() {
         title={`${entry.title} — ${SITE_NAME}`}
         description={entry.description}
         canonicalURL={`${SITE_URL}/articles/${slug}`}
+        ogType="article"
+        jsonLd={[
+          articleJsonLd({
+            title: entry.title,
+            description: entry.description,
+            slug,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", url: SITE_URL },
+            { name: "Articles", url: `${SITE_URL}/articles` },
+            { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
+          ]),
+        ]}
       />
 
       <PageNavBar
