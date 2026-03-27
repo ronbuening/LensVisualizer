@@ -74,9 +74,9 @@ function axialIntercept(y: number, u: number, lastSurfZ: number): number | null 
  * fallbacks to 0.90/0.85/0.80 if clipped) using exact Snell's law, and
  * compares its axial intercept against a near-axis paraxial reference ray.
  *
- * Sign convention: positive SA means the real marginal intercept lies farther
- * toward the image side than the paraxial intercept (undercorrected — typical
- * for simple positive lens groups).
+ * Sign convention: negative SA means the marginal intercept lies closer to the
+ * lens than the paraxial intercept (undercorrected — typical for simple
+ * positive lens groups).  Positive SA = overcorrected.
  *
  * The +Y and −Y marginal rays are averaged to enforce symmetry and cancel
  * any residual sign noise from asymmetric surface interactions.
@@ -116,7 +116,11 @@ export function computeSphericalAberration(
     const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
     const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
 
-    if (plusY.clipped || minusY.clipped) continue;
+    /* clippedAtStop: the physical aperture stop rejected this ray — skip.
+     * clipped-but-not-atStop: the ray exceeded an element edge SD, which are
+     * estimates calibrated for the paraxial tracer; the height y is still
+     * physically meaningful for SA, so we accept these rays. */
+    if (plusY.clippedAtStop || minusY.clippedAtStop) continue;
 
     const interceptPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
     const interceptMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
@@ -132,7 +136,7 @@ export function computeSphericalAberration(
   const hParaxial = PARAXIAL_FRAC * currentEPSD;
   const paraxRef = traceRay(hParaxial, 0, zPos, focusT, zoomT, undefined, true, L);
 
-  if (paraxRef.clipped) return null;
+  if (paraxRef.clippedAtStop) return null;
   const paraxialIntercept = axialIntercept(paraxRef.y, paraxRef.u, lastSurfZ);
   if (paraxialIntercept === null) return null;
 
@@ -185,7 +189,7 @@ export function computeSAProfile(
   /* ── Paraxial reference intercept (computed once) ── */
   const hParaxial = PARAXIAL_FRAC * currentEPSD;
   const paraxRef = traceRay(hParaxial, 0, zPos, focusT, zoomT, undefined, true, L);
-  if (paraxRef.clipped) return [];
+  if (paraxRef.clippedAtStop) return [];
   const paraxialIntercept = axialIntercept(paraxRef.y, paraxRef.u, lastSurfZ);
   if (paraxialIntercept === null) return [];
 
@@ -197,7 +201,7 @@ export function computeSAProfile(
     const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
     const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
 
-    if (plusY.clipped || minusY.clipped) continue;
+    if (plusY.clippedAtStop || minusY.clippedAtStop) continue;
 
     const iPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
     const iMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);

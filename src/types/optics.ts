@@ -217,7 +217,15 @@ export interface RayTraceResult {
   ghostPts: number[][];
   y: number;
   u: number;
+  /** True if the ray exceeded ANY surface's semi-diameter (stop or element edge). */
   clipped: boolean;
+  /**
+   * True if the ray exceeded the aperture STOP semi-diameter specifically.
+   * A ray clipped only at a non-stop element edge (clipped=true, clippedAtStop=false)
+   * is still physically meaningful for aberration analysis — element SDs are
+   * estimates, and only the stop enforces the true aperture.
+   */
+  clippedAtStop: boolean;
 }
 
 export interface ParaxialTraceResult {

@@ -409,13 +409,19 @@ function _traceRayCore(
     n = 1.0;
   let U = Math.atan(u0);
   let clipped = false;
+  let clippedAtStop = false;
   for (let i = 0; i < L.N; i++) {
     const { nd, sd } = L.S[i];
     const z = zPos[i];
     const isStop = i === L.stopIdx;
     const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && Math.abs(y) > clip) {
-      if (!ghost) break;
+    if (Math.abs(y) > clip) {
+      if (!ghost && !clipped) break;
+      /* Track stop clipping unconditionally — a ray may have clipped at a
+       * non-stop element edge first (clipped=true already), but we still need
+       * to know whether the physical aperture stop was exceeded so SA
+       * computation can correctly reject rays outside the true aperture. */
+      if (isStop && stopSD !== undefined) clippedAtStop = true;
       clipped = true;
     }
     const pt = [z + renderSag(Math.abs(y), i, L), y];
@@ -446,15 +452,25 @@ function _traceRayCore(
         if (Math.abs(sinIp) > 1.0) {
           if (!ghost) break;
           clipped = true;
+          /* TIR at an element surface — treat as non-stop clip for SA purposes */
         } else {
           U = alpha + Math.asin(sinIp);
         }
       }
     }
     n = nn;
-    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
+    if (i < L.N - 1) {
+      const d = thick(i, focusT, zoomT, L);
+      /* Sag correction: after refraction, the ray sits at z = sag_i(y) relative
+       * to the vertex plane, so the remaining axial distance to the next vertex
+       * is d − sag_i(y).  Skip when the stop caused physical clipping (height
+       * is no longer meaningful) or when d − sag ≤ 0 (sag exceeds the gap;
+       * fall back to plain d rather than propagating backwards). */
+      const sCorr = clippedAtStop ? 0 : renderSag(Math.abs(y), i, L);
+      y += (d - sCorr > 0 ? d - sCorr : d) * Math.tan(U);
+    }
   }
-  return { pts, ghostPts, y, u: Math.tan(U), clipped };
+  return { pts, ghostPts, y, u: Math.tan(U), clipped, clippedAtStop };
 }
 
 /**

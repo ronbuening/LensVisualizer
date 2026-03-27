@@ -6,7 +6,7 @@
  */
 
 import validateLensData from "./validateLensData.js";
-import { FLAT_R_THRESHOLD, sagSlopeRaw } from "./optics.js";
+import { FLAT_R_THRESHOLD, sagSlopeRaw, conicPolySag } from "./optics.js";
 import type {
   LensData,
   SurfaceData,
@@ -111,7 +111,8 @@ function realTraceToStopFull(
       U = alpha + Math.asin(sinIp);
     }
     n = nn;
-    y += d * Math.tan(U);
+    const sCorr = conicPolySag(Math.abs(y), R, asphByIdx[i]);
+    y += (d - sCorr > 0 ? d - sCorr : d) * Math.tan(U);
   }
   return { y, u: Math.tan(U) };
 }
@@ -187,7 +188,10 @@ function realTraceFullSystemDetailed(
       U = alpha + Math.asin(sinIp);
     }
     n = nn;
-    if (i < N - 1) y += d * Math.tan(U);
+    if (i < N - 1) {
+      const sCorr = conicPolySag(Math.abs(y), R, asphByIdx[i]);
+      y += (d - sCorr > 0 ? d - sCorr : d) * Math.tan(U);
+    }
   }
   return { y, u: Math.tan(U), heights, clipped };
 }

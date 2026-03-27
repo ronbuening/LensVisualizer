@@ -205,7 +205,7 @@ export default function AberrationsPanel({
             style={{ display: "flex", alignItems: "center", gap: 10 }}
             title={
               "Longitudinal spherical aberration: axial focus shift of a marginal ray " +
-              "vs. paraxial reference. Positive = undercorrected (real focus farther from lens)."
+              "vs. paraxial reference. Negative = undercorrected (marginal focus closer to lens)."
             }
           >
             <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>SA</span>
@@ -222,7 +222,7 @@ export default function AberrationsPanel({
             </span>
             {saResult && (
               <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>
-                ({saResult.saMm > 0 ? "undercorrected" : saResult.saMm < 0 ? "overcorrected" : "corrected"})
+                ({saResult.saMm < 0 ? "undercorrected" : saResult.saMm > 0 ? "overcorrected" : "corrected"})
               </span>
             )}
           </div>
