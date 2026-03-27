@@ -225,18 +225,18 @@ const LENS_DATA = {
   surfaces: [
     // ── G1 ──────────────────────────────────────────────────
     { label: "1", R: 135.481, d: 4.8268, nd: 1.7725, elemId: 1, sd: 29.0 },
-    { label: "2", R: -190.5454, d: 0.2, nd: 1.0, elemId: 0, sd: 28.0 },
+    { label: "2", R: -190.5454, d: 0.2, nd: 1.0, elemId: 0, sd: 27.5 },
     { label: "3", R: 49.725, d: 5.0443, nd: 1.61272, elemId: 2, sd: 27.5 },
-    { label: "4", R: 328.1282, d: 3.2512, nd: 1.0, elemId: 0, sd: 24.5 },
+    { label: "4", R: 328.1282, d: 3.2512, nd: 1.0, elemId: 0, sd: 23.0 },
     { label: "5", R: -301.4048, d: 1.3, nd: 1.71736, elemId: 3, sd: 22.5 },
     { label: "6", R: 36.6648, d: 0.2601, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "7", R: 39.1876, d: 5.0203, nd: 1.7725, elemId: 4, sd: 21.5 },
-    { label: "8", R: 1e15, d: 3.0, nd: 1.0, elemId: 0, sd: 20.0 }, // D8 (variable)
+    { label: "7", R: 39.1876, d: 5.0203, nd: 1.7725, elemId: 4, sd: 15.0 },
+    { label: "8", R: 1e15, d: 3.0, nd: 1.0, elemId: 0, sd: 18.0 }, // D8 (variable)
     // ── G2 ──────────────────────────────────────────────────
     { label: "9", R: -184.4593, d: 1.1, nd: 1.58267, elemId: 5, sd: 17.5 },
-    { label: "10", R: 27.3895, d: 4.0524, nd: 1.0, elemId: 0, sd: 16.5 },
-    { label: "11", R: -173.3863, d: 1.2519, nd: 1.53172, elemId: 6, sd: 16.0 }, // L6 (D1 front)
-    { label: "12", R: 26.3938, d: 4.0212, nd: 1.80518, elemId: 7, sd: 15.5 }, // L6→L7 junction
+    { label: "10", R: 27.3895, d: 4.0524, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "11", R: -173.3863, d: 1.2519, nd: 1.53172, elemId: 6, sd: 12.0 }, // L6 (D1 front)
+    { label: "12", R: 26.3938, d: 4.0212, nd: 1.80518, elemId: 7, sd: 15.0 }, // L6→L7 junction
     { label: "13", R: 89.6909, d: 21.449, nd: 1.0, elemId: 0, sd: 14.5 }, // D13 (variable)
     // ── Aperture stop ───────────────────────────────────────
     { label: "STO", R: 1e15, d: 14.484, nd: 1.0, elemId: 0, sd: 12.9 }, // D14 (variable)
