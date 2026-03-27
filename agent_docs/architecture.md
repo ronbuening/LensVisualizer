@@ -87,6 +87,7 @@
 |--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
+| `AberrationsPanel.tsx` | `src/components/display/` | Collapsible aberration metrics panel (SA, future: distortion, LSA, vignetting, coma) |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -109,6 +110,7 @@
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
+| `aberrationAnalysis.ts` | `src/optics/` | Pure aberration analysis helpers (spherical aberration; future: distortion, vignetting, coma) |
 
 ### Utilities
 
@@ -202,12 +204,13 @@ Sub-components:
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
 - **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
-- **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, and legend section extracted from LensDiagramPanel; composes DiagramControls, ElementInspector, and DiagramLegend
+- **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and aberrations panel; composes DiagramControls, ElementInspector, DiagramLegend, and AberrationsPanel
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 - **`AbbeDiagram.tsx`** (`src/components/display/`) — Abbe glass map plotting each element on standard Vd × Nd axes with grid, scaling, and element labels
+- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible panel for aberration metrics; computes SA via `computeSphericalAberration()` with `useMemo` from current slider state
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
@@ -237,6 +240,16 @@ Pure-function LCA scaling for consistent magnification across different lenses:
 - **`computeLcaBarOffsets(spread, effectiveSC)`** — Computes pixel offsets for LCA wavelength bars using a fixed reference (`REFERENCE_LCA_MM = 0.15 mm`) rather than auto-scaling per lens. This ensures visual consistency: the same physical LCA always produces the same visual offset.
 
 No React dependencies — fully testable in isolation.
+
+## aberrationAnalysis.ts
+
+Pure-function aberration analysis helpers. All functions accept the runtime lens object L and current slider-derived parameters — no build-time dependencies, no React dependencies.
+
+- **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a paraxial reference ray. Averages ±Y marginal rays for symmetry. Returns `{saMm, saUm, realIntercept, paraxialIntercept}` or null if all marginal fractions are clipped.
+
+Sign convention: positive SA = undercorrected (real marginal focus farther from lens than paraxial).
+
+Future additions: distortion curve (#297), longitudinal SA plot (#298), vignetting/relative illumination (#299), coma visualization (#300).
 
 ## validateLensData.ts
 
