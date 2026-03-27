@@ -81,6 +81,31 @@ function auditSitemap(routes) {
   if (missing === 0) {
     ok(`sitemap.xml contains all ${routes.length} URLs`);
   }
+
+  const routeFreshness = buildMeta.routeFreshness || {};
+  const sitemapBlocks = [...content.matchAll(/<url>\s*<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>[\s\S]*?<\/url>/g)];
+  const lastmodByLoc = Object.fromEntries(sitemapBlocks.map(([, loc, lastmod]) => [loc, lastmod]));
+  let lastmodMismatches = 0;
+
+  for (const route of routes) {
+    const loc = `https://opticalbench.net${route}`;
+    const expectedLastmod = routeFreshness[route]?.lastModified;
+    if (!expectedLastmod) {
+      error(`routeFreshness missing lastModified for ${route}`);
+      lastmodMismatches++;
+      continue;
+    }
+    if (lastmodByLoc[loc] !== expectedLastmod) {
+      error(
+        `sitemap.xml lastmod mismatch for ${route}: expected ${expectedLastmod}, found ${lastmodByLoc[loc] || "missing"}`,
+      );
+      lastmodMismatches++;
+    }
+  }
+
+  if (lastmodMismatches === 0) {
+    ok("sitemap.xml lastmod values match build metadata");
+  }
 }
 
 function auditAllPrerenderedPages(routes) {

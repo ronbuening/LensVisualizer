@@ -36,10 +36,11 @@ function generateSitemap() {
 
   const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
   const routes = buildMeta.routes;
-  const today = new Date().toISOString().split("T")[0];
+  const routeFreshness = buildMeta.routeFreshness || {};
 
   const urls = routes.map((route) => ({
     loc: `${SITE_URL}${route}`,
+    lastmod: routeFreshness[route]?.lastModified || new Date().toISOString().split("T")[0],
     priority: routePriority(route),
   }));
 
@@ -47,8 +48,8 @@ function generateSitemap() {
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...urls.map(
-      ({ loc, priority }) =>
-        `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>\n  </url>`,
+      ({ loc, lastmod, priority }) =>
+        `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority}</priority>\n  </url>`,
     ),
     "</urlset>",
     "",
