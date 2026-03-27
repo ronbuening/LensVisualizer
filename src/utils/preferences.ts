@@ -51,6 +51,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.headerInfoExpanded === "boolean") out.headerInfoExpanded = p.headerInfoExpanded;
     if (typeof p.abbeShowGlassType === "boolean") out.abbeShowGlassType = p.abbeShowGlassType;
     if (typeof p.showEffectiveAperture === "boolean") out.showEffectiveAperture = p.showEffectiveAperture;
+    if (typeof p.aberrationsExpanded === "boolean") out.aberrationsExpanded = p.aberrationsExpanded;
     return out;
   } catch {
     return {};

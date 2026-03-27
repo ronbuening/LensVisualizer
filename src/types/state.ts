@@ -57,7 +57,8 @@ export type PanelField =
   | "legendExpanded"
   | "headerInfoExpanded"
   | "abbeShowGlassType"
-  | "showEffectiveAperture";
+  | "showEffectiveAperture"
+  | "aberrationsExpanded";
 
 export interface PanelsSlice {
   focusExpanded: boolean;
@@ -67,6 +68,7 @@ export interface PanelsSlice {
   headerInfoExpanded: boolean;
   abbeShowGlassType: boolean;
   showEffectiveAperture: boolean;
+  aberrationsExpanded: boolean;
 }
 
 export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";
@@ -130,6 +132,7 @@ export interface Preferences {
   headerInfoExpanded: boolean;
   abbeShowGlassType: boolean;
   showEffectiveAperture: boolean;
+  aberrationsExpanded: boolean;
 }
 
 /* ── URL state (from query params) ── */

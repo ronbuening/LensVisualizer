@@ -86,6 +86,7 @@ Read the relevant file before starting work on that area:
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
+- **Aberration analysis** — slider-state-dependent metrics (SA, distortion, vignetting) live in `src/optics/aberrationAnalysis.ts` as pure helpers, memoized from current state in `AberrationsPanel`; they must NOT go in `buildLens()` which is build-time only
 - See `agent_docs/architecture.md` for full component relationships and data flow
 
 ## Adding a New Lens

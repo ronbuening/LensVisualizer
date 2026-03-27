@@ -85,6 +85,7 @@ export default function LensDiagramPanel({
     headerInfoExpanded,
     abbeShowGlassType,
     showEffectiveAperture,
+    aberrationsExpanded,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -309,6 +310,10 @@ export default function LensDiagramPanel({
                 chromSpread={chromSpread ?? null}
                 rayTracksF={rayTracksF}
                 onOpenAbbeDiagram={overlays.openAbbeDiagram}
+                zPos={zPos}
+                currentEPSD={currentEPSD}
+                aberrationsExpanded={aberrationsExpanded}
+                onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
               />
             )}
           </div>
