@@ -6,16 +6,19 @@ import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
-const { mockComputeSphericalAberration, mockComputeSAProfile, mockComputeMeridionalComa } = vi.hoisted(() => ({
+const { mockComputeSphericalAberration, mockComputeSAProfile, mockComputeMeridionalComa, mockComputeComaPreview } =
+  vi.hoisted(() => ({
   mockComputeSphericalAberration: vi.fn(),
   mockComputeSAProfile: vi.fn(),
   mockComputeMeridionalComa: vi.fn(),
+  mockComputeComaPreview: vi.fn(),
 }));
 
 vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
+  computeComaPreview: mockComputeComaPreview,
 }));
 
 const theme = {
@@ -49,6 +52,69 @@ const baseProps = {
 describe("AberrationsPanel", () => {
   beforeEach(() => {
     mockComputeSAProfile.mockReturnValue([]);
+    mockComputeComaPreview.mockReturnValue({
+      fieldFractions: [0, 0.25, 0.5, 0.75],
+      usableFieldCount: 4,
+      sharedRelativeHalfRangeMm: 0.06,
+      fields: [
+        {
+          fieldFraction: 0,
+          label: "Center",
+          fieldAngleDeg: 0,
+          sampleCount: 51,
+          validSampleCount: 51,
+          clippedSampleCount: 0,
+          chiefIntercept: 0,
+          minRelativeIntercept: -0.01,
+          maxRelativeIntercept: 0.01,
+          usable: true,
+          samples: [
+            { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.01, relativeImageHeight: -0.01, clipped: false },
+            { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
+            { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.01, relativeImageHeight: 0.01, clipped: false },
+          ],
+        },
+        {
+          fieldFraction: 0.25,
+          label: "25%",
+          fieldAngleDeg: 5,
+          sampleCount: 51,
+          validSampleCount: 49,
+          clippedSampleCount: 2,
+          chiefIntercept: -0.02,
+          minRelativeIntercept: -0.03,
+          maxRelativeIntercept: 0.04,
+          usable: true,
+          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.02, relativeImageHeight: 0, clipped: false }],
+        },
+        {
+          fieldFraction: 0.5,
+          label: "50%",
+          fieldAngleDeg: 10,
+          sampleCount: 51,
+          validSampleCount: 47,
+          clippedSampleCount: 4,
+          chiefIntercept: -0.05,
+          minRelativeIntercept: -0.05,
+          maxRelativeIntercept: 0.06,
+          usable: true,
+          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.05, relativeImageHeight: 0, clipped: false }],
+        },
+        {
+          fieldFraction: 0.75,
+          label: "75%",
+          fieldAngleDeg: 15,
+          sampleCount: 51,
+          validSampleCount: 43,
+          clippedSampleCount: 8,
+          chiefIntercept: -0.09,
+          minRelativeIntercept: -0.06,
+          maxRelativeIntercept: 0.05,
+          usable: true,
+          samples: [{ index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.09, relativeImageHeight: 0, clipped: false }],
+        },
+      ],
+    });
     mockComputeMeridionalComa.mockReturnValue({
       fieldAngleDeg: 12.5,
       sampleCount: 51,
@@ -115,6 +181,14 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     render(<AberrationsPanel {...baseProps} />);
+    expect(screen.getAllByText("Coma Preview").length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Representative meridional coma preview/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Center").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("75%").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("FIELDS").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("4/4").length).toBeGreaterThan(0);
     expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
     expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
@@ -124,6 +198,14 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("300 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("VALID").length).toBeGreaterThan(0);
     expect(screen.getAllByText("47/51").length).toBeGreaterThan(0);
+  });
+
+  it("shows fallback copy when preview computation fails", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    mockComputeComaPreview.mockReturnValue(null);
+
+    render(<AberrationsPanel {...baseProps} />);
+    expect(screen.getByText(/Unable to compute a representative coma preview/i)).toBeTruthy();
   });
 
   it("shows fallback copy when coma computation fails", () => {
