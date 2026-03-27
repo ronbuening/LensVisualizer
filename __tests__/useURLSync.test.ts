@@ -42,6 +42,24 @@ describe("useURLSync — return value", () => {
 /* ── Immediate URL update on lens selection change ── */
 
 describe("useURLSync — immediate URL update on lens change", () => {
+  it("skips immediate replaceState on lens pages in single-lens mode", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state = makeState();
+
+    renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    expect(replaceStateSpy).not.toHaveBeenCalled();
+  });
+
+  it("skips immediate replaceState on compare pages", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state = { ...makeState(), lens: { ...makeState().lens, comparing: true } };
+
+    renderHook(() => useURLSync(state, dispatch, null, false, true));
+
+    expect(replaceStateSpy).not.toHaveBeenCalled();
+  });
+
   it("calls history.replaceState on mount for single-lens mode", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state = makeState();
@@ -94,6 +112,23 @@ describe("useURLSync — immediate URL update on lens change", () => {
 /* ── Debounced slider URL update ── */
 
 describe("useURLSync — updateURLWithSliders (debounced)", () => {
+  it("preserves the current lens-page pathname when only query params should change", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = { ...makeState(), sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0 } };
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}`);
+    replaceStateSpy.mockClear();
+
+    const { result } = renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(300);
+    });
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?focus=0.500`);
+  });
+
   it("does not call replaceState immediately when invoked", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state = makeState();
@@ -227,5 +262,27 @@ describe("useURLSync — comparison mode slider URL", () => {
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
     const urlArg = lastCall[2] as string;
     expect(urlArg).toContain("focus=");
+  });
+
+  it("preserves the compare-page pathname when syncing shared slider params", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const [lensKeyA, lensKeyB] = CATALOG_KEYS;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, comparing: true, lensKeyA, lensKeyB },
+      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0.2, sharedZoomT: 0 },
+    };
+    window.history.replaceState({}, "", `/compare/${lensKeyA}/${lensKeyB}`);
+    replaceStateSpy.mockClear();
+
+    const { result } = renderHook(() => useURLSync(state, dispatch, null, false, true));
+
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(300);
+    });
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?focus=0.400&aperture=0.200`);
   });
 });
