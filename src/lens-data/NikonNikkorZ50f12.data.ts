@@ -294,19 +294,19 @@ const LENS_DATA = {
     { label: "2", R: 46.02198, d: 3.54, nd: 1.0, elemId: 0, sd: 22.8 }, // 2   L11 rear → air
     { label: "3", R: 50.87481, d: 4.19, nd: 1.94595, elemId: 2, sd: 23.8 }, // 3   L12 front
     { label: "4", R: 62.23366, d: 16.51, nd: 1.0, elemId: 0, sd: 23.4 }, // 4   L12 rear → air
-    { label: "5", R: -43.98849, d: 3.2, nd: 1.55298, elemId: 3, sd: 26.4 }, // 5   L13 front
-    { label: "6", R: -158.30791, d: 4.05, nd: 1.0, elemId: 0, sd: 27.4 }, // 6   L13 rear → air
-    { label: "7", R: -82.01412, d: 6.7, nd: 1.59349, elemId: 4, sd: 29.1 }, // 7   L14 front
-    { label: "8", R: -52.72274, d: 0.1, nd: 1.0, elemId: 0, sd: 31.7 }, // 8+9 L14 rear → air (collapsed: −3.000 + 3.100)
-    { label: "9", R: 113.04472, d: 10.81, nd: 1.59349, elemId: 5, sd: 31.7 }, // 10  L15 front
-    { label: "10", R: -113.04472, d: 0.2, nd: 1.0, elemId: 0, sd: 32.4 }, // 11  L15 rear → air
-    { label: "11", R: 75.49059, d: 6.54, nd: 1.59349, elemId: 6, sd: 32.4 }, // 12  L16 front
-    { label: "12", R: 275.33026, d: 0.2, nd: 1.0, elemId: 0, sd: 31.1 }, // 13  L16 rear → air
-    { label: "13", R: 48.85546, d: 10.35, nd: 1.59349, elemId: 7, sd: 31.0 }, // 14  L17 front
-    { label: "14", R: 571.46325, d: 0.68, nd: 1.0, elemId: 0, sd: 26.9 }, // 15  L17 rear → air
-    { label: "15", R: 290.13527, d: 6.04, nd: 1.59319, elemId: 8, sd: 26.5 }, // 16  L18 front
-    { label: "16", R: -109.11, d: 2.16, nd: 1.738, elemId: 9, sd: 24.0 }, // 17  L18→L19 cemented junction
-    { label: "17", R: 40.04126, d: 7.79, nd: 1.0, elemId: 0, sd: 23.2 }, // 18  L19 rear → air
+    { label: "5", R: -43.98849, d: 3.2, nd: 1.55298, elemId: 3, sd: 23.8 }, // 5   L13 front
+    { label: "6", R: -158.30791, d: 4.05, nd: 1.0, elemId: 0, sd: 24.2 }, // 6   L13 rear → air
+    { label: "7", R: -82.01412, d: 6.7, nd: 1.59349, elemId: 4, sd: 24.8 }, // 7   L14 front
+    { label: "8", R: -52.72274, d: 0.1, nd: 1.0, elemId: 0, sd: 25.2 }, // 8+9 L14 rear → air (collapsed: −3.000 + 3.100)
+    { label: "9", R: 113.04472, d: 10.81, nd: 1.59349, elemId: 5, sd: 25.5 }, // 10  L15 front
+    { label: "10", R: -113.04472, d: 0.2, nd: 1.0, elemId: 0, sd: 26.0 }, // 11  L15 rear → air
+    { label: "11", R: 75.49059, d: 6.54, nd: 1.59349, elemId: 6, sd: 26.2 }, // 12  L16 front
+    { label: "12", R: 275.33026, d: 0.2, nd: 1.0, elemId: 0, sd: 25.8 }, // 13  L16 rear → air
+    { label: "13", R: 48.85546, d: 10.35, nd: 1.59349, elemId: 7, sd: 25.6 }, // 14  L17 front
+    { label: "14", R: 571.46325, d: 0.68, nd: 1.0, elemId: 0, sd: 25.0 }, // 15  L17 rear → air
+    { label: "15", R: 290.13527, d: 6.04, nd: 1.59319, elemId: 8, sd: 25.3 }, // 16  L18 front
+    { label: "16", R: -109.11, d: 2.16, nd: 1.738, elemId: 9, sd: 24.3 }, // 17  L18→L19 cemented junction
+    { label: "17", R: 40.04126, d: 7.79, nd: 1.0, elemId: 0, sd: 23.0 }, // 18  L19 rear → air
     { label: "STO", R: 1e15, d: 19.164, nd: 1.0, elemId: 0, sd: 19.7 }, // 19  Aperture stop (variable d)
     { label: "19", R: -37.07012, d: 1.7, nd: 1.72047, elemId: 10, sd: 17.8 }, // 20  L21 front
     { label: "20", R: -95.03209, d: 0.2, nd: 1.0, elemId: 0, sd: 18.0 }, // 21  L21 rear → air
