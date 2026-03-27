@@ -1,3 +1,5 @@
+import type { LensDataInput } from "../types/optics.js";
+
 // ============================================================================
 // NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S
 // Patent: JP2022-92388A, Example 1 (Numerical Example 1)
