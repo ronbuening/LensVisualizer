@@ -26,6 +26,7 @@ export const SET_ZOOM_T = "SET_ZOOM_T";
 export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
+export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
 
@@ -59,6 +60,7 @@ const PANEL_FIELDS = new Set([
   "abbeShowGlassType",
   "showEffectiveAperture",
   "aberrationsExpanded",
+  "analysisDrawerOpen",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
 
@@ -119,6 +121,8 @@ export function createInitialState(
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? false,
+      analysisDrawerOpen: false,
+      analysisDrawerTab: prefs.analysisDrawerTab ?? "aberrations",
     },
     overlays: {
       showAbout: false,
@@ -143,9 +147,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     /* ── Lens selection ── */
     case SET_LENS_A: {
       const next = { ...state, lens: { ...state.lens, lensKeyA: action.key } };
-      /* In single mode, reset sliders when switching lenses */
+      /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
         next.sliders = { focusT: 0, zoomT: 0, stopdownT: 0 };
+        next.panels = { ...state.panels, analysisDrawerOpen: false };
       }
       return next;
     }
@@ -183,6 +188,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_PANEL_EXPANDED:
       if (!PANEL_FIELDS.has(action.panel)) return state;
       return { ...state, panels: { ...state.panels, [action.panel]: action.expanded } };
+
+    /* ── Analysis drawer tab selection ── */
+    case SET_ANALYSIS_TAB:
+      return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
 
     /* ── Overlays ── */
     case SET_OVERLAY:

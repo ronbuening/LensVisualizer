@@ -8,7 +8,6 @@
 import DiagramControls from "../controls/DiagramControls.js";
 import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
-import AberrationsPanel from "../display/AberrationsPanel.js";
 import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -57,10 +56,7 @@ interface DiagramControlPanelProps {
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
-  zPos: number[];
-  currentEPSD: number;
-  aberrationsExpanded: boolean;
-  onAberrationsExpandedChange: (expanded: boolean) => void;
+  onOpenAnalysisDrawer: () => void;
 }
 
 export default function DiagramControlPanel({
@@ -103,10 +99,7 @@ export default function DiagramControlPanel({
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
-  zPos,
-  currentEPSD,
-  aberrationsExpanded,
-  onAberrationsExpandedChange,
+  onOpenAnalysisDrawer,
 }: DiagramControlPanelProps) {
   return (
     <div
@@ -191,27 +184,39 @@ export default function DiagramControlPanel({
         )}
       </div>
 
-      {/* ── Aberrations panel ── */}
+      {/* ── Analysis drawer launch button ── */}
       <div
         style={{
           flex: useSideLayout ? "0 0 auto" : "1 1 100%",
-          padding: compact ? "4px 14px" : "4px 22px",
+          padding: compact ? "6px 14px" : "6px 22px",
           borderTop: `1px solid ${t.panelBorder}`,
           transition: "background 0.2s, border-color 0.3s",
           background: t.infoBgIdle,
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        <AberrationsPanel
-          L={L}
-          t={t}
-          zPos={zPos}
-          focusT={focusT}
-          zoomT={zoomT}
-          currentEPSD={currentEPSD}
-          currentPhysStopSD={currentPhysStopSD}
-          expanded={aberrationsExpanded}
-          onExpandedChange={onAberrationsExpandedChange}
-        />
+        <button
+          onClick={onOpenAnalysisDrawer}
+          style={{
+            borderRadius: 10,
+            cursor: "pointer",
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            fontSize: 9,
+            fontFamily: "inherit",
+            letterSpacing: "0.08em",
+            transition: "all 0.25s",
+            background: t.toggleBg,
+            border: `1px solid ${t.toggleBorder}`,
+            color: t.muted,
+          }}
+        >
+          <span>ANALYSIS</span>
+          <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
+        </button>
       </div>
     </div>
   );
