@@ -282,16 +282,16 @@ const LENS_DATA = {
     { label: "19", R: 37.221, d: 5.6, nd: 1.0, elemId: 0, sd: 14.5 }, // L24 rear → air
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 5.78, nd: 1.0, elemId: 0, sd: 9.8 }, // ST — patent surface i=20
+    { label: "STO", R: 1e15, d: 5.78, nd: 1.0, elemId: 0, sd: 9.5 }, // ST — patent surface i=20
 
     // ── Gr2 continued (post-stop) ──
-    { label: "21", R: -24.127, d: 1.3, nd: 1.8061, elemId: 12, sd: 13.0 }, // L25 front (D2 doublet)
-    { label: "22", R: 47.257, d: 5.35, nd: 1.8322, elemId: 13, sd: 13.5 }, // L25→L26 cemented junction
-    { label: "23A", R: -131.725, d: 0.3, nd: 1.0, elemId: 0, sd: 16.0 }, // L26 rear → air (asph)
-    { label: "24", R: 64.397, d: 8.98, nd: 1.59282, elemId: 14, sd: 16.5 }, // L27 front (ED)
-    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 20.0 }, // L27 rear → air
-    { label: "26A", R: -280.388, d: 3.71, nd: 1.6935, elemId: 15, sd: 20.0 }, // L28 front (asph)
-    { label: "27A", R: -55.502, d: 38.47, nd: 1.0, elemId: 0, sd: 20.5 }, // L28 rear → image (asph) [VARIABLE: BF]
+    { label: "21", R: -24.127, d: 1.3, nd: 1.8061, elemId: 12, sd: 11.5 }, // L25 front (D2 doublet)
+    { label: "22", R: 47.257, d: 5.35, nd: 1.8322, elemId: 13, sd: 12.5 }, // L25→L26 cemented junction
+    { label: "23A", R: -131.725, d: 0.3, nd: 1.0, elemId: 0, sd: 14.5 }, // L26 rear → air (asph)
+    { label: "24", R: 64.397, d: 8.98, nd: 1.59282, elemId: 14, sd: 15.0 }, // L27 front (ED)
+    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 18.5 }, // L27 rear → air
+    { label: "26A", R: -280.388, d: 3.71, nd: 1.6935, elemId: 15, sd: 18.5 }, // L28 front (asph)
+    { label: "27A", R: -55.502, d: 38.47, nd: 1.0, elemId: 0, sd: 19.0 }, // L28 rear → image (asph) [VARIABLE: BF]
   ],
 
   /* ── Aspherical coefficients ──
