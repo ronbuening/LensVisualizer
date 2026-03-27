@@ -71,6 +71,7 @@ Read the relevant file before starting work on that area:
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
 - **`agent_docs/workflow.md`** — Commit style, pre-commit checks, and deployment pipeline
+- **`agent_docs/record_keeping.md`** — How to maintain branch/task records without bloating `CLAUDE.md`
 - **`agent_docs/code_conventions.md`** — Naming, TypeScript, formatting, and architecture constraints
 - **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices
 - **`agent_docs/gotchas.md`** — Common pitfalls and non-obvious constraints
@@ -87,7 +88,7 @@ Read the relevant file before starting work on that area:
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
 - **Aberration analysis** — slider-state-dependent metrics (SA, distortion, vignetting) live in `src/optics/aberrationAnalysis.ts` and `src/optics/distortionAnalysis.ts` as pure helpers, memoized from current state in the Analysis Drawer tabs; they must NOT go in `buildLens()` which is build-time only
-- **Analysis Drawer** — sliding panel that overlays the SVG viewport with tabbed analysis views (aberrations, distortion). Opened via "ANALYSIS" button in `DiagramControlPanel`; state managed via `analysisDrawerOpen` / `analysisDrawerTab` in the panels slice. Desktop: vertical tabs on the left; mobile: horizontal tabs on top. New analysis tabs are added by extending `ANALYSIS_TABS` in `LensDiagramPanel.tsx` and creating a tab content component in `src/components/display/`
+- **Analysis Drawer** — sliding panel that overlays the SVG viewport with tabbed analysis views (aberrations, distortion, breathing, vignetting). Opened via the "ABERRATIONS & DISTORTIONS" button in `LensDiagramPanel.tsx`; state managed via `analysisDrawerOpen` / `analysisDrawerTab` in the panels slice. Desktop: vertical tabs on the left; mobile: horizontal tabs on top. New analysis tabs are added by extending `ANALYSIS_TABS` in `LensDiagramPanel.tsx` and creating a tab content component in `src/components/display/`
 - See `agent_docs/architecture.md` for full component relationships and data flow
 
 ## Adding a New Lens

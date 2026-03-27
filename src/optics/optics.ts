@@ -14,6 +14,20 @@ import type {
   AsphericCoefficients,
 } from "../types/optics.js";
 
+interface StateSurfaceTraceResult {
+  y: number;
+  u: number;
+  clipped: boolean;
+  heights: number[] | null;
+}
+
+export interface FieldGeometryState {
+  halfFieldDeg: number;
+  yRatio: number;
+  b: number;
+  epRatio: number;
+}
+
 /* ── Named constants ── */
 export const FLAT_R_THRESHOLD: number = 1e10; /* surfaces with |R| above this are treated as flat (plano) */
 const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
@@ -208,6 +222,179 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens): LayoutR
   const z = [0];
   for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
   return { z, th, imgZ: z[z.length - 1] + th[th.length - 1] };
+}
+
+function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens) {
+  return L.S.map((s, i) => ({ ...s, d: thick(i, focusT, zoomT, L) }));
+}
+
+function traceStateSurfacesParaxial(
+  S: RuntimeLens["S"],
+  y0: number,
+  u0: number,
+  {
+    stopAt,
+    skipLastTransfer = false,
+    recordHeights = false,
+  }: { stopAt?: number; skipLastTransfer?: boolean; recordHeights?: boolean } = {},
+): StateSurfaceTraceResult {
+  const N = stopAt !== undefined ? stopAt : S.length;
+  const total = S.length;
+  const heights: number[] | null = recordHeights ? [] : null;
+  let y = y0,
+    u = u0,
+    n = 1.0;
+  for (let i = 0; i < N; i++) {
+    if (recordHeights) heights!.push(y);
+    const { R, nd, d } = S[i];
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
+    n = nn;
+    const isLast = i === N - 1;
+    if (isLast && skipLastTransfer) {
+      /* skip */
+    } else if (i < total - 1) {
+      y += d * u;
+    }
+  }
+  return { y, u, clipped: false, heights };
+}
+
+function traceStateSurfacesReal(
+  S: RuntimeLens["S"],
+  asphByIdx: RuntimeLens["asphByIdx"],
+  y0: number,
+  u0: number,
+  stopAt?: number,
+): StateSurfaceTraceResult {
+  const N = stopAt !== undefined ? stopAt : S.length;
+  let y = y0,
+    U = Math.atan(u0),
+    n = 1.0;
+  let clipped = false;
+  for (let i = 0; i < N; i++) {
+    const { R, nd, d, sd } = S[i];
+    if (Math.abs(y) > sd) clipped = true;
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) {
+      const absY = Math.abs(y);
+      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
+      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
+      const sinIp = (n / nn) * Math.sin(U - alpha);
+      if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN, clipped: true, heights: null };
+      U = alpha + Math.asin(sinIp);
+    }
+    n = nn;
+    if (i < N - 1) y += d * Math.tan(U);
+  }
+  return { y, u: Math.tan(U), clipped, heights: null };
+}
+
+export function computeFieldGeometryAtState(focusT: number, zoomT: number, L: RuntimeLens): FieldGeometryState {
+  const S = stateSurfaces(focusT, zoomT, L);
+  const stopIdx = L.stopIdx;
+  const delta = 1e-4;
+
+  const paraxMarg = traceStateSurfacesParaxial(S, 1, 0, { stopAt: stopIdx });
+  const paraxChief = traceStateSurfacesParaxial(S, 0, 1, { stopAt: stopIdx });
+  const realMarg = traceStateSurfacesReal(S, L.asphByIdx, delta, 0, stopIdx);
+  const realChief = traceStateSurfacesReal(S, L.asphByIdx, 0, delta, stopIdx);
+
+  const yRatio = isFinite(realMarg.y) ? realMarg.y / delta : paraxMarg.y;
+  const b = isFinite(realChief.y) ? realChief.y / delta : paraxChief.y;
+  const epRatio = Math.abs(yRatio) > 1e-9 ? b / yRatio : 0;
+
+  const hA = traceStateSurfacesParaxial(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hB = traceStateSurfacesParaxial(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const r = Math.abs(hA[stopIdx]) > 1e-15 ? hB[stopIdx] / hA[stopIdx] : 0;
+  let minU = Infinity;
+  for (let i = 0; i < L.N; i++) {
+    if (i === stopIdx) continue;
+    const coeff = Math.abs(hB[i] - r * hA[i]);
+    if (coeff > 1e-8) {
+      const uMax = S[i].sd / coeff;
+      if (uMax < minU) minU = uMax;
+    }
+  }
+  let halfFieldDeg = (Math.atan(minU) * 180) / Math.PI;
+
+  const testChief = (deg: number): boolean => {
+    const uField = -Math.tan((deg * Math.PI) / 180);
+    const yChiefIn = -epRatio * uField;
+    const trace = traceStateSurfacesReal(S, L.asphByIdx, yChiefIn, uField);
+    return isFinite(trace.y) && !trace.clipped;
+  };
+
+  if (isFinite(halfFieldDeg) && halfFieldDeg > 0 && !testChief(halfFieldDeg)) {
+    let lo = 0,
+      hi = halfFieldDeg;
+    for (let i = 0; i < 20; i++) {
+      const mid = (lo + hi) / 2;
+      if (testChief(mid)) lo = mid;
+      else hi = mid;
+    }
+    halfFieldDeg = lo;
+  }
+
+  return { halfFieldDeg, yRatio, b, epRatio };
+}
+
+export function traceChiefRayAtAngle(
+  fieldAngleDeg: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): RayTraceResult {
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  const uField = -Math.tan(thetaRad);
+  const yChief = -geom.epRatio * uField;
+  return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
+}
+
+export function chiefRayImageHeight(
+  fieldAngleDeg: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): number {
+  const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry);
+  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
+}
+
+export function solveFieldAngleForImageHeight(
+  targetImageHeight: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): number | null {
+  if (!isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  if (!isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
+
+  const target = -Math.abs(targetImageHeight);
+  let lo = 0;
+  let hi = geom.halfFieldDeg;
+  const yLo = chiefRayImageHeight(lo, zPos, focusT, zoomT, L, geom);
+  const yHi = chiefRayImageHeight(hi, zPos, focusT, zoomT, L, geom);
+  if (!isFinite(yLo) || !isFinite(yHi)) return null;
+  if (target > yLo || target < yHi) return null;
+
+  for (let i = 0; i < 32; i++) {
+    const mid = (lo + hi) / 2;
+    const yMid = chiefRayImageHeight(mid, zPos, focusT, zoomT, L, geom);
+    if (!isFinite(yMid)) return null;
+    if (Math.abs(yMid - target) < 1e-4) return mid;
+    if (yMid > target) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
 }
 
 /**

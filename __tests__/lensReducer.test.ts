@@ -284,6 +284,11 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "distortion" });
       expect(next.panels.analysisDrawerTab).toBe("distortion");
     });
+
+    it("accepts the breathing analysis tab", () => {
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "breathing" });
+      expect(next.panels.analysisDrawerTab).toBe("breathing");
+    });
   });
 
   /* ── Overlays ── */

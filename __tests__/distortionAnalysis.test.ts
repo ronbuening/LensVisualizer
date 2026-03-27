@@ -6,6 +6,8 @@ import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import NikonZ135Raw from "../src/lens-data/NikonZ135f18.data.js";
+import NikonZ100400Raw from "../src/lens-data/NikonNikkorZ100400f4556.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Helpers ── */
@@ -46,7 +48,7 @@ describe("computeDistortionCurve", () => {
     expect(samples[0].distortionPercent).toBe(0);
   });
 
-  it("field angles span from 0 to the half-field edge", () => {
+  it("field angles span from 0 to near the current field edge", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const dynamicEFL = eflAtFocus(0, 0, L);
@@ -57,8 +59,9 @@ describe("computeDistortionCurve", () => {
 
     const halfField = halfFieldAtZoom(0, L);
     const lastAngle = samples[samples.length - 1].fieldAngleDeg;
-    /* Last sample should be at or very near the half-field edge */
-    expect(lastAngle).toBeCloseTo(halfField, 1);
+    expect(lastAngle).toBeGreaterThan(0);
+    expect(lastAngle).toBeLessThanOrEqual(halfField);
+    expect(lastAngle).toBeGreaterThan(halfField * 0.9);
   });
 
   it("all samples have finite values", () => {
@@ -73,18 +76,21 @@ describe("computeDistortionCurve", () => {
       expect(isFinite(s.distortionPercent)).toBe(true);
       expect(isFinite(s.realHeight)).toBe(true);
       expect(isFinite(s.idealHeight)).toBe(true);
+      expect(isFinite(s.imageHeight)).toBe(true);
+      expect(isFinite(s.normalizedImageHeight)).toBe(true);
+      expect(isFinite(s.idealFieldAngleDeg)).toBe(true);
     }
   });
 
   /* ── Edge cases ── */
 
-  it("returns empty array when dynamicEFL is 0", () => {
+  it("ignores the legacy dynamicEFL input and still computes the curve", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const samples = computeDistortionCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
-    expect(samples).toEqual([]);
+    expect(samples.length).toBeGreaterThanOrEqual(9);
   });
 
   /* ── Zoom lens ── */
@@ -125,5 +131,40 @@ describe("computeDistortionCurve", () => {
     for (let i = 1; i < samples.length; i++) {
       expect(samples[i].fieldAngleDeg).toBeGreaterThan(samples[i - 1].fieldAngleDeg);
     }
+  });
+
+  it("image heights are monotonically increasing in magnitude", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    for (let i = 1; i < samples.length; i++) {
+      expect(Math.abs(samples[i].imageHeight)).toBeGreaterThan(Math.abs(samples[i - 1].imageHeight));
+      expect(samples[i].normalizedImageHeight).toBeGreaterThan(samples[i - 1].normalizedImageHeight);
+    }
+  });
+
+  it("keeps close-focus distortion bounded for Nikon Z 135mm f/1.8", () => {
+    const L = build(NikonZ135Raw);
+    const { z: zPos } = doLayout(1, 0, L);
+    const dynamicEFL = eflAtFocus(1, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 1, 0, dynamicEFL, currentPhysStopSD);
+    const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
+    expect(maxAbs).toBeLessThan(10);
+  });
+
+  it("keeps tele close-focus distortion bounded for Nikon Z 100-400mm", () => {
+    const L = build(NikonZ100400Raw);
+    const { z: zPos } = doLayout(1, 1, L);
+    const dynamicEFL = eflAtFocus(1, 1, L);
+    const { currentPhysStopSD } = apertureAt(L, 1, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
+    const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
+    expect(maxAbs).toBeLessThan(15);
   });
 });

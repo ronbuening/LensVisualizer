@@ -36,6 +36,7 @@ import AnalysisDrawer from "./AnalysisDrawer.js";
 import type { AnalysisTab } from "./AnalysisDrawer.js";
 import AberrationsPanel from "../display/AberrationsPanel.js";
 import DistortionTab from "../display/DistortionTab.js";
+import FocusBreathingTab from "../display/FocusBreathingTab.js";
 import VignettingTab from "../display/VignettingTab.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
@@ -47,6 +48,7 @@ import useMediaQuery from "../../utils/useMediaQuery.js";
 const ANALYSIS_TABS: AnalysisTab[] = [
   { id: "aberrations", label: "ABERRATIONS" },
   { id: "distortion", label: "DISTORTION" },
+  { id: "breathing", label: "BREATHING" },
   { id: "vignetting", label: "VIGNETTING" },
 ];
 
@@ -302,7 +304,7 @@ export default function LensDiagramPanel({
                     color: t.muted,
                   }}
                 >
-                  <span>ABERRATIONS</span>
+                  <span>ABERRATIONS &amp; DISTORTIONS</span>
                   <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
                 </button>
               )}
@@ -339,6 +341,9 @@ export default function LensDiagramPanel({
                     dynamicEFL={dynamicEFL}
                     currentPhysStopSD={currentPhysStopSD}
                   />
+                )}
+                {analysisDrawerTab === "breathing" && (
+                  <FocusBreathingTab L={L} t={t} focusT={focusT} zoomT={zoomT} dynamicEFL={dynamicEFL} />
                 )}
                 {analysisDrawerTab === "vignetting" && (
                   <VignettingTab

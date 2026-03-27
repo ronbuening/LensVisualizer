@@ -5,12 +5,20 @@
 - **Small, focused commits** — one logical change per commit (add a type, fix a bug, update a component, add a test)
 - **Commit and push frequently** — after each working stage, not only at the end
 - **Break larger tasks into stages** — commit at the end of each stage before moving to the next
+- **Update branch records at stage boundaries** — keep a short high-signal note in `agent_docs/records/` following `agent_docs/record_keeping.md`
 
 Typical stage breakdown:
 1. Types / interfaces → commit
 2. Optics/utils logic + tests → commit
 3. UI components → commit
 4. Final typecheck + lint + format pass → commit
+
+## Branch Records
+
+- For multi-step work, keep a concise branch/task record in `agent_docs/records/`
+- Record scope, meaningful changes, verification commands, and follow-ups
+- Before opening a PR, make sure the record reflects the final branch state
+- See `agent_docs/record_keeping.md` for the preferred format and pruning rules
 
 ## Pre-Commit Checks
 
