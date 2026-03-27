@@ -8,6 +8,7 @@
 import DiagramControls from "../controls/DiagramControls.js";
 import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
+import AberrationsPanel from "../display/AberrationsPanel.js";
 import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -56,6 +57,10 @@ interface DiagramControlPanelProps {
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
+  zPos: number[];
+  currentEPSD: number;
+  aberrationsExpanded: boolean;
+  onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
 export default function DiagramControlPanel({
@@ -98,6 +103,10 @@ export default function DiagramControlPanel({
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
+  zPos,
+  currentEPSD,
+  aberrationsExpanded,
+  onAberrationsExpandedChange,
 }: DiagramControlPanelProps) {
   return (
     <div
@@ -180,6 +189,29 @@ export default function DiagramControlPanel({
             onOpenAbbeDiagram={onOpenAbbeDiagram}
           />
         )}
+      </div>
+
+      {/* ── Aberrations panel ── */}
+      <div
+        style={{
+          flex: useSideLayout ? "0 0 auto" : "1 1 100%",
+          padding: compact ? "4px 14px" : "4px 22px",
+          borderTop: `1px solid ${t.panelBorder}`,
+          transition: "background 0.2s, border-color 0.3s",
+          background: t.infoBgIdle,
+        }}
+      >
+        <AberrationsPanel
+          L={L}
+          t={t}
+          zPos={zPos}
+          focusT={focusT}
+          zoomT={zoomT}
+          currentEPSD={currentEPSD}
+          currentPhysStopSD={currentPhysStopSD}
+          expanded={aberrationsExpanded}
+          onExpandedChange={onAberrationsExpandedChange}
+        />
       </div>
     </div>
   );
