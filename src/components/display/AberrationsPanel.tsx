@@ -98,11 +98,11 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
   const polylinePoints = buildPolylinePoints(profile, xRangeUm);
 
   return (
-    <svg
-      viewBox={`0 0 ${VB_W} ${VB_H}`}
-      style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}
-      title="LSA profile: longitudinal spherical aberration vs. pupil zone. Near-vertical = well-corrected; rightward sweep = undercorrected; leftward sweep = overcorrected."
-    >
+    <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
+      <title>
+        LSA profile: longitudinal spherical aberration vs. pupil zone. Near-vertical = well-corrected; rightward sweep =
+        undercorrected; leftward sweep = overcorrected.
+      </title>
       {/* Plot area background */}
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 

@@ -257,13 +257,13 @@ describe("lensReducer", () => {
     });
 
     it("toggles aberrationsExpanded", () => {
-      expect(state.panels.aberrationsExpanded).toBe(false);
+      expect(state.panels.aberrationsExpanded).toBe(true);
       const next = lensReducer(state, {
         type: SET_PANEL_EXPANDED,
         panel: "aberrationsExpanded",
-        expanded: true,
+        expanded: false,
       });
-      expect(next.panels.aberrationsExpanded).toBe(true);
+      expect(next.panels.aberrationsExpanded).toBe(false);
     });
 
     it("toggles analysisDrawerOpen", () => {
