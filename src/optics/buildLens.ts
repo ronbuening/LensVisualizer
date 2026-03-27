@@ -6,26 +6,32 @@
  */
 
 import validateLensData from "./validateLensData.js";
-import { FLAT_R_THRESHOLD, sagSlopeRaw } from "./optics.js";
+import {
+  buildAsphereIndex,
+  buildElementSpans,
+  buildLabelIndex,
+  buildStateSurfaces,
+  buildVarIndex,
+  buildVdIndex,
+  resolveAnnotations,
+  sumSurfaceThicknesses,
+  zoomIndexToT,
+} from "./internal/lensState.js";
+import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
+import {
+  traceSurfacesParaxial,
+  traceSurfacesReal,
+  type ParaxialSurfaceTraceOptions,
+  type RealSurfaceTraceResult,
+} from "./internal/traceSurfaces.js";
 import type {
   LensData,
   SurfaceData,
   AsphericCoefficients,
-  VarRange,
-  ElementData,
-  AnnotationData,
-  ResolvedAnnotation,
-  ElementSpan,
   EntrancePupil,
   RuntimeLens,
   ParaxialTraceResult,
 } from "../types/optics.js";
-
-interface ParaxialTraceOpts {
-  stopAt?: number;
-  skipLastTransfer?: boolean;
-  recordHeights?: boolean;
-}
 
 /**
  * Paraxial ray trace through a surface array.
@@ -48,26 +54,9 @@ function paraxialTrace(
   S: SurfaceData[],
   y0: number,
   u0: number,
-  { stopAt, skipLastTransfer = false, recordHeights = false }: ParaxialTraceOpts = {},
+  opts: ParaxialSurfaceTraceOptions = {},
 ): ParaxialTraceResult {
-  const N = stopAt !== undefined ? stopAt : S.length;
-  const total = S.length;
-  const heights: number[] | null = recordHeights ? [] : null;
-  let y = y0,
-    u = u0,
-    n = 1.0;
-  for (let i = 0; i < N; i++) {
-    if (recordHeights) heights!.push(y);
-    const { R, nd, d } = S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
-    n = nn;
-    const isLast = i === N - 1;
-    if (isLast && skipLastTransfer) {
-      /* skip */
-    } else if (i < total - 1) y += d * u;
-  }
-  return { y, u, n, heights };
+  return traceSurfacesParaxial(S, y0, u0, opts);
 }
 
 /** Result of a real ray trace to an intermediate surface. */
@@ -96,24 +85,8 @@ function realTraceToStopFull(
   u0: number,
   stopIdx: number,
 ): RealTraceToStopResult {
-  let y = y0,
-    U = Math.atan(u0),
-    n = 1.0;
-  for (let i = 0; i < stopIdx; i++) {
-    const { R, nd, d } = S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) {
-      const absY = Math.abs(y);
-      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const sinIp = (n / nn) * Math.sin(U - alpha);
-      if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN };
-      U = alpha + Math.asin(sinIp);
-    }
-    n = nn;
-    y += d * Math.tan(U);
-  }
-  return { y, u: Math.tan(U) };
+  const result = traceSurfacesReal(S, asphByIdx, y0, u0, { stopAt: stopIdx });
+  return { y: result.y, u: result.u };
 }
 
 /**
@@ -167,29 +140,17 @@ function realTraceFullSystemDetailed(
   y0: number,
   u0: number,
 ): RealTraceFullResult {
-  const N = S.length;
-  const heights: number[] = [];
-  let y = y0,
-    U = Math.atan(u0),
-    n = 1.0;
-  let clipped = false;
-  for (let i = 0; i < N; i++) {
-    heights.push(y);
-    const { R, nd, d, sd } = S[i];
-    if (Math.abs(y) > sd) clipped = true;
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) {
-      const absY = Math.abs(y);
-      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const sinIp = (n / nn) * Math.sin(U - alpha);
-      if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN, heights, clipped: true };
-      U = alpha + Math.asin(sinIp);
-    }
-    n = nn;
-    if (i < N - 1) y += d * Math.tan(U);
-  }
-  return { y, u: Math.tan(U), heights, clipped };
+  const result: RealSurfaceTraceResult = traceSurfacesReal(S, asphByIdx, y0, u0, {
+    skipLastTransfer: true,
+    recordHeights: true,
+    checkSemiDiameter: true,
+  });
+  return {
+    y: result.y,
+    u: result.u,
+    heights: result.heights || [],
+    clipped: result.clipped,
+  };
 }
 
 /**
@@ -216,52 +177,20 @@ export default function buildLens(data: LensData): RuntimeLens {
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
 
-  const labelIdx: Record<string, number> = {};
-  for (let i = 0; i < N; i++) labelIdx[S[i].label] = i;
-
-  const asphByIdx: Record<number, AsphericCoefficients> = {};
-  for (const [label, coeffs] of Object.entries(data.asph || {})) asphByIdx[labelIdx[label]] = coeffs;
-
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
-
-  const varByIdx: Record<number, VarRange> = {};
-  for (const [label, range] of Object.entries(data.var || {})) varByIdx[labelIdx[label]] = range;
+  const labelIdx = buildLabelIndex(S);
+  const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
+  const varByIdx = buildVarIndex(data.var, labelIdx);
 
   const varLabels: [number, string][] = (data.varLabels || []).map(
     ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
   );
-
-  const ES: ElementSpan[] = [];
-  for (const elem of data.elements) {
-    let startIdx = -1;
-    for (let i = 0; i < N; i++) {
-      if (S[i].elemId === elem.id) {
-        startIdx = i;
-        break;
-      }
-    }
-    ES.push([elem.id, startIdx, startIdx + 1]);
-  }
+  const ES = buildElementSpans(S, data.elements);
 
   /* ── Per-surface Abbe number lookup (for chromatic tracing) ── */
-  const vdByIdx: Record<number, number> = {};
-  for (let i = 0; i < N; i++) {
-    const eid = S[i].elemId;
-    if (eid) {
-      const elem = data.elements.find((e: ElementData) => e.id === eid);
-      if (elem && elem.vd) vdByIdx[i] = elem.vd;
-    }
-  }
-
-  function resolveAnnotation(arr: AnnotationData[] | undefined): ResolvedAnnotation[] {
-    return (arr || []).map((g) => ({
-      text: g.text,
-      fromSurface: labelIdx[g.fromSurface],
-      toSurface: labelIdx[g.toSurface],
-    }));
-  }
-  const groups = resolveAnnotation(data.groups);
-  const doublets = resolveAnnotation(data.doublets);
+  const vdByIdx = buildVdIndex(S, data.elements);
+  const groups = resolveAnnotations(data.groups, labelIdx);
+  const doublets = resolveAnnotations(data.doublets, labelIdx);
 
   const stopIdx = S.findIndex((row) => row.label === "STO");
 
@@ -313,8 +242,7 @@ export default function buildLens(data: LensData): RuntimeLens {
    * yRatio and B are the ray heights at the stop (normalized by δ), so
    * epZ = realB / realYRatio gives the z where the chief ray crosses the axis.
    * Falls back to paraxial if the real traces hit TIR. */
-  let zStopBaseline = 0;
-  for (let i = 0; i < stopIdx; i++) zStopBaseline += S[i].d;
+  const zStopBaseline = sumSurfaceThicknesses(S, stopIdx);
   const realEpDelta = 1e-4;
   const realMarginal = realTraceToStopFull(S, asphByIdx, realEpDelta, 0, stopIdx);
   const realChief = realTraceToStopFull(S, asphByIdx, 0, realEpDelta, stopIdx);
@@ -508,11 +436,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomXpZRelLastSurfs = [];
     zoomXpSDs = [];
     for (let zi = 0; zi < nz; zi++) {
-      const tmpS = S.map((s, i) => {
-        const v = varByIdx[i];
-        if (!v) return s;
-        return { ...s, d: (v as [number, number][])[zi][0] };
-      });
+      const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz));
 
       /* EFL — capture y and u at last surface for exit pupil computation */
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
@@ -533,8 +457,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       zoomBs.push(zBValue);
 
       /* Pupil positions at this zoom position — real (Snell's law) traces */
-      let zStopBaselineZ = 0;
-      for (let i = 0; i < stopIdx; i++) zStopBaselineZ += tmpS[i].d;
+      const zStopBaselineZ = sumSurfaceThicknesses(tmpS, stopIdx);
       const zRealMarg = realTraceToStopFull(tmpS, asphByIdx, realEpDelta, 0, stopIdx);
       const zRealChief = realTraceToStopFull(tmpS, asphByIdx, 0, realEpDelta, stopIdx);
       const zRealYRatio = isFinite(zRealMarg.y) ? zRealMarg.y / realEpDelta : epT.y;
@@ -608,7 +531,8 @@ export default function buildLens(data: LensData): RuntimeLens {
    * aperture slider range covers the full available range. */
   let zoomFOPENs: number[] | null = null;
   if (isZoom && zoomEFLs && zoomEPs) {
-    zoomFOPENs = zoomEFLs.map((efl, i) => efl / (2 * zoomEPs![i]));
+    const epValues = zoomEPs;
+    zoomFOPENs = zoomEFLs.map((efl, i) => efl / (2 * epValues[i]));
   }
 
   return Object.freeze({
