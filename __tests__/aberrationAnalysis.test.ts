@@ -9,7 +9,6 @@ import {
   entrancePupilAtState,
   epAtZoom,
   fopenAtZoom,
-  traceParaxialRay,
   traceRay,
 } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
@@ -117,20 +116,53 @@ describe("computeSphericalAberration", () => {
     expect(result!.saMm).toBeLessThan(0);
   });
 
-  it("uses a true paraxial reference instead of a near-axis real ray on fast lenses", () => {
+  it("preferred near-axis baseline differs from legacy ultra-near-axis baseline", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
-    const { currentEPSD } = apertureAt(L, 0, 0);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
     const lastSurfZ = zPos[L.N - 1];
 
     const legacyRay = traceRay(LEGACY_NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L);
     expect(legacyRay.clipped).toBe(false);
     const legacyIntercept = axialIntercept(legacyRay.y, legacyRay.u, lastSurfZ);
 
-    const paraxialRay = traceParaxialRay(1, 0, 0, 0, L);
-    const paraxialIntercept = axialIntercept(paraxialRay.y, paraxialRay.u, lastSurfZ);
+    const preferredRay = traceRay(0.02 * currentEPSD, 0, zPos, 0, 0, currentPhysStopSD, true, L);
+    expect(preferredRay.clipped).toBe(false);
+    const preferredIntercept = axialIntercept(preferredRay.y, preferredRay.u, lastSurfZ);
 
-    expect(Math.abs(paraxialIntercept - legacyIntercept)).toBeGreaterThan(1e-6);
+    expect(Math.abs(preferredIntercept - legacyIntercept)).toBeGreaterThan(1e-8);
+  });
+
+  it("uses a near-axis real baseline for aspheric lenses", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const lastSurfZ = zPos[L.N - 1];
+
+    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const nearAxisRay = traceRay(0.02 * currentEPSD, 0, zPos, 0, 0, currentPhysStopSD, true, L);
+    expect(nearAxisRay.clipped).toBe(false);
+    const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
+
+    expect(Math.abs(result!.paraxialIntercept - nearAxisIntercept)).toBeLessThan(1e-6);
+  });
+
+  it("uses the same near-axis real baseline for all-spherical lenses", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const lastSurfZ = zPos[L.N - 1];
+
+    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const nearAxisRay = traceRay(0.02 * currentEPSD, 0, zPos, 0, 0, currentPhysStopSD, true, L);
+    expect(nearAxisRay.clipped).toBe(false);
+    const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
+
+    expect(Math.abs(result!.paraxialIntercept - nearAxisIntercept)).toBeLessThan(1e-6);
   });
 
   /* ── SA decreases with smaller aperture ── */

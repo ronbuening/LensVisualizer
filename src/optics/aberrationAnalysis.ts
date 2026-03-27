@@ -10,7 +10,7 @@
  * buildLens(). They should be memoized from current state in a React hook.
  */
 
-import { traceParaxialRay, traceRay } from "./optics.js";
+import { traceRay } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** One sample point on the longitudinal SA profile curve. */
@@ -23,13 +23,13 @@ export interface SAProfilePoint {
 
 /** Result of a spherical aberration computation. */
 export interface SphericalAberrationResult {
-  /** Longitudinal SA in mm (real marginal intercept − paraxial intercept). */
+  /** Longitudinal SA in mm (real marginal intercept − reference intercept). */
   saMm: number;
   /** Longitudinal SA in µm (saMm × 1000). */
   saUm: number;
   /** Axial intercept of the real marginal ray (mm, absolute z). */
   realIntercept: number;
-  /** Axial intercept of the paraxial reference ray (mm, absolute z). */
+  /** Axial intercept of the near-axis reference ray (mm, absolute z). */
   paraxialIntercept: number;
 }
 
@@ -45,11 +45,10 @@ export interface SphericalAberrationResult {
 const MARGINAL_FRACS = [0.95, 0.9, 0.85, 0.8] as const;
 
 /**
-/** Reference ray height in mm for the true paraxial baseline trace. */
-const PARAXIAL_REFERENCE_HEIGHT_MM = 1;
-
 /** Legacy near-axis real-ray fraction retained for regression tests/documentation. */
 export const LEGACY_NEAR_AXIS_REAL_FRAC = 0.001;
+/** Preferred near-axis real-ray fractions used as SA baseline for all lenses. */
+const REFERENCE_FRACS = [0.02, 0.01, 0.005, LEGACY_NEAR_AXIS_REAL_FRAC] as const;
 
 /** Minimum |u| (exit slope) to consider a ray's axial intercept valid. */
 const MIN_SLOPE = 1e-12;
@@ -65,16 +64,6 @@ const MIN_SLOPE = 1e-12;
 function axialIntercept(y: number, u: number, lastSurfZ: number): number | null {
   if (Math.abs(u) < MIN_SLOPE) return null;
   return lastSurfZ - y / u;
-}
-
-function computeParaxialReferenceIntercept(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  lastSurfZ: number,
-): number | null {
-  const paraxial = traceParaxialRay(PARAXIAL_REFERENCE_HEIGHT_MM, 0, focusT, zoomT, L);
-  return axialIntercept(paraxial.y, paraxial.u, lastSurfZ);
 }
 
 function computeSymmetricRealIntercept(
@@ -105,11 +94,11 @@ function computeSymmetricRealIntercept(
  *
  * Traces a marginal ray near the entrance pupil edge (0.95× preferred, with
  * fallbacks to 0.90/0.85/0.80 if clipped) using exact Snell's law, and
- * compares its axial intercept against a true paraxial reference ray.
+ * compares its axial intercept against a near-axis real-ray reference.
  *
  * Sign convention: negative SA means the real marginal intercept lies closer
- * to the lens than the paraxial intercept (undercorrected). Positive SA means
- * the marginal focus falls beyond the paraxial focus (overcorrected).
+ * to the lens than the near-axis reference intercept (undercorrected). Positive
+ * SA means the marginal focus falls beyond that reference (overcorrected).
  *
  * The +Y and −Y marginal rays are averaged to enforce symmetry and cancel
  * any residual sign noise from asymmetric surface interactions.
@@ -133,7 +122,10 @@ export function computeSphericalAberration(
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
-  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
+  const paraxialIntercept =
+    REFERENCE_FRACS.map((fraction) =>
+      computeSymmetricRealIntercept(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, lastSurfZ, fraction),
+    ).find((intercept): intercept is number => intercept !== null) ?? null;
   if (paraxialIntercept === null) return null;
 
   /* ── Real marginal rays (±Y, averaged for symmetry) ──
@@ -181,11 +173,11 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
  * Compute the longitudinal SA profile across the pupil aperture.
  *
  * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil and
- * returns the focus shift relative to the true paraxial reference at each
+ * returns the focus shift relative to the near-axis real-ray reference at each
  * zone. Points where the ray is clipped by the aperture stop are silently
  * omitted, so the returned array may be shorter than PROFILE_FRACS.
  *
- * Returns an empty array when the paraxial reference cannot be traced or
+ * Returns an empty array when the near-axis reference cannot be traced or
  * when fewer than two valid zone samples are available.
  *
  * @param L                  — runtime lens object (frozen, from buildLens)
@@ -208,8 +200,11 @@ export function computeSAProfile(
 
   const lastSurfZ = zPos[L.N - 1];
 
-  /* ── Paraxial reference intercept (computed once) ── */
-  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
+  /* ── Near-axis reference intercept (computed once) ── */
+  const paraxialIntercept =
+    REFERENCE_FRACS.map((fraction) =>
+      computeSymmetricRealIntercept(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, lastSurfZ, fraction),
+    ).find((intercept): intercept is number => intercept !== null) ?? null;
   if (paraxialIntercept === null) return [];
 
   /* ── Sample each zone fraction ── */
