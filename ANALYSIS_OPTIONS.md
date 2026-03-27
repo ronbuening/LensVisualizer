@@ -1,81 +1,75 @@
-# Analysis Options — Derivable from Existing Lens Data
+# Analysis Options — Next Optical Measures to Add (from Existing Lens Data)
 
-Features that can be implemented using only the data and computation engine already present in the codebase. Organized by estimated implementation effort.
+This file is intentionally filtered to **future options only**.
 
-## Already Shipped
-
-These analysis features are already implemented in the current app and should be treated as baseline behavior, not future ideas:
-
-- **Spherical aberration metric + LSA profile** — `src/optics/aberrationAnalysis.ts` + `src/components/display/AberrationsPanel.tsx`
-- **Distortion curve** — `src/optics/distortionAnalysis.ts` + `src/components/display/DistortionTab.tsx`
-- **Focus breathing metric** — `src/components/display/FocusBreathingTab.tsx`
-- **Vignetting / relative illumination curve** — `src/optics/vignetteAnalysis.ts` + `src/components/display/VignettingTab.tsx`
-- **Petzval sum display** — runtime metric + diagram overlay
-- **Glass map (Abbe diagram)** — `src/components/display/AbbeDiagram.tsx`
+The app already ships: spherical aberration (metric + profile), coma previews, distortion curve, focus breathing, vignetting / relative illumination, Petzval display, Abbe diagram, and LCA inset widgets. Those are treated as baseline and excluded below.
 
 ---
 
-## Tier 1 — Quick Wins (S: under 2 hours each)
+## Selection Criteria
 
-Trivially computable from existing `RuntimeLens` fields. Mostly display work.
+All items below are feasible with data already present in `*.data.ts` files and/or values already derived into `RuntimeLens` by `buildLens()`.
 
-| # | Feature | Description | Where to Display | Computation |
-|---|---------|-------------|-----------------|-------------|
-| 1 | **Telephoto Ratio** | `totalTrack / EFL` — measures how compact the design is relative to its focal length. Values < 1 indicate a telephoto design; > 1 indicates retrofocus. | Aperture readout or header specs | Single division of two existing values |
-| 2 | **Back Focal Distance (BFD)** | Distance from last glass surface to the image plane. Important for mirror clearance and mount compatibility. | Aperture readout section | `imgZ - z[N-1]` from `doLayout()` |
-| 3 | **Front Focal Distance (FFD)** | Distance from first glass surface to the front focal point. | Aperture readout section | Paraxial trace from image side, or `EFL × (1 - 1/angularMag)` |
-| 4 | **Total Track Length** | Overall length from first surface to image plane. Already computed internally as `totalTrack`. | Aperture readout section | Direct read from `RuntimeLens.totalTrack` |
-| 5 | **Image Circle Diameter** | Maximum usable image circle at the focal plane, limited by vignetting. | Header specs or readout | `2 × EFL × tan(halfField)` — both values already computed |
-| 6 | **Hyperfocal Distance** | The focus distance beyond which everything is acceptably sharp (given f-number and a circle-of-confusion assumption). | Focus slider readout section | `H = EFL² / (N × c)` with CoC = 0.03 mm (full-frame default) |
-| 7 | **Depth of Field** | Near and far limits of acceptable sharpness at the current focus distance and aperture. | Focus slider readout section | Standard formulas: `Dn = d×H / (H + d)`, `Df = d×H / (H - d)` |
-| 8 | **Lens Summary Statistics** | Breakdown of element types: count of positive/negative elements, spherical vs. aspheric, total glass path length, number of air gaps. | Header specs or analysis panel | Iterate `elements[]` and `surfaces[]` arrays |
-| 9 | **Angular Magnification** | Ratio of exit pupil to entrance pupil diameter. Indicates the "speed" at which the cone of light narrows through the lens. | Analysis panel readout | Reverse paraxial trace to find exit pupil SD; divide by `EP.epSD` |
-| 10 | **Focus Breathing Metric** | How much the effective focal length changes between infinity and close focus. Critical for video work. | Focus slider readout section | Compare paraxial EFL at `focusT = 0` vs `focusT = 1` |
+- **Tier 1:** mostly arithmetic over existing fields (very low engineering risk)
+- **Tier 2:** paraxial-level tracing or per-element computations (moderate effort)
+- **Tier 3:** dense real-ray sweeps and new charts (higher effort, highest insight)
 
 ---
 
-## Tier 2 — Moderate (M: 2–6 hours each)
+## Tier 1 — Metadata / Geometry Metrics (Quick Wins)
 
-Require new computation functions but leverage the existing ray tracing infrastructure.
-
-| # | Feature | Description | Where to Display | Computation |
-|---|---------|-------------|-----------------|-------------|
-| 11 | **Entrance & Exit Pupil Positions** | Z-position of the entrance and exit pupils along the optical axis. Can be drawn as markers on the diagram. | Diagram overlay markers + readout | Paraxial marginal ray trace: pupil position = `z_stop - y_stop / u_stop` (before/after stop) |
-| 12 | **Principal Plane Positions (H, H')** | Cardinal points of the optical system. H and H' define where the lens "acts" as a thin lens. Nodal points coincide with principal planes when the lens is in air. | Diagram overlay markers + readout | From paraxial marginal ray: `H = z_img + EFL`, `H' = z_img - (y_img / u_img)` |
-| 13 | **Petzval Sum** | `Σ (n' - n) / (n' × n × R)` across all refracting surfaces. Predicts native field curvature of the design. Lower = flatter field. | Already implemented | Already implemented |
-| 14 | **Optical Power per Element** | Individual element contribution to total system power. Shows which elements converge/diverge light. | Element inspector grid (new row) | Thick-lens formula: `φ = φ_front + φ_rear - (d/n) × φ_front × φ_rear` per element |
-| 15 | **Spherical Aberration Metric** | Difference between where the real marginal ray crosses the axis vs. the paraxial prediction. The primary on-axis image quality indicator. | Already implemented | Already implemented |
-| 16 | **Distortion Curve** | Percentage deviation of real image height from ideal (`EFL × tan(θ)`) at multiple field angles. Shows barrel/pincushion character. | Already implemented | Already implemented |
-| 17 | **Optical Path Layout Table** | Complete tabular view of all surfaces: label, R, d, nd, sd, element assignment, surface power. The "prescription data" view. | Analysis panel or modal (scrollable table) | Format existing `L.S[]` array data with computed `φ = (n' - n) / R` per surface |
-| 18 | **Glass Map (Abbe Diagram)** | SVG scatter plot with nd on Y-axis and vd on X-axis. Each element is a dot, colored by APD status or dispersion class. Standard optical engineering visualization. | Already implemented | Already implemented |
-| 19 | **Aspheric Departure Profile** | For each aspheric surface, plot the difference between the full aspheric sag and a best-fit sphere vs. radial height. Shows how much the asphere departs from spherical. | Element inspector expansion or modal | `renderSag(h, idx, L) - sag(h, R)` at 20–30 heights per surface |
-| 20 | **Chromatic Focal Shift Curve** | Plot of focus position vs. wavelength across the visible spectrum. Shows how well the design corrects color. | Analysis panel SVG line chart | Trace paraxial focus at ~10 wavelengths between F-line (486nm) and C-line (656nm) using Abbe dispersion model |
-| 21 | **Zoom Characteristic Curves** | For zoom lenses: plot EFL, f-number, and half-field angle vs. zoom position. Shows how the lens changes across its range. | Analysis panel (zoom lenses only) | Data already exists in `zoomEFLs`, `zoomEPs`, `zoomHalfFields` — just needs charting |
+| # | Measure | Why it matters | Inputs already available | Suggested UI |
+|---|---------|----------------|--------------------------|--------------|
+| 1 | **Telephoto Ratio** (`totalTrack / EFL`) | Compactness vs focal length; quickly identifies retrofocus vs telephoto behavior. | `RuntimeLens.totalTrack`, `RuntimeLens.EFL` | Lens header spec pills |
+| 2 | **Back Focal Distance (BFD)** | Mount / sensor clearance proxy and adaptation relevance. | `zPos[last]`, `imgZ` from current layout pass | Lens header + compare mode column |
+| 3 | **Image Circle Diameter (ideal rectilinear)** | Fast sanity check for format coverage assumptions. | `EFL`, `halfField` (`2*EFL*tan(halfField)`) | Specs row near focal/aperture |
+| 4 | **Element Complexity Index** | One-number summary of mechanical/optical complexity. | `elements`, `surfaces`, `asph`, `doublets`, `groups` | Inspector summary card |
+| 5 | **Asphere Utilization Metrics** | Helps explain where correction burden is placed. | `asph` map + surface labels + `elemId` | Element Inspector section |
+| 6 | **Glass Dispersion Risk Score** | Flags potential chromatic correction difficulty from glass set alone. | `vd` values from `elements`, `vdByIdx` | Abbe panel side readout |
+| 7 | **Moving-Group Travel Budget** | Shows mechanical focus/zoom burden and likely breathing risk. | `var` ranges and `zoomPositions` | Focus/zoom tab metadata |
+| 8 | **Zoom Constancy Metrics** | Quantifies varifocal vs parfocal tendencies and aperture drift by zoom. | `zoomEFLs`, `zoomFOPENs`, `zoomLabels` | Breathing tab add-on chart |
 
 ---
 
-## Tier 3 — Significant (L: 6–12 hours each)
+## Tier 2 — Paraxial / Cardinal-Point Measures
 
-Require new ray-trace analysis loops, new reusable SVG chart components, and careful UI integration.
-
-| # | Feature | Description | Where to Display | Computation |
-|---|---------|-------------|-----------------|-------------|
-| 22 | **Longitudinal SA Plot** | Ray height (Y-axis) vs. axial focus shift (X-axis). The classic spherochromatism diagnostic. Shows how focus changes with aperture zone. | Modal or analysis panel | Trace real rays at 10–15 pupil heights via `traceRay()`; find each ray's axial intercept; new SVG chart component |
-| 23 | **Transverse Ray Fan Plot** | Transverse ray error (Δy) vs. pupil coordinate. The standard aberration diagnostic showing SA slope, coma asymmetry, and higher-order structure. | Modal or analysis panel | Trace dense ray fan (20+ rays) on-axis and off-axis; compute Δy = (real_y - ideal_y) at image plane |
-| 24 | **Vignetting / Relative Illumination** | How much light reaches the image at each field angle. Combines geometric vignetting (ray clipping) with cos⁴ falloff. | Already implemented | Already implemented |
-| 25 | **Spot Diagram** | 2D scatter of ray intersections at the image plane from a grid of rays across the pupil. Shows the shape and size of the blur at each field point. | Dedicated modal | Trace 100+ rays (polar or rectangular grid) through pupil; collect (x, y) at image plane; plot as SVG dots |
-| 26 | **Field Curvature + Astigmatism Plot** | Tangential and sagittal focal surface positions vs. field angle. Two curves showing how the "best focus" surface bends and splits. | Modal or analysis panel | Trace tangential fan (meridional plane) and sagittal fan at multiple field angles; find best focus for each |
-| 27 | **Coma Visualization** | Off-axis ray fan showing the asymmetric flare pattern. Upper and lower marginal rays arrive at different heights, creating the comet-shaped blur. | Diagram overlay or modal | Dense off-axis ray trace; measure upper vs. lower ray spread at image plane |
-| 28 | **Element Power Bar Chart** | Visual bar chart showing each element's optical power (positive/negative). Quickly reveals the power balance of the design. | Analysis panel | Compute element power (Tier 2 #14); render as horizontal SVG bar chart with pos/neg coloring |
+| # | Measure | Why it matters | Inputs already available | Suggested UI |
+|---|---------|----------------|--------------------------|--------------|
+| 9 | **Entrance/Exit Pupil Distances** | Core explanation tool for perspective, vignetting behavior, and pupil magnification. | `epZRelStop`, `xpZRelLastSurf`, `xpSD`, zoom variants | Diagram overlay toggles + readout |
+| 10 | **Pupil Magnification** (`XP/EP`) | Useful for DOF intuition and aberration balancing context. | `xpSD`, `EP.epSD` | Aperture/analysis readout |
+| 11 | **Principal Plane Locations (H, H')** | Converts lens from “black box” to cardinal-point model; useful in education and comparisons. | Existing paraxial traces in `buildLens`/`optics.ts` | Diagram overlay markers |
+| 12 | **Nodal Point Separation** | Good pedagogical metric; useful when discussing thick-lens behavior. | Derived from principal planes in air model | Diagram overlay + hover tooltip |
+| 13 | **Element Optical Power Breakdown** | Shows where convergence/divergence actually occurs. | Per-surface `R`, `n`, element spans (`ES`) | Element Inspector table + bars |
+| 14 | **Surface Power Ledger** (`(n'-n)/R`) | High-signal diagnostic for understanding correction strategy by surface. | `S[]` plus refractive index transitions | New “Prescription” table tab |
+| 15 | **Chief-Ray Sensor Incidence Angle** (center/corner) | Useful proxy for sensor stack compatibility and edge shading risk. | Chief-ray traces + image-plane intercept geometry | Distortion/Vignetting footer metrics |
+| 16 | **Hyperfocal + DOF (model-based)** | Practical photographer-facing extension using current EFL and f-number state. | `dynamicEFL`, active f-number, focus distance mapping | Focus tab auxiliary panel |
 
 ---
 
-## Tier 4 — Major (XL: 12+ hours)
+## Tier 3 — High-Value Real-Ray Diagnostics
 
-Substantial new computational and UI subsystems.
+| # | Measure | Why it matters | Inputs already available | Suggested UI |
+|---|---------|----------------|--------------------------|--------------|
+| 17 | **Transverse Ray Fan (T/S)** | Most direct geometric aberration signature beyond scalar metrics. | Existing real `traceRay` engine + dense pupil sweep | Dedicated analysis chart panel |
+| 18 | **Spot Diagram (multi-field)** | Gives intuitive blur shape and size at center/mid/corner. | Real ray tracing with pupil sampling grid | Modal with center/mid/corner tabs |
+| 19 | **Field Curvature + Astigmatic Difference** | Explains best-focus surface bend and sagittal/tangential split. | Off-axis sweeps + best-focus solve loop | New chart in Aberrations tab |
+| 20 | **Longitudinal Chromatic Focus Curve** | Extends existing LCA inset into full wavelength trend. | Existing dispersion model (`vdByIdx`) + repeated paraxial solves | Chromatic analysis section |
+| 21 | **Coma Asymmetry Index vs Field** | Turns current coma visuals into a comparable scalar curve. | Current coma routines plus field sweep | Coma section mini-chart |
+| 22 | **Relative Illumination Decomposition** | Split geometric clipping vs cos⁴ for clearer diagnosis. | Current vignetting computation already tracks both terms | Vignetting chart toggle |
 
-| # | Feature | Description | Where to Display | Computation |
-|---|---------|-------------|-----------------|-------------|
-| 29 | **Seidel Aberration Coefficients** | The five 3rd-order Seidel sums (S_I through S_V): spherical, coma, astigmatism, field curvature, distortion. Per-surface breakdown shows which elements contribute most to each aberration. | Analysis panel with per-surface table | Requires marginal + chief ray heights and angles at every surface from `paraxialTrace()` with `recordHeights`; significant math for Seidel coefficient formulas |
-| 30 | **Ray Intercept Curves (full set)** | Complete tangential and sagittal ray fans at 3–5 field angles, all plotted together. The definitive aberration diagnostic used by optical engineers. | Dedicated modal with coordinated SVG plots | Multiple ray fan traces + multi-panel SVG chart system with shared axes |
-| 31 | **Geometric MTF Estimate** | Modulation transfer function estimated from spot diagram data (or direct ray-based OPD computation). Shows contrast vs. spatial frequency. | Dedicated modal | Either FFT of spot diagram or OPD-based computation; computationally intensive; needs frequency-axis chart |
+---
+
+## Recommended Implementation Order
+
+1. **Tier 1 #1, #2, #5, #7** (quick value + almost no computational risk)
+2. **Tier 2 #9, #10, #13** (leverages already computed runtime fields)
+3. **Tier 3 #22, #21** (incremental upgrades to existing tabs)
+4. **Tier 3 #17, #18, #19** (new charting subsystem)
+
+---
+
+## Notes on Scope
+
+- Keep analysis math in `src/optics/*` pure functions.
+- Keep visualization and interaction in `src/components/display/*`.
+- For compare mode, prioritize scalar metrics first (before heavy charts) so lenses can be ranked side-by-side.
