@@ -237,9 +237,7 @@ function rmsAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): numb
 }
 
 function peakAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): number {
-  return Math.max(
-    ...hits.map((hit) => Math.abs(hit.y + hit.u * (planeZ - lastSurfZ))),
-  );
+  return Math.max(...hits.map((hit) => Math.abs(hit.y + hit.u * (planeZ - lastSurfZ))));
 }
 
 function bestFocusPlane(hits: RealRayHit[], lastSurfZ: number): number {

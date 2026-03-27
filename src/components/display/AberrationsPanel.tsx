@@ -77,8 +77,8 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Best-focus spherical-aberration profile: blur radius at the best-fit image plane vs. pupil zone.
-        Smaller values and flatter curves indicate a tighter on-axis bundle.
+        Best-focus spherical-aberration profile: blur radius at the best-fit image plane vs. pupil zone. Smaller values
+        and flatter curves indicate a tighter on-axis bundle.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
