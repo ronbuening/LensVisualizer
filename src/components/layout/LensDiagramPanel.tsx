@@ -35,6 +35,7 @@ import PanelOverlay from "./PanelOverlay.js";
 import AnalysisDrawer from "./AnalysisDrawer.js";
 import type { AnalysisTab } from "./AnalysisDrawer.js";
 import AberrationsPanel from "../display/AberrationsPanel.js";
+import DistortionTab from "../display/DistortionTab.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
 import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
@@ -299,9 +300,15 @@ export default function LensDiagramPanel({
                   />
                 )}
                 {analysisDrawerTab === "distortion" && (
-                  <div style={{ color: t.muted, fontSize: 11, transition: "color 0.3s" }}>
-                    Distortion curve — coming soon
-                  </div>
+                  <DistortionTab
+                    L={L}
+                    t={t}
+                    zPos={zPos}
+                    focusT={focusT}
+                    zoomT={zoomT}
+                    dynamicEFL={dynamicEFL}
+                    currentPhysStopSD={currentPhysStopSD}
+                  />
                 )}
               </AnalysisDrawer>
             </div>
