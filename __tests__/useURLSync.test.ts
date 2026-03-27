@@ -126,13 +126,7 @@ describe("useURLSync — zoom initialization", () => {
     const urlZoom = zoomLensPositions[1];
     window.history.replaceState({}, "", `?zoom=${urlZoom}`);
 
-    renderHook(() =>
-      useURLSync(
-        state,
-        dispatch,
-        { LA: zoomLens, LB: { isZoom: false, zoomPositions: null } as any },
-      ),
-    );
+    renderHook(() => useURLSync(state, dispatch, { LA: zoomLens, LB: { isZoom: false, zoomPositions: null } as any }));
 
     expect(dispatch).toHaveBeenCalledWith({
       type: "SET_SHARED_ZOOM_T",

@@ -34,8 +34,8 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Estimated 2D coma appearance at center, 25%, 50%, and 75% of the current half-field. The horizontal
-            spread is the real chief-ray-centered tangential image height; the vertical thickness is a normalized
+            Estimated 2D coma appearance at center, 25%, 50%, and 75% of the current half-field. The horizontal spread
+            is the real chief-ray-centered tangential image height; the vertical thickness is a normalized
             chord-expanded estimate rather than a true sagittal trace.
           </span>
 

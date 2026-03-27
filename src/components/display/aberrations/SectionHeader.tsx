@@ -11,14 +11,7 @@ interface SectionHeaderProps {
   theme: Theme;
 }
 
-export default function SectionHeader({
-  title,
-  helpLabel,
-  helpText,
-  expanded,
-  onToggle,
-  theme,
-}: SectionHeaderProps) {
+export default function SectionHeader({ title, helpLabel, helpText, expanded, onToggle, theme }: SectionHeaderProps) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
       <span style={{ fontSize: 10.5, color: theme.muted, transition: "color 0.3s" }}>{title}</span>

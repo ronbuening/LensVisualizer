@@ -10,12 +10,7 @@ interface MeridionalComaSectionProps {
   theme: Theme;
 }
 
-export default function MeridionalComaSection({
-  result,
-  expanded,
-  onToggle,
-  theme,
-}: MeridionalComaSectionProps) {
+export default function MeridionalComaSection({ result, expanded, onToggle, theme }: MeridionalComaSectionProps) {
   return (
     <div
       style={{

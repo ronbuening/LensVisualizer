@@ -96,14 +96,7 @@ export default function SADiagram({ profile, theme }: { profile: SAProfilePoint[
       <line x1={ML} y1={MT + PH} x2={ML} y2={MT + PH + 4} stroke={theme.muted} strokeWidth={0.75} />
       <line x1={leftTickX} y1={MT + PH} x2={leftTickX} y2={MT + PH + 4} stroke={theme.muted} strokeWidth={0.75} />
       <line x1={centerX} y1={MT + PH} x2={centerX} y2={MT + PH + 4} stroke={theme.muted} strokeWidth={0.75} />
-      <line
-        x1={rightTickX}
-        y1={MT + PH}
-        x2={rightTickX}
-        y2={MT + PH + 4}
-        stroke={theme.muted}
-        strokeWidth={0.75}
-      />
+      <line x1={rightTickX} y1={MT + PH} x2={rightTickX} y2={MT + PH + 4} stroke={theme.muted} strokeWidth={0.75} />
       <line x1={ML + PW} y1={MT + PH} x2={ML + PW} y2={MT + PH + 4} stroke={theme.muted} strokeWidth={0.75} />
 
       <text x={ML} y={MT + PH + 15} textAnchor="middle" fill={theme.muted} fontSize={9} fontFamily="inherit">

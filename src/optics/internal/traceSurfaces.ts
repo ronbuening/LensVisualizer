@@ -60,12 +60,7 @@ export function traceSurfacesReal(
   asphByIdx: Record<number, AsphericCoefficients>,
   y0: number,
   u0: number,
-  {
-    stopAt,
-    skipLastTransfer = false,
-    recordHeights = false,
-    checkSemiDiameter = false,
-  }: RealSurfaceTraceOptions = {},
+  { stopAt, skipLastTransfer = false, recordHeights = false, checkSemiDiameter = false }: RealSurfaceTraceOptions = {},
 ): RealSurfaceTraceResult {
   const tracedCount = stopAt !== undefined ? stopAt : surfaces.length;
   const total = surfaces.length;

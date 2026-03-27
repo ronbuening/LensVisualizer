@@ -6,7 +6,10 @@ import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 
-interface DiagramViewportProps extends Omit<ComponentProps<typeof DiagramSVG>, "onLcaInsetClick" | "onPetzvalBadgeClick"> {
+interface DiagramViewportProps extends Omit<
+  ComponentProps<typeof DiagramSVG>,
+  "onLcaInsetClick" | "onPetzvalBadgeClick"
+> {
   showLcaOverlay: boolean;
   showPetzvalOverlay: boolean;
   onCloseLcaOverlay: () => void;

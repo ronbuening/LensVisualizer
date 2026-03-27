@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { axialIntercept, bestFocusPlane, peakAtPlane, rmsAtPlane, type RealRayHit } from "../src/optics/aberration/shared.js";
+import {
+  axialIntercept,
+  bestFocusPlane,
+  peakAtPlane,
+  rmsAtPlane,
+  type RealRayHit,
+} from "../src/optics/aberration/shared.js";
 import { estimatedChordPointCount, synthesizeEstimatedComaPoints } from "../src/optics/aberration/coma.js";
 
 describe("aberration shared helpers", () => {
