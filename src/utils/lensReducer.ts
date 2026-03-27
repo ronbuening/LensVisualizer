@@ -120,7 +120,7 @@ export function createInitialState(
       headerInfoExpanded: prefs.headerInfoExpanded ?? true,
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
-      aberrationsExpanded: prefs.aberrationsExpanded ?? false,
+      aberrationsExpanded: prefs.aberrationsExpanded ?? true,
       analysisDrawerOpen: false,
       analysisDrawerTab: prefs.analysisDrawerTab ?? "aberrations",
     },
