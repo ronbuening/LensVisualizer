@@ -302,7 +302,7 @@ export default function LensDiagramPanel({
                     color: t.muted,
                   }}
                 >
-                  <span>ANALYSIS</span>
+                  <span>ABERRATIONS</span>
                   <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
                 </button>
               )}
