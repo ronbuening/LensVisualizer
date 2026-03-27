@@ -27,7 +27,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
 - **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including a dense 2D meridional coma view inside the Aberrations tab
-- **Spherical aberration model**: uses a true paraxial reference and current-state entrance pupil geometry, with sign conventions aligned to the in-app optics primer
+- **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state
 - **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
 - **Glass inspection**: element metadata, Abbe-number plotting, APD tagging, and lens role annotations

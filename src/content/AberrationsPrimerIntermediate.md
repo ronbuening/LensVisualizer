@@ -101,7 +101,7 @@ Correcting aberrations is fundamentally a problem of balancing positive and nega
 
 The paraxial ray-trace model used by this site captures the first-order aberration behavior — spherical aberration, chromatic aberration, and the gross structure of coma and vignetting — faithfully enough to distinguish well-corrected designs from poorly corrected ones. A few practical observations for reading the diagrams:
 
-When on-axis marginal rays converge noticeably ahead of or behind the image plane, the lens has residual spherical aberration. The sign tells you the type: if marginal rays focus short of the image plane (toward the lens), the aberration is *under-corrected*; if they focus beyond it, it is *over-corrected*.
+The Aberrations tab shows spherical aberration in two complementary ways. The main curve is a real-ray transverse fan evaluated at the solved best-focus plane and referenced to the near-axis real ray, so you can see how the outer pupil zones deviate across the image plane without the numerical instability of an axial-intercept plot. When the optional longitudinal SA readout is enabled, it reports the axial focus shift of the marginal real ray relative to the near-axis reference ray. If the marginal focus falls short of the paraxial focus (toward the lens), the aberration is *under-corrected*; if it falls beyond it, it is *over-corrected*.
 
 When the off-axis ray bundle is asymmetric — spreading more on one side of the chief ray than the other — the lens has residual coma. A tight, symmetric off-axis bundle indicates good coma correction.
 
