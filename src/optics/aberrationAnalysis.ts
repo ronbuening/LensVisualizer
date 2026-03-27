@@ -143,6 +143,60 @@ export interface ComaPreviewResult {
   usableFieldCount: number;
 }
 
+/** One synthesized point in the estimated 2D coma point cloud. */
+export interface EstimatedComaPoint {
+  /** Stable point index within the field. */
+  index: number;
+  /** Meridional sample index that produced this synthesized point. */
+  sourceSampleIndex: number;
+  /** Chief-ray-centered tangential image height in mm. */
+  tangentialImageHeight: number;
+  /** Normalized sagittal coordinate in [-1, +1]. */
+  sagittalNormalized: number;
+  /** Relative contribution weight used by the estimated preview renderer. */
+  weight: number;
+}
+
+/** One field tile in the estimated 2D coma preview grid. */
+export interface EstimatedComaPreviewFieldResult {
+  /** Field position as a fraction of the current half-field in [0, 1]. */
+  fieldFraction: number;
+  /** Human-readable label for the tile. */
+  label: string;
+  /** Field angle used for this preview tile (deg). */
+  fieldAngleDeg: number;
+  /** Total dense pupil samples attempted. */
+  sampleCount: number;
+  /** Number of valid image-plane intercept samples. */
+  validSampleCount: number;
+  /** Number of clipped/invalid samples. */
+  clippedSampleCount: number;
+  /** Chief-ray-centered intercept height at the image plane (mm). */
+  chiefIntercept: number;
+  /** Lowest valid chief-ray-centered sample height (mm). */
+  minRelativeIntercept: number;
+  /** Highest valid chief-ray-centered sample height (mm). */
+  maxRelativeIntercept: number;
+  /** Weighted point cloud synthesized from the meridional samples. */
+  points: EstimatedComaPoint[];
+  /** Whether this tile has enough data to render. */
+  usable: boolean;
+}
+
+/** Shared estimated 2D coma preview data for the current lens state. */
+export interface EstimatedComaPreviewResult {
+  /** Fixed field fractions represented in the preview tiles. */
+  fieldFractions: readonly number[];
+  /** Preview tiles in display order. */
+  fields: EstimatedComaPreviewFieldResult[];
+  /** Shared tangential half-range used for all tiles (mm). */
+  sharedTangentialHalfRangeMm: number;
+  /** Fixed normalized sagittal half-range used for all tiles. */
+  normalizedSagittalHalfRange: number;
+  /** Number of usable preview tiles. */
+  usableFieldCount: number;
+}
+
 /**
  * Candidate fractions of the entrance pupil for the marginal ray sample,
  * tried in descending order.  The first unclipped pair wins.
@@ -430,6 +484,11 @@ export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 /** Fixed field positions shown in the representative coma preview grid. */
 export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
+const ESTIMATED_COMA_MAX_CHORD_POINTS_PER_SIDE = 5;
+const ESTIMATED_COMA_MIN_SHARED_TANGENTIAL_HALF_RANGE_MM = 0.01;
+const ESTIMATED_COMA_NORMALIZED_SAGITTAL_HALF_RANGE = 1;
+const ESTIMATED_COMA_MIN_SLICE_WEIGHT = 0.08;
+
 const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[number], string> = {
   0: "Center",
   0.25: "25%",
@@ -543,6 +602,75 @@ function comaPreviewFieldResultFromFootprint({
     minRelativeIntercept: footprint.minRelativeIntercept,
     maxRelativeIntercept: footprint.maxRelativeIntercept,
     samples: footprint.samples,
+    usable: true,
+  };
+}
+
+function emptyEstimatedComaPreviewFieldResult({ fieldFraction, label }: ComaPreviewFieldMeta): EstimatedComaPreviewFieldResult {
+  return {
+    fieldFraction,
+    label,
+    fieldAngleDeg: 0,
+    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    validSampleCount: 0,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    chiefIntercept: 0,
+    minRelativeIntercept: 0,
+    maxRelativeIntercept: 0,
+    points: [],
+    usable: false,
+  };
+}
+
+function estimatedChordPointCount(chordHalfSpan: number): number {
+  return Math.max(1, 2 * Math.round(chordHalfSpan * ESTIMATED_COMA_MAX_CHORD_POINTS_PER_SIDE) + 1);
+}
+
+function synthesizeEstimatedComaPoints(samples: MeridionalComaFieldSample[]): EstimatedComaPoint[] {
+  const points: EstimatedComaPoint[] = [];
+
+  for (const sample of samples) {
+    if (sample.clipped || sample.relativeImageHeight === null || sample.imageHeight === null) continue;
+
+    const chordHalfSpan = Math.sqrt(Math.max(0, 1 - sample.pupilFraction * sample.pupilFraction));
+    const pointCount = estimatedChordPointCount(chordHalfSpan);
+    const sliceWeight = Math.max(ESTIMATED_COMA_MIN_SLICE_WEIGHT, chordHalfSpan);
+
+    for (let pointIndex = 0; pointIndex < pointCount; pointIndex++) {
+      const chordFraction = pointCount === 1 ? 0 : -1 + (2 * pointIndex) / (pointCount - 1);
+      points.push({
+        index: points.length,
+        sourceSampleIndex: sample.index,
+        tangentialImageHeight: sample.relativeImageHeight,
+        sagittalNormalized: chordFraction * chordHalfSpan,
+        weight: sliceWeight / pointCount,
+      });
+    }
+  }
+
+  return points;
+}
+
+function estimatedComaPreviewFieldResultFromFootprint({
+  fieldFraction,
+  label,
+  footprint,
+}: FixedComaPreviewFootprint): EstimatedComaPreviewFieldResult {
+  if (footprint === null) {
+    return emptyEstimatedComaPreviewFieldResult({ fieldFraction, label });
+  }
+
+  return {
+    fieldFraction,
+    label,
+    fieldAngleDeg: footprint.fieldAngleDeg,
+    sampleCount: footprint.sampleCount,
+    validSampleCount: footprint.validSampleCount,
+    clippedSampleCount: footprint.clippedSampleCount,
+    chiefIntercept: footprint.centerIntercept,
+    minRelativeIntercept: footprint.minRelativeIntercept,
+    maxRelativeIntercept: footprint.maxRelativeIntercept,
+    points: synthesizeEstimatedComaPoints(footprint.samples),
     usable: true,
   };
 }
@@ -783,7 +911,7 @@ export function computeComaPreview(
   if (usableFields.length < 2) return null;
 
   const sharedRelativeHalfRangeMm = Math.max(
-    0.01,
+    ESTIMATED_COMA_MIN_SHARED_TANGENTIAL_HALF_RANGE_MM,
     ...usableFields.map((field) =>
       Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept)),
     ),
@@ -793,6 +921,50 @@ export function computeComaPreview(
     fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
     fields,
     sharedRelativeHalfRangeMm,
+    usableFieldCount: usableFields.length,
+  };
+}
+
+/**
+ * Compute an estimated 2D coma preview at fixed fractions of the current half-field.
+ *
+ * The tangential spread comes directly from the meridional real-ray footprint.
+ * Each valid meridional slice is then expanded across the circular pupil chord
+ * it represents, producing a normalized sagittal thickness estimate rather than
+ * a true skew-ray or sagittal spot diagram.
+ */
+export function computeEstimatedComaPreview(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): EstimatedComaPreviewResult | null {
+  const fields = buildFixedComaPreviewFootprints(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  ).map(estimatedComaPreviewFieldResultFromFootprint);
+
+  const usableFields = fields.filter((field) => field.usable);
+  if (usableFields.length < 2) return null;
+
+  const sharedTangentialHalfRangeMm = Math.max(
+    ESTIMATED_COMA_MIN_SHARED_TANGENTIAL_HALF_RANGE_MM,
+    ...usableFields.map((field) =>
+      Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept)),
+    ),
+  );
+
+  return {
+    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fields,
+    sharedTangentialHalfRangeMm,
+    normalizedSagittalHalfRange: ESTIMATED_COMA_NORMALIZED_SAGITTAL_HALF_RANGE,
     usableFieldCount: usableFields.length,
   };
 }

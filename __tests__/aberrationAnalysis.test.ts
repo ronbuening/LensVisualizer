@@ -4,6 +4,7 @@ import {
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
   computeComaPreview,
+  computeEstimatedComaPreview,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
@@ -575,6 +576,105 @@ describe("computeComaPreview", () => {
 
     const result = computeComaPreview(L, zPos, 0, 0, 12, 1);
     expect(result).toBeNull();
+  });
+});
+
+describe("computeEstimatedComaPreview", () => {
+  it("returns four ordered preview fields and preserves usable field count", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
+    expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
+    expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%"]);
+    expect(result!.usableFieldCount).toBe(result!.fields.filter((field) => field.usable).length);
+    expect(result!.fields.filter((field) => field.usable).every((field) => field.points.length > 0)).toBe(true);
+  });
+
+  it("keeps the center field centered and sagittally symmetric", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.fieldFraction).toBe(0);
+    expect(centerField.usable).toBe(true);
+
+    const chiefPoints = centerField.points.filter((point) => point.sourceSampleIndex === Math.floor(MERIDIONAL_COMA_SAMPLE_COUNT / 2));
+    expect(chiefPoints.length).toBeGreaterThanOrEqual(3);
+    expect(chiefPoints.some((point) => point.sagittalNormalized < 0)).toBe(true);
+    expect(chiefPoints.some((point) => point.sagittalNormalized > 0)).toBe(true);
+    expect(chiefPoints[Math.floor(chiefPoints.length / 2)].tangentialImageHeight).toBeCloseTo(0, 8);
+
+    const sagittalAverage =
+      centerField.points.reduce((sum, point) => sum + point.sagittalNormalized * point.weight, 0) /
+      centerField.points.reduce((sum, point) => sum + point.weight, 0);
+    expect(sagittalAverage).toBeCloseTo(0, 8);
+  });
+
+  it("survives clipped outer rays when enough valid samples remain", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD } = apertureAt(L, 0, 0);
+    const clippedStop = currentEPSD * 0.85;
+
+    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, clippedStop);
+    expect(result).not.toBeNull();
+    expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
+    expect(result!.fields.some((field) => field.clippedSampleCount > 0 && field.points.length > 0)).toBe(true);
+  });
+
+  it("returns null when fewer than two estimated preview tiles are usable", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const result = computeEstimatedComaPreview(L, zPos, 0, 0, 12, 1);
+    expect(result).toBeNull();
+  });
+
+  it("tracks tangential spread changes in the same direction as the meridional preview", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const wideOpen = apertureAt(L, 0, 0);
+    const stoppedDown = apertureAt(L, 0, 0.7);
+
+    const wideMeridional = computeComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stoppedMeridional = computeComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const wideEstimated = computeEstimatedComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stoppedEstimated = computeEstimatedComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    expect(wideMeridional).not.toBeNull();
+    expect(stoppedMeridional).not.toBeNull();
+    expect(wideEstimated).not.toBeNull();
+    expect(stoppedEstimated).not.toBeNull();
+
+    const meridionalDelta = stoppedMeridional!.sharedRelativeHalfRangeMm - wideMeridional!.sharedRelativeHalfRangeMm;
+    const estimatedDelta = stoppedEstimated!.sharedTangentialHalfRangeMm - wideEstimated!.sharedTangentialHalfRangeMm;
+    expect(Math.sign(estimatedDelta)).toBe(Math.sign(meridionalDelta));
+    expect(stoppedEstimated!.sharedTangentialHalfRangeMm).toBeCloseTo(stoppedMeridional!.sharedRelativeHalfRangeMm, 8);
+    expect(wideEstimated!.sharedTangentialHalfRangeMm).toBeCloseTo(wideMeridional!.sharedRelativeHalfRangeMm, 8);
+  });
+
+  it("responds to focus changes", () => {
+    const L = build(NikonAF28f14DRaw);
+    const infinity = apertureAt(L, 0, 0);
+    const close = apertureAt(L, 0, 0);
+    const { z: zInfinity } = doLayout(0, 0, L);
+    const { z: zClose } = doLayout(0.8, 0, L);
+
+    const atInfinity = computeEstimatedComaPreview(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
+    const atClose = computeEstimatedComaPreview(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+
+    expect(atInfinity).not.toBeNull();
+    expect(atClose).not.toBeNull();
+    expect(atClose!.sharedTangentialHalfRangeMm).not.toBeCloseTo(atInfinity!.sharedTangentialHalfRangeMm, 6);
   });
 });
 
