@@ -28,6 +28,13 @@ export interface FieldGeometryState {
   epRatio: number;
 }
 
+export interface EntrancePupilState {
+  epSD: number;
+  yRatio: number;
+  b: number;
+  epRatio: number;
+}
+
 /* ── Named constants ── */
 export const FLAT_R_THRESHOLD: number = 1e10; /* surfaces with |R| above this are treated as flat (plano) */
 const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
@@ -354,6 +361,25 @@ export function traceChiefRayAtAngle(
   return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
 }
 
+/**
+ * State-aware paraxial trace to the last surface.
+ *
+ * Mirrors traceRay()'s convention by returning the ray height and slope
+ * immediately after refraction at the last surface, before the final transfer
+ * to the image plane.
+ */
+export function traceParaxialRay(
+  y0: number,
+  u0: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+): Pick<StateSurfaceTraceResult, "y" | "u"> {
+  const S = stateSurfaces(focusT, zoomT, L);
+  const result = traceStateSurfacesParaxial(S, y0, u0, { skipLastTransfer: true });
+  return { y: result.y, u: result.u };
+}
+
 export function chiefRayImageHeight(
   fieldAngleDeg: number,
   zPos: number[],
@@ -479,6 +505,30 @@ export function bAtZoom(zoomT: number, L: RuntimeLens): number {
 export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.xpSD;
   return _lerpZoomArray(zoomT, L.zoomXpSDs!);
+}
+
+/**
+ * Compute entrance pupil geometry for the current focus/zoom state.
+ *
+ * Uses the current front-group marginal-ray ratio instead of the build-time
+ * infinity-focus value so pupil-dependent analyses stay aligned with floating-
+ * focus and internal-focus designs.
+ */
+export function entrancePupilAtState(
+  stopSD: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+): EntrancePupilState {
+  const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
+  const yRatio = geometry.yRatio;
+  const epSD = Math.abs(yRatio) > 1e-9 ? Math.abs(stopSD / yRatio) : 0;
+  return {
+    epSD,
+    yRatio,
+    b: geometry.b,
+    epRatio: geometry.epRatio,
+  };
 }
 
 /**

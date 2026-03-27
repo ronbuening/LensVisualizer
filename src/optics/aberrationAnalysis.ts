@@ -10,7 +10,7 @@
  * buildLens(). They should be memoized from current state in a React hook.
  */
 
-import { traceRay } from "./optics.js";
+import { traceParaxialRay, traceRay } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** One sample point on the longitudinal SA profile curve. */
@@ -45,11 +45,11 @@ export interface SphericalAberrationResult {
 const MARGINAL_FRACS = [0.95, 0.9, 0.85, 0.8] as const;
 
 /**
- * Height fraction of the entrance pupil used for the paraxial reference ray.
- * Small enough that Snell's law and the paraxial approximation give
- * indistinguishable results, but large enough to avoid floating-point noise.
- */
-const PARAXIAL_FRAC = 0.001;
+/** Reference ray height in mm for the true paraxial baseline trace. */
+const PARAXIAL_REFERENCE_HEIGHT_MM = 1;
+
+/** Legacy near-axis real-ray fraction retained for regression tests/documentation. */
+export const LEGACY_NEAR_AXIS_REAL_FRAC = 0.001;
 
 /** Minimum |u| (exit slope) to consider a ray's axial intercept valid. */
 const MIN_SLOPE = 1e-12;
@@ -67,16 +67,49 @@ function axialIntercept(y: number, u: number, lastSurfZ: number): number | null 
   return lastSurfZ - y / u;
 }
 
+function computeParaxialReferenceIntercept(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  lastSurfZ: number,
+): number | null {
+  const paraxial = traceParaxialRay(PARAXIAL_REFERENCE_HEIGHT_MM, 0, focusT, zoomT, L);
+  return axialIntercept(paraxial.y, paraxial.u, lastSurfZ);
+}
+
+function computeSymmetricRealIntercept(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  lastSurfZ: number,
+  fraction: number,
+): number | null {
+  const h = fraction * currentEPSD;
+  const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+  const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+
+  if (plusY.clipped || minusY.clipped) return null;
+
+  const interceptPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
+  const interceptMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
+  if (interceptPlus === null || interceptMinus === null) return null;
+
+  return (interceptPlus + interceptMinus) / 2;
+}
+
 /**
  * Compute on-axis longitudinal spherical aberration for the current lens state.
  *
  * Traces a marginal ray near the entrance pupil edge (0.95× preferred, with
  * fallbacks to 0.90/0.85/0.80 if clipped) using exact Snell's law, and
- * compares its axial intercept against a near-axis paraxial reference ray.
+ * compares its axial intercept against a true paraxial reference ray.
  *
- * Sign convention: positive SA means the real marginal intercept lies farther
- * toward the image side than the paraxial intercept (undercorrected — typical
- * for simple positive lens groups).
+ * Sign convention: negative SA means the real marginal intercept lies closer
+ * to the lens than the paraxial intercept (undercorrected). Positive SA means
+ * the marginal focus falls beyond the paraxial focus (overcorrected).
  *
  * The +Y and −Y marginal rays are averaged to enforce symmetry and cancel
  * any residual sign noise from asymmetric surface interactions.
@@ -100,6 +133,8 @@ export function computeSphericalAberration(
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
+  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
+  if (paraxialIntercept === null) return null;
 
   /* ── Real marginal rays (±Y, averaged for symmetry) ──
    * ghost=true so the trace runs through all surfaces and reliably reports
@@ -112,29 +147,20 @@ export function computeSphericalAberration(
   let realIntercept: number | null = null;
 
   for (const frac of MARGINAL_FRACS) {
-    const h = frac * currentEPSD;
-    const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-    const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-
-    if (plusY.clipped || minusY.clipped) continue;
-
-    const interceptPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
-    const interceptMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
-    if (interceptPlus === null || interceptMinus === null) continue;
-
-    realIntercept = (interceptPlus + interceptMinus) / 2;
-    break;
+    realIntercept = computeSymmetricRealIntercept(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      frac,
+    );
+    if (realIntercept !== null) break;
   }
 
   if (realIntercept === null) return null;
-
-  /* ── Paraxial reference ray (tiny height, no stop clipping) ── */
-  const hParaxial = PARAXIAL_FRAC * currentEPSD;
-  const paraxRef = traceRay(hParaxial, 0, zPos, focusT, zoomT, undefined, true, L);
-
-  if (paraxRef.clipped) return null;
-  const paraxialIntercept = axialIntercept(paraxRef.y, paraxRef.u, lastSurfZ);
-  if (paraxialIntercept === null) return null;
 
   const saMm = realIntercept - paraxialIntercept;
   return {
@@ -154,10 +180,10 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
 /**
  * Compute the longitudinal SA profile across the pupil aperture.
  *
- * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil
- * and returns the focus shift (SA) relative to the paraxial reference at
- * each zone.  Points where the ray is clipped by the aperture stop are
- * silently omitted, so the returned array may be shorter than PROFILE_FRACS.
+ * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil and
+ * returns the focus shift relative to the true paraxial reference at each
+ * zone. Points where the ray is clipped by the aperture stop are silently
+ * omitted, so the returned array may be shorter than PROFILE_FRACS.
  *
  * Returns an empty array when the paraxial reference cannot be traced or
  * when fewer than two valid zone samples are available.
@@ -183,29 +209,27 @@ export function computeSAProfile(
   const lastSurfZ = zPos[L.N - 1];
 
   /* ── Paraxial reference intercept (computed once) ── */
-  const hParaxial = PARAXIAL_FRAC * currentEPSD;
-  const paraxRef = traceRay(hParaxial, 0, zPos, focusT, zoomT, undefined, true, L);
-  if (paraxRef.clipped) return [];
-  const paraxialIntercept = axialIntercept(paraxRef.y, paraxRef.u, lastSurfZ);
+  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
   if (paraxialIntercept === null) return [];
 
   /* ── Sample each zone fraction ── */
   const points: SAProfilePoint[] = [];
 
   for (const fraction of PROFILE_FRACS) {
-    const h = fraction * currentEPSD;
-    const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-    const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+    const realIntercept = computeSymmetricRealIntercept(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      fraction,
+    );
+    if (realIntercept === null) continue;
 
-    if (plusY.clipped || minusY.clipped) continue;
-
-    const iPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
-    const iMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
-    if (iPlus === null || iMinus === null) continue;
-
-    const realIntercept = (iPlus + iMinus) / 2;
     points.push({ fraction, saMm: realIntercept - paraxialIntercept });
   }
 
-  return points;
+  return points.length >= 2 ? points : [];
 }
