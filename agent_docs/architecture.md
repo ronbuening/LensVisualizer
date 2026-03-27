@@ -34,7 +34,8 @@
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
 | `PageNavBar.tsx` | `src/components/layout/` | Shared navigation bar for static pages with theme toggle |
 | `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
-| `DiagramControlPanel.tsx` | `src/components/layout/` | Sliders, inspector, and legend panel extracted from LensDiagramPanel |
+| `AnalysisDrawer.tsx` | `src/components/layout/` | Sliding tabbed panel overlaying SVG viewport for analysis views (aberrations, distortion) |
+| `DiagramControlPanel.tsx` | `src/components/layout/` | Sliders, inspector, legend, and analysis launch button extracted from LensDiagramPanel |
 | `SingleLensContent.tsx` | `src/components/layout/` | Single-lens diagram + description layout |
 | `DropdownPanel.tsx` | `src/components/layout/` | Portal-based dropdown panel for settings/theme overlays |
 | `PrimerToggleButton.tsx` | `src/components/layout/` | Shared button for switching between simple/intermediate primer levels |
@@ -87,7 +88,9 @@
 |--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
-| `AberrationsPanel.tsx` | `src/components/display/` | Collapsible aberration metrics panel (SA, future: distortion, LSA, vignetting, coma) |
+| `AberrationsPanel.tsx` | `src/components/display/` | Aberration metrics panel (SA); rendered inside AnalysisDrawer's "aberrations" tab |
+| `DistortionTab.tsx` | `src/components/display/` | Distortion curve tab content; memoizes computation and renders DistortionChart |
+| `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -110,7 +113,8 @@
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
-| `aberrationAnalysis.ts` | `src/optics/` | Pure aberration analysis helpers (spherical aberration; future: distortion, vignetting, coma) |
+| `aberrationAnalysis.ts` | `src/optics/` | Pure aberration analysis helpers (spherical aberration; future: vignetting, coma) |
+| `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
 
 ### Utilities
 
@@ -204,7 +208,8 @@ Sub-components:
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
 - **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
-- **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and aberrations panel; composes DiagramControls, ElementInspector, DiagramLegend, and AberrationsPanel
+- **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Tab content components: AberrationsPanel (SA), DistortionTab (distortion curve). Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
+- **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and analysis launch button; composes DiagramControls, ElementInspector, DiagramLegend
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
@@ -249,7 +254,15 @@ Pure-function aberration analysis helpers. All functions accept the runtime lens
 
 Sign convention: positive SA = undercorrected (real marginal focus farther from lens than paraxial).
 
-Future additions: distortion curve (#297), longitudinal SA plot (#298), vignetting/relative illumination (#299), coma visualization (#300).
+Future additions: longitudinal SA plot (#298), vignetting/relative illumination (#299), coma visualization (#300).
+
+## distortionAnalysis.ts
+
+Pure-function distortion curve computation. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention (from `useOffAxisRays`), computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns distortion percentage at each sample.
+
+- **`computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, _currentPhysStopSD)`** — Returns `DistortionSample[]` with `{fieldAngleDeg, distortionPercent, realHeight, idealHeight}`. Center distortion is exactly 0 by definition. Uses `halfFieldAtZoom()`, `bAtZoom()`, `yRatioAtZoom()` for zoom-aware parameters.
+
+No React dependencies — fully testable in isolation.
 
 ## validateLensData.ts
 
