@@ -34,6 +34,7 @@ const MAKER_PREFIXES = [
   { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
   { prefix: "NIKON", slug: "nikon" },
   { prefix: "RICOH", slug: "ricoh" },
+  { prefix: "FUJIFILM", slug: "fujifilm" },
 ];
 
 /** Derive a URL-safe maker slug from a lens display name. */
