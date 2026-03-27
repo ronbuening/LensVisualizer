@@ -8,6 +8,7 @@
 
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
+import "./AnalysisDrawer.css";
 
 export interface AnalysisTab {
   id: string;
@@ -74,6 +75,8 @@ export default function AnalysisDrawer({
         flexDirection: "column",
         width: 40,
         flexShrink: 0,
+        overflowY: "auto",
+        overflowX: "hidden",
         borderRight: `1px solid ${t.panelBorder}`,
         background: t.headerBgColor,
         backgroundImage: t.headerBgImage,
@@ -86,6 +89,8 @@ export default function AnalysisDrawer({
         flexDirection: "row",
         height: 36,
         flexShrink: 0,
+        overflowX: "auto",
+        overflowY: "hidden",
         borderBottom: `1px solid ${t.panelBorder}`,
         background: t.headerBgColor,
         backgroundImage: t.headerBgImage,
@@ -123,7 +128,7 @@ export default function AnalysisDrawer({
   return (
     <div style={drawerStyle}>
       {/* ── Tab bar ── */}
-      <div style={tabBarStyle}>
+      <div className="analysisDrawerTabBar" style={tabBarStyle}>
         {tabs.map((tab) => (
           <TabButton
             key={tab.id}
@@ -181,7 +186,7 @@ function TabButton({
         whiteSpace: "nowrap",
       }
     : {
-        flex: 1,
+        flex: "1 0 88px",
         padding: "6px 10px",
         cursor: "pointer",
         border: "none",
