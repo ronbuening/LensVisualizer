@@ -189,6 +189,14 @@ describe("AberrationsPanel", () => {
     expect(screen.queryByText("LSA")).toBeNull();
   });
 
+  it("renders the spherical aberration chart when a profile is available", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+
+    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+  });
+
   it("renders meridional coma copy and span metric", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
@@ -244,6 +252,26 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
+  it("toggles the coma preview section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
+
+    expect(screen.queryByText(/Estimated 2D coma appearance at center/i)).toBeNull();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
+  it("toggles the meridional coma section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[2].closest("button")!);
+
+    expect(screen.queryByText(/2D meridional coma view using a dense off-axis ray fan/i)).toBeNull();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
   it("syncs the spherical aberration section with the expanded prop", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeSAProfile.mockReturnValue([
@@ -253,8 +281,10 @@ describe("AberrationsPanel", () => {
 
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
     expect(screen.getAllByText("LESS").length).toBe(3);
+    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
+    expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
   });
 });
