@@ -15,10 +15,16 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    f/1.85, full field (Y = 21.70 mm), with 8% mechanical          ║
  * ║    clearance.  Capped to sd/|R| ≤ 0.85 where needed.  Cemented   ║
  * ║    junction SDs matched.  Not patent-listed.                       ║
- * ║    Corrected: surface "9" (L5 rear) 38→25 mm and STO 36→25 mm     ║
- * ║    to prevent stop/L5 collision (sag at h=25 = 6.7 mm < 8.24 mm  ║
- * ║    gap).  Surfaces "13"/"14" (L7) 33→20 mm to prevent L7/L8       ║
- * ║    close-focus overlap (intrusion 13.5 mm → 6.7 mm at h=20).      ║
+ * ║    Previous fixes: surface "9" (L5 rear) 38→25 mm and STO 36→25  ║
+ * ║    mm to prevent stop/L5 collision.  Surfaces "13"/"14" (L7)      ║
+ * ║    capped to 20 mm to prevent L7/L8 close-focus overlap           ║
+ * ║    (intrusion 6.7 mm vs 8.51 mm gap at close focus).              ║
+ * ║    Tweaked to match production lens cross-section: surfaces "4"   ║
+ * ║    and "6" (air gaps between front menisci) reduced from 42/43.5  ║
+ * ║    to 39/38 mm; L6 asph (surfs "11A"/"12") 28.5→27 mm; L7 focus  ║
+ * ║    group (surfs "13"/"14") restored to 20 mm; L8 (surfs "15"/    ║
+ * ║    "16") 28/27.5→26.5/26 mm.  Surf "29" constrained to 21 mm by  ║
+ * ║    tight L15→L16 gap (sag limit: 4.73 mm at gap = 4.302 mm).     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -254,9 +260,9 @@ const LENS_DATA = {
     { label: "1", R: 73.0739, d: 8.258, nd: 1.66382, elemId: 1, sd: 42.0 }, // L1 front (SR)
     { label: "2", R: 173.9425, d: 1.0, nd: 1.0, elemId: 0, sd: 41.5 }, // L1 rear → air
     { label: "3", R: 75.0, d: 8.0959, nd: 1.49782, elemId: 2, sd: 39 }, // L2 front (ED)
-    { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 42.0 }, // L2 rear → air
+    { label: "4", R: 226.5221, d: 1.0, nd: 1.0, elemId: 0, sd: 39.0 }, // L2 rear → air
     { label: "5", R: 94.0, d: 6.1837, nd: 1.49782, elemId: 3, sd: 39.5 }, // L3 front (ED)
-    { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 43.5 }, // L3 rear → air
+    { label: "6", R: 255.73, d: 1.0, nd: 1.0, elemId: 0, sd: 38.0 }, // L3 rear → air
     { label: "7", R: 55.0, d: 10.248, nd: 1.49782, elemId: 4, sd: 30.5 }, // L4 front (ED, cemented D1)
     { label: "8", R: -766.4853, d: 2.1, nd: 1.85451, elemId: 5, sd: 30.5 }, // L4→L5 junction — elemId: 5
     { label: "9", R: 50.025, d: 8.2444, nd: 1.0, elemId: 0, sd: 25.0 }, // L5 rear → air
@@ -265,16 +271,16 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25.0 }, // Patent surface 10
 
     /* ── L6 (aspherical) ── */
-    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 28.5 }, // L6 front — aspherical
-    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 28.5 }, // L6 rear → air (D12, variable)
+    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 27.0 }, // L6 front — aspherical
+    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 27.0 }, // L6 rear → air (D12, variable)
 
     /* ── G2: Focus group 1 — L7 ── */
-    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 18.5 }, // L7 front
-    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 18.5 }, // L7 rear → air (D14, variable)
+    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.0 }, // L7 front
+    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.0 }, // L7 rear → air (D14, variable)
 
     /* ── G3: Fixed rear corrector — L8 through L12 ── */
-    { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 28.0 }, // L8 front
-    { label: "16", R: -75.4132, d: 0.1, nd: 1.0, elemId: 0, sd: 27.5 }, // L8 rear → air
+    { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 26.5 }, // L8 front
+    { label: "16", R: -75.4132, d: 0.1, nd: 1.0, elemId: 0, sd: 26.0 }, // L8 rear → air
     { label: "17", R: -160.7346, d: 2.1, nd: 1.85451, elemId: 9, sd: 26.5 }, // L9 front (cemented D2)
     { label: "18", R: 80.412, d: 3.2958, nd: 1.59319, elemId: 10, sd: 26.5 }, // L9→L10 junction — elemId: 10
     { label: "19", R: 157.8647, d: 0.7213, nd: 1.0, elemId: 0, sd: 26.0 }, // L10 rear → air
@@ -291,7 +297,7 @@ const LENS_DATA = {
     { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 24.0 }, // L14 front
     { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 24.0 }, // L14 rear → air
     { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 24.0 }, // L15 front
-    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 21 }, // L15 rear → air
+    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 21.0 }, // L15 rear → air
     { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 25.0 }, // L16 front
     { label: "31", R: -2372.9554, d: 14.4393, nd: 1.0, elemId: 0, sd: 25.0 }, // L16 rear → image (BFD incl. filter)
   ],
