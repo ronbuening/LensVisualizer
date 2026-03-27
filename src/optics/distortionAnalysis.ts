@@ -9,7 +9,7 @@
  * current state in a hook rather than embedding in a component.
  */
 
-import { traceRay, halfFieldAtZoom, bAtZoom, yRatioAtZoom } from "./optics.js";
+import { traceRay, halfFieldAtZoom, bAtZoom, yRatioAtZoom, thick } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
@@ -60,7 +60,6 @@ export function computeDistortionCurve(
   const halfFieldDeg = halfFieldAtZoom(zoomT, L);
   if (halfFieldDeg <= 0 || !isFinite(halfFieldDeg)) return [];
 
-  const lastSurfZ = zPos[L.N - 1];
   const bVal = bAtZoom(zoomT, L);
   const yRatio = yRatioAtZoom(zoomT, L);
   if (yRatio === 0) return [];
@@ -83,10 +82,10 @@ export function computeDistortionCurve(
     /* Trace chief ray (no stop clipping — chief ray passes through stop center) */
     const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
 
-    /* Project to the image plane at the last surface z-position.
-     * Using the last surface rather than a separate image plane keeps
-     * this consistent with the existing off-axis ray convention. */
-    const realHeight = trace.y + trace.u * (zPos[zPos.length - 1] - lastSurfZ);
+    /* Project from the last optical surface to the image plane by propagating
+     * through the final air gap (BFD).  thick(N-1, ...) gives the current
+     * back-focal distance accounting for focus and zoom. */
+    const realHeight = trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
 
     /* Ideal rectilinear height: negative because the image is inverted */
     const idealHeight = -(dynamicEFL * Math.tan(thetaRad));
