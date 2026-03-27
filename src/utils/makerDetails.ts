@@ -50,6 +50,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Carl Zeiss founded his workshop in Jena in 1846, initially producing simple microscopes. The partnership with physicist Ernst Abbe in the 1860s transformed the company into a science-driven enterprise, applying wave optics theory to lens computation rather than relying on trial and error. Abbe's diffraction limit work and Otto Schott's development of new optical glasses at the nearby Schott glassworks gave Zeiss an unmatched foundation in materials and theory.\n\nPaul Rudolph's Planar (1896) and Tessar (1902) designs became two of the most influential lens formulas in history. The Tessar's four-element simplicity delivered sharp, well-corrected images that defined an era of photography. Ludwig Bertele, working at Ernemann and then at Zeiss Ikon after the 1926 merger of four camera makers under Zeiss capital, designed the Sonnar (patented 1929) — a fast telephoto design that eliminated air-glass surfaces to reduce flare, a critical advantage before anti-reflection coatings existed.\n\nAfter World War II, Zeiss split into East (Jena) and West (Oberkochen) operations. Both continued lens development independently until reunification in the early 1990s. The Oberkochen facility partnered with Japanese manufacturers for SLR lens production while maintaining in-house design. Today, Zeiss continues to produce premium photographic, cinema, and industrial optics.",
     notableDesigns: "Tessar, Planar, Sonnar, Biogon, Distagon",
   },
+  fujifilm: {
+    founded: 1934,
+    headquarters: "Tokyo, Japan",
+    summary:
+      "Japanese imaging company best known for the Fujinon/XF lens families, with strong optical design heritage spanning cinema, broadcast, medical, and still-photography systems.",
+    history:
+      "Fujifilm traces its roots to Fuji Photo Film Co., Ltd., founded in 1934 to build a domestic photographic-film industry in Japan. Over the following decades, the company expanded from film chemistry into optical engineering, producing Fujinon lenses for cinema, television, industrial, and medical applications. In still photography, Fujifilm developed interchangeable-lens systems across rangefinder, SLR, and mirrorless eras, with its modern X Series (APS-C) and GFX Series (medium format) becoming core platforms.\n\nThe XF mount ecosystem emphasizes compact high-performance primes and weather-sealed professional zooms, often combining aspherical surfaces, ED elements, and modern coatings to balance sharpness, size, and rendering character. Fujifilm's lens roadmap continues to evolve with both fast-aperture primes and stabilized telephoto optics.",
+    notableDesigns: "XF 56mm f/1.2, XF 50mm f/1.0, XF 80mm f/2.8 Macro, GF 110mm f/2",
+  },
   nikon: {
     founded: 1917,
     headquarters: "Tokyo, Japan",
