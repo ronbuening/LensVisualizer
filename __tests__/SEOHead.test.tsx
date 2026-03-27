@@ -44,6 +44,19 @@ describe("SEOHead", () => {
     expect(meta).toContain('name="twitter:image:alt" content="Example alt"');
   });
 
+  it("uses the shared social card defaults when no image props are provided", () => {
+    const helmet = renderHead(
+      <SEOHead title="Example" description="Example description" canonicalURL="https://opticalbench.net/example" />,
+    );
+
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('name="twitter:card" content="summary_large_image"');
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('property="og:image:width" content="1200"');
+    expect(meta).toContain('property="og:image:height" content="630"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
   it("renders multiple JSON-LD scripts", () => {
     const helmet = renderHead(
       <SEOHead

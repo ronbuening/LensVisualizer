@@ -11,6 +11,7 @@
 
 import { describe, it, expect } from "vitest";
 import { render } from "../src/entry-server.js";
+import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { allMakerSlugs, makerDisplayName, SITE_NAME, SITE_URL } from "../src/utils/lensMetadata.js";
 
@@ -20,6 +21,7 @@ const TEST_LENS_SLUG = CATALOG_KEYS[0];
 const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
 const TEST_MAKER_SLUG = allMakerSlugs()[0];
 const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+const TEST_ARTICLE = ARTICLES[0];
 
 /* ── Preconditions ── */
 
@@ -88,6 +90,14 @@ describe("SSR render — home page /", () => {
     expect(meta).toContain('property="og:description"');
     expect(meta).toContain('name="twitter:card"');
   });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render("/");
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('property="og:image:width" content="1200"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
 });
 
 /* ── Compare page ── */
@@ -143,6 +153,13 @@ describe("SSR render — lens page /lens/:slug", () => {
     expect(helmet.meta.toString()).toContain("article");
   });
 
+  it("includes the default social image tags", () => {
+    const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+
   it("SSR fallback HTML contains the lens name", () => {
     const { html } = render(`/lens/${TEST_LENS_SLUG}`);
     expect(html).toContain(TEST_LENS.name);
@@ -179,6 +196,31 @@ describe("SSR render — maker page /makers/:maker", () => {
   it("HTML contains the maker display name", () => {
     const { html } = render(`/makers/${TEST_MAKER_SLUG}`);
     expect(html).toContain(TEST_MAKER_DISPLAY);
+  });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+  });
+});
+
+/* ── Article page ── */
+
+describe("SSR render — article page /articles/:slug", () => {
+  const url = `/articles/${TEST_ARTICLE.slug}`;
+
+  it("title contains the article title", () => {
+    const { helmet } = render(url);
+    expect(helmet.title.toString()).toContain(TEST_ARTICLE.title);
+  });
+
+  it("includes the default social image tags", () => {
+    const { helmet } = render(url);
+    const meta = helmet.meta.toString();
+    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
   });
 });
 

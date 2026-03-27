@@ -5,7 +5,13 @@
  */
 
 import { Helmet } from "react-helmet-async";
-import { SITE_NAME } from "../utils/lensMetadata.js";
+import {
+  SITE_NAME,
+  SOCIAL_IMAGE_ALT,
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_URL,
+  SOCIAL_IMAGE_WIDTH,
+} from "../utils/lensMetadata.js";
 
 export interface JsonLdSchema {
   [key: string]: unknown;
@@ -36,11 +42,11 @@ export default function SEOHead({
   canonicalURL,
   robots,
   ogType = "website",
-  twitterCard = "summary",
-  socialImageURL,
-  socialImageAlt,
-  socialImageWidth,
-  socialImageHeight,
+  twitterCard = "summary_large_image",
+  socialImageURL = SOCIAL_IMAGE_URL,
+  socialImageAlt = SOCIAL_IMAGE_ALT,
+  socialImageWidth = SOCIAL_IMAGE_WIDTH,
+  socialImageHeight = SOCIAL_IMAGE_HEIGHT,
   jsonLd,
 }: SEOHeadProps) {
   const jsonLdEntries = normalizeJsonLd(jsonLd);
