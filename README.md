@@ -10,7 +10,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag and aspheric overlays
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
-- Shows analysis views for spherical aberration, meridional coma, distortion, focus breathing, and vignetting
+- Shows analysis views for spherical aberration, representative coma preview, meridional coma, distortion, focus breathing, and vignetting
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Supports shared-control side-by-side comparison between two lenses
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
@@ -26,7 +26,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
-- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including a dense 2D meridional coma view inside the Aberrations tab
+- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including a representative coma preview grid and a dense 2D meridional coma view inside the Aberrations tab
 - **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state
 - **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay

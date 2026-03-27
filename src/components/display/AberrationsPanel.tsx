@@ -9,8 +9,10 @@
 import { useEffect, useMemo, useState } from "react";
 import CollapseButton from "../controls/CollapseButton.js";
 import HelpTooltipButton from "../controls/HelpTooltipButton.js";
+import ComaPreviewGrid from "./ComaPreviewGrid.js";
 import MeridionalComaPlot, { formatComaSpan } from "./MeridionalComaPlot.js";
 import {
+  computeComaPreview,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
@@ -174,7 +176,13 @@ export default function AberrationsPanel({
     [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
   );
 
+  const comaPreviewResult = useMemo(
+    () => computeComaPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
+  );
+
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
+  const [comaPreviewExpanded, setComaPreviewExpanded] = useState(true);
   const [comaExpanded, setComaExpanded] = useState(true);
 
   useEffect(() => {
@@ -255,6 +263,94 @@ export default function AberrationsPanel({
             </span>
           </div>
         )}
+
+        <div
+          style={{
+            borderTop: `1px solid ${t.panelBorder}`,
+            paddingTop: 14,
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Coma Preview</span>
+            <HelpTooltipButton
+              theme={t}
+              label="Coma preview help"
+              text="This representative preview samples the meridional ray footprint at the center and at 25%, 50%, and 75% of the current half-field. Each mini-panel is centered on the chief ray so you can compare asymmetric spread growth across the field. It is not a full 2D spot diagram."
+            />
+            <CollapseButton
+              expanded={comaPreviewExpanded}
+              onToggle={() => setComaPreviewExpanded((value) => !value)}
+              theme={t}
+              style={{ marginLeft: "auto" }}
+            />
+          </div>
+
+          {comaPreviewExpanded && (
+            <>
+              <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                Representative meridional coma preview at center, 25%, 50%, and 75% of the current half-field. Each tile
+                is chief-ray-centered for comparison and is not a full 2D spot diagram.
+              </span>
+
+              {comaPreviewResult ? (
+                <>
+                  <ComaPreviewGrid result={comaPreviewResult} t={t} />
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 14,
+                      flexWrap: "wrap",
+                      fontSize: 9.5,
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                        FIELDS
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: t.value,
+                          fontVariantNumeric: "tabular-nums",
+                          transition: "color 0.3s",
+                        }}
+                      >
+                        {comaPreviewResult.usableFieldCount}/{comaPreviewResult.fields.length}
+                      </span>
+                    </div>
+                    <div
+                      style={{ display: "flex", alignItems: "center", gap: 8 }}
+                      title="Shared half-range used to normalize all four coma preview tiles."
+                    >
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                        RANGE
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: t.value,
+                          fontVariantNumeric: "tabular-nums",
+                          transition: "color 0.3s",
+                        }}
+                      >
+                        ±{formatComaSpan(comaPreviewResult.sharedRelativeHalfRangeMm * 1000)}
+                      </span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div style={{ color: t.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
+                  Unable to compute a representative coma preview for this lens state.
+                </div>
+              )}
+            </>
+          )}
+        </div>
 
         <div
           style={{

@@ -104,6 +104,12 @@ describe("analysis display tabs", () => {
     );
 
     expect(html).toContain("Spherical Aberration");
+    expect(html).toContain("Coma Preview");
+    expect(html).toContain("Representative meridional coma preview");
+    expect(html).toContain("Center");
+    expect(html).toContain("25%");
+    expect(html).toContain("50%");
+    expect(html).toContain("75%");
     expect(html).toContain("Meridional Coma");
     expect(html).toContain("2D meridional coma view");
     expect(html).toContain("COMA SPAN");
