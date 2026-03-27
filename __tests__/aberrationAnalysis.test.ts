@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import {
   LEGACY_NEAR_AXIS_REAL_FRAC,
+  MERIDIONAL_COMA_SAMPLE_COUNT,
+  computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
@@ -349,6 +351,90 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
     expect(profile.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe("computeMeridionalComa", () => {
+  it("returns a dense sampled coma result for Sonnar 50/1.5", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.sampleCount).toBe(MERIDIONAL_COMA_SAMPLE_COUNT);
+    expect(result!.samples.length).toBe(MERIDIONAL_COMA_SAMPLE_COUNT);
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(result!.fieldAngleDeg).toBeGreaterThan(0);
+    expect(isFinite(result!.centerIntercept)).toBe(true);
+    expect(isFinite(result!.minIntercept)).toBe(true);
+    expect(isFinite(result!.maxIntercept)).toBe(true);
+    expect(isFinite(result!.spanMm)).toBe(true);
+    expect(isFinite(result!.spanUm)).toBe(true);
+  });
+
+  it("uses dense sampling rather than sparse display-ray fractions", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.sampleCount).toBeGreaterThan(L.offAxisFractions.length);
+  });
+
+  it("falls back to outermost valid samples when marginal rays clip", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD } = apertureAt(L, 0, 0);
+    const clippedStop = currentEPSD * 0.85;
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, clippedStop);
+    expect(result).not.toBeNull();
+    expect(result!.clippedSampleCount).toBeGreaterThan(0);
+    expect(result!.samples[0].clipped).toBe(true);
+    expect(result!.samples[result!.samples.length - 1].clipped).toBe(true);
+    expect(result!.lowerIntercept).toBeGreaterThanOrEqual(result!.minIntercept);
+    expect(result!.upperIntercept).toBeLessThanOrEqual(result!.maxIntercept);
+    expect(result!.spanMm).toBeCloseTo(result!.upperIntercept - result!.lowerIntercept, 8);
+  });
+
+  it("returns null when clipping removes one side of the pupil fan", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, 12, 1);
+    expect(result).toBeNull();
+  });
+
+  it("updates with stopdown changes", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const wideOpen = apertureAt(L, 0, 0);
+    const stoppedDown = apertureAt(L, 0, 0.7);
+
+    const wide = computeMeridionalComa(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stopped = computeMeridionalComa(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    expect(wide).not.toBeNull();
+    expect(stopped).not.toBeNull();
+    expect(stopped!.spanMm).not.toBeCloseTo(wide!.spanMm, 6);
+  });
+
+  it("updates with focus changes", () => {
+    const L = build(NikonAF28f14DRaw);
+    const infinity = apertureAt(L, 0, 0);
+    const close = apertureAt(L, 0, 0);
+    const { z: zInfinity } = doLayout(0, 0, L);
+    const { z: zClose } = doLayout(0.8, 0, L);
+
+    const atInfinity = computeMeridionalComa(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
+    const atClose = computeMeridionalComa(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+
+    expect(atInfinity).not.toBeNull();
+    expect(atClose).not.toBeNull();
+    expect(atClose!.spanMm).not.toBeCloseTo(atInfinity!.spanMm, 6);
   });
 });
 
