@@ -26,31 +26,16 @@ import useOverlayState from "../hooks/useOverlayState.js";
 import useHeaderHeight from "../hooks/useHeaderHeight.js";
 import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
-import DiagramSVG from "../diagram/DiagramSVG.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import DiagramControlPanel from "./DiagramControlPanel.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
 import OverlayModal from "./OverlayModal.js";
-import PanelOverlay from "./PanelOverlay.js";
-import AnalysisDrawer from "./AnalysisDrawer.js";
-import type { AnalysisTab } from "./AnalysisDrawer.js";
-import AberrationsPanel from "../display/AberrationsPanel.js";
-import DistortionTab from "../display/DistortionTab.js";
-import FocusBreathingTab from "../display/FocusBreathingTab.js";
-import VignettingTab from "../display/VignettingTab.js";
 import AbbeDiagram from "../display/AbbeDiagram.js";
-import LCAOverlayContent from "../diagram/LCAOverlayContent.js";
-import PetzvalOverlayContent from "../diagram/PetzvalOverlayContent.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
-
-const ANALYSIS_TABS: AnalysisTab[] = [
-  { id: "aberrations", label: "ABERRATIONS" },
-  { id: "distortion", label: "DISTORTION" },
-  { id: "breathing", label: "BREATHING" },
-  { id: "vignetting", label: "VIGNETTING" },
-];
+import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
+import DiagramViewport from "./lensDiagram/DiagramViewport.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -225,139 +210,74 @@ export default function LensDiagramPanel({
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
           <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
             {/* ── SVG viewport ── */}
-            <div style={useSideLayout ? { flex: 1, minWidth: 0, position: "relative" } : { position: "relative" }}>
-              <DiagramSVG
-                L={L}
-                t={t}
-                dark={dark}
-                sx={sx}
-                sy={sy}
-                CX={CX}
-                IX={IX}
-                effectiveSC={effectiveSC}
-                zPos={zPos}
-                IMG_MM={IMG_MM}
-                shapes={shapes}
-                filterId={filterId}
-                stopZ={stopZ}
-                currentPhysStopSD={currentPhysStopSD}
-                rays={rays}
-                offAxisRays={offAxisRays}
-                chromaticRays={chromaticRays}
-                chromSpread={chromSpread}
-                showOnAxis={showOnAxis}
-                showOffAxis={showOffAxis}
-                showChromatic={showChromatic}
-                showPupils={showPupils}
-                act={act}
-                onHover={setHov}
-                onSelect={(eid) => {
-                  if (sel === eid) {
-                    setSel(null);
-                    setHov(null);
-                  } else {
-                    setSel(eid);
-                  }
-                }}
-                sel={sel}
-                maxSvgHeight={maxSvgHeight}
-                useSideLayout={useSideLayout}
-                headerHeight={headerHeight}
-                compact={compact}
-                flashVisible={flashVisible}
-                flashKey={flashKey}
-                flashFading={flashFading}
-                onLcaInsetClick={overlays.openLcaOverlay}
-                onPetzvalBadgeClick={overlays.openPetzvalOverlay}
-              />
-              {overlays.showLcaOverlay && showChromatic && chromSpread && (
-                <PanelOverlay onClose={overlays.closeLcaOverlay} theme={t}>
-                  <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
-                </PanelOverlay>
-              )}
-              {overlays.showPetzvalOverlay && L && (
-                <PanelOverlay onClose={overlays.closePetzvalOverlay} theme={t}>
-                  <PetzvalOverlayContent L={L} t={t} />
-                </PanelOverlay>
-              )}
-              {/* ── Analysis drawer launch button (lower-left of SVG viewport) ── */}
-              {!analysisDrawerOpen && (
-                <button
-                  onClick={() => adapters.onAnalysisDrawerToggle(true)}
-                  style={{
-                    position: "absolute",
-                    bottom: 10,
-                    left: 10,
-                    zIndex: 5,
-                    borderRadius: 10,
-                    cursor: "pointer",
-                    padding: "4px 10px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 5,
-                    fontSize: 9,
-                    fontFamily: "inherit",
-                    letterSpacing: "0.08em",
-                    transition: "all 0.25s",
-                    background: t.toggleBg,
-                    border: `1px solid ${t.toggleBorder}`,
-                    color: t.muted,
-                  }}
-                >
-                  <span>ABERRATIONS &amp; DISTORTIONS</span>
-                  <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
-                </button>
-              )}
-              {/* ── Analysis drawer ── */}
-              <AnalysisDrawer
-                open={analysisDrawerOpen}
-                onClose={() => adapters.onAnalysisDrawerToggle(false)}
-                activeTab={analysisDrawerTab}
-                onTabChange={adapters.onAnalysisTabChange}
-                tabs={ANALYSIS_TABS}
-                t={t}
-                isWide={isWide}
-              >
-                {analysisDrawerTab === "aberrations" && (
-                  <AberrationsPanel
-                    L={L}
-                    t={t}
-                    zPos={zPos}
-                    focusT={focusT}
-                    zoomT={zoomT}
-                    currentEPSD={currentEPSD}
-                    currentPhysStopSD={currentPhysStopSD}
-                    expanded={aberrationsExpanded}
-                    onExpandedChange={adapters.onAberrationsExpandedChange}
-                  />
-                )}
-                {analysisDrawerTab === "distortion" && (
-                  <DistortionTab
-                    L={L}
-                    t={t}
-                    zPos={zPos}
-                    focusT={focusT}
-                    zoomT={zoomT}
-                    dynamicEFL={dynamicEFL}
-                    currentPhysStopSD={currentPhysStopSD}
-                  />
-                )}
-                {analysisDrawerTab === "breathing" && (
-                  <FocusBreathingTab L={L} t={t} focusT={focusT} zoomT={zoomT} dynamicEFL={dynamicEFL} />
-                )}
-                {analysisDrawerTab === "vignetting" && (
-                  <VignettingTab
-                    L={L}
-                    t={t}
-                    zPos={zPos}
-                    focusT={focusT}
-                    zoomT={zoomT}
-                    currentEPSD={currentEPSD}
-                    currentPhysStopSD={currentPhysStopSD}
-                  />
-                )}
-              </AnalysisDrawer>
-            </div>
+            <DiagramViewport
+              L={L}
+              t={t}
+              dark={dark}
+              sx={sx}
+              sy={sy}
+              CX={CX}
+              IX={IX}
+              effectiveSC={effectiveSC}
+              zPos={zPos}
+              IMG_MM={IMG_MM}
+              shapes={shapes}
+              filterId={filterId}
+              stopZ={stopZ}
+              currentPhysStopSD={currentPhysStopSD}
+              rays={rays}
+              offAxisRays={offAxisRays}
+              chromaticRays={chromaticRays}
+              chromSpread={chromSpread ?? null}
+              showOnAxis={showOnAxis}
+              showOffAxis={showOffAxis}
+              showChromatic={showChromatic}
+              showPupils={showPupils}
+              act={act}
+              onHover={setHov}
+              onSelect={(eid) => {
+                if (sel === eid) {
+                  setSel(null);
+                  setHov(null);
+                } else {
+                  setSel(eid);
+                }
+              }}
+              sel={sel}
+              maxSvgHeight={maxSvgHeight}
+              useSideLayout={useSideLayout}
+              headerHeight={headerHeight}
+              compact={compact}
+              flashVisible={flashVisible}
+              flashKey={flashKey}
+              flashFading={flashFading}
+              showLcaOverlay={overlays.showLcaOverlay}
+              showPetzvalOverlay={overlays.showPetzvalOverlay}
+              onCloseLcaOverlay={overlays.closeLcaOverlay}
+              onClosePetzvalOverlay={overlays.closePetzvalOverlay}
+              onOpenLcaOverlay={overlays.openLcaOverlay}
+              onOpenPetzvalOverlay={overlays.openPetzvalOverlay}
+              analysisDrawerOpen={analysisDrawerOpen}
+              onAnalysisDrawerToggle={adapters.onAnalysisDrawerToggle}
+              analysisDrawerTab={analysisDrawerTab}
+              onAnalysisTabChange={adapters.onAnalysisTabChange}
+              isWide={isWide}
+              analysisContent={
+                <AnalysisDrawerContent
+                  activeTab={analysisDrawerTab}
+                  L={L}
+                  t={t}
+                  zPos={zPos}
+                  focusT={focusT}
+                  zoomT={zoomT}
+                  dynamicEFL={dynamicEFL}
+                  currentEPSD={currentEPSD}
+                  currentPhysStopSD={currentPhysStopSD}
+                  aberrationsExpanded={aberrationsExpanded}
+                  onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
+                />
+              }
+            />
             {/* end SVG wrapper */}
 
             {/* ── Control panel ── */}
