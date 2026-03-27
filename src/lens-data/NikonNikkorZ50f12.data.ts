@@ -17,12 +17,15 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    separation from L14 rear to L15 front.                         ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Not listed in the patent. Estimated from paraxial marginal     ║
- * ║    ray trace (EP SD = 20.85 mm at f/1.23) with 10% mechanical    ║
- * ║    clearance on glass surfaces. Post-stop surfaces include an     ║
- * ║    off-axis chief ray contribution. STO SD = marginal ray height  ║
- * ║    at stop (19.7 mm). Filter plate SD set to image semi-diagonal  ║
- * ║    (21.6 mm).                                                     ║
+ * ║    Not listed in the patent. Base estimate: paraxial marginal     ║
+ * ║    ray trace (EP SD = 20.85 mm at f/1.23) + 10% mechanical       ║
+ * ║    clearance. Post-stop surfaces include an off-axis chief ray    ║
+ * ║    contribution. STO SD = marginal ray height at stop (19.7 mm). ║
+ * ║    Filter plate SD set to image semi-diagonal (21.6 mm).         ║
+ * ║    L12 (E-FDS1-W, ultra-high-nd glass) and L13 SDs reduced to    ║
+ * ║    match the physical production lens — L12 is intentionally      ║
+ * ║    smaller (expensive glass, slight vignetting at full aperture). ║
+ * ║    L44 SDs increased to match visual proportion of rear group.   ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -292,10 +295,10 @@ const LENS_DATA = {
     // label    R              d        nd         elemId  sd      // surf   Description
     { label: "1", R: 280.6827, d: 2.65, nd: 1.64, elemId: 1, sd: 22.9 }, // 1   L11 front
     { label: "2", R: 46.02198, d: 3.54, nd: 1.0, elemId: 0, sd: 22.8 }, // 2   L11 rear → air
-    { label: "3", R: 50.87481, d: 4.19, nd: 1.94595, elemId: 2, sd: 23.8 }, // 3   L12 front
-    { label: "4", R: 62.23366, d: 16.51, nd: 1.0, elemId: 0, sd: 23.4 }, // 4   L12 rear → air
-    { label: "5", R: -43.98849, d: 3.2, nd: 1.55298, elemId: 3, sd: 23.8 }, // 5   L13 front
-    { label: "6", R: -158.30791, d: 4.05, nd: 1.0, elemId: 0, sd: 24.2 }, // 6   L13 rear → air
+    { label: "3", R: 50.87481, d: 4.19, nd: 1.94595, elemId: 2, sd: 20.5 }, // 3   L12 front
+    { label: "4", R: 62.23366, d: 16.51, nd: 1.0, elemId: 0, sd: 20.0 }, // 4   L12 rear → air
+    { label: "5", R: -43.98849, d: 3.2, nd: 1.55298, elemId: 3, sd: 22.0 }, // 5   L13 front
+    { label: "6", R: -158.30791, d: 4.05, nd: 1.0, elemId: 0, sd: 22.5 }, // 6   L13 rear → air
     { label: "7", R: -82.01412, d: 6.7, nd: 1.59349, elemId: 4, sd: 24.8 }, // 7   L14 front
     { label: "8", R: -52.72274, d: 0.1, nd: 1.0, elemId: 0, sd: 25.2 }, // 8+9 L14 rear → air (collapsed: −3.000 + 3.100)
     { label: "9", R: 113.04472, d: 10.81, nd: 1.59349, elemId: 5, sd: 25.5 }, // 10  L15 front
@@ -321,8 +324,8 @@ const LENS_DATA = {
     { label: "29", R: 87.92389, d: 5.7, nd: 1.90265, elemId: 15, sd: 16.1 }, // 30  L42 front
     { label: "30", R: -127.68, d: 1.8, nd: 1.61266, elemId: 16, sd: 14.8 }, // 31  L42→L43 cemented junction
     { label: "31", R: 40.89766, d: 7.76, nd: 1.0, elemId: 0, sd: 15.2 }, // 32  L43 rear → air
-    { label: "32A", R: -64.58764, d: 1.8, nd: 1.5168, elemId: 17, sd: 12.7 }, // 33* L44 front (ASPH)
-    { label: "33", R: 423.87378, d: 10.81, nd: 1.0, elemId: 0, sd: 13.5 }, // 34  L44 rear → air
+    { label: "32A", R: -64.58764, d: 1.8, nd: 1.5168, elemId: 17, sd: 14.5 }, // 33* L44 front (ASPH)
+    { label: "33", R: 423.87378, d: 10.81, nd: 1.0, elemId: 0, sd: 15.0 }, // 34  L44 rear → air
     { label: "34", R: 1e15, d: 1.6, nd: 1.5168, elemId: 18, sd: 21.6 }, // 35  FL front (flat filter plate)
     { label: "35", R: 1e15, d: 0.702, nd: 1.0, elemId: 0, sd: 21.6 }, // 36  FL rear → image (BF, variable)
   ],
