@@ -373,7 +373,7 @@ describe("computeMeridionalComa", () => {
     expect(isFinite(result!.spanUm)).toBe(true);
   });
 
-  it("uses dense sampling rather than sparse display-ray fractions", () => {
+  it("uses dense sampling rather than the sparse display ray fractions", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);

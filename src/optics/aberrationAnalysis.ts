@@ -10,7 +10,7 @@
  * buildLens(). They should be memoized from current state in a React hook.
  */
 
-import { bAtZoom, halfFieldAtZoom, traceRay, yRatioAtZoom } from "./optics.js";
+import { bAtZoom, halfFieldAtZoom, traceParaxialRay, traceRay, yRatioAtZoom } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** One sample point on the longitudinal SA profile curve. */
@@ -41,7 +41,7 @@ export interface MeridionalComaSample {
   index: number;
   /** Normalized pupil fraction in [-1, +1]. */
   pupilFraction: number;
-  /** Launch height at the first surface / entrance pupil convention (mm). */
+  /** Launch height at the first surface / entrance pupil plane convention (mm). */
   launchHeight: number;
   /** Image-plane intercept height (mm). Null when clipped/invalid. */
   imageHeight: number | null;
@@ -215,6 +215,9 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
 /** Dense pupil sweep count for the meridional coma view. Must remain odd for center sample. */
 export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 
+/** Dense pupil sweep count for the meridional coma view. Must remain odd to include the chief ray sample. */
+export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
+
 /**
  * Compute the longitudinal SA profile across the pupil aperture.
  *
@@ -284,9 +287,9 @@ function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, imagePlane
 /**
  * Compute dense meridional coma intercept samples for the current lens state.
  *
- * This is intentionally a 2D meridional analysis only. It reuses the viewer's
- * current off-axis chief-ray launch convention, so readout behavior matches the
- * interactive off-axis ray fan.
+ * This is intentionally a 2D meridional analysis only. It reuses the current
+ * off-axis chief-ray launch convention so the analysis matches the existing
+ * interactive viewer's off-axis behavior.
  */
 export function computeMeridionalComa(
   L: RuntimeLens,
@@ -309,7 +312,6 @@ export function computeMeridionalComa(
 
   const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
   const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
-
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
   if (!isFinite(imagePlaneZ)) return null;
@@ -320,10 +322,8 @@ export function computeMeridionalComa(
   for (let i = 0; i < MERIDIONAL_COMA_SAMPLE_COUNT; i++) {
     const pupilFraction = -1 + (2 * i) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
     const launchHeight = yChief + pupilFraction * currentEPSD;
-
     const trace = traceRay(launchHeight, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
     const projectedHeight = trace.clipped ? null : imagePlaneIntercept(trace.y, trace.u, lastSurfZ, imagePlaneZ);
-
     const sample: MeridionalComaSample = {
       index: i,
       pupilFraction,
@@ -332,7 +332,6 @@ export function computeMeridionalComa(
       clipped: trace.clipped || projectedHeight === null,
     };
     samples.push(sample);
-
     if (sample.imageHeight !== null && !sample.clipped) {
       validSamples.push(sample as MeridionalComaSample & { imageHeight: number });
     }

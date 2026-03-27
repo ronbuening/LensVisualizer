@@ -14,7 +14,12 @@
 
 import { useMemo } from "react";
 import CollapseButton from "../controls/CollapseButton.js";
-import { computeSphericalAberration, computeSAProfile } from "../../optics/aberrationAnalysis.js";
+import MeridionalComaPlot, { formatComaSpan } from "./MeridionalComaPlot.js";
+import {
+  computeMeridionalComa,
+  computeSphericalAberration,
+  computeSAProfile,
+} from "../../optics/aberrationAnalysis.js";
 import type { SAProfilePoint } from "../../optics/aberrationAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -187,6 +192,11 @@ export default function AberrationsPanel({
     [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
   );
 
+  const comaResult = useMemo(
+    () => computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
+  );
+
   return (
     <div style={{ padding: "8px 0" }}>
       {/* ── Header row with collapse toggle ── */}
@@ -202,7 +212,7 @@ export default function AberrationsPanel({
 
       {/* ── Expanded content ── */}
       {expanded && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, fontSize: 9.5 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
           {/* LSA profile diagram */}
           {saProfile.length >= 2 && <SADiagram profile={saProfile} t={t} />}
 
@@ -230,6 +240,94 @@ export default function AberrationsPanel({
               <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>
                 ({saCorrectionLabel(saResult.saMm)})
               </span>
+            )}
+          </div>
+
+          <div
+            style={{
+              borderTop: `1px solid ${t.panelBorder}`,
+              paddingTop: 14,
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+            }}
+          >
+            <div style={{ display: "grid", gap: 4 }}>
+              <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Meridional Coma</span>
+              <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                2D meridional coma view using a dense off-axis ray fan. This is not a full 2D spot diagram or
+                sagittal/tangential split.
+              </span>
+            </div>
+
+            {comaResult ? (
+              <>
+                <MeridionalComaPlot result={comaResult} t={t} />
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 14,
+                    flexWrap: "wrap",
+                    fontSize: 9.5,
+                  }}
+                >
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Meridional coma span: upper outer valid image-plane intercept minus lower outer valid intercept."
+                  >
+                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                      COMA SPAN
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: t.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {formatComaSpan(comaResult.spanUm)}
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                      FIELD
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: t.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {comaResult.fieldAngleDeg.toFixed(1)}°
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                      VALID
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: t.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {comaResult.validSampleCount}/{comaResult.sampleCount}
+                    </span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div style={{ color: t.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
+                Unable to compute a usable 2D meridional coma view for this lens state.
+              </div>
             )}
           </div>
         </div>

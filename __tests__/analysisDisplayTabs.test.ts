@@ -3,7 +3,8 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import { doLayout, eflAtFocus, fopenAtZoom } from "../src/optics/optics.js";
+import { doLayout, eflAtFocus, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
+import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
 import DistortionChart from "../src/components/display/DistortionChart.js";
 import DistortionTab from "../src/components/display/DistortionTab.js";
 import FocusBreathingTab from "../src/components/display/FocusBreathingTab.js";
@@ -21,7 +22,8 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
   const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
-  return { currentPhysStopSD };
+  const currentEPSD = (epAtZoom(zoomT, L) * L.FOPEN) / fNumber;
+  return { currentPhysStopSD, currentEPSD };
 }
 
 describe("analysis display tabs", () => {
@@ -79,6 +81,33 @@ describe("analysis display tabs", () => {
     expect(html).toContain("HEIGHT");
     expect(html).toContain("ANGLE");
     expect(html).not.toContain(">FIELD<");
+  });
+
+  it("AberrationsPanel renders spherical aberration and meridional coma content together", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0);
+
+    const html = renderToStaticMarkup(
+      React.createElement(AberrationsPanel, {
+        L,
+        t: themes.dark,
+        zPos,
+        focusT,
+        zoomT,
+        currentEPSD,
+        currentPhysStopSD,
+        expanded: true,
+      }),
+    );
+
+    expect(html).toContain("Spherical Aberration");
+    expect(html).toContain("Meridional Coma");
+    expect(html).toContain("2D meridional coma view");
+    expect(html).toContain("COMA SPAN");
+    expect(html).toContain("not a full 2D spot diagram");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {
