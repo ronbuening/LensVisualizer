@@ -116,7 +116,12 @@ function TileShell({
   );
 }
 
-function renderMeridionalTile(field: ComaPreviewFieldResult, index: number, sharedRelativeHalfRangeMm: number, t: Theme) {
+function renderMeridionalTile(
+  field: ComaPreviewFieldResult,
+  index: number,
+  sharedRelativeHalfRangeMm: number,
+  t: Theme,
+) {
   const geometry = tileGeometry(index);
   const { plotX, plotY, zeroX, zeroY } = geometry;
   const yScale = (relativeHeight: number) => zeroY - (relativeHeight / sharedRelativeHalfRangeMm) * (PLOT_H / 2);
@@ -289,10 +294,7 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
     const estimatedResult = result as EstimatedComaPreviewResult;
 
     return (
-      <svg
-        viewBox={`0 0 ${VB_W} ${VB_H}`}
-        style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}
-      >
+      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
         <title>
           Estimated 2D coma appearance. Each tile uses the real chief-ray-centered tangential spread and expands each
           meridional slice across its circular pupil chord to synthesize a normalized sagittal thickness estimate.

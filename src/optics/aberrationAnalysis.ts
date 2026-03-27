@@ -606,7 +606,10 @@ function comaPreviewFieldResultFromFootprint({
   };
 }
 
-function emptyEstimatedComaPreviewFieldResult({ fieldFraction, label }: ComaPreviewFieldMeta): EstimatedComaPreviewFieldResult {
+function emptyEstimatedComaPreviewFieldResult({
+  fieldFraction,
+  label,
+}: ComaPreviewFieldMeta): EstimatedComaPreviewFieldResult {
   return {
     fieldFraction,
     label,
@@ -898,14 +901,9 @@ export function computeComaPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): ComaPreviewResult | null {
-  const fields = buildFixedComaPreviewFootprints(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-  ).map(comaPreviewFieldResultFromFootprint);
+  const fields = buildFixedComaPreviewFootprints(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD).map(
+    comaPreviewFieldResultFromFootprint,
+  );
 
   const usableFields = fields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;
@@ -941,14 +939,9 @@ export function computeEstimatedComaPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): EstimatedComaPreviewResult | null {
-  const fields = buildFixedComaPreviewFootprints(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-  ).map(estimatedComaPreviewFieldResultFromFootprint);
+  const fields = buildFixedComaPreviewFootprints(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD).map(
+    estimatedComaPreviewFieldResultFromFootprint,
+  );
 
   const usableFields = fields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;

@@ -606,7 +606,9 @@ describe("computeEstimatedComaPreview", () => {
     expect(centerField.fieldFraction).toBe(0);
     expect(centerField.usable).toBe(true);
 
-    const chiefPoints = centerField.points.filter((point) => point.sourceSampleIndex === Math.floor(MERIDIONAL_COMA_SAMPLE_COUNT / 2));
+    const chiefPoints = centerField.points.filter(
+      (point) => point.sourceSampleIndex === Math.floor(MERIDIONAL_COMA_SAMPLE_COUNT / 2),
+    );
     expect(chiefPoints.length).toBeGreaterThanOrEqual(3);
     expect(chiefPoints.some((point) => point.sagittalNormalized < 0)).toBe(true);
     expect(chiefPoints.some((point) => point.sagittalNormalized > 0)).toBe(true);
@@ -648,7 +650,14 @@ describe("computeEstimatedComaPreview", () => {
     const wideMeridional = computeComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
     const stoppedMeridional = computeComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
     const wideEstimated = computeEstimatedComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
-    const stoppedEstimated = computeEstimatedComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+    const stoppedEstimated = computeEstimatedComaPreview(
+      L,
+      zPos,
+      0,
+      0,
+      stoppedDown.currentEPSD,
+      stoppedDown.currentPhysStopSD,
+    );
 
     expect(wideMeridional).not.toBeNull();
     expect(stoppedMeridional).not.toBeNull();
@@ -669,7 +678,14 @@ describe("computeEstimatedComaPreview", () => {
     const { z: zInfinity } = doLayout(0, 0, L);
     const { z: zClose } = doLayout(0.8, 0, L);
 
-    const atInfinity = computeEstimatedComaPreview(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
+    const atInfinity = computeEstimatedComaPreview(
+      L,
+      zInfinity,
+      0,
+      0,
+      infinity.currentEPSD,
+      infinity.currentPhysStopSD,
+    );
     const atClose = computeEstimatedComaPreview(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
 
     expect(atInfinity).not.toBeNull();
