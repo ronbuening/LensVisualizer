@@ -53,8 +53,8 @@ const LENS_DATA = {
   maxFstop: 32,
 
   scFill: 0.48,
-  yScFill: 0.3,
-  maxAspectRatio: 2.2,
+  yScFill: 0.42,
+  maxAspectRatio: 1.6,
   lensShiftFrac: 0.06,
 
   elements: [
