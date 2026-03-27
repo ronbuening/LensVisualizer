@@ -322,7 +322,7 @@ const LENS_DATA = {
     { label: "5", R: 166.984, d: 0.8, nd: 1.0, elemId: 0, sd: 29.73 }, // G3p rear → air (variable: L1→L2)
 
     // ── Unit 2 (L2): E4–E9, variator ──
-    { label: "6", R: 67.802, d: 1.4, nd: 1.883, elemId: 4, sd: 19.27 }, // E4 front
+    { label: "6", R: 67.802, d: 1.4, nd: 1.883, elemId: 4, sd: 18.2 }, // E4 front (clamped to ≤1.25×sd7 for renderer)
     { label: "7", R: 18.663, d: 8.67, nd: 1.0, elemId: 0, sd: 14.6 }, // E4 rear → air
     { label: "8", R: -115.164, d: 1.2, nd: 1.497, elemId: 5, sd: 14.17 }, // E5 front (UD 1)
     { label: "9", R: 21.412, d: 3.87, nd: 1.85478, elemId: 6, sd: 12.44 }, // E5→E6 junction
