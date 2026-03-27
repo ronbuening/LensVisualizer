@@ -10,27 +10,57 @@
  * buildLens(). They should be memoized from current state in a React hook.
  */
 
-import { bAtZoom, halfFieldAtZoom, traceParaxialRay, traceRay, yRatioAtZoom } from "./optics.js";
+import { bAtZoom, halfFieldAtZoom, traceRay, yRatioAtZoom } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** One sample point on the longitudinal SA profile curve. */
 export interface SAProfilePoint {
   /** Normalised pupil zone fraction (0 = paraxial axis, 1 = full entrance-pupil edge). */
   fraction: number;
-  /** SA at this zone in mm (real axial intercept − paraxial intercept). */
-  saMm: number;
+  /** Best-focus blur radius at this zone in mm. */
+  imageHeightMm: number;
 }
 
 /** Result of a spherical aberration computation. */
 export interface SphericalAberrationResult {
-  /** Longitudinal SA in mm (real marginal intercept − paraxial intercept). */
-  saMm: number;
-  /** Longitudinal SA in µm (saMm × 1000). */
-  saUm: number;
-  /** Axial intercept of the real marginal ray (mm, absolute z). */
-  realIntercept: number;
-  /** Axial intercept of the paraxial reference ray (mm, absolute z). */
-  paraxialIntercept: number;
+  /** Near-axis real-ray fraction used as the reference baseline. */
+  nearAxisFraction: number;
+  /** Marginal fraction selected for the headline LSA diagnostic. */
+  marginalFraction: number;
+  /** Longitudinal SA in mm (marginal real intercept − near-axis real intercept). */
+  longitudinalSaMm: number;
+  /** Longitudinal SA in µm (longitudinalSaMm × 1000). */
+  longitudinalSaUm: number;
+  /** Current-image-plane RMS spread of sampled on-axis rays in mm. */
+  currentPlaneRmsMm: number;
+  /** Current-image-plane RMS spread in µm. */
+  currentPlaneRmsUm: number;
+  /** Current-image-plane peak excursion of sampled on-axis rays in mm. */
+  currentPlanePeakMm: number;
+  /** Current-image-plane peak excursion in µm. */
+  currentPlanePeakUm: number;
+  /** RMS spread at the best-fit real-ray image plane in mm. */
+  bestFocusRmsMm: number;
+  /** RMS spread at the best-fit real-ray image plane in µm. */
+  bestFocusRmsUm: number;
+  /** Peak excursion at the best-fit real-ray image plane in mm. */
+  bestFocusPeakMm: number;
+  /** Peak excursion at the best-fit real-ray image plane in µm. */
+  bestFocusPeakUm: number;
+  /** Axial intercept of the near-axis real reference ray (mm, absolute z). */
+  nearAxisRealIntercept: number;
+  /** Axial intercept of the marginal real ray (mm, absolute z). */
+  marginalRealIntercept: number;
+  /** Image-plane intercept height of the near-axis real reference ray (mm). */
+  nearAxisImageHeight: number;
+  /** Image-plane Z used for spread computation (mm, absolute z). */
+  imagePlaneZ: number;
+  /** Best-fit real-ray image-plane Z (mm, absolute z). */
+  bestFocusZ: number;
+  /** Best-focus shift relative to the current image plane (mm). */
+  bestFocusShiftMm: number;
+  /** Valid pupil sample count used for current-plane spread statistics. */
+  validSampleCount: number;
 }
 
 /** One dense pupil sample for the meridional coma view. */
@@ -86,12 +116,8 @@ export interface MeridionalComaResult {
  */
 const MARGINAL_FRACS = [0.95, 0.9, 0.85, 0.8] as const;
 
-/**
-/** Reference ray height in mm for the true paraxial baseline trace. */
-const PARAXIAL_REFERENCE_HEIGHT_MM = 1;
-
-/** Legacy near-axis real-ray fraction retained for regression tests/documentation. */
-export const LEGACY_NEAR_AXIS_REAL_FRAC = 0.001;
+/** Near-axis real-ray fraction used as the spherical-aberration reference baseline. */
+export const NEAR_AXIS_REAL_FRAC = 0.1;
 
 /** Minimum |u| (exit slope) to consider a ray's axial intercept valid. */
 const MIN_SLOPE = 1e-12;
@@ -109,17 +135,28 @@ function axialIntercept(y: number, u: number, lastSurfZ: number): number | null 
   return lastSurfZ - y / u;
 }
 
-function computeParaxialReferenceIntercept(
-  L: RuntimeLens,
-  focusT: number,
-  zoomT: number,
-  lastSurfZ: number,
-): number | null {
-  const paraxial = traceParaxialRay(PARAXIAL_REFERENCE_HEIGHT_MM, 0, focusT, zoomT, L);
-  return axialIntercept(paraxial.y, paraxial.u, lastSurfZ);
+interface SymmetricRealSample {
+  fraction: number;
+  intercept: number;
+  imageHeight: number;
 }
 
-function computeSymmetricRealIntercept(
+interface RealRayHit {
+  fraction: number;
+  signedFraction: number;
+  y: number;
+  u: number;
+  intercept: number;
+  imageHeight: number;
+}
+
+function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, imagePlaneZ: number): number | null {
+  const dz = imagePlaneZ - lastSurfZ;
+  const imageHeight = y + u * dz;
+  return isFinite(imageHeight) ? imageHeight : null;
+}
+
+function computeRealRayHit(
   L: RuntimeLens,
   zPos: number[],
   focusT: number,
@@ -127,19 +164,89 @@ function computeSymmetricRealIntercept(
   currentEPSD: number,
   currentPhysStopSD: number,
   lastSurfZ: number,
+  imagePlaneZ: number,
+  signedFraction: number,
+): RealRayHit | null {
+  const h = signedFraction * currentEPSD;
+  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+  if (ray.clipped) return null;
+
+  const intercept = axialIntercept(ray.y, ray.u, lastSurfZ);
+  const imageHeight = imagePlaneIntercept(ray.y, ray.u, lastSurfZ, imagePlaneZ);
+  if (intercept === null || imageHeight === null) return null;
+
+  return {
+    fraction: Math.abs(signedFraction),
+    signedFraction,
+    y: ray.y,
+    u: ray.u,
+    intercept,
+    imageHeight,
+  };
+}
+
+function computeSymmetricRealSample(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  lastSurfZ: number,
+  imagePlaneZ: number,
   fraction: number,
-): number | null {
-  const h = fraction * currentEPSD;
-  const plusY = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-  const minusY = traceRay(-h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+): SymmetricRealSample | null {
+  const plusHit = computeRealRayHit(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    lastSurfZ,
+    imagePlaneZ,
+    fraction,
+  );
+  const minusHit = computeRealRayHit(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    lastSurfZ,
+    imagePlaneZ,
+    -fraction,
+  );
+  if (plusHit === null || minusHit === null) return null;
 
-  if (plusY.clipped || minusY.clipped) return null;
+  return {
+    fraction,
+    intercept: (plusHit.intercept + minusHit.intercept) / 2,
+    imageHeight: (plusHit.imageHeight + minusHit.imageHeight) / 2,
+  };
+}
 
-  const interceptPlus = axialIntercept(plusY.y, plusY.u, lastSurfZ);
-  const interceptMinus = axialIntercept(minusY.y, minusY.u, lastSurfZ);
-  if (interceptPlus === null || interceptMinus === null) return null;
+function rmsAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): number {
+  return Math.sqrt(
+    hits.reduce((sum, hit) => {
+      const imageHeight = hit.y + hit.u * (planeZ - lastSurfZ);
+      return sum + imageHeight * imageHeight;
+    }, 0) / hits.length,
+  );
+}
 
-  return (interceptPlus + interceptMinus) / 2;
+function peakAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): number {
+  return Math.max(
+    ...hits.map((hit) => Math.abs(hit.y + hit.u * (planeZ - lastSurfZ))),
+  );
+}
+
+function bestFocusPlane(hits: RealRayHit[], lastSurfZ: number): number {
+  const denom = hits.reduce((sum, hit) => sum + hit.u * hit.u, 0);
+  if (denom <= 1e-12) return lastSurfZ;
+  const numer = hits.reduce((sum, hit) => sum + hit.y * hit.u, 0);
+  return lastSurfZ - numer / denom;
 }
 
 /**
@@ -147,11 +254,11 @@ function computeSymmetricRealIntercept(
  *
  * Traces a marginal ray near the entrance pupil edge (0.95× preferred, with
  * fallbacks to 0.90/0.85/0.80 if clipped) using exact Snell's law, and
- * compares its axial intercept against a true paraxial reference ray.
+ * compares its axial intercept against a near-axis real reference ray.
  *
  * Sign convention: negative SA means the real marginal intercept lies closer
- * to the lens than the paraxial intercept (undercorrected). Positive SA means
- * the marginal focus falls beyond the paraxial focus (overcorrected).
+ * to the lens than the near-axis real intercept (undercorrected). Positive SA
+ * means the marginal focus falls beyond the near-axis focus (overcorrected).
  *
  * The +Y and −Y marginal rays are averaged to enforce symmetry and cancel
  * any residual sign noise from asymmetric surface interactions.
@@ -175,8 +282,21 @@ export function computeSphericalAberration(
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
-  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
-  if (paraxialIntercept === null) return null;
+  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(imagePlaneZ)) return null;
+
+  const nearAxisSample = computeSymmetricRealSample(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    lastSurfZ,
+    imagePlaneZ,
+    NEAR_AXIS_REAL_FRAC,
+  );
+  if (nearAxisSample === null) return null;
 
   /* ── Real marginal rays (±Y, averaged for symmetry) ──
    * ghost=true so the trace runs through all surfaces and reliably reports
@@ -186,10 +306,10 @@ export function computeSphericalAberration(
    *
    * Try descending marginal fractions — fast lenses can clip at 0.95× EP
    * due to spherical aberration of the entrance pupil mapping itself. */
-  let realIntercept: number | null = null;
+  let marginalSample: SymmetricRealSample | null = null;
 
   for (const frac of MARGINAL_FRACS) {
-    realIntercept = computeSymmetricRealIntercept(
+    marginalSample = computeSymmetricRealSample(
       L,
       zPos,
       focusT,
@@ -197,19 +317,68 @@ export function computeSphericalAberration(
       currentEPSD,
       currentPhysStopSD,
       lastSurfZ,
+      imagePlaneZ,
       frac,
     );
-    if (realIntercept !== null) break;
+    if (marginalSample !== null) break;
   }
 
-  if (realIntercept === null) return null;
+  if (marginalSample === null) return null;
 
-  const saMm = realIntercept - paraxialIntercept;
+  const hits = PROFILE_FRACS.flatMap((fraction) => {
+    const plusHit = computeRealRayHit(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      imagePlaneZ,
+      fraction,
+    );
+    const minusHit = computeRealRayHit(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      imagePlaneZ,
+      -fraction,
+    );
+    return [plusHit, minusHit].filter((hit): hit is RealRayHit => hit !== null);
+  });
+
+  if (hits.length < 4) return null;
+
+  const currentPlaneRmsMm = rmsAtPlane(hits, lastSurfZ, imagePlaneZ);
+  const currentPlanePeakMm = peakAtPlane(hits, lastSurfZ, imagePlaneZ);
+  const bestFocusZ = bestFocusPlane(hits, lastSurfZ);
+  const bestFocusRmsMm = rmsAtPlane(hits, lastSurfZ, bestFocusZ);
+  const bestFocusPeakMm = peakAtPlane(hits, lastSurfZ, bestFocusZ);
+  const longitudinalSaMm = marginalSample.intercept - nearAxisSample.intercept;
   return {
-    saMm,
-    saUm: saMm * 1000,
-    realIntercept,
-    paraxialIntercept,
+    nearAxisFraction: NEAR_AXIS_REAL_FRAC,
+    marginalFraction: marginalSample.fraction,
+    longitudinalSaMm,
+    longitudinalSaUm: longitudinalSaMm * 1000,
+    currentPlaneRmsMm,
+    currentPlaneRmsUm: currentPlaneRmsMm * 1000,
+    currentPlanePeakMm,
+    currentPlanePeakUm: currentPlanePeakMm * 1000,
+    bestFocusRmsMm,
+    bestFocusRmsUm: bestFocusRmsMm * 1000,
+    bestFocusPeakMm,
+    bestFocusPeakUm: bestFocusPeakMm * 1000,
+    nearAxisRealIntercept: nearAxisSample.intercept,
+    marginalRealIntercept: marginalSample.intercept,
+    nearAxisImageHeight: nearAxisSample.imageHeight,
+    imagePlaneZ,
+    bestFocusZ,
+    bestFocusShiftMm: bestFocusZ - imagePlaneZ,
+    validSampleCount: hits.length,
   };
 }
 
@@ -223,23 +392,12 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
 export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 
 /**
- * Compute the longitudinal SA profile across the pupil aperture.
+ * Compute a best-focus on-axis blur profile across the pupil aperture.
  *
  * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil and
- * returns the focus shift relative to the true paraxial reference at each
- * zone. Points where the ray is clipped by the aperture stop are silently
- * omitted, so the returned array may be shorter than PROFILE_FRACS.
- *
- * Returns an empty array when the paraxial reference cannot be traced or
- * when fewer than two valid zone samples are available.
- *
- * @param L                  — runtime lens object (frozen, from buildLens)
- * @param zPos               — surface z-positions for current focus/zoom state
- * @param focusT             — focus slider [0..1]
- * @param zoomT              — zoom slider [0..1]
- * @param currentEPSD        — current entrance pupil semi-diameter (mm)
- * @param currentPhysStopSD  — current physical stop semi-diameter (mm)
- * @returns                    Array of {fraction, saMm} profile points, or [] on failure
+ * evaluates their blur radius at the best-fit real-ray image plane for the
+ * current state. This makes the default chart practical and focus-responsive
+ * rather than a pure longitudinal-intercept diagnostic.
  */
 export function computeSAProfile(
   L: RuntimeLens,
@@ -252,16 +410,11 @@ export function computeSAProfile(
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(imagePlaneZ)) return [];
 
-  /* ── Paraxial reference intercept (computed once) ── */
-  const paraxialIntercept = computeParaxialReferenceIntercept(L, focusT, zoomT, lastSurfZ);
-  if (paraxialIntercept === null) return [];
-
-  /* ── Sample each zone fraction ── */
-  const points: SAProfilePoint[] = [];
-
-  for (const fraction of PROFILE_FRACS) {
-    const realIntercept = computeSymmetricRealIntercept(
+  const hits = PROFILE_FRACS.flatMap((fraction) => {
+    const plusHit = computeRealRayHit(
       L,
       zPos,
       focusT,
@@ -269,20 +422,38 @@ export function computeSAProfile(
       currentEPSD,
       currentPhysStopSD,
       lastSurfZ,
+      imagePlaneZ,
       fraction,
     );
-    if (realIntercept === null) continue;
+    const minusHit = computeRealRayHit(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      imagePlaneZ,
+      -fraction,
+    );
+    return [plusHit, minusHit].filter((hit): hit is RealRayHit => hit !== null);
+  });
+  if (hits.length < 4) return [];
 
-    points.push({ fraction, saMm: realIntercept - paraxialIntercept });
+  const bestFocusZ = bestFocusPlane(hits, lastSurfZ);
+  const points: SAProfilePoint[] = [];
+
+  for (const fraction of PROFILE_FRACS) {
+    const plusHit = hits.find((hit) => hit.signedFraction === fraction) ?? null;
+    const minusHit = hits.find((hit) => hit.signedFraction === -fraction) ?? null;
+    if (!plusHit || !minusHit) continue;
+
+    const plusHeight = Math.abs(plusHit.y + plusHit.u * (bestFocusZ - lastSurfZ));
+    const minusHeight = Math.abs(minusHit.y + minusHit.u * (bestFocusZ - lastSurfZ));
+    points.push({ fraction, imageHeightMm: (plusHeight + minusHeight) / 2 });
   }
 
   return points.length >= 2 ? points : [];
-}
-
-function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, imagePlaneZ: number): number | null {
-  const dz = imagePlaneZ - lastSurfZ;
-  const imageHeight = y + u * dz;
-  return isFinite(imageHeight) ? imageHeight : null;
 }
 
 /**

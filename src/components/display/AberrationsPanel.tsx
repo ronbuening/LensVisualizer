@@ -2,18 +2,13 @@
  * AberrationsPanel — Analysis drawer tab content displaying computed aberration
  * metrics for the current lens state.
  *
- * Shows spherical aberration (SA) as both a numeric readout and a longitudinal
- * SA (LSA) profile diagram — a classic optics plot of focus shift vs. pupil
- * zone.  Designed as the container for future aberration displays (issues
- * #297–#300).
- *
- * The panel computes SA via useMemo from the current slider state and
- * delegates the heavy lifting to the pure computeSphericalAberration() and
- * computeSAProfile() helpers.
+ * Shows best-focus spherical-aberration spread as a profile chart plus a
+ * numeric readout, with meridional coma in a separate collapsible section.
  */
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CollapseButton from "../controls/CollapseButton.js";
+import HelpTooltipButton from "../controls/HelpTooltipButton.js";
 import MeridionalComaPlot, { formatComaSpan } from "./MeridionalComaPlot.js";
 import {
   computeMeridionalComa,
@@ -23,6 +18,7 @@ import {
 import type { SAProfilePoint } from "../../optics/aberrationAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { ENABLE_REAL_RAY_LSA_DIAGNOSTIC } from "../../utils/featureFlags.js";
 
 interface AberrationsPanelProps {
   L: RuntimeLens;
@@ -36,10 +32,6 @@ interface AberrationsPanelProps {
   onExpandedChange?: (expanded: boolean) => void;
 }
 
-/**
- * Format an SA value in µm for display.
- * Shows integer for values ≥ 1 µm, one decimal for smaller values.
- */
 function formatSaUm(saUm: number): string {
   const abs = Math.abs(saUm);
   if (abs >= 1) return `${abs.toFixed(0)} µm`;
@@ -47,77 +39,49 @@ function formatSaUm(saUm: number): string {
   return "< 0.1 µm";
 }
 
-function saCorrectionLabel(saMm: number): "undercorrected" | "overcorrected" | "corrected" {
-  if (saMm < 0) return "undercorrected";
-  if (saMm > 0) return "overcorrected";
-  return "corrected";
-}
-
-// ── LSA diagram layout (viewBox units) ───────────────────────────────────────
 const VB_W = 280;
 const VB_H = 200;
-const ML = 44; // left margin — room for Y-axis label + tick values
+const ML = 44;
 const MR = 16;
 const MT = 20;
-const MB = 36; // bottom margin — room for X-axis label + tick values
-const PW = VB_W - ML - MR; // plot width
-const PH = VB_H - MT - MB; // plot height
-/** Minimum x-axis half-range in µm so well-corrected lenses still show curve shape. */
+const MB = 36;
+const PW = VB_W - ML - MR;
+const PH = VB_H - MT - MB;
 const MIN_X_RANGE_UM = 5;
 
-/**
- * Build SVG polyline points for the LSA profile curve.
- * X maps SA in µm (centre = 0), Y maps pupil zone fraction (0 at bottom, 1 at top).
- */
 function buildPolylinePoints(profile: SAProfilePoint[], xRangeUm: number): string {
   return profile
-    .map(({ fraction, saMm }) => {
-      const saUm = saMm * 1000;
-      const px = ML + PW / 2 + (saUm / xRangeUm) * (PW / 2);
+    .map(({ fraction, imageHeightMm }) => {
+      const blurUm = imageHeightMm * 1000;
+      const px = ML + (blurUm / xRangeUm) * PW;
       const py = MT + PH * (1 - fraction);
       return `${px.toFixed(1)},${py.toFixed(1)}`;
     })
     .join(" ");
 }
 
-/**
- * Longitudinal SA profile diagram — SVG chart of focus shift (µm) vs. pupil zone.
- *
- * A near-vertical curve means well-corrected; sweeping left = undercorrected
- * (typical for fast primes); sweeping right = overcorrected.
- */
 function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
-  const maxSaUm = Math.max(...profile.map((p) => Math.abs(p.saMm * 1000)));
-  const xRangeUm = Math.max(MIN_X_RANGE_UM, maxSaUm * 1.2);
-
-  const zeroX = ML + PW / 2;
-
-  // X-axis: choose a round tick value that fits within the range
+  const maxBlurUm = Math.max(...profile.map((p) => Math.abs(p.imageHeightMm * 1000)));
+  const xRangeUm = Math.max(MIN_X_RANGE_UM, maxBlurUm * 1.2);
   const rawTick = xRangeUm / 2;
   const tickUm =
     rawTick >= 50 ? Math.round(rawTick / 25) * 25 : rawTick >= 10 ? Math.round(rawTick / 5) * 5 : Math.round(rawTick);
-  const tickXLeft = ML + PW / 2 - (tickUm / xRangeUm) * (PW / 2);
-  const tickXRight = ML + PW / 2 + (tickUm / xRangeUm) * (PW / 2);
-
-  // Y-axis ticks at pupil zones 0, 0.5, 1.0
+  const tickX = ML + (tickUm / xRangeUm) * PW;
   const yTicks = [
     { frac: 0, label: "0" },
     { frac: 0.5, label: "0.5" },
     { frac: 1, label: "1" },
   ];
-
   const polylinePoints = buildPolylinePoints(profile, xRangeUm);
 
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        LSA profile: longitudinal spherical aberration vs. pupil zone. Near-vertical = well-corrected; leftward sweep =
-        undercorrected; rightward sweep = overcorrected.
+        Best-focus spherical-aberration profile: blur radius at the best-fit image plane vs. pupil zone.
+        Smaller values and flatter curves indicate a tighter on-axis bundle.
       </title>
-      {/* Plot area background */}
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
-      {/* Y-axis tick marks and labels */}
       {yTicks.map(({ frac, label }) => {
         const ty = MT + PH * (1 - frac);
         return (
@@ -130,7 +94,6 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
         );
       })}
 
-      {/* Y-axis label ("zone"), rotated */}
       <text
         textAnchor="middle"
         fill={t.muted}
@@ -141,31 +104,25 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
         Pupil zone
       </text>
 
-      {/* Zero reference line (vertical, dashed) */}
-      <line x1={zeroX} y1={MT} x2={zeroX} y2={MT + PH} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
-
-      {/* LSA profile curve */}
+      <line x1={ML} y1={MT} x2={ML} y2={MT + PH} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <polyline points={polylinePoints} fill="none" stroke={t.value} strokeWidth={2} strokeLinejoin="round" />
 
-      {/* X-axis tick marks */}
-      <line x1={tickXLeft} y1={MT + PH} x2={tickXLeft} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-      <line x1={tickXRight} y1={MT + PH} x2={tickXRight} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-      <line x1={zeroX} y1={MT + PH} x2={zeroX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={ML} y1={MT + PH} x2={ML} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={tickX} y1={MT + PH} x2={tickX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={ML + PW} y1={MT + PH} x2={ML + PW} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
 
-      {/* X-axis tick labels */}
-      <text x={tickXLeft} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
-        {`\u2212${tickUm}`}
-      </text>
-      <text x={zeroX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+      <text x={ML} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
         0
       </text>
-      <text x={tickXRight} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
-        {`+${tickUm}`}
+      <text x={tickX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+        {`${tickUm}`}
+      </text>
+      <text x={ML + PW} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+        {`${Math.round(xRangeUm)}`}
       </text>
 
-      {/* X-axis unit label */}
       <text x={ML + PW / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
-        Focus shift (&micro;m)
+        Best-focus blur radius (&micro;m)
       </text>
     </svg>
   );
@@ -197,34 +154,74 @@ export default function AberrationsPanel({
     [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
   );
 
+  const [saChartExpanded, setSaChartExpanded] = useState(expanded);
+  const [comaExpanded, setComaExpanded] = useState(true);
+
+  useEffect(() => {
+    setSaChartExpanded(expanded);
+  }, [expanded]);
+
   return (
     <div style={{ padding: "8px 0" }}>
-      {/* ── Header row with collapse toggle ── */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: expanded ? 8 : 0 }}>
-        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Spherical Aberration</span>
-        <CollapseButton
-          expanded={expanded}
-          onToggle={() => onExpandedChange?.(!expanded)}
-          theme={t}
-          style={{ marginLeft: "auto" }}
-        />
-      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Spherical Aberration</span>
+          <HelpTooltipButton
+            theme={t}
+            label="Spherical aberration help"
+            text="Best-focus spread shows how tightly on-axis rays from different pupil zones come together after refocusing to the best-fit image plane. Smaller values mean the lens is bringing center and edge zones into a tighter common focus."
+          />
+          <CollapseButton
+            expanded={saChartExpanded}
+            onToggle={() => {
+              const next = !saChartExpanded;
+              setSaChartExpanded(next);
+              onExpandedChange?.(next);
+            }}
+            theme={t}
+            style={{ marginLeft: "auto" }}
+          />
+        </div>
 
-      {/* ── Expanded content ── */}
-      {expanded && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
-          {/* LSA profile diagram */}
-          {saProfile.length >= 2 && <SADiagram profile={saProfile} t={t} />}
+        {saChartExpanded && saProfile.length >= 2 && <SADiagram profile={saProfile} t={t} />}
 
-          {/* Spherical aberration metric readout */}
+        <div
+          style={{ display: "flex", alignItems: "center", gap: 10 }}
+          title={
+            "Best-focus spread: RMS spread of the sampled on-axis real rays at the best-fit image plane for the " +
+            "current state. This remains focus-responsive because the best-focus plane is solved from the current bundle."
+          }
+        >
+          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+            BEST-FOCUS SPREAD
+          </span>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: t.value,
+              fontVariantNumeric: "tabular-nums",
+              transition: "color 0.3s",
+            }}
+          >
+            {saResult ? formatSaUm(saResult.bestFocusRmsUm) : "\u2014"}
+          </span>
+          {saResult && (
+            <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>
+              (peak {formatSaUm(saResult.bestFocusPeakUm)}, shift {saResult.bestFocusShiftMm.toFixed(2)} mm)
+            </span>
+          )}
+        </div>
+
+        {ENABLE_REAL_RAY_LSA_DIAGNOSTIC && (
           <div
             style={{ display: "flex", alignItems: "center", gap: 10 }}
             title={
-              "Longitudinal spherical aberration: axial focus shift of a marginal ray " +
-              "vs. paraxial reference. Negative = undercorrected (real focus closer to lens)."
+              "Longitudinal spherical aberration (LSA): axial focus shift of the marginal real ray " +
+              "vs. a near-axis real-ray reference. Negative = undercorrected (marginal focus closer to lens)."
             }
           >
-            <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>SA</span>
+            <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>LSA</span>
             <span
               style={{
                 fontSize: 13,
@@ -234,104 +231,115 @@ export default function AberrationsPanel({
                 transition: "color 0.3s",
               }}
             >
-              {saResult ? formatSaUm(saResult.saUm) : "\u2014"}
+              {saResult ? formatSaUm(saResult.longitudinalSaUm) : "\u2014"}
             </span>
-            {saResult && (
-              <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>
-                ({saCorrectionLabel(saResult.saMm)})
-              </span>
-            )}
+          </div>
+        )}
+
+        <div
+          style={{
+            borderTop: `1px solid ${t.panelBorder}`,
+            paddingTop: 14,
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Meridional Coma</span>
+            <HelpTooltipButton
+              theme={t}
+              label="Meridional coma help"
+              text="Meridional coma shows how an off-axis point spreads asymmetrically across the image plane in the tangential plane. The coma span helps show how much the upper and lower pupil zones fail to meet at the same image height."
+            />
+            <CollapseButton
+              expanded={comaExpanded}
+              onToggle={() => setComaExpanded((value) => !value)}
+              theme={t}
+              style={{ marginLeft: "auto" }}
+            />
           </div>
 
-          <div
-            style={{
-              borderTop: `1px solid ${t.panelBorder}`,
-              paddingTop: 14,
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-            }}
-          >
-            <div style={{ display: "grid", gap: 4 }}>
-              <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Meridional Coma</span>
+          {comaExpanded && (
+            <>
               <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
                 2D meridional coma view using a dense off-axis ray fan. This is not a full 2D spot diagram or
                 sagittal/tangential split.
               </span>
-            </div>
 
-            {comaResult ? (
-              <>
-                <MeridionalComaPlot result={comaResult} t={t} />
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 14,
-                    flexWrap: "wrap",
-                    fontSize: 9.5,
-                  }}
-                >
+              {comaResult ? (
+                <>
+                  <MeridionalComaPlot result={comaResult} t={t} />
                   <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Meridional coma span: upper outer valid image-plane intercept minus lower outer valid intercept."
+                    style={{
+                      display: "flex",
+                      gap: 14,
+                      flexWrap: "wrap",
+                      fontSize: 9.5,
+                    }}
                   >
-                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                      COMA SPAN
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: t.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
+                    <div
+                      style={{ display: "flex", alignItems: "center", gap: 8 }}
+                      title="Meridional coma span: upper outer valid image-plane intercept minus lower outer valid intercept."
                     >
-                      {formatComaSpan(comaResult.spanUm)}
-                    </span>
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                        COMA SPAN
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: t.value,
+                          fontVariantNumeric: "tabular-nums",
+                          transition: "color 0.3s",
+                        }}
+                      >
+                        {formatComaSpan(comaResult.spanUm)}
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                        FIELD
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: t.value,
+                          fontVariantNumeric: "tabular-nums",
+                          transition: "color 0.3s",
+                        }}
+                      >
+                        {comaResult.fieldAngleDeg.toFixed(1)}°
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                        VALID
+                      </span>
+                      <span
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 600,
+                          color: t.value,
+                          fontVariantNumeric: "tabular-nums",
+                          transition: "color 0.3s",
+                        }}
+                      >
+                        {comaResult.validSampleCount}/{comaResult.sampleCount}
+                      </span>
+                    </div>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                      FIELD
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: t.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {comaResult.fieldAngleDeg.toFixed(1)}°
-                    </span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                      VALID
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: t.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {comaResult.validSampleCount}/{comaResult.sampleCount}
-                    </span>
-                  </div>
+                </>
+              ) : (
+                <div style={{ color: t.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
+                  Unable to compute a usable 2D meridional coma view for this lens state.
                 </div>
-              </>
-            ) : (
-              <div style={{ color: t.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-                Unable to compute a usable 2D meridional coma view for this lens state.
-              </div>
-            )}
-          </div>
+              )}
+            </>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
