@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
@@ -50,8 +50,19 @@ const baseProps = {
 };
 
 describe("AberrationsPanel", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   beforeEach(() => {
-    mockComputeSAProfile.mockReturnValue([]);
+    mockComputeSphericalAberration.mockReset();
+    mockComputeSAProfile.mockReset();
+    mockComputeMeridionalComa.mockReset();
+    mockComputeComaPreview.mockReset();
+    mockComputeSAProfile.mockReturnValue([
+      { fraction: 0, transverseSaMm: -0.01 },
+      { fraction: 1, transverseSaMm: 0.01 },
+    ]);
     mockComputeComaPreview.mockReturnValue({
       fieldFractions: [0, 0.25, 0.5, 0.75],
       usableFieldCount: 4,
@@ -178,6 +189,14 @@ describe("AberrationsPanel", () => {
     expect(screen.queryByText("LSA")).toBeNull();
   });
 
+  it("renders the spherical aberration chart when a profile is available", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+
+    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+  });
+
   it("renders meridional coma copy and span metric", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
@@ -215,5 +234,57 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getByText(/Unable to compute a usable 2D meridional coma view/i)).toBeTruthy();
+  });
+
+  it("toggles the spherical aberration section and reports the new expanded state", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    mockComputeSAProfile.mockReturnValue([
+      { fraction: 0, transverseSaMm: -0.01 },
+      { fraction: 1, transverseSaMm: 0.01 },
+    ]);
+    const onExpandedChange = vi.fn();
+
+    render(<AberrationsPanel {...baseProps} onExpandedChange={onExpandedChange} />);
+
+    fireEvent.click(screen.getAllByText("LESS")[0].closest("button")!);
+
+    expect(onExpandedChange).toHaveBeenCalledWith(false);
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
+  it("toggles the coma preview section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
+
+    expect(screen.queryByText(/Estimated 2D coma appearance at center/i)).toBeNull();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
+  it("toggles the meridional coma section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[2].closest("button")!);
+
+    expect(screen.queryByText(/2D meridional coma view using a dense off-axis ray fan/i)).toBeNull();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
+  it("syncs the spherical aberration section with the expanded prop", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    mockComputeSAProfile.mockReturnValue([
+      { fraction: 0, transverseSaMm: -0.01 },
+      { fraction: 1, transverseSaMm: 0.01 },
+    ]);
+
+    const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
+    expect(screen.getAllByText("LESS").length).toBe(3);
+    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+
+    rerender(<AberrationsPanel {...baseProps} expanded={false} />);
+    expect(screen.getAllByText("MORE").length).toBe(1);
+    expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
   });
 });

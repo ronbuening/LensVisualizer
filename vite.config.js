@@ -7,7 +7,14 @@ export default defineConfig({
   test: {
     coverage: {
       provider: "v8",
-      include: ["src/optics/**", "src/utils/**", "src/pages/**", "src/routes/**"],
+      include: [
+        "src/optics/**",
+        "src/utils/**",
+        "src/pages/**",
+        "src/routes/**",
+        "src/components/**",
+        "src/comparison/**",
+      ],
       reporter: ["text", "html"],
       reportsDirectory: "coverage",
     },

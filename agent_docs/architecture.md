@@ -39,6 +39,9 @@
 | `SingleLensContent.tsx` | `src/components/layout/` | Single-lens diagram + description layout |
 | `DropdownPanel.tsx` | `src/components/layout/` | Portal-based dropdown panel for settings/theme overlays |
 | `PrimerToggleButton.tsx` | `src/components/layout/` | Shared button for switching between simple/intermediate primer levels |
+| `AnalysisDrawerContent.tsx` | `src/components/layout/lensDiagram/` | Tab-to-panel router for the analysis drawer content inside LensDiagramPanel |
+| `DiagramViewport.tsx` | `src/components/layout/lensDiagram/` | SVG viewport wrapper plus panel-scoped LCA/Petzval overlay gating |
+| `analysisTabs.ts` | `src/components/layout/lensDiagram/` | Shared analysis tab metadata used by the drawer trigger and drawer content |
 
 ### Hooks
 
@@ -88,7 +91,8 @@
 |--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
-| `AberrationsPanel.tsx` | `src/components/display/` | Aberration metrics panel (spherical aberration + LSA profile); rendered inside AnalysisDrawer's "aberrations" tab |
+| `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted section components |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
 | `DistortionTab.tsx` | `src/components/display/` | Distortion curve tab content; memoizes computation and renders DistortionChart |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
@@ -116,7 +120,9 @@
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
-| `aberrationAnalysis.ts` | `src/optics/` | Pure aberration analysis helpers for spherical aberration and longitudinal SA profile |
+| `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical-aberration and coma computations |
+| `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
 
@@ -127,6 +133,7 @@
 | `themes.ts` | `src/utils/` | Theme factory + 4 theme definitions |
 | `styles.ts` | `src/utils/` | Shared style-object factories (`labelStyle`, `collapseBtn`, `toggleBtn`, etc.) and static constants for reusable UI patterns |
 | `themeConstants.ts` | `src/utils/` | Shared theme-toggle display constants (`THEME_ICON`, `THEME_LABEL`) used by PageNavBar and BreadcrumbBar |
+| `themePreferences.ts` | `src/utils/` | Shared theme-mode conversion and system dark/high-contrast resolution used by page hooks and viewer chrome |
 | `lensCatalog.ts` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `lensMetadata.ts` | `src/utils/` | SEO metadata: maker extraction, page titles/descriptions, canonical URLs, JSON-LD |
 | `comparisonSliders.ts` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
@@ -147,6 +154,12 @@
 | `appConfig.ts` | `src/utils/` | Application-level configuration constants |
 | `homepageContent.ts` | `src/utils/` | Homepage content configuration and featured lens data |
 | `makerDetails.ts` | `src/utils/` | Maker display names, descriptions, and metadata |
+
+## Testing & Coverage
+
+- Coverage runs are configured in `vite.config.js` and currently include `src/optics/**`, `src/utils/**`, `src/pages/**`, `src/routes/**`, `src/components/**`, and `src/comparison/**`.
+- Shared browser/router test helpers live in `__tests__/testUtils.tsx` and cover router mounting, lens-context rendering, `matchMedia`, localStorage seeding, and `history.replaceState` mocking.
+- Recent UI coverage additions focus on the analysis drawer, aberrations panel sections, page render smoke tests, URL sync branches, and page-theme hooks so the layout/orchestration seams can be refactored safely.
 
 ## Routing & SSR
 

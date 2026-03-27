@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { afterEach, describe, it, expect, vi } from "vitest";
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AnalysisDrawer, { type AnalysisTab } from "../src/components/layout/AnalysisDrawer.js";
 import type { Theme } from "../src/types/theme.js";
 
@@ -77,5 +77,44 @@ describe("AnalysisDrawer", () => {
     expect(tabBar.style.overflowX).toBe("auto");
     expect(tabBar.style.overflowY).toBe("hidden");
     expect(tabButton.style.flex).toBe("1 0 88px");
+  });
+
+  it("calls onClose when the close button is pressed", () => {
+    const onClose = vi.fn();
+
+    render(
+      <AnalysisDrawer open onClose={onClose} activeTab="aberrations" onTabChange={vi.fn()} tabs={tabs} t={theme} isWide={true}>
+        <div>content</div>
+      </AnalysisDrawer>,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "×" }));
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("changes tabs when a tab button is clicked", () => {
+    const onTabChange = vi.fn();
+
+    render(
+      <AnalysisDrawer open onClose={vi.fn()} activeTab="aberrations" onTabChange={onTabChange} tabs={tabs} t={theme} isWide={true}>
+        <div>content</div>
+      </AnalysisDrawer>,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "DISTORTION" }));
+    expect(onTabChange).toHaveBeenCalledWith("distortion");
+  });
+
+  it("closes on Escape while open", () => {
+    const onClose = vi.fn();
+
+    render(
+      <AnalysisDrawer open onClose={onClose} activeTab="aberrations" onTabChange={vi.fn()} tabs={tabs} t={theme} isWide={true}>
+        <div>content</div>
+      </AnalysisDrawer>,
+    );
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 });

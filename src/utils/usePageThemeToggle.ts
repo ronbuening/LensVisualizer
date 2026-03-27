@@ -13,11 +13,16 @@
  */
 
 import { useState, useEffect, useCallback } from "react";
-import T from "./themes.js";
 import { loadPrefs, PREFS_KEY } from "./preferences.js";
+import {
+  darkPreferenceFromThemeMode,
+  nextThemeMode,
+  readSystemThemePreferences,
+  resolveTheme,
+  resolveThemePreferences,
+  type ThemeMode,
+} from "./themePreferences.js";
 import type { Theme } from "../types/theme.js";
-
-export type ThemeMode = "auto" | "dark" | "light";
 
 interface PageThemeToggle {
   theme: Theme;
@@ -27,28 +32,6 @@ interface PageThemeToggle {
   toggleHC: () => void;
 }
 
-function resolveTheme(dark: boolean, hc: boolean): Theme {
-  return T[dark ? (hc ? "darkHC" : "dark") : hc ? "lightHC" : "light"];
-}
-
-function modeFromPref(pref: boolean | null | undefined): ThemeMode {
-  if (pref === true) return "dark";
-  if (pref === false) return "light";
-  return "auto";
-}
-
-function prefFromMode(mode: ThemeMode): boolean | null {
-  if (mode === "dark") return true;
-  if (mode === "light") return false;
-  return null;
-}
-
-function nextMode(current: ThemeMode): ThemeMode {
-  if (current === "auto") return "dark";
-  if (current === "dark") return "light";
-  return "auto";
-}
-
 export function usePageThemeToggle(): PageThemeToggle {
   const [themeMode, setThemeMode] = useState<ThemeMode>("auto");
   const [highContrast, setHighContrast] = useState(false);
@@ -56,10 +39,9 @@ export function usePageThemeToggle(): PageThemeToggle {
 
   /* On mount: load prefs and subscribe to system preference changes */
   useEffect(() => {
-    const prefs = loadPrefs();
-    setThemeMode(modeFromPref(prefs.dark));
-    const hc = prefs.highContrast ?? window.matchMedia("(prefers-contrast: more)").matches;
-    setHighContrast(hc);
+    const resolved = resolveThemePreferences(loadPrefs(), readSystemThemePreferences());
+    setThemeMode(resolved.themeMode);
+    setHighContrast(resolved.highContrast);
 
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     setSystemDark(mq.matches);
@@ -72,7 +54,10 @@ export function usePageThemeToggle(): PageThemeToggle {
     try {
       const raw = localStorage.getItem(PREFS_KEY);
       const existing = raw ? JSON.parse(raw) : {};
-      localStorage.setItem(PREFS_KEY, JSON.stringify({ ...existing, dark: prefFromMode(mode), highContrast: hc }));
+      localStorage.setItem(
+        PREFS_KEY,
+        JSON.stringify({ ...existing, dark: darkPreferenceFromThemeMode(mode), highContrast: hc }),
+      );
     } catch {
       /* private browsing or quota — ignore */
     }
@@ -80,7 +65,7 @@ export function usePageThemeToggle(): PageThemeToggle {
 
   const toggleTheme = useCallback(() => {
     setThemeMode((prev) => {
-      const next = nextMode(prev);
+      const next = nextThemeMode(prev);
       persist(next, highContrast);
       return next;
     });
@@ -97,3 +82,5 @@ export function usePageThemeToggle(): PageThemeToggle {
   const resolvedDark = themeMode === "auto" ? systemDark : themeMode === "dark";
   return { theme: resolveTheme(resolvedDark, highContrast), themeMode, highContrast, toggleTheme, toggleHC };
 }
+
+export type { ThemeMode } from "./themePreferences.js";

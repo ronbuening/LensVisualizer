@@ -5,7 +5,10 @@
  * comparison slider math.
  */
 
-import type { RuntimeLens } from "../types/optics.js";
+export interface ZoomConvertibleLens {
+  isZoom: boolean;
+  zoomPositions?: number[] | null;
+}
 
 /**
  * Convert a focal length in mm to normalized zoomT [0..1].
@@ -17,9 +20,10 @@ import type { RuntimeLens } from "../types/optics.js";
  * @param L  — runtime lens object (needs isZoom, zoomPositions)
  * @returns normalized zoom position [0..1]
  */
-export function focalLengthToZoomT(fl: number, L: RuntimeLens): number {
+export function focalLengthToZoomT(fl: number, L: ZoomConvertibleLens): number {
   if (!L.isZoom) return 0;
-  const zp: number[] = L.zoomPositions!;
+  const zp = L.zoomPositions ?? [];
+  if (zp.length < 2) return 0;
   if (fl <= zp[0]) return 0;
   if (fl >= zp[zp.length - 1]) return 1;
   for (let i: number = 0; i < zp.length - 1; i++) {
@@ -37,9 +41,10 @@ export function focalLengthToZoomT(fl: number, L: RuntimeLens): number {
  * @param L     — runtime lens object (needs isZoom, zoomPositions)
  * @returns focal length in mm, or null for prime lenses
  */
-export function zoomTToFocalLength(zoomT: number, L: RuntimeLens): number | null {
+export function zoomTToFocalLength(zoomT: number, L: ZoomConvertibleLens): number | null {
   if (!L.isZoom) return null;
-  const zp: number[] = L.zoomPositions!;
+  const zp = L.zoomPositions ?? [];
+  if (zp.length < 2) return null;
   const pos: number = zoomT * (zp.length - 1);
   const idx: number = Math.min(Math.floor(pos), zp.length - 2);
   const frac: number = pos - idx;

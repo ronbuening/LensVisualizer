@@ -10,7 +10,8 @@
  */
 
 import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
-import { conicPolySag } from "./optics.js";
+import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
+import { conicPolySag } from "./internal/surfaceMath.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -169,10 +170,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
 
   /* ── Build label→index map for var/geometry checks below ── */
-  const labelToIdx: Record<string, number> = {};
-  for (let i = 0; i < data.surfaces.length; i++) {
-    if (typeof data.surfaces[i].label === "string") labelToIdx[data.surfaces[i].label] = i;
-  }
+  const labelToIdx = buildLabelIndex(
+    data.surfaces.filter((surface: SurfaceData) => typeof surface.label === "string") as Pick<SurfaceData, "label">[],
+  );
 
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === "object") {
@@ -204,13 +204,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       /* Surface d should match the var infinity value at the first zoom position */
       if (surfaceLabels.has(label)) {
         const surfD = data.surfaces[labelToIdx[label]].d;
-        const varInf = isZoom
-          ? Array.isArray(range) && Array.isArray((range as unknown[])[0])
-            ? (range as number[][])[0][0]
-            : null
-          : Array.isArray(range)
-            ? (range as number[])[0]
-            : null;
+        const varInf = firstInfinityThickness(range, isZoom);
         if (typeof surfD === "number" && typeof varInf === "number" && Math.abs(surfD - varInf) > 1e-6)
           errors.push(`var["${label}"]: surface d=${surfD} does not match var infinity value ${varInf}`);
       }
@@ -246,12 +240,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
    */
   const S = data.surfaces;
 
-  const asphByIdx: Record<number, AsphericCoefficients> = {};
-  if (data.asph && typeof data.asph === "object") {
-    for (const [label, coeffs] of Object.entries(data.asph)) {
-      if (labelToIdx[label] !== undefined) asphByIdx[labelToIdx[label]] = coeffs as AsphericCoefficients;
-    }
-  }
+  const asphByIdx = buildAsphereIndex(data.asph as Record<string, AsphericCoefficients> | undefined, labelToIdx);
 
   for (const elem of data.elements) {
     let s1 = -1;

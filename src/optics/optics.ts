@@ -11,15 +11,13 @@ import type {
   LayoutResult,
   ChromaticChannel,
   ChromaticSpread,
-  AsphericCoefficients,
+  ParaxialTraceResult,
 } from "../types/optics.js";
+import { buildStateSurfaces, resolveVariableThickness } from "./internal/lensState.js";
+import { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { traceSurfacesParaxial, traceSurfacesReal } from "./internal/traceSurfaces.js";
 
-interface StateSurfaceTraceResult {
-  y: number;
-  u: number;
-  clipped: boolean;
-  heights: number[] | null;
-}
+export { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 export interface FieldGeometryState {
   halfFieldDeg: number;
@@ -36,7 +34,6 @@ export interface EntrancePupilState {
 }
 
 /* ── Named constants ── */
-export const FLAT_R_THRESHOLD: number = 1e10; /* surfaces with |R| above this are treated as flat (plano) */
 const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
 const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
@@ -44,61 +41,6 @@ export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below th
 /* =====================================================================
  * §4  RENDERING HELPERS — Sag, layout, and shape utilities
  * =================================================================== */
-
-/**
- * Spherical sag (axial displacement) at ray height h.
- *
- * Standard sag formula: z = c·h² / (1 + √(1 − c²·h²))
- * where c = 1/R.  Returns 0 for flat surfaces (|R| > FLAT_R_THRESHOLD).
- * The discriminant is clamped to 0 to avoid NaN when h ≈ |R|.
- *
- * @param h  — ray height from optical axis (mm)
- * @param R  — radius of curvature (mm, signed per sign convention)
- * @returns    sag in mm (positive = toward image side)
- */
-export function sag(h: number, R: number): number {
-  if (Math.abs(R) > FLAT_R_THRESHOLD) return 0;
-  const c = 1 / R,
-    h2 = h * h,
-    d = 1 - c * c * h2;
-  return (c * h2) / (1 + Math.sqrt(d > 0 ? d : 0));
-}
-
-/**
- * Conic + even-order polynomial sag from raw parameters.
- *
- * Conic sag: z = c·h² / (1 + √(1 − (1+K)·c²·h²))
- * Polynomial: + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴ [+ A16·h¹⁶ + A18·h¹⁸ + A20·h²⁰]
- *
- * Shared primitive used by renderSag (runtime) and validateLensData
- * (geometry checks).  Handles both spherical-only (asph=undefined)
- * and full aspheric surfaces.
- *
- * @param h     — ray height from axis (mm)
- * @param R     — radius of curvature (mm, signed)
- * @param asph  — aspheric coefficients, or undefined for spherical
- * @returns       sag in mm
- */
-export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | undefined): number {
-  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
-  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
-  const K = asph ? asph.K : 0;
-  const h2 = h * h;
-  const d = 1 - (1 + K) * c * c * h2;
-  const conic = (c * h2) / (1 + Math.sqrt(d > 0 ? d : 1e-12));
-  if (!asph) return conic;
-  const poly =
-    asph.A4 * h2 * h2 +
-    asph.A6 * h2 ** 3 +
-    asph.A8 * h2 ** 4 +
-    asph.A10 * h2 ** 5 +
-    asph.A12 * h2 ** 6 +
-    asph.A14 * h2 ** 7 +
-    (asph.A16 ?? 0) * h2 ** 8 +
-    (asph.A18 ?? 0) * h2 ** 9 +
-    (asph.A20 ?? 0) * h2 ** 10;
-  return conic + poly;
-}
 
 /**
  * Aspherical sag at a surface, looked up from the runtime lens object.
@@ -116,50 +58,6 @@ export function renderSag(h: number, surfIdx: number, L: RuntimeLens): number {
   const a = L.asphByIdx[surfIdx];
   if (!a) return sag(h, R);
   return conicPolySag(h, R, a);
-}
-
-/**
- * Derivative dz/dh of the aspherical sag — gives the surface slope at height h.
- *
- * Used to compute the surface normal for exact Snell's law refraction in
- * traceRay/traceRayChromatic.  The surface normal tilt angle is atan(slope).
- *
- * @param h        — ray height from axis (mm)
- * @param surfIdx  — surface index into L.S[]
- * @param L        — runtime lens object
- * @returns          dz/dh (dimensionless slope)
- */
-/**
- * Surface-normal slope dz/dh from raw parameters.
- *
- * Core math shared by sagSlope() (runtime) and buildLens (build-time).
- * Exported for use in buildLens.ts where no RuntimeLens is available yet.
- *
- * @param h    — ray height from axis (mm)
- * @param R    — radius of curvature (mm)
- * @param asph — aspheric coefficients, or undefined for spherical surfaces
- * @returns      dz/dh (dimensionless slope)
- */
-export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | undefined): number {
-  if (Math.abs(R) > FLAT_R_THRESHOLD && !asph) return 0;
-  const c = Math.abs(R) > FLAT_R_THRESHOLD ? 0 : 1.0 / R;
-  const K = asph ? asph.K : 0;
-  const h2 = h * h;
-  const denom2 = 1 - (1 + K) * c * c * h2;
-  const conicSlope = (c * h) / Math.sqrt(denom2 > 0 ? denom2 : 1e-12);
-  if (!asph) return conicSlope;
-  const polySlope =
-    h *
-    (4 * asph.A4 * h2 +
-      6 * asph.A6 * h2 * h2 +
-      8 * asph.A8 * h2 ** 3 +
-      10 * asph.A10 * h2 ** 4 +
-      12 * asph.A12 * h2 ** 5 +
-      14 * asph.A14 * h2 ** 6 +
-      16 * (asph.A16 ?? 0) * h2 ** 7 +
-      18 * (asph.A18 ?? 0) * h2 ** 8 +
-      20 * (asph.A20 ?? 0) * h2 ** 9);
-  return conicSlope + polySlope;
 }
 
 export function sagSlope(h: number, surfIdx: number, L: RuntimeLens): number {
@@ -207,19 +105,7 @@ export function gapTrimHeight(surfIdx: number, sd: number, maxSag: number, L: Ru
  * @returns         thickness in mm
  */
 export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  const v = L.varByIdx[i];
-  if (!v) return L.S[i].d;
-  if (!L.isZoom) return (v as [number, number])[0] + ((v as [number, number])[1] - (v as [number, number])[0]) * focusT;
-  /* Piecewise-linear interpolation across zoom positions, then focus */
-  const zv = v as [number, number][];
-  const nz = zv.length;
-  if (nz === 1) return zv[0][0] + (zv[0][1] - zv[0][0]) * focusT;
-  const zp = zoomT * (nz - 1);
-  const zi = Math.min(Math.floor(zp), nz - 2);
-  const zf = zp - zi;
-  const d_inf = zv[zi][0] + (zv[zi + 1][0] - zv[zi][0]) * zf;
-  const d_close = zv[zi][1] + (zv[zi + 1][1] - zv[zi][1]) * zf;
-  return d_inf + (d_close - d_inf) * focusT;
+  return resolveVariableThickness(L.S[i].d, L.varByIdx[i], Boolean(L.isZoom), focusT, zoomT);
 }
 
 /**
@@ -238,69 +124,7 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens): LayoutR
 }
 
 function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens) {
-  return L.S.map((s, i) => ({ ...s, d: thick(i, focusT, zoomT, L) }));
-}
-
-function traceStateSurfacesParaxial(
-  S: RuntimeLens["S"],
-  y0: number,
-  u0: number,
-  {
-    stopAt,
-    skipLastTransfer = false,
-    recordHeights = false,
-  }: { stopAt?: number; skipLastTransfer?: boolean; recordHeights?: boolean } = {},
-): StateSurfaceTraceResult {
-  const N = stopAt !== undefined ? stopAt : S.length;
-  const total = S.length;
-  const heights: number[] | null = recordHeights ? [] : null;
-  let y = y0,
-    u = u0,
-    n = 1.0;
-  for (let i = 0; i < N; i++) {
-    if (recordHeights) heights!.push(y);
-    const { R, nd, d } = S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
-    n = nn;
-    const isLast = i === N - 1;
-    if (isLast && skipLastTransfer) {
-      /* skip */
-    } else if (i < total - 1) {
-      y += d * u;
-    }
-  }
-  return { y, u, clipped: false, heights };
-}
-
-function traceStateSurfacesReal(
-  S: RuntimeLens["S"],
-  asphByIdx: RuntimeLens["asphByIdx"],
-  y0: number,
-  u0: number,
-  stopAt?: number,
-): StateSurfaceTraceResult {
-  const N = stopAt !== undefined ? stopAt : S.length;
-  let y = y0,
-    U = Math.atan(u0),
-    n = 1.0;
-  let clipped = false;
-  for (let i = 0; i < N; i++) {
-    const { R, nd, d, sd } = S[i];
-    if (Math.abs(y) > sd) clipped = true;
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) {
-      const absY = Math.abs(y);
-      const slope = sagSlopeRaw(absY, R, asphByIdx[i]);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const sinIp = (n / nn) * Math.sin(U - alpha);
-      if (Math.abs(sinIp) > 1.0) return { y: NaN, u: NaN, clipped: true, heights: null };
-      U = alpha + Math.asin(sinIp);
-    }
-    n = nn;
-    if (i < N - 1) y += d * Math.tan(U);
-  }
-  return { y, u: Math.tan(U), clipped, heights: null };
+  return buildStateSurfaces(L.S, L.varByIdx, Boolean(L.isZoom), focusT, zoomT);
 }
 
 export function computeFieldGeometryAtState(focusT: number, zoomT: number, L: RuntimeLens): FieldGeometryState {
@@ -308,17 +132,17 @@ export function computeFieldGeometryAtState(focusT: number, zoomT: number, L: Ru
   const stopIdx = L.stopIdx;
   const delta = 1e-4;
 
-  const paraxMarg = traceStateSurfacesParaxial(S, 1, 0, { stopAt: stopIdx });
-  const paraxChief = traceStateSurfacesParaxial(S, 0, 1, { stopAt: stopIdx });
-  const realMarg = traceStateSurfacesReal(S, L.asphByIdx, delta, 0, stopIdx);
-  const realChief = traceStateSurfacesReal(S, L.asphByIdx, 0, delta, stopIdx);
+  const paraxMarg = traceSurfacesParaxial(S, 1, 0, { stopAt: stopIdx });
+  const paraxChief = traceSurfacesParaxial(S, 0, 1, { stopAt: stopIdx });
+  const realMarg = traceSurfacesReal(S, L.asphByIdx, delta, 0, { stopAt: stopIdx });
+  const realChief = traceSurfacesReal(S, L.asphByIdx, 0, delta, { stopAt: stopIdx });
 
   const yRatio = isFinite(realMarg.y) ? realMarg.y / delta : paraxMarg.y;
   const b = isFinite(realChief.y) ? realChief.y / delta : paraxChief.y;
   const epRatio = Math.abs(yRatio) > 1e-9 ? b / yRatio : 0;
 
-  const hA = traceStateSurfacesParaxial(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
-  const hB = traceStateSurfacesParaxial(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hA = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hB = traceSurfacesParaxial(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
   const r = Math.abs(hA[stopIdx]) > 1e-15 ? hB[stopIdx] / hA[stopIdx] : 0;
   let minU = Infinity;
   for (let i = 0; i < L.N; i++) {
@@ -334,7 +158,7 @@ export function computeFieldGeometryAtState(focusT: number, zoomT: number, L: Ru
   const testChief = (deg: number): boolean => {
     const uField = -Math.tan((deg * Math.PI) / 180);
     const yChiefIn = -epRatio * uField;
-    const trace = traceStateSurfacesReal(S, L.asphByIdx, yChiefIn, uField);
+    const trace = traceSurfacesReal(S, L.asphByIdx, yChiefIn, uField, { checkSemiDiameter: true });
     return isFinite(trace.y) && !trace.clipped;
   };
 
@@ -380,9 +204,9 @@ export function traceParaxialRay(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
-): Pick<StateSurfaceTraceResult, "y" | "u"> {
+): Pick<ParaxialTraceResult, "y" | "u"> {
   const S = stateSurfaces(focusT, zoomT, L);
-  const result = traceStateSurfacesParaxial(S, y0, u0, { skipLastTransfer: true });
+  const result = traceSurfacesParaxial(S, y0, u0, { skipLastTransfer: true });
   return { y: result.y, u: result.u };
 }
 
@@ -564,18 +388,10 @@ export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens): numbe
   if (focusT < FOCUS_INFINITY_THRESHOLD) {
     return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   }
-  let y = 1,
-    u = 0,
-    n = 1.0;
-  for (let i = 0; i < L.N; i++) {
-    const { R, nd } = L.S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
-    n = nn;
-    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * u;
-  }
-  if (Math.abs(u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  return -1.0 / u;
+  const S = stateSurfaces(focusT, zoomT, L);
+  const trace = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
+  if (Math.abs(trace.u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  return -1.0 / trace.u;
 }
 
 /**
@@ -819,17 +635,9 @@ export function computeChromaticSpread(
  * @returns         ray height at image plane (mm)
  */
 export function traceToImage(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  let y = y0,
-    u = u0,
-    n = 1.0;
-  for (let i = 0; i < L.N; i++) {
-    const { R, nd } = L.S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) u = Math.abs(R) < FLAT_R_THRESHOLD ? (n * u - (y * (nn - n)) / R) / nn : (n * u) / nn;
-    n = nn;
-    y += thick(i, focusT, zoomT, L) * u;
-  }
-  return y;
+  const S = stateSurfaces(focusT, zoomT, L);
+  const trace = traceSurfacesParaxial(S, y0, u0);
+  return trace.y + S[S.length - 1].d * trace.u;
 }
 
 /**
@@ -838,25 +646,10 @@ export function traceToImage(y0: number, u0: number, focusT: number, zoomT: numb
  * conjugateK self-consistent with the rendering engine (traceRay).
  */
 function traceToImageReal(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  let y = y0,
-    n = 1.0;
-  let U = Math.atan(u0);
-  for (let i = 0; i < L.N; i++) {
-    const { nd } = L.S[i];
-    const nn = nd === 1.0 ? 1.0 : nd;
-    if (nn !== n) {
-      const absY = Math.abs(y);
-      const slope = sagSlope(absY, i, L);
-      const alpha = y >= 0 ? -Math.atan(slope) : Math.atan(slope);
-      const I = U - alpha;
-      const sinIp = (n / nn) * Math.sin(I);
-      if (Math.abs(sinIp) > 1.0) return NaN;
-      U = alpha + Math.asin(sinIp);
-    }
-    n = nn;
-    y += thick(i, focusT, zoomT, L) * Math.tan(U);
-  }
-  return y;
+  const S = stateSurfaces(focusT, zoomT, L);
+  const trace = traceSurfacesReal(S, L.asphByIdx, y0, u0);
+  if (!isFinite(trace.y)) return NaN;
+  return trace.y + S[S.length - 1].d * trace.u;
 }
 
 /**

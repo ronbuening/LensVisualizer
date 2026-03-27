@@ -383,6 +383,33 @@ describe("validateLensData — zoom lens paths", () => {
     expect(errors.some((e) => e.includes("does not match"))).toBe(false);
   });
 
+  it("reports cross-gap overlap at a specific zoom position when a variable gap closes", () => {
+    const data = makeValid({
+      nominalFno: [2, 2],
+      zoomPositions: [24, 70],
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.6, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.6, vd: 50 },
+      ],
+      surfaces: [
+        { label: "1", R: 50, d: 4, nd: 1.6, elemId: 1, sd: 10 },
+        { label: "STO", R: 20, d: 6, nd: 1.0, elemId: 0, sd: 10 },
+        { label: "2", R: -20, d: 4, nd: 1.6, elemId: 2, sd: 10 },
+        { label: "3", R: -50, d: 40, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      var: {
+        STO: [
+          [6, 6],
+          [4, 4],
+        ],
+      },
+    });
+
+    const errors = validateLensData(data);
+
+    expect(errors.some((e) => e.includes('Air gap "STO"→"2"') && e.includes("zoom position 1"))).toBe(true);
+  });
+
   it("catches invalid zoomStep", () => {
     const data = makeValid({ zoomStep: -0.1 });
     const errors = validateLensData(data);
