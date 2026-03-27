@@ -18,7 +18,6 @@
 // Abbe numbers: Inferred from nd-matched glass catalog candidates (OHARA,
 // SCHOTT). Patent provides only nd; vd values are approximate.
 // ============================================================================
-import type { LensDataInput } from "../LensDataInput";
 
 const LENS_DATA = {
   key: "nikkor-z-100-400-f4556",
