@@ -22,6 +22,9 @@ export interface AsphericCoefficients {
   A10: number;
   A12: number;
   A14: number;
+  A16?: number;
+  A18?: number;
+  A20?: number;
 }
 
 export interface ElementData {

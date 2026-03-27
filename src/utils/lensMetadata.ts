@@ -15,6 +15,8 @@ const SITE_URL = "https://opticalbench.net";
 const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
   { prefix: "CANON", display: "Canon", slug: "canon" },
   { prefix: "CARL ZEISS", display: "Carl Zeiss", slug: "carl-zeiss" },
+  { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
+  { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "VOIGTLÄNDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },
   { prefix: "RICOH", display: "Ricoh", slug: "ricoh" },
