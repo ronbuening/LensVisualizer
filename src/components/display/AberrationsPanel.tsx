@@ -15,7 +15,11 @@
 import { useMemo } from "react";
 import CollapseButton from "../controls/CollapseButton.js";
 import MeridionalComaPlot, { formatComaSpan } from "./MeridionalComaPlot.js";
-import { computeMeridionalComa, computeSphericalAberration, computeSAProfile } from "../../optics/aberrationAnalysis.js";
+import {
+  computeMeridionalComa,
+  computeSphericalAberration,
+  computeSAProfile,
+} from "../../optics/aberrationAnalysis.js";
 import type { SAProfilePoint } from "../../optics/aberrationAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";

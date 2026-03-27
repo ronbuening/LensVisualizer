@@ -35,7 +35,10 @@ export function formatComaSpan(spanUm: number): string {
 }
 
 export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProps) {
-  const yHalfRange = Math.max(MIN_Y_RANGE_MM, Math.max(Math.abs(result.minIntercept), Math.abs(result.maxIntercept)) * 1.1);
+  const yHalfRange = Math.max(
+    MIN_Y_RANGE_MM,
+    Math.max(Math.abs(result.minIntercept), Math.abs(result.maxIntercept)) * 1.1,
+  );
   const zeroY = MT + PH / 2;
 
   const xScale = (pupilFraction: number) => ML + ((pupilFraction + 1) / 2) * PW;
@@ -61,7 +64,15 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
-      <line x1={ML + PW / 2} y1={MT} x2={ML + PW / 2} y2={MT + PH} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
+      <line
+        x1={ML + PW / 2}
+        y1={MT}
+        x2={ML + PW / 2}
+        y2={MT + PH}
+        stroke={t.axis}
+        strokeWidth={0.75}
+        strokeDasharray="3,3"
+      />
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
