@@ -34,6 +34,7 @@ import AbbeDiagram from "../display/AbbeDiagram.js";
 import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
+import { resolveDarkPreference } from "../../utils/themePreferences.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import DiagramViewport from "./lensDiagram/DiagramViewport.js";
 
@@ -75,7 +76,7 @@ export default function LensDiagramPanel({
   const { rays: raysState, display, panels, sliders } = state;
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const dark = display.dark !== null ? display.dark : systemDark;
+  const dark = resolveDarkPreference(display.dark, systemDark);
   const {
     focusExpanded,
     apertureExpanded,

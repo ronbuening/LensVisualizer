@@ -6,18 +6,15 @@
  */
 
 import { useState, useEffect } from "react";
-import T from "./themes.js";
 import { loadPrefs } from "./preferences.js";
+import { readSystemThemePreferences, resolveTheme, resolveThemePreferences } from "./themePreferences.js";
 import type { Theme } from "../types/theme.js";
 
 export function usePageTheme(): Theme {
-  const [theme, setTheme] = useState<Theme>(T.dark);
+  const [theme, setTheme] = useState<Theme>(resolveTheme(true, false));
 
   useEffect(() => {
-    const prefs = loadPrefs();
-    const dark = prefs.dark ?? window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const highContrast = prefs.highContrast ?? window.matchMedia("(prefers-contrast: more)").matches;
-    setTheme(T[dark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"]);
+    setTheme(resolveThemePreferences(loadPrefs(), readSystemThemePreferences()).theme);
   }, []);
 
   return theme;

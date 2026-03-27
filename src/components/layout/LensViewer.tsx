@@ -19,11 +19,11 @@
 import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import T from "../../utils/themes.js";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
+import { resolveDarkPreference, resolveTheme } from "../../utils/themePreferences.js";
 import OverlayModal from "./OverlayModal.js";
 import ControlsBar from "./ControlsBar.js";
 import TopBar from "./TopBar.js";
@@ -134,8 +134,8 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast.
      dark===null means "auto" — resolved reactively via system media query. */
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const resolvedDark = dark !== null ? dark : systemDark;
-  const t = T[resolvedDark ? (highContrast ? "darkHC" : "dark") : highContrast ? "lightHC" : "light"];
+  const resolvedDark = resolveDarkPreference(dark, systemDark);
+  const t = resolveTheme(resolvedDark, highContrast);
 
   /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
   const catalogNames = useMemo(() => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])), []);

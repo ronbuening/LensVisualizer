@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { PREFS_KEY } from "../src/utils/preferences.js";
 import { usePageTheme } from "../src/utils/usePageTheme.js";
@@ -24,10 +24,22 @@ describe("usePageTheme", () => {
   });
 
   it("falls back to system preferences when stored prefs are absent", () => {
-    installMatchMediaMock(true);
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(prefers-contrast: more)",
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
 
     const { result } = renderHook(() => usePageTheme());
 
-    expect(result.current).toBe(themes.darkHC);
+    expect(result.current).toBe(themes.lightHC);
   });
 });

@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import { PREFS_KEY } from "../src/utils/preferences.js";
 import { usePageThemeToggle } from "../src/utils/usePageThemeToggle.js";
@@ -34,6 +34,28 @@ describe("usePageThemeToggle", () => {
     const { result } = renderHook(() => usePageThemeToggle());
 
     expect(result.current.themeMode).toBe("light");
+    expect(result.current.highContrast).toBe(true);
+    expect(result.current.theme).toBe(themes.lightHC);
+  });
+
+  it("hydrates missing high contrast from the system preference", () => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(prefers-contrast: more)",
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
+
+    const { result } = renderHook(() => usePageThemeToggle());
+
+    expect(result.current.themeMode).toBe("auto");
     expect(result.current.highContrast).toBe(true);
     expect(result.current.theme).toBe(themes.lightHC);
   });

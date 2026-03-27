@@ -9,6 +9,7 @@
 
 import { ENABLE_EDGE_PROJECTION } from "./featureFlags.js";
 import { DEFAULT_COLOR_TRACING } from "./appConfig.js";
+import { readSystemThemePreferences } from "./themePreferences.js";
 import type { LensState, LensAction, Preferences, URLState } from "../types/state.js";
 import comparisonReducer from "../comparison/comparisonReducer.js";
 
@@ -75,6 +76,7 @@ export function createInitialState(
 ): LensState {
   const showOffAxisRaw = prefs.showOffAxis ?? "off";
   const showOffAxis = !ENABLE_EDGE_PROJECTION && showOffAxisRaw === "edge" ? "trueAngle" : showOffAxisRaw;
+  const systemThemePrefs = readSystemThemePreferences();
 
   return {
     lens: {
@@ -86,9 +88,7 @@ export function createInitialState(
     display: {
       /* null = "auto" (follow system preference). Only a stored boolean overrides. */
       dark: prefs.dark !== undefined ? prefs.dark : null,
-      highContrast:
-        prefs.highContrast ??
-        (typeof window !== "undefined" ? window.matchMedia("(prefers-contrast: more)").matches : false),
+      highContrast: prefs.highContrast ?? systemThemePrefs.highContrast,
       mobileView: "diagram",
       desktopView: prefs.desktopView || "both",
     },
