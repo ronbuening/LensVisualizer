@@ -736,7 +736,9 @@ export function computeComaPreview(
 
   const sharedRelativeHalfRangeMm = Math.max(
     0.01,
-    ...usableFields.map((field) => Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept))),
+    ...usableFields.map((field) =>
+      Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept)),
+    ),
   );
 
   return {

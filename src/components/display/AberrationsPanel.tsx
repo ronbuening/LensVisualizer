@@ -291,8 +291,8 @@ export default function AberrationsPanel({
           {comaPreviewExpanded && (
             <>
               <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Representative meridional coma preview at center, 25%, 50%, and 75% of the current half-field. Each
-                tile is chief-ray-centered for comparison and is not a full 2D spot diagram.
+                Representative meridional coma preview at center, 25%, 50%, and 75% of the current half-field. Each tile
+                is chief-ray-centered for comparison and is not a full 2D spot diagram.
               </span>
 
               {comaPreviewResult ? (

@@ -36,12 +36,7 @@ function formatRelativeMm(value: number): string {
   return value.toFixed(2);
 }
 
-function renderTile(
-  field: ComaPreviewFieldResult,
-  index: number,
-  sharedRelativeHalfRangeMm: number,
-  t: Theme,
-) {
+function renderTile(field: ComaPreviewFieldResult, index: number, sharedRelativeHalfRangeMm: number, t: Theme) {
   const col = index % 2;
   const row = Math.floor(index / 2);
   const tileX = OUTER_PAD_X + col * (TILE_W + COL_GAP);
@@ -72,9 +67,34 @@ function renderTile(
         {field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
       </text>
 
-      <rect x={plotX} y={plotY} width={PLOT_W} height={PLOT_H} rx={3} fill="none" stroke={t.panelBorder} strokeWidth={0.75} />
-      <line x1={plotX} y1={zeroY} x2={plotX + PLOT_W} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
-      <line x1={zeroX} y1={plotY} x2={zeroX} y2={plotY + PLOT_H} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
+      <rect
+        x={plotX}
+        y={plotY}
+        width={PLOT_W}
+        height={PLOT_H}
+        rx={3}
+        fill="none"
+        stroke={t.panelBorder}
+        strokeWidth={0.75}
+      />
+      <line
+        x1={plotX}
+        y1={zeroY}
+        x2={plotX + PLOT_W}
+        y2={zeroY}
+        stroke={t.axis}
+        strokeWidth={0.75}
+        strokeDasharray="3,3"
+      />
+      <line
+        x1={zeroX}
+        y1={plotY}
+        x2={zeroX}
+        y2={plotY + PLOT_H}
+        stroke={t.axis}
+        strokeWidth={0.75}
+        strokeDasharray="3,3"
+      />
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
