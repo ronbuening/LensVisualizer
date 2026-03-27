@@ -19,6 +19,7 @@ import { join, dirname } from "node:path";
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
+const NOT_FOUND_ROUTE = "/this-route-does-not-exist";
 
 /**
  * Validate that every route pattern from the React Router manifest is
@@ -135,9 +136,27 @@ async function prerender() {
 
   console.log(`Prerendered ${routes.length} pages.`);
 
-  /* Update 404.html with the prerendered root page */
-  const rootHtml = readFileSync(join(DIST_DIR, "index.html"), "utf-8");
-  writeFileSync(join(DIST_DIR, "404.html"), rootHtml, "utf-8");
+  /* Prerender a real 404 page for GitHub Pages SPA fallback */
+  const { html: notFoundHtml, helmet: notFoundHelmet } = render(NOT_FOUND_ROUTE);
+  const notFoundHeadTags = [
+    notFoundHelmet.title.toString(),
+    notFoundHelmet.meta.toString(),
+    notFoundHelmet.link.toString(),
+    notFoundHelmet.script.toString(),
+  ]
+    .filter(Boolean)
+    .join("\n    ");
+
+  let fourOhFourHtml = template;
+  fourOhFourHtml = fourOhFourHtml.replace(/<title>.*?<\/title>/, notFoundHeadTags);
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+name="description"[^>]*\/>/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<link\s+rel="canonical"[^>]*\/>/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<!--\s*Open Graph\s*-->/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+property="og:[^"]*"[^>]*\/>/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<!--\s*Twitter Card\s*-->/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+name="twitter:[^"]*"[^>]*\/>/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace('<div id="root"></div>', `<div id="root">${notFoundHtml}</div>`);
+  writeFileSync(join(DIST_DIR, "404.html"), fourOhFourHtml, "utf-8");
 }
 
 prerender().catch((err) => {

@@ -231,7 +231,20 @@ function audit404() {
   if (!existsSync(path)) {
     error("404.html not found in dist/");
   } else {
-    ok("404.html exists (GitHub Pages SPA fallback)");
+    const html = readFileSync(path, "utf-8");
+    if (!html.includes("Page Not Found")) {
+      error("404.html does not contain 404 metadata/content");
+    }
+    if (html.includes('rel="canonical"')) {
+      error("404.html should not emit a canonical URL");
+    }
+    if (!html.includes('name="robots" content="noindex,follow"')) {
+      error("404.html missing noindex robots directive");
+    }
+    if (html.includes("Interactive Lens Cross-Section Visualizer")) {
+      warn("404.html still contains home page branding copy; verify fallback metadata");
+    }
+    ok("404.html exists with real 404 metadata and noindex policy");
   }
 }
 
