@@ -8,6 +8,16 @@ import buildMeta from "../src/generated/build-metadata.json";
  * They require `npm run generate:metadata` to have been run first.
  */
 describe("build-route-sync", () => {
+  it("every lens key has freshness metadata", () => {
+    const freshness = buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>;
+
+    for (const key of buildMeta.lensKeys) {
+      expect(freshness[key]).toBeDefined();
+      expect(freshness[key].publishedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(freshness[key].lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
   it("maker slugs match between runtime and build-time", () => {
     const runtimeSlugs = allMakerSlugs().sort();
     const buildSlugs = [...buildMeta.makerSlugs].sort();
@@ -46,12 +56,29 @@ describe("build-route-sync", () => {
     }
   });
 
+  it("articles include published and modified dates", () => {
+    for (const article of buildMeta.articles as { publishedOn: string; lastModified: string }[]) {
+      expect(article.publishedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(article.lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    }
+  });
+
   it("makerSlugs match routes with /makers/ prefix", () => {
     const makerRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/makers/"));
 
     expect(makerRoutes.length).toBe(buildMeta.makerSlugs.length);
     for (const slug of buildMeta.makerSlugs) {
       expect(makerRoutes).toContain(`/makers/${slug}`);
+    }
+  });
+
+  it("every prerendered route has freshness metadata", () => {
+    const routeFreshness = buildMeta.routeFreshness as Record<string, { publishedOn: string; lastModified: string }>;
+
+    for (const route of buildMeta.routes as string[]) {
+      expect(routeFreshness[route]).toBeDefined();
+      expect(routeFreshness[route].publishedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(routeFreshness[route].lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
   });
 });

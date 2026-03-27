@@ -75,7 +75,7 @@ export const ARTICLES: HomepageArticle[] = buildMeta.articles
   .map((a) => ({
     slug: a.slug,
     title: a.title,
-    date: a.date,
+    date: a.publishedOn,
     summary: a.summary,
     linkTo: `/articles/${a.slug}`,
     tag: a.tag as HomepageArticle["tag"],
