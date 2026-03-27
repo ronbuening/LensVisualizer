@@ -13,12 +13,12 @@
 import { bAtZoom, halfFieldAtZoom, traceRay, yRatioAtZoom } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
-/** One sample point on the longitudinal SA profile curve. */
+/** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
   /** Normalised pupil zone fraction (0 = paraxial axis, 1 = full entrance-pupil edge). */
   fraction: number;
-  /** Best-focus blur radius at this zone in mm. */
-  imageHeightMm: number;
+  /** Signed real-ray transverse SA at this zone in mm at the common best-focus plane. */
+  transverseSaMm: number;
 }
 
 /** Result of a spherical aberration computation. */
@@ -390,12 +390,13 @@ const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as con
 export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 
 /**
- * Compute a best-focus on-axis blur profile across the pupil aperture.
+ * Compute a real-ray on-axis transverse SA profile across the pupil aperture.
  *
- * Traces ±Y rays at each PROFILE_FRACS fraction of the entrance pupil and
- * evaluates their blur radius at the best-fit real-ray image plane for the
- * current state. This makes the default chart practical and focus-responsive
- * rather than a pure longitudinal-intercept diagnostic.
+ * Traces real rays through the system, solves a common best-focus plane from
+ * the full symmetric bundle, then plots the positive-branch ray height at that
+ * plane relative to the near-axis positive-branch reference ray. This keeps
+ * the chart in image space, avoids the axial-intercept blow-up near the pupil
+ * edge, and still reflects over/under-correction through the signed fan shape.
  */
 export function computeSAProfile(
   L: RuntimeLens,
@@ -439,16 +440,20 @@ export function computeSAProfile(
   if (hits.length < 4) return [];
 
   const bestFocusZ = bestFocusPlane(hits, lastSurfZ);
+  const nearAxisPlusHit = hits.find((hit) => hit.signedFraction === NEAR_AXIS_REAL_FRAC) ?? null;
+  if (nearAxisPlusHit === null) return [];
+  const nearAxisHeightAtBestFocus = nearAxisPlusHit.y + nearAxisPlusHit.u * (bestFocusZ - lastSurfZ);
+
   const points: SAProfilePoint[] = [];
 
   for (const fraction of PROFILE_FRACS) {
     const plusHit = hits.find((hit) => hit.signedFraction === fraction) ?? null;
-    const minusHit = hits.find((hit) => hit.signedFraction === -fraction) ?? null;
-    if (!plusHit || !minusHit) continue;
+    if (plusHit === null) continue;
 
-    const plusHeight = Math.abs(plusHit.y + plusHit.u * (bestFocusZ - lastSurfZ));
-    const minusHeight = Math.abs(minusHit.y + minusHit.u * (bestFocusZ - lastSurfZ));
-    points.push({ fraction, imageHeightMm: (plusHeight + minusHeight) / 2 });
+    points.push({
+      fraction,
+      transverseSaMm: plusHit.y + plusHit.u * (bestFocusZ - lastSurfZ) - nearAxisHeightAtBestFocus,
+    });
   }
 
   return points.length >= 2 ? points : [];

@@ -297,20 +297,19 @@ describe("computeSAProfile", () => {
     }
   });
 
-  it("all best-focus profile values are finite", () => {
+  it("all signed transverse profile values are finite", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    for (const { imageHeightMm } of profile) {
-      expect(isFinite(imageHeightMm)).toBe(true);
-      expect(imageHeightMm).toBeGreaterThanOrEqual(0);
+    for (const { transverseSaMm } of profile) {
+      expect(isFinite(transverseSaMm)).toBe(true);
     }
   });
 
-  it("profile values stay within the best-focus peak spread", () => {
-    const L = build(ApoLantharRaw);
+  it("profile values stay within twice the best-focus peak spread", () => {
+    const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
@@ -319,20 +318,43 @@ describe("computeSAProfile", () => {
 
     expect(result).not.toBeNull();
     expect(profile.length).toBeGreaterThan(0);
-    const maxProfileHeight = Math.max(...profile.map((point) => point.imageHeightMm * 1000));
-    expect(maxProfileHeight).toBeLessThanOrEqual(result!.bestFocusPeakUm + 1e-6);
+    const maxProfileHeight = Math.max(...profile.map((point) => Math.abs(point.transverseSaMm * 1000)));
+    expect(maxProfileHeight).toBeLessThanOrEqual(result!.bestFocusPeakUm * 2 + 1e-6);
   });
 
-  it("inner zones have less best-focus blur than outer zones", () => {
+  it("near-axis profile sample is close to zero at best focus", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(profile.length).toBeGreaterThan(0);
+    expect(profile[0].fraction).toBe(NEAR_AXIS_REAL_FRAC);
+    expect(Math.abs(profile[0].transverseSaMm)).toBeLessThan(0.01);
+  });
+
+  it("simple positive element profile goes negative toward the margin", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+
+    const profile = computeSAProfile(L, zPos, 0, 0, 12, 15);
     expect(profile.length).toBeGreaterThan(1);
-    const inner = profile[0].imageHeightMm;
-    const outer = profile[profile.length - 1].imageHeightMm;
-    expect(outer).toBeGreaterThan(inner);
+    expect(Math.abs(profile[0].transverseSaMm)).toBeLessThan(0.01);
+    expect(profile[profile.length - 1].transverseSaMm).toBeLessThan(0);
+  });
+
+  it("profile marginal value matches the spherical aberration sign convention", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(result).not.toBeNull();
+    expect(profile.length).toBeGreaterThan(0);
+    const marginalPoint = profile[profile.length - 1];
+    expect(Math.sign(marginalPoint.transverseSaMm)).toBe(Math.sign(result!.longitudinalSaMm));
   });
 
   /* ── Edge cases ── */

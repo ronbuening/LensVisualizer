@@ -39,6 +39,12 @@ function formatSaUm(saUm: number): string {
   return "< 0.1 µm";
 }
 
+function formatSignedSaUm(saUm: number): string {
+  if (Math.abs(saUm) < 0.1) return "0 µm";
+  const rounded = Math.abs(saUm) >= 1 ? saUm.toFixed(0) : saUm.toFixed(1);
+  return `${rounded} µm`;
+}
+
 const VB_W = 280;
 const VB_H = 200;
 const ML = 44;
@@ -49,11 +55,11 @@ const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 const MIN_X_RANGE_UM = 5;
 
-function buildPolylinePoints(profile: SAProfilePoint[], xRangeUm: number): string {
+function buildPolylinePoints(profile: SAProfilePoint[], xMaxAbsUm: number): string {
   return profile
-    .map(({ fraction, imageHeightMm }) => {
-      const blurUm = imageHeightMm * 1000;
-      const px = ML + (blurUm / xRangeUm) * PW;
+    .map(({ fraction, transverseSaMm }) => {
+      const saUm = transverseSaMm * 1000;
+      const px = ML + PW / 2 + (saUm / xMaxAbsUm) * (PW / 2);
       const py = MT + PH * (1 - fraction);
       return `${px.toFixed(1)},${py.toFixed(1)}`;
     })
@@ -61,24 +67,30 @@ function buildPolylinePoints(profile: SAProfilePoint[], xRangeUm: number): strin
 }
 
 function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
-  const maxBlurUm = Math.max(...profile.map((p) => Math.abs(p.imageHeightMm * 1000)));
-  const xRangeUm = Math.max(MIN_X_RANGE_UM, maxBlurUm * 1.2);
-  const rawTick = xRangeUm / 2;
+  const maxSaUm = Math.max(...profile.map((p) => Math.abs(p.transverseSaMm * 1000)));
+  const xMaxAbsUm = Math.max(MIN_X_RANGE_UM, maxSaUm * 1.2);
+  const halfTickRaw = xMaxAbsUm / 2;
   const tickUm =
-    rawTick >= 50 ? Math.round(rawTick / 25) * 25 : rawTick >= 10 ? Math.round(rawTick / 5) * 5 : Math.round(rawTick);
-  const tickX = ML + (tickUm / xRangeUm) * PW;
+    halfTickRaw >= 50
+      ? Math.round(halfTickRaw / 25) * 25
+      : halfTickRaw >= 10
+        ? Math.round(halfTickRaw / 5) * 5
+        : Math.max(1, Math.round(halfTickRaw));
+  const centerX = ML + PW / 2;
+  const leftTickX = centerX - (tickUm / xMaxAbsUm) * (PW / 2);
+  const rightTickX = centerX + (tickUm / xMaxAbsUm) * (PW / 2);
   const yTicks = [
     { frac: 0, label: "0" },
     { frac: 0.5, label: "0.5" },
     { frac: 1, label: "1" },
   ];
-  const polylinePoints = buildPolylinePoints(profile, xRangeUm);
+  const polylinePoints = buildPolylinePoints(profile, xMaxAbsUm);
 
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Best-focus spherical-aberration profile: blur radius at the best-fit image plane vs. pupil zone. Smaller values
-        and flatter curves indicate a tighter on-axis bundle.
+        Real-ray transverse spherical-aberration profile at the common best-focus plane versus pupil zone, referenced to
+        the near-axis real ray.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -104,25 +116,33 @@ function SADiagram({ profile, t }: { profile: SAProfilePoint[]; t: Theme }) {
         Pupil zone
       </text>
 
-      <line x1={ML} y1={MT} x2={ML} y2={MT + PH} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
+      <line x1={centerX} y1={MT} x2={centerX} y2={MT + PH} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <polyline points={polylinePoints} fill="none" stroke={t.value} strokeWidth={2} strokeLinejoin="round" />
 
       <line x1={ML} y1={MT + PH} x2={ML} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-      <line x1={tickX} y1={MT + PH} x2={tickX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={leftTickX} y1={MT + PH} x2={leftTickX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={centerX} y1={MT + PH} x2={centerX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
+      <line x1={rightTickX} y1={MT + PH} x2={rightTickX} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
       <line x1={ML + PW} y1={MT + PH} x2={ML + PW} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
 
       <text x={ML} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+        {formatSignedSaUm(-xMaxAbsUm)}
+      </text>
+      <text x={leftTickX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+        {formatSignedSaUm(-tickUm)}
+      </text>
+      <text x={centerX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
         0
       </text>
-      <text x={tickX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
-        {`${tickUm}`}
+      <text x={rightTickX} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
+        {formatSignedSaUm(tickUm)}
       </text>
       <text x={ML + PW} y={MT + PH + 15} textAnchor="middle" fill={t.muted} fontSize={9} fontFamily="inherit">
-        {`${Math.round(xRangeUm)}`}
+        {formatSignedSaUm(xMaxAbsUm)}
       </text>
 
       <text x={ML + PW / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
-        Best-focus blur radius (&micro;m)
+        Real-ray transverse SA at best focus (&micro;m)
       </text>
     </svg>
   );
@@ -169,7 +189,7 @@ export default function AberrationsPanel({
           <HelpTooltipButton
             theme={t}
             label="Spherical aberration help"
-            text="Best-focus spread shows how tightly on-axis rays from different pupil zones come together after refocusing to the best-fit image plane. Smaller values mean the lens is bringing center and edge zones into a tighter common focus."
+            text="The curve shows the real-ray transverse aberration fan at the common best-focus plane, referenced to the near-axis real ray. Because it stays in image space, it remains stable near the pupil edge while still showing the signed fan shape of the on-axis bundle. The spread metric below still shows the residual bundle size at best focus."
           />
           <CollapseButton
             expanded={saChartExpanded}
