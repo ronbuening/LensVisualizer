@@ -10,7 +10,7 @@
  * buildLens(). They should be memoized from current state in a React hook.
  */
 
-import { traceParaxialRay, traceRay } from "./optics.js";
+import { bAtZoom, halfFieldAtZoom, traceParaxialRay, traceRay, yRatioAtZoom } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** One sample point on the longitudinal SA profile curve. */
@@ -31,6 +31,48 @@ export interface SphericalAberrationResult {
   realIntercept: number;
   /** Axial intercept of the paraxial reference ray (mm, absolute z). */
   paraxialIntercept: number;
+}
+
+/** One dense pupil sample for the meridional coma view. */
+export interface MeridionalComaSample {
+  /** Sample index in the dense pupil sweep. */
+  index: number;
+  /** Normalized pupil fraction in [-1, +1]. */
+  pupilFraction: number;
+  /** Launch height at the first surface / entrance pupil plane convention (mm). */
+  launchHeight: number;
+  /** Image-plane intercept height (mm). Null when clipped/invalid. */
+  imageHeight: number | null;
+  /** Whether the ray clipped at any aperture. */
+  clipped: boolean;
+}
+
+/** Dense meridional coma analysis result for the current lens state. */
+export interface MeridionalComaResult {
+  /** Off-axis field angle used for the sweep (deg). */
+  fieldAngleDeg: number;
+  /** Total dense pupil samples attempted. */
+  sampleCount: number;
+  /** Number of valid image-plane intercept samples. */
+  validSampleCount: number;
+  /** Number of clipped/invalid samples. */
+  clippedSampleCount: number;
+  /** Image-plane intercept of the chief ray (mm). */
+  centerIntercept: number;
+  /** Lowest valid image-plane intercept (mm). */
+  minIntercept: number;
+  /** Highest valid image-plane intercept (mm). */
+  maxIntercept: number;
+  /** Meridional coma span (mm): upper outer valid intercept − lower outer valid intercept. */
+  spanMm: number;
+  /** Meridional coma span converted to µm. */
+  spanUm: number;
+  /** Outermost valid lower intercept used for span (negative/low pupil side). */
+  lowerIntercept: number;
+  /** Outermost valid upper intercept used for span (positive/high pupil side). */
+  upperIntercept: number;
+  /** Dense pupil samples, including clipped samples for visualization. */
+  samples: MeridionalComaSample[];
 }
 
 /**
@@ -177,6 +219,9 @@ export function computeSphericalAberration(
  */
 const PROFILE_FRACS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95] as const;
 
+/** Dense pupil sweep count for the meridional coma view. Must remain odd to include the chief ray sample. */
+export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
+
 /**
  * Compute the longitudinal SA profile across the pupil aperture.
  *
@@ -232,4 +277,96 @@ export function computeSAProfile(
   }
 
   return points.length >= 2 ? points : [];
+}
+
+function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, imagePlaneZ: number): number | null {
+  const dz = imagePlaneZ - lastSurfZ;
+  const imageHeight = y + u * dz;
+  return isFinite(imageHeight) ? imageHeight : null;
+}
+
+/**
+ * Compute dense meridional coma intercept samples for the current lens state.
+ *
+ * This is intentionally a 2D meridional analysis only. It reuses the current
+ * off-axis chief-ray launch convention so the analysis matches the existing
+ * interactive viewer's off-axis behavior.
+ */
+export function computeMeridionalComa(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): MeridionalComaResult | null {
+  if (currentEPSD <= 0 || L.N < 1) return null;
+
+  const halfFieldDeg = halfFieldAtZoom(zoomT, L);
+  if (!isFinite(halfFieldDeg) || halfFieldDeg <= 0) return null;
+
+  const yRatio = yRatioAtZoom(zoomT, L);
+  if (!isFinite(yRatio) || Math.abs(yRatio) < 1e-12) return null;
+
+  const fieldAngleDeg = halfFieldDeg * L.offAxisFieldFrac;
+  if (!isFinite(fieldAngleDeg) || fieldAngleDeg <= 0) return null;
+
+  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
+  const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(imagePlaneZ)) return null;
+
+  const samples: MeridionalComaSample[] = [];
+  const validSamples: Array<MeridionalComaSample & { imageHeight: number }> = [];
+
+  for (let i = 0; i < MERIDIONAL_COMA_SAMPLE_COUNT; i++) {
+    const pupilFraction = -1 + (2 * i) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
+    const launchHeight = yChief + pupilFraction * currentEPSD;
+    const trace = traceRay(launchHeight, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+    const projectedHeight = trace.clipped ? null : imagePlaneIntercept(trace.y, trace.u, lastSurfZ, imagePlaneZ);
+    const sample: MeridionalComaSample = {
+      index: i,
+      pupilFraction,
+      launchHeight,
+      imageHeight: projectedHeight,
+      clipped: trace.clipped || projectedHeight === null,
+    };
+    samples.push(sample);
+    if (sample.imageHeight !== null && !sample.clipped) {
+      validSamples.push(sample as MeridionalComaSample & { imageHeight: number });
+    }
+  }
+
+  if (validSamples.length < 3) return null;
+
+  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
+  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
+  const centerSample =
+    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
+    validSamples.reduce((best, sample) =>
+      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
+    );
+
+  if (!lowerSample || !upperSample || !centerSample) return null;
+
+  const intercepts = validSamples.map((sample) => sample.imageHeight);
+  const minIntercept = Math.min(...intercepts);
+  const maxIntercept = Math.max(...intercepts);
+  const spanMm = upperSample.imageHeight - lowerSample.imageHeight;
+
+  return {
+    fieldAngleDeg,
+    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    validSampleCount: validSamples.length,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSamples.length,
+    centerIntercept: centerSample.imageHeight,
+    minIntercept,
+    maxIntercept,
+    spanMm,
+    spanUm: spanMm * 1000,
+    lowerIntercept: lowerSample.imageHeight,
+    upperIntercept: upperSample.imageHeight,
+    samples,
+  };
 }
