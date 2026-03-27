@@ -10,7 +10,14 @@
 import { useMemo } from "react";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
-import { thick, doLayout, entrancePupilAtState, fopenAtZoom, eflAtFocus, effectiveFNumber } from "../../optics/optics.js";
+import {
+  thick,
+  doLayout,
+  entrancePupilAtState,
+  fopenAtZoom,
+  eflAtFocus,
+  effectiveFNumber,
+} from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 
