@@ -210,6 +210,12 @@ const LENS_DATA = {
   //  Semi-diameters estimated from f/1.85 entrance pupil geometry (EP SD ≈ 14 mm)
   //  with 8–12% mechanical clearance.  Sized to ensure positive edge thickness
   //  and smooth SD progression across cemented doublets.
+  //  Surfaces 9–11 (L15–L16 doublet) and 14–15 (L21) carry reduced SDs relative
+  //  to their mechanical clear aperture: at close focus, G2 travels 7.9 mm toward
+  //  the object and the STO→G2 gap shrinks from 10.32 mm to 2.409 mm, so the
+  //  strongly-curved rear surface of L16 (R = 21 mm) physically encroaches on
+  //  L21's front surface.  The reduced SDs prevent glass interpenetration and
+  //  visible diagram overlap at close-focus distances (issue #290).
 
   surfaces: [
     // ── G1 ────────────────────────────────────────────────────────
@@ -222,9 +228,9 @@ const LENS_DATA = {
     { label: "6A", R: 36.6491, d: 0.1, nd: 1.56093, elemId: 0, sd: 18.5 }, // L14 resin layer (asph)
     { label: "7", R: 36.85687, d: 5.622, nd: 1.804, elemId: 4, sd: 18.5 }, // L14 glass front
     { label: "8", R: 217.9278, d: 0.2, nd: 1.0, elemId: 0, sd: 18.5 }, // L14 rear → air
-    { label: "9", R: 28.49361, d: 7.332, nd: 1.59319, elemId: 5, sd: 17.5 }, // L15 front (ED)
-    { label: "10", R: -161.37986, d: 1.5, nd: 1.64769, elemId: 6, sd: 17.5 }, // L16 front (junction)
-    { label: "11", R: 20.99038, d: 5.164, nd: 1.0, elemId: 0, sd: 17.0 }, // L16 rear → air
+    { label: "9", R: 28.49361, d: 7.332, nd: 1.59319, elemId: 5, sd: 16.0 }, // L15 front (ED)
+    { label: "10", R: -161.37986, d: 1.5, nd: 1.64769, elemId: 6, sd: 13.5 }, // L16 front (junction)
+    { label: "11", R: 20.99038, d: 5.164, nd: 1.0, elemId: 0, sd: 12.0 }, // L16 rear → air
 
     // ── Aperture stop ─────────────────────────────────────────────
     { label: "STO", R: 1e15, d: 10.32, nd: 1.0, elemId: 0, sd: 11.0 }, // stop (D12, variable)
@@ -233,8 +239,8 @@ const LENS_DATA = {
     { label: "13", R: 1e15, d: 2.7, nd: 1.0, elemId: 0, sd: 14.5 }, // fixed air space
 
     // ── G2 (focusing group) ───────────────────────────────────────
-    { label: "14", R: -23.41799, d: 1.1, nd: 1.64769, elemId: 7, sd: 15.5 }, // L21 front
-    { label: "15", R: 998.77224, d: 0.2, nd: 1.0, elemId: 0, sd: 15.5 }, // L21 rear → air
+    { label: "14", R: -23.41799, d: 1.1, nd: 1.64769, elemId: 7, sd: 13.0 }, // L21 front
+    { label: "15", R: 998.77224, d: 0.2, nd: 1.0, elemId: 0, sd: 13.0 }, // L21 rear → air
     { label: "16A", R: 85.12299, d: 5.0, nd: 1.77377, elemId: 8, sd: 16.0 }, // L22 front (asph)
     { label: "17A", R: -35.29338, d: 2.485, nd: 1.0, elemId: 0, sd: 16.0 }, // L22 rear (asph) → air
     { label: "18", R: -73.80381, d: 6.4, nd: 1.49782, elemId: 9, sd: 17.0 }, // L23 front (super ED)
