@@ -265,12 +265,12 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 2.1, nd: 1.0, elemId: 0, sd: 25.0 }, // Patent surface 10
 
     /* ── L6 (aspherical) ── */
-    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 36.0 }, // L6 front — aspherical
-    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 36.5 }, // L6 rear → air (D12, variable)
+    { label: "11A", R: 105.9598, d: 4.7, nd: 1.5168, elemId: 6, sd: 28.5 }, // L6 front — aspherical
+    { label: "12", R: 853.548, d: 1.749, nd: 1.0, elemId: 0, sd: 28.5 }, // L6 rear → air (D12, variable)
 
     /* ── G2: Focus group 1 — L7 ── */
-    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 20.0 }, // L7 front
-    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 20.0 }, // L7 rear → air (D14, variable)
+    { label: "13", R: 221.6993, d: 2.1, nd: 1.6968, elemId: 7, sd: 18.5 }, // L7 front
+    { label: "14", R: 39.4223, d: 22.105, nd: 1.0, elemId: 0, sd: 18.5 }, // L7 rear → air (D14, variable)
 
     /* ── G3: Fixed rear corrector — L8 through L12 ── */
     { label: "15", R: -164.438, d: 4.0545, nd: 1.80809, elemId: 8, sd: 28.0 }, // L8 front
