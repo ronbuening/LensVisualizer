@@ -1,19 +1,12 @@
 import { describe, it, expect } from "vitest";
 import {
-  LEGACY_NEAR_AXIS_REAL_FRAC,
   MERIDIONAL_COMA_SAMPLE_COUNT,
+  NEAR_AXIS_REAL_FRAC,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
-import {
-  doLayout,
-  entrancePupilAtState,
-  epAtZoom,
-  fopenAtZoom,
-  traceParaxialRay,
-  traceRay,
-} from "../src/optics/optics.js";
+import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
@@ -69,10 +62,14 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(isFinite(result!.saUm)).toBe(true);
-    expect(isFinite(result!.saMm)).toBe(true);
-    expect(isFinite(result!.realIntercept)).toBe(true);
-    expect(isFinite(result!.paraxialIntercept)).toBe(true);
+    expect(isFinite(result!.longitudinalSaUm)).toBe(true);
+    expect(isFinite(result!.longitudinalSaMm)).toBe(true);
+    expect(isFinite(result!.nearAxisRealIntercept)).toBe(true);
+    expect(isFinite(result!.marginalRealIntercept)).toBe(true);
+    expect(isFinite(result!.currentPlaneRmsUm)).toBe(true);
+    expect(isFinite(result!.currentPlanePeakUm)).toBe(true);
+    expect(isFinite(result!.bestFocusRmsUm)).toBe(true);
+    expect(isFinite(result!.bestFocusPeakUm)).toBe(true);
   });
 
   it("returns a finite SA result for ApoLanthar 50/2 at infinity focus", () => {
@@ -82,19 +79,23 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(isFinite(result!.saUm)).toBe(true);
+    expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
 
   /* ── µm conversion consistency ── */
 
-  it("saUm equals saMm × 1000", () => {
+  it("longitudinalSaUm equals longitudinalSaMm × 1000", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(result!.saUm).toBeCloseTo(result!.saMm * 1000, 6);
+    expect(result!.longitudinalSaUm).toBeCloseTo(result!.longitudinalSaMm * 1000, 6);
+    expect(result!.currentPlaneRmsUm).toBeCloseTo(result!.currentPlaneRmsMm * 1000, 6);
+    expect(result!.currentPlanePeakUm).toBeCloseTo(result!.currentPlanePeakMm * 1000, 6);
+    expect(result!.bestFocusRmsUm).toBeCloseTo(result!.bestFocusRmsMm * 1000, 6);
+    expect(result!.bestFocusPeakUm).toBeCloseTo(result!.bestFocusPeakMm * 1000, 6);
   });
 
   /* ── Sign convention: simple positive lens groups are undercorrected ── */
@@ -107,7 +108,7 @@ describe("computeSphericalAberration", () => {
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
     /* Fast lens should have measurable SA */
-    expect(Math.abs(result!.saUm)).toBeGreaterThan(1);
+    expect(Math.abs(result!.longitudinalSaUm)).toBeGreaterThan(1);
   });
 
   it("simple positive element reports negative SA for undercorrected spherical aberration", () => {
@@ -116,23 +117,22 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
     expect(result).not.toBeNull();
-    expect(result!.saMm).toBeLessThan(0);
+    expect(result!.longitudinalSaMm).toBeLessThan(0);
   });
 
-  it("uses a true paraxial reference instead of a near-axis real ray on fast lenses", () => {
+  it("uses a near-axis real-ray reference fraction", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD } = apertureAt(L, 0, 0);
     const lastSurfZ = zPos[L.N - 1];
 
-    const legacyRay = traceRay(LEGACY_NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L);
-    expect(legacyRay.clipped).toBe(false);
-    const legacyIntercept = axialIntercept(legacyRay.y, legacyRay.u, lastSurfZ);
-
-    const paraxialRay = traceParaxialRay(1, 0, 0, 0, L);
-    const paraxialIntercept = axialIntercept(paraxialRay.y, paraxialRay.u, lastSurfZ);
-
-    expect(Math.abs(paraxialIntercept - legacyIntercept)).toBeGreaterThan(1e-6);
+    const nearAxisRay = traceRay(NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L);
+    expect(nearAxisRay.clipped).toBe(false);
+    const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
+    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, L.stopPhysSD);
+    expect(result).not.toBeNull();
+    expect(result!.nearAxisFraction).toBe(NEAR_AXIS_REAL_FRAC);
+    expect(result!.nearAxisRealIntercept).toBeCloseTo(nearAxisIntercept, 6);
   });
 
   /* ── SA decreases with smaller aperture ── */
@@ -150,7 +150,11 @@ describe("computeSphericalAberration", () => {
 
     expect(saWide).not.toBeNull();
     expect(saStopped).not.toBeNull();
-    expect(Math.abs(saStopped!.saUm)).toBeLessThan(Math.abs(saWide!.saUm));
+    expect(Math.abs(saStopped!.longitudinalSaUm)).toBeLessThan(Math.abs(saWide!.longitudinalSaUm));
+    expect(saStopped!.currentPlaneRmsUm).toBeLessThanOrEqual(saWide!.currentPlaneRmsUm);
+    expect(saStopped!.currentPlanePeakUm).toBeLessThanOrEqual(saWide!.currentPlanePeakUm);
+    expect(saStopped!.bestFocusRmsUm).toBeLessThanOrEqual(saWide!.bestFocusRmsUm);
+    expect(saStopped!.bestFocusPeakUm).toBeLessThanOrEqual(saWide!.bestFocusPeakUm);
   });
 
   /* ── SA updates with focus change ── */
@@ -162,7 +166,22 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(L, zPos, 0.5, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(isFinite(result!.saUm)).toBe(true);
+    expect(isFinite(result!.longitudinalSaUm)).toBe(true);
+  });
+
+  it("longitudinal SA updates with focus changes", () => {
+    const L = build(NikonAF28f14DRaw);
+    const infinity = apertureAt(L, 0, 0);
+    const close = apertureAt(L, 0, 0);
+    const { z: zInfinity } = doLayout(0, 0, L);
+    const { z: zClose } = doLayout(0.8, 0, L);
+
+    const atInfinity = computeSphericalAberration(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
+    const atClose = computeSphericalAberration(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+
+    expect(atInfinity).not.toBeNull();
+    expect(atClose).not.toBeNull();
+    expect(atClose!.longitudinalSaMm).not.toBeCloseTo(atInfinity!.longitudinalSaMm, 6);
   });
 
   /* ── Zoom lens support ── */
@@ -174,20 +193,46 @@ describe("computeSphericalAberration", () => {
 
     const result = computeSphericalAberration(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(isFinite(result!.saUm)).toBe(true);
+    expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
 
   /* ── Symmetry: +Y and −Y averaging ── */
 
-  it("real and paraxial intercepts are distinct (non-trivial SA)", () => {
+  it("near-axis and marginal real intercepts are distinct (non-trivial SA)", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    /* For a real lens wide open, the intercepts should differ measurably */
-    expect(Math.abs(result!.realIntercept - result!.paraxialIntercept)).toBeGreaterThan(1e-6);
+    expect(Math.abs(result!.marginalRealIntercept - result!.nearAxisRealIntercept)).toBeGreaterThan(1e-6);
+  });
+
+  it("current-plane spread metrics are finite for comparison lenses", () => {
+    for (const raw of [ApoLantharRaw, Sonnar50f15Raw, NikonAF28f14DRaw]) {
+      const L = build(raw);
+      const { z: zPos } = doLayout(0, 0, L);
+      const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+      const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+      expect(result).not.toBeNull();
+      expect(isFinite(result!.currentPlaneRmsUm)).toBe(true);
+      expect(isFinite(result!.currentPlanePeakUm)).toBe(true);
+      expect(isFinite(result!.bestFocusRmsUm)).toBe(true);
+      expect(isFinite(result!.bestFocusPeakUm)).toBe(true);
+      expect(result!.validSampleCount).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("best-focus spread is no worse than current-plane spread", () => {
+    for (const raw of [ApoLantharRaw, Sonnar50f15Raw, NikonAF28f14DRaw]) {
+      const L = build(raw);
+      const { z: zPos } = doLayout(0, 0, L);
+      const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+      const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+      expect(result).not.toBeNull();
+      expect(result!.bestFocusRmsUm).toBeLessThanOrEqual(result!.currentPlaneRmsUm + 1e-6);
+      expect(result!.bestFocusPeakUm).toBeLessThanOrEqual(result!.currentPlanePeakUm + 1e-6);
+    }
   });
 
   /* ── Edge cases: invalid inputs ── */
@@ -252,28 +297,42 @@ describe("computeSAProfile", () => {
     }
   });
 
-  it("all saMm values are finite", () => {
+  it("all best-focus profile values are finite", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    for (const { saMm } of profile) {
-      expect(isFinite(saMm)).toBe(true);
+    for (const { imageHeightMm } of profile) {
+      expect(isFinite(imageHeightMm)).toBe(true);
+      expect(imageHeightMm).toBeGreaterThanOrEqual(0);
     }
   });
 
-  it("inner zones have less SA than outer zones (monotone for undercorrected lens)", () => {
+  it("profile values stay within the best-focus peak spread", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(result).not.toBeNull();
+    expect(profile.length).toBeGreaterThan(0);
+    const maxProfileHeight = Math.max(...profile.map((point) => point.imageHeightMm * 1000));
+    expect(maxProfileHeight).toBeLessThanOrEqual(result!.bestFocusPeakUm + 1e-6);
+  });
+
+  it("inner zones have less best-focus blur than outer zones", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(profile.length).toBeGreaterThan(1);
-    /* Sonnar 50/1.5 is undercorrected: SA grows in magnitude toward the marginal zone */
-    const innerAbs = Math.abs(profile[0].saMm);
-    const outerAbs = Math.abs(profile[profile.length - 1].saMm);
-    expect(outerAbs).toBeGreaterThan(innerAbs);
+    const inner = profile[0].imageHeightMm;
+    const outer = profile[profile.length - 1].imageHeightMm;
+    expect(outer).toBeGreaterThan(inner);
   });
 
   /* ── Edge cases ── */

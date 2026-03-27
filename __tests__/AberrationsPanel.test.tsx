@@ -69,41 +69,55 @@ describe("AberrationsPanel", () => {
     });
   });
 
+  function makeSaResult(longitudinalSaMm: number) {
+    return {
+      nearAxisFraction: 0.1,
+      marginalFraction: 0.95,
+      longitudinalSaMm,
+      longitudinalSaUm: longitudinalSaMm * 1000,
+      currentPlaneRmsMm: 0.008,
+      currentPlaneRmsUm: 8,
+      currentPlanePeakMm: 0.012,
+      currentPlanePeakUm: 12,
+      bestFocusRmsMm: 0.003,
+      bestFocusRmsUm: 3,
+      bestFocusPeakMm: 0.005,
+      bestFocusPeakUm: 5,
+      nearAxisRealIntercept: 100,
+      marginalRealIntercept: 100 + longitudinalSaMm,
+      nearAxisImageHeight: 0,
+      imagePlaneZ: 105,
+      bestFocusZ: 104.2,
+      bestFocusShiftMm: -0.8,
+      validSampleCount: 10,
+    };
+  }
+
   it("shows undercorrected for negative SA", () => {
-    mockComputeSphericalAberration.mockReturnValue({
-      saMm: -0.012,
-      saUm: -12,
-      realIntercept: 98,
-      paraxialIntercept: 100,
-    });
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     const { container } = render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText("(undercorrected)")).toBeTruthy();
-    const metric = container.querySelector('[title*="Longitudinal spherical aberration"]');
-    expect(metric?.getAttribute("title")).toContain("Negative = undercorrected");
+    expect(screen.queryByText("(undercorrected)")).toBeNull();
+    expect(screen.queryByText("LSA")).toBeNull();
+    const metric = container.querySelector('[title*="Best-focus spread"]');
+    expect(metric?.getAttribute("title")).toContain("best-fit image plane");
   });
 
   it("shows overcorrected for positive SA", () => {
-    mockComputeSphericalAberration.mockReturnValue({
-      saMm: 0.012,
-      saUm: 12,
-      realIntercept: 102,
-      paraxialIntercept: 100,
-    });
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText("(overcorrected)")).toBeTruthy();
+    expect(screen.queryByText("(overcorrected)")).toBeNull();
+    expect(screen.queryByText("LSA")).toBeNull();
   });
 
   it("renders meridional coma copy and span metric", () => {
-    mockComputeSphericalAberration.mockReturnValue({
-      saMm: -0.012,
-      saUm: -12,
-      realIntercept: 98,
-      paraxialIntercept: 100,
-    });
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     render(<AberrationsPanel {...baseProps} />);
+    expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Meridional Coma").length).toBeGreaterThan(0);
     expect(screen.getAllByText(/2D meridional coma view/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText("COMA SPAN").length).toBeGreaterThan(0);
@@ -113,12 +127,7 @@ describe("AberrationsPanel", () => {
   });
 
   it("shows fallback copy when coma computation fails", () => {
-    mockComputeSphericalAberration.mockReturnValue({
-      saMm: -0.012,
-      saUm: -12,
-      realIntercept: 98,
-      paraxialIntercept: 100,
-    });
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeMeridionalComa.mockReturnValue(null);
 
     render(<AberrationsPanel {...baseProps} />);
