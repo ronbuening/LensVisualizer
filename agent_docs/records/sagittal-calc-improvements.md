@@ -12,11 +12,13 @@
 - Added synthetic helper coverage in `__tests__/aberrationInternals.test.ts` for generic focus solving and degenerate-slope fallbacks.
 - Replaced the field-curvature Petzval-mirror sagittal estimate with a real sagittal solve built from orthogonal skew-ray pupil fans.
 - Added a field-curvature regression that guards against silently falling back to the old Petzval-mirroring shortcut.
+- Updated the field-curvature section copy so the sagittal trace is described as real rather than estimated.
 
 ## Verification
 - `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts` — passed
 - `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts __tests__/aberrationAnalysis.test.ts` — passed
 - `npm run test -- __tests__/aberrationAnalysis.test.ts` — passed
+- `npm run test -- __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run typecheck` — passed
 - `npm run lint` — passed
 - `npm run format:check` — passed

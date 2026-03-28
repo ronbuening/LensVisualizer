@@ -755,9 +755,7 @@ describe("computeFieldCurvature", () => {
     const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
 
-    const offAxisField = [...result!.fields]
-      .reverse()
-      .find((field) => field.usable && field.fieldFraction > 0);
+    const offAxisField = [...result!.fields].reverse().find((field) => field.usable && field.fieldFraction > 0);
     expect(offAxisField).toBeDefined();
 
     const mirroredSagittal = 2 * offAxisField!.petzvalBestFocusZ - offAxisField!.tangentialBestFocusZ;

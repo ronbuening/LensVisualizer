@@ -331,7 +331,7 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
     expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
-    expect(screen.getByText(/Tangential versus estimated sagittal diagnostic\./i)).toBeTruthy();
+    expect(screen.getByText(/Tangential versus real sagittal diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
