@@ -1,8 +1,15 @@
-import { bAtZoom, halfFieldAtZoom, traceRay, yRatioAtZoom } from "../optics.js";
+import {
+  bAtZoom,
+  halfFieldAtZoom,
+  sampleOrthogonalPupilFan,
+  skewImagePlaneIntercept,
+  traceChiefRelativeSkewRay,
+  yRatioAtZoom,
+} from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import { FIELD_CURVATURE_FIELD_FRACTIONS, MERIDIONAL_COMA_SAMPLE_COUNT } from "./types.js";
-import { bestRelativeFocusPlane, imagePlaneIntercept, type RealRayHit } from "./shared.js";
+import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
 
@@ -19,10 +26,11 @@ interface FieldCurvatureFieldMeta {
   label: string;
 }
 
-interface FieldCurvatureRayHit extends RealRayHit {
+interface FieldCurvatureRayHit extends TransverseFocusHit {
   index: number;
   pupilFraction: number;
-  launchHeight: number;
+  launchX: number;
+  launchY: number;
 }
 
 function fieldCurvatureFieldMeta(): FieldCurvatureFieldMeta[] {
@@ -64,15 +72,51 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return radius - Math.sign(radius) * Math.sqrt(underRoot);
 }
 
-function estimateSagittalBestFocusZ(petzvalBestFocusZ: number, tangentialBestFocusZ: number): number {
-  /**
-   * Current first-pass sagittal estimate:
-   * mirror the tangential best-focus solution about the Petzval mean surface.
-   *
-   * A future refinement should replace this with a true sagittal/skew-ray solve,
-   * ideally by tracing a small azimuthal fan around the chief ray for each field.
-   */
-  return 2 * petzvalBestFocusZ - tangentialBestFocusZ;
+type FieldCurvatureFanOrientation = "tangential" | "sagittal";
+
+function computeFieldCurvatureRayHits(
+  orientation: FieldCurvatureFanOrientation,
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  yChief: number,
+  uField: number,
+  lastSurfZ: number,
+  imagePlaneZ: number,
+): FieldCurvatureRayHit[] {
+  return sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, orientation).flatMap((sample) => {
+    const trace = traceChiefRelativeSkewRay(
+      sample.xFraction,
+      sample.yFraction,
+      yChief,
+      uField,
+      currentEPSD,
+      zPos,
+      focusT,
+      zoomT,
+      currentPhysStopSD,
+      true,
+      L,
+    );
+    if (trace.clipped) return [];
+
+    const imagePoint = skewImagePlaneIntercept(trace.x, trace.y, trace.ux, trace.uy, lastSurfZ, imagePlaneZ);
+    if (imagePoint === null) return [];
+
+    return [
+      {
+        coordinate: orientation === "tangential" ? trace.y : trace.x,
+        index: sample.index,
+        pupilFraction: sample.pupilFraction,
+        launchX: sample.xFraction * currentEPSD,
+        launchY: yChief + sample.yFraction * currentEPSD,
+        slope: orientation === "tangential" ? trace.uy : trace.ux,
+      },
+    ];
+  });
 }
 
 function computeFieldCurvatureField(
@@ -124,51 +168,84 @@ function computeFieldCurvatureField(
   const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
   if (!isFinite(uField) || !isFinite(yChief)) return emptyFieldCurvatureFieldResult(meta);
 
-  const hits: FieldCurvatureRayHit[] = [];
-  for (let index = 0; index < MERIDIONAL_COMA_SAMPLE_COUNT; index++) {
-    const pupilFraction = -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
-    const launchHeight = yChief + pupilFraction * currentEPSD;
-    const trace = traceRay(launchHeight, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-    if (trace.clipped) continue;
+  const chiefTrace = traceChiefRelativeSkewRay(
+    0,
+    0,
+    yChief,
+    uField,
+    currentEPSD,
+    zPos,
+    focusT,
+    zoomT,
+    currentPhysStopSD,
+    true,
+    L,
+  );
+  if (chiefTrace.clipped) return emptyFieldCurvatureFieldResult(meta);
 
-    const intercept = imagePlaneIntercept(trace.y, trace.u, lastSurfZ, imagePlaneZ);
-    if (intercept === null) continue;
+  const chiefImagePoint = skewImagePlaneIntercept(
+    chiefTrace.x,
+    chiefTrace.y,
+    chiefTrace.ux,
+    chiefTrace.uy,
+    lastSurfZ,
+    imagePlaneZ,
+  );
+  if (chiefImagePoint === null) return emptyFieldCurvatureFieldResult(meta);
 
-    hits.push({
-      index,
-      fraction: Math.abs(pupilFraction),
-      signedFraction: pupilFraction,
-      pupilFraction,
-      launchHeight,
-      y: trace.y,
-      u: trace.u,
-      intercept: 0,
-      imageHeight: intercept,
-    });
-  }
+  const tangentialHits = computeFieldCurvatureRayHits(
+    "tangential",
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    yChief,
+    uField,
+    lastSurfZ,
+    imagePlaneZ,
+  );
+  const sagittalHits = computeFieldCurvatureRayHits(
+    "sagittal",
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    yChief,
+    uField,
+    lastSurfZ,
+    imagePlaneZ,
+  );
+  if (tangentialHits.length < 3 || sagittalHits.length < 3) return emptyFieldCurvatureFieldResult(meta);
 
-  if (hits.length < 3) return emptyFieldCurvatureFieldResult(meta);
-
-  const chiefHit =
-    hits.find((hit) => Math.abs(hit.pupilFraction) < 1e-9) ??
-    hits.reduce((best, hit) => (Math.abs(hit.pupilFraction) < Math.abs(best.pupilFraction) ? hit : best));
-
-  const tangentialBestFocusZ = bestRelativeFocusPlane(hits, chiefHit, lastSurfZ);
-  const chiefImageHeight = chiefHit.y + chiefHit.u * (imagePlaneZ - lastSurfZ);
+  const tangentialBestFocusZ = bestRelativeFocusPlane(
+    tangentialHits,
+    { coordinate: chiefTrace.y, slope: chiefTrace.uy },
+    lastSurfZ,
+  );
+  const sagittalBestFocusZ = bestRelativeFocusPlane(
+    sagittalHits,
+    { coordinate: chiefTrace.x, slope: chiefTrace.ux },
+    lastSurfZ,
+  );
+  const chiefImageHeight = chiefImagePoint.y;
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
   const petzvalBestFocusZ = imagePlaneZ + petzvalShiftMm;
-  const sagittalBestFocusZ = estimateSagittalBestFocusZ(petzvalBestFocusZ, tangentialBestFocusZ);
   const tangentialShiftMm = tangentialBestFocusZ - imagePlaneZ;
   const sagittalShiftMm = sagittalBestFocusZ - imagePlaneZ;
   const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
+  const validSampleCount = Math.min(tangentialHits.length, sagittalHits.length);
 
   return {
     fieldFraction: meta.fieldFraction,
     label: meta.label,
     fieldAngleDeg,
     sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-    validSampleCount: hits.length,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - hits.length,
+    validSampleCount,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSampleCount,
     chiefImageHeight,
     tangentialBestFocusZ,
     sagittalBestFocusZ,

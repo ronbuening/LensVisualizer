@@ -9,17 +9,17 @@
 
 import type { ReactNode } from "react";
 import type {
+  ComaPointCloudPreviewFieldResult,
+  ComaPointCloudPreviewResult,
   ComaPreviewFieldResult,
   ComaPreviewResult,
-  EstimatedComaPreviewFieldResult,
-  EstimatedComaPreviewResult,
 } from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
 
 interface ComaPreviewGridProps {
-  result: ComaPreviewResult | EstimatedComaPreviewResult;
+  result: ComaPreviewResult | ComaPointCloudPreviewResult;
   t: Theme;
-  mode?: "meridional" | "estimated";
+  mode?: "meridional" | "pointCloud";
 }
 
 const VB_W = 320;
@@ -214,20 +214,20 @@ function renderMeridionalTile(
   );
 }
 
-function renderEstimatedTile(
-  field: EstimatedComaPreviewFieldResult,
+function renderPointCloudTile(
+  field: ComaPointCloudPreviewFieldResult,
   index: number,
   sharedTangentialHalfRangeMm: number,
-  normalizedSagittalHalfRange: number,
+  sharedSagittalHalfRangeMm: number,
   t: Theme,
 ) {
   const geometry = tileGeometry(index);
   const { plotX, plotY, zeroX, zeroY } = geometry;
   const xScale = (tangentialImageHeight: number) =>
     zeroX + (tangentialImageHeight / sharedTangentialHalfRangeMm) * (PLOT_W / 2);
-  const yScale = (sagittalNormalized: number) =>
-    zeroY - (sagittalNormalized / normalizedSagittalHalfRange) * (PLOT_H / 2);
-  const tickValues = [-normalizedSagittalHalfRange, 0, normalizedSagittalHalfRange];
+  const yScale = (sagittalImageHeight: number) =>
+    zeroY - (sagittalImageHeight / sharedSagittalHalfRangeMm) * (PLOT_H / 2);
+  const tickValues = [-sharedSagittalHalfRangeMm, 0, sharedSagittalHalfRangeMm];
   const maxWeight = Math.max(...field.points.map((point) => point.weight), 1e-9);
 
   return (
@@ -235,7 +235,7 @@ function renderEstimatedTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel="Estimated 2D point appearance"
+      footerLabel="Real 2D point cloud"
       t={t}
     >
       <line
@@ -263,7 +263,7 @@ function renderEstimatedTile(
           <g key={`${field.label}-${tick}`}>
             <line x1={plotX - 3} y1={y} x2={plotX} y2={y} stroke={t.muted} strokeWidth={0.75} />
             <text x={plotX - 5} y={y + 3} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">
-              {tick.toFixed(0)}
+              {formatRelativeMm(tick)}
             </text>
           </g>
         );
@@ -274,8 +274,8 @@ function renderEstimatedTile(
           <circle
             key={`${field.label}-${point.index}`}
             cx={xScale(point.tangentialImageHeight)}
-            cy={yScale(point.sagittalNormalized)}
-            r={1.5}
+            cy={yScale(point.sagittalImageHeight)}
+            r={1.3 + (point.weight / maxWeight) * 0.8}
             fill={t.value}
             opacity={Math.max(0.12, Math.min(0.85, point.weight / maxWeight))}
           />
@@ -290,26 +290,26 @@ function renderEstimatedTile(
 }
 
 export default function ComaPreviewGrid({ result, t, mode = "meridional" }: ComaPreviewGridProps) {
-  if (mode === "estimated") {
-    const estimatedResult = result as EstimatedComaPreviewResult;
+  if (mode === "pointCloud") {
+    const pointCloudResult = result as ComaPointCloudPreviewResult;
 
     return (
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
         <title>
-          Estimated 2D coma appearance. Each tile uses the real chief-ray-centered tangential spread and expands each
-          meridional slice across its circular pupil chord to synthesize a normalized sagittal thickness estimate.
+          Real 2D coma point cloud. Each tile traces a fixed circular pupil pattern and plots the chief-ray-centered
+          tangential and sagittal image heights directly.
         </title>
-        {estimatedResult.fields.map((field, index) =>
-          renderEstimatedTile(
+        {pointCloudResult.fields.map((field, index) =>
+          renderPointCloudTile(
             field,
             index,
-            estimatedResult.sharedTangentialHalfRangeMm,
-            estimatedResult.normalizedSagittalHalfRange,
+            pointCloudResult.sharedTangentialHalfRangeMm,
+            pointCloudResult.sharedSagittalHalfRangeMm,
             t,
           ),
         )}
         <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-          Tangential image height (mm) with normalized sagittal estimate
+          Tangential / sagittal image height relative to the chief ray (mm)
         </text>
       </svg>
     );

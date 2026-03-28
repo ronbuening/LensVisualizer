@@ -3,7 +3,7 @@
 import { describe, it, expect, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import ComaPreviewGrid from "../src/components/display/ComaPreviewGrid.js";
-import type { ComaPreviewResult, EstimatedComaPreviewResult } from "../src/optics/aberrationAnalysis.js";
+import type { ComaPointCloudPreviewResult, ComaPreviewResult } from "../src/optics/aberrationAnalysis.js";
 import type { Theme } from "../src/types/theme.js";
 
 const theme = {
@@ -97,49 +97,55 @@ function meridionalResult(): ComaPreviewResult {
   };
 }
 
-function estimatedResult(): EstimatedComaPreviewResult {
+function pointCloudResult(): ComaPointCloudPreviewResult {
   return {
     fieldFractions: [0, 0.25, 0.5, 0.75],
     usableFieldCount: 3,
     sharedTangentialHalfRangeMm: 0.2,
-    normalizedSagittalHalfRange: 1,
+    sharedSagittalHalfRangeMm: 0.1,
     fields: [
       {
         fieldFraction: 0,
         label: "Center",
         fieldAngleDeg: 0,
-        sampleCount: 51,
+        sampleCount: 61,
         validSampleCount: 3,
         clippedSampleCount: 0,
         chiefIntercept: 0,
-        minRelativeIntercept: -0.1,
-        maxRelativeIntercept: 0.1,
+        minRelativeTangentialImageHeight: -0.1,
+        maxRelativeTangentialImageHeight: 0.1,
+        minRelativeSagittalImageHeight: -0.04,
+        maxRelativeSagittalImageHeight: 0.04,
         usable: true,
-        points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.1, sagittalNormalized: 0, weight: 0.2 }],
+        points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.1, sagittalImageHeight: 0, weight: 0.2 }],
       },
       {
         fieldFraction: 0.25,
         label: "25%",
         fieldAngleDeg: 5,
-        sampleCount: 51,
+        sampleCount: 61,
         validSampleCount: 3,
         clippedSampleCount: 0,
         chiefIntercept: 0,
-        minRelativeIntercept: -0.2,
-        maxRelativeIntercept: 0.2,
+        minRelativeTangentialImageHeight: -0.2,
+        maxRelativeTangentialImageHeight: 0.2,
+        minRelativeSagittalImageHeight: -0.05,
+        maxRelativeSagittalImageHeight: 0.05,
         usable: true,
-        points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.2, sagittalNormalized: 0, weight: 0.2 }],
+        points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.2, sagittalImageHeight: 0, weight: 0.2 }],
       },
       {
         fieldFraction: 0.5,
         label: "50%",
         fieldAngleDeg: 10,
-        sampleCount: 51,
+        sampleCount: 61,
         validSampleCount: 0,
-        clippedSampleCount: 51,
+        clippedSampleCount: 61,
         chiefIntercept: 0,
-        minRelativeIntercept: 0,
-        maxRelativeIntercept: 0,
+        minRelativeTangentialImageHeight: 0,
+        maxRelativeTangentialImageHeight: 0,
+        minRelativeSagittalImageHeight: 0,
+        maxRelativeSagittalImageHeight: 0,
         usable: false,
         points: [],
       },
@@ -147,14 +153,16 @@ function estimatedResult(): EstimatedComaPreviewResult {
         fieldFraction: 0.75,
         label: "75%",
         fieldAngleDeg: 15,
-        sampleCount: 51,
+        sampleCount: 61,
         validSampleCount: 3,
         clippedSampleCount: 0,
         chiefIntercept: 0,
-        minRelativeIntercept: -0.05,
-        maxRelativeIntercept: 0.05,
+        minRelativeTangentialImageHeight: -0.05,
+        maxRelativeTangentialImageHeight: 0.05,
+        minRelativeSagittalImageHeight: -0.1,
+        maxRelativeSagittalImageHeight: 0.1,
         usable: true,
-        points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: -0.05, sagittalNormalized: 0.5, weight: 0.1 }],
+        points: [{ index: 0, sourceSampleIndex: 12, tangentialImageHeight: -0.05, sagittalImageHeight: 0.05, weight: 0.1 }],
       },
     ],
   };
@@ -177,15 +185,15 @@ describe("ComaPreviewGrid", () => {
     expect(screen.getAllByText("Chief-ray-centered image height (mm)").length).toBeGreaterThan(0);
   });
 
-  it("renders estimated tiles with shared axis copy", () => {
-    render(<ComaPreviewGrid result={estimatedResult()} t={theme} mode="estimated" />);
+  it("renders point-cloud tiles with shared axis copy", () => {
+    render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
-    expect(screen.getAllByText("Estimated 2D point appearance").length).toBeGreaterThan(0);
-    expect(screen.getByText("Tangential image height (mm) with normalized sagittal estimate")).toBeTruthy();
+    expect(screen.getAllByText("Real 2D point cloud").length).toBeGreaterThan(0);
+    expect(screen.getByText("Tangential / sagittal image height relative to the chief ray (mm)")).toBeTruthy();
   });
 
-  it("applies the shared tangential normalization across estimated tiles", () => {
-    const { container } = render(<ComaPreviewGrid result={estimatedResult()} t={theme} mode="estimated" />);
+  it("applies the shared tangential normalization across point-cloud tiles", () => {
+    const { container } = render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
     const centerTile = container.querySelector('[data-coma-tile="Center"]');
     const quarterTile = container.querySelector('[data-coma-tile="25%"]');
@@ -202,8 +210,8 @@ describe("ComaPreviewGrid", () => {
     expect(quarterOffset).toBeGreaterThan(centerOffset * 1.8);
   });
 
-  it("shows insufficient data inside unusable estimated tiles", () => {
-    render(<ComaPreviewGrid result={estimatedResult()} t={theme} mode="estimated" />);
+  it("shows insufficient data inside unusable point-cloud tiles", () => {
+    render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
     expect(screen.getByText("Insufficient data")).toBeTruthy();
   });

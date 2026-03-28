@@ -105,7 +105,7 @@ describe("analysis display tabs", () => {
 
     expect(html).toContain("Spherical Aberration");
     expect(html).toContain("Coma Preview");
-    expect(html).toContain("Estimated 2D coma appearance");
+    expect(html).toContain("Real 2D coma point cloud");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");
@@ -113,7 +113,7 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Meridional Coma");
     expect(html).toContain("2D meridional coma view");
     expect(html).toContain("COMA SPAN");
-    expect(html).toContain("chord-expanded estimate");
+    expect(html).toContain("fixed circular pupil sample pattern");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

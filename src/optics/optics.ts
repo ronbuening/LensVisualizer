@@ -33,10 +33,41 @@ export interface EntrancePupilState {
   epRatio: number;
 }
 
+export interface SkewRayTraceResult {
+  x: number;
+  y: number;
+  ux: number;
+  uy: number;
+  clipped: boolean;
+}
+
+export interface SkewImagePlaneIntercept {
+  x: number;
+  y: number;
+}
+
+export interface OrthogonalPupilSample {
+  index: number;
+  pupilFraction: number;
+  xFraction: number;
+  yFraction: number;
+}
+
+export interface CircularPupilSample {
+  index: number;
+  xFraction: number;
+  yFraction: number;
+  radiusFraction: number;
+  azimuthRad: number;
+  weight: number;
+}
+
 /* ── Named constants ── */
 const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
 const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
+export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
+export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
 
 /* =====================================================================
  * §4  RENDERING HELPERS — Sag, layout, and shape utilities
@@ -514,6 +545,216 @@ function _traceRayCore(
     if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
   }
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
+}
+
+function normalizeDirection(ux: number, uy: number): [number, number, number] {
+  const invMag = 1 / Math.hypot(ux, uy, 1);
+  return [ux * invMag, uy * invMag, invMag];
+}
+
+function surfaceNormalAtPoint(x: number, y: number, surfIdx: number, L: RuntimeLens): [number, number, number] {
+  const radius = Math.hypot(x, y);
+  if (radius < 1e-12) return [0, 0, 1];
+
+  const radialSlope = sagSlope(radius, surfIdx, L);
+  const invRadius = 1 / radius;
+  const dzdx = radialSlope * x * invRadius;
+  const dzdy = radialSlope * y * invRadius;
+  const invMag = 1 / Math.hypot(dzdx, dzdy, 1);
+  return [-dzdx * invMag, -dzdy * invMag, invMag];
+}
+
+function refractDirection(
+  direction: [number, number, number],
+  normal: [number, number, number],
+  n: number,
+  nn: number,
+): [number, number, number] | null {
+  const eta = n / nn;
+  const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
+  const tangentX = direction[0] - cosIncident * normal[0];
+  const tangentY = direction[1] - cosIncident * normal[1];
+  const tangentZ = direction[2] - cosIncident * normal[2];
+  const tangentSq = tangentX * tangentX + tangentY * tangentY + tangentZ * tangentZ;
+  const scaledTangentSq = eta * eta * tangentSq;
+  if (scaledTangentSq > 1 + 1e-12) return null;
+
+  const normalScale = Math.sqrt(Math.max(0, 1 - scaledTangentSq));
+  const transmitted: [number, number, number] = [
+    eta * tangentX + normalScale * normal[0],
+    eta * tangentY + normalScale * normal[1],
+    eta * tangentZ + normalScale * normal[2],
+  ];
+  const invMag = 1 / Math.hypot(transmitted[0], transmitted[1], transmitted[2]);
+  return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
+}
+
+/**
+ * Trace a skew ray through the rotationally symmetric lens model.
+ *
+ * The surfaces remain axisymmetric, but the ray is tracked with orthogonal
+ * transverse coordinates (x, y) and slopes (ux, uy), enabling a true sagittal
+ * solve without disturbing the existing meridional traceRay() path.
+ */
+export function traceSkewRay(
+  x0: number,
+  y0: number,
+  ux0: number,
+  uy0: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+): SkewRayTraceResult {
+  void zPos;
+  let x = x0;
+  let y = y0;
+  let n = 1.0;
+  let direction = normalizeDirection(ux0, uy0);
+  let clipped = false;
+
+  for (let i = 0; i < L.N; i++) {
+    const { nd, sd } = L.S[i];
+    const isStop = i === L.stopIdx;
+    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
+    const radius = Math.hypot(x, y);
+    if (!clipped && radius > clip) {
+      if (!ghost) break;
+      clipped = true;
+    }
+
+    const nn = nd === 1.0 ? 1.0 : nd;
+    if (nn !== n) {
+      const R = L.S[i].R;
+      if (!(clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R)) {
+        const normal = surfaceNormalAtPoint(x, y, i, L);
+        const refracted = refractDirection(direction, normal, n, nn);
+        if (refracted === null) {
+          if (!ghost) break;
+          clipped = true;
+        } else {
+          direction = refracted;
+        }
+      }
+    }
+    n = nn;
+
+    if (i < L.N - 1) {
+      const dz = thick(i, focusT, zoomT, L);
+      const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : 0;
+      x += dz * direction[0] * invDz;
+      y += dz * direction[1] * invDz;
+    }
+  }
+
+  const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : Infinity;
+  return {
+    x,
+    y,
+    ux: direction[0] * invDz,
+    uy: direction[1] * invDz,
+    clipped,
+  };
+}
+
+export function skewImagePlaneIntercept(
+  x: number,
+  y: number,
+  ux: number,
+  uy: number,
+  lastSurfZ: number,
+  imagePlaneZ: number,
+): SkewImagePlaneIntercept | null {
+  const dz = imagePlaneZ - lastSurfZ;
+  const imagePoint = {
+    x: x + ux * dz,
+    y: y + uy * dz,
+  };
+  return isFinite(imagePoint.x) && isFinite(imagePoint.y) ? imagePoint : null;
+}
+
+export function sampleOrthogonalPupilFan(
+  sampleCount: number = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
+  orientation: "tangential" | "sagittal",
+): OrthogonalPupilSample[] {
+  const roundedCount = Math.max(1, Math.round(sampleCount));
+  const oddCount = roundedCount % 2 === 0 ? roundedCount + 1 : roundedCount;
+
+  return Array.from({ length: oddCount }, (_, index) => {
+    const pupilFraction = oddCount === 1 ? 0 : -1 + (2 * index) / (oddCount - 1);
+    return {
+      index,
+      pupilFraction,
+      xFraction: orientation === "sagittal" ? pupilFraction : 0,
+      yFraction: orientation === "tangential" ? pupilFraction : 0,
+    };
+  });
+}
+
+export function sampleCircularPupil(
+  ringSamples: readonly number[] = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
+): CircularPupilSample[] {
+  const normalizedRingSamples = ringSamples
+    .map((count) => Math.max(1, Math.round(count)))
+    .filter((count) => Number.isFinite(count) && count > 0);
+  if (normalizedRingSamples.length === 0) return [];
+
+  const totalSamples = normalizedRingSamples.reduce((sum, count) => sum + count, 0);
+  const weight = 1 / totalSamples;
+  const samples: CircularPupilSample[] = [];
+  let cumulative = 0;
+
+  normalizedRingSamples.forEach((count, ringIndex) => {
+    const innerRadiusSq = cumulative / totalSamples;
+    const outerRadiusSq = (cumulative + count) / totalSamples;
+    const radiusFraction = count === 1 && ringIndex === 0 ? 0 : Math.sqrt((innerRadiusSq + outerRadiusSq) / 2);
+    const phaseOffset = count === 1 ? 0 : ((ringIndex % 2) * Math.PI) / count;
+
+    for (let sampleIndex = 0; sampleIndex < count; sampleIndex++) {
+      const azimuthRad = count === 1 ? 0 : phaseOffset + (2 * Math.PI * sampleIndex) / count;
+      samples.push({
+        index: samples.length,
+        xFraction: radiusFraction * Math.cos(azimuthRad),
+        yFraction: radiusFraction * Math.sin(azimuthRad),
+        radiusFraction,
+        azimuthRad,
+        weight,
+      });
+    }
+
+    cumulative += count;
+  });
+
+  return samples;
+}
+
+export function traceChiefRelativeSkewRay(
+  xFraction: number,
+  yFraction: number,
+  chiefLaunchHeight: number,
+  fieldSlope: number,
+  entrancePupilSemiDiameter: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+): SkewRayTraceResult {
+  return traceSkewRay(
+    xFraction * entrancePupilSemiDiameter,
+    chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
+    0,
+    fieldSlope,
+    zPos,
+    focusT,
+    zoomT,
+    stopSD,
+    ghost,
+    L,
+  );
 }
 
 /**

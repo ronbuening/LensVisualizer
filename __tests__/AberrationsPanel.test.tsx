@@ -24,7 +24,7 @@ vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
-  computeEstimatedComaPreview: mockComputeComaPreview,
+  computeComaPointCloudPreview: mockComputeComaPreview,
   computeFieldCurvature: mockComputeFieldCurvature,
 }));
 
@@ -75,63 +75,77 @@ describe("AberrationsPanel", () => {
       fieldFractions: [0, 0.25, 0.5, 0.75],
       usableFieldCount: 4,
       sharedTangentialHalfRangeMm: 0.06,
-      normalizedSagittalHalfRange: 1,
+      sharedSagittalHalfRangeMm: 0.03,
       fields: [
         {
           fieldFraction: 0,
           label: "Center",
           fieldAngleDeg: 0,
-          sampleCount: 51,
-          validSampleCount: 51,
+          sampleCount: 61,
+          validSampleCount: 61,
           clippedSampleCount: 0,
           chiefIntercept: 0,
-          minRelativeIntercept: -0.01,
-          maxRelativeIntercept: 0.01,
+          minRelativeTangentialImageHeight: -0.01,
+          maxRelativeTangentialImageHeight: 0.01,
+          minRelativeSagittalImageHeight: -0.01,
+          maxRelativeSagittalImageHeight: 0.01,
           usable: true,
           points: [
-            { index: 0, sourceSampleIndex: 0, tangentialImageHeight: -0.01, sagittalNormalized: -0.5, weight: 0.1 },
-            { index: 1, sourceSampleIndex: 25, tangentialImageHeight: 0, sagittalNormalized: 0, weight: 0.2 },
-            { index: 2, sourceSampleIndex: 50, tangentialImageHeight: 0.01, sagittalNormalized: 0.5, weight: 0.1 },
+            { index: 0, sourceSampleIndex: 1, tangentialImageHeight: -0.01, sagittalImageHeight: -0.01, weight: 0.1 },
+            { index: 1, sourceSampleIndex: 0, tangentialImageHeight: 0, sagittalImageHeight: 0, weight: 0.2 },
+            { index: 2, sourceSampleIndex: 2, tangentialImageHeight: 0.01, sagittalImageHeight: 0.01, weight: 0.1 },
           ],
         },
         {
           fieldFraction: 0.25,
           label: "25%",
           fieldAngleDeg: 5,
-          sampleCount: 51,
-          validSampleCount: 49,
-          clippedSampleCount: 2,
+          sampleCount: 61,
+          validSampleCount: 57,
+          clippedSampleCount: 4,
           chiefIntercept: -0.02,
-          minRelativeIntercept: -0.03,
-          maxRelativeIntercept: 0.04,
+          minRelativeTangentialImageHeight: -0.03,
+          maxRelativeTangentialImageHeight: 0.04,
+          minRelativeSagittalImageHeight: -0.015,
+          maxRelativeSagittalImageHeight: 0.015,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.04, sagittalNormalized: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 6, tangentialImageHeight: 0.04, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
         {
           fieldFraction: 0.5,
           label: "50%",
           fieldAngleDeg: 10,
-          sampleCount: 51,
-          validSampleCount: 47,
-          clippedSampleCount: 4,
+          sampleCount: 61,
+          validSampleCount: 53,
+          clippedSampleCount: 8,
           chiefIntercept: -0.05,
-          minRelativeIntercept: -0.05,
-          maxRelativeIntercept: 0.06,
+          minRelativeTangentialImageHeight: -0.05,
+          maxRelativeTangentialImageHeight: 0.06,
+          minRelativeSagittalImageHeight: -0.02,
+          maxRelativeSagittalImageHeight: 0.02,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.06, sagittalNormalized: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 10, tangentialImageHeight: 0.06, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
         {
           fieldFraction: 0.75,
           label: "75%",
           fieldAngleDeg: 15,
-          sampleCount: 51,
-          validSampleCount: 43,
-          clippedSampleCount: 8,
+          sampleCount: 61,
+          validSampleCount: 49,
+          clippedSampleCount: 12,
           chiefIntercept: -0.09,
-          minRelativeIntercept: -0.06,
-          maxRelativeIntercept: 0.05,
+          minRelativeTangentialImageHeight: -0.06,
+          maxRelativeTangentialImageHeight: 0.05,
+          minRelativeSagittalImageHeight: -0.03,
+          maxRelativeSagittalImageHeight: 0.03,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 25, tangentialImageHeight: 0.05, sagittalNormalized: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 14, tangentialImageHeight: 0.05, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
       ],
     });
@@ -312,7 +326,7 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getAllByText("Coma Preview").length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Estimated 2D coma appearance/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Real 2D coma point cloud/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText("Center").length).toBeGreaterThan(0);
     expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
     expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
@@ -331,7 +345,7 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
     expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
-    expect(screen.getByText(/Tangential versus estimated sagittal diagnostic\./i)).toBeTruthy();
+    expect(screen.getByText(/Tangential versus real sagittal diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
@@ -453,7 +467,7 @@ describe("AberrationsPanel", () => {
     mockComputeComaPreview.mockReturnValue(null);
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute an estimated 2D coma appearance/i)).toBeTruthy();
+    expect(screen.getByText(/Unable to compute a usable 2D coma point cloud/i)).toBeTruthy();
   });
 
   it("shows fallback copy when coma computation fails", () => {
@@ -494,7 +508,7 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/Estimated 2D coma appearance at center/i)).toBeNull();
+    expect(screen.queryByText(/Real 2D coma point cloud at center/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
