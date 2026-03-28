@@ -1,6 +1,6 @@
 # LensVisualizer
 
-LensVisualizer is a React + TypeScript optical design viewer for real camera lenses reconstructed from patent prescriptions. It renders 2D cross-sections, traces rays in real time, and exposes analysis tools for spherical aberration, a real 2D coma point cloud, meridional coma, distortion, focus breathing, vignetting, chromatic spread, glass selection, and field curvature.
+LensVisualizer is a React + TypeScript optical design viewer for real camera lenses reconstructed from patent prescriptions. It renders 2D cross-sections, traces rays in real time, and exposes analysis tools for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, chromatic spread, chromatic field curvature, glass selection, and field curvature.
 
 **Live app:** [opticalbench.net](https://opticalbench.net/)
 
@@ -10,7 +10,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag and aspheric overlays
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
-- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional coma, distortion, focus breathing, and vignetting
+- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, and chromatic field curvature
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Supports shared-control side-by-side comparison between two lenses
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
@@ -26,7 +26,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
-- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including spherical aberration, a real 2D coma point cloud, meridional coma, and a combined field-curvature / astigmatic-difference chart inside the Aberrations tab
+- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, and a combined field-curvature / astigmatic-difference chart with optional chromatic (R/G/B) focus shifts inside the Aberrations tab
 - **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Coma point-cloud preview**: traces a fixed circular pupil pattern with the skew-ray core and plots chief-ray-centered tangential and sagittal image heights directly in millimeters
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state; this detailed diagnostic is retained below the point-cloud preview

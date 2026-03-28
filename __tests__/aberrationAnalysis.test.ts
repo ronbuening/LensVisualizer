@@ -10,6 +10,7 @@ import {
   computeComaPreview,
   computeFieldCurvature,
   computeMeridionalComa,
+  computeSagittalComa,
   computeSphericalAberration,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
@@ -531,7 +532,6 @@ describe("computeMeridionalComa", () => {
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
       L,
-      zPos,
       0,
       0,
       currentEPSD,
@@ -660,7 +660,6 @@ describe("computeComaPointCloudPreview", () => {
       COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
       geometry!,
       L,
-      zPos,
       0,
       0,
       currentEPSD,
@@ -806,6 +805,110 @@ describe("computeComaPointCloudPreview", () => {
     expect(result).not.toBeNull();
     expect(result!.fields.every((field) => field.sampleCount === COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT)).toBe(true);
   });
+
+  it("exposes positive finite shared sagittal and tangential half-ranges", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
+    expect(isFinite(result!.sharedTangentialHalfRangeMm)).toBe(true);
+    expect(isFinite(result!.sharedSagittalHalfRangeMm)).toBe(true);
+  });
+
+  it("produces near-zero weighted tangential centroid at center field", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.usable).toBe(true);
+
+    const totalWeight = centerField.points.reduce((sum, point) => sum + point.weight, 0);
+    const tangentialCentroid =
+      centerField.points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
+    expect(tangentialCentroid).toBeCloseTo(0, 8);
+  });
+});
+
+describe("computeSagittalComa", () => {
+  it("returns a finite result for a real lens", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeGreaterThan(0);
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
+    expect(isFinite(result!.centerIntercept)).toBe(true);
+    expect(result!.spanUm).toBeCloseTo(result!.spanMm * 1000, 8);
+  });
+
+  it("differs from meridional coma for an asymmetric off-axis field", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const sagittal = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(sagittal).not.toBeNull();
+    expect(meridional).not.toBeNull();
+    // Sagittal and meridional spans should generally differ
+    expect(sagittal!.spanMm).not.toBeCloseTo(meridional!.spanMm, 4);
+  });
+
+  it("returns null for zero field angle", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    // ApoLanthar has offAxisFieldFrac that should give a non-zero field angle,
+    // but a lens with zero field angle should return null
+    const emptyLens = { ...L, offAxisFieldFrac: 0 } as RuntimeLens;
+    const result = computeSagittalComa(emptyLens, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    // At field fraction 0, fieldAngleDeg is 0, so it should return null
+    expect(result).toBeNull();
+  });
+
+  it("extracts x-coordinate intercepts (not y)", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // The center intercept should be near zero for x (sagittal direction on-axis in x)
+    // while meridional center intercept is the chief ray image height (non-zero)
+    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(meridional).not.toBeNull();
+    expect(Math.abs(result!.centerIntercept)).toBeLessThan(Math.abs(meridional!.centerIntercept));
+  });
+
+  it("responds to aperture changes", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const wideOpen = apertureAt(L, 0, 0);
+    const stoppedDown = apertureAt(L, 0, 0.7);
+
+    const wide = computeSagittalComa(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stopped = computeSagittalComa(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    expect(wide).not.toBeNull();
+    expect(stopped).not.toBeNull();
+    // Stopping down should reduce coma span
+    expect(Math.abs(stopped!.spanMm)).toBeLessThan(Math.abs(wide!.spanMm));
+  });
 });
 
 describe("computeFieldCurvature", () => {
@@ -855,7 +958,6 @@ describe("computeFieldCurvature", () => {
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
       L,
-      zPos,
       0,
       0,
       currentEPSD,
@@ -866,7 +968,6 @@ describe("computeFieldCurvature", () => {
       MERIDIONAL_COMA_SAMPLE_COUNT,
       geometry!,
       L,
-      zPos,
       0,
       0,
       currentEPSD,
@@ -891,6 +992,27 @@ describe("computeFieldCurvature", () => {
     expect(result).not.toBeNull();
     expect(result!.fields[0].fieldFraction).toBe(0);
     expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
+  });
+
+  it("uses the real on-axis best focus at center field (not imagePlaneZ)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.usable).toBe(true);
+
+    // For a fast lens like Sonnar f/1.5, the SA-adjusted best focus shifts
+    // away from the image plane. The center-field tangential and sagittal
+    // best focus values should reflect this shift (non-zero).
+    expect(centerField.tangentialShiftMm).not.toBeCloseTo(0, 3);
+    expect(centerField.sagittalShiftMm).not.toBeCloseTo(0, 3);
+
+    // Tangential and sagittal should agree at center field (no astigmatism on-axis)
+    expect(centerField.tangentialBestFocusZ).toBeCloseTo(centerField.sagittalBestFocusZ, 6);
   });
 
   it("shows measurable astigmatic separation away from center", () => {
@@ -957,6 +1079,105 @@ describe("computeFieldCurvature", () => {
 
     expect(computeFieldCurvature(L, zPos, 0, 0, 0, 0)).toBeNull();
     expect(computeFieldCurvature({ N: 0, S: [] } as unknown as RuntimeLens, [], 0, 0, 10, 5)).toBeNull();
+  });
+
+  it("returns zero astigmatism at center for a second lens (Sonnar 50/1.5)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fields[0].astigmaticDifferenceMm).toBeCloseTo(0, 8);
+    expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
+  });
+
+  it("produces non-zero Petzval shift at off-axis fields for a lens with finite Petzval sum", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisFields = result!.fields.filter((field) => field.usable && field.fieldFraction > 0);
+    expect(offAxisFields.length).toBeGreaterThan(0);
+    // Petzval shift should be non-zero for off-axis fields when petzvalSum is finite
+    expect(offAxisFields.some((field) => Math.abs(field.petzvalShiftMm) > 1e-6)).toBe(true);
+  });
+
+  it("keeps Petzval shift proportional to image height squared (small-angle regime)", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Compare 25% and 50% fields: at small angles, Petzval shift ~ h^2
+    const f25 = result!.fields.find((f) => f.fieldFraction === 0.25);
+    const f50 = result!.fields.find((f) => f.fieldFraction === 0.5);
+    if (f25 && f50 && f25.usable && f50.usable && Math.abs(f25.petzvalShiftMm) > 1e-6) {
+      const ratio = f50.petzvalShiftMm / f25.petzvalShiftMm;
+      // Image height ratio ~ 2, so shift ratio should be ~ 4 (h^2 dependence)
+      // Allow generous tolerance since this is only approximate
+      expect(ratio).toBeGreaterThan(2);
+      expect(ratio).toBeLessThan(6);
+    }
+  });
+
+  it("computes non-null chromatic field shifts for a dispersive lens", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    expect(result).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).toBeGreaterThan(0);
+
+    // At least one usable off-axis field should have chromatic shifts
+    const usableFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    expect(usableFields.length).toBeGreaterThan(0);
+    const withShifts = usableFields.filter((f) => f.chromaticFieldShifts !== null);
+    expect(withShifts.length).toBeGreaterThan(0);
+
+    // R and B should have different tangential shifts at off-axis fields
+    for (const field of withShifts) {
+      const rShift = field.chromaticFieldShifts!.find((s) => s.channel === "R");
+      const bShift = field.chromaticFieldShifts!.find((s) => s.channel === "B");
+      expect(rShift).toBeDefined();
+      expect(bShift).toBeDefined();
+      expect(rShift!.tangentialShiftMm).not.toBeCloseTo(bShift!.tangentialShiftMm, 4);
+    }
+  });
+
+  it("returns null chromatic data when chromatic flag is false", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).toBeNull();
+    for (const field of result!.fields) {
+      expect(field.chromaticFieldShifts).toBeNull();
+    }
+  });
+
+  it("includes all three channels (R, G, B) in chromatic shifts", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    expect(result).not.toBeNull();
+
+    const usableFields = result!.fields.filter((f) => f.usable && f.chromaticFieldShifts !== null);
+    for (const field of usableFields) {
+      const channels = field.chromaticFieldShifts!.map((s) => s.channel);
+      expect(channels).toEqual(["R", "G", "B"]);
+    }
   });
 });
 

@@ -7,5 +7,10 @@
 
 export * from "./aberration/types.js";
 export { computeSAProfile, computeSphericalAberration } from "./aberration/spherical.js";
-export { computeComaPointCloudPreview, computeComaPreview, computeMeridionalComa } from "./aberration/coma.js";
+export {
+  computeComaPointCloudPreview,
+  computeComaPreview,
+  computeMeridionalComa,
+  computeSagittalComa,
+} from "./aberration/coma.js";
 export { computeFieldCurvature } from "./aberration/fieldCurvature.js";

@@ -23,6 +23,21 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-03-28",
     type: "feature",
+    summary: "Added chromatic field curvature analysis with per-wavelength focus shifts",
+  },
+  {
+    date: "2026-03-28",
+    type: "feature",
+    summary: "Added sagittal coma metric complementing the existing meridional coma analysis",
+  },
+  {
+    date: "2026-03-28",
+    type: "fix",
+    summary: "Fixed center-field curvature baseline to use real traced focus instead of nominal image plane",
+  },
+  {
+    date: "2026-03-28",
+    type: "feature",
     summary: "Added real sagittal ray analysis across aberration views",
   },
   {
