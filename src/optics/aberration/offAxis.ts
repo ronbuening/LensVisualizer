@@ -166,15 +166,7 @@ export function traceOffAxisBundleFromSamples(
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
-  const chiefRay = traceOffAxisChiefRay(
-    geometry,
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    entrancePupilSemiDiameter,
-    stopSemiDiameter,
-  );
+  const chiefRay = traceOffAxisChiefRay(geometry, L, zPos, focusT, zoomT, entrancePupilSemiDiameter, stopSemiDiameter);
   if (chiefRay === null) return null;
 
   const tracedSamples = samples.flatMap((sample) => {

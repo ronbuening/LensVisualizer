@@ -255,19 +255,22 @@ function computeMeridionalComaFieldFootprint(
   if (bundle === null) return null;
 
   const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
-  const samples = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential").map((sample) => {
-    const tracedSample = tracedSamplesByIndex.get(sample.index);
-    return {
-      index: sample.index,
-      pupilFraction: sample.pupilFraction,
-      launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
-      imageHeight: tracedSample?.imagePoint.y ?? null,
-      relativeImageHeight: null,
-      clipped: tracedSample === undefined,
-    };
-  });
+  const samples: MeridionalComaFieldSample[] = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential").map(
+    (sample) => {
+      const tracedSample = tracedSamplesByIndex.get(sample.index);
+      return {
+        index: sample.index,
+        pupilFraction: sample.pupilFraction,
+        launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
+        imageHeight: tracedSample?.imagePoint.y ?? null,
+        relativeImageHeight: null,
+        clipped: tracedSample === undefined,
+      };
+    },
+  );
   const validSamples = samples.filter(
-    (sample): sample is MeridionalComaFieldSample & { imageHeight: number } => sample.imageHeight !== null && !sample.clipped,
+    (sample): sample is MeridionalComaFieldSample & { imageHeight: number } =>
+      sample.imageHeight !== null && !sample.clipped,
   );
 
   if (validSamples.length < 3) return null;
