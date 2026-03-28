@@ -2,7 +2,7 @@
 
 This file is intentionally filtered to **future options only**.
 
-The app already ships: spherical aberration (metric + profile), coma previews, distortion curve, focus breathing, vignetting / relative illumination, Petzval display, Abbe diagram, and LCA inset widgets. Those are treated as baseline and excluded below.
+The app already ships: spherical aberration (metric + profile), a real 2D coma point cloud, dense meridional coma, distortion curve, focus breathing, vignetting / relative illumination, Petzval display, the field-curvature / astigmatic-difference chart, the Abbe diagram, and LCA inset widgets. Those are treated as baseline and excluded below.
 
 ---
 
@@ -52,7 +52,7 @@ All items below are feasible with data already present in `*.data.ts` files and/
 |---|---------|----------------|--------------------------|--------------|
 | 17 | **Transverse Ray Fan (T/S)** | Most direct geometric aberration signature beyond scalar metrics. | Existing real `traceRay` engine + dense pupil sweep | Dedicated analysis chart panel |
 | 18 | **Spot Diagram (multi-field)** | Gives intuitive blur shape and size at center/mid/corner. | Real ray tracing with pupil sampling grid | Modal with center/mid/corner tabs |
-| 19 | **Field Curvature + Astigmatic Difference** | Explains best-focus surface bend and sagittal/tangential split. | Off-axis sweeps + best-focus solve loop | New chart in Aberrations tab | Implemented in Aberrations tab |
+| 19 | **Field Curvature + Astigmatic Difference** | Explains best-focus surface bend and sagittal/tangential split. | Off-axis sweeps + tangential/sagittal best-focus solves | New chart in Aberrations tab | Implemented in Aberrations tab |
 | 20 | **Longitudinal Chromatic Focus Curve** | Extends existing LCA inset into full wavelength trend. | Existing dispersion model (`vdByIdx`) + repeated paraxial solves | Chromatic analysis section |
 | 21 | **Coma Asymmetry Index vs Field** | Turns current coma visuals into a comparable scalar curve. | Current coma routines plus field sweep | Coma section mini-chart |
 | 22 | **Relative Illumination Decomposition** | Split geometric clipping vs cos⁴ for clearer diagnosis. | Current vignetting computation already tracks both terms | Vignetting chart toggle |

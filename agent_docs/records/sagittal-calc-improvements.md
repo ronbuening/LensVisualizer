@@ -17,6 +17,7 @@
 - Updated the shared coma-preview types, analysis exports, and grid rendering to use real tangential/sagittal image-height coordinates in millimeters.
 - Added point-cloud regression coverage for sample counts, center-field symmetry, clipping tolerance, and shared axis scaling.
 - Updated the coma-preview section copy, SSR expectations, and public docs so the preview is described consistently as a real circular-pupil point cloud.
+- Refreshed the analysis-options and architecture notes so the documentation reflects the shipped real coma point cloud and real sagittal field-curvature solve.
 
 ## Verification
 - `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts` — passed
@@ -25,9 +26,14 @@
 - `npm run test -- __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run test -- __tests__/aberrationInternals.test.ts __tests__/aberrationAnalysis.test.ts __tests__/ComaPreviewGrid.test.tsx` — passed
 - `npm run test -- __tests__/ComaPreviewGrid.test.tsx __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run format` — passed
+- `npm run build` — passed
+- `npm run seo:audit` — passed
+- `npm run test` — passed
 - `npm run typecheck` — passed
 - `npm run lint` — passed
 - `npm run format:check` — passed
 
 ## Follow-ups
-- Run the repo-wide quality gate, final docs refresh, and draft PR flow.
+- Monitor whether the current fixed circular-pupil sample count should be increased or made adaptive for very fast wide-angle designs.
+- Consider adding a dedicated multi-field spot-diagram view now that the shared skew-ray core is in place.

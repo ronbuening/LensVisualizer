@@ -115,13 +115,13 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `optics.ts` | `src/optics/` | Ray tracing, sag curves, chromatic, layout geometry |
+| `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling, sag curves, chromatic, layout geometry |
 | `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation |
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical-aberration and coma computations |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, coma, and field-curvature computations |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
