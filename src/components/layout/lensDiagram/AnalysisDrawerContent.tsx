@@ -1,4 +1,5 @@
 import AberrationsPanel from "../../display/AberrationsPanel.js";
+import ComaTab from "../../display/ComaTab.js";
 import DistortionTab from "../../display/DistortionTab.js";
 import FocusBreathingTab from "../../display/FocusBreathingTab.js";
 import VignettingTab from "../../display/VignettingTab.js";
@@ -44,6 +45,20 @@ export default function AnalysisDrawerContent({
         currentPhysStopSD={currentPhysStopSD}
         expanded={aberrationsExpanded}
         onExpandedChange={onAberrationsExpandedChange}
+      />
+    );
+  }
+
+  if (activeTab === "coma") {
+    return (
+      <ComaTab
+        L={L}
+        t={t}
+        zPos={zPos}
+        focusT={focusT}
+        zoomT={zoomT}
+        currentEPSD={currentEPSD}
+        currentPhysStopSD={currentPhysStopSD}
       />
     );
   }
