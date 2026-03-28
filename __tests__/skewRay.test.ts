@@ -3,6 +3,7 @@ import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
+  traceChiefRelativeSkewRay,
   traceRay,
   traceSkewRay,
 } from "../src/optics/optics.js";
@@ -95,5 +96,107 @@ describe("skew pupil sampling helpers", () => {
     expect(totalWeight).toBeCloseTo(1, 10);
     expect(weightedX).toBeCloseTo(0, 10);
     expect(weightedY).toBeCloseTo(0, 10);
+  });
+
+  it("clamps orthogonal fan count=1 to a single chief-ray sample", () => {
+    const fan = sampleOrthogonalPupilFan(1, "sagittal");
+    expect(fan).toHaveLength(1);
+    expect(fan[0].pupilFraction).toBe(0);
+    expect(fan[0].xFraction).toBe(0);
+    expect(fan[0].yFraction).toBe(0);
+  });
+
+  it("clamps orthogonal fan count=0 to a single chief-ray sample", () => {
+    const fan = sampleOrthogonalPupilFan(0, "tangential");
+    expect(fan).toHaveLength(1);
+    expect(fan[0].pupilFraction).toBe(0);
+  });
+
+  it("rounds an even orthogonal fan count up to odd", () => {
+    const fan = sampleOrthogonalPupilFan(10, "sagittal");
+    expect(fan).toHaveLength(11);
+    expect(fan.some((s) => Math.abs(s.pupilFraction) < 1e-12)).toBe(true);
+  });
+
+  it("returns an empty array for sampleCircularPupil with empty ring pattern", () => {
+    expect(sampleCircularPupil([])).toHaveLength(0);
+  });
+
+  it("handles sampleCircularPupil with a single-ring pattern", () => {
+    const samples = sampleCircularPupil([1]);
+    expect(samples).toHaveLength(1);
+    expect(samples[0].xFraction).toBe(0);
+    expect(samples[0].yFraction).toBe(0);
+    expect(samples[0].weight).toBeCloseTo(1, 10);
+  });
+});
+
+describe("skewImagePlaneIntercept edge cases", () => {
+  it("returns null for infinite slopes", () => {
+    expect(skewImagePlaneIntercept(0, 0, Infinity, 0, 5, 85)).toBeNull();
+    expect(skewImagePlaneIntercept(0, 0, 0, Infinity, 5, 85)).toBeNull();
+  });
+
+  it("returns null for NaN inputs", () => {
+    expect(skewImagePlaneIntercept(NaN, 0, 0, 0, 5, 85)).toBeNull();
+    expect(skewImagePlaneIntercept(0, 0, NaN, 0, 5, 85)).toBeNull();
+  });
+});
+
+describe("traceChiefRelativeSkewRay", () => {
+  const L = mkSingleElement();
+  const zPos = [0, 5];
+
+  it("launches the ray at the correct pupil coordinates", () => {
+    const epSD = 10;
+    const yChief = 2;
+    const fieldSlope = -0.05;
+
+    // Trace with xFraction=0.5, yFraction=0.3
+    const result = traceChiefRelativeSkewRay(0.5, 0.3, yChief, fieldSlope, epSD, zPos, 0, 0, 15, false, L);
+
+    // The chief-relative wrapper should produce a non-clipped result for modest fractions
+    expect(result.clipped).toBe(false);
+    expect(isFinite(result.x)).toBe(true);
+    expect(isFinite(result.y)).toBe(true);
+  });
+
+  it("matches traceSkewRay with equivalent manual launch coordinates", () => {
+    const epSD = 10;
+    const yChief = 1;
+    const fieldSlope = -0.03;
+    const xFrac = 0.4;
+    const yFrac = 0.2;
+
+    const viaWrapper = traceChiefRelativeSkewRay(xFrac, yFrac, yChief, fieldSlope, epSD, zPos, 0, 0, 15, false, L);
+    const viaDirect = traceSkewRay(xFrac * epSD, yChief + yFrac * epSD, 0, fieldSlope, zPos, 0, 0, 15, false, L);
+
+    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
+    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
+    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
+    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+  });
+});
+
+describe("traceSkewRay with non-trivial initial x-slope", () => {
+  const L = mkSingleElement();
+  const zPos = [0, 5];
+
+  it("produces different x output when launched with nonzero ux", () => {
+    const withUx = traceSkewRay(3, 0, 0.05, 0, zPos, 0, 0, 15, false, L);
+    const withoutUx = traceSkewRay(3, 0, 0, 0, zPos, 0, 0, 15, false, L);
+
+    // Nonzero initial x-slope should deflect the ray differently
+    expect(withUx.x).not.toBeCloseTo(withoutUx.x, 6);
+    expect(withUx.ux).not.toBeCloseTo(withoutUx.ux, 6);
+  });
+
+  it("preserves symmetry for opposite initial x-slopes", () => {
+    const positive = traceSkewRay(3, 0, 0.05, 0, zPos, 0, 0, 15, false, L);
+    const negative = traceSkewRay(3, 0, -0.05, 0, zPos, 0, 0, 15, false, L);
+
+    // For a rotationally symmetric system, mirroring ux should mirror the output x
+    // but y should remain the same since the surface is symmetric
+    expect(positive.y).toBeCloseTo(negative.y, 8);
   });
 });
