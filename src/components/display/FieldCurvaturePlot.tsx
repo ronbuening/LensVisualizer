@@ -11,7 +11,7 @@ const VB_H = 224;
 const ML = 42;
 const MR = 18;
 const MT = 20;
-const MB = 50;
+const MB = 60;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
@@ -24,6 +24,9 @@ function formatShiftMm(value: number): string {
 export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProps) {
   const usableFields = result.fields.filter((field) => field.usable);
   const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm);
+  const tangentialColor = t.rayWarm ?? "#22c55e";
+  const sagittalColor = t.rayChromB ?? "#38bdf8";
+  const petzvalColor = t.stopLabel ?? "#f8fafc";
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
   const yScale = (shiftMm: number) => MT + PH / 2 - (shiftMm / yHalfRange) * (PH / 2);
   const zeroY = yScale(0);
@@ -49,7 +52,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
-      <text x={ML + PW + 6} y={zeroY + 3} fill={t.muted} fontSize={8} fontFamily="inherit">
+      <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Current plane
       </text>
 
@@ -86,10 +89,10 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       >
         Best-focus shift (mm)
       </text>
-      <text x={ML + PW + 6} y={MT + 8} fill={t.muted} fontSize={8} fontFamily="inherit">
+      <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward lens
       </text>
-      <text x={ML + PW + 6} y={MT + PH - 2} fill={t.muted} fontSize={8} fontFamily="inherit">
+      <text x={ML + PW - 4} y={MT + PH + 16} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
       </text>
       <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
@@ -119,16 +122,24 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
         );
       })}
 
-      {petzvalPoints ? <polyline points={petzvalPoints} fill="none" stroke={t.axis} strokeWidth={1.25} /> : null}
+      {petzvalPoints ? (
+        <polyline points={petzvalPoints} fill="none" stroke={petzvalColor} strokeWidth={1.75} opacity={0.95} />
+      ) : null}
       {tangentialPoints ? (
-        <polyline points={tangentialPoints} fill="none" stroke={t.value} strokeWidth={2} strokeLinejoin="round" />
+        <polyline
+          points={tangentialPoints}
+          fill="none"
+          stroke={tangentialColor}
+          strokeWidth={2.2}
+          strokeLinejoin="round"
+        />
       ) : null}
       {sagittalPoints ? (
         <polyline
           points={sagittalPoints}
           fill="none"
-          stroke={t.label}
-          strokeWidth={2}
+          stroke={sagittalColor}
+          strokeWidth={2.2}
           strokeLinejoin="round"
           strokeDasharray="5,3"
         />
@@ -136,13 +147,18 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
 
       {usableFields.map((field) => (
         <g key={`field-${field.fieldFraction}`}>
-          <circle cx={xScale(field.fieldFraction)} cy={yScale(field.tangentialShiftMm)} r={2.5} fill={t.value} />
+          <circle
+            cx={xScale(field.fieldFraction)}
+            cy={yScale(field.tangentialShiftMm)}
+            r={2.5}
+            fill={tangentialColor}
+          />
           <rect
             x={xScale(field.fieldFraction) - 2.4}
             y={yScale(field.sagittalShiftMm) - 2.4}
             width={4.8}
             height={4.8}
-            fill={t.label}
+            fill={sagittalColor}
             stroke={t.panelBg}
             strokeWidth={0.75}
             rx={0.8}
@@ -151,18 +167,18 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       ))}
 
       <g transform={`translate(${ML + 6}, ${MT + 12})`}>
-        <circle cx={0} cy={0} r={2.5} fill={t.value} />
+        <circle cx={0} cy={0} r={2.5} fill={tangentialColor} />
         <text x={8} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
           Tangential plane
         </text>
 
-        <line x1={86} y1={0} x2={98} y2={0} stroke={t.label} strokeWidth={2} strokeDasharray="5,3" />
+        <line x1={86} y1={0} x2={98} y2={0} stroke={sagittalColor} strokeWidth={2.2} strokeDasharray="5,3" />
         <rect
           x={104.5}
           y={-2.4}
           width={4.8}
           height={4.8}
-          fill={t.label}
+          fill={sagittalColor}
           stroke={t.panelBg}
           strokeWidth={0.75}
           rx={0.8}
@@ -177,7 +193,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
         <text x={14} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
           Shaded gap = astigmatic split
         </text>
-        <line x1={118} y1={0} x2={130} y2={0} stroke={t.axis} strokeWidth={1.25} />
+        <line x1={118} y1={0} x2={130} y2={0} stroke={petzvalColor} strokeWidth={1.75} />
         <text x={136} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
           Petzval mean
         </text>
