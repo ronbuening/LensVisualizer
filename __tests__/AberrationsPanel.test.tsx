@@ -109,7 +109,9 @@ describe("AberrationsPanel", () => {
           minRelativeSagittalImageHeight: -0.015,
           maxRelativeSagittalImageHeight: 0.015,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 6, tangentialImageHeight: 0.04, sagittalImageHeight: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 6, tangentialImageHeight: 0.04, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
         {
           fieldFraction: 0.5,
@@ -124,7 +126,9 @@ describe("AberrationsPanel", () => {
           minRelativeSagittalImageHeight: -0.02,
           maxRelativeSagittalImageHeight: 0.02,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 10, tangentialImageHeight: 0.06, sagittalImageHeight: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 10, tangentialImageHeight: 0.06, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
         {
           fieldFraction: 0.75,
@@ -139,7 +143,9 @@ describe("AberrationsPanel", () => {
           minRelativeSagittalImageHeight: -0.03,
           maxRelativeSagittalImageHeight: 0.03,
           usable: true,
-          points: [{ index: 0, sourceSampleIndex: 14, tangentialImageHeight: 0.05, sagittalImageHeight: 0, weight: 0.2 }],
+          points: [
+            { index: 0, sourceSampleIndex: 14, tangentialImageHeight: 0.05, sagittalImageHeight: 0, weight: 0.2 },
+          ],
         },
       ],
     });
@@ -320,7 +326,7 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getAllByText("Coma Preview").length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Estimated 2D coma appearance/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Real 2D coma point cloud/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText("Center").length).toBeGreaterThan(0);
     expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
     expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
@@ -461,7 +467,7 @@ describe("AberrationsPanel", () => {
     mockComputeComaPreview.mockReturnValue(null);
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute an estimated 2D coma appearance/i)).toBeTruthy();
+    expect(screen.getByText(/Unable to compute a usable 2D coma point cloud/i)).toBeTruthy();
   });
 
   it("shows fallback copy when coma computation fails", () => {
@@ -502,7 +508,7 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/Estimated 2D coma appearance at center/i)).toBeNull();
+    expect(screen.queryByText(/Real 2D coma point cloud at center/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 

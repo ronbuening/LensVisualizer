@@ -16,6 +16,7 @@
 - Replaced the coma preview's chord-expanded heuristic with a real circular-pupil point cloud built from chief-relative skew-ray tracing.
 - Updated the shared coma-preview types, analysis exports, and grid rendering to use real tangential/sagittal image-height coordinates in millimeters.
 - Added point-cloud regression coverage for sample counts, center-field symmetry, clipping tolerance, and shared axis scaling.
+- Updated the coma-preview section copy, SSR expectations, and public docs so the preview is described consistently as a real circular-pupil point cloud.
 
 ## Verification
 - `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts` — passed
@@ -23,10 +24,10 @@
 - `npm run test -- __tests__/aberrationAnalysis.test.ts` — passed
 - `npm run test -- __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run test -- __tests__/aberrationInternals.test.ts __tests__/aberrationAnalysis.test.ts __tests__/ComaPreviewGrid.test.tsx` — passed
+- `npm run test -- __tests__/ComaPreviewGrid.test.tsx __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run typecheck` — passed
 - `npm run lint` — passed
 - `npm run format:check` — passed
 
 ## Follow-ups
-- Migrate the remaining coma-preview UI copy, static tests, and docs away from the old estimated/chord-expanded language.
 - Run the repo-wide quality gate, final docs refresh, and draft PR flow.
