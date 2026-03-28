@@ -26,7 +26,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
-- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including an estimated 2D coma preview grid and a dense 2D meridional coma view inside the Aberrations tab
+- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including spherical aberration, estimated 2D coma preview, meridional coma, and a combined field-curvature / astigmatic-difference chart inside the Aberrations tab
 - **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Estimated coma preview**: uses the real chief-ray-centered tangential spread from the meridional ray trace, then expands each valid slice across its pupil chord to synthesize a normalized 2D point-shape estimate
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state; this detailed diagnostic is retained below the estimated preview

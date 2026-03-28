@@ -32,10 +32,7 @@ function fieldCurvatureFieldMeta(): FieldCurvatureFieldMeta[] {
   }));
 }
 
-function emptyFieldCurvatureFieldResult({
-  fieldFraction,
-  label,
-}: FieldCurvatureFieldMeta): FieldCurvatureFieldResult {
+function emptyFieldCurvatureFieldResult({ fieldFraction, label }: FieldCurvatureFieldMeta): FieldCurvatureFieldResult {
   return {
     fieldFraction,
     label,
@@ -198,11 +195,7 @@ export function computeFieldCurvature(
   const sharedFocusShiftHalfRangeMm = Math.max(
     FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM,
     ...usableFields.map((field) =>
-      Math.max(
-        Math.abs(field.tangentialShiftMm),
-        Math.abs(field.sagittalShiftMm),
-        Math.abs(field.petzvalShiftMm),
-      ),
+      Math.max(Math.abs(field.tangentialShiftMm), Math.abs(field.sagittalShiftMm), Math.abs(field.petzvalShiftMm)),
     ),
   );
 

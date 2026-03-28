@@ -43,8 +43,8 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Field curvature and astigmatic difference. Tangential and sagittal best-focus surfaces are shown relative to
-        the current image plane across the current half-field, with the Petzval mean surface overlaid for reference.
+        Field curvature and astigmatic difference. Tangential and sagittal best-focus surfaces are shown relative to the
+        current image plane across the current half-field, with the Petzval mean surface overlaid for reference.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
