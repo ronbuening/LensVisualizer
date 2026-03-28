@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   FIELD_CURVATURE_FIELD_FRACTIONS,
@@ -15,6 +16,7 @@ import {
 import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
+  traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
 import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
@@ -512,6 +514,43 @@ describe("computeMeridionalComa", () => {
     expect(result).not.toBeNull();
     expect(result!.fieldAngleDeg).toBeCloseTo(L.halfField * L.offAxisFieldFrac, 6);
   });
+
+  it("matches the shared tangential bundle trace at the configured field", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, L.offAxisFieldFrac);
+    expect(geometry).not.toBeNull();
+
+    const bundle = traceOrthogonalOffAxisBundle(
+      "tangential",
+      MERIDIONAL_COMA_SAMPLE_COUNT,
+      geometry!,
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+    );
+    expect(bundle).not.toBeNull();
+    expect(result!.centerIntercept).toBeCloseTo(bundle!.chiefRay.imagePoint.y, 8);
+
+    const tracedSamplesByIndex = new Map(bundle!.samples.map((sample) => [sample.sourceSampleIndex, sample]));
+    for (const sample of result!.samples) {
+      const traced = tracedSamplesByIndex.get(sample.index);
+      if (sample.clipped) {
+        expect(traced).toBeUndefined();
+      } else {
+        expect(traced).toBeDefined();
+        expect(sample.imageHeight).toBeCloseTo(traced!.imagePoint.y, 8);
+      }
+    }
+  });
 });
 
 describe("computeComaPreview", () => {
@@ -600,6 +639,44 @@ describe("computeComaPointCloudPreview", () => {
     expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%"]);
     expect(result!.usableFieldCount).toBe(result!.fields.filter((field) => field.usable).length);
     expect(result!.fields.filter((field) => field.usable).every((field) => field.points.length > 0)).toBe(true);
+  });
+
+  it("matches the shared circular bundle trace at an off-axis field", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const field = result!.fields.find((sample) => sample.fieldFraction === 0.5);
+    expect(field).toBeDefined();
+    expect(field!.usable).toBe(true);
+
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    expect(geometry).not.toBeNull();
+
+    const bundle = traceCircularOffAxisBundle(
+      COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
+      geometry!,
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+    );
+    expect(bundle).not.toBeNull();
+    expect(field!.validSampleCount).toBe(bundle!.validSampleCount);
+    expect(field!.chiefIntercept).toBeCloseTo(bundle!.chiefRay.imagePoint.y, 8);
+
+    const pointsBySourceIndex = new Map(field!.points.map((point) => [point.sourceSampleIndex, point]));
+    for (const sample of bundle!.samples) {
+      const point = pointsBySourceIndex.get(sample.sourceSampleIndex);
+      expect(point).toBeDefined();
+      expect(point!.tangentialImageHeight).toBeCloseTo(sample.imagePoint.y - bundle!.chiefRay.imagePoint.y, 8);
+      expect(point!.sagittalImageHeight).toBeCloseTo(sample.imagePoint.x - bundle!.chiefRay.imagePoint.x, 8);
+    }
   });
 
   it("keeps the center field centered and sagittally symmetric", () => {
