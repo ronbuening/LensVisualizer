@@ -5,13 +5,14 @@ import {
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
   traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
   yRatioAtZoom,
   type CircularPupilSample,
   type OrthogonalPupilSample,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "../optics.js";
-import type { RuntimeLens } from "../../types/optics.js";
+import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
 export type OffAxisFanOrientation = "tangential" | "sagittal";
@@ -121,19 +122,34 @@ export function traceOffAxisChiefRay(
   zoomT: number,
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
+  channel?: ChromaticChannel,
 ): OffAxisChiefRaySample | null {
-  const trace = traceChiefRelativeSkewRay(
-    0,
-    0,
-    geometry.yChief,
-    geometry.uField,
-    entrancePupilSemiDiameter,
-    focusT,
-    zoomT,
-    stopSemiDiameter,
-    true,
-    L,
-  );
+  const trace = channel
+    ? traceChiefRelativeSkewRayChromatic(
+        0,
+        0,
+        geometry.yChief,
+        geometry.uField,
+        entrancePupilSemiDiameter,
+        focusT,
+        zoomT,
+        stopSemiDiameter,
+        true,
+        L,
+        channel,
+      )
+    : traceChiefRelativeSkewRay(
+        0,
+        0,
+        geometry.yChief,
+        geometry.uField,
+        entrancePupilSemiDiameter,
+        focusT,
+        zoomT,
+        stopSemiDiameter,
+        true,
+        L,
+      );
   if (trace.clipped) return null;
 
   const imagePoint = skewImagePlaneIntercept(
@@ -160,25 +176,48 @@ export function traceOffAxisBundleFromSamples(
   zoomT: number,
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
+  channel?: ChromaticChannel,
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
-  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, entrancePupilSemiDiameter, stopSemiDiameter);
+  const chiefRay = traceOffAxisChiefRay(
+    geometry,
+    L,
+    focusT,
+    zoomT,
+    entrancePupilSemiDiameter,
+    stopSemiDiameter,
+    channel,
+  );
   if (chiefRay === null) return null;
 
   const tracedSamples = samples.flatMap((sample) => {
-    const trace = traceChiefRelativeSkewRay(
-      sample.xFraction,
-      sample.yFraction,
-      geometry.yChief,
-      geometry.uField,
-      entrancePupilSemiDiameter,
-      focusT,
-      zoomT,
-      stopSemiDiameter,
-      true,
-      L,
-    );
+    const trace = channel
+      ? traceChiefRelativeSkewRayChromatic(
+          sample.xFraction,
+          sample.yFraction,
+          geometry.yChief,
+          geometry.uField,
+          entrancePupilSemiDiameter,
+          focusT,
+          zoomT,
+          stopSemiDiameter,
+          true,
+          L,
+          channel,
+        )
+      : traceChiefRelativeSkewRay(
+          sample.xFraction,
+          sample.yFraction,
+          geometry.yChief,
+          geometry.uField,
+          entrancePupilSemiDiameter,
+          focusT,
+          zoomT,
+          stopSemiDiameter,
+          true,
+          L,
+        );
     if (trace.clipped) return [];
 
     const imagePoint = skewImagePlaneIntercept(
@@ -213,6 +252,7 @@ export function traceOrthogonalOffAxisBundle(
   zoomT: number,
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
+  channel?: ChromaticChannel,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleOrthogonalPupilFan(sampleCount, orientation),
@@ -222,6 +262,7 @@ export function traceOrthogonalOffAxisBundle(
     zoomT,
     entrancePupilSemiDiameter,
     stopSemiDiameter,
+    channel,
   );
 }
 
@@ -233,6 +274,7 @@ export function traceCircularOffAxisBundle(
   zoomT: number,
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
+  channel?: ChromaticChannel,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleCircularPupil(ringSamples),
@@ -242,6 +284,7 @@ export function traceCircularOffAxisBundle(
     zoomT,
     entrancePupilSemiDiameter,
     stopSemiDiameter,
+    channel,
   );
 }
 

@@ -247,6 +247,81 @@ describe("off-axis aberration helpers", () => {
     expect(result).toBeNull();
   });
 
+  it("produces different chromatic bundle intercepts for R vs B channels", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+
+    const redBundle = traceOrthogonalOffAxisBundle(
+      "tangential",
+      6,
+      geometry!,
+      L,
+      0,
+      0,
+      currentEPSD * 0.6,
+      currentPhysStopSD * 0.6,
+      "R",
+    );
+    const blueBundle = traceOrthogonalOffAxisBundle(
+      "tangential",
+      6,
+      geometry!,
+      L,
+      0,
+      0,
+      currentEPSD * 0.6,
+      currentPhysStopSD * 0.6,
+      "B",
+    );
+
+    expect(redBundle).not.toBeNull();
+    expect(blueBundle).not.toBeNull();
+    expect(redBundle!.validSampleCount).toBeGreaterThan(0);
+    expect(blueBundle!.validSampleCount).toBeGreaterThan(0);
+
+    // Chief ray image points should differ between R and B due to dispersion
+    const redChiefY = redBundle!.chiefRay.imagePoint.y;
+    const blueChiefY = blueBundle!.chiefRay.imagePoint.y;
+    expect(Math.abs(redChiefY - blueChiefY)).toBeGreaterThan(1e-6);
+  });
+
+  it("produces different chromatic circular bundle intercepts for R vs B", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+
+    const redBundle = traceCircularOffAxisBundle(
+      [1, 6],
+      geometry!,
+      L,
+      0,
+      0,
+      currentEPSD * 0.6,
+      currentPhysStopSD * 0.6,
+      "R",
+    );
+    const blueBundle = traceCircularOffAxisBundle(
+      [1, 6],
+      geometry!,
+      L,
+      0,
+      0,
+      currentEPSD * 0.6,
+      currentPhysStopSD * 0.6,
+      "B",
+    );
+
+    expect(redBundle).not.toBeNull();
+    expect(blueBundle).not.toBeNull();
+
+    const redChiefY = redBundle!.chiefRay.imagePoint.y;
+    const blueChiefY = blueBundle!.chiefRay.imagePoint.y;
+    expect(Math.abs(redChiefY - blueChiefY)).toBeGreaterThan(1e-6);
+  });
+
   it("returns null from traceOffAxisBundleFromSamples for empty lens", () => {
     const emptyLens = { N: 0, S: [] } as unknown as RuntimeLens;
     const geometry = {

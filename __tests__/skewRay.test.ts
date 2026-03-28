@@ -157,7 +157,6 @@ describe("skewImagePlaneIntercept edge cases", () => {
 
 describe("traceChiefRelativeSkewRay", () => {
   const L = mkSingleElement();
-  const zPos = [0, 5];
 
   it("launches the ray at the correct pupil coordinates", () => {
     const epSD = 10;
@@ -192,7 +191,6 @@ describe("traceChiefRelativeSkewRay", () => {
 
 describe("traceSkewRay with non-trivial initial x-slope", () => {
   const L = mkSingleElement();
-  const zPos = [0, 5];
 
   it("produces different x output when launched with nonzero ux", () => {
     const withUx = traceSkewRay(3, 0, 0.05, 0, 0, 0, 15, false, L);
@@ -257,7 +255,6 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
 
   it("preserves rotational symmetry for mirrored x on a real lens", () => {
     const L = build(ApoLantharRaw);
-    const { z: zPos } = doLayout(0, 0, L);
 
     const positive = traceSkewRay(4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
     const negative = traceSkewRay(-4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
