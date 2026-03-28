@@ -93,6 +93,7 @@ src/
     controls/   # Headers, toggles, sliders, shared control widgets
     diagram/    # SVG rendering, overlays, badges, annotations
     display/    # Analysis tabs, charts, inspectors, legends
+    homepage/   # Hero section, changelog, recent lenses, nav cards
     hooks/      # Computation and UI orchestration hooks
     layout/     # LensViewer, LensDiagramPanel, drawers, wrappers
   content/      # About pages and optics primers
