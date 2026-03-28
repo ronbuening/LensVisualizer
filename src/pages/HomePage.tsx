@@ -13,6 +13,7 @@ import HeroSection from "../components/homepage/HeroSection.js";
 import QuickNavCards from "../components/homepage/QuickNavCards.js";
 import ArticleList from "../components/homepage/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
+import ChangelogBox from "../components/homepage/ChangelogBox.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
 import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
@@ -85,12 +86,22 @@ export default function HomePage() {
         <HeroSection theme={t} />
         <QuickNavCards theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
+          {/* Right column on desktop — RecentLenses + ChangelogBox stacked vertically.
+              On mobile this div has no styles, so its children stack in normal flow. */}
           <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 1 } : {}}>
             <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
+            {/* Desktop copy: shown only on desktop so it sits under RecentLenses in the right column. */}
+            <div style={{ display: isDesktop ? "block" : "none" }}>
+              <ChangelogBox theme={t} />
+            </div>
           </div>
           <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 0 } : {}}>
             <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
           </div>
+        </div>
+        {/* Mobile copy: shown only on mobile so it appears below ArticleList, before the footer. */}
+        <div style={{ display: isDesktop ? "none" : "block" }}>
+          <ChangelogBox theme={t} />
         </div>
         <HomeFooter theme={t} />
       </div>
