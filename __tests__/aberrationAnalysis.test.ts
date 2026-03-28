@@ -747,6 +747,23 @@ describe("computeFieldCurvature", () => {
     expect(offAxisFields.some((field) => Math.abs(field.astigmaticDifferenceUm) > 1)).toBe(true);
   });
 
+  it("does not fall back to mirroring the tangential solve about the Petzval mean", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisField = [...result!.fields]
+      .reverse()
+      .find((field) => field.usable && field.fieldFraction > 0);
+    expect(offAxisField).toBeDefined();
+
+    const mirroredSagittal = 2 * offAxisField!.petzvalBestFocusZ - offAxisField!.tangentialBestFocusZ;
+    expect(offAxisField!.sagittalBestFocusZ).not.toBeCloseTo(mirroredSagittal, 6);
+  });
+
   it("changes with focus", () => {
     const L = build(NikonAF28f14DRaw);
     const infinity = apertureAt(L, 0, 0);
