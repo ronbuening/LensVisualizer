@@ -135,11 +135,13 @@ function computeFieldCurvatureField(
     if (intercept === null) continue;
 
     hits.push({
+      coordinate: trace.y,
       index,
       fraction: Math.abs(pupilFraction),
       signedFraction: pupilFraction,
       pupilFraction,
       launchHeight,
+      slope: trace.u,
       y: trace.y,
       u: trace.u,
       intercept: 0,

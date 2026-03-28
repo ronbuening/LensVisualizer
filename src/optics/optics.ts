@@ -66,6 +66,7 @@ export interface CircularPupilSample {
 const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
 const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
+export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
 
 /* =====================================================================
@@ -675,7 +676,7 @@ export function skewImagePlaneIntercept(
 }
 
 export function sampleOrthogonalPupilFan(
-  sampleCount: number,
+  sampleCount: number = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
   orientation: "tangential" | "sagittal",
 ): OrthogonalPupilSample[] {
   const roundedCount = Math.max(1, Math.round(sampleCount));

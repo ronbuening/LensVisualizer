@@ -1,3 +1,5 @@
+import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
+
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
   fraction: number;
@@ -145,7 +147,11 @@ export interface FieldCurvatureResult {
 export const NEAR_AXIS_REAL_FRAC = 0.1;
 
 /** Dense pupil sweep count for the meridional coma view. Must remain odd to include the chief ray sample. */
-export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
+export const ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
+export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
+
+/** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
+export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES;
 
 /** Fixed field positions shown in the representative coma preview grid. */
 export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;

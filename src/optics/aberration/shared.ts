@@ -15,7 +15,12 @@ export interface SymmetricRealSample {
   imageHeight: number;
 }
 
-export interface RealRayHit {
+export interface TransverseFocusHit {
+  coordinate: number;
+  slope: number;
+}
+
+export interface RealRayHit extends TransverseFocusHit {
   fraction: number;
   signedFraction: number;
   y: number;
@@ -55,8 +60,10 @@ export function computeRealRayHit(
   if (intercept === null || imageHeight === null) return null;
 
   return {
+    coordinate: ray.y,
     fraction: Math.abs(signedFraction),
     signedFraction,
+    slope: ray.u,
     y: ray.y,
     u: ray.u,
     intercept,
@@ -106,36 +113,44 @@ export function computeSymmetricRealSample(
   };
 }
 
-export function rmsAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): number {
+export function transverseCoordinateAtPlane(hit: TransverseFocusHit, lastSurfZ: number, planeZ: number): number {
+  return hit.coordinate + hit.slope * (planeZ - lastSurfZ);
+}
+
+export function rmsAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ: number): number {
   return Math.sqrt(
     hits.reduce((sum, hit) => {
-      const imageHeight = hit.y + hit.u * (planeZ - lastSurfZ);
+      const imageHeight = transverseCoordinateAtPlane(hit, lastSurfZ, planeZ);
       return sum + imageHeight * imageHeight;
     }, 0) / hits.length,
   );
 }
 
-export function peakAtPlane(hits: RealRayHit[], lastSurfZ: number, planeZ: number): number {
-  return Math.max(...hits.map((hit) => Math.abs(hit.y + hit.u * (planeZ - lastSurfZ))));
+export function peakAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ: number): number {
+  return Math.max(...hits.map((hit) => Math.abs(transverseCoordinateAtPlane(hit, lastSurfZ, planeZ))));
 }
 
-export function bestFocusPlane(hits: RealRayHit[], lastSurfZ: number): number {
-  const denom = hits.reduce((sum, hit) => sum + hit.u * hit.u, 0);
+export function bestFocusPlane(hits: TransverseFocusHit[], lastSurfZ: number): number {
+  const denom = hits.reduce((sum, hit) => sum + hit.slope * hit.slope, 0);
   if (denom <= 1e-12) return lastSurfZ;
-  const numer = hits.reduce((sum, hit) => sum + hit.y * hit.u, 0);
+  const numer = hits.reduce((sum, hit) => sum + hit.coordinate * hit.slope, 0);
   return lastSurfZ - numer / denom;
 }
 
-export function bestRelativeFocusPlane(hits: RealRayHit[], referenceHit: RealRayHit, lastSurfZ: number): number {
+export function bestRelativeFocusPlane(
+  hits: TransverseFocusHit[],
+  referenceHit: TransverseFocusHit,
+  lastSurfZ: number,
+): number {
   const denom = hits.reduce((sum, hit) => {
-    const du = hit.u - referenceHit.u;
+    const du = hit.slope - referenceHit.slope;
     return sum + du * du;
   }, 0);
   if (denom <= 1e-12) return lastSurfZ;
 
   const numer = hits.reduce((sum, hit) => {
-    const dy = hit.y - referenceHit.y;
-    const du = hit.u - referenceHit.u;
+    const dy = hit.coordinate - referenceHit.coordinate;
+    const du = hit.slope - referenceHit.slope;
     return sum + dy * du;
   }, 0);
 

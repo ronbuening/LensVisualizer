@@ -7,9 +7,13 @@
 - Added additive skew-ray tracing helpers in `src/optics/optics.ts` without changing the existing `traceRay()` path.
 - Added deterministic orthogonal-fan and equal-area circular pupil samplers for later field-curvature and coma-preview work.
 - Added focused regression coverage in `__tests__/skewRay.test.ts` for equivalence, symmetry, clipping, projection, and sampler behavior.
+- Generalized the aberration shared helpers around coordinate/slope pairs so tangential and sagittal focus solves can use the same math.
+- Centralized the orthogonal fan count and circular pupil pattern constants for the current aberration consumers.
+- Added synthetic helper coverage in `__tests__/aberrationInternals.test.ts` for generic focus solving and degenerate-slope fallbacks.
 
 ## Verification
 - `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts` — passed
+- `npm run test -- __tests__/optics.test.ts __tests__/aberrationInternals.test.ts __tests__/skewRay.test.ts __tests__/aberrationAnalysis.test.ts` — passed
 - `npm run typecheck` — passed
 - `npm run lint` — passed
 - `npm run format:check` — passed
