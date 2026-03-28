@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  doLayout,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
@@ -7,7 +8,16 @@ import {
   traceRay,
   traceSkewRay,
 } from "../src/optics/optics.js";
-import type { RuntimeLens } from "../src/types/optics.js";
+import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../src/optics/aberration/offAxis.js";
+import buildLens from "../src/optics/buildLens.js";
+import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
+import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
+import type { LensData, RuntimeLens } from "../src/types/optics.js";
+
+function build(raw: object): RuntimeLens {
+  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
 
 function mkSingleElement(): RuntimeLens {
   return {
@@ -198,5 +208,92 @@ describe("traceSkewRay with non-trivial initial x-slope", () => {
     // For a rotationally symmetric system, mirroring ux should mirror the output x
     // but y should remain the same since the surface is symmetric
     expect(positive.y).toBeCloseTo(negative.y, 8);
+  });
+});
+
+describe("skew-meridional cross-validation on multi-element lenses", () => {
+  it("matches meridional trace for multiple heights on Apo-Lanthar 50/2", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const stopSD = L.stopPhysSD;
+
+    for (const h of [1, 3, 6, 9]) {
+      const skew = traceSkewRay(0, h, 0, 0, zPos, 0, 0, stopSD, false, L);
+      const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
+
+      if (meridional.clipped) {
+        expect(skew.clipped).toBe(true);
+        continue;
+      }
+
+      expect(skew.x).toBeCloseTo(0, 8);
+      expect(skew.y).toBeCloseTo(meridional.y, 6);
+      expect(skew.ux).toBeCloseTo(0, 8);
+      expect(skew.uy).toBeCloseTo(meridional.u, 6);
+      expect(skew.clipped).toBe(meridional.clipped);
+    }
+  });
+
+  it("matches meridional trace for multiple heights on Sonnar 50/1.5", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const stopSD = L.stopPhysSD;
+
+    for (const h of [2, 5, 10]) {
+      const skew = traceSkewRay(0, h, 0, 0, zPos, 0, 0, stopSD, false, L);
+      const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
+
+      if (meridional.clipped) {
+        expect(skew.clipped).toBe(true);
+        continue;
+      }
+
+      expect(skew.y).toBeCloseTo(meridional.y, 6);
+      expect(skew.uy).toBeCloseTo(meridional.u, 6);
+    }
+  });
+
+  it("preserves rotational symmetry for mirrored x on a real lens", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const positive = traceSkewRay(4, 2, 0, -0.03, zPos, 0, 0, L.stopPhysSD, false, L);
+    const negative = traceSkewRay(-4, 2, 0, -0.03, zPos, 0, 0, L.stopPhysSD, false, L);
+
+    expect(positive.x).toBeCloseTo(-negative.x, 8);
+    expect(positive.y).toBeCloseTo(negative.y, 8);
+    expect(positive.ux).toBeCloseTo(-negative.ux, 8);
+    expect(positive.uy).toBeCloseTo(negative.uy, 8);
+  });
+
+  it("produces zero x-displacement for sagittal bundle at center field", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const currentEPSD = L.EP.epSD * 0.6;
+    const currentPhysStopSD = L.stopPhysSD * 0.6;
+
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    expect(geometry).not.toBeNull();
+
+    const bundle = traceOrthogonalOffAxisBundle(
+      "sagittal",
+      11,
+      geometry!,
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+    );
+    expect(bundle).not.toBeNull();
+
+    // At center field, sagittal rays should have symmetric x-displacement
+    // The chief ray should have zero x
+    expect(bundle!.chiefRay.imagePoint.x).toBeCloseTo(0, 8);
+
+    // Weighted average of x-displacements should be near zero (rotational symmetry)
+    const avgX = bundle!.samples.reduce((sum, s) => sum + s.imagePoint.x, 0) / bundle!.samples.length;
+    expect(avgX).toBeCloseTo(0, 6);
   });
 });
