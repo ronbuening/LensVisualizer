@@ -331,27 +331,13 @@ describe("AberrationsPanel", () => {
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
   });
 
-  it("renders meridional coma copy and span metric", () => {
+  it("renders spherical aberration and field curvature content", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getAllByText("Coma Preview").length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Real 2D coma point cloud/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Center").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("75%").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("FIELDS").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("4/4").length).toBeGreaterThan(0);
     expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
     expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Meridional Coma").length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/2D meridional coma view/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText("COMA SPAN").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("300 µm").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("VALID").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("47/51").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
     expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
@@ -478,22 +464,6 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText(/Scale capped to image circle/i).length).toBe(2);
   });
 
-  it("shows fallback copy when preview computation fails", () => {
-    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
-    mockComputeComaPreview.mockReturnValue(null);
-
-    render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute a usable 2D coma point cloud/i)).toBeTruthy();
-  });
-
-  it("shows fallback copy when coma computation fails", () => {
-    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
-    mockComputeMeridionalComa.mockReturnValue(null);
-
-    render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute a usable 2D meridional coma view/i)).toBeTruthy();
-  });
-
   it("shows fallback copy when field-curvature computation fails", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeFieldCurvature.mockReturnValue(null);
@@ -518,31 +488,11 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
-  it("toggles the coma preview section body independently", () => {
-    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
-
-    render(<AberrationsPanel {...baseProps} />);
-    fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
-
-    expect(screen.queryByText(/Real 2D coma point cloud at center/i)).toBeNull();
-    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
-  });
-
-  it("toggles the meridional coma section body independently", () => {
-    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
-
-    render(<AberrationsPanel {...baseProps} />);
-    fireEvent.click(screen.getAllByText("LESS")[2].closest("button")!);
-
-    expect(screen.queryByText(/2D meridional coma view using a dense off-axis ray fan/i)).toBeNull();
-    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
-  });
-
   it("toggles the field-curvature section body independently", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    fireEvent.click(screen.getAllByText("LESS")[4].closest("button")!);
+    fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
     expect(screen.queryByText(/The first chart strips the problem down to field curvature only/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
@@ -556,7 +506,7 @@ describe("AberrationsPanel", () => {
     ]);
 
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
-    expect(screen.getAllByText("LESS").length).toBe(5);
+    expect(screen.getAllByText("LESS").length).toBe(2);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
 
