@@ -1,5 +1,5 @@
-import type { RuntimeLens } from "../../types/optics.js";
-import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
+import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
+import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import { FIELD_CURVATURE_FIELD_FRACTIONS, MERIDIONAL_COMA_SAMPLE_COUNT } from "./types.js";
 import { bestFocusPlaneForDirection, computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "./offAxis.js";
 
@@ -42,6 +42,7 @@ function emptyFieldCurvatureFieldResult({ fieldFraction, label }: FieldCurvature
     petzvalShiftMm: 0,
     astigmaticDifferenceMm: 0,
     astigmaticDifferenceUm: 0,
+    chromaticFieldShifts: null,
     usable: false,
   };
 }
@@ -57,6 +58,57 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return radius - Math.sign(radius) * Math.sqrt(underRoot);
 }
 
+const CHROMATIC_CHANNELS: ChromaticChannel[] = ["R", "G", "B"];
+
+function computeChromaticFieldShifts(
+  L: RuntimeLens,
+  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): ChromaticFieldShift[] | null {
+  const shifts: ChromaticFieldShift[] = [];
+
+  for (const channel of CHROMATIC_CHANNELS) {
+    const tangentialBundle = traceOrthogonalOffAxisBundle(
+      "tangential",
+      MERIDIONAL_COMA_SAMPLE_COUNT,
+      geometry,
+      L,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      channel,
+    );
+    const sagittalBundle = traceOrthogonalOffAxisBundle(
+      "sagittal",
+      MERIDIONAL_COMA_SAMPLE_COUNT,
+      geometry,
+      L,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      channel,
+    );
+    if (tangentialBundle === null || sagittalBundle === null) return null;
+    if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
+
+    const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
+    const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
+
+    shifts.push({
+      channel,
+      tangentialShiftMm: tangentialBestFocusZ - geometry.imagePlaneZ,
+      sagittalShiftMm: sagittalBestFocusZ - geometry.imagePlaneZ,
+    });
+  }
+
+  return shifts;
+}
+
 function computeFieldCurvatureField(
   L: RuntimeLens,
   zPos: number[],
@@ -65,6 +117,7 @@ function computeFieldCurvatureField(
   currentEPSD: number,
   currentPhysStopSD: number,
   meta: FieldCurvatureFieldMeta,
+  chromatic: boolean,
 ): FieldCurvatureFieldResult {
   if (currentEPSD <= 0 || L.N < 1) return emptyFieldCurvatureFieldResult(meta);
 
@@ -122,6 +175,9 @@ function computeFieldCurvatureField(
     petzvalShiftMm,
     astigmaticDifferenceMm,
     astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
+    chromaticFieldShifts: chromatic
+      ? computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD)
+      : null,
     usable: true,
   };
 }
@@ -133,6 +189,7 @@ export function computeFieldCurvature(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  chromatic = false,
 ): FieldCurvatureResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -141,7 +198,7 @@ export function computeFieldCurvature(
   if (!isFinite(imagePlaneZ)) return null;
 
   const fields = fieldCurvatureFieldMeta().map((meta) =>
-    computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta),
+    computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta, chromatic),
   );
   const usableFields = fields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;
@@ -156,6 +213,22 @@ export function computeFieldCurvature(
 
   const edgeField = [...usableFields].reverse()[0];
 
+  // Compute max chromatic focus spread across all usable fields
+  let chromaticFocusSpreadMm: number | null = null;
+  if (chromatic) {
+    const spreads = usableFields
+      .map((field) => {
+        if (!field.chromaticFieldShifts) return null;
+        const tShifts = field.chromaticFieldShifts.map((s) => s.tangentialShiftMm);
+        const sShifts = field.chromaticFieldShifts.map((s) => s.sagittalShiftMm);
+        const tSpread = Math.max(...tShifts) - Math.min(...tShifts);
+        const sSpread = Math.max(...sShifts) - Math.min(...sShifts);
+        return Math.max(tSpread, sSpread);
+      })
+      .filter((s): s is number => s !== null);
+    if (spreads.length > 0) chromaticFocusSpreadMm = Math.max(...spreads);
+  }
+
   return {
     fieldFractions: FIELD_CURVATURE_FIELD_FRACTIONS,
     fields,
@@ -166,5 +239,6 @@ export function computeFieldCurvature(
     maxAstigmaticDifferenceUm: maxAstigmaticDifferenceMm * 1000,
     edgeTangentialShiftMm: edgeField?.tangentialShiftMm ?? 0,
     edgeSagittalShiftMm: edgeField?.sagittalShiftMm ?? 0,
+    chromaticFocusSpreadMm,
   };
 }

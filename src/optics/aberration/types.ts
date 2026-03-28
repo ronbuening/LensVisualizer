@@ -112,6 +112,13 @@ export interface ComaPointCloudPreviewResult {
   usableFieldCount: number;
 }
 
+/** Per-channel chromatic focus shift at a single field position. */
+export interface ChromaticFieldShift {
+  channel: "R" | "G" | "B";
+  tangentialShiftMm: number;
+  sagittalShiftMm: number;
+}
+
 /** One field sample in the field-curvature / astigmatism sweep. */
 export interface FieldCurvatureFieldResult {
   fieldFraction: number;
@@ -129,6 +136,7 @@ export interface FieldCurvatureFieldResult {
   petzvalShiftMm: number;
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
+  chromaticFieldShifts: ChromaticFieldShift[] | null;
   usable: boolean;
 }
 
@@ -143,6 +151,7 @@ export interface FieldCurvatureResult {
   maxAstigmaticDifferenceUm: number;
   edgeTangentialShiftMm: number;
   edgeSagittalShiftMm: number;
+  chromaticFocusSpreadMm: number | null;
 }
 
 /** Near-axis real-ray fraction used as the spherical-aberration reference baseline. */

@@ -1050,6 +1050,60 @@ describe("computeFieldCurvature", () => {
       expect(ratio).toBeLessThan(6);
     }
   });
+
+  it("computes non-null chromatic field shifts for a dispersive lens", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    expect(result).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).toBeGreaterThan(0);
+
+    // At least one usable off-axis field should have chromatic shifts
+    const usableFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    expect(usableFields.length).toBeGreaterThan(0);
+    const withShifts = usableFields.filter((f) => f.chromaticFieldShifts !== null);
+    expect(withShifts.length).toBeGreaterThan(0);
+
+    // R and B should have different tangential shifts at off-axis fields
+    for (const field of withShifts) {
+      const rShift = field.chromaticFieldShifts!.find((s) => s.channel === "R");
+      const bShift = field.chromaticFieldShifts!.find((s) => s.channel === "B");
+      expect(rShift).toBeDefined();
+      expect(bShift).toBeDefined();
+      expect(rShift!.tangentialShiftMm).not.toBeCloseTo(bShift!.tangentialShiftMm, 4);
+    }
+  });
+
+  it("returns null chromatic data when chromatic flag is false", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.chromaticFocusSpreadMm).toBeNull();
+    for (const field of result!.fields) {
+      expect(field.chromaticFieldShifts).toBeNull();
+    }
+  });
+
+  it("includes all three channels (R, G, B) in chromatic shifts", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, true);
+    expect(result).not.toBeNull();
+
+    const usableFields = result!.fields.filter((f) => f.usable && f.chromaticFieldShifts !== null);
+    for (const field of usableFields) {
+      const channels = field.chromaticFieldShifts!.map((s) => s.channel);
+      expect(channels).toEqual(["R", "G", "B"]);
+    }
+  });
 });
 
 describe("entrancePupilAtState", () => {
