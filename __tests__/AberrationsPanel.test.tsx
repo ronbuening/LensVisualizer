@@ -6,12 +6,18 @@ import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
-const { mockComputeSphericalAberration, mockComputeSAProfile, mockComputeMeridionalComa, mockComputeComaPreview } =
-  vi.hoisted(() => ({
+const {
+  mockComputeSphericalAberration,
+  mockComputeSAProfile,
+  mockComputeMeridionalComa,
+  mockComputeComaPreview,
+  mockComputeFieldCurvature,
+} = vi.hoisted(() => ({
   mockComputeSphericalAberration: vi.fn(),
   mockComputeSAProfile: vi.fn(),
   mockComputeMeridionalComa: vi.fn(),
   mockComputeComaPreview: vi.fn(),
+  mockComputeFieldCurvature: vi.fn(),
 }));
 
 vi.mock("../src/optics/aberrationAnalysis.js", () => ({
@@ -19,6 +25,7 @@ vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
   computeEstimatedComaPreview: mockComputeComaPreview,
+  computeFieldCurvature: mockComputeFieldCurvature,
 }));
 
 const theme = {
@@ -59,6 +66,7 @@ describe("AberrationsPanel", () => {
     mockComputeSAProfile.mockReset();
     mockComputeMeridionalComa.mockReset();
     mockComputeComaPreview.mockReset();
+    mockComputeFieldCurvature.mockReset();
     mockComputeSAProfile.mockReturnValue([
       { fraction: 0, transverseSaMm: -0.01 },
       { fraction: 1, transverseSaMm: 0.01 },
@@ -145,6 +153,108 @@ describe("AberrationsPanel", () => {
         { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: null, clipped: true },
       ],
     });
+    mockComputeFieldCurvature.mockReturnValue({
+      fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+      usableFieldCount: 5,
+      imagePlaneZ: 105,
+      sharedFocusShiftHalfRangeMm: 0.8,
+      maxAstigmaticDifferenceMm: 0.12,
+      maxAstigmaticDifferenceUm: 120,
+      edgeTangentialShiftMm: -0.45,
+      edgeSagittalShiftMm: -0.21,
+      fields: [
+        {
+          fieldFraction: 0,
+          label: "Center",
+          fieldAngleDeg: 0,
+          sampleCount: 51,
+          validSampleCount: 51,
+          clippedSampleCount: 0,
+          chiefImageHeight: 0,
+          tangentialBestFocusZ: 105,
+          sagittalBestFocusZ: 105,
+          petzvalBestFocusZ: 105,
+          tangentialShiftMm: 0,
+          sagittalShiftMm: 0,
+          petzvalShiftMm: 0,
+          astigmaticDifferenceMm: 0,
+          astigmaticDifferenceUm: 0,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.25,
+          label: "25%",
+          fieldAngleDeg: 5,
+          sampleCount: 51,
+          validSampleCount: 49,
+          clippedSampleCount: 2,
+          chiefImageHeight: 5,
+          tangentialBestFocusZ: 104.9,
+          sagittalBestFocusZ: 104.95,
+          petzvalBestFocusZ: 104.925,
+          tangentialShiftMm: -0.1,
+          sagittalShiftMm: -0.05,
+          petzvalShiftMm: -0.075,
+          astigmaticDifferenceMm: 0.05,
+          astigmaticDifferenceUm: 50,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.5,
+          label: "50%",
+          fieldAngleDeg: 10,
+          sampleCount: 51,
+          validSampleCount: 47,
+          clippedSampleCount: 4,
+          chiefImageHeight: 10,
+          tangentialBestFocusZ: 104.8,
+          sagittalBestFocusZ: 104.9,
+          petzvalBestFocusZ: 104.85,
+          tangentialShiftMm: -0.2,
+          sagittalShiftMm: -0.1,
+          petzvalShiftMm: -0.15,
+          astigmaticDifferenceMm: 0.1,
+          astigmaticDifferenceUm: 100,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.75,
+          label: "75%",
+          fieldAngleDeg: 15,
+          sampleCount: 51,
+          validSampleCount: 45,
+          clippedSampleCount: 6,
+          chiefImageHeight: 15,
+          tangentialBestFocusZ: 104.65,
+          sagittalBestFocusZ: 104.77,
+          petzvalBestFocusZ: 104.71,
+          tangentialShiftMm: -0.35,
+          sagittalShiftMm: -0.23,
+          petzvalShiftMm: -0.29,
+          astigmaticDifferenceMm: 0.12,
+          astigmaticDifferenceUm: 120,
+          usable: true,
+        },
+        {
+          fieldFraction: 1,
+          label: "100%",
+          fieldAngleDeg: 20,
+          sampleCount: 51,
+          validSampleCount: 43,
+          clippedSampleCount: 8,
+          chiefImageHeight: 20,
+          tangentialBestFocusZ: 104.55,
+          sagittalBestFocusZ: 104.79,
+          petzvalBestFocusZ: 104.67,
+          tangentialShiftMm: -0.45,
+          sagittalShiftMm: -0.21,
+          petzvalShiftMm: -0.33,
+          astigmaticDifferenceMm: 0.24,
+          astigmaticDifferenceUm: 240,
+          usable: true,
+        },
+      ],
+    });
   });
 
   function makeSaResult(longitudinalSaMm: number) {
@@ -218,6 +328,13 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("300 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("VALID").length).toBeGreaterThan(0);
     expect(screen.getAllByText("47/51").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
+    expect(screen.getByText(/Sagittal and tangential best-focus surfaces across the current half-field/i)).toBeTruthy();
+    expect(screen.getAllByText("MAX ASTIG").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("EDGE CURVATURE").length).toBeGreaterThan(0);
+    expect(screen.getByText("T -0.45 mm / S -0.21 mm")).toBeTruthy();
+    expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
   });
 
   it("shows fallback copy when preview computation fails", () => {
@@ -234,6 +351,14 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getByText(/Unable to compute a usable 2D meridional coma view/i)).toBeTruthy();
+  });
+
+  it("shows fallback copy when field-curvature computation fails", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    mockComputeFieldCurvature.mockReturnValue(null);
+
+    render(<AberrationsPanel {...baseProps} />);
+    expect(screen.getByText(/Unable to compute a usable field-curvature and astigmatic-difference view/i)).toBeTruthy();
   });
 
   it("toggles the spherical aberration section and reports the new expanded state", () => {
@@ -272,6 +397,16 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
+  it("toggles the field-curvature section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[3].closest("button")!);
+
+    expect(screen.queryByText(/Sagittal and tangential best-focus surfaces across the current half-field/i)).toBeNull();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
   it("syncs the spherical aberration section with the expanded prop", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeSAProfile.mockReturnValue([
@@ -280,11 +415,13 @@ describe("AberrationsPanel", () => {
     ]);
 
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
-    expect(screen.getAllByText("LESS").length).toBe(3);
+    expect(screen.getAllByText("LESS").length).toBe(4);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+    expect(screen.getByText(/Sagittal and tangential best-focus surfaces across the current half-field/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
+    expect(screen.getByText(/Sagittal and tangential best-focus surfaces across the current half-field/i)).toBeTruthy();
   });
 });
