@@ -958,6 +958,51 @@ describe("computeFieldCurvature", () => {
     expect(computeFieldCurvature(L, zPos, 0, 0, 0, 0)).toBeNull();
     expect(computeFieldCurvature({ N: 0, S: [] } as unknown as RuntimeLens, [], 0, 0, 10, 5)).toBeNull();
   });
+
+  it("returns zero astigmatism at center for a second lens (Sonnar 50/1.5)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fields[0].astigmaticDifferenceMm).toBeCloseTo(0, 8);
+    expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
+  });
+
+  it("produces non-zero Petzval shift at off-axis fields for a lens with finite Petzval sum", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisFields = result!.fields.filter((field) => field.usable && field.fieldFraction > 0);
+    expect(offAxisFields.length).toBeGreaterThan(0);
+    // Petzval shift should be non-zero for off-axis fields when petzvalSum is finite
+    expect(offAxisFields.some((field) => Math.abs(field.petzvalShiftMm) > 1e-6)).toBe(true);
+  });
+
+  it("keeps Petzval shift proportional to image height squared (small-angle regime)", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Compare 25% and 50% fields: at small angles, Petzval shift ~ h^2
+    const f25 = result!.fields.find((f) => f.fieldFraction === 0.25);
+    const f50 = result!.fields.find((f) => f.fieldFraction === 0.5);
+    if (f25 && f50 && f25.usable && f50.usable && Math.abs(f25.petzvalShiftMm) > 1e-6) {
+      const ratio = f50.petzvalShiftMm / f25.petzvalShiftMm;
+      // Image height ratio ~ 2, so shift ratio should be ~ 4 (h^2 dependence)
+      // Allow generous tolerance since this is only approximate
+      expect(ratio).toBeGreaterThan(2);
+      expect(ratio).toBeLessThan(6);
+    }
+  });
 });
 
 describe("entrancePupilAtState", () => {
