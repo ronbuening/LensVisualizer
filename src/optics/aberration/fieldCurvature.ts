@@ -71,27 +71,6 @@ function computeFieldCurvatureField(
   const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, meta.fieldFraction);
   if (geometry === null) return emptyFieldCurvatureFieldResult(meta);
 
-  if (meta.fieldFraction === 0) {
-    return {
-      fieldFraction: meta.fieldFraction,
-      label: meta.label,
-      fieldAngleDeg: 0,
-      sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-      validSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-      clippedSampleCount: 0,
-      chiefImageHeight: 0,
-      tangentialBestFocusZ: geometry.imagePlaneZ,
-      sagittalBestFocusZ: geometry.imagePlaneZ,
-      petzvalBestFocusZ: geometry.imagePlaneZ,
-      tangentialShiftMm: 0,
-      sagittalShiftMm: 0,
-      petzvalShiftMm: 0,
-      astigmaticDifferenceMm: 0,
-      astigmaticDifferenceUm: 0,
-      usable: true,
-    };
-  }
-
   const tangentialBundle = traceOrthogonalOffAxisBundle(
     "tangential",
     MERIDIONAL_COMA_SAMPLE_COUNT,

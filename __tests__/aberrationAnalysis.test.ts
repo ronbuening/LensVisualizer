@@ -919,6 +919,27 @@ describe("computeFieldCurvature", () => {
     expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
   });
 
+  it("uses the real on-axis best focus at center field (not imagePlaneZ)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.usable).toBe(true);
+
+    // For a fast lens like Sonnar f/1.5, the SA-adjusted best focus shifts
+    // away from the image plane. The center-field tangential and sagittal
+    // best focus values should reflect this shift (non-zero).
+    expect(centerField.tangentialShiftMm).not.toBeCloseTo(0, 3);
+    expect(centerField.sagittalShiftMm).not.toBeCloseTo(0, 3);
+
+    // Tangential and sagittal should agree at center field (no astigmatism on-axis)
+    expect(centerField.tangentialBestFocusZ).toBeCloseTo(centerField.sagittalBestFocusZ, 6);
+  });
+
   it("shows measurable astigmatic separation away from center", () => {
     const L = build(NikonAF28f14DRaw);
     const { z: zPos } = doLayout(0, 0, L);
