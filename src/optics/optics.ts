@@ -596,7 +596,7 @@ function refractDirection(
  * transverse coordinates (x, y) and slopes (ux, uy), enabling a true sagittal
  * solve without disturbing the existing meridional traceRay() path.
  */
-export function traceSkewRay(
+function _traceSkewRayCore(
   x0: number,
   y0: number,
   ux0: number,
@@ -606,6 +606,7 @@ export function traceSkewRay(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
 ): SkewRayTraceResult {
   let x = x0;
   let y = y0;
@@ -623,7 +624,7 @@ export function traceSkewRay(
       clipped = true;
     }
 
-    const nn = nd === 1.0 ? 1.0 : nd;
+    const nn = channel ? wavelengthNd(nd, L.vdByIdx[i], channel) : nd === 1.0 ? 1.0 : nd;
     if (nn !== n) {
       const R = L.S[i].R;
       if (!(clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R)) {
@@ -655,6 +656,35 @@ export function traceSkewRay(
     uy: direction[1] * invDz,
     clipped,
   };
+}
+
+export function traceSkewRay(
+  x0: number,
+  y0: number,
+  ux0: number,
+  uy0: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+): SkewRayTraceResult {
+  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined);
+}
+
+export function traceSkewRayChromatic(
+  x0: number,
+  y0: number,
+  ux0: number,
+  uy0: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel,
+): SkewRayTraceResult {
+  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel);
 }
 
 export function skewImagePlaneIntercept(
@@ -750,6 +780,33 @@ export function traceChiefRelativeSkewRay(
     stopSD,
     ghost,
     L,
+  );
+}
+
+export function traceChiefRelativeSkewRayChromatic(
+  xFraction: number,
+  yFraction: number,
+  chiefLaunchHeight: number,
+  fieldSlope: number,
+  entrancePupilSemiDiameter: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel,
+): SkewRayTraceResult {
+  return traceSkewRayChromatic(
+    xFraction * entrancePupilSemiDiameter,
+    chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
+    0,
+    fieldSlope,
+    focusT,
+    zoomT,
+    stopSD,
+    ghost,
+    L,
+    channel,
   );
 }
 

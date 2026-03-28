@@ -6,7 +6,9 @@ import {
   skewImagePlaneIntercept,
   traceChiefRelativeSkewRay,
   traceRay,
+  traceRayChromatic,
   traceSkewRay,
+  traceSkewRayChromatic,
 } from "../src/optics/optics.js";
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../src/optics/aberration/offAxis.js";
 import buildLens from "../src/optics/buildLens.js";
@@ -285,5 +287,51 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
     // Weighted average of x-displacements should be near zero (rotational symmetry)
     const avgX = bundle!.samples.reduce((sum, s) => sum + s.imagePoint.x, 0) / bundle!.samples.length;
     expect(avgX).toBeCloseTo(0, 6);
+  });
+});
+
+describe("traceSkewRayChromatic", () => {
+  it("matches the chromatic meridional trace in the tangential plane", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    for (const channel of ["R", "G", "B"] as const) {
+      const skew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, channel);
+      const meridional = traceRayChromatic(5, 0, zPos, 0, 0, L.stopPhysSD, false, L, channel);
+
+      if (meridional.clipped) {
+        expect(skew.clipped).toBe(true);
+        continue;
+      }
+
+      expect(skew.x).toBeCloseTo(0, 8);
+      expect(skew.y).toBeCloseTo(meridional.y, 6);
+      expect(skew.uy).toBeCloseTo(meridional.u, 6);
+    }
+  });
+
+  it("produces different R and B intercepts for a dispersive lens", () => {
+    const L = build(Sonnar50f15Raw);
+
+    const redSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "R");
+    const blueSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "B");
+
+    expect(redSkew.clipped).toBe(false);
+    expect(blueSkew.clipped).toBe(false);
+    // R and B should refract differently due to dispersion
+    expect(redSkew.y).not.toBeCloseTo(blueSkew.y, 6);
+    expect(redSkew.uy).not.toBeCloseTo(blueSkew.uy, 6);
+  });
+
+  it("produces identical results to traceSkewRay for channel G (d-line)", () => {
+    const L = build(ApoLantharRaw);
+
+    const chromatic = traceSkewRayChromatic(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L, "G");
+    const monochromatic = traceSkewRay(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L);
+
+    expect(chromatic.x).toBeCloseTo(monochromatic.x, 10);
+    expect(chromatic.y).toBeCloseTo(monochromatic.y, 10);
+    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 10);
+    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 10);
   });
 });
