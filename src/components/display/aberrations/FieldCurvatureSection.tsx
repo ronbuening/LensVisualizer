@@ -1,3 +1,4 @@
+import FieldCurvatureMeanPlot from "../FieldCurvatureMeanPlot.js";
 import FieldCurvaturePlot from "../FieldCurvaturePlot.js";
 import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../types/theme.js";
@@ -34,14 +35,21 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Solid green circles trace the tangential focus. Dashed light squares trace the sagittal focus. Read the
-            vertical distance between them as astigmatism, then read their average bend against the current-plane line
-            as field curvature.
+            The first chart strips the problem down to field curvature only: how far the mean field surface moves fore
+            or aft of the focused plane as you go from center to edge. The second chart adds the tangential/sagittal
+            split so you can see how much of the off-axis behavior is true field bend versus astigmatism.
           </span>
 
           {result ? (
             <>
+              <FieldCurvatureMeanPlot result={result} t={theme} />
+              <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                Field curvature only. Negative values are fore of the focused plane; positive values are aft.
+              </span>
               <FieldCurvaturePlot result={result} t={theme} />
+              <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                Tangential/sagittal diagnostic. The gap between the two traces is the astigmatic split.
+              </span>
               <div
                 style={{
                   display: "flex",

@@ -31,7 +31,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   const yScale = (shiftMm: number) => MT + PH / 2 - (shiftMm / yHalfRange) * (PH / 2);
   const zeroY = yScale(0);
   const tickMm = yHalfRange >= 2 ? 1 : yHalfRange >= 1 ? 0.5 : yHalfRange >= 0.4 ? 0.2 : 0.1;
-  const tickValues = [-tickMm, 0, tickMm];
+  const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
 
   const tangentialPoints = usableFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.tangentialShiftMm).toFixed(1)}`)

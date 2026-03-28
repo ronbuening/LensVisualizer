@@ -329,8 +329,9 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("VALID").length).toBeGreaterThan(0);
     expect(screen.getAllByText("47/51").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
-    expect(screen.getByText(/Solid green circles trace the tangential focus/i)).toBeTruthy();
-    expect(screen.getByText(/Dashed light squares trace the sagittal focus/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
+    expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
+    expect(screen.getByText(/Tangential\/sagittal diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
@@ -404,7 +405,7 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[3].closest("button")!);
 
-    expect(screen.queryByText(/Solid green circles trace the tangential focus/i)).toBeNull();
+    expect(screen.queryByText(/The first chart strips the problem down to field curvature only/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -418,11 +419,11 @@ describe("AberrationsPanel", () => {
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
     expect(screen.getAllByText("LESS").length).toBe(4);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
-    expect(screen.getByText(/Solid green circles trace the tangential focus/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
-    expect(screen.getByText(/Solid green circles trace the tangential focus/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
   });
 });
