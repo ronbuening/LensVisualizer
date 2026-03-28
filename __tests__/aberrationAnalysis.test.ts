@@ -806,6 +806,36 @@ describe("computeComaPointCloudPreview", () => {
     expect(result).not.toBeNull();
     expect(result!.fields.every((field) => field.sampleCount === COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT)).toBe(true);
   });
+
+  it("exposes positive finite shared sagittal and tangential half-ranges", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
+    expect(isFinite(result!.sharedTangentialHalfRangeMm)).toBe(true);
+    expect(isFinite(result!.sharedSagittalHalfRangeMm)).toBe(true);
+  });
+
+  it("produces near-zero weighted tangential centroid at center field", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.fields[0];
+    expect(centerField.usable).toBe(true);
+
+    const totalWeight = centerField.points.reduce((sum, point) => sum + point.weight, 0);
+    const tangentialCentroid =
+      centerField.points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
+    expect(tangentialCentroid).toBeCloseTo(0, 8);
+  });
 });
 
 describe("computeFieldCurvature", () => {
