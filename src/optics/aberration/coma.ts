@@ -8,6 +8,8 @@ import type {
   ComaPreviewResult,
   MeridionalComaResult,
   MeridionalComaSample,
+  SagittalComaResult,
+  SagittalComaSample,
 } from "./types.js";
 import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -428,6 +430,82 @@ export function computeComaPreview(
     fields,
     sharedRelativeHalfRangeMm,
     usableFieldCount: usableFields.length,
+  };
+}
+
+export function computeSagittalComa(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): SagittalComaResult | null {
+  if (currentEPSD <= 0 || L.N < 1) return null;
+
+  const fieldFraction = L.offAxisFieldFrac;
+  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
+  if (geometry === null || geometry.fieldAngleDeg <= 0) return null;
+
+  const bundle = traceOrthogonalOffAxisBundle(
+    "sagittal",
+    MERIDIONAL_COMA_SAMPLE_COUNT,
+    geometry,
+    L,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  );
+  if (bundle === null) return null;
+
+  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
+  const samples: SagittalComaSample[] = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal").map(
+    (sample) => {
+      const tracedSample = tracedSamplesByIndex.get(sample.index);
+      return {
+        index: sample.index,
+        pupilFraction: sample.pupilFraction,
+        launchX: sample.xFraction * currentEPSD,
+        imageX: tracedSample?.imagePoint.x ?? null,
+        clipped: tracedSample === undefined,
+      };
+    },
+  );
+  const validSamples = samples.filter(
+    (sample): sample is SagittalComaSample & { imageX: number } => sample.imageX !== null && !sample.clipped,
+  );
+
+  if (validSamples.length < 3) return null;
+
+  const centerSample =
+    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
+    validSamples.reduce((best, sample) =>
+      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
+    );
+  const centerIntercept = centerSample.imageX;
+
+  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
+  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
+
+  if (!lowerSample || !upperSample) return null;
+
+  const intercepts = validSamples.map((sample) => sample.imageX);
+  const spanMm = upperSample.imageX - lowerSample.imageX;
+
+  return {
+    fieldAngleDeg: geometry.fieldAngleDeg,
+    sampleCount: bundle.sampleCount,
+    validSampleCount: validSamples.length,
+    clippedSampleCount: bundle.clippedSampleCount,
+    centerIntercept,
+    minIntercept: Math.min(...intercepts),
+    maxIntercept: Math.max(...intercepts),
+    spanMm,
+    spanUm: spanMm * 1000,
+    lowerIntercept: lowerSample.imageX,
+    upperIntercept: upperSample.imageX,
+    samples,
   };
 }
 

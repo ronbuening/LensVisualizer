@@ -10,6 +10,7 @@ import {
   computeComaPreview,
   computeFieldCurvature,
   computeMeridionalComa,
+  computeSagittalComa,
   computeSphericalAberration,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
@@ -833,6 +834,80 @@ describe("computeComaPointCloudPreview", () => {
     const tangentialCentroid =
       centerField.points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
     expect(tangentialCentroid).toBeCloseTo(0, 8);
+  });
+});
+
+describe("computeSagittalComa", () => {
+  it("returns a finite result for a real lens", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeGreaterThan(0);
+    expect(result!.validSampleCount).toBeGreaterThanOrEqual(3);
+    expect(isFinite(result!.spanMm)).toBe(true);
+    expect(isFinite(result!.centerIntercept)).toBe(true);
+    expect(result!.spanUm).toBeCloseTo(result!.spanMm * 1000, 8);
+  });
+
+  it("differs from meridional coma for an asymmetric off-axis field", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const sagittal = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(sagittal).not.toBeNull();
+    expect(meridional).not.toBeNull();
+    // Sagittal and meridional spans should generally differ
+    expect(sagittal!.spanMm).not.toBeCloseTo(meridional!.spanMm, 4);
+  });
+
+  it("returns null for zero field angle", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    // ApoLanthar has offAxisFieldFrac that should give a non-zero field angle,
+    // but a lens with zero field angle should return null
+    const emptyLens = { ...L, offAxisFieldFrac: 0 } as RuntimeLens;
+    const result = computeSagittalComa(emptyLens, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    // At field fraction 0, fieldAngleDeg is 0, so it should return null
+    expect(result).toBeNull();
+  });
+
+  it("extracts x-coordinate intercepts (not y)", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSagittalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // The center intercept should be near zero for x (sagittal direction on-axis in x)
+    // while meridional center intercept is the chief ray image height (non-zero)
+    const meridional = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(meridional).not.toBeNull();
+    expect(Math.abs(result!.centerIntercept)).toBeLessThan(Math.abs(meridional!.centerIntercept));
+  });
+
+  it("responds to aperture changes", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const wideOpen = apertureAt(L, 0, 0);
+    const stoppedDown = apertureAt(L, 0, 0.7);
+
+    const wide = computeSagittalComa(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stopped = computeSagittalComa(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    expect(wide).not.toBeNull();
+    expect(stopped).not.toBeNull();
+    // Stopping down should reduce coma span
+    expect(Math.abs(stopped!.spanMm)).toBeLessThan(Math.abs(wide!.spanMm));
   });
 });
 

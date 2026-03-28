@@ -54,6 +54,31 @@ export interface MeridionalComaResult {
   samples: MeridionalComaSample[];
 }
 
+/** One sample point in the sagittal coma fan. */
+export interface SagittalComaSample {
+  index: number;
+  pupilFraction: number;
+  launchX: number;
+  imageX: number | null;
+  clipped: boolean;
+}
+
+/** Dense sagittal coma analysis result for the current lens state. */
+export interface SagittalComaResult {
+  fieldAngleDeg: number;
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  centerIntercept: number;
+  minIntercept: number;
+  maxIntercept: number;
+  spanMm: number;
+  spanUm: number;
+  lowerIntercept: number;
+  upperIntercept: number;
+  samples: SagittalComaSample[];
+}
+
 /** One field sample for the representative coma preview grid. */
 export interface ComaPreviewFieldResult {
   fieldFraction: number;
