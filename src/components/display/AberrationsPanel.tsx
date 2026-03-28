@@ -12,6 +12,7 @@ import type { Theme } from "../../types/theme.js";
 import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
 import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
+import SagittalComaSection from "./aberrations/SagittalComaSection.js";
 import SphericalAberrationSection from "./aberrations/SphericalAberrationSection.js";
 import useAberrationsPanelData from "./aberrations/useAberrationsPanelData.js";
 
@@ -38,7 +39,15 @@ export default function AberrationsPanel({
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
-  const { saResult, saProfile, comaResult, comaPreviewResult, fieldCurvatureResult } = useAberrationsPanelData({
+  const {
+    saResult,
+    saProfile,
+    comaResult,
+    sagittalComaResult,
+    comaPreviewResult,
+    fieldCurvatureResult,
+    chromaticFieldCurvatureResult,
+  } = useAberrationsPanelData({
     L,
     zPos,
     focusT,
@@ -50,6 +59,7 @@ export default function AberrationsPanel({
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
   const [comaPreviewExpanded, setComaPreviewExpanded] = useState(true);
   const [comaExpanded, setComaExpanded] = useState(true);
+  const [sagittalComaExpanded, setSagittalComaExpanded] = useState(true);
   const [fieldCurvatureExpanded, setFieldCurvatureExpanded] = useState(true);
 
   useEffect(() => {
@@ -85,8 +95,15 @@ export default function AberrationsPanel({
           theme={t}
         />
 
+        <SagittalComaSection
+          result={sagittalComaResult}
+          expanded={sagittalComaExpanded}
+          onToggle={() => setSagittalComaExpanded((value) => !value)}
+          theme={t}
+        />
+
         <FieldCurvatureSection
-          result={fieldCurvatureResult}
+          result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
           expanded={fieldCurvatureExpanded}
           onToggle={() => setFieldCurvatureExpanded((value) => !value)}
           theme={t}

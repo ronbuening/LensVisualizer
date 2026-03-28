@@ -1,3 +1,4 @@
+import ChromaticFieldCurvaturePlot from "../ChromaticFieldCurvaturePlot.js";
 import FieldCurvatureMeanPlot from "../FieldCurvatureMeanPlot.js";
 import FieldCurvaturePlot from "../FieldCurvaturePlot.js";
 import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
@@ -50,6 +51,15 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
                 Tangential versus real sagittal diagnostic. The gap between the two traces is the astigmatic split.
               </span>
+              {result.chromaticFocusSpreadMm !== null ? (
+                <>
+                  <ChromaticFieldCurvaturePlot result={result} t={theme} />
+                  <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                    Per-wavelength focus shift. Each color shows its own tangential (solid) and sagittal (dashed) best
+                    focus across the field. Wider R/B separation indicates stronger chromatic field curvature.
+                  </span>
+                </>
+              ) : null}
               <div
                 style={{
                   display: "flex",
@@ -112,6 +122,29 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                     T {formatSignedMm(result.edgeTangentialShiftMm)} / S {formatSignedMm(result.edgeSagittalShiftMm)}
                   </span>
                 </div>
+                {result.chromaticFocusSpreadMm !== null ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Maximum chromatic focus spread: the largest R-to-B tangential or sagittal best-focus separation across all sampled field positions."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      CHROM SPREAD
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {formatSignedMm(result.chromaticFocusSpreadMm)}
+                    </span>
+                  </div>
+                ) : null}
               </div>
             </>
           ) : (
