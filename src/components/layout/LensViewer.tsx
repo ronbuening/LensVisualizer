@@ -31,12 +31,13 @@ import BreadcrumbBar from "./BreadcrumbBar.js";
 import ViewToggleBar from "./ViewToggleBar.js";
 import SingleLensContent from "./SingleLensContent.js";
 import DescriptionPanel from "./DescriptionPanel.js";
-import ABOUT_ME_MD from "../../content/AboutMe.md?raw";
-import ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
-import OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
-import OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermediate.md?raw";
-import ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.md?raw";
-import ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
+import _ABOUT_ME_MD from "../../content/AboutMe.md?raw";
+import _ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
+import _OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
+import _OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermediate.md?raw";
+import _ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.md?raw";
+import _ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
+import { stripFrontmatter } from "../../utils/homepageContent.js";
 import AboutFooter from "../display/AboutFooter.js";
 import useLensState from "../../utils/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
@@ -45,6 +46,13 @@ import useComparisonOrchestration from "../../comparison/useComparisonOrchestrat
 import ComparisonContent from "../../comparison/ComparisonContent.js";
 import useOverlays from "../hooks/useOverlays.js";
 import PrimerToggleButton from "./PrimerToggleButton.js";
+
+const ABOUT_ME_MD = stripFrontmatter(_ABOUT_ME_MD);
+const ABOUT_SITE_MD = stripFrontmatter(_ABOUT_SITE_MD);
+const OPTICS_PRIMER_SIMPLE_MD = stripFrontmatter(_OPTICS_PRIMER_SIMPLE_MD);
+const OPTICS_PRIMER_INTERMEDIATE_MD = stripFrontmatter(_OPTICS_PRIMER_INTERMEDIATE_MD);
+const ABERRATIONS_PRIMER_SIMPLE_MD = stripFrontmatter(_ABERRATIONS_PRIMER_SIMPLE_MD);
+const ABERRATIONS_PRIMER_INTERMEDIATE_MD = stripFrontmatter(_ABERRATIONS_PRIMER_INTERMEDIATE_MD);
 
 /* =====================================================================
  * §2  COMPONENT — State, effects, and orchestration logic
