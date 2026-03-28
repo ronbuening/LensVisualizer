@@ -115,13 +115,13 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling, sag curves, chromatic, layout geometry |
+| `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling (monochromatic and chromatic), sag curves, chromatic, layout geometry |
 | `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation |
 | `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, coma, and field-curvature computations |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
@@ -267,10 +267,12 @@ No React dependencies — fully testable in isolation.
 
 ## aberrationAnalysis.ts
 
-Pure-function aberration analysis helpers. All functions accept the runtime lens object L and current slider-derived parameters — no build-time dependencies, no React dependencies.
+Public barrel for the decomposed aberration modules under `src/optics/aberration/`. All functions accept the runtime lens object L and current slider-derived parameters — no build-time dependencies, no React dependencies.
 
 - **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a true current-state paraxial reference. Averages ±Y marginal rays for symmetry. Returns `{saMm, saUm, realIntercept, paraxialIntercept}` or null if all marginal fractions are clipped.
 - **`computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Samples the entrance pupil across aperture zones and returns the longitudinal spherical-aberration profile used by the analysis chart.
+- **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
+- **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes tangential, sagittal, and Petzval best-focus shifts across field fractions. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength focus shifts and a `chromaticFocusSpreadMm` summary.
 
 Sign convention: negative SA = undercorrected (real marginal focus closer to the lens than paraxial); positive SA = overcorrected.
 
