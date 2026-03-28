@@ -117,7 +117,6 @@ export function computeOffAxisFieldGeometry(
 export function traceOffAxisChiefRay(
   geometry: OffAxisFieldGeometry,
   L: RuntimeLens,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   entrancePupilSemiDiameter: number,
@@ -129,7 +128,6 @@ export function traceOffAxisChiefRay(
     geometry.yChief,
     geometry.uField,
     entrancePupilSemiDiameter,
-    zPos,
     focusT,
     zoomT,
     stopSemiDiameter,
@@ -158,7 +156,6 @@ export function traceOffAxisBundleFromSamples(
   samples: readonly SkewBundleSourceSample[],
   geometry: OffAxisFieldGeometry,
   L: RuntimeLens,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   entrancePupilSemiDiameter: number,
@@ -166,7 +163,7 @@ export function traceOffAxisBundleFromSamples(
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
-  const chiefRay = traceOffAxisChiefRay(geometry, L, zPos, focusT, zoomT, entrancePupilSemiDiameter, stopSemiDiameter);
+  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, entrancePupilSemiDiameter, stopSemiDiameter);
   if (chiefRay === null) return null;
 
   const tracedSamples = samples.flatMap((sample) => {
@@ -176,7 +173,6 @@ export function traceOffAxisBundleFromSamples(
       geometry.yChief,
       geometry.uField,
       entrancePupilSemiDiameter,
-      zPos,
       focusT,
       zoomT,
       stopSemiDiameter,
@@ -213,7 +209,6 @@ export function traceOrthogonalOffAxisBundle(
   sampleCount: number,
   geometry: OffAxisFieldGeometry,
   L: RuntimeLens,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   entrancePupilSemiDiameter: number,
@@ -223,7 +218,6 @@ export function traceOrthogonalOffAxisBundle(
     sampleOrthogonalPupilFan(sampleCount, orientation),
     geometry,
     L,
-    zPos,
     focusT,
     zoomT,
     entrancePupilSemiDiameter,
@@ -235,7 +229,6 @@ export function traceCircularOffAxisBundle(
   ringSamples: readonly number[],
   geometry: OffAxisFieldGeometry,
   L: RuntimeLens,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   entrancePupilSemiDiameter: number,
@@ -245,7 +238,6 @@ export function traceCircularOffAxisBundle(
     sampleCircularPupil(ringSamples),
     geometry,
     L,
-    zPos,
     focusT,
     zoomT,
     entrancePupilSemiDiameter,

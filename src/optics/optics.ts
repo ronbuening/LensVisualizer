@@ -601,14 +601,12 @@ export function traceSkewRay(
   y0: number,
   ux0: number,
   uy0: number,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
 ): SkewRayTraceResult {
-  void zPos;
   let x = x0;
   let y = y0;
   let n = 1.0;
@@ -736,7 +734,6 @@ export function traceChiefRelativeSkewRay(
   chiefLaunchHeight: number,
   fieldSlope: number,
   entrancePupilSemiDiameter: number,
-  zPos: number[],
   focusT: number,
   zoomT: number,
   stopSD: number | undefined,
@@ -748,7 +745,6 @@ export function traceChiefRelativeSkewRay(
     chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
     0,
     fieldSlope,
-    zPos,
     focusT,
     zoomT,
     stopSD,

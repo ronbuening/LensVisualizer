@@ -41,7 +41,7 @@ describe("traceSkewRay", () => {
   const lastSurfZ = 5;
 
   it("matches the on-axis meridional trace", () => {
-    const skew = traceSkewRay(0, 0, 0, 0, zPos, 0, 0, 15, false, L);
+    const skew = traceSkewRay(0, 0, 0, 0, 0, 0, 15, false, L);
     const meridional = traceRay(0, 0, zPos, 0, 0, 15, false, L);
 
     expect(skew.x).toBeCloseTo(0, 10);
@@ -52,7 +52,7 @@ describe("traceSkewRay", () => {
   });
 
   it("reduces to the existing meridional trace when launched in the tangential plane", () => {
-    const skew = traceSkewRay(0, 0.1, 0, 0, zPos, 0, 0, 15, false, L);
+    const skew = traceSkewRay(0, 0.1, 0, 0, 0, 0, 15, false, L);
     const meridional = traceRay(0.1, 0, zPos, 0, 0, 15, false, L);
 
     expect(skew.x).toBeCloseTo(0, 10);
@@ -62,8 +62,8 @@ describe("traceSkewRay", () => {
   });
 
   it("preserves rotational symmetry for mirrored sagittal rays", () => {
-    const positive = traceSkewRay(3, 1, 0, -0.04, zPos, 0, 0, 15, false, L);
-    const negative = traceSkewRay(-3, 1, 0, -0.04, zPos, 0, 0, 15, false, L);
+    const positive = traceSkewRay(3, 1, 0, -0.04, 0, 0, 15, false, L);
+    const negative = traceSkewRay(-3, 1, 0, -0.04, 0, 0, 15, false, L);
 
     expect(positive.x).toBeCloseTo(-negative.x, 8);
     expect(positive.y).toBeCloseTo(negative.y, 8);
@@ -72,12 +72,12 @@ describe("traceSkewRay", () => {
   });
 
   it("marks skew rays clipped when they exceed the stop radius", () => {
-    const clipped = traceSkewRay(20, 0, 0, 0, zPos, 0, 0, 15, true, L);
+    const clipped = traceSkewRay(20, 0, 0, 0, 0, 0, 15, true, L);
     expect(clipped.clipped).toBe(true);
   });
 
   it("projects finite skew intercepts to the image plane", () => {
-    const skew = traceSkewRay(2, 1, 0.02, -0.03, zPos, 0, 0, 15, false, L);
+    const skew = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
     const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ);
 
     expect(intercept).not.toBeNull();
@@ -163,7 +163,7 @@ describe("traceChiefRelativeSkewRay", () => {
     const fieldSlope = -0.05;
 
     // Trace with xFraction=0.5, yFraction=0.3
-    const result = traceChiefRelativeSkewRay(0.5, 0.3, yChief, fieldSlope, epSD, zPos, 0, 0, 15, false, L);
+    const result = traceChiefRelativeSkewRay(0.5, 0.3, yChief, fieldSlope, epSD, 0, 0, 15, false, L);
 
     // The chief-relative wrapper should produce a non-clipped result for modest fractions
     expect(result.clipped).toBe(false);
@@ -178,8 +178,8 @@ describe("traceChiefRelativeSkewRay", () => {
     const xFrac = 0.4;
     const yFrac = 0.2;
 
-    const viaWrapper = traceChiefRelativeSkewRay(xFrac, yFrac, yChief, fieldSlope, epSD, zPos, 0, 0, 15, false, L);
-    const viaDirect = traceSkewRay(xFrac * epSD, yChief + yFrac * epSD, 0, fieldSlope, zPos, 0, 0, 15, false, L);
+    const viaWrapper = traceChiefRelativeSkewRay(xFrac, yFrac, yChief, fieldSlope, epSD, 0, 0, 15, false, L);
+    const viaDirect = traceSkewRay(xFrac * epSD, yChief + yFrac * epSD, 0, fieldSlope, 0, 0, 15, false, L);
 
     expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
     expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
@@ -193,8 +193,8 @@ describe("traceSkewRay with non-trivial initial x-slope", () => {
   const zPos = [0, 5];
 
   it("produces different x output when launched with nonzero ux", () => {
-    const withUx = traceSkewRay(3, 0, 0.05, 0, zPos, 0, 0, 15, false, L);
-    const withoutUx = traceSkewRay(3, 0, 0, 0, zPos, 0, 0, 15, false, L);
+    const withUx = traceSkewRay(3, 0, 0.05, 0, 0, 0, 15, false, L);
+    const withoutUx = traceSkewRay(3, 0, 0, 0, 0, 0, 15, false, L);
 
     // Nonzero initial x-slope should deflect the ray differently
     expect(withUx.x).not.toBeCloseTo(withoutUx.x, 6);
@@ -202,8 +202,8 @@ describe("traceSkewRay with non-trivial initial x-slope", () => {
   });
 
   it("preserves symmetry for opposite initial x-slopes", () => {
-    const positive = traceSkewRay(3, 0, 0.05, 0, zPos, 0, 0, 15, false, L);
-    const negative = traceSkewRay(3, 0, -0.05, 0, zPos, 0, 0, 15, false, L);
+    const positive = traceSkewRay(3, 0, 0.05, 0, 0, 0, 15, false, L);
+    const negative = traceSkewRay(3, 0, -0.05, 0, 0, 0, 15, false, L);
 
     // For a rotationally symmetric system, mirroring ux should mirror the output x
     // but y should remain the same since the surface is symmetric
@@ -218,7 +218,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
     const stopSD = L.stopPhysSD;
 
     for (const h of [1, 3, 6, 9]) {
-      const skew = traceSkewRay(0, h, 0, 0, zPos, 0, 0, stopSD, false, L);
+      const skew = traceSkewRay(0, h, 0, 0, 0, 0, stopSD, false, L);
       const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
 
       if (meridional.clipped) {
@@ -240,7 +240,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
     const stopSD = L.stopPhysSD;
 
     for (const h of [2, 5, 10]) {
-      const skew = traceSkewRay(0, h, 0, 0, zPos, 0, 0, stopSD, false, L);
+      const skew = traceSkewRay(0, h, 0, 0, 0, 0, stopSD, false, L);
       const meridional = traceRay(h, 0, zPos, 0, 0, stopSD, false, L);
 
       if (meridional.clipped) {
@@ -257,8 +257,8 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
 
-    const positive = traceSkewRay(4, 2, 0, -0.03, zPos, 0, 0, L.stopPhysSD, false, L);
-    const negative = traceSkewRay(-4, 2, 0, -0.03, zPos, 0, 0, L.stopPhysSD, false, L);
+    const positive = traceSkewRay(4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
+    const negative = traceSkewRay(-4, 2, 0, -0.03, 0, 0, L.stopPhysSD, false, L);
 
     expect(positive.x).toBeCloseTo(-negative.x, 8);
     expect(positive.y).toBeCloseTo(negative.y, 8);
@@ -275,17 +275,7 @@ describe("skew-meridional cross-validation on multi-element lenses", () => {
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
     expect(geometry).not.toBeNull();
 
-    const bundle = traceOrthogonalOffAxisBundle(
-      "sagittal",
-      11,
-      geometry!,
-      L,
-      zPos,
-      0,
-      0,
-      currentEPSD,
-      currentPhysStopSD,
-    );
+    const bundle = traceOrthogonalOffAxisBundle("sagittal", 11, geometry!, L, 0, 0, currentEPSD, currentPhysStopSD);
     expect(bundle).not.toBeNull();
 
     // At center field, sagittal rays should have symmetric x-displacement
