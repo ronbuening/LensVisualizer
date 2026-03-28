@@ -92,7 +92,9 @@
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted section components |
-| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`, `SagittalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
+| `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
+| `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) tangential and sagittal best-focus traces across the field |
 | `DistortionTab.tsx` | `src/components/display/` | Distortion curve tab content; memoizes computation and renders DistortionChart |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |

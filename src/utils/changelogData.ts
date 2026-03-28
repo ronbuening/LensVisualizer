@@ -23,12 +23,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-03-28",
     type: "feature",
-    summary: "Added chromatic field curvature analysis with per-wavelength focus shifts",
+    summary: "Added chromatic field curvature chart with per-wavelength R/G/B focus traces",
   },
   {
     date: "2026-03-28",
     type: "feature",
-    summary: "Added sagittal coma metric complementing the existing meridional coma analysis",
+    summary: "Added sagittal coma section with x-intercept fan chart to aberrations drawer",
   },
   {
     date: "2026-03-28",

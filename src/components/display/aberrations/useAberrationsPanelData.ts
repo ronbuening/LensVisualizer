@@ -3,6 +3,7 @@ import {
   computeComaPointCloudPreview,
   computeFieldCurvature,
   computeMeridionalComa,
+  computeSagittalComa,
   computeSphericalAberration,
   computeSAProfile,
 } from "../../../optics/aberrationAnalysis.js";
@@ -29,15 +30,27 @@ export default function useAberrationsPanelData({
     const saResult = computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaResult = computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const sagittalComaResult = computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaPreviewResult = computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const chromaticFieldCurvatureResult = computeFieldCurvature(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      true,
+    );
 
     return {
       saResult,
       saProfile,
       comaResult,
+      sagittalComaResult,
       comaPreviewResult,
       fieldCurvatureResult,
+      chromaticFieldCurvatureResult,
     };
   }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
 }
