@@ -53,6 +53,11 @@ export const HOMEPAGE_ARTICLE_LIMIT = 5;
 
 /* ── Auto-discovered markdown content ──────────────────────────────── */
 
+/** Strip YAML frontmatter (---...---) from the top of a markdown string. */
+export function stripFrontmatter(raw: string): string {
+  return raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+}
+
 const _mdModules = import.meta.glob<string>("../content/*.md", {
   eager: true,
   query: "?raw",
@@ -63,8 +68,7 @@ const _mdModules = import.meta.glob<string>("../content/*.md", {
 const MD_BY_FILE: Record<string, string> = {};
 for (const [path, raw] of Object.entries(_mdModules)) {
   const file = path.replace("../content/", "");
-  // Strip YAML frontmatter before storing
-  MD_BY_FILE[file] = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+  MD_BY_FILE[file] = stripFrontmatter(raw);
 }
 
 /* ── Articles (auto-generated from build metadata) ─────────────────── */
