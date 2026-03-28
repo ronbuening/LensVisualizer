@@ -23,7 +23,8 @@ function formatShiftMm(value: number): string {
 
 export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProps) {
   const usableFields = result.fields.filter((field) => field.usable);
-  const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm);
+  const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
+  const yHalfRange = Math.max(0.1, Math.min(result.sharedFocusShiftHalfRangeMm, imageCircleRadiusMm));
   const tangentialColor = t.rayWarm ?? "#22c55e";
   const sagittalColor = t.rayChromB ?? "#38bdf8";
   const petzvalColor = t.stopLabel ?? "#f8fafc";
