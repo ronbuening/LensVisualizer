@@ -11,7 +11,7 @@ const VB_H = 224;
 const ML = 42;
 const MR = 18;
 const MT = 20;
-const MB = 40;
+const MB = 50;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
@@ -43,12 +43,15 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Field curvature and astigmatic difference. Tangential and sagittal best-focus surfaces are shown relative to the
-        current image plane across the current half-field, with the Petzval mean surface overlaid for reference.
+        Field curvature and astigmatic difference. The solid circular tangential trace and the dashed square sagittal
+        trace show where each off-axis ray family reaches best focus relative to the current image plane.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
+      <text x={ML + PW + 6} y={zeroY + 3} fill={t.muted} fontSize={8} fontFamily="inherit">
+        Current plane
+      </text>
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
@@ -83,41 +86,66 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       >
         Best-focus shift (mm)
       </text>
+      <text x={ML + PW + 6} y={MT + 8} fill={t.muted} fontSize={8} fontFamily="inherit">
+        Toward lens
+      </text>
+      <text x={ML + PW + 6} y={MT + PH - 2} fill={t.muted} fontSize={8} fontFamily="inherit">
+        Toward sensor
+      </text>
       <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
         Field position across current half-field
       </text>
 
-      {usableFields.map((field) => (
-        <line
-          key={`delta-${field.fieldFraction}`}
-          x1={xScale(field.fieldFraction)}
-          y1={yScale(field.tangentialShiftMm)}
-          x2={xScale(field.fieldFraction)}
-          y2={yScale(field.sagittalShiftMm)}
-          stroke={t.panelBorder}
-          strokeWidth={1}
-          strokeDasharray="2,2"
-        />
-      ))}
+      {usableFields.map((field) => {
+        const x = xScale(field.fieldFraction);
+        const tangentialY = yScale(field.tangentialShiftMm);
+        const sagittalY = yScale(field.sagittalShiftMm);
+        const topY = Math.min(tangentialY, sagittalY);
+        const height = Math.max(1, Math.abs(tangentialY - sagittalY));
+
+        return (
+          <g key={`delta-${field.fieldFraction}`}>
+            <rect x={x - 4} y={topY} width={8} height={height} fill={t.panelBorder} opacity={0.2} rx={2} />
+            <line
+              x1={x}
+              y1={tangentialY}
+              x2={x}
+              y2={sagittalY}
+              stroke={t.panelBorder}
+              strokeWidth={1}
+              strokeDasharray="2,2"
+            />
+          </g>
+        );
+      })}
 
       {petzvalPoints ? <polyline points={petzvalPoints} fill="none" stroke={t.axis} strokeWidth={1.25} /> : null}
       {tangentialPoints ? (
         <polyline points={tangentialPoints} fill="none" stroke={t.value} strokeWidth={2} strokeLinejoin="round" />
       ) : null}
       {sagittalPoints ? (
-        <polyline points={sagittalPoints} fill="none" stroke={t.label} strokeWidth={2} strokeLinejoin="round" />
+        <polyline
+          points={sagittalPoints}
+          fill="none"
+          stroke={t.label}
+          strokeWidth={2}
+          strokeLinejoin="round"
+          strokeDasharray="5,3"
+        />
       ) : null}
 
       {usableFields.map((field) => (
         <g key={`field-${field.fieldFraction}`}>
           <circle cx={xScale(field.fieldFraction)} cy={yScale(field.tangentialShiftMm)} r={2.5} fill={t.value} />
-          <circle
-            cx={xScale(field.fieldFraction)}
-            cy={yScale(field.sagittalShiftMm)}
-            r={2.5}
+          <rect
+            x={xScale(field.fieldFraction) - 2.4}
+            y={yScale(field.sagittalShiftMm) - 2.4}
+            width={4.8}
+            height={4.8}
             fill={t.label}
             stroke={t.panelBg}
             strokeWidth={0.75}
+            rx={0.8}
           />
         </g>
       ))}
@@ -125,17 +153,39 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       <g transform={`translate(${ML + 6}, ${MT + 12})`}>
         <circle cx={0} cy={0} r={2.5} fill={t.value} />
         <text x={8} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Tangential
+          Tangential plane
         </text>
-        <circle cx={70} cy={0} r={2.5} fill={t.label} stroke={t.panelBg} strokeWidth={0.75} />
-        <text x={78} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Sagittal
-        </text>
-        <line x1={135} y1={0} x2={147} y2={0} stroke={t.axis} strokeWidth={1.25} />
-        <text x={154} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Petzval
+
+        <line x1={86} y1={0} x2={98} y2={0} stroke={t.label} strokeWidth={2} strokeDasharray="5,3" />
+        <rect
+          x={104.5}
+          y={-2.4}
+          width={4.8}
+          height={4.8}
+          fill={t.label}
+          stroke={t.panelBg}
+          strokeWidth={0.75}
+          rx={0.8}
+        />
+        <text x={114} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
+          Sagittal plane
         </text>
       </g>
+
+      <g transform={`translate(${ML + 6}, ${MT + 26})`}>
+        <rect x={0} y={-4} width={8} height={8} fill={t.panelBorder} opacity={0.2} rx={2} />
+        <text x={14} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
+          Shaded gap = astigmatic split
+        </text>
+        <line x1={118} y1={0} x2={130} y2={0} stroke={t.axis} strokeWidth={1.25} />
+        <text x={136} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
+          Petzval mean
+        </text>
+      </g>
+
+      <text x={ML + 6} y={VB_H - 18} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+        Read left to right: if the two traces stay close together, astigmatism is low.
+      </text>
     </svg>
   );
 }

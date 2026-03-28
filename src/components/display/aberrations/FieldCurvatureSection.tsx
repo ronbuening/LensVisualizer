@@ -25,7 +25,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Field Curvature & Astigmatic Difference"
         helpLabel="Field curvature help"
-        helpText="Tangential and sagittal off-axis image surfaces do not usually meet the current image plane at the same axial position. This chart shows their best-focus shifts across the current half-field. The line spacing at each field sample is the astigmatic difference, while the centerline reference shows the Petzval mean surface."
+        helpText="Use this chart in three passes. First, look at whether the tangential solid-circle trace and the sagittal dashed-square trace sit above or below the current-plane line to see where the best image surface bends. Second, compare how far apart those two traces are at each field sample: that shaded gap is the astigmatic difference. Third, compare both against the Petzval mean line to see whether the split is mostly a curved-field problem or a sagittal-versus-tangential disagreement."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -34,8 +34,9 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Sagittal and tangential best-focus surfaces across the current half-field. The vertical split at each field
-            sample shows the astigmatic difference; both curves are referenced to the current image plane.
+            Solid green circles trace the tangential focus. Dashed light squares trace the sagittal focus. Read the
+            vertical distance between them as astigmatism, then read their average bend against the current-plane line
+            as field curvature.
           </span>
 
           {result ? (
@@ -70,7 +71,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                   title="Maximum sagittal minus tangential best-focus separation across the sampled field positions."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    MAX ASTIG
+                    MAX T-S SPLIT
                   </span>
                   <span
                     style={{
@@ -89,7 +90,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                   title="Representative edge-field curvature shift: tangential and sagittal best-focus positions relative to the current image plane."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    EDGE CURVATURE
+                    EDGE T / S
                   </span>
                   <span
                     style={{
