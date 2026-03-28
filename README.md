@@ -30,6 +30,8 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 - **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Coma point-cloud preview**: traces a fixed circular pupil pattern with the skew-ray core and plots chief-ray-centered tangential and sagittal image heights directly in millimeters
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state; this detailed diagnostic is retained below the point-cloud preview
+- **Sagittal coma model**: traces a sagittal pupil fan orthogonal to the meridional plane and reports the x-intercept spread, displayed in its own collapsible section below the meridional coma view
+- **Chromatic field curvature**: per-wavelength (R/G/B) tangential and sagittal best-focus traces across the field, with a chromatic focus spread metric; displayed as a third chart inside the field curvature section
 - **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
 - **Glass inspection**: element metadata, Abbe-number plotting, APD tagging, and lens role annotations
 - **SEO-friendly multipage app**: prerendered routes for lenses, makers, articles, comparison pages, and static content

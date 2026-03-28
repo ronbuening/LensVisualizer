@@ -10,12 +10,14 @@ const {
   mockComputeSphericalAberration,
   mockComputeSAProfile,
   mockComputeMeridionalComa,
+  mockComputeSagittalComa,
   mockComputeComaPreview,
   mockComputeFieldCurvature,
 } = vi.hoisted(() => ({
   mockComputeSphericalAberration: vi.fn(),
   mockComputeSAProfile: vi.fn(),
   mockComputeMeridionalComa: vi.fn(),
+  mockComputeSagittalComa: vi.fn(),
   mockComputeComaPreview: vi.fn(),
   mockComputeFieldCurvature: vi.fn(),
 }));
@@ -24,6 +26,7 @@ vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
+  computeSagittalComa: mockComputeSagittalComa,
   computeComaPointCloudPreview: mockComputeComaPreview,
   computeFieldCurvature: mockComputeFieldCurvature,
 }));
@@ -65,6 +68,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReset();
     mockComputeSAProfile.mockReset();
     mockComputeMeridionalComa.mockReset();
+    mockComputeSagittalComa.mockReset();
     mockComputeComaPreview.mockReset();
     mockComputeFieldCurvature.mockReset();
     mockComputeSAProfile.mockReturnValue([
@@ -176,6 +180,7 @@ describe("AberrationsPanel", () => {
       maxAstigmaticDifferenceUm: 120,
       edgeTangentialShiftMm: -0.45,
       edgeSagittalShiftMm: -0.21,
+      chromaticFocusSpreadMm: null,
       fields: [
         {
           fieldFraction: 0,
@@ -193,6 +198,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: 0,
           astigmaticDifferenceMm: 0,
           astigmaticDifferenceUm: 0,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -211,6 +217,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -0.075,
           astigmaticDifferenceMm: 0.05,
           astigmaticDifferenceUm: 50,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -229,6 +236,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -0.15,
           astigmaticDifferenceMm: 0.1,
           astigmaticDifferenceUm: 100,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -247,6 +255,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -0.29,
           astigmaticDifferenceMm: 0.12,
           astigmaticDifferenceUm: 120,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -265,6 +274,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -0.33,
           astigmaticDifferenceMm: 0.24,
           astigmaticDifferenceUm: 240,
+          chromaticFieldShifts: null,
           usable: true,
         },
       ],
@@ -364,6 +374,7 @@ describe("AberrationsPanel", () => {
       maxAstigmaticDifferenceUm: 30000,
       edgeTangentialShiftMm: -25,
       edgeSagittalShiftMm: 5,
+      chromaticFocusSpreadMm: null,
       fields: [
         {
           fieldFraction: 0,
@@ -381,6 +392,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: 0,
           astigmaticDifferenceMm: 0,
           astigmaticDifferenceUm: 0,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -399,6 +411,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -13,
           astigmaticDifferenceMm: 6,
           astigmaticDifferenceUm: 6000,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -417,6 +430,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -19,
           astigmaticDifferenceMm: 12,
           astigmaticDifferenceUm: 12000,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -435,6 +449,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -24,
           astigmaticDifferenceMm: 18,
           astigmaticDifferenceUm: 18000,
+          chromaticFieldShifts: null,
           usable: true,
         },
         {
@@ -453,6 +468,7 @@ describe("AberrationsPanel", () => {
           petzvalShiftMm: -30,
           astigmaticDifferenceMm: 30,
           astigmaticDifferenceUm: 30000,
+          chromaticFieldShifts: null,
           usable: true,
         },
       ],
@@ -526,7 +542,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    fireEvent.click(screen.getAllByText("LESS")[3].closest("button")!);
+    fireEvent.click(screen.getAllByText("LESS")[4].closest("button")!);
 
     expect(screen.queryByText(/The first chart strips the problem down to field curvature only/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
@@ -540,7 +556,7 @@ describe("AberrationsPanel", () => {
     ]);
 
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
-    expect(screen.getAllByText("LESS").length).toBe(4);
+    expect(screen.getAllByText("LESS").length).toBe(5);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
 
