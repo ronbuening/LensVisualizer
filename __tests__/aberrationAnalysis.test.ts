@@ -12,6 +12,11 @@ import {
   computeSphericalAberration,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
+import {
+  bestFocusPlaneForDirection,
+  computeOffAxisFieldGeometry,
+  traceOrthogonalOffAxisBundle,
+} from "../src/optics/aberration/offAxis.js";
 import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -751,6 +756,53 @@ describe("computeFieldCurvature", () => {
     expect(isFinite(result!.maxAstigmaticDifferenceUm)).toBe(true);
     expect(isFinite(result!.edgeTangentialShiftMm)).toBe(true);
     expect(isFinite(result!.edgeSagittalShiftMm)).toBe(true);
+  });
+
+  it("matches the shared off-axis bundle focus solve at an off-axis field", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const field = result!.fields.find((sample) => sample.fieldFraction === 0.75);
+    expect(field).toBeDefined();
+    expect(field!.usable).toBe(true);
+
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    expect(geometry).not.toBeNull();
+
+    const tangentialBundle = traceOrthogonalOffAxisBundle(
+      "tangential",
+      MERIDIONAL_COMA_SAMPLE_COUNT,
+      geometry!,
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+    );
+    const sagittalBundle = traceOrthogonalOffAxisBundle(
+      "sagittal",
+      MERIDIONAL_COMA_SAMPLE_COUNT,
+      geometry!,
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+    );
+
+    expect(tangentialBundle).not.toBeNull();
+    expect(sagittalBundle).not.toBeNull();
+    expect(field!.tangentialBestFocusZ).toBeCloseTo(bestFocusPlaneForDirection(tangentialBundle!, "tangential"), 8);
+    expect(field!.sagittalBestFocusZ).toBeCloseTo(bestFocusPlaneForDirection(sagittalBundle!, "sagittal"), 8);
+    expect(field!.validSampleCount).toBe(
+      Math.min(tangentialBundle!.validSampleCount, sagittalBundle!.validSampleCount),
+    );
   });
 
   it("keeps the center-field astigmatic difference at zero", () => {
