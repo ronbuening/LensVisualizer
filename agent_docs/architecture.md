@@ -102,6 +102,18 @@
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
 
+### Homepage Components
+
+| Module | Location | Purpose |
+|--------|----------|---------|
+| `HeroSection.tsx` | `src/components/homepage/` | Hero banner with headline, tagline, and primary CTAs |
+| `RecentLenses.tsx` | `src/components/homepage/` | "Recently Added" card list from the lens catalog |
+| `QuickNavCards.tsx` | `src/components/homepage/` | Quick-access navigation cards for Lenses, Makers, and Articles |
+| `ArticleList.tsx` | `src/components/homepage/` | Condensed list of articles for the homepage articles section |
+| `ArticleCard.tsx` | `src/components/homepage/` | Single article card used by ArticleList |
+| `ChangelogBox.tsx` | `src/components/homepage/` | Scrollable changelog panel grouping entries by date with type badges |
+| `HomeFooter.tsx` | `src/components/homepage/` | Homepage footer with about links and site credits |
+
 ### Utility Components
 
 | Module | Location | Purpose |
@@ -158,8 +170,8 @@
 ## Testing & Coverage
 
 - Coverage runs are configured in `vite.config.js` and currently include `src/optics/**`, `src/utils/**`, `src/pages/**`, `src/routes/**`, `src/components/**`, and `src/comparison/**`.
-- Shared browser/router test helpers live in `__tests__/testUtils.tsx` and cover router mounting, lens-context rendering, `matchMedia`, localStorage seeding, and `history.replaceState` mocking.
-- Recent UI coverage additions focus on the analysis drawer, aberrations panel sections, page render smoke tests, URL sync branches, and page-theme hooks so the layout/orchestration seams can be refactored safely.
+- Shared browser/router test helpers live in `__tests__/testUtils.tsx` and cover router mounting, lens-context rendering, `matchMedia`, localStorage seeding, and `history.replaceState` mocking. Uses `@testing-library/react` for component rendering.
+- Component smoke tests (`.test.tsx`) cover the analysis drawer, aberrations panel sections, page renders, URL sync branches, and page-theme hooks so the layout/orchestration seams can be refactored safely.
 
 ## Routing & SSR
 
