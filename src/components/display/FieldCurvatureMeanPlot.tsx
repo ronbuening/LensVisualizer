@@ -23,7 +23,8 @@ function formatShiftMm(value: number): string {
 
 export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMeanPlotProps) {
   const usableFields = result.fields.filter((field) => field.usable);
-  const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm);
+  const meanShiftHalfRange = Math.max(...usableFields.map((field) => Math.abs(field.petzvalShiftMm)), 0);
+  const yHalfRange = Math.max(0.05, meanShiftHalfRange * 1.15);
   const curveColor = t.stopLabel ?? "#f8fafc";
   const fillColor = t.panelBorder;
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
