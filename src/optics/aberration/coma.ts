@@ -1,12 +1,4 @@
-import {
-  bAtZoom,
-  halfFieldAtZoom,
-  sampleCircularPupil,
-  skewImagePlaneIntercept,
-  traceChiefRelativeSkewRay,
-  traceRay,
-  yRatioAtZoom,
-} from "../optics.js";
+import { sampleOrthogonalPupilFan } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   ComaPointCloudPoint,
@@ -23,7 +15,7 @@ import {
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
-import { imagePlaneIntercept } from "./shared.js";
+import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle, traceOrthogonalOffAxisBundle } from "./offAxis.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
@@ -38,14 +30,6 @@ const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[nu
 interface ComaPreviewFieldMeta {
   fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
   label: string;
-}
-
-interface ComaFieldGeometry {
-  fieldAngleDeg: number;
-  uField: number;
-  yChief: number;
-  lastSurfZ: number;
-  imagePlaneZ: number;
 }
 
 interface MeridionalComaFieldSample extends MeridionalComaSample {
@@ -101,40 +85,6 @@ function fixedComaPreviewFieldMeta(): ComaPreviewFieldMeta[] {
     fieldFraction,
     label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
   }));
-}
-
-function computeComaFieldGeometry(
-  L: RuntimeLens,
-  zPos: number[],
-  zoomT: number,
-  fieldFraction: number,
-): ComaFieldGeometry | null {
-  if (L.N < 1) return null;
-
-  const halfFieldDeg = halfFieldAtZoom(zoomT, L);
-  if (!isFinite(halfFieldDeg) || halfFieldDeg < 0) return null;
-
-  const yRatio = yRatioAtZoom(zoomT, L);
-  if (!isFinite(yRatio) || Math.abs(yRatio) < 1e-12) return null;
-
-  if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
-
-  const fieldAngleDeg = halfFieldDeg * fieldFraction;
-  if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
-
-  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
-  const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
-  const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
-  if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;
-
-  return {
-    fieldAngleDeg,
-    uField,
-    yChief,
-    lastSurfZ,
-    imagePlaneZ,
-  };
 }
 
 function buildFixedComaPreviewFootprints(
@@ -288,32 +238,40 @@ function computeMeridionalComaFieldFootprint(
 ): MeridionalComaFieldFootprint | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeComaFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
   if (geometry === null) return null;
 
-  const samples: MeridionalComaFieldSample[] = [];
-  const validSamples: Array<MeridionalComaFieldSample & { imageHeight: number }> = [];
+  const bundle = traceOrthogonalOffAxisBundle(
+    "tangential",
+    MERIDIONAL_COMA_SAMPLE_COUNT,
+    geometry,
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  );
+  if (bundle === null) return null;
 
-  for (let index = 0; index < MERIDIONAL_COMA_SAMPLE_COUNT; index++) {
-    const pupilFraction = -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1);
-    const launchHeight = geometry.yChief + pupilFraction * currentEPSD;
-    const trace = traceRay(launchHeight, geometry.uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
-    const projectedHeight = trace.clipped
-      ? null
-      : imagePlaneIntercept(trace.y, trace.u, geometry.lastSurfZ, geometry.imagePlaneZ);
-    const sample: MeridionalComaFieldSample = {
-      index,
-      pupilFraction,
-      launchHeight,
-      imageHeight: projectedHeight,
-      relativeImageHeight: null,
-      clipped: trace.clipped || projectedHeight === null,
-    };
-    samples.push(sample);
-    if (sample.imageHeight !== null && !sample.clipped) {
-      validSamples.push(sample as MeridionalComaFieldSample & { imageHeight: number });
-    }
-  }
+  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
+  const samples: MeridionalComaFieldSample[] = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential").map(
+    (sample) => {
+      const tracedSample = tracedSamplesByIndex.get(sample.index);
+      return {
+        index: sample.index,
+        pupilFraction: sample.pupilFraction,
+        launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
+        imageHeight: tracedSample?.imagePoint.y ?? null,
+        relativeImageHeight: null,
+        clipped: tracedSample === undefined,
+      };
+    },
+  );
+  const validSamples = samples.filter(
+    (sample): sample is MeridionalComaFieldSample & { imageHeight: number } =>
+      sample.imageHeight !== null && !sample.clipped,
+  );
 
   if (validSamples.length < 3) return null;
 
@@ -340,9 +298,9 @@ function computeMeridionalComaFieldFootprint(
   return {
     fieldFraction,
     fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount: bundle.sampleCount,
     validSampleCount: validSamples.length,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSamples.length,
+    clippedSampleCount: bundle.clippedSampleCount,
     centerIntercept,
     minIntercept: Math.min(...intercepts),
     maxIntercept: Math.max(...intercepts),
@@ -367,69 +325,28 @@ function computeComaPointCloudFieldFootprint(
 ): ComaPointCloudFieldFootprint | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeComaFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
   if (geometry === null) return null;
 
-  const chiefTrace = traceChiefRelativeSkewRay(
-    0,
-    0,
-    geometry.yChief,
-    geometry.uField,
-    currentEPSD,
+  const bundle = traceCircularOffAxisBundle(
+    COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
+    geometry,
+    L,
     zPos,
     focusT,
     zoomT,
+    currentEPSD,
     currentPhysStopSD,
-    true,
-    L,
   );
-  if (chiefTrace.clipped) return null;
+  if (bundle === null) return null;
 
-  const chiefImagePoint = skewImagePlaneIntercept(
-    chiefTrace.x,
-    chiefTrace.y,
-    chiefTrace.ux,
-    chiefTrace.uy,
-    geometry.lastSurfZ,
-    geometry.imagePlaneZ,
-  );
-  if (chiefImagePoint === null) return null;
-
-  const points: ComaPointCloudPoint[] = [];
-  for (const sample of sampleCircularPupil(COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES)) {
-    const trace = traceChiefRelativeSkewRay(
-      sample.xFraction,
-      sample.yFraction,
-      geometry.yChief,
-      geometry.uField,
-      currentEPSD,
-      zPos,
-      focusT,
-      zoomT,
-      currentPhysStopSD,
-      true,
-      L,
-    );
-    if (trace.clipped) continue;
-
-    const imagePoint = skewImagePlaneIntercept(
-      trace.x,
-      trace.y,
-      trace.ux,
-      trace.uy,
-      geometry.lastSurfZ,
-      geometry.imagePlaneZ,
-    );
-    if (imagePoint === null) continue;
-
-    points.push({
-      index: points.length,
-      sourceSampleIndex: sample.index,
-      tangentialImageHeight: imagePoint.y - chiefImagePoint.y,
-      sagittalImageHeight: imagePoint.x - chiefImagePoint.x,
-      weight: sample.weight,
-    });
-  }
+  const points: ComaPointCloudPoint[] = bundle.samples.map((sample, index) => ({
+    index,
+    sourceSampleIndex: sample.sourceSampleIndex,
+    tangentialImageHeight: sample.imagePoint.y - bundle.chiefRay.imagePoint.y,
+    sagittalImageHeight: sample.imagePoint.x - bundle.chiefRay.imagePoint.x,
+    weight: sample.weight ?? 0,
+  }));
 
   if (points.length < COMA_POINT_CLOUD_MIN_VALID_SAMPLES) return null;
 
@@ -439,10 +356,10 @@ function computeComaPointCloudFieldFootprint(
   return {
     fieldFraction,
     fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
-    validSampleCount: points.length,
-    clippedSampleCount: COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT - points.length,
-    chiefIntercept: chiefImagePoint.y,
+    sampleCount: bundle.sampleCount,
+    validSampleCount: bundle.validSampleCount,
+    clippedSampleCount: bundle.clippedSampleCount,
+    chiefIntercept: bundle.chiefRay.imagePoint.y,
     minRelativeTangentialImageHeight: Math.min(...tangentialHeights),
     maxRelativeTangentialImageHeight: Math.max(...tangentialHeights),
     minRelativeSagittalImageHeight: Math.min(...sagittalHeights),
