@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import {
   computeEstimatedComaPreview,
+  computeFieldCurvature,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
@@ -29,12 +30,14 @@ export default function useAberrationsPanelData({
     const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaResult = computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaPreviewResult = computeEstimatedComaPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
 
     return {
       saResult,
       saProfile,
       comaResult,
       comaPreviewResult,
+      fieldCurvatureResult,
     };
   }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
 }

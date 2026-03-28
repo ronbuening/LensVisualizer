@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
+import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SphericalAberrationSection from "./aberrations/SphericalAberrationSection.js";
 import useAberrationsPanelData from "./aberrations/useAberrationsPanelData.js";
@@ -37,7 +38,7 @@ export default function AberrationsPanel({
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
-  const { saResult, saProfile, comaResult, comaPreviewResult } = useAberrationsPanelData({
+  const { saResult, saProfile, comaResult, comaPreviewResult, fieldCurvatureResult } = useAberrationsPanelData({
     L,
     zPos,
     focusT,
@@ -49,6 +50,7 @@ export default function AberrationsPanel({
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
   const [comaPreviewExpanded, setComaPreviewExpanded] = useState(true);
   const [comaExpanded, setComaExpanded] = useState(true);
+  const [fieldCurvatureExpanded, setFieldCurvatureExpanded] = useState(true);
 
   useEffect(() => {
     setSaChartExpanded(expanded);
@@ -80,6 +82,13 @@ export default function AberrationsPanel({
           result={comaResult}
           expanded={comaExpanded}
           onToggle={() => setComaExpanded((value) => !value)}
+          theme={t}
+        />
+
+        <FieldCurvatureSection
+          result={fieldCurvatureResult}
+          expanded={fieldCurvatureExpanded}
+          onToggle={() => setFieldCurvatureExpanded((value) => !value)}
           theme={t}
         />
       </div>

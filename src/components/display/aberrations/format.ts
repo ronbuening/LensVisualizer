@@ -10,3 +10,14 @@ export function formatSignedSaUm(saUm: number): string {
   const rounded = Math.abs(saUm) >= 1 ? saUm.toFixed(0) : saUm.toFixed(1);
   return `${rounded} µm`;
 }
+
+export function formatSignedUm(valueUm: number): string {
+  if (Math.abs(valueUm) < 0.1) return "0 µm";
+  const rounded = Math.abs(valueUm) >= 1 ? valueUm.toFixed(0) : valueUm.toFixed(1);
+  return `${rounded} µm`;
+}
+
+export function formatSignedMm(valueMm: number): string {
+  if (Math.abs(valueMm) < 0.005) return "0.00 mm";
+  return `${valueMm.toFixed(2)} mm`;
+}

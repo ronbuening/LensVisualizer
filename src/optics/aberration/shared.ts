@@ -125,3 +125,19 @@ export function bestFocusPlane(hits: RealRayHit[], lastSurfZ: number): number {
   const numer = hits.reduce((sum, hit) => sum + hit.y * hit.u, 0);
   return lastSurfZ - numer / denom;
 }
+
+export function bestRelativeFocusPlane(hits: RealRayHit[], referenceHit: RealRayHit, lastSurfZ: number): number {
+  const denom = hits.reduce((sum, hit) => {
+    const du = hit.u - referenceHit.u;
+    return sum + du * du;
+  }, 0);
+  if (denom <= 1e-12) return lastSurfZ;
+
+  const numer = hits.reduce((sum, hit) => {
+    const dy = hit.y - referenceHit.y;
+    const du = hit.u - referenceHit.u;
+    return sum + dy * du;
+  }, 0);
+
+  return lastSurfZ - numer / denom;
+}

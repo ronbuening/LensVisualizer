@@ -1,10 +1,12 @@
 import { describe, it, expect } from "vitest";
 import {
   COMA_PREVIEW_FIELD_FRACTIONS,
+  FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
   computeComaPreview,
   computeEstimatedComaPreview,
+  computeFieldCurvature,
   computeMeridionalComa,
   computeSphericalAberration,
   computeSAProfile,
@@ -691,6 +693,96 @@ describe("computeEstimatedComaPreview", () => {
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
     expect(atClose!.sharedTangentialHalfRangeMm).not.toBeCloseTo(atInfinity!.sharedTangentialHalfRangeMm, 6);
+  });
+});
+
+describe("computeFieldCurvature", () => {
+  it("returns an ordered field sweep for a representative prime lens", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldFractions).toEqual(FIELD_CURVATURE_FIELD_FRACTIONS);
+    expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75, 1]);
+    expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%", "100%"]);
+    expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
+    expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);
+  });
+
+  it("returns a finite result for a zoom lens at the tele end", () => {
+    const L = build(NikkorZ70200Raw);
+    const { z: zPos } = doLayout(0, 1, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 1, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(isFinite(result!.maxAstigmaticDifferenceUm)).toBe(true);
+    expect(isFinite(result!.edgeTangentialShiftMm)).toBe(true);
+    expect(isFinite(result!.edgeSagittalShiftMm)).toBe(true);
+  });
+
+  it("keeps the center-field astigmatic difference at zero", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fields[0].fieldFraction).toBe(0);
+    expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
+  });
+
+  it("shows measurable astigmatic separation away from center", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisFields = result!.fields.filter((field) => field.usable && field.fieldFraction > 0);
+    expect(offAxisFields.length).toBeGreaterThan(0);
+    expect(offAxisFields.some((field) => Math.abs(field.astigmaticDifferenceUm) > 1)).toBe(true);
+  });
+
+  it("changes with focus", () => {
+    const L = build(NikonAF28f14DRaw);
+    const infinity = apertureAt(L, 0, 0);
+    const close = apertureAt(L, 0, 0);
+    const { z: zInfinity } = doLayout(0, 0, L);
+    const { z: zClose } = doLayout(0.8, 0, L);
+
+    const atInfinity = computeFieldCurvature(L, zInfinity, 0, 0, infinity.currentEPSD, infinity.currentPhysStopSD);
+    const atClose = computeFieldCurvature(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+
+    expect(atInfinity).not.toBeNull();
+    expect(atClose).not.toBeNull();
+    expect(atClose!.edgeTangentialShiftMm).not.toBeCloseTo(atInfinity!.edgeTangentialShiftMm, 6);
+  });
+
+  it("changes with zoom", () => {
+    const L = build(NikkorZ70200Raw);
+    const wide = apertureAt(L, 0, 0);
+    const tele = apertureAt(L, 1, 0);
+    const { z: zWide } = doLayout(0, 0, L);
+    const { z: zTele } = doLayout(0, 1, L);
+
+    const atWide = computeFieldCurvature(L, zWide, 0, 0, wide.currentEPSD, wide.currentPhysStopSD);
+    const atTele = computeFieldCurvature(L, zTele, 0, 1, tele.currentEPSD, tele.currentPhysStopSD);
+
+    expect(atWide).not.toBeNull();
+    expect(atTele).not.toBeNull();
+    expect(atTele!.edgeTangentialShiftMm).not.toBeCloseTo(atWide!.edgeTangentialShiftMm, 6);
+  });
+
+  it("returns null for invalid inputs", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    expect(computeFieldCurvature(L, zPos, 0, 0, 0, 0)).toBeNull();
+    expect(computeFieldCurvature({ N: 0, S: [] } as unknown as RuntimeLens, [], 0, 0, 10, 5)).toBeNull();
   });
 });
 
