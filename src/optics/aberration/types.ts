@@ -108,6 +108,39 @@ export interface EstimatedComaPreviewResult {
   usableFieldCount: number;
 }
 
+/** One field sample in the field-curvature / astigmatism sweep. */
+export interface FieldCurvatureFieldResult {
+  fieldFraction: number;
+  label: string;
+  fieldAngleDeg: number;
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  chiefImageHeight: number;
+  tangentialBestFocusZ: number;
+  sagittalBestFocusZ: number;
+  petzvalBestFocusZ: number;
+  tangentialShiftMm: number;
+  sagittalShiftMm: number;
+  petzvalShiftMm: number;
+  astigmaticDifferenceMm: number;
+  astigmaticDifferenceUm: number;
+  usable: boolean;
+}
+
+/** Shared field-curvature and astigmatic-difference analysis for the current lens state. */
+export interface FieldCurvatureResult {
+  fieldFractions: readonly number[];
+  fields: FieldCurvatureFieldResult[];
+  usableFieldCount: number;
+  imagePlaneZ: number;
+  sharedFocusShiftHalfRangeMm: number;
+  maxAstigmaticDifferenceMm: number;
+  maxAstigmaticDifferenceUm: number;
+  edgeTangentialShiftMm: number;
+  edgeSagittalShiftMm: number;
+}
+
 /** Near-axis real-ray fraction used as the spherical-aberration reference baseline. */
 export const NEAR_AXIS_REAL_FRAC = 0.1;
 
@@ -116,3 +149,6 @@ export const MERIDIONAL_COMA_SAMPLE_COUNT = 51;
 
 /** Fixed field positions shown in the representative coma preview grid. */
 export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+
+/** Fixed field positions shown in the field-curvature / astigmatism chart. */
+export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
