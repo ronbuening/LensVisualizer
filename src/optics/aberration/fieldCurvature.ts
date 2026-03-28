@@ -64,6 +64,17 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return radius - Math.sign(radius) * Math.sqrt(underRoot);
 }
 
+function estimateSagittalBestFocusZ(petzvalBestFocusZ: number, tangentialBestFocusZ: number): number {
+  /**
+   * Current first-pass sagittal estimate:
+   * mirror the tangential best-focus solution about the Petzval mean surface.
+   *
+   * A future refinement should replace this with a true sagittal/skew-ray solve,
+   * ideally by tracing a small azimuthal fan around the chief ray for each field.
+   */
+  return 2 * petzvalBestFocusZ - tangentialBestFocusZ;
+}
+
 function computeFieldCurvatureField(
   L: RuntimeLens,
   zPos: number[],
@@ -146,7 +157,7 @@ function computeFieldCurvatureField(
   const chiefImageHeight = chiefHit.y + chiefHit.u * (imagePlaneZ - lastSurfZ);
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
   const petzvalBestFocusZ = imagePlaneZ + petzvalShiftMm;
-  const sagittalBestFocusZ = 2 * petzvalBestFocusZ - tangentialBestFocusZ;
+  const sagittalBestFocusZ = estimateSagittalBestFocusZ(petzvalBestFocusZ, tangentialBestFocusZ);
   const tangentialShiftMm = tangentialBestFocusZ - imagePlaneZ;
   const sagittalShiftMm = sagittalBestFocusZ - imagePlaneZ;
   const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;

@@ -331,12 +331,121 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
     expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
-    expect(screen.getByText(/Tangential\/sagittal diagnostic\./i)).toBeTruthy();
+    expect(screen.getByText(/Tangential versus estimated sagittal diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
     expect(screen.getByText("T -0.45 mm / S -0.21 mm")).toBeTruthy();
     expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
+  });
+
+  it("discloses when chart scale is capped to the image circle", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    mockComputeFieldCurvature.mockReturnValue({
+      fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+      usableFieldCount: 5,
+      imagePlaneZ: 105,
+      sharedFocusShiftHalfRangeMm: 40,
+      maxAstigmaticDifferenceMm: 30,
+      maxAstigmaticDifferenceUm: 30000,
+      edgeTangentialShiftMm: -25,
+      edgeSagittalShiftMm: 5,
+      fields: [
+        {
+          fieldFraction: 0,
+          label: "Center",
+          fieldAngleDeg: 0,
+          sampleCount: 51,
+          validSampleCount: 51,
+          clippedSampleCount: 0,
+          chiefImageHeight: 0,
+          tangentialBestFocusZ: 105,
+          sagittalBestFocusZ: 105,
+          petzvalBestFocusZ: 105,
+          tangentialShiftMm: 0,
+          sagittalShiftMm: 0,
+          petzvalShiftMm: 0,
+          astigmaticDifferenceMm: 0,
+          astigmaticDifferenceUm: 0,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.25,
+          label: "25%",
+          fieldAngleDeg: 5,
+          sampleCount: 51,
+          validSampleCount: 49,
+          clippedSampleCount: 2,
+          chiefImageHeight: 5,
+          tangentialBestFocusZ: 95,
+          sagittalBestFocusZ: 101,
+          petzvalBestFocusZ: 92,
+          tangentialShiftMm: -10,
+          sagittalShiftMm: -4,
+          petzvalShiftMm: -13,
+          astigmaticDifferenceMm: 6,
+          astigmaticDifferenceUm: 6000,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.5,
+          label: "50%",
+          fieldAngleDeg: 10,
+          sampleCount: 51,
+          validSampleCount: 47,
+          clippedSampleCount: 4,
+          chiefImageHeight: 10,
+          tangentialBestFocusZ: 90,
+          sagittalBestFocusZ: 102,
+          petzvalBestFocusZ: 86,
+          tangentialShiftMm: -15,
+          sagittalShiftMm: -3,
+          petzvalShiftMm: -19,
+          astigmaticDifferenceMm: 12,
+          astigmaticDifferenceUm: 12000,
+          usable: true,
+        },
+        {
+          fieldFraction: 0.75,
+          label: "75%",
+          fieldAngleDeg: 15,
+          sampleCount: 51,
+          validSampleCount: 45,
+          clippedSampleCount: 6,
+          chiefImageHeight: 15,
+          tangentialBestFocusZ: 85,
+          sagittalBestFocusZ: 103,
+          petzvalBestFocusZ: 81,
+          tangentialShiftMm: -20,
+          sagittalShiftMm: -2,
+          petzvalShiftMm: -24,
+          astigmaticDifferenceMm: 18,
+          astigmaticDifferenceUm: 18000,
+          usable: true,
+        },
+        {
+          fieldFraction: 1,
+          label: "100%",
+          fieldAngleDeg: 20,
+          sampleCount: 51,
+          validSampleCount: 43,
+          clippedSampleCount: 8,
+          chiefImageHeight: 20,
+          tangentialBestFocusZ: 80,
+          sagittalBestFocusZ: 110,
+          petzvalBestFocusZ: 75,
+          tangentialShiftMm: -25,
+          sagittalShiftMm: 5,
+          petzvalShiftMm: -30,
+          astigmaticDifferenceMm: 30,
+          astigmaticDifferenceUm: 30000,
+          usable: true,
+        },
+      ],
+    });
+
+    render(<AberrationsPanel {...baseProps} />);
+    expect(screen.getAllByText(/Scale capped to image circle/i).length).toBe(2);
   });
 
   it("shows fallback copy when preview computation fails", () => {

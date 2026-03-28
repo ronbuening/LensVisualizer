@@ -26,7 +26,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Field Curvature & Astigmatic Difference"
         helpLabel="Field curvature help"
-        helpText="Use this chart in three passes. First, look at whether the tangential solid-circle trace and the sagittal dashed-square trace sit above or below the current-plane line to see where the best image surface bends. Second, compare how far apart those two traces are at each field sample: that shaded gap is the astigmatic difference. Third, compare both against the Petzval mean line to see whether the split is mostly a curved-field problem or a sagittal-versus-tangential disagreement."
+        helpText="Use this chart in three passes. First, the field-curvature-only chart shows the mean field surface moving fore or aft of the focused plane from center to edge. Second, the combined chart compares the tangential solid-circle trace against the estimated sagittal dashed-square trace; the shaded gap is the astigmatic difference. Third, compare both against the Petzval mean line to see whether the off-axis error is mostly simple field bend or a stronger tangential-versus-sagittal split."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -48,7 +48,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
               </span>
               <FieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Tangential/sagittal diagnostic. The gap between the two traces is the astigmatic split.
+                Tangential versus estimated sagittal diagnostic. The gap between the two traces is the astigmatic split.
               </span>
               <div
                 style={{
