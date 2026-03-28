@@ -1,11 +1,12 @@
 import { describe, it, expect } from "vitest";
 import {
   COMA_PREVIEW_FIELD_FRACTIONS,
+  COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
+  computeComaPointCloudPreview,
   computeComaPreview,
-  computeEstimatedComaPreview,
   computeFieldCurvature,
   computeMeridionalComa,
   computeSphericalAberration,
@@ -581,13 +582,13 @@ describe("computeComaPreview", () => {
   });
 });
 
-describe("computeEstimatedComaPreview", () => {
+describe("computeComaPointCloudPreview", () => {
   it("returns four ordered preview fields and preserves usable field count", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
@@ -601,23 +602,33 @@ describe("computeEstimatedComaPreview", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
 
     const centerField = result!.fields[0];
     expect(centerField.fieldFraction).toBe(0);
     expect(centerField.usable).toBe(true);
 
-    const chiefPoints = centerField.points.filter(
-      (point) => point.sourceSampleIndex === Math.floor(MERIDIONAL_COMA_SAMPLE_COUNT / 2),
-    );
-    expect(chiefPoints.length).toBeGreaterThanOrEqual(3);
-    expect(chiefPoints.some((point) => point.sagittalNormalized < 0)).toBe(true);
-    expect(chiefPoints.some((point) => point.sagittalNormalized > 0)).toBe(true);
-    expect(chiefPoints[Math.floor(chiefPoints.length / 2)].tangentialImageHeight).toBeCloseTo(0, 8);
+    const chiefPoint = centerField.points.find((point) => point.sourceSampleIndex === 0);
+    expect(chiefPoint).toBeDefined();
+    expect(chiefPoint!.tangentialImageHeight).toBeCloseTo(0, 8);
+    expect(chiefPoint!.sagittalImageHeight).toBeCloseTo(0, 8);
+
+    const mirroredPointPairs = centerField.points
+      .filter((point) => point.sagittalImageHeight < 0)
+      .map((point) => ({
+        point,
+        mirrored: centerField.points.find(
+          (candidate) =>
+            candidate.sourceSampleIndex !== point.sourceSampleIndex &&
+            candidate.tangentialImageHeight === point.tangentialImageHeight &&
+            candidate.sagittalImageHeight === -point.sagittalImageHeight,
+        ),
+      }));
+    expect(mirroredPointPairs.some(({ mirrored }) => mirrored !== undefined)).toBe(true);
 
     const sagittalAverage =
-      centerField.points.reduce((sum, point) => sum + point.sagittalNormalized * point.weight, 0) /
+      centerField.points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) /
       centerField.points.reduce((sum, point) => sum + point.weight, 0);
     expect(sagittalAverage).toBeCloseTo(0, 8);
   });
@@ -628,17 +639,17 @@ describe("computeEstimatedComaPreview", () => {
     const { currentEPSD } = apertureAt(L, 0, 0);
     const clippedStop = currentEPSD * 0.85;
 
-    const result = computeEstimatedComaPreview(L, zPos, 0, 0, currentEPSD, clippedStop);
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, clippedStop);
     expect(result).not.toBeNull();
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.fields.some((field) => field.clippedSampleCount > 0 && field.points.length > 0)).toBe(true);
   });
 
-  it("returns null when fewer than two estimated preview tiles are usable", () => {
+  it("returns null when fewer than two point-cloud preview tiles are usable", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
 
-    const result = computeEstimatedComaPreview(L, zPos, 0, 0, 12, 1);
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, 12, 1);
     expect(result).toBeNull();
   });
 
@@ -651,8 +662,15 @@ describe("computeEstimatedComaPreview", () => {
 
     const wideMeridional = computeComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
     const stoppedMeridional = computeComaPreview(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
-    const wideEstimated = computeEstimatedComaPreview(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
-    const stoppedEstimated = computeEstimatedComaPreview(
+    const widePointCloud = computeComaPointCloudPreview(
+      L,
+      zPos,
+      0,
+      0,
+      wideOpen.currentEPSD,
+      wideOpen.currentPhysStopSD,
+    );
+    const stoppedPointCloud = computeComaPointCloudPreview(
       L,
       zPos,
       0,
@@ -663,14 +681,16 @@ describe("computeEstimatedComaPreview", () => {
 
     expect(wideMeridional).not.toBeNull();
     expect(stoppedMeridional).not.toBeNull();
-    expect(wideEstimated).not.toBeNull();
-    expect(stoppedEstimated).not.toBeNull();
+    expect(widePointCloud).not.toBeNull();
+    expect(stoppedPointCloud).not.toBeNull();
 
     const meridionalDelta = stoppedMeridional!.sharedRelativeHalfRangeMm - wideMeridional!.sharedRelativeHalfRangeMm;
-    const estimatedDelta = stoppedEstimated!.sharedTangentialHalfRangeMm - wideEstimated!.sharedTangentialHalfRangeMm;
-    expect(Math.sign(estimatedDelta)).toBe(Math.sign(meridionalDelta));
-    expect(stoppedEstimated!.sharedTangentialHalfRangeMm).toBeCloseTo(stoppedMeridional!.sharedRelativeHalfRangeMm, 8);
-    expect(wideEstimated!.sharedTangentialHalfRangeMm).toBeCloseTo(wideMeridional!.sharedRelativeHalfRangeMm, 8);
+    const pointCloudDelta =
+      stoppedPointCloud!.sharedTangentialHalfRangeMm - widePointCloud!.sharedTangentialHalfRangeMm;
+    expect(Math.sign(pointCloudDelta)).toBe(Math.sign(meridionalDelta));
+    expect(Math.abs(pointCloudDelta)).toBeGreaterThan(1e-6);
+    expect(widePointCloud!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
+    expect(stoppedPointCloud!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
   });
 
   it("responds to focus changes", () => {
@@ -680,7 +700,7 @@ describe("computeEstimatedComaPreview", () => {
     const { z: zInfinity } = doLayout(0, 0, L);
     const { z: zClose } = doLayout(0.8, 0, L);
 
-    const atInfinity = computeEstimatedComaPreview(
+    const atInfinity = computeComaPointCloudPreview(
       L,
       zInfinity,
       0,
@@ -688,11 +708,21 @@ describe("computeEstimatedComaPreview", () => {
       infinity.currentEPSD,
       infinity.currentPhysStopSD,
     );
-    const atClose = computeEstimatedComaPreview(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
+    const atClose = computeComaPointCloudPreview(L, zClose, 0.8, 0, close.currentEPSD, close.currentPhysStopSD);
 
     expect(atInfinity).not.toBeNull();
     expect(atClose).not.toBeNull();
     expect(atClose!.sharedTangentialHalfRangeMm).not.toBeCloseTo(atInfinity!.sharedTangentialHalfRangeMm, 6);
+  });
+
+  it("uses the fixed circular pupil pattern for sample counts", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fields.every((field) => field.sampleCount === COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT)).toBe(true);
   });
 });
 

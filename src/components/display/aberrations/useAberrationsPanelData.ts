@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import {
-  computeEstimatedComaPreview,
+  computeComaPointCloudPreview,
   computeFieldCurvature,
   computeMeridionalComa,
   computeSphericalAberration,
@@ -29,7 +29,7 @@ export default function useAberrationsPanelData({
     const saResult = computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaResult = computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
-    const comaPreviewResult = computeEstimatedComaPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const comaPreviewResult = computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
 
     return {

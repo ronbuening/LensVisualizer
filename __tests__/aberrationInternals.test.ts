@@ -9,7 +9,6 @@ import {
   type TransverseFocusHit,
   transverseCoordinateAtPlane,
 } from "../src/optics/aberration/shared.js";
-import { estimatedChordPointCount, synthesizeEstimatedComaPoints } from "../src/optics/aberration/coma.js";
 
 describe("aberration shared helpers", () => {
   it("returns null for axial intercepts when the slope is too small", () => {
@@ -84,39 +83,5 @@ describe("aberration shared helpers", () => {
 
     expect(bestFocusPlane(hits, 7)).toBe(7);
     expect(bestRelativeFocusPlane(hits, hits[0], 7)).toBe(7);
-  });
-});
-
-describe("aberration coma helpers", () => {
-  it("returns an odd estimated chord point count with at least one sample", () => {
-    expect(estimatedChordPointCount(0)).toBe(1);
-    expect(estimatedChordPointCount(1)).toBe(11);
-  });
-
-  it("synthesizes estimated coma points from valid pupil slices only", () => {
-    const points = synthesizeEstimatedComaPoints([
-      {
-        index: 0,
-        pupilFraction: -1,
-        launchHeight: -10,
-        imageHeight: null,
-        relativeImageHeight: null,
-        clipped: true,
-      },
-      {
-        index: 1,
-        pupilFraction: 0,
-        launchHeight: 0,
-        imageHeight: 0.02,
-        relativeImageHeight: 0.01,
-        clipped: false,
-      },
-    ]);
-
-    expect(points.length).toBe(11);
-    expect(points.every((point) => point.sourceSampleIndex === 1)).toBe(true);
-    expect(points.some((point) => point.sagittalNormalized < 0)).toBe(true);
-    expect(points.some((point) => point.sagittalNormalized > 0)).toBe(true);
-    expect(points.every((point) => point.tangentialImageHeight === 0.01)).toBe(true);
   });
 });

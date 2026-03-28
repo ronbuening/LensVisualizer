@@ -1,11 +1,11 @@
 import ComaPreviewGrid from "../ComaPreviewGrid.js";
 import { formatComaSpan } from "../MeridionalComaPlot.js";
-import type { EstimatedComaPreviewResult } from "../../../optics/aberrationAnalysis.js";
+import type { ComaPointCloudPreviewResult } from "../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../types/theme.js";
 import SectionHeader from "./SectionHeader.js";
 
 interface ComaPreviewSectionProps {
-  result: EstimatedComaPreviewResult | null;
+  result: ComaPointCloudPreviewResult | null;
   expanded: boolean;
   onToggle: () => void;
   theme: Theme;
@@ -41,7 +41,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
 
           {result ? (
             <>
-              <ComaPreviewGrid result={result} t={theme} mode="estimated" />
+              <ComaPreviewGrid result={result} t={theme} mode="pointCloud" />
               <div
                 style={{
                   display: "flex",

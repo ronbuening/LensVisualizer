@@ -77,17 +77,17 @@ export interface ComaPreviewResult {
   usableFieldCount: number;
 }
 
-/** One synthesized point in the estimated 2D coma point cloud. */
-export interface EstimatedComaPoint {
+/** One real circular-pupil sample in the 2D coma point cloud, centered on the chief ray. */
+export interface ComaPointCloudPoint {
   index: number;
   sourceSampleIndex: number;
   tangentialImageHeight: number;
-  sagittalNormalized: number;
+  sagittalImageHeight: number;
   weight: number;
 }
 
-/** One field tile in the estimated 2D coma preview grid. */
-export interface EstimatedComaPreviewFieldResult {
+/** One field tile in the real 2D coma point-cloud preview grid. */
+export interface ComaPointCloudPreviewFieldResult {
   fieldFraction: number;
   label: string;
   fieldAngleDeg: number;
@@ -95,18 +95,20 @@ export interface EstimatedComaPreviewFieldResult {
   validSampleCount: number;
   clippedSampleCount: number;
   chiefIntercept: number;
-  minRelativeIntercept: number;
-  maxRelativeIntercept: number;
-  points: EstimatedComaPoint[];
+  minRelativeTangentialImageHeight: number;
+  maxRelativeTangentialImageHeight: number;
+  minRelativeSagittalImageHeight: number;
+  maxRelativeSagittalImageHeight: number;
+  points: ComaPointCloudPoint[];
   usable: boolean;
 }
 
-/** Shared estimated 2D coma preview data for the current lens state. */
-export interface EstimatedComaPreviewResult {
+/** Shared real 2D coma point-cloud preview data for the current lens state. */
+export interface ComaPointCloudPreviewResult {
   fieldFractions: readonly number[];
-  fields: EstimatedComaPreviewFieldResult[];
+  fields: ComaPointCloudPreviewFieldResult[];
   sharedTangentialHalfRangeMm: number;
-  normalizedSagittalHalfRange: number;
+  sharedSagittalHalfRangeMm: number;
   usableFieldCount: number;
 }
 
@@ -152,6 +154,10 @@ export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 
 /** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
 export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES;
+export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
+  (sum, count) => sum + count,
+  0,
+);
 
 /** Fixed field positions shown in the representative coma preview grid. */
 export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
