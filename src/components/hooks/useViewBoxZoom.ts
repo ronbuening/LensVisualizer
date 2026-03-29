@@ -82,6 +82,11 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
   const [state, setState] = useState<ViewBoxState>(() => defaultState(svgW, svgH));
   const [isPanning, setIsPanning] = useState(false);
 
+  /* Always-current snapshot of state for use in event-handler callbacks without
+   * adding state fields to dependency arrays. Updated on every render. */
+  const latestState = useRef(state);
+  latestState.current = state;
+
   /* Refs for drag tracking */
   const dragStart = useRef<{ x: number; y: number; vbX: number; vbY: number } | null>(null);
 
@@ -141,11 +146,11 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
     (e: React.PointerEvent<SVGSVGElement>) => {
       if (!active || e.button !== 0) return;
       e.currentTarget.setPointerCapture(e.pointerId);
+      /* Capture current vbX/vbY via latestState ref — avoids a side-effect-in-updater
+       * and removes the unnecessary setState call that was only used to read prev state. */
+      const { vbX, vbY } = latestState.current;
+      dragStart.current = { x: e.clientX, y: e.clientY, vbX, vbY };
       setIsPanning(true);
-      setState((prev) => {
-        dragStart.current = { x: e.clientX, y: e.clientY, vbX: prev.vbX, vbY: prev.vbY };
-        return prev;
-      });
     },
     [active],
   );
@@ -204,16 +209,9 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
           midY: (e.touches[0].clientY + e.touches[1].clientY) / 2,
         };
       } else if (e.touches.length === 1) {
+        const { vbX, vbY } = latestState.current;
+        dragStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, vbX, vbY };
         setIsPanning(true);
-        setState((prev) => {
-          dragStart.current = {
-            x: e.touches[0].clientX,
-            y: e.touches[0].clientY,
-            vbX: prev.vbX,
-            vbY: prev.vbY,
-          };
-          return prev;
-        });
       }
     },
     [active, state.zoom],

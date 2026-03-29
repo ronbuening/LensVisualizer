@@ -10,6 +10,8 @@ const MAX_BODY_LENGTH: number = 6000;
 interface IssueContext {
   component?: string;
   lensKey?: string;
+  /** React component stack from ErrorInfo.componentStack */
+  componentStack?: string;
   extra?: string;
 }
 
@@ -29,6 +31,18 @@ export function buildIssueURL(error: Error, context: IssueContext = {}): string 
 
   if (error?.stack) {
     sections.push("", "<details><summary>Stack trace</summary>", "", "```", error.stack, "```", "</details>");
+  }
+
+  if (context.componentStack) {
+    sections.push(
+      "",
+      "<details><summary>Component stack</summary>",
+      "",
+      "```",
+      context.componentStack.trim(),
+      "```",
+      "</details>",
+    );
   }
 
   sections.push("", "## Context", `- **Component:** ${comp}`);

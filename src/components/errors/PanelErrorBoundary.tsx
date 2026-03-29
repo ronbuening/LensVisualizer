@@ -13,21 +13,24 @@ interface PanelErrorBoundaryProps {
 
 interface PanelErrorBoundaryState {
   error: Error | null;
+  componentStack: string | null;
 }
 
 export default class PanelErrorBoundary extends Component<PanelErrorBoundaryProps, PanelErrorBoundaryState> {
   constructor(props: PanelErrorBoundaryProps) {
     super(props);
-    this.state = { error: null };
+    this.state = { error: null, componentStack: null };
   }
   static getDerivedStateFromError(error: Error): Partial<PanelErrorBoundaryState> {
     return { error };
   }
   componentDidCatch(error: Error, info: ErrorInfo): void {
-    console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, info?.componentStack);
+    const stack = info?.componentStack || null;
+    console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, stack);
+    this.setState({ componentStack: stack });
   }
   componentDidUpdate(prevProps: PanelErrorBoundaryProps): void {
-    if (prevProps.lensKey !== this.props.lensKey) this.setState({ error: null });
+    if (prevProps.lensKey !== this.props.lensKey) this.setState({ error: null, componentStack: null });
   }
   render() {
     if (!this.state.error) return this.props.children;
@@ -35,9 +38,13 @@ export default class PanelErrorBoundary extends Component<PanelErrorBoundaryProp
       <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
         <ErrorDisplay
           error={this.state.error}
-          context={{ component: "LensDiagramPanel", lensKey: this.props.lensKey }}
+          context={{
+            component: "LensDiagramPanel",
+            lensKey: this.props.lensKey,
+            componentStack: this.state.componentStack || undefined,
+          }}
           title="Diagram Rendering Error"
-          onRetry={() => this.setState({ error: null })}
+          onRetry={() => this.setState({ error: null, componentStack: null })}
         />
       </div>
     );
