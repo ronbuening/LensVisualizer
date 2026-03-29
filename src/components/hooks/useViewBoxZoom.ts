@@ -154,11 +154,11 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
     (e: React.PointerEvent<SVGSVGElement>) => {
       if (!active || !dragStart.current) return;
 
+      const ds = dragStart.current;
       const svgEl = e.currentTarget;
       const rect = svgEl.getBoundingClientRect();
 
       setState((prev) => {
-        const ds = dragStart.current!;
         /* Convert pixel delta to SVG coordinate delta */
         const dxPx = e.clientX - ds.x;
         const dyPx = e.clientY - ds.y;
@@ -245,11 +245,11 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
           return { vbX: clamped.vbX, vbY: clamped.vbY, vbW: newVbW, vbH: newVbH, zoom: newZoom };
         });
       } else if (e.touches.length === 1 && dragStart.current) {
+        const ds = dragStart.current;
         const svgEl = e.currentTarget;
         const rect = svgEl.getBoundingClientRect();
 
         setState((prev) => {
-          const ds = dragStart.current!;
           const dxPx = e.touches[0].clientX - ds.x;
           const dyPx = e.touches[0].clientY - ds.y;
           const dxSvg = (dxPx / rect.width) * prev.vbW;
