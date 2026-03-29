@@ -39,6 +39,7 @@ Add an entry when merging a PR that does any of the following:
 | `fix` | red-orange (`#c65`) | Corrects incorrect behavior or rendering |
 | `lens` | green (`#2a7`) | New lens added to the catalog |
 | `improvement` | amber (`#c84`) | Enhancement to an existing feature, SEO, or performance |
+| `article` | purple (`#a5c`) | New article or guide published in Articles & Guides |
 
 ---
 

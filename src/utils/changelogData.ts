@@ -7,7 +7,7 @@
  * maintenance guide.
  */
 
-export type ChangelogEntryType = "feature" | "fix" | "lens" | "improvement";
+export type ChangelogEntryType = "feature" | "fix" | "lens" | "improvement" | "article";
 
 export interface ChangelogEntry {
   /** ISO date string (YYYY-MM-DD) matching the PR merge date */
@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-03-29 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-03-29",
+    type: "article",
+    summary: "Added Heliar History article",
+  },
   {
     date: "2026-03-29",
     type: "feature",

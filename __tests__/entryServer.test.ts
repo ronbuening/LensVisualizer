@@ -249,7 +249,8 @@ describe("SSR render — article page /articles/:slug", () => {
 
   it("title contains the article title", () => {
     const { helmet } = render(url);
-    expect(helmet.title.toString()).toContain(TEST_ARTICLE.title);
+    const encodedTitle = TEST_ARTICLE.title.replaceAll("'", "&#x27;");
+    expect(helmet.title.toString()).toContain(encodedTitle);
   });
 
   it("includes the default social image tags", () => {
