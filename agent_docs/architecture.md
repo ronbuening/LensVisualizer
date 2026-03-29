@@ -40,7 +40,7 @@
 | `DropdownPanel.tsx` | `src/components/layout/` | Portal-based dropdown panel for settings/theme overlays |
 | `PrimerToggleButton.tsx` | `src/components/layout/` | Shared button for switching between simple/intermediate primer levels |
 | `AnalysisDrawerContent.tsx` | `src/components/layout/lensDiagram/` | Tab-to-panel router for the analysis drawer content inside LensDiagramPanel |
-| `DiagramViewport.tsx` | `src/components/layout/lensDiagram/` | SVG viewport wrapper plus panel-scoped LCA/Petzval overlay gating |
+| `DiagramViewport.tsx` | `src/components/layout/lensDiagram/` | SVG viewport wrapper with LCA/Petzval overlay gating, zoom/pan toggle, and keyboard shortcut handling |
 | `analysisTabs.ts` | `src/components/layout/lensDiagram/` | Shared analysis tab metadata used by the drawer trigger and drawer content |
 
 ### Hooks
@@ -58,6 +58,7 @@
 | `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset |
 | `useOverlays.ts` | `src/components/hooks/` | Hook: combines overlay state with dispatch adapters for LensViewer |
 | `useHeaderHeight.ts` | `src/components/hooks/` | Hook: header ResizeObserver height tracking for multi-panel alignment |
+| `useViewBoxZoom.ts` | `src/components/hooks/` | Hook: SVG viewBox-based zoom/pan with wheel, drag, pinch, and keyboard support |
 | `raySegmentUtils.ts` | `src/components/hooks/` | Pure utilities: `compileRaySegment()` (shared ray segment compilation) and `filterChannels()` (chromatic channel filter) |
 
 ### Controls
@@ -76,7 +77,7 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget |
+| `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget; accepts viewBox override and zoom interaction handlers |
 | `RayPolylines.tsx` | `src/components/diagram/` | Consolidated ray segment polyline rendering |
 | `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label; outer edge extends to `stopHousingSD` (adjacent surface min-SD) for visibility on fast lenses |
 | `ElementAnnotations.tsx` | `src/components/diagram/` | Element numbers, Abbe νd badges, group/doublet labels |

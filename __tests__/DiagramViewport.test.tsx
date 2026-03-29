@@ -87,12 +87,22 @@ const baseProps = {
   onAnalysisTabChange: vi.fn(),
   isWide: true,
   analysisContent: <div>Drawer Body</div>,
+  zoomPanActive: false,
+  onZoomPanToggle: vi.fn(),
+  zoomLevel: 1,
+  onZoomReset: vi.fn(),
+  onZoomIn: vi.fn(),
+  onZoomOut: vi.fn(),
+  onPanBy: vi.fn(),
 };
 
 describe("DiagramViewport", () => {
   beforeEach(() => {
     mockAnalysisDrawer.mockReset();
     mockPanelOverlay.mockReset();
+    Object.values(baseProps).forEach((v) => {
+      if (typeof v === "function" && "mockReset" in v) (v as ReturnType<typeof vi.fn>).mockReset();
+    });
   });
 
   afterEach(() => {
@@ -133,5 +143,103 @@ describe("DiagramViewport", () => {
     render(<DiagramViewport {...baseProps} showPetzvalOverlay showChromatic={false} chromSpread={null} />);
 
     expect(screen.getByText("Petzval Overlay")).toBeTruthy();
+  });
+
+  /* ── Zoom/pan mode ── */
+
+  it("renders zoom toggle button in the lower-right when zoom mode is off", () => {
+    render(<DiagramViewport {...baseProps} />);
+    const btn = screen.getByRole("button", { name: /enter zoom and pan mode/i });
+    expect(btn).toBeTruthy();
+  });
+
+  it("clicking zoom button calls onZoomPanToggle(true)", () => {
+    render(<DiagramViewport {...baseProps} />);
+    fireEvent.click(screen.getByRole("button", { name: /enter zoom and pan mode/i }));
+    expect(baseProps.onZoomPanToggle).toHaveBeenCalledWith(true);
+  });
+
+  it("hides the analysis drawer button when zoom mode is active", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
+  });
+
+  it("hides the zoom toggle button when zoom mode is active", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    expect(screen.queryByRole("button", { name: /enter zoom and pan mode/i })).toBeNull();
+  });
+
+  it("renders Reset and Cancel buttons when zoom mode is active", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    expect(screen.getByRole("button", { name: /reset zoom/i })).toBeTruthy();
+    expect(screen.getByRole("button", { name: /exit zoom and pan mode/i })).toBeTruthy();
+  });
+
+  it("Cancel button calls onZoomPanToggle(false)", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.click(screen.getByRole("button", { name: /exit zoom and pan mode/i }));
+    expect(baseProps.onZoomPanToggle).toHaveBeenCalledWith(false);
+  });
+
+  it("Reset button calls onZoomReset", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive zoomLevel={3.5} />);
+    fireEvent.click(screen.getByRole("button", { name: /reset zoom/i }));
+    expect(baseProps.onZoomReset).toHaveBeenCalled();
+  });
+
+  it("shows zoom level indicator when zoomed in", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive zoomLevel={3.5} />);
+    expect(screen.getByText("3.5x")).toBeTruthy();
+  });
+
+  it("hides zoom level indicator at 1x", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive zoomLevel={1} />);
+    expect(screen.queryByText("1.0x")).toBeNull();
+  });
+
+  it("hides overlays in zoom mode", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay />);
+    expect(screen.queryByText("LCA Overlay")).toBeNull();
+    expect(screen.queryByText("Petzval Overlay")).toBeNull();
+  });
+
+  /* ── Keyboard shortcuts ── */
+
+  it("Escape key exits zoom mode", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(baseProps.onZoomPanToggle).toHaveBeenCalledWith(false);
+  });
+
+  it("0 key resets zoom", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "0" });
+    expect(baseProps.onZoomReset).toHaveBeenCalled();
+  });
+
+  it("+ key zooms in", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "+" });
+    expect(baseProps.onZoomIn).toHaveBeenCalled();
+  });
+
+  it("- key zooms out", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "-" });
+    expect(baseProps.onZoomOut).toHaveBeenCalled();
+  });
+
+  it("arrow keys pan the viewport", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "ArrowRight" });
+    expect(baseProps.onPanBy).toHaveBeenCalledWith(30, 0);
+    fireEvent.keyDown(window, { key: "ArrowDown" });
+    expect(baseProps.onPanBy).toHaveBeenCalledWith(0, 30);
+  });
+
+  it("keyboard shortcuts are inactive when zoom mode is off", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive={false} />);
+    fireEvent.keyDown(window, { key: "+" });
+    expect(baseProps.onZoomIn).not.toHaveBeenCalled();
   });
 });

@@ -64,6 +64,20 @@ interface DiagramSVGProps {
   flashFading: boolean;
   onLcaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
+  /** Override the default viewBox for zoom/pan mode */
+  viewBoxOverride?: string;
+  /** When true, disable element hover/click and show grab cursor */
+  zoomPanActive?: boolean;
+  /** SVG interaction handlers for zoom/pan mode */
+  onSvgWheel?: (e: React.WheelEvent<SVGSVGElement>) => void;
+  onSvgPointerDown?: (e: React.PointerEvent<SVGSVGElement>) => void;
+  onSvgPointerMove?: (e: React.PointerEvent<SVGSVGElement>) => void;
+  onSvgPointerUp?: (e: React.PointerEvent<SVGSVGElement>) => void;
+  onSvgTouchStart?: (e: React.TouchEvent<SVGSVGElement>) => void;
+  onSvgTouchMove?: (e: React.TouchEvent<SVGSVGElement>) => void;
+  onSvgTouchEnd?: (e: React.TouchEvent<SVGSVGElement>) => void;
+  /** Whether a drag pan is in progress (for cursor style) */
+  isPanning?: boolean;
 }
 
 export default function DiagramSVG({
@@ -102,10 +116,22 @@ export default function DiagramSVG({
   flashFading,
   onLcaInsetClick,
   onPetzvalBadgeClick,
+  viewBoxOverride,
+  zoomPanActive,
+  onSvgWheel,
+  onSvgPointerDown,
+  onSvgPointerMove,
+  onSvgPointerUp,
+  onSvgTouchStart,
+  onSvgTouchMove,
+  onSvgTouchEnd,
+  isPanning,
 }: DiagramSVGProps) {
+  const zoomCursor = zoomPanActive ? (isPanning ? "grabbing" : "grab") : undefined;
+
   return (
     <svg
-      viewBox={`0 0 ${L.svgW} ${L.svgH}`}
+      viewBox={viewBoxOverride ?? `0 0 ${L.svgW} ${L.svgH}`}
       width="100%"
       style={{
         display: "block",
@@ -113,7 +139,17 @@ export default function DiagramSVG({
         minHeight: compact ? 200 : 290,
         background: t.bg,
         transition: "background 0.3s",
+        cursor: zoomCursor,
+        touchAction: zoomPanActive ? "none" : undefined,
       }}
+      onWheel={zoomPanActive ? onSvgWheel : undefined}
+      onPointerDown={zoomPanActive ? onSvgPointerDown : undefined}
+      onPointerMove={zoomPanActive ? onSvgPointerMove : undefined}
+      onPointerUp={zoomPanActive ? onSvgPointerUp : undefined}
+      onPointerCancel={zoomPanActive ? onSvgPointerUp : undefined}
+      onTouchStart={zoomPanActive ? onSvgTouchStart : undefined}
+      onTouchMove={zoomPanActive ? onSvgTouchMove : undefined}
+      onTouchEnd={zoomPanActive ? onSvgTouchEnd : undefined}
     >
       <defs>
         {dark ? (
@@ -211,10 +247,15 @@ export default function DiagramSVG({
             fill={t.elemFill(e, on)}
             stroke={t.elemStroke(e, on)}
             strokeWidth={on ? t.elemStrokeActive : t.elemStrokeIdle}
-            style={{ cursor: "pointer", transition: "all 0.12s", filter: on ? `url(#${filterId})` : "none" }}
-            onMouseEnter={() => onHover(eid)}
-            onMouseLeave={() => onHover(null)}
-            onClick={() => onSelect(sel === eid ? null : eid)}
+            style={{
+              cursor: zoomPanActive ? undefined : "pointer",
+              transition: "all 0.12s",
+              filter: on ? `url(#${filterId})` : "none",
+              pointerEvents: zoomPanActive ? "none" : undefined,
+            }}
+            onMouseEnter={zoomPanActive ? undefined : () => onHover(eid)}
+            onMouseLeave={zoomPanActive ? undefined : () => onHover(null)}
+            onClick={zoomPanActive ? undefined : () => onSelect(sel === eid ? null : eid)}
           />
         );
       })}

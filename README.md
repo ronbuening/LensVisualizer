@@ -12,6 +12,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
 - Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, and chromatic field curvature
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
+- Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
 - Supports shared-control side-by-side comparison between two lenses
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
 
@@ -38,6 +39,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 - **Structured metadata**: WebSite, CollectionPage, ItemList, Article, TechArticle, and BreadcrumbList JSON-LD across the crawlable pages
 - **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults
 - **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
+- **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
 - **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links
 
 ## Tech Stack
