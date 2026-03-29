@@ -19,6 +19,7 @@ const ENTRY_TYPE_COLORS: Record<ChangelogEntryType, string> = {
   fix: "#c65",
   lens: "#2a7",
   improvement: "#c84",
+  article: "#a5c",
 };
 
 const ENTRY_TYPE_LABELS: Record<ChangelogEntryType, string> = {
@@ -26,6 +27,7 @@ const ENTRY_TYPE_LABELS: Record<ChangelogEntryType, string> = {
   fix: "fix",
   lens: "lens",
   improvement: "improved",
+  article: "article",
 };
 
 function formatDate(iso: string): string {
