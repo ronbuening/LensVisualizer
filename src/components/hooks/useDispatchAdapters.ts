@@ -41,6 +41,7 @@ export interface DispatchAdapters {
   onAberrationsExpandedChange: (v: boolean) => void;
   onAnalysisDrawerToggle: (v: boolean) => void;
   onAnalysisTabChange: (tab: string) => void;
+  onZoomPanToggle: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -81,6 +82,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onAnalysisDrawerToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
       onAnalysisTabChange: (tab: string) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
+      onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );

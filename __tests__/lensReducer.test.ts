@@ -47,6 +47,7 @@ describe("createInitialState", () => {
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
     expect(state.panels.analysisDrawerOpen).toBe(false);
     expect(state.panels.analysisDrawerTab).toBe("aberrations");
+    expect(state.panels.zoomPanActive).toBe(false);
     expect(state.overlays.showAbout).toBe(false);
   });
 
@@ -128,6 +129,12 @@ describe("lensReducer", () => {
       state.panels = { ...state.panels, analysisDrawerOpen: true };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.panels.analysisDrawerOpen).toBe(false);
+    });
+
+    it("exits zoom/pan mode when switching lens in single mode", () => {
+      state.panels = { ...state.panels, zoomPanActive: true };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.panels.zoomPanActive).toBe(false);
     });
   });
 
@@ -274,6 +281,16 @@ describe("lensReducer", () => {
         expanded: true,
       });
       expect(next.panels.analysisDrawerOpen).toBe(true);
+    });
+
+    it("toggles zoomPanActive", () => {
+      expect(state.panels.zoomPanActive).toBe(false);
+      const next = lensReducer(state, {
+        type: SET_PANEL_EXPANDED,
+        panel: "zoomPanActive",
+        expanded: true,
+      });
+      expect(next.panels.zoomPanActive).toBe(true);
     });
   });
 

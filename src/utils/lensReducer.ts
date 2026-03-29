@@ -62,6 +62,7 @@ const PANEL_FIELDS = new Set([
   "showEffectiveAperture",
   "aberrationsExpanded",
   "analysisDrawerOpen",
+  "zoomPanActive",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
 
@@ -123,6 +124,7 @@ export function createInitialState(
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
       analysisDrawerOpen: false,
       analysisDrawerTab: prefs.analysisDrawerTab ?? "aberrations",
+      zoomPanActive: false,
     },
     overlays: {
       showAbout: false,
@@ -150,7 +152,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
         next.sliders = { focusT: 0, zoomT: 0, stopdownT: 0 };
-        next.panels = { ...state.panels, analysisDrawerOpen: false };
+        next.panels = { ...state.panels, analysisDrawerOpen: false, zoomPanActive: false };
       }
       return next;
     }
