@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
 import LCAOverlayContent from "../../diagram/LCAOverlayContent.js";
@@ -30,6 +31,12 @@ interface DiagramViewportProps extends Omit<
   zoomLevel: number;
   /** Reset zoom to default */
   onZoomReset: () => void;
+  /** Zoom in one step (keyboard +) */
+  onZoomIn: () => void;
+  /** Zoom out one step (keyboard -) */
+  onZoomOut: () => void;
+  /** Pan by delta in SVG units (keyboard arrows) */
+  onPanBy: (dx: number, dy: number) => void;
 }
 
 export default function DiagramViewport({
@@ -82,6 +89,9 @@ export default function DiagramViewport({
   onZoomPanToggle,
   zoomLevel,
   onZoomReset,
+  onZoomIn,
+  onZoomOut,
+  onPanBy,
   viewBoxOverride,
   isPanning,
   onSvgWheel,
@@ -92,6 +102,51 @@ export default function DiagramViewport({
   onSvgTouchMove,
   onSvgTouchEnd,
 }: DiagramViewportProps) {
+  /* Keyboard shortcuts when zoom mode is active */
+  useEffect(() => {
+    if (!zoomPanActive) return;
+
+    const PAN_STEP = 30;
+    const handler = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "Escape":
+          onZoomPanToggle(false);
+          break;
+        case "0":
+          onZoomReset();
+          break;
+        case "+":
+        case "=":
+          onZoomIn();
+          break;
+        case "-":
+          onZoomOut();
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          onPanBy(-PAN_STEP, 0);
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          onPanBy(PAN_STEP, 0);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          onPanBy(0, -PAN_STEP);
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          onPanBy(0, PAN_STEP);
+          break;
+        default:
+          return;
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [zoomPanActive, onZoomPanToggle, onZoomReset, onZoomIn, onZoomOut, onPanBy]);
+
   return (
     <div style={useSideLayout ? { flex: 1, minWidth: 0, position: "relative" } : { position: "relative" }}>
       <DiagramSVG

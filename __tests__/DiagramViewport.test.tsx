@@ -91,12 +91,18 @@ const baseProps = {
   onZoomPanToggle: vi.fn(),
   zoomLevel: 1,
   onZoomReset: vi.fn(),
+  onZoomIn: vi.fn(),
+  onZoomOut: vi.fn(),
+  onPanBy: vi.fn(),
 };
 
 describe("DiagramViewport", () => {
   beforeEach(() => {
     mockAnalysisDrawer.mockReset();
     mockPanelOverlay.mockReset();
+    Object.values(baseProps).forEach((v) => {
+      if (typeof v === "function" && "mockReset" in v) (v as ReturnType<typeof vi.fn>).mockReset();
+    });
   });
 
   afterEach(() => {
@@ -195,5 +201,45 @@ describe("DiagramViewport", () => {
     render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay />);
     expect(screen.queryByText("LCA Overlay")).toBeNull();
     expect(screen.queryByText("Petzval Overlay")).toBeNull();
+  });
+
+  /* ── Keyboard shortcuts ── */
+
+  it("Escape key exits zoom mode", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(baseProps.onZoomPanToggle).toHaveBeenCalledWith(false);
+  });
+
+  it("0 key resets zoom", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "0" });
+    expect(baseProps.onZoomReset).toHaveBeenCalled();
+  });
+
+  it("+ key zooms in", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "+" });
+    expect(baseProps.onZoomIn).toHaveBeenCalled();
+  });
+
+  it("- key zooms out", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "-" });
+    expect(baseProps.onZoomOut).toHaveBeenCalled();
+  });
+
+  it("arrow keys pan the viewport", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    fireEvent.keyDown(window, { key: "ArrowRight" });
+    expect(baseProps.onPanBy).toHaveBeenCalledWith(30, 0);
+    fireEvent.keyDown(window, { key: "ArrowDown" });
+    expect(baseProps.onPanBy).toHaveBeenCalledWith(0, 30);
+  });
+
+  it("keyboard shortcuts are inactive when zoom mode is off", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive={false} />);
+    fireEvent.keyDown(window, { key: "+" });
+    expect(baseProps.onZoomIn).not.toHaveBeenCalled();
   });
 });

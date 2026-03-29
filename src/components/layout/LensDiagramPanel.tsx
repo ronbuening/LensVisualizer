@@ -280,6 +280,9 @@ export default function LensDiagramPanel({
               onZoomPanToggle={handleZoomPanToggle}
               zoomLevel={zoomHook.state.zoom}
               onZoomReset={zoomHook.reset}
+              onZoomIn={zoomHook.zoomIn}
+              onZoomOut={zoomHook.zoomOut}
+              onPanBy={zoomHook.panBy}
               viewBoxOverride={zoomPanActive ? zoomHook.viewBox : undefined}
               isPanning={zoomHook.isPanning}
               onSvgWheel={zoomHook.handleWheel}
