@@ -132,6 +132,7 @@ export default function LensDiagramPanel({
     IX,
     effectiveSC,
     shapes,
+    shapeError,
     stopZ,
     currentFOPEN,
     fNumber,
@@ -159,7 +160,7 @@ export default function LensDiagramPanel({
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
-  const { rays, offAxisRays, chromaticRays, chromSpread } = useRayTracing({
+  const { rays, offAxisRays, chromaticRays, chromSpread, rayError } = useRayTracing({
     L,
     zPos,
     IMG_MM,
@@ -187,6 +188,22 @@ export default function LensDiagramPanel({
             error={buildError instanceof Error ? buildError : new Error(String(buildError))}
             context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
             title="Failed to build lens"
+          />
+        </div>
+      ) : shapeError ? (
+        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+          <ErrorDisplay
+            error={shapeError instanceof Error ? shapeError : new Error(String(shapeError))}
+            context={{ component: "LensDiagramPanel (element shapes)", lensKey }}
+            title="Failed to compute lens element shapes"
+          />
+        </div>
+      ) : rayError ? (
+        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+          <ErrorDisplay
+            error={rayError instanceof Error ? rayError : new Error(String(rayError))}
+            context={{ component: "LensDiagramPanel (ray tracing)", lensKey }}
+            title="Ray tracing failed"
           />
         </div>
       ) : L ? (

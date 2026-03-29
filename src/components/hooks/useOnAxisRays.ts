@@ -32,6 +32,11 @@ interface UseOnAxisRaysParams {
   lensKey: string;
 }
 
+interface UseOnAxisRaysResult {
+  segments: RaySegment[];
+  error: unknown;
+}
+
 export default function useOnAxisRays({
   L,
   zPos,
@@ -46,9 +51,9 @@ export default function useOnAxisRays({
   rayTracksF,
   focusK,
   lensKey,
-}: UseOnAxisRaysParams): RaySegment[] {
-  return useMemo((): RaySegment[] => {
-    if (!L) return [];
+}: UseOnAxisRaysParams): UseOnAxisRaysResult {
+  return useMemo((): UseOnAxisRaysResult => {
+    if (!L) return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
       for (const f of L.rayFractions) {
@@ -59,10 +64,10 @@ export default function useOnAxisRays({
           compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
         );
       }
-      return out;
+      return { segments: out, error: null };
     } catch (e) {
       console.error(`[useOnAxisRays] On-axis ray trace failed for "${lensKey}":`, e);
-      return [];
+      return { segments: [], error: e };
     }
   }, [
     zPos,
