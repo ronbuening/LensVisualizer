@@ -82,6 +82,15 @@ export default function DiagramViewport({
   onZoomPanToggle,
   zoomLevel,
   onZoomReset,
+  viewBoxOverride,
+  isPanning,
+  onSvgWheel,
+  onSvgPointerDown,
+  onSvgPointerMove,
+  onSvgPointerUp,
+  onSvgTouchStart,
+  onSvgTouchMove,
+  onSvgTouchEnd,
 }: DiagramViewportProps) {
   return (
     <div style={useSideLayout ? { flex: 1, minWidth: 0, position: "relative" } : { position: "relative" }}>
@@ -121,6 +130,16 @@ export default function DiagramViewport({
         flashFading={flashFading}
         onLcaInsetClick={onOpenLcaOverlay}
         onPetzvalBadgeClick={onOpenPetzvalOverlay}
+        viewBoxOverride={viewBoxOverride}
+        zoomPanActive={zoomPanActive}
+        isPanning={isPanning}
+        onSvgWheel={onSvgWheel}
+        onSvgPointerDown={onSvgPointerDown}
+        onSvgPointerMove={onSvgPointerMove}
+        onSvgPointerUp={onSvgPointerUp}
+        onSvgTouchStart={onSvgTouchStart}
+        onSvgTouchMove={onSvgTouchMove}
+        onSvgTouchEnd={onSvgTouchEnd}
       />
 
       {/* Overlays — hidden in zoom/pan mode */}

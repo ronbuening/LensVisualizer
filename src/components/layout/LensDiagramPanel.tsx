@@ -18,8 +18,9 @@
  * wires sub-components.
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
+import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
 import useDispatchAdapters from "../hooks/useDispatchAdapters.js";
 import useOverlayState from "../hooks/useOverlayState.js";
@@ -87,6 +88,7 @@ export default function LensDiagramPanel({
     aberrationsExpanded,
     analysisDrawerOpen,
     analysisDrawerTab,
+    zoomPanActive,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -142,7 +144,18 @@ export default function LensDiagramPanel({
     filterId,
   } = useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
-  const act = L ? sel || hov : null;
+  /* ── Zoom/pan viewBox management ── */
+  const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);
+
+  const handleZoomPanToggle = useCallback(
+    (active: boolean) => {
+      if (!active) zoomHook.reset();
+      adapters.onZoomPanToggle(active);
+    },
+    [zoomHook, adapters],
+  );
+
+  const act = L ? (zoomPanActive ? null : sel || hov) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
@@ -178,8 +191,8 @@ export default function LensDiagramPanel({
         </div>
       ) : L ? (
         <div ref={panelContainerRef} style={{ position: "relative" }}>
-          {/* ── Header ── */}
-          <DiagramHeader
+          {/* ── Header — hidden in zoom/pan mode ── */}
+          {!zoomPanActive && <DiagramHeader
             ref={headerRef}
             L={L}
             t={t}
@@ -207,7 +220,7 @@ export default function LensDiagramPanel({
             headerInfoExpanded={headerInfoExpanded}
             onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
             minHeaderHeight={minHeaderHeight}
-          />
+          />}
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
           <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
             {/* ── SVG viewport ── */}
@@ -263,6 +276,19 @@ export default function LensDiagramPanel({
               analysisDrawerTab={analysisDrawerTab}
               onAnalysisTabChange={adapters.onAnalysisTabChange}
               isWide={isWide}
+              zoomPanActive={zoomPanActive}
+              onZoomPanToggle={handleZoomPanToggle}
+              zoomLevel={zoomHook.state.zoom}
+              onZoomReset={zoomHook.reset}
+              viewBoxOverride={zoomPanActive ? zoomHook.viewBox : undefined}
+              isPanning={zoomHook.isPanning}
+              onSvgWheel={zoomHook.handleWheel}
+              onSvgPointerDown={zoomHook.handlePointerDown}
+              onSvgPointerMove={zoomHook.handlePointerMove}
+              onSvgPointerUp={zoomHook.handlePointerUp}
+              onSvgTouchStart={zoomHook.handleTouchStart}
+              onSvgTouchMove={zoomHook.handleTouchMove}
+              onSvgTouchEnd={zoomHook.handleTouchEnd}
               analysisContent={
                 <AnalysisDrawerContent
                   activeTab={analysisDrawerTab}
@@ -281,8 +307,8 @@ export default function LensDiagramPanel({
             />
             {/* end SVG wrapper */}
 
-            {/* ── Control panel ── */}
-            {showControls && (
+            {/* ── Control panel — hidden in zoom/pan mode ── */}
+            {showControls && !zoomPanActive && (
               <DiagramControlPanel
                 L={L}
                 t={t}
