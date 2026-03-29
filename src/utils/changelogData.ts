@@ -7,7 +7,7 @@
  * maintenance guide.
  */
 
-export type ChangelogEntryType = "feature" | "fix" | "lens" | "improvement";
+export type ChangelogEntryType = "feature" | "fix" | "lens" | "improvement" | "article";
 
 export interface ChangelogEntry {
   /** ISO date string (YYYY-MM-DD) matching the PR merge date */
