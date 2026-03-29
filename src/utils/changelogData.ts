@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-03-29 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-03-29",
+    type: "feature",
+    summary: "Added zoom and pan controls for infinite-resolution diagram inspection",
+  },
   // ── 2026-03-28 ──────────────────────────────────────────────────────────
   {
     date: "2026-03-28",
