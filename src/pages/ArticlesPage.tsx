@@ -5,6 +5,7 @@
  * layout pattern as LensIndexPage and MakersIndexPage.
  */
 
+import { useEffect } from "react";
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
@@ -25,6 +26,10 @@ const PAGE_BASE_STYLE = {
 export default function ArticlesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const seoDescription = `${ARTICLES.length} articles and guides about optical design, lens aberrations, and how camera lenses work.`;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, []);
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>

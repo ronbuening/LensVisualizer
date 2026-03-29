@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-03-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-03-29",
+    type: "fix",
+    summary: "Fixed article navigation so pages open at the top instead of preserving prior scroll",
+  },
+  {
+    date: "2026-03-29",
     type: "article",
     summary: "Added Heliar History article",
   },
