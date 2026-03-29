@@ -5,7 +5,7 @@
  * using react-markdown with theme-aware styling.
  */
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router";
 import ReactMarkdown from "react-markdown";
@@ -161,6 +161,10 @@ export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const components = useMarkdownComponents(t);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [slug]);
 
   if (!slug || !ARTICLE_CONTENT[slug]) {
     return <Navigate to="/articles" replace />;

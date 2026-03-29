@@ -36,9 +36,16 @@ function renderRoutes(initialEntry: string, routes: ReactElement) {
 }
 
 describe("static page renders", () => {
+  const scrollTo = vi.fn();
+
   beforeEach(() => {
     clearBrowserState();
     installMatchMediaMock(false);
+    Object.defineProperty(window, "scrollTo", {
+      writable: true,
+      value: scrollTo,
+    });
+    scrollTo.mockClear();
   });
 
   afterEach(() => {
@@ -103,6 +110,7 @@ describe("static page renders", () => {
 
     expect(screen.getByText("All Articles")).toBeTruthy();
     expect(screen.getAllByText(ARTICLES[0].title).length).toBeGreaterThan(0);
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 
   it("renders an article page for a known slug", () => {
@@ -118,6 +126,7 @@ describe("static page renders", () => {
 
     expect(screen.getAllByText(entry.title).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /^← All Articles$/ })).toBeTruthy();
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 
   it("redirects unknown article slugs to the archive", async () => {
