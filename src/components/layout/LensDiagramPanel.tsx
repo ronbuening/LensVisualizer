@@ -192,35 +192,37 @@ export default function LensDiagramPanel({
       ) : L ? (
         <div ref={panelContainerRef} style={{ position: "relative" }}>
           {/* ── Header — hidden in zoom/pan mode ── */}
-          {!zoomPanActive && <DiagramHeader
-            ref={headerRef}
-            L={L}
-            t={t}
-            compact={compact}
-            isWide={isWide}
-            focusT={focusT}
-            zoomT={zoomT}
-            fNumber={fNumber}
-            showOnAxis={showOnAxis}
-            onShowOnAxisChange={adapters.onShowOnAxisChange}
-            showOffAxis={showOffAxis}
-            onShowOffAxisChange={adapters.onShowOffAxisChange}
-            rayTracksF={rayTracksF}
-            onRayTracksFChange={adapters.onRayTracksFChange}
-            showChromatic={showChromatic}
-            onShowChromaticChange={adapters.onShowChromaticChange}
-            chromR={chromR}
-            chromG={chromG}
-            chromB={chromB}
-            onChromRChange={adapters.onChromRChange}
-            onChromGChange={adapters.onChromGChange}
-            onChromBChange={adapters.onChromBChange}
-            showPupils={showPupils}
-            onShowPupilsChange={adapters.onShowPupilsChange}
-            headerInfoExpanded={headerInfoExpanded}
-            onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
-            minHeaderHeight={minHeaderHeight}
-          />}
+          {!zoomPanActive && (
+            <DiagramHeader
+              ref={headerRef}
+              L={L}
+              t={t}
+              compact={compact}
+              isWide={isWide}
+              focusT={focusT}
+              zoomT={zoomT}
+              fNumber={fNumber}
+              showOnAxis={showOnAxis}
+              onShowOnAxisChange={adapters.onShowOnAxisChange}
+              showOffAxis={showOffAxis}
+              onShowOffAxisChange={adapters.onShowOffAxisChange}
+              rayTracksF={rayTracksF}
+              onRayTracksFChange={adapters.onRayTracksFChange}
+              showChromatic={showChromatic}
+              onShowChromaticChange={adapters.onShowChromaticChange}
+              chromR={chromR}
+              chromG={chromG}
+              chromB={chromB}
+              onChromRChange={adapters.onChromRChange}
+              onChromGChange={adapters.onChromGChange}
+              onChromBChange={adapters.onChromBChange}
+              showPupils={showPupils}
+              onShowPupilsChange={adapters.onShowPupilsChange}
+              headerInfoExpanded={headerInfoExpanded}
+              onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
+              minHeaderHeight={minHeaderHeight}
+            />
+          )}
           {/* ── SVG + controls body (side-by-side when overflowing) ── */}
           <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
             {/* ── SVG viewport ── */}

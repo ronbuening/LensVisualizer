@@ -96,18 +96,15 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
   }, [svgW, svgH]);
 
   /** Convert client coords to SVG viewBox coords using the SVG element's bounding rect */
-  const clientToSvg = useCallback(
-    (clientX: number, clientY: number, svgEl: SVGSVGElement, vb: ViewBoxState) => {
-      const rect = svgEl.getBoundingClientRect();
-      const fracX = (clientX - rect.left) / rect.width;
-      const fracY = (clientY - rect.top) / rect.height;
-      return {
-        svgX: vb.vbX + fracX * vb.vbW,
-        svgY: vb.vbY + fracY * vb.vbH,
-      };
-    },
-    [],
-  );
+  const clientToSvg = useCallback((clientX: number, clientY: number, svgEl: SVGSVGElement, vb: ViewBoxState) => {
+    const rect = svgEl.getBoundingClientRect();
+    const fracX = (clientX - rect.left) / rect.width;
+    const fracY = (clientY - rect.top) / rect.height;
+    return {
+      svgX: vb.vbX + fracX * vb.vbW,
+      svgY: vb.vbY + fracY * vb.vbH,
+    };
+  }, []);
 
   const handleWheel = useCallback(
     (e: React.WheelEvent<SVGSVGElement>) => {
@@ -193,8 +190,7 @@ export default function useViewBoxZoom(svgW: number, svgH: number, active: boole
 
   /* ── Touch handlers (pinch-to-zoom) ── */
 
-  const touchDist = (t1: React.Touch, t2: React.Touch) =>
-    Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+  const touchDist = (t1: React.Touch, t2: React.Touch) => Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent<SVGSVGElement>) => {
