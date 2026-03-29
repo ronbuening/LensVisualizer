@@ -20,7 +20,7 @@ import { buildIssueURL, REPO_URL } from "../../utils/errorReporting.js";
 
 interface ErrorDisplayProps {
   error: Error | null;
-  context: Record<string, string>;
+  context: Record<string, string | undefined>;
   onRetry?: () => void;
   title?: string;
 }
@@ -200,7 +200,10 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
       <div style={BOUNDARY_WRAPPER}>
         <ErrorDisplay
           error={this.state.error}
-          context={{ component: "ErrorBoundary (top-level)" }}
+          context={{
+            component: "ErrorBoundary (top-level)",
+            componentStack: this.state.componentStack || undefined,
+          }}
           title="Rendering Error"
           onRetry={() => this.setState({ error: null, componentStack: null })}
         />

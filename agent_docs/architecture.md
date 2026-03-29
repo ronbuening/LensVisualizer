@@ -123,8 +123,8 @@
 |--------|----------|---------|
 | `ClientOnly.tsx` | `src/components/` | SSR-safe wrapper that renders children only after hydration |
 | `SEOHead.tsx` | `src/components/` | Per-page meta tags (title, OG, Twitter Card, JSON-LD) via react-helmet-async |
-| `ErrorBoundary.tsx` | `src/components/errors/` | Error boundary + reusable ErrorDisplay |
-| `PanelErrorBoundary.tsx` | `src/components/errors/` | Panel-level error boundary, resets on lens change |
+| `ErrorBoundary.tsx` | `src/components/errors/` | Error boundary + reusable `ErrorDisplay`. `ErrorDisplay` builds a pre-filled GitHub issue URL via `buildIssueURL`, including the error message, stack trace, React component stack, lens key, and browser UA |
+| `PanelErrorBoundary.tsx` | `src/components/errors/` | Panel-level error boundary, resets on lens change; stores `componentStack` from `ErrorInfo` and passes it through to `ErrorDisplay` |
 
 ### Optics Engine
 
@@ -154,7 +154,7 @@
 | `comparisonSliders.ts` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
 | `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing, `encodeSliderParams()` (shared slider→URL encoding), and slider state persistence |
 | `featureFlags.ts` | `src/utils/` | Feature flag controls |
-| `errorReporting.ts` | `src/utils/` | GitHub issue URL builder |
+| `errorReporting.ts` | `src/utils/` | `buildIssueURL(error, context)` — builds a pre-filled GitHub `/issues/new` URL. `IssueContext` fields: `component`, `lensKey`, `componentStack` (React component tree from `ErrorInfo`), `extra` |
 | `useMediaQuery.ts` | `src/utils/` | Responsive breakpoint hook |
 | `preferences.ts` | `src/utils/` | localStorage load/save |
 | `lensReducer.ts` | `src/utils/` | Pure reducer: sliced state shape + action types |
@@ -215,19 +215,27 @@ State is provided to children via `LensStateContext` (state + theme + isWide) an
 Orchestrates sub-components and custom hooks. Owns only hover/selection state and structural layout wiring.
 
 Extracted hooks (all in `src/components/hooks/`):
-- **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations
-- **`useRayTracing.ts`** — Hook: orchestrates ray sub-hooks (useOnAxisRays, useOffAxisRays, useChromaticRays)
-- **`useOnAxisRays.ts`** — Hook: on-axis ray fan computation + coordinate transform
-- **`useOffAxisRays.ts`** — Hook: off-axis field ray computation with trueAngle/edge projection modes
-- **`useChromaticRays.ts`** — Hook: chromatic tracing across R/G/B channels + LCA/TCA spread computation
+- **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations. Returns `buildError` (thrown by `buildLens`) and `shapeError` (thrown by `computeElementShapes`) separately so the panel can surface both via `ErrorDisplay`
+- **`useRayTracing.ts`** — Hook: orchestrates ray sub-hooks (useOnAxisRays, useOffAxisRays, useChromaticRays). Aggregates errors from all three into a single `rayError` (first non-null)
+- **`useOnAxisRays.ts`** — Hook: on-axis ray fan computation + coordinate transform. Returns `{ segments, error }` — caught errors are surfaced rather than silently dropped
+- **`useOffAxisRays.ts`** — Hook: off-axis field ray computation with trueAngle/edge projection modes. Returns `{ segments, error }`
+- **`useChromaticRays.ts`** — Hook: chromatic tracing across R/G/B channels + LCA/TCA spread computation. Returns `{ chromaticRays, chromSpread, error }`
 - **`useFlashOverlay.ts`** — Hook: two-phase flash animation state machine for sticky slider feedback
 - **`useSideLayoutDetection.ts`** — Hook: ResizeObserver-based overflow detection with hysteresis for side-by-side layout
 - **`useDispatchAdapters.ts`** — Hook: reads context dispatch and returns named callback adapters for child components
 - **`useOverlayState.ts`** — Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset
 - **`useHeaderHeight.ts`** — Hook: header ResizeObserver height tracking for multi-panel alignment
 
+**Error display tiers** (in render order — first truthy wins):
+1. `buildError` — `buildLens()` threw (bad lens data); shown via `ErrorDisplay`
+2. `shapeError` — `computeElementShapes()` threw; shown via `ErrorDisplay`
+3. `rayError` — any ray-trace sub-hook threw; shown via `ErrorDisplay`
+4. `PanelErrorBoundary` — catches any render-phase error not caught above
+
+All `ErrorDisplay` instances include a pre-filled "Report Issue on GitHub" link built by `buildIssueURL` with component name, lens key, and (for render errors) the React component stack.
+
 Sub-components:
-- **`PanelErrorBoundary.tsx`** (`src/components/errors/`) — Panel-level error boundary that resets automatically on lens change
+- **`PanelErrorBoundary.tsx`** (`src/components/errors/`) — Panel-level error boundary that resets automatically on lens change; captures React's `componentStack` and forwards it to `buildIssueURL`
 - **`DiagramHeader.tsx`** (`src/components/controls/`) — Title, specs, composes RayToggles + ChromaticControls (uses `forwardRef` for height measurement)
   - **`RayToggles.tsx`** — On-axis/off-axis toggle buttons with off-axis cycling logic and feature flag awareness
   - **`ChromaticControls.tsx`** — COLOR master toggle + individual R/G/B channel buttons

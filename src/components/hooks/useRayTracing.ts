@@ -41,6 +41,8 @@ interface UseRayTracingResult {
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
+  /** First ray-trace error across all three sub-hooks, or null if all succeeded. */
+  rayError: unknown;
 }
 
 export default function useRayTracing({
@@ -66,7 +68,7 @@ export default function useRayTracing({
    * ray mode; 0 when rays arrive from infinity. */
   const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
 
-  const rays = useOnAxisRays({
+  const { segments: rays, error: onAxisError } = useOnAxisRays({
     L,
     zPos,
     IMG_MM,
@@ -82,7 +84,7 @@ export default function useRayTracing({
     lensKey,
   });
 
-  const offAxisRays = useOffAxisRays({
+  const { segments: offAxisRays, error: offAxisError } = useOffAxisRays({
     L,
     zPos,
     IMG_MM,
@@ -99,7 +101,11 @@ export default function useRayTracing({
     lensKey,
   });
 
-  const { chromaticRays, chromSpread } = useChromaticRays({
+  const {
+    chromaticRays,
+    chromSpread,
+    error: chromaticError,
+  } = useChromaticRays({
     L,
     zPos,
     IMG_MM,
@@ -119,5 +125,7 @@ export default function useRayTracing({
     lensKey,
   });
 
-  return { focusK, rays, offAxisRays, chromaticRays, chromSpread };
+  const rayError = onAxisError ?? offAxisError ?? chromaticError ?? null;
+
+  return { focusK, rays, offAxisRays, chromaticRays, chromSpread, rayError };
 }

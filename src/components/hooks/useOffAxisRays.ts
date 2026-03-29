@@ -30,6 +30,11 @@ interface UseOffAxisRaysParams {
   lensKey: string;
 }
 
+interface UseOffAxisRaysResult {
+  segments: RaySegment[];
+  error: unknown;
+}
+
 export default function useOffAxisRays({
   L,
   zPos,
@@ -45,9 +50,9 @@ export default function useOffAxisRays({
   focusK,
   showOffAxis,
   lensKey,
-}: UseOffAxisRaysParams): RaySegment[] {
-  return useMemo((): RaySegment[] => {
-    if (!L || showOffAxis === "off") return [];
+}: UseOffAxisRaysParams): UseOffAxisRaysResult {
+  return useMemo((): UseOffAxisRaysResult => {
+    if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
       /* Zoom-aware field angle and chief ray entry position.
@@ -96,10 +101,10 @@ export default function useOffAxisRays({
           ),
         );
       }
-      return out;
+      return { segments: out, error: null };
     } catch (e) {
       console.error(`[useOffAxisRays] Off-axis ray trace failed for "${lensKey}":`, e);
-      return [];
+      return { segments: [], error: e };
     }
   }, [
     showOffAxis,

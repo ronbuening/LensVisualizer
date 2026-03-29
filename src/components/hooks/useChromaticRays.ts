@@ -44,6 +44,7 @@ interface UseChromaticRaysParams {
 interface UseChromaticRaysResult {
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
+  error: unknown;
 }
 
 export default function useChromaticRays({
@@ -65,10 +66,13 @@ export default function useChromaticRays({
   chromB,
   lensKey,
 }: UseChromaticRaysParams): UseChromaticRaysResult {
-  const chromaticRays = useMemo((): ChromaticRaySegment[] => {
-    if (!L || !showChromatic) return [];
+  /* Separate ref to surface a caught error from the chromatic useMemo to the
+   * combined return value (useMemo cannot return a tuple with a separate
+   * error field without restructuring, so we pair the error here). */
+  const chromaticResult = useMemo((): { segments: ChromaticRaySegment[]; error: unknown } => {
+    if (!L || !showChromatic) return { segments: [], error: null };
     const channels = filterChannels(chromR, chromG, chromB);
-    if (channels.length === 0) return [];
+    if (channels.length === 0) return { segments: [], error: null };
     try {
       const out: ChromaticRaySegment[] = [];
       for (const f of CHROM_FRACS) {
@@ -89,10 +93,10 @@ export default function useChromaticRays({
           out.push({ ...seg, channel: ch, y: result.y, u: result.u, clipped: result.clipped });
         }
       }
-      return out;
+      return { segments: out, error: null };
     } catch (e) {
       console.error(`[useChromaticRays] Chromatic ray trace failed for "${lensKey}":`, e);
-      return [];
+      return { segments: [], error: e };
     }
   }, [
     showChromatic,
@@ -114,6 +118,8 @@ export default function useChromaticRays({
     zoomT,
   ]);
 
+  const chromaticRays = chromaticResult.segments;
+
   /* Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
    * from the marginal chromatic rays. Requires at least 2 active channels. */
   const chromSpread = useMemo((): ChromaticSpread | null => {
@@ -131,5 +137,5 @@ export default function useChromaticRays({
     return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
   }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
 
-  return { chromaticRays, chromSpread };
+  return { chromaticRays, chromSpread, error: chromaticResult.error };
 }

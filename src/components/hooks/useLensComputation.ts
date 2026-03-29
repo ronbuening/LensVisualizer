@@ -47,6 +47,7 @@ interface UseLensComputationResult {
   IX: number;
   effectiveSC: number;
   shapes: ElementShape[];
+  shapeError: unknown;
   stopZ: number;
   currentFOPEN: number;
   fNumber: number;
@@ -116,15 +117,18 @@ export default function useLensComputation({
   );
 
   /* ── Element shapes ── */
-  const shapes = useMemo((): ElementShape[] => {
-    if (!L) return [];
+  const shapesResult = useMemo((): { shapes: ElementShape[]; error: unknown } => {
+    if (!L) return { shapes: [], error: null };
     try {
-      return computeElementShapes(L, zPos, sx, sy);
+      return { shapes: computeElementShapes(L, zPos, sx, sy), error: null };
     } catch (e) {
       console.error(`[useLensComputation] Element shape computation failed for "${lensKey}":`, e);
-      return [];
+      return { shapes: [], error: e };
     }
   }, [L, zPos, sx, sy, lensKey]);
+
+  const shapes = shapesResult.shapes;
+  const shapeError = shapesResult.error;
 
   /* ── Aperture ──
    * Compute the current f-number and physical stop/entrance-pupil diameters
@@ -174,6 +178,7 @@ export default function useLensComputation({
     IX,
     effectiveSC,
     shapes,
+    shapeError,
     stopZ,
     currentFOPEN,
     fNumber,
