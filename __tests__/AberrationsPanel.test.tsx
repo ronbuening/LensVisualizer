@@ -80,6 +80,7 @@ describe("AberrationsPanel", () => {
       usableFieldCount: 4,
       sharedTangentialHalfRangeMm: 0.06,
       sharedSagittalHalfRangeMm: 0.03,
+      airyDiskRadiusMm: 0.002,
       fields: [
         {
           fieldFraction: 0,

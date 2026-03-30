@@ -103,6 +103,7 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
     usableFieldCount: 3,
     sharedTangentialHalfRangeMm: 0.2,
     sharedSagittalHalfRangeMm: 0.1,
+    airyDiskRadiusMm: 0.002,
     fields: [
       {
         fieldFraction: 0,
@@ -188,7 +189,7 @@ describe("ComaPreviewGrid", () => {
   it("renders point-cloud tiles with shared axis copy", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
-    expect(screen.getAllByText("Real 2D point cloud").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Spot diagram").length).toBeGreaterThan(0);
     expect(screen.getByText("Tangential / sagittal image height relative to the chief ray (mm)")).toBeTruthy();
   });
 
@@ -202,8 +203,10 @@ describe("ComaPreviewGrid", () => {
 
     const centerAxisX = verticalAxisX(centerTile!);
     const quarterAxisX = verticalAxisX(quarterTile!);
-    const centerPointX = Number(centerTile!.querySelector("circle")!.getAttribute("cx"));
-    const quarterPointX = Number(quarterTile!.querySelector("circle")!.getAttribute("cx"));
+    const centerDataCircles = centerTile!.querySelectorAll("circle:not([stroke-dasharray])");
+    const quarterDataCircles = quarterTile!.querySelectorAll("circle:not([stroke-dasharray])");
+    const centerPointX = Number(centerDataCircles[0]!.getAttribute("cx"));
+    const quarterPointX = Number(quarterDataCircles[0]!.getAttribute("cx"));
 
     const centerOffset = Math.abs(centerPointX - centerAxisX);
     const quarterOffset = Math.abs(quarterPointX - quarterAxisX);

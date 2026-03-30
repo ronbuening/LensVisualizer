@@ -82,7 +82,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Current plane
+        Image plane
       </text>
 
       {tickValues.map((tick) => {
@@ -125,7 +125,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         Toward sensor
       </text>
       <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
-        Field position across current half-field
+        Relative field height
       </text>
 
       {/* Tangential traces (solid) and sagittal traces (dashed) per channel */}

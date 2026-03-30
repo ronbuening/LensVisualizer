@@ -238,7 +238,7 @@ function renderPointCloudTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel="Real 2D point cloud"
+      footerLabel="Spot diagram"
       t={t}
     >
       <line

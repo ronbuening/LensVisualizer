@@ -187,7 +187,7 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
         fontFamily="inherit"
         letterSpacing="0.05em"
       >
-        Image height (% of edge)
+        Relative image height (%)
       </text>
       <text
         x={10}

@@ -51,7 +51,7 @@ describe("analysis display tabs", () => {
     ];
 
     const html = renderToStaticMarkup(React.createElement(DistortionChart, { samples, t: themes.dark }));
-    expect(html).toContain("Image height (% of edge)");
+    expect(html).toContain("Relative image height (%)");
     expect(html).toContain("100%");
     expect(html).not.toContain("Field angle (°)");
   });
@@ -106,11 +106,11 @@ describe("analysis display tabs", () => {
 
     expect(html).toContain("Spherical Aberration");
     expect(html).toContain("Field Curvature");
-    expect(html).not.toContain("Coma Preview");
+    expect(html).not.toContain("Spot Diagram");
     expect(html).not.toContain("Meridional Coma");
   });
 
-  it("ComaTab renders coma preview and meridional coma content", () => {
+  it("ComaTab renders spot diagram and meridional coma content", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0;
     const zoomT = 0;
@@ -129,8 +129,8 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Coma Preview");
-    expect(html).toContain("Real 2D coma point cloud");
+    expect(html).toContain("Spot Diagram");
+    expect(html).toContain("Spot diagram");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");

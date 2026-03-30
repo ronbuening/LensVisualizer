@@ -60,7 +60,7 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Focused plane
+        Image plane
       </text>
 
       {tickValues.map((tick) => {
