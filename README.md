@@ -126,6 +126,12 @@ npm run test
 
 See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full format.
 
+
+## Agent Reference Docs
+
+- [`CLAUDE.md`](CLAUDE.md) is the canonical assistant-facing project guide.
+- [`agents.md`](agents.md) mirrors `CLAUDE.md` so tools that prefer lowercase agent files read the same instructions.
+
 ## Documentation
 
 - [Architecture notes](agent_docs/architecture.md)
