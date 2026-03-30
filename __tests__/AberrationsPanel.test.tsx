@@ -381,6 +381,16 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
   });
 
+  it("labels field curve direction correctly: positive shift toward sensor, negative toward lens", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    render(<AberrationsPanel {...baseProps} />);
+
+    // In the SVG plots: positive shift (aft) is at the top, labeled "Toward sensor"
+    // Negative shift (fore) is at the bottom, labeled "Toward lens"
+    expect(screen.getAllByText("Toward sensor").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Toward lens").length).toBeGreaterThan(0);
+  });
+
   it("keeps field curves uncapped while omitting out-of-circle astigmatism", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeFieldCurvature.mockReturnValue(

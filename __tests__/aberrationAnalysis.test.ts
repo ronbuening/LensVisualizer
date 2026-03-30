@@ -1286,6 +1286,62 @@ describe("computeFieldCurvature", () => {
     expect(pShift).toBeLessThan(-0.01);
   });
 
+  it("produces astigmatic difference as S minus T (signed convention)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    for (const field of offAxisFields) {
+      const expected = field.sagittalBestFocusZ - field.tangentialBestFocusZ;
+      expect(field.astigmaticDifferenceMm).toBeCloseTo(expected, 10);
+      expect(field.astigmaticDifferenceUm).toBeCloseTo(field.astigmaticDifferenceMm * 1000, 6);
+    }
+  });
+
+  it("includes diagnostic shifts in sharedFocusShiftHalfRangeMm", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // The shared range should cover all diagnostic shifts
+    const allFields = [...result!.fields, ...result!.curveFields].filter((f) => f.usable);
+    for (const field of allFields) {
+      const diagnosticT = Math.abs(field.diagnosticTangentialShiftMm ?? 0);
+      const diagnosticS = Math.abs(field.diagnosticSagittalShiftMm ?? 0);
+      expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThanOrEqual(diagnosticT - 1e-9);
+      expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThanOrEqual(diagnosticS - 1e-9);
+    }
+  });
+
+  it("produces both parabasal and real-ray results at off-axis fields", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Off-axis fields should have both parabasal and diagnostic values
+    const offAxisFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    expect(offAxisFields.length).toBeGreaterThan(0);
+    for (const field of offAxisFields) {
+      expect(isFinite(field.tangentialShiftMm)).toBe(true);
+      expect(isFinite(field.sagittalShiftMm)).toBe(true);
+      // Diagnostic values should be present (may be undefined only if tracing fails)
+      if (field.diagnosticTangentialShiftMm !== undefined) {
+        expect(isFinite(field.diagnosticTangentialShiftMm)).toBe(true);
+        expect(isFinite(field.diagnosticSagittalShiftMm!)).toBe(true);
+      }
+    }
+  });
+
   it("computes non-null chromatic field shifts for a dispersive lens", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
