@@ -1,4 +1,7 @@
-import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
+import {
+  DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
+  HIGH_RES_CIRCULAR_PUPIL_RING_SAMPLES,
+} from "../optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
@@ -186,8 +189,8 @@ export const NEAR_AXIS_REAL_FRAC = 0.1;
 export const ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 
-/** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
-export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES;
+/** High-resolution equal-area circular pupil pattern for spot diagram sampling. */
+export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = HIGH_RES_CIRCULAR_PUPIL_RING_SAMPLES;
 export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
   (sum, count) => sum + count,
   0,

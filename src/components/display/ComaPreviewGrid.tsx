@@ -275,9 +275,9 @@ function renderPointCloudTile(
             key={`${field.label}-${point.index}`}
             cx={xScale(point.tangentialImageHeight)}
             cy={yScale(point.sagittalImageHeight)}
-            r={1.3 + (point.weight / maxWeight) * 0.8}
+            r={0.8 + (point.weight / maxWeight) * 0.6}
             fill={t.value}
-            opacity={Math.max(0.12, Math.min(0.85, point.weight / maxWeight))}
+            opacity={Math.max(0.15, Math.min(0.9, point.weight / maxWeight))}
           />
         ))
       ) : (
