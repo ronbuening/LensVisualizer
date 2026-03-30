@@ -15,13 +15,11 @@ The goal is to make these designs tangible: to show how light actually moves thr
 
 This site is created by **Ron Buening**. The optical prescriptions are translated from patent filings — a process that involves interpreting lens tables, converting between notation conventions, and validating the data against known optical properties.
 
-**Claude** (Anthropic) is used extensively in the development of this project:
+**Claude** (Anthropic) is used in the development of this project:
 
 - **Patent translation** — Extracting and converting surface data, glass specifications, and aspherical coefficients from patent documents into structured lens prescriptions
 - **Optical math** — Paraxial ray tracing, sag curve computation, entrance pupil calculation, and chromatic dispersion modeling
 - **Site development** — TypeScript React components, SVG rendering logic, theme system, and the interactive controls that bring the lens data to life
-
-The result is a collaboration between human domain knowledge — understanding what matters in a lens design and why — and AI capability in handling the tedious, error-prone arithmetic and code that connects patent data to a visual, interactive experience.
 
 ---
 
