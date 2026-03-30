@@ -6,9 +6,10 @@
  */
 
 import { useMemo } from "react";
-import { computeDistortionCurve } from "../../optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionGrid } from "../../optics/distortionAnalysis.js";
 import { eflAtZoom } from "../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
+import DistortionGridOverlay from "./DistortionGridOverlay.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -36,6 +37,8 @@ export default function DistortionTab({
     [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD],
   );
 
+  const grid = useMemo(() => computeDistortionGrid(samples), [samples]);
+
   if (samples.length < 2) {
     return (
       <div style={{ color: t.muted, fontSize: 10, padding: "8px 0", transition: "color 0.3s" }}>
@@ -61,6 +64,16 @@ export default function DistortionTab({
         </span>
       </div>
       <DistortionChart samples={samples} t={t} />
+      {grid ? (
+        <div style={{ marginTop: 12 }}>
+          <span style={{ fontSize: 10, color: t.muted, transition: "color 0.3s" }}>
+            TV distortion grid (uncorrected field approximation)
+          </span>
+          <div style={{ marginTop: 4 }}>
+            <DistortionGridOverlay grid={grid} t={t} />
+          </div>
+        </div>
+      ) : null}
       <div
         style={{
           display: "flex",
