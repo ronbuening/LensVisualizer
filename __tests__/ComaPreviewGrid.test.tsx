@@ -206,7 +206,7 @@ describe("ComaPreviewGrid", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
     expect(screen.getAllByText("Traced real-ray spot plot").length).toBeGreaterThan(0);
-    expect(screen.getByText("Equal tangential / sagittal scale relative to chief ray (mm)")).toBeTruthy();
+    expect(screen.getByText("Sagittal (horiz.) / tangential (vert.) scale relative to chief ray (mm)")).toBeTruthy();
     expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
     expect(screen.getByText("Diamond = centroid")).toBeTruthy();
     expect(screen.getByText("Circle = RMS radius")).toBeTruthy();

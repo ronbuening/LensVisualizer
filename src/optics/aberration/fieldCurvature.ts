@@ -98,11 +98,15 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   if (!isFinite(imageHeight) || !isFinite(petzvalSum)) return null;
   if (Math.abs(petzvalSum) < 1e-9) return 0;
 
+  // The Petzval surface radius R_P = 1/P has its center of curvature on the
+  // lens side of the image plane for a converging system (P > 0). The sag at
+  // image height h is: shift = -(R_P - sign(R_P) * sqrt(R_P^2 - h^2)), which
+  // gives negative shift (toward the lens) for P > 0.
   const radius = 1 / petzvalSum;
   const underRoot = radius * radius - imageHeight * imageHeight;
   if (underRoot <= 0) return null;
 
-  return radius - Math.sign(radius) * Math.sqrt(underRoot);
+  return -(radius - Math.sign(radius) * Math.sqrt(underRoot));
 }
 
 const CHROMATIC_CHANNELS: ChromaticChannel[] = ["R", "G", "B"];

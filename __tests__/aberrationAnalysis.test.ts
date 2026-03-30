@@ -1258,6 +1258,34 @@ describe("computeFieldCurvature", () => {
     }
   });
 
+  it("produces Petzval shift in same direction as tangential/sagittal shifts for a converging system", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    // Converging system should have positive petzvalSum
+    expect(L.petzvalSum).toBeGreaterThan(0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Check the 50% field — all three curves should shift in the same direction
+    const f50 = result!.fields.find((f) => f.fieldFraction === 0.5);
+    expect(f50).toBeDefined();
+    expect(f50!.usable).toBe(true);
+
+    // For a converging system with inward Petzval curvature, the Petzval surface and the
+    // T/S field curves should all shift in the same direction at off-axis fields.
+    // The Petzval shift sign must agree with the tangential shift sign.
+    const pShift = f50!.petzvalShiftMm;
+    const tShift = f50!.tangentialShiftMm;
+    const sShift = f50!.sagittalShiftMm;
+    // All three should have the same sign for a typical converging system
+    expect(Math.sign(pShift)).toBe(Math.sign(tShift));
+    // Petzval shift should be non-trivially negative (toward lens) for a converging system
+    expect(pShift).toBeLessThan(-0.01);
+  });
+
   it("computes non-null chromatic field shifts for a dispersive lens", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);

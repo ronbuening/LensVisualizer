@@ -236,14 +236,15 @@ function renderPointCloudTile(
   const spotPlotY = geometry.plotY + plotInsetY;
   const zeroX = spotPlotX + POINT_CLOUD_PLOT_SIZE / 2;
   const zeroY = spotPlotY + POINT_CLOUD_PLOT_SIZE / 2;
-  const xScale = (tangentialImageHeight: number) =>
-    zeroX + (tangentialImageHeight / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2);
-  const yScale = (sagittalImageHeight: number) =>
-    zeroY - (sagittalImageHeight / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2);
+  // Industry convention: sagittal (X-deviation) on horizontal, tangential (Y-deviation) on vertical
+  const xScale = (sagittalImageHeight: number) =>
+    zeroX + (sagittalImageHeight / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2);
+  const yScale = (tangentialImageHeight: number) =>
+    zeroY - (tangentialImageHeight / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2);
   const tickValues = [-sharedSpotHalfRangeMm, 0, sharedSpotHalfRangeMm];
   const maxWeight = Math.max(...field.points.map((point) => point.weight), 1e-9);
-  const centroidX = xScale(field.centroidTangentialImageHeight);
-  const centroidY = yScale(field.centroidSagittalImageHeight);
+  const centroidX = xScale(field.centroidSagittalImageHeight);
+  const centroidY = yScale(field.centroidTangentialImageHeight);
   const rmsRadiusPx = Math.max(1.2, (field.rmsRadiusMm / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2));
   const tailDirection =
     Math.abs(field.centroidTangentialImageHeight) > 1e-9
@@ -266,13 +267,14 @@ function renderPointCloudTile(
     field.rmsRadiusMm * 0.6,
     comaLength * 0.18,
   );
-  const shoulderX = forwardExtent - tailDirection * Math.max(comaLength * 0.38, field.rmsRadiusMm * 1.15, 1e-6);
-  const noseX = rearExtent - tailDirection * Math.max(comaLength * 0.14, field.rmsRadiusMm * 0.35, 1e-6);
-  const backX = noseX - tailDirection * Math.max(comaLength * 0.2, field.rmsRadiusMm * 0.4, 1e-6);
-  const idealizedPath = `M ${xScale(backX).toFixed(1)} ${yScale(comaHalfWidth * 0.5).toFixed(1)}
-    C ${xScale(rearExtent).toFixed(1)} ${yScale(comaHalfWidth).toFixed(1)} ${xScale(shoulderX).toFixed(1)} ${yScale(comaHalfWidth * 0.82).toFixed(1)} ${xScale(forwardExtent).toFixed(1)} ${yScale(0).toFixed(1)}
-    C ${xScale(shoulderX).toFixed(1)} ${yScale(-comaHalfWidth * 0.82).toFixed(1)} ${xScale(rearExtent).toFixed(1)} ${yScale(-comaHalfWidth).toFixed(1)} ${xScale(backX).toFixed(1)} ${yScale(-comaHalfWidth * 0.5).toFixed(1)}
-    C ${xScale(noseX).toFixed(1)} ${yScale(-comaHalfWidth * 0.12).toFixed(1)} ${xScale(noseX).toFixed(1)} ${yScale(comaHalfWidth * 0.12).toFixed(1)} ${xScale(backX).toFixed(1)} ${yScale(comaHalfWidth * 0.5).toFixed(1)} Z`;
+  // Tangential extent along vertical (yScale), sagittal half-width along horizontal (xScale)
+  const shoulderT = forwardExtent - tailDirection * Math.max(comaLength * 0.38, field.rmsRadiusMm * 1.15, 1e-6);
+  const noseT = rearExtent - tailDirection * Math.max(comaLength * 0.14, field.rmsRadiusMm * 0.35, 1e-6);
+  const backT = noseT - tailDirection * Math.max(comaLength * 0.2, field.rmsRadiusMm * 0.4, 1e-6);
+  const idealizedPath = `M ${xScale(comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)}
+    C ${xScale(comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(comaHalfWidth * 0.82).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(0).toFixed(1)} ${yScale(forwardExtent).toFixed(1)}
+    C ${xScale(-comaHalfWidth * 0.82).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(-comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(-comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)}
+    C ${xScale(-comaHalfWidth * 0.12).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.12).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)} Z`;
 
   return (
     <TileShell
@@ -332,8 +334,8 @@ function renderPointCloudTile(
             field.points.map((point) => (
               <circle
                 key={`${field.label}-${point.index}`}
-                cx={xScale(point.tangentialImageHeight)}
-                cy={yScale(point.sagittalImageHeight)}
+                cx={xScale(point.sagittalImageHeight)}
+                cy={yScale(point.tangentialImageHeight)}
                 r={1.3 + (point.weight / maxWeight) * 0.8}
                 fill={t.value}
                 opacity={Math.max(0.12, Math.min(0.85, point.weight / maxWeight))}
@@ -420,7 +422,7 @@ export default function ComaPreviewGrid({
           </g>
         )}
         <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-          Equal tangential / sagittal scale relative to chief ray (mm)
+          Sagittal (horiz.) / tangential (vert.) scale relative to chief ray (mm)
         </text>
       </svg>
     );

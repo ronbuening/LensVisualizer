@@ -120,10 +120,10 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         Best-focus shift (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Toward lens
+        Toward sensor
       </text>
       <text x={ML + PW - 4} y={MT + PH + 18} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Toward sensor
+        Toward lens
       </text>
       <text x={ML + PW / 2} y={VB_H - 16} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
         Field position across current half-field

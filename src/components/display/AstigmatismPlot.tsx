@@ -29,18 +29,6 @@ function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "standard
   return Math.abs(field.astigmaticDifferenceMm);
 }
 
-function focusShiftForMode(
-  field: FieldCurvatureFieldResult,
-  mode: "standardized" | "diagnostic",
-  plane: "tangential" | "sagittal",
-): number {
-  if (mode === "diagnostic") {
-    return plane === "tangential"
-      ? (field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm)
-      : (field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm);
-  }
-  return plane === "tangential" ? field.tangentialShiftMm : field.sagittalShiftMm;
-}
 
 export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProps) {
   const imageCircleRadiusMm = Math.max(
@@ -48,11 +36,7 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
     0,
   );
   const withinImageCircle = (field: FieldCurvatureFieldResult) =>
-    Math.max(
-      Math.abs(focusShiftForMode(field, mode, "tangential")),
-      Math.abs(focusShiftForMode(field, mode, "sagittal")),
-    ) <=
-    imageCircleRadiusMm + 1e-9;
+    Math.abs(field.chiefImageHeight) <= imageCircleRadiusMm + 1e-9;
   const markerFields = result.fields.filter((field) => field.usable && withinImageCircle(field));
   const curveFields = result.curveFields.filter((field) => field.usable && withinImageCircle(field));
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;

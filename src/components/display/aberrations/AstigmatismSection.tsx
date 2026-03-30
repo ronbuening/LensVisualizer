@@ -19,27 +19,19 @@ function standardizedSplitMagnitudeUm(field: FieldCurvatureResult["fields"][numb
   return Math.abs(field.astigmaticDifferenceUm);
 }
 
-function focusShiftWithinImageCircle(
+function fieldWithinImageCircle(
   field: FieldCurvatureResult["fields"][number],
   imageCircleRadiusMm: number,
-  mode: "standardized" | "diagnostic",
 ): boolean {
-  const tangentialShiftMm =
-    mode === "diagnostic" ? (field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm) : field.tangentialShiftMm;
-  const sagittalShiftMm =
-    mode === "diagnostic" ? (field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm) : field.sagittalShiftMm;
-  return Math.max(Math.abs(tangentialShiftMm), Math.abs(sagittalShiftMm)) <= imageCircleRadiusMm + 1e-9;
+  return Math.abs(field.chiefImageHeight) <= imageCircleRadiusMm + 1e-9;
 }
 
 export default function AstigmatismSection({ result, expanded, onToggle, theme }: AstigmatismSectionProps) {
   const usableFields = result?.fields.filter((field) => field.usable) ?? [];
   const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
-  const standardizedFields = usableFields.filter((field) =>
-    focusShiftWithinImageCircle(field, imageCircleRadiusMm, "standardized"),
-  );
-  const diagnosticFields = usableFields.filter((field) =>
-    focusShiftWithinImageCircle(field, imageCircleRadiusMm, "diagnostic"),
-  );
+  const inCircleFields = usableFields.filter((field) => fieldWithinImageCircle(field, imageCircleRadiusMm));
+  const standardizedFields = inCircleFields;
+  const diagnosticFields = inCircleFields;
   const standardizedMaxSplitUm =
     standardizedFields.length > 0 ? Math.max(...standardizedFields.map(standardizedSplitMagnitudeUm)) : 0;
   const diagnosticMaxSplitUm =
@@ -49,7 +41,7 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
   const outerField = standardizedFields[standardizedFields.length - 1] ?? null;
   const outerStandardSplitUm = outerField ? standardizedSplitMagnitudeUm(outerField) : null;
   const outerDiagnosticSplitUm =
-    outerField && focusShiftWithinImageCircle(outerField, imageCircleRadiusMm, "diagnostic")
+    outerField && fieldWithinImageCircle(outerField, imageCircleRadiusMm)
       ? diagnosticSplitMagnitudeUm(outerField)
       : null;
   const edgeSplitLabel =

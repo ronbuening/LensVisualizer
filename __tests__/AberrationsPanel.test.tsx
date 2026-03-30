@@ -496,8 +496,8 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.queryByText(/Scale capped to image circle/i)).toBeNull();
-    expect(screen.getByText("4/5")).toBeTruthy();
-    expect(screen.getAllByText("18000 µm").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("30000 µm").length).toBeGreaterThan(0);
   });
 
   it("shows fallback copy when field-curvature computation fails", () => {

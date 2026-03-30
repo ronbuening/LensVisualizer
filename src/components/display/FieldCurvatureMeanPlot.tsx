@@ -97,10 +97,10 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
         Fore / aft deviation (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Fore: toward lens
+        Aft: toward sensor
       </text>
       <text x={ML + PW - 4} y={MT + PH + 16} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Aft: toward sensor
+        Fore: toward lens
       </text>
 
       {fillPoints ? <polygon points={fillPoints} fill={fillColor} opacity={0.18} /> : null}
