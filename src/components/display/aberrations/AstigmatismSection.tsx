@@ -19,10 +19,7 @@ function parabasalSplitMagnitudeUm(field: FieldCurvatureResult["fields"][number]
   return Math.abs(field.astigmaticDifferenceUm);
 }
 
-function fieldWithinImageCircle(
-  field: FieldCurvatureResult["fields"][number],
-  imageCircleRadiusMm: number,
-): boolean {
+function fieldWithinImageCircle(field: FieldCurvatureResult["fields"][number], imageCircleRadiusMm: number): boolean {
   return Math.abs(field.chiefImageHeight) <= imageCircleRadiusMm + 1e-9;
 }
 
@@ -32,16 +29,12 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
   const inCircleFields = usableFields.filter((field) => fieldWithinImageCircle(field, imageCircleRadiusMm));
   const parabasalMaxSplitUm =
     inCircleFields.length > 0 ? Math.max(...inCircleFields.map(parabasalSplitMagnitudeUm)) : 0;
-  const realRayMaxSplitUm =
-    inCircleFields.length > 0 ? Math.max(...inCircleFields.map(realRaySplitMagnitudeUm)) : 0;
-  const showRealRayMetric =
-    inCircleFields.length > 0 && Math.abs(realRayMaxSplitUm - parabasalMaxSplitUm) > 0.5;
+  const realRayMaxSplitUm = inCircleFields.length > 0 ? Math.max(...inCircleFields.map(realRaySplitMagnitudeUm)) : 0;
+  const showRealRayMetric = inCircleFields.length > 0 && Math.abs(realRayMaxSplitUm - parabasalMaxSplitUm) > 0.5;
   const outerField = inCircleFields[inCircleFields.length - 1] ?? null;
   const outerParabasalSplitUm = outerField ? parabasalSplitMagnitudeUm(outerField) : null;
   const outerRealRaySplitUm =
-    outerField && fieldWithinImageCircle(outerField, imageCircleRadiusMm)
-      ? realRaySplitMagnitudeUm(outerField)
-      : null;
+    outerField && fieldWithinImageCircle(outerField, imageCircleRadiusMm) ? realRaySplitMagnitudeUm(outerField) : null;
   const edgeSplitLabel =
     outerParabasalSplitUm !== null &&
     outerRealRaySplitUm !== null &&

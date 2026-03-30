@@ -29,7 +29,6 @@ function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "parabasa
   return Math.abs(field.astigmaticDifferenceMm);
 }
 
-
 export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProps) {
   const imageCircleRadiusMm = Math.max(
     ...result.fields.filter((field) => field.usable).map((field) => Math.abs(field.chiefImageHeight)),

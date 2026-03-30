@@ -16,5 +16,6 @@
 - `analysisDrawerOpen` is NOT persisted to localStorage (always starts closed); `analysisDrawerTab` IS persisted so the user's last-used tab is remembered
 - Analysis drawer closes automatically when switching lenses (SET_LENS_A) or entering comparison mode (ENTER_COMPARE) to prevent stale data display
 - New analysis tabs require: (1) adding to `ANALYSIS_TABS` in `src/components/layout/lensDiagram/analysisTabs.ts`, (2) creating a tab content component in `src/components/display/`, (3) adding a conditional render in `AnalysisDrawerContent.tsx`
+- Field curvature sign convention: positive shift = aft (toward sensor), negative = fore (toward lens). Petzval shift is negated relative to the geometric sag so it matches T/S direction for converging systems. Coma spot diagrams use industry-standard axes: sagittal on horizontal, tangential on vertical
 - Distortion computation uses the same chief-ray launch convention as `useOffAxisRays.ts` — if the off-axis convention changes, update `distortionAnalysis.ts` to match
 - `MAKER_PREFIXES` exists in two places: `src/utils/lensMetadata.ts` (runtime, includes `display` field) and `scripts/generate-build-metadata.mjs` (build-time). Both have cross-reference comments; the `buildRouteSync` test catches drift

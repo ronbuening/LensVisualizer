@@ -44,8 +44,8 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
             <>
               <StandardFieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Parabasal tangential and sagittal field curves with Petzval reference. Negative values are fore
-                (toward lens); positive values are aft (toward sensor).
+                Parabasal tangential and sagittal field curves with Petzval reference. Negative values are fore (toward
+                lens); positive values are aft (toward sensor).
               </span>
               <FieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>

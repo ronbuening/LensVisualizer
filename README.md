@@ -27,7 +27,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
-- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, and a combined field-curvature / astigmatic-difference chart with optional chromatic (R/G/B) focus shifts inside the Aberrations tab
+- **Analysis drawer**: dedicated tabs for aberrations, distortion, breathing, and vignetting, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, separate parabasal and real-ray field curvature charts, isolated astigmatism split, and optional chromatic (R/G/B) focus shifts inside the Aberrations tab
 - **Spherical aberration model**: combines a real-ray transverse fan at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic
 - **Coma point-cloud preview**: traces a fixed circular pupil pattern with the skew-ray core and plots chief-ray-centered tangential and sagittal image heights directly in millimeters
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state; this detailed diagnostic is retained below the point-cloud preview

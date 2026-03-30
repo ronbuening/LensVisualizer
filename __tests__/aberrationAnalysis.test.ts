@@ -1279,7 +1279,6 @@ describe("computeFieldCurvature", () => {
     // The Petzval shift sign must agree with the tangential shift sign.
     const pShift = f50!.petzvalShiftMm;
     const tShift = f50!.tangentialShiftMm;
-    const sShift = f50!.sagittalShiftMm;
     // All three should have the same sign for a typical converging system
     expect(Math.sign(pShift)).toBe(Math.sign(tShift));
     // Petzval shift should be non-trivially negative (toward lens) for a converging system
