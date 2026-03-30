@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeDistortionCurve } from "../src/optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optics/distortionAnalysis.js";
 import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -166,5 +166,78 @@ describe("computeDistortionCurve", () => {
     const samples = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
+  });
+});
+
+describe("computeDistortionFieldGrid", () => {
+  const barrelSamples = [
+    {
+      fieldAngleDeg: 0,
+      normalizedImageHeight: 0,
+      imageHeight: 0,
+      distortionPercent: 0,
+      realHeight: 0,
+      idealHeight: 0,
+      idealFieldAngleDeg: 0,
+    },
+    {
+      fieldAngleDeg: 10,
+      normalizedImageHeight: 0.5,
+      imageHeight: -10,
+      distortionPercent: 2,
+      realHeight: -10,
+      idealHeight: -9.8,
+      idealFieldAngleDeg: 9.8,
+    },
+    {
+      fieldAngleDeg: 20,
+      normalizedImageHeight: 1,
+      imageHeight: -20,
+      distortionPercent: 4,
+      realHeight: -20,
+      idealHeight: -19.2,
+      idealFieldAngleDeg: 19.4,
+    },
+  ];
+
+  const pincushionSamples = barrelSamples.map((sample) => ({
+    ...sample,
+    distortionPercent: sample.distortionPercent === 0 ? 0 : -sample.distortionPercent,
+  }));
+
+  it("returns a paired horizontal and vertical grid set", () => {
+    const grid = computeDistortionFieldGrid(barrelSamples);
+    expect(grid.length).toBe(10);
+    expect(grid.filter((line) => line.orientation === "vertical").length).toBe(5);
+    expect(grid.filter((line) => line.orientation === "horizontal").length).toBe(5);
+    expect(grid.every((line) => line.points.length === 17)).toBe(true);
+  });
+
+  it("keeps the center point fixed", () => {
+    const grid = computeDistortionFieldGrid(barrelSamples);
+    const centerLine = grid.find((line) => line.orientation === "vertical" && line.idealCoordinate === 0);
+    expect(centerLine).toBeDefined();
+    const centerPoint = centerLine!.points.find((point) => point.idealY === 0);
+    expect(centerPoint).toBeDefined();
+    expect(centerPoint!.distortedX).toBeCloseTo(0, 8);
+    expect(centerPoint!.distortedY).toBeCloseTo(0, 8);
+  });
+
+  it("bows barrel-distorted edge points outward", () => {
+    const grid = computeDistortionFieldGrid(barrelSamples);
+    const edgeLine = grid.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
+    expect(edgeLine).toBeDefined();
+    const edgePoint = edgeLine!.points[edgeLine!.points.length - 1];
+    expect(edgePoint.distortedX).toBeGreaterThan(edgePoint.idealX);
+    expect(edgePoint.distortedY).toBeGreaterThan(edgePoint.idealY);
+  });
+
+  it("bows pincushion-distorted edge points inward", () => {
+    const grid = computeDistortionFieldGrid(pincushionSamples);
+    const edgeLine = grid.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
+    expect(edgeLine).toBeDefined();
+    const edgePoint = edgeLine!.points[edgeLine!.points.length - 1];
+    expect(edgePoint.distortedX).toBeLessThan(edgePoint.idealX);
+    expect(edgePoint.distortedY).toBeLessThan(edgePoint.idealY);
   });
 });

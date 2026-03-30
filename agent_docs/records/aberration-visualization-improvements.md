@@ -25,6 +25,10 @@
 - Standardized the traced spot diagram to use a shared square spot scale so tangential and sagittal dimensions are no longer visually distorted by unequal axis scaling
 - Added a second side-by-side idealized coma grid that converts the measured traced footprint extent into a textbook-style schematic, while keeping the traced real-ray spot grid visible for direct comparison
 - Updated coma UI copy and tests so the section now explicitly explains the traced-versus-idealized comparison and the new centroid / RMS spot cues
+- Phase 4 Step 1 / 2: added an approximate uncorrected-field grid for distortion
+- Kept the existing 1D rectilinear distortion curve, but added a pure radial-warp helper that converts the sampled distortion curve into an approximate 2D field grid
+- Added a distortion-field display that overlays a dashed ideal rectilinear grid with a solid approximate uncorrected field so the user can see the bowing pattern at a glance
+- Updated the distortion tab copy and tests to call out that the new grid is an approximation derived from the 1D distortion curve, not a full 2D skew-field trace
 
 ## Verification
 
@@ -50,9 +54,15 @@
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test` — passed
+- `npx vitest run __tests__/distortionAnalysis.test.ts __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
 
 ## Follow-ups
 
 - Phase 2: raise coma point-cloud sampling density and add an idealized textbook-style comparison view alongside the traced spot diagram
 - Phase 3: increase field sampling density and smooth the standardized field-curve traces now that the solver split is in place
-- Phase 4: add a grid-based rectilinear distortion view to approximate the uncorrected field
+- Final phase: update architecture / user-facing docs for the standardized coma, field-curvature, and distortion views, then open the PR

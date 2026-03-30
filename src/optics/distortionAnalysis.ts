@@ -31,8 +31,26 @@ export interface DistortionSample {
   idealFieldAngleDeg: number;
 }
 
+/** One point in the approximate 2D distortion field grid. */
+export interface DistortionGridPoint {
+  idealX: number;
+  idealY: number;
+  distortedX: number;
+  distortedY: number;
+  radiusNormalized: number;
+}
+
+/** One horizontal or vertical line in the approximate 2D distortion field grid. */
+export interface DistortionGridLine {
+  orientation: "vertical" | "horizontal";
+  idealCoordinate: number;
+  points: DistortionGridPoint[];
+}
+
 /** Number of evenly-spaced field samples (including center and edge). */
 const SAMPLE_COUNT = 11;
+const DISTORTION_GRID_LINE_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;
+const DISTORTION_GRID_SEGMENT_COUNT = 17;
 
 /**
  * Compute a distortion curve for the current lens state.
@@ -116,4 +134,59 @@ export function computeDistortionCurve(
   }
 
   return samples;
+}
+
+function interpolateDistortionPercent(samples: DistortionSample[], normalizedImageHeight: number): number {
+  if (samples.length === 0) return 0;
+
+  const clampedHeight = Math.max(0, Math.min(1, normalizedImageHeight));
+  if (clampedHeight <= samples[0].normalizedImageHeight) return samples[0].distortionPercent;
+
+  for (let i = 1; i < samples.length; i++) {
+    const lower = samples[i - 1];
+    const upper = samples[i];
+    if (clampedHeight > upper.normalizedImageHeight) continue;
+
+    const span = upper.normalizedImageHeight - lower.normalizedImageHeight;
+    if (span <= 1e-9) return upper.distortionPercent;
+    const t = (clampedHeight - lower.normalizedImageHeight) / span;
+    return lower.distortionPercent + (upper.distortionPercent - lower.distortionPercent) * t;
+  }
+
+  return samples[samples.length - 1].distortionPercent;
+}
+
+function distortGridPoint(x: number, y: number, samples: DistortionSample[]): DistortionGridPoint {
+  const radiusNormalized = Math.min(1, Math.hypot(x, y));
+  const distortionPercent = radiusNormalized <= 1e-9 ? 0 : interpolateDistortionPercent(samples, radiusNormalized);
+  const scale = Math.max(0, 1 + distortionPercent / 100);
+
+  return {
+    idealX: x,
+    idealY: y,
+    distortedX: x * scale,
+    distortedY: y * scale,
+    radiusNormalized,
+  };
+}
+
+export function computeDistortionFieldGrid(samples: DistortionSample[]): DistortionGridLine[] {
+  if (samples.length < 2) return [];
+
+  const pointCount = DISTORTION_GRID_SEGMENT_COUNT;
+  const axisSamples = Array.from({ length: pointCount }, (_, index) => -1 + (2 * index) / (pointCount - 1));
+
+  return DISTORTION_GRID_LINE_COORDINATES.flatMap((coordinate) => {
+    const vertical: DistortionGridLine = {
+      orientation: "vertical",
+      idealCoordinate: coordinate,
+      points: axisSamples.map((y) => distortGridPoint(coordinate, y, samples)),
+    };
+    const horizontal: DistortionGridLine = {
+      orientation: "horizontal",
+      idealCoordinate: coordinate,
+      points: axisSamples.map((x) => distortGridPoint(x, coordinate, samples)),
+    };
+    return [vertical, horizontal];
+  });
 }

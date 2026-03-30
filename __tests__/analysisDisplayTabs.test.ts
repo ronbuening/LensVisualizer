@@ -80,6 +80,8 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Rectilinear distortion (F-Tan(theta))");
     expect(html).toContain("near-axis rectilinear reference");
     expect(html).toContain("fixed image height");
+    expect(html).toContain("Approximate uncorrected field");
+    expect(html).toContain("Solid = approximate uncorrected field");
     expect(html).toContain("BREATHING");
     expect(html).toContain("HEIGHT");
     expect(html).toContain("ANGLE");
