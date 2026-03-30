@@ -98,9 +98,9 @@
 | `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the standardized chief-ray-relative parabasal tangential/sagittal field curves plus Petzval reference, drawn from the denser internal field sweep while preserving the standard field checkpoints as markers |
 | `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the dense real-ray tangential/sagittal best-focus diagnostic, also using the denser internal field sweep while keeping the standard checkpoint markers and astigmatic split shading |
 | `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) standardized tangential and sagittal field curves across the field |
-| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the approximate 2D field grid |
+| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
-| `DistortionFieldGrid.tsx` | `src/components/display/` | Reusable SVG grid view overlaying ideal rectilinear lines with the approximate uncorrected field derived from the 1D distortion curve |
+| `DistortionFieldGrid.tsx` | `src/components/display/` | Reusable SVG grid view overlaying ideal rectilinear lines with the traced chief-ray field positions across the current image circle |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
@@ -141,7 +141,7 @@
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
 | `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
-| `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
+| `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
 
 ### Utilities
@@ -307,10 +307,10 @@ This module is now accuracy-sensitive: the panel copy, tests, and optics primers
 
 ## distortionAnalysis.ts
 
-Pure-function distortion analysis. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention (from `useOffAxisRays`), computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns the 1D distortion curve. The same sampled curve can also be converted into an approximate 2D field grid for the analysis drawer’s uncorrected-field visualization.
+Pure-function distortion analysis. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention, computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns the 1D distortion curve. The same rectilinear reference is also reused to trace a true 2D chief-ray field grid across the current image circle for the analysis drawer.
 
 - **`computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, _currentPhysStopSD)`** — Returns `DistortionSample[]` with `{fieldAngleDeg, distortionPercent, realHeight, idealHeight}`. Center distortion is exactly 0 by definition. Uses `halfFieldAtZoom()`, `bAtZoom()`, `yRatioAtZoom()` for zoom-aware parameters.
-- **`computeDistortionFieldGrid(samples)`** — Converts the sampled 1D distortion curve into an approximate radial 2D field warp. Used purely for visualization: dashed lines show the ideal rectilinear grid, solid lines show the approximate uncorrected field.
+- **`computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)`** — Traces a 2D chief-ray field grid against the same near-axis rectilinear reference, clipping the ideal grid to the current image circle and returning the traced image positions for each usable sample.
 
 No React dependencies — fully testable in isolation.
 

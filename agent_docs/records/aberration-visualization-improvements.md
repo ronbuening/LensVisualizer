@@ -25,10 +25,10 @@
 - Standardized the traced spot diagram to use a shared square spot scale so tangential and sagittal dimensions are no longer visually distorted by unequal axis scaling
 - Added a second side-by-side idealized coma grid that converts the measured traced footprint extent into a textbook-style schematic, while keeping the traced real-ray spot grid visible for direct comparison
 - Updated coma UI copy and tests so the section now explicitly explains the traced-versus-idealized comparison and the new centroid / RMS spot cues
-- Phase 4 Step 1 / 2: added an approximate uncorrected-field grid for distortion
-- Kept the existing 1D rectilinear distortion curve, but added a pure radial-warp helper that converts the sampled distortion curve into an approximate 2D field grid
-- Added a distortion-field display that overlays a dashed ideal rectilinear grid with a solid approximate uncorrected field so the user can see the bowing pattern at a glance
-- Updated the distortion tab copy and tests to call out that the new grid is an approximation derived from the 1D distortion curve, not a full 2D skew-field trace
+- Phase 4 Step 1 / 2: replaced the approximate distortion field with a true traced chief-ray grid
+- Kept the existing 1D rectilinear distortion curve, but replaced the old radial-warp helper with a true 2D chief-ray field trace that samples horizontal and vertical grid lines across the current image circle
+- Updated the distortion-field display so the dashed overlay shows the ideal rectilinear grid and the solid overlay shows traced chief-ray image positions for those same 2D field samples
+- Refreshed the distortion tab copy and tests so the UI now describes the grid as a real field trace instead of an approximation derived from the 1D distortion curve
 - Phase 3 follow-up: smoothed the field-curvature traces with denser internal field sampling
 - Extended `computeFieldCurvature()` to return a second 17-sample internal curve sweep alongside the standard 0 / 25 / 50 / 75 / 100% checkpoint fields so the plotted traces read smoothly without losing the industry-standard markers
 - Updated the standardized, dense real-ray, and chromatic field-curvature plots to draw their polylines from the denser curve sweep while keeping checkpoint markers, split shading, and field labels tied to the standard five marked positions
@@ -71,7 +71,13 @@
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test` — passed
+- `npx vitest run __tests__/distortionAnalysis.test.ts __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
 
 ## Follow-ups
 
-- Optional future step: replace the approximate distortion-field warp with a true 2D skew-field trace if we decide the extra compute cost is worthwhile
+- Optional future step: add a traced field-edge outline or sensor-aspect-aware framing if we want the distortion grid to communicate the image-circle boundary even more explicitly

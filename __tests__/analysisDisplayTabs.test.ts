@@ -80,8 +80,9 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Rectilinear distortion (F-Tan(theta))");
     expect(html).toContain("near-axis rectilinear reference");
     expect(html).toContain("fixed image height");
-    expect(html).toContain("Approximate uncorrected field");
-    expect(html).toContain("Solid = approximate uncorrected field");
+    expect(html).toContain("Traced field grid");
+    expect(html).toContain("Solid = traced chief-ray field");
+    expect(html).toContain("real field trace rather than a radial approximation");
     expect(html).toContain("BREATHING");
     expect(html).toContain("HEIGHT");
     expect(html).toContain("ANGLE");

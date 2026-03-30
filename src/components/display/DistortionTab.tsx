@@ -6,7 +6,7 @@
  */
 
 import { useMemo } from "react";
-import { computeDistortionCurve } from "../../optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "../../optics/distortionAnalysis.js";
 import { eflAtZoom } from "../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
@@ -36,6 +36,10 @@ export default function DistortionTab({
     () => computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
     [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD],
   );
+  const fieldGrid = useMemo(
+    () => computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD),
+    [L, zPos, focusT, zoomT, currentPhysStopSD],
+  );
 
   if (samples.length < 2) {
     return (
@@ -60,20 +64,21 @@ export default function DistortionTab({
           Rectilinear distortion (F-Tan(theta))
         </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the grid
-          below shows an approximate uncorrected field derived from that same radial distortion data. Focus breathing is
-          reported separately from distortion.
+          Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field
+          grid below now traces real chief-ray image positions across the current image circle against that same
+          rectilinear reference. Focus breathing is reported separately from distortion.
         </span>
       </div>
       <DistortionChart samples={samples} t={t} />
       <div style={{ marginTop: 12, display: "grid", gap: 4 }}>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Approximate uncorrected field
+          Traced field grid
         </span>
-        <DistortionFieldGrid samples={samples} t={t} />
+        <DistortionFieldGrid grid={fieldGrid} t={t} />
         <span style={{ fontSize: 8.5, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Dashed lines show the ideal rectilinear grid. Solid lines show the approximate radial warp implied by the 1D
-          distortion curve, so this is a visualization aid rather than a full 2D skew-field trace.
+          Dashed lines show the ideal rectilinear field grid clipped to the current image circle. Solid lines show the
+          traced chief-ray image positions for those same 2D field samples, so this view is now a real field trace
+          rather than a radial approximation.
         </span>
       </div>
       <div

@@ -170,74 +170,92 @@ describe("computeDistortionCurve", () => {
 });
 
 describe("computeDistortionFieldGrid", () => {
-  const barrelSamples = [
-    {
-      fieldAngleDeg: 0,
-      normalizedImageHeight: 0,
-      imageHeight: 0,
-      distortionPercent: 0,
-      realHeight: 0,
-      idealHeight: 0,
-      idealFieldAngleDeg: 0,
-    },
-    {
-      fieldAngleDeg: 10,
-      normalizedImageHeight: 0.5,
-      imageHeight: -10,
-      distortionPercent: 2,
-      realHeight: -10,
-      idealHeight: -9.8,
-      idealFieldAngleDeg: 9.8,
-    },
-    {
-      fieldAngleDeg: 20,
-      normalizedImageHeight: 1,
-      imageHeight: -20,
-      distortionPercent: 4,
-      realHeight: -20,
-      idealHeight: -19.2,
-      idealFieldAngleDeg: 19.4,
-    },
-  ];
-
-  const pincushionSamples = barrelSamples.map((sample) => ({
-    ...sample,
-    distortionPercent: sample.distortionPercent === 0 ? 0 : -sample.distortionPercent,
-  }));
+  function tracedGridAtState(L: RuntimeLens, focusT: number, zoomT: number) {
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+  }
 
   it("returns a paired horizontal and vertical grid set", () => {
-    const grid = computeDistortionFieldGrid(barrelSamples);
-    expect(grid.length).toBe(10);
-    expect(grid.filter((line) => line.orientation === "vertical").length).toBe(5);
-    expect(grid.filter((line) => line.orientation === "horizontal").length).toBe(5);
-    expect(grid.every((line) => line.points.length === 17)).toBe(true);
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+
+    expect(grid.idealFieldRadius).toBeGreaterThan(0);
+    expect(grid.lines.length).toBe(10);
+    expect(grid.lines.filter((line) => line.orientation === "vertical").length).toBe(5);
+    expect(grid.lines.filter((line) => line.orientation === "horizontal").length).toBe(5);
+    expect(grid.lines.every((line) => line.points.length === 17)).toBe(true);
   });
 
   it("keeps the center point fixed", () => {
-    const grid = computeDistortionFieldGrid(barrelSamples);
-    const centerLine = grid.find((line) => line.orientation === "vertical" && line.idealCoordinate === 0);
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+    const centerLine = grid.lines.find((line) => line.orientation === "vertical" && line.idealCoordinate === 0);
     expect(centerLine).toBeDefined();
     const centerPoint = centerLine!.points.find((point) => point.idealY === 0);
     expect(centerPoint).toBeDefined();
-    expect(centerPoint!.distortedX).toBeCloseTo(0, 8);
-    expect(centerPoint!.distortedY).toBeCloseTo(0, 8);
+    expect(centerPoint!.insideImageCircle).toBe(true);
+    expect(centerPoint!.usable).toBe(true);
+    expect(centerPoint!.tracedX).toBeCloseTo(0, 8);
+    expect(centerPoint!.tracedY).toBeCloseTo(0, 8);
   });
 
-  it("bows barrel-distorted edge points outward", () => {
-    const grid = computeDistortionFieldGrid(barrelSamples);
-    const edgeLine = grid.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
-    expect(edgeLine).toBeDefined();
-    const edgePoint = edgeLine!.points[edgeLine!.points.length - 1];
-    expect(edgePoint.distortedX).toBeGreaterThan(edgePoint.idealX);
-    expect(edgePoint.distortedY).toBeGreaterThan(edgePoint.idealY);
+  it("marks corner samples outside the current image circle as unavailable", () => {
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+    const topLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
+
+    expect(topLine).toBeDefined();
+    expect(topLine!.points[0].insideImageCircle).toBe(false);
+    expect(topLine!.points[0].usable).toBe(false);
+    expect(topLine!.points[topLine!.points.length - 1].insideImageCircle).toBe(false);
+    expect(topLine!.points[topLine!.points.length - 1].usable).toBe(false);
   });
 
-  it("bows pincushion-distorted edge points inward", () => {
-    const grid = computeDistortionFieldGrid(pincushionSamples);
-    const edgeLine = grid.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
-    expect(edgeLine).toBeDefined();
-    const edgePoint = edgeLine!.points[edgeLine!.points.length - 1];
-    expect(edgePoint.distortedX).toBeLessThan(edgePoint.idealX);
-    expect(edgePoint.distortedY).toBeLessThan(edgePoint.idealY);
+  it("moves the traced axis edge point in the same direction as the 1D edge distortion sign", () => {
+    const L = build(ApoLantharRaw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+
+    const samples = computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD);
+    const edgeSample = samples[samples.length - 1];
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+    const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);
+
+    expect(centerLine).toBeDefined();
+    const edgePoint = centerLine!.points[centerLine!.points.length - 1];
+    expect(edgePoint.insideImageCircle).toBe(true);
+    expect(edgePoint.usable).toBe(true);
+    expect(edgePoint.tracedX).not.toBeNull();
+
+    const tracedRadius = Math.abs(edgePoint.tracedX!);
+    const idealRadius = Math.abs(edgePoint.idealX);
+    if (edgeSample.distortionPercent > 0) {
+      expect(tracedRadius).toBeGreaterThan(idealRadius);
+    } else if (edgeSample.distortionPercent < 0) {
+      expect(tracedRadius).toBeLessThan(idealRadius);
+    } else {
+      expect(tracedRadius).toBeCloseTo(idealRadius, 8);
+    }
+  });
+
+  it("keeps usable traced grid points finite", () => {
+    const L = build(NikkorZ70200Raw);
+    const grid = tracedGridAtState(L, 0, 1);
+
+    for (const line of grid.lines) {
+      for (const point of line.points) {
+        expect(isFinite(point.idealX)).toBe(true);
+        expect(isFinite(point.idealY)).toBe(true);
+        if (!point.usable) continue;
+        expect(point.tracedX).not.toBeNull();
+        expect(point.tracedY).not.toBeNull();
+        expect(isFinite(point.tracedX!)).toBe(true);
+        expect(isFinite(point.tracedY!)).toBe(true);
+      }
+    }
   });
 });
