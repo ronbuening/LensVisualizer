@@ -34,8 +34,8 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Spot diagram at center, 25%, 50%, and 75% of the current half-field. Both axes show chief-ray-centered
-            image height in millimeters. Dashed circle = Airy disk (diffraction limit).
+            Spot diagram at center, 25%, 50%, and 75% of the current half-field. Both axes show chief-ray-centered image
+            height in millimeters. Dashed circle = Airy disk (diffraction limit).
           </span>
 
           {result ? (

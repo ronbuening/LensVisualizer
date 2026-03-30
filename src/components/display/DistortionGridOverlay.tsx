@@ -93,24 +93,8 @@ export default function DistortionGridOverlay({ grid, t, size = 280 }: Distortio
       ))}
 
       {/* Center crosshair */}
-      <line
-        x1={center - 4}
-        y1={center}
-        x2={center + 4}
-        y2={center}
-        stroke={t.muted}
-        strokeWidth={0.75}
-        opacity={0.5}
-      />
-      <line
-        x1={center}
-        y1={center - 4}
-        x2={center}
-        y2={center + 4}
-        stroke={t.muted}
-        strokeWidth={0.75}
-        opacity={0.5}
-      />
+      <line x1={center - 4} y1={center} x2={center + 4} y2={center} stroke={t.muted} strokeWidth={0.75} opacity={0.5} />
+      <line x1={center} y1={center - 4} x2={center} y2={center + 4} stroke={t.muted} strokeWidth={0.75} opacity={0.5} />
 
       {/* Corner labels */}
       <text x={MARGIN + 4} y={MARGIN - 6} fill={t.muted} fontSize={8} fontFamily="inherit">

@@ -931,7 +931,15 @@ describe("computeFieldCurvature", () => {
       0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1,
     ]);
     expect(result!.fields.map((field) => field.label)).toEqual([
-      "Center", "12.5%", "25%", "37.5%", "50%", "62.5%", "75%", "87.5%", "100%",
+      "Center",
+      "12.5%",
+      "25%",
+      "37.5%",
+      "50%",
+      "62.5%",
+      "75%",
+      "87.5%",
+      "100%",
     ]);
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);

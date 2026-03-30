@@ -13,7 +13,7 @@ import {
   type SkewRayTraceResult,
 } from "../optics.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import { bestRelativeFocusPlane, bestRelativeFocusPlaneWeighted, type TransverseFocusHit } from "./shared.js";
+import { bestRelativeFocusPlaneWeighted, type TransverseFocusHit } from "./shared.js";
 
 export type OffAxisFanOrientation = "tangential" | "sagittal";
 export type OffAxisDirection = "tangential" | "sagittal";

@@ -371,31 +371,13 @@ function renderDiffractionReferencePanel(
         strokeWidth={0.75}
         strokeDasharray="3,2"
       />
-      <text
-        x={OUTER_PAD_X + refPlotSize + 22}
-        y={refCenterY - 8}
-        fill={t.label}
-        fontSize={9}
-        fontFamily="inherit"
-      >
+      <text x={OUTER_PAD_X + refPlotSize + 22} y={refCenterY - 8} fill={t.label} fontSize={9} fontFamily="inherit">
         Diffraction limit (Airy disk)
       </text>
-      <text
-        x={OUTER_PAD_X + refPlotSize + 22}
-        y={refCenterY + 4}
-        fill={t.muted}
-        fontSize={8}
-        fontFamily="inherit"
-      >
+      <text x={OUTER_PAD_X + refPlotSize + 22} y={refCenterY + 4} fill={t.muted} fontSize={8} fontFamily="inherit">
         {`\u00d8 ${airyDiameterUm.toFixed(1)} \u00b5m at ${sharedTangentialHalfRangeMm > 0 ? "shared" : "current"} scale`}
       </text>
-      <text
-        x={OUTER_PAD_X + refPlotSize + 22}
-        y={refCenterY + 16}
-        fill={t.muted}
-        fontSize={7.5}
-        fontFamily="inherit"
-      >
+      <text x={OUTER_PAD_X + refPlotSize + 22} y={refCenterY + 16} fill={t.muted} fontSize={7.5} fontFamily="inherit">
         Same scale as spot diagrams above
       </text>
     </g>
@@ -435,14 +417,7 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
               t,
             )
           : null}
-        <text
-          x={VB_W / 2}
-          y={vbHeight - 2}
-          textAnchor="middle"
-          fill={t.muted}
-          fontSize={8.5}
-          fontFamily="inherit"
-        >
+        <text x={VB_W / 2} y={vbHeight - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
           Tangential / sagittal image height relative to the chief ray (mm)
         </text>
       </svg>

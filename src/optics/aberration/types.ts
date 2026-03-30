@@ -1,7 +1,4 @@
-import {
-  DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
-  HIGH_RES_CIRCULAR_PUPIL_RING_SAMPLES,
-} from "../optics.js";
+import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT, HIGH_RES_CIRCULAR_PUPIL_RING_SAMPLES } from "../optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {

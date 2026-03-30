@@ -172,7 +172,19 @@ describe("computeDistortionCurve", () => {
 describe("computeDistortionGrid", () => {
   it("returns null for fewer than 2 samples", () => {
     expect(computeDistortionGrid([])).toBeNull();
-    expect(computeDistortionGrid([{ fieldAngleDeg: 0, normalizedImageHeight: 0, imageHeight: 0, distortionPercent: 0, realHeight: 0, idealHeight: 0, idealFieldAngleDeg: 0 }])).toBeNull();
+    expect(
+      computeDistortionGrid([
+        {
+          fieldAngleDeg: 0,
+          normalizedImageHeight: 0,
+          imageHeight: 0,
+          distortionPercent: 0,
+          realHeight: 0,
+          idealHeight: 0,
+          idealFieldAngleDeg: 0,
+        },
+      ]),
+    ).toBeNull();
   });
 
   it("produces the correct number of grid lines", () => {
