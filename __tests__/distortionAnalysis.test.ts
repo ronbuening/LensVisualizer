@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeDistortionCurve } from "../src/optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionGrid } from "../src/optics/distortionAnalysis.js";
 import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -166,5 +166,78 @@ describe("computeDistortionCurve", () => {
     const samples = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
+  });
+});
+
+describe("computeDistortionGrid", () => {
+  it("returns null for fewer than 2 samples", () => {
+    expect(computeDistortionGrid([])).toBeNull();
+    expect(computeDistortionGrid([{ fieldAngleDeg: 0, normalizedImageHeight: 0, imageHeight: 0, distortionPercent: 0, realHeight: 0, idealHeight: 0, idealFieldAngleDeg: 0 }])).toBeNull();
+  });
+
+  it("produces the correct number of grid lines", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const grid = computeDistortionGrid(samples, 9);
+    expect(grid).not.toBeNull();
+    expect(grid!.horizontalLines).toHaveLength(9);
+    expect(grid!.verticalLines).toHaveLength(9);
+    expect(grid!.gridSize).toBe(9);
+  });
+
+  it("center point is undistorted", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const grid = computeDistortionGrid(samples, 11);
+    expect(grid).not.toBeNull();
+
+    const centerH = grid!.horizontalLines[5];
+    const centerV = grid!.verticalLines[5];
+    const hMid = centerH[Math.floor(centerH.length / 2)];
+    const vMid = centerV[Math.floor(centerV.length / 2)];
+    expect(Math.abs(hMid.x)).toBeLessThan(1e-9);
+    expect(Math.abs(hMid.y)).toBeLessThan(1e-9);
+    expect(Math.abs(vMid.x)).toBeLessThan(1e-9);
+    expect(Math.abs(vMid.y)).toBeLessThan(1e-9);
+  });
+
+  it("grid points are finite for a real lens", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const grid = computeDistortionGrid(samples);
+    expect(grid).not.toBeNull();
+
+    for (const line of [...grid!.horizontalLines, ...grid!.verticalLines]) {
+      for (const pt of line) {
+        expect(isFinite(pt.x)).toBe(true);
+        expect(isFinite(pt.y)).toBe(true);
+      }
+    }
+  });
+
+  it("maxDistortionPercent matches the distortion curve edge", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const grid = computeDistortionGrid(samples);
+    expect(grid).not.toBeNull();
+
+    const curveMax = Math.max(...samples.map((s) => Math.abs(s.distortionPercent)));
+    expect(grid!.maxDistortionPercent).toBeCloseTo(curveMax, 6);
   });
 });

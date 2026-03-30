@@ -117,3 +117,98 @@ export function computeDistortionCurve(
 
   return samples;
 }
+
+/** A 2D point in normalized image-plane coordinates (-1..+1). */
+export interface DistortionGridPoint {
+  x: number;
+  y: number;
+}
+
+/** Result of computing a 2D distorted grid for visualization. */
+export interface DistortionGridResult {
+  /** Horizontal lines: each is an array of distorted {x, y} points. */
+  horizontalLines: DistortionGridPoint[][];
+  /** Vertical lines: each is an array of distorted {x, y} points. */
+  verticalLines: DistortionGridPoint[][];
+  /** Maximum absolute distortion at edge (%). */
+  maxDistortionPercent: number;
+  /** Grid line count per axis (including edges). */
+  gridSize: number;
+}
+
+/** Number of interpolation sub-points along each grid line for smooth curves. */
+const GRID_LINE_SUBDIVISIONS = 31;
+
+/**
+ * Interpolate distortion percentage at a given normalized radius from a
+ * distortion curve. Uses linear interpolation between sample points.
+ */
+function interpolateDistortion(normalizedRadius: number, samples: DistortionSample[]): number {
+  if (samples.length < 2 || normalizedRadius <= 0) return 0;
+  if (normalizedRadius >= 1) return samples[samples.length - 1].distortionPercent;
+
+  for (let i = 1; i < samples.length; i++) {
+    if (samples[i].normalizedImageHeight >= normalizedRadius) {
+      const prev = samples[i - 1];
+      const curr = samples[i];
+      const range = curr.normalizedImageHeight - prev.normalizedImageHeight;
+      if (range < 1e-12) return curr.distortionPercent;
+      const t = (normalizedRadius - prev.normalizedImageHeight) / range;
+      return prev.distortionPercent + t * (curr.distortionPercent - prev.distortionPercent);
+    }
+  }
+
+  return samples[samples.length - 1].distortionPercent;
+}
+
+/**
+ * Apply radial distortion to a 2D normalized point.
+ *
+ * Given an ideal point (x, y) in normalized coordinates (-1..+1),
+ * compute the distorted position using the radially symmetric distortion
+ * function interpolated from the distortion curve.
+ */
+function distortPoint(x: number, y: number, samples: DistortionSample[]): DistortionGridPoint {
+  const r = Math.sqrt(x * x + y * y);
+  if (r < 1e-12) return { x: 0, y: 0 };
+
+  const distortionPct = interpolateDistortion(r, samples);
+  const scale = 1 + distortionPct / 100;
+  return { x: x * scale, y: y * scale };
+}
+
+/**
+ * Compute a 2D distorted grid for the standard TV-distortion overlay.
+ *
+ * Maps an ideal rectilinear grid through the lens's radial distortion
+ * function (interpolated from the distortion curve samples) to produce
+ * the characteristic barrel/pincushion bowing pattern.
+ *
+ * @param samples   — distortion curve from computeDistortionCurve()
+ * @param gridSize  — number of lines per axis (default 11 for a 10×10 grid)
+ */
+export function computeDistortionGrid(samples: DistortionSample[], gridSize = 11): DistortionGridResult | null {
+  if (samples.length < 2) return null;
+
+  const maxDistortionPercent = Math.max(...samples.map((s) => Math.abs(s.distortionPercent)));
+  const horizontalLines: DistortionGridPoint[][] = [];
+  const verticalLines: DistortionGridPoint[][] = [];
+
+  for (let i = 0; i < gridSize; i++) {
+    const linePos = -1 + (2 * i) / (gridSize - 1);
+
+    const hLine: DistortionGridPoint[] = [];
+    const vLine: DistortionGridPoint[] = [];
+
+    for (let j = 0; j < GRID_LINE_SUBDIVISIONS; j++) {
+      const t = -1 + (2 * j) / (GRID_LINE_SUBDIVISIONS - 1);
+      hLine.push(distortPoint(t, linePos, samples));
+      vLine.push(distortPoint(linePos, t, samples));
+    }
+
+    horizontalLines.push(hLine);
+    verticalLines.push(vLine);
+  }
+
+  return { horizontalLines, verticalLines, maxDistortionPercent, gridSize };
+}
