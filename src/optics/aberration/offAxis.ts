@@ -13,7 +13,7 @@ import {
   type SkewRayTraceResult,
 } from "../optics.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import { bestRelativeFocusPlane, bestRelativeFocusPlaneWeighted, type TransverseFocusHit } from "./shared.js";
 
 export type OffAxisFanOrientation = "tangential" | "sagittal";
 export type OffAxisDirection = "tangential" | "sagittal";
@@ -306,5 +306,6 @@ export function transverseFocusHitsForDirection(
 
 export function bestFocusPlaneForDirection(bundle: OffAxisBundle, direction: OffAxisDirection): number {
   const { hits, referenceHit } = transverseFocusHitsForDirection(bundle, direction);
-  return bestRelativeFocusPlane(hits, referenceHit, bundle.geometry.lastSurfZ);
+  const pupilFractions = bundle.samples.map((s) => s.pupilFraction ?? 0);
+  return bestRelativeFocusPlaneWeighted(hits, referenceHit, bundle.geometry.lastSurfZ, pupilFractions);
 }

@@ -156,3 +156,37 @@ export function bestRelativeFocusPlane(
 
   return lastSurfZ - numer / denom;
 }
+
+/**
+ * Weighted least-squares best-focus plane relative to a reference ray.
+ *
+ * Applies Gaussian weighting centered on the pupil axis (sigma ~0.7)
+ * to emphasize central pupil rays for more stable astigmatic focus
+ * determination, matching industry-standard practice.
+ */
+export function bestRelativeFocusPlaneWeighted(
+  hits: TransverseFocusHit[],
+  referenceHit: TransverseFocusHit,
+  lastSurfZ: number,
+  pupilFractions: number[],
+  sigma = 0.7,
+): number {
+  if (hits.length !== pupilFractions.length) {
+    return bestRelativeFocusPlane(hits, referenceHit, lastSurfZ);
+  }
+
+  const invTwoSigmaSq = 1 / (2 * sigma * sigma);
+  let denomW = 0;
+  let numerW = 0;
+
+  for (let i = 0; i < hits.length; i++) {
+    const w = Math.exp(-(pupilFractions[i] * pupilFractions[i]) * invTwoSigmaSq);
+    const du = hits[i].slope - referenceHit.slope;
+    const dy = hits[i].coordinate - referenceHit.coordinate;
+    denomW += w * du * du;
+    numerW += w * dy * du;
+  }
+
+  if (denomW <= 1e-12) return lastSurfZ;
+  return lastSurfZ - numerW / denomW;
+}

@@ -3,6 +3,7 @@ import {
   axialIntercept,
   bestFocusPlane,
   bestRelativeFocusPlane,
+  bestRelativeFocusPlaneWeighted,
   peakAtPlane,
   rmsAtPlane,
   type RealRayHit,
@@ -83,5 +84,43 @@ describe("aberration shared helpers", () => {
 
     expect(bestFocusPlane(hits, 7)).toBe(7);
     expect(bestRelativeFocusPlane(hits, hits[0], 7)).toBe(7);
+  });
+
+  it("weighted best-focus agrees with unweighted for uniform pupil fractions", () => {
+    const referenceHit: TransverseFocusHit = { coordinate: 0, slope: 0 };
+    const hits: TransverseFocusHit[] = [
+      { coordinate: 0.1, slope: -0.05 },
+      { coordinate: -0.1, slope: 0.05 },
+      { coordinate: -0.2, slope: 0.1 },
+    ];
+    const pupilFractions = [0, 0, 0];
+
+    const unweighted = bestRelativeFocusPlane(hits, referenceHit, 4);
+    const weighted = bestRelativeFocusPlaneWeighted(hits, referenceHit, 4, pupilFractions, 0.7);
+    expect(weighted).toBeCloseTo(unweighted, 6);
+  });
+
+  it("weighted best-focus emphasizes central pupil rays", () => {
+    const referenceHit: TransverseFocusHit = { coordinate: 0, slope: 0 };
+    const hits: TransverseFocusHit[] = [
+      { coordinate: 0.01, slope: -0.01 },
+      { coordinate: 0.02, slope: -0.02 },
+      { coordinate: 0.5, slope: -0.1 },
+    ];
+    const pupilFractions = [0.1, 0.3, 0.95];
+
+    const unweighted = bestRelativeFocusPlane(hits, referenceHit, 10);
+    const weighted = bestRelativeFocusPlaneWeighted(hits, referenceHit, 10, pupilFractions, 0.7);
+    expect(weighted).not.toBe(unweighted);
+    expect(isFinite(weighted)).toBe(true);
+  });
+
+  it("weighted best-focus falls back to unweighted on mismatched lengths", () => {
+    const referenceHit: TransverseFocusHit = { coordinate: 0, slope: 0 };
+    const hits: TransverseFocusHit[] = [{ coordinate: 0.1, slope: -0.05 }];
+
+    const result = bestRelativeFocusPlaneWeighted(hits, referenceHit, 4, [], 0.7);
+    const unweighted = bestRelativeFocusPlane(hits, referenceHit, 4);
+    expect(result).toBeCloseTo(unweighted, 6);
   });
 });
