@@ -27,7 +27,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Field Curves"
         helpLabel="Field curves help"
-        helpText="Use this section to compare the standardized tangential and sagittal field curves against the dense real-ray field-curve diagnostic. These charts now use their own field-curve scale so large focus shifts remain on-chart, while astigmatic split is isolated in the section below."
+        helpText="Parabasal and real-ray tangential/sagittal field curves with Petzval reference. Astigmatic split is in the section below."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -36,29 +36,27 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            This section now keeps field curvature on its own scale. The first chart shows standardized chief-ray-
-            relative parabasal tangential and sagittal field curves relative to the current image plane, with the
-            Petzval reference overlaid. The second chart keeps the denser real-ray tangential and sagittal best-focus
-            diagnostic on the same kind of field-curve axis so large focus shifts remain visible.
+            The first chart shows parabasal tangential and sagittal field curves with the Petzval reference. The second
+            chart shows the real-ray field curves from dense bundle solves.
           </span>
 
           {result ? (
             <>
               <StandardFieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Standardized parabasal tangential and sagittal field curves with the Petzval reference. Negative values
-                are fore of the current image plane; positive values are aft.
+                Parabasal tangential and sagittal field curves with Petzval reference. Negative values are fore
+                (toward lens); positive values are aft (toward sensor).
               </span>
               <FieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Dense real-ray tangential and sagittal best-focus diagnostic on its own field-curve scale.
+                Real-ray tangential and sagittal field curves from dense bundle solves.
               </span>
               {result.chromaticFocusSpreadMm !== null ? (
                 <>
                   <ChromaticFieldCurvaturePlot result={result} t={theme} />
                   <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                    Per-wavelength standardized field curves. Each color shows its own tangential (solid) and sagittal
-                    (dashed) shift across the field. Wider R/B separation indicates stronger chromatic field curvature.
+                    Per-wavelength field curves. Each color shows tangential (solid) and sagittal (dashed) shift. Wider
+                    R/B separation indicates stronger chromatic field curvature.
                   </span>
                 </>
               ) : null}
@@ -88,7 +86,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                 </div>
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Representative edge-field standardized tangential and sagittal field-curve positions relative to the current image plane."
+                  title="Edge-field parabasal tangential and sagittal shifts relative to the image plane."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
                     EDGE T / S
@@ -108,7 +106,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                 {result.chromaticFocusSpreadMm !== null ? (
                   <div
                     style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Maximum chromatic focus spread: the largest R-to-B tangential or sagittal best-focus separation across all sampled field positions."
+                    title="Maximum chromatic focus spread: largest R-to-B tangential or sagittal best-focus separation across all sampled fields."
                   >
                     <span
                       style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}

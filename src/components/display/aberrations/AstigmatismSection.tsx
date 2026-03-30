@@ -11,11 +11,11 @@ interface AstigmatismSectionProps {
   theme: Theme;
 }
 
-function diagnosticSplitMagnitudeUm(field: FieldCurvatureResult["fields"][number]): number {
+function realRaySplitMagnitudeUm(field: FieldCurvatureResult["fields"][number]): number {
   return Math.abs(field.diagnosticAstigmaticDifferenceUm ?? field.astigmaticDifferenceUm);
 }
 
-function standardizedSplitMagnitudeUm(field: FieldCurvatureResult["fields"][number]): number {
+function parabasalSplitMagnitudeUm(field: FieldCurvatureResult["fields"][number]): number {
   return Math.abs(field.astigmaticDifferenceUm);
 }
 
@@ -30,29 +30,27 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
   const usableFields = result?.fields.filter((field) => field.usable) ?? [];
   const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
   const inCircleFields = usableFields.filter((field) => fieldWithinImageCircle(field, imageCircleRadiusMm));
-  const standardizedFields = inCircleFields;
-  const diagnosticFields = inCircleFields;
-  const standardizedMaxSplitUm =
-    standardizedFields.length > 0 ? Math.max(...standardizedFields.map(standardizedSplitMagnitudeUm)) : 0;
-  const diagnosticMaxSplitUm =
-    diagnosticFields.length > 0 ? Math.max(...diagnosticFields.map(diagnosticSplitMagnitudeUm)) : 0;
-  const showDiagnosticMetric =
-    standardizedFields.length > 0 && Math.abs(diagnosticMaxSplitUm - standardizedMaxSplitUm) > 0.5;
-  const outerField = standardizedFields[standardizedFields.length - 1] ?? null;
-  const outerStandardSplitUm = outerField ? standardizedSplitMagnitudeUm(outerField) : null;
-  const outerDiagnosticSplitUm =
+  const parabasalMaxSplitUm =
+    inCircleFields.length > 0 ? Math.max(...inCircleFields.map(parabasalSplitMagnitudeUm)) : 0;
+  const realRayMaxSplitUm =
+    inCircleFields.length > 0 ? Math.max(...inCircleFields.map(realRaySplitMagnitudeUm)) : 0;
+  const showRealRayMetric =
+    inCircleFields.length > 0 && Math.abs(realRayMaxSplitUm - parabasalMaxSplitUm) > 0.5;
+  const outerField = inCircleFields[inCircleFields.length - 1] ?? null;
+  const outerParabasalSplitUm = outerField ? parabasalSplitMagnitudeUm(outerField) : null;
+  const outerRealRaySplitUm =
     outerField && fieldWithinImageCircle(outerField, imageCircleRadiusMm)
-      ? diagnosticSplitMagnitudeUm(outerField)
+      ? realRaySplitMagnitudeUm(outerField)
       : null;
   const edgeSplitLabel =
-    outerStandardSplitUm !== null &&
-    outerDiagnosticSplitUm !== null &&
-    Math.abs(outerDiagnosticSplitUm - outerStandardSplitUm) > 0.5
-      ? `Std ${formatSignedUm(outerStandardSplitUm)} / Real ${formatSignedUm(outerDiagnosticSplitUm)}`
-      : outerStandardSplitUm !== null
-        ? formatSignedUm(outerStandardSplitUm)
+    outerParabasalSplitUm !== null &&
+    outerRealRaySplitUm !== null &&
+    Math.abs(outerRealRaySplitUm - outerParabasalSplitUm) > 0.5
+      ? `Para ${formatSignedUm(outerParabasalSplitUm)} / Real ${formatSignedUm(outerRealRaySplitUm)}`
+      : outerParabasalSplitUm !== null
+        ? formatSignedUm(outerParabasalSplitUm)
         : "0 µm";
-  const hasAstigmatismPlots = standardizedFields.length >= 2 || diagnosticFields.length >= 2;
+  const hasAstigmatismPlots = inCircleFields.length >= 2;
 
   return (
     <div
@@ -67,7 +65,7 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
       <SectionHeader
         title="Astigmatism"
         helpLabel="Astigmatism help"
-        helpText="This section isolates tangential-versus-sagittal focus separation so astigmatic split can use its own scale. Only in-circle focus positions are shown here. The upper chart shows the standardized chief-ray-relative parabasal split. The lower chart shows the dense real-ray split from the traced tangential and sagittal bundle solves."
+        helpText="Tangential-sagittal focus separation on its own scale. The upper chart uses parabasal rays; the lower chart uses dense real-ray bundle solves."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -76,22 +74,19 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Field curvature and astigmatism are now separated. These charts plot only the tangential-sagittal best-focus
-            difference, which keeps the split behavior readable even when the field curves swing far from the current
-            image plane. Any split whose focus positions fall outside the current image-circle envelope is omitted here.
+            These charts plot the tangential-sagittal best-focus difference on its own scale, keeping astigmatic split
+            readable even when field curves shift far from the image plane.
           </span>
 
           {result && hasAstigmatismPlots ? (
             <>
-              <AstigmatismPlot result={result} t={theme} mode="standardized" />
+              <AstigmatismPlot result={result} t={theme} mode="parabasal" />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Standardized chief-ray-relative parabasal tangential-sagittal split. Larger values indicate stronger
-                astigmatic separation between the two focal surfaces.
+                Parabasal tangential-sagittal split. Larger values indicate stronger astigmatic separation.
               </span>
-              <AstigmatismPlot result={result} t={theme} mode="diagnostic" />
+              <AstigmatismPlot result={result} t={theme} mode="realRay" />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Dense real-ray tangential-sagittal split from the traced best-focus solves. Use this to see how the real
-                bundle behavior departs from the standardized astigmatism view.
+                Real-ray tangential-sagittal split from traced bundle solves.
               </span>
               <div
                 style={{
@@ -114,15 +109,15 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
                       transition: "color 0.3s",
                     }}
                   >
-                    {standardizedFields.length}/{result.fields.length}
+                    {inCircleFields.length}/{result.fields.length}
                   </span>
                 </div>
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Maximum standardized tangential-sagittal split across the in-circle sampled field positions."
+                  title="Maximum parabasal tangential-sagittal split across sampled field positions."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    STD MAX SPLIT
+                    PARA MAX SPLIT
                   </span>
                   <span
                     style={{
@@ -133,13 +128,13 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
                       transition: "color 0.3s",
                     }}
                   >
-                    {formatSignedUm(standardizedMaxSplitUm)}
+                    {formatSignedUm(parabasalMaxSplitUm)}
                   </span>
                 </div>
-                {showDiagnosticMetric ? (
+                {showRealRayMetric ? (
                   <div
                     style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Maximum dense real-ray tangential-sagittal split across the in-circle sampled field positions."
+                    title="Maximum real-ray tangential-sagittal split across sampled field positions."
                   >
                     <span
                       style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
@@ -155,13 +150,13 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
                         transition: "color 0.3s",
                       }}
                     >
-                      {formatSignedUm(diagnosticMaxSplitUm)}
+                      {formatSignedUm(realRayMaxSplitUm)}
                     </span>
                   </div>
                 ) : null}
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Outermost in-circle tangential-sagittal split shown in the charts. When the real-ray solve differs materially, both standardized and real values are shown."
+                  title="Outermost tangential-sagittal split. When the real-ray solve differs materially, both values are shown."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
                     OUTER SPLIT

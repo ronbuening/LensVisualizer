@@ -367,13 +367,13 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Field Curves").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Astigmatism").length).toBeGreaterThan(0);
-    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
-    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
+    expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
     expect(
-      screen.getByText(/Standardized parabasal tangential and sagittal field curves with the Petzval reference/i),
+      screen.getByText(/Parabasal tangential and sagittal field curves with Petzval reference/i),
     ).toBeTruthy();
-    expect(screen.getByText(/Dense real-ray tangential and sagittal best-focus diagnostic on its own field-curve scale/i)).toBeTruthy();
-    expect(screen.getAllByText("STD MAX SPLIT").length).toBeGreaterThan(0);
+    expect(screen.getByText(/Real-ray tangential and sagittal field curves from dense bundle solves/i)).toBeTruthy();
+    expect(screen.getAllByText("PARA MAX SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("OUTER SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("240 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
@@ -531,8 +531,8 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/This section now keeps field curvature on its own scale/i)).toBeNull();
-    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
+    expect(screen.queryByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeNull();
+    expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -542,8 +542,8 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[2].closest("button")!);
 
-    expect(screen.queryByText(/Field curvature and astigmatism are now separated/i)).toBeNull();
-    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
+    expect(screen.queryByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeNull();
+    expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -557,13 +557,13 @@ describe("AberrationsPanel", () => {
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
     expect(screen.getAllByText("LESS").length).toBe(3);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
-    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
-    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
+    expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
-    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
-    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
+    expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
   });
 });

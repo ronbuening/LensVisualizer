@@ -3,7 +3,7 @@
  * metrics for the current lens state.
  *
  * Shows best-focus spherical-aberration spread plus separate field-curvature
- * and astigmatism sections so each diagnostic can use an appropriate scale.
+ * and astigmatism sections, each on its own scale.
  */
 
 import { useEffect, useState } from "react";

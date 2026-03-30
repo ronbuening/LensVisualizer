@@ -48,8 +48,8 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Standardized field-curvature plot. Tangential and sagittal parabasal field curves are shown relative to the
-        current image plane, with the Petzval reference overlaid for comparison.
+        Parabasal field-curvature plot. Tangential and sagittal field curves relative to the image plane, with Petzval
+        reference overlay.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -89,7 +89,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Field-curve shift from current image plane (mm)
+        Focus shift from image plane (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
@@ -175,7 +175,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
       </g>
 
       <text x={ML + 6} y={VB_H - 3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Standardized chief-ray-relative parabasal field curves with an independent field-curve scale.
+        Parabasal field curves with independent scale.
       </text>
     </svg>
   );

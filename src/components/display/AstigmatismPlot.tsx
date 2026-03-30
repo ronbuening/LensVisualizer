@@ -4,7 +4,7 @@ import type { Theme } from "../../types/theme.js";
 interface AstigmatismPlotProps {
   result: FieldCurvatureResult;
   t: Theme;
-  mode: "standardized" | "diagnostic";
+  mode: "parabasal" | "realRay";
 }
 
 const VB_W = 320;
@@ -22,8 +22,8 @@ function formatSplitMm(value: number): string {
   return value.toFixed(2);
 }
 
-function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "standardized" | "diagnostic"): number {
-  if (mode === "diagnostic") {
+function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "parabasal" | "realRay"): number {
+  if (mode === "realRay") {
     return Math.abs(field.diagnosticAstigmaticDifferenceMm ?? field.astigmaticDifferenceMm);
   }
   return Math.abs(field.astigmaticDifferenceMm);
@@ -42,8 +42,8 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   if (plotFields.length < 2) return null;
 
-  const splitColor = mode === "standardized" ? t.value : (t.stopLabel ?? "#f8fafc");
-  const plotLabel = mode === "standardized" ? "Standardized astigmatism split" : "Dense real-ray astigmatism split";
+  const splitColor = mode === "parabasal" ? t.value : (t.stopLabel ?? "#f8fafc");
+  const plotLabel = mode === "parabasal" ? "Parabasal astigmatism split" : "Real-ray astigmatism split";
   const maxSplitMm = Math.max(0.02, ...plotFields.map((field) => splitMagnitudeForMode(field, mode)));
   const yMax = maxSplitMm * 1.08;
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
@@ -59,9 +59,9 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        {mode === "standardized"
-          ? "Standardized astigmatism plot. The curve shows chief-ray-relative parabasal tangential-sagittal focus separation across the field."
-          : "Dense real-ray astigmatism plot. The curve shows tangential-sagittal best-focus separation from the traced ray bundles across the field."}
+        {mode === "parabasal"
+          ? "Parabasal astigmatism plot showing tangential-sagittal focus separation across the field."
+          : "Real-ray astigmatism plot showing tangential-sagittal best-focus separation from traced ray bundles."}
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -130,9 +130,9 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
       </g>
 
       <text x={ML + 6} y={VB_H - 3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        {mode === "standardized"
-          ? "Chief-ray-relative parabasal tangential-sagittal split within the current image-circle envelope."
-          : "Dense real-ray tangential-sagittal split within the current image-circle envelope."}
+        {mode === "parabasal"
+          ? "Parabasal tangential-sagittal split across the image circle."
+          : "Real-ray tangential-sagittal split across the image circle."}
       </text>
     </svg>
   );

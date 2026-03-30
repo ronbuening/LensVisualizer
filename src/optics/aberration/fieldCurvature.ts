@@ -392,7 +392,13 @@ export function computeFieldCurvature(
   const sharedFocusShiftHalfRangeMm = Math.max(
     FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM,
     ...(usableCurveFields.length > 0 ? usableCurveFields : usableFields).map((field) =>
-      Math.max(Math.abs(field.tangentialShiftMm), Math.abs(field.sagittalShiftMm), Math.abs(field.petzvalShiftMm)),
+      Math.max(
+        Math.abs(field.tangentialShiftMm),
+        Math.abs(field.sagittalShiftMm),
+        Math.abs(field.petzvalShiftMm),
+        Math.abs(field.diagnosticTangentialShiftMm ?? 0),
+        Math.abs(field.diagnosticSagittalShiftMm ?? 0),
+      ),
     ),
   );
 

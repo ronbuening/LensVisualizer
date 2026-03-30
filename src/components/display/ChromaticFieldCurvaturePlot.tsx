@@ -1,10 +1,10 @@
 /**
  * ChromaticFieldCurvaturePlot — SVG chart showing per-wavelength (R/G/B)
- * tangential and sagittal standardized field-curve shifts across the field.
+ * tangential and sagittal parabasal field-curve shifts across the field.
  *
  * Renders three pairs of tangential (solid) + sagittal (dashed) traces,
  * one per chromatic channel, to visualize how lateral color shifts the
- * standardized focal surface at each field position.
+ * focal surface at each field position.
  */
 
 import type { FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
@@ -76,8 +76,8 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) standardized field curves show
-        how dispersion shifts the focal surface per wavelength across the field.
+        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) parabasal field curves show how
+        dispersion shifts the focal surface per wavelength across the field.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -117,7 +117,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Best-focus shift (mm)
+        Focus shift from image plane (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor

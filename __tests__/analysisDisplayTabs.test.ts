@@ -112,17 +112,11 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Spherical Aberration");
     expect(html).toContain("Field Curves");
     expect(html).toContain("Astigmatism");
-    expect(html).toContain("This section now keeps field curvature on its own scale");
-    expect(html).toContain("Field curvature and astigmatism are now separated");
-    expect(html).toContain(
-      "Standardized chief-ray-relative parabasal field curves with an independent field-curve scale",
-    );
-    expect(html).toContain(
-      "Dense real-ray best-focus field curves with an independent field-curve scale and standard checkpoint markers",
-    );
-    expect(html).toContain(
-      "Any split whose focus positions fall outside the current image-circle envelope is omitted here",
-    );
+    expect(html).toContain("The first chart shows parabasal tangential and sagittal field curves");
+    expect(html).toContain("These charts plot the tangential-sagittal best-focus difference");
+    expect(html).toContain("Parabasal field curves with independent scale");
+    expect(html).toContain("Real-ray field curves with independent scale and checkpoint markers");
+    expect(html).toContain("keeping astigmatic split readable even when field curves shift far");
     expect(html).not.toContain("Coma Preview");
     expect(html).not.toContain("Meridional Coma");
   });

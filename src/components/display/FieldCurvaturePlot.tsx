@@ -29,11 +29,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   const sagittalShift = (field: FieldCurvatureResult["fields"][number]) =>
     field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm;
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
-  const yHalfRange =
-    Math.max(
-      0.1,
-      ...plotFields.map((field) => Math.max(Math.abs(tangentialShift(field)), Math.abs(sagittalShift(field)))),
-    ) * 1.08;
+  const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm * 1.08);
   const tangentialColor = t.rayWarm ?? "#22c55e";
   const sagittalColor = t.rayChromB ?? "#38bdf8";
   const petzvalColor = t.stopLabel ?? "#f8fafc";
@@ -56,8 +52,8 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Dense real-ray field-curve diagnostic. The solid circular tangential trace and the dashed square sagittal trace
-        show where each off-axis ray family reaches best focus relative to the current image plane.
+        Real-ray field curves. The solid tangential trace and dashed sagittal trace show where each off-axis ray bundle
+        reaches best focus relative to the image plane.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -97,7 +93,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Best-focus shift from current image plane (mm)
+        Focus shift from image plane (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
@@ -178,7 +174,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       </g>
 
       <text x={ML + 6} y={VB_H - 3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Dense real-ray best-focus field curves with an independent field-curve scale and standard checkpoint markers.
+        Real-ray field curves with independent scale and checkpoint markers.
       </text>
     </svg>
   );
