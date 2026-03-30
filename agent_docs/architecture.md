@@ -95,6 +95,8 @@
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted section components |
 | `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`, `SagittalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
+| `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the standardized chief-ray-relative parabasal tangential/sagittal field curves plus Petzval reference, drawn from the denser internal field sweep while preserving the standard field checkpoints as markers |
+| `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the dense real-ray tangential/sagittal best-focus diagnostic, also using the denser internal field sweep while keeping the standard checkpoint markers and astigmatic split shading |
 | `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) standardized tangential and sagittal field curves across the field |
 | `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the approximate 2D field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
@@ -137,7 +139,7 @@
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |

@@ -3,6 +3,7 @@ import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
+  FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
@@ -1009,10 +1010,36 @@ describe("computeFieldCurvature", () => {
     const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(FIELD_CURVATURE_FIELD_FRACTIONS);
+    expect(result!.curveFieldFractions).toEqual(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75, 1]);
+    expect(result!.curveFields.map((field) => field.fieldFraction)).toEqual(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%", "100%"]);
+    expect(result!.curveFields[0]?.label).toBe("Center");
+    expect(result!.curveFields[result!.curveFields.length - 1]?.label).toBe("100%");
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);
+  });
+
+  it("keeps the dense curve sweep aligned with the standard checkpoint fields", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.curveFields.length).toBeGreaterThan(result!.fields.length);
+
+    for (const checkpoint of result!.fields) {
+      const curveField = result!.curveFields.find((field) => field.fieldFraction === checkpoint.fieldFraction);
+      expect(curveField).toBeDefined();
+      expect(curveField!.label).toBe(checkpoint.label);
+      expect(curveField!.tangentialBestFocusZ).toBeCloseTo(checkpoint.tangentialBestFocusZ, 10);
+      expect(curveField!.sagittalBestFocusZ).toBeCloseTo(checkpoint.sagittalBestFocusZ, 10);
+      expect(curveField!.petzvalBestFocusZ).toBeCloseTo(checkpoint.petzvalBestFocusZ, 10);
+      expect(curveField!.tangentialShiftMm).toBeCloseTo(checkpoint.tangentialShiftMm, 10);
+      expect(curveField!.sagittalShiftMm).toBeCloseTo(checkpoint.sagittalShiftMm, 10);
+      expect(curveField!.astigmaticDifferenceMm).toBeCloseTo(checkpoint.astigmaticDifferenceMm, 10);
+    }
   });
 
   it("returns a finite result for a zoom lens at the tele end", () => {

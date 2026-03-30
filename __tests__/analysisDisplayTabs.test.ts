@@ -110,8 +110,12 @@ describe("analysis display tabs", () => {
 
     expect(html).toContain("Spherical Aberration");
     expect(html).toContain("Field Curves &amp; Astigmatism");
-    expect(html).toContain("Standardized chief-ray-relative parabasal field curves");
-    expect(html).toContain("Dense real-ray best-focus diagnostic using full tangential and sagittal pupil fans");
+    expect(html).toContain(
+      "Standardized chief-ray-relative parabasal field curves with denser internal field sampling",
+    );
+    expect(html).toContain(
+      "Dense real-ray best-focus diagnostic with denser internal field sampling and standard checkpoint markers",
+    );
     expect(html).not.toContain("Coma Preview");
     expect(html).not.toContain("Meridional Coma");
   });

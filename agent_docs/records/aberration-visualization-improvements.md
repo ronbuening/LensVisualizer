@@ -29,6 +29,10 @@
 - Kept the existing 1D rectilinear distortion curve, but added a pure radial-warp helper that converts the sampled distortion curve into an approximate 2D field grid
 - Added a distortion-field display that overlays a dashed ideal rectilinear grid with a solid approximate uncorrected field so the user can see the bowing pattern at a glance
 - Updated the distortion tab copy and tests to call out that the new grid is an approximation derived from the 1D distortion curve, not a full 2D skew-field trace
+- Phase 3 follow-up: smoothed the field-curvature traces with denser internal field sampling
+- Extended `computeFieldCurvature()` to return a second 17-sample internal curve sweep alongside the standard 0 / 25 / 50 / 75 / 100% checkpoint fields so the plotted traces read smoothly without losing the industry-standard markers
+- Updated the standardized, dense real-ray, and chromatic field-curvature plots to draw their polylines from the denser curve sweep while keeping checkpoint markers, split shading, and field labels tied to the standard five marked positions
+- Added optics and panel tests for the new `curveFieldFractions` / `curveFields` contract and refreshed the field-curvature copy so the UI now explicitly explains the denser internal sampling
 - Final phase: refreshed the architecture notes so the repo docs describe the standardized field-curvature split, the higher-resolution traced/idealized coma views, and the new approximate distortion field grid
 
 ## Verification
@@ -61,8 +65,13 @@
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test` — passed
+- `npx vitest run __tests__/aberrationAnalysis.test.ts __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
 
 ## Follow-ups
 
-- Phase 3: increase field sampling density and smooth the standardized field-curve traces now that the solver split is in place
 - Optional future step: replace the approximate distortion-field warp with a true 2D skew-field trace if we decide the extra compute cost is worthwhile

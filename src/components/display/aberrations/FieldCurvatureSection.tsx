@@ -39,7 +39,8 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
             The first chart is the standardized field-curvature view: chief-ray-relative parabasal tangential and
             sagittal field curves relative to the current image plane, with the Petzval reference overlaid. The second
             chart keeps the denser real-ray tangential and sagittal best-focus diagnostic so you can see how the traced
-            bundle behavior departs from the standardized view.
+            bundle behavior departs from the standardized view. Both traces now use denser internal field sampling while
+            keeping the standard Center / 25% / 50% / 75% / 100% checkpoints marked.
           </span>
 
           {result ? (

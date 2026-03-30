@@ -22,8 +22,10 @@ function formatShiftMm(value: number): string {
 }
 
 export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldCurvaturePlotProps) {
-  const usableFields = result.fields.filter((field) => field.usable);
-  const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
+  const markerFields = result.fields.filter((field) => field.usable);
+  const curveFields = result.curveFields.filter((field) => field.usable);
+  const plotFields = curveFields.length > 0 ? curveFields : markerFields;
+  const imageCircleRadiusMm = Math.max(...plotFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
   const uncappedHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm);
   const yHalfRange = Math.max(0.1, Math.min(uncappedHalfRange, imageCircleRadiusMm || uncappedHalfRange));
   const scaleCapped = uncappedHalfRange > imageCircleRadiusMm + 1e-9;
@@ -36,13 +38,13 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
   const tickMm = yHalfRange >= 2 ? 1 : yHalfRange >= 1 ? 0.5 : yHalfRange >= 0.4 ? 0.2 : 0.1;
   const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
 
-  const tangentialPoints = usableFields
+  const tangentialPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.tangentialShiftMm).toFixed(1)}`)
     .join(" ");
-  const sagittalPoints = usableFields
+  const sagittalPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.sagittalShiftMm).toFixed(1)}`)
     .join(" ");
-  const petzvalPoints = usableFields
+  const petzvalPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.petzvalShiftMm).toFixed(1)}`)
     .join(" ");
 
@@ -102,7 +104,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
         Field position across current half-field
       </text>
 
-      {usableFields.map((field) => {
+      {markerFields.map((field) => {
         const x = xScale(field.fieldFraction);
         const tangentialY = yScale(field.tangentialShiftMm);
         const sagittalY = yScale(field.sagittalShiftMm);
@@ -148,7 +150,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
         />
       ) : null}
 
-      {usableFields.map((field) => (
+      {markerFields.map((field) => (
         <g key={`field-${field.fieldFraction}`}>
           <circle
             cx={xScale(field.fieldFraction)}
@@ -203,7 +205,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
       </g>
 
       <text x={ML + 6} y={VB_H - 18} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Standardized chief-ray-relative parabasal field curves.
+        Standardized chief-ray-relative parabasal field curves with denser internal field sampling.
       </text>
       {scaleCapped ? (
         <text x={ML + PW} y={VB_H - 18} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">

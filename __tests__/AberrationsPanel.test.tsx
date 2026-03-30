@@ -59,6 +59,14 @@ const baseProps = {
   expanded: true,
 };
 
+function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(result: T) {
+  return {
+    ...result,
+    curveFieldFractions: [...result.fieldFractions],
+    curveFields: result.fields.map((field) => ({ ...field })),
+  };
+}
+
 describe("AberrationsPanel", () => {
   afterEach(() => {
     cleanup();
@@ -188,7 +196,8 @@ describe("AberrationsPanel", () => {
         { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: null, clipped: true },
       ],
     });
-    mockComputeFieldCurvature.mockReturnValue({
+    mockComputeFieldCurvature.mockReturnValue(
+      withCurveFields({
       fieldFractions: [0, 0.25, 0.5, 0.75, 1],
       usableFieldCount: 5,
       imagePlaneZ: 105,
@@ -295,7 +304,8 @@ describe("AberrationsPanel", () => {
           usable: true,
         },
       ],
-    });
+      }),
+    );
   });
 
   function makeSaResult(longitudinalSaMm: number) {
@@ -357,6 +367,7 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Field Curves & Astigmatism").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
+    expect(screen.getByText(/Both traces now use denser internal field sampling/i)).toBeTruthy();
     expect(
       screen.getByText(/Standardized parabasal tangential and sagittal field curves with the Petzval reference/i),
     ).toBeTruthy();
@@ -370,7 +381,8 @@ describe("AberrationsPanel", () => {
 
   it("discloses when chart scale is capped to the image circle", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
-    mockComputeFieldCurvature.mockReturnValue({
+    mockComputeFieldCurvature.mockReturnValue(
+      withCurveFields({
       fieldFractions: [0, 0.25, 0.5, 0.75, 1],
       usableFieldCount: 5,
       imagePlaneZ: 105,
@@ -477,7 +489,8 @@ describe("AberrationsPanel", () => {
           usable: true,
         },
       ],
-    });
+      }),
+    );
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getAllByText(/Scale capped to image circle/i).length).toBe(2);

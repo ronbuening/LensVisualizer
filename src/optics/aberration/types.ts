@@ -179,7 +179,9 @@ export interface FieldCurvatureFieldResult {
 /** Shared field-curvature and astigmatic-difference analysis for the current lens state. */
 export interface FieldCurvatureResult {
   fieldFractions: readonly number[];
+  curveFieldFractions: readonly number[];
   fields: FieldCurvatureFieldResult[];
+  curveFields: FieldCurvatureFieldResult[];
   usableFieldCount: number;
   imagePlaneZ: number;
   sharedFocusShiftHalfRangeMm: number;
@@ -209,3 +211,4 @@ export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
 /** Fixed field positions shown in the field-curvature / astigmatism chart. */
 export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) => index / 16);

@@ -22,15 +22,17 @@ function formatShiftMm(value: number): string {
 }
 
 export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProps) {
-  const usableFields = result.fields.filter((field) => field.usable);
+  const markerFields = result.fields.filter((field) => field.usable);
+  const curveFields = result.curveFields.filter((field) => field.usable);
   const tangentialShift = (field: FieldCurvatureResult["fields"][number]) =>
     field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm;
   const sagittalShift = (field: FieldCurvatureResult["fields"][number]) =>
     field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm;
-  const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
+  const plotFields = curveFields.length > 0 ? curveFields : markerFields;
+  const imageCircleRadiusMm = Math.max(...plotFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
   const uncappedHalfRange = Math.max(
     0.1,
-    ...usableFields.map((field) => Math.max(Math.abs(tangentialShift(field)), Math.abs(sagittalShift(field)))),
+    ...plotFields.map((field) => Math.max(Math.abs(tangentialShift(field)), Math.abs(sagittalShift(field)))),
   );
   const yHalfRange = Math.max(0.1, Math.min(uncappedHalfRange, imageCircleRadiusMm || uncappedHalfRange));
   const scaleCapped = uncappedHalfRange > imageCircleRadiusMm + 1e-9;
@@ -43,13 +45,13 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   const tickMm = yHalfRange >= 2 ? 1 : yHalfRange >= 1 ? 0.5 : yHalfRange >= 0.4 ? 0.2 : 0.1;
   const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
 
-  const tangentialPoints = usableFields
+  const tangentialPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(tangentialShift(field)).toFixed(1)}`)
     .join(" ");
-  const sagittalPoints = usableFields
+  const sagittalPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(sagittalShift(field)).toFixed(1)}`)
     .join(" ");
-  const petzvalPoints = usableFields
+  const petzvalPoints = plotFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.petzvalShiftMm).toFixed(1)}`)
     .join(" ");
 
@@ -109,7 +111,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
         Field position across current half-field
       </text>
 
-      {usableFields.map((field) => {
+      {markerFields.map((field) => {
         const x = xScale(field.fieldFraction);
         const tangentialY = yScale(tangentialShift(field));
         const sagittalY = yScale(sagittalShift(field));
@@ -155,7 +157,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
         />
       ) : null}
 
-      {usableFields.map((field) => (
+      {markerFields.map((field) => (
         <g key={`field-${field.fieldFraction}`}>
           <circle cx={xScale(field.fieldFraction)} cy={yScale(tangentialShift(field))} r={2.5} fill={tangentialColor} />
           <rect
@@ -205,7 +207,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       </g>
 
       <text x={ML + 6} y={VB_H - 18} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Dense real-ray best-focus diagnostic using full tangential and sagittal pupil fans.
+        Dense real-ray best-focus diagnostic with denser internal field sampling and standard checkpoint markers.
       </text>
       {scaleCapped ? (
         <text x={ML + PW} y={VB_H - 18} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">

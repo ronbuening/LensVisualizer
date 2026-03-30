@@ -1,6 +1,10 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
-import { FIELD_CURVATURE_FIELD_FRACTIONS, MERIDIONAL_COMA_SAMPLE_COUNT } from "./types.js";
+import {
+  FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
+  FIELD_CURVATURE_FIELD_FRACTIONS,
+  MERIDIONAL_COMA_SAMPLE_COUNT,
+} from "./types.js";
 import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../optics.js";
 import {
   bestFocusPlaneForDirection,
@@ -24,7 +28,7 @@ const FIELD_CURVATURE_FIELD_LABELS: Record<(typeof FIELD_CURVATURE_FIELD_FRACTIO
 };
 
 interface FieldCurvatureFieldMeta {
-  fieldFraction: (typeof FIELD_CURVATURE_FIELD_FRACTIONS)[number];
+  fieldFraction: number;
   label: string;
 }
 
@@ -53,10 +57,18 @@ interface DiagnosticFieldFocus {
   astigmaticDifferenceUm: number;
 }
 
-function fieldCurvatureFieldMeta(): FieldCurvatureFieldMeta[] {
-  return FIELD_CURVATURE_FIELD_FRACTIONS.map((fieldFraction) => ({
+function labelForFieldFraction(fieldFraction: number): string {
+  const standardLabel = FIELD_CURVATURE_FIELD_LABELS[fieldFraction as (typeof FIELD_CURVATURE_FIELD_FRACTIONS)[number]];
+  if (standardLabel) return standardLabel;
+
+  const percent = fieldFraction * 100;
+  return `${Number(percent.toFixed(percent % 1 === 0 ? 0 : 2))}%`;
+}
+
+function fieldCurvatureFieldMeta(fieldFractions: readonly number[]): FieldCurvatureFieldMeta[] {
+  return fieldFractions.map((fieldFraction) => ({
     fieldFraction,
-    label: FIELD_CURVATURE_FIELD_LABELS[fieldFraction],
+    label: labelForFieldFraction(fieldFraction),
   }));
 }
 
@@ -358,16 +370,24 @@ export function computeFieldCurvature(
   const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
   if (!isFinite(imagePlaneZ)) return null;
 
-  const fields = fieldCurvatureFieldMeta().map((meta) =>
+  const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
+    computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta, chromatic),
+  );
+  const curveFields = fieldCurvatureFieldMeta(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS).map((meta) =>
     computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta, chromatic),
   );
   const usableFields = fields.filter((field) => field.usable);
+  const usableCurveFields = curveFields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;
 
-  const maxAstigmaticDifferenceMm = Math.max(...usableFields.map((field) => Math.abs(field.astigmaticDifferenceMm)));
+  const maxAstigmaticDifferenceMm = Math.max(
+    ...(usableCurveFields.length > 0 ? usableCurveFields : usableFields).map((field) =>
+      Math.abs(field.astigmaticDifferenceMm),
+    ),
+  );
   const sharedFocusShiftHalfRangeMm = Math.max(
     FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM,
-    ...usableFields.map((field) =>
+    ...(usableCurveFields.length > 0 ? usableCurveFields : usableFields).map((field) =>
       Math.max(Math.abs(field.tangentialShiftMm), Math.abs(field.sagittalShiftMm), Math.abs(field.petzvalShiftMm)),
     ),
   );
@@ -377,7 +397,7 @@ export function computeFieldCurvature(
   // Compute max chromatic focus spread across all usable fields
   let chromaticFocusSpreadMm: number | null = null;
   if (chromatic) {
-    const spreads = usableFields
+    const spreads = (usableCurveFields.length > 0 ? usableCurveFields : usableFields)
       .map((field) => {
         if (!field.chromaticFieldShifts) return null;
         const tShifts = field.chromaticFieldShifts.map((s) => s.tangentialShiftMm);
@@ -392,7 +412,9 @@ export function computeFieldCurvature(
 
   return {
     fieldFractions: FIELD_CURVATURE_FIELD_FRACTIONS,
+    curveFieldFractions: FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
     fields,
+    curveFields,
     usableFieldCount: usableFields.length,
     imagePlaneZ,
     sharedFocusShiftHalfRangeMm,

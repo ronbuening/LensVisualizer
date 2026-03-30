@@ -31,17 +31,19 @@ function formatShiftMm(value: number): string {
 }
 
 export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFieldCurvaturePlotProps) {
-  const usableFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
-  if (usableFields.length < 2) return null;
+  const markerFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const curveFields = result.curveFields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const plotFields = curveFields.length > 0 ? curveFields : markerFields;
+  if (plotFields.length < 2) return null;
 
   // Compute y-range from all chromatic shifts
   let maxShift = 0.1;
-  for (const field of usableFields) {
+  for (const field of plotFields) {
     for (const shift of field.chromaticFieldShifts!) {
       maxShift = Math.max(maxShift, Math.abs(shift.tangentialShiftMm), Math.abs(shift.sagittalShiftMm));
     }
   }
-  const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
+  const imageCircleRadiusMm = Math.max(...plotFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
   const yHalfRange = Math.max(0.1, Math.min(maxShift * 1.1, imageCircleRadiusMm || maxShift * 1.1));
 
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
@@ -62,7 +64,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
     channel: string,
     accessor: (s: { tangentialShiftMm: number; sagittalShiftMm: number }) => number,
   ) {
-    return usableFields
+    return plotFields
       .map((field) => {
         const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
         if (!shift) return null;
@@ -163,7 +165,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       {/* Data point markers per channel */}
       {channels.map((channel) => {
         const color = channelColors[channel];
-        return usableFields.map((field) => {
+        return markerFields.map((field) => {
           const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
           if (!shift) return null;
           return (
