@@ -1,6 +1,6 @@
 ---
 slug: heliar-history
-title: Helios in Glass A Developmental History of Voigtländer's Heliar Lens Designs, 1900–2025
+title: "Helios in Glass: A Developmental History of Voigtländer's Heliar Lens Designs, 1900–2025"
 summary: A history of one of the more neglected fundamental lens designs
 tag: article
 ---

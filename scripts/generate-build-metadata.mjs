@@ -73,7 +73,14 @@ function parseFrontmatter(filePath) {
   const meta = {};
   for (const line of match[1].split("\n")) {
     const m = line.match(/^(\w+):\s*(.+)$/);
-    if (m) meta[m[1]] = m[2].trim();
+    if (m) {
+      let value = m[2].trim();
+      // Strip surrounding quotes if present (e.g., "value" → value)
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      meta[m[1]] = value;
+    }
   }
   return meta;
 }
