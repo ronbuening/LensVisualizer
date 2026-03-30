@@ -24,6 +24,8 @@ interface ComaPreviewGridProps {
 
 const VB_W = 320;
 const VB_H = 268;
+const REF_PANEL_H = 64;
+const VB_H_WITH_REF = VB_H + REF_PANEL_H;
 const OUTER_PAD_X = 18;
 const OUTER_PAD_Y = 18;
 const COL_GAP = 14;
@@ -304,15 +306,116 @@ function renderPointCloudTile(
   );
 }
 
+function renderDiffractionReferencePanel(
+  airyDiskRadiusMm: number,
+  sharedTangentialHalfRangeMm: number,
+  sharedSagittalHalfRangeMm: number,
+  t: Theme,
+) {
+  const refY = VB_H - 6;
+  const refPlotSize = REF_PANEL_H - 20;
+  const refCenterX = OUTER_PAD_X + refPlotSize / 2 + 8;
+  const refCenterY = refY + 10 + refPlotSize / 2;
+  const airyPixelR = Math.max(1, (airyDiskRadiusMm / sharedTangentialHalfRangeMm) * (PLOT_W / 2));
+  const maxR = refPlotSize / 2 - 2;
+  const displayR = Math.min(airyPixelR, maxR);
+  const airyDiameterUm = airyDiskRadiusMm * 2000;
+
+  return (
+    <g data-ref-panel="diffraction-limit">
+      <rect
+        x={OUTER_PAD_X}
+        y={refY}
+        width={VB_W - OUTER_PAD_X * 2}
+        height={REF_PANEL_H - 8}
+        rx={4}
+        fill={t.panelBg}
+        stroke={t.panelBorder}
+        strokeWidth={0.75}
+      />
+      <rect
+        x={refCenterX - refPlotSize / 2}
+        y={refCenterY - refPlotSize / 2}
+        width={refPlotSize}
+        height={refPlotSize}
+        rx={3}
+        fill="none"
+        stroke={t.panelBorder}
+        strokeWidth={0.5}
+      />
+      <line
+        x1={refCenterX - refPlotSize / 2}
+        y1={refCenterY}
+        x2={refCenterX + refPlotSize / 2}
+        y2={refCenterY}
+        stroke={t.axis}
+        strokeWidth={0.5}
+        strokeDasharray="2,2"
+      />
+      <line
+        x1={refCenterX}
+        y1={refCenterY - refPlotSize / 2}
+        x2={refCenterX}
+        y2={refCenterY + refPlotSize / 2}
+        stroke={t.axis}
+        strokeWidth={0.5}
+        strokeDasharray="2,2"
+      />
+      <circle
+        cx={refCenterX}
+        cy={refCenterY}
+        r={displayR}
+        fill={t.axis}
+        fillOpacity={0.08}
+        stroke={t.axis}
+        strokeWidth={0.75}
+        strokeDasharray="3,2"
+      />
+      <text
+        x={OUTER_PAD_X + refPlotSize + 22}
+        y={refCenterY - 8}
+        fill={t.label}
+        fontSize={9}
+        fontFamily="inherit"
+      >
+        Diffraction limit (Airy disk)
+      </text>
+      <text
+        x={OUTER_PAD_X + refPlotSize + 22}
+        y={refCenterY + 4}
+        fill={t.muted}
+        fontSize={8}
+        fontFamily="inherit"
+      >
+        {`\u00d8 ${airyDiameterUm.toFixed(1)} \u00b5m at ${sharedTangentialHalfRangeMm > 0 ? "shared" : "current"} scale`}
+      </text>
+      <text
+        x={OUTER_PAD_X + refPlotSize + 22}
+        y={refCenterY + 16}
+        fill={t.muted}
+        fontSize={7.5}
+        fontFamily="inherit"
+      >
+        Same scale as spot diagrams above
+      </text>
+    </g>
+  );
+}
+
 export default function ComaPreviewGrid({ result, t, mode = "meridional" }: ComaPreviewGridProps) {
   if (mode === "pointCloud") {
     const pointCloudResult = result as ComaPointCloudPreviewResult;
+    const hasAiry = pointCloudResult.airyDiskRadiusMm > 0;
+    const vbHeight = hasAiry ? VB_H_WITH_REF : VB_H;
 
     return (
-      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
+      <svg
+        viewBox={`0 0 ${VB_W} ${vbHeight}`}
+        style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}
+      >
         <title>
-          Real 2D coma point cloud. Each tile traces a fixed circular pupil pattern and plots the chief-ray-centered
-          tangential and sagittal image heights directly.
+          Spot diagram with diffraction-limited Airy disk reference. Each tile traces a circular pupil pattern and plots
+          the chief-ray-centered tangential and sagittal image heights.
         </title>
         {pointCloudResult.fields.map((field, index) =>
           renderPointCloudTile(
@@ -324,7 +427,22 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
             pointCloudResult.airyDiskRadiusMm,
           ),
         )}
-        <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+        {hasAiry
+          ? renderDiffractionReferencePanel(
+              pointCloudResult.airyDiskRadiusMm,
+              pointCloudResult.sharedTangentialHalfRangeMm,
+              pointCloudResult.sharedSagittalHalfRangeMm,
+              t,
+            )
+          : null}
+        <text
+          x={VB_W / 2}
+          y={vbHeight - 2}
+          textAnchor="middle"
+          fill={t.muted}
+          fontSize={8.5}
+          fontFamily="inherit"
+        >
           Tangential / sagittal image height relative to the chief ray (mm)
         </text>
       </svg>
