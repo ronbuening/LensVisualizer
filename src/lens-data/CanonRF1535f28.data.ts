@@ -25,7 +25,9 @@
  * to A14. Maximum sag error from this omission is ~3 μm at the rim of
  * surface 1* — negligible for visualization.
  *
- * Semi-diameters: patent "Effective diameter" column ÷ 2.
+ * Semi-diameters: patent "Effective diameter" column ÷ 2, except L1 where the
+ * front/rear SDs are reduced from 27.52 / 18.92 mm to 18.55 / 14.85 mm to keep
+ * the first meniscus within the renderer's front/rear SD ratio and sd/|R| limits.
  * STO semi-diameter uses the wide-angle value (16.52 / 2 = 8.26 mm).
  */
 
@@ -261,8 +263,8 @@ const LENS_DATA = {
   // combined into surface "20" (see file header comment).
   surfaces: [
     // ── B1 ──
-    { label: "1A", R: 3000.0, d: 2.85, nd: 1.58313, elemId: 1, sd: 27.52 },
-    { label: "2A", R: 16.526, d: 10.57, nd: 1.0, elemId: 0, sd: 18.92 },
+    { label: "1A", R: 3000.0, d: 2.85, nd: 1.58313, elemId: 1, sd: 18.55 },
+    { label: "2A", R: 16.526, d: 10.57, nd: 1.0, elemId: 0, sd: 14.85 },
     { label: "3A", R: -809.327, d: 2.25, nd: 1.854, elemId: 2, sd: 18.23 },
     { label: "4A", R: 91.828, d: 5.56, nd: 1.0, elemId: 0, sd: 15.74 },
     { label: "5", R: -53.256, d: 1.2, nd: 1.59522, elemId: 3, sd: 15.59 },
