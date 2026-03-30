@@ -201,5 +201,5 @@ export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL
 /** Fixed field positions shown in the representative coma preview grid. */
 export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
-/** Fixed field positions shown in the field-curvature / astigmatism chart. */
-export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+/** Fixed field positions shown in the field-curvature / astigmatism chart (9-point for smooth curves). */
+export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1] as const;

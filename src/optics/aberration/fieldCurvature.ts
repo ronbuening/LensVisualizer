@@ -7,9 +7,13 @@ const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
 
 const FIELD_CURVATURE_FIELD_LABELS: Record<(typeof FIELD_CURVATURE_FIELD_FRACTIONS)[number], string> = {
   0: "Center",
+  0.125: "12.5%",
   0.25: "25%",
+  0.375: "37.5%",
   0.5: "50%",
+  0.625: "62.5%",
   0.75: "75%",
+  0.875: "87.5%",
   1: "100%",
 };
 
