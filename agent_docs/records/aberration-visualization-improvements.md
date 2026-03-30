@@ -29,6 +29,7 @@
 - Kept the existing 1D rectilinear distortion curve, but added a pure radial-warp helper that converts the sampled distortion curve into an approximate 2D field grid
 - Added a distortion-field display that overlays a dashed ideal rectilinear grid with a solid approximate uncorrected field so the user can see the bowing pattern at a glance
 - Updated the distortion tab copy and tests to call out that the new grid is an approximation derived from the 1D distortion curve, not a full 2D skew-field trace
+- Final phase: refreshed the architecture notes so the repo docs describe the standardized field-curvature split, the higher-resolution traced/idealized coma views, and the new approximate distortion field grid
 
 ## Verification
 
@@ -63,6 +64,5 @@
 
 ## Follow-ups
 
-- Phase 2: raise coma point-cloud sampling density and add an idealized textbook-style comparison view alongside the traced spot diagram
 - Phase 3: increase field sampling density and smooth the standardized field-curve traces now that the solver split is in place
-- Final phase: update architecture / user-facing docs for the standardized coma, field-curvature, and distortion views, then open the PR
+- Optional future step: replace the approximate distortion-field warp with a true 2D skew-field trace if we decide the extra compute cost is worthwhile
