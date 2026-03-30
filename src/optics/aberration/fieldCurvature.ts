@@ -1,6 +1,7 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
-import { FIELD_CURVATURE_FIELD_FRACTIONS, MERIDIONAL_COMA_SAMPLE_COUNT } from "./types.js";
+import { FIELD_CURVATURE_FIELD_FRACTIONS } from "./types.js";
+import { FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
 import { bestFocusPlaneForDirection, computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "./offAxis.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
@@ -34,9 +35,9 @@ function emptyFieldCurvatureFieldResult({ fieldFraction, label }: FieldCurvature
     fieldFraction,
     label,
     fieldAngleDeg: 0,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount: FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
     validSampleCount: 0,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    clippedSampleCount: FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
     chiefImageHeight: 0,
     tangentialBestFocusZ: 0,
     sagittalBestFocusZ: 0,
@@ -77,7 +78,7 @@ function computeChromaticFieldShifts(
   for (const channel of CHROMATIC_CHANNELS) {
     const tangentialBundle = traceOrthogonalOffAxisBundle(
       "tangential",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
+      FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
       geometry,
       L,
       focusT,
@@ -88,7 +89,7 @@ function computeChromaticFieldShifts(
     );
     const sagittalBundle = traceOrthogonalOffAxisBundle(
       "sagittal",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
+      FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
       geometry,
       L,
       focusT,
@@ -130,7 +131,7 @@ function computeFieldCurvatureField(
 
   const tangentialBundle = traceOrthogonalOffAxisBundle(
     "tangential",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
+    FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
     geometry,
     L,
     focusT,
@@ -140,7 +141,7 @@ function computeFieldCurvatureField(
   );
   const sagittalBundle = traceOrthogonalOffAxisBundle(
     "sagittal",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
+    FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
     geometry,
     L,
     focusT,
@@ -167,9 +168,9 @@ function computeFieldCurvatureField(
     fieldFraction: meta.fieldFraction,
     label: meta.label,
     fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount: FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
     validSampleCount,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSampleCount,
+    clippedSampleCount: FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT - validSampleCount,
     chiefImageHeight,
     tangentialBestFocusZ,
     sagittalBestFocusZ,

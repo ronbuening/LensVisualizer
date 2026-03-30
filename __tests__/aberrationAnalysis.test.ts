@@ -20,7 +20,14 @@ import {
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
-import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
+import {
+  doLayout,
+  entrancePupilAtState,
+  epAtZoom,
+  FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
+  fopenAtZoom,
+  traceRay,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
@@ -959,7 +966,7 @@ describe("computeFieldCurvature", () => {
 
     const tangentialBundle = traceOrthogonalOffAxisBundle(
       "tangential",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
+      FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
       geometry!,
       L,
       0,
@@ -969,7 +976,7 @@ describe("computeFieldCurvature", () => {
     );
     const sagittalBundle = traceOrthogonalOffAxisBundle(
       "sagittal",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
+      FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT,
       geometry!,
       L,
       0,

@@ -67,6 +67,7 @@ const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when build
 const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
+export const FIELD_CURVATURE_PUPIL_FAN_SAMPLE_COUNT = 101;
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
 export const HIGH_RES_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24, 30, 36, 42, 48] as const;
 
