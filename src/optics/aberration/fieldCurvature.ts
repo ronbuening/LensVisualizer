@@ -1,9 +1,19 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import { FIELD_CURVATURE_FIELD_FRACTIONS, MERIDIONAL_COMA_SAMPLE_COUNT } from "./types.js";
-import { bestFocusPlaneForDirection, computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "./offAxis.js";
+import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../optics.js";
+import {
+  bestFocusPlaneForDirection,
+  computeOffAxisFieldGeometry,
+  traceOffAxisChiefRay,
+  traceOrthogonalOffAxisBundle,
+} from "./offAxis.js";
+import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
+const FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM = 0.01;
+const FIELD_CURVATURE_PARABASAL_FRACTION_MIN = 1e-4;
+const FIELD_CURVATURE_PARABASAL_FRACTION_MAX = 0.02;
 
 const FIELD_CURVATURE_FIELD_LABELS: Record<(typeof FIELD_CURVATURE_FIELD_FRACTIONS)[number], string> = {
   0: "Center",
@@ -18,6 +28,31 @@ interface FieldCurvatureFieldMeta {
   label: string;
 }
 
+interface StandardizedFieldFocus {
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  chiefImageHeight: number;
+  tangentialBestFocusZ: number;
+  sagittalBestFocusZ: number;
+  tangentialShiftMm: number;
+  sagittalShiftMm: number;
+  astigmaticDifferenceMm: number;
+  astigmaticDifferenceUm: number;
+}
+
+interface DiagnosticFieldFocus {
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  tangentialBestFocusZ: number;
+  sagittalBestFocusZ: number;
+  tangentialShiftMm: number;
+  sagittalShiftMm: number;
+  astigmaticDifferenceMm: number;
+  astigmaticDifferenceUm: number;
+}
+
 function fieldCurvatureFieldMeta(): FieldCurvatureFieldMeta[] {
   return FIELD_CURVATURE_FIELD_FRACTIONS.map((fieldFraction) => ({
     fieldFraction,
@@ -30,9 +65,9 @@ function emptyFieldCurvatureFieldResult({ fieldFraction, label }: FieldCurvature
     fieldFraction,
     label,
     fieldAngleDeg: 0,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount: 4,
     validSampleCount: 0,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    clippedSampleCount: 4,
     chiefImageHeight: 0,
     tangentialBestFocusZ: 0,
     sagittalBestFocusZ: 0,
@@ -60,6 +95,163 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
 
 const CHROMATIC_CHANNELS: ChromaticChannel[] = ["R", "G", "B"];
 
+function parabasalPupilFraction(entrancePupilSemiDiameter: number): number {
+  if (!isFinite(entrancePupilSemiDiameter) || entrancePupilSemiDiameter <= 0) {
+    return FIELD_CURVATURE_PARABASAL_FRACTION_MIN;
+  }
+
+  const fraction = FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM / entrancePupilSemiDiameter;
+  return Math.min(FIELD_CURVATURE_PARABASAL_FRACTION_MAX, Math.max(FIELD_CURVATURE_PARABASAL_FRACTION_MIN, fraction));
+}
+
+function focusPlaneFromRelativeHits(
+  hits: TransverseFocusHit[],
+  referenceHit: TransverseFocusHit,
+  lastSurfZ: number,
+): number | null {
+  if (hits.length === 0) return null;
+  if (hits.length === 1) {
+    const dy = hits[0].coordinate - referenceHit.coordinate;
+    const du = hits[0].slope - referenceHit.slope;
+    if (Math.abs(du) <= 1e-12) return lastSurfZ;
+    return lastSurfZ - dy / du;
+  }
+
+  return bestRelativeFocusPlane(hits, referenceHit, lastSurfZ);
+}
+
+function computeStandardizedFieldFocus(
+  L: RuntimeLens,
+  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  channel?: ChromaticChannel,
+): StandardizedFieldFocus | null {
+  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, currentEPSD, currentPhysStopSD, channel);
+  if (chiefRay === null) return null;
+
+  const parabasalFraction = parabasalPupilFraction(currentEPSD);
+  const traceRelativeRay = (direction: "tangential" | "sagittal", sign: -1 | 1): TransverseFocusHit | null => {
+    const xFraction = direction === "sagittal" ? sign * parabasalFraction : 0;
+    const yFraction = direction === "tangential" ? sign * parabasalFraction : 0;
+    const trace = channel
+      ? traceChiefRelativeSkewRayChromatic(
+          xFraction,
+          yFraction,
+          geometry.yChief,
+          geometry.uField,
+          currentEPSD,
+          focusT,
+          zoomT,
+          currentPhysStopSD,
+          true,
+          L,
+          channel,
+        )
+      : traceChiefRelativeSkewRay(
+          xFraction,
+          yFraction,
+          geometry.yChief,
+          geometry.uField,
+          currentEPSD,
+          focusT,
+          zoomT,
+          currentPhysStopSD,
+          true,
+          L,
+        );
+    if (trace.clipped) return null;
+
+    return direction === "tangential"
+      ? { coordinate: trace.y, slope: trace.uy }
+      : { coordinate: trace.x, slope: trace.ux };
+  };
+
+  const tangentialHits = ([-1, 1] as const)
+    .map((sign) => traceRelativeRay("tangential", sign))
+    .filter((hit): hit is TransverseFocusHit => hit !== null);
+  const sagittalHits = ([-1, 1] as const)
+    .map((sign) => traceRelativeRay("sagittal", sign))
+    .filter((hit): hit is TransverseFocusHit => hit !== null);
+  const tangentialReferenceHit = { coordinate: chiefRay.trace.y, slope: chiefRay.trace.uy };
+  const sagittalReferenceHit = { coordinate: chiefRay.trace.x, slope: chiefRay.trace.ux };
+
+  const tangentialBestFocusZ = focusPlaneFromRelativeHits(tangentialHits, tangentialReferenceHit, geometry.lastSurfZ);
+  const sagittalBestFocusZ = focusPlaneFromRelativeHits(sagittalHits, sagittalReferenceHit, geometry.lastSurfZ);
+  if (tangentialBestFocusZ === null || sagittalBestFocusZ === null) return null;
+
+  const tangentialShiftMm = tangentialBestFocusZ - geometry.imagePlaneZ;
+  const sagittalShiftMm = sagittalBestFocusZ - geometry.imagePlaneZ;
+  const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
+  const validSampleCount = tangentialHits.length + sagittalHits.length;
+
+  return {
+    sampleCount: 4,
+    validSampleCount,
+    clippedSampleCount: 4 - validSampleCount,
+    chiefImageHeight: chiefRay.imagePoint.y,
+    tangentialBestFocusZ,
+    sagittalBestFocusZ,
+    tangentialShiftMm,
+    sagittalShiftMm,
+    astigmaticDifferenceMm,
+    astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
+  };
+}
+
+function computeDiagnosticFieldFocus(
+  L: RuntimeLens,
+  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): DiagnosticFieldFocus | null {
+  const tangentialBundle = traceOrthogonalOffAxisBundle(
+    "tangential",
+    MERIDIONAL_COMA_SAMPLE_COUNT,
+    geometry,
+    L,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  );
+  const sagittalBundle = traceOrthogonalOffAxisBundle(
+    "sagittal",
+    MERIDIONAL_COMA_SAMPLE_COUNT,
+    geometry,
+    L,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  );
+  if (tangentialBundle === null || sagittalBundle === null) return null;
+  if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
+
+  const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
+  const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
+  const tangentialShiftMm = tangentialBestFocusZ - geometry.imagePlaneZ;
+  const sagittalShiftMm = sagittalBestFocusZ - geometry.imagePlaneZ;
+  const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
+  const validSampleCount = Math.min(tangentialBundle.validSampleCount, sagittalBundle.validSampleCount);
+
+  return {
+    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    validSampleCount,
+    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSampleCount,
+    tangentialBestFocusZ,
+    sagittalBestFocusZ,
+    tangentialShiftMm,
+    sagittalShiftMm,
+    astigmaticDifferenceMm,
+    astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
+  };
+}
+
 function computeChromaticFieldShifts(
   L: RuntimeLens,
   geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
@@ -71,38 +263,21 @@ function computeChromaticFieldShifts(
   const shifts: ChromaticFieldShift[] = [];
 
   for (const channel of CHROMATIC_CHANNELS) {
-    const tangentialBundle = traceOrthogonalOffAxisBundle(
-      "tangential",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
-      geometry,
+    const fieldFocus = computeStandardizedFieldFocus(
       L,
+      geometry,
       focusT,
       zoomT,
       currentEPSD,
       currentPhysStopSD,
       channel,
     );
-    const sagittalBundle = traceOrthogonalOffAxisBundle(
-      "sagittal",
-      MERIDIONAL_COMA_SAMPLE_COUNT,
-      geometry,
-      L,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      channel,
-    );
-    if (tangentialBundle === null || sagittalBundle === null) return null;
-    if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
-
-    const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
-    const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
+    if (fieldFocus === null) return null;
 
     shifts.push({
       channel,
-      tangentialShiftMm: tangentialBestFocusZ - geometry.imagePlaneZ,
-      sagittalShiftMm: sagittalBestFocusZ - geometry.imagePlaneZ,
+      tangentialShiftMm: fieldFocus.tangentialShiftMm,
+      sagittalShiftMm: fieldFocus.sagittalShiftMm,
     });
   }
 
@@ -124,57 +299,43 @@ function computeFieldCurvatureField(
   const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, meta.fieldFraction);
   if (geometry === null) return emptyFieldCurvatureFieldResult(meta);
 
-  const tangentialBundle = traceOrthogonalOffAxisBundle(
-    "tangential",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
-    geometry,
+  const standardizedFieldFocus = computeStandardizedFieldFocus(
     L,
+    geometry,
     focusT,
     zoomT,
     currentEPSD,
     currentPhysStopSD,
   );
-  const sagittalBundle = traceOrthogonalOffAxisBundle(
-    "sagittal",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
-    geometry,
-    L,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-  );
-  if (tangentialBundle === null || sagittalBundle === null) return emptyFieldCurvatureFieldResult(meta);
-  if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) {
-    return emptyFieldCurvatureFieldResult(meta);
-  }
+  if (standardizedFieldFocus === null) return emptyFieldCurvatureFieldResult(meta);
 
-  const tangentialBestFocusZ = bestFocusPlaneForDirection(tangentialBundle, "tangential");
-  const sagittalBestFocusZ = bestFocusPlaneForDirection(sagittalBundle, "sagittal");
-  const chiefImageHeight = tangentialBundle.chiefRay.imagePoint.y;
+  const diagnosticFieldFocus = computeDiagnosticFieldFocus(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
   const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalShiftMm;
-  const tangentialShiftMm = tangentialBestFocusZ - geometry.imagePlaneZ;
-  const sagittalShiftMm = sagittalBestFocusZ - geometry.imagePlaneZ;
-  const astigmaticDifferenceMm = sagittalBestFocusZ - tangentialBestFocusZ;
-  const validSampleCount = Math.min(tangentialBundle.validSampleCount, sagittalBundle.validSampleCount);
 
   return {
     fieldFraction: meta.fieldFraction,
     label: meta.label,
     fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
-    validSampleCount,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSampleCount,
+    sampleCount: standardizedFieldFocus.sampleCount,
+    validSampleCount: standardizedFieldFocus.validSampleCount,
+    clippedSampleCount: standardizedFieldFocus.clippedSampleCount,
     chiefImageHeight,
-    tangentialBestFocusZ,
-    sagittalBestFocusZ,
+    tangentialBestFocusZ: standardizedFieldFocus.tangentialBestFocusZ,
+    sagittalBestFocusZ: standardizedFieldFocus.sagittalBestFocusZ,
     petzvalBestFocusZ,
-    tangentialShiftMm,
-    sagittalShiftMm,
+    tangentialShiftMm: standardizedFieldFocus.tangentialShiftMm,
+    sagittalShiftMm: standardizedFieldFocus.sagittalShiftMm,
     petzvalShiftMm,
-    astigmaticDifferenceMm,
-    astigmaticDifferenceUm: astigmaticDifferenceMm * 1000,
+    astigmaticDifferenceMm: standardizedFieldFocus.astigmaticDifferenceMm,
+    astigmaticDifferenceUm: standardizedFieldFocus.astigmaticDifferenceUm,
+    diagnosticTangentialBestFocusZ: diagnosticFieldFocus?.tangentialBestFocusZ,
+    diagnosticSagittalBestFocusZ: diagnosticFieldFocus?.sagittalBestFocusZ,
+    diagnosticTangentialShiftMm: diagnosticFieldFocus?.tangentialShiftMm,
+    diagnosticSagittalShiftMm: diagnosticFieldFocus?.sagittalShiftMm,
+    diagnosticAstigmaticDifferenceMm: diagnosticFieldFocus?.astigmaticDifferenceMm,
+    diagnosticAstigmaticDifferenceUm: diagnosticFieldFocus?.astigmaticDifferenceUm,
     chromaticFieldShifts: chromatic
       ? computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD)
       : null,

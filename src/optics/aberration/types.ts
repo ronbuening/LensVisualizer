@@ -161,6 +161,12 @@ export interface FieldCurvatureFieldResult {
   petzvalShiftMm: number;
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
+  diagnosticTangentialBestFocusZ?: number;
+  diagnosticSagittalBestFocusZ?: number;
+  diagnosticTangentialShiftMm?: number;
+  diagnosticSagittalShiftMm?: number;
+  diagnosticAstigmaticDifferenceMm?: number;
+  diagnosticAstigmaticDifferenceUm?: number;
   chromaticFieldShifts: ChromaticFieldShift[] | null;
   usable: boolean;
 }

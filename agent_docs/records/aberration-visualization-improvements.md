@@ -15,6 +15,11 @@
 - Phase 1 Step 2: added visible reference cues to the standardized displays
 - Added a chief-ray reference legend to the real-ray spot grid, labeled the ray-fan zero lines and pupil centers, and labeled the distortion zero line as `No distortion`
 - Updated the chromatic field-curve plot to call out the `Current image plane` explicitly and fixed the coma preview grid key warning surfaced during SSR rendering
+- Phase 3 Step 1: separated standardized field curves from the dense real-ray diagnostic
+- Rebuilt `computeFieldCurvature()` so the public tangential / sagittal values come from chief-ray-relative parabasal rays, while the previous dense-fan tangential / sagittal best-focus solve is preserved in diagnostic-only fields for the lower chart
+- Replaced the Petzval-only upper chart with a standardized field-curvature plot that overlays tangential, sagittal, and Petzval reference curves in a more typical industry layout
+- Repositioned the existing lower plot as a dense real-ray diagnostic, updated the field-curvature section copy to explain the two-pass reading order, and kept chromatic field curvature aligned to the standardized solver
+- Added optics tests that verify the standardized parabasal solve, confirm the dense real-ray solve survives as a diagnostic, and updated panel / SSR tests for the revised field-curvature wording
 
 ## Verification
 
@@ -28,8 +33,15 @@
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test` — passed
+- `npx vitest run __tests__/aberrationAnalysis.test.ts __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
 
 ## Follow-ups
 
-- Phase 1 Step 2: add stronger legends and reference markers so the spot/ray-fan distinction is clearer at a glance
-- Phase 3: replace the current field-curvature labeling gap with a standardized solver while preserving the real-ray diagnostic view
+- Phase 2: raise coma point-cloud sampling density and add an idealized textbook-style comparison view alongside the traced spot diagram
+- Phase 3: increase field sampling density and then rebuild the chromatic / remaining field-curve presentation details on top of the standardized solver
+- Phase 4: add a grid-based rectilinear distortion view to approximate the uncorrected field

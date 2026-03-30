@@ -339,9 +339,11 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Field Curves & Astigmatism").length).toBeGreaterThan(0);
-    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
-    expect(screen.getByText(/Petzval reference only\. Negative values are fore of the current image plane/i)).toBeTruthy();
-    expect(screen.getByText(/Real-ray tangential and sagittal best-focus diagnostic\./i)).toBeTruthy();
+    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
+    expect(
+      screen.getByText(/Standardized parabasal tangential and sagittal field curves with the Petzval reference/i),
+    ).toBeTruthy();
+    expect(screen.getByText(/Dense real-ray tangential and sagittal best-focus diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
@@ -494,7 +496,7 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/The first chart is a Petzval reference trace/i)).toBeNull();
+    expect(screen.queryByText(/The first chart is the standardized field-curvature view/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -508,11 +510,11 @@ describe("AberrationsPanel", () => {
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
     expect(screen.getAllByText("LESS").length).toBe(2);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
-    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
-    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
   });
 });

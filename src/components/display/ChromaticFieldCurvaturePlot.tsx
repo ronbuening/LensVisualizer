@@ -1,10 +1,10 @@
 /**
  * ChromaticFieldCurvaturePlot — SVG chart showing per-wavelength (R/G/B)
- * tangential and sagittal focus shifts across the field.
+ * tangential and sagittal standardized field-curve shifts across the field.
  *
  * Renders three pairs of tangential (solid) + sagittal (dashed) traces,
  * one per chromatic channel, to visualize how lateral color shifts the
- * best-focus surface at each field position.
+ * standardized focal surface at each field position.
  */
 
 import type { FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
@@ -75,8 +75,8 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) best-focus traces show how
-        dispersion shifts the focal surface per wavelength across the field.
+        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) standardized field curves show
+        how dispersion shifts the focal surface per wavelength across the field.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
