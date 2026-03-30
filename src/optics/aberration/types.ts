@@ -138,6 +138,8 @@ export interface ComaPointCloudPreviewResult {
   sharedTangentialHalfRangeMm: number;
   sharedSagittalHalfRangeMm: number;
   usableFieldCount: number;
+  /** Airy disk first-zero radius in mm for the current working f-number (d-line, 587.6 nm). */
+  airyDiskRadiusMm: number;
 }
 
 /** Per-channel chromatic focus shift at a single field position. */

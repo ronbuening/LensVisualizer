@@ -22,6 +22,16 @@ import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle, traceOrthogona
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
 
+/** d-line wavelength in mm (587.6 nm). */
+const D_LINE_WAVELENGTH_MM = 0.0005876;
+
+/** Compute the Airy disk first-zero radius: 1.22 * lambda * f_working. */
+function airyDiskRadius(efl: number, currentEPSD: number): number {
+  if (currentEPSD <= 0 || !isFinite(efl) || Math.abs(efl) < 1e-9) return 0;
+  const fNumber = Math.abs(efl) / (2 * currentEPSD);
+  return 1.22 * D_LINE_WAVELENGTH_MM * fNumber;
+}
+
 const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[number], string> = {
   0: "Center",
   0.25: "25%",
@@ -543,5 +553,6 @@ export function computeComaPointCloudPreview(
     sharedTangentialHalfRangeMm,
     sharedSagittalHalfRangeMm,
     usableFieldCount: usableFields.length,
+    airyDiskRadiusMm: airyDiskRadius(L.EFL, currentEPSD),
   };
 }

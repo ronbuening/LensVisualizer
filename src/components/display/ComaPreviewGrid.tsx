@@ -220,6 +220,7 @@ function renderPointCloudTile(
   sharedTangentialHalfRangeMm: number,
   sharedSagittalHalfRangeMm: number,
   t: Theme,
+  airyDiskRadiusMm: number,
 ) {
   const geometry = tileGeometry(index);
   const { plotX, plotY, zeroX, zeroY } = geometry;
@@ -270,16 +271,30 @@ function renderPointCloudTile(
       })}
 
       {field.usable ? (
-        field.points.map((point) => (
-          <circle
-            key={`${field.label}-${point.index}`}
-            cx={xScale(point.tangentialImageHeight)}
-            cy={yScale(point.sagittalImageHeight)}
-            r={0.8 + (point.weight / maxWeight) * 0.6}
-            fill={t.value}
-            opacity={Math.max(0.15, Math.min(0.9, point.weight / maxWeight))}
-          />
-        ))
+        <>
+          {airyDiskRadiusMm > 0 ? (
+            <circle
+              cx={zeroX}
+              cy={zeroY}
+              r={Math.max(1, (airyDiskRadiusMm / sharedTangentialHalfRangeMm) * (PLOT_W / 2))}
+              fill="none"
+              stroke={t.axis}
+              strokeWidth={0.6}
+              strokeDasharray="2,2"
+              opacity={0.5}
+            />
+          ) : null}
+          {field.points.map((point) => (
+            <circle
+              key={`${field.label}-${point.index}`}
+              cx={xScale(point.tangentialImageHeight)}
+              cy={yScale(point.sagittalImageHeight)}
+              r={0.8 + (point.weight / maxWeight) * 0.6}
+              fill={t.value}
+              opacity={Math.max(0.15, Math.min(0.9, point.weight / maxWeight))}
+            />
+          ))}
+        </>
       ) : (
         <text x={zeroX} y={zeroY + 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
           Insufficient data
@@ -306,6 +321,7 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
             pointCloudResult.sharedTangentialHalfRangeMm,
             pointCloudResult.sharedSagittalHalfRangeMm,
             t,
+            pointCloudResult.airyDiskRadiusMm,
           ),
         )}
         <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
