@@ -16,11 +16,11 @@ interface ChromaticFieldCurvaturePlotProps {
 }
 
 const VB_W = 320;
-const VB_H = 224;
+const VB_H = 244;
 const ML = 42;
 const MR = 18;
 const MT = 20;
-const MB = 60;
+const MB = 80;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
@@ -103,7 +103,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         return (
           <g key={tick}>
             <line x1={x} y1={MT + PH} x2={x} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-            <text x={x} y={VB_H - 12} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
+            <text x={x} y={VB_H - 34} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
               {tick === 0 ? "C" : `${Math.round(tick * 100)}%`}
             </text>
           </g>
@@ -122,10 +122,10 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward lens
       </text>
-      <text x={ML + PW - 4} y={MT + PH + 16} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
+      <text x={ML + PW - 4} y={MT + PH + 18} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
       </text>
-      <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
+      <text x={ML + PW / 2} y={VB_H - 16} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
         Field position across current half-field
       </text>
 

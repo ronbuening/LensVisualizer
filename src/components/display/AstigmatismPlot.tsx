@@ -8,11 +8,11 @@ interface AstigmatismPlotProps {
 }
 
 const VB_W = 320;
-const VB_H = 208;
+const VB_H = 228;
 const ML = 42;
 const MR = 18;
 const MT = 20;
-const MB = 52;
+const MB = 72;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
@@ -103,7 +103,7 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
         return (
           <g key={tick}>
             <line x1={x} y1={MT + PH} x2={x} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-            <text x={x} y={VB_H - 12} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
+            <text x={x} y={VB_H - 34} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
               {tick === 0 ? "C" : `${Math.round(tick * 100)}%`}
             </text>
           </g>
@@ -119,7 +119,7 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
       >
         Tangential-sagittal split (mm)
       </text>
-      <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
+      <text x={ML + PW / 2} y={VB_H - 16} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
         Field position across current half-field
       </text>
 
@@ -145,7 +145,7 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
         </text>
       </g>
 
-      <text x={ML + 6} y={VB_H - 18} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+      <text x={ML + 6} y={VB_H - 3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
         {mode === "standardized"
           ? "Chief-ray-relative parabasal tangential-sagittal split within the current image-circle envelope."
           : "Dense real-ray tangential-sagittal split within the current image-circle envelope."}

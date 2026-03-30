@@ -24,13 +24,14 @@ interface ComaPreviewGridProps {
 }
 
 const VB_W = 320;
-const VB_H = 268;
+const VB_H = 312;
 const OUTER_PAD_X = 18;
 const OUTER_PAD_Y = 18;
 const COL_GAP = 14;
 const ROW_GAP = 18;
+const FOOTER_H = 54;
 const TILE_W = (VB_W - OUTER_PAD_X * 2 - COL_GAP) / 2;
-const TILE_H = (VB_H - OUTER_PAD_Y * 2 - ROW_GAP) / 2;
+const TILE_H = (VB_H - OUTER_PAD_Y * 2 - ROW_GAP - FOOTER_H) / 2;
 const TILE_ML = 28;
 const TILE_MR = 10;
 const TILE_MT = 24;
@@ -382,30 +383,30 @@ export default function ComaPreviewGrid({
         {pointCloudResult.fields.map((field, index) =>
           renderPointCloudTile(field, index, pointCloudResult.sharedSpotHalfRangeMm, t, pointCloudStyle),
         )}
-        <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 20})`}>
+        <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 42})`}>
           <line x1={0} y1={0} x2={8} y2={0} stroke={t.label} strokeWidth={0.9} />
           <line x1={4} y1={-4} x2={4} y2={4} stroke={t.label} strokeWidth={0.9} />
           <text x={12} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
             Crosshair = chief-ray reference
           </text>
-          <path d={diamondPath(136, 0, 2.6)} fill={t.panelBg} stroke={t.label} strokeWidth={0.9} />
-          <text x={145} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+          <path d={diamondPath(0, 12, 2.6)} fill={t.panelBg} stroke={t.label} strokeWidth={0.9} />
+          <text x={9} y={15} fill={t.muted} fontSize={7.5} fontFamily="inherit">
             Diamond = centroid
           </text>
-          <circle cx={232} cy={0} r={3.3} fill="none" stroke={t.panelBorder} strokeWidth={1} />
-          <text x={240} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+          <circle cx={108} cy={12} r={3.3} fill="none" stroke={t.panelBorder} strokeWidth={1} />
+          <text x={116} y={15} fill={t.muted} fontSize={7.5} fontFamily="inherit">
             Circle = RMS radius
           </text>
         </g>
         {pointCloudStyle === "traced" ? (
-          <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 10})`}>
+          <g transform={`translate(${OUTER_PAD_X + 210}, ${VB_H - 30})`}>
             <circle cx={0} cy={0} r={2.2} fill={t.value} opacity={0.75} />
             <text x={8} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
               Dot size / opacity = sample weight
             </text>
           </g>
         ) : (
-          <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 10})`}>
+          <g transform={`translate(${OUTER_PAD_X + 192}, ${VB_H - 30})`}>
             <path d="M 0 -3 C 8 -6 14 -4 20 0 C 14 4 8 6 0 3 C 3 1 3 -1 0 -3 Z" fill={t.value} opacity={0.18} />
             <path
               d="M 0 -3 C 8 -6 14 -4 20 0 C 14 4 8 6 0 3 C 3 1 3 -1 0 -3 Z"
@@ -418,7 +419,7 @@ export default function ComaPreviewGrid({
             </text>
           </g>
         )}
-        <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+        <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
           Equal tangential / sagittal scale relative to chief ray (mm)
         </text>
       </svg>
@@ -435,7 +436,7 @@ export default function ComaPreviewGrid({
       {meridionalResult.fields.map((field, index) =>
         renderMeridionalTile(field, index, meridionalResult.sharedRelativeHalfRangeMm, t),
       )}
-      <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+      <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
         Pupil fraction across the entrance pupil
       </text>
     </svg>
