@@ -274,14 +274,14 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (GA): Front negative group ──
-    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 42.0 }, // L11 front (asph)
-    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 14.0 }, // L11 rear (asph) → air
-    { label: "3", R: 88.74, d: 2.0, nd: 1.743104, elemId: 2, sd: 28.0 }, // L12 front
-    { label: "4A", R: 27.44, d: 10.0, nd: 1.0, elemId: 0, sd: 22.0 }, // L12 rear (asph) → air
-    { label: "5", R: -74.77, d: 1.5, nd: 1.49782, elemId: 3, sd: 20.0 }, // L13 front (ED)
-    { label: "6", R: 57.87, d: 0.15, nd: 1.0, elemId: 0, sd: 19.5 }, // L13 rear → air
-    { label: "7", R: 37.08, d: 5.77, nd: 1.737999, elemId: 4, sd: 18.0 }, // L14 front
-    { label: "8", R: -644.56, d: 19.11, nd: 1.0, elemId: 0, sd: 17.5 }, // L14 rear → air [D8]
+    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 18.0 }, // L11 front (asph)
+    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 14.4 }, // L11 rear (asph) → air
+    { label: "3", R: 88.74, d: 2.0, nd: 1.743104, elemId: 2, sd: 16.5 }, // L12 front
+    { label: "4A", R: 27.44, d: 10.0, nd: 1.0, elemId: 0, sd: 14.5 }, // L12 rear (asph) → air
+    { label: "5", R: -74.77, d: 1.5, nd: 1.49782, elemId: 3, sd: 14.0 }, // L13 front (ED)
+    { label: "6", R: 57.87, d: 0.15, nd: 1.0, elemId: 0, sd: 13.5 }, // L13 rear → air
+    { label: "7", R: 37.08, d: 5.77, nd: 1.737999, elemId: 4, sd: 15.0 }, // L14 front
+    { label: "8", R: -644.56, d: 19.11, nd: 1.0, elemId: 0, sd: 14.5 }, // L14 rear → air [D8]
 
     // ── G2 (GF): Focusing group ──
     { label: "9", R: 32.64, d: 1.1, nd: 2.0006, elemId: 5, sd: 14.0 }, // L21 front
