@@ -6,9 +6,10 @@
  */
 
 import { useMemo } from "react";
-import { computeDistortionCurve } from "../../optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "../../optics/distortionAnalysis.js";
 import { eflAtZoom } from "../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
+import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -35,6 +36,10 @@ export default function DistortionTab({
     () => computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
     [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD],
   );
+  const fieldGrid = useMemo(
+    () => computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD),
+    [L, zPos, focusT, zoomT, currentPhysStopSD],
+  );
 
   if (samples.length < 2) {
     return (
@@ -55,12 +60,27 @@ export default function DistortionTab({
   return (
     <div>
       <div style={{ marginBottom: 8, display: "grid", gap: 4 }}>
-        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Rectilinear distortion</span>
+        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
+          Rectilinear distortion (F-Tan(theta))
+        </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Measured at fixed image height. Focus breathing is reported separately from distortion.
+          Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field
+          grid below now traces real chief-ray image positions across the current image circle against that same
+          rectilinear reference. Focus breathing is reported separately from distortion.
         </span>
       </div>
       <DistortionChart samples={samples} t={t} />
+      <div style={{ marginTop: 12, display: "grid", gap: 4 }}>
+        <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+          Traced field grid
+        </span>
+        <DistortionFieldGrid grid={fieldGrid} t={t} />
+        <span style={{ fontSize: 8.5, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+          Dashed lines show the ideal rectilinear field grid clipped to the current image circle. Solid lines show the
+          traced chief-ray image positions for those same 2D field samples, so this view is now a real field trace
+          rather than a radial approximation.
+        </span>
+      </div>
       <div
         style={{
           display: "flex",

@@ -73,6 +73,10 @@ interface ComaPointCloudFieldFootprint {
   maxRelativeTangentialImageHeight: number;
   minRelativeSagittalImageHeight: number;
   maxRelativeSagittalImageHeight: number;
+  centroidTangentialImageHeight: number;
+  centroidSagittalImageHeight: number;
+  rmsRadiusMm: number;
+  rmsRadiusUm: number;
   points: ComaPointCloudPoint[];
 }
 
@@ -198,6 +202,10 @@ function emptyComaPointCloudPreviewFieldResult({
     maxRelativeTangentialImageHeight: 0,
     minRelativeSagittalImageHeight: 0,
     maxRelativeSagittalImageHeight: 0,
+    centroidTangentialImageHeight: 0,
+    centroidSagittalImageHeight: 0,
+    rmsRadiusMm: 0,
+    rmsRadiusUm: 0,
     points: [],
     usable: false,
   };
@@ -224,6 +232,10 @@ function comaPointCloudPreviewFieldResultFromFootprint({
     maxRelativeTangentialImageHeight: footprint.maxRelativeTangentialImageHeight,
     minRelativeSagittalImageHeight: footprint.minRelativeSagittalImageHeight,
     maxRelativeSagittalImageHeight: footprint.maxRelativeSagittalImageHeight,
+    centroidTangentialImageHeight: footprint.centroidTangentialImageHeight,
+    centroidSagittalImageHeight: footprint.centroidSagittalImageHeight,
+    rmsRadiusMm: footprint.rmsRadiusMm,
+    rmsRadiusUm: footprint.rmsRadiusUm,
     points: footprint.points,
     usable: true,
   };
@@ -352,6 +364,18 @@ function computeComaPointCloudFieldFootprint(
 
   const tangentialHeights = points.map((point) => point.tangentialImageHeight);
   const sagittalHeights = points.map((point) => point.sagittalImageHeight);
+  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
+  const centroidTangentialImageHeight =
+    points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
+  const centroidSagittalImageHeight =
+    points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
+  const rmsRadiusMm = Math.sqrt(
+    points.reduce((sum, point) => {
+      const dx = point.tangentialImageHeight - centroidTangentialImageHeight;
+      const dy = point.sagittalImageHeight - centroidSagittalImageHeight;
+      return sum + point.weight * (dx * dx + dy * dy);
+    }, 0) / totalWeight,
+  );
 
   return {
     fieldFraction,
@@ -364,6 +388,10 @@ function computeComaPointCloudFieldFootprint(
     maxRelativeTangentialImageHeight: Math.max(...tangentialHeights),
     minRelativeSagittalImageHeight: Math.min(...sagittalHeights),
     maxRelativeSagittalImageHeight: Math.max(...sagittalHeights),
+    centroidTangentialImageHeight,
+    centroidSagittalImageHeight,
+    rmsRadiusMm,
+    rmsRadiusUm: rmsRadiusMm * 1000,
     points,
   };
 }
@@ -536,12 +564,14 @@ export function computeComaPointCloudPreview(
       Math.max(Math.abs(field.minRelativeSagittalImageHeight), Math.abs(field.maxRelativeSagittalImageHeight)),
     ),
   );
+  const sharedSpotHalfRangeMm = Math.max(sharedTangentialHalfRangeMm, sharedSagittalHalfRangeMm);
 
   return {
     fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
     fields,
     sharedTangentialHalfRangeMm,
     sharedSagittalHalfRangeMm,
+    sharedSpotHalfRangeMm,
     usableFieldCount: usableFields.length,
   };
 }

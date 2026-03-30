@@ -1,10 +1,10 @@
 /**
  * ChromaticFieldCurvaturePlot — SVG chart showing per-wavelength (R/G/B)
- * tangential and sagittal focus shifts across the field.
+ * tangential and sagittal parabasal field-curve shifts across the field.
  *
  * Renders three pairs of tangential (solid) + sagittal (dashed) traces,
  * one per chromatic channel, to visualize how lateral color shifts the
- * best-focus surface at each field position.
+ * focal surface at each field position.
  */
 
 import type { FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
@@ -16,11 +16,11 @@ interface ChromaticFieldCurvaturePlotProps {
 }
 
 const VB_W = 320;
-const VB_H = 224;
+const VB_H = 244;
 const ML = 42;
 const MR = 18;
 const MT = 20;
-const MB = 60;
+const MB = 80;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
@@ -31,18 +31,19 @@ function formatShiftMm(value: number): string {
 }
 
 export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFieldCurvaturePlotProps) {
-  const usableFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
-  if (usableFields.length < 2) return null;
+  const markerFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const curveFields = result.curveFields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const plotFields = curveFields.length > 0 ? curveFields : markerFields;
+  if (plotFields.length < 2) return null;
 
   // Compute y-range from all chromatic shifts
   let maxShift = 0.1;
-  for (const field of usableFields) {
+  for (const field of plotFields) {
     for (const shift of field.chromaticFieldShifts!) {
       maxShift = Math.max(maxShift, Math.abs(shift.tangentialShiftMm), Math.abs(shift.sagittalShiftMm));
     }
   }
-  const imageCircleRadiusMm = Math.max(...usableFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
-  const yHalfRange = Math.max(0.1, Math.min(maxShift * 1.1, imageCircleRadiusMm || maxShift * 1.1));
+  const yHalfRange = Math.max(0.1, maxShift * 1.1);
 
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
   const yScale = (shiftMm: number) => MT + PH / 2 - (shiftMm / yHalfRange) * (PH / 2);
@@ -62,7 +63,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
     channel: string,
     accessor: (s: { tangentialShiftMm: number; sagittalShiftMm: number }) => number,
   ) {
-    return usableFields
+    return plotFields
       .map((field) => {
         const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
         if (!shift) return null;
@@ -75,14 +76,14 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) best-focus traces show how
+        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) parabasal field curves show how
         dispersion shifts the focal surface per wavelength across the field.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Current plane
+        Current image plane
       </text>
 
       {tickValues.map((tick) => {
@@ -102,7 +103,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         return (
           <g key={tick}>
             <line x1={x} y1={MT + PH} x2={x} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
-            <text x={x} y={VB_H - 12} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
+            <text x={x} y={VB_H - 34} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
               {tick === 0 ? "C" : `${Math.round(tick * 100)}%`}
             </text>
           </g>
@@ -116,15 +117,15 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Best-focus shift (mm)
+        Focus shift from image plane (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 6} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Toward lens
-      </text>
-      <text x={ML + PW - 4} y={MT + PH + 16} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
         Toward sensor
       </text>
-      <text x={ML + PW / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
+      <text x={ML + PW - 4} y={MT + PH + 18} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
+        Toward lens
+      </text>
+      <text x={ML + PW / 2} y={VB_H - 16} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
         Field position across current half-field
       </text>
 
@@ -163,7 +164,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       {/* Data point markers per channel */}
       {channels.map((channel) => {
         const color = channelColors[channel];
-        return usableFields.map((field) => {
+        return markerFields.map((field) => {
           const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
           if (!shift) return null;
           return (

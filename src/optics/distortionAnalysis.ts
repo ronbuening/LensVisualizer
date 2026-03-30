@@ -10,7 +10,13 @@
  * current state in a hook rather than embedding in a component.
  */
 
-import { chiefRayImageHeight, computeFieldGeometryAtState, solveFieldAngleForImageHeight } from "./optics.js";
+import {
+  chiefRayImageHeight,
+  computeFieldGeometryAtState,
+  skewImagePlaneIntercept,
+  solveFieldAngleForImageHeight,
+  traceSkewRay,
+} from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
@@ -31,8 +37,80 @@ export interface DistortionSample {
   idealFieldAngleDeg: number;
 }
 
+/** One point in the traced 2D distortion field grid. */
+export interface DistortionGridPoint {
+  idealX: number;
+  idealY: number;
+  tracedX: number | null;
+  tracedY: number | null;
+  radiusNormalized: number;
+  insideImageCircle: boolean;
+  usable: boolean;
+}
+
+/** One horizontal or vertical line in the traced 2D distortion field grid. */
+export interface DistortionGridLine {
+  orientation: "vertical" | "horizontal";
+  idealCoordinate: number;
+  points: DistortionGridPoint[];
+}
+
+/** Traced 2D field-grid result derived from chief rays across the current image circle. */
+export interface DistortionFieldGridResult {
+  lines: DistortionGridLine[];
+  idealFieldRadius: number;
+}
+
 /** Number of evenly-spaced field samples (including center and edge). */
 const SAMPLE_COUNT = 11;
+const DISTORTION_GRID_LINE_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;
+const DISTORTION_GRID_SEGMENT_COUNT = 17;
+
+interface DistortionReference {
+  geometry: ReturnType<typeof computeFieldGeometryAtState>;
+  rectilinearScale: number;
+  edgeImageHeight: number;
+  idealFieldRadius: number;
+  lastSurfZ: number;
+  imagePlaneZ: number;
+}
+
+function computeDistortionReference(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+): DistortionReference | null {
+  if (L.N < 1) return null;
+
+  const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
+  if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
+
+  const edgeImageHeight = chiefRayImageHeight(geometry.halfFieldDeg, zPos, focusT, zoomT, L, geometry);
+  if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
+
+  const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.02, 0.05), 0.25);
+  const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry);
+  const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
+  if (!isFinite(probeImageHeight) || Math.abs(probeTan) < 1e-12) return null;
+
+  const rectilinearScale = -probeImageHeight / probeTan;
+  if (!isFinite(rectilinearScale) || Math.abs(rectilinearScale) < 1e-9) return null;
+
+  const idealFieldRadius = Math.abs(rectilinearScale * Math.tan((geometry.halfFieldDeg * Math.PI) / 180));
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0 || !isFinite(imagePlaneZ)) return null;
+
+  return {
+    geometry,
+    rectilinearScale,
+    edgeImageHeight,
+    idealFieldRadius,
+    lastSurfZ,
+    imagePlaneZ,
+  };
+}
 
 /**
  * Compute a distortion curve for the current lens state.
@@ -59,24 +137,11 @@ export function computeDistortionCurve(
   _dynamicEFL: number,
   _currentPhysStopSD: number,
 ): DistortionSample[] {
-  if (L.N < 1) return [];
-
-  const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
-  if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return [];
-
-  const edgeImageHeight = chiefRayImageHeight(geometry.halfFieldDeg, zPos, focusT, zoomT, L, geometry);
-  if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return [];
-
-  const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.02, 0.05), 0.25);
-  const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry);
-  const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
-  if (!isFinite(probeImageHeight) || Math.abs(probeTan) < 1e-12) return [];
-
-  const rectilinearScale = -probeImageHeight / probeTan;
-  if (!isFinite(rectilinearScale) || Math.abs(rectilinearScale) < 1e-9) return [];
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT);
+  if (reference === null) return [];
 
   const samples: DistortionSample[] = [];
-  const edgeAbsHeight = Math.abs(edgeImageHeight);
+  const edgeAbsHeight = Math.abs(reference.edgeImageHeight);
 
   for (let i = 0; i < SAMPLE_COUNT; i++) {
     const normalizedImageHeight = i / (SAMPLE_COUNT - 1);
@@ -94,15 +159,15 @@ export function computeDistortionCurve(
     }
 
     const realHeight = -edgeAbsHeight * normalizedImageHeight;
-    const fieldAngleDeg = solveFieldAngleForImageHeight(realHeight, zPos, focusT, zoomT, L, geometry);
+    const fieldAngleDeg = solveFieldAngleForImageHeight(realHeight, zPos, focusT, zoomT, L, reference.geometry);
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-    const idealHeight = -(rectilinearScale * Math.tan(thetaRad));
+    const idealHeight = -(reference.rectilinearScale * Math.tan(thetaRad));
     if (!isFinite(idealHeight) || idealHeight === 0) continue;
 
     const distortionPercent = (100 * (realHeight - idealHeight)) / idealHeight;
-    const idealFieldAngleDeg = (Math.atan(Math.abs(realHeight) / rectilinearScale) * 180) / Math.PI;
+    const idealFieldAngleDeg = (Math.atan(Math.abs(realHeight) / reference.rectilinearScale) * 180) / Math.PI;
 
     samples.push({
       fieldAngleDeg,
@@ -116,4 +181,120 @@ export function computeDistortionCurve(
   }
 
   return samples;
+}
+
+function traceDistortionGridPoint(
+  xNormalized: number,
+  yNormalized: number,
+  reference: DistortionReference,
+  focusT: number,
+  zoomT: number,
+  currentPhysStopSD: number,
+  L: RuntimeLens,
+): DistortionGridPoint {
+  const radiusNormalized = Math.hypot(xNormalized, yNormalized);
+  const insideImageCircle = radiusNormalized <= 1 + 1e-9;
+  const idealX = xNormalized * reference.idealFieldRadius;
+  const idealY = yNormalized * reference.idealFieldRadius;
+
+  if (!insideImageCircle) {
+    return {
+      idealX,
+      idealY,
+      tracedX: null,
+      tracedY: null,
+      radiusNormalized,
+      insideImageCircle: false,
+      usable: false,
+    };
+  }
+
+  const fieldSlopeX = idealX / reference.rectilinearScale;
+  const fieldSlopeY = -idealY / reference.rectilinearScale;
+  const chiefLaunchX = -reference.geometry.epRatio * fieldSlopeX;
+  const chiefLaunchY = -reference.geometry.epRatio * fieldSlopeY;
+  const trace = traceSkewRay(
+    chiefLaunchX,
+    chiefLaunchY,
+    fieldSlopeX,
+    fieldSlopeY,
+    focusT,
+    zoomT,
+    currentPhysStopSD,
+    true,
+    L,
+  );
+
+  if (trace.clipped) {
+    return {
+      idealX,
+      idealY,
+      tracedX: null,
+      tracedY: null,
+      radiusNormalized,
+      insideImageCircle: true,
+      usable: false,
+    };
+  }
+
+  const imagePoint = skewImagePlaneIntercept(
+    trace.x,
+    trace.y,
+    trace.ux,
+    trace.uy,
+    reference.lastSurfZ,
+    reference.imagePlaneZ,
+  );
+
+  return {
+    idealX,
+    idealY,
+    tracedX: imagePoint?.x ?? null,
+    tracedY: imagePoint ? -imagePoint.y : null,
+    radiusNormalized,
+    insideImageCircle: true,
+    usable: imagePoint !== null,
+  };
+}
+
+export function computeDistortionFieldGrid(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentPhysStopSD: number,
+): DistortionFieldGridResult {
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT);
+  if (reference === null) {
+    return {
+      lines: [],
+      idealFieldRadius: 0,
+    };
+  }
+
+  const axisSamples = Array.from(
+    { length: DISTORTION_GRID_SEGMENT_COUNT },
+    (_, index) => -1 + (2 * index) / (DISTORTION_GRID_SEGMENT_COUNT - 1),
+  );
+
+  return {
+    idealFieldRadius: reference.idealFieldRadius,
+    lines: DISTORTION_GRID_LINE_COORDINATES.flatMap((coordinate) => {
+      const vertical: DistortionGridLine = {
+        orientation: "vertical",
+        idealCoordinate: coordinate,
+        points: axisSamples.map((y) =>
+          traceDistortionGridPoint(coordinate, y, reference, focusT, zoomT, currentPhysStopSD, L),
+        ),
+      };
+      const horizontal: DistortionGridLine = {
+        orientation: "horizontal",
+        idealCoordinate: coordinate,
+        points: axisSamples.map((x) =>
+          traceDistortionGridPoint(x, coordinate, reference, focusT, zoomT, currentPhysStopSD, L),
+        ),
+      };
+      return [vertical, horizontal];
+    }),
+  };
 }

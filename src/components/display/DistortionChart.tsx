@@ -80,6 +80,16 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
         strokeDasharray="4,3"
         opacity={0.6}
       />
+      <text
+        x={MARGIN.left + plotW - 4}
+        y={yScale(0) - 5}
+        textAnchor="end"
+        fill={t.muted}
+        fontSize={8}
+        fontFamily="inherit"
+      >
+        No distortion
+      </text>
 
       {/* ── Y-axis grid + labels ── */}
       {yTicks.map((tick) => (

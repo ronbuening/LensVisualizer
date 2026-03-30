@@ -23,9 +23,9 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       }}
     >
       <SectionHeader
-        title="Coma Preview"
-        helpLabel="Coma preview help"
-        helpText="This real 2D coma point cloud traces a fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field. Each sample is projected to the image plane and plotted as chief-ray-centered tangential and sagittal image height in millimeters. It is a compact real-ray diagnostic rather than a diffraction-aware spot model."
+        title="Spot Diagram (Real-Ray)"
+        helpLabel="Spot diagram help"
+        helpText="This spot-diagram section now works in two panes. The left pane traces a denser fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field on a shared square spot scale, then overlays centroid and RMS spot-radius cues. The right pane converts the same measured footprint extents into an idealized textbook-style coma sketch so users can compare the traced spot against the standard schematic view."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -34,13 +34,33 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Real 2D coma point cloud at center, 25%, 50%, and 75% of the current half-field. Both axes show
-            chief-ray-centered image height in millimeters from a fixed circular pupil sample pattern.
+            Left: a higher-resolution chief-ray-referenced real-ray spot grid with equal tangential / sagittal scale,
+            centroid, and RMS radius cues. Right: an idealized textbook-style coma sketch normalized to that same
+            measured scale so the traced footprint can be compared against the standard schematic shape.
           </span>
 
           {result ? (
             <>
-              <ComaPreviewGrid result={result} t={theme} mode="pointCloud" />
+              <div
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                    Traced real-ray spot diagram
+                  </span>
+                  <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="traced" />
+                </div>
+                <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                    Idealized coma comparison
+                  </span>
+                  <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="idealized" />
+                </div>
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -67,7 +87,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                 </div>
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Shared tangential half-range used to normalize all four real coma tiles."
+                  title="Shared square spot half-range used to normalize all four traced and idealized coma tiles."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
                     RANGE
@@ -81,14 +101,14 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                       transition: "color 0.3s",
                     }}
                   >
-                    ±{formatComaSpan(result.sharedTangentialHalfRangeMm * 1000)}
+                    ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
                   </span>
                 </div>
               </div>
             </>
           ) : (
             <div style={{ color: theme.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-              Unable to compute a usable 2D coma point cloud for this lens state.
+              Unable to compute a usable real-ray spot diagram for this lens state.
             </div>
           )}
         </>

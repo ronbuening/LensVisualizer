@@ -58,7 +58,8 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Sagittal coma view. Dense off-axis sagittal pupil samples show x-intercept spread on the image plane.
+        Sagittal ray fan. Dense off-axis sagittal pupil samples show chief-ray-relative x-intercept spread on the image
+        plane.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -72,6 +73,12 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
         strokeWidth={0.75}
         strokeDasharray="3,3"
       />
+      <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
+        Chief ray
+      </text>
+      <text x={ML + PW / 2 + 4} y={MT + 10} fill={t.muted} fontSize={8} fontFamily="inherit">
+        Pupil center
+      </text>
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
@@ -92,7 +99,7 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Image plane x (mm)
+        Chief-ray-relative image x (mm)
       </text>
 
       {polylinePoints && (
@@ -133,7 +140,7 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
         ))}
 
       <text x={ML + PW / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
-        Pupil fraction (−1 to +1)
+        Sagittal pupil coordinate (−1 to +1)
       </text>
     </svg>
   );

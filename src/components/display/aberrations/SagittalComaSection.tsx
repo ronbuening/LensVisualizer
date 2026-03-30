@@ -22,9 +22,9 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
       }}
     >
       <SectionHeader
-        title="Sagittal Coma"
-        helpLabel="Sagittal coma help"
-        helpText="Sagittal coma shows how an off-axis point spreads in the sagittal (x) direction across the image plane. The sagittal coma span helps show how much the left and right pupil zones fail to converge at the same x-intercept. Compare with the meridional coma span above to see the directional asymmetry."
+        title="Sagittal Ray Fan"
+        helpLabel="Sagittal ray fan help"
+        helpText="Sagittal ray fan at the configured off-axis field. This is the sagittal ray-aberration view: chief-ray-referenced image x versus sagittal pupil coordinate. Compare it with the tangential ray fan above to see directional asymmetry."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -33,8 +33,8 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Sagittal coma view using a dense off-axis sagittal ray fan. This shows x-intercept spread orthogonal to the
-            meridional plane.
+            Sagittal ray fan using a dense off-axis sagittal pupil sweep. This is a 1D chief-ray-referenced
+            ray-aberration plot orthogonal to the tangential plane.
           </span>
 
           {result ? (
@@ -103,7 +103,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
             </>
           ) : (
             <div style={{ color: theme.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-              Unable to compute a usable sagittal coma view for this lens state.
+              Unable to compute a usable sagittal ray-fan view for this lens state.
             </div>
           )}
         </>

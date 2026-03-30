@@ -3,6 +3,7 @@ import {
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
+  FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
@@ -17,10 +18,18 @@ import {
 import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
+  traceOffAxisChiefRay,
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
-import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
+import {
+  doLayout,
+  entrancePupilAtState,
+  epAtZoom,
+  fopenAtZoom,
+  traceChiefRelativeSkewRay,
+  traceRay,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
@@ -28,6 +37,8 @@ import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 import NikonAF28f14DRaw from "../src/lens-data/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
+import type { OffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
+import { bestRelativeFocusPlane } from "../src/optics/aberration/shared.js";
 
 /* ── Helpers ── */
 
@@ -49,6 +60,67 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
 
 function axialIntercept(y: number, u: number, lastSurfZ: number): number {
   return lastSurfZ - y / u;
+}
+
+function standardizedParabasalFraction(currentEPSD: number): number {
+  return Math.min(0.02, Math.max(1e-4, 0.01 / currentEPSD));
+}
+
+function standardizedFieldFocusAt(
+  L: RuntimeLens,
+  geometry: OffAxisFieldGeometry,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+) {
+  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  expect(chiefRay).not.toBeNull();
+
+  const parabasalFraction = standardizedParabasalFraction(currentEPSD);
+  const traceRelativeHit = (direction: "tangential" | "sagittal", sign: -1 | 1) => {
+    const trace = traceChiefRelativeSkewRay(
+      direction === "sagittal" ? sign * parabasalFraction : 0,
+      direction === "tangential" ? sign * parabasalFraction : 0,
+      geometry.yChief,
+      geometry.uField,
+      currentEPSD,
+      focusT,
+      zoomT,
+      currentPhysStopSD,
+      true,
+      L,
+    );
+    if (trace.clipped) return null;
+    return direction === "tangential"
+      ? { coordinate: trace.y, slope: trace.uy }
+      : { coordinate: trace.x, slope: trace.ux };
+  };
+
+  const tangentialHits = ([-1, 1] as const)
+    .map((sign) => traceRelativeHit("tangential", sign))
+    .filter((hit): hit is { coordinate: number; slope: number } => hit !== null);
+  const sagittalHits = ([-1, 1] as const)
+    .map((sign) => traceRelativeHit("sagittal", sign))
+    .filter((hit): hit is { coordinate: number; slope: number } => hit !== null);
+
+  expect(tangentialHits.length).toBeGreaterThan(0);
+  expect(sagittalHits.length).toBeGreaterThan(0);
+
+  return {
+    chiefImageHeight: chiefRay!.imagePoint.y,
+    tangentialBestFocusZ: bestRelativeFocusPlane(
+      tangentialHits,
+      { coordinate: chiefRay!.trace.y, slope: chiefRay!.trace.uy },
+      geometry.lastSurfZ,
+    ),
+    sagittalBestFocusZ: bestRelativeFocusPlane(
+      sagittalHits,
+      { coordinate: chiefRay!.trace.x, slope: chiefRay!.trace.ux },
+      geometry.lastSurfZ,
+    ),
+    validSampleCount: tangentialHits.length + sagittalHits.length,
+  };
 }
 
 function mkSingleElement(): RuntimeLens {
@@ -815,11 +887,15 @@ describe("computeComaPointCloudPreview", () => {
     expect(result).not.toBeNull();
     expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
     expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSpotHalfRangeMm).toBe(
+      Math.max(result!.sharedTangentialHalfRangeMm, result!.sharedSagittalHalfRangeMm),
+    );
     expect(isFinite(result!.sharedTangentialHalfRangeMm)).toBe(true);
     expect(isFinite(result!.sharedSagittalHalfRangeMm)).toBe(true);
+    expect(isFinite(result!.sharedSpotHalfRangeMm)).toBe(true);
   });
 
-  it("produces near-zero weighted tangential centroid at center field", () => {
+  it("records the weighted centroid and RMS spot radius for each usable field", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -833,7 +909,21 @@ describe("computeComaPointCloudPreview", () => {
     const totalWeight = centerField.points.reduce((sum, point) => sum + point.weight, 0);
     const tangentialCentroid =
       centerField.points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
-    expect(tangentialCentroid).toBeCloseTo(0, 8);
+    const sagittalCentroid =
+      centerField.points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
+    const rmsRadius = Math.sqrt(
+      centerField.points.reduce((sum, point) => {
+        const dx = point.tangentialImageHeight - tangentialCentroid;
+        const dy = point.sagittalImageHeight - sagittalCentroid;
+        return sum + point.weight * (dx * dx + dy * dy);
+      }, 0) / totalWeight,
+    );
+
+    expect(centerField.centroidTangentialImageHeight).toBeCloseTo(tangentialCentroid, 8);
+    expect(centerField.centroidSagittalImageHeight).toBeCloseTo(sagittalCentroid, 8);
+    expect(centerField.rmsRadiusMm).toBeCloseTo(rmsRadius, 8);
+    expect(centerField.rmsRadiusUm).toBeCloseTo(rmsRadius * 1000, 8);
+    expect(centerField.centroidTangentialImageHeight).toBeCloseTo(0, 8);
   });
 });
 
@@ -920,10 +1010,36 @@ describe("computeFieldCurvature", () => {
     const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(FIELD_CURVATURE_FIELD_FRACTIONS);
+    expect(result!.curveFieldFractions).toEqual(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75, 1]);
+    expect(result!.curveFields.map((field) => field.fieldFraction)).toEqual(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS);
     expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%", "100%"]);
+    expect(result!.curveFields[0]?.label).toBe("Center");
+    expect(result!.curveFields[result!.curveFields.length - 1]?.label).toBe("100%");
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);
+  });
+
+  it("keeps the dense curve sweep aligned with the standard checkpoint fields", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.curveFields.length).toBeGreaterThan(result!.fields.length);
+
+    for (const checkpoint of result!.fields) {
+      const curveField = result!.curveFields.find((field) => field.fieldFraction === checkpoint.fieldFraction);
+      expect(curveField).toBeDefined();
+      expect(curveField!.label).toBe(checkpoint.label);
+      expect(curveField!.tangentialBestFocusZ).toBeCloseTo(checkpoint.tangentialBestFocusZ, 10);
+      expect(curveField!.sagittalBestFocusZ).toBeCloseTo(checkpoint.sagittalBestFocusZ, 10);
+      expect(curveField!.petzvalBestFocusZ).toBeCloseTo(checkpoint.petzvalBestFocusZ, 10);
+      expect(curveField!.tangentialShiftMm).toBeCloseTo(checkpoint.tangentialShiftMm, 10);
+      expect(curveField!.sagittalShiftMm).toBeCloseTo(checkpoint.sagittalShiftMm, 10);
+      expect(curveField!.astigmaticDifferenceMm).toBeCloseTo(checkpoint.astigmaticDifferenceMm, 10);
+    }
   });
 
   it("returns a finite result for a zoom lens at the tele end", () => {
@@ -938,7 +1054,7 @@ describe("computeFieldCurvature", () => {
     expect(isFinite(result!.edgeSagittalShiftMm)).toBe(true);
   });
 
-  it("matches the shared off-axis bundle focus solve at an off-axis field", () => {
+  it("matches the standardized parabasal solve at an off-axis field and keeps the dense real-ray solve as a diagnostic", () => {
     const L = build(NikonAF28f14DRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -952,6 +1068,7 @@ describe("computeFieldCurvature", () => {
 
     const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
     expect(geometry).not.toBeNull();
+    const standardizedField = standardizedFieldFocusAt(L, geometry!, 0, 0, currentEPSD, currentPhysStopSD);
 
     const tangentialBundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -976,11 +1093,15 @@ describe("computeFieldCurvature", () => {
 
     expect(tangentialBundle).not.toBeNull();
     expect(sagittalBundle).not.toBeNull();
-    expect(field!.tangentialBestFocusZ).toBeCloseTo(bestFocusPlaneForDirection(tangentialBundle!, "tangential"), 8);
-    expect(field!.sagittalBestFocusZ).toBeCloseTo(bestFocusPlaneForDirection(sagittalBundle!, "sagittal"), 8);
-    expect(field!.validSampleCount).toBe(
-      Math.min(tangentialBundle!.validSampleCount, sagittalBundle!.validSampleCount),
+    expect(field!.tangentialBestFocusZ).toBeCloseTo(standardizedField.tangentialBestFocusZ, 8);
+    expect(field!.sagittalBestFocusZ).toBeCloseTo(standardizedField.sagittalBestFocusZ, 8);
+    expect(field!.chiefImageHeight).toBeCloseTo(standardizedField.chiefImageHeight, 8);
+    expect(field!.validSampleCount).toBe(standardizedField.validSampleCount);
+    expect(field!.diagnosticTangentialBestFocusZ).toBeCloseTo(
+      bestFocusPlaneForDirection(tangentialBundle!, "tangential"),
+      8,
     );
+    expect(field!.diagnosticSagittalBestFocusZ).toBeCloseTo(bestFocusPlaneForDirection(sagittalBundle!, "sagittal"), 8);
   });
 
   it("keeps the center-field astigmatic difference at zero", () => {
@@ -994,7 +1115,7 @@ describe("computeFieldCurvature", () => {
     expect(result!.fields[0].astigmaticDifferenceUm).toBeCloseTo(0, 8);
   });
 
-  it("uses the real on-axis best focus at center field (not imagePlaneZ)", () => {
+  it("keeps the center-field standardized curves coincident and preserves the dense real-ray diagnostic", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -1004,15 +1125,26 @@ describe("computeFieldCurvature", () => {
 
     const centerField = result!.fields[0];
     expect(centerField.usable).toBe(true);
-
-    // For a fast lens like Sonnar f/1.5, the SA-adjusted best focus shifts
-    // away from the image plane. The center-field tangential and sagittal
-    // best focus values should reflect this shift (non-zero).
-    expect(centerField.tangentialShiftMm).not.toBeCloseTo(0, 3);
-    expect(centerField.sagittalShiftMm).not.toBeCloseTo(0, 3);
-
-    // Tangential and sagittal should agree at center field (no astigmatism on-axis)
     expect(centerField.tangentialBestFocusZ).toBeCloseTo(centerField.sagittalBestFocusZ, 6);
+    expect(centerField.diagnosticTangentialBestFocusZ).toBeDefined();
+    expect(centerField.diagnosticSagittalBestFocusZ).toBeDefined();
+    expect(centerField.diagnosticTangentialBestFocusZ).toBeCloseTo(centerField.diagnosticSagittalBestFocusZ!, 6);
+  });
+
+  it("keeps the standardized off-axis field curve distinct from the dense real-ray diagnostic", () => {
+    const L = build(NikonAF28f14DRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisField = result!.fields.find((field) => field.usable && field.fieldFraction === 0.75);
+    expect(offAxisField).toBeDefined();
+    expect(offAxisField!.diagnosticTangentialShiftMm).toBeDefined();
+    expect(offAxisField!.diagnosticSagittalShiftMm).toBeDefined();
+    expect(offAxisField!.tangentialShiftMm).not.toBeCloseTo(offAxisField!.diagnosticTangentialShiftMm!, 5);
+    expect(offAxisField!.sagittalShiftMm).not.toBeCloseTo(offAxisField!.diagnosticSagittalShiftMm!, 5);
   });
 
   it("shows measurable astigmatic separation away from center", () => {
@@ -1123,6 +1255,89 @@ describe("computeFieldCurvature", () => {
       // Allow generous tolerance since this is only approximate
       expect(ratio).toBeGreaterThan(2);
       expect(ratio).toBeLessThan(6);
+    }
+  });
+
+  it("produces Petzval shift in same direction as tangential/sagittal shifts for a converging system", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    // Converging system should have positive petzvalSum
+    expect(L.petzvalSum).toBeGreaterThan(0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Check the 50% field — all three curves should shift in the same direction
+    const f50 = result!.fields.find((f) => f.fieldFraction === 0.5);
+    expect(f50).toBeDefined();
+    expect(f50!.usable).toBe(true);
+
+    // For a converging system with inward Petzval curvature, the Petzval surface and the
+    // T/S field curves should all shift in the same direction at off-axis fields.
+    // The Petzval shift sign must agree with the tangential shift sign.
+    const pShift = f50!.petzvalShiftMm;
+    const tShift = f50!.tangentialShiftMm;
+    // All three should have the same sign for a typical converging system
+    expect(Math.sign(pShift)).toBe(Math.sign(tShift));
+    // Petzval shift should be non-trivially negative (toward lens) for a converging system
+    expect(pShift).toBeLessThan(-0.01);
+  });
+
+  it("produces astigmatic difference as S minus T (signed convention)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const offAxisFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    for (const field of offAxisFields) {
+      const expected = field.sagittalBestFocusZ - field.tangentialBestFocusZ;
+      expect(field.astigmaticDifferenceMm).toBeCloseTo(expected, 10);
+      expect(field.astigmaticDifferenceUm).toBeCloseTo(field.astigmaticDifferenceMm * 1000, 6);
+    }
+  });
+
+  it("includes diagnostic shifts in sharedFocusShiftHalfRangeMm", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // The shared range should cover all diagnostic shifts
+    const allFields = [...result!.fields, ...result!.curveFields].filter((f) => f.usable);
+    for (const field of allFields) {
+      const diagnosticT = Math.abs(field.diagnosticTangentialShiftMm ?? 0);
+      const diagnosticS = Math.abs(field.diagnosticSagittalShiftMm ?? 0);
+      expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThanOrEqual(diagnosticT - 1e-9);
+      expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThanOrEqual(diagnosticS - 1e-9);
+    }
+  });
+
+  it("produces both parabasal and real-ray results at off-axis fields", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    // Off-axis fields should have both parabasal and diagnostic values
+    const offAxisFields = result!.fields.filter((f) => f.usable && f.fieldFraction > 0);
+    expect(offAxisFields.length).toBeGreaterThan(0);
+    for (const field of offAxisFields) {
+      expect(isFinite(field.tangentialShiftMm)).toBe(true);
+      expect(isFinite(field.sagittalShiftMm)).toBe(true);
+      // Diagnostic values should be present (may be undefined only if tracing fails)
+      if (field.diagnosticTangentialShiftMm !== undefined) {
+        expect(isFinite(field.diagnosticTangentialShiftMm)).toBe(true);
+        expect(isFinite(field.diagnosticSagittalShiftMm!)).toBe(true);
+      }
     }
   });
 

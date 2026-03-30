@@ -52,11 +52,12 @@ describe("analysis display tabs", () => {
 
     const html = renderToStaticMarkup(React.createElement(DistortionChart, { samples, t: themes.dark }));
     expect(html).toContain("Image height (% of edge)");
+    expect(html).toContain("No distortion");
     expect(html).toContain("100%");
     expect(html).not.toContain("Field angle (°)");
   });
 
-  it("DistortionTab renders rectilinear distortion copy and separate breathing metric", () => {
+  it("DistortionTab renders standardized rectilinear distortion copy and separate breathing metric", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0.5;
     const zoomT = 0;
@@ -76,15 +77,19 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Rectilinear distortion");
+    expect(html).toContain("Rectilinear distortion (F-Tan(theta))");
+    expect(html).toContain("near-axis rectilinear reference");
     expect(html).toContain("fixed image height");
+    expect(html).toContain("Traced field grid");
+    expect(html).toContain("Solid = traced chief-ray field");
+    expect(html).toContain("real field trace rather than a radial approximation");
     expect(html).toContain("BREATHING");
     expect(html).toContain("HEIGHT");
     expect(html).toContain("ANGLE");
     expect(html).not.toContain(">FIELD<");
   });
 
-  it("AberrationsPanel renders spherical aberration and field curvature content", () => {
+  it("AberrationsPanel renders spherical aberration and field-curve content", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0;
     const zoomT = 0;
@@ -105,12 +110,18 @@ describe("analysis display tabs", () => {
     );
 
     expect(html).toContain("Spherical Aberration");
-    expect(html).toContain("Field Curvature");
+    expect(html).toContain("Field Curves");
+    expect(html).toContain("Astigmatism");
+    expect(html).toContain("The first chart shows parabasal tangential and sagittal field curves");
+    expect(html).toContain("These charts plot the tangential-sagittal best-focus difference");
+    expect(html).toContain("Parabasal field curves with independent scale");
+    expect(html).toContain("Real-ray field curves with independent scale and checkpoint markers");
+    expect(html).toContain("keeping astigmatic split readable even when field curves shift far");
     expect(html).not.toContain("Coma Preview");
     expect(html).not.toContain("Meridional Coma");
   });
 
-  it("ComaTab renders coma preview and meridional coma content", () => {
+  it("ComaTab renders the spot-grid and ray-fan coma content", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0;
     const zoomT = 0;
@@ -129,17 +140,22 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Coma Preview");
-    expect(html).toContain("Real 2D coma point cloud");
+    expect(html).toContain("Spot Diagram (Real-Ray)");
+    expect(html).toContain("higher-resolution chief-ray-referenced real-ray spot grid");
+    expect(html).toContain("Idealized coma comparison");
+    expect(html).toContain("Crosshair = chief-ray reference");
+    expect(html).toContain("Diamond = centroid");
+    expect(html).toContain("Circle = RMS radius");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");
     expect(html).toContain("75%");
-    expect(html).toContain("Meridional Coma");
-    expect(html).toContain("2D meridional coma view");
+    expect(html).toContain("Tangential Ray Fan");
+    expect(html).toContain("Tangential ray fan using a dense off-axis meridional pupil sweep");
+    expect(html).toContain("Chief ray");
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
-    expect(html).not.toContain("Field Curvature");
+    expect(html).not.toContain("Field Curves &amp; Astigmatism");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

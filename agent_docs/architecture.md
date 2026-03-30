@@ -92,12 +92,16 @@
 |--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
-| `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted section components |
-| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`, `SagittalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
+| `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`), formatting helpers, and `useAberrationsPanelData` |
+| `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
-| `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) tangential and sagittal best-focus traces across the field |
-| `DistortionTab.tsx` | `src/components/display/` | Distortion curve tab content; memoizes computation and renders DistortionChart |
+| `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for parabasal tangential/sagittal field curves plus Petzval reference, using denser internal field sweep with standard checkpoint markers |
+| `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for real-ray tangential/sagittal field curves from dense bundle solves, sharing the same Y-scale as the parabasal plot |
+| `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) parabasal tangential and sagittal field curves across the field |
+| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
+| `DistortionFieldGrid.tsx` | `src/components/display/` | Reusable SVG grid view overlaying ideal rectilinear lines with the traced chief-ray field positions across the current image circle |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
@@ -136,9 +140,9 @@
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
-| `distortionAnalysis.ts` | `src/optics/` | Pure distortion curve computation: chief-ray tracing across field, rectilinear comparison |
+| `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
 
 ### Utilities
@@ -255,7 +259,7 @@ Sub-components:
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 - **`AbbeDiagram.tsx`** (`src/components/display/`) — Abbe glass map plotting each element on standard Vd × Nd axes with grid, scaling, and element labels
-- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible panel for spherical-aberration metrics; computes SA and an LSA profile via `computeSphericalAberration()` / `computeSAProfile()` with `useMemo` from current slider state
+- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible analysis panel that renders separate spherical-aberration, field-curve, and astigmatism sections; computes the shared SA and field-curvature data via `useAberrationsPanelData()` from current slider state so the field curves can use an independent shift scale while the astigmatism section omits out-of-image-circle split values
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
@@ -294,8 +298,9 @@ Public barrel for the decomposed aberration modules under `src/optics/aberration
 
 - **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a true current-state paraxial reference. Averages ±Y marginal rays for symmetry. Returns `{saMm, saUm, realIntercept, paraxialIntercept}` or null if all marginal fractions are clipped.
 - **`computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Samples the entrance pupil across aperture zones and returns the longitudinal spherical-aberration profile used by the analysis chart.
+- **`computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a denser fixed circular pupil pattern for the representative spot-diagram tiles, returning chief-ray-referenced point clouds plus centroid / RMS spot-radius metrics used by both the traced spot view and the idealized coma comparison.
 - **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
-- **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes tangential, sagittal, and Petzval best-focus shifts across field fractions. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength focus shifts and a `chromaticFocusSpreadMm` summary.
+- **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes parabasal tangential and sagittal field curves from chief-ray-relative parabasal rays, plus real-ray field curves from dense bundle solves, and overlays Petzval shifts across fixed field fractions. The shared Y-scale range covers both methods. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength field curves plus a `chromaticFocusSpreadMm` summary.
 
 Sign convention: negative SA = undercorrected (real marginal focus closer to the lens than paraxial); positive SA = overcorrected.
 
@@ -303,9 +308,10 @@ This module is now accuracy-sensitive: the panel copy, tests, and optics primers
 
 ## distortionAnalysis.ts
 
-Pure-function distortion curve computation. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention (from `useOffAxisRays`), computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns distortion percentage at each sample.
+Pure-function distortion analysis. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention, computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns the 1D distortion curve. The same rectilinear reference is also reused to trace a true 2D chief-ray field grid across the current image circle for the analysis drawer.
 
 - **`computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, _currentPhysStopSD)`** — Returns `DistortionSample[]` with `{fieldAngleDeg, distortionPercent, realHeight, idealHeight}`. Center distortion is exactly 0 by definition. Uses `halfFieldAtZoom()`, `bAtZoom()`, `yRatioAtZoom()` for zoom-aware parameters.
+- **`computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)`** — Traces a 2D chief-ray field grid against the same near-axis rectilinear reference, clipping the ideal grid to the current image circle and returning the traced image positions for each usable sample.
 
 No React dependencies — fully testable in isolation.
 

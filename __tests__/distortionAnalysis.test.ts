@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeDistortionCurve } from "../src/optics/distortionAnalysis.js";
+import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optics/distortionAnalysis.js";
 import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -166,5 +166,96 @@ describe("computeDistortionCurve", () => {
     const samples = computeDistortionCurve(L, zPos, 1, 1, dynamicEFL, currentPhysStopSD);
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
+  });
+});
+
+describe("computeDistortionFieldGrid", () => {
+  function tracedGridAtState(L: RuntimeLens, focusT: number, zoomT: number) {
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+  }
+
+  it("returns a paired horizontal and vertical grid set", () => {
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+
+    expect(grid.idealFieldRadius).toBeGreaterThan(0);
+    expect(grid.lines.length).toBe(10);
+    expect(grid.lines.filter((line) => line.orientation === "vertical").length).toBe(5);
+    expect(grid.lines.filter((line) => line.orientation === "horizontal").length).toBe(5);
+    expect(grid.lines.every((line) => line.points.length === 17)).toBe(true);
+  });
+
+  it("keeps the center point fixed", () => {
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+    const centerLine = grid.lines.find((line) => line.orientation === "vertical" && line.idealCoordinate === 0);
+    expect(centerLine).toBeDefined();
+    const centerPoint = centerLine!.points.find((point) => point.idealY === 0);
+    expect(centerPoint).toBeDefined();
+    expect(centerPoint!.insideImageCircle).toBe(true);
+    expect(centerPoint!.usable).toBe(true);
+    expect(centerPoint!.tracedX).toBeCloseTo(0, 8);
+    expect(centerPoint!.tracedY).toBeCloseTo(0, 8);
+  });
+
+  it("marks corner samples outside the current image circle as unavailable", () => {
+    const L = build(Sonnar50f15Raw);
+    const grid = tracedGridAtState(L, 0, 0);
+    const topLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 1);
+
+    expect(topLine).toBeDefined();
+    expect(topLine!.points[0].insideImageCircle).toBe(false);
+    expect(topLine!.points[0].usable).toBe(false);
+    expect(topLine!.points[topLine!.points.length - 1].insideImageCircle).toBe(false);
+    expect(topLine!.points[topLine!.points.length - 1].usable).toBe(false);
+  });
+
+  it("moves the traced axis edge point in the same direction as the 1D edge distortion sign", () => {
+    const L = build(ApoLantharRaw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+
+    const samples = computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD);
+    const edgeSample = samples[samples.length - 1];
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD);
+    const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);
+
+    expect(centerLine).toBeDefined();
+    const edgePoint = centerLine!.points[centerLine!.points.length - 1];
+    expect(edgePoint.insideImageCircle).toBe(true);
+    expect(edgePoint.usable).toBe(true);
+    expect(edgePoint.tracedX).not.toBeNull();
+
+    const tracedRadius = Math.abs(edgePoint.tracedX!);
+    const idealRadius = Math.abs(edgePoint.idealX);
+    if (edgeSample.distortionPercent > 0) {
+      expect(tracedRadius).toBeGreaterThan(idealRadius);
+    } else if (edgeSample.distortionPercent < 0) {
+      expect(tracedRadius).toBeLessThan(idealRadius);
+    } else {
+      expect(tracedRadius).toBeCloseTo(idealRadius, 8);
+    }
+  });
+
+  it("keeps usable traced grid points finite", () => {
+    const L = build(NikkorZ70200Raw);
+    const grid = tracedGridAtState(L, 0, 1);
+
+    for (const line of grid.lines) {
+      for (const point of line.points) {
+        expect(isFinite(point.idealX)).toBe(true);
+        expect(isFinite(point.idealY)).toBe(true);
+        if (!point.usable) continue;
+        expect(point.tracedX).not.toBeNull();
+        expect(point.tracedY).not.toBeNull();
+        expect(isFinite(point.tracedX!)).toBe(true);
+        expect(isFinite(point.tracedY!)).toBe(true);
+      }
+    }
   });
 });

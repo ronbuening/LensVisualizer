@@ -22,9 +22,9 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
       }}
     >
       <SectionHeader
-        title="Meridional Coma"
-        helpLabel="Meridional coma help"
-        helpText="Meridional coma shows how an off-axis point spreads asymmetrically across the image plane in the tangential plane. The coma span helps show how much the upper and lower pupil zones fail to meet at the same image height."
+        title="Tangential Ray Fan"
+        helpLabel="Tangential ray fan help"
+        helpText="Tangential ray fan at the configured off-axis field. This is the tangential or meridional ray-aberration view: chief-ray-referenced image height versus tangential pupil coordinate. It is useful for reading coma-like asymmetry, but it is not a full 2D spot diagram."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -33,8 +33,8 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            2D meridional coma view using a dense off-axis ray fan. This is not a full 2D spot diagram or
-            sagittal/tangential split.
+            Tangential ray fan using a dense off-axis meridional pupil sweep. This is a 1D chief-ray-referenced
+            ray-aberration plot, not a full 2D spot diagram.
           </span>
 
           {result ? (
@@ -103,7 +103,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
             </>
           ) : (
             <div style={{ color: theme.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-              Unable to compute a usable 2D meridional coma view for this lens state.
+              Unable to compute a usable tangential ray-fan view for this lens state.
             </div>
           )}
         </>

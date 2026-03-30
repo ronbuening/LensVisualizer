@@ -53,14 +53,14 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Field curvature only. This chart shows the mean field surface moving fore or aft of the current focus plane as
+        Petzval reference curve. This chart shows the Petzval surface moving fore or aft of the current image plane as
         field position increases from center to edge.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
       <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Focused plane
+        Current image plane
       </text>
 
       {tickValues.map((tick) => {
@@ -97,10 +97,10 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
         Fore / aft deviation (mm)
       </text>
       <text x={ML + PW - 4} y={MT - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Fore: toward lens
+        Aft: toward sensor
       </text>
       <text x={ML + PW - 4} y={MT + PH + 16} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
-        Aft: toward sensor
+        Fore: toward lens
       </text>
 
       {fillPoints ? <polygon points={fillPoints} fill={fillColor} opacity={0.18} /> : null}
@@ -119,7 +119,7 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
       ))}
 
       <text x={ML + 6} y={VB_H - 2} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Center to edge bend of the mean field surface only.
+        Petzval reference relative to the current image plane.
       </text>
       {scaleCapped ? (
         <text x={ML + PW} y={VB_H - 2} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">
