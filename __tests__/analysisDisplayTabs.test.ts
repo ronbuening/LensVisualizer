@@ -134,8 +134,11 @@ describe("analysis display tabs", () => {
     );
 
     expect(html).toContain("Spot Diagram (Real-Ray)");
-    expect(html).toContain("Chief-ray-referenced real-ray spot grid");
+    expect(html).toContain("higher-resolution chief-ray-referenced real-ray spot grid");
+    expect(html).toContain("Idealized coma comparison");
     expect(html).toContain("Crosshair = chief-ray reference");
+    expect(html).toContain("Diamond = centroid");
+    expect(html).toContain("Circle = RMS radius");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");

@@ -20,6 +20,11 @@
 - Replaced the Petzval-only upper chart with a standardized field-curvature plot that overlays tangential, sagittal, and Petzval reference curves in a more typical industry layout
 - Repositioned the existing lower plot as a dense real-ray diagnostic, updated the field-curvature section copy to explain the two-pass reading order, and kept chromatic field curvature aligned to the standardized solver
 - Added optics tests that verify the standardized parabasal solve, confirm the dense real-ray solve survives as a diagnostic, and updated panel / SSR tests for the revised field-curvature wording
+- Phase 2 Step 1 / 3: raised spot-diagram resolution and added an idealized coma comparison
+- Increased the coma point-cloud pupil pattern from the old 61-point default to a denser 121-point circular sample, and added centroid / RMS spot-radius metrics to each traced field tile
+- Standardized the traced spot diagram to use a shared square spot scale so tangential and sagittal dimensions are no longer visually distorted by unequal axis scaling
+- Added a second side-by-side idealized coma grid that converts the measured traced footprint extent into a textbook-style schematic, while keeping the traced real-ray spot grid visible for direct comparison
+- Updated coma UI copy and tests so the section now explicitly explains the traced-versus-idealized comparison and the new centroid / RMS spot cues
 
 ## Verification
 
@@ -39,9 +44,15 @@
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test` — passed
+- `npx vitest run __tests__/aberrationAnalysis.test.ts __tests__/ComaPreviewGrid.test.tsx __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
 
 ## Follow-ups
 
 - Phase 2: raise coma point-cloud sampling density and add an idealized textbook-style comparison view alongside the traced spot diagram
-- Phase 3: increase field sampling density and then rebuild the chromatic / remaining field-curve presentation details on top of the standardized solver
+- Phase 3: increase field sampling density and smooth the standardized field-curve traces now that the solver split is in place
 - Phase 4: add a grid-based rectilinear distortion view to approximate the uncorrected field

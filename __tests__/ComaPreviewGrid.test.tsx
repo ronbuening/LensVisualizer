@@ -103,6 +103,7 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
     usableFieldCount: 3,
     sharedTangentialHalfRangeMm: 0.2,
     sharedSagittalHalfRangeMm: 0.1,
+    sharedSpotHalfRangeMm: 0.2,
     fields: [
       {
         fieldFraction: 0,
@@ -116,6 +117,10 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         maxRelativeTangentialImageHeight: 0.1,
         minRelativeSagittalImageHeight: -0.04,
         maxRelativeSagittalImageHeight: 0.04,
+        centroidTangentialImageHeight: 0,
+        centroidSagittalImageHeight: 0,
+        rmsRadiusMm: 0.03,
+        rmsRadiusUm: 30,
         usable: true,
         points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.1, sagittalImageHeight: 0, weight: 0.2 }],
       },
@@ -131,6 +136,10 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         maxRelativeTangentialImageHeight: 0.2,
         minRelativeSagittalImageHeight: -0.05,
         maxRelativeSagittalImageHeight: 0.05,
+        centroidTangentialImageHeight: 0.06,
+        centroidSagittalImageHeight: 0.01,
+        rmsRadiusMm: 0.05,
+        rmsRadiusUm: 50,
         usable: true,
         points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.2, sagittalImageHeight: 0, weight: 0.2 }],
       },
@@ -146,6 +155,10 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         maxRelativeTangentialImageHeight: 0,
         minRelativeSagittalImageHeight: 0,
         maxRelativeSagittalImageHeight: 0,
+        centroidTangentialImageHeight: 0,
+        centroidSagittalImageHeight: 0,
+        rmsRadiusMm: 0,
+        rmsRadiusUm: 0,
         usable: false,
         points: [],
       },
@@ -161,6 +174,10 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         maxRelativeTangentialImageHeight: 0.05,
         minRelativeSagittalImageHeight: -0.1,
         maxRelativeSagittalImageHeight: 0.1,
+        centroidTangentialImageHeight: -0.02,
+        centroidSagittalImageHeight: 0.01,
+        rmsRadiusMm: 0.04,
+        rmsRadiusUm: 40,
         usable: true,
         points: [{ index: 0, sourceSampleIndex: 12, tangentialImageHeight: -0.05, sagittalImageHeight: 0.05, weight: 0.1 }],
       },
@@ -188,10 +205,20 @@ describe("ComaPreviewGrid", () => {
   it("renders point-cloud tiles with shared axis copy", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
-    expect(screen.getAllByText("Chief-ray-referenced spot plot").length).toBeGreaterThan(0);
-    expect(screen.getByText("Tangential / sagittal image height relative to chief ray (mm)")).toBeTruthy();
+    expect(screen.getAllByText("Traced real-ray spot plot").length).toBeGreaterThan(0);
+    expect(screen.getByText("Equal tangential / sagittal scale relative to chief ray (mm)")).toBeTruthy();
     expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
+    expect(screen.getByText("Diamond = centroid")).toBeTruthy();
+    expect(screen.getByText("Circle = RMS radius")).toBeTruthy();
     expect(screen.getByText("Dot size / opacity = sample weight")).toBeTruthy();
+  });
+
+  it("renders an idealized comparison view for point-cloud previews", () => {
+    render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" pointCloudStyle="idealized" />);
+
+    expect(screen.getAllByText("Idealized coma sketch").length).toBeGreaterThan(0);
+    expect(screen.getByText("Outline = idealized coma footprint")).toBeTruthy();
+    expect(screen.getByText("Diamond = centroid")).toBeTruthy();
   });
 
   it("applies the shared tangential normalization across point-cloud tiles", () => {

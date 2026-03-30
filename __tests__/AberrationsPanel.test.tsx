@@ -80,6 +80,7 @@ describe("AberrationsPanel", () => {
       usableFieldCount: 4,
       sharedTangentialHalfRangeMm: 0.06,
       sharedSagittalHalfRangeMm: 0.03,
+      sharedSpotHalfRangeMm: 0.06,
       fields: [
         {
           fieldFraction: 0,
@@ -93,6 +94,10 @@ describe("AberrationsPanel", () => {
           maxRelativeTangentialImageHeight: 0.01,
           minRelativeSagittalImageHeight: -0.01,
           maxRelativeSagittalImageHeight: 0.01,
+          centroidTangentialImageHeight: 0,
+          centroidSagittalImageHeight: 0,
+          rmsRadiusMm: 0.005,
+          rmsRadiusUm: 5,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 1, tangentialImageHeight: -0.01, sagittalImageHeight: -0.01, weight: 0.1 },
@@ -112,6 +117,10 @@ describe("AberrationsPanel", () => {
           maxRelativeTangentialImageHeight: 0.04,
           minRelativeSagittalImageHeight: -0.015,
           maxRelativeSagittalImageHeight: 0.015,
+          centroidTangentialImageHeight: 0.01,
+          centroidSagittalImageHeight: 0.002,
+          rmsRadiusMm: 0.012,
+          rmsRadiusUm: 12,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 6, tangentialImageHeight: 0.04, sagittalImageHeight: 0, weight: 0.2 },
@@ -129,6 +138,10 @@ describe("AberrationsPanel", () => {
           maxRelativeTangentialImageHeight: 0.06,
           minRelativeSagittalImageHeight: -0.02,
           maxRelativeSagittalImageHeight: 0.02,
+          centroidTangentialImageHeight: 0.018,
+          centroidSagittalImageHeight: 0.003,
+          rmsRadiusMm: 0.018,
+          rmsRadiusUm: 18,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 10, tangentialImageHeight: 0.06, sagittalImageHeight: 0, weight: 0.2 },
@@ -146,6 +159,10 @@ describe("AberrationsPanel", () => {
           maxRelativeTangentialImageHeight: 0.05,
           minRelativeSagittalImageHeight: -0.03,
           maxRelativeSagittalImageHeight: 0.03,
+          centroidTangentialImageHeight: -0.012,
+          centroidSagittalImageHeight: 0.004,
+          rmsRadiusMm: 0.02,
+          rmsRadiusUm: 20,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 14, tangentialImageHeight: 0.05, sagittalImageHeight: 0, weight: 0.2 },

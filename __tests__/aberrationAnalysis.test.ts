@@ -886,11 +886,15 @@ describe("computeComaPointCloudPreview", () => {
     expect(result).not.toBeNull();
     expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
     expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSpotHalfRangeMm).toBe(
+      Math.max(result!.sharedTangentialHalfRangeMm, result!.sharedSagittalHalfRangeMm),
+    );
     expect(isFinite(result!.sharedTangentialHalfRangeMm)).toBe(true);
     expect(isFinite(result!.sharedSagittalHalfRangeMm)).toBe(true);
+    expect(isFinite(result!.sharedSpotHalfRangeMm)).toBe(true);
   });
 
-  it("produces near-zero weighted tangential centroid at center field", () => {
+  it("records the weighted centroid and RMS spot radius for each usable field", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -904,7 +908,21 @@ describe("computeComaPointCloudPreview", () => {
     const totalWeight = centerField.points.reduce((sum, point) => sum + point.weight, 0);
     const tangentialCentroid =
       centerField.points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
-    expect(tangentialCentroid).toBeCloseTo(0, 8);
+    const sagittalCentroid =
+      centerField.points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
+    const rmsRadius = Math.sqrt(
+      centerField.points.reduce((sum, point) => {
+        const dx = point.tangentialImageHeight - tangentialCentroid;
+        const dy = point.sagittalImageHeight - sagittalCentroid;
+        return sum + point.weight * (dx * dx + dy * dy);
+      }, 0) / totalWeight,
+    );
+
+    expect(centerField.centroidTangentialImageHeight).toBeCloseTo(tangentialCentroid, 8);
+    expect(centerField.centroidSagittalImageHeight).toBeCloseTo(sagittalCentroid, 8);
+    expect(centerField.rmsRadiusMm).toBeCloseTo(rmsRadius, 8);
+    expect(centerField.rmsRadiusUm).toBeCloseTo(rmsRadius * 1000, 8);
+    expect(centerField.centroidTangentialImageHeight).toBeCloseTo(0, 8);
   });
 });
 

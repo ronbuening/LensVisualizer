@@ -1,4 +1,4 @@
-import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
+import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
@@ -124,6 +124,10 @@ export interface ComaPointCloudPreviewFieldResult {
   maxRelativeTangentialImageHeight: number;
   minRelativeSagittalImageHeight: number;
   maxRelativeSagittalImageHeight: number;
+  centroidTangentialImageHeight: number;
+  centroidSagittalImageHeight: number;
+  rmsRadiusMm: number;
+  rmsRadiusUm: number;
   points: ComaPointCloudPoint[];
   usable: boolean;
 }
@@ -134,6 +138,7 @@ export interface ComaPointCloudPreviewResult {
   fields: ComaPointCloudPreviewFieldResult[];
   sharedTangentialHalfRangeMm: number;
   sharedSagittalHalfRangeMm: number;
+  sharedSpotHalfRangeMm: number;
   usableFieldCount: number;
 }
 
@@ -193,7 +198,7 @@ export const ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = DEFAULT_ORTHOGONAL_PUPIL_FAN_SA
 export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 
 /** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
-export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES;
+export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = [1, 8, 16, 24, 32, 40] as const;
 export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
   (sum, count) => sum + count,
   0,

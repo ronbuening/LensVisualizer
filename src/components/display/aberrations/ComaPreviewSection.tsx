@@ -25,7 +25,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       <SectionHeader
         title="Spot Diagram (Real-Ray)"
         helpLabel="Spot diagram help"
-        helpText="This chief-ray-referenced real-ray spot grid traces a fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field. Each tile plots tangential and sagittal image height relative to the chief ray. It behaves like a compact spot-diagram view, but uses a fixed real-ray sample pattern rather than a diffraction-aware analysis."
+        helpText="This spot-diagram section now works in two panes. The left pane traces a denser fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field on a shared square spot scale, then overlays centroid and RMS spot-radius cues. The right pane converts the same measured footprint extents into an idealized textbook-style coma sketch so users can compare the traced spot against the standard schematic view."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -34,13 +34,33 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Chief-ray-referenced real-ray spot grid at center, 25%, 50%, and 75% of the current half-field. Both axes
-            show image height in millimeters relative to the chief ray from a fixed circular pupil sample pattern.
+            Left: a higher-resolution chief-ray-referenced real-ray spot grid with equal tangential / sagittal scale,
+            centroid, and RMS radius cues. Right: an idealized textbook-style coma sketch normalized to that same
+            measured scale so the traced footprint can be compared against the standard schematic shape.
           </span>
 
           {result ? (
             <>
-              <ComaPreviewGrid result={result} t={theme} mode="pointCloud" />
+              <div
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                    Traced real-ray spot diagram
+                  </span>
+                  <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="traced" />
+                </div>
+                <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
+                    Idealized coma comparison
+                  </span>
+                  <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="idealized" />
+                </div>
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -67,7 +87,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                 </div>
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Shared tangential half-range used to normalize all four real coma tiles."
+                  title="Shared square spot half-range used to normalize all four traced and idealized coma tiles."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
                     RANGE
@@ -81,7 +101,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                       transition: "color 0.3s",
                     }}
                   >
-                    ±{formatComaSpan(result.sharedTangentialHalfRangeMm * 1000)}
+                    ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
                   </span>
                 </div>
               </div>
