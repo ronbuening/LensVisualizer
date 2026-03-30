@@ -261,20 +261,22 @@ function renderPointCloudTile(
       ? Math.min(field.minRelativeTangentialImageHeight, field.centroidTangentialImageHeight - field.rmsRadiusMm * 0.9)
       : Math.max(field.maxRelativeTangentialImageHeight, field.centroidTangentialImageHeight + field.rmsRadiusMm * 0.9);
   const comaLength = Math.max(Math.abs(forwardExtent - rearExtent), field.rmsRadiusMm * 2.2, 1e-6);
+  // Seidel 3rd-order coma: 60-degree cone, sagittal extent ≈ 1/3 tangential.
+  // Half-width at widest point ≈ comaLength * tan(30°) ≈ 0.33 * comaLength.
   const comaHalfWidth = Math.max(
     Math.abs(field.maxRelativeSagittalImageHeight),
     Math.abs(field.minRelativeSagittalImageHeight),
     field.rmsRadiusMm * 0.6,
-    comaLength * 0.18,
+    comaLength * 0.3,
   );
   // Tangential extent along vertical (yScale), sagittal half-width along horizontal (xScale)
-  const shoulderT = forwardExtent - tailDirection * Math.max(comaLength * 0.38, field.rmsRadiusMm * 1.15, 1e-6);
-  const noseT = rearExtent - tailDirection * Math.max(comaLength * 0.14, field.rmsRadiusMm * 0.35, 1e-6);
-  const backT = noseT - tailDirection * Math.max(comaLength * 0.2, field.rmsRadiusMm * 0.4, 1e-6);
-  const idealizedPath = `M ${xScale(comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)}
-    C ${xScale(comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(comaHalfWidth * 0.82).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(0).toFixed(1)} ${yScale(forwardExtent).toFixed(1)}
-    C ${xScale(-comaHalfWidth * 0.82).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(-comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(-comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)}
-    C ${xScale(-comaHalfWidth * 0.12).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.12).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.5).toFixed(1)} ${yScale(backT).toFixed(1)} Z`;
+  const shoulderT = forwardExtent - tailDirection * Math.max(comaLength * 0.33, field.rmsRadiusMm * 1.1, 1e-6);
+  const noseT = rearExtent - tailDirection * Math.max(comaLength * 0.1, field.rmsRadiusMm * 0.25, 1e-6);
+  const backT = noseT - tailDirection * Math.max(comaLength * 0.15, field.rmsRadiusMm * 0.3, 1e-6);
+  const idealizedPath = `M ${xScale(comaHalfWidth * 0.4).toFixed(1)} ${yScale(backT).toFixed(1)}
+    C ${xScale(comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(comaHalfWidth * 0.85).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(0).toFixed(1)} ${yScale(forwardExtent).toFixed(1)}
+    C ${xScale(-comaHalfWidth * 0.85).toFixed(1)} ${yScale(shoulderT).toFixed(1)} ${xScale(-comaHalfWidth).toFixed(1)} ${yScale(rearExtent).toFixed(1)} ${xScale(-comaHalfWidth * 0.4).toFixed(1)} ${yScale(backT).toFixed(1)}
+    C ${xScale(-comaHalfWidth * 0.08).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.08).toFixed(1)} ${yScale(noseT).toFixed(1)} ${xScale(comaHalfWidth * 0.4).toFixed(1)} ${yScale(backT).toFixed(1)} Z`;
 
   return (
     <TileShell
