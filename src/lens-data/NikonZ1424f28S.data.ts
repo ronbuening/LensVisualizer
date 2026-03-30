@@ -24,6 +24,9 @@
  * ║    element proportions, barrel diameter (88.5 mm OD), and          ║
  * ║    edge-thickness / sd-to-R constraints. Paraxial chief ray        ║
  * ║    trace is invalid at ω = 57.6° — SDs are heuristic.            ║
+ * ║    Nikon's Fig. 10 optical section is treated as a schematic       ║
+ * ║    silhouette target only; Table 4 / Table 5 are followed         ║
+ * ║    literally for curvature and asphere math.                       ║
  * ║                                                                    ║
  * ║  NOTE ON CONIC CONSTANTS:                                          ║
  * ║    Patent uses κ convention (κ = 1 + K). Converted to standard    ║
@@ -274,8 +277,8 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (GA): Front negative group ──
-    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 18.0 }, // L11 front (asph)
-    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 14.4 }, // L11 rear (asph) → air
+    { label: "1A", R: 151.5, d: 3.0, nd: 1.58887, elemId: 1, sd: 18.03 }, // L11 front (asph)
+    { label: "2A", R: 16.04, d: 13.37, nd: 1.0, elemId: 0, sd: 14.43 }, // L11 rear (asph) → air
     { label: "3", R: 88.74, d: 2.0, nd: 1.743104, elemId: 2, sd: 16.5 }, // L12 front
     { label: "4A", R: 27.44, d: 10.0, nd: 1.0, elemId: 0, sd: 14.5 }, // L12 rear (asph) → air
     { label: "5", R: -74.77, d: 1.5, nd: 1.49782, elemId: 3, sd: 14.0 }, // L13 front (ED)
@@ -409,6 +412,7 @@ const LENS_DATA = {
   /* ── Layout tuning ── */
   scFill: 0.55,
   yScFill: 0.5,
+  maxAspectRatio: 1.2,
 } satisfies LensDataInput;
 
 export default LENS_DATA;
