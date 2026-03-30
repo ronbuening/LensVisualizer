@@ -56,7 +56,7 @@ describe("analysis display tabs", () => {
     expect(html).not.toContain("Field angle (°)");
   });
 
-  it("DistortionTab renders rectilinear distortion copy and separate breathing metric", () => {
+  it("DistortionTab renders standardized rectilinear distortion copy and separate breathing metric", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0.5;
     const zoomT = 0;
@@ -76,7 +76,8 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Rectilinear distortion");
+    expect(html).toContain("Rectilinear distortion (F-Tan(theta))");
+    expect(html).toContain("near-axis rectilinear reference");
     expect(html).toContain("fixed image height");
     expect(html).toContain("BREATHING");
     expect(html).toContain("HEIGHT");
@@ -84,7 +85,7 @@ describe("analysis display tabs", () => {
     expect(html).not.toContain(">FIELD<");
   });
 
-  it("AberrationsPanel renders spherical aberration and field curvature content", () => {
+  it("AberrationsPanel renders spherical aberration and field-curve content", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0;
     const zoomT = 0;
@@ -105,12 +106,12 @@ describe("analysis display tabs", () => {
     );
 
     expect(html).toContain("Spherical Aberration");
-    expect(html).toContain("Field Curvature");
+    expect(html).toContain("Field Curves &amp; Astigmatism");
     expect(html).not.toContain("Coma Preview");
     expect(html).not.toContain("Meridional Coma");
   });
 
-  it("ComaTab renders coma preview and meridional coma content", () => {
+  it("ComaTab renders the spot-grid and ray-fan coma content", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0;
     const zoomT = 0;
@@ -129,17 +130,17 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Coma Preview");
-    expect(html).toContain("Real 2D coma point cloud");
+    expect(html).toContain("Spot Diagram (Real-Ray)");
+    expect(html).toContain("Chief-ray-referenced real-ray spot grid");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");
     expect(html).toContain("75%");
-    expect(html).toContain("Meridional Coma");
-    expect(html).toContain("2D meridional coma view");
+    expect(html).toContain("Tangential Ray Fan");
+    expect(html).toContain("Tangential ray fan using a dense off-axis meridional pupil sweep");
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
-    expect(html).not.toContain("Field Curvature");
+    expect(html).not.toContain("Field Curves &amp; Astigmatism");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

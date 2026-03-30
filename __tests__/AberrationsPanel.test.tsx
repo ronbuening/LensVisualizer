@@ -338,10 +338,10 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
     expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Field Curvature & Astigmatic Difference").length).toBeGreaterThan(0);
-    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
-    expect(screen.getByText(/Field curvature only\. Negative values are fore of the focused plane/i)).toBeTruthy();
-    expect(screen.getByText(/Tangential versus real sagittal diagnostic\./i)).toBeTruthy();
+    expect(screen.getAllByText("Field Curves & Astigmatism").length).toBeGreaterThan(0);
+    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
+    expect(screen.getByText(/Petzval reference only\. Negative values are fore of the current image plane/i)).toBeTruthy();
+    expect(screen.getByText(/Real-ray tangential and sagittal best-focus diagnostic\./i)).toBeTruthy();
     expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
@@ -469,7 +469,7 @@ describe("AberrationsPanel", () => {
     mockComputeFieldCurvature.mockReturnValue(null);
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getByText(/Unable to compute a usable field-curvature and astigmatic-difference view/i)).toBeTruthy();
+    expect(screen.getByText(/Unable to compute usable field-curve diagnostics/i)).toBeTruthy();
   });
 
   it("toggles the spherical aberration section and reports the new expanded state", () => {
@@ -494,7 +494,7 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/The first chart strips the problem down to field curvature only/i)).toBeNull();
+    expect(screen.queryByText(/The first chart is a Petzval reference trace/i)).toBeNull();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -508,11 +508,11 @@ describe("AberrationsPanel", () => {
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
     expect(screen.getAllByText("LESS").length).toBe(2);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
-    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
-    expect(screen.getByText(/The first chart strips the problem down to field curvature only/i)).toBeTruthy();
+    expect(screen.getByText(/The first chart is a Petzval reference trace/i)).toBeTruthy();
   });
 });

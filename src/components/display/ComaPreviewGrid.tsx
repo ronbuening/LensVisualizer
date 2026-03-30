@@ -235,7 +235,7 @@ function renderPointCloudTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel="Real 2D point cloud"
+      footerLabel="Chief-ray-referenced spot plot"
       t={t}
     >
       <line
@@ -296,8 +296,8 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
     return (
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
         <title>
-          Real 2D coma point cloud. Each tile traces a fixed circular pupil pattern and plots the chief-ray-centered
-          tangential and sagittal image heights directly.
+          Chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential
+          and sagittal image heights relative to the chief ray.
         </title>
         {pointCloudResult.fields.map((field, index) =>
           renderPointCloudTile(
@@ -309,7 +309,7 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
           ),
         )}
         <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-          Tangential / sagittal image height relative to the chief ray (mm)
+          Tangential / sagittal image height relative to chief ray (mm)
         </text>
       </svg>
     );
@@ -319,8 +319,8 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Representative meridional coma preview. Each tile shows a chief-ray-centered off-axis footprint, not a full 2D
-        spot diagram.
+        Representative meridional ray-fan preview. Each tile shows a chief-ray-centered off-axis footprint, not a full
+        2D spot diagram.
       </title>
       {meridionalResult.fields.map((field, index) =>
         renderMeridionalTile(field, index, meridionalResult.sharedRelativeHalfRangeMm, t),

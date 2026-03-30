@@ -188,8 +188,8 @@ describe("ComaPreviewGrid", () => {
   it("renders point-cloud tiles with shared axis copy", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
-    expect(screen.getAllByText("Real 2D point cloud").length).toBeGreaterThan(0);
-    expect(screen.getByText("Tangential / sagittal image height relative to the chief ray (mm)")).toBeTruthy();
+    expect(screen.getAllByText("Chief-ray-referenced spot plot").length).toBeGreaterThan(0);
+    expect(screen.getByText("Tangential / sagittal image height relative to chief ray (mm)")).toBeTruthy();
   });
 
   it("applies the shared tangential normalization across point-cloud tiles", () => {

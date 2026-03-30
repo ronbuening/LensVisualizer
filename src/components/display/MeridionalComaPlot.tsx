@@ -58,8 +58,8 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        2D meridional coma view. Dense off-axis pupil samples are projected onto the image plane to show asymmetric
-        spread, not a full 2D spot diagram.
+        Tangential ray fan. Dense off-axis pupil samples are projected onto the image plane relative to the chief ray to
+        show asymmetric spread, not a full 2D spot diagram.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -93,7 +93,7 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
         fontFamily="inherit"
         transform={`rotate(-90) translate(${-(MT + PH / 2)}, 12)`}
       >
-        Image plane (mm)
+        Chief-ray-relative image y (mm)
       </text>
 
       {polylinePoints && (
@@ -125,7 +125,7 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
         ))}
 
       <text x={ML + PW / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={9.5} fontFamily="inherit">
-        Pupil fraction (−1 to +1)
+        Tangential pupil coordinate (−1 to +1)
       </text>
     </svg>
   );

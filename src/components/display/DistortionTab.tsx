@@ -55,9 +55,12 @@ export default function DistortionTab({
   return (
     <div>
       <div style={{ marginBottom: 8, display: "grid", gap: 4 }}>
-        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>Rectilinear distortion</span>
+        <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
+          Rectilinear distortion (F-Tan(theta))
+        </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Measured at fixed image height. Focus breathing is reported separately from distortion.
+          Computed against a near-axis rectilinear reference at fixed image height. Focus breathing is reported
+          separately from distortion.
         </span>
       </div>
       <DistortionChart samples={samples} t={t} />

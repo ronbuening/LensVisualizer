@@ -23,9 +23,9 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       }}
     >
       <SectionHeader
-        title="Coma Preview"
-        helpLabel="Coma preview help"
-        helpText="This real 2D coma point cloud traces a fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field. Each sample is projected to the image plane and plotted as chief-ray-centered tangential and sagittal image height in millimeters. It is a compact real-ray diagnostic rather than a diffraction-aware spot model."
+        title="Spot Diagram (Real-Ray)"
+        helpLabel="Spot diagram help"
+        helpText="This chief-ray-referenced real-ray spot grid traces a fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field. Each tile plots tangential and sagittal image height relative to the chief ray. It behaves like a compact spot-diagram view, but uses a fixed real-ray sample pattern rather than a diffraction-aware analysis."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -34,8 +34,8 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Real 2D coma point cloud at center, 25%, 50%, and 75% of the current half-field. Both axes show
-            chief-ray-centered image height in millimeters from a fixed circular pupil sample pattern.
+            Chief-ray-referenced real-ray spot grid at center, 25%, 50%, and 75% of the current half-field. Both axes
+            show image height in millimeters relative to the chief ray from a fixed circular pupil sample pattern.
           </span>
 
           {result ? (
@@ -88,7 +88,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
             </>
           ) : (
             <div style={{ color: theme.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-              Unable to compute a usable 2D coma point cloud for this lens state.
+              Unable to compute a usable real-ray spot diagram for this lens state.
             </div>
           )}
         </>

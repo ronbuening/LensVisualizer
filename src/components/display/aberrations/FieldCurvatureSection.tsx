@@ -25,9 +25,9 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       }}
     >
       <SectionHeader
-        title="Field Curvature & Astigmatic Difference"
+        title="Field Curves & Astigmatism"
         helpLabel="Field curvature help"
-        helpText="Use this chart in three passes. First, the field-curvature-only chart shows the mean field surface moving fore or aft of the focused plane from center to edge. Second, the combined chart compares the tangential solid-circle trace against the real sagittal dashed-square trace; the shaded gap is the astigmatic difference. Third, compare both against the Petzval mean line to see whether the off-axis error is mostly simple field bend or a stronger tangential-versus-sagittal split."
+        helpText="Use this section in two passes. First, the upper chart shows the Petzval reference surface relative to the current image plane from center to edge. Second, the lower chart overlays the real-ray tangential and sagittal best-focus diagnostics and compares them against that Petzval reference so you can separate simple field bend from astigmatism."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -36,20 +36,21 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            The first chart strips the problem down to field curvature only: how far the mean field surface moves fore
-            or aft of the focused plane as you go from center to edge. The second chart adds the tangential/sagittal
-            split so you can see how much of the off-axis behavior is true field bend versus astigmatism.
+            The first chart is a Petzval reference trace: how the Petzval surface moves fore or aft of the current image
+            plane from center to edge. The second chart overlays the real-ray tangential and sagittal best-focus
+            diagnostics so you can see how much of the off-axis behavior is simple field bend versus astigmatism.
           </span>
 
           {result ? (
             <>
               <FieldCurvatureMeanPlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Field curvature only. Negative values are fore of the focused plane; positive values are aft.
+                Petzval reference only. Negative values are fore of the current image plane; positive values are aft.
               </span>
               <FieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Tangential versus real sagittal diagnostic. The gap between the two traces is the astigmatic split.
+                Real-ray tangential and sagittal best-focus diagnostic. The gap between the two traces is the astigmatic
+                split.
               </span>
               {result.chromaticFocusSpreadMm !== null ? (
                 <>
@@ -149,7 +150,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
             </>
           ) : (
             <div style={{ color: theme.muted, fontSize: 10, lineHeight: 1.5, transition: "color 0.3s" }}>
-              Unable to compute a usable field-curvature and astigmatic-difference view for this lens state.
+              Unable to compute usable field-curve diagnostics for this lens state.
             </div>
           )}
         </>
