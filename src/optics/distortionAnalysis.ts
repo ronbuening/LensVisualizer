@@ -139,40 +139,71 @@ export interface DistortionGridResult {
 /** Number of interpolation sub-points along each grid line for smooth curves. */
 const GRID_LINE_SUBDIVISIONS = 31;
 
-/**
- * Interpolate distortion percentage at a given normalized radius from a
- * distortion curve. Uses linear interpolation between sample points.
- */
-function interpolateDistortion(normalizedRadius: number, samples: DistortionSample[]): number {
-  if (samples.length < 2 || normalizedRadius <= 0) return 0;
-  if (normalizedRadius >= 1) return samples[samples.length - 1].distortionPercent;
+/** Half-width of the inscribed square (corners touch the image circle at r=1). */
+const INSCRIBED_HALF = 1 / Math.sqrt(2);
 
-  for (let i = 1; i < samples.length; i++) {
-    if (samples[i].normalizedImageHeight >= normalizedRadius) {
-      const prev = samples[i - 1];
-      const curr = samples[i];
-      const range = curr.normalizedImageHeight - prev.normalizedImageHeight;
+/** An ideal-height-indexed distortion lookup entry. */
+interface IdealDistortionEntry {
+  normalizedIdealHeight: number;
+  distortionPercent: number;
+}
+
+/**
+ * Build a lookup table indexed by normalized IDEAL image height from the
+ * distortion curve (which is indexed by real/distorted height). This
+ * corrects the reference frame so grid points — which are ideal
+ * coordinates — look up distortion at the right key.
+ */
+function buildIdealLookup(samples: DistortionSample[]): IdealDistortionEntry[] {
+  if (samples.length < 2) return [];
+
+  const edgeIdeal = Math.abs(samples[samples.length - 1].idealHeight);
+  if (edgeIdeal < 1e-12) {
+    return samples.map((s) => ({
+      normalizedIdealHeight: s.normalizedImageHeight,
+      distortionPercent: s.distortionPercent,
+    }));
+  }
+
+  return samples.map((s) => ({
+    normalizedIdealHeight: Math.abs(s.idealHeight) / edgeIdeal,
+    distortionPercent: s.distortionPercent,
+  }));
+}
+
+/**
+ * Interpolate distortion percentage at a given normalized IDEAL radius.
+ * Uses the ideal-indexed lookup table for correct reference frame.
+ */
+function interpolateIdealDistortion(normalizedRadius: number, lookup: IdealDistortionEntry[]): number {
+  if (lookup.length < 2 || normalizedRadius <= 0) return 0;
+  if (normalizedRadius >= 1) return lookup[lookup.length - 1].distortionPercent;
+
+  for (let i = 1; i < lookup.length; i++) {
+    if (lookup[i].normalizedIdealHeight >= normalizedRadius) {
+      const prev = lookup[i - 1];
+      const curr = lookup[i];
+      const range = curr.normalizedIdealHeight - prev.normalizedIdealHeight;
       if (range < 1e-12) return curr.distortionPercent;
-      const t = (normalizedRadius - prev.normalizedImageHeight) / range;
+      const t = (normalizedRadius - prev.normalizedIdealHeight) / range;
       return prev.distortionPercent + t * (curr.distortionPercent - prev.distortionPercent);
     }
   }
 
-  return samples[samples.length - 1].distortionPercent;
+  return lookup[lookup.length - 1].distortionPercent;
 }
 
 /**
- * Apply radial distortion to a 2D normalized point.
+ * Apply radial distortion to a 2D normalized ideal point.
  *
- * Given an ideal point (x, y) in normalized coordinates (-1..+1),
- * compute the distorted position using the radially symmetric distortion
- * function interpolated from the distortion curve.
+ * Given an ideal point (x, y) in inscribed-grid coordinates, compute the
+ * distorted position using the ideal-indexed distortion lookup.
  */
-function distortPoint(x: number, y: number, samples: DistortionSample[]): DistortionGridPoint {
+function distortPoint(x: number, y: number, lookup: IdealDistortionEntry[]): DistortionGridPoint {
   const r = Math.sqrt(x * x + y * y);
   if (r < 1e-12) return { x: 0, y: 0 };
 
-  const distortionPct = interpolateDistortion(r, samples);
+  const distortionPct = interpolateIdealDistortion(r, lookup);
   const scale = 1 + distortionPct / 100;
   return { x: x * scale, y: y * scale };
 }
@@ -180,9 +211,9 @@ function distortPoint(x: number, y: number, samples: DistortionSample[]): Distor
 /**
  * Compute a 2D distorted grid for the standard TV-distortion overlay.
  *
- * Maps an ideal rectilinear grid through the lens's radial distortion
- * function (interpolated from the distortion curve samples) to produce
- * the characteristic barrel/pincushion bowing pattern.
+ * The grid is inscribed within the image circle (corners touch r=1) per
+ * industry convention. Uses an ideal-height-indexed lookup table so that
+ * the distortion percentage is applied in the correct reference frame.
  *
  * @param samples   — distortion curve from computeDistortionCurve()
  * @param gridSize  — number of lines per axis (default 11 for a 10×10 grid)
@@ -190,20 +221,23 @@ function distortPoint(x: number, y: number, samples: DistortionSample[]): Distor
 export function computeDistortionGrid(samples: DistortionSample[], gridSize = 11): DistortionGridResult | null {
   if (samples.length < 2) return null;
 
+  const lookup = buildIdealLookup(samples);
+  if (lookup.length < 2) return null;
+
   const maxDistortionPercent = Math.max(...samples.map((s) => Math.abs(s.distortionPercent)));
   const horizontalLines: DistortionGridPoint[][] = [];
   const verticalLines: DistortionGridPoint[][] = [];
 
   for (let i = 0; i < gridSize; i++) {
-    const linePos = -1 + (2 * i) / (gridSize - 1);
+    const linePos = -INSCRIBED_HALF + (2 * INSCRIBED_HALF * i) / (gridSize - 1);
 
     const hLine: DistortionGridPoint[] = [];
     const vLine: DistortionGridPoint[] = [];
 
     for (let j = 0; j < GRID_LINE_SUBDIVISIONS; j++) {
-      const t = -1 + (2 * j) / (GRID_LINE_SUBDIVISIONS - 1);
-      hLine.push(distortPoint(t, linePos, samples));
-      vLine.push(distortPoint(linePos, t, samples));
+      const t = -INSCRIBED_HALF + (2 * INSCRIBED_HALF * j) / (GRID_LINE_SUBDIVISIONS - 1);
+      hLine.push(distortPoint(t, linePos, lookup));
+      vLine.push(distortPoint(linePos, t, lookup));
     }
 
     horizontalLines.push(hLine);

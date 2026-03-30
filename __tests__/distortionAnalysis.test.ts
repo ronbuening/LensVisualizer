@@ -239,6 +239,24 @@ describe("computeDistortionGrid", () => {
     }
   });
 
+  it("grid corners stay within the image circle (inscribed square)", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
+    const grid = computeDistortionGrid(samples, 11);
+    expect(grid).not.toBeNull();
+
+    for (const line of [...grid!.horizontalLines, ...grid!.verticalLines]) {
+      for (const pt of line) {
+        const r = Math.sqrt(pt.x * pt.x + pt.y * pt.y);
+        expect(r).toBeLessThanOrEqual(1.1);
+      }
+    }
+  });
+
   it("maxDistortionPercent matches the distortion curve edge", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);

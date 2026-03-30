@@ -16,6 +16,8 @@ interface DistortionGridOverlayProps {
 }
 
 const MARGIN = 20;
+/** Must match INSCRIBED_HALF in distortionAnalysis.ts (1/√2). */
+const INSCRIBED_HALF = 1 / Math.sqrt(2);
 
 function pointsToPath(points: { x: number; y: number }[], scale: number, offset: number): string {
   return points
@@ -29,7 +31,8 @@ function pointsToPath(points: { x: number; y: number }[], scale: number, offset:
 
 export default function DistortionGridOverlay({ grid, t, size = 280 }: DistortionGridOverlayProps) {
   const plotSize = size - MARGIN * 2;
-  const scale = plotSize / 2;
+  /* Scale so the inscribed grid fills the plot area. */
+  const scale = plotSize / (2 * INSCRIBED_HALF);
   const center = size / 2;
   const gridSize = grid.gridSize;
 
@@ -41,15 +44,19 @@ export default function DistortionGridOverlay({ grid, t, size = 280 }: Distortio
 
       <rect x={MARGIN} y={MARGIN} width={plotSize} height={plotSize} rx={3} fill={t.panelBg} stroke={t.panelBorder} />
 
-      {/* Ideal rectilinear grid (straight dashed lines) */}
+      {/* Ideal rectilinear grid (straight dashed lines, inscribed within image circle) */}
       {Array.from({ length: gridSize }, (_, i) => {
-        const pos = MARGIN + (i / (gridSize - 1)) * plotSize;
+        const frac = i / (gridSize - 1);
+        const coord = -INSCRIBED_HALF + 2 * INSCRIBED_HALF * frac;
+        const pos = center + coord * scale;
+        const lo = center - INSCRIBED_HALF * scale;
+        const hi = center + INSCRIBED_HALF * scale;
         return (
           <g key={`ideal-${i}`}>
             <line
-              x1={MARGIN}
+              x1={lo}
               y1={pos}
-              x2={MARGIN + plotSize}
+              x2={hi}
               y2={pos}
               stroke={t.panelBorder}
               strokeWidth={0.5}
@@ -58,9 +65,9 @@ export default function DistortionGridOverlay({ grid, t, size = 280 }: Distortio
             />
             <line
               x1={pos}
-              y1={MARGIN}
+              y1={lo}
               x2={pos}
-              y2={MARGIN + plotSize}
+              y2={hi}
               stroke={t.panelBorder}
               strokeWidth={0.5}
               strokeDasharray="3,3"
