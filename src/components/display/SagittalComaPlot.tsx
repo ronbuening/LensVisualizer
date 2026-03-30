@@ -73,6 +73,12 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
         strokeWidth={0.75}
         strokeDasharray="3,3"
       />
+      <text x={ML + PW - 4} y={zeroY - 5} textAnchor="end" fill={t.muted} fontSize={8} fontFamily="inherit">
+        Chief ray
+      </text>
+      <text x={ML + PW / 2 + 4} y={MT + 10} fill={t.muted} fontSize={8} fontFamily="inherit">
+        Pupil center
+      </text>
 
       {tickValues.map((tick) => {
         const y = yScale(tick);

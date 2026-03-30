@@ -190,6 +190,8 @@ describe("ComaPreviewGrid", () => {
 
     expect(screen.getAllByText("Chief-ray-referenced spot plot").length).toBeGreaterThan(0);
     expect(screen.getByText("Tangential / sagittal image height relative to chief ray (mm)")).toBeTruthy();
+    expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
+    expect(screen.getByText("Dot size / opacity = sample weight")).toBeTruthy();
   });
 
   it("applies the shared tangential normalization across point-cloud tiles", () => {

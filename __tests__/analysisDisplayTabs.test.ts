@@ -52,6 +52,7 @@ describe("analysis display tabs", () => {
 
     const html = renderToStaticMarkup(React.createElement(DistortionChart, { samples, t: themes.dark }));
     expect(html).toContain("Image height (% of edge)");
+    expect(html).toContain("No distortion");
     expect(html).toContain("100%");
     expect(html).not.toContain("Field angle (°)");
   });
@@ -132,12 +133,14 @@ describe("analysis display tabs", () => {
 
     expect(html).toContain("Spot Diagram (Real-Ray)");
     expect(html).toContain("Chief-ray-referenced real-ray spot grid");
+    expect(html).toContain("Crosshair = chief-ray reference");
     expect(html).toContain("Center");
     expect(html).toContain("25%");
     expect(html).toContain("50%");
     expect(html).toContain("75%");
     expect(html).toContain("Tangential Ray Fan");
     expect(html).toContain("Tangential ray fan using a dense off-axis meridional pupil sweep");
+    expect(html).toContain("Chief ray");
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
     expect(html).not.toContain("Field Curves &amp; Astigmatism");

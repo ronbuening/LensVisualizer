@@ -12,10 +12,18 @@
 - Recast the field-curvature section as field-curve diagnostics, renamed the Petzval overlay copy to `Petzval reference`, and clarified that the upper chart is a reference trace rather than a measured best-focus field curve
 - Made the distortion heading explicit about the current rectilinear convention with `F-Tan(theta)` wording
 - Updated component and SSR markup tests to match the revised labels and explanatory copy
+- Phase 1 Step 2: added visible reference cues to the standardized displays
+- Added a chief-ray reference legend to the real-ray spot grid, labeled the ray-fan zero lines and pupil centers, and labeled the distortion zero line as `No distortion`
+- Updated the chromatic field-curve plot to call out the `Current image plane` explicitly and fixed the coma preview grid key warning surfaced during SSR rendering
 
 ## Verification
 
 - `npx vitest run __tests__/analysisDisplayTabs.test.ts __tests__/AberrationsPanel.test.tsx __tests__/ComaPreviewGrid.test.tsx` — passed
+- `npm run typecheck` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
+- `npx vitest run __tests__/analysisDisplayTabs.test.ts __tests__/ComaPreviewGrid.test.tsx` — passed
 - `npm run typecheck` — passed
 - `npm run format:check` — passed
 - `npm run lint` — passed

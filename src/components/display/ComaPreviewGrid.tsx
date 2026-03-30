@@ -87,7 +87,7 @@ function TileShell({
   const { tileX, tileY, plotX, plotY, zeroX } = geometry;
 
   return (
-    <g key={label} data-coma-tile={label}>
+    <g data-coma-tile={label}>
       <rect x={tileX} y={tileY} width={TILE_W} height={TILE_H} rx={4} fill={t.panelBg} stroke={t.panelBorder} />
       <text x={tileX + 6} y={tileY + 12} fill={t.label} fontSize={9.5} fontFamily="inherit">
         {label}
@@ -138,6 +138,7 @@ function renderMeridionalTile(
 
   return (
     <TileShell
+      key={field.label}
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
@@ -232,6 +233,7 @@ function renderPointCloudTile(
 
   return (
     <TileShell
+      key={field.label}
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
@@ -256,6 +258,8 @@ function renderPointCloudTile(
         strokeWidth={0.75}
         strokeDasharray="3,3"
       />
+      <line x1={zeroX - 4} y1={zeroY} x2={zeroX + 4} y2={zeroY} stroke={t.label} strokeWidth={0.9} opacity={0.85} />
+      <line x1={zeroX} y1={zeroY - 4} x2={zeroX} y2={zeroY + 4} stroke={t.label} strokeWidth={0.9} opacity={0.85} />
 
       {tickValues.map((tick) => {
         const y = yScale(tick);
@@ -308,6 +312,18 @@ export default function ComaPreviewGrid({ result, t, mode = "meridional" }: Coma
             t,
           ),
         )}
+        <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 16})`}>
+          <line x1={0} y1={0} x2={8} y2={0} stroke={t.label} strokeWidth={0.9} />
+          <line x1={4} y1={-4} x2={4} y2={4} stroke={t.label} strokeWidth={0.9} />
+          <text x={12} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+            Crosshair = chief-ray reference
+          </text>
+
+          <circle cx={134} cy={0} r={2.2} fill={t.value} opacity={0.75} />
+          <text x={142} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
+            Dot size / opacity = sample weight
+          </text>
+        </g>
         <text x={VB_W / 2} y={VB_H - 2} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
           Tangential / sagittal image height relative to chief ray (mm)
         </text>
