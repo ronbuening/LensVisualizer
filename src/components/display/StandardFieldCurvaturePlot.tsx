@@ -25,10 +25,7 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
   const markerFields = result.fields.filter((field) => field.usable);
   const curveFields = result.curveFields.filter((field) => field.usable);
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
-  const imageCircleRadiusMm = Math.max(...plotFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
-  const uncappedHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm);
-  const yHalfRange = Math.max(0.1, Math.min(uncappedHalfRange, imageCircleRadiusMm || uncappedHalfRange));
-  const scaleCapped = uncappedHalfRange > imageCircleRadiusMm + 1e-9;
+  const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm * 1.08);
   const tangentialColor = t.rayWarm ?? "#22c55e";
   const sagittalColor = t.rayChromB ?? "#38bdf8";
   const petzvalColor = t.stopLabel ?? "#f8fafc";
@@ -104,29 +101,6 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
         Field position across current half-field
       </text>
 
-      {markerFields.map((field) => {
-        const x = xScale(field.fieldFraction);
-        const tangentialY = yScale(field.tangentialShiftMm);
-        const sagittalY = yScale(field.sagittalShiftMm);
-        const topY = Math.min(tangentialY, sagittalY);
-        const height = Math.max(1, Math.abs(tangentialY - sagittalY));
-
-        return (
-          <g key={`delta-${field.fieldFraction}`}>
-            <rect x={x - 4} y={topY} width={8} height={height} fill={t.panelBorder} opacity={0.2} rx={2} />
-            <line
-              x1={x}
-              y1={tangentialY}
-              x2={x}
-              y2={sagittalY}
-              stroke={t.panelBorder}
-              strokeWidth={1}
-              strokeDasharray="2,2"
-            />
-          </g>
-        );
-      })}
-
       {petzvalPoints ? (
         <polyline points={petzvalPoints} fill="none" stroke={petzvalColor} strokeWidth={1.75} opacity={0.95} />
       ) : null}
@@ -194,24 +168,15 @@ export default function StandardFieldCurvaturePlot({ result, t }: StandardFieldC
       </g>
 
       <g transform={`translate(${ML + 6}, ${MT + 26})`}>
-        <rect x={0} y={-4} width={8} height={8} fill={t.panelBorder} opacity={0.2} rx={2} />
-        <text x={14} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Shaded gap = astigmatic split
-        </text>
-        <line x1={118} y1={0} x2={130} y2={0} stroke={petzvalColor} strokeWidth={1.75} />
-        <text x={136} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
+        <line x1={0} y1={0} x2={12} y2={0} stroke={petzvalColor} strokeWidth={1.75} />
+        <text x={18} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
           Petzval reference
         </text>
       </g>
 
       <text x={ML + 6} y={VB_H - 18} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Standardized chief-ray-relative parabasal field curves with denser internal field sampling.
+        Standardized chief-ray-relative parabasal field curves with an independent field-curve scale.
       </text>
-      {scaleCapped ? (
-        <text x={ML + PW} y={VB_H - 18} textAnchor="end" fill={t.muted} fontSize={7.5} fontFamily="inherit">
-          Scale capped to image circle
-        </text>
-      ) : null}
     </svg>
   );
 }

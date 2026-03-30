@@ -92,11 +92,12 @@
 |--------|----------|---------|
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
-| `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted section components |
-| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `ComaPreviewSection`, `MeridionalComaSection`, `SagittalComaSection`), `SADiagram`, formatting helpers, and `useAberrationsPanelData` |
+| `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`), formatting helpers, and `useAberrationsPanelData` |
+| `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
 | `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the standardized chief-ray-relative parabasal tangential/sagittal field curves plus Petzval reference, drawn from the denser internal field sweep while preserving the standard field checkpoints as markers |
-| `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the dense real-ray tangential/sagittal best-focus diagnostic, also using the denser internal field sweep while keeping the standard checkpoint markers and astigmatic split shading |
+| `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for the dense real-ray tangential/sagittal best-focus diagnostic, also using the denser internal field sweep while keeping the standard checkpoint markers on an independent field-curve scale |
 | `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) standardized tangential and sagittal field curves across the field |
 | `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
@@ -258,7 +259,7 @@ Sub-components:
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 - **`AbbeDiagram.tsx`** (`src/components/display/`) — Abbe glass map plotting each element on standard Vd × Nd axes with grid, scaling, and element labels
-- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible panel for spherical-aberration metrics; computes SA and an LSA profile via `computeSphericalAberration()` / `computeSAProfile()` with `useMemo` from current slider state
+- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible analysis panel that renders separate spherical-aberration, field-curve, and astigmatism sections; computes the shared SA and field-curvature data via `useAberrationsPanelData()` from current slider state so the field curves can use an independent shift scale while the astigmatism section omits out-of-image-circle split values
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 

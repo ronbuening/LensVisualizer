@@ -2,13 +2,14 @@
  * AberrationsPanel — Analysis drawer tab content displaying computed aberration
  * metrics for the current lens state.
  *
- * Shows best-focus spherical-aberration spread as a profile chart plus a
- * numeric readout, with meridional coma in a separate collapsible section.
+ * Shows best-focus spherical-aberration spread plus separate field-curvature
+ * and astigmatism sections so each diagnostic can use an appropriate scale.
  */
 
 import { useEffect, useState } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import AstigmatismSection from "./aberrations/AstigmatismSection.js";
 import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
 import SphericalAberrationSection from "./aberrations/SphericalAberrationSection.js";
 import useAberrationsPanelData from "./aberrations/useAberrationsPanelData.js";
@@ -47,6 +48,7 @@ export default function AberrationsPanel({
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
   const [fieldCurvatureExpanded, setFieldCurvatureExpanded] = useState(true);
+  const [astigmatismExpanded, setAstigmatismExpanded] = useState(true);
 
   useEffect(() => {
     setSaChartExpanded(expanded);
@@ -71,6 +73,13 @@ export default function AberrationsPanel({
           result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
           expanded={fieldCurvatureExpanded}
           onToggle={() => setFieldCurvatureExpanded((value) => !value)}
+          theme={t}
+        />
+
+        <AstigmatismSection
+          result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
+          expanded={astigmatismExpanded}
+          onToggle={() => setAstigmatismExpanded((value) => !value)}
           theme={t}
         />
       </div>

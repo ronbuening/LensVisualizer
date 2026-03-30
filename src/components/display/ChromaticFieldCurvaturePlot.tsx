@@ -43,8 +43,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       maxShift = Math.max(maxShift, Math.abs(shift.tangentialShiftMm), Math.abs(shift.sagittalShiftMm));
     }
   }
-  const imageCircleRadiusMm = Math.max(...plotFields.map((field) => Math.abs(field.chiefImageHeight)), 0);
-  const yHalfRange = Math.max(0.1, Math.min(maxShift * 1.1, imageCircleRadiusMm || maxShift * 1.1));
+  const yHalfRange = Math.max(0.1, maxShift * 1.1);
 
   const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
   const yScale = (shiftMm: number) => MT + PH / 2 - (shiftMm / yHalfRange) * (PH / 2);

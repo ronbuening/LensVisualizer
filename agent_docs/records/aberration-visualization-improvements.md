@@ -31,9 +31,13 @@
 - Refreshed the distortion tab copy and tests so the UI now describes the grid as a real field trace instead of an approximation derived from the 1D distortion curve
 - Phase 3 follow-up: smoothed the field-curvature traces with denser internal field sampling
 - Extended `computeFieldCurvature()` to return a second 17-sample internal curve sweep alongside the standard 0 / 25 / 50 / 75 / 100% checkpoint fields so the plotted traces read smoothly without losing the industry-standard markers
-- Updated the standardized, dense real-ray, and chromatic field-curvature plots to draw their polylines from the denser curve sweep while keeping checkpoint markers, split shading, and field labels tied to the standard five marked positions
+- Updated the standardized, dense real-ray, and chromatic field-curvature plots to draw their polylines from the denser curve sweep while keeping checkpoint markers and field labels tied to the standard five marked positions
 - Added optics and panel tests for the new `curveFieldFractions` / `curveFields` contract and refreshed the field-curvature copy so the UI now explicitly explains the denser internal sampling
-- Final phase: refreshed the architecture notes so the repo docs describe the standardized field-curvature split, the higher-resolution traced/idealized coma views, and the new approximate distortion field grid
+- Final phase: refreshed the architecture notes so the repo docs describe the standardized field-curvature split, the higher-resolution traced/idealized coma views, and the traced distortion field grid
+- Field-curve follow-up: separated field curves and astigmatism into distinct sections with independent charts
+- Removed the old astigmatic split overlays from the standardized and dense real-ray field-curve charts so those plots can use a dedicated field-curve scale without mixing in tangential-sagittal separation
+- Added `AstigmatismPlot` and `AstigmatismSection` so standardized and diagnostic tangential-sagittal split are charted independently, with the split plotted as magnitude and omitted once the contributing focus positions move outside the current image-circle envelope
+- Updated the aberrations panel copy, SSR tests, and architecture notes so the new split layout and in-circle astigmatism constraint are documented
 
 ## Verification
 
@@ -60,6 +64,12 @@
 - `npm run lint` — passed
 - `npm run test` — passed
 - `npx vitest run __tests__/distortionAnalysis.test.ts __tests__/analysisDisplayTabs.test.ts` — passed
+- `npm run typecheck` — passed
+- `npm run format` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
+- `npx vitest run __tests__/AberrationsPanel.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run typecheck` — passed
 - `npm run format` — passed
 - `npm run format:check` — passed

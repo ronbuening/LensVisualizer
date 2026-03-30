@@ -110,12 +110,18 @@ describe("analysis display tabs", () => {
     );
 
     expect(html).toContain("Spherical Aberration");
-    expect(html).toContain("Field Curves &amp; Astigmatism");
+    expect(html).toContain("Field Curves");
+    expect(html).toContain("Astigmatism");
+    expect(html).toContain("This section now keeps field curvature on its own scale");
+    expect(html).toContain("Field curvature and astigmatism are now separated");
     expect(html).toContain(
-      "Standardized chief-ray-relative parabasal field curves with denser internal field sampling",
+      "Standardized chief-ray-relative parabasal field curves with an independent field-curve scale",
     );
     expect(html).toContain(
-      "Dense real-ray best-focus diagnostic with denser internal field sampling and standard checkpoint markers",
+      "Dense real-ray best-focus field curves with an independent field-curve scale and standard checkpoint markers",
+    );
+    expect(html).toContain(
+      "Any split whose focus positions fall outside the current image-circle envelope is omitted here",
     );
     expect(html).not.toContain("Coma Preview");
     expect(html).not.toContain("Meridional Coma");

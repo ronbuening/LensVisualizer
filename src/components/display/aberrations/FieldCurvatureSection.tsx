@@ -3,7 +3,7 @@ import FieldCurvaturePlot from "../FieldCurvaturePlot.js";
 import StandardFieldCurvaturePlot from "../StandardFieldCurvaturePlot.js";
 import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../types/theme.js";
-import { formatSignedMm, formatSignedUm } from "./format.js";
+import { formatSignedMm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
 
 interface FieldCurvatureSectionProps {
@@ -25,9 +25,9 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       }}
     >
       <SectionHeader
-        title="Field Curves & Astigmatism"
-        helpLabel="Field curvature help"
-        helpText="Use this section in two passes. First, the upper chart shows the standardized tangential and sagittal field curves from chief-ray-relative parabasal rays, with the Petzval reference overlaid against the current image plane. Second, the lower chart keeps the denser real-ray tangential and sagittal best-focus diagnostic so you can compare the textbook field curves against the traced bundle behavior."
+        title="Field Curves"
+        helpLabel="Field curves help"
+        helpText="Use this section to compare the standardized tangential and sagittal field curves against the dense real-ray field-curve diagnostic. These charts now use their own field-curve scale so large focus shifts remain on-chart, while astigmatic split is isolated in the section below."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -36,11 +36,10 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            The first chart is the standardized field-curvature view: chief-ray-relative parabasal tangential and
-            sagittal field curves relative to the current image plane, with the Petzval reference overlaid. The second
-            chart keeps the denser real-ray tangential and sagittal best-focus diagnostic so you can see how the traced
-            bundle behavior departs from the standardized view. Both traces now use denser internal field sampling while
-            keeping the standard Center / 25% / 50% / 75% / 100% checkpoints marked.
+            This section now keeps field curvature on its own scale. The first chart shows standardized chief-ray-
+            relative parabasal tangential and sagittal field curves relative to the current image plane, with the
+            Petzval reference overlaid. The second chart keeps the denser real-ray tangential and sagittal best-focus
+            diagnostic on the same kind of field-curve axis so large focus shifts remain visible.
           </span>
 
           {result ? (
@@ -52,8 +51,7 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
               </span>
               <FieldCurvaturePlot result={result} t={theme} />
               <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                Dense real-ray tangential and sagittal best-focus diagnostic. The gap between the two traces is the
-                astigmatic split.
+                Dense real-ray tangential and sagittal best-focus diagnostic on its own field-curve scale.
               </span>
               {result.chromaticFocusSpreadMm !== null ? (
                 <>
@@ -86,25 +84,6 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                     }}
                   >
                     {result.usableFieldCount}/{result.fields.length}
-                  </span>
-                </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Maximum standardized sagittal minus tangential field-curve separation across the sampled field positions."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    MAX T-S SPLIT
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {formatSignedUm(result.maxAstigmaticDifferenceUm)}
                   </span>
                 </div>
                 <div

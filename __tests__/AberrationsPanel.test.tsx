@@ -198,112 +198,112 @@ describe("AberrationsPanel", () => {
     });
     mockComputeFieldCurvature.mockReturnValue(
       withCurveFields({
-      fieldFractions: [0, 0.25, 0.5, 0.75, 1],
-      usableFieldCount: 5,
-      imagePlaneZ: 105,
-      sharedFocusShiftHalfRangeMm: 0.8,
-      maxAstigmaticDifferenceMm: 0.12,
-      maxAstigmaticDifferenceUm: 120,
-      edgeTangentialShiftMm: -0.45,
-      edgeSagittalShiftMm: -0.21,
-      chromaticFocusSpreadMm: null,
-      fields: [
-        {
-          fieldFraction: 0,
-          label: "Center",
-          fieldAngleDeg: 0,
-          sampleCount: 51,
-          validSampleCount: 51,
-          clippedSampleCount: 0,
-          chiefImageHeight: 0,
-          tangentialBestFocusZ: 105,
-          sagittalBestFocusZ: 105,
-          petzvalBestFocusZ: 105,
-          tangentialShiftMm: 0,
-          sagittalShiftMm: 0,
-          petzvalShiftMm: 0,
-          astigmaticDifferenceMm: 0,
-          astigmaticDifferenceUm: 0,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.25,
-          label: "25%",
-          fieldAngleDeg: 5,
-          sampleCount: 51,
-          validSampleCount: 49,
-          clippedSampleCount: 2,
-          chiefImageHeight: 5,
-          tangentialBestFocusZ: 104.9,
-          sagittalBestFocusZ: 104.95,
-          petzvalBestFocusZ: 104.925,
-          tangentialShiftMm: -0.1,
-          sagittalShiftMm: -0.05,
-          petzvalShiftMm: -0.075,
-          astigmaticDifferenceMm: 0.05,
-          astigmaticDifferenceUm: 50,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.5,
-          label: "50%",
-          fieldAngleDeg: 10,
-          sampleCount: 51,
-          validSampleCount: 47,
-          clippedSampleCount: 4,
-          chiefImageHeight: 10,
-          tangentialBestFocusZ: 104.8,
-          sagittalBestFocusZ: 104.9,
-          petzvalBestFocusZ: 104.85,
-          tangentialShiftMm: -0.2,
-          sagittalShiftMm: -0.1,
-          petzvalShiftMm: -0.15,
-          astigmaticDifferenceMm: 0.1,
-          astigmaticDifferenceUm: 100,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.75,
-          label: "75%",
-          fieldAngleDeg: 15,
-          sampleCount: 51,
-          validSampleCount: 45,
-          clippedSampleCount: 6,
-          chiefImageHeight: 15,
-          tangentialBestFocusZ: 104.65,
-          sagittalBestFocusZ: 104.77,
-          petzvalBestFocusZ: 104.71,
-          tangentialShiftMm: -0.35,
-          sagittalShiftMm: -0.23,
-          petzvalShiftMm: -0.29,
-          astigmaticDifferenceMm: 0.12,
-          astigmaticDifferenceUm: 120,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 1,
-          label: "100%",
-          fieldAngleDeg: 20,
-          sampleCount: 51,
-          validSampleCount: 43,
-          clippedSampleCount: 8,
-          chiefImageHeight: 20,
-          tangentialBestFocusZ: 104.55,
-          sagittalBestFocusZ: 104.79,
-          petzvalBestFocusZ: 104.67,
-          tangentialShiftMm: -0.45,
-          sagittalShiftMm: -0.21,
-          petzvalShiftMm: -0.33,
-          astigmaticDifferenceMm: 0.24,
-          astigmaticDifferenceUm: 240,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-      ],
+        fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+        usableFieldCount: 5,
+        imagePlaneZ: 105,
+        sharedFocusShiftHalfRangeMm: 0.8,
+        maxAstigmaticDifferenceMm: 0.24,
+        maxAstigmaticDifferenceUm: 240,
+        edgeTangentialShiftMm: -0.45,
+        edgeSagittalShiftMm: -0.21,
+        chromaticFocusSpreadMm: null,
+        fields: [
+          {
+            fieldFraction: 0,
+            label: "Center",
+            fieldAngleDeg: 0,
+            sampleCount: 51,
+            validSampleCount: 51,
+            clippedSampleCount: 0,
+            chiefImageHeight: 0,
+            tangentialBestFocusZ: 105,
+            sagittalBestFocusZ: 105,
+            petzvalBestFocusZ: 105,
+            tangentialShiftMm: 0,
+            sagittalShiftMm: 0,
+            petzvalShiftMm: 0,
+            astigmaticDifferenceMm: 0,
+            astigmaticDifferenceUm: 0,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.25,
+            label: "25%",
+            fieldAngleDeg: 5,
+            sampleCount: 51,
+            validSampleCount: 49,
+            clippedSampleCount: 2,
+            chiefImageHeight: 5,
+            tangentialBestFocusZ: 104.9,
+            sagittalBestFocusZ: 104.95,
+            petzvalBestFocusZ: 104.925,
+            tangentialShiftMm: -0.1,
+            sagittalShiftMm: -0.05,
+            petzvalShiftMm: -0.075,
+            astigmaticDifferenceMm: 0.05,
+            astigmaticDifferenceUm: 50,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.5,
+            label: "50%",
+            fieldAngleDeg: 10,
+            sampleCount: 51,
+            validSampleCount: 47,
+            clippedSampleCount: 4,
+            chiefImageHeight: 10,
+            tangentialBestFocusZ: 104.8,
+            sagittalBestFocusZ: 104.9,
+            petzvalBestFocusZ: 104.85,
+            tangentialShiftMm: -0.2,
+            sagittalShiftMm: -0.1,
+            petzvalShiftMm: -0.15,
+            astigmaticDifferenceMm: 0.1,
+            astigmaticDifferenceUm: 100,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.75,
+            label: "75%",
+            fieldAngleDeg: 15,
+            sampleCount: 51,
+            validSampleCount: 45,
+            clippedSampleCount: 6,
+            chiefImageHeight: 15,
+            tangentialBestFocusZ: 104.65,
+            sagittalBestFocusZ: 104.77,
+            petzvalBestFocusZ: 104.71,
+            tangentialShiftMm: -0.35,
+            sagittalShiftMm: -0.23,
+            petzvalShiftMm: -0.29,
+            astigmaticDifferenceMm: 0.12,
+            astigmaticDifferenceUm: 120,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 1,
+            label: "100%",
+            fieldAngleDeg: 20,
+            sampleCount: 51,
+            validSampleCount: 43,
+            clippedSampleCount: 8,
+            chiefImageHeight: 20,
+            tangentialBestFocusZ: 104.55,
+            sagittalBestFocusZ: 104.79,
+            petzvalBestFocusZ: 104.67,
+            tangentialShiftMm: -0.45,
+            sagittalShiftMm: -0.21,
+            petzvalShiftMm: -0.33,
+            astigmaticDifferenceMm: 0.24,
+            astigmaticDifferenceUm: 240,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+        ],
       }),
     );
   });
@@ -365,135 +365,139 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
     expect(screen.getAllByText("3 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("(peak 5 µm, shift -0.80 mm)").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Field Curves & Astigmatism").length).toBeGreaterThan(0);
-    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
-    expect(screen.getByText(/Both traces now use denser internal field sampling/i)).toBeTruthy();
+    expect(screen.getAllByText("Field Curves").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Astigmatism").length).toBeGreaterThan(0);
+    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
+    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
     expect(
       screen.getByText(/Standardized parabasal tangential and sagittal field curves with the Petzval reference/i),
     ).toBeTruthy();
-    expect(screen.getByText(/Dense real-ray tangential and sagittal best-focus diagnostic\./i)).toBeTruthy();
-    expect(screen.getAllByText("MAX T-S SPLIT").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("120 µm").length).toBeGreaterThan(0);
+    expect(screen.getByText(/Dense real-ray tangential and sagittal best-focus diagnostic on its own field-curve scale/i)).toBeTruthy();
+    expect(screen.getAllByText("STD MAX SPLIT").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("OUTER SPLIT").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("240 µm").length).toBeGreaterThan(0);
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
     expect(screen.getByText("T -0.45 mm / S -0.21 mm")).toBeTruthy();
     expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
   });
 
-  it("discloses when chart scale is capped to the image circle", () => {
+  it("keeps field curves uncapped while omitting out-of-circle astigmatism", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
     mockComputeFieldCurvature.mockReturnValue(
       withCurveFields({
-      fieldFractions: [0, 0.25, 0.5, 0.75, 1],
-      usableFieldCount: 5,
-      imagePlaneZ: 105,
-      sharedFocusShiftHalfRangeMm: 40,
-      maxAstigmaticDifferenceMm: 30,
-      maxAstigmaticDifferenceUm: 30000,
-      edgeTangentialShiftMm: -25,
-      edgeSagittalShiftMm: 5,
-      chromaticFocusSpreadMm: null,
-      fields: [
-        {
-          fieldFraction: 0,
-          label: "Center",
-          fieldAngleDeg: 0,
-          sampleCount: 51,
-          validSampleCount: 51,
-          clippedSampleCount: 0,
-          chiefImageHeight: 0,
-          tangentialBestFocusZ: 105,
-          sagittalBestFocusZ: 105,
-          petzvalBestFocusZ: 105,
-          tangentialShiftMm: 0,
-          sagittalShiftMm: 0,
-          petzvalShiftMm: 0,
-          astigmaticDifferenceMm: 0,
-          astigmaticDifferenceUm: 0,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.25,
-          label: "25%",
-          fieldAngleDeg: 5,
-          sampleCount: 51,
-          validSampleCount: 49,
-          clippedSampleCount: 2,
-          chiefImageHeight: 5,
-          tangentialBestFocusZ: 95,
-          sagittalBestFocusZ: 101,
-          petzvalBestFocusZ: 92,
-          tangentialShiftMm: -10,
-          sagittalShiftMm: -4,
-          petzvalShiftMm: -13,
-          astigmaticDifferenceMm: 6,
-          astigmaticDifferenceUm: 6000,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.5,
-          label: "50%",
-          fieldAngleDeg: 10,
-          sampleCount: 51,
-          validSampleCount: 47,
-          clippedSampleCount: 4,
-          chiefImageHeight: 10,
-          tangentialBestFocusZ: 90,
-          sagittalBestFocusZ: 102,
-          petzvalBestFocusZ: 86,
-          tangentialShiftMm: -15,
-          sagittalShiftMm: -3,
-          petzvalShiftMm: -19,
-          astigmaticDifferenceMm: 12,
-          astigmaticDifferenceUm: 12000,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 0.75,
-          label: "75%",
-          fieldAngleDeg: 15,
-          sampleCount: 51,
-          validSampleCount: 45,
-          clippedSampleCount: 6,
-          chiefImageHeight: 15,
-          tangentialBestFocusZ: 85,
-          sagittalBestFocusZ: 103,
-          petzvalBestFocusZ: 81,
-          tangentialShiftMm: -20,
-          sagittalShiftMm: -2,
-          petzvalShiftMm: -24,
-          astigmaticDifferenceMm: 18,
-          astigmaticDifferenceUm: 18000,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-        {
-          fieldFraction: 1,
-          label: "100%",
-          fieldAngleDeg: 20,
-          sampleCount: 51,
-          validSampleCount: 43,
-          clippedSampleCount: 8,
-          chiefImageHeight: 20,
-          tangentialBestFocusZ: 80,
-          sagittalBestFocusZ: 110,
-          petzvalBestFocusZ: 75,
-          tangentialShiftMm: -25,
-          sagittalShiftMm: 5,
-          petzvalShiftMm: -30,
-          astigmaticDifferenceMm: 30,
-          astigmaticDifferenceUm: 30000,
-          chromaticFieldShifts: null,
-          usable: true,
-        },
-      ],
+        fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+        usableFieldCount: 5,
+        imagePlaneZ: 105,
+        sharedFocusShiftHalfRangeMm: 40,
+        maxAstigmaticDifferenceMm: 30,
+        maxAstigmaticDifferenceUm: 30000,
+        edgeTangentialShiftMm: -25,
+        edgeSagittalShiftMm: 5,
+        chromaticFocusSpreadMm: null,
+        fields: [
+          {
+            fieldFraction: 0,
+            label: "Center",
+            fieldAngleDeg: 0,
+            sampleCount: 51,
+            validSampleCount: 51,
+            clippedSampleCount: 0,
+            chiefImageHeight: 0,
+            tangentialBestFocusZ: 105,
+            sagittalBestFocusZ: 105,
+            petzvalBestFocusZ: 105,
+            tangentialShiftMm: 0,
+            sagittalShiftMm: 0,
+            petzvalShiftMm: 0,
+            astigmaticDifferenceMm: 0,
+            astigmaticDifferenceUm: 0,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.25,
+            label: "25%",
+            fieldAngleDeg: 5,
+            sampleCount: 51,
+            validSampleCount: 49,
+            clippedSampleCount: 2,
+            chiefImageHeight: 5,
+            tangentialBestFocusZ: 95,
+            sagittalBestFocusZ: 101,
+            petzvalBestFocusZ: 92,
+            tangentialShiftMm: -10,
+            sagittalShiftMm: -4,
+            petzvalShiftMm: -13,
+            astigmaticDifferenceMm: 6,
+            astigmaticDifferenceUm: 6000,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.5,
+            label: "50%",
+            fieldAngleDeg: 10,
+            sampleCount: 51,
+            validSampleCount: 47,
+            clippedSampleCount: 4,
+            chiefImageHeight: 10,
+            tangentialBestFocusZ: 90,
+            sagittalBestFocusZ: 102,
+            petzvalBestFocusZ: 86,
+            tangentialShiftMm: -15,
+            sagittalShiftMm: -3,
+            petzvalShiftMm: -19,
+            astigmaticDifferenceMm: 12,
+            astigmaticDifferenceUm: 12000,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 0.75,
+            label: "75%",
+            fieldAngleDeg: 15,
+            sampleCount: 51,
+            validSampleCount: 45,
+            clippedSampleCount: 6,
+            chiefImageHeight: 15,
+            tangentialBestFocusZ: 85,
+            sagittalBestFocusZ: 103,
+            petzvalBestFocusZ: 81,
+            tangentialShiftMm: -20,
+            sagittalShiftMm: -2,
+            petzvalShiftMm: -24,
+            astigmaticDifferenceMm: 18,
+            astigmaticDifferenceUm: 18000,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+          {
+            fieldFraction: 1,
+            label: "100%",
+            fieldAngleDeg: 20,
+            sampleCount: 51,
+            validSampleCount: 43,
+            clippedSampleCount: 8,
+            chiefImageHeight: 20,
+            tangentialBestFocusZ: 80,
+            sagittalBestFocusZ: 110,
+            petzvalBestFocusZ: 75,
+            tangentialShiftMm: -25,
+            sagittalShiftMm: 5,
+            petzvalShiftMm: -30,
+            astigmaticDifferenceMm: 30,
+            astigmaticDifferenceUm: 30000,
+            chromaticFieldShifts: null,
+            usable: true,
+          },
+        ],
       }),
     );
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.getAllByText(/Scale capped to image circle/i).length).toBe(2);
+    expect(screen.queryByText(/Scale capped to image circle/i)).toBeNull();
+    expect(screen.getByText("4/5")).toBeTruthy();
+    expect(screen.getAllByText("18000 µm").length).toBeGreaterThan(0);
   });
 
   it("shows fallback copy when field-curvature computation fails", () => {
@@ -502,6 +506,7 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
     expect(screen.getByText(/Unable to compute usable field-curve diagnostics/i)).toBeTruthy();
+    expect(screen.getByText(/Unable to compute usable in-circle astigmatism diagnostics/i)).toBeTruthy();
   });
 
   it("toggles the spherical aberration section and reports the new expanded state", () => {
@@ -526,7 +531,19 @@ describe("AberrationsPanel", () => {
     render(<AberrationsPanel {...baseProps} />);
     fireEvent.click(screen.getAllByText("LESS")[1].closest("button")!);
 
-    expect(screen.queryByText(/The first chart is the standardized field-curvature view/i)).toBeNull();
+    expect(screen.queryByText(/This section now keeps field curvature on its own scale/i)).toBeNull();
+    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
+    expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
+  });
+
+  it("toggles the astigmatism section body independently", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+    fireEvent.click(screen.getAllByText("LESS")[2].closest("button")!);
+
+    expect(screen.queryByText(/Field curvature and astigmatism are now separated/i)).toBeNull();
+    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
     expect(screen.getAllByText("MORE").length).toBeGreaterThan(0);
   });
 
@@ -538,13 +555,15 @@ describe("AberrationsPanel", () => {
     ]);
 
     const { rerender } = render(<AberrationsPanel {...baseProps} expanded={true} />);
-    expect(screen.getAllByText("LESS").length).toBe(2);
+    expect(screen.getAllByText("LESS").length).toBe(3);
     expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
-    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
+    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
+    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
 
     rerender(<AberrationsPanel {...baseProps} expanded={false} />);
     expect(screen.getAllByText("MORE").length).toBe(1);
     expect(screen.queryByText(/Real-ray transverse SA at best focus/i)).toBeNull();
-    expect(screen.getByText(/The first chart is the standardized field-curvature view/i)).toBeTruthy();
+    expect(screen.getByText(/This section now keeps field curvature on its own scale/i)).toBeTruthy();
+    expect(screen.getByText(/Field curvature and astigmatism are now separated/i)).toBeTruthy();
   });
 });
