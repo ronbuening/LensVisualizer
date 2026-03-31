@@ -64,6 +64,13 @@ function extractLensName(filePath) {
   return match ? match[1] : null;
 }
 
+/** Extract the `maker` value from a lens data file using a regex. */
+function extractLensMaker(filePath) {
+  const content = readFileSync(filePath, "utf-8");
+  const match = content.match(/maker:\s*"([^"]+)"/);
+  return match ? match[1] : null;
+}
+
 /** Parse simple YAML frontmatter from a markdown file. */
 function parseFrontmatter(filePath) {
   const content = readFileSync(filePath, "utf-8");
@@ -100,6 +107,7 @@ function collectLensData(fallbackDate) {
     const key = extractLensKey(filePath);
     if (!key) continue;
     const name = extractLensName(filePath);
+    const maker = extractLensMaker(filePath);
     const stem = file.replace(".data.ts", "");
     const analysisPath = join(LENS_DATA_DIR, `${stem}.analysis.md`);
     const dataFreshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
@@ -109,7 +117,7 @@ function collectLensData(fallbackDate) {
     lenses.push({
       key,
       name,
-      makerSlug: deriveMakerSlug(name || key),
+      makerSlug: deriveMakerSlug(maker || name || key),
       freshness: combineFreshnessEntries([dataFreshness, analysisFreshness], fallbackDate),
     });
   }
