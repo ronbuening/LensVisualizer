@@ -158,14 +158,14 @@ const LENS_DATA = {
     { label: "3", R: 46.5, d: 4.25, nd: 1.6073, elemId: 2, sd: 24.0 },
     { label: "4", R: 81.9, d: 0.7, nd: 1.0, elemId: 0, sd: 22.75 },
     // ── Component III: L3 + L4 cemented (D1) ──
-    { label: "5", R: 26.75, d: 9.7, nd: 1.77, elemId: 3, sd: 22.75 },
+    { label: "5", R: 26.75, d: 9.7, nd: 1.77, elemId: 3, sd: 14.95 },
     { label: "6", R: 61.25, d: 2.05, nd: 1.5927, elemId: 4, sd: 18.5 }, // r₆ corrected from patent's 872.1
     { label: "7", R: 16.65, d: 6.3, nd: 1.0, elemId: 0, sd: 14.95 },
     // ── Aperture stop (inferred from figure, midpoint of 25.2 mm gap) ──
     { label: "STO", R: 1e15, d: 6.3, nd: 1.0, elemId: 0, sd: 13.9 },
     // ── Component IV: L5 + L6 cemented (D2) ──
     { label: "8", R: -21.3, d: 2.7, nd: 1.6483, elemId: 5, sd: 13.35 },
-    { label: "9", R: 67.85, d: 10.25, nd: 1.717, elemId: 6, sd: 13.6 },
+    { label: "9", R: 67.85, d: 10.25, nd: 1.717, elemId: 6, sd: 13.35 },
     { label: "10", R: -29.05, d: 0.3, nd: 1.0, elemId: 0, sd: 14.35 },
     // ── Component V: L7 ──
     { label: "11", R: 58.15, d: 5.5, nd: 1.717, elemId: 7, sd: 14.3 },
