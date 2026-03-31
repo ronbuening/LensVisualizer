@@ -18,7 +18,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## Current Scope
 
-- `39` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
+- `43` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, and Ricoh
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
