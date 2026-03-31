@@ -206,8 +206,8 @@ const LENS_DATA = {
     { label: "10", R: -3.5528, d: 0.009, nd: 1.0, elemId: 0, sd: 0.45 },
 
     // L17 — negative meniscus, 2× aspherical
-    { label: "11A", R: 4.1556, d: 0.057, nd: 1.83441, elemId: 7, sd: 0.54 },
-    { label: "12A", R: 1.9836, d: 0.187, nd: 1.0, elemId: 0, sd: 0.52 },
+    { label: "11A", R: 4.1556, d: 0.057, nd: 1.83441, elemId: 7, sd: 0.48 },
+    { label: "12A", R: 1.9836, d: 0.187, nd: 1.0, elemId: 0, sd: 0.46 },
 
     // ── Aperture stop (fixed with Gr1) ─────────────────────────────
     // STO position inferred from patent surface 13; gap split is d12A = 0.187 (Gr1 rear to STO), d_STO = 0.514 (STO to Gr2 front at ∞)
@@ -219,8 +219,8 @@ const LENS_DATA = {
     { label: "15", R: -5.779, d: 0.012, nd: 1.0, elemId: 0, sd: 0.42 },
 
     // L22 — biconvex positive, ED #2 (fluorophosphate crown)
-    { label: "16", R: 2.1244, d: 0.282, nd: 1.59282, elemId: 9, sd: 0.5 },
-    { label: "17", R: -1.3918, d: 0.209, nd: 1.0, elemId: 0, sd: 0.52 },
+    { label: "16", R: 2.1244, d: 0.282, nd: 1.59282, elemId: 9, sd: 0.44 },
+    { label: "17", R: -1.3918, d: 0.209, nd: 1.0, elemId: 0, sd: 0.46 },
 
     // L23 — positive meniscus, 2× aspherical (convex image side)
     { label: "18A", R: -8.4171, d: 0.098, nd: 1.6935, elemId: 10, sd: 0.5 },
