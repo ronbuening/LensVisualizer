@@ -54,7 +54,7 @@ The correction of higher-order aberrations (particularly sagittal coma at the pe
 
 ## 4. Prescription Data
 
-The patent provides a single worked numerical example at a normalized focal length of f = 100 mm, F/1.1, with a 46° field angle. The production lens at 50 mm is a linear scale of this prescription (factor ≈ 0.499).
+The patent provides a single worked numerical example at a normalized focal length of f = 100 mm, F/1.1, with a 46° field angle. The production-scale prescription used in this project is a direct linear rescale to 50 mm (exact factor 0.5).
 
 ### 4.1 Correction: Surface r₆ — Patent Typographical Error
 
@@ -104,7 +104,45 @@ A systematic numerical search yields **r₆ = +122.5** (exact: 122.495) as the v
 
 A Petzval radius of approximately 3× EFL is typical for a fast double-Gauss design and represents a reasonable — though not exceptional — degree of field curvature correction. A positive Petzval sum for a positive-power system means the Petzval surface curves inward (toward the lens), causing the best-focus surface to bow backward away from the image plane at wide field angles. Nikon's own evaluation acknowledges that "a minimal amount of curvature of field appears" and that "curvature of field is strong in faraway backgrounds," with resolving power dipping in intermediate zones. This is consistent with the computed Petzval curvature and the characteristic pattern of a double-Gauss where the sagittal and tangential field curves cross at an intermediate field angle, creating a zone of reduced sharpness between a well-corrected center and a partially recovered periphery.
 
-### 4.4 Component Focal Lengths
+### 4.4 Production-Scale Prescription Table (f ≈ 50)
+
+All linear dimensions below are the corrected patent prescription scaled by exactly 0.5. Refractive indices are unchanged, as expected for a pure geometric scale.
+
+| Surface | R (mm) | d (mm) | nd | Element | Medium after surface |
+|---------|--------|--------|----|---------|----------------------|
+| r₁ | +83.8 | 4.35 | 1.6073 | L1 | Glass (L1) |
+| r₂ | +214.15 | 0.30 | 1.0 | — | Air |
+| r₃ | +46.5 | 4.25 | 1.6073 | L2 | Glass (L2) |
+| r₄ | +81.9 | 0.70 | 1.0 | — | Air |
+| r₅ | +26.75 | 9.70 | 1.7700 | L3 | Glass (L3) |
+| r₆ | +61.25* | 2.05 | 1.5927 | L4 | Glass (L4, cemented) |
+| r₇ | +16.65 | 12.6 total gap | 1.0 | — | Air (6.3 mm to stop + 6.3 mm from stop) |
+| *STO* | ∞ | — | 1.0 | — | *Aperture stop* |
+| r₈ | −21.3 | 2.70 | 1.6483 | L5 | Glass (L5) |
+| r₉ | +67.85 | 10.25 | 1.7170 | L6 | Glass (L6, cemented) |
+| r₁₀ | −29.05 | 0.30 | 1.0 | — | Air |
+| r₁₁ | +58.15 | 5.50 | 1.7170 | L7 | Glass (L7) |
+| r₁₂ | ∞ (flat) | 0.30 | 1.0 | — | Air |
+| r₁₃ | +71.15 | 1.45 | 1.6259 | L8 | Glass (L8) |
+| r₁₄ | +48.45 | 3.90 | 1.6385 | L9 | Glass (L9, cemented) |
+| r₁₅ | +259.0 | BFL | 1.0 | — | Air → image |
+
+*r₆ remains the corrected value derived in §4.1; only the linear scale changes.
+
+### 4.5 Production-Scale System Parameters (f ≈ 50)
+
+| Parameter | Value |
+|-----------|-------|
+| EFL (paraxial) | 50.08 mm |
+| BFL | 22.79 mm |
+| Total track (lens + BFL) | 81.15 mm |
+| Entrance pupil diameter | 45.5 mm |
+| Petzval sum | +0.00660 mm⁻¹ |
+| Petzval radius | 151.5 mm (~3× EFL) |
+
+Because the design is a strict half-scale reduction of the 100 mm patent example, all linear lengths halve and the Petzval curvature doubles in dioptric strength, while the normalized aberration balance and f/1.1 speed remain unchanged.
+
+### 4.6 Component Focal Lengths
 
 | Component | Patent stated | Computed (thick-lens) | Agreement |
 |-----------|-------------|----------------------|-----------|
@@ -171,7 +209,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 - **Focal length (standalone):** +59.4 mm
 - **Role:** L6 is the second lanthanum element and the strongest single positive element in the rear group. Its biconvex form provides strong convergence immediately behind the stop. The lanthanum glass (shared with L7) provides high refractive index with moderate dispersion, allowing the biconvex curvatures to be less extreme than they would with conventional crown glass.
 
-  The rear surface r₁₀ = −58.1 (|r₁₀|/f = 0.580, satisfying the patent's 0.50f–0.65f condition) is critical for the aberration balance of the rear group. L6 is extraordinarily thick (d₉ = 20.5 mm at f = 100, or about 10.2 mm at 50 mm production scale) — one of the most massive individual elements in any normal-focal-length photographic lens of this era.
+  The rear surface r₁₀ = −58.1 (|r₁₀|/f = 0.580, satisfying the patent's 0.50f–0.65f condition) is critical for the aberration balance of the rear group. L6 is extraordinarily thick (d₉ = 20.5 mm at f = 100, or 10.25 mm at the 50 mm production scale used here) — one of the most massive individual elements in any normal-focal-length photographic lens of this era.
 
 ### L7 — Component V: Single Plano-Convex
 
@@ -310,20 +348,20 @@ The conditions on n₃ > n₄ and n₆ > n₅ encode a fundamental design princi
 
 ## 10. Structural Summary at Production Scale (50 mm)
 
-Applying the linear scale factor of 0.499 (from f = 100 patent to f ≈ 50 production):
+Applying the exact linear scale factor of 0.5 (from f = 100 patent to 50 mm production scale):
 
 | Parameter | Patent (f = 100) | Production (f ≈ 50) |
 |-----------|-----------------|---------------------|
-| EFL | 100.17 mm | ~50.0 mm (nominally; see note) |
-| BFL | 45.58 mm | ~22.7 mm |
-| Lens track | 116.7 mm | ~58.3 mm |
-| EP diameter | 91.1 mm | ~45.5 mm |
+| EFL | 100.17 mm | 50.08 mm |
+| BFL | 45.58 mm | 22.79 mm |
+| Lens track | 116.7 mm | 58.36 mm |
+| EP diameter | 91.1 mm | 45.5 mm |
 | Front element semi-diameter | ~49 mm | ~24.5 mm (49 mm diameter) |
 | Filter size | — | 62 mm |
 
-**Production focal length note:** The patent normalizes the prescription to f = 100.0. The production lens is marketed as "5cm" (50 mm). The actual production focal length was likely close to 51.6 mm — the traditional Nikon normal-lens actual focal length inherited from the Leica ecosystem, as documented in Nikon's *Thousand and One Nights* No. 49. However, no confirmed production EFL measurement has been published for this specific lens, so the scaled values above use the 50 mm nominal. At 51.6 mm the scale factor would be 0.515 rather than 0.499, increasing all linear dimensions by approximately 3%.
+**Production focal length note:** The patent normalizes the prescription to f = 100.0. The production lens is marketed as "5cm" (50 mm). The data file in this project now uses the exact 0.5 rescale, which yields a computed paraxial EFL of 50.08 mm. Nikon's historical practice sometimes produced "50 mm" normal lenses with slightly longer actual focal lengths, but no verified production prescription for this lens has surfaced that would justify a different scale factor here.
 
-The BFL of approximately 22.7 mm at production scale is well inside the Nikon S-mount flange distance of 34.85 mm. This means the rear elements of the lens protrude significantly into the camera body — approximately 12.1 mm behind the lens mount flange. This is typical of fast rangefinder lenses, which do not require the long back focal distance needed by SLR mirror boxes. It is one reason the f/1.1 speed was achievable for rangefinder cameras but would not be matched for SLR normal lenses until decades later.
+The BFL of 22.79 mm at production scale is well inside the Nikon S-mount flange distance of 34.85 mm. This means the rear elements of the lens protrude significantly into the camera body — about 12.1 mm behind the lens mount flange. This is typical of fast rangefinder lenses, which do not require the long back focal distance needed by SLR mirror boxes. It is one reason the f/1.1 speed was achievable for rangefinder cameras but would not be matched for SLR normal lenses until decades later.
 
 ---
 
