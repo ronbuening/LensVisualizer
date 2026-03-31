@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-03-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-03-30",
+    type: "lens",
+    summary: "Added Nikon NIKKOR Z 35mm f/1.8 S and NIKKOR-N 5cm f/1.1",
+  },
+  // ── 2026-03-30 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-03-30",
     type: "fix",
     summary: "Corrected field curvature direction labels and Petzval shift sign",
   },
