@@ -28,7 +28,7 @@
 import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
-  key: "nikon-n-5cm-f11",
+  key: "nikon-5cm-f11",
   name: "NIKKOR-N 5cm f/1.1",
   maker: "Nikon",
   subtitle: "US 2,828,671 — Murakami 1958",
