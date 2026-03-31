@@ -190,24 +190,24 @@ const LENS_DATA = {
     { label: "2", R: 0.8784, d: 0.354, nd: 1.0, elemId: 0, sd: 0.673 },
 
     // D1: L12 (biconvex) + L13 (biconcave), cemented
-    { label: "3", R: 4.073, d: 0.258, nd: 1.95375, elemId: 2, sd: 0.657 },
-    { label: "4", R: -2.029, d: 0.083, nd: 1.60342, elemId: 3, sd: 0.64 },
-    { label: "5", R: 3.2358, d: 0.108, nd: 1.0, elemId: 0, sd: 0.569 },
+    { label: "3", R: 4.073, d: 0.258, nd: 1.95375, elemId: 2, sd: 0.48 },
+    { label: "4", R: -2.029, d: 0.083, nd: 1.60342, elemId: 3, sd: 0.48 },
+    { label: "5", R: 3.2358, d: 0.108, nd: 1.0, elemId: 0, sd: 0.462 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
     // SD trimmed from the rough estimate so the very tight D1→D2 gap clears
     // the adjacent sag profiles while preserving the patent air spacing.
     { label: "6", R: -1.2945, d: 0.172, nd: 1.68893, elemId: 4, sd: 0.462 },
-    { label: "7", R: 1.7517, d: 0.329, nd: 1.8515, elemId: 5, sd: 0.577 },
-    { label: "8", R: -1.7517, d: 0.018, nd: 1.0, elemId: 0, sd: 0.645 },
+    { label: "7", R: 1.7517, d: 0.329, nd: 1.8515, elemId: 5, sd: 0.462 },
+    { label: "8", R: -1.7517, d: 0.018, nd: 1.0, elemId: 0, sd: 0.462 },
 
     // L16 — biconvex positive, ED #1 (S-FPL51)
-    { label: "9", R: 1.1917, d: 0.368, nd: 1.497, elemId: 6, sd: 0.653 },
-    { label: "10", R: -3.5528, d: 0.009, nd: 1.0, elemId: 0, sd: 0.631 },
+    { label: "9", R: 1.1917, d: 0.368, nd: 1.497, elemId: 6, sd: 0.47 },
+    { label: "10", R: -3.5528, d: 0.009, nd: 1.0, elemId: 0, sd: 0.45 },
 
     // L17 — negative meniscus, 2× aspherical
-    { label: "11A", R: 4.1556, d: 0.057, nd: 1.83441, elemId: 7, sd: 0.587 },
-    { label: "12A", R: 1.9836, d: 0.187, nd: 1.0, elemId: 0, sd: 0.557 },
+    { label: "11A", R: 4.1556, d: 0.057, nd: 1.83441, elemId: 7, sd: 0.54 },
+    { label: "12A", R: 1.9836, d: 0.187, nd: 1.0, elemId: 0, sd: 0.52 },
 
     // ── Aperture stop (fixed with Gr1) ─────────────────────────────
     // STO position inferred from patent surface 13; gap split is d12A = 0.187 (Gr1 rear to STO), d_STO = 0.514 (STO to Gr2 front at ∞)
@@ -215,22 +215,22 @@ const LENS_DATA = {
 
     // ── Gr2 (positive, moves toward object during close focus) ─────
     // L21 — negative meniscus, concave object side
-    { label: "14", R: -0.9917, d: 0.062, nd: 1.61293, elemId: 8, sd: 0.478 },
-    { label: "15", R: -5.779, d: 0.012, nd: 1.0, elemId: 0, sd: 0.495 },
+    { label: "14", R: -0.9917, d: 0.062, nd: 1.61293, elemId: 8, sd: 0.4 },
+    { label: "15", R: -5.779, d: 0.012, nd: 1.0, elemId: 0, sd: 0.42 },
 
     // L22 — biconvex positive, ED #2 (fluorophosphate crown)
-    { label: "16", R: 2.1244, d: 0.282, nd: 1.59282, elemId: 9, sd: 0.544 },
-    { label: "17", R: -1.3918, d: 0.209, nd: 1.0, elemId: 0, sd: 0.562 },
+    { label: "16", R: 2.1244, d: 0.282, nd: 1.59282, elemId: 9, sd: 0.5 },
+    { label: "17", R: -1.3918, d: 0.209, nd: 1.0, elemId: 0, sd: 0.52 },
 
     // L23 — positive meniscus, 2× aspherical (convex image side)
-    { label: "18A", R: -8.4171, d: 0.098, nd: 1.6935, elemId: 10, sd: 0.599 },
-    { label: "19A", R: -2.8176, d: 0.229, nd: 1.0, elemId: 0, sd: 0.614 },
+    { label: "18A", R: -8.4171, d: 0.098, nd: 1.6935, elemId: 10, sd: 0.5 },
+    { label: "19A", R: -2.8176, d: 0.229, nd: 1.0, elemId: 0, sd: 0.52 },
 
     // ── Gr3 (negative, moves toward image during close focus) ──────
     // L31 — negative meniscus, 2× aspherical (concave object side)
-    { label: "20A", R: -1.8973, d: 0.083, nd: 1.58313, elemId: 11, sd: 0.645 },
+    { label: "20A", R: -1.8973, d: 0.083, nd: 1.58313, elemId: 11, sd: 0.56 },
     // d21: patent 0.751 + cover glass 0.074 + BF 0.0425 = 0.8675 total to image
-    { label: "21A", R: -6.9348, d: 0.8675, nd: 1.0, elemId: 0, sd: 0.704 },
+    { label: "21A", R: -6.9348, d: 0.8675, nd: 1.0, elemId: 0, sd: 0.58 },
   ],
 
   asph: {
