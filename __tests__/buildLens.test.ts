@@ -8,6 +8,7 @@ import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
 import NoktonRaw from "../src/lens-data/VoigtlanderNokton50f1.data.js";
 import NikkorRaw from "../src/lens-data/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
+import NikkorN5cmf11Raw from "../src/lens-data/NikonN5cmf11.data.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 
@@ -15,6 +16,7 @@ const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
 const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;
 const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw } as LensData;
 const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
+const NikkorN5cmf11 = { ...LENS_DEFAULTS, ...NikkorN5cmf11Raw } as LensData;
 const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
 
 describe("paraxialTrace", () => {
@@ -87,6 +89,11 @@ describe("buildLens — production lenses", () => {
   it("Nikkor 105 f/1.4E EFL ≈ 102 mm", () => {
     const L = buildLens(Nikkor105);
     expect(L.EFL).toBeCloseTo(102, 0);
+  });
+
+  it("NIKKOR-N 5cm f/1.1 EFL ≈ 50.1 mm", () => {
+    const L = buildLens(NikkorN5cmf11);
+    expect(L.EFL).toBeCloseTo(50.1, 0);
   });
 
   it("Sonnar 50 f/1.5 EFL ≈ 50.2 mm", () => {
