@@ -7,7 +7,7 @@ import {
 } from "../src/optics/aberrationAnalysis.js";
 import { traceNearObjectCircularOffAxisBundle, computeOffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
 import { traceChiefRelativeNearObjectSkewRay } from "../src/optics/optics.js";
-import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
+import { doLayout, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";

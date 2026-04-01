@@ -8,7 +8,10 @@
  * is ever clipped at the tile boundary.
  */
 
-import type { BokehPreviewGrid as BokehPreviewGridData, BokehPreviewFieldResult } from "../../optics/aberrationAnalysis.js";
+import type {
+  BokehPreviewGrid as BokehPreviewGridData,
+  BokehPreviewFieldResult,
+} from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
 
 interface BokehPreviewGridProps {
@@ -82,12 +85,10 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
     zeroY - (tangentialImageHeight / sharedSpotHalfRangeMm) * (POINT_CLOUD_PLOT_SIZE / 2);
 
   // Aperture circle: shows the raw extent before the 15 % scale padding
-  const apertureCircleR = (POINT_CLOUD_PLOT_SIZE / 2) / SCALE_PADDING_FACTOR;
+  const apertureCircleR = POINT_CLOUD_PLOT_SIZE / 2 / SCALE_PADDING_FACTOR;
 
   const vignetteLabel =
-    field.usable && field.sampleCount > 0
-      ? `${(field.vignetteTransmission * 100).toFixed(0)}% T`
-      : null;
+    field.usable && field.sampleCount > 0 ? `${(field.vignetteTransmission * 100).toFixed(0)}% T` : null;
 
   return (
     <g key={field.label} data-bokeh-tile={field.label}>
@@ -99,14 +100,7 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
         {field.label}
       </text>
       {/* Field angle top-right */}
-      <text
-        x={tileX + TILE_W - 6}
-        y={tileY + 12}
-        textAnchor="end"
-        fill={t.muted}
-        fontSize={8.5}
-        fontFamily="inherit"
-      >
+      <text x={tileX + TILE_W - 6} y={tileY + 12} textAnchor="end" fill={t.muted} fontSize={8.5} fontFamily="inherit">
         {field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
       </text>
 
@@ -169,13 +163,7 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
 
           {/* Vignetting transmission label bottom-left */}
           {vignetteLabel !== null ? (
-            <text
-              x={tileX + 6}
-              y={tileY + TILE_H - 5}
-              fill={t.muted}
-              fontSize={7.5}
-              fontFamily="inherit"
-            >
+            <text x={tileX + 6} y={tileY + TILE_H - 5} fill={t.muted} fontSize={7.5} fontFamily="inherit">
               {vignetteLabel}
             </text>
           ) : null}
@@ -196,14 +184,7 @@ export default function BokehPreviewGrid({ grid, t, focusLabel }: BokehPreviewGr
         {`${focusLabel} source bokeh preview: chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale.`}
       </title>
       {grid.fields.map((field, index) => renderBokehTile(field, index, grid.sharedSpotHalfRangeMm, t))}
-      <text
-        x={VB_W / 2}
-        y={VB_H - 3}
-        textAnchor="middle"
-        fill={t.muted}
-        fontSize={8.5}
-        fontFamily="inherit"
-      >
+      <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
         Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)
       </text>
     </svg>

@@ -105,6 +105,9 @@
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
+| `BokehPreviewTab.tsx` | `src/components/display/` | Bokeh preview (beta) tab content; memoizes `computeBokehPreview` and renders two BokehPreviewSection grids (infinity + near source) |
+| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG grid showing 225-sample circular-pupil bokeh ball footprints; sagittal on X-axis, tangential on Y-axis; shared spot scale includes 15 % padding |
+| `aberrations/BokehPreviewSection.tsx` | `src/components/display/aberrations/` | Collapsible section wrapper for one BokehPreviewGrid; shows FIELDS / SCALE metadata row |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -141,6 +144,7 @@
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
 | `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
+| `bokeh/bokeh.ts` | `src/optics/bokeh/` | Bokeh preview computation: `computeBokehPreview` builds two 2×2 `BokehPreviewGrid` results (infinity + near source at `closeFocusM`) by tracing 225-sample circular pupil patterns via `traceCircularOffAxisBundle` / `traceNearObjectCircularOffAxisBundle`; uses `doLayout` image plane for correct focus-adjusted sensor position |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
@@ -301,6 +305,7 @@ Public barrel for the decomposed aberration modules under `src/optics/aberration
 - **`computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a denser fixed circular pupil pattern for the representative spot-diagram tiles, returning chief-ray-referenced point clouds plus centroid / RMS spot-radius metrics used by both the traced spot view and the idealized coma comparison.
 - **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
 - **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes parabasal tangential and sagittal field curves from chief-ray-relative parabasal rays, plus real-ray field curves from dense bundle solves, and overlays Petzval shifts across fixed field fractions. The shared Y-scale range covers both methods. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength field curves plus a `chromaticFocusSpreadMm` summary.
+- **`computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Returns a `BokehPreviewResult` containing two 2×2 field grids: `infinityGrid` (225-sample equal-area circular pupil, infinity rays — ball grows as `focusT→1`) and `nearGrid` (same sampling, near-object slope-corrected rays from `L.closeFocusM` distance — ball shrinks as `focusT→1`). The `sharedSpotHalfRangeMm` on each grid includes a 15 % scale padding so no point-cloud dot is clipped at tile boundaries. Overrides `imagePlaneZ` from `doLayout` to correctly handle back-focus-only lenses.
 
 Sign convention: negative SA = undercorrected (real marginal focus closer to the lens than paraxial); positive SA = overcorrected.
 

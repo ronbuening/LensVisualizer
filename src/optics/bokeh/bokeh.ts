@@ -19,7 +19,12 @@ import { traceCircularOffAxisBundle, traceNearObjectCircularOffAxisBundle } from
 import { computeOffAxisFieldGeometry } from "../aberration/offAxis.js";
 import { doLayout } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import type { BokehPreviewFieldResult, BokehPreviewGrid, BokehPreviewPoint, BokehPreviewResult } from "../aberration/types.js";
+import type {
+  BokehPreviewFieldResult,
+  BokehPreviewGrid,
+  BokehPreviewPoint,
+  BokehPreviewResult,
+} from "../aberration/types.js";
 import { BOKEH_PREVIEW_FIELD_FRACTIONS, BOKEH_PREVIEW_PUPIL_RING_SAMPLES } from "../aberration/types.js";
 
 const BOKEH_MIN_VALID_SAMPLES = 5;
@@ -35,9 +40,7 @@ const BOKEH_PREVIEW_FIELD_LABELS: Record<(typeof BOKEH_PREVIEW_FIELD_FRACTIONS)[
   0.75: "75%",
 };
 
-function emptyBokehFieldResult(
-  fieldFraction: (typeof BOKEH_PREVIEW_FIELD_FRACTIONS)[number],
-): BokehPreviewFieldResult {
+function emptyBokehFieldResult(fieldFraction: (typeof BOKEH_PREVIEW_FIELD_FRACTIONS)[number]): BokehPreviewFieldResult {
   return {
     fieldFraction,
     label: BOKEH_PREVIEW_FIELD_LABELS[fieldFraction],
@@ -127,13 +130,9 @@ function computeBokehFieldFootprint(
   const totalWeight = points.reduce((sum, p) => sum + p.weight, 0);
 
   const centroidSagittalImageHeight =
-    totalWeight > 0
-      ? points.reduce((sum, p) => sum + p.sagittalImageHeight * p.weight, 0) / totalWeight
-      : 0;
+    totalWeight > 0 ? points.reduce((sum, p) => sum + p.sagittalImageHeight * p.weight, 0) / totalWeight : 0;
   const centroidTangentialImageHeight =
-    totalWeight > 0
-      ? points.reduce((sum, p) => sum + p.tangentialImageHeight * p.weight, 0) / totalWeight
-      : 0;
+    totalWeight > 0 ? points.reduce((sum, p) => sum + p.tangentialImageHeight * p.weight, 0) / totalWeight : 0;
 
   const rmsRadiusMm =
     totalWeight > 0
