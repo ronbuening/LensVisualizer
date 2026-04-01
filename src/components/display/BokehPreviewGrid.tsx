@@ -41,6 +41,14 @@ const POINT_CLOUD_PLOT_SIZE = Math.min(PLOT_W, PLOT_H);
 const SCALE_PADDING_FACTOR = 1.15;
 
 /**
+ * Radius of the pupil vignetting diagram in SVG units.
+ * The diagram sits in the unused right strip of the plot area (PLOT_W - POINT_CLOUD_PLOT_SIZE)
+ * and shows transmitted pupil samples at their normalised (xFrac, yFrac) positions.
+ * Clipped (vignetted) rays are absent, revealing the cat's-eye shape at off-axis fields.
+ */
+const PUPIL_DIAGRAM_R = 9;
+
+/**
  * Picks a human-readable scale bar length to overlay inside each tile.
  * Returns the label string and bar width in SVG units (same coordinate system
  * as the tile point clouds), capped at the data half-range so it fits in the tile.
@@ -68,6 +76,9 @@ interface TileGeometry {
   zeroY: number;
   spotPlotX: number;
   spotPlotY: number;
+  /** Centre of the pupil vignetting diagram (right strip of the plot area). */
+  pupilCx: number;
+  pupilCy: number;
 }
 
 function tileGeometry(index: number): TileGeometry {
@@ -81,21 +92,27 @@ function tileGeometry(index: number): TileGeometry {
   const plotInsetY = (PLOT_H - POINT_CLOUD_PLOT_SIZE) / 2;
   const spotPlotX = plotX + plotInsetX;
   const spotPlotY = plotY + plotInsetY;
+  const zeroX = spotPlotX + POINT_CLOUD_PLOT_SIZE / 2;
+  const zeroY = spotPlotY + POINT_CLOUD_PLOT_SIZE / 2;
+  // Centre the pupil diagram in the right strip (between the point cloud and the plot border).
+  const rightStripCx = spotPlotX + POINT_CLOUD_PLOT_SIZE + plotInsetX / 2;
   return {
     tileX,
     tileY,
     plotX,
     plotY,
-    zeroX: spotPlotX + POINT_CLOUD_PLOT_SIZE / 2,
-    zeroY: spotPlotY + POINT_CLOUD_PLOT_SIZE / 2,
+    zeroX,
+    zeroY,
     spotPlotX,
     spotPlotY,
+    pupilCx: rightStripCx,
+    pupilCy: zeroY,
   };
 }
 
 function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSpotHalfRangeMm: number, t: Theme) {
   const geometry = tileGeometry(index);
-  const { tileX, tileY, spotPlotX, spotPlotY, zeroX, zeroY } = geometry;
+  const { tileX, tileY, spotPlotX, spotPlotY, zeroX, zeroY, pupilCx, pupilCy } = geometry;
 
   // Industry convention: sagittal (X deviation) on horizontal, tangential (Y deviation) on vertical
   const xScale = (sagittalImageHeight: number) =>
@@ -179,6 +196,32 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
               opacity={0.65}
             />
           ))}
+
+          {/* Pupil vignetting diagram — right strip of the plot area.
+               Transmitted rays appear at their normalised (xFrac, yFrac) pupil positions.
+               Clipped (vignetted) rays are absent, revealing the cat's-eye shape. */}
+          <circle cx={pupilCx} cy={pupilCy} r={PUPIL_DIAGRAM_R + 1} fill={t.panelBg} opacity={0.9} />
+          <circle cx={pupilCx} cy={pupilCy} r={PUPIL_DIAGRAM_R} fill="none" stroke={t.panelBorder} strokeWidth={0.75} />
+          {field.points.map((point) => (
+            <circle
+              key={`pup-${field.label}-${point.index}`}
+              cx={pupilCx + point.pupilXFraction * PUPIL_DIAGRAM_R}
+              cy={pupilCy - point.pupilYFraction * PUPIL_DIAGRAM_R}
+              r={0.65}
+              fill={t.value}
+              opacity={0.7}
+            />
+          ))}
+          <text
+            x={pupilCx}
+            y={pupilCy + PUPIL_DIAGRAM_R + 6}
+            textAnchor="middle"
+            fill={t.muted}
+            fontSize={7}
+            fontFamily="inherit"
+          >
+            EP
+          </text>
 
           {/* Scale bar overlay — bottom-left corner of the point cloud square */}
           {(() => {

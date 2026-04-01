@@ -121,6 +121,8 @@ function computeBokehFieldFootprint(
     tangentialImageHeight: sample.imagePoint.y - bundle.chiefRay.imagePoint.y,
     weight: sample.weight ?? 0,
     radiusFraction: sample.radiusFraction,
+    pupilXFraction: sample.xFraction,
+    pupilYFraction: sample.yFraction,
   }));
 
   if (points.length < BOKEH_MIN_VALID_SAMPLES) return null;

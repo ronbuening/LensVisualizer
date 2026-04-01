@@ -19,7 +19,7 @@ afterEach(() => {
   cleanup();
 });
 
-function makePoint(index: number, sag: number, tan: number) {
+function makePoint(index: number, sag: number, tan: number, xFrac = 0, yFrac = 0) {
   return {
     index,
     sourceSampleIndex: index,
@@ -27,6 +27,8 @@ function makePoint(index: number, sag: number, tan: number) {
     tangentialImageHeight: tan,
     weight: 1,
     radiusFraction: null,
+    pupilXFraction: xFrac,
+    pupilYFraction: yFrac,
   };
 }
 
@@ -149,5 +151,15 @@ describe("BokehPreviewGrid", () => {
       (c) => c.getAttribute("fill") === "none",
     );
     expect(apertureCircle).toBeTruthy();
+  });
+
+  it("renders an 'EP' pupil diagram label inside each usable tile", () => {
+    render(<BokehPreviewGrid grid={makeGrid([true, true, false, false])} t={theme} focusLabel="Infinity" />);
+    expect(screen.getAllByText("EP").length).toBe(2);
+  });
+
+  it("pupil diagram does not appear in unusable tiles", () => {
+    render(<BokehPreviewGrid grid={makeGrid([false, false, false, false])} t={theme} focusLabel="Infinity" />);
+    expect(screen.queryByText("EP")).toBeNull();
   });
 });

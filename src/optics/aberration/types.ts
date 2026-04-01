@@ -238,6 +238,12 @@ export interface BokehPreviewPoint {
   weight: number;
   /** Normalised pupil radius [0..1] — available for future intensity shading. */
   radiusFraction: number | null;
+  /** Normalised pupil X coordinate [-1..1] (xFraction from sampleCircularPupil). Used to
+   *  render the pupil vignetting diagram — transmitted rays appear as dots at their pupil
+   *  position; clipped rays are absent, revealing the cat's-eye vignetting shape. */
+  pupilXFraction: number;
+  /** Normalised pupil Y coordinate [-1..1] (yFraction from sampleCircularPupil). */
+  pupilYFraction: number;
 }
 
 /** One field tile result in the bokeh preview 2×2 grid. */
