@@ -25,13 +25,7 @@ import {
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
-import {
-  doLayout,
-  entrancePupilAtState,
-  epAtZoom,
-  fopenAtZoom,
-  traceRay,
-} from "../src/optics/optics.js";
+import { doLayout, entrancePupilAtState, epAtZoom, fopenAtZoom, traceRay } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
@@ -949,7 +943,10 @@ describe("computeBokehPreview", () => {
     expect(result).not.toBeNull();
     expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
     expect(result!.conjugates.map((conjugate) => conjugate.objectConjugate)).toEqual(["infinity", "minimumFocus"]);
-    expect(result!.conjugates.map((conjugate) => conjugate.label)).toEqual(["Infinity subject", "Minimum-focus subject"]);
+    expect(result!.conjugates.map((conjugate) => conjugate.label)).toEqual([
+      "Infinity subject",
+      "Minimum-focus subject",
+    ]);
     expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
     expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
     expect(result!.sharedSpotHalfRangeMm).toBe(

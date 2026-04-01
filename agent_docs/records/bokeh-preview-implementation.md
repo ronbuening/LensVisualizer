@@ -16,6 +16,9 @@
 - Phase 2 Step 2: wired the bokeh preview into the diagram viewport with a new upper-right launch button and panel overlay
 - Extended diagram overlay state so the bokeh preview hides in zoom mode and resets automatically when the lens changes
 - Added viewport + hook coverage for button placement, open behavior, zoom gating, and lens-change reset
+- Phase 3: updated primer and architecture docs so the new bokeh analysis path is discoverable
+- Added a homepage changelog entry for the new overlay and fixed two stale lens-data type imports so the release gate can pass again
+- Ran the full formatter and release gate successfully before PR creation
 
 ## Verification
 - `npx vitest run __tests__/offAxisBundle.test.ts __tests__/skewRay.test.ts __tests__/aberrationAnalysis.test.ts` — passed
@@ -23,7 +26,12 @@
 - `npx vitest run __tests__/ComaPreviewGrid.test.tsx __tests__/BokehPreviewOverlayContent.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npx vitest run __tests__/DiagramViewport.test.tsx __tests__/useOverlayState.test.tsx __tests__/BokehPreviewOverlayContent.test.tsx` — passed
 - `npx vitest run __tests__/ComaPreviewGrid.test.tsx __tests__/BokehPreviewOverlayContent.test.tsx __tests__/analysisDisplayTabs.test.ts __tests__/DiagramViewport.test.tsx __tests__/useOverlayState.test.tsx` — passed
-- `npm run typecheck` — failed due existing lens-data import errors in `src/lens-data/CanonFDn50f12.data.ts` and `src/lens-data/VoigtlanderNokton50f12XMount.data.ts`
+- `npm run format` — passed
+- `npm run typecheck` — passed
+- `npm run format:check` — passed
+- `npm run lint` — passed
+- `npm run test` — passed
+- Prior `npm run typecheck` failure traced to stale lens-data imports in `src/lens-data/CanonFDn50f12.data.ts` and `src/lens-data/VoigtlanderNokton50f12XMount.data.ts`; fixed in final phase
 
 ## Follow-ups
-- Update docs/changelog, run the formatter + full release gate, and open the PR
+- Future blade-count / blade-shape lens metadata can plug into the new aperture-silhouette abstraction without changing the preview API

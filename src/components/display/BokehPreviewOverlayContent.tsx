@@ -9,14 +9,22 @@ interface BokehPreviewOverlayContentProps {
 }
 
 export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOverlayContentProps) {
-  const representativeSilhouette =
-    result?.conjugates.flatMap((conjugate) => conjugate.fields).find((field) => field.usable)?.apertureSilhouette ??
-    { kind: "circular" as const };
+  const representativeSilhouette = result?.conjugates
+    .flatMap((conjugate) => conjugate.fields)
+    .find((field) => field.usable)?.apertureSilhouette ?? { kind: "circular" as const };
 
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 20px 20px", gap: 14 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: 12,
+          }}
+        >
           <h2
             style={{
               margin: 0,
@@ -30,7 +38,16 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
             Bokeh Preview (Beta)
           </h2>
           {result ? (
-            <div style={{ display: "flex", alignItems: "baseline", gap: 8, color: t.muted, fontSize: 10, letterSpacing: "0.08em" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "baseline",
+                gap: 8,
+                color: t.muted,
+                fontSize: 10,
+                letterSpacing: "0.08em",
+              }}
+            >
               <span>SHARED SPOT SCALE</span>
               <strong style={{ color: t.value, fontSize: 13, fontWeight: 700 }}>
                 ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
@@ -48,13 +65,37 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
 
       {result ? (
         <>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "flex-start", justifyContent: "center", minHeight: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 16,
+              flexWrap: "wrap",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              minHeight: 0,
+            }}
+          >
             {result.conjugates.map((conjugate) => (
               <div
                 key={conjugate.objectConjugate}
-                style={{ flex: "1 1 320px", minWidth: 0, maxWidth: 360, display: "flex", flexDirection: "column", gap: 8 }}
+                style={{
+                  flex: "1 1 320px",
+                  minWidth: 0,
+                  maxWidth: 360,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                }}
               >
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "baseline",
+                    justifyContent: "space-between",
+                    gap: 10,
+                    flexWrap: "wrap",
+                  }}
+                >
                   <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", fontFamily: "inherit" }}>
                     {conjugate.label.toUpperCase()}
                   </span>

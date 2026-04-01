@@ -33,14 +33,14 @@
 | `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
 | `PageNavBar.tsx` | `src/components/layout/` | Shared navigation bar for static pages with theme toggle |
-| `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
+| `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval/bokeh overlays |
 | `AnalysisDrawer.tsx` | `src/components/layout/` | Sliding tabbed panel overlaying SVG viewport for analysis views (aberrations, distortion, breathing, vignetting) |
 | `DiagramControlPanel.tsx` | `src/components/layout/` | Sliders, inspector, legend, and analysis launch button extracted from LensDiagramPanel |
 | `SingleLensContent.tsx` | `src/components/layout/` | Single-lens diagram + description layout |
 | `DropdownPanel.tsx` | `src/components/layout/` | Portal-based dropdown panel for settings/theme overlays |
 | `PrimerToggleButton.tsx` | `src/components/layout/` | Shared button for switching between simple/intermediate primer levels |
 | `AnalysisDrawerContent.tsx` | `src/components/layout/lensDiagram/` | Tab-to-panel router for the analysis drawer content inside LensDiagramPanel |
-| `DiagramViewport.tsx` | `src/components/layout/lensDiagram/` | SVG viewport wrapper with LCA/Petzval overlay gating, zoom/pan toggle, and keyboard shortcut handling |
+| `DiagramViewport.tsx` | `src/components/layout/lensDiagram/` | SVG viewport wrapper with diagram-level overlays (LCA, Petzval, bokeh), analysis-drawer toggle, zoom/pan toggle, and keyboard shortcut handling |
 | `analysisTabs.ts` | `src/components/layout/lensDiagram/` | Shared analysis tab metadata used by the drawer trigger and drawer content |
 
 ### Hooks
@@ -55,7 +55,7 @@
 | `useFlashOverlay.ts` | `src/components/hooks/` | Hook: flash animation state machine for sticky slider feedback |
 | `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
 | `useDispatchAdapters.ts` | `src/components/hooks/` | Hook: context dispatch callback wiring for LensDiagramPanel children |
-| `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset |
+| `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval/bokeh overlay open/close state with lensKey reset |
 | `useOverlays.ts` | `src/components/hooks/` | Hook: combines overlay state with dispatch adapters for LensViewer |
 | `useHeaderHeight.ts` | `src/components/hooks/` | Hook: header ResizeObserver height tracking for multi-panel alignment |
 | `useViewBoxZoom.ts` | `src/components/hooks/` | Hook: SVG viewBox-based zoom/pan with wheel, drag, pinch, and keyboard support |
@@ -105,6 +105,9 @@
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
+| `BokehPreviewGrid.tsx` | `src/components/display/` | Reusable 2x2 chief-ray-centered blur-footprint grid for one subject-distance conjugate |
+| `BokehPreviewOverlayContent.tsx` | `src/components/display/` | Diagram-overlay content rendering the dual infinity / minimum-focus bokeh preview grids plus legend |
+| `RepresentativePreviewGrid.tsx` | `src/components/display/` | Shared SVG shell and tile geometry reused by coma and bokeh preview grids |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -140,7 +143,7 @@
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, coma previews, bokeh previews, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
@@ -227,7 +230,7 @@ Extracted hooks (all in `src/components/hooks/`):
 - **`useFlashOverlay.ts`** — Hook: two-phase flash animation state machine for sticky slider feedback
 - **`useSideLayoutDetection.ts`** — Hook: ResizeObserver-based overflow detection with hysteresis for side-by-side layout
 - **`useDispatchAdapters.ts`** — Hook: reads context dispatch and returns named callback adapters for child components
-- **`useOverlayState.ts`** — Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset
+- **`useOverlayState.ts`** — Hook: Abbe/LCA/Petzval/bokeh overlay open/close state with lensKey reset
 - **`useHeaderHeight.ts`** — Hook: header ResizeObserver height tracking for multi-panel alignment
 
 **Error display tiers** (in render order — first truthy wins):
@@ -250,8 +253,9 @@ Sub-components:
   - **`LCAInsetWidget.tsx`** — Magnified LCA inset with auto-scaled wavelength offsets (clamped at 5000×)
   - **`LCAOverlayContent.tsx`** — Enlarged LCA visualization with description, rendered inside PanelOverlay on click
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
+  - **`BokehPreviewOverlayContent.tsx`** — Enlarged dual-grid blur-footprint comparison for infinity and minimum-focus subjects, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
-- **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
+- **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays, including LCA, Petzval, and bokeh preview content
 - **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Tab content components: AberrationsPanel, DistortionTab, FocusBreathingTab, and VignettingTab. Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
 - **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and analysis launch button; composes DiagramControls, ElementInspector, DiagramLegend
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
@@ -299,6 +303,7 @@ Public barrel for the decomposed aberration modules under `src/optics/aberration
 - **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a true current-state paraxial reference. Averages ±Y marginal rays for symmetry. Returns `{saMm, saUm, realIntercept, paraxialIntercept}` or null if all marginal fractions are clipped.
 - **`computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Samples the entrance pupil across aperture zones and returns the longitudinal spherical-aberration profile used by the analysis chart.
 - **`computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a denser fixed circular pupil pattern for the representative spot-diagram tiles, returning chief-ray-referenced point clouds plus centroid / RMS spot-radius metrics used by both the traced spot view and the idealized coma comparison.
+- **`computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces the denser bokeh point cloud for two explicit object conjugates (`infinity`, `minimumFocus`) and returns shared-normalization blur-footprint grids with centroid, RMS, clipping, and aperture-silhouette metadata for the diagram overlay.
 - **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
 - **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes parabasal tangential and sagittal field curves from chief-ray-relative parabasal rays, plus real-ray field curves from dense bundle solves, and overlays Petzval shifts across fixed field fractions. The shared Y-scale range covers both methods. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength field curves plus a `chromaticFocusSpreadMm` summary.
 

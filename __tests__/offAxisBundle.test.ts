@@ -378,15 +378,7 @@ describe("off-axis aberration helpers", () => {
     const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
     const infinityGeometry = computeOffAxisFieldGeometry(L, zPos, 0.4, 0, currentPhysStopSD, 0.75, "infinity");
-    const minimumFocusGeometry = computeOffAxisFieldGeometry(
-      L,
-      zPos,
-      0.4,
-      0,
-      currentPhysStopSD,
-      0.75,
-      "minimumFocus",
-    );
+    const minimumFocusGeometry = computeOffAxisFieldGeometry(L, zPos, 0.4, 0, currentPhysStopSD, 0.75, "minimumFocus");
 
     expect(infinityGeometry).not.toBeNull();
     expect(minimumFocusGeometry).not.toBeNull();
