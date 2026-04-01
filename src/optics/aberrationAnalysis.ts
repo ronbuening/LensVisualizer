@@ -14,3 +14,4 @@ export {
   computeSagittalComa,
 } from "./aberration/coma.js";
 export { computeFieldCurvature } from "./aberration/fieldCurvature.js";
+export { computeBokehPreview } from "./aberration/bokeh.js";

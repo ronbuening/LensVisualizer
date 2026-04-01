@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  BOKEH_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
   COMA_PREVIEW_FIELD_FRACTIONS,
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
@@ -7,6 +8,7 @@ import {
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
   NEAR_AXIS_REAL_FRAC,
+  computeBokehPreview,
   computeComaPointCloudPreview,
   computeComaPreview,
   computeFieldCurvature,
@@ -54,6 +56,16 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
   const baseEPSD = epAtZoom(zoomT, L);
+  const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
+  return { currentPhysStopSD, currentEPSD };
+}
+
+function stateApertureAt(L: RuntimeLens, focusT: number, zoomT: number, stopdownT: number) {
+  const currentFOPEN = fopenAtZoom(zoomT, L);
+  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
+  const fNumber = Math.max(rawFNumber, currentFOPEN);
+  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
+  const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
   const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
   return { currentPhysStopSD, currentEPSD };
 }
@@ -921,6 +933,155 @@ describe("computeComaPointCloudPreview", () => {
     expect(centerField.centroidSagittalImageHeight).toBeCloseTo(sagittalCentroid, 8);
     expect(centerField.rmsRadiusMm).toBeCloseTo(rmsRadius, 8);
     expect(centerField.rmsRadiusUm).toBeCloseTo(rmsRadius * 1000, 8);
+    expect(centerField.centroidTangentialImageHeight).toBeCloseTo(0, 8);
+  });
+});
+
+describe("computeBokehPreview", () => {
+  it("returns both infinity and minimum-focus conjugate grids with shared normalization", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.4;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = stateApertureAt(L, focusT, zoomT, 0);
+
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    expect(result!.fieldFractions).toEqual(COMA_PREVIEW_FIELD_FRACTIONS);
+    expect(result!.conjugates.map((conjugate) => conjugate.objectConjugate)).toEqual(["infinity", "minimumFocus"]);
+    expect(result!.conjugates.map((conjugate) => conjugate.label)).toEqual(["Infinity subject", "Minimum-focus subject"]);
+    expect(result!.sharedTangentialHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSagittalHalfRangeMm).toBeGreaterThan(0);
+    expect(result!.sharedSpotHalfRangeMm).toBe(
+      Math.max(result!.sharedTangentialHalfRangeMm, result!.sharedSagittalHalfRangeMm),
+    );
+  });
+
+  it("uses the denser fixed circular pupil pattern for every usable field", () => {
+    const L = build(ApoLantharRaw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = stateApertureAt(L, focusT, zoomT, 0);
+
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    for (const field of result!.conjugates.flatMap((conjugate) => conjugate.fields.filter((sample) => sample.usable))) {
+      expect(field.sampleCount).toBe(BOKEH_PREVIEW_POINT_CLOUD_SAMPLE_COUNT);
+      expect(field.apertureSilhouette.kind).toBe("circular");
+    }
+  });
+
+  it("separates the infinity and minimum-focus conjugates at the same lens state", () => {
+    const L = build(NikonAF28f14DRaw);
+    const focusT = 0.35;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = stateApertureAt(L, focusT, zoomT, 0);
+
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const infinityField = result!.conjugates[0].fields.find((field) => field.fieldFraction === 0.5);
+    const minimumFocusField = result!.conjugates[1].fields.find((field) => field.fieldFraction === 0.5);
+    expect(infinityField).toBeDefined();
+    expect(minimumFocusField).toBeDefined();
+    expect(infinityField!.usable).toBe(true);
+    expect(minimumFocusField!.usable).toBe(true);
+    expect(minimumFocusField!.centroidTangentialImageHeight).not.toBeCloseTo(
+      infinityField!.centroidTangentialImageHeight,
+      6,
+    );
+  });
+
+  it("responds to stopdown changes", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.6;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+
+    const wideOpen = stateApertureAt(L, focusT, zoomT, 0);
+    const stoppedDown = stateApertureAt(L, focusT, zoomT, 0.7);
+
+    const wide = computeBokehPreview(L, zPos, focusT, zoomT, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
+    const stopped = computeBokehPreview(L, zPos, focusT, zoomT, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
+
+    expect(wide).not.toBeNull();
+    expect(stopped).not.toBeNull();
+    expect(stopped!.sharedSpotHalfRangeMm).not.toBeCloseTo(wide!.sharedSpotHalfRangeMm, 6);
+  });
+
+  it("responds to focus changes in both conjugate grids", () => {
+    const L = build(NikonAF28f14DRaw);
+    const zoomT = 0;
+    const focusInfinity = 0;
+    const focusClose = 0.8;
+    const { z: zInfinity } = doLayout(focusInfinity, zoomT, L);
+    const { z: zClose } = doLayout(focusClose, zoomT, L);
+    const apertureInfinity = stateApertureAt(L, focusInfinity, zoomT, 0);
+    const apertureClose = stateApertureAt(L, focusClose, zoomT, 0);
+
+    const atInfinity = computeBokehPreview(
+      L,
+      zInfinity,
+      focusInfinity,
+      zoomT,
+      apertureInfinity.currentEPSD,
+      apertureInfinity.currentPhysStopSD,
+    );
+    const atClose = computeBokehPreview(
+      L,
+      zClose,
+      focusClose,
+      zoomT,
+      apertureClose.currentEPSD,
+      apertureClose.currentPhysStopSD,
+    );
+
+    expect(atInfinity).not.toBeNull();
+    expect(atClose).not.toBeNull();
+    expect(atClose!.conjugates[0].fields[2]!.centroidTangentialImageHeight).not.toBeCloseTo(
+      atInfinity!.conjugates[0].fields[2]!.centroidTangentialImageHeight,
+      6,
+    );
+    expect(atClose!.conjugates[1].fields[2]!.centroidTangentialImageHeight).not.toBeCloseTo(
+      atInfinity!.conjugates[1].fields[2]!.centroidTangentialImageHeight,
+      6,
+    );
+  });
+
+  it("shows clipped off-axis bokeh truncation when the stop is constricted", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const wideOpen = stateApertureAt(L, focusT, zoomT, 0);
+    const clippedStop = wideOpen.currentEPSD * 0.8;
+
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, wideOpen.currentEPSD, clippedStop);
+    expect(result).not.toBeNull();
+
+    const outerField = result!.conjugates[0].fields.find((field) => field.fieldFraction === 0.75);
+    expect(outerField).toBeDefined();
+    expect(outerField!.usable).toBe(true);
+    expect(outerField!.clippedSampleCount).toBeGreaterThan(0);
+    expect(outerField!.validSampleCount).toBeLessThan(outerField!.sampleCount);
+  });
+
+  it("keeps the unconstrained center field sagittally symmetric", () => {
+    const L = build(ApoLantharRaw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = stateApertureAt(L, focusT, zoomT, 0);
+
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+
+    const centerField = result!.conjugates[0].fields[0];
+    expect(centerField.usable).toBe(true);
+    expect(centerField.centroidSagittalImageHeight).toBeCloseTo(0, 8);
     expect(centerField.centroidTangentialImageHeight).toBeCloseTo(0, 8);
   });
 });

@@ -20,6 +20,23 @@ export interface TransverseFocusHit {
   slope: number;
 }
 
+export interface WeightedTransversePoint {
+  tangentialImageHeight: number;
+  sagittalImageHeight: number;
+  weight: number;
+}
+
+export interface WeightedPointCloudSummary {
+  minRelativeTangentialImageHeight: number;
+  maxRelativeTangentialImageHeight: number;
+  minRelativeSagittalImageHeight: number;
+  maxRelativeSagittalImageHeight: number;
+  centroidTangentialImageHeight: number;
+  centroidSagittalImageHeight: number;
+  rmsRadiusMm: number;
+  rmsRadiusUm: number;
+}
+
 export interface RealRayHit extends TransverseFocusHit {
   fraction: number;
   signedFraction: number;
@@ -155,4 +172,36 @@ export function bestRelativeFocusPlane(
   }, 0);
 
   return lastSurfZ - numer / denom;
+}
+
+export function summarizeWeightedPointCloud(points: WeightedTransversePoint[]): WeightedPointCloudSummary | null {
+  if (points.length === 0) return null;
+
+  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
+  if (!isFinite(totalWeight) || totalWeight <= 0) return null;
+
+  const tangentialHeights = points.map((point) => point.tangentialImageHeight);
+  const sagittalHeights = points.map((point) => point.sagittalImageHeight);
+  const centroidTangentialImageHeight =
+    points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
+  const centroidSagittalImageHeight =
+    points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
+  const rmsRadiusMm = Math.sqrt(
+    points.reduce((sum, point) => {
+      const dx = point.tangentialImageHeight - centroidTangentialImageHeight;
+      const dy = point.sagittalImageHeight - centroidSagittalImageHeight;
+      return sum + point.weight * (dx * dx + dy * dy);
+    }, 0) / totalWeight,
+  );
+
+  return {
+    minRelativeTangentialImageHeight: Math.min(...tangentialHeights),
+    maxRelativeTangentialImageHeight: Math.max(...tangentialHeights),
+    minRelativeSagittalImageHeight: Math.min(...sagittalHeights),
+    maxRelativeSagittalImageHeight: Math.max(...sagittalHeights),
+    centroidTangentialImageHeight,
+    centroidSagittalImageHeight,
+    rmsRadiusMm,
+    rmsRadiusUm: rmsRadiusMm * 1000,
+  };
 }

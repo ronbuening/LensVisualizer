@@ -18,6 +18,7 @@ import {
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
 import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle, traceOrthogonalOffAxisBundle } from "./offAxis.js";
+import { summarizeWeightedPointCloud } from "./shared.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
@@ -361,21 +362,8 @@ function computeComaPointCloudFieldFootprint(
   }));
 
   if (points.length < COMA_POINT_CLOUD_MIN_VALID_SAMPLES) return null;
-
-  const tangentialHeights = points.map((point) => point.tangentialImageHeight);
-  const sagittalHeights = points.map((point) => point.sagittalImageHeight);
-  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
-  const centroidTangentialImageHeight =
-    points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
-  const centroidSagittalImageHeight =
-    points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
-  const rmsRadiusMm = Math.sqrt(
-    points.reduce((sum, point) => {
-      const dx = point.tangentialImageHeight - centroidTangentialImageHeight;
-      const dy = point.sagittalImageHeight - centroidSagittalImageHeight;
-      return sum + point.weight * (dx * dx + dy * dy);
-    }, 0) / totalWeight,
-  );
+  const summary = summarizeWeightedPointCloud(points);
+  if (summary === null) return null;
 
   return {
     fieldFraction,
@@ -384,14 +372,14 @@ function computeComaPointCloudFieldFootprint(
     validSampleCount: bundle.validSampleCount,
     clippedSampleCount: bundle.clippedSampleCount,
     chiefIntercept: bundle.chiefRay.imagePoint.y,
-    minRelativeTangentialImageHeight: Math.min(...tangentialHeights),
-    maxRelativeTangentialImageHeight: Math.max(...tangentialHeights),
-    minRelativeSagittalImageHeight: Math.min(...sagittalHeights),
-    maxRelativeSagittalImageHeight: Math.max(...sagittalHeights),
-    centroidTangentialImageHeight,
-    centroidSagittalImageHeight,
-    rmsRadiusMm,
-    rmsRadiusUm: rmsRadiusMm * 1000,
+    minRelativeTangentialImageHeight: summary.minRelativeTangentialImageHeight,
+    maxRelativeTangentialImageHeight: summary.maxRelativeTangentialImageHeight,
+    minRelativeSagittalImageHeight: summary.minRelativeSagittalImageHeight,
+    maxRelativeSagittalImageHeight: summary.maxRelativeSagittalImageHeight,
+    centroidTangentialImageHeight: summary.centroidTangentialImageHeight,
+    centroidSagittalImageHeight: summary.centroidSagittalImageHeight,
+    rmsRadiusMm: summary.rmsRadiusMm,
+    rmsRadiusUm: summary.rmsRadiusUm,
     points,
   };
 }

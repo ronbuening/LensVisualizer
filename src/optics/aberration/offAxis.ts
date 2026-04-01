@@ -12,11 +12,12 @@ import {
   type SkewRayTraceResult,
 } from "../optics.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
+import type { PreviewObjectConjugate } from "./types.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
 export type OffAxisFanOrientation = "tangential" | "sagittal";
 export type OffAxisDirection = "tangential" | "sagittal";
-export type OffAxisObjectConjugate = "infinity" | "minimumFocus";
+export type OffAxisObjectConjugate = PreviewObjectConjugate;
 
 type SkewBundleSourceSample = OrthogonalPupilSample | CircularPupilSample;
 

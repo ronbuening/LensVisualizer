@@ -111,6 +111,9 @@ export interface ComaPointCloudPoint {
   weight: number;
 }
 
+/** Object conjugate used by off-axis preview-style analyses. */
+export type PreviewObjectConjugate = "infinity" | "minimumFocus";
+
 /** One field tile in the real 2D coma point-cloud preview grid. */
 export interface ComaPointCloudPreviewFieldResult {
   fieldFraction: number;
@@ -140,6 +143,54 @@ export interface ComaPointCloudPreviewResult {
   sharedSagittalHalfRangeMm: number;
   sharedSpotHalfRangeMm: number;
   usableFieldCount: number;
+}
+
+/** Base aperture silhouette contract for preview renderers. */
+export interface ApertureSilhouette {
+  kind: "circular";
+}
+
+/** One dense point in the bokeh preview point cloud, centered on the chief ray. */
+export interface BokehPreviewPoint extends ComaPointCloudPoint {}
+
+/** One field tile in a bokeh preview grid for a single object conjugate. */
+export interface BokehPreviewFieldResult {
+  fieldFraction: number;
+  label: string;
+  fieldAngleDeg: number;
+  objectConjugate: PreviewObjectConjugate;
+  sampleCount: number;
+  validSampleCount: number;
+  clippedSampleCount: number;
+  chiefImageHeight: number;
+  minRelativeTangentialImageHeight: number;
+  maxRelativeTangentialImageHeight: number;
+  minRelativeSagittalImageHeight: number;
+  maxRelativeSagittalImageHeight: number;
+  centroidTangentialImageHeight: number;
+  centroidSagittalImageHeight: number;
+  rmsRadiusMm: number;
+  rmsRadiusUm: number;
+  points: BokehPreviewPoint[];
+  apertureSilhouette: ApertureSilhouette;
+  usable: boolean;
+}
+
+/** One 2×2 bokeh preview grid for a single object conjugate. */
+export interface BokehPreviewConjugateResult {
+  objectConjugate: PreviewObjectConjugate;
+  label: string;
+  fields: BokehPreviewFieldResult[];
+  usableFieldCount: number;
+}
+
+/** Shared bokeh preview payload for the current lens state and aperture. */
+export interface BokehPreviewResult {
+  fieldFractions: readonly number[];
+  conjugates: BokehPreviewConjugateResult[];
+  sharedTangentialHalfRangeMm: number;
+  sharedSagittalHalfRangeMm: number;
+  sharedSpotHalfRangeMm: number;
 }
 
 /** Per-channel chromatic focus shift at a single field position. */
@@ -202,6 +253,13 @@ export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 /** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
 export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = [1, 8, 16, 24, 32, 40] as const;
 export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
+  (sum, count) => sum + count,
+  0,
+);
+
+/** Denser equal-area circular pupil pattern used by the bokeh preview sampling. */
+export const BOKEH_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = [1, 12, 24, 36, 48, 60, 72] as const;
+export const BOKEH_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = BOKEH_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
   (sum, count) => sum + count,
   0,
 );
