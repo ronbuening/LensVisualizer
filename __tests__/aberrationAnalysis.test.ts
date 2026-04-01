@@ -1052,14 +1052,15 @@ describe("computeBokehPreview", () => {
       6,
     );
     expect(atClose!.sharedSpotHalfRangeMm).not.toBeCloseTo(atInfinity!.sharedSpotHalfRangeMm, 6);
-    expect(atClose!.displaySpotHalfRangeMm).toBeCloseTo(atInfinity!.displaySpotHalfRangeMm, 6);
-    expect(atClose!.conjugates[0].displaySpotHalfRangeMm).toBeCloseTo(
+    expect(atClose!.displaySpotHalfRangeMm).not.toBeCloseTo(atInfinity!.displaySpotHalfRangeMm, 6);
+    expect(atClose!.conjugates[0].displaySpotHalfRangeMm).toBeCloseTo(atClose!.conjugates[0].sharedSpotHalfRangeMm, 6);
+    expect(atClose!.conjugates[1].displaySpotHalfRangeMm).toBeCloseTo(atClose!.conjugates[1].sharedSpotHalfRangeMm, 6);
+    expect(atClose!.conjugates[0].displaySpotHalfRangeMm).not.toBeCloseTo(
       atInfinity!.conjugates[0].displaySpotHalfRangeMm,
       6,
     );
-    expect(atClose!.conjugates[1].displaySpotHalfRangeMm).toBeCloseTo(
-      atInfinity!.conjugates[1].displaySpotHalfRangeMm,
-      6,
+    expect(atClose!.conjugates[0].fields[2]!.rmsRadiusMm).toBeGreaterThan(
+      atInfinity!.conjugates[0].fields[2]!.rmsRadiusMm,
     );
   });
 

@@ -141,7 +141,7 @@ describe("BokehPreviewOverlayContent", () => {
     expect(screen.getByText("Bokeh Preview (Beta)")).toBeTruthy();
     expect(screen.getByText("Infinity subject".toUpperCase())).toBeTruthy();
     expect(screen.getByText("Minimum-focus subject".toUpperCase())).toBeTruthy();
-    expect(screen.getByText(/FIXED SUBJECT SCALES/i)).toBeTruthy();
+    expect(screen.getByText(/CURRENT SUBJECT SCALES/i)).toBeTruthy();
     expect(screen.getByText(/Scale ±120 µm/i)).toBeTruthy();
     expect(screen.getByText(/Scale ±160 µm/i)).toBeTruthy();
     expect(screen.getByText("LEGEND")).toBeTruthy();
@@ -213,7 +213,7 @@ describe("BokehPreviewOverlayContent", () => {
     const closeRadius = Number(closeRms!.getAttribute("r"));
     const closeFooterText = closeFooter!.textContent;
 
-    expect(closeRadius).not.toBeCloseTo(infinityRadius, 1);
+    expect(closeRadius).toBeGreaterThan(infinityRadius);
     expect(closeFooterText).not.toBe(infinityFooterText);
   });
 });
