@@ -48,9 +48,9 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
                 letterSpacing: "0.08em",
               }}
             >
-              <span>SHARED SPOT SCALE</span>
+              <span>DISPLAY SPOT SCALE</span>
               <strong style={{ color: t.value, fontSize: 13, fontWeight: 700 }}>
-                ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
+                ±{formatComaSpan(result.displaySpotHalfRangeMm * 1000)}
               </strong>
             </div>
           ) : null}
@@ -103,7 +103,7 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
                     {conjugate.usableFieldCount}/{conjugate.fields.length} usable fields
                   </span>
                 </div>
-                <BokehPreviewGrid result={conjugate} sharedSpotHalfRangeMm={result.sharedSpotHalfRangeMm} t={t} />
+                <BokehPreviewGrid result={conjugate} sharedSpotHalfRangeMm={result.displaySpotHalfRangeMm} t={t} />
               </div>
             ))}
           </div>

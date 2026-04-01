@@ -1,3 +1,4 @@
+import { doLayout, entrancePupilAtState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   ApertureSilhouette,
@@ -41,6 +42,8 @@ const CONJUGATE_META: readonly ConjugateMeta[] = [
   { objectConjugate: "infinity", label: "Infinity subject" },
   { objectConjugate: "minimumFocus", label: "Minimum-focus subject" },
 ];
+
+const DISPLAY_ENVELOPE_FOCUS_SAMPLES = [0, 1] as const;
 
 function previewFieldMeta(): PreviewFieldMeta[] {
   return PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => ({
@@ -167,17 +170,7 @@ function computeBokehPreviewConjugate(
   };
 }
 
-export function computeBokehPreview(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-): BokehPreviewResult | null {
-  const conjugates = CONJUGATE_META.map((meta) =>
-    computeBokehPreviewConjugate(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta),
-  );
+function measureBokehPreviewRanges(conjugates: readonly BokehPreviewConjugateResult[]) {
   const usableFields = conjugates.flatMap((conjugate) => conjugate.fields.filter((field) => field.usable));
   if (usableFields.length < 2) return null;
 
@@ -195,10 +188,85 @@ export function computeBokehPreview(
   );
 
   return {
-    fieldFractions: PREVIEW_FIELD_FRACTIONS,
-    conjugates,
+    usableFields,
     sharedTangentialHalfRangeMm,
     sharedSagittalHalfRangeMm,
     sharedSpotHalfRangeMm: Math.max(sharedTangentialHalfRangeMm, sharedSagittalHalfRangeMm),
+  };
+}
+
+function currentEntrancePupilDiameterAtFocus(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  currentPhysStopSD: number,
+): number {
+  if (!isFinite(currentPhysStopSD) || currentPhysStopSD <= 0 || !isFinite(L.stopPhysSD) || L.stopPhysSD <= 0) return 0;
+
+  const entrancePupil = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L);
+  if (!isFinite(entrancePupil.epSD) || entrancePupil.epSD <= 0) return 0;
+
+  return (entrancePupil.epSD * currentPhysStopSD) / L.stopPhysSD;
+}
+
+function computeDisplaySpotHalfRangeMm(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  currentPhysStopSD: number,
+  currentSharedSpotHalfRangeMm: number,
+): number {
+  const focusEnvelopeHalfRanges = DISPLAY_ENVELOPE_FOCUS_SAMPLES.flatMap((sampleFocusT) => {
+    if (Math.abs(sampleFocusT - focusT) < 1e-9) return [];
+
+    const currentEPSDAtSampleFocus = currentEntrancePupilDiameterAtFocus(L, sampleFocusT, zoomT, currentPhysStopSD);
+    if (currentEPSDAtSampleFocus <= 0) return [];
+
+    const { z: sampleZPos } = doLayout(sampleFocusT, zoomT, L);
+    const conjugates = CONJUGATE_META.map((meta) =>
+      computeBokehPreviewConjugate(
+        L,
+        sampleZPos,
+        sampleFocusT,
+        zoomT,
+        currentEPSDAtSampleFocus,
+        currentPhysStopSD,
+        meta,
+      ),
+    );
+    const ranges = measureBokehPreviewRanges(conjugates);
+    return ranges ? [ranges.sharedSpotHalfRangeMm] : [];
+  });
+
+  return Math.max(currentSharedSpotHalfRangeMm, ...focusEnvelopeHalfRanges);
+}
+
+export function computeBokehPreview(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): BokehPreviewResult | null {
+  const conjugates = CONJUGATE_META.map((meta) =>
+    computeBokehPreviewConjugate(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta),
+  );
+  const ranges = measureBokehPreviewRanges(conjugates);
+  if (ranges === null) return null;
+
+  return {
+    fieldFractions: PREVIEW_FIELD_FRACTIONS,
+    conjugates,
+    sharedTangentialHalfRangeMm: ranges.sharedTangentialHalfRangeMm,
+    sharedSagittalHalfRangeMm: ranges.sharedSagittalHalfRangeMm,
+    sharedSpotHalfRangeMm: ranges.sharedSpotHalfRangeMm,
+    displaySpotHalfRangeMm: computeDisplaySpotHalfRangeMm(
+      L,
+      focusT,
+      zoomT,
+      currentPhysStopSD,
+      ranges.sharedSpotHalfRangeMm,
+    ),
   };
 }

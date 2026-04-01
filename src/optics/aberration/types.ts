@@ -191,6 +191,7 @@ export interface BokehPreviewResult {
   sharedTangentialHalfRangeMm: number;
   sharedSagittalHalfRangeMm: number;
   sharedSpotHalfRangeMm: number;
+  displaySpotHalfRangeMm: number;
 }
 
 /** Per-channel chromatic focus shift at a single field position. */

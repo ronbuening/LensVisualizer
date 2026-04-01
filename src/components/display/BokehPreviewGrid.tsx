@@ -128,6 +128,7 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
           })}
 
           <circle
+            data-bokeh-rms={`${field.objectConjugate}-${field.label}`}
             cx={centroidX}
             cy={centroidY}
             r={rmsRadiusPx}

@@ -182,9 +182,9 @@ export default function LensDiagramPanel({
   });
 
   const bokehPreviewResult = useMemo(() => {
-    if (!L) return null;
+    if (!L || !overlays.showBokehPreview) return null;
     return computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
-  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
+  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, overlays.showBokehPreview]);
 
   return (
     <PanelErrorBoundary lensKey={lensKey}>

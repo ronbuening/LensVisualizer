@@ -2,8 +2,13 @@
 
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
+import buildLens from "../src/optics/buildLens.js";
+import NikonAF28f14DRaw from "../src/lens-data/NikonAF28f14D.data.js";
 import BokehPreviewOverlayContent from "../src/components/display/BokehPreviewOverlayContent.js";
-import type { BokehPreviewResult } from "../src/optics/aberrationAnalysis.js";
+import { computeBokehPreview, type BokehPreviewResult } from "../src/optics/aberrationAnalysis.js";
+import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.js";
+import type { LensData, RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
 const theme = {
@@ -18,6 +23,22 @@ const theme = {
 afterEach(() => {
   cleanup();
 });
+
+function build(raw: object): RuntimeLens {
+  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
+
+function stateApertureAt(L: RuntimeLens, focusT: number, zoomT: number, stopdownT: number) {
+  const currentFOPEN = fopenAtZoom(zoomT, L);
+  const rawFNumber = L.FOPEN * Math.pow(L.maxFstop / L.FOPEN, stopdownT);
+  const fNumber = Math.max(rawFNumber, currentFOPEN);
+  const currentPhysStopSD = (L.stopPhysSD * L.FOPEN) / fNumber;
+  const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
+  return {
+    currentPhysStopSD,
+    currentEPSD: (baseEPSD * L.FOPEN) / fNumber,
+  };
+}
 
 function mockResult(): BokehPreviewResult {
   const makeField = (
@@ -77,6 +98,7 @@ function mockResult(): BokehPreviewResult {
     sharedTangentialHalfRangeMm: 0.1,
     sharedSagittalHalfRangeMm: 0.08,
     sharedSpotHalfRangeMm: 0.1,
+    displaySpotHalfRangeMm: 0.16,
     conjugates: [
       {
         objectConjugate: "infinity",
@@ -111,7 +133,7 @@ describe("BokehPreviewOverlayContent", () => {
     expect(screen.getByText("Bokeh Preview (Beta)")).toBeTruthy();
     expect(screen.getByText("Infinity subject".toUpperCase())).toBeTruthy();
     expect(screen.getByText("Minimum-focus subject".toUpperCase())).toBeTruthy();
-    expect(screen.getByText(/SHARED SPOT SCALE/i)).toBeTruthy();
+    expect(screen.getByText(/DISPLAY SPOT SCALE/i)).toBeTruthy();
     expect(screen.getByText("LEGEND")).toBeTruthy();
     expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
     expect(screen.getByText("Density shading = weighted ray overlap at the image plane")).toBeTruthy();
@@ -131,5 +153,50 @@ describe("BokehPreviewOverlayContent", () => {
     render(<BokehPreviewOverlayContent result={null} t={theme} />);
 
     expect(screen.getByText("Unable to compute a usable bokeh preview for this lens state.")).toBeTruthy();
+  });
+
+  it("renders visibly different RMS blur footprints as focus changes", () => {
+    const L = build(NikonAF28f14DRaw);
+    const zoomT = 0;
+    const infinityFocus = 0;
+    const closeFocus = 0.8;
+    const infinityLayout = doLayout(infinityFocus, zoomT, L);
+    const closeLayout = doLayout(closeFocus, zoomT, L);
+    const infinityAperture = stateApertureAt(L, infinityFocus, zoomT, 0);
+    const closeAperture = stateApertureAt(L, closeFocus, zoomT, 0);
+
+    const infinityResult = computeBokehPreview(
+      L,
+      infinityLayout.z,
+      infinityFocus,
+      zoomT,
+      infinityAperture.currentEPSD,
+      infinityAperture.currentPhysStopSD,
+    );
+    const closeResult = computeBokehPreview(
+      L,
+      closeLayout.z,
+      closeFocus,
+      zoomT,
+      closeAperture.currentEPSD,
+      closeAperture.currentPhysStopSD,
+    );
+
+    expect(infinityResult).not.toBeNull();
+    expect(closeResult).not.toBeNull();
+
+    const { container: infinityContainer } = render(<BokehPreviewOverlayContent result={infinityResult} t={theme} />);
+    const infinityRms = infinityContainer.querySelector('[data-bokeh-rms="infinity-50%"]');
+    expect(infinityRms).toBeTruthy();
+    const infinityRadius = Number(infinityRms!.getAttribute("r"));
+
+    cleanup();
+
+    const { container: closeContainer } = render(<BokehPreviewOverlayContent result={closeResult} t={theme} />);
+    const closeRms = closeContainer.querySelector('[data-bokeh-rms="infinity-50%"]');
+    expect(closeRms).toBeTruthy();
+    const closeRadius = Number(closeRms!.getAttribute("r"));
+
+    expect(closeRadius).not.toBeCloseTo(infinityRadius, 4);
   });
 });
