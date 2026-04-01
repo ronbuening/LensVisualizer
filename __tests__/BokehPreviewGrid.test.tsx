@@ -106,10 +106,16 @@ describe("BokehPreviewGrid", () => {
     expect(screen.getByText("Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)")).toBeTruthy();
   });
 
-  it("renders a scale bar label in the footer", () => {
+  it("renders a scale bar label inside each usable tile", () => {
     // sharedSpotHalfRangeMm=0.115 → pxPerMm=56/0.23≈243, maxBarMm=0.115 → picks 100 µm
     render(<BokehPreviewGrid grid={makeGrid([true, true, true, true])} t={theme} focusLabel="Infinity" />);
-    expect(screen.getByText("100 µm")).toBeTruthy();
+    // One scale bar per usable tile (4 total)
+    expect(screen.getAllByText("100 µm").length).toBe(4);
+  });
+
+  it("scale bar only appears in usable tiles", () => {
+    render(<BokehPreviewGrid grid={makeGrid([true, false, false, false])} t={theme} focusLabel="Infinity" />);
+    expect(screen.getAllByText("100 µm").length).toBe(1);
   });
 
   it("renders data-bokeh-tile attributes for all tiles", () => {

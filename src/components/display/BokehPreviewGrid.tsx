@@ -21,12 +21,12 @@ interface BokehPreviewGridProps {
 }
 
 const VB_W = 320;
-const VB_H = 328;
+const VB_H = 312;
 const OUTER_PAD_X = 18;
 const OUTER_PAD_Y = 18;
 const COL_GAP = 14;
 const ROW_GAP = 18;
-const FOOTER_H = 70;
+const FOOTER_H = 54;
 const TILE_W = (VB_W - OUTER_PAD_X * 2 - COL_GAP) / 2;
 const TILE_H = (VB_H - OUTER_PAD_Y * 2 - ROW_GAP - FOOTER_H) / 2;
 const TILE_ML = 28;
@@ -41,9 +41,9 @@ const POINT_CLOUD_PLOT_SIZE = Math.min(PLOT_W, PLOT_H);
 const SCALE_PADDING_FACTOR = 1.15;
 
 /**
- * Picks a human-readable scale bar length for the SVG footer.
+ * Picks a human-readable scale bar length to overlay inside each tile.
  * Returns the label string and bar width in SVG units (same coordinate system
- * as the tile point clouds).
+ * as the tile point clouds), capped at the data half-range so it fits in the tile.
  */
 function pickScaleBar(sharedSpotHalfRangeMm: number): { labelText: string; barWidthSvg: number } {
   const pxPerMm = POINT_CLOUD_PLOT_SIZE / (2 * sharedSpotHalfRangeMm);
@@ -180,7 +180,37 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
             />
           ))}
 
-          {/* Vignetting transmission label bottom-left */}
+          {/* Scale bar overlay — bottom-left corner of the point cloud square */}
+          {(() => {
+            const { labelText, barWidthSvg } = pickScaleBar(sharedSpotHalfRangeMm);
+            const barY = spotPlotY + POINT_CLOUD_PLOT_SIZE - 4;
+            const barX1 = spotPlotX + 3;
+            const barX2 = spotPlotX + 3 + barWidthSvg;
+            const labelX = barX1 + barWidthSvg / 2;
+            const labelY = barY - 6;
+            return (
+              <>
+                {/* Background rect for contrast against the point cloud */}
+                <rect
+                  x={barX1 - 2}
+                  y={labelY - 7}
+                  width={barWidthSvg + 4}
+                  height={18}
+                  rx={1}
+                  fill={t.panelBg}
+                  opacity={0.82}
+                />
+                <text x={labelX} y={labelY} textAnchor="middle" fill={t.label} fontSize={9} fontFamily="inherit">
+                  {labelText}
+                </text>
+                <line x1={barX1} y1={barY} x2={barX2} y2={barY} stroke={t.label} strokeWidth={1.5} />
+                <line x1={barX1} y1={barY - 3} x2={barX1} y2={barY + 1} stroke={t.label} strokeWidth={1} />
+                <line x1={barX2} y1={barY - 3} x2={barX2} y2={barY + 1} stroke={t.label} strokeWidth={1} />
+              </>
+            );
+          })()}
+
+          {/* Vignetting transmission label bottom-left (below the plot area) */}
           {vignetteLabel !== null ? (
             <text x={tileX + 6} y={tileY + TILE_H - 5} fill={t.muted} fontSize={7.5} fontFamily="inherit">
               {vignetteLabel}
@@ -197,29 +227,13 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
 }
 
 export default function BokehPreviewGrid({ grid, t, focusLabel }: BokehPreviewGridProps) {
-  const { labelText, barWidthSvg } = pickScaleBar(grid.sharedSpotHalfRangeMm);
-  const barCx = VB_W / 2;
-  const barY = VB_H - 54;
-  const barX1 = barCx - barWidthSvg / 2;
-  const barX2 = barCx + barWidthSvg / 2;
-  const tickH = 4;
-
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
         {`${focusLabel} source bokeh preview: chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale.`}
       </title>
       {grid.fields.map((field, index) => renderBokehTile(field, index, grid.sharedSpotHalfRangeMm, t))}
-
-      {/* Scale bar — same coordinate scale as the tile point clouds */}
-      <line x1={barX1} y1={barY} x2={barX2} y2={barY} stroke={t.muted} strokeWidth={1} />
-      <line x1={barX1} y1={barY - tickH} x2={barX1} y2={barY + tickH} stroke={t.muted} strokeWidth={1} />
-      <line x1={barX2} y1={barY - tickH} x2={barX2} y2={barY + tickH} stroke={t.muted} strokeWidth={1} />
-      <text x={barCx} y={barY + 12} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-        {labelText}
-      </text>
-
-      <text x={VB_W / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+      <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
         Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)
       </text>
     </svg>
