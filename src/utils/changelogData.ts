@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-01 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-01",
+    type: "lens",
+    summary: "Added CANON new FD 50mm f/1.2 and VOIGTLANDER 50mm f/1.2 for X-Mount",
+  },
   // ── 2026-03-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-03-31",
