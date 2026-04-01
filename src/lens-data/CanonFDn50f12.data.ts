@@ -9,7 +9,7 @@ import type { LensDataInput } from "../lensDataInput";
 
 const LENS_DATA = {
   key: "canon-fdn-50f12",
-  name: "Canon New FD 50mm f/1.2",
+  name: "CANON New FD 50mm f/1.2",
   maker: "Canon",
   subtitle: "US 4,364,643 · Embodiment 3 (Momiyama, 1982)",
   specs: ["7 elements / 6 groups", "46° field of view", "MFD 0.5 m", "52 mm filter thread"],
@@ -142,9 +142,10 @@ const LENS_DATA = {
 
   asph: {},
 
-  // Unit focusing: only BFD changes
+  // Unit focusing: only BFD changes.
+  // Analysis doc: infinity BFD = 35.384 mm; close-focus extension at 0.5 m is ~6.2 mm.
   var: {
-    "13": [35.384, 29.23],
+    "13": [35.384, 41.584],
   },
   varLabels: [["13", "BF"]],
 
@@ -160,7 +161,7 @@ const LENS_DATA = {
   fstopSeries: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
 
   scFill: 0.55,
-  yScFill: 0.5,
+  yScFill: 0.55,
 } satisfies LensDataInput;
 
 export default LENS_DATA;
