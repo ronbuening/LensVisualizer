@@ -182,6 +182,10 @@ export interface BokehPreviewConjugateResult {
   label: string;
   fields: BokehPreviewFieldResult[];
   usableFieldCount: number;
+  sharedTangentialHalfRangeMm: number;
+  sharedSagittalHalfRangeMm: number;
+  sharedSpotHalfRangeMm: number;
+  displaySpotHalfRangeMm: number;
 }
 
 /** Shared bokeh preview payload for the current lens state and aperture. */

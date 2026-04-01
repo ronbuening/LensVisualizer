@@ -42,6 +42,8 @@ interface PreviewTileShellProps {
   label: string;
   angleLabel: string;
   footerLabel: string;
+  footerDataAttributeName?: string;
+  footerDataAttributeValue?: string;
   t: Theme;
   dataAttributeName?: string;
   children: ReactNode;
@@ -92,12 +94,18 @@ export function PreviewTileShell({
   label,
   angleLabel,
   footerLabel,
+  footerDataAttributeName,
+  footerDataAttributeValue,
   t,
   dataAttributeName = "data-preview-tile",
   children,
 }: PreviewTileShellProps) {
   const { tileX, tileY, plotX, plotY, zeroX } = geometry;
   const tileProps = { [dataAttributeName]: label } as Record<string, string>;
+  const footerProps =
+    footerDataAttributeName && footerDataAttributeValue
+      ? ({ [footerDataAttributeName]: footerDataAttributeValue } as Record<string, string>)
+      : undefined;
 
   return (
     <g {...tileProps}>
@@ -144,6 +152,7 @@ export function PreviewTileShell({
         fill={t.muted}
         fontSize={7.5}
         fontFamily="inherit"
+        {...footerProps}
       >
         {footerLabel}
       </text>

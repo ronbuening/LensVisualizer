@@ -953,6 +953,10 @@ describe("computeBokehPreview", () => {
       Math.max(result!.sharedTangentialHalfRangeMm, result!.sharedSagittalHalfRangeMm),
     );
     expect(result!.displaySpotHalfRangeMm).toBeGreaterThanOrEqual(result!.sharedSpotHalfRangeMm);
+    for (const conjugate of result!.conjugates) {
+      expect(conjugate.sharedSpotHalfRangeMm).toBeGreaterThan(0);
+      expect(conjugate.displaySpotHalfRangeMm).toBeGreaterThanOrEqual(conjugate.sharedSpotHalfRangeMm);
+    }
   });
 
   it("uses the denser fixed circular pupil pattern for every usable field", () => {
@@ -1049,6 +1053,14 @@ describe("computeBokehPreview", () => {
     );
     expect(atClose!.sharedSpotHalfRangeMm).not.toBeCloseTo(atInfinity!.sharedSpotHalfRangeMm, 6);
     expect(atClose!.displaySpotHalfRangeMm).toBeCloseTo(atInfinity!.displaySpotHalfRangeMm, 6);
+    expect(atClose!.conjugates[0].displaySpotHalfRangeMm).toBeCloseTo(
+      atInfinity!.conjugates[0].displaySpotHalfRangeMm,
+      6,
+    );
+    expect(atClose!.conjugates[1].displaySpotHalfRangeMm).toBeCloseTo(
+      atInfinity!.conjugates[1].displaySpotHalfRangeMm,
+      6,
+    );
   });
 
   it("shows clipped off-axis bokeh truncation when the stop is constricted", () => {

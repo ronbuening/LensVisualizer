@@ -104,6 +104,10 @@ function mockResult(): BokehPreviewResult {
         objectConjugate: "infinity",
         label: "Infinity subject",
         usableFieldCount: 4,
+        sharedTangentialHalfRangeMm: 0.1,
+        sharedSagittalHalfRangeMm: 0.08,
+        sharedSpotHalfRangeMm: 0.1,
+        displaySpotHalfRangeMm: 0.12,
         fields: [
           makeField("Center", 0, 0, "infinity", 0, 0, 0),
           makeField("25%", 0.25, 4, "infinity", 0.03, 0.01, 4),
@@ -115,6 +119,10 @@ function mockResult(): BokehPreviewResult {
         objectConjugate: "minimumFocus",
         label: "Minimum-focus subject",
         usableFieldCount: 4,
+        sharedTangentialHalfRangeMm: 0.1,
+        sharedSagittalHalfRangeMm: 0.08,
+        sharedSpotHalfRangeMm: 0.1,
+        displaySpotHalfRangeMm: 0.16,
         fields: [
           makeField("Center", 0, 0, "minimumFocus", 0.01, -0.005, 0),
           makeField("25%", 0.25, 4.5, "minimumFocus", 0.02, -0.01, 0),
@@ -133,7 +141,9 @@ describe("BokehPreviewOverlayContent", () => {
     expect(screen.getByText("Bokeh Preview (Beta)")).toBeTruthy();
     expect(screen.getByText("Infinity subject".toUpperCase())).toBeTruthy();
     expect(screen.getByText("Minimum-focus subject".toUpperCase())).toBeTruthy();
-    expect(screen.getByText(/DISPLAY SPOT SCALE/i)).toBeTruthy();
+    expect(screen.getByText(/FIXED SUBJECT SCALES/i)).toBeTruthy();
+    expect(screen.getByText(/Scale ±120 µm/i)).toBeTruthy();
+    expect(screen.getByText(/Scale ±160 µm/i)).toBeTruthy();
     expect(screen.getByText("LEGEND")).toBeTruthy();
     expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
     expect(screen.getByText("Density shading = weighted ray overlap at the image plane")).toBeTruthy();
@@ -146,7 +156,7 @@ describe("BokehPreviewOverlayContent", () => {
     expect(container.querySelectorAll("[data-bokeh-tile]").length).toBe(8);
     expect(screen.getByText("Clip 20%")).toBeTruthy();
     expect(screen.getByText("Clip 30%")).toBeTruthy();
-    expect(screen.getAllByText("Chief-ray-centered blur footprint").length).toBe(8);
+    expect(screen.getAllByText("RMS 30.0 µm").length).toBe(8);
   });
 
   it("shows a fallback message when the preview cannot be computed", () => {
@@ -187,16 +197,23 @@ describe("BokehPreviewOverlayContent", () => {
 
     const { container: infinityContainer } = render(<BokehPreviewOverlayContent result={infinityResult} t={theme} />);
     const infinityRms = infinityContainer.querySelector('[data-bokeh-rms="infinity-50%"]');
+    const infinityFooter = infinityContainer.querySelector('[data-bokeh-footer="infinity-50%"]');
     expect(infinityRms).toBeTruthy();
+    expect(infinityFooter).toBeTruthy();
     const infinityRadius = Number(infinityRms!.getAttribute("r"));
+    const infinityFooterText = infinityFooter!.textContent;
 
     cleanup();
 
     const { container: closeContainer } = render(<BokehPreviewOverlayContent result={closeResult} t={theme} />);
     const closeRms = closeContainer.querySelector('[data-bokeh-rms="infinity-50%"]');
+    const closeFooter = closeContainer.querySelector('[data-bokeh-footer="infinity-50%"]');
     expect(closeRms).toBeTruthy();
+    expect(closeFooter).toBeTruthy();
     const closeRadius = Number(closeRms!.getAttribute("r"));
+    const closeFooterText = closeFooter!.textContent;
 
-    expect(closeRadius).not.toBeCloseTo(infinityRadius, 4);
+    expect(closeRadius).not.toBeCloseTo(infinityRadius, 1);
+    expect(closeFooterText).not.toBe(infinityFooterText);
   });
 });

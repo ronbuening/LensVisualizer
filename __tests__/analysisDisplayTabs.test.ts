@@ -183,7 +183,8 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Density darkening comes from accumulated weighted ray hits");
     expect(html).toContain("Crosshair = chief-ray reference");
     expect(html).toContain("Stop model = Circular stop silhouette");
-    expect(html).toContain("Chief-ray-centered blur footprint");
+    expect(html).toContain('data-bokeh-footer="infinity-50%"');
+    expect(html).toContain("RMS ");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

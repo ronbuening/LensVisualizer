@@ -48,18 +48,16 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
                 letterSpacing: "0.08em",
               }}
             >
-              <span>DISPLAY SPOT SCALE</span>
-              <strong style={{ color: t.value, fontSize: 13, fontWeight: 700 }}>
-                ±{formatComaSpan(result.displaySpotHalfRangeMm * 1000)}
-              </strong>
+              <span>FIXED SUBJECT SCALES</span>
             </div>
           ) : null}
         </div>
         <p style={{ margin: 0, fontSize: 12.5, lineHeight: 1.55, color: t.value, fontFamily: "inherit" }}>
           Two chief-ray-centered real-ray spot grids traced through the active lens state. Density darkening comes from
           accumulated weighted ray hits, so spherical-aberration structure and cat&apos;s-eye clipping appear directly
-          from the traced samples. The focus slider still updates the lens state for both grids; the minimum-focus grid
-          keeps the object conjugate pinned to the lens close-focus distance.
+          from the traced samples. Each subject grid keeps a fixed focus-envelope scale so moving the focus slider
+          visibly grows or shrinks the blur footprint instead of re-normalizing it away. The minimum-focus grid keeps
+          the object conjugate pinned to the lens close-focus distance.
         </p>
       </div>
 
@@ -99,11 +97,24 @@ export default function BokehPreviewOverlayContent({ result, t }: BokehPreviewOv
                   <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", fontFamily: "inherit" }}>
                     {conjugate.label.toUpperCase()}
                   </span>
-                  <span style={{ fontSize: 8.5, color: t.muted, fontFamily: "inherit" }}>
-                    {conjugate.usableFieldCount}/{conjugate.fields.length} usable fields
-                  </span>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      gap: 10,
+                      flexWrap: "wrap",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <span style={{ fontSize: 8.5, color: t.muted, fontFamily: "inherit" }}>
+                      {conjugate.usableFieldCount}/{conjugate.fields.length} usable fields
+                    </span>
+                    <span style={{ fontSize: 8.5, color: t.muted, fontFamily: "inherit" }}>
+                      Scale ±{formatComaSpan(conjugate.displaySpotHalfRangeMm * 1000)}
+                    </span>
+                  </div>
                 </div>
-                <BokehPreviewGrid result={conjugate} sharedSpotHalfRangeMm={result.displaySpotHalfRangeMm} t={t} />
+                <BokehPreviewGrid result={conjugate} sharedSpotHalfRangeMm={conjugate.displaySpotHalfRangeMm} t={t} />
               </div>
             ))}
           </div>

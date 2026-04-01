@@ -17,6 +17,7 @@ import {
   formatRelativeMm,
   previewTileGeometry,
 } from "./RepresentativePreviewGrid.js";
+import { formatComaSpan } from "./MeridionalComaPlot.js";
 
 interface BokehPreviewGridProps {
   result: BokehPreviewConjugateResult;
@@ -69,6 +70,7 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
   );
   const clippedPercent = field.sampleCount > 0 ? Math.round((field.clippedSampleCount / field.sampleCount) * 100) : 0;
   const shadedPoints = [...field.points].sort((a, b) => a.weight - b.weight);
+  const footerLabel = field.usable ? `RMS ${formatComaSpan(field.rmsRadiusUm)}` : "Insufficient data";
 
   return (
     <PreviewTileShell
@@ -76,7 +78,9 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel="Chief-ray-centered blur footprint"
+      footerLabel={footerLabel}
+      footerDataAttributeName="data-bokeh-footer"
+      footerDataAttributeValue={`${field.objectConjugate}-${field.label}`}
       t={t}
       dataAttributeName="data-bokeh-tile"
     >
