@@ -101,9 +101,15 @@ describe("BokehPreviewGrid", () => {
     expect(screen.getAllByText("90% T").length).toBe(2);
   });
 
-  it("renders the footer scale label", () => {
+  it("renders the footer axis label", () => {
     render(<BokehPreviewGrid grid={makeGrid([true, true, true, true])} t={theme} focusLabel="Infinity" />);
     expect(screen.getByText("Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)")).toBeTruthy();
+  });
+
+  it("renders a scale bar label in the footer", () => {
+    // sharedSpotHalfRangeMm=0.115 → pxPerMm=56/0.23≈243, maxBarMm=0.115 → picks 100 µm
+    render(<BokehPreviewGrid grid={makeGrid([true, true, true, true])} t={theme} focusLabel="Infinity" />);
+    expect(screen.getByText("100 µm")).toBeTruthy();
   });
 
   it("renders data-bokeh-tile attributes for all tiles", () => {

@@ -21,12 +21,12 @@ interface BokehPreviewGridProps {
 }
 
 const VB_W = 320;
-const VB_H = 312;
+const VB_H = 328;
 const OUTER_PAD_X = 18;
 const OUTER_PAD_Y = 18;
 const COL_GAP = 14;
 const ROW_GAP = 18;
-const FOOTER_H = 54;
+const FOOTER_H = 70;
 const TILE_W = (VB_W - OUTER_PAD_X * 2 - COL_GAP) / 2;
 const TILE_H = (VB_H - OUTER_PAD_Y * 2 - ROW_GAP - FOOTER_H) / 2;
 const TILE_ML = 28;
@@ -39,6 +39,25 @@ const POINT_CLOUD_PLOT_SIZE = Math.min(PLOT_W, PLOT_H);
 
 /** Factor by which sharedSpotHalfRangeMm exceeds the raw max extent (15 % padding). */
 const SCALE_PADDING_FACTOR = 1.15;
+
+/**
+ * Picks a human-readable scale bar length for the SVG footer.
+ * Returns the label string and bar width in SVG units (same coordinate system
+ * as the tile point clouds).
+ */
+function pickScaleBar(sharedSpotHalfRangeMm: number): { labelText: string; barWidthSvg: number } {
+  const pxPerMm = POINT_CLOUD_PLOT_SIZE / (2 * sharedSpotHalfRangeMm);
+  // Cap bar at 80 SVG units and at the data half-range so it always fits in the tiles
+  const maxBarMm = Math.min(80 / pxPerMm, sharedSpotHalfRangeMm);
+  const niceUm = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000] as const;
+  let chosenUm: number = niceUm[0];
+  for (const um of niceUm) {
+    if (um / 1000 <= maxBarMm) chosenUm = um;
+  }
+  const barWidthSvg = (chosenUm / 1000) * pxPerMm;
+  const labelText = chosenUm >= 1000 ? `${chosenUm / 1000} mm` : `${chosenUm} \u00B5m`;
+  return { labelText, barWidthSvg };
+}
 
 interface TileGeometry {
   tileX: number;
@@ -178,13 +197,29 @@ function renderBokehTile(field: BokehPreviewFieldResult, index: number, sharedSp
 }
 
 export default function BokehPreviewGrid({ grid, t, focusLabel }: BokehPreviewGridProps) {
+  const { labelText, barWidthSvg } = pickScaleBar(grid.sharedSpotHalfRangeMm);
+  const barCx = VB_W / 2;
+  const barY = VB_H - 54;
+  const barX1 = barCx - barWidthSvg / 2;
+  const barX2 = barCx + barWidthSvg / 2;
+  const tickH = 4;
+
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
         {`${focusLabel} source bokeh preview: chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale.`}
       </title>
       {grid.fields.map((field, index) => renderBokehTile(field, index, grid.sharedSpotHalfRangeMm, t))}
-      <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+
+      {/* Scale bar — same coordinate scale as the tile point clouds */}
+      <line x1={barX1} y1={barY} x2={barX2} y2={barY} stroke={t.muted} strokeWidth={1} />
+      <line x1={barX1} y1={barY - tickH} x2={barX1} y2={barY + tickH} stroke={t.muted} strokeWidth={1} />
+      <line x1={barX2} y1={barY - tickH} x2={barX2} y2={barY + tickH} stroke={t.muted} strokeWidth={1} />
+      <text x={barCx} y={barY + 12} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+        {labelText}
+      </text>
+
+      <text x={VB_W / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
         Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)
       </text>
     </svg>
