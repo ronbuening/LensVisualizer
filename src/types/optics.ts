@@ -108,6 +108,13 @@ export interface LensData {
   rayLeadFrac: number;
   offAxisFieldFrac: number;
   offAxisFractions: number[];
+  /**
+   * Optional number of aperture diaphragm blades.
+   * Future: used by bokeh preview to render an N-blade polygon aperture shape
+   * when the aperture is stopped down from wide open. If omitted, the aperture
+   * is treated as circular.
+   */
+  apertureBlades?: number;
 }
 
 /** Fields provided by LENS_DEFAULTS — optional in raw lens data files */

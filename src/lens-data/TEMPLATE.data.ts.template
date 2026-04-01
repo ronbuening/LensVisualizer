@@ -272,6 +272,9 @@ const LENS_DATA = {
                                    //   For variable-aperture zooms, use an array with one value
                                    //   per zoom position: e.g. [4.5, 5.76] for f/4.5-5.6
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
+  // apertureBlades: 9,           // optional: number of aperture diaphragm blades (e.g. 7, 9, 11)
+                                   //   Future: bokeh preview uses this to render N-blade polygon aperture
+                                   //   shapes at stopped-down apertures. Omit for circular aperture (default).
 
   /* ── Layout tuning (overrides defaults from defaults.ts) ──
    *  Only include if the defaults don't work well for this lens.

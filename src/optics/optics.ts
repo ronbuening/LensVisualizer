@@ -811,6 +811,50 @@ export function traceChiefRelativeSkewRayChromatic(
 }
 
 /**
+ * Traces a chief-relative skew ray from a NEAR OBJECT at finite distance D_near_mm
+ * in object space. Applies the full 2D near-object convergent slope corrections to
+ * both the X and Y pupil components:
+ *   ux_corrected = xFraction * epSD / D_near_mm   (sagittal convergence)
+ *   uy_corrected = fieldSlope + yFraction * epSD / D_near_mm   (tangential convergence)
+ *
+ * For a point source at (0, y_obj, −D_near), each pupil sample at (x_pup, y_pup)
+ * converges toward the object. Relative to the chief ray the correction is
+ *   du_x = x_pup / D_near = xFraction * epSD / D_near_mm
+ *   du_y = y_pup / D_near = yFraction * epSD / D_near_mm
+ * Both X and Y are corrected for full 2D accuracy.
+ *
+ * This is the primary reusable building block for any near-object analysis
+ * (bokeh preview, close-focus aberration studies, etc.).
+ */
+export function traceChiefRelativeNearObjectSkewRay(
+  xFraction: number,
+  yFraction: number,
+  chiefLaunchHeight: number,
+  fieldSlope: number,
+  entrancePupilSemiDiameter: number,
+  D_near_mm: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+): SkewRayTraceResult {
+  const uxCorrected = (xFraction * entrancePupilSemiDiameter) / D_near_mm;
+  const uyCorrected = fieldSlope + (yFraction * entrancePupilSemiDiameter) / D_near_mm;
+  return traceSkewRay(
+    xFraction * entrancePupilSemiDiameter,
+    chiefLaunchHeight + yFraction * entrancePupilSemiDiameter,
+    uxCorrected,
+    uyCorrected,
+    focusT,
+    zoomT,
+    stopSD,
+    ghost,
+    L,
+  );
+}
+
+/**
  * Trace a single ray through the lens system using exact (real) Snell's law.
  *
  * @param y0      — initial ray height (mm)

@@ -81,6 +81,7 @@ These must be specified in every lens file — they have no defaults.
 | `zoomPositions` | `number[]` | | Focal lengths in mm at each zoom position (see Zoom Lens Fields) |
 | `zoomStep` | `number` | `0.004` | Zoom slider step size |
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
+| `apertureBlades` | `number` | | Number of aperture diaphragm blades (e.g. `7`, `9`, `11`). Omit to treat the aperture as circular (default). Future: bokeh preview will use this to render N-blade polygon aperture shapes at stopped-down apertures (e.g. hexagonal for 6 blades, rounded-hexagonal for 6 blades with rounding). |
 
 ---
 

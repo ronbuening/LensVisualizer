@@ -212,3 +212,86 @@ export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 /** Fixed field positions shown in the field-curvature / astigmatism chart. */
 export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
 export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) => index / 16);
+
+/* ── Bokeh preview types ── */
+
+/**
+ * Dense circular pupil ring sample counts for the bokeh preview.
+ * 8 rings totalling 225 samples — denser than the coma preview's 121 samples
+ * for high-fidelity bokeh ball simulation.
+ */
+export const BOKEH_PREVIEW_PUPIL_RING_SAMPLES = [1, 8, 16, 24, 32, 40, 48, 56] as const;
+export const BOKEH_PREVIEW_SAMPLE_COUNT = BOKEH_PREVIEW_PUPIL_RING_SAMPLES.reduce((sum, n) => sum + n, 0);
+
+/** Fixed field positions shown in the bokeh preview grid — same as coma. */
+export const BOKEH_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+
+/** One traced real-ray point in the bokeh ball point cloud, centered on the chief ray. */
+export interface BokehPreviewPoint {
+  index: number;
+  sourceSampleIndex: number;
+  /** Sagittal (X) deviation from chief ray on the image plane (mm). */
+  sagittalImageHeight: number;
+  /** Tangential (Y) deviation from chief ray on the image plane (mm). */
+  tangentialImageHeight: number;
+  /** Equal-area sample weight (from sampleCircularPupil). */
+  weight: number;
+  /** Normalised pupil radius [0..1] — available for future intensity shading. */
+  radiusFraction: number | null;
+}
+
+/** One field tile result in the bokeh preview 2×2 grid. */
+export interface BokehPreviewFieldResult {
+  fieldFraction: (typeof BOKEH_PREVIEW_FIELD_FRACTIONS)[number];
+  label: string;
+  fieldAngleDeg: number;
+  /** Total pupil samples attempted. */
+  sampleCount: number;
+  /** Samples that survived all aperture clipping (vignetting). */
+  validSampleCount: number;
+  /** Samples that were clipped (vignetted). */
+  clippedSampleCount: number;
+  /** Geometric transmission: validSampleCount / sampleCount [0..1]. */
+  vignetteTransmission: number;
+  /** Chief-ray tangential image height on the sensor (mm, absolute). */
+  chiefTangentialImageHeight: number;
+  /** Chief-ray sagittal image height on the sensor (mm, absolute). */
+  chiefSagittalImageHeight: number;
+  minRelativeSagittalImageHeight: number;
+  maxRelativeSagittalImageHeight: number;
+  minRelativeTangentialImageHeight: number;
+  maxRelativeTangentialImageHeight: number;
+  centroidSagittalImageHeight: number;
+  centroidTangentialImageHeight: number;
+  rmsRadiusMm: number;
+  rmsRadiusUm: number;
+  points: BokehPreviewPoint[];
+  usable: boolean;
+}
+
+/**
+ * Bokeh preview result for one focus-position / source-distance scenario (a 2×2 field grid).
+ * The sharedSpotHalfRangeMm includes a 15 % padding margin so that no point-cloud dots
+ * are clipped at tile boundaries in the SVG renderer.
+ */
+export interface BokehPreviewGrid {
+  fieldFractions: readonly number[];
+  fields: BokehPreviewFieldResult[];
+  sharedSpotHalfRangeMm: number;
+  usableFieldCount: number;
+}
+
+/** Full bokeh preview result: two grids at the current focus position. */
+export interface BokehPreviewResult {
+  /**
+   * Bokeh of an infinity point source at the current sensor position.
+   * Ball size grows as focusT increases (lens focused away from infinity).
+   */
+  infinityGrid: BokehPreviewGrid | null;
+  /**
+   * Bokeh of a near point source at the lens minimum focus distance,
+   * traced to the current sensor position.
+   * Ball size shrinks as focusT approaches 1 (lens focused at near distance).
+   */
+  nearGrid: BokehPreviewGrid | null;
+}

@@ -4,6 +4,7 @@ import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
+  traceChiefRelativeNearObjectSkewRay,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
   yRatioAtZoom,
@@ -307,4 +308,68 @@ export function transverseFocusHitsForDirection(
 export function bestFocusPlaneForDirection(bundle: OffAxisBundle, direction: OffAxisDirection): number {
   const { hits, referenceHit } = transverseFocusHitsForDirection(bundle, direction);
   return bestRelativeFocusPlane(hits, referenceHit, bundle.geometry.lastSurfZ);
+}
+
+/**
+ * Traces a dense circular pupil bundle from a NEAR OBJECT point source at finite
+ * distance D_near_mm. Uses traceChiefRelativeNearObjectSkewRay for each sample,
+ * applying the full 2D near-object slope corrections (du_x and du_y) to accurately
+ * model a point source at a finite object distance rather than at infinity.
+ *
+ * This is the primary reusable building block for near-object analysis: bokeh
+ * preview, close-focus aberration studies, near-object MTF simulation, etc.
+ */
+export function traceNearObjectCircularOffAxisBundle(
+  ringSamples: readonly number[],
+  geometry: OffAxisFieldGeometry,
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  entrancePupilSemiDiameter: number,
+  stopSemiDiameter: number,
+  D_near_mm: number,
+): OffAxisBundle | null {
+  if (entrancePupilSemiDiameter <= 0 || L.N < 1 || D_near_mm <= 0) return null;
+
+  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, entrancePupilSemiDiameter, stopSemiDiameter);
+  if (chiefRay === null) return null;
+
+  const samples = sampleCircularPupil(ringSamples);
+  const tracedSamples = samples.flatMap((sample) => {
+    const trace = traceChiefRelativeNearObjectSkewRay(
+      sample.xFraction,
+      sample.yFraction,
+      geometry.yChief,
+      geometry.uField,
+      entrancePupilSemiDiameter,
+      D_near_mm,
+      focusT,
+      zoomT,
+      stopSemiDiameter,
+      true,
+      L,
+    );
+    if (trace.clipped) return [];
+
+    const imagePoint = skewImagePlaneIntercept(
+      trace.x,
+      trace.y,
+      trace.ux,
+      trace.uy,
+      geometry.lastSurfZ,
+      geometry.imagePlaneZ,
+    );
+    if (imagePoint === null) return [];
+
+    return [mapTracedSample(sample, entrancePupilSemiDiameter, geometry.yChief, trace, imagePoint)];
+  });
+
+  return {
+    geometry,
+    chiefRay,
+    sampleCount: samples.length,
+    validSampleCount: tracedSamples.length,
+    clippedSampleCount: samples.length - tracedSamples.length,
+    samples: tracedSamples,
+  };
 }
