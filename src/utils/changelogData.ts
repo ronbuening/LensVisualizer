@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-01 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-01",
+    type: "fix",
+    summary: "Fixed close-focus extension for the Canon New FD 50mm f/1.2",
+  },
   // ── 2026-03-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-03-31",
