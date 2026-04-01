@@ -10,11 +10,15 @@
 - Phase 1 Step 2: added a pure `computeBokehPreview()` analysis engine with dual conjugate grids and a denser weighted point cloud
 - Reused a shared weighted point-cloud summarizer so coma and bokeh previews report centroid / RMS / bounds consistently
 - Added analysis coverage for conjugate separation, aperture/focus sensitivity, shared ranges, and clipped off-axis truncation
+- Phase 2 Step 1: extracted a reusable representative-preview SVG shell from the coma grid
+- Added bokeh preview renderer components with dual 2x2 grids, shared legend copy, and a silhouette abstraction hook for future blade-shape work
+- Added component + SSR coverage for the new bokeh renderer while keeping the coma preview on the shared shell
 
 ## Verification
 - `npx vitest run __tests__/offAxisBundle.test.ts __tests__/skewRay.test.ts __tests__/aberrationAnalysis.test.ts` — passed
 - `npx vitest run __tests__/offAxisBundle.test.ts __tests__/aberrationAnalysis.test.ts` — passed
+- `npx vitest run __tests__/ComaPreviewGrid.test.tsx __tests__/BokehPreviewOverlayContent.test.tsx __tests__/analysisDisplayTabs.test.ts` — passed
 - `npm run typecheck` — failed due existing lens-data import errors in `src/lens-data/CanonFDn50f12.data.ts` and `src/lens-data/VoigtlanderNokton50f12XMount.data.ts`
 
 ## Follow-ups
-- Build the reusable preview-grid renderer and wire the diagram-level overlay UI
+- Wire the diagram-level bokeh preview overlay button, state, and lens-reset behavior

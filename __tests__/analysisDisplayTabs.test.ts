@@ -5,10 +5,12 @@ import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import { doLayout, eflAtFocus, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
 import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
+import BokehPreviewOverlayContent from "../src/components/display/BokehPreviewOverlayContent.js";
 import ComaTab from "../src/components/display/ComaTab.js";
 import DistortionChart from "../src/components/display/DistortionChart.js";
 import DistortionTab from "../src/components/display/DistortionTab.js";
 import FocusBreathingTab from "../src/components/display/FocusBreathingTab.js";
+import { computeBokehPreview } from "../src/optics/aberrationAnalysis.js";
 import themes from "../src/utils/themes.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import type { DistortionSample } from "../src/optics/distortionAnalysis.js";
@@ -156,6 +158,32 @@ describe("analysis display tabs", () => {
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
     expect(html).not.toContain("Field Curves &amp; Astigmatism");
+  });
+
+  it("BokehPreviewOverlayContent renders both traced subject-distance grids during SSR", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.5;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.35);
+    const result = computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+
+    expect(result).not.toBeNull();
+
+    const html = renderToStaticMarkup(
+      React.createElement(BokehPreviewOverlayContent, {
+        result,
+        t: themes.dark,
+      }),
+    );
+
+    expect(html).toContain("Bokeh Preview (Beta)");
+    expect(html).toContain("Infinity subject");
+    expect(html).toContain("Minimum-focus subject");
+    expect(html).toContain("Density darkening comes from accumulated weighted ray hits");
+    expect(html).toContain("Crosshair = chief-ray reference");
+    expect(html).toContain("Stop model = Circular stop silhouette");
+    expect(html).toContain("Chief-ray-centered blur footprint");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {
