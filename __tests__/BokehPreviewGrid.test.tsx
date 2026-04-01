@@ -103,9 +103,10 @@ describe("BokehPreviewGrid", () => {
     expect(screen.getAllByText("90% T").length).toBe(2);
   });
 
-  it("renders the footer axis label", () => {
+  it("renders the footer legend lines", () => {
     render(<BokehPreviewGrid grid={makeGrid([true, true, true, true])} t={theme} focusLabel="Infinity" />);
-    expect(screen.getByText("Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)")).toBeTruthy();
+    expect(screen.getByText("Bokeh ball: sagittal (X) × tangential (Y) deviation from chief ray")).toBeTruthy();
+    expect(screen.getByText("EP inset: entrance pupil — missing dots = vignetted rays")).toBeTruthy();
   });
 
   it("renders a scale bar label inside each usable tile", () => {

@@ -276,8 +276,12 @@ export default function BokehPreviewGrid({ grid, t, focusLabel }: BokehPreviewGr
         {`${focusLabel} source bokeh preview: chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale.`}
       </title>
       {grid.fields.map((field, index) => renderBokehTile(field, index, grid.sharedSpotHalfRangeMm, t))}
-      <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-        Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)
+      {/* Footer legend */}
+      <text x={VB_W / 2} y={VB_H - 16} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+        Bokeh ball: sagittal (X) × tangential (Y) deviation from chief ray
+      </text>
+      <text x={VB_W / 2} y={VB_H - 4} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
+        EP inset: entrance pupil — missing dots = vignetted rays
       </text>
     </svg>
   );

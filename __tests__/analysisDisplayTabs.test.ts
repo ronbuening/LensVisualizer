@@ -189,7 +189,8 @@ describe("analysis display tabs", () => {
 
     expect(html).toContain("Infinity Source");
     expect(html).toContain("Near Source (Minimum Focus)");
-    expect(html).toContain("Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)");
+    expect(html).toContain("Bokeh ball: sagittal (X) × tangential (Y) deviation from chief ray");
+    expect(html).toContain("EP inset: entrance pupil — missing dots = vignetted rays");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {
