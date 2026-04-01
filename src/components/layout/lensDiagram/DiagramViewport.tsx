@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
+import BokehPreviewOverlayContent from "../../display/BokehPreviewOverlayContent.js";
 import LCAOverlayContent from "../../diagram/LCAOverlayContent.js";
 import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
+import type { BokehPreviewResult } from "../../../optics/aberrationAnalysis.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
@@ -13,10 +15,14 @@ interface DiagramViewportProps extends Omit<
 > {
   showLcaOverlay: boolean;
   showPetzvalOverlay: boolean;
+  showBokehPreview: boolean;
   onCloseLcaOverlay: () => void;
   onClosePetzvalOverlay: () => void;
+  onCloseBokehPreview: () => void;
   onOpenLcaOverlay: () => void;
   onOpenPetzvalOverlay: () => void;
+  onOpenBokehPreview: () => void;
+  bokehPreviewResult: BokehPreviewResult | null;
   analysisDrawerOpen: boolean;
   onAnalysisDrawerToggle: (open: boolean) => void;
   analysisDrawerTab: string;
@@ -75,10 +81,14 @@ export default function DiagramViewport({
   flashFading,
   showLcaOverlay,
   showPetzvalOverlay,
+  showBokehPreview,
   onCloseLcaOverlay,
   onClosePetzvalOverlay,
+  onCloseBokehPreview,
   onOpenLcaOverlay,
   onOpenPetzvalOverlay,
+  onOpenBokehPreview,
+  bokehPreviewResult,
   analysisDrawerOpen,
   onAnalysisDrawerToggle,
   analysisDrawerTab,
@@ -208,6 +218,39 @@ export default function DiagramViewport({
         <PanelOverlay onClose={onClosePetzvalOverlay} theme={t}>
           <PetzvalOverlayContent L={L} t={t} />
         </PanelOverlay>
+      ) : null}
+
+      {!zoomPanActive && showBokehPreview ? (
+        <PanelOverlay onClose={onCloseBokehPreview} theme={t}>
+          <BokehPreviewOverlayContent result={bokehPreviewResult} t={t} />
+        </PanelOverlay>
+      ) : null}
+
+      {!zoomPanActive ? (
+        <button
+          onClick={onOpenBokehPreview}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            zIndex: 5,
+            borderRadius: 10,
+            cursor: "pointer",
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            fontSize: 9,
+            fontFamily: "inherit",
+            letterSpacing: "0.08em",
+            transition: "all 0.25s",
+            background: t.toggleBg,
+            border: `1px solid ${t.toggleBorder}`,
+            color: t.muted,
+          }}
+        >
+          Bokeh Preview (Beta)
+        </button>
       ) : null}
 
       {/* Analysis drawer toggle — hidden in zoom/pan mode */}

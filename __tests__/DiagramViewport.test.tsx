@@ -37,6 +37,10 @@ vi.mock("../src/components/diagram/PetzvalOverlayContent.js", () => ({
   default: () => <div>Petzval Overlay</div>,
 }));
 
+vi.mock("../src/components/display/BokehPreviewOverlayContent.js", () => ({
+  default: () => <div>Bokeh Preview Overlay</div>,
+}));
+
 const baseProps = {
   L: { N: 2 } as RuntimeLens,
   t: {
@@ -77,10 +81,14 @@ const baseProps = {
   flashFading: false,
   showLcaOverlay: false,
   showPetzvalOverlay: false,
+  showBokehPreview: false,
   onCloseLcaOverlay: vi.fn(),
   onClosePetzvalOverlay: vi.fn(),
+  onCloseBokehPreview: vi.fn(),
   onOpenLcaOverlay: vi.fn(),
   onOpenPetzvalOverlay: vi.fn(),
+  onOpenBokehPreview: vi.fn(),
+  bokehPreviewResult: null,
   analysisDrawerOpen: false,
   onAnalysisDrawerToggle: vi.fn(),
   analysisDrawerTab: "aberrations",
@@ -145,6 +153,29 @@ describe("DiagramViewport", () => {
     expect(screen.getByText("Petzval Overlay")).toBeTruthy();
   });
 
+  it("shows the bokeh preview launch button in the upper-right when zoom mode is off", () => {
+    render(<DiagramViewport {...baseProps} />);
+
+    const button = screen.getByRole("button", { name: /BOKEH PREVIEW \(BETA\)/i }) as HTMLButtonElement;
+    expect(button).toBeTruthy();
+    expect(button.style.top).toBe("10px");
+    expect(button.style.right).toBe("10px");
+  });
+
+  it("clicking the bokeh preview button opens the overlay", () => {
+    render(<DiagramViewport {...baseProps} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /BOKEH PREVIEW \(BETA\)/i }));
+
+    expect(baseProps.onOpenBokehPreview).toHaveBeenCalled();
+  });
+
+  it("renders the bokeh preview overlay when requested", () => {
+    render(<DiagramViewport {...baseProps} showBokehPreview />);
+
+    expect(screen.getByText("Bokeh Preview Overlay")).toBeTruthy();
+  });
+
   /* ── Zoom/pan mode ── */
 
   it("renders zoom toggle button in the lower-right when zoom mode is off", () => {
@@ -162,6 +193,11 @@ describe("DiagramViewport", () => {
   it("hides the analysis drawer button when zoom mode is active", () => {
     render(<DiagramViewport {...baseProps} zoomPanActive />);
     expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
+  });
+
+  it("hides the bokeh preview button when zoom mode is active", () => {
+    render(<DiagramViewport {...baseProps} zoomPanActive />);
+    expect(screen.queryByRole("button", { name: /BOKEH PREVIEW \(BETA\)/i })).toBeNull();
   });
 
   it("hides the zoom toggle button when zoom mode is active", () => {
@@ -198,9 +234,10 @@ describe("DiagramViewport", () => {
   });
 
   it("hides overlays in zoom mode", () => {
-    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay />);
+    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay showBokehPreview />);
     expect(screen.queryByText("LCA Overlay")).toBeNull();
     expect(screen.queryByText("Petzval Overlay")).toBeNull();
+    expect(screen.queryByText("Bokeh Preview Overlay")).toBeNull();
   });
 
   /* ── Keyboard shortcuts ── */

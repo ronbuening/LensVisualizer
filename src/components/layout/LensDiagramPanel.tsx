@@ -5,7 +5,7 @@
  *   useLensComputation  → lens building, layout, transforms, shapes, aperture
  *   useRayTracing       → on-axis, off-axis, chromatic ray fans
  *   useDispatchAdapters → context dispatch callback wiring
- *   useOverlayState     → Abbe/LCA/Petzval overlay open/close state
+ *   useOverlayState     → Abbe/LCA/Petzval/bokeh overlay open/close state
  *   useHeaderHeight     → header ResizeObserver + height reporting
  *   useFlashOverlay     → flash animation state machine
  *   useSideLayoutDetection → overflow-based side layout switching
@@ -18,7 +18,7 @@
  * wires sub-components.
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
@@ -36,6 +36,7 @@ import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
+import { computeBokehPreview } from "../../optics/aberrationAnalysis.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import DiagramViewport from "./lensDiagram/DiagramViewport.js";
 
@@ -180,6 +181,11 @@ export default function LensDiagramPanel({
     lensKey,
   });
 
+  const bokehPreviewResult = useMemo(() => {
+    if (!L) return null;
+    return computeBokehPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
+
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (
@@ -286,10 +292,14 @@ export default function LensDiagramPanel({
               flashFading={flashFading}
               showLcaOverlay={overlays.showLcaOverlay}
               showPetzvalOverlay={overlays.showPetzvalOverlay}
+              showBokehPreview={overlays.showBokehPreview}
               onCloseLcaOverlay={overlays.closeLcaOverlay}
               onClosePetzvalOverlay={overlays.closePetzvalOverlay}
+              onCloseBokehPreview={overlays.closeBokehPreview}
               onOpenLcaOverlay={overlays.openLcaOverlay}
               onOpenPetzvalOverlay={overlays.openPetzvalOverlay}
+              onOpenBokehPreview={overlays.openBokehPreview}
+              bokehPreviewResult={bokehPreviewResult}
               analysisDrawerOpen={analysisDrawerOpen}
               onAnalysisDrawerToggle={adapters.onAnalysisDrawerToggle}
               analysisDrawerTab={analysisDrawerTab}
