@@ -5,11 +5,13 @@ import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import { doLayout, eflAtFocus, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
 import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
+import BokehPreviewTab from "../src/components/display/BokehPreviewTab.js";
 import ComaTab from "../src/components/display/ComaTab.js";
 import DistortionChart from "../src/components/display/DistortionChart.js";
 import DistortionTab from "../src/components/display/DistortionTab.js";
 import FocusBreathingTab from "../src/components/display/FocusBreathingTab.js";
 import themes from "../src/utils/themes.js";
+import { ANALYSIS_TABS } from "../src/components/layout/lensDiagram/analysisTabs.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import type { DistortionSample } from "../src/optics/distortionAnalysis.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
@@ -26,6 +28,14 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
   const currentEPSD = (epAtZoom(zoomT, L) * L.FOPEN) / fNumber;
   return { currentPhysStopSD, currentEPSD };
 }
+
+describe("ANALYSIS_TABS configuration", () => {
+  it("includes a bokeh tab with id 'bokeh'", () => {
+    const bokehTab = ANALYSIS_TABS.find((tab) => tab.id === "bokeh");
+    expect(bokehTab).toBeDefined();
+    expect(bokehTab?.label).toBe("BOKEH");
+  });
+});
 
 describe("analysis display tabs", () => {
   it("DistortionChart labels the x-axis as image height percentage", async () => {
@@ -156,6 +166,30 @@ describe("analysis display tabs", () => {
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
     expect(html).not.toContain("Field Curves &amp; Astigmatism");
+  });
+
+  it("BokehPreviewTab renders infinity and near source section titles", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0);
+
+    const html = renderToStaticMarkup(
+      React.createElement(BokehPreviewTab, {
+        L,
+        t: themes.dark,
+        zPos,
+        focusT,
+        zoomT,
+        currentEPSD,
+        currentPhysStopSD,
+      }),
+    );
+
+    expect(html).toContain("Infinity Source");
+    expect(html).toContain("Near Source (Minimum Focus)");
+    expect(html).toContain("Sagittal (horiz.) / tangential (vert.) relative to chief ray (mm)");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

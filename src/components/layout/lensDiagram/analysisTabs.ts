@@ -6,4 +6,5 @@ export const ANALYSIS_TABS: AnalysisTab[] = [
   { id: "distortion", label: "DISTORTION" },
   { id: "breathing", label: "BREATHING" },
   { id: "vignetting", label: "VIGNETTING" },
+  { id: "bokeh", label: "BOKEH" },
 ];

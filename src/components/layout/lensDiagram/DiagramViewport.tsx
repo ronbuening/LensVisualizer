@@ -239,6 +239,38 @@ export default function DiagramViewport({
         </button>
       ) : null}
 
+      {/* Bokeh preview button — top-right, hidden in zoom/pan mode */}
+      {!zoomPanActive ? (
+        <button
+          onClick={() => {
+            onAnalysisDrawerToggle(true);
+            onAnalysisTabChange("bokeh");
+          }}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            zIndex: 5,
+            borderRadius: 10,
+            cursor: "pointer",
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            fontSize: 9,
+            fontFamily: "inherit",
+            letterSpacing: "0.08em",
+            transition: "all 0.25s",
+            background: t.toggleBg,
+            border: `1px solid ${t.toggleBorder}`,
+            color: t.muted,
+          }}
+        >
+          <span>BOKEH PREVIEW</span>
+          <span style={{ fontSize: 8.5, opacity: 0.75 }}>BETA</span>
+        </button>
+      ) : null}
+
       {/* Zoom/pan toggle button — bottom-right, hidden when zoom mode active */}
       {!zoomPanActive ? (
         <button

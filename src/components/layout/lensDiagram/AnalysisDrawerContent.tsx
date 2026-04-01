@@ -1,4 +1,5 @@
 import AberrationsPanel from "../../display/AberrationsPanel.js";
+import BokehPreviewTab from "../../display/BokehPreviewTab.js";
 import ComaTab from "../../display/ComaTab.js";
 import DistortionTab from "../../display/DistortionTab.js";
 import FocusBreathingTab from "../../display/FocusBreathingTab.js";
@@ -84,6 +85,20 @@ export default function AnalysisDrawerContent({
   if (activeTab === "vignetting") {
     return (
       <VignettingTab
+        L={L}
+        t={t}
+        zPos={zPos}
+        focusT={focusT}
+        zoomT={zoomT}
+        currentEPSD={currentEPSD}
+        currentPhysStopSD={currentPhysStopSD}
+      />
+    );
+  }
+
+  if (activeTab === "bokeh") {
+    return (
+      <BokehPreviewTab
         L={L}
         t={t}
         zPos={zPos}

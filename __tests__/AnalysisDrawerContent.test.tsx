@@ -8,11 +8,13 @@ import type { Theme } from "../src/types/theme.js";
 
 const {
   mockAberrationsPanel,
+  mockBokehPreviewTab,
   mockDistortionTab,
   mockFocusBreathingTab,
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
+  mockBokehPreviewTab: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
   mockVignettingTab: vi.fn(),
@@ -46,6 +48,13 @@ vi.mock("../src/components/display/VignettingTab.js", () => ({
   },
 }));
 
+vi.mock("../src/components/display/BokehPreviewTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockBokehPreviewTab(props);
+    return <div>BokehPreview</div>;
+  },
+}));
+
 const baseProps = {
   activeTab: "aberrations",
   L: { N: 2 } as RuntimeLens,
@@ -63,6 +72,7 @@ const baseProps = {
 describe("AnalysisDrawerContent", () => {
   beforeEach(() => {
     mockAberrationsPanel.mockReset();
+    mockBokehPreviewTab.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
     mockVignettingTab.mockReset();
@@ -97,5 +107,13 @@ describe("AnalysisDrawerContent", () => {
 
     expect(screen.getByText("Vignetting")).toBeTruthy();
     expect(mockVignettingTab).toHaveBeenCalledTimes(1);
+  });
+
+  it("maps the bokeh tab to BokehPreviewTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="bokeh" />);
+
+    expect(screen.getByText("BokehPreview")).toBeTruthy();
+    expect(mockBokehPreviewTab).toHaveBeenCalledTimes(1);
+    expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 });
