@@ -4,6 +4,7 @@ import {
   computeOffAxisFieldGeometry,
   traceCircularOffAxisBundle,
   traceOffAxisBundleFromSamples,
+  traceOffAxisRelativeRay,
   traceOrthogonalOffAxisBundle,
   transverseFocusHitsForDirection,
 } from "../src/optics/aberration/offAxis.js";
@@ -31,13 +32,14 @@ describe("off-axis aberration helpers", () => {
   it("computes finite center-field geometry", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0);
     expect(geometry!.fieldAngleDeg).toBe(0);
-    expect(geometry!.uField).toBeCloseTo(0, 12);
-    expect(geometry!.yChief).toBeCloseTo(0, 12);
+    expect(geometry!.chiefSlopeY).toBeCloseTo(0, 12);
+    expect(geometry!.chiefLaunchY).toBeCloseTo(0, 12);
     expect(isFinite(geometry!.imagePlaneZ)).toBe(true);
   });
 
@@ -45,7 +47,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -70,7 +72,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0);
 
     const bundle = traceCircularOffAxisBundle(
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -102,7 +104,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0);
 
     const bundle = traceCircularOffAxisBundle(
       DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -124,21 +126,23 @@ describe("off-axis aberration helpers", () => {
   it("computes finite geometry at half-field (0.5)", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(0.5);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
-    expect(geometry!.uField).toBeLessThan(0);
-    expect(isFinite(geometry!.yChief)).toBe(true);
+    expect(geometry!.chiefSlopeY).toBeLessThan(0);
+    expect(isFinite(geometry!.chiefLaunchY)).toBe(true);
     expect(isFinite(geometry!.imagePlaneZ)).toBe(true);
   });
 
   it("computes finite geometry at full field (1.0)", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 1.0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 1.0);
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(1.0);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
@@ -147,17 +151,18 @@ describe("off-axis aberration helpers", () => {
   it("rejects invalid field fractions", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
 
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, -0.1)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, 1.5)).toBeNull();
-    expect(computeOffAxisFieldGeometry(L, zPos, 0, NaN)).toBeNull();
+    expect(computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, -0.1)).toBeNull();
+    expect(computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 1.5)).toBeNull();
+    expect(computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, NaN)).toBeNull();
   });
 
   it("extracts tangential y/uy from transverseFocusHitsForDirection", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -184,7 +189,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "sagittal",
@@ -209,7 +214,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const bundle = traceOrthogonalOffAxisBundle(
       "sagittal",
@@ -233,7 +238,8 @@ describe("off-axis aberration helpers", () => {
   it("returns null from traceOffAxisBundleFromSamples for zero EPSD", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const result = traceOffAxisBundleFromSamples(
       [{ index: 0, pupilFraction: 0, xFraction: 0, yFraction: 0 }],
@@ -251,7 +257,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const redBundle = traceOrthogonalOffAxisBundle(
       "tangential",
@@ -291,7 +297,7 @@ describe("off-axis aberration helpers", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0.5);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, 0.5);
 
     const redBundle = traceCircularOffAxisBundle(
       [1, 6],
@@ -327,8 +333,12 @@ describe("off-axis aberration helpers", () => {
     const geometry = {
       fieldFraction: 0.5,
       fieldAngleDeg: 10,
-      uField: -0.17,
-      yChief: 1,
+      objectConjugate: "infinity" as const,
+      objectDistanceMm: null,
+      chiefLaunchX: 0,
+      chiefLaunchY: 1,
+      chiefSlopeX: 0,
+      chiefSlopeY: -0.17,
       lastSurfZ: 50,
       imagePlaneZ: 100,
     };
@@ -343,5 +353,44 @@ describe("off-axis aberration helpers", () => {
       5,
     );
     expect(result).toBeNull();
+  });
+
+  it("builds a minimum-focus launch that adds convergence in both transverse directions", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0.4, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0.4, 0, currentPhysStopSD, 0.5, "minimumFocus");
+
+    expect(geometry).not.toBeNull();
+    expect(geometry!.objectConjugate).toBe("minimumFocus");
+    expect(geometry!.objectDistanceMm).toBeCloseTo(L.closeFocusM * 1000, 8);
+    expect(geometry!.chiefSlopeY).toBeLessThan(0);
+
+    const traced = traceOffAxisRelativeRay(0.25, -0.25, geometry!, L, 0.4, 0, currentEPSD, currentPhysStopSD);
+    expect(traced.clipped).toBe(false);
+    expect(Math.abs(traced.ux)).toBeGreaterThan(1e-6);
+    expect(Math.abs(traced.uy - geometry!.chiefSlopeY)).toBeGreaterThan(1e-6);
+  });
+
+  it("keeps the minimum-focus chief ray less oblique than the infinity launch at the same field", () => {
+    const L = build(ApoLantharRaw);
+    const { z: zPos } = doLayout(0.4, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const infinityGeometry = computeOffAxisFieldGeometry(L, zPos, 0.4, 0, currentPhysStopSD, 0.75, "infinity");
+    const minimumFocusGeometry = computeOffAxisFieldGeometry(
+      L,
+      zPos,
+      0.4,
+      0,
+      currentPhysStopSD,
+      0.75,
+      "minimumFocus",
+    );
+
+    expect(infinityGeometry).not.toBeNull();
+    expect(minimumFocusGeometry).not.toBeNull();
+    expect(Math.abs(minimumFocusGeometry!.chiefSlopeY)).toBeLessThan(Math.abs(infinityGeometry!.chiefSlopeY));
+    expect(Math.abs(minimumFocusGeometry!.chiefLaunchY)).toBeLessThan(Math.abs(infinityGeometry!.chiefLaunchY));
   });
 });

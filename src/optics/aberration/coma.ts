@@ -252,7 +252,7 @@ function computeMeridionalComaFieldFootprint(
 ): MeridionalComaFieldFootprint | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, focusT, zoomT, currentPhysStopSD, fieldFraction);
   if (geometry === null) return null;
 
   const bundle = traceOrthogonalOffAxisBundle(
@@ -274,7 +274,7 @@ function computeMeridionalComaFieldFootprint(
       return {
         index: sample.index,
         pupilFraction: sample.pupilFraction,
-        launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
+        launchHeight: geometry.chiefLaunchY + sample.yFraction * currentEPSD,
         imageHeight: tracedSample?.imagePoint.y ?? null,
         relativeImageHeight: null,
         clipped: tracedSample === undefined,
@@ -338,7 +338,7 @@ function computeComaPointCloudFieldFootprint(
 ): ComaPointCloudFieldFootprint | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, focusT, zoomT, currentPhysStopSD, fieldFraction);
   if (geometry === null) return null;
 
   const bundle = traceCircularOffAxisBundle(
@@ -472,7 +472,7 @@ export function computeSagittalComa(
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const fieldFraction = L.offAxisFieldFrac;
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, focusT, zoomT, currentPhysStopSD, fieldFraction);
   if (geometry === null || geometry.fieldAngleDeg <= 0) return null;
 
   const bundle = traceOrthogonalOffAxisBundle(

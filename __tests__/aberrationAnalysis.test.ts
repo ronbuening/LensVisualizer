@@ -19,6 +19,7 @@ import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
   traceOffAxisChiefRay,
+  traceOffAxisRelativeRay,
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
@@ -27,7 +28,6 @@ import {
   entrancePupilAtState,
   epAtZoom,
   fopenAtZoom,
-  traceChiefRelativeSkewRay,
   traceRay,
 } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
@@ -79,17 +79,15 @@ function standardizedFieldFocusAt(
 
   const parabasalFraction = standardizedParabasalFraction(currentEPSD);
   const traceRelativeHit = (direction: "tangential" | "sagittal", sign: -1 | 1) => {
-    const trace = traceChiefRelativeSkewRay(
+    const trace = traceOffAxisRelativeRay(
       direction === "sagittal" ? sign * parabasalFraction : 0,
       direction === "tangential" ? sign * parabasalFraction : 0,
-      geometry.yChief,
-      geometry.uField,
-      currentEPSD,
+      geometry,
+      L,
       focusT,
       zoomT,
+      currentEPSD,
       currentPhysStopSD,
-      true,
-      L,
     );
     if (trace.clipped) return null;
     return direction === "tangential"
@@ -596,7 +594,7 @@ describe("computeMeridionalComa", () => {
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, L.offAxisFieldFrac);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, L.offAxisFieldFrac);
     expect(geometry).not.toBeNull();
 
     const bundle = traceOrthogonalOffAxisBundle(
@@ -725,7 +723,7 @@ describe("computeComaPointCloudPreview", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, field!.fieldFraction);
     expect(geometry).not.toBeNull();
 
     const bundle = traceCircularOffAxisBundle(
@@ -1066,7 +1064,7 @@ describe("computeFieldCurvature", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, 0, currentPhysStopSD, field!.fieldFraction);
     expect(geometry).not.toBeNull();
     const standardizedField = standardizedFieldFocusAt(L, geometry!, 0, 0, currentEPSD, currentPhysStopSD);
 

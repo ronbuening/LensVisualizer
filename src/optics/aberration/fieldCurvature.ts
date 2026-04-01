@@ -5,10 +5,10 @@ import {
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
-import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../optics.js";
 import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
+  traceOffAxisRelativeRay,
   traceOffAxisChiefRay,
   traceOrthogonalOffAxisBundle,
 } from "./offAxis.js";
@@ -152,32 +152,17 @@ function computeStandardizedFieldFocus(
   const traceRelativeRay = (direction: "tangential" | "sagittal", sign: -1 | 1): TransverseFocusHit | null => {
     const xFraction = direction === "sagittal" ? sign * parabasalFraction : 0;
     const yFraction = direction === "tangential" ? sign * parabasalFraction : 0;
-    const trace = channel
-      ? traceChiefRelativeSkewRayChromatic(
-          xFraction,
-          yFraction,
-          geometry.yChief,
-          geometry.uField,
-          currentEPSD,
-          focusT,
-          zoomT,
-          currentPhysStopSD,
-          true,
-          L,
-          channel,
-        )
-      : traceChiefRelativeSkewRay(
-          xFraction,
-          yFraction,
-          geometry.yChief,
-          geometry.uField,
-          currentEPSD,
-          focusT,
-          zoomT,
-          currentPhysStopSD,
-          true,
-          L,
-        );
+    const trace = traceOffAxisRelativeRay(
+      xFraction,
+      yFraction,
+      geometry,
+      L,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      channel,
+    );
     if (trace.clipped) return null;
 
     return direction === "tangential"
@@ -312,7 +297,7 @@ function computeFieldCurvatureField(
 ): FieldCurvatureFieldResult {
   if (currentEPSD <= 0 || L.N < 1) return emptyFieldCurvatureFieldResult(meta);
 
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, meta.fieldFraction);
+  const geometry = computeOffAxisFieldGeometry(L, zPos, focusT, zoomT, currentPhysStopSD, meta.fieldFraction);
   if (geometry === null) return emptyFieldCurvatureFieldResult(meta);
 
   const standardizedFieldFocus = computeStandardizedFieldFocus(
