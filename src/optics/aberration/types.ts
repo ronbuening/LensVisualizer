@@ -212,3 +212,82 @@ export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 /** Fixed field positions shown in the field-curvature / astigmatism chart. */
 export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
 export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) => index / 16);
+
+/* ── Bokeh preview constants & types ── */
+
+/** Fixed field positions shown in the bokeh preview grids. */
+export const BOKEH_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
+
+/** Dense circular pupil ring pattern for bokeh tracing (~3× denser than coma). */
+export const BOKEH_CIRCULAR_PUPIL_RING_SAMPLES = [1, 12, 24, 36, 48, 60, 72, 84] as const;
+export const BOKEH_POINT_COUNT = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
+  (sum, count) => sum + count,
+  0,
+);
+
+/** Resolution of the 2D density heatmap grid per bokeh tile. */
+export const BOKEH_DENSITY_GRID_SIZE = 64;
+
+/** One traced ray sample in the bokeh point cloud, relative to the chief ray. */
+export interface BokehPoint {
+  index: number;
+  /** Sagittal (X) offset from chief ray on the defocused plane (mm). */
+  sagittalOffset: number;
+  /** Tangential (Y) offset from chief ray on the defocused plane (mm). */
+  tangentialOffset: number;
+  /** Normalized pupil radius (0–1) — preserved for future aperture blade masking. */
+  pupilRadius: number;
+  /** Pupil azimuth in radians — preserved for future aperture blade masking. */
+  pupilAzimuth: number;
+  /** Equal-area weighting from the circular pupil sample. */
+  weight: number;
+}
+
+/** One field tile in the bokeh preview grid. */
+export interface BokehFieldResult {
+  fieldFraction: number;
+  label: string;
+  fieldAngleDeg: number;
+  totalRays: number;
+  passedRays: number;
+  points: BokehPoint[];
+  centroidSagittal: number;
+  centroidTangential: number;
+  rmsRadiusMm: number;
+  maxRadiusMm: number;
+  /** Fraction of rays that survived vignetting (0–1). */
+  transmission: number;
+  usable: boolean;
+}
+
+/** Single bin in a 2D density heatmap (reusable for any point-cloud visualization). */
+export interface BokehDensityCell {
+  /** Center X of the bin in mm. */
+  x: number;
+  /** Center Y of the bin in mm. */
+  y: number;
+  /** Normalized density (0–1, where 1 = maximum density in the grid). */
+  density: number;
+}
+
+/** Result for one bokeh grid (infinity or near focus). */
+export interface BokehPreviewResult {
+  label: string;
+  defocusDeltaMm: number;
+  fields: BokehFieldResult[];
+  sharedHalfRangeMm: number;
+  usableFieldCount: number;
+}
+
+/** Paired bokeh preview: infinity-source and near-source grids. */
+export interface BokehPreviewPair {
+  infinity: BokehPreviewResult | null;
+  nearFocus: BokehPreviewResult | null;
+}
+
+/** Future: aperture blade shape configuration for polygonal bokeh rendering. */
+export interface ApertureBladeConfig {
+  bladeCount: number;
+  /** 0 = straight edges (polygon), 1 = perfectly circular (no effect). */
+  roundedness: number;
+}

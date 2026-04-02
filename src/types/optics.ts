@@ -108,6 +108,10 @@ export interface LensData {
   rayLeadFrac: number;
   offAxisFieldFrac: number;
   offAxisFractions: number[];
+  /** Number of aperture blades (future: polygonal bokeh rendering). */
+  apertureBlades?: number;
+  /** Blade roundedness 0–1 (future: 0 = straight polygon, 1 = circular). */
+  apertureBladeRoundedness?: number;
 }
 
 /** Fields provided by LENS_DEFAULTS — optional in raw lens data files */
