@@ -14,4 +14,4 @@ export {
   computeSagittalComa,
 } from "./aberration/coma.js";
 export { computeFieldCurvature } from "./aberration/fieldCurvature.js";
-export { buildBokehDensityGrid, computeBokehPreviewPair, computeRealRayConvergenceZ } from "./aberration/bokeh.js";
+export { buildBokehDensityGrid, computeBestFocusZ, computeBokehPreviewPair } from "./aberration/bokeh.js";

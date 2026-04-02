@@ -12,9 +12,10 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import { doLayout, skewImagePlaneIntercept, traceRay, type SkewImagePlaneIntercept } from "../optics.js";
+import { doLayout, skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle } from "./offAxis.js";
+import { bestFocusPlane, computeRealRayHit, PROFILE_FRACS } from "./shared.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
@@ -40,10 +41,7 @@ const BOKEH_MIN_VALID_SAMPLES = 5;
 /** Minimum shared half-range (mm) to prevent degenerate scaling on tiny spots. */
 const BOKEH_MIN_SHARED_HALF_RANGE_MM = 0.001;
 
-/* ── Real-ray convergence helpers ── */
-
-/** Near-axis ray height used to find the paraxial convergence point. */
-const CONVERGENCE_RAY_HEIGHT = 0.01;
+/* ── Best-focus helpers ── */
 
 /**
  * Compute the absolute image-plane Z position for a given focusT by performing
@@ -54,22 +52,57 @@ export function computeImagePlaneZAtFocus(L: RuntimeLens, focusT: number, zoomT:
 }
 
 /**
- * Find where a near-axis on-axis marginal ray from infinity converges (crosses
- * the optical axis) when traced through the lens at a given focus setting.
+ * Find the RMS-best-focus Z for on-axis infinity light traced through the lens
+ * at a given focus setting. This is the Z plane that minimises the weighted
+ * ray-intercept spread across the full aperture — the circle of least confusion.
  *
- * For unit-focusing lenses this equals the layout imgZ (the whole lens shifts).
- * For internal-focus lenses the EFL changes with focus, so the convergence
- * point shifts even though the total track (and imgZ) stays constant.
+ * Using the best-focus plane (instead of the paraxial convergence) ensures that
+ * the bokeh defocus grows monotonically with the focus slider, even for fast
+ * lenses with significant spherical aberration whose paraxial and marginal foci
+ * differ substantially.
  *
- * Returns `imgZ` as a fallback if the ray is clipped or slope is negligible.
+ * Falls back to the layout imgZ if insufficient rays survive.
  */
-export function computeRealRayConvergenceZ(L: RuntimeLens, focusT: number, zoomT: number): number {
+export function computeBestFocusZ(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): number {
   const layout = doLayout(focusT, zoomT, L);
-  const trace = traceRay(CONVERGENCE_RAY_HEIGHT, 0, layout.z, focusT, zoomT, undefined, false, L);
-  if (trace.clipped || Math.abs(trace.u) < 1e-12) return layout.imgZ;
   const lastSurfZ = layout.z[L.N - 1];
-  const convergenceZ = lastSurfZ - trace.y / trace.u;
-  return isFinite(convergenceZ) ? convergenceZ : layout.imgZ;
+  const imagePlaneZ = layout.imgZ;
+
+  /* Trace on-axis rays at the standard SA profile fractions (±0.1 to ±0.95) */
+  const hits = PROFILE_FRACS.flatMap((fraction) => {
+    const plusHit = computeRealRayHit(
+      L,
+      layout.z,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      imagePlaneZ,
+      fraction,
+    );
+    const minusHit = computeRealRayHit(
+      L,
+      layout.z,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      lastSurfZ,
+      imagePlaneZ,
+      -fraction,
+    );
+    return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
+  });
+
+  if (hits.length < 4) return imagePlaneZ;
+  return bestFocusPlane(hits, lastSurfZ);
 }
 
 /* ── Per-field footprint ── */
@@ -283,9 +316,8 @@ export function computeBokehPreview(
   const traceLayout = doLayout(traceFocusT, zoomT, L);
   const zPos = traceLayout.z;
 
-  /* Defocus for reporting */
-  const convTrace = computeRealRayConvergenceZ(L, traceFocusT, zoomT);
-  const defocusDelta = sensorZ - convTrace;
+  /* Defocus for reporting: distance from sensor to trace-focus image plane */
+  const defocusDelta = sensorZ - traceLayout.imgZ;
 
   const fields: BokehFieldResult[] = BOKEH_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
     const result = computeBokehFieldFootprint(
@@ -359,29 +391,40 @@ export function computeBokehPreviewPair(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): BokehPreviewPair {
-  /* Pre-compute convergence at key focus positions */
-  const conv0 = computeRealRayConvergenceZ(L, 0, zoomT);
-  const conv1 = computeRealRayConvergenceZ(L, 1, zoomT);
-  const convView = computeRealRayConvergenceZ(L, focusT, zoomT);
+  /*
+   * Pre-compute the RMS-best-focus Z at key focus positions. Using the best-
+   * focus plane (circle of least confusion) instead of the paraxial focus
+   * ensures monotonic defocus even for fast lenses with strong SA.
+   */
+  const bf0 = computeBestFocusZ(L, 0, zoomT, currentEPSD, currentPhysStopSD);
+  const bf1 = computeBestFocusZ(L, 1, zoomT, currentEPSD, currentPhysStopSD);
+  const bfView = computeBestFocusZ(L, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const imgZ0 = doLayout(0, zoomT, L).imgZ;
   const imgZView = doLayout(focusT, zoomT, L).imgZ;
 
   /*
-   * Infinity grid: sensorZ = imgZ(view) + conv(0) − conv(view)
-   * – Unit-focus: imgZ shifts with focus → growing defocus
-   * – Internal-focus: conv shifts with focus → growing defocus
+   * Infinity grid: sensorZ anchored at bf(0) (in-focus = minimum blur),
+   * then shifted by layout extension and best-focus drift:
+   *   sensorZ = bf(0) + [imgZ(view) − imgZ(0)] + [bf(0) − bf(view)]
+   *
+   * At fT=0 both shifts are zero → sensorZ = bf(0) → minimum RMS.
+   * – Unit-focus: imgZ shift dominates → growing defocus
+   * – Internal-focus: bf shift dominates → growing defocus
    */
-  const infSensorZ = imgZView + (conv0 - convView);
+  const infSensorZ = bf0 + (imgZView - imgZ0) + (bf0 - bfView);
   const infinity = computeBokehPreview(L, 0, infSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Infinity");
 
   /*
-   * Near grid: mirror the infinity defocus at the complementary focus (1−view)
-   * around the near-focus convergence point.
-   *   sensorZ = conv(1) + imgZ(1−view) − conv(1−view)
+   * Near grid: applies the infinity grid's defocus curve at the complementary
+   * focus position (1−view), anchored at bf(1).
+   *   sensorZ = bf(1) + [imgZ(1−view) − imgZ(0)] + [bf(0) − bf(1−view)]
+   * At fT=1 → complementary=0: shifts are zero → sensorZ = bf(1) → minimum RMS.
+   * At fT=0 → complementary=1: shifts are maximal → large defocus.
    */
   const complementaryFocusT = 1 - focusT;
-  const convComplement = computeRealRayConvergenceZ(L, complementaryFocusT, zoomT);
+  const bfComplement = computeBestFocusZ(L, complementaryFocusT, zoomT, currentEPSD, currentPhysStopSD);
   const imgZComplement = doLayout(complementaryFocusT, zoomT, L).imgZ;
-  const nearSensorZ = conv1 + (imgZComplement - convComplement);
+  const nearSensorZ = bf1 + (imgZComplement - imgZ0) + (bf0 - bfComplement);
   const nearFocus = computeBokehPreview(L, 1, nearSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Near Focus");
 
   return { infinity, nearFocus };

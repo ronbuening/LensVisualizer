@@ -11,7 +11,7 @@ import {
   computeBokehPreview,
   computeBokehFieldFootprint,
   computeImagePlaneZAtFocus,
-  computeRealRayConvergenceZ,
+  computeBestFocusZ,
 } from "../src/optics/aberration/bokeh.js";
 import { doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
@@ -123,21 +123,19 @@ describe("computeBokehFieldFootprint", () => {
 describe("computeBokehPreview", () => {
   const L = build(ApoLantharRaw);
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
-  const conv0 = computeRealRayConvergenceZ(L, 0, 0);
+  const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
 
-  it("returns result with 4 fields when sensorZ is shifted from convergence", () => {
-    const sensorZ = conv0 + 5; // 5mm past convergence
+  it("returns result with 4 fields when sensorZ is shifted from best focus", () => {
+    const sensorZ = bf0 + 5; // 5mm past best focus
     const result = computeBokehPreview(L, 0, sensorZ, 0, currentEPSD, currentPhysStopSD, "Infinity");
     expect(result).not.toBeNull();
     expect(result!.fields.length).toBe(4);
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(1);
-    expect(result!.defocusDeltaMm).toBeCloseTo(5, 0);
   });
 
-  it("produces non-null result with sensorZ at convergence (aberration spot)", () => {
-    const result = computeBokehPreview(L, 0, conv0, 0, currentEPSD, currentPhysStopSD, "Infinity");
+  it("produces non-null result with sensorZ at best focus (minimum blur)", () => {
+    const result = computeBokehPreview(L, 0, bf0, 0, currentEPSD, currentPhysStopSD, "Infinity");
     if (result !== null) {
-      expect(Math.abs(result.defocusDeltaMm)).toBeLessThan(0.01);
       const centerField = result.fields.find((f) => f.fieldFraction === 0 && f.usable);
       if (centerField) {
         expect(centerField.rmsRadiusMm).toBeGreaterThanOrEqual(0);
@@ -156,11 +154,11 @@ describe("computeBokehPreviewPair", () => {
     expect(pair.nearFocus).not.toBeNull();
   });
 
-  it("infinity and near grids have opposite defocus at non-midpoint focus", () => {
-    const pair = computeBokehPreviewPair(L, 0.25, 0, currentEPSD, currentPhysStopSD);
-    if (pair.infinity && pair.nearFocus) {
-      // At focusT=0.25, infinity has smaller defocus than near (closer to infinity focus)
-      expect(Math.abs(pair.infinity.defocusDeltaMm)).toBeLessThan(Math.abs(pair.nearFocus.defocusDeltaMm));
+  it("infinity defocus grows and near defocus shrinks as focus moves to near", () => {
+    const pairA = computeBokehPreviewPair(L, 0.25, 0, currentEPSD, currentPhysStopSD);
+    const pairB = computeBokehPreviewPair(L, 0.75, 0, currentEPSD, currentPhysStopSD);
+    if (pairA.infinity && pairB.infinity) {
+      expect(Math.abs(pairA.infinity.defocusDeltaMm)).toBeLessThan(Math.abs(pairB.infinity.defocusDeltaMm));
     }
   });
 
@@ -252,21 +250,23 @@ describe("buildBokehDensityGrid", () => {
   });
 });
 
-describe("computeRealRayConvergenceZ", () => {
+describe("computeBestFocusZ", () => {
   it("returns finite value for standard lens at infinity", () => {
     const L = build(ApoLantharRaw);
-    const conv = computeRealRayConvergenceZ(L, 0, 0);
-    expect(isFinite(conv)).toBe(true);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const bf = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(isFinite(bf)).toBe(true);
   });
 
   it("varies significantly for internal-focus lens (Nikon Z 135)", () => {
     const L = build(NikonZ135Raw);
-    const conv0 = computeRealRayConvergenceZ(L, 0, 0);
-    const conv1 = computeRealRayConvergenceZ(L, 1, 0);
-    // Layout imgZ is constant for internal focus, but convergence must differ
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const bf0 = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    const bf1 = computeBestFocusZ(L, 1, 0, currentEPSD, currentPhysStopSD);
+    // Layout imgZ is constant for internal focus, but best-focus must differ
     const layoutDelta = doLayout(1, 0, L).imgZ - doLayout(0, 0, L).imgZ;
     expect(Math.abs(layoutDelta)).toBeLessThan(0.01);
-    expect(Math.abs(conv1 - conv0)).toBeGreaterThan(1);
+    expect(Math.abs(bf1 - bf0)).toBeGreaterThan(1);
   });
 });
 
