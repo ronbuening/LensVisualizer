@@ -41,13 +41,11 @@ export default function BokehPreviewOverlay({
 
   return (
     <div style={{ padding: "8px 16px 16px", overflow: "auto" }}>
-      <h3 style={{ fontSize: 14, margin: "0 0 4px", color: t.label, fontFamily: "inherit" }}>
-        Bokeh Preview (Beta)
-      </h3>
+      <h3 style={{ fontSize: 14, margin: "0 0 4px", color: t.label, fontFamily: "inherit" }}>Bokeh Preview (Beta)</h3>
       <p style={{ fontSize: 10, color: t.muted, margin: "0 0 12px", lineHeight: 1.5, fontFamily: "inherit" }}>
         Density heatmaps of defocused point sources at 0%, 25%, 50%, and 75% field height. Brighter regions indicate
-        higher ray density. Cat&apos;s eye shapes emerge off-axis from mechanical vignetting. Brightness variation across
-        the disk reflects spherical aberration.
+        higher ray density. Cat&apos;s eye shapes emerge off-axis from mechanical vignetting. Brightness variation
+        across the disk reflects spherical aberration.
       </p>
 
       {!hasInfinity && !hasNearFocus ? (
@@ -58,7 +56,9 @@ export default function BokehPreviewOverlay({
 
       {hasInfinity ? (
         <div style={{ marginBottom: 16 }}>
-          <h4 style={{ fontSize: 11, margin: "0 0 6px", color: t.label, fontFamily: "inherit", letterSpacing: "0.06em" }}>
+          <h4
+            style={{ fontSize: 11, margin: "0 0 6px", color: t.label, fontFamily: "inherit", letterSpacing: "0.06em" }}
+          >
             INFINITY SOURCE
           </h4>
           <p style={{ fontSize: 9, color: t.muted, margin: "0 0 4px", fontFamily: "inherit" }}>
@@ -70,7 +70,9 @@ export default function BokehPreviewOverlay({
 
       {hasNearFocus ? (
         <div>
-          <h4 style={{ fontSize: 11, margin: "0 0 6px", color: t.label, fontFamily: "inherit", letterSpacing: "0.06em" }}>
+          <h4
+            style={{ fontSize: 11, margin: "0 0 6px", color: t.label, fontFamily: "inherit", letterSpacing: "0.06em" }}
+          >
             NEAR FOCUS SOURCE
           </h4>
           <p style={{ fontSize: 9, color: t.muted, margin: "0 0 4px", fontFamily: "inherit" }}>

@@ -7,7 +7,11 @@ import {
   computeBokehPreviewPair,
   buildBokehDensityGrid,
 } from "../src/optics/aberrationAnalysis.js";
-import { computeBokehPreview, computeBokehFieldFootprint, computeImagePlaneZAtFocus } from "../src/optics/aberration/bokeh.js";
+import {
+  computeBokehPreview,
+  computeBokehFieldFootprint,
+  computeImagePlaneZAtFocus,
+} from "../src/optics/aberration/bokeh.js";
 import { doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -234,7 +238,11 @@ describe("buildBokehDensityGrid", () => {
     if (pair.infinity) {
       const centerField = pair.infinity.fields.find((f) => f.usable);
       if (centerField) {
-        const cells = buildBokehDensityGrid(centerField.points, pair.infinity.sharedHalfRangeMm, BOKEH_DENSITY_GRID_SIZE);
+        const cells = buildBokehDensityGrid(
+          centerField.points,
+          pair.infinity.sharedHalfRangeMm,
+          BOKEH_DENSITY_GRID_SIZE,
+        );
         expect(cells.length).toBeGreaterThan(0);
         expect(cells.every((c) => c.density >= 0 && c.density <= 1)).toBe(true);
       }

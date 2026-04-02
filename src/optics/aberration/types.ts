@@ -220,10 +220,7 @@ export const BOKEH_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
 /** Dense circular pupil ring pattern for bokeh tracing (~3× denser than coma). */
 export const BOKEH_CIRCULAR_PUPIL_RING_SAMPLES = [1, 12, 24, 36, 48, 60, 72, 84] as const;
-export const BOKEH_POINT_COUNT = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
-  (sum, count) => sum + count,
-  0,
-);
+export const BOKEH_POINT_COUNT = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES.reduce((sum, count) => sum + count, 0);
 
 /** Resolution of the 2D density heatmap grid per bokeh tile. */
 export const BOKEH_DENSITY_GRID_SIZE = 64;

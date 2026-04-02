@@ -12,11 +12,7 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import {
-  doLayout,
-  skewImagePlaneIntercept,
-  type SkewImagePlaneIntercept,
-} from "../optics.js";
+import { doLayout, skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle } from "./offAxis.js";
 import {
@@ -296,10 +292,7 @@ export function computeBokehPreview(
   const usableFields = fields.filter((f) => f.usable);
   if (usableFields.length < 1) return null;
 
-  const sharedHalfRangeMm = Math.max(
-    BOKEH_MIN_SHARED_HALF_RANGE_MM,
-    ...usableFields.map((f) => f.maxRadiusMm),
-  );
+  const sharedHalfRangeMm = Math.max(BOKEH_MIN_SHARED_HALF_RANGE_MM, ...usableFields.map((f) => f.maxRadiusMm));
 
   return {
     label,

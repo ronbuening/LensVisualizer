@@ -96,14 +96,7 @@ function TileShell({
 
       {children}
 
-      <text
-        x={plotCX}
-        y={tileY + TILE_H - 10}
-        textAnchor="middle"
-        fill={t.muted}
-        fontSize={7.5}
-        fontFamily="inherit"
-      >
+      <text x={plotCX} y={tileY + TILE_H - 10} textAnchor="middle" fill={t.muted} fontSize={7.5} fontFamily="inherit">
         {footerLine1}
       </text>
       <text x={plotCX} y={tileY + TILE_H - 2} textAnchor="middle" fill={t.muted} fontSize={7} fontFamily="inherit">
