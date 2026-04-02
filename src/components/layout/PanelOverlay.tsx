@@ -23,11 +23,9 @@ export default function PanelOverlay({ onClose, theme, children }: PanelOverlayP
   return (
     <div onClick={onClose} style={PANEL_OVERLAY_BACKDROP}>
       <div onClick={(e) => e.stopPropagation()} style={panelOverlayContent(theme)}>
-        <div style={{ display: "flex", justifyContent: "flex-end", flexShrink: 0 }}>
-          <button onClick={onClose} style={closeBtn(theme)}>
-            ×
-          </button>
-        </div>
+        <button onClick={onClose} style={closeBtn(theme)}>
+          ×
+        </button>
         {children}
       </div>
     </div>
