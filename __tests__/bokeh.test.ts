@@ -11,12 +11,14 @@ import {
   computeBokehPreview,
   computeBokehFieldFootprint,
   computeImagePlaneZAtFocus,
+  computeRealRayConvergenceZ,
 } from "../src/optics/aberration/bokeh.js";
 import { doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import NikonZ135Raw from "../src/lens-data/NikonZ135f18.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 import type { BokehPoint } from "../src/optics/aberration/types.js";
 
@@ -247,5 +249,46 @@ describe("buildBokehDensityGrid", () => {
         expect(cells.every((c) => c.density >= 0 && c.density <= 1)).toBe(true);
       }
     }
+  });
+});
+
+describe("computeRealRayConvergenceZ", () => {
+  it("returns finite value for standard lens at infinity", () => {
+    const L = build(ApoLantharRaw);
+    const conv = computeRealRayConvergenceZ(L, 0, 0);
+    expect(isFinite(conv)).toBe(true);
+  });
+
+  it("varies significantly for internal-focus lens (Nikon Z 135)", () => {
+    const L = build(NikonZ135Raw);
+    const conv0 = computeRealRayConvergenceZ(L, 0, 0);
+    const conv1 = computeRealRayConvergenceZ(L, 1, 0);
+    // Layout imgZ is constant for internal focus, but convergence must differ
+    const layoutDelta = doLayout(1, 0, L).imgZ - doLayout(0, 0, L).imgZ;
+    expect(Math.abs(layoutDelta)).toBeLessThan(0.01);
+    expect(Math.abs(conv1 - conv0)).toBeGreaterThan(1);
+  });
+});
+
+describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
+  const L = build(NikonZ135Raw);
+  const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+  it("infinity RMS grows monotonically from infinity to near focus", () => {
+    const rmsValues = [0, 0.5, 1].map((fT) => {
+      const pair = computeBokehPreviewPair(L, fT, 0, currentEPSD, currentPhysStopSD);
+      return pair.infinity!.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
+    });
+    expect(rmsValues[0]).toBeLessThan(rmsValues[1]);
+    expect(rmsValues[1]).toBeLessThan(rmsValues[2]);
+  });
+
+  it("near-focus RMS grows monotonically from near focus to infinity focus", () => {
+    const rmsValues = [0, 0.5, 1].map((fT) => {
+      const pair = computeBokehPreviewPair(L, fT, 0, currentEPSD, currentPhysStopSD);
+      return pair.nearFocus!.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
+    });
+    expect(rmsValues[2]).toBeLessThan(rmsValues[1]);
+    expect(rmsValues[1]).toBeLessThan(rmsValues[0]);
   });
 });
