@@ -9,7 +9,7 @@
 // capped by 58 mm filter thread (~27 mm SD) for front group
 // and sd/|R| < 0.88 for steeply curved surfaces.
 
-import type { LensDataInput } from "../lensDataSchema";
+import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
   key: "nokton-50f12-xmount",

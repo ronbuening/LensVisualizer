@@ -5,7 +5,7 @@
 // STO position estimated from patent FIG. 3 — centered in D6 air gap
 // Semi-diameters estimated: marginal ray (f/1.2) + 8% mechanical clearance, R6 capped at sd/|R| < 0.90
 
-import type { LensDataInput } from "../lensDataInput";
+import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
   key: "canon-fdn-50f12",
