@@ -78,12 +78,12 @@ export function computeRealRayConvergenceZ(L: RuntimeLens, focusT: number, zoomT
  * Compute a single bokeh ball at a given field position.
  *
  * Traces a dense circular pupil bundle through the lens at `traceFocusT` optics,
- * then re-intercepts each surviving ray on a plane shifted by `defocusDelta` from
- * the trace-focus image plane. The offset simulates a point source whose image
- * forms at a different Z than the sensor plane.
+ * then re-intercepts each surviving ray at `sensorZ` — the absolute Z position
+ * of the sensor plane. This avoids reliance on `geometry.imagePlaneZ` (which
+ * uses the nominal last-gap thickness and is wrong when that gap is variable).
  *
- * @param traceFocusT  Focus setting at which rays are traced (defines variable gaps)
- * @param defocusDelta Signed shift applied to imagePlaneZ (positive = behind sensor)
+ * @param traceFocusT Focus setting at which rays are traced (defines variable gaps)
+ * @param sensorZ     Absolute Z position of the sensor (image plane at current focus)
  */
 export function computeBokehFieldFootprint(
   L: RuntimeLens,
@@ -93,7 +93,7 @@ export function computeBokehFieldFootprint(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldFraction: number,
-  defocusDelta: number,
+  sensorZ: number,
 ): BokehFieldResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -111,8 +111,8 @@ export function computeBokehFieldFootprint(
   );
   if (bundle === null) return null;
 
-  /* Re-intercept chief ray on the defocused plane */
-  const defocusedImgZ = geometry.imagePlaneZ + defocusDelta;
+  /* Re-intercept chief ray at the sensor plane */
+  const defocusedImgZ = sensorZ;
   const chiefDefocused: SkewImagePlaneIntercept | null = skewImagePlaneIntercept(
     bundle.chiefRay.trace.x,
     bundle.chiefRay.trace.y,
@@ -261,37 +261,31 @@ export function buildBokehDensityGrid(
 /**
  * Compute one bokeh preview grid (e.g., infinity-source or near-source).
  *
- * Defocus is computed from real-ray convergence rather than layout imgZ
- * difference. This is critical for internal-focus lenses where the total
- * track stays constant but the back focal length shifts with focus.
+ * Rays are traced through the lens at `traceFocusT` and intercepted at the
+ * supplied `sensorZ` — the absolute Z position of the intercept plane. The
+ * caller is responsible for computing a sensorZ that produces the correct
+ * defocus for both unit-focus and internal-focus lens types.
  *
- * @param traceFocusT Focus state used for tracing (0 = infinity optics, 1 = near optics).
- * @param viewFocusT  Current focus slider position — determines the sensor plane.
+ * @param traceFocusT Focus state used for tracing (defines variable gaps and SA character).
+ * @param sensorZ     Absolute Z position of the intercept plane.
+ * @param label       Display label for the grid ("Infinity" or "Near Focus").
  */
 export function computeBokehPreview(
   L: RuntimeLens,
   traceFocusT: number,
-  viewFocusT: number,
+  sensorZ: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
   label: string,
 ): BokehPreviewResult | null {
-  /*
-   * Compute defocus using real-ray convergence instead of layout imgZ.
-   *
-   * For each focus configuration, a near-axis marginal ray from infinity
-   * converges at a specific Z. The difference between the convergence
-   * points at viewFocusT and traceFocusT gives the physical defocus —
-   * even for internal-focus lenses where imgZ is constant.
-   */
-  const convView = computeRealRayConvergenceZ(L, viewFocusT, zoomT);
-  const convTrace = computeRealRayConvergenceZ(L, traceFocusT, zoomT);
-  const defocusDelta = convView - convTrace;
-
-  /* Use the trace-focus layout for surface positions */
+  /* Surface positions from the trace-focus layout */
   const traceLayout = doLayout(traceFocusT, zoomT, L);
   const zPos = traceLayout.z;
+
+  /* Defocus for reporting */
+  const convTrace = computeRealRayConvergenceZ(L, traceFocusT, zoomT);
+  const defocusDelta = sensorZ - convTrace;
 
   const fields: BokehFieldResult[] = BOKEH_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
     const result = computeBokehFieldFootprint(
@@ -302,7 +296,7 @@ export function computeBokehPreview(
       currentEPSD,
       currentPhysStopSD,
       fieldFraction,
-      defocusDelta,
+      sensorZ,
     );
     if (result !== null) return result;
 
@@ -342,19 +336,21 @@ export function computeBokehPreview(
 /**
  * Compute both infinity-source and near-source bokeh preview grids.
  *
- * – **Infinity grid**: traces infinity rays through the lens at the current
- *   focus setting (viewFocusT) and intercepts at the current image plane.
- *   Defocus emerges naturally because infinity rays don't converge at the
- *   image plane when the lens is focused at a closer distance.
+ * Each grid traces through its reference optical configuration (fT=0 for
+ * infinity, fT=1 for near) to maintain consistent SA and vignetting. The
+ * intercept plane (sensorZ) is computed to give physically correct defocus
+ * for both unit-focusing lenses (total track changes) and internal-focus
+ * lenses (constant total track, variable EFL).
  *
- * – **Near focus grid**: traces through near-focus optics (traceFocusT=1)
- *   with a convergence-based defocus delta. Since the infrastructure can't
- *   launch diverging rays from a finite object distance, the SA/vignetting
- *   character comes from the near-focus configuration, and the defocus
- *   magnitude comes from the real-ray convergence shift.
+ * **Infinity grid** sensorZ combines layout shift and convergence shift:
+ *   `sensorZ = imgZ(view) + conv(0) − conv(view)`
  *
- * Both approaches correctly handle unit-focusing lenses (total track changes)
- * and internal-focus lenses (constant total track, variable EFL).
+ * **Near grid** uses the infinity grid's defocus at the complementary focus
+ * position (1 − viewFocusT), applied around the near-focus convergence:
+ *   `sensorZ = conv(1) + imgZ(1−view) − conv(1−view)`
+ *
+ * This ensures: at viewFocusT=0 the infinity grid shows an in-focus spot
+ * and the near grid shows maximum defocus; at viewFocusT=1 they swap.
  */
 export function computeBokehPreviewPair(
   L: RuntimeLens,
@@ -363,20 +359,30 @@ export function computeBokehPreviewPair(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): BokehPreviewPair {
-  /*
-   * Infinity grid: trace at viewFocusT (current focus), no defocus delta.
-   * traceFocusT = viewFocusT means the convergence delta is 0, so rays
-   * intercept directly at the current image plane. The defocus is implicit
-   * because infinity rays don't converge at the image plane when the lens
-   * is focused closer.
-   */
-  const infinity = computeBokehPreview(L, focusT, focusT, zoomT, currentEPSD, currentPhysStopSD, "Infinity");
+  /* Pre-compute convergence at key focus positions */
+  const conv0 = computeRealRayConvergenceZ(L, 0, zoomT);
+  const conv1 = computeRealRayConvergenceZ(L, 1, zoomT);
+  const convView = computeRealRayConvergenceZ(L, focusT, zoomT);
+  const imgZView = doLayout(focusT, zoomT, L).imgZ;
 
   /*
-   * Near focus grid: trace at traceFocusT=1 (near-focus optics) and apply
-   * convergence-based defocus to shift to the current focus plane.
+   * Infinity grid: sensorZ = imgZ(view) + conv(0) − conv(view)
+   * – Unit-focus: imgZ shifts with focus → growing defocus
+   * – Internal-focus: conv shifts with focus → growing defocus
    */
-  const nearFocus = computeBokehPreview(L, 1, focusT, zoomT, currentEPSD, currentPhysStopSD, "Near Focus");
+  const infSensorZ = imgZView + (conv0 - convView);
+  const infinity = computeBokehPreview(L, 0, infSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Infinity");
+
+  /*
+   * Near grid: mirror the infinity defocus at the complementary focus (1−view)
+   * around the near-focus convergence point.
+   *   sensorZ = conv(1) + imgZ(1−view) − conv(1−view)
+   */
+  const complementaryFocusT = 1 - focusT;
+  const convComplement = computeRealRayConvergenceZ(L, complementaryFocusT, zoomT);
+  const imgZComplement = doLayout(complementaryFocusT, zoomT, L).imgZ;
+  const nearSensorZ = conv1 + (imgZComplement - convComplement);
+  const nearFocus = computeBokehPreview(L, 1, nearSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Near Focus");
 
   return { infinity, nearFocus };
 }

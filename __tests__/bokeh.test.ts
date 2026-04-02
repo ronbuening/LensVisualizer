@@ -73,8 +73,8 @@ describe("computeBokehFieldFootprint", () => {
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
 
   it("on-axis (0%) has high transmission and roughly circular shape", () => {
-    const defocusDelta = 0.5; // arbitrary defocus
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, defocusDelta);
+    const sensorZ = layout.imgZ + 0.5; // sensor 0.5mm past image plane
+    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
 
     expect(result).not.toBeNull();
     expect(result!.usable).toBe(true);
@@ -91,9 +91,9 @@ describe("computeBokehFieldFootprint", () => {
   });
 
   it("off-axis (75%) has lower transmission (cat's eye vignetting)", () => {
-    const defocusDelta = 0.5;
-    const onAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, defocusDelta);
-    const offAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0.75, defocusDelta);
+    const sensorZ = layout.imgZ + 0.5;
+    const onAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
+    const offAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0.75, sensorZ);
 
     expect(onAxis).not.toBeNull();
     expect(offAxis).not.toBeNull();
@@ -103,12 +103,12 @@ describe("computeBokehFieldFootprint", () => {
   });
 
   it("returns unusable result when currentEPSD is zero", () => {
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, 0, currentPhysStopSD, 0, 0.5);
+    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, 0, currentPhysStopSD, 0, layout.imgZ + 0.5);
     expect(result).toBeNull();
   });
 
   it("preserves pupil coordinates for future blade masking", () => {
-    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, 0.5);
+    const result = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, layout.imgZ + 0.5);
     expect(result).not.toBeNull();
     expect(result!.points.length).toBeGreaterThan(0);
 
@@ -123,24 +123,23 @@ describe("computeBokehFieldFootprint", () => {
 describe("computeBokehPreview", () => {
   const L = build(ApoLantharRaw);
   const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+  const conv0 = computeRealRayConvergenceZ(L, 0, 0);
 
-  it("returns result with 4 fields for infinity grid at near focus", () => {
-    const result = computeBokehPreview(L, 0, 1, 0, currentEPSD, currentPhysStopSD, "Infinity");
+  it("returns result with 4 fields when sensorZ is shifted from convergence", () => {
+    const sensorZ = conv0 + 5; // 5mm past convergence
+    const result = computeBokehPreview(L, 0, sensorZ, 0, currentEPSD, currentPhysStopSD, "Infinity");
     expect(result).not.toBeNull();
     expect(result!.fields.length).toBe(4);
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(1);
-    expect(result!.defocusDeltaMm).not.toBe(0);
+    expect(result!.defocusDeltaMm).toBeCloseTo(5, 0);
   });
 
-  it("produces non-null result with zero defocus (aberration spot)", () => {
-    // traceFocusT = viewFocusT → defocusDelta ≈ 0; result is the aberration spot
-    const result = computeBokehPreview(L, 0, 0, 0, currentEPSD, currentPhysStopSD, "Infinity");
-    // May be null if defocus is exactly 0 and no aberrations, but should work for real lens
+  it("produces non-null result with sensorZ at convergence (aberration spot)", () => {
+    const result = computeBokehPreview(L, 0, conv0, 0, currentEPSD, currentPhysStopSD, "Infinity");
     if (result !== null) {
-      expect(result.defocusDeltaMm).toBeCloseTo(0, 5);
+      expect(Math.abs(result.defocusDeltaMm)).toBeLessThan(0.01);
       const centerField = result.fields.find((f) => f.fieldFraction === 0 && f.usable);
       if (centerField) {
-        // RMS may be non-zero due to residual aberrations
         expect(centerField.rmsRadiusMm).toBeGreaterThanOrEqual(0);
       }
     }
@@ -157,10 +156,11 @@ describe("computeBokehPreviewPair", () => {
     expect(pair.nearFocus).not.toBeNull();
   });
 
-  it("infinity grid has different defocus than near grid", () => {
-    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+  it("infinity and near grids have opposite defocus at non-midpoint focus", () => {
+    const pair = computeBokehPreviewPair(L, 0.25, 0, currentEPSD, currentPhysStopSD);
     if (pair.infinity && pair.nearFocus) {
-      expect(pair.infinity.defocusDeltaMm).not.toBeCloseTo(pair.nearFocus.defocusDeltaMm, 3);
+      // At focusT=0.25, infinity has smaller defocus than near (closer to infinity focus)
+      expect(Math.abs(pair.infinity.defocusDeltaMm)).toBeLessThan(Math.abs(pair.nearFocus.defocusDeltaMm));
     }
   });
 
@@ -283,12 +283,12 @@ describe("focus tracking for internal-focus lens (Nikon Z 135)", () => {
     expect(rmsValues[1]).toBeLessThan(rmsValues[2]);
   });
 
-  it("near-focus RMS grows monotonically from near focus to infinity focus", () => {
+  it("near-focus RMS shrinks monotonically from infinity to near focus", () => {
     const rmsValues = [0, 0.5, 1].map((fT) => {
       const pair = computeBokehPreviewPair(L, fT, 0, currentEPSD, currentPhysStopSD);
       return pair.nearFocus!.fields.find((f) => f.fieldFraction === 0 && f.usable)?.rmsRadiusMm ?? 0;
     });
-    expect(rmsValues[2]).toBeLessThan(rmsValues[1]);
-    expect(rmsValues[1]).toBeLessThan(rmsValues[0]);
+    expect(rmsValues[0]).toBeGreaterThan(rmsValues[1]);
+    expect(rmsValues[1]).toBeGreaterThan(rmsValues[2]);
   });
 });
