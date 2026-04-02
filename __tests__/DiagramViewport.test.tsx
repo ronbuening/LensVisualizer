@@ -94,6 +94,9 @@ const baseProps = {
   onZoomIn: vi.fn(),
   onZoomOut: vi.fn(),
   onPanBy: vi.fn(),
+  showBokehPreview: false,
+  onBokehPreviewToggle: vi.fn(),
+  bokehPreviewContent: null,
 };
 
 describe("DiagramViewport", () => {

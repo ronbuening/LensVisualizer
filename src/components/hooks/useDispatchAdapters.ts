@@ -42,6 +42,7 @@ export interface DispatchAdapters {
   onAnalysisDrawerToggle: (v: boolean) => void;
   onAnalysisTabChange: (tab: string) => void;
   onZoomPanToggle: (v: boolean) => void;
+  onBokehPreviewToggle: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -83,6 +84,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
       onAnalysisTabChange: (tab: string) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
+      onBokehPreviewToggle: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );
