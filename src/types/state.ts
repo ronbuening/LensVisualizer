@@ -60,7 +60,8 @@ export type PanelField =
   | "showEffectiveAperture"
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
-  | "zoomPanActive";
+  | "zoomPanActive"
+  | "bokehPreviewOpen";
 
 export interface PanelsSlice {
   focusExpanded: boolean;
@@ -74,6 +75,7 @@ export interface PanelsSlice {
   analysisDrawerOpen: boolean;
   analysisDrawerTab: string;
   zoomPanActive: boolean;
+  bokehPreviewOpen: boolean;
 }
 
 export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";

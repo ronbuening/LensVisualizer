@@ -38,6 +38,7 @@ import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import DiagramViewport from "./lensDiagram/DiagramViewport.js";
+import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -89,6 +90,7 @@ export default function LensDiagramPanel({
     analysisDrawerOpen,
     analysisDrawerTab,
     zoomPanActive,
+    bokehPreviewOpen,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -311,6 +313,20 @@ export default function LensDiagramPanel({
               onSvgTouchStart={zoomHook.handleTouchStart}
               onSvgTouchMove={zoomHook.handleTouchMove}
               onSvgTouchEnd={zoomHook.handleTouchEnd}
+              showBokehPreview={bokehPreviewOpen}
+              onBokehPreviewToggle={adapters.onBokehPreviewToggle}
+              bokehPreviewContent={
+                L ? (
+                  <BokehPreviewOverlay
+                    L={L}
+                    focusT={focusT}
+                    zoomT={zoomT}
+                    currentEPSD={currentEPSD}
+                    currentPhysStopSD={currentPhysStopSD}
+                    t={t}
+                  />
+                ) : null
+              }
               analysisContent={
                 <AnalysisDrawerContent
                   activeTab={analysisDrawerTab}

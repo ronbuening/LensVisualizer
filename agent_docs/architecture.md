@@ -105,6 +105,8 @@
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
+| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus density heatmap grids |
+| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG density heatmap grid for bokeh ball visualization at four field positions |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -140,7 +142,7 @@
 | `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
-| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, and field-curvature/astigmatism computations, including the split between standard checkpoint fields and denser internal curve samples for field-curvature plotting |
+| `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, field-curvature/astigmatism computations, and bokeh preview (defocused point-source density heatmaps with vignetting and SA effects) |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
@@ -314,6 +316,16 @@ Pure-function distortion analysis. Traces chief rays at 11 field positions from 
 - **`computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)`** — Traces a 2D chief-ray field grid against the same near-axis rectilinear reference, clipping the ideal grid to the current image circle and returning the traced image positions for each usable sample.
 
 No React dependencies — fully testable in isolation.
+
+## bokeh.ts (src/optics/aberration/)
+
+Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles through the lens at both infinity-focus and near-focus optics, then re-intercepts surviving rays on a defocused image plane to produce the characteristic bokeh ball shape. Cat's eye vignetting and SA-driven brightness profiles emerge naturally from the ray tracing.
+
+- **`computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Main entry point. Returns `BokehPreviewPair` with `infinity` and `nearFocus` grids, each containing 4 field positions (0%, 25%, 50%, 75%).
+- **`computeBokehPreview(L, traceFocusT, viewFocusT, zoomT, currentEPSD, currentPhysStopSD, label)`** — Computes one grid by tracing at `traceFocusT` optics and intercepting at `viewFocusT` image plane.
+- **`computeBokehFieldFootprint(..., fieldFraction, defocusDelta)`** — Per-field computation: traces circular pupil bundle, re-intercepts at shifted plane, preserves pupil coordinates for future aperture blade masking.
+- **`buildBokehDensityGrid(points, halfRange, gridSize)`** — Reusable 2D density heatmap utility: bins points into a grid, normalises max density to 1.0. Returns only non-empty cells.
+- **`ApertureBladeConfig`** — Future-proofing type for polygonal bokeh (blade count + roundedness). Not used in current computation but pupil coordinates are preserved on all traced points.
 
 ## validateLensData.ts
 
