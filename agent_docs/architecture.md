@@ -26,11 +26,9 @@
 | `TopBar.tsx` | `src/components/layout/` | Lens selectors, compare button, about buttons |
 | `ControlsBar.tsx` | `src/components/layout/` | Theme/ray/chromatic/scale toggles (compact + full modes) |
 | `ViewToggleBar.tsx` | `src/components/layout/` | Generic view-mode toggle (mobile + desktop) |
-| `ComparisonLayout.tsx` | `src/components/layout/` | Side-by-side (desktop) / stacked (mobile) comparison panels |
 | `OverlayModal.tsx` | `src/components/layout/` | Generic backdrop + modal + close button |
 | `LensDiagramPanel.tsx` | `src/components/layout/` | Diagram composition: wires hooks + sub-components |
 | `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling |
-| `SharedSlidersBar.tsx` | `src/components/layout/` | Comparison mode shared focus/aperture/zoom controls |
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
 | `PageNavBar.tsx` | `src/components/layout/` | Shared navigation bar for static pages with theme toggle |
 | `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |
@@ -157,7 +155,6 @@
 | `themePreferences.ts` | `src/utils/` | Shared theme-mode conversion and system dark/high-contrast resolution used by page hooks and viewer chrome |
 | `lensCatalog.ts` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `lensMetadata.ts` | `src/utils/` | SEO metadata: maker extraction, page titles/descriptions, canonical URLs, JSON-LD |
-| `comparisonSliders.ts` | `src/utils/` | Shared slider math for comparison mode (focus, aperture, zoom) |
 | `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing, `encodeSliderParams()` (shared slider→URL encoding), and slider state persistence |
 | `featureFlags.ts` | `src/utils/` | Feature flag controls |
 | `errorReporting.ts` | `src/utils/` | `buildIssueURL(error, context)` — builds a pre-filled GitHub `/issues/new` URL. `IssueContext` fields: `component`, `lensKey`, `componentStack` (React component tree from `ErrorInfo`), `extra` |
@@ -167,7 +164,6 @@
 | `useLensState.ts` | `src/utils/` | Hook: useReducer wrapper with prefs/URL initialization |
 | `usePreferences.ts` | `src/utils/` | Hook: localStorage persistence from reducer state |
 | `useURLSync.ts` | `src/utils/` | Hook: URL read/write/zoom-init |
-| `useStickySliders.ts` | `src/utils/` | Hook: comparison slider sticky state machine |
 | `LensContext.ts` | `src/utils/` | React Context: LensStateContext + LensDispatchContext |
 | `usePageTheme.ts` | `src/utils/` | Hook: resolves theme from dark/HC preferences + system media query |
 | `usePageThemeToggle.ts` | `src/utils/` | Hook: extends usePageTheme with dark/HC toggle cycling (auto→dark→light) |
@@ -175,6 +171,25 @@
 | `appConfig.ts` | `src/utils/` | Application-level configuration constants |
 | `homepageContent.ts` | `src/utils/` | Homepage content configuration and featured lens data |
 | `makerDetails.ts` | `src/utils/` | Maker display names, descriptions, and metadata |
+| `changelogData.ts` | `src/utils/` | `CHANGELOG` array of `ChangelogEntry` objects powering the homepage changelog panel |
+| `structuredData.ts` | `src/utils/` | JSON-LD structured-data helpers shared across page components |
+
+### Comparison Module
+
+All comparison-mode files live together in `src/comparison/`. This is a peer module alongside `src/components/`, `src/optics/`, and `src/utils/`.
+
+| Module | Location | Purpose |
+|--------|----------|---------|
+| `ComparisonContent.tsx` | `src/comparison/` | Full comparison-mode content area: wires ComparisonLayout + SharedSlidersBar, surfaces errors |
+| `ComparisonLayout.tsx` | `src/comparison/` | Side-by-side (desktop) / stacked (mobile) comparison panels |
+| `SharedSlidersBar.tsx` | `src/comparison/` | Comparison mode shared focus/aperture/zoom controls |
+| `useComparisonOrchestration.ts` | `src/comparison/` | Single hook for LensViewer: combines useComparisonMode + useStickySliders + enter/exit toggle + default-aperture effect |
+| `useComparisonMode.ts` | `src/comparison/` | Lens building, per-lens slider mapping, normalized scale ratios, and header height alignment for comparison |
+| `useStickySliders.ts` | `src/comparison/` | Sticky slider state machine for comparison mode (snap to common point behavior) |
+| `comparisonSliders.ts` | `src/comparison/` | Pure functions: per-lens slider values from shared slider positions (focus, aperture, zoom) |
+| `comparisonReducer.ts` | `src/comparison/` | Comparison-mode sub-reducer: shared slider updates, scale mode, enter/exit transitions |
+| `comparisonURLSync.ts` | `src/comparison/` | Pathname-based comparison URL building and page-level SEO metadata for the compare route |
+| `comparisonTypes.ts` | `src/comparison/` | Type definitions: `SharedSlidersSlice`, `ComparisonAction` union |
 
 ## Testing & Coverage
 
