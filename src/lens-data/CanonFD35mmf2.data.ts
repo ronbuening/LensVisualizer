@@ -152,7 +152,7 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 2.97, nd: 1.0, elemId: 0, sd: 9.6 },
     // ---- Group II₂ (rear-back positive) ----
     { label: "11", R: -135.7, d: 0.98, nd: 1.76182, elemId: 6, sd: 11.0 },
-    { label: "12", R: 29.939, d: 3.17, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "12", R: 29.939, d: 3.17, nd: 1.0, elemId: 0, sd: 10.5 },
     { label: "13", R: -40.95, d: 0.98, nd: 1.80518, elemId: 7, sd: 12.8 },
     { label: "14", R: 488.6, d: 4.29, nd: 1.7737, elemId: 8, sd: 12.8 },
     { label: "15", R: -24.46, d: 0.1, nd: 1.0, elemId: 0, sd: 14.5 },
