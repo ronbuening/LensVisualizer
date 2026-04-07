@@ -26,6 +26,7 @@ const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
   { prefix: "VOIGTLÄNDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },
   { prefix: "RICOH", display: "Ricoh", slug: "ricoh" },
+  { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
 ];
 
 export interface MakerInfo {
