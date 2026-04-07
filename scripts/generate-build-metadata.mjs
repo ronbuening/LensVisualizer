@@ -20,6 +20,7 @@ import { join } from "node:path";
 import { buildRouteFreshness, combineFreshnessEntries, getGitFileFreshness } from "./build-metadata-lib.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
+const README_FILE = join(ROOT, "README.md");
 const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
 const OUT_DIR = join(ROOT, "src", "generated");
@@ -192,6 +193,17 @@ function main() {
   const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
   const metadata = { lensFreshness, articles, lensKeys, makerSlugs, routes, routeFreshness };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
+
+  // Keep the README lens count in sync automatically
+  const readme = readFileSync(README_FILE, "utf-8");
+  const updatedReadme = readme.replace(
+    /^(- )`\d+`( lens data files are currently included)/m,
+    `$1\`${lensKeys.length}\`$2`,
+  );
+  if (updatedReadme !== readme) {
+    writeFileSync(README_FILE, updatedReadme, "utf-8");
+    console.log(`README.md lens count updated to ${lensKeys.length}.`);
+  }
 
   console.log(
     `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${routes.length} routes)`,
