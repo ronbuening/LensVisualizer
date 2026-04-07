@@ -81,6 +81,8 @@ These must be specified in every lens file — they have no defaults.
 | `zoomPositions` | `number[]` | | Focal lengths in mm at each zoom position (see Zoom Lens Fields) |
 | `zoomStep` | `number` | `0.004` | Zoom slider step size |
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
+| `apertureBlades` | `number` | | Number of aperture blades (reserved for future polygonal bokeh rendering) |
+| `apertureBladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 = straight polygon, 1 = circular) |
 
 ---
 
@@ -95,9 +97,9 @@ Each entry in the `elements` array describes one physical glass element.
   label:    "Element 1",                    // REQUIRED: display label
   type:     "Biconvex Positive",            // REQUIRED: optical shape/type description
   nd:       1.90525,                        // REQUIRED: refractive index (d-line, 587.6 nm)
-  vd:       35.04,                          // REQUIRED: Abbe number
-  fl:       119.3,                          // REQUIRED: focal length in mm
-  glass:    "LaSF (LASF35 melt)",           // REQUIRED: glass name/catalog
+  vd:       35.04,                          // recommended: Abbe number (optional in type; needed for inspector display)
+  fl:       119.3,                          // recommended: focal length in mm (optional in type; needed for inspector display)
+  glass:    "LaSF (LASF35 melt)",           // recommended: glass name/catalog (optional in type; needed for inspector display)
   apd:      false,                          // optional: false | "patent" | "inferred"
   apdNote:  "dPgF = +0.0376",              // optional: APD details
   role:     "Front positive meniscus...",    // optional: optical role description
@@ -195,6 +197,10 @@ asph: {
     A10: -2.2674e-15,    // 10th-order
     A12:  0,             // 12th-order (0 if not used)
     A14:  0,             // 14th-order (0 if not used)
+    // A16, A18, A20 — optional; include only when the patent provides them
+    A16:  0,             // 16th-order (optional)
+    A18:  0,             // 18th-order (optional)
+    A20:  0,             // 20th-order (optional)
   },
 }
 ```
@@ -202,11 +208,13 @@ asph: {
 **Sag equation:**
 ```
 Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
+       [+ A16·h¹⁶ + A18·h¹⁸ + A20·h²⁰]   ← optional; omit or set 0 when unused
 ```
 
 **Rules:**
 - Keys must match existing surface labels
-- Set unused coefficients to `0`
+- Set unused required coefficients (A4–A14) to `0`
+- A16, A18, A20 are optional — include only when the patent specifies them; omit entirely when not used
 - For all-spherical designs: `asph: {}`
 - **Conic limit:** When K > 0 (hyperboloid), the surface semi-diameter must satisfy sd < |R| / √(1+K). The validator enforces sd ≤ 0.98 × this limit.
 

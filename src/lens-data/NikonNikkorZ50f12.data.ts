@@ -346,7 +346,7 @@ const LENS_DATA = {
       A10: 4.8526e-13,
       A12: -7.0843e-16,
       A14: 6.0146e-19,
-      // A16: -2.27720e-22  (beyond spec range — negligible contribution)
+      // A16: -2.27720e-22  (negligible contribution — omitted)
     },
     "25A": {
       K: -1.159e-1,
@@ -356,7 +356,7 @@ const LENS_DATA = {
       A10: 2.0461e-13,
       A12: 1.6362e-16,
       A14: -1.0877e-18,
-      // A16:  1.17040e-21  (beyond spec range — negligible contribution)
+      // A16:  1.17040e-21  (negligible contribution — omitted)
     },
     "32A": {
       K: 9.4794,

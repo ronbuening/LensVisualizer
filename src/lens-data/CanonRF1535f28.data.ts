@@ -300,7 +300,7 @@ const LENS_DATA = {
   ],
 
   // ─── Aspherical coefficients ───────────────────────────────────────────────
-  // Patent includes A16 for surfaces 1*, 3*, 27* — omitted (renderer limit A14).
+  // Patent includes A16 for surfaces 1*, 3*, 27* — omitted (negligible contribution at production SDs).
   asph: {
     "1A": {
       K: 0,

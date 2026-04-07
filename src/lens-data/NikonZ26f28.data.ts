@@ -211,7 +211,7 @@ const LENS_DATA = {
       A12: 1.76e-10,
       A14: 8.59e-14,
       // Note: patent also lists A16 = -9.66E-14 and A18 = 1.31E-15;
-      // renderer supports up to A14, higher terms omitted (negligible at these SDs)
+      // omitted — negligible contribution at these SDs
     },
     "11A": {
       K: 1.0,
