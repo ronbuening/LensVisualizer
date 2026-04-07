@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-07 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-07",
+    type: "lens",
+    summary:
+      "Added Canon FD 35mm f/2 S.S.C., Nikon AI Nikkor 135mm f/2, Nikon AI Nikkor 135mm f/2.8, and Vivitar Series 1 200mm f/3.0 — four Sonnar-based and retrofocus designs",
+  },
   // ── 2026-04-01 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-01",

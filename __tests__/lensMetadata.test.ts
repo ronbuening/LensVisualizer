@@ -84,7 +84,8 @@ describe("allMakerSlugs", () => {
     expect(slugs).toContain("voigtlander");
     expect(slugs).toContain("ricoh");
     expect(slugs).toContain("fujifilm");
-    expect(slugs.length).toBe(7);
+    expect(slugs).toContain("vivitar");
+    expect(slugs.length).toBe(8);
   });
 });
 

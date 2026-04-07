@@ -10,6 +10,7 @@
  *               Ricoh GR IV update.
  *   2026-03-26  Added Canon maker entry.
  *   2026-03-27  Added Fujifilm maker entry.
+ *   2026-04-07  Added Vivitar maker entry.
  */
 
 export interface MakerDetails {
@@ -68,6 +69,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "Ricoh's origins trace to 1936, when Riken Kankoshi Co., Ltd. was spun off from the Institute of Physical and Chemical Research to manufacture sensitized paper. Camera-related work began the following year, and after renaming to Riken Optical Co., Ltd. in 1938 the company started developing its own cameras and lenses. Through the mid-20th century, Ricoh produced a range of affordable consumer cameras — most notably the Ricohflex III TLR (1950), which helped spark Japan's postwar camera boom — but the brand's photographic-optical identity transformed with the GR series.\n\nThe original Ricoh GR1 (1996) paired a high-performance 28mm f/2.8 lens with a compact titanium body, targeting serious photographers who wanted optical quality without bulk. The GR lens formula — a wide-angle design optimized for edge-to-edge sharpness, low distortion, and close-focus performance — became the defining characteristic of the line. Each GR generation refined this formula while maintaining the 28mm focal length and compact philosophy.\n\nRicoh acquired Pentax from Hoya in 2011, consolidating its imaging division. The digital GR series (GR, GR II, GR III, GR IIIx, GR IV) continued the tradition with APS-C sensors behind purpose-designed GR lenses. The GR IV (2025) carries a redesigned 18.3mm f/2.8 (28mm equivalent) lens and a new 25.74-megapixel sensor, delivering resolving power that rivals many interchangeable lenses.",
     notableDesigns: "GR 28mm f/2.8, GR III 18.3mm f/2.8, GR IIIx 26.1mm f/2.8, GR IV 18.3mm f/2.8",
+  },
+  vivitar: {
+    founded: 1938,
+    headquarters: "Santa Monica, California, USA (marketing brand; lenses manufactured in Japan)",
+    summary:
+      "American photographic brand best known for the Series 1 line of high-performance lenses developed in the 1970s and early 1980s, designed by prominent optical engineers including Ellis Betensky and produced by Japanese manufacturers under contract.",
+    history:
+      "Vivitar Corporation traces its origins to Ponder & Best, Inc., a photographic equipment importer founded in 1938 in Los Angeles. The company sold imported Japanese photographic accessories under the Vivitar brand starting in 1959, eventually adopting Vivitar Corporation as its corporate name in 1971.\n\nVivitar's commercial model was unusual: the company designed and marketed lenses but contracted their manufacture to Japanese optical firms — primarily Komine, Tokina, Cosina, Kiron, and Mamiya, among others. The brand became known primarily for affordable third-party lenses for the SLR market, but its premium tier, the Series 1, earned a distinct reputation for optical quality that rivaled — and in some cases surpassed — first-party alternatives.\n\nThe Series 1 designation was introduced in 1973 to mark lenses whose designs were developed or supervised by independent optical engineers rather than being straightforward copies of existing formulas. The most prominent contributor was Ellis I. Betensky, an American optical designer and patent holder who collaborated with Ponder & Best on several Series 1 designs. Betensky's patents — including US 3,942,876 covering the 200mm f/3.0 VMC — introduced design innovations such as fixed rear corrector elements that remained stationary during focusing, reducing focus breathing and improving off-axis performance at close distances. Other Series 1 contributors included David Betensky and William Peck.\n\nProduction quality varied by manufacturer: Series 1 lenses made by Komine are generally regarded as the highest-quality examples, with Kiron-made units also well-regarded. The VMC (Variable Multi-Coating) designation, introduced in the mid-1970s, indicated multi-layer anti-reflection coatings applied to all air-glass surfaces — a feature that markedly improved contrast and flare resistance relative to single-coated alternatives.\n\nVivitar was acquired by Hanson Photo in 1992. The brand has since changed hands multiple times and today is largely a consumer electronics label with no connection to the optical engineering tradition of the Series 1 era.",
+    notableDesigns: "Series 1 200mm f/3.0 VMC, Series 1 90mm f/2.5 Macro, Series 1 28-90mm f/2.8-3.5",
   },
   voigtlander: {
     founded: 1756,
