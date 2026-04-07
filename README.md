@@ -18,8 +18,8 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## Current Scope
 
-- `43` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
-- The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, and Ricoh
+- `47` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
+- The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, Ricoh, and Vivitar
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
 The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
