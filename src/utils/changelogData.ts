@@ -22,6 +22,17 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-08",
+    type: "improvement",
+    summary:
+      "Implemented uniform aspect ratio scaling — eliminates lens shape distortion from independent horizontal/vertical zoom",
+  },
+  {
+    date: "2026-04-08",
+    type: "lens",
+    summary: "Calibrated Voigtländer Ultron 28/2 semi-diameters to Cosina's published cross-section diagram",
+  },
+  {
+    date: "2026-04-08",
     type: "lens",
     summary: "Added Vivitar Series 1 35–85mm f/2.8 VMC, Fujifilm XF 90mm f/2 R LM WR, and Fujinon XF 56mm F1.2 R",
   },
