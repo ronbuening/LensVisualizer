@@ -393,7 +393,7 @@ On failure, `buildLens()` throws with all errors listed.
 When transcribing from an optical patent:
 
 1. **Surfaces** — Copy the prescription table exactly (R, d, nd). Watch sign conventions — some patents use opposite R sign convention
-2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance
+2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance. If the manufacturer publishes a cross-section diagram, use it to refine front-group SDs: compute the average (front+rear)/2 SD per element, compare the ratios between elements against the diagram proportions, and adjust conservatively while keeping sd/|R| ≤ 0.90 and the front/rear ratio ≤ 1.25. The front group is most likely to diverge — especially elements 2 and 3, which the marginal-ray method tends to over-size relative to the actual lens
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface
