@@ -430,6 +430,25 @@ describe("scaleRatio for normalized comparison", () => {
       expect(L.YSC).toBeGreaterThan(0);
     }
   });
+
+  it("uniform scaling: SC equals YSC for all lenses", () => {
+    const lenses = [ApoLanthar, Nokton];
+    for (const data of lenses) {
+      const L = buildLens(data);
+      expect(L.SC).toBe(L.YSC);
+    }
+  });
+
+  it("uniform scaling: svgH accommodates all annotation positions", () => {
+    const lenses = [ApoLanthar, Nokton];
+    for (const data of lenses) {
+      const L = buildLens(data);
+      /* lyGroup (1.37 * maxSD) is the farthest annotation below center.
+       * sy(lyGroup) = svgH/2 + lyGroup * YSC must fit within svgH. */
+      const lyGroupPx = L.svgH / 2 + L.lyGroup * L.YSC;
+      expect(lyGroupPx).toBeLessThan(L.svgH);
+    }
+  });
 });
 
 /* ═══════════════════════════════════════════════════════════════════
