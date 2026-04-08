@@ -118,8 +118,7 @@ agent_docs/     # Developer-facing architecture and workflow notes
 4. Run:
 
 ```bash
-npm run typecheck
-npm run test
+npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
 5. The catalog will pick the new lens up automatically through `import.meta.glob`.

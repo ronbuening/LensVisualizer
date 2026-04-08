@@ -72,6 +72,7 @@ Read the relevant file before starting work on that area:
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
 - **`agent_docs/workflow.md`** — Commit style, pre-commit checks, and deployment pipeline
+- **`agent_docs/changelog.md`** — When and how to add entries to the homepage changelog
 - **`agent_docs/record_keeping.md`** — How to maintain branch/task records without bloating `CLAUDE.md`
 - **`agent_docs/code_conventions.md`** — Naming, TypeScript, formatting, and architecture constraints
 - **`agent_docs/commenting_guide.md`** — Code commenting standards and best practices

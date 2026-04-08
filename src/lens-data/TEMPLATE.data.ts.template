@@ -71,10 +71,10 @@ const LENS_DATA = {
    *    name     (string, REQUIRED)  Short name, e.g. "L1", "Lfa"
    *    label    (string, REQUIRED)  Display label, e.g. "Element 1"
    *    type     (string, REQUIRED)  Optical type, e.g. "Biconvex Positive", "Neg. Meniscus (2× Asph)"
-   *    nd       (number, REQUIRED)  Refractive index at d-line (587.6 nm)
-   *    vd       (number, REQUIRED)  Abbe number (dispersion)
-   *    fl       (number, REQUIRED)  Focal length in mm (positive or negative)
-   *    glass    (string, REQUIRED)  Glass designation or catalog match
+   *    nd       (number, REQUIRED)      Refractive index at d-line (587.6 nm)
+   *    vd       (number, recommended)   Abbe number (dispersion) — optional in type, needed for inspector display
+   *    fl       (number, recommended)   Focal length in mm — optional in type, needed for inspector display
+   *    glass    (string, recommended)   Glass designation or catalog match — optional in type, needed for inspector display
    *    apd      (string|false, optional)  Anomalous partial dispersion: false, "patent", or "inferred"
    *    apdNote  (string, optional)  Additional APD details, e.g. "dPgF = +0.0376 (patent-listed)"
    *    role     (string, optional)  Description of the element's optical role/function
@@ -190,13 +190,16 @@ const LENS_DATA = {
    *
    *  Sag equation:
    *    Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
+   *           [+ A16·h¹⁶ + A18·h¹⁸ + A20·h²⁰]   ← optional; omit when unused
    *
-   *  Set unused higher-order coefficients to 0.
+   *  A4–A14 are required fields; set unused ones to 0.
+   *  A16, A18, A20 are optional — include only when the patent provides them.
    */
   asph: {
     // "3A": {
     //   K: 0,
     //   A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0,
+    //   // A16: 0, A18: 0, A20: 0,   // optional — include only if patent specifies
     // },
   },
 
