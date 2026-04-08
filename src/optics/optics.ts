@@ -68,6 +68,7 @@ const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — y
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
+const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 
 /* =====================================================================
  * §4  RENDERING HELPERS — Sag, layout, and shape utilities
@@ -969,7 +970,9 @@ function realK(yRef: number, du: number, focusT: number, zoomT: number, L: Runti
  * Returns K(focusT) − K(0), where K measures how rays converge at the
  * image plane.  This drives the visual "defocus cone" in the diagram —
  * positive K means the focus has shifted forward of the sensor.
- * Uses real ray trace (traceToImageReal) for accuracy with aspheric lenses.
+ * Uses a state-aware near-axis reference ray instead of a marginal-zone sample
+ * so strong aspheres and close-focus spherical aberration do not destabilize
+ * the tracked-focus launch slope.
  *
  * @param focusT  — focus slider [0..1]
  * @param zoomT   — zoom slider [0..1]
@@ -978,10 +981,13 @@ function realK(yRef: number, du: number, focusT: number, zoomT: number, L: Runti
  */
 export function conjugateK(focusT: number, zoomT: number, L: RuntimeLens): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
-  const yRef = L.EP.epSD * 0.7;
   const du = 1e-5;
-  const Kt = realK(yRef, du, focusT, zoomT, L);
-  const K0 = realK(yRef, du, 0, zoomT, L);
+  const currentEP = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
+  const infinityEP = entrancePupilAtState(L.stopPhysSD, 0, zoomT, L).epSD;
+  const yRefCurrent = currentEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
+  const yRefInfinity = infinityEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
+  const Kt = realK(yRefCurrent, du, focusT, zoomT, L);
+  const K0 = realK(yRefInfinity, du, 0, zoomT, L);
   if (isNaN(Kt) || isNaN(K0)) return 0;
   return Kt - K0;
 }
