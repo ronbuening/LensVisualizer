@@ -32,6 +32,7 @@ import type {
   RuntimeLens,
   ParaxialTraceResult,
 } from "../types/optics.js";
+import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -381,9 +382,18 @@ export default function buildLens(data: LensData): RuntimeLens {
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
   const SC = (svgW * scFill) / totalTrack;
-  let YSC = (svgH * yScFill) / maxSD;
-  const maxAR = data.maxAspectRatio;
-  if (maxAR > 0 && YSC / SC > maxAR) YSC = SC * maxAR;
+  let YSC: number;
+  let effectiveSvgH: number;
+  if (ENABLE_UNIFORM_SCALING) {
+    YSC = SC;
+    const verticalMargin = 1.45 * maxSD;
+    effectiveSvgH = Math.round(Math.max(2 * verticalMargin * SC + 20, 290));
+  } else {
+    YSC = (svgH * yScFill) / maxSD;
+    const maxAR = data.maxAspectRatio;
+    if (maxAR > 0 && YSC / SC > maxAR) YSC = SC * maxAR;
+    effectiveSvgH = svgH;
+  }
   const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
   const gridPitch = totalTrack / 15;
   const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
@@ -558,7 +568,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     totalTrack,
     maxSD,
     svgW: data.svgW,
-    svgH: data.svgH,
+    svgH: effectiveSvgH,
     SC,
     YSC,
     maxRimSin,

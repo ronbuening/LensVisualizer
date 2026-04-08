@@ -10,6 +10,10 @@
  */
 
 // --- Rendering experiments ---
+// Uniform SC/YSC scaling — eliminates lens shape distortion from anisotropic scaling.
+// Remove when confirmed stable; revert to false if regressions appear.
+export const ENABLE_UNIFORM_SCALING = true;
+
 // Remove when aspheric diamond fill ships or is abandoned.
 export const ENABLE_ASPH_DIAMOND_FILL = false;
 
