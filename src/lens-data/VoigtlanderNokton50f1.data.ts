@@ -157,8 +157,11 @@ const LENS_DATA = {
 
   /* ── Surface prescription — JP2023063766A Table 1, Example 1 ──
    *  Semi-diameters derived from paraxial marginal-ray trace at f/1.0
-   *  (EP SD = 25 mm), with 8–12% mechanical clearance margin.
-   *  Surface "6" (L3 rear, R = 19.835 mm) is R-capped at 93% of |R|.
+   *  (EP SD = 25 mm).  Front-group SDs (L2, L3) refined against the
+   *  manufacturer's published cross-section diagram to better reflect
+   *  the visual element proportions: L2 reduced to 24.0/20.0 mm and
+   *  L3 front reduced to 19.0 mm.
+   *  Surface "6" (L3 rear, R = 19.835 mm) is R-capped: sd/|R| = 0.897.
    *  Rear-group SDs sized to match patent Figure 1 proportions.
    *
    *  STOP SD is the physically correct value (~16.14 mm) so that the
@@ -167,9 +170,9 @@ const LENS_DATA = {
   surfaces: [
     { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, elemId: 1, sd: 27.0 },
     { label: "2", R: 65.488, d: 1.07, nd: 1.0, elemId: 0, sd: 26.0 },
-    { label: "3", R: 32.975, d: 8.01, nd: 1.90043, elemId: 2, sd: 26.0 },
-    { label: "4", R: 84.15, d: 0.87, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "5", R: 58.596, d: 1.65, nd: 1.80518, elemId: 3, sd: 21.0 },
+    { label: "3", R: 32.975, d: 8.01, nd: 1.90043, elemId: 2, sd: 24.0 },
+    { label: "4", R: 84.15, d: 0.87, nd: 1.0, elemId: 0, sd: 20.0 },
+    { label: "5", R: 58.596, d: 1.65, nd: 1.80518, elemId: 3, sd: 19.0 },
     { label: "6", R: 19.835, d: 12.05, nd: 1.0, elemId: 0, sd: 17.8 },
     { label: "STO", R: 1e15, d: 3.24, nd: 1.0, elemId: 0, sd: 16.14 },
     { label: "8", R: -40.995, d: 1.55, nd: 1.76182, elemId: 4, sd: 17.0 },
