@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-08 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-08",
+    type: "lens",
+    summary: "Added Vivitar Series 1 35–85mm f/2.8 VMC, Fujifilm XF 90mm f/2 R LM WR, and Fujinon XF 56mm F1.2 R",
+  },
   // ── 2026-04-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-07",
