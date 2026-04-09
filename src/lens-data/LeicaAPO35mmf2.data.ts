@@ -209,11 +209,11 @@ const LENS_DATA = {
     // G1: L1 + L2 cemented doublet
     { label: "1A", R: 54.11, d: 5.95, nd: 1.8515, elemId: 1, sd: 15.0 }, // L1 front (asph)
     { label: "2", R: -21.98, d: 1.05, nd: 1.65412, elemId: 2, sd: 12.0 }, // L1→L2 junction
-    { label: "3", R: 25.97, d: 3.5, nd: 1.0, elemId: 0, sd: 11.5 }, // L2 rear → air
+    { label: "3", R: 25.97, d: 3.5, nd: 1.0, elemId: 0, sd: 10.0 }, // L2 rear → air
     // G2: L3 + L4 cemented doublet
-    { label: "4", R: -27.65, d: 2.1, nd: 1.65412, elemId: 3, sd: 10.5 }, // L3 front
-    { label: "5", R: 22.68, d: 4.55, nd: 1.883, elemId: 4, sd: 10.5 }, // L3→L4 junction
-    { label: "6", R: -37.835, d: 1.4, nd: 1.0, elemId: 0, sd: 9.8 }, // L4 rear → air
+    { label: "4", R: -27.65, d: 2.1, nd: 1.65412, elemId: 3, sd: 9.0 }, // L3 front
+    { label: "5", R: 22.68, d: 4.55, nd: 1.883, elemId: 4, sd: 9.0 }, // L3→L4 junction
+    { label: "6", R: -37.835, d: 1.4, nd: 1.0, elemId: 0, sd: 9.0 }, // L4 rear → air
 
     // ── Aperture Stop ──
     { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 8.75 },
