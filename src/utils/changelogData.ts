@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-09 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-09",
+    type: "lens",
+    summary:
+      "Added five Leica lenses: Summilux 28mm f/1.7 ASPH (Q-series), APO-Summicron 43mm f/2 ASPH (Q3 43), ELCAN 50mm f/2, APO-Summicron-M 35mm f/2 ASPH, and Summicron-M 50mm f/2 V5",
+  },
   // ── 2026-04-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-08",

@@ -11,6 +11,7 @@
  *   2026-03-26  Added Canon maker entry.
  *   2026-03-27  Added Fujifilm maker entry.
  *   2026-04-07  Added Vivitar maker entry.
+ *   2026-04-09  Added Leica maker entry.
  */
 
 export interface MakerDetails {
@@ -22,6 +23,16 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  leica: {
+    founded: 1914,
+    headquarters: "Wetzlar, Germany",
+    summary:
+      "German precision optical manufacturer renowned for the M-series rangefinder cameras and Summicron, Summilux, and APO-Summicron lens families, blending meticulous handcraft with advanced optical science at small production volumes.",
+    history:
+      "Leica's optical origins reach back to 1849, when Carl Kellner founded an optical institute in Wetzlar that eventually became Ernst Leitz GmbH. The company built microscopes and binoculars before engineer Oskar Barnack, working at Leitz, developed a compact 35mm camera prototype (the Ur-Leica) between 1913 and 1914. The production Leica I, introduced at the Leipzig Spring Fair in 1925, established 35mm photography as a serious medium and defined a new class of small, fast cameras for photojournalism, street photography, and scientific documentation.\n\nLeica's optical design heritage is inseparable from a succession of landmark lens designers. Max Berek created the original Leitz Elmar (1925), a derivative of the Tessar formula, followed by the Summar and Hektor designs of the 1930s. Walter Mandler, working at Ernst Leitz Canada (ELCAN) in Midland, Ontario from the 1950s through the 1980s, developed much of the Summicron and Summilux lineage — including the Summicron-M 50mm f/2 (1953), the Noctilux 50mm f/1.2 and f/1.0, and the legendary Summilux-M 35mm f/1.4 ASPH. Mandler's designs often pursued maximum correction through all-spherical constructions, relying on sophisticated glass selection rather than aspherical surfaces.\n\nThe introduction of the M-mount in 1954 with the Leica M3 established the bayonet standard still used today. The compact, short-flange-distance mount enables a class of wide-angle and standard lenses with minimal retrofocus complexity — an advantage that influenced every Leica lens designed for rangefinder cameras. The M-system continued evolving through the M6, M7, M-A, and the digital M8, M9, M10, and M11 bodies.\n\nPeter Karbe, head of optics at Leica Camera AG from the early 2000s, extended the design tradition with aspherical constructions optimized for digital sensors. His APO-Summicron-M 50mm f/2 ASPH (2012) is widely considered one of the finest photographic lenses ever made, with essentially perfect aberration correction across the full field. Karbe also designed the Leica Q series fixed lenses — including the Summilux 28mm f/1.7 ASPH (jointly developed with Panasonic) — which brought interchangeable-lens-quality optics to a fixed-lens compact system. The APO-Summicron-M 35mm f/2 ASPH (2015) continued the APO lineage with fluorophosphate glass and KZFS-type flints for three-wavelength chromatic correction.\n\nLeica produces lenses in relatively small volumes at its Wetzlar facility, where assembly, cementing, and final adjustment are performed by hand. This manufacturing philosophy — prioritizing perfection over scale — results in lenses that command substantial premiums but are widely regarded as benchmarks for the craft.",
+    notableDesigns:
+      "Elmar 50mm f/3.5, Summicron-M 50mm f/2, Summilux-M 35mm f/1.4 ASPH, Noctilux-M 50mm f/0.95 ASPH, APO-Summicron-M 50mm f/2 ASPH, APO-Summicron-M 35mm f/2 ASPH, Summilux 28mm f/1.7 ASPH",
+  },
   fujifilm: {
     founded: 1934,
     headquarters: "Tokyo, Japan",

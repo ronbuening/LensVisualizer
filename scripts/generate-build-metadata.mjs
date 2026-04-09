@@ -35,6 +35,7 @@ const MAKER_PREFIXES = [
   { prefix: "CARL ZEISS", slug: "carl-zeiss" },
   { prefix: "FUJIFILM", slug: "fujifilm" },
   { prefix: "FUJINON", slug: "fujifilm" },
+  { prefix: "LEICA", slug: "leica" },
   { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
   { prefix: "NIKON", slug: "nikon" },
   { prefix: "RICOH", slug: "ricoh" },
