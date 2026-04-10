@@ -1,8 +1,8 @@
 /**
  * Lens index page — /lenses
  *
- * Browsable list of all lenses grouped by maker or focal length,
- * with crawlable <a> links.
+ * Browsable list of all lenses with maker/focal/patent grouping
+ * and custom filters, with crawlable <a> links.
  */
 
 import { useEffect, useMemo, useState } from "react";
@@ -109,6 +109,8 @@ function groupingFl(data: LensData): number | null {
   return range ? range[0] : null;
 }
 
+/** Prefer the marketing aperture so the filter matches the user-facing label,
+ *  but fall back to design/nominal data for older catalog entries. */
 function lensAperture(data: LensData): number | null {
   if (data.apertureMarketing !== undefined) return data.apertureMarketing;
   if (data.apertureDesign !== undefined) return data.apertureDesign;
@@ -134,6 +136,8 @@ function numericBounds(values: number[]): [number, number] {
   return [Math.min(...values), Math.max(...values)];
 }
 
+/** Derive filter bounds from the current catalog so new lens metadata
+ *  automatically expands the sliders and typed inputs. */
 function buildFilterBounds(entries: CatalogLensEntry[]): FilterBounds {
   const focalValues = entries.flatMap((entry) => (entry.focalRange ? [entry.focalRange[0], entry.focalRange[1]] : []));
   const apertureValues = entries.flatMap((entry) => (entry.aperture !== null ? [entry.aperture] : []));
@@ -172,6 +176,8 @@ function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
 }
 
+/** Treat zoom focal lengths as ranges so a 24–70 mm lens still matches a
+ *  35–50 mm filter window instead of disappearing outside its wide endpoint. */
 function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilterState, bounds: FilterBounds): boolean {
   const makerMatch = filter.makerSlugs.length === 0 || filter.makerSlugs.includes(entry.maker.slug);
   const focalMatch =
@@ -258,6 +264,8 @@ function formatFilterValue(value: number): string {
   return Number.isInteger(value) ? value.toString() : value.toFixed(2).replace(/\.?0+$/, "");
 }
 
+/** Keep draft strings separate from committed filter values so number inputs
+ *  can temporarily hold partial edits without fighting the sliders. */
 function numericFilterInputValues(filter: CustomFilterState): Record<NumericFilterField, string> {
   return {
     focalMin: formatFilterValue(filter.focalMin),
@@ -274,6 +282,8 @@ function countStepDecimals(step: number): number {
   return decimals.length;
 }
 
+/** Snap typed values back onto the slider step grid so keyboard entry and
+ *  drag interactions always resolve to the same canonical filter value. */
 function clampNumericFilterValue(value: number, min: number, max: number, step: number): number {
   const clamped = Math.min(max, Math.max(min, value));
   if (step >= 1) return Math.round(clamped);
@@ -339,6 +349,8 @@ export default function LensIndexPage() {
   const activeFilters = hasActiveCustomFilters(customFilter, FILTER_BOUNDS);
 
   useEffect(() => {
+    /* Mirror committed state back into the text inputs after slider drags,
+       clear/reset actions, or any other non-typing filter update. */
     setFilterInputValues(numericFilterInputValues(customFilter));
   }, [customFilter]);
 
@@ -528,6 +540,8 @@ export default function LensIndexPage() {
     }));
 
   const commitNumericInput = (field: NumericFilterField) => {
+    /* Numeric inputs allow transient blanks while editing; only clamp once
+       the user commits with blur or Enter so typing feels natural. */
     const rawValue = filterInputValues[field].trim();
     const config = numericFilterConfigs[field];
     if (rawValue.length === 0) {
@@ -553,6 +567,8 @@ export default function LensIndexPage() {
     }
   };
 
+  /* Shared renderer keeps the typed-value and slider behavior aligned across
+     focal length, aperture, and patent year controls. */
   const renderNumericFilterControl = ({
     field,
     label,

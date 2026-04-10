@@ -1,5 +1,12 @@
 // @vitest-environment jsdom
 
+/**
+ * LensIndexPage interaction test.
+ *
+ * Covers the custom filter UI path at the page level so catalog grouping,
+ * typed numeric input commits, and result counts stay in sync.
+ */
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
@@ -39,6 +46,8 @@ describe("LensIndexPage", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /^Nikon \(\d+\)$/ }));
     fireEvent.change(screen.getByLabelText("Minimum patent year value"), { target: { value: "2024" } });
+    /* Typed numeric filters commit on blur/Enter, so exercise that path
+       rather than relying only on the slider behavior. */
     fireEvent.blur(screen.getByLabelText("Minimum patent year value"));
 
     expect(screen.getByText(/Showing 1 of \d+ interactive optical cross-section diagrams/i)).toBeTruthy();
