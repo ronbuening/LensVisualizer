@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-10 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-10",
+    type: "lens",
+    summary:
+      "Added three lenses: Nikon Nikkor-N Auto 28mm f/2, Voigtländer Nokton 50mm f/1.2 (X-mount), and Nikon 28mm f/2.8 (28Ti)",
+  },
   // ── 2026-04-09 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-09",
