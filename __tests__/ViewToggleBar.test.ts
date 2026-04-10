@@ -1,53 +1,61 @@
-import { describe, it, expect } from "vitest";
-import { toggleGroup, toggleBtn } from "../src/utils/styles.js";
-import type { Theme } from "../src/types/theme.js";
+// @vitest-environment jsdom
 
 /**
- * ViewToggleBar is a generic view-mode toggle component used for both
- * mobile and desktop view switching. We verify its module contract and
- * the style factories it uses to render the toggle group.
+ * ViewToggleBar behavior tests.
+ *
+ * Protects the button rendering and change callback wiring used by both the
+ * mobile and desktop viewer view toggles.
  */
 
-const mockTheme = {
-  toggleBg: "#222",
-  toggleBorder: "#444",
-  toggleText: "#eee",
-  toggleActive: "#555",
-  toggleActiveBorder: "#888",
-  toggleActiveText: "#fff",
-  headerBorder: "#333",
-  headerBgColor: "#111",
-  headerBgImage: "none",
-} as unknown as Theme;
+import { createElement } from "react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import ViewToggleBar from "../src/components/layout/ViewToggleBar.js";
+import themes from "../src/utils/themes.js";
 
 describe("ViewToggleBar", () => {
-  it("exports a default function component", async () => {
-    const mod = await import("../src/components/layout/ViewToggleBar.js");
-    expect(typeof mod.default).toBe("function");
-    expect(mod.default.name).toBe("ViewToggleBar");
+  afterEach(() => {
+    cleanup();
   });
 
-  it("imports style factories from styles module", async () => {
-    const styles = await import("../src/utils/styles.js");
-    expect(typeof styles.headerStrip).toBe("function");
-    expect(typeof styles.toggleGroup).toBe("function");
-    expect(typeof styles.toggleBtn).toBe("function");
+  it("renders every view option and calls onChange with the selected value", () => {
+    const onChange = vi.fn();
+
+    const { container } = render(
+      createElement(ViewToggleBar, {
+        theme: themes.dark,
+        options: [
+          { label: "DIAGRAM", val: "diagram" },
+          { label: "BOTH", val: "both" },
+          { label: "ANALYSIS", val: "analysis" },
+        ],
+        activeValue: "diagram",
+        onChange,
+      }),
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "BOTH" }));
+    fireEvent.click(screen.getByRole("button", { name: "ANALYSIS" }));
+
+    expect(onChange).toHaveBeenNthCalledWith(1, "both");
+    expect(onChange).toHaveBeenNthCalledWith(2, "analysis");
+    expect(container.firstElementChild?.firstElementChild?.getAttribute("style")).toContain("width: 330px");
   });
 
-  it("toggleGroup style factory produces an object with expected width property", () => {
-    // ViewToggleBar calls toggleGroup(t, { width: groupWidth }) where
-    // groupWidth defaults to options.length * 110
-    const style = toggleGroup(mockTheme, { width: 330 });
-    expect(typeof style).toBe("object");
-    expect(style.width).toBe(330);
-  });
+  it("uses an explicit width override when one is provided", () => {
+    const { container } = render(
+      createElement(ViewToggleBar, {
+        theme: themes.dark,
+        options: [
+          { label: "DIAGRAM", val: "diagram" },
+          { label: "ANALYSIS", val: "analysis" },
+        ],
+        activeValue: "analysis",
+        onChange: vi.fn(),
+        width: 220,
+      }),
+    );
 
-  it("toggleBtn produces distinct styles for active vs inactive state", () => {
-    const activeStyle = toggleBtn(mockTheme, true, { hasRightBorder: true, padding: "5px 0" });
-    const inactiveStyle = toggleBtn(mockTheme, false, { hasRightBorder: true, padding: "5px 0" });
-    expect(typeof activeStyle).toBe("object");
-    expect(typeof inactiveStyle).toBe("object");
-    // Active and inactive buttons must have visually distinct backgrounds
-    expect(activeStyle.background).not.toBe(inactiveStyle.background);
+    expect(container.firstElementChild?.firstElementChild?.getAttribute("style")).toContain("width: 220px");
   });
 });

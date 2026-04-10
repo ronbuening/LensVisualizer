@@ -8,7 +8,6 @@
 
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
-import "./AnalysisDrawer.css";
 
 export interface AnalysisTab {
   id: string;
@@ -128,7 +127,7 @@ export default function AnalysisDrawer({
   return (
     <div style={drawerStyle}>
       {/* ── Tab bar ── */}
-      <div className="analysisDrawerTabBar" style={tabBarStyle}>
+      <div style={tabBarStyle}>
         {tabs.map((tab) => (
           <TabButton
             key={tab.id}

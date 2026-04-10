@@ -1,61 +1,132 @@
-import { describe, it, expect } from "vitest";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/comparison/comparisonSliders.js";
-import type { RuntimeLens } from "../src/types/optics.js";
+// @vitest-environment jsdom
 
 /**
- * ComparisonLayout renders two LensDiagramPanel instances in a side-by-side
- * (desktop) or stacked (mobile) layout. We verify its module contract and
- * the shapes of the comparison slider results it consumes as props.
+ * ComparisonLayout behavior tests.
+ *
+ * Replaces the old prop-shape assertions with direct checks that the layout
+ * renders two diagram panels with the correct per-panel props in desktop and
+ * mobile modes.
  */
 
-/* Mock lens objects matching the fields these functions require */
-const lensA = {
-  closeFocusM: 0.45,
-  FOPEN: 1.0,
-  maxFstop: 16,
-  isZoom: false,
-  zoomPositions: null,
-} as unknown as RuntimeLens;
-const lensB = {
-  closeFocusM: 0.9,
-  FOPEN: 1.93,
-  maxFstop: 16,
-  isZoom: false,
-  zoomPositions: null,
-} as unknown as RuntimeLens;
+import { createElement } from "react";
+import { cleanup, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import ComparisonLayout from "../src/comparison/ComparisonLayout.js";
+import themes from "../src/utils/themes.js";
+
+const lensDiagramPanelMock = vi.fn((props: { panelId: string; lensKey: string }) =>
+  createElement("div", { "data-testid": `panel-${props.panelId}` }, props.lensKey),
+);
+
+vi.mock("../src/components/layout/LensDiagramPanel.js", () => ({
+  default: (props: unknown) => lensDiagramPanelMock(props as { panelId: string; lensKey: string }),
+}));
 
 describe("ComparisonLayout", () => {
-  it("exports a default function component", async () => {
-    const mod = await import("../src/comparison/ComparisonLayout.js");
-    expect(typeof mod.default).toBe("function");
-    expect(mod.default.name).toBe("ComparisonLayout");
+  beforeEach(() => {
+    lensDiagramPanelMock.mockClear();
   });
 
-  it("imports comparison slider functions from comparisonSliders", async () => {
-    const mod = await import("../src/comparison/comparisonSliders.js");
-    expect(typeof mod.computeFocusPair).toBe("function");
-    expect(typeof mod.computeAperturePair).toBe("function");
-    expect(typeof mod.computeZoomPair).toBe("function");
+  afterEach(() => {
+    cleanup();
   });
 
-  it("computeFocusPair result has focusA, focusB, commonPoint fields (props consumed by ComparisonLayout)", () => {
-    const result = computeFocusPair(0.5, lensA, lensB);
-    expect(typeof result.focusA).toBe("number");
-    expect(typeof result.focusB).toBe("number");
-    expect(typeof result.commonPoint).toBe("number");
-    expect(typeof result.minCloseFocus).toBe("number");
-    expect(typeof result.maxCloseFocus).toBe("number");
+  it("renders side-by-side panels with synchronized desktop props", () => {
+    const { getByTestId } = render(
+      createElement(ComparisonLayout, {
+        theme: themes.dark,
+        isWide: true,
+        lensKeyA: "lens-a",
+        lensKeyB: "lens-b",
+        focusPair: { focusA: 0.25, focusB: 0.75, commonPoint: 0.5, minCloseFocus: 0.4, maxCloseFocus: 0.8 },
+        aperturePair: {
+          stopdownA: 0.2,
+          stopdownB: 0.6,
+          commonPoint: 0.3,
+          widerFOPEN: 1.4,
+          narrowerFOPEN: 2,
+          sharedMaxFstop: 16,
+        },
+        zoomPair: {
+          zoomA: 0.1,
+          zoomB: 0.9,
+          showZoom: true,
+          commonPointLow: 0.2,
+          commonPointHigh: 0.8,
+          sharedFL: 50,
+          minFL: 24,
+          maxFL: 70,
+        },
+        scaleRatios: { a: 1, b: 0.8 },
+        maxHeaderHeight: 120,
+        onHeaderHeight: vi.fn(),
+        flashPanel: "b",
+      }),
+    );
+
+    expect(screen.getByTestId("panel-a").textContent).toBe("lens-a");
+    expect(screen.getByTestId("panel-b").textContent).toBe("lens-b");
+
+    expect(lensDiagramPanelMock).toHaveBeenCalledTimes(2);
+    expect(lensDiagramPanelMock.mock.calls[0]?.[0]).toMatchObject({
+      lensKey: "lens-a",
+      focusT: 0.25,
+      zoomT: 0.1,
+      stopdownT: 0.2,
+      scaleRatio: 1,
+      panelId: "a",
+      maxSvgHeight: "calc(100vh - 260px)",
+      minHeaderHeight: 120,
+      flashOverlay: false,
+    });
+    expect(lensDiagramPanelMock.mock.calls[1]?.[0]).toMatchObject({
+      lensKey: "lens-b",
+      focusT: 0.75,
+      zoomT: 0.9,
+      stopdownT: 0.6,
+      scaleRatio: 0.8,
+      panelId: "b",
+      maxSvgHeight: "calc(100vh - 260px)",
+      minHeaderHeight: 120,
+      flashOverlay: true,
+    });
+
+    expect(getByTestId("panel-a").parentElement?.style.borderRight).toContain("solid");
   });
 
-  it("computeAperturePair result has stopdownA and stopdownB fields (props consumed by ComparisonLayout)", () => {
-    const result = computeAperturePair(0.5, lensA, lensB);
-    expect(typeof result.stopdownA).toBe("number");
-    expect(typeof result.stopdownB).toBe("number");
-  });
+  it("stacks the panels vertically on narrow screens", () => {
+    const { getByTestId } = render(
+      createElement(ComparisonLayout, {
+        theme: themes.dark,
+        isWide: false,
+        lensKeyA: "lens-a",
+        lensKeyB: "lens-b",
+        focusPair: { focusA: 0.1, focusB: 0.2, commonPoint: 0.4, minCloseFocus: 0.4, maxCloseFocus: 1.2 },
+        aperturePair: {
+          stopdownA: 0.1,
+          stopdownB: 0.3,
+          commonPoint: 0.2,
+          widerFOPEN: 2,
+          narrowerFOPEN: 2.8,
+          sharedMaxFstop: 16,
+        },
+        zoomPair: {
+          zoomA: 0,
+          zoomB: 0,
+          showZoom: false,
+        },
+        scaleRatios: null,
+        maxHeaderHeight: 160,
+        onHeaderHeight: vi.fn(),
+        flashPanel: null,
+      }),
+    );
 
-  it("computeZoomPair returns null zoom fields for non-zoom lens pair", () => {
-    const result = computeZoomPair(0, lensA, lensB);
-    // Both lenses are non-zoom; zoomA and zoomB should fall back gracefully
-    expect(result).toBeDefined();
+    expect(lensDiagramPanelMock.mock.calls[0]?.[0]).toMatchObject({
+      maxSvgHeight: "42vh",
+      minHeaderHeight: undefined,
+      scaleRatio: null,
+    });
+    expect(getByTestId("panel-a").parentElement?.style.borderBottom).toContain("solid");
   });
 });

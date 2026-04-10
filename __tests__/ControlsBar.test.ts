@@ -1,31 +1,84 @@
-import { describe, it, expect } from "vitest";
+// @vitest-environment jsdom
 
 /**
- * ControlsBar is a React component that unifies the shared controls bar
- * (comparison mode) and mobile controls strip. We verify its module contract
- * and the style/action dependencies it uses.
+ * ControlsBar behavior tests.
+ *
+ * Replaces the old contract-only coverage with interaction checks for the
+ * shared ray toggles, chromatic controls, and scale-mode buttons that the
+ * viewer shell depends on.
  */
 
+import { createElement } from "react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import ControlsBar from "../src/components/layout/ControlsBar.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../src/utils/lensReducer.js";
+import themes from "../src/utils/themes.js";
+
 describe("ControlsBar", () => {
-  it("exports a default function component", async () => {
-    const mod = await import("../src/components/layout/ControlsBar.js");
-    expect(typeof mod.default).toBe("function");
-    expect(mod.default.name).toBe("ControlsBar");
+  const dispatch = vi.fn();
+
+  beforeEach(() => {
+    dispatch.mockReset();
   });
 
-  it("imports toggle style factories from styles module", async () => {
-    const styles = await import("../src/utils/styles.js");
-    expect(typeof styles.toggleGroup).toBe("function");
-    expect(typeof styles.toggleBtn).toBe("function");
-    expect(typeof styles.chromChannelBtn).toBe("function");
-    expect(typeof styles.headerStrip).toBe("function");
+  afterEach(() => {
+    cleanup();
   });
 
-  it("imports required action constants from lensReducer", async () => {
-    const reducer = await import("../src/utils/lensReducer.js");
-    expect(reducer.SET_HIGH_CONTRAST).toBe("SET_HIGH_CONTRAST");
-    expect(reducer.SET_DARK).toBe("SET_DARK");
-    expect(reducer.SET_RAY_TOGGLE).toBe("SET_RAY_TOGGLE");
-    expect(reducer.SET_SCALE_MODE).toBe("SET_SCALE_MODE");
+  it("dispatches the expected actions for ray toggles and ray mode changes", () => {
+    render(
+      createElement(ControlsBar, {
+        theme: themes.dark,
+        compact: false,
+        showScaleMode: true,
+        showOnAxis: true,
+        showOffAxis: "off",
+        rayTracksF: false,
+        showChromatic: false,
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        showPupils: false,
+        scaleMode: "independent",
+        dispatch,
+      }),
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "ON-AXIS" }));
+    fireEvent.click(screen.getByRole("button", { name: "OFF-AXIS" }));
+    fireEvent.click(screen.getByRole("button", { name: /TRACKS FOCUS$/ }));
+
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: false });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: true });
+  });
+
+  it("shows chromatic channel controls when color tracing is enabled and updates scale mode", () => {
+    render(
+      createElement(ControlsBar, {
+        theme: themes.dark,
+        compact: false,
+        showScaleMode: true,
+        showOnAxis: true,
+        showOffAxis: "trueAngle",
+        rayTracksF: true,
+        showChromatic: true,
+        chromR: true,
+        chromG: false,
+        chromB: true,
+        showPupils: false,
+        scaleMode: "independent",
+        dispatch,
+      }),
+    );
+
+    expect(screen.queryByRole("button", { name: "PUPILS" })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "G" }));
+    fireEvent.click(screen.getAllByRole("button", { name: "NORMALIZED" })[0]!);
+
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "chromG", value: true });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_SCALE_MODE, scaleMode: "normalized" });
   });
 });
