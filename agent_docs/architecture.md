@@ -10,7 +10,7 @@
 | `entry-server.tsx` | `src/` | SSR render function for static prerendering |
 | `HomePage.tsx` | `src/pages/` | Interactive LensViewer; handles legacy `?lens=KEY` → `/lens/KEY` redirects |
 | `LensPage.tsx` | `src/pages/` | Individual lens page at `/lens/:slug` with SEO content + interactive visualizer |
-| `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`, grouped by maker |
+| `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`, with maker/focal/patent grouping plus custom filters |
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker's lenses |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists all makers with lens counts |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO metadata |
@@ -208,7 +208,7 @@ The app uses React Router 7 with client-side routing and static prerendering for
 - **`SEOHead.tsx`** — Sets per-page `<title>`, `<meta>`, Open Graph, Twitter Card, canonical URL, and JSON-LD structured data via react-helmet-async
 - **`lensMetadata.ts`** — Pure functions for SEO: `deriveMaker()` extracts maker info from lens names, `lensPageTitle()` / `lensPageDescription()` / `lensCanonicalURL()` / `lensJsonLd()` generate page metadata. Defines `MAKER_PREFIXES` mapping and `SITE_NAME` / `SITE_URL` constants.
 
-**Page flow:** `HomePage` renders the interactive `LensViewer` (handles legacy `?lens=KEY` redirects). `LensPage` renders SEO-friendly static content (specs, element table, analysis markdown) plus a `ClientOnly`-wrapped interactive visualizer. Index pages (`LensIndexPage`, `MakersIndexPage`, `MakerPage`) provide crawlable navigation.
+**Page flow:** `HomePage` renders the interactive `LensViewer` (handles legacy `?lens=KEY` redirects). `LensPage` renders SEO-friendly static content (specs, element table, analysis markdown) plus a `ClientOnly`-wrapped interactive visualizer. `LensIndexPage` provides crawlable catalog navigation with maker/focal/patent grouping plus custom filters for focal length, aperture, patent year, and maker. `MakersIndexPage` and `MakerPage` provide crawlable maker navigation.
 
 ## LensViewer.tsx — Orchestration Layer
 
