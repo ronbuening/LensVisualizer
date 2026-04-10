@@ -148,7 +148,7 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (unit focus — only BFD changes) ── */
   var: {
-    "10": [22.3, 21.49],
+    "10": [22.3, 23.11],
   },
   varLabels: [["10", "BF"]],
 
