@@ -1,11 +1,28 @@
 // @vitest-environment jsdom
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import useViewBoxZoom from "../src/components/hooks/useViewBoxZoom.js";
 
 const SVG_W = 1200;
 const SVG_H = 600;
+
+function createSvgTarget() {
+  return {
+    getBoundingClientRect: () => ({
+      left: 0,
+      top: 0,
+      width: SVG_W,
+      height: SVG_H,
+    }),
+    setPointerCapture: vi.fn(),
+    releasePointerCapture: vi.fn(),
+  } as unknown as SVGSVGElement;
+}
+
+function createTouch(x: number, y: number) {
+  return { clientX: x, clientY: y } as Touch;
+}
 
 describe("useViewBoxZoom", () => {
   describe("default state", () => {
@@ -138,6 +155,135 @@ describe("useViewBoxZoom", () => {
       const z = result.current.state.zoom;
       expect(result.current.state.vbW).toBeCloseTo(SVG_W / z, 5);
       expect(result.current.state.vbH).toBeCloseTo(SVG_H / z, 5);
+    });
+  });
+
+  describe("event handlers", () => {
+    it("zooms around the cursor on wheel events when active", () => {
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
+      const preventDefault = vi.fn();
+
+      act(() =>
+        result.current.handleWheel({
+          deltaY: -100,
+          clientX: 300,
+          clientY: 150,
+          preventDefault,
+          currentTarget: createSvgTarget(),
+        } as unknown as React.WheelEvent<SVGSVGElement>),
+      );
+
+      expect(preventDefault).toHaveBeenCalledTimes(1);
+      expect(result.current.state.zoom).toBeGreaterThan(1);
+      expect(result.current.state.vbX).toBeGreaterThanOrEqual(0);
+      expect(result.current.state.vbY).toBeGreaterThanOrEqual(0);
+    });
+
+    it("ignores wheel events when zoom mode is inactive", () => {
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, false));
+      const preventDefault = vi.fn();
+
+      act(() =>
+        result.current.handleWheel({
+          deltaY: -100,
+          clientX: 300,
+          clientY: 150,
+          preventDefault,
+          currentTarget: createSvgTarget(),
+        } as unknown as React.WheelEvent<SVGSVGElement>),
+      );
+
+      expect(preventDefault).not.toHaveBeenCalled();
+      expect(result.current.state.zoom).toBe(1);
+    });
+
+    it("starts, updates, and ends pointer-driven panning", () => {
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
+      const svgTarget = createSvgTarget();
+
+      act(() => result.current.zoomIn());
+      act(() =>
+        result.current.handlePointerDown({
+          button: 0,
+          clientX: 200,
+          clientY: 100,
+          pointerId: 7,
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+
+      expect(result.current.isPanning).toBe(true);
+      expect(svgTarget.setPointerCapture).toHaveBeenCalledWith(7);
+
+      const vbXBefore = result.current.state.vbX;
+      act(() =>
+        result.current.handlePointerMove({
+          clientX: 260,
+          clientY: 130,
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+
+      expect(result.current.state.vbX).not.toBe(vbXBefore);
+
+      act(() =>
+        result.current.handlePointerUp({
+          pointerId: 7,
+          currentTarget: svgTarget,
+        } as unknown as React.PointerEvent<SVGSVGElement>),
+      );
+
+      expect(svgTarget.releasePointerCapture).toHaveBeenCalledWith(7);
+      expect(result.current.isPanning).toBe(false);
+    });
+
+    it("supports one-finger panning and two-finger pinch zoom", () => {
+      const { result } = renderHook(() => useViewBoxZoom(SVG_W, SVG_H, true));
+      const svgTarget = createSvgTarget();
+      const preventDefault = vi.fn();
+
+      act(() =>
+        result.current.handleTouchStart({
+          touches: [createTouch(120, 90)],
+          currentTarget: svgTarget,
+        } as unknown as React.TouchEvent<SVGSVGElement>),
+      );
+
+      act(() =>
+        result.current.handleTouchMove({
+          touches: [createTouch(180, 120)],
+          preventDefault,
+          currentTarget: svgTarget,
+        } as unknown as React.TouchEvent<SVGSVGElement>),
+      );
+
+      expect(preventDefault).toHaveBeenCalled();
+      expect(result.current.isPanning).toBe(true);
+
+      act(() =>
+        result.current.handleTouchEnd({
+          currentTarget: svgTarget,
+        } as unknown as React.TouchEvent<SVGSVGElement>),
+      );
+
+      expect(result.current.isPanning).toBe(false);
+
+      act(() =>
+        result.current.handleTouchStart({
+          touches: [createTouch(200, 200), createTouch(260, 200)],
+          currentTarget: svgTarget,
+        } as unknown as React.TouchEvent<SVGSVGElement>),
+      );
+
+      act(() =>
+        result.current.handleTouchMove({
+          touches: [createTouch(180, 200), createTouch(320, 200)],
+          preventDefault,
+          currentTarget: svgTarget,
+        } as unknown as React.TouchEvent<SVGSVGElement>),
+      );
+
+      expect(result.current.state.zoom).toBeGreaterThan(1);
     });
   });
 });

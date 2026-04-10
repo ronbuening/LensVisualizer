@@ -28,17 +28,14 @@ import useHeaderHeight from "../hooks/useHeaderHeight.js";
 import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
-import DiagramControlPanel from "./DiagramControlPanel.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
-import OverlayModal from "./OverlayModal.js";
-import AbbeDiagram from "../display/AbbeDiagram.js";
-import { ErrorDisplay } from "../errors/ErrorBoundary.js";
 import { useLensCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
-import DiagramViewport from "./lensDiagram/DiagramViewport.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
+import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
+import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -185,224 +182,159 @@ export default function LensDiagramPanel({
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (
-        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-          <ErrorDisplay
-            error={buildError instanceof Error ? buildError : new Error(String(buildError))}
-            context={{ component: "LensDiagramPanel (buildLens)", lensKey }}
-            title="Failed to build lens"
-          />
-        </div>
+        <LensDiagramErrorState
+          error={buildError}
+          lensKey={lensKey}
+          component="LensDiagramPanel (buildLens)"
+          title="Failed to build lens"
+        />
       ) : shapeError ? (
-        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-          <ErrorDisplay
-            error={shapeError instanceof Error ? shapeError : new Error(String(shapeError))}
-            context={{ component: "LensDiagramPanel (element shapes)", lensKey }}
-            title="Failed to compute lens element shapes"
-          />
-        </div>
+        <LensDiagramErrorState
+          error={shapeError}
+          lensKey={lensKey}
+          component="LensDiagramPanel (element shapes)"
+          title="Failed to compute lens element shapes"
+        />
       ) : rayError ? (
-        <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-          <ErrorDisplay
-            error={rayError instanceof Error ? rayError : new Error(String(rayError))}
-            context={{ component: "LensDiagramPanel (ray tracing)", lensKey }}
-            title="Ray tracing failed"
-          />
-        </div>
+        <LensDiagramErrorState
+          error={rayError}
+          lensKey={lensKey}
+          component="LensDiagramPanel (ray tracing)"
+          title="Ray tracing failed"
+        />
       ) : L ? (
-        <div ref={panelContainerRef} style={{ position: "relative" }}>
-          {/* ── Header — hidden in zoom/pan mode ── */}
-          {!zoomPanActive && (
-            <DiagramHeader
-              ref={headerRef}
+        <LensDiagramLoadedState
+          panelContainerRef={panelContainerRef}
+          L={L}
+          theme={t}
+          dark={dark}
+          isWide={isWide}
+          compact={compact}
+          showControls={showControls}
+          showSliders={showSliders}
+          headerHeight={headerHeight}
+          maxSvgHeight={maxSvgHeight}
+          useSideLayout={useSideLayout}
+          zoomPanActive={zoomPanActive}
+          focusT={focusT}
+          zoomT={zoomT}
+          stopdownT={stopdownT}
+          sx={sx}
+          sy={sy}
+          CX={CX}
+          IX={IX}
+          effectiveSC={effectiveSC}
+          zPos={zPos}
+          IMG_MM={IMG_MM}
+          shapes={shapes}
+          filterId={filterId}
+          stopZ={stopZ}
+          currentFOPEN={currentFOPEN}
+          fNumber={fNumber}
+          currentPhysStopSD={currentPhysStopSD}
+          baseEPSD={baseEPSD}
+          varReadouts={varReadouts}
+          dynamicEFL={dynamicEFL}
+          effectiveFNum={effectiveFNum}
+          info={info ?? null}
+          act={act}
+          sel={sel}
+          showOnAxis={showOnAxis}
+          showOffAxis={showOffAxis}
+          showChromatic={showChromatic}
+          showPupils={showPupils}
+          chromR={chromR}
+          chromG={chromG}
+          chromB={chromB}
+          rayTracksF={rayTracksF}
+          chromSpread={chromSpread ?? null}
+          rays={rays}
+          offAxisRays={offAxisRays}
+          chromaticRays={chromaticRays}
+          flashVisible={flashVisible}
+          flashKey={flashKey}
+          flashFading={flashFading}
+          onHover={setHov}
+          onSelect={(eid) => {
+            if (sel === eid) {
+              setSel(null);
+              setHov(null);
+            } else {
+              setSel(eid);
+            }
+          }}
+          analysisDrawerOpen={analysisDrawerOpen}
+          analysisDrawerTab={analysisDrawerTab}
+          bokehPreviewOpen={bokehPreviewOpen}
+          focusExpanded={focusExpanded}
+          apertureExpanded={apertureExpanded}
+          legendExpanded={legendExpanded}
+          showEffectiveAperture={showEffectiveAperture}
+          abbeShowGlassType={abbeShowGlassType}
+          overlays={overlays}
+          adapters={adapters}
+          zoomHook={zoomHook}
+          onZoomPanToggle={handleZoomPanToggle}
+          bokehPreviewContent={
+            <BokehPreviewOverlay
               L={L}
-              t={t}
-              compact={compact}
-              isWide={isWide}
               focusT={focusT}
               zoomT={zoomT}
-              fNumber={fNumber}
-              showOnAxis={showOnAxis}
-              onShowOnAxisChange={adapters.onShowOnAxisChange}
-              showOffAxis={showOffAxis}
-              onShowOffAxisChange={adapters.onShowOffAxisChange}
-              rayTracksF={rayTracksF}
-              onRayTracksFChange={adapters.onRayTracksFChange}
-              showChromatic={showChromatic}
-              onShowChromaticChange={adapters.onShowChromaticChange}
-              chromR={chromR}
-              chromG={chromG}
-              chromB={chromB}
-              onChromRChange={adapters.onChromRChange}
-              onChromGChange={adapters.onChromGChange}
-              onChromBChange={adapters.onChromBChange}
-              showPupils={showPupils}
-              onShowPupilsChange={adapters.onShowPupilsChange}
-              headerInfoExpanded={headerInfoExpanded}
-              onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
-              minHeaderHeight={minHeaderHeight}
+              currentEPSD={currentEPSD}
+              currentPhysStopSD={currentPhysStopSD}
+              t={t}
             />
-          )}
-          {/* ── SVG + controls body (side-by-side when overflowing) ── */}
-          <div style={useSideLayout ? { display: "flex", minHeight: 0 } : undefined}>
-            {/* ── SVG viewport ── */}
-            <DiagramViewport
+          }
+          analysisContent={
+            <AnalysisDrawerContent
+              activeTab={analysisDrawerTab}
               L={L}
               t={t}
-              dark={dark}
-              sx={sx}
-              sy={sy}
-              CX={CX}
-              IX={IX}
-              effectiveSC={effectiveSC}
               zPos={zPos}
-              IMG_MM={IMG_MM}
-              shapes={shapes}
-              filterId={filterId}
-              stopZ={stopZ}
+              focusT={focusT}
+              zoomT={zoomT}
+              dynamicEFL={dynamicEFL}
+              currentEPSD={currentEPSD}
               currentPhysStopSD={currentPhysStopSD}
-              rays={rays}
-              offAxisRays={offAxisRays}
-              chromaticRays={chromaticRays}
-              chromSpread={chromSpread ?? null}
-              showOnAxis={showOnAxis}
-              showOffAxis={showOffAxis}
-              showChromatic={showChromatic}
-              showPupils={showPupils}
-              act={act}
-              onHover={setHov}
-              onSelect={(eid) => {
-                if (sel === eid) {
-                  setSel(null);
-                  setHov(null);
-                } else {
-                  setSel(eid);
-                }
-              }}
-              sel={sel}
-              maxSvgHeight={maxSvgHeight}
-              useSideLayout={useSideLayout}
-              headerHeight={headerHeight}
-              compact={compact}
-              flashVisible={flashVisible}
-              flashKey={flashKey}
-              flashFading={flashFading}
-              showLcaOverlay={overlays.showLcaOverlay}
-              showPetzvalOverlay={overlays.showPetzvalOverlay}
-              onCloseLcaOverlay={overlays.closeLcaOverlay}
-              onClosePetzvalOverlay={overlays.closePetzvalOverlay}
-              onOpenLcaOverlay={overlays.openLcaOverlay}
-              onOpenPetzvalOverlay={overlays.openPetzvalOverlay}
-              analysisDrawerOpen={analysisDrawerOpen}
-              onAnalysisDrawerToggle={adapters.onAnalysisDrawerToggle}
-              analysisDrawerTab={analysisDrawerTab}
-              onAnalysisTabChange={adapters.onAnalysisTabChange}
-              isWide={isWide}
-              zoomPanActive={zoomPanActive}
-              onZoomPanToggle={handleZoomPanToggle}
-              zoomLevel={zoomHook.state.zoom}
-              onZoomReset={zoomHook.reset}
-              onZoomIn={zoomHook.zoomIn}
-              onZoomOut={zoomHook.zoomOut}
-              onPanBy={zoomHook.panBy}
-              viewBoxOverride={zoomPanActive ? zoomHook.viewBox : undefined}
-              isPanning={zoomHook.isPanning}
-              onSvgWheel={zoomHook.handleWheel}
-              onSvgPointerDown={zoomHook.handlePointerDown}
-              onSvgPointerMove={zoomHook.handlePointerMove}
-              onSvgPointerUp={zoomHook.handlePointerUp}
-              onSvgTouchStart={zoomHook.handleTouchStart}
-              onSvgTouchMove={zoomHook.handleTouchMove}
-              onSvgTouchEnd={zoomHook.handleTouchEnd}
-              showBokehPreview={bokehPreviewOpen}
-              onBokehPreviewToggle={adapters.onBokehPreviewToggle}
-              bokehPreviewContent={
-                L ? (
-                  <BokehPreviewOverlay
-                    L={L}
-                    focusT={focusT}
-                    zoomT={zoomT}
-                    currentEPSD={currentEPSD}
-                    currentPhysStopSD={currentPhysStopSD}
-                    t={t}
-                  />
-                ) : null
-              }
-              analysisContent={
-                <AnalysisDrawerContent
-                  activeTab={analysisDrawerTab}
-                  L={L}
-                  t={t}
-                  zPos={zPos}
-                  focusT={focusT}
-                  zoomT={zoomT}
-                  dynamicEFL={dynamicEFL}
-                  currentEPSD={currentEPSD}
-                  currentPhysStopSD={currentPhysStopSD}
-                  aberrationsExpanded={aberrationsExpanded}
-                  onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
-                />
-              }
+              aberrationsExpanded={aberrationsExpanded}
+              onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
             />
-            {/* end SVG wrapper */}
-
-            {/* ── Control panel — hidden in zoom/pan mode ── */}
-            {showControls && !zoomPanActive && (
-              <DiagramControlPanel
+          }
+          header={
+            !zoomPanActive ? (
+              <DiagramHeader
+                ref={headerRef}
                 L={L}
                 t={t}
                 compact={compact}
                 isWide={isWide}
-                useSideLayout={useSideLayout}
-                headerHeight={headerHeight}
-                showSliders={showSliders}
-                zoomT={zoomT}
                 focusT={focusT}
-                stopdownT={stopdownT}
+                zoomT={zoomT}
                 fNumber={fNumber}
-                currentFOPEN={currentFOPEN}
-                currentPhysStopSD={currentPhysStopSD}
-                baseEPSD={baseEPSD}
-                dynamicEFL={dynamicEFL}
-                effectiveFNum={effectiveFNum}
-                showEffectiveAperture={showEffectiveAperture}
-                onToggleEffectiveAperture={() => adapters.onEffectiveApertureChange(!showEffectiveAperture)}
-                varReadouts={varReadouts}
-                focusExpanded={focusExpanded}
-                apertureExpanded={apertureExpanded}
-                legendExpanded={legendExpanded}
-                onZoomChange={adapters.onZoomChange}
-                onFocusChange={adapters.onFocusChange}
-                onStopdownChange={adapters.onStopdownChange}
-                onFocusExpandedChange={adapters.onFocusExpandedChange}
-                onApertureExpandedChange={adapters.onApertureExpandedChange}
-                onLegendExpandedChange={adapters.onLegendExpandedChange}
-                onSliderPointerUp={adapters.onSliderPointerUp}
-                info={info ?? null}
                 showOnAxis={showOnAxis}
+                onShowOnAxisChange={adapters.onShowOnAxisChange}
                 showOffAxis={showOffAxis}
+                onShowOffAxisChange={adapters.onShowOffAxisChange}
+                rayTracksF={rayTracksF}
+                onRayTracksFChange={adapters.onRayTracksFChange}
                 showChromatic={showChromatic}
+                onShowChromaticChange={adapters.onShowChromaticChange}
                 chromR={chromR}
                 chromG={chromG}
                 chromB={chromB}
-                chromSpread={chromSpread ?? null}
-                rayTracksF={rayTracksF}
-                onOpenAbbeDiagram={overlays.openAbbeDiagram}
+                onChromRChange={adapters.onChromRChange}
+                onChromGChange={adapters.onChromGChange}
+                onChromBChange={adapters.onChromBChange}
+                showPupils={showPupils}
+                onShowPupilsChange={adapters.onShowPupilsChange}
+                headerInfoExpanded={headerInfoExpanded}
+                onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
+                minHeaderHeight={minHeaderHeight}
               />
-            )}
-          </div>
-          {/* end side-layout flex wrapper */}
-        </div>
+            ) : null
+          }
+        />
       ) : null}
-      {overlays.showAbbeDiagram && L && (
-        <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
-          <AbbeDiagram
-            L={L}
-            t={t}
-            showGlassType={abbeShowGlassType}
-            onToggleGlassType={() => adapters.onAbbeShowGlassTypeChange(!abbeShowGlassType)}
-          />
-        </OverlayModal>
-      )}
     </PanelErrorBoundary>
   );
 }

@@ -24,13 +24,6 @@ import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
 import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
 import { resolveDarkPreference, resolveTheme } from "../../utils/themePreferences.js";
-import OverlayModal from "./OverlayModal.js";
-import ControlsBar from "./ControlsBar.js";
-import TopBar from "./TopBar.js";
-import BreadcrumbBar from "./BreadcrumbBar.js";
-import ViewToggleBar from "./ViewToggleBar.js";
-import SingleLensContent from "./SingleLensContent.js";
-import DescriptionPanel from "./DescriptionPanel.js";
 import _ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import _ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
 import _OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
@@ -38,14 +31,14 @@ import _OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermedia
 import _ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.md?raw";
 import _ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
 import { stripFrontmatter } from "../../utils/homepageContent.js";
-import AboutFooter from "../display/AboutFooter.js";
 import useLensState from "../../utils/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { SET_LENS_A, SET_LENS_B, SWAP_LENSES, SET_MOBILE_VIEW, SET_DESKTOP_VIEW } from "../../utils/lensReducer.js";
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
-import ComparisonContent from "../../comparison/ComparisonContent.js";
 import useOverlays from "../hooks/useOverlays.js";
-import PrimerToggleButton from "./PrimerToggleButton.js";
+import ViewerChrome from "./lensViewer/ViewerChrome.js";
+import ViewerContent from "./lensViewer/ViewerContent.js";
+import ViewerOverlays from "./lensViewer/ViewerOverlays.js";
 
 const ABOUT_ME_MD = stripFrontmatter(_ABOUT_ME_MD);
 const ABOUT_SITE_MD = stripFrontmatter(_ABOUT_SITE_MD);
@@ -220,16 +213,12 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
             transition: "background 0.3s,color 0.3s",
           }}
         >
-          {/* ── Breadcrumb navigation ── */}
-          <BreadcrumbBar theme={t} isWide={isWide} lensKey={lensKeyA} />
-
-          {/* ── Top bar: lens selector(s) + compare button ── */}
-          <TopBar
+          <ViewerChrome
             theme={t}
             isWide={isWide}
+            comparing={comparing}
             lensKeyA={lensKeyA}
             lensKeyB={lensKeyB}
-            comparing={comparing}
             showCompareBtn={showCompareBtn}
             onSwitchLensA={switchLensA}
             onSwitchLensB={switchLensB}
@@ -241,130 +230,71 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
             onOpenAberrationsPrimer={openAberrationsPrimer}
             catalogKeys={CATALOG_KEYS}
             catalogNames={catalogNames}
+            controlsBarProps={controlsBarProps}
+            mobileView={mobileView}
+            onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+            showDesktopToggle={showDesktopToggle}
+            desktopViewOptions={desktopViewOptions}
+            effectiveDesktopView={effectiveDesktopView}
+            onDesktopViewChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
           />
 
-          {/* ── Shared controls bar (comparison mode only) ── */}
-          {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}
-
-          {/* ── Mobile view toggle (narrow screens, single-lens only) ── */}
-          {!isWide && !comparing && (
-            <ViewToggleBar
-              theme={t}
-              options={[
-                { label: "DIAGRAM", val: "diagram" },
-                { label: "ANALYSIS", val: "description" },
-              ]}
-              activeValue={mobileView}
-              onChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
-              width={220}
-            />
-          )}
-
-          {/* ── Desktop view toggle (wide screens, single-lens only) ── */}
-          {showDesktopToggle && (
-            <ViewToggleBar
-              theme={t}
-              options={desktopViewOptions}
-              activeValue={effectiveDesktopView}
-              onChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
-            />
-          )}
-
-          {/* ── Mobile controls strip (narrow screens, single-lens diagram view) ── */}
-          {!isWide && !comparing && mobileView === "diagram" && (
-            <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
-          )}
-
-          {/* ── Main content area ── */}
-          {comparing ? (
-            <ComparisonContent
-              theme={t}
-              isWide={isWide}
-              lensKeyA={lensKeyA}
-              lensKeyB={lensKeyB}
-              comparisonLenses={comparisonLenses}
-              focusPair={focusPair}
-              aperturePair={aperturePair}
-              zoomPair={zoomPair}
-              scaleRatios={scaleRatios}
-              maxHeaderHeight={maxHeaderHeight}
-              onHeaderHeight={handleHeaderHeight}
-              flashPanel={flashPanel}
-              sharedFocusT={sharedFocusT}
-              sharedStopdownT={sharedStopdownT}
-              sharedZoomT={sharedZoomT}
-              onSharedFocusChange={handleSharedFocusChange}
-              onSharedStopdownChange={handleSharedStopdownChange}
-              onFocusPointerDown={handleFocusPointerDown}
-              onAperturePointerDown={handleAperturePointerDown}
-              onSliderPointerUp={updateURLWithSliders}
-              dispatch={dispatch}
-              showEffectiveAperture={panels.showEffectiveAperture}
-            />
-          ) : (
-            <SingleLensContent
-              theme={t}
-              isWide={isWide}
-              effectiveDesktopView={effectiveDesktopView}
-              showDesktopToggle={showDesktopToggle}
-              mobileView={mobileView}
-              lensKeyA={lensKeyA}
-              markdown={markdown}
-            />
-          )}
-
-          {/* ── About buttons footer (mobile only) ── */}
-          <AboutFooter
+          <ViewerContent
             theme={t}
             isWide={isWide}
+            comparing={comparing}
+            lensKeyA={lensKeyA}
+            lensKeyB={lensKeyB}
+            comparisonLenses={comparisonLenses}
+            focusPair={focusPair}
+            aperturePair={aperturePair}
+            zoomPair={zoomPair}
+            scaleRatios={scaleRatios}
+            maxHeaderHeight={maxHeaderHeight}
+            onHeaderHeight={handleHeaderHeight}
+            flashPanel={flashPanel}
+            sharedFocusT={sharedFocusT}
+            sharedStopdownT={sharedStopdownT}
+            sharedZoomT={sharedZoomT}
+            onSharedFocusChange={handleSharedFocusChange}
+            onSharedStopdownChange={handleSharedStopdownChange}
+            onFocusPointerDown={handleFocusPointerDown}
+            onAperturePointerDown={handleAperturePointerDown}
+            onSliderPointerUp={updateURLWithSliders}
+            dispatch={dispatch}
+            showEffectiveAperture={panels.showEffectiveAperture}
+            effectiveDesktopView={effectiveDesktopView}
+            showDesktopToggle={showDesktopToggle}
+            mobileView={mobileView}
+            markdown={markdown}
+          />
+
+          <ViewerOverlays
+            theme={t}
+            isWide={isWide}
+            showAbout={showAbout}
+            showAboutSite={showAboutSite}
+            showOpticsPrimer={showOpticsPrimer}
+            showAberrationsPrimer={showAberrationsPrimer}
+            primerLevel={primerLevel}
+            aberrationsLevel={aberrationsLevel}
+            onTogglePrimerLevel={togglePrimerLevel}
+            onToggleAberrationsLevel={toggleAberrationsLevel}
             onOpenOpticsPrimer={openOpticsPrimer}
             onOpenAberrationsPrimer={openAberrationsPrimer}
             onOpenAboutSite={openAboutSite}
             onOpenAboutAuthor={openAboutAuthor}
+            onCloseAboutSite={closeAboutSite}
+            onCloseAboutAuthor={closeAboutAuthor}
+            onCloseOpticsPrimer={closeOpticsPrimer}
+            onCloseAberrationsPrimer={closeAberrationsPrimer}
+            aboutSiteMarkdown={ABOUT_SITE_MD}
+            aboutAuthorMarkdown={ABOUT_ME_MD}
+            opticsPrimerSimpleMarkdown={OPTICS_PRIMER_SIMPLE_MD}
+            opticsPrimerIntermediateMarkdown={OPTICS_PRIMER_INTERMEDIATE_MD}
+            aberrationsPrimerSimpleMarkdown={ABERRATIONS_PRIMER_SIMPLE_MD}
+            aberrationsPrimerIntermediateMarkdown={ABERRATIONS_PRIMER_INTERMEDIATE_MD}
           />
-
-          {/* ── About Site overlay ── */}
-          {showAboutSite && (
-            <OverlayModal onClose={closeAboutSite} theme={t}>
-              <DescriptionPanel markdown={ABOUT_SITE_MD} theme={t} />
-            </OverlayModal>
-          )}
-
-          {/* ── About Me overlay ── */}
-          {showAbout && (
-            <OverlayModal onClose={closeAboutAuthor} theme={t}>
-              <DescriptionPanel markdown={ABOUT_ME_MD} theme={t} />
-            </OverlayModal>
-          )}
-
-          {/* ── Optics Primer overlay ── */}
-          {showOpticsPrimer && (
-            <OverlayModal onClose={closeOpticsPrimer} theme={t} maxWidth={isWide ? 640 : 480} scrollKey={primerLevel}>
-              <DescriptionPanel
-                markdown={primerLevel === "simple" ? OPTICS_PRIMER_SIMPLE_MD : OPTICS_PRIMER_INTERMEDIATE_MD}
-                theme={t}
-              />
-              <PrimerToggleButton level={primerLevel} onToggle={togglePrimerLevel} theme={t} />
-            </OverlayModal>
-          )}
-
-          {/* ── Aberrations Primer overlay ── */}
-          {showAberrationsPrimer && (
-            <OverlayModal
-              onClose={closeAberrationsPrimer}
-              theme={t}
-              maxWidth={isWide ? 640 : 480}
-              scrollKey={aberrationsLevel}
-            >
-              <DescriptionPanel
-                markdown={
-                  aberrationsLevel === "simple" ? ABERRATIONS_PRIMER_SIMPLE_MD : ABERRATIONS_PRIMER_INTERMEDIATE_MD
-                }
-                theme={t}
-              />
-              <PrimerToggleButton level={aberrationsLevel} onToggle={toggleAberrationsLevel} theme={t} />
-            </OverlayModal>
-          )}
         </div>
       </LensDispatchContext.Provider>
     </LensStateContext.Provider>
