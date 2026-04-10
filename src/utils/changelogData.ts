@@ -21,6 +21,13 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-10 ──────────────────────────────────────────────────────────
   {
+    date: "2026-04-11",
+    type: "lens",
+    summary:
+      "Added four new lenses: Canon Serenar 28mm f/3.5, Canon Serenar 35mm f/3.2, Canon Serenar 50mm f/1.8, and Canon Serenar 85mm f/1.5",
+  },
+  // ── 2026-04-10 ──────────────────────────────────────────────────────────
+  {
     date: "2026-04-10",
     type: "lens",
     summary:
