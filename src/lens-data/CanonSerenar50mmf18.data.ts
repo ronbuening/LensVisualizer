@@ -25,7 +25,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-serenar-50f18",
   maker: "Canon",
-  name: "Canon Serenar 50mm f/1.8",
+  name: "CANON SERENAR 50mm f/1.8",
   subtitle: "US 2,681,594 Claim 3 — Hiroshi Ito / Canon Camera Co.",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 50.0 mm", "F/1.8", "2ω ≈ 46°", "ALL SPHERICAL"],
 

@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-serenar-85f15",
   maker: "Canon",
-  name: "Canon Serenar 85mm f/1.5",
+  name: "CANON SERENAR 85mm f/1.5",
   subtitle: "US 2,645,973 Example 1 — Hiroshi Ito / Canon",
   specs: ["7 ELEMENTS / 4 GROUPS", "f ≈ 85.0 mm", "F/1.5", "2ω = 30°", "ALL SPHERICAL"],
   focalLengthMarketing: 85,
