@@ -5,7 +5,7 @@
  * with crawlable <a> links.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
@@ -69,6 +69,8 @@ interface FilterBounds {
 interface CustomFilterState extends FilterBounds {
   makerSlugs: string[];
 }
+
+type NumericFilterField = keyof FilterBounds;
 
 /** Ordered focal length buckets: label and upper bound (inclusive). */
 const FOCAL_BUCKETS: { label: string; maxFl: number }[] = [
@@ -256,6 +258,30 @@ function formatFilterValue(value: number): string {
   return Number.isInteger(value) ? value.toString() : value.toFixed(2).replace(/\.?0+$/, "");
 }
 
+function numericFilterInputValues(filter: CustomFilterState): Record<NumericFilterField, string> {
+  return {
+    focalMin: formatFilterValue(filter.focalMin),
+    focalMax: formatFilterValue(filter.focalMax),
+    apertureMin: formatFilterValue(filter.apertureMin),
+    apertureMax: formatFilterValue(filter.apertureMax),
+    patentYearMin: filter.patentYearMin.toString(),
+    patentYearMax: filter.patentYearMax.toString(),
+  };
+}
+
+function countStepDecimals(step: number): number {
+  const [, decimals = ""] = step.toString().split(".");
+  return decimals.length;
+}
+
+function clampNumericFilterValue(value: number, min: number, max: number, step: number): number {
+  const clamped = Math.min(max, Math.max(min, value));
+  if (step >= 1) return Math.round(clamped);
+  const precision = countStepDecimals(step);
+  const snapped = Math.round((clamped - min) / step) * step + min;
+  return Number(snapped.toFixed(precision));
+}
+
 const CATALOG_ENTRIES = buildCatalogEntries();
 const FILTER_BOUNDS = buildFilterBounds(CATALOG_ENTRIES);
 const MAKER_OPTIONS = buildMakerOptions(CATALOG_ENTRIES);
@@ -296,6 +322,9 @@ export default function LensIndexPage() {
   const [groupMode, setGroupMode] = useState<GroupMode>("maker");
   const [filterOpen, setFilterOpen] = useState(false);
   const [customFilter, setCustomFilter] = useState<CustomFilterState>(() => defaultCustomFilter(FILTER_BOUNDS));
+  const [filterInputValues, setFilterInputValues] = useState<Record<NumericFilterField, string>>(() =>
+    numericFilterInputValues(defaultCustomFilter(FILTER_BOUNDS)),
+  );
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
   const totalLenses = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
@@ -308,6 +337,10 @@ export default function LensIndexPage() {
   const focalSections = useMemo(() => groupByFocalLength(filteredEntries), [filteredEntries]);
   const yearGroups = useMemo(() => groupByPatentYear(filteredEntries, yearDir), [filteredEntries, yearDir]);
   const activeFilters = hasActiveCustomFilters(customFilter, FILTER_BOUNDS);
+
+  useEffect(() => {
+    setFilterInputValues(numericFilterInputValues(customFilter));
+  }, [customFilter]);
 
   const toggleButtonStyle = (active: boolean): React.CSSProperties => ({
     padding: "0.25rem 0.75rem",
@@ -362,6 +395,28 @@ export default function LensIndexPage() {
     accentColor: t.descLinkColor,
   };
 
+  const numericInputGroupStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.35rem",
+  };
+
+  const numericInputStyle: React.CSSProperties = {
+    width: "5.75rem",
+    padding: "0.3rem 0.45rem",
+    border: `1px solid ${t.panelBorder}`,
+    borderRadius: 4,
+    backgroundColor: t.bg,
+    color: t.body,
+    fontFamily: "inherit",
+    fontSize: "0.8rem",
+  };
+
+  const numericInputSuffixStyle: React.CSSProperties = {
+    color: t.label,
+    fontSize: "0.8rem",
+  };
+
   const clearFilters = () => setCustomFilter(defaultCustomFilter(FILTER_BOUNDS));
   const toggleMaker = (makerSlug: string) =>
     setCustomFilter((prev) => ({
@@ -412,6 +467,151 @@ export default function LensIndexPage() {
       patentYearMin: Math.min(prev.patentYearMin, value),
       patentYearMax: value,
     }));
+
+  const numericFilterConfigs: Record<
+    NumericFilterField,
+    {
+      min: number;
+      max: number;
+      step: number;
+      apply: (value: number) => void;
+    }
+  > = {
+    focalMin: {
+      min: FILTER_BOUNDS.focalMin,
+      max: FILTER_BOUNDS.focalMax,
+      step: 0.1,
+      apply: updateFocalMin,
+    },
+    focalMax: {
+      min: FILTER_BOUNDS.focalMin,
+      max: FILTER_BOUNDS.focalMax,
+      step: 0.1,
+      apply: updateFocalMax,
+    },
+    apertureMin: {
+      min: FILTER_BOUNDS.apertureMin,
+      max: FILTER_BOUNDS.apertureMax,
+      step: 0.05,
+      apply: updateApertureMin,
+    },
+    apertureMax: {
+      min: FILTER_BOUNDS.apertureMin,
+      max: FILTER_BOUNDS.apertureMax,
+      step: 0.05,
+      apply: updateApertureMax,
+    },
+    patentYearMin: {
+      min: FILTER_BOUNDS.patentYearMin,
+      max: FILTER_BOUNDS.patentYearMax,
+      step: 1,
+      apply: updatePatentYearMin,
+    },
+    patentYearMax: {
+      min: FILTER_BOUNDS.patentYearMin,
+      max: FILTER_BOUNDS.patentYearMax,
+      step: 1,
+      apply: updatePatentYearMax,
+    },
+  };
+
+  const resetNumericInputField = (field: NumericFilterField) =>
+    setFilterInputValues((prev) => ({
+      ...prev,
+      [field]: numericFilterInputValues(customFilter)[field],
+    }));
+
+  const handleNumericInputChange = (field: NumericFilterField, value: string) =>
+    setFilterInputValues((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+  const commitNumericInput = (field: NumericFilterField) => {
+    const rawValue = filterInputValues[field].trim();
+    const config = numericFilterConfigs[field];
+    if (rawValue.length === 0) {
+      resetNumericInputField(field);
+      return;
+    }
+    const parsed = Number(rawValue);
+    if (Number.isNaN(parsed)) {
+      resetNumericInputField(field);
+      return;
+    }
+    config.apply(clampNumericFilterValue(parsed, config.min, config.max, config.step));
+  };
+
+  const handleNumericInputKeyDown = (field: NumericFilterField, event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      commitNumericInput(field);
+      event.currentTarget.blur();
+    }
+    if (event.key === "Escape") {
+      resetNumericInputField(field);
+      event.currentTarget.blur();
+    }
+  };
+
+  const renderNumericFilterControl = ({
+    field,
+    label,
+    sliderId,
+    inputId,
+    suffix,
+    value,
+    min,
+    max,
+    step,
+    inputMode,
+    onSliderChange,
+  }: {
+    field: NumericFilterField;
+    label: string;
+    sliderId: string;
+    inputId: string;
+    suffix?: string;
+    value: number;
+    min: number;
+    max: number;
+    step: number;
+    inputMode: "decimal" | "numeric";
+    onSliderChange: (value: number) => void;
+  }) => (
+    <div>
+      <div style={sliderLabelStyle}>
+        <label htmlFor={inputId}>{label}</label>
+        <div style={numericInputGroupStyle}>
+          <input
+            id={inputId}
+            type="number"
+            min={min}
+            max={max}
+            step={step}
+            inputMode={inputMode}
+            value={filterInputValues[field]}
+            onChange={(event) => handleNumericInputChange(field, event.currentTarget.value)}
+            onBlur={() => commitNumericInput(field)}
+            onKeyDown={(event) => handleNumericInputKeyDown(field, event)}
+            style={numericInputStyle}
+            aria-label={`${label} value`}
+          />
+          {suffix && <span style={numericInputSuffixStyle}>{suffix}</span>}
+        </div>
+      </div>
+      <input
+        id={sliderId}
+        aria-label={`${label} slider`}
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onSliderChange(Number(event.currentTarget.value))}
+        style={sliderStyle}
+      />
+    </div>
+  );
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -546,38 +746,32 @@ export default function LensIndexPage() {
                   </span>
                 </h3>
                 <div style={rangeGridStyle}>
-                  <label htmlFor="custom-filter-focal-min">
-                    <span style={sliderLabelStyle}>
-                      <span>Minimum focal length</span>
-                      <span>{formatFilterValue(customFilter.focalMin)}mm</span>
-                    </span>
-                    <input
-                      id="custom-filter-focal-min"
-                      type="range"
-                      min={FILTER_BOUNDS.focalMin}
-                      max={FILTER_BOUNDS.focalMax}
-                      step={0.1}
-                      value={customFilter.focalMin}
-                      onChange={(event) => updateFocalMin(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
-                  <label htmlFor="custom-filter-focal-max">
-                    <span style={sliderLabelStyle}>
-                      <span>Maximum focal length</span>
-                      <span>{formatFilterValue(customFilter.focalMax)}mm</span>
-                    </span>
-                    <input
-                      id="custom-filter-focal-max"
-                      type="range"
-                      min={FILTER_BOUNDS.focalMin}
-                      max={FILTER_BOUNDS.focalMax}
-                      step={0.1}
-                      value={customFilter.focalMax}
-                      onChange={(event) => updateFocalMax(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
+                  {renderNumericFilterControl({
+                    field: "focalMin",
+                    label: "Minimum focal length",
+                    sliderId: "custom-filter-focal-min-slider",
+                    inputId: "custom-filter-focal-min-input",
+                    suffix: "mm",
+                    value: customFilter.focalMin,
+                    min: FILTER_BOUNDS.focalMin,
+                    max: FILTER_BOUNDS.focalMax,
+                    step: 0.1,
+                    inputMode: "decimal",
+                    onSliderChange: updateFocalMin,
+                  })}
+                  {renderNumericFilterControl({
+                    field: "focalMax",
+                    label: "Maximum focal length",
+                    sliderId: "custom-filter-focal-max-slider",
+                    inputId: "custom-filter-focal-max-input",
+                    suffix: "mm",
+                    value: customFilter.focalMax,
+                    min: FILTER_BOUNDS.focalMin,
+                    max: FILTER_BOUNDS.focalMax,
+                    step: 0.1,
+                    inputMode: "decimal",
+                    onSliderChange: updateFocalMax,
+                  })}
                 </div>
               </section>
 
@@ -589,38 +783,30 @@ export default function LensIndexPage() {
                   </span>
                 </h3>
                 <div style={rangeGridStyle}>
-                  <label htmlFor="custom-filter-aperture-min">
-                    <span style={sliderLabelStyle}>
-                      <span>Minimum aperture</span>
-                      <span>f/{formatFilterValue(customFilter.apertureMin)}</span>
-                    </span>
-                    <input
-                      id="custom-filter-aperture-min"
-                      type="range"
-                      min={FILTER_BOUNDS.apertureMin}
-                      max={FILTER_BOUNDS.apertureMax}
-                      step={0.05}
-                      value={customFilter.apertureMin}
-                      onChange={(event) => updateApertureMin(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
-                  <label htmlFor="custom-filter-aperture-max">
-                    <span style={sliderLabelStyle}>
-                      <span>Maximum aperture</span>
-                      <span>f/{formatFilterValue(customFilter.apertureMax)}</span>
-                    </span>
-                    <input
-                      id="custom-filter-aperture-max"
-                      type="range"
-                      min={FILTER_BOUNDS.apertureMin}
-                      max={FILTER_BOUNDS.apertureMax}
-                      step={0.05}
-                      value={customFilter.apertureMax}
-                      onChange={(event) => updateApertureMax(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
+                  {renderNumericFilterControl({
+                    field: "apertureMin",
+                    label: "Minimum aperture",
+                    sliderId: "custom-filter-aperture-min-slider",
+                    inputId: "custom-filter-aperture-min-input",
+                    value: customFilter.apertureMin,
+                    min: FILTER_BOUNDS.apertureMin,
+                    max: FILTER_BOUNDS.apertureMax,
+                    step: 0.05,
+                    inputMode: "decimal",
+                    onSliderChange: updateApertureMin,
+                  })}
+                  {renderNumericFilterControl({
+                    field: "apertureMax",
+                    label: "Maximum aperture",
+                    sliderId: "custom-filter-aperture-max-slider",
+                    inputId: "custom-filter-aperture-max-input",
+                    value: customFilter.apertureMax,
+                    min: FILTER_BOUNDS.apertureMin,
+                    max: FILTER_BOUNDS.apertureMax,
+                    step: 0.05,
+                    inputMode: "decimal",
+                    onSliderChange: updateApertureMax,
+                  })}
                 </div>
               </section>
 
@@ -632,38 +818,30 @@ export default function LensIndexPage() {
                   </span>
                 </h3>
                 <div style={rangeGridStyle}>
-                  <label htmlFor="custom-filter-patent-year-min">
-                    <span style={sliderLabelStyle}>
-                      <span>Minimum patent year</span>
-                      <span>{customFilter.patentYearMin}</span>
-                    </span>
-                    <input
-                      id="custom-filter-patent-year-min"
-                      type="range"
-                      min={FILTER_BOUNDS.patentYearMin}
-                      max={FILTER_BOUNDS.patentYearMax}
-                      step={1}
-                      value={customFilter.patentYearMin}
-                      onChange={(event) => updatePatentYearMin(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
-                  <label htmlFor="custom-filter-patent-year-max">
-                    <span style={sliderLabelStyle}>
-                      <span>Maximum patent year</span>
-                      <span>{customFilter.patentYearMax}</span>
-                    </span>
-                    <input
-                      id="custom-filter-patent-year-max"
-                      type="range"
-                      min={FILTER_BOUNDS.patentYearMin}
-                      max={FILTER_BOUNDS.patentYearMax}
-                      step={1}
-                      value={customFilter.patentYearMax}
-                      onChange={(event) => updatePatentYearMax(Number(event.currentTarget.value))}
-                      style={sliderStyle}
-                    />
-                  </label>
+                  {renderNumericFilterControl({
+                    field: "patentYearMin",
+                    label: "Minimum patent year",
+                    sliderId: "custom-filter-patent-year-min-slider",
+                    inputId: "custom-filter-patent-year-min-input",
+                    value: customFilter.patentYearMin,
+                    min: FILTER_BOUNDS.patentYearMin,
+                    max: FILTER_BOUNDS.patentYearMax,
+                    step: 1,
+                    inputMode: "numeric",
+                    onSliderChange: updatePatentYearMin,
+                  })}
+                  {renderNumericFilterControl({
+                    field: "patentYearMax",
+                    label: "Maximum patent year",
+                    sliderId: "custom-filter-patent-year-max-slider",
+                    inputId: "custom-filter-patent-year-max-input",
+                    value: customFilter.patentYearMax,
+                    min: FILTER_BOUNDS.patentYearMin,
+                    max: FILTER_BOUNDS.patentYearMax,
+                    step: 1,
+                    inputMode: "numeric",
+                    onSliderChange: updatePatentYearMax,
+                  })}
                 </div>
               </section>
 

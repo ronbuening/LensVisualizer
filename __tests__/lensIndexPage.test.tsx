@@ -38,7 +38,8 @@ describe("LensIndexPage", () => {
     expect(screen.getByText("Maker")).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: /^Nikon \(\d+\)$/ }));
-    fireEvent.change(screen.getByLabelText(/Minimum patent year/i), { target: { value: "2024" } });
+    fireEvent.change(screen.getByLabelText("Minimum patent year value"), { target: { value: "2024" } });
+    fireEvent.blur(screen.getByLabelText("Minimum patent year value"));
 
     expect(screen.getByText(/Showing 1 of \d+ interactive optical cross-section diagrams/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: /NIKON NIKKOR Z 135mm f\/1.8 S Plena/i })).toBeTruthy();
