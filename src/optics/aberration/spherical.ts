@@ -4,7 +4,6 @@ import { NEAR_AXIS_REAL_FRAC } from "./types.js";
 import {
   MARGINAL_FRACS,
   PROFILE_FRACS,
-  type RealRayHit,
   bestFocusPlane,
   computeRealRayHit,
   computeSymmetricRealSample,
@@ -79,7 +78,8 @@ export function computeSphericalAberration(
       imagePlaneZ,
       -fraction,
     );
-    return [plusHit, minusHit].filter((hit): hit is RealRayHit => hit !== null);
+    if (plusHit === null || minusHit === null) return [];
+    return [plusHit, minusHit];
   });
 
   if (hits.length < 4) return null;
@@ -151,7 +151,8 @@ export function computeSAProfile(
       imagePlaneZ,
       -fraction,
     );
-    return [plusHit, minusHit].filter((hit): hit is RealRayHit => hit !== null);
+    if (plusHit === null || minusHit === null) return [];
+    return [plusHit, minusHit];
   });
   if (hits.length < 4) return [];
 

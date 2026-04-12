@@ -12,9 +12,11 @@
 
 import {
   chiefRayImageHeight,
+  chiefRayImageHeightAccurate,
   computeFieldGeometryAtState,
   skewImagePlaneIntercept,
-  solveFieldAngleForImageHeight,
+  solveChiefRayLaunchHeight,
+  solveFieldAngleForImageHeightAccurate,
   traceSkewRay,
 } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -62,7 +64,7 @@ export interface DistortionFieldGridResult {
 }
 
 /** Number of evenly-spaced field samples (including center and edge). */
-const SAMPLE_COUNT = 11;
+const SAMPLE_COUNT = 21;
 const DISTORTION_GRID_LINE_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;
 const DISTORTION_GRID_SEGMENT_COUNT = 17;
 
@@ -86,9 +88,13 @@ function computeDistortionReference(
   const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
-  const edgeImageHeight = chiefRayImageHeight(geometry.halfFieldDeg, zPos, focusT, zoomT, L, geometry);
+  /* Use the iteratively corrected chief ray for the edge image height so
+     pupil aberration at wide field angles is accounted for. */
+  const edgeImageHeight = chiefRayImageHeightAccurate(geometry.halfFieldDeg, zPos, focusT, zoomT, L, geometry);
   if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
 
+  /* The near-axis scale probe uses the paraxial chief ray — the probe angle
+     is always tiny (0.05–0.25 deg), where the paraxial EP is exact. */
   const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.02, 0.05), 0.25);
   const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry);
   const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
@@ -159,7 +165,7 @@ export function computeDistortionCurve(
     }
 
     const realHeight = -edgeAbsHeight * normalizedImageHeight;
-    const fieldAngleDeg = solveFieldAngleForImageHeight(realHeight, zPos, focusT, zoomT, L, reference.geometry);
+    const fieldAngleDeg = solveFieldAngleForImageHeightAccurate(realHeight, zPos, focusT, zoomT, L, reference.geometry);
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
@@ -183,6 +189,51 @@ export function computeDistortionCurve(
   return samples;
 }
 
+/**
+ * Pre-computed correction table mapping field angle to the ratio between
+ * the iteratively solved chief-ray launch height and the paraxial estimate.
+ * Used by the distortion grid to correct for pupil aberration without a
+ * per-point iterative solve.
+ */
+interface PupilCorrectionEntry {
+  angleDeg: number;
+  ratio: number;
+}
+
+const PUPIL_CORRECTION_SAMPLE_COUNT = 9;
+
+function buildPupilCorrectionTable(
+  reference: DistortionReference,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+): PupilCorrectionEntry[] {
+  const table: PupilCorrectionEntry[] = [];
+  for (let i = 0; i < PUPIL_CORRECTION_SAMPLE_COUNT; i++) {
+    const angleDeg = (i / (PUPIL_CORRECTION_SAMPLE_COUNT - 1)) * reference.geometry.halfFieldDeg;
+    const thetaRad = (angleDeg * Math.PI) / 180;
+    const tanTheta = Math.tan(thetaRad);
+    const paraxialYChief = reference.geometry.epRatio * tanTheta;
+    const solvedYChief = solveChiefRayLaunchHeight(angleDeg, focusT, zoomT, L, reference.geometry);
+    const ratio = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
+    table.push({ angleDeg, ratio: isFinite(ratio) ? ratio : 1 });
+  }
+  return table;
+}
+
+function interpolatePupilCorrection(table: PupilCorrectionEntry[], angleDeg: number): number {
+  if (table.length === 0) return 1;
+  if (angleDeg <= table[0].angleDeg) return table[0].ratio;
+  if (angleDeg >= table[table.length - 1].angleDeg) return table[table.length - 1].ratio;
+  for (let i = 0; i < table.length - 1; i++) {
+    if (angleDeg <= table[i + 1].angleDeg) {
+      const t = (angleDeg - table[i].angleDeg) / (table[i + 1].angleDeg - table[i].angleDeg);
+      return table[i].ratio + t * (table[i + 1].ratio - table[i].ratio);
+    }
+  }
+  return 1;
+}
+
 function traceDistortionGridPoint(
   xNormalized: number,
   yNormalized: number,
@@ -191,6 +242,7 @@ function traceDistortionGridPoint(
   zoomT: number,
   currentPhysStopSD: number,
   L: RuntimeLens,
+  pupilCorrection: PupilCorrectionEntry[],
 ): DistortionGridPoint {
   const radiusNormalized = Math.hypot(xNormalized, yNormalized);
   const insideImageCircle = radiusNormalized <= 1 + 1e-9;
@@ -211,8 +263,14 @@ function traceDistortionGridPoint(
 
   const fieldSlopeX = idealX / reference.rectilinearScale;
   const fieldSlopeY = -idealY / reference.rectilinearScale;
-  const chiefLaunchX = -reference.geometry.epRatio * fieldSlopeX;
-  const chiefLaunchY = -reference.geometry.epRatio * fieldSlopeY;
+
+  /* Apply pupil-aberration correction based on the equivalent field angle */
+  const equivalentAngleDeg = (Math.atan(Math.hypot(fieldSlopeX, fieldSlopeY)) * 180) / Math.PI;
+  const correction = interpolatePupilCorrection(pupilCorrection, equivalentAngleDeg);
+  const correctedEpRatio = reference.geometry.epRatio * correction;
+
+  const chiefLaunchX = -correctedEpRatio * fieldSlopeX;
+  const chiefLaunchY = -correctedEpRatio * fieldSlopeY;
   const trace = traceSkewRay(
     chiefLaunchX,
     chiefLaunchY,
@@ -277,6 +335,8 @@ export function computeDistortionFieldGrid(
     (_, index) => -1 + (2 * index) / (DISTORTION_GRID_SEGMENT_COUNT - 1),
   );
 
+  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L);
+
   return {
     idealFieldRadius: reference.idealFieldRadius,
     lines: DISTORTION_GRID_LINE_COORDINATES.flatMap((coordinate) => {
@@ -284,14 +344,14 @@ export function computeDistortionFieldGrid(
         orientation: "vertical",
         idealCoordinate: coordinate,
         points: axisSamples.map((y) =>
-          traceDistortionGridPoint(coordinate, y, reference, focusT, zoomT, currentPhysStopSD, L),
+          traceDistortionGridPoint(coordinate, y, reference, focusT, zoomT, currentPhysStopSD, L, pupilCorrection),
         ),
       };
       const horizontal: DistortionGridLine = {
         orientation: "horizontal",
         idealCoordinate: coordinate,
         points: axisSamples.map((x) =>
-          traceDistortionGridPoint(x, coordinate, reference, focusT, zoomT, currentPhysStopSD, L),
+          traceDistortionGridPoint(x, coordinate, reference, focusT, zoomT, currentPhysStopSD, L, pupilCorrection),
         ),
       };
       return [vertical, horizontal];

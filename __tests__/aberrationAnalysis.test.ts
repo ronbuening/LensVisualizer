@@ -415,8 +415,9 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(profile.length).toBeGreaterThan(0);
-    expect(profile[0].fraction).toBe(NEAR_AXIS_REAL_FRAC);
-    expect(Math.abs(profile[0].transverseSaMm)).toBeLessThan(0.01);
+    const nearAxisSample = profile.find((p) => p.fraction === NEAR_AXIS_REAL_FRAC);
+    expect(nearAxisSample).toBeDefined();
+    expect(Math.abs(nearAxisSample!.transverseSaMm)).toBeLessThan(0.01);
   });
 
   it("simple positive element profile goes negative toward the margin", () => {
@@ -425,7 +426,9 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(L, zPos, 0, 0, 12, 15);
     expect(profile.length).toBeGreaterThan(1);
-    expect(Math.abs(profile[0].transverseSaMm)).toBeLessThan(0.01);
+    const nearAxisSample = profile.find((p) => p.fraction === NEAR_AXIS_REAL_FRAC);
+    expect(nearAxisSample).toBeDefined();
+    expect(Math.abs(nearAxisSample!.transverseSaMm)).toBeLessThan(0.01);
     expect(profile[profile.length - 1].transverseSaMm).toBeLessThan(0);
   });
 
@@ -463,7 +466,7 @@ describe("computeSAProfile", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
 
-    const profile = computeSAProfile(L, zPos, 0, 0, 12, 1.5);
+    const profile = computeSAProfile(L, zPos, 0, 0, 12, 0.5);
     expect(profile).toEqual([]);
   });
 

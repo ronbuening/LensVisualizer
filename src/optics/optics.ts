@@ -254,6 +254,155 @@ export function chiefRayImageHeight(
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
 }
 
+/**
+ * Iteratively solve the entrance ray height that places the chief ray
+ * through the center of the aperture stop for a given field angle.
+ *
+ * At small angles the paraxial entrance-pupil estimate is excellent, but
+ * at wide field angles (>5 deg) pupil aberration shifts the real entrance
+ * pupil position.  This function bisects on the ray height at the stop
+ * surface to find the launch height that yields y ≈ 0 at the stop.
+ *
+ * Falls back to the paraxial estimate if the solve fails.
+ */
+export function solveChiefRayLaunchHeight(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): number {
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  const uField = -Math.tan(thetaRad);
+  const paraxialYChief = -geom.epRatio * uField;
+
+  /* For small angles the paraxial estimate is accurate — skip iteration */
+  if (Math.abs(fieldAngleDeg) < 5) return paraxialYChief;
+
+  const S = stateSurfaces(focusT, zoomT, L);
+  const stopIdx = L.stopIdx;
+
+  const heightAtStop = (yLaunch: number): number | null => {
+    const result = traceSurfacesReal(S, L.asphByIdx, yLaunch, uField, { stopAt: stopIdx });
+    return isFinite(result.y) ? result.y : null;
+  };
+
+  /* Seed bracket around the paraxial estimate */
+  const bracketHalf = Math.max(Math.abs(paraxialYChief) * 0.5, 0.5);
+  let lo = paraxialYChief - bracketHalf;
+  let hi = paraxialYChief + bracketHalf;
+
+  const yLo = heightAtStop(lo);
+  const yHi = heightAtStop(hi);
+  if (yLo === null || yHi === null) return paraxialYChief;
+  if (yLo * yHi > 0) return paraxialYChief; /* no sign change — fallback */
+
+  /* Bisect to find yChief where heightAtStop ≈ 0 */
+  for (let i = 0; i < 15; i++) {
+    const mid = (lo + hi) / 2;
+    const yMid = heightAtStop(mid);
+    if (yMid === null) return paraxialYChief;
+    if (Math.abs(yMid) < 1e-6) return mid;
+    if (yMid < 0 === yLo < 0) lo = mid;
+    else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Chief ray image height using an iteratively solved launch height.
+ *
+ * At small angles, identical to chiefRayImageHeight(). At wide field
+ * angles the solved launch height corrects for pupil aberration, giving
+ * a more accurate image-plane intercept for distortion analysis.
+ */
+export function chiefRayImageHeightAccurate(
+  fieldAngleDeg: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): number {
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  const uField = -Math.tan(thetaRad);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry);
+  const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
+  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
+}
+
+/**
+ * Solve the field angle that produces a given image height, using the
+ * iteratively corrected chief ray for accurate edge-of-field results.
+ *
+ * Uses chiefRayImageHeightAccurate() internally and handles non-monotonic
+ * image-height curves (e.g. fisheye designs where image height can peak
+ * and decrease at extreme field angles) via a multi-bracket search.
+ */
+export function solveFieldAngleForImageHeightAccurate(
+  targetImageHeight: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+): number | null {
+  if (!isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  if (!isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
+
+  const target = -Math.abs(targetImageHeight);
+  const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom);
+
+  /* Sample the field to find a valid bracket that contains the target.
+     This handles both monotonic and non-monotonic image height curves. */
+  const BRACKET_SEGMENTS = 20;
+  const segmentAngles: number[] = [];
+  const segmentHeights: number[] = [];
+  for (let i = 0; i <= BRACKET_SEGMENTS; i++) {
+    const angleDeg = (i / BRACKET_SEGMENTS) * geom.halfFieldDeg;
+    const height = imageHeightAt(angleDeg);
+    if (!isFinite(height)) continue;
+    segmentAngles.push(angleDeg);
+    segmentHeights.push(height);
+  }
+
+  /* Find the first bracket that contains the target */
+  let lo = -1;
+  let hi = -1;
+  for (let i = 0; i < segmentAngles.length - 1; i++) {
+    const hLo = segmentHeights[i];
+    const hHi = segmentHeights[i + 1];
+    if ((hLo >= target && hHi <= target) || (hLo <= target && hHi >= target)) {
+      lo = i;
+      hi = i + 1;
+      break;
+    }
+  }
+  if (lo < 0) return null;
+
+  /* Bisect within the bracket */
+  let loAngle = segmentAngles[lo];
+  let hiAngle = segmentAngles[hi];
+  let loHeight = segmentHeights[lo];
+
+  for (let i = 0; i < 32; i++) {
+    const mid = (loAngle + hiAngle) / 2;
+    const yMid = imageHeightAt(mid);
+    if (!isFinite(yMid)) return null;
+    if (Math.abs(yMid - target) < 1e-4) return mid;
+    /* Choose the sub-interval that brackets the target */
+    if ((loHeight >= target && yMid <= target) || (loHeight <= target && yMid >= target)) {
+      hiAngle = mid;
+    } else {
+      loAngle = mid;
+      loHeight = yMid;
+    }
+  }
+  return (loAngle + hiAngle) / 2;
+}
+
 export function solveFieldAngleForImageHeight(
   targetImageHeight: number,
   zPos: number[],
