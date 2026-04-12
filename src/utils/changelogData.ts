@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-12 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-12",
+    type: "fix",
+    summary: "Improved distortion and spherical aberration accuracy near the edges of the image circle",
+  },
   // ── 2026-04-11 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-11",
