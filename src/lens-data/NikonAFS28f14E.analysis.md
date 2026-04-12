@@ -264,11 +264,11 @@ The paraxial ray trace yields f = 28.410 mm, matching the patent's stated value 
 
 ## 8. Semi-Diameter Estimation
 
-The patent does not list semi-diameters (half clear apertures) for the optical surfaces. For the accompanying data file (`NikonAFS28f14E.data.ts`), semi-diameters were estimated using a paraxial ray trace of the marginal ray (on-axis, at f/1.45) and chief ray (full-field, y' = 21.6 mm) through the prescription.
+The patent does not list semi-diameters (half clear apertures) for the optical surfaces. For the accompanying data file (`NikonAFS28f14E.data.ts`), semi-diameters were initialized from a paraxial ray trace of the marginal ray (on-axis, at f/1.45) and chief ray (full-field, y' = 21.6 mm), then rebalanced surface-by-surface against the patent / Nikon construction-diagram silhouette.
 
-**Method:** At each surface, the semi-diameter is set to the maximum of the upper and lower rim ray heights (|y_chief ± y_marginal|) with approximately 8% mechanical clearance added. The marginal ray was scaled to the entrance pupil semi-diameter of 9.80 mm (f/2·FNO = 28.41/2.90), and the chief ray was scaled to produce the patent's maximum image height of 21.6 mm.
+**Method:** At each surface, the baseline semi-diameter is set to the maximum of the upper and lower rim ray heights (|y_chief ± y_marginal|) with approximately 8% mechanical clearance added. The marginal ray was scaled to the entrance pupil semi-diameter of 9.80 mm (f/2·FNO = 28.41/2.90), and the chief ray was scaled to produce the patent's maximum image height of 21.6 mm. Those baseline values were then tapered where needed to better match the published silhouette while preserving lens-data validation margins.
 
-**Front group SDs** range from ~29–36 mm, consistent with the production lens's 77 mm filter thread. **Rear group SDs** range from ~13–21 mm, consistent with the reported rear element diameter of approximately 31 mm. The **aperture stop SD** is set to 9.80 mm (the paraxial entrance pupil half-diameter at f/1.45).
+**Front group SDs** remain anchored by the production lens's 77 mm filter thread at the first surface, while the **rear group SDs** are trimmed relative to the raw ray-clearance estimate to reproduce the more compact published rear-cell silhouette. The **aperture stop SD** is set to 9.80 mm (the paraxial entrance pupil half-diameter at f/1.45).
 
 These estimates are inherently approximate. The real production lens likely trims the rear-group apertures slightly to introduce controlled natural vignetting at f/1.4 — a standard practice that reduces off-axis aberrations while sacrificing only modest corner illumination.
 

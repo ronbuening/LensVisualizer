@@ -18,12 +18,13 @@ import type { LensDataInput } from "../types/optics.js";
  * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                               ║
  * ║    SDs estimated from paraxial marginal + chief ray trace at full      ║
- * ║    field (2ω = 75.42°) with ~8% mechanical clearance, then tuned      ║
- * ║    to match the production lens cross-section profile.  Patent does    ║
- * ║    not list semi-diameters.  L11 front (S1 = 33 mm) is consistent     ║
- * ║    with the 77 mm filter-thread specification.  S6/S7 (L13) are       ║
- * ║    constrained to 26.0 mm by the 4.85 mm cross-gap to the LS doublet. ║
- * ║    Rear-group SDs reflect expected natural vignetting at f/1.4.       ║
+ * ║    field (2ω = 75.42°) with ~8% mechanical clearance, then rebalanced  ║
+ * ║    surface-by-surface against the patent / Nikon construction-diagram  ║
+ * ║    silhouette. Patent does not list semi-diameters. L11 front         ║
+ * ║    (S1 = 33 mm) remains consistent with the 77 mm filter-thread spec. ║
+ * ║    Mid- and rear-group SDs taper more aggressively than the raw        ║
+ * ║    clearance estimate to match the published profile while preserving  ║
+ * ║    validation margins and modest natural vignetting at f/1.4.         ║
  * ╚══════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -263,38 +264,38 @@ const LENS_DATA = {
   surfaces: [
     // ── Gr1: Front group (fixed) ──
     { label: "1", R: 70.017, d: 2.5, nd: 1.68893, elemId: 1, sd: 33.0 }, // L11 front
-    { label: "2", R: 29.64, d: 10.58, nd: 1.0, elemId: 0, sd: 26.5 }, // L11 rear → air (sd<0.9×R to avoid TIR)
-    { label: "3", R: 94.105, d: 2.4, nd: 1.713, elemId: 2, sd: 31.0 }, // L12 glass front
-    { label: "4", R: 31.773, d: 0.05, nd: 1.5138, elemId: 3, sd: 25.5 }, // L12 glass→resin junction
-    { label: "5A", R: 27.197, d: 9.49, nd: 1.0, elemId: 0, sd: 20.5 }, // L12 resin rear → air (asph; sd<0.9×R)
-    { label: "6", R: 164.736, d: 4.94, nd: 1.84666, elemId: 4, sd: 26.0 }, // L13 front
+    { label: "2", R: 29.64, d: 10.58, nd: 1.0, elemId: 0, sd: 26.6 }, // L11 rear → air (sd<0.9×R to avoid TIR)
+    { label: "3", R: 94.105, d: 2.4, nd: 1.713, elemId: 2, sd: 29.2 }, // L12 glass front
+    { label: "4", R: 31.773, d: 0.05, nd: 1.5138, elemId: 3, sd: 24.0 }, // L12 glass→resin junction
+    { label: "5A", R: 27.197, d: 9.49, nd: 1.0, elemId: 0, sd: 21.8 }, // L12 resin rear → air (asph; sd<0.9×R)
+    { label: "6", R: 164.736, d: 4.94, nd: 1.84666, elemId: 4, sd: 26.2 }, // L13 front
     { label: "7", R: -131.025, d: 4.85, nd: 1.0, elemId: 0, sd: 26.0 }, // L13 rear → air
-    { label: "8", R: -46.832, d: 2.15, nd: 1.56883, elemId: 5, sd: 27.5 }, // L14 front (LS doublet)
-    { label: "9", R: 134.737, d: 4.17, nd: 1.883, elemId: 6, sd: 27.5 }, // L14→L15 cemented junction
-    { label: "10", R: -366.912, d: 3.03, nd: 1.0, elemId: 0, sd: 28.0 }, // L15 rear → air
-    { label: "11", R: 70.316, d: 7.09, nd: 1.7725, elemId: 7, sd: 25.0 }, // L16 front
-    { label: "12", R: -99.338, d: 7.7, nd: 1.0, elemId: 0, sd: 23.0 }, // L16 rear → air [VARIABLE: Gr1→Gr2]
+    { label: "8", R: -46.832, d: 2.15, nd: 1.56883, elemId: 5, sd: 24.0 }, // L14 front (LS doublet)
+    { label: "9", R: 134.737, d: 4.17, nd: 1.883, elemId: 6, sd: 24.0 }, // L14→L15 cemented junction
+    { label: "10", R: -366.912, d: 3.03, nd: 1.0, elemId: 0, sd: 23.5 }, // L15 rear → air
+    { label: "11", R: 70.316, d: 7.09, nd: 1.7725, elemId: 7, sd: 23.1 }, // L16 front
+    { label: "12", R: -99.338, d: 7.7, nd: 1.0, elemId: 0, sd: 21.7 }, // L16 rear → air [VARIABLE: Gr1→Gr2]
 
     // ── Gr2: Rear group (focusing, moves as unit toward object) ──
-    { label: "13", R: 55.349, d: 4.2, nd: 1.72916, elemId: 8, sd: 22.5 }, // L21 front
-    { label: "14", R: 289.177, d: 0.15, nd: 1.0, elemId: 0, sd: 21.0 }, // L21 rear → air
-    { label: "15", R: 111.31, d: 4.0, nd: 1.6968, elemId: 9, sd: 20.5 }, // L22 front
-    { label: "16", R: -158.345, d: 0.15, nd: 1.0, elemId: 0, sd: 19.0 }, // L22 rear → air
-    { label: "17", R: 322.096, d: 5.79, nd: 1.59282, elemId: 10, sd: 18.5 }, // L23 front (ED, D1 doublet)
-    { label: "18", R: -37.124, d: 1.5, nd: 1.738, elemId: 11, sd: 15.5 }, // L23→L24 cemented junction
-    { label: "19", R: 37.221, d: 5.6, nd: 1.0, elemId: 0, sd: 14.5 }, // L24 rear → air
+    { label: "13", R: 55.349, d: 4.2, nd: 1.72916, elemId: 8, sd: 20.9 }, // L21 front
+    { label: "14", R: 289.177, d: 0.15, nd: 1.0, elemId: 0, sd: 19.8 }, // L21 rear → air
+    { label: "15", R: 111.31, d: 4.0, nd: 1.6968, elemId: 9, sd: 19.4 }, // L22 front
+    { label: "16", R: -158.345, d: 0.15, nd: 1.0, elemId: 0, sd: 18.6 }, // L22 rear → air
+    { label: "17", R: 322.096, d: 5.79, nd: 1.59282, elemId: 10, sd: 18.1 }, // L23 front (ED, D1 doublet)
+    { label: "18", R: -37.124, d: 1.5, nd: 1.738, elemId: 11, sd: 16.2 }, // L23→L24 cemented junction
+    { label: "19", R: 37.221, d: 5.6, nd: 1.0, elemId: 0, sd: 15.5 }, // L24 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R: 1e15, d: 5.78, nd: 1.0, elemId: 0, sd: 9.5 }, // ST — patent surface i=20
 
     // ── Gr2 continued (post-stop) ──
-    { label: "21", R: -24.127, d: 1.3, nd: 1.8061, elemId: 12, sd: 11.5 }, // L25 front (D2 doublet)
-    { label: "22", R: 47.257, d: 5.35, nd: 1.8322, elemId: 13, sd: 12.5 }, // L25→L26 cemented junction
-    { label: "23A", R: -131.725, d: 0.3, nd: 1.0, elemId: 0, sd: 14.5 }, // L26 rear → air (asph)
-    { label: "24", R: 64.397, d: 8.98, nd: 1.59282, elemId: 14, sd: 16.0 }, // L27 front (ED)
-    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 19.0 }, // L27 rear → air
-    { label: "26A", R: -280.388, d: 3.71, nd: 1.6935, elemId: 15, sd: 19.0 }, // L28 front (asph)
-    { label: "27A", R: -55.502, d: 38.47, nd: 1.0, elemId: 0, sd: 20.0 }, // L28 rear → image (asph) [VARIABLE: BF]
+    { label: "21", R: -24.127, d: 1.3, nd: 1.8061, elemId: 12, sd: 14.6 }, // L25 front (D2 doublet)
+    { label: "22", R: 47.257, d: 5.35, nd: 1.8322, elemId: 13, sd: 15.1 }, // L25→L26 cemented junction
+    { label: "23A", R: -131.725, d: 0.3, nd: 1.0, elemId: 0, sd: 15.9 }, // L26 rear → air (asph)
+    { label: "24", R: 64.397, d: 8.98, nd: 1.59282, elemId: 14, sd: 17.0 }, // L27 front (ED)
+    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 17.8 }, // L27 rear → air
+    { label: "26A", R: -280.388, d: 3.71, nd: 1.6935, elemId: 15, sd: 17.2 }, // L28 front (asph)
+    { label: "27A", R: -55.502, d: 38.47, nd: 1.0, elemId: 0, sd: 16.4 }, // L28 rear → image (asph) [VARIABLE: BF]
   ],
 
   /* ── Aspherical coefficients ──
