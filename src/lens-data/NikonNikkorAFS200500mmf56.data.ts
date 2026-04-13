@@ -34,7 +34,7 @@ const LENS_DATA = {
   specs: [
     "19 ELEMENTS / 12 GROUPS",
     "f = 205–487 mm",
-    "F/4.62–5.78 (optical); F/5.6 (marketed)",
+    "F/5.62–5.78 (optical); F/5.6 (marketed)",
     "2ω ≈ 11.8–5.0°",
     "ALL SPHERICAL",
     "3 ED ELEMENTS",
