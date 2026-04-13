@@ -27,13 +27,14 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
 describe("computeVignettingCurve", () => {
   /* ── Basic curve shape ── */
 
-  it("returns at least 9 samples for Sonnar 50/1.5", () => {
+  it("returns at least 7 samples for Sonnar 50/1.5", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
 
     const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
-    expect(samples.length).toBeGreaterThanOrEqual(9);
+    /* Adaptive field sampling: ~3° spacing, minimum 7 samples */
+    expect(samples.length).toBeGreaterThanOrEqual(7);
   });
 
   it("on-axis geometricTransmission is 1.0", () => {
@@ -151,7 +152,8 @@ describe("computeVignettingCurve", () => {
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 1, 0);
 
     const samples = computeVignettingCurve(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
-    expect(samples.length).toBeGreaterThanOrEqual(9);
+    /* Adaptive field sampling: ~3° spacing, minimum 7 samples */
+    expect(samples.length).toBeGreaterThanOrEqual(7);
     expect(samples[0].geometricTransmission).toBeCloseTo(1.0, 5);
     expect(samples[0].relativeIllumination).toBeCloseTo(1.0, 5);
   });
