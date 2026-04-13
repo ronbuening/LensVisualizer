@@ -214,8 +214,8 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 11.466, nd: 1.0, elemId: 0, sd: 13.9 },
     // ─── G2: Second lens group (moves during focus) ───
     // L2a — Aspherical negative meniscus (concave toward object)
-    { label: "15A", R: -14.64464, d: 2.55, nd: 1.68863, elemId: 8, sd: 13.0 },
-    { label: "16A", R: -18.73058, d: 0.2, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "15A", R: -14.64464, d: 2.55, nd: 1.68863, elemId: 8, sd: 10.7 },
+    { label: "16A", R: -18.73058, d: 0.2, nd: 1.0, elemId: 0, sd: 9.9 },
     // L2b + L2c — Cemented doublet D2
     { label: "17", R: 49.66071, d: 6.45, nd: 1.883, elemId: 9, sd: 15.0 },
     { label: "18", R: -32.522, d: 1.21, nd: 1.69895, elemId: 10, sd: 15.0 },

@@ -178,7 +178,7 @@ const LENS_DATA = {
     { label: "8", R: -8.93495, d: 0.7, nd: 1.62004, elemId: 5, sd: 6.8 }, // L4→L5 junction (D2 neg.)
     { label: "9", R: 39.69665, d: 2.92, nd: 1.0, elemId: 0, sd: 6.2 }, // L5 rear → air
     { label: "10A", R: -9.52831, d: 1.1, nd: 1.58313, elemId: 6, sd: 6.1 }, // L6 front (asph, K=0.2964)
-    { label: "11A", R: -9.47003, d: 2.17, nd: 1.0, elemId: 0, sd: 6.5 }, // L6 rear → air (asph, K=1.0)
+    { label: "11A", R: -9.47003, d: 2.17, nd: 1.0, elemId: 0, sd: 5.9 }, // L6 rear → air (asph, K=1.0)
     { label: "12", R: -9.36192, d: 1.0, nd: 1.7552, elemId: 7, sd: 5.9 }, // L7 front
     { label: "13", R: -25.39515, d: 0.71, nd: 1.0, elemId: 0, sd: 7.2 }, // L7 rear → air
     { label: "14A", R: -45.8666, d: 0.1, nd: 1.56093, elemId: 8, sd: 9.4 }, // L8 resin front (asph, K=1.0)

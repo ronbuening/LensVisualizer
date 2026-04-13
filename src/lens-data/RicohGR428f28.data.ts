@@ -149,7 +149,7 @@ const LENS_DATA = {
   surfaces: [
     //                                                                         ┌─ G1 ─────────────────────────────
     { label: "1", R: 13.353, d: 0.7, nd: 1.68948, elemId: 1, sd: 7.8 }, // L11 front (spherical)
-    { label: "2A", R: 11.258, d: 2.4, nd: 1.0, elemId: 0, sd: 7.2 }, // L11 rear → air (aspherical)
+    { label: "2A", R: 11.258, d: 2.4, nd: 1.0, elemId: 0, sd: 6.2 }, // L11 rear → air (aspherical)
     { label: "3", R: -17.988, d: 0.65, nd: 1.5927, elemId: 2, sd: 5.5 }, // L12 front
     { label: "4", R: 7.957, d: 2.64, nd: 1.883, elemId: 3, sd: 5.2 }, // L12→L13 junction — elemId: L13
     { label: "5", R: -29.283, d: 1.14, nd: 1.0, elemId: 0, sd: 4.3 }, // L13 rear → air
