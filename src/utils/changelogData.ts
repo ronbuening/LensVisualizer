@@ -19,6 +19,18 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-13 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-13",
+    type: "fix",
+    summary: "Refined the NIKKOR AF-S 14-24mm silhouette and corrected the 200-500mm optical aperture range",
+  },
+  {
+    date: "2026-04-13",
+    type: "lens",
+    summary:
+      "Added four Nikon AF-S zooms: NIKKOR 14-24mm f/2.8G ED, 16-35mm f/4G ED VR, 120-300mm f/2.8E FL ED SR VR, and 200-500mm f/5.6E ED VR",
+  },
   // ── 2026-04-12 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-12",
