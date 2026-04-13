@@ -134,16 +134,16 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling (monochromatic and chromatic), sag curves, chromatic, layout geometry |
-| `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation |
-| `validateLensData.ts` | `src/optics/` | Schema validation for lens data |
-| `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and element shape computation for SVG rendering |
+| `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling (monochromatic and chromatic), sag curves, chromatic, layout geometry, chief ray solver (30-iter bisection, 1° cutoff), `slopeTrimHeight()` for aspherically-aware rendering trim |
+| `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation (40-iter real-ray half-field bisection) |
+| `validateLensData.ts` | `src/optics/` | Schema validation: slope-based rim check (64.2° threshold via `sagSlopeRaw`), element SD ratio (≤3.0 sanity), edge thickness, cross-gap overlap, conic h_max |
+| `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and per-surface-SD element shape computation with aspherically-aware slope trim |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
 | `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, field-curvature/astigmatism computations, and bokeh preview (defocused point-source density heatmaps with vignetting and SA effects) |
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
-| `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis helpers for the 1D rectilinear distortion curve plus the traced 2D chief-ray field grid |
-| `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination computation across field |
+| `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis: 1D rectilinear curve + traced 2D field grid; 17-sample pupil correction table, adaptive 1°/segment bracket search |
+| `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination: solved chief ray launch (not paraxial), adaptive ~3° field spacing, 192-ray pupil sweep |
 
 ### Utilities
 
