@@ -328,7 +328,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       /* Paraxial overestimates — bisect downward */
       let lo = 0,
         hi = halfFieldParaxial;
-      for (let iter = 0; iter < 20; iter++) {
+      for (let iter = 0; iter < 40; iter++) {
         const mid = (lo + hi) / 2;
         if (testChief(mid)) lo = mid;
         else hi = mid;
@@ -524,7 +524,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
         let lo = 0,
           hi = zHalfField;
-        for (let iter = 0; iter < 20; iter++) {
+        for (let iter = 0; iter < 40; iter++) {
           const mid = (lo + hi) / 2;
           if (zTestChief(mid)) lo = mid;
           else hi = mid;
