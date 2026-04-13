@@ -16,8 +16,10 @@ import type { LensDataInput } from "../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list SDs. Estimated via paraxial marginal +     ║
  * ║    chief ray trace at wide (2ω=114.7°) and tele (2ω=83.8°), then ║
- * ║    rebalanced against Nikon's published construction diagram to     ║
- * ║    keep the production-like silhouette while satisfying edge        ║
+ * ║    rebalanced against Nikon's published construction diagram. This  ║
+ * ║    revision pushes a steeper front-group taper and a slightly       ║
+ * ║    fuller rear corrector tail so the rendered silhouette tracks     ║
+ * ║    Nikon's schematic more closely while still satisfying edge       ║
  * ║    thickness, sd/|R| < 0.90, element SD ratio ≤ 1.25, and          ║
  * ║    cross-gap sag-clearance constraints. Front group SDs remain      ║
  * ║    limited by inner-surface R constraints and may understate the    ║
@@ -246,45 +248,45 @@ const LENS_DATA = {
     // ── G1: Negative front group (6 elements, 5 air-separated groups) ──
     { label: "1", R: 60.3937, d: 3.5, nd: 1.804, elemId: 1, sd: 35.5 },
     { label: "2", R: 32.2703, d: 7.0835, nd: 1.0, elemId: 0, sd: 28.5 },
-    { label: "3", R: 35.5, d: 4.0, nd: 1.6779, elemId: 2, sd: 21.5 },
-    { label: "4A", R: 19.5117, d: 12.8951, nd: 1.0, elemId: 0, sd: 17.3 },
-    { label: "5", R: 87.0449, d: 2.5, nd: 1.741, elemId: 3, sd: 20.0 },
-    { label: "6", R: 26.3306, d: 0.3, nd: 1.55389, elemId: 4, sd: 20.0 },
-    { label: "7A", R: 30.2448, d: 12.6887, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "8", R: -67.993, d: 2.5896, nd: 1.49782, elemId: 5, sd: 20.0 },
-    { label: "9", R: 48.0626, d: 2.0, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "10", R: 48.488, d: 5.9634, nd: 1.8044, elemId: 6, sd: 20.5 },
-    { label: "11", R: -181.2948, d: 31.93, nd: 1.0, elemId: 0, sd: 20.5 }, // d = var (zoom gap)
+    { label: "3", R: 35.5, d: 4.0, nd: 1.6779, elemId: 2, sd: 21.94 },
+    { label: "4A", R: 19.5117, d: 12.8951, nd: 1.0, elemId: 0, sd: 17.56 },
+    { label: "5", R: 87.0449, d: 2.5, nd: 1.741, elemId: 3, sd: 19.6 },
+    { label: "6", R: 26.3306, d: 0.3, nd: 1.55389, elemId: 4, sd: 19.0 },
+    { label: "7A", R: 30.2448, d: 12.6887, nd: 1.0, elemId: 0, sd: 18.8 },
+    { label: "8", R: -67.993, d: 2.5896, nd: 1.49782, elemId: 5, sd: 18.4 },
+    { label: "9", R: 48.0626, d: 2.0, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "10", R: 48.488, d: 5.9634, nd: 1.8044, elemId: 6, sd: 18.6 },
+    { label: "11", R: -181.2948, d: 31.93, nd: 1.0, elemId: 0, sd: 18.4 }, // d = var (zoom gap)
 
     // ── G2: Positive rear group (9 elements, 6 air-separated groups) ──
     // L1 focusing doublet (E7 + E8)
-    { label: "12", R: 34.6184, d: 1.0, nd: 1.83481, elemId: 7, sd: 15.0 },
-    { label: "13", R: 19.4637, d: 5.2931, nd: 1.62374, elemId: 8, sd: 14.0 },
-    { label: "14", R: 611.599, d: 5.86, nd: 1.0, elemId: 0, sd: 13.4 }, // d = var (focus gap)
+    { label: "12", R: 34.6184, d: 1.0, nd: 1.83481, elemId: 7, sd: 13.8 },
+    { label: "13", R: 19.4637, d: 5.2931, nd: 1.62374, elemId: 8, sd: 13.1 },
+    { label: "14", R: 611.599, d: 5.86, nd: 1.0, elemId: 0, sd: 12.8 }, // d = var (focus gap)
 
     // Aperture stop
     { label: "STO", R: 1e15, d: 1.6689, nd: 1.0, elemId: 0, sd: 11.0 },
 
     // L2 — positive meniscus (E9)
-    { label: "16", R: -265.5383, d: 2.6545, nd: 1.5168, elemId: 9, sd: 12.0 },
-    { label: "17", R: -47.2569, d: 9.0744, nd: 1.0, elemId: 0, sd: 12.5 },
+    { label: "16", R: -265.5383, d: 2.6545, nd: 1.5168, elemId: 9, sd: 11.8 },
+    { label: "17", R: -47.2569, d: 9.0744, nd: 1.0, elemId: 0, sd: 12.1 },
 
     // L3 — biconcave negative (E10)
-    { label: "18", R: -27.9322, d: 1.6819, nd: 1.83481, elemId: 10, sd: 15.0 },
-    { label: "19", R: 138.6775, d: 0.1, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "18", R: -27.9322, d: 1.6819, nd: 1.83481, elemId: 10, sd: 13.6 },
+    { label: "19", R: 138.6775, d: 0.1, nd: 1.0, elemId: 0, sd: 14.0 },
 
     // E11 — biconvex positive
-    { label: "20", R: 35.6745, d: 4.4701, nd: 1.57099, elemId: 11, sd: 14.2 },
-    { label: "21", R: -71.8719, d: 0.1, nd: 1.0, elemId: 0, sd: 14.8 },
+    { label: "20", R: 35.6745, d: 4.4701, nd: 1.57099, elemId: 11, sd: 12.8 },
+    { label: "21", R: -71.8719, d: 0.1, nd: 1.0, elemId: 0, sd: 13.2 },
 
     // Cemented doublet E12 + E13 (achromatic corrector with ED glass)
-    { label: "22", R: 27.2079, d: 1.3817, nd: 1.772789, elemId: 12, sd: 15.8 },
-    { label: "23", R: 16.4317, d: 8.491, nd: 1.49782, elemId: 13, sd: 13.2 },
-    { label: "24", R: -53.0, d: 1.721, nd: 1.0, elemId: 0, sd: 14.4 },
+    { label: "22", R: 27.2079, d: 1.3817, nd: 1.772789, elemId: 12, sd: 14.0 },
+    { label: "23", R: 16.4317, d: 8.491, nd: 1.49782, elemId: 13, sd: 13.0 },
+    { label: "24", R: -53.0, d: 1.721, nd: 1.0, elemId: 0, sd: 14.2 },
 
     // Cemented doublet E14 + E15 (near-afocal corrector with aspherical rear)
-    { label: "25", R: 1336.7107, d: 1.0, nd: 1.8061, elemId: 14, sd: 16.0 },
-    { label: "26", R: 20.3824, d: 6.3537, nd: 1.58913, elemId: 15, sd: 13.6 },
+    { label: "25", R: 1336.7107, d: 1.0, nd: 1.8061, elemId: 14, sd: 14.6 },
+    { label: "26", R: 20.3824, d: 6.3537, nd: 1.58913, elemId: 15, sd: 13.7 },
     { label: "27A", R: -60.1135, d: 38.7, nd: 1.0, elemId: 0, sd: 14.8 }, // d = Bf (zoom only)
   ],
 
