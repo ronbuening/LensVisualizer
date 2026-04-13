@@ -29,15 +29,18 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Patent provides no SDs.  Estimated via paraxial marginal +     ║
  * ║    chief ray trace across all zoom positions with ~8% clearance.  ║
  * ║    Front elements constrained by 77 mm filter thread (~37 mm SD). ║
- * ║    Some SDs reduced to satisfy renderer sd/|R| < 0.90 constraint ║
- * ║    (notably L11 rear R = 14.627 mm).                              ║
+ * ║    L11 rear (R = 14.627 mm, K = −0.983) now uses slope-based     ║
+ * ║    validation — the near-paraboloidal surface has a gentle actual ║
+ * ║    rim slope, so SD is no longer artificially constrained to      ║
+ * ║    sd/|R| < 0.90.  Front group SDs moderately increased to       ║
+ * ║    better match production lens proportions.                      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-afs-16-35f4-vr",
-  visible: false,
+  visible: true,
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 16-35mm f/4G ED VR",
   subtitle: "US 2010/0238560 A1 EXAMPLE 1 — NIKON / FUJIMOTO",
@@ -308,15 +311,15 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── G1: Front negative group ──
-    { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 16.0 },
-    { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 16.5 },
-    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 16.0 },
-    { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 15.5 },
-    { label: "6", R: 52.742, d: 0.4, nd: 1.55389, elemId: 4, sd: 15.5 },
-    { label: "7A", R: 96.287, d: 1.5, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "8", R: 42.407, d: 6.4, nd: 1.69895, elemId: 5, sd: 15.5 },
-    { label: "9", R: -65.202, d: 28.97, nd: 1.0, elemId: 0, sd: 15.5 },
+    { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 20.0 },
+    { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 20.0 },
+    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 17.0 },
+    { label: "6", R: 52.742, d: 0.4, nd: 1.55389, elemId: 4, sd: 17.0 },
+    { label: "7A", R: 96.287, d: 1.5, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "8", R: 42.407, d: 6.4, nd: 1.69895, elemId: 5, sd: 18.0 },
+    { label: "9", R: -65.202, d: 28.97, nd: 1.0, elemId: 0, sd: 17.5 },
 
     // ── G2: Positive focusing group ──
     { label: "10", R: 36.176, d: 1.05, nd: 1.84666, elemId: 6, sd: 15.0 },

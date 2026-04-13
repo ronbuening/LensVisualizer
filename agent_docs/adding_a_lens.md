@@ -38,11 +38,11 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 
 ### Semi-Diameter Troubleshooting
 
-Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, SD consistency, sd/|R| ratio, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples.
+Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, rim slope, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples. The rim slope check uses actual aspherical slope at the SD (via `sagSlopeRaw`), not the old spherical `sd/|R|` proxy — aspherical surfaces (especially K near −1) can use larger SDs.
 
 ### Validation
 
-`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD consistency, sd/|R| ratio (max 0.90), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
+`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
 
 ### Zoom Lenses
 

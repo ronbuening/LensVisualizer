@@ -103,20 +103,21 @@ const LENS_DATA = {
    *    1. Edge thickness: For each element, sag(sd, R_front) − sag(sd, R_rear) must
    *       be less than the center thickness d.  Otherwise the front and rear surfaces
    *       cross at the rim, producing a bowtie-shaped element.  (Validated)
-   *    2. SD consistency: Front and rear surface SDs of each element should not differ
-   *       by more than 25% (ratio ≤ 1.25).  Larger ratios cause rays to appear outside
-   *       the rendered element boundary.  (Validated)
-   *    3. sd/|R| ratio: sd must not exceed 0.90 × |R|.  As sd approaches |R|, the
-   *       surface slope at the rim becomes extreme, causing total internal reflection
-   *       at glass–air boundaries and rendering artifacts.  (Validated)
+   *    2. SD ratio sanity: Front and rear surface SDs of each element should not differ
+   *       by more than 3× (ratio ≤ 3.0).  This is a lenient sanity check to catch data
+   *       entry errors — per-surface slope validation handles the physics.  Deep meniscus
+   *       elements in retrofocus designs (e.g. ratio 1.45) are fine.  (Validated)
+   *    3. Rim slope: The actual sag slope at each surface's SD (including aspherical
+   *       terms) must not exceed 2.065 (64.2°).  This replaces the old sd/|R| ≤ 0.90
+   *       check, which was a spherical proxy.  For aspherical surfaces with K near −1
+   *       (near-paraboloids), the slope is much gentler than a sphere at the same sd/|R|,
+   *       allowing larger SDs.  A paraboloid at sd/|R| = 0.9 has slope 0.9 (42°), well
+   *       under the 64° threshold.  (Validated via sagSlopeRaw)
    *    4. Cross-gap overlap: For each air gap, the validator computes:
    *         intrusion = sag(sdCheck, rearSurface.R) − sag(sdCheck, nextFront.R)
    *       where sdCheck = min(element1_min_sd, element2_min_sd).  Fails if
-   *       intrusion > gap × 1.1.  When neighboring surfaces bow the same direction
-   *       (both R positive or both R negative — common in meniscus designs), sagBack
-   *       is larger, intrusion is negative, and this check always passes.  Only
-   *       convex-toward-gap geometries (e.g. the rear surface of a thick positive
-   *       element facing a nearly-flat next surface) can fail.  (Validated)
+   *       intrusion > gap × 1.1.  This is often the binding constraint for thin air
+   *       gaps between strongly curved surfaces.  (Validated)
    *    5. Conic height limit: For aspherical surfaces with K > 0, sd must not exceed
    *       0.98 × |R| / √(1+K).  Beyond this height the conic sag discriminant goes
    *       negative, producing a sag curve discontinuity.  (Validated)

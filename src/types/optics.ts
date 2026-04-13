@@ -171,6 +171,7 @@ export interface RuntimeLens {
   readonly SC: number;
   readonly YSC: number;
   readonly maxRimSin: number;
+  readonly maxRimTan: number;
   readonly gapSagFrac: number;
   readonly clipMargin: number;
   readonly gridPitch: number;

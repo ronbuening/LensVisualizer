@@ -95,7 +95,7 @@ function computeDistortionReference(
 
   /* The near-axis scale probe uses the paraxial chief ray — the probe angle
      is always tiny (0.05–0.25 deg), where the paraxial EP is exact. */
-  const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.02, 0.05), 0.25);
+  const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.01, 0.02), 0.5);
   const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry);
   const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
   if (!isFinite(probeImageHeight) || Math.abs(probeTan) < 1e-12) return null;
@@ -200,7 +200,7 @@ interface PupilCorrectionEntry {
   ratio: number;
 }
 
-const PUPIL_CORRECTION_SAMPLE_COUNT = 9;
+const PUPIL_CORRECTION_SAMPLE_COUNT = 17;
 
 function buildPupilCorrectionTable(
   reference: DistortionReference,

@@ -328,7 +328,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       /* Paraxial overestimates — bisect downward */
       let lo = 0,
         hi = halfFieldParaxial;
-      for (let iter = 0; iter < 20; iter++) {
+      for (let iter = 0; iter < 40; iter++) {
         const mid = (lo + hi) / 2;
         if (testChief(mid)) lo = mid;
         else hi = mid;
@@ -395,6 +395,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     effectiveSvgH = svgH;
   }
   const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+  const maxRimTan = Math.tan((maxRimAngleDeg * Math.PI) / 180);
   const gridPitch = totalTrack / 15;
   const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
   const lyDoublet = -1.1 * maxSD;
@@ -523,7 +524,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
         let lo = 0,
           hi = zHalfField;
-        for (let iter = 0; iter < 20; iter++) {
+        for (let iter = 0; iter < 40; iter++) {
           const mid = (lo + hi) / 2;
           if (zTestChief(mid)) lo = mid;
           else hi = mid;
@@ -572,6 +573,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     SC,
     YSC,
     maxRimSin,
+    maxRimTan,
     gapSagFrac,
     clipMargin,
     gridPitch,

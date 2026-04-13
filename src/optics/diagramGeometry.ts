@@ -4,7 +4,7 @@
  * element-shape computations used by the SVG rendering layer.
  */
 
-import { renderSag, gapTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
+import { renderSag, gapTrimHeight, slopeTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
 import type { RuntimeLens, CoordinateTransforms, ElementShape, AsphPathData, ElementSpan } from "../types/optics.js";
 
 interface CoordTransformParams {
@@ -87,7 +87,8 @@ export function computeElementShapes(
   sy: (y: number) => number,
 ): ElementShape[] {
   return L.ES.map(([eid, s1, s2]: ElementSpan) => {
-    const sd = Math.min(L.S[s1].sd, L.S[s2].sd);
+    const sd1 = L.S[s1].sd,
+      sd2 = L.S[s2].sd;
     const R1 = Math.abs(L.S[s1].R),
       R2 = Math.abs(L.S[s2].R);
     /* Conic-aware max height: surface slope → ∞ at h = |R|/√(1+K) when K > 0 */
@@ -95,8 +96,15 @@ export function computeElementShapes(
     const K2 = L.asphByIdx[s2]?.K || 0;
     const hMax1 = K1 > 0 && R1 < 1e10 ? (R1 / Math.sqrt(1 + K1)) * 0.98 : Infinity;
     const hMax2 = K2 > 0 && R2 < 1e10 ? (R2 / Math.sqrt(1 + K2)) * 0.98 : Infinity;
-    let trim1 = R1 < 1e10 ? Math.min(sd, R1 * L.maxRimSin, hMax1) : Math.min(sd, hMax1);
-    let trim2 = R2 < 1e10 ? Math.min(sd, R2 * L.maxRimSin, hMax2) : Math.min(sd, hMax2);
+    /* Slope-aware rendering trim: binary-search for the height where the
+     * actual aspherical slope reaches maxRimTan.  For spherical surfaces
+     * this gives the same result as R × maxRimSin; for aspherics (especially
+     * near-paraboloids, K ≈ −1) the slope grows more slowly, allowing the
+     * element outline to extend higher and match the physical lens shape.
+     * Each surface is trimmed to its own SD — deep meniscus elements with
+     * different front/rear SDs get trapezoidal outlines matching the barrel. */
+    let trim1 = Math.min(sd1, slopeTrimHeight(s1, sd1, L.maxRimTan, L), hMax1);
+    let trim2 = Math.min(sd2, slopeTrimHeight(s2, sd2, L.maxRimTan, L), hMax2);
     /* Trim front surface if it curves backward into preceding air gap.
      * Mirror of the TRIM2 logic: the preceding element's rear surface
      * may curve backward (negative sag) widening the effective clearance,
@@ -138,13 +146,17 @@ export function computeElementShapes(
     const z1 = zPos[s1],
       z2 = zPos[s2],
       NN = SVG_PATH_SUBDIVISIONS;
+    /* Element outline path — each surface rendered to its own SD.
+     * Front sweeps from −sd1 to +sd1, rear from +sd2 to −sd2.
+     * SVG path commands create straight connecting edges at top/bottom
+     * where the SDs differ (trapezoidal barrel cut). */
     let d = "";
     for (let i = 0; i <= NN; i++) {
-      const y = -sd + (2 * sd * i) / NN;
+      const y = -sd1 + (2 * sd1 * i) / NN;
       d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `;
     }
     for (let i = NN; i >= 0; i--) {
-      const y = -sd + (2 * sd * i) / NN;
+      const y = -sd2 + (2 * sd2 * i) / NN;
       d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
@@ -153,29 +165,29 @@ export function computeElementShapes(
     if (L.asphByIdx[s1]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
-        const y = -sd + (2 * sd * i) / NN;
+        const y = -sd1 + (2 * sd1 * i) / NN;
         p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `;
       }
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
-      const hp = p + `L${midX},${sy(sd)} L${midX},${sy(-sd)} Z`;
+      const hp = p + `L${midX},${sy(sd1)} L${midX},${sy(-sd1)} Z`;
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z1 + renderSag(Math.min(sd, trim1), s1, L)),
-        labelY: sy(-sd) - 4,
+        labelX: sx(z1 + renderSag(Math.min(sd1, trim1), s1, L)),
+        labelY: sy(-sd1) - 4,
       });
     }
     if (L.asphByIdx[s2]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
-        const y = -sd + (2 * sd * i) / NN;
+        const y = -sd2 + (2 * sd2 * i) / NN;
         p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
       }
       /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
-      let hp = `M${midX},${sy(-sd)} L${midX},${sy(sd)} `;
+      let hp = `M${midX},${sy(-sd2)} L${midX},${sy(sd2)} `;
       for (let i = NN; i >= 0; i--) {
-        const y = -sd + (2 * sd * i) / NN;
+        const y = -sd2 + (2 * sd2 * i) / NN;
         hp += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
       }
       hp += "Z";
@@ -183,8 +195,8 @@ export function computeElementShapes(
         surfIdx: s2,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z2 + renderSag(Math.min(sd, trim2), s2, L)),
-        labelY: sy(-sd) - 4,
+        labelX: sx(z2 + renderSag(Math.min(sd2, trim2), s2, L)),
+        labelY: sy(-sd2) - 4,
       });
     }
     return { eid, d: d + "Z", z1, z2, asphPaths };

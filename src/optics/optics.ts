@@ -63,7 +63,7 @@ export interface CircularPupilSample {
 }
 
 /* ── Named constants ── */
-const SVG_PATH_SUBDIVISIONS: number = 48; /* arc segments per surface when building SVG paths */
+const SVG_PATH_SUBDIVISIONS: number = 96; /* arc segments per surface when building SVG paths */
 const BISECT_ITERATIONS: number = 30; /* bisection steps for gapTrimHeight — yields ~1e-9 mm precision */
 export const FOCUS_INFINITY_THRESHOLD: number = 0.003; /* focusT values below this are treated as infinity focus */
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
@@ -117,6 +117,33 @@ export function gapTrimHeight(surfIdx: number, sd: number, maxSag: number, L: Ru
   for (let j = 0; j < BISECT_ITERATIONS; j++) {
     const mid = (lo + hi) / 2;
     if (Math.abs(renderSag(mid, surfIdx, L)) > maxSag) hi = mid;
+    else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Find the maximum ray height at which a surface's slope stays within maxSlopeTan.
+ *
+ * Used for aspherically-aware rendering trim.  For a spherical surface this
+ * gives the same result as R × sin(maxRimAngle); for aspherics (especially
+ * near-paraboloids with K ≈ −1) the slope grows much more slowly, allowing
+ * larger trim heights and more accurate element outlines.
+ *
+ * @param surfIdx     — surface index
+ * @param sd          — nominal semi-diameter (mm)
+ * @param maxSlopeTan — max allowed slope (tangent of max rim angle)
+ * @param L           — runtime lens object
+ * @returns             trimmed semi-diameter ≤ sd
+ */
+export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number, L: RuntimeLens): number {
+  if (maxSlopeTan <= 0) return sd;
+  if (Math.abs(sagSlope(sd, surfIdx, L)) <= maxSlopeTan) return sd;
+  let lo = 0,
+    hi = sd;
+  for (let j = 0; j < BISECT_ITERATIONS; j++) {
+    const mid = (lo + hi) / 2;
+    if (Math.abs(sagSlope(mid, surfIdx, L)) > maxSlopeTan) hi = mid;
     else lo = mid;
   }
   return (lo + hi) / 2;
@@ -277,8 +304,10 @@ export function solveChiefRayLaunchHeight(
   const uField = -Math.tan(thetaRad);
   const paraxialYChief = -geom.epRatio * uField;
 
-  /* For small angles the paraxial estimate is accurate — skip iteration */
-  if (Math.abs(fieldAngleDeg) < 5) return paraxialYChief;
+  /* For small angles the paraxial estimate is accurate — skip iteration.
+   * Lowered from 5° to 1°: retrofocus designs with strong negative front
+   * groups can exhibit non-negligible pupil aberration even at 2-3°. */
+  if (Math.abs(fieldAngleDeg) < 1) return paraxialYChief;
 
   const S = stateSurfaces(focusT, zoomT, L);
   const stopIdx = L.stopIdx;
@@ -298,8 +327,10 @@ export function solveChiefRayLaunchHeight(
   if (yLo === null || yHi === null) return paraxialYChief;
   if (yLo * yHi > 0) return paraxialYChief; /* no sign change — fallback */
 
-  /* Bisect to find yChief where heightAtStop ≈ 0 */
-  for (let i = 0; i < 15; i++) {
+  /* Bisect to find yChief where heightAtStop ≈ 0.
+   * 30 iterations achieves ~1e-9 mm precision — sufficient for distortion
+   * analysis even at extreme field angles (>60°) in retrofocus designs. */
+  for (let i = 0; i < 30; i++) {
     const mid = (lo + hi) / 2;
     const yMid = heightAtStop(mid);
     if (yMid === null) return paraxialYChief;
@@ -356,12 +387,14 @@ export function solveFieldAngleForImageHeightAccurate(
   const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom);
 
   /* Sample the field to find a valid bracket that contains the target.
-     This handles both monotonic and non-monotonic image height curves. */
-  const BRACKET_SEGMENTS = 20;
+     This handles both monotonic and non-monotonic image height curves.
+     Adaptive: one segment per degree ensures no feature >1° wide is missed,
+     critical for ultra-wide lenses with non-monotonic image height curves. */
+  const bracketSegments = Math.max(Math.ceil(geom.halfFieldDeg), 20);
   const segmentAngles: number[] = [];
   const segmentHeights: number[] = [];
-  for (let i = 0; i <= BRACKET_SEGMENTS; i++) {
-    const angleDeg = (i / BRACKET_SEGMENTS) * geom.halfFieldDeg;
+  for (let i = 0; i <= bracketSegments; i++) {
+    const angleDeg = (i / bracketSegments) * geom.halfFieldDeg;
     const height = imageHeightAt(angleDeg);
     if (!isFinite(height)) continue;
     segmentAngles.push(angleDeg);
@@ -387,7 +420,7 @@ export function solveFieldAngleForImageHeightAccurate(
   let hiAngle = segmentAngles[hi];
   let loHeight = segmentHeights[lo];
 
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 40; i++) {
     const mid = (loAngle + hiAngle) / 2;
     const yMid = imageHeightAt(mid);
     if (!isFinite(yMid)) return null;
@@ -423,7 +456,7 @@ export function solveFieldAngleForImageHeight(
   if (!isFinite(yLo) || !isFinite(yHi)) return null;
   if (target > yLo || target < yHi) return null;
 
-  for (let i = 0; i < 32; i++) {
+  for (let i = 0; i < 40; i++) {
     const mid = (lo + hi) / 2;
     const yMid = chiefRayImageHeight(mid, zPos, focusT, zoomT, L, geom);
     if (!isFinite(yMid)) return null;

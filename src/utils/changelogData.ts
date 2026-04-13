@@ -22,6 +22,21 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-13 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-13",
+    type: "lens",
+    summary: "Enabled Nikon AF-S 14-24mm f/2.8G ED and AF-S 16-35mm f/4G ED VR with accurate front group proportions",
+  },
+  {
+    date: "2026-04-13",
+    type: "improvement",
+    summary: "Improved element rendering for wide-angle retrofocus designs with per-surface semi-diameters",
+  },
+  {
+    date: "2026-04-13",
+    type: "improvement",
+    summary: "Improved vignetting and distortion accuracy for extreme wide-angle lenses (>40° half-field)",
+  },
+  {
+    date: "2026-04-13",
     type: "fix",
     summary: "Corrected the 200-500mm optical aperture range",
   },

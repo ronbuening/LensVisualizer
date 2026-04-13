@@ -11,7 +11,7 @@
 
 import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
-import { conicPolySag } from "./internal/surfaceMath.js";
+import { conicPolySag, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -268,31 +268,41 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         `Element ${elem.id} ("${elem.name}"): negative edge thickness (${edgeThickness.toFixed(3)} mm) at sd=${sd} — surfaces "${front.label}" / "${rear.label}" cross at the rim`,
       );
 
-    /* SD consistency check */
+    /* SD consistency check — slope-aware.
+     * The per-surface rim slope check (below) independently validates each
+     * surface.  We keep a lenient ratio sanity check to catch obvious data
+     * entry errors, but allow ratios up to 3.0 so that deep meniscus
+     * elements in retrofocus designs (e.g. Canon RF 15-35 L1, ratio 1.45)
+     * can use patent-accurate SDs. */
     const sdMax = Math.max(front.sd, rear.sd);
     const sdMin = Math.min(front.sd, rear.sd);
-    if (sdMin > 0 && sdMax / sdMin > 1.25)
+    if (sdMin > 0 && sdMax / sdMin > 3.0)
       errors.push(
-        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds 1.25 — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may cause rays outside element`,
+        `Element ${elem.id} ("${elem.name}"): front/rear SD ratio ${(sdMax / sdMin).toFixed(2)} exceeds 3.0 — surfaces "${front.label}" (sd=${front.sd}) / "${rear.label}" (sd=${rear.sd}) may indicate a data entry error`,
       );
   }
 
-  /* ── Surface sd/|R| ratio check ──
-   *  When sd approaches |R|, the surface extends near its geometric equator.
-   *  This causes extreme sag slopes that trigger TIR at high-index glass/air
-   *  boundaries and numerical instability in the ray tracer.
+  /* ── Surface rim slope check ──
+   *  When the actual sag slope at the rim becomes extreme, rays near the edge
+   *  risk total internal reflection (TIR) at glass/air boundaries and cause
+   *  numerical instability in the ray tracer.
+   *
+   *  Previous versions used a spherical proxy (sd/|R| ≤ 0.9).  We now
+   *  compute the true aspherical slope via sagSlopeRaw(), which accounts for
+   *  conic constant K and polynomial terms.  For spherical surfaces this
+   *  gives identical results; for aspherics (especially K ≈ −1, near-
+   *  paraboloids common on wide-angle meniscus elements) the actual slope is
+   *  much gentler, allowing larger SDs without TIR risk.
+   *
+   *  MAX_RIM_SLOPE = 2.065 corresponds to a 64.2° slope angle, matching the
+   *  old sd/|R| = 0.9 threshold for spheres exactly.
    */
-  const SD_R_WARN = 0.9; /* threshold beyond which sag slope becomes extreme */
+  const MAX_RIM_SLOPE = 2.065;
   for (let i = 0; i < S.length; i++) {
     const s = S[i];
     if (typeof s.sd !== "number" || typeof s.R !== "number") continue;
     const absR = Math.abs(s.R);
     if (absR > 1e10 || absR < 1e-10) continue;
-    const ratio = s.sd / absR;
-    if (ratio > SD_R_WARN)
-      errors.push(
-        `Surface "${s.label}": sd/|R| ratio ${ratio.toFixed(3)} exceeds ${SD_R_WARN} — risk of TIR and rendering artifacts at the rim (reduce sd or verify off-axis ray containment)`,
-      );
 
     /* Conic h_max check: when K > 0, surface slope → ∞ at h = |R|/√(1+K) */
     const asph = asphByIdx[i];
@@ -302,6 +312,14 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         errors.push(
           `Surface "${s.label}": sd=${s.sd} exceeds conic h_max=${hMax.toFixed(2)} mm (K=${asph.K}) — sag curve will have a discontinuity at the rim`,
         );
+    }
+
+    const slope = Math.abs(sagSlopeRaw(s.sd, s.R, asph));
+    if (slope > MAX_RIM_SLOPE) {
+      const angleDeg = (Math.atan(slope) * 180) / Math.PI;
+      errors.push(
+        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${MAX_RIM_SLOPE.toFixed(2)} (64.2°) — risk of TIR and rendering artifacts`,
+      );
     }
   }
 
