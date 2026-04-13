@@ -30,6 +30,7 @@ import type { LensDataInput } from "../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-afs-14-24f28",
+  visible: false,
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 14-24mm f/2.8G ED",
   subtitle: "US 7,359,125 B2 EXAMPLE 1 — KIMURA & SATO / NIKON",
