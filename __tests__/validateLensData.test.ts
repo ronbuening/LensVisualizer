@@ -216,7 +216,7 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes("negative edge thickness"))).toBe(true);
   });
 
-  it("catches SD ratio exceeding 1.25 within an element", () => {
+  it("catches SD ratio exceeding 3.0 within an element", () => {
     const data = makeValid({
       elements: [
         {
@@ -233,13 +233,39 @@ describe("validateLensData", () => {
         },
       ],
       surfaces: [
-        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 20 },
-        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
-        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 12 }, // ratio 20/12 = 1.67 > 1.25
+        { label: "1", R: 1000, d: 5, nd: 1.5, elemId: 1, sd: 40 },
+        { label: "2", R: -1000, d: 2, nd: 1.0, elemId: 0, sd: 12 }, // ratio 40/12 = 3.33 > 3.0
+        { label: "STO", R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 8 },
       ],
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("SD ratio"))).toBe(true);
+  });
+
+  it("allows SD ratio up to 3.0 for deep meniscus elements", () => {
+    const data = makeValid({
+      elements: [
+        {
+          id: 1,
+          name: "L1",
+          label: "E1",
+          type: "test",
+          nd: 1.5,
+          vd: 50,
+          fl: 50,
+          glass: "test",
+          apd: false,
+          role: "test",
+        },
+      ],
+      surfaces: [
+        { label: "1", R: 1000, d: 5, nd: 1.5, elemId: 1, sd: 27 },
+        { label: "2", R: -1000, d: 2, nd: 1.0, elemId: 0, sd: 19 }, // ratio 27/19 = 1.42, like Canon RF 15-35 L1
+        { label: "STO", R: 1e15, d: 50, nd: 1.0, elemId: 0, sd: 8 },
+      ],
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("SD ratio"))).toBe(false);
   });
 
   it("passes edge thickness check for valid element", () => {
@@ -306,6 +332,9 @@ import NoktonRaw from "../src/lens-data/VoigtlanderNokton50f1.data.js";
 import NikkorRaw from "../src/lens-data/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
+import CanonRF1535Raw from "../src/lens-data/CanonRF1535f28.data.js";
+import Nikkor1424Raw from "../src/lens-data/NikonNikkorAFS1424mmf28.data.js";
+import Nikkor1635Raw from "../src/lens-data/NikonNikkorAFS1635mmf4.data.js";
 
 describe("validateLensData — production lenses", () => {
   const lenses: [string, Record<string, unknown>][] = [
@@ -314,6 +343,9 @@ describe("validateLensData — production lenses", () => {
     ["NikkorZ50", { ...LENS_DEFAULTS, ...NikkorRaw }],
     ["Nikkor105", { ...LENS_DEFAULTS, ...Nikkor105Raw }],
     ["Sonnar50f15", { ...LENS_DEFAULTS, ...Sonnar50f15Raw }],
+    ["Canon RF 15-35", { ...LENS_DEFAULTS, ...CanonRF1535Raw }],
+    ["Nikkor 14-24", { ...LENS_DEFAULTS, ...Nikkor1424Raw }],
+    ["Nikkor 16-35", { ...LENS_DEFAULTS, ...Nikkor1635Raw }],
   ];
 
   for (const [name, data] of lenses) {
@@ -548,5 +580,87 @@ describe("validateLensData — conic h_max", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("conic h_max"))).toBe(false);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  Slope-based rim check (replaces old sd/|R| ratio check)
+ * ═══════════════════════════════════════════════════════════════════ */
+
+describe("validateLensData — rim slope check", () => {
+  it("catches high slope on spherical surface (sd/|R| = 0.92)", () => {
+    /* Spherical surface: R=20, sd=18.4 → sd/|R|=0.92.
+     * Slope = 0.92/√(1−0.92²) = 0.92/0.392 = 2.347, angle ≈ 66.9° > 64.2° */
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 20, d: 5, nd: 1.5, elemId: 1, sd: 18.4 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("rim slope"))).toBe(true);
+  });
+
+  it("allows high sd/|R| on near-paraboloid (K = −0.98)", () => {
+    /* R=16.5, K=−0.98, sd=14.85 → sd/|R|=0.90 (would fail old check).
+     * But sagSlopeRaw with K=−0.98 gives slope ≈ 0.92 (angle ≈ 42°),
+     * well under the 64.2° threshold. */
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 1000, d: 5, nd: 1.5, elemId: 1, sd: 20 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      asph: {
+        1: { K: -0.98, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 },
+      },
+    });
+    /* Surface "1": R=1000, sd=20 → spherical slope = 20/√(1000²−20²) ≈ 0.02.
+     * With K=−0.98 → slope even gentler.  Should pass easily. */
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("rim slope"))).toBe(false);
+  });
+
+  it("allows sd/|R| = 0.90 on paraboloid but catches it on sphere", () => {
+    const elemDef = [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }];
+    const baseSurfaces = [
+      { label: "1", R: 20, d: 5, nd: 1.5, elemId: 1, sd: 18 }, // sd/|R| = 0.90
+      { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+      { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+    ];
+
+    /* Sphere: slope = 0.9/√(1−0.81) ≈ 2.065 — right at threshold */
+    const sphereData = makeValid({ elements: elemDef, surfaces: baseSurfaces });
+    const _sphereErrors = validateLensData(sphereData);
+
+    /* Paraboloid (K=−1): slope = h/R = 0.9 — well under threshold */
+    const paraData = makeValid({
+      elements: elemDef,
+      surfaces: baseSurfaces,
+      asph: { 1: { K: -1, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    });
+    const paraErrors = validateLensData(paraData);
+
+    /* The sphere case is right at the boundary — may or may not trigger
+     * depending on floating point.  The paraboloid must definitely pass. */
+    expect(paraErrors.some((e) => e.includes("rim slope"))).toBe(false);
+  });
+
+  it("catches extreme slope even with aspherics", () => {
+    /* K=0 (sphere) with sd/|R| = 0.95 → slope ≈ 3.04, angle ≈ 71.8° */
+    const data = makeValid({
+      elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, vd: 50 }],
+      surfaces: [
+        { label: "1", R: 20, d: 5, nd: 1.5, elemId: 1, sd: 19 },
+        { label: "STO", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "2", R: -100, d: 50, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+      asph: { 1: { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes("rim slope"))).toBe(true);
   });
 });

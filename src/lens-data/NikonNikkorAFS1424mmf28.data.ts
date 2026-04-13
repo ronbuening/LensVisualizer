@@ -16,14 +16,13 @@ import type { LensDataInput } from "../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list SDs. Estimated via paraxial marginal +     ║
  * ║    chief ray trace at wide (2ω=114.7°) and tele (2ω=83.8°), then ║
- * ║    rebalanced against Nikon's published construction diagram. This  ║
- * ║    revision pushes a steeper front-group taper and a slightly       ║
- * ║    fuller rear corrector tail so the rendered silhouette tracks     ║
- * ║    Nikon's schematic more closely while still satisfying edge       ║
- * ║    thickness, sd/|R| < 0.90, element SD ratio ≤ 1.25, and          ║
- * ║    cross-gap sag-clearance constraints. Front group SDs remain      ║
- * ║    limited by inner-surface R constraints and may understate the    ║
- * ║    physical clear aperture of the deep meniscus front elements.     ║
+ * ║    rebalanced against Nikon's published construction diagram.       ║
+ * ║    The renderer now uses slope-based validation (actual aspherical  ║
+ * ║    rim slope instead of spherical sd/|R| proxy), allowing the       ║
+ * ║    front group's deep meniscus elements to use larger SDs that      ║
+ * ║    better match Nikon's schematic proportions.  Front group SDs     ║
+ * ║    increased from previous revision to take advantage of the        ║
+ * ║    relaxed constraints on near-paraboloidal surfaces.               ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -248,12 +247,12 @@ const LENS_DATA = {
   surfaces: [
     // ── G1: Negative front group (6 elements, 5 air-separated groups) ──
     { label: "1", R: 60.3937, d: 3.5, nd: 1.804, elemId: 1, sd: 35.5 },
-    { label: "2", R: 32.2703, d: 7.0835, nd: 1.0, elemId: 0, sd: 28.5 },
-    { label: "3", R: 35.5, d: 4.0, nd: 1.6779, elemId: 2, sd: 21.94 },
-    { label: "4A", R: 19.5117, d: 12.8951, nd: 1.0, elemId: 0, sd: 17.56 },
-    { label: "5", R: 87.0449, d: 2.5, nd: 1.741, elemId: 3, sd: 19.6 },
-    { label: "6", R: 26.3306, d: 0.3, nd: 1.55389, elemId: 4, sd: 19.0 },
-    { label: "7A", R: 30.2448, d: 12.6887, nd: 1.0, elemId: 0, sd: 18.8 },
+    { label: "2", R: 32.2703, d: 7.0835, nd: 1.0, elemId: 0, sd: 29.0 },
+    { label: "3", R: 35.5, d: 4.0, nd: 1.6779, elemId: 2, sd: 24.0 },
+    { label: "4A", R: 19.5117, d: 12.8951, nd: 1.0, elemId: 0, sd: 19.5 },
+    { label: "5", R: 87.0449, d: 2.5, nd: 1.741, elemId: 3, sd: 21.0 },
+    { label: "6", R: 26.3306, d: 0.3, nd: 1.55389, elemId: 4, sd: 20.5 },
+    { label: "7A", R: 30.2448, d: 12.6887, nd: 1.0, elemId: 0, sd: 20.0 },
     { label: "8", R: -67.993, d: 2.5896, nd: 1.49782, elemId: 5, sd: 18.4 },
     { label: "9", R: 48.0626, d: 2.0, nd: 1.0, elemId: 0, sd: 18.0 },
     { label: "10", R: 48.488, d: 5.9634, nd: 1.8044, elemId: 6, sd: 18.6 },

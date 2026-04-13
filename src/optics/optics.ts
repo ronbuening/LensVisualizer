@@ -123,6 +123,33 @@ export function gapTrimHeight(surfIdx: number, sd: number, maxSag: number, L: Ru
 }
 
 /**
+ * Find the maximum ray height at which a surface's slope stays within maxSlopeTan.
+ *
+ * Used for aspherically-aware rendering trim.  For a spherical surface this
+ * gives the same result as R × sin(maxRimAngle); for aspherics (especially
+ * near-paraboloids with K ≈ −1) the slope grows much more slowly, allowing
+ * larger trim heights and more accurate element outlines.
+ *
+ * @param surfIdx     — surface index
+ * @param sd          — nominal semi-diameter (mm)
+ * @param maxSlopeTan — max allowed slope (tangent of max rim angle)
+ * @param L           — runtime lens object
+ * @returns             trimmed semi-diameter ≤ sd
+ */
+export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number, L: RuntimeLens): number {
+  if (maxSlopeTan <= 0) return sd;
+  if (Math.abs(sagSlope(sd, surfIdx, L)) <= maxSlopeTan) return sd;
+  let lo = 0,
+    hi = sd;
+  for (let j = 0; j < BISECT_ITERATIONS; j++) {
+    const mid = (lo + hi) / 2;
+    if (Math.abs(sagSlope(mid, surfIdx, L)) > maxSlopeTan) hi = mid;
+    else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
  * Effective thickness of surface i, interpolated for focus and zoom.
  *
  * Non-variable surfaces return their fixed thickness.  For variable gaps:

@@ -395,6 +395,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     effectiveSvgH = svgH;
   }
   const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+  const maxRimTan = Math.tan((maxRimAngleDeg * Math.PI) / 180);
   const gridPitch = totalTrack / 15;
   const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
   const lyDoublet = -1.1 * maxSD;
@@ -572,6 +573,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     SC,
     YSC,
     maxRimSin,
+    maxRimTan,
     gapSagFrac,
     clipMargin,
     gridPitch,
