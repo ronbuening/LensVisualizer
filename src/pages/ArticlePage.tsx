@@ -17,7 +17,7 @@ import ArticleTOC from "../components/display/ArticleTOC.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLE_CONTENT } from "../utils/homepageContent.js";
+import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/homepageContent.js";
 import type { Theme } from "../types/theme.js";
 
 const PAGE_BASE_STYLE = {
@@ -228,6 +228,18 @@ export default function ArticlePage() {
   }
 
   const entry = ARTICLE_CONTENT[slug];
+  // If this article belongs to a series *and* is not the landing page itself,
+  // surface the series landing page in the breadcrumb + back-link so series
+  // members form a coherent mini-site rather than feeling orphaned.
+  const series = entry.series ? ARTICLE_SERIES[entry.series] : undefined;
+  const seriesLanding = series && series.landing.slug !== slug ? series.landing : undefined;
+
+  const breadcrumbs = [
+    { name: "Home", url: SITE_URL },
+    { name: "Articles", url: `${SITE_URL}/articles` },
+    ...(seriesLanding ? [{ name: seriesLanding.title, url: `${SITE_URL}${seriesLanding.linkTo}` }] : []),
+    { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
+  ];
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -242,11 +254,7 @@ export default function ArticlePage() {
             description: entry.description,
             slug,
           }),
-          breadcrumbJsonLd([
-            { name: "Home", url: SITE_URL },
-            { name: "Articles", url: `${SITE_URL}/articles` },
-            { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
-          ]),
+          breadcrumbJsonLd(breadcrumbs),
         ]}
       />
 
@@ -264,14 +272,25 @@ export default function ArticlePage() {
         <Link to="/articles" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Articles
         </Link>
+        {seriesLanding && (
+          <>
+            <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
+            <Link to={seriesLanding.linkTo} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+              {seriesLanding.title}
+            </Link>
+          </>
+        )}
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         <span style={{ color: t.body }}>{entry.title}</span>
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
         <nav style={NAV_STYLE}>
-          <Link to="/articles" style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}>
-            ← All Articles
+          <Link
+            to={seriesLanding ? seriesLanding.linkTo : "/articles"}
+            style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}
+          >
+            ← {seriesLanding ? seriesLanding.title : "All Articles"}
           </Link>
         </nav>
 
