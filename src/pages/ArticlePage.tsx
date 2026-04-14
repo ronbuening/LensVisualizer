@@ -10,8 +10,10 @@ import type { CSSProperties, ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import ArticleTOC from "../components/display/ArticleTOC.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
@@ -32,8 +34,9 @@ const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", 
 function useMarkdownComponents(t: Theme) {
   return useMemo(
     () => ({
-      h1: ({ children }: { children?: ReactNode }) => (
+      h1: ({ children, id }: { children?: ReactNode; id?: string }) => (
         <h1
+          id={id}
           style={{
             fontSize: 20,
             fontWeight: 700,
@@ -41,18 +44,39 @@ function useMarkdownComponents(t: Theme) {
             margin: "18px 0 8px",
             fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
             letterSpacing: "0.02em",
+            scrollMarginTop: 88,
           }}
         >
           {children}
         </h1>
       ),
-      h2: ({ children }: { children?: ReactNode }) => (
-        <h2 style={{ fontSize: 16, fontWeight: 600, color: t.descH2, margin: "16px 0 6px", letterSpacing: "0.04em" }}>
+      h2: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <h2
+          id={id}
+          style={{
+            fontSize: 16,
+            fontWeight: 600,
+            color: t.descH2,
+            margin: "16px 0 6px",
+            letterSpacing: "0.04em",
+            scrollMarginTop: 88,
+          }}
+        >
           {children}
         </h2>
       ),
-      h3: ({ children }: { children?: ReactNode }) => (
-        <h3 style={{ fontSize: 14, fontWeight: 600, color: t.descH2, margin: "12px 0 4px", letterSpacing: "0.04em" }}>
+      h3: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <h3
+          id={id}
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: t.descH2,
+            margin: "12px 0 4px",
+            letterSpacing: "0.04em",
+            scrollMarginTop: 88,
+          }}
+        >
           {children}
         </h3>
       ),
@@ -219,11 +243,13 @@ export default function ArticlePage() {
         </nav>
 
         <article style={{ maxWidth: 700, lineHeight: 1.7 }}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={components}>
             {entry.markdown}
           </ReactMarkdown>
         </article>
       </div>
+
+      {entry.toc && <ArticleTOC markdown={entry.markdown} theme={t} />}
     </div>
   );
 }

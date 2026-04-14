@@ -18,7 +18,7 @@ import HomeFooter from "../components/homepage/HomeFooter.js";
 import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
+import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
 import { publisherJsonLd, websiteJsonLd } from "../utils/structuredData.js";
 import useMediaQuery from "../utils/useMediaQuery.js";
 
@@ -58,8 +58,8 @@ export default function HomePage() {
 
   const isDesktop = useMediaQuery("(min-width: 720px)");
 
-  const displayedArticles = ARTICLES.slice(0, HOMEPAGE_ARTICLE_LIMIT);
-  const showMoreLink = ARTICLES.length > HOMEPAGE_ARTICLE_LIMIT;
+  const displayedArticles = HOMEPAGE_ARTICLES.slice(0, HOMEPAGE_ARTICLE_LIMIT);
+  const showMoreLink = HOMEPAGE_ARTICLES.length > HOMEPAGE_ARTICLE_LIMIT;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
