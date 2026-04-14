@@ -86,16 +86,44 @@ function useMarkdownComponents(t: Theme) {
       strong: ({ children }: { children?: ReactNode }) => (
         <strong style={{ color: t.descH2, fontWeight: 600 }}>{children}</strong>
       ),
-      a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: t.descLinkColor, textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40` }}
-        >
-          {children}
-        </a>
-      ),
+      a: ({ href, children }: { href?: string; children?: ReactNode }) => {
+        const linkStyle: CSSProperties = {
+          color: t.descLinkColor,
+          textDecoration: "none",
+          borderBottom: `1px solid ${t.descLinkColor}40`,
+        };
+        // Lens pages deserve a new tab — opening the interactive viewer shouldn't
+        // lose the reader's place in the article.
+        if (href && href.startsWith("/lens/")) {
+          return (
+            <a href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+              {children}
+            </a>
+          );
+        }
+        // Other internal paths: SPA navigation in the same tab.
+        if (href && href.startsWith("/")) {
+          return (
+            <Link to={href} style={linkStyle}>
+              {children}
+            </Link>
+          );
+        }
+        // Anchor links (#section) — same tab, native behavior.
+        if (href && href.startsWith("#")) {
+          return (
+            <a href={href} style={linkStyle}>
+              {children}
+            </a>
+          );
+        }
+        // External URLs — same tab (per project convention), but still safe.
+        return (
+          <a href={href} rel="noopener noreferrer" style={linkStyle}>
+            {children}
+          </a>
+        );
+      },
       code: ({ className, children }: { className?: string; children?: ReactNode }) => {
         const isBlock = className?.startsWith("language-");
         if (isBlock) return <code style={{ fontSize: 12 }}>{children}</code>;
