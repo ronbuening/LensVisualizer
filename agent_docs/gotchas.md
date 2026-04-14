@@ -12,6 +12,7 @@
 - `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
 - `nominalFno` can be a single number or an array (one per zoom position) for variable-aperture zooms — array length must match `zoomPositions.length`; using an array on a non-zoom lens will fail validation
+- Some zoom patents only publish infinity-focus spacing tables. If you copy those values into the close-focus slot unchanged, the focus slider will stay visually static for the moving group. Infer close-focus pairs only for the true focusing gaps, preserve the mechanism constraint (for a single rigid translator, the adjacent-gap sum stays constant), and document the approximation in the header plus `focusDescription`
 - `prerender.mjs` validates that every route pattern in `routeManifest.tsx` is covered by routes in `build-metadata.json` — adding a new route pattern without updating `generate-build-metadata.mjs` will fail the build. Client-only patterns (e.g. `/compare/:slugA/:slugB`) are exempt via `CLIENT_ONLY_PATTERNS`
 - `analysisDrawerOpen` is NOT persisted to localStorage (always starts closed); `analysisDrawerTab` IS persisted so the user's last-used tab is remembered
 - Analysis drawer closes automatically when switching lenses (SET_LENS_A) or entering comparison mode (ENTER_COMPARE) to prevent stale data display
@@ -25,3 +26,4 @@
 - Vignetting field samples are adaptive (~3° spacing, min 7 samples) — ultra-wide lenses get denser sampling automatically. Pupil sweep uses 192 rays per field angle
 - Distortion analysis uses 17-sample pupil correction table and adaptive 1°-per-segment bracket search in `solveFieldAngleForImageHeight` — both scale with half-field angle for ultra-wide accuracy
 - Cross-gap overlap check (`sag intrusion ≤ gap × 1.1`) is often the binding constraint when increasing SDs on extreme wide-angle lenses — thin air gaps between strongly curved surfaces set the practical SD limit
+- Layout tuning (`scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac`) is a final visual calibration pass after the prescription and SDs already validate. Use it to better match published optical sections, not to paper over bad geometry
