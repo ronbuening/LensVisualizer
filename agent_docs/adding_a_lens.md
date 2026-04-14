@@ -40,6 +40,8 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 
 Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, rim slope, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples. The rim slope check uses actual aspherical slope at the SD (via `sagSlopeRaw`), not the old spherical `sd/|R|` proxy — aspherical surfaces (especially K near −1) can use larger SDs.
 
+After the SDs validate, compare the rendered silhouette against any published optical section from the maker. If the prescription still reads too flat or stretched, use per-lens layout tuning (`scFill`, `yScFill`, and only when truly needed `maxAspectRatio` or `lensShiftFrac`) to match the published proportions. Do not use layout tuning to hide bad surface data or invalid SDs.
+
 ### Validation
 
 `buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
@@ -59,6 +61,12 @@ If the patent describes a variable focal-length lens with spacing tables at mult
 **Zoom-only vs zoom+focus gaps:**
 - Gaps that only change with zoom (no focus variation): use identical inf/close values — e.g., `[[1.0, 1.0], [3.0, 3.0]]`
 - Gaps that change with both zoom and focus: use different inf/close values at each position
+
+**If the patent omits close-focus rows:**
+- Keep the zoom-only gaps identical inf/close as usual
+- For the actual focusing gaps, it is acceptable to infer close-focus pairs from production MFD or a traced calibration when the patent only publishes infinity data
+- Preserve the mechanism constraint described by the optical layout; for a single translating group, that usually means the adjacent-gap sum stays constant at each zoom position
+- Document the approximation in the file header and `focusDescription`, and explain it in the `.analysis.md` when the focus model matters to the write-up
 
 **File header:** Document which gaps are zoom-only vs zoom+focus, and note any non-monotonic (reversing) groups. See the header in `src/lens-data/NikonNikkorZ70200f28.data.ts` for an example.
 
