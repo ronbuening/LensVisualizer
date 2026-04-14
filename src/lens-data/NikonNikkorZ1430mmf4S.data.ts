@@ -17,8 +17,10 @@ import type { LensDataInput } from "../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON CLOSE-FOCUS:                                              ║
  * ║    Patent provides only infinity-focus spacings at 3 zoom          ║
- * ║    positions.  Close-focus values are set identical to infinity     ║
- * ║    values throughout.  Production lens focuses to 0.28 m.          ║
+ * ║    positions. Close-focus D3/D4 values are therefore inferred      ║
+ * ║    from a real-ray focus-curvature calibration to the production   ║
+ * ║    0.28 m MFD, yielding approximately 0.52 mm (W), 0.75 mm (M),   ║
+ * ║    and 1.07 mm (T) of L41 travel toward the image.                 ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Not listed in patent.  Estimated via combined marginal +        ║
@@ -329,8 +331,10 @@ const LENS_DATA = {
 
   /* ── Variable air spacings ──
    *  Zoom-only gaps: D1 (S8), D2 (STO), Bf (S27).
-   *  Zoom+focus gaps: D3 (S21), D4 (S23) — but close-focus data unavailable
-   *  from patent, so inf/close pairs are identical throughout.
+   *  Zoom+focus gaps: D3 (S21), D4 (S23).
+   *  Patent gives only infinity values; close-focus pairs below are inferred
+   *  by solving for a plausible 0.28 m focused-state conjugate while keeping
+   *  D3 + D4 constant at each zoom position (single-element G4 translation).
    *  D3 is non-monotonic: 1.579 → 2.261 → 2.007 (increases then decreases).
    */
   var: {
@@ -345,14 +349,14 @@ const LENS_DATA = {
       [3.521, 3.521],
     ],
     "21": [
-      [1.579, 1.579],
-      [2.261, 2.261],
-      [2.007, 2.007],
+      [1.579, 2.096],
+      [2.261, 3.013],
+      [2.007, 3.076],
     ],
     "23": [
-      [5.766, 5.766],
-      [6.196, 6.196],
-      [9.3, 9.3],
+      [5.766, 5.249],
+      [6.196, 5.444],
+      [9.3, 8.231],
     ],
     "27": [
       [21.36, 21.36],
@@ -384,7 +388,7 @@ const LENS_DATA = {
   /* ── Focus ── */
   closeFocusM: 0.28,
   focusDescription:
-    "Internal focus: G4 (single element L41) translates toward image. Patent provides infinity spacings only; close-focus data unavailable.",
+    "Internal focus: G4 (single element L41) translates toward image. Close-focus D3/D4 values are inferred from real-ray calibration to the 0.28 m production MFD; estimated L41 travel is 0.52 mm (W), 0.75 mm (M), 1.07 mm (T).",
 
   /* ── Aperture ── */
   nominalFno: 4.0,

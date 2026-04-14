@@ -200,9 +200,9 @@ The lens uses internal focusing (IF), with G4 — consisting of the single eleme
 - **D3** (G3 → G4): increases as G4 moves image-ward
 - **D4** (G4 → G5): decreases as G4 approaches G5
 
-Since only D3 and D4 change during focusing (D1, D2, and Bf remain fixed for a given zoom position), the front and rear of the lens remain stationary during AF. The single-element focusing group is a key enabler of the fast, quiet stepping motor AF that Nikon specifies for the production lens. The total focus throw — the axial translation of L41 — is modest, on the order of a few millimeters, which contributes to rapid focus acquisition.
+Since only D3 and D4 change during focusing (D1, D2, and Bf remain fixed for a given zoom position), the front and rear of the lens remain stationary during AF. The single-element focusing group is a key enabler of the fast, quiet stepping motor AF that Nikon specifies for the production lens. A real-ray calibration against the production 0.28 m minimum-focus distance suggests a very modest L41 travel: approximately **0.52 mm at 14.4 mm**, **0.75 mm at 20 mm**, and **1.07 mm at 29.1 mm**, always toward the image plane.
 
-The production lens achieves a minimum focus distance of 0.28 m (from the focal plane). The patent does not specify close-focus spacings for Example 1, so the exact D3/D4 values at minimum focus distance are not available from this source. The data file uses identical infinity/close-focus pairs at all zoom positions.
+The patent does not tabulate close-focus spacings for Example 1, so these D3/D4 values cannot be taken as patent-authoritative. Instead, the data file uses the traced approximation above, enforcing constant D3 + D4 at each zoom position to model a rigid single-element G4 translation.
 
 ---
 
