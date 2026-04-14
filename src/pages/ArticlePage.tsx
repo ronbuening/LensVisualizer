@@ -86,7 +86,7 @@ function useMarkdownComponents(t: Theme) {
       strong: ({ children }: { children?: ReactNode }) => (
         <strong style={{ color: t.descH2, fontWeight: 600 }}>{children}</strong>
       ),
-      a: ({ href, children }: { href?: string; children?: ReactNode }) => {
+      a: ({ href, id, children }: { href?: string; id?: string; children?: ReactNode }) => {
         const linkStyle: CSSProperties = {
           color: t.descLinkColor,
           textDecoration: "none",
@@ -96,7 +96,7 @@ function useMarkdownComponents(t: Theme) {
         // lose the reader's place in the article.
         if (href && href.startsWith("/lens/")) {
           return (
-            <a href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+            <a id={id} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
               {children}
             </a>
           );
@@ -104,22 +104,23 @@ function useMarkdownComponents(t: Theme) {
         // Other internal paths: SPA navigation in the same tab.
         if (href && href.startsWith("/")) {
           return (
-            <Link to={href} style={linkStyle}>
+            <Link id={id} to={href} style={linkStyle}>
               {children}
             </Link>
           );
         }
-        // Anchor links (#section) — same tab, native behavior.
+        // Anchor links (#...) — GFM footnote refs and back-refs land here; the
+        // id lets back-references from the footnote body find the caller.
         if (href && href.startsWith("#")) {
           return (
-            <a href={href} style={linkStyle}>
+            <a id={id} href={href} style={{ ...linkStyle, scrollMarginTop: 88 }}>
               {children}
             </a>
           );
         }
         // External URLs — same tab (per project convention), but still safe.
         return (
-          <a href={href} rel="noopener noreferrer" style={linkStyle}>
+          <a id={id} href={href} rel="noopener noreferrer" style={linkStyle}>
             {children}
           </a>
         );
@@ -166,7 +167,11 @@ function useMarkdownComponents(t: Theme) {
           {children}
         </ol>
       ),
-      li: ({ children }: { children?: ReactNode }) => <li style={{ marginBottom: 4 }}>{children}</li>,
+      li: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <li id={id} style={{ marginBottom: 4, scrollMarginTop: 88 }}>
+          {children}
+        </li>
+      ),
       blockquote: ({ children }: { children?: ReactNode }) => (
         <blockquote
           style={{ borderLeft: `3px solid ${t.descLinkColor}`, paddingLeft: 16, margin: "12px 0", color: t.muted }}
