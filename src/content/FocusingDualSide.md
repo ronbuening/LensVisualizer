@@ -35,9 +35,9 @@ This is a direct application of the Wynne framework (Wynne, 1952): the designer 
 
 ### Case Example: Nikon AF-S Micro-Nikkor 105mm f/2.8G VR
 
-**Patent:** US 7,218,457, Example 3
-**Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
-**MFD:** 0.314 m (1:1 reproduction)
+- **Patent:** US 7,218,457, Example 3
+- **Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
+- **MFD:** 0.314 m (1:1 reproduction)
 
 The [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) confronts the most demanding conjugate range of any common photographic lens: performance from infinity to 1:1 reproduction — a magnification change from 0 to −1. The enormous conjugate-shift parameter $\delta$ at 1:1 makes single-group IF fundamentally inadequate, as the Wynne impossibility theorem guarantees severe degradation of multiple aberrations simultaneously (Wynne, 1952).
 

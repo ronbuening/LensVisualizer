@@ -25,8 +25,8 @@ A particularly effective variant places a **negative-power** focusing group ahea
 
 ### Case Example: Nikon AF-S Nikkor 105mm f/1.4E ED
 
-**Patent:** WO 2019/116563, Example 3
-**Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
+- **Patent:** WO 2019/116563, Example 3
+- **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
 
 The [Nikon 105mm f/1.4E](/lens/nikkor-105-f14e-ed) places its negative-power focusing group ahead of the stop. The ED glass elements are positioned in the fixed front group G1, where their chromatic correction contribution remains constant regardless of focus position. The focusing group itself — a lightweight cemented doublet — has minimal chromatic contribution and presents low inertial mass to the Silent Wave Motor.
 

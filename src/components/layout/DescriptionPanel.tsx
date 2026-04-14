@@ -13,6 +13,8 @@ import { useMemo } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import type { Theme } from "../../types/theme.js";
 
 interface DescriptionPanelProps {
@@ -159,7 +161,7 @@ export default function DescriptionPanel({ markdown, theme: t }: DescriptionPane
   }
   return (
     <div style={WRAPPER_STYLE}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={components}>
         {markdown}
       </ReactMarkdown>
     </div>

@@ -23,9 +23,9 @@ During focusing from infinity to close range, the rear group moves toward the ob
 
 ### Case Example: Nikon AF-S Nikkor 28mm f/1.4E ED
 
-**Patent:** JP 2017-227799, Example 1 (jointly assigned to Nikon Corporation and Konica Minolta Inc.)
-**Production lens:** 14 elements in 11 groups; two ED elements; three aspherical elements; Nano Crystal Coat; fluorine front-element coating
-**MFD:** 0.28 m
+- **Patent:** JP 2017-227799, Example 1 (jointly assigned to Nikon Corporation and Konica Minolta Inc.)
+- **Production lens:** 14 elements in 11 groups; two ED elements; three aspherical elements; Nano Crystal Coat; fluorine front-element coating
+- **MFD:** 0.28 m
 
 The [Nikon 28mm f/1.4E](/lens/nikon-afs-28f14e) uses a two-group rear-focusing strategy, with the rear positive group moving toward the object side during focusing from infinity to close range.
 

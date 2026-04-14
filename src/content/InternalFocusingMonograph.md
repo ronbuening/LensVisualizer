@@ -147,9 +147,9 @@ See the dedicated primers for a deeper treatment:
 
 ## Case Study I: Front-of-Stop Focusing — Nikon AF-S Nikkor 105mm f/1.4E ED
 
-**Patent:** WO 2019/116563, Example 3
-**Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
-**Weight:** 985 g | **MFD:** 1.0 m | **Lens page:** [/lens/nikkor-105-f14e-ed](/lens/nikkor-105-f14e-ed)
+- **Patent:** WO 2019/116563, Example 3
+- **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
+- **Weight:** 985 g | **MFD:** 1.0 m | **Lens page:** [/lens/nikkor-105-f14e-ed](/lens/nikkor-105-f14e-ed)
 
 The Nikon 105mm f/1.4E employs a focusing group of **negative refractive power** positioned ahead of the aperture stop. The optical system follows a three-group architecture: a front positive group G1, a negative focusing group G2, and a rear group G3 containing the aperture stop. During focusing from infinity to close range, G2 translates toward the image side.
 
@@ -171,9 +171,9 @@ For a focused treatment, see the **[Front-of-Stop Focusing primer](/articles/foc
 
 ## Case Study II: Rear-of-Stop Focusing — Canon RF 135mm f/1.8 L IS USM
 
-**Patent:** US 2023/0213745 A1, Example 4
-**Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
-**MFD:** 0.70 m | **Lens page:** [/lens/canon-rf-135f18](/lens/canon-rf-135f18)
+- **Patent:** US 2023/0213745 A1, Example 4
+- **Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
+- **MFD:** 0.70 m | **Lens page:** [/lens/canon-rf-135f18](/lens/canon-rf-135f18)
 
 The Canon RF 135mm f/1.8 L IS USM places its focusing group behind the aperture stop — the most common IF architecture in modern telephoto primes. The cited patent describes a three-unit architecture: a positive first lens unit L1, the aperture stop, a **negative second lens unit L2** that serves as the focusing unit, and a positive third lens unit L3 containing an image-stabilization subunit.
 
@@ -195,9 +195,9 @@ For a focused treatment, see the **[Rear-of-Stop Focusing primer](/articles/focu
 
 ## Case Study III: Dual-Side Focusing — Nikon AF-S Micro-Nikkor 105mm f/2.8G VR
 
-**Patent:** US 7,218,457, Example 3
-**Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
-**MFD:** 0.314 m (1:1 reproduction) | **Lens page:** [/lens/nikon-afs-105f28-vr-micro](/lens/nikon-afs-105f28-vr-micro)
+- **Patent:** US 7,218,457, Example 3
+- **Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
+- **MFD:** 0.314 m (1:1 reproduction) | **Lens page:** [/lens/nikon-afs-105f28-vr-micro](/lens/nikon-afs-105f28-vr-micro)
 
 The Micro-Nikkor 105mm f/2.8G VR confronts the most demanding conjugate range of any of the five case studies: performance from infinity to **1:1 reproduction** — a magnification change from 0 to −1.
 
@@ -219,9 +219,9 @@ For a focused treatment, see the **[Dual-Side Focusing primer](/articles/focusin
 
 ## Case Study IV: Monolithic Group Focusing — Nikon AF-S Nikkor 85mm f/1.4G
 
-**Patent:** US 8,767,319, Example 1
-**Production lens:** 10 elements in 9 groups; no aspherical elements; no ED elements
-**Weight:** 595 g | **MFD:** 0.85 m | **Lens page:** [/lens/nikkor-85f14g](/lens/nikkor-85f14g)
+- **Patent:** US 8,767,319, Example 1
+- **Production lens:** 10 elements in 9 groups; no aspherical elements; no ED elements
+- **Weight:** 595 g | **MFD:** 0.85 m | **Lens page:** [/lens/nikkor-85f14g](/lens/nikkor-85f14g)
 
 The Nikon 85mm f/1.4G takes a philosophically different approach: **a single central group that includes elements on both sides of the aperture stop, plus the stop itself, moves as a monolithic unit** during focusing.
 
@@ -245,9 +245,9 @@ For a focused treatment, see the **[Monolithic Group Focusing primer](/articles/
 
 ## Case Study V: Rear-Group Focusing in a Fast Retrofocus Wide-Angle — Nikon AF-S Nikkor 28mm f/1.4E ED
 
-**Patent:** JP 2017-227799, Example 1
-**Production lens:** 14 elements in 11 groups; two ED elements; three aspherical elements; Nano Crystal Coat; fluorine front-element coating
-**MFD:** 0.28 m | **Lens page:** [/lens/nikon-afs-28f14e](/lens/nikon-afs-28f14e)
+- **Patent:** JP 2017-227799, Example 1
+- **Production lens:** 14 elements in 11 groups; two ED elements; three aspherical elements; Nano Crystal Coat; fluorine front-element coating
+- **MFD:** 0.28 m | **Lens page:** [/lens/nikon-afs-28f14e](/lens/nikon-afs-28f14e)
 
 The Nikon 28mm f/1.4E employs a two-group rear-focusing strategy: the patent divides the system into a fixed first group and a **second group that moves toward the object side** during focusing from infinity to close range.
 

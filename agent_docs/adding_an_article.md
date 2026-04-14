@@ -59,6 +59,25 @@ The landing page is just another markdown file — no special component, no rout
 
 ---
 
+## Math / LaTeX
+
+Math is rendered via KaTeX (through `remark-math` + `rehype-katex`). Both article pages and lens analysis (`DescriptionPanel`) support it — no per-article opt-in.
+
+- **Inline math:** wrap in single dollar signs — `$S_I = -A^2 h\,\Delta(u/n)$`
+- **Display math:** wrap in double dollar signs on their own line —
+
+  ```
+  $$\Delta S_I \approx 4\delta S_{II}$$
+  ```
+
+- **Supported syntax:** the [KaTeX function list](https://katex.org/docs/supported.html). Common macros (`\frac`, `\tfrac`, `\bar`, `\mathcal`, `\sum`, `\cdots`, `\approx`, `\propto`, Greek letters) all work.
+- **Unsupported:** `\begin{align}`/`\end{align}` environments, `\label`/`\ref`, `\cite`. Use display-math blocks and prose references instead.
+- **Escaping a literal dollar sign** in prose (e.g., USD amounts): write `\$` so `remark-math` doesn't interpret it as math.
+
+Global KaTeX CSS is imported once in `src/main.tsx`; the fonts are emitted as hashed assets during build.
+
+---
+
 ## Hovering Table of Contents
 
 Opt in via `toc: true`. Behavior:
