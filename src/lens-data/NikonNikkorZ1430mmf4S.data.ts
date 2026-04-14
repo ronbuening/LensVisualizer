@@ -243,21 +243,21 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* ── G1: Front negative group (L11–L14) ── */
-    { label: "1", R: 190.7535, d: 3.0, nd: 1.6937, elemId: 1, sd: 22.0 },
-    { label: "2A", R: 18.8098, d: 9.5, nd: 1.0, elemId: 0, sd: 18.0 },
-    { label: "3", R: 51.563, d: 2.9, nd: 1.6937, elemId: 2, sd: 15.0 },
-    { label: "4A", R: 22.702, d: 9.7, nd: 1.0, elemId: 0, sd: 15.0 },
-    { label: "5", R: -71.0651, d: 1.9, nd: 1.49782, elemId: 3, sd: 14.5 },
-    { label: "6", R: 44.4835, d: 0.1, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "7", R: 32.608, d: 4.5, nd: 1.90265, elemId: 4, sd: 15.0 },
-    { label: "8", R: 296.5863, d: 28.616, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "1", R: 190.7535, d: 3.0, nd: 1.6937, elemId: 1, sd: 22.4 },
+    { label: "2A", R: 18.8098, d: 9.5, nd: 1.0, elemId: 0, sd: 18.3 },
+    { label: "3", R: 51.563, d: 2.9, nd: 1.6937, elemId: 2, sd: 16.1 },
+    { label: "4A", R: 22.702, d: 9.7, nd: 1.0, elemId: 0, sd: 16.1 },
+    { label: "5", R: -71.0651, d: 1.9, nd: 1.49782, elemId: 3, sd: 15.0 },
+    { label: "6", R: 44.4835, d: 0.1, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "7", R: 32.608, d: 4.5, nd: 1.90265, elemId: 4, sd: 16.0 },
+    { label: "8", R: 296.5863, d: 28.616, nd: 1.0, elemId: 0, sd: 16.0 },
 
     /* ── G2: Positive variator (L21–L23) ── */
-    { label: "9", R: 63.0604, d: 2.0, nd: 1.59349, elemId: 5, sd: 11.0 },
-    { label: "10", R: 499.8755, d: 0.1, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "11", R: 24.0057, d: 1.2, nd: 1.883, elemId: 6, sd: 9.5 },
-    { label: "12", R: 13.347, d: 4.5, nd: 1.56883, elemId: 7, sd: 9.5 },
-    { label: "13", R: 333.9818, d: 2.5, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "9", R: 63.0604, d: 2.0, nd: 1.59349, elemId: 5, sd: 11.6 },
+    { label: "10", R: 499.8755, d: 0.1, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "11", R: 24.0057, d: 1.2, nd: 1.883, elemId: 6, sd: 10.0 },
+    { label: "12", R: 13.347, d: 4.5, nd: 1.56883, elemId: 7, sd: 10.0 },
+    { label: "13", R: 333.9818, d: 2.5, nd: 1.0, elemId: 0, sd: 10.0 },
 
     /* ── Aperture stop (travels with G2) ── */
     { label: "STO", R: 1e15, d: 7.483, nd: 1.0, elemId: 0, sd: 5.6 },
@@ -272,8 +272,8 @@ const LENS_DATA = {
     { label: "21", R: -29.3923, d: 1.579, nd: 1.0, elemId: 0, sd: 10.2 },
 
     /* ── G4: Focusing group (L41) ── */
-    { label: "22", R: 72.093, d: 1.0, nd: 1.795, elemId: 12, sd: 13.0 },
-    { label: "23", R: 20.9929, d: 5.766, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "22", R: 72.093, d: 1.0, nd: 1.795, elemId: 12, sd: 12.4 },
+    { label: "23", R: 20.9929, d: 5.766, nd: 1.0, elemId: 0, sd: 12.4 },
 
     /* ── G5: Field corrector / final group (L51–L52) ── */
     { label: "24", R: -538.2301, d: 4.8, nd: 1.49782, elemId: 13, sd: 12.4 },
@@ -391,9 +391,15 @@ const LENS_DATA = {
   apertureBlades: 7,
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
 
-  /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.35,
+  /* ── Layout tuning ──
+   * Patent Fig. 1 shows the 14 mm state with a taller, more nested silhouette
+   * than the raw axial table suggests, so bias the diagram away from horizontal
+   * stretch and give the enlarged G1/G2 SD estimates room to read clearly.
+   */
+  scFill: 0.46,
+  yScFill: 0.42,
+  maxAspectRatio: 2.0,
+  lensShiftFrac: 0.05,
 } satisfies LensDataInput;
 
 export default LENS_DATA;

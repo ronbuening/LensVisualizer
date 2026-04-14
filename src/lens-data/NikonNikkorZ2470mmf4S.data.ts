@@ -246,9 +246,9 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* G1 — cemented doublet (L11 + L12) */
-    { label: "1", R: 73.0, d: 2.15, nd: 1.84666, elemId: 1, sd: 34.0 },
-    { label: "2", R: 47.49515, d: 8.6, nd: 1.755, elemId: 2, sd: 33.5 },
-    { label: "3", R: 417.0433, d: 1.6, nd: 1.0, elemId: 0, sd: 27.0 }, // D3 var — G1/G2 zoom gap
+    { label: "1", R: 73.0, d: 2.15, nd: 1.84666, elemId: 1, sd: 33.0 },
+    { label: "2", R: 47.49515, d: 8.6, nd: 1.755, elemId: 2, sd: 32.5 },
+    { label: "3", R: 417.0433, d: 1.6, nd: 1.0, elemId: 0, sd: 26.5 }, // D3 var — G1/G2 zoom gap
 
     /* G2 — L21 (asph rear), L22, L23 */
     { label: "4", R: 400.0, d: 1.8, nd: 1.74353, elemId: 3, sd: 19.0 },
@@ -394,9 +394,15 @@ const LENS_DATA = {
   fstopSeries: [4, 5.6, 8, 11, 16, 22],
   apertureBlades: 7,
 
-  /* ── Layout tuning ── */
-  scFill: 0.48,
-  yScFill: 0.28,
+  /* ── Layout tuning ──
+   * Patent Fig. 1 shows the 24 mm state reading taller and more expanded than
+   * the raw default framing, especially through G1/G2 and the rear relay stack.
+   * Bias the diagram toward that silhouette without altering the prescription.
+   */
+  scFill: 0.54,
+  yScFill: 0.36,
+  maxAspectRatio: 2.0,
+  lensShiftFrac: 0.05,
 } satisfies LensDataInput;
 
 export default LENS_DATA;

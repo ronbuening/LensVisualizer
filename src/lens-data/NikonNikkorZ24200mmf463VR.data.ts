@@ -313,13 +313,13 @@ const LENS_DATA = {
 
     /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
     { label: "7", R: 236.0277, d: 1.25, nd: 1.95375, elemId: 4, sd: 17.5 },
-    { label: "8", R: 19.0394, d: 5.0675, nd: 1.0, elemId: 0, sd: 16.8 },
-    { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 11.6 },
-    { label: "10", R: 68.1612, d: 0.4169, nd: 1.0, elemId: 0, sd: 11.6 },
+    { label: "8", R: 19.0394, d: 5.0675, nd: 1.0, elemId: 0, sd: 11.6 },
+    { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 11.4 },
+    { label: "10", R: 68.1612, d: 0.4169, nd: 1.0, elemId: 0, sd: 11.4 },
     { label: "11", R: 37.121, d: 3.384, nd: 1.92286, elemId: 6, sd: 9.6 },
     { label: "12", R: -52.558, d: 0.5124, nd: 1.0, elemId: 0, sd: 9.6 },
-    { label: "13", R: -32.9357, d: 1.0, nd: 1.816, elemId: 7, sd: 13.1 },
-    { label: "14", R: 416.8076, d: 18.83905, nd: 1.0, elemId: 0, sd: 12.9 }, // D2 — zoom only
+    { label: "13", R: -32.9357, d: 1.0, nd: 1.816, elemId: 7, sd: 11.0 },
+    { label: "14", R: 416.8076, d: 18.83905, nd: 1.0, elemId: 0, sd: 11.0 }, // D2 — zoom only
 
     /* ── Aperture Stop ── */
     { label: "STO", R: 1e15, d: 2.0, nd: 1.0, elemId: 0, sd: 7.4 },
@@ -334,17 +334,17 @@ const LENS_DATA = {
     { label: "22", R: -290.1606, d: 12.23175, nd: 1.0, elemId: 0, sd: 10.3 }, // D3 — zoom only
 
     /* ── G4: Positive Relay + Asph ED (L41+L42, L43+L44) ── */
-    { label: "23", R: 37.1374, d: 4.6344, nd: 1.83481, elemId: 12, sd: 12.8 }, // L41 front
-    { label: "24", R: -37.1374, d: 1.0, nd: 1.90366, elemId: 13, sd: 12.8 }, // L41→L42 junction
-    { label: "25", R: -308.9768, d: 0.1, nd: 1.0, elemId: 0, sd: 17.0 }, // L42 rear → air
-    { label: "26", R: 31.6449, d: 2.7756, nd: 1.95375, elemId: 14, sd: 16.8 }, // L43 front
+    { label: "23", R: 37.1374, d: 4.6344, nd: 1.83481, elemId: 12, sd: 12.9 }, // L41 front
+    { label: "24", R: -37.1374, d: 1.0, nd: 1.90366, elemId: 13, sd: 12.9 }, // L41→L42 junction
+    { label: "25", R: -308.9768, d: 0.1, nd: 1.0, elemId: 0, sd: 13.0 }, // L42 rear → air
+    { label: "26", R: 31.6449, d: 2.7756, nd: 1.95375, elemId: 14, sd: 13.0 }, // L43 front
     { label: "27", R: 15.2741, d: 8.703, nd: 1.4971, elemId: 15, sd: 12.9 }, // L43→L44 junction
     { label: "28A", R: -40.3095, d: 5.54311, nd: 1.0, elemId: 0, sd: 12.9 }, // L44 rear (asph) → air, D4
 
     /* ── G5: Focus Group (L51+L52) ── */
-    { label: "29", R: 1365.4927, d: 3.0634, nd: 1.84666, elemId: 16, sd: 13.6 }, // L51 front
-    { label: "30", R: -35.3251, d: 1.0, nd: 1.85135, elemId: 17, sd: 13.6 }, // L51→L52 junction
-    { label: "31A", R: 32.6144, d: 10.05055, nd: 1.0, elemId: 0, sd: 13.6 }, // L52 rear (asph) → air, D5
+    { label: "29", R: 1365.4927, d: 3.0634, nd: 1.84666, elemId: 16, sd: 13.7 }, // L51 front
+    { label: "30", R: -35.3251, d: 1.0, nd: 1.85135, elemId: 17, sd: 13.7 }, // L51→L52 junction
+    { label: "31A", R: 32.6144, d: 10.05055, nd: 1.0, elemId: 0, sd: 13.7 }, // L52 rear (asph) → air, D5
 
     /* ── G6: Rear Field Corrector (L61, L62) ── */
     { label: "32", R: -16.9998, d: 1.4, nd: 1.8208, elemId: 18, sd: 15.2 },
@@ -478,9 +478,16 @@ const LENS_DATA = {
   apertureBlades: 7,
   apertureBladeRoundedness: 0.7,
 
-  /* ── Layout tuning ── */
-  scFill: 0.45,
-  yScFill: 0.28,
+  /* ── Layout tuning ──
+   * Nikon's published 24 mm construction diagram reads taller and more
+   * compact through the rear relay/focus stack than the raw max-track zoom
+   * framing suggests. Bias the display toward that wide-end silhouette
+   * without altering the prescription itself.
+   */
+  scFill: 0.5,
+  yScFill: 0.38,
+  maxAspectRatio: 2.0,
+  lensShiftFrac: 0.05,
 } satisfies LensDataInput;
 
 export default LENS_DATA;
