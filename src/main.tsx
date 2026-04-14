@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import router from "./router.js";
+import "katex/dist/katex.min.css";
 
 // Track SPA navigations in GoatCounter. The script tag in index.html handles the
 // initial page view automatically; this subscription fires only on subsequent

@@ -10,7 +10,9 @@ import type { CSSProperties, ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
+import rehypeKatex from "rehype-katex";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import ArticleTOC from "../components/display/ArticleTOC.js";
@@ -295,7 +297,11 @@ export default function ArticlePage() {
         </nav>
 
         <article style={{ maxWidth: 700, lineHeight: 1.7 }}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={components}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeSlug, rehypeKatex]}
+            components={components}
+          >
             {entry.markdown}
           </ReactMarkdown>
         </article>

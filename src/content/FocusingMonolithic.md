@@ -29,9 +29,9 @@ Moving the stop with the focusing group preserves this quasi-symmetry. The aberr
 
 ### Case Example: Nikon AF-S Nikkor 85mm f/1.4G
 
-**Patent:** US 8,767,319, Example 1 (jointly assigned to Nikon Corporation and Konica Minolta Advanced Layers, Inc.)
-**Production lens:** 10 elements in 9 groups; no aspherical elements; no ED elements
-**MFD:** 0.85 m
+- **Patent:** US 8,767,319, Example 1 (jointly assigned to Nikon Corporation and Konica Minolta Advanced Layers, Inc.)
+- **Production lens:** 10 elements in 9 groups; no aspherical elements; no ED elements
+- **MFD:** 0.85 m
 
 The [Nikon 85mm f/1.4G](/lens/nikkor-85f14g) moves a central group containing elements on both sides of the stop as a monolithic unit. The patent's prior-art discussion explains the rationale explicitly: placing the aperture stop within the focusing group "reduces variation in off-axial aberrations during focusing."
 

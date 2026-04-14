@@ -14,7 +14,7 @@
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker's lenses |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists all makers with lens counts |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO metadata |
-| `ArticlePage.tsx` | `src/pages/` | Individual article page at `/articles/:slug`; resets scroll to the top when the article slug changes during SPA navigation |
+| `ArticlePage.tsx` | `src/pages/` | Individual article page at `/articles/:slug`; renders markdown with `remark-gfm`, `remark-math`, `rehype-slug`, `rehype-katex`; resets scroll to the top when the article slug changes during SPA navigation |
 | `ArticlesPage.tsx` | `src/pages/` | Articles index at `/articles`; resets scroll to the top on mount so archive visits start at the page heading |
 | `NotFoundPage.tsx` | `src/pages/` | 404 catch-all with navigation links |
 
@@ -28,7 +28,7 @@
 | `ViewToggleBar.tsx` | `src/components/layout/` | Generic view-mode toggle (mobile + desktop) |
 | `OverlayModal.tsx` | `src/components/layout/` | Generic backdrop + modal + close button |
 | `LensDiagramPanel.tsx` | `src/components/layout/` | Diagram composition: wires hooks + sub-components |
-| `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling |
+| `DescriptionPanel.tsx` | `src/components/layout/` | Markdown panel with themed styling; supports GFM + KaTeX math (`$inline$`, `$$display$$`) |
 | `BreadcrumbBar.tsx` | `src/components/layout/` | Breadcrumb navigation (Home / Makers / {Maker} / {Lens Name}) for lens pages |
 | `PageNavBar.tsx` | `src/components/layout/` | Shared navigation bar for static pages with theme toggle |
 | `PanelOverlay.tsx` | `src/components/layout/` | Panel-scoped overlay (position:absolute) for diagram-level LCA/Petzval overlays |

@@ -27,8 +27,8 @@ Behind the stop, the chief ray height $\bar{h}$ starts at zero (at the stop) and
 
 ### Case Example: Canon RF 135mm f/1.8 L IS USM
 
-**Patent:** US 2023/0213745 A1, Example 4
-**Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
+- **Patent:** US 2023/0213745 A1, Example 4
+- **Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
 
 The [Canon RF 135mm f/1.8 L](/lens/canon-rf-135f18) places a negative-power focusing unit behind the aperture stop. A positive rear unit behind the focusing group contains the image-stabilization subunit. During focusing, the focusing unit moves toward the image side. (Note: the patent-to-production correspondence for this lens is approximate; the focusing group's negative power and post-stop placement are stated in the patent text but have not been independently confirmed against production teardown data.)
 

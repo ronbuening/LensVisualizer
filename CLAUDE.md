@@ -13,7 +13,7 @@ Interactive web-based optical lens cross-section visualizer and ray-tracing tool
 - **SVG rendering** — all visuals are inline SVG, no canvas
 - **Inline styles** — no CSS files or UI libraries
 - **react-helmet-async** — SEO meta tags per page
-- **react-markdown + remark-gfm** — rendering markdown content
+- **react-markdown + remark-gfm + remark-math + rehype-katex** — markdown rendering with GFM tables/footnotes and KaTeX math (`$inline$`, `$$display$$`); KaTeX CSS imported once in `src/main.tsx`, available to all articles and lens analysis panels
 
 ## Project Structure
 
