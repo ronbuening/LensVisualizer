@@ -10,12 +10,14 @@ import type { CSSProperties, ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import ArticleTOC from "../components/display/ArticleTOC.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLE_CONTENT } from "../utils/homepageContent.js";
+import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/homepageContent.js";
 import type { Theme } from "../types/theme.js";
 
 const PAGE_BASE_STYLE = {
@@ -32,8 +34,9 @@ const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", 
 function useMarkdownComponents(t: Theme) {
   return useMemo(
     () => ({
-      h1: ({ children }: { children?: ReactNode }) => (
+      h1: ({ children, id }: { children?: ReactNode; id?: string }) => (
         <h1
+          id={id}
           style={{
             fontSize: 20,
             fontWeight: 700,
@@ -41,18 +44,39 @@ function useMarkdownComponents(t: Theme) {
             margin: "18px 0 8px",
             fontFamily: "'DM Sans','Helvetica Neue',sans-serif",
             letterSpacing: "0.02em",
+            scrollMarginTop: 88,
           }}
         >
           {children}
         </h1>
       ),
-      h2: ({ children }: { children?: ReactNode }) => (
-        <h2 style={{ fontSize: 16, fontWeight: 600, color: t.descH2, margin: "16px 0 6px", letterSpacing: "0.04em" }}>
+      h2: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <h2
+          id={id}
+          style={{
+            fontSize: 16,
+            fontWeight: 600,
+            color: t.descH2,
+            margin: "16px 0 6px",
+            letterSpacing: "0.04em",
+            scrollMarginTop: 88,
+          }}
+        >
           {children}
         </h2>
       ),
-      h3: ({ children }: { children?: ReactNode }) => (
-        <h3 style={{ fontSize: 14, fontWeight: 600, color: t.descH2, margin: "12px 0 4px", letterSpacing: "0.04em" }}>
+      h3: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <h3
+          id={id}
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: t.descH2,
+            margin: "12px 0 4px",
+            letterSpacing: "0.04em",
+            scrollMarginTop: 88,
+          }}
+        >
           {children}
         </h3>
       ),
@@ -62,16 +86,45 @@ function useMarkdownComponents(t: Theme) {
       strong: ({ children }: { children?: ReactNode }) => (
         <strong style={{ color: t.descH2, fontWeight: 600 }}>{children}</strong>
       ),
-      a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: t.descLinkColor, textDecoration: "none", borderBottom: `1px solid ${t.descLinkColor}40` }}
-        >
-          {children}
-        </a>
-      ),
+      a: ({ href, id, children }: { href?: string; id?: string; children?: ReactNode }) => {
+        const linkStyle: CSSProperties = {
+          color: t.descLinkColor,
+          textDecoration: "none",
+          borderBottom: `1px solid ${t.descLinkColor}40`,
+        };
+        // Lens pages deserve a new tab — opening the interactive viewer shouldn't
+        // lose the reader's place in the article.
+        if (href && href.startsWith("/lens/")) {
+          return (
+            <a id={id} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+              {children}
+            </a>
+          );
+        }
+        // Other internal paths: SPA navigation in the same tab.
+        if (href && href.startsWith("/")) {
+          return (
+            <Link id={id} to={href} style={linkStyle}>
+              {children}
+            </Link>
+          );
+        }
+        // Anchor links (#...) — GFM footnote refs and back-refs land here; the
+        // id lets back-references from the footnote body find the caller.
+        if (href && href.startsWith("#")) {
+          return (
+            <a id={id} href={href} style={{ ...linkStyle, scrollMarginTop: 88 }}>
+              {children}
+            </a>
+          );
+        }
+        // External URLs — same tab (per project convention), but still safe.
+        return (
+          <a id={id} href={href} rel="noopener noreferrer" style={linkStyle}>
+            {children}
+          </a>
+        );
+      },
       code: ({ className, children }: { className?: string; children?: ReactNode }) => {
         const isBlock = className?.startsWith("language-");
         if (isBlock) return <code style={{ fontSize: 12 }}>{children}</code>;
@@ -114,7 +167,11 @@ function useMarkdownComponents(t: Theme) {
           {children}
         </ol>
       ),
-      li: ({ children }: { children?: ReactNode }) => <li style={{ marginBottom: 4 }}>{children}</li>,
+      li: ({ children, id }: { children?: ReactNode; id?: string }) => (
+        <li id={id} style={{ marginBottom: 4, scrollMarginTop: 88 }}>
+          {children}
+        </li>
+      ),
       blockquote: ({ children }: { children?: ReactNode }) => (
         <blockquote
           style={{ borderLeft: `3px solid ${t.descLinkColor}`, paddingLeft: 16, margin: "12px 0", color: t.muted }}
@@ -171,6 +228,18 @@ export default function ArticlePage() {
   }
 
   const entry = ARTICLE_CONTENT[slug];
+  // If this article belongs to a series *and* is not the landing page itself,
+  // surface the series landing page in the breadcrumb + back-link so series
+  // members form a coherent mini-site rather than feeling orphaned.
+  const series = entry.series ? ARTICLE_SERIES[entry.series] : undefined;
+  const seriesLanding = series && series.landing.slug !== slug ? series.landing : undefined;
+
+  const breadcrumbs = [
+    { name: "Home", url: SITE_URL },
+    { name: "Articles", url: `${SITE_URL}/articles` },
+    ...(seriesLanding ? [{ name: seriesLanding.title, url: `${SITE_URL}${seriesLanding.linkTo}` }] : []),
+    { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
+  ];
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -185,11 +254,7 @@ export default function ArticlePage() {
             description: entry.description,
             slug,
           }),
-          breadcrumbJsonLd([
-            { name: "Home", url: SITE_URL },
-            { name: "Articles", url: `${SITE_URL}/articles` },
-            { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
-          ]),
+          breadcrumbJsonLd(breadcrumbs),
         ]}
       />
 
@@ -207,23 +272,36 @@ export default function ArticlePage() {
         <Link to="/articles" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Articles
         </Link>
+        {seriesLanding && (
+          <>
+            <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
+            <Link to={seriesLanding.linkTo} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+              {seriesLanding.title}
+            </Link>
+          </>
+        )}
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         <span style={{ color: t.body }}>{entry.title}</span>
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
         <nav style={NAV_STYLE}>
-          <Link to="/articles" style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}>
-            ← All Articles
+          <Link
+            to={seriesLanding ? seriesLanding.linkTo : "/articles"}
+            style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}
+          >
+            ← {seriesLanding ? seriesLanding.title : "All Articles"}
           </Link>
         </nav>
 
         <article style={{ maxWidth: 700, lineHeight: 1.7 }}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} components={components}>
             {entry.markdown}
           </ReactMarkdown>
         </article>
       </div>
+
+      {entry.toc && <ArticleTOC markdown={entry.markdown} theme={t} />}
     </div>
   );
 }

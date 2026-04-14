@@ -71,6 +71,7 @@ Read the relevant file before starting work on that area:
 
 - **`agent_docs/architecture.md`** — Module responsibilities, component data flow, API surface
 - **`agent_docs/adding_a_lens.md`** — Lens data creation workflow and troubleshooting
+- **`agent_docs/adding_an_article.md`** — Article and series authoring, frontmatter schema, TOC opt-in, link behavior
 - **`agent_docs/workflow.md`** — Commit style, pre-commit checks, and deployment pipeline
 - **`agent_docs/changelog.md`** — When and how to add entries to the homepage changelog
 - **`agent_docs/record_keeping.md`** — How to maintain branch/task records without bloating `CLAUDE.md`
@@ -89,6 +90,7 @@ Read the relevant file before starting work on that area:
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
+- **Articles and series** — markdown files in `src/content/*.md` are auto-discovered; frontmatter (`slug`, `title`, `summary`, `tag`, `series`, `seriesOrder`, `toc`) flows through `generate-build-metadata.mjs` into `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, and `ARTICLE_CONTENT` in `src/utils/homepageContent.ts`; series members share a `series` id and collapse to the landing page (`seriesOrder: 0`) in the archive, homepage list, breadcrumb, and back-link
 - **Aberration analysis** — slider-state-dependent metrics (SA, distortion, vignetting) live in `src/optics/aberrationAnalysis.ts` and `src/optics/distortionAnalysis.ts` as pure helpers, memoized from current state in the Analysis Drawer tabs; they must NOT go in `buildLens()` which is build-time only. SA uses symmetric +/- ray pairing (reject both if either clips) and a 22-zone pupil profile. Distortion uses iteratively solved chief rays (`solveChiefRayLaunchHeight` in `optics.ts`, 30-iteration bisection, 1° small-angle cutoff) to correct for pupil aberration at wide field angles, with a 17-sample pre-computed correction table for the 2D grid. Vignetting also uses the solved chief ray for accurate pupil-sweep centering at each field angle, with adaptive ~3° field spacing and 192-ray pupil sweeps.
 - **SD validation** — uses slope-based rim check (actual aspherical slope via `sagSlopeRaw`, threshold 64.2°) instead of the old spherical `sd/|R|` proxy. Element front/rear SD ratio limit is 3.0 (sanity check). Rendering uses per-surface SDs with aspherically-aware slope trim (`slopeTrimHeight` in `optics.ts`).
 - **Analysis Drawer** — sliding panel that overlays the SVG viewport with tabbed analysis views (aberrations, distortion, breathing, vignetting). Opened via the "ABERRATIONS & DISTORTIONS" button in `DiagramViewport.tsx`; state managed via `analysisDrawerOpen` / `analysisDrawerTab` in the panels slice. Desktop: vertical tabs on the left; mobile: horizontal tabs on top. New analysis tabs require: (1) extending `ANALYSIS_TABS` in `src/components/layout/lensDiagram/analysisTabs.ts`, (2) creating a tab content component in `src/components/display/`, (3) adding a conditional render in `AnalysisDrawerContent.tsx`
@@ -103,6 +105,15 @@ Read the relevant file before starting work on that area:
 4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
 
 See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conventions, and SD troubleshooting.
+
+## Adding a New Article or Series
+
+1. Create `src/content/YourArticle.md` with YAML frontmatter — `slug` and `title` are required; `summary`, `tag`, `series`, `seriesOrder`, `toc` are optional
+2. Series: share a `series` id across members and mark the landing page with `seriesOrder: 0`; the archive, homepage, breadcrumb, and back-link all collapse through the landing page automatically
+3. Long articles: set `toc: true` to render the floating table of contents
+4. Run the pre-commit checklist, then `npm run build` to confirm the new route appears in `build-metadata.json` and `dist/sitemap.xml`
+
+See `agent_docs/adding_an_article.md` for the full frontmatter schema, series semantics, and link behavior.
 
 ## Testing
 

@@ -155,11 +155,15 @@ function collectArticles(fallbackDate) {
     if (!meta || !meta.slug || !meta.title) continue;
 
     const freshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
+    const seriesOrder = meta.seriesOrder !== undefined ? Number.parseInt(meta.seriesOrder, 10) : undefined;
     articles.push({
       slug: meta.slug,
       title: meta.title,
       summary: meta.summary || "",
       tag: meta.tag || undefined,
+      series: meta.series || undefined,
+      seriesOrder: Number.isFinite(seriesOrder) ? seriesOrder : undefined,
+      toc: meta.toc === "true" || undefined,
       publishedOn: freshness.publishedOn,
       lastModified: freshness.lastModified,
       file,

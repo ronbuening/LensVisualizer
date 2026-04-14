@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-14 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-14",
+    type: "article",
+    summary:
+      "Published the Focusing Architectures series: a landing page, seven primers on focusing strategies, and a full monograph with a hovering table of contents",
+  },
+  {
+    date: "2026-04-14",
     type: "lens",
     summary: "Added Nikon Z 14-30mm f/4 S, 24-70mm f/4 S, and 24-200mm f/4-6.3 VR",
   },

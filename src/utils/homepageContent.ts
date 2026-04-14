@@ -17,7 +17,25 @@
  *   3. The article will appear on the homepage and /articles page automatically
  */
 
-import buildMeta from "../generated/build-metadata.json";
+import buildMetaRaw from "../generated/build-metadata.json";
+
+/** Shape of an entry in build-metadata.json → articles[]. Declared here because
+ *  optional fields (series/seriesOrder/toc) may be absent from the JSON schema
+ *  until at least one article declares them. */
+interface BuildMetaArticle {
+  slug: string;
+  title: string;
+  summary: string;
+  tag?: string;
+  series?: string;
+  seriesOrder?: number;
+  toc?: boolean;
+  publishedOn: string;
+  lastModified: string;
+  file: string;
+}
+
+const buildMeta = buildMetaRaw as Omit<typeof buildMetaRaw, "articles"> & { articles: BuildMetaArticle[] };
 
 /* ── Types ─────────────────────────────────────────────────────────── */
 
@@ -36,6 +54,10 @@ export interface HomepageArticle {
   lastModified: string;
   /** Optional category tag displayed on the card */
   tag?: "article" | "announcement" | "guide";
+  /** Optional series id; articles sharing a series are grouped in listings */
+  series?: string;
+  /** Sort order within the series (0 = landing/index page) */
+  seriesOrder?: number;
 }
 
 export interface ArticleContentEntry {
@@ -44,6 +66,21 @@ export interface ArticleContentEntry {
   markdown: string;
   publishedOn: string;
   lastModified: string;
+  /** Render a floating table-of-contents when true (frontmatter `toc: true`) */
+  toc?: boolean;
+  /** Optional series id (for cross-linking / next-prev navigation) */
+  series?: string;
+  /** Sort order within the series */
+  seriesOrder?: number;
+}
+
+export interface SeriesSummary {
+  /** Stable series id from frontmatter (kebab-case) */
+  id: string;
+  /** Landing/index entry — the article with seriesOrder === 0 (falls back to the first-ordered member). */
+  landing: HomepageArticle;
+  /** All members ordered by seriesOrder ascending, including the landing entry. */
+  members: HomepageArticle[];
 }
 
 /* ── Constants ─────────────────────────────────────────────────────── */
@@ -74,9 +111,9 @@ for (const [path, raw] of Object.entries(_mdModules)) {
 /* ── Articles (auto-generated from build metadata) ─────────────────── */
 
 /**
- * Articles ordered newest-first, built from generated metadata.
- * The homepage shows the first HOMEPAGE_ARTICLE_LIMIT entries;
- * the /articles page shows all.
+ * All articles ordered newest-first, built from generated metadata.
+ * Used directly on the `/articles` archive page; the homepage consumes
+ * `HOMEPAGE_ARTICLES` (below), which collapses each series to a single entry.
  */
 export const ARTICLES: HomepageArticle[] = buildMeta.articles
   .filter((a) => MD_BY_FILE[a.file])
@@ -88,7 +125,54 @@ export const ARTICLES: HomepageArticle[] = buildMeta.articles
     linkTo: `/articles/${a.slug}`,
     lastModified: a.lastModified,
     tag: a.tag as HomepageArticle["tag"],
+    series: a.series,
+    seriesOrder: a.seriesOrder,
   }));
+
+/* ── Series grouping ───────────────────────────────────────────────── */
+
+/**
+ * Articles grouped by series id. Each series records its landing entry
+ * (seriesOrder === 0, falling back to the lowest-ordered member) and all
+ * members sorted by seriesOrder ascending.
+ */
+export const ARTICLE_SERIES: Record<string, SeriesSummary> = (() => {
+  const bySeries: Record<string, HomepageArticle[]> = {};
+  for (const article of ARTICLES) {
+    if (!article.series) continue;
+    (bySeries[article.series] ??= []).push(article);
+  }
+  const out: Record<string, SeriesSummary> = {};
+  for (const [id, members] of Object.entries(bySeries)) {
+    members.sort((a, b) => (a.seriesOrder ?? Infinity) - (b.seriesOrder ?? Infinity));
+    const landing = members.find((m) => m.seriesOrder === 0) ?? members[0];
+    out[id] = { id, landing, members };
+  }
+  return out;
+})();
+
+/**
+ * Homepage article list — each series collapses to its landing entry so
+ * the top-N feed isn't dominated by one multi-part piece. Standalone
+ * articles pass through unchanged.
+ */
+export const HOMEPAGE_ARTICLES: HomepageArticle[] = (() => {
+  const seen = new Set<string>();
+  const out: HomepageArticle[] = [];
+  for (const article of ARTICLES) {
+    if (article.series) {
+      if (seen.has(article.series)) continue;
+      seen.add(article.series);
+      const series = ARTICLE_SERIES[article.series];
+      if (series) {
+        out.push(series.landing);
+        continue;
+      }
+    }
+    out.push(article);
+  }
+  return out;
+})();
 
 /* ── Article Content Registry ──────────────────────────────────────── */
 
@@ -106,5 +190,8 @@ for (const a of buildMeta.articles) {
     markdown: md,
     publishedOn: a.publishedOn,
     lastModified: a.lastModified,
+    toc: a.toc ?? undefined,
+    series: a.series ?? undefined,
+    seriesOrder: a.seriesOrder ?? undefined,
   };
 }

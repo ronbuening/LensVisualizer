@@ -108,6 +108,7 @@
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
+| `ArticleTOC.tsx` | `src/components/display/` | Reusable floating table-of-contents with scrollspy for long-form markdown articles; opt-in via `toc: true` frontmatter |
 
 ### Homepage Components
 
@@ -118,6 +119,7 @@
 | `QuickNavCards.tsx` | `src/components/homepage/` | Quick-access navigation cards for Lenses, Makers, and Articles |
 | `ArticleList.tsx` | `src/components/homepage/` | Condensed list of articles for the homepage articles section |
 | `ArticleCard.tsx` | `src/components/homepage/` | Single article card used by ArticleList |
+| `SeriesCard.tsx` | `src/components/homepage/` | Archive card that collapses a multi-article series into one entry with nested member links |
 | `ChangelogBox.tsx` | `src/components/homepage/` | Scrollable changelog panel grouping entries by date with type badges |
 | `HomeFooter.tsx` | `src/components/homepage/` | Homepage footer with about links and site credits |
 

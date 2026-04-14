@@ -10,10 +10,11 @@ import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import ArticleCard from "../components/homepage/ArticleCard.js";
+import SeriesCard from "../components/homepage/SeriesCard.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLES } from "../utils/homepageContent.js";
+import { ARTICLES, ARTICLE_SERIES } from "../utils/homepageContent.js";
 
 const PAGE_BASE_STYLE = {
   maxWidth: 960,
@@ -77,9 +78,18 @@ export default function ArticlesPage() {
           {ARTICLES.length} articles and guides about optical design and lens engineering.
         </p>
 
-        {ARTICLES.map((article) => (
-          <ArticleCard key={article.slug} article={article} theme={t} />
-        ))}
+        {(() => {
+          const seenSeries = new Set<string>();
+          return ARTICLES.map((article) => {
+            if (article.series) {
+              if (seenSeries.has(article.series)) return null;
+              seenSeries.add(article.series);
+              const series = ARTICLE_SERIES[article.series];
+              if (series) return <SeriesCard key={`series:${series.id}`} series={series} theme={t} />;
+            }
+            return <ArticleCard key={article.slug} article={article} theme={t} />;
+          });
+        })()}
       </div>
     </div>
   );
