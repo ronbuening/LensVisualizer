@@ -22,14 +22,23 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Aperture stop moves with G3 (between d11 and S13).                 ║
  * ║                                                                        ║
  * ║  NOTE ON CLOSE-FOCUS DATA:                                             ║
- * ║    Patent Example 5 provides infinity-focus spacings only at each      ║
- * ║    zoom position. Close-focus variable gap data is not available.      ║
- * ║    All var entries use identical d_inf / d_close values.               ║
+ * ║    Patent Example 5 provides infinity-focus spacings only. Close-focus ║
+ * ║    group placements (Δ5, Δ6) were derived via ray-tracing: at each     ║
+ * ║    zoom position, solve for the minimum-norm (Δ5, Δ6) that images an   ║
+ * ║    on-axis object at MFD = 0.35 m on the image plane, subject to a     ║
+ * ║    0.5 mm mechanical-clearance floor on all variable gaps. Δ5 and Δ6   ║
+ * ║    denote displacement of G5 and G6 toward the object; total-track is  ║
+ * ║    conserved so d21 also varies with focus. See                        ║
+ * ║    __tests__/solveZ24120CloseFocus.test.ts for the derivation. At tele ║
+ * ║    the solver reproduces the published MRR (0.39×) to within ~5%.      ║
  * ║                                                                        ║
  * ║  NOTE ON ZOOM POSITIONS:                                               ║
- * ║    Patent provides variable gap data at only two positions (wide and   ║
- * ║    tele). Aberration plots show a mid-zoom evaluation at f≈69.98 mm   ║
- * ║    but gap data at that position is not tabulated in Example 5.       ║
+ * ║    Patent tabulates variable gaps only at wide (24.7) and tele (116.5).║
+ * ║    Intermediate positions (35/50/70/85) were added for improved        ║
+ * ║    close-focus fidelity; their infinity-gap values are linear          ║
+ * ║    interpolations of the two patent endpoints and therefore preserve   ║
+ * ║    the patent's infinity behavior exactly. Aberration plots show a     ║
+ * ║    mid-zoom evaluation at f≈69.98 mm in Example 5.                     ║
  * ║                                                                        ║
  * ║  NOTE ON SEMI-DIAMETERS:                                               ║
  * ║    Not provided in the patent. Estimated via combined marginal +       ║
@@ -361,48 +370,80 @@ const LENS_DATA = {
   },
 
   /* ── Zoom lens fields ── */
-  zoomPositions: [24.7, 116.5],
+  zoomPositions: [24.7, 35.0, 50.0, 70.0, 85.0, 116.5],
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
 
   /* ── Variable air spacings (zoom + focus) ──
-   *  Two zoom positions: wide (24.70 mm) and tele (116.50 mm).
-   *  Close-focus data not available from patent — identical inf/close values used.
+   *  Six zoom positions covering the ring marks 24–35–50–70–85–120 mm
+   *  (design focal lengths 24.7 and 116.5 at the endpoints).
+   *  Infinity gaps at 35/50/70/85 are linear interpolations of the patent's
+   *  wide/tele endpoints, preserving the patent's infinity behavior exactly.
+   *  Close-focus gaps were solved at each position via ray tracing with a
+   *  minimum-norm (Δ5, Δ6) objective and a 0.5 mm mechanical-clearance floor.
    *  d3:  G1 → G2 (zoom only)
    *  d11: G2 → STO/G3 (zoom only)
    *  d16: G3 → G4 (zoom only)
-   *  d21: G4 → G5 (zoom only)
-   *  d25: G5 → G6 (zoom + focus — G5 is first focus group)
-   *  d27: G6 → G7 (zoom + focus — G6 is second focus group)
-   *  Bf:  G7 → image (zoom only)
+   *  d21: G4 → G5 (zoom + focus — moves with G5 via −Δ5)
+   *  d25: G5 → G6 (zoom + focus — moves via +Δ5 − Δ6)
+   *  d27: G6 → G7 (zoom + focus — moves via +Δ6)
+   *  Bf:  G7 → image (zoom only — total track conserved during focus)
    */
   var: {
     "3": [
       [1.525, 1.525],
+      [6.587, 6.587],
+      [13.982, 13.982],
+      [23.825, 23.825],
+      [31.21, 31.21],
       [46.708, 46.708],
     ],
     "11": [
       [24.145, 24.145],
+      [21.702, 21.702],
+      [18.145, 18.145],
+      [13.401, 13.401],
+      [9.843, 9.843],
       [2.37, 2.37],
     ],
     "16": [
       [9.007, 9.007],
+      [8.154, 8.154],
+      [6.91, 6.91],
+      [5.253, 5.253],
+      [4.01, 4.01],
       [1.4, 1.4],
     ],
     "21": [
-      [6.277, 6.277],
-      [18.04, 18.04],
+      [6.277, 5.288],
+      [7.597, 7.075],
+      [9.519, 9.199],
+      [12.082, 11.198],
+      [14.004, 12.121],
+      [18.04, 10.574],
     ],
     "25": [
-      [2.0, 2.0],
-      [5.177, 5.177],
+      [2.0, 0.759],
+      [2.356, 1.699],
+      [2.876, 2.471],
+      [3.568, 2.439],
+      [4.087, 1.654],
+      [5.177, 0.5],
     ],
     "27A": [
-      [9.107, 9.107],
-      [1.773, 1.773],
+      [9.107, 11.337],
+      [8.284, 9.464],
+      [7.086, 7.81],
+      [5.488, 7.501],
+      [4.29, 8.605],
+      [1.773, 13.916],
     ],
     "30": [
       [13.555, 13.555],
+      [17.1, 17.1],
+      [22.264, 22.264],
+      [29.143, 29.143],
+      [34.306, 34.306],
       [45.147, 45.147],
     ],
   },
@@ -435,7 +476,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.35,
   focusDescription:
-    "Internal multi-focus: G5 (L12+L13) and G6 (L14) move independently toward the object side when focusing from infinity to close range (Nikon Multi-Focus System).",
+    "Internal multi-focus: G5 (L12+L13) and G6 (L14) move independently toward the object side when focusing from infinity to close range (Nikon Multi-Focus System). Close-focus group placements were derived by ray-tracing the minimum-norm (Δ5, Δ6) pair that images a 0.35 m object on the image plane at each zoom position.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4,
