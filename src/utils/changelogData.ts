@@ -28,7 +28,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-04-16",
     type: "lens",
-    summary: "Added Fujifilm XF 16-55mm f/2.8 R LM WR, XF 16-80mm f/2.8 R OIS WR, XF 50-140mm f/2.8 R LM OIS WR, and XF 200mm f/2 R LM OIS WR",
+    summary:
+      "Added Fujifilm XF 16-55mm f/2.8 R LM WR, XF 16-80mm f/2.8 R OIS WR, XF 50-140mm f/2.8 R LM OIS WR, and XF 200mm f/2 R LM OIS WR",
   },
   // ── 2026-04-15 ──────────────────────────────────────────────────────────
   {

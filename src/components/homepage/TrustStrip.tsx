@@ -21,10 +21,7 @@ export default function TrustStrip({ theme: t }: TrustStripProps) {
   const isWide = useMediaQuery("(min-width: 720px)");
   const makerCount = countMakers();
 
-  const stats = [
-    "Patent-derived optical models",
-    `${ARTICLES.length} articles & guides on numerous topics`,
-  ];
+  const stats = ["Patent-derived optical models", `${ARTICLES.length} articles & guides on numerous topics`];
 
   const links: { label: string; to: string }[] = [
     { label: "About Optical Bench", to: "/articles/about-site" },
