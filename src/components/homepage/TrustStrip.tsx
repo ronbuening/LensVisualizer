@@ -7,7 +7,6 @@ interface TrustStripProps {
   theme: Theme;
 }
 
-
 export default function TrustStrip({ theme: t }: TrustStripProps) {
   const isWide = useMediaQuery("(min-width: 720px)");
 
