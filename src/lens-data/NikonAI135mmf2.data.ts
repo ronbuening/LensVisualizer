@@ -23,7 +23,7 @@ import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
   key: "nikon-ai-nikkor-135f2",
-  name: "NIKON Ai Nikkor 135mm f/2",
+  name: "NIKON AI Nikkor 135mm f/2",
   maker: "Nikon",
   subtitle: "US 4,062,630 · Example V",
   specs: [

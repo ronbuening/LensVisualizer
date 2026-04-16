@@ -78,7 +78,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fuji-xf-16-55-f28",
   maker: "Fujifilm",
-  name: "FUJINON XF 16-55mm f/2.8 R LM WR",
+  name: "FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR",
   subtitle: "US 2016/0154221 A1 EXAMPLE 1 — NODA & CHO / FUJIFILM",
   specs: [
     "17 ELEMENTS / 12 GROUPS",

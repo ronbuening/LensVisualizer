@@ -21,7 +21,7 @@ import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
   key: "fujifilm-xf80-f28-macro",
-  name: "FUJINON XF 80mm f/2.8 R LM OIS WR Macro",
+  name: "FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro",
   maker: "Fujifilm",
   subtitle: "US 2018/0246292 A1 — Example 1",
   specs: ["16 elements / 12 groups", "1 aspherical (2 surfaces)", "1 Super ED + 3 ED", "Floating IF + 5-stop OIS"],
