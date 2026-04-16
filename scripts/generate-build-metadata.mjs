@@ -137,6 +137,7 @@ function collectRoutes(lenses, articles, makerSlugs) {
     "/lenses",
     "/makers",
     "/articles",
+    "/updates",
     ...articles.map((a) => `/articles/${a.slug}`),
     ...lenses.map((l) => `/lens/${l.key}`),
     ...makerSlugs.map((s) => `/makers/${s}`),

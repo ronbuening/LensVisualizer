@@ -14,6 +14,7 @@ import MakerPage from "../pages/MakerPage.js";
 import ComparePage from "../pages/ComparePage.js";
 import ArticlesPage from "../pages/ArticlesPage.js";
 import ArticlePage from "../pages/ArticlePage.js";
+import UpdatesPage from "../pages/UpdatesPage.js";
 import NotFoundPage from "../pages/NotFoundPage.js";
 
 export interface RouteManifestEntry {
@@ -30,6 +31,7 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/makers/:maker", element: <MakerPage /> },
   { path: "/articles", element: <ArticlesPage /> },
   { path: "/articles/:slug", element: <ArticlePage /> },
+  { path: "/updates", element: <UpdatesPage /> },
   { path: "*", element: <NotFoundPage /> },
 ];
 

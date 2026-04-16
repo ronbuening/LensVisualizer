@@ -42,10 +42,10 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       subtitle: viewerLens ? LENS_CATALOG[viewerLens].name : "Explore a lens",
       to: viewerLens ? `/lens/${viewerLens}` : "/lenses",
     },
+    { title: "Start Here", subtitle: "New to lens design? Begin with the basics", to: "/articles/optics-primer" },
   ];
 
-  const cardStyle = (hoverable: boolean): React.CSSProperties => ({
-    flex: isWide ? 1 : undefined,
+  const cardStyle = (): React.CSSProperties => ({
     background: t.panelBg,
     border: `1px solid ${t.panelBorder}`,
     borderRadius: 8,
@@ -53,20 +53,19 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
     textDecoration: "none",
     display: "block",
     transition: "border-color 0.2s, box-shadow 0.2s",
-    ...(hoverable ? {} : {}),
   });
 
   return (
     <section
       style={{
-        display: "flex",
-        flexDirection: isWide ? "row" : "column",
+        display: "grid",
+        gridTemplateColumns: isWide ? "1fr 1fr" : "1fr",
         gap: isWide ? "1rem" : "0.75rem",
         margin: "0 0 2.5rem",
       }}
     >
       {cards.map((card) => (
-        <Link key={card.to} to={card.to} style={cardStyle(true)}>
+        <Link key={card.to} to={card.to} style={cardStyle()}>
           <div style={{ fontSize: "0.9rem", fontWeight: 600, color: t.descLinkColor, marginBottom: "0.35rem" }}>
             {card.title}
           </div>

@@ -37,8 +37,11 @@ export default function HomeFooter({ theme: t }: HomeFooterProps) {
       <Link to="/articles" style={linkStyle}>
         Articles
       </Link>
+      <Link to="/updates" style={linkStyle}>
+        Updates
+      </Link>
       <Link to="/articles/about-site" style={linkStyle}>
-        About
+        About Optical Bench
       </Link>
     </footer>
   );

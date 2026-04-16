@@ -1,8 +1,8 @@
 /**
  * Home page — landing page for Optical Bench.
  *
- * Renders the site hero, navigation cards, recent articles, and lens
- * announcements. Preserves legacy ?lens=KEY redirects to /lens/KEY.
+ * Renders the site hero, trust strip, navigation cards, recent articles,
+ * and recently added lenses. Preserves legacy ?lens=KEY redirects to /lens/KEY.
  */
 
 import { useEffect } from "react";
@@ -10,10 +10,10 @@ import { Link, useSearchParams, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import HeroSection from "../components/homepage/HeroSection.js";
+import TrustStrip from "../components/homepage/TrustStrip.js";
 import QuickNavCards from "../components/homepage/QuickNavCards.js";
 import ArticleList from "../components/homepage/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
-import ChangelogBox from "../components/homepage/ChangelogBox.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
 import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
@@ -84,24 +84,15 @@ export default function HomePage() {
 
       <div style={PAGE_BASE_STYLE}>
         <HeroSection theme={t} />
+        <TrustStrip theme={t} />
         <QuickNavCards theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
-          {/* Right column on desktop — RecentLenses + ChangelogBox stacked vertically.
-              On mobile this div has no styles, so its children stack in normal flow. */}
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 1 } : {}}>
-            <RecentLenses entries={RECENT_LENS_KEYS} theme={t} />
-            {/* Desktop copy: shown only on desktop so it sits under RecentLenses in the right column. */}
-            <div style={{ display: isDesktop ? "block" : "none" }}>
-              <ChangelogBox theme={t} />
-            </div>
-          </div>
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0, order: 0 } : {}}>
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
             <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
           </div>
-        </div>
-        {/* Mobile copy: shown only on mobile so it appears below ArticleList, before the footer. */}
-        <div style={{ display: isDesktop ? "none" : "block" }}>
-          <ChangelogBox theme={t} />
+          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+            <RecentLenses entries={RECENT_LENS_KEYS} theme={t} showUpdatesLink />
+          </div>
         </div>
         <HomeFooter theme={t} />
       </div>
