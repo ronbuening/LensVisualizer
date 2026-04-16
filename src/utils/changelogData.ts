@@ -25,6 +25,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "improvement",
     summary: "Improved bokeh, spherical aberration, and coma analysis accuracy and displays",
   },
+  {
+    date: "2026-04-16",
+    type: "lens",
+    summary:
+      "Added Fujifilm XF 16-55mm f/2.8 R LM WR, XF 16-80mm f/2.8 R OIS WR, XF 50-140mm f/2.8 R LM OIS WR, and XF 200mm f/2 R LM OIS WR",
+  },
   // ── 2026-04-15 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-15",
