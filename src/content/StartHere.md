@@ -1,11 +1,11 @@
 ---
 slug: start-here
-title: Start Here
+title: Getting Started
 summary: New to Optical Bench? These primers explain how lenses work, what aberrations are, and how to get the most out of the interactive diagrams.
 tag: guide
 ---
 
-# Start Here
+# Getting Started
 
 New to optical bench? These short guides will walk you through the ideas behind camera lenses — no prior optics knowledge required.
 
