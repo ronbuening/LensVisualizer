@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-16 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-16",
+    type: "improvement",
+    summary: "Improved bokeh, spherical aberration, and coma analysis accuracy and displays",
+  },
   // ── 2026-04-15 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-15",
