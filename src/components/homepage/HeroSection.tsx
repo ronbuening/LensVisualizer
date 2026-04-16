@@ -38,9 +38,7 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
             background: useDarkBrandFrame
               ? "linear-gradient(180deg, rgba(10,14,20,0.98), rgba(6,9,14,0.96))"
               : "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,246,249,0.96))",
-            boxShadow: useDarkBrandFrame
-              ? "0 18px 36px rgba(0,0,0,0.28)"
-              : "0 18px 36px rgba(20,28,40,0.08)",
+            boxShadow: useDarkBrandFrame ? "0 18px 36px rgba(0,0,0,0.28)" : "0 18px 36px rgba(20,28,40,0.08)",
           }}
         >
           <img
@@ -86,9 +84,8 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
               lineHeight: 1.6,
             }}
           >
-            Explore real camera lens designs built from optical patent data. Trace rays through multi-element
-            systems, adjust focus and aperture in real time, inspect individual elements, and analyze chromatic
-            aberrations.
+            Explore real camera lens designs built from optical patent data. Trace rays through multi-element systems,
+            adjust focus and aperture in real time, inspect individual elements, and analyze chromatic aberrations.
           </p>
         </div>
       </div>

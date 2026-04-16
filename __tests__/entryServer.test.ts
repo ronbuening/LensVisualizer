@@ -13,7 +13,15 @@ import { describe, it, expect } from "vitest";
 import { render } from "../src/entry-server.js";
 import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
-import { allMakerSlugs, makerDisplayName, SITE_NAME, SITE_URL } from "../src/utils/lensMetadata.js";
+import {
+  allMakerSlugs,
+  makerDisplayName,
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_URL,
+  SOCIAL_IMAGE_WIDTH,
+} from "../src/utils/lensMetadata.js";
 
 /* ── Fixtures (dynamic, drawn from real catalog) ── */
 
@@ -94,9 +102,10 @@ describe("SSR render — home page /", () => {
   it("includes the default social image tags", () => {
     const { helmet } = render("/");
     const meta = helmet.meta.toString();
-    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
-    expect(meta).toContain('property="og:image:width" content="1200"');
-    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
+    expect(meta).toContain(`property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
   it("includes WebSite and publisher structured data", () => {
@@ -178,8 +187,8 @@ describe("SSR render — lens page /lens/:slug", () => {
   it("includes the default social image tags", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const meta = helmet.meta.toString();
-    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
-    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
   it("SSR fallback HTML contains the lens name", () => {
@@ -230,8 +239,8 @@ describe("SSR render — maker page /makers/:maker", () => {
   it("includes the default social image tags", () => {
     const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
     const meta = helmet.meta.toString();
-    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
-    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
   it("includes CollectionPage and BreadcrumbList structured data", () => {
@@ -256,8 +265,8 @@ describe("SSR render — article page /articles/:slug", () => {
   it("includes the default social image tags", () => {
     const { helmet } = render(url);
     const meta = helmet.meta.toString();
-    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
-    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
   it("includes Article and BreadcrumbList structured data", () => {

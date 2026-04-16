@@ -4,6 +4,11 @@ import { HelmetProvider } from "react-helmet-async";
 import type { HelmetServerState } from "react-helmet-async";
 import { describe, expect, it } from "vitest";
 import SEOHead from "../src/components/SEOHead.js";
+import {
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_URL,
+  SOCIAL_IMAGE_WIDTH,
+} from "../src/utils/lensMetadata.js";
 
 function renderHead(element: ReactElement) {
   const context: { helmet?: HelmetServerState } = {};
@@ -51,10 +56,10 @@ describe("SEOHead", () => {
 
     const meta = helmet.meta.toString();
     expect(meta).toContain('name="twitter:card" content="summary_large_image"');
-    expect(meta).toContain('property="og:image" content="https://opticalbench.net/og-default.png"');
-    expect(meta).toContain('property="og:image:width" content="1200"');
-    expect(meta).toContain('property="og:image:height" content="630"');
-    expect(meta).toContain('name="twitter:image" content="https://opticalbench.net/og-default.png"');
+    expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
+    expect(meta).toContain(`property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}"`);
+    expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
   it("renders multiple JSON-LD scripts", () => {
