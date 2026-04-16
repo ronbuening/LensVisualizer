@@ -5,6 +5,7 @@ import {
   computeMeridionalComa,
   computeSagittalComa,
   computeSphericalAberration,
+  computeSphericalAberrationBlurCharacter,
   computeSAProfile,
 } from "../../../optics/aberrationAnalysis.js";
 import type { RuntimeLens } from "../../../types/optics.js";
@@ -29,6 +30,15 @@ export default function useAberrationsPanelData({
   return useMemo(() => {
     const saResult = computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const saBlurCharacter = computeSphericalAberrationBlurCharacter(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      saResult,
+    );
     const comaResult = computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const sagittalComaResult = computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const comaPreviewResult = computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
@@ -46,6 +56,7 @@ export default function useAberrationsPanelData({
     return {
       saResult,
       saProfile,
+      saBlurCharacter,
       comaResult,
       sagittalComaResult,
       comaPreviewResult,

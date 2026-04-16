@@ -1,4 +1,9 @@
-import type { SAProfilePoint, SphericalAberrationResult } from "../../../optics/aberrationAnalysis.js";
+import type {
+  BokehBrightnessCharacter,
+  SAProfilePoint,
+  SphericalAberrationBlurCharacterResult,
+  SphericalAberrationResult,
+} from "../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../types/theme.js";
 import { ENABLE_REAL_RAY_LSA_DIAGNOSTIC } from "../../../utils/featureFlags.js";
 import SADiagram from "./SADiagram.js";
@@ -8,14 +13,31 @@ import SectionHeader from "./SectionHeader.js";
 interface SphericalAberrationSectionProps {
   result: SphericalAberrationResult | null;
   profile: SAProfilePoint[];
+  blurCharacter: SphericalAberrationBlurCharacterResult | null;
   expanded: boolean;
   onToggle: () => void;
   theme: Theme;
 }
 
+function formatCharacterLabel(character: BokehBrightnessCharacter): string {
+  switch (character) {
+    case "edge-bright":
+      return "edge-bright";
+    case "center-bright":
+      return "center-bright";
+    default:
+      return "neutral";
+  }
+}
+
+function characterColor(character: BokehBrightnessCharacter, theme: Theme): string {
+  return character === "neutral" ? theme.muted : theme.value;
+}
+
 export default function SphericalAberrationSection({
   result,
   profile,
+  blurCharacter,
   expanded,
   onToggle,
   theme,
@@ -34,17 +56,58 @@ export default function SphericalAberrationSection({
       <SectionHeader
         title="Spherical Aberration"
         helpLabel="Spherical aberration help"
-        helpText="The curve shows the real-ray transverse aberration fan at the common best-focus plane, referenced to the near-axis real ray. Because it stays in image space, it remains stable near the pupil edge while still showing the signed fan shape of the on-axis bundle. The spread metric below still shows the residual bundle size at best focus."
+        helpText="The chart shows the one-sided real-ray transverse fan at the common best-focus plane, referenced to the near-axis real ray; the scalar SA metric still uses symmetric +/- ray pairing so clipped zones are rejected cleanly. The front/rear blur row is a separate on-axis diagnostic traced from circular pupil bundles at a standardized defocus around best focus, so visible edge-bright vs center-bright behavior is derived from the blur itself rather than inferred from LSA sign alone."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
       />
 
       {correctionLabel ? (
-        <div style={{ fontSize: 9, color: theme.muted, marginTop: -10, transition: "color 0.3s" }}>{correctionLabel}</div>
+        <div style={{ fontSize: 9, color: theme.muted, marginTop: -10, transition: "color 0.3s" }}>
+          {correctionLabel}
+        </div>
       ) : null}
 
       {expanded && profile.length >= 2 && <SADiagram profile={profile} theme={theme} />}
+
+      {blurCharacter ? (
+        <div
+          style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}
+          title={
+            `Front/rear blur character: on-axis circular bundles traced at ±${blurCharacter.defocusOffsetMm.toFixed(3)} mm ` +
+            "around best focus, circularized radially, and classified from center-to-rim brightness. " +
+            "This reflects visible blur structure directly and is separate from the over/under-corrected lens-state label."
+          }
+        >
+          <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+            FRONT / REAR BLUR
+          </span>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: characterColor(blurCharacter.frontDefocus.brightnessCharacter, theme),
+              transition: "color 0.3s",
+            }}
+          >
+            {`Front ${formatCharacterLabel(blurCharacter.frontDefocus.brightnessCharacter)}`}
+          </span>
+          <span style={{ fontSize: 11, color: theme.muted, transition: "color 0.3s" }}>/</span>
+          <span
+            style={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: characterColor(blurCharacter.rearDefocus.brightnessCharacter, theme),
+              transition: "color 0.3s",
+            }}
+          >
+            {`Rear ${formatCharacterLabel(blurCharacter.rearDefocus.brightnessCharacter)}`}
+          </span>
+          <span style={{ fontSize: 9, color: theme.muted, transition: "color 0.3s" }}>
+            {`(±${blurCharacter.defocusOffsetMm.toFixed(3)} mm, C/R ${blurCharacter.frontDefocus.centerToRimRatio.toFixed(2)} / ${blurCharacter.rearDefocus.centerToRimRatio.toFixed(2)})`}
+          </span>
+        </div>
+      ) : null}
 
       <div
         style={{ display: "flex", alignItems: "center", gap: 10 }}

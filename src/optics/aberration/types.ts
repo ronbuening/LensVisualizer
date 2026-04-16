@@ -6,6 +6,20 @@ export interface SAProfilePoint {
   transverseSaMm: number;
 }
 
+/** Standardized on-axis blur character derived from traced defocus disks. */
+export interface SphericalAberrationBlurCharacterSample {
+  radialProfile: BokehRadialProfile;
+  brightnessCharacter: BokehBrightnessCharacter;
+  centerToRimRatio: number;
+}
+
+/** Front/rear on-axis blur character preview tied to the current SA state. */
+export interface SphericalAberrationBlurCharacterResult {
+  defocusOffsetMm: number;
+  frontDefocus: SphericalAberrationBlurCharacterSample;
+  rearDefocus: SphericalAberrationBlurCharacterSample;
+}
+
 /** Result of a spherical aberration computation. */
 export interface SphericalAberrationResult {
   nearAxisFraction: number;

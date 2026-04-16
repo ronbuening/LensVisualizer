@@ -8,6 +8,7 @@ import type { Theme } from "../src/types/theme.js";
 
 const {
   mockComputeSphericalAberration,
+  mockComputeSphericalAberrationBlurCharacter,
   mockComputeSAProfile,
   mockComputeMeridionalComa,
   mockComputeSagittalComa,
@@ -15,6 +16,7 @@ const {
   mockComputeFieldCurvature,
 } = vi.hoisted(() => ({
   mockComputeSphericalAberration: vi.fn(),
+  mockComputeSphericalAberrationBlurCharacter: vi.fn(),
   mockComputeSAProfile: vi.fn(),
   mockComputeMeridionalComa: vi.fn(),
   mockComputeSagittalComa: vi.fn(),
@@ -24,6 +26,7 @@ const {
 
 vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
+  computeSphericalAberrationBlurCharacter: mockComputeSphericalAberrationBlurCharacter,
   computeSAProfile: mockComputeSAProfile,
   computeMeridionalComa: mockComputeMeridionalComa,
   computeSagittalComa: mockComputeSagittalComa,
@@ -59,7 +62,9 @@ const baseProps = {
   expanded: true,
 };
 
-function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(result: T) {
+function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(
+  result: T,
+) {
   return {
     ...result,
     curveFieldFractions: [...result.fieldFractions],
@@ -74,11 +79,25 @@ describe("AberrationsPanel", () => {
 
   beforeEach(() => {
     mockComputeSphericalAberration.mockReset();
+    mockComputeSphericalAberrationBlurCharacter.mockReset();
     mockComputeSAProfile.mockReset();
     mockComputeMeridionalComa.mockReset();
     mockComputeSagittalComa.mockReset();
     mockComputeComaPreview.mockReset();
     mockComputeFieldCurvature.mockReset();
+    mockComputeSphericalAberrationBlurCharacter.mockReturnValue({
+      defocusOffsetMm: 0.006,
+      frontDefocus: {
+        radialProfile: { bins: [], centerDensity: 0.8, rimDensity: 1 },
+        brightnessCharacter: "edge-bright",
+        centerToRimRatio: 0.8,
+      },
+      rearDefocus: {
+        radialProfile: { bins: [], centerDensity: 1.25, rimDensity: 1 },
+        brightnessCharacter: "center-bright",
+        centerToRimRatio: 1.25,
+      },
+    });
     mockComputeSAProfile.mockReturnValue([
       { fraction: 0, transverseSaMm: -0.01 },
       { fraction: 1, transverseSaMm: 0.01 },
@@ -355,7 +374,18 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
 
-    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+    expect(screen.getByText(/One-sided real-ray transverse SA at best focus/i)).toBeTruthy();
+  });
+
+  it("renders the traced front/rear blur summary when available", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+
+    expect(screen.getByText("FRONT / REAR BLUR")).toBeTruthy();
+    expect(screen.getByText("Front edge-bright")).toBeTruthy();
+    expect(screen.getByText("Rear center-bright")).toBeTruthy();
+    expect(screen.getByText("(±0.006 mm, C/R 0.80 / 1.25)")).toBeTruthy();
   });
 
   it("renders spherical aberration and field curvature content", () => {
@@ -369,9 +399,7 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("Astigmatism").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
     expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
-    expect(
-      screen.getByText(/Parabasal tangential and sagittal field curves with Petzval reference/i),
-    ).toBeTruthy();
+    expect(screen.getByText(/Parabasal tangential and sagittal field curves with Petzval reference/i)).toBeTruthy();
     expect(screen.getByText(/Real-ray tangential and sagittal field curves from dense bundle solves/i)).toBeTruthy();
     expect(screen.getAllByText("PARA MAX SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("OUTER SPLIT").length).toBeGreaterThan(0);

@@ -6,7 +6,11 @@
  */
 
 export * from "./aberration/types.js";
-export { computeSAProfile, computeSphericalAberration } from "./aberration/spherical.js";
+export {
+  computeSAProfile,
+  computeSphericalAberration,
+  computeSphericalAberrationBlurCharacter,
+} from "./aberration/spherical.js";
 export {
   computeComaPointCloudPreview,
   computeComaPreview,

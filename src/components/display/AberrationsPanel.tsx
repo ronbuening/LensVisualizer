@@ -37,14 +37,15 @@ export default function AberrationsPanel({
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
-  const { saResult, saProfile, fieldCurvatureResult, chromaticFieldCurvatureResult } = useAberrationsPanelData({
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    currentEPSD,
-    currentPhysStopSD,
-  });
+  const { saResult, saProfile, saBlurCharacter, fieldCurvatureResult, chromaticFieldCurvatureResult } =
+    useAberrationsPanelData({
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+    });
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
   const [fieldCurvatureExpanded, setFieldCurvatureExpanded] = useState(true);
@@ -60,6 +61,7 @@ export default function AberrationsPanel({
         <SphericalAberrationSection
           result={saResult}
           profile={saProfile}
+          blurCharacter={saBlurCharacter}
           expanded={saChartExpanded}
           onToggle={() => {
             const next = !saChartExpanded;

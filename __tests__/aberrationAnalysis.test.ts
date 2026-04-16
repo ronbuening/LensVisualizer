@@ -13,6 +13,7 @@ import {
   computeMeridionalComa,
   computeSagittalComa,
   computeSphericalAberration,
+  computeSphericalAberrationBlurCharacter,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
 import {
@@ -495,6 +496,31 @@ describe("computeSAProfile", () => {
 
     const profile = computeSAProfile(L, zPos, 0, 1, currentEPSD, currentPhysStopSD);
     expect(profile.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+describe("computeSphericalAberrationBlurCharacter", () => {
+  it("derives opposite front/rear blur bias for an undercorrected simple positive element", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const baseResult = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
+    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 12, 15, baseResult);
+
+    expect(baseResult).not.toBeNull();
+    expect(blurCharacter).not.toBeNull();
+    expect(blurCharacter!.defocusOffsetMm).toBeGreaterThan(0);
+    expect(blurCharacter!.frontDefocus.centerToRimRatio).toBeLessThan(1);
+    expect(blurCharacter!.rearDefocus.centerToRimRatio).toBeGreaterThan(1);
+    expect(blurCharacter!.frontDefocus.brightnessCharacter).toBe("edge-bright");
+    expect(blurCharacter!.rearDefocus.brightnessCharacter).toBe("center-bright");
+  });
+
+  it("returns null when the aperture is closed", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 0, 0);
+    expect(blurCharacter).toBeNull();
   });
 });
 

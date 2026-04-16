@@ -46,8 +46,8 @@ export default function SADiagram({ profile, theme }: { profile: SAProfilePoint[
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Real-ray transverse spherical-aberration profile at the common best-focus plane versus pupil zone, referenced to
-        the near-axis real ray.
+        One-sided real-ray transverse spherical-aberration profile at the common best-focus plane versus pupil zone,
+        referenced to the near-axis real ray.
       </title>
       <rect
         x={ML}
@@ -116,7 +116,7 @@ export default function SADiagram({ profile, theme }: { profile: SAProfilePoint[
       </text>
 
       <text x={ML + PW / 2} y={VB_H - 4} textAnchor="middle" fill={theme.muted} fontSize={9.5} fontFamily="inherit">
-        Real-ray transverse SA at best focus (&micro;m)
+        One-sided real-ray transverse SA at best focus (&micro;m)
       </text>
     </svg>
   );
