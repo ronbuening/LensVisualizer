@@ -7,7 +7,7 @@
 
 import { useEffect, useMemo } from "react";
 import type { CSSProperties, ReactNode } from "react";
-import { useParams, Navigate, Link } from "react-router";
+import { useParams, Navigate, Link, useLocation } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -33,7 +33,7 @@ const PAGE_BASE_STYLE = {
 const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", fontSize: "0.8rem" };
 
 /** Theme-aware markdown components — same pattern as DescriptionPanel */
-function useMarkdownComponents(t: Theme) {
+function useMarkdownComponents(t: Theme, isStartHere: boolean) {
   return useMemo(
     () => ({
       h1: ({ children, id }: { children?: ReactNode; id?: string }) => (
@@ -105,8 +105,9 @@ function useMarkdownComponents(t: Theme) {
         }
         // Other internal paths: SPA navigation in the same tab.
         if (href && href.startsWith("/")) {
+          const state = isStartHere && href.startsWith("/articles/") ? { fromStartHere: true } : undefined;
           return (
-            <Link id={id} to={href} style={linkStyle}>
+            <Link id={id} to={href} state={state} style={linkStyle}>
               {children}
             </Link>
           );
@@ -212,14 +213,16 @@ function useMarkdownComponents(t: Theme) {
       ),
       hr: () => <hr style={{ border: "none", borderTop: `1px solid ${t.descBorder}`, margin: "18px 0" }} />,
     }),
-    [t],
+    [t, isStartHere],
   );
 }
 
 export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
+  const { state: locationState } = useLocation();
+  const fromStartHere = (locationState as { fromStartHere?: boolean } | null)?.fromStartHere === true;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const components = useMarkdownComponents(t);
+  const components = useMarkdownComponents(t, slug === "start-here");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
@@ -236,10 +239,19 @@ export default function ArticlePage() {
   const series = entry.series ? ARTICLE_SERIES[entry.series] : undefined;
   const seriesLanding = series && series.landing.slug !== slug ? series.landing : undefined;
 
+  // When the user arrived from the start-here guide (and this isn't a series
+  // member — series context takes precedence), thread back through it.
+  const startHereRef =
+    !seriesLanding && fromStartHere ? { path: "/articles/start-here", label: "Getting Started" } : null;
+
+  const backPath = seriesLanding ? seriesLanding.linkTo : startHereRef ? startHereRef.path : "/articles";
+  const backLabel = seriesLanding ? seriesLanding.title : startHereRef ? startHereRef.label : "All Articles";
+
   const breadcrumbs = [
     { name: "Home", url: SITE_URL },
     { name: "Articles", url: `${SITE_URL}/articles` },
     ...(seriesLanding ? [{ name: seriesLanding.title, url: `${SITE_URL}${seriesLanding.linkTo}` }] : []),
+    ...(startHereRef ? [{ name: startHereRef.label, url: `${SITE_URL}${startHereRef.path}` }] : []),
     { name: entry.title, url: `${SITE_URL}/articles/${slug}` },
   ];
 
@@ -282,17 +294,22 @@ export default function ArticlePage() {
             </Link>
           </>
         )}
+        {startHereRef && (
+          <>
+            <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
+            <Link to={startHereRef.path} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+              {startHereRef.label}
+            </Link>
+          </>
+        )}
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         <span style={{ color: t.body }}>{entry.title}</span>
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
         <nav style={NAV_STYLE}>
-          <Link
-            to={seriesLanding ? seriesLanding.linkTo : "/articles"}
-            style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}
-          >
-            ← {seriesLanding ? seriesLanding.title : "All Articles"}
+          <Link to={backPath} style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.8rem" }}>
+            ← {backLabel}
           </Link>
         </nav>
 
