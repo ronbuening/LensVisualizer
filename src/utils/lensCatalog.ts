@@ -61,14 +61,16 @@ interface RecentLensEntry {
   date: string;
 }
 
-/** Up to 5 most recently added lenses, newest-first. */
-const RECENT_LENS_KEYS: RecentLensEntry[] = Object.entries(
+/** All visible lenses sorted newest-first by publication date. */
+const ALL_LENSES_BY_DATE: RecentLensEntry[] = Object.entries(
   buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>,
 )
   .filter(([key]) => CATALOG_KEYS.includes(key))
   .sort(([, a], [, b]) => b.publishedOn.localeCompare(a.publishedOn))
-  .slice(0, 5)
   .map(([key, freshness]) => ({ key, date: freshness.publishedOn }));
 
-export { LENS_CATALOG, CATALOG_KEYS, mdForKey, RECENT_LENS_KEYS };
+/** Up to 5 most recently added lenses, newest-first. */
+const RECENT_LENS_KEYS: RecentLensEntry[] = ALL_LENSES_BY_DATE.slice(0, 5);
+
+export { LENS_CATALOG, CATALOG_KEYS, mdForKey, RECENT_LENS_KEYS, ALL_LENSES_BY_DATE };
 export type { RecentLensEntry };

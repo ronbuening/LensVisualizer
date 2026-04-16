@@ -14,6 +14,7 @@ import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 interface RecentLensesProps {
   entries: RecentLensEntry[];
   theme: Theme;
+  showUpdatesLink?: boolean;
 }
 
 function formatDate(iso: string): string {
@@ -21,7 +22,7 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export default function RecentLenses({ entries, theme: t }: RecentLensesProps) {
+export default function RecentLenses({ entries, theme: t, showUpdatesLink }: RecentLensesProps) {
   const valid = entries.filter((e) => LENS_CATALOG[e.key]);
   if (valid.length === 0) return null;
 
@@ -66,6 +67,20 @@ export default function RecentLenses({ entries, theme: t }: RecentLensesProps) {
           </Link>
         );
       })}
+      {showUpdatesLink && (
+        <Link
+          to="/updates"
+          style={{
+            display: "inline-block",
+            marginTop: "0.75rem",
+            fontSize: "0.8rem",
+            color: t.descLinkColor,
+            textDecoration: "none",
+          }}
+        >
+          View all updates →
+        </Link>
+      )}
     </section>
   );
 }

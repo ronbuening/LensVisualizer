@@ -74,6 +74,7 @@ export function buildRouteFreshness({ lenses, articles, makerSlugs, makerDetails
   routeFreshness["/lenses"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/makers"] = combineFreshnessEntries([...allLensFreshness, makerDetailsFreshness], fallbackDate);
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
+  routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
 
   for (const article of articles) {
     routeFreshness[`/articles/${article.slug}`] = {
