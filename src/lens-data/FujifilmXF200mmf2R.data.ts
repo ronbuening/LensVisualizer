@@ -58,7 +58,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-xf-200-f2",
   maker: "Fujifilm",
-  name: "FUJINON XF 200mm F2 R LM OIS WR",
+  name: "FUJIFILM FUJINON XF 200mm F2 R LM OIS WR",
   subtitle: "US 2019/0265504 A1 EXAMPLE 1 — FUJIFILM / H. SAITO",
   specs: [
     "19 ELEMENTS / 14 GROUPS",

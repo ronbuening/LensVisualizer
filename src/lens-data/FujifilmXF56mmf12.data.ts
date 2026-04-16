@@ -38,7 +38,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujinon-xf56f12r",
   maker: "Fujifilm",
-  name: "FUJINON XF 56mm F1.2 R",
+  name: "FUJIFILM FUJINON XF 56mm F1.2 R",
   subtitle: "US 2015/0212302 A1 Example 3 — Fujifilm / Suzuki",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 56.99 mm", "F/1.25", "2ω ≈ 28.0°", "2 ASPHERICAL SURFACES (even-order only)"],
 
