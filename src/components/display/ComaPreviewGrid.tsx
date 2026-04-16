@@ -24,12 +24,12 @@ interface ComaPreviewGridProps {
 }
 
 const VB_W = 320;
-const VB_H = 312;
+const VB_H = 338;
 const OUTER_PAD_X = 18;
 const OUTER_PAD_Y = 18;
 const COL_GAP = 14;
 const ROW_GAP = 18;
-const FOOTER_H = 54;
+const FOOTER_H = 80;
 const TILE_W = (VB_W - OUTER_PAD_X * 2 - COL_GAP) / 2;
 const TILE_H = (VB_H - OUTER_PAD_Y * 2 - ROW_GAP - FOOTER_H) / 2;
 const TILE_ML = 28;
@@ -48,6 +48,8 @@ interface TileGeometry {
   zeroX: number;
   zeroY: number;
 }
+
+const FOOTER_TEXT_LINE_H = 8.5;
 
 function formatRelativeMm(value: number): string {
   if (Math.abs(value) < 1e-9) return "0";
@@ -76,22 +78,49 @@ function diamondPath(cx: number, cy: number, size: number): string {
   return `M ${cx} ${cy - size} L ${cx + size} ${cy} L ${cx} ${cy + size} L ${cx - size} ${cy} Z`;
 }
 
+function MultiLineText({
+  x,
+  y,
+  lines,
+  fill,
+  fontSize,
+  textAnchor = "start",
+}: {
+  x: number;
+  y: number;
+  lines: string[];
+  fill: string;
+  fontSize: number;
+  textAnchor?: "start" | "middle" | "end";
+}) {
+  return (
+    <text x={x} y={y} textAnchor={textAnchor} fill={fill} fontSize={fontSize} fontFamily="inherit">
+      {lines.map((line, index) => (
+        <tspan key={`${x}-${y}-${index}`} x={x} dy={index === 0 ? 0 : FOOTER_TEXT_LINE_H}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+}
+
 function TileShell({
   geometry,
   label,
   angleLabel,
-  footerLabel,
+  footerLines,
   t,
   children,
 }: {
   geometry: TileGeometry;
   label: string;
   angleLabel: string;
-  footerLabel: string;
+  footerLines: string[];
   t: Theme;
   children: ReactNode;
 }) {
   const { tileX, tileY, plotX, plotY, zeroX } = geometry;
+  const footerStartY = tileY + TILE_H - 4 - FOOTER_TEXT_LINE_H * Math.max(0, footerLines.length - 1);
 
   return (
     <g data-coma-tile={label}>
@@ -116,9 +145,7 @@ function TileShell({
 
       {children}
 
-      <text x={zeroX} y={tileY + TILE_H - 4} textAnchor="middle" fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        {footerLabel}
-      </text>
+      <MultiLineText x={zeroX} y={footerStartY} lines={footerLines} fill={t.muted} fontSize={7.5} textAnchor="middle" />
     </g>
   );
 }
@@ -149,7 +176,7 @@ function renderMeridionalTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel="Chief-ray-centered image height (mm)"
+      footerLines={["Chief-ray-centered", "image height (mm)"]}
       t={t}
     >
       <line
@@ -284,7 +311,7 @@ function renderPointCloudTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLabel={style === "traced" ? "Traced real-ray spot plot" : "Idealized coma sketch"}
+      footerLines={style === "traced" ? ["Traced real-ray", "spot plot"] : ["Idealized", "coma sketch"]}
       t={t}
     >
       <line
@@ -376,6 +403,9 @@ export default function ComaPreviewGrid({
 }: ComaPreviewGridProps) {
   if (mode === "pointCloud") {
     const pointCloudResult = result as ComaPointCloudPreviewResult;
+    const footerTopY = VB_H - 58;
+    const footerBottomY = VB_H - 36;
+    const footerRightX = OUTER_PAD_X + 156;
 
     return (
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
@@ -387,30 +417,24 @@ export default function ComaPreviewGrid({
         {pointCloudResult.fields.map((field, index) =>
           renderPointCloudTile(field, index, pointCloudResult.sharedSpotHalfRangeMm, t, pointCloudStyle),
         )}
-        <g transform={`translate(${OUTER_PAD_X}, ${VB_H - 42})`}>
+        <g transform={`translate(${OUTER_PAD_X}, ${footerTopY})`}>
           <line x1={0} y1={0} x2={8} y2={0} stroke={t.label} strokeWidth={0.9} />
           <line x1={4} y1={-4} x2={4} y2={4} stroke={t.label} strokeWidth={0.9} />
-          <text x={12} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-            Crosshair = chief-ray reference
-          </text>
+          <MultiLineText x={12} y={-2} lines={["Crosshair", "chief-ray ref."]} fill={t.muted} fontSize={7.5} />
           <path d={diamondPath(0, 12, 2.6)} fill={t.panelBg} stroke={t.label} strokeWidth={0.9} />
-          <text x={9} y={15} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-            Diamond = centroid
-          </text>
-          <circle cx={108} cy={12} r={3.3} fill="none" stroke={t.panelBorder} strokeWidth={1} />
-          <text x={116} y={15} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-            Circle = RMS radius
-          </text>
+          <MultiLineText x={12} y={10} lines={["Diamond", "centroid"]} fill={t.muted} fontSize={7.5} />
+        </g>
+        <g transform={`translate(${footerRightX}, ${footerTopY})`}>
+          <circle cx={0} cy={0} r={3.3} fill="none" stroke={t.panelBorder} strokeWidth={1} />
+          <MultiLineText x={9} y={-2} lines={["Circle", "RMS radius"]} fill={t.muted} fontSize={7.5} />
         </g>
         {pointCloudStyle === "traced" ? (
-          <g transform={`translate(${OUTER_PAD_X + 210}, ${VB_H - 30})`}>
+          <g transform={`translate(${footerRightX}, ${footerBottomY})`}>
             <circle cx={0} cy={0} r={2.2} fill={t.value} opacity={0.75} />
-            <text x={8} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-              Dot size / opacity = sample weight
-            </text>
+            <MultiLineText x={9} y={-2} lines={["Dot size / opacity", "sample weight"]} fill={t.muted} fontSize={7.5} />
           </g>
         ) : (
-          <g transform={`translate(${OUTER_PAD_X + 192}, ${VB_H - 30})`}>
+          <g transform={`translate(${footerRightX}, ${footerBottomY})`}>
             <path d="M 0 -3 C 8 -6 14 -4 20 0 C 14 4 8 6 0 3 C 3 1 3 -1 0 -3 Z" fill={t.value} opacity={0.18} />
             <path
               d="M 0 -3 C 8 -6 14 -4 20 0 C 14 4 8 6 0 3 C 3 1 3 -1 0 -3 Z"
@@ -418,14 +442,17 @@ export default function ComaPreviewGrid({
               stroke={t.value}
               strokeWidth={1.1}
             />
-            <text x={28} y={3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-              Outline = idealized coma footprint
-            </text>
+            <MultiLineText x={28} y={-2} lines={["Outline", "idealized footprint"]} fill={t.muted} fontSize={7.5} />
           </g>
         )}
-        <text x={VB_W / 2} y={VB_H - 3} textAnchor="middle" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-          Sagittal (horiz.) / tangential (vert.) scale relative to chief ray (mm)
-        </text>
+        <MultiLineText
+          x={VB_W / 2}
+          y={VB_H - 14}
+          lines={["Sagittal (horiz.) / tangential (vert.)", "scale relative to chief ray (mm)"]}
+          fill={t.muted}
+          fontSize={8.2}
+          textAnchor="middle"
+        />
       </svg>
     );
   }

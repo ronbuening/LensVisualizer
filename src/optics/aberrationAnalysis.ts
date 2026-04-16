@@ -12,6 +12,7 @@ export {
   computeSphericalAberrationBlurCharacter,
 } from "./aberration/spherical.js";
 export {
+  computeComaAnalysis,
   computeComaPointCloudPreview,
   computeComaPreview,
   computeMeridionalComa,

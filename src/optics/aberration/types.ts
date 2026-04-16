@@ -125,6 +125,8 @@ export interface ComaPointCloudPoint {
   weight: number;
 }
 
+export type ComaTailDirection = "toward-edge" | "toward-center" | "balanced";
+
 /** One field tile in the real 2D coma point-cloud preview grid. */
 export interface ComaPointCloudPreviewFieldResult {
   fieldFraction: number;
@@ -142,6 +144,9 @@ export interface ComaPointCloudPreviewFieldResult {
   centroidSagittalImageHeight: number;
   rmsRadiusMm: number;
   rmsRadiusUm: number;
+  tailDirection: ComaTailDirection;
+  tailSkewRatio: number;
+  sagittalToTangentialRatio: number;
   points: ComaPointCloudPoint[];
   usable: boolean;
 }
@@ -154,6 +159,13 @@ export interface ComaPointCloudPreviewResult {
   sharedSagittalHalfRangeMm: number;
   sharedSpotHalfRangeMm: number;
   usableFieldCount: number;
+}
+
+/** Shared coma analysis bundle for the current lens state. */
+export interface ComaAnalysisResult {
+  meridionalComa: MeridionalComaResult | null;
+  sagittalComa: SagittalComaResult | null;
+  pointCloudPreview: ComaPointCloudPreviewResult | null;
 }
 
 /** Per-channel chromatic focus shift at a single field position. */

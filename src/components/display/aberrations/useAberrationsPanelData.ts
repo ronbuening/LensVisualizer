@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import {
-  computeComaPointCloudPreview,
+  computeComaAnalysis,
   computeFieldCurvature,
-  computeMeridionalComa,
-  computeSagittalComa,
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
   computeSAProfile,
@@ -39,9 +37,11 @@ export default function useAberrationsPanelData({
       currentPhysStopSD,
       saResult,
     );
-    const comaResult = computeMeridionalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
-    const sagittalComaResult = computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
-    const comaPreviewResult = computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const {
+      meridionalComa: comaResult,
+      sagittalComa: sagittalComaResult,
+      pointCloudPreview: comaPreviewResult,
+    } = computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const chromaticFieldCurvatureResult = computeFieldCurvature(
       L,
