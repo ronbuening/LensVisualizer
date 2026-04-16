@@ -319,8 +319,8 @@ const LENS_DATA = {
     { label: "2", R: 76.661, d: 8.55, nd: 1.72916, elemId: 2, sd: 44.5 },
     { label: "3", R: 335.605, d: 0.15, nd: 1.0, elemId: 0, sd: 39.25 },
     // L3 singlet
-    { label: "4", R: 58.97, d: 8.05, nd: 1.7725, elemId: 3, sd: 39.0 },
-    { label: "5", R: 158.73, d: 3.93, nd: 1.0, elemId: 0, sd: 35.5 }, // [var: G1–G2]
+    { label: "4", R: 58.97, d: 8.05, nd: 1.7725, elemId: 3, sd: 36.0 },
+    { label: "5", R: 158.73, d: 3.93, nd: 1.0, elemId: 0, sd: 35.0 }, // [var: G1–G2]
 
     // ── Group 2: Variator ──
     // L4 singlet (1× asph front)
