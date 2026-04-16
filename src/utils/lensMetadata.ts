@@ -10,9 +10,9 @@ import buildMeta from "../generated/build-metadata.json";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
-const SOCIAL_IMAGE_PATH = "/og-default.png";
+const SOCIAL_IMAGE_PATH = "/branding/social-dark.png";
 const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
-const SOCIAL_IMAGE_ALT = "Optical Bench social card showing a stylized lens diagram and ray traces.";
+const SOCIAL_IMAGE_ALT = "Optical Bench social card featuring the site's lens mark with RGB ray traces.";
 const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
 

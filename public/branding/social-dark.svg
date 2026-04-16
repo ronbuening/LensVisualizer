@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="crown-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b8d8e8" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#a0c8d8" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#90b8cc" stop-opacity="0.20"/>
+    </linearGradient>
+    <linearGradient id="flint-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8b8d0" stop-opacity="0.16"/>
+      <stop offset="50%" stop-color="#b8a8c0" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#a898b8" stop-opacity="0.18"/>
+    </linearGradient>
+    <radialGradient id="flare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="20%" stop-color="#fffbe0" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#ffeaa0" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ffeaa0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="flare-outer" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffaa00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="coating-reflect" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#80c0e0" stop-opacity="0.25"/>
+      <stop offset="30%" stop-color="#80c0e0" stop-opacity="0.05"/>
+      <stop offset="70%" stop-color="#80c0e0" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#80c0e0" stop-opacity="0.20"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#0f1a28"/>
+      <stop offset="100%" stop-color="#060a10"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#vignette)"/>
+
+  <g transform="translate(240, 265) scale(1.8)">
+    <!-- GROUP 1 -->
+    <path d="M 29,-46 A 82,82 0 0 0 29,46 L 40,44 A 180,180 0 0 0 40,-44 Z"
+          fill="url(#crown-glass)" stroke="#5a8aaa" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M 29,-46 A 82,82 0 0 0 29,46" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
+    <path d="M 40,-44 A 180,180 0 0 1 40,44 L 67,42 A 70,70 0 0 1 67,-42 Z"
+          fill="url(#flint-glass)" stroke="#7a6a90" stroke-width="1" stroke-linejoin="round"/>
+    <path d="M 40,-44 A 180,180 0 0 1 40,44" fill="none" stroke="#6a809a" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.4"/>
+
+    <!-- GROUP 2 -->
+    <path d="M 110,-36 A 68,68 0 0 0 110,36 L 112,36 A 68,68 0 0 0 112,-36 Z"
+          fill="url(#crown-glass)" stroke="#5a8aaa" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M 110,-36 A 68,68 0 0 0 110,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
+    <path d="M 112,-36 A 68,68 0 0 0 112,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.5"/>
+
+    <!-- GROUP 3 -->
+    <path d="M 155,-42 A 70,70 0 0 1 155,42 L 182,44 A 180,180 0 0 1 182,-44 Z"
+          fill="url(#flint-glass)" stroke="#7a6a90" stroke-width="1" stroke-linejoin="round"/>
+    <path d="M 182,-44 A 180,180 0 0 0 182,44" fill="none" stroke="#6a809a" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.4"/>
+    <path d="M 182,-44 A 180,180 0 0 0 182,44 L 193,46 A 82,82 0 0 0 193,-46 Z"
+          fill="url(#crown-glass)" stroke="#5a8aaa" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M 193,-46 A 82,82 0 0 1 193,46" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
+
+    <!-- Aperture stop -->
+    <line x1="86" y1="-48" x2="86" y2="-30" stroke="#4a6070" stroke-width="1" opacity="0.5"/>
+    <line x1="86" y1="30" x2="86" y2="48" stroke="#4a6070" stroke-width="1" opacity="0.5"/>
+
+    <!-- Optical axis -->
+    <line x1="-7" y1="0" x2="300" y2="0" stroke="#2a3a4a" stroke-width="0.4" stroke-dasharray="4,7" opacity="0.2"/>
+
+    <!-- RGB rays — smooth beziers -->
+    <path d="M -7,-32 C 60,-22 140,-10 290,0" fill="none" stroke="#ff6b6b" stroke-width="0.9" opacity="0.9"/>
+    <line x1="-7" y1="0" x2="290" y2="0" stroke="#4ddb7f" stroke-width="0.9" opacity="0.9"/>
+    <path d="M -7,32 C 60,22 140,10 290,0" fill="none" stroke="#5a9aff" stroke-width="0.9" opacity="0.9"/>
+
+    <!-- Focal flare -->
+    <circle cx="290" cy="0" r="28" fill="url(#flare-outer)" opacity="0.6"/>
+    <circle cx="290" cy="0" r="16" fill="url(#flare)" opacity="0.9"/>
+    <circle cx="290" cy="0" r="3.5" fill="#ffffff" opacity="1"/>
+    <line x1="274" y1="0" x2="306" y2="0" stroke="#fffbe0" stroke-width="0.7" opacity="0.65"/>
+    <line x1="290" y1="-16" x2="290" y2="16" stroke="#fffbe0" stroke-width="0.7" opacity="0.65"/>
+    <line x1="279" y1="-11" x2="301" y2="11" stroke="#fffbe0" stroke-width="0.4" opacity="0.35"/>
+    <line x1="279" y1="11" x2="301" y2="-11" stroke="#fffbe0" stroke-width="0.4" opacity="0.35"/>
+  </g>
+
+  <text x="600" y="500" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="52" font-weight="300" letter-spacing="4" fill="#c8d8e8" text-anchor="middle">
+    Optical<tspan font-weight="500">Bench</tspan>
+  </text>
+  <text x="600" y="540" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="20" font-weight="300" letter-spacing="8" fill="#6a8499" text-anchor="middle">
+    .net
+  </text>
+  <text x="600" y="575" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="14" font-weight="300" letter-spacing="3" fill="#3a5060" text-anchor="middle">
+    Lens Patent Analysis &amp; Optical Decomposition
+  </text>
+</svg>
