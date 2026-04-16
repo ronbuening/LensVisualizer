@@ -9,7 +9,7 @@ import type { LensDataInput } from "../types/optics.js";
 
 const LENS_DATA = {
   key: "nikon-ai-nikkor-135f28",
-  name: "Nikon AI Nikkor 135mm f/2.8",
+  name: "NIKON AI Nikkor 135mm f/2.8",
   maker: "Nikon",
   subtitle: "US 4,057,330 Ex. 2 (Matui 1977) · ×1.35 scale",
   focalLengthMarketing: 135,
