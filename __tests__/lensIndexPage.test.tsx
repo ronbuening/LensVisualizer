@@ -11,6 +11,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import LensIndexPage from "../src/pages/LensIndexPage.js";
+import { CATALOG_ENTRIES, FILTER_BOUNDS, defaultCustomFilter, matchesCustomFilter } from "../src/pages/lensIndex/catalog.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "./testUtils.js";
 
 vi.mock("../src/components/SEOHead.js", () => ({
@@ -107,9 +108,32 @@ describe("LensIndexPage", () => {
     fireEvent.change(patentYearMinInput, { target: { value: "2024" } });
     fireEvent.keyDown(patentYearMinInput, { key: "Enter" });
 
-    expect(screen.getByText("No lenses match the current custom filter.")).toBeTruthy();
+    const expectedCanonEntries = CATALOG_ENTRIES.filter((entry) =>
+      matchesCustomFilter(
+        entry,
+        {
+          ...defaultCustomFilter(FILTER_BOUNDS),
+          makerSlugs: ["canon"],
+          patentYearMin: 2024,
+        },
+        FILTER_BOUNDS,
+      ),
+    );
 
-    fireEvent.click(screen.getByRole("button", { name: "Reset Custom Filter" }));
+    expect(
+      screen.getByText(
+        new RegExp(`Showing ${expectedCanonEntries.length} of \\d+ interactive optical cross-section diagrams`, "i"),
+      ),
+    ).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeNull();
+    expect(screen.queryByRole("link", { name: /CANON SERENAR 35mm f\/3.2/i })).toBeNull();
+
+    for (const entry of expectedCanonEntries) {
+      const escapedName = entry.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expect(screen.getByRole("link", { name: new RegExp(escapedName) })).toBeTruthy();
+    }
+
+    fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));
 
     expect(screen.getByRole("link", { name: /CANON SERENAR 35mm f\/3.2/i })).toBeTruthy();
     expect(screen.getByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeTruthy();

@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-15 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-15",
+    type: "fix",
+    summary: "Fixed semi-diameter shaping and rear-group clearance in the Canon RF 28-70mm F2 L USM",
+  },
   // ── 2026-04-14 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-14",

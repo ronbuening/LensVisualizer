@@ -17,7 +17,7 @@ const LENS_DATA = {
   maker: "Voigtländer",
   subtitle: "JP 2025-058577 A — Example 1",
   specs: ["50 mm · f/1.2 · 9 elements / 8 groups", "APS-C · All-spherical · Unit focus"],
-
+  visible: false,
   focalLengthMarketing: 50,
   focalLengthDesign: 48.5,
   apertureMarketing: 1.2,
