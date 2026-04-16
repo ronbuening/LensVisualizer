@@ -20,6 +20,15 @@ export default function SphericalAberrationSection({
   onToggle,
   theme,
 }: SphericalAberrationSectionProps) {
+  const correctionLabel =
+    result === null
+      ? null
+      : result.longitudinalSaMm < -1e-6
+        ? "(undercorrected)"
+        : result.longitudinalSaMm > 1e-6
+          ? "(overcorrected)"
+          : "(neutral)";
+
   return (
     <>
       <SectionHeader
@@ -30,6 +39,10 @@ export default function SphericalAberrationSection({
         onToggle={onToggle}
         theme={theme}
       />
+
+      {correctionLabel ? (
+        <div style={{ fontSize: 9, color: theme.muted, marginTop: -10, transition: "color 0.3s" }}>{correctionLabel}</div>
+      ) : null}
 
       {expanded && profile.length >= 2 && <SADiagram profile={profile} theme={theme} />}
 

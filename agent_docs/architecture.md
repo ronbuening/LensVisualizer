@@ -103,8 +103,8 @@
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
-| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus density heatmap grids |
-| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG density heatmap grid for bokeh ball visualization at four field positions |
+| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus spherical-aberration character disks plus separate mechanical-vignetting insets |
+| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG grid rendering circularized blur-brightness disks and surviving-pupil insets at four field positions |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -336,12 +336,13 @@ No React dependencies — fully testable in isolation.
 
 ## bokeh.ts (src/optics/aberration/)
 
-Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles through the lens at both infinity-focus and near-focus optics, then re-intercepts surviving rays on a defocused image plane to produce the characteristic bokeh ball shape. Cat's eye vignetting and SA-driven brightness profiles emerge naturally from the ray tracing.
+Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles through the lens at both infinity-focus and near-focus optics, using a solved off-axis chief-ray launch so pupil aberration and mechanical vignetting match the vignetting/distortion analyses. The traced image-plane point cloud remains the source of truth, while derived radial profiles provide a circularized spherical-aberration brightness readout and the surviving pupil samples provide a separate mechanical-vignetting inset.
 
-- **`computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Main entry point. Returns `BokehPreviewPair` with `infinity` and `nearFocus` grids, each containing 4 field positions (0%, 25%, 50%, 75%).
-- **`computeBokehPreview(L, traceFocusT, viewFocusT, zoomT, currentEPSD, currentPhysStopSD, label)`** — Computes one grid by tracing at `traceFocusT` optics and intercepting at `viewFocusT` image plane.
-- **`computeBokehFieldFootprint(..., fieldFraction, defocusDelta)`** — Per-field computation: traces circular pupil bundle, re-intercepts at shifted plane, preserves pupil coordinates for future aperture blade masking.
-- **`buildBokehDensityGrid(points, halfRange, gridSize)`** — Reusable 2D density heatmap utility: bins points into a grid, normalises max density to 1.0. Returns only non-empty cells.
+- **`computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Main entry point. Returns `BokehPreviewPair` with `infinity` and `nearFocus` grids, each containing 4 field positions (0%, 25%, 50%, 75%). Caches layouts, best-focus planes, field-geometry state, and the circular pupil sample pattern within the paired solve.
+- **`computeBokehPreview(L, traceFocusT, sensorZ, zoomT, currentEPSD, currentPhysStopSD, label)`** — Computes one grid by tracing at `traceFocusT` optics and intercepting at the supplied absolute image-plane position.
+- **`computeBokehFieldFootprint(..., fieldFraction, sensorZ)`** — Per-field computation: traces the circular pupil bundle, builds the surviving pupil footprint, and derives the circularized radial blur profile used for brightness characterization.
+- **`buildBokehRadialProfile(points, centroidSagittal, centroidTangential, binCount)`** — Reusable annular-profile helper that converts the traced point cloud into normalized radial brightness bins.
+- **`buildBokehDensityGrid(points, halfRange, gridSize)`** — Reusable 2D density heatmap utility retained for future “full physical bokeh” / PSF-style visualizations.
 - **`ApertureBladeConfig`** — Future-proofing type for polygonal bokeh (blade count + roundedness). Not used in current computation but pupil coordinates are preserved on all traced points.
 
 ## validateLensData.ts

@@ -336,7 +336,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     const { container } = render(<AberrationsPanel {...baseProps} />);
-    expect(screen.queryByText("(undercorrected)")).toBeNull();
+    expect(screen.getByText("(undercorrected)")).toBeTruthy();
     expect(screen.queryByText("LSA")).toBeNull();
     const metric = container.querySelector('[title*="Best-focus spread"]');
     expect(metric?.getAttribute("title")).toContain("best-fit image plane");
@@ -346,7 +346,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.queryByText("(overcorrected)")).toBeNull();
+    expect(screen.getByText("(overcorrected)")).toBeTruthy();
     expect(screen.queryByText("LSA")).toBeNull();
   });
 

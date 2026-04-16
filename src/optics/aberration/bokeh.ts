@@ -12,18 +12,32 @@
  * future aperture-blade-shape masking (polygonal bokeh).
  */
 
-import { doLayout, skewImagePlaneIntercept, type SkewImagePlaneIntercept } from "../optics.js";
-import type { RuntimeLens } from "../../types/optics.js";
-import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle } from "./offAxis.js";
+import {
+  computeFieldGeometryAtState,
+  doLayout,
+  sampleCircularPupil,
+  skewImagePlaneIntercept,
+  type CircularPupilSample,
+  type FieldGeometryState,
+  type SkewImagePlaneIntercept,
+} from "../optics.js";
+import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
+import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
 import { bestFocusPlane, computeRealRayHit, PROFILE_FRACS } from "./shared.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
+  BOKEH_RADIAL_PROFILE_BIN_COUNT,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
+  type BokehBrightnessCharacter,
   type BokehDensityCell,
   type BokehFieldResult,
   type BokehPoint,
   type BokehPreviewPair,
   type BokehPreviewResult,
+  type BokehPupilFootprint,
+  type BokehPupilSample,
+  type BokehRadialProfile,
+  type BokehRadialProfileBin,
 } from "./types.js";
 
 /* ── Constants ── */
@@ -40,6 +54,16 @@ const BOKEH_MIN_VALID_SAMPLES = 5;
 
 /** Minimum shared half-range (mm) to prevent degenerate scaling on tiny spots. */
 const BOKEH_MIN_SHARED_HALF_RANGE_MM = 0.001;
+const BOKEH_BRIGHTNESS_RATIO_THRESHOLD = 1.15;
+
+interface BokehTraceContext {
+  focusT: number;
+  zoomT: number;
+  layout: LayoutResult;
+  bestFocusZ: number;
+  fieldGeometryState: FieldGeometryState;
+  circularPupilSamples: CircularPupilSample[];
+}
 
 /* ── Best-focus helpers ── */
 
@@ -51,30 +75,17 @@ export function computeImagePlaneZAtFocus(L: RuntimeLens, focusT: number, zoomT:
   return doLayout(focusT, zoomT, L).imgZ;
 }
 
-/**
- * Find the RMS-best-focus Z for on-axis infinity light traced through the lens
- * at a given focus setting. This is the Z plane that minimises the weighted
- * ray-intercept spread across the full aperture — the circle of least confusion.
- *
- * Using the best-focus plane (instead of the paraxial convergence) ensures that
- * the bokeh defocus grows monotonically with the focus slider, even for fast
- * lenses with significant spherical aberration whose paraxial and marginal foci
- * differ substantially.
- *
- * Falls back to the layout imgZ if insufficient rays survive.
- */
-export function computeBestFocusZ(
+function computeBestFocusZFromLayout(
   L: RuntimeLens,
+  layout: LayoutResult,
   focusT: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
 ): number {
-  const layout = doLayout(focusT, zoomT, L);
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
 
-  /* Trace on-axis rays at the standard SA profile fractions (±0.1 to ±0.95) */
   const hits = PROFILE_FRACS.flatMap((fraction) => {
     const plusHit = computeRealRayHit(
       L,
@@ -105,6 +116,218 @@ export function computeBestFocusZ(
   return bestFocusPlane(hits, lastSurfZ);
 }
 
+/**
+ * Find the RMS-best-focus Z for on-axis infinity light traced through the lens
+ * at a given focus setting. This is the Z plane that minimises the weighted
+ * ray-intercept spread across the full aperture — the circle of least confusion.
+ *
+ * Using the best-focus plane (instead of the paraxial convergence) ensures that
+ * the bokeh defocus grows monotonically with the focus slider, even for fast
+ * lenses with significant spherical aberration whose paraxial and marginal foci
+ * differ substantially.
+ *
+ * Falls back to the layout imgZ if insufficient rays survive.
+ */
+export function computeBestFocusZ(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): number {
+  const layout = doLayout(focusT, zoomT, L);
+  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD);
+}
+
+function buildBokehTraceContext(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): BokehTraceContext {
+  const layout = doLayout(focusT, zoomT, L);
+  return {
+    focusT,
+    zoomT,
+    layout,
+    bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L),
+    circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
+  };
+}
+
+function emptyPupilFootprint(transmission = 0): BokehPupilFootprint {
+  return {
+    samples: [],
+    transmission,
+    centroidSagittal: 0,
+    centroidTangential: 0,
+    spanSagittal: 0,
+    spanTangential: 0,
+    shiftRadius: 0,
+    catEyeAspect: 0,
+  };
+}
+
+function emptyRadialProfile(): BokehRadialProfile {
+  return {
+    bins: [],
+    centerDensity: 0,
+    rimDensity: 0,
+  };
+}
+
+function makeEmptyFieldResult(
+  fieldFraction: number,
+  fieldAngleDeg: number,
+  totalRays: number,
+  transmission = 0,
+): BokehFieldResult {
+  return {
+    fieldFraction,
+    label: BOKEH_FIELD_LABELS[fieldFraction] ?? `${(fieldFraction * 100).toFixed(0)}%`,
+    fieldAngleDeg,
+    totalRays,
+    passedRays: 0,
+    points: [],
+    centroidSagittal: 0,
+    centroidTangential: 0,
+    rmsRadiusMm: 0,
+    maxRadiusMm: 0,
+    transmission,
+    pupilFootprint: emptyPupilFootprint(transmission),
+    radialProfile: emptyRadialProfile(),
+    brightnessCharacter: "neutral",
+    centerToRimRatio: 1,
+    usable: false,
+  };
+}
+
+function buildPupilFootprint(samples: readonly BokehPupilSample[], totalRays: number): BokehPupilFootprint {
+  if (samples.length === 0 || totalRays <= 0) return emptyPupilFootprint(0);
+
+  const totalWeight = samples.reduce((sum, sample) => sum + sample.weight, 0);
+  const centroidSagittal = samples.reduce((sum, sample) => sum + sample.xFraction * sample.weight, 0) / totalWeight;
+  const centroidTangential = samples.reduce((sum, sample) => sum + sample.yFraction * sample.weight, 0) / totalWeight;
+  const xs = samples.map((sample) => sample.xFraction);
+  const ys = samples.map((sample) => sample.yFraction);
+  const spanSagittal = Math.max(...xs) - Math.min(...xs);
+  const spanTangential = Math.max(...ys) - Math.min(...ys);
+  const maxSpan = Math.max(spanSagittal, spanTangential);
+
+  return {
+    samples: [...samples],
+    transmission: samples.length / totalRays,
+    centroidSagittal,
+    centroidTangential,
+    spanSagittal,
+    spanTangential,
+    shiftRadius: Math.sqrt(centroidSagittal * centroidSagittal + centroidTangential * centroidTangential),
+    catEyeAspect: maxSpan > 1e-9 ? Math.min(spanSagittal, spanTangential) / maxSpan : 0,
+  };
+}
+
+export function buildBokehRadialProfile(
+  points: readonly BokehPoint[],
+  centroidSagittal: number,
+  centroidTangential: number,
+  binCount = BOKEH_RADIAL_PROFILE_BIN_COUNT,
+): BokehRadialProfile {
+  if (points.length === 0 || binCount < 1) return emptyRadialProfile();
+
+  const clampedBinCount = Math.max(1, Math.round(binCount));
+  const radii = points.map((point) => {
+    const dx = point.sagittalOffset - centroidSagittal;
+    const dy = point.tangentialOffset - centroidTangential;
+    return Math.sqrt(dx * dx + dy * dy);
+  });
+  const maxRadius = Math.max(...radii);
+  if (maxRadius <= 1e-12) {
+    const bins: BokehRadialProfileBin[] = Array.from({ length: clampedBinCount }, (_, index) => ({
+      innerRadiusFraction: index / clampedBinCount,
+      outerRadiusFraction: (index + 1) / clampedBinCount,
+      radiusFraction: (index + 0.5) / clampedBinCount,
+      density: index === 0 ? 1 : 0,
+      energyFraction: index === 0 ? 1 : 0,
+    }));
+    return {
+      bins,
+      centerDensity: 1,
+      rimDensity: 0,
+    };
+  }
+
+  const annularEnergy = new Float64Array(clampedBinCount);
+  let totalWeight = 0;
+
+  for (let index = 0; index < points.length; index++) {
+    const normalizedRadius = Math.min(radii[index] / maxRadius, 0.999999);
+    const binIndex = Math.min(clampedBinCount - 1, Math.floor(normalizedRadius * clampedBinCount));
+    annularEnergy[binIndex] += points[index].weight;
+    totalWeight += points[index].weight;
+  }
+
+  let maxDensity = 0;
+  const rawDensities = new Float64Array(clampedBinCount);
+  for (let index = 0; index < clampedBinCount; index++) {
+    const innerRadiusFraction = index / clampedBinCount;
+    const outerRadiusFraction = (index + 1) / clampedBinCount;
+    const annulusArea = Math.PI * (outerRadiusFraction * outerRadiusFraction - innerRadiusFraction * innerRadiusFraction);
+    const density = annulusArea > 1e-12 ? annularEnergy[index] / annulusArea : 0;
+    rawDensities[index] = density;
+    if (density > maxDensity) maxDensity = density;
+  }
+
+  if (maxDensity <= 1e-12 || totalWeight <= 1e-12) return emptyRadialProfile();
+
+  const bins: BokehRadialProfileBin[] = Array.from({ length: clampedBinCount }, (_, index) => ({
+    innerRadiusFraction: index / clampedBinCount,
+    outerRadiusFraction: (index + 1) / clampedBinCount,
+    radiusFraction: (index + 0.5) / clampedBinCount,
+    density: rawDensities[index] / maxDensity,
+    energyFraction: annularEnergy[index] / totalWeight,
+  }));
+
+  const centerBinCount = Math.max(1, Math.round(clampedBinCount * 0.25));
+  const rimStart = Math.max(0, clampedBinCount - centerBinCount);
+  const centerDensity =
+    bins.slice(0, centerBinCount).reduce((sum, bin) => sum + bin.density, 0) / centerBinCount;
+  const rimDensity =
+    bins.slice(rimStart).reduce((sum, bin) => sum + bin.density, 0) / Math.max(1, clampedBinCount - rimStart);
+
+  return {
+    bins,
+    centerDensity,
+    rimDensity,
+  };
+}
+
+export function classifyBokehBrightnessCharacter(
+  radialProfile: BokehRadialProfile,
+): { brightnessCharacter: BokehBrightnessCharacter; centerToRimRatio: number } {
+  const rimDensity = radialProfile.rimDensity;
+  const centerDensity = radialProfile.centerDensity;
+  const centerToRimRatio = rimDensity > 1e-9 ? centerDensity / rimDensity : centerDensity > 1e-9 ? 999 : 1;
+
+  if (centerToRimRatio > BOKEH_BRIGHTNESS_RATIO_THRESHOLD) {
+    return {
+      brightnessCharacter: "center-bright",
+      centerToRimRatio,
+    };
+  }
+  if (centerToRimRatio < 1 / BOKEH_BRIGHTNESS_RATIO_THRESHOLD) {
+    return {
+      brightnessCharacter: "edge-bright",
+      centerToRimRatio,
+    };
+  }
+  return {
+    brightnessCharacter: "neutral",
+    centerToRimRatio,
+  };
+}
+
 /* ── Per-field footprint ── */
 
 /**
@@ -118,11 +341,9 @@ export function computeBestFocusZ(
  * @param traceFocusT Focus setting at which rays are traced (defines variable gaps)
  * @param sensorZ     Absolute Z position of the sensor (image plane at current focus)
  */
-export function computeBokehFieldFootprint(
+function computeBokehFieldFootprintFromContext(
   L: RuntimeLens,
-  zPos: number[],
-  traceFocusT: number,
-  zoomT: number,
+  context: BokehTraceContext,
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldFraction: number,
@@ -130,33 +351,47 @@ export function computeBokehFieldFootprint(
 ): BokehFieldResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    context.layout.z,
+    context.focusT,
+    context.zoomT,
+    fieldFraction,
+    context.fieldGeometryState,
+  );
   if (geometry === null) return null;
 
-  const bundle = traceCircularOffAxisBundle(
-    BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
+  const bundle = traceOffAxisBundleFromSamples(
+    context.circularPupilSamples,
     geometry,
     L,
-    traceFocusT,
-    zoomT,
+    context.focusT,
+    context.zoomT,
     currentEPSD,
     currentPhysStopSD,
   );
   if (bundle === null) return null;
 
-  /* Re-intercept chief ray at the sensor plane */
-  const defocusedImgZ = sensorZ;
   const chiefDefocused: SkewImagePlaneIntercept | null = skewImagePlaneIntercept(
     bundle.chiefRay.trace.x,
     bundle.chiefRay.trace.y,
     bundle.chiefRay.trace.ux,
     bundle.chiefRay.trace.uy,
     geometry.lastSurfZ,
-    defocusedImgZ,
+    sensorZ,
   );
   if (chiefDefocused === null) return null;
 
-  /* Re-intercept each surviving ray and compute relative offsets */
+  const acceptedPupilSamples: BokehPupilSample[] = bundle.samples.map((sample) => ({
+    index: sample.index,
+    xFraction: sample.xFraction,
+    yFraction: sample.yFraction,
+    pupilRadius: sample.radiusFraction ?? 0,
+    pupilAzimuth: sample.azimuthRad ?? 0,
+    weight: sample.weight ?? 1,
+  }));
+  const pupilFootprint = buildPupilFootprint(acceptedPupilSamples, bundle.sampleCount);
+
   const points: BokehPoint[] = [];
   for (let i = 0; i < bundle.samples.length; i++) {
     const sample = bundle.samples[i];
@@ -166,7 +401,7 @@ export function computeBokehFieldFootprint(
       sample.trace.ux,
       sample.trace.uy,
       geometry.lastSurfZ,
-      defocusedImgZ,
+      sensorZ,
     );
     if (intercept === null) continue;
 
@@ -182,41 +417,32 @@ export function computeBokehFieldFootprint(
 
   if (points.length < BOKEH_MIN_VALID_SAMPLES) {
     return {
-      fieldFraction,
-      label: BOKEH_FIELD_LABELS[fieldFraction] ?? `${(fieldFraction * 100).toFixed(0)}%`,
-      fieldAngleDeg: geometry.fieldAngleDeg,
-      totalRays: bundle.sampleCount,
-      passedRays: 0,
-      points: [],
-      centroidSagittal: 0,
-      centroidTangential: 0,
-      rmsRadiusMm: 0,
-      maxRadiusMm: 0,
-      transmission: 0,
-      usable: false,
+      ...makeEmptyFieldResult(fieldFraction, geometry.fieldAngleDeg, bundle.sampleCount, pupilFootprint.transmission),
+      pupilFootprint,
     };
   }
 
-  /* Weighted centroid */
-  const totalWeight = points.reduce((sum, p) => sum + p.weight, 0);
-  const centroidSagittal = points.reduce((sum, p) => sum + p.sagittalOffset * p.weight, 0) / totalWeight;
-  const centroidTangential = points.reduce((sum, p) => sum + p.tangentialOffset * p.weight, 0) / totalWeight;
+  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
+  const centroidSagittal = points.reduce((sum, point) => sum + point.sagittalOffset * point.weight, 0) / totalWeight;
+  const centroidTangential =
+    points.reduce((sum, point) => sum + point.tangentialOffset * point.weight, 0) / totalWeight;
 
-  /* RMS radius and max radius */
   const rmsRadiusMm = Math.sqrt(
-    points.reduce((sum, p) => {
-      const dx = p.sagittalOffset - centroidSagittal;
-      const dy = p.tangentialOffset - centroidTangential;
-      return sum + p.weight * (dx * dx + dy * dy);
+    points.reduce((sum, point) => {
+      const dx = point.sagittalOffset - centroidSagittal;
+      const dy = point.tangentialOffset - centroidTangential;
+      return sum + point.weight * (dx * dx + dy * dy);
     }, 0) / totalWeight,
   );
   const maxRadiusMm = Math.max(
-    ...points.map((p) => {
-      const dx = p.sagittalOffset - centroidSagittal;
-      const dy = p.tangentialOffset - centroidTangential;
+    ...points.map((point) => {
+      const dx = point.sagittalOffset - centroidSagittal;
+      const dy = point.tangentialOffset - centroidTangential;
       return Math.sqrt(dx * dx + dy * dy);
     }),
   );
+  const radialProfile = buildBokehRadialProfile(points, centroidSagittal, centroidTangential);
+  const { brightnessCharacter, centerToRimRatio } = classifyBokehBrightnessCharacter(radialProfile);
 
   return {
     fieldFraction,
@@ -229,9 +455,27 @@ export function computeBokehFieldFootprint(
     centroidTangential,
     rmsRadiusMm,
     maxRadiusMm,
-    transmission: points.length / bundle.sampleCount,
+    transmission: pupilFootprint.transmission,
+    pupilFootprint,
+    radialProfile,
+    brightnessCharacter,
+    centerToRimRatio,
     usable: true,
   };
+}
+
+export function computeBokehFieldFootprint(
+  L: RuntimeLens,
+  _zPos: number[],
+  traceFocusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  fieldFraction: number,
+  sensorZ: number,
+): BokehFieldResult | null {
+  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD);
+  return computeBokehFieldFootprintFromContext(L, context, currentEPSD, currentPhysStopSD, fieldFraction, sensorZ);
 }
 
 /* ── Density heatmap ── */
@@ -291,6 +535,46 @@ export function buildBokehDensityGrid(
 
 /* ── Single grid computation ── */
 
+function computeBokehPreviewFromContext(
+  L: RuntimeLens,
+  context: BokehTraceContext,
+  sensorZ: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  label: string,
+): BokehPreviewResult | null {
+  const defocusDelta = sensorZ - context.layout.imgZ;
+
+  const fields: BokehFieldResult[] = BOKEH_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
+    const result = computeBokehFieldFootprintFromContext(
+      L,
+      context,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldFraction,
+      sensorZ,
+    );
+    if (result !== null) return result;
+    return makeEmptyFieldResult(fieldFraction, 0, context.circularPupilSamples.length);
+  });
+
+  const usableFields = fields.filter((field) => field.usable);
+  if (usableFields.length < 1) return null;
+
+  return {
+    label,
+    defocusDeltaMm: defocusDelta,
+    fields,
+    sharedHalfRangeMm: Math.max(BOKEH_MIN_SHARED_HALF_RANGE_MM, ...usableFields.map((field) => field.maxRadiusMm)),
+    usableFieldCount: usableFields.length,
+  };
+}
+
+export function describeBokehDefocusSide(defocusDeltaMm: number): string {
+  if (Math.abs(defocusDeltaMm) < 1e-9) return "Near focus plane";
+  return defocusDeltaMm > 0 ? "Rear defocus" : "Front defocus";
+}
+
 /**
  * Compute one bokeh preview grid (e.g., infinity-source or near-source).
  *
@@ -312,55 +596,14 @@ export function computeBokehPreview(
   currentPhysStopSD: number,
   label: string,
 ): BokehPreviewResult | null {
-  /* Surface positions from the trace-focus layout */
-  const traceLayout = doLayout(traceFocusT, zoomT, L);
-  const zPos = traceLayout.z;
-
-  /* Defocus for reporting: distance from sensor to trace-focus image plane */
-  const defocusDelta = sensorZ - traceLayout.imgZ;
-
-  const fields: BokehFieldResult[] = BOKEH_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
-    const result = computeBokehFieldFootprint(
-      L,
-      zPos,
-      traceFocusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldFraction,
-      sensorZ,
-    );
-    if (result !== null) return result;
-
-    /* Empty placeholder for unusable field */
-    return {
-      fieldFraction,
-      label: BOKEH_FIELD_LABELS[fieldFraction] ?? `${(fieldFraction * 100).toFixed(0)}%`,
-      fieldAngleDeg: 0,
-      totalRays: 0,
-      passedRays: 0,
-      points: [],
-      centroidSagittal: 0,
-      centroidTangential: 0,
-      rmsRadiusMm: 0,
-      maxRadiusMm: 0,
-      transmission: 0,
-      usable: false,
-    };
-  });
-
-  const usableFields = fields.filter((f) => f.usable);
-  if (usableFields.length < 1) return null;
-
-  const sharedHalfRangeMm = Math.max(BOKEH_MIN_SHARED_HALF_RANGE_MM, ...usableFields.map((f) => f.maxRadiusMm));
-
-  return {
+  return computeBokehPreviewFromContext(
+    L,
+    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD),
+    sensorZ,
+    currentEPSD,
+    currentPhysStopSD,
     label,
-    defocusDeltaMm: defocusDelta,
-    fields,
-    sharedHalfRangeMm,
-    usableFieldCount: usableFields.length,
-  };
+  );
 }
 
 /* ── Paired computation (main entry point) ── */
@@ -391,16 +634,18 @@ export function computeBokehPreviewPair(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): BokehPreviewPair {
-  /*
-   * Pre-compute the RMS-best-focus Z at key focus positions. Using the best-
-   * focus plane (circle of least confusion) instead of the paraxial focus
-   * ensures monotonic defocus even for fast lenses with strong SA.
-   */
-  const bf0 = computeBestFocusZ(L, 0, zoomT, currentEPSD, currentPhysStopSD);
-  const bf1 = computeBestFocusZ(L, 1, zoomT, currentEPSD, currentPhysStopSD);
-  const bfView = computeBestFocusZ(L, focusT, zoomT, currentEPSD, currentPhysStopSD);
-  const imgZ0 = doLayout(0, zoomT, L).imgZ;
-  const imgZView = doLayout(focusT, zoomT, L).imgZ;
+  const contextCache = new Map<number, BokehTraceContext>();
+  const getContext = (contextFocusT: number): BokehTraceContext => {
+    const cached = contextCache.get(contextFocusT);
+    if (cached) return cached;
+    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD);
+    contextCache.set(contextFocusT, next);
+    return next;
+  };
+
+  const infContext = getContext(0);
+  const nearContext = getContext(1);
+  const viewContext = getContext(focusT);
 
   /*
    * Infinity grid: sensorZ anchored at bf(0) (in-focus = minimum blur),
@@ -411,8 +656,18 @@ export function computeBokehPreviewPair(
    * – Unit-focus: imgZ shift dominates → growing defocus
    * – Internal-focus: bf shift dominates → growing defocus
    */
-  const infSensorZ = bf0 + (imgZView - imgZ0) + (bf0 - bfView);
-  const infinity = computeBokehPreview(L, 0, infSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Infinity");
+  const infSensorZ =
+    infContext.bestFocusZ +
+    (viewContext.layout.imgZ - infContext.layout.imgZ) +
+    (infContext.bestFocusZ - viewContext.bestFocusZ);
+  const infinity = computeBokehPreviewFromContext(
+    L,
+    infContext,
+    infSensorZ,
+    currentEPSD,
+    currentPhysStopSD,
+    "Infinity",
+  );
 
   /*
    * Near grid: applies the infinity grid's defocus curve at the complementary
@@ -422,10 +677,19 @@ export function computeBokehPreviewPair(
    * At fT=0 → complementary=1: shifts are maximal → large defocus.
    */
   const complementaryFocusT = 1 - focusT;
-  const bfComplement = computeBestFocusZ(L, complementaryFocusT, zoomT, currentEPSD, currentPhysStopSD);
-  const imgZComplement = doLayout(complementaryFocusT, zoomT, L).imgZ;
-  const nearSensorZ = bf1 + (imgZComplement - imgZ0) + (bf0 - bfComplement);
-  const nearFocus = computeBokehPreview(L, 1, nearSensorZ, zoomT, currentEPSD, currentPhysStopSD, "Near Focus");
+  const complementaryContext = getContext(complementaryFocusT);
+  const nearSensorZ =
+    nearContext.bestFocusZ +
+    (complementaryContext.layout.imgZ - infContext.layout.imgZ) +
+    (infContext.bestFocusZ - complementaryContext.bestFocusZ);
+  const nearFocus = computeBokehPreviewFromContext(
+    L,
+    nearContext,
+    nearSensorZ,
+    currentEPSD,
+    currentPhysStopSD,
+    "Near Focus",
+  );
 
   return { infinity, nearFocus };
 }
