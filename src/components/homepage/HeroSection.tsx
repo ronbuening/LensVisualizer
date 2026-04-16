@@ -45,7 +45,8 @@ export default function HeroSection({ theme: t }: HeroSectionProps) {
           lineHeight: 1.6,
         }}
       >
-        Trace rays through multi-element systems, adjust focus and aperture in real time, inspect individual elements,
+        Explore real camera lens designs built from optical patent data. Trace rays through multi-element systems,
+        adjust focus and aperture in real time, inspect individual elements, 
         and analyze chromatic aberrations.
       </p>
     </section>

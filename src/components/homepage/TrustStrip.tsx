@@ -22,10 +22,8 @@ export default function TrustStrip({ theme: t }: TrustStripProps) {
   const makerCount = countMakers();
 
   const stats = [
-    `${CATALOG_KEYS.length} interactive lens diagrams`,
-    `${makerCount} manufacturers`,
     "Patent-derived optical models",
-    `${ARTICLES.length} articles & guides`,
+    `${ARTICLES.length} articles & guides on numerous topics`,
   ];
 
   const links: { label: string; to: string }[] = [
