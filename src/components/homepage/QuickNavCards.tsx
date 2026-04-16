@@ -42,7 +42,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       subtitle: viewerLens ? LENS_CATALOG[viewerLens].name : "Explore a lens",
       to: viewerLens ? `/lens/${viewerLens}` : "/lenses",
     },
-    { title: "Start Here", subtitle: "New to lens design? Begin with the basics", to: "/articles/optics-primer" },
+    { title: "Start Here", subtitle: "New to lens design? Begin with the basics", to: "/articles/start-here" },
   ];
 
   const cardStyle = (): React.CSSProperties => ({

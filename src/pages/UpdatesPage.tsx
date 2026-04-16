@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router";
+import useMediaQuery from "../utils/useMediaQuery.js";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
@@ -40,6 +41,7 @@ function formatDate(iso: string): string {
 
 export default function UpdatesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const isWide = useMediaQuery("(min-width: 720px)");
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
@@ -91,116 +93,130 @@ export default function UpdatesPage() {
           Recently added lenses and a complete development changelog.
         </p>
 
-        {/* ── Lenses Added ──────────────────────────────────────────── */}
-        <section style={{ marginBottom: "2.5rem" }}>
-          <h2
-            style={{
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: t.body,
-              marginBottom: "1rem",
-              paddingBottom: "0.25rem",
-              borderBottom: `1px solid ${t.panelBorder}`,
-            }}
-          >
-            Lenses Added
-          </h2>
-          {ALL_LENSES_BY_DATE.map((e) => {
-            const lens = LENS_CATALOG[e.key];
-            if (!lens) return null;
-            return (
-              <Link
-                key={e.key}
-                to={`/lens/${e.key}`}
-                style={{
-                  display: "block",
-                  padding: "0.75rem 1rem",
-                  marginBottom: "0.5rem",
-                  borderRadius: 6,
-                  border: `1px solid ${t.panelBorder}`,
-                  background: t.panelBg,
-                  textDecoration: "none",
-                  transition: "border-color 0.2s",
-                }}
-              >
-                <div style={{ fontSize: "0.875rem", fontWeight: 600, color: t.descLinkColor }}>{lens.name}</div>
-                <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDate(e.date)}</div>
-                {lens.specs && lens.specs.length > 0 && (
-                  <div style={{ fontSize: "0.75rem", color: t.muted, marginBottom: "0.2rem" }}>
-                    {lens.specs.slice(0, 3).join(" · ")}
-                  </div>
-                )}
-              </Link>
-            );
-          })}
-        </section>
-
-        {/* ── Changelog ─────────────────────────────────────────────── */}
-        <section style={{ marginBottom: "2.5rem" }}>
-          <h2
-            style={{
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: t.body,
-              marginBottom: "1rem",
-              paddingBottom: "0.25rem",
-              borderBottom: `1px solid ${t.panelBorder}`,
-            }}
-          >
-            Changelog
-          </h2>
-
-          {Array.from(grouped.entries()).map(([date, entries]) => (
-            <div key={date} style={{ marginBottom: "0.75rem" }}>
-              <div
-                style={{
-                  fontSize: "0.7rem",
-                  color: t.label,
-                  fontWeight: 600,
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  marginBottom: "0.4rem",
-                }}
-              >
-                {formatDate(date)}
-              </div>
-
-              {entries.map((entry, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "0.5rem",
-                    padding: "0.5rem 0.75rem",
-                    marginBottom: "0.35rem",
-                    borderRadius: 6,
-                    border: `1px solid ${t.panelBorder}`,
-                    background: t.panelBg,
-                  }}
-                >
-                  <span
+        {/* ── Two-column layout (changelog left on mobile / lenses right) ── */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: isWide ? "row" : "column",
+            gap: isWide ? "1.5rem" : "1.25rem",
+            alignItems: "flex-start",
+            marginBottom: "2.5rem",
+          }}
+        >
+          {/* ── Changelog ─────────────────────────────────────────────── */}
+          <section style={{ flex: isWide ? "1 1 0" : undefined, minWidth: 0, width: isWide ? undefined : "100%" }}>
+            <h2
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: 600,
+                color: t.body,
+                marginBottom: "1rem",
+                paddingBottom: "0.25rem",
+                borderBottom: `1px solid ${t.panelBorder}`,
+              }}
+            >
+              Changelog
+            </h2>
+            <div style={{ maxHeight: isWide ? "72vh" : "60vh", overflowY: "auto", paddingRight: "0.25rem" }}>
+              {Array.from(grouped.entries()).map(([date, entries]) => (
+                <div key={date} style={{ marginBottom: "0.75rem" }}>
+                  <div
                     style={{
-                      flexShrink: 0,
-                      fontSize: "0.6rem",
-                      padding: "1px 6px",
-                      borderRadius: 3,
-                      background: `${ENTRY_TYPE_COLORS[entry.type]}22`,
-                      color: ENTRY_TYPE_COLORS[entry.type],
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
+                      fontSize: "0.7rem",
+                      color: t.label,
                       fontWeight: 600,
-                      marginTop: "0.15rem",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      marginBottom: "0.4rem",
                     }}
                   >
-                    {ENTRY_TYPE_LABELS[entry.type]}
-                  </span>
-                  <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{entry.summary}</span>
+                    {formatDate(date)}
+                  </div>
+
+                  {entries.map((entry, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.5rem",
+                        padding: "0.5rem 0.75rem",
+                        marginBottom: "0.35rem",
+                        borderRadius: 6,
+                        border: `1px solid ${t.panelBorder}`,
+                        background: t.panelBg,
+                      }}
+                    >
+                      <span
+                        style={{
+                          flexShrink: 0,
+                          fontSize: "0.6rem",
+                          padding: "1px 6px",
+                          borderRadius: 3,
+                          background: `${ENTRY_TYPE_COLORS[entry.type]}22`,
+                          color: ENTRY_TYPE_COLORS[entry.type],
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                          fontWeight: 600,
+                          marginTop: "0.15rem",
+                        }}
+                      >
+                        {ENTRY_TYPE_LABELS[entry.type]}
+                      </span>
+                      <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{entry.summary}</span>
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
-        </section>
+          </section>
+
+          {/* ── Lenses Added ──────────────────────────────────────────── */}
+          <section style={{ flex: isWide ? "1 1 0" : undefined, minWidth: 0, width: isWide ? undefined : "100%" }}>
+            <h2
+              style={{
+                fontSize: "1.125rem",
+                fontWeight: 600,
+                color: t.body,
+                marginBottom: "1rem",
+                paddingBottom: "0.25rem",
+                borderBottom: `1px solid ${t.panelBorder}`,
+              }}
+            >
+              Lenses Added
+            </h2>
+            <div style={{ maxHeight: isWide ? "72vh" : "60vh", overflowY: "auto", paddingRight: "0.25rem" }}>
+              {ALL_LENSES_BY_DATE.map((e) => {
+                const lens = LENS_CATALOG[e.key];
+                if (!lens) return null;
+                return (
+                  <Link
+                    key={e.key}
+                    to={`/lens/${e.key}`}
+                    style={{
+                      display: "block",
+                      padding: "0.75rem 1rem",
+                      marginBottom: "0.5rem",
+                      borderRadius: 6,
+                      border: `1px solid ${t.panelBorder}`,
+                      background: t.panelBg,
+                      textDecoration: "none",
+                      transition: "border-color 0.2s",
+                    }}
+                  >
+                    <div style={{ fontSize: "0.875rem", fontWeight: 600, color: t.descLinkColor }}>{lens.name}</div>
+                    <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDate(e.date)}</div>
+                    {lens.specs && lens.specs.length > 0 && (
+                      <div style={{ fontSize: "0.75rem", color: t.muted, marginBottom: "0.2rem" }}>
+                        {lens.specs.slice(0, 3).join(" · ")}
+                      </div>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        </div>
 
         {/* ── Footer ────────────────────────────────────────────────── */}
         <footer
