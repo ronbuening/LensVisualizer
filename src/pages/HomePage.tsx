@@ -34,6 +34,7 @@ export default function HomePage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   /* Redirect legacy ?lens=KEY URLs to /lens/KEY */
   useEffect(() => {
@@ -57,6 +58,8 @@ export default function HomePage() {
   }, [searchParams, navigate]);
 
   const isDesktop = useMediaQuery("(min-width: 720px)");
+  const useDarkBrandAssets = themeMode === "auto" ? prefersDark : themeMode === "dark";
+  const heroBrandMark = "/branding/mark-card.svg";
 
   const displayedArticles = HOMEPAGE_ARTICLES.slice(0, HOMEPAGE_ARTICLE_LIMIT);
   const showMoreLink = HOMEPAGE_ARTICLES.length > HOMEPAGE_ARTICLE_LIMIT;
@@ -83,7 +86,7 @@ export default function HomePage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <HeroSection theme={t} />
+        <HeroSection theme={t} brandMarkSrc={heroBrandMark} useDarkBrandFrame={useDarkBrandAssets} />
         <TrustStrip theme={t} />
         <QuickNavCards theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>

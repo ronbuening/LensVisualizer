@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="crown-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c0ddef" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#96bedb" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="flint-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d0c0e0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#b0a0c8" stop-opacity="0.40"/>
+    </linearGradient>
+    <radialGradient id="flare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff9500" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#ffb840" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#ffd080" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffe0a0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g transform="translate(0, 32)">
+    <path d="M 10,-18 A 32,32 0 0 0 10,18 L 15,17 A 70,70 0 0 0 15,-17 Z"
+          fill="url(#crown-glass)" stroke="#3a6a8a" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M 15,-17 A 70,70 0 0 1 15,17 L 25,16 A 28,28 0 0 1 25,-16 Z"
+          fill="url(#flint-glass)" stroke="#5a4a70" stroke-width="0.9" stroke-linejoin="round"/>
+    <path d="M 30,-14 A 26,26 0 0 0 30,14 L 31,14 A 26,26 0 0 0 31,-14 Z"
+          fill="url(#crown-glass)" stroke="#3a6a8a" stroke-width="1.1" stroke-linejoin="round"/>
+    <path d="M 37,-16 A 28,28 0 0 1 37,16 L 47,17 A 70,70 0 0 1 47,-17 Z"
+          fill="url(#flint-glass)" stroke="#5a4a70" stroke-width="0.9" stroke-linejoin="round"/>
+    <path d="M 47,-17 A 70,70 0 0 0 47,17 L 52,18 A 32,32 0 0 0 52,-18 Z"
+          fill="url(#crown-glass)" stroke="#3a6a8a" stroke-width="1.1" stroke-linejoin="round"/>
+
+    <!-- RGB rays — smooth beziers, extended past E1 -->
+    <path d="M 3,-13 C 22,-9 40,-4 58,0" fill="none" stroke="#d83838" stroke-width="1" opacity="0.8"/>
+    <line x1="3" y1="0" x2="58" y2="0" stroke="#22a850" stroke-width="1" opacity="0.8"/>
+    <path d="M 3,13 C 22,9 40,4 58,0" fill="none" stroke="#3060d0" stroke-width="1" opacity="0.8"/>
+
+    <circle cx="58" cy="0" r="5.5" fill="url(#flare)" opacity="0.9"/>
+    <circle cx="58" cy="0" r="2" fill="#ff9500" opacity="0.85"/>
+    <circle cx="58" cy="0" r="1" fill="#ffffff" opacity="1"/>
+  </g>
+</svg>
