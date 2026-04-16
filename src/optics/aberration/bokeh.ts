@@ -273,7 +273,8 @@ export function buildBokehRadialProfile(
   for (let index = 0; index < clampedBinCount; index++) {
     const innerRadiusFraction = index / clampedBinCount;
     const outerRadiusFraction = (index + 1) / clampedBinCount;
-    const annulusArea = Math.PI * (outerRadiusFraction * outerRadiusFraction - innerRadiusFraction * innerRadiusFraction);
+    const annulusArea =
+      Math.PI * (outerRadiusFraction * outerRadiusFraction - innerRadiusFraction * innerRadiusFraction);
     const density = annulusArea > 1e-12 ? annularEnergy[index] / annulusArea : 0;
     rawDensities[index] = density;
     if (density > maxDensity) maxDensity = density;
@@ -291,8 +292,7 @@ export function buildBokehRadialProfile(
 
   const centerBinCount = Math.max(1, Math.round(clampedBinCount * 0.25));
   const rimStart = Math.max(0, clampedBinCount - centerBinCount);
-  const centerDensity =
-    bins.slice(0, centerBinCount).reduce((sum, bin) => sum + bin.density, 0) / centerBinCount;
+  const centerDensity = bins.slice(0, centerBinCount).reduce((sum, bin) => sum + bin.density, 0) / centerBinCount;
   const rimDensity =
     bins.slice(rimStart).reduce((sum, bin) => sum + bin.density, 0) / Math.max(1, clampedBinCount - rimStart);
 
@@ -303,9 +303,10 @@ export function buildBokehRadialProfile(
   };
 }
 
-export function classifyBokehBrightnessCharacter(
-  radialProfile: BokehRadialProfile,
-): { brightnessCharacter: BokehBrightnessCharacter; centerToRimRatio: number } {
+export function classifyBokehBrightnessCharacter(radialProfile: BokehRadialProfile): {
+  brightnessCharacter: BokehBrightnessCharacter;
+  centerToRimRatio: number;
+} {
   const rimDensity = radialProfile.rimDensity;
   const centerDensity = radialProfile.centerDensity;
   const centerToRimRatio = rimDensity > 1e-9 ? centerDensity / rimDensity : centerDensity > 1e-9 ? 999 : 1;

@@ -220,7 +220,15 @@ function MechanicalInset({
 
   return (
     <g>
-      <rect x={insetX} y={insetY} width={insetSize} height={insetSize} rx={3} fill="#171717" stroke={theme.panelBorder} />
+      <rect
+        x={insetX}
+        y={insetY}
+        width={insetSize}
+        height={insetSize}
+        rx={3}
+        fill="#171717"
+        stroke={theme.panelBorder}
+      />
       <circle cx={insetCX} cy={insetCY} r={sampleScale} fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth={0.5} />
       {field.pupilFootprint.samples.map((sample) => (
         <circle
@@ -248,7 +256,14 @@ function MechanicalInset({
         stroke="rgba(100,200,255,0.7)"
         strokeWidth={0.5}
       />
-      <text x={insetCX} y={insetY + insetSize + 7} textAnchor="middle" fill={theme.muted} fontSize={6.4} fontFamily="inherit">
+      <text
+        x={insetCX}
+        y={insetY + insetSize + 7}
+        textAnchor="middle"
+        fill={theme.muted}
+        fontSize={6.4}
+        fontFamily="inherit"
+      >
         MECH
       </text>
     </g>

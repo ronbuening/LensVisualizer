@@ -16,7 +16,13 @@ import {
   computeImagePlaneZAtFocus,
   computeBestFocusZ,
 } from "../src/optics/aberration/bokeh.js";
-import { computeFieldGeometryAtState, doLayout, epAtZoom, fopenAtZoom, solveChiefRayLaunchHeight } from "../src/optics/optics.js";
+import {
+  computeFieldGeometryAtState,
+  doLayout,
+  epAtZoom,
+  fopenAtZoom,
+  solveChiefRayLaunchHeight,
+} from "../src/optics/optics.js";
 import { computeOffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";

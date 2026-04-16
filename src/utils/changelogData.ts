@@ -34,7 +34,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-04-15",
     type: "lens",
-    summary: "Added Canon RF 28-70mm F2 L USM, Canon RF 28-70mm f/2.8 IS STM, Canon RF 24-240mm f/4-6.3 IS USM, and Canon RF 24-70mm F2.8 L IS USM",
+    summary:
+      "Added Canon RF 28-70mm F2 L USM, Canon RF 28-70mm f/2.8 IS STM, Canon RF 24-240mm f/4-6.3 IS USM, and Canon RF 24-70mm F2.8 L IS USM",
   },
   // ── 2026-04-14 ──────────────────────────────────────────────────────────
   {
