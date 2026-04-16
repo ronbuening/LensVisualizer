@@ -43,9 +43,9 @@ export default function BokehPreviewOverlay({
     <div style={{ padding: "8px 16px 16px", overflow: "auto" }}>
       <h3 style={{ fontSize: 14, margin: "0 0 4px", color: t.label, fontFamily: "inherit" }}>Bokeh Preview (Beta)</h3>
       <p style={{ fontSize: 10, color: t.muted, margin: "0 0 12px", lineHeight: 1.5, fontFamily: "inherit" }}>
-        Density heatmaps of defocused point sources at 0%, 25%, 50%, and 75% field height. Brighter regions indicate
-        higher ray density. Cat&apos;s eye shapes emerge off-axis from mechanical vignetting. Brightness variation
-        across the disk reflects spherical aberration.
+        Circularized blur disks show spherical-aberration brightness character at 0%, 25%, 50%, and 75% field height.
+        The small inset in each tile shows the surviving pupil footprint, separating mechanical vignetting from the main
+        SA readout. Brighter rims indicate edge-bright blur; brighter centers indicate center-bright blur.
       </p>
 
       {!hasInfinity && !hasNearFocus ? (
@@ -62,7 +62,7 @@ export default function BokehPreviewOverlay({
             INFINITY SOURCE
           </h4>
           <p style={{ fontSize: 9, color: t.muted, margin: "0 0 4px", fontFamily: "inherit" }}>
-            Point source at infinity, image intercepted at current focus plane
+            Point source at infinity, intercepted at the current focus plane
           </p>
           <BokehPreviewGrid result={pair.infinity!} t={t} />
         </div>
@@ -76,7 +76,7 @@ export default function BokehPreviewOverlay({
             NEAR FOCUS SOURCE
           </h4>
           <p style={{ fontSize: 9, color: t.muted, margin: "0 0 4px", fontFamily: "inherit" }}>
-            Point source at minimum focus distance, image intercepted at current focus plane
+            Point source at minimum focus distance, intercepted at the current focus plane
           </p>
           <BokehPreviewGrid result={pair.nearFocus!} t={t} />
         </div>

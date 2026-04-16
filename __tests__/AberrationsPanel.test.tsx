@@ -8,14 +8,18 @@ import type { Theme } from "../src/types/theme.js";
 
 const {
   mockComputeSphericalAberration,
+  mockComputeSphericalAberrationBlurCharacter,
   mockComputeSAProfile,
+  mockComputeComaAnalysis,
   mockComputeMeridionalComa,
   mockComputeSagittalComa,
   mockComputeComaPreview,
   mockComputeFieldCurvature,
 } = vi.hoisted(() => ({
   mockComputeSphericalAberration: vi.fn(),
+  mockComputeSphericalAberrationBlurCharacter: vi.fn(),
   mockComputeSAProfile: vi.fn(),
+  mockComputeComaAnalysis: vi.fn(),
   mockComputeMeridionalComa: vi.fn(),
   mockComputeSagittalComa: vi.fn(),
   mockComputeComaPreview: vi.fn(),
@@ -24,7 +28,9 @@ const {
 
 vi.mock("../src/optics/aberrationAnalysis.js", () => ({
   computeSphericalAberration: mockComputeSphericalAberration,
+  computeSphericalAberrationBlurCharacter: mockComputeSphericalAberrationBlurCharacter,
   computeSAProfile: mockComputeSAProfile,
+  computeComaAnalysis: mockComputeComaAnalysis,
   computeMeridionalComa: mockComputeMeridionalComa,
   computeSagittalComa: mockComputeSagittalComa,
   computeComaPointCloudPreview: mockComputeComaPreview,
@@ -59,7 +65,9 @@ const baseProps = {
   expanded: true,
 };
 
-function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(result: T) {
+function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(
+  result: T,
+) {
   return {
     ...result,
     curveFieldFractions: [...result.fieldFractions],
@@ -74,16 +82,31 @@ describe("AberrationsPanel", () => {
 
   beforeEach(() => {
     mockComputeSphericalAberration.mockReset();
+    mockComputeSphericalAberrationBlurCharacter.mockReset();
     mockComputeSAProfile.mockReset();
+    mockComputeComaAnalysis.mockReset();
     mockComputeMeridionalComa.mockReset();
     mockComputeSagittalComa.mockReset();
     mockComputeComaPreview.mockReset();
     mockComputeFieldCurvature.mockReset();
+    mockComputeSphericalAberrationBlurCharacter.mockReturnValue({
+      defocusOffsetMm: 0.006,
+      frontDefocus: {
+        radialProfile: { bins: [], centerDensity: 0.8, rimDensity: 1 },
+        brightnessCharacter: "edge-bright",
+        centerToRimRatio: 0.8,
+      },
+      rearDefocus: {
+        radialProfile: { bins: [], centerDensity: 1.25, rimDensity: 1 },
+        brightnessCharacter: "center-bright",
+        centerToRimRatio: 1.25,
+      },
+    });
     mockComputeSAProfile.mockReturnValue([
       { fraction: 0, transverseSaMm: -0.01 },
       { fraction: 1, transverseSaMm: 0.01 },
     ]);
-    mockComputeComaPreview.mockReturnValue({
+    const comaPreviewResult = {
       fieldFractions: [0, 0.25, 0.5, 0.75],
       usableFieldCount: 4,
       sharedTangentialHalfRangeMm: 0.06,
@@ -106,6 +129,9 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0,
           rmsRadiusMm: 0.005,
           rmsRadiusUm: 5,
+          tailDirection: "balanced",
+          tailSkewRatio: 1,
+          sagittalToTangentialRatio: 1,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 1, tangentialImageHeight: -0.01, sagittalImageHeight: -0.01, weight: 0.1 },
@@ -129,6 +155,9 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.002,
           rmsRadiusMm: 0.012,
           rmsRadiusUm: 12,
+          tailDirection: "toward-center",
+          tailSkewRatio: 1.35,
+          sagittalToTangentialRatio: 0.43,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 6, tangentialImageHeight: 0.04, sagittalImageHeight: 0, weight: 0.2 },
@@ -150,6 +179,9 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.003,
           rmsRadiusMm: 0.018,
           rmsRadiusUm: 18,
+          tailDirection: "toward-center",
+          tailSkewRatio: 1.42,
+          sagittalToTangentialRatio: 0.36,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 10, tangentialImageHeight: 0.06, sagittalImageHeight: 0, weight: 0.2 },
@@ -171,14 +203,17 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.004,
           rmsRadiusMm: 0.02,
           rmsRadiusUm: 20,
+          tailDirection: "toward-edge",
+          tailSkewRatio: 1.28,
+          sagittalToTangentialRatio: 0.55,
           usable: true,
           points: [
             { index: 0, sourceSampleIndex: 14, tangentialImageHeight: 0.05, sagittalImageHeight: 0, weight: 0.2 },
           ],
         },
       ],
-    });
-    mockComputeMeridionalComa.mockReturnValue({
+    };
+    const meridionalComaResult = {
       fieldAngleDeg: 12.5,
       sampleCount: 51,
       validSampleCount: 47,
@@ -195,6 +230,32 @@ describe("AberrationsPanel", () => {
         { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.02, clipped: false },
         { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: null, clipped: true },
       ],
+    };
+    const sagittalComaResult = {
+      fieldAngleDeg: 12.5,
+      sampleCount: 51,
+      validSampleCount: 43,
+      clippedSampleCount: 8,
+      centerIntercept: 0.002,
+      minIntercept: -0.06,
+      maxIntercept: 0.07,
+      spanMm: 0.13,
+      spanUm: 130,
+      lowerIntercept: -0.06,
+      upperIntercept: 0.07,
+      samples: [
+        { index: 0, pupilFraction: -1, launchX: -10, imageX: null, clipped: true },
+        { index: 25, pupilFraction: 0, launchX: 0, imageX: 0.002, clipped: false },
+        { index: 50, pupilFraction: 1, launchX: 10, imageX: null, clipped: true },
+      ],
+    };
+    mockComputeMeridionalComa.mockReturnValue(meridionalComaResult);
+    mockComputeSagittalComa.mockReturnValue(sagittalComaResult);
+    mockComputeComaPreview.mockReturnValue(comaPreviewResult);
+    mockComputeComaAnalysis.mockReturnValue({
+      meridionalComa: meridionalComaResult,
+      sagittalComa: sagittalComaResult,
+      pointCloudPreview: comaPreviewResult,
     });
     mockComputeFieldCurvature.mockReturnValue(
       withCurveFields({
@@ -336,7 +397,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
 
     const { container } = render(<AberrationsPanel {...baseProps} />);
-    expect(screen.queryByText("(undercorrected)")).toBeNull();
+    expect(screen.getByText("(undercorrected)")).toBeTruthy();
     expect(screen.queryByText("LSA")).toBeNull();
     const metric = container.querySelector('[title*="Best-focus spread"]');
     expect(metric?.getAttribute("title")).toContain("best-fit image plane");
@@ -346,7 +407,7 @@ describe("AberrationsPanel", () => {
     mockComputeSphericalAberration.mockReturnValue(makeSaResult(0.012));
 
     render(<AberrationsPanel {...baseProps} />);
-    expect(screen.queryByText("(overcorrected)")).toBeNull();
+    expect(screen.getByText("(overcorrected)")).toBeTruthy();
     expect(screen.queryByText("LSA")).toBeNull();
   });
 
@@ -355,7 +416,18 @@ describe("AberrationsPanel", () => {
 
     render(<AberrationsPanel {...baseProps} />);
 
-    expect(screen.getByText(/Real-ray transverse SA at best focus/i)).toBeTruthy();
+    expect(screen.getByText(/One-sided real-ray transverse SA at best focus/i)).toBeTruthy();
+  });
+
+  it("renders the traced front/rear blur summary when available", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} />);
+
+    expect(screen.getByText("FRONT / REAR BLUR")).toBeTruthy();
+    expect(screen.getByText("Front edge-bright")).toBeTruthy();
+    expect(screen.getByText("Rear center-bright")).toBeTruthy();
+    expect(screen.getByText("(±0.006 mm, C/R 0.80 / 1.25)")).toBeTruthy();
   });
 
   it("renders spherical aberration and field curvature content", () => {
@@ -369,9 +441,7 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("Astigmatism").length).toBeGreaterThan(0);
     expect(screen.getByText(/The first chart shows parabasal tangential and sagittal field curves/i)).toBeTruthy();
     expect(screen.getByText(/These charts plot the tangential-sagittal best-focus difference/i)).toBeTruthy();
-    expect(
-      screen.getByText(/Parabasal tangential and sagittal field curves with Petzval reference/i),
-    ).toBeTruthy();
+    expect(screen.getByText(/Parabasal tangential and sagittal field curves with Petzval reference/i)).toBeTruthy();
     expect(screen.getByText(/Real-ray tangential and sagittal field curves from dense bundle solves/i)).toBeTruthy();
     expect(screen.getAllByText("PARA MAX SPLIT").length).toBeGreaterThan(0);
     expect(screen.getAllByText("OUTER SPLIT").length).toBeGreaterThan(0);

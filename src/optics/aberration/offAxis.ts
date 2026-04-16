@@ -1,13 +1,17 @@
 import {
   bAtZoom,
+  computeFieldGeometryAtState,
   halfFieldAtZoom,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
+  solveChiefRayLaunchHeight,
+  thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
   yRatioAtZoom,
   type CircularPupilSample,
+  type FieldGeometryState,
   type OrthogonalPupilSample,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
@@ -103,6 +107,39 @@ export function computeOffAxisFieldGeometry(
   const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;
+
+  return {
+    fieldFraction,
+    fieldAngleDeg,
+    uField,
+    yChief,
+    lastSurfZ,
+    imagePlaneZ,
+  };
+}
+
+export function computeStateAwareOffAxisFieldGeometry(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  fieldFraction: number,
+  stateGeometry?: FieldGeometryState,
+): OffAxisFieldGeometry | null {
+  if (L.N < 1) return null;
+  if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
+
+  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg < 0) return null;
+
+  const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
+  if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
+
+  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry);
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L);
   if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;
 
   return {

@@ -11,7 +11,23 @@ interface ComaPreviewSectionProps {
   theme: Theme;
 }
 
+function formatTailDirection(direction: ComaPointCloudPreviewResult["fields"][number]["tailDirection"]): string {
+  switch (direction) {
+    case "toward-edge":
+      return "toward edge";
+    case "toward-center":
+      return "toward center";
+    default:
+      return "balanced";
+  }
+}
+
 export default function ComaPreviewSection({ result, expanded, onToggle, theme }: ComaPreviewSectionProps) {
+  const outerField =
+    result?.fields
+      .filter((field) => field.usable && field.fieldFraction > 0)
+      .sort((left, right) => right.fieldFraction - left.fieldFraction)[0] ?? null;
+
   return (
     <div
       style={{
@@ -25,7 +41,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       <SectionHeader
         title="Spot Diagram (Real-Ray)"
         helpLabel="Spot diagram help"
-        helpText="This spot-diagram section now works in two panes. The left pane traces a denser fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field on a shared square spot scale, then overlays centroid and RMS spot-radius cues. The right pane converts the same measured footprint extents into an idealized textbook-style coma sketch so users can compare the traced spot against the standard schematic view."
+        helpText="This spot-diagram section now works in two panes. The left pane traces a denser fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field on a shared square spot scale, then overlays centroid and RMS spot-radius cues. The right pane converts the same measured footprint extents into an idealized textbook-style coma sketch so users can compare the traced spot against the standard schematic view. The summary row also reports the outer-field tail bias and sagittal-to-tangential span ratio derived directly from the traced point cloud."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -104,6 +120,51 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                     ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
                   </span>
                 </div>
+                {outerField ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Outermost usable field tail bias derived from the traced point cloud by comparing the dominant tangential extent on either side of the centroid."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      OUTER TAIL
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {`${formatTailDirection(outerField.tailDirection)} ${outerField.tailSkewRatio.toFixed(2)}×`}
+                    </span>
+                  </div>
+                ) : null}
+                {outerField ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Outermost usable field sagittal-to-tangential span ratio from the traced point cloud. Smaller values indicate a more elongated coma footprint."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      OUTER S/T
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {outerField.sagittalToTangentialRatio.toFixed(2)}
+                    </span>
+                  </div>
+                ) : null}
               </div>
             </>
           ) : (

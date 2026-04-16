@@ -9,15 +9,18 @@ import {
   NEAR_AXIS_REAL_FRAC,
   computeComaPointCloudPreview,
   computeComaPreview,
+  computeComaAnalysis,
   computeFieldCurvature,
   computeMeridionalComa,
   computeSagittalComa,
   computeSphericalAberration,
+  computeSphericalAberrationBlurCharacter,
   computeSAProfile,
 } from "../src/optics/aberrationAnalysis.js";
 import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
+  computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
   traceCircularOffAxisBundle,
   traceOrthogonalOffAxisBundle,
@@ -498,6 +501,31 @@ describe("computeSAProfile", () => {
   });
 });
 
+describe("computeSphericalAberrationBlurCharacter", () => {
+  it("derives opposite front/rear blur bias for an undercorrected simple positive element", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const baseResult = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
+    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 12, 15, baseResult);
+
+    expect(baseResult).not.toBeNull();
+    expect(blurCharacter).not.toBeNull();
+    expect(blurCharacter!.defocusOffsetMm).toBeGreaterThan(0);
+    expect(blurCharacter!.frontDefocus.centerToRimRatio).toBeLessThan(1);
+    expect(blurCharacter!.rearDefocus.centerToRimRatio).toBeGreaterThan(1);
+    expect(blurCharacter!.frontDefocus.brightnessCharacter).toBe("edge-bright");
+    expect(blurCharacter!.rearDefocus.brightnessCharacter).toBe("center-bright");
+  });
+
+  it("returns null when the aperture is closed", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+
+    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 0, 0);
+    expect(blurCharacter).toBeNull();
+  });
+});
+
 describe("computeMeridionalComa", () => {
   it("returns a dense sampled coma result for Sonnar 50/1.5", () => {
     const L = build(Sonnar50f15Raw);
@@ -588,7 +616,9 @@ describe("computeMeridionalComa", () => {
 
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    expect(result!.fieldAngleDeg).toBeCloseTo(L.halfField * L.offAxisFieldFrac, 6);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac);
+    expect(geometry).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeCloseTo(geometry!.fieldAngleDeg, 8);
   });
 
   it("matches the shared tangential bundle trace at the configured field", () => {
@@ -599,7 +629,7 @@ describe("computeMeridionalComa", () => {
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, L.offAxisFieldFrac);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac);
     expect(geometry).not.toBeNull();
 
     const bundle = traceOrthogonalOffAxisBundle(
@@ -696,7 +726,7 @@ describe("computeComaPreview", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
 
-    const result = computeComaPreview(L, zPos, 0, 0, 12, 1);
+    const result = computeComaPreview(L, zPos, 0, 0, 12, 0.2);
     expect(result).toBeNull();
   });
 });
@@ -728,7 +758,7 @@ describe("computeComaPointCloudPreview", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction);
     expect(geometry).not.toBeNull();
 
     const bundle = traceCircularOffAxisBundle(
@@ -805,7 +835,7 @@ describe("computeComaPointCloudPreview", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
 
-    const result = computeComaPointCloudPreview(L, zPos, 0, 0, 12, 1);
+    const result = computeComaPointCloudPreview(L, zPos, 0, 0, 12, 0.2);
     expect(result).toBeNull();
   });
 
@@ -927,6 +957,28 @@ describe("computeComaPointCloudPreview", () => {
     expect(centerField.rmsRadiusMm).toBeCloseTo(rmsRadius, 8);
     expect(centerField.rmsRadiusUm).toBeCloseTo(rmsRadius * 1000, 8);
     expect(centerField.centroidTangentialImageHeight).toBeCloseTo(0, 8);
+  });
+});
+
+describe("computeComaAnalysis", () => {
+  it("returns the shared coma bundle with current-field fans and preview descriptors", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeComaAnalysis(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(result.meridionalComa).not.toBeNull();
+    expect(result.sagittalComa).not.toBeNull();
+    expect(result.pointCloudPreview).not.toBeNull();
+    expect(result.pointCloudPreview!.usableFieldCount).toBeGreaterThanOrEqual(2);
+
+    const outerField =
+      result.pointCloudPreview!.fields.find((field) => field.fieldFraction === 0.75 && field.usable) ?? null;
+    expect(outerField).not.toBeNull();
+    expect(["toward-edge", "toward-center", "balanced"]).toContain(outerField!.tailDirection);
+    expect(outerField!.tailSkewRatio).toBeGreaterThanOrEqual(1);
+    expect(outerField!.sagittalToTangentialRatio).toBeGreaterThanOrEqual(0);
   });
 });
 

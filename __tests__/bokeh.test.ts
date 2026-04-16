@@ -4,8 +4,11 @@ import {
   BOKEH_POINT_COUNT,
   BOKEH_PREVIEW_FIELD_FRACTIONS,
   BOKEH_DENSITY_GRID_SIZE,
-  computeBokehPreviewPair,
   buildBokehDensityGrid,
+  buildBokehRadialProfile,
+  classifyBokehBrightnessCharacter,
+  computeBokehPreviewPair,
+  computeStateAwareOffAxisFieldGeometry,
 } from "../src/optics/aberrationAnalysis.js";
 import {
   computeBokehPreview,
@@ -13,12 +16,20 @@ import {
   computeImagePlaneZAtFocus,
   computeBestFocusZ,
 } from "../src/optics/aberration/bokeh.js";
-import { doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
+import {
+  computeFieldGeometryAtState,
+  doLayout,
+  epAtZoom,
+  fopenAtZoom,
+  solveChiefRayLaunchHeight,
+} from "../src/optics/optics.js";
+import { computeOffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../src/lens-data/NikonZ135f18.data.js";
+import NikonAF28f14DRaw from "../src/lens-data/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 import type { BokehPoint } from "../src/optics/aberration/types.js";
 
@@ -38,6 +49,17 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
   return { currentPhysStopSD, currentEPSD };
 }
 
+function pointAt(radius: number, angleRad: number, weight = 1): BokehPoint {
+  return {
+    index: 0,
+    sagittalOffset: radius * Math.cos(angleRad),
+    tangentialOffset: radius * Math.sin(angleRad),
+    pupilRadius: 0,
+    pupilAzimuth: 0,
+    weight,
+  };
+}
+
 /* ── Tests ── */
 
 describe("bokeh constants", () => {
@@ -49,6 +71,55 @@ describe("bokeh constants", () => {
 
   it("has 4 field fractions", () => {
     expect(BOKEH_PREVIEW_FIELD_FRACTIONS).toEqual([0, 0.25, 0.5, 0.75]);
+  });
+});
+
+describe("radial profile helpers", () => {
+  it("classifies center-bright synthetic blur", () => {
+    const profile = buildBokehRadialProfile(
+      [
+        pointAt(0.03, 0, 8),
+        pointAt(0.04, Math.PI / 2, 8),
+        pointAt(0.05, Math.PI, 8),
+        pointAt(0.06, (3 * Math.PI) / 2, 8),
+        pointAt(1, 0, 1),
+      ],
+      0,
+      0,
+      6,
+    );
+    const classification = classifyBokehBrightnessCharacter(profile);
+
+    expect(classification.brightnessCharacter).toBe("center-bright");
+    expect(classification.centerToRimRatio).toBeGreaterThan(1);
+  });
+
+  it("classifies edge-bright synthetic blur", () => {
+    const profile = buildBokehRadialProfile(
+      [pointAt(1, 0), pointAt(1, Math.PI / 2), pointAt(1, Math.PI), pointAt(1, (3 * Math.PI) / 2)],
+      0,
+      0,
+      6,
+    );
+    const classification = classifyBokehBrightnessCharacter(profile);
+
+    expect(classification.brightnessCharacter).toBe("edge-bright");
+    expect(classification.centerToRimRatio).toBeLessThan(1);
+  });
+
+  it("classifies neutral synthetic blur when annular energy matches area", () => {
+    const annulusWeights = [1, 3, 5, 7];
+    const profile = buildBokehRadialProfile(
+      annulusWeights.map((weight, index) => pointAt((index + 0.5) / annulusWeights.length, 0, weight)),
+      0,
+      0,
+      annulusWeights.length,
+    );
+    const classification = classifyBokehBrightnessCharacter(profile);
+
+    expect(classification.brightnessCharacter).toBe("neutral");
+    expect(classification.centerToRimRatio).toBeGreaterThan(0.85);
+    expect(classification.centerToRimRatio).toBeLessThan(1.15);
   });
 });
 
@@ -64,6 +135,32 @@ describe("computeImagePlaneZAtFocus", () => {
     const zInf = computeImagePlaneZAtFocus(L, 0, 0);
     const zNear = computeImagePlaneZAtFocus(L, 1, 0);
     expect(zNear).not.toBeCloseTo(zInf, 2);
+  });
+});
+
+describe("state-aware off-axis geometry", () => {
+  const L = build(NikonAF28f14DRaw);
+  const focusT = 0.85;
+  const layout = doLayout(focusT, 0, L);
+
+  it("matches the solved chief-ray launch used by vignetting analysis", () => {
+    const stateGeometry = computeFieldGeometryAtState(focusT, 0, L);
+    const result = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
+
+    expect(result).not.toBeNull();
+    expect(result!.yChief).toBeCloseTo(
+      solveChiefRayLaunchHeight(result!.fieldAngleDeg, focusT, 0, L, stateGeometry),
+      6,
+    );
+  });
+
+  it("differs from the paraxial chief-ray launch on a vignetted wide-angle field", () => {
+    const paraxial = computeOffAxisFieldGeometry(L, layout.z, 0, 0.75);
+    const solved = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
+
+    expect(paraxial).not.toBeNull();
+    expect(solved).not.toBeNull();
+    expect(Math.abs(solved!.yChief - paraxial!.yChief)).toBeGreaterThan(1e-3);
   });
 });
 
@@ -99,6 +196,22 @@ describe("computeBokehFieldFootprint", () => {
     expect(offAxis).not.toBeNull();
     if (onAxis!.usable && offAxis!.usable) {
       expect(offAxis!.transmission).toBeLessThanOrEqual(onAxis!.transmission);
+    }
+  });
+
+  it("reports a separate mechanical pupil footprint off-axis", () => {
+    const sensorZ = layout.imgZ + 0.5;
+    const onAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0, sensorZ);
+    const offAxis = computeBokehFieldFootprint(L, layout.z, 0, 0, currentEPSD, currentPhysStopSD, 0.75, sensorZ);
+
+    expect(onAxis).not.toBeNull();
+    expect(offAxis).not.toBeNull();
+    expect(onAxis!.pupilFootprint.samples.length).toBeGreaterThan(0);
+    expect(offAxis!.pupilFootprint.samples.length).toBeGreaterThan(0);
+
+    if (onAxis!.usable && offAxis!.usable) {
+      expect(offAxis!.pupilFootprint.shiftRadius).toBeGreaterThan(onAxis!.pupilFootprint.shiftRadius);
+      expect(offAxis!.pupilFootprint.transmission).toBeLessThanOrEqual(onAxis!.pupilFootprint.transmission);
     }
   });
 
@@ -177,6 +290,40 @@ describe("computeBokehPreviewPair", () => {
         expect(stoppedCenterRms).toBeLessThan(wideCenterRms);
       }
     }
+  });
+});
+
+describe("computeBokehPreviewPair brightness character", () => {
+  const L = build(NikonAF28f14DRaw);
+  const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+  it("flips the visible blur character across opposite sides of best focus", () => {
+    const bestFocus = computeBestFocusZ(L, 0, 0, currentEPSD, currentPhysStopSD);
+    const frontDefocus = computeBokehPreview(L, 0, bestFocus - 0.35, 0, currentEPSD, currentPhysStopSD, "Front");
+    const rearDefocus = computeBokehPreview(L, 0, bestFocus + 0.35, 0, currentEPSD, currentPhysStopSD, "Rear");
+
+    expect(frontDefocus).not.toBeNull();
+    expect(rearDefocus).not.toBeNull();
+
+    const frontCenter = frontDefocus!.fields.find((field) => field.fieldFraction === 0 && field.usable);
+    const rearCenter = rearDefocus!.fields.find((field) => field.fieldFraction === 0 && field.usable);
+
+    expect(frontCenter).toBeTruthy();
+    expect(rearCenter).toBeTruthy();
+    expect(Math.sign(frontCenter!.centerToRimRatio - 1)).not.toBe(Math.sign(rearCenter!.centerToRimRatio - 1));
+  });
+
+  it("keeps the main radial profile usable while off-axis pupil transmission drops", () => {
+    const pair = computeBokehPreviewPair(L, 0.5, 0, currentEPSD, currentPhysStopSD);
+    const onAxis = pair.infinity?.fields.find((field) => field.fieldFraction === 0 && field.usable) ?? null;
+    const offAxis = pair.infinity?.fields.find((field) => field.fieldFraction === 0.75 && field.usable) ?? null;
+
+    expect(onAxis).not.toBeNull();
+    expect(offAxis).not.toBeNull();
+    expect(offAxis!.radialProfile.bins.length).toBeGreaterThan(0);
+    expect(offAxis!.pupilFootprint.samples.length).toBeGreaterThan(0);
+    expect(offAxis!.transmission).toBeLessThanOrEqual(onAxis!.transmission);
+    expect(offAxis!.pupilFootprint.shiftRadius).toBeGreaterThan(onAxis!.pupilFootprint.shiftRadius);
   });
 });
 

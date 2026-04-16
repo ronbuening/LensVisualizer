@@ -6,6 +6,20 @@ export interface SAProfilePoint {
   transverseSaMm: number;
 }
 
+/** Standardized on-axis blur character derived from traced defocus disks. */
+export interface SphericalAberrationBlurCharacterSample {
+  radialProfile: BokehRadialProfile;
+  brightnessCharacter: BokehBrightnessCharacter;
+  centerToRimRatio: number;
+}
+
+/** Front/rear on-axis blur character preview tied to the current SA state. */
+export interface SphericalAberrationBlurCharacterResult {
+  defocusOffsetMm: number;
+  frontDefocus: SphericalAberrationBlurCharacterSample;
+  rearDefocus: SphericalAberrationBlurCharacterSample;
+}
+
 /** Result of a spherical aberration computation. */
 export interface SphericalAberrationResult {
   nearAxisFraction: number;
@@ -111,6 +125,8 @@ export interface ComaPointCloudPoint {
   weight: number;
 }
 
+export type ComaTailDirection = "toward-edge" | "toward-center" | "balanced";
+
 /** One field tile in the real 2D coma point-cloud preview grid. */
 export interface ComaPointCloudPreviewFieldResult {
   fieldFraction: number;
@@ -128,6 +144,9 @@ export interface ComaPointCloudPreviewFieldResult {
   centroidSagittalImageHeight: number;
   rmsRadiusMm: number;
   rmsRadiusUm: number;
+  tailDirection: ComaTailDirection;
+  tailSkewRatio: number;
+  sagittalToTangentialRatio: number;
   points: ComaPointCloudPoint[];
   usable: boolean;
 }
@@ -140,6 +159,13 @@ export interface ComaPointCloudPreviewResult {
   sharedSagittalHalfRangeMm: number;
   sharedSpotHalfRangeMm: number;
   usableFieldCount: number;
+}
+
+/** Shared coma analysis bundle for the current lens state. */
+export interface ComaAnalysisResult {
+  meridionalComa: MeridionalComaResult | null;
+  sagittalComa: SagittalComaResult | null;
+  pointCloudPreview: ComaPointCloudPreviewResult | null;
 }
 
 /** Per-channel chromatic focus shift at a single field position. */
@@ -224,6 +250,9 @@ export const BOKEH_POINT_COUNT = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES.reduce((sum, 
 
 /** Resolution of the 2D density heatmap grid per bokeh tile. */
 export const BOKEH_DENSITY_GRID_SIZE = 64;
+export const BOKEH_RADIAL_PROFILE_BIN_COUNT = 12;
+
+export type BokehBrightnessCharacter = "edge-bright" | "center-bright" | "neutral";
 
 /** One traced ray sample in the bokeh point cloud, relative to the chief ray. */
 export interface BokehPoint {
@@ -240,6 +269,45 @@ export interface BokehPoint {
   weight: number;
 }
 
+/** One surviving pupil sample used to visualize mechanical vignetting. */
+export interface BokehPupilSample {
+  index: number;
+  xFraction: number;
+  yFraction: number;
+  pupilRadius: number;
+  pupilAzimuth: number;
+  weight: number;
+}
+
+/** Surviving pupil footprint after mechanical clipping. */
+export interface BokehPupilFootprint {
+  samples: BokehPupilSample[];
+  transmission: number;
+  centroidSagittal: number;
+  centroidTangential: number;
+  spanSagittal: number;
+  spanTangential: number;
+  shiftRadius: number;
+  /** 1 = circular, smaller values = stronger cat's-eye asymmetry. */
+  catEyeAspect: number;
+}
+
+/** One annular sample in the circularized blur brightness profile. */
+export interface BokehRadialProfileBin {
+  innerRadiusFraction: number;
+  outerRadiusFraction: number;
+  radiusFraction: number;
+  density: number;
+  energyFraction: number;
+}
+
+/** Circularized blur brightness profile derived from traced image-plane points. */
+export interface BokehRadialProfile {
+  bins: BokehRadialProfileBin[];
+  centerDensity: number;
+  rimDensity: number;
+}
+
 /** One field tile in the bokeh preview grid. */
 export interface BokehFieldResult {
   fieldFraction: number;
@@ -254,6 +322,10 @@ export interface BokehFieldResult {
   maxRadiusMm: number;
   /** Fraction of rays that survived vignetting (0–1). */
   transmission: number;
+  pupilFootprint: BokehPupilFootprint;
+  radialProfile: BokehRadialProfile;
+  brightnessCharacter: BokehBrightnessCharacter;
+  centerToRimRatio: number;
   usable: boolean;
 }
 

@@ -91,7 +91,7 @@
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
-| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`), formatting helpers, and `useAberrationsPanelData` |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`, coma sections), formatting helpers, and `useAberrationsPanelData` |
 | `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
 | `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for parabasal tangential/sagittal field curves plus Petzval reference, using denser internal field sweep with standard checkpoint markers |
@@ -103,8 +103,8 @@
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
 | `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
-| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus density heatmap grids |
-| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG density heatmap grid for bokeh ball visualization at four field positions |
+| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus spherical-aberration character disks plus separate mechanical-vignetting insets |
+| `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG grid rendering circularized blur-brightness disks and surviving-pupil insets at four field positions |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
 | `AboutFooter.tsx` | `src/components/display/` | Mobile-only footer rendering about buttons at page bottom |
@@ -315,9 +315,11 @@ No React dependencies — fully testable in isolation.
 
 Public barrel for the decomposed aberration modules under `src/optics/aberration/`. All functions accept the runtime lens object L and current slider-derived parameters — no build-time dependencies, no React dependencies.
 
-- **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a true current-state paraxial reference. Averages ±Y marginal rays for symmetry. Returns `{saMm, saUm, realIntercept, paraxialIntercept}` or null if all marginal fractions are clipped.
-- **`computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Samples the entrance pupil across aperture zones and returns the longitudinal spherical-aberration profile used by the analysis chart.
-- **`computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a denser fixed circular pupil pattern for the representative spot-diagram tiles, returning chief-ray-referenced point clouds plus centroid / RMS spot-radius metrics used by both the traced spot view and the idealized coma comparison.
+- **`computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Computes longitudinal spherical aberration by tracing a marginal ray (0.95× EP, with fallbacks to 0.90/0.85/0.80 if clipped) via exact Snell's law and comparing its axial intercept against a near-axis real-ray reference. Averages ±Y marginal rays for symmetry and solves the common best-focus plane plus residual spread metrics from the surviving bundle.
+- **`computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Samples the entrance pupil across aperture zones and returns the one-sided real-ray transverse spherical-aberration fan used by the analysis chart at the solved common best-focus plane.
+- **`computeSphericalAberrationBlurCharacter(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, baseResult?)`** — Traces standardized front/rear on-axis defocus disks around best focus using a circular pupil bundle, then reuses the bokeh radial-profile classifier so the aberrations panel can report visible edge-bright vs center-bright blur character separately from the over/under-corrected lens-state label.
+- **`computeComaPointCloudPreview(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a denser fixed circular pupil pattern for the representative spot-diagram tiles, returning chief-ray-referenced point clouds plus centroid / RMS spot-radius metrics, outer-tail bias, and sagittal-to-tangential span ratio used by both the traced spot view and the idealized coma comparison.
+- **`computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Shared coma bundle solve used by the UI hook. Reuses a state-aware solved-chief-ray field geometry plus precomputed tangential, sagittal, and circular pupil sample layouts so the current-field ray fans and representative spot-diagram preview all stay on the same off-axis model.
 - **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
 - **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes parabasal tangential and sagittal field curves from chief-ray-relative parabasal rays, plus real-ray field curves from dense bundle solves, and overlays Petzval shifts across fixed field fractions. The shared Y-scale range covers both methods. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength field curves plus a `chromaticFocusSpreadMm` summary.
 
@@ -336,12 +338,13 @@ No React dependencies — fully testable in isolation.
 
 ## bokeh.ts (src/optics/aberration/)
 
-Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles through the lens at both infinity-focus and near-focus optics, then re-intercepts surviving rays on a defocused image plane to produce the characteristic bokeh ball shape. Cat's eye vignetting and SA-driven brightness profiles emerge naturally from the ray tracing.
+Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles through the lens at both infinity-focus and near-focus optics, using a solved off-axis chief-ray launch so pupil aberration and mechanical vignetting match the vignetting/distortion analyses. The traced image-plane point cloud remains the source of truth, while derived radial profiles provide a circularized spherical-aberration brightness readout and the surviving pupil samples provide a separate mechanical-vignetting inset.
 
-- **`computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Main entry point. Returns `BokehPreviewPair` with `infinity` and `nearFocus` grids, each containing 4 field positions (0%, 25%, 50%, 75%).
-- **`computeBokehPreview(L, traceFocusT, viewFocusT, zoomT, currentEPSD, currentPhysStopSD, label)`** — Computes one grid by tracing at `traceFocusT` optics and intercepting at `viewFocusT` image plane.
-- **`computeBokehFieldFootprint(..., fieldFraction, defocusDelta)`** — Per-field computation: traces circular pupil bundle, re-intercepts at shifted plane, preserves pupil coordinates for future aperture blade masking.
-- **`buildBokehDensityGrid(points, halfRange, gridSize)`** — Reusable 2D density heatmap utility: bins points into a grid, normalises max density to 1.0. Returns only non-empty cells.
+- **`computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Main entry point. Returns `BokehPreviewPair` with `infinity` and `nearFocus` grids, each containing 4 field positions (0%, 25%, 50%, 75%). Caches layouts, best-focus planes, field-geometry state, and the circular pupil sample pattern within the paired solve.
+- **`computeBokehPreview(L, traceFocusT, sensorZ, zoomT, currentEPSD, currentPhysStopSD, label)`** — Computes one grid by tracing at `traceFocusT` optics and intercepting at the supplied absolute image-plane position.
+- **`computeBokehFieldFootprint(..., fieldFraction, sensorZ)`** — Per-field computation: traces the circular pupil bundle, builds the surviving pupil footprint, and derives the circularized radial blur profile used for brightness characterization.
+- **`buildBokehRadialProfile(points, centroidSagittal, centroidTangential, binCount)`** — Reusable annular-profile helper that converts the traced point cloud into normalized radial brightness bins.
+- **`buildBokehDensityGrid(points, halfRange, gridSize)`** — Reusable 2D density heatmap utility retained for future “full physical bokeh” / PSF-style visualizations.
 - **`ApertureBladeConfig`** — Future-proofing type for polygonal bokeh (blade count + roundedness). Not used in current computation but pupil coordinates are preserved on all traced points.
 
 ## validateLensData.ts

@@ -1,11 +1,20 @@
-import { sampleOrthogonalPupilFan } from "../optics.js";
+import {
+  computeFieldGeometryAtState,
+  sampleCircularPupil,
+  sampleOrthogonalPupilFan,
+  type CircularPupilSample,
+  type FieldGeometryState,
+  type OrthogonalPupilSample,
+} from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
+  ComaAnalysisResult,
   ComaPointCloudPoint,
   ComaPointCloudPreviewFieldResult,
   ComaPointCloudPreviewResult,
   ComaPreviewFieldResult,
   ComaPreviewResult,
+  ComaTailDirection,
   MeridionalComaResult,
   MeridionalComaSample,
   SagittalComaResult,
@@ -17,10 +26,16 @@ import {
   COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
-import { computeOffAxisFieldGeometry, traceCircularOffAxisBundle, traceOrthogonalOffAxisBundle } from "./offAxis.js";
+import {
+  computeStateAwareOffAxisFieldGeometry,
+  traceOffAxisBundleFromSamples,
+  type OffAxisBundle,
+  type OffAxisFieldGeometry,
+} from "./offAxis.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
+const COMA_TAIL_SKEW_THRESHOLD = 1.15;
 
 const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[number], string> = {
   0: "Center",
@@ -28,6 +43,13 @@ const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[nu
   0.5: "50%",
   0.75: "75%",
 };
+
+interface ComaTraceContext {
+  fieldGeometryState: FieldGeometryState;
+  tangentialPupilSamples: OrthogonalPupilSample[];
+  sagittalPupilSamples: OrthogonalPupilSample[];
+  circularPupilSamples: CircularPupilSample[];
+}
 
 interface ComaPreviewFieldMeta {
   fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
@@ -77,6 +99,9 @@ interface ComaPointCloudFieldFootprint {
   centroidSagittalImageHeight: number;
   rmsRadiusMm: number;
   rmsRadiusUm: number;
+  tailDirection: ComaTailDirection;
+  tailSkewRatio: number;
+  sagittalToTangentialRatio: number;
   points: ComaPointCloudPoint[];
 }
 
@@ -86,6 +111,15 @@ interface FixedComaPointCloudPreviewFootprint {
   footprint: ComaPointCloudFieldFootprint | null;
 }
 
+function buildComaTraceContext(L: RuntimeLens, focusT: number, zoomT: number): ComaTraceContext {
+  return {
+    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L),
+    tangentialPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential"),
+    sagittalPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal"),
+    circularPupilSamples: sampleCircularPupil(COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES),
+  };
+}
+
 function fixedComaPreviewFieldMeta(): ComaPreviewFieldMeta[] {
   return COMA_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => ({
     fieldFraction,
@@ -93,50 +127,248 @@ function fixedComaPreviewFieldMeta(): ComaPreviewFieldMeta[] {
   }));
 }
 
-function buildFixedComaPreviewFootprints(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-): FixedComaPreviewFootprint[] {
-  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
-    fieldFraction,
-    label,
-    footprint: computeMeridionalComaFieldFootprint(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldFraction,
-    ),
-  }));
+function buildComaShapeDescriptor(
+  chiefIntercept: number,
+  minRelativeTangentialImageHeight: number,
+  maxRelativeTangentialImageHeight: number,
+  minRelativeSagittalImageHeight: number,
+  maxRelativeSagittalImageHeight: number,
+  centroidTangentialImageHeight: number,
+): {
+  tailDirection: ComaTailDirection;
+  tailSkewRatio: number;
+  sagittalToTangentialRatio: number;
+} {
+  const positiveExtent = Math.max(0, maxRelativeTangentialImageHeight - centroidTangentialImageHeight);
+  const negativeExtent = Math.max(0, centroidTangentialImageHeight - minRelativeTangentialImageHeight);
+  const dominantExtent = Math.max(positiveExtent, negativeExtent);
+  const trailingExtent = Math.min(positiveExtent, negativeExtent);
+  const tailSkewRatio = trailingExtent > 1e-9 ? dominantExtent / trailingExtent : dominantExtent > 1e-9 ? 999 : 1;
+
+  let tailDirection: ComaTailDirection = "balanced";
+  if (tailSkewRatio >= COMA_TAIL_SKEW_THRESHOLD && Math.abs(chiefIntercept) > 1e-9) {
+    const dominantSign = positiveExtent > negativeExtent ? 1 : negativeExtent > positiveExtent ? -1 : 0;
+    if (dominantSign !== 0) {
+      tailDirection = Math.sign(chiefIntercept) === dominantSign ? "toward-edge" : "toward-center";
+    }
+  }
+
+  const tangentialSpan = Math.max(maxRelativeTangentialImageHeight - minRelativeTangentialImageHeight, 1e-9);
+  const sagittalSpan = Math.max(maxRelativeSagittalImageHeight - minRelativeSagittalImageHeight, 0);
+
+  return {
+    tailDirection,
+    tailSkewRatio,
+    sagittalToTangentialRatio: sagittalSpan / tangentialSpan,
+  };
 }
 
-function buildFixedComaPointCloudPreviewFootprints(
+function traceComaFieldBundle(
   L: RuntimeLens,
   zPos: number[],
   focusT: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
-): FixedComaPointCloudPreviewFootprint[] {
-  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+  fieldFraction: number,
+  traceContext: ComaTraceContext,
+  samples: readonly OrthogonalPupilSample[] | readonly CircularPupilSample[],
+): { geometry: OffAxisFieldGeometry; bundle: OffAxisBundle } | null {
+  if (currentEPSD <= 0 || L.N < 1) return null;
+
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
     fieldFraction,
-    label,
-    footprint: computeComaPointCloudFieldFootprint(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldFraction,
-    ),
+    traceContext.fieldGeometryState,
+  );
+  if (geometry === null) return null;
+
+  const bundle = traceOffAxisBundleFromSamples(samples, geometry, L, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  if (bundle === null) return null;
+
+  return { geometry, bundle };
+}
+
+function buildMeridionalComaFieldFootprintFromBundle(
+  geometry: OffAxisFieldGeometry,
+  bundle: OffAxisBundle,
+  currentEPSD: number,
+  samples: readonly OrthogonalPupilSample[],
+): MeridionalComaFieldFootprint | null {
+  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
+  const resolvedSamples: MeridionalComaFieldSample[] = samples.map((sample) => {
+    const tracedSample = tracedSamplesByIndex.get(sample.index);
+    return {
+      index: sample.index,
+      pupilFraction: sample.pupilFraction,
+      launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
+      imageHeight: tracedSample?.imagePoint.y ?? null,
+      relativeImageHeight: null,
+      clipped: tracedSample === undefined,
+    };
+  });
+  const validSamples = resolvedSamples.filter(
+    (sample): sample is MeridionalComaFieldSample & { imageHeight: number } =>
+      sample.imageHeight !== null && !sample.clipped,
+  );
+  if (validSamples.length < 3) return null;
+
+  const centerSample =
+    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
+    validSamples.reduce((best, sample) =>
+      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
+    );
+  const centerIntercept = centerSample.imageHeight;
+
+  for (const sample of resolvedSamples) {
+    sample.relativeImageHeight = sample.imageHeight === null ? null : sample.imageHeight - centerIntercept;
+  }
+
+  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
+  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
+  if (!lowerSample || !upperSample) return null;
+
+  const intercepts = validSamples.map((sample) => sample.imageHeight);
+  const relativeIntercepts = validSamples.map((sample) => sample.imageHeight - centerIntercept);
+  const spanMm = upperSample.imageHeight - lowerSample.imageHeight;
+
+  return {
+    fieldFraction: geometry.fieldFraction,
+    fieldAngleDeg: geometry.fieldAngleDeg,
+    sampleCount: bundle.sampleCount,
+    validSampleCount: validSamples.length,
+    clippedSampleCount: bundle.clippedSampleCount,
+    centerIntercept,
+    minIntercept: Math.min(...intercepts),
+    maxIntercept: Math.max(...intercepts),
+    minRelativeIntercept: Math.min(...relativeIntercepts),
+    maxRelativeIntercept: Math.max(...relativeIntercepts),
+    lowerIntercept: lowerSample.imageHeight,
+    upperIntercept: upperSample.imageHeight,
+    spanMm,
+    spanUm: spanMm * 1000,
+    samples: resolvedSamples,
+  };
+}
+
+function buildSagittalComaResultFromBundle(
+  geometry: OffAxisFieldGeometry,
+  bundle: OffAxisBundle,
+  currentEPSD: number,
+  samples: readonly OrthogonalPupilSample[],
+): SagittalComaResult | null {
+  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
+  const resolvedSamples: SagittalComaSample[] = samples.map((sample) => {
+    const tracedSample = tracedSamplesByIndex.get(sample.index);
+    return {
+      index: sample.index,
+      pupilFraction: sample.pupilFraction,
+      launchX: sample.xFraction * currentEPSD,
+      imageX: tracedSample?.imagePoint.x ?? null,
+      clipped: tracedSample === undefined,
+    };
+  });
+  const validSamples = resolvedSamples.filter(
+    (sample): sample is SagittalComaSample & { imageX: number } => sample.imageX !== null && !sample.clipped,
+  );
+  if (validSamples.length < 3) return null;
+
+  const centerSample =
+    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
+    validSamples.reduce((best, sample) =>
+      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
+    );
+  const centerIntercept = centerSample.imageX;
+
+  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
+  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
+  if (!lowerSample || !upperSample) return null;
+
+  const intercepts = validSamples.map((sample) => sample.imageX);
+  const spanMm = upperSample.imageX - lowerSample.imageX;
+
+  return {
+    fieldAngleDeg: geometry.fieldAngleDeg,
+    sampleCount: bundle.sampleCount,
+    validSampleCount: validSamples.length,
+    clippedSampleCount: bundle.clippedSampleCount,
+    centerIntercept,
+    minIntercept: Math.min(...intercepts),
+    maxIntercept: Math.max(...intercepts),
+    spanMm,
+    spanUm: spanMm * 1000,
+    lowerIntercept: lowerSample.imageX,
+    upperIntercept: upperSample.imageX,
+    samples: resolvedSamples,
+  };
+}
+
+function buildComaPointCloudFieldFootprintFromBundle(
+  geometry: OffAxisFieldGeometry,
+  bundle: OffAxisBundle,
+): ComaPointCloudFieldFootprint | null {
+  const points: ComaPointCloudPoint[] = bundle.samples.map((sample, index) => ({
+    index,
+    sourceSampleIndex: sample.sourceSampleIndex,
+    tangentialImageHeight: sample.imagePoint.y - bundle.chiefRay.imagePoint.y,
+    sagittalImageHeight: sample.imagePoint.x - bundle.chiefRay.imagePoint.x,
+    weight: sample.weight ?? 0,
   }));
+  if (points.length < COMA_POINT_CLOUD_MIN_VALID_SAMPLES) return null;
+
+  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
+  if (totalWeight <= 1e-12) return null;
+
+  const tangentialHeights = points.map((point) => point.tangentialImageHeight);
+  const sagittalHeights = points.map((point) => point.sagittalImageHeight);
+  const centroidTangentialImageHeight =
+    points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
+  const centroidSagittalImageHeight =
+    points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
+  const rmsRadiusMm = Math.sqrt(
+    points.reduce((sum, point) => {
+      const dx = point.tangentialImageHeight - centroidTangentialImageHeight;
+      const dy = point.sagittalImageHeight - centroidSagittalImageHeight;
+      return sum + point.weight * (dx * dx + dy * dy);
+    }, 0) / totalWeight,
+  );
+
+  const minRelativeTangentialImageHeight = Math.min(...tangentialHeights);
+  const maxRelativeTangentialImageHeight = Math.max(...tangentialHeights);
+  const minRelativeSagittalImageHeight = Math.min(...sagittalHeights);
+  const maxRelativeSagittalImageHeight = Math.max(...sagittalHeights);
+  const { tailDirection, tailSkewRatio, sagittalToTangentialRatio } = buildComaShapeDescriptor(
+    bundle.chiefRay.imagePoint.y,
+    minRelativeTangentialImageHeight,
+    maxRelativeTangentialImageHeight,
+    minRelativeSagittalImageHeight,
+    maxRelativeSagittalImageHeight,
+    centroidTangentialImageHeight,
+  );
+
+  return {
+    fieldFraction: geometry.fieldFraction,
+    fieldAngleDeg: geometry.fieldAngleDeg,
+    sampleCount: bundle.sampleCount,
+    validSampleCount: bundle.validSampleCount,
+    clippedSampleCount: bundle.clippedSampleCount,
+    chiefIntercept: bundle.chiefRay.imagePoint.y,
+    minRelativeTangentialImageHeight,
+    maxRelativeTangentialImageHeight,
+    minRelativeSagittalImageHeight,
+    maxRelativeSagittalImageHeight,
+    centroidTangentialImageHeight,
+    centroidSagittalImageHeight,
+    rmsRadiusMm,
+    rmsRadiusUm: rmsRadiusMm * 1000,
+    tailDirection,
+    tailSkewRatio,
+    sagittalToTangentialRatio,
+    points,
+  };
 }
 
 function emptyComaPreviewFieldResult({ fieldFraction, label }: ComaPreviewFieldMeta): ComaPreviewFieldResult {
@@ -206,6 +438,9 @@ function emptyComaPointCloudPreviewFieldResult({
     centroidSagittalImageHeight: 0,
     rmsRadiusMm: 0,
     rmsRadiusUm: 0,
+    tailDirection: "balanced",
+    tailSkewRatio: 1,
+    sagittalToTangentialRatio: 0,
     points: [],
     usable: false,
   };
@@ -236,6 +471,9 @@ function comaPointCloudPreviewFieldResultFromFootprint({
     centroidSagittalImageHeight: footprint.centroidSagittalImageHeight,
     rmsRadiusMm: footprint.rmsRadiusMm,
     rmsRadiusUm: footprint.rmsRadiusUm,
+    tailDirection: footprint.tailDirection,
+    tailSkewRatio: footprint.tailSkewRatio,
+    sagittalToTangentialRatio: footprint.sagittalToTangentialRatio,
     points: footprint.points,
     usable: true,
   };
@@ -249,82 +487,58 @@ function computeMeridionalComaFieldFootprint(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldFraction: number,
+  traceContext = buildComaTraceContext(L, focusT, zoomT),
 ): MeridionalComaFieldFootprint | null {
-  if (currentEPSD <= 0 || L.N < 1) return null;
-
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
-  if (geometry === null) return null;
-
-  const bundle = traceOrthogonalOffAxisBundle(
-    "tangential",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
-    geometry,
+  const tracedField = traceComaFieldBundle(
     L,
+    zPos,
     focusT,
     zoomT,
     currentEPSD,
     currentPhysStopSD,
-  );
-  if (bundle === null) return null;
-
-  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
-  const samples: MeridionalComaFieldSample[] = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential").map(
-    (sample) => {
-      const tracedSample = tracedSamplesByIndex.get(sample.index);
-      return {
-        index: sample.index,
-        pupilFraction: sample.pupilFraction,
-        launchHeight: geometry.yChief + sample.yFraction * currentEPSD,
-        imageHeight: tracedSample?.imagePoint.y ?? null,
-        relativeImageHeight: null,
-        clipped: tracedSample === undefined,
-      };
-    },
-  );
-  const validSamples = samples.filter(
-    (sample): sample is MeridionalComaFieldSample & { imageHeight: number } =>
-      sample.imageHeight !== null && !sample.clipped,
-  );
-
-  if (validSamples.length < 3) return null;
-
-  const centerSample =
-    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
-    validSamples.reduce((best, sample) =>
-      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
-    );
-  const centerIntercept = centerSample.imageHeight;
-
-  for (const sample of samples) {
-    sample.relativeImageHeight = sample.imageHeight === null ? null : sample.imageHeight - centerIntercept;
-  }
-
-  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
-  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
-
-  if (!lowerSample || !upperSample) return null;
-
-  const intercepts = validSamples.map((sample) => sample.imageHeight);
-  const relativeIntercepts = validSamples.map((sample) => sample.imageHeight - centerIntercept);
-  const spanMm = upperSample.imageHeight - lowerSample.imageHeight;
-
-  return {
     fieldFraction,
-    fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: bundle.sampleCount,
-    validSampleCount: validSamples.length,
-    clippedSampleCount: bundle.clippedSampleCount,
-    centerIntercept,
-    minIntercept: Math.min(...intercepts),
-    maxIntercept: Math.max(...intercepts),
-    minRelativeIntercept: Math.min(...relativeIntercepts),
-    maxRelativeIntercept: Math.max(...relativeIntercepts),
-    lowerIntercept: lowerSample.imageHeight,
-    upperIntercept: upperSample.imageHeight,
-    spanMm,
-    spanUm: spanMm * 1000,
-    samples,
-  };
+    traceContext,
+    traceContext.tangentialPupilSamples,
+  );
+  if (tracedField === null) return null;
+
+  return buildMeridionalComaFieldFootprintFromBundle(
+    tracedField.geometry,
+    tracedField.bundle,
+    currentEPSD,
+    traceContext.tangentialPupilSamples,
+  );
+}
+
+function computeSagittalComaResultAtField(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  fieldFraction: number,
+  traceContext = buildComaTraceContext(L, focusT, zoomT),
+): SagittalComaResult | null {
+  const tracedField = traceComaFieldBundle(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    fieldFraction,
+    traceContext,
+    traceContext.sagittalPupilSamples,
+  );
+  if (tracedField === null || tracedField.geometry.fieldAngleDeg <= 0) return null;
+
+  return buildSagittalComaResultFromBundle(
+    tracedField.geometry,
+    tracedField.bundle,
+    currentEPSD,
+    traceContext.sagittalPupilSamples,
+  );
 }
 
 function computeComaPointCloudFieldFootprint(
@@ -335,64 +549,154 @@ function computeComaPointCloudFieldFootprint(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldFraction: number,
+  traceContext = buildComaTraceContext(L, focusT, zoomT),
 ): ComaPointCloudFieldFootprint | null {
-  if (currentEPSD <= 0 || L.N < 1) return null;
-
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
-  if (geometry === null) return null;
-
-  const bundle = traceCircularOffAxisBundle(
-    COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
-    geometry,
+  const tracedField = traceComaFieldBundle(
     L,
+    zPos,
     focusT,
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    fieldFraction,
+    traceContext,
+    traceContext.circularPupilSamples,
   );
-  if (bundle === null) return null;
+  if (tracedField === null) return null;
 
-  const points: ComaPointCloudPoint[] = bundle.samples.map((sample, index) => ({
-    index,
-    sourceSampleIndex: sample.sourceSampleIndex,
-    tangentialImageHeight: sample.imagePoint.y - bundle.chiefRay.imagePoint.y,
-    sagittalImageHeight: sample.imagePoint.x - bundle.chiefRay.imagePoint.x,
-    weight: sample.weight ?? 0,
+  return buildComaPointCloudFieldFootprintFromBundle(tracedField.geometry, tracedField.bundle);
+}
+
+function buildFixedComaPreviewFootprints(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  traceContext: ComaTraceContext,
+): FixedComaPreviewFootprint[] {
+  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+    fieldFraction,
+    label,
+    footprint: computeMeridionalComaFieldFootprint(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldFraction,
+      traceContext,
+    ),
   }));
+}
 
-  if (points.length < COMA_POINT_CLOUD_MIN_VALID_SAMPLES) return null;
+function buildFixedComaPointCloudPreviewFootprints(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  traceContext: ComaTraceContext,
+): FixedComaPointCloudPreviewFootprint[] {
+  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+    fieldFraction,
+    label,
+    footprint: computeComaPointCloudFieldFootprint(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldFraction,
+      traceContext,
+    ),
+  }));
+}
 
-  const tangentialHeights = points.map((point) => point.tangentialImageHeight);
-  const sagittalHeights = points.map((point) => point.sagittalImageHeight);
-  const totalWeight = points.reduce((sum, point) => sum + point.weight, 0);
-  const centroidTangentialImageHeight =
-    points.reduce((sum, point) => sum + point.tangentialImageHeight * point.weight, 0) / totalWeight;
-  const centroidSagittalImageHeight =
-    points.reduce((sum, point) => sum + point.sagittalImageHeight * point.weight, 0) / totalWeight;
-  const rmsRadiusMm = Math.sqrt(
-    points.reduce((sum, point) => {
-      const dx = point.tangentialImageHeight - centroidTangentialImageHeight;
-      const dy = point.sagittalImageHeight - centroidSagittalImageHeight;
-      return sum + point.weight * (dx * dx + dy * dy);
-    }, 0) / totalWeight,
+function computeComaPreviewFromContext(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  traceContext: ComaTraceContext,
+): ComaPreviewResult | null {
+  const fields = buildFixedComaPreviewFootprints(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    traceContext,
+  ).map(comaPreviewFieldResultFromFootprint);
+
+  const usableFields = fields.filter((field) => field.usable);
+  if (usableFields.length < 2) return null;
+
+  const sharedRelativeHalfRangeMm = Math.max(
+    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
+    ...usableFields.map((field) =>
+      Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept)),
+    ),
   );
 
   return {
-    fieldFraction,
-    fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: bundle.sampleCount,
-    validSampleCount: bundle.validSampleCount,
-    clippedSampleCount: bundle.clippedSampleCount,
-    chiefIntercept: bundle.chiefRay.imagePoint.y,
-    minRelativeTangentialImageHeight: Math.min(...tangentialHeights),
-    maxRelativeTangentialImageHeight: Math.max(...tangentialHeights),
-    minRelativeSagittalImageHeight: Math.min(...sagittalHeights),
-    maxRelativeSagittalImageHeight: Math.max(...sagittalHeights),
-    centroidTangentialImageHeight,
-    centroidSagittalImageHeight,
-    rmsRadiusMm,
-    rmsRadiusUm: rmsRadiusMm * 1000,
-    points,
+    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fields,
+    sharedRelativeHalfRangeMm,
+    usableFieldCount: usableFields.length,
+  };
+}
+
+function computeComaPointCloudPreviewFromContext(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  traceContext: ComaTraceContext,
+): ComaPointCloudPreviewResult | null {
+  const fields = buildFixedComaPointCloudPreviewFootprints(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    traceContext,
+  ).map(comaPointCloudPreviewFieldResultFromFootprint);
+
+  const usableFields = fields.filter((field) => field.usable);
+  if (usableFields.length < 2) return null;
+
+  const sharedTangentialHalfRangeMm = Math.max(
+    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
+    ...usableFields.map((field) =>
+      Math.max(Math.abs(field.minRelativeTangentialImageHeight), Math.abs(field.maxRelativeTangentialImageHeight)),
+    ),
+  );
+  const sharedSagittalHalfRangeMm = Math.max(
+    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
+    ...usableFields.map((field) =>
+      Math.max(Math.abs(field.minRelativeSagittalImageHeight), Math.abs(field.maxRelativeSagittalImageHeight)),
+    ),
+  );
+  const sharedSpotHalfRangeMm = Math.max(sharedTangentialHalfRangeMm, sharedSagittalHalfRangeMm);
+
+  return {
+    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fields,
+    sharedTangentialHalfRangeMm,
+    sharedSagittalHalfRangeMm,
+    sharedSpotHalfRangeMm,
+    usableFieldCount: usableFields.length,
   };
 }
 
@@ -404,6 +708,7 @@ export function computeMeridionalComa(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): MeridionalComaResult | null {
+  const traceContext = buildComaTraceContext(L, focusT, zoomT);
   const footprint = computeMeridionalComaFieldFootprint(
     L,
     zPos,
@@ -412,6 +717,7 @@ export function computeMeridionalComa(
     currentEPSD,
     currentPhysStopSD,
     L.offAxisFieldFrac,
+    traceContext,
   );
   if (footprint === null || footprint.fieldAngleDeg <= 0) return null;
 
@@ -439,26 +745,15 @@ export function computeComaPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): ComaPreviewResult | null {
-  const fields = buildFixedComaPreviewFootprints(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD).map(
-    comaPreviewFieldResultFromFootprint,
+  return computeComaPreviewFromContext(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    buildComaTraceContext(L, focusT, zoomT),
   );
-
-  const usableFields = fields.filter((field) => field.usable);
-  if (usableFields.length < 2) return null;
-
-  const sharedRelativeHalfRangeMm = Math.max(
-    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
-    ...usableFields.map((field) =>
-      Math.max(Math.abs(field.minRelativeIntercept), Math.abs(field.maxRelativeIntercept)),
-    ),
-  );
-
-  return {
-    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
-    fields,
-    sharedRelativeHalfRangeMm,
-    usableFieldCount: usableFields.length,
-  };
 }
 
 export function computeSagittalComa(
@@ -469,72 +764,16 @@ export function computeSagittalComa(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): SagittalComaResult | null {
-  if (currentEPSD <= 0 || L.N < 1) return null;
-
-  const fieldFraction = L.offAxisFieldFrac;
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, fieldFraction);
-  if (geometry === null || geometry.fieldAngleDeg <= 0) return null;
-
-  const bundle = traceOrthogonalOffAxisBundle(
-    "sagittal",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
-    geometry,
+  return computeSagittalComaResultAtField(
     L,
+    zPos,
     focusT,
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    L.offAxisFieldFrac,
+    buildComaTraceContext(L, focusT, zoomT),
   );
-  if (bundle === null) return null;
-
-  const tracedSamplesByIndex = new Map(bundle.samples.map((sample) => [sample.sourceSampleIndex, sample]));
-  const samples: SagittalComaSample[] = sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal").map(
-    (sample) => {
-      const tracedSample = tracedSamplesByIndex.get(sample.index);
-      return {
-        index: sample.index,
-        pupilFraction: sample.pupilFraction,
-        launchX: sample.xFraction * currentEPSD,
-        imageX: tracedSample?.imagePoint.x ?? null,
-        clipped: tracedSample === undefined,
-      };
-    },
-  );
-  const validSamples = samples.filter(
-    (sample): sample is SagittalComaSample & { imageX: number } => sample.imageX !== null && !sample.clipped,
-  );
-
-  if (validSamples.length < 3) return null;
-
-  const centerSample =
-    validSamples.find((sample) => Math.abs(sample.pupilFraction) < 1e-9) ??
-    validSamples.reduce((best, sample) =>
-      Math.abs(sample.pupilFraction) < Math.abs(best.pupilFraction) ? sample : best,
-    );
-  const centerIntercept = centerSample.imageX;
-
-  const lowerSample = validSamples.find((sample) => sample.pupilFraction < 0) ?? null;
-  const upperSample = [...validSamples].reverse().find((sample) => sample.pupilFraction > 0) ?? null;
-
-  if (!lowerSample || !upperSample) return null;
-
-  const intercepts = validSamples.map((sample) => sample.imageX);
-  const spanMm = upperSample.imageX - lowerSample.imageX;
-
-  return {
-    fieldAngleDeg: geometry.fieldAngleDeg,
-    sampleCount: bundle.sampleCount,
-    validSampleCount: validSamples.length,
-    clippedSampleCount: bundle.clippedSampleCount,
-    centerIntercept,
-    minIntercept: Math.min(...intercepts),
-    maxIntercept: Math.max(...intercepts),
-    spanMm,
-    spanUm: spanMm * 1000,
-    lowerIntercept: lowerSample.imageX,
-    upperIntercept: upperSample.imageX,
-    samples,
-  };
 }
 
 export function computeComaPointCloudPreview(
@@ -545,33 +784,75 @@ export function computeComaPointCloudPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
 ): ComaPointCloudPreviewResult | null {
-  const fields = buildFixedComaPointCloudPreviewFootprints(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD).map(
-    comaPointCloudPreviewFieldResultFromFootprint,
+  return computeComaPointCloudPreviewFromContext(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    buildComaTraceContext(L, focusT, zoomT),
   );
+}
 
-  const usableFields = fields.filter((field) => field.usable);
-  if (usableFields.length < 2) return null;
-
-  const sharedTangentialHalfRangeMm = Math.max(
-    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
-    ...usableFields.map((field) =>
-      Math.max(Math.abs(field.minRelativeTangentialImageHeight), Math.abs(field.maxRelativeTangentialImageHeight)),
-    ),
+export function computeComaAnalysis(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+): ComaAnalysisResult {
+  const traceContext = buildComaTraceContext(L, focusT, zoomT);
+  const meridionalFootprint = computeMeridionalComaFieldFootprint(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    L.offAxisFieldFrac,
+    traceContext,
   );
-  const sharedSagittalHalfRangeMm = Math.max(
-    COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM,
-    ...usableFields.map((field) =>
-      Math.max(Math.abs(field.minRelativeSagittalImageHeight), Math.abs(field.maxRelativeSagittalImageHeight)),
-    ),
-  );
-  const sharedSpotHalfRangeMm = Math.max(sharedTangentialHalfRangeMm, sharedSagittalHalfRangeMm);
 
   return {
-    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
-    fields,
-    sharedTangentialHalfRangeMm,
-    sharedSagittalHalfRangeMm,
-    sharedSpotHalfRangeMm,
-    usableFieldCount: usableFields.length,
+    meridionalComa:
+      meridionalFootprint === null || meridionalFootprint.fieldAngleDeg <= 0
+        ? null
+        : {
+            fieldAngleDeg: meridionalFootprint.fieldAngleDeg,
+            sampleCount: meridionalFootprint.sampleCount,
+            validSampleCount: meridionalFootprint.validSampleCount,
+            clippedSampleCount: meridionalFootprint.clippedSampleCount,
+            centerIntercept: meridionalFootprint.centerIntercept,
+            minIntercept: meridionalFootprint.minIntercept,
+            maxIntercept: meridionalFootprint.maxIntercept,
+            spanMm: meridionalFootprint.spanMm,
+            spanUm: meridionalFootprint.spanUm,
+            lowerIntercept: meridionalFootprint.lowerIntercept,
+            upperIntercept: meridionalFootprint.upperIntercept,
+            samples: meridionalFootprint.samples.map(
+              ({ relativeImageHeight: _relativeImageHeight, ...sample }) => sample,
+            ),
+          },
+    sagittalComa: computeSagittalComaResultAtField(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      L.offAxisFieldFrac,
+      traceContext,
+    ),
+    pointCloudPreview: computeComaPointCloudPreviewFromContext(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      traceContext,
+    ),
   };
 }

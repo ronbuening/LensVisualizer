@@ -37,7 +37,14 @@ function meridionalResult(): ComaPreviewResult {
         maxRelativeIntercept: 0.1,
         usable: true,
         samples: [
-          { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.1, relativeImageHeight: -0.1, clipped: false },
+          {
+            index: 0,
+            pupilFraction: -1,
+            launchHeight: -10,
+            imageHeight: -0.1,
+            relativeImageHeight: -0.1,
+            clipped: false,
+          },
           { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
           { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.1, relativeImageHeight: 0.1, clipped: false },
         ],
@@ -54,9 +61,23 @@ function meridionalResult(): ComaPreviewResult {
         maxRelativeIntercept: 0.08,
         usable: true,
         samples: [
-          { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.08, relativeImageHeight: -0.08, clipped: false },
+          {
+            index: 0,
+            pupilFraction: -1,
+            launchHeight: -10,
+            imageHeight: -0.08,
+            relativeImageHeight: -0.08,
+            clipped: false,
+          },
           { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
-          { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.08, relativeImageHeight: 0.08, clipped: false },
+          {
+            index: 50,
+            pupilFraction: 1,
+            launchHeight: 10,
+            imageHeight: 0.08,
+            relativeImageHeight: 0.08,
+            clipped: false,
+          },
         ],
       },
       {
@@ -71,9 +92,23 @@ function meridionalResult(): ComaPreviewResult {
         maxRelativeIntercept: 0.06,
         usable: true,
         samples: [
-          { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.06, relativeImageHeight: -0.06, clipped: false },
+          {
+            index: 0,
+            pupilFraction: -1,
+            launchHeight: -10,
+            imageHeight: -0.06,
+            relativeImageHeight: -0.06,
+            clipped: false,
+          },
           { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
-          { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.06, relativeImageHeight: 0.06, clipped: false },
+          {
+            index: 50,
+            pupilFraction: 1,
+            launchHeight: 10,
+            imageHeight: 0.06,
+            relativeImageHeight: 0.06,
+            clipped: false,
+          },
         ],
       },
       {
@@ -88,9 +123,23 @@ function meridionalResult(): ComaPreviewResult {
         maxRelativeIntercept: 0.04,
         usable: true,
         samples: [
-          { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: -0.04, relativeImageHeight: -0.04, clipped: false },
+          {
+            index: 0,
+            pupilFraction: -1,
+            launchHeight: -10,
+            imageHeight: -0.04,
+            relativeImageHeight: -0.04,
+            clipped: false,
+          },
           { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: 0, relativeImageHeight: 0, clipped: false },
-          { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: 0.04, relativeImageHeight: 0.04, clipped: false },
+          {
+            index: 50,
+            pupilFraction: 1,
+            launchHeight: 10,
+            imageHeight: 0.04,
+            relativeImageHeight: 0.04,
+            clipped: false,
+          },
         ],
       },
     ],
@@ -121,6 +170,9 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0,
         rmsRadiusMm: 0.03,
         rmsRadiusUm: 30,
+        tailDirection: "balanced",
+        tailSkewRatio: 1,
+        sagittalToTangentialRatio: 0.4,
         usable: true,
         points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.1, sagittalImageHeight: 0, weight: 0.2 }],
       },
@@ -140,6 +192,9 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0.01,
         rmsRadiusMm: 0.05,
         rmsRadiusUm: 50,
+        tailDirection: "toward-center",
+        tailSkewRatio: 1.6,
+        sagittalToTangentialRatio: 0.25,
         usable: true,
         points: [{ index: 0, sourceSampleIndex: 0, tangentialImageHeight: 0.2, sagittalImageHeight: 0, weight: 0.2 }],
       },
@@ -159,6 +214,9 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0,
         rmsRadiusMm: 0,
         rmsRadiusUm: 0,
+        tailDirection: "balanced",
+        tailSkewRatio: 1,
+        sagittalToTangentialRatio: 0,
         usable: false,
         points: [],
       },
@@ -178,15 +236,22 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0.01,
         rmsRadiusMm: 0.04,
         rmsRadiusUm: 40,
+        tailDirection: "toward-edge",
+        tailSkewRatio: 1.4,
+        sagittalToTangentialRatio: 2,
         usable: true,
-        points: [{ index: 0, sourceSampleIndex: 12, tangentialImageHeight: -0.05, sagittalImageHeight: 0.05, weight: 0.1 }],
+        points: [
+          { index: 0, sourceSampleIndex: 12, tangentialImageHeight: -0.05, sagittalImageHeight: 0.05, weight: 0.1 },
+        ],
       },
     ],
   };
 }
 
 function verticalAxisX(tile: Element): number {
-  const axis = Array.from(tile.querySelectorAll("line")).find((line) => line.getAttribute("x1") === line.getAttribute("x2"));
+  const axis = Array.from(tile.querySelectorAll("line")).find(
+    (line) => line.getAttribute("x1") === line.getAttribute("x2"),
+  );
   expect(axis).toBeTruthy();
   return Number(axis!.getAttribute("x1"));
 }
@@ -199,26 +264,36 @@ describe("ComaPreviewGrid", () => {
     expect(screen.getAllByText("25%").length).toBeGreaterThan(0);
     expect(screen.getAllByText("50%").length).toBeGreaterThan(0);
     expect(screen.getAllByText("75%").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Chief-ray-centered image height (mm)").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Chief-ray-centered").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("image height (mm)").length).toBeGreaterThan(0);
   });
 
   it("renders point-cloud tiles with shared axis copy", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
-    expect(screen.getAllByText("Traced real-ray spot plot").length).toBeGreaterThan(0);
-    expect(screen.getByText("Sagittal (horiz.) / tangential (vert.) scale relative to chief ray (mm)")).toBeTruthy();
-    expect(screen.getByText("Crosshair = chief-ray reference")).toBeTruthy();
-    expect(screen.getByText("Diamond = centroid")).toBeTruthy();
-    expect(screen.getByText("Circle = RMS radius")).toBeTruthy();
-    expect(screen.getByText("Dot size / opacity = sample weight")).toBeTruthy();
+    expect(screen.getAllByText("Traced real-ray").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("spot plot").length).toBeGreaterThan(0);
+    expect(screen.getByText("Sagittal (horiz.) / tangential (vert.)")).toBeTruthy();
+    expect(screen.getByText("scale relative to chief ray (mm)")).toBeTruthy();
+    expect(screen.getByText("Crosshair")).toBeTruthy();
+    expect(screen.getByText("chief-ray ref.")).toBeTruthy();
+    expect(screen.getByText("Diamond")).toBeTruthy();
+    expect(screen.getByText("centroid")).toBeTruthy();
+    expect(screen.getByText("Circle")).toBeTruthy();
+    expect(screen.getByText("RMS radius")).toBeTruthy();
+    expect(screen.getByText("Dot size / opacity")).toBeTruthy();
+    expect(screen.getByText("sample weight")).toBeTruthy();
   });
 
   it("renders an idealized comparison view for point-cloud previews", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" pointCloudStyle="idealized" />);
 
-    expect(screen.getAllByText("Idealized coma sketch").length).toBeGreaterThan(0);
-    expect(screen.getByText("Outline = idealized coma footprint")).toBeTruthy();
-    expect(screen.getByText("Diamond = centroid")).toBeTruthy();
+    expect(screen.getAllByText("Idealized").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("coma sketch").length).toBeGreaterThan(0);
+    expect(screen.getByText("Outline")).toBeTruthy();
+    expect(screen.getByText("idealized footprint")).toBeTruthy();
+    expect(screen.getByText("Diamond")).toBeTruthy();
+    expect(screen.getByText("centroid")).toBeTruthy();
   });
 
   it("applies the shared tangential normalization across point-cloud tiles", () => {
