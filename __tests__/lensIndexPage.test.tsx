@@ -55,10 +55,30 @@ describe("LensIndexPage", () => {
        rather than relying only on the slider behavior. */
     fireEvent.blur(screen.getByLabelText("Minimum patent year value"));
 
-    expect(screen.getByText(/Showing 1 of \d+ interactive optical cross-section diagrams/i)).toBeTruthy();
+    const expectedNikonEntries = CATALOG_ENTRIES.filter((entry) =>
+      matchesCustomFilter(
+        entry,
+        {
+          ...defaultCustomFilter(FILTER_BOUNDS),
+          makerSlugs: ["nikon"],
+          patentYearMin: 2024,
+        },
+        FILTER_BOUNDS,
+      ),
+    );
+
+    expect(
+      screen.getByText(
+        new RegExp(`Showing ${expectedNikonEntries.length} of \\d+ interactive optical cross-section diagrams`, "i"),
+      ),
+    ).toBeTruthy();
     expect(screen.getByRole("link", { name: /NIKON NIKKOR Z 135mm f\/1.8 S Plena/i })).toBeTruthy();
     expect(screen.queryByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeNull();
     expect(screen.queryByRole("link", { name: /CANON SERENAR 35mm f\/3.2/i })).toBeNull();
+    for (const entry of expectedNikonEntries) {
+      const escapedName = entry.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      expect(screen.getByRole("link", { name: new RegExp(escapedName) })).toBeTruthy();
+    }
 
     fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));
 
