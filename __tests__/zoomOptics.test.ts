@@ -1,5 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { yRatioAtZoom, bAtZoom, eflAtZoom, epAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
+import {
+  yRatioAtZoom,
+  bAtZoom,
+  eflAtZoom,
+  epAtZoom,
+  halfFieldAtZoom,
+  epZRelStopAtZoom,
+  xpZRelLastSurfAtZoom,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
@@ -7,8 +15,24 @@ import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Minimal mock helpers ── */
 
-function makeNonZoomLens(yRatio = 0.75, B = 8.5, EFL = 50, epSD = 12, halfField = 23): RuntimeLens {
-  return { isZoom: false, EP: { yRatio, epSD }, B, EFL, halfField } as unknown as RuntimeLens;
+function makeNonZoomLens(
+  yRatio = 0.75,
+  B = 8.5,
+  EFL = 50,
+  epSD = 12,
+  halfField = 23,
+  epZRelStop = -10,
+  xpZRelLastSurf = 20,
+): RuntimeLens {
+  return {
+    isZoom: false,
+    EP: { yRatio, epSD },
+    B,
+    EFL,
+    halfField,
+    epZRelStop,
+    xpZRelLastSurf,
+  } as unknown as RuntimeLens;
 }
 
 function makeZoomLens(
@@ -17,6 +41,8 @@ function makeZoomLens(
   efls: number[] = [70, 200],
   eps: number[] = [25, 25],
   halfFields: number[] = [17, 6.2],
+  epZRelStops: number[] = [-5, -15],
+  xpZRelLastSurfs: number[] = [30, 10],
 ): RuntimeLens {
   return {
     isZoom: true,
@@ -25,6 +51,8 @@ function makeZoomLens(
     zoomEFLs: efls,
     zoomEPs: eps,
     zoomHalfFields: halfFields,
+    zoomEpZRelStops: epZRelStops,
+    zoomXpZRelLastSurfs: xpZRelLastSurfs,
   } as unknown as RuntimeLens;
 }
 
@@ -355,5 +383,128 @@ describe("eflAtZoom / epAtZoom / halfFieldAtZoom — production zoom lens (Nikko
     const wide = halfFieldAtZoom(0, L);
     const tele = halfFieldAtZoom(1, L);
     expect(wide).toBeGreaterThan(tele);
+  });
+});
+
+/* ── epZRelStopAtZoom ── */
+
+describe("epZRelStopAtZoom — non-zoom lens", () => {
+  it("returns L.epZRelStop regardless of zoomT", () => {
+    const L = makeNonZoomLens(0.75, 8.5, 50, 12, 23, -10, 20);
+    expect(epZRelStopAtZoom(0, L)).toBe(-10);
+    expect(epZRelStopAtZoom(0.5, L)).toBe(-10);
+    expect(epZRelStopAtZoom(1, L)).toBe(-10);
+  });
+});
+
+describe("epZRelStopAtZoom — zoom lens", () => {
+  it("returns first value at zoomT = 0", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15]);
+    expect(epZRelStopAtZoom(0, L)).toBeCloseTo(-5, 10);
+  });
+
+  it("returns last value at zoomT = 1", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15]);
+    expect(epZRelStopAtZoom(1, L)).toBeCloseTo(-15, 10);
+  });
+
+  it("interpolates linearly at zoomT = 0.5", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15]);
+    expect(epZRelStopAtZoom(0.5, L)).toBeCloseTo(-10, 10);
+  });
+
+  it("handles three-position zoom", () => {
+    const L = makeZoomLens([0.3, 0.6, 0.9], [2, 5, 8], [24, 70, 120], [20, 18, 16], [42, 17, 10], [-5, -10, -20]);
+    expect(epZRelStopAtZoom(0, L)).toBeCloseTo(-5, 10);
+    expect(epZRelStopAtZoom(0.5, L)).toBeCloseTo(-10, 10);
+    expect(epZRelStopAtZoom(1, L)).toBeCloseTo(-20, 10);
+  });
+});
+
+/* ── xpZRelLastSurfAtZoom ── */
+
+describe("xpZRelLastSurfAtZoom — non-zoom lens", () => {
+  it("returns L.xpZRelLastSurf regardless of zoomT", () => {
+    const L = makeNonZoomLens(0.75, 8.5, 50, 12, 23, -10, 20);
+    expect(xpZRelLastSurfAtZoom(0, L)).toBe(20);
+    expect(xpZRelLastSurfAtZoom(0.5, L)).toBe(20);
+    expect(xpZRelLastSurfAtZoom(1, L)).toBe(20);
+  });
+});
+
+describe("xpZRelLastSurfAtZoom — zoom lens", () => {
+  it("returns first value at zoomT = 0", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15], [30, 10]);
+    expect(xpZRelLastSurfAtZoom(0, L)).toBeCloseTo(30, 10);
+  });
+
+  it("returns last value at zoomT = 1", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15], [30, 10]);
+    expect(xpZRelLastSurfAtZoom(1, L)).toBeCloseTo(10, 10);
+  });
+
+  it("interpolates linearly at zoomT = 0.5", () => {
+    const L = makeZoomLens([0.4, 0.9], [3, 9], [70, 200], [25, 25], [17, 6.2], [-5, -15], [30, 10]);
+    expect(xpZRelLastSurfAtZoom(0.5, L)).toBeCloseTo(20, 10);
+  });
+
+  it("handles three-position zoom", () => {
+    const L = makeZoomLens(
+      [0.3, 0.6, 0.9],
+      [2, 5, 8],
+      [24, 70, 120],
+      [20, 18, 16],
+      [42, 17, 10],
+      [-5, -10, -20],
+      [50, 30, 10],
+    );
+    expect(xpZRelLastSurfAtZoom(0, L)).toBeCloseTo(50, 10);
+    expect(xpZRelLastSurfAtZoom(0.5, L)).toBeCloseTo(30, 10);
+    expect(xpZRelLastSurfAtZoom(1, L)).toBeCloseTo(10, 10);
+  });
+});
+
+/* ── epZRelStopAtZoom / xpZRelLastSurfAtZoom — production zoom lens ── */
+
+describe("epZRelStopAtZoom / xpZRelLastSurfAtZoom — production zoom lens (Nikkor Z 70-200mm f/2.8)", () => {
+  const NikkorZ70200 = { ...LENS_DEFAULTS, ...NikkorZ70200Raw } as LensData;
+  const L = buildLens(NikkorZ70200);
+
+  it("L.zoomEpZRelStops is a non-empty array of finite values", () => {
+    expect(Array.isArray(L.zoomEpZRelStops)).toBe(true);
+    expect(L.zoomEpZRelStops!.length).toBeGreaterThan(0);
+    for (const v of L.zoomEpZRelStops!) {
+      expect(isFinite(v)).toBe(true);
+    }
+  });
+
+  it("L.zoomXpZRelLastSurfs is a non-empty array of finite values", () => {
+    expect(Array.isArray(L.zoomXpZRelLastSurfs)).toBe(true);
+    expect(L.zoomXpZRelLastSurfs!.length).toBeGreaterThan(0);
+    for (const v of L.zoomXpZRelLastSurfs!) {
+      expect(isFinite(v)).toBe(true);
+    }
+  });
+
+  it("epZRelStopAtZoom returns finite values across zoom range", () => {
+    for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+      expect(isFinite(epZRelStopAtZoom(t, L)), `epZRelStopAtZoom(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("epZRelStopAtZoom matches zoomEpZRelStops endpoints exactly", () => {
+    expect(epZRelStopAtZoom(0, L)).toBeCloseTo(L.zoomEpZRelStops![0], 10);
+    expect(epZRelStopAtZoom(1, L)).toBeCloseTo(L.zoomEpZRelStops![L.zoomEpZRelStops!.length - 1], 10);
+  });
+
+  it("xpZRelLastSurfAtZoom returns finite values across zoom range", () => {
+    for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+      expect(isFinite(xpZRelLastSurfAtZoom(t, L)), `xpZRelLastSurfAtZoom(${t}) must be finite`).toBe(true);
+    }
+  });
+
+  it("xpZRelLastSurfAtZoom matches zoomXpZRelLastSurfs endpoints exactly", () => {
+    expect(xpZRelLastSurfAtZoom(0, L)).toBeCloseTo(L.zoomXpZRelLastSurfs![0], 10);
+    expect(xpZRelLastSurfAtZoom(1, L)).toBeCloseTo(L.zoomXpZRelLastSurfs![L.zoomXpZRelLastSurfs!.length - 1], 10);
   });
 });

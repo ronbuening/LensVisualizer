@@ -6,6 +6,7 @@
  */
 
 import { ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
+import { epAtZoom, epZRelStopAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../optics/optics.js";
 import ApertureStop from "./ApertureStop.js";
 import ElementAnnotations from "./ElementAnnotations.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
@@ -29,6 +30,7 @@ interface DiagramOverlayLayerProps {
   chromSpread: ChromaticSpread | null;
   showChromatic: boolean;
   showPupils: boolean;
+  zoomT: number;
   act: number | null;
   flashVisible: boolean;
   flashKey: number;
@@ -53,6 +55,7 @@ export default function DiagramOverlayLayer({
   chromSpread,
   showChromatic,
   showPupils,
+  zoomT,
   act,
   flashVisible,
   flashKey,
@@ -122,12 +125,14 @@ export default function DiagramOverlayLayer({
       {ENABLE_PUPIL_TOGGLE && showPupils && (
         <>
           {(() => {
-            const epX = sx(zPos[L.stopIdx] + L.epZRelStop);
-            const xpX = sx(zPos[L.N - 1] + L.xpZRelLastSurf);
-            const epTopY = sy(-L.EP.epSD);
-            const epBotY = sy(L.EP.epSD);
-            const xpTopY = sy(-L.xpSD);
-            const xpBotY = sy(L.xpSD);
+            const epSD = epAtZoom(zoomT, L);
+            const xpSD = xpAtZoom(zoomT, L);
+            const epX = sx(zPos[L.stopIdx] + epZRelStopAtZoom(zoomT, L));
+            const xpX = sx(zPos[L.N - 1] + xpZRelLastSurfAtZoom(zoomT, L));
+            const epTopY = sy(-epSD);
+            const epBotY = sy(epSD);
+            const xpTopY = sy(-xpSD);
+            const xpBotY = sy(xpSD);
             const midY = sy(0);
             const tickLen = 4;
             const color = t.stopLabel;

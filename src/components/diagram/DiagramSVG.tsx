@@ -42,6 +42,7 @@ interface DiagramSVGProps {
   showOffAxis: string;
   showChromatic: boolean;
   showPupils: boolean;
+  zoomT: number;
   act: number | null;
   onHover: (eid: number | null) => void;
   onSelect: (eid: number | null) => void;
@@ -94,6 +95,7 @@ export default function DiagramSVG({
   showOffAxis,
   showChromatic,
   showPupils,
+  zoomT,
   act,
   onHover,
   onSelect,
@@ -181,6 +183,7 @@ export default function DiagramSVG({
         chromSpread={chromSpread}
         showChromatic={showChromatic}
         showPupils={showPupils}
+        zoomT={zoomT}
         act={act}
         flashVisible={flashVisible}
         flashKey={flashKey}

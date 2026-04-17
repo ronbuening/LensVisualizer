@@ -22,8 +22,8 @@ export const ENABLE_ASPH_DIAMOND_FILL = false;
 export const ENABLE_EDGE_PROJECTION = false;
 
 // --- UI experiments ---
-// Remove when pupil visualization ships or is abandoned.
-export const ENABLE_PUPIL_TOGGLE = false;
+// Pupil visualization — shipped.
+export const ENABLE_PUPIL_TOGGLE = true;
 
 // Remove when the spherical-aberration diagnostic presentation settles.
 export const ENABLE_REAL_RAY_LSA_DIAGNOSTIC = false;

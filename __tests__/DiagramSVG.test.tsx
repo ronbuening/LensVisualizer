@@ -65,6 +65,7 @@ const baseLens = {
   xpZRelLastSurf: 0,
   xpSD: 5,
   EP: { epSD: 5, yRatio: 1 },
+  isZoom: false,
   elements: [{ id: 1, apd: false, nd: 1.5 }],
 } as unknown as RuntimeLens;
 
@@ -121,6 +122,7 @@ describe("DiagramSVG", () => {
         showOffAxis="trueAngle"
         showChromatic={true}
         showPupils={false}
+        zoomT={0}
         act={1}
         onHover={onHover}
         onSelect={onSelect}
@@ -194,6 +196,7 @@ describe("DiagramSVG", () => {
         showOffAxis="off"
         showChromatic={false}
         showPupils={false}
+        zoomT={0}
         act={null}
         onHover={onHover}
         onSelect={onSelect}
@@ -240,5 +243,52 @@ describe("DiagramSVG", () => {
     expect(onSvgTouchStart).toHaveBeenCalledTimes(1);
     expect(onSvgTouchMove).toHaveBeenCalledTimes(1);
     expect(onSvgTouchEnd).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders EP and XP pupil markers when showPupils is true", () => {
+    const { container } = render(
+      <DiagramSVG
+        L={baseLens}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={[120]}
+        IMG_MM={43}
+        shapes={[]}
+        filterId="diagram-pupils"
+        stopZ={220}
+        currentPhysStopSD={8}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={true}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const texts = Array.from(container.querySelectorAll("text")).map((el) => el.textContent);
+    expect(texts).toContain("EP");
+    expect(texts).toContain("XP");
+    const circles = container.querySelectorAll("circle");
+    expect(circles.length).toBeGreaterThanOrEqual(2);
   });
 });

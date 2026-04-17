@@ -551,6 +551,18 @@ export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
   return _lerpZoomArray(zoomT, L.zoomXpSDs!);
 }
 
+/** Interpolate entrance pupil z-position relative to stop at a given zoom position. */
+export function epZRelStopAtZoom(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.epZRelStop;
+  return _lerpZoomArray(zoomT, L.zoomEpZRelStops!);
+}
+
+/** Interpolate exit pupil z-position relative to last surface at a given zoom position. */
+export function xpZRelLastSurfAtZoom(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.xpZRelLastSurf;
+  return _lerpZoomArray(zoomT, L.zoomXpZRelLastSurfs!);
+}
+
 /**
  * Compute entrance pupil geometry for the current focus/zoom state.
  *
