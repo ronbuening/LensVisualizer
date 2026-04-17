@@ -12,7 +12,6 @@
 
 import { forwardRef } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
-import { ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import RayToggles from "./RayToggles.js";
@@ -206,7 +205,7 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
             showOffAxis={showOffAxis}
             onShowOffAxisChange={onShowOffAxisChange}
             showPupils={showPupils}
-            onShowPupilsChange={ENABLE_PUPIL_TOGGLE ? onShowPupilsChange : undefined}
+            onShowPupilsChange={onShowPupilsChange}
           />
           {/* Ray mode */}
           <div style={toggleGroup(t, { width: "100%" })}>

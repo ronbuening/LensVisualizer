@@ -5,7 +5,6 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
-import { ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
 import { epAtZoom, epZRelStopAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../optics/optics.js";
 import ApertureStop from "./ApertureStop.js";
 import ElementAnnotations from "./ElementAnnotations.js";
@@ -122,7 +121,7 @@ export default function DiagramOverlayLayer({
         showChromatic={showChromatic}
       />
 
-      {ENABLE_PUPIL_TOGGLE && showPupils && (
+      {showPupils && (
         <>
           {(() => {
             const epSD = epAtZoom(zoomT, L);
