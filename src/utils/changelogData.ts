@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-04-17",
     type: "feature",
+    summary: "Added Pupils analysis tab showing entrance and exit pupil position shift across the field",
+  },
+  {
+    date: "2026-04-17",
+    type: "feature",
     summary: "Added entrance and exit pupil overlay toggle to the diagram controls",
   },
   {

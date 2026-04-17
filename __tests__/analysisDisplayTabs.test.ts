@@ -9,6 +9,7 @@ import ComaTab from "../src/components/display/ComaTab.js";
 import DistortionChart from "../src/components/display/DistortionChart.js";
 import DistortionTab from "../src/components/display/DistortionTab.js";
 import FocusBreathingTab from "../src/components/display/FocusBreathingTab.js";
+import PupilAberrationTab from "../src/components/display/PupilAberrationTab.js";
 import themes from "../src/utils/themes.js";
 import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
 import type { DistortionSample } from "../src/optics/distortionAnalysis.js";
@@ -184,5 +185,34 @@ describe("analysis display tabs", () => {
     expect(html).toContain("FOCUS");
     expect(html).toContain("CLOSE");
     expect(html).toContain("EFL change (%)");
+  });
+
+  it("PupilAberrationTab renders the chart and summary metrics", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+
+    const html = renderToStaticMarkup(
+      React.createElement(PupilAberrationTab, {
+        L,
+        t: themes.dark,
+        focusT,
+        zoomT,
+      }),
+    );
+
+    expect(html).toContain("Pupil aberration");
+    expect(html).toContain("EP");
+    expect(html).toContain("XP");
+    expect(html).toContain("MAX EP SHIFT");
+    expect(html).toContain("MAX XP SHIFT");
+    expect(html).toContain("FIELD");
+    expect(html).toContain("EP Z");
+    expect(html).toContain("Shift (mm)");
+    expect(html).toContain("Field angle");
+    expect(html).toContain("EP shift");
+    expect(html).toContain("XP shift");
+    expect(html).not.toContain("BREATHING");
+    expect(html).not.toContain("Distortion");
   });
 });

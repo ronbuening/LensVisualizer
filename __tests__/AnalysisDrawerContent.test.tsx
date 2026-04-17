@@ -10,11 +10,13 @@ const {
   mockAberrationsPanel,
   mockDistortionTab,
   mockFocusBreathingTab,
+  mockPupilAberrationTab,
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
+  mockPupilAberrationTab: vi.fn(),
   mockVignettingTab: vi.fn(),
 }));
 
@@ -36,6 +38,13 @@ vi.mock("../src/components/display/FocusBreathingTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockFocusBreathingTab(props);
     return <div>Breathing</div>;
+  },
+}));
+
+vi.mock("../src/components/display/PupilAberrationTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockPupilAberrationTab(props);
+    return <div>Pupils</div>;
   },
 }));
 
@@ -65,6 +74,7 @@ describe("AnalysisDrawerContent", () => {
     mockAberrationsPanel.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
+    mockPupilAberrationTab.mockReset();
     mockVignettingTab.mockReset();
   });
 
@@ -97,5 +107,13 @@ describe("AnalysisDrawerContent", () => {
 
     expect(screen.getByText("Vignetting")).toBeTruthy();
     expect(mockVignettingTab).toHaveBeenCalledTimes(1);
+  });
+
+  it("maps the pupils tab to PupilAberrationTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="pupils" />);
+
+    expect(screen.getByText("Pupils")).toBeTruthy();
+    expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
+    expect(mockVignettingTab).not.toHaveBeenCalled();
   });
 });

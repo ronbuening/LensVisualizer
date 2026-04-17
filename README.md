@@ -10,7 +10,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag and aspheric overlays
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
-- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, and chromatic field curvature
+- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, and chromatic field curvature
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
 - Supports shared-control side-by-side comparison between two lenses
@@ -27,7 +27,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
-- **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, and vignetting, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, and optional chromatic (R/G/B) focus shifts inside the Aberrations tab
+- **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
 - **Spherical aberration model**: combines a dense real-ray transverse fan (22 pupil zones with finer sampling near the edge) at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic; symmetric +/- ray pairing prevents asymmetric clipping from biasing metrics
 - **Distortion model**: iteratively solved chief rays correct for pupil aberration at wide field angles; 21-point sampling resolves moustache distortion transitions; 2D field grid uses a pre-computed pupil correction table; multi-bracket search handles non-monotonic image-height curves
 - **Coma point-cloud preview**: traces a fixed circular pupil pattern with the skew-ray core and plots chief-ray-centered tangential and sagittal image heights directly in millimeters
