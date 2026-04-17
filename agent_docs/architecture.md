@@ -91,6 +91,7 @@
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
+| `ComaTab.tsx` | `src/components/display/` | Coma drawer tab: wires `useAberrationsPanelData` into `ComaPreviewSection`, `MeridionalComaSection`, and `SagittalComaSection` |
 | `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`, coma sections), formatting helpers, and `useAberrationsPanelData` |
 | `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
@@ -271,7 +272,7 @@ Sub-components:
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
 - **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
-- **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Tab content components: AberrationsPanel, DistortionTab, FocusBreathingTab, and VignettingTab. Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
+- **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Tab content components: AberrationsPanel, ComaTab, DistortionTab, FocusBreathingTab, and VignettingTab. Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
 - **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and analysis launch button; composes DiagramControls, ElementInspector, DiagramLegend
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
@@ -329,7 +330,7 @@ This module is now accuracy-sensitive: the panel copy, tests, and optics primers
 
 ## distortionAnalysis.ts
 
-Pure-function distortion analysis. Traces chief rays at 11 field positions from center to half-field edge using the existing chief-ray launch convention, computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns the 1D distortion curve. The same rectilinear reference is also reused to trace a true 2D chief-ray field grid across the current image circle for the analysis drawer.
+Pure-function distortion analysis. Traces chief rays at 21 evenly-spaced field positions from center to edge (`SAMPLE_COUNT = 21`) using the existing chief-ray launch convention, computes real vs ideal rectilinear image height (`EFL × tan θ`), and returns the 1D distortion curve. The same rectilinear reference is also reused to trace a true 2D chief-ray field grid across the current image circle for the analysis drawer.
 
 - **`computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, _currentPhysStopSD)`** — Returns `DistortionSample[]` with `{fieldAngleDeg, distortionPercent, realHeight, idealHeight}`. Center distortion is exactly 0 by definition. Uses `halfFieldAtZoom()`, `bAtZoom()`, `yRatioAtZoom()` for zoom-aware parameters.
 - **`computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)`** — Traces a 2D chief-ray field grid against the same near-axis rectilinear reference, clipping the ideal grid to the current image circle and returning the traced image positions for each usable sample.
