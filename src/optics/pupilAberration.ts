@@ -134,7 +134,7 @@ export interface ExitPupilAberrationProfile {
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 /** Default number of field samples (0° through halfField). */
-export const PUPIL_ABERRATION_SAMPLE_COUNT = 9;
+export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
 
 // ─── Entrance Pupil Aberration ────────────────────────────────────────────────
 
@@ -258,4 +258,135 @@ export function computeExitPupilAberrationProfile(
   const maxAbsShiftMm = Math.max(...samples.map((s) => Math.abs(s.xpShiftMm)));
 
   return { samples, paraxialXpZRelLastSurf, maxAbsShiftMm, halfFieldDeg };
+}
+
+// ─── Combined Profile ─────────────────────────────────────────────────────────
+
+/** EP and XP aberration profiles computed together, sharing the per-angle chief-ray bisection. */
+export interface BothPupilAberrationProfiles {
+  ep: PupilAberrationProfile;
+  xp: ExitPupilAberrationProfile;
+  /** Vignetting-limited half-field angle (degrees). Mirrors ep.halfFieldDeg. */
+  halfFieldDeg: number;
+  /** Maximum |epShiftMm| across all field samples (mm). Mirrors ep.maxAbsShiftMm. */
+  maxAbsEpShiftMm: number;
+  /** Maximum |xpShiftMm| across all field samples (mm). Mirrors xp.maxAbsShiftMm. */
+  maxAbsXpShiftMm: number;
+}
+
+/**
+ * Compute both entrance- and exit-pupil aberration profiles in a single pass.
+ *
+ * Equivalent to calling computePupilAberrationProfile and computeExitPupilAberrationProfile
+ * separately, but shares the per-angle solveChiefRayLaunchHeight bisection call and the
+ * doLayout call, halving the bisection work when both profiles are needed.
+ */
+export function computeBothPupilAberrationProfiles(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
+  geometry?: FieldGeometryState,
+): BothPupilAberrationProfiles {
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const { halfFieldDeg, epRatio } = geom;
+  const paraxialEpZRelStop = epZRelStopAtZoom(zoomT, L);
+  const paraxialXpZRelLastSurf = xpZRelLastSurfAtZoom(zoomT, L);
+
+  const n = Math.max(sampleCount, 2);
+
+  // Telecentric exit (XP at infinity) — compute EP normally, return zero-shift XP profile.
+  if (!isFinite(paraxialXpZRelLastSurf)) {
+    const epOnlyLoop = (): PupilAberrationProfile => {
+      const samples: PupilAberrationSample[] = [];
+      for (let i = 0; i < n; i++) {
+        const fieldFrac = i / (n - 1);
+        const fieldDeg = fieldFrac * halfFieldDeg;
+        const tanTheta = Math.tan((fieldDeg * Math.PI) / 180);
+        const paraxialYChief = epRatio * tanTheta;
+        let chiefRayCorrection = 1;
+        let epShiftMm = 0;
+        if (Math.abs(paraxialYChief) > 1e-12) {
+          const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom);
+          chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
+          epShiftMm = (chiefRayCorrection - 1) * epRatio;
+        }
+        samples.push({ fieldFrac, fieldDeg, chiefRayCorrection, epShiftMm });
+      }
+      const maxAbsShiftMm = Math.max(...samples.map((s) => Math.abs(s.epShiftMm)));
+      return { samples, paraxialEpZRelStop, maxAbsShiftMm, halfFieldDeg };
+    };
+
+    const ep = epOnlyLoop();
+    const xpSamples: ExitPupilAberrationSample[] = Array.from({ length: n }, (_, i) => ({
+      fieldFrac: i / (n - 1),
+      fieldDeg: (i / (n - 1)) * halfFieldDeg,
+      xpZRelLastSurf: Infinity,
+      xpShiftMm: 0,
+    }));
+    const xp: ExitPupilAberrationProfile = {
+      samples: xpSamples,
+      paraxialXpZRelLastSurf: Infinity,
+      maxAbsShiftMm: 0,
+      halfFieldDeg,
+    };
+    return { ep, xp, halfFieldDeg, maxAbsEpShiftMm: ep.maxAbsShiftMm, maxAbsXpShiftMm: 0 };
+  }
+
+  const { z: zPos } = doLayout(focusT, zoomT, L);
+
+  const epSamples: PupilAberrationSample[] = [];
+  const xpSamples: ExitPupilAberrationSample[] = [];
+
+  for (let i = 0; i < n; i++) {
+    const fieldFrac = i / (n - 1);
+    const fieldDeg = fieldFrac * halfFieldDeg;
+    const tanTheta = Math.tan((fieldDeg * Math.PI) / 180);
+    const uField = -tanTheta;
+
+    let chiefRayCorrection = 1;
+    let epShiftMm = 0;
+    let xpZRelLastSurf = paraxialXpZRelLastSurf;
+    let xpShiftMm = 0;
+
+    const paraxialYChief = epRatio * tanTheta;
+
+    if (Math.abs(fieldDeg) > 1e-9) {
+      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom);
+
+      // EP fields
+      if (Math.abs(paraxialYChief) > 1e-12) {
+        chiefRayCorrection = isFinite(yChief) ? yChief / paraxialYChief : 1;
+        epShiftMm = (chiefRayCorrection - 1) * epRatio;
+      }
+
+      // XP fields — trace the same solved chief ray through the full system
+      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
+      if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
+        xpZRelLastSurf = -result.y / result.u;
+        xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;
+      }
+    }
+
+    epSamples.push({ fieldFrac, fieldDeg, chiefRayCorrection, epShiftMm });
+    xpSamples.push({ fieldFrac, fieldDeg, xpZRelLastSurf, xpShiftMm });
+  }
+
+  const maxAbsEpShiftMm = Math.max(...epSamples.map((s) => Math.abs(s.epShiftMm)));
+  const maxAbsXpShiftMm = Math.max(...xpSamples.map((s) => Math.abs(s.xpShiftMm)));
+
+  const ep: PupilAberrationProfile = {
+    samples: epSamples,
+    paraxialEpZRelStop,
+    maxAbsShiftMm: maxAbsEpShiftMm,
+    halfFieldDeg,
+  };
+  const xp: ExitPupilAberrationProfile = {
+    samples: xpSamples,
+    paraxialXpZRelLastSurf,
+    maxAbsShiftMm: maxAbsXpShiftMm,
+    halfFieldDeg,
+  };
+
+  return { ep, xp, halfFieldDeg, maxAbsEpShiftMm, maxAbsXpShiftMm };
 }

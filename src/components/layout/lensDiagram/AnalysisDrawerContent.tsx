@@ -2,6 +2,7 @@ import AberrationsPanel from "../../display/AberrationsPanel.js";
 import ComaTab from "../../display/ComaTab.js";
 import DistortionTab from "../../display/DistortionTab.js";
 import FocusBreathingTab from "../../display/FocusBreathingTab.js";
+import PupilAberrationTab from "../../display/PupilAberrationTab.js";
 import VignettingTab from "../../display/VignettingTab.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -93,6 +94,10 @@ export default function AnalysisDrawerContent({
         currentPhysStopSD={currentPhysStopSD}
       />
     );
+  }
+
+  if (activeTab === "pupils") {
+    return <PupilAberrationTab L={L} t={t} focusT={focusT} zoomT={zoomT} />;
   }
 
   return null;
