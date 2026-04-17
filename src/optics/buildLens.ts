@@ -270,15 +270,15 @@ export default function buildLens(data: LensData): RuntimeLens {
      * (using real yRatio and B from the front-group traces above) */
     const xpY = realYRatio * cY - realB * mY;
     const xpU = realYRatio * cU - realB * mU;
-    xpZRelLastSurf = Math.abs(xpU) > 1e-9 ? -xpY / xpU : 0;
-    xpSD = Math.abs(mY + mU * xpZRelLastSurf) * EP.epSD;
+    xpZRelLastSurf = Math.abs(xpU) > 1e-9 ? -xpY / xpU : Infinity;
+    xpSD = isFinite(xpZRelLastSurf) ? Math.abs(mY + mU * xpZRelLastSurf) * EP.epSD : Infinity;
   } else {
     /* Fallback: paraxial exit pupil */
     const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
     const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
     const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
-    xpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : 0;
-    xpSD = Math.abs(eflTrace.y + eflTrace.u * xpZRelLastSurf) * EP.epSD;
+    xpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : Infinity;
+    xpSD = isFinite(xpZRelLastSurf) ? Math.abs(eflTrace.y + eflTrace.u * xpZRelLastSurf) * EP.epSD : Infinity;
   }
 
   const stopPhysSD = S[stopIdx].sd;
@@ -486,17 +486,17 @@ export default function buildLens(data: LensData): RuntimeLens {
           zcU = zRealChiefFull.u / realEpDelta;
         const zXpY = zRealYRatio * zcY - zRealB * zmY;
         const zXpU = zRealYRatio * zcU - zRealB * zmU;
-        const zXpRelLast = Math.abs(zXpU) > 1e-9 ? -zXpY / zXpU : 0;
+        const zXpRelLast = Math.abs(zXpU) > 1e-9 ? -zXpY / zXpU : Infinity;
         zoomXpZRelLastSurfs.push(zXpRelLast);
-        zoomXpSDs.push(Math.abs(zmY + zmU * zXpRelLast) * zNomEP);
+        zoomXpSDs.push(isFinite(zXpRelLast) ? Math.abs(zmY + zmU * zXpRelLast) * zNomEP : Infinity);
       } else {
         /* Fallback: paraxial exit pupil */
         const zChiefFull = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true });
         const zXpNumer = -(epT.y * zChiefFull.y - zMargLast.y * zBValue);
         const zXpDenom = epT.y * zChiefFull.u - zMargLast.u * zBValue;
-        const zXpRelLast = Math.abs(zXpDenom) > 1e-9 ? zXpNumer / zXpDenom : 0;
+        const zXpRelLast = Math.abs(zXpDenom) > 1e-9 ? zXpNumer / zXpDenom : Infinity;
         zoomXpZRelLastSurfs.push(zXpRelLast);
-        zoomXpSDs.push(Math.abs(zMargLast.y + zMargLast.u * zXpRelLast) * zNomEP);
+        zoomXpSDs.push(isFinite(zXpRelLast) ? Math.abs(zMargLast.y + zMargLast.u * zXpRelLast) * zNomEP : Infinity);
       }
 
       /* Half-field (vignetting-limited) — paraxial estimate refined with real ray */

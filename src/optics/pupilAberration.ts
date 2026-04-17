@@ -212,10 +212,22 @@ export function computeExitPupilAberrationProfile(
   const { halfFieldDeg } = geom;
   const paraxialXpZRelLastSurf = xpZRelLastSurfAtZoom(zoomT, L);
 
+  const n = Math.max(sampleCount, 2);
+
+  // Guard: telecentric exit (XP at infinity) — shifts are undefined, return zero-shift profile.
+  if (!isFinite(paraxialXpZRelLastSurf)) {
+    const samples: ExitPupilAberrationSample[] = Array.from({ length: n }, (_, i) => ({
+      fieldFrac: i / (n - 1),
+      fieldDeg: (i / (n - 1)) * halfFieldDeg,
+      xpZRelLastSurf: Infinity,
+      xpShiftMm: 0,
+    }));
+    return { samples, paraxialXpZRelLastSurf: Infinity, maxAbsShiftMm: 0, halfFieldDeg };
+  }
+
   // zPos is required by traceRay for building visualization paths; compute once.
   const { z: zPos } = doLayout(focusT, zoomT, L);
 
-  const n = Math.max(sampleCount, 2);
   const samples: ExitPupilAberrationSample[] = [];
 
   for (let i = 0; i < n; i++) {
