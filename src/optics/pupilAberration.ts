@@ -1,32 +1,46 @@
 /**
- * Pupil aberration analysis — entrance pupil position variation across the field.
+ * Pupil aberration analysis — entrance and exit pupil position variation across the field.
  *
- * In first-order (paraxial) optics the entrance pupil position is constant for
- * all field angles.  Real lenses deviate: the apparent EP shifts as a function
- * of field angle because the chief ray through the stop does not satisfy the
- * paraxial launch-height prediction at large angles.  This shift — pupil
- * aberration — couples into distortion, vignetting, and off-axis ray geometry.
+ * In first-order (paraxial) optics the pupil positions are constant for all field angles.
+ * Real lenses deviate: both the apparent entrance pupil (EP) and exit pupil (XP) shift as
+ * a function of field angle.  These shifts — pupil aberrations — couple into distortion,
+ * vignetting, and off-axis ray geometry.
+ *
+ * ── Entrance Pupil (EP) Aberration ──────────────────────────────────────────────────────
  *
  * The core quantity is the chief-ray correction ratio:
  *   r(θ) = solvedYChief(θ) / paraxialYChief(θ)
  * where solvedYChief is the iteratively bisected launch height that places the
- * chief ray at the stop center.  r = 1 everywhere means no pupil aberration.
+ * chief ray at the stop center.  r = 1 everywhere means no EP aberration.
  *
- * From r the EP z-shift follows directly (derivation in inline comments):
+ * From r the EP z-shift follows directly:
  *   Δz_EP(θ) = (r − 1) × epRatio   [mm, relative to paraxial EP position]
  *
- * Note: Exit-pupil positional variation across the field (XP aberration) requires
- * tracing the chief ray through the full system to extract the exit slope at the
- * last surface.  That analysis is left for a future module.
+ * ── Exit Pupil (XP) Aberration ─────────────────────────────────────────────────────────
+ *
+ * For each field angle, the same iteratively-solved chief ray is traced through the
+ * full lens system.  The exit slope u' and height y' at the last surface give the
+ * real XP z-position by back-projection:
+ *   xpZ_real(θ) = −y'_last / u'_last   [mm, relative to last surface]
+ *
+ * The XP shift is the deviation from the on-axis paraxial value:
+ *   Δz_XP(θ) = xpZ_real(θ) − xpZRelLastSurf_paraxial
  */
 
-import { computeFieldGeometryAtState, solveChiefRayLaunchHeight, epZRelStopAtZoom } from "./optics.js";
+import {
+  computeFieldGeometryAtState,
+  solveChiefRayLaunchHeight,
+  epZRelStopAtZoom,
+  xpZRelLastSurfAtZoom,
+  doLayout,
+  traceRay,
+} from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-/** One field-angle sample in a pupil aberration profile. */
+/** One field-angle sample in an entrance-pupil aberration profile. */
 export interface PupilAberrationSample {
   /** Normalized field position: 0 = on-axis, 1 = vignetting-limited half-field. */
   fieldFrac: number;
@@ -59,7 +73,7 @@ export interface PupilAberrationSample {
   epShiftMm: number;
 }
 
-/** Pupil aberration profile sampled across the full field. */
+/** Entrance-pupil aberration profile sampled across the full field. */
 export interface PupilAberrationProfile {
   /** One sample per field angle, from 0° to the vignetting-limited half-field. */
   samples: PupilAberrationSample[];
@@ -75,12 +89,54 @@ export interface PupilAberrationProfile {
   halfFieldDeg: number;
 }
 
+/** One field-angle sample in an exit-pupil aberration profile. */
+export interface ExitPupilAberrationSample {
+  /** Normalized field position: 0 = on-axis, 1 = vignetting-limited half-field. */
+  fieldFrac: number;
+  /** Field angle in degrees. */
+  fieldDeg: number;
+  /**
+   * Real exit-pupil z-position relative to the last surface at this field angle (mm).
+   *
+   * Derived by tracing the iteratively solved chief ray through the full system,
+   * then back-projecting: xpZRelLastSurf = −y'_last / u'_last.
+   *
+   * At θ = 0 the chief ray degenerates to the axis; this sample uses the on-axis
+   * paraxial value so xpShiftMm = 0.
+   */
+  xpZRelLastSurf: number;
+  /**
+   * Change in exit-pupil z-position from the on-axis paraxial value (mm).
+   *
+   * Δz_XP = xpZRelLastSurf(θ) − xpZRelLastSurf_paraxial
+   *
+   * Positive → XP moved away from lens (toward image / sensor side).
+   * Negative → XP moved into the lens.
+   */
+  xpShiftMm: number;
+}
+
+/** Exit-pupil aberration profile sampled across the full field. */
+export interface ExitPupilAberrationProfile {
+  /** One sample per field angle, from 0° to the vignetting-limited half-field. */
+  samples: ExitPupilAberrationSample[];
+  /**
+   * On-axis paraxial exit-pupil z-position relative to the last surface (mm).
+   * Zoom-interpolated for zoom lenses.
+   */
+  paraxialXpZRelLastSurf: number;
+  /** Maximum |xpShiftMm| across all field samples (mm). */
+  maxAbsShiftMm: number;
+  /** Vignetting-limited half-field angle used for sampling (degrees). */
+  halfFieldDeg: number;
+}
+
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 /** Default number of field samples (0° through halfField). */
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 9;
 
-// ─── Computation ─────────────────────────────────────────────────────────────
+// ─── Entrance Pupil Aberration ────────────────────────────────────────────────
 
 /**
  * Compute the entrance-pupil aberration profile across the field.
@@ -90,7 +146,6 @@ export const PUPIL_ABERRATION_SAMPLE_COUNT = 9;
  * height, compares it to the paraxial prediction, and computes the resulting
  * EP z-shift in mm.
  *
- * The returned profile is the raw material for a future analysis-drawer tab.
  * All values are state-aware: focus and zoom shifts are accounted for.
  */
 export function computePupilAberrationProfile(
@@ -129,4 +184,66 @@ export function computePupilAberrationProfile(
   const maxAbsShiftMm = Math.max(...samples.map((s) => Math.abs(s.epShiftMm)));
 
   return { samples, paraxialEpZRelStop, maxAbsShiftMm, halfFieldDeg };
+}
+
+// ─── Exit Pupil Aberration ────────────────────────────────────────────────────
+
+/**
+ * Compute the exit-pupil aberration profile across the field.
+ *
+ * For each field angle, traces the iteratively-solved chief ray through the full
+ * lens system and back-projects its exit slope to find the real XP z-position.
+ * The deviation from the on-axis paraxial XP is the XP aberration.
+ *
+ * The on-axis sample (θ = 0) always reports xpShiftMm = 0 because the chief ray
+ * degenerates to the optical axis at that angle — the paraxial XP value is used
+ * directly.
+ *
+ * All values are state-aware: focus and zoom shifts are accounted for.
+ */
+export function computeExitPupilAberrationProfile(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
+  geometry?: FieldGeometryState,
+): ExitPupilAberrationProfile {
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const { halfFieldDeg } = geom;
+  const paraxialXpZRelLastSurf = xpZRelLastSurfAtZoom(zoomT, L);
+
+  // zPos is required by traceRay for building visualization paths; compute once.
+  const { z: zPos } = doLayout(focusT, zoomT, L);
+
+  const n = Math.max(sampleCount, 2);
+  const samples: ExitPupilAberrationSample[] = [];
+
+  for (let i = 0; i < n; i++) {
+    const fieldFrac = i / (n - 1);
+    const fieldDeg = fieldFrac * halfFieldDeg;
+    const uField = -Math.tan((fieldDeg * Math.PI) / 180);
+
+    let xpZRelLastSurf = paraxialXpZRelLastSurf;
+    let xpShiftMm = 0;
+
+    // At θ = 0, uField = 0 and the chief ray is the optical axis — no useful
+    // back-projection is possible.  Use the paraxial baseline directly.
+    if (Math.abs(fieldDeg) > 1e-9) {
+      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom);
+      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
+
+      // Back-project: XP z = −y_last / u_last (relative to last surface).
+      // Guard against near-zero exit slope (XP at infinity).
+      if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
+        xpZRelLastSurf = -result.y / result.u;
+        xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;
+      }
+    }
+
+    samples.push({ fieldFrac, fieldDeg, xpZRelLastSurf, xpShiftMm });
+  }
+
+  const maxAbsShiftMm = Math.max(...samples.map((s) => Math.abs(s.xpShiftMm)));
+
+  return { samples, paraxialXpZRelLastSurf, maxAbsShiftMm, halfFieldDeg };
 }
