@@ -107,6 +107,7 @@ export default function DiagramViewport({
   onSvgTouchStart,
   onSvgTouchMove,
   onSvgTouchEnd,
+  zoomT,
   showBokehPreview,
   onBokehPreviewToggle,
   bokehPreviewContent,
@@ -181,6 +182,7 @@ export default function DiagramViewport({
         showOffAxis={showOffAxis}
         showChromatic={showChromatic}
         showPupils={showPupils}
+        zoomT={zoomT}
         act={act}
         onHover={onHover}
         onSelect={onSelect}
