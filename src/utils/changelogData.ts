@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-17 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-17",
+    type: "feature",
+    summary: "Added entrance and exit pupil overlay toggle to the diagram controls",
+  },
+  {
+    date: "2026-04-17",
     type: "lens",
     summary:
       "Added Canon RF 24-50mm f/4-6.3 IS STM, Nikon L35AF 35mm f/2.8, Nikon Nikkor Z 24-50mm f/4-6.3, and Nikon Nikkor Z 35mm f/1.2 S",

@@ -5,7 +5,7 @@
  * with feature flag awareness for edge projection mode.
  */
 import type { ReactNode } from "react";
-import { ENABLE_EDGE_PROJECTION, ENABLE_PUPIL_TOGGLE } from "../../utils/featureFlags.js";
+import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { toggleGroup, toggleBtn } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -86,42 +86,33 @@ export default function RayToggles({
     },
   ];
 
-  if (ENABLE_PUPIL_TOGGLE) {
-    buttons.push({
-      label: "PUPILS",
-      active: showPupils,
-      onClick: () => onShowPupilsChange?.(!showPupils),
-      icon: (active: boolean) => (
-        <svg width="14" height="10" viewBox="0 0 14 10" style={{ flexShrink: 0 }}>
-          <line
-            x1="7"
-            y1="0"
-            x2="7"
-            y2="10"
-            stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
-            strokeWidth="1.2"
-            strokeDasharray="2,1.5"
-          />
-          <line
-            x1="4"
-            y1="0"
-            x2="10"
-            y2="0"
-            stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
-            strokeWidth="1.2"
-          />
-          <line
-            x1="4"
-            y1="10"
-            x2="10"
-            y2="10"
-            stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
-            strokeWidth="1.2"
-          />
-        </svg>
-      ),
-    });
-  }
+  buttons.push({
+    label: "PUPILS",
+    active: showPupils,
+    onClick: () => onShowPupilsChange?.(!showPupils),
+    icon: (active: boolean) => (
+      <svg width="14" height="10" viewBox="0 0 14 10" style={{ flexShrink: 0 }}>
+        <line
+          x1="7"
+          y1="0"
+          x2="7"
+          y2="10"
+          stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+          strokeWidth="1.2"
+          strokeDasharray="2,1.5"
+        />
+        <line x1="4" y1="0" x2="10" y2="0" stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"} strokeWidth="1.2" />
+        <line
+          x1="4"
+          y1="10"
+          x2="10"
+          y2="10"
+          stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+          strokeWidth="1.2"
+        />
+      </svg>
+    ),
+  });
 
   return (
     <div style={toggleGroup(t, { width: "100%" })}>

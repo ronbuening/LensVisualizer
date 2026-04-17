@@ -147,6 +147,7 @@
 | `internal/` | `src/optics/internal/` | Shared optics internals for surface math, multi-surface tracing, and zoom/state derivation reused by build, trace, and validation paths |
 | `distortionAnalysis.ts` | `src/optics/` | Pure distortion analysis: 1D rectilinear curve + traced 2D field grid; 17-sample pupil correction table, adaptive 1°/segment bracket search |
 | `vignetteAnalysis.ts` | `src/optics/` | Pure vignetting / relative illumination: solved chief ray launch (not paraxial), adaptive ~3° field spacing, 192-ray pupil sweep |
+| `pupilAberration.ts` | `src/optics/` | Entrance and exit pupil positional variation across the field: `computePupilAberrationProfile` (EP — solved chief-ray height vs paraxial ratio, 9-sample default) and `computeExitPupilAberrationProfile` (XP — full-system chief-ray back-projection to find real XP z per field angle). Both are state-aware and zoom-interpolated. No UI tab yet — data layer only. |
 
 ### Utilities
 

@@ -64,6 +64,7 @@ const baseProps = {
   showOffAxis: "full",
   showChromatic: true,
   showPupils: true,
+  zoomT: 0,
   act: null,
   onHover: vi.fn(),
   onSelect: vi.fn(),

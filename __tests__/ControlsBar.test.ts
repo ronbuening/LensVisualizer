@@ -73,7 +73,7 @@ describe("ControlsBar", () => {
       }),
     );
 
-    expect(screen.queryByRole("button", { name: "PUPILS" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "PUPILS" })).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "G" }));
     fireEvent.click(screen.getAllByRole("button", { name: "NORMALIZED" })[0]!);

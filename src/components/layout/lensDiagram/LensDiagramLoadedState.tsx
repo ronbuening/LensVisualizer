@@ -227,6 +227,7 @@ export default function LensDiagramLoadedState({
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}
             showPupils={showPupils}
+            zoomT={zoomT}
             act={act}
             onHover={onHover}
             onSelect={onSelect}
