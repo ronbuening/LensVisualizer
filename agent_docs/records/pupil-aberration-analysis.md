@@ -48,44 +48,29 @@ axis gives `xpZ = −y' / u'` (relative to last surface).  The XP shift is
 The on-axis sample always returns shift = 0 because the chief ray degenerates to
 the optical axis at θ = 0.
 
-## Deferred work (future sessions)
+## Follow-up work (branch `claude/pupil-aberration-plan-C1Oz4`)
 
-### Analysis Drawer tab — Pupil Aberrations
-Add a new "PUPILS" tab to the Analysis Drawer showing:
-- EP z-shift vs field angle (curve chart, units mm)
-- XP z-shift vs field angle (curve chart, units mm)
-- On-axis EP and XP positions as reference lines
-- Summary metrics: max EP shift, max XP shift across field
+The deferred work above was fully implemented. Branch adds:
 
-Implementation steps:
-1. Add `{ id: "pupils", label: "PUPILS" }` to `ANALYSIS_TABS` in
-   `src/components/layout/lensDiagram/analysisTabs.ts`
-2. Create `src/components/display/PupilAberrationTab.tsx` — wires
-   `computePupilAberrationProfile` + `computeExitPupilAberrationProfile` via
-   `useMemo`, renders two SVG line charts (reuse the distortion/vignetting chart
-   pattern)
-3. Add a `case "pupils":` branch in `AnalysisDrawerContent.tsx`
-4. Pass `focusT`, `zoomT`, and `L` (already available from the analysis context)
-5. Add tests in `__tests__/analysisDisplayTabs.test.ts` for the new tab
+- `PUPIL_ABERRATION_SAMPLE_COUNT` bumped 9 → 17
+- `BothPupilAberrationProfiles` type + `computeBothPupilAberrationProfiles` —
+  single-loop combined computation sharing the per-angle chief-ray bisection
+- `PupilAberrationChart.tsx` — SVG chart: EP shift (solid) + XP shift (dashed)
+  on a shared symmetric axis; telecentric guard; zero reference line
+- `PupilAberrationTab.tsx` — PUPILS drawer tab; memoized on `[L, focusT, zoomT]`
+- `analysisTabs.ts` — `{ id: "pupils", label: "PUPILS" }` appended
+- `AnalysisDrawerContent.tsx` — `activeTab === "pupils"` case added
+- Tests: +14 optics tests (combined function agreement) + mock/routing test +
+  render smoke test; total 35 → 60 tests across the three files
 
-### Combined profile computation
-When both EP and XP profiles are needed simultaneously (e.g. for the drawer tab),
-consider adding `computeBothPupilAberrationProfiles(focusT, zoomT, L, sampleCount?,
-geometry?)` to `pupilAberration.ts` to share the geometry solve, `doLayout` call,
-and per-angle `solveChiefRayLaunchHeight` calls — each field angle currently traces
-to the stop twice (once for EP, once for XP; the XP function could reuse the solved
-launch height from the EP pass).
+Verification: typecheck passed (pre-existing build-metadata errors unrelated),
+format:check passed, lint passed, 60/60 tests passed.
 
-### XP aberration visualization overlay on the diagram
-Consider adding a subtle per-field marker showing where the real XP lies when
-`showPupils` is toggled.  This would require computing at least 3 representative
-field angles (0°, 50%, 100%) and drawing their apparent XP z-positions as
-translucent tick marks near the existing XP marker.
+### Remaining open items
 
-### Sign and magnitude sanity reference values
-Document expected EP/XP shift magnitudes for a few reference lenses so future
-changes can be caught by a regression test (similar to `__tests__/zoomOptics.test.ts`
-for the Nikkor Z 70-200).  Good candidates:
-- Zeiss Sonnar 50/1.5 (modest EP aberration, compact rear stop)
-- A retrofocus wide angle (large EP aberration by design)
-- A telephoto (minimal EP aberration)
+- **XP overlay on diagram** — subtle per-field tick marks showing real XP
+  z-positions when `showPupils` is toggled (3 representative field angles:
+  0°, 50%, 100%)
+- **Regression reference values** — document expected EP/XP shift magnitudes
+  for a few reference lenses (Sonnar 50/1.5, a retrofocus wide-angle, a
+  telephoto) as snapshot tests analogous to `__tests__/zoomOptics.test.ts`
