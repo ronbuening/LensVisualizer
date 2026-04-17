@@ -126,12 +126,10 @@ export default function DiagramOverlayLayer({
           {(() => {
             const epSD = epAtZoom(zoomT, L);
             const xpSD = xpAtZoom(zoomT, L);
-            const epX = sx(zPos[L.stopIdx] + epZRelStopAtZoom(zoomT, L));
-            const xpX = sx(zPos[L.N - 1] + xpZRelLastSurfAtZoom(zoomT, L));
-            const epTopY = sy(-epSD);
-            const epBotY = sy(epSD);
-            const xpTopY = sy(-xpSD);
-            const xpBotY = sy(xpSD);
+            const epZRel = epZRelStopAtZoom(zoomT, L);
+            const xpZRel = xpZRelLastSurfAtZoom(zoomT, L);
+            const epX = isFinite(epZRel) ? sx(zPos[L.stopIdx] + epZRel) : NaN;
+            const xpX = isFinite(xpZRel) ? sx(zPos[L.N - 1] + xpZRel) : NaN;
             const midY = sy(0);
             const tickLen = 4;
             const color = t.stopLabel;
@@ -139,86 +137,152 @@ export default function DiagramOverlayLayer({
               pointerEvents: "none" as const,
               letterSpacing: "0.1em",
             };
+            const fontSize = L.lyStoPad * 1.4;
+            /* Margin allows ticks that extend slightly beyond the SVG edge */
+            const MARGIN = tickLen + 2;
+            const epInView = isFinite(epX) && epX >= -MARGIN && epX <= L.svgW + MARGIN;
+            const xpInView = isFinite(xpX) && xpX >= -MARGIN && xpX <= L.svgW + MARGIN;
+            /* Edge indicators for off-screen pupils (only for finite but distant XP/EP) */
+            const xpOffRight = !xpInView && isFinite(xpX) && xpX > L.svgW;
+            const xpOffLeft = !xpInView && isFinite(xpX) && xpX < 0;
+            const epOffLeft = !epInView && isFinite(epX) && epX < 0;
+            const epOffRight = !epInView && isFinite(epX) && epX > L.svgW;
             return (
               <>
-                <line
-                  x1={epX}
-                  y1={epTopY}
-                  x2={epX}
-                  y2={epBotY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  strokeDasharray="3,2"
-                  style={{ pointerEvents: "none" }}
-                />
-                <line
-                  x1={epX - tickLen}
-                  y1={epTopY}
-                  x2={epX + tickLen}
-                  y2={epTopY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  style={{ pointerEvents: "none" }}
-                />
-                <line
-                  x1={epX - tickLen}
-                  y1={epBotY}
-                  x2={epX + tickLen}
-                  y2={epBotY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  style={{ pointerEvents: "none" }}
-                />
-                <text
-                  x={epX}
-                  y={epTopY - L.lyStoPad}
-                  textAnchor="middle"
-                  fontSize={L.lyStoPad * 1.4}
-                  fill={color}
-                  style={labelStyle}
-                >
-                  EP
-                </text>
-                <line
-                  x1={xpX}
-                  y1={xpTopY}
-                  x2={xpX}
-                  y2={xpBotY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  strokeDasharray="3,2"
-                  style={{ pointerEvents: "none" }}
-                />
-                <line
-                  x1={xpX - tickLen}
-                  y1={xpTopY}
-                  x2={xpX + tickLen}
-                  y2={xpTopY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  style={{ pointerEvents: "none" }}
-                />
-                <line
-                  x1={xpX - tickLen}
-                  y1={xpBotY}
-                  x2={xpX + tickLen}
-                  y2={xpBotY}
-                  stroke={color}
-                  strokeWidth={1.2}
-                  style={{ pointerEvents: "none" }}
-                />
-                <text
-                  x={xpX}
-                  y={xpTopY - L.lyStoPad}
-                  textAnchor="middle"
-                  fontSize={L.lyStoPad * 1.4}
-                  fill={color}
-                  style={labelStyle}
-                >
-                  XP
-                </text>
-                <circle cx={epX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
-                <circle cx={xpX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+                {epInView && (
+                  <>
+                    <line
+                      x1={epX}
+                      y1={sy(-epSD)}
+                      x2={epX}
+                      y2={sy(epSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      strokeDasharray="3,2"
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <line
+                      x1={epX - tickLen}
+                      y1={sy(-epSD)}
+                      x2={epX + tickLen}
+                      y2={sy(-epSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <line
+                      x1={epX - tickLen}
+                      y1={sy(epSD)}
+                      x2={epX + tickLen}
+                      y2={sy(epSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <text
+                      x={epX}
+                      y={sy(-epSD) - L.lyStoPad}
+                      textAnchor="middle"
+                      fontSize={fontSize}
+                      fill={color}
+                      style={labelStyle}
+                    >
+                      EP
+                    </text>
+                    <circle cx={epX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+                  </>
+                )}
+                {epOffLeft && (
+                  <text
+                    x={6}
+                    y={midY + fontSize / 2}
+                    textAnchor="start"
+                    fontSize={fontSize}
+                    fill={color}
+                    style={labelStyle}
+                  >
+                    ← EP
+                  </text>
+                )}
+                {epOffRight && (
+                  <text
+                    x={L.svgW - 6}
+                    y={midY + fontSize / 2}
+                    textAnchor="end"
+                    fontSize={fontSize}
+                    fill={color}
+                    style={labelStyle}
+                  >
+                    EP →
+                  </text>
+                )}
+                {xpInView && (
+                  <>
+                    <line
+                      x1={xpX}
+                      y1={sy(-xpSD)}
+                      x2={xpX}
+                      y2={sy(xpSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      strokeDasharray="3,2"
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <line
+                      x1={xpX - tickLen}
+                      y1={sy(-xpSD)}
+                      x2={xpX + tickLen}
+                      y2={sy(-xpSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <line
+                      x1={xpX - tickLen}
+                      y1={sy(xpSD)}
+                      x2={xpX + tickLen}
+                      y2={sy(xpSD)}
+                      stroke={color}
+                      strokeWidth={1.2}
+                      style={{ pointerEvents: "none" }}
+                    />
+                    <text
+                      x={xpX}
+                      y={sy(-xpSD) - L.lyStoPad}
+                      textAnchor="middle"
+                      fontSize={fontSize}
+                      fill={color}
+                      style={labelStyle}
+                    >
+                      XP
+                    </text>
+                    <circle cx={xpX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+                  </>
+                )}
+                {xpOffRight && (
+                  <text
+                    x={L.svgW - 6}
+                    y={midY + fontSize / 2}
+                    textAnchor="end"
+                    fontSize={fontSize}
+                    fill={color}
+                    style={labelStyle}
+                  >
+                    XP →
+                  </text>
+                )}
+                {xpOffLeft && (
+                  <text
+                    x={6}
+                    y={midY + fontSize / 2}
+                    textAnchor="start"
+                    fontSize={fontSize}
+                    fill={color}
+                    style={labelStyle}
+                  >
+                    ← XP
+                  </text>
+                )}
               </>
             );
           })()}

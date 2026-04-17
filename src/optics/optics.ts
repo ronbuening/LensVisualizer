@@ -548,7 +548,9 @@ export function bAtZoom(zoomT: number, L: RuntimeLens): number {
 /** Interpolate exit pupil SD at a given zoom position. */
 export function xpAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.xpSD;
-  return _lerpZoomArray(zoomT, L.zoomXpSDs!);
+  const arr = L.zoomXpSDs!;
+  if (arr.some((v) => !isFinite(v))) return Infinity;
+  return _lerpZoomArray(zoomT, arr);
 }
 
 /** Interpolate entrance pupil z-position relative to stop at a given zoom position. */
@@ -560,7 +562,9 @@ export function epZRelStopAtZoom(zoomT: number, L: RuntimeLens): number {
 /** Interpolate exit pupil z-position relative to last surface at a given zoom position. */
 export function xpZRelLastSurfAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.xpZRelLastSurf;
-  return _lerpZoomArray(zoomT, L.zoomXpZRelLastSurfs!);
+  const arr = L.zoomXpZRelLastSurfs!;
+  if (arr.some((v) => !isFinite(v))) return Infinity;
+  return _lerpZoomArray(zoomT, arr);
 }
 
 /**
