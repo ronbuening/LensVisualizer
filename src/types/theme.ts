@@ -72,6 +72,8 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   chromDispLow: string;
   stop: string;
   stopLabel: string;
+  pupilEntrance: string;
+  pupilExit: string;
   imgLine: string;
   imgLabel: string;
   groupLabel: string;

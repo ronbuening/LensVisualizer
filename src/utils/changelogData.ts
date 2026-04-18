@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-18 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-18",
+    type: "improvement",
+    summary: "Improved entrance and exit pupil overlay readability with larger labels and distinct colors",
+  },
+  {
+    date: "2026-04-18",
+    type: "lens",
+    summary: "Added Leica Elmarit-R 28mm f/2.8 and Leica Elmarit 90mm f/2.8",
+  },
   // ── 2026-04-17 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-17",
