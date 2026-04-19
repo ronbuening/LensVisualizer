@@ -288,6 +288,15 @@ describe("DiagramSVG", () => {
     const texts = Array.from(container.querySelectorAll("text")).map((el) => el.textContent);
     expect(texts).toContain("EP");
     expect(texts).toContain("XP");
+    const epText = Array.from(container.querySelectorAll("text")).find((el) => el.textContent === "EP");
+    const xpText = Array.from(container.querySelectorAll("text")).find((el) => el.textContent === "XP");
+    expect(epText?.getAttribute("font-size")).toBe("9.5");
+    expect(xpText?.getAttribute("font-size")).toBe("9.5");
+    expect(epText?.getAttribute("fill")).toBe(themes.dark.pupilEntrance);
+    expect(xpText?.getAttribute("fill")).toBe(themes.dark.pupilExit);
+    expect(epText?.getAttribute("fill")).not.toBe(themes.dark.stopLabel);
+    expect(xpText?.getAttribute("fill")).not.toBe(themes.dark.stopLabel);
+    expect(epText?.getAttribute("fill")).not.toBe(xpText?.getAttribute("fill"));
     const circles = container.querySelectorAll("circle");
     expect(circles.length).toBeGreaterThanOrEqual(2);
   });

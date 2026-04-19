@@ -13,6 +13,8 @@ const mockTheme = {
   rayOffCool: "#00ccff",
   rayOffWarm: "#ff6600",
   stopLabel: "#ffcc00",
+  pupilEntrance: "#00ddff",
+  pupilExit: "#dd88ff",
   toggleBg: "#222",
   toggleBgActive: "#444",
   toggleText: "#999",
@@ -70,6 +72,13 @@ describe("RayToggles", () => {
     const { container } = render(<RayToggles t={mockTheme} showOnAxis={true} showOffAxis="off" showPupils={false} />);
     const svgs = container.querySelectorAll("svg");
     expect(svgs.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("gives desktop ray buttons compact spacing so PUPILS fits", () => {
+    render(<RayToggles t={mockTheme} showOnAxis={true} showOffAxis="off" showPupils={true} />);
+    const pupilsButton = screen.getByRole("button", { name: "PUPILS" });
+    expect(pupilsButton.style.padding).toBe("5px 6px");
+    expect(pupilsButton.style.gap).toBe("4px");
   });
 
   it("handles missing callbacks gracefully", () => {

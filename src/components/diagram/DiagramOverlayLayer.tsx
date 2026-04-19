@@ -132,12 +132,13 @@ export default function DiagramOverlayLayer({
             const xpX = isFinite(xpZRel) ? sx(zPos[L.N - 1] + xpZRel) : NaN;
             const midY = sy(0);
             const tickLen = 4;
-            const color = t.stopLabel;
+            const epColor = t.pupilEntrance;
+            const xpColor = t.pupilExit;
             const labelStyle = {
               pointerEvents: "none" as const,
               letterSpacing: "0.1em",
             };
-            const fontSize = L.lyStoPad * 1.4;
+            const fontSize = 9.5;
             /* Margin allows ticks that extend slightly beyond the SVG edge */
             const MARGIN = tickLen + 2;
             const epInView = isFinite(epX) && epX >= -MARGIN && epX <= L.svgW + MARGIN;
@@ -156,7 +157,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(-epSD)}
                       x2={epX}
                       y2={sy(epSD)}
-                      stroke={color}
+                      stroke={epColor}
                       strokeWidth={1.2}
                       strokeDasharray="3,2"
                       style={{ pointerEvents: "none" }}
@@ -166,7 +167,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(-epSD)}
                       x2={epX + tickLen}
                       y2={sy(-epSD)}
-                      stroke={color}
+                      stroke={epColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
@@ -175,7 +176,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(epSD)}
                       x2={epX + tickLen}
                       y2={sy(epSD)}
-                      stroke={color}
+                      stroke={epColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
@@ -184,12 +185,12 @@ export default function DiagramOverlayLayer({
                       y={sy(-epSD) - L.lyStoPad}
                       textAnchor="middle"
                       fontSize={fontSize}
-                      fill={color}
+                      fill={epColor}
                       style={labelStyle}
                     >
                       EP
                     </text>
-                    <circle cx={epX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+                    <circle cx={epX} cy={midY} r={2} fill={epColor} style={{ pointerEvents: "none" }} />
                   </>
                 )}
                 {epOffLeft && (
@@ -198,7 +199,7 @@ export default function DiagramOverlayLayer({
                     y={midY + fontSize / 2}
                     textAnchor="start"
                     fontSize={fontSize}
-                    fill={color}
+                    fill={epColor}
                     style={labelStyle}
                   >
                     ← EP
@@ -210,7 +211,7 @@ export default function DiagramOverlayLayer({
                     y={midY + fontSize / 2}
                     textAnchor="end"
                     fontSize={fontSize}
-                    fill={color}
+                    fill={epColor}
                     style={labelStyle}
                   >
                     EP →
@@ -223,7 +224,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(-xpSD)}
                       x2={xpX}
                       y2={sy(xpSD)}
-                      stroke={color}
+                      stroke={xpColor}
                       strokeWidth={1.2}
                       strokeDasharray="3,2"
                       style={{ pointerEvents: "none" }}
@@ -233,7 +234,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(-xpSD)}
                       x2={xpX + tickLen}
                       y2={sy(-xpSD)}
-                      stroke={color}
+                      stroke={xpColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
@@ -242,7 +243,7 @@ export default function DiagramOverlayLayer({
                       y1={sy(xpSD)}
                       x2={xpX + tickLen}
                       y2={sy(xpSD)}
-                      stroke={color}
+                      stroke={xpColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
@@ -251,12 +252,12 @@ export default function DiagramOverlayLayer({
                       y={sy(-xpSD) - L.lyStoPad}
                       textAnchor="middle"
                       fontSize={fontSize}
-                      fill={color}
+                      fill={xpColor}
                       style={labelStyle}
                     >
                       XP
                     </text>
-                    <circle cx={xpX} cy={midY} r={2} fill={color} style={{ pointerEvents: "none" }} />
+                    <circle cx={xpX} cy={midY} r={2} fill={xpColor} style={{ pointerEvents: "none" }} />
                   </>
                 )}
                 {xpOffRight && (
@@ -265,7 +266,7 @@ export default function DiagramOverlayLayer({
                     y={midY + fontSize / 2}
                     textAnchor="end"
                     fontSize={fontSize}
-                    fill={color}
+                    fill={xpColor}
                     style={labelStyle}
                   >
                     XP →
@@ -277,7 +278,7 @@ export default function DiagramOverlayLayer({
                     y={midY + fontSize / 2}
                     textAnchor="start"
                     fontSize={fontSize}
-                    fill={color}
+                    fill={xpColor}
                     style={labelStyle}
                   >
                     ← XP

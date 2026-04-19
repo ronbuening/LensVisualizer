@@ -194,7 +194,7 @@ const DiagramHeader = forwardRef<HTMLDivElement, DiagramHeaderProps>(function Di
             alignItems: "flex-end",
             gap: 8,
             flexShrink: 0,
-            width: 220,
+            width: 236,
           }}
         >
           {/* Ray toggles */}

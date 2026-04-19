@@ -75,6 +75,8 @@ describe("ControlsBar", () => {
 
     expect(screen.queryByRole("button", { name: "PUPILS" })).toBeTruthy();
 
+    expect(screen.getByRole("button", { name: "PUPILS" }).parentElement?.style.width).toBe("228px");
+
     fireEvent.click(screen.getByRole("button", { name: "G" }));
     fireEvent.click(screen.getAllByRole("button", { name: "NORMALIZED" })[0]!);
 

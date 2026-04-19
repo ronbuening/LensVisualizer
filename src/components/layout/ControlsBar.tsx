@@ -47,6 +47,9 @@ export default function ControlsBar({
   const padding = compact ? "6px 12px" : "8px 16px";
   const gap = compact ? 6 : 8;
   const svgW = compact ? 12 : 14;
+  const rayToggleWidth = compact ? undefined : 228;
+  const rayToggleButtonStyle = (active: boolean, hasRightBorder: boolean) =>
+    toggleBtn(t, active, compact ? { hasRightBorder } : { hasRightBorder, padding: "5px 6px", gap: 4 });
 
   /* ── Off-axis cycling logic ── */
   const offAxisActive = showOffAxis !== "off";
@@ -97,8 +100,8 @@ export default function ControlsBar({
     label: "PUPILS",
     active: showPupils,
     onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils" as RayField, value: !showPupils }),
-    dotA: t.stopLabel,
-    dotB: t.stopLabel,
+    dotA: t.pupilEntrance,
+    dotB: t.pupilExit,
   });
 
   /* ── Ray mode descriptors ── */
@@ -131,9 +134,9 @@ export default function ControlsBar({
       }}
     >
       {/* Ray toggles */}
-      <div style={toggleGroup(t, compact ? undefined : { width: 180 })}>
+      <div style={toggleGroup(t, rayToggleWidth == null ? undefined : { width: rayToggleWidth })}>
         {rayToggles.map(({ label, active, onClick, dotA, dotB }, idx) => (
-          <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx === 0 })}>
+          <button key={idx} onClick={onClick} style={rayToggleButtonStyle(active, idx < rayToggles.length - 1)}>
             <svg width={svgW} height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
               <line x1="0" y1="4" x2="14" y2="4" stroke={active ? dotA : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
               <line x1="0" y1="7" x2="14" y2="7" stroke={active ? dotB : "rgba(128,128,128,0.3)"} strokeWidth="1.5" />
