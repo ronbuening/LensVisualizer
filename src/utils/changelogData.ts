@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-19 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-19",
+    type: "lens",
+    summary: "Added Fujifilm XF 35mm f/1.4 R and XF 60mm f/2.4 R Macro",
+  },
   // ── 2026-04-18 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-18",
