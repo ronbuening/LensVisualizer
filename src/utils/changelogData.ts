@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-04-18",
     type: "improvement",
-    summary: "Improved entrance and exit pupil overlay readability with larger labels and distinct colors",
+    summary: "Improved entrance and exit pupil overlay and button readability",
   },
   {
     date: "2026-04-18",

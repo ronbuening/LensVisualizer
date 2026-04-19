@@ -28,6 +28,8 @@ export default function RayToggles({
   showPupils,
   onShowPupilsChange,
 }: RayTogglesProps) {
+  const rayButtonStyle = (active: boolean, hasRightBorder: boolean) =>
+    toggleBtn(t, active, { hasRightBorder, padding: "5px 6px", gap: 4 });
   const offAxisActive = showOffAxis !== "off";
   const offAxisCycle = ENABLE_EDGE_PROJECTION
     ? () => onShowOffAxisChange?.(showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off")
@@ -97,17 +99,17 @@ export default function RayToggles({
           y1="0"
           x2="7"
           y2="10"
-          stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+          stroke={active ? t.pupilEntrance : "rgba(128,128,128,0.3)"}
           strokeWidth="1.2"
           strokeDasharray="2,1.5"
         />
-        <line x1="4" y1="0" x2="10" y2="0" stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"} strokeWidth="1.2" />
+        <line x1="4" y1="0" x2="10" y2="0" stroke={active ? t.pupilExit : "rgba(128,128,128,0.3)"} strokeWidth="1.2" />
         <line
           x1="4"
           y1="10"
           x2="10"
           y2="10"
-          stroke={active ? t.stopLabel : "rgba(128,128,128,0.3)"}
+          stroke={active ? t.pupilExit : "rgba(128,128,128,0.3)"}
           strokeWidth="1.2"
         />
       </svg>
@@ -117,7 +119,7 @@ export default function RayToggles({
   return (
     <div style={toggleGroup(t, { width: "100%" })}>
       {buttons.map(({ label, active, onClick, icon }, idx) => (
-        <button key={idx} onClick={onClick} style={toggleBtn(t, active, { hasRightBorder: idx < buttons.length - 1 })}>
+        <button key={idx} onClick={onClick} style={rayButtonStyle(active, idx < buttons.length - 1)}>
           {icon(active)}
           <span>{label}</span>
         </button>
