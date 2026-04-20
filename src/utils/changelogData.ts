@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-20 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-20",
+    type: "lens",
+    summary: "Added Canon EF 50mm f/1.0L USM and Canon RF 85mm f/2 Macro IS STM",
+  },
   // ── 2026-04-19 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-19",
