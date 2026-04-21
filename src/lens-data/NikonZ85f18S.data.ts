@@ -227,7 +227,7 @@ const LENS_DATA = {
     { label: "2", R: -1000.0, d: 0.25, nd: 1.0, elemId: 0, sd: 26.5 }, // L11 rear → air
     { label: "3", R: 42.061, d: 6.12, nd: 1.55032, elemId: 2, sd: 25.0 }, // L12 front
     { label: "4", R: 127.231, d: 0.5, nd: 1.0, elemId: 0, sd: 23.0 }, // L12 rear → air
-    { label: "5", R: 62.742, d: 6.56, nd: 1.497, elemId: 3, sd: 23.0 }, // L13 front
+    { label: "5", R: 62.742, d: 6.56, nd: 1.497, elemId: 3, sd: 20.5 }, // L13 front
     { label: "6", R: -165.753, d: 1.4, nd: 1.85025, elemId: 4, sd: 20.5 }, // L13→L14 junction
     { label: "7", R: 82.262, d: 6.182, nd: 1.0, elemId: 0, sd: 20.5 }, // L14 rear → air (var)
 

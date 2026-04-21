@@ -100,9 +100,9 @@ const LENS_DATA = {
    *  Stop position inferred from Fig. 1 — mid-gap in a₄.
    */
   surfaces: [
-    { label: "1", R: 18.941, d: 5.1888, nd: 1.694, elemId: 1, sd: 15.5 },
-    { label: "2", R: 95.1681, d: 0.0961, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "3", R: 16.06985, d: 2.97875, nd: 1.6734, elemId: 2, sd: 12.0 },
+    { label: "1", R: 18.941, d: 5.1888, nd: 1.694, elemId: 1, sd: 13.0 },
+    { label: "2", R: 95.1681, d: 0.0961, nd: 1.0, elemId: 0, sd: 11.0 },
+    { label: "3", R: 16.06985, d: 2.97875, nd: 1.6734, elemId: 2, sd: 11.0 },
     { label: "4", R: 24.9725, d: 0.8168, nd: 1.0, elemId: 0, sd: 10.0 },
     { label: "STO", R: 1e15, d: 0.8168, nd: 1.0, elemId: 0, sd: 9.1 },
     { label: "5", R: 100.24065, d: 0.7687, nd: 1.7471, elemId: 3, sd: 9.5 },

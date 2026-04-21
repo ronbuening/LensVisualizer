@@ -44,7 +44,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-xf60-f24-r-macro",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF60mmF2.4 R Macro",
+  name: "FUJIFILM FUJINON XF 60mmF2.4 R Macro",
   subtitle: "US 2014/0247506 A1 EXAMPLE 1 — FUJIFILM / ORI",
   specs: [
     "10 ELEMENTS / 8 GROUPS",
@@ -198,7 +198,7 @@ const LENS_DATA = {
     { label: "2", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 15.0 }, // L11 rear (flat) → air
     { label: "3", R: 28.9998, d: 3.8, nd: 1.58913, elemId: 2, sd: 14.8 }, // L12 front
     { label: "4", R: 52.7228, d: 0.1, nd: 1.0, elemId: 0, sd: 13.5 }, // L12 rear → air
-    { label: "5", R: 18.5122, d: 5.5, nd: 1.72916, elemId: 3, sd: 13.5 }, // L13 front (cemented D1)
+    { label: "5", R: 18.5122, d: 5.5, nd: 1.72916, elemId: 3, sd: 10.5 }, // L13 front (cemented D1)
     { label: "6", R: 57.135, d: 1.16, nd: 1.6668, elemId: 4, sd: 10.5 }, // L13→L14 junction
     { label: "7", R: 12.7943, d: 4.2, nd: 1.0, elemId: 0, sd: 10.0 }, // L14 rear → air
     { label: "STO", R: 1e15, d: 2.6, nd: 1.0, elemId: 0, sd: 7.65 }, // Aperture stop

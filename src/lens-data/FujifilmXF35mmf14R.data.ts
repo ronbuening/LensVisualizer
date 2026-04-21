@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-xf35-f14-r",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF35mmF1.4 R",
+  name: "FUJIFILM FUJINON XF 35mmF1.4 R",
   subtitle: "US 2014/0285903 A1 EXAMPLE 1 — FUJIFILM / SUZUKI",
   specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 36.17 mm", "F/1.45", "2ω ≈ 43°", "2 ASPHERICAL SURFACES"],
 
@@ -157,7 +157,7 @@ const LENS_DATA = {
     { label: "1", R: 31.767, d: 4.7, nd: 1.755, elemId: 1, sd: 16.8 },
     { label: "2", R: 108.05, d: 0.15, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "3", R: 16.733, d: 5.01, nd: 1.804, elemId: 2, sd: 14.7 },
-    { label: "4", R: 25.973, d: 0.2, nd: 1.0, elemId: 0, sd: 12.1 },
+    { label: "4", R: 25.973, d: 0.2, nd: 1.0, elemId: 0, sd: 11.3 },
     { label: "5", R: 27.72, d: 1.35, nd: 1.69895, elemId: 3, sd: 11.3 },
     { label: "6", R: 10.424, d: 6.27, nd: 1.0, elemId: 0, sd: 9.0 },
     { label: "7", R: 37.345, d: 1.1, nd: 1.60342, elemId: 4, sd: 9.0 },

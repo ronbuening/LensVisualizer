@@ -117,8 +117,8 @@ const LENS_DATA = {
     // ---- Front group (converging) ----
     { label: "1", R: 41.184, d: 5.908, nd: 1.788, elemId: 1, sd: 22.5 },
     { label: "2", R: 298.388, d: 0.145, nd: 1.0, elemId: 0, sd: 21.5 },
-    { label: "3", R: 27.334, d: 4.319, nd: 1.788, elemId: 2, sd: 21.0 },
-    { label: "4", R: 42.617, d: 1.773, nd: 1.0, elemId: 0, sd: 18.8 },
+    { label: "3", R: 27.334, d: 4.319, nd: 1.788, elemId: 2, sd: 19.0 },
+    { label: "4", R: 42.617, d: 1.773, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "5", R: 84.266, d: 2.228, nd: 1.6668, elemId: 3, sd: 16.0 },
     { label: "6", R: 17.725, d: 7.797, nd: 1.0, elemId: 0, sd: 14.2 },
 

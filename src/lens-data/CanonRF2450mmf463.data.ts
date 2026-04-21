@@ -159,8 +159,8 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ─── L1 (Unit 1): Negative front group ───
-    { label: "1", R: 238.756, d: 1.4, nd: 1.63854, elemId: 1, sd: 17.0 }, // G1 front
-    { label: "2", R: 18.479, d: 7.21, nd: 1.0, elemId: 0, sd: 16.5 }, // G1 rear → air
+    { label: "1", R: 238.756, d: 1.4, nd: 1.63854, elemId: 1, sd: 16.0 }, // G1 front
+    { label: "2", R: 18.479, d: 7.21, nd: 1.0, elemId: 0, sd: 14.5 }, // G1 rear → air
     { label: "3A", R: 994.673, d: 3.7, nd: 1.5311, elemId: 2, sd: 14.2 }, // G2 front (asph)
     { label: "4", R: 56.399, d: 0.3, nd: 1.0, elemId: 0, sd: 15.4 }, // G2 rear → air
     { label: "5", R: 28.004, d: 3.6, nd: 1.69895, elemId: 3, sd: 15.5 }, // L1P front

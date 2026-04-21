@@ -209,7 +209,7 @@ const LENS_DATA = {
     { label: "3", R: 89.207, d: 4.7, nd: 1.77279, elemId: 2, sd: 22.5 }, // L2 front
     { label: "4", R: -164.124, d: 0.1, nd: 1.0, elemId: 0, sd: 22.0 }, // L2 rear → air
     { label: "5", R: 87.119, d: 1.5, nd: 1.48749, elemId: 3, sd: 22.0 }, // L3 front
-    { label: "6", R: 23.125, d: 7.9, nd: 1.0, elemId: 0, sd: 20.5 }, // L3 rear → air
+    { label: "6", R: 23.125, d: 7.9, nd: 1.0, elemId: 0, sd: 17.0 }, // L3 rear → air
     { label: "7", R: -49.577, d: 9.0, nd: 1.5186, elemId: 4, sd: 14.3 }, // L4a front
     { label: "8", R: -15.69, d: 1.5, nd: 1.51454, elemId: 5, sd: 14.0 }, // L4a→L4b junction
     { label: "9", R: 462.539, d: 0.2, nd: 1.0, elemId: 0, sd: 15.0 }, // L4b rear → air

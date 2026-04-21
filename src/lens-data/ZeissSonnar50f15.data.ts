@@ -161,7 +161,7 @@ const LENS_DATA = {
     { label: "2", R: 208.385, d: 0.25, nd: 1.0, elemId: 0, sd: 17.0 }, // L1 rear → air  (patent text says "plane face r₂" but numerical example has finite R = 416.77 at f=100 — gentle meniscus, typical 1930s approximate language)
 
     /* ── Front cemented triplet: L2 – L3 – L4 ── */
-    { label: "3", R: 18.63, d: 5.85, nd: 1.6727, elemId: 2, sd: 15.5 }, // L2 front
+    { label: "3", R: 18.63, d: 5.85, nd: 1.6727, elemId: 2, sd: 13.0 }, // L2 front
     { label: "4", R: 52.17, d: 3.8, nd: 1.4075, elemId: 3, sd: 13.0 }, // L2→L3 junction (L3 front)
     { label: "5", R: -123.5, d: 0.95, nd: 1.689, elemId: 4, sd: 10.5 }, // L3→L4 junction (L4 front)
     { label: "6", R: 11.07, d: 1.0, nd: 1.0, elemId: 0, sd: 8.5 }, // L4 rear → air

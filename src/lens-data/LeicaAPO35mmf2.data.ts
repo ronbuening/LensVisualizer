@@ -207,7 +207,7 @@ const LENS_DATA = {
   surfaces: [
     // ── Front Group (VG) ──
     // G1: L1 + L2 cemented doublet
-    { label: "1A", R: 54.11, d: 5.95, nd: 1.8515, elemId: 1, sd: 15.0 }, // L1 front (asph)
+    { label: "1A", R: 54.11, d: 5.95, nd: 1.8515, elemId: 1, sd: 12.0 }, // L1 front (asph)
     { label: "2", R: -21.98, d: 1.05, nd: 1.65412, elemId: 2, sd: 12.0 }, // L1→L2 junction
     { label: "3", R: 25.97, d: 3.5, nd: 1.0, elemId: 0, sd: 10.0 }, // L2 rear → air
     // G2: L3 + L4 cemented doublet
