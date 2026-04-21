@@ -14,17 +14,17 @@ toc: true
 
 The decision of which lens group to move during focusing is not merely a mechanical convenience — it is a fundamental optical design choice that determines how every aberration evolves across the conjugate range. This monograph examines five recurrent internal-focusing architecture patterns that are especially instructive for understanding the tradeoffs in photographic lens design: front-of-stop focusing, rear-of-stop focusing, dual-side (CRC-type) focusing, monolithic group focusing with the stop inside the moving group, and rear-group focusing in a retrofocus wide-angle.
 
-C.G. Wynne proved in 1952 that simultaneous correction of all five Seidel aberrations at two different conjugates is impossible unless the system's *pupil* aberrations also vanish — a condition rarely achievable in practice (Wynne, 1952). Every internal focusing architecture represents a different engineering compromise within this fundamental constraint. The analysis that follows grounds each architecture in third-order aberration theory, the Wynne conjugate-shift formalism, and the higher-order considerations that become essential at wide apertures.
+C.G. Wynne proved in 1952 that simultaneous correction of all five Seidel aberrations at two different conjugates is impossible unless the system's *pupil* aberrations also vanish — a condition rarely achievable in practice [^1]. Every internal focusing architecture represents a different engineering compromise within this fundamental constraint. The analysis that follows grounds each architecture in third-order aberration theory, the Wynne conjugate-shift formalism, and the higher-order considerations that become essential at wide apertures.
 
 The five case studies were selected to span the principal architecture patterns — one example each of front-of-stop, rear-of-stop, dual-side, stop-inside-moving-group, and retrofocus rear-focusing — while covering a representative range of focal lengths (28–135 mm), apertures (f/1.4–f/2.8), and conjugate demands (portrait-distance to 1:1 macro):
 
 | Architecture | Case Study | Patent |
 |---|---|---|
-| Front-of-stop focusing | [Nikon AF-S Nikkor 105mm f/1.4E ED](/lens/nikkor-105-f14e-ed) | WO 2019/116563 Ex. 3 |
-| Rear-of-stop focusing | [Canon RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18) | US 2023/0213745 A1 Ex. 4 |
-| Dual-side focusing | [Nikon AF-S Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) | US 7,218,457 Ex. 3 |
-| Monolithic group focusing | [Nikon AF-S Nikkor 85mm f/1.4G](/lens/nikkor-85f14g) | US 8,767,319 Ex. 1 |
-| Rear-group retrofocus focusing | [Nikon AF-S Nikkor 28mm f/1.4E ED](/lens/nikon-afs-28f14e) | JP 2017-227799 Ex. 1 |
+| Front-of-stop focusing | [Nikon AF-S Nikkor 105mm f/1.4E ED](/lens/nikkor-105-f14e-ed) | WO 2019/116563 Ex. 3 [^12] |
+| Rear-of-stop focusing | [Canon RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18) | US 2023/0213745 A1 Ex. 4 [^13] |
+| Dual-side focusing | [Nikon AF-S Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) | US 7,218,457 Ex. 3 [^14] |
+| Monolithic group focusing | [Nikon AF-S Nikkor 85mm f/1.4G](/lens/nikkor-85f14g) | US 8,767,319 Ex. 1 [^16] |
+| Rear-group retrofocus focusing | [Nikon AF-S Nikkor 28mm f/1.4E ED](/lens/nikon-afs-28f14e) | JP 2017-227799 Ex. 1 [^17] |
 
 The methodology for matching patent examples to production lenses, and the evidence-level framework used throughout this monograph (distinguishing patent-stated facts, theory-derived inferences, and qualitative design interpretations), are detailed in Appendix B and Appendix C respectively.
 
@@ -34,11 +34,11 @@ Open any of the case study lenses in the [lens library](/lenses) to explore its 
 
 ## Mathematical Framework
 
-> **Notation and scope.** Unless otherwise noted, the aberration discussion uses third-order (Seidel) notation with paraxial ray coordinates in a fixed-stop formulation. Image-space Seidel sums follow the conventions of Welford (1986) and Sasián (2013); Mahajan (2011) provides an accessible parallel treatment. The underlying wave-aberration framework is due to Hopkins (1950). Equations from Wynne's conjugate-shift theory are given in a form sufficient for qualitative analysis of focusing behavior; they are not intended as a self-contained derivation.
+> **Notation and scope.** Unless otherwise noted, the aberration discussion uses third-order (Seidel) notation with paraxial ray coordinates in a fixed-stop formulation. Image-space Seidel sums follow the conventions of Welford [^2] and Sasián [^3]; Mahajan [^4] provides an accessible parallel treatment. Kingslake and Johnson [^21] and Smith [^22] offer further coverage of the lens design context. The underlying wave-aberration framework is due to Hopkins [^5]. Equations from Wynne's conjugate-shift theory are given in a form sufficient for qualitative analysis of focusing behavior; they are not intended as a self-contained derivation.
 
 ### Seidel Surface Contributions and the Stop-Shift Equations
 
-The five primary (third-order) aberration coefficients for a single refracting surface are built from the marginal ray refraction invariant $A = n(hc + u)$ and the chief ray invariant $\bar{A} = n(\bar{h}c + \bar{u})$, where $h$ and $\bar{h}$ are the respective ray intercept heights at the surface, $c$ the surface curvature, and $u$, $\bar{u}$ the paraxial ray angles (Conrady, 1929, Part I; Welford, 1986, Ch. 5). The surface contributions take the form:
+The five primary (third-order) aberration coefficients for a single refracting surface are built from the marginal ray refraction invariant $A = n(hc + u)$ and the chief ray invariant $\bar{A} = n(\bar{h}c + \bar{u})$, where $h$ and $\bar{h}$ are the respective ray intercept heights at the surface, $c$ the surface curvature, and $u$, $\bar{u}$ the paraxial ray angles. The foundational derivation appears in Conrady, Part I [^6]; Welford, Ch. 5 [^2] provides a modern formulation. The surface contributions take the form:
 
 $$S_I = -A^2 h\,\Delta(u/n)$$
 
@@ -54,7 +54,7 @@ The structure of these equations is the key to what follows. Spherical aberratio
 
 The ratio $\bar{A}/A$ — equivalently $\bar{h}/h$ at a thin element — is the **eccentricity parameter**, and it determines how each surface's aberration contribution is partitioned among spherical aberration, coma, astigmatism, and distortion. Near the aperture stop, where $\bar{h} \approx 0$, the eccentricity parameter is small and the surface contributes almost exclusively to spherical aberration. Far from the stop, where $\bar{h}$ grows, the surface's contribution fans out into the off-axis aberrations. This is the fundamental reason why the position of a focusing group relative to the stop matters.
 
-When the aperture stop is displaced axially, introducing a shift parameter $Q = \Delta\bar{A}/A$, the system Seidel sums transform according to the **stop-shift equations** (Welford, 1986, §5.3; Sasián, 2013, §9.3):
+When the aperture stop is displaced axially, introducing a shift parameter $Q = \Delta\bar{A}/A$, the system Seidel sums transform according to the **stop-shift equations** [^2] [^3]:
 
 $$S_I^* = S_I$$
 
@@ -70,7 +70,7 @@ Two aberrations are **stop-invariant**: spherical aberration ($S_I$) and Petzval
 
 ### The Wynne Conjugate-Shift Equations
 
-Wynne's 1952 derivation established the mathematical dual of the stop-shift equations (Wynne, 1952; see also Welford, 1986, §8.7). When the object conjugate changes, the marginal ray changes while the chief ray — defined by the fixed stop — remains constant. Defining a conjugate-shift parameter $\delta = \Delta A / \bar{A}$, the image aberrations transform as:
+Wynne's 1952 derivation established the mathematical dual of the stop-shift equations [^1] [^2]. When the object conjugate changes, the marginal ray changes while the chief ray — defined by the fixed stop — remains constant. Defining a conjugate-shift parameter $\delta = \Delta A / \bar{A}$, the image aberrations transform as:
 
 $$S_I' = S_I + 4\delta S_{II} + 4\delta^2\!\left(S_{III} + \tfrac{1}{2}S_{IV}\right) + \cdots$$
 
@@ -80,7 +80,7 @@ $$S_{III}' = S_{III} + 2\delta \bar{S}_{II} + \delta^2 \bar{S}_I$$
 
 The barred quantities $\bar{S}_I$ and $\bar{S}_{II}$ are the **pupil aberrations** — the Seidel coefficients of the pupil imaging subsystem.
 
-The most consequential result for IF design is the induced spherical aberration: even a system with perfectly corrected $S_I$ at the design conjugate will develop spherical aberration upon refocusing, with the leading term proportional to the system's coma $S_{II}$. **If a lens group has uncorrected coma, refocusing it will directly generate spherical aberration** — a particularly visible degradation in fast lenses at close focus (Wynne, 1952; Takano, 1980).
+The most consequential result for IF design is the induced spherical aberration: even a system with perfectly corrected $S_I$ at the design conjugate will develop spherical aberration upon refocusing, with the leading term proportional to the system's coma $S_{II}$. **If a lens group has uncorrected coma, refocusing it will directly generate spherical aberration** — a particularly visible degradation in fast lenses at close focus [^1] [^7].
 
 Wynne's impossibility theorem follows from these equations: correcting all five Seidel aberrations simultaneously at two conjugates requires the vanishing of all pupil aberrations. No practical photographic lens satisfies all these conditions simultaneously. Every IF architecture therefore represents a prioritization — which aberrations to hold stable across the focus range, and which to allow to degrade.
 
@@ -92,13 +92,13 @@ The pupil aberrations $\bar{S}_I$ (pupil spherical aberration) and $\bar{S}_{II}
 - **Coma invariance** requires $3S_{III} + S_{IV} = 0$ and $\bar{S}_{II} = 0$.
 - **Astigmatism invariance** requires $\bar{S}_{II} = 0$ and $\bar{S}_I = 0$.
 
-The condition $\bar{S}_I = 0$ states that the exit pupil must be a sharp, aberration-free image of the aperture stop as seen through the rear group. When the exit pupil is aberrated, the chief ray angles at the image plane vary nonlinearly with field position, and refocusing produces field-dependent image quality shifts (Kidger, 1996).
+The condition $\bar{S}_I = 0$ states that the exit pupil must be a sharp, aberration-free image of the aperture stop as seen through the rear group. When the exit pupil is aberrated, the chief ray angles at the image plane vary nonlinearly with field position, and refocusing produces field-dependent image quality shifts [^8].
 
 In practical IF design, the *stationary* groups determine the pupil aberration environment in which the focusing group operates. A well-designed IF system minimizes pupil aberrations in the fixed groups, giving the moving group the cleanest possible optical context for conjugate change.
 
 ### Extrinsic Aberrations and IF Group Translation
 
-A subtlety not captured by the classical conjugate-shift equations alone is that when an IF group physically translates, it introduces **extrinsic aberrations** — aberrations arising from the mismatch between the exit pupil of one subsystem and the entrance pupil of the next. Sasián (2013, *Adv. Opt. Technol.* 2(1), 75–80) formalized this concept: when two subsystems are concatenated and the exit pupil of the first does not coincide with the entrance pupil of the second, the composite system develops aberrations beyond those predicted by summing the subsystem contributions independently.
+A subtlety not captured by the classical conjugate-shift equations alone is that when an IF group physically translates, it introduces **extrinsic aberrations** — aberrations arising from the mismatch between the exit pupil of one subsystem and the entrance pupil of the next. Sasián formalized this concept [^9]: when two subsystems are concatenated and the exit pupil of the first does not coincide with the entrance pupil of the second, the composite system develops aberrations beyond those predicted by summing the subsystem contributions independently.
 
 In an IF lens at the design conjugate, the group spacings are chosen so that the pupil relay between fixed and moving groups is well-matched. When the focusing group translates, this relay match is disrupted. The practical signature is **focus-position-dependent illumination non-uniformity and color shading** at the sensor plane.
 
@@ -106,7 +106,7 @@ For IF design, the key implication is that the stationary groups must be designe
 
 ### The Wynne–Kidger Design Methodology
 
-Kidger (1996, *Proc. SPIE* 2774, 722–727) extended the Wynne analysis by identifying pupil spherical aberration as the single most important parameter governing aberration stability across conjugates. His argument was that while the classical Wynne conditions for conjugate invariance require the vanishing of *all* pupil aberrations, in practice the dominant degradation mechanism is pupil spherical aberration because it feeds directly into the astigmatism change equation ($\Delta S_{III} = \cdots + \delta^2 \bar{S}_I$). A lens system with small $\bar{S}_I$ will maintain correction across conjugates substantially better than one with large $\bar{S}_I$.
+Kidger extended the Wynne analysis by identifying pupil spherical aberration as the single most important parameter governing aberration stability across conjugates [^8]. His argument was that while the classical Wynne conditions for conjugate invariance require the vanishing of *all* pupil aberrations, in practice the dominant degradation mechanism is pupil spherical aberration because it feeds directly into the astigmatism change equation ($\Delta S_{III} = \cdots + \delta^2 \bar{S}_I$). A lens system with small $\bar{S}_I$ will maintain correction across conjugates substantially better than one with large $\bar{S}_I$. Kidger's two textbooks [^23] [^24] provide further development of this methodology in the context of practical lens design.
 
 This insight has a direct architectural consequence: the monolithic architecture naturally produces small $\bar{S}_I$; the dual-side architecture can actively manage $\bar{S}_I$ through its two independent degrees of freedom; and the rear-of-stop architecture benefits from the reduced ray heights that suppress all aberration contributions. Front-of-stop and rear-group retrofocus architectures face the steepest $\bar{S}_I$ challenges.
 
@@ -114,7 +114,7 @@ This insight has a direct architectural consequence: the monolithic architecture
 
 Three of the five case-study lenses operate at f/1.4, where the third-order (Seidel) framework provides necessary but insufficient analysis. Transverse spherical aberration scales as the cube of the numerical aperture: going from f/4 to f/1.4 amplifies spherical aberration contributions by a factor of approximately $(4/1.4)^3 \approx 23\times$.
 
-The principal higher-order aberrations relevant to IF design at wide apertures include fifth-order spherical aberration ($W_{060}$), oblique spherical aberration ($W_{240}$), and elliptical coma ($W_{331}$). Berek (1930) recognized that for wide-aperture lenses, deliberate under-correction of third-order spherical aberration is often necessary to counterbalance the opposite sign of the fifth-order term, producing a zonal balance that minimizes the total wavefront error across the aperture. This balance is conjugate-dependent — it shifts as the lens refocuses — and each IF architecture disturbs it differently.
+The principal higher-order aberrations relevant to IF design at wide apertures include fifth-order spherical aberration ($W_{060}$), oblique spherical aberration ($W_{240}$), and elliptical coma ($W_{331}$). Berek recognized that for wide-aperture lenses, deliberate under-correction of third-order spherical aberration is often necessary to counterbalance the opposite sign of the fifth-order term, producing a zonal balance that minimizes the total wavefront error across the aperture [^10]. This balance is conjugate-dependent — it shifts as the lens refocuses — and each IF architecture disturbs it differently.
 
 ### Focusing Group Mechanics and Focal Length Change
 
@@ -128,7 +128,7 @@ $$\Delta f_{sys} \approx \frac{f_{sys}^2 \cdot \delta}{f_1 f_2}$$
 
 > **Key result — the IF breathing–aberration tension.** A shorter focal length focusing group (stronger optical power) requires less movement $\delta$ for a given conjugate change, enabling compact IF mechanisms, but contributes proportionally larger aberration changes and produces more breathing per unit of travel. Compact, fast-focusing mechanisms demand strong focusing groups, which are inherently more aberration-sensitive to conjugate change and more prone to breathing.
 
-Goodsell, Blahnik, and Rolland (2022) derived the paraxial condition for breathing elimination with a single moving group, demonstrating up to two orders of magnitude improvement in breathing on patent designs — breathing is a designable quantity rather than an inevitable consequence of IF.
+Goodsell, Blahnik, and Rolland derived the paraxial condition for breathing elimination with a single moving group, demonstrating up to two orders of magnitude improvement in breathing on patent designs — breathing is a designable quantity rather than an inevitable consequence of IF [^11].
 
 ### The Unit-Focusing Baseline
 
@@ -147,7 +147,7 @@ See the dedicated primers for a deeper treatment:
 
 ## Case Study I: Front-of-Stop Focusing — Nikon AF-S Nikkor 105mm f/1.4E ED
 
-- **Patent:** WO 2019/116563, Example 3
+- **Patent:** WO 2019/116563, Example 3 [^12]
 - **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
 - **Weight:** 985 g | **MFD:** 1.0 m | **Lens page:** [/lens/nikkor-105-f14e-ed](/lens/nikkor-105-f14e-ed)
 
@@ -171,7 +171,7 @@ For a focused treatment, see the **[Front-of-Stop Focusing primer](/articles/foc
 
 ## Case Study II: Rear-of-Stop Focusing — Canon RF 135mm f/1.8 L IS USM
 
-- **Patent:** US 2023/0213745 A1, Example 4
+- **Patent:** US 2023/0213745 A1, Example 4 [^13]
 - **Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
 - **MFD:** 0.70 m | **Lens page:** [/lens/canon-rf-135f18](/lens/canon-rf-135f18)
 
@@ -195,7 +195,7 @@ For a focused treatment, see the **[Rear-of-Stop Focusing primer](/articles/focu
 
 ## Case Study III: Dual-Side Focusing — Nikon AF-S Micro-Nikkor 105mm f/2.8G VR
 
-- **Patent:** US 7,218,457, Example 3
+- **Patent:** US 7,218,457, Example 3 [^14]
 - **Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
 - **MFD:** 0.314 m (1:1 reproduction) | **Lens page:** [/lens/nikon-afs-105f28-vr-micro](/lens/nikon-afs-105f28-vr-micro)
 
@@ -205,7 +205,7 @@ The Micro-Nikkor 105mm f/2.8G VR confronts the most demanding conjugate range of
 
 The solution is dual-side focusing: **two groups, one before and one after the aperture stop, move independently at different rates**. In the patent example, the lens is divided into four groups: fixed positive G1, moving negative G2 (ahead of the stop), aperture stop, moving positive G3 (behind the stop), fixed negative G4. During focusing from infinity to close range, G2 moves toward the image side and G3 moves toward the object side.
 
-This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and executed in its first implementation by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 (Nikon, "Thousand and One Nights," Tales #14 and #86). Wakimoto's original insight was remarkably precise: he identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that air space as a correcting degree of freedom during focusing.
+This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and executed in its first implementation by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 [^15]. Wakimoto's original insight was remarkably precise: he identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that air space as a correcting degree of freedom during focusing.
 
 ### Aberration Rationale
 
@@ -219,7 +219,7 @@ For a focused treatment, see the **[Dual-Side Focusing primer](/articles/focusin
 
 ## Case Study IV: Monolithic Group Focusing — Nikon AF-S Nikkor 85mm f/1.4G
 
-- **Patent:** US 8,767,319, Example 1
+- **Patent:** US 8,767,319, Example 1 [^16]
 - **Production lens:** 10 elements in 9 groups; no aspherical elements; no ED elements
 - **Weight:** 595 g | **MFD:** 0.85 m | **Lens page:** [/lens/nikkor-85f14g](/lens/nikkor-85f14g)
 
@@ -245,7 +245,7 @@ For a focused treatment, see the **[Monolithic Group Focusing primer](/articles/
 
 ## Case Study V: Rear-Group Focusing in a Fast Retrofocus Wide-Angle — Nikon AF-S Nikkor 28mm f/1.4E ED
 
-- **Patent:** JP 2017-227799, Example 1
+- **Patent:** JP 2017-227799, Example 1 [^17]
 - **Production lens:** 14 elements in 11 groups; two ED elements; three aspherical elements; Nano Crystal Coat; fluorine front-element coating
 - **MFD:** 0.28 m | **Lens page:** [/lens/nikon-afs-28f14e](/lens/nikon-afs-28f14e)
 
@@ -253,11 +253,11 @@ The Nikon 28mm f/1.4E employs a two-group rear-focusing strategy: the patent div
 
 ### The Retrofocus Constraint
 
-This architecture is dictated by the lens's **inverse telephoto (retrofocus) design** — the standard wide-angle configuration for SLR cameras requiring sufficient back focal distance for the reflex mirror. Fixing the front group and moving the rear second group addresses three problems simultaneously: the rear group has substantially less mass; the spacing change provides inherent close-range correction; and the front element does not rotate or extend.
+This architecture is dictated by the lens's **inverse telephoto (retrofocus) design** — the standard wide-angle configuration for SLR cameras requiring sufficient back focal distance for the reflex mirror. Fixing the front group and moving the rear second group addresses three problems simultaneously: the rear group has substantially less mass; the spacing change provides inherent close-range correction; and the front element does not rotate or extend. Neil described the general class of high-performance wide-angle systems with internal close-focusing optics that exploit this constraint [^20].
 
 ### Evolution from the 28mm f/1.4D
 
-The predecessor 28mm f/1.4D (US 5,315,441) used a more mechanically complex focusing system: three groups moved during focusing at **two** distinct rates. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology. Three aspherical elements and two ED elements provide the additional degrees of freedom needed to control higher-order aberration residuals across the conjugate range with a simpler single-rate rear-focus mechanism.
+The predecessor 28mm f/1.4D [^18] used a more mechanically complex focusing system: three groups moved during focusing at **two** distinct rates. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology. Three aspherical elements and two ED elements provide the additional degrees of freedom needed to control higher-order aberration residuals across the conjugate range with a simpler single-rate rear-focus mechanism.
 
 This represents a broader trend in modern lens design: **advances in glass and aspherical manufacturing technology can offset the loss of mechanical degrees of freedom**.
 
@@ -353,9 +353,9 @@ Each architecture prioritizes different aspects of this multi-dimensional tradeo
 | Monolithic | Symmetry preservation; rendering consistency | Heavier focusing group; slower AF | Modified Double Gauss designs |
 | Rear-group retrofocus | Practical for retrofocus; inherent CRC | Distortion/breathing variation | Fast wide-angle for SLR/mirrorless |
 
-The historical trajectory from Wakimoto and Shimizu's 1967 CRC system to modern multi-focusing architectures traces a path of increasing optical sophistication enabled by manufacturing advances. Modern aspherical elements, ED glasses with anomalous partial dispersion, and computational optimization now allow simpler focusing mechanisms to maintain high performance where mechanically complex predecessors once required multiple differentially moving groups. The concurrent rise of computational correction in mirrorless camera systems has further reshaped the design space.
+The historical trajectory from Wakimoto and Shimizu's 1967 CRC system [^15] to modern multi-focusing architectures traces a path of increasing optical sophistication enabled by manufacturing advances. Modern aspherical elements, ED glasses with anomalous partial dispersion, and computational optimization now allow simpler focusing mechanisms to maintain high performance where mechanically complex predecessors once required multiple differentially moving groups. The concurrent rise of computational correction in mirrorless camera systems has further reshaped the design space.
 
-The fundamental physics of the Seidel and Buchdahl coefficients ensures that the question of *where to place the focusing group* will remain a central problem in optical design for as long as lenses are made from glass.
+The fundamental physics of the Seidel and Buchdahl [^19] coefficients ensures that the question of *where to place the focusing group* will remain a central problem in optical design for as long as lenses are made from glass.
 
 ---
 
@@ -384,41 +384,55 @@ Statements in this monograph fall into three categories:
 
 ---
 
-## Bibliography
+## References
 
-### Aberration Theory
+[^1]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proceedings of the Physical Society, Section B*, 65, 429–437 (1952).
-- Buchdahl, H.A. *Optical Aberration Coefficients*. Oxford University Press, 1954; Dover reprint, 1968.
-- Hopkins, H.H. *Wave Theory of Aberrations*. Oxford University Press, 1950.
-- Welford, W.T. *Aberrations of Optical Systems*. Taylor & Francis, 1986.
-- Sasián, J.M. *Introduction to Aberrations in Optical Imaging Systems*. Cambridge University Press, 2013.
-- Conrady, A.E. *Applied Optics and Optical Design*, Parts I & II. Oxford University Press, 1929.
-- Mahajan, V.N. *Aberration Theory Made Simple*, 2nd ed. SPIE Press, 2011.
+[^2]: W. T. Welford, *Aberrations of Optical Systems*. Bristol, U.K.: Adam Hilger, 1986.
 
-### Lens Design Texts
+[^3]: J. Sasián, *Introduction to Aberrations in Optical Imaging Systems*. Cambridge, U.K.: Cambridge Univ. Press, 2013.
 
-- Kingslake, R. and Johnson, R.B. *Lens Design Fundamentals*, 2nd ed. Academic Press/SPIE Press, 2010.
-- Smith, W.J. *Modern Optical Engineering*, 4th ed. McGraw-Hill, 2007.
-- Kidger, M.J. *Fundamental Optical Design*. SPIE Press, 2001.
-- Kidger, M.J. *Intermediate Optical Design*. SPIE Press, 2004.
+[^4]: V. N. Mahajan, *Aberration Theory Made Simple*, 2nd ed. Bellingham, WA, USA: SPIE Press, 2011.
 
-### Journal Papers and Conference Proceedings
+[^5]: H. H. Hopkins, *Wave Theory of Aberrations*. Oxford, U.K.: Oxford Univ. Press, 1950.
 
-- Goodsell, J., Blahnik, V., and Rolland, J.P. "Method for minimizing lens breathing with one moving group." *Optics Express*, 30(11), 19494–19511 (2022).
-- Takano, E. "Changes in Aberrations Due to Focusing and Their Elimination." *Proc. SPIE* 0237 (1980).
-- Neil, I.A. "High-performance wide-angle objective lens systems with internal close-focusing optics and multiple aspheric surfaces for the visible waveband." *Proc. SPIE* 2774 (1996).
-- Kidger, M.J. "Design of lenses for variable magnification." *Proc. SPIE* 2774, 722–727 (1996).
-- Sasián, J.M. "Extrinsic aberrations in optical imaging systems." *Advanced Optical Technologies*, 2(1), 75–80 (2013).
+[^6]: A. E. Conrady, *Applied Optics and Optical Design*, Parts I & II. Oxford, U.K.: Oxford Univ. Press, 1929.
 
-### Patents
+[^7]: E. Takano, "Changes in aberrations due to focusing and their elimination," *Proc. SPIE*, vol. 0237, 1980.
 
-- Nikon Corporation. WO 2019/116563 A1 — [105mm f/1.4E ED](/lens/nikkor-105-f14e-ed)
-- Canon Inc. US 2023/0213745 A1 — [RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18)
-- Nikon Corporation. US 7,218,457 B2 — [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro)
-- Nikon Corporation and Konica Minolta Advanced Layers, Inc. US 8,767,319 B2 — [85mm f/1.4G](/lens/nikkor-85f14g)
-- Nikon Corporation and Konica Minolta Inc. JP 2017-227799 A — [28mm f/1.4E ED](/lens/nikon-afs-28f14e)
-- Cosina Co., Ltd. JP 2021-43376 A — [Voigtländer APO-Lanthar 50mm f/2.0 Aspherical](/lens/apo-lanthar-50f2)
+[^8]: M. J. Kidger, "Design of lenses for variable magnification," *Proc. SPIE*, vol. 2774, pp. 722–727, 1996.
+
+[^9]: J. M. Sasián, "Extrinsic aberrations in optical imaging systems," *Adv. Opt. Technol.*, vol. 2, no. 1, pp. 75–80, 2013.
+
+[^10]: M. Berek, *Grundlagen der praktischen Optik*. Berlin, Germany: Walter de Gruyter, 1930.
+
+[^11]: J. Goodsell, V. Blahnik, and J. P. Rolland, "Method for minimizing lens breathing with one moving group," *Opt. Express*, vol. 30, no. 11, pp. 19494–19511, 2022.
+
+[^12]: Nikon Corporation, "Optical system," Int. Patent WO 2019/116563 A1, 2019. — [105mm f/1.4E ED](/lens/nikkor-105-f14e-ed)
+
+[^13]: Canon Inc., "Optical system," U.S. Patent Appl. 2023/0213745 A1, 2023. — [RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18)
+
+[^14]: Nikon Corporation, "Close-up lens," U.S. Patent 7,218,457 B2, 2007. — [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro)
+
+[^15]: Nikon Corporation, "Nikkor — Thousand and One Nights," Tales No. 14 and No. 86. [Online]. Available: https://imaging.nikon.com/imaging/information/nikkor/story/. Accessed: Apr. 2026.
+
+[^16]: Nikon Corporation and Konica Minolta Advanced Layers, Inc., "Photographic lens," U.S. Patent 8,767,319 B2, 2014. — [85mm f/1.4G](/lens/nikkor-85f14g)
+
+[^17]: Nikon Corporation and Konica Minolta Inc., "Optical system," JP Patent 2017-227799 A, 2017. — [28mm f/1.4E ED](/lens/nikon-afs-28f14e)
+
+[^18]: Nikon Corporation, "Wide-angle lens," U.S. Patent 5,315,441, 1994.
+
+[^19]: H. A. Buchdahl, *Optical Aberration Coefficients*. Oxford, U.K.: Oxford Univ. Press, 1954; repr. New York, NY, USA: Dover, 1968.
+
+[^20]: I. A. Neil, "High-performance wide-angle objective lens systems with internal close-focusing optics and multiple aspheric surfaces for the visible waveband," *Proc. SPIE*, vol. 2774, 1996.
+
+[^21]: R. Kingslake and R. B. Johnson, *Lens Design Fundamentals*, 2nd ed. Burlington, MA, USA: Academic Press, 2010.
+
+[^22]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2007.
+
+[^23]: M. J. Kidger, *Fundamental Optical Design*. Bellingham, WA, USA: SPIE Press, 2001.
+
+[^24]: M. J. Kidger, *Intermediate Optical Design*. Bellingham, WA, USA: SPIE Press, 2004.
 
 ---
 
