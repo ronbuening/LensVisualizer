@@ -10,7 +10,7 @@ import ArticlesPage from "../src/pages/ArticlesPage.js";
 import ArticlePage from "../src/pages/ArticlePage.js";
 import ComparePage from "../src/pages/ComparePage.js";
 import NotFoundPage from "../src/pages/NotFoundPage.js";
-import { ARTICLE_CONTENT, ARTICLES } from "../src/utils/homepageContent.js";
+import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "./testUtils.js";
 
@@ -65,7 +65,7 @@ describe("static page renders", () => {
     expect(screen.getAllByRole("link", { name: /Lens Library/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /Browse by Maker/i }).length).toBeGreaterThan(0);
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
-    expect(screen.getByText(ARTICLES[0].title)).toBeTruthy();
+    expect(screen.getByText(HOMEPAGE_ARTICLES[0].title)).toBeTruthy();
   });
 
   it("redirects legacy lens query URLs on the homepage", async () => {
@@ -114,7 +114,7 @@ describe("static page renders", () => {
   });
 
   it("renders an article page for a known slug", () => {
-    const article = ARTICLES[0];
+    const article = HOMEPAGE_ARTICLES[0];
     const entry = ARTICLE_CONTENT[article.slug];
 
     renderRoutes(
