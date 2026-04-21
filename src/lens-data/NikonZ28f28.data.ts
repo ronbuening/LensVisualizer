@@ -212,8 +212,8 @@ const LENS_DATA = {
     { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 9.5 }, // L23 front
     { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 11.5 }, // L23 rear → air
     { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 13.0 }, // L24g front (flat)
-    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 15.5 }, // L24g/resin junction
-    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 14.5 }, // L24r rear (asph) → air — D13, variable
+    { label: "12", R: -17.50329, d: 0.14, nd: 1.56093, elemId: 7, sd: 13.5 }, // L24g/resin junction
+    { label: "13A", R: -16.27553, d: 4.45, nd: 1.0, elemId: 0, sd: 13.5 }, // L24r rear (asph) → air — D13, variable
 
     // ── G3 — Second focusing group / GF2 (positive, f = +46.6 mm) ──
     { label: "14A", R: -26.85154, d: 2.0, nd: 1.53113, elemId: 8, sd: 18.5 }, // L31 front (asph)

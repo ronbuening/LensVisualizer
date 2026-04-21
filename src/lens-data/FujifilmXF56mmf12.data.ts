@@ -213,8 +213,8 @@ const LENS_DATA = {
     { label: "16", R: -13.865, d: 1.21, nd: 1.6668, elemId: 9, sd: 11.5 },
     { label: "17", R: 29.688, d: 6.63, nd: 1.883, elemId: 10, sd: 11.5 },
     { label: "18", R: -55.427, d: 0.9, nd: 1.0, elemId: 0, sd: 11.5 },
-    { label: "19", R: 289.87, d: 1.81, nd: 1.48749, elemId: 11, sd: 14.0 },
-    { label: "20", R: -289.87, d: 16.53, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "19", R: 289.87, d: 1.81, nd: 1.48749, elemId: 11, sd: 11.5 },
+    { label: "20", R: -289.87, d: 16.53, nd: 1.0, elemId: 0, sd: 11.5 },
   ],
 
   /* ── Aspherical coefficients ──

@@ -243,7 +243,7 @@ const LENS_DATA = {
     { label: "3", R: 98.0319, d: 9.004, nd: 1.497, elemId: 2, sd: 39.1 },
     { label: "4", R: -860.7055, d: 0.1, nd: 1.0, elemId: 0, sd: 37.3 },
     // L13+L14 cemented doublet (ED + lanthanum flint)
-    { label: "5", R: 70.0561, d: 11.648, nd: 1.497, elemId: 3, sd: 35.0 },
+    { label: "5", R: 70.0561, d: 11.648, nd: 1.497, elemId: 3, sd: 30.5 },
     { label: "6", R: -266.9895, d: 3.5, nd: 1.72047, elemId: 4, sd: 30.8 }, // junction → L14 glass
     { label: "7", R: 168.2737, d: 7.956, nd: 1.0, elemId: 0, sd: 29.7 }, // L14 rear → air (D7, variable)
 
@@ -258,7 +258,7 @@ const LENS_DATA = {
     { label: "11", R: 59.4115, d: 7.084, nd: 2.001, elemId: 7, sd: 25.8 },
     { label: "12", R: -9603.9985, d: 0.1, nd: 1.0, elemId: 0, sd: 24.0 },
     // L32+L33 cemented doublet (lanthanum crown + specialty flint)
-    { label: "13", R: 101.9988, d: 8.889, nd: 1.6968, elemId: 8, sd: 22.5 },
+    { label: "13", R: 101.9988, d: 8.889, nd: 1.6968, elemId: 8, sd: 19.0 },
     { label: "14", R: -54.3899, d: 1.8, nd: 1.71736, elemId: 9, sd: 19.2 }, // junction → L33 glass
     { label: "15", R: 28.023, d: 5.843, nd: 1.0, elemId: 0, sd: 18.6 }, // L33 rear → air
 

@@ -186,8 +186,8 @@ const LENS_DATA = {
     // ── G1: Front positive group (L1–L5), fixed ──
     { label: "1", R: -111.983, d: 1.4, nd: 1.56732, elemId: 1, sd: 19.0 }, // L1 front
     { label: "2", R: 20.9441, d: 3.1601, nd: 1.0, elemId: 0, sd: 15.1 }, // L1 rear → air
-    { label: "3", R: 33.3039, d: 6.1681, nd: 1.881, elemId: 2, sd: 17.0 }, // L2 front
-    { label: "4", R: -131.595, d: 1.6754, nd: 1.0, elemId: 0, sd: 15.5 }, // L2 rear → air
+    { label: "3", R: 33.3039, d: 6.1681, nd: 1.881, elemId: 2, sd: 15.5 }, // L2 front
+    { label: "4", R: -131.595, d: 1.6754, nd: 1.0, elemId: 0, sd: 14.5 }, // L2 rear → air
     { label: "5", R: -47.8716, d: 1.0, nd: 1.60342, elemId: 3, sd: 14.5 }, // L3 front
     { label: "6", R: 47.8716, d: 1.3489, nd: 1.0, elemId: 0, sd: 14.0 }, // L3 rear → air
     { label: "7", R: 23.7727, d: 4.6431, nd: 1.59282, elemId: 4, sd: 12.0 }, // L4 front

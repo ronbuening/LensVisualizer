@@ -193,8 +193,8 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 6.0, nd: 1.0, elemId: 0, sd: 14.0 }, // Aperture stop (patent surface 8)
     { label: "9", R: -30.7873, d: 1.7, nd: 1.72825, elemId: 5, sd: 16.2 }, // Lcn front
     { label: "10", R: 35.1427, d: 7.0, nd: 1.883, elemId: 6, sd: 16.8 }, // Lcn→Lcp junction
-    { label: "11", R: -131.1407, d: 0.1, nd: 1.0, elemId: 0, sd: 18.7 }, // Lcp rear → air
-    { label: "12", R: 118.7661, d: 6.0, nd: 1.883, elemId: 7, sd: 18.8 }, // Ldp1 front
+    { label: "11", R: -131.1407, d: 0.1, nd: 1.0, elemId: 0, sd: 17.5 }, // Lcp rear → air
+    { label: "12", R: 118.7661, d: 6.0, nd: 1.883, elemId: 7, sd: 17.5 }, // Ldp1 front
     { label: "13", R: -44.2318, d: 1.5, nd: 1.53172, elemId: 8, sd: 17.6 }, // Ldp1→Ldn junction
     { label: "14", R: 44.2683, d: 6.0, nd: 1.74443, elemId: 9, sd: 17.6 }, // Ldn→Ldp2 junction
     { label: "15A", R: -77.2943, d: 38.7, nd: 1.0, elemId: 0, sd: 17.6 }, // Ldp2 rear (aspherical) → air; d = BFD

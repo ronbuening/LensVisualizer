@@ -388,10 +388,10 @@ const LENS_DATA = {
     { label: "5", R: 63.221, d: 7.03, nd: 1.49782, elemId: 3, sd: 27.5 },
     { label: "6", R: -658.5, d: 1.0, nd: 1.8044, elemId: 4, sd: 29.5 },
     { label: "7", R: 57.457, d: 1.53, nd: 1.0, elemId: 0, sd: 29.0 },
-    { label: "8", R: 56.53, d: 7.42, nd: 1.437001, elemId: 5, sd: 29.0 },
+    { label: "8", R: 56.53, d: 7.42, nd: 1.437001, elemId: 5, sd: 26.5 },
     { label: "9", R: -447.44, d: 1.3, nd: 1.0, elemId: 0, sd: 26.5 },
     // G3
-    { label: "10", R: 137.036, d: 6.11, nd: 1.720467, elemId: 6, sd: 25.5 },
+    { label: "10", R: 137.036, d: 6.11, nd: 1.720467, elemId: 6, sd: 23.0 },
     { label: "11", R: -67.293, d: 1.3, nd: 1.49782, elemId: 7, sd: 23.0 },
     { label: "12", R: 47.996, d: 5.73, nd: 1.0, elemId: 0, sd: 23.0 },
     { label: "13", R: -84.272, d: 1.2, nd: 1.741, elemId: 8, sd: 17.5 },

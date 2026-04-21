@@ -145,7 +145,7 @@ const LENS_DATA = {
     { label: "5", R: -34.12, d: 3.4, nd: 1.70154, elemId: 3, sd: 16.5 },
     { label: "6", R: -37.87, d: 0.1, nd: 1.0, elemId: 0, sd: 16.5 },
     { label: "7", R: 37.52, d: 3.36, nd: 1.7, elemId: 4, sd: 16.5 },
-    { label: "8", R: 554.05, d: 1.47, nd: 1.0, elemId: 0, sd: 16.0 },
+    { label: "8", R: 554.05, d: 1.47, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "9", R: 46.655, d: 10.12, nd: 1.7737, elemId: 5, sd: 15.5 },
     { label: "10", R: 4343.5, d: 2.43, nd: 1.0, elemId: 0, sd: 12.5 },
     // ---- Aperture stop (inferred from FIG. 1, within variable gap d10) ----

@@ -303,8 +303,8 @@ const LENS_DATA = {
     { label: "20", R: -54.74, d: 0.15, nd: 1.0, elemId: 0, sd: 12.0 }, // L35 rear → air
     { label: "21", R: 43.1, d: 1.1, nd: 1.83481, elemId: 12, sd: 12.0 }, // L36 front
     { label: "22", R: 16.9, d: 4.4, nd: 1.49782, elemId: 13, sd: 11.5 }, // L36→L37 junction (ED)
-    { label: "23", R: 73.95, d: 0.2, nd: 1.0, elemId: 0, sd: 12.0 }, // L37 rear → air
-    { label: "24", R: 31.23, d: 5.73, nd: 1.49782, elemId: 14, sd: 12.0 }, // L38 front (ED)
+    { label: "23", R: 73.95, d: 0.2, nd: 1.0, elemId: 0, sd: 11.5 }, // L37 rear → air
+    { label: "24", R: 31.23, d: 5.73, nd: 1.49782, elemId: 14, sd: 11.5 }, // L38 front (ED)
     { label: "25", R: -23.2, d: 1.1, nd: 1.83481, elemId: 15, sd: 11.5 }, // L38→L39 junction
     { label: "26", R: 55.41, d: 3.93, nd: 1.0, elemId: 0, sd: 11.5 }, // L39 rear → air
     { label: "27A", R: -68.43, d: 2.0, nd: 1.85108, elemId: 16, sd: 12.0 }, // L40 front (asph)

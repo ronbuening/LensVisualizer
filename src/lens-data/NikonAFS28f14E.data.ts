@@ -293,7 +293,7 @@ const LENS_DATA = {
     { label: "22", R: 47.257, d: 5.35, nd: 1.8322, elemId: 13, sd: 15.1 }, // L25→L26 cemented junction
     { label: "23A", R: -131.725, d: 0.3, nd: 1.0, elemId: 0, sd: 15.9 }, // L26 rear → air (asph)
     { label: "24", R: 64.397, d: 8.98, nd: 1.59282, elemId: 14, sd: 17.0 }, // L27 front (ED)
-    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 17.8 }, // L27 rear → air
+    { label: "25", R: -28.781, d: 0.15, nd: 1.0, elemId: 0, sd: 17.2 }, // L27 rear → air
     { label: "26A", R: -280.388, d: 3.71, nd: 1.6935, elemId: 15, sd: 17.2 }, // L28 front (asph)
     { label: "27A", R: -55.502, d: 38.47, nd: 1.0, elemId: 0, sd: 16.4 }, // L28 rear → image (asph) [VARIABLE: BF]
   ],

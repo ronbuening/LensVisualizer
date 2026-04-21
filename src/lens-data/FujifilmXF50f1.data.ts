@@ -204,7 +204,7 @@ const LENS_DATA = {
     { label: "7", R: 44.95362, d: 4.32, nd: 1.95906, elemId: 4, sd: 27.5 },
     { label: "8", R: 63.84817, d: 0.6, nd: 1.0, elemId: 0, sd: 25.5 },
     // L1e + L1f — Cemented doublet D1
-    { label: "9", R: 36.12697, d: 5.27, nd: 1.788, elemId: 5, sd: 25.0 },
+    { label: "9", R: 36.12697, d: 5.27, nd: 1.788, elemId: 5, sd: 21.0 },
     { label: "10", R: 60.177, d: 1.8, nd: 1.89286, elemId: 6, sd: 21.0 },
     { label: "11", R: 31.65635, d: 4.565, nd: 1.0, elemId: 0, sd: 20.0 },
     // L1g — Negative meniscus
