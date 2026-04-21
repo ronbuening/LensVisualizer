@@ -11,7 +11,7 @@ import type { LensDataInput } from "../types/optics.js";
  * ║                                                                    ║
  * ║  Zoom variable gaps: D5, D13, D31, D33 (zoom only).              ║
  * ║  Focus variable gaps: D27, D29 (zoom + focus; close-focus data    ║
- * ║    unavailable from patent — coded as zoom-only pairs).           ║
+ * ║    unavailable from patent — estimated from 0.45 m MFD).          ║
  * ║  Reversing groups: D27 (non-monotonic), D29 (non-monotonic).      ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
@@ -393,9 +393,13 @@ const LENS_DATA = {
 
   /* ── Variable air spacings (zoom format) ──
    *  Patent provides infinity-focus spacings at 3 zoom positions.
-   *  Close-focus data is not available from the patent; all pairs
-   *  use [d_inf, d_inf].  Focus unit L4 (surfaces 27–28) moves
-   *  rearward during close focus, changing gaps D27 and D29.
+   *  Close-focus data is not available from the patent.  Focus unit L4
+   *  (surfaces 27–28) moves rearward during close focus, so D27 increases
+   *  and D29 decreases by equal travel to preserve the L3→L5 envelope.
+   *
+   *  Close-focus endpoints are computed estimates from Canon's published
+   *  0.45 m MFD by solving the real-ray paraxial conjugate at each zoom
+   *  stop: L4 travel ≈ 0.54 / 1.38 / 3.56 mm at W / M / T.
    */
   zoomPositions: [24.72, 50.92, 101.84],
   zoomStep: 0.004,
@@ -413,14 +417,14 @@ const LENS_DATA = {
       [2.38, 2.38],
     ],
     "26A": [
-      [1.8, 1.8],
-      [3.37, 3.37],
-      [1.4, 1.4],
+      [1.8, 2.34],
+      [3.37, 4.75],
+      [1.4, 4.96],
     ],
     "28": [
-      [11.59, 11.59],
-      [10.02, 10.02],
-      [11.99, 11.99],
+      [11.59, 11.05],
+      [10.02, 8.64],
+      [11.99, 8.43],
     ],
     "30A": [
       [0.8, 0.8],
@@ -462,7 +466,8 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
-  focusDescription: "Inner focus — L4 (single element) translates toward image side. Nano USM actuator.",
+  focusDescription:
+    "Inner focus — L4 (single element) translates toward image side. Close-focus travel estimated from 0.45 m MFD; patent publishes infinity zoom spacings only.",
 
   /* ── Aperture configuration ── */
   nominalFno: 4,
