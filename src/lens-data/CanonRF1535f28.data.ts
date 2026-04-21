@@ -68,7 +68,7 @@ const LENS_DATA = {
     // ── B1: Front negative group (f = −21.75 mm) ──
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58313,
@@ -79,7 +79,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Biconcave Neg. (2× Asph)",
       nd: 1.854,
@@ -90,7 +90,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.59522,
@@ -101,7 +101,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.85478,
@@ -113,7 +113,7 @@ const LENS_DATA = {
     // ── B2: Positive variator / focus unit (f = +73.31 mm) ──
     {
       id: 5,
-      name: "L5",
+      name: "L21",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.84666,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L22",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.92286,
@@ -136,7 +136,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L23",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.53172,
@@ -149,7 +149,7 @@ const LENS_DATA = {
     // ── B3: Positive relay doublet (f = +52.20 mm) ──
     {
       id: 8,
-      name: "L8",
+      name: "L31",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 2.00069,
@@ -161,7 +161,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L32",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.53775,
@@ -174,7 +174,7 @@ const LENS_DATA = {
     // ── B4: Negative IS unit (f = −63.99 mm) ──
     {
       id: 10,
-      name: "L10",
+      name: "L41",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.92286,
@@ -186,7 +186,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L42",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.834,
@@ -199,7 +199,7 @@ const LENS_DATA = {
     // ── B5: Positive rear group / PL unit (f = +51.49 mm) ──
     {
       id: 12,
-      name: "L12",
+      name: "L51",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -212,7 +212,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L52",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -226,7 +226,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L53",
       label: "Element 14",
       type: "Biconcave Negative",
       nd: 2.0509,
@@ -238,7 +238,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L54",
       label: "Element 15",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.854,
@@ -249,7 +249,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
+      name: "L55",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.92286,
@@ -406,11 +406,11 @@ const LENS_DATA = {
 
   // ─── Group & doublet annotations ───────────────────────────────────────────
   groups: [
-    { text: "B1 (−)", fromSurface: "1A", toSurface: "8" },
-    { text: "B2 (+, Focus)", fromSurface: "9", toSurface: "13" },
-    { text: "B3 (+)", fromSurface: "15", toSurface: "17" },
-    { text: "B4 (−, IS)", fromSurface: "18", toSurface: "20" },
-    { text: "B5 (+, PL)", fromSurface: "22", toSurface: "30" },
+    { text: "G1 (−)", fromSurface: "1A", toSurface: "8" },
+    { text: "G2 (+, Focus)", fromSurface: "9", toSurface: "13" },
+    { text: "G3 (+)", fromSurface: "15", toSurface: "17" },
+    { text: "G4 (−, IS)", fromSurface: "18", toSurface: "20" },
+    { text: "G5 (+, PL)", fromSurface: "22", toSurface: "30" },
   ],
   doublets: [
     { text: "D1", fromSurface: "11", toSurface: "13" },

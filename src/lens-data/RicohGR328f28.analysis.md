@@ -24,7 +24,7 @@ Example 5 of US 20190154946A1 (FIG. 5 / FIG. 23) is identified as the production
 | Half angle of view | 38.2° | ~38° (28 mm equiv.) |
 | Image circle | 28.4 mm (Y′ = 14.2 mm) | APS-C: 23.5 × 15.6 mm (diag. ≈ 28.4 mm) |
 
-The patent describes two "lens groups" in the optical sense — a front group LO and a rear group LI, each with positive refractive power, separated by the aperture stop. In manufacturing terms, these six elements separate into four physically distinct units (two singlets and two cemented doublets), which is the "4 groups" cited in Ricoh's product specifications.
+The patent describes two "lens groups" in the optical sense — a G1 group LO and a G2 group LI, each with positive refractive power, separated by the aperture stop. In manufacturing terms, these six elements separate into four physically distinct units (two singlets and two cemented doublets), which is the "4 groups" cited in Ricoh's product specifications.
 
 The patent's priority date of November 2017 aligns with the GR III development timeline (announced September 2018, released March 2019). The inventor is based in Chiba, Japan, consistent with Ricoh's optical design operations.
 
@@ -37,8 +37,8 @@ The design is a compact wide-angle imaging lens with a quasi-symmetric power arr
 | Physical Group | Elements | Function |
 |---|---|---|
 | Group 1 | L11 (singlet) | Front negative meniscus with 1 aspherical surface (precision glass molded) |
-| Group 2 | L12 + L13 (cemented doublet) | Positive doublet; chromatic correction in front group |
-| Group 3 | L21 + L22 (cemented doublet) | Positive doublet; chromatic correction in rear group |
+| Group 2 | L12 + L13 (cemented doublet) | Positive doublet; chromatic correction in G1 group |
+| Group 3 | L21 + L22 (cemented doublet) | Positive doublet; chromatic correction in G2 group |
 | Group 4 | L23 (singlet) | Rear meniscus with 2 aspherical surfaces (precision glass molded) |
 
 The stop is located in the air gap between Groups 2 and 3, embedded within what the patent calls the "intermediate air lens" LAM. This placement is central to the patent's key innovation: achieving a substantially symmetric power distribution (negative–positive–negative) using only three air lenses between the outermost elements.
@@ -174,7 +174,7 @@ The large positive conic constant (K = +7.28) on surface 11 indicates a strongly
 
 **Glass:** TAFD33 is a high-refractive-index glass from Hoya's dense tantalum flint family. At n_d = 1.881, it is among the highest-index glasses in common production use. Despite its "flint" classification, ν_d = 40.14 places it in the moderate-dispersion range — significantly less dispersive than traditional dense flints. Its partial dispersion ratio (P_gF = 0.5701) falls slightly below the normal line (ΔP_gF = −0.006), meaning it exhibits a mild negative anomalous dispersion.
 
-**Optical role:** L13 is the positive (converging) workhorse of the front group. Its very high refractive index allows strong curvature at relatively modest surface radii, which helps keep the total lens diameter small — a critical constraint for a pocketable camera. The 2.75 mm center thickness (the thickest element in the design) reflects the steep biconvex shape needed at this index.
+**Optical role:** L13 is the positive (converging) workhorse of the G1 group. Its very high refractive index allows strong curvature at relatively modest surface radii, which helps keep the total lens diameter small — a critical constraint for a pocketable camera. The 2.75 mm center thickness (the thickest element in the design) reflects the steep biconvex shape needed at this index.
 
 **Front doublet as a unit (L12 + L13):** The cemented pair has a combined focal length of +32.9 mm. The doublet corrects longitudinal chromatic aberration by pairing the high-dispersion negative flint (L12) with the moderate-dispersion positive element (L13). The index difference at the cemented junction (Δn = 1.881 − 1.640 = 0.241) is large, which means the junction surface contributes meaningful refractive power and helps distribute aberration correction across the interface.
 
@@ -208,7 +208,7 @@ The large positive conic constant (K = +7.28) on surface 11 indicates a strongly
 
 **Glass:** S-TIM35 is a dense flint with the highest dispersion of any glass in this design (ν_d = 30.13). It also exhibits the most significant anomalous partial dispersion in the system: P_gF = 0.6030 versus the normal-line value of 0.5931, giving ΔP_gF = +0.010. This positive anomaly means the blue-violet end of the spectrum is dispersed more than normal-line glasses would predict, which is relevant for secondary spectrum control.
 
-**Optical role:** L22 is the negative (diverging) component of the rear cemented doublet, and corresponds to the patent's "third negative lens" disposed on the object side of the rear meniscus (L23). Being biconcave, it has concave surfaces facing both the object and image sides. Its strong negative power (f ≈ −7.3 mm) and very high dispersion counterbalance L21's positive power and moderate dispersion. The resulting rear cemented doublet (L21 + L22) has a combined focal length of +26.2 mm, shorter than the front doublet's +32.9 mm. This asymmetry (fF/fR = 2.29, with the front group weaker) is by design — it slightly favors the rear group's converging power to maintain adequate telecentricity and exit pupil distance for the APS-C sensor.
+**Optical role:** L22 is the negative (diverging) component of the rear cemented doublet, and corresponds to the patent's "third negative lens" disposed on the object side of the rear meniscus (L23). Being biconcave, it has concave surfaces facing both the object and image sides. Its strong negative power (f ≈ −7.3 mm) and very high dispersion counterbalance L21's positive power and moderate dispersion. The resulting rear cemented doublet (L21 + L22) has a combined focal length of +26.2 mm, shorter than the front doublet's +32.9 mm. This asymmetry (fF/fR = 2.29, with the G1 group weaker) is by design — it slightly favors the G2 group's converging power to maintain adequate telecentricity and exit pupil distance for the APS-C sensor.
 
 **Rear doublet as a unit (L21 + L22):** Combined focal length +26.2 mm. The doublet's junction surface (R = −8.666) carries a large index step (Δn = 1.699 − 1.881 = −0.182, or equivalently power is contributed by both the index change and the curvature), concentrating chromatic correction at a single bonded interface where alignment is guaranteed.
 
@@ -231,7 +231,7 @@ The large positive conic constant (K = +7.28) on surface 11 indicates a strongly
 
 This near-zero power is intentional. L23 functions primarily as an *aspherical corrector plate* rather than a conventional refracting element. Its two aspherical surfaces — one with a standard polynomial departure (S10) and one with a strongly oblate conic base (K = +7.28 on S11) — provide the final, precise correction of field curvature, astigmatism, coma, and distortion across the full image circle. The high refractive index amplifies the effect of the aspherical departures: at n_d = 1.882, even small surface deformations produce significant optical path differences, allowing tight aberration correction with modest physical departures from the base sphere.
 
-The patent explicitly states that it is "preferable for both the lens closest to the object and the lens closest to the image in the rear lens group LI to have an aspherical surface" because this configuration is "very advantageous for correction of astigmatism, coma aberration, and distortion aberration" (paragraph [0122]). L23 carries both of the rear group's aspherical surfaces on a single molded element, which is the most cost-effective manufacturing approach.
+The patent explicitly states that it is "preferable for both the lens closest to the object and the lens closest to the image in the rear lens group LI to have an aspherical surface" because this configuration is "very advantageous for correction of astigmatism, coma aberration, and distortion aberration" (paragraph [0122]). L23 carries both of the G2 group's aspherical surfaces on a single molded element, which is the most cost-effective manufacturing approach.
 
 L23's position in the optical train — as the last glass element before the long back focal distance — gives its aspherical surfaces maximum leverage for correcting off-axis aberrations (particularly tangential field curvature and distortion) because the chief ray height is largest here relative to the marginal ray height.
 
@@ -321,8 +321,8 @@ The patent defines ten conditional expressions that constrain the design for opt
 |---|---|
 | System EFL | 18.285 mm |
 | Entrance pupil diameter | 6.37 mm |
-| Front group focal length (fF) | 62.6 mm |
-| Rear group focal length (fR) | 27.3 mm |
+| G1 group focal length (fF) | 62.6 mm |
+| G2 group focal length (fR) | 27.3 mm |
 | Front doublet focal length (L12+L13) | +32.9 mm |
 | Rear doublet focal length (L21+L22) | +26.2 mm |
 | Total track (surface 01 to image) | 29.50 mm |

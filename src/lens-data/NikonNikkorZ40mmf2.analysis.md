@@ -1,7 +1,7 @@
 # Nikon NIKKOR Z 40mm f/2 — Optical Analysis
 
-**Patent:** JP 2021-189351A, Example 4 (Furuida Keigo, assignee: Nikon Corporation)  
-**Filed:** June 2, 2020 &nbsp;|&nbsp; **Published:** December 13, 2021  
+**Patent:** JP 2021-189351A, Example 4 (Furuida Keigo, assignee: Nikon Corporation)
+**Filed:** June 2, 2020 &nbsp;|&nbsp; **Published:** December 13, 2021
 **Production lens:** NIKKOR Z 40mm f/2 (released September 2021); also sold as the NIKKOR Z 40mm f/2 (SE)
 
 ---
@@ -42,9 +42,9 @@ The lens follows a positive–positive–negative three-group topology with an a
 
 **Aperture Stop (S):** Located in the air space between G1 and G2, immediately behind G1. The stop position is fixed during focusing.
 
-**Group 2 (G2, positive, f = +35.5 mm):** The focusing group, composed of two air-separated lens components — a cemented doublet with a hybrid aspherical resin layer (L21 + L22 glass + L22 resin), followed by a positive meniscus singlet (L23). G2 provides strong positive power and carries the system's primary aspherical corrector (surface 8A). During focusing, G2 translates axially toward the object, moving 1.21 mm when focusing to the patent's close-focus state.
+**Group 2 (G2, positive, f = +35.5 mm):** The focusing group, composed of two air-separated lens components — a cemented doublet with a hybrid aspherical resin layer (L21 + L22 glass + L22 resin), followed by a positive meniscus singlet (L24). G2 provides strong positive power and carries the system's primary aspherical corrector (surface 8A). During focusing, G2 translates axially toward the object, moving 1.21 mm when focusing to the patent's close-focus state.
 
-**Group 3 (G3, negative, f = −54.7 mm):** A single negative element (L31) with a hybrid aspherical resin layer on its object-facing surface. G3 acts as a field flattener and telecentric corrector, bending the off-axis ray bundles to reduce the angle of incidence on the sensor. G3 is fixed during focusing.
+**Group 3 (G3, negative, f = −54.7 mm):** A single negative element (L32) with a hybrid aspherical resin layer on its object-facing surface. G3 acts as a field flattener and telecentric corrector, bending the off-axis ray bundles to reduce the angle of incidence on the sensor. G3 is fixed during focusing.
 
 ### Group Counting Convention
 
@@ -52,8 +52,8 @@ The patent describes three "groups" (群, *gun*) defined by the focusing mechani
 
 1. L11 + L12 (cemented doublet)
 2. L21 + L22 glass + L22 resin (cemented assembly with hybrid aspherical)
-3. L23 (singlet)
-4. L31 resin + L31 glass (hybrid aspherical composite)
+3. L24 (singlet)
+4. L32 resin + L32 glass (hybrid aspherical composite)
 
 The air gap between components 2 and 3 (0.15 mm between surfaces 8A and 9) is the boundary that creates the fourth group in the manufacturer's count, even though components 2 and 3 move together mechanically as part of G2.
 
@@ -121,7 +121,7 @@ L22 is the most structurally complex element in the lens. The glass body (S-LAH6
 
 The cemented glass doublet L21 + L22 (glass body only, exiting into air) has a combined focal length of −55.0 mm from the thick-lens ABCD computation, acting as an achromatizing diverger that corrects both spherical and chromatic aberrations simultaneously.
 
-### L23 — Positive Meniscus Singlet (G2, rear)
+### L24 — Positive Meniscus Singlet (G2, rear)
 
 | Property | Value |
 |----------|-------|
@@ -132,11 +132,11 @@ The cemented glass doublet L21 + L22 (glass body only, exiting into air) has a c
 | Center thickness | 6.76 mm |
 | Focal length | +27.0 mm (thick-lens) |
 
-L23 is the strongest positive element in the system (f = +27.0 mm) and the thickest glass element (6.76 mm). It uses the same high-index S-LAH55 glass as L11. The strongly concave rear surface (R₁₀ = −21.5 mm) dominates its converging power, while the nearly flat front surface (R₉ = −397.8 mm) contributes almost nothing. This meniscus geometry — concave to the object, convex to the image — minimizes the angle of incidence on each surface relative to the marginal ray, which is the classical strategy for controlling higher-order spherical aberration in a strongly positive element.
+L24 is the strongest positive element in the system (f = +27.0 mm) and the thickest glass element (6.76 mm). It uses the same high-index S-LAH55 glass as L11. The strongly concave rear surface (R₁₀ = −21.5 mm) dominates its converging power, while the nearly flat front surface (R₉ = −397.8 mm) contributes almost nothing. This meniscus geometry — concave to the object, convex to the image — minimizes the angle of incidence on each surface relative to the marginal ray, which is the classical strategy for controlling higher-order spherical aberration in a strongly positive element.
 
-L23 is the element referenced by the patent's Condition (13), which requires that the highest-index glass in the system appear in G2's most image-side element. The patent notes that keeping Nmax below 1.8500 helps control field curvature and reduces cost — a deliberate constraint reflecting the lens's budget positioning.
+L24 is the element referenced by the patent's Condition (13), which requires that the highest-index glass in the system appear in G2's most image-side element. The patent notes that keeping Nmax below 1.8500 helps control field curvature and reduces cost — a deliberate constraint reflecting the lens's budget positioning.
 
-### L31 — Negative Field-Flattener with Hybrid Asphere (G3)
+### L32 — Negative Field-Flattener with Hybrid Asphere (G3)
 
 | Property | Value |
 |----------|-------|
@@ -150,7 +150,7 @@ L23 is the element referenced by the patent's Condition (13), which requires tha
 | Resin layer focal length | −284.8 mm (weak negative) |
 | Composite focal length | −54.7 mm (thick-lens) |
 
-L31 is the sole element in G3 and serves as the system's field flattener. Its moderate negative power (f = −54.7 mm) flattens the Petzval field curvature generated by the strongly positive G1 and G2. The aspherical resin layer on the object side (surface 11A) provides field-dependent correction of astigmatism and coma, which is especially important at the wide half-field angle of 27.7°.
+L32 is the sole element in G3 and serves as the system's field flattener. Its moderate negative power (f = −54.7 mm) flattens the Petzval field curvature generated by the strongly positive G1 and G2. The aspherical resin layer on the object side (surface 11A) provides field-dependent correction of astigmatism and coma, which is especially important at the wide half-field angle of 27.7°.
 
 The glass body is classified as biconcave by the patent: the front surface (R₁₂ = −36.3) is concave from the glass's perspective, and the rear surface (R₁₃ = +1084.4) is very weakly concave toward the image. In practice, R₁₃ is so nearly flat that the element behaves almost as plano-concave, but the finite curvature means it is technically biconcave as the patent describes.
 
@@ -186,7 +186,7 @@ At an estimated working semi-diameter of ~10 mm, the total aspherical departure 
 
 Surface 8A sits near the convergence zone of the marginal ray within G2 and therefore has maximum leverage over on-axis spherical aberration. The aspherical departure here is the primary mechanism that allows the lens to achieve f/2 performance without additional glass elements.
 
-### Surface 11A (L31 Resin Front — Field Aberration Corrector)
+### Surface 11A (L32 Resin Front — Field Aberration Corrector)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -243,7 +243,7 @@ The absence of ED glass means that secondary spectrum (the residual chromatic ab
 
 The computed Petzval sum is **+0.00330 mm⁻¹**, corresponding to a Petzval radius of approximately 303 mm. The ratio of Petzval radius to focal length is 7.4×, which is a reasonable value for a standard prime but not exceptional — by comparison, well-corrected double-Gauss designs often achieve ratios above 10×.
 
-The negative G3 group is the key contributor to field flattening. Without G3, the strongly positive G1 and G2 would produce a Petzval radius much too short (field curvature too strong). L31's negative power lengthens the Petzval radius, while its aspherical surface (11A) provides additional field-dependent correction of astigmatism that the Petzval sum alone cannot address.
+The negative G3 group is the key contributor to field flattening. Without G3, the strongly positive G1 and G2 would produce a Petzval radius much too short (field curvature too strong). L32's negative power lengthens the Petzval radius, while its aspherical surface (11A) provides additional field-dependent correction of astigmatism that the Petzval sum alone cannot address.
 
 ---
 
@@ -251,9 +251,9 @@ The negative G3 group is the key contributor to field flattening. Without G3, th
 
 The glass bill for this lens reflects Nikon's deliberate cost optimization. A few observations:
 
-**Repeated glass types reduce inventory cost.** Two of the six glass elements (L11 and L23) use the same glass, S-LAH55. This halves the number of distinct glass blanks that must be stocked for this element position.
+**Repeated glass types reduce inventory cost.** Two of the six glass elements (L11 and L24) use the same glass, S-LAH55. This halves the number of distinct glass blanks that must be stocked for this element position.
 
-**No exotic or specialty glasses.** All six glass types are standard-catalog melts with no special coatings, fluorescence control, or anomalous dispersion requirements. Five of the six glass types match OHARA catalog entries exactly; the sixth (L31) matches HOYA E-CF6, a commodity crown flint.
+**No exotic or specialty glasses.** All six glass types are standard-catalog melts with no special coatings, fluorescence control, or anomalous dispersion requirements. Five of the six glass types match OHARA catalog entries exactly; the sixth (L32) matches HOYA E-CF6, a commodity crown flint.
 
 **Hybrid composite aspherics instead of glass-molded.** The two aspherical surfaces are formed in UV-curable resin (nd = 1.56093, νd = 36.64 — a standard Nikon photopolymer), bonded to conventionally polished glass substrates. This is substantially cheaper than precision-molded glass aspherics (as used in S-line lenses) or ground-and-polished aspherics, at the cost of slightly reduced environmental durability and coating flexibility.
 

@@ -26,7 +26,7 @@ The Sonnar name derives from the German word *Sonne* (sun). It was originally a 
 
 ## 2. Verified Prescription
 
-The prescription below was extracted from a 300 DPI rasterization of the original patent document. During this process, a critical OCR error was identified and corrected: the refractive index of element L4 reads **1.6890** (not 1.6390 as rendered by text-extraction OCR). This was confirmed computationally — with nd = 1.6890, the system EFL computes to 100.030 mm, matching the patent's stated f = 100 mm to within 0.03%. With the erroneous nd = 1.6390, the EFL deviates by over 10%.
+The prescription below was extracted from a 300 DPI rasterization of the original patent document. During this process, a critical OCR error was identified and corrected: the refractive index of element L23 reads **1.6890** (not 1.6390 as rendered by text-extraction OCR). This was confirmed computationally — with nd = 1.6890, the system EFL computes to 100.030 mm, matching the patent's stated f = 100 mm to within 0.03%. With the erroneous nd = 1.6390, the EFL deviates by over 10%.
 
 The patent uses a normalized focal length of 100 mm. The production lens was scaled to approximately 50 mm for 35mm format.
 
@@ -34,14 +34,14 @@ The patent uses a normalized focal length of 100 mm. The production lens was sca
 
 | Surface | Radius (mm) | Thickness (mm) | nd (after) | νd | Element | Medium |
 |---------|-------------|----------------|------------|-----|---------|--------|
-| r₁ | +57.00 | d₁ = 8.0 | 1.6185 | 60.5 | L1 entry | SK16 glass |
+| r₁ | +57.00 | d₁ = 8.0 | 1.6185 | 60.5 | L11 entry | SK16 glass |
 | r₂ | +146.30 | t₁ = 0.4 | 1.0 | — | air | air gap |
-| r₃ | +36.20 | d₂ = 10.0 | 1.6711 | 47.3 | L2 entry | BaLF glass |
-| r₄ | +110.00 | d₃ = 6.0 | 1.4645 | 65.7 | L3 (cement) | FK glass |
-| r₅ | −300.00 | d₄ = 6.8 | 1.6890 | 31.2 | L4 (cement) | SF glass |
+| r₃ | +36.20 | d₂ = 10.0 | 1.6711 | 47.3 | L21 entry | BaLF glass |
+| r₄ | +110.00 | d₃ = 6.0 | 1.4645 | 65.7 | L22 (cement) | FK glass |
+| r₅ | −300.00 | d₄ = 6.8 | 1.6890 | 31.2 | L23 (cement) | SF glass |
 | r₆ | +23.70 | t₂ = 15.0 | 1.0 | — | air | air gap (STOP) |
-| r₇ | +200.00 | d₅ = 2.0 | 1.5647 | 55.8 | L5 entry | BaK glass |
-| r₈ | +30.70 | d₆ = 12.0 | 1.6711 | 47.3 | L6 (cement) | BaLF glass |
+| r₇ | +200.00 | d₅ = 2.0 | 1.5647 | 55.8 | L31 entry | BaK glass |
+| r₈ | +30.70 | d₆ = 12.0 | 1.6711 | 47.3 | L32 (cement) | BaLF glass |
 | r₉ | −152.64 | — | 1.0 | — | air | image space |
 
 **Sign convention (standard modern):** R > 0 means center of curvature lies to the right of the surface (toward the image). All thicknesses are positive axial distances to the next surface.
@@ -67,21 +67,21 @@ Bertele's design uses glass types from the 1930s Schott Jena catalog. The patent
 
 ### 3.1 Glass Map
 
-Five distinct glass types are used across six elements. The nd = 1.6711 / νd = 47.3 glass appears twice (L2 and L6), a deliberate choice that simplifies manufacturing and inventory.
+Five distinct glass types are used across six elements. The nd = 1.6711 / νd = 47.3 glass appears twice (L21 and L32), a deliberate choice that simplifies manufacturing and inventory.
 
 **nd = 1.6185, νd = 60.5 — Schott SK16 (Dense Crown)**
 
-Used for L1 (front positive element). This is a barium crown glass with a high refractive index and low dispersion, placing it in the upper-left region of the Abbe diagram. The modern Schott equivalent is N-SK16 (nd = 1.62041, νd = 60.32). Dense crowns in this family are workhorses for positive elements in fast photographic objectives — they provide strong refraction without contributing excessive chromatic aberration. The slight discrepancy between the patent value (1.6185) and the modern catalog value (1.6204) reflects the normal evolution of glass compositions over nine decades.
+Used for L11 (front positive element). This is a barium crown glass with a high refractive index and low dispersion, placing it in the upper-left region of the Abbe diagram. The modern Schott equivalent is N-SK16 (nd = 1.62041, νd = 60.32). Dense crowns in this family are workhorses for positive elements in fast photographic objectives — they provide strong refraction without contributing excessive chromatic aberration. The slight discrepancy between the patent value (1.6185) and the modern catalog value (1.6204) reflects the normal evolution of glass compositions over nine decades.
 
 A practical note: collectors and restorers of the 5cm f/2 Sonnar report that the SK16-type front element is a relatively soft glass, susceptible to scratching and cleaning marks. Original examples with pristine front elements are uncommon.
 
 **nd = 1.6711, νd = 47.3 — Schott BaLF5 or SSK-type (Barium Light Flint / Dense Crown)**
 
-Used for both L2 (triplet front element) and L6 (rear doublet positive element). This glass sits at the boundary between crown and flint families on the Abbe diagram — relatively high index with moderate dispersion. No exact modern equivalent survives in current catalogs; the nearest is N-SSK5 (nd = 1.6584, νd = 50.88). That Bertele reused the same glass twice is characteristic of practical lens design: it reduces the number of distinct glass melts required, simplifying procurement. It also creates a degree of chromatic symmetry between the triplet and doublet groups.
+Used for both L21 (triplet front element) and L32 (rear doublet positive element). This glass sits at the boundary between crown and flint families on the Abbe diagram — relatively high index with moderate dispersion. No exact modern equivalent survives in current catalogs; the nearest is N-SSK5 (nd = 1.6584, νd = 50.88). That Bertele reused the same glass twice is characteristic of practical lens design: it reduces the number of distinct glass melts required, simplifying procurement. It also creates a degree of chromatic symmetry between the triplet and doublet groups.
 
 **nd = 1.4645, νd = 65.7 — Schott FK3 type (Fluorite Crown)**
 
-Used for L3 (the central element of the cemented triplet). This is the most optically significant glass choice in the entire design, and it embodies the fundamental insight of the Sonnar concept. With nd = 1.4645, this glass has one of the lowest refractive indices in the 1930s Schott catalog — approaching the index of optical cement (typically nd ≈ 1.50–1.56).
+Used for L22 (the central element of the cemented triplet). This is the most optically significant glass choice in the entire design, and it embodies the fundamental insight of the Sonnar concept. With nd = 1.4645, this glass has one of the lowest refractive indices in the 1930s Schott catalog — approaching the index of optical cement (typically nd ≈ 1.50–1.56).
 
 The practical consequence is that the cemented interfaces r₄ (Δnd = 0.207) and r₅ (Δnd = 0.225) have relatively small index differences compared to a glass-air transition (Δnd ≈ 0.5–0.7). These interfaces therefore contribute useful aberration correction — functioning as weak refracting surfaces — while producing negligible Fresnel reflection. In the Ernostar, these same corrections were achieved by air-spaced elements, each contributing two reflective air-glass surfaces. By filling the space with low-index glass, Bertele eliminated two air-glass interfaces entirely, reducing the system from 8 to 6 such interfaces.
 
@@ -89,18 +89,18 @@ The nearest modern equivalent is Schott N-FK5 (nd = 1.4875, νd = 70.41), but th
 
 **nd = 1.6890, νd = 31.2 — Schott SF-type (Dense Flint)**
 
-Used for L4 (the rear element of the cemented triplet — the strongly negative biconcave element). This is a high-dispersion lead-silicate flint glass with the lowest Abbe number in the design. The combination of high index and high dispersion makes it the primary source of negative chromatic power in the triplet, balancing the positive chromatic contributions of L2 and L3. No exact modern match exists; the closest current types are SF5 (nd = 1.6727, νd = 32.21) and SF2 (nd = 1.6477, νd = 33.85). The original glass was likely a now-discontinued lead-rich formulation.
+Used for L23 (the rear element of the cemented triplet — the strongly negative biconcave element). This is a high-dispersion lead-silicate flint glass with the lowest Abbe number in the design. The combination of high index and high dispersion makes it the primary source of negative chromatic power in the triplet, balancing the positive chromatic contributions of L21 and L22. No exact modern match exists; the closest current types are SF5 (nd = 1.6727, νd = 32.21) and SF2 (nd = 1.6477, νd = 33.85). The original glass was likely a now-discontinued lead-rich formulation.
 
 Note: This refractive index value was initially misread by text-extraction OCR as 1.6390. The correct reading of 1.6890 was confirmed both by high-resolution visual inspection and by computational verification (see §10).
 
 **nd = 1.5647, νd = 55.8 — Schott BaK4 type (Barium Crown)**
 
-Used for L5 (the front element of the rear cemented doublet). This is a moderate-index crown glass. The modern Schott N-BaK4 (nd = 1.5688, νd = 55.98) is an excellent match — one of the closest correspondences among all five glasses in this design. In the doublet, L5 acts as the negative (dispersing) component, paired with the higher-index positive L6 to form the "collecting cemented face" that is the subject of the patent claim.
+Used for L31 (the front element of the rear cemented doublet). This is a moderate-index crown glass. The modern Schott N-BaK4 (nd = 1.5688, νd = 55.98) is an excellent match — one of the closest correspondences among all five glasses in this design. In the doublet, L31 acts as the negative (dispersing) component, paired with the higher-index positive L32 to form the "collecting cemented face" that is the subject of the patent claim.
 
 
 ## 4. Element-by-Element Optical Role
 
-### 4.1 Group 1: Front Positive Singlet (L1)
+### 4.1 Group 1: Front Positive Singlet (L11)
 
 | Property | Value |
 |----------|-------|
@@ -110,17 +110,17 @@ Used for L5 (the front element of the rear cemented doublet). This is a moderate
 | Coddington shape factor | σ = +2.28 |
 | Glass | SK16 (nd = 1.6185, νd = 60.5) |
 
-L1 is a strongly bent positive meniscus with both surfaces convex toward the object. Its shape factor of +2.28 indicates significant bending beyond equiconvex, which serves two purposes. First, the strong curvature of r₁ (+57.00 mm) provides the dominant positive power of the front group. Second, the meniscus bending contributes to the correction of coma and spherical aberration for off-axis rays — the asymmetric shape redirects oblique pencils more gradually than a biconvex element would.
+L11 is a strongly bent positive meniscus with both surfaces convex toward the object. Its shape factor of +2.28 indicates significant bending beyond equiconvex, which serves two purposes. First, the strong curvature of r₁ (+57.00 mm) provides the dominant positive power of the front group. Second, the meniscus bending contributes to the correction of coma and spherical aberration for off-axis rays — the asymmetric shape redirects oblique pencils more gradually than a biconvex element would.
 
-With a focal length of +146 mm — approximately 1.46× the system focal length — L1 provides moderate convergence before light enters the cemented triplet. The low-dispersion SK16 glass ensures that this convergence introduces minimal chromatic aberration.
+With a focal length of +146 mm — approximately 1.46× the system focal length — L11 provides moderate convergence before light enters the cemented triplet. The low-dispersion SK16 glass ensures that this convergence introduces minimal chromatic aberration.
 
-### 4.2 Group 2: Cemented Triplet (L2 + L3 + L4)
+### 4.2 Group 2: Cemented Triplet (L21 + L22 + L23)
 
 **Group focal length: −176.1 mm (negative, meniscus shape, concave to image)**
 
 This is the heart of the Sonnar design. The cemented triplet is a negative meniscus whose three constituent elements perform distinct roles:
 
-**L2 — Positive meniscus (triplet entry)**
+**L21 — Positive meniscus (triplet entry)**
 
 | Property | Value |
 |----------|-------|
@@ -129,11 +129,11 @@ This is the heart of the Sonnar design. The cemented triplet is a negative menis
 | Focal length | +76.3 mm |
 | Glass | BaLF (nd = 1.6711, νd = 47.3) |
 
-L2 is the strongest positive element in the system (f = +76.3 mm). Its front surface r₃ has the tightest curvature in the design (+36.20 mm radius), and it carries the highest surface power of any individual surface (φ = +0.01854 mm⁻¹). Together with the positive contribution of L1, these two elements provide the converging power that enables f/2 operation.
+L21 is the strongest positive element in the system (f = +76.3 mm). Its front surface r₃ has the tightest curvature in the design (+36.20 mm radius), and it carries the highest surface power of any individual surface (φ = +0.01854 mm⁻¹). Together with the positive contribution of L11, these two elements provide the converging power that enables f/2 operation.
 
-L2 also plays a critical role in higher-order aberration generation. The second and third strong positive surfaces (r₁ and r₃) generate higher-order spherical aberration that counteracts the lower-order undercorrection inherent in fast lenses. This is a deliberate design strategy — the lens is not simply "well-corrected" in a Seidel sense; it exploits the interaction between 3rd-order and higher-order terms to achieve acceptable performance across the full aperture. This interaction is also the root cause of the Sonnar's notorious focus shift (see §5.4).
+L21 also plays a critical role in higher-order aberration generation. The second and third strong positive surfaces (r₁ and r₃) generate higher-order spherical aberration that counteracts the lower-order undercorrection inherent in fast lenses. This is a deliberate design strategy — the lens is not simply "well-corrected" in a Seidel sense; it exploits the interaction between 3rd-order and higher-order terms to achieve acceptable performance across the full aperture. This interaction is also the root cause of the Sonnar's notorious focus shift (see §5.4).
 
-**L3 — Weak biconvex (low-index spacer)**
+**L22 — Weak biconvex (low-index spacer)**
 
 | Property | Value |
 |----------|-------|
@@ -142,11 +142,11 @@ L2 also plays a critical role in higher-order aberration generation. The second 
 | Focal length | +174.1 mm |
 | Glass | FK3 (nd = 1.4645, νd = 65.7) |
 
-L3 is the conceptual keystone of the Sonnar. With nd = 1.4645, its refractive index is so low that it functions almost as an "optical spacer" — a filled air gap. The cemented interfaces on either side of it (r₄ and r₅) have index differences of only Δnd = 0.207 and Δnd = 0.225 respectively, compared to Δnd ≈ 0.67 for a typical glass-air interface. These weak interfaces provide just enough refractive power for aberration correction, while contributing virtually zero reflection loss.
+L22 is the conceptual keystone of the Sonnar. With nd = 1.4645, its refractive index is so low that it functions almost as an "optical spacer" — a filled air gap. The cemented interfaces on either side of it (r₄ and r₅) have index differences of only Δnd = 0.207 and Δnd = 0.225 respectively, compared to Δnd ≈ 0.67 for a typical glass-air interface. These weak interfaces provide just enough refractive power for aberration correction, while contributing virtually zero reflection loss.
 
-This is the innovation that transformed the Ernostar into the Sonnar. In the Ernostar, the space between the second and third elements was air, creating four reflective surfaces. Bertele replaced this air gap with L3, eliminating those reflections entirely. The optical correction is slightly different — cement surfaces are not optically identical to air surfaces — but the trade-off (marginally different aberration balance vs. dramatically improved transmission and contrast) was overwhelmingly favorable in an era before anti-reflection coatings.
+This is the innovation that transformed the Ernostar into the Sonnar. In the Ernostar, the space between the second and third elements was air, creating four reflective surfaces. Bertele replaced this air gap with L22, eliminating those reflections entirely. The optical correction is slightly different — cement surfaces are not optically identical to air surfaces — but the trade-off (marginally different aberration balance vs. dramatically improved transmission and contrast) was overwhelmingly favorable in an era before anti-reflection coatings.
 
-**L4 — Strong biconcave negative (flint corrector)**
+**L23 — Strong biconcave negative (flint corrector)**
 
 | Property | Value |
 |----------|-------|
@@ -155,21 +155,21 @@ This is the innovation that transformed the Ernostar into the Sonnar. In the Ern
 | Focal length | −31.6 mm |
 | Glass | SF-type (nd = 1.6890, νd = 31.2) |
 
-L4 is the most powerful individual element in the system (|f| = 31.6 mm). Its rear surface r₆ has the second-tightest curvature (+23.70 mm) and the highest single-surface power magnitude (φ = −0.02907 mm⁻¹). This is the principal diverging element, and it serves three critical functions:
+L23 is the most powerful individual element in the system (|f| = 31.6 mm). Its rear surface r₆ has the second-tightest curvature (+23.70 mm) and the highest single-surface power magnitude (φ = −0.02907 mm⁻¹). This is the principal diverging element, and it serves three critical functions:
 
-1. **Chromatic correction.** With νd = 31.2 (highest dispersion in the design), L4 provides the negative chromatic contribution that balances the positive contributions of L2 and L3. The thin-lens chromatic contributions (φ/ν) approximately cancel across the triplet.
+1. **Chromatic correction.** With νd = 31.2 (highest dispersion in the design), L23 provides the negative chromatic contribution that balances the positive contributions of L21 and L22. The thin-lens chromatic contributions (φ/ν) approximately cancel across the triplet.
 
-2. **Petzval sum control.** The strong negative power of L4 partially offsets the positive Petzval contributions of L1 and L2, flattening the field. The system Petzval sum is +0.00266 mm⁻¹, corresponding to a Petzval radius of about −375 mm — roughly 3.75× the focal length. This is larger (i.e., less aggressively curved) than a simple positive doublet would achieve, though still the Sonnar's main optical limitation.
+2. **Petzval sum control.** The strong negative power of L23 partially offsets the positive Petzval contributions of L11 and L21, flattening the field. The system Petzval sum is +0.00266 mm⁻¹, corresponding to a Petzval radius of about −375 mm — roughly 3.75× the focal length. This is larger (i.e., less aggressively curved) than a simple positive doublet would achieve, though still the Sonnar's main optical limitation.
 
 3. **Coma correction.** The patent text specifically addresses coma as the motivating aberration: the system described in the referenced prior application "shows disturbing comatic phenomena." The strongly curved r₆ surface, combined with the refractive index step at the r₅ cement, provides the asymmetric correction needed to bring the upper and lower comatic fans into balance.
 
-### 4.3 Group 3: Cemented Doublet (L5 + L6)
+### 4.3 Group 3: Cemented Doublet (L31 + L32)
 
 **Group focal length: +95.6 mm (positive)**
 
 The rear cemented doublet is the subject of the patent claim itself. The patent states that "a collecting cement face in the last member of the objective system... has its hollow face turned towards the picture." Surface r₈ (+30.70 mm) is this collecting (converging) cemented face — it is convex toward the object and concave ("hollow") toward the image.
 
-**L5 — Negative meniscus (doublet corrector)**
+**L31 — Negative meniscus (doublet corrector)**
 
 | Property | Value |
 |----------|-------|
@@ -178,18 +178,18 @@ The rear cemented doublet is the subject of the patent claim itself. The patent 
 | Focal length | −64.5 mm |
 | Glass | BaK4 (nd = 1.5647, νd = 55.8) |
 
-L5 is a thin (2.0 mm) negative meniscus. The patent claim requires that it be "a dispersing one" with "a refractive index smaller than that of the collecting lens" (L6). Indeed, nd(L5) = 1.5647 < nd(L6) = 1.6711, satisfying this condition with Δnd = 0.1064. This index difference at the cemented surface r₈ is the mechanism by which the doublet generates its collecting (converging) effect at the cement.
+L31 is a thin (2.0 mm) negative meniscus. The patent claim requires that it be "a dispersing one" with "a refractive index smaller than that of the collecting lens" (L32). Indeed, nd(L31) = 1.5647 < nd(L32) = 1.6711, satisfying this condition with Δnd = 0.1064. This index difference at the cemented surface r₈ is the mechanism by which the doublet generates its collecting (converging) effect at the cement.
 
-**L6 — Strong biconvex positive (principal rear power)**
+**L32 — Strong biconvex positive (principal rear power)**
 
 | Property | Value |
 |----------|-------|
 | Shape | Biconvex |
 | R₈ / R₉ | +30.70 / −152.64 |
 | Focal length | +39.1 mm |
-| Glass | BaLF (nd = 1.6711, νd = 47.3) — same as L2 |
+| Glass | BaLF (nd = 1.6711, νd = 47.3) — same as L21 |
 
-L6 is a thick (12.0 mm) biconvex positive element with f = +39.1 mm — the second strongest individual element. It provides the majority of the rear group's positive power. Using the same glass as L2 (nd = 1.6711, νd = 47.3) creates a manufacturing advantage and also establishes a degree of chromatic symmetry between the front and rear halves of the system.
+L32 is a thick (12.0 mm) biconvex positive element with f = +39.1 mm — the second strongest individual element. It provides the majority of the rear group's positive power. Using the same glass as L21 (nd = 1.6711, νd = 47.3) creates a manufacturing advantage and also establishes a degree of chromatic symmetry between the front and rear halves of the system.
 
 The rear surface r₉ (−152.64 mm) has a mild positive refractive power (+0.0044 mm⁻¹) that gently converges the exit beam toward the image plane.
 
@@ -202,12 +202,12 @@ The thin-lens chromatic contributions (φ/ν) for each element are:
 
 | Element | φ (mm⁻¹) | νd | φ/ν |
 |---------|-----------|-----|------|
-| L1 | +0.00685 | 60.5 | +0.000113 |
-| L2 | +0.01312 | 47.3 | +0.000277 |
-| L3 | +0.00574 | 65.7 | +0.000087 |
-| L4 | −0.03164 | 31.2 | −0.001014 |
-| L5 | −0.01550 | 55.8 | −0.000278 |
-| L6 | +0.02557 | 47.3 | +0.000541 |
+| L11 | +0.00685 | 60.5 | +0.000113 |
+| L21 | +0.01312 | 47.3 | +0.000277 |
+| L22 | +0.00574 | 65.7 | +0.000087 |
+| L23 | −0.03164 | 31.2 | −0.001014 |
+| L31 | −0.01550 | 55.8 | −0.000278 |
+| L32 | +0.02557 | 47.3 | +0.000541 |
 | **Total** | | | **−0.000273** |
 
 The residual sum of −0.000273 indicates a small deliberate undercorrection of axial chromatic aberration. This is typical of fast photographic lenses of this era, where a slight undercorrection provides a better balance across the visual spectrum than perfect zero-crossing would. The undercorrection also interacts with the lens's spherochromatism (variation of spherical aberration with wavelength), a higher-order effect that dominates at f/2.
@@ -271,7 +271,7 @@ The patent's single claim defines the lens as:
 
 > A photographic objective, consisting of three air-spaced glass members, of which the first glass member located opposite the object to be photographed has a positive refractive power, the second glass member located in the middle of the objective has a strongly curved meniscus shape, and the third glass member located opposite the light-sensitive material has a positive refractive power and consists of at least two lenses, of which the lens facing the light-sensitive material is a collecting one and the other lens is a dispersing one and has a refractive index smaller than that of the collecting lens, both lenses being cemented together in such a way that the cement forms a part facing with its hollow face the light-sensitive material.
 
-This claim identifies the distinguishing feature of this patent: the rear group is a cemented **doublet** with a specific geometry — the dispersing element (L5, nd = 1.5647) has a lower index than the collecting element (L6, nd = 1.6711), and the cemented interface (r₈) presents its concave ("hollow") face toward the film. Example I satisfies every element of this claim: three air-spaced groups, a positive first member (L1, f = +146 mm), a meniscus-shaped middle member (the triplet, with its strongly curved r₃ and r₆ surfaces), and a positive rear member consisting of a dispersing lens (L5) cemented to a collecting lens (L6) with the cement surface concave toward the image. The claim language — "at least two lenses" — permits the rear member to contain two or more cemented elements, though in Example I precisely two are used.
+This claim identifies the distinguishing feature of this patent: the rear group is a cemented **doublet** with a specific geometry — the dispersing element (L31, nd = 1.5647) has a lower index than the collecting element (L32, nd = 1.6711), and the cemented interface (r₈) presents its concave ("hollow") face toward the film. Example I satisfies every element of this claim: three air-spaced groups, a positive first member (L11, f = +146 mm), a meniscus-shaped middle member (the triplet, with its strongly curved r₃ and r₆ surfaces), and a positive rear member consisting of a dispersing lens (L31) cemented to a collecting lens (L32) with the cement surface concave toward the image. The claim language — "at least two lenses" — permits the rear member to contain two or more cemented elements, though in Example I precisely two are used.
 
 The motivation given in the specification is explicit: the prior design "shows disturbing comatic phenomena... particularly the upper comatic bunches show a strongly positive supercorrection or rectification." The introduction of this specific cemented face geometry in the rear group provides the additional degree of freedom needed to bring coma under control at wide field angles.
 
@@ -306,7 +306,7 @@ The motivation given in the specification is explicit: the prior design "shows d
 
 During preparation of this analysis, the following OCR errors were identified in the patent text:
 
-1. **nd of element L4:** The original text-extraction OCR rendered this as "1,6390" (nd = 1.6390, νd = 31.2). High-resolution visual inspection of the patent at 300 DPI revealed the digit to be an "8," giving nd = **1.6890**. This was confirmed computationally: nd = 1.6890 yields EFL = 100.030 mm (correct); nd = 1.6390 yields EFL = 89.554 mm (10.4% error).
+1. **nd of element L23:** The original text-extraction OCR rendered this as "1,6390" (nd = 1.6390, νd = 31.2). High-resolution visual inspection of the patent at 300 DPI revealed the digit to be an "8," giving nd = **1.6890**. This was confirmed computationally: nd = 1.6890 yields EFL = 100.030 mm (correct); nd = 1.6390 yields EFL = 89.554 mm (10.4% error).
 
 2. **Sign conventions:** The typewritten patent uses a notation where positive radii appear with a preceding symbol that OCR sometimes misreads. Several radii were initially misread as negative when they are in fact positive. The verified sign pattern is: **+ + + + − + + + −** (only r₅ and r₉ are negative). This was confirmed by: (a) the brute-force sign search showing only one physically plausible combination yields EFL ≈ 100 mm; (b) cross-validation against the second patent example, whose signs are unambiguous and which confirms the patent's notation conventions; and (c) consistency with the patent drawing (Fig. 1), which shows the surface curvatures matching the verified signs.
 

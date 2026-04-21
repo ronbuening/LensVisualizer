@@ -46,7 +46,7 @@ const LENS_DATA = {
       glass: "S-TIH6 class (dense flint)",
       apd: false,
       role: "Front negative corrector. Unusual leading position enables coma correction across the field (patent ¶0054). Forms cemented doublet with L12.",
-      cemented: "L11–L12",
+      cemented: "D1",
     },
 
     {
@@ -60,7 +60,7 @@ const LENS_DATA = {
       glass: "S-NPH2 / E-FDS2 (ultra-high-index short flint, nd = 1.946)",
       apd: false,
       role: "Achromatizing partner to L11. Highest refractive index in the system. The large nd difference at the cemented interface creates a powerfully correcting buried surface for chromatic aberration.",
-      cemented: "L11–L12",
+      cemented: "D1",
     },
 
     {
@@ -100,7 +100,7 @@ const LENS_DATA = {
       glass: "S-FPM2 / FCD1 class (ED glass, anomalous partial dispersion)",
       apd: "inferred",
       role: "First ED element. Anomalous partial dispersion corrects both primary and secondary chromatic aberration. Forms cemented doublet with L16 immediately before the aperture stop.",
-      cemented: "L15–L16",
+      cemented: "D2",
       apdNote: "νd = 67.9; anomalous partial dispersion inferred from glass type (fluorophosphate ED class)",
     },
 
@@ -115,7 +115,7 @@ const LENS_DATA = {
       glass: "S-TIH14 class (dense flint)",
       apd: false,
       role: "Achromatizing partner to L15. High-dispersion dense flint paired with ED glass to form the inner chromatic-correcting doublet before the stop.",
-      cemented: "L15–L16",
+      cemented: "D2",
     },
 
     // ── G2: Focusing group (positive, moves toward object) ───────
@@ -171,7 +171,7 @@ const LENS_DATA = {
       glass: "S-NPH2 (ultra-high-index short flint, nd = 1.946)",
       apd: false,
       role: "Positive element of the rear cemented doublet. Same ultra-high-index glass as L12, providing chromatic balance symmetrically across the system. Forms cemented pair with L32 for lateral color correction and field flattening.",
-      cemented: "L31–L32",
+      cemented: "D3",
     },
 
     {
@@ -185,7 +185,7 @@ const LENS_DATA = {
       glass: "S-TIH14 class (dense flint)",
       apd: false,
       role: "Negative partner in the rear cemented doublet. The buried surface between L31 and L32 provides fine chromatic tuning independent of monochromatic power.",
-      cemented: "L31–L32",
+      cemented: "D3",
     },
 
     {
@@ -317,9 +317,9 @@ const LENS_DATA = {
   ],
 
   doublets: [
-    { text: "L11–L12", fromSurface: "1", toSurface: "3" },
-    { text: "L15–L16", fromSurface: "9", toSurface: "11" },
-    { text: "L31–L32", fromSurface: "20", toSurface: "22" },
+    { text: "D1", fromSurface: "1", toSurface: "3" },
+    { text: "D2", fromSurface: "9", toSurface: "11" },
+    { text: "D3", fromSurface: "20", toSurface: "22" },
   ],
 
   // §8 — Focus configuration

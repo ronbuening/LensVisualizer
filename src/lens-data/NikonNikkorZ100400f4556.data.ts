@@ -61,7 +61,7 @@ const LENS_DATA = {
     // G1: Front Positive (f = +220.2 mm)
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -72,7 +72,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Plano-Convex Positive",
       nd: 1.437001,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     // G2: Second Positive (f = +412.7 mm)
     {
       id: 3,
-      name: "L3",
+      name: "L21",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -100,7 +100,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L22",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.8044,
@@ -112,7 +112,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L23",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.437001,
@@ -126,7 +126,7 @@ const LENS_DATA = {
     // G3: Zoom Variator (f = -37.7 mm)
     {
       id: 6,
-      name: "L6",
+      name: "L31",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.720467,
@@ -138,7 +138,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L32",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.49782,
@@ -152,7 +152,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L33",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.741,
@@ -164,7 +164,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L34",
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.854505,
@@ -176,7 +176,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L35",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.755,
@@ -188,7 +188,7 @@ const LENS_DATA = {
     // G4: Relay + Stop + VR (f = +46.0 mm)
     {
       id: 11,
-      name: "L11",
+      name: "L41",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.59319,
@@ -199,7 +199,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L42",
       label: "Element 12",
       type: "Plano-Convex Positive",
       nd: 1.49782,
@@ -212,7 +212,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L43",
       label: "Element 13",
       type: "Plano-Convex Positive",
       nd: 1.49782,
@@ -225,7 +225,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L44",
       label: "Element 14",
       type: "Biconcave Negative",
       nd: 1.8061,
@@ -236,7 +236,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L45",
       label: "Element 15",
       type: "Positive Meniscus",
       nd: 1.80809,
@@ -247,7 +247,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
+      name: "L46",
       label: "Element 16",
       type: "Negative Meniscus",
       nd: 2.00069,
@@ -258,8 +258,8 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L17",
-      label: "Element 17 (VR)",
+      name: "L47",
+      label: "Element 17",
       type: "Biconvex Positive",
       nd: 1.552981,
       vd: 55.5,
@@ -270,8 +270,8 @@ const LENS_DATA = {
     },
     {
       id: 18,
-      name: "L18",
-      label: "Element 18 (VR)",
+      name: "L48",
+      label: "Element 18",
       type: "Negative Meniscus",
       nd: 1.95375,
       vd: 32.3,
@@ -282,7 +282,7 @@ const LENS_DATA = {
     },
     {
       id: 19,
-      name: "L19",
+      name: "L49",
       label: "Element 19",
       type: "Positive Meniscus",
       nd: 1.60342,
@@ -294,7 +294,7 @@ const LENS_DATA = {
     // G5: Focus Group A (f = -81.7 mm)
     {
       id: 20,
-      name: "L20",
+      name: "L51",
       label: "Element 20",
       type: "Biconvex Positive",
       nd: 1.85026,
@@ -306,7 +306,7 @@ const LENS_DATA = {
     },
     {
       id: 21,
-      name: "L21",
+      name: "L52",
       label: "Element 21",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -319,7 +319,7 @@ const LENS_DATA = {
     // G6: Focus Group B (f = -153.3 mm)
     {
       id: 22,
-      name: "L22",
+      name: "L61",
       label: "Element 22",
       type: "Biconvex Positive",
       nd: 1.654115,
@@ -330,7 +330,7 @@ const LENS_DATA = {
     },
     {
       id: 23,
-      name: "L23",
+      name: "L62",
       label: "Element 23",
       type: "Biconcave Negative",
       nd: 1.90265,
@@ -342,7 +342,7 @@ const LENS_DATA = {
     // G7: Field Flattener (f = +502.7 mm)
     {
       id: 24,
-      name: "L24",
+      name: "L71",
       label: "Element 24",
       type: "Biconcave Negative",
       nd: 1.49782,
@@ -355,7 +355,7 @@ const LENS_DATA = {
     },
     {
       id: 25,
-      name: "L25",
+      name: "L72",
       label: "Element 25",
       type: "Positive Meniscus",
       nd: 1.738,
@@ -367,8 +367,8 @@ const LENS_DATA = {
     // Filter (sensor cover glass model)
     {
       id: 26,
-      name: "FL",
-      label: "Filter",
+      name: "L13",
+      label: "Element 26",
       type: "Flat Plate",
       nd: 1.5168,
       vd: 64.2,

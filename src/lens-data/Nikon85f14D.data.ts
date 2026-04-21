@@ -37,7 +37,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1a",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.603,
@@ -49,7 +49,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L1b",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.59319,
@@ -61,7 +61,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L2",
+      name: "L13",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.79631,
@@ -73,7 +73,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L3",
+      name: "L14",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.71736,
@@ -85,7 +85,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L4",
+      name: "L21",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.80454,
@@ -97,7 +97,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L5",
+      name: "L22",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.6727,
@@ -109,7 +109,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L6a",
+      name: "L23",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.68893,
@@ -117,12 +117,12 @@ const LENS_DATA = {
       fl: -43.3,
       glass: "Flint (S-TIM28)",
       apd: false,
-      cemented: "L6",
+      cemented: "D1",
       role: "Chromatic corrector and Petzval sum control — cemented with L6b",
     },
     {
       id: 8,
-      name: "L6b",
+      name: "L24",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.86994,
@@ -130,12 +130,12 @@ const LENS_DATA = {
       fl: 41.1,
       glass: "Very Dense Lanthanum Flint (TAFD30)",
       apd: false,
-      cemented: "L6",
+      cemented: "D1",
       role: "High-index positive for Petzval sum control (n7 ≥ 1.84); cemented with L6a",
     },
     {
       id: 9,
-      name: "L7",
+      name: "L25",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.78797,
@@ -147,7 +147,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L8",
+      name: "L31",
       label: "Element 10",
       type: "Positive Meniscus",
       nd: 1.7481,
@@ -218,7 +218,7 @@ const LENS_DATA = {
     { text: "G3 (fixed)", fromSurface: "19", toSurface: "20" },
   ],
 
-  doublets: [{ text: "L6", fromSurface: "14", toSurface: "16" }],
+  doublets: [{ text: "D1", fromSurface: "14", toSurface: "16" }],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,

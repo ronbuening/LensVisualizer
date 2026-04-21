@@ -48,7 +48,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.8081,
@@ -61,7 +61,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Plano-Convex",
       nd: 1.72916,
@@ -74,7 +74,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.72916,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L21",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.95375,
@@ -98,7 +98,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L22",
       label: "Element 5",
       type: "Biconcave (2× Asph)",
       nd: 1.58313,
@@ -110,7 +110,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L23",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.8081,
@@ -122,7 +122,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L24",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.804,
@@ -134,7 +134,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L31",
       label: "Element 8",
       type: "Plano-Convex",
       nd: 1.91082,
@@ -146,7 +146,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L32",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.95375,
@@ -159,7 +159,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L33",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.59522,
@@ -172,7 +172,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L34",
       label: "Element 11",
       type: "Biconcave Negative",
       nd: 1.74951,
@@ -185,7 +185,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L35",
       label: "Element 12",
       type: "Positive Meniscus",
       nd: 2.00069,
@@ -198,7 +198,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L36",
       label: "Element 13",
       type: "Negative Meniscus",
       nd: 1.78472,
@@ -211,7 +211,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L37",
       label: "Element 14",
       type: "Plano-Convex",
       nd: 1.497,
@@ -225,7 +225,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L38",
       label: "Element 15",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.58313,
@@ -237,7 +237,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
+      name: "L41",
       label: "Element 16",
       type: "Negative Meniscus",
       nd: 1.72916,
@@ -249,7 +249,7 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L17",
+      name: "L51",
       label: "Element 17",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.7645,
@@ -261,7 +261,7 @@ const LENS_DATA = {
     },
     {
       id: 18,
-      name: "L18",
+      name: "L61",
       label: "Element 18",
       type: "Positive Meniscus",
       nd: 1.804,
@@ -449,12 +449,12 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "L2 (−)", fromSurface: "6", toSurface: "13" },
-    { text: "L3 (+)", fromSurface: "STO", toSurface: "26A" },
-    { text: "L4 (−)", fromSurface: "27", toSurface: "28" },
-    { text: "L5 (−)", fromSurface: "29A", toSurface: "30A" },
-    { text: "L6 (+)", fromSurface: "31", toSurface: "32" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (−)", fromSurface: "6", toSurface: "13" },
+    { text: "G3 (+)", fromSurface: "STO", toSurface: "26A" },
+    { text: "G4 (−)", fromSurface: "27", toSurface: "28" },
+    { text: "G5 (−)", fromSurface: "29A", toSurface: "30A" },
+    { text: "G6 (+)", fromSurface: "31", toSurface: "32" },
   ],
 
   doublets: [

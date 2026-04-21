@@ -46,7 +46,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.6185,
@@ -58,7 +58,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L21",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.6711,
@@ -71,7 +71,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L22",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.4645,
@@ -84,7 +84,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L23",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.689,
@@ -97,7 +97,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L31",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.5647,
@@ -110,7 +110,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L32",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.6711,
@@ -165,9 +165,9 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1 — SINGLET", fromSurface: "1", toSurface: "2" },
-    { text: "G2 — CEMENTED TRIPLET", fromSurface: "3", toSurface: "6" },
-    { text: "G3 — CEMENTED DOUBLET", fromSurface: "7", toSurface: "9" },
+    { text: "G1 (SINGLET)", fromSurface: "1", toSurface: "2" },
+    { text: "G2 (CEMENTED TRIPLET)", fromSurface: "3", toSurface: "6" },
+    { text: "G3 (CEMENTED DOUBLET)", fromSurface: "7", toSurface: "9" },
   ],
 
   doublets: [

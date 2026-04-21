@@ -48,7 +48,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.58913,
@@ -60,7 +60,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L21",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.5927,
@@ -73,7 +73,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L22",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L23",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.816,
@@ -99,7 +99,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L24",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.62004,
@@ -112,7 +112,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L25",
       label: "Element 6",
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.58313,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L31",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.7552,
@@ -136,28 +136,28 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8a",
-      label: "Element 8a (resin)",
+      name: "L41",
+      label: "Element 8",
       type: "Asph. Resin Layer (1× Asph)",
       nd: 1.56093,
       vd: 36.6,
       fl: -353.8,
       glass: "UV-curing resin (composite asphere)",
       apd: false,
-      cemented: "L8",
+      cemented: "D3",
       role: "Aspherical resin layer bonded to L8b glass body; reshapes wavefront for field curvature and astigmatism correction",
     },
     {
       id: 9,
-      name: "L8b",
-      label: "Element 8b (glass)",
+      name: "L42",
+      label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.883,
       vd: 40.7,
       fl: 29.3,
       glass: "S-LAH58 (OHARA)",
       apd: false,
-      cemented: "L8",
+      cemented: "D3",
       role: "Glass body of composite L8; strong positive power converges the beam to the image plane, high nd enables moderate curvature",
     },
   ],
@@ -254,7 +254,7 @@ const LENS_DATA = {
   doublets: [
     { text: "D1", fromSurface: "4", toSurface: "6" },
     { text: "D2", fromSurface: "7", toSurface: "9" },
-    { text: "L8", fromSurface: "14A", toSurface: "16" },
+    { text: "D3", fromSurface: "14A", toSurface: "16" },
   ],
 
   /* ── Focus configuration ── */

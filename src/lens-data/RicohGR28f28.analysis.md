@@ -14,7 +14,7 @@
 
 The Ricoh GR-1, released in 1996, established one of the most enduring legacies in compact camera design. Its 28mm f/2.8 GR lens — 7 elements in 4 groups with aspherical surfaces — set the standard against which subsequent compact wide-angle lenses would be measured for decades. The camera's magnesium alloy body measured just 26.5 mm thick, making it the thinnest full-frame 35mm camera ever produced at the time of its release.
 
-US 5,760,973 discloses the optical design family from which the GR lens derives. The patent presents seven numerical examples spanning two primary embodiments (differing in whether the rear triplet L3 is a cemented junction lens or uses an air-spaced element, and whether the L4 asphere is ground glass or a hybrid resin layer). Example 1, corresponding to the first embodiment (FIG. 1), is the most likely candidate for the production design: a 7-element, 4-group system with two aspherical surfaces, a cemented doublet, and a cemented triplet. This identification rests on convergent criteria — matching element/group count (7/4), focal length (28.1 mm ≈ 28 mm), f-number (2.86 ≈ f/2.8), all-glass aspherical construction (consistent with "aspherical glass lenses" in Ricoh's marketing language, as opposed to the hybrid resin aspheres in Examples 6–7), and a patent priority date (December 1995) that precedes the GR-1's 1996 launch. Definitive confirmation would require Ricoh engineering disclosure.
+US 5,760,973 discloses the optical design family from which the GR lens derives. The patent presents seven numerical examples spanning two primary embodiments (differing in whether the rear triplet L22 is a cemented junction lens or uses an air-spaced element, and whether the L31 asphere is ground glass or a hybrid resin layer). Example 1, corresponding to the first embodiment (FIG. 1), is the most likely candidate for the production design: a 7-element, 4-group system with two aspherical surfaces, a cemented doublet, and a cemented triplet. This identification rests on convergent criteria — matching element/group count (7/4), focal length (28.1 mm ≈ 28 mm), f-number (2.86 ≈ f/2.8), all-glass aspherical construction (consistent with "aspherical glass lenses" in Ricoh's marketing language, as opposed to the hybrid resin aspheres in Examples 6–7), and a patent priority date (December 1995) that precedes the GR-1's 1996 launch. Definitive confirmation would require Ricoh engineering disclosure.
 
 The GR lens was subsequently extracted from the compact camera body and produced in a limited run of 3,000 units (2,000 silver, 1,000 black) in Leica Thread Mount (L39) in 1997 — a tribute to the optical quality Kawamura's design had achieved.
 
@@ -27,13 +27,13 @@ The lens follows a **negative-positive-positive-negative** (NPPN) quasi-symmetri
 
 | Component | Elements | Power | Architecture |
 |-----------|----------|-------|--------------|
-| L1 | L(1,1) | Negative | Single biconcave lens (aspherical front) |
-| L2 | L(2,1) + L(2,2) | Positive | Cemented doublet (positive + negative) |
-| *Stop* | — | — | *Aperture diaphragm between L2 and L3* |
-| L3 | L(3,1) + L(3,2) + L(3,3) | Positive | Cemented triplet (junction lens) |
-| L4 | L(4,1) | Negative | Single negative meniscus (aspherical front) |
+| L11 | L(1,1) | Negative | Single biconcave lens (aspherical front) |
+| L21 | L(2,1) + L(2,2) | Positive | Cemented doublet (positive + negative) |
+| *Stop* | — | — | *Aperture diaphragm between L21 and L22* |
+| L22 | L(3,1) + L(3,2) + L(3,3) | Positive | Cemented triplet (junction lens) |
+| L31 | L(4,1) | Negative | Single negative meniscus (aspherical front) |
 
-The design totals 7 elements in 4 groups, with 12 optical surfaces (including the stop). Two surfaces carry aspherical profiles: the front surface of L1 (surface 1) and the front surface of L4 (surface 11).
+The design totals 7 elements in 4 groups, with 12 optical surfaces (including the stop). Two surfaces carry aspherical profiles: the front surface of L11 (surface 1) and the front surface of L31 (surface 11).
 
 ### Verified System Parameters
 
@@ -76,7 +76,7 @@ The following table reproduces the Example 1 prescription exactly as given in th
 
 The last spacing (from surface 12 to the image plane) is the back focal distance, computed at 17.22 mm by extending the traced marginal ray to its axis crossing.
 
-**Note on semi-diameters:** The patent does not list semi-diameters. On-axis marginal ray heights (scaled to the 4.91 mm entrance pupil radius) range from approximately 5.0 mm at the front surfaces to 3.0 mm at the rear, but the front element's clear aperture must also accommodate the off-axis chief ray at ω = 37.2°. For a 28mm f/2.8 wide-angle with the stop between L2 and L3, the front element SD is typically 10–12 mm while the rear element requires only 6–8 mm. This front-to-rear aperture taper is visible in the patent's FIG. 1 drawing.
+**Note on semi-diameters:** The patent does not list semi-diameters. On-axis marginal ray heights (scaled to the 4.91 mm entrance pupil radius) range from approximately 5.0 mm at the front surfaces to 3.0 mm at the rear, but the front element's clear aperture must also accommodate the off-axis chief ray at ω = 37.2°. For a 28mm f/2.8 wide-angle with the stop between L21 and L22, the front element SD is typically 10–12 mm while the rear element requires only 6–8 mm. This front-to-rear aperture taper is visible in the patent's FIG. 1 drawing.
 
 
 ## 4. Glass Identification
@@ -93,31 +93,31 @@ SF2 is a classic dense flint glass (nd = 1.64769, νd = 33.85). This is a tradit
 
 **Best match: S-LAM54 (OHARA)**
 
-S-LAM54 is a lanthanum flint (LaF) type glass with an excellent combination of high refractive index and moderate-to-low dispersion. In the Abbe diagram, this glass sits in the "lanthanum" region above the normal line — it provides anomalous partial dispersion characteristics that help control secondary spectrum. As the positive element of the L2 cemented doublet, it carries the primary convergent power of the front half of the lens. The high index (1.757) allows this convergent power to be achieved with moderate curvatures (R3 = +12.031, R4 = −14.840), reducing higher-order spherical aberration and making the doublet more tolerant to manufacturing errors.
+S-LAM54 is a lanthanum flint (LaF) type glass with an excellent combination of high refractive index and moderate-to-low dispersion. In the Abbe diagram, this glass sits in the "lanthanum" region above the normal line — it provides anomalous partial dispersion characteristics that help control secondary spectrum. As the positive element of the L21 cemented doublet, it carries the primary convergent power of the front half of the lens. The high index (1.757) allows this convergent power to be achieved with moderate curvatures (R3 = +12.031, R4 = −14.840), reducing higher-order spherical aberration and making the doublet more tolerant to manufacturing errors.
 
 ### Element 3 — L(2,2): nd = 1.68893, νd = 31.2
 
 **Best match: S-TIM35 (OHARA) / FD110 (HOYA)**
 
-S-TIM35 is a titanium flint glass with moderately high dispersion. Cemented to L(2,1), it forms the negative half of the L2 doublet. The Abbe number difference between L(2,1) and L(2,2) is 47.7 − 31.2 = 16.5, satisfying the patent's Condition (4) requiring this difference to exceed 7.0. This large Δν drives effective achromatization in the front group — the positive and negative elements focus different wavelengths at sufficiently similar points to control longitudinal chromatic aberration on the object side of the stop.
+S-TIM35 is a titanium flint glass with moderately high dispersion. Cemented to L(2,1), it forms the negative half of the L21 doublet. The Abbe number difference between L(2,1) and L(2,2) is 47.7 − 31.2 = 16.5, satisfying the patent's Condition (4) requiring this difference to exceed 7.0. This large Δν drives effective achromatization in the front group — the positive and negative elements focus different wavelengths at sufficiently similar points to control longitudinal chromatic aberration on the object side of the stop.
 
 ### Element 4 — L(3,1): nd = 1.48749, νd = 70.4
 
 **Best match: FK5 (Schott) / S-FSL5 (OHARA) / FC5 (HOYA)**
 
-FK5 is a fluorophosphate crown glass with very low dispersion and relatively low refractive index. This is the negative element at the front of the L3 cemented triplet. Its very low index (1.487) compared to L(3,2) behind it (1.835) creates a powerful refracting junction surface that provides strong convergent correction — this is the junction whose power is characterized by Condition (7). The low index also contributes to a low Petzval sum contribution, helping to flatten the field across the wide 74.4° total field angle. FK5 is a well-characterized glass with excellent homogeneity, an important consideration since it forms part of a precision cemented triplet.
+FK5 is a fluorophosphate crown glass with very low dispersion and relatively low refractive index. This is the negative element at the front of the L22 cemented triplet. Its very low index (1.487) compared to L(3,2) behind it (1.835) creates a powerful refracting junction surface that provides strong convergent correction — this is the junction whose power is characterized by Condition (7). The low index also contributes to a low Petzval sum contribution, helping to flatten the field across the wide 74.4° total field angle. FK5 is a well-characterized glass with excellent homogeneity, an important consideration since it forms part of a precision cemented triplet.
 
 ### Element 5 — L(3,2): nd = 1.83500, νd = 43.0
 
 **Best match: S-LAH55 (OHARA) / TAFD5 (HOYA)**
 
-S-LAH55 is a high-index lanthanum crown glass — one of the highest-index glasses in common production optical design. As the biconvex positive core of the L3 cemented triplet, it provides the strongest convergent contribution in the rear half of the lens. The very high refractive index (1.835) is critical: it allows strong power in a compact axial thickness (4.37 mm center thickness) while the cemented boundaries with L(3,1) and L(3,3) control chromatic and spherical aberrations through the index-step mechanism. The patent's Condition (1A) — N(3,2) − {N(3,1) + N(3,3)}/2 > 0.1 — evaluates to 0.221 for this design, confirming that L(3,2) has substantially higher index than the average of its two cemented neighbors, enabling the junction surfaces to carry convergent correction.
+S-LAH55 is a high-index lanthanum crown glass — one of the highest-index glasses in common production optical design. As the biconvex positive core of the L22 cemented triplet, it provides the strongest convergent contribution in the rear half of the lens. The very high refractive index (1.835) is critical: it allows strong power in a compact axial thickness (4.37 mm center thickness) while the cemented boundaries with L(3,1) and L(3,3) control chromatic and spherical aberrations through the index-step mechanism. The patent's Condition (1A) — N(3,2) − {N(3,1) + N(3,3)}/2 > 0.1 — evaluates to 0.221 for this design, confirming that L(3,2) has substantially higher index than the average of its two cemented neighbors, enabling the junction surfaces to carry convergent correction.
 
 ### Element 6 — L(3,3): nd = 1.74077, νd = 27.8
 
 **Best match: EFD4 (HOYA)**
 
-EFD4 is a high-dispersion extra-dense flint glass. As the rear element of the L3 cemented triplet, this concave meniscus provides the high-dispersion complement needed to achromatize the triplet as a unit. The cemented junction between L(3,2) and L(3,3) acts as a chromatic corrector for the rear group — the large index step (1.835 → 1.741) at R9 = −8.514 mm creates a strongly curved virtual boundary that separates wavelengths without introducing the alignment sensitivity of an air-spaced interface. This glass has no obvious Schott catalog equivalent at the exact nd/νd combination, suggesting that HOYA (or an equivalent Japanese manufacturer) was the primary supplier for this element.
+EFD4 is a high-dispersion extra-dense flint glass. As the rear element of the L22 cemented triplet, this concave meniscus provides the high-dispersion complement needed to achromatize the triplet as a unit. The cemented junction between L(3,2) and L(3,3) acts as a chromatic corrector for the rear group — the large index step (1.835 → 1.741) at R9 = −8.514 mm creates a strongly curved virtual boundary that separates wavelengths without introducing the alignment sensitivity of an air-spaced interface. This glass has no obvious Schott catalog equivalent at the exact nd/νd combination, suggesting that HOYA (or an equivalent Japanese manufacturer) was the primary supplier for this element.
 
 ### Element 7 — L(4,1): nd = 1.60342, νd = 38.0
 
@@ -129,13 +129,13 @@ F5 is a medium-index flint glass with moderate dispersion. This element serves a
 
 | Elem | Patent nd/νd | Best Catalog Match | Glass Family | Role in Design |
 |------|-------------|-------------------|--------------|----------------|
-| L1 | 1.64769 / 33.8 | SF2 (Schott) | Dense flint | Front negative, asph. |
-| L2 | 1.75700 / 47.7 | S-LAM54 (OHARA) | Lanthanum flint | Doublet positive |
-| L3 | 1.68893 / 31.2 | S-TIM35 (OHARA) | Titanium flint | Doublet negative |
-| L4 | 1.48749 / 70.4 | FK5 (Schott) | Fluorophosphate crown | Triplet front negative |
-| L5 | 1.83500 / 43.0 | S-LAH55 (OHARA) | Lanthanum crown | Triplet positive core |
-| L6 | 1.74077 / 27.8 | EFD4 (HOYA) | Extra-dense flint | Triplet rear negative |
-| L7 | 1.60342 / 38.0 | F5 (Schott) | Flint | Field flattener, asph. |
+| L11 | 1.64769 / 33.8 | SF2 (Schott) | Dense flint | Front negative, asph. |
+| L21 | 1.75700 / 47.7 | S-LAM54 (OHARA) | Lanthanum flint | Doublet positive |
+| L22 | 1.68893 / 31.2 | S-TIM35 (OHARA) | Titanium flint | Doublet negative |
+| L31 | 1.48749 / 70.4 | FK5 (Schott) | Fluorophosphate crown | Triplet front negative |
+| L32 | 1.83500 / 43.0 | S-LAH55 (OHARA) | Lanthanum crown | Triplet positive core |
+| L33 | 1.74077 / 27.8 | EFD4 (HOYA) | Extra-dense flint | Triplet rear negative |
+| L41 | 1.60342 / 38.0 | F5 (Schott) | Flint | Field flattener, asph. |
 
 The glass selection reveals a deliberate mix of Japanese (OHARA, HOYA) and European (Schott) catalog types. All seven glasses are standard catalog items available in the mid-1990s, consistent with a high-volume production compact camera. No exotic or special-melt glasses appear in the prescription. The design achieves its performance through architecture and aspherical correction rather than exotic materials.
 
@@ -170,11 +170,11 @@ where R is the paraxial radius of curvature, K is the conic constant, and A thro
 | 6.0 | −0.8109 | −0.7484 | −62.6 |
 | 8.0 | −1.7368 | −1.3472 | −389.6 |
 
-*Note: The aspherical departure grows rapidly at large heights due to the h⁴ and h⁶ polynomial terms. The actual clear aperture of L1 is estimated at SD ≈ 10–12 mm (accounting for off-axis bundles), where the departure would exceed 1 mm. At such magnitudes, the aspherical surface is no longer a small perturbation of the sphere — it is a fundamentally reshaped surface that can only be economically produced by precision glass molding rather than polishing.*
+*Note: The aspherical departure grows rapidly at large heights due to the h⁴ and h⁶ polynomial terms. The actual clear aperture of L11 is estimated at SD ≈ 10–12 mm (accounting for off-axis bundles), where the departure would exceed 1 mm. At such magnitudes, the aspherical surface is no longer a small perturbation of the sphere — it is a fundamentally reshaped surface that can only be economically produced by precision glass molding rather than polishing.*
 
 The conic constant K = −0.0665 is a mild prolate ellipsoid, which in isolation would slightly flatten the surface relative to a sphere. However, the even-order polynomial terms — particularly the dominant 4th and 6th orders (A = −2.72×10⁻⁵, B = −1.415×10⁻⁶, both negative) — overwhelm the conic contribution and deepen the surface sag beyond that of the base sphere at all aperture heights. Decomposition confirms the conic reduces curvature by only +0.15 μm at h = 4 mm, while the polynomials increase it by −10.5 μm. The net aspherical departure is negative throughout (−0.5 μm at h = 2 mm, rising to −390 μm at h = 8 mm), meaning the aspherical surface is consistently more deeply curved — and therefore more diverging — than the base sphere toward the periphery. Numerical differentiation confirms the aspherical surface slope exceeds the spherical slope at all computed heights (|dZ/dh|_asph = 0.177 vs 0.166 at h = 4 mm, rising to 0.754 vs 0.347 at h = 8 mm), directly demonstrating the increasing diverging characteristic the patent describes.
 
-**Optical role:** The patent explicitly states that this aspherical surface corrects curvature of field and coma aberrations produced by the fifth refraction surface (R5, the rear of L2,2). By making the front surface of the biconcave L1 aspherical with increasing divergence toward the periphery, off-axis rays passing through the outer zones of this element experience progressively more negative power than they would from a pure sphere. This increased peripheral divergence counteracts the inward-curving Petzval surface produced by the positive groups, selectively flattening the field at large image heights. The coma correction arises because the aspherical departure modifies the effective prism angle for off-axis ray bundles as a function of both ray height and field angle, reducing the asymmetric aberration of the beam cross-section.
+**Optical role:** The patent explicitly states that this aspherical surface corrects curvature of field and coma aberrations produced by the fifth refraction surface (R5, the rear of L21,2). By making the front surface of the biconcave L11 aspherical with increasing divergence toward the periphery, off-axis rays passing through the outer zones of this element experience progressively more negative power than they would from a pure sphere. This increased peripheral divergence counteracts the inward-curving Petzval surface produced by the positive groups, selectively flattening the field at large image heights. The coma correction arises because the aspherical departure modifies the effective prism angle for off-axis ray bundles as a function of both ray height and field angle, reducing the asymmetric aberration of the beam cross-section.
 
 ### 5.3 Surface 11 — L(4,1) Front (Object Side)
 
@@ -198,59 +198,59 @@ The conic constant K = −0.0665 is a mild prolate ellipsoid, which in isolation
 
 The conic constant K = +0.5327 is an oblate ellipsoid, which by itself makes the conic surface steeper than a sphere at the periphery. The dominant 4th-order polynomial coefficient A = −8.3178×10⁻⁵ (approximately three times larger in magnitude than Surface 1's coefficient) adds further deepening in the same direction — for a surface with R < 0, negative polynomial contributions produce more negative sag, meaning greater curvature. Both the conic and the dominant polynomial term therefore work together to make this surface more deeply curved than the base sphere toward the rim, producing the increasing diverging characteristic the patent specifies. The alternating signs of the higher-order coefficients (B positive, C negative, D positive) fine-tune the departure profile across the clear aperture, but do not reverse the overall trend.
 
-**Optical role:** This is the primary field-flattening asphere. The patent's Condition (5) governs the shape factor of this element, and the aspherical surface is specifically identified as providing correction for curvature of field and coma at the image side. The L4 component carries negative power that bends diverging off-axis ray bundles back toward the image plane; the aspherical correction tailors this bending as a function of ray height so that the tangential and sagittal focal surfaces are brought into coincidence at the film plane across the full 74.4° field.
+**Optical role:** This is the primary field-flattening asphere. The patent's Condition (5) governs the shape factor of this element, and the aspherical surface is specifically identified as providing correction for curvature of field and coma at the image side. The L31 component carries negative power that bends diverging off-axis ray bundles back toward the image plane; the aspherical correction tailors this bending as a function of ray height so that the tangential and sagittal focal surfaces are brought into coincidence at the film plane across the full 74.4° field.
 
 ### 5.4 Comparison of the Two Aspheres
 
-The two aspherical surfaces form a matched pair bracketing the lens system — one at the front (object side of L1) and one near the rear (object side of L4). This front-and-rear aspherical strategy is characteristic of compact wide-angle designs where a single asphere cannot provide sufficient correction across the full field. Surface 1 primarily addresses the object-side ray bundle geometry (wide-angle entrance condition, distortion, field curvature from the front group), while Surface 11 provides the final image-side correction (residual field curvature, coma, sagittal/tangential focus balance). The aspherical departure of Surface 11 is roughly 3–4× larger than Surface 1 at comparable fractional aperture heights, consistent with its stronger corrective role.
+The two aspherical surfaces form a matched pair bracketing the lens system — one at the front (object side of L11) and one near the rear (object side of L31). This front-and-rear aspherical strategy is characteristic of compact wide-angle designs where a single asphere cannot provide sufficient correction across the full field. Surface 1 primarily addresses the object-side ray bundle geometry (wide-angle entrance condition, distortion, field curvature from the front group), while Surface 11 provides the final image-side correction (residual field curvature, coma, sagittal/tangential focus balance). The aspherical departure of Surface 11 is roughly 3–4× larger than Surface 1 at comparable fractional aperture heights, consistent with its stronger corrective role.
 
 
 ## 6. Element-by-Element Optical Roles
 
-### L(1,1) — Biconcave Negative (Component L1)
+### L(1,1) — Biconcave Negative (Component L11)
 
 **Surfaces:** R1 = −24.427 (asph), R2 = +48.935
 **Thin-lens focal length:** −25.0 mm
 **Shape factor:** (R1+R2)/(R1−R2) = −0.334
 
-This element serves as the front negative component of the quasi-retrofocus arrangement, diverging the incoming wide-angle ray bundle before it reaches the positive groups. Its biconcave form — rather than a more conventional negative meniscus — is specifically cited by the patent as enabling a reduction in total lens thickness. The asymmetric curvatures (the front surface is roughly twice as steep as the rear) orient the stronger power toward the object, which distributes the ray bending more evenly and reduces higher-order aberrations. The aspherical front surface progressively increases the diverging power toward the periphery, strengthening the element's field-flattening contribution for off-axis ray bundles while simultaneously correcting coma generated downstream in the L2 group.
+This element serves as the front negative component of the quasi-retrofocus arrangement, diverging the incoming wide-angle ray bundle before it reaches the positive groups. Its biconcave form — rather than a more conventional negative meniscus — is specifically cited by the patent as enabling a reduction in total lens thickness. The asymmetric curvatures (the front surface is roughly twice as steep as the rear) orient the stronger power toward the object, which distributes the ray bending more evenly and reduces higher-order aberrations. The aspherical front surface progressively increases the diverging power toward the periphery, strengthening the element's field-flattening contribution for off-axis ray bundles while simultaneously correcting coma generated downstream in the G2 group.
 
-### L(2,1) — Biconvex Positive (First Element of Component L2)
+### L(2,1) — Biconvex Positive (First Element of Component L21)
 
 **Surfaces:** R3 = +12.031, R4 = −14.840 (junction)
 **Thin-lens focal length:** +8.8 mm
 
 This is the strongest positive element in the system and carries the primary convergent power of the front group. The high-index lanthanum glass (S-LAM54, nd = 1.757) allows this power to be achieved with moderate curvatures, keeping spherical aberration contributions under control. Its biconvex form distributes the refraction roughly equally between front and rear surfaces, minimizing the contribution to coma.
 
-### L(2,2) — Negative Meniscus (Second Element of Component L2)
+### L(2,2) — Negative Meniscus (Second Element of Component L21)
 
-**Surfaces:** R4 = −14.840 (junction from L2,1), R5 = −36.502
+**Surfaces:** R4 = −14.840 (junction from L21,1), R5 = −36.502
 **Thin-lens focal length:** −36.3 mm
 
-Cemented to L(2,1), this element primarily serves as a chromatic corrector for the L2 group. The Abbe number difference of 16.5 between L(2,1) and L(2,2) — well above the Condition (4) minimum of 7 — ensures strong achromatization. The cemented junction at R4 also corrects some of the spherical aberration generated by L(2,1)'s strong positive power.
+Cemented to L(2,1), this element primarily serves as a chromatic corrector for the G2 group. The Abbe number difference of 16.5 between L(2,1) and L(2,2) — well above the Condition (4) minimum of 7 — ensures strong achromatization. The cemented junction at R4 also corrects some of the spherical aberration generated by L(2,1)'s strong positive power.
 
-### L(3,1) — Biconcave Negative (Front of Component L3 Triplet)
+### L(3,1) — Biconcave Negative (Front of Component L22 Triplet)
 
-**Surfaces:** R7 = −10.144, R8 = +34.733 (junction to L3,2)
+**Surfaces:** R7 = −10.144, R8 = +34.733 (junction to L22,2)
 **Thin-lens focal length:** −16.1 mm
 
 The front element of the cemented triplet. Its low-index FK5 glass (nd = 1.487) creates a large index step at the cemented junction with L(3,2) (Δn = 0.348 at R8), which is the critical correcting surface described by Condition (7). The patent specifically notes that the air-lens equivalent between L(3,1) and L(3,2) — in embodiments where this element is air-spaced rather than cemented — carries a "fifth refracting power" that plays a critical role in correcting distortion and astigmatism. In the cemented (junction lens) form used in Example 1, the junction surface itself fulfills this role with the added benefit of reduced sensitivity to assembly errors and decentration.
 
-### L(3,2) — Biconvex Positive (Core of Component L3 Triplet)
+### L(3,2) — Biconvex Positive (Core of Component L22 Triplet)
 
-**Surfaces:** R8 = +34.733 (junction from L3,1), R9 = −8.514 (junction to L3,3)
+**Surfaces:** R8 = +34.733 (junction from L22,1), R9 = −8.514 (junction to L22,3)
 **Thin-lens focal length:** +8.2 mm
 
 The positive powerhouse of the rear group. At nd = 1.835, this S-LAH55 glass has the highest refractive index in the system. The two cemented junction surfaces on either side of this element — R8 (from FK5 at 1.487) and R9 (to EFD4 at 1.741) — create strongly refracting buried surfaces that provide convergent correction without the alignment sensitivity of air-spaced interfaces. The 4.37 mm center thickness (the thickest element in the system) accommodates the steep curvatures while maintaining adequate edge thickness for the junction bond.
 
-### L(3,3) — Concave Meniscus Negative (Rear of Component L3 Triplet)
+### L(3,3) — Concave Meniscus Negative (Rear of Component L22 Triplet)
 
-**Surfaces:** R9 = −8.514 (junction from L3,2), R10 = −19.156
+**Surfaces:** R9 = −8.514 (junction from L22,2), R10 = −19.156
 **Thin-lens focal length:** −20.7 mm
 
-The rear element of the cemented triplet, this high-dispersion flint (EFD4, νd = 27.8) provides the chromatic balance for the L3 group. The three-element cemented construction — low-index crown, high-index lanthanum, high-dispersion flint — is a sophisticated variant of the classic apochromatic triplet configuration, optimized here not for secondary spectrum correction but for simultaneous control of chromatic aberration, Petzval sum, and spherical aberration within a minimal axial thickness.
+The rear element of the cemented triplet, this high-dispersion flint (EFD4, νd = 27.8) provides the chromatic balance for the G3 group. The three-element cemented construction — low-index crown, high-index lanthanum, high-dispersion flint — is a sophisticated variant of the classic apochromatic triplet configuration, optimized here not for secondary spectrum correction but for simultaneous control of chromatic aberration, Petzval sum, and spherical aberration within a minimal axial thickness.
 
-### L(4,1) — Negative Meniscus (Component L4)
+### L(4,1) — Negative Meniscus (Component L31)
 
 **Surfaces:** R11 = −9.270 (asph), R12 = −16.394
 **Thin-lens focal length:** −35.4 mm
@@ -263,13 +263,13 @@ In the compact camera implementation, this is the rearmost glass element, positi
 
 ## 7. Cemented Groups
 
-### L2 — Cemented Doublet: L(2,1) + L(2,2)
+### G2 — Cemented Doublet: L(2,1) + L(2,2)
 
-The L2 doublet (surfaces R3 through R5) cements a lanthanum positive element (S-LAM54) to a titanium flint negative (S-TIM35). The junction at R4 = −14.840 mm creates an internal refracting surface with index step Δn = 1.68893 − 1.75700 = −0.06807. This relatively small step (compared to the L3 junctions) indicates that the L2 doublet functions primarily as an achromatic pair where the chromatic correction derives from the Abbe number difference (Δν = 16.5) rather than from a large power contribution at the cemented surface itself.
+The L21 doublet (surfaces R3 through R5) cements a lanthanum positive element (S-LAM54) to a titanium flint negative (S-TIM35). The junction at R4 = −14.840 mm creates an internal refracting surface with index step Δn = 1.68893 − 1.75700 = −0.06807. This relatively small step (compared to the L22 junctions) indicates that the L21 doublet functions primarily as an achromatic pair where the chromatic correction derives from the Abbe number difference (Δν = 16.5) rather than from a large power contribution at the cemented surface itself.
 
-### L3 — Cemented Triplet (Junction Lens): L(3,1) + L(3,2) + L(3,3)
+### L22 — Cemented Triplet (Junction Lens): L(3,1) + L(3,2) + L(3,3)
 
-The L3 triplet (surfaces R7 through R10) is the most optically complex sub-assembly in the system. The junction at R8 carries the large index step Δn = 1.83500 − 1.48749 = +0.34751 — one of the largest cemented-surface index steps in production lens design. This junction surface alone has a power φ_C = 0.01001 mm⁻¹, which represents 28.1% of the total system power (Condition 7 = 0.281).
+The L22 triplet (surfaces R7 through R10) is the most optically complex sub-assembly in the system. The junction at R8 carries the large index step Δn = 1.83500 − 1.48749 = +0.34751 — one of the largest cemented-surface index steps in production lens design. This junction surface alone has a power φ_C = 0.01001 mm⁻¹, which represents 28.1% of the total system power (Condition 7 = 0.281).
 
 The second junction at R9 carries Δn = 1.74077 − 1.83500 = −0.09423. Combined, the two buried surfaces provide a powerful chromatic correction mechanism internal to the triplet, independent of the air-glass boundaries.
 
@@ -311,11 +311,11 @@ The overall aberration correction strategy can be understood as a layered approa
 
 **Coma** is corrected through the quasi-symmetrical NPPN power arrangement and the two aspherical surfaces. The front asphere (Surface 1) corrects coma generated by the front group, while the rear asphere (Surface 11) corrects residual coma from the rear group.
 
-**Astigmatism and field curvature** are the most challenging aberrations in a compact wide-angle design. The computed Petzval sum of +0.00380 mm⁻¹ (Petzval radius ρ = −263 mm, |ρ|/f = 9.4) demonstrates a nearly flat intrinsic field — an outstanding result for a 7-element design. This is achieved through careful balancing of positive and negative Petzval contributions across the four groups: L2 contributes the largest positive term (+0.0485, from its strong convergent power and high-index glass), while L1 (−0.0241), L4 (−0.0176), and L3 (−0.0030) provide compensating negative contributions. The low-index FK5 glass in L(3,1) (nd = 1.487) is specifically chosen for its Petzval contribution — low index means the (n'−n)/(n·n'·R) term at surface 7 carries a large negative value that helps flatten the field. The remaining astigmatism and residual field curvature are corrected by: (a) the cemented junction surface at R8 (Condition 7), which provides a strong corrective effect on the sagittal/tangential field balance; (b) both aspherical surfaces, which modulate the peripheral power to bring tangential and sagittal focal surfaces into coincidence; and (c) the NPPN power distribution itself.
+**Astigmatism and field curvature** are the most challenging aberrations in a compact wide-angle design. The computed Petzval sum of +0.00380 mm⁻¹ (Petzval radius ρ = −263 mm, |ρ|/f = 9.4) demonstrates a nearly flat intrinsic field — an outstanding result for a 7-element design. This is achieved through careful balancing of positive and negative Petzval contributions across the four groups: L21 contributes the largest positive term (+0.0485, from its strong convergent power and high-index glass), while L11 (−0.0241), L31 (−0.0176), and L22 (−0.0030) provide compensating negative contributions. The low-index FK5 glass in L(3,1) (nd = 1.487) is specifically chosen for its Petzval contribution — low index means the (n'−n)/(n·n'·R) term at surface 7 carries a large negative value that helps flatten the field. The remaining astigmatism and residual field curvature are corrected by: (a) the cemented junction surface at R8 (Condition 7), which provides a strong corrective effect on the sagittal/tangential field balance; (b) both aspherical surfaces, which modulate the peripheral power to bring tangential and sagittal focal surfaces into coincidence; and (c) the NPPN power distribution itself.
 
 **Distortion** is controlled through the quasi-symmetrical arrangement around the aperture stop. The patent's aberration curves (FIG. 5) for Example 1 show distortion below 3% at the maximum field angle — well controlled for a 74.4° total field.
 
-**Chromatic aberration** is corrected in two stages: the L2 cemented doublet achromatizes the front group (object side of stop), while the L3 cemented triplet achromatizes the rear group (image side of stop). The symmetric placement of these achromatized groups on either side of the stop makes axial and lateral chromatic correction naturally compatible, as the patent text notes.
+**Chromatic aberration** is corrected in two stages: the L21 cemented doublet achromatizes the front group (object side of stop), while the L22 cemented triplet achromatizes the rear group (image side of stop). The symmetric placement of these achromatized groups on either side of the stop makes axial and lateral chromatic correction naturally compatible, as the patent text notes.
 
 
 ## 11. Notes on the Production Lens

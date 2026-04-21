@@ -38,7 +38,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -51,7 +51,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.76182,
@@ -64,7 +64,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.83481,
@@ -76,7 +76,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -88,7 +88,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L15",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.84666,
@@ -100,7 +100,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L16",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 2.001,
@@ -113,7 +113,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L17",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.7725,
@@ -126,7 +126,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L18",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.72916,
@@ -138,7 +138,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L21",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.734,
@@ -150,7 +150,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L22",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.7725,
@@ -163,7 +163,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L23",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.94595,
@@ -176,7 +176,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L31",
       label: "Element 12",
       type: "Plano-Convex Positive",
       nd: 1.76385,
@@ -188,7 +188,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L32",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.72916,
@@ -201,7 +201,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L33",
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 2.00069,
@@ -214,8 +214,8 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
-      label: "Element 15 (L41)",
+      name: "L41",
+      label: "Element 15",
       type: "Biconcave Negative",
       nd: 1.83481,
       vd: 42.7,
@@ -226,8 +226,8 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
-      label: "Element 16 (L42)",
+      name: "L42",
+      label: "Element 16",
       type: "Positive Meniscus",
       nd: 1.6727,
       vd: 32.1,
@@ -238,7 +238,7 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L17",
+      name: "L51",
       label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.58913,
@@ -357,11 +357,11 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "L1 (FIXED)", fromSurface: "1", toSurface: "14" },
-    { text: "L2 (FOCUS 1)", fromSurface: "16", toSurface: "20" },
-    { text: "L3 (FIXED)", fromSurface: "21", toSurface: "25" },
-    { text: "L4 (FOCUS 2)", fromSurface: "26", toSurface: "29" },
-    { text: "L5 (FIXED)", fromSurface: "30", toSurface: "31" },
+    { text: "G1 (FIXED)", fromSurface: "1", toSurface: "14" },
+    { text: "G2 (FOCUS 1)", fromSurface: "16", toSurface: "20" },
+    { text: "G3 (FIXED)", fromSurface: "21", toSurface: "25" },
+    { text: "G4 (FOCUS 2)", fromSurface: "26", toSurface: "29" },
+    { text: "G5 (FIXED)", fromSurface: "30", toSurface: "31" },
   ],
 
   doublets: [

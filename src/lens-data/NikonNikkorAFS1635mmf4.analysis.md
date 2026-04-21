@@ -34,7 +34,7 @@ The system comprises four air-separated groups, each with a distinct optical rol
 
 | Group | Surfaces | Elements | Focal Length (mm) | Power | Role |
 |-------|----------|----------|-------------------|-------|------|
-| G1 | 1–9 | L11, L12, L13 (hybrid), L14 | −21.30 | Negative | Front diverging group; establishes retrofocus geometry and wide field of view |
+| G1 | 1–9 | L11, L12, L13 (hybrid), L15 | −21.30 | Negative | Front diverging group; establishes retrofocus geometry and wide field of view |
 | G2 | 10–14 | L21+L22 (cemented), L23 | +34.14 | Positive | Converging group; contains the internal focusing element (CL21) |
 | G3 | 15–22 | Aperture stop, L31+L32 (cemented), L33, L34 | −46.90 | Negative | Rear diverging group; serves as the VR (vibration reduction) group |
 | G4 | 23–30 | L41+L42+L43 (triplet), L44+L45+L46 (triplet) | +50.02 | Positive | Rear converging group; contains both ED glass elements |
@@ -87,8 +87,8 @@ Glass: nd = 1.88300, νd = 40.76 — OHARA S-LAH58. Weakly biconcave (R = −118
 **L13 — Biconcave negative + resin aspherical layer (f = −30.9 mm glass, +209.9 mm resin)**
 Glass body: nd = 1.88300, νd = 40.76 — S-LAH58. Strongly biconcave (R = −57.268 / +52.742). A thin UV-curing resin layer (nd = 1.55389, νd = 38.09, thickness 0.40 mm) is bonded to the image-side surface forming a hybrid compound aspherical element. The resin's outer surface (R = +96.287) carries a strongly oblate aspherical profile (K = +7.352). This corrects higher-order field curvature and coma at extreme field angles. The resin layer contributes very weak positive power (+209.9 mm) — its purpose is aspherical correction, not power contribution.
 
-**L14 — Biconvex positive lens (f = +37.7 mm)**
-Glass: nd = 1.69895, νd = 30.13 — OHARA S-TIM35, a titanium-containing medium-index flint. This unusual glass choice for a positive element (high-dispersion flint) indicates that L14's primary role is chromatic correction. Paired with the low-dispersion negative elements L12 and L13, L14 forms an achromatic subsystem within G1, correcting lateral color that would otherwise be extreme at short focal lengths.
+**L15 — Biconvex positive lens (f = +37.7 mm)**
+Glass: nd = 1.69895, νd = 30.13 — OHARA S-TIM35, a titanium-containing medium-index flint. This unusual glass choice for a positive element (high-dispersion flint) indicates that L15's primary role is chromatic correction. Paired with the low-dispersion negative elements L12 and L13, L15 forms an achromatic subsystem within G1, correcting lateral color that would otherwise be extreme at short focal lengths.
 
 ### 4.2 Group 2 — Positive Focusing Group (f = +34.14 mm)
 
@@ -166,7 +166,7 @@ The design uses twelve distinct optical materials (eleven glass types plus one U
 | 767/469 | LAM family (cf. HOYA E-FD5) | 1.76690 | 46.85 | L11 | 1 |
 | 883/408 | S-LAH58 | 1.88300 | 40.76 | L12, L13, L32, L33, L44 | 5 |
 | 554/381 | UV-cure resin | 1.55389 | 38.09 | L13 resin | 1 |
-| 699/301 | S-TIM35 | 1.69895 | 30.13 | L14 | 1 |
+| 699/301 | S-TIM35 | 1.69895 | 30.13 | L15 | 1 |
 | 847/238 | S-TIH53 | 1.84666 | 23.78 | L21, L34 | 2 |
 | 603/380 | S-TIM5 | 1.60342 | 38.01 | L22 | 1 |
 | 518/589 | S-NSL3 | 1.51823 | 58.93 | L23 | 1 |

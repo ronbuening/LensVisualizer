@@ -1,8 +1,8 @@
 # Canon Serenar 50mm f/1.8 — Optical Analysis
 
-**Patent:** US 2,681,594 · Hiroshi Ito, assignor to Canon Camera Company, Ltd.  
-**Filed:** June 29, 1951 (priority: Japan, November 7, 1950)  
-**Granted:** June 22, 1954  
+**Patent:** US 2,681,594 · Hiroshi Ito, assignor to Canon Camera Company, Ltd.
+**Filed:** June 29, 1951 (priority: Japan, November 7, 1950)
+**Granted:** June 22, 1954
 **Marketed:** November 1951 (Canon Camera Museum)
 
 ---
@@ -47,7 +47,7 @@ The patent normalizes all dimensions to a focal length of f = 1.00. The prescrip
 | r₉ | +1.700 | 0.070 | 1.6385 | 55.5 |
 | r₁₀ | −1.257 | (BFD) | (air) | — |
 
-The aperture stop is located in the air gap d₅ = 0.132, between surfaces r₅ and r₆. The patent does not explicitly specify the stop position within this gap, but the drawing shows it centered between Groups II and III, consistent with classic Gauss-type placement.
+The aperture stop is located in the air gap d₅ = 0.132, between surfaces r₅ and r₆. The patent does not explicitly specify the stop position within this gap, but the drawing shows it centered between Groups G2 and G3, consistent with classic Gauss-type placement.
 
 ### EFL Verification
 
@@ -59,7 +59,7 @@ The scaling factor from patent units to the 50 mm production lens is approximate
 
 ## 3. Element-by-Element Analysis
 
-### Group I — L1: Positive Meniscus (convex to object)
+### Group G1 — L11: Positive Meniscus (convex to object)
 
 | Property | Value |
 |---|---|
@@ -70,13 +70,13 @@ The scaling factor from patent units to the 50 mm production lens is approximate
 | Element focal length | +60.8 mm (at 50 mm scale) |
 | Glass match | **Schott SK16** (nd = 1.6204, νd = 60.3) — exact match |
 
-L1 is a strongly positive meniscus that serves as the front collector. Its front surface (r₁ = +0.58) has substantial converging power (φ₁ = +1.070), though not the strongest in the system — that distinction belongs to r₃ (φ₃ = +1.754, the front surface of L2). The rear surface (r₂ = +3.80) is nearly flat, making L1 behave almost as a plano-convex element. The glass is a dense barium crown (SK16 type) offering high index with low dispersion, providing positive power with minimal chromatic contribution. In a Gauss-type objective, this front element bends incoming marginal rays inward and establishes the general convergence of the system.
+L11 is a strongly positive meniscus that serves as the front collector. Its front surface (r₁ = +0.58) has substantial converging power (φ₁ = +1.070), though not the strongest in the system — that distinction belongs to r₃ (φ₃ = +1.754, the front surface of L21). The rear surface (r₂ = +3.80) is nearly flat, making L11 behave almost as a plano-convex element. The glass is a dense barium crown (SK16 type) offering high index with low dispersion, providing positive power with minimal chromatic contribution. In a Gauss-type objective, this front element bends incoming marginal rays inward and establishes the general convergence of the system.
 
-### Group II — Cemented Doublet: L2 (biconvex) + L3 (biconcave)
+### Group G2 — Cemented Doublet: L21 (biconvex) + L22 (biconcave)
 
 This is the front compound meniscus, concave toward the image side. The overall group is a negative meniscus with a thick-lens focal length of approximately −74.3 mm (at 50 mm scale).
 
-#### L2: Biconvex Positive
+#### L21: Biconvex Positive
 
 | Property | Value |
 |---|---|
@@ -86,9 +86,9 @@ This is the front compound meniscus, concave toward the image side. The overall 
 | Element focal length | +27.8 mm (at 50 mm scale) |
 | Glass match | **HOYA BAFD7** (nd = 1.6261, νd = 39.2) — excellent match (barium dense flint); nearest Schott type is F2 (nd = 1.620, νd = 36.4), but with significant νd discrepancy |
 
-L2 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The nd/νd combination matches the HOYA BAFD7 glass type almost exactly (Δnd < 0.001, Δνd = +0.1), though the modern catalog designation may not reflect the specific glass available to Canon in 1950. No standard Schott glass matches closely — F2 has a νd discrepancy of about 2.7.
+L21 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The nd/νd combination matches the HOYA BAFD7 glass type almost exactly (Δnd < 0.001, Δνd = +0.1), though the modern catalog designation may not reflect the specific glass available to Canon in 1950. No standard Schott glass matches closely — F2 has a νd discrepancy of about 2.7.
 
-#### L3: Biconcave Negative
+#### L22: Biconcave Negative
 
 | Property | Value |
 |---|---|
@@ -98,21 +98,21 @@ L2 is the convex component of the front cemented doublet. Its front surface r₃
 | Element focal length | −16.2 mm (at 50 mm scale) |
 | Glass match | **HOYA NBFD3** (nd = 1.7400, νd = 28.2) — exact match; nearest Schott type is SF10 (nd = 1.728, νd = 28.4, Δnd = +0.012) |
 
-L3 is the concave component of the front doublet, and it is the single most critical element in the patent's innovation. Its glass has the highest refractive index in the entire system (nd = 1.7400), and the patent's central claim depends on this fact.
+L22 is the concave component of the front doublet, and it is the single most critical element in the patent's innovation. Its glass has the highest refractive index in the entire system (nd = 1.7400), and the patent's central claim depends on this fact.
 
-**The patent's key innovation:** In a conventional Gauss-type lens, the two concave surfaces flanking the stop (r₅ and r₆) carry nearly the entire burden of correcting axial spherical aberration. Ito observed that r₆ (the concave surface of the rear doublet facing the stop) overcorrects oblique spherical aberration (coma) for intermediate field angles. His solution was to transfer part of the spherical aberration correction from r₆ to the cemented interface r₄ of the front doublet. He accomplished this by giving L3 a refractive index markedly higher than L2 — a difference of Δnd = +0.1139, well above the 0.05 minimum specified in the claims. This large index step at the junction gives r₄ significant refracting power for spherical aberration correction, a task it did not carry in prior Gauss-type designs where the index difference at cemented interfaces was small and served mainly for chromatic correction.
+**The patent's key innovation:** In a conventional Gauss-type lens, the two concave surfaces flanking the stop (r₅ and r₆) carry nearly the entire burden of correcting axial spherical aberration. Ito observed that r₆ (the concave surface of the rear doublet facing the stop) overcorrects oblique spherical aberration (coma) for intermediate field angles. His solution was to transfer part of the spherical aberration correction from r₆ to the cemented interface r₄ of the front doublet. He accomplished this by giving L22 a refractive index markedly higher than L21 — a difference of Δnd = +0.1139, well above the 0.05 minimum specified in the claims. This large index step at the junction gives r₄ significant refracting power for spherical aberration correction, a task it did not carry in prior Gauss-type designs where the index difference at cemented interfaces was small and served mainly for chromatic correction.
 
-The rear surface r₅ = +0.2410 is the most powerful diverging surface in the system. Together with the junction, L3 provides the strong negative power needed to create the Gauss-type air gap and to flatten the Petzval field.
+The rear surface r₅ = +0.2410 is the most powerful diverging surface in the system. Together with the junction, L22 provides the strong negative power needed to create the Gauss-type air gap and to flatten the Petzval field.
 
 ### Aperture Stop
 
-The stop sits in the air gap d₅ = 0.132 between Groups II and III, the characteristic location for a double-Gauss design. The patent drawing shows the stop centered in this space.
+The stop sits in the air gap d₅ = 0.132 between Groups G2 and G3, the characteristic location for a double-Gauss design. The patent drawing shows the stop centered in this space.
 
-### Group III — Cemented Doublet: L4 (biconcave) + L5 (biconvex)
+### Group G3 — Cemented Doublet: L31 (biconcave) + L32 (biconvex)
 
 This is the rear compound meniscus, concave toward the object side. The overall group is weakly positive, with a thick-lens focal length of approximately +193.0 mm (at 50 mm scale).
 
-#### L4: Biconcave Negative
+#### L31: Biconcave Negative
 
 | Property | Value |
 |---|---|
@@ -122,11 +122,11 @@ This is the rear compound meniscus, concave toward the object side. The overall 
 | Element focal length | −27.1 mm (at 50 mm scale) |
 | Glass match | **Schott K10** (nd = 1.5014, νd = 56.4) — essentially exact |
 
-L4 is the concave component of the rear doublet. Its refractive index is the lowest in the entire system (nd = 1.5014), and it is lower than L5's index by Δnd = −0.1371 — again well above the 0.05 minimum claimed. This is the complementary half of the Ito innovation: while the front doublet has its concave element at *high* index, the rear doublet has its concave element at *low* index. The patent explains that this is necessary to control the Petzval sum. Increasing L3's index (front doublet) raises the Petzval sum; compensating by decreasing L4's index (rear doublet) pulls it back down, preserving field flatness.
+L31 is the concave component of the rear doublet. Its refractive index is the lowest in the entire system (nd = 1.5014), and it is lower than L32's index by Δnd = −0.1371 — again well above the 0.05 minimum claimed. This is the complementary half of the Ito innovation: while the front doublet has its concave element at *high* index, the rear doublet has its concave element at *low* index. The patent explains that this is necessary to control the Petzval sum. Increasing L22's index (front doublet) raises the Petzval sum; compensating by decreasing L31's index (rear doublet) pulls it back down, preserving field flatness.
 
 The glass is an ordinary crown (K10), one of the simplest and cheapest optical glasses available — an elegant choice that simultaneously achieves the low refractive index the design requires and keeps material cost down.
 
-#### L5: Biconvex Positive
+#### L32: Biconvex Positive
 
 | Property | Value |
 |---|---|
@@ -136,11 +136,11 @@ The glass is an ordinary crown (K10), one of the simplest and cheapest optical g
 | Element focal length | +26.1 mm (at 50 mm scale) |
 | Glass match | **Schott SK18 / SK18A** (nd = 1.6385, νd = 55.4) — essentially exact |
 
-L5 is the convex component of the rear doublet. It provides the dominant positive power in Group III. The glass (SK18 type) is a dense barium crown with moderately high index and low dispersion. Notably, the Abbe number difference between L4 and L5 is only Δνd ≈ 1.0 — far too small for effective achromatization. This confirms that the rear doublet's cemented interface serves primarily for the Petzval balancing and spherical aberration redistribution described in the patent, rather than for chromatic correction. The large Δnd of 0.137 between L4 and L5 drives the refractive power at the junction, while chromatic correction for the rear half of the system is carried primarily by the curvatures and air spacings rather than by the cemented interface.
+L32 is the convex component of the rear doublet. It provides the dominant positive power in Group G3. The glass (SK18 type) is a dense barium crown with moderately high index and low dispersion. Notably, the Abbe number difference between L31 and L32 is only Δνd ≈ 1.0 — far too small for effective achromatization. This confirms that the rear doublet's cemented interface serves primarily for the Petzval balancing and spherical aberration redistribution described in the patent, rather than for chromatic correction. The large Δnd of 0.137 between L31 and L32 drives the refractive power at the junction, while chromatic correction for the rear half of the system is carried primarily by the curvatures and air spacings rather than by the cemented interface.
 
 **Interface curvature:** The cemented surface r₇ = +0.4380 is convex toward the object side, as required by the patent claims. The patent further specifies that the ratio |r₄|/|r₇| should be "substantially 5 to 1." The actual ratio is 2.100/0.438 = 4.79, close to the claimed 5:1. This ratio controls the balance of spherical aberration correction between the two cemented interfaces.
 
-### Group IV — L6: Biconvex Positive
+### Group G4 — L41: Biconvex Positive
 
 | Property | Value |
 |---|---|
@@ -148,15 +148,15 @@ L5 is the convex component of the rear doublet. It provides the dominant positiv
 | Glass | nd = 1.6385, νd = 55.5 |
 | Thickness | d = 0.070 |
 | Element focal length | +63.7 mm (at 50 mm scale) |
-| Glass match | **Schott SK18 / SK18A** (nd = 1.6385, νd = 55.4) — same glass as L5 |
+| Glass match | **Schott SK18 / SK18A** (nd = 1.6385, νd = 55.4) — same glass as L32 |
 
-L6 is the rear collector, a weakly biconvex positive element using the same SK18-type glass as L5. Its role is to provide the final convergence needed to form the image. Its relatively gentle curvatures (compared to the inner elements) minimize the introduction of higher-order aberrations at the edge of the system. Using the same glass as L5 simplifies manufacturing logistics — a practical consideration that early Japanese lens makers were attentive to.
+L41 is the rear collector, a weakly biconvex positive element using the same SK18-type glass as L32. Its role is to provide the final convergence needed to form the image. Its relatively gentle curvatures (compared to the inner elements) minimize the introduction of higher-order aberrations at the edge of the system. Using the same glass as L32 simplifies manufacturing logistics — a practical consideration that early Japanese lens makers were attentive to.
 
 ---
 
 ## 4. Petzval Sum and Field Curvature
 
-The surface-by-surface Petzval sum computes to approximately +0.414 (normalized), corresponding to a Petzval field radius of roughly 135 mm at the 50 mm production focal length. This is a moderately undercorrected Petzval sum (the field curves toward the lens), which is typical for double-Gauss designs of this era at f/1.8. The patent's asymmetric index strategy — high-index concave in the front doublet, low-index concave in the rear — was specifically designed to manage this sum. Without the low-index L4, the Petzval sum would be substantially larger, producing more pronounced field curvature.
+The surface-by-surface Petzval sum computes to approximately +0.414 (normalized), corresponding to a Petzval field radius of roughly 135 mm at the 50 mm production focal length. This is a moderately undercorrected Petzval sum (the field curves toward the lens), which is typical for double-Gauss designs of this era at f/1.8. The patent's asymmetric index strategy — high-index concave in the front doublet, low-index concave in the rear — was specifically designed to manage this sum. Without the low-index L31, the Petzval sum would be substantially larger, producing more pronounced field curvature.
 
 ---
 
@@ -176,16 +176,16 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 
 | Element | nd | νd | 6-Digit Code | Best Catalog Match | Match Quality |
 |---|---|---|---|---|---|
-| L1 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
-| L2 | 1.6261 | 39.1 | 626/391 | HOYA BAFD7 (1.6261/39.2) | Excellent (Δνd = +0.1) |
-| L3 | 1.7400 | 28.2 | 740/282 | HOYA NBFD3 (1.7400/28.2) | Exact |
-| L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
-| L5 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
-| L6 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
+| L11 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
+| L21 | 1.6261 | 39.1 | 626/391 | HOYA BAFD7 (1.6261/39.2) | Excellent (Δνd = +0.1) |
+| L22 | 1.7400 | 28.2 | 740/282 | HOYA NBFD3 (1.7400/28.2) | Exact |
+| L31 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
+| L32 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
+| L41 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
 
-Four of the six elements match Schott catalog glasses with high confidence. The two most optically critical elements — L2 and L3, which carry the Ito innovation — match HOYA catalog types (BAFD7 and NBFD3 respectively) with excellent to exact precision. These are modern catalog designations; the specific glass names available in 1950 would have differed, but the nd/νd values identify equivalent compositions within the barium dense flint and dense flint families. Canon likely sourced these glasses from early Japanese manufacturers such as HOYA (founded 1941) or Ohara (founded 1935), who were producing their own optical glass formulations by this period.
+Four of the six elements match Schott catalog glasses with high confidence. The two most optically critical elements — L21 and L22, which carry the Ito innovation — match HOYA catalog types (BAFD7 and NBFD3 respectively) with excellent to exact precision. These are modern catalog designations; the specific glass names available in 1950 would have differed, but the nd/νd values identify equivalent compositions within the barium dense flint and dense flint families. Canon likely sourced these glasses from early Japanese manufacturers such as HOYA (founded 1941) or Ohara (founded 1935), who were producing their own optical glass formulations by this period.
 
-It is worth noting that L5 and L6 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
+It is worth noting that L32 and L41 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
 
 ---
 
@@ -193,7 +193,7 @@ It is worth noting that L5 and L6 share the same glass type. This is a practical
 
 Hiroshi Ito's contribution, as described in the patent, can be summarized as a redistribution of aberration correction labor among the cemented interfaces of a Gauss-type quadruplet. In conventional designs of the era, the cemented interfaces served almost exclusively for chromatic correction, while axial spherical aberration was corrected primarily by the two concave air-glass surfaces facing the stop. Ito recognized that this arrangement overcorrected oblique spherical aberration (coma), particularly at intermediate field angles — a persistent weakness of fast Gauss-type lenses.
 
-His solution was to give the front cemented interface (r₄) a meaningful role in spherical aberration correction, achieved by creating a large refractive index step at that junction (Δnd > 0.05). This relieved the rear concave surface r₆ of some of its corrective burden, reducing the overcorrection of coma. The compensating low-index choice for L4 preserved the Petzval sum.
+His solution was to give the front cemented interface (r₄) a meaningful role in spherical aberration correction, achieved by creating a large refractive index step at that junction (Δnd > 0.05). This relieved the rear concave surface r₆ of some of its corrective burden, reducing the overcorrection of coma. The compensating low-index choice for L31 preserved the Petzval sum.
 
 This approach proved highly influential. Canon credits this lens and its underlying optical theory as the foundation for subsequent high-performance wide-angle and telephoto designs. The Canon Camera Museum records that "the basic optical theory developed by Ito to solve the problem using his own unique analysis expedited the development of the large aperture wide angle and telephoto interchangeable lenses." The lens itself earned a reputation for unusually clean wide-open performance — contemporary reviews consistently praised its freedom from coma-induced flare, exactly the aberration Ito targeted.
 

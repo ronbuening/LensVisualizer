@@ -45,8 +45,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1 — L(1,1)",
+      name: "L11",
+      label: "Element 1",
       type: "Biconcave Neg. (1× Asph)",
       nd: 1.64769,
       vd: 33.8,
@@ -58,8 +58,8 @@ const LENS_DATA = {
 
     {
       id: 2,
-      name: "L2",
-      label: "Element 2 — L(2,1)",
+      name: "L21",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.757,
       vd: 47.7,
@@ -72,8 +72,8 @@ const LENS_DATA = {
 
     {
       id: 3,
-      name: "L3",
-      label: "Element 3 — L(2,2)",
+      name: "L22",
+      label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.68893,
       vd: 31.2,
@@ -86,8 +86,8 @@ const LENS_DATA = {
 
     {
       id: 4,
-      name: "L4",
-      label: "Element 4 — L(3,1)",
+      name: "L31",
+      label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.48749,
       vd: 70.4,
@@ -100,8 +100,8 @@ const LENS_DATA = {
 
     {
       id: 5,
-      name: "L5",
-      label: "Element 5 — L(3,2)",
+      name: "L32",
+      label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.835,
       vd: 43.0,
@@ -114,8 +114,8 @@ const LENS_DATA = {
 
     {
       id: 6,
-      name: "L6",
-      label: "Element 6 — L(3,3)",
+      name: "L33",
+      label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.74077,
       vd: 27.8,
@@ -128,8 +128,8 @@ const LENS_DATA = {
 
     {
       id: 7,
-      name: "L7",
-      label: "Element 7 — L(4,1)",
+      name: "L41",
+      label: "Element 7",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.60342,
       vd: 38.0,
@@ -216,10 +216,10 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "L1", fromSurface: "1A", toSurface: "2" },
-    { text: "L2", fromSurface: "3", toSurface: "5" },
-    { text: "L3", fromSurface: "7", toSurface: "10" },
-    { text: "L4", fromSurface: "11A", toSurface: "12" },
+    { text: "G1", fromSurface: "1A", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "5" },
+    { text: "G3", fromSurface: "7", toSurface: "10" },
+    { text: "G4", fromSurface: "11A", toSurface: "12" },
   ],
 
   doublets: [

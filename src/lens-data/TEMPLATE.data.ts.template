@@ -68,7 +68,7 @@ const LENS_DATA = {
    *
    *  Fields:
    *    id       (number, REQUIRED)  Unique integer ID — referenced by surfaces via elemId
-   *    name     (string, REQUIRED)  Short name, e.g. "L1", "Lfa"
+   *    name     (string, REQUIRED)  Short diagram name, e.g. "L11", "L12", "L21"
    *    label    (string, REQUIRED)  Display label, e.g. "Element 1"
    *    type     (string, REQUIRED)  Optical type, e.g. "Biconvex Positive", "Neg. Meniscus (2× Asph)"
    *    nd       (number, REQUIRED)      Refractive index at d-line (587.6 nm)
@@ -79,9 +79,14 @@ const LENS_DATA = {
    *    apdNote  (string, optional)  Additional APD details, e.g. "dPgF = +0.0376 (patent-listed)"
    *    role     (string, optional)  Description of the element's optical role/function
    *    cemented (string, optional)  Doublet/triplet group name if cemented, e.g. "Jb", "L4"
+   *
+   *  Diagram naming convention:
+   *    - Group annotations are G1, G2, ... from front to rear.
+   *    - Element names are L{groupNumber}{elementNumberWithinGroup}, e.g. L11, L12, L21.
+   *    - Surface labels are independent lookup keys and should not be renamed to match elements.
    */
   elements: [
-    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive",  nd: 1.00000, vd: 00.00, fl:  00.0, glass: "Glass Name (CATALOG)", apd: false, role: "Description of optical role" },
+    { id: 1, name: "L11", label: "Element 1", type: "Biconvex Positive", nd: 1.00000, vd: 00.00, fl: 00.0, glass: "Glass Name (CATALOG)", apd: false, role: "Description of optical role" },
     // ... one entry per glass element, front to rear
   ],
 
@@ -266,10 +271,12 @@ const LENS_DATA = {
   /* ── Group and doublet annotations ──
    *  Purely visual — brackets shown in the SVG diagram.
    *  fromSurface and toSurface must be valid surface labels.
+   *  Group text should start with G1, G2, ... from front to rear; keep extra meaning
+   *  such as power, focus, or IS as suffix text.
    */
   groups: [
-    // { text: "FRONT", fromSurface: "1", toSurface: "8" },
-    // { text: "REAR",  fromSurface: "10", toSurface: "17" },
+    // { text: "G1 (+)", fromSurface: "1", toSurface: "8" },
+    // { text: "G2 (FOCUS)", fromSurface: "10", toSurface: "17" },
   ],
 
   doublets: [

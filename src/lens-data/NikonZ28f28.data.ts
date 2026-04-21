@@ -108,8 +108,8 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L24g",
-      label: "Element 6 (glass body)",
+      name: "L24",
+      label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.804,
       vd: 46.6,
@@ -121,8 +121,8 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L24r",
-      label: "Element 6 (resin layer)",
+      name: "L25",
+      label: "Element 7",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
@@ -135,7 +135,7 @@ const LENS_DATA = {
     {
       id: 8,
       name: "L31",
-      label: "Element 7",
+      label: "Element 8",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.53113,
       vd: 55.73,
@@ -147,7 +147,7 @@ const LENS_DATA = {
     {
       id: 9,
       name: "L32",
-      label: "Element 8",
+      label: "Element 9",
       type: "Plano-Convex Positive",
       nd: 1.804,
       vd: 46.6,
@@ -159,7 +159,7 @@ const LENS_DATA = {
     {
       id: 10,
       name: "L41",
-      label: "Element 9",
+      label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.64769,
       vd: 33.73,
@@ -170,8 +170,8 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "FL",
-      label: "Cover Glass",
+      name: "L13",
+      label: "Element 11",
       type: "Plano-Parallel",
       nd: 1.5168,
       vd: 63.88,

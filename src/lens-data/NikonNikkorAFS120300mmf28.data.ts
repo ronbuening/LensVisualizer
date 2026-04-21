@@ -482,7 +482,7 @@ const LENS_DATA = {
     { text: "G1 (+) Fixed", fromSurface: "1", toSurface: "5" },
     { text: "G2 (−) Zoom", fromSurface: "6", toSurface: "15" },
     { text: "G3 (+) Fixed", fromSurface: "16", toSurface: "23" },
-    { text: "G4 (+) Zoom/Focus", fromSurface: "24", toSurface: "28" },
+    { text: "G4 (+, Zoom + Focus)", fromSurface: "24", toSurface: "28" },
     { text: "G5 (−) Fixed", fromSurface: "29", toSurface: "46" },
   ],
 

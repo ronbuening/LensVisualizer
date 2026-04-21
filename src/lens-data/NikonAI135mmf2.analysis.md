@@ -1,7 +1,7 @@
 # Nikon AI Nikkor 135mm f/2 — Optical Analysis
 
-**Patent:** US 4,062,630 · Sei Matsui · Nippon Kogaku K.K. · Filed March 11, 1976 · Granted December 13, 1977  
-**Embodiment:** Example V (conventionally identified as the production design; see §11)  
+**Patent:** US 4,062,630 · Sei Matsui · Nippon Kogaku K.K. · Filed March 11, 1976 · Granted December 13, 1977
+**Embodiment:** Example V (conventionally identified as the production design; see §11)
 **Production lens:** NEW Nikkor 135mm f/2 (1976–1977) → Ai Nikkor 135mm f/2 (1977–1981) → Ai-S Nikkor 135mm f/2 (1981–2005)
 
 ---
@@ -45,26 +45,26 @@ The ten surfaces, front to rear, define six elements arranged in four air-separa
 
 | Surface | R (mm) | d (mm) | n_d | Element |
 |---|---|---|---|---|
-| r₁ | +58.015 | 8.22 | 1.717 | L1 (entry) |
-| r₂ | +311.111 | 0.37 | air | L1 (exit) |
-| r₃ | +38.148 | 2.74 | 1.62606 | L2 (entry) |
-| r₄ | +22.593 | 13.26 | 1.58913 | L2→L3 cemented junction |
-| r₅ | +200.000 | 2.59 | air | L3 (exit) |
-| r₆ | ∞ (flat) | 8.89 | 1.74 | L4 (entry) |
-| r₇ | −34.815 | 1.19 | 1.71736 | L4→L5 cemented junction |
-| r₈ | +22.797 | 25.11 | air | L5 (exit) |
-| r₉ | +63.661 | 8.89 | 1.71736 | L6 (entry) |
-| r₁₀ | +624.694 | BFD | air | L6 (exit) |
+| r₁ | +58.015 | 8.22 | 1.717 | L11 (entry) |
+| r₂ | +311.111 | 0.37 | air | L11 (exit) |
+| r₃ | +38.148 | 2.74 | 1.62606 | L21 (entry) |
+| r₄ | +22.593 | 13.26 | 1.58913 | L21→L22 cemented junction |
+| r₅ | +200.000 | 2.59 | air | L22 (exit) |
+| r₆ | ∞ (flat) | 8.89 | 1.74 | L31 (entry) |
+| r₇ | −34.815 | 1.19 | 1.71736 | L31→L32 cemented junction |
+| r₈ | +22.797 | 25.11 | air | L32 (exit) |
+| r₉ | +63.661 | 8.89 | 1.71736 | L41 (entry) |
+| r₁₀ | +624.694 | BFD | air | L41 (exit) |
 
 **Note on r₃:** The OCR of the main text (page 4) renders r₃ as "38.48," but Claim 8 (page 7) unambiguously gives r₃ = 38.148. The Claim 8 value produces EFL = 100.00 mm (matching the patent's stated focal length), while the OCR variant yields EFL ≈ 101.4 mm — confirming that 38.148 is correct and "38.48" is a scanning artifact.
 
-The aperture stop is located in the 2.59 mm air gap between the rear surface of Group II (r₅) and the flat front surface of Group III (r₆). The patent does not explicitly specify the stop position, but the cross-sectional drawing (Fig. 1) clearly shows the iris diaphragm in this gap. From the marginal ray trace at f/2, the ray height decreases monotonically across this gap from 17.32 mm at r₅ to 15.89 mm at r₆, placing the effective stop at or very near the flat entrance face of L4. In the data file, the gap is split as 2.09 mm (r₅ → STO) + 0.50 mm (STO → r₆), with the stop semi-diameter of 16.2 mm representing the full f/2 aperture.
+The aperture stop is located in the 2.59 mm air gap between the rear surface of Group G2 (r₅) and the flat front surface of Group G3 (r₆). The patent does not explicitly specify the stop position, but the cross-sectional drawing (Fig. 1) clearly shows the iris diaphragm in this gap. From the marginal ray trace at f/2, the ray height decreases monotonically across this gap from 17.32 mm at r₅ to 15.89 mm at r₆, placing the effective stop at or very near the flat entrance face of L31. In the data file, the gap is split as 2.09 mm (r₅ → STO) + 0.50 mm (STO → r₆), with the stop semi-diameter of 16.2 mm representing the full f/2 aperture.
 
 ---
 
 ## 4. Element-by-Element Analysis
 
-### Group I — L1: Front Positive Meniscus
+### Group G1 — L11: Front Positive Meniscus
 
 | Property | Value |
 |---|---|
@@ -76,11 +76,11 @@ The aperture stop is located in the 2.59 mm air gap between the rear surface of 
 
 **Glass identification:** The n_d/ν_d pair (1.717 / 48.1) matches HOYA NBFD3 with near-zero residuals (Δn_d = 0.000, Δν_d = −0.1). This is a niobium-containing dense flint with high refractive index and moderate dispersion — positioned at the boundary between lanthanum crowns and dense flints on the Abbe diagram. Its six-digit glass code is 717/481.
 
-**Optical role:** L1 is the primary converging element at the front of the system. Its individual focal length (+98.1 mm) is close to the system focal length (+100 mm), but in a telephoto arrangement this comparison is misleading: the rear negative group partially cancels the front group's convergence, so L1 must contribute far more power than the system's net figure suggests. Within the front positive group (f = +45.3 mm), L1 provides roughly half the total power. Its strong front curvature (R₁ = +58) combined with a weak rear surface (R₂ = +311) gives a deeply bent meniscus that minimizes spherical aberration contribution while introducing the convergence needed to feed the downstream groups. The high refractive index (1.717) reduces surface curvatures for a given power, which further controls higher-order aberrations at f/2. This element bears the full entrance pupil diameter and is the most mechanically prominent component of the lens.
+**Optical role:** L11 is the primary converging element at the front of the system. Its individual focal length (+98.1 mm) is close to the system focal length (+100 mm), but in a telephoto arrangement this comparison is misleading: the rear negative group partially cancels the front group's convergence, so L11 must contribute far more power than the system's net figure suggests. Within the front positive group (f = +45.3 mm), L11 provides roughly half the total power. Its strong front curvature (R₁ = +58) combined with a weak rear surface (R₂ = +311) gives a deeply bent meniscus that minimizes spherical aberration contribution while introducing the convergence needed to feed the downstream groups. The high refractive index (1.717) reduces surface curvatures for a given power, which further controls higher-order aberrations at f/2. This element bears the full entrance pupil diameter and is the most mechanically prominent component of the lens.
 
-### Group II — L2 + L3: Achromatic Cemented Doublet
+### Group G2 — L21 + L22: Achromatic Cemented Doublet
 
-#### L2: Negative Meniscus
+#### L21: Negative Meniscus
 
 | Property | Value |
 |---|---|
@@ -92,7 +92,7 @@ The aperture stop is located in the 2.59 mm air gap between the rear surface of 
 
 **Glass identification:** Matches HOYA FD60 (or its eco-equivalent E-FD60) with residuals of Δn_d = −0.00006, Δν_d = 0.0. This is a medium-index flint glass. Six-digit code: 626/391.
 
-#### L3: Positive Meniscus
+#### L22: Positive Meniscus
 
 | Property | Value |
 |---|---|
@@ -104,15 +104,15 @@ The aperture stop is located in the 2.59 mm air gap between the rear surface of 
 
 **Glass identification:** Matches both OHARA S-BAL35 and HOYA BACD5 with residuals of Δn_d = −0.00013, Δν_d = 0.0. This is a barium crown with low dispersion. Six-digit code: 589/612.
 
-**Doublet optical role:** The L2+L3 cemented pair has a combined focal length of +81.2 mm (patent) / +109.6 mm (production) — net positive, as required by the patent's description of the "second lens member having positive refractive power." The Abbe number difference of Δν = 22.1 (well exceeding the patent's condition of Δν > 14) makes this a textbook achromatic doublet: the higher-dispersion flint (L2, ν_d = 39.1) provides negative power to cancel the chromatic contribution of the lower-dispersion crown (L3, ν_d = 61.2).
+**Doublet optical role:** The L21+L22 cemented pair has a combined focal length of +81.2 mm (patent) / +109.6 mm (production) — net positive, as required by the patent's description of the "second lens member having positive refractive power." The Abbe number difference of Δν = 22.1 (well exceeding the patent's condition of Δν > 14) makes this a textbook achromatic doublet: the higher-dispersion flint (L21, ν_d = 39.1) provides negative power to cancel the chromatic contribution of the lower-dispersion crown (L22, ν_d = 61.2).
 
-L3 is the single strongest positive element in the entire system at +42.1 mm focal length, and at 13.26 mm it is also the thickest. Its thick-lens focal length differs from the thin-lens approximation by 2.7%, underscoring the importance of thick-lens computation for elements of this proportion.
+L22 is the single strongest positive element in the entire system at +42.1 mm focal length, and at 13.26 mm it is also the thickest. Its thick-lens focal length differs from the thin-lens approximation by 2.7%, underscoring the importance of thick-lens computation for elements of this proportion.
 
-The cemented surface (r₄ = +22.593) is a steeply curved junction that is critical for chromatic correction. Because both surfaces of L2 are convex toward the object (a meniscus bent strongly concave toward the image), the junction surface refracts light sharply between the flint and crown media, generating the chromatic disparity that balances longitudinal color across the visible spectrum.
+The cemented surface (r₄ = +22.593) is a steeply curved junction that is critical for chromatic correction. Because both surfaces of L21 are convex toward the object (a meniscus bent strongly concave toward the image), the junction surface refracts light sharply between the flint and crown media, generating the chromatic disparity that balances longitudinal color across the visible spectrum.
 
-### Group III — L4 + L5: Monochromatic Correction Doublet
+### Group G3 — L31 + L32: Monochromatic Correction Doublet
 
-#### L4: Plano-Convex Positive
+#### L31: Plano-Convex Positive
 
 | Property | Value |
 |---|---|
@@ -124,7 +124,7 @@ The cemented surface (r₄ = +22.593) is a steeply curved junction that is criti
 
 **Glass identification:** Matches HOYA FD110 exactly (Δn_d = 0.000, Δν_d = 0.0). This is a very dense flint with high dispersion. Six-digit code: 740/282.
 
-#### L5: Biconcave Negative
+#### L32: Biconcave Negative
 
 | Property | Value |
 |---|---|
@@ -136,17 +136,17 @@ The cemented surface (r₄ = +22.593) is a steeply curved junction that is criti
 
 **Glass identification:** The five-decimal index value 1.71736 matches HOYA E-FD1-W exactly. The rounded value (1.717 / 29.5) also corresponds to Schott SF1, OHARA S-TIH1, and HOYA SF1. Given Nippon Kogaku's established sourcing relationships in the 1970s, Schott SF1 and/or its HOYA equivalent are the most likely production glasses. Six-digit code: 717/295.
 
-**Doublet optical role:** The L4+L5 cemented pair has a combined focal length of −32.5 mm (patent) / −43.8 mm (production) — a strong net negative power that forms the diverging rear component of the telephoto arrangement. This doublet is the most optically distinctive feature of the design.
+**Doublet optical role:** The L31+L32 cemented pair has a combined focal length of −32.5 mm (patent) / −43.8 mm (production) — a strong net negative power that forms the diverging rear component of the telephoto arrangement. This doublet is the most optically distinctive feature of the design.
 
-Unlike Group II's conventional achromatic doublet, Group III uses two dense flint glasses with nearly identical Abbe numbers (ν₄ = 28.2, ν₅ = 29.5, Δν = 1.3). The patent specifies this tight match explicitly: the condition 5 > (ν₅ − ν₄) > 0.5 is central to the invention's claims. Because both elements disperse light at nearly the same rate, the doublet introduces almost no net longitudinal chromatic aberration of its own. Its purpose is instead primarily *monochromatic*: the cemented junction at r₇ = −34.815 creates a strong refractive index discontinuity (1.74 → 1.71736) at a surface whose negative radius means it is concave toward the object and convex toward the image.
+Unlike Group G2's conventional achromatic doublet, Group G3 uses two dense flint glasses with nearly identical Abbe numbers (ν₄ = 28.2, ν₅ = 29.5, Δν = 1.3). The patent specifies this tight match explicitly: the condition 5 > (ν₅ − ν₄) > 0.5 is central to the invention's claims. Because both elements disperse light at nearly the same rate, the doublet introduces almost no net longitudinal chromatic aberration of its own. Its purpose is instead primarily *monochromatic*: the cemented junction at r₇ = −34.815 creates a strong refractive index discontinuity (1.74 → 1.71736) at a surface whose negative radius means it is concave toward the object and convex toward the image.
 
-The patent is explicit about the importance of this surface orientation. It states that the positive lens L4 has its "convex surface faces the image side, whose radius of curvature r₇ < 0," and that if the cemented surface were instead convex toward the object side, "the efficiency as above mentioned would be reduced" and "the chromatic aberration of the entire lens system cannot be balanced." In other words, the sign of r₇ is not a free parameter — it is a hard constraint of the design. The patent explains that a cemented surface convex toward the object would produce *excessive* correction of g-line spherical aberration, which would then force an unfavorable trade-off in the system's overall chromatic balance. By making r₇ < 0 (convex toward the image), Matsui achieved the opposite: a controlled *reduction* of g-line spherical overcorrection.
+The patent is explicit about the importance of this surface orientation. It states that the positive lens L31 has its "convex surface faces the image side, whose radius of curvature r₇ < 0," and that if the cemented surface were instead convex toward the object side, "the efficiency as above mentioned would be reduced" and "the chromatic aberration of the entire lens system cannot be balanced." In other words, the sign of r₇ is not a free parameter — it is a hard constraint of the design. The patent explains that a cemented surface convex toward the object would produce *excessive* correction of g-line spherical aberration, which would then force an unfavorable trade-off in the system's overall chromatic balance. By making r₇ < 0 (convex toward the image), Matsui achieved the opposite: a controlled *reduction* of g-line spherical overcorrection.
 
 In concrete terms: at f/2, the marginal ray passes through a very steep angle at this cemented surface. The index step, though small (Δn = 0.023), occurs at a surface with significant curvature (R = −34.815), producing a non-trivial refractive effect that preferentially bends short-wavelength (g-line, 435.8 nm) rays differently from long-wavelength rays. By using two glasses with matched chromatic properties but different refractive indices, Matsui obtained a surface that acts as a spherical aberration corrector for the blue end of the spectrum without disturbing the system's overall longitudinal color balance. This is the key innovation that allowed Nippon Kogaku to achieve f/2 — a full stop brighter than the f/2.8 telephoto lenses of the prior art.
 
-The patent further requires that both ν₄ and ν₅ be less than 35, ensuring that the Group III glasses are genuine dense flints rather than lighter flints that might provide the same Abbe number difference but with less favorable higher-order chromatic behavior.
+The patent further requires that both ν₄ and ν₅ be less than 35, ensuring that the Group G3 glasses are genuine dense flints rather than lighter flints that might provide the same Abbe number difference but with less favorable higher-order chromatic behavior.
 
-### Group IV — L6: Rear Positive Meniscus
+### Group G4 — L41: Rear Positive Meniscus
 
 | Property | Value |
 |---|---|
@@ -156,9 +156,9 @@ The patent further requires that both ν₄ and ν₅ be less than 35, ensuring 
 | Center thickness | 8.89 mm (patent) / 12.0 mm (production) |
 | Focal length | +98.2 mm (patent) / +132.5 mm (production) |
 
-**Glass identification:** Same glass as L5 — HOYA E-FD1-W / Schott SF1 family. Six-digit code: 717/295.
+**Glass identification:** Same glass as L32 — HOYA E-FD1-W / Schott SF1 family. Six-digit code: 717/295.
 
-**Optical role:** L6 sits well behind the aperture stop, separated from Group III by the largest air gap in the system (25.11 mm patent / 33.9 mm production). This element serves two functions. First, it provides positive power that works together with the front groups to establish the system's 100 mm effective focal length. Second, its position far behind the stop gives it strong leverage over off-axis aberrations — particularly field curvature, astigmatism, and distortion. The choice of a dense flint glass (ν_d = 29.5) for this rear positive element is unusual; most telephoto designs use crown or lanthanum crown glass in positive elements to minimize chromatic contribution. Here, the use of a high-dispersion glass in L6 works in concert with the chromatic design of Group III to maintain the overall balance: since Groups III and IV are both composed of dense flints with similar dispersion, their chromatic contributions tend to cancel in the aggregate, leaving the primary chromatic correction to the conventional achromat in Group II.
+**Optical role:** L41 sits well behind the aperture stop, separated from Group G3 by the largest air gap in the system (25.11 mm patent / 33.9 mm production). This element serves two functions. First, it provides positive power that works together with the front groups to establish the system's 100 mm effective focal length. Second, its position far behind the stop gives it strong leverage over off-axis aberrations — particularly field curvature, astigmatism, and distortion. The choice of a dense flint glass (ν_d = 29.5) for this rear positive element is unusual; most telephoto designs use crown or lanthanum crown glass in positive elements to minimize chromatic contribution. Here, the use of a high-dispersion glass in L41 works in concert with the chromatic design of Group G3 to maintain the overall balance: since Groups G3 and G4 are both composed of dense flints with similar dispersion, their chromatic contributions tend to cancel in the aggregate, leaving the primary chromatic correction to the conventional achromat in Group G2.
 
 ---
 
@@ -168,8 +168,8 @@ The system divides cleanly into a positive front section and a negative rear sec
 
 | Subsystem | Focal Length (patent) | Focal Length (production) |
 |---|---|---|
-| Front (Groups I + II) | +45.3 mm | +61.2 mm |
-| Rear (Groups III + IV) | −77.4 mm | −104.5 mm |
+| Front (Groups G1 + G2) | +45.3 mm | +61.2 mm |
+| Rear (Groups G3 + G4) | −77.4 mm | −104.5 mm |
 | Whole system | +100.0 mm | +135.0 mm |
 
 The front group's focal length (+45.3 mm) is less than half the system focal length, meaning it converges light aggressively. The rear group then diverges this converging beam, extending the effective focal length while maintaining a compact physical package. The air gap between the two sections (d₅ = 2.59 mm) is remarkably small, placing the front and rear groups close together — a trait of Ernostar-type designs where the stop sits in a tight space between the converging and diverging components.
@@ -184,15 +184,15 @@ The six elements use only four distinct glass types:
 
 | Glass Code | n_d | ν_d | Elements | Catalog Match |
 |---|---|---|---|---|
-| 717/481 | 1.717 | 48.1 | L1 | HOYA NBFD3 |
-| 626/391 | 1.626 | 39.1 | L2 | HOYA FD60 |
-| 589/612 | 1.589 | 61.2 | L3 | OHARA S-BAL35 / HOYA BACD5 |
-| 740/282 | 1.740 | 28.2 | L4 | HOYA FD110 |
-| 717/295 | 1.717 | 29.5 | L5, L6 | HOYA E-FD1 / Schott SF1 |
+| 717/481 | 1.717 | 48.1 | L11 | HOYA NBFD3 |
+| 626/391 | 1.626 | 39.1 | L21 | HOYA FD60 |
+| 589/612 | 1.589 | 61.2 | L22 | OHARA S-BAL35 / HOYA BACD5 |
+| 740/282 | 1.740 | 28.2 | L31 | HOYA FD110 |
+| 717/295 | 1.717 | 29.5 | L32, L41 | HOYA E-FD1 / Schott SF1 |
 
-Several observations merit attention. First, no glass in this design has anomalous partial dispersion (APD). There are no ED (extra-low dispersion) elements, no fluorite, no fluorophosphate crowns. The design predates Nikon's widespread adoption of ED glass in telephoto lenses, which began with the Ai Nikkor 300mm f/2.8 ED (IF) in 1977 — the same year the 135mm f/2 received its AI update. Second, the glass palette is heavily weighted toward flints: of the four distinct glass types, two are dense flints (L4 at ν_d = 28.2 and L5/L6 at ν_d = 29.5), one is a regular flint (L2 at ν_d = 39.1), and one is a barium crown (L3 at ν_d = 61.2). L1's lanthanum-type glass (ν_d = 48.1) sits at the boundary between crown and flint families. This heavy use of high-index, high-dispersion glass is characteristic of Sonnar-derived designs where the rear group's negative power demands high-index materials to control curvatures. Third, L5 and L6 share the same glass type despite occupying different groups and serving different optical functions. This is an economical choice that simplifies manufacturing and procurement while exploiting the fact that both elements benefit from high refractive index and high dispersion for their respective roles.
+Several observations merit attention. First, no glass in this design has anomalous partial dispersion (APD). There are no ED (extra-low dispersion) elements, no fluorite, no fluorophosphate crowns. The design predates Nikon's widespread adoption of ED glass in telephoto lenses, which began with the Ai Nikkor 300mm f/2.8 ED (IF) in 1977 — the same year the 135mm f/2 received its AI update. Second, the glass palette is heavily weighted toward flints: of the four distinct glass types, two are dense flints (L31 at ν_d = 28.2 and L32/L41 at ν_d = 29.5), one is a regular flint (L21 at ν_d = 39.1), and one is a barium crown (L22 at ν_d = 61.2). L11's lanthanum-type glass (ν_d = 48.1) sits at the boundary between crown and flint families. This heavy use of high-index, high-dispersion glass is characteristic of Sonnar-derived designs where the rear group's negative power demands high-index materials to control curvatures. Third, L32 and L41 share the same glass type despite occupying different groups and serving different optical functions. This is an economical choice that simplifies manufacturing and procurement while exploiting the fact that both elements benefit from high refractive index and high dispersion for their respective roles.
 
-The glass identifications given here are inferential, based on catalog matching of the patent's n_d and ν_d values. Nippon Kogaku maintained relationships with multiple glass suppliers (primarily HOYA, OHARA, and Schott in this era), and the actual production glass may have been any equivalent within the tolerance of the catalog match. The five-decimal precision of n_d = 1.71736 for L5 and L6 most closely matches HOYA's E-FD1-W specification, but the rounded catalog equivalent (Schott SF1, OHARA S-TIH1) is equally plausible.
+The glass identifications given here are inferential, based on catalog matching of the patent's n_d and ν_d values. Nippon Kogaku maintained relationships with multiple glass suppliers (primarily HOYA, OHARA, and Schott in this era), and the actual production glass may have been any equivalent within the tolerance of the catalog match. The five-decimal precision of n_d = 1.71736 for L32 and L41 most closely matches HOYA's E-FD1-W specification, but the rounded catalog equivalent (Schott SF1, OHARA S-TIH1) is equally plausible.
 
 ---
 
@@ -204,7 +204,7 @@ The surface-by-surface Petzval sum, computed as Σ(n′ − n) / (n · n′ · R
 
 Normalized to the focal length, the Petzval sum × EFL = 0.125. For context, a "flat field" design targets this product near zero, while a value of 0.125 indicates moderate inward field curvature. This is typical and acceptable for a fast telephoto of this era, where the narrow field angle (±9°) means the Petzval curvature produces only modest image degradation at the field edge.
 
-The dominant positive Petzval contributor is surface r₃ (+0.01009), the steeply curved front of L2, while the dominant negative contributor is surface r₈ (−0.01832), the rear of the biconcave L5. The balance between these two strongly curved surfaces, mediated by the other eight surfaces, determines the field curvature characteristics.
+The dominant positive Petzval contributor is surface r₃ (+0.01009), the steeply curved front of L21, while the dominant negative contributor is surface r₈ (−0.01832), the rear of the biconcave L32. The balance between these two strongly curved surfaces, mediated by the other eight surfaces, determines the field curvature characteristics.
 
 ---
 
@@ -220,17 +220,17 @@ At the minimum focus distance of 1.3 m, the Gaussian calculation (accounting for
 
 ## 9. Patent Design Conditions
 
-The patent claims five mathematical conditions that constrain the relationship between the glasses in Groups II and III. All five are satisfied by Example V:
+The patent claims five mathematical conditions that constrain the relationship between the glasses in Groups G2 and G3. All five are satisfied by Example V:
 
 | Condition | Requirement | Example V Value | Status |
 |---|---|---|---|
-| η₄ > η₅ | L4 index > L5 index | 1.740 > 1.717 | ✓ |
+| η₄ > η₅ | L31 index > L32 index | 1.740 > 1.717 | ✓ |
 | 5 > (ν₅ − ν₄) > 0.5 | Abbe number difference tightly bounded | 1.3 | ✓ |
-| 35 > ν₄ | L4 is a dense flint | 28.2 | ✓ |
-| 35 > ν₅ | L5 is a dense flint | 29.5 | ✓ |
-| (ν₃ − ν₂) > 14 | Group II has sufficient chromatic leverage | 22.1 | ✓ |
+| 35 > ν₄ | L31 is a dense flint | 28.2 | ✓ |
+| 35 > ν₅ | L32 is a dense flint | 29.5 | ✓ |
+| (ν₃ − ν₂) > 14 | Group G2 has sufficient chromatic leverage | 22.1 | ✓ |
 
-The first four conditions together ensure that Group III operates as a monochromatic spherical aberration corrector (specifically for short-wavelength light) rather than as a chromatic corrector. The fifth condition ensures that Group II carries sufficient achromatic correction to compensate.
+The first four conditions together ensure that Group G3 operates as a monochromatic spherical aberration corrector (specifically for short-wavelength light) rather than as a chromatic corrector. The fifth condition ensures that Group G2 carries sufficient achromatic correction to compensate.
 
 ---
 
@@ -240,7 +240,7 @@ The Nikkor 135mm f/2 was released in 1976 (as the NEW Nikkor Auto 135mm f/2, per
 
 Approximately 43,000 units of the manual-focus 135mm f/2 were manufactured across all three versions, of which roughly 7,500 were the AI variant described here. The lens was succeeded in 1990 by the AF DC-Nikkor 135mm f/2D, a fundamentally different 7-element, 6-group design incorporating rear focusing and the Defocus Control mechanism.
 
-The patent's claim that "conventional telephoto lenses have not been realized with a relative aperture exceeding 1:2.8" refers to the state of the art circa 1975. Matsui's innovation — the near-isochromatic doublet in Group III — was specifically developed to overcome the g-line spherical aberration problem that had been the limiting factor for faster telephoto designs. The success of this approach is evident in the aberration plots for Example V (Figs. 6a–6c), which show well-controlled spherical aberration out to f/2 with only modest zone structure in the g-line correction.
+The patent's claim that "conventional telephoto lenses have not been realized with a relative aperture exceeding 1:2.8" refers to the state of the art circa 1975. Matsui's innovation — the near-isochromatic doublet in Group G3 — was specifically developed to overcome the g-line spherical aberration problem that had been the limiting factor for faster telephoto designs. The success of this approach is evident in the aberration plots for Example V (Figs. 6a–6c), which show well-controlled spherical aberration out to f/2 with only modest zone structure in the g-line correction.
 
 ---
 
@@ -260,11 +260,11 @@ All numerical values in this document were independently verified by paraxial ra
 - All five patent design conditions verified as satisfied
 - r₃ value confirmed as 38.148 per Claim 8 (OCR "38.48" in main text is a scanning artifact; yields EFL ≈ 101.4 mm, inconsistent with patent's stated f = 100 mm)
 
-Element focal lengths were computed using the thick-lens ABCD method rather than thin-lens approximations. For L3, the thickest element (d = 13.26 mm), the thick-lens value (+42.1 mm) differs from the thin-lens approximation (+43.2 mm) by 2.7% — a meaningful correction that justifies the thick-lens approach.
+Element focal lengths were computed using the thick-lens ABCD method rather than thin-lens approximations. For L22, the thickest element (d = 13.26 mm), the thick-lens value (+42.1 mm) differs from the thin-lens approximation (+43.2 mm) by 2.7% — a meaningful correction that justifies the thick-lens approach.
 
 Semi-diameters were estimated by combined marginal ray (at f/2) and chief ray (at 65% of the 9° half-field angle) traces with 8% mechanical clearance. The front element (r₁) is capped by the 72 mm filter thread constraint. The cemented junction r₄ is limited to sd = 20.3 mm by the sd/|R| < 0.90 constraint (|R₄| = 22.593 mm). Within each element, the front-to-rear SD ratio is held within the 1.25 limit.
 
-**Note on Example V as the production design:** The patent contains five numerical examples, all sharing the same six-element, four-group structure at f = 100 mm, f/2.0, 2W = 18°. Example V is conventionally identified as the production prescription because it is the final and most refined example in the patent, its aberration performance (Figs. 6a–6c) is arguably the best balanced among the five, and its glass selection (particularly the use of matched dense flints in Group III) most closely aligns with the patent's stated design objectives. However, Nikon has never publicly confirmed which example was manufactured, and the optical prescriptions of all five examples are structurally similar enough that definitive identification would require physical measurement of a production lens.
+**Note on Example V as the production design:** The patent contains five numerical examples, all sharing the same six-element, four-group structure at f = 100 mm, f/2.0, 2W = 18°. Example V is conventionally identified as the production prescription because it is the final and most refined example in the patent, its aberration performance (Figs. 6a–6c) is arguably the best balanced among the five, and its glass selection (particularly the use of matched dense flints in Group G3) most closely aligns with the patent's stated design objectives. However, Nikon has never publicly confirmed which example was manufactured, and the optical prescriptions of all five examples are structurally similar enough that definitive identification would require physical measurement of a production lens.
 
 ---
 

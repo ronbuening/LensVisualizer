@@ -1,9 +1,9 @@
 # Nikon AF-S NIKKOR 200-500mm f/5.6E ED VR — Optical Analysis
 
-**Patent:** JP 2014-209144 A (Published 2014-11-06)  
-**Applicants:** Nikon Corporation / Tamron Co., Ltd.  
-**Inventors:** Matsuo Taku, Suzuki Tsuyoshi, Sato Haruo (Nikon); Yamanaka Hisayuki (Tamron)  
-**Production embodiment:** Example 2 (第2実施形態)  
+**Patent:** JP 2014-209144 A (Published 2014-11-06)
+**Applicants:** Nikon Corporation / Tamron Co., Ltd.
+**Inventors:** Matsuo Taku, Suzuki Tsuyoshi, Sato Haruo (Nikon); Yamanaka Hisayuki (Tamron)
+**Production embodiment:** Example 2 (第2実施形態)
 **Lens released:** August 2015
 
 ---
@@ -17,7 +17,7 @@ The patent presents four numerical examples. Example 2 was identified as the pro
 - **Close focus distance:** 2.2 m, matching the production spec.
 - **Constant f/5.6 aperture:** The patent's computed f-numbers (FNo = 4.62–5.78) bracket f/5.6. In production, the electromagnetic diaphragm constrains the maximum aperture to f/5.6 at all focal lengths; the patent values represent the raw optical maximum.
 - **All-spherical design:** No aspherical surfaces or coefficient tables appear in any of the four examples. Nikon's marketing materials confirm no aspherical elements.
-- **Internal focusing:** Focusing is performed exclusively by axial movement of Group 5 (L5), consistent with Nikon's stated "IF" (Internal Focusing) designation.
+- **Internal focusing:** Focusing is performed exclusively by axial movement of Group 5 (L22), consistent with Nikon's stated "IF" (Internal Focusing) designation.
 
 Notably, this is a joint Nikon–Tamron patent. The inventor list includes engineers from both companies, and the Tamron address (Saitama) appears alongside Nikon's (Tokyo, plus Tochigi Nikon). This collaboration is consistent with the lens's production: the AF-S 200-500mm f/5.6E is widely understood to have been manufactured by Tamron for Nikon.
 
@@ -25,34 +25,34 @@ Notably, this is a joint Nikon–Tamron patent. The inventor list includes engin
 
 ## 2. Optical Configuration Overview
 
-The design uses six optical groups (L1–L6), of which five participate in the zooming framework described by the patent claims (positive–negative–positive–positive–negative); L6 is an additional fixed rear group. The following table shows the macro-group structure:
+The design uses six optical groups (L11–L23), of which five participate in the zooming framework described by the patent claims (positive–negative–positive–positive–negative); L23 is an additional fixed rear group. The following table shows the macro-group structure:
 
 | Group | Designation | Power | Elements | Surfaces | Role |
 |:-----:|:-----------:|:-----:|:--------:|:--------:|:-----|
-| G1 | L1 | Positive | 3 (E1–E3) | S1–S5 | Front objective; collects light, contributes positive power |
-| G2 | L2 | Negative | 7 (E4–E10) | S6–S16 | Variator; strongest zoom action, contains VR subgroup |
-| G3 | L3 | Positive | 2 (E11–E12) | S17–S19 | Compensator; corrects aberrations from G2 |
-| G4 | L4 | Positive | 3 (E13–E15) | S20–S24 | Relay; positive power contribution |
+| G1 | L11 | Positive | 3 (E1–E3) | S1–S5 | Front objective; collects light, contributes positive power |
+| G2 | L12 | Negative | 7 (E4–E10) | S6–S16 | Variator; strongest zoom action, contains VR subgroup |
+| G3 | L13 | Positive | 2 (E11–E12) | S17–S19 | Compensator; corrects aberrations from G2 |
+| G4 | L21 | Positive | 3 (E13–E15) | S20–S24 | Relay; positive power contribution |
 | — | Stop (S25) | — | — | S25 | Aperture diaphragm (between G4 and G5) |
-| G5 | L5 | Negative | 2 (E16–E17) | S26–S28 | Focus group; also moves during zoom |
-| G6 | L6 | — | 2 (E18–E19) | S29–S32 | Fixed rear group; field flattening |
+| G5 | L22 | Negative | 2 (E16–E17) | S26–S28 | Focus group; also moves during zoom |
+| G6 | L23 | — | 2 (E18–E19) | S29–S32 | Fixed rear group; field flattening |
 
 Nikon's published specification states "19 elements in 12 groups," where "groups" refers to air-separated components. The six macro-groups decompose into 12 air-separated groups as follows:
 
 | Air-sep. group | Elements | Macro-group | Configuration |
 |:--------------:|:--------:|:-----------:|:-------------|
-| 1 | E1+E2 | G1 (L1) | Cemented doublet |
-| 2 | E3 | G1 (L1) | Singlet |
+| 1 | E1+E2 | G1 (L11) | Cemented doublet |
+| 2 | E3 | G1 (L11) | Singlet |
 | 3 | E4+E5 | G2 (L2A) | Cemented doublet |
 | 4 | E6+E7 | G2 (L2B) | Cemented doublet |
 | 5 | E8 | G2 (L2B) | Singlet |
 | 6 | E9+E10 | G2 (L2C) | Cemented doublet |
-| 7 | E11+E12 | G3 (L3) | Cemented doublet |
-| 8 | E13+E14 | G4 (L4) | Cemented doublet |
-| 9 | E15 | G4 (L4) | Singlet |
-| 10 | E16+E17 | G5 (L5) | Cemented doublet |
-| 11 | E18 | G6 (L6) | Singlet |
-| 12 | E19 | G6 (L6) | Singlet |
+| 7 | E11+E12 | G3 (L13) | Cemented doublet |
+| 8 | E13+E14 | G4 (L21) | Cemented doublet |
+| 9 | E15 | G4 (L21) | Singlet |
+| 10 | E16+E17 | G5 (L22) | Cemented doublet |
+| 11 | E18 | G6 (L23) | Singlet |
+| 12 | E19 | G6 (L23) | Singlet |
 
 The lens uses 32 optical surfaces (including the flat aperture stop) and has no aspherical surfaces whatsoever — an unusual distinction for a modern zoom of this complexity. All aberration correction is achieved through careful glass selection, cemented doublet pairings, and group power balancing.
 
@@ -132,7 +132,7 @@ The glass palette reflects several deliberate design strategies:
 
 ## 5. Element-by-Element Functional Analysis
 
-### Group 1 (L1): Front Objective — Elements 1–3
+### Group 1 (L11): Front Objective — Elements 1–3
 
 **E1 (positive meniscus, nd = 1.804)** cemented to **E2 (biconvex ED, nd = 1.498):** This cemented doublet forms the first component of the front group. Element 1 is a high-index flint (HOYA NBFD11) that serves as the negative chromatic corrector for the strongly positive ED element behind it. Despite its meniscus shape being geometrically "positive" (both radii positive, convex toward the object), E1 has negative optical power (fl = −211.8 mm) because the rear surface (R = 122.1 mm) is more strongly curved than the front (R = 436.4 mm). The cemented pair has an extremely long focal length (+5,992 mm) — it contributes almost no net power but provides critical chromatic correction at the entrance aperture where the axial beam diameter is largest.
 
@@ -140,7 +140,7 @@ The glass palette reflects several deliberate design strategies:
 
 The front group collectively has strong positive power, as befits the front element of a telephoto-type zoom. The total variable gap d5 between G1 and G2 increases from 52.1 mm at the wide end to 127.5 mm at the telephoto end — the largest gap excursion in the system — confirming G1's role as the principal zoom mover on the object side.
 
-### Group 2 (L2): Variator — Elements 4–10
+### Group 2 (L12): Variator — Elements 4–10
 
 This is the most complex group, containing seven elements organized into three subgroups.
 
@@ -156,7 +156,7 @@ This is the most complex group, containing seven elements organized into three s
 
 **Group 2 overall:** f2 = −68.4 mm. The ratio |f2|/ft = 0.140, well within the patent's condition (1) range of 0.1–0.2. This relatively strong negative power is essential for achieving the 2.5× zoom range within a manageable barrel length, but it also means G2 is the dominant contributor to Petzval field curvature, which the downstream positive groups must compensate.
 
-### Group 3 (L3): Compensator — Elements 11–12
+### Group 3 (L13): Compensator — Elements 11–12
 
 **E11 (positive meniscus, S-LAH79, nd = 1.904) cemented to E12 (biconvex, N-FK5, nd = 1.487):** This doublet has a combined focal length of +107.0 mm. Element 11 is the highest-index glass in the entire system (nd = 1.904). Its meniscus shape is geometrically "positive" (both radii positive, convex toward the object), but it has negative optical power (fl = −209.5 mm) because the rear surface is more strongly curved. Its role in the cemented pair is as the chromatic corrector: paired with the low-dispersion E12, it forms a strongly achromatic positive doublet.
 
@@ -164,7 +164,7 @@ The choice of S-LAH79 (vd = 31.31) paired with N-FK5 (vd = 70.44) gives a large 
 
 G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm wide-to-tele, closing the gap with G2; d19 increases from 1.5 mm to 12.3 mm, opening the gap to G4). The ratio f3/|f2| = 1.564, satisfying condition (5): 1.0 < f3/|f2| < 2.0.
 
-### Group 4 (L4): Relay — Elements 13–15
+### Group 4 (L21): Relay — Elements 13–15
 
 **E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, S-LAH55V, nd = 1.834):** The third and final achromatic ED doublet. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
 
@@ -176,9 +176,9 @@ The gap between G4 and the stop (d24) decreases from 32.6 mm to 5.0 mm during zo
 
 The stop is positioned between G4 and G5, moving independently during zoom (paragraph [0016], claim 6). Its independent motion allows the stop diameter to remain constant across the zoom range, which is how the lens achieves its constant f/5.6 maximum aperture. The stop's position between the relay group and the focus group means that the focus group (G5) receives a beam of consistent angular extent regardless of focal length, simplifying the focus group's aberration balance.
 
-### Group 5 (L5): Focus Group — Elements 16–17
+### Group 5 (L22): Focus Group — Elements 16–17
 
-**E16 (biconvex, E-ADF10, nd = 1.648, vd = 33.84) cemented to E17 (biconcave, TAC4, nd = 1.729, vd = 54.67):** This negative cemented doublet (fl = −78.3 mm) is the internal focusing group. It serves a dual mechanical role: it moves toward the object during zoom (claim 1 explicitly lists the fifth group among the zoom-moving groups), and it translates toward the image for close-focus. The gaps d25 (stop↔L5) and d28 (L5↔L6) change in equal and opposite amounts during focus, while both also change independently during zoom:
+**E16 (biconvex, E-ADF10, nd = 1.648, vd = 33.84) cemented to E17 (biconcave, TAC4, nd = 1.729, vd = 54.67):** This negative cemented doublet (fl = −78.3 mm) is the internal focusing group. It serves a dual mechanical role: it moves toward the object during zoom (claim 1 explicitly lists the fifth group among the zoom-moving groups), and it translates toward the image for close-focus. The gaps d25 (stop↔L22) and d28 (L22↔L23) change in equal and opposite amounts during focus, while both also change independently during zoom:
 
 | Position | d25 (mm) | d28 (mm) | Sum (mm) |
 |:---------|:--------:|:--------:|:--------:|
@@ -193,7 +193,7 @@ The choice of a negative focus group is significant. As the group moves toward t
 
 The glass pairing is unusual: E16 uses E-ADF10, a HOYA anomalous-dispersion flint with low Abbe number (33.84). Despite being the positive element in the doublet, it is a flint-type glass. E17 is a crown (TAC4, vd = 54.67). This "reversed" pairing (flint-positive, crown-negative) is deliberate: it provides chromatic correction with the correct sign while maintaining the required negative net power for the focus mechanism.
 
-### Group 6 (L6): Fixed Rear — Elements 18–19
+### Group 6 (L23): Fixed Rear — Elements 18–19
 
 **E18 (negative meniscus, S-TIM2, nd = 1.581, vd = 40.89):** A weakly positive singlet (fl = +131.4 mm) despite its meniscus shape — both radii are negative, but |R2| < |R1| makes the rear surface more strongly curved, yielding net positive power.
 
@@ -209,8 +209,8 @@ These two elements are separated by a large fixed air gap of 21.04 mm and are th
 
 During zoom from 205 mm to 487 mm:
 
-- **Moving groups:** G1 (L1), G3 (L3), and G5 (L5) all move toward the object side, along with the aperture stop which moves independently (claim 6). G5 is notable for having a dual role: it moves during zoom (d28 increases from 19.8 mm to 60.8 mm, pushing G5 toward the object relative to the fixed G6) and also moves during focusing (translating toward the image for close-focus).
-- **Fixed groups:** G2 (L2), G4 (L4), and G6 (L6) remain stationary during zoom. G2 and G4 are explicitly stated as fixed in claim 5; G6's fixed status is confirmed by the constant back focal distance (bf = 54.32 mm at all zoom positions).
+- **Moving groups:** G1 (L11), G3 (L13), and G5 (L22) all move toward the object side, along with the aperture stop which moves independently (claim 6). G5 is notable for having a dual role: it moves during zoom (d28 increases from 19.8 mm to 60.8 mm, pushing G5 toward the object relative to the fixed G6) and also moves during focusing (translating toward the image for close-focus).
+- **Fixed groups:** G2 (L12), G4 (L21), and G6 (L23) remain stationary during zoom. G2 and G4 are explicitly stated as fixed in claim 5; G6's fixed status is confirmed by the constant back focal distance (bf = 54.32 mm at all zoom positions).
 
 This means only three lens groups plus the independently-moving stop require zoom cam slots, significantly simplifying the barrel mechanism compared to designs where five or six groups move.
 
@@ -280,7 +280,7 @@ The design relies heavily on cemented doublets — seven in total:
 
 | Doublet | Elements | Group | fl (mm) | Primary function |
 |:-------:|:--------:|:-----:|:-------:|:----------------|
-| D1 | E1+E2 | G1 (L1) | +5,992 | Chromatic correction at entrance aperture |
+| D1 | E1+E2 | G1 (L11) | +5,992 | Chromatic correction at entrance aperture |
 | D2 | E4+E5 | G2 (L2A) | −113.6 | Negative power; beam conditioning for VR |
 | D3 | E6+E7 | G2 (L2B) | −218.5 | VR doublet; chromatically corrected negative power |
 | D4 | E9+E10 | G2 (L2C) | +178.2 | Positive compensator within G2 |

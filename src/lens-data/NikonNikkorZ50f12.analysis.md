@@ -13,7 +13,7 @@
 
 This analysis covers Example 1 of WO 2021/241230 A1, which corresponds to the production NIKKOR Z 50mm f/1.2 S lens. The identification is established by convergent criteria: the patent's 17-element / 15-group construction matches the published product specification exactly, as do the 3 aspherical surfaces, the 2 ED glass elements, the f/1.2 maximum aperture, and the dual-group inner-focus mechanism driven by two stepping motors. The patent's priority date of May 2020 precedes the product announcement in September 2020.
 
-The patent describes two "embodiment forms" (実施形態). The first embodiment (Examples 1–5, 7) employs a four-subgroup rear group with two independently moving focus groups (F1 and F2). The second embodiment (Example 6) uses a three-subgroup rear arrangement with a single focus group. Example 1 is the most direct match to the production lens.
+The patent describes two "embodiment forms" (実施形態). The first embodiment (Examples 1–5, 7) employs a four-subgroup rear group with two independently moving focus groups (F1 and F2). The second embodiment (Example 6) uses a three-subgroup rear arrangement with G1 single focus group. Example 1 is the most direct match to the production lens.
 
 ---
 
@@ -48,7 +48,7 @@ The patent describes two "embodiment forms" (実施形態). The first embodiment
 
 ## 3. Optical Architecture
 
-The lens follows a positive-front / stop / positive-rear architecture that Nikon's press release describes as having "perfect symmetry in front of, and behind, the aperture." While this arrangement shares ancestry with the classical double-Gauss, the design has evolved well beyond that form: nine elements in the front group and eight behind, with the rear heavily subdivided into independently moving subgroups. The patent itself makes no reference to a double-Gauss heritage, describing the system simply as a front group with positive refractive power, stop, and rear group with overall positive refractive power (物体側から順に、正の屈折力を持つ前群と、絞りと、全体として正の屈折力を持つ後群). The front group is heavily expanded relative to any classical Gauss design to manage the extreme f/1.2 aperture. The rear group is subdivided into three mechanically distinct units: two moving focus groups (F1, F2) and a fixed rear group (R), plus a filter plate before the image plane.
+The lens follows a positive-front / stop / positive-rear architecture that Nikon's press release describes as having "perfect symmetry in front of, and behind, the aperture." While this arrangement shares ancestry with the classical double-Gauss, the design has evolved well beyond that form: nine elements in the front group and eight behind, with the rear heavily subdivided into independently moving subgroups. The patent itself makes no reference to a double-Gauss heritage, describing the system simply as G1 front group with positive refractive power, stop, and rear group with overall positive refractive power (物体側から順に、正の屈折力を持つ前群と、絞りと、全体として正の屈折力を持つ後群). The front group is heavily expanded relative to any classical Gauss design to manage the extreme f/1.2 aperture. The rear group is subdivided into three mechanically distinct units: two moving focus groups (F1, F2) and a fixed rear group (R), plus a filter plate before the image plane.
 
 ### 3.1 Group Structure
 
@@ -78,7 +78,7 @@ The conditional expression (2), f/Bf = 4.143, quantifies the degree of back-focu
 
 ## 4. Element-by-Element Analysis
 
-### 4.1 Front Group A — Fixed (9 Elements, Surfaces 1–18)
+### 4.1 Front Group G1 — Fixed (9 Elements, Surfaces 1–18)
 
 **L11 — Negative Meniscus, Convex to Object**
 
@@ -132,7 +132,7 @@ L13's glass (nd = 1.55298, νd = 55.1) is a light barium flint in the traditiona
 | Glass (inferred) | HOYA FCD505 or HIKARI J-PSKH1 (phosphate crown / ED) |
 | Thin-lens focal length | +248.7 mm |
 
-L14 marks the transition from the AF to the AR subgroup and begins a remarkable run of four consecutive elements using the same glass type (nd = 1.59349, νd = 67.0). This glass sits in the phosphate crown / fluorophosphate region of the glass map, characterized by anomalous partial dispersion (positive ΔPgF). Glasses in this region are the basis of Nikon's "ED" (Extra-low Dispersion) designation.
+L14 marks the transition from the AF to the AR subgroup and begins G1 remarkable run of four consecutive elements using the same glass type (nd = 1.59349, νd = 67.0). This glass sits in the phosphate crown / fluorophosphate region of the glass map, characterized by anomalous partial dispersion (positive ΔPgF). Glasses in this region are the basis of Nikon's "ED" (Extra-low Dispersion) designation.
 
 L14 is a weak positive meniscus with its concave surface facing the object. It gently begins converging the ray bundle after the divergent AF section.
 
@@ -149,7 +149,7 @@ A notable anomaly in the prescription: the axial spacing from surface 8 to surfa
 | Glass (inferred) | HOYA FCD505 or HIKARI J-PSKH1 (same as L14) |
 | Thin-lens focal length | +95.2 mm |
 
-L15 is a perfectly symmetric biconvex element — R₁ = +113.045, R₂ = −113.045 — making it one of the primary power-delivering elements of the front group. Its symmetry minimizes coma and distortion contributions at the design conjugate, and the thick center (10.81 mm) provides a long glass path that contributes to the lens's physical length. At +95.2 mm thin-lens focal length, L15 carries more optical power than any other single element in group A.
+L15 is a perfectly symmetric biconvex element — R₁ = +113.045, R₂ = −113.045 — making it one of the primary power-delivering elements of the front group. Its symmetry minimizes coma and distortion contributions at the design conjugate, and the thick center (10.81 mm) provides a long glass path that contributes to the lens's physical length. At +95.2 mm thin-lens focal length, L15 carries more optical power than any other single element in group G1.
 
 **L16 — Positive Meniscus, Convex to Object**
 
@@ -195,9 +195,9 @@ The 7.79 mm air gap following this doublet is the space to the aperture stop.
 
 ### 4.2 Aperture Stop (Surface 19)
 
-The stop is positioned between the front group A and the rear group B. At infinity focus, the stop-to-F1 distance is 19.164 mm, which decreases to 11.437 mm at close focus as the F1 group moves toward the object. The stop itself remains fixed during focusing.
+The stop is positioned between the front group G1 and the rear group B. At infinity focus, the stop-to-F1 distance is 19.164 mm, which decreases to 11.437 mm at close focus as the G2 group moves toward the object. The stop itself remains fixed during focusing.
 
-### 4.3 Focus Group F1 — Moving (2 Elements, Surfaces 20–23)
+### 4.3 Focus Group G2 — Moving (2 Elements, Surfaces 20–23)
 
 **L21 — Negative Meniscus, Concave to Object**
 
@@ -225,9 +225,9 @@ L21 is the first element the marginal ray encounters after the stop. As a negati
 
 L22 is a plano-convex element providing strong positive power to compensate L21's divergence. Its flat rear surface simplifies manufacturing and alignment. The glass is the same phosphate crown used for L18 (nd = 1.59319, νd = 67.9), continuing the ED glass theme throughout the design.
 
-The combined focal length of the F1 group (L21 + L22) is −707.60 mm — a very weak net negative power. This means the F1 group functions primarily as an aberration-correcting pair rather than a power-contributing group. Its movement during focus fine-tunes coma, field curvature, and astigmatism balance as the conjugate changes.
+The combined focal length of the G2 group (L21 + L22) is −707.60 mm — a very weak net negative power. This means the G2 group functions primarily as an aberration-correcting pair rather than G1 power-contributing group. Its movement during focus fine-tunes coma, field curvature, and astigmatism balance as the conjugate changes.
 
-### 4.4 Focus Group F2 — Moving (2 Elements, Surfaces 24–27)
+### 4.4 Focus Group G3 — Moving (2 Elements, Surfaces 24–27)
 
 **L31 — Biconvex Positive (1 Aspherical Surface)**
 
@@ -255,13 +255,13 @@ L31 is a gently biconvex positive element whose rear surface (25\*) carries the 
 | Thin-lens focal length | +79.7 mm |
 | Aspherical surface | **Surface 26\*** (front) |
 
-L32 carries the second aspherical surface, this time on its front face. The base radius is R = +71.00 mm with a mild prolate conic (κ = −0.116). At ~14 mm semi-aperture, the departure is approximately −0.55 mm. Unlike L31's phosphate crown, L32 uses a substantially different glass — S-NBH56, a high-index (1.7645) new barium heavy glass in OHARA's classification. With νd = 49.1, it sits just below the conventional crown/flint boundary (νd ≈ 50), giving it moderate dispersion — higher than the ED phosphate crowns but lower than the dense flints used for chromatic correction. This higher index allows the element to carry more refractive power per unit curvature, and the different dispersion contributes to chromatic balance within the F2 group.
+L32 carries the second aspherical surface, this time on its front face. The base radius is R = +71.00 mm with a mild prolate conic (κ = −0.116). At ~14 mm semi-aperture, the departure is approximately −0.55 mm. Unlike L31's phosphate crown, L32 uses a substantially different glass — S-NBH56, a high-index (1.7645) new barium heavy glass in OHARA's classification. With νd = 49.1, it sits just below the conventional crown/flint boundary (νd ≈ 50), giving it moderate dispersion — higher than the ED phosphate crowns but lower than the dense flints used for chromatic correction. This higher index allows the element to carry more refractive power per unit curvature, and the different dispersion contributes to chromatic balance within the G3 group.
 
 The combined focal length of F2 is +57.73 mm — a strong positive group that is the primary power contributor in the rear half of the lens. Its movement during focus shifts the image plane position and corrects focus-dependent aberrations.
 
-**Aspherical surface pairing (surfaces 25\* and 26\*):** These two aspherical surfaces face each other across a 2.600 mm air gap and work as a conjugate pair. Surface 25\* (L31 rear) has its strongest departure at the rim where it deepens the concavity, while surface 26\* (L32 front) reduces the convexity at the rim. Together they form an aspherical "lens-within-a-lens" that precisely shapes the wavefront for higher-order spherical and coma correction — an elegant arrangement that concentrates the aspherical complexity in the lightweight F2 focus group.
+**Aspherical surface pairing (surfaces 25\* and 26\*):** These two aspherical surfaces face each other across a 2.600 mm air gap and work as a conjugate pair. Surface 25\* (L31 rear) has its strongest departure at the rim where it deepens the concavity, while surface 26\* (L32 front) reduces the convexity at the rim. Together they form an aspherical "lens-within-a-lens" that precisely shapes the wavefront for higher-order spherical and coma correction — an elegant arrangement that concentrates the aspherical complexity in the lightweight G3 focus group.
 
-### 4.5 Rear Group R — Fixed (4 Elements, Surfaces 28–34)
+### 4.5 Rear Group G4 — Fixed (4 Elements, Surfaces 28–34)
 
 **L41 — Positive Meniscus, Convex to Object**
 
@@ -353,9 +353,9 @@ The most likely resolution to the apparent discrepancy between "2 ED" elements a
 
 ## 6. Aspherical Surfaces — Detailed Analysis
 
-All three aspherical surfaces are located behind the aperture stop, in the F2 focus group (surfaces 25\* and 26\*) and at the end of the R group (surface 33\*). As Thom Hogan noted in his review, this means "Nikon tolerated letting light get through 11 elements before applying a more nuanced aspherical correction."
+All three aspherical surfaces are located behind the aperture stop, in the G3 focus group (surfaces 25\* and 26\*) and at the end of the G4 group (surface 33\*). As Thom Hogan noted in his review, this means "Nikon tolerated letting light get through 11 elements before applying a more nuanced aspherical correction."
 
-### 6.1 Surface 25\* — L31 Rear (F2 Group)
+### 6.1 Surface 25\* — L31 Rear (G3 Group)
 
 | Parameter | Value |
 |---|---|
@@ -374,7 +374,7 @@ This is the most aggressively aspherical surface in the design. The conic consta
 
 At 14 mm height, the aspherical surface is more than half a millimeter deeper than a sphere — an enormous departure that fundamentally reshapes the wavefront at the rim.
 
-### 6.2 Surface 26\* — L32 Front (F2 Group)
+### 6.2 Surface 26\* — L32 Front (G3 Group)
 
 | Parameter | Value |
 |---|---|
@@ -393,7 +393,7 @@ Surface 26\* is a convex aspherical facing surface 25\* across the air gap. Its 
 
 The departure is of nearly identical magnitude to surface 25\* but applied to a convex surface — the aspherical profile flattens the surface toward the rim, reducing convergent power where the marginal ray zone contributes most to spherical aberration. The sign and scale of the departures on surfaces 25\* and 26\* are remarkably well matched, confirming they work as a conjugate pair for wavefront shaping.
 
-### 6.3 Surface 33\* — L44 Front (R Group, Final Optical Element)
+### 6.3 Surface 33\* — L44 Front (G4 Group, Final Optical Element)
 
 | Parameter | Value |
 |---|---|
@@ -418,7 +418,7 @@ The departure at full aperture (−0.104 mm) is modest compared to the F2 pair, 
 
 ### 7.1 Multi-Focus System
 
-The NIKKOR Z 50mm f/1.2 S employs a dual inner-focus system in which both the F1 and F2 groups move toward the object during close focusing, each driven by its own stepping motor. The front group A and rear group R remain fixed.
+The NIKKOR Z 50mm f/1.2 S employs a dual inner-focus system in which both the F1 and G3 groups move toward the object during close focusing, each driven by its own stepping motor. The front group G1 and rear group G4 remain fixed.
 
 | Gap | Location | Infinity | Close (β=−0.1) | Change |
 |---|---|---|---|---|
@@ -455,10 +455,10 @@ The focus groups are deliberately lightweight to enable fast, energy-efficient s
 
 | Group | Elements | Total glass thickness | Estimated power |
 |---|---|---|---|
-| F1 | L21 (1.7 mm) + L22 (6.2 mm) | 7.9 mm | Weak negative (−707.6 mm) |
-| F2 | L31 (6.46 mm) + L32 (4.0 mm) | 10.46 mm | Strong positive (+57.7 mm) |
+| G2 | L21 (1.7 mm) + L22 (6.2 mm) | 7.9 mm | Weak negative (−707.6 mm) |
+| G3 | L31 (6.46 mm) + L32 (4.0 mm) | 10.46 mm | Strong positive (+57.7 mm) |
 
-The F2 group carries both aspherical surfaces (25\* and 26\*), meaning the aspherical correction moves with the focus group — a sophisticated approach that adapts the higher-order aberration correction to the conjugate distance. At close focus, the marginal ray geometry through the rear group changes substantially; having the aspheres move with F2 helps maintain correction quality throughout the focus range.
+The G3 group carries both aspherical surfaces (25\* and 26\*), meaning the aspherical correction moves with the focus group — G1 sophisticated approach that adapts the higher-order aberration correction to the conjugate distance. At close focus, the marginal ray geometry through the rear group changes substantially; having the aspheres move with F2 helps maintain correction quality throughout the focus range.
 
 ---
 
@@ -470,7 +470,7 @@ Despite using 17 elements, the design employs only 13 distinct glass types (14 i
 
 ### 8.2 Aspherical Surface Placement
 
-The placement of all three aspheres behind the stop — and two of them in a moving focus group — is a deliberate design choice that Thom Hogan flagged in his review. In many fast prime designs, at least one aspherical surface is placed in the front group (before the stop) to control spherical aberration at the point of maximum marginal ray height. Nikon's approach instead relies on the four-element ED run (L14–L17) to gradually bend the marginal ray without generating excessive spherical aberration, then corrects residual errors with the rear aspheres. This distributes the correction load but may explain the slightly variable mid-frame astigmatism that reviewers have noted.
+The placement of all three aspheres behind the stop — and two of them in a moving focus group — is G1 deliberate design choice that Thom Hogan flagged in his review. In many fast prime designs, at least one aspherical surface is placed in the front group (before the stop) to control spherical aberration at the point of maximum marginal ray height. Nikon's approach instead relies on the four-element ED run (L14–L17) to gradually bend the marginal ray without generating excessive spherical aberration, then corrects residual errors with the rear aspheres. This distributes the correction load but may explain the slightly variable mid-frame astigmatism that reviewers have noted.
 
 ### 8.3 Chromatic Correction Strategy
 
@@ -480,7 +480,7 @@ The design manages chromatic aberration through three complementary mechanisms:
 
 2. **Anomalous-dispersion negative elements** (L19, L21, L43): The patent's conditional expression (6) constrains the negative-lens partial dispersion to stay within a narrow corridor (θgF + 0.0021νd between 0.600 and 0.660), ensuring effective chromatic correction with minimal element count.
 
-3. **Ultra-high-dispersion corrector** (L12): The extraordinary E-FDS1-W glass (νd = 18.0) in the front group provides a powerful chromatic lever — its enormous dispersion relative to its weak power allows it to make large corrections to lateral color and longitudinal chromatic aberration with minimal impact on the monochromatic aberration balance.
+3. **Ultra-high-dispersion corrector** (L12): The extraordinary E-FDS1-W glass (νd = 18.0) in the front group provides G1 powerful chromatic lever — its enormous dispersion relative to its weak power allows it to make large corrections to lateral color and longitudinal chromatic aberration with minimal impact on the monochromatic aberration balance.
 
 ### 8.4 Aberration Performance (Patent Figures 2–3)
 

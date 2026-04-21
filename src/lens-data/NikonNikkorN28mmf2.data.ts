@@ -46,7 +46,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.62299,
@@ -58,7 +58,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.744,
@@ -70,7 +70,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.62299,
@@ -82,7 +82,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.7725,
@@ -95,7 +95,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L15",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.5168,
@@ -108,7 +108,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L21",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.5168,
@@ -120,7 +120,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L22",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.7847,
@@ -132,7 +132,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L23",
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.74443,
@@ -144,7 +144,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L24",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.713,
@@ -204,8 +204,8 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "C (CONVERTER)", fromSurface: "1", toSurface: "9" },
-    { text: "M (MASTER)", fromSurface: "10", toSurface: "17" },
+    { text: "G1 (CONVERTER)", fromSurface: "1", toSurface: "9" },
+    { text: "G2 (MASTER)", fromSurface: "10", toSurface: "17" },
   ],
 
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],

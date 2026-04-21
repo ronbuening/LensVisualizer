@@ -1,10 +1,10 @@
 # Nikon AF-S NIKKOR 85mm f/1.4G — Patent Analysis
 
-**Patent:** US 8,767,319 B2 — Example 1  
-**Filed:** February 24, 2011 (PCT/JP2011/054084)  
-**Priority:** March 2, 2010 (JP 2010-045271)  
-**Granted:** July 1, 2014  
-**Inventors:** Yoshihito Souma (Sakai, JP), Satoru Shibata (Chiyoda-ku, JP)  
+**Patent:** US 8,767,319 B2 — Example 1
+**Filed:** February 24, 2011 (PCT/JP2011/054084)
+**Priority:** March 2, 2010 (JP 2010-045271)
+**Granted:** July 1, 2014
+**Inventors:** Yoshihito Souma (Sakai, JP), Satoru Shibata (Chiyoda-ku, JP)
 **Assignees:** Konica Minolta Advanced Layers, Inc. (Tokyo) / Nikon Corporation (Tokyo)
 
 ---
@@ -34,9 +34,9 @@ The system comprises three lens groups, all having positive refractive power:
 
 | Group | Elements | Surfaces | Focal Length (mm) | Power | Role |
 |-------|----------|----------|-------------------|-------|------|
-| Gr1 | L11, L12, L13 | 1–6 | +252.7 | Weak positive | Front collector — gathers light and sets up Gr2 |
-| Gr2 | L21, L22, L23, L24 + STO | 7–15 | +61.9 | Strong positive | Focusing group — carries aperture stop |
-| Gr3 | L31+L32 (cemented), L3P | 16–20 | +684.5 | Very weak positive | Rear corrector — controls residual spherical and field |
+| G1 | L11, L12, L13 | 1–6 | +252.7 | Weak positive | Front collector — gathers light and sets up Gr2 |
+| G2 | L21, L22, L23, L24 + STO | 7–15 | +61.9 | Strong positive | Focusing group — carries aperture stop |
+| G3 | L31+L32 (cemented), L33 | 16–20 | +684.5 | Very weak positive | Rear corrector — controls residual spherical and field |
 
 The total track length is 126.370 mm with a back focal distance of 41.050 mm. The track-to-focal-length ratio is 1.49 — the system is about 49% longer than its focal length, meaning this is not a true telephoto arrangement (which would be shorter than its focal length). Instead, the additional length is necessary to accommodate the large air gaps required for the inner-focus mechanism and to maintain adequate mirror clearance for the Nikon F-mount (flange distance 46.5 mm, requiring approximately 38.5 mm of clear back focus). The 41.05 mm BFD provides this clearance with modest margin.
 
@@ -114,7 +114,7 @@ The patent's core insight is in the construction of this group: it contains only
 | Shape | Positive meniscus, convex to object |
 | Focal length | +139.4 mm (thick lens) |
 
-L21 is the first element of the focusing group and the most object-side positive lens in Gr2. It begins re-converging the divergent beam emerging from Gr1. The high-index lanthanum glass minimizes surface curvatures and keeps the Petzval contribution under control. Its focal length ratio relative to L22 is a key patent parameter: f21/f22 = 139.4/(−35.7) = −3.905, falling within the required range of −5 < f21/f22 < −1 (conditional formula 2). This ratio governs the balance between the axial ray height after the negative element and the flexibility in spherical aberration correction — too negative, and the downstream elements must be impractically large; too close to −1, and there isn't enough divergence to correct spherical aberration effectively.
+L21 is the first element of the focusing group and the most object-side positive lens in G2. It begins re-converging the divergent beam emerging from Gr1. The high-index lanthanum glass minimizes surface curvatures and keeps the Petzval contribution under control. Its focal length ratio relative to L22 is a key patent parameter: f21/f22 = 139.4/(−35.7) = −3.905, falling within the required range of −5 < f21/f22 < −1 (conditional formula 2). This ratio governs the balance between the axial ray height after the negative element and the flexibility in spherical aberration correction — too negative, and the downstream elements must be impractically large; too close to −1, and there isn't enough divergence to correct spherical aberration effectively.
 
 #### Aperture Stop (Surface 9)
 
@@ -158,7 +158,7 @@ L23 is the first of two positive elements following L22. Its nearly flat front s
 | Shape | Biconvex |
 | Focal length | +45.1 mm (thick lens) |
 
-L24 is the strongest positive element in the focusing group and the thickest element in Gr2 (6.873 mm). Its biconvex shape provides strong convergence from both surfaces. The lanthanum light flint glass (S-LAL14) has the highest Abbe number in the focusing group (νd = 54.7), making it the primary "crown" partner to L22's "flint" role in the chromatic correction of Gr2. The combination of L22 (νd = 30.1, negative power) and L24 (νd = 54.7, positive power) forms the principal achromatic pair within the focusing group.
+L24 is the strongest positive element in the focusing group and the thickest element in G2 (6.873 mm). Its biconvex shape provides strong convergence from both surfaces. The lanthanum light flint glass (S-LAL14) has the highest Abbe number in the focusing group (νd = 54.7), making it the primary "crown" partner to L22's "flint" role in the chromatic correction of Gr2. The combination of L22 (νd = 30.1, negative power) and L24 (νd = 54.7, positive power) forms the principal achromatic pair within the focusing group.
 
 The patent explains that placing two positive elements (L23 and L24) after L22 provides additional "flexibility in correction of spherical aberration" — the negative spherical aberration generated by these two elements can be distributed between them, allowing finer control than a single post-negative positive element would permit.
 
@@ -198,7 +198,7 @@ The patent explains why this works: because the cemented surface is convex to th
 
 The choice of S-LAH79 (nd = 1.904) for L31 is significant. This is among the highest-index glasses in the OHARA catalog, sitting near the practical upper limit of commercially available optical glass refractive index. Using it here maximizes the index difference at the cement surface, which maximizes the "tuning range" for spherical aberration control.
 
-#### L3P — Biconvex Positive (Surfaces 19–20)
+#### L33 — Biconvex Positive (Surfaces 19–20)
 
 | Property | Value |
 |----------|-------|
@@ -208,9 +208,9 @@ The choice of S-LAH79 (nd = 1.904) for L31 is significant. This is among the hig
 | Shape | Biconvex, equi-radii |
 | Focal length | +52.4 mm (thick lens) |
 
-L3P is the final optical element before the image plane and has a distinctive property: its front and rear radii are equal in magnitude (±85.957 mm), making it an equi-biconvex element. This symmetric shape minimizes coma from L3P itself, which is important because it sits far from the stop where off-axis ray heights are significant.
+L33 is the final optical element before the image plane and has a distinctive property: its front and rear radii are equal in magnitude (±85.957 mm), making it an equi-biconvex element. This symmetric shape minimizes coma from L33 itself, which is important because it sits far from the stop where off-axis ray heights are significant.
 
-The patent states that placing a positive component after the negative doublet in Gr3 is necessary to control the exit angles of off-axis rays — without it, the rays would emerge at steep angles that would be incompatible with the angular acceptance of digital image sensors. L3P ensures that the telecentric tendency of the exit beam is maintained.
+The patent states that placing a positive component after the negative doublet in Gr3 is necessary to control the exit angles of off-axis rays — without it, the rays would emerge at steep angles that would be incompatible with the angular acceptance of digital image sensors. L33 ensures that the telecentric tendency of the exit beam is maintained.
 
 ---
 
@@ -248,7 +248,7 @@ All ten elements use conventional optical glasses — no ED, Super ED, fluorite,
 | L24 | S-LAL14 | Lanthanum light flint | 1.729 | 54.7 | Crown of Gr2 achromatic pair — highest νd in Gr2 |
 | L31 | S-LAH79 | Lanthanum heavy flint | 1.904 | 31.3 | Highest-index in system — cement doublet positive |
 | L32 | S-TIH53 | Titanium flint | 1.648 | 33.8 | Cement doublet negative — SA tuning surface |
-| L3P | S-LAH60V | Lanthanum heavy flint | 1.834 | 37.2 | Equi-biconvex — exit angle and field correction |
+| L33 | S-LAH60V | Lanthanum heavy flint | 1.834 | 37.2 | Equi-biconvex — exit angle and field correction |
 
 Glass identifications are based on exact nd/νd matching to the OHARA catalog (all matches exact to five decimal places in nd and within 0.1 in νd). OHARA's Hikari subsidiary produces equivalent grades (Q-LAH55, Q-LAH65, etc.) that share identical optical constants, and production may use either interchangeably.
 
@@ -321,8 +321,8 @@ For reference, the full surface prescription as given in the patent. All surface
 | 16 | −66.600 | 3.700 | 1.90366 | 31.3 | L31 front | Cemented ↓ |
 | 17 | −37.963 | 1.690 | 1.64769 | 33.8 | L31→L32 cement | Cemented ↑ |
 | 18 | 51.067 | 2.267 | — | — | L32 rear → air | |
-| 19 | 85.957 | 6.000 | 1.83400 | 37.2 | L3P front | |
-| 20 | −85.957 | 41.050 | — | — | L3P rear → image | BFD |
+| 19 | 85.957 | 6.000 | 1.83400 | 37.2 | L33 front | |
+| 20 | −85.957 | 41.050 | — | — | L33 rear → image | BFD |
 
 **Variable gaps (focus):**
 

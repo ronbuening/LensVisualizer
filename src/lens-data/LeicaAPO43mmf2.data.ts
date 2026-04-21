@@ -48,7 +48,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Biconcave Negative",
       nd: 1.64769,
@@ -60,7 +60,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 2.00069,
@@ -72,7 +72,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.59282,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.76182,
@@ -99,7 +99,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L15",
       label: "Element 5",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.5866,
@@ -111,7 +111,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L21",
       label: "Element 6",
       type: "Biconcave Negative (1× Asph)",
       nd: 1.68948,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L22",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.95375,
@@ -137,7 +137,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L31",
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.90366,
@@ -150,7 +150,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L32",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.69895,
@@ -163,7 +163,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L41",
       label: "Element 10",
       type: "Biconvex Positive (2× Asph)",
       nd: 1.55332,
@@ -176,7 +176,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L51",
       label: "Element 11",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5866,

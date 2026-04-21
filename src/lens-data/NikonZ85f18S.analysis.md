@@ -1,10 +1,10 @@
 # NIKKOR Z 85mm f/1.8 S — Patent Design Analysis
 
-**Patent:** JP2020-173366A (filed April 11, 2019; published October 22, 2020)  
-**Applicants:** Konica Minolta Co., Ltd. & Nikon Corporation (joint filing)  
-**Inventors:** Imashima Ryōsuke (今嶋 亮介), Hirose Takuma (廣瀬 卓万), Tanahashi Daisuke (棚橋 大輔) — Konica Minolta; Yamamoto Yasushi (山本 康), Muratani Mami (村谷 真美) — Nikon  
-**Production design:** Example 3 (EX3)  
-**Numerical example:** f = 83.0 mm, F/1.85, 2ω = 29.26°  
+**Patent:** JP2020-173366A (filed April 11, 2019; published October 22, 2020)
+**Applicants:** Konica Minolta Co., Ltd. & Nikon Corporation (joint filing)
+**Inventors:** Imashima Ryōsuke (今嶋 亮介), Hirose Takuma (廣瀬 卓万), Tanahashi Daisuke (棚橋 大輔) — Konica Minolta; Yamamoto Yasushi (山本 康), Muratani Mami (村谷 真美) — Nikon
+**Production design:** Example 3 (EX3)
+**Numerical example:** f = 83.0 mm, F/1.85, 2ω = 29.26°
 
 ---
 
@@ -59,10 +59,10 @@ The patent provides group focal lengths in Table 2, which were independently ver
 
 | Group | Patent FL (mm) | Computed FL (mm) | Power |
 |---|---|---|---|
-| Gr1 | 74.326 | 74.336 | Positive |
-| Gr2 | −71.252 | −71.247 | Negative |
-| Gr3 | 68.444 | 68.444 | Positive |
-| Gr4 | −199.910 | −210.888 | Negative |
+| G1 | 74.326 | 74.336 | Positive |
+| G2 | −71.252 | −71.247 | Negative |
+| G3 | 68.444 | 68.444 | Positive |
+| G4 | −199.910 | −210.888 | Negative |
 
 Groups 1–3 agree within 0.01 mm. The Gr4 discrepancy (−199.9 vs. −210.9, approximately 5%) arises from the sensitivity of the thin five-element rear group to the paraxial ray trace method used. The patent's value, computed from the full thick-lens system matrices, should be considered authoritative.
 

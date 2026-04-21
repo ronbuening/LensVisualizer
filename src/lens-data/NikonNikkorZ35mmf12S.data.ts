@@ -161,7 +161,7 @@ const LENS_DATA = {
     // ── Rear Group B — Focus Group F1 (Negative) ──
     {
       id: 10,
-      name: "L21",
+      name: "L41",
       label: "Element 10",
       type: "Plano-Concave Negative",
       nd: 1.72047,
@@ -173,7 +173,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L22",
+      name: "L42",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.59319,
@@ -186,7 +186,7 @@ const LENS_DATA = {
     // ── Rear Group B — Focus Group F2 (Positive) ──
     {
       id: 12,
-      name: "L31",
+      name: "L43",
       label: "Element 12",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.59294,
@@ -198,7 +198,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L32",
+      name: "L44",
       label: "Element 13",
       type: "Positive Meniscus (1× Asph)",
       nd: 1.77503,
@@ -211,7 +211,7 @@ const LENS_DATA = {
     // ── Rear Group B — Final Group R (Negative) ──
     {
       id: 14,
-      name: "L41",
+      name: "L45",
       label: "Element 14",
       type: "Positive Meniscus",
       nd: 1.59319,
@@ -223,7 +223,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L42",
+      name: "L46",
       label: "Element 15",
       type: "Plano-Convex Positive",
       nd: 1.94594,
@@ -238,7 +238,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L43",
+      name: "L47",
       label: "Element 16",
       type: "Plano-Concave Negative",
       nd: 1.7888,
@@ -251,7 +251,7 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L44",
+      name: "L48",
       label: "Element 17",
       type: "Biconcave Negative (1× Asph)",
       nd: 1.62372,
@@ -384,13 +384,13 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT A (+)", fromSurface: "1", toSurface: "17" },
-    { text: "AF (−)", fromSurface: "1", toSurface: "8" },
-    { text: "AR (+)", fromSurface: "9", toSurface: "17" },
-    { text: "REAR B (+)", fromSurface: "19", toSurface: "33" },
-    { text: "F1 (−)", fromSurface: "19", toSurface: "22" },
-    { text: "F2 (+)", fromSurface: "23", toSurface: "26" },
-    { text: "R (−)", fromSurface: "27", toSurface: "33" },
+    { text: "G1 (FRONT A (+))", fromSurface: "1", toSurface: "17" },
+    { text: "G2 (AF (−))", fromSurface: "1", toSurface: "8" },
+    { text: "G3 (AR (+))", fromSurface: "9", toSurface: "17" },
+    { text: "G4 (REAR B (+))", fromSurface: "19", toSurface: "33" },
+    { text: "G5 (−)", fromSurface: "19", toSurface: "22" },
+    { text: "G6 (+)", fromSurface: "23", toSurface: "26" },
+    { text: "G7 (−)", fromSurface: "27", toSurface: "33" },
   ],
   doublets: [
     { text: "D1", fromSurface: "15", toSurface: "17" },

@@ -93,7 +93,7 @@ Each entry in the `elements` array describes one physical glass element.
 ```javascript
 {
   id:       1,                              // REQUIRED: unique integer, referenced by surfaces
-  name:     "L1",                           // REQUIRED: short name
+  name:     "L11",                          // REQUIRED: short diagram name: L{group}{element-in-group}
   label:    "Element 1",                    // REQUIRED: display label
   type:     "Biconvex Positive",            // REQUIRED: optical shape/type description
   nd:       1.90525,                        // REQUIRED: refractive index (d-line, 587.6 nm)
@@ -116,6 +116,12 @@ Each entry in the `elements` array describes one physical glass element.
 **Validation rules:**
 - Each `id` must be unique across all elements
 - Every element must be referenced by at least one surface's `elemId`
+
+**Diagram naming convention:**
+- `groups[].text` uses `G1`, `G2`, `G3`, ... from front to rear.
+- `elements[].name` uses `L{groupNumber}{elementNumberWithinGroup}`, such as `L11`, `L12`, `L21`.
+- Keep `elements[].label` as a plain ordinal display label where possible, such as `"Element 1"`.
+- Surface labels are independent lookup keys for prescriptions and must not be renamed just to match diagram titles.
 
 ---
 
@@ -350,8 +356,8 @@ Visual brackets shown on the SVG diagram.
 
 ```javascript
 groups: [
-  { text: "FRONT (101)", fromSurface: "1",  toSurface: "10" },
-  { text: "REAR (102)",  fromSurface: "12", toSurface: "19A" },
+  { text: "G1 (+)", fromSurface: "1",  toSurface: "10" },
+  { text: "G2 (FOCUS)",  fromSurface: "12", toSurface: "19A" },
 ],
 doublets: [
   { text: "Jb", fromSurface: "12", toSurface: "14" },
@@ -361,6 +367,7 @@ doublets: [
 
 **Rules:**
 - `fromSurface` and `toSurface` must be valid surface labels
+- Group text should start with the normalized `G#` label; put power, focus, IS, or patent aliases in the suffix
 - These are purely visual annotations — they don't affect optical calculations
 
 ---
@@ -421,7 +428,7 @@ const LENS_DATA = {
   key:      "example-singlet",
   name:     "Example Singlet 50mm f/4",
   elements: [
-    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.51633, vd: 64.06, fl: 50.0, glass: "N-BK7" },
+    { id: 1, name: "L11", label: "Element 1", type: "Biconvex Positive", nd: 1.51633, vd: 64.06, fl: 50.0, glass: "N-BK7" },
   ],
   surfaces: [
     { label: "STO", R:  1e15,   d: 1.0,  nd: 1.0,     elemId: 0, sd: 6.25 },
@@ -431,7 +438,7 @@ const LENS_DATA = {
   asph:         {},
   var:          { "3": [44.0, 42.0] },
   varLabels:    [["3", "BF"]],
-  groups:       [],
+  groups:       [{ text: "G1", fromSurface: "2", toSurface: "3" }],
   doublets:     [],
   closeFocusM:  0.45,
   nominalFno:   4.0,

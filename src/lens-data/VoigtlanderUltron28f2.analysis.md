@@ -21,7 +21,7 @@ convergent criteria:
   28 mm focal length (patent field angle: 75.4° at f = 28.5 mm).
 - **Speed:** F/2.0, matching the production f/2 specification.
 - **Aspherical surfaces:** Example 1 has two aspherical surfaces (17A, 18A) on a single rear
-  element (L10 / Nnc). The manufacturer states "one aspherical element" with "two aspherical
+  element (L25 / Nnc). The manufacturer states "one aspherical element" with "two aspherical
   surfaces," exactly matching this configuration.
 - **Close focus:** The patent's close-focus object distance of 430 mm from the first surface yields
   a subject-to-sensor distance of approximately 492 mm (≈ 0.49 m), consistent with the production
@@ -49,12 +49,12 @@ BFD > EFL threshold that defines a true retrofocus (reverse telephoto) system. F
 rangefinder lens, no mirror-box clearance is required, and the compact 18.4 mm flange-to-image
 distance is entirely adequate.
 
-- **Front group (Gf):** Five elements (L1–L5) arranged as one negative meniscus singlet, one
-  cemented doublet (Jw = L2+L3), and one cemented doublet (Jy = L4+L5). Contains two positive
+- **Front group (Gf):** Five elements (L11–L15) arranged as one negative meniscus singlet, one
+  cemented doublet (Jw = L12+L13), and one cemented doublet (Jy = L14+L15). Contains two positive
   elements and three negative elements.
 - **Aperture stop (STO):** Located between the front and rear groups.
-- **Rear group (Gr):** Five elements (L6–L10) arranged as one cemented doublet (Jx = L6+L7),
-  two singlets (L8, L9), and one aspherical singlet (L10). Contains two positive elements
+- **Rear group (Gr):** Five elements (L21–L25) arranged as one cemented doublet (Jx = L21+L22),
+  two singlets (L23, L24), and one aspherical singlet (L25). Contains two positive elements
   and three negative elements.
 
 ### Specifications (Example 1, infinity focus)
@@ -87,9 +87,9 @@ summing all tabulated d values (60.24 mm) differs from the patent's stated LT of
 
 ## 3. Element-by-Element Analysis
 
-### 3.1 Front Group (Gf) — Elements L1 through L5
+### 3.1 Front Group (Gf) — Elements L11 through L15
 
-#### L1 (Mna) — Front negative meniscus
+#### L11 (Mna) — Front negative meniscus
 
 | Property | Value |
 |----------|-------|
@@ -101,7 +101,7 @@ summing all tabulated d values (60.24 mm) differs from the patent's stated LT of
 | Type | Negative meniscus, convex toward object |
 | Glass (catalog match) | **BK7-type** — HOYA BSC7 (exact), Schott N-BK7 (Δνd = 0.03) |
 
-**Optical role:** L1 serves as a field-flattening negative meniscus at the front of the system.
+**Optical role:** L11 serves as a field-flattening negative meniscus at the front of the system.
 Its weak negative power (f = −57.14 mm) and strong curvature difference between front and rear
 surfaces create a diverging effect on off-axis ray bundles entering the lens. This widens the
 acceptance cone for off-axis fields and increases the entrance pupil distance, allowing the
@@ -109,7 +109,7 @@ rear elements to handle a narrower range of ray angles. The use of BK7 — an in
 low-dispersion crown glass — reflects the low chromatic demand on this element, which sits far
 from the stop and contributes primarily to Petzval sum correction and field curvature control.
 
-#### L2 (Mnb) — Plano-concave negative (cemented to L3)
+#### L12 (Mnb) — Plano-concave negative (cemented to L13)
 
 | Property | Value |
 |----------|-------|
@@ -119,10 +119,10 @@ from the stop and contributes primarily to Petzval sum correction and field curv
 | nd / νd | 1.64769 / 33.84 |
 | Focal length | −36.40 mm |
 | Type | Plano-concave negative |
-| Cemented | Doublet Jw with L3 |
+| Cemented | Doublet Jw with L13 |
 | Glass (catalog match) | **SF2-type** — Schott SF2 (Δνd = 0.01), HOYA E-F3 (exact) |
 
-#### L3 (Mpa) — Plano-convex positive (cemented to L2)
+#### L13 (Mpa) — Plano-convex positive (cemented to L12)
 
 | Property | Value |
 |----------|-------|
@@ -132,22 +132,22 @@ from the stop and contributes primarily to Petzval sum correction and field curv
 | nd / νd | 1.91082 / 35.25 |
 | Focal length | +40.40 mm |
 | Type | Plano-convex positive |
-| Cemented | Doublet Jw with L2 |
+| Cemented | Doublet Jw with L12 |
 | Glass (catalog match) | **S-LAH58** — OHARA S-LAH58 (exact), Schott N-LASF46A (exact) |
 
-**Optical role of doublet Jw (L2+L3):** This cemented pair functions primarily as a
+**Optical role of doublet Jw (L12+L13):** This cemented pair functions primarily as a
 monochromatic aberration corrector in the front group. The flat junction surface (R = ∞)
 simplifies manufacturing — no compound curve to align during cementing — and creates a large
 refractive index step at the interface (Δnd = 0.263), which provides strong correction of
 spherical aberration and coma. Notably, both glasses are in the "flint" region of the glass map
 (νd < 50) with a dispersion difference of only Δνd ≈ 1.4 — far too small for meaningful
 chromatic correction (typical achromatic doublets require Δνd of 20–30). The doublet's role is
-therefore almost exclusively monochromatic. The extreme refractive index of L3 (nd = 1.91082)
+therefore almost exclusively monochromatic. The extreme refractive index of L13 (nd = 1.91082)
 provides strong positive power while keeping surface curvatures moderate, which reduces
 higher-order aberration contributions. The net doublet power is weakly positive, contributing to
-the converging action that redirects the diverging bundle from L1 toward the stop.
+the converging action that redirects the diverging bundle from L11 toward the stop.
 
-#### L4 (Mpb) — Biconvex positive (cemented to L5)
+#### L14 (Mpb) — Biconvex positive (cemented to L15)
 
 | Property | Value |
 |----------|-------|
@@ -157,10 +157,10 @@ the converging action that redirects the diverging bundle from L1 toward the sto
 | nd / νd | 1.91082 / 35.25 |
 | Focal length | +13.70 mm (patent; thin-lens: +12.95 mm) |
 | Type | Biconvex positive |
-| Cemented | Doublet Jy with L5 |
+| Cemented | Doublet Jy with L15 |
 | Glass (catalog match) | **S-LAH58** — OHARA S-LAH58 (exact) |
 
-#### L5 (Mnc) — Biconcave negative (cemented to L4)
+#### L15 (Mnc) — Biconcave negative (cemented to L14)
 
 | Property | Value |
 |----------|-------|
@@ -170,24 +170,24 @@ the converging action that redirects the diverging bundle from L1 toward the sto
 | nd / νd | 1.76182 / 26.61 |
 | Focal length | −25.39 mm |
 | Type | Biconcave negative |
-| Cemented | Doublet Jy with L4 |
+| Cemented | Doublet Jy with L14 |
 | Glass (catalog match) | **SF14-type** — HOYA E-FD15 (exact), Schott N-SF14 (Δνd = 0.08) |
 
-**Optical role of doublet Jy (L4+L5):** This is the most powerful sub-assembly in the front
-group. L4 alone has a focal length of only +13.70 mm — by far the strongest element in the
+**Optical role of doublet Jy (L14+L15):** This is the most powerful sub-assembly in the front
+group. L14 alone has a focal length of only +13.70 mm — by far the strongest element in the
 lens — making it the primary converging element that bends the wide-angle ray bundle through
-the stop. The nearly symmetric biconvex shape of L4 (R₆ ≈ +23, R₇ ≈ −24) distributes the
+the stop. The nearly symmetric biconvex shape of L14 (R₆ ≈ +23, R₇ ≈ −24) distributes the
 refraction evenly across both surfaces, minimizing spherical aberration generation at f/2.
 
-L5 (f = −25.39 mm) partially cancels L4's power, leaving the Jy doublet with a net positive
-focal length. The Abbe number difference between L4 (νd = 35.25) and L5 (νd = 26.61) — a Δνd
+L15 (f = −25.39 mm) partially cancels L14's power, leaving the Jy doublet with a net positive
+focal length. The Abbe number difference between L14 (νd = 35.25) and L15 (νd = 26.61) — a Δνd
 of 8.64 — provides partial chromatic correction. While modest compared to a classical achromatic
 doublet (which typically uses Δνd > 20), this difference is still meaningful: both glasses are
-dense flints, but the *negative* element L5 uses the lower-νd (more dispersive) glass, following
+dense flints, but the *negative* element L15 uses the lower-νd (more dispersive) glass, following
 the standard achromatic doublet principle. The bulk of the system's chromatic correction is
 handled by doublet Jx in the rear group (Δνd = 25.96), not by the front group doublets.
 
-L4 is also the thickest element in the system at 5.46 mm. This substantial thickness is
+L14 is also the thickest element in the system at 5.46 mm. This substantial thickness is
 necessary to maintain structural integrity at the large clear aperture required by the f/2 speed,
 and also contributes a non-negligible thick-lens correction (thick-lens f = 13.70 mm vs.
 thin-lens f ≈ 12.95 mm, a 5.5% difference).
@@ -195,13 +195,13 @@ thin-lens f ≈ 12.95 mm, a 5.5% difference).
 ### 3.2 Aperture Stop (STO)
 
 The aperture stop is located between surfaces 8 and 10, at an axial distance of 2.27 mm after
-L5's rear surface (surface 8), with an air gap of 3.54 mm from the stop to L6's front surface
+L15's rear surface (surface 8), with an air gap of 3.54 mm from the stop to L21's front surface
 (surface 10). The patent explicitly places the STO between the front and rear groups, as stated
 in the claims. The production lens uses 10 aperture blades with a range of f/2 to f/22.
 
-### 3.3 Rear Group (Gr) — Elements L6 through L10
+### 3.3 Rear Group (Gr) — Elements L21 through L25
 
-#### L6 (Nna) — Biconcave negative (cemented to L7)
+#### L21 (Nna) — Biconcave negative (cemented to L22)
 
 | Property | Value |
 |----------|-------|
@@ -211,10 +211,10 @@ in the claims. The production lens uses 10 aperture blades with a range of f/2 t
 | nd / νd | 1.71736 / 29.50 |
 | Focal length | −12.16 mm |
 | Type | Biconcave negative |
-| Cemented | Doublet Jx with L7 |
+| Cemented | Doublet Jx with L22 |
 | Glass (catalog match) | **SF1-type** — Schott SF1 (Δνd = 0.01), OHARA S-TIH1 (Δνd = 0.01) |
 
-#### L7 (Npa) — Biconvex positive (cemented to L6)
+#### L22 (Npa) — Biconvex positive (cemented to L21)
 
 | Property | Value |
 |----------|-------|
@@ -224,28 +224,28 @@ in the claims. The production lens uses 10 aperture blades with a range of f/2 t
 | nd / νd | 1.69680 / 55.46 |
 | Focal length | +22.98 mm |
 | Type | Biconvex positive (strongly asymmetric) |
-| Cemented | Doublet Jx with L6 |
+| Cemented | Doublet Jx with L21 |
 | APD | **Probable** — lanthanum crown glasses in this region typically have positive ΔPgF |
 | Glass (catalog match) | **S-LAC14** — OHARA S-LAC14 (nd=1.69680, νd=55.41, Δνd=0.05); Schott N-LaK14 (Δnd=0.0002) |
 
-**Optical role of doublet Jx (L6+L7):** This is the first element group immediately after the
+**Optical role of doublet Jx (L21+L22):** This is the first element group immediately after the
 aperture stop and functions as the primary rear achromat. The structure mirrors a classic
-Schott-type cemented achromatic doublet: a negative flint element (L6, νd = 29.50) cemented to a
-positive crown (L7, νd = 55.46), with Δνd = 25.96 — the largest dispersion difference of any
+Schott-type cemented achromatic doublet: a negative flint element (L21, νd = 29.50) cemented to a
+positive crown (L22, νd = 55.46), with Δνd = 25.96 — the largest dispersion difference of any
 cemented pair in the system, and therefore the most chromatically active doublet.
 
-L6 has the most extreme negative power of any element in the system (f = −12.16 mm), with
-nearly symmetric biconcave surfaces (R₁₀ ≈ −17.8, R₁₁ ≈ +17.5). Combined with L7's moderately
+L21 has the most extreme negative power of any element in the system (f = −12.16 mm), with
+nearly symmetric biconcave surfaces (R₁₀ ≈ −17.8, R₁₁ ≈ +17.5). Combined with L22's moderately
 strong positive power (f = +22.98 mm), the doublet produces a net positive focal length while
 strongly correcting longitudinal chromatic aberration in the converging beam behind the stop.
 
-L7 is a probable candidate for one of the two anomalous partial dispersion (APD) elements in the
+L22 is a probable candidate for one of the two anomalous partial dispersion (APD) elements in the
 lens. Its nd/νd values closely match OHARA S-LAC14, a lanthanum crown glass. Lanthanum crowns in
 this region of the glass map (nd ≈ 1.70, νd ≈ 55) typically exhibit moderate positive anomalous
 partial dispersion (ΔPgF > 0), which would help reduce secondary spectrum in the Jx doublet
 beyond what standard glass combinations achieve.
 
-#### L8 (Npb) — Biconvex positive singlet
+#### L23 (Npb) — Biconvex positive singlet
 
 | Property | Value |
 |----------|-------|
@@ -257,15 +257,15 @@ beyond what standard glass combinations achieve.
 | Type | Biconvex positive |
 | Glass (catalog match) | **S-LAH60MQ / S-LAH64** — OHARA S-LAH60MQ (Δνd = 0.01), OHARA S-LAH64 (Δνd = 0.05) |
 
-**Optical role:** L8 is a strong positive singlet (f = +18.17 mm) that serves as the primary
+**Optical role:** L23 is a strong positive singlet (f = +18.17 mm) that serves as the primary
 image-forming element in the rear group. Its high refractive index (nd = 1.88300) keeps surface
 curvatures moderate for the power required, controlling spherical aberration. The asymmetric
 biconvex shape (R₁₃ > |R₁₄|) indicates the rear surface is more strongly curved, which is
 consistent with bending the converging beam toward the image while minimizing coma for the
 off-axis field. This element also contributes positively to the Petzval sum, which is balanced by
-the surrounding negative elements (L6, L9, L10).
+the surrounding negative elements (L21, L24, L25).
 
-#### L9 (Nnb) — Negative meniscus, image-side convex
+#### L24 (Nnb) — Negative meniscus, image-side convex
 
 | Property | Value |
 |----------|-------|
@@ -278,7 +278,7 @@ the surrounding negative elements (L6, L9, L10).
 | APD | **Possible** — glass-map position is consistent with anomalous dispersion, but no exact catalog match confirms it |
 | Glass (catalog match) | **Unconfirmed** — nd/νd does not match any standard OHARA, Schott, or HOYA glass in current catalogs. May correspond to a HOYA-specific or discontinued designation. Nearest: OHARA S-BSM15 (nd=1.62299, νd=58.14; Δnd=0.007, too distant for a match). |
 
-**Optical role:** L9 is a weak negative meniscus (f = −100 mm) that acts primarily as a field
+**Optical role:** L24 is a weak negative meniscus (f = −100 mm) that acts primarily as a field
 corrector. Its low power means it contributes little to the system's overall focal length, but
 its position — deep in the converging beam, far from the stop — gives it significant leverage
 over field curvature and astigmatism. The meniscus shape (concave toward the object, convex
@@ -287,14 +287,14 @@ the angle of incidence on the image plane — a critical consideration for range
 used on digital sensors, where steep ray angles at the image corners cause color shift and
 luminance falloff.
 
-L9 is a possible candidate for the second APD element. Its nd/νd values (1.62999 / 58.12)
+L24 is a possible candidate for the second APD element. Its nd/νd values (1.62999 / 58.12)
 place it in the barium crown / lanthanum crown transition region of the glass map, where some
 glasses exhibit positive anomalous partial dispersion. However, no exact catalog match has been
-identified, so the APD status cannot be confirmed from glass identification alone. If L9 does
-carry anomalous dispersion, it would complement L7 in forming a secondary-spectrum correction
+identified, so the APD status cannot be confirmed from glass identification alone. If L24 does
+carry anomalous dispersion, it would complement L22 in forming a secondary-spectrum correction
 subsystem across the rear group.
 
-#### L10 (Nnc) — Negative meniscus with two aspherical surfaces
+#### L25 (Nnc) — Negative meniscus with two aspherical surfaces
 
 | Property | Value |
 |----------|-------|
@@ -306,7 +306,7 @@ subsystem across the rear group.
 | Type | Negative meniscus (concave toward object, convex toward image), both surfaces aspherical |
 | Glass (catalog match) | **NBFD3 / S-LAH63Q** — HOYA NBFD3 (exact), OHARA S-LAH63Q (exact) |
 
-**Optical role:** L10 is the most optically distinctive element in the system. Despite having
+**Optical role:** L25 is the most optically distinctive element in the system. Despite having
 almost negligible power (f = −500 mm — effectively a "powered window"), it carries both of the
 lens's aspherical surfaces, making it the primary higher-order aberration corrector. Its position
 as the very last element before the image plane gives the aspheric profiles maximum leverage
@@ -327,14 +327,14 @@ keeping the aspherical departure within practical manufacturing tolerances.
 
 ## 4. Aspherical Surface Analysis
 
-Both aspherical surfaces reside on L10 (Nnc), the final element before the image plane.
+Both aspherical surfaces reside on L25 (Nnc), the final element before the image plane.
 The sag equation used in the patent is the standard form:
 
 > Z(h) = (C · h²) / [1 + √(1 − (1+K) · C² · h²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹²
 
 where C = 1/R, K is the conic constant, and h is the radial height from the optical axis.
 
-### Surface 17A (front surface of L10)
+### Surface 17A (front surface of L25)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -345,7 +345,7 @@ where C = 1/R, K is the conic constant, and h is the radial height from the opti
 | A8 | +7.76 × 10⁻⁹ |
 | A10 | −2.26 × 10⁻¹¹ |
 
-### Surface 18A (rear surface of L10)
+### Surface 18A (rear surface of L25)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -386,7 +386,7 @@ base sphere:
 Surface 17A reaches over 1 mm of departure at h = 10 mm — a heavily aspherized surface by
 photographic lens standards. The departure grows rapidly with height (roughly as h⁴ from the
 dominant A4 term). This aggressive aspherization is possible because surface 17A faces an
-air gap (it's the front surface of L10, with a 4.31 mm air space from L9), so the glass-to-air
+air gap (it's the front surface of L25, with a 4.31 mm air space from L24), so the glass-to-air
 interface can tolerate larger slope changes without causing total internal reflection.
 
 **Surface 18A** has approximately one-third the departure of 17A at equivalent heights, and
@@ -402,7 +402,7 @@ address.
 The placement of both aspheric surfaces on the last element, far from the aperture stop, means
 they operate primarily on **field aberrations** rather than on-axis aberrations:
 
-1. **Astigmatism:** The large chief-ray height at L10 gives the aspherics strong leverage over
+1. **Astigmatism:** The large chief-ray height at L25 gives the aspherics strong leverage over
    the tangential/sagittal focus difference across the field. The patent's aberration diagrams
    (Figure 3) show well-controlled astigmatism out to the full 21.63 mm image height.
 
@@ -428,26 +428,26 @@ elements:
 
 | Glass type | nd | νd | Elements | Catalog match | Role |
 |------------|------|-------|----------|---------------|------|
-| BK7-type | 1.51680 | 64.20 | L1 | HOYA BSC7 / Schott N-BK7 | Low-cost crown for front meniscus |
-| SF2-type | 1.64769 | 33.84 | L2 | Schott SF2 / HOYA E-F3 | Dense flint for Jw doublet |
-| S-LAH58 | 1.91082 | 35.25 | L3, L4 | OHARA S-LAH58 | Ultra-high-index LaF for power elements |
-| SF14-type | 1.76182 | 26.61 | L5 | HOYA E-FD15 / Schott N-SF14 | Very dense flint for Jy doublet |
-| SF1-type | 1.71736 | 29.50 | L6 | Schott SF1 / OHARA S-TIH1 | Dense flint for Jx achromat |
-| S-LAC14 (probable APD) | 1.69680 | 55.46 | L7 | OHARA S-LAC14 (Δνd=0.05) | LaC crown, probable anomalous dispersion |
-| S-LAH60MQ | 1.88300 | 40.81 | L8 | OHARA S-LAH60MQ / S-LAH64 | High-index LaF for rear positive |
-| Unconfirmed (possible APD) | 1.62999 | 58.12 | L9 | No exact catalog match found | BaK/LaC region crown, possible anomalous dispersion |
-| NBFD3 / S-LAH63Q | 1.80610 | 40.73 | L10 | HOYA NBFD3 / OHARA S-LAH63Q | High-index LaF for aspheric element |
+| BK7-type | 1.51680 | 64.20 | L11 | HOYA BSC7 / Schott N-BK7 | Low-cost crown for front meniscus |
+| SF2-type | 1.64769 | 33.84 | L12 | Schott SF2 / HOYA E-F3 | Dense flint for Jw doublet |
+| S-LAH58 | 1.91082 | 35.25 | L13, L14 | OHARA S-LAH58 | Ultra-high-index LaF for power elements |
+| SF14-type | 1.76182 | 26.61 | L15 | HOYA E-FD15 / Schott N-SF14 | Very dense flint for Jy doublet |
+| SF1-type | 1.71736 | 29.50 | L21 | Schott SF1 / OHARA S-TIH1 | Dense flint for Jx achromat |
+| S-LAC14 (probable APD) | 1.69680 | 55.46 | L22 | OHARA S-LAC14 (Δνd=0.05) | LaC crown, probable anomalous dispersion |
+| S-LAH60MQ | 1.88300 | 40.81 | L23 | OHARA S-LAH60MQ / S-LAH64 | High-index LaF for rear positive |
+| Unconfirmed (possible APD) | 1.62999 | 58.12 | L24 | No exact catalog match found | BaK/LaC region crown, possible anomalous dispersion |
+| NBFD3 / S-LAH63Q | 1.80610 | 40.73 | L25 | HOYA NBFD3 / OHARA S-LAH63Q | High-index LaF for aspheric element |
 
 Two features of the glass selection are noteworthy:
 
-**Heavy use of ultra-high-index lanthanum glasses:** Three elements (L3, L4, L8) use glasses with
-nd > 1.88, and L10 uses nd = 1.806. These extreme refractive indices allow the designers to
+**Heavy use of ultra-high-index lanthanum glasses:** Three elements (L13, L14, L23) use glasses with
+nd > 1.88, and L25 uses nd = 1.806. These extreme refractive indices allow the designers to
 achieve the necessary optical power within a compact total track (LT/fa = 2.11) while keeping
 surface curvatures moderate enough to control higher-order aberrations at f/2. The trade-off is
 cost — S-LAH58 (nd = 1.91082) is among the most expensive optical glasses in current production.
 
-**Two anomalous partial dispersion elements (L7, L9 — probable):** The manufacturer specifies
-two APD elements. L7 and L9 are the most likely candidates based on their glass-map positions
+**Two anomalous partial dispersion elements (L22, L24 — probable):** The manufacturer specifies
+two APD elements. L22 and L24 are the most likely candidates based on their glass-map positions
 in the lanthanum crown / barium crown region, where positive anomalous partial dispersion
 (ΔPgF > 0) is common. If confirmed, their anomalous dispersion would help correct secondary
 spectrum — the residual longitudinal chromatic aberration that persists after primary
@@ -455,8 +455,8 @@ achromatization with ordinary glass pairs. This is consistent with the lens's re
 excellent color rendition and minimal purple fringing at f/2.
 
 **Note on evidence basis:** The APD identification is *speculative*, not confirmed by exact
-catalog matching. L7 closely matches OHARA S-LAC14 (a lanthanum crown likely to have positive
-ΔPgF), but L9's nd/νd pair (1.62999 / 58.12) does not correspond to any glass in current OHARA,
+catalog matching. L22 closely matches OHARA S-LAC14 (a lanthanum crown likely to have positive
+ΔPgF), but L24's nd/νd pair (1.62999 / 58.12) does not correspond to any glass in current OHARA,
 Schott, or HOYA catalogs — it may be a HOYA-proprietary type, a discontinued designation, or a
 glass from another supplier (e.g., Sumita, Hikari). The manufacturer's claim of two APD elements
 is taken at face value, but the specific identification of *which* elements carry the anomalous
@@ -551,8 +551,8 @@ it dominates aberration generation.
 
 | Element | nd | Status |
 |---------|------|--------|
-| L3 (Mpa, i=4) | 1.91082 | ✓ Satisfied |
-| L4 (Mpb, i=6) | 1.91082 | ✓ Satisfied |
+| L13 (Mpa, i=4) | 1.91082 | ✓ Satisfied |
+| L14 (Mpb, i=6) | 1.91082 | ✓ Satisfied |
 
 This condition requires that both positive elements in the front group use high-index glass. The
 patent states that violating this condition (nd ≤ 1.83) would lead to overall degradation of

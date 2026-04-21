@@ -44,14 +44,14 @@ const LENS_DATA = {
 
   /* ── Elements ──
    *  11 physical glass elements in 8 air-spaced groups (4 functional macro-groups).
-   *  Three cemented doublets: L4 (G2), L6 (G3), L8 (G4).
+   *  Three cemented doublets: D1 (L23+L24 in G2), D2 (L31+L32 in G3), D3 (L41+L42 in G4).
    *  Two glasses reused: L2/L7 share nd=1.77279/νd=49.4; L5/L8a share nd=1.80411/νd=46.5.
    */
   elements: [
     // ── G1: Negative front group (1 element, 1 group) ──
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.5168,
@@ -65,7 +65,7 @@ const LENS_DATA = {
     // ── G2: Main positive group (5 elements, 4 groups) ──
     {
       id: 2,
-      name: "L2",
+      name: "L21",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.77279,
@@ -77,7 +77,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L22",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.48749,
@@ -89,7 +89,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4a",
+      name: "L23",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.5186,
@@ -98,11 +98,11 @@ const LENS_DATA = {
       glass: "Phosphate crown (no exact modern catalog match; 1990s-era type)",
       apd: false,
       role: "Front element of cemented achromatic doublet L4. Thick meniscus (concave to object); high Abbe number provides low-dispersion component of the chromatic corrector.",
-      cemented: "L4",
+      cemented: "D1",
     },
     {
       id: 5,
-      name: "L4b",
+      name: "L24",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.51454,
@@ -111,11 +111,11 @@ const LENS_DATA = {
       glass: "Crown-flint boundary (no exact modern catalog match; 1990s-era type)",
       apd: false,
       role: "Rear element of cemented doublet L4. Nearly index-matched to L4a (Δnd=0.004) to suppress monochromatic junction aberrations; dispersion difference (Δνd=15.3) provides achromatic correction for G2.",
-      cemented: "L4",
+      cemented: "D1",
     },
     {
       id: 6,
-      name: "L5",
+      name: "L25",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.80411,
@@ -129,7 +129,7 @@ const LENS_DATA = {
     // ── G3: Negative correction group (3 elements, 2 groups) ──
     {
       id: 7,
-      name: "L6a",
+      name: "L31",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.7481,
@@ -138,11 +138,11 @@ const LENS_DATA = {
       glass: "LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)",
       apd: false,
       role: "Front element of cemented achromatic doublet L6. Weakly positive meniscus (concave to object); lanthanum crown paired with dense flint L6b for chromatic correction behind stop.",
-      cemented: "L6",
+      cemented: "D2",
     },
     {
       id: 8,
-      name: "L6b",
+      name: "L32",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.7552,
@@ -151,11 +151,11 @@ const LENS_DATA = {
       glass: "Dense flint (near OHARA S-TIH4, nd=1.75520, νd=27.53)",
       apd: false,
       role: "Rear element of cemented doublet L6. Nearly index-matched to L6a (Δnd=0.007) with large Δνd=24.7 for achromatic negative power. Controls axial and lateral chromatic aberration in the correction zone behind stop.",
-      cemented: "L6",
+      cemented: "D2",
     },
     {
       id: 9,
-      name: "L7",
+      name: "L33",
       label: "Element 9",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.77279,
@@ -169,7 +169,7 @@ const LENS_DATA = {
     // ── G4: Final positive group (2 elements, 1 group) ──
     {
       id: 10,
-      name: "L8a",
+      name: "L41",
       label: "Element 10",
       type: "Plano-Convex Positive",
       nd: 1.80411,
@@ -178,11 +178,11 @@ const LENS_DATA = {
       glass: "LaH type (same as L5; near OHARA S-LAH55)",
       apd: false,
       role: "Front element of cemented power/corrector doublet L8. Nearly flat front (R₁=723 mm), strongly curved rear. Dominant converging power of G4 (f=+25.5 mm); high-index lanthanum glass reduces surface curvatures.",
-      cemented: "L8",
+      cemented: "D3",
     },
     {
       id: 11,
-      name: "L8b",
+      name: "L42",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.86074,
@@ -191,7 +191,7 @@ const LENS_DATA = {
       glass: "Very dense flint (no exact modern catalog match; possibly Sumita or Nikon-specified 1990s melt)",
       apd: false,
       role: "Rear element of cemented doublet L8. Very high-index, very dispersive flint (Δnd=0.057 at junction) provides both chromatic and monochromatic correction. Controls distortion and lateral color while maintaining back focus per patent text.",
-      cemented: "L8",
+      cemented: "D3",
     },
   ],
 
@@ -283,9 +283,9 @@ const LENS_DATA = {
     { text: "G4 (+)", fromSurface: "17", toSurface: "19" },
   ],
   doublets: [
-    { text: "L4", fromSurface: "7", toSurface: "9" },
-    { text: "L6", fromSurface: "12", toSurface: "14" },
-    { text: "L8", fromSurface: "17", toSurface: "19" },
+    { text: "D1", fromSurface: "7", toSurface: "9" },
+    { text: "D2", fromSurface: "12", toSurface: "14" },
+    { text: "D3", fromSurface: "17", toSurface: "19" },
   ],
 
   /* ── Focus configuration ── */

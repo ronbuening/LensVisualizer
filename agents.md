@@ -87,6 +87,9 @@ Read the relevant file before starting work on that area:
 - Helper functions accept lens object `L` as explicit parameter — no module-level state
 - `useMemo`/`useCallback` for expensive computations and event handlers
 - Auto-registration — lens data files discovered via `import.meta.glob`
+- **Lens diagram naming** — diagram group annotations use `G1`, `G2`, ... from front to rear; element
+  `name` values use `L{groupNumber}{elementNumberWithinGroup}` such as `L11`, `L12`, `L21`. Keep
+  surface labels separate and stable because they key `asph`, `var`, `varLabels`, `groups`, and `doublets`.
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
@@ -101,7 +104,8 @@ Read the relevant file before starting work on that area:
 ## Adding a New Lens
 
 1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
-2. Fill in the lens data following the template's field documentation
+2. Fill in the lens data following the template's field documentation, including the `G#` group and `L##`
+   element naming convention
 3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
 4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
 

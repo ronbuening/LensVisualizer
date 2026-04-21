@@ -54,7 +54,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.62286,
@@ -66,7 +66,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.62286,
@@ -78,7 +78,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L21",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.79227,
@@ -91,7 +91,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L22",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.81265,
@@ -104,7 +104,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L31",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.62286,
@@ -116,7 +116,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L32",
       label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.72823,
@@ -129,7 +129,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L33",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.81265,
@@ -142,7 +142,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L34",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.62408,
@@ -191,9 +191,9 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT NEG (f₁≈−36)", fromSurface: "1", toSurface: "4" },
-    { text: "POS DOUBLET (f₂≈+20)", fromSurface: "5", toSurface: "7" },
-    { text: "REAR NEG (f₃≈−105)", fromSurface: "8", toSurface: "14" },
+    { text: "G1 (FRONT NEG (f₁≈−36))", fromSurface: "1", toSurface: "4" },
+    { text: "G2 (POS DOUBLET (f₂≈+20))", fromSurface: "5", toSurface: "7" },
+    { text: "G3 (REAR NEG (f₃≈−105))", fromSurface: "8", toSurface: "14" },
   ],
 
   doublets: [

@@ -53,7 +53,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.804,
@@ -65,7 +65,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.6779,
@@ -77,7 +77,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.741,
@@ -90,7 +90,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.55389,
@@ -103,7 +103,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L15",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.49782,
@@ -116,7 +116,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L16",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.8044,
@@ -128,7 +128,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L21",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -141,7 +141,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L22",
       label: "Element 8",
       type: "Positive Meniscus",
       nd: 1.62374,
@@ -154,7 +154,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L23",
       label: "Element 9",
       type: "Positive Meniscus",
       nd: 1.5168,
@@ -166,7 +166,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L24",
       label: "Element 10",
       type: "Biconcave Negative",
       nd: 1.83481,
@@ -178,7 +178,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L25",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.57099,
@@ -190,7 +190,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L26",
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 1.772789,
@@ -203,7 +203,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L27",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -217,7 +217,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L28",
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -230,7 +230,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L29",
       label: "Element 15",
       type: "Biconvex Positive (1× Asph)",
       nd: 1.58913,

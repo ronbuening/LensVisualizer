@@ -1,11 +1,11 @@
 # NIKON NIKKOR Z 58mm f/0.95 S Noct — Optical Design Analysis
 
-**Patent:** WO2019/229849 A1 (JPWO2019229849A1)  
-**PCT Filed:** 29 May 2018 (PCT/JP2018/020552)  
-**Published:** 5 December 2019  
-**Applicant:** Nikon Corporation  
-**Inventors:** Keisuke Tsubonoya, Sōki Harada, Toshinori Take  
-**Production Design:** Example 1  
+**Patent:** WO2019/229849 A1 (JPWO2019229849A1)
+**PCT Filed:** 29 May 2018 (PCT/JP2018/020552)
+**Published:** 5 December 2019
+**Applicant:** Nikon Corporation
+**Inventors:** Keisuke Tsubonoya, Sōki Harada, Toshinori Take
+**Production Design:** Example 1
 
 ---
 
@@ -37,7 +37,7 @@ The field angle discrepancy (39.96° vs. 40°50' = 40.83°) reflects a differenc
 The design is structured as a modified double-Gauss variant with an extended front correction group, organized into two principal assemblies:
 
 - **Front Group GF** (positive, f = +75.60 mm): Surfaces 1–22. Contains all 4 ED elements, the aperture stop, and both front-group aspherical surfaces. Moves as a unit during focusing.
-- **Rear Group GR** (weakly positive, f = +294.37 mm): Surfaces 23–28. Fixed during focus. Functions as a field-flattening and telecentric correction assembly.
+- **Rear Group G3** (weakly positive, f = +294.37 mm): Surfaces 23–28. Fixed during focus. Functions as a field-flattening and telecentric correction assembly.
 
 The front group is itself subdivided:
 
@@ -345,7 +345,7 @@ The aperture stop is positioned within the air lens La2, between the pre-stop do
 
 **Glass:** Same high-dispersion flint as L24, completing the quasi-symmetric arrangement.
 
-**Optical role:** L29 is the last element of the front group GF. Together with L28, it forms doublet De — a cemented negative lens (f ≈ −230 mm per paraxial trace), consistent with the patent's designation 接合負レンズ. Its strong negative power (f ≈ −41 mm) diverges the beam as it exits toward the rear group, and the air gap D22 (the variable focus spacing) separates it from L31. This element's rear surface (R = +55.510 mm, concave toward the image) combined with L31's front surface (R = +71.413 mm, convex toward the object) forms the transition region between GF and GR. By deliberately under-correcting certain aberrations in GF's rear elements, the design creates a residual that the fixed rear group GR can compensate — a strategy that maintains good correction across the focus range.
+**Optical role:** L29 is the last element of the front group GF. Together with L28, it forms doublet De — a cemented negative lens (f ≈ −230 mm per paraxial trace), consistent with the patent's designation 接合負レンズ. Its strong negative power (f ≈ −41 mm) diverges the beam as it exits toward the rear group, and the air gap D22 (the variable focus spacing) separates it from L31. This element's rear surface (R = +55.510 mm, concave toward the image) combined with L31's front surface (R = +71.413 mm, convex toward the object) forms the transition region between GF and GR. By deliberately under-correcting certain aberrations in GF's rear elements, the design creates a residual that the fixed rear group G3 can compensate — a strategy that maintains good correction across the focus range.
 
 ---
 
@@ -362,7 +362,7 @@ The aperture stop is positioned within the air lens La2, between the pre-stop do
 
 **Glass:** OHARA S-LAH58 (same as L27 and L33).
 
-**Optical role:** L31 is the positive element of the first rear-group doublet Df. The rear group GR has weak overall positive power (f = +294 mm), and L31 provides the primary converging contribution. Its role is primarily one of field correction — it helps flatten the Petzval surface and correct residual astigmatism and field curvature from the front group, while also contributing to telecentricity (ensuring the chief ray exits nearly perpendicular to the sensor).
+**Optical role:** L31 is the positive element of the first rear-group doublet Df. The rear group G3 has weak overall positive power (f = +294 mm), and L31 provides the primary converging contribution. Its role is primarily one of field correction — it helps flatten the Petzval surface and correct residual astigmatism and field curvature from the front group, while also contributing to telecentricity (ensuring the chief ray exits nearly perpendicular to the sensor).
 
 ---
 
@@ -555,7 +555,7 @@ The Noct focuses by **unit extension of the entire front group GF**. This is a m
 | Close focus distance | 0.5 m (from focal plane) |
 | Reproduction ratio at close focus | 1:5.15 (β = −0.194) |
 
-In unit focus, all 13 elements of GF (surfaces 1–22) translate forward as a rigid body along the optical axis. The rear group GR (surfaces 23–28) remains fixed relative to the camera mount. This is the reason the lens barrel visibly extends during close-focus operation — the inner barrel carrying GF physically moves forward by up to 18.6 mm.
+In unit focus, all 13 elements of GF (surfaces 1–22) translate forward as a rigid body along the optical axis. The rear group G3 (surfaces 23–28) remains fixed relative to the camera mount. This is the reason the lens barrel visibly extends during close-focus operation — the inner barrel carrying GF physically moves forward by up to 18.6 mm.
 
 **Why unit focus?** At f/0.95, the front group's massive aperture (estimated entrance pupil SD ≈ 30.4 mm) and 13 elements create a package weighing well over a kilogram of glass alone. Nikon chose unit focus for several reasons:
 

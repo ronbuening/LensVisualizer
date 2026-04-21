@@ -1,11 +1,11 @@
 # Nikon AF-S NIKKOR 105mm f/1.4E ED — Patent Optical Analysis
 
-**Patent:** WO2019/116563 A1 — Example 3 (第3実施例)  
-**Japanese national phase:** JPWO2019116563A1  
-**Title:** 光学系、光学機器、および光学系の製造方法 (Optical System, Optical Apparatus, and Manufacturing Method of Optical System)  
-**Filing date:** 15 December 2017 (PCT/JP2017/045183)  
-**Published:** 20 June 2019  
-**Applicant:** Nikon Corporation (株式会社ニコン)  
+**Patent:** WO2019/116563 A1 — Example 3 (第3実施例)
+**Japanese national phase:** JPWO2019116563A1
+**Title:** 光学系、光学機器、および光学系の製造方法 (Optical System, Optical Apparatus, and Manufacturing Method of Optical System)
+**Filing date:** 15 December 2017 (PCT/JP2017/045183)
+**Published:** 20 June 2019
+**Applicant:** Nikon Corporation (株式会社ニコン)
 **Inventors:** Masashi Yamashita (山下 雅史), Tomoki Ito (伊藤 智希), Hiroshi Yabumoto, Hiroshi Yamamoto, Tetsushi Miwa, Keisuke Tsubonoya, Ayumu Makita, Takeshi Uehara
 
 ---

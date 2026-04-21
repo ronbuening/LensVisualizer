@@ -227,8 +227,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (GF)", fromSurface: "1", toSurface: "8" },
-    { text: "REAR (GR)", fromSurface: "10A", toSurface: "15" },
+    { text: "G1 (FRONT GF)", fromSurface: "1", toSurface: "8" },
+    { text: "G2 (REAR GR)", fromSurface: "10A", toSurface: "15" },
   ],
   doublets: [{ text: "T1", fromSurface: "12", toSurface: "15" }],
 

@@ -262,7 +262,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L40",
+      name: "L310",
       label: "Element 16",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.85108,

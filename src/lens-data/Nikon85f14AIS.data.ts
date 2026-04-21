@@ -45,12 +45,12 @@ const LENS_DATA = {
   groupCount: 5,
 
   /* ── Elements ──
-   *  7 elements in 5 groups: L1, L2, L3(a+b cemented), L4(a+b cemented), L5
+   *  7 elements in 5 air-spaced groups: L11, L12, D1 (L13+L14), D2 (L21+L22), L23.
    */
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.77279,
@@ -62,7 +62,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.6968,
@@ -74,7 +74,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3a",
+      name: "L13",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.7847,
@@ -82,12 +82,12 @@ const LENS_DATA = {
       fl: 89.0,
       glass: "Dense flint (HOYA FD110 / Schott SF11 class, 785-261)",
       apd: false,
-      cemented: "L3",
+      cemented: "D1",
       role: "Front element of cemented negative doublet L3. Dense flint chosen for g-line spherical aberration control via patent conditions (4)–(6).",
     },
     {
       id: 4,
-      name: "L3b",
+      name: "L14",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.7552,
@@ -95,12 +95,12 @@ const LENS_DATA = {
       fl: -26.1,
       glass: "Dense flint (HOYA E-FD4 / Schott SF4 class, 755-275)",
       apd: false,
-      cemented: "L3",
+      cemented: "D1",
       role: "Rear element of L3 doublet. Nearly matched Abbe number to L3a (Δvd=1.4) creates wavelength-selective negative spherical aberration at the cemented surface, counteracting g-line over-correction. Rear surface r7 (+23.6 mm) is the steepest in the system — the Sonnar 'stopper surface'.",
     },
     {
       id: 5,
-      name: "L4a",
+      name: "L21",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.58144,
@@ -108,12 +108,12 @@ const LENS_DATA = {
       fl: -38.8,
       glass: "Light flint (HOYA E-FL5 / Schott LF5 class, 581-408)",
       apd: false,
-      cemented: "L4",
+      cemented: "D2",
       role: "Front (negative) element of rear doublet L4. Low-index light flint; the concave-concave shape provides the rear Gauss negative corrector function.",
     },
     {
       id: 6,
-      name: "L4b",
+      name: "L22",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.74443,
@@ -121,12 +121,12 @@ const LENS_DATA = {
       fl: 35.7,
       glass: "Lanthanum flint (HOYA NBF1 / OHARA S-LAM60 class, 744-494)",
       apd: false,
-      cemented: "L4",
+      cemented: "D2",
       role: "Rear (positive) element of L4. Same glass as L5. Doublet net power is very weak positive (fl ≈ +448 mm); L4 functions primarily as an aberration corrector.",
     },
     {
       id: 7,
-      name: "L5",
+      name: "L23",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.74443,
@@ -183,13 +183,13 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (Sonnar hybrid)", fromSurface: "1", toSurface: "7" },
-    { text: "REAR (Gauss)", fromSurface: "8", toSurface: "12" },
+    { text: "G1 (FRONT Sonnar hybrid)", fromSurface: "1", toSurface: "7" },
+    { text: "G2 (REAR Gauss)", fromSurface: "8", toSurface: "12" },
   ],
 
   doublets: [
-    { text: "L3", fromSurface: "5", toSurface: "7" },
-    { text: "L4", fromSurface: "8", toSurface: "10" },
+    { text: "D1", fromSurface: "5", toSurface: "7" },
+    { text: "D2", fromSurface: "8", toSurface: "10" },
   ],
 
   /* ── Focus configuration ── */

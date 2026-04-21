@@ -2,9 +2,9 @@
 
 **Patent WO2020/105104 A1 — Example 1 (Nikon Corporation)**
 
-**Inventor:** Ken Uehara  
-**Filed:** November 20, 2018 (PCT/JP2018/042763)  
-**Published:** May 28, 2020  
+**Inventor:** Ken Uehara
+**Filed:** November 20, 2018 (PCT/JP2018/042763)
+**Published:** May 28, 2020
 
 ---
 

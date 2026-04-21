@@ -2,7 +2,7 @@
 
 ## Patent & Design Overview
 
-US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I. Betensky and assigned to Ponder & Best, Inc. (the corporate parent of the Vivitar brand) of Santa Monica, California. The patent discloses five numerical embodiments of a telephoto lens family characterized by a movable front objective group and a stationary rear "correcting" or "compensating" element fixed relative to the film plane. Example 4 (Table IV, illustrated in FIG. 5) corresponds to the production Vivitar Series 1 200mm f/3.0 VMC Auto Telephoto, a six-element, six-group prime lens manufactured by Komine Co., Ltd. of Japan. The lens was part of the original Series 1 launch lineup and was widely available by 1974.
+US Patent 3,942,876, "Telephoto Lens," was granted on March 9, 1976, to Ellis I. Betensky and assigned to Ponder & Best, Inc. (the corporate parent of the Vivitar brand) of Santa Monica, California. The patent discloses five numerical embodiments of a telephoto lens family characterized by a movable front G1 group and a stationary rear "correcting" or "compensating" element fixed relative to the film plane. Example 4 (Table IV, illustrated in FIG. 5) corresponds to the production Vivitar Series 1 200mm f/3.0 VMC Auto Telephoto, a six-element, six-group prime lens manufactured by Komine Co., Ltd. of Japan. The lens was part of the original Series 1 launch lineup and was widely available by 1974.
 
 **Key marketed specifications:**
 
@@ -26,18 +26,18 @@ Notably, the identical value "−1567.0" appears in both the Table IV specificat
 
 | Surface | Radius (mm) | Thickness (mm) | n_d | Element |
 |---------|-------------|----------------|---------|---------|
-| R1 | 56.828 | 12.00 | 1.56873 | L1 |
+| R1 | 56.828 | 12.00 | 1.56873 | L11 |
 | R2 | 3586.0 | 0.50 | 1.0 (air) | — |
-| R3 | 62.384 | 11.30 | 1.51680 | L2 |
+| R3 | 62.384 | 11.30 | 1.51680 | L12 |
 | R4 | 428.03 | 5.46 | 1.0 (air) | — |
-| R5 | −254.83 | 4.13 | 1.80518 | L3 |
+| R5 | −254.83 | 4.13 | 1.80518 | L13 |
 | R6 | 64.06 | 29.21 | 1.0 (air) | — |
 | *STO* | *(in gap)* | — | — | — |
-| R7 | −567.0 † | 5.61 | 1.80518 | L4 |
+| R7 | −567.0 † | 5.61 | 1.80518 | L14 |
 | R8 | −54.70 | 5.24 | 1.0 (air) | — |
-| R9 | −38.14 | 1.85 | 1.71270 | L5 |
+| R9 | −38.14 | 1.85 | 1.71270 | L15 |
 | R10 | −157.93 | 3.20 → 33.80 ‡ | 1.0 (air) | — |
-| R11 | 71.98 | 2.00 | 1.57957 | L6 |
+| R11 | 71.98 | 2.00 | 1.57957 | L21 |
 | R12 | 47.56 | 75.50 (BFL) | 1.0 (air) | — |
 
 † Corrected from patent's printed value of −1567.0; see discussion above. The same value appears in both Table IV and Claim 6.
@@ -56,7 +56,7 @@ All values computed via ABCD matrix paraxial ray trace with the corrected R7 = �
 | BFL | 75.5 mm | 77.5 mm |
 | FVD | 156.0 mm | 157.9 mm |
 | Telephoto ratio (FVD/EFL) | 0.77 | 0.79 |
-| Corrector EFL (L6) | −249.4 mm | −240.4 mm |
+| Corrector EFL (L21) | −249.4 mm | −240.4 mm |
 | Focusing travel (to 2,372 mm) | 11.8 mm | 11.8 mm |
 | FT / EFL | 0.058 | 0.059 |
 | Petzval sum | −1.29 × 10⁻³ mm⁻¹ | — |
@@ -77,7 +77,7 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 
 ## Element-by-Element Analysis
 
-### L1 — Front Positive Meniscus
+### L11 — Front Positive Meniscus
 
 | Property | Value |
 |----------|-------|
@@ -89,9 +89,9 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 
 **Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** (n_d = 1.56873, ν_d = 63.16), a phosphate-silicate crown. Equivalents include OHARA S-PHM51 and Sumita K-PSKn2. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families.
 
-**Optical role:** L1 is the leading positive element of the front group. Its strongly convex front surface (R1 = +56.828) provides the dominant positive refractive power, while the nearly flat rear surface (R2 = +3586.0, essentially plano) minimizes spherical aberration contribution from the second surface. The low dispersion (ν_d = 63.1) keeps L1's contribution to longitudinal chromatic aberration modest. At f/3 with a ~67 mm entrance pupil, L1 carries the largest clear aperture in the system and is the primary light-gathering element.
+**Optical role:** L11 is the leading positive element of the front group. Its strongly convex front surface (R1 = +56.828) provides the dominant positive refractive power, while the nearly flat rear surface (R2 = +3586.0, essentially plano) minimizes spherical aberration contribution from the second surface. The low dispersion (ν_d = 63.1) keeps L11's contribution to longitudinal chromatic aberration modest. At f/3 with a ~67 mm entrance pupil, L11 carries the largest clear aperture in the system and is the primary light-gathering element.
 
-### L2 — Second Positive Meniscus
+### L12 — Second Positive Meniscus
 
 | Property | Value |
 |----------|-------|
@@ -103,9 +103,9 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 
 **Glass identification:** Six-digit code **517642**. This matches HOYA BSC7 (n_d = 1.51680, ν_d = 64.2) exactly. It is the HOYA designation for the ubiquitous borosilicate crown glass family also known as Schott N-BK7 (n_d = 1.51633, ν_d = 64.14) and OHARA S-BSL7. The small residual in n_d (Δn_d = 0.00047 vs. Schott) is within the range of manufacturer variation. BK7/BSC7 is the workhorse optical glass of the industry — inexpensive, chemically stable, easy to polish, and well-characterized.
 
-**Optical role:** L2 shares the positive power of the front group with L1. Together, L1 and L2 form an air-spaced positive doublet with a combined focal length of approximately 60.5 mm. The moderate curvatures and the 0.5 mm air space between L1 and L2 allow for some correction of spherical aberration and coma generated by the front group. The use of a low-cost, low-index glass for L2 is a pragmatic design choice — L2 operates at a lower marginal ray height than L1 and contributes less to higher-order aberrations.
+**Optical role:** L12 shares the positive power of the front group with L11. Together, L11 and L12 form an air-spaced positive doublet with a combined focal length of approximately 60.5 mm. The moderate curvatures and the 0.5 mm air space between L11 and L12 allow for some correction of spherical aberration and coma generated by the front group. The use of a low-cost, low-index glass for L12 is a pragmatic design choice — L12 operates at a lower marginal ray height than L11 and contributes less to higher-order aberrations.
 
-### L3 — Negative Diverging Element
+### L13 — Negative Diverging Element
 
 | Property | Value |
 |----------|-------|
@@ -117,11 +117,11 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 
 **Glass identification:** Six-digit code **805255**. This is an exact match to the Schott **SF6** family (n_d = 1.80518, ν_d = 25.43), one of the highest-index, highest-dispersion conventional dense flint glasses. Equivalents: OHARA S-TIH6, HOYA FD60. SF6 is a lead-based dense flint (now largely replaced by lead-free N-SF6 in modern catalogs).
 
-**Optical role:** L3 is the critical negative element of the Sonnar-type telephoto configuration. It is the strongest single element in the system (fl = −63.2 mm), and its positioning after the front positive group creates the telephoto effect that makes the physical length shorter than the focal length. The high-dispersion SF6 glass is deliberately chosen: paired against the low-dispersion crowns of L1 and L2, it provides chromatic aberration correction for the front group. L3's strong rear surface (R6 = +64.06 mm) is the dominant source of the element's diverging power.
+**Optical role:** L13 is the critical negative element of the Sonnar-type telephoto configuration. It is the strongest single element in the system (fl = −63.2 mm), and its positioning after the front positive group creates the telephoto effect that makes the physical length shorter than the focal length. The high-dispersion SF6 glass is deliberately chosen: paired against the low-dispersion crowns of L11 and L12, it provides chromatic aberration correction for the front group. L13's strong rear surface (R6 = +64.06 mm) is the dominant source of the element's diverging power.
 
-The patent text confirms: "the third element is negative with a concave rear surface followed by the aperture stop." The aperture stop is positioned in the 29.21 mm air gap following R6, between L3 and L4.
+The patent text confirms: "the third element is negative with a concave rear surface followed by the aperture stop." The aperture stop is positioned in the 29.21 mm air gap following R6, between L13 and L14.
 
-### L4 — Rear Positive Meniscus
+### L14 — Rear Positive Meniscus
 
 | Property | Value |
 |----------|-------|
@@ -131,13 +131,13 @@ The patent text confirms: "the third element is negative with a concave rear sur
 | Focal length | +74.8 mm |
 | Shape | Positive meniscus, concave toward object (convex rear) |
 
-**Glass identification:** Identical to L3 — Schott **SF6** / OHARA S-TIH6 / HOYA FD60. The use of the same high-dispersion dense flint in both L3 (negative) and L4 (positive) is a characteristic feature of Sonnar-type designs. It is cost-effective (single glass type for two elements) and allows both elements to be ground from the same melt, ensuring precise index matching.
+**Glass identification:** Identical to L13 — Schott **SF6** / OHARA S-TIH6 / HOYA FD60. The use of the same high-dispersion dense flint in both L13 (negative) and L14 (positive) is a characteristic feature of Sonnar-type designs. It is cost-effective (single glass type for two elements) and allows both elements to be ground from the same melt, ensuring precise index matching.
 
-**Optical role:** L4 is the first element after the aperture stop and provides positive power to reconverge the beam toward the image. Its nearly flat front surface (R7 = −567.0, very weakly concave) means almost all of its refractive power comes from the strongly curved rear surface R8 = −54.70. The patent describes L4 as "positive with a convex rear surface," which is confirmed by the sign convention: R8 < 0 means the surface is convex when viewed from the image side.
+**Optical role:** L14 is the first element after the aperture stop and provides positive power to reconverge the beam toward the image. Its nearly flat front surface (R7 = −567.0, very weakly concave) means almost all of its refractive power comes from the strongly curved rear surface R8 = −54.70. The patent describes L14 as "positive with a convex rear surface," which is confirmed by the sign convention: R8 < 0 means the surface is convex when viewed from the image side.
 
-L4 operates as the leading element of the rear positive group. Despite using a high-dispersion glass, L4's net chromatic contribution is moderated by being paired with L5 (moderate-dispersion, opposite sign of power). The remaining chromatic balance is achieved against the front group's crown-flint structure.
+L14 operates as the leading element of the rear positive group. Despite using a high-dispersion glass, L14's net chromatic contribution is moderated by being paired with L15 (moderate-dispersion, opposite sign of power). The remaining chromatic balance is achieved against the front group's crown-flint structure.
 
-### L5 — Negative Meniscus
+### L15 — Negative Meniscus
 
 | Property | Value |
 |----------|-------|
@@ -149,13 +149,13 @@ L4 operates as the leading element of the rear positive group. Despite using a h
 
 **Glass identification:** Six-digit code **713433**. This glass has **no exact match** in any current major glass catalog (Schott, OHARA, HOYA, HIKARI, Sumita, or CDGM). On the Abbe diagram, the code 713-433 falls in a sparsely populated region between the lanthanum flint (LaF) family — which at this index would have ν_d ≈ 48–54 — and the barium dense flint (BaSF) family — which typically reaches only nd ≈ 1.70 at this dispersion. The nearest standard types are Schott N-BASF64 (nd = 1.704, ν_d = 39.4; Δnd = +0.009, Δν_d = −3.9) and HOYA LAF3 / Schott N-LAF3 (nd ≈ 1.717, ν_d ≈ 48.0; Δν_d = +4.7) — neither is close. This is most likely a **discontinued Japanese glass type** that was available to Komine in the 1970s, or a glass whose properties were slightly perturbed in the patent filing for proprietary protection. The production lens may have used a nearby catalog equivalent. The relatively high index with moderate dispersion suggests a barium- or lanthanum-containing composition.
 
-**Optical role:** L5 is the "fifth element" referenced in the patent as "negative with a convex rear surface." It is the last element of the movable objective group and works in concert with L4 to form the rear positive subgroup. Although individually negative (fl = −71.0 mm), L4 + L5 together form a nearly afocal pair (combined thick-lens focal length ≈ 7,083 mm, or +0.14 diopters), meaning this pair contributes very little net refractive power but plays a crucial role in correcting field curvature.
+**Optical role:** L15 is the "fifth element" referenced in the patent as "negative with a convex rear surface." It is the last element of the movable G1 group and works in concert with L14 to form the rear positive subgroup. Although individually negative (fl = −71.0 mm), L14 + L15 together form a nearly afocal pair (combined thick-lens focal length ≈ 7,083 mm, or +0.14 diopters), meaning this pair contributes very little net refractive power but plays a crucial role in correcting field curvature.
 
-The mechanism is the index asymmetry between L4 and L5. Each element's Petzval contribution is proportional to φ/n (power divided by refractive index). L4 uses SF6 (nd = 1.805) and L5 uses the lower-index 713433 glass (nd = 1.713). Because L5's index is lower, its Petzval contribution per unit of power is *larger* than L4's. Numerically: L4 contributes +7.37 × 10⁻³ mm⁻¹ to the Petzval sum and L5 contributes −8.28 × 10⁻³ mm⁻¹, for a net of −0.91 × 10⁻³ mm⁻¹ — a significant negative Petzval contribution from a nearly powerless pair. This deliberate index mismatch between elements of opposite sign is a classic field-flattening technique, and the choice of L5's glass (high-ish index, but not as high as SF6) appears to be driven by this Petzval requirement rather than by chromatic correction.
+The mechanism is the index asymmetry between L14 and L15. Each element's Petzval contribution is proportional to φ/n (power divided by refractive index). L14 uses SF6 (nd = 1.805) and L15 uses the lower-index 713433 glass (nd = 1.713). Because L15's index is lower, its Petzval contribution per unit of power is *larger* than L14's. Numerically: L14 contributes +7.37 × 10⁻³ mm⁻¹ to the Petzval sum and L15 contributes −8.28 × 10⁻³ mm⁻¹, for a net of −0.91 × 10⁻³ mm⁻¹ — a significant negative Petzval contribution from a nearly powerless pair. This deliberate index mismatch between elements of opposite sign is a classic field-flattening technique, and the choice of L15's glass (high-ish index, but not as high as SF6) appears to be driven by this Petzval requirement rather than by chromatic correction.
 
-L5 is also the last element before the variable air gap (R10 → R11), which changes from 3.20 mm at infinity focus to 33.80 mm at the production close-focus distance of 1.2 m (see Focusing Mechanism section for the derivation of this value).
+L15 is also the last element before the variable air gap (R10 → R11), which changes from 3.20 mm at infinity focus to 33.80 mm at the production close-focus distance of 1.2 m (see Focusing Mechanism section for the derivation of this value).
 
-### L6 — Stationary Rear Corrector (Compensating Element)
+### L21 — Stationary Rear Corrector (Compensating Element)
 
 | Property | Value |
 |----------|-------|
@@ -167,11 +167,11 @@ L5 is also the last element before the variable air gap (R10 → R11), which cha
 
 **Glass identification:** Six-digit code **580537**. This is an exact match to Schott **BaLF4** (n_d = 1.57957, ν_d = 53.71), a barium light flint glass. BaLF4 sits in the transition zone between barium crowns and light flints — moderate index, moderate dispersion. It is a well-behaved, relatively inexpensive optical glass.
 
-**Optical role:** L6 is the defining innovation of Betensky's patent. It is mechanically fixed to the lens housing (and thus to the film plane) and does not move during focusing. Its purpose is twofold:
+**Optical role:** L21 is the defining innovation of Betensky's patent. It is mechanically fixed to the lens housing (and thus to the film plane) and does not move during focusing. Its purpose is twofold:
 
-1. **Off-axis aberration compensation.** When the front objective (L1–L5) moves forward for close focusing, the change in conjugate produces significant off-axis aberrations (primarily coma and astigmatism). The patent explains that L6's fixed position relative to the image plane introduces compensating aberrations that counteract this degradation. This is what allows the lens to maintain consistent edge-to-edge sharpness across a wide focusing range — a feature heavily advertised by Vivitar, which marketed the production lens with close focus to 1.2 m.
+1. **Off-axis aberration compensation.** When the front objective (L11–L15) moves forward for close focusing, the change in conjugate produces significant off-axis aberrations (primarily coma and astigmatism). The patent explains that L21's fixed position relative to the image plane introduces compensating aberrations that counteract this degradation. This is what allows the lens to maintain consistent edge-to-edge sharpness across a wide focusing range — a feature heavily advertised by Vivitar, which marketed the production lens with close focus to 1.2 m.
 
-2. **EFL reduction during close focus.** Because L6 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at closest focus, a decrease of approximately 5.8%. Since focusing travel scales with the *square* of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design achieves a close-focus distance of 11.8× EFL with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
+2. **EFL reduction during close focus.** Because L21 has negative power, the overall system EFL decreases as the objective moves forward. The computed EFL drops from 202.0 mm at infinity to 190.4 mm at closest focus, a decrease of approximately 5.8%. Since focusing travel scales with the *square* of focal length, this small EFL decrease translates into a significant reduction in required mechanical travel. The patent illustrates this principle for the 300 mm embodiment (FIG. 1), noting that a comparable design without the fixed corrector would need over 25 mm of travel to focus to 10.5× EFL, versus 19.27 mm with the corrector. The same principle applies here: the 200 mm design achieves a close-focus distance of 11.8× EFL with only 11.8 mm of travel (FT/EFL = 0.059), well within the "less than 13 percent" limit the patent claims for all embodiments.
 
 The patent specifies that the corrector's EFL magnitude should be no greater than three times the overall system EFL, and that it should be a negative meniscus with the concave side facing the image — both conditions are satisfied here (|−249.4| < 3 × 202, and R12 = +47.56 is indeed concave toward the image when viewed from behind the lens).
 
@@ -181,9 +181,9 @@ The patent specifies that the corrector's EFL magnitude should be no greater tha
 
 The lens employs **unit focusing** of the front objective with a fixed rear corrector — a design Betensky characterizes as a hybrid between conventional helicoid focusing and internal focusing. Specifically:
 
-- **Moving group:** L1 through L5 (all five elements of the objective) translate as a rigid unit along the optical axis when the external focusing ring is rotated.
-- **Fixed element:** L6 remains stationary relative to the film plane, mounted in the lens mount's rear housing.
-- **Variable gap:** Only the air space between R10 (rear of L5) and R11 (front of L6) changes during focusing.
+- **Moving group:** L11 through L15 (all five elements of the objective) translate as a rigid unit along the optical axis when the external focusing ring is rotated.
+- **Fixed element:** L21 remains stationary relative to the film plane, mounted in the lens mount's rear housing.
+- **Variable gap:** Only the air space between R10 (rear of L15) and R11 (front of L21) changes during focusing.
 
 This arrangement is mechanically simple (single helicoid, no complex cam followers) and is compatible with the automatic diaphragm mechanisms required by 1970s SLR camera systems.
 
@@ -222,11 +222,11 @@ From the FIG. 5 cross-section drawing, the iris diaphragm appears positioned app
 
 The patent text (page 7) identifies the designs of FIGS. 1 and 3–5 as belonging to the "so-called SONNAR type," which Betensky classifies as having three groups:
 
-1. **A positive leading group** (L1 + L2, combined fl ≈ 60.5 mm)
-2. **A negative group** whose strongest power contribution is on the surface farthest from the first group (L3, fl ≈ −63.2 mm, with the powerful R6 = +64.06 facing the stop)
-3. **A positive group** separated from the first two groups by the aperture stop (L4 + L5)
+1. **A positive leading group** (L11 + L12, combined fl ≈ 60.5 mm)
+2. **A negative group** whose strongest power contribution is on the surface farthest from the first group (L13, fl ≈ −63.2 mm, with the powerful R6 = +64.06 facing the stop)
+3. **A positive group** separated from the first two groups by the aperture stop (L14 + L15)
 
-The corrector (L6) follows the second positive group and is the distinguishing feature of Betensky's patent over the classical Sonnar.
+The corrector (L21) follows the second positive group and is the distinguishing feature of Betensky's patent over the classical Sonnar.
 
 This three-group telephoto structure produces a compact physical package (telephoto ratio ≈ 0.77) — the lens barrel is only about 77% as long as its focal length. For a 200 mm lens on a 35 mm SLR body, this was an important practical consideration.
 
@@ -236,11 +236,11 @@ This three-group telephoto structure produces a compact physical package (teleph
 
 A notable characteristic of the Vivitar Series 1 200mm f/3.0, consistently reported in both contemporary and modern reviews, is pronounced longitudinal (axial) chromatic aberration, visible as purple fringing on out-of-focus highlights and reduced contrast at wide apertures.
 
-The glass selection explains this. The design uses five distinct glass types across six elements (SF6 is shared by L3 and L4), and the chromatic correction strategy relies on a relatively simple crown-flint pairing:
+The glass selection explains this. The design uses five distinct glass types across six elements (SF6 is shared by L13 and L14), and the chromatic correction strategy relies on a relatively simple crown-flint pairing:
 
-- **Low-dispersion elements (L1, L2):** ν_d = 63.1 and 64.2 — classic crowns
-- **High-dispersion elements (L3, L4):** ν_d = 25.5 — dense flint (SF6)
-- **Moderate-dispersion elements (L5, L6):** ν_d = 43.3 and 53.7
+- **Low-dispersion elements (L11, L12):** ν_d = 63.1 and 64.2 — classic crowns
+- **High-dispersion elements (L13, L14):** ν_d = 25.5 — dense flint (SF6)
+- **Moderate-dispersion elements (L15, L21):** ν_d = 43.3 and 53.7
 
 No ED (extra-low dispersion), fluorite, or anomalous partial dispersion glasses are used. In the early 1970s, such glasses were either unavailable or prohibitively expensive for a lens at this price point. The result is that while primary chromatic aberration (C-line to F-line) is reasonably corrected by the crown-flint balance, the **secondary spectrum** (residual chromatism beyond the primary correction) is left substantially uncorrected. This secondary spectrum is what manifests as the longitudinal CA that users consistently report. The Nikon 180mm f/2.8 ED (introduced 1981), which uses ED glass, largely eliminated this artifact — but at three times the price.
 
@@ -254,10 +254,10 @@ The negative sign means the Petzval surface is slightly overcorrected (concave t
 
 The element-by-element Petzval contributions reveal the balancing act:
 
-- **L1 + L2 (front crowns):** +10.94 × 10⁻³ — strongly positive, the dominant undercorrecting contribution from the system's main positive power.
-- **L3 (negative SF6):** −8.71 × 10⁻³ — the primary Petzval corrector, exploiting SF6's high index (Petzval ∝ φ/n) to get strong negative contribution with minimal power penalty.
-- **L4 + L5 (rear afocal pair):** −0.91 × 10⁻³ — net negative despite nearly zero combined power, due to the deliberate index mismatch between L4 (SF6, nd = 1.805) and L5 (nd = 1.713) discussed above.
-- **L6 (corrector):** −2.62 × 10⁻³ — the fixed rear meniscus adds further negative Petzval, contributing to field flatness especially at close focus where the front group's aberration balance shifts.
+- **L11 + L12 (front crowns):** +10.94 × 10⁻³ — strongly positive, the dominant undercorrecting contribution from the system's main positive power.
+- **L13 (negative SF6):** −8.71 × 10⁻³ — the primary Petzval corrector, exploiting SF6's high index (Petzval ∝ φ/n) to get strong negative contribution with minimal power penalty.
+- **L14 + L15 (rear afocal pair):** −0.91 × 10⁻³ — net negative despite nearly zero combined power, due to the deliberate index mismatch between L14 (SF6, nd = 1.805) and L15 (nd = 1.713) discussed above.
+- **L21 (corrector):** −2.62 × 10⁻³ — the fixed rear meniscus adds further negative Petzval, contributing to field flatness especially at close focus where the front group's aberration balance shifts.
 
 ---
 
@@ -270,7 +270,7 @@ The patent does not provide clear-aperture or semi-diameter values for any surfa
 - **Clearance:** 8% mechanical clearance applied to the combined (marginal + chief) height.
 - **Filter cap:** Front element (R1) semi-diameter capped at 33.5 mm by the 72 mm filter thread constraint (inner diameter ≈ 68–69 mm). Front/rear SD ratios held ≤ 1.15 per element.
 
-Edge thickness verification confirms all elements have ET ≥ 1.2 mm (L1 is the tightest at 1.23 mm). Cross-gap sag checks confirm positive clearance at all air gaps including the minimum 0.5 mm gap between L1 and L2 (0.36 mm clearance after sag intrusion).
+Edge thickness verification confirms all elements have ET ≥ 1.2 mm (L11 is the tightest at 1.23 mm). Cross-gap sag checks confirm positive clearance at all air gaps including the minimum 0.5 mm gap between L11 and L12 (0.36 mm clearance after sag intrusion).
 
 ---
 
@@ -292,12 +292,12 @@ The `.data.ts` file for this lens incorporates several departures from a literal
 
 | Element | Glass | n_d | ν_d | Focal Length | Power | Role |
 |---------|-------|-----|-----|-------------|-------|------|
-| L1 | PSK2 | 1.56873 | 63.1 | +101.4 mm | Positive | Front crown, primary power |
-| L2 | BK7/BSC7 | 1.51680 | 64.2 | +139.8 mm | Positive | Secondary crown |
-| L3 | SF6 | 1.80518 | 25.5 | −63.2 mm | Negative | Telephoto diverger, chromatic correction |
-| L4 | SF6 | 1.80518 | 25.5 | +74.8 mm | Positive | Rear converger |
-| L5 | (713433) LaF/BaSF region | 1.71270 | 43.3 | −71.0 mm | Negative | Petzval/aberration balancing |
-| L6 | BaLF4 | 1.57957 | 53.7 | −249.4 mm | Negative | Fixed compensator/corrector |
+| L11 | PSK2 | 1.56873 | 63.1 | +101.4 mm | Positive | Front crown, primary power |
+| L12 | BK7/BSC7 | 1.51680 | 64.2 | +139.8 mm | Positive | Secondary crown |
+| L13 | SF6 | 1.80518 | 25.5 | −63.2 mm | Negative | Telephoto diverger, chromatic correction |
+| L14 | SF6 | 1.80518 | 25.5 | +74.8 mm | Positive | Rear converger |
+| L15 | (713433) LaF/BaSF region | 1.71270 | 43.3 | −71.0 mm | Negative | Petzval/aberration balancing |
+| L21 | BaLF4 | 1.57957 | 53.7 | −249.4 mm | Negative | Fixed compensator/corrector |
 
 ---
 

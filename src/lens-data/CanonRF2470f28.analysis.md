@@ -22,11 +22,11 @@ Example 5 from this patent is identified as the production optical design for th
 
 4. **Image circle.** The image height of 21.64 mm produces an image circle diameter of 43.28 mm, appropriate for a full-frame (36 × 24 mm) sensor with a diagonal of 43.27 mm.
 
-5. **Optical image stabilization.** Example 5 specifies the fourth lens unit (L4) as an IS group that moves perpendicular to the optical axis for image blur correction (§0087). The production lens is Canon's first 24-70mm f/2.8 to incorporate OIS.
+5. **Optical image stabilization.** Example 5 specifies the fourth lens unit (L21) as an IS group that moves perpendicular to the optical axis for image blur correction (§0087). The production lens is Canon's first 24-70mm f/2.8 to incorporate OIS.
 
-6. **Focus mechanism.** Example 5 specifies the sixth lens unit (L6) as the focus group, moving toward the image side for close focus (§0087). The single lightweight negative meniscus in L6 is consistent with the Nano USM drive system Canon specifies for fast, silent autofocus.
+6. **Focus mechanism.** Example 5 specifies the sixth lens unit (L23) as the focus group, moving toward the image side for close focus (§0087). The single lightweight negative meniscus in L23 is consistent with the Nano USM drive system Canon specifies for fast, silent autofocus.
 
-7. **Seven-unit architecture.** The L1(+) L2(−) L3(+) L4(−) L5(+) L6(−) L7(+) configuration matches claims 19 and 20 of the patent, which describe a rear lens group consisting of L3(+), L4(−), L5(+), L6(−), and L7(+).
+7. **Seven-unit architecture.** The L1(+) L2(−) L3(+) L21(−) L22(+) L23(−) L24(+) configuration matches claims 19 and 20 of the patent, which describe a rear lens group consisting of G3(+), L21(−), L22(+), L23(−), and L24(+).
 
 8. **Patent timing.** The Japanese priority date (March 2018) precedes the lens announcement by approximately 17 months — a typical lead time for Canon's production optical designs.
 
@@ -36,19 +36,19 @@ No other example in this patent matches all of these criteria simultaneously.
 
 ## Lens Architecture Overview
 
-The zoom lens consists of seven lens units (L1 through L7) containing 21 glass elements arranged in 15 air-separated groups. All seven units move toward the object side during zooming from wide to telephoto, with the spacing between adjacent units changing to achieve the zoom effect.
+The zoom lens consists of seven lens units (L1 through L24) containing 21 glass elements arranged in 15 air-separated groups. All seven units move toward the object side during zooming from wide to telephoto, with the spacing between adjacent units changing to achieve the zoom effect.
 
 | Unit | Power | Elements | Groups | Focal Length (mm) | Function |
 |------|-------|----------|--------|-------------------|----------|
 | L1   | +     | 3        | 2      | +113.48           | Front positive group (G1n, G2p, G3p) |
 | L2   | −     | 6        | 4      | −18.58            | Variator (zoom diverging group) |
 | L3   | +     | 3        | 2      | +35.84            | Aperture stop + relay positive group |
-| L4   | −     | 2        | 1      | −69.07            | Image stabilization (IS) group |
-| L5   | +     | 4        | 3      | +28.29            | Main converging group (Gfp) |
-| L6   | −     | 1        | 1      | −49.77            | Focus group (Nano USM driven) |
-| L7   | +     | 2        | 2      | +785.94           | Rear field-flattening group (Grp) |
+| L21   | −     | 2        | 1      | −69.07            | Image stabilization (IS) group |
+| L22   | +     | 4        | 3      | +28.29            | Main converging group (Gfp) |
+| L23   | −     | 1        | 1      | −49.77            | Focus group (Nano USM driven) |
+| L24   | +     | 2        | 2      | +785.94           | Rear field-flattening group (Grp) |
 
-The overall layout is a positive-lead zoom with negative variator — the classic high-performance standard zoom architecture. The front group (L1) converges incoming light and moves forward during zooming to increase the L1–L2 separation, while L2 provides the primary magnification change. The rear groups (L3–L7) relay the image to the sensor plane while providing aberration correction, image stabilization, and autofocus.
+The overall layout is a positive-lead zoom with negative variator — the classic high-performance standard zoom architecture. The front group (L1) converges incoming light and moves forward during zooming to increase the L1–L2 separation, while L2 provides the primary magnification change. The rear groups (L3–L24) relay the image to the sensor plane while providing aberration correction, image stabilization, and autofocus.
 
 ### Zoom Mechanism
 
@@ -58,13 +58,13 @@ All seven units translate along the optical axis during zooming. The variable ai
 |---------------------|----------------|---------------|----------------|--------|
 | d5 (L1→L2)          | 0.80           | 17.98         | 29.93          | +29.13 |
 | d15 (L2→L3)         | 16.15          | 7.07          | 2.40           | −13.75 |
-| d21 (L3→L4)         | 2.26           | 2.23          | 2.54           | +0.28  |
-| d24 (L4→L5)         | 11.08          | 4.97          | 2.87           | −8.21  |
-| d31 (L5→L6)         | 2.16           | 1.42          | 1.33           | −0.83  |
-| d33 (L6→L7)         | 12.96          | 13.70         | 13.79          | +0.83  |
-| BF (L7→IP)          | 14.37          | 26.78         | 35.69          | +21.32 |
+| d21 (L3→L21)         | 2.26           | 2.23          | 2.54           | +0.28  |
+| d24 (L21→L22)         | 11.08          | 4.97          | 2.87           | −8.21  |
+| d31 (L22→L23)         | 2.16           | 1.42          | 1.33           | −0.83  |
+| d33 (L23→L24)         | 12.96          | 13.70         | 13.79          | +0.83  |
+| BF (L24→IP)          | 14.37          | 26.78         | 35.69          | +21.32 |
 
-The dominant motions are the opening of the L1–L2 gap (+29 mm) and the closing of the L2–L3 gap (−14 mm) — these produce the primary zoom effect. The L3–L4 gap varies by only 0.28 mm from wide to tele (and is non-monotonic, dipping to 2.23 mm at the intermediate position before rising to 2.54 mm at telephoto), meaning L3 and L4 move essentially as a coupled pair. The back focus increases substantially from wide to tele (14.37 → 35.69 mm), which is a deliberate design choice: the patent explains (§0034) that the varying back focus changes the marginal ray height at the rear positive lens Grp, enabling correction of lateral chromatic aberration across the zoom range.
+The dominant motions are the opening of the L1–L2 gap (+29 mm) and the closing of the L2–L3 gap (−14 mm) — these produce the primary zoom effect. The L3–L21 gap varies by only 0.28 mm from wide to tele (and is non-monotonic, dipping to 2.23 mm at the intermediate position before rising to 2.54 mm at telephoto), meaning L3 and L21 move essentially as a coupled pair. The back focus increases substantially from wide to tele (14.37 → 35.69 mm), which is a deliberate design choice: the patent explains (§0034) that the varying back focus changes the marginal ray height at the rear positive lens Grp, enabling correction of lateral chromatic aberration across the zoom range.
 
 The total optical track (front vertex to image plane) grows from 144.1 mm at wide to 172.9 mm at telephoto — a change of 28.8 mm.
 
@@ -161,7 +161,7 @@ This is arguably the most optically significant doublet in the lens. The S-FPL51
 
 ### Unit 4: Image Stabilization Group (f = −69.07 mm)
 
-L4 is the optical image stabilization (OIS) unit. During image blur correction, the entire unit shifts perpendicular to the optical axis, displacing the image to compensate for camera shake. Canon rates the IS system at 5 stops of correction.
+L21 is the optical image stabilization (OIS) unit. During image blur correction, the entire unit shifts perpendicular to the optical axis, displacing the image to compensate for camera shake. Canon rates the IS system at 5 stops of correction.
 
 **Elements 13–14 — Cemented Doublet (S22*–S24)**
 - Element 13: OHARA S-BAL42 (nd = 1.58313, νd = 59.38) — **Aspherical, 1st of 3**
@@ -171,11 +171,11 @@ L4 is the optical image stabilization (OIS) unit. During image blur correction, 
 
 The IS group is a compact cemented doublet with one aspherical surface (S22) on the front face of Element 13. S-BAL42 is a barium-crown glass well suited to precision glass molding (Tg ≈ 506°C), which is how Canon produces this element. The aspherical surface on S22 has relatively mild correction — the aspherical departure at the semi-diameter is only 0.091 mm — primarily correcting residual spherical aberration and coma that would otherwise degrade off-axis performance during IS operation.
 
-The net power of L4 is weakly negative (f = −69.07 mm), which is important: a low-power IS group minimizes the aberration changes that occur when the group is decentered during stabilization. The L3–L4 air gap varies by only 0.28 mm from wide to tele, meaning L4 tracks L3's motion closely — this coupling ensures consistent IS performance at all focal lengths.
+The net power of L21 is weakly negative (f = −69.07 mm), which is important: a low-power IS group minimizes the aberration changes that occur when the group is decentered during stabilization. The L3–L21 air gap varies by only 0.28 mm from wide to tele, meaning L21 tracks L3's motion closely — this coupling ensures consistent IS performance at all focal lengths.
 
 ### Unit 5: Main Converging Group (f = +28.29 mm)
 
-L5 is the workhorse of the rear optical system, providing the strongest positive power of any unit after L1. It contains four elements in three air-separated groups, including the positive lens Gfp identified in the patent's conditional expressions.
+L22 is the workhorse of the rear optical system, providing the strongest positive power of any unit after L1. It contains four elements in three air-separated groups, including the positive lens Gfp identified in the patent's conditional expressions.
 
 **Element 15 — Gfp: Biconvex Positive (S25–S26)**
 - Glass: OHARA S-FPL51 (nd = 1.49700, νd = 81.54) — **UD glass, 3rd of 3**
@@ -203,11 +203,11 @@ This doublet provides additional chromatic correction and contributes net positi
 
 This is the most aggressively aspherical element in the lens. Surface S30 has an aspherical departure of −0.752 mm at the semi-diameter — nearly six times the spherical sag of the base curve (−0.133 mm). This means the aspherical correction completely dominates the surface shape at the margin: the element functions more like a Schmidt-plate-style corrector than a conventional lens at the rim. Surface S31 has a more moderate departure of −0.030 mm.
 
-S-LAH65V is a high-index lanthanum glass that Canon has qualified for precision glass molding. The double-asphere configuration allows this single element to correct multiple higher-order aberrations simultaneously — primarily field-dependent coma and astigmatism that arise from the strong convergence in L5. Its weak net negative power (f = −126.8 mm) means it acts more as a corrector plate than a power element.
+S-LAH65V is a high-index lanthanum glass that Canon has qualified for precision glass molding. The double-asphere configuration allows this single element to correct multiple higher-order aberrations simultaneously — primarily field-dependent coma and astigmatism that arise from the strong convergence in L22. Its weak net negative power (f = −126.8 mm) means it acts more as a corrector plate than a power element.
 
 ### Unit 6: Focus Group (f = −49.77 mm)
 
-L6 is the autofocus group, driven by Canon's Nano USM motor. Its motion toward the image side during close focusing is indicated by the broken-line arrow in FIG. 9 of the patent.
+L23 is the autofocus group, driven by Canon's Nano USM motor. Its motion toward the image side during close focusing is indicated by the broken-line arrow in FIG. 9 of the patent.
 
 **Element 19 — Negative Meniscus (S32–S33)**
 - Glass: OHARA S-LAH51 (nd = 1.80400, νd = 46.57)
@@ -217,13 +217,13 @@ L6 is the autofocus group, driven by Canon's Nano USM motor. Its motion toward t
 
 This is a single thin negative meniscus — the lightest possible focusing element. At only 0.90 mm center thickness with a clear aperture of ~25.5 mm, this element has minimal mass, enabling the Nano USM motor to achieve the rapid, silent focus transitions Canon specifies. The high-index S-LAH51 glass provides the required negative power with moderate curvatures, keeping aberration sensitivity during focus travel manageable.
 
-The variable gaps on either side of L6 (d31 and d33) change only slightly across the zoom range (Δd31 = −0.83 mm, Δd33 = +0.83 mm), meaning the focus group's position relative to L5 and L7 is nearly constant regardless of zoom setting. This decoupling of zoom and focus motion simplifies the cam mechanism and ensures consistent AF performance across the zoom range.
+The variable gaps on either side of L23 (d31 and d33) change only slightly across the zoom range (Δd31 = −0.83 mm, Δd33 = +0.83 mm), meaning the focus group's position relative to L22 and L24 is nearly constant regardless of zoom setting. This decoupling of zoom and focus motion simplifies the cam mechanism and ensures consistent AF performance across the zoom range.
 
 The choice of a single negative meniscus as the focusing element is characteristic of modern inner-focus zoom designs. The weak power means focus travel is relatively long (the gap changes imply several millimeters of travel for close focus), but the low mass more than compensates by enabling high acceleration. The Nano USM system combines a ring-type USM for speed with an STM mechanism for smoothness, which is well-matched to this lightweight element.
 
 ### Unit 7: Rear Field-Flattening Group (f = +785.94 mm)
 
-L7 is positioned closest to the image plane and contains the critical positive lens Grp described extensively in the patent's conditional expressions. The unit's extremely long focal length (+785.9 mm) means it contributes negligible net optical power — its purpose is entirely corrective.
+L24 is positioned closest to the image plane and contains the critical positive lens Grp described extensively in the patent's conditional expressions. The unit's extremely long focal length (+785.9 mm) means it contributes negligible net optical power — its purpose is entirely corrective.
 
 **Element 20 — Double-Aspherical Negative Meniscus (S34*–S35*)**
 - Glass: OHARA S-BAL42 (nd = 1.58313, νd = 59.38) — **Aspherical, 3rd of 3**
@@ -233,7 +233,7 @@ L7 is positioned closest to the image plane and contains the critical positive l
 
 The third and final glass-moulded aspherical element. Surface S34 has the largest aspherical departure in the entire lens: −1.025 mm at the semi-diameter, superimposed on a spherical sag of −2.157 mm. This means the asphere adds nearly 50% additional sag beyond the base sphere — an aggressive correction targeting field curvature and distortion at the wide-angle end. Surface S35 has a departure of −1.499 mm on an extremely weak base curve (R = −3211 mm), making it essentially a pure aspherical plate at the margin.
 
-The diverging beam from L6 passes through this element at relatively large diameters (clear aperture up to ~33 mm), which is why such strong aspherical correction is needed here. The element's position near the image plane means it sees a strongly field-dependent ray geometry, making it effective for correcting field-varying aberrations like distortion and lateral color.
+The diverging beam from L23 passes through this element at relatively large diameters (clear aperture up to ~33 mm), which is why such strong aspherical correction is needed here. The element's position near the image plane means it sees a strongly field-dependent ray geometry, making it effective for correcting field-varying aberrations like distortion and lateral color.
 
 **Element 21 — Grp: Biconvex Positive (S36–S37)**
 - Glass: HOYA FDS30 or equivalent (nd = 2.00100, νd = 29.13)
@@ -261,7 +261,7 @@ Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A₄·h⁴ + A₆·h⁶ + A�
 
 All five surfaces have K = 0 (spherical base curve with polynomial departure only).
 
-### Surface 22 (Element 13, L4 IS group front)
+### Surface 22 (Element 13, L21 IS group front)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -279,7 +279,7 @@ All five surfaces have K = 0 (spherical base curve with polynomial departure onl
 
 This is the mildest asphere in the lens. The positive A₄ coefficient indicates the surface becomes less steeply curved at the margin relative to the sphere — a "flattening" correction typical of coma compensation. Because this is the IS element, maintaining mild aspherical departure is important: strong aspheres are more sensitive to decentration, which would degrade image quality during IS operation.
 
-### Surfaces 30–31 (Element 18, L5 rear corrector)
+### Surfaces 30–31 (Element 18, L22 rear corrector)
 
 **Surface 30:**
 
@@ -313,9 +313,9 @@ This is the mildest asphere in the lens. The positive A₄ coefficient indicates
 - Spherical sag at edge: +0.589 mm
 - Aspherical departure at edge: −0.030 mm (5.1% of spherical sag)
 
-Element 18 shows a dramatic asymmetry: the front surface (S30) has massive aspherical departure that utterly dominates its nearly-flat base curve, while the rear surface (S31) has mild correction. The large negative A₄ on S30 (−5.55 × 10⁻⁵) is the single strongest aspherical coefficient in the entire lens, producing a surface that curves increasingly inward toward the image at the margin. This corrects the field-dependent coma and astigmatism accumulated through L5's strong positive power.
+Element 18 shows a dramatic asymmetry: the front surface (S30) has massive aspherical departure that utterly dominates its nearly-flat base curve, while the rear surface (S31) has mild correction. The large negative A₄ on S30 (−5.55 × 10⁻⁵) is the single strongest aspherical coefficient in the entire lens, producing a surface that curves increasingly inward toward the image at the margin. This corrects the field-dependent coma and astigmatism accumulated through L22's strong positive power.
 
-### Surfaces 34–35 (Element 20, L7 front corrector)
+### Surfaces 34–35 (Element 20, L24 front corrector)
 
 **Surface 34:**
 
@@ -379,7 +379,7 @@ The lens uses 17 distinct glass types across 21 elements (with three types reuse
 
 Several observations emerge from this glass map:
 
-**UD glass strategy.** All three UD elements use S-FPL51 (or Canon's equivalent), placed strategically in L2, L3, and L5. Each UD element is cemented with a high-dispersion partner to form an achromatic correction pair. The L2 doublet (Elements 5–6) corrects the variator's chromatic contribution; the L3 doublet (Elements 11–12) handles the relay group; and the L5 element (15, Gfp) provides the "chromatic anchor" for the rear group. The consistent use of a single UD glass type across all three locations simplifies procurement and quality control.
+**UD glass strategy.** All three UD elements use S-FPL51 (or Canon's equivalent), placed strategically in L2, L3, and L22. Each UD element is cemented with a high-dispersion partner to form an achromatic correction pair. The L2 doublet (Elements 5–6) corrects the variator's chromatic contribution; the L3 doublet (Elements 11–12) handles the relay group; and the L22 element (15, Gfp) provides the "chromatic anchor" for the rear group. The consistent use of a single UD glass type across all three locations simplifies procurement and quality control.
 
 **Ultra-high-index glass.** Two elements use glass with nd ≥ 2.0: Element 12 (S-NPH2, nd = 2.00069) and Element 21 (FDS30, nd = 2.00100). These are among the densest commercially available optical glasses. Their primary roles are Petzval field flattening and lateral chromatic aberration correction. The use of two different ultra-high-index glasses (from different manufacturers, with different Abbe numbers) suggests each was chosen for its specific position on the partial dispersion diagram rather than being interchangeable.
 
@@ -391,13 +391,13 @@ Several observations emerge from this glass map:
 
 ## Focus Mechanism
 
-The focusing element is **Unit 6 (L6)**, consisting of a single negative meniscus (Element 19, S-LAH51 glass). During focusing from infinity to the closest distance, L6 moves toward the image side (§0087).
+The focusing element is **Unit 6 (L23)**, consisting of a single negative meniscus (Element 19, S-LAH51 glass). During focusing from infinity to the closest distance, L23 moves toward the image side (§0087).
 
 Key characteristics of the focus mechanism:
 
 - **Element mass:** At only 0.90 mm center thickness and a moderate clear aperture, Element 19 is an exceptionally lightweight focusing element. The patent's "effective diameter" values at these surfaces (25.5 / 25.1 mm) represent beam footprints rather than physical element diameters — the actual glass blank would be somewhat smaller. The minimal mass of this thin high-index meniscus is critical for Nano USM drive performance, enabling the high-acceleration focus response Canon specifies.
-- **Focus travel:** The variable gaps d31 and d33 change during focus, though the patent provides only the zoom-dependent values, not the close-focus values. The minimum focus distances of 0.21 m (wide) and 0.38 m (telephoto) are consistent with several millimeters of rearward travel by L6.
-- **Zoom-focus coupling:** The d31 and d33 gaps change only slightly across the zoom range (< 1 mm total), indicating that L6's focus cam is largely independent of the zoom cam — a characteristic of well-designed inner-focus zooms.
+- **Focus travel:** The variable gaps d31 and d33 change during focus, though the patent provides only the zoom-dependent values, not the close-focus values. The minimum focus distances of 0.21 m (wide) and 0.38 m (telephoto) are consistent with several millimeters of rearward travel by L23.
+- **Zoom-focus coupling:** The d31 and d33 gaps change only slightly across the zoom range (< 1 mm total), indicating that L23's focus cam is largely independent of the zoom cam — a characteristic of well-designed inner-focus zooms.
 - **Aberration stability:** A single negative meniscus has low sensitivity to defocus-induced aberrations, meaning image quality degrades gracefully from infinity to close focus. The weak power also means focus breathing is moderate — important for video applications, as Canon's marketing specifically emphasizes "reduced focus breathing."
 
 ---
@@ -432,7 +432,7 @@ All numerical values in this document were independently verified by paraxial ra
 
 One conditional expression value differs between thin-lens and patent computation: expression (14), ffp/fw, computes as 1.56 via the thin-lens approximation for Element 15 but is reported as 1.60 in the patent's Table 1. The discrepancy arises because Element 15 has substantial center thickness (8.28 mm), making thick-lens effects non-negligible. The conditional expression table in this document uses the patent's authoritative thick-lens value.
 
-The L3–L4 air gap (d21) exhibits non-monotonic zoom behavior: it decreases from 2.26 mm (wide) to 2.23 mm (mid) before increasing to 2.54 mm (tele). The total variation range is 0.31 mm. This is handled naturally by the piecewise-linear interpolation described in the zoom mechanism design — the three patent zoom positions bracket the reversal point.
+The L3–L21 air gap (d21) exhibits non-monotonic zoom behavior: it decreases from 2.26 mm (wide) to 2.23 mm (mid) before increasing to 2.54 mm (tele). The total variation range is 0.31 mm. This is handled naturally by the piecewise-linear interpolation described in the zoom mechanism design — the three patent zoom positions bracket the reversal point.
 
 Canon's published specifications for the RF 24-70mm f/2.8L IS USM (confirmed via Canon USA, Canon Europe, and Canon Camera Museum) match the patent prescription in all externally verifiable parameters: 21 elements in 15 groups, 3 glass-moulded aspherical elements, 3 UD elements, Nano USM AF, 5-stop OIS, MFD 0.21 m (wide) / 0.38 m (tele), and 9-blade diaphragm.
 
@@ -442,13 +442,13 @@ Canon's published specifications for the RF 24-70mm f/2.8L IS USM (confirmed via
 
 The accompanying lens data file (`CanonRF2470f28.data.ts`) encodes the full optical prescription for use with the interactive lens renderer. Several limitations and design decisions are documented here.
 
-**Focus data unavailability.** The patent provides variable air gap data at infinity focus only, at three zoom positions (24.72, 44.86, and 67.89 mm). Close-focus gap values for the focus group (L6) are not given in Numerical Example 5. All seven variable gaps are therefore entered as zoom-only (identical infinity/close-focus values at each zoom position). The focus slider in the renderer will have no visible effect. In the production lens, focusing from infinity to the minimum focus distance would cause gaps D31 (L5→L6), D33 (L6→L7), and D37 (BFD) to vary as L6 translates rearward. The minimum focus distances (0.21 m wide, 0.38 m telephoto) are from Canon's published specifications and cannot be derived from the available patent data.
+**Focus data unavailability.** The patent provides variable air gap data at infinity focus only, at three zoom positions (24.72, 44.86, and 67.89 mm). Close-focus gap values for the focus group (L23) are not given in Numerical Example 5. All seven variable gaps are therefore entered as zoom-only (identical infinity/close-focus values at each zoom position). The focus slider in the renderer will have no visible effect. In the production lens, focusing from infinity to the minimum focus distance would cause gaps D31 (L22→L23), D33 (L23→L24), and D37 (BFD) to vary as L23 translates rearward. The minimum focus distances (0.21 m wide, 0.38 m telephoto) are from Canon's published specifications and cannot be derived from the available patent data.
 
 **Refractive index precision.** The patent lists nd = 1.80809 for Element 1 (G1n) in Example 5, while the OHARA catalog value for S-NPH1 is nd = 1.80810. Other examples in the same patent (Examples 1–4) use 1.80810 for the same glass designation. The difference of 0.00001 in nd is at the limit of patent rounding precision and has no optical significance. The data file uses the patent value (1.80809) as transcribed. Similarly, prettier formatting strips trailing zeros from numeric literals (e.g., 1.49700 → 1.497), which are numerically identical IEEE 754 values.
 
 **Semi-diameters.** All sd values are derived from the patent's "effective diameter" column (÷ 2). These represent beam footprints at infinity focus in the wide-angle configuration and are not physical element diameters. Element 4 (the leading negative meniscus of L2) has a front/rear sd ratio of 1.32, exceeding the renderer's 1.25 guidance threshold. This is physically correct — the steep meniscus shape causes significant beam divergence within the element — and is expected to produce only minor visual artifacts in the renderer.
 
-**Non-monotonic zoom gap.** The L3→L4 air gap (D21) exhibits non-monotonic zoom behavior: 2.26 mm (wide) → 2.23 mm (mid) → 2.54 mm (tele). This is handled by the piecewise-linear interpolation in the zoom renderer; the three patent zoom positions bracket the reversal point adequately.
+**Non-monotonic zoom gap.** The L3→L21 air gap (D21) exhibits non-monotonic zoom behavior: 2.26 mm (wide) → 2.23 mm (mid) → 2.54 mm (tele). This is handled by the piecewise-linear interpolation in the zoom renderer; the three patent zoom positions bracket the reversal point adequately.
 
 ---
 

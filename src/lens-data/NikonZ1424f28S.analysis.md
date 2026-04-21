@@ -18,7 +18,7 @@ Example 4 of the patent matches the production NIKKOR Z 14-24mm f/2.8 S across a
 |-----------|------------------|-----------------------|
 | Elements × Groups | 16 × 11 | 16 in 11 groups |
 | ED elements | 4 (νd = 82.6) | 4 ED |
-| Aspherical elements | 3 (L11, L12, L40) | 3 aspherical |
+| Aspherical elements | 3 (L11, L12, L310) | 3 aspherical |
 | Aspherical surfaces | 4 (srf 1, 2, 4, 27) | — |
 | Focal length (W/T) | 14.4 / 23.3 mm | 14–24 mm |
 | Maximum aperture | f/2.91 | f/2.8 |
@@ -39,7 +39,7 @@ The lens is a three-moving-group zoom comprising, from object to image:
 |-------|-------------|-------|----------|--------------|------|
 | G1 | GA (Preceding) | Negative | L11–L14 (4 elements, 4 groups) | −21.4 mm | Front negative — wide field of view |
 | G2 | GF (Focusing) | Positive | L21–L22 (2 elements, 1 cemented group) | +105.3 mm | Focusing group — inner focus |
-| G3 | GC (Image-side) | Positive | L31–L40 (10 elements, 6 groups) | +39.3 mm | Image formation and aberration correction |
+| G3 | GC (Image-side) | Positive | L31–L310 (10 elements, 6 groups) | +39.3 mm | Image formation and aberration correction |
 
 This is a **negative-lead retrofocus zoom** — the large negative front group (G1) diverges the incoming light to achieve a very wide field of view, while the positive rear assembly (G2 + G3) converges the diverged beam to form an image. The back focal distance at wide (Bf_w = 22.54 mm) exceeds the flange-to-sensor distance of the Z-mount (16 mm), ensuring clearance for the mirrorless body.
 
@@ -108,7 +108,7 @@ G2 is a single cemented doublet with a group focal length of +105.3 mm. It funct
 - Focal length: +31.9 mm
 - Despite both L21 and L22 being relatively low-νd glasses, the cemented doublet as a whole is weakly positive (+105.3 mm), acting primarily as a field lens and aberration compensator rather than a strong power contributor. Its main job during focusing is to shift the exit pupil position smoothly without introducing significant focus breathing — consistent with Nikon's claim of virtually eliminated focus breathing.
 
-### Group 3 — Image-Side Group (GC): L31–L40
+### Group 3 — Image-Side Group (GC): L31–L310
 
 G3 is the most complex group, with 10 elements in 6 sub-groups and a net focal length of +39.3 mm. It contains the aperture stop and does the heavy lifting of image formation and aberration balancing. This group includes all four of the lens's ED elements.
 
@@ -145,7 +145,7 @@ The patent also mentions a **sub-aperture stop Sa** near the object side of L31.
 - Combined focal length: −84.6 mm (negative)
 - This doublet mirrors the L36+L37 pair in glass selection (the same two glass types, swapped in element order). L38 is the fourth and final ED element. The pair provides additional secondary spectrum correction and contributes negative Petzval curvature to flatten the image field. The symmetric pairing of L36+L37 and L38+L39 — same glasses, reversed roles — is a hallmark of Nikon's approach to lateral color correction in wide-angle designs, distributing the chromatic workload across multiple doublets to avoid overburdening any single interface.
 
-**L40 — Positive Meniscus (front surface aspherical)**
+**L310 — Positive Meniscus (front surface aspherical)**
 - Glass: nd = 1.85108, νd = 40.1 → **Probable S-LAH97** (OHARA) or HOYA equivalent
 - Focal length: +286.4 mm (very weak positive)
 - Surface 27\* is aspherical with a spherical base (K = 0) and negative higher-order coefficients — the aspherical departure at 90% of the clear aperture is approximately −449 µm, bending the surface away from the image relative to the sphere. This is the "field-correcting" asphere: positioned near the image plane where the chief ray height is large relative to the marginal ray, it primarily corrects field-dependent aberrations (astigmatism, field curvature, and distortion) without significantly affecting on-axis performance. The weak overall power means it acts almost as a corrector plate rather than a focusing element.
@@ -174,7 +174,7 @@ Surfaces 2\* and 4\* use a paraboloidal base (K = −1), which is significantly 
 
 | Surface | Element | R (mm) | Conic (K) | Departure at ~90% zone | Primary Role |
 |---------|---------|--------|-----------|----------------------|--------------|
-| 27\* | L40 front | −68.43 | 0 (sphere) | −449 µm | Astigmatism, field curvature |
+| 27\* | L310 front | −68.43 | 0 (sphere) | −449 µm | Astigmatism, field curvature |
 
 The rear asphere is far more modest in departure — under 0.5 mm even at the edge. Positioned close to the image plane where chief rays are well separated by field angle, it fine-tunes the residual field curvature and astigmatism that the front aspheres and the ED doublets could not fully correct. This placement also helps control the pincushion distortion that the negative-lead retrofocus architecture would otherwise produce at the telephoto end.
 
@@ -275,7 +275,7 @@ The design uses 10 distinct glass types across 16 elements:
 | Near S-FPM3 | 1.59349 | 67.0 | L32 | 1 |
 | S-LAH79 | 1.95375 | 32.3 | L33 | 1 |
 | S-TIH53 | 1.84666 | 23.7 | L34 | 1 |
-| Probable S-LAH97 | 1.85108 | 40.1 | L40 | 1 |
+| Probable S-LAH97 | 1.85108 | 40.1 | L310 | 1 |
 
 Glass identifications are based on matching the patent's nd/νd values against published OHARA catalog data. Most matches are exact (Δnd < 0.001, Δνd < 0.3). Two identifications carry caveats: L31 (nd = 1.85000, νd = 27.0) has a round nd value that could match multiple catalogs; L32 (nd = 1.59349, νd = 67.0) is close to S-FPM3 (nd = 1.59319) but the Δnd of +0.0003 and the νd discrepancy (67.0 vs. 67.87) suggest it may be a proprietary Nikon melt or a less common catalog variant.
 
@@ -330,7 +330,7 @@ The NIKKOR Z 14-24mm f/2.8 S, as revealed by Example 4 of WO 2021/117563, is a c
 
 **Extreme front-group aspheres.** The three front-element aspherical surfaces carry millimeter-scale departures, far larger than typical photographic lens aspheres. Two surfaces use paraboloidal base curves (K = −1) to manage the departure profile. L11 is almost certainly precision glass-molded (PGM) given its use of L-BAL35 glass (OHARA's L-prefix denotes low-softening-temperature PGM glass), and the millimeter-scale departures on both surfaces confirm this — conventional polishing of aspheres this deep would be prohibitively expensive.
 
-**Rear corrector asphere.** L40's much more modest aspherical surface (sub-millimeter departure) performs the fine-tuning of field curvature and residual distortion. Positioned near the image, where field angles are well separated, it efficiently corrects field-dependent aberrations without disturbing the on-axis performance established by the rest of the system.
+**Rear corrector asphere.** L310's much more modest aspherical surface (sub-millimeter departure) performs the fine-tuning of field curvature and residual distortion. Positioned near the image, where field angles are well separated, it efficiently corrects field-dependent aberrations without disturbing the on-axis performance established by the rest of the system.
 
 **Symmetric ED doublet pairs.** The L36+L37 and L38+L39 doublets use the same two glass types (S-LAH55 and S-FPL52) in swapped configurations. This near-symmetric arrangement is effective for canceling odd-order aberrations (particularly lateral color and coma) across the image field — a technique Nikon has employed in other high-performance Z-mount designs.
 

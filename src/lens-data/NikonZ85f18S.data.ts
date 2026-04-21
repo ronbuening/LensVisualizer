@@ -288,10 +288,10 @@ const LENS_DATA = {
 
   /* ── Group annotations ── */
   groups: [
-    { text: "Gr1 (+)", fromSurface: "1", toSurface: "7" },
-    { text: "Gr2 (−)", fromSurface: "8", toSurface: "10" },
-    { text: "Gr3 (+)", fromSurface: "12", toSurface: "13" },
-    { text: "Gr4 (−)", fromSurface: "14", toSurface: "21" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "7" },
+    { text: "G2 (−)", fromSurface: "8", toSurface: "10" },
+    { text: "G3 (+)", fromSurface: "12", toSurface: "13" },
+    { text: "G4 (−)", fromSurface: "14", toSurface: "21" },
   ],
 
   doublets: [

@@ -60,8 +60,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "G1",
-      label: "Element 1 (G1)",
+      name: "L11",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.63854,
       vd: 55.4,
@@ -72,8 +72,8 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "G2",
-      label: "Element 2 (G2, PMo)",
+      name: "L12",
+      label: "Element 2",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.5311,
       vd: 55.9,
@@ -84,8 +84,8 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L1P",
-      label: "Element 3 (L1P)",
+      name: "L13",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.69895,
       vd: 30.1,
@@ -96,8 +96,8 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L2a",
-      label: "Element 4 (L2a)",
+      name: "L21",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.90366,
       vd: 31.3,
@@ -108,8 +108,8 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L2b",
-      label: "Element 5 (L2b)",
+      name: "L22",
+      label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.84666,
       vd: 23.9,
@@ -120,8 +120,8 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L2c",
-      label: "Element 6 (L2c)",
+      name: "L23",
+      label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.7725,
       vd: 49.6,
@@ -132,8 +132,8 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "LP",
-      label: "Element 7 (LP, Focus)",
+      name: "L31",
+      label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.48749,
       vd: 70.2,
@@ -144,8 +144,8 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L4",
-      label: "Element 8 (L4, PMo)",
+      name: "L32",
+      label: "Element 8",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.5311,
       vd: 55.9,
@@ -263,9 +263,9 @@ const LENS_DATA = {
 
   /* ── Group annotations ── */
   groups: [
-    { text: "L1 (−)", fromSurface: "1", toSurface: "6" },
-    { text: "L2 (+)", fromSurface: "7", toSurface: "12" },
-    { text: "LR", fromSurface: "15", toSurface: "18A" },
+    { text: "G1 (−)", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (+)", fromSurface: "7", toSurface: "12" },
+    { text: "G3", fromSurface: "15", toSurface: "18A" },
   ],
   doublets: [],
 

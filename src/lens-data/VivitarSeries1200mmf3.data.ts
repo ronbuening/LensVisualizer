@@ -34,7 +34,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.56873,
@@ -46,7 +46,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.5168,
@@ -58,7 +58,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.80518,
@@ -70,7 +70,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -82,7 +82,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L15",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.7127,
@@ -94,7 +94,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L21",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.57957,
@@ -150,8 +150,8 @@ const LENS_DATA = {
     "Unit focus — front objective (L1–L5) translates as rigid unit; rear corrector L6 fixed to mount. Single variable gap between L5 and L6.",
 
   groups: [
-    { text: "OBJECTIVE (L1–L5)", fromSurface: "1", toSurface: "11" },
-    { text: "CORRECTOR (L6)", fromSurface: "12", toSurface: "13" },
+    { text: "G1 (OBJECTIVE)", fromSurface: "1", toSurface: "11" },
+    { text: "G2 (CORRECTOR)", fromSurface: "12", toSurface: "13" },
   ],
   doublets: [],
 

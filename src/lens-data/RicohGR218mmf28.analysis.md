@@ -2,10 +2,10 @@
 
 *Companion to `RicohGR218mmf28.data.ts`*
 
-**Patent:** US 2013/0321936 A1 · Example 3  
-**Inventor / Applicant:** Kazuyasu Ohashi (Funabashi-shi, JP)  
-**Filed:** May 31, 2013 · Priority: JP 2012-127431 (June 4, 2012)  
-**Production lens:** Ricoh GR (2013), Ricoh GR II (2015)  
+**Patent:** US 2013/0321936 A1 · Example 3
+**Inventor / Applicant:** Kazuyasu Ohashi (Funabashi-shi, JP)
+**Filed:** May 31, 2013 · Priority: JP 2012-127431 (June 4, 2012)
+**Production lens:** Ricoh GR (2013), Ricoh GR II (2015)
 **Note:** The published application lists no corporate assignee; the inventor filed individually. The described designs are clearly intended for Ricoh compact cameras and portable information terminals.
 
 ---
@@ -22,21 +22,21 @@ The patent describes the design as an "approximately-symmetric-type" wide-angle 
 
 ## 2. Lens Structure and Group Architecture
 
-The patent defines four functional power groups (Groups I–IV), but the lens physically contains five air-separated groups when counted by air gaps. The discrepancy arises because the patent's "Group II" contains two air-separated sub-assemblies: a single negative lens and a cemented doublet. The manufacturer's published specification of "7 elements in 5 groups" uses the physical air-gap convention; the patent's four-group scheme describes the functional power arrangement.
+The patent defines four functional power groups (Groups G1–G4), but the lens physically contains five air-separated groups when counted by air gaps. The discrepancy arises because the patent's "Group G2" contains two air-separated sub-assemblies: a single negative lens and a cemented doublet. The manufacturer's published specification of "7 elements in 5 groups" uses the physical air-gap convention; the patent's four-group scheme describes the functional power arrangement.
 
 The structure, front (object side) to rear (image side):
 
-**Group I (negative):** Single negative meniscus lens (L1), with the concave surface facing the image side. This is the only element in the first air-separated group.
+**Group G1 (negative):** Single negative meniscus lens (L11), with the concave surface facing the image side. This is the only element in the first air-separated group.
 
-**Group II (positive):** Two sub-assemblies — a single negative meniscus lens (L2) with its concave surface facing the object side, followed by an air gap of 0.20 mm, then a cemented doublet (L3+L4) with net positive power. This arrangement produces two physical air-separated groups (groups 2 and 3 in the manufacturer's convention) but functions as a single positive power group in the patent's scheme.
+**Group G2 (positive):** Two sub-assemblies — a single negative meniscus lens (L21) with its concave surface facing the object side, followed by an air gap of 0.20 mm, then a cemented doublet (L22+L23) with net positive power. This arrangement produces two physical air-separated groups (groups 2 and 3 in the manufacturer's convention) but functions as a single positive power group in the patent's scheme.
 
-**Aperture stop (S):** Located in the air gap between Groups II and III, 1.50 mm after the rear surface of the cemented doublet and 1.00 mm before the front surface of Group III.
+**Aperture stop (S):** Located in the air gap between Groups G2 and G3, 1.50 mm after the rear surface of the cemented doublet and 1.00 mm before the front surface of Group G3.
 
-**Group III (positive):** A cemented doublet (L5+L6), consisting of a biconvex positive element cemented to a biconcave negative element (in that order from the object side). The rear surface of this group is concave — an important feature of the approximately-symmetric design.
+**Group G3 (positive):** A cemented doublet (L31+L32), consisting of a biconvex positive element cemented to a biconcave negative element (in that order from the object side). The rear surface of this group is concave — an important feature of the approximately-symmetric design.
 
-**Group IV (weak):** A single negative meniscus lens (L7), with the concave surface facing the object side and the convex surface facing the image side. This group has the weakest refractive power of all four groups (|f₄| ≈ 240 mm vs. |f₁| ≈ 28 mm).
+**Group G4 (weak):** A single negative meniscus lens (L41), with the concave surface facing the object side and the convex surface facing the image side. This group has the weakest refractive power of all four groups (|f₄| ≈ 240 mm vs. |f₁| ≈ 28 mm).
 
-After Group IV, a parallel flat plate (F) represents the cover glass and/or infrared-cut filter of the image sensor, positioned so that its rear surface sits approximately 0.5 mm from the image plane. The Ricoh GR omits an optical low-pass (anti-aliasing) filter — a deliberate choice to maximize resolution at the expense of occasional moiré — so the parallel flat plate in the prescription represents only the IR-cut filter and sensor cover glass.
+After Group G4, a parallel flat plate (F) represents the cover glass and/or infrared-cut filter of the image sensor, positioned so that its rear surface sits approximately 0.5 mm from the image plane. The Ricoh GR omits an optical low-pass (anti-aliasing) filter — a deliberate choice to maximize resolution at the expense of occasional moiré — so the parallel flat plate in the prescription represents only the IR-cut filter and sensor cover glass.
 
 ---
 
@@ -44,19 +44,19 @@ After Group IV, a parallel flat plate (F) represents the cover glass and/or infr
 
 | Surface | R (mm) | d (mm) | nd | νd | Glass | Element |
 |---------|--------|--------|-------|-------|-------|---------|
-| 01 | 816.141 | 0.80 | 1.49710 | 81.56 | HOYA M-FCD1 | L1 front |
-| 02* | 13.666 | 1.79 | 1.0 | — | air | L1 rear (asph) |
-| 03 | −23.543 | 0.80 | 1.68893 | 31.16 | HOYA E-FD8 | L2 front |
-| 04 | 200.425 | 0.20 | 1.0 | — | air | L2 rear |
-| 05 | 15.416 | 0.80 | 1.84666 | 23.78 | HOYA FDS90 | L3 front |
-| 06 | 9.513 | 2.34 | 1.88300 | 40.80 | HOYA TAFD30 | L3→L4 cement |
-| 07 | −34.121 | 1.50 | 1.0 | — | air | L4 rear |
+| 01 | 816.141 | 0.80 | 1.49710 | 81.56 | HOYA M-FCD1 | L11 front |
+| 02* | 13.666 | 1.79 | 1.0 | — | air | L11 rear (asph) |
+| 03 | −23.543 | 0.80 | 1.68893 | 31.16 | HOYA E-FD8 | L21 front |
+| 04 | 200.425 | 0.20 | 1.0 | — | air | L21 rear |
+| 05 | 15.416 | 0.80 | 1.84666 | 23.78 | HOYA FDS90 | L22 front |
+| 06 | 9.513 | 2.34 | 1.88300 | 40.80 | HOYA TAFD30 | L22→L23 cement |
+| 07 | −34.121 | 1.50 | 1.0 | — | air | L23 rear |
 | STO | ∞ | 1.00 | 1.0 | — | air (stop) | — |
-| 09 | 14.691 | 2.59 | 1.88300 | 40.80 | HOYA TAFD30 | L5 front |
-| 10 | −9.087 | 0.89 | 1.68893 | 31.16 | HOYA E-FD8 | L5→L6 cement |
-| 11 | 12.917 | 1.73 | 1.0 | — | air | L6 rear |
-| 12 | −12.419 | 1.20 | 1.82080 | 42.71 | HOYA M-TAFD51 | L7 front |
-| 13* | −13.832 | 12.756 | 1.0 | — | air | L7 rear (asph) |
+| 09 | 14.691 | 2.59 | 1.88300 | 40.80 | HOYA TAFD30 | L31 front |
+| 10 | −9.087 | 0.89 | 1.68893 | 31.16 | HOYA E-FD8 | L31→L32 cement |
+| 11 | 12.917 | 1.73 | 1.0 | — | air | L32 rear |
+| 12 | −12.419 | 1.20 | 1.82080 | 42.71 | HOYA M-TAFD51 | L41 front |
+| 13* | −13.832 | 12.756 | 1.0 | — | air | L41 rear (asph) |
 | 14 | ∞ | 1.40 | 1.51680 | 64.20 | Filter | — |
 | 15 | ∞ | 0.50 | 1.0 | — | air → image | — |
 
@@ -87,12 +87,12 @@ The paraxial half angle of view (arctan Y'/f = 37.8°) is 0.4° less than the pa
 
 | Group | Focal length | Power character |
 |-------|-------------|-----------------|
-| Group I (L1) | −27.97 mm | Strong negative |
-| Group II (L2, L3+L4) | +19.07 mm | Moderate positive |
-| Group III (L5+L6) | +30.29 mm | Moderate positive |
-| Group IV (L7) | −240.0 mm | Very weak negative |
-| Groups I+II combined | +42.48 mm | Positive |
-| Groups III+IV combined | +35.32 mm | Positive |
+| Group G1 (L11) | −27.97 mm | Strong negative |
+| Group G2 (L21, L22+L23) | +19.07 mm | Moderate positive |
+| Group G3 (L31+L32) | +30.29 mm | Moderate positive |
+| Group G4 (L41) | −240.0 mm | Very weak negative |
+| Groups G1+G2 combined | +42.48 mm | Positive |
+| Groups G3+G4 combined | +35.32 mm | Positive |
 
 **Conditional expression verification:**
 
@@ -101,8 +101,8 @@ The paraxial half angle of view (arctan Y'/f = 37.8°) is 0.4° less than the pa
 | f₁/f₄ | 0.117 | 0.117 | First/fourth group power balance |
 | f₁₋₂/f₃₋₄ | 1.203 | 1.203 | Front/rear half power balance |
 | f₁/f | −1.529 | −1.529 | First group power relative to system |
-| r₂F/f | −1.287 | −1.287 | Group II front curvature ratio |
-| r₃R/f | 0.706 | 0.706 | Group III rear curvature ratio |
+| r₂F/f | −1.287 | −1.287 | Group G2 front curvature ratio |
+| r₃R/f | 0.706 | 0.706 | Group G3 rear curvature ratio |
 | nd_p2-3 | 1.883 | 1.883 | Average nd of positive elements in II+III |
 | Y'/f | 0.776 | 0.776 | Image height to focal length ratio |
 | L/f | 1.656 | 1.656 | Total track ratio |
@@ -117,35 +117,35 @@ All computed values agree with the patent to within rounding of the last digit.
 
 The patent specifies five distinct glass types from the HOYA catalog. The HOYA naming convention provides significant information: the "M-" prefix denotes glasses developed specifically for precision glass molding (low glass transition temperature, Tg < 400°C), the "E-" prefix denotes eco-friendly (lead- and arsenic-free) glasses, "TAF" denotes tantalum-containing flint glasses, and "FCD" denotes fluoride crown glasses with anomalous partial dispersion.
 
-### L1 — HOYA M-FCD1 (nd = 1.49710, νd = 81.56, Pg,F = 0.5388)
+### L11 — HOYA M-FCD1 (nd = 1.49710, νd = 81.56, Pg,F = 0.5388)
 
-A moldable fluoride crown glass with very low refractive index and very high Abbe number. The "FCD" designation indicates a fluorophosphate crown with anomalous (positive) partial dispersion — the Pg,F value of 0.5388 lies well above the normal glass line, making this an APD glass. HOYA developed M-FCD1 specifically as a moldable equivalent of their conventional FCD1 glass, with a glass transition temperature low enough for aspherical surface molding. This is significant: L1 carries an aspherical surface (S02*), and the use of M-FCD1 means this asphere is a precision glass-molded optic, not a ground-and-polished element with a resin layer.
+A moldable fluoride crown glass with very low refractive index and very high Abbe number. The "FCD" designation indicates a fluorophosphate crown with anomalous (positive) partial dispersion — the Pg,F value of 0.5388 lies well above the normal glass line, making this an APD glass. HOYA developed M-FCD1 specifically as a moldable equivalent of their conventional FCD1 glass, with a glass transition temperature low enough for aspherical surface molding. This is significant: L11 carries an aspherical surface (S02*), and the use of M-FCD1 means this asphere is a precision glass-molded optic, not a ground-and-polished element with a resin layer.
 
 The six-digit glass code is **497/816**, placing it in the extreme fluoride crown region of the glass map — low index, ultra-low dispersion.
 
-### L2 — HOYA E-FD8 (nd = 1.68893, νd = 31.16, Pg,F = 0.5989)
+### L21 — HOYA E-FD8 (nd = 1.68893, νd = 31.16, Pg,F = 0.5989)
 
-A dense flint glass with moderately high refractive index and low Abbe number. The "E-" prefix indicates an eco-glass formulation. The Pg,F value of 0.5989 places it above the normal line, indicating mild anomalous partial dispersion (positive dPgF). This same glass is used for L6 in the rear cemented doublet, creating a symmetric pair of flint elements about the aperture stop — consistent with the approximately-symmetric design philosophy.
+A dense flint glass with moderately high refractive index and low Abbe number. The "E-" prefix indicates an eco-glass formulation. The Pg,F value of 0.5989 places it above the normal line, indicating mild anomalous partial dispersion (positive dPgF). This same glass is used for L32 in the rear cemented doublet, creating a symmetric pair of flint elements about the aperture stop — consistent with the approximately-symmetric design philosophy.
 
 Glass code: **689/312**.
 
-### L3 — HOYA FDS90 (nd = 1.84666, νd = 23.78, Pg,F = 0.6191)
+### L22 — HOYA FDS90 (nd = 1.84666, νd = 23.78, Pg,F = 0.6191)
 
-An extremely high-dispersion dense flint — one of the most dispersive optical glasses in the HOYA catalog. With νd < 25, this glass provides very strong chromatic dispersion per unit of refractive power. In the cemented doublet L3+L4, L3 acts as the high-dispersion negative element that, together with L4's positive power, enables achromatic correction within Group II. The very high dispersion of FDS90 means that only a thin element is needed to provide the necessary chromatic correction, keeping the doublet compact.
+An extremely high-dispersion dense flint — one of the most dispersive optical glasses in the HOYA catalog. With νd < 25, this glass provides very strong chromatic dispersion per unit of refractive power. In the cemented doublet L22+L23, L22 acts as the high-dispersion negative element that, together with L23's positive power, enables achromatic correction within Group G2. The very high dispersion of FDS90 means that only a thin element is needed to provide the necessary chromatic correction, keeping the doublet compact.
 
 Glass code: **847/238**.
 
-### L4 and L5 — HOYA TAFD30 (nd = 1.88300, νd = 40.80, Pg,F = 0.5654)
+### L23 and L31 — HOYA TAFD30 (nd = 1.88300, νd = 40.80, Pg,F = 0.5654)
 
 The workhorses of this design. TAFD30 is a tantalum-containing dense flint glass with an exceptionally high refractive index combined with moderate Abbe number — an unusual combination that places it in the "high-index crown-like flint" region of the glass map. The nd of 1.883 is among the highest available in mass-produced optical glass, and the relatively moderate dispersion (νd = 40.80) means that strong refractive power can be achieved with moderate curvatures, reducing both aberrations and physical element size.
 
-Both L4 (in the Group II cemented doublet) and L5 (the biconvex element of the Group III doublet) use TAFD30. These are the primary positive-power elements of the system, flanking the aperture stop. The patent's Conditional Expression (6) requires nd_p2-3 > 1.75 for the positive elements in Groups II and III; at 1.883, this design exceeds that threshold substantially, which the patent states is essential for controlling field curvature and introverted coma at intermediate image heights.
+Both L23 (in the Group G2 cemented doublet) and L31 (the biconvex element of the Group G3 doublet) use TAFD30. These are the primary positive-power elements of the system, flanking the aperture stop. The patent's Conditional Expression (6) requires nd_p2-3 > 1.75 for the positive elements in Groups G2 and G3; at 1.883, this design exceeds that threshold substantially, which the patent states is essential for controlling field curvature and introverted coma at intermediate image heights.
 
 Glass code: **883/408**.
 
-### L7 — HOYA M-TAFD51 (nd = 1.82080, νd = 42.71, Pg,F = 0.5642)
+### L41 — HOYA M-TAFD51 (nd = 1.82080, νd = 42.71, Pg,F = 0.5642)
 
-Another moldable tantalum flint, similar in optical properties to TAFD30 but with slightly lower index and slightly higher Abbe number. The "M-" prefix again confirms this is a precision-molding glass, consistent with the aspherical surface on S13*. Like L1, this element's asphere is produced by glass molding rather than by grinding or resin overlay.
+Another moldable tantalum flint, similar in optical properties to TAFD30 but with slightly lower index and slightly higher Abbe number. The "M-" prefix again confirms this is a precision-molding glass, consistent with the aspherical surface on S13*. Like L11, this element's asphere is produced by glass molding rather than by grinding or resin overlay.
 
 Glass code: **821/427**.
 
@@ -153,25 +153,25 @@ Glass code: **821/427**.
 
 | Element | Glass | nd | νd | Pg,F | dPg,F | Mfg. method |
 |---------|-------|------|------|------|-------|-------------|
-| L1 | M-FCD1 | 1.497 | 81.56 | 0.539 | +0.032 (strong positive) | Glass-molded asphere |
-| L2 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
-| L3 | FDS90 | 1.847 | 23.78 | 0.619 | +0.015 (moderate positive) | Polished spherical |
-| L4 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
-| L5 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
-| L6 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
-| L7 | M-TAFD51 | 1.821 | 42.71 | 0.564 | −0.008 (slight negative) | Glass-molded asphere |
+| L11 | M-FCD1 | 1.497 | 81.56 | 0.539 | +0.032 (strong positive) | Glass-molded asphere |
+| L21 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
+| L22 | FDS90 | 1.847 | 23.78 | 0.619 | +0.015 (moderate positive) | Polished spherical |
+| L23 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
+| L31 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
+| L32 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
+| L41 | M-TAFD51 | 1.821 | 42.71 | 0.564 | −0.008 (slight negative) | Glass-molded asphere |
 
-The dPg,F values are computed relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The combination of strongly positive-APD M-FCD1 in L1 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
+The dPg,F values are computed relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The combination of strongly positive-APD M-FCD1 in L11 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
 
 ---
 
 ## 6. Aspherical Surfaces
 
-Two surfaces are aspherical: the rear surface of L1 (S02*) and the rear surface of L7 (S13*). Both are on elements made from moldable glass, as noted above. The patent recommends aspherical surfaces on the first and fourth groups specifically, noting that "the employment of the aspheric surface has a great effect in correction of astigmatism, comatic aberration, and distortion" (¶0107).
+Two surfaces are aspherical: the rear surface of L11 (S02*) and the rear surface of L41 (S13*). Both are on elements made from moldable glass, as noted above. The patent recommends aspherical surfaces on the first and fourth groups specifically, noting that "the employment of the aspheric surface has a great effect in correction of astigmatism, comatic aberration, and distortion" (¶0107).
 
-Note: Some third-party reviews describe the lens as having "two double-sided aspherics," but the patent prescription clearly shows only one aspherical surface per element — the front surfaces of both L1 and L7 are spherical. Ricoh's own specification — "two high-precision aspherical optical elements" — is consistent with the patent. Each aspherical element has one spherical and one aspherical surface, totaling two aspherical surfaces across the entire system.
+Note: Some third-party reviews describe the lens as having "two double-sided aspherics," but the patent prescription clearly shows only one aspherical surface per element — the front surfaces of both L11 and L41 are spherical. Ricoh's own specification — "two high-precision aspherical optical elements" — is consistent with the patent. Each aspherical element has one spherical and one aspherical surface, totaling two aspherical surfaces across the entire system.
 
-### S02* — L1 rear surface (R = 13.666 mm)
+### S02* — L11 rear surface (R = 13.666 mm)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -183,7 +183,7 @@ Note: Some third-party reviews describe the lens as having "two double-sided asp
 
 The positive conic constant K = +3.80 indicates a hyperboloidal base curve. At small heights, the aspherical departure is positive (the surface is slightly steeper than a sphere), reaching a peak departure of approximately +0.078 mm at h ≈ 4.8 mm. Beyond h ≈ 5.8 mm, the polynomial terms dominate and the departure reverses sign, flattening the surface relative to the sphere. This inflection behavior is characteristic of aspheres designed to correct field-dependent aberrations — the inner zone handles on-axis correction while the outer zone manages off-axis coma and astigmatism.
 
-### S13* — L7 rear surface (R = −13.832 mm)
+### S13* — L41 rear surface (R = −13.832 mm)
 
 | Coefficient | Value |
 |-------------|-------|
@@ -199,61 +199,61 @@ The strongly negative conic constant K = −2.86 places the base curve well beyo
 
 ## 7. Element-by-Element Optical Role Analysis
 
-### L1 — Front negative meniscus (Group I)
+### L11 — Front negative meniscus (Group G1)
 
 **Shape:** Nearly plano-concave. The front surface R = 816 mm is almost flat (radius-to-semi-diameter ratio > 100), while the rear surface R = 13.67 mm is strongly curved and aspherical.
 
 **Focal length:** −27.97 mm (strong negative).
 
-**Role:** L1 is the primary negative element of the front group. Its strong negative power diverges the incoming beam, which is essential for achieving the wide 38° half angle of view while keeping the lens compact — by bending off-axis rays inward early, L1 reduces the required clear aperture of all subsequent elements. The aspherical rear surface corrects astigmatism and distortion introduced by the strong curvature. The use of M-FCD1 (νd = 81.56, anomalous partial dispersion) serves a dual purpose: the high Abbe number minimizes the chromatic aberration contribution of this strong negative element, and the anomalous dispersion (dPg,F = +0.032) enables secondary spectrum correction. The patent's Conditional Expression (12) requires 55 < νd_n1 < 85 for the first lens group's negative element; at νd = 81.56, this design sits near the upper limit, maximizing achromatic correction.
+**Role:** L11 is the primary negative element of the front group. Its strong negative power diverges the incoming beam, which is essential for achieving the wide 38° half angle of view while keeping the lens compact — by bending off-axis rays inward early, L11 reduces the required clear aperture of all subsequent elements. The aspherical rear surface corrects astigmatism and distortion introduced by the strong curvature. The use of M-FCD1 (νd = 81.56, anomalous partial dispersion) serves a dual purpose: the high Abbe number minimizes the chromatic aberration contribution of this strong negative element, and the anomalous dispersion (dPg,F = +0.032) enables secondary spectrum correction. The patent's Conditional Expression (12) requires 55 < νd_n1 < 85 for the first lens group's negative element; at νd = 81.56, this design sits near the upper limit, maximizing achromatic correction.
 
 As the front-most element exposed to the environment, the choice of glass also reflects durability considerations. The patent notes (¶0106) that glasses with νd > 85 tend to be "soft, easy to be scratched, and low in chemical durability," making them unsuitable for the most object-side element.
 
-### L2 — Negative meniscus (Group II, front sub-assembly)
+### L21 — Negative meniscus (Group G2, front sub-assembly)
 
 **Shape:** Negative meniscus with the concave surface facing the object side (R₃ = −23.54 mm, R₄ = +200.4 mm).
 
 **Focal length:** −30.54 mm (moderate negative).
 
-**Role:** L2 forms the front element of Group II and creates one half of the "biconvex air lens" between Groups I and II (the concave rear of L1 and the concave front of L2 define a biconvex air space with negative refractive power). The patent specifically notes that the concave object-side surface of L2 "has an effect to make a diameter of the first lens group smaller, and make it easy to correct comatic aberration of a lower ray" (¶0061). L2 uses HOYA E-FD8, a dense flint with high dispersion (νd = 31.16), providing a chromatic counterbalance to the low-dispersion L1 ahead of it.
+**Role:** L21 forms the front element of Group G2 and creates one half of the "biconvex air lens" between Groups G1 and G2 (the concave rear of L11 and the concave front of L21 define a biconvex air space with negative refractive power). The patent specifically notes that the concave object-side surface of L21 "has an effect to make a diameter of the first lens group smaller, and make it easy to correct comatic aberration of a lower ray" (¶0061). L21 uses HOYA E-FD8, a dense flint with high dispersion (νd = 31.16), providing a chromatic counterbalance to the low-dispersion L11 ahead of it.
 
-### L3+L4 — Cemented doublet (Group II, rear sub-assembly)
+### L22+L23 — Cemented doublet (Group G2, rear sub-assembly)
 
-**Shape:** L3 is a negative meniscus (R₅ = +15.42, R₆ = +9.51 — both surfaces convex toward the object side, with the rear surface more steeply curved), L4 is a biconvex element (R₆ = +9.51, R₇ = −34.12).
+**Shape:** L22 is a negative meniscus (R₅ = +15.42, R₆ = +9.51 — both surfaces convex toward the object side, with the rear surface more steeply curved), L23 is a biconvex element (R₆ = +9.51, R₇ = −34.12).
 
 **Combined focal length:** +12.19 mm (strong positive).
 
-**Role:** This cemented doublet provides the primary positive refractive power on the object side of the aperture. The use of FDS90 (νd = 23.78, extremely high dispersion) for L3 and TAFD30 (νd = 40.80, moderate dispersion, very high index) for L4 provides partial chromatic correction within the doublet — L3's high dispersion offsets roughly half of L4's chromatic contribution. The doublet is not a standalone achromat, however; full achromatic correction is achieved at the system level, where the five negative elements (L1, L2, L3, L6, L7) collectively balance the two strong positive elements (L4, L5). The cemented junction at R₆ = 9.513 mm (strongly curved) carries significant refractive power and helps correct lateral chromatic aberration.
+**Role:** This cemented doublet provides the primary positive refractive power on the object side of the aperture. The use of FDS90 (νd = 23.78, extremely high dispersion) for L22 and TAFD30 (νd = 40.80, moderate dispersion, very high index) for L23 provides partial chromatic correction within the doublet — L22's high dispersion offsets roughly half of L23's chromatic contribution. The doublet is not a standalone achromat, however; full achromatic correction is achieved at the system level, where the five negative elements (L11, L21, L22, L32, L41) collectively balance the two strong positive elements (L23, L31). The cemented junction at R₆ = 9.513 mm (strongly curved) carries significant refractive power and helps correct lateral chromatic aberration.
 
-The very high refractive index of L4 (nd = 1.883) allows the positive power to be achieved with relatively gentle curvatures, reducing higher-order aberrations. The patent notes that separated negative and positive elements in Group II "secure degrees of freedom in various aberration correction" (¶0063).
+The very high refractive index of L23 (nd = 1.883) allows the positive power to be achieved with relatively gentle curvatures, reducing higher-order aberrations. The patent notes that separated negative and positive elements in Group G2 "secure degrees of freedom in various aberration correction" (¶0063).
 
-### L5+L6 — Cemented doublet (Group III)
+### L31+L32 — Cemented doublet (Group G3)
 
-**Shape:** L5 is biconvex (R₉ = +14.69, R₁₀ = −9.09), L6 is biconcave (R₁₀ = −9.09, R₁₁ = +12.92).
+**Shape:** L31 is biconvex (R₉ = +14.69, R₁₀ = −9.09), L32 is biconcave (R₁₀ = −9.09, R₁₁ = +12.92).
 
 **Combined focal length:** +30.29 mm (moderate positive).
 
-**Role:** This doublet mirrors the power structure of the L3+L4 doublet across the aperture stop — both use TAFD30 for the positive element and E-FD8 for the negative element, reinforcing the approximately-symmetric design. The patent states that "only a cemented lens of a positive lens and a negative lens constitutes the third lens group" to prevent "an increase in a production error sensitivity" and achieve "ease of assembly" (¶0063). By using a single cemented pair rather than separated elements, manufacturing tolerances are relaxed — the cemented junction is self-centering and doesn't require the tight air-gap control of separated elements.
+**Role:** This doublet mirrors the power structure of the L22+L23 doublet across the aperture stop — both use TAFD30 for the positive element and E-FD8 for the negative element, reinforcing the approximately-symmetric design. The patent states that "only a cemented lens of a positive lens and a negative lens constitutes the third lens group" to prevent "an increase in a production error sensitivity" and achieve "ease of assembly" (¶0063). By using a single cemented pair rather than separated elements, manufacturing tolerances are relaxed — the cemented junction is self-centering and doesn't require the tight air-gap control of separated elements.
 
-The rear surface of L6 (R₁₁ = +12.917 mm, concave toward the image) forms one side of the second "biconvex air lens" between Groups III and IV, symmetrically matching the air lens between Groups I and II.
+The rear surface of L32 (R₁₁ = +12.917 mm, concave toward the image) forms one side of the second "biconvex air lens" between Groups G3 and G4, symmetrically matching the air lens between Groups G1 and G2.
 
-### L7 — Weak negative meniscus (Group IV)
+### L41 — Weak negative meniscus (Group G4)
 
 **Shape:** Concave-convex meniscus (R₁₂ = −12.42, R₁₃ = −13.83), with both surfaces concave from the object side but the rear surface less strongly curved and aspherical.
 
 **Focal length:** −240.0 mm (very weak negative).
 
-**Role:** L7 is the field flattener and exit pupil controller. Its extremely weak power (|f₇/f| ≈ 13) means it contributes minimally to the system's refractive power but significantly affects the exit pupil position and field curvature. The patent explains that Group IV "controls the position of the exit pupil" and "sets the angle of the principal ray incident to the image plane in the peripheral image height to be in an appropriate state" (¶0065). The aspherical rear surface provides fine control over the chief ray angle at the image plane — critical for proper illumination of the sensor's microlens array.
+**Role:** L41 is the field flattener and exit pupil controller. Its extremely weak power (|f₇/f| ≈ 13) means it contributes minimally to the system's refractive power but significantly affects the exit pupil position and field curvature. The patent explains that Group G4 "controls the position of the exit pupil" and "sets the angle of the principal ray incident to the image plane in the peripheral image height to be in an appropriate state" (¶0065). The aspherical rear surface provides fine control over the chief ray angle at the image plane — critical for proper illumination of the sensor's microlens array.
 
-The concave object-side surface of L7 forms the rear half of the second biconvex air lens, completing the symmetric negative-positive-negative power distribution on the image side of the stop.
+The concave object-side surface of L41 forms the rear half of the second biconvex air lens, completing the symmetric negative-positive-negative power distribution on the image side of the stop.
 
 ---
 
 ## 8. Symmetry and Aberration Correction Strategy
 
-The approximately-symmetric power arrangement is the defining feature of this design. The patent describes it as: positive power flanking the aperture on both sides (the L3+L4 cemented doublet and L5 biconvex element), with negative power on each outer side (Group I and the rear elements L6 + L7). This near-symmetry cancels odd-order aberrations (coma, distortion, lateral chromatic aberration) to first order, while the deliberate asymmetry (the rear half is slightly more powerful than the front — f₃₋₄ = 35.3 mm vs. f₁₋₂ = 42.5 mm, giving f₁₋₂/f₃₋₄ = 1.203) accommodates the reduced magnification at which a camera lens operates.
+The approximately-symmetric power arrangement is the defining feature of this design. The patent describes it as: positive power flanking the aperture on both sides (the L22+L23 cemented doublet and L31 biconvex element), with negative power on each outer side (Group G1 and the rear elements L32 + L41). This near-symmetry cancels odd-order aberrations (coma, distortion, lateral chromatic aberration) to first order, while the deliberate asymmetry (the rear half is slightly more powerful than the front — f₃₋₄ = 35.3 mm vs. f₁₋₂ = 42.5 mm, giving f₁₋₂/f₃₋₄ = 1.203) accommodates the reduced magnification at which a camera lens operates.
 
-The two "biconvex air lenses" — between Groups I and II, and between Groups III and IV — each contribute negative refractive power, further distributing the power budget and enabling finer aberration control. The patent notes that these air lenses make it possible to favorably adjust the "distribution of the refractive power" in those inter-group spaces (¶0060).
+The two "biconvex air lenses" — between Groups G1 and G2, and between Groups G3 and G4 — each contribute negative refractive power, further distributing the power budget and enabling finer aberration control. The patent notes that these air lenses make it possible to favorably adjust the "distribution of the refractive power" in those inter-group spaces (¶0060).
 
 The computed Petzval sum of 0.00468 mm⁻¹ yields a Petzval radius of approximately 214 mm, producing an inward Petzval field curvature of approximately 0.47 mm at the maximum image height (Y' = 14.2 mm). This is substantially larger than the geometric depth of focus at f/2.8 (approximately ±0.054 mm for a 4.8 µm pixel pitch sensor), which means the Petzval curvature alone cannot be tolerated — astigmatic correction must compensate. The patent's aberration diagrams for Example 3 (Fig. 11) confirm that the tangential and sagittal focal surfaces are balanced to bracket the image plane, yielding a composite best-focus surface that is much flatter than the Petzval surface. The mild corner softness observed in production reviews at f/2.8 (improving markedly by f/5.6) is consistent with this residual balance between Petzval curvature and astigmatic compensation.
 
@@ -275,7 +275,7 @@ The patent provides eight examples, all sharing the same four-group architecture
 
 **Highest-index positive elements:** Examples 3, 4, and 6 all use TAFD30 (nd = 1.883) for both primary positive elements — the highest refractive index among all eight examples. This enables the most compact design for a given focal length, consistent with the GR's emphasis on pocketability. The remaining examples use lower-index alternatives (TAFD5F at nd = 1.835, or TAF1 at nd = 1.773).
 
-**Anomalous dispersion front element:** Example 3 is the only example that uses M-FCD1 (nd = 1.497, νd = 81.56) for L1 — an anomalous partial dispersion glass with dPg,F = +0.032. The other examples predominantly use HOYA FC5 (nd = 1.487, νd = 70.45), which has lower Abbe number and less anomalous dispersion. M-FCD1's ultra-low dispersion enables better secondary spectrum correction, contributing to the low chromatic aberration observed in production reviews.
+**Anomalous dispersion front element:** Example 3 is the only example that uses M-FCD1 (nd = 1.497, νd = 81.56) for L11 — an anomalous partial dispersion glass with dPg,F = +0.032. The other examples predominantly use HOYA FC5 (nd = 1.487, νd = 70.45), which has lower Abbe number and less anomalous dispersion. M-FCD1's ultra-low dispersion enables better secondary spectrum correction, contributing to the low chromatic aberration observed in production reviews.
 
 **Balanced chromatic correction:** The combination of M-FCD1 (anomalous dispersion) with the symmetric use of E-FD8 in both doublets creates a chromatic correction strategy that addresses both primary and secondary spectrum — contributing to the low chromatic aberration observed in production reviews.
 
@@ -289,7 +289,7 @@ Several features of Example 3's design reflect production engineering priorities
 
 **Glass-molded aspherics:** Both aspherical elements use HOYA's M-prefix moldable glasses. Precision glass molding produces aspherical surfaces with excellent centration (since the asphere and element are formed in a single pressing operation) and high throughput compared to diamond-turned or polished aspheres. This is critical for a mass-production consumer camera.
 
-**Cemented groups for tolerance control:** The use of cemented doublets in Groups II and III (rather than air-spaced doublets) eliminates an air gap and its associated axial, decenter, and tilt tolerances for each doublet. The patent explicitly cites "ease of assembly" as a motivation for using a cemented lens in Group III (¶0063).
+**Cemented groups for tolerance control:** The use of cemented doublets in Groups G2 and G3 (rather than air-spaced doublets) eliminates an air gap and its associated axial, decenter, and tilt tolerances for each doublet. The patent explicitly cites "ease of assembly" as a motivation for using a cemented lens in Group G3 (¶0063).
 
 **Symmetric glass selection:** The mirror-image use of TAFD30 and E-FD8 in the two cemented doublets simplifies procurement and quality control — only five distinct glass types are needed for seven elements.
 
@@ -301,11 +301,11 @@ Several features of Example 3's design reflect production engineering priorities
 
 The Ricoh GR 18.3mm f/2.8 is a 7-element, 5-group (4 functional groups) approximately-symmetric wide-angle design. Its defining characteristics are:
 
-1. **Two precision glass-molded aspherical elements** (L1 and L7) using HOYA's M-FCD1 and M-TAFD51 moldable glasses, positioned at the first and last elements where they have maximum leverage over field-dependent aberrations.
+1. **Two precision glass-molded aspherical elements** (L11 and L41) using HOYA's M-FCD1 and M-TAFD51 moldable glasses, positioned at the first and last elements where they have maximum leverage over field-dependent aberrations.
 
 2. **Very high refractive index positive elements** (nd = 1.883, HOYA TAFD30) flanking the aperture stop, enabling compact physical dimensions while maintaining strong positive power.
 
-3. **Anomalous partial dispersion** in L1 (M-FCD1, dPg,F = +0.032) for secondary spectrum correction, with system-level achromatic balancing achieved by distributing chromatic contributions across all seven elements — the five negative elements collectively offset the two strong positive elements (L4 and L5, both TAFD30).
+3. **Anomalous partial dispersion** in L11 (M-FCD1, dPg,F = +0.032) for secondary spectrum correction, with system-level achromatic balancing achieved by distributing chromatic contributions across all seven elements — the five negative elements collectively offset the two strong positive elements (L23 and L31, both TAFD30).
 
 4. **Unit focusing** — the entire lens assembly translates for focusing, with no internal moving groups. This keeps the design mechanically simple and preserves aberration balance across the focus range.
 
@@ -325,27 +325,27 @@ The entrance pupil semi-diameter (EP_SD = EFL / 2F# = 3.26 mm) was traced throug
 
 Two constraints proved most restrictive:
 
-**Cemented junction edge thickness (L4 and L5):** The strongly curved cemented junctions at R₆ = 9.513 mm and R₁₀ = −9.087 mm create large sags that rapidly consume center thickness in the biconvex positive elements. L4 (ct = 2.34 mm) reaches minimum acceptable edge thickness (~0.55 mm) at SD ≈ 5.0 mm; L5 (ct = 2.59 mm) reaches ~0.51 mm at SD ≈ 4.7 mm. These constraints limit the doublet SDs to substantially less than the full beam envelope at those surfaces.
+**Cemented junction edge thickness (L23 and L31):** The strongly curved cemented junctions at R₆ = 9.513 mm and R₁₀ = −9.087 mm create large sags that rapidly consume center thickness in the biconvex positive elements. L23 (ct = 2.34 mm) reaches minimum acceptable edge thickness (~0.55 mm) at SD ≈ 5.0 mm; L31 (ct = 2.59 mm) reaches ~0.51 mm at SD ≈ 4.7 mm. These constraints limit the doublet SDs to substantially less than the full beam envelope at those surfaces.
 
-**Cross-gap sag overlap (L1→L2 and L6→L7):** Both air gaps between Groups I–II and Groups III–IV feature surfaces that curve *into* the gap from both sides — creating a "pinching" geometry that limits the maximum SD at which the surfaces remain non-overlapping. The L1→L2 gap (1.79 mm) constrains the effective sdCheck to ~5.5 mm, while the L6→L7 gap (1.73 mm) constrains it to ~4.7 mm (both verified to satisfy intrusion ≤ gap × 1.1).
+**Cross-gap sag overlap (L11→L21 and L32→L41):** Both air gaps between Groups G1–G2 and Groups G3–G4 feature surfaces that curve *into* the gap from both sides — creating a "pinching" geometry that limits the maximum SD at which the surfaces remain non-overlapping. The L11→L21 gap (1.79 mm) constrains the effective sdCheck to ~5.5 mm, while the L32→L41 gap (1.73 mm) constrains it to ~4.7 mm (both verified to satisfy intrusion ≤ gap × 1.1).
 
 ### Final Semi-Diameter Values
 
 | Surface | SD (mm) | Constraint |
 |---------|---------|------------|
-| S01 (L1 front) | 7.50 | Wide-angle field acceptance |
-| S02A (L1 rear) | 6.50 | Cross-gap with S03 |
-| S03 (L2 front) | 5.50 | Cross-gap with S02A |
-| S04 (L2 rear) | 5.00 | Smooth progression toward doublet |
-| S05 (L3 front) | 5.00 | Edge thickness of L4 |
-| S06 (L3→L4 cement) | 5.00 | Matched to cemented pair |
-| S07 (L4 rear) | 5.00 | Matched to cemented pair |
+| S01 (L11 front) | 7.50 | Wide-angle field acceptance |
+| S02A (L11 rear) | 6.50 | Cross-gap with S03 |
+| S03 (L21 front) | 5.50 | Cross-gap with S02A |
+| S04 (L21 rear) | 5.00 | Smooth progression toward doublet |
+| S05 (L22 front) | 5.00 | Edge thickness of L23 |
+| S06 (L22→L23 cement) | 5.00 | Matched to cemented pair |
+| S07 (L23 rear) | 5.00 | Matched to cemented pair |
 | STO | 3.55 | Gives F/2.80 at infinity |
-| S09 (L5 front) | 4.70 | Edge thickness of L5 |
-| S10 (L5→L6 cement) | 4.70 | Matched to cemented pair |
-| S11 (L6 rear) | 4.70 | Cross-gap with S12 |
-| S12 (L7 front) | 5.50 | Chief ray expansion after stop |
-| S13A (L7 rear) | 5.80 | Exit pupil geometry |
+| S09 (L31 front) | 4.70 | Edge thickness of L31 |
+| S10 (L31→L32 cement) | 4.70 | Matched to cemented pair |
+| S11 (L32 rear) | 4.70 | Cross-gap with S12 |
+| S12 (L41 front) | 5.50 | Chief ray expansion after stop |
+| S13A (L41 rear) | 5.80 | Exit pupil geometry |
 
 All values validated: edge thickness ≥ 0.4 mm for all elements, cross-gap intrusion ≤ gap × 1.1 for all air gaps, sd/|R| < 0.55 for all surfaces. Front/rear SD ratios per element are all ≤ 1.23 (well within the 3.0 limit).
 
@@ -365,7 +365,7 @@ where 12.756 mm is the patent's geometric distance from S13 to the filter front,
 
 ### Stop Position
 
-The patent lists the aperture stop as surface 08 (between surface 07 at R = −34.121 and surface 09 at R = 14.691). The air gap is split: d₇ = 1.50 mm from L4 rear to stop, d_STO = 1.00 mm from stop to L5 front. This placement is taken directly from the patent table.
+The patent lists the aperture stop as surface 08 (between surface 07 at R = −34.121 and surface 09 at R = 14.691). The air gap is split: d₇ = 1.50 mm from L23 rear to stop, d_STO = 1.00 mm from stop to L31 front. This placement is taken directly from the patent table.
 
 ### Aspherical Coefficient Format
 
@@ -385,4 +385,4 @@ The Ricoh GR's normal-mode MFD is 0.30 m (extension ~1.19 mm, BFD ~15.37 mm). Th
 
 ### Numerical Precision
 
-All R, d, and nd values are transcribed exactly from the patent. The nd values for TAFD30 (1.88300) and E-FD8 (1.68893) appear at full five-decimal precision in the patent's glass column but are stored in the data file at the precision needed by the renderer: nd = 1.883 and nd = 1.68893 respectively. For elements where the glass appears at both positions in a symmetric pair (L4/L5 use TAFD30; L2/L6 use E-FD8), the same nd value is used consistently.
+All R, d, and nd values are transcribed exactly from the patent. The nd values for TAFD30 (1.88300) and E-FD8 (1.68893) appear at full five-decimal precision in the patent's glass column but are stored in the data file at the precision needed by the renderer: nd = 1.883 and nd = 1.68893 respectively. For elements where the glass appears at both positions in a symmetric pair (L23/L31 use TAFD30; L21/L32 use E-FD8), the same nd value is used consistently.

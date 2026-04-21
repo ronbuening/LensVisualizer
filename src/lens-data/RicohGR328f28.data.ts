@@ -55,7 +55,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L11",
-      label: "Element 1 (L11)",
+      label: "Element 1",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.51633,
       vd: 64.06,
@@ -68,7 +68,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L12",
-      label: "Element 2 (L12)",
+      label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.6398,
       vd: 34.47,
@@ -82,7 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L13",
-      label: "Element 3 (L13)",
+      label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.881,
       vd: 40.14,
@@ -96,7 +96,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L21",
-      label: "Element 4 (L21)",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.881,
       vd: 40.14,
@@ -110,7 +110,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L22",
-      label: "Element 5 (L22)",
+      label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.69895,
       vd: 30.13,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L23",
-      label: "Element 6 (L23)",
+      label: "Element 6",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.88202,
       vd: 37.22,
@@ -207,8 +207,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (LO)", fromSurface: "1", toSurface: "5" },
-    { text: "REAR (LI)", fromSurface: "7", toSurface: "11A" },
+    { text: "G1 (FRONT LO)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (REAR LI)", fromSurface: "7", toSurface: "11A" },
   ],
 
   doublets: [

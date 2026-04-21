@@ -49,7 +49,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "LF",
+      name: "L11",
       label: "Element 1",
       type: "Biconcave Negative",
       nd: 1.54373,
@@ -61,7 +61,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "Lfa",
+      name: "L12",
       label: "Element 2",
       type: "Pos. Meniscus (2× Asph)",
       nd: 1.85249,
@@ -73,7 +73,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "Lfb",
+      name: "L13",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "Lfc",
+      name: "L14",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.59282,
@@ -99,7 +99,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "Lfd",
+      name: "L15",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.51322,
@@ -111,7 +111,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "Lrd",
+      name: "L21",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.70269,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "Lrc",
+      name: "L22",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.79334,
@@ -137,7 +137,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "Lrb",
+      name: "L23",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.80258,
@@ -150,7 +150,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "Lra",
+      name: "L24",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.55362,
@@ -163,7 +163,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "LE",
+      name: "L25",
       label: "Element 10",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.51633,
@@ -264,8 +264,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (101)", fromSurface: "1", toSurface: "10" },
-    { text: "REAR (102)", fromSurface: "12", toSurface: "19A" },
+    { text: "G1 (FRONT 101)", fromSurface: "1", toSurface: "10" },
+    { text: "G2 (REAR 102)", fromSurface: "12", toSurface: "19A" },
   ],
 
   doublets: [

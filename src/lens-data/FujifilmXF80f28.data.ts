@@ -39,7 +39,7 @@ const LENS_DATA = {
     // ── Group 1 — Front positive (stationary) ───────────────────────────
     {
       id: 1,
-      name: "L1a",
+      name: "L11",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.72916,
@@ -50,7 +50,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L1b",
+      name: "L12",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -63,7 +63,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L1c",
+      name: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.62588,
@@ -74,7 +74,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L1d",
+      name: "L14",
       label: "Element 4",
       type: "Biconvex Pos. (2× Asph)",
       nd: 1.58313,
@@ -87,7 +87,7 @@ const LENS_DATA = {
     // ── Group 2 — Negative focusing group (moves toward image) ──────────
     {
       id: 5,
-      name: "L2a",
+      name: "L21",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.58913,
@@ -98,7 +98,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L2b",
+      name: "L22",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.673,
@@ -110,7 +110,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L2c",
+      name: "L23",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 2.00069,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     // ── Group 3 — Positive focusing group (moves toward object) ─────────
     {
       id: 8,
-      name: "L3a",
+      name: "L31",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.43875,
@@ -137,7 +137,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L3b",
+      name: "L32",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -151,7 +151,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L3c",
+      name: "L33",
       label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -165,7 +165,7 @@ const LENS_DATA = {
     // ── Group 4a — OIS vibration-proof group (perpendicular shift) ──────
     {
       id: 11,
-      name: "L4aa",
+      name: "L41",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 2.00272,
@@ -177,7 +177,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L4ab",
+      name: "L42",
       label: "Element 12",
       type: "Biconcave Negative",
       nd: 1.697,
@@ -189,7 +189,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L4ac",
+      name: "L43",
       label: "Element 13",
       type: "Negative Meniscus",
       nd: 1.53775,
@@ -204,7 +204,7 @@ const LENS_DATA = {
     // ── Group 4b — Rear fixed group (stationary) ────────────────────────
     {
       id: 14,
-      name: "L4ba",
+      name: "L51",
       label: "Element 14",
       type: "Positive Meniscus",
       nd: 1.95375,
@@ -215,7 +215,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L4bb",
+      name: "L52",
       label: "Element 15",
       type: "Biconvex Positive",
       nd: 1.5168,
@@ -227,7 +227,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L4bc",
+      name: "L53",
       label: "Element 16",
       type: "Negative Meniscus",
       nd: 1.95906,
@@ -328,8 +328,8 @@ const LENS_DATA = {
     { text: "G1 (+)", fromSurface: "1", toSurface: "8A" },
     { text: "G2 (−)", fromSurface: "9", toSurface: "13" },
     { text: "G3 (+)", fromSurface: "15", toSurface: "19" },
-    { text: "G4a (−) OIS", fromSurface: "20", toSurface: "24" },
-    { text: "G4b (+)", fromSurface: "25", toSurface: "29" },
+    { text: "G4 (−, OIS)", fromSurface: "20", toSurface: "24" },
+    { text: "G5 (+)", fromSurface: "25", toSurface: "29" },
   ],
   doublets: [
     { text: "D1", fromSurface: "11", toSurface: "13" },

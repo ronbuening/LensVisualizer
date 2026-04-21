@@ -32,7 +32,7 @@ The XF35mmF1.4 R was launched alongside the Fujifilm X-Pro1 in early 2012 as one
 
 ## 2. Design Architecture
 
-The lens is a modified double-Gauss type consisting of a positive front group (GF), an aperture stop, and a positive rear group (GR). The departure from a classical double-Gauss lies primarily in the rear group, which replaces the traditional negative–positive cemented doublet with a negative aspheric singlet followed by a positive–negative–positive cemented triplet.
+The lens is a modified double-Gauss type consisting of a positive G1 group (GF), an aperture stop, and a positive G2 group (GR). The departure from a classical double-Gauss lies primarily in the G2 group, which replaces the traditional negative–positive cemented doublet with a negative aspheric singlet followed by a positive–negative–positive cemented triplet.
 
 ### Group Structure
 
@@ -44,7 +44,7 @@ The lens is a modified double-Gauss type consisting of a positive front group (G
 | *— Triplet alone* | *L22+L23+L24* | *+19.4 mm* | *Positive cemented triplet* |
 | **System** | **8 elements** | **36.17 mm** | **EFL verified via ABCD paraxial trace** |
 
-The front group is weakly positive (f ≈ 183 mm), while the rear group carries the majority of the optical power (f ≈ 24 mm). This asymmetric power distribution departs from a classical double-Gauss, where the front and rear groups share power more equally. The concentration of power in the rear group, behind the aperture stop, contributes to the lens's compact form factor: the back focal distance of 21.98 mm is only 0.61× the system focal length, with the image plane sitting closer to the lens than the focal length would suggest if the principal planes were at the lens center.
+The G1 group is weakly positive (f ≈ 183 mm), while the G2 group carries the majority of the optical power (f ≈ 24 mm). This asymmetric power distribution departs from a classical double-Gauss, where the front and G2 groups share power more equally. The concentration of power in the G2 group, behind the aperture stop, contributes to the lens's compact form factor: the back focal distance of 21.98 mm is only 0.61× the system focal length, with the image plane sitting closer to the lens than the focal length would suggest if the principal planes were at the lens center.
 
 ### Petzval Sum and Field Curvature
 
@@ -65,7 +65,7 @@ The surface-by-surface Petzval sum is +0.0044 mm⁻¹, corresponding to a Petzva
 | Focal length | +58.1 mm |
 | Glass match | **OHARA S-LAH97** (nd = 1.75500, νd = 52.32), SCHOTT N-LAK33B, HOYA TAC6 |
 
-L11 is the first element the light encounters and serves as the primary positive power contributor in the front group. Its meniscus shape (both radii positive, R1 < R2) bends the wide f/1.4 entrance cone gently inward while minimizing the angle of incidence at each surface. This reduces the surface contribution to spherical aberration — critical at f/1.4 where marginal rays are steep. The lanthanum dense crown glass (LAH/LAK family) provides a high index (1.755) with moderate dispersion (ν ≈ 52), keeping the Petzval contribution manageable while maintaining low chromatic aberration.
+L11 is the first element the light encounters and serves as the primary positive power contributor in the G1 group. Its meniscus shape (both radii positive, R1 < R2) bends the wide f/1.4 entrance cone gently inward while minimizing the angle of incidence at each surface. This reduces the surface contribution to spherical aberration — critical at f/1.4 where marginal rays are steep. The lanthanum dense crown glass (LAH/LAK family) provides a high index (1.755) with moderate dispersion (ν ≈ 52), keeping the Petzval contribution manageable while maintaining low chromatic aberration.
 
 ### Element 2 — L12: Second Positive Meniscus
 
@@ -78,9 +78,9 @@ L11 is the first element the light encounters and serves as the primary positive
 | Focal length | +47.1 mm |
 | Glass match | **OHARA S-LAH65VS** (nd = 1.80400, νd = 46.58), SCHOTT N-LASF44, HOYA TAF3 |
 
-L12 is the strongest positive element in the front group. Its tighter curvatures (R1 = 16.7 mm) indicate that it does the heavy lifting of converging the marginal ray bundle. The very high index lanthanum glass (nd = 1.804) reduces the curvature needed for a given power, which again minimizes spherical aberration at each surface. The pair L11 + L12 together act as a split positive doublet, distributing the positive power across four surfaces rather than two, which is a classical strategy for controlling spherical aberration in fast lenses.
+L12 is the strongest positive element in the G1 group. Its tighter curvatures (R1 = 16.7 mm) indicate that it does the heavy lifting of converging the marginal ray bundle. The very high index lanthanum glass (nd = 1.804) reduces the curvature needed for a given power, which again minimizes spherical aberration at each surface. The pair L11 + L12 together act as a split positive doublet, distributing the positive power across four surfaces rather than two, which is a classical strategy for controlling spherical aberration in fast lenses.
 
-L12 is the thickest element in the front group at 5.01 mm, reflecting the strong curvature and the need to maintain adequate edge thickness in a meniscus form.
+L12 is the thickest element in the G1 group at 5.01 mm, reflecting the strong curvature and the need to maintain adequate edge thickness in a meniscus form.
 
 ### Element 3 — L13: Negative Meniscus (Flint)
 
@@ -93,9 +93,9 @@ L12 is the thickest element in the front group at 5.01 mm, reflecting the strong
 | Focal length | −24.7 mm |
 | Glass match | **OHARA S-TIM35** (nd = 1.69895, νd = 30.13), SCHOTT N-SF15, HOYA E-FD15 |
 
-L13 is the primary color-correcting element in the front group. Its medium-index flint glass (ν ≈ 30, TIM/SF family) provides strong negative dispersion to counteract the chromatic aberration introduced by the two preceding positive lanthanum elements. Despite being thin (1.35 mm), it has the strongest negative power of any element in the front group (f = −24.7 mm). The meniscus shape, concave toward the aperture stop, also contributes to coma correction.
+L13 is the primary color-correcting element in the G1 group. Its medium-index flint glass (ν ≈ 30, TIM/SF family) provides strong negative dispersion to counteract the chromatic aberration introduced by the two preceding positive lanthanum elements. Despite being thin (1.35 mm), it has the strongest negative power of any element in the G1 group (f = −24.7 mm). The meniscus shape, concave toward the aperture stop, also contributes to coma correction.
 
-The large disparity between L13's rear radius (10.424 mm — quite steep) and its front radius (27.720 mm) creates the strong negative power. This is the "diverging half" of the front group's quasi-achromatic arrangement.
+The large disparity between L13's rear radius (10.424 mm — quite steep) and its front radius (27.720 mm) creates the strong negative power. This is the "diverging half" of the G1 group's quasi-achromatic arrangement.
 
 ### Element 4 — L14: Weak Negative Meniscus
 
@@ -108,13 +108,13 @@ The large disparity between L13's rear radius (10.424 mm — quite steep) and it
 | Focal length | −135.9 mm |
 | Glass match | **OHARA S-TIM5** (nd = 1.60342, νd = 38.03), HOYA E-F5 |
 
-L14 is a weakly negative meniscus (f ≈ −136 mm) positioned immediately before the aperture stop. In a double-Gauss configuration, this element plays the role of a "field flattener" for the front group — its mild negative power and meniscus form help control astigmatism and gently re-shape the wavefront before it passes through the stop. The moderate-dispersion flint glass (TIM family, ν ≈ 38) provides a secondary color correction contribution without introducing excessive chromatic aberration.
+L14 is a weakly negative meniscus (f ≈ −136 mm) positioned immediately before the aperture stop. In a double-Gauss configuration, this element plays the role of a "field flattener" for the G1 group — its mild negative power and meniscus form help control astigmatism and gently re-shape the wavefront before it passes through the stop. The moderate-dispersion flint glass (TIM family, ν ≈ 38) provides a secondary color correction contribution without introducing excessive chromatic aberration.
 
 The thin construction (1.10 mm) and weak power indicate this element's role is more about wavefront shaping and symmetry than raw power contribution.
 
 ### Aperture Stop (between L14 and L21)
 
-The aperture stop is located in the air gap between the front and rear groups, at a distance of 2.73 mm after L14's rear surface. The production lens has 7 rounded diaphragm blades. In the patent, the stop is modeled as an ideal thin aperture (R = ∞, d = 3.20 mm), with the 3.20 mm thickness representing the physical space occupied by the iris mechanism and the air gap to L21.
+The aperture stop is located in the air gap between the front and G2 groups, at a distance of 2.73 mm after L14's rear surface. The production lens has 7 rounded diaphragm blades. In the patent, the stop is modeled as an ideal thin aperture (R = ∞, d = 3.20 mm), with the 3.20 mm thickness representing the physical space occupied by the iris mechanism and the air gap to L21.
 
 ### Element 5 — L21: Biconcave Aspheric Singlet
 
@@ -129,9 +129,9 @@ The aperture stop is located in the air gap between the front and rear groups, a
 
 L21 is the single aspherical element in the design and the most optically interesting component. Positioned immediately behind the aperture stop, it is a glass-molded biconcave singlet with aspherical profiles on both surfaces. Fujifilm's marketing explicitly states: "Using a glass-molded aspheric lens at the 5th element minimizes spherical aberration."
 
-**Role in the system:** L21's negative power (f ≈ −59 mm) acts as the "diverging core" of the rear group, creating a large separation in ray heights between the stop and the cemented triplet. This is essential for the triplet to correct both axial and lateral chromatic aberration simultaneously. The aspheric profiles on L21 are responsible for the bulk of the residual spherical aberration correction — the patent text ([0036]) explicitly states that the aspherical lens provides "effective correction" of spherical aberration before light enters the cemented triplet, enabling the triplet to then "satisfactorily correct spherical aberration, chromatic coma aberration, and lateral chromatic aberration."
+**Role in the system:** L21's negative power (f ≈ −59 mm) acts as the "diverging core" of the G2 group, creating a large separation in ray heights between the stop and the cemented triplet. This is essential for the triplet to correct both axial and lateral chromatic aberration simultaneously. The aspheric profiles on L21 are responsible for the bulk of the residual spherical aberration correction — the patent text ([0036]) explicitly states that the aspherical lens provides "effective correction" of spherical aberration before light enters the cemented triplet, enabling the triplet to then "satisfactorily correct spherical aberration, chromatic coma aberration, and lateral chromatic aberration."
 
-**Aspherical departure:** At an estimated semi-diameter of ~8 mm (marginal ray height ~7.5 mm plus clearance), the front surface (S10A) departs by approximately −870 µm from its paraxial sphere, and the rear surface (S11A) departs by approximately −323 µm. The front surface becomes more deeply concave at the rim than the base sphere, while the rear surface becomes less convex (flatter) at the rim. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
+**Aspherical departure:** At an estimated semi-diameter of ~8 mm (marginal ray height ~7.5 mm plus clearance), the front surface (S10A) departs by approximately −870 µm from its paraxial sphere, and the rear surface (S11A) departs by approximately −323 µm. The front surface becomes more deeply concave at the rim than the base sphere, while the rear surface becomes less convex (flatter) at the rim. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the G1 group and cemented triplet.
 
 **Glass type:** The nd = 1.51760, νd = 63.5 prescription places this glass in the borosilicate crown (BK/BSC) family, close to the ubiquitous BK7 (nd = 1.51680, νd = 64.17). The slight difference from standard BK7 values suggests a proprietary glass-molding formulation optimized for precision glass molding (PGM). Fujifilm, as a major glass manufacturer through its Fujinon optical division, likely uses an in-house molding glass. The low refractive index and high Abbe number make this glass essentially "color-neutral," ensuring that the aspheric surfaces correct monochromatic aberrations without disturbing the chromatic balance.
 
@@ -181,9 +181,9 @@ L23 is the color-correcting core of the cemented triplet. Sandwiched between two
 | Glass match | **OHARA S-LAH58** (same glass as L22), SCHOTT N-LASF31A, HOYA TAFD30 |
 | Cemented group | Triplet T1 (with L22, L23) |
 
-L24 uses the same glass type as L22, which simplifies manufacturing procurement. Its meniscus form with the convex surface toward the image produces strong positive power while maintaining a curvature that helps correct field curvature — the patent ([0041]) notes that having two positive lenses with convex surfaces toward the image in the rear group "is advantageous from the viewpoint of favorable correction of field curvature" when paired with a front group of object-convex meniscus lenses.
+L24 uses the same glass type as L22, which simplifies manufacturing procurement. Its meniscus form with the convex surface toward the image produces strong positive power while maintaining a curvature that helps correct field curvature — the patent ([0041]) notes that having two positive lenses with convex surfaces toward the image in the G2 group "is advantageous from the viewpoint of favorable correction of field curvature" when paired with a G1 group of object-convex meniscus lenses.
 
-The final surface (R = −20.516 mm) is the last refracting surface before the image. Its relatively steep curvature is responsible for the largest single positive Petzval contribution in the system (+0.0229 mm⁻¹), which partially offsets the negative Petzval contributions from the strongly curved surfaces in the front group.
+The final surface (R = −20.516 mm) is the last refracting surface before the image. Its relatively steep curvature is responsible for the largest single positive Petzval contribution in the system (+0.0229 mm⁻¹), which partially offsets the negative Petzval contributions from the strongly curved surfaces in the G1 group.
 
 ---
 
@@ -210,15 +210,15 @@ The patent does not list semi-diameters. They were estimated using combined marg
 
 **Methodology:** For each surface, the semi-diameter was estimated as (marginal ray height + chief ray height at 60% field) × clearance factor, then constrained by physical validation checks.
 
-**Marginal ray:** Traced at the design f-number (f/1.45), entrance pupil radius = 12.47 mm. The marginal ray heights decrease from 12.47 mm at S1 to a minimum of ~7.4 mm near the stop, then remain relatively constant through the rear group.
+**Marginal ray:** Traced at the design f-number (f/1.45), entrance pupil radius = 12.47 mm. The marginal ray heights decrease from 12.47 mm at S1 to a minimum of ~7.4 mm near the stop, then remain relatively constant through the G2 group.
 
-**Chief ray (60% field):** The chief ray at 60% of the maximum half-field angle (ω = 12.9°) was traced to find the off-axis beam footprint at each surface. The entrance pupil is located approximately 31.2 mm in front of S1, consistent with the stop being 21.5 mm behind S1 and the front group's weak positive power imaging the stop forward into object space.
+**Chief ray (60% field):** The chief ray at 60% of the maximum half-field angle (ω = 12.9°) was traced to find the off-axis beam footprint at each surface. The entrance pupil is located approximately 31.2 mm in front of S1, consistent with the stop being 21.5 mm behind S1 and the G1 group's weak positive power imaging the stop forward into object space.
 
 **Vignetting:** Real f/1.4 lenses typically vignette significantly at full field. The SD estimates incorporate a 50% vignetting reduction of the chief ray contribution, reflecting the practical beam diameter at outer field angles.
 
 **Physical constraints enforced:**
 
-1. 52 mm filter thread → maximum front group SD ≈ 23 mm (with barrel wall)
+1. 52 mm filter thread → maximum G1 group SD ≈ 23 mm (with barrel wall)
 2. Edge thickness ≥ 0.3 mm for all elements (validated via spherical sag computation)
 3. Cross-gap sag intrusion ≤ gap × 1.1 for all air gaps
 4. sd < |R| × 0.88 for all spherical surfaces (slope limit)
@@ -242,7 +242,7 @@ The patent does not list semi-diameters. They were estimated using combined marg
 
 Glass identifications are based on matching nd/νd pairs against the HOYA official cross-reference index and verified against the OHARA May 2023 pocket catalog. All matches are confirmed via six-digit glass code (nd×1000 rounded / νd×10 rounded) with the exception of L21, which does not exactly match any standard catalog glass. The closest matches are HOYA BSC7 (nd = 1.51742, νd = 63.96) and OHARA S-BSM4 (nd = 1.51823, νd = 63.98), but neither is exact. L21 is most likely a proprietary Fujifilm PGM (precision glass molding) formulation in the borosilicate crown family, optimized for their in-house glass molding process.
 
-The design uses no anomalous partial dispersion (APD) glasses. Chromatic correction is achieved through conventional crown-flint pairings with adequate Abbe number spread. The average index of the front group positive elements is Nd1 = 1.7795 (patent conditional expression (3): Nd1 > 1.75 ✓), and the average index of the cemented triplet positive elements is Nd2 = 1.8830 (patent conditional expression (1): Nd2 > 1.85 ✓). These high refractive indices are a deliberate design strategy: higher index reduces the required surface curvatures for a given power, which reduces spherical aberration at wide apertures.
+The design uses no anomalous partial dispersion (APD) glasses. Chromatic correction is achieved through conventional crown-flint pairings with adequate Abbe number spread. The average index of the G1 group positive elements is Nd1 = 1.7795 (patent conditional expression (3): Nd1 > 1.75 ✓), and the average index of the cemented triplet positive elements is Nd2 = 1.8830 (patent conditional expression (1): Nd2 > 1.85 ✓). These high refractive indices are a deliberate design strategy: higher index reduces the required surface curvatures for a given power, which reduces spherical aberration at wide apertures.
 
 ---
 

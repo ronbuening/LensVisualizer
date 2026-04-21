@@ -57,7 +57,7 @@ const LENS_DATA = {
     // ── Unit 1: Front positive group (f = +113.48 mm) ──
     {
       id: 1,
-      name: "G1n",
+      name: "L11",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.80809,
@@ -69,7 +69,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "G2p",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.7725,
@@ -81,7 +81,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "G3p",
+      name: "L13",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.72916,
@@ -93,7 +93,7 @@ const LENS_DATA = {
     // ── Unit 2: Variator / zoom diverging group (f = −18.58 mm) ──
     {
       id: 4,
-      name: "L4",
+      name: "L21",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.883,
@@ -104,7 +104,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L22",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.497,
@@ -118,7 +118,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L23",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.85478,
@@ -130,7 +130,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L24",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -141,7 +141,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L25",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.5927,
@@ -153,7 +153,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L26",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -166,7 +166,7 @@ const LENS_DATA = {
     // ── Unit 3: Aperture stop + relay group (f = +35.84 mm) ──
     {
       id: 10,
-      name: "L10",
+      name: "L31",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.76385,
@@ -177,7 +177,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L32",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -191,7 +191,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L33",
       label: "Element 12",
       type: "Negative Meniscus",
       nd: 2.00069,
@@ -204,7 +204,7 @@ const LENS_DATA = {
     // ── Unit 4: Image stabilization group (f = −69.07 mm) ──
     {
       id: 13,
-      name: "L13",
+      name: "L41",
       label: "Element 13",
       type: "Biconcave Neg. (1× Asph)",
       nd: 1.58313,
@@ -216,7 +216,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L42",
       label: "Element 14",
       type: "Positive Meniscus",
       nd: 1.76182,
@@ -229,7 +229,7 @@ const LENS_DATA = {
     // ── Unit 5: Main converging group (f = +28.29 mm) ──
     {
       id: 15,
-      name: "Gfp",
+      name: "L51",
       label: "Element 15",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -242,7 +242,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
+      name: "L52",
       label: "Element 16",
       type: "Negative Meniscus",
       nd: 1.738,
@@ -254,7 +254,7 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L17",
+      name: "L53",
       label: "Element 17",
       type: "Biconvex Positive",
       nd: 1.53775,
@@ -266,7 +266,7 @@ const LENS_DATA = {
     },
     {
       id: 18,
-      name: "L18",
+      name: "L54",
       label: "Element 18",
       type: "Biconcave Neg. (2× Asph)",
       nd: 1.854,
@@ -278,7 +278,7 @@ const LENS_DATA = {
     // ── Unit 6: Focus group (f = −49.77 mm) ──
     {
       id: 19,
-      name: "L19",
+      name: "L61",
       label: "Element 19",
       type: "Negative Meniscus",
       nd: 1.804,
@@ -290,7 +290,7 @@ const LENS_DATA = {
     // ── Unit 7: Rear field-flattening group (f = +785.94 mm) ──
     {
       id: 20,
-      name: "L20",
+      name: "L71",
       label: "Element 20",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.58313,
@@ -301,7 +301,7 @@ const LENS_DATA = {
     },
     {
       id: 21,
-      name: "Grp",
+      name: "L72",
       label: "Element 21",
       type: "Biconvex Positive",
       nd: 2.001,
@@ -478,13 +478,13 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "L1 (+)", fromSurface: "1", toSurface: "5" },
-    { text: "L2 (−)", fromSurface: "6", toSurface: "15" },
-    { text: "L3 (+)", fromSurface: "STO", toSurface: "21" },
-    { text: "L4 (−) IS", fromSurface: "22A", toSurface: "24" },
-    { text: "L5 (+)", fromSurface: "25", toSurface: "31A" },
-    { text: "L6 (−) AF", fromSurface: "32", toSurface: "33" },
-    { text: "L7 (+)", fromSurface: "34A", toSurface: "37" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (−)", fromSurface: "6", toSurface: "15" },
+    { text: "G3 (+)", fromSurface: "STO", toSurface: "21" },
+    { text: "G4 (−) IS", fromSurface: "22A", toSurface: "24" },
+    { text: "G5 (+)", fromSurface: "25", toSurface: "31A" },
+    { text: "G6 (−) AF", fromSurface: "32", toSurface: "33" },
+    { text: "G7 (+)", fromSurface: "34A", toSurface: "37" },
   ],
 
   doublets: [

@@ -24,10 +24,10 @@ The lens uses six elements arranged in four groups, following the classic double
 
 | Group | Elements | Form | Role |
 |-------|----------|------|------|
-| G1 (front singlet) | L1 | Positive meniscus | Front convergent component |
-| G2 (front doublet, "L₁" in patent) | L2 + L3 (cemented) | Meniscus doublet, concave rear | Front compound meniscus |
-| G3 (rear doublet, "L₂" in patent) | L4 + L5 (cemented) | Meniscus doublet, concave front | Rear compound meniscus |
-| G4 (rear singlet) | L6 | Biconvex | Rear convergent component |
+| G1 (front singlet) | L11 | Positive meniscus | Front convergent component |
+| G2 (front doublet, "L₁" in patent) | L21 + L22 (cemented) | Meniscus doublet, concave rear | Front compound meniscus |
+| G3 (rear doublet, "L₂" in patent) | L31 + L32 (cemented) | Meniscus doublet, concave front | Rear compound meniscus |
+| G4 (rear singlet) | L41 | Biconvex | Rear convergent component |
 
 The aperture stop sits between G2 and G3, in the central air space between the two compound meniscus doublets. This is the defining feature of the Gauss type: two thick meniscus groups flanking a central stop, which provides inherent symmetry for controlling lateral aberrations (distortion, lateral chromatic aberration, and coma) across wide field angles.
 
@@ -47,15 +47,15 @@ The patent provides a single worked numerical example, normalized to a focal len
 
 | Surface | Radius (R) | Thickness (d) | nd | νd | Medium |
 |---------|------------|---------------|------|------|--------|
-| r₁ | +0.6248 | 0.0735 | 1.5891 | 61.2 | L1 glass |
+| r₁ | +0.6248 | 0.0735 | 1.5891 | 61.2 | L11 glass |
 | r₂ | +2.0900 | 0.0197 | 1.0 | — | Air |
-| r₃ | +0.4501 | 0.1428 | 1.6073 | 59.5 | L2 glass |
-| r₄ | −2.3268 | 0.0214 | 1.5785 | 41.7 | L3 glass (cemented) |
+| r₃ | +0.4501 | 0.1428 | 1.6073 | 59.5 | L21 glass |
+| r₄ | −2.3268 | 0.0214 | 1.5785 | 41.7 | L22 glass (cemented) |
 | r₅ | +0.2975 | 0.1428 | 1.0 | — | Air (central space + stop) |
-| r₆ | −0.2907 | 0.0197 | 1.5785 | 41.7 | L4 glass |
-| r₇ | +0.9054 | 0.1025 | 1.6031 | 60.7 | L5 glass (cemented) |
+| r₆ | −0.2907 | 0.0197 | 1.5785 | 41.7 | L31 glass |
+| r₇ | +0.9054 | 0.1025 | 1.6031 | 60.7 | L32 glass (cemented) |
 | r₈ | −0.3952 | 0.0020 | 1.0 | — | Air |
-| r₉ | +3.0986 | 0.0642 | 1.6228 | 56.9 | L6 glass |
+| r₉ | +3.0986 | 0.0642 | 1.6228 | 56.9 | L41 glass |
 | r₁₀ | −0.7947 | (BFD) | 1.0 | — | Air → image |
 
 The stated design parameters are f/3.0 with a 64° included angle (2ω). At f = 35 mm production scale, the scale factor is approximately 35.62×.
@@ -86,14 +86,14 @@ All six glasses match standard Schott dense crown (SK) and light flint (LF) cata
 
 | Element | nd | νd | Six-Digit Code | Best Match | Δnd (×10⁻⁴) | Δνd |
 |---------|------|------|----------------|------------|-------------|-----|
-| L1 | 1.5891 | 61.2 | 589/612 | **Schott SK5** | 0.0 | −0.1 |
-| L2 | 1.6073 | 59.5 | 607/595 | **Schott SK7** | 0.0 | +0.1 |
-| L3 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | −29 / +35 | +1.2 / +0.2 |
-| L4 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | (same) | (same) |
-| L5 | 1.6031 | 60.7 | 603/607 | **Schott SK14** | 0.0 | +0.1 |
-| L6 | 1.6228 | 56.9 | 623/569 | **Schott SK10** | 0.0 | −0.1 |
+| L11 | 1.5891 | 61.2 | 589/612 | **Schott SK5** | 0.0 | −0.1 |
+| L21 | 1.6073 | 59.5 | 607/595 | **Schott SK7** | 0.0 | +0.1 |
+| L22 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | −29 / +35 | +1.2 / +0.2 |
+| L31 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | (same) | (same) |
+| L32 | 1.6031 | 60.7 | 603/607 | **Schott SK14** | 0.0 | +0.1 |
+| L41 | 1.6228 | 56.9 | 623/569 | **Schott SK10** | 0.0 | −0.1 |
 
-Elements L1, L2, L5, and L6 match their respective SK-type glasses to within catalog rounding precision. The identification of L3 and L4 is slightly less precise — the nd value of 1.5785 falls between Schott LF7 (1.5750) and LF5 (1.5814), with the Abbe number favoring LF7 (νd = 41.5 vs. 40.5 for LF5). It is likely that Canon used a Japanese-manufactured equivalent in the LF family with properties close to these values.
+Elements L11, L21, L32, and L41 match their respective SK-type glasses to within catalog rounding precision. The identification of L22 and L31 is slightly less precise — the nd value of 1.5785 falls between Schott LF7 (1.5750) and LF5 (1.5814), with the Abbe number favoring LF7 (νd = 41.5 vs. 40.5 for LF5). It is likely that Canon used a Japanese-manufactured equivalent in the LF family with properties close to these values.
 
 Notably, the design uses four distinct crown glasses rather than consolidating to fewer types. This allowed Ito to fine-tune the chromatic correction at each position independently — a practical trade-off of slightly increased material cost against better aberration balance.
 
@@ -101,7 +101,7 @@ Notably, the design uses four distinct crown glasses rather than consolidating t
 
 ## 6. Element-by-Element Analysis
 
-### L1 — Front Positive Meniscus (SK5-type)
+### L11 — Front Positive Meniscus (SK5-type)
 
 | Property | Value |
 |----------|-------|
@@ -111,9 +111,9 @@ Notably, the design uses four distinct crown glasses rather than consolidating t
 | Glass | nd = 1.5891, νd = 61.2 (SK5) |
 | Focal length | f = +1.485 (scaled: +52.9 mm) |
 
-L1 is a gently converging positive meniscus that serves as the front collecting element. Its meniscus form (both surfaces convex toward the object, with the front surface much more strongly curved) is a deliberate choice to reduce the angle of incidence on each surface, keeping higher-order spherical aberration contributions low. The relatively weak power (f ≈ 1.5× the system focal length) means this element contributes modest convergence while introducing minimal aberration — consistent with Ito's philosophy of distributing power across many surfaces.
+L11 is a gently converging positive meniscus that serves as the front collecting element. Its meniscus form (both surfaces convex toward the object, with the front surface much more strongly curved) is a deliberate choice to reduce the angle of incidence on each surface, keeping higher-order spherical aberration contributions low. The relatively weak power (f ≈ 1.5× the system focal length) means this element contributes modest convergence while introducing minimal aberration — consistent with Ito's philosophy of distributing power across many surfaces.
 
-### L2 — Front Doublet Positive Element (SK7-type)
+### L21 — Front Doublet Positive Element (SK7-type)
 
 | Property | Value |
 |----------|-------|
@@ -123,11 +123,11 @@ L1 is a gently converging positive meniscus that serves as the front collecting 
 | Glass | nd = 1.6073, νd = 59.5 (SK7) |
 | Focal length | f = +0.633 (scaled: +22.6 mm) |
 
-L2 is the most powerful single element in the system: a thick biconvex crown with a focal length of roughly 0.63× the system EFL. It forms the front (convergent) component of the object-side cemented doublet L₁. The strong front radius R₃ = +0.4501 is the primary refracting surface responsible for bending the marginal ray inward toward the stop. The patent emphasizes that the magnitude of R₃ must fall between 0.4 and 0.5 times the focal length — this is a key design parameter controlling the balance between spherical aberration and coma.
+L21 is the most powerful single element in the system: a thick biconvex crown with a focal length of roughly 0.63× the system EFL. It forms the front (convergent) component of the object-side cemented doublet L₁. The strong front radius R₃ = +0.4501 is the primary refracting surface responsible for bending the marginal ray inward toward the stop. The patent emphasizes that the magnitude of R₃ must fall between 0.4 and 0.5 times the focal length — this is a key design parameter controlling the balance between spherical aberration and coma.
 
 The substantial thickness (d₃ = 0.1428, or about 14% of the focal length) is also structurally significant. The patent's conditional expression requires the total doublet thickness (d₃ + d₄ = 0.1642) to exceed both the central air gap (d₅ = 0.1428) and the rear doublet thickness (d₆ + d₇ = 0.1222). This asymmetry in glass-versus-air distribution is what allows Ito to achieve the desired Petzval sum (~0.35) while keeping field curvature controlled.
 
-### L3 — Front Doublet Negative Element (LF-type)
+### L22 — Front Doublet Negative Element (LF-type)
 
 | Property | Value |
 |----------|-------|
@@ -137,13 +137,13 @@ The substantial thickness (d₃ = 0.1428, or about 14% of the focal length) is a
 | Glass | nd = 1.5785, νd = 41.7 (LF5/LF7) |
 | Focal length | f = −0.455 (scaled: −16.2 mm) |
 
-L3 is a thin, strongly divergent biconcave flint element cemented to the rear of L2. Its primary role is threefold: it provides the negative power necessary to achromatize the doublet, it contributes the strongly concave rear surface R₅ = +0.2975 (whose magnitude the patent constrains to 0.25–0.35× focal length) that defines the meniscus shape of the doublet as a whole, and its low-dispersion flint glass provides the chromatic correction differential against the crown L2.
+L22 is a thin, strongly divergent biconcave flint element cemented to the rear of L21. Its primary role is threefold: it provides the negative power necessary to achromatize the doublet, it contributes the strongly concave rear surface R₅ = +0.2975 (whose magnitude the patent constrains to 0.25–0.35× focal length) that defines the meniscus shape of the doublet as a whole, and its low-dispersion flint glass provides the chromatic correction differential against the crown L21.
 
-The cemented junction at R₄ = −2.3268 is very weakly curved — nearly flat — meaning the interface between L2 and L3 contributes minimal refraction. The chromatic correction is therefore dominated by the large dispersion difference between the two glasses (νd ≈ 59.5 vs. 41.7, a Δν of ~17.8) rather than by strong bending at the cement.
+The cemented junction at R₄ = −2.3268 is very weakly curved — nearly flat — meaning the interface between L21 and L22 contributes minimal refraction. The chromatic correction is therefore dominated by the large dispersion difference between the two glasses (νd ≈ 59.5 vs. 41.7, a Δν of ~17.8) rather than by strong bending at the cement.
 
-Despite being individually strongly negative (f ≈ −0.45), L3 combined with L2 produces a weakly negative doublet with a combined focal length of approximately −3.17 (scaled: −112.9 mm). This net negative power is characteristic of the double-Gauss inner doublets — they are not designed to be achromatic in isolation but rather to contribute the negative Petzval curvature that flattens the field.
+Despite being individually strongly negative (f ≈ −0.45), L22 combined with L21 produces a weakly negative doublet with a combined focal length of approximately −3.17 (scaled: −112.9 mm). This net negative power is characteristic of the double-Gauss inner doublets — they are not designed to be achromatic in isolation but rather to contribute the negative Petzval curvature that flattens the field.
 
-### L4 — Rear Doublet Negative Element (LF-type)
+### L31 — Rear Doublet Negative Element (LF-type)
 
 | Property | Value |
 |----------|-------|
@@ -153,11 +153,11 @@ Despite being individually strongly negative (f ≈ −0.45), L3 combined with L
 | Glass | nd = 1.5785, νd = 41.7 (LF5/LF7) |
 | Focal length | f = −0.378 (scaled: −13.5 mm) |
 
-L4 mirrors L3's role on the image side of the stop. It is a thin biconcave flint element forming the front (divergent) component of the image-side doublet L₂. The strongly concave front surface R₆ = −0.2907 faces the stop and is the most steeply curved surface in the system relative to its clear aperture. This surface is critical for controlling coma and astigmatism — the patent's insistence on near-symmetry about the stop depends on this surface's curvature being comparable to R₅ on the opposite side.
+L31 mirrors L22's role on the image side of the stop. It is a thin biconcave flint element forming the front (divergent) component of the image-side doublet L₂. The strongly concave front surface R₆ = −0.2907 faces the stop and is the most steeply curved surface in the system relative to its clear aperture. This surface is critical for controlling coma and astigmatism — the patent's insistence on near-symmetry about the stop depends on this surface's curvature being comparable to R₅ on the opposite side.
 
-L4 uses the same glass type as L3 (nd = 1.5785, νd = 41.7), maintaining the symmetry principle that helps cancel odd-order lateral aberrations.
+L31 uses the same glass type as L22 (nd = 1.5785, νd = 41.7), maintaining the symmetry principle that helps cancel odd-order lateral aberrations.
 
-### L5 — Rear Doublet Positive Element (SK14-type)
+### L32 — Rear Doublet Positive Element (SK14-type)
 
 | Property | Value |
 |----------|-------|
@@ -167,11 +167,11 @@ L4 uses the same glass type as L3 (nd = 1.5785, νd = 41.7), maintaining the sym
 | Glass | nd = 1.6031, νd = 60.7 (SK14) |
 | Focal length | f = +0.470 (scaled: +16.7 mm) |
 
-L5 is the convergent crown element of the rear doublet, cemented to L4's rear surface. It is the second most powerful element (f ≈ +0.47) and provides the main convergent contribution in the rear half of the system. The cemented junction at R₇ = +0.9054 is moderately curved, contributing more refraction than the nearly flat junction R₄ in the front doublet — this breaks the symmetry slightly, which is a deliberate design choice to manage the asymmetric aberration contributions that arise from the different object and image conjugates.
+L32 is the convergent crown element of the rear doublet, cemented to L31's rear surface. It is the second most powerful element (f ≈ +0.47) and provides the main convergent contribution in the rear half of the system. The cemented junction at R₇ = +0.9054 is moderately curved, contributing more refraction than the nearly flat junction R₄ in the front doublet — this breaks the symmetry slightly, which is a deliberate design choice to manage the asymmetric aberration contributions that arise from the different object and image conjugates.
 
-The combined doublet L₂ (L4 + L5) has a focal length of approximately −4.84 (scaled: −172.3 mm) — weakly negative overall, like the front doublet, confirming the Petzval-flattening strategy.
+The combined doublet L₂ (L31 + L32) has a focal length of approximately −4.84 (scaled: −172.3 mm) — weakly negative overall, like the front doublet, confirming the Petzval-flattening strategy.
 
-### L6 — Rear Positive Singlet (SK10-type)
+### L41 — Rear Positive Singlet (SK10-type)
 
 | Property | Value |
 |----------|-------|
@@ -181,9 +181,9 @@ The combined doublet L₂ (L4 + L5) has a focal length of approximately −4.84 
 | Glass | nd = 1.6228, νd = 56.9 (SK10) |
 | Focal length | f = +1.022 (scaled: +36.4 mm) |
 
-L6 is the rear collecting element and is the only element in the system whose focal length closely matches the system EFL (f ≈ 1.02 vs. system f = ~0.98). This means L6 carries a significant fraction of the total system power — more than the front singlet L1, which is only about half as powerful. The strongly asymmetric biconvex form (nearly flat front surface R₉ = +3.10, strongly curved rear R₁₀ = −0.79) concentrates the refraction at the rear surface, away from the stop. This is a deliberate bending strategy: by placing the more powerful surface at the rear, where off-axis ray heights are largest, L6 helps control distortion — the dominant aberration challenge at 64° field angle.
+L41 is the rear collecting element and is the only element in the system whose focal length closely matches the system EFL (f ≈ 1.02 vs. system f = ~0.98). This means L41 carries a significant fraction of the total system power — more than the front singlet L11, which is only about half as powerful. The strongly asymmetric biconvex form (nearly flat front surface R₉ = +3.10, strongly curved rear R₁₀ = −0.79) concentrates the refraction at the rear surface, away from the stop. This is a deliberate bending strategy: by placing the more powerful surface at the rear, where off-axis ray heights are largest, L41 helps control distortion — the dominant aberration challenge at 64° field angle.
 
-The very small air gap between L5 and L6 (d₈ = 0.0020, scaled to just 0.07 mm) is noteworthy. In practice, this is barely more than a manufacturing clearance — the rear doublet and rear singlet are nearly in contact. This tight spacing minimizes ray height changes between G3 and G4, reducing the sensitivity of lateral aberrations to manufacturing tolerances.
+The very small air gap between L32 and L41 (d₈ = 0.0020, scaled to just 0.07 mm) is noteworthy. In practice, this is barely more than a manufacturing clearance — the rear doublet and rear singlet are nearly in contact. This tight spacing minimizes ray height changes between G3 and G4, reducing the sensitivity of lateral aberrations to manufacturing tolerances.
 
 ---
 
@@ -193,7 +193,7 @@ The double-Gauss form exploits near-symmetry about the central stop to cancel od
 
 | Parameter | Front half | Rear half |
 |-----------|-----------|-----------|
-| Singlet focal length | +1.485 (L1) | +1.022 (L6) |
+| Singlet focal length | +1.485 (L11) | +1.022 (L41) |
 | Doublet combined f | −3.170 (L₁) | −4.837 (L₂) |
 | Doublet thickness | 0.1642 | 0.1222 |
 | Concave surface facing stop | R₅ = +0.2975 | R₆ = −0.2907 |

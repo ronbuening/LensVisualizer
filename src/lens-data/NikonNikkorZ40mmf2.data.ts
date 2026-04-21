@@ -100,8 +100,8 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L22r",
-      label: "Element 4 (resin)",
+      name: "L23",
+      label: "Element 5",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
@@ -113,8 +113,8 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L23",
-      label: "Element 5",
+      name: "L24",
+      label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.83481,
       vd: 42.73,
@@ -125,8 +125,8 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L31r",
-      label: "Element 6 (resin)",
+      name: "L31",
+      label: "Element 7",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.56093,
       vd: 36.64,
@@ -138,8 +138,8 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L31",
-      label: "Element 6",
+      name: "L32",
+      label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.51742,
       vd: 52.2,

@@ -43,7 +43,7 @@ const LENS_DATA = {
     // ── G1: Front collecting group (fixed) ──────────────────
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.7725,
@@ -55,7 +55,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.61272,
@@ -67,7 +67,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.71736,
@@ -79,7 +79,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L14",
       label: "Element 4",
       type: "Plano-Convex",
       nd: 1.7725,
@@ -92,7 +92,7 @@ const LENS_DATA = {
     // ── G2: Diverging group (moves image-ward) ──────────────
     {
       id: 5,
-      name: "L5",
+      name: "L21",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.58267,
@@ -104,7 +104,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L22",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.53172,
@@ -117,7 +117,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L23",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -131,8 +131,8 @@ const LENS_DATA = {
     // ── G3: Main converging group (moves object-ward) ───────
     {
       id: 8,
-      name: "L8",
-      label: "Element 8 (ED)",
+      name: "L31",
+      label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.497,
       vd: 81.61,
@@ -144,7 +144,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L32",
       label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -157,7 +157,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L33",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.62041,
@@ -171,7 +171,7 @@ const LENS_DATA = {
     // ── G4a: VR element (fixed axially, shifts ⊥ for VR) ───
     {
       id: 11,
-      name: "L11",
+      name: "L41",
       label: "Element 11",
       type: "Negative Meniscus",
       nd: 1.8061,
@@ -184,7 +184,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L42",
       label: "Element 12",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -198,7 +198,7 @@ const LENS_DATA = {
     // ── G4b: Field flattener / relay (fixed) ────────────────
     {
       id: 13,
-      name: "L13",
+      name: "L51",
       label: "Element 13",
       type: "Negative Meniscus",
       nd: 1.51823,
@@ -210,7 +210,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L52",
       label: "Element 14",
       type: "Biconvex Positive",
       nd: 1.7859,
@@ -279,8 +279,8 @@ const LENS_DATA = {
     { text: "G1 (+55 mm)", fromSurface: "1", toSurface: "8" },
     { text: "G2 (−38 mm)", fromSurface: "9", toSurface: "13" },
     { text: "G3 (+42 mm)", fromSurface: "16", toSurface: "20" },
-    { text: "G4a VR (−49 mm)", fromSurface: "21", toSurface: "23" },
-    { text: "G4b (+109 mm)", fromSurface: "24", toSurface: "27" },
+    { text: "G4 (−49 mm, VR)", fromSurface: "21", toSurface: "23" },
+    { text: "G5 (+109 mm)", fromSurface: "24", toSurface: "27" },
   ],
   doublets: [
     { text: "D1 (L6+L7)", fromSurface: "11", toSurface: "13" },

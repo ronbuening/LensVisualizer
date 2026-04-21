@@ -20,7 +20,7 @@ The "9 groups" in Leica's published specification refers to the traditional air-
 
 The Summilux 28 mm f/1.7 is a 5-group, 11-element wide-angle prime designed for a fixed-lens full-frame compact camera. Its architecture exploits the closed optical-mechanical system of the Q cameras: with no interchangeable mount or focal-plane shutter to clear, the rear elements can sit extremely close to the sensor — the back focal distance is only 1.0 mm beyond the cover glass. This freedom allows the designer to place a strong negative field-flattener (G5) just millimetres from the image plane, dramatically improving corner performance without the BFD constraints that would handicap an interchangeable lens.
 
-The optical layout features a negative-leading front group (G1) that accepts the full ±40° field angle, a centrally placed aperture stop, and a sequence of post-stop groups that provide inner-focus capability and field correction. Five aspherical surfaces on three elements — one in G2, two each in G4 and G5 — control higher-order aberrations across the full f/1.7 aperture. The negative first element (L1) is not a retrofocus arrangement for extending back focus (BFD/EFL = 0.037, far below unity), but rather provides the angular coverage needed for a 28 mm-equivalent wide-angle while keeping the front element diameter manageable.
+The optical layout features a negative-leading front group (G1) that accepts the full ±40° field angle, a centrally placed aperture stop, and a sequence of post-stop groups that provide inner-focus capability and field correction. Five aspherical surfaces on three elements — one in G2, two each in G4 and G5 — control higher-order aberrations across the full f/1.7 aperture. The negative first element (L11) is not a retrofocus arrangement for extending back focus (BFD/EFL = 0.037, far below unity), but rather provides the angular coverage needed for a 28 mm-equivalent wide-angle while keeping the front element diameter manageable.
 
 | Parameter | Patent (Example 1) | Marketed |
 |-----------|-------------------|----------|
@@ -43,11 +43,11 @@ The five lens groups, their powers, and their roles during focusing are:
 
 | Group | Elements | Group f (mm) | Power | Behaviour in focus |
 |-------|----------|-------------|-------|-------------------|
-| G1 (+) | L1–L5 (5 singlets) | +36.08 | Positive | Fixed in M1; extends with G2–G4 in M2 |
-| G2 (+) | L6–L7 (cemented doublet) | +178.32 | Weakly positive | Moves toward object (1st focus group) |
-| G3 (+) | L8–L9 (cemented doublet) | +363.44 | Weakly positive | Fixed; shifts laterally for OIS |
-| G4 (+) | L10 (singlet) | +33.98 | Positive | Moves toward object (2nd focus group) |
-| G5 (−) | L11 (singlet) | −27.84 | Negative | Fixed (stationary throughout) |
+| G1 (+) | L11–L15 (5 singlets) | +36.08 | Positive | Fixed in M1; extends with G2–G4 in M2 |
+| G2 (+) | L21–L22 (cemented doublet) | +178.32 | Weakly positive | Moves toward object (1st focus group) |
+| G3 (+) | L31–L32 (cemented doublet) | +363.44 | Weakly positive | Fixed; shifts laterally for OIS |
+| G4 (+) | L41 (singlet) | +33.98 | Positive | Moves toward object (2nd focus group) |
+| G5 (−) | L51 (singlet) | −27.84 | Negative | Fixed (stationary throughout) |
 
 ### Focusing in State M1 (infinity to 0.3 m)
 
@@ -72,7 +72,7 @@ At the 0.3 m close-focus limit of State M1, the effective focal length has short
 
 ### Optical Image Stabilization
 
-G3 (the L8–L9 cemented doublet) serves as the OIS compensation group. Per the patent ([0051], FIG. 1), G3 shifts perpendicular to the optical axis to compensate for camera shake. The patent's lateral aberration diagrams (FIG. 3) evaluate performance at 0.5 mm of decentering, demonstrating well-controlled asymmetric aberration in the stabilised state. Using the stationary (non-focusing) G3 for OIS avoids interference with the focusing mechanism — G2 and G4 handle focus, while G3 independently handles stabilisation.
+G3 (the L31–L32 cemented doublet) serves as the OIS compensation group. Per the patent ([0051], FIG. 1), G3 shifts perpendicular to the optical axis to compensate for camera shake. The patent's lateral aberration diagrams (FIG. 3) evaluate performance at 0.5 mm of decentering, demonstrating well-controlled asymmetric aberration in the stabilised state. Using the stationary (non-focusing) G3 for OIS avoids interference with the focusing mechanism — G2 and G4 handle focus, while G3 independently handles stabilisation.
 
 ### Patent Conditional Expressions
 
@@ -87,69 +87,69 @@ Both focusing groups together contain only three lens elements (a cemented doubl
 
 ## Element-by-Element Analysis
 
-### Group 1: Front Positive Group (L1–L5, f = +36.08 mm)
+### Group 1: Front Positive Group (L11–L15, f = +36.08 mm)
 
 G1 is the stationary front group, carrying the bulk of the lens's positive optical power. Its five air-spaced singlets form a sequence of negative–positive–negative–positive–positive elements that progressively bends the wide-angle ray bundle toward the axis while managing spherical aberration and coma. The alternating-power structure distributes the refractive work across multiple surfaces, reducing higher-order aberrations that would result from concentrating the power in fewer elements.
 
-**L1 — Biconcave Negative (f = −31.0 mm)**
+**L11 — Biconcave Negative (f = −31.0 mm)**
 R1 = −111.98 mm, R2 = +20.94 mm; d = 1.4 mm; nd = 1.56732, vd = 42.8.
 Glass: **S-BAL42 (OHARA)** — barium light crown. Exact catalog match.
 
-L1 is a strongly negative element whose steeply curved rear surface (R2 = 20.94 mm) diverges the incoming ray bundle. As the first element in the system, it accepts light at the full field angle of ±40° and spreads the beam, allowing the downstream positive elements to collect it at manageable angles. The moderate-index barium crown glass provides adequate dispersion control at this position, where the on-axis ray height is still modest. The biconcave shape with a much stronger rear surface introduces substantial negative Petzval contribution — essential for counteracting the strong positive Petzval from the downstream high-index positive elements.
+L11 is a strongly negative element whose steeply curved rear surface (R2 = 20.94 mm) diverges the incoming ray bundle. As the first element in the system, it accepts light at the full field angle of ±40° and spreads the beam, allowing the downstream positive elements to collect it at manageable angles. The moderate-index barium crown glass provides adequate dispersion control at this position, where the on-axis ray height is still modest. The biconcave shape with a much stronger rear surface introduces substantial negative Petzval contribution — essential for counteracting the strong positive Petzval from the downstream high-index positive elements.
 
-**L2 — Biconvex Positive (f = +30.7 mm)**
+**L12 — Biconvex Positive (f = +30.7 mm)**
 R1 = +33.30 mm, R2 = −131.60 mm; d = 6.17 mm; nd = 1.881, vd = 40.1.
 Glass: **S-LAH58 (OHARA)** — lanthanum dense flint. Exact catalog match.
 
-L2 is the primary power-carrying element of G1. Its high refractive index (nd = 1.881) provides strong positive power with relatively gentle surface curvatures, which keeps higher-order spherical aberration manageable at wide apertures. The biconvex shape with a dominant front surface (R1 ~ 33 mm vs. R2 ~ −132 mm) is a classical choice for minimising spherical aberration from a single positive element — a form close to the best-form singlet for a distant object conjugate. At 6.17 mm centre thickness, L2 is the thickest element in G1, indicating that substantial ray bending occurs here.
+L12 is the primary power-carrying element of G1. Its high refractive index (nd = 1.881) provides strong positive power with relatively gentle surface curvatures, which keeps higher-order spherical aberration manageable at wide apertures. The biconvex shape with a dominant front surface (R1 ~ 33 mm vs. R2 ~ −132 mm) is a classical choice for minimising spherical aberration from a single positive element — a form close to the best-form singlet for a distant object conjugate. At 6.17 mm centre thickness, L12 is the thickest element in G1, indicating that substantial ray bending occurs here.
 
-**L3 — Symmetric Biconcave Negative (f = −39.5 mm)**
+**L13 — Symmetric Biconcave Negative (f = −39.5 mm)**
 R1 = −47.87 mm, R2 = +47.87 mm; d = 1.0 mm; nd = 1.60342, vd = 38.0.
 Glass: **S-TIM5 (OHARA)** — titanium flint. Exact catalog match.
 
-L3 is notable for its perfectly symmetric biconcave form (|R1| = |R2|), which eliminates odd-order coma contributions at the element level by symmetry. Positioned after the strong positive L2, it acts as an aberration corrector: the negative power partially compensates the Petzval contribution from L2, and the titanium flint glass (lower Abbe number, vd = 38) provides chromatic compensation.
+L13 is notable for its perfectly symmetric biconcave form (|R1| = |R2|), which eliminates odd-order coma contributions at the element level by symmetry. Positioned after the strong positive L12, it acts as an aberration corrector: the negative power partially compensates the Petzval contribution from L12, and the titanium flint glass (lower Abbe number, vd = 38) provides chromatic compensation.
 
-**L4 — Biconvex Positive (f = +31.2 mm)**
+**L14 — Biconvex Positive (f = +31.2 mm)**
 R1 = +23.77 mm, R2 = −76.96 mm; d = 4.64 mm; nd = 1.59282, vd = 68.6.
 Glass: **L-LAM60 (OHARA)** — low-softening-temperature lanthanum crown (PGM glass). Exact catalog match.
 
-L4 is the second strong positive element in G1, and its glass choice is significant: L-LAM60 is a precision glass moulding (PGM) type with an unusually high Abbe number for its index class (vd = 68.6), meaning very low dispersion. This element restores positive power while introducing minimal chromatic aberration.
+L14 is the second strong positive element in G1, and its glass choice is significant: L-LAM60 is a precision glass moulding (PGM) type with an unusually high Abbe number for its index class (vd = 68.6), meaning very low dispersion. This element restores positive power while introducing minimal chromatic aberration.
 
-**L5 — Positive Meniscus, Convex to Object (f = +80.2 mm)**
+**L15 — Positive Meniscus, Convex to Object (f = +80.2 mm)**
 R1 = +62.55 mm, R2 = +428.74 mm; d = 1.81 mm; nd = 1.91082, vd = 35.2.
 Glass: **S-LAH79 (OHARA)** — ultra-high-index lanthanum dense flint. Exact catalog match.
 
-L5 is the final element before the aperture stop. Its very high refractive index (nd = 1.911, the highest in the system) allows the gently curved meniscus to contribute positive power while keeping surface slopes moderate. The meniscus shape acts as a weak positive field lens, guiding the chief ray through the stop at a favourable angle.
+L15 is the final element before the aperture stop. Its very high refractive index (nd = 1.911, the highest in the system) allows the gently curved meniscus to contribute positive power while keeping surface slopes moderate. The meniscus shape acts as a weak positive field lens, guiding the chief ray through the stop at a favourable angle.
 
 ### Aperture Diaphragm
 
 The iris diaphragm sits between G1 and G2, in the air gap d11 (6.38 mm at infinity). Its position approximately 38% of the way from front to image allows the front elements to handle the full ±40° field angle at moderate ray heights.
 
-### Group 2: First Focusing Doublet (L6–L7, f = +178.3 mm)
+### Group 2: First Focusing Doublet (L21–L22, f = +178.3 mm)
 
 G2 is a cemented doublet comprising a positive meniscus and a negative meniscus, both convex toward the image. Together they form a very weakly positive group (f = +178.3 mm) that moves toward the object during focus. The weak net power ensures that even large translational movements produce only modest changes in system aberrations.
 
-**L6 — Positive Meniscus (f = +24.8 mm)** — aspherical front surface (Surface 12A).
-**L7 — Negative Meniscus (f = −28.9 mm)** — cemented to L6.
+**L21 — Positive Meniscus (f = +24.8 mm)** — aspherical front surface (Surface 12A).
+**L22 — Negative Meniscus (f = −28.9 mm)** — cemented to L21.
 
-### Group 3: Stationary Corrector Doublet and OIS Group (L8–L9, f = +363.4 mm)
+### Group 3: Stationary Corrector Doublet and OIS Group (L31–L32, f = +363.4 mm)
 
 G3 is a fixed cemented doublet. Its very weak positive power means it contributes almost nothing to the system's focal length; its role is corrective and stabilising. G3 shifts perpendicular to the optical axis to provide optical image stabilisation (OIS).
 
-**L8 — Biconcave Negative (f = −21.7 mm)** — niobium heavy flint (S-NBH55).
-**L9 — Biconvex Positive (f = +22.5 mm)** — same glass as L2 (S-LAH58).
+**L31 — Biconcave Negative (f = −21.7 mm)** — niobium heavy flint (S-NBH55).
+**L32 — Biconvex Positive (f = +22.5 mm)** — same glass as L12 (S-LAH58).
 
-### Group 4: Second Focusing Singlet (L10, f = +33.98 mm)
+### Group 4: Second Focusing Singlet (L41, f = +33.98 mm)
 
-**L10 — Positive Meniscus (f = +34.0 mm)** — both surfaces aspherical (Surfaces 18A and 19A).
+**L41 — Positive Meniscus (f = +34.0 mm)** — both surfaces aspherical (Surfaces 18A and 19A).
 
-L10 carries substantially more power than the G2 doublet. It is a thick, strongly curved meniscus with both surfaces aspherical — the most heavily corrected single element in the design. L10 moves during focus, and its aspherical profiles must maintain correction quality across the full travel range.
+L41 carries substantially more power than the G2 doublet. It is a thick, strongly curved meniscus with both surfaces aspherical — the most heavily corrected single element in the design. L41 moves during focus, and its aspherical profiles must maintain correction quality across the full travel range.
 
-### Group 5: Field Flattener (L11, f = −27.84 mm)
+### Group 5: Field Flattener (L51, f = −27.84 mm)
 
-**L11 — Negative Meniscus (f = −27.8 mm)** — both surfaces aspherical (Surfaces 20A and 21A). Glass: H-ZF52A (CDGM) dense flint.
+**L51 — Negative Meniscus (f = −27.8 mm)** — both surfaces aspherical (Surfaces 20A and 21A). Glass: H-ZF52A (CDGM) dense flint.
 
-L11 is the final optical element before the sensor cover glass. Its strong negative power shortens the back focal distance, allowing the overall lens to be more compact, while the strongly concave front surface bends the image field back toward flatness. Surface 20A has K = −1.070 (hyperboloid) — the only non-zero conic constant in the design — providing zone-dependent correction for astigmatism and field curvature at the extreme corners of the full-frame sensor.
+L51 is the final optical element before the sensor cover glass. Its strong negative power shortens the back focal distance, allowing the overall lens to be more compact, while the strongly concave front surface bends the image field back toward flatness. Surface 20A has K = −1.070 (hyperboloid) — the only non-zero conic constant in the design — providing zone-dependent correction for astigmatism and field curvature at the extreme corners of the full-frame sensor.
 
 ---
 
@@ -157,11 +157,11 @@ L11 is the final optical element before the sensor cover glass. Its strong negat
 
 | Surface | Element | Group | Conic K | Dominant A4 | Role |
 |---------|---------|-------|---------|-------------|------|
-| 12A | L6 front | G2 (focus) | 0 | −2.24e-05 | Spherical aberration control near the stop |
-| 18A | L10 front | G4 (focus) | 0 | −2.96e-05 | Corrector-plate-like wavefront trim |
-| 19A | L10 rear | G4 (focus) | 0 | −7.64e-06 | Field-dependent correction during focus travel |
-| 20A | L11 front | G5 (fixed) | −1.070 | +6.71e-05 | Astigmatism/field curvature (hyperboloid) |
-| 21A | L11 rear | G5 (fixed) | 0 | +5.71e-05 | Final wavefront trimming |
+| 12A | L21 front | G2 (focus) | 0 | −2.24e-05 | Spherical aberration control near the stop |
+| 18A | L41 front | G4 (focus) | 0 | −2.96e-05 | Corrector-plate-like wavefront trim |
+| 19A | L41 rear | G4 (focus) | 0 | −7.64e-06 | Field-dependent correction during focus travel |
+| 20A | L51 front | G5 (fixed) | −1.070 | +6.71e-05 | Astigmatism/field curvature (hyperboloid) |
+| 21A | L51 rear | G5 (fixed) | 0 | +5.71e-05 | Final wavefront trimming |
 
 The concentration of aspherical surfaces behind the stop — and particularly on the focusing and field-flattening groups — follows Peter Karbe's established design philosophy: aspherical surfaces are most effective for correcting oblique spherical aberration when placed where off-axis ray bundles are well separated from the on-axis bundle.
 

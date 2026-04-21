@@ -43,7 +43,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Pos. Meniscus (1× Asph)",
       nd: 1.90525,
@@ -55,7 +55,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.90043,
@@ -67,7 +67,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.80518,
@@ -79,7 +79,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4f",
+      name: "L21",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.76182,
@@ -88,11 +88,11 @@ const LENS_DATA = {
       glass: "Dense flint (SF14 family)",
       apd: false,
       role: "Cemented in L4; primary chromatic lever — strongest negative power in system (f = −21.2 mm)",
-      cemented: "L4",
+      cemented: "D1",
     },
     {
       id: 5,
-      name: "L4r",
+      name: "L22",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -101,11 +101,11 @@ const LENS_DATA = {
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "Cemented in L4; high-index positive partner, same glass as L5 and L6f",
-      cemented: "L4",
+      cemented: "D1",
     },
     {
       id: 6,
-      name: "L5",
+      name: "L23",
       label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -117,7 +117,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L6f",
+      name: "L24",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -126,11 +126,11 @@ const LENS_DATA = {
       glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "Cemented in L6; field and chromatic correction, third element in S-LAH58 group",
-      cemented: "L6",
+      cemented: "D2",
     },
     {
       id: 8,
-      name: "L6r",
+      name: "L25",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.55298,
@@ -139,11 +139,11 @@ const LENS_DATA = {
       glass: "Standard crown (selected melt)",
       apd: false,
       role: "Cemented in L6; low-index negative partner for field curvature correction",
-      cemented: "L6",
+      cemented: "D2",
     },
     {
       id: 9,
-      name: "L7",
+      name: "L26",
       label: "Element 9",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.80835,
@@ -240,8 +240,8 @@ const LENS_DATA = {
   ],
 
   doublets: [
-    { text: "L4", fromSurface: "8", toSurface: "10" },
-    { text: "L6", fromSurface: "13", toSurface: "15" },
+    { text: "D1", fromSurface: "8", toSurface: "10" },
+    { text: "D2", fromSurface: "13", toSurface: "15" },
   ],
 
   /* ── Focus configuration ── */

@@ -57,8 +57,8 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1 (Mna)",
+      name: "L11",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.5168,
       vd: 64.2,
@@ -69,8 +69,8 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2 (Mnb)",
+      name: "L12",
+      label: "Element 2",
       type: "Plano-Concave",
       nd: 1.64769,
       vd: 33.84,
@@ -82,8 +82,8 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3 (Mpa)",
+      name: "L13",
+      label: "Element 3",
       type: "Plano-Convex",
       nd: 1.91082,
       vd: 35.25,
@@ -95,8 +95,8 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4 (Mpb)",
+      name: "L14",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.91082,
       vd: 35.25,
@@ -108,8 +108,8 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5 (Mnc)",
+      name: "L15",
+      label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.76182,
       vd: 26.61,
@@ -121,8 +121,8 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6 (Nna)",
+      name: "L21",
+      label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.71736,
       vd: 29.5,
@@ -134,8 +134,8 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
-      label: "Element 7 (Npa)",
+      name: "L22",
+      label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.6968,
       vd: 55.46,
@@ -148,8 +148,8 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
-      label: "Element 8 (Npb)",
+      name: "L23",
+      label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.883,
       vd: 40.81,
@@ -160,8 +160,8 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
-      label: "Element 9 (Nnb)",
+      name: "L24",
+      label: "Element 9",
       type: "Negative Meniscus",
       nd: 1.62999,
       vd: 58.12,
@@ -174,8 +174,8 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
-      label: "Element 10 (Nnc)",
+      name: "L25",
+      label: "Element 10",
       type: "Neg. Meniscus (2× Asph)",
       nd: 1.8061,
       vd: 40.73,
@@ -254,8 +254,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "Gf (front)", fromSurface: "1", toSurface: "8" },
-    { text: "Gr (rear)", fromSurface: "10", toSurface: "18A" },
+    { text: "G1 (front)", fromSurface: "1", toSurface: "8" },
+    { text: "G2 (rear)", fromSurface: "10", toSurface: "18A" },
   ],
 
   doublets: [

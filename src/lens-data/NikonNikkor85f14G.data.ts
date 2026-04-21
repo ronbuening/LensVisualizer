@@ -132,7 +132,7 @@ const LENS_DATA = {
       glass: "S-LAH79 (OHARA)",
       apd: false,
       role: "Highest-index element — first half of L3N cemented doublet; sets refractive index difference at cement surface for SA tuning",
-      cemented: "L3N",
+      cemented: "D1",
     },
     {
       id: 9,
@@ -145,11 +145,11 @@ const LENS_DATA = {
       glass: "S-TIH53 (OHARA)",
       apd: false,
       role: "Second half of L3N doublet — cement surface (|Δn| = 0.256) provides controlled residual SA for bokeh character",
-      cemented: "L3N",
+      cemented: "D1",
     },
     {
       id: 10,
-      name: "L3P",
+      name: "L33",
       label: "Element 10",
       type: "Biconvex Positive (equi-radii)",
       nd: 1.834,
@@ -208,11 +208,11 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "Gr1", fromSurface: "1", toSurface: "6" },
-    { text: "Gr2 (focus)", fromSurface: "7", toSurface: "15" },
-    { text: "Gr3", fromSurface: "16", toSurface: "20" },
+    { text: "G1", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (focus)", fromSurface: "7", toSurface: "15" },
+    { text: "G3", fromSurface: "16", toSurface: "20" },
   ],
-  doublets: [{ text: "L3N", fromSurface: "16", toSurface: "18" }],
+  doublets: [{ text: "D1", fromSurface: "16", toSurface: "18" }],
 
   /* ── Focus configuration ── */
   closeFocusM: 0.85,

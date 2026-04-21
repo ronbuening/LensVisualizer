@@ -33,19 +33,19 @@ The design is a **positive-lead telephoto-type zoom** with seven zoom groups arr
 
 | Zoom Group | Patent Label | Power | Focal Length | Elements | Role |
 |------------|-------------|-------|-------------|----------|------|
-| G1 | L1 | Positive | +155.12 mm | 3 (in 2 sub-groups) | Front positive; determines image scale, moves strongly toward object for tele |
-| G2 | L2 | Negative | −48.48 mm | 3 (in 2 sub-groups) | Variator / IS group; stationary during zoom, moves laterally for image stabilization |
-| G3 | L3 | Positive | +67.04 mm | 1 (asph.) | Compensator; moderate movement during zoom |
-| G4 | L4 | Negative | −155.65 mm | 2 (cemented) | Field flattener; adjusts Petzval sum |
-| G5 (LP) | L5 | Positive | +38.75 mm | 5 (in 3 sub-groups) | Main positive relay; strongest convergent power in the rear section |
-| G6 (LN) | L6 | Negative | −55.03 mm | 1 | Focus group A; moves toward object during zoom, toward image during focus |
-| G7 (LR) | L7 | Negative | −224.14 mm | 2 | Focus group B (floating); final aberration correction near the image plane |
+| G1 | L11 | Positive | +155.12 mm | 3 (in 2 sub-groups) | Front positive; determines image scale, moves strongly toward object for tele |
+| G2 | L12 | Negative | −48.48 mm | 3 (in 2 sub-groups) | Variator / IS group; stationary during zoom, moves laterally for image stabilization |
+| G3 | L13 | Positive | +67.04 mm | 1 (asph.) | Compensator; moderate movement during zoom |
+| G4 | L21 | Negative | −155.65 mm | 2 (cemented) | Field flattener; adjusts Petzval sum |
+| G5 (LP) | L22 | Positive | +38.75 mm | 5 (in 3 sub-groups) | Main positive relay; strongest convergent power in the rear section |
+| G6 (LN) | L23 | Negative | −55.03 mm | 1 | Focus group A; moves toward object during zoom, toward image during focus |
+| G7 (LR) | L31 | Negative | −224.14 mm | 2 | Focus group B (floating); final aberration correction near the image plane |
 
 The two rear negative groups (LN and LR) create a telephoto-type power arrangement that shortens the overall lens length relative to its effective focal length. This effect is most pronounced at the telephoto end, where the total optical track of 220.03 mm achieves a 194 mm effective focal length — a length-to-EFL ratio of only 1.13. At wide angle, the 161.59 mm track for a 72 mm focal length (ratio 2.24) shows no telephoto shortening, as is typical for the wide end of positive-lead zoom designs.
 
 ### Zoom Motion
 
-During zooming from wide to tele, the groups move as follows. Group L1 moves strongly toward the object (−58.44 mm), opening a large gap between L1 and L2 that accounts for the extending barrel. Group L2 remains stationary, serving double duty as the image stabilization group. Groups L3 through L6 all move toward the object by varying amounts, with LN (−20.11 mm) and LR contributing to the telephoto effect. The back focal distance increases from 15.86 mm (wide) to 31.81 mm (tele).
+During zooming from wide to tele, the groups move as follows. Group G1 moves strongly toward the object (−58.44 mm), opening a large gap between G1 and G2 that accounts for the extending barrel. Group G2 remains stationary, serving double duty as the image stabilization group. Groups G3 through G6 all move toward the object by varying amounts, with LN (−20.11 mm) and LR contributing to the telephoto effect. The back focal distance increases from 15.86 mm (wide) to 31.81 mm (tele).
 
 The gap d27 (between G6/LN and G7/LR) exhibits non-monotonic behavior: it decreases from 17.06 mm at wide to 16.73 mm at mid, then increases to 21.22 mm at tele. This reflects a subtle reversal in the relative motion of LN and LR around the mid-zoom position, handled naturally by piecewise-linear interpolation across the three patent zoom positions.
 
@@ -59,23 +59,23 @@ All 17 elements in Example 3 can be identified against the OHARA optical glass c
 
 | # | Name | nd | νd | Glass (OHARA) | Type | f (mm) | Special |
 |---|------|----|----|--------------|------|--------|---------|
-| 1 | L1 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +240.6 | **UD** |
-| 2 | L2 | 1.61340 | 44.3 | S-BAM4 | Barium flint | −163.3 | — |
-| 3 | L3 | 1.43875 | 94.7 | S-FPL55 | Extreme anomalous PD fluorophosphate | +117.3 | **Super UD** |
-| 4 | L4 | 1.59282 | 68.6 | S-FPM2 | Fluorophosphate crown | −101.2 | — |
-| 5 | L5 | 1.76385 | 48.5 | S-LAH65V | Lanthanum crown | −36.6 | — |
-| 6 | L6 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +58.3 | — |
-| 7 | L7 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +67.0 | **UD + Asph (GMo)** |
-| 8 | L8 | 1.59270 | 35.3 | S-TIM2 | Titanium flint | −34.7 | — |
-| 9 | L9 | 1.72825 | 28.5 | S-TIH6 | Dense flint | +46.5 | — |
-| 10 | L10 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −67.8 | — |
-| 11 | L11 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +54.6 | **UD** |
-| 12 | L12 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +65.7 | **UD** |
-| 13 | L13 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −103.4 | — |
-| 14 | L14 | 1.90043 | 37.4 | S-LAH58 | Lanthanum crown | +59.9 | — |
-| 15 | L15 | 1.61800 | 63.4 | S-PHM52 | Phosphate crown | −55.0 | — |
-| 16 | L16 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +89.7 | — |
-| 17 | L17 | 1.58313 | 59.4 | S-BAL42 | Barium crown | −60.6 | **Asph (GMo)** |
+| 1 | L11 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +240.6 | **UD** |
+| 2 | L12 | 1.61340 | 44.3 | S-BAM4 | Barium flint | −163.3 | — |
+| 3 | L13 | 1.43875 | 94.7 | S-FPL55 | Extreme anomalous PD fluorophosphate | +117.3 | **Super UD** |
+| 4 | L21 | 1.59282 | 68.6 | S-FPM2 | Fluorophosphate crown | −101.2 | — |
+| 5 | L22 | 1.76385 | 48.5 | S-LAH65V | Lanthanum crown | −36.6 | — |
+| 6 | L23 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +58.3 | — |
+| 7 | L31 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +67.0 | **UD + Asph (GMo)** |
+| 8 | L41 | 1.59270 | 35.3 | S-TIM2 | Titanium flint | −34.7 | — |
+| 9 | L42 | 1.72825 | 28.5 | S-TIH6 | Dense flint | +46.5 | — |
+| 10 | L51 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −67.8 | — |
+| 11 | L52 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +54.6 | **UD** |
+| 12 | L53 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +65.7 | **UD** |
+| 13 | L54 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −103.4 | — |
+| 14 | L55 | 1.90043 | 37.4 | S-LAH58 | Lanthanum crown | +59.9 | — |
+| 15 | L61 | 1.61800 | 63.4 | S-PHM52 | Phosphate crown | −55.0 | — |
+| 16 | L71 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +89.7 | — |
+| 17 | L72 | 1.58313 | 59.4 | S-BAL42 | Barium crown | −60.6 | **Asph (GMo)** |
 
 Focal lengths are computed via the thick-lens (lensmaker's) equation from the patent prescription values and independently verified by script.
 
@@ -85,15 +85,15 @@ Canon's official specification lists the special elements as: 1× Super UD, 3× 
 
 ### Anomalous Partial Dispersion Elements
 
-Five elements employ anomalous partial dispersion (APD) glasses — all in the S-FPL family — making this design heavily dependent on APD correction for controlling secondary spectrum across the zoom range. The S-FPL55 element (L3, νd = 94.7) in the front group provides the most extreme anomalous dispersion in the system and corresponds to Canon's "Super UD" designation. Its OHARA-published anomalous dispersion is ΔθgF ≈ +0.046, making it among the most effective secondary spectrum correctors available in a melt glass (as opposed to crystal fluorite, CaF₂).
+Five elements employ anomalous partial dispersion (APD) glasses — all in the S-FPL family — making this design heavily dependent on APD correction for controlling secondary spectrum across the zoom range. The S-FPL55 element (L13, νd = 94.7) in the front group provides the most extreme anomalous dispersion in the system and corresponds to Canon's "Super UD" designation. Its OHARA-published anomalous dispersion is ΔθgF ≈ +0.046, making it among the most effective secondary spectrum correctors available in a melt glass (as opposed to crystal fluorite, CaF₂).
 
-**Note on L3 glass identification.** Both S-FPL53 and S-FPL55 share nd = 1.43875 exactly, but they differ in Abbe number: S-FPL53 has νd = 94.95 while S-FPL55 has νd = 94.66. The patent specifies νd = 94.7, which matches S-FPL55 (Δνd = 0.04) far more closely than S-FPL53 (Δνd = 0.25). Given that all other glasses in this patent match their catalog values to Δνd < 0.1, S-FPL55 is the confident identification. Both glasses are extreme anomalous dispersion fluorophosphates and either would qualify for Canon's "Super UD" designation.
+**Note on L13 glass identification.** Both S-FPL53 and S-FPL55 share nd = 1.43875 exactly, but they differ in Abbe number: S-FPL53 has νd = 94.95 while S-FPL55 has νd = 94.66. The patent specifies νd = 94.7, which matches S-FPL55 (Δνd = 0.04) far more closely than S-FPL53 (Δνd = 0.25). Given that all other glasses in this patent match their catalog values to Δνd < 0.1, S-FPL55 is the confident identification. Both glasses are extreme anomalous dispersion fluorophosphates and either would qualify for Canon's "Super UD" designation.
 
-The S-FPL51 elements (L1, L7, L11, L12, νd = 81.5, ΔθgF ≈ +0.028) are distributed strategically: one in the front group for primary color correction across the zoom range, one as the aspherical element immediately behind the stop for simultaneous spherical aberration and chromatic correction, and two in the powerful G5 relay group where axial ray heights are significant.
+The S-FPL51 elements (L11, L31, L52, L53, νd = 81.5, ΔθgF ≈ +0.028) are distributed strategically: one in the front group for primary color correction across the zoom range, one as the aspherical element immediately behind the stop for simultaneous spherical aberration and chromatic correction, and two in the powerful G5 relay group where axial ray heights are significant.
 
 ### Ultra-High-Index Flints
 
-Elements L10 and L13 use S-NPH2 (nd = 2.05090, νd = 26.9), one of the highest-refractive-index optical glasses commercially available. At nd > 2.0, this glass provides extreme negative power in a compact element thickness, which is essential for the tight cemented doublet arrangements in Group G5 where it is paired with S-FPL51 UD glass to form powerful chromatic correction cells.
+Elements L51 and L54 use S-NPH2 (nd = 2.05090, νd = 26.9), one of the highest-refractive-index optical glasses commercially available. At nd > 2.0, this glass provides extreme negative power in a compact element thickness, which is essential for the tight cemented doublet arrangements in Group G5 where it is paired with S-FPL51 UD glass to form powerful chromatic correction cells.
 
 ---
 
@@ -101,7 +101,7 @@ Elements L10 and L13 use S-NPH2 (nd = 2.05090, νd = 26.9), one of the highest-r
 
 The design uses two glass-molded (GMo) aspherical surfaces. Canon's developer interview confirms both are glass-molded rather than hybrid (resin-on-glass) elements. The rear aspheric (surface 30) is additionally treated with Sub-Wavelength Coating (SWC) to control flare and ghosting.
 
-### Surface 13 — Element L7 Front (UD Aspherical)
+### Surface 13 — Element L31 Front (UD Aspherical)
 
 This is the front surface of the biconvex UD glass element (S-FPL51) positioned directly behind the aperture stop in Group G3. It is the sole element in this zoom group.
 
@@ -118,7 +118,7 @@ At an estimated semi-diameter of ~18.5 mm, the aspherical departure from the bas
 
 **Optical role.** Positioned immediately behind the stop where axial marginal rays are at their highest, this element simultaneously addresses spherical aberration (via the aspheric departure) and axial chromatic aberration (via the S-FPL51 UD glass). The developer interview specifically attributes spherical aberration correction and overall length reduction to this element. Only three coefficients (A4, A6, A8) are non-zero, indicating a well-behaved aspherical departure appropriate for glass molding.
 
-### Surface 30 — Element L17 Front (Rear Correction Asphere)
+### Surface 30 — Element L72 Front (Rear Correction Asphere)
 
 This is the front surface of the final negative meniscus element in Group G7 (LR), positioned near the image plane.
 
@@ -140,55 +140,55 @@ The paraxial ray trace yields a maximum marginal ray height of approximately 5.6
 
 ## 5. Element-by-Element Optical Role Analysis
 
-### Group G1 — Front Positive Group (L1 + L2/L3 cemented doublet)
+### Group G1 — Front Positive Group (L11 + L12/L13 cemented doublet)
 
-**Element L1** (S-FPL51, UD, positive meniscus, f = +240.6 mm): The first element in the system, with both radii positive (R1 = +99.6, R2 = +581.4) forming a meniscus shape. As a low-dispersion positive element at the front, it collects and converges the incoming light while introducing minimal chromatic aberration. Its long focal length means it contributes gently to the overall convergence — the real work of G1's +155 mm combined power comes from the cemented doublet behind it.
+**Element L11** (S-FPL51, UD, positive meniscus, f = +240.6 mm): The first element in the system, with both radii positive (R1 = +99.6, R2 = +581.4) forming a meniscus shape. As a low-dispersion positive element at the front, it collects and converges the incoming light while introducing minimal chromatic aberration. Its long focal length means it contributes gently to the overall convergence — the real work of G1's +155 mm combined power comes from the cemented doublet behind it.
 
-**Elements L2 + L3** (S-BAM4 / S-FPL55, cemented doublet): This is the most important chromatic correction cell in the front group. L2 is a negative meniscus of moderate-dispersion barium flint (νd = 44.3) cemented to L3, a thick plano-convex element of Super UD glass (S-FPL55, νd = 94.7). The enormous Abbe number difference (Δνd = 50.4) between the two elements creates powerful chromatic correction. L3's flat rear surface (R = ∞) and substantial thickness (12.70 mm) indicate it carries significant positive power while maintaining a manageable edge thickness for manufacturing.
+**Elements L12 + L13** (S-BAM4 / S-FPL55, cemented doublet): This is the most important chromatic correction cell in the front group. L12 is a negative meniscus of moderate-dispersion barium flint (νd = 44.3) cemented to L13, a thick plano-convex element of Super UD glass (S-FPL55, νd = 94.7). The enormous Abbe number difference (Δνd = 50.4) between the two elements creates powerful chromatic correction. L13's flat rear surface (R = ∞) and substantial thickness (12.70 mm) indicate it carries significant positive power while maintaining a manageable edge thickness for manufacturing.
 
-The average Abbe number of the positive elements in G1 (L1 and L3) is νd = 88.10, which is listed directly in the patent's Table 1 as νd1Pave and satisfies conditional expression (12): 65.00 < 88.10 < 99.00. This confirms that the front group's chromatic correction relies on combining two types of anomalous-dispersion glass.
+The average Abbe number of the positive elements in G1 (L11 and L13) is νd = 88.10, which is listed directly in the patent's Table 1 as νd1Pave and satisfies conditional expression (12): 65.00 < 88.10 < 99.00. This confirms that the front group's chromatic correction relies on combining two types of anomalous-dispersion glass.
 
-### Group G2 — Variator / IS Group (L4 + L5/L6 cemented doublet)
+### Group G2 — Variator / IS Group (L21 + L22/L23 cemented doublet)
 
 This group is notable for being **stationary during zoom** (patent claim 16). It serves as the image stabilization unit, moving perpendicular to the optical axis to correct image shake (patent claim 17). Keeping it stationary during zoom simplifies the IS drive mechanism. The group is preceded by a flare-cut stop (FP, surface 6) that blocks stray marginal rays from the front group.
 
-**Element L4** (S-FPM2, biconcave, f = −101.2 mm): A fluorophosphate crown element with relatively high Abbe number (νd = 68.6). Its front radius is very weakly curved (R = −617.95 mm, nearly flat), but the sign convention confirms both surfaces curve to create a biconcave shape. It provides negative power with controlled chromatic contribution, and its position before the cemented doublet helps manage the beam diameter entering the IS unit.
+**Element L21** (S-FPM2, biconcave, f = −101.2 mm): A fluorophosphate crown element with relatively high Abbe number (νd = 68.6). Its front radius is very weakly curved (R = −617.95 mm, nearly flat), but the sign convention confirms both surfaces curve to create a biconcave shape. It provides negative power with controlled chromatic contribution, and its position before the cemented doublet helps manage the beam diameter entering the IS unit.
 
-**Elements L5 + L6** (S-LAH65V / S-TIH14, cemented doublet): A powerfully divergent doublet. L5 is a strong negative biconcave element (f = −36.6 mm) of lanthanum crown, cemented to L6, a positive meniscus of dense flint (S-TIH14, νd = 24.8). The combination provides strong negative power (the group's overall f = −48.48 mm derives primarily from this doublet) while partially correcting the chromatic aberration introduced by the negative power. The S-LAH65V lanthanum crown (nd = 1.764) provides a good refractive index–dispersion balance for compact variator elements.
+**Elements L22 + L23** (S-LAH65V / S-TIH14, cemented doublet): A powerfully divergent doublet. L22 is a strong negative biconcave element (f = −36.6 mm) of lanthanum crown, cemented to L23, a positive meniscus of dense flint (S-TIH14, νd = 24.8). The combination provides strong negative power (the group's overall f = −48.48 mm derives primarily from this doublet) while partially correcting the chromatic aberration introduced by the negative power. The S-LAH65V lanthanum crown (nd = 1.764) provides a good refractive index–dispersion balance for compact variator elements.
 
-### Group G3 — Compensator (L7, aspherical)
+### Group G3 — Compensator (L31, aspherical)
 
-**Element L7** (S-FPL51, UD, glass-molded aspheric biconvex, f = +67.0 mm): The sole element of this zoom group and one of the most optically important elements in the design. Positioned directly behind the aperture stop where axial marginal ray heights peak, it performs simultaneous correction of spherical aberration (via the aspherical front surface) and axial chromatic aberration (via the S-FPL51 UD glass). The group focal length (+67.04 mm) directly matches the single-element thick-lens calculation (+67.0 mm), confirming the element alone constitutes the entire group.
+**Element L31** (S-FPL51, UD, glass-molded aspheric biconvex, f = +67.0 mm): The sole element of this zoom group and one of the most optically important elements in the design. Positioned directly behind the aperture stop where axial marginal ray heights peak, it performs simultaneous correction of spherical aberration (via the aspherical front surface) and axial chromatic aberration (via the S-FPL51 UD glass). The group focal length (+67.04 mm) directly matches the single-element thick-lens calculation (+67.0 mm), confirming the element alone constitutes the entire group.
 
 This element moves only −7.51 mm during zoom (the smallest movement of any moving group), acting as a fine compensator that maintains aberration balance as the other groups shift.
 
-### Group G4 — Negative Field Flattener (L8/L9 cemented doublet)
+### Group G4 — Negative Field Flattener (L41/L42 cemented doublet)
 
-**Elements L8 + L9** (S-TIM2 / S-TIH6, cemented doublet, f = −155.65 mm): A weakly negative cemented doublet using two flint glasses with very low Abbe numbers (νd = 35.3 and 28.5). Both glasses are on the high-dispersion side, which is unusual for a correction cell — normally one would pair a crown with a flint. Here, the purpose is not chromatic correction per se but Petzval sum management. The patent description (paragraph [0030]) explicitly notes that placing multiple negative groups near the image creates a tendency toward excessive negative Petzval sum (resulting in backward-curving fields). This weakly negative doublet, positioned between the strong positive G5 and the aperture stop, provides a gentle counterbalance.
+**Elements L41 + L42** (S-TIM2 / S-TIH6, cemented doublet, f = −155.65 mm): A weakly negative cemented doublet using two flint glasses with very low Abbe numbers (νd = 35.3 and 28.5). Both glasses are on the high-dispersion side, which is unusual for a correction cell — normally one would pair a crown with a flint. Here, the purpose is not chromatic correction per se but Petzval sum management. The patent description (paragraph [0030]) explicitly notes that placing multiple negative groups near the image creates a tendency toward excessive negative Petzval sum (resulting in backward-curving fields). This weakly negative doublet, positioned between the strong positive G5 and the aperture stop, provides a gentle counterbalance.
 
-### Group G5 (LP) — Main Positive Relay (L10/L11, L12/L13, L14)
+### Group G5 (LP) — Main Positive Relay (L51/L52, L53/L54, L55)
 
 This is the most complex zoom group: five elements in three air-separated sub-groups, with a combined focal length of +38.75 mm — the strongest positive power of any group in the system.
 
-**Elements L10 + L11** (S-NPH2 / S-FPL51, cemented doublet): An ultra-high-index flint (nd = 2.051) paired with a UD glass. The S-NPH2 negative element (f = −67.8 mm) and S-FPL51 positive element (f = +54.6 mm) form a powerful achromatic correction cell. The extreme refractive index of S-NPH2 allows the cemented interface to have strong differential curvature (R = +45.374 mm) in a physically thin package.
+**Elements L51 + L52** (S-NPH2 / S-FPL51, cemented doublet): An ultra-high-index flint (nd = 2.051) paired with a UD glass. The S-NPH2 negative element (f = −67.8 mm) and S-FPL51 positive element (f = +54.6 mm) form a powerful achromatic correction cell. The extreme refractive index of S-NPH2 allows the cemented interface to have strong differential curvature (R = +45.374 mm) in a physically thin package.
 
-**Elements L12 + L13** (S-FPL51 / S-NPH2, cemented doublet): An inverted version of the L10/L11 doublet — UD glass first, then ultra-high-index flint. The power arrangement is reversed (L12 positive at +65.7 mm, L13 negative at −103.4 mm), creating a net positive sub-group that provides additional achromatic correction. Using the same glass pair in both doublets but with inverted element order is a hallmark of systematic aberration balancing: the residual higher-order chromatic aberrations from one doublet partially cancel those from the other.
+**Elements L53 + L54** (S-FPL51 / S-NPH2, cemented doublet): An inverted version of the L51/L52 doublet — UD glass first, then ultra-high-index flint. The power arrangement is reversed (L53 positive at +65.7 mm, L54 negative at −103.4 mm), creating a net positive sub-group that provides additional achromatic correction. Using the same glass pair in both doublets but with inverted element order is a hallmark of systematic aberration balancing: the residual higher-order chromatic aberrations from one doublet partially cancel those from the other.
 
-**Element L14** (S-LAH58, biconvex, f = +59.9 mm): A single positive lanthanum crown element that adds convergent power to the group. S-LAH58 (nd = 1.900, νd = 37.4) has the highest refractive index of the crown-type glasses in the system, allowing a relatively weakly curved element to contribute significant power. Its position at the rear of G5 converges the beam before it enters the focus groups.
+**Element L55** (S-LAH58, biconvex, f = +59.9 mm): A single positive lanthanum crown element that adds convergent power to the group. S-LAH58 (nd = 1.900, νd = 37.4) has the highest refractive index of the crown-type glasses in the system, allowing a relatively weakly curved element to contribute significant power. Its position at the rear of G5 converges the beam before it enters the focus groups.
 
-### Group G6 (LN) — Focus Group A (L15)
+### Group G6 (LN) — Focus Group A (L61)
 
-**Element L15** (S-PHM52, negative meniscus, f = −55.0 mm): A single phosphate crown element that constitutes the primary focus group. This is one of the two groups driven by Canon's dual Nano USM focus motors. During focusing from infinity to close distance, L15 moves toward the image side (patent claim 15, paragraph [0044]). During zoom, it moves toward the object (−20.11 mm from wide to tele), creating available travel space on its image side that is exploited for close-focus movement at the telephoto end.
+**Element L61** (S-PHM52, negative meniscus, f = −55.0 mm): A single phosphate crown element that constitutes the primary focus group. This is one of the two groups driven by Canon's dual Nano USM focus motors. During focusing from infinity to close distance, L61 moves toward the image side (patent claim 15, paragraph [0044]). During zoom, it moves toward the object (−20.11 mm from wide to tele), creating available travel space on its image side that is exploited for close-focus movement at the telephoto end.
 
 The choice of S-PHM52 (nd = 1.618, νd = 63.4) is driven by weight considerations: as a focus element driven by a small USM motor, low mass is critical for fast autofocus response. The moderate refractive index and relatively large Abbe number make this a lightweight but chromatically well-behaved focusing element.
 
-### Group G7 (LR) — Focus Group B / Floating Group (L16, L17)
+### Group G7 (LR) — Focus Group B / Floating Group (L71, L72)
 
-**Element L16** (S-TIH14, positive meniscus, f = +89.7 mm): A dense flint element with positive power, positioned as the first element of the floating focus group. Despite being a flint glass (νd = 24.8), it serves a primarily monochromatic correction role — managing coma and astigmatism that change as the primary focus group (L15) moves.
+**Element L71** (S-TIH14, positive meniscus, f = +89.7 mm): A dense flint element with positive power, positioned as the first element of the floating focus group. Despite being a flint glass (νd = 24.8), it serves a primarily monochromatic correction role — managing coma and astigmatism that change as the primary focus group (L61) moves.
 
-**Element L17** (S-BAL42, glass-molded aspheric negative meniscus, f = −60.6 mm): The final optical element before the image plane and the second aspherical element in the system. Its aspherical front surface corrects residual field curvature and distortion across the zoom range. Canon's developer interview confirms this element carries SWC (Sub-Wavelength Coating) — necessary because its position near the image plane makes it susceptible to flare from stray light reflecting off the sensor and returning to the rear element surfaces.
+**Element L72** (S-BAL42, glass-molded aspheric negative meniscus, f = −60.6 mm): The final optical element before the image plane and the second aspherical element in the system. Its aspherical front surface corrects residual field curvature and distortion across the zoom range. Canon's developer interview confirms this element carries SWC (Sub-Wavelength Coating) — necessary because its position near the image plane makes it susceptible to flare from stray light reflecting off the sensor and returning to the rear element surfaces.
 
-The two-element floating group (L16 + L17) is driven by the second Nano USM motor and moves independently of the primary focus group (L15). This electronic floating focus control — described by Canon as "a Canon first" in the developer interview — allows independent optimization of focus and aberration correction during close-up shooting, which is how the lens achieves its 0.7 m minimum focus distance (versus 1.2 m for the predecessor EF 70-200mm f/2.8L IS III USM).
+The two-element floating group (L71 + L72) is driven by the second Nano USM motor and moves independently of the primary focus group (L61). This electronic floating focus control — described by Canon as "a Canon first" in the developer interview — allows independent optimization of focus and aberration correction during close-up shooting, which is how the lens achieves its 0.7 m minimum focus distance (versus 1.2 m for the predecessor EF 70-200mm f/2.8L IS III USM).
 
 ---
 
@@ -196,9 +196,9 @@ The two-element floating group (L16 + L17) is driven by the second Nano USM moto
 
 The Canon RF 70-200mm f/2.8 L IS USM was the first Canon lens to employ electronic floating focus control with two independent Nano USM motors. This system was described in detail by Canon Optical Design specialist Kenji Shinohara in the Canon Europe/CNA developer interview.
 
-**Focus Group A (LN, G6):** Element L15, a single phosphate crown negative meniscus. Moves toward the image plane during infinity → close focus (patent claim 15). At the telephoto end, the zoom-induced forward motion of this group opens up space on its image side, which is then used for close-focus travel — a clever mechanical arrangement that eliminates the need for additional barrel length at close focus.
+**Focus Group A (LN, G6):** Element L61, a single phosphate crown negative meniscus. Moves toward the image plane during infinity → close focus (patent claim 15). At the telephoto end, the zoom-induced forward motion of this group opens up space on its image side, which is then used for close-focus travel — a clever mechanical arrangement that eliminates the need for additional barrel length at close focus.
 
-**Focus Group B (LR, G7):** Elements L16 + L17. The "floating" group moves independently to compensate for aberration changes introduced by the primary focus group's motion. This independent control — as opposed to the mechanically coupled cam-driven floating focus systems in earlier EF telephoto designs — allows the focus correction to be optimized electronically at every focus distance and zoom position, rather than being constrained to a single mechanical cam profile.
+**Focus Group B (LR, G7):** Elements L71 + L72. The "floating" group moves independently to compensate for aberration changes introduced by the primary focus group's motion. This independent control — as opposed to the mechanically coupled cam-driven floating focus systems in earlier EF telephoto designs — allows the focus correction to be optimized electronically at every focus distance and zoom position, rather than being constrained to a single mechanical cam profile.
 
 The patent does not provide explicit close-focus variable gap data, so the exact travel distances at close focus cannot be determined from the patent alone. The variable gaps d25 (before LN) and d27 (after LN) are the spaces that change during focus, while d31 (BFD) changes as the floating group moves. The accompanying `.data.ts` file uses zoom-only variable gaps with identical infinity and close-focus values as a placeholder.
 
@@ -220,7 +220,7 @@ The non-monotonic behavior of d27 (decreasing from wide to mid, then increasing 
 
 ## 7. Image Stabilization
 
-The patent (claims 16–17) specifies that Group G2 (L2) is stationary during zoom and moves perpendicular to the optical axis for image stabilization. Keeping the IS group stationary during zoom simplifies the mechanical decoupling required between the zoom drive and the IS actuator. G2's focal length of −48.48 mm and its position between the large front group and the stop make it effective for IS — a small lateral shift of this divergent group produces a significant angular correction at the image plane while keeping the moving mass compact.
+The patent (claims 16–17) specifies that Group G2 (L12) is stationary during zoom and moves perpendicular to the optical axis for image stabilization. Keeping the IS group stationary during zoom simplifies the mechanical decoupling required between the zoom drive and the IS actuator. G2's focal length of −48.48 mm and its position between the large front group and the stop make it effective for IS — a small lateral shift of this divergent group produces a significant angular correction at the image plane while keeping the moving mass compact.
 
 ---
 
@@ -237,12 +237,12 @@ Key SD values from the trace (selected surfaces):
 
 | Surface | Max Ray Height (mm) | Estimated SD (mm) | Note |
 |---------|--------------------|--------------------|------|
-| S1 (L1 front) | 33.34 | 37.0 | Tele-limited; filter cross-check |
+| S1 (L11 front) | 33.34 | 37.0 | Tele-limited; filter cross-check |
 | S6 (FP) | 17.20 | 19.0 | Flare-cut aperture |
 | STO | 12.66–16.55 | 13.0 | Set for wide-end; renderer adjusts per zoom |
-| S13A (L7 asph) | 16.61 | 18.5 | Stop-adjacent; tele-limited |
-| S26 (L15 front) | 11.92 | 13.0 | Focus group A |
-| S30A (L17 asph) | 5.62 | 6.5 | Rear correction asphere |
+| S13A (L31 asph) | 16.61 | 18.5 | Stop-adjacent; tele-limited |
+| S26 (L61 front) | 11.92 | 13.0 | Focus group A |
+| S30A (L72 asph) | 5.62 | 6.5 | Rear correction asphere |
 
 These SDs are estimates based on on-axis paraxial optics only. Off-axis ray bundles at the field edge will require somewhat larger apertures, particularly at the front of the lens. The values are suitable for the interactive lens diagram renderer but should not be treated as precision mechanical specifications.
 
@@ -271,11 +271,11 @@ All twelve conditional expressions from the patent claims are satisfied by Examp
 
 Expression (3) is particularly informative: with DSPw/TDw = 0.660, the aperture stop is positioned approximately two-thirds of the way from the front to the rear of the lens at wide angle. This rearward stop placement is essential for the telescoping barrel design — it keeps the front group diameter manageable while allowing the rear groups (which carry most of the aberration correction burden) to operate at smaller beam diameters.
 
-Expression (4) describes the relative gap changes between L1–L2 and L2–L3 during zoom. The negative value (−0.128) indicates that the L2–L3 gap change is opposite in sign and smaller in magnitude than the L1–L2 gap change, consistent with L2's stationary position during zoom.
+Expression (4) describes the relative gap changes between L11–L12 and L12–L13 during zoom. The negative value (−0.128) indicates that the L12–L13 gap change is opposite in sign and smaller in magnitude than the L11–L12 gap change, consistent with L12's stationary position during zoom.
 
-Expression (11) characterizes the magnification change of the negative lens group LN across the zoom range relative to the overall zoom ratio. At 0.587, LN contributes a moderate proportion of the total zoom, consistent with its role as a secondary variator supplementing the primary zoom action of L1 and L3.
+Expression (11) characterizes the magnification change of the negative lens group LN across the zoom range relative to the overall zoom ratio. At 0.587, LN contributes a moderate proportion of the total zoom, consistent with its role as a secondary variator supplementing the primary zoom action of L11 and L13.
 
-Expression (12) confirms the front group's reliance on high-νd anomalous-dispersion glasses: the mean Abbe number of L1 (νd = 81.5) and L3 (νd = 94.7) is 88.10.
+Expression (12) confirms the front group's reliance on high-νd anomalous-dispersion glasses: the mean Abbe number of L11 (νd = 81.5) and L13 (νd = 94.7) is 88.10.
 
 ---
 

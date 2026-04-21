@@ -34,7 +34,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.697,
@@ -45,7 +45,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.51633,
@@ -56,7 +56,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L21",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.70154,
@@ -67,7 +67,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L22",
       label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.7,
@@ -78,7 +78,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L23",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.7737,
@@ -89,7 +89,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L31",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.76182,
@@ -100,7 +100,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L32",
       label: "Element 7",
       type: "Biconcave Negative",
       nd: 1.80518,
@@ -112,7 +112,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L33",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.7737,
@@ -124,7 +124,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L34",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.8061,
@@ -174,9 +174,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "I (neg)", fromSurface: "1", toSurface: "4" },
-    { text: "II₁ (pos)", fromSurface: "5", toSurface: "10" },
-    { text: "II₂ (pos)", fromSurface: "11", toSurface: "17" },
+    { text: "G1 (I neg)", fromSurface: "1", toSurface: "4" },
+    { text: "G2 (II₁ pos)", fromSurface: "5", toSurface: "10" },
+    { text: "G3 (II₂ pos)", fromSurface: "11", toSurface: "17" },
   ],
   doublets: [{ text: "D1", fromSurface: "13", toSurface: "15" }],
 

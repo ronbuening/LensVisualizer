@@ -49,7 +49,7 @@ The design is a **positive-negative-positive-negative-positive** (P-N-P-N-P) fiv
 |---|---|---|---|---|
 | **G1** | Front group (focal-length determination) | Positive | **+85.7 mm** | L11, L12, L13 (3 elements, 2 groups) |
 | **G2** | Variator | Negative | **−14.7 mm** | L21, L22, L23, L24 (4 elements, 3 groups) |
-| **G3** | Master / relay, containing the stop | Positive | **+22.9 mm** | L31 + STO + L32A·B + L33A·B + L34 (6 elements, 4 groups) |
+| **G3** | Master / relay, containing the stop | Positive | **+22.9 mm** | L31 + STO + L32·B + L34·B + L36 (6 elements, 4 groups) |
 | **G4** | Compensator / **focusing** group | Negative | **−31.8 mm** | L41, L42, L43 (3 elements, 2 groups) |
 | **G5** | Field flattener (fixed) | Positive | **+66.7 mm** | L51 (1 element, 1 group) |
 
@@ -132,19 +132,19 @@ The patent's Conditional Formula (4) and (5) describe this group's arrangement. 
 |---|---|---|---|---|---|
 | **L31** | 1.68458 | 30.88 | Near **OHARA L-TIM28** (moldable; Δnd = +0.0044, Δνd = +0.28); six-digit code **685309** | +39.1 | **Double-aspheric** positive singlet *before* the stop. Per patent [0065], its purpose is to "receive divergent light beams from the second lens group... the diameters of the lenses following thereafter can be prevented from becoming great, and the generation of spherical aberration can be suppressed." In short: a "diverging-beam catcher" that limits the clear apertures of the rest of G3, which is essential at f/2.8. The low Abbe number (~31) is chosen to satisfy Conditional Formula (7), 20 < νd31 < 40, which balances lateral chromatic aberration fluctuation across the zoom. |
 | **STO** | — | — | (aperture stop) | — | Variable iris, immediately after L31, sitting between L31 and L32. The wide-open stop semi-diameter varies with zoom position (wide ≈ 7.0 mm, mid ≈ 8.5 mm, tele ≈ 9.1 mm) — the production iris closes down at mid to deliver the marketed constant f/2.8. |
-| **L32A** | 1.84666 | 23.78 | **OHARA S-TIH53** (exact; same glass as L11) | −34.6 | Cemented to L32B. Negative-power front member of the first cemented doublet after the stop. Per [0066], the L32 doublet is specifically formed "by cementing a negative lens and a biconvex lens" — this achromatises the positive-combined doublet. |
-| **L32B** | 1.53775 | 74.70 | **OHARA S-FPM3** (exact) — **ED glass** | +23.0 | Biconvex positive, cemented to L32A. A fluor-phosphate ED glass with anomalous partial dispersion, critical for correcting apochromatic residuals (secondary spectrum) in the post-stop region where marginal-ray heights are largest. This is ED element #1. |
-| **L33A** | 1.49700 | 81.54 | **OHARA S-FPL51** (exact against 2014-era catalog; modern OHARA datasheets publish νd = 81.61, Δνd = −0.07) — **ED glass** | +72.6 | Positive meniscus (convex to image), cemented to L33B. The second cemented doublet (L33A + L33B) has a negative combined power per [0065] and provides the strong counterweight to L32's positive doublet. S-FPL51 is Ohara's flagship ED glass (anomalous partial dispersion, vd = 81.54, near-fluorite behaviour). ED element #2. |
-| **L33B** | 1.79952 | 42.22 | **OHARA S-LAH52** (exact) | −22.0 | Biconcave negative, cemented to L33A. This is also the **image-stabilization element**: paragraph [0081] of the patent states that camera-shake correction is performed by moving the L33 cemented doublet perpendicular to the optical axis. (In production, the XF 16-55mm does not include OIS — Fujifilm dropped this provision from the commercialised design.) |
-| **L34** | 1.61882 | 63.58 | Near **OHARA L-PHM52** (PGM version; Δnd = −0.00082, Δνd = −0.18); six-digit code **619636** | +19.8 | **Double-aspheric** positive singlet terminating G3. Per [0069], its asphericity corrects astigmatism and spherical aberration generated within G3. The L-prefix indicates a low-Tg glass intended for precision glass molding (PGM) — consistent with the two-surface aspheric requirement. |
+| **L32** | 1.84666 | 23.78 | **OHARA S-TIH53** (exact; same glass as L11) | −34.6 | Cemented to L33. Negative-power front member of the first cemented doublet after the stop. Per [0066], the L32 doublet is specifically formed "by cementing a negative lens and a biconvex lens" — this achromatises the positive-combined doublet. |
+| **L33** | 1.53775 | 74.70 | **OHARA S-FPM3** (exact) — **ED glass** | +23.0 | Biconvex positive, cemented to L32. A fluor-phosphate ED glass with anomalous partial dispersion, critical for correcting apochromatic residuals (secondary spectrum) in the post-stop region where marginal-ray heights are largest. This is ED element #1. |
+| **L34** | 1.49700 | 81.54 | **OHARA S-FPL51** (exact against 2014-era catalog; modern OHARA datasheets publish νd = 81.61, Δνd = −0.07) — **ED glass** | +72.6 | Positive meniscus (convex to image), cemented to L35. The second cemented doublet (L34 + L35) has a negative combined power per [0065] and provides the strong counterweight to L32's positive doublet. S-FPL51 is Ohara's flagship ED glass (anomalous partial dispersion, vd = 81.54, near-fluorite behaviour). ED element #2. |
+| **L35** | 1.79952 | 42.22 | **OHARA S-LAH52** (exact) | −22.0 | Biconcave negative, cemented to L34. This is also the **image-stabilization element**: paragraph [0081] of the patent states that camera-shake correction is performed by moving the L33 cemented doublet perpendicular to the optical axis. (In production, the XF 16-55mm does not include OIS — Fujifilm dropped this provision from the commercialised design.) |
+| **L36** | 1.61882 | 63.58 | Near **OHARA L-PHM52** (PGM version; Δnd = −0.00082, Δνd = −0.18); six-digit code **619636** | +19.8 | **Double-aspheric** positive singlet terminating G3. Per [0069], its asphericity corrects astigmatism and spherical aberration generated within G3. The L-prefix indicates a low-Tg glass intended for precision glass molding (PGM) — consistent with the two-surface aspheric requirement. |
 
 ### 4.4 Focusing group (G4) — two negative plano-concave elements + a positive cemented lens
 
 | Elem | nd | νd | Glass | f (mm) | Role |
 |---|---|---|---|---|---|
 | **L41** | 1.61800 | 63.33 | **OHARA S-PHM52** (same as L12) | −35.8 | Plano-concave negative; flat face toward the subject. The plano-front is characteristic of an inner-focus design where the element must glide axially relative to adjacent groups — a flat reference surface simplifies mechanical registration. |
-| **L42** | 1.84666 | 23.78 | **OHARA S-TIH53** (same as L11 and L32A) | −54.3 | Plano-concave negative, cemented at the rear to L43. Per [0084], *"by providing two negative lenses toward the object side, the forward principal point of the fourth lens group G4 can be moved toward the object side, and focusing sensitivity can be increased."* This is the key reason for splitting the G4 negative power between two elements rather than using a single stronger negative lens. |
-| **L43** | 1.49700 | 81.54 | **OHARA S-FPL51** (same as L33A; 2014-era catalog match) — **ED glass** | +67.4 | Biconvex positive, cemented to L42. Balances longitudinal chromatic aberration drift during focusing — a second occurrence of S-FPL51, completing the 3-ED-glass specification Fujifilm advertises. ED element #3. |
+| **L42** | 1.84666 | 23.78 | **OHARA S-TIH53** (same as L11 and L32) | −54.3 | Plano-concave negative, cemented at the rear to L43. Per [0084], *"by providing two negative lenses toward the object side, the forward principal point of the fourth lens group G4 can be moved toward the object side, and focusing sensitivity can be increased."* This is the key reason for splitting the G4 negative power between two elements rather than using a single stronger negative lens. |
+| **L43** | 1.49700 | 81.54 | **OHARA S-FPL51** (same as L34; 2014-era catalog match) — **ED glass** | +67.4 | Biconvex positive, cemented to L42. Balances longitudinal chromatic aberration drift during focusing — a second occurrence of S-FPL51, completing the 3-ED-glass specification Fujifilm advertises. ED element #3. |
 
 ### 4.5 Field flattener (G5)
 
@@ -166,18 +166,18 @@ Thirteen distinct optical materials are used (some glass types repeat across ele
 
 | Region | Elements | νd range | Purpose |
 |---|---|---|---|
-| **ED region** (νd > 70) | L32B, L33A, L43 | 74.7–81.5 | Apochromatic correction (secondary spectrum removal). L33A and L43 are S-FPL51; L32B is S-FPM3. |
-| **Crown/PHM region** (νd ≈ 63, nd ≈ 1.62) | L12, L34, L41 | 63.3–63.6 | General positive-power duties; moderate dispersion. S-PHM52 / L-PHM52 variant. |
-| **Lanthanum crown/flint region** (νd 40–56, nd 1.70–1.90) | L13, L21, L22, L24, L33B | 40–56 | Bulk of the negative and positive power-bearing elements. Uses LaK and LaSF families to pack high refractive index (short radii for power) with manageable Abbe number. |
-| **Dense flint region** (νd < 30) | L11, L23, L31, L32A, L42, L51 | 17.5–31.3 | Dispersion-control partners in cemented doublets; also the rear field flattener (L51 is niobium, νd = 17.5, deliberately chosen for ultra-high-index positive contribution near the sensor). |
+| **ED region** (νd > 70) | L33, L34, L43 | 74.7–81.5 | Apochromatic correction (secondary spectrum removal). L34 and L43 are S-FPL51; L33 is S-FPM3. |
+| **Crown/PHM region** (νd ≈ 63, nd ≈ 1.62) | L12, L36, L41 | 63.3–63.6 | General positive-power duties; moderate dispersion. S-PHM52 / L-PHM52 variant. |
+| **Lanthanum crown/flint region** (νd 40–56, nd 1.70–1.90) | L13, L21, L22, L24, L35 | 40–56 | Bulk of the negative and positive power-bearing elements. Uses LaK and LaSF families to pack high refractive index (short radii for power) with manageable Abbe number. |
+| **Dense flint region** (νd < 30) | L11, L23, L31, L32, L42, L51 | 17.5–31.3 | Dispersion-control partners in cemented doublets; also the rear field flattener (L51 is niobium, νd = 17.5, deliberately chosen for ultra-high-index positive contribution near the sensor). |
 
-Three elements are **aspheric** (each with aspherised front *and* rear surfaces), and all three are moldable-grade glasses (signalled by the OHARA **L-** prefix or the HOYA **M-** prefix in the best catalog match) because precision glass molding of aspheric surfaces requires glasses that soften at achievable mold temperatures. The three aspheric elements are L21, L31, and L34, corresponding to Fujifilm's published claim of "3 aspherical elements."
+Three elements are **aspheric** (each with aspherised front *and* rear surfaces), and all three are moldable-grade glasses (signalled by the OHARA **L-** prefix or the HOYA **M-** prefix in the best catalog match) because precision glass molding of aspheric surfaces requires glasses that soften at achievable mold temperatures. The three aspheric elements are L21, L31, and L36, corresponding to Fujifilm's published claim of "3 aspherical elements."
 
 Glass identification confidence (Δ values reported as **catalog minus patent**):
 
-- **Exact catalog matches** (|Δnd| < 0.0001 and |Δνd| < 0.05 at time of patent filing, 2014): L11, L21, L23, L24, L32A, L32B, L33B, L42, L51 — nine elements confirmed at rounding precision.
-- **Very close** (within ~0.07 νd units of the current published catalog value): L12 (S-PHM52, Δνd = +0.06), L33A and L43 (S-FPL51, Δνd = +0.07 vs. modern datasheet; 0.00 vs. 2014 datasheet), L41 (S-PHM52, Δνd = +0.06). The 2014-era OHARA catalog listed slightly different νd values for phosphate-crown and fluor-phosphate glasses than today's; these elements are exact matches against catalog data contemporary with the patent's priority date.
-- **Close** (within ~0.3 νd units): L22 (S-LAL14, Δνd = −0.12), L34 (L-PHM52, Δνd = +0.27), L31 (L-TIM28, Δnd = +0.0044, Δνd = +0.28). All three likely represent melt-variant or contemporary-catalog differences rather than a different glass family.
+- **Exact catalog matches** (|Δnd| < 0.0001 and |Δνd| < 0.05 at time of patent filing, 2014): L11, L21, L23, L24, L32, L33, L35, L42, L51 — nine elements confirmed at rounding precision.
+- **Very close** (within ~0.07 νd units of the current published catalog value): L12 (S-PHM52, Δνd = +0.06), L34 and L43 (S-FPL51, Δνd = +0.07 vs. modern datasheet; 0.00 vs. 2014 datasheet), L41 (S-PHM52, Δνd = +0.06). The 2014-era OHARA catalog listed slightly different νd values for phosphate-crown and fluor-phosphate glasses than today's; these elements are exact matches against catalog data contemporary with the patent's priority date.
+- **Close** (within ~0.3 νd units): L22 (S-LAL14, Δνd = −0.12), L36 (L-PHM52, Δνd = +0.27), L31 (L-TIM28, Δnd = +0.0044, Δνd = +0.28). All three likely represent melt-variant or contemporary-catalog differences rather than a different glass family.
 - **Family-level only** (no close direct match): L13 (six-digit code **755523**) — no catalog glass within 2 νd units; the design may use a bespoke melt or a now-discontinued catalog entry.
 
 Of note: L21's glass is confirmed as **HOYA M-TAFD305** (six-digit code 851401) — an exact catalog match. OHARA's pocket-catalog cross-reference tables (2018 and 2023 editions) list this six-digit code directly against M-TAFD305, with HIKARI (J-LASFH21 family) and Sumita (K-VC91/K-VC99 series) offering functional equivalents. For a Japanese manufacturer using precision-glass-molded aspheric elements, HOYA moldable glasses are an entirely expected sourcing choice. The HOYA M-prefix designates a low-Tg composition for precision glass molding (PGM), consistent with L21 being a double-aspheric element.
@@ -216,8 +216,8 @@ The companion data file (`FujifilmXF1655f28R.data.ts`) therefore uses the follow
 | S7A (L21 rear) | 11.06 | 2.8 | 1.2 |
 | S13A (L31 front) | 10.62 | 0.3 | 0.1 |
 | S14A (L31 rear) | 10.31 | 0.04 | 0.02 |
-| S22A (L34 front) | 12.10 | 11.2 | 4.6 |
-| S23A (L34 rear) | 12.18 | 1.8 | 0.8 |
+| S22A (L36 front) | 12.10 | 11.2 | 4.6 |
+| S23A (L36 rear) | 12.18 | 1.8 | 0.8 |
 
 The worst-case residual is 11.2 μm at the rim of S22A — well below typical manufacturing tolerance (λ/4 in the visible is ~140 nm, but practical element-shape tolerance in a zoom lens is tens of micrometres). For visualization purposes the refit is indistinguishable from the patent surface; for optical simulation or manufacturing, the patent's full odd + even coefficients would be required.
 
@@ -231,8 +231,8 @@ The refitted coefficients (present in the `.data.ts` file) are **not** the paten
 | S7A  | L21 rear  |  +13.48  | −1.3833 | −2.3833 (strong hyperboloid) | **The design's principal asphere.** Heavy conic + heavy polynomial |
 | S13A | L31 front |  +27.67  | +1.0000 | 0 | Polynomial-only |
 | S14A | L31 rear  | −787.33  | +1.0000 | 0 | Polynomial-only; weak departure (near-flat base) |
-| S22A | L34 front |  +20.62  | +1.0000 | 0 | Polynomial-only; strong peripheral departure |
-| S23A | L34 rear  |  −26.89  | +1.0000 | 0 | Polynomial-only |
+| S22A | L36 front |  +20.62  | +1.0000 | 0 | Polynomial-only; strong peripheral departure |
+| S23A | L36 rear  |  −26.89  | +1.0000 | 0 | Polynomial-only |
 
 ### 6.3 Aspheric departure profile
 
@@ -246,22 +246,22 @@ Three observations bear on the design philosophy:
 
    **An architecturally important nuance:** the plotted "departure from sphere" on S7A is the *net* of two aggressive shape components that partially oppose each other. The bare hyperboloid base ( $K_\text{std} = -2.3833$ ) alone, without any polynomial, would sit **−1254 μm below the sphere at h = 10 mm** — four times deeper than the final surface. The polynomial terms contribute **+967 μm at h = 10 mm**, pulling the surface back toward (though still below) the sphere. The patent is therefore using two independent degrees of freedom — a strong conic *and* an aggressive polynomial — and tuning them against each other to achieve a very specific peripheral sag profile that neither one alone could deliver. This is characteristic of modern high-performance asphere design, and it is distinct from the simpler case of a near-paraboloid with mild polynomial fine-tuning.
 
-2. **S22A (L34 front) is almost as strong.** At h = 8 mm the departure reaches −141 μm; at h = 10 mm it reaches −310 μm. L34 sits immediately before the focusing group G4 and is the last element in G3 to see the full marginal-ray cone; its aspheric profile, on a spherical base ( $K_A = 1$ ), works entirely through the polynomial and is principally a spherical-aberration corrector at the high cone angles that f/2.8 produces.
+2. **S22A (L36 front) is almost as strong.** At h = 8 mm the departure reaches −141 μm; at h = 10 mm it reaches −310 μm. L36 sits immediately before the focusing group G4 and is the last element in G3 to see the full marginal-ray cone; its aspheric profile, on a spherical base ( $K_A = 1$ ), works entirely through the polynomial and is principally a spherical-aberration corrector at the high cone angles that f/2.8 produces.
 
-3. **L31's aspheres (S13A, S14A) and L34's rear (S23A) are milder inside their useful clear apertures.** Verified peripheral departures:
+3. **L31's aspheres (S13A, S14A) and L36's rear (S23A) are milder inside their useful clear apertures.** Verified peripheral departures:
 
    | Surface | h = 6 mm | h = 8 mm | h = 10 mm |
    |---|---|---|---|
    | S13A (L31 front) | −17 μm | −55 μm | −128 μm |
    | S14A (L31 rear)  | −5 μm  | −12 μm | −16 μm |
-   | S23A (L34 rear)  | +9 μm  | +30 μm | +102 μm |
+   | S23A (L36 rear)  | +9 μm  | +30 μm | +102 μm |
 
    L31 sits near the stop, where marginal-ray heights are approximately 7–8 mm at f/2.8 — within this range its aspheric contribution is ≤55 μm, a fine-tuning correction rather than a dominant one. S14A's near-flat base (|R| = 787 mm) makes its polynomial departure small across the whole aperture. S23A's positive departure (conversely signed from the other aspheres) reflects that its role is to compensate, not to pile onto, the negative departures of its companion surfaces.
 
 ### 6.4 Where the aspheres fall in the patent's Conditional Formulae
 
 Paragraphs [0068] and [0069] explicitly link the aspheric surfaces to the aberration budget:
-> *"the generation of spherical aberration within the third lens group G3 can be suppressed, by forming at least one surface of the 3-1 positive lens L31 to be an aspherical surface. ... the generation of astigmatism and spherical aberration within the third lens group G3 can be suppressed, by forming at least one surface of the 3-4 positive lens L34 to be an aspherical surface."*
+> *"the generation of spherical aberration within the third lens group G3 can be suppressed, by forming at least one surface of the 3-1 positive lens L31 to be an aspherical surface. ... the generation of astigmatism and spherical aberration within the third lens group G3 can be suppressed, by forming at least one surface of the 3-4 positive lens L36 to be an aspherical surface."*
 
 The patent does not require L21 to be aspheric as a claim limitation — it is a dependent feature of the specific numerical examples — but the prescription makes it the most aggressively figured surface in the design.
 
@@ -357,13 +357,13 @@ The Fujifilm XF 16-55mm f/2.8 R LM WR is a carefully balanced realisation of the
 
 - **G1** (3 elements, +85.7 mm) provides most of the overall positive power but does so without steep radii — its longest radius is R = +200.6 mm (surface 5), and its shortest is R = +54.4 mm (surface 2). The cemented L11+L12 doublet corrects both longitudinal and lateral chromatic aberration for the whole system; the separate L13 distributes the positive work between two positive lenses to suppress spherical aberration.
 - **G2** (4 elements, −14.7 mm) is the variator. Its strong negative lead element L21 (−17.6 mm) with two aspheric surfaces — including the design's principal hyperbolic asphere S7A — does most of the wide-angle aberration correction. A cemented L22+L23 doublet inside G2 prevents zoom-induced chromatic aberration drift.
-- **G3** (6 elements + STO, +22.9 mm) is the master group. Its internal structure — L31(positive, double-asph) + STO + L32(+doublet) + L33(−doublet) + L34(positive, double-asph) — is a classic double-Gauss-plus-asphere architecture, a modern take on the "Planar" family with aspheres at the front and rear positive lenses and a negative doublet behind the stop to balance the positive doublet in front of it. All three ED glasses (S-FPM3 in L32B, S-FPL51 in L33A) and the image-side double-aspheric L34 live in this group. Most of the work of delivering f/2.8 wide-open performance happens here.
+- **G3** (6 elements + STO, +22.9 mm) is the master group. Its internal structure — L31(positive, double-asph) + STO + L32(+doublet) + L33(−doublet) + L36(positive, double-asph) — is a classic double-Gauss-plus-asphere architecture, a modern take on the "Planar" family with aspheres at the front and rear positive lenses and a negative doublet behind the stop to balance the positive doublet in front of it. All three ED glasses (S-FPM3 in L33, S-FPL51 in L34) and the image-side double-aspheric L36 live in this group. Most of the work of delivering f/2.8 wide-open performance happens here.
 - **G4** (3 elements, −31.8 mm) is the focus group, chosen for minimum moving mass and maximum focus sensitivity. Its double-negative-front-plus-cemented-positive-rear architecture pushes the principal plane forward and includes an ED glass (S-FPL51 in L43) to hold chromatic aberration stable through the focus stroke.
 - **G5** (1 element, +66.7 mm) is the fixed field flattener — a single S-NPH3 ultra-high-index element whose job is to deliver a near-telecentric beam to the APS-C sensor and to seal the rear of the lens barrel.
 
-The decision to use **three** double-aspheric elements (L21, L31, L34) — each in a different zoom group — lets the design separately address wide-angle, stop-region, and tele-region aberrations. The decision to use **three** ED elements — two near the stop (L32B as S-FPM3, L33A as S-FPL51) and one in the focusing group (L43 as S-FPL51) — constitutes an **apochromatic correction strategy**: an ordinary achromatic doublet corrects two wavelengths to a common focus, leaving a residual "secondary spectrum" (typically g-line misfocus on the order of f/2000 for a crown-flint doublet); a three-glass combination, with at least one glass exhibiting anomalous partial dispersion (both S-FPL51 and S-FPM3 qualify — they are fluor-crown and fluor-phosphate respectively, the low-dispersion-with-curved-dispersion-slope family that makes apochromatic correction possible), can bring three wavelengths to a common focus and reduce the residual roughly an order of magnitude.
+The decision to use **three** double-aspheric elements (L21, L31, L36) — each in a different zoom group — lets the design separately address wide-angle, stop-region, and tele-region aberrations. The decision to use **three** ED elements — two near the stop (L33 as S-FPM3, L34 as S-FPL51) and one in the focusing group (L43 as S-FPL51) — constitutes an **apochromatic correction strategy**: an ordinary achromatic doublet corrects two wavelengths to a common focus, leaving a residual "secondary spectrum" (typically g-line misfocus on the order of f/2000 for a crown-flint doublet); a three-glass combination, with at least one glass exhibiting anomalous partial dispersion (both S-FPL51 and S-FPM3 qualify — they are fluor-crown and fluor-phosphate respectively, the low-dispersion-with-curved-dispersion-slope family that makes apochromatic correction possible), can bring three wavelengths to a common focus and reduce the residual roughly an order of magnitude.
 
-Crucially, the ED elements in this design are **positionally distributed** rather than clustered. L32B and L33A sit just after the stop, where marginal-ray heights are largest and longitudinal chromatic aberration is most severe; correcting it there is efficient. L43 sits inside the focus group, where the chief and marginal rays are both re-heighted every time G4 translates for focus acquisition; having an ED element *in* the focus group keeps the chromatic correction stable across the focus stroke, not just at infinity. This is the same pattern seen in modern apochromatic telephoto designs (e.g. super-telephoto Nikkors and Canon L-series): stop-region ED glass for on-axis chromatic correction, plus focus-group ED glass for focus-invariant chromatic correction. Fujifilm's application of this strategy to a fast APS-C zoom — rather than a prime telephoto — is what makes the XF 16-55mm optically competitive with fast primes across its focus range.
+Crucially, the ED elements in this design are **positionally distributed** rather than clustered. L33 and L34 sit just after the stop, where marginal-ray heights are largest and longitudinal chromatic aberration is most severe; correcting it there is efficient. L43 sits inside the focus group, where the chief and marginal rays are both re-heighted every time G4 translates for focus acquisition; having an ED element *in* the focus group keeps the chromatic correction stable across the focus stroke, not just at infinity. This is the same pattern seen in modern apochromatic telephoto designs (e.g. super-telephoto Nikkors and Canon L-series): stop-region ED glass for on-axis chromatic correction, plus focus-group ED glass for focus-invariant chromatic correction. Fujifilm's application of this strategy to a fast APS-C zoom — rather than a prime telephoto — is what makes the XF 16-55mm optically competitive with fast primes across its focus range.
 
 Together these material and geometric choices, with the double-cemented-doublet G3 and the ultra-high-index G5, describe a contemporary Fujifilm design vocabulary that is also visible in other fast zooms from the same design era.
 

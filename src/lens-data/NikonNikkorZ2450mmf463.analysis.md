@@ -40,18 +40,18 @@ The design is a **negative-positive-negative-positive four-group zoom** (−+−
 
 The four groups and their compositions in Example 1 are:
 
-**Group 1 (G1)** — Negative front group (f₁ = −32.86 mm). Contains three singlets: L1a (negative meniscus), L1b (biconcave aspherical, plastic), and L1c (positive meniscus, high-dispersion glass). The group provides the wide-angle coverage characteristic of a retrofocus design.
+**Group 1 (G1)** — Negative front group (f₁ = −32.86 mm). Contains three singlets: L11 (negative meniscus), L12 (biconcave aspherical, plastic), and L13 (positive meniscus, high-dispersion glass). The group provides the wide-angle coverage characteristic of a retrofocus design.
 
 **Group 2 (G2)** — Positive variator (f₂ = +22.90 mm). This is the primary power group and the most complex, containing five elements across two sub-groups:
 
-- **G2f** (front, f₂f = +45.48 mm): L2a (positive meniscus, ED glass) and a cemented doublet L2b+L2c (ED biconvex cemented to a negative biconcave). The doublet includes an explicit UV-cure cement layer (nd = 1.51400, d = 0.01 mm) between the elements.
-- **G2r** (rear, f₂r = +38.95 mm): L2d (biconvex aspherical, molded glass) and L2e (negative meniscus).
+- **G2f** (front, f₂f = +45.48 mm): L21 (positive meniscus, ED glass) and a cemented doublet L22+L24 (ED biconvex cemented to a negative biconcave). The doublet includes an explicit UV-cure cement layer (nd = 1.51400, d = 0.01 mm) between the elements.
+- **G2r** (rear, f₂r = +38.95 mm): L31 (biconvex aspherical, molded glass) and L32 (negative meniscus).
 
 The aperture stop sits between G2f and G2r, moving as a unit with the entire G2 assembly during zooming.
 
-**Group 3 (G3)** — Negative focus group (f₃ = −34.44 mm). Contains two singlets: L3a (negative meniscus) and L3b (negative meniscus aspherical, plastic). This group serves as the internal focusing unit, translating toward the image during close-focus operation.
+**Group 3 (G3)** — Negative focus group (f₃ = −34.44 mm). Contains two singlets: L41 (negative meniscus) and L42 (negative meniscus aspherical, plastic). This group serves as the internal focusing unit, translating toward the image during close-focus operation.
 
-**Group 4 (G4)** — Positive rear group (f₄ = +79.05 mm). A single positive meniscus element L4a. G4 is mechanically fixed (does not move during zoom or focus). Note: the patent prose describes L4a as "convex toward the object," but both radii are negative (R₁ = −99.60, R₂ = −34.47 mm), indicating the element is convex toward the image. The cross-section drawing in Figure 1 confirms this; the patent text appears to contain an error on this point.
+**Group 4 (G4)** — Positive rear group (f₄ = +79.05 mm). A single positive meniscus element L51. G4 is mechanically fixed (does not move during zoom or focus). Note: the patent prose describes L51 as "convex toward the object," but both radii are negative (R₁ = −99.60, R₂ = −34.47 mm), indicating the element is convex toward the image. The cross-section drawing in Figure 1 confirms this; the patent text appears to contain an error on this point.
 
 The total element count is 11 (3 + 5 + 2 + 1), arranged in 10 air-separated groups.
 
@@ -101,13 +101,13 @@ The prescription table in the patent lists d23 = 9.90 mm as the last surface-to-
 
 Three of the eleven elements are aspherical, each with both surfaces carrying aspherical departures — yielding six aspherical surfaces total. All three aspherical elements use K = 0 (the base conic is a sphere in every case), with the aspherical profile defined entirely by the polynomial coefficients.
 
-### 3.1 L1b — Group 1 Distortion Corrector (Surfaces 3, 4)
+### 3.1 L12 — Group 1 Distortion Corrector (Surfaces 3, 4)
 
-L1b is a biconcave negative singlet (R₁ = −298.15, R₂ = +93.31 mm) fabricated from optical-grade cyclo-olefin polymer (nd = 1.53048, νd = 55.72), consistent with Zeon ZEONEX E48R or an equivalent COP resin grade widely used in camera lens aspherics. Both surfaces are weakly curved, and the aspherical departure at the clear aperture is substantial relative to the modest spherical sag.
+L12 is a biconcave negative singlet (R₁ = −298.15, R₂ = +93.31 mm) fabricated from optical-grade cyclo-olefin polymer (nd = 1.53048, νd = 55.72), consistent with Zeon ZEONEX E48R or an equivalent COP resin grade widely used in camera lens aspherics. Both surfaces are weakly curved, and the aspherical departure at the clear aperture is substantial relative to the modest spherical sag.
 
-The patent explains that L1b's aspherical profile serves to correct the negative distortion inherent to the wide-angle retrofocus front group. The claim language specifies a condition on the product f₁·φ₁₂ (where φ₁₂ is L1b's power), bounding L1b's contribution to prevent either excessive negative distortion or over-corrected astigmatism. For Example 1, f₁·φ₁₂ = 0.246, sitting comfortably within the prescribed range of −0.03 to 0.27.
+The patent explains that L12's aspherical profile serves to correct the negative distortion inherent to the wide-angle retrofocus front group. The claim language specifies a condition on the product f₁·φ₁₂ (where φ₁₂ is L12's power), bounding L12's contribution to prevent either excessive negative distortion or over-corrected astigmatism. For Example 1, f₁·φ₁₂ = 0.246, sitting comfortably within the prescribed range of −0.03 to 0.27.
 
-Being plastic (injection-molded or compression-molded), L1b is the cheapest aspherical element to manufacture. Its position in the front group — far from the aperture stop — means it handles large beam diameters but sees relatively low ray angles, making it well-suited to the gentle aspherical corrections typical of distortion control.
+Being plastic (injection-molded or compression-molded), L12 is the cheapest aspherical element to manufacture. Its position in the front group — far from the aperture stop — means it handles large beam diameters but sees relatively low ray angles, making it well-suited to the gentle aspherical corrections typical of distortion control.
 
 Coefficients (A4 through A8 only; higher orders are zero):
 
@@ -116,11 +116,11 @@ Coefficients (A4 through A8 only; higher orders are zero):
 | S3 | +1.997 × 10⁻⁵ | −8.244 × 10⁻⁸ | −2.122 × 10⁻¹¹ |
 | S4 | +1.731 × 10⁻⁵ | −1.058 × 10⁻⁷ | −1.530 × 10⁻¹⁰ |
 
-### 3.2 L2d — Group 2 Rear Aberration Corrector (Surfaces 14, 15)
+### 3.2 L31 — Group 2 Rear Aberration Corrector (Surfaces 14, 15)
 
-L2d is a biconvex positive singlet (R₁ = +22.66, R₂ = −32.27 mm) fabricated from a precision-glass-moldable (PGM) optical glass (nd = 1.58313, νd = 59.46), matching HOYA M-BACD12 — a barium crown glass in HOYA's PGM lineup with a low transition temperature suitable for high-precision press molding.
+L31 is a biconvex positive singlet (R₁ = +22.66, R₂ = −32.27 mm) fabricated from a precision-glass-moldable (PGM) optical glass (nd = 1.58313, νd = 59.46), matching HOYA M-BACD12 — a barium crown glass in HOYA's PGM lineup with a low transition temperature suitable for high-precision press molding.
 
-L2d sits immediately after the aperture stop, in the G2r sub-group. Its position gives it maximum leverage over spherical aberration and coma. The patent states that L2d's aspherical surfaces correct the spherical aberration and coma generated by the G2f sub-group. With a strong positive power of f = +23.5 mm, L2d is the second-strongest individual element in the entire system.
+L31 sits immediately after the aperture stop, in the G5 sub-group. Its position gives it maximum leverage over spherical aberration and coma. The patent states that L31's aspherical surfaces correct the spherical aberration and coma generated by the G2 sub-group. With a strong positive power of f = +23.5 mm, L31 is the second-strongest individual element in the entire system.
 
 Coefficients:
 
@@ -131,13 +131,13 @@ Coefficients:
 
 **Note on patent errata:** The published patent text prints the A6 coefficient for surface 14 as `1.05587E-01`, which is physically impossible (it would produce millimeters of aspherical departure at tiny heights). Cross-referencing with Example 2's corresponding surface and verifying against the magnitude of neighboring coefficients confirms the correct value is `1.05587E-07`. The exponent digit "7" was corrupted to "1" in the published document.
 
-### 3.3 L3b — Group 3 Focus Aberration Corrector (Surfaces 20, 21)
+### 3.3 L42 — Group 3 Focus Aberration Corrector (Surfaces 20, 21)
 
-L3b is a weakly negative meniscus (R₁ = −135.80, R₂ = −189.24 mm) made from the same COP resin as L1b (nd = 1.53048, νd = 55.72). Both surfaces carry aspherical profiles with coefficients extending to the 16th order, making L3b the most richly aspherical element in the design.
+L42 is a weakly negative meniscus (R₁ = −135.80, R₂ = −189.24 mm) made from the same COP resin as L12 (nd = 1.53048, νd = 55.72). Both surfaces carry aspherical profiles with coefficients extending to the 16th order, making L42 the most richly aspherical element in the design.
 
-The patent explains L3b's role via condition (4), which bounds the product f₃·φ₃₂ between −0.19 and +0.21. For Example 1, φ₃₂ = −0.001 mm⁻¹ (L3b's paraxial power is essentially zero, corresponding to f ≈ −915 mm), yielding f₃·φ₃₂ ≈ 0.038. L3b is effectively a "corrector plate" in the focus group, designed to suppress coma variation during focus travel. By making L3b's aspherical profile high-order (through A16), the designers can finely tune the off-axis aberration balance as G3 translates during focusing — preserving image quality across the full focus range from 0.35 m to infinity.
+The patent explains L42's role via condition (4), which bounds the product f₃·φ₃₂ between −0.19 and +0.21. For Example 1, φ₃₂ = −0.001 mm⁻¹ (L42's paraxial power is essentially zero, corresponding to f ≈ −915 mm), yielding f₃·φ₃₂ ≈ 0.038. L42 is effectively a "corrector plate" in the focus group, designed to suppress coma variation during focus travel. By making L42's aspherical profile high-order (through A16), the designers can finely tune the off-axis aberration balance as G3 translates during focusing — preserving image quality across the full focus range from 0.35 m to infinity.
 
-Since L3b is plastic and located in the lightweight focus group, it contributes minimally to the group's inertia, enabling the fast stepping-motor AF.
+Since L42 is plastic and located in the lightweight focus group, it contributes minimally to the group's inertia, enabling the fast stepping-motor AF.
 
 Coefficients:
 
@@ -158,31 +158,31 @@ The eleven elements use just six distinct glass types (plus optical cement), ref
 
 | Element | nd | νd | Glass Code | Catalog Match | Type |
 |---|---|---|---|---|---|
-| L1a | 1.69680 | 55.46 | 697.555 | OHARA S-BSM10 | Barium crown |
-| L1b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
-| L1c | 1.92286 | 20.88 | 923.209 | OHARA S-NPH2 | Ultra-high-dispersion flint |
-| L2a | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
-| L2b | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
+| L11 | 1.69680 | 55.46 | 697.555 | OHARA S-BSM10 | Barium crown |
+| L12 | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
+| L13 | 1.92286 | 20.88 | 923.209 | OHARA S-NPH2 | Ultra-high-dispersion flint |
+| L21 | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
+| L22 | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
 | (cement) | 1.51400 | 27.05 | — | UV-cure adhesive | Optical cement |
-| L2c | 1.70154 | 41.24 | 702.412 | HOYA NBFD12 | Lanthanum flint |
-| L2d | 1.58313 | 59.46 | 583.595 | HOYA M-BACD12 | PGM barium crown |
-| L3a | 1.83481 | 42.72 | 835.427 | OHARA S-LAH55V / HOYA TAFD5G | Dense lanthanum flint |
-| L3b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
-| L4a | 1.64769 | 33.84 | 648.338 | OHARA S-TIM22 | Titanium flint |
+| L24 | 1.70154 | 41.24 | 702.412 | HOYA NBFD12 | Lanthanum flint |
+| L31 | 1.58313 | 59.46 | 583.595 | HOYA M-BACD12 | PGM barium crown |
+| L41 | 1.83481 | 42.72 | 835.427 | OHARA S-LAH55V / HOYA TAFD5G | Dense lanthanum flint |
+| L42 | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
+| L51 | 1.64769 | 33.84 | 648.338 | OHARA S-TIM22 | Titanium flint |
 
 All ten glass identifications match catalog values to five decimal places in nd and two decimal places in νd, indicating exact catalog glasses rather than custom melts.
 
 ### 4.2 Material Strategy
 
-**ED Glass (L2a, L2b).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass that Nikon has used extensively across their Z-mount lineup. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
+**ED Glass (L21, L22).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass that Nikon has used extensively across their Z-mount lineup. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
 
-**Ultra-High-Dispersion Flint (L1c).** L1c uses S-NPH2 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's S-BSM10 (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
+**Ultra-High-Dispersion Flint (L13).** L13 uses S-NPH2 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L11's S-BSM10 (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
 
-**Plastic Aspherics (L1b, L3b).** The choice of cyclo-olefin polymer (nd = 1.53048) for two aspherical elements is a deliberate cost and weight reduction strategy. COP resins such as Zeon's ZEONEX E48R (nd ≈ 1.53, νd ≈ 56) offer good optical clarity, low birefringence, and stable refractive index, at a fraction of the cost of molded glass aspherics. The tradeoff is greater thermal sensitivity (dn/dT ≈ −1.1 × 10⁻⁴/°C vs. ~10⁻⁶ for glass), which can shift focus in extreme temperatures. However, since both plastic elements carry weak net power (L1b ≈ −134 mm, L3b ≈ −915 mm), the thermal focus shift is minimal.
+**Plastic Aspherics (L12, L42).** The choice of cyclo-olefin polymer (nd = 1.53048) for two aspherical elements is a deliberate cost and weight reduction strategy. COP resins such as Zeon's ZEONEX E48R (nd ≈ 1.53, νd ≈ 56) offer good optical clarity, low birefringence, and stable refractive index, at a fraction of the cost of molded glass aspherics. The tradeoff is greater thermal sensitivity (dn/dT ≈ −1.1 × 10⁻⁴/°C vs. ~10⁻⁶ for glass), which can shift focus in extreme temperatures. However, since both plastic elements carry weak net power (L12 ≈ −134 mm, L42 ≈ −915 mm), the thermal focus shift is minimal.
 
-**PGM Molded Glass (L2d).** L2d uses HOYA M-BACD12, a barium crown glass in HOYA's precision glass molding (PGM) lineup. Unlike the plastic aspherics, this molded glass element occupies a high-convergence position just after the stop and carries strong positive power (+23.5 mm), demanding the tighter tolerances and better thermal stability that glass provides.
+**PGM Molded Glass (L31).** L31 uses HOYA M-BACD12, a barium crown glass in HOYA's precision glass molding (PGM) lineup. Unlike the plastic aspherics, this molded glass element occupies a high-convergence position just after the stop and carries strong positive power (+23.5 mm), demanding the tighter tolerances and better thermal stability that glass provides.
 
-**Optical Cement (S10–S11 interface).** The cemented doublet L2b+L2c uses a UV-curable adhesive with nd = 1.51400, νd = 27.05. The cement layer is 0.01 mm thick — effectively an infinitesimal bonding film. Both the junction surface and the L2c front surface share the same radius (R = −20.356 mm), confirming this is a conventional cemented interface.
+**Optical Cement (S10–S11 interface).** The cemented doublet L22+L24 uses a UV-curable adhesive with nd = 1.51400, νd = 27.05. The cement layer is 0.01 mm thick — effectively an infinitesimal bonding film. Both the junction surface and the L24 front surface share the same radius (R = −20.356 mm), confirming this is a conventional cemented interface.
 
 ---
 
@@ -192,30 +192,30 @@ All ten glass identifications match catalog values to five decimal places in nd 
 
 | Element | Focal Length (mm) | Power | Role |
 |---|---|---|---|
-| L1a | −28.2 | Strong negative | Primary G1 diverging element |
-| L1b | −133.8 | Weak negative | Aspherical distortion corrector |
-| L1c | +86.6 | Moderate positive | Chromatic corrector (high-dispersion) |
-| L2a | +46.2 | Strong positive | Primary G2f power element (ED) |
-| L2b+L2c | ≈ 0 (f ≈ −1930) | Near-zero | Achromatic corrector pair |
-| L2b (alone) | +25.4 | Strong positive | ED biconvex in cemented doublet |
-| L2c (alone) | −24.2 | Strong negative | Flint biconcave in cemented doublet |
-| L2d | +23.5 | Strong positive | Post-stop aberration corrector (asph) |
-| L2e | −45.0 | Moderate negative | Field flattener / coma corrector |
-| L3a | −35.8 | Strong negative | Primary G3 negative element |
-| L3b | −915 | Near-zero | Focus-invariant corrector plate (asph) |
-| L4a | +79.1 | Moderate positive | Rear field corrector |
+| L11 | −28.2 | Strong negative | Primary G1 diverging element |
+| L12 | −133.8 | Weak negative | Aspherical distortion corrector |
+| L13 | +86.6 | Moderate positive | Chromatic corrector (high-dispersion) |
+| L21 | +46.2 | Strong positive | Primary G2f power element (ED) |
+| L22+L24 | ≈ 0 (f ≈ −1930) | Near-zero | Achromatic corrector pair |
+| L22 (alone) | +25.4 | Strong positive | ED biconvex in cemented doublet |
+| L24 (alone) | −24.2 | Strong negative | Flint biconcave in cemented doublet |
+| L31 | +23.5 | Strong positive | Post-stop aberration corrector (asph) |
+| L32 | −45.0 | Moderate negative | Field flattener / coma corrector |
+| L41 | −35.8 | Strong negative | Primary G3 negative element |
+| L42 | −915 | Near-zero | Focus-invariant corrector plate (asph) |
+| L51 | +79.1 | Moderate positive | Rear field corrector |
 
 ### 5.2 Functional Analysis
 
-**G1: Wide-Angle Front Group.** The three-element front group provides the negative power that creates the retrofocus configuration necessary for wide-angle coverage (half-field 41.3° at 24 mm) with adequate back focal distance for the Z-mount's 16 mm flange distance. L1a carries the bulk of the diverging power; L1b adds a small negative contribution while serving primarily as an aspherical distortion corrector; L1c acts as a chromatic corrector, using its extreme dispersion (νd = 20.88) to balance the lateral color introduced by L1a's refraction at large ray heights.
+**G1: Wide-Angle Front Group.** The three-element front group provides the negative power that creates the retrofocus configuration necessary for wide-angle coverage (half-field 41.3° at 24 mm) with adequate back focal distance for the Z-mount's 16 mm flange distance. L11 carries the bulk of the diverging power; L12 adds a small negative contribution while serving primarily as an aspherical distortion corrector; L13 acts as a chromatic corrector, using its extreme dispersion (νd = 20.88) to balance the lateral color introduced by L11's refraction at large ray heights.
 
-**G2f: Achromatic Power Core.** The G2f sub-group provides positive power through L2a while using the cemented doublet L2b+L2c for chromatic correction. The doublet is deliberately designed to have near-zero net power (the composite focal length is approximately −1930 mm) — its purpose is not to contribute net refractive power but to generate a strong chromatic separation. L2b alone has f = +25.4 mm and L2c alone has f = −24.2 mm; these nearly cancel, but the combination of high-dispersion flint (L2c, νd = 41.24) and low-dispersion ED glass (L2b, νd = 81.61) creates effective achromatization of the axial color.
+**G2f: Achromatic Power Core.** The G2 sub-group provides positive power through L21 while using the cemented doublet L22+L24 for chromatic correction. The doublet is deliberately designed to have near-zero net power (the composite focal length is approximately −1930 mm) — its purpose is not to contribute net refractive power but to generate a strong chromatic separation. L22 alone has f = +25.4 mm and L24 alone has f = −24.2 mm; these nearly cancel, but the combination of high-dispersion flint (L24, νd = 41.24) and low-dispersion ED glass (L22, νd = 81.61) creates effective achromatization of the axial color.
 
-**G2r: Spherical Aberration Control.** After the aperture stop, L2d's molded aspherical surfaces provide the primary spherical aberration and coma correction, while L2e (a negative meniscus with its concave side toward the image) contributes field-flattening power and controls the Petzval sum.
+**G2r: Spherical Aberration Control.** After the aperture stop, L31's molded aspherical surfaces provide the primary spherical aberration and coma correction, while L32 (a negative meniscus with its concave side toward the image) contributes field-flattening power and controls the Petzval sum.
 
-**G3: Focus Group.** L3a provides the negative power needed for the focus group to shift the image position during close focusing, while L3b (an aspherical "corrector plate" with near-zero power) ensures that coma and other off-axis aberrations remain stable as G3 translates. The use of high-order aspherical coefficients (through A16) on L3b allows fine-grained control of the aberration balance across the full focus range.
+**G3: Focus Group.** L41 provides the negative power needed for the focus group to shift the image position during close focusing, while L42 (an aspherical "corrector plate" with near-zero power) ensures that coma and other off-axis aberrations remain stable as G3 translates. The use of high-order aspherical coefficients (through A16) on L42 allows fine-grained control of the aberration balance across the full focus range.
 
-**G4: Rear Field Lens.** The single-element rear group acts as a field lens, bending the chief ray toward the optical axis to improve telecentricity (important for mirrorless sensor compatibility) and providing a final positive correction to the Petzval sum. L4a is a positive meniscus with both radii negative (R₁ = −99.60, R₂ = −34.47 mm), meaning both surfaces are concave toward the object and the element's convex side faces the image.
+**G4: Rear Field Lens.** The single-element rear group acts as a field lens, bending the chief ray toward the optical axis to improve telecentricity (important for mirrorless sensor compatibility) and providing a final positive correction to the Petzval sum. L51 is a positive meniscus with both radii negative (R₁ = −99.60, R₂ = −34.47 mm), meaning both surfaces are concave toward the object and the element's convex side faces the image.
 
 ---
 
@@ -227,7 +227,7 @@ The surface-by-surface Petzval sum, computed using the standard formula P = Σ �
 
 This yields a Petzval radius of approximately **+630 mm** — indicating an essentially flat Petzval surface. For a lens covering an image half-diagonal of 21.7 mm, this represents excellent Petzval correction at the paraxial level.
 
-The near-zero Petzval sum arises from a careful balance of positive and negative element contributions. The strong positive elements (L2a, L2d, L4a) contribute positive Petzval, while the negative elements (L1a, L2e, L3a) contribute negative Petzval. The doublet L2b+L2c, with its near-zero net power, contributes minimally. The ultra-high-dispersion L1c element (S-NPH2, nd = 1.923) plays a key role: its high refractive index reduces its Petzval contribution per unit of power, allowing it to carry significant chromatic correction duty while adding relatively little field curvature.
+The near-zero Petzval sum arises from a careful balance of positive and negative element contributions. The strong positive elements (L21, L31, L51) contribute positive Petzval, while the negative elements (L11, L32, L41) contribute negative Petzval. The doublet L22+L24, with its near-zero net power, contributes minimally. The ultra-high-dispersion L13 element (S-NPH2, nd = 1.923) plays a key role: its high refractive index reduces its Petzval contribution per unit of power, allowing it to carry significant chromatic correction duty while adding relatively little field curvature.
 
 Despite the excellent paraxial Petzval correction, the patent's astigmatism plots (Figures 6A–6C) show tangential and sagittal field curvatures diverging toward the field edge, reaching approximately ±0.25 mm at maximum image height. This residual is dominated by higher-order field-dependent aberrations (oblique astigmatism) rather than Petzval curvature, which is typical for compact wide-angle zoom designs where the retrofocus front group introduces significant off-axis aberrations that the aspherical elements can only partially correct.
 
@@ -301,7 +301,7 @@ During transcription and verification, two classes of errors were identified in 
 
 These were confirmed by cross-reference with Example 2's corresponding coefficients (which are printed correctly) and by physical plausibility analysis — an A6 value of 0.1 would produce tens of millimeters of sag departure at the clear aperture, which is nonsensical.
 
-**Surface number shift.** The two aspherical data blocks for L3b's surfaces are labeled as surfaces 21 and 22 in the published text, but the asterisk markers in the surface prescription table and the element descriptions both identify surfaces 20 and 21 as the aspherical pair. Example 2 correctly labels the corresponding blocks as surfaces 20 and 21, confirming the Example 1 labels are shifted by +1.
+**Surface number shift.** The two aspherical data blocks for L42's surfaces are labeled as surfaces 21 and 22 in the published text, but the asterisk markers in the surface prescription table and the element descriptions both identify surfaces 20 and 21 as the aspherical pair. Example 2 correctly labels the corresponding blocks as surfaces 20 and 21, confirming the Example 1 labels are shifted by +1.
 
 ---
 
@@ -311,6 +311,6 @@ The Nikkor Z 24-50mm f/4-6.3 is a study in cost-effective optical design under s
 
 The glass selection strategy uses only two genuine ED elements (both HOYA FCD1 / S-FPL51 fluorophosphate), two plastic aspherics (ZEONEX-type COP resin), and one molded glass aspheric (HOYA M-BACD12) — a materials palette that enables efficient high-volume manufacturing while keeping costs at the kit-lens level.
 
-The internal focusing mechanism via the lightweight two-element G3 group enables the fast stepping-motor AF performance that Nikon specifies, and the stationary G4 rear field lens provides the telecentricity needed for modern mirrorless sensors. The paraxial Petzval sum is well-corrected (R ≈ 630 mm), though higher-order off-axis aberrations — particularly oblique astigmatism and distortion — remain the primary optical compromises, mitigated by aspherical surfaces and mandatory in-camera electronic correction.
+The internal focusing mechanism via the lightweight two-element G5 group enables the fast stepping-motor AF performance that Nikon specifies, and the stationary G5 rear field lens provides the telecentricity needed for modern mirrorless sensors. The paraxial Petzval sum is well-corrected (R ≈ 630 mm), though higher-order off-axis aberrations — particularly oblique astigmatism and distortion — remain the primary optical compromises, mitigated by aspherical surfaces and mandatory in-camera electronic correction.
 
 Optically, the lens performs above expectations for its class — a conclusion shared by most reviewers, who consistently note the image quality overachieves relative to the modest specifications and price point.

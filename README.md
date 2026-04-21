@@ -115,7 +115,8 @@ agent_docs/     # Developer-facing architecture and workflow notes
 ## Adding A Lens
 
 1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to a new `.data.ts` file.
-2. Fill in the prescription and metadata fields.
+2. Fill in the prescription and metadata fields, using `G1`, `G2`, ... for diagram group labels and `L11`,
+   `L12`, `L21`, ... for element short names.
 3. Optionally add a matching `.analysis.md` file for the description panel.
 4. Run:
 

@@ -71,26 +71,26 @@ This is the sole positive element in G1. It partially counterbalances the accumu
 
 ### 3.2 Group 2 — Positive Rear Group (9 elements, 6 groups)
 
-The patent describes G2's internal structure as: **L1** (first positive lens component) → **Stop** → **L2** (second positive lens component) → **L3** (negative lens), followed by additional correction elements.
+The patent describes G2's internal structure as: **L11** (first positive lens component) → **Stop** → **L12** (second positive lens component) → **L13** (negative lens), followed by additional correction elements.
 
-**Elements 7 + 8 (surfaces 12–14): Cemented doublet (J2) — L1, the focusing component**
+**Elements 7 + 8 (surfaces 12–14): Cemented doublet (J2) — L11, the focusing component**
 E7 glass: nd = 1.83481, νd = 42.72 → **S-LAH55** (OHARA); code 835/427.
 E8 glass: nd = 1.62374, νd = 47.04 → **S-BSM81** (OHARA); code 624/470.
 Combined thick-lens focal length: **+80.3 mm** (E7: −54.9 mm; E8: +32.1 mm).
-E7 is a negative meniscus convex to the object; E8 is a positive element with a nearly flat rear surface (R = 611.6 mm). Together they form L1, the internal focusing component. Focusing is performed by translating L1 along the optical axis: at wide/infinity, d14 = 5.86 mm; at wide/close (300 mm), d14 = 1.43 mm — L1 moves toward the image by approximately 4.4 mm. The patent states that focusing via L1 minimizes variation in curvature of field during close-focus operation. The Abbe number ratio νdn/νdp = 42.72 / 47.04 = 0.908, satisfying conditional expression (4): 0.25 < νdn/νdp < 0.95.
+E7 is a negative meniscus convex to the object; E8 is a positive element with a nearly flat rear surface (R = 611.6 mm). Together they form L11, the internal focusing component. Focusing is performed by translating L11 along the optical axis: at wide/infinity, d14 = 5.86 mm; at wide/close (300 mm), d14 = 1.43 mm — L11 moves toward the image by approximately 4.4 mm. The patent states that focusing via L11 minimizes variation in curvature of field during close-focus operation. The Abbe number ratio νdn/νdp = 42.72 / 47.04 = 0.908, satisfying conditional expression (4): 0.25 < νdn/νdp < 0.95.
 
 **Aperture Stop (surface STO)**
-Located between L1 and L2 with a 1.67 mm air space ahead of it. The stop diameter at f/2.88 defines the entrance pupil position.
+Located between L11 and L12 with a 1.67 mm air space ahead of it. The stop diameter at f/2.88 defines the entrance pupil position.
 
-**Element 9 (surfaces 16–17): Positive meniscus, convex to image — L2**
+**Element 9 (surfaces 16–17): Positive meniscus, convex to image — L12**
 Glass: nd = 1.51680, νd = 64.10 → **S-BSL7** (OHARA); code 517/641. This is optically equivalent to Schott N-BK7.
 Thick-lens focal length: **+110.8 mm**.
-L2 is a gently positive meniscus with its convex surface facing the image (R16 = −265.5, R17 = −47.3). Its moderate power and common BK7-type glass make it an inexpensive, easily manufactured element. Its primary role is to provide positive power near the stop, contributing to spherical aberration correction by balancing the ray-bending distribution symmetrically about the iris.
+L12 is a gently positive meniscus with its convex surface facing the image (R16 = −265.5, R17 = −47.3). Its moderate power and common BK7-type glass make it an inexpensive, easily manufactured element. Its primary role is to provide positive power near the stop, contributing to spherical aberration correction by balancing the ray-bending distribution symmetrically about the iris.
 
-**Element 10 (surfaces 18–19): Biconcave negative — L3**
+**Element 10 (surfaces 18–19): Biconcave negative — L13**
 Glass: nd = 1.83481, νd = 42.72 → **S-LAH55** (OHARA); code 835/427 (same glass as E7).
 Thick-lens focal length: **−27.7 mm**.
-This is the strongest single element in the entire system. The patent describes it as the "negative lens L3" and states that making it biconcave is critical for correcting sagittal field curvature and sagittal coma. Its placement at a large separation from L2 (D1 = 9.07 mm) pushes the principal point of G2 toward the object, which is essential for securing adequate zoom working distance and keeping the exit pupil distant from the image plane — an important consideration for digital sensors that are sensitive to the angle of incidence of light.
+This is the strongest single element in the entire system. The patent describes it as the "negative lens L13" and states that making it biconcave is critical for correcting sagittal field curvature and sagittal coma. Its placement at a large separation from L12 (D1 = 9.07 mm) pushes the principal point of G2 toward the object, which is essential for securing adequate zoom working distance and keeping the exit pupil distant from the image plane — an important consideration for digital sensors that are sensitive to the angle of incidence of light.
 
 **Element 11 (surfaces 20–21): Biconvex positive**
 Glass: nd = 1.57099, νd = 50.80 → **S-BAL42** (OHARA); code 571/508.
@@ -161,20 +161,20 @@ No anomalous partial dispersion (APD) behavior is claimed in the patent. The APD
 
 ## 6. Focusing Mechanism
 
-Focusing is performed by internal focus (IF) — specifically, by translating L1 (the cemented doublet E7+E8, surfaces 12–14) along the optical axis. The patent's variable-distance table shows three focus states:
+Focusing is performed by internal focus (IF) — specifically, by translating L11 (the cemented doublet E7+E8, surfaces 12–14) along the optical axis. The patent's variable-distance table shows three focus states:
 
-| Condition | d11 (zoom gap) | d14 (focus gap behind L1) | Bf |
+| Condition | d11 (zoom gap) | d14 (focus gap behind L11) | Bf |
 |-----------|----------|---------|------|
 | Wide / ∞ | 31.93 | 5.86 | 38.70 |
 | Wide / 300 mm | 36.36 | 1.43 | 38.70 |
 | Tele / ∞ | 1.20 | 5.86 | 53.97 |
 | Tele / 300 mm | 5.21 | 1.85 | 53.97 |
 
-At wide angle, focusing from infinity to 300 mm moves L1 rearward (toward the image) by approximately 4.4 mm, changing d14 from 5.86 to 1.43 mm and d11 from 31.93 to 36.36 mm — the gap before L1 opens while the gap after it closes, confirming rearward translation. At telephoto, the focus travel is similar (d14 changes from 5.86 to 1.85 mm, a 4.01 mm shift). The back focal distance (Bf) remains constant during focus — only d11 and d14 change — confirming that the overall barrel length does not change with focusing, consistent with Nikon's IF designation.
+At wide angle, focusing from infinity to 300 mm moves L11 rearward (toward the image) by approximately 4.4 mm, changing d14 from 5.86 to 1.43 mm and d11 from 31.93 to 36.36 mm — the gap before L11 opens while the gap after it closes, confirming rearward translation. At telephoto, the focus travel is similar (d14 changes from 5.86 to 1.85 mm, a 4.01 mm shift). The back focal distance (Bf) remains constant during focus — only d11 and d14 change — confirming that the overall barrel length does not change with focusing, consistent with Nikon's IF designation.
 
 Variable gap conservation: d11 + d14 = 37.79 mm (wide), 22.23 mm (mid), 7.06 mm (tele) — exactly conserved between infinity and close focus at each zoom position.
 
-The choice of L1 as the focusing group is significant: it is a lightweight cemented doublet positioned immediately ahead of the aperture stop, where ray heights are moderate. Moving it produces relatively small changes in curvature of field (as the patent notes), and its small mass enables fast autofocus via the Silent Wave Motor.
+The choice of L11 as the focusing group is significant: it is a lightweight cemented doublet positioned immediately ahead of the aperture stop, where ray heights are moderate. Moving it produces relatively small changes in curvature of field (as the patent notes), and its small mass enables fast autofocus via the Silent Wave Motor.
 
 ---
 
@@ -188,7 +188,7 @@ Zooming changes the air gaps d11 (between G1 and G2), d14 (within G2), and Bf (b
 | Mid (M) | 18.0 | — | 16.37 | 5.86 | 44.55 |
 | Tele (T) | 23.8 | 83.8 | 1.20 | 5.86 | 53.97 |
 
-Both G1 and G2 translate during zoom, but in opposite directions. The inter-group gap (d11) collapses from 31.93 mm to just 1.20 mm, while Bf increases from 38.70 mm to 53.97 mm. The d14 gap (between L1 and the stop) remains constant at infinity focus across all zoom positions, indicating that the focusing group L1 maintains a fixed position relative to the stop during zooming. No groups exhibit reversing (non-monotonic) motion.
+Both G1 and G2 translate during zoom, but in opposite directions. The inter-group gap (d11) collapses from 31.93 mm to just 1.20 mm, while Bf increases from 38.70 mm to 53.97 mm. The d14 gap (between L11 and the stop) remains constant at infinity focus across all zoom positions, indicating that the focusing group L11 maintains a fixed position relative to the stop during zooming. No groups exhibit reversing (non-monotonic) motion.
 
 ---
 
@@ -201,7 +201,7 @@ All four conditional expressions were independently verified via ABCD matrix ray
 | (1): 0.065 < D1/D2 < 0.3 | D1 = 9.074 mm, D2 = 89.55 mm | **0.1013** | 0.101 | ✓ |
 | (2): −1.0 < D1/f1 ≤ −0.27 | f1 = −26.27 mm | **−0.3455** | −0.345 | ✓ |
 | (3): 0.25 < fw/f2 < 0.5 | f2 = +42.65 mm | **0.3376** | 0.337 | ✓ |
-| (4): 0.25 < νdn/νdp < 0.95 | L1 cemented: 42.72/47.04 | **0.9082** | 0.91 | ✓ |
+| (4): 0.25 < νdn/νdp < 0.95 | L11 cemented: 42.72/47.04 | **0.9082** | 0.91 | ✓ |
 
 ---
 
@@ -242,7 +242,7 @@ The patent uses κ in the sag formula where κ = 1 + K (standard conic conventio
 | Zoom ratio | 1.65× |
 | Aspherical surfaces | 3 (on elements E2, E4, E15) |
 | ED elements | 2 (E5 and E13, FPL family) |
-| Focus type | Internal focus via L1 (E7+E8 cemented doublet) |
+| Focus type | Internal focus via L11 (E7+E8 cemented doublet) |
 | Close focus | 300 mm (patent); 280 mm (production, at 18–24 mm) |
 | G1 focal length | −26.27 mm |
 | G2 focal length | +42.65 mm |

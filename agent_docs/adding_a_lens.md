@@ -36,6 +36,17 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 - Analysis: `*.analysis.md` (optional, matched by name prefix)
 - Set `visible: false` in the data object to hide a lens from the UI
 
+### Element and Group Naming
+
+Lens diagrams use one convention across the catalog:
+
+- Group annotations are `G1`, `G2`, `G3`, ... from front to rear, with optional semantic suffixes such as
+  `G2 (FOCUS)` or `G4 (−, IS)`.
+- Element `name` values are `L{groupNumber}{elementNumberWithinGroup}` from front to rear, for example
+  `L11`, `L12`, `L21`.
+- Element `label` should stay as the plain ordinal display label when possible, such as `Element 1`.
+- Surface labels are separate lookup keys; do not rename them for diagram-title consistency.
+
 ### Semi-Diameter Troubleshooting
 
 Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, rim slope, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples. The rim slope check uses actual aspherical slope at the SD (via `sagSlopeRaw`), not the old spherical `sd/|R|` proxy — aspherical surfaces (especially K near −1) can use larger SDs. Cross-gap overlap is checked against the two boundary surfaces that face each other: combined sag intrusion must not exceed `gapSagFrac × gap` (`gapSagFrac` defaults to 0.90 and must be ≤ 1), leaving visible clearance. Rendering uses the same rim-slope and cross-gap policy as validation, and production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface.

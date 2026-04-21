@@ -345,7 +345,7 @@ const LENS_DATA = {
   groups: [
     { text: "G1 (−)", fromSurface: "1A", toSurface: "6" },
     { text: "G2 (+)", fromSurface: "7", toSurface: "22" },
-    { text: "GR (+)", fromSurface: "23", toSurface: "28A" },
+    { text: "G3 (+)", fromSurface: "23", toSurface: "28A" },
   ],
 
   doublets: [

@@ -53,7 +53,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.804,
@@ -66,7 +66,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -80,7 +80,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.49782,
@@ -93,7 +93,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L21",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.60342,
@@ -106,7 +106,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L22",
       label: "Element 5",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -119,7 +119,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L23",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.51742,
@@ -132,7 +132,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L24",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.80518,
@@ -145,7 +145,7 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L25",
       label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.7433,
@@ -157,7 +157,7 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L26",
       label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.60738,
@@ -170,7 +170,7 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L27",
       label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.65844,
@@ -183,7 +183,7 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L31",
       label: "Element 11",
       type: "Positive Meniscus",
       nd: 1.90366,
@@ -196,7 +196,7 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L32",
       label: "Element 12",
       type: "Biconvex Positive",
       nd: 1.48749,
@@ -209,7 +209,7 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L41",
       label: "Element 13",
       type: "Biconvex Positive",
       nd: 1.497,
@@ -223,7 +223,7 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L42",
       label: "Element 14",
       type: "Negative Meniscus",
       nd: 1.834,
@@ -236,7 +236,7 @@ const LENS_DATA = {
     },
     {
       id: 15,
-      name: "L15",
+      name: "L43",
       label: "Element 15",
       type: "Positive Meniscus",
       nd: 1.7433,
@@ -248,7 +248,7 @@ const LENS_DATA = {
     },
     {
       id: 16,
-      name: "L16",
+      name: "L51",
       label: "Element 16",
       type: "Biconvex Positive",
       nd: 1.64769,
@@ -261,7 +261,7 @@ const LENS_DATA = {
     },
     {
       id: 17,
-      name: "L17",
+      name: "L52",
       label: "Element 17",
       type: "Biconcave Negative",
       nd: 1.72916,
@@ -274,7 +274,7 @@ const LENS_DATA = {
     },
     {
       id: 18,
-      name: "L18",
+      name: "L61",
       label: "Element 18",
       type: "Negative Meniscus",
       nd: 1.58144,
@@ -286,7 +286,7 @@ const LENS_DATA = {
     },
     {
       id: 19,
-      name: "L19",
+      name: "L62",
       label: "Element 19",
       type: "Negative Meniscus",
       nd: 1.83481,
@@ -416,12 +416,12 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1 (+) L1", fromSurface: "1", toSurface: "5" },
-    { text: "G2 (−) L2 [fixed]", fromSurface: "6", toSurface: "16" },
-    { text: "G3 (+) L3", fromSurface: "17", toSurface: "19" },
-    { text: "G4 (+) L4 [fixed]", fromSurface: "20", toSurface: "24" },
-    { text: "G5 (−) L5 [focus]", fromSurface: "26", toSurface: "28" },
-    { text: "G6 L6 [fixed]", fromSurface: "29", toSurface: "32" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "5" },
+    { text: "G2 (−, fixed)", fromSurface: "6", toSurface: "16" },
+    { text: "G3 (+)", fromSurface: "17", toSurface: "19" },
+    { text: "G4 (+, fixed)", fromSurface: "20", toSurface: "24" },
+    { text: "G5 (−, focus)", fromSurface: "26", toSurface: "28" },
+    { text: "G6 (fixed)", fromSurface: "29", toSurface: "32" },
   ],
 
   doublets: [

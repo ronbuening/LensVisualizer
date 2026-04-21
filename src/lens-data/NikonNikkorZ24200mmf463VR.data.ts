@@ -452,12 +452,12 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "G1(+)", fromSurface: "1", toSurface: "6" },
-    { text: "G2(−)", fromSurface: "7", toSurface: "14" },
-    { text: "G3(+)", fromSurface: "16", toSurface: "22" },
-    { text: "G4(+)", fromSurface: "23", toSurface: "28A" },
-    { text: "G5(−)", fromSurface: "29", toSurface: "31A" },
-    { text: "G6(−)", fromSurface: "32", toSurface: "35" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
+    { text: "G2 (−)", fromSurface: "7", toSurface: "14" },
+    { text: "G3 (+)", fromSurface: "16", toSurface: "22" },
+    { text: "G4 (+)", fromSurface: "23", toSurface: "28A" },
+    { text: "G5 (−)", fromSurface: "29", toSurface: "31A" },
+    { text: "G6 (−)", fromSurface: "32", toSurface: "35" },
   ],
 
   doublets: [

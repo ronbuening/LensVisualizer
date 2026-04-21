@@ -305,9 +305,9 @@ const LENS_DATA = {
   ],
 
   groups: [
-    { text: "Gr1 (+) Fixed", fromSurface: "1", toSurface: "12A" },
-    { text: "Gr2 (+) Focus", fromSurface: "14", toSurface: "19A" },
-    { text: "Gr3 (−) Focus", fromSurface: "20A", toSurface: "21A" },
+    { text: "G1 (+) Fixed", fromSurface: "1", toSurface: "12A" },
+    { text: "G2 (+) Focus", fromSurface: "14", toSurface: "19A" },
+    { text: "G3 (−) Focus", fromSurface: "20A", toSurface: "21A" },
   ],
   doublets: [
     { text: "D1", fromSurface: "3", toSurface: "5" },

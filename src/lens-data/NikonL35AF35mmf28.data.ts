@@ -53,7 +53,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.713,
@@ -65,7 +65,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L12",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.77279,
@@ -77,7 +77,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L13",
       label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.68893,
@@ -89,7 +89,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L21",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.77279,
@@ -102,7 +102,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L22",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.62041,
@@ -150,8 +150,8 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "FRONT (L1–L2)", fromSurface: "1", toSurface: "4" },
-    { text: "REAR (L4–L5)", fromSurface: "7", toSurface: "9" },
+    { text: "G1 (FRONT)", fromSurface: "1", toSurface: "4" },
+    { text: "G2 (REAR)", fromSurface: "7", toSurface: "9" },
   ],
   doublets: [{ text: "D1", fromSurface: "7", toSurface: "9" }],
 

@@ -24,12 +24,12 @@ The design is a six-element, four-group modified double-Gauss (Planar-type) arra
 
 | Group | Elements | Form | Role |
 |-------|----------|------|------|
-| I | L1 | Positive meniscus | Front collector |
-| II | L2 + L3 (cemented) | Compound negative meniscus | Front Gauss doublet |
-| III | L4 + L5 (cemented) | Compound negative meniscus | Rear Gauss doublet |
-| IV | L6 | Plano-convex positive | Rear collector |
+| G1 | L11 | Positive meniscus | Front collector |
+| G2 | L21 + L22 (cemented) | Compound negative meniscus | Front Gauss doublet |
+| G3 | L31 + L32 (cemented) | Compound negative meniscus | Rear Gauss doublet |
+| G4 | L41 | Plano-convex positive | Rear collector |
 
-The aperture stop sits in the central air space between Groups II and III (the gap d₅ = 0.100f), which is the canonical stop position for a double-Gauss design. The two compound meniscus lenses (Groups II and III) face each other with their concave exterior surfaces, forming the characteristic "waist" of the Gauss configuration around the stop.
+The aperture stop sits in the central air space between Groups G2 and G3 (the gap d₅ = 0.100f), which is the canonical stop position for a double-Gauss design. The two compound meniscus lenses (Groups G2 and G3) face each other with their concave exterior surfaces, forming the characteristic "waist" of the Gauss configuration around the stop.
 
 ### 2.2 Aspherical Surfaces
 
@@ -52,7 +52,7 @@ The patent provides a single worked example, normalized to a focal length of 1.0
 | r₉ | ∞ | d₉ = 0.090 | L₆ | 1.6204 | 60.3 |
 | r₁₀ | −0.866 | — | — | 1.0 | — |
 
-Note that the cemented interfaces are at r₄ (L2–L3 junction, concave toward object) and r₇ (L4–L5 junction, convex toward object), consistent with the patent's description. The sign convention in the patent uses a minus sign to indicate curvature concave to the object side.
+Note that the cemented interfaces are at r₄ (L21–L22 junction, concave toward object) and r₇ (L31–L32 junction, convex toward object), consistent with the patent's description. The sign convention in the patent uses a minus sign to indicate curvature concave to the object side.
 
 ### 2.4 Computed Parameters
 
@@ -67,65 +67,65 @@ The image circle diameter at 28 mm focal length and 75° total field is 2 × 28 
 
 ## 3. Element-by-Element Analysis
 
-### 3.1 Element L1 — Front Positive Meniscus (Group I)
+### 3.1 Element L11 — Front Positive Meniscus (Group G1)
 
 - **Shape:** Positive meniscus, convex toward object
 - **Radii:** R₁ = +0.603, R₂ = +2.595 (both centers of curvature to the right)
 - **Thick-lens focal length:** +1.376f = +38.4 mm
 - **Glass:** nᵈ = 1.5638, νᵈ = 60.7 → **Schott SK4** (barium crown)
 
-L1 serves as the front collector element. Its moderate positive power gathers the wide-angle light cone and begins converging it toward the stop. The meniscus shape — strongly curved front surface, weakly curved rear — contributes positive power while keeping the Petzval contribution moderate. The high Abbe number (60.7) means this element introduces minimal chromatic aberration despite its significant power. The choice of a barium crown (SK-type) rather than a simple borosilicate crown provides the slightly elevated refractive index (1.564 vs. ~1.517 for BK7) needed to achieve the required power with gentler curvatures.
+L11 serves as the front collector element. Its moderate positive power gathers the wide-angle light cone and begins converging it toward the stop. The meniscus shape — strongly curved front surface, weakly curved rear — contributes positive power while keeping the Petzval contribution moderate. The high Abbe number (60.7) means this element introduces minimal chromatic aberration despite its significant power. The choice of a barium crown (SK-type) rather than a simple borosilicate crown provides the slightly elevated refractive index (1.564 vs. ~1.517 for BK7) needed to achieve the required power with gentler curvatures.
 
-### 3.2 Element L2 — Front Cemented Positive (Group II, front half)
+### 3.2 Element L21 — Front Cemented Positive (Group G2, front half)
 
 - **Shape:** Biconvex
 - **Radii:** R₃ = +0.472, R₄ = −3.000
 - **Thick-lens focal length:** +0.661f = +18.4 mm
 - **Glass:** nᵈ = 1.6237, νᵈ = 47.0 → **Schott SK16** (dense barium crown)
 
-L2 is the positive component of the front cemented doublet. It is the most strongly powered element in the system. The dense barium crown (SK16) provides higher refractive index than L1, enabling strong positive power while the moderate Abbe number (47.0) allows partial chromatic correction when paired with the flint L3. The strong curvature of R₃ (+0.472) is the primary positive refracting surface of the front Gauss group.
+L21 is the positive component of the front cemented doublet. It is the most strongly powered element in the system. The dense barium crown (SK16) provides higher refractive index than L11, enabling strong positive power while the moderate Abbe number (47.0) allows partial chromatic correction when paired with the flint L22. The strong curvature of R₃ (+0.472) is the primary positive refracting surface of the front Gauss group.
 
-### 3.3 Element L3 — Front Cemented Negative (Group II, rear half)
+### 3.3 Element L22 — Front Cemented Negative (Group G2, rear half)
 
 - **Shape:** Biconcave
 - **Radii:** R₄ = −3.000 (cemented junction), R₅ = +0.323
 - **Thick-lens focal length:** −0.488f = −13.6 mm
 - **Glass:** nᵈ = 1.5955, νᵈ = 39.2 → **Schott F7** (dense flint)
 
-L3 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group II facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group III on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The dense flint glass (F7, νᵈ = 39.2) provides chromatic compensation against L2's crown glass.
+L22 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group G2 facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group G3 on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The dense flint glass (F7, νᵈ = 39.2) provides chromatic compensation against L21's crown glass.
 
-The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. This means the L2–L3 interface contributes almost no optical power (the Petzval contribution of this surface is only +0.004), and its primary role is to allow chromatic correction through the glass dispersion difference across the bond. The near-flatness of this junction also simplifies manufacturing.
+The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. This means the L21–L22 interface contributes almost no optical power (the Petzval contribution of this surface is only +0.004), and its primary role is to allow chromatic correction through the glass dispersion difference across the bond. The near-flatness of this junction also simplifies manufacturing.
 
-### 3.4 Element L4 — Rear Cemented Negative (Group III, front half)
+### 3.4 Element L31 — Rear Cemented Negative (Group G3, front half)
 
 - **Shape:** Biconcave
 - **Radii:** R₆ = −0.331, R₇ = +0.798
 - **Thick-lens focal length:** −0.402f = −11.2 mm
 - **Glass:** nᵈ = 1.5785, νᵈ = 41.7 → **Schott BaF3** (barium flint)
 
-L4 is the negative component of the rear cemented doublet, and it is the strongest negative element in the system. Its front surface R₆ = −0.331 is the concave face of Group III facing the stop, forming the mirror-image companion to L3's rear surface R₅. Together, these two strongly concave surfaces flanking the stop create the classic Gauss "waist" and are the primary sites for correcting spherical aberration and coma at large aperture.
+L31 is the negative component of the rear cemented doublet, and it is the strongest negative element in the system. Its front surface R₆ = −0.331 is the concave face of Group G3 facing the stop, forming the mirror-image companion to L22's rear surface R₅. Together, these two strongly concave surfaces flanking the stop create the classic Gauss "waist" and are the primary sites for correcting spherical aberration and coma at large aperture.
 
-The choice of barium flint (BaF3) rather than a conventional dense flint for L4 is notable. BaF3 has a slightly lower refractive index (1.5785) and a slightly higher Abbe number (41.7) than L3's F7 (1.5955, 39.2). This asymmetry between the front and rear Gauss doublets — different glass types, different thicknesses — is a deliberate departure from perfect symmetry that Ito exploits to correct higher-order aberrations and field curvature across the 75° field.
+The choice of barium flint (BaF3) rather than a conventional dense flint for L31 is notable. BaF3 has a slightly lower refractive index (1.5785) and a slightly higher Abbe number (41.7) than L22's F7 (1.5955, 39.2). This asymmetry between the front and rear Gauss doublets — different glass types, different thicknesses — is a deliberate departure from perfect symmetry that Ito exploits to correct higher-order aberrations and field curvature across the 75° field.
 
-### 3.5 Element L5 — Rear Cemented Positive (Group III, rear half)
+### 3.5 Element L32 — Rear Cemented Positive (Group G3, rear half)
 
 - **Shape:** Biconvex
 - **Radii:** R₇ = +0.798 (cemented junction), R₈ = −0.428
 - **Thick-lens focal length:** +0.467f = +13.0 mm
 - **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott SK14** (dense barium crown)
 
-L5 is the positive component of the rear doublet. It provides strong convergence to redirect the diverging beam from L4 back toward the image. The SK14 glass (high-index crown, νᵈ = 60.3) is the same type used in L6, providing excellent chromatic performance. The cemented junction R₇ = +0.798 is more strongly curved than the front doublet's junction (R₄), which means the L4–L5 interface carries non-trivial optical power and Petzval contribution — another asymmetry between the front and rear Gauss halves.
+L32 is the positive component of the rear doublet. It provides strong convergence to redirect the diverging beam from L31 back toward the image. The SK14 glass (high-index crown, νᵈ = 60.3) is the same type used in L41, providing excellent chromatic performance. The cemented junction R₇ = +0.798 is more strongly curved than the front doublet's junction (R₄), which means the L31–L32 interface carries non-trivial optical power and Petzval contribution — another asymmetry between the front and rear Gauss halves.
 
-### 3.6 Element L6 — Rear Positive Plano-Convex (Group IV)
+### 3.6 Element L41 — Rear Positive Plano-Convex (Group G4)
 
 - **Shape:** Plano-convex (flat front facing the stop; convex rear surface protruding toward the image)
 - **Radii:** R₉ = ∞ (flat), R₁₀ = −0.866
 - **Thick-lens focal length:** +1.396f = +38.9 mm
 - **Glass:** nᵈ = 1.6204, νᵈ = 60.3 → **Schott SK14** (dense barium crown)
 
-L6 is the rear collector element, providing the final convergence to bring the image to focus. Its flat front surface is unusual — most double-Gauss designs use a meniscus or weakly curved surface here. The flat entry face means all of L6's optical power comes from the single rear surface R₁₀, which simplifies alignment and manufacturing. Although R₁₀ carries a negative sign (center of curvature to the left), the surface is physically convex toward the image — it protrudes outward at the center, making the element thicker at center than at the rim, the defining characteristic of a positive plano-convex form. The use of the same glass as L5 (SK14) is a practical advantage for production: Canon needed to source only four distinct glass types for the six elements.
+L41 is the rear collector element, providing the final convergence to bring the image to focus. Its flat front surface is unusual — most double-Gauss designs use a meniscus or weakly curved surface here. The flat entry face means all of L41's optical power comes from the single rear surface R₁₀, which simplifies alignment and manufacturing. Although R₁₀ carries a negative sign (center of curvature to the left), the surface is physically convex toward the image — it protrudes outward at the center, making the element thicker at center than at the rim, the defining characteristic of a positive plano-convex form. The use of the same glass as L32 (SK14) is a practical advantage for production: Canon needed to source only four distinct glass types for the six elements.
 
-The near-identical focal lengths of L1 (+38.4 mm) and L6 (+38.9 mm) reflect the quasi-symmetric power balance of the design, though the element shapes are quite different (meniscus vs. plano-convex), which is part of the asymmetric correction strategy.
+The near-identical focal lengths of L11 (+38.4 mm) and L41 (+38.9 mm) reflect the quasi-symmetric power balance of the design, though the element shapes are quite different (meniscus vs. plano-convex), which is part of the asymmetric correction strategy.
 
 ## 4. Glass Types Summary
 
@@ -133,11 +133,11 @@ The design uses only four distinct glass types across six elements:
 
 | Glass | Schott Designation | nᵈ | νᵈ | Six-Digit Code | Type | Elements |
 |-------|-------------------|------|------|---------------|------|----------|
-| SK4 | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
-| SK16 | Dense barium crown | 1.6237 | 47.0 | 624/470 | Crown | L2 |
-| F7 | Dense flint | 1.5955 | 39.2 | 596/392 | Flint | L3 |
-| BaF3 | Barium flint | 1.5785 | 41.7 | 579/417 | Flint | L4 |
-| SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |
+| SK4 | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L11 |
+| SK16 | Dense barium crown | 1.6237 | 47.0 | 624/470 | Crown | L21 |
+| F7 | Dense flint | 1.5955 | 39.2 | 596/392 | Flint | L22 |
+| BaF3 | Barium flint | 1.5785 | 41.7 | 579/417 | Flint | L31 |
+| SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L32, L41 |
 
 All five glass types were standard Schott catalog offerings of the era. Canon, like most Japanese manufacturers in the early 1950s, would have used equivalent domestic melts — likely from Ohara or HOYA. The patent lists nᵈ and νᵈ values that match the Schott catalog exactly, which was common practice: designers specified glasses by their Schott equivalents regardless of which foundry actually produced the melt.
 
@@ -149,14 +149,14 @@ Thick-lens subsystem ray traces yield the following group focal lengths:
 
 | Group | Elements | Focal Length (normalized) | Focal Length (28 mm scale) | Character |
 |-------|----------|--------------------------|---------------------------|-----------|
-| I | L1 | +1.376 | +38.4 mm | Moderate positive |
-| II | L2 + L3 | −3.033 | −84.5 mm | Weak negative |
-| III | L4 + L5 | −33.910 | −945.0 mm | Very weak negative (nearly afocal) |
-| IV | L6 | +1.396 | +38.9 mm | Moderate positive |
+| G1 | L11 | +1.376 | +38.4 mm | Moderate positive |
+| G2 | L21 + L22 | −3.033 | −84.5 mm | Weak negative |
+| G3 | L31 + L32 | −33.910 | −945.0 mm | Very weak negative (nearly afocal) |
+| G4 | L41 | +1.396 | +38.9 mm | Moderate positive |
 
-The power distribution reveals an important asymmetry in Ito's design. While Group II (front doublet) has a definite net negative focal length of −84.5 mm, Group III (rear doublet) is nearly afocal at −945 mm. This means L4 and L5 almost perfectly cancel each other's power — the rear doublet acts primarily as an aberration corrector rather than a power-carrying group. The bulk of the system's convergence comes from the two outer singlets (Groups I and IV), with Group II providing a slight diverging correction.
+The power distribution reveals an important asymmetry in Ito's design. While Group G2 (front doublet) has a definite net negative focal length of −84.5 mm, Group G3 (rear doublet) is nearly afocal at −945 mm. This means L31 and L32 almost perfectly cancel each other's power — the rear doublet acts primarily as an aberration corrector rather than a power-carrying group. The bulk of the system's convergence comes from the two outer singlets (Groups G1 and G4), with Group G2 providing a slight diverging correction.
 
-This asymmetric power balance is the key to Ito's wide-angle adaptation of the Gauss form. In a conventional normal-focal-length Gauss (e.g., 50mm f/1.4), the front and rear doublets typically carry more comparable net power. By making Group III nearly afocal, Ito shifts more of the power burden to the outer elements, which operate at more moderate ray heights and incidence angles for off-axis beams — critical for maintaining correction at the 37.5° half-field angle.
+This asymmetric power balance is the key to Ito's wide-angle adaptation of the Gauss form. In a conventional normal-focal-length Gauss (e.g., 50mm f/1.4), the front and rear doublets typically carry more comparable net power. By making Group G3 nearly afocal, Ito shifts more of the power burden to the outer elements, which operate at more moderate ray heights and incidence angles for off-axis beams — critical for maintaining correction at the 37.5° half-field angle.
 
 ## 6. Petzval Sum and Field Curvature
 
@@ -174,13 +174,13 @@ The patent claims define the design space through several conditional expression
 
 | Condition | Computed Value | Patent Range | Status |
 |-----------|---------------|--------------|--------|
-| r₃ / f (front convex of Group II) | 0.470 | 0.40 – 0.55 | ✓ |
-| r₅ / f (rear concave of Group II) | 0.322 | 0.25 – 0.38 | ✓ |
-| (d₃ + d₄) / f (Group II thickness) | 0.121 | 0.10 – 0.13 | ✓ |
-| (d₆ + d₇) / f (Group III thickness) | 0.140 | 0.13 – 0.15 | ✓ |
-| Group II thinner than Group III | 0.122 < 0.141 | Required | ✓ |
+| r₃ / f (front convex of Group G2) | 0.470 | 0.40 – 0.55 | ✓ |
+| r₅ / f (rear concave of Group G2) | 0.322 | 0.25 – 0.38 | ✓ |
+| (d₃ + d₄) / f (Group G2 thickness) | 0.121 | 0.10 – 0.13 | ✓ |
+| (d₆ + d₇) / f (Group G3 thickness) | 0.140 | 0.13 – 0.15 | ✓ |
+| Group G2 thinner than Group G3 | 0.122 < 0.141 | Required | ✓ |
 
-The condition that Group II must be thinner than Group III is particularly important. Ito explains that this thickness asymmetry, combined with the specific curvature ranges for the front doublet's exterior surfaces, is what allows the Petzval sum to be held near 0.4 while simultaneously correcting spherical aberration and coma to a level sufficient for f/3.5 operation — which he notes was "by far a higher aperture than that of prior known similar lens systems" at this field angle.
+The condition that Group G2 must be thinner than Group G3 is particularly important. Ito explains that this thickness asymmetry, combined with the specific curvature ranges for the front doublet's exterior surfaces, is what allows the Petzval sum to be held near 0.4 while simultaneously correcting spherical aberration and coma to a level sufficient for f/3.5 operation — which he notes was "by far a higher aperture than that of prior known similar lens systems" at this field angle.
 
 ## 8. Focus Mechanism
 
@@ -208,15 +208,15 @@ The patent provides ray-traced aberration curves (Figures 2–4) showing perform
 
 The patent does not list semi-diameters or clear apertures. For the data file, semi-diameters were estimated by tracing both the marginal ray (at f/3.5) and the chief ray (at 70% of the half-field angle, i.e., 26.25°) through the scaled prescription, then adding approximately 8% mechanical clearance to the combined envelope.
 
-The primary constraint on front-element semi-diameters is the narrow air gap d₂ = 0.139 mm between L1 and L2. Surface r₂ (R = +72.32 mm, gently convex toward the image) intrudes into this gap, and its sag at the rim must remain below the gap thickness. This limits r₂'s semi-diameter to approximately 4.3 mm, which in turn constrains r₁ to approximately 5.3 mm via the 1.25:1 element SD ratio guideline. These values are consistent with significant natural vignetting at the field edges — expected behavior for a compact rangefinder wide-angle of this era, where the f/3.5 speed is achieved only on-axis.
+The primary constraint on front-element semi-diameters is the narrow air gap d₂ = 0.139 mm between L11 and L21. Surface r₂ (R = +72.32 mm, gently convex toward the image) intrudes into this gap, and its sag at the rim must remain below the gap thickness. This limits r₂'s semi-diameter to approximately 4.3 mm, which in turn constrains r₁ to approximately 5.3 mm via the 1.25:1 element SD ratio guideline. These values are consistent with significant natural vignetting at the field edges — expected behavior for a compact rangefinder wide-angle of this era, where the f/3.5 speed is achieved only on-axis.
 
 ## 11. Design Significance
 
 Ito's design represents a careful study of how far the classical double-Gauss form can be pushed toward wide-angle coverage without resorting to the retrofocus (inverted telephoto) configuration that would later become the dominant wide-angle architecture for SLR cameras. The key innovations in this patent relative to prior Gauss-type lenses are:
 
-1. **Asymmetric doublet thickness:** Making Group II thinner than Group III, with specific thickness-to-focal-length ratios, allows field curvature control without sacrificing axial correction.
+1. **Asymmetric doublet thickness:** Making Group G2 thinner than Group G3, with specific thickness-to-focal-length ratios, allows field curvature control without sacrificing axial correction.
 
-2. **Asymmetric doublet power:** Group III is made nearly afocal, shifting the power burden to the outer singlets where off-axis ray heights are more manageable.
+2. **Asymmetric doublet power:** Group G3 is made nearly afocal, shifting the power burden to the outer singlets where off-axis ray heights are more manageable.
 
 3. **Careful glass selection:** The use of four distinct glass types (rather than the two — one crown, one flint — common in simpler Gauss designs) provides additional degrees of freedom for chromatic and monochromatic aberration balancing.
 

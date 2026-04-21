@@ -46,7 +46,7 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
+      name: "L11",
       label: "Element 1",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.4971,
@@ -59,7 +59,7 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
+      name: "L21",
       label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.68893,
@@ -72,7 +72,7 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
+      name: "L22",
       label: "Element 3",
       type: "Negative Meniscus",
       nd: 1.84666,
@@ -86,7 +86,7 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
+      name: "L23",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -99,7 +99,7 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
+      name: "L31",
       label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.883,
@@ -112,7 +112,7 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
+      name: "L32",
       label: "Element 6",
       type: "Biconcave Negative",
       nd: 1.68893,
@@ -126,7 +126,7 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L41",
       label: "Element 7",
       type: "Neg. Meniscus (1× Asph)",
       nd: 1.8208,
@@ -198,10 +198,10 @@ const LENS_DATA = {
 
   /* ── Group and doublet annotations ── */
   groups: [
-    { text: "I (neg)", fromSurface: "1", toSurface: "2A" },
-    { text: "II (pos)", fromSurface: "3", toSurface: "7" },
-    { text: "III (pos)", fromSurface: "9", toSurface: "11" },
-    { text: "IV (weak)", fromSurface: "12", toSurface: "13A" },
+    { text: "G1 (I neg)", fromSurface: "1", toSurface: "2A" },
+    { text: "G2 (II pos)", fromSurface: "3", toSurface: "7" },
+    { text: "G3 (III pos)", fromSurface: "9", toSurface: "11" },
+    { text: "G4 (IV weak)", fromSurface: "12", toSurface: "13A" },
   ],
   doublets: [
     { text: "D1", fromSurface: "5", toSurface: "7" },

@@ -1,10 +1,10 @@
 # Optical Analysis: Nikon AF-S NIKKOR 28mm f/1.4E ED
 
-**Patent:** JP2017-227799A, Example 1 (EX1)  
-**Applicants:** Konica Minolta, Inc. / Nikon Corporation  
-**Inventors:** Fukuda Yasunari 福田泰成 (Konica Minolta), Furuta Akiko 古田明子 (Nikon), Take Toshinori 武俊典 (Nikon), Sensui Takayuki 泉水隆之 (Nikon)  
-*Note: Given-name romanizations are inferred from standard kanji readings.*  
-**Filed:** 2016-06-23 | **Published:** 2017-12-28  
+**Patent:** JP2017-227799A, Example 1 (EX1)
+**Applicants:** Konica Minolta, Inc. / Nikon Corporation
+**Inventors:** Fukuda Yasunari 福田泰成 (Konica Minolta), Furuta Akiko 古田明子 (Nikon), Take Toshinori 武俊典 (Nikon), Sensui Takayuki 泉水隆之 (Nikon)
+*Note: Given-name romanizations are inferred from standard kanji readings.*
+**Filed:** 2016-06-23 | **Published:** 2017-12-28
 
 ---
 
@@ -42,21 +42,21 @@ The total optical track is 144.38 mm at infinity focus (TL/f = 5.08), with a bac
 
 ### 2.1 Group 1 — Internal Structure of the Positive Front Group
 
-Although Gr1 is net positive (f₁ = +151.32 mm), its internal power sequence (−, −, +, −, +, +) begins with a strong negative subgroup that diverges the incoming wide-angle beam — providing the retrofocal behavior that extends the back focal distance beyond the system focal length. The rear elements of Gr1 then overpower this divergence to produce a weak net positive contribution, which the patent notes (paragraph [0039]) helps shorten the total track. Within Gr1 the element arrangement is nuanced:
+Although G1 is net positive (f₁ = +151.32 mm), its internal power sequence (−, −, +, −, +, +) begins with a strong negative subgroup that diverges the incoming wide-angle beam — providing the retrofocal behavior that extends the back focal distance beyond the system focal length. The rear elements of Gr1 then overpower this divergence to produce a weak net positive contribution, which the patent notes (paragraph [0039]) helps shorten the total track. Within Gr1 the element arrangement is nuanced:
 
 **Subgroup A (L11 + L12):** Two negative meniscus elements, both convex toward the object. This double-negative entry gradually bends wide-angle rays rather than sharply refracting them at a single powerful surface, which is essential for controlling distortion, field curvature, and coma across the 75° field. L12 is a compound aspherical element with a UV-curing resin layer on its image side — the asphere on surface 5 provides early correction of distortion and field curvature.
 
-**Subgroup B (L13):** A single strong biconvex positive element in a high-dispersion glass (S-TIH53, nd = 1.84666, νd = 23.8). Despite its very low Abbe number, this element is not an ED glass — it serves a different purpose. Positioned after the two negative menisci, L13 partially cancels the negative distortion they introduced while also beginning to converge the diverging beam. The use of a high-index, high-dispersion glass here allows the necessary refractive power with relatively mild curvatures, reducing spherical aberration contribution. The patent's condition (6) requires Nd13 > 1.8, which L13 satisfies at 1.84666.
+**Subgroup B (L14):** A single strong biconvex positive element in a high-dispersion glass (S-TIH53, nd = 1.84666, νd = 23.8). Despite its very low Abbe number, this element is not an ED glass — it serves a different purpose. Positioned after the two negative menisci, L14 partially cancels the negative distortion they introduced while also beginning to converge the diverging beam. The use of a high-index, high-dispersion glass here allows the necessary refractive power with relatively mild curvatures, reducing spherical aberration contribution. The patent's condition (6) requires Nd13 > 1.8, which L14 satisfies at 1.84666.
 
-**Subgroup C (L14 + L15, cemented doublet LS):** A negative cemented doublet consisting of a biconcave negative element (L14, S-BAL2) and a biconvex positive element (L15, S-LAH58 or equivalent). This is one of the most optically critical sub-assemblies in the design. The patent devotes three conditional expressions (conditions 1–3) entirely to governing the power balance between L14 and L15:
+**Subgroup C (L15 + L16, cemented doublet LS):** A negative cemented doublet consisting of a biconcave negative element (L15, S-BAL2) and a biconvex positive element (L16, S-LAH58 or equivalent). This is one of the most optically critical sub-assemblies in the design. The patent devotes three conditional expressions (conditions 1–3) entirely to governing the power balance between L15 and L16:
 
-- Condition (1): φ14/φ = −0.47 — L14's negative power is moderate relative to the system
-- Condition (2): φ15/φ = +0.25 — L15's positive power partially cancels L14
+- Condition (1): φ14/φ = −0.47 — L15's negative power is moderate relative to the system
+- Condition (2): φ15/φ = +0.25 — L16's positive power partially cancels L15
 - Condition (3): φ14/φ15 = −1.84 — the negative element is roughly twice as strong as the positive
 
-The resulting cemented doublet has a net negative focal length of −137.42 mm (verified by thick-lens matrix computation to match the patent value exactly). The patent text explains that this negative composite corrects field curvature (the Petzval sum contribution is negative, flattening the image surface) while the cemented construction eliminates decentration sensitivity that would otherwise produce severe axial coma. Condition (4) requires Nd15 > 1.8, met by L15 at 1.88300 — the high index allows gentler curvatures on the cemented interface, easing both manufacturing and spherical aberration.
+The resulting cemented doublet has a net negative focal length of −137.42 mm (verified by thick-lens matrix computation to match the patent value exactly). The patent text explains that this negative composite corrects field curvature (the Petzval sum contribution is negative, flattening the image surface) while the cemented construction eliminates decentration sensitivity that would otherwise produce severe axial coma. Condition (4) requires Nd15 > 1.8, met by L16 at 1.88300 — the high index allows gentler curvatures on the cemented interface, easing both manufacturing and spherical aberration.
 
-**Subgroup D (L16):** A single biconvex positive element (S-LAH55V, f = +54.29 mm, verified to match the patent value exactly) that serves as the final element of Gr1. The patent explains that this positive element reduces the ray height entering Gr2, enabling a more compact focus group. It also drives the first group toward an afocal condition — when Gr1 is nearly afocal, moving Gr2 for focus causes minimal change in aberration balance, ensuring stable image quality from infinity to close focus.
+**Subgroup D (L17):** A single biconvex positive element (S-LAH55V, f = +54.29 mm, verified to match the patent value exactly) that serves as the final element of Gr1. The patent explains that this positive element reduces the ray height entering Gr2, enabling a more compact focus group. It also drives the first group toward an afocal condition — when G1 is nearly afocal, moving G2 for focus causes minimal change in aberration balance, ensuring stable image quality from infinity to close focus.
 
 ### 2.2 Group 2 — The Focusing Group
 
@@ -77,10 +77,10 @@ The following table presents glass identifications for all 14 elements, matched 
 | L11 | 1.68893 | 31.2 | S-TIH18 | OHARA | Dense flint | |
 | L12 (glass) | 1.71300 | 53.9 | S-BAL42 | OHARA | Barium crown | Base substrate of compound asphere |
 | L12 (resin) | 1.51380 | 53.0 | UV-curing resin | — | Composite | Thin layer (~0.05 mm), forms aspherical profile |
-| L13 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint | High-dispersion, high-index |
-| L14 | 1.56883 | 56.0 | S-BAL2 | OHARA | Barium crown | Cemented with L15 |
-| L15 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Cond. (4): nd > 1.8 ✓ |
-| L16 | 1.77250 | 49.6 | S-LAH55V | OHARA | Lanthanum crown | Low-CTE variant |
+| L14 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint | High-dispersion, high-index |
+| L15 | 1.56883 | 56.0 | S-BAL2 | OHARA | Barium crown | Cemented with L16 |
+| L16 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Cond. (4): nd > 1.8 ✓ |
+| L17 | 1.77250 | 49.6 | S-LAH55V | OHARA | Lanthanum crown | Low-CTE variant |
 | L21 | 1.72916 | 54.7 | S-LAL14 | OHARA | Lanthanum crown | |
 | L22 | 1.69680 | 55.5 | S-LAL61 | OHARA | Lanthanum crown | |
 | L23 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | ΔPgF ≈ +0.014 |
@@ -100,7 +100,7 @@ The placement of these two ED elements is symmetric about the aperture stop: L23
 
 ### 3.2 Glass Map Distribution
 
-The design uses a wide spread across the glass map. On the crown side, lanthanum crowns (S-LAH and S-LAL families) provide high refractive index with moderate dispersion for the positive power elements, while the two fluorophosphate elements (S-FPM2) deliver low dispersion with anomalous partial dispersion for chromatic correction. On the flint side, dense titanium flints (S-TIH family) supply the high-dispersion negative elements needed for achromatization. The single high-dispersion positive element L13 (S-TIH53, νd = 23.8) is a deliberate outlier — a rare case of a positive element in a very high-dispersion glass, used here for its extremely high refractive index (nd = 1.84666) which permits strong positive power with mild curvatures.
+The design uses a wide spread across the glass map. On the crown side, lanthanum crowns (S-LAH and S-LAL families) provide high refractive index with moderate dispersion for the positive power elements, while the two fluorophosphate elements (S-FPM2) deliver low dispersion with anomalous partial dispersion for chromatic correction. On the flint side, dense titanium flints (S-TIH family) supply the high-dispersion negative elements needed for achromatization. The single high-dispersion positive element L14 (S-TIH53, νd = 23.8) is a deliberate outlier — a rare case of a positive element in a very high-dispersion glass, used here for its extremely high refractive index (nd = 1.84666) which permits strong positive power with mild curvatures.
 
 ---
 
@@ -210,7 +210,7 @@ The rear-focus architecture offers several advantages for this design:
 
 ### 5.3 Close Focus Performance
 
-The patent's paragraph [0052] notes that for the third embodiment (EX3, not the production design), a **floating focus** scheme was considered — splitting Gr2 into a pre-stop and post-stop sub-group that move with different velocities. This would further correct field curvature at close distances. The production design (EX1) uses the simpler single-group rear focus, suggesting that the aberration stability achieved by Gr1's near-afocal design was sufficient to meet Nikon's image quality targets across the focus range.
+The patent's paragraph [0052] notes that for the third embodiment (EX3, not the production design), a **floating focus** scheme was considered — splitting Gr2 into a pre-stop and post-stop sub-group that move with different velocities. This would further correct field curvature at close distances. The production design (EX1) uses the simpler single-group rear focus, suggesting that the aberration stability achieved by G1's near-afocal design was sufficient to meet Nikon's image quality targets across the focus range.
 
 ---
 
@@ -224,10 +224,10 @@ Focal lengths labeled "patent" are thick-lens values stated in the patent or ver
 |---------|------|--------|-------|--------------|
 | **L11** | Neg. meniscus, convex to object | −74.6 (TL) | S-TIH18 | First element of the negative entry subgroup. Gently bends wide-angle rays inward, beginning the beam divergence that creates the long back focal distance. The meniscus shape (convex toward the object) minimizes the angle of incidence on the front surface, reducing surface reflection losses and Seidel aberration contributions. |
 | **L12** | Neg. meniscus, convex to object (compound asphere) | −57.8 (patent) | S-BAL42 + resin | Second negative element continuing the beam divergence. The aspherical image-side surface (surface 5, hyperboloidal K = −1.81) provides the primary correction of distortion and field curvature across the 75° field. The compound construction places the asphere on a resin layer, allowing large departure (>500 µm) without compromising the glass substrate quality. The thick-lens compound focal length (−57.8 mm) was verified by 3-surface matrix computation. |
-| **L13** | Biconvex positive | +86.2 (TL) | S-TIH53 | Strong positive element that partially compensates the negative distortion of L11–L12 and begins converging the beam. The unusually high-dispersion glass (νd = 23.8) is chosen for its very high refractive index (1.847), which reduces surface curvatures and thus higher-order spherical aberration — the patent requires nd > 1.8 (condition 6). |
-| **L14** | Biconcave negative (cemented) | −60.8 (patent) | S-BAL2 | Negative component of the L14/L15 field-flattening cemented doublet. Contributes negative Petzval sum to flatten the field. Its power is governed by condition (1): φ14/φ = −0.47. |
-| **L15** | Biconvex positive (cemented) | +112.0 (patent) | S-LAH58 | Positive component of the cemented doublet. High-index (1.883) glass keeps cemented-interface curvature gentle, easing manufacturing and reducing aberration sensitivity. Governed by condition (2): φ15/φ = +0.25. The doublet composite has net negative focal length (−137.4 mm, verified). |
-| **L16** | Biconvex positive | +54.3 (patent) | S-LAH55V | Terminal positive element of Gr1. Converges the beam to reduce ray heights entering Gr2, enabling a more compact focusing group. Also drives Gr1 toward an afocal condition (f₁ = +151 mm), stabilizing aberration across the focus range. |
+| **L14** | Biconvex positive | +86.2 (TL) | S-TIH53 | Strong positive element that partially compensates the negative distortion of L11–L12 and begins converging the beam. The unusually high-dispersion glass (νd = 23.8) is chosen for its very high refractive index (1.847), which reduces surface curvatures and thus higher-order spherical aberration — the patent requires nd > 1.8 (condition 6). |
+| **L15** | Biconcave negative (cemented) | −60.8 (patent) | S-BAL2 | Negative component of the L15/L16 field-flattening cemented doublet. Contributes negative Petzval sum to flatten the field. Its power is governed by condition (1): φ14/φ = −0.47. |
+| **L16** | Biconvex positive (cemented) | +112.0 (patent) | S-LAH58 | Positive component of the cemented doublet. High-index (1.883) glass keeps cemented-interface curvature gentle, easing manufacturing and reducing aberration sensitivity. Governed by condition (2): φ15/φ = +0.25. The doublet composite has net negative focal length (−137.4 mm, verified). |
+| **L17** | Biconvex positive | +54.3 (patent) | S-LAH55V | Terminal positive element of Gr1. Converges the beam to reduce ray heights entering Gr2, enabling a more compact focusing group. Also drives Gr1 toward an afocal condition (f₁ = +151 mm), stabilizing aberration across the focus range. |
 
 ### Group 2 — Rear Group (Focusing, moves as unit)
 
@@ -258,7 +258,7 @@ The patent defines six conditional expressions. The following values are verifie
 | (5) | θgF − (−0.00162·νd + 0.6415) | < 0.012 | **0.0007** | ✓ |
 | (6) | Nd13 | > 1.8 | **1.847** | ✓ |
 
-The paraxial ray trace yields f = 28.410 mm, matching the patent's stated value exactly. The thick-lens focal lengths for L14 (−60.83 mm), L15 (+112.04 mm), L16 (+54.29 mm), and the cemented doublet LS (−137.42 mm) were independently verified by matrix computation and match the patent's values to the listed precision.
+The paraxial ray trace yields f = 28.410 mm, matching the patent's stated value exactly. The thick-lens focal lengths for L15 (−60.83 mm), L16 (+112.04 mm), L17 (+54.29 mm), and the cemented doublet LS (−137.42 mm) were independently verified by matrix computation and match the patent's values to the listed precision.
 
 ---
 
@@ -292,7 +292,7 @@ The accompanying `NikonAFS28f14E.data.ts` file encodes this prescription for the
 
 **Compound asphere modeling:** The patent counts L12 (glass substrate + UV-curing resin layer with center thickness ≤1 mm) as a single element, per paragraph [0023]. For the data file, L12 is modeled as two element entries (id 2 = glass substrate, id 3 = resin layer) using the cemented doublet surface pattern, since the renderer needs the glass-resin junction surface to compute correct element geometry. This gives 15 element entries in the file for what the patent counts as 14 elements.
 
-**Focal lengths in element entries:** Where the patent provides thick-lens values (L14, L15, L16, cemented doublet LS), these are used directly. For the compound L12 elements, each sub-component carries its own thin-lens focal length (glass: −67.3 mm, resin: −367.5 mm), with the compound thick-lens value (−57.8 mm) noted in the role description. All other elements use thin-lens approximations.
+**Focal lengths in element entries:** Where the patent provides thick-lens values (L15, L16, L17, cemented doublet LS), these are used directly. For the compound L12 elements, each sub-component carries its own thin-lens focal length (glass: −67.3 mm, resin: −367.5 mm), with the compound thick-lens value (−57.8 mm) noted in the role description. All other elements use thin-lens approximations.
 
 **Layout tuning:** `scFill = 0.52` and `yScFill = 0.42` were chosen to balance the lens's substantial total track (144.4 mm) against the large front-element diameter (~71 mm) in the SVG viewport.
 

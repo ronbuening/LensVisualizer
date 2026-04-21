@@ -46,7 +46,7 @@ The back focal distance — substantially longer than the focal length — is th
 
 The lens comprises **9 elements arranged in 8 groups**, organized into three functional subgroups:
 
-- **Group I** (front, negative): Elements 1–2
+- **Group G1** (front, negative): Elements 1–2
 - **Group II₁** (rear-front, positive): Elements 3–5
 - **Group II₂** (rear-back, positive): Elements 6–9
 
@@ -60,12 +60,12 @@ The following group powers were computed via paraxial matrix ray tracing and ver
 
 | Group | Computed Power (φ) | Patent Value | Match |
 |---|---|---|---|
-| Group I (E1–E2) | −0.6575 | −0.6575 (φ₁) | Exact ✓ |
+| Group G1 (E1–E2) | −0.6575 | −0.6575 (φ₁) | Exact ✓ |
 | Group II₁ (E3–E5) | +1.1551 | +1.1549 (φ₂) | ✓ (rounding) |
 | Group II₂ (E6–E9) | +0.367 | — | — |
 | Full system | +1.0002 | +1.0000 | ✓ |
 
-The patent defines its key parameters as: φ₁ = power of Group I, φ₂ = power of Group II₁, and D = 0.4762 = principal point interval between Groups I and II₁. It then forms the conditional inequality parameter α:
+The patent defines its key parameters as: φ₁ = power of Group G1, φ₂ = power of Group II₁, and D = 0.4762 = principal point interval between Groups G1 and II₁. It then forms the conditional inequality parameter α:
 
 $$\alpha = \phi_1 + \phi_2 - D\phi_1\phi_2 = -0.6575 + 1.1549 - 0.4762 \times (-0.6575) \times 1.1549 = 0.859$$
 
@@ -119,7 +119,7 @@ The stop's location within the variable gap has a subtle but important consequen
 
 ## Element-by-Element Analysis
 
-### Element 1 — Front Positive Meniscus (Group I)
+### Element 1 — Front Positive Meniscus (Group G1)
 
 | Property | Value |
 |---|---|
@@ -131,11 +131,11 @@ The stop's location within the variable gap has a subtle but important consequen
 | Focal length | +362.5 mm |
 | Surface powers | φ₁ = −0.121, φ₂ = +0.216 |
 
-Despite appearing to be a negative meniscus at first glance (both R values negative), Element 1 carries weak positive power because the rear surface is more strongly curved (|R₂| < |R₁|), making the element thicker at the center. Its primary role is to initiate the divergence of off-axis ray bundles entering Group I, while its concave front surface — the first surface the incoming light encounters — is the defining visual characteristic that distinguishes the S.S.C. (I) from later versions of the Canon FD 35mm f/2. The large radii of curvature (both surfaces have absolute radii exceeding 113 mm) keep surface contributions to spherical aberration and coma manageable at this large aperture position.
+Despite appearing to be a negative meniscus at first glance (both R values negative), Element 1 carries weak positive power because the rear surface is more strongly curved (|R₂| < |R₁|), making the element thicker at the center. Its primary role is to initiate the divergence of off-axis ray bundles entering Group G1, while its concave front surface — the first surface the incoming light encounters — is the defining visual characteristic that distinguishes the S.S.C. (I) from later versions of the Canon FD 35mm f/2. The large radii of curvature (both surfaces have absolute radii exceeding 113 mm) keep surface contributions to spherical aberration and coma manageable at this large aperture position.
 
 **Glass identification:** N = 1.697, V = 48.5 places this glass at the boundary of the lanthanum crown and barium crown families (six-digit code 697485). In the Ohara catalog, the closest equivalent is **S-LAM2** or a barium crown in the SK family. Schott's nearest historical equivalent is **LaK N-2** or **SK14**.
 
-### Element 2 — Strong Negative Meniscus (Group I)
+### Element 2 — Strong Negative Meniscus (Group G1)
 
 | Property | Value |
 |---|---|
@@ -147,7 +147,7 @@ Despite appearing to be a negative meniscus at first glance (both R values negat
 | Focal length | −46.6 mm |
 | Surface powers | φ₁ = +0.284, φ₂ = −1.044 |
 
-Element 2 is the primary diverging element in Group I and the second-strongest negative element in the system after Element 6 (φ = −1.09). It carries nearly all of Group I's negative power (−0.752 of the group's −0.658 total). The deeply curved rear surface R₄ = +0.4944 (17.3 mm radius, convex toward the object) is among the strongest individual surfaces in the lens.
+Element 2 is the primary diverging element in Group G1 and the second-strongest negative element in the system after Element 6 (φ = −1.09). It carries nearly all of Group G1's negative power (−0.752 of the group's −0.658 total). The deeply curved rear surface R₄ = +0.4944 (17.3 mm radius, convex toward the object) is among the strongest individual surfaces in the lens.
 
 **Glass identification:** N = 1.51633, V = 64.0 is an exact match for **BK7** (Schott) / **S-BSL7** (Ohara), the ubiquitous borosilicate crown glass. The use of inexpensive, well-characterized BK7 for this high-power diverging element is deliberate: its low refractive index means that the strong surface curvatures produce the necessary divergence without introducing excessive higher-order aberrations, and its high Abbe number (low dispersion) minimizes the chromatic contribution of this powerful negative element.
 
@@ -163,7 +163,7 @@ Element 2 is the primary diverging element in Group I and the second-strongest n
 | Focal length | −785 mm |
 | Surface powers | φ₁ = −0.720, φ₂ = +0.648 |
 
-Element 3 sits at the front of Group II₁, immediately after the large 12.1 mm air gap that separates Groups I and II. It carries only very weak negative power (f = −785 mm). Its individual surfaces are individually strong (−0.720 and +0.648) but nearly cancelling, which is a hallmark of a field-correction element. The nearly concentric meniscus shape allows it to contribute strongly to the correction of astigmatism and Petzval field curvature without significantly altering the system's axial power balance.
+Element 3 sits at the front of Group II₁, immediately after the large 12.1 mm air gap that separates Groups G1 and II. It carries only very weak negative power (f = −785 mm). Its individual surfaces are individually strong (−0.720 and +0.648) but nearly cancelling, which is a hallmark of a field-correction element. The nearly concentric meniscus shape allows it to contribute strongly to the correction of astigmatism and Petzval field curvature without significantly altering the system's axial power balance.
 
 **Glass identification:** N = 1.70154, V = 41.1 falls in the barium flint / lanthanum crown boundary (code 702411). Probable match: **Ohara S-BAH10** or **Schott N-SSK5**.
 
@@ -179,7 +179,7 @@ Element 3 sits at the front of Group II₁, immediately after the large 12.1 mm 
 | Focal length | +57.3 mm |
 | Surface powers | φ₁ = +0.653, φ₂ = −0.044 |
 
-Element 4 contributes strong positive power, almost entirely from its front surface R₇. The near-flat rear surface (R₈ = +15.83, a radius of 554 mm) contributes negligible power but provides a degree of freedom for correcting higher-order aberrations. This element begins the convergence of the ray bundle that was diverged by Group I.
+Element 4 contributes strong positive power, almost entirely from its front surface R₇. The near-flat rear surface (R₈ = +15.83, a radius of 554 mm) contributes negligible power but provides a degree of freedom for correcting higher-order aberrations. This element begins the convergence of the ray bundle that was diverged by Group G1.
 
 **Glass identification:** N = 1.700, V = 48.0 is a lanthanum crown glass (code 700480). Probable match: **Ohara S-LAL7** or **Schott N-LAK22**.
 

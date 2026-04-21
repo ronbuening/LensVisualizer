@@ -35,7 +35,7 @@ The following convergent criteria identify Example 1 as the basis for the produc
 
 6. **Internal floating focus with two adjacent negative groups.** The patent specifies G5 and G6 as the focus groups, both negative, adjacently positioned — matching Nikon's description of a "Multi-Focus Stepping Motor AF System" with two STM motors moving in sync.
 
-7. **VR group.** The patent identifies the L17+L18 cemented doublet as the vibration reduction group (f_vr / f_t = 0.202), consistent with the production lens's in-barrel VR system.
+7. **VR group.** The patent identifies the L47+L48 cemented doublet as the vibration reduction group (f_vr / f_t = 0.202), consistent with the production lens's in-barrel VR system.
 
 8. **Filing chronology.** Filed December 2020; the NIKKOR Z 100-400mm was announced October 2021, with sales beginning early 2022.
 
@@ -49,13 +49,13 @@ The lens follows a **seven-group zoom architecture** that forms a double-telepho
 
 | Zoom Group | Elements | Power | Focal Length (mm) | Role |
 |---|---|---|---|---|
-| G1 (Front A) | L1, L2 | Positive | +220.2 | Primary light-gathering; front positive group |
-| G2 (Front B) | L3–L5 | Positive | +412.7 | Second positive group; achromatic variator |
-| G3 (Variator) | L6–L10 | Negative | −37.7 | Primary zoom variator |
-| G4 (Relay) | L11–L19 + Stop | Positive | +46.0 | Image relay, stop, VR housing |
-| G5 (Focus A) | L20+L21 | Negative | −81.7 | First focusing group |
-| G6 (Focus B) | L22, L23 | Negative | −153.3 | Second focusing group |
-| G7 (Field) | L24, L25 | Positive | +502.7 | Field flattener / teleconverter interface |
+| G1 (Front A) | L11, L12 | Positive | +220.2 | Primary light-gathering; front positive group |
+| G2 (Front B) | L21–L23 | Positive | +412.7 | Second positive group; achromatic variator |
+| G3 (Variator) | L31–L35 | Negative | −37.7 | Primary zoom variator |
+| G4 (Relay) | L41–L49 + Stop | Positive | +46.0 | Image relay, stop, VR housing |
+| G5 (Focus A) | L51+L52 | Negative | −81.7 | First focusing group |
+| G6 (Focus B) | L61, L62 | Negative | −153.3 | Second focusing group |
+| G7 (Field) | L71, L72 | Positive | +502.7 | Field flattener / teleconverter interface |
 
 At the telephoto end, the system forms what the patent terms a **"double telephoto"** (ダブルテレフォト) configuration (¶0066). The first stage is the classical positive-front/negative-rear arrangement formed by G1+G2 (positive) and G3 (negative). The second stage is formed by G4 (positive) and the net-negative rear section G5+G6+G7. The combined telephoto ratio is TL_t / f_t = 0.733, achieving a 27% reduction in physical length relative to focal length.
 
@@ -65,9 +65,9 @@ During zoom from wide (103 mm) to tele (388 mm), all six variable gaps change. T
 
 | Gap | After | Wide ∞ (mm) | Tele ∞ (mm) | Change |
 |---|---|---|---|---|
-| D4 | L2 (G1→G2) | 1.500 | 51.500 | +50.000 |
-| D9 | L5 (G2→G3) | 1.300 | 25.600 | +24.300 |
-| D17 | L10 (G3→G4) | 43.095 | 2.100 | −40.995 |
+| D4 | L12 (G1→G2) | 1.500 | 51.500 | +50.000 |
+| D9 | L23 (G2→G3) | 1.300 | 25.600 | +24.300 |
+| D17 | L35 (G3→G4) | 43.095 | 2.100 | −40.995 |
 
 The total sum of all six variable gaps increases from 90.4 mm (wide) to 140.4 mm (tele) at infinity focus — a net increase of exactly 50.0 mm, corresponding to the physical barrel extension observed during zooming.
 
@@ -77,9 +77,9 @@ Focus is accomplished by moving G5 and G6 along different axial trajectories —
 
 | Gap | After | Tele ∞ (mm) | Tele CF (mm) | Δ (mm) |
 |---|---|---|---|---|
-| D35 | L19 (G4→G5) | 3.467 | 34.084 | +30.617 |
-| D38 | L21 (G5→G6) | 8.800 | 9.182 | +0.382 |
-| D42 | L23 (G6→G7) | 48.913 | 17.915 | −30.998 |
+| D35 | L49 (G4→G5) | 3.467 | 34.084 | +30.617 |
+| D38 | L52 (G5→G6) | 8.800 | 9.182 | +0.382 |
+| D42 | L62 (G6→G7) | 48.913 | 17.915 | −30.998 |
 
 Both G5 and G6 move toward the image during close focus (+30.6 and +0.4 mm respectively at tele), while the back focal distance (D42) decreases by 31 mm. The total focus-gap sum remains constant within each zoom position (61.18 mm at tele, 44.48 mm at wide, regardless of focus distance), confirming **true internal focusing**.
 
@@ -101,41 +101,41 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 
 | Element | nd | Catalog Match | νd (est.) | Group |
 |---|---|---|---|---|
-| **L2** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G1 |
-| **L5** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G2 |
+| **L12** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G1 |
+| **L23** | 1.437001 | Near S-FPL55 (OHARA) | ~95 | G2 |
 
 ### ED Elements (6 total)
 
 | Element | nd | Catalog Match | νd (est.) | Group |
 |---|---|---|---|---|
-| **L1** | 1.487490 | N-FK5 / S-FSL5 | 70.4 | G1 |
-| **L3** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G2 |
-| **L7** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G3 |
-| **L12** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
-| **L13** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
-| **L24** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G7 |
+| **L11** | 1.487490 | N-FK5 / S-FSL5 | 70.4 | G1 |
+| **L21** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G2 |
+| **L32** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G3 |
+| **L42** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
+| **L43** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
+| **L71** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G7 |
 
 ### Standard Glass Elements (17 total)
 
 | Element | nd | Catalog Match | νd (est.) | Power | Group |
 |---|---|---|---|---|---|
-| L4 | 1.804400 | S-LAH55V | 39.6 | Negative | G2 |
-| L6 | 1.720467 | S-LAL18 | 50.2 | Positive | G3 |
-| L8 | 1.741000 | S-LAM3 | 52.6 | Negative | G3 |
-| L9 | 1.854505 | S-LAH65V | 39.9 | Positive | G3 |
-| L10 † | 1.755000 | S-LAM60 *or* S-TIM27 | 52.3 or 27.6 | Negative | G3 |
-| L11 | 1.593190 | S-SK14 | 60.5 | Positive | G4 |
-| L14 † | 1.806100 | S-LAH55 *or* S-LAH64 | 40.9 or 46.6 | Negative | G4 |
-| L15 | 1.808090 | S-LAH51 | 22.8 | Positive | G4 |
-| L16 | 2.000690 | S-NPH2 | 25.5 | Negative | G4 |
-| L17 | 1.552981 | S-BSM14 | 55.5 | Positive | G4 (VR) |
-| L18 | 1.953750 | S-LAH99 | 32.3 | Negative | G4 (VR) |
-| L19 | 1.603420 | S-PHM52 | 56.4 | Positive | G4 |
-| L20 † | 1.850260 | S-LAH58 *or* S-LAH79 | 32.3 or 44.2 | Positive | G5 |
-| L21 | 1.729160 | S-LAM54 | 54.7 | Negative | G5 |
-| L22 † | 1.654115 | S-BSM71 *or* S-BAM12 | ~40 or ~54 | Positive | G6 |
-| L23 | 1.902650 | S-LAH97 | 35.4 | Negative | G6 |
-| L25 † | 1.738000 | S-LAH63 *or* S-NBH5 | ~50 or ~32 | Positive | G7 |
+| L22 | 1.804400 | S-LAH55V | 39.6 | Negative | G2 |
+| L31 | 1.720467 | S-LAL18 | 50.2 | Positive | G3 |
+| L33 | 1.741000 | S-LAM3 | 52.6 | Negative | G3 |
+| L34 | 1.854505 | S-LAH65V | 39.9 | Positive | G3 |
+| L35 † | 1.755000 | S-LAM60 *or* S-TIM27 | 52.3 or 27.6 | Negative | G3 |
+| L41 | 1.593190 | S-SK14 | 60.5 | Positive | G4 |
+| L44 † | 1.806100 | S-LAH55 *or* S-LAH64 | 40.9 or 46.6 | Negative | G4 |
+| L45 | 1.808090 | S-LAH51 | 22.8 | Positive | G4 |
+| L46 | 2.000690 | S-NPH2 | 25.5 | Negative | G4 |
+| L47 | 1.552981 | S-BSM14 | 55.5 | Positive | G4 (VR) |
+| L48 | 1.953750 | S-LAH99 | 32.3 | Negative | G4 (VR) |
+| L49 | 1.603420 | S-PHM52 | 56.4 | Positive | G4 |
+| L51 † | 1.850260 | S-LAH58 *or* S-LAH79 | 32.3 or 44.2 | Positive | G5 |
+| L52 | 1.729160 | S-LAM54 | 54.7 | Negative | G5 |
+| L61 † | 1.654115 | S-BSM71 *or* S-BAM12 | ~40 or ~54 | Positive | G6 |
+| L62 | 1.902650 | S-LAH97 | 35.4 | Negative | G6 |
+| L72 † | 1.738000 | S-LAH63 *or* S-NBH5 | ~50 or ~32 | Positive | G7 |
 
 † = ambiguous identification from nd alone. Preferred candidate selected based on optical role.
 
@@ -147,31 +147,31 @@ Computed from the patent prescription using the thick-lens formula.
 
 | Element | nd | Type | f (mm) | Cemented Group | Group |
 |---|---|---|---|---|---|
-| L1 | 1.48749 | Biconvex positive | +477.6 | — | G1 |
-| L2 | 1.43700 | Plano-convex positive | +407.5 | — | G1 |
-| L3 | 1.49782 | Biconvex positive | +116.2 | D1 (f = −166.7) | G2 |
-| L4 | 1.80440 | Biconcave negative | −65.7 | D1 | G2 |
-| L5 | 1.43700 | Biconvex positive | +115.4 | — | G2 |
-| L6 | 1.72047 | Biconvex positive | +63.4 | D2 (f = −626.0) | G3 |
-| L7 | 1.49782 | Biconcave negative | −56.1 | D2 | G3 |
-| L8 | 1.74100 | Biconcave negative | −42.0 | D3 (f = −118.5) | G3 |
-| L9 | 1.85451 | Positive meniscus | +65.1 | D3 | G3 |
-| L10 | 1.75500 | Biconcave negative | −62.4 | — | G3 |
-| L11 | 1.59319 | Biconvex positive | +129.2 | — | G4 |
-| L12 | 1.49782 | Plano-convex positive | +129.7 | — | G4 |
-| L13 | 1.49782 | Plano-convex positive | +96.9 | — | G4 |
-| L14 | 1.80610 | Biconcave negative | −110.1 | — | G4 |
-| L15 | 1.80809 | Positive meniscus | +142.0 | — | G4 |
-| L16 | 2.00069 | Negative meniscus | −46.9 | — | G4 |
-| L17 | 1.55298 | Biconvex positive | +42.7 | VR (f = +78.6) | G4 |
-| L18 | 1.95375 | Negative meniscus | −92.6 | VR | G4 |
-| L19 | 1.60342 | Positive meniscus | +77.0 | — | G4 |
-| L20 | 1.85026 | Biconvex positive | +71.2 | D5 (f = −81.7) | G5 |
-| L21 | 1.72916 | Biconcave negative | −37.5 | D5 | G5 |
-| L22 | 1.65412 | Biconvex positive | +70.4 | — | G6 |
-| L23 | 1.90265 | Biconcave negative | −46.5 | — | G6 |
-| L24 | 1.49782 | Biconcave negative | −75.3 | — | G7 |
-| L25 | 1.73800 | Positive meniscus | +66.7 | — | G7 |
+| L11 | 1.48749 | Biconvex positive | +477.6 | — | G1 |
+| L12 | 1.43700 | Plano-convex positive | +407.5 | — | G1 |
+| L21 | 1.49782 | Biconvex positive | +116.2 | D1 (f = −166.7) | G2 |
+| L22 | 1.80440 | Biconcave negative | −65.7 | D1 | G2 |
+| L23 | 1.43700 | Biconvex positive | +115.4 | — | G2 |
+| L31 | 1.72047 | Biconvex positive | +63.4 | D2 (f = −626.0) | G3 |
+| L32 | 1.49782 | Biconcave negative | −56.1 | D2 | G3 |
+| L33 | 1.74100 | Biconcave negative | −42.0 | D3 (f = −118.5) | G3 |
+| L34 | 1.85451 | Positive meniscus | +65.1 | D3 | G3 |
+| L35 | 1.75500 | Biconcave negative | −62.4 | — | G3 |
+| L41 | 1.59319 | Biconvex positive | +129.2 | — | G4 |
+| L42 | 1.49782 | Plano-convex positive | +129.7 | — | G4 |
+| L43 | 1.49782 | Plano-convex positive | +96.9 | — | G4 |
+| L44 | 1.80610 | Biconcave negative | −110.1 | — | G4 |
+| L45 | 1.80809 | Positive meniscus | +142.0 | — | G4 |
+| L46 | 2.00069 | Negative meniscus | −46.9 | — | G4 |
+| L47 | 1.55298 | Biconvex positive | +42.7 | VR (f = +78.6) | G4 |
+| L48 | 1.95375 | Negative meniscus | −92.6 | VR | G4 |
+| L49 | 1.60342 | Positive meniscus | +77.0 | — | G4 |
+| L51 | 1.85026 | Biconvex positive | +71.2 | D5 (f = −81.7) | G5 |
+| L52 | 1.72916 | Biconcave negative | −37.5 | D5 | G5 |
+| L61 | 1.65412 | Biconvex positive | +70.4 | — | G6 |
+| L62 | 1.90265 | Biconcave negative | −46.5 | — | G6 |
+| L71 | 1.49782 | Biconcave negative | −75.3 | — | G7 |
+| L72 | 1.73800 | Positive meniscus | +66.7 | — | G7 |
 
 ---
 

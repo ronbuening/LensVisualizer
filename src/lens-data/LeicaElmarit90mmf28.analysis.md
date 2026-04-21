@@ -26,9 +26,9 @@ The patent describes a **modified Cooke Triplet** — the classic positive–neg
 
 | Group | Elements | Configuration | Role |
 |:------|:---------|:--------------|:-----|
-| I | L1 | Singlet | Front positive collector |
-| II | L2 + L3 | Cemented doublet | Middle negative corrector |
-| III | L4 + L5 | Cemented doublet | Rear positive image-former |
+| G1 | L11 | Singlet | Front positive collector |
+| G2 | L21 + L22 | Cemented doublet | Middle negative corrector |
+| G3 | L31 + L32 | Cemented doublet | Rear positive image-former |
 
 This architecture preserves the Cooke Triplet's fundamental three-group power distribution (P–N–P) while adding two cemented interfaces, which provide extra degrees of freedom for correcting chromatic aberrations — particularly the sphero-chromatic aberration that limited earlier f/2.8 triplets at longer focal lengths.
 
@@ -97,58 +97,58 @@ The ABCD system matrix determinant is exactly 1.000 (air-to-air system), confirm
 
 The patent provides nd and νd values for each element. Matching against the SCHOTT optical glass catalog (the primary supplier for Leitz Wetzlar in this era) yields the following identifications:
 
-### L1 — nd = 1.69100, νd = 54.8
+### L11 — nd = 1.69100, νd = 54.8
 
 **Identification: SCHOTT LaK9** (lanthanum crown)
 **Confidence: Confirmed.** The catalog value for LaK9 is nd = 1.69100, νd = 54.7; the refractive index is an exact match and the Abbe number differs by 0.1, well within normal melt-to-melt variation (Schott's standard tolerance on νd is ±0.8%). Six-digit glass code: 1691/548.
 
 LaK9 is a lanthanum crown (LaK) glass with moderately high refractive index and relatively low dispersion. In the 1950s, lanthanum-containing glasses were among the newer "highly refracting, weak dispersing" glasses that the patent specifically credits with enabling the f/2.8 aperture — an advance over the prior f/6.3 triplet designs. Its high nd allows strong positive power with moderate surface curvatures, reducing spherical aberration contributions.
 
-### L2 — nd = 1.75520, νd = 27.5
+### L21 — nd = 1.75520, νd = 27.5
 
 **Identification: SCHOTT SF4** (dense flint)
 **Confidence: Confirmed.** Both nd and νd are exact catalog matches. Six-digit glass code: 1755/275.
 
-SF4 is a dense flint glass with very high refractive index and high dispersion. Within the middle doublet, L2 is the positive element despite the group being negative overall. The patent explicitly states that "the glass of the positive lens of the negative component has a smaller 'Nu' value [lower Abbe number, i.e. higher dispersion] than the glass of the negative lens." SF4's νd = 27.5 satisfies this condition relative to L3's νd = 34.6.
+SF4 is a dense flint glass with very high refractive index and high dispersion. Within the middle doublet, L21 is the positive element despite the group being negative overall. The patent explicitly states that "the glass of the positive lens of the negative component has a smaller 'Nu' value [lower Abbe number, i.e. higher dispersion] than the glass of the negative lens." SF4's νd = 27.5 satisfies this condition relative to L22's νd = 34.6.
 
-### L3 — nd = 1.63980, νd = 34.6
+### L22 — nd = 1.63980, νd = 34.6
 
 **Identification: Flint-family glass, nearest catalog match SCHOTT F6**
 **Confidence: Family-level only.** The nearest modern SCHOTT catalog glass is F6 (nd = 1.63636, νd = 35.4), but the discrepancy is significant: Δnd = 0.00344, Δνd = 0.8. Six-digit glass code: 1640/346.
 
 This glass falls in the flint (F) region of the Abbe diagram but does not match any glass in the current Schott catalog exactly. In the 1950s, Schott's catalog included glass types that have since been discontinued or reformulated — particularly lead-containing flints that were later replaced with eco-friendly equivalents. The patent value nd = 1.63980 / νd = 34.6 likely represents a specific historical glass type or melt batch available to Leitz in 1956–1957. Alternatively, Leitz may have used glass from another supplier (e.g., their own internal melts, or Chance-Pilkington glass). At family level, it is unambiguously a flint glass.
 
-### L4 — nd = 1.62588, νd = 35.6
+### L31 — nd = 1.62588, νd = 35.6
 
 **Identification: SCHOTT BaSF1** (barium dense flint)
 **Confidence: Confirmed.** The catalog value for BaSF1 is nd = 1.62588, νd = 35.7; the refractive index is an exact match and νd differs by 0.1. Six-digit glass code: 1626/356.
 
-BaSF1 is a barium-containing dense flint with moderate refractive index and moderate dispersion. Within the rear doublet, L4 serves as the negative element. Its nd is significantly lower than L5's nd (Δnd = 0.118), which creates a strong refractive index difference at the cemented interface — important for controlling spherical aberration.
+BaSF1 is a barium-containing dense flint with moderate refractive index and moderate dispersion. Within the rear doublet, L31 serves as the negative element. Its nd is significantly lower than L32's nd (Δnd = 0.118), which creates a strong refractive index difference at the cemented interface — important for controlling spherical aberration.
 
-### L5 — nd = 1.74400, νd = 44.9
+### L32 — nd = 1.74400, νd = 44.9
 
 **Identification: SCHOTT LaF2** (lanthanum flint)
 **Confidence: Confirmed.** The catalog value for LaF2 is nd = 1.74400, νd = 44.7; the refractive index is an exact match and νd differs by 0.2. Six-digit glass code: 1744/449.
 
-LaF2 is a lanthanum flint glass — high refractive index with moderate dispersion. This is another of the "new" glass types referenced in the patent. Lanthanum flint occupies a region of the Abbe diagram that was not accessible with classical crown/flint glass combinations, enabling the rear doublet to achieve strong positive power with improved chromatic performance. L5 is by far the thickest element in the system (d₅ = 9.27 mm at f = 100 scale) and carries the strongest individual positive power (EFL = +26.1 mm).
+LaF2 is a lanthanum flint glass — high refractive index with moderate dispersion. This is another of the "new" glass types referenced in the patent. Lanthanum flint occupies a region of the Abbe diagram that was not accessible with classical crown/flint glass combinations, enabling the rear doublet to achieve strong positive power with improved chromatic performance. L32 is by far the thickest element in the system (d₅ = 9.27 mm at f = 100 scale) and carries the strongest individual positive power (EFL = +26.1 mm).
 
 ### Glass Summary
 
 | Element | nd | νd | Glass | Family | Confidence |
 |:--------|------:|-----:|:------|:-------|:-----------|
-| L1 | 1.69100 | 54.8 | LaK9 | Lanthanum crown | Confirmed |
-| L2 | 1.75520 | 27.5 | SF4 | Dense flint | Confirmed |
-| L3 | 1.63980 | 34.6 | (F-type) | Flint | Family only |
-| L4 | 1.62588 | 35.6 | BaSF1 | Barium dense flint | Confirmed |
-| L5 | 1.74400 | 44.9 | LaF2 | Lanthanum flint | Confirmed |
+| L11 | 1.69100 | 54.8 | LaK9 | Lanthanum crown | Confirmed |
+| L21 | 1.75520 | 27.5 | SF4 | Dense flint | Confirmed |
+| L22 | 1.63980 | 34.6 | (F-type) | Flint | Family only |
+| L31 | 1.62588 | 35.6 | BaSF1 | Barium dense flint | Confirmed |
+| L32 | 1.74400 | 44.9 | LaF2 | Lanthanum flint | Confirmed |
 
-Four of the five glasses are confidently identified to the specific Schott catalog type. Two of the five (L1 and L5) are lanthanum-containing glasses — these were the enabling technology for this design's f/2.8 aperture at 90 mm focal length.
+Four of the five glasses are confidently identified to the specific Schott catalog type. Two of the five (L11 and L32) are lanthanum-containing glasses — these were the enabling technology for this design's f/2.8 aperture at 90 mm focal length.
 
 ---
 
 ## 6. Element-by-Element Optical Analysis
 
-### L1 — Front Positive Collector (Group I)
+### L11 — Front Positive Collector (Group G1)
 
 | Property | Value |
 |:---------|------:|
@@ -158,13 +158,13 @@ Four of the five glasses are confidently identified to the specific Schott catal
 | Glass | LaK9 (nd = 1.691, νd = 54.8) |
 | Element EFL | +55.2 mm |
 
-L1 is the front positive collector of the triplet. Its strongly convex front surface (r₁ = +44.05) provides the majority of the element's optical power, while the rear surface (r₂ = −267.94) is nearly flat — the radius of curvature is 6× the EFL, so this surface contributes only weak positive power. The element is effectively a plano-convex lens oriented convex-toward-object.
+L11 is the front positive collector of the triplet. Its strongly convex front surface (r₁ = +44.05) provides the majority of the element's optical power, while the rear surface (r₂ = −267.94) is nearly flat — the radius of curvature is 6× the EFL, so this surface contributes only weak positive power. The element is effectively a plano-convex lens oriented convex-toward-object.
 
-In the context of the triplet, L1's role is to collect the incoming light cone and begin converging it. Its relatively high index (nd = 1.691) allows the front surface to achieve the needed power without excessive curvature, which limits the spherical aberration contribution from this surface. With νd = 54.8, L1 is the least dispersive element in the system, which is appropriate for the element carrying the most surface power — any chromatic contribution from L1 is kept moderate.
+In the context of the triplet, L11's role is to collect the incoming light cone and begin converging it. Its relatively high index (nd = 1.691) allows the front surface to achieve the needed power without excessive curvature, which limits the spherical aberration contribution from this surface. With νd = 54.8, L11 is the least dispersive element in the system, which is appropriate for the element carrying the most surface power — any chromatic contribution from L11 is kept moderate.
 
-The large air gap a₁ = 7.00 mm after L1 allows the ray bundle to spread spatially before entering Group II, which is important for the triplet's off-axis correction strategy.
+The large air gap a₁ = 7.00 mm after L11 allows the ray bundle to spread spatially before entering Group G2, which is important for the triplet's off-axis correction strategy.
 
-### L2 — Positive Element of the Middle Doublet (Group II)
+### L21 — Positive Element of the Middle Doublet (Group G2)
 
 | Property | Value |
 |:---------|------:|
@@ -173,15 +173,15 @@ The large air gap a₁ = 7.00 mm after L1 allows the ray bundle to spread spatia
 | Shape | Positive meniscus (concave toward object) |
 | Glass | SF4 (nd = 1.755, νd = 27.5) |
 | Element EFL | +70.3 mm |
-| Cemented to | L3 |
+| Cemented to | L22 |
 
-L2 is a positive meniscus with both surfaces concave toward the front. The rear surface r₄ is steeper than the front surface r₃ (|R₄| = 26.71 < |R₃| = 49.04), which produces net positive power. Despite belonging to the negative middle group, L2 is individually positive — the group's negative power comes from the much stronger negative power of L3.
+L21 is a positive meniscus with both surfaces concave toward the front. The rear surface r₄ is steeper than the front surface r₃ (|R₄| = 26.71 < |R₃| = 49.04), which produces net positive power. Despite belonging to the negative middle group, L21 is individually positive — the group's negative power comes from the much stronger negative power of L22.
 
-The seemingly paradoxical choice of a highly dispersive glass (SF4, νd = 27.5) for a positive element within a negative group is the core of the patent's innovation. The patent states that the refractive index difference between L2 and L3 must be at least 0.07 — and at 0.115, the actual design significantly exceeds this minimum. This large Δnd at the cement surface (r₄) creates a strong cemented interface that enables correction of sphero-chromatic aberration (the variation of spherical aberration with wavelength), which was the principal limitation of earlier triplet designs at f/2.8.
+The seemingly paradoxical choice of a highly dispersive glass (SF4, νd = 27.5) for a positive element within a negative group is the core of the patent's innovation. The patent states that the refractive index difference between L21 and L22 must be at least 0.07 — and at 0.115, the actual design significantly exceeds this minimum. This large Δnd at the cement surface (r₄) creates a strong cemented interface that enables correction of sphero-chromatic aberration (the variation of spherical aberration with wavelength), which was the principal limitation of earlier triplet designs at f/2.8.
 
 The cemented surface r₄ has a radius of −26.71 mm. The patent specifies that this radius should lie between 0.18f and 0.40f (i.e., 18–40 mm for f = 100). At r₄/f = 0.267, the design falls squarely within this range.
 
-### L3 — Negative Element of the Middle Doublet (Group II)
+### L22 — Negative Element of the Middle Doublet (Group G2)
 
 | Property | Value |
 |:---------|------:|
@@ -190,13 +190,13 @@ The cemented surface r₄ has a radius of −26.71 mm. The patent specifies that
 | Shape | Biconcave |
 | Glass | F-type flint (nd = 1.640, νd = 34.6) |
 | Element EFL | −23.2 mm |
-| Cemented to | L2 |
+| Cemented to | L21 |
 
-L3 is a strongly negative biconcave element. Its power (EFL = −23.2 mm) is the strongest of any element in the system, making it the dominant negative contributor. The combination of L2 (+70.3 mm) and L3 (−23.2 mm) yields a net group EFL of −32.8 mm.
+L22 is a strongly negative biconcave element. Its power (EFL = −23.2 mm) is the strongest of any element in the system, making it the dominant negative contributor. The combination of L21 (+70.3 mm) and L22 (−23.2 mm) yields a net group EFL of −32.8 mm.
 
-L3 uses a flint glass with higher νd (34.6) than L2's SF4 (27.5). In a conventional achromatic doublet, the crown (high-νd) element is positive and the flint (low-νd) element is negative. Here the arrangement is reversed: the more dispersive glass is positive and the less dispersive glass is negative. This "reversed doublet" configuration within the negative group is deliberate — it allows the cemented interface to correct the sphero-chromatic zone that limited earlier designs. The patent's prose describes this as the essential insight of the invention.
+L22 uses a flint glass with higher νd (34.6) than L21's SF4 (27.5). In a conventional achromatic doublet, the crown (high-νd) element is positive and the flint (low-νd) element is negative. Here the arrangement is reversed: the more dispersive glass is positive and the less dispersive glass is negative. This "reversed doublet" configuration within the negative group is deliberate — it allows the cemented interface to correct the sphero-chromatic zone that limited earlier designs. The patent's prose describes this as the essential insight of the invention.
 
-### L4 — Negative Element of the Rear Doublet (Group III)
+### L31 — Negative Element of the Rear Doublet (Group G3)
 
 | Property | Value |
 |:---------|------:|
@@ -205,13 +205,13 @@ L3 uses a flint glass with higher νd (34.6) than L2's SF4 (27.5). In a conventi
 | Shape | Biconcave (weakly, with nearly flat front) |
 | Glass | BaSF1 (nd = 1.626, νd = 35.6) |
 | Element EFL | −45.6 mm |
-| Cemented to | L5 |
+| Cemented to | L32 |
 
-L4 has a nearly flat front surface (r₆ = −1326.67; the 1/R contribution is negligible) and a moderately curved rear surface (r₇ = +29.16). The result is effectively a plano-concave element contributing moderate negative power.
+L31 has a nearly flat front surface (r₆ = −1326.67; the 1/R contribution is negligible) and a moderately curved rear surface (r₇ = +29.16). The result is effectively a plano-concave element contributing moderate negative power.
 
-Within the rear doublet, L4 serves the traditional role of the flint (negative, lower-νd) element. Its primary function is chromatic: it introduces negative dispersion that partially cancels the positive dispersion of L5, achromatising the rear group. The refractive index step at the cemented surface r₇ is substantial (Δnd = 0.118, from 1.626 to 1.744), providing a strong refractive interface for controlling both chromatic and spherical aberrations.
+Within the rear doublet, L31 serves the traditional role of the flint (negative, lower-νd) element. Its primary function is chromatic: it introduces negative dispersion that partially cancels the positive dispersion of L32, achromatising the rear group. The refractive index step at the cemented surface r₇ is substantial (Δnd = 0.118, from 1.626 to 1.744), providing a strong refractive interface for controlling both chromatic and spherical aberrations.
 
-### L5 — Main Positive Element of the Rear Doublet (Group III)
+### L32 — Main Positive Element of the Rear Doublet (Group G3)
 
 | Property | Value |
 |:---------|------:|
@@ -220,11 +220,11 @@ Within the rear doublet, L4 serves the traditional role of the flint (negative, 
 | Shape | Biconvex |
 | Glass | LaF2 (nd = 1.744, νd = 44.9) |
 | Element EFL | +26.1 mm |
-| Cemented to | L4 |
+| Cemented to | L31 |
 
-L5 is the optically strongest positive element in the entire system (EFL = +26.1 mm) and is by far the thickest element (d₅ = 9.27 mm, 38% more than the next thickest element L1). Its biconvex shape with the steeper surface toward the front (r₇ = +29.16 vs. |r₈| = 49.93) concentrates power on the cemented interface where the refractive index transition is most favourable.
+L32 is the optically strongest positive element in the entire system (EFL = +26.1 mm) and is by far the thickest element (d₅ = 9.27 mm, 38% more than the next thickest element L11). Its biconvex shape with the steeper surface toward the front (r₇ = +29.16 vs. |r₈| = 49.93) concentrates power on the cemented interface where the refractive index transition is most favourable.
 
-The choice of LaF2 (lanthanum flint) is critical. With nd = 1.744 and νd = 44.9, LaF2 provides high refractive power per unit curvature while maintaining moderate dispersion. The combination of L4 (BaSF1, νd = 35.6) and L5 (LaF2, νd = 44.9) has a Δνd of 9.3, which is modest for an achromatic doublet — but the high-index glass allows the doublet to function effectively as both an image-forming group and a chromatic corrector.
+The choice of LaF2 (lanthanum flint) is critical. With nd = 1.744 and νd = 44.9, LaF2 provides high refractive power per unit curvature while maintaining moderate dispersion. The combination of L31 (BaSF1, νd = 35.6) and L32 (LaF2, νd = 44.9) has a Δνd of 9.3, which is modest for an achromatic doublet — but the high-index glass allows the doublet to function effectively as both an image-forming group and a chromatic corrector.
 
 The rear surface r₈ = −49.93 is the final optical surface before the image. Its moderate concave curvature contributes to the lens's field curvature correction by bending the marginal ray bundle appropriately before it reaches the focal plane.
 
@@ -236,11 +236,11 @@ The classic Cooke Triplet distributes power as positive–negative–positive ac
 
 | Group | EFL (mm) | Power (mm⁻¹) | Role |
 |:------|:---------|:-------------|:-----|
-| I (L1) | +55.2 | +0.01811 | Front positive; collects light, begins convergence |
-| II (L2+L3) | −32.8 | −0.03046 | Middle negative; Petzval correction, chromatic balance |
-| III (L4+L5) | +54.9 | +0.01821 | Rear positive; image formation, final chromatic correction |
+| I (L11) | +55.2 | +0.01811 | Front positive; collects light, begins convergence |
+| II (L21+L22) | −32.8 | −0.03046 | Middle negative; Petzval correction, chromatic balance |
+| III (L31+L32) | +54.9 | +0.01821 | Rear positive; image formation, final chromatic correction |
 
-Groups I and III have nearly identical focal lengths (+55.2 and +54.9 mm, respectively), which is a signature of a symmetric or quasi-symmetric triplet — this symmetry helps correct coma and distortion across the field. The middle group's stronger negative power (−32.8 mm) is needed to yield a net system focal length of 100 mm despite the two positive groups being only ~55 mm.
+Groups G1 and G3 have nearly identical focal lengths (+55.2 and +54.9 mm, respectively), which is a signature of a symmetric or quasi-symmetric triplet — this symmetry helps correct coma and distortion across the field. The middle group's stronger negative power (−32.8 mm) is needed to yield a net system focal length of 100 mm despite the two positive groups being only ~55 mm.
 
 ---
 
@@ -252,7 +252,7 @@ The patent identifies sphero-chromatic aberration as the fundamental limitation 
 
 The patent's solution is to introduce a cemented surface in the middle (negative) component with specific glass constraints:
 
-1. The positive element (L2) of the negative group must use a glass with *lower* Abbe number (higher dispersion) than the negative element (L3). This is the reverse of a conventional achromatic doublet.
+1. The positive element (L21) of the negative group must use a glass with *lower* Abbe number (higher dispersion) than the negative element (L22). This is the reverse of a conventional achromatic doublet.
 2. The refractive indices of the two glasses must differ by at least 0.07 (the actual design achieves 0.115).
 3. The cement radius (r₄) should lie between 0.18f and 0.40f.
 
@@ -262,7 +262,7 @@ In a conventional achromatic doublet (crown positive, flint negative), the cemen
 
 By reversing the doublet arrangement in the middle group (highly dispersive positive element, less dispersive negative element), the cemented interface generates a specific pattern of wavefront correction that counteracts the sphero-chromatic contribution of the outer positive groups. The large refractive index difference at r₄ (1.755 to 1.640) creates a powerful refracting interface that acts preferentially on the zonal rays — those at intermediate aperture heights where the sphero-chromatic zone is strongest.
 
-The rear doublet (Group III) uses a more conventional arrangement (lower-νd negative + higher-νd positive) to handle the remaining chromatic balance, but with lanthanum glasses rather than classical crown/flint, giving access to a more favourable region of the Abbe diagram.
+The rear doublet (Group G3) uses a more conventional arrangement (lower-νd negative + higher-νd positive) to handle the remaining chromatic balance, but with lanthanum glasses rather than classical crown/flint, giving access to a more favourable region of the Abbe diagram.
 
 ### 8.3 Correction Curves
 
@@ -286,7 +286,7 @@ The surface-by-surface Petzval sum computation yields:
 | r₈ | −49.93 | 1.744 → 1.000 | +0.008544 |
 | **Sum** | | | **+0.002022** |
 
-The Petzval radius (1/ΣPetzval) is 494.5 mm, and the Petzval sum normalised by EFL is 0.202. For a photographic lens covering the 24 × 36 mm format, this represents good field curvature control. The negative middle group (surfaces r₃–r₅) contributes −0.018462 to the Petzval sum, nearly cancelling the combined positive contributions of Groups I and III (+0.020484). The residual of +0.002022 leaves a slight inward (positive) field curvature — the Petzval surface curves toward the lens — which is the conventional choice for negative-film photography where film flatness is imperfect and a slight inward bias is preferable.
+The Petzval radius (1/ΣPetzval) is 494.5 mm, and the Petzval sum normalised by EFL is 0.202. For a photographic lens covering the 24 × 36 mm format, this represents good field curvature control. The negative middle group (surfaces r₃–r₅) contributes −0.018462 to the Petzval sum, nearly cancelling the combined positive contributions of Groups G1 and G3 (+0.020484). The residual of +0.002022 leaves a slight inward (positive) field curvature — the Petzval surface curves toward the lens — which is the conventional choice for negative-film photography where film flatness is imperfect and a slight inward bias is preferable.
 
 ---
 
@@ -308,7 +308,7 @@ Unit focusing is optically simple — all aberration balances remain exactly as 
 
 ## 11. Aperture Stop Position
 
-The patent does not explicitly specify the aperture stop position in the prescription table. From the patent's Figure 1, the iris diaphragm is located in the second air gap (a₂ = 4.80 mm), between Groups II and III. This is the standard position for a Cooke Triplet design — the stop sits at or near the negative group, which is the natural location for minimising the asymmetric off-axis aberrations (coma, lateral colour) by exploiting the quasi-symmetry of the positive groups flanking the stop.
+The patent does not explicitly specify the aperture stop position in the prescription table. From the patent's Figure 1, the iris diaphragm is located in the second air gap (a₂ = 4.80 mm), between Groups G2 and G3. This is the standard position for a Cooke Triplet design — the stop sits at or near the negative group, which is the natural location for minimising the asymmetric off-axis aberrations (coma, lateral colour) by exploiting the quasi-symmetry of the positive groups flanking the stop.
 
 For the data file, the stop is placed at the centre of the a₂ air gap, splitting it into two equal intervals of 2.40 mm (scaled to 2.16 mm at production). This is an estimate based on Figure 1; the precise stop position within the gap does not significantly affect the paraxial system parameters (EFL, BFD, Petzval sum) but does influence the entrance pupil position and off-axis ray tracing.
 
@@ -322,7 +322,7 @@ The 12-blade iris diaphragm produces a nearly circular aperture across all f-sto
 
 The Zimmermann–Knetsch Elmarit achieves several notable outcomes for its era:
 
-The Petzval sum normalised to EFL (0.202) is well-controlled for a 5-element design, reflecting the effectiveness of the strong negative middle group in balancing the positive contributions of Groups I and III. The use of lanthanum glasses (LaK9, LaF2) in two of the five elements was forward-looking and essential to the performance at f/2.8. The reversed doublet in the middle group — with the higher-dispersion glass in the positive role — was the key innovation that enabled control of sphero-chromatic aberration at the full f/2.8 aperture, which the patent correctly identifies as the limiting factor in prior triplet designs. The near-symmetry of Groups I and III (EFL = +55.2 and +54.9 mm) provides inherent correction of odd-order aberrations (coma, distortion, lateral colour) across the field.
+The Petzval sum normalised to EFL (0.202) is well-controlled for a 5-element design, reflecting the effectiveness of the strong negative middle group in balancing the positive contributions of Groups G1 and G3. The use of lanthanum glasses (LaK9, LaF2) in two of the five elements was forward-looking and essential to the performance at f/2.8. The reversed doublet in the middle group — with the higher-dispersion glass in the positive role — was the key innovation that enabled control of sphero-chromatic aberration at the full f/2.8 aperture, which the patent correctly identifies as the limiting factor in prior triplet designs. The near-symmetry of Groups G1 and G3 (EFL = +55.2 and +54.9 mm) provides inherent correction of odd-order aberrations (coma, distortion, lateral colour) across the field.
 
 ### Limitations
 
@@ -336,4 +336,4 @@ The 1 m minimum focusing distance, while standard for the era, limits the lens's
 
 The Leica Elmarit 90mm f/2.8 (US 2,995,980) is a modified Cooke Triplet with 5 elements in 3 groups, achieving f/2.8 at a 90 mm focal length through the use of lanthanum glasses and an innovative reversed-dispersion cemented doublet in the middle group. The design is entirely spherical, with no aspherical surfaces. It is not a telephoto — the total track exceeds the focal length by 22% (telephoto ratio 1.22). Focusing is by unit extension of the entire optical assembly. The optical prescription is well-balanced, with near-symmetric positive groups flanking a powerful negative middle group, yielding a Petzval sum normalised to EFL of 0.202 and sphero-chromatic correction within 0.25% of the focal length at full aperture.
 
-Five glass types are used: Schott LaK9 (confirmed), SF4 (confirmed), an F-family flint (family-level identification only), BaSF1 (confirmed), and LaF2 (confirmed). The two lanthanum glasses (L1 and L5) are the enabling materials for the design's performance.
+Five glass types are used: Schott LaK9 (confirmed), SF4 (confirmed), an F-family flint (family-level identification only), BaSF1 (confirmed), and LaF2 (confirmed). The two lanthanum glasses (L11 and L32) are the enabling materials for the design's performance.
