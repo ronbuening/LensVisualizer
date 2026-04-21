@@ -24,7 +24,7 @@ The entrance pupil is the image of the aperture stop, formed by the optical elem
 
 **A hands-on demonstration.** Hold a 50 mm f/2 lens at arm's length and look into the front element. The bright disk you see is approximately 25 mm across — about the width of a U.S. quarter. That is the entrance pupil. The physical iris diaphragm inside the lens barrel is almost certainly a different size, sitting at a different position along the optical axis. What you are seeing is that iris, magnified and repositioned by the front group of lens elements.
 
-*[Diagram: A simple cross-section showing the physical iris inside the lens barrel, the front group of elements, and the entrance pupil as a virtual image of the iris — displaced and potentially magnified. Labels: "Front group," "Aperture stop (iris)," "Entrance pupil (virtual image of stop)," with dashed lines showing the imaging relationship.]*
+![Diagram showing the aperture stop and entrance pupil virtual image.](/diagrams/pupils/entrance-pupil.svg)
 
 ## How the Front Group Creates the Entrance Pupil
 
