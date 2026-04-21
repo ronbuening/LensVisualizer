@@ -191,10 +191,10 @@ const LENS_DATA = {
     { label: "8", R: 97.335, d: 6.28, nd: 1.72047, elemId: 5, sd: 22.75 }, // L21 front
     { label: "9", R: -44.443, d: 1.54, nd: 1.6223, elemId: 6, sd: 15.8 }, // L21/L22 junction (D2)
     { label: "10", R: 24.5106, d: 5.6, nd: 1.0, elemId: 0, sd: 15.8 }, // L22 rear → air
-    { label: "11", R: -67.3261, d: 1.41, nd: 1.497, elemId: 7, sd: 14.0 }, // L23 front
+    { label: "11", R: -67.3261, d: 1.41, nd: 1.497, elemId: 7, sd: 13.0 }, // L23 front
     { label: "12", R: 26.821, d: 4.0, nd: 1.84661, elemId: 8, sd: 13.05 }, // L23/L24 junction (T1)
     { label: "13", R: 128.9145, d: 3.13, nd: 1.0, elemId: 0, sd: 13.05 }, // L24 rear → air
-    { label: "14", R: -31.5621, d: 1.2, nd: 1.91082, elemId: 9, sd: 12.65 }, // L25 front
+    { label: "14", R: -31.5621, d: 1.2, nd: 1.91082, elemId: 9, sd: 11.7 }, // L25 front
     { label: "15", R: 268.8915, d: 14.3, nd: 1.0, elemId: 0, sd: 15.85 }, // L25 rear → air (DD[15] at W)
 
     // G3 — Compensator (3 elements, 1 cemented group: L31 + D3 doublet)
@@ -211,13 +211,13 @@ const LENS_DATA = {
     { label: "22", R: 27.8674, d: 7.05, nd: 1.497, elemId: 13, sd: 13.05 }, // L41 front
     { label: "23", R: -58.7589, d: 0.15, nd: 1.0, elemId: 0, sd: 13.05 }, // L41 rear → air
     { label: "24", R: 34.5685, d: 2.57, nd: 1.65412, elemId: 14, sd: 13.0 }, // L42 front
-    { label: "25", R: 84.5573, d: 1.8, nd: 1.0, elemId: 0, sd: 10.6 }, // L42 rear → air
+    { label: "25", R: 84.5573, d: 1.8, nd: 1.0, elemId: 0, sd: 10.0 }, // L42 rear → air
     { label: "26", R: -50.7158, d: 1.1, nd: 1.90366, elemId: 15, sd: 10.6 }, // L43 front
     { label: "27", R: 23.983, d: 5.21, nd: 1.497, elemId: 16, sd: 10.6 }, // L43/L44 junction (D4)
     { label: "28", R: -62.4364, d: 2.8, nd: 1.0, elemId: 0, sd: 12.5 }, // L44 rear → air
     { label: "29", R: 452.2104, d: 3.76, nd: 1.80518, elemId: 17, sd: 12.25 }, // L45 front
     { label: "30", R: -23.371, d: 0.96, nd: 1.58913, elemId: 18, sd: 10.1 }, // L45/L46 junction (D5)
-    { label: "31", R: 39.4316, d: 2.48, nd: 1.0, elemId: 0, sd: 10.1 }, // L46 rear → air
+    { label: "31", R: 39.4316, d: 2.48, nd: 1.0, elemId: 0, sd: 9.4 }, // L46 rear → air
     { label: "32", R: -40.896, d: 1.0, nd: 1.801, elemId: 19, sd: 10.35 }, // L47 front
     { label: "33", R: 60.144, d: 3.97, nd: 1.0, elemId: 0, sd: 13.1 }, // L47 rear → air
     { label: "34", R: 53.07, d: 5.36, nd: 1.8, elemId: 20, sd: 14.4 }, // L48 front

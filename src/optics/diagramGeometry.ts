@@ -4,8 +4,19 @@
  * element-shape computations used by the SVG rendering layer.
  */
 
-import { renderSag, gapTrimHeight, slopeTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
-import type { RuntimeLens, CoordinateTransforms, ElementShape, AsphPathData, ElementSpan } from "../types/optics.js";
+import { renderSag, slopeTrimHeight, SVG_PATH_SUBDIVISIONS } from "./optics.js";
+import type {
+  RuntimeLens,
+  CoordinateTransforms,
+  ElementShape,
+  AsphPathData,
+  ElementSpan,
+  SurfaceRenderDiagnostics,
+  ElementRenderDiagnostics,
+  ElementRenderTrimCause,
+} from "../types/optics.js";
+
+const MAX_VISIBLE_GAP_INTRUSION_FRAC = 1.0;
 
 interface CoordTransformParams {
   svgW: number;
@@ -64,11 +75,135 @@ export function createCoordinateTransforms({
  * For each element [eid, frontSurfIdx, rearSurfIdx], build a closed SVG path:
  *   front arc (top→bottom) + rear arc (bottom→top) → closed polygon.
  *
- * Trimming logic prevents surfaces from visually overlapping neighboring
- * elements. Two trim passes handle front (backward-curving into preceding gap)
- * and rear (forward-curving into following gap) surfaces independently.
- * Each surface is also clamped to its conic height limit to avoid rendering
- * artifacts where the conic slope approaches infinity. */
+ * The diagnostic helper owns all render semi-diameter decisions so tests can
+ * catch hidden trims before they turn into geometry artifacts. */
+
+function surfaceDiagnostics(
+  L: RuntimeLens,
+  surfaceIndex: number,
+  declaredSD: number,
+  renderSD: number,
+  trimCause: ElementRenderTrimCause,
+): SurfaceRenderDiagnostics {
+  return {
+    surfaceIndex,
+    surfaceLabel: L.S[surfaceIndex].label,
+    declaredSD,
+    renderSD,
+    trimAmount: Math.max(0, declaredSD - renderSD),
+    trimCause,
+  };
+}
+
+function applyTrim(
+  currentSD: number,
+  currentCause: ElementRenderTrimCause,
+  candidateSD: number,
+  candidateCause: ElementRenderTrimCause,
+): [number, ElementRenderTrimCause] {
+  return candidateSD < currentSD ? [candidateSD, candidateCause] : [currentSD, currentCause];
+}
+
+function initialRenderSD(L: RuntimeLens, surfaceIndex: number, declaredSD: number): [number, ElementRenderTrimCause] {
+  let renderSD = declaredSD;
+  let trimCause: ElementRenderTrimCause = "none";
+  const absR = Math.abs(L.S[surfaceIndex].R);
+  const K = L.asphByIdx[surfaceIndex]?.K || 0;
+  const hMax = K > 0 && absR < 1e10 ? (absR / Math.sqrt(1 + K)) * 0.98 : Infinity;
+
+  [renderSD, trimCause] = applyTrim(renderSD, trimCause, hMax, "conic-limit");
+  [renderSD, trimCause] = applyTrim(
+    renderSD,
+    trimCause,
+    slopeTrimHeight(surfaceIndex, declaredSD, L.maxRimTan, L),
+    "slope",
+  );
+
+  return [renderSD, trimCause];
+}
+
+function boundaryIntrusion(
+  rearSurfaceIndex: number,
+  frontSurfaceIndex: number,
+  height: number,
+  L: RuntimeLens,
+): number {
+  return renderSag(height, rearSurfaceIndex, L) - renderSag(height, frontSurfaceIndex, L);
+}
+
+function boundaryTrimHeight(
+  rearSurfaceIndex: number,
+  frontSurfaceIndex: number,
+  sd: number,
+  maxIntrusion: number,
+  L: RuntimeLens,
+): number {
+  if (boundaryIntrusion(rearSurfaceIndex, frontSurfaceIndex, sd, L) <= maxIntrusion) return sd;
+  let lo = 0,
+    hi = sd;
+  for (let i = 0; i < 30; i++) {
+    const mid = (lo + hi) / 2;
+    if (boundaryIntrusion(rearSurfaceIndex, frontSurfaceIndex, mid, L) > maxIntrusion) hi = mid;
+    else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Report the effective rendered semi-diameter for every element surface.
+ *
+ * Any non-zero trim means the renderer would draw a different clear aperture
+ * than the lens data declares. Tests use this to flag geometry that should be
+ * fixed in the lens file instead of silently hidden during rendering.
+ */
+export function computeElementRenderDiagnostics(L: RuntimeLens, zPos: number[]): ElementRenderDiagnostics[] {
+  return L.ES.map(([eid, s1, s2]: ElementSpan) => {
+    const sd1 = L.S[s1].sd,
+      sd2 = L.S[s2].sd;
+    let [renderSD1, cause1] = initialRenderSD(L, s1, sd1);
+    let [renderSD2, cause2] = initialRenderSD(L, s2, sd2);
+
+    /* Trim front surface if it curves backward into preceding air gap.
+     * Mirror of the rear-surface logic: the preceding element's rear surface
+     * may widen or narrow the effective clearance. */
+    if (s1 > 0 && L.gapSagFrac > 0 && renderSag(renderSD1, s1, L) < 0) {
+      const prevES = L.ES.findLast(([, , ps2]: ElementSpan) => ps2 < s1 && L.S[ps2].nd === 1.0);
+      const gapBefore = prevES ? zPos[s1] - zPos[prevES[2]] : L.S[s1 - 1].d;
+      const maxIntrusion = Math.max(gapBefore, 0) * Math.min(L.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);
+      if (prevES) {
+        const ps2 = prevES[2];
+        const [prevSD] = initialRenderSD(L, ps2, L.S[ps2].sd);
+        const sdCheck = Math.min(renderSD1, prevSD);
+        if (boundaryIntrusion(ps2, s1, sdCheck, L) > maxIntrusion) {
+          renderSD1 = boundaryTrimHeight(ps2, s1, renderSD1, maxIntrusion, L);
+          cause1 = "gap";
+        }
+      }
+    }
+
+    /* Trim rear surface if it actually overlaps with the following element. */
+    if (L.S[s2].nd === 1.0 && L.gapSagFrac > 0 && renderSag(renderSD2, s2, L) > 0) {
+      const nextES = L.ES.find(([, ns1]: ElementSpan) => ns1 > s2);
+      const gapAfter = nextES ? zPos[nextES[1]] - zPos[s2] : L.S[s2].d;
+      const maxIntrusion = Math.max(gapAfter, 0) * Math.min(L.gapSagFrac, MAX_VISIBLE_GAP_INTRUSION_FRAC);
+      if (nextES) {
+        const ns1 = nextES[1];
+        const [nextSD] = initialRenderSD(L, ns1, L.S[ns1].sd);
+        const sdCheck = Math.min(renderSD2, nextSD);
+        if (boundaryIntrusion(s2, ns1, sdCheck, L) > maxIntrusion) {
+          renderSD2 = boundaryTrimHeight(s2, ns1, renderSD2, maxIntrusion, L);
+          cause2 = "gap";
+        }
+      }
+    }
+
+    return {
+      eid,
+      front: surfaceDiagnostics(L, s1, sd1, renderSD1, cause1),
+      rear: surfaceDiagnostics(L, s2, sd2, renderSD2, cause2),
+    };
+  });
+}
 
 /**
  * Build closed SVG paths for each glass element, with surface trimming
@@ -86,78 +221,25 @@ export function computeElementShapes(
   sx: (z: number) => number,
   sy: (y: number) => number,
 ): ElementShape[] {
-  return L.ES.map(([eid, s1, s2]: ElementSpan) => {
-    const sd1 = L.S[s1].sd,
-      sd2 = L.S[s2].sd;
-    const R1 = Math.abs(L.S[s1].R),
-      R2 = Math.abs(L.S[s2].R);
-    /* Conic-aware max height: surface slope → ∞ at h = |R|/√(1+K) when K > 0 */
-    const K1 = L.asphByIdx[s1]?.K || 0;
-    const K2 = L.asphByIdx[s2]?.K || 0;
-    const hMax1 = K1 > 0 && R1 < 1e10 ? (R1 / Math.sqrt(1 + K1)) * 0.98 : Infinity;
-    const hMax2 = K2 > 0 && R2 < 1e10 ? (R2 / Math.sqrt(1 + K2)) * 0.98 : Infinity;
-    /* Slope-aware rendering trim: binary-search for the height where the
-     * actual aspherical slope reaches maxRimTan.  For spherical surfaces
-     * this gives the same result as R × maxRimSin; for aspherics (especially
-     * near-paraboloids, K ≈ −1) the slope grows more slowly, allowing the
-     * element outline to extend higher and match the physical lens shape.
-     * Each surface is trimmed to its own SD — deep meniscus elements with
-     * different front/rear SDs get trapezoidal outlines matching the barrel. */
-    let trim1 = Math.min(sd1, slopeTrimHeight(s1, sd1, L.maxRimTan, L), hMax1);
-    let trim2 = Math.min(sd2, slopeTrimHeight(s2, sd2, L.maxRimTan, L), hMax2);
-    /* Trim front surface if it curves backward into preceding air gap.
-     * Mirror of the TRIM2 logic: the preceding element's rear surface
-     * may curve backward (negative sag) widening the effective clearance,
-     * or forward (positive sag) narrowing it. */
-    if (s1 > 0 && L.gapSagFrac > 0 && renderSag(trim1, s1, L) < 0) {
-      const prevES = L.ES.findLast(([, , ps2]: ElementSpan) => ps2 < s1 && L.S[ps2].nd === 1.0);
-      const gapBefore = prevES ? zPos[s1] - zPos[prevES[2]] : L.S[s1 - 1].d;
-      let effectiveGap = gapBefore;
-      if (prevES) {
-        const ps2 = prevES[2],
-          ps1 = prevES[1];
-        const prevSD = Math.min(L.S[ps1].sd, L.S[ps2].sd);
-        /* Negative renderSag on rear surface = curves backward = widens gap */
-        effectiveGap -= renderSag(Math.min(trim1, prevSD), ps2, L);
-      }
-      effectiveGap = Math.max(effectiveGap, 0);
-      if (Math.abs(renderSag(trim1, s1, L)) > effectiveGap * L.gapSagFrac)
-        trim1 = gapTrimHeight(s1, trim1, effectiveGap * L.gapSagFrac, L);
-    }
-    /* Trim rear surface if it actually overlaps with the following element.
-     * A rear surface with positive sag curves forward into the gap, but the
-     * next element's front surface may also curve forward (positive sag),
-     * widening the effective clearance; or backward (negative sag), narrowing
-     * it.  Account for both to avoid false trims on fast lenses. */
-    if (L.S[s2].nd === 1.0 && L.gapSagFrac > 0 && renderSag(trim2, s2, L) > 0) {
-      const nextES = L.ES.find(([, ns1]: ElementSpan) => ns1 > s2);
-      const gapAfter = nextES ? zPos[nextES[1]] - zPos[s2] : L.S[s2].d;
-      let effectiveGap = gapAfter;
-      if (nextES) {
-        const ns1 = nextES[1],
-          ns2 = ns1 + 1;
-        const nextSD = Math.min(L.S[ns1].sd, ns2 < L.N ? L.S[ns2].sd : Infinity);
-        effectiveGap += renderSag(Math.min(trim2, nextSD), ns1, L);
-      }
-      effectiveGap = Math.max(effectiveGap, 0);
-      if (renderSag(trim2, s2, L) > effectiveGap * L.gapSagFrac)
-        trim2 = gapTrimHeight(s2, trim2, effectiveGap * L.gapSagFrac, L);
-    }
+  const diagnostics = computeElementRenderDiagnostics(L, zPos);
+  return L.ES.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
+    const trim1 = diagnostics[elementIndex].front.renderSD;
+    const trim2 = diagnostics[elementIndex].rear.renderSD;
     const z1 = zPos[s1],
       z2 = zPos[s2],
       NN = SVG_PATH_SUBDIVISIONS;
     /* Element outline path — each surface rendered to its own SD.
-     * Front sweeps from −sd1 to +sd1, rear from +sd2 to −sd2.
+     * Front sweeps from −trim1 to +trim1, rear from +trim2 to −trim2.
      * SVG path commands create straight connecting edges at top/bottom
      * where the SDs differ (trapezoidal barrel cut). */
     let d = "";
     for (let i = 0; i <= NN; i++) {
-      const y = -sd1 + (2 * sd1 * i) / NN;
-      d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `;
+      const y = -trim1 + (2 * trim1 * i) / NN;
+      d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.abs(y), s1, L))},${sy(y)} `;
     }
     for (let i = NN; i >= 0; i--) {
-      const y = -sd2 + (2 * sd2 * i) / NN;
-      d += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
+      const y = -trim2 + (2 * trim2 * i) / NN;
+      d += `L${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
     const asphPaths: AsphPathData[] = [];
@@ -165,38 +247,38 @@ export function computeElementShapes(
     if (L.asphByIdx[s1]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
-        const y = -sd1 + (2 * sd1 * i) / NN;
-        p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.min(Math.abs(y), trim1), s1, L))},${sy(y)} `;
+        const y = -trim1 + (2 * trim1 * i) / NN;
+        p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.abs(y), s1, L))},${sy(y)} `;
       }
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
-      const hp = p + `L${midX},${sy(sd1)} L${midX},${sy(-sd1)} Z`;
+      const hp = p + `L${midX},${sy(trim1)} L${midX},${sy(-trim1)} Z`;
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z1 + renderSag(Math.min(sd1, trim1), s1, L)),
-        labelY: sy(-sd1) - 4,
+        labelX: sx(z1 + renderSag(trim1, s1, L)),
+        labelY: sy(-trim1) - 4,
       });
     }
     if (L.asphByIdx[s2]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
-        const y = -sd2 + (2 * sd2 * i) / NN;
-        p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
+        const y = -trim2 + (2 * trim2 * i) / NN;
+        p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
       }
       /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
-      let hp = `M${midX},${sy(-sd2)} L${midX},${sy(sd2)} `;
+      let hp = `M${midX},${sy(-trim2)} L${midX},${sy(trim2)} `;
       for (let i = NN; i >= 0; i--) {
-        const y = -sd2 + (2 * sd2 * i) / NN;
-        hp += `L${sx(z2 + renderSag(Math.min(Math.abs(y), trim2), s2, L))},${sy(y)} `;
+        const y = -trim2 + (2 * trim2 * i) / NN;
+        hp += `L${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
       }
       hp += "Z";
       asphPaths.push({
         surfIdx: s2,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z2 + renderSag(Math.min(sd2, trim2), s2, L)),
-        labelY: sy(-sd2) - 4,
+        labelX: sx(z2 + renderSag(trim2, s2, L)),
+        labelY: sy(-trim2) - 4,
       });
     }
     return { eid, d: d + "Z", z1, z2, asphPaths };

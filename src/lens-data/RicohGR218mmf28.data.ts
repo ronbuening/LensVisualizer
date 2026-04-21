@@ -145,7 +145,7 @@ const LENS_DATA = {
     { label: "2A", R: 13.666, d: 1.79, nd: 1.0, elemId: 0, sd: 6.1 }, // L1 rear (asph) → air
 
     // ── Group II (positive): L2 + cemented doublet L3+L4 ──
-    { label: "3", R: -23.543, d: 0.8, nd: 1.68893, elemId: 2, sd: 5.5 }, // L2 front
+    { label: "3", R: -23.543, d: 0.8, nd: 1.68893, elemId: 2, sd: 5.0 }, // L2 front
     { label: "4", R: 200.425, d: 0.2, nd: 1.0, elemId: 0, sd: 5.0 }, // L2 rear → air
     { label: "5", R: 15.416, d: 0.8, nd: 1.84666, elemId: 3, sd: 5.0 }, // L3 front
     { label: "6", R: 9.513, d: 2.34, nd: 1.883, elemId: 4, sd: 5.0 }, // L3→L4 cement junction
@@ -157,7 +157,7 @@ const LENS_DATA = {
     // ── Group III (positive): cemented doublet L5+L6 ──
     { label: "9", R: 14.691, d: 2.59, nd: 1.883, elemId: 5, sd: 4.7 }, // L5 front
     { label: "10", R: -9.087, d: 0.89, nd: 1.68893, elemId: 6, sd: 4.7 }, // L5→L6 cement junction
-    { label: "11", R: 12.917, d: 1.73, nd: 1.0, elemId: 0, sd: 4.7 }, // L6 rear → air
+    { label: "11", R: 12.917, d: 1.73, nd: 1.0, elemId: 0, sd: 4.3 }, // L6 rear → air
 
     // ── Group IV (weak negative): L7 ──
     { label: "12", R: -12.419, d: 1.2, nd: 1.8208, elemId: 7, sd: 5.5 }, // L7 front

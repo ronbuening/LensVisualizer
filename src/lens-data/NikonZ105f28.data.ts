@@ -269,7 +269,7 @@ const LENS_DATA = {
     { label: "8", R: -242.9579, d: 1.1, nd: 1.5186, elemId: 5, sd: 21.0 }, // L21 front
     { label: "9", R: 48.3271, d: 1.613, nd: 1.0, elemId: 0, sd: 20.5 }, // L21 rear → air
     // ── G2: L22 + L23 (cemented doublet D2) ──
-    { label: "10", R: 122.3852, d: 1.1, nd: 1.72047, elemId: 6, sd: 16.0 }, // L22 front
+    { label: "10", R: 122.3852, d: 1.1, nd: 1.72047, elemId: 6, sd: 14.9 }, // L22 front
     { label: "11", R: 28.609, d: 2.66, nd: 1.94595, elemId: 7, sd: 16.0 }, // L22→L23 junction
     { label: "12", R: 44.8866, d: 25.484, nd: 1.0, elemId: 0, sd: 16.0 }, // L23 rear → air (D12, variable)
 

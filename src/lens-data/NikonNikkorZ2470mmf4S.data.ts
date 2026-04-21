@@ -253,7 +253,7 @@ const LENS_DATA = {
     /* G2 — L21 (asph rear), L22, L23 */
     { label: "4", R: 400.0, d: 1.8, nd: 1.74353, elemId: 3, sd: 19.0 },
     { label: "5A", R: 17.04241, d: 8.087, nd: 1.0, elemId: 0, sd: 15.0 }, // L21 rear (asph) → air
-    { label: "6", R: -181.13172, d: 1.35, nd: 1.755, elemId: 4, sd: 14.0 },
+    { label: "6", R: -181.13172, d: 1.35, nd: 1.755, elemId: 4, sd: 13.8 },
     { label: "7", R: 49.98466, d: 2.108, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "8", R: 37.80684, d: 3.693, nd: 2.00069, elemId: 5, sd: 14.5 },
     { label: "9", R: 235.22758, d: 23.69, nd: 1.0, elemId: 0, sd: 14.0 }, // D9 var — G2/G3 zoom gap

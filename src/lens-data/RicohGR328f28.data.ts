@@ -144,7 +144,7 @@ const LENS_DATA = {
     // ── Front group LO ──
     { label: "1", R: 17.034, d: 0.7, nd: 1.51633, elemId: 1, sd: 6.0 }, // L11 front
     { label: "2A", R: 10.894, d: 2.46, nd: 1.0, elemId: 0, sd: 5.5 }, // L11 rear → air (asph)
-    { label: "3", R: -18.486, d: 0.6, nd: 1.6398, elemId: 2, sd: 5.2 }, // L12 front
+    { label: "3", R: -18.486, d: 0.6, nd: 1.6398, elemId: 2, sd: 5.0 }, // L12 front
     { label: "4", R: 8.332, d: 2.75, nd: 1.881, elemId: 3, sd: 5.0 }, // L12→L13 junction
     { label: "5", R: -25.206, d: 1.1, nd: 1.0, elemId: 0, sd: 4.6 }, // L13 rear → air
 
@@ -154,7 +154,7 @@ const LENS_DATA = {
     // ── Rear group LI ──
     { label: "7", R: 13.099, d: 2.76, nd: 1.881, elemId: 4, sd: 4.8 }, // L21 front
     { label: "8", R: -8.666, d: 0.5, nd: 1.69895, elemId: 5, sd: 4.8 }, // L21→L22 junction
-    { label: "9", R: 12.744, d: 1.52, nd: 1.0, elemId: 0, sd: 5.0 }, // L22 rear → air
+    { label: "9", R: 12.744, d: 1.52, nd: 1.0, elemId: 0, sd: 4.5 }, // L22 rear → air
     { label: "10A", R: -16.835, d: 1.0, nd: 1.88202, elemId: 6, sd: 6.0 }, // L23 front (asph)
     { label: "11A", R: -17.51, d: 14.907, nd: 1.0, elemId: 0, sd: 5.9 }, // L23 rear → air (asph) — BFD to image
   ],

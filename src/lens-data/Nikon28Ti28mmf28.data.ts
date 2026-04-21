@@ -148,7 +148,7 @@ const LENS_DATA = {
     { label: "7", R: -17.04, d: 1.0, nd: 1.6175, elemId: 5, sd: 5.3 }, // L3a→L3b cement
     { label: "8", R: 54.857, d: 1.31, nd: 1.0, elemId: 0, sd: 5.3 }, // L3b rear → air
     { label: "9", R: -21.73, d: 2.95, nd: 1.79668, elemId: 6, sd: 6.0 }, // L4 front
-    { label: "10", R: -10.479, d: 0.8, nd: 1.0, elemId: 0, sd: 7.2 }, // L4 rear → air
+    { label: "10", R: -10.479, d: 0.8, nd: 1.0, elemId: 0, sd: 6.9 }, // L4 rear → air
     { label: "11", R: -8.874, d: 1.5, nd: 1.59507, elemId: 7, sd: 7.5 }, // L5 front
     { label: "12", R: -13.78, d: 20.96, nd: 1.0, elemId: 0, sd: 8.5 }, // L5 rear → BFD
   ],

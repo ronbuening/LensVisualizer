@@ -8,7 +8,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## What The App Does
 
-- Renders patent-derived lens cross-sections as inline SVG with real surface sag and aspheric overlays
+- Renders patent-derived lens cross-sections as inline SVG with real surface sag, aspheric overlays, and diagnostics that prevent hidden semi-diameter clipping artifacts
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
 - Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, and chromatic field curvature
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
@@ -36,6 +36,7 @@ The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no 
 - **Chromatic field curvature**: per-wavelength (R/G/B) tangential and sagittal best-focus traces across the field, with a chromatic focus spread metric; displayed as a third chart inside the field curvature section
 - **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
 - **Glass inspection**: element metadata, Abbe-number plotting, APD tagging, and lens role annotations
+- **Geometry validation**: shared rim-slope and cross-gap diagnostics keep lens element outlines clean and catch semi-diameter issues before they render as artifacts
 - **SEO-friendly multipage app**: prerendered routes for lenses, makers, articles, comparison pages, and static content
 - **Structured metadata**: WebSite, CollectionPage, ItemList, Article, TechArticle, and BreadcrumbList JSON-LD across the crawlable pages
 - **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults

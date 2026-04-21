@@ -223,7 +223,7 @@ const LENS_DATA = {
     { label: "1", R: -48.06457, d: 2.0, nd: 1.6727, elemId: 1, sd: 19.5 }, // L11 front
     { label: "2", R: 50.03333, d: 2.861, nd: 1.94595, elemId: 2, sd: 19.5 }, // L12 front (junction)
     { label: "3", R: 105.0, d: 2.805, nd: 1.0, elemId: 0, sd: 19.5 }, // L12 rear → air
-    { label: "4", R: -226.31231, d: 6.827, nd: 1.72916, elemId: 3, sd: 19.0 }, // L13 front
+    { label: "4", R: -226.31231, d: 6.827, nd: 1.72916, elemId: 3, sd: 18.9 }, // L13 front
     { label: "5", R: -47.98013, d: 0.644, nd: 1.0, elemId: 0, sd: 19.0 }, // L13 rear → air
     { label: "6A", R: 36.6491, d: 0.1, nd: 1.56093, elemId: 0, sd: 18.5 }, // L14 resin layer (asph)
     { label: "7", R: 36.85687, d: 5.622, nd: 1.804, elemId: 4, sd: 18.5 }, // L14 glass front
@@ -249,7 +249,7 @@ const LENS_DATA = {
     // ── G3 ────────────────────────────────────────────────────────
     { label: "20", R: -177.7544, d: 2.927, nd: 1.94595, elemId: 10, sd: 18.0 }, // L31 front
     { label: "21", R: -63.69645, d: 1.9, nd: 1.64769, elemId: 11, sd: 18.0 }, // L32 front (junction)
-    { label: "22", R: -482.01125, d: 2.887, nd: 1.0, elemId: 0, sd: 18.0 }, // L32 rear → air
+    { label: "22", R: -482.01125, d: 2.887, nd: 1.0, elemId: 0, sd: 16.7 }, // L32 rear → air
     { label: "23", R: -50.20764, d: 1.9, nd: 1.64769, elemId: 12, sd: 18.0 }, // L33 front
     { label: "24", R: 1e15, d: 10.5, nd: 1.0, elemId: 0, sd: 18.0 }, // L33 rear → air
 

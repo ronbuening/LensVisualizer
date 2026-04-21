@@ -147,7 +147,7 @@ const LENS_DATA = {
     { label: "2", R: 346.596, d: 1.496, nd: 1.0, elemId: 0, sd: 31.0 }, // L1 rear → air
     { label: "3", R: 37.128, d: 9.699, nd: 1.6968, elemId: 2, sd: 28.0 }, // L2 front
     { label: "4", R: 96.501, d: 1.496, nd: 1.0, elemId: 0, sd: 25.0 }, // L2 rear → air
-    { label: "5", R: 167.28, d: 6.503, nd: 1.7847, elemId: 3, sd: 24.5 }, // L3a front
+    { label: "5", R: 167.28, d: 6.503, nd: 1.7847, elemId: 3, sd: 24.3 }, // L3a front
     { label: "6", R: -120.003, d: 2.797, nd: 1.7552, elemId: 4, sd: 23.0 }, // L3a→L3b junction
     { label: "7", R: 23.639, d: 12.674, nd: 1.0, elemId: 0, sd: 20.5 }, // L3b rear → air
     { label: "STO", R: 1e15, d: 6.825, nd: 1.0, elemId: 0, sd: 16.7 }, // Aperture stop — inferred from FIG. 1 at ~65% through d7

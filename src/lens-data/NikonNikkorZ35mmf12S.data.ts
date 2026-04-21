@@ -267,7 +267,7 @@ const LENS_DATA = {
   surfaces: [
     // ── L11 (Negative meniscus) ──
     { label: "1", R: 163.28336, d: 2.5, nd: 1.64, elemId: 1, sd: 27.5 },
-    { label: "2", R: 31.10505, d: 13.39, nd: 1.0, elemId: 0, sd: 27.0 },
+    { label: "2", R: 31.10505, d: 13.39, nd: 1.0, elemId: 0, sd: 26.3 },
     // ── L12 (Aspherical negative meniscus) ──
     { label: "3A", R: 149.89871, d: 3.0, nd: 1.5168, elemId: 2, sd: 27.0 },
     { label: "4A", R: 47.93253, d: 3.06, nd: 1.0, elemId: 0, sd: 26.0 },
@@ -275,7 +275,7 @@ const LENS_DATA = {
     { label: "5", R: 73.4831, d: 5.4, nd: 1.92119, elemId: 3, sd: 27.0 },
     { label: "6", R: 357.5441, d: 12.73, nd: 1.0, elemId: 0, sd: 27.0 },
     // ── L14 (Negative meniscus, Ln1) ──
-    { label: "7", R: -38.63142, d: 2.1, nd: 1.738, elemId: 4, sd: 26.5 },
+    { label: "7", R: -38.63142, d: 2.1, nd: 1.738, elemId: 4, sd: 26.4 },
     { label: "8", R: -1220.6706, d: 0.82, nd: 1.0, elemId: 0, sd: 26.0 },
     // ── L15 (Plano-convex, Lens H, S-LAH79) ──
     { label: "9", R: 1e15, d: 7.85, nd: 1.95375, elemId: 5, sd: 25.0 },

@@ -15,9 +15,8 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Patent does not list semi-diameters. Initial SDs estimated via  ║
  * ║    paraxial marginal + chief ray trace at full field (ω = 38°),   ║
  * ║    with distortion correction factor and 10% mechanical clearance. ║
- * ║    G2 and G3 SDs then reduced to satisfy renderer constraints:     ║
- * ║    positive edge thickness (L21, L24g, L32), sd/|R| ≤ 0.9         ║
- * ║    (L23 front, L24 junction/rear), and cross-gap clearance.        ║
+ * ║    G2 and G3 SDs then reduced to satisfy positive edge thickness, ║
+ * ║    shared rim-slope, and cross-gap render diagnostics.            ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -209,7 +208,7 @@ const LENS_DATA = {
     // ── G2 — First focusing group / GF1 (positive, f = +34.7 mm) ──
     { label: "6", R: 39.03942, d: 3.0, nd: 2.001, elemId: 3, sd: 7.0 }, // L21 front
     { label: "7", R: -14.018, d: 0.7, nd: 1.80518, elemId: 4, sd: 7.5 }, // L21→L22 junction
-    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 9.0 }, // L22 rear → air
+    { label: "8", R: 44.52125, d: 3.457, nd: 1.0, elemId: 0, sd: 7.0 }, // L22 rear → air
     { label: "9", R: -11.08066, d: 0.9, nd: 1.80809, elemId: 5, sd: 9.5 }, // L23 front
     { label: "10", R: -29.93301, d: 0.15, nd: 1.0, elemId: 0, sd: 11.5 }, // L23 rear → air
     { label: "11", R: 1e15, d: 6.55, nd: 1.804, elemId: 6, sd: 13.0 }, // L24g front (flat)

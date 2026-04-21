@@ -358,13 +358,13 @@ const LENS_DATA = {
     // G3ois (L3b+L3c cemented, then L3d)
     { label: "21", R: 415.3848, d: 2.28, nd: 1.95906, elemId: 12, sd: 15.3 }, // L3b front
     { label: "22", R: -91.476, d: 1.51, nd: 1.734, elemId: 13, sd: 15.3 }, // L3b/L3c cem junction
-    { label: "23", R: 42.9219, d: 1.89, nd: 1.0, elemId: 0, sd: 12.1 }, // L3c rear → air
+    { label: "23", R: 42.9219, d: 1.89, nd: 1.0, elemId: 0, sd: 10.9 }, // L3c rear → air
     { label: "24", R: -217.2372, d: 1.4, nd: 1.801, elemId: 14, sd: 12.1 }, // L3d front
     { label: "25", R: 66.6268, d: 3.2077, nd: 1.0, elemId: 0, sd: 12.1 }, // L3d rear → air
     // G3r (5 elements L3e..L3i)
     { label: "26", R: 51.5518, d: 3.11, nd: 1.90366, elemId: 15, sd: 13.5 }, // L3e front
     { label: "27", R: 1e15, d: 1.0602, nd: 1.0, elemId: 0, sd: 13.5 }, // L3e rear (flat) → air
-    { label: "28", R: -77.9583, d: 1.4, nd: 1.80809, elemId: 16, sd: 13.4 }, // L3f front
+    { label: "28", R: -77.9583, d: 1.4, nd: 1.80809, elemId: 16, sd: 12.1 }, // L3f front
     { label: "29", R: 145.8634, d: 4.4301, nd: 1.0, elemId: 0, sd: 13.4 }, // L3f rear → air
     { label: "30", R: 133.6002, d: 4.28, nd: 1.8061, elemId: 17, sd: 17.2 }, // L3g front
     { label: "31", R: -60.7409, d: 0.6043, nd: 1.0, elemId: 0, sd: 17.2 }, // L3g rear → air

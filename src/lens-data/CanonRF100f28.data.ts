@@ -294,7 +294,7 @@ const LENS_DATA = {
     { label: "17", R: 39.579, d: 3.71, nd: 1.0, elemId: 0, sd: 13.49 },
 
     // D3 cemented doublet (L10 + L11)
-    { label: "18", R: -83.866, d: 1.23, nd: 1.7725, elemId: 10, sd: 13.46 },
+    { label: "18", R: -83.866, d: 1.23, nd: 1.7725, elemId: 10, sd: 13.2 },
     { label: "19", R: 44.224, d: 2.95, nd: 1.94595, elemId: 11, sd: 13.51 },
     { label: "20", R: 176.627, d: 27.41, nd: 1.0, elemId: 0, sd: 13.49 },
 

@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { createCoordinateTransforms, computeElementShapes } from "../src/optics/diagramGeometry.js";
+import {
+  createCoordinateTransforms,
+  computeElementRenderDiagnostics,
+  computeElementShapes,
+} from "../src/optics/diagramGeometry.js";
 import { SVG_PATH_SUBDIVISIONS } from "../src/optics/optics.js";
 import type { RuntimeLens, AsphericCoefficients } from "../src/types/optics.js";
 
@@ -112,6 +116,11 @@ describe("computeElementShapes", () => {
   /* Identity transforms for interpretable coordinates */
   const sx = (z: number): number => z;
   const sy = (y: number): number => y;
+  const maxRimTan = 0.9 / Math.sqrt(1 - 0.9 ** 2);
+
+  function pathCoords(pathD: string): [number, number][] {
+    return [...pathD.matchAll(/[ML]([\d.e+-]+),([\d.e+-]+)/g)].map((match) => [Number(match[1]), Number(match[2])]);
+  }
 
   /**
    * Minimal lens-like object builder.
@@ -122,18 +131,32 @@ describe("computeElementShapes", () => {
     R1 = 50,
     R2 = 1e15,
     sd = 15,
+    sd1,
+    sd2,
     nd = 1.5,
     asph1 = null as AsphericCoefficients | null,
     asph2 = null as AsphericCoefficients | null,
+  }: {
+    R1?: number;
+    R2?: number;
+    sd?: number;
+    sd1?: number;
+    sd2?: number;
+    nd?: number;
+    asph1?: AsphericCoefficients | null;
+    asph2?: AsphericCoefficients | null;
   } = {}): RuntimeLens {
+    const frontSD = sd1 ?? sd;
+    const rearSD = sd2 ?? sd;
     return {
       ES: [[0, 0, 1]],
       S: [
-        { R: R1, sd, nd, d: 5 },
-        { R: R2, sd, nd: 1.0, d: 10 },
+        { label: "1", R: R1, sd: frontSD, nd, d: 5 },
+        { label: "2", R: R2, sd: rearSD, nd: 1.0, d: 10 },
       ],
       asphByIdx: { 0: asph1, 1: asph2 },
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 2,
     } as unknown as RuntimeLens;
@@ -241,15 +264,16 @@ describe("computeElementShapes", () => {
         [2, 4, 5],
       ],
       S: [
-        { R: 50, sd: 15, nd: 1.5, d: 3 },
-        { R: -80, sd: 15, nd: 1.0, d: 2 },
-        { R: 30, sd: 12, nd: 1.7, d: 4 },
-        { R: -40, sd: 12, nd: 1.0, d: 2 },
-        { R: 60, sd: 10, nd: 1.5, d: 3 },
-        { R: 1e15, sd: 10, nd: 1.0, d: 50 },
+        { label: "1", R: 50, sd: 15, nd: 1.5, d: 3 },
+        { label: "2", R: -80, sd: 15, nd: 1.0, d: 2 },
+        { label: "3", R: 30, sd: 12, nd: 1.7, d: 4 },
+        { label: "4", R: -40, sd: 12, nd: 1.0, d: 2 },
+        { label: "5", R: 60, sd: 10, nd: 1.5, d: 3 },
+        { label: "6", R: 1e15, sd: 10, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 6,
     } as unknown as RuntimeLens;
@@ -272,13 +296,14 @@ describe("computeElementShapes", () => {
         [1, 2, 3],
       ],
       S: [
-        { R: 1e15, sd: 12, nd: 1.5, d: 3 },
-        { R: 15, sd: 12, nd: 1.0, d: 0.5 }, // tight gap, positive-sag rear
-        { R: 1e15, sd: 12, nd: 1.5, d: 3 },
-        { R: 1e15, sd: 12, nd: 1.0, d: 50 },
+        { label: "1", R: 1e15, sd: 12, nd: 1.5, d: 3 },
+        { label: "2", R: 15, sd: 12, nd: 1.0, d: 0.5 }, // tight gap, positive-sag rear
+        { label: "3", R: 1e15, sd: 12, nd: 1.5, d: 3 },
+        { label: "4", R: 1e15, sd: 12, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
     } as unknown as RuntimeLens;
@@ -298,13 +323,14 @@ describe("computeElementShapes", () => {
         [1, 2, 3],
       ],
       S: [
-        { R: 1e15, sd: 12, nd: 1.5, d: 3 },
-        { R: 1e15, sd: 12, nd: 1.0, d: 0.5 }, // tight gap
-        { R: -15, sd: 12, nd: 1.5, d: 3 }, // negative-sag front
-        { R: 1e15, sd: 12, nd: 1.0, d: 50 },
+        { label: "1", R: 1e15, sd: 12, nd: 1.5, d: 3 },
+        { label: "2", R: 1e15, sd: 12, nd: 1.0, d: 0.5 }, // tight gap
+        { label: "3", R: -15, sd: 12, nd: 1.5, d: 3 }, // negative-sag front
+        { label: "4", R: 1e15, sd: 12, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
     } as unknown as RuntimeLens;
@@ -325,15 +351,16 @@ describe("computeElementShapes", () => {
         [2, 4, 5],
       ],
       S: [
-        { R: 50, sd: 12, nd: 1.5, d: 3 },
-        { R: -50, sd: 12, nd: 1.0, d: 0.3 }, // narrow gap, air after rear
-        { R: -12, sd: 12, nd: 1.7, d: 4 }, // front with negative sag (curves backward)
-        { R: -40, sd: 12, nd: 1.0, d: 2 },
-        { R: 60, sd: 10, nd: 1.5, d: 3 },
-        { R: 1e15, sd: 10, nd: 1.0, d: 50 },
+        { label: "1", R: 50, sd: 12, nd: 1.5, d: 3 },
+        { label: "2", R: -50, sd: 12, nd: 1.0, d: 0.3 }, // narrow gap, air after rear
+        { label: "3", R: -12, sd: 12, nd: 1.7, d: 4 }, // front with negative sag (curves backward)
+        { label: "4", R: -40, sd: 12, nd: 1.0, d: 2 },
+        { label: "5", R: 60, sd: 10, nd: 1.5, d: 3 },
+        { label: "6", R: 1e15, sd: 10, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 6,
     } as unknown as RuntimeLens;
@@ -356,13 +383,14 @@ describe("computeElementShapes", () => {
         [1, 2, 3],
       ],
       S: [
-        { R: 1e15, sd: 14, nd: 1.5, d: 3 },
-        { R: 12, sd: 14, nd: 1.0, d: 0.3 }, // rear curves forward (positive sag), air gap
-        { R: 40, sd: 14, nd: 1.7, d: 4 }, // next element front (may also curve forward)
-        { R: 1e15, sd: 14, nd: 1.0, d: 50 },
+        { label: "1", R: 1e15, sd: 14, nd: 1.5, d: 3 },
+        { label: "2", R: 12, sd: 14, nd: 1.0, d: 0.3 }, // rear curves forward (positive sag), air gap
+        { label: "3", R: 40, sd: 14, nd: 1.7, d: 4 }, // next element front (may also curve forward)
+        { label: "4", R: 1e15, sd: 14, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
     } as unknown as RuntimeLens;
@@ -382,13 +410,14 @@ describe("computeElementShapes", () => {
         [1, 2, 3],
       ],
       S: [
-        { R: 1e15, sd: 14, nd: 1.5, d: 3 },
-        { R: 12, sd: 14, nd: 1.0, d: 0.3 },
-        { R: 40, sd: 14, nd: 1.7, d: 4 },
-        { R: 1e15, sd: 14, nd: 1.0, d: 50 },
+        { label: "1", R: 1e15, sd: 14, nd: 1.5, d: 3 },
+        { label: "2", R: 12, sd: 14, nd: 1.0, d: 0.3 },
+        { label: "3", R: 40, sd: 14, nd: 1.7, d: 4 },
+        { label: "4", R: 1e15, sd: 14, nd: 1.0, d: 50 },
       ],
       asphByIdx: {},
       maxRimSin: 0.95,
+      maxRimTan,
       gapSagFrac: 0,
       N: 4,
     } as unknown as RuntimeLens;
@@ -398,5 +427,66 @@ describe("computeElementShapes", () => {
     for (const shape of shapes) {
       expect(shape.d).toMatch(/^M.*Z$/);
     }
+  });
+
+  it("samples slope-trimmed surfaces only to the diagnostic render SD", () => {
+    const L = {
+      ...makeSingleElementLens({ R1: 32.975, sd1: 24, R2: 84.15, sd2: 20 }),
+      maxRimTan: 0.95,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 8.01];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const shape = computeElementShapes(L, zPos, sx, sy)[0];
+    const coords = pathCoords(shape.d);
+    const frontCoords = coords.slice(0, SVG_PATH_SUBDIVISIONS + 1);
+
+    expect(diagnostics[0].front.trimCause).toBe("slope");
+    expect(diagnostics[0].front.renderSD).toBeLessThan(24);
+    expect(Math.max(...frontCoords.map(([, y]) => Math.abs(y)))).toBeCloseTo(diagnostics[0].front.renderSD);
+  });
+
+  it("samples gap-trimmed surfaces only to the diagnostic render SD", () => {
+    const L = {
+      ES: [
+        [1, 0, 1],
+        [2, 2, 3],
+      ],
+      S: [
+        { label: "3", R: 27.334, d: 4.319, nd: 1.788, elemId: 1, sd: 21 },
+        { label: "4", R: 42.617, d: 0.2, nd: 1.0, elemId: 0, sd: 18.8 },
+        { label: "5", R: 84.266, d: 2.228, nd: 1.6668, elemId: 2, sd: 17.5 },
+        { label: "6", R: 17.725, d: 7.797, nd: 1.0, elemId: 0, sd: 15.9 },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 4,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 4.319, 4.519, 6.747];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const shape = computeElementShapes(L, zPos, sx, sy)[0];
+    const coords = pathCoords(shape.d);
+    const rearCoords = coords.slice(SVG_PATH_SUBDIVISIONS + 1);
+
+    expect(diagnostics[0].rear.trimCause).toBe("gap");
+    expect(diagnostics[0].rear.renderSD).toBeLessThan(18.8);
+    expect(Math.max(...rearCoords.map(([, y]) => Math.abs(y)))).toBeCloseTo(diagnostics[0].rear.renderSD);
+  });
+
+  it("renders asymmetric front/rear SDs as clean connector edges", () => {
+    const L = makeSingleElementLens({ R1: 80, R2: -120, sd1: 18, sd2: 12 });
+    const zPos = [0, 5];
+    const shape = computeElementShapes(L, zPos, sx, sy)[0];
+    const coords = pathCoords(shape.d);
+    const frontTop = coords[0];
+    const rearTop = coords[coords.length - 1];
+    const frontBottom = coords[SVG_PATH_SUBDIVISIONS];
+    const rearBottom = coords[SVG_PATH_SUBDIVISIONS + 1];
+
+    expect(frontTop[1]).toBeCloseTo(-18);
+    expect(rearTop[1]).toBeCloseTo(-12);
+    expect(frontBottom[1]).toBeCloseTo(18);
+    expect(rearBottom[1]).toBeCloseTo(12);
   });
 });

@@ -254,7 +254,7 @@ const LENS_DATA = {
 
     // ── B2: Variator (L2, L3+L4, L5) ──
     { label: "3", R: 95.769, d: 1.6, nd: 1.8919, elemId: 2, sd: 18.5 },
-    { label: "4", R: 22.455, d: 7.05, nd: 1.0, elemId: 0, sd: 15.5 }, // R4 confirmed; cross-gap limited
+    { label: "4", R: 22.455, d: 7.05, nd: 1.0, elemId: 0, sd: 15.3 }, // R4 confirmed; cross-gap limited
     { label: "5", R: -369.959, d: 1.25, nd: 1.60311, elemId: 3, sd: 15.5 }, // D1 front
     { label: "6", R: 22.126, d: 7.0, nd: 1.90366, elemId: 4, sd: 16.0 }, // D1 junction
     { label: "7", R: 412.508, d: 4.86, nd: 1.0, elemId: 0, sd: 15.5 },

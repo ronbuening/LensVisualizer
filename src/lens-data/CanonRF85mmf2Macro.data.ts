@@ -212,7 +212,7 @@ const LENS_DATA = {
     { label: "12", R: -90.592, d: 2.52, nd: 1.0, elemId: 0, sd: 14.5 }, // L6 rear → air (variable)
     // ── Rear group L2 (negative, fixed during focus) ──
     { label: "13", R: -78.073, d: 1.15, nd: 1.72047, elemId: 7, sd: 13.5 }, // L7 front
-    { label: "14", R: 57.128, d: 0.49, nd: 1.0, elemId: 0, sd: 12.5 }, // L7 rear → air
+    { label: "14", R: 57.128, d: 0.49, nd: 1.0, elemId: 0, sd: 12.0 }, // L7 rear → air
     { label: "15", R: 86.252, d: 2.39, nd: 1.804, elemId: 8, sd: 12.5 }, // L8 front
     { label: "16", R: -333.048, d: 2.22, nd: 1.0, elemId: 0, sd: 13.5 }, // L8 rear → air
     { label: "17", R: -284.806, d: 2.58, nd: 1.92286, elemId: 9, sd: 14.5 }, // L9 front

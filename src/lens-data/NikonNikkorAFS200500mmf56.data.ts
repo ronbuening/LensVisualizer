@@ -316,7 +316,7 @@ const LENS_DATA = {
     // SDs reduced to 17.5 to clear cross-gap sag at S11→S12 (2.0 mm gap)
     { label: "9", R: -188.3876, d: 1.5, nd: 1.51742, elemId: 6, sd: 17.5 },
     { label: "10", R: 46.2336, d: 3.8, nd: 1.80518, elemId: 7, sd: 17.5 },
-    { label: "11", R: 99.3055, d: 2.0, nd: 1.0, elemId: 0, sd: 17.5 },
+    { label: "11", R: 99.3055, d: 2.0, nd: 1.0, elemId: 0, sd: 16.9 },
     { label: "12", R: -411.8858, d: 1.7, nd: 1.7433, elemId: 8, sd: 17.5 },
     { label: "13", R: 143.7588, d: 3.0, nd: 1.0, elemId: 0, sd: 17.5 },
 

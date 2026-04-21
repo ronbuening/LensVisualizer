@@ -314,7 +314,7 @@ const LENS_DATA = {
     { label: "1A", R: 64.361, d: 3.0, nd: 1.7669, elemId: 1, sd: 20.0 },
     { label: "2A", R: 14.627, d: 11.25, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "3", R: -118.914, d: 1.55, nd: 1.883, elemId: 2, sd: 20.0 },
-    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "4", R: 261.338, d: 2.85, nd: 1.0, elemId: 0, sd: 15.4 },
     { label: "5", R: -57.268, d: 1.5, nd: 1.883, elemId: 3, sd: 17.0 },
     { label: "6", R: 52.742, d: 0.4, nd: 1.55389, elemId: 4, sd: 17.0 },
     { label: "7A", R: 96.287, d: 1.5, nd: 1.0, elemId: 0, sd: 14.0 },

@@ -115,9 +115,14 @@ const LENS_DATA = {
    *       under the 64° threshold.  (Validated via sagSlopeRaw)
    *    4. Cross-gap overlap: For each air gap, the validator computes:
    *         intrusion = sag(sdCheck, rearSurface.R) − sag(sdCheck, nextFront.R)
-   *       where sdCheck = min(element1_min_sd, element2_min_sd).  Fails if
-   *       intrusion > gap × 1.1.  This is often the binding constraint for thin air
-   *       gaps between strongly curved surfaces.  (Validated)
+   *       where sdCheck = min(rearSurface.sd, nextFront.sd), i.e. the two boundary
+   *       surfaces that actually face each other in the SVG.  Fails if intrusion >
+   *       gapSagFrac × gap; the default allows 90% of the air gap, preserving
+   *       visible clearance instead of accepting mathematical rim contact.
+   *       This is often the binding constraint for thin air gaps between strongly
+   *       curved surfaces.  The renderer uses the same combined-intrusion policy;
+   *       it should not need hidden trim for production lenses.  (Validated +
+   *       covered by production render diagnostics)
    *    5. Conic height limit: For aspherical surfaces with K > 0, sd must not exceed
    *       0.98 × |R| / √(1+K).  Beyond this height the conic sag discriminant goes
    *       negative, producing a sag curve discontinuity.  (Validated)
@@ -129,6 +134,9 @@ const LENS_DATA = {
    *       that off-axis ray bundles (at offAxisFieldFrac × half-field) clip at element
    *       edges or air gaps — never inside cemented groups.  Thick elements amplify
    *       off-axis beam divergence and may need tighter upstream SDs.
+   *    9. Hidden render trim: If `computeElementRenderDiagnostics()` reports >0.25 mm
+   *       trim for a production lens, reduce the relevant SD or document and test an
+   *       intentional exception.  Renderer-only clipping can create artificial "wings".
    *
    *  Sign conventions:
    *    R > 0  →  center of curvature to the RIGHT of the surface
@@ -285,7 +293,7 @@ const LENS_DATA = {
    *  yScFill  (0–1)  Vertical fill fraction (no default — must be specified per lens)
    *
    *  Other overridable defaults (usually fine as-is):
-   *    svgW: 1080, svgH: 490, clipMargin: 1.0, maxRimAngleDeg: 40,
+   *    svgW: 1080, svgH: 490, clipMargin: 1.0, maxRimAngleDeg: ~64.2,
    *    gapSagFrac: 0.90, maxAspectRatio: 1.6,
    *    focusStep: 0.004, apertureStep: 0.004, maxFstop: 16,
    *    rayFractions: [-0.83, -0.50, -0.17, 0.17, 0.50, 0.83],

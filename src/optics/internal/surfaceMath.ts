@@ -1,6 +1,8 @@
 import type { AsphericCoefficients } from "../../types/optics.js";
 
 export const FLAT_R_THRESHOLD = 1e10;
+export const MAX_RIM_SLOPE_TAN = 0.9 / Math.sqrt(1 - 0.9 ** 2);
+export const DEFAULT_MAX_RIM_ANGLE_DEG = (Math.atan(MAX_RIM_SLOPE_TAN) * 180) / Math.PI;
 
 export function sag(h: number, R: number): number {
   if (Math.abs(R) > FLAT_R_THRESHOLD) return 0;

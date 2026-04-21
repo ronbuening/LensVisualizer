@@ -192,7 +192,7 @@ const LENS_DATA = {
     // D1: L12 (biconvex) + L13 (biconcave), cemented
     { label: "3", R: 4.073, d: 0.258, nd: 1.95375, elemId: 2, sd: 0.48 },
     { label: "4", R: -2.029, d: 0.083, nd: 1.60342, elemId: 3, sd: 0.48 },
-    { label: "5", R: 3.2358, d: 0.108, nd: 1.0, elemId: 0, sd: 0.462 },
+    { label: "5", R: 3.2358, d: 0.108, nd: 1.0, elemId: 0, sd: 0.4 },
 
     // D2: L14 (biconcave) + L15 (biconvex equi-convex), cemented
     // SD trimmed from the rough estimate so the very tight D1→D2 gap clears

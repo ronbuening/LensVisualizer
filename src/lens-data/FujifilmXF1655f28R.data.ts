@@ -361,7 +361,7 @@ const LENS_DATA = {
 
     // G4 — negative focus group
     { label: "24", R: 1e15, d: 0.8, nd: 1.618, elemId: 14, sd: 10.1 }, // 24  L41 front (plano)
-    { label: "25", R: 22.13057, d: 2.05, nd: 1.0, elemId: 0, sd: 9.7 }, // 25  L41 rear → air
+    { label: "25", R: 22.13057, d: 2.05, nd: 1.0, elemId: 0, sd: 8.8 }, // 25  L41 rear → air
     { label: "26", R: 1e15, d: 0.81, nd: 1.84666, elemId: 15, sd: 9.7 }, // 26  L42 front (plano)
     { label: "27", R: 45.984, d: 2.54, nd: 1.497, elemId: 16, sd: 10.0 }, // 27  L42/L43 cement
     { label: "28", R: -121.37904, d: 2.6, nd: 1.0, elemId: 0, sd: 10.2 }, // 28  L43 rear → DD28

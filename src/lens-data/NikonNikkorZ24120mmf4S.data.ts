@@ -293,7 +293,7 @@ const LENS_DATA = {
     { label: "6", R: -67.187, d: 1.5, nd: 1.834, elemId: 4, sd: 14.0 },
     { label: "7", R: 139.906, d: 0.23, nd: 1.0, elemId: 0, sd: 14.2 },
     { label: "8", R: 60.17, d: 4.73, nd: 1.85451, elemId: 5, sd: 13.8 },
-    { label: "9", R: -60.17, d: 1.96, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "9", R: -60.17, d: 1.96, nd: 1.0, elemId: 0, sd: 12.5 },
     { label: "10", R: -27.165, d: 1.1, nd: 1.49782, elemId: 6, sd: 13.5 },
     { label: "11", R: -128.171, d: 24.145, nd: 1.0, elemId: 0, sd: 14.7 },
 

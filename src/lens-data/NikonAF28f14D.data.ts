@@ -15,7 +15,8 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Not listed in patent. Estimated via paraxial marginal + chief  ║
  * ║    ray trace (H=10.1mm EP, ω=37.7°) with ~30% off-axis           ║
  * ║    vignetting typical of f/1.4 wide-angle designs.  Clamped to   ║
- * ║    sd < 0.9×|R| and front/rear ratio ≤ 1.25.                     ║
+ * ║    the shared rim-slope limit and front/rear ratio ≤ 1.25; local ║
+ * ║    SDs reduced where cross-gap diagnostics showed hidden trim.    ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Patent does not specify stop as a separate surface. Position   ║
@@ -209,7 +210,7 @@ const LENS_DATA = {
     { label: "4", R: -164.124, d: 0.1, nd: 1.0, elemId: 0, sd: 22.0 }, // L2 rear → air
     { label: "5", R: 87.119, d: 1.5, nd: 1.48749, elemId: 3, sd: 22.0 }, // L3 front
     { label: "6", R: 23.125, d: 7.9, nd: 1.0, elemId: 0, sd: 20.5 }, // L3 rear → air
-    { label: "7", R: -49.577, d: 9.0, nd: 1.5186, elemId: 4, sd: 17.5 }, // L4a front
+    { label: "7", R: -49.577, d: 9.0, nd: 1.5186, elemId: 4, sd: 14.3 }, // L4a front
     { label: "8", R: -15.69, d: 1.5, nd: 1.51454, elemId: 5, sd: 14.0 }, // L4a→L4b junction
     { label: "9", R: 462.539, d: 0.2, nd: 1.0, elemId: 0, sd: 15.0 }, // L4b rear → air
     { label: "10", R: 33.228, d: 9.0, nd: 1.80411, elemId: 6, sd: 18.0 }, // L5 front

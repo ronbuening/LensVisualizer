@@ -219,7 +219,7 @@ const LENS_DATA = {
     // L2b + L2c — Cemented doublet D2
     { label: "17", R: 49.66071, d: 6.45, nd: 1.883, elemId: 9, sd: 15.0 },
     { label: "18", R: -32.522, d: 1.21, nd: 1.69895, elemId: 10, sd: 15.0 },
-    { label: "19", R: 32.522, d: 0.82, nd: 1.0, elemId: 0, sd: 14.5 },
+    { label: "19", R: 32.522, d: 0.82, nd: 1.0, elemId: 0, sd: 13.6 },
     // L2d + L2e — Cemented doublet D3
     { label: "20", R: 42.22428, d: 8.8, nd: 1.883, elemId: 11, sd: 16.0 },
     { label: "21", R: -28.754, d: 1.21, nd: 1.62005, elemId: 12, sd: 16.0 },

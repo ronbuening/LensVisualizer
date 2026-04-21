@@ -314,10 +314,10 @@ const LENS_DATA = {
     /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
     { label: "7", R: 236.0277, d: 1.25, nd: 1.95375, elemId: 4, sd: 17.5 },
     { label: "8", R: 19.0394, d: 5.0675, nd: 1.0, elemId: 0, sd: 11.6 },
-    { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 11.4 },
+    { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 10.7 },
     { label: "10", R: 68.1612, d: 0.4169, nd: 1.0, elemId: 0, sd: 11.4 },
     { label: "11", R: 37.121, d: 3.384, nd: 1.92286, elemId: 6, sd: 9.6 },
-    { label: "12", R: -52.558, d: 0.5124, nd: 1.0, elemId: 0, sd: 9.6 },
+    { label: "12", R: -52.558, d: 0.5124, nd: 1.0, elemId: 0, sd: 8.8 },
     { label: "13", R: -32.9357, d: 1.0, nd: 1.816, elemId: 7, sd: 11.0 },
     { label: "14", R: 416.8076, d: 18.83905, nd: 1.0, elemId: 0, sd: 11.0 }, // D2 — zoom only
 
@@ -344,7 +344,7 @@ const LENS_DATA = {
     /* ── G5: Focus Group (L51+L52) ── */
     { label: "29", R: 1365.4927, d: 3.0634, nd: 1.84666, elemId: 16, sd: 13.7 }, // L51 front
     { label: "30", R: -35.3251, d: 1.0, nd: 1.85135, elemId: 17, sd: 13.7 }, // L51→L52 junction
-    { label: "31A", R: 32.6144, d: 10.05055, nd: 1.0, elemId: 0, sd: 13.7 }, // L52 rear (asph) → air, D5
+    { label: "31A", R: 32.6144, d: 10.05055, nd: 1.0, elemId: 0, sd: 13.1 }, // L52 rear (asph) → air, D5
 
     /* ── G6: Rear Field Corrector (L61, L62) ── */
     { label: "32", R: -16.9998, d: 1.4, nd: 1.8208, elemId: 18, sd: 15.2 },
