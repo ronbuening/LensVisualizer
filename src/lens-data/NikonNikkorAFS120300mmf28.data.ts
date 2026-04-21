@@ -393,10 +393,10 @@ const LENS_DATA = {
     { label: "7", R: 1981.8668, d: 12.972, nd: 1.0, elemId: 0, sd: 35.0 }, // L21 rear → air
     { label: "8", R: 275.6157, d: 4.7, nd: 1.71736, elemId: 5, sd: 30.0 }, // L22 front
     { label: "9", R: -275.46, d: 2.85, nd: 1.6968, elemId: 6, sd: 29.0 }, // L22–L23 junction
-    { label: "10", R: 109.0902, d: 3.124, nd: 1.0, elemId: 0, sd: 25.0 }, // L23 rear → air
+    { label: "10", R: 109.0902, d: 3.124, nd: 1.0, elemId: 0, sd: 23.9 }, // L23 rear → air
     { label: "11", R: -1986.3568, d: 2.65, nd: 1.804, elemId: 7, sd: 25.0 }, // L24 front
     { label: "12", R: 57.14, d: 3.7, nd: 1.75575, elemId: 8, sd: 25.0 }, // L24–L25 junction
-    { label: "13", R: 86.0604, d: 6.757, nd: 1.0, elemId: 0, sd: 23.5 }, // L25 rear → air
+    { label: "13", R: 86.0604, d: 6.757, nd: 1.0, elemId: 0, sd: 22.5 }, // L25 rear → air
     { label: "14", R: -84.2865, d: 2.5, nd: 1.870705, elemId: 9, sd: 23.5 }, // L26 front
     { label: "15", R: -651.8818, d: 62.916, nd: 1.0, elemId: 0, sd: 23.5 }, // L26 rear → air (D2)
     // G3 — Relay (positive, fixed)

@@ -208,7 +208,7 @@ const LENS_DATA = {
   surfaces: [
     // ── Group 1 (G1): Fixed front group, positive power ──
     { label: "1", R: 68.8358, d: 1.3514, nd: 1.8044, elemId: 1, sd: 14.5 }, // L1 front
-    { label: "2A", R: 25.1596, d: 3.1598, nd: 1.0, elemId: 0, sd: 14.5 }, // L1 rear (asph) → air
+    { label: "2A", R: 25.1596, d: 3.1598, nd: 1.0, elemId: 0, sd: 14.3 }, // L1 rear (asph) → air
     { label: "3", R: 50.568, d: 3.089, nd: 1.63854, elemId: 2, sd: 14.5 }, // L2 front
     { label: "4", R: 726.7885, d: 0.0997, nd: 1.0, elemId: 0, sd: 14.5 }, // L2 rear → air
     { label: "5", R: 61.6542, d: 2.8959, nd: 1.834807, elemId: 3, sd: 14.5 }, // L3 front
@@ -216,7 +216,7 @@ const LENS_DATA = {
 
     // ── Group 2 (G2): Focusing group, moves toward image ──
     { label: "7", R: 114.0007, d: 1.2549, nd: 1.51612, elemId: 4, sd: 10.5 }, // L4 front
-    { label: "8A", R: 21.4584, d: 5.2, nd: 1.0, elemId: 0, sd: 10.5 }, // L4 rear (asph) → air
+    { label: "8A", R: 21.4584, d: 5.2, nd: 1.0, elemId: 0, sd: 10.0 }, // L4 rear (asph) → air
     { label: "9", R: -25.9781, d: 1.8341, nd: 1.62004, elemId: 5, sd: 12.0 }, // L5 front (cemented D2a)
     { label: "10", R: 45.0791, d: 6.2262, nd: 1.883, elemId: 6, sd: 12.0 }, // L5→L6 junction — elemId: 6
     { label: "11", R: -31.6859, d: 12.29619, nd: 1.0, elemId: 0, sd: 12.0 }, // L6 rear → air (var: G2→Stop)
@@ -233,7 +233,7 @@ const LENS_DATA = {
 
     // ── Group 4 (G4): Fixed rear group, negative power ──
     { label: "18", R: 202.8956, d: 1.1584, nd: 1.80518, elemId: 10, sd: 11.5 }, // L10 front
-    { label: "19", R: 30.8234, d: 1.641, nd: 1.0, elemId: 0, sd: 11.5 }, // L10 rear → air
+    { label: "19", R: 30.8234, d: 1.641, nd: 1.0, elemId: 0, sd: 11.4 }, // L10 rear → air
     { label: "20", R: 90.5377, d: 1.2549, nd: 1.801, elemId: 11, sd: 11.5 }, // L11 front (cemented D4a)
     { label: "21", R: 18.9814, d: 5.9849, nd: 1.84666, elemId: 12, sd: 11.5 }, // L11→L12 junction — elemId: 12
     { label: "22", R: 242.9593, d: 37.45, nd: 1.0, elemId: 0, sd: 11.5 }, // L12 rear → BFD

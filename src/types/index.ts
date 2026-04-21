@@ -19,6 +19,9 @@ export type {
   CoordinateTransforms,
   AsphPathData,
   ElementShape,
+  ElementRenderTrimCause,
+  SurfaceRenderDiagnostics,
+  ElementRenderDiagnostics,
 } from "./optics.js";
 
 export type {

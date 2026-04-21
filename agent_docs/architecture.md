@@ -141,8 +141,8 @@
 |--------|----------|---------|
 | `optics.ts` | `src/optics/` | Ray tracing, skew-ray pupil sampling (monochromatic and chromatic), sag curves, chromatic, layout geometry, chief ray solver (30-iter bisection, 1° cutoff), `slopeTrimHeight()` for aspherically-aware rendering trim |
 | `buildLens.ts` | `src/optics/` | Lens construction, EFL/pupil/field computation (40-iter real-ray half-field bisection) |
-| `validateLensData.ts` | `src/optics/` | Schema validation: slope-based rim check (64.2° threshold via `sagSlopeRaw`), element SD ratio (≤3.0 sanity), edge thickness, cross-gap overlap, conic h_max |
-| `diagramGeometry.ts` | `src/optics/` | Coordinate transforms and per-surface-SD element shape computation with aspherically-aware slope trim |
+| `validateLensData.ts` | `src/optics/` | Schema validation: slope-based rim check (~64.2° threshold via `sagSlopeRaw`), element SD ratio (≤3.0 sanity), edge thickness, boundary-surface cross-gap overlap, conic h_max |
+| `diagramGeometry.ts` | `src/optics/` | Coordinate transforms, shared element render diagnostics, and per-surface-SD element shape computation using the same rim and boundary-surface cross-gap policy as validation |
 | `lcaScaling.ts` | `src/optics/` | Fixed-reference LCA bar offset computation (anchored to REFERENCE_LCA_MM = 0.15 mm) |
 | `aberrationAnalysis.ts` | `src/optics/` | Public aberration-analysis entry point that re-exports the decomposed internal helpers |
 | `aberration/` | `src/optics/aberration/` | Internal aberration modules for shared ray sampling/types plus spherical aberration, meridional and sagittal coma, chromatic field curvature, field-curvature/astigmatism computations, and bokeh preview (defocused point-source density heatmaps with vignetting and SA effects) |
@@ -353,13 +353,14 @@ Pure-function bokeh preview computation. Traces 337-ray circular pupil bundles t
 
 ## validateLensData.ts
 
-Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, surface sd/|R| ratio, cross-gap surface overlap, conic height limits, and zoom lens fields (`zoomPositions` monotonicity, polymorphic `var` format). Returns an array of error strings (empty = valid).
+Pure validation function that checks all required fields, surface label uniqueness, element ID references, asph/var/group/doublet references, STO surface presence, element edge thickness (surface crossing detection), element SD consistency, slope-based rim limits, boundary-surface cross-gap overlap, conic height limits, and zoom lens fields (`zoomPositions` monotonicity, polymorphic `var` format). Returns an array of error strings (empty = valid).
 
 ## diagramGeometry.ts
 
 Pure-function utilities extracted from LensDiagramPanel for testability:
 - **`createCoordinateTransforms()`** — Builds optical mm → SVG pixel mapping functions (`sx`, `sy`, `clampedRayEnd`) from viewport and scale parameters. Handles normalized comparison scaling via `scaleRatio`.
-- **`computeElementShapes()`** — Builds closed SVG path strings for each glass element with front/rear surface trimming (prevents visual overlap into neighboring air gaps) and aspheric overlay paths. Clamps surfaces to conic height limits when K > 0.
+- **`computeElementRenderDiagnostics()`** — Reports declared SD, rendered SD, trim amount, and trim cause (`slope`, `gap`, `conic-limit`) for each element surface. Gap checks compare the actual adjacent boundary surfaces, matching validation. Production tests treat material hidden trim as a data-quality failure.
+- **`computeElementShapes()`** — Builds closed SVG path strings for each glass element using the diagnostic render SDs, plus aspheric overlay paths. This prevents renderer clipping from emitting artificial vertical edge wings.
 
 No React dependencies — fully testable in isolation.
 

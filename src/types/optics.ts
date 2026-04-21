@@ -277,3 +277,20 @@ export interface ElementShape {
   z2: number;
   asphPaths: AsphPathData[];
 }
+
+export type ElementRenderTrimCause = "none" | "slope" | "gap" | "conic-limit";
+
+export interface SurfaceRenderDiagnostics {
+  surfaceIndex: number;
+  surfaceLabel: string;
+  declaredSD: number;
+  renderSD: number;
+  trimAmount: number;
+  trimCause: ElementRenderTrimCause;
+}
+
+export interface ElementRenderDiagnostics {
+  eid: number;
+  front: SurfaceRenderDiagnostics;
+  rear: SurfaceRenderDiagnostics;
+}

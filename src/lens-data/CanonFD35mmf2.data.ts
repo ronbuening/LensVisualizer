@@ -140,7 +140,7 @@ const LENS_DATA = {
     { label: "1", R: -202.16, d: 3.41, nd: 1.697, elemId: 1, sd: 20.5 },
     { label: "2", R: -113.09, d: 0.1, nd: 1.0, elemId: 0, sd: 19.5 },
     { label: "3", R: 63.56, d: 1.46, nd: 1.51633, elemId: 2, sd: 19.0 },
-    { label: "4", R: 17.304, d: 12.12, nd: 1.0, elemId: 0, sd: 15.4 },
+    { label: "4", R: 17.304, d: 12.12, nd: 1.0, elemId: 0, sd: 14.4 },
     // ---- Group II₁ (rear-front positive) ----
     { label: "5", R: -34.12, d: 3.4, nd: 1.70154, elemId: 3, sd: 16.5 },
     { label: "6", R: -37.87, d: 0.1, nd: 1.0, elemId: 0, sd: 16.5 },
@@ -152,7 +152,7 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 2.97, nd: 1.0, elemId: 0, sd: 9.6 },
     // ---- Group II₂ (rear-back positive) ----
     { label: "11", R: -135.7, d: 0.98, nd: 1.76182, elemId: 6, sd: 11.0 },
-    { label: "12", R: 29.939, d: 3.17, nd: 1.0, elemId: 0, sd: 10.5 },
+    { label: "12", R: 29.939, d: 3.17, nd: 1.0, elemId: 0, sd: 9.8 },
     { label: "13", R: -40.95, d: 0.98, nd: 1.80518, elemId: 7, sd: 12.8 },
     { label: "14", R: 488.6, d: 4.29, nd: 1.7737, elemId: 8, sd: 12.8 },
     { label: "15", R: -24.46, d: 0.1, nd: 1.0, elemId: 0, sd: 14.5 },

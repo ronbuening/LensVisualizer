@@ -322,11 +322,11 @@ const LENS_DATA = {
     // ── G2: Variator (negative, f = −40.6 mm) — moves during zoom ──
     { label: "6", R: 58.77, d: 1.9, nd: 1.603, elemId: 4, sd: 24.0 }, // L21 front
     { label: "7", R: 31.87745, d: 10.3, nd: 1.0, elemId: 0, sd: 23.0 }, // L21 rear → air
-    { label: "8", R: -186.53352, d: 1.6, nd: 1.49782, elemId: 5, sd: 22.0 }, // L22 front (ED)
+    { label: "8", R: -186.53352, d: 1.6, nd: 1.49782, elemId: 5, sd: 21.1 }, // L22 front (ED)
     { label: "9", R: 105.34866, d: 0.8, nd: 1.0, elemId: 0, sd: 21.5 }, // L22 rear → air
     { label: "10", R: 41.08366, d: 3.7, nd: 1.66382, elemId: 6, sd: 21.0 }, // L23 front (SR)
     { label: "11", R: 64.00891, d: 5.5, nd: 1.0, elemId: 0, sd: 20.5 }, // L23 rear → air
-    { label: "12", R: -71.62319, d: 1.9, nd: 1.49782, elemId: 7, sd: 20.0 }, // L24 front (ED)
+    { label: "12", R: -71.62319, d: 1.9, nd: 1.49782, elemId: 7, sd: 18.1 }, // L24 front (ED)
     { label: "13", R: 88.67881, d: 37.80333, nd: 1.0, elemId: 0, sd: 19.5 }, // L24 rear → air [VAR zoom]
 
     // ── G3: Compensator (positive, f = +110.7 mm) — moves during zoom ──

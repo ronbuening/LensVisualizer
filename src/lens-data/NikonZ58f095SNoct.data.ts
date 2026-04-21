@@ -266,7 +266,7 @@ const LENS_DATA = {
     // ── G1 (front corrector, negative): doublet Da (L11+L12), doublet Db (L13+L14) ──
     { label: "1A", R: 108.488, d: 7.65, nd: 1.90265, elemId: 1, sd: 31.9 }, // L11 front [asph]
     { label: "2", R: -848.55, d: 2.8, nd: 1.552981, elemId: 2, sd: 30.9 }, // L11→L12 junction
-    { label: "3", R: 50.252, d: 18.12, nd: 1.0, elemId: 0, sd: 30.4 }, // L12 rear → air
+    { label: "3", R: 50.252, d: 18.12, nd: 1.0, elemId: 0, sd: 28.7 }, // L12 rear → air
     { label: "4", R: -60.72, d: 2.8, nd: 1.61266, elemId: 3, sd: 31.4 }, // L13 front
     { label: "5", R: 2497.5, d: 9.15, nd: 1.59319, elemId: 4, sd: 32.0 }, // L13→L14 junction
     { label: "6", R: -77.239, d: 0.4, nd: 1.0, elemId: 0, sd: 34.2 }, // L14 rear → air

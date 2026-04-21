@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import validateLensData from "../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
+import { MAX_RIM_SLOPE_TAN } from "../src/optics/internal/surfaceMath.js";
 
 function makeValid(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
@@ -57,6 +58,13 @@ describe("validateLensData", () => {
     delete data.nominalFno;
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes('"nominalFno"'))).toBe(true);
+  });
+
+  it("rejects gapSagFrac values that would allow visible overlap", () => {
+    const errors = validateLensData(makeValid({ gapSagFrac: 1.1 }));
+
+    expect(LENS_DEFAULTS.gapSagFrac).toBe(0.9);
+    expect(errors.some((e) => e.includes('"gapSagFrac"'))).toBe(true);
   });
 
   it("catches missing required arrays", () => {
@@ -442,6 +450,25 @@ describe("validateLensData — zoom lens paths", () => {
     expect(errors.some((e) => e.includes('Air gap "STO"→"2"') && e.includes("zoom position 1"))).toBe(true);
   });
 
+  it("checks cross-gap overlap at the actual adjacent boundary surface SDs", () => {
+    const data = makeValid({
+      elements: [
+        { id: 1, name: "L1", label: "E1", type: "test", nd: 1.6, vd: 50 },
+        { id: 2, name: "L2", label: "E2", type: "test", nd: 1.6, vd: 50 },
+      ],
+      surfaces: [
+        { label: "1", R: 1e15, d: 5, nd: 1.6, elemId: 1, sd: 5 },
+        { label: "2", R: 20, d: 2, nd: 1.0, elemId: 0, sd: 10 },
+        { label: "3", R: -20, d: 5, nd: 1.6, elemId: 2, sd: 10 },
+        { label: "4", R: 1e15, d: 40, nd: 1.0, elemId: 0, sd: 5 },
+      ],
+    });
+
+    const errors = validateLensData(data);
+
+    expect(errors.some((e) => e.includes('Air gap "2"→"3"'))).toBe(true);
+  });
+
   it("catches invalid zoomStep", () => {
     const data = makeValid({ zoomStep: -0.1 });
     const errors = validateLensData(data);
@@ -588,6 +615,10 @@ describe("validateLensData — conic h_max", () => {
  * ═══════════════════════════════════════════════════════════════════ */
 
 describe("validateLensData — rim slope check", () => {
+  it("keeps the renderer default rim angle synchronized with validation", () => {
+    expect(Math.tan(((LENS_DEFAULTS.maxRimAngleDeg as number) * Math.PI) / 180)).toBeCloseTo(MAX_RIM_SLOPE_TAN);
+  });
+
   it("catches high slope on spherical surface (sd/|R| = 0.92)", () => {
     /* Spherical surface: R=20, sd=18.4 → sd/|R|=0.92.
      * Slope = 0.92/√(1−0.92²) = 0.92/0.392 = 2.347, angle ≈ 66.9° > 64.2° */

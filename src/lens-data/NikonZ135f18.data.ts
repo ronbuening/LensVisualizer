@@ -297,7 +297,7 @@ const LENS_DATA = {
     { label: "26", R: -542.5119, d: 2.1, nd: 1.7859, elemId: 14, sd: 24.0 }, // L14 front
     { label: "27", R: 62.2755, d: 1.0, nd: 1.0, elemId: 0, sd: 24.0 }, // L14 rear → air
     { label: "28", R: 51.4253, d: 5.3074, nd: 1.84666, elemId: 15, sd: 24.0 }, // L15 front
-    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 21.0 }, // L15 rear → air
+    { label: "29", R: 162.7875, d: 4.3017, nd: 1.0, elemId: 0, sd: 19.3 }, // L15 rear → air
     { label: "30", R: -70.4474, d: 2.1, nd: 1.816, elemId: 16, sd: 25.0 }, // L16 front
     { label: "31", R: -2372.9554, d: 14.4393, nd: 1.0, elemId: 0, sd: 25.0 }, // L16 rear → image (BFD incl. filter)
   ],

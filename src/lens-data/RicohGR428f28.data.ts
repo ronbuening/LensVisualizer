@@ -150,7 +150,7 @@ const LENS_DATA = {
     //                                                                         ┌─ G1 ─────────────────────────────
     { label: "1", R: 13.353, d: 0.7, nd: 1.68948, elemId: 1, sd: 7.8 }, // L11 front (spherical)
     { label: "2A", R: 11.258, d: 2.4, nd: 1.0, elemId: 0, sd: 6.2 }, // L11 rear → air (aspherical)
-    { label: "3", R: -17.988, d: 0.65, nd: 1.5927, elemId: 2, sd: 5.5 }, // L12 front
+    { label: "3", R: -17.988, d: 0.65, nd: 1.5927, elemId: 2, sd: 5.0 }, // L12 front
     { label: "4", R: 7.957, d: 2.64, nd: 1.883, elemId: 3, sd: 5.2 }, // L12→L13 junction — elemId: L13
     { label: "5", R: -29.283, d: 1.14, nd: 1.0, elemId: 0, sd: 4.3 }, // L13 rear → air
     //                                                                         └─ G1 ─────────────────────────────
@@ -158,7 +158,7 @@ const LENS_DATA = {
     //                                                                         ┌─ G2 ─────────────────────────────
     { label: "7", R: 16.939, d: 2.6, nd: 1.883, elemId: 4, sd: 4.0 }, // L21 front
     { label: "8", R: -9.407, d: 0.5, nd: 1.69895, elemId: 5, sd: 4.6 }, // L21→L22 junction — elemId: L22
-    { label: "9", R: 17.906, d: 1.55, nd: 1.0, elemId: 0, sd: 4.8 }, // L22 rear → air
+    { label: "9", R: 17.906, d: 1.55, nd: 1.0, elemId: 0, sd: 4.6 }, // L22 rear → air
     { label: "10A", R: -15.696, d: 1.35, nd: 1.76802, elemId: 6, sd: 5.8 }, // L23 front (aspherical)
     { label: "11A", R: -13.531, d: 3.1, nd: 1.0, elemId: 0, sd: 6.5 }, // L23 rear → air (aspherical) — D23 gap
     //                                                                         └─ G2 ─────────────────────────────

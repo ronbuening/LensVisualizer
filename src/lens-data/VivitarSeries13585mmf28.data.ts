@@ -229,7 +229,7 @@ const LENS_DATA = {
     // ── Group II (L4–L5 cemented) — moves during zoom ──
     { label: "7", R: 140.19, d: 3.1, nd: 1.847, elemId: 4, sd: 10.5 }, // L4 front
     { label: "8", R: -60.45, d: 1.1, nd: 1.834, elemId: 5, sd: 10.5 }, // L4→L5 junction
-    { label: "9", R: 17.98, d: 15.94, nd: 1.0, elemId: 0, sd: 10.5 }, // L5 rear → air — var gap (2)
+    { label: "9", R: 17.98, d: 15.94, nd: 1.0, elemId: 0, sd: 8.5 }, // L5 rear → air — var gap (2)
 
     // ── Group III (L6–L7 cemented) — moves during zoom ──
     { label: "10", R: -16.56, d: 1.0, nd: 1.498, elemId: 6, sd: 10.5 }, // L6 front

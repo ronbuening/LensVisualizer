@@ -209,7 +209,7 @@ const LENS_DATA = {
     { label: "5A", R: 65.353, d: 3.846, nd: 1.51742, elemId: 3, sd: 25.7 }, // L3 front (asph)
     { label: "6", R: 39.016, d: 7.501, nd: 1.883, elemId: 4, sd: 21.8 }, // L3/L4 junction
     { label: "7", R: 140.162, d: 1.25, nd: 1.0, elemId: 0, sd: 21.8 }, // L4 rear → air
-    { label: "8", R: 546.837, d: 2.595, nd: 1.51742, elemId: 5, sd: 21.2 }, // L5 front
+    { label: "8", R: 546.837, d: 2.595, nd: 1.51742, elemId: 5, sd: 20.5 }, // L5 front
     { label: "9", R: 25.634, d: 8.941, nd: 1.0, elemId: 0, sd: 20.2 }, // L5 rear → air
     { label: "STO", R: 1e15, d: 8.941, nd: 1.0, elemId: 0, sd: 17.4 }, // Aperture stop
     { label: "10", R: -24.444, d: 1.93, nd: 1.84666, elemId: 6, sd: 17.4 }, // L6 front

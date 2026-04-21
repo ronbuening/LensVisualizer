@@ -271,7 +271,7 @@ const LENS_DATA = {
     // L35+L36 cemented doublet (lanthanum flint + lanthanum heavy flint)
     { label: "19", R: -74.139, d: 1.6, nd: 1.72047, elemId: 11, sd: 16.6 },
     { label: "20", R: 23.5612, d: 8.119, nd: 1.76684, elemId: 12, sd: 16.4 }, // junction → L36 glass
-    { label: "21", R: -400.5055, d: 2.828, nd: 1.0, elemId: 0, sd: 15.4 }, // L36 rear → air
+    { label: "21", R: -400.5055, d: 2.828, nd: 1.0, elemId: 0, sd: 14.5 }, // L36 rear → air
     // L37+L38 cemented doublet (titanium flint + ultra-high-index)
     { label: "22", R: -39.0208, d: 1.6, nd: 1.58144, elemId: 13, sd: 15.6 },
     { label: "23", R: 124.0696, d: 5.332, nd: 2.001, elemId: 14, sd: 15.6 }, // junction → L38 glass

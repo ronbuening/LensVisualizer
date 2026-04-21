@@ -11,7 +11,7 @@
 
 import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
-import { conicPolySag, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -56,6 +56,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   for (const f of requiredNumbers) {
     if (typeof data[f] !== "number" || !isFinite(data[f]))
       errors.push(`Missing or non-finite required number field: "${f}"`);
+  }
+  if (typeof data.gapSagFrac === "number" && isFinite(data.gapSagFrac)) {
+    if (data.gapSagFrac <= 0 || data.gapSagFrac > 1) {
+      errors.push(`"gapSagFrac" must be > 0 and <= 1 so validation and rendering cannot allow overlap`);
+    }
   }
   for (const f of requiredArrays) {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
@@ -294,10 +299,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
    *  paraboloids common on wide-angle meniscus elements) the actual slope is
    *  much gentler, allowing larger SDs without TIR risk.
    *
-   *  MAX_RIM_SLOPE = 2.065 corresponds to a 64.2° slope angle, matching the
+   *  MAX_RIM_SLOPE_TAN corresponds to a 64.2° slope angle, matching the
    *  old sd/|R| = 0.9 threshold for spheres exactly.
    */
-  const MAX_RIM_SLOPE = 2.065;
   for (let i = 0; i < S.length; i++) {
     const s = S[i];
     if (typeof s.sd !== "number" || typeof s.R !== "number") continue;
@@ -315,19 +319,20 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
 
     const slope = Math.abs(sagSlopeRaw(s.sd, s.R, asph));
-    if (slope > MAX_RIM_SLOPE) {
+    if (slope > MAX_RIM_SLOPE_TAN) {
       const angleDeg = (Math.atan(slope) * 180) / Math.PI;
       errors.push(
-        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${MAX_RIM_SLOPE.toFixed(2)} (64.2°) — risk of TIR and rendering artifacts`,
+        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${MAX_RIM_SLOPE_TAN.toFixed(2)} (64.2°) — risk of TIR and rendering artifacts`,
       );
     }
   }
 
   /* ── Cross-gap surface overlap check ──
    *  For each air gap between elements, verify that the combined sag intrusion
-   *  from both bounding surfaces does not exceed the gap thickness.
+   *  from the two boundary surfaces that face each other does not exceed the
+   *  configured fraction of the gap thickness.
    */
-  _checkCrossGapOverlap(S, asphByIdx, null, errors, "");
+  _checkCrossGapOverlap(S, asphByIdx, null, errors, "", data.gapSagFrac);
 
   /* For zoom lenses, also check at each zoom position's variable thickness.
    * Air gaps can change dramatically across zoom positions. */
@@ -350,6 +355,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         gapOverrides,
         errors,
         ` at zoom position ${zi} (${data.zoomPositions[zi]} mm)`,
+        data.gapSagFrac,
       );
     }
   }
@@ -360,15 +366,16 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 /**
  * Check cross-gap surface overlap for a set of air gaps.
  *
- * Verifies that the combined sag intrusion from adjacent element surfaces
- * does not exceed the air gap thickness.  Called once with fixed d values,
- * then again per zoom position with overridden gap thicknesses.
+ * Verifies that the combined sag intrusion from adjacent boundary surfaces
+ * does not exceed the configured air-gap fraction. Called once with fixed d
+ * values, then again per zoom position with overridden gap thicknesses.
  *
  * @param S             — surface array
  * @param asphByIdx     — aspheric coefficients by surface index
  * @param gapOverrides  — { surfIdx: overrideD } for variable gaps, or null
  * @param errors        — error accumulator (mutated)
  * @param context       — suffix for error messages (e.g. " at zoom position 0")
+ * @param gapSagFrac    — maximum allowed intrusion fraction of the air gap
  */
 function _checkCrossGapOverlap(
   S: UntrustedLensData[],
@@ -376,6 +383,7 @@ function _checkCrossGapOverlap(
   gapOverrides: Record<number, number> | null,
   errors: string[],
   context: string,
+  gapSagFrac: number,
 ): void {
   for (let i = 0; i < S.length - 1; i++) {
     const curr = S[i],
@@ -385,26 +393,16 @@ function _checkCrossGapOverlap(
     const gapD = gapOverrides ? (gapOverrides[i] ?? curr.d) : curr.d;
     if (typeof gapD !== "number" || gapD <= 0) continue;
     if (typeof next.elemId !== "number" || next.elemId === 0) continue;
-    let prevElemRear = -1;
-    for (let j = i - 1; j >= 0; j--) {
-      if (S[j].elemId !== 0) {
-        prevElemRear = j + 1;
-        break;
-      }
-    }
-    if (prevElemRear < 0 || prevElemRear !== i) continue;
-    const prevFront = i - 1;
-    if (prevFront < 0 || S[prevFront].elemId === 0) continue;
-    const sdPrev = Math.min(S[prevFront].sd || Infinity, curr.sd || Infinity);
-    const sdNext = Math.min(next.sd || Infinity, (i + 2 < S.length ? S[i + 2].sd : Infinity) || Infinity);
-    const sdCheck = Math.min(sdPrev, sdNext);
+    if (i === 0 || S[i - 1].elemId === 0) continue;
+    const sdCheck = Math.min(curr.sd || Infinity, next.sd || Infinity);
     if (!isFinite(sdCheck) || sdCheck <= 0) continue;
     const sagFwd = conicPolySag(sdCheck, curr.R, asphByIdx[i]);
     const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);
     const intrusion = sagFwd - sagBack;
-    if (intrusion > gapD * 1.1)
+    const maxIntrusion = gapD * Math.min(gapSagFrac, 1);
+    if (intrusion > maxIntrusion)
       errors.push(
-        `Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds gap thickness (${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`,
+        `Air gap "${curr.label}"→"${next.label}": combined surface sag (${intrusion.toFixed(2)} mm) exceeds allowed gap intrusion (${maxIntrusion.toFixed(3)} mm of ${gapD.toFixed(3)} mm) at sd=${sdCheck.toFixed(1)}${context} — elements will overlap in rendering`,
       );
   }
 }

@@ -119,15 +119,15 @@ const LENS_DATA = {
     { label: "2", R: 298.388, d: 0.145, nd: 1.0, elemId: 0, sd: 21.5 },
     { label: "3", R: 27.334, d: 4.319, nd: 1.788, elemId: 2, sd: 21.0 },
     { label: "4", R: 42.617, d: 1.773, nd: 1.0, elemId: 0, sd: 18.8 },
-    { label: "5", R: 84.266, d: 2.228, nd: 1.6668, elemId: 3, sd: 17.5 },
-    { label: "6", R: 17.725, d: 7.797, nd: 1.0, elemId: 0, sd: 15.9 },
+    { label: "5", R: 84.266, d: 2.228, nd: 1.6668, elemId: 3, sd: 16.0 },
+    { label: "6", R: 17.725, d: 7.797, nd: 1.0, elemId: 0, sd: 14.2 },
 
     // ---- Aperture stop (centered in D6 air gap) ----
     { label: "STO", R: 1e15, d: 7.797, nd: 1.0, elemId: 0, sd: 14.1 },
 
     // ---- Rear group (converging) ----
     // Cemented doublet: L4 (negative) + L5 (positive)
-    { label: "7", R: -18.209, d: 1.646, nd: 1.80518, elemId: 4, sd: 14.5 },
+    { label: "7", R: -18.209, d: 1.646, nd: 1.80518, elemId: 4, sd: 14.2 },
     { label: "8", R: -1568.136, d: 7.007, nd: 1.7725, elemId: 5, sd: 15.0 },
     { label: "9", R: -29.365, d: 0.145, nd: 1.0, elemId: 0, sd: 16.5 },
 

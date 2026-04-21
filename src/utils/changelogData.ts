@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-21 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-21",
+    type: "improvement",
+    summary:
+      "Improved element outline rendering, added a 10% boundary-gap clearance margin, and audited production semi-diameters",
+  },
+  {
+    date: "2026-04-21",
     type: "fix",
     summary: "Fixed Canon RF 24-105mm f/4 L close-focus behavior",
   },

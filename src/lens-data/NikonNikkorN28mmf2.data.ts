@@ -177,7 +177,7 @@ const LENS_DATA = {
     { label: "11", R: -29.789, d: 3.407, nd: 1.0, elemId: 0, sd: 12.5 }, // L6 rear → air (to stop)
     { label: "STO", R: 1e15, d: 2.271, nd: 1.0, elemId: 0, sd: 8.9 }, // Aperture stop
     { label: "12", R: -18.797, d: 5.287, nd: 1.7847, elemId: 7, sd: 9.5 }, // L7 front
-    { label: "13", R: 70.979, d: 1.371, nd: 1.0, elemId: 0, sd: 9.5 }, // L7 rear → air
+    { label: "13", R: 70.979, d: 1.371, nd: 1.0, elemId: 0, sd: 9.2 }, // L7 rear → air
     { label: "14", R: -68.531, d: 3.329, nd: 1.74443, elemId: 8, sd: 9.5 }, // L8 front
     { label: "15", R: -21.538, d: 0.098, nd: 1.0, elemId: 0, sd: 11.5 }, // L8 rear → air
     { label: "16", R: 245.147, d: 3.427, nd: 1.713, elemId: 9, sd: 11.5 }, // L9 front

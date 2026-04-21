@@ -310,7 +310,7 @@ const LENS_DATA = {
     // G2: L21 asph, L22, L23, L24
     { label: "6A", R: 294.10562, d: 2.0, nd: 1.8078, elemId: 4, sd: 12.5 }, // L21 front (asph)
     { label: "7A", R: 13.29231, d: 8.38, nd: 1.0, elemId: 0, sd: 12.4 }, // L21 rear → air (asph)
-    { label: "8", R: -17.12196, d: 0.7, nd: 1.618, elemId: 5, sd: 10.5 }, // L22 front
+    { label: "8", R: -17.12196, d: 0.7, nd: 1.618, elemId: 5, sd: 10.2 }, // L22 front
     { label: "9", R: -108.18599, d: 0.15, nd: 1.0, elemId: 0, sd: 10.8 }, // L22 rear → air
     { label: "10", R: 89.95607, d: 3.62, nd: 1.92287, elemId: 6, sd: 10.8 }, // L23 front
     { label: "11", R: -33.23372, d: 1.45, nd: 1.0, elemId: 0, sd: 10.5 }, // L23 rear → air

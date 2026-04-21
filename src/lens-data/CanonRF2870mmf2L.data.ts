@@ -29,8 +29,8 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    Not listed in patent. Estimated via combined marginal + chief   ║
  * ║    ray trace at all three zoom positions (80% field vignetting     ║
  * ║    model, 5% mechanical clearance), taking the maximum at each    ║
- * ║    surface. Front group capped at ≈ 44.5 mm (95 mm filter        ║
- * ║    thread). STO sd = 16.0 mm (tele-end physical iris maximum).    ║
+ * ║    surface, then locally reduced where cross-gap diagnostics show ║
+ * ║    hidden trim. Front group capped at ≈ 44.5 mm; STO sd = 16.0. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -327,7 +327,7 @@ const LENS_DATA = {
     { label: "6A", R: 167.209, d: 1.55, nd: 1.76902, elemId: 4, sd: 20.5 },
     { label: "7", R: 20.639, d: 9.56, nd: 1.0, elemId: 0, sd: 18.5 },
     // Cemented doublet D2 (L5 + L6)
-    { label: "8", R: -49.152, d: 1.0, nd: 1.76385, elemId: 5, sd: 17.0 },
+    { label: "8", R: -49.152, d: 1.0, nd: 1.76385, elemId: 5, sd: 14.8 },
     { label: "9", R: 26.487, d: 8.15, nd: 1.85478, elemId: 6, sd: 16.1 },
     { label: "10", R: -51.463, d: 1.45, nd: 1.0, elemId: 0, sd: 16.5 },
     // Cemented doublet D3 (L7 + L8, rear asph)
@@ -362,8 +362,8 @@ const LENS_DATA = {
     { label: "27", R: -115.19, d: 1.2, nd: 1.8061, elemId: 16, sd: 19.1 },
     { label: "28", R: 51.069, d: 3.84, nd: 1.0, elemId: 0, sd: 18.5 },
     // L17 singlet (double-asphere)
-    { label: "29A", R: -1000.0, d: 3.0, nd: 1.854, elemId: 17, sd: 14.0 },
-    { label: "30A", R: 119.129, d: 3.42, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "29A", R: -1000.0, d: 3.0, nd: 1.854, elemId: 17, sd: 13.7 },
+    { label: "30A", R: 119.129, d: 3.42, nd: 1.0, elemId: 0, sd: 14.5 },
     // Cemented doublet D6 (L18 + L19, ultra-high-index)
     { label: "31", R: -39.992, d: 1.3, nd: 1.48749, elemId: 18, sd: 18.0 },
     { label: "32", R: 50.003, d: 6.3, nd: 2.001, elemId: 19, sd: 18.5 },

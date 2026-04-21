@@ -163,7 +163,7 @@ const LENS_DATA = {
     { label: "4", R: 133.8, d: 1.7, nd: 1.0, elemId: 0, sd: 8.0 }, // L2 rear → air
 
     // ── Group 1: L3 + L4 cemented doublet (Group C) ──
-    { label: "5", R: -17.05, d: 0.9, nd: 1.62, elemId: 3, sd: 7.0 }, // L3 front
+    { label: "5", R: -17.05, d: 0.9, nd: 1.62, elemId: 3, sd: 6.6 }, // L3 front
     { label: "6", R: 17.77, d: 3.0, nd: 1.883, elemId: 4, sd: 7.5 }, // L3→L4 junction
     { label: "7", R: -29.7, d: 2.2, nd: 1.0, elemId: 0, sd: 7.5 }, // L4 rear → air
 

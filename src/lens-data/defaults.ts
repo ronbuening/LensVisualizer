@@ -7,6 +7,7 @@
  */
 
 import type { LensData } from "../types/optics.js";
+import { DEFAULT_MAX_RIM_ANGLE_DEG } from "../optics/internal/surfaceMath.js";
 
 const LENS_DEFAULTS: Partial<LensData> = {
   /* ── Catalog visibility ── */
@@ -24,7 +25,7 @@ const LENS_DEFAULTS: Partial<LensData> = {
   svgH: 490,
   scFill: 0.55,
   clipMargin: 1.0,
-  maxRimAngleDeg: 40,
+  maxRimAngleDeg: DEFAULT_MAX_RIM_ANGLE_DEG,
   gapSagFrac: 0.9,
   maxAspectRatio: 1.6,
 

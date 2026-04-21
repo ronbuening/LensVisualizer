@@ -299,7 +299,7 @@ const LENS_DATA = {
     // ── Group G2 (L2): variator / IS group — STATIONARY during zoom ──
     { label: "7", R: -617.95, d: 1.45, nd: 1.59282, elemId: 4, sd: 18.0 }, // L4 front — Biconcave (nearly plano front)
     { label: "8", R: 66.515, d: 3.79, nd: 1.0, elemId: 0, sd: 18.0 }, // L4 rear → air
-    { label: "9", R: -81.698, d: 1.3, nd: 1.76385, elemId: 5, sd: 16.5 }, // L5 front (cemented D2; sd reduced to avoid cross-gap sag overlap)
+    { label: "9", R: -81.698, d: 1.3, nd: 1.76385, elemId: 5, sd: 15.7 }, // L5 front (cemented D2; sd reduced to avoid cross-gap sag overlap)
     { label: "10", R: 42.75, d: 4.4, nd: 1.85478, elemId: 6, sd: 16.5 }, // L5→L6 junction — elemId: 6 (L6)
     { label: "11", R: 285.171, d: 10.41, nd: 1.0, elemId: 0, sd: 18.0 }, // L6 rear → air [ZOOM VAR]
 

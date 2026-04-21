@@ -36,8 +36,8 @@ These are merged automatically. Override only when needed.
 | `svgW` | `1080` | SVG viewport width (px) |
 | `svgH` | `490` | SVG viewport height (px) |
 | `clipMargin` | `1.0` | Clipping margin for element trimming |
-| `maxRimAngleDeg` | `40` | Max rim angle (degrees) |
-| `gapSagFrac` | `0.90` | Sag rendering fraction for air gaps |
+| `maxRimAngleDeg` | `~64.2` | Max rim angle (degrees), synchronized with validation's `sd/|R| = 0.9` spherical limit |
+| `gapSagFrac` | `0.90` | Cross-gap sag intrusion fraction, synchronized with validation and rendering; must be > 0 and ≤ 1 |
 | `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
 | `focusStep` | `0.004` | Focus slider step size |
 | `apertureStep` | `0.004` | Aperture slider step size |
@@ -381,8 +381,9 @@ doublets: [
 10. All `varLabels` reference valid surface labels
 11. `zoomPositions` (when present): array of ≥2 finite, monotonically increasing numbers; `zoomStep` must be finite positive; `zoomLabels` must be array of strings
 12. All `groups`/`doublets` reference valid surface labels
-13. Cross-gap surface overlap: combined sag intrusion from adjacent element surfaces doesn't exceed the air gap thickness — checked at all zoom positions for zoom lenses
+13. Cross-gap surface overlap: combined sag intrusion from the two boundary surfaces that face each other doesn't exceed `gapSagFrac × gap` — checked at all zoom positions for zoom lenses
 14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
+15. Element render diagnostics: production lenses must not require material hidden trim (>0.25 mm) from slope, conic, or cross-gap limits
 
 On failure, `buildLens()` throws with all errors listed.
 
@@ -393,7 +394,7 @@ On failure, `buildLens()` throws with all errors listed.
 When transcribing from an optical patent:
 
 1. **Surfaces** — Copy the prescription table exactly (R, d, nd). Watch sign conventions — some patents use opposite R sign convention
-2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance. If the manufacturer publishes a cross-section diagram, use it to refine front-group SDs: compute the average (front+rear)/2 SD per element, compare the ratios between elements against the diagram proportions, and adjust conservatively. The validator enforces a **slope-based rim check** (actual aspherical slope at the SD must be below 64.2°), which is more permissive than the old sd/|R| ≤ 0.90 rule for aspherical surfaces (K < 0). Near-paraboloid surfaces (K ≈ −1) can have sd/|R| well above 0.9. Element front/rear SD ratio must be ≤ 3.0 (sanity check); per-surface slope validation handles the physics. The cross-gap overlap check (sag intrusion ≤ gap × 1.1) is often the binding constraint for thin air gaps. The front group is most likely to diverge — especially elements 2 and 3, which the marginal-ray method tends to over-size relative to the actual lens
+2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance. If the manufacturer publishes a cross-section diagram, use it to refine front-group SDs: compute the average (front+rear)/2 SD per element, compare the ratios between elements against the diagram proportions, and adjust conservatively. The validator enforces a **slope-based rim check** (actual aspherical slope at the SD must be below ~64.2°), which is more permissive than the old sd/|R| ≤ 0.90 rule for aspherical surfaces (K < 0). Near-paraboloid surfaces (K ≈ −1) can have sd/|R| well above 0.9. Element front/rear SD ratio must be ≤ 3.0 (sanity check); per-surface slope validation handles the physics. The cross-gap overlap check compares the two boundary surfaces that face each other and requires sag intrusion ≤ `gapSagFrac × gap`; the default allows 90% of the air gap, preserving visible clearance instead of accepting mathematical rim contact. This is often the binding constraint for thin air gaps. The renderer uses the same rim and gap policy, and production tests fail when a lens would require material hidden render trim. If the render diagnostic reports >0.25 mm trim, reduce the relevant boundary SD or document and test an intentional exception. The front group is most likely to diverge — especially elements 2 and 3, which the marginal-ray method tends to over-size relative to the actual lens
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface
