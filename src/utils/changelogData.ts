@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-21 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-21",
+    type: "fix",
+    summary: "Fixed Canon RF 24-105mm f/4 L close-focus behavior",
+  },
+  {
+    date: "2026-04-21",
+    type: "lens",
+    summary: "Added Canon RF 24-105mm f/4 L, Nikon Z 40mm f/2, and two Ricoh GR lenses",
+  },
   // ── 2026-04-20 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-20",
