@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 340" role="img" aria-labelledby="t d">
+  <title id="t">Working f-number increases at close focus</title>
+  <desc id="d">Two side-by-side lens sketches showing same exit pupil but longer image conjugate and narrower cone at close focus.</desc>
+  <rect width="940" height="340" fill="#f8fafc"/>
+  <line x1="470" y1="20" x2="470" y2="320" stroke="#cbd5e1" stroke-width="2"/>
+
+  <g transform="translate(25,0)">
+    <text x="36" y="42" font-size="20" font-family="Arial, sans-serif" fill="#065f46">Infinity focus</text>
+    <line x1="20" y1="170" x2="410" y2="170" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6"/>
+    <path d="M140,110 Q190,170 140,230 Q230,230 260,170 Q230,110 140,110Z" fill="#dbeafe" stroke="#64748b" stroke-width="2"/>
+    <ellipse cx="255" cy="170" rx="12" ry="45" fill="none" stroke="#2563eb" stroke-width="3"/>
+    <line x1="255" y1="125" x2="390" y2="150" stroke="#16a34a" stroke-width="3"/>
+    <line x1="255" y1="215" x2="390" y2="190" stroke="#16a34a" stroke-width="3"/>
+    <line x1="390" y1="120" x2="390" y2="220" stroke="#334155" stroke-width="4"/>
+    <text x="333" y="240" font-size="15" fill="#334155" font-family="Arial, sans-serif">Image plane</text>
+    <text x="84" y="278" font-size="16" fill="#166534" font-family="Arial, sans-serif">Wide cone at sensor ⇒ marked N</text>
+  </g>
+
+  <g transform="translate(495,0)">
+    <text x="24" y="42" font-size="20" font-family="Arial, sans-serif" fill="#9a3412">Close focus (extended conjugate)</text>
+    <line x1="20" y1="170" x2="410" y2="170" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 6"/>
+    <path d="M110,110 Q160,170 110,230 Q200,230 230,170 Q200,110 110,110Z" fill="#dbeafe" stroke="#64748b" stroke-width="2"/>
+    <ellipse cx="225" cy="170" rx="12" ry="45" fill="none" stroke="#2563eb" stroke-width="3"/>
+    <line x1="225" y1="125" x2="400" y2="157" stroke="#dc2626" stroke-width="3"/>
+    <line x1="225" y1="215" x2="400" y2="183" stroke="#dc2626" stroke-width="3"/>
+    <line x1="400" y1="110" x2="400" y2="230" stroke="#334155" stroke-width="4"/>
+    <text x="343" y="252" font-size="15" fill="#334155" font-family="Arial, sans-serif">Image plane farther back</text>
+    <text x="96" y="278" font-size="16" fill="#991b1b" font-family="Arial, sans-serif">Narrower cone ⇒ Neff &gt; N</text>
+  </g>
+</svg>

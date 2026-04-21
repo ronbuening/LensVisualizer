@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" role="img" aria-labelledby="t d">
+  <title id="t">Exit pupil and chief-ray angle at center and corner pixels</title>
+  <desc id="d">Diagram with exit pupil, image plane, on-axis chief ray, and off-axis chief ray with CRA and labeled distances.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f2937"/>
+    </marker>
+  </defs>
+  <rect width="920" height="360" fill="#f8fafc"/>
+  <line x1="60" y1="180" x2="870" y2="180" stroke="#94a3b8" stroke-width="2" stroke-dasharray="7 5"/>
+
+  <ellipse cx="340" cy="180" rx="26" ry="74" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <text x="288" y="95" font-size="20" fill="#1e3a8a" font-family="Arial, sans-serif">Exit pupil</text>
+
+  <line x1="750" y1="60" x2="750" y2="300" stroke="#334155" stroke-width="4"/>
+  <text x="702" y="48" font-size="19" fill="#0f172a" font-family="Arial, sans-serif">Image plane</text>
+
+  <circle cx="750" cy="180" r="7" fill="#0ea5e9"/>
+  <circle cx="750" cy="110" r="7" fill="#0ea5e9"/>
+  <path d="M734 96 q16 8 0 16" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M734 166 q16 8 0 16" fill="none" stroke="#94a3b8" stroke-width="2"/>
+
+  <line x1="340" y1="180" x2="750" y2="180" stroke="#16a34a" stroke-width="3" marker-end="url(#a)"/>
+  <text x="500" y="170" font-size="17" fill="#166534" font-family="Arial, sans-serif">Chief ray to on-axis pixel (CRA = 0°)</text>
+
+  <line x1="340" y1="180" x2="750" y2="110" stroke="#dc2626" stroke-width="3" marker-end="url(#a)"/>
+  <path d="M708 178 A52 52 0 0 1 706 124" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+  <text x="648" y="148" font-size="16" fill="#b91c1c" font-family="Arial, sans-serif">CRA &gt; 0°</text>
+
+  <line x1="340" y1="232" x2="750" y2="232" stroke="#475569" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="502" y="252" font-size="16" fill="#334155" font-family="Arial, sans-serif">dXP (exit pupil to image plane)</text>
+
+  <line x1="766" y1="180" x2="766" y2="110" stroke="#475569" stroke-width="2"/>
+  <text x="774" y="148" font-size="16" fill="#334155" font-family="Arial, sans-serif">y'</text>
+</svg>

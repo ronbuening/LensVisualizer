@@ -66,7 +66,7 @@ $$\text{CRA} \approx \arctan(21.6 / 40) \approx 28.4°$$
 
 That nearly doubled CRA — from 15° to 28° — illustrates why exit-pupil distance matters so much for digital sensors.
 
-*[Diagram: Cross-section showing exit pupil, chief ray to on-axis pixel (CRA = 0°), and chief ray to a corner pixel (CRA > 0°). Show microlens over each pixel. Label exit-pupil distance $d_{\text{XP}}$ and image height $y'$.]*
+![Diagram showing exit pupil geometry and chief-ray angle at the sensor.](/diagrams/pupils/exit-pupil-cra.svg)
 
 ### The venetian-blind analogy
 
