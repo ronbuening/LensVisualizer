@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" width="100%" height="auto" role="img" aria-label="Parallax and entrance pupil rotation center diagram">
+  <defs>
+    <style>
+      .bg { fill: #12151e; }
+      .border { fill: none; stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .divider { stroke: rgba(150,170,210,0.20); stroke-width: 1; stroke-dasharray: 4,4; }
+      .cam-fill { fill: rgba(70,100,160,0.18); }
+      .cam-stroke { fill: none; stroke: rgba(120,150,210,0.70); stroke-width: 1.5; }
+      .lens-fill { fill: rgba(70,130,180,0.22); }
+      .lens-stroke { fill: none; stroke: rgba(120,170,220,0.80); stroke-width: 1.5; }
+      .ep-dot { fill: #28d8ff; }
+      .ep-ring { fill: none; stroke: #28d8ff; stroke-width: 1.5; }
+      .rot-axis { fill: rgba(255,140,32,0.90); }
+      .rot-ring { fill: none; stroke: #ff8c20; stroke-width: 1.5; }
+      .arc { fill: none; stroke: rgba(150,170,210,0.45); stroke-width: 1; stroke-dasharray: 5,3; }
+      .ray-good { stroke: rgba(40,216,255,0.60); stroke-width: 1.2; fill: none; }
+      .ray-bad { stroke: rgba(255,100,80,0.65); stroke-width: 1.2; fill: none; }
+      .obj-near { fill: rgba(80,220,140,0.90); }
+      .obj-far { fill: rgba(200,180,80,0.80); }
+      .label { fill: #c8d8f0; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .label-good { fill: #28d8ff; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 600; }
+      .label-bad { fill: #ff6e50; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 600; }
+      .muted { fill: rgba(150,170,200,0.65); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; }
+      .tick { stroke: rgba(150,170,210,0.40); stroke-width: 1; fill: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #eff2f8; }
+        .border { stroke: rgba(60,80,120,0.18); }
+        .divider { stroke: rgba(60,80,120,0.20); }
+        .cam-fill { fill: rgba(40,70,140,0.10); }
+        .cam-stroke { stroke: rgba(40,70,140,0.60); }
+        .lens-fill { fill: rgba(30,80,160,0.10); }
+        .lens-stroke { stroke: rgba(30,80,160,0.65); }
+        .ep-dot { fill: #006878; }
+        .ep-ring { stroke: #006878; }
+        .rot-axis { fill: #c05000; }
+        .rot-ring { stroke: #c05000; }
+        .arc { stroke: rgba(60,80,120,0.40); }
+        .ray-good { stroke: rgba(0,104,120,0.60); }
+        .ray-bad { stroke: rgba(200,60,40,0.65); }
+        .label { fill: #1a2540; }
+        .label-good { fill: #006878; }
+        .label-bad { fill: #c03020; }
+        .muted { fill: rgba(60,80,120,0.60); }
+        .tick { stroke: rgba(60,80,120,0.35); }
+      }
+    </style>
+    <marker id="arr-good" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" class="ep-dot"/>
+    </marker>
+    <marker id="arr-bad" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="rgba(255,100,80,0.90)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="260" rx="6" class="bg"/>
+  <rect width="640" height="260" rx="6" class="border"/>
+
+  <!-- Centre divider -->
+  <line x1="320" y1="30" x2="320" y2="240" class="divider"/>
+
+  <!-- ═══ LEFT PANEL: correct — rotation at EP ═══ -->
+  <text x="160" y="22" text-anchor="middle" class="label-good">✓ Rotation axis at entrance pupil</text>
+
+  <!-- Objects on the left scene side (far left) -->
+  <!-- Far object: building silhouette -->
+  <rect x="20" y="90" width="18" height="50" class="obj-far" rx="1"/>
+  <rect x="14" y="108" width="6" height="32" class="obj-far" rx="1"/>
+  <!-- Near object: pole -->
+  <rect x="62" y="95" width="5" height="70" class="obj-near" rx="1"/>
+
+  <!-- Camera body (position 1, pointing right) -->
+  <rect x="148" y="95" width="52" height="36" rx="3" class="cam-fill"/>
+  <rect x="148" y="95" width="52" height="36" rx="3" class="cam-stroke"/>
+  <!-- Lens barrel on camera -->
+  <rect x="140" y="103" width="12" height="20" rx="2" class="lens-fill"/>
+  <rect x="140" y="103" width="12" height="20" rx="2" class="lens-stroke"/>
+
+  <!-- Camera body (position 2, rotated slightly right, top-down rotation shown) -->
+  <!-- Rotated camera: shift body slightly up and right -->
+  <rect x="158" y="60" width="52" height="36" rx="3" class="cam-fill" style="opacity:0.5"/>
+  <rect x="158" y="60" width="52" height="36" rx="3" class="cam-stroke" style="opacity:0.5"/>
+  <rect x="150" y="68" width="12" height="20" rx="2" class="lens-fill" style="opacity:0.5"/>
+  <rect x="150" y="68" width="12" height="20" rx="2" class="lens-stroke" style="opacity:0.5"/>
+
+  <!-- EP dot (rotation pivot) -->
+  <circle cx="146" cy="113" r="5" class="ep-ring"/>
+  <circle cx="146" cy="113" r="2.5" class="ep-dot"/>
+  <!-- EP label -->
+  <text x="134" y="134" text-anchor="middle" class="label-good" style="font-size:10px">EP</text>
+  <text x="134" y="145" text-anchor="middle" class="muted">(pivot)</text>
+
+  <!-- Rotation arc -->
+  <path d="M 146,82 A 31,31 0 0,1 175,100" class="arc"/>
+
+  <!-- Rays from near and far objects through EP in pos 1 -->
+  <line x1="38" y1="110" x2="146" y2="113" class="ray-good"/>
+  <line x1="64" y1="108" x2="146" y2="113" class="ray-good"/>
+
+  <!-- Rays in pos 2 (offset slightly) -->
+  <line x1="38" y1="110" x2="153" y2="78" class="ray-good" style="opacity:0.45;stroke-dasharray:4,3"/>
+  <line x1="64" y1="108" x2="153" y2="78" class="ray-good" style="opacity:0.45;stroke-dasharray:4,3"/>
+
+  <!-- No-parallax label -->
+  <text x="160" y="165" text-anchor="middle" class="muted">Near &amp; far stay aligned</text>
+  <text x="160" y="178" text-anchor="middle" class="muted">between frames → no parallax</text>
+
+  <!-- Object labels -->
+  <text x="29" y="85" text-anchor="middle" class="muted">far</text>
+  <text x="64" y="88" text-anchor="middle" class="muted">near</text>
+
+  <!-- ═══ RIGHT PANEL: wrong — rotation at tripod socket ═══ -->
+  <text x="480" y="22" text-anchor="middle" class="label-bad">✗ Rotation axis at tripod socket</text>
+
+  <!-- Objects on right scene side (far right) -->
+  <rect x="340" y="90" width="18" height="50" class="obj-far" rx="1"/>
+  <rect x="334" y="108" width="6" height="32" class="obj-far" rx="1"/>
+  <rect x="382" y="95" width="5" height="70" class="obj-near" rx="1"/>
+
+  <!-- Camera body pos 1 -->
+  <rect x="468" y="95" width="52" height="36" rx="3" class="cam-fill"/>
+  <rect x="468" y="95" width="52" height="36" rx="3" class="cam-stroke"/>
+  <rect x="460" y="103" width="12" height="20" rx="2" class="lens-fill"/>
+  <rect x="460" y="103" width="12" height="20" rx="2" class="lens-stroke"/>
+
+  <!-- Camera body pos 2 (rotated) -->
+  <rect x="474" y="60" width="52" height="36" rx="3" class="cam-fill" style="opacity:0.5"/>
+  <rect x="474" y="60" width="52" height="36" rx="3" class="cam-stroke" style="opacity:0.5"/>
+  <rect x="466" y="68" width="12" height="20" rx="2" class="lens-fill" style="opacity:0.5"/>
+  <rect x="466" y="68" width="12" height="20" rx="2" class="lens-stroke" style="opacity:0.5"/>
+
+  <!-- EP dot position (NOT at pivot) -->
+  <circle cx="466" cy="113" r="4" class="ep-ring" style="opacity:0.6"/>
+  <circle cx="466" cy="113" r="2" class="ep-dot" style="opacity:0.6"/>
+  <text x="455" y="134" text-anchor="middle" class="label-good" style="font-size:9px;opacity:0.7">EP</text>
+
+  <!-- Tripod socket (rotation pivot, wrong place) -->
+  <circle cx="510" cy="131" r="5" class="rot-ring"/>
+  <circle cx="510" cy="131" r="2.5" class="rot-axis"/>
+  <text x="524" y="135" text-anchor="start" class="label-bad" style="font-size:10px">tripod socket</text>
+  <text x="524" y="146" text-anchor="start" class="muted">(pivot)</text>
+
+  <!-- Rotation arc -->
+  <path d="M 510,100 A 31,31 0 0,1 535,118" class="arc"/>
+
+  <!-- Rays from far object — mostly unchanged -->
+  <line x1="358" y1="110" x2="466" y2="113" class="ray-good"/>
+  <line x1="358" y1="110" x2="473" y2="78" class="ray-good" style="opacity:0.45;stroke-dasharray:4,3"/>
+
+  <!-- Rays from near object — shifts more dramatically -->
+  <line x1="384" y1="108" x2="466" y2="113" class="ray-bad"/>
+  <line x1="384" y1="100" x2="473" y2="75" class="ray-bad" style="stroke-dasharray:4,3"/>
+
+  <!-- Parallax shift annotation: near object appears to shift -->
+  <line x1="384" y1="108" x2="384" y2="100" stroke="rgba(255,100,80,0.80)" stroke-width="1.5" marker-end="url(#arr-bad)"/>
+  <text x="395" y="100" text-anchor="start" class="label-bad" style="font-size:10px">near shifts</text>
+
+  <!-- Object labels -->
+  <text x="349" y="85" text-anchor="middle" class="muted">far</text>
+  <text x="384" y="88" text-anchor="middle" class="muted">near</text>
+
+  <!-- Parallax label -->
+  <text x="480" y="165" text-anchor="middle" class="muted">Near shifts relative to far</text>
+  <text x="480" y="178" text-anchor="middle" class="muted">between frames → parallax</text>
+
+  <!-- Bottom legend -->
+  <circle cx="100" cy="232" r="4" class="ep-ring"/><circle cx="100" cy="232" r="2" class="ep-dot"/>
+  <text x="109" y="236" class="label-good" style="font-size:10px">Entrance pupil</text>
+  <circle cx="240" cy="232" r="4" class="rot-ring"/><circle cx="240" cy="232" r="2" class="rot-axis"/>
+  <text x="249" y="236" class="label-bad" style="font-size:10px">Tripod socket (wrong pivot)</text>
+  <rect x="400" y="228" width="10" height="8" rx="1" class="obj-near"/>
+  <text x="415" y="236" class="muted">near obj</text>
+  <rect x="480" y="228" width="10" height="8" rx="1" class="obj-far"/>
+  <text x="495" y="236" class="muted">far obj</text>
+</svg>

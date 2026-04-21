@@ -212,6 +212,23 @@ function useMarkdownComponents(t: Theme, isStartHere: boolean) {
         </td>
       ),
       hr: () => <hr style={{ border: "none", borderTop: `1px solid ${t.descBorder}`, margin: "18px 0" }} />,
+      img: ({ src, alt }: { src?: string; alt?: string }) => (
+        <figure style={{ margin: "24px 0", textAlign: "center" }}>
+          <img
+            src={src}
+            alt={alt ?? ""}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              borderRadius: 6,
+              border: `1px solid ${t.descTableBorder}`,
+            }}
+          />
+          {alt && (
+            <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>{alt}</figcaption>
+          )}
+        </figure>
+      ),
     }),
     [t, isStartHere],
   );

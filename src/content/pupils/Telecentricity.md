@@ -32,7 +32,7 @@ There are three forms:
 
 Each form is a geometric condition, not an optical quality metric.
 
-*[Diagram: Three simple side-by-side sketches. Left: object-space telecentric — chief rays parallel on the scene side, converging on the sensor side. Center: image-space telecentric — chief rays converging on the scene side, parallel on the sensor side. Right: double telecentric — chief rays parallel on both sides. Label pupil positions as "at infinity" on the relevant side.]*
+![Three side-by-side diagrams illustrating the three forms of telecentricity. Left: object-space telecentric, with chief rays parallel on the scene side and the entrance pupil at infinity. Center: image-space telecentric, with chief rays parallel on the sensor side and the exit pupil at infinity. Right: double telecentric, with chief rays parallel on both sides.](/diagrams/pupils/telecentricity.svg)
 
 **Most photographic lenses are not telecentric — and that's fine.** Strict telecentricity requires the aperture stop to sit at a specific location (a group focal point), and that placement conflicts with compactness, zoom-range flexibility, aberration correction, and the ability to focus from infinity to close range [^1] [^5]. What many modern digital-era lens designs actually pursue is **reduced CRA** — more favorable image-side chief-ray geometry than earlier film-era or SLR-era designs could achieve. This is a **design tendency on a continuum**, not a binary telecentric/non-telecentric classification. Saying a lens has "reduced CRA" or "more favorable rear-ray geometry" is accurate; saying it "is telecentric" implies a strict condition most photo lenses don't satisfy.
 

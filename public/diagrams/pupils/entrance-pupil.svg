@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="100%" height="auto" role="img" aria-label="Entrance pupil diagram">
+  <defs>
+    <style>
+      .bg { fill: #12151e; }
+      .border { fill: none; stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .axis { stroke: rgba(150,170,210,0.35); stroke-width: 1; stroke-dasharray: 5,4; fill: none; }
+      .lens-fill { fill: rgba(70,130,180,0.22); }
+      .lens-stroke { fill: none; stroke: rgba(120,170,220,0.80); stroke-width: 1.5; }
+      .stop { stroke: #ff8c20; stroke-width: 3; stroke-linecap: round; }
+      .ep-stroke { fill: none; stroke: #28d8ff; stroke-width: 1.5; stroke-dasharray: 5,3; }
+      .ep-fill { fill: rgba(40,216,255,0.06); }
+      .ray { stroke: rgba(40,216,255,0.45); stroke-width: 1; stroke-dasharray: 6,4; fill: none; }
+      .label { fill: #c8d8f0; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .label-accent { fill: #28d8ff; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .label-stop { fill: #ff8c20; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .muted { fill: rgba(150,170,200,0.65); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 10px; }
+      .tick { stroke: rgba(150,170,210,0.4); stroke-width: 1; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #eff2f8; }
+        .border { stroke: rgba(60,80,120,0.18); }
+        .axis { stroke: rgba(60,80,120,0.32); }
+        .lens-fill { fill: rgba(30,80,160,0.10); }
+        .lens-stroke { stroke: rgba(30,80,160,0.65); }
+        .stop { stroke: #c05000; }
+        .ep-stroke { stroke: #006878; }
+        .ep-fill { fill: rgba(0,104,120,0.06); }
+        .ray { stroke: rgba(0,104,120,0.40); }
+        .label { fill: #1a2540; }
+        .label-accent { fill: #006878; }
+        .label-stop { fill: #c05000; }
+        .muted { fill: rgba(60,80,120,0.60); }
+        .tick { stroke: rgba(60,80,120,0.35); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="220" rx="6" class="bg"/>
+  <rect width="640" height="220" rx="6" class="border"/>
+
+  <!-- Optical axis -->
+  <line x1="30" y1="110" x2="600" y2="110" class="axis"/>
+
+  <!-- ── Entrance pupil (virtual, dashed) ── -->
+  <!-- filled ellipse body -->
+  <ellipse cx="92" cy="110" rx="13" ry="48" class="ep-fill"/>
+  <!-- dashed ellipse outline (two halves for dashed effect on ellipse) -->
+  <ellipse cx="92" cy="110" rx="13" ry="48" class="ep-stroke"/>
+  <!-- center marker on optical axis -->
+  <line x1="92" y1="108" x2="92" y2="112" class="tick"/>
+
+  <!-- ── Front group (two biconvex elements) ── -->
+  <!-- Element 1 -->
+  <path d="M 258,68 Q 241,110 258,152 L 276,152 Q 293,110 276,68 Z" class="lens-fill"/>
+  <path d="M 258,68 Q 241,110 258,152" class="lens-stroke"/>
+  <path d="M 276,68 Q 293,110 276,152" class="lens-stroke"/>
+  <line x1="258" y1="68" x2="276" y2="68" class="lens-stroke"/>
+  <line x1="258" y1="152" x2="276" y2="152" class="lens-stroke"/>
+  <!-- Element 2 -->
+  <path d="M 298,68 Q 281,110 298,152 L 316,152 Q 333,110 316,68 Z" class="lens-fill"/>
+  <path d="M 298,68 Q 281,110 298,152" class="lens-stroke"/>
+  <path d="M 316,68 Q 333,110 316,68" class="lens-stroke"/>
+  <line x1="298" y1="68" x2="316" y2="68" class="lens-stroke"/>
+  <line x1="298" y1="152" x2="316" y2="152" class="lens-stroke"/>
+  <!-- Element 2 right surface (closed) -->
+  <path d="M 316,68 Q 333,110 316,152" class="lens-stroke"/>
+
+  <!-- ── Aperture stop (iris) ── -->
+  <!-- upper blade -->
+  <line x1="445" y1="30" x2="445" y2="72" class="stop"/>
+  <!-- lower blade -->
+  <line x1="445" y1="148" x2="445" y2="190" class="stop"/>
+  <!-- small tick on optical axis -->
+  <line x1="443" y1="108" x2="447" y2="112" class="stop" style="stroke-width:1;opacity:0.5"/>
+
+  <!-- ── Construction dashed rays ── -->
+  <!-- upper: EP top edge → aperture stop top edge -->
+  <line x1="92" y1="62" x2="445" y2="72" class="ray"/>
+  <!-- lower: EP bottom edge → aperture stop bottom edge -->
+  <line x1="92" y1="158" x2="445" y2="148" class="ray"/>
+
+  <!-- ── Labels ── -->
+  <!-- Entrance pupil label -->
+  <text x="92" y="20" text-anchor="middle" class="label-accent">Entrance pupil</text>
+  <text x="92" y="33" text-anchor="middle" class="muted">(virtual image of stop)</text>
+  <line x1="92" y1="36" x2="92" y2="60" class="tick" style="stroke-dasharray:3,2"/>
+
+  <!-- Front group label -->
+  <text x="287" y="180" text-anchor="middle" class="label">Front group</text>
+  <!-- bracket under front group -->
+  <path d="M 255,170 L 255,175 L 319,175 L 319,170" fill="none" class="tick"/>
+
+  <!-- Aperture stop label -->
+  <text x="460" y="52" text-anchor="start" class="label-stop">Aperture stop</text>
+  <text x="460" y="65" text-anchor="start" class="label-stop">(iris)</text>
+
+  <!-- dashed arrow from stop label to stop line -->
+  <line x1="457" y1="55" x2="449" y2="55" class="tick" style="stroke-dasharray:2,2"/>
+
+  <!-- Right side: beyond aperture stop (rear group hint) -->
+  <text x="510" y="107" text-anchor="start" class="muted">rear group</text>
+  <text x="510" y="119" text-anchor="start" class="muted">→ sensor</text>
+
+  <!-- EP ↔ stop distance annotation -->
+  <line x1="92" y1="200" x2="445" y2="200" class="tick" style="stroke-dasharray:none"/>
+  <line x1="92" y1="196" x2="92" y2="204" class="tick"/>
+  <line x1="445" y1="196" x2="445" y2="204" class="tick"/>
+  <text x="268" y="214" text-anchor="middle" class="muted">EP displaced from stop (magnification by front group)</text>
+</svg>

@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="100%" height="auto" role="img" aria-label="Three forms of telecentricity diagram">
+  <defs>
+    <style>
+      .bg { fill: #12151e; }
+      .border { fill: none; stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .panel-div { stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .plane { stroke: rgba(150,170,210,0.45); stroke-width: 1.5; stroke-linecap: round; fill: none; }
+      .plane-label { fill: rgba(150,170,200,0.65); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; }
+      .lens-fill { fill: rgba(70,130,180,0.22); }
+      .lens-stroke { fill: none; stroke: rgba(120,170,220,0.80); stroke-width: 1.5; }
+      .ray { stroke: rgba(255,200,60,0.75); stroke-width: 1.3; fill: none; }
+      .ray-parallel { stroke: rgba(40,216,255,0.75); stroke-width: 1.3; fill: none; }
+      .pupil-inf { fill: none; stroke: rgba(150,170,210,0.50); stroke-width: 1; stroke-dasharray: 4,3; }
+      .axis { stroke: rgba(150,170,210,0.25); stroke-width: 1; stroke-dasharray: 4,4; fill: none; }
+      .label { fill: #c8d8f0; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; font-weight: 600; }
+      .sublabel { fill: rgba(150,170,200,0.75); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; }
+      .inf-label { fill: rgba(40,216,255,0.85); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; }
+      .muted { fill: rgba(150,170,200,0.60); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9px; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #eff2f8; }
+        .border { stroke: rgba(60,80,120,0.18); }
+        .panel-div { stroke: rgba(60,80,120,0.18); }
+        .plane { stroke: rgba(60,80,120,0.45); }
+        .plane-label { fill: rgba(60,80,120,0.60); }
+        .lens-fill { fill: rgba(30,80,160,0.10); }
+        .lens-stroke { stroke: rgba(30,80,160,0.65); }
+        .ray { stroke: rgba(160,100,0,0.75); }
+        .ray-parallel { stroke: rgba(0,104,120,0.75); }
+        .pupil-inf { stroke: rgba(60,80,120,0.45); }
+        .axis { stroke: rgba(60,80,120,0.22); }
+        .label { fill: #1a2540; }
+        .sublabel { fill: rgba(60,80,120,0.70); }
+        .inf-label { fill: rgba(0,104,120,0.85); }
+        .muted { fill: rgba(60,80,120,0.55); }
+      }
+    </style>
+    <marker id="arrY" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(255,200,60,0.90)"/>
+    </marker>
+    <marker id="arrB" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(40,216,255,0.90)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="6" class="bg"/>
+  <rect width="640" height="230" rx="6" class="border"/>
+
+  <!-- Panel dividers -->
+  <line x1="213" y1="30" x2="213" y2="210" class="panel-div"/>
+  <line x1="427" y1="30" x2="427" y2="210" class="panel-div"/>
+
+  <!-- ════ PANEL 1: Object-space telecentric ════ -->
+  <!-- Panel label -->
+  <text x="106" y="20" text-anchor="middle" class="label">Object-space</text>
+  <text x="106" y="33" text-anchor="middle" class="sublabel">telecentric</text>
+
+  <!-- Optical axis -->
+  <line x1="18" y1="120" x2="205" y2="120" class="axis"/>
+
+  <!-- Object plane (left) -->
+  <line x1="30" y1="80" x2="30" y2="160" class="plane"/>
+  <text x="30" y="172" text-anchor="middle" class="plane-label">object</text>
+
+  <!-- Lens -->
+  <path d="M 110,82 Q 97,120 110,158 L 124,158 Q 137,120 124,82 Z" class="lens-fill"/>
+  <path d="M 110,82 Q 97,120 110,158" class="lens-stroke"/>
+  <path d="M 124,82 Q 137,120 124,158" class="lens-stroke"/>
+  <line x1="110" y1="82" x2="124" y2="82" class="lens-stroke"/>
+  <line x1="110" y1="158" x2="124" y2="158" class="lens-stroke"/>
+
+  <!-- Image plane (right) -->
+  <line x1="195" y1="80" x2="195" y2="160" class="plane"/>
+  <text x="195" y="172" text-anchor="middle" class="plane-label">sensor</text>
+
+  <!-- EP at infinity: parallel rays on scene side (left of lens) -->
+  <!-- Three parallel chief rays entering from left, horizontal (parallel to axis) -->
+  <line x1="30" y1="98" x2="117" y2="98" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="30" y1="120" x2="117" y2="120" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="30" y1="142" x2="117" y2="142" class="ray-parallel" marker-end="url(#arrB)"/>
+
+  <!-- After lens, rays converge to image-side focal point area -->
+  <line x1="117" y1="98" x2="195" y2="120" class="ray" marker-end="url(#arrY)"/>
+  <line x1="117" y1="120" x2="195" y2="120" class="ray" marker-end="url(#arrY)"/>
+  <line x1="117" y1="142" x2="195" y2="120" class="ray" marker-end="url(#arrY)"/>
+
+  <!-- EP∞ label with arrow pointing left off-panel -->
+  <text x="15" y="95" text-anchor="middle" class="inf-label">EP</text>
+  <text x="15" y="106" text-anchor="middle" class="inf-label">at ∞</text>
+  <text x="106" y="195" text-anchor="middle" class="sublabel">Chief rays parallel</text>
+  <text x="106" y="207" text-anchor="middle" class="sublabel">on scene side</text>
+
+  <!-- ════ PANEL 2: Image-space telecentric ════ -->
+  <text x="320" y="20" text-anchor="middle" class="label">Image-space</text>
+  <text x="320" y="33" text-anchor="middle" class="sublabel">telecentric</text>
+
+  <!-- Optical axis -->
+  <line x1="222" y1="120" x2="419" y2="120" class="axis"/>
+
+  <!-- Object plane -->
+  <line x1="234" y1="80" x2="234" y2="160" class="plane"/>
+  <text x="234" y="172" text-anchor="middle" class="plane-label">object</text>
+
+  <!-- Lens -->
+  <path d="M 312,82 Q 299,120 312,158 L 326,158 Q 339,120 326,82 Z" class="lens-fill"/>
+  <path d="M 312,82 Q 299,120 312,158" class="lens-stroke"/>
+  <path d="M 326,82 Q 339,120 326,158" class="lens-stroke"/>
+  <line x1="312" y1="82" x2="326" y2="82" class="lens-stroke"/>
+  <line x1="312" y1="158" x2="326" y2="158" class="lens-stroke"/>
+
+  <!-- Image plane -->
+  <line x1="408" y1="80" x2="408" y2="160" class="plane"/>
+  <text x="408" y="172" text-anchor="middle" class="plane-label">sensor</text>
+
+  <!-- Converging rays on scene side (non-parallel) -->
+  <line x1="234" y1="98" x2="319" y2="114" class="ray" marker-end="url(#arrY)"/>
+  <line x1="234" y1="120" x2="319" y2="120" class="ray" marker-end="url(#arrY)"/>
+  <line x1="234" y1="142" x2="319" y2="126" class="ray" marker-end="url(#arrY)"/>
+
+  <!-- Parallel rays on sensor side (horizontal) -->
+  <line x1="319" y1="114" x2="408" y2="98" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="319" y1="120" x2="408" y2="120" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="319" y1="126" x2="408" y2="142" class="ray-parallel" marker-end="url(#arrB)"/>
+
+  <!-- XP∞ label -->
+  <text x="420" y="96" text-anchor="start" class="inf-label">XP</text>
+  <text x="420" y="107" text-anchor="start" class="inf-label">at ∞</text>
+  <text x="320" y="195" text-anchor="middle" class="sublabel">Chief rays parallel</text>
+  <text x="320" y="207" text-anchor="middle" class="sublabel">on sensor side</text>
+
+  <!-- ════ PANEL 3: Double telecentric ════ -->
+  <text x="533" y="20" text-anchor="middle" class="label">Double</text>
+  <text x="533" y="33" text-anchor="middle" class="sublabel">telecentric</text>
+
+  <!-- Optical axis -->
+  <line x1="435" y1="120" x2="628" y2="120" class="axis"/>
+
+  <!-- Object plane -->
+  <line x1="447" y1="80" x2="447" y2="160" class="plane"/>
+  <text x="447" y="172" text-anchor="middle" class="plane-label">object</text>
+
+  <!-- Two-lens system for double telecentric -->
+  <!-- Lens 1 -->
+  <path d="M 503,85 Q 492,120 503,155 L 515,155 Q 526,120 515,85 Z" class="lens-fill"/>
+  <path d="M 503,85 Q 492,120 503,155" class="lens-stroke"/>
+  <path d="M 515,85 Q 526,120 515,155" class="lens-stroke"/>
+  <line x1="503" y1="85" x2="515" y2="85" class="lens-stroke"/>
+  <line x1="503" y1="155" x2="515" y2="155" class="lens-stroke"/>
+
+  <!-- Aperture stop between lenses -->
+  <line x1="534" y1="95" x2="534" y2="108" stroke="rgba(255,140,32,0.85)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="534" y1="132" x2="534" y2="145" stroke="rgba(255,140,32,0.85)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Lens 2 -->
+  <path d="M 551,85 Q 540,120 551,155 L 563,155 Q 574,120 563,85 Z" class="lens-fill"/>
+  <path d="M 551,85 Q 540,120 551,155" class="lens-stroke"/>
+  <path d="M 563,85 Q 574,120 563,155" class="lens-stroke"/>
+  <line x1="551" y1="85" x2="563" y2="85" class="lens-stroke"/>
+  <line x1="551" y1="155" x2="563" y2="155" class="lens-stroke"/>
+
+  <!-- Image plane -->
+  <line x1="620" y1="80" x2="620" y2="160" class="plane"/>
+  <text x="620" y="172" text-anchor="middle" class="plane-label">sensor</text>
+
+  <!-- Parallel rays on scene side -->
+  <line x1="447" y1="100" x2="510" y2="100" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="447" y1="120" x2="510" y2="120" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="447" y1="140" x2="510" y2="140" class="ray-parallel" marker-end="url(#arrB)"/>
+
+  <!-- Rays between lenses converging through stop -->
+  <line x1="510" y1="100" x2="534" y2="120" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+  <line x1="510" y1="120" x2="534" y2="120" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+  <line x1="510" y1="140" x2="534" y2="120" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+
+  <!-- Parallel rays on sensor side -->
+  <line x1="557" y1="100" x2="620" y2="100" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="557" y1="120" x2="620" y2="120" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="557" y1="140" x2="620" y2="140" class="ray-parallel" marker-end="url(#arrB)"/>
+  <line x1="534" y1="120" x2="557" y2="100" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+  <line x1="534" y1="120" x2="557" y2="120" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+  <line x1="534" y1="120" x2="557" y2="140" stroke="rgba(200,180,100,0.55)" stroke-width="1.1" fill="none"/>
+
+  <!-- EP∞ and XP∞ labels -->
+  <text x="435" y="96" text-anchor="middle" class="inf-label">EP</text>
+  <text x="435" y="107" text-anchor="middle" class="inf-label">at ∞</text>
+  <text x="628" y="96" text-anchor="start" class="inf-label">XP</text>
+  <text x="628" y="107" text-anchor="start" class="inf-label">at ∞</text>
+
+  <text x="533" y="195" text-anchor="middle" class="sublabel">Chief rays parallel on</text>
+  <text x="533" y="207" text-anchor="middle" class="sublabel">both sides</text>
+
+  <!-- Legend -->
+  <line x1="220" y1="222" x2="245" y2="222" class="ray-parallel"/>
+  <text x="249" y="226" class="inf-label" style="font-size:9px">parallel (telecentric side)</text>
+  <line x1="380" y1="222" x2="405" y2="222" class="ray"/>
+  <text x="409" y="226" style="fill:rgba(255,200,60,0.80);font-family:'JetBrains Mono',monospace;font-size:9px">converging (non-telecentric side)</text>
+</svg>

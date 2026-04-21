@@ -28,7 +28,7 @@ The f-number engraved on a lens barrel is the **infinity-conjugate f-number** �
 
 As the lens focuses closer, the image conjugate lengthens: the image forms farther from the exit pupil (the apparent aperture on the sensor side; see [*The Exit Pupil and Your Digital Sensor*](/articles/exit-pupil-sensor)). The exit pupil subtends a smaller angle as seen from the image plane, so less light per unit area reaches the sensor.
 
-*[Diagram: Two side-by-side cross-sections. Left: lens focused at infinity — exit pupil subtends a wide angle from the image plane, labeled $N$. Right: lens extended for close focus — image plane farther away, exit pupil subtends a narrower angle, labeled $N_{\text{eff}} > N$. Show the longer image conjugate explicitly.]*
+![Two side-by-side cross-sections comparing f-number at infinity focus versus close focus. Left: at infinity the exit pupil subtends a wide angle from the sensor, labeled N. Right: with the lens extended for close focus the sensor is farther from the exit pupil, the angle narrows, and the effective f-number N_eff is larger than N.](/diagrams/pupils/working-fnumber.svg)
 
 For a conventional lens — one that focuses by changing the overall lens-to-sensor distance without altering its internal optics — the relationship is [^1] [^2]:
 
