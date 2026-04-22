@@ -24,7 +24,8 @@ The answer is the **entrance pupil** — the apparent aperture of the lens as se
 
 When the rotation axis is displaced from the entrance pupil — for example, when the camera rotates about the tripod socket, which is typically well behind the entrance pupil — near objects shift laterally relative to far objects between frames. This relative shift is **parallax**, and it is the direct cause of the stitching artifacts described above.
 
-![Two side-by-side views showing camera rotation. Left panel: rotating around the entrance pupil keeps near and far objects aligned between frames — no parallax. Right panel: rotating around the tripod socket causes the near object to shift against the far background — parallax error.](/diagrams/pupils/projection-center.svg)
+<!-- diagram temporarily hidden -->
+
 
 ## Why the Entrance Pupil? The Projection Center
 

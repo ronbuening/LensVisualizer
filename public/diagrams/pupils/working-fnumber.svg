@@ -71,37 +71,37 @@
   <line x1="20" y1="110" x2="300" y2="110" class="axis"/>
 
   <!-- Exit pupil -->
-  <ellipse cx="60" cy="110" rx="11" ry="42" class="xp-fill"/>
-  <ellipse cx="60" cy="110" rx="11" ry="42" class="xp-stroke"/>
-  <text x="60" y="22" text-anchor="middle" class="label-xp" style="font-size:10px">XP</text>
-  <line x1="60" y1="25" x2="60" y2="66" class="tick" style="stroke-dasharray:2,2"/>
+  <ellipse cx="130" cy="110" rx="11" ry="42" class="xp-fill"/>
+  <ellipse cx="130" cy="110" rx="11" ry="42" class="xp-stroke"/>
+  <text x="130" y="22" text-anchor="middle" class="label-xp" style="font-size:10px">XP</text>
+  <line x1="130" y1="25" x2="130" y2="66" class="tick" style="stroke-dasharray:2,2"/>
 
   <!-- Lens group (simplified) -->
-  <path d="M 120,76 Q 107,110 120,144 L 134,144 Q 147,110 134,76 Z" class="lens-fill"/>
-  <path d="M 120,76 Q 107,110 120,144" class="lens-stroke"/>
-  <path d="M 134,76 Q 147,110 134,144" class="lens-stroke"/>
-  <line x1="120" y1="76" x2="134" y2="76" class="lens-stroke"/>
-  <line x1="120" y1="144" x2="134" y2="144" class="lens-stroke"/>
+  <path d="M 190,76 Q 177,110 190,144 L 204,144 Q 217,110 204,76 Z" class="lens-fill"/>
+  <path d="M 190,76 Q 177,110 190,144" class="lens-stroke"/>
+  <path d="M 204,76 Q 217,110 204,144" class="lens-stroke"/>
+  <line x1="190" y1="76" x2="204" y2="76" class="lens-stroke"/>
+  <line x1="190" y1="144" x2="204" y2="144" class="lens-stroke"/>
 
   <!-- Sensor (close to lens — short image conjugate) -->
   <line x1="240" y1="76" x2="240" y2="144" class="sensor"/>
   <text x="249" y="112" class="muted">sensor</text>
 
   <!-- Light cone from XP to sensor -->
-  <polygon points="60,68 60,152 240,110" class="cone-fill"/>
-  <line x1="60" y1="68" x2="240" y2="110" class="cone"/>
-  <line x1="60" y1="152" x2="240" y2="110" class="cone"/>
+  <polygon points="130,68 130,152 240,110" class="cone-fill"/>
+  <line x1="130" y1="68" x2="240" y2="110" class="cone"/>
+  <line x1="130" y1="152" x2="240" y2="110" class="cone"/>
 
   <!-- Angle arc at sensor -->
   <path d="M 220,110 A 20,20 0 0,0 224,93" fill="none" stroke="rgba(40,216,255,0.55)" stroke-width="1"/>
   <path d="M 220,110 A 20,20 0 0,1 224,127" fill="none" stroke="rgba(40,216,255,0.55)" stroke-width="1"/>
-  <text x="196" y="107" text-anchor="end" class="label-N">N</text>
+  <text x="222" y="100" text-anchor="start" class="label-N">N</text>
 
   <!-- Image conjugate dimension (XP to sensor) -->
-  <line x1="60" y1="158" x2="240" y2="158" class="dim" marker-end="url(#dimArr)" marker-start="url(#dimArrL)"/>
-  <line x1="60" y1="154" x2="60" y2="162" class="tick"/>
+  <line x1="130" y1="158" x2="240" y2="158" class="dim" marker-end="url(#dimArr)" marker-start="url(#dimArrL)"/>
+  <line x1="130" y1="154" x2="130" y2="162" class="tick"/>
   <line x1="240" y1="154" x2="240" y2="162" class="tick"/>
-  <text x="150" y="171" text-anchor="middle" class="muted">image conjugate v</text>
+  <text x="185" y="171" text-anchor="middle" class="muted">image conjugate v</text>
 
   <!-- ════ RIGHT PANEL: close focus (extended) ════ -->
   <text x="480" y="18" text-anchor="middle" class="label">Close focus (extended)</text>

@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-21 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-21",
+    type: "article",
+    summary: "Added Pupil Geometry article series covering entrance pupil, exit pupil, telecentricity, and more",
+  },
+  {
+    date: "2026-04-21",
     type: "improvement",
     summary:
       "Improved element outline rendering, added a 10% boundary-gap clearance margin, and audited production semi-diameters",

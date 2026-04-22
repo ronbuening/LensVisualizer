@@ -27,6 +27,7 @@ import type { Theme } from "../types/theme.js";
 interface PageThemeToggle {
   theme: Theme;
   themeMode: ThemeMode;
+  dark: boolean;
   highContrast: boolean;
   toggleTheme: () => void;
   toggleHC: () => void;
@@ -80,7 +81,14 @@ export function usePageThemeToggle(): PageThemeToggle {
   }, [themeMode, persist]);
 
   const resolvedDark = themeMode === "auto" ? systemDark : themeMode === "dark";
-  return { theme: resolveTheme(resolvedDark, highContrast), themeMode, highContrast, toggleTheme, toggleHC };
+  return {
+    theme: resolveTheme(resolvedDark, highContrast),
+    themeMode,
+    dark: resolvedDark,
+    highContrast,
+    toggleTheme,
+    toggleHC,
+  };
 }
 
 export type { ThemeMode } from "./themePreferences.js";

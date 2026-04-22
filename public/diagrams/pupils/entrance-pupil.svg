@@ -43,9 +43,9 @@
 
   <!-- ── Entrance pupil (virtual, dashed) ── -->
   <!-- filled ellipse body -->
-  <ellipse cx="92" cy="110" rx="13" ry="48" class="ep-fill"/>
+  <ellipse cx="92" cy="110" rx="13" ry="68" class="ep-fill"/>
   <!-- dashed ellipse outline (two halves for dashed effect on ellipse) -->
-  <ellipse cx="92" cy="110" rx="13" ry="48" class="ep-stroke"/>
+  <ellipse cx="92" cy="110" rx="13" ry="68" class="ep-stroke"/>
   <!-- center marker on optical axis -->
   <line x1="92" y1="108" x2="92" y2="112" class="tick"/>
 
@@ -75,15 +75,15 @@
 
   <!-- ── Construction dashed rays ── -->
   <!-- upper: EP top edge → aperture stop top edge -->
-  <line x1="92" y1="62" x2="445" y2="72" class="ray"/>
+  <line x1="92" y1="42" x2="445" y2="72" class="ray"/>
   <!-- lower: EP bottom edge → aperture stop bottom edge -->
-  <line x1="92" y1="158" x2="445" y2="148" class="ray"/>
+  <line x1="92" y1="178" x2="445" y2="148" class="ray"/>
 
   <!-- ── Labels ── -->
   <!-- Entrance pupil label -->
   <text x="92" y="20" text-anchor="middle" class="label-accent">Entrance pupil</text>
   <text x="92" y="33" text-anchor="middle" class="muted">(virtual image of stop)</text>
-  <line x1="92" y1="36" x2="92" y2="60" class="tick" style="stroke-dasharray:3,2"/>
+  <line x1="92" y1="36" x2="92" y2="41" class="tick" style="stroke-dasharray:3,2"/>
 
   <!-- Front group label -->
   <text x="287" y="180" text-anchor="middle" class="label">Front group</text>
