@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-22 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-22",
+    type: "lens",
+    summary: "Added Canon RF f/1.2 primes and Voigtländer Nokton 35mm f/1.2",
+  },
   // ── 2026-04-21 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-21",
