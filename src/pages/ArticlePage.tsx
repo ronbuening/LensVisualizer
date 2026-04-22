@@ -20,6 +20,10 @@ import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/homepageContent.js";
+import EntrancePupilDiagram from "../components/diagram/EntrancePupilDiagram.js";
+import ExitPupilDiagram from "../components/diagram/ExitPupilDiagram.js";
+import TelecentricityDiagram from "../components/diagram/TelecentricityDiagram.js";
+import WorkingFNumberDiagram from "../components/diagram/WorkingFNumberDiagram.js";
 import type { Theme } from "../types/theme.js";
 
 const PAGE_BASE_STYLE = {
@@ -33,7 +37,7 @@ const PAGE_BASE_STYLE = {
 const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", fontSize: "0.8rem" };
 
 /** Theme-aware markdown components — same pattern as DescriptionPanel */
-function useMarkdownComponents(t: Theme, isStartHere: boolean) {
+function useMarkdownComponents(t: Theme, isStartHere: boolean, isDark: boolean) {
   return useMemo(
     () => ({
       h1: ({ children, id }: { children?: ReactNode; id?: string }) => (
@@ -212,8 +216,75 @@ function useMarkdownComponents(t: Theme, isStartHere: boolean) {
         </td>
       ),
       hr: () => <hr style={{ border: "none", borderTop: `1px solid ${t.descBorder}`, margin: "18px 0" }} />,
+      img: ({ src, alt }: { src?: string; alt?: string }) => {
+        if (src?.includes("entrance-pupil")) {
+          return (
+            <figure style={{ margin: "24px 0", textAlign: "center" }}>
+              <EntrancePupilDiagram isDark={isDark} />
+              {alt && (
+                <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>
+                  {alt}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+        if (src?.includes("exit-pupil")) {
+          return (
+            <figure style={{ margin: "24px 0", textAlign: "center" }}>
+              <ExitPupilDiagram isDark={isDark} />
+              {alt && (
+                <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>
+                  {alt}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+        if (src?.includes("telecentricity")) {
+          return (
+            <figure style={{ margin: "24px 0", textAlign: "center" }}>
+              <TelecentricityDiagram isDark={isDark} />
+              {alt && (
+                <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>
+                  {alt}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+        if (src?.includes("working-fnumber")) {
+          return (
+            <figure style={{ margin: "24px 0", textAlign: "center" }}>
+              <WorkingFNumberDiagram isDark={isDark} />
+              {alt && (
+                <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>
+                  {alt}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+        return (
+          <figure style={{ margin: "24px 0", textAlign: "center" }}>
+            <img
+              src={src}
+              alt={alt ?? ""}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                borderRadius: 6,
+                border: `1px solid ${t.descTableBorder}`,
+              }}
+            />
+            {alt && (
+              <figcaption style={{ marginTop: 6, fontSize: 11, color: t.muted, fontStyle: "italic" }}>{alt}</figcaption>
+            )}
+          </figure>
+        );
+      },
     }),
-    [t, isStartHere],
+    [t, isStartHere, isDark],
   );
 }
 
@@ -221,8 +292,8 @@ export default function ArticlePage() {
   const { slug } = useParams<{ slug: string }>();
   const { state: locationState } = useLocation();
   const fromStartHere = (locationState as { fromStartHere?: boolean } | null)?.fromStartHere === true;
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const components = useMarkdownComponents(t, slug === "start-here");
+  const { theme: t, themeMode, dark, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const components = useMarkdownComponents(t, slug === "start-here", dark);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });

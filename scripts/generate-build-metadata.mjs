@@ -147,7 +147,9 @@ function collectRoutes(lenses, articles, makerSlugs) {
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
 function collectArticles(fallbackDate) {
-  const mdFiles = readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
+  const mdFiles = readdirSync(CONTENT_DIR, { recursive: true })
+    .filter((f) => typeof f === "string" && f.endsWith(".md"))
+    .map((f) => f.replace(/\\/g, "/"));
   const articles = [];
 
   for (const file of mdFiles) {

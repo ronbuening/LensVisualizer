@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="100%" height="auto" role="img" aria-label="Working f-number vs nominal f-number diagram">
+  <defs>
+    <style>
+      .bg { fill: #12151e; }
+      .border { fill: none; stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .divider { stroke: rgba(150,170,210,0.18); stroke-width: 1; }
+      .axis { stroke: rgba(150,170,210,0.30); stroke-width: 1; stroke-dasharray: 5,4; fill: none; }
+      .lens-fill { fill: rgba(70,130,180,0.22); }
+      .lens-stroke { fill: none; stroke: rgba(120,170,220,0.80); stroke-width: 1.5; }
+      .xp-fill { fill: rgba(217,140,255,0.10); }
+      .xp-stroke { fill: none; stroke: #d98cff; stroke-width: 2; }
+      .sensor { stroke: rgba(180,200,240,0.80); stroke-width: 2.5; stroke-linecap: round; fill: none; }
+      .cone-fill { fill: rgba(40,216,255,0.07); }
+      .cone { stroke: rgba(40,216,255,0.55); stroke-width: 1.2; fill: none; }
+      .cone-narrow { fill: rgba(255,200,60,0.06); }
+      .cone-narrow-stroke { stroke: rgba(255,200,60,0.55); stroke-width: 1.2; fill: none; }
+      .dim { stroke: rgba(150,170,210,0.40); stroke-width: 1; fill: none; }
+      .ext-arrow { stroke: rgba(255,160,50,0.70); stroke-width: 1.5; fill: none; }
+      .label { fill: #c8d8f0; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .label-xp { fill: #d98cff; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 11px; }
+      .label-N { fill: #28d8ff; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; }
+      .label-Neff { fill: #ffc83c; font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 12px; font-weight: 700; }
+      .muted { fill: rgba(150,170,200,0.65); font-family: 'JetBrains Mono','SF Mono',monospace; font-size: 9.5px; }
+      .tick { stroke: rgba(150,170,210,0.40); stroke-width: 1; fill: none; }
+      @media (prefers-color-scheme: light) {
+        .bg { fill: #eff2f8; }
+        .border { stroke: rgba(60,80,120,0.18); }
+        .divider { stroke: rgba(60,80,120,0.18); }
+        .axis { stroke: rgba(60,80,120,0.28); }
+        .lens-fill { fill: rgba(30,80,160,0.10); }
+        .lens-stroke { stroke: rgba(30,80,160,0.65); }
+        .xp-fill { fill: rgba(120,46,184,0.07); }
+        .xp-stroke { stroke: #7a2eb8; }
+        .sensor { stroke: rgba(40,80,160,0.75); }
+        .cone-fill { fill: rgba(0,104,120,0.07); }
+        .cone { stroke: rgba(0,104,120,0.55); }
+        .cone-narrow { fill: rgba(160,100,0,0.06); }
+        .cone-narrow-stroke { stroke: rgba(160,100,0,0.55); }
+        .dim { stroke: rgba(60,80,120,0.38); }
+        .ext-arrow { stroke: rgba(200,100,0,0.70); }
+        .label { fill: #1a2540; }
+        .label-xp { fill: #7a2eb8; }
+        .label-N { fill: #006878; }
+        .label-Neff { fill: #a06000; }
+        .muted { fill: rgba(60,80,120,0.60); }
+        .tick { stroke: rgba(60,80,120,0.35); }
+      }
+    </style>
+    <marker id="dimArr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(150,170,210,0.60)"/>
+    </marker>
+    <marker id="dimArrL" markerWidth="5" markerHeight="5" refX="1" refY="2.5" orient="auto">
+      <path d="M5,0 L0,2.5 L5,5 Z" fill="rgba(150,170,210,0.60)"/>
+    </marker>
+    <marker id="extArr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+      <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(255,160,50,0.80)"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="230" rx="6" class="bg"/>
+  <rect width="640" height="230" rx="6" class="border"/>
+
+  <!-- Panel divider -->
+  <line x1="320" y1="22" x2="320" y2="215" class="divider"/>
+
+  <!-- ════ LEFT PANEL: focus at infinity ════ -->
+  <text x="160" y="18" text-anchor="middle" class="label">Focus at infinity</text>
+
+  <!-- Optical axis -->
+  <line x1="20" y1="110" x2="300" y2="110" class="axis"/>
+
+  <!-- Exit pupil -->
+  <ellipse cx="130" cy="110" rx="11" ry="42" class="xp-fill"/>
+  <ellipse cx="130" cy="110" rx="11" ry="42" class="xp-stroke"/>
+  <text x="130" y="22" text-anchor="middle" class="label-xp" style="font-size:10px">XP</text>
+  <line x1="130" y1="25" x2="130" y2="66" class="tick" style="stroke-dasharray:2,2"/>
+
+  <!-- Lens group (simplified) -->
+  <path d="M 190,76 Q 177,110 190,144 L 204,144 Q 217,110 204,76 Z" class="lens-fill"/>
+  <path d="M 190,76 Q 177,110 190,144" class="lens-stroke"/>
+  <path d="M 204,76 Q 217,110 204,144" class="lens-stroke"/>
+  <line x1="190" y1="76" x2="204" y2="76" class="lens-stroke"/>
+  <line x1="190" y1="144" x2="204" y2="144" class="lens-stroke"/>
+
+  <!-- Sensor (close to lens — short image conjugate) -->
+  <line x1="240" y1="76" x2="240" y2="144" class="sensor"/>
+  <text x="249" y="112" class="muted">sensor</text>
+
+  <!-- Light cone from XP to sensor -->
+  <polygon points="130,68 130,152 240,110" class="cone-fill"/>
+  <line x1="130" y1="68" x2="240" y2="110" class="cone"/>
+  <line x1="130" y1="152" x2="240" y2="110" class="cone"/>
+
+  <!-- Angle arc at sensor -->
+  <path d="M 220,110 A 20,20 0 0,0 224,93" fill="none" stroke="rgba(40,216,255,0.55)" stroke-width="1"/>
+  <path d="M 220,110 A 20,20 0 0,1 224,127" fill="none" stroke="rgba(40,216,255,0.55)" stroke-width="1"/>
+  <text x="222" y="100" text-anchor="start" class="label-N">N</text>
+
+  <!-- Image conjugate dimension (XP to sensor) -->
+  <line x1="130" y1="158" x2="240" y2="158" class="dim" marker-end="url(#dimArr)" marker-start="url(#dimArrL)"/>
+  <line x1="130" y1="154" x2="130" y2="162" class="tick"/>
+  <line x1="240" y1="154" x2="240" y2="162" class="tick"/>
+  <text x="185" y="171" text-anchor="middle" class="muted">image conjugate v</text>
+
+  <!-- ════ RIGHT PANEL: close focus (extended) ════ -->
+  <text x="480" y="18" text-anchor="middle" class="label">Close focus (extended)</text>
+
+  <!-- Optical axis -->
+  <line x1="330" y1="110" x2="620" y2="110" class="axis"/>
+
+  <!-- Exit pupil (same position relative to lens) -->
+  <ellipse cx="370" cy="110" rx="11" ry="42" class="xp-fill"/>
+  <ellipse cx="370" cy="110" rx="11" ry="42" class="xp-stroke"/>
+  <text x="370" y="22" text-anchor="middle" class="label-xp" style="font-size:10px">XP</text>
+  <line x1="370" y1="25" x2="370" y2="66" class="tick" style="stroke-dasharray:2,2"/>
+
+  <!-- Lens group -->
+  <path d="M 430,76 Q 417,110 430,144 L 444,144 Q 457,110 444,76 Z" class="lens-fill"/>
+  <path d="M 430,76 Q 417,110 430,144" class="lens-stroke"/>
+  <path d="M 444,76 Q 457,110 444,144" class="lens-stroke"/>
+  <line x1="430" y1="76" x2="444" y2="76" class="lens-stroke"/>
+  <line x1="430" y1="144" x2="444" y2="144" class="lens-stroke"/>
+
+  <!-- Sensor — pushed farther right (longer image conjugate) -->
+  <line x1="570" y1="76" x2="570" y2="144" class="sensor"/>
+  <text x="579" y="112" class="muted">sensor</text>
+
+  <!-- Extension arrow (showing the lens has been pushed out) -->
+  <line x1="444" y1="185" x2="568" y2="185" class="ext-arrow" marker-end="url(#extArr)"/>
+  <line x1="444" y1="181" x2="444" y2="189" class="tick"/>
+  <text x="506" y="198" text-anchor="middle" class="muted">extended (longer conjugate)</text>
+
+  <!-- Light cone from XP to sensor — NARROWER angle -->
+  <polygon points="370,68 370,152 570,110" class="cone-narrow"/>
+  <line x1="370" y1="68" x2="570" y2="110" class="cone-narrow-stroke"/>
+  <line x1="370" y1="152" x2="570" y2="110" class="cone-narrow-stroke"/>
+
+  <!-- Narrower angle arc at sensor -->
+  <path d="M 550,110 A 20,20 0 0,0 553,97" fill="none" stroke="rgba(255,200,60,0.55)" stroke-width="1"/>
+  <path d="M 550,110 A 20,20 0 0,1 553,123" fill="none" stroke="rgba(255,200,60,0.55)" stroke-width="1"/>
+  <text x="525" y="107" text-anchor="end" class="label-Neff">N&#x1D452;&#x1D453;&#x1D453; &gt; N</text>
+
+  <!-- Image conjugate dimension (XP to sensor) — longer -->
+  <line x1="370" y1="158" x2="570" y2="158" class="dim" marker-end="url(#dimArr)" marker-start="url(#dimArrL)"/>
+  <line x1="370" y1="154" x2="370" y2="162" class="tick"/>
+  <line x1="570" y1="154" x2="570" y2="162" class="tick"/>
+  <text x="470" y="171" text-anchor="middle" class="muted">image conjugate v′ &gt; v</text>
+
+  <!-- Bottom explanation -->
+  <text x="160" y="212" text-anchor="middle" class="muted">XP subtends wide angle → fast (low N)</text>
+  <text x="480" y="212" text-anchor="middle" class="muted">XP subtends narrow angle → slow (high N&#x1D452;&#x1D453;&#x1D453;)</text>
+</svg>

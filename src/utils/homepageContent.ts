@@ -95,7 +95,7 @@ export function stripFrontmatter(raw: string): string {
   return raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
 }
 
-const _mdModules = import.meta.glob<string>("../content/*.md", {
+const _mdModules = import.meta.glob<string>("../content/**/*.md", {
   eager: true,
   query: "?raw",
   import: "default",
