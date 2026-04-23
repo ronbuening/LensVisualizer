@@ -168,18 +168,6 @@ const LENS_DATA = {
       apd: false,
       role: "Rear negative field flattener — Petzval correction, lateral color, exit pupil control",
     },
-    {
-      id: 11,
-      name: "FL",
-      label: "Cover Glass",
-      type: "Plano-Parallel",
-      nd: 1.5168,
-      vd: 63.88,
-      fl: Infinity,
-      glass: "S-BSL 7 (OHARA, N-BK7 equiv.)",
-      apd: false,
-      role: "Sensor cover glass / IR-cut filter stack (camera body, not part of lens barrel)",
-    },
   ],
 
   /* ── Surface prescription ──
@@ -193,7 +181,7 @@ const LENS_DATA = {
    *    Patent 6–13* = surfaces "6"–"13A" (G2)
    *    Patent 14*–17 = surfaces "14A"–"17" (G3)
    *    Patent 18–19 = surfaces "18"–"19" (G4)
-   *    Patent 20–21 = surfaces "20"–"21" (cover glass)
+   *    Patent 20–21 = cover glass (excluded; modeled separately in camera body)
    */
   surfaces: [
     // ── G1 — Front group (positive, f = +187.2 mm) ──
@@ -223,11 +211,7 @@ const LENS_DATA = {
 
     // ── G4 — Rear negative group (fixed, f = −44.3 mm) ──
     { label: "18", R: -34.46648, d: 1.2, nd: 1.64769, elemId: 10, sd: 20.0 }, // L41 front
-    { label: "19", R: 173.14403, d: 11.223, nd: 1.0, elemId: 0, sd: 20.0 }, // L41 rear → air
-
-    // ── Sensor cover glass (camera body) ──
-    { label: "20", R: 1e15, d: 1.6, nd: 1.5168, elemId: 11, sd: 21.7 }, // FL front
-    { label: "21", R: 1e15, d: 0.86, nd: 1.0, elemId: 0, sd: 21.7 }, // FL rear → image
+    { label: "19", R: 173.14403, d: 11.223, nd: 1.0, elemId: 0, sd: 20.0 }, // L41 rear → image plane (BFD; cover glass modeled separately in camera body)
   ],
 
   /* ── Aspherical coefficients ──

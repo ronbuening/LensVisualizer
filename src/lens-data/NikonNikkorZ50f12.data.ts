@@ -21,7 +21,6 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    ray trace (EP SD = 20.85 mm at f/1.23) + 10% mechanical       ║
  * ║    clearance. Post-stop surfaces include an off-axis chief ray    ║
  * ║    contribution. STO SD = marginal ray height at stop (19.7 mm). ║
- * ║    Filter plate SD set to image semi-diagonal (21.6 mm).         ║
  * ║    L12 (E-FDS1-W, ultra-high-nd glass) and L13 SDs reduced to    ║
  * ║    match the physical production lens — L12 is intentionally      ║
  * ║    smaller (expensive glass, slight vignetting at full aperture). ║
@@ -46,9 +45,10 @@ const LENS_DATA = {
   groupCount: 15,
 
   /* ── Elements ──
-   *  17 optical elements + 1 filter plate, front to rear.
+   *  17 optical elements, front to rear.
    *  Patent element labels: L11–L19 (front group A), L21–L22 (F1),
-   *  L31–L32 (F2), L41–L44 (R group), FL (filter).
+   *  L31–L32 (F2), L41–L44 (R group).
+   *  (Filter plate modeled separately in camera body.)
    */
   elements: [
     {
@@ -266,18 +266,6 @@ const LENS_DATA = {
       apd: false,
       role: "Final optical element — aspherical front (S32A) for field correction",
     },
-    {
-      id: 18,
-      name: "FL",
-      label: "Filter (FL)",
-      type: "Plano-Plano (Filter)",
-      nd: 1.5168,
-      vd: 63.9,
-      fl: 1e15,
-      glass: "S-NSL36 (OHARA)",
-      apd: false,
-      role: "IR-cut / OLPF / sensor cover glass placeholder",
-    },
   ],
 
   /* ── Surface prescription ──
@@ -325,9 +313,7 @@ const LENS_DATA = {
     { label: "30", R: -127.68, d: 1.8, nd: 1.61266, elemId: 16, sd: 14.8 }, // 31  L42→L43 cemented junction
     { label: "31", R: 40.89766, d: 7.76, nd: 1.0, elemId: 0, sd: 15.2 }, // 32  L43 rear → air
     { label: "32A", R: -64.58764, d: 1.8, nd: 1.5168, elemId: 17, sd: 14.5 }, // 33* L44 front (ASPH)
-    { label: "33", R: 423.87378, d: 10.81, nd: 1.0, elemId: 0, sd: 15.0 }, // 34  L44 rear → air
-    { label: "34", R: 1e15, d: 1.6, nd: 1.5168, elemId: 18, sd: 21.6 }, // 35  FL front (flat filter plate)
-    { label: "35", R: 1e15, d: 0.702, nd: 1.0, elemId: 0, sd: 21.6 }, // 36  FL rear → image (BF, variable)
+    { label: "33", R: 423.87378, d: 10.81, nd: 1.0, elemId: 0, sd: 15.0 }, // 34  L44 rear → image plane (BFD; cover glass modeled separately in camera body)
   ],
 
   /* ── Aspherical coefficients ──

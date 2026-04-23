@@ -261,18 +261,6 @@ const LENS_DATA = {
       apd: false,
       role: "Rear field flattener. Weakly negative meniscus corrects residual field curvature and astigmatism; influences exit pupil telecentricity for uniform sensor illumination.",
     },
-    {
-      id: 18,
-      name: "GB",
-      label: "Glass Block",
-      type: "Plano-Plano (Filter)",
-      nd: 1.51633,
-      vd: 64.1,
-      fl: Infinity,
-      glass: "N-BK7 equivalent (IR-cut / cover glass)",
-      apd: false,
-      role: "Camera-body IR-cut filter and sensor cover glass. Zero optical power; affects only BFD air-equivalent calculation.",
-    },
   ],
 
   /* ── Surface prescription ── */
@@ -317,11 +305,7 @@ const LENS_DATA = {
     { label: "27", R: 31.679, d: 7.95, nd: 1.80518, elemId: 16, sd: 16.7 }, // L15→L16 junction (D5)
     { label: "28", R: 207.181, d: 8.55, nd: 1.0, elemId: 0, sd: 16.7 }, // L16 rear → air
     { label: "29", R: -28.564, d: 1.6, nd: 1.58913, elemId: 17, sd: 14.6 }, // L17 front
-    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 14.6 }, // L17 rear → air (BFD to GB)
-
-    // ── Glass block (camera IR-cut filter / cover glass) ──
-    { label: "31", R: 1e15, d: 1.5, nd: 1.51633, elemId: 18, sd: 21.6 }, // GB front
-    { label: "32", R: 1e15, d: 0.8, nd: 1.0, elemId: 0, sd: 21.6 }, // GB rear → air → image plane
+    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 14.6 }, // L17 rear → image plane (BFD; cover glass modeled separately in camera body)
   ],
 
   /* ── Aspherical coefficients ── */
