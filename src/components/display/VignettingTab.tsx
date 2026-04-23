@@ -8,6 +8,7 @@
 
 import { useMemo } from "react";
 import { computeVignettingCurve } from "../../optics/vignetteAnalysis.js";
+import { probe } from "../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -32,7 +33,10 @@ export default function VignettingTab({
   currentPhysStopSD,
 }: VignettingTabProps) {
   const samples = useMemo(
-    () => computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    () =>
+      probe("computeVignettingCurve", () =>
+        computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+      ),
     [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
   );
 

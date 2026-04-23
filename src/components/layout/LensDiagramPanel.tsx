@@ -29,7 +29,7 @@ import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
-import { useLensCtx } from "../../utils/LensContext.js";
+import { useLensCtx, usePanelCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
@@ -72,7 +72,8 @@ export default function LensDiagramPanel({
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
-  const { rays: raysState, display, panels, sliders } = state;
+  const { rays: raysState, display, sliders } = state;
+  const panels = usePanelCtx();
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = resolveDarkPreference(display.dark, systemDark);
@@ -153,6 +154,18 @@ export default function LensDiagramPanel({
       adapters.onZoomPanToggle(active);
     },
     [zoomHook, adapters],
+  );
+
+  const handleSelect = useCallback(
+    (eid: number | null) => {
+      if (sel === eid) {
+        setSel(null);
+        setHov(null);
+      } else {
+        setSel(eid);
+      }
+    },
+    [sel],
   );
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
@@ -255,14 +268,7 @@ export default function LensDiagramPanel({
           flashKey={flashKey}
           flashFading={flashFading}
           onHover={setHov}
-          onSelect={(eid) => {
-            if (sel === eid) {
-              setSel(null);
-              setHov(null);
-            } else {
-              setSel(eid);
-            }
-          }}
+          onSelect={handleSelect}
           analysisDrawerOpen={analysisDrawerOpen}
           analysisDrawerTab={analysisDrawerTab}
           bokehPreviewOpen={bokehPreviewOpen}
@@ -276,29 +282,33 @@ export default function LensDiagramPanel({
           zoomHook={zoomHook}
           onZoomPanToggle={handleZoomPanToggle}
           bokehPreviewContent={
-            <BokehPreviewOverlay
-              L={L}
-              focusT={focusT}
-              zoomT={zoomT}
-              currentEPSD={currentEPSD}
-              currentPhysStopSD={currentPhysStopSD}
-              t={t}
-            />
+            bokehPreviewOpen ? (
+              <BokehPreviewOverlay
+                L={L}
+                focusT={focusT}
+                zoomT={zoomT}
+                currentEPSD={currentEPSD}
+                currentPhysStopSD={currentPhysStopSD}
+                t={t}
+              />
+            ) : null
           }
           analysisContent={
-            <AnalysisDrawerContent
-              activeTab={analysisDrawerTab}
-              L={L}
-              t={t}
-              zPos={zPos}
-              focusT={focusT}
-              zoomT={zoomT}
-              dynamicEFL={dynamicEFL}
-              currentEPSD={currentEPSD}
-              currentPhysStopSD={currentPhysStopSD}
-              aberrationsExpanded={aberrationsExpanded}
-              onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
-            />
+            analysisDrawerOpen ? (
+              <AnalysisDrawerContent
+                activeTab={analysisDrawerTab}
+                L={L}
+                t={t}
+                zPos={zPos}
+                focusT={focusT}
+                zoomT={zoomT}
+                dynamicEFL={dynamicEFL}
+                currentEPSD={currentEPSD}
+                currentPhysStopSD={currentPhysStopSD}
+                aberrationsExpanded={aberrationsExpanded}
+                onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
+              />
+            ) : null
           }
           header={
             !zoomPanActive ? (

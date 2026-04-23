@@ -22,7 +22,7 @@ import { useNavigate } from "react-router";
 import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
 import usePreferences from "../../utils/usePreferences.js";
 import useURLSync from "../../utils/useURLSync.js";
-import { LensStateContext, LensDispatchContext } from "../../utils/LensContext.js";
+import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/LensContext.js";
 import { resolveDarkPreference, resolveTheme } from "../../utils/themePreferences.js";
 import _ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import _ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
@@ -203,100 +203,102 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
    * ===================================================================== */
   return (
     <LensStateContext.Provider value={ctxValue}>
-      <LensDispatchContext.Provider value={dispatch}>
-        <div
-          style={{
-            background: t.bg,
-            color: t.body,
-            fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
-            minHeight: "100vh",
-            transition: "background 0.3s,color 0.3s",
-          }}
-        >
-          <ViewerChrome
-            theme={t}
-            isWide={isWide}
-            comparing={comparing}
-            lensKeyA={lensKeyA}
-            lensKeyB={lensKeyB}
-            showCompareBtn={showCompareBtn}
-            onSwitchLensA={switchLensA}
-            onSwitchLensB={switchLensB}
-            onSwapLenses={swapLenses}
-            onToggleCompare={toggleCompare}
-            onOpenAboutSite={openAboutSite}
-            onOpenAboutAuthor={openAboutAuthor}
-            onOpenOpticsPrimer={openOpticsPrimer}
-            onOpenAberrationsPrimer={openAberrationsPrimer}
-            catalogKeys={CATALOG_KEYS}
-            catalogNames={catalogNames}
-            controlsBarProps={controlsBarProps}
-            mobileView={mobileView}
-            onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
-            showDesktopToggle={showDesktopToggle}
-            desktopViewOptions={desktopViewOptions}
-            effectiveDesktopView={effectiveDesktopView}
-            onDesktopViewChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
-          />
+      <PanelStateContext.Provider value={state.panels}>
+        <LensDispatchContext.Provider value={dispatch}>
+          <div
+            style={{
+              background: t.bg,
+              color: t.body,
+              fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
+              minHeight: "100vh",
+              transition: "background 0.3s,color 0.3s",
+            }}
+          >
+            <ViewerChrome
+              theme={t}
+              isWide={isWide}
+              comparing={comparing}
+              lensKeyA={lensKeyA}
+              lensKeyB={lensKeyB}
+              showCompareBtn={showCompareBtn}
+              onSwitchLensA={switchLensA}
+              onSwitchLensB={switchLensB}
+              onSwapLenses={swapLenses}
+              onToggleCompare={toggleCompare}
+              onOpenAboutSite={openAboutSite}
+              onOpenAboutAuthor={openAboutAuthor}
+              onOpenOpticsPrimer={openOpticsPrimer}
+              onOpenAberrationsPrimer={openAberrationsPrimer}
+              catalogKeys={CATALOG_KEYS}
+              catalogNames={catalogNames}
+              controlsBarProps={controlsBarProps}
+              mobileView={mobileView}
+              onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+              showDesktopToggle={showDesktopToggle}
+              desktopViewOptions={desktopViewOptions}
+              effectiveDesktopView={effectiveDesktopView}
+              onDesktopViewChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
+            />
 
-          <ViewerContent
-            theme={t}
-            isWide={isWide}
-            comparing={comparing}
-            lensKeyA={lensKeyA}
-            lensKeyB={lensKeyB}
-            comparisonLenses={comparisonLenses}
-            focusPair={focusPair}
-            aperturePair={aperturePair}
-            zoomPair={zoomPair}
-            scaleRatios={scaleRatios}
-            maxHeaderHeight={maxHeaderHeight}
-            onHeaderHeight={handleHeaderHeight}
-            flashPanel={flashPanel}
-            sharedFocusT={sharedFocusT}
-            sharedStopdownT={sharedStopdownT}
-            sharedZoomT={sharedZoomT}
-            onSharedFocusChange={handleSharedFocusChange}
-            onSharedStopdownChange={handleSharedStopdownChange}
-            onFocusPointerDown={handleFocusPointerDown}
-            onAperturePointerDown={handleAperturePointerDown}
-            onSliderPointerUp={updateURLWithSliders}
-            dispatch={dispatch}
-            showEffectiveAperture={panels.showEffectiveAperture}
-            effectiveDesktopView={effectiveDesktopView}
-            showDesktopToggle={showDesktopToggle}
-            mobileView={mobileView}
-            markdown={markdown}
-          />
+            <ViewerContent
+              theme={t}
+              isWide={isWide}
+              comparing={comparing}
+              lensKeyA={lensKeyA}
+              lensKeyB={lensKeyB}
+              comparisonLenses={comparisonLenses}
+              focusPair={focusPair}
+              aperturePair={aperturePair}
+              zoomPair={zoomPair}
+              scaleRatios={scaleRatios}
+              maxHeaderHeight={maxHeaderHeight}
+              onHeaderHeight={handleHeaderHeight}
+              flashPanel={flashPanel}
+              sharedFocusT={sharedFocusT}
+              sharedStopdownT={sharedStopdownT}
+              sharedZoomT={sharedZoomT}
+              onSharedFocusChange={handleSharedFocusChange}
+              onSharedStopdownChange={handleSharedStopdownChange}
+              onFocusPointerDown={handleFocusPointerDown}
+              onAperturePointerDown={handleAperturePointerDown}
+              onSliderPointerUp={updateURLWithSliders}
+              dispatch={dispatch}
+              showEffectiveAperture={panels.showEffectiveAperture}
+              effectiveDesktopView={effectiveDesktopView}
+              showDesktopToggle={showDesktopToggle}
+              mobileView={mobileView}
+              markdown={markdown}
+            />
 
-          <ViewerOverlays
-            theme={t}
-            isWide={isWide}
-            showAbout={showAbout}
-            showAboutSite={showAboutSite}
-            showOpticsPrimer={showOpticsPrimer}
-            showAberrationsPrimer={showAberrationsPrimer}
-            primerLevel={primerLevel}
-            aberrationsLevel={aberrationsLevel}
-            onTogglePrimerLevel={togglePrimerLevel}
-            onToggleAberrationsLevel={toggleAberrationsLevel}
-            onOpenOpticsPrimer={openOpticsPrimer}
-            onOpenAberrationsPrimer={openAberrationsPrimer}
-            onOpenAboutSite={openAboutSite}
-            onOpenAboutAuthor={openAboutAuthor}
-            onCloseAboutSite={closeAboutSite}
-            onCloseAboutAuthor={closeAboutAuthor}
-            onCloseOpticsPrimer={closeOpticsPrimer}
-            onCloseAberrationsPrimer={closeAberrationsPrimer}
-            aboutSiteMarkdown={ABOUT_SITE_MD}
-            aboutAuthorMarkdown={ABOUT_ME_MD}
-            opticsPrimerSimpleMarkdown={OPTICS_PRIMER_SIMPLE_MD}
-            opticsPrimerIntermediateMarkdown={OPTICS_PRIMER_INTERMEDIATE_MD}
-            aberrationsPrimerSimpleMarkdown={ABERRATIONS_PRIMER_SIMPLE_MD}
-            aberrationsPrimerIntermediateMarkdown={ABERRATIONS_PRIMER_INTERMEDIATE_MD}
-          />
-        </div>
-      </LensDispatchContext.Provider>
+            <ViewerOverlays
+              theme={t}
+              isWide={isWide}
+              showAbout={showAbout}
+              showAboutSite={showAboutSite}
+              showOpticsPrimer={showOpticsPrimer}
+              showAberrationsPrimer={showAberrationsPrimer}
+              primerLevel={primerLevel}
+              aberrationsLevel={aberrationsLevel}
+              onTogglePrimerLevel={togglePrimerLevel}
+              onToggleAberrationsLevel={toggleAberrationsLevel}
+              onOpenOpticsPrimer={openOpticsPrimer}
+              onOpenAberrationsPrimer={openAberrationsPrimer}
+              onOpenAboutSite={openAboutSite}
+              onOpenAboutAuthor={openAboutAuthor}
+              onCloseAboutSite={closeAboutSite}
+              onCloseAboutAuthor={closeAboutAuthor}
+              onCloseOpticsPrimer={closeOpticsPrimer}
+              onCloseAberrationsPrimer={closeAberrationsPrimer}
+              aboutSiteMarkdown={ABOUT_SITE_MD}
+              aboutAuthorMarkdown={ABOUT_ME_MD}
+              opticsPrimerSimpleMarkdown={OPTICS_PRIMER_SIMPLE_MD}
+              opticsPrimerIntermediateMarkdown={OPTICS_PRIMER_INTERMEDIATE_MD}
+              aberrationsPrimerSimpleMarkdown={ABERRATIONS_PRIMER_SIMPLE_MD}
+              aberrationsPrimerIntermediateMarkdown={ABERRATIONS_PRIMER_INTERMEDIATE_MD}
+            />
+          </div>
+        </LensDispatchContext.Provider>
+      </PanelStateContext.Provider>
     </LensStateContext.Provider>
   );
 }
