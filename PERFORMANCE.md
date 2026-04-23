@@ -12,7 +12,7 @@ The goal is a dramatically smoother interactive experience while preserving fina
 
 | Stage | Scope | Status |
 |-------|-------|--------|
-| 0 | Instrumentation (perf probe, baseline measurements) | ⬜ Not started |
+| 0 | Instrumentation (perf probe, baseline measurements) | ✅ Shipped (2026-04-23) |
 | 1 | Unmount non-visible analysis/bokeh work | ⬜ Not started |
 | 2 | Defer non-essential work until pointer-up (`useDeferredValue`) | ⬜ Not started |
 | 3 | Stabilize references + split context + `React.memo` | ⬜ Not started |
@@ -72,13 +72,20 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 
 ---
 
-## Stage 0 — Instrumentation (prerequisite)
+## Stage 0 — Instrumentation ✅ Shipped 2026-04-23
 
 **Goal:** land a perf probe so every subsequent PR posts before/after numbers rather than "feels faster," and so we catch regressions.
 
-- Add `src/utils/perfProbe.ts` exporting `probe(name, fn)` that wraps a function with `performance.now()` before/after and logs via `console.table` every N calls, guarded behind `import.meta.env.DEV`.
-- Wrap the six analysis entry points: `computeSphericalAberration`, `computeComaAnalysis`, `computeDistortionCurve`, `computeDistortionFieldGrid`, `computeVignettingCurve`, `computeBokehPreviewPair`.
-- Record baseline measurements in this document (see the Baselines section at the bottom) on a representative lens (e.g., Canon RF 85mm f/1.2L) at default slider positions, scrubbing focus 0→1 over 2 seconds.
+- ✅ `src/utils/perfProbe.ts` — exports `probe(name, fn)` (wraps with `performance.now()`) and `resetPerfProbe()`. No-ops in production via `import.meta.env.DEV` guard. Logs a `console.table` summary every 10 calls.
+- ✅ Six entry points wrapped at their `useMemo` call sites:
+  - `computeSphericalAberration` — `useAberrationsPanelData.ts`
+  - `computeComaAnalysis` — `useAberrationsPanelData.ts`
+  - `computeDistortionCurve` — `DistortionTab.tsx`
+  - `computeDistortionFieldGrid` — `DistortionTab.tsx`
+  - `computeVignettingCurve` — `VignettingTab.tsx`
+  - `computeBokehPreviewPair` — `BokehPreviewOverlay.tsx`
+- ✅ `__tests__/perfProbe.test.ts` — covers return value passthrough, logging cadence, multi-name tracking, and reset.
+- ⬜ **Baselines not yet recorded** — open the app in dev mode (`npm run dev`), load a lens, open each analysis tab in turn, scrub the focus slider for ~10 moves, and read the `console.table` output. Record results in the Baselines section below.
 
 ---
 

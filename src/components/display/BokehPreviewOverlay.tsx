@@ -10,6 +10,7 @@
 
 import { useMemo } from "react";
 import { computeBokehPreviewPair } from "../../optics/aberrationAnalysis.js";
+import { probe } from "../../utils/perfProbe.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import BokehPreviewGrid from "./BokehPreviewGrid.js";
@@ -32,7 +33,8 @@ export default function BokehPreviewOverlay({
   t,
 }: BokehPreviewOverlayProps) {
   const pair = useMemo(
-    () => computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    () =>
+      probe("computeBokehPreviewPair", () => computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)),
     [L, focusT, zoomT, currentEPSD, currentPhysStopSD],
   );
 

@@ -6,6 +6,7 @@ import {
   computeSphericalAberrationBlurCharacter,
   computeSAProfile,
 } from "../../../optics/aberrationAnalysis.js";
+import { probe } from "../../../utils/perfProbe.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 
 interface UseAberrationsPanelDataParams {
@@ -26,7 +27,9 @@ export default function useAberrationsPanelData({
   currentPhysStopSD,
 }: UseAberrationsPanelDataParams) {
   return useMemo(() => {
-    const saResult = computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const saResult = probe("computeSphericalAberration", () =>
+      computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
     const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const saBlurCharacter = computeSphericalAberrationBlurCharacter(
       L,
@@ -41,7 +44,7 @@ export default function useAberrationsPanelData({
       meridionalComa: comaResult,
       sagittalComa: sagittalComaResult,
       pointCloudPreview: comaPreviewResult,
-    } = computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    } = probe("computeComaAnalysis", () => computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD));
     const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
     const chromaticFieldCurvatureResult = computeFieldCurvature(
       L,

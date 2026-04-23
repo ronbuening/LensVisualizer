@@ -7,6 +7,7 @@
 
 import { useMemo } from "react";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../../optics/distortionAnalysis.js";
+import { probe } from "../../utils/perfProbe.js";
 import { eflAtZoom } from "../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
@@ -33,11 +34,15 @@ export default function DistortionTab({
   currentPhysStopSD,
 }: DistortionTabProps) {
   const samples = useMemo(
-    () => computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
+    () =>
+      probe("computeDistortionCurve", () =>
+        computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
+      ),
     [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD],
   );
   const fieldGrid = useMemo(
-    () => computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD),
+    () =>
+      probe("computeDistortionFieldGrid", () => computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)),
     [L, zPos, focusT, zoomT, currentPhysStopSD],
   );
 
