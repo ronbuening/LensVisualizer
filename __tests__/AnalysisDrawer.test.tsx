@@ -117,4 +117,32 @@ describe("AnalysisDrawer", () => {
     fireEvent.keyDown(document, { key: "Escape" });
     expect(onClose).toHaveBeenCalledTimes(1);
   });
+
+  it("does not render children when closed", () => {
+    render(
+      <AnalysisDrawer
+        open={false}
+        onClose={vi.fn()}
+        activeTab="aberrations"
+        onTabChange={vi.fn()}
+        tabs={tabs}
+        t={theme}
+        isWide={true}
+      >
+        <div>hidden-content</div>
+      </AnalysisDrawer>,
+    );
+
+    expect(screen.queryByText("hidden-content")).toBeNull();
+  });
+
+  it("renders children when open", () => {
+    render(
+      <AnalysisDrawer open onClose={vi.fn()} activeTab="aberrations" onTabChange={vi.fn()} tabs={tabs} t={theme} isWide={true}>
+        <div>visible-content</div>
+      </AnalysisDrawer>,
+    );
+
+    expect(screen.getByText("visible-content")).toBeTruthy();
+  });
 });

@@ -11,7 +11,7 @@ import type { Theme } from "../../types/theme.js";
 import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SagittalComaSection from "./aberrations/SagittalComaSection.js";
-import useAberrationsPanelData from "./aberrations/useAberrationsPanelData.js";
+import useComaData from "./aberrations/useComaData.js";
 
 interface ComaTabProps {
   L: RuntimeLens;
@@ -24,7 +24,7 @@ interface ComaTabProps {
 }
 
 export default function ComaTab({ L, t, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD }: ComaTabProps) {
-  const { comaResult, sagittalComaResult, comaPreviewResult } = useAberrationsPanelData({
+  const { comaResult, sagittalComaResult, comaPreviewResult } = useComaData({
     L,
     zPos,
     focusT,

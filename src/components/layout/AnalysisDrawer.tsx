@@ -145,7 +145,7 @@ export default function AnalysisDrawer({
         <button onClick={onClose} style={closeBtnStyle}>
           ×
         </button>
-        {children}
+        {open && children}
       </div>
     </div>
   );

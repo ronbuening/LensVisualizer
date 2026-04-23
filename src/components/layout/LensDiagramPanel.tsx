@@ -276,29 +276,33 @@ export default function LensDiagramPanel({
           zoomHook={zoomHook}
           onZoomPanToggle={handleZoomPanToggle}
           bokehPreviewContent={
-            <BokehPreviewOverlay
-              L={L}
-              focusT={focusT}
-              zoomT={zoomT}
-              currentEPSD={currentEPSD}
-              currentPhysStopSD={currentPhysStopSD}
-              t={t}
-            />
+            bokehPreviewOpen ? (
+              <BokehPreviewOverlay
+                L={L}
+                focusT={focusT}
+                zoomT={zoomT}
+                currentEPSD={currentEPSD}
+                currentPhysStopSD={currentPhysStopSD}
+                t={t}
+              />
+            ) : null
           }
           analysisContent={
-            <AnalysisDrawerContent
-              activeTab={analysisDrawerTab}
-              L={L}
-              t={t}
-              zPos={zPos}
-              focusT={focusT}
-              zoomT={zoomT}
-              dynamicEFL={dynamicEFL}
-              currentEPSD={currentEPSD}
-              currentPhysStopSD={currentPhysStopSD}
-              aberrationsExpanded={aberrationsExpanded}
-              onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
-            />
+            analysisDrawerOpen ? (
+              <AnalysisDrawerContent
+                activeTab={analysisDrawerTab}
+                L={L}
+                t={t}
+                zPos={zPos}
+                focusT={focusT}
+                zoomT={zoomT}
+                dynamicEFL={dynamicEFL}
+                currentEPSD={currentEPSD}
+                currentPhysStopSD={currentPhysStopSD}
+                aberrationsExpanded={aberrationsExpanded}
+                onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
+              />
+            ) : null
           }
           header={
             !zoomPanActive ? (

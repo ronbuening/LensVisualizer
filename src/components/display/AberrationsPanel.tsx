@@ -12,7 +12,8 @@ import type { Theme } from "../../types/theme.js";
 import AstigmatismSection from "./aberrations/AstigmatismSection.js";
 import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
 import SphericalAberrationSection from "./aberrations/SphericalAberrationSection.js";
-import useAberrationsPanelData from "./aberrations/useAberrationsPanelData.js";
+import useSphericalAberrationData from "./aberrations/useSphericalAberrationData.js";
+import useFieldCurvatureData from "./aberrations/useFieldCurvatureData.js";
 
 interface AberrationsPanelProps {
   L: RuntimeLens;
@@ -37,15 +38,22 @@ export default function AberrationsPanel({
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
-  const { saResult, saProfile, saBlurCharacter, fieldCurvatureResult, chromaticFieldCurvatureResult } =
-    useAberrationsPanelData({
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-    });
+  const { saResult, saProfile, saBlurCharacter } = useSphericalAberrationData({
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  });
+  const { fieldCurvatureResult, chromaticFieldCurvatureResult } = useFieldCurvatureData({
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+  });
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
   const [fieldCurvatureExpanded, setFieldCurvatureExpanded] = useState(true);

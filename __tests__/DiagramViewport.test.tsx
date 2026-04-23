@@ -246,4 +246,32 @@ describe("DiagramViewport", () => {
     fireEvent.keyDown(window, { key: "+" });
     expect(baseProps.onZoomIn).not.toHaveBeenCalled();
   });
+
+  /* ── Stage 1 gating: analysis content must not mount when drawer is closed ── */
+
+  it("does not mount analysisContent when drawer is closed", () => {
+    const computeSpy = vi.fn();
+    function AnalysisContentSpy() {
+      computeSpy();
+      return <div>spy-content</div>;
+    }
+
+    render(<DiagramViewport {...baseProps} analysisDrawerOpen={false} analysisContent={<AnalysisContentSpy />} />);
+
+    expect(computeSpy).not.toHaveBeenCalled();
+    expect(screen.queryByText("spy-content")).toBeNull();
+  });
+
+  it("mounts analysisContent when drawer is open", () => {
+    const computeSpy = vi.fn();
+    function AnalysisContentSpy() {
+      computeSpy();
+      return <div>spy-content</div>;
+    }
+
+    render(<DiagramViewport {...baseProps} analysisDrawerOpen analysisContent={<AnalysisContentSpy />} />);
+
+    expect(computeSpy).toHaveBeenCalled();
+    expect(screen.getByText("spy-content")).toBeTruthy();
+  });
 });

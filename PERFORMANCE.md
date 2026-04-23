@@ -13,7 +13,7 @@ The goal is a dramatically smoother interactive experience while preserving fina
 | Stage | Scope | Status |
 |-------|-------|--------|
 | 0 | Instrumentation (perf probe, baseline measurements) | ✅ Shipped (2026-04-23) |
-| 1 | Unmount non-visible analysis/bokeh work | ⬜ Not started |
+| 1 | Unmount non-visible analysis/bokeh work | ✅ Shipped (2026-04-23) |
 | 2 | Defer non-essential work until pointer-up (`useDeferredValue`) | ⬜ Not started |
 | 3 | Stabilize references + split context + `React.memo` | ⬜ Not started |
 | 4 | Adaptive resolution during interaction | ⬜ Not started |
