@@ -19,11 +19,11 @@ To image an object at distance $s$, a lens of focal length $f$ requires an addit
 
 $$\Delta = \frac{f^2}{|s| - f}$$
 
-Because the entire lens moves together, no internal air spaces change. The eccentricity parameter $\bar{h}/h$ — the ratio of the chief ray height to the marginal ray height at each surface — is exactly preserved at every element across the focus range. This means the partition of aberration contributions among spherical aberration, coma, astigmatism, and distortion at each surface remains undisturbed. The only image quality changes are those arising from the conjugate shift itself (Wynne, 1952).
+Because the entire lens moves together, no internal air spaces change. The eccentricity parameter $\bar{h}/h$ — the ratio of the chief ray height to the marginal ray height at each surface — is exactly preserved at every element across the focus range. This means the partition of aberration contributions among spherical aberration, coma, astigmatism, and distortion at each surface remains undisturbed. The only image quality changes are those arising from the conjugate shift itself [^1].
 
 ## Aberration Behavior
 
-The dominant close-focus degradation is governed by the leading Wynne conjugate-shift terms:
+The dominant close-focus degradation is governed by the leading Wynne conjugate-shift terms [^1] [^2]:
 
 $$\Delta S_I \approx 4\delta S_{II}$$
 
@@ -31,9 +31,9 @@ $$\Delta S_{II} \approx \delta(3S_{III} + S_{IV})$$
 
 Two important consequences follow from these equations:
 
-**Coma drives spherical aberration change.** A lens with small residual coma at its design conjugate will resist spherical aberration degradation at close focus. This is why the quasi-symmetric Double Gauss form — whose structural symmetry inherently suppresses coma — has historically been the most successful architecture for unit-focused fast normal primes (Kingslake & Johnson, 2010, Ch. 12; Smith, 2007, §17.3).
+**Coma drives spherical aberration change.** A lens with small residual coma at its design conjugate will resist spherical aberration degradation at close focus. This is why the quasi-symmetric Double Gauss form — whose structural symmetry inherently suppresses coma — has historically been the most successful architecture for unit-focused fast normal primes [^3] [^4].
 
-**Astigmatism and Petzval sum drive coma change.** The relationship $3S_{III} + S_{IV}$ controls how rapidly coma degrades with conjugate shift. Strongly asymmetric designs (retrofocus wide-angles, telephoto constructions) carry large residual coma and astigmatism by virtue of their asymmetry, and suffer correspondingly severe degradation under unit focusing at close range. The predecessor patent for the Nikon 28mm f/1.4D (US 5,315,441, col. 2) states this explicitly: unit focusing an inverse telephoto wide-angle produces "excessively corrected" astigmatism and "insufficiently corrected" spherical aberration at short range.
+**Astigmatism and Petzval sum drive coma change.** The relationship $3S_{III} + S_{IV}$ controls how rapidly coma degrades with conjugate shift. Strongly asymmetric designs (retrofocus wide-angles, telephoto constructions) carry large residual coma and astigmatism by virtue of their asymmetry, and suffer correspondingly severe degradation under unit focusing at close range. The predecessor patent for the Nikon 28mm f/1.4D [^5] states this explicitly: unit focusing an inverse telephoto wide-angle produces "excessively corrected" astigmatism and "insufficiently corrected" spherical aberration at short range.
 
 ## Advantages
 
@@ -54,12 +54,17 @@ Unit focusing works best in quasi-symmetric designs (Double Gauss and its deriva
 
 For strongly asymmetric lens forms — retrofocus wide-angles, long telephotos — the Wynne conjugate-shift terms become large enough that unit focusing is optically unacceptable at close range, and some form of internal correction becomes a necessity rather than a convenience.
 
-## Key References
+## References
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proc. Phys. Soc. B*, 65, 429–437 (1952).
-- Kingslake, R. and Johnson, R.B. *Lens Design Fundamentals*, 2nd ed. Academic Press/SPIE Press, 2010.
-- Smith, W.J. *Modern Optical Engineering*, 4th ed. McGraw-Hill, 2007.
-- Welford, W.T. *Aberrations of Optical Systems*. Taylor & Francis, 1986.
+[^1]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
+
+[^2]: W. T. Welford, *Aberrations of Optical Systems*. Bristol, U.K.: Adam Hilger, 1986.
+
+[^3]: R. Kingslake and R. B. Johnson, *Lens Design Fundamentals*, 2nd ed. Burlington, MA, USA: Academic Press, 2010.
+
+[^4]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2007.
+
+[^5]: Nikon Corporation, "Wide-angle lens," U.S. Patent 5,315,441, 1994.
 
 ---
 

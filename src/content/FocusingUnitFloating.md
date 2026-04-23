@@ -19,11 +19,11 @@ This architecture occupies a middle ground between unit focusing (where no inter
 
 In a floating-element design, the lens barrel extends to focus at closer distances — just as in unit focusing — but selected element groups within the barrel are coupled to cam mechanisms that change their relative spacings as the barrel extends. The differential motion of these groups adjusts the aberration balance at each focus position without requiring the barrel to remain at a fixed length.
 
-The key principle is the same insight that underlies the dual-side IF architecture (and Nikon's Close-Range Correction system): by identifying air spacings whose changes selectively affect specific aberrations, the designer can compensate for conjugate-shift-induced degradation. The floating-element approach applies this insight within an extending-barrel form — the barrel still extends and most of the lens mass still translates, distinguishing it mechanically from true internal focusing.
+The key principle is the same insight that underlies the dual-side IF architecture (and Nikon's Close-Range Correction system): by identifying air spacings whose changes selectively affect specific aberrations, the designer can compensate for conjugate-shift-induced degradation [^1]. The floating-element approach applies this insight within an extending-barrel form — the barrel still extends and most of the lens mass still translates, distinguishing it mechanically from true internal focusing.
 
 ### Case Example: Voigtländer APO-Lanthar 50mm f/2.0 Aspherical
 
-The [Voigtländer APO-Lanthar 50mm f/2.0 Aspherical](/lens/apo-lanthar-50f2) (JP 2021-43376 A, Example 5; Cosina/Sugano) is a particularly sophisticated example. Its floating focus mechanism employs three independently moving groups — a front group, an intermediate group, and a rear group including a field-flattening element — with **three variable air gaps** that adjust to maintain quasi-symmetric aberration balance across the conjugate range. The barrel extends slightly during focusing, but the essential optical action is the differential movement of internal groups.
+The [Voigtländer APO-Lanthar 50mm f/2.0 Aspherical](/lens/apo-lanthar-50f2) [^2] is a particularly sophisticated example. Its floating focus mechanism employs three independently moving groups — a front group, an intermediate group, and a rear group including a field-flattening element — with **three variable air gaps** that adjust to maintain quasi-symmetric aberration balance across the conjugate range. The barrel extends slightly during focusing, but the essential optical action is the differential movement of internal groups.
 
 This three-parameter floating correction enables the APO-Lanthar's apochromatic performance to be maintained from infinity through close focus — a result that a rigid unit-focusing translation could not achieve. The design is conceptually closer to a dual-side IF architecture than to a simple extending helicoid, though its barrel extension distinguishes it mechanically from true internal focusing.
 
@@ -31,7 +31,7 @@ This three-parameter floating correction enables the APO-Lanthar's apochromatic 
 
 The aberration logic mirrors unit focusing for the gross conjugate-shift terms (the Wynne equations still apply to the system as a whole), but the floating elements provide **compensating adjustments** that offset the worst degradation modes.
 
-From the Wynne framework, the dominant close-focus degradation in any system is:
+From the Wynne framework [^1], the dominant close-focus degradation in any system is:
 
 $$\Delta S_I \approx 4\delta S_{II}, \qquad \Delta S_{II} \approx \delta(3S_{III} + S_{IV})$$
 
@@ -58,16 +58,19 @@ Floating-element designs are most valuable when the optical prescription demands
 
 - **Apochromatic designs** where maintaining chromatic correction across the conjugate range is a primary design goal (e.g., the APO-Lanthar 50mm f/2.0).
 - **Manual-focus primes** where autofocus speed is not a constraint and the extending barrel provides a natural mechanical focus feel.
-- **Designs where the quasi-symmetric form** provides strong inherent correction at infinity but needs targeted compensation at close range.
+- **Designs where the quasi-symmetric form** provides strong inherent correction at infinity but needs targeted compensation at close range [^3] [^4].
 
 The architecture becomes less attractive as autofocus speed, weather sealing, and constant barrel length become design priorities — at which point the transition to a true internal focusing architecture is warranted.
 
-## Key References
+## References
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proc. Phys. Soc. B*, 65, 429–437 (1952).
-- Cosina Co., Ltd. JP 2021-43376 A, "Imaging lens" (2021). [Voigtländer APO-Lanthar 50mm f/2.0 Aspherical]
-- Kingslake, R. and Johnson, R.B. *Lens Design Fundamentals*, 2nd ed. Academic Press/SPIE Press, 2010.
-- Smith, W.J. *Modern Optical Engineering*, 4th ed. McGraw-Hill, 2007.
+[^1]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
+
+[^2]: Cosina Co., Ltd., "Imaging lens," JP Patent 2021-43376 A, 2021. — [APO-Lanthar 50mm f/2.0](/lens/apo-lanthar-50f2)
+
+[^3]: R. Kingslake and R. B. Johnson, *Lens Design Fundamentals*, 2nd ed. Burlington, MA, USA: Academic Press, 2010.
+
+[^4]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2007.
 
 ---
 

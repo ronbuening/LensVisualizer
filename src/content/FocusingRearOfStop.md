@@ -17,7 +17,7 @@ In rear-of-stop focusing, a lens group positioned behind (on the image side of) 
 
 The optical system is typically organized with a positive front unit ahead of the aperture stop, a moving focusing unit positioned behind the stop, and one or more fixed rear units. During focusing from infinity to close range, the focusing unit moves toward the image side.
 
-The architecture exploits a fundamental geometric fact: **the beam diameter narrows after passing through the aperture stop**, because the stop defines the axial ray cone. In telephoto-type lenses, this narrowing is particularly pronounced. The focusing group therefore operates with smaller marginal ray heights $h$ than it would if positioned before the stop, which directly reduces its Seidel aberration contributions — all five primary coefficients scale with powers of $h$ and the marginal ray refraction invariant $A = n(hc + u)$ (Welford, 1986, Ch. 5).
+The architecture exploits a fundamental geometric fact: **the beam diameter narrows after passing through the aperture stop**, because the stop defines the axial ray cone. In telephoto-type lenses, this narrowing is particularly pronounced. The focusing group therefore operates with smaller marginal ray heights $h$ than it would if positioned before the stop, which directly reduces its Seidel aberration contributions — all five primary coefficients scale with powers of $h$ and the marginal ray refraction invariant $A = n(hc + u)$ [^1].
 
 ### The Small-$\bar{h}$ Advantage
 
@@ -27,22 +27,22 @@ Behind the stop, the chief ray height $\bar{h}$ starts at zero (at the stop) and
 
 ### Case Example: Canon RF 135mm f/1.8 L IS USM
 
-- **Patent:** US 2023/0213745 A1, Example 4
+- **Patent:** US 2023/0213745 A1, Example 4 [^3]
 - **Production lens:** 17 elements in 12 groups; three UD elements; Air Sphere Coating; Nano USM AF motor
 
 The [Canon RF 135mm f/1.8 L](/lens/canon-rf-135f18) places a negative-power focusing unit behind the aperture stop. A positive rear unit behind the focusing group contains the image-stabilization subunit. During focusing, the focusing unit moves toward the image side. (Note: the patent-to-production correspondence for this lens is approximate; the focusing group's negative power and post-stop placement are stated in the patent text but have not been independently confirmed against production teardown data.)
 
 ## Aberration Behavior
 
-**Spherical aberration ($S_I$):** Reduced in absolute magnitude by the small ray heights behind the stop, but still conjugate-dependent through the Wynne term $\Delta S_I \approx 4\delta S_{II}$. This is the primary on-axis tradeoff.
+**Spherical aberration ($S_I$):** Reduced in absolute magnitude by the small ray heights behind the stop, but still conjugate-dependent through the Wynne term $\Delta S_I \approx 4\delta S_{II}$ [^2]. This is the primary on-axis tradeoff.
 
 **Coma ($S_{II}$):** Minimized by the small eccentricity parameter near the stop. A focusing group positioned close behind the stop generates and varies much less coma than one placed farther from the stop.
 
 **Astigmatism ($S_{III}$) and distortion ($S_V$):** Strongly suppressed by the small $\bar{h}/h$ — astigmatism scales as $(\bar{h}/h)^2$ and distortion as $(\bar{h}/h)^3$, so both are geometrically small near the stop.
 
-**Chromatic aberrations:** Lateral chromatic aberration $C_{II} = \sum h_j \bar{h}_j \phi_j / V_j$ vanishes at the stop where $\bar{h} = 0$; rear-of-stop focusing groups operating near the stop inherently minimize lateral color variation. Longitudinal chromatic aberration depends on marginal ray heights and can still vary with conjugate.
+**Chromatic aberrations:** Lateral chromatic aberration $C_{II} = \sum h_j \bar{h}_j \phi_j / V_j$ vanishes at the stop where $\bar{h} = 0$ [^1]; rear-of-stop focusing groups operating near the stop inherently minimize lateral color variation. Longitudinal chromatic aberration depends on marginal ray heights and can still vary with conjugate.
 
-**Focus breathing:** Often significant. When the focusing group translates by a displacement $d$, the system focal length changes per $\Delta f_{sys} \approx f_{sys}^2 \cdot d / (f_1 f_2)$; because the focusing group directly modulates the rear power contribution, the angle of view shifts with focus. A negative-power focusing group and a positive-power focusing group produce breathing of opposite sign. Goodsell, Blahnik, and Rolland (2022) derived conditions for breathing elimination, but satisfying them may conflict with aberration correction constraints.
+**Focus breathing:** Often significant. When the focusing group translates by a displacement $d$, the system focal length changes per $\Delta f_{sys} \approx f_{sys}^2 \cdot d / (f_1 f_2)$; because the focusing group directly modulates the rear power contribution, the angle of view shifts with focus. A negative-power focusing group and a positive-power focusing group produce breathing of opposite sign. Goodsell, Blahnik, and Rolland [^4] derived conditions for breathing elimination, but satisfying them may conflict with aberration correction constraints.
 
 ## Co-Location of AF and IS Groups
 
@@ -61,19 +61,23 @@ Short-flange mirrorless mounts provide additional optical freedom for rear-of-st
 
 - **Focus breathing** — often the most significant among IF architectures for telephoto designs. Modern camera systems can partially compensate digitally.
 - **On-axis aberration variation** — spherical aberration and axial chromatic aberration can still change with focus, as the Wynne conjugate-shift terms for $S_I$ remain active.
-- **Exit pupil shift** — the focusing group's motion alters the exit pupil position, producing focus-dependent illumination and color shading that interacts with sensor microlens arrays. Mirrorless bodies can apply lens-profile-based correction.
+- **Exit pupil shift** — the focusing group's motion alters the exit pupil position, producing focus-dependent illumination and color shading that interacts with sensor microlens arrays [^5]. Mirrorless bodies can apply lens-profile-based correction.
 
 ## Best Suited For
 
 Rear-of-stop focusing is the natural architecture for **telephoto lenses designed for speed, IS integration, and video use** — applications where AF speed, compact moving mass, and low field-aberration variation outweigh the breathing and on-axis SA tradeoffs. It dominates modern stabilized telephoto primes and is increasingly common in mirrorless-native portrait telephoto designs.
 
-## Key References
+## References
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proc. Phys. Soc. B*, 65, 429–437 (1952).
-- Canon Inc. US 2023/0213745 A1, "Optical system and image pickup apparatus" (2023).
-- Goodsell, J., Blahnik, V., and Rolland, J.P. "Method for minimizing lens breathing with one moving group." *Optics Express*, 30(11), 19494–19511 (2022).
-- Welford, W.T. *Aberrations of Optical Systems*. Taylor & Francis, 1986.
-- Sasián, J.M. *Introduction to Aberrations in Optical Imaging Systems*. Cambridge University Press, 2013.
+[^1]: W. T. Welford, *Aberrations of Optical Systems*. Bristol, U.K.: Adam Hilger, 1986.
+
+[^2]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
+
+[^3]: Canon Inc., "Optical system," U.S. Patent Appl. 2023/0213745 A1, 2023. — [RF 135mm f/1.8 L IS USM](/lens/canon-rf-135f18)
+
+[^4]: J. Goodsell, V. Blahnik, and J. P. Rolland, "Method for minimizing lens breathing with one moving group," *Opt. Express*, vol. 30, no. 11, pp. 19494–19511, 2022.
+
+[^5]: J. Sasián, *Introduction to Aberrations in Optical Imaging Systems*. Cambridge, U.K.: Cambridge Univ. Press, 2013.
 
 ---
 

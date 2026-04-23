@@ -13,7 +13,7 @@ seriesOrder: 5
 
 In dual-side focusing, two lens groups — one on each side of the aperture stop — move independently during focusing, typically at different rates or in different directions. This provides **two independent degrees of freedom** for aberration correction at each focus position, making it the only single-lens architecture capable of maintaining high image quality across extreme conjugate ranges (infinity to 1:1 macro and beyond). The barrel does not extend.
 
-This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and first implemented by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 (Nikon, "Thousand and One Nights," Tales #14 and #86).
+This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and first implemented by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 [^1].
 
 ## How It Works
 
@@ -29,23 +29,23 @@ The specific power distribution varies by design, but the essential principle is
 
 ### The Wakimoto Insight
 
-The CRC concept originated from a remarkably precise aberration insight. As described in "Thousand and One Nights" Tale #14, Wakimoto identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that spacing as a correcting degree of freedom during focusing. Tale #14 characterizes the insight: "The separation between the sixth and seventh elements is designed such that the variation in the separation makes almost no effect on spherical aberration and makes effect only on astigmatism."
+The CRC concept originated from a remarkably precise aberration insight. As described in "Thousand and One Nights" Tale #14 [^1], Wakimoto identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that spacing as a correcting degree of freedom during focusing. Tale #14 characterizes the insight: "The separation between the sixth and seventh elements is designed such that the variation in the separation makes almost no effect on spherical aberration and makes effect only on astigmatism."
 
-This is a direct application of the Wynne framework (Wynne, 1952): the designer identified a mechanical degree of freedom that maps selectively onto specific aberration coefficients.
+This is a direct application of the Wynne framework [^2]: the designer identified a mechanical degree of freedom that maps selectively onto specific aberration coefficients.
 
 ### Case Example: Nikon AF-S Micro-Nikkor 105mm f/2.8G VR
 
-- **Patent:** US 7,218,457, Example 3
+- **Patent:** US 7,218,457, Example 3 [^3]
 - **Production lens:** 14 elements in 12 groups; one ED element; VR II image stabilization
 - **MFD:** 0.314 m (1:1 reproduction)
 
-The [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) confronts the most demanding conjugate range of any common photographic lens: performance from infinity to 1:1 reproduction — a magnification change from 0 to −1. The enormous conjugate-shift parameter $\delta$ at 1:1 makes single-group IF fundamentally inadequate, as the Wynne impossibility theorem guarantees severe degradation of multiple aberrations simultaneously (Wynne, 1952).
+The [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro) confronts the most demanding conjugate range of any common photographic lens: performance from infinity to 1:1 reproduction — a magnification change from 0 to −1. The enormous conjugate-shift parameter $\delta$ at 1:1 makes single-group IF fundamentally inadequate, as the Wynne impossibility theorem guarantees severe degradation of multiple aberrations simultaneously [^2].
 
 ## Aberration Behavior
 
 With two independently moving groups, the designer can simultaneously satisfy two aberration constraints at each focus position — typically spherical aberration and field curvature, or spherical aberration and coma.
 
-Having groups on both sides of the stop provides additional leverage: the front moving group (ahead of the stop) primarily influences on-axis aberrations where $\bar{h}/h$ is moderate, while the rear moving group (behind the stop) primarily influences the field-dependent balance where $\bar{h}/h$ has the opposite sign. The air space between the two moving groups acts as a continuously variable aberration-correcting degree of freedom at each conjugate.
+Having groups on both sides of the stop provides additional leverage: the front moving group (ahead of the stop) primarily influences on-axis aberrations where $\bar{h}/h$ is moderate, while the rear moving group (behind the stop) primarily influences the field-dependent balance where $\bar{h}/h$ has the opposite sign [^4]. The air space between the two moving groups acts as a continuously variable aberration-correcting degree of freedom at each conjugate.
 
 **Spherical aberration ($S_I$):** Actively corrected at each focus position by adjusting the two group movements to compensate the conjugate-shift-induced SA change.
 
@@ -55,7 +55,7 @@ Having groups on both sides of the stop provides additional leverage: the front 
 
 **Axial chromatic aberration:** Increases at high magnification because the effective f-number at 1:1 is twice the marked value (e.g., effective f/5.6 for a lens marked f/2.8). Placing ED or UD glass elements in the fixed groups helps control longitudinal chromatic aberration across the full conjugate range.
 
-**Focus breathing:** The dual-side architecture can partially compensate breathing because one group's focal length change can be designed to offset the other's — a degree of freedom unavailable to single-group IF designs.
+**Focus breathing:** The dual-side architecture can partially compensate breathing because one group's focal length change can be designed to offset the other's [^5] — a degree of freedom unavailable to single-group IF designs.
 
 ## Advantages
 
@@ -76,13 +76,17 @@ Dual-side focusing is the architecture of choice for **macro lenses** reaching 1
 
 The architecture is also found in specialized close-focusing designs for scientific, product, and technical photography where rendering consistency from infinity through close focus is a functional requirement rather than an aesthetic preference.
 
-## Key References
+## References
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proc. Phys. Soc. B*, 65, 429–437 (1952).
-- Nikon Corporation. US 7,218,457 B2, "Macro lens and camera having macro lens" (2007).
-- Nikon Corporation. "NIKKOR — The Thousand and One Nights," Tales #14 and #86. Nikon Imaging.
-- Welford, W.T. *Aberrations of Optical Systems*. Taylor & Francis, 1986.
-- Smith, W.J. *Modern Optical Engineering*, 4th ed. McGraw-Hill, 2007.
+[^1]: Nikon Corporation, "Nikkor — Thousand and One Nights," Tales No. 14 and No. 86. [Online]. Available: https://imaging.nikon.com/imaging/information/nikkor/story/. Accessed: Apr. 2026.
+
+[^2]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
+
+[^3]: Nikon Corporation, "Close-up lens," U.S. Patent 7,218,457 B2, 2007. — [Micro-Nikkor 105mm f/2.8G VR](/lens/nikon-afs-105f28-vr-micro)
+
+[^4]: W. T. Welford, *Aberrations of Optical Systems*. Bristol, U.K.: Adam Hilger, 1986.
+
+[^5]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2007.
 
 ---
 

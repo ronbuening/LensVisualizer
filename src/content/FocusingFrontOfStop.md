@@ -17,15 +17,15 @@ In front-of-stop focusing, a lens group positioned ahead of (on the object side 
 
 The optical system places a moving focusing group ahead of the aperture stop, with one or more fixed groups on either side. The focusing group may have positive or negative optical power; the choice of power determines the specific aberration behavior during focusing. During focusing from infinity to close range, the focusing group translates along the optical axis while the stop and all elements behind it remain stationary.
 
-The key geometric fact is that at surfaces before the stop, the chief ray height $\bar{h}$ is nonzero — the chief ray has not yet crossed the axis at the stop. This gives the focusing group a **moderate eccentricity parameter** $\bar{h}/h$, meaning its aberration contributions span both on-axis and off-axis aberrations, though with the on-axis terms (spherical aberration) typically dominating.
+The key geometric fact is that at surfaces before the stop, the chief ray height $\bar{h}$ is nonzero — the chief ray has not yet crossed the axis at the stop. This gives the focusing group a **moderate eccentricity parameter** $\bar{h}/h$ [^1], meaning its aberration contributions span both on-axis and off-axis aberrations, though with the on-axis terms (spherical aberration) typically dominating.
 
 ### Self-Compensation with a Negative Focusing Group
 
-A particularly effective variant places a **negative-power** focusing group ahead of the stop. When such a group changes conjugate, the dominant induced aberration is spherical aberration — through the leading Wynne conjugate-shift term $\Delta S_I \approx 4\delta S_{II}$. The negative power provides a natural compensating mechanism: negative elements contribute negative spherical aberration that partially counterbalances the overcorrection tendency at close focus. This self-compensation is the principal aberration advantage of the negative-power front-of-stop architecture.
+A particularly effective variant places a **negative-power** focusing group ahead of the stop. When such a group changes conjugate, the dominant induced aberration is spherical aberration — through the leading Wynne conjugate-shift term $\Delta S_I \approx 4\delta S_{II}$ [^2]. The negative power provides a natural compensating mechanism: negative elements contribute negative spherical aberration that partially counterbalances the overcorrection tendency at close focus. This self-compensation is the principal aberration advantage of the negative-power front-of-stop architecture.
 
 ### Case Example: Nikon AF-S Nikkor 105mm f/1.4E ED
 
-- **Patent:** WO 2019/116563, Example 3
+- **Patent:** WO 2019/116563, Example 3 [^3]
 - **Production lens:** 14 elements in 9 groups; three ED elements; Nano Crystal Coat; no aspherical surfaces
 
 The [Nikon 105mm f/1.4E](/lens/nikkor-105-f14e-ed) places its negative-power focusing group ahead of the stop. The ED glass elements are positioned in the fixed front group G1, where their chromatic correction contribution remains constant regardless of focus position. The focusing group itself — a lightweight cemented doublet — has minimal chromatic contribution and presents low inertial mass to the Silent Wave Motor.
@@ -40,7 +40,7 @@ Notably, this design uses no aspherical elements despite an entrance pupil diame
 
 **Chromatic aberrations:** When dispersive-correction elements (ED/UD glass) are placed in the fixed groups rather than the moving group, chromatic correction remains stable across the focus range. This is a deliberate design strategy enabled by the front-of-stop placement.
 
-**Focus breathing:** Moderate. When the focusing group translates by a displacement $d$, the system focal length changes per $\Delta f_{sys} \approx f_{sys}^2 \cdot d / (f_1 f_2)$ (Smith, 2007, §3.3). Stronger focusing groups require less movement but produce more breathing per unit of travel — the fundamental IF breathing–aberration tension (Goodsell, Blahnik, and Rolland, 2022).
+**Focus breathing:** Moderate. When the focusing group translates by a displacement $d$, the system focal length changes per $\Delta f_{sys} \approx f_{sys}^2 \cdot d / (f_1 f_2)$ [^4]. Stronger focusing groups require less movement but produce more breathing per unit of travel — the fundamental IF breathing–aberration tension [^5].
 
 ## Advantages
 
@@ -59,13 +59,17 @@ Notably, this design uses no aspherical elements despite an entrance pupil diame
 
 Front-of-stop focusing is a strong fit for **large-aperture portrait and short telephoto lenses** where on-axis rendering quality — simultaneously sharp and with smooth bokeh — at wide apertures is the primary design target. The self-compensation mechanism keeps the spherical aberration balance stable across the focus range, which is critical for consistent bokeh character in the portrait working distance (1.5–5 m).
 
-## Key References
+## References
 
-- Wynne, C.G. "Primary Aberrations and Conjugate Change." *Proc. Phys. Soc. B*, 65, 429–437 (1952).
-- Nikon Corporation. WO 2019/116563 A1, "Optical system, optical apparatus, and method of manufacturing optical system" (2019).
-- Goodsell, J., Blahnik, V., and Rolland, J.P. "Method for minimizing lens breathing with one moving group." *Optics Express*, 30(11), 19494–19511 (2022).
-- Smith, W.J. *Modern Optical Engineering*, 4th ed. McGraw-Hill, 2007.
-- Welford, W.T. *Aberrations of Optical Systems*. Taylor & Francis, 1986.
+[^1]: W. T. Welford, *Aberrations of Optical Systems*. Bristol, U.K.: Adam Hilger, 1986.
+
+[^2]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
+
+[^3]: Nikon Corporation, "Optical system," Int. Patent WO 2019/116563 A1, 2019. — [Nikkor 105mm f/1.4E ED](/lens/nikkor-105-f14e-ed)
+
+[^4]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2007.
+
+[^5]: J. Goodsell, V. Blahnik, and J. P. Rolland, "Method for minimizing lens breathing with one moving group," *Opt. Express*, vol. 30, no. 11, pp. 19494–19511, 2022.
 
 ---
 
