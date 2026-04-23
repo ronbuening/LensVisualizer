@@ -11,6 +11,20 @@ Reference for creating new `*.data.ts` files in `lens-data/`.
 
 File naming: `lens-data/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking.
 
+## Scope: What to Include
+
+**Include:**
+- All glass elements (air-separated groups and cemented elements)
+- All optical surfaces from front lens element to final image plane
+- Aperture stop (diaphragm)
+- Variable air gaps for focus and zoom
+
+**Do NOT include:**
+- **Sensor glass / cover glass** — the protective or thermal compensation glass plate on the camera sensor (rear of the assembly)
+- **Filters** — UV, ND, polarizing, or other filters mounted on the lens or in front of the sensor
+- **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
+- **Parent/donor designs** — if the lens is a descendant of another design, transcribe only the final production or patent design shown, not intermediate parent elements
+
 ---
 
 ## Top-Level Fields
