@@ -45,14 +45,15 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `useLensComputation.ts` | `src/components/hooks/` | Hook: lens building, layout, transforms, shapes, aperture |
+| `useLensComputation.ts` | `src/components/hooks/` | Hook: lens building, layout, transforms, shapes, aperture; `zPos` uses a `useRef`-backed element-wise comparison so the reference stays stable when values are unchanged |
 | `useRayTracing.ts` | `src/components/hooks/` | Hook: orchestrates on-axis, off-axis, chromatic ray sub-hooks |
 | `useOnAxisRays.ts` | `src/components/hooks/` | Hook: on-axis ray fan computation |
 | `useOffAxisRays.ts` | `src/components/hooks/` | Hook: off-axis field ray computation |
 | `useChromaticRays.ts` | `src/components/hooks/` | Hook: chromatic tracing + spread computation |
+| `useInteractionSignal.ts` | `src/components/hooks/` | Hook: exposes `{ interacting, beginInteraction, endInteraction }` — wired to slider `onPointerDown`/`onPointerUp`; 150 ms safety timeout guards against pointer-up fired outside the input bounds |
 | `useFlashOverlay.ts` | `src/components/hooks/` | Hook: flash animation state machine for sticky slider feedback |
 | `useSideLayoutDetection.ts` | `src/components/hooks/` | Hook: ResizeObserver overflow detection with hysteresis |
-| `useDispatchAdapters.ts` | `src/components/hooks/` | Hook: context dispatch callback wiring for LensDiagramPanel children |
+| `useDispatchAdapters.ts` | `src/components/hooks/` | Hook: context dispatch callback wiring for LensDiagramPanel children; entire adapter object produced by a single `useMemo([dispatch, updateURLWithSliders])` so all callbacks are referentially stable |
 | `useOverlayState.ts` | `src/components/hooks/` | Hook: Abbe/LCA/Petzval overlay open/close state with lensKey reset |
 | `useOverlays.ts` | `src/components/hooks/` | Hook: combines overlay state with dispatch adapters for LensViewer |
 | `useHeaderHeight.ts` | `src/components/hooks/` | Hook: header ResizeObserver height tracking for multi-panel alignment |
@@ -63,7 +64,7 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `DiagramHeader.tsx` | `src/components/controls/` | Header: title, specs, composes RayToggles + ChromaticControls |
+| `DiagramHeader.tsx` | `src/components/controls/` | Header: title, specs, composes RayToggles + ChromaticControls; wrapped in `memo(forwardRef(...))` |
 | `RayToggles.tsx` | `src/components/controls/` | On-axis/off-axis toggle buttons with cycling logic |
 | `ChromaticControls.tsx` | `src/components/controls/` | COLOR master toggle + R/G/B channel buttons |
 | `DiagramControls.tsx` | `src/components/controls/` | Zoom, focus, aperture sliders (composes SliderControl) |
@@ -75,7 +76,7 @@
 
 | Module | Location | Purpose |
 |--------|----------|---------|
-| `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget; accepts viewBox override and zoom interaction handlers |
+| `DiagramSVG.tsx` | `src/components/diagram/` | SVG rendering: composes RayPolylines, ApertureStop, ElementAnnotations, LCAInsetWidget; accepts viewBox override and zoom interaction handlers; wrapped in `React.memo` — skips re-render when props are unchanged |
 | `RayPolylines.tsx` | `src/components/diagram/` | Consolidated ray segment polyline rendering |
 | `ApertureStop.tsx` | `src/components/diagram/` | Aperture stop blades + STO label; outer edge extends to `stopHousingSD` (adjacent surface min-SD) for visibility on fast lenses |
 | `ElementAnnotations.tsx` | `src/components/diagram/` | Element numbers, Abbe νd badges, group/doublet labels |
@@ -91,22 +92,22 @@
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
-| `ComaTab.tsx` | `src/components/display/` | Coma drawer tab: wires `useAberrationsPanelData` into `ComaPreviewSection`, `MeridionalComaSection`, and `SagittalComaSection` |
-| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`, coma sections), formatting helpers, and `useAberrationsPanelData` |
+| `ComaTab.tsx` | `src/components/display/` | Coma drawer tab: wires `useComaData` into `ComaPreviewSection`, `MeridionalComaSection`, and `SagittalComaSection` |
+| `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`, coma sections), formatting helpers, and three focused data hooks: `useSphericalAberrationData`, `useFieldCurvatureData`, `useComaData` — each tab imports only what it needs |
 | `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
 | `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for parabasal tangential/sagittal field curves plus Petzval reference, using denser internal field sweep with standard checkpoint markers |
 | `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for real-ray tangential/sagittal field curves from dense bundle solves, sharing the same Y-scale as the parabasal plot |
 | `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) parabasal tangential and sagittal field curves across the field |
-| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; memoizes computation and renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
+| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; wraps inputs in `useDeferredValue` so heavy computation defers to pointer-up; renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
 | `DistortionFieldGrid.tsx` | `src/components/display/` | Reusable SVG grid view overlaying ideal rectilinear lines with the traced chief-ray field positions across the current image circle |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
-| `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; memoizes computation and renders VignettingChart |
+| `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; wraps inputs in `useDeferredValue`; renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
 | `PupilAberrationTab.tsx` | `src/components/display/` | PUPILS tab content; memoizes `computeBothPupilAberrationProfiles` (deps: L, focusT, zoomT) and renders PupilAberrationChart plus MAX EP SHIFT / MAX XP SHIFT / FIELD / EP Z readouts |
 | `PupilAberrationChart.tsx` | `src/components/display/` | Reusable SVG chart: EP shift (solid) and XP shift (dashed) vs field angle on a shared symmetric ±shift axis; telecentric-XP guard; zero reference line |
-| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay with memoized bokeh computation showing infinity/near-focus spherical-aberration character disks plus separate mechanical-vignetting insets |
+| `BokehPreviewOverlay.tsx` | `src/components/display/` | Panel overlay; wraps inputs in `useDeferredValue` and dims preview while stale; shows infinity/near-focus spherical-aberration character disks plus separate mechanical-vignetting insets |
 | `BokehPreviewGrid.tsx` | `src/components/display/` | 2×2 SVG grid rendering circularized blur-brightness disks and surviving-pupil insets at four field positions |
 | `AbbeDiagram.tsx` | `src/components/display/` | Abbe glass map plotting elements on standard Vd × Nd axes |
 | `AboutButtonRow.tsx` | `src/components/display/` | Shared about button group (Optics, Site, Author) |
@@ -170,7 +171,7 @@
 | `useLensState.ts` | `src/utils/` | Hook: useReducer wrapper with prefs/URL initialization |
 | `usePreferences.ts` | `src/utils/` | Hook: localStorage persistence from reducer state |
 | `useURLSync.ts` | `src/utils/` | Hook: URL read/write/zoom-init |
-| `LensContext.ts` | `src/utils/` | React Context: LensStateContext + LensDispatchContext |
+| `LensContext.ts` | `src/utils/` | React Context: `LensStateContext` + `LensDispatchContext` + `PanelStateContext`/`usePanelCtx` — panels context value is `state.panels` directly, which the reducer keeps stable across slider dispatches |
 | `usePageTheme.ts` | `src/utils/` | Hook: resolves theme from dark/HC preferences + system media query |
 | `usePageThemeToggle.ts` | `src/utils/` | Hook: extends usePageTheme with dark/HC toggle cycling (auto→dark→light) |
 | `zoomConversion.ts` | `src/utils/` | Pure functions: `focalLengthToZoomT()` and `zoomTToFocalLength()` for URL zoom encoding |
@@ -178,6 +179,7 @@
 | `homepageContent.ts` | `src/utils/` | Homepage content configuration and featured lens data |
 | `makerDetails.ts` | `src/utils/` | Maker display names, descriptions, and metadata |
 | `changelogData.ts` | `src/utils/` | `CHANGELOG` array of `ChangelogEntry` objects powering the homepage changelog panel |
+| `perfProbe.ts` | `src/utils/` | Dev-only `probe(name, fn)` wrapper — records `performance.now()` durations, logs a `console.table` summary every 10 calls; no-ops in production via `import.meta.env.DEV` guard |
 | `structuredData.ts` | `src/utils/` | JSON-LD structured-data helpers shared across page components |
 
 ### Comparison Module
@@ -235,14 +237,14 @@ The main component owns state management, context provision, and layout composit
 - `useURLSync(state, dispatch, comparisonLenses)` — URL deep links + zoom init
 - `useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses)` — comparison slider state machine
 
-State is provided to children via `LensStateContext` (state + theme + isWide) and `LensDispatchContext` (stable dispatch ref). Diagram rendering is delegated to `LensDiagramPanel`.
+State is provided to children via `LensStateContext` (state + theme + isWide), `LensDispatchContext` (stable dispatch ref), and `PanelStateContext` (`state.panels` — stable across slider dispatches because the reducer only creates a new panels object on panel-specific actions). Diagram rendering is delegated to `LensDiagramPanel`.
 
 ## LensDiagramPanel.tsx — Diagram Composition Layer
 
 Orchestrates sub-components and custom hooks. Owns only hover/selection state and structural layout wiring.
 
 Extracted hooks (all in `src/components/hooks/`):
-- **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations. Returns `buildError` (thrown by `buildLens`) and `shapeError` (thrown by `computeElementShapes`) separately so the panel can surface both via `ErrorDisplay`
+- **`useLensComputation.ts`** — Hook: lens building, layout, coordinate transforms, element shapes, aperture calculations. `zPos` is reference-stabilized: a `useRef` holds the previous array and returns it unchanged when all values are within 1e-9 — prevents false cache misses in downstream memos. Returns `buildError` and `shapeError` separately so both can surface via `ErrorDisplay`
 - **`useRayTracing.ts`** — Hook: orchestrates ray sub-hooks (useOnAxisRays, useOffAxisRays, useChromaticRays). Aggregates errors from all three into a single `rayError` (first non-null)
 - **`useOnAxisRays.ts`** — Hook: on-axis ray fan computation + coordinate transform. Returns `{ segments, error }` — caught errors are surfaced rather than silently dropped
 - **`useOffAxisRays.ts`** — Hook: off-axis field ray computation with trueAngle/edge projection modes. Returns `{ segments, error }`
@@ -263,10 +265,10 @@ All `ErrorDisplay` instances include a pre-filled "Report Issue on GitHub" link 
 
 Sub-components:
 - **`PanelErrorBoundary.tsx`** (`src/components/errors/`) — Panel-level error boundary that resets automatically on lens change; captures React's `componentStack` and forwards it to `buildIssueURL`
-- **`DiagramHeader.tsx`** (`src/components/controls/`) — Title, specs, composes RayToggles + ChromaticControls (uses `forwardRef` for height measurement)
+- **`DiagramHeader.tsx`** (`src/components/controls/`) — Title, specs, composes RayToggles + ChromaticControls; `memo(forwardRef(...))` — skips re-render when slider values are unchanged
   - **`RayToggles.tsx`** — On-axis/off-axis toggle buttons with off-axis cycling logic and feature flag awareness
   - **`ChromaticControls.tsx`** — COLOR master toggle + individual R/G/B channel buttons
-- **`DiagramSVG.tsx`** (`src/components/diagram/`) — SVG rendering: defs, grid, composes RayPolylines, element shapes, aspheric overlays, ApertureStop, image plane, LCAInsetWidget, ElementAnnotations, flash overlay
+- **`DiagramSVG.tsx`** (`src/components/diagram/`) — SVG rendering: defs, grid, composes RayPolylines, element shapes, aspheric overlays, ApertureStop, image plane, LCAInsetWidget, ElementAnnotations, flash overlay; wrapped in `React.memo`
   - **`RayPolylines.tsx`** — Consolidated ray segment polyline rendering (solid + ghost paths)
   - **`ApertureStop.tsx`** — Aperture stop blades + STO label; outer edge at `stopHousingSD` (min of adjacent surface SDs, floored at `stopPhysSD`)
   - **`ElementAnnotations.tsx`** — Element number labels, Abbe νd badges, group/doublet labels
@@ -275,14 +277,14 @@ Sub-components:
   - **`PetzvalOverlayContent.tsx`** — Enlarged Petzval sum visualization with description, rendered inside PanelOverlay on click
 - **`PetzvalSumBadge.tsx`** — SVG overlay badge showing Petzval sum (P) and field radius (R_ptz) in diagram upper-left
 - **`PanelOverlay.tsx`** (`src/components/layout/`) — Panel-scoped overlay (position:absolute, not fixed) for diagram-level measure overlays
-- **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Tab content components: AberrationsPanel, ComaTab, DistortionTab, FocusBreathingTab, and VignettingTab. Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
+- **`AnalysisDrawer.tsx`** (`src/components/layout/`) — Sliding tabbed panel overlaying SVG viewport; desktop: vertical tab bar on left, mobile: horizontal tab bar on top. Renders `{open && children}` — tab content is unmounted when the drawer is closed so analysis computations don't run during slider drags. Controlled by `analysisDrawerOpen` / `analysisDrawerTab` in panels slice.
 - **`DiagramControlPanel.tsx`** (`src/components/layout/`) — Sliders, inspector, legend, and analysis launch button; composes DiagramControls, ElementInspector, DiagramLegend
 - **`DiagramControls.tsx`** (`src/components/controls/`) — Zoom, focus, aperture sliders (composes SliderControl)
   - **`SliderControl.tsx`** — Reusable slider with label, value display, endpoints, optional collapsible content
 - **`ElementInspector.tsx`** (`src/components/display/`) — Selected element property display (nd, νd, FL, glass, aspheric coefficients, chromatic data)
 - **`DiagramLegend.tsx`** (`src/components/display/`) — Legend with color swatches, ray mode descriptions, chromatic aberration readouts
 - **`AbbeDiagram.tsx`** (`src/components/display/`) — Abbe glass map plotting each element on standard Vd × Nd axes with grid, scaling, and element labels
-- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible analysis panel that renders separate spherical-aberration, field-curve, and astigmatism sections; computes the shared SA and field-curvature data via `useAberrationsPanelData()` from current slider state so the field curves can use an independent shift scale while the astigmatism section omits out-of-image-circle split values
+- **`AberrationsPanel.tsx`** (`src/components/display/`) — Collapsible analysis panel; uses `useSphericalAberrationData` and `useFieldCurvatureData` (separate focused hooks) so each section only recomputes when its own deps change; field curves use an independent shift scale and astigmatism omits out-of-image-circle split values
 
 Reads shared state (rays, display, panels) from `LensContext`. Per-instance props (lensKey, per-lens slider values, scaleRatio, panelId, compact, flashOverlay) are passed as explicit props. Sub-components remain context-unaware.
 
