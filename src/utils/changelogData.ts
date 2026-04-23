@@ -19,6 +19,18 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-23 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-23",
+    type: "lens",
+    summary:
+      "Added Nikon AF-S 24-70mm f/2.8E ED VR, Nikon AF-S 70-200mm f/2.8E FL ED VR, and Nikon AF-S 80-400mm f/4.5-5.6E ED VR",
+  },
+  {
+    date: "2026-04-23",
+    type: "lens",
+    summary: "Added Canon RF 24-105mm f/2.8 L, Zeiss Biogon 21mm, and Distagon 35mm",
+  },
   // ── 2026-04-22 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-22",
