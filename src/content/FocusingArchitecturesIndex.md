@@ -10,7 +10,7 @@ toc: true
 
 # Focusing Architectures in Photographic Lenses
 
-When a lens refocuses, it changes the object conjugate that the system was optimized for. Unless every air space, every ray height, and every stop–element geometry is perfectly preserved, aberrations shift. C.G. Wynne proved in 1952 that simultaneous correction of all five Seidel aberrations at two different conjugates is impossible unless the pupil aberrations also vanish — a condition rarely achievable in practice.
+When a lens refocuses, it changes the object conjugate that the system was optimized for. Unless every air space, every ray height, and every stop–element geometry is perfectly preserved, aberrations shift. C.G. Wynne proved in 1952 that simultaneous correction of all five Seidel aberrations at two different conjugates is impossible unless the pupil aberrations also vanish — a condition rarely achievable in practice [^1].
 
 Every focusing strategy is therefore a compromise. The designer chooses which aberrations to hold stable across the focus range, and which to allow to drift. The decision of *which group moves* is not a mechanical convenience — it is one of the most consequential optical design choices in the lens.
 
@@ -50,3 +50,7 @@ The monograph is the authoritative version; the primers are standalone distillat
 Each primer is self-contained. If you are new to the material, the primers can be read in any order, but the extending-barrel entries (unit focusing and floating elements) establish the optical baseline that the internal-focusing architectures are designed to improve upon, so starting there gives the rest more context.
 
 Each primer ends with the lens example used to illustrate its architecture. Open the cross-section, adjust the focus slider, and watch which elements move — the architecture's signature is immediately visible.
+
+## References
+
+[^1]: C. G. Wynne, "Primary aberrations and conjugate change," *Proc. Phys. Soc. B*, vol. 65, pp. 429–437, 1952.
