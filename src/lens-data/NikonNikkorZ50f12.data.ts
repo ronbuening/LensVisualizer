@@ -373,14 +373,12 @@ const LENS_DATA = {
     STO: [19.164, 11.437], // d19: stop → F1 front
     22: [2.0, 3.584], // d23: F1 rear → F2 front
     26: [1.9, 8.043], // d27: F2 rear → R front
-    "33": [0.702, 0.701], // d34: BF (essentially constant)
   },
 
   varLabels: [
     ["STO", "d19"], // Stop → F1
     ["22", "d23"], // F1 → F2
     ["26", "d27"], // F2 → R
-    ["33", "BF"], // Back focus
   ],
 
   /* ── Group and doublet annotations ── */
