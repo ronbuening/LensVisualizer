@@ -2,7 +2,7 @@
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook } from "@testing-library/react";
-import { useLensCtx, useLensDispatch } from "../src/utils/LensContext.js";
+import { useLensCtx, useLensDispatch, usePanelCtx } from "../src/utils/LensContext.js";
 
 describe("LensContext hooks — outside provider", () => {
   // React 18 dispatches a DOM ErrorEvent on the window (via jsdom) when a
@@ -27,5 +27,9 @@ describe("LensContext hooks — outside provider", () => {
 
   it("useLensDispatch throws when used outside LensDispatchContext.Provider", () => {
     expect(() => renderHook(() => useLensDispatch())).toThrow(/LensDispatchContext\.Provider/);
+  });
+
+  it("usePanelCtx throws when used outside PanelStateContext.Provider", () => {
+    expect(() => renderHook(() => usePanelCtx())).toThrow(/PanelStateContext\.Provider/);
   });
 });

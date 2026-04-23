@@ -5,6 +5,7 @@
  * renderer only coordinates layout and render order.
  */
 
+import { memo } from "react";
 import { ENABLE_ASPH_DIAMOND_FILL } from "../../utils/featureFlags.js";
 import type { RuntimeLens, ElementShape } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -21,7 +22,7 @@ interface DiagramElementLayerProps {
   onSelect: (eid: number | null) => void;
 }
 
-export default function DiagramElementLayer({
+const DiagramElementLayer = memo(function DiagramElementLayer({
   lens: L,
   shapes,
   theme: t,
@@ -103,4 +104,6 @@ export default function DiagramElementLayer({
       )}
     </>
   );
-}
+});
+
+export default DiagramElementLayer;

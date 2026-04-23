@@ -15,7 +15,7 @@ The goal is a dramatically smoother interactive experience while preserving fina
 | 0 | Instrumentation (perf probe, baseline measurements) | ✅ Shipped (2026-04-23) |
 | 1 | Unmount non-visible analysis/bokeh work | ✅ Shipped (2026-04-23) |
 | 2 | Defer non-essential work until pointer-up (`useDeferredValue`) | ✅ Shipped (2026-04-23) |
-| 3 | Stabilize references + split context + `React.memo` | ⬜ Not started |
+| 3 | Stabilize references + split context + `React.memo` | ✅ Shipped (2026-04-23) |
 | 4 | Adaptive resolution during interaction | ⬜ Not started |
 | 5 | Web Workers, cross-panel cache, build-time precompute (optional) | ⬜ Not started |
 
@@ -153,34 +153,33 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 
 ---
 
-## Stage 3 — Reduce per-tick work in the hot path
+## Stage 3 — Reduce per-tick work in the hot path ✅ Shipped 2026-04-23
 
 **Goal:** even when doing work, do less of it. Stabilize references so `useMemo` caches hit more often; narrow context subscriptions so unrelated state changes don't re-render expensive trees.
 
-### 3.1 — Stabilize `zPos` reference when structurally equal
+### 3.1 — Stabilize `zPos` reference when structurally equal ✅
 - File: [useLensComputation.ts:90-92](src/components/hooks/useLensComputation.ts#L90-L92)
 - Use a `useRef` to hold the previous `zPos`; element-wise compare with epsilon; return the previous reference if unchanged. Outsized impact because many downstream memos list `zPos` as a dep.
 
-### 3.2 — Split `LensStateContext` into narrower contexts
-- Files: [LensContext.ts](src/utils/LensContext.ts), [useLensState.ts](src/utils/useLensState.ts), all consumers.
-- Split by update frequency:
-  - `SliderStateContext` — `sliders`, `sharedSliders`
-  - `LensDataContext` — `lens`, `display`, `rays`
-  - `PanelStateContext` — `panels`, `overlays`
-- Expensive hooks subscribe to the two relevant contexts and skip panel churn.
-- Invasive — ship as its own PR. Consider starting by splitting just `panels` out (least-coupled slice), measuring, then proceeding.
+### 3.2 — Split `LensStateContext` into narrower contexts ✅ (panels split shipped)
+- Files: [LensContext.ts](src/utils/LensContext.ts), [LensViewer.tsx](src/components/layout/LensViewer.tsx), [LensDiagramPanel.tsx](src/components/layout/LensDiagramPanel.tsx).
+- Added `PanelStateContext` carrying `state.panels` directly. Because the reducer only creates a new `panels` object on panel actions, this context value is stable across slider dispatches — `useLensCtx()` consumers that read panels won't re-render on slider ticks.
+- `LensDiagramPanel` now reads `panels` from `usePanelCtx()` instead of `useLensCtx().state.panels`.
+- Remaining splits (`SliderStateContext`, `LensDataContext`) deferred — measurable wins require `React.memo` on consumers first (3.3).
 
-### 3.3 — Wrap expensive leaf components in `React.memo`
-- Candidates: [DiagramSVG.tsx](src/components/diagram/DiagramSVG.tsx), `DiagramRayLayers`, `DiagramElementLayer`, [DiagramHeader.tsx](src/components/layout/lensDiagram/DiagramHeader.tsx).
-- The stabilized `zPos` from 3.1 makes these effective. Profile before/after; only keep wrappers that demonstrably skip renders.
+### 3.3 — Wrap expensive leaf components in `React.memo` ✅
+- Wrapped: [DiagramSVG.tsx](src/components/diagram/DiagramSVG.tsx), [DiagramRayLayers.tsx](src/components/diagram/DiagramRayLayers.tsx), [DiagramElementLayer.tsx](src/components/diagram/DiagramElementLayer.tsx), [DiagramHeader.tsx](src/components/controls/DiagramHeader.tsx) (`memo(forwardRef(...))`).
+- Also stabilized the `onSelect` callback in [LensDiagramPanel.tsx](src/components/layout/LensDiagramPanel.tsx) with `useCallback` — previously inline, which would defeat memo on every render.
+- With 3.1 providing stable `zPos`/`shapes` references, these components now skip re-renders on panel-only changes (e.g., opening analysis drawer, toggling zoom/pan mode) since their props are unchanged.
 
-### 3.4 — Verify dispatch callback identities stay stable
+### 3.4 — Verify dispatch callback identities stay stable ✅
 - File: [useDispatchAdapters.ts:48-93](src/components/hooks/useDispatchAdapters.ts#L48-L93)
-- Already wrapped in a single `useMemo` — good. Confirm no consumer creates new closures that mask this stability.
+- Confirmed: entire adapter object is produced by a single `useMemo([dispatch, updateURLWithSliders])`. Both deps are stable refs from `useReducer` and `useURLSync`. No consumer creates masking closures.
 
 ### Verification
 - With React DevTools Profiler, scrub focus; `DiagramSVG` renders do not cascade into `DistortionTab` or `VignettingTab` when drawer closed.
 - Toggle `zoomPanActive`; `useOnAxisRays` memo does not invalidate.
+- All 1313 existing tests pass (`npm run test`).
 
 ---
 
@@ -266,5 +265,8 @@ _Date:_ TBD · _Measurements:_ TBD
 
 ### After Stage 2
 _Date:_ 2026-04-23 · _Measurements:_ TBD — baseline not yet recorded; `useDeferredValue` now gates all analysis-tab and bokeh recomputes to idle time
+
+### After Stage 3
+_Date:_ 2026-04-23 · _Changes:_ `zPos` reference stabilized (element-wise epsilon compare); `PanelStateContext` split so panel toggles don't cascade into slider-only consumers; `DiagramSVG`, `DiagramRayLayers`, `DiagramElementLayer`, `DiagramHeader` wrapped in `React.memo`; `onSelect` callback stabilized with `useCallback`. Panel-only state changes (open/close analysis drawer, zoom/pan toggle) no longer trigger SVG re-renders.
 
 (…continue per stage…)

@@ -7,7 +7,7 @@
  * from rendering concerns.
  */
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
 import {
@@ -89,7 +89,16 @@ export default function useLensComputation({
   const IMG_MM = ref ? ref.imgZ : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L) : null), [focusT, zoomT, L]);
   const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
-  const zPos = useMemo(() => (cur ? cur.z.map((v) => v + dz) : []), [cur, dz]);
+  const zPosRef = useRef<number[]>([]);
+  const zPos = useMemo((): number[] => {
+    const next = cur ? cur.z.map((v) => v + dz) : [];
+    const prev = zPosRef.current;
+    if (prev.length === next.length && next.every((v, i) => Math.abs(v - prev[i]) < 1e-9)) {
+      return prev;
+    }
+    zPosRef.current = next;
+    return next;
+  }, [cur, dz]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(

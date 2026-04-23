@@ -5,6 +5,7 @@
  * hand off the current render state and not repeat three similar branches.
  */
 
+import { memo } from "react";
 import RayPolylines from "./RayPolylines.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -21,7 +22,7 @@ interface DiagramRayLayersProps {
   showChromatic: boolean;
 }
 
-export default function DiagramRayLayers({
+const DiagramRayLayers = memo(function DiagramRayLayers({
   lens: L,
   theme: t,
   rays,
@@ -68,4 +69,6 @@ export default function DiagramRayLayers({
       )}
     </>
   );
-}
+});
+
+export default DiagramRayLayers;

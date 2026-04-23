@@ -9,7 +9,7 @@
  */
 
 import { createContext, useContext, type Dispatch } from "react";
-import type { LensState, LensAction } from "../types/state.js";
+import type { LensState, LensAction, PanelsSlice } from "../types/state.js";
 import type { Theme } from "../types/theme.js";
 
 export interface LensCtxValue {
@@ -44,5 +44,22 @@ export function useLensCtx(): LensCtxValue {
 export function useLensDispatch(): Dispatch<LensAction> {
   const ctx = useContext(LensDispatchContext);
   if (!ctx) throw new Error("useLensDispatch must be used within a LensDispatchContext.Provider");
+  return ctx;
+}
+
+/**
+ * Carries: state.panels slice only.
+ *
+ * Provided with the panels object reference directly from the reducer state.
+ * Because the reducer only creates a new panels object on panel-related actions,
+ * this context value is stable across slider dispatches — consumers won't
+ * re-render when sliders change.
+ */
+export const PanelStateContext = createContext<PanelsSlice | null>(null);
+
+/** Read the panels slice. Stable across slider dispatches. */
+export function usePanelCtx(): PanelsSlice {
+  const ctx = useContext(PanelStateContext);
+  if (!ctx) throw new Error("usePanelCtx must be used within a PanelStateContext.Provider");
   return ctx;
 }

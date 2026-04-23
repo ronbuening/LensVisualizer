@@ -10,6 +10,7 @@
  * state or side effects. Interaction callbacks (onHover, onSelect) are passed
  * through from the parent LensDiagramPanel.
  */
+import { memo } from "react";
 import DiagramDefs from "./DiagramDefs.js";
 import DiagramElementLayer from "./DiagramElementLayer.js";
 import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
@@ -72,7 +73,7 @@ interface DiagramSVGProps {
   isPanning?: boolean;
 }
 
-export default function DiagramSVG({
+const DiagramSVG = memo(function DiagramSVG({
   L,
   t,
   dark,
@@ -193,4 +194,6 @@ export default function DiagramSVG({
       />
     </svg>
   );
-}
+});
+
+export default DiagramSVG;
