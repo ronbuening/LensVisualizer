@@ -23,6 +23,12 @@ import type { LensDataInput } from "../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    [Describe how SDs were determined — patent-listed, estimated    ║
  * ║    from EP geometry, etc.]                                         ║
+ * ║                                                                    ║
+ * ║  IMPORTANT: This file describes ONLY the optical design:           ║
+ * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
+ * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
+ * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
+ * ║    ✗ DO NOT include: parent/donor designs (use final design only) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
