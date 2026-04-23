@@ -3,8 +3,10 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
+import { useCallback } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import SliderControl from "./SliderControl.js";
+import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -73,6 +75,37 @@ export default function DiagramControls({
   onSliderPointerUp,
   showSliders,
 }: DiagramControlsProps) {
+  const { beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+
+  const handlePointerUp = useCallback(() => {
+    endInteraction();
+    onSliderPointerUp?.();
+  }, [endInteraction, onSliderPointerUp]);
+
+  const handleZoomChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onZoomChange?.(v);
+    },
+    [onChangeActivity, onZoomChange],
+  );
+
+  const handleFocusChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onFocusChange?.(v);
+    },
+    [onChangeActivity, onFocusChange],
+  );
+
+  const handleStopdownChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onStopdownChange?.(v);
+    },
+    [onChangeActivity, onStopdownChange],
+  );
+
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
@@ -89,8 +122,9 @@ export default function DiagramControls({
           displayValue={`${eflAtZoom(zoomT, L).toFixed(0)} mm`}
           value={zoomT}
           step={L.zoomStep}
-          onChange={onZoomChange}
-          onPointerUp={onSliderPointerUp}
+          onPointerDown={beginInteraction}
+          onChange={handleZoomChange}
+          onPointerUp={handlePointerUp}
           minLabel={`${L.zoomPositions![0]} mm`}
           maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
           flexBasis="200px"
@@ -107,8 +141,9 @@ export default function DiagramControls({
           displayValue={formatDist(focusT, L)}
           value={focusT}
           step={L.focusStep}
-          onChange={onFocusChange}
-          onPointerUp={onSliderPointerUp}
+          onPointerDown={beginInteraction}
+          onChange={handleFocusChange}
+          onPointerUp={handlePointerUp}
           minLabel={"\u221e"}
           maxLabel={`${L.closeFocusM} m`}
           flexBasis="260px"
@@ -175,8 +210,9 @@ export default function DiagramControls({
           displayValueStyle={{ minWidth: "3.5em" }}
           value={stopdownT}
           step={L.apertureStep}
-          onChange={onStopdownChange}
-          onPointerUp={onSliderPointerUp}
+          onPointerDown={beginInteraction}
+          onChange={handleStopdownChange}
+          onPointerUp={handlePointerUp}
           minLabel={`f/${currentFOPEN.toFixed(1)}`}
           maxLabel={`f/${L.maxFstop}`}
           flexBasis="220px"
@@ -216,8 +252,8 @@ export default function DiagramControls({
                     <span
                       key={n}
                       onClick={() => {
-                        onStopdownChange?.(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
-                        onSliderPointerUp?.();
+                        handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
+                        handlePointerUp();
                       }}
                       style={{
                         cursor: "pointer",

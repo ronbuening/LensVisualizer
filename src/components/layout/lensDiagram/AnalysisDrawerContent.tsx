@@ -1,3 +1,4 @@
+import { useDeferredValue } from "react";
 import AberrationsPanel from "../../display/AberrationsPanel.js";
 import ComaTab from "../../display/ComaTab.js";
 import DistortionTab from "../../display/DistortionTab.js";
@@ -34,16 +35,24 @@ export default function AnalysisDrawerContent({
   aberrationsExpanded,
   onAberrationsExpandedChange,
 }: AnalysisDrawerContentProps) {
+  // Defer all slider-derived inputs so analysis tabs only recompute when React
+  // has idle time, keeping the main viewport responsive during drag.
+  const dFocusT = useDeferredValue(focusT);
+  const dZoomT = useDeferredValue(zoomT);
+  const dEPSD = useDeferredValue(currentEPSD);
+  const dStopSD = useDeferredValue(currentPhysStopSD);
+  const dDynamicEFL = useDeferredValue(dynamicEFL);
+
   if (activeTab === "aberrations") {
     return (
       <AberrationsPanel
         L={L}
         t={t}
         zPos={zPos}
-        focusT={focusT}
-        zoomT={zoomT}
-        currentEPSD={currentEPSD}
-        currentPhysStopSD={currentPhysStopSD}
+        focusT={dFocusT}
+        zoomT={dZoomT}
+        currentEPSD={dEPSD}
+        currentPhysStopSD={dStopSD}
         expanded={aberrationsExpanded}
         onExpandedChange={onAberrationsExpandedChange}
       />
@@ -56,10 +65,10 @@ export default function AnalysisDrawerContent({
         L={L}
         t={t}
         zPos={zPos}
-        focusT={focusT}
-        zoomT={zoomT}
-        currentEPSD={currentEPSD}
-        currentPhysStopSD={currentPhysStopSD}
+        focusT={dFocusT}
+        zoomT={dZoomT}
+        currentEPSD={dEPSD}
+        currentPhysStopSD={dStopSD}
       />
     );
   }
@@ -70,16 +79,16 @@ export default function AnalysisDrawerContent({
         L={L}
         t={t}
         zPos={zPos}
-        focusT={focusT}
-        zoomT={zoomT}
-        dynamicEFL={dynamicEFL}
-        currentPhysStopSD={currentPhysStopSD}
+        focusT={dFocusT}
+        zoomT={dZoomT}
+        dynamicEFL={dDynamicEFL}
+        currentPhysStopSD={dStopSD}
       />
     );
   }
 
   if (activeTab === "breathing") {
-    return <FocusBreathingTab L={L} t={t} focusT={focusT} zoomT={zoomT} dynamicEFL={dynamicEFL} />;
+    return <FocusBreathingTab L={L} t={t} focusT={dFocusT} zoomT={dZoomT} dynamicEFL={dDynamicEFL} />;
   }
 
   if (activeTab === "vignetting") {
@@ -88,16 +97,16 @@ export default function AnalysisDrawerContent({
         L={L}
         t={t}
         zPos={zPos}
-        focusT={focusT}
-        zoomT={zoomT}
-        currentEPSD={currentEPSD}
-        currentPhysStopSD={currentPhysStopSD}
+        focusT={dFocusT}
+        zoomT={dZoomT}
+        currentEPSD={dEPSD}
+        currentPhysStopSD={dStopSD}
       />
     );
   }
 
   if (activeTab === "pupils") {
-    return <PupilAberrationTab L={L} t={t} focusT={focusT} zoomT={zoomT} />;
+    return <PupilAberrationTab L={L} t={t} focusT={dFocusT} zoomT={dZoomT} />;
   }
 
   return null;

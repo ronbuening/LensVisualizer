@@ -8,7 +8,7 @@
  * for objects at the minimum focus distance.
  */
 
-import { useMemo } from "react";
+import { useMemo, useDeferredValue } from "react";
 import { computeBokehPreviewPair } from "../../optics/aberrationAnalysis.js";
 import { probe } from "../../utils/perfProbe.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -32,17 +32,25 @@ export default function BokehPreviewOverlay({
   currentPhysStopSD,
   t,
 }: BokehPreviewOverlayProps) {
+  const dFocusT = useDeferredValue(focusT);
+  const dZoomT = useDeferredValue(zoomT);
+  const dEPSD = useDeferredValue(currentEPSD);
+  const dStopSD = useDeferredValue(currentPhysStopSD);
+
+  const isStale = dFocusT !== focusT || dZoomT !== zoomT;
+
   const pair = useMemo(
-    () =>
-      probe("computeBokehPreviewPair", () => computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD)),
-    [L, focusT, zoomT, currentEPSD, currentPhysStopSD],
+    () => probe("computeBokehPreviewPair", () => computeBokehPreviewPair(L, dFocusT, dZoomT, dEPSD, dStopSD)),
+    [L, dFocusT, dZoomT, dEPSD, dStopSD],
   );
 
   const hasInfinity = pair.infinity !== null;
   const hasNearFocus = pair.nearFocus !== null;
 
   return (
-    <div style={{ padding: "8px 16px 16px", overflow: "auto" }}>
+    <div
+      style={{ padding: "8px 16px 16px", overflow: "auto", opacity: isStale ? 0.5 : 1, transition: "opacity 0.15s" }}
+    >
       <h3 style={{ fontSize: 14, margin: "0 0 4px", color: t.label, fontFamily: "inherit" }}>Bokeh Preview (Beta)</h3>
       <p style={{ fontSize: 10, color: t.muted, margin: "0 0 12px", lineHeight: 1.5, fontFamily: "inherit" }}>
         Circularized blur disks show spherical-aberration brightness character at 0%, 25%, 50%, and 75% field height.

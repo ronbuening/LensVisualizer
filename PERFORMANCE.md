@@ -14,7 +14,7 @@ The goal is a dramatically smoother interactive experience while preserving fina
 |-------|-------|--------|
 | 0 | Instrumentation (perf probe, baseline measurements) | ✅ Shipped (2026-04-23) |
 | 1 | Unmount non-visible analysis/bokeh work | ✅ Shipped (2026-04-23) |
-| 2 | Defer non-essential work until pointer-up (`useDeferredValue`) | ⬜ Not started |
+| 2 | Defer non-essential work until pointer-up (`useDeferredValue`) | ✅ Shipped (2026-04-23) |
 | 3 | Stabilize references + split context + `React.memo` | ⬜ Not started |
 | 4 | Adaptive resolution during interaction | ⬜ Not started |
 | 5 | Web Workers, cross-panel cache, build-time precompute (optional) | ⬜ Not started |
@@ -123,7 +123,7 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 
 ---
 
-## Stage 2 — Defer non-essential visible work until pointer-up
+## Stage 2 — Defer non-essential visible work until pointer-up ✅ Shipped 2026-04-23
 
 **Goal:** keep the main diagram at full fidelity mid-drag, but defer expensive *secondary* computations (analysis tabs, bokeh) until the drag ends.
 
@@ -265,6 +265,6 @@ _Measurements:_ TBD
 _Date:_ TBD · _Measurements:_ TBD
 
 ### After Stage 2
-_Date:_ TBD · _Measurements:_ TBD
+_Date:_ 2026-04-23 · _Measurements:_ TBD — baseline not yet recorded; `useDeferredValue` now gates all analysis-tab and bokeh recomputes to idle time
 
 (…continue per stage…)

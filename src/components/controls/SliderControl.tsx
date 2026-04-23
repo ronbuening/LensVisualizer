@@ -18,6 +18,7 @@ interface SliderControlProps {
   value: number;
   step: number;
   onChange?: (value: number) => void;
+  onPointerDown?: () => void;
   onPointerUp?: () => void;
   minLabel: string;
   maxLabel: string;
@@ -42,6 +43,7 @@ export default function SliderControl({
   value,
   step,
   onChange,
+  onPointerDown,
   onPointerUp,
   minLabel,
   maxLabel,
@@ -83,6 +85,7 @@ export default function SliderControl({
           max="1"
           step={step}
           value={value}
+          onPointerDown={onPointerDown}
           onChange={(e) => onChange?.(parseFloat(e.target.value))}
           onPointerUp={onPointerUp}
           style={sliderInput(t)}
