@@ -90,7 +90,7 @@ Read the relevant file before starting work on that area:
 - `ClientOnly` wrapper — prevents SSR hydration mismatches for browser-only components
 - Shared utilities and components reduce duplication — check `architecture.md` before creating new ones
 - **Unified route pipeline** — `generate-build-metadata.mjs` is the single source of truth for all concrete routes; `prerender.mjs` validates routes against the React Router manifest; `generate-sitemap.mjs` and `seo-audit.mjs` consume the same route list from `build-metadata.json`
-- **Articles and series** — markdown files in `src/content/*.md` are auto-discovered; frontmatter (`slug`, `title`, `summary`, `tag`, `series`, `seriesOrder`, `toc`) flows through `generate-build-metadata.mjs` into `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, and `ARTICLE_CONTENT` in `src/utils/homepageContent.ts`; series members share a `series` id and collapse to the landing page (`seriesOrder: 0`) in the archive, homepage list, breadcrumb, and back-link
+- **Articles and series** — markdown files in `src/content/**/*.md` are auto-discovered; frontmatter (`slug`, `title`, `summary`, `tag`, `series`, `seriesOrder`, `toc`) flows through `generate-build-metadata.mjs` into `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, and `ARTICLE_CONTENT` in `src/utils/homepageContent.ts`; series members share a `series` id and collapse to the landing page (`seriesOrder: 0`) in the archive, homepage list, breadcrumb, and back-link
 - **Aberration analysis** — slider-state-dependent metrics (SA, distortion, vignetting) live in `src/optics/aberrationAnalysis.ts` and `src/optics/distortionAnalysis.ts` as pure helpers, memoized from current state in the Analysis Drawer tabs; they must NOT go in `buildLens()` which is build-time only. SA uses symmetric +/- ray pairing (reject both if either clips) and a 22-zone pupil profile. Distortion uses iteratively solved chief rays (`solveChiefRayLaunchHeight` in `optics.ts`, 30-iteration bisection, 1° small-angle cutoff) to correct for pupil aberration at wide field angles, with a 17-sample pre-computed correction table for the 2D grid. Vignetting also uses the solved chief ray for accurate pupil-sweep centering at each field angle, with adaptive ~3° field spacing and 192-ray pupil sweeps.
 - **Pupil aberration analysis** — `src/optics/pupilAberration.ts` provides: `computePupilAberrationProfile` (EP z-shift per field angle via solved/paraxial chief-ray launch height ratio), `computeExitPupilAberrationProfile` (XP z per field angle from full-system chief-ray back-projection: `xpZ = −y'_last / u'_last`), and `computeBothPupilAberrationProfiles` (combined, shares the per-angle bisection call — use this in the UI). All accept an optional pre-computed `FieldGeometryState`. The PUPILS Analysis Drawer tab (`PupilAberrationTab.tsx` + `PupilAberrationChart.tsx`) wires these into a two-curve SVG chart (EP shift solid, XP shift dashed) reactive to `focusT` and `zoomT`.
 - **SD validation/rendering** — uses slope-based rim check (actual aspherical slope via `sagSlopeRaw`, threshold ~64.2°) instead of the old spherical `sd/|R|` proxy. Element front/rear SD ratio limit is 3.0 (sanity check). Cross-gap validation checks the two boundary surfaces that face each other and requires combined sag intrusion ≤ `gapSagFrac × gap`; the default is 0.90, leaving visible clearance instead of accepting mathematical rim contact. Rendering shares the same rim and boundary-surface gap policy via `computeElementRenderDiagnostics()`; production tests fail if hidden render trim exceeds 0.25 mm.
@@ -100,16 +100,16 @@ Read the relevant file before starting work on that area:
 
 ## Adding a New Lens
 
-1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
+1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts` or a nested file under `src/lens-data/`
 2. Fill in the lens data following the template's field documentation
-3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
+3. Optionally add `src/lens-data/YourLens.analysis.md` or a matching nested `.analysis.md` beside the data file for the description panel
 4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
 
 See `agent_docs/adding_a_lens.md` for details on defaults merging, naming conventions, and SD troubleshooting.
 
 ## Adding a New Article or Series
 
-1. Create `src/content/YourArticle.md` with YAML frontmatter — `slug` and `title` are required; `summary`, `tag`, `series`, `seriesOrder`, `toc` are optional
+1. Create `src/content/YourArticle.md` or a nested file under `src/content/` with YAML frontmatter — `slug` and `title` are required; `summary`, `tag`, `series`, `seriesOrder`, `toc` are optional
 2. Series: share a `series` id across members and mark the landing page with `seriesOrder: 0`; the archive, homepage, breadcrumb, and back-link all collapse through the landing page automatically
 3. Long articles: set `toc: true` to render the floating table of contents
 4. Run the pre-commit checklist, then `npm run build` to confirm the new route appears in `build-metadata.json` and `dist/sitemap.xml`

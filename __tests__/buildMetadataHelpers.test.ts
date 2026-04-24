@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildRouteFreshness,
   combineFreshnessEntries,
+  getFirstGitFileFreshness,
   getGitFileFreshness,
   parseGitLogDates,
 } from "../scripts/build-metadata-lib.mjs";
@@ -28,6 +29,26 @@ describe("build metadata helpers", () => {
 
     expect(dates).toEqual({
       publishedOn: "2026-03-27",
+      lastModified: "2026-03-27",
+    });
+  });
+
+  it("tries alternate history paths before falling back", () => {
+    const dates = getFirstGitFileFreshness(["new-path.md", "old-path.md"], {
+      fallbackDate: "2026-03-27",
+      exec: (command) => {
+        if (command.includes('"new-path.md"')) {
+          throw new Error("missing");
+        }
+        if (command.includes('"old-path.md"')) {
+          return ["2026-03-27T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n");
+        }
+        throw new Error(`unexpected command: ${command}`);
+      },
+    });
+
+    expect(dates).toEqual({
+      publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
     });
   });

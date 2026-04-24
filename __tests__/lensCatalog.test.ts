@@ -3,6 +3,8 @@ import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../src/utils/lensCatalog.j
 import buildLens from "../src/optics/buildLens.js";
 
 describe("lensCatalog", () => {
+  it.todo("adds a focused regression test for nested lens-data discovery and analysis stem matching");
+
   it("CATALOG_KEYS is non-empty", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
   });

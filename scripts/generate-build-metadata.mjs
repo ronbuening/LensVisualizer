@@ -15,9 +15,15 @@
  * Run before `vite build` so the generated file is available to the bundler.
  */
 
+import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { buildRouteFreshness, combineFreshnessEntries, getGitFileFreshness } from "./build-metadata-lib.mjs";
+import {
+  buildRouteFreshness,
+  combineFreshnessEntries,
+  getFirstGitFileFreshness,
+  getGitFileFreshness,
+} from "./build-metadata-lib.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -54,29 +60,25 @@ function deriveMakerSlug(name) {
 /* ── Helpers ──────────────────────────────────────────────────────────── */
 
 /** Extract the `key` value from a lens data file using a regex. */
-function extractLensKey(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const match = content.match(/key:\s*"([^"]+)"/);
-  return match ? match[1] : null;
+function extractLensIdentityContent(content) {
+  const keyMatch = content.match(/key:\s*"([^"]+)"/);
+  const nameMatch = content.match(/name:\s*"([^"]+)"/);
+  const makerMatch = content.match(/maker:\s*"([^"]+)"/);
+
+  return {
+    key: keyMatch ? keyMatch[1] : null,
+    name: nameMatch ? nameMatch[1] : null,
+    maker: makerMatch ? makerMatch[1] : null,
+  };
 }
 
-/** Extract the `name` value from a lens data file using a regex. */
-function extractLensName(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const match = content.match(/name:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-/** Extract the `maker` value from a lens data file using a regex. */
-function extractLensMaker(filePath) {
-  const content = readFileSync(filePath, "utf-8");
-  const match = content.match(/maker:\s*"([^"]+)"/);
-  return match ? match[1] : null;
+/** Extract the key/name/maker tuple from a lens data file using regexes. */
+function extractLensIdentity(filePath) {
+  return extractLensIdentityContent(readFileSync(filePath, "utf-8"));
 }
 
 /** Parse simple YAML frontmatter from a markdown file. */
-function parseFrontmatter(filePath) {
-  const content = readFileSync(filePath, "utf-8");
+function parseFrontmatterContent(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return null;
 
@@ -95,6 +97,84 @@ function parseFrontmatter(filePath) {
   return meta;
 }
 
+/** Parse simple YAML frontmatter from a markdown file. */
+function parseFrontmatter(filePath) {
+  return parseFrontmatterContent(readFileSync(filePath, "utf-8"));
+}
+
+/**
+ * Index tracked article paths by slug from HEAD so working-tree moves can
+ * preserve their original git-derived publication dates before the rename is
+ * committed.
+ */
+function collectTrackedArticlePathsBySlug() {
+  try {
+    const trackedFilesRaw = execFileSync("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", "src/content"], {
+      cwd: ROOT,
+      encoding: "utf-8",
+    }).trim();
+
+    if (!trackedFilesRaw) return {};
+
+    const bySlug = {};
+    for (const repoPath of trackedFilesRaw
+      .split("\n")
+      .map((file) => file.trim())
+      .filter((file) => file.endsWith(".md"))) {
+      const content = execFileSync("git", ["show", `HEAD:${repoPath}`], {
+        cwd: ROOT,
+        encoding: "utf-8",
+      });
+      const meta = parseFrontmatterContent(content);
+      if (!meta?.slug || bySlug[meta.slug]) continue;
+      bySlug[meta.slug] = join(ROOT, repoPath);
+    }
+
+    return bySlug;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Index tracked lens data + analysis paths by lens key from HEAD so working-tree
+ * moves can preserve original git-derived freshness before the rename commit
+ * exists.
+ */
+function collectTrackedLensRecordsByKey() {
+  try {
+    const trackedFilesRaw = execFileSync("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", "src/lens-data"], {
+      cwd: ROOT,
+      encoding: "utf-8",
+    }).trim();
+
+    if (!trackedFilesRaw) return {};
+
+    const byKey = {};
+    for (const repoPath of trackedFilesRaw
+      .split("\n")
+      .map((file) => file.trim())
+      .filter((file) => file.endsWith(".data.ts"))) {
+      const content = execFileSync("git", ["show", `HEAD:${repoPath}`], {
+        cwd: ROOT,
+        encoding: "utf-8",
+      });
+      const { key } = extractLensIdentityContent(content);
+      if (!key || byKey[key]) continue;
+
+      const stem = repoPath.replace(/^src\/lens-data\//, "").replace(/\.data\.ts$/, "");
+      byKey[key] = {
+        dataPath: join(ROOT, repoPath),
+        analysisPath: join(LENS_DATA_DIR, `${stem}.analysis.md`),
+      };
+    }
+
+    return byKey;
+  } catch {
+    return {};
+  }
+}
+
 /* ── Lens data collection ─────────────────────────────────────────────── */
 
 /**
@@ -102,20 +182,31 @@ function parseFrontmatter(filePath) {
  * Single filesystem pass — avoids redundant reads by downstream scripts.
  */
 function collectLensData(fallbackDate) {
-  const dataFiles = readdirSync(LENS_DATA_DIR).filter((f) => f.endsWith(".data.ts"));
+  const trackedLensRecordsByKey = collectTrackedLensRecordsByKey();
+  const dataFiles = readdirSync(LENS_DATA_DIR, { recursive: true })
+    .filter((f) => typeof f === "string" && f.endsWith(".data.ts"))
+    .map((f) => f.replace(/\\/g, "/"))
+    .sort();
   const lenses = []; // { key, name, makerSlug, freshness }
 
   for (const file of dataFiles) {
     const filePath = join(LENS_DATA_DIR, file);
-    const key = extractLensKey(filePath);
+    const { key, name, maker } = extractLensIdentity(filePath);
     if (!key) continue;
-    const name = extractLensName(filePath);
-    const maker = extractLensMaker(filePath);
     const stem = file.replace(".data.ts", "");
     const analysisPath = join(LENS_DATA_DIR, `${stem}.analysis.md`);
-    const dataFreshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
+    const trackedRecord = trackedLensRecordsByKey[key];
+    const dataFreshness = getFirstGitFileFreshness(
+      trackedRecord?.dataPath && trackedRecord.dataPath !== filePath ? [filePath, trackedRecord.dataPath] : [filePath],
+      { cwd: ROOT, fallbackDate },
+    );
     const analysisFreshness = existsSync(analysisPath)
-      ? getGitFileFreshness(analysisPath, { cwd: ROOT, fallbackDate })
+      ? getFirstGitFileFreshness(
+          trackedRecord?.analysisPath && trackedRecord.analysisPath !== analysisPath
+            ? [analysisPath, trackedRecord.analysisPath]
+            : [analysisPath],
+          { cwd: ROOT, fallbackDate },
+        )
       : null;
     lenses.push({
       key,
@@ -147,6 +238,7 @@ function collectRoutes(lenses, articles, makerSlugs) {
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
 function collectArticles(fallbackDate) {
+  const trackedArticlePathsBySlug = collectTrackedArticlePathsBySlug();
   const mdFiles = readdirSync(CONTENT_DIR, { recursive: true })
     .filter((f) => typeof f === "string" && f.endsWith(".md"))
     .map((f) => f.replace(/\\/g, "/"));
@@ -157,7 +249,11 @@ function collectArticles(fallbackDate) {
     const meta = parseFrontmatter(filePath);
     if (!meta || !meta.slug || !meta.title) continue;
 
-    const freshness = getGitFileFreshness(filePath, { cwd: ROOT, fallbackDate });
+    const trackedPath = trackedArticlePathsBySlug[meta.slug];
+    const freshness = getFirstGitFileFreshness(
+      trackedPath && trackedPath !== filePath ? [filePath, trackedPath] : [filePath],
+      { cwd: ROOT, fallbackDate },
+    );
     const seriesOrder = meta.seriesOrder !== undefined ? Number.parseInt(meta.seriesOrder, 10) : undefined;
     articles.push({
       slug: meta.slug,
