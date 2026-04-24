@@ -26,6 +26,7 @@ const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
   { prefix: "LEICA", display: "Leica", slug: "leica" },
   { prefix: "VOIGTLÄNDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },
+  { prefix: "OLYMPUS", display: "Olympus", slug: "olympus" },
   { prefix: "RICOH", display: "Ricoh", slug: "ricoh" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
 ];
