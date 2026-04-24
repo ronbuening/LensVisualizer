@@ -29,9 +29,10 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    angle assumptions). SDs estimated from physical constraints:    ║
  * ║    inner meniscus surfaces limited by sd/|R| ≤ 0.86 (near-        ║
  * ║    hemispherical geometry per patent description); outer surfaces  ║
- * ║    widened slightly versus the first pass so the rendered section   ║
- * ║    better matches the patent's fuller outer shells and broader      ║
- * ║    central shoulders. All constraints pass:                        ║
+ * ║    fitted against the patent section silhouette so the rendered     ║
+ * ║    lens reads more like the drawing's fuller outer shells and       ║
+ * ║    broader central shoulders while staying inside the project's     ║
+ * ║    current SD/slope/ratio limits. All constraints pass:            ║
  * ║    rim slope < 2.065, edge thickness > 0.5 mm, cross-gap          ║
  * ║    intrusion < 90%.                                                ║
  * ║                                                                    ║
@@ -119,13 +120,13 @@ const LENS_DATA = {
    *  All surfaces spherical.
    */
   surfaces: [
-    { label: "1", R: 11.64, d: 7.9785, nd: 1.80518, elemId: 1, sd: 6.15 }, // L_I front (r₁)
+    { label: "1", R: 11.64, d: 7.9785, nd: 1.80518, elemId: 1, sd: 8.05 }, // L_I front (r₁)
     { label: "2", R: 3.843, d: 2.703, nd: 1.0, elemId: 0, sd: 3.45 }, // L_I rear → air (r₂)
-    { label: "3", R: 5.6685, d: 3.8243, nd: 1.713, elemId: 2, sd: 2.84 }, // L_II front (r₃) → L_IIa
-    { label: "STO", R: 1e15, d: 3.8243, nd: 1.713, elemId: 3, sd: 0.95 }, // Stop at center of L_II → L_IIb
-    { label: "4", R: -5.508, d: 2.4045, nd: 1.0, elemId: 0, sd: 2.84 }, // L_II rear → air (r₄)
-    { label: "5", R: -3.6285, d: 5.2365, nd: 1.80518, elemId: 4, sd: 3.2 }, // L_III front (r₅)
-    { label: "6", R: -8.9835, d: 4.545, nd: 1.0, elemId: 0, sd: 5.1 }, // L_III rear → BFD (r₆)
+    { label: "3", R: 5.6685, d: 3.8243, nd: 1.713, elemId: 2, sd: 2.98 }, // L_II front (r₃) → L_IIa
+    { label: "STO", R: 1e15, d: 3.8243, nd: 1.713, elemId: 3, sd: 1.0 }, // Stop at center of L_II → L_IIb
+    { label: "4", R: -5.508, d: 2.4045, nd: 1.0, elemId: 0, sd: 2.98 }, // L_II rear → air (r₄)
+    { label: "5", R: -3.6285, d: 5.2365, nd: 1.80518, elemId: 4, sd: 3.24 }, // L_III front (r₅)
+    { label: "6", R: -8.9835, d: 4.545, nd: 1.0, elemId: 0, sd: 6.55 }, // L_III rear → BFD (r₆)
   ],
 
   /* ── Aspherical coefficients ── */
