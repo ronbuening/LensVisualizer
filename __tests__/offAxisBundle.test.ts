@@ -10,7 +10,7 @@ import {
 import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout, epAtZoom, fopenAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 
 function build(raw: object): RuntimeLens {

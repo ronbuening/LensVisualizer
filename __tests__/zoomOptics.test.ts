@@ -10,7 +10,7 @@ import {
 } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Minimal mock helpers ── */

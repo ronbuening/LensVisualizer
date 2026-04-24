@@ -69,6 +69,7 @@ The dev server runs at `http://localhost:5173`.
 
 ```bash
 npm run dev           # Vite dev server with build metadata generation
+npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run build         # Production build + prerender + sitemap
 npm run preview       # Preview built output
 npm run test          # Full Vitest suite
@@ -114,9 +115,9 @@ agent_docs/     # Developer-facing architecture and workflow notes
 
 ## Adding A Lens
 
-1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to a new `.data.ts` file.
+1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to `src/lens-data/YourLens.data.ts`.
 2. Fill in the prescription and metadata fields.
-3. Optionally add a matching `.analysis.md` file for the description panel.
+3. Optionally add `src/lens-data/YourLens.analysis.md` beside the data file for the description panel.
 4. Run:
 
 ```bash
@@ -124,6 +125,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
 5. The catalog will pick the new lens up automatically through `import.meta.glob`.
+6. `npm run generate:metadata` or `npm run build` will move the lens into its maker folder and rewrite the type import to match the nested path.
 
 See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full format.
 
