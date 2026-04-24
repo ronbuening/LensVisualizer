@@ -47,6 +47,7 @@ const LENS_DATA = {
   key: "zeiss-hologon-15f8",
   maker: "Carl Zeiss",
   name: "CARL ZEISS HOLOGON 15 mm f/8",
+  visible: false,
   subtitle: "DE 1,241,637 B — GLATZEL & SCHULZ / CARL ZEISS",
   specs: ["3 ELEMENTS / 3 GROUPS", "f ≈ 15.0 mm", "F/8.0 (FIXED)", "2ω = 110°", "ALL SPHERICAL"],
 
