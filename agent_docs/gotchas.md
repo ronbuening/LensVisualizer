@@ -4,7 +4,7 @@
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
-- Lens data globs match `*.data.ts`; analysis globs match `*.analysis.md` — naming convention matters for auto-registration
+- Lens data globs scan recursively for `**/*.data.ts`; analysis globs scan recursively for `**/*.analysis.md` and match by relative stem path — naming convention matters for auto-registration
 - `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
 - Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
 - Lens data files are TypeScript (`.data.ts`) with `satisfies LensDataInput` for compile-time type checking — also validated at runtime by `validateLensData()`

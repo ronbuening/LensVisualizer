@@ -22,7 +22,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, Ricoh, and Vivitar
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
-The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
+The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
 
 ## Key Features
 

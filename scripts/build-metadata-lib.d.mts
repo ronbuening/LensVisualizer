@@ -26,6 +26,15 @@ export function getGitFileFreshness(
   },
 ): FreshnessEntry | null;
 
+export function getFirstGitFileFreshness(
+  filePaths: string[],
+  options?: {
+    cwd?: string;
+    fallbackDate?: string;
+    exec?: (command: string, options: { cwd?: string; encoding: string }) => string;
+  },
+): FreshnessEntry | null;
+
 export function combineFreshnessEntries(
   entries: Array<FreshnessEntry | null | undefined>,
   fallbackDate: string,

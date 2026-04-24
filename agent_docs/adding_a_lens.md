@@ -2,11 +2,11 @@
 
 ## Quick Steps
 
-1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts`
+1. Copy `src/lens-data/TEMPLATE.data.ts.template` to `src/lens-data/YourLens.data.ts` or a nested path like `src/lens-data/maker/YourLens.data.ts`
 2. Fill in the lens data following the template's inline field documentation
-3. Optionally add `src/lens-data/YourLens.analysis.md` for the description panel
+3. Optionally add `src/lens-data/YourLens.analysis.md` or a matching nested file beside the data file for the description panel
 4. Run `npm run typecheck && npm run format:check && npm run test` to verify types, formatting, and validation pass
-5. Done — `import.meta.glob` auto-registers all `src/lens-data/*.data.ts` files
+5. Done — the lens pipeline auto-registers all `src/lens-data/**/*.data.ts` files
 
 No manual imports or catalog edits required.
 
@@ -20,7 +20,7 @@ No manual imports or catalog edits required.
 
 ### Auto-Registration
 
-`src/utils/lensCatalog.ts` uses `import.meta.glob` to discover all `*.data.ts` files in `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field and use `satisfies LensDataInput` for compile-time type checking. Analysis files are matched by `*.analysis.md` glob.
+`src/utils/lensCatalog.ts` uses `import.meta.glob` to discover all `*.data.ts` files anywhere under `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field and use `satisfies LensDataInput` for compile-time type checking. Analysis files are matched by the same relative stem path with a `.analysis.md` suffix.
 
 ### Defaults Merge
 
@@ -33,7 +33,7 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 ### Naming Conventions
 
 - Lens data: `*.data.ts` (required for auto-registration, typed with `satisfies LensDataInput`)
-- Analysis: `*.analysis.md` (optional, matched by name prefix)
+- Analysis: `*.analysis.md` (optional, matched by the same relative stem path as the `.data.ts` file)
 - Set `visible: false` in the data object to hide a lens from the UI
 
 ### Semi-Diameter Troubleshooting

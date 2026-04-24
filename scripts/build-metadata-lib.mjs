@@ -36,6 +36,22 @@ export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec = execSy
 }
 
 /**
+ * Return the first git-backed freshness entry from a list of candidate paths.
+ *
+ * This is useful when content has been moved in the working tree but the rename
+ * has not been committed yet: the new path has no git history, while the old
+ * tracked path still carries the original publication date.
+ */
+export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec = execSync } = {}) {
+  for (const filePath of filePaths) {
+    const freshness = getGitFileFreshness(filePath, { cwd, exec });
+    if (freshness) return freshness;
+  }
+
+  return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+}
+
+/**
  * Combine multiple freshness entries into a single envelope.
  */
 export function combineFreshnessEntries(entries, fallbackDate) {

@@ -4,12 +4,12 @@ Reference for creating new `*.data.ts` files in `lens-data/`.
 
 ## Quick Start
 
-1. Copy `TEMPLATE.data.ts.template` to `YourLens.data.ts`
+1. Copy `TEMPLATE.data.ts.template` to `YourLens.data.ts` or a nested path like `maker/YourLens.data.ts`
 2. Fill in all fields following this spec
 3. Optionally add `YourLens.analysis.md` for the description panel
 4. Auto-registration picks it up — no imports or catalog edits needed
 
-File naming: `lens-data/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking.
+File naming: `lens-data/**/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking. Optional analysis files use the same relative stem path with a `.analysis.md` suffix.
 
 ## Scope: What to Include
 
