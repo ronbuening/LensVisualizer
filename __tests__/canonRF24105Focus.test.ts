@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import buildLens from "../src/optics/buildLens.js";
 import { conjugateK, thick } from "../src/optics/optics.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import CanonRF24105Raw from "../src/lens-data/CanonRF24105mmf4L.data.js";
+import CanonRF24105Raw from "../src/lens-data/canon/CanonRF24105mmf4L.data.js";
 import type { LensData } from "../src/types/optics.js";
 
 function buildCanonRF24105() {

@@ -22,9 +22,9 @@ import { computeBokehFieldFootprint, computeBokehPreview } from "../src/optics/a
 import { computeMeridionalComa, computeSagittalComa } from "../src/optics/aberration/coma.js";
 import { fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
-import NoktonRaw from "../src/lens-data/VoigtlanderNokton50f1.data.js";
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import NoktonRaw from "../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Helpers ── */

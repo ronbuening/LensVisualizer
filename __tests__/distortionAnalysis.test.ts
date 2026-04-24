@@ -3,11 +3,11 @@ import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optic
 import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
-import NikonZ135Raw from "../src/lens-data/NikonZ135f18.data.js";
-import NikonZ100400Raw from "../src/lens-data/NikonNikkorZ100400f4556.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import NikonZ135Raw from "../src/lens-data/nikon/NikonZ135f18.data.js";
+import NikonZ100400Raw from "../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Helpers ── */

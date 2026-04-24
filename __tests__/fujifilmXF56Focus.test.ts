@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import FujifilmXF56Raw from "../src/lens-data/FujifilmXF56mmf12.data.js";
+import FujifilmXF56Raw from "../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
 import { conjugateK, doLayout, entrancePupilAtState, traceRay } from "../src/optics/optics.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 

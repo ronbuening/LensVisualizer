@@ -372,7 +372,7 @@ Four themes (dark, light, darkHC, lightHC) built via a `createTheme()` factory f
 
 ## Lens Data Files
 
-Each lens has two files in `src/lens-data/`:
+Each lens has two files under maker folders in `src/lens-data/`:
 - **`.data.ts`** — Default-exports a `LENS_DATA` object with `satisfies LensDataInput` for compile-time validation
 - **`.analysis.md`** — Markdown design analysis, rendered in the app's description panel
 
@@ -389,4 +389,4 @@ Type definitions are centralized in `src/types/`:
 - **`theme.ts`** — `ThemeColorTokens`, `ThemeInternalTokens`, `Theme` (tokens + closure functions), `ThemeVariant`
 - **`index.ts`** — Barrel re-exports from all three
 
-Lens data files (`.data.ts`) are TypeScript with `satisfies LensDataInput` for compile-time validation. They are loaded via `import.meta.glob` and also validated at runtime by `validateLensData()`. Test files are TypeScript (`.ts`) and are included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`.
+Lens data files (`.data.ts`) are TypeScript with `satisfies LensDataInput` for compile-time validation. They are loaded via `import.meta.glob` and also validated at runtime by `validateLensData()`. Most test files are TypeScript (`.ts`/`.tsx`) and are included in `tsconfig.json` so `npm run typecheck` validates them alongside `src/`; a few Node-focused script regressions live in `.js` so they can exercise the build helpers without extra Node type-package setup.

@@ -32,7 +32,7 @@ import buildLens from "../src/optics/buildLens.js";
 import { traceSurfacesReal } from "../src/optics/internal/traceSurfaces.js";
 import { buildStateSurfaces } from "../src/optics/internal/lensState.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import NikkorZ24120Raw from "../src/lens-data/NikonNikkorZ24120mmf4S.data.js";
+import NikkorZ24120Raw from "../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.js";
 import type { LensData, SurfaceData, AsphericCoefficients } from "../src/types/optics.js";
 
 /* ── Configuration ── */

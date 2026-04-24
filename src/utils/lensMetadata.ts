@@ -17,7 +17,7 @@ const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
 
 /* Known maker prefixes in lens names, mapped to display names and URL-safe slugs.
-   Build-time copy: scripts/generate-build-metadata.mjs MAKER_PREFIXES */
+   Build-time copy: scripts/lens-data-lib.mjs MAKER_PREFIXES */
 const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
   { prefix: "CANON", display: "Canon", slug: "canon" },
   { prefix: "CARL ZEISS", display: "Carl Zeiss", slug: "carl-zeiss" },

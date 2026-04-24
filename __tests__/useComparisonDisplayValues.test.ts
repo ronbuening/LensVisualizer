@@ -8,8 +8,8 @@ import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
 import type { ComparisonLensesResult } from "../src/comparison/useComparisonMode.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair } from "../src/comparison/comparisonSliders.js";
-import SonnarRaw from "../src/lens-data/ZeissSonnar50f15.data.js";
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
+import SonnarRaw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;

@@ -26,10 +26,10 @@ import {
 import { computeOffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
-import NikonZ135Raw from "../src/lens-data/NikonZ135f18.data.js";
-import NikonAF28f14DRaw from "../src/lens-data/NikonAF28f14D.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import NikonZ135Raw from "../src/lens-data/nikon/NikonZ135f18.data.js";
+import NikonAF28f14DRaw from "../src/lens-data/nikon/NikonAF28f14D.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 import type { BokehPoint } from "../src/optics/aberration/types.js";
 
