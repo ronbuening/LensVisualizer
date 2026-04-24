@@ -15,6 +15,11 @@ export default defineConfig({
         "src/components/**",
         "src/comparison/**",
       ],
+      exclude: [
+        "src/comparison/comparisonTypes.ts",
+        "src/components/diagram/diagramSvgTypes.ts",
+        "src/pages/lensIndex/types.ts",
+      ],
       reporter: ["text", "html"],
       reportsDirectory: "coverage",
     },
