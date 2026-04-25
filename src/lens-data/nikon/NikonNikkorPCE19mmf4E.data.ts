@@ -20,11 +20,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    is counted with glass body L29 as one "element" for marketing).║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Estimated via combined marginal + chief ray trace at f/4.08     ║
- * ║    (design FNO) with offAxisFieldFrac = 0.60 and 8% mechanical    ║
- * ║    clearance.  Front group SDs are large due to the extreme       ║
- * ║    119.2° field; rear group SDs constrained by edge thickness     ║
- * ║    (biconvex elements L23, L25, L27).                             ║
+ * ║    Visually adjusted to match the Nikon manufacturer's lens       ║
+ * ║    construction diagram.  L12/L13/L14 front-group SDs increased   ║
+ * ║    for proportional accuracy; surface 6A (R=13.901) is pinned at  ║
+ * ║    12.5 by the 64.2° slope limit.  H1 rear element enlarged to   ║
+ * ║    reflect its visual prominence in the diagram.                  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -293,36 +293,36 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 43.971, d: 3.5, nd: 1.6968, elemId: 1, sd: 26.5 },
     { label: "2", R: 30.197, d: 7.13, nd: 1.0, elemId: 0, sd: 24.0 },
-    { label: "3", R: 35.045, d: 3.17, nd: 1.6968, elemId: 2, sd: 19.5 },
-    { label: "4", R: 22.843, d: 7.0, nd: 1.0, elemId: 0, sd: 17.5 },
-    { label: "5A", R: 34.175, d: 3.5, nd: 1.58313, elemId: 3, sd: 14.0 },
+    { label: "3", R: 35.045, d: 3.17, nd: 1.6968, elemId: 2, sd: 21.0 },
+    { label: "4", R: 22.843, d: 7.0, nd: 1.0, elemId: 0, sd: 20.0 },
+    { label: "5A", R: 34.175, d: 3.5, nd: 1.58313, elemId: 3, sd: 16.0 },
     { label: "6A", R: 13.901, d: 9.41, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "7", R: 160.346, d: 2.0, nd: 1.497, elemId: 4, sd: 10.5 },
-    { label: "8", R: 20.956, d: 5.22, nd: 1.0, elemId: 0, sd: 10.2 },
-    { label: "9", R: 76.016, d: 8.4, nd: 1.64769, elemId: 5, sd: 10.2 }, // L15 front (Ja)
-    { label: "10", R: -16.389, d: 5.29, nd: 1.90366, elemId: 6, sd: 9.8 }, // L15→L16 junction
-    { label: "11", R: 60.949, d: 0.76, nd: 1.0, elemId: 0, sd: 10.0 }, // L16 rear → air
-    { label: "12", R: 34.641, d: 5.0, nd: 1.83481, elemId: 7, sd: 10.2 }, // L17 front (Jb)
-    { label: "13", R: 19.438, d: 6.73, nd: 1.65412, elemId: 8, sd: 10.1 }, // L17→L18 junction
-    { label: "14", R: -31.576, d: 0.81, nd: 1.0, elemId: 0, sd: 10.4 }, // L18 rear → air
-    { label: "15", R: 31.187, d: 2.25, nd: 1.64769, elemId: 9, sd: 10.3 }, // L19 front
-    { label: "16", R: 74.264, d: 6.81, nd: 1.0, elemId: 0, sd: 9.8 }, // L19 rear → air (VARIABLE)
+    { label: "7", R: 160.346, d: 2.0, nd: 1.497, elemId: 4, sd: 13.5 },
+    { label: "8", R: 20.956, d: 5.22, nd: 1.0, elemId: 0, sd: 13.0 },
+    { label: "9", R: 76.016, d: 8.4, nd: 1.64769, elemId: 5, sd: 11.5 }, // L15 front (Ja)
+    { label: "10", R: -16.389, d: 5.29, nd: 1.90366, elemId: 6, sd: 11.0 }, // L15→L16 junction
+    { label: "11", R: 60.949, d: 0.76, nd: 1.0, elemId: 0, sd: 11.0 }, // L16 rear → air
+    { label: "12", R: 34.641, d: 5.0, nd: 1.83481, elemId: 7, sd: 11.0 }, // L17 front (Jb)
+    { label: "13", R: 19.438, d: 6.73, nd: 1.65412, elemId: 8, sd: 10.8 }, // L17→L18 junction
+    { label: "14", R: -31.576, d: 0.81, nd: 1.0, elemId: 0, sd: 11.0 }, // L18 rear → air
+    { label: "15", R: 31.187, d: 2.25, nd: 1.64769, elemId: 9, sd: 10.8 }, // L19 front
+    { label: "16", R: 74.264, d: 6.81, nd: 1.0, elemId: 0, sd: 10.3 }, // L19 rear → air (VARIABLE)
     { label: "STO", R: 1e15, d: 2.72, nd: 1.0, elemId: 0, sd: 7.35 }, // Aperture stop — moves with Gr2
     { label: "18", R: 49.359, d: 3.23, nd: 1.5927, elemId: 10, sd: 8.5 }, // L21 front
     { label: "19", R: -27.494, d: 1.02, nd: 1.0, elemId: 0, sd: 8.6 }, // L21 rear → air
-    { label: "20", R: -23.268, d: 1.2, nd: 1.7725, elemId: 11, sd: 8.5 }, // L22 front (Jc)
-    { label: "21", R: 14.617, d: 4.9, nd: 1.51742, elemId: 12, sd: 8.5 }, // L22→L23 junction
-    { label: "22", R: -27.0, d: 1.09, nd: 1.0, elemId: 0, sd: 8.5 }, // L23 rear → air
-    { label: "23", R: -25.008, d: 1.0, nd: 1.91082, elemId: 13, sd: 9.0 }, // L24 front
-    { label: "24", R: -188.788, d: 0.37, nd: 1.0, elemId: 0, sd: 9.2 }, // L24 rear → air
+    { label: "20", R: -23.268, d: 1.2, nd: 1.7725, elemId: 11, sd: 9.0 }, // L22 front (Jc)
+    { label: "21", R: 14.617, d: 4.9, nd: 1.51742, elemId: 12, sd: 9.0 }, // L22→L23 junction
+    { label: "22", R: -27.0, d: 1.09, nd: 1.0, elemId: 0, sd: 9.0 }, // L23 rear → air
+    { label: "23", R: -25.008, d: 1.0, nd: 1.91082, elemId: 13, sd: 9.5 }, // L24 front
+    { label: "24", R: -188.788, d: 0.37, nd: 1.0, elemId: 0, sd: 9.5 }, // L24 rear → air
     { label: "25", R: 35.526, d: 5.51, nd: 1.497, elemId: 14, sd: 10.0 }, // L25 front
     { label: "26", R: -22.931, d: 0.15, nd: 1.0, elemId: 0, sd: 10.5 }, // L25 rear → air
     { label: "27", R: 112.277, d: 1.2, nd: 1.83481, elemId: 15, sd: 11.0 }, // L26 front (Jd)
     { label: "28", R: 18.718, d: 11.0, nd: 1.497, elemId: 16, sd: 11.5 }, // L26→L27 junction
     { label: "29", R: -22.556, d: 0.15, nd: 1.0, elemId: 0, sd: 12.0 }, // L27 rear → air
-    { label: "30A", R: -64.378, d: 0.1, nd: 1.5138, elemId: 17, sd: 12.5 }, // L28 front (asph, resin)
-    { label: "31", R: -60.928, d: 1.9, nd: 1.5168, elemId: 18, sd: 12.5 }, // L28→L29 junction
-    { label: "32", R: -1000.0, d: 56.38, nd: 1.0, elemId: 0, sd: 12.5 }, // L29 rear → air (BFD, VARIABLE)
+    { label: "30A", R: -64.378, d: 0.1, nd: 1.5138, elemId: 17, sd: 13.5 }, // L28 front (asph, resin)
+    { label: "31", R: -60.928, d: 1.9, nd: 1.5168, elemId: 18, sd: 13.5 }, // L28→L29 junction
+    { label: "32", R: -1000.0, d: 56.38, nd: 1.0, elemId: 0, sd: 13.5 }, // L29 rear → air (BFD, VARIABLE)
   ],
 
   /* ── Aspherical coefficients ── */

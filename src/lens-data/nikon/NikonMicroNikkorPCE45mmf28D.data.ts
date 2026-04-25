@@ -14,12 +14,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    applied — prescription values used as-is from the patent.       ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters.  Estimated via combined    ║
- * ║    marginal (f/2.8) + chief (0.60 × 36° half-field) ray trace     ║
- * ║    with ~8% mechanical clearance, then reduced where needed to     ║
- * ║    satisfy edge-thickness (≥ 0.7 mm), cross-gap sag (≤ 90%),      ║
- * ║    and sd/|R| (< 0.90) constraints.  L33 edge thickness is the    ║
- * ║    binding constraint in the rear group.                           ║
+ * ║    Patent does not list semi-diameters.  Estimated from the        ║
+ * ║    f/2.8 ray envelope, then visually tuned against Nikon's         ║
+ * ║    construction diagram: dominant front pair, stepped-down middle  ║
+ * ║    ED/doublet cluster, and compact rear group.  Values remain      ║
+ * ║    within edge-thickness (L33 binding), cross-gap sag (≤ 90%),    ║
+ * ║    and rim-slope constraints.                                      ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -179,28 +179,28 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1 (negative): L11 + L12 ──
-    { label: "1", R: 49.752, d: 3.0, nd: 1.83481, elemId: 1, sd: 20.0 }, // L11 front
-    { label: "2", R: 32.115, d: 5.7, nd: 1.0, elemId: 0, sd: 18.5 }, // L11 rear → air
+    { label: "1", R: 49.752, d: 3.0, nd: 1.83481, elemId: 1, sd: 22.5 }, // L11 front
+    { label: "2", R: 32.115, d: 5.7, nd: 1.0, elemId: 0, sd: 20.8 }, // L11 rear → air
     { label: "3", R: 130.0, d: 4.1, nd: 1.75692, elemId: 2, sd: 17.0 }, // L12 front
-    { label: "4", R: -492.062, d: 1.0, nd: 1.0, elemId: 0, sd: 16.0 }, // L12 rear → air (d4 variable, G1–G2 gap)
+    { label: "4", R: -492.062, d: 1.0, nd: 1.0, elemId: 0, sd: 15.6 }, // L12 rear → air (d4 variable, G1–G2 gap)
 
     // ── G2 (negative): L21 (ED) + cemented L22+L23 ──
-    { label: "5", R: 138.964, d: 2.4, nd: 1.49782, elemId: 3, sd: 16.0 }, // L21 front (ED)
-    { label: "6", R: 19.308, d: 16.0, nd: 1.0, elemId: 0, sd: 14.5 }, // L21 rear → air
-    { label: "7", R: 42.141, d: 4.6, nd: 1.788, elemId: 4, sd: 14.0 }, // L22 front
-    { label: "8", R: -310.529, d: 2.4, nd: 1.56732, elemId: 5, sd: 13.0 }, // L22→L23 junction
-    { label: "9", R: 73.8, d: 6.5, nd: 1.0, elemId: 0, sd: 13.0 }, // L23 rear → air (d9 variable, G2–G3 gap)
+    { label: "5", R: 138.964, d: 2.4, nd: 1.49782, elemId: 3, sd: 14.2 }, // L21 front (ED)
+    { label: "6", R: 19.308, d: 16.0, nd: 1.0, elemId: 0, sd: 13.4 }, // L21 rear → air
+    { label: "7", R: 42.141, d: 4.6, nd: 1.788, elemId: 4, sd: 12.3 }, // L22 front
+    { label: "8", R: -310.529, d: 2.4, nd: 1.56732, elemId: 5, sd: 11.8 }, // L22→L23 junction
+    { label: "9", R: 73.8, d: 6.5, nd: 1.0, elemId: 0, sd: 11.8 }, // L23 rear → air (d9 variable, G2–G3 gap)
 
     // ── G3 (positive): L31, stop, L32, L33, L34 ──
-    { label: "10", R: 80.318, d: 6.0, nd: 1.618, elemId: 6, sd: 12.5 }, // L31 front
-    { label: "11", R: -37.349, d: 1.0, nd: 1.0, elemId: 0, sd: 11.5 }, // L31 rear → air
+    { label: "10", R: 80.318, d: 6.0, nd: 1.618, elemId: 6, sd: 12.8 }, // L31 front
+    { label: "11", R: -37.349, d: 1.0, nd: 1.0, elemId: 0, sd: 12.2 }, // L31 rear → air
     { label: "STO", R: 1e15, d: 4.5, nd: 1.0, elemId: 0, sd: 10.3 }, // Aperture stop (9 blades, rounded)
-    { label: "13", R: -28.492, d: 9.2, nd: 1.71736, elemId: 7, sd: 11.0 }, // L32 front
-    { label: "14", R: 70.877, d: 1.9, nd: 1.0, elemId: 0, sd: 11.5 }, // L32 rear → air
-    { label: "15", R: -95.52, d: 3.2, nd: 1.48749, elemId: 8, sd: 12.0 }, // L33 front
-    { label: "16", R: -25.721, d: 0.1, nd: 1.0, elemId: 0, sd: 12.5 }, // L33 rear → air
-    { label: "17", R: 270.998, d: 3.4, nd: 1.804, elemId: 9, sd: 12.8 }, // L34 front
-    { label: "18", R: -59.752, d: 56.5, nd: 1.0, elemId: 0, sd: 14.0 }, // L34 rear → image (BFD)
+    { label: "13", R: -28.492, d: 9.2, nd: 1.71736, elemId: 7, sd: 11.8 }, // L32 front
+    { label: "14", R: 70.877, d: 1.9, nd: 1.0, elemId: 0, sd: 12.2 }, // L32 rear → air
+    { label: "15", R: -95.52, d: 3.2, nd: 1.48749, elemId: 8, sd: 11.7 }, // L33 front
+    { label: "16", R: -25.721, d: 0.1, nd: 1.0, elemId: 0, sd: 12.2 }, // L33 rear → air
+    { label: "17", R: 270.998, d: 3.4, nd: 1.804, elemId: 9, sd: 12.4 }, // L34 front
+    { label: "18", R: -59.752, d: 56.5, nd: 1.0, elemId: 0, sd: 12.8 }, // L34 rear → image (BFD)
   ],
 
   /* ── Aspherical coefficients (all-spherical design) ── */
