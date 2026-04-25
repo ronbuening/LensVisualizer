@@ -58,7 +58,7 @@ Key responsibilities:
 | `useFlashOverlay.ts` | Sticky-slider flash animation state. |
 | `useSideLayoutDetection.ts` | ResizeObserver overflow detection with hysteresis. |
 | `useDispatchAdapters.ts` | Stable named dispatch callback adapters for children. |
-| `useOverlayState.ts` | Abbe/LCA/Petzval overlay open/close state with lens-key reset. |
+| `useOverlayState.ts` | Abbe/LCA/Petzval/aspheric-compare overlay open/close state with lens-key reset. Aspheric state: `asphCompareElementId`, `openAsphCompare(eid)`, `closeAsphCompare`. |
 | `useHeaderHeight.ts` | Header ResizeObserver height tracking for multi-panel alignment. |
 | `useViewBoxZoom.ts` | SVG viewBox zoom/pan with wheel, drag, pinch, and keyboard support. |
 

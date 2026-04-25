@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-25 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-25",
+    type: "feature",
+    summary:
+      "Added aspheric deviation inspector: compare any aspheric surface to its spherical equivalent with zoom, exaggeration, and click-to-measure Δsag",
+  },
+  {
+    date: "2026-04-25",
     type: "lens",
     summary:
       "Added three Nikon Perspective Control lenses: PC NIKKOR 19mm f/4E ED, PC NIKKOR 24mm f/3.5D ED, and PC NIKKOR 45mm f/2.8D ED",

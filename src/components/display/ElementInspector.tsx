@@ -15,6 +15,7 @@ interface ElementInspectorProps {
   L: RuntimeLens;
   t: Theme;
   showChromatic: boolean;
+  onOpenAsphericCompare?: (eid: number) => void;
 }
 
 const INSPECTOR_GRID: CSSProperties = {
@@ -25,7 +26,7 @@ const INSPECTOR_GRID: CSSProperties = {
   lineHeight: 1.8,
 };
 
-export default function ElementInspector({ info, L, t, showChromatic }: ElementInspectorProps) {
+export default function ElementInspector({ info, L, t, showChromatic, onOpenAsphericCompare }: ElementInspectorProps) {
   return (
     <div>
       <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
@@ -81,20 +82,40 @@ export default function ElementInspector({ info, L, t, showChromatic }: ElementI
           if (!a1 && !a2) return null;
           const count = (a1 ? 1 : 0) + (a2 ? 1 : 0);
           return (
-            <span
-              style={{
-                fontSize: 8,
-                padding: "2px 6px",
-                borderRadius: 3,
-                background: `${t.asphStroke}22`,
-                color: t.asphLabel,
-                letterSpacing: "0.08em",
-                fontWeight: 600,
-                transition: "all 0.3s",
-              }}
-            >
-              {count === 2 ? "ASPH \u00d72" : "ASPH"}
-            </span>
+            <>
+              <span
+                style={{
+                  fontSize: 8,
+                  padding: "2px 6px",
+                  borderRadius: 3,
+                  background: `${t.asphStroke}22`,
+                  color: t.asphLabel,
+                  letterSpacing: "0.08em",
+                  fontWeight: 600,
+                  transition: "all 0.3s",
+                }}
+              >
+                {count === 2 ? "ASPH \u00d72" : "ASPH"}
+              </span>
+              {onOpenAsphericCompare && (
+                <button
+                  onClick={() => onOpenAsphericCompare(info.id)}
+                  style={{
+                    fontSize: 9,
+                    padding: 0,
+                    background: "transparent",
+                    border: "none",
+                    color: t.asphLabel,
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    letterSpacing: "0.04em",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  Compare to sphere {"\u2192"}
+                </button>
+              )}
+            </>
           );
         })()}
       </div>
