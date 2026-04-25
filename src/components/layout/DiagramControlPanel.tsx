@@ -58,6 +58,7 @@ interface DiagramControlPanelProps {
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
+  onOpenAsphericCompare?: (eid: number) => void;
 }
 
 export default function DiagramControlPanel({
@@ -101,6 +102,7 @@ export default function DiagramControlPanel({
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
+  onOpenAsphericCompare,
 }: DiagramControlPanelProps) {
   return (
     <div
@@ -164,7 +166,13 @@ export default function DiagramControlPanel({
         }}
       >
         {info ? (
-          <ElementInspector info={info} L={L} t={t} showChromatic={showChromatic} />
+          <ElementInspector
+            info={info}
+            L={L}
+            t={t}
+            showChromatic={showChromatic}
+            onOpenAsphericCompare={onOpenAsphericCompare}
+          />
         ) : (
           <DiagramLegend
             L={L}
