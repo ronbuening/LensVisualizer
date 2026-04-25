@@ -3,7 +3,7 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
@@ -45,6 +45,7 @@ interface DiagramControlsProps {
   apertureExpanded: boolean;
   onApertureExpandedChange?: (value: boolean) => void;
   onSliderPointerUp?: () => void;
+  onInteractionChange?: (interacting: boolean) => void;
   showSliders: boolean;
 }
 
@@ -73,9 +74,14 @@ export default function DiagramControls({
   apertureExpanded,
   onApertureExpandedChange,
   onSliderPointerUp,
+  onInteractionChange,
   showSliders,
 }: DiagramControlsProps) {
-  const { beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+  const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+
+  useEffect(() => {
+    onInteractionChange?.(interacting);
+  }, [interacting, onInteractionChange]);
 
   const handlePointerUp = useCallback(() => {
     endInteraction();

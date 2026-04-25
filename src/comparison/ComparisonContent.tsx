@@ -100,6 +100,7 @@ export default function ComparisonContent({
             focusPair={focusPair}
             aperturePair={aperturePair}
             zoomPair={zoomPair}
+            comparisonLenses={comparisonLenses}
             scaleRatios={scaleRatios}
             maxHeaderHeight={maxHeaderHeight}
             onHeaderHeight={onHeaderHeight}

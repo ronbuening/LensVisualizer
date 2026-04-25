@@ -12,6 +12,7 @@ import { collapseBtn } from "../../utils/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
 
 interface DiagramLegendProps {
@@ -20,7 +21,7 @@ interface DiagramLegendProps {
   isWide: boolean;
   zoomT: number;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
   chromR: boolean;
   chromG: boolean;

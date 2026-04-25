@@ -1,6 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optics/distortionAnalysis.js";
-import { doLayout, eflAtFocus, fopenAtZoom, halfFieldAtZoom } from "../src/optics/optics.js";
+import {
+  computeFieldGeometryAtState,
+  doLayout,
+  eflAtFocus,
+  fopenAtZoom,
+  halfFieldAtZoom,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
@@ -91,6 +97,21 @@ describe("computeDistortionCurve", () => {
 
     const samples = computeDistortionCurve(L, zPos, 0, 0, 0, currentPhysStopSD);
     expect(samples.length).toBeGreaterThanOrEqual(9);
+  });
+
+  it("matches exactly when using precomputed field geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0.25, 0, L);
+    const dynamicEFL = eflAtFocus(0.25, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0.2);
+    const geometry = computeFieldGeometryAtState(0.25, 0, L);
+
+    expect(computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD, geometry)).toEqual(
+      computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD),
+    );
+    expect(computeDistortionFieldGrid(L, zPos, 0.25, 0, currentPhysStopSD, geometry)).toEqual(
+      computeDistortionFieldGrid(L, zPos, 0.25, 0, currentPhysStopSD),
+    );
   });
 
   /* ── Zoom lens ── */

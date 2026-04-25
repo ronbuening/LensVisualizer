@@ -6,6 +6,7 @@
 import LensDiagramPanel from "../components/layout/LensDiagramPanel.js";
 import type { Theme } from "../types/theme.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { ComparisonLensesOk } from "./useComparisonMode.js";
 
 interface ComparisonLayoutProps {
   theme: Theme;
@@ -15,6 +16,7 @@ interface ComparisonLayoutProps {
   focusPair: FocusPairResult;
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult;
+  comparisonLenses?: ComparisonLensesOk;
   scaleRatios: { a: number; b: number } | null;
   maxHeaderHeight: number;
   onHeaderHeight: (panelId: string, height: number) => void;
@@ -29,6 +31,7 @@ export default function ComparisonLayout({
   focusPair,
   aperturePair,
   zoomPair,
+  comparisonLenses,
   scaleRatios,
   maxHeaderHeight,
   onHeaderHeight,
@@ -50,6 +53,7 @@ export default function ComparisonLayout({
       >
         <LensDiagramPanel
           lensKey={lensKeyA}
+          runtimeLens={comparisonLenses?.LA}
           focusT={focusPair.focusA}
           zoomT={zoomPair.zoomA}
           stopdownT={aperturePair.stopdownA}
@@ -67,6 +71,7 @@ export default function ComparisonLayout({
       <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
         <LensDiagramPanel
           lensKey={lensKeyB}
+          runtimeLens={comparisonLenses?.LB}
           focusT={focusPair.focusB}
           zoomT={zoomPair.zoomB}
           stopdownT={aperturePair.stopdownB}

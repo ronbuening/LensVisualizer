@@ -19,6 +19,7 @@ import {
   solveFieldAngleForImageHeightAccurate,
   traceSkewRay,
 } from "./optics.js";
+import type { FieldGeometryState } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
@@ -82,10 +83,11 @@ function computeDistortionReference(
   zPos: number[],
   focusT: number,
   zoomT: number,
+  fieldGeometry?: FieldGeometryState,
 ): DistortionReference | null {
   if (L.N < 1) return null;
 
-  const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
+  const geometry = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
   /* Use the iteratively corrected chief ray for the edge image height so
@@ -142,8 +144,9 @@ export function computeDistortionCurve(
   zoomT: number,
   _dynamicEFL: number,
   _currentPhysStopSD: number,
+  fieldGeometry?: FieldGeometryState,
 ): DistortionSample[] {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry);
   if (reference === null) return [];
 
   const samples: DistortionSample[] = [];
@@ -321,8 +324,9 @@ export function computeDistortionFieldGrid(
   focusT: number,
   zoomT: number,
   currentPhysStopSD: number,
+  fieldGeometry?: FieldGeometryState,
 ): DistortionFieldGridResult {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry);
   if (reference === null) {
     return {
       lines: [],

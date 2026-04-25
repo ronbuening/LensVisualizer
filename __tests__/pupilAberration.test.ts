@@ -129,6 +129,14 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
       expect(withGeom.samples[i].epShiftMm).toBeCloseTo(withoutGeom.samples[i].epShiftMm, 8);
     }
   });
+
+  it("keeps the combined EP/XP profile identical with precomputed geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const geom = computeFieldGeometryAtState(0.25, 0, L);
+    expect(computeBothPupilAberrationProfiles(0.25, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom)).toEqual(
+      computeBothPupilAberrationProfiles(0.25, 0, L),
+    );
+  });
 });
 
 describe("computePupilAberrationProfile — zoom lens", () => {

@@ -18,8 +18,14 @@
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { buildRouteFreshness, getFirstGitFileFreshness, getGitFileFreshness } from "./build-metadata-lib.mjs";
-import { collectLensData } from "./lens-data-lib.mjs";
+import {
+  buildRouteFreshness,
+  getFirstGitFileFreshnessAsync,
+  getGitFileFreshnessAsync,
+  mapLimit,
+} from "./build-metadata-lib.mjs";
+import { collectLensDataAsync } from "./lens-data-lib.mjs";
+import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -27,7 +33,9 @@ const LENS_DATA_DIR = join(ROOT, "src", "lens-data");
 const CONTENT_DIR = join(ROOT, "src", "content");
 const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
+const MAKER_PREFIXES_FILE = join(OUT_DIR, "maker-prefixes.json");
 const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "makerDetails.ts");
+const GIT_FRESHNESS_CONCURRENCY = 8;
 
 /** Parse simple YAML frontmatter from a markdown file. */
 function parseFrontmatterContent(content) {
@@ -106,25 +114,24 @@ function collectRoutes(lenses, articles, makerSlugs) {
 
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
-function collectArticles(fallbackDate) {
+async function collectArticles(fallbackDate) {
   const trackedArticlePathsBySlug = collectTrackedArticlePathsBySlug();
   const mdFiles = readdirSync(CONTENT_DIR, { recursive: true })
     .filter((f) => typeof f === "string" && f.endsWith(".md"))
     .map((f) => f.replace(/\\/g, "/"));
-  const articles = [];
 
-  for (const file of mdFiles) {
+  const articles = await mapLimit(mdFiles, GIT_FRESHNESS_CONCURRENCY, async (file) => {
     const filePath = join(CONTENT_DIR, file);
     const meta = parseFrontmatter(filePath);
-    if (!meta || !meta.slug || !meta.title) continue;
+    if (!meta || !meta.slug || !meta.title) return null;
 
     const trackedPath = trackedArticlePathsBySlug[meta.slug];
-    const freshness = getFirstGitFileFreshness(
+    const freshness = await getFirstGitFileFreshnessAsync(
       trackedPath && trackedPath !== filePath ? [filePath, trackedPath] : [filePath],
       { cwd: ROOT, fallbackDate },
     );
     const seriesOrder = meta.seriesOrder !== undefined ? Number.parseInt(meta.seriesOrder, 10) : undefined;
-    articles.push({
+    return {
       slug: meta.slug,
       title: meta.title,
       summary: meta.summary || "",
@@ -135,27 +142,35 @@ function collectArticles(fallbackDate) {
       publishedOn: freshness.publishedOn,
       lastModified: freshness.lastModified,
       file,
-    });
-  }
+    };
+  });
 
   // Sort newest-first by date
-  articles.sort((a, b) => b.publishedOn.localeCompare(a.publishedOn));
-  return articles;
+  return articles.filter(Boolean).sort((a, b) => b.publishedOn.localeCompare(a.publishedOn));
 }
 
 /* ── Main ─────────────────────────────────────────────────────────────── */
 
-function main() {
+async function main() {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
   const fallbackDate = new Date().toISOString().slice(0, 10);
 
-  const lenses = collectLensData({ rootDir: ROOT, lensDataDir: LENS_DATA_DIR, fallbackDate });
-  const articles = collectArticles(fallbackDate);
+  writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
+
+  const [lenses, articles, makerDetailsFreshness] = await Promise.all([
+    collectLensDataAsync({
+      rootDir: ROOT,
+      lensDataDir: LENS_DATA_DIR,
+      fallbackDate,
+      concurrency: GIT_FRESHNESS_CONCURRENCY,
+    }),
+    collectArticles(fallbackDate),
+    getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
+  ]);
 
   const lensKeys = lenses.map((l) => l.key).sort();
   const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs);
-  const makerDetailsFreshness = getGitFileFreshness(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate });
   const routeFreshness = buildRouteFreshness({
     lenses,
     articles,
@@ -183,4 +198,4 @@ function main() {
   );
 }
 
-main();
+await main();

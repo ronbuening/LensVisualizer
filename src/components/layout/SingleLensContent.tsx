@@ -8,13 +8,14 @@
 import LensDiagramPanel from "./LensDiagramPanel.js";
 import DescriptionPanel from "./DescriptionPanel.js";
 import type { Theme } from "../../types/theme.js";
+import type { DesktopView, MobileView } from "../../types/state.js";
 
 interface SingleLensContentProps {
   theme: Theme;
   isWide: boolean;
-  effectiveDesktopView: string;
+  effectiveDesktopView: DesktopView;
   showDesktopToggle: boolean;
-  mobileView: string;
+  mobileView: MobileView;
   lensKeyA: string;
   markdown: string | null | undefined;
 }

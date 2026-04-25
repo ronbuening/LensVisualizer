@@ -17,6 +17,7 @@ import {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
 } from "../../utils/lensReducer.js";
+import type { AnalysisTabId, OffAxisMode } from "../../types/state.js";
 
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
@@ -24,7 +25,7 @@ export interface DispatchAdapters {
   onStopdownChange: (v: number) => void;
   onSliderPointerUp: () => void;
   onShowOnAxisChange: (v: boolean) => void;
-  onShowOffAxisChange: (v: string) => void;
+  onShowOffAxisChange: (v: OffAxisMode) => void;
   onRayTracksFChange: (v: boolean) => void;
   onShowChromaticChange: (v: boolean) => void;
   onChromRChange: (v: boolean) => void;
@@ -40,7 +41,7 @@ export interface DispatchAdapters {
   onEffectiveApertureChange: (v: boolean) => void;
   onAberrationsExpandedChange: (v: boolean) => void;
   onAnalysisDrawerToggle: (v: boolean) => void;
-  onAnalysisTabChange: (tab: string) => void;
+  onAnalysisTabChange: (tab: AnalysisTabId) => void;
   onZoomPanToggle: (v: boolean) => void;
   onBokehPreviewToggle: (v: boolean) => void;
 }
@@ -57,7 +58,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onStopdownChange: (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v }),
       onSliderPointerUp: updateURLWithSliders,
       onShowOnAxisChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
-      onShowOffAxisChange: (v: string) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
+      onShowOffAxisChange: (v: OffAxisMode) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
       onRayTracksFChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v }),
       onShowChromaticChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v }),
       onChromRChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v }),
@@ -82,7 +83,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
         dispatch({ type: SET_PANEL_EXPANDED, panel: "aberrationsExpanded", expanded: v }),
       onAnalysisDrawerToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
-      onAnalysisTabChange: (tab: string) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
+      onAnalysisTabChange: (tab: AnalysisTabId) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onBokehPreviewToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),

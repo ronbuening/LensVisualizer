@@ -1,4 +1,7 @@
-import { execSync } from "node:child_process";
+import { execFile, execFileSync } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 /**
  * Parse `git log --format=%aI` output into published + modified dates.
@@ -23,13 +26,43 @@ export function parseGitLogDates(raw) {
 /**
  * Read published + modified dates for a file from git history.
  */
-export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec = execSync } = {}) {
+export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
   try {
-    const raw = exec(`git log --follow --format=%aI -- "${filePath}"`, {
+    const raw = exec
+      ? exec(`git log --follow --format=%aI -- "${filePath}"`, { cwd, encoding: "utf-8" }).trim()
+      : execFileImpl("git", ["log", "--follow", "--format=%aI", "--", filePath], { cwd, encoding: "utf-8" }).trim();
+    return parseGitLogDates(raw) ?? (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null);
+  } catch {
+    return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+  }
+}
+
+/**
+ * Read published + modified dates with execFile so file paths are passed as
+ * arguments rather than interpolated into a shell command.
+ */
+export function getGitFileFreshnessSafe(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
+  try {
+    const raw = execFileImpl("git", ["log", "--follow", "--format=%aI", "--", filePath], {
       cwd,
       encoding: "utf-8",
     }).trim();
     return parseGitLogDates(raw) ?? (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null);
+  } catch {
+    return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+  }
+}
+
+export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } = {}) {
+  try {
+    const { stdout } = await execFileAsync("git", ["log", "--follow", "--format=%aI", "--", filePath], {
+      cwd,
+      encoding: "utf-8",
+    });
+    return (
+      parseGitLogDates(stdout.trim()) ??
+      (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null)
+    );
   } catch {
     return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
   }
@@ -42,13 +75,37 @@ export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec = execSy
  * has not been committed yet: the new path has no git history, while the old
  * tracked path still carries the original publication date.
  */
-export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec = execSync } = {}) {
+export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
   for (const filePath of filePaths) {
-    const freshness = getGitFileFreshness(filePath, { cwd, exec });
+    const freshness = getGitFileFreshness(filePath, { cwd, exec, execFileImpl });
     if (freshness) return freshness;
   }
 
   return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+}
+
+export async function getFirstGitFileFreshnessAsync(filePaths, { cwd, fallbackDate } = {}) {
+  for (const filePath of filePaths) {
+    const freshness = await getGitFileFreshnessAsync(filePath, { cwd });
+    if (freshness) return freshness;
+  }
+
+  return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+}
+
+export async function mapLimit(items, limit, mapper) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex++;
+      results[index] = await mapper(items[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(Math.max(limit, 1), items.length) }, () => worker()));
+  return results;
 }
 
 /**

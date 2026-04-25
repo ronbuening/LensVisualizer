@@ -9,6 +9,32 @@ export type { SharedSlidersSlice, ComparisonAction } from "../comparison/compari
 
 /* ── State slices ── */
 
+export const OFF_AXIS_MODES = ["off", "trueAngle", "edge"] as const;
+export const MOBILE_VIEWS = ["diagram", "description"] as const;
+export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
+export const ANALYSIS_TAB_IDS = ["aberrations", "coma", "distortion", "breathing", "vignetting", "pupils"] as const;
+
+export type OffAxisMode = (typeof OFF_AXIS_MODES)[number];
+export type MobileView = (typeof MOBILE_VIEWS)[number];
+export type DesktopView = (typeof DESKTOP_VIEWS)[number];
+export type AnalysisTabId = (typeof ANALYSIS_TAB_IDS)[number];
+
+export function isOffAxisMode(value: unknown): value is OffAxisMode {
+  return typeof value === "string" && (OFF_AXIS_MODES as readonly string[]).includes(value);
+}
+
+export function isMobileView(value: unknown): value is MobileView {
+  return typeof value === "string" && (MOBILE_VIEWS as readonly string[]).includes(value);
+}
+
+export function isDesktopView(value: unknown): value is DesktopView {
+  return typeof value === "string" && (DESKTOP_VIEWS as readonly string[]).includes(value);
+}
+
+export function isAnalysisTabId(value: unknown): value is AnalysisTabId {
+  return typeof value === "string" && (ANALYSIS_TAB_IDS as readonly string[]).includes(value);
+}
+
 export interface LensSlice {
   lensKeyA: string;
   lensKeyB: string;
@@ -19,8 +45,8 @@ export interface LensSlice {
 export interface DisplaySlice {
   dark: boolean | null; // null = auto (follow system preference)
   highContrast: boolean;
-  mobileView: string;
-  desktopView: string;
+  mobileView: MobileView;
+  desktopView: DesktopView;
 }
 
 export type RayField =
@@ -32,10 +58,11 @@ export type RayField =
   | "chromG"
   | "chromB"
   | "showPupils";
+export type BooleanRayField = Exclude<RayField, "showOffAxis">;
 
 export interface RaysSlice {
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;
@@ -73,7 +100,7 @@ export interface PanelsSlice {
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
   analysisDrawerOpen: boolean;
-  analysisDrawerTab: string;
+  analysisDrawerTab: AnalysisTabId;
   zoomPanActive: boolean;
   bokehPreviewOpen: boolean;
 }
@@ -104,15 +131,16 @@ export type LensAction =
   | { type: "SET_LENS_B"; key: string }
   | { type: "SET_DARK"; dark: boolean | null }
   | { type: "SET_HIGH_CONTRAST"; highContrast: boolean }
-  | { type: "SET_MOBILE_VIEW"; mobileView: string }
-  | { type: "SET_DESKTOP_VIEW"; desktopView: string }
-  | { type: "SET_RAY_TOGGLE"; field: RayField; value: boolean | string }
+  | { type: "SET_MOBILE_VIEW"; mobileView: MobileView }
+  | { type: "SET_DESKTOP_VIEW"; desktopView: DesktopView }
+  | { type: "SET_RAY_TOGGLE"; field: "showOffAxis"; value: OffAxisMode }
+  | { type: "SET_RAY_TOGGLE"; field: BooleanRayField; value: boolean }
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
   | { type: "SET_STOPDOWN_T"; value: number }
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
-  | { type: "SET_ANALYSIS_TAB"; tab: string }
+  | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
   | { type: "SWAP_LENSES" }
@@ -124,9 +152,9 @@ export interface Preferences {
   scaleMode: "independent" | "normalized";
   dark: boolean | null; // null = auto
   highContrast: boolean;
-  desktopView: string;
+  desktopView: DesktopView;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;
@@ -141,7 +169,7 @@ export interface Preferences {
   abbeShowGlassType: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
-  analysisDrawerTab: string;
+  analysisDrawerTab: AnalysisTabId;
 }
 
 /* ── URL state (from query params) ── */

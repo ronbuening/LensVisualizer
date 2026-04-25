@@ -3,11 +3,13 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import {
+  MAKER_PREFIXES,
   collectLensData,
   collectRootLensMovePlan,
   deriveMakerSlug,
   organizeRootLensFiles,
 } from "../scripts/lens-data-lib.mjs";
+import runtimeMakerPrefixes from "../src/generated/maker-prefixes.json";
 
 function createTempLensDataDir() {
   const rootDir = mkdtempSync(join(tmpdir(), "lens-data-scripts-"));
@@ -49,6 +51,10 @@ afterEach(() => {
 });
 
 describe("lens-data scripts", () => {
+  it("keeps generated runtime maker prefixes in sync with the script source", () => {
+    expect(runtimeMakerPrefixes).toEqual(MAKER_PREFIXES);
+  });
+
   it("derives canonical maker slugs from maker fields and fallback names", () => {
     expect(deriveMakerSlug("Carl Zeiss")).toBe("carl-zeiss");
     expect(deriveMakerSlug("Canon Demo Lens")).toBe("canon");

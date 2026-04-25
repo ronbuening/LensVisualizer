@@ -23,6 +23,7 @@
  */
 
 import { traceRay, halfFieldAtZoom, solveChiefRayLaunchHeight, computeFieldGeometryAtState } from "./optics.js";
+import type { FieldGeometryState } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -73,6 +74,7 @@ export function computeVignettingCurve(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  fieldGeometry?: FieldGeometryState,
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
@@ -82,7 +84,7 @@ export function computeVignettingCurve(
   /* Pre-compute field geometry for the solved chief ray — accounts for
    * pupil aberration (EP position shifts with field angle) which the old
    * paraxial (B/yRatio) launch ignored.  Critical for retrofocus designs. */
-  const geom = computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
 
   /* Adaptive field sampling: ~3° spacing, min 7 samples.  Ultra-wide lenses
    * (>50° half-field) get denser sampling to capture rapid vignetting onset

@@ -3,6 +3,8 @@
 import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../src/components/hooks/useLensComputation.js";
+import buildLens from "../src/optics/buildLens.js";
+import { LENS_CATALOG } from "../src/utils/lensCatalog.js";
 
 /* This test uses a real lens key from the catalog. The LENS_CATALOG is populated
  * at import time via import.meta.glob so all *.data.ts lenses are available. */
@@ -32,6 +34,25 @@ describe("useLensComputation", () => {
     expect(r.CX).toBeGreaterThan(0);
     expect(r.IX).toBeGreaterThan(0);
     expect(r.effectiveSC).toBeGreaterThan(0);
+    expect(r.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
+  });
+
+  it("uses a supplied runtime lens instead of rebuilding from the catalog", () => {
+    const runtimeLens = buildLens(LENS_CATALOG[baseLensKey]);
+    const { result } = renderHook(() =>
+      useLensComputation({
+        lensKey: baseLensKey,
+        runtimeLens,
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+        scaleRatio: null,
+        panelId: "test",
+      }),
+    );
+
+    expect(result.current.L).toBe(runtimeLens);
+    expect(result.current.buildError).toBeUndefined();
   });
 
   it("returns element shapes", () => {

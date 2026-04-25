@@ -12,6 +12,7 @@ import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { getMakerDetails } from "../utils/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 
 interface MakerEntry {
   display: string;
@@ -33,14 +34,6 @@ function getAllMakers(): MakerEntry[] {
   }
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
 }
-
-const PAGE_BASE_STYLE = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "0 1.5rem 2rem",
-  fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  minHeight: "100vh",
-} satisfies React.CSSProperties;
 
 export default function MakersIndexPage() {
   const makers = getAllMakers();
