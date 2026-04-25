@@ -1,9 +1,11 @@
 import type { FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
+import { formatShiftTick, svgPoints } from "./charts/chartMath.js";
 
 interface FieldCurvaturePlotProps {
   result: FieldCurvatureResult;
   t: Theme;
+  variant?: "diagnostic" | "standard";
 }
 
 const VB_W = 320;
@@ -15,19 +17,13 @@ const MB = 80;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
-function formatShiftMm(value: number): string {
-  if (Math.abs(value) < 1e-9) return "0";
-  if (Math.abs(value) >= 1) return value.toFixed(1);
-  return value.toFixed(2);
-}
-
-export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProps) {
+export default function FieldCurvaturePlot({ result, t, variant = "diagnostic" }: FieldCurvaturePlotProps) {
   const markerFields = result.fields.filter((field) => field.usable);
   const curveFields = result.curveFields.filter((field) => field.usable);
   const tangentialShift = (field: FieldCurvatureResult["fields"][number]) =>
-    field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm;
+    variant === "diagnostic" ? (field.diagnosticTangentialShiftMm ?? field.tangentialShiftMm) : field.tangentialShiftMm;
   const sagittalShift = (field: FieldCurvatureResult["fields"][number]) =>
-    field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm;
+    variant === "diagnostic" ? (field.diagnosticSagittalShiftMm ?? field.sagittalShiftMm) : field.sagittalShiftMm;
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   const yHalfRange = Math.max(0.1, result.sharedFocusShiftHalfRangeMm * 1.08);
   const tangentialColor = t.rayWarm ?? "#22c55e";
@@ -39,22 +35,38 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
   const tickMm = yHalfRange >= 2 ? 1 : yHalfRange >= 1 ? 0.5 : yHalfRange >= 0.4 ? 0.2 : 0.1;
   const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
 
-  const tangentialPoints = plotFields
-    .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(tangentialShift(field)).toFixed(1)}`)
-    .join(" ");
-  const sagittalPoints = plotFields
-    .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(sagittalShift(field)).toFixed(1)}`)
-    .join(" ");
-  const petzvalPoints = plotFields
-    .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.petzvalShiftMm).toFixed(1)}`)
-    .join(" ");
+  const tangentialPoints = svgPoints(
+    plotFields,
+    (field) => xScale(field.fieldFraction),
+    (field) => yScale(tangentialShift(field)),
+  );
+  const sagittalPoints = svgPoints(
+    plotFields,
+    (field) => xScale(field.fieldFraction),
+    (field) => yScale(sagittalShift(field)),
+  );
+  const petzvalPoints = svgPoints(
+    plotFields,
+    (field) => xScale(field.fieldFraction),
+    (field) => yScale(field.petzvalShiftMm),
+  );
+  const title =
+    variant === "diagnostic"
+      ? "Real-ray field curves. The solid tangential trace and dashed sagittal trace show where each off-axis ray bundle reaches best focus relative to the image plane."
+      : "Parabasal field-curvature plot. Tangential and sagittal field curves relative to the image plane, with Petzval reference overlay.";
+  const tangentialLabel = variant === "diagnostic" ? "Tangential plane" : "Tangential field curve";
+  const sagittalLabel = variant === "diagnostic" ? "Sagittal plane" : "Sagittal field curve";
+  const sagittalLegendX = variant === "diagnostic" ? 86 : 102;
+  const sagittalMarkerX = variant === "diagnostic" ? 104.5 : 120.5;
+  const sagittalTextX = variant === "diagnostic" ? 114 : 130;
+  const footer =
+    variant === "diagnostic"
+      ? "Real-ray field curves with independent scale and checkpoint markers."
+      : "Parabasal field curves with independent scale.";
 
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
-      <title>
-        Real-ray field curves. The solid tangential trace and dashed sagittal trace show where each off-axis ray bundle
-        reaches best focus relative to the image plane.
-      </title>
+      <title>{title}</title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
       <line x1={ML} y1={zeroY} x2={ML + PW} y2={zeroY} stroke={t.axis} strokeWidth={0.75} strokeDasharray="3,3" />
@@ -68,7 +80,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
           <g key={tick}>
             <line x1={ML - 4} y1={y} x2={ML} y2={y} stroke={t.muted} strokeWidth={0.75} />
             <text x={ML - 7} y={y + 4} textAnchor="end" fill={t.muted} fontSize={9} fontFamily="inherit">
-              {formatShiftMm(tick)}
+              {formatShiftTick(tick)}
             </text>
           </g>
         );
@@ -147,12 +159,20 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       <g transform={`translate(${ML + 6}, ${MT + 12})`}>
         <circle cx={0} cy={0} r={2.5} fill={tangentialColor} />
         <text x={8} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Tangential plane
+          {tangentialLabel}
         </text>
 
-        <line x1={86} y1={0} x2={98} y2={0} stroke={sagittalColor} strokeWidth={2.2} strokeDasharray="5,3" />
+        <line
+          x1={sagittalLegendX}
+          y1={0}
+          x2={sagittalLegendX + 12}
+          y2={0}
+          stroke={sagittalColor}
+          strokeWidth={2.2}
+          strokeDasharray="5,3"
+        />
         <rect
-          x={104.5}
+          x={sagittalMarkerX}
           y={-2.4}
           width={4.8}
           height={4.8}
@@ -161,8 +181,8 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
           strokeWidth={0.75}
           rx={0.8}
         />
-        <text x={114} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Sagittal plane
+        <text x={sagittalTextX} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
+          {sagittalLabel}
         </text>
       </g>
 
@@ -174,7 +194,7 @@ export default function FieldCurvaturePlot({ result, t }: FieldCurvaturePlotProp
       </g>
 
       <text x={ML + 6} y={VB_H - 3} fill={t.muted} fontSize={7.5} fontFamily="inherit">
-        Real-ray field curves with independent scale and checkpoint markers.
+        {footer}
       </text>
     </svg>
   );

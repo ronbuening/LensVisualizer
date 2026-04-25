@@ -10,6 +10,7 @@ import RayPolylines from "./RayPolylines.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface DiagramRayLayersProps {
   lens: RuntimeLens;
@@ -18,7 +19,7 @@ interface DiagramRayLayersProps {
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
 }
 

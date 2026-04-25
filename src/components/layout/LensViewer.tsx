@@ -126,7 +126,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
       { label: "DIAGRAM", val: "diagram" },
       { label: "BOTH", val: "both" },
       { label: "ANALYSIS", val: "analysis" },
-    ];
+    ] as const;
   }, []);
   const defaultDesktopView = "both";
   const effectiveDesktopView = desktopViewOptions.some((o) => o.val === desktopView) ? desktopView : defaultDesktopView;

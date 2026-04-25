@@ -17,12 +17,15 @@ import {
   fopenAtZoom,
   eflAtFocus,
   effectiveFNumber,
+  computeFieldGeometryAtState,
 } from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
+import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface UseLensComputationParams {
   lensKey: string;
+  runtimeLens?: RuntimeLens;
   focusT: number;
   zoomT: number;
   stopdownT: number;
@@ -54,6 +57,7 @@ interface UseLensComputationResult {
   currentPhysStopSD: number;
   baseEPSD: number;
   currentEPSD: number;
+  fieldGeometry: FieldGeometryState | null;
   varReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
@@ -62,6 +66,7 @@ interface UseLensComputationResult {
 
 export default function useLensComputation({
   lensKey,
+  runtimeLens,
   focusT,
   zoomT,
   stopdownT,
@@ -70,12 +75,13 @@ export default function useLensComputation({
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
+    if (runtimeLens) return { L: runtimeLens };
     try {
       return { L: buildLens(LENS_CATALOG[lensKey]) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey]);
+  }, [lensKey, runtimeLens]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;
@@ -99,6 +105,8 @@ export default function useLensComputation({
     zPosRef.current = next;
     return next;
   }, [cur, dz]);
+
+  const fieldGeometry = useMemo(() => (L ? computeFieldGeometryAtState(focusT, zoomT, L) : null), [L, focusT, zoomT]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
@@ -153,7 +161,7 @@ export default function useLensComputation({
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
-  const baseEPSD = L ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD : 0;
+  const baseEPSD = L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry).epSD : 0;
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
@@ -194,6 +202,7 @@ export default function useLensComputation({
     currentPhysStopSD,
     baseEPSD,
     currentEPSD,
+    fieldGeometry,
     varReadouts,
     dynamicEFL,
     effectiveFNum,

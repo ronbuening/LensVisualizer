@@ -85,7 +85,7 @@ function mapTracedSample(
   };
 }
 
-export function computeOffAxisFieldGeometry(
+export function computeParaxialOffAxisFieldGeometry(
   L: RuntimeLens,
   zPos: number[],
   zoomT: number,
@@ -118,6 +118,8 @@ export function computeOffAxisFieldGeometry(
     imagePlaneZ,
   };
 }
+
+export const computeOffAxisFieldGeometry = computeParaxialOffAxisFieldGeometry;
 
 export function computeStateAwareOffAxisFieldGeometry(
   L: RuntimeLens,

@@ -12,6 +12,7 @@ import ControlsBar from "../ControlsBar.js";
 import TopBar from "../TopBar.js";
 import ViewToggleBar from "../ViewToggleBar.js";
 import type { Theme } from "../../../types/theme.js";
+import type { DesktopView, MobileView } from "../../../types/state.js";
 
 interface ViewerChromeProps {
   theme: Theme;
@@ -31,12 +32,12 @@ interface ViewerChromeProps {
   catalogKeys: string[];
   catalogNames: Record<string, string>;
   controlsBarProps: Omit<ComponentProps<typeof ControlsBar>, "compact" | "showScaleMode">;
-  mobileView: string;
-  onMobileViewChange: (value: string) => void;
+  mobileView: MobileView;
+  onMobileViewChange: (value: MobileView) => void;
   showDesktopToggle: boolean;
-  desktopViewOptions: ReadonlyArray<{ label: string; val: string }>;
-  effectiveDesktopView: string;
-  onDesktopViewChange: (value: string) => void;
+  desktopViewOptions: ReadonlyArray<{ label: string; val: DesktopView }>;
+  effectiveDesktopView: DesktopView;
+  onDesktopViewChange: (value: DesktopView) => void;
 }
 
 export default function ViewerChrome({
@@ -92,10 +93,12 @@ export default function ViewerChrome({
       {!isWide && !comparing && (
         <ViewToggleBar
           theme={t}
-          options={[
-            { label: "DIAGRAM", val: "diagram" },
-            { label: "ANALYSIS", val: "description" },
-          ]}
+          options={
+            [
+              { label: "DIAGRAM", val: "diagram" },
+              { label: "ANALYSIS", val: "description" },
+            ] as const
+          }
           activeValue={mobileView}
           onChange={onMobileViewChange}
           width={220}

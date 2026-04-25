@@ -10,7 +10,7 @@ import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
-import type { LensAction, RayField } from "../../types/state.js";
+import type { BooleanRayField, LensAction, OffAxisMode } from "../../types/state.js";
 import type { Dispatch } from "react";
 
 interface ControlsBarProps {
@@ -18,7 +18,7 @@ interface ControlsBarProps {
   compact: boolean;
   showScaleMode: boolean;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;
@@ -54,12 +54,10 @@ export default function ControlsBar({
   /* ── Off-axis cycling logic ── */
   const offAxisActive = showOffAxis !== "off";
   const offAxisCycle = ENABLE_EDGE_PROJECTION
-    ? () =>
-        dispatch({
-          type: SET_RAY_TOGGLE,
-          field: "showOffAxis",
-          value: showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off",
-        })
+    ? () => {
+        const next: OffAxisMode = showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off";
+        dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: next });
+      }
     : () => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: offAxisActive ? "off" : "trueAngle" });
 
   const offAxisLabel = compact
@@ -83,7 +81,7 @@ export default function ControlsBar({
     {
       label: compact ? "ON" : "ON-AXIS",
       active: showOnAxis,
-      onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis" as RayField, value: !showOnAxis }),
+      onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: !showOnAxis }),
       dotA: t.rayWarm,
       dotB: t.rayCool,
     },
@@ -99,7 +97,7 @@ export default function ControlsBar({
   rayToggles.push({
     label: "PUPILS",
     active: showPupils,
-    onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils" as RayField, value: !showPupils }),
+    onClick: () => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: !showPupils }),
     dotA: t.pupilEntrance,
     dotB: t.pupilExit,
   });
@@ -116,7 +114,7 @@ export default function ControlsBar({
       ];
 
   /* ── Chromatic channel descriptors ── */
-  const chromChannels: ReadonlyArray<{ ch: string; active: boolean; field: RayField; color: string }> = [
+  const chromChannels: ReadonlyArray<{ ch: string; active: boolean; field: BooleanRayField; color: string }> = [
     { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
     { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
     { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },

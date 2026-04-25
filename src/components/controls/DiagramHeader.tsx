@@ -18,6 +18,7 @@ import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface DiagramHeaderProps {
   L: RuntimeLens;
@@ -29,8 +30,8 @@ interface DiagramHeaderProps {
   fNumber: number;
   showOnAxis: boolean;
   onShowOnAxisChange?: (value: boolean) => void;
-  showOffAxis: string;
-  onShowOffAxisChange?: (value: string) => void;
+  showOffAxis: OffAxisMode;
+  onShowOffAxisChange?: (value: OffAxisMode) => void;
   rayTracksF: boolean;
   onRayTracksFChange?: (value: boolean) => void;
   showChromatic: boolean;

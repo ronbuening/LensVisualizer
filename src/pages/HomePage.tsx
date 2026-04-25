@@ -21,14 +21,7 @@ import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
 import { publisherJsonLd, websiteJsonLd } from "../utils/structuredData.js";
 import useMediaQuery from "../utils/useMediaQuery.js";
-
-const PAGE_BASE_STYLE = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "0 1.5rem 2rem",
-  fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  minHeight: "100vh",
-} satisfies React.CSSProperties;
+import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();

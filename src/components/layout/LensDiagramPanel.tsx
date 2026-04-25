@@ -36,9 +36,11 @@ import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
+import type { RuntimeLens } from "../../types/optics.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
+  runtimeLens?: RuntimeLens;
   focusT?: number;
   zoomT?: number;
   stopdownT?: number;
@@ -56,6 +58,7 @@ interface LensDiagramPanelProps {
 
 export default function LensDiagramPanel({
   lensKey,
+  runtimeLens,
   focusT: focusTProp,
   zoomT: zoomTProp,
   stopdownT: stopdownTProp,
@@ -105,6 +108,7 @@ export default function LensDiagramPanel({
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
   const [sel, setSel] = useState<number | null>(null);
+  const [sliderInteracting, setSliderInteracting] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -139,11 +143,12 @@ export default function LensDiagramPanel({
     currentPhysStopSD,
     baseEPSD,
     currentEPSD,
+    fieldGeometry,
     varReadouts,
     dynamicEFL,
     effectiveFNum,
     filterId,
-  } = useLensComputation({ lensKey, focusT, zoomT, stopdownT, scaleRatio, panelId });
+  } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
   /* ── Zoom/pan viewBox management ── */
   const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);
@@ -305,6 +310,8 @@ export default function LensDiagramPanel({
                 dynamicEFL={dynamicEFL}
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
+                fieldGeometry={fieldGeometry}
+                sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}
               />
@@ -343,6 +350,7 @@ export default function LensDiagramPanel({
               />
             ) : null
           }
+          onSliderInteractionChange={setSliderInteracting}
         />
       ) : null}
     </PanelErrorBoundary>

@@ -5,6 +5,14 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import FieldCurvatureMeanPlot from "../src/components/display/FieldCurvatureMeanPlot.js";
 import VignettingChart from "../src/components/display/VignettingChart.js";
 import LCAInsetWidget from "../src/components/diagram/LCAInsetWidget.js";
+import {
+  angleTicks,
+  formatSignedCompactTick,
+  linearScale,
+  niceTicks,
+  svgPath,
+  symmetricDomain,
+} from "../src/components/display/charts/chartMath.js";
 import themes from "../src/utils/themes.js";
 import type { FieldCurvatureResult } from "../src/optics/aberrationAnalysis.js";
 import type { FieldCurvatureFieldResult } from "../src/optics/aberration/types.js";
@@ -139,6 +147,18 @@ describe("analysis chart coverage", () => {
 
     fireEvent.click(container.querySelector("g")!);
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {
+    const scale = linearScale(-1, 1, 100, 0);
+    expect(scale(-1)).toBe(100);
+    expect(scale(0)).toBe(50);
+    expect(scale(1)).toBe(0);
+    expect(symmetricDomain(2, 1.2, 0.5)).toEqual([-2.4, 2.4]);
+    expect(niceTicks(-1, 1, 4)).toContain(0);
+    expect(angleTicks(23)).toEqual([0, 5, 10, 15, 20]);
+    expect(formatSignedCompactTick(0.25)).toBe("+0.25");
+    expect(svgPath([{ x: 0, y: 1 }, { x: 2, y: 3 }], (p) => p.x, (p) => p.y)).toBe("M0.0,1.0 L2.0,3.0");
   });
 
   it("auto-flips the LCA inset when it would overflow the right edge", () => {

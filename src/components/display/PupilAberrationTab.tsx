@@ -10,18 +10,24 @@
 import { useMemo } from "react";
 import { computeBothPupilAberrationProfiles } from "../../optics/pupilAberration.js";
 import PupilAberrationChart from "./PupilAberrationChart.js";
+import { AnalysisMetricRow } from "./analysisUi.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface PupilAberrationTabProps {
   L: RuntimeLens;
   t: Theme;
   focusT: number;
   zoomT: number;
+  fieldGeometry?: FieldGeometryState | null;
 }
 
-export default function PupilAberrationTab({ L, t, focusT, zoomT }: PupilAberrationTabProps) {
-  const profiles = useMemo(() => computeBothPupilAberrationProfiles(focusT, zoomT, L), [L, focusT, zoomT]);
+export default function PupilAberrationTab({ L, t, focusT, zoomT, fieldGeometry }: PupilAberrationTabProps) {
+  const profiles = useMemo(
+    () => computeBothPupilAberrationProfiles(focusT, zoomT, L, undefined, fieldGeometry ?? undefined),
+    [L, focusT, zoomT, fieldGeometry],
+  );
 
   if (profiles.ep.samples.length < 2) {
     return (
@@ -50,67 +56,19 @@ export default function PupilAberrationTab({ L, t, focusT, zoomT }: PupilAberrat
           marginTop: 10,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-            MAX EP SHIFT
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {profiles.maxAbsEpShiftMm.toFixed(3)} mm
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-            MAX XP SHIFT
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: telecentricXP ? t.muted : t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {telecentricXP ? "∞ (telecentric)" : `${profiles.maxAbsXpShiftMm.toFixed(3)} mm`}
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>FIELD</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {profiles.halfFieldDeg.toFixed(1)}°
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>EP Z</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {profiles.ep.paraxialEpZRelStop.toFixed(1)} mm
-          </span>
-          <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>rel. stop</span>
-        </div>
+        <AnalysisMetricRow label="Max EP shift" value={`${profiles.maxAbsEpShiftMm.toFixed(3)} mm`} t={t} />
+        <AnalysisMetricRow
+          label="Max XP shift"
+          value={telecentricXP ? "∞ (telecentric)" : `${profiles.maxAbsXpShiftMm.toFixed(3)} mm`}
+          t={t}
+        />
+        <AnalysisMetricRow label="Field" value={`${profiles.halfFieldDeg.toFixed(1)}°`} t={t} />
+        <AnalysisMetricRow
+          label="EP Z"
+          value={`${profiles.ep.paraxialEpZRelStop.toFixed(1)} mm`}
+          note="rel. stop"
+          t={t}
+        />
       </div>
     </div>
   );

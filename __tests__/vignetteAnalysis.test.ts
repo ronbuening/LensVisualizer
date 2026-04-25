@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve } from "../src/optics/vignetteAnalysis.js";
-import { doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
+import { computeFieldGeometryAtState, doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
@@ -115,6 +115,19 @@ describe("computeVignettingCurve", () => {
     const badLens = { N: 0 } as unknown as RuntimeLens;
     const samples = computeVignettingCurve(badLens, [], 0, 0, 1, 1);
     expect(samples).toEqual([]);
+  });
+
+  it("matches exactly when using precomputed field geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.25;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.2);
+    const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
+
+    expect(computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, geometry)).toEqual(
+      computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
   });
 
   /* ── Vignetting direction ── */

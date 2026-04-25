@@ -15,14 +15,7 @@ import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ARTICLES, ARTICLE_SERIES } from "../utils/homepageContent.js";
-
-const PAGE_BASE_STYLE = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "0 1.5rem 2rem",
-  fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  minHeight: "100vh",
-} satisfies React.CSSProperties;
+import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 
 export default function ArticlesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();

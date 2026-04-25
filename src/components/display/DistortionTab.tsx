@@ -6,13 +6,15 @@
  */
 
 import { useMemo } from "react";
-import { computeDistortionCurve, computeDistortionFieldGrid } from "../../optics/distortionAnalysis.js";
+import { analysisJobs } from "../../optics/analysisJobs.js";
 import { probe } from "../../utils/perfProbe.js";
 import { eflAtZoom } from "../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
+import { AnalysisMetricRow } from "./analysisUi.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface DistortionTabProps {
   L: RuntimeLens;
@@ -22,6 +24,7 @@ interface DistortionTabProps {
   zoomT: number;
   dynamicEFL: number;
   currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
 }
 
 export default function DistortionTab({
@@ -32,18 +35,29 @@ export default function DistortionTab({
   zoomT,
   dynamicEFL,
   currentPhysStopSD,
+  fieldGeometry,
 }: DistortionTabProps) {
   const samples = useMemo(
     () =>
       probe("computeDistortionCurve", () =>
-        computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD),
+        analysisJobs.computeDistortionCurve(
+          L,
+          zPos,
+          focusT,
+          zoomT,
+          dynamicEFL,
+          currentPhysStopSD,
+          fieldGeometry ?? undefined,
+        ),
       ),
-    [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD],
+    [L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD, fieldGeometry],
   );
   const fieldGrid = useMemo(
     () =>
-      probe("computeDistortionFieldGrid", () => computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD)),
-    [L, zPos, focusT, zoomT, currentPhysStopSD],
+      probe("computeDistortionFieldGrid", () =>
+        analysisJobs.computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry ?? undefined),
+      ),
+    [L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {
@@ -95,68 +109,20 @@ export default function DistortionTab({
           marginTop: 10,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>EDGE</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {edgeSample.distortionPercent >= 0 ? "+" : ""}
-            {edgeSample.distortionPercent.toFixed(2)}%
-          </span>
-          <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>({directionLabel})</span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>HEIGHT</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {Math.abs(edgeSample.imageHeight).toFixed(1)} mm
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>ANGLE</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {edgeSample.fieldAngleDeg.toFixed(1)}°
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-            BREATHING
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {breathingPercent >= 0 ? "+" : ""}
-            {breathingPercent.toFixed(1)}%
-          </span>
-          <span style={{ fontSize: 9, color: t.muted, transition: "color 0.3s" }}>({breathingLabel})</span>
-        </div>
+        <AnalysisMetricRow
+          label="Edge"
+          value={`${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`}
+          note={`(${directionLabel})`}
+          t={t}
+        />
+        <AnalysisMetricRow label="Height" value={`${Math.abs(edgeSample.imageHeight).toFixed(1)} mm`} t={t} />
+        <AnalysisMetricRow label="Angle" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
+        <AnalysisMetricRow
+          label="Breathing"
+          value={`${breathingPercent >= 0 ? "+" : ""}${breathingPercent.toFixed(1)}%`}
+          note={`(${breathingLabel})`}
+          t={t}
+        />
       </div>
     </div>
   );

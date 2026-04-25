@@ -8,18 +8,19 @@
 
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
+import type { AnalysisTabId } from "../../types/state.js";
 
 export interface AnalysisTab {
-  id: string;
+  id: AnalysisTabId;
   label: string;
 }
 
 interface AnalysisDrawerProps {
   open: boolean;
   onClose: () => void;
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-  tabs: AnalysisTab[];
+  activeTab: AnalysisTabId;
+  onTabChange: (tab: AnalysisTabId) => void;
+  tabs: readonly AnalysisTab[];
   t: Theme;
   isWide: boolean;
   children: ReactNode;

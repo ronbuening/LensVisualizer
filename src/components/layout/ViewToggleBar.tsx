@@ -7,15 +7,21 @@
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
 
-interface ViewToggleBarProps {
+interface ViewToggleBarProps<TValue extends string> {
   theme: Theme;
-  options: ReadonlyArray<{ label: string; val: string }>;
-  activeValue: string;
-  onChange: (val: string) => void;
+  options: ReadonlyArray<{ label: string; val: TValue }>;
+  activeValue: TValue;
+  onChange: (val: TValue) => void;
   width?: number;
 }
 
-export default function ViewToggleBar({ theme: t, options, activeValue, onChange, width }: ViewToggleBarProps) {
+export default function ViewToggleBar<TValue extends string>({
+  theme: t,
+  options,
+  activeValue,
+  onChange,
+  width,
+}: ViewToggleBarProps<TValue>) {
   const groupWidth = width ?? options.length * 110;
 
   return (

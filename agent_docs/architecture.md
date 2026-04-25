@@ -92,18 +92,20 @@
 | `ElementInspector.tsx` | `src/components/display/` | Selected element property display |
 | `DiagramLegend.tsx` | `src/components/display/` | Legend with swatches, ray descriptions, aberration readouts |
 | `AberrationsPanel.tsx` | `src/components/display/` | Thin aberrations container that wires the shared panel-data hook into the extracted spherical-aberration, field-curve, and astigmatism sections |
+| `analysisUi.tsx` | `src/components/display/` | Shared compact metric/readout primitives used by analysis drawer tabs |
+| `charts/` | `src/components/display/charts/` | Shared SVG chart frame, legend, scale, tick, and formatting helpers for analysis charts |
 | `ComaTab.tsx` | `src/components/display/` | Coma drawer tab: wires `useComaData` into `ComaPreviewSection`, `MeridionalComaSection`, and `SagittalComaSection` |
 | `aberrations/` | `src/components/display/aberrations/` | Presentational aberration sections (`SphericalAberrationSection`, `FieldCurvatureSection`, `AstigmatismSection`, coma sections), formatting helpers, and three focused data hooks: `useSphericalAberrationData`, `useFieldCurvatureData`, `useComaData` — each tab imports only what it needs |
 | `AstigmatismPlot.tsx` | `src/components/display/` | SVG chart plotting in-circle tangential-sagittal split magnitude separately from the field-curve charts so astigmatism can use its own scale |
 | `SagittalComaPlot.tsx` | `src/components/display/` | SVG chart plotting sagittal fan x-intercepts against pupil fraction with dashed lines and square markers |
-| `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for parabasal tangential/sagittal field curves plus Petzval reference, using denser internal field sweep with standard checkpoint markers |
-| `FieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart for real-ray tangential/sagittal field curves from dense bundle solves, sharing the same Y-scale as the parabasal plot |
+| `StandardFieldCurvaturePlot.tsx` | `src/components/display/` | Compatibility wrapper around the shared `FieldCurvaturePlot` in parabasal mode |
+| `FieldCurvaturePlot.tsx` | `src/components/display/` | Shared SVG chart for parabasal or real-ray tangential/sagittal field curves plus Petzval reference |
 | `ChromaticFieldCurvaturePlot.tsx` | `src/components/display/` | SVG chart showing per-wavelength (R/G/B) parabasal tangential and sagittal field curves across the field |
-| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; wraps inputs in `useDeferredValue` so heavy computation defers to pointer-up; renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
+| `DistortionTab.tsx` | `src/components/display/` | Distortion analysis tab content; consumes deferred/frozen analysis inputs and the `analysisJobs` facade; renders both the 1D rectilinear curve and the traced 2D chief-ray field grid |
 | `DistortionChart.tsx` | `src/components/display/` | Reusable SVG line chart: distortion % vs field angle with zero line, sample dots, axis labels |
 | `DistortionFieldGrid.tsx` | `src/components/display/` | Reusable SVG grid view overlaying ideal rectilinear lines with the traced chief-ray field positions across the current image circle |
 | `FocusBreathingTab.tsx` | `src/components/display/` | Focus breathing tab content; reports dynamic focal-length change across focus |
-| `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; wraps inputs in `useDeferredValue`; renders VignettingChart |
+| `VignettingTab.tsx` | `src/components/display/` | Vignetting tab content; consumes deferred/frozen analysis inputs and the `analysisJobs` facade; renders VignettingChart |
 | `VignettingChart.tsx` | `src/components/display/` | Reusable SVG chart for relative illumination / geometric vignetting vs field |
 | `PupilAberrationTab.tsx` | `src/components/display/` | PUPILS tab content; memoizes `computeBothPupilAberrationProfiles` (deps: L, focusT, zoomT) and renders PupilAberrationChart plus MAX EP SHIFT / MAX XP SHIFT / FIELD / EP Z readouts |
 | `PupilAberrationChart.tsx` | `src/components/display/` | Reusable SVG chart: EP shift (solid) and XP shift (dashed) vs field angle on a shared symmetric ±shift axis; telecentric-XP guard; zero reference line |
@@ -214,7 +216,7 @@ The app uses React Router 7 with client-side routing and static prerendering for
 - **`main.tsx`** — Client entry: mounts `RouterProvider` with the browser router
 - **`ClientOnly.tsx`** — Wraps components that must not render during SSR (e.g., the interactive visualizer). Renders `null` until after hydration via `useEffect` mount detection.
 - **`SEOHead.tsx`** — Sets per-page `<title>`, `<meta>`, Open Graph, Twitter Card, canonical URL, and JSON-LD structured data via react-helmet-async
-- **`lensMetadata.ts`** — Pure functions for SEO: `deriveMaker()` extracts maker info from lens names, `lensPageTitle()` / `lensPageDescription()` / `lensCanonicalURL()` / `lensJsonLd()` generate page metadata. Defines `MAKER_PREFIXES` mapping and `SITE_NAME` / `SITE_URL` constants.
+- **`lensMetadata.ts`** — Pure functions for SEO: `deriveMaker()` extracts maker info from lens names, `lensPageTitle()` / `lensPageDescription()` / `lensCanonicalURL()` / `lensJsonLd()` generate page metadata. Reads maker prefixes from generated metadata whose source of truth is `scripts/maker-prefixes.mjs`.
 
 **Page flow:** `HomePage` renders the interactive `LensViewer` (handles legacy `?lens=KEY` redirects). `LensPage` renders SEO-friendly static content (specs, element table, analysis markdown) plus a `ClientOnly`-wrapped interactive visualizer. `LensIndexPage` provides crawlable catalog navigation with maker/focal/patent grouping plus custom filters for focal length, aperture, patent year, and maker. `MakersIndexPage` and `MakerPage` provide crawlable maker navigation.
 
@@ -328,6 +330,8 @@ Public barrel for the decomposed aberration modules under `src/optics/aberration
 - **`computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Shared coma bundle solve used by the UI hook. Reuses a state-aware solved-chief-ray field geometry plus precomputed tangential, sagittal, and circular pupil sample layouts so the current-field ray fans and representative spot-diagram preview all stay on the same off-axis model.
 - **`computeSagittalComa(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD)`** — Traces a sagittal pupil fan at the configured off-axis field fraction and returns x-intercept spread, complementing the existing meridional (tangential) coma analysis.
 - **`computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, chromatic?)`** — Computes parabasal tangential and sagittal field curves from chief-ray-relative parabasal rays, plus real-ray field curves from dense bundle solves, and overlays Petzval shifts across fixed field fractions. The shared Y-scale range covers both methods. When `chromatic=true`, additionally traces R/G/B channels and reports per-wavelength field curves plus a `chromaticFocusSpreadMm` summary.
+
+Off-axis geometry policy: visible off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. The legacy paraxial helper remains available as `computeParaxialOffAxisFieldGeometry` for first-order comparisons and compatibility aliases.
 
 Sign convention: negative SA = undercorrected (real marginal focus closer to the lens than paraxial); positive SA = overcorrected.
 

@@ -1,21 +1,13 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { combineFreshnessEntries, getFirstGitFileFreshness } from "./build-metadata-lib.mjs";
-
-/* Keep in sync with src/utils/lensMetadata.ts MAKER_PREFIXES */
-const MAKER_PREFIXES = [
-  { prefix: "CANON", slug: "canon" },
-  { prefix: "CARL ZEISS", slug: "carl-zeiss" },
-  { prefix: "FUJIFILM", slug: "fujifilm" },
-  { prefix: "FUJINON", slug: "fujifilm" },
-  { prefix: "LEICA", slug: "leica" },
-  { prefix: "VOIGTLÄNDER", slug: "voigtlander" },
-  { prefix: "NIKON", slug: "nikon" },
-  { prefix: "OLYMPUS", slug: "olympus" },
-  { prefix: "RICOH", slug: "ricoh" },
-  { prefix: "VIVITAR", slug: "vivitar" },
-];
+import {
+  combineFreshnessEntries,
+  getFirstGitFileFreshness,
+  getFirstGitFileFreshnessAsync,
+  mapLimit,
+} from "./build-metadata-lib.mjs";
+import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 
 /** Derive a URL-safe maker slug from a maker field or lens display name. */
 function deriveMakerSlug(nameOrMaker) {
@@ -155,6 +147,53 @@ function collectLensData({
   return lenses;
 }
 
+async function collectLensDataAsync({
+  rootDir,
+  lensDataDir = join(rootDir, "src", "lens-data"),
+  fallbackDate,
+  trackedLensRecordsByKey = collectTrackedLensRecordsByKey({ rootDir, lensDataDir }),
+  readdir = readdirSync,
+  exists = existsSync,
+  getFreshness = getFirstGitFileFreshnessAsync,
+  combineFreshness = combineFreshnessEntries,
+  concurrency = 8,
+} = {}) {
+  const dataFiles = readdir(lensDataDir, { recursive: true })
+    .filter((file) => typeof file === "string" && file.endsWith(".data.ts"))
+    .map((file) => file.replace(/\\/g, "/"))
+    .sort();
+
+  const lenses = await mapLimit(dataFiles, concurrency, async (relativeDataPath) => {
+    const dataPath = join(lensDataDir, relativeDataPath);
+    const { key, name, maker } = extractLensIdentity(dataPath);
+    if (!key) return null;
+
+    const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
+    const trackedRecord = trackedLensRecordsByKey[key];
+    const dataFreshness = await getFreshness(
+      trackedRecord?.dataPath && trackedRecord.dataPath !== dataPath ? [dataPath, trackedRecord.dataPath] : [dataPath],
+      { cwd: rootDir, fallbackDate },
+    );
+    const analysisFreshness = exists(analysisPath)
+      ? await getFreshness(
+          trackedRecord?.analysisPath && trackedRecord.analysisPath !== analysisPath
+            ? [analysisPath, trackedRecord.analysisPath]
+            : [analysisPath],
+          { cwd: rootDir, fallbackDate },
+        )
+      : null;
+
+    return {
+      key,
+      name,
+      makerSlug: deriveMakerSlug(maker || name || key),
+      freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
+    };
+  });
+
+  return lenses.filter(Boolean);
+}
+
 /** Build the planned move set for any root-level lens data files that still need maker folders. */
 function collectRootLensMovePlan(lensDataDir, { exists = existsSync, readdir = readdirSync } = {}) {
   const rootFiles = readdir(lensDataDir)
@@ -236,6 +275,7 @@ export {
   MAKER_PREFIXES,
   analysisRelativePathForDataPath,
   collectLensData,
+  collectLensDataAsync,
   collectRootLensMovePlan,
   collectTrackedLensRecordsByKey,
   deriveMakerSlug,

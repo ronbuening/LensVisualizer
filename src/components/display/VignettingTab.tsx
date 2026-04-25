@@ -7,11 +7,13 @@
  */
 
 import { useMemo } from "react";
-import { computeVignettingCurve } from "../../optics/vignetteAnalysis.js";
+import { analysisJobs } from "../../optics/analysisJobs.js";
 import { probe } from "../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
+import { AnalysisMetricRow } from "./analysisUi.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface VignettingTabProps {
   L: RuntimeLens;
@@ -21,6 +23,7 @@ interface VignettingTabProps {
   zoomT: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
 }
 
 export default function VignettingTab({
@@ -31,13 +34,22 @@ export default function VignettingTab({
   zoomT,
   currentEPSD,
   currentPhysStopSD,
+  fieldGeometry,
 }: VignettingTabProps) {
   const samples = useMemo(
     () =>
       probe("computeVignettingCurve", () =>
-        computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+        analysisJobs.computeVignettingCurve(
+          L,
+          zPos,
+          focusT,
+          zoomT,
+          currentEPSD,
+          currentPhysStopSD,
+          fieldGeometry ?? undefined,
+        ),
       ),
-    [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD],
+    [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {
@@ -67,52 +79,9 @@ export default function VignettingTab({
           marginTop: 10,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-            EDGE GT
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {(edgeSample.geometricTransmission * 100).toFixed(1)}%
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-            EDGE RI
-          </span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {(edgeSample.relativeIllumination * 100).toFixed(1)}%
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>FIELD</span>
-          <span
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: t.value,
-              fontVariantNumeric: "tabular-nums",
-              transition: "color 0.3s",
-            }}
-          >
-            {edgeSample.fieldAngleDeg.toFixed(1)}°
-          </span>
-        </div>
+        <AnalysisMetricRow label="Edge GT" value={`${(edgeSample.geometricTransmission * 100).toFixed(1)}%`} t={t} />
+        <AnalysisMetricRow label="Edge RI" value={`${(edgeSample.relativeIllumination * 100).toFixed(1)}%`} t={t} />
+        <AnalysisMetricRow label="Field" value={`${edgeSample.fieldAngleDeg.toFixed(1)}°`} t={t} />
       </div>
     </div>
   );

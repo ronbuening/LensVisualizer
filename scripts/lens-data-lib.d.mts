@@ -21,6 +21,12 @@ export interface LensDataRecord {
   freshness: LensFreshness;
 }
 
+export interface MakerPrefix {
+  prefix: string;
+  display: string;
+  slug: string;
+}
+
 export interface LensMoveFile {
   from: string;
   to: string;
@@ -40,7 +46,7 @@ export interface OrganizeRootLensFilesResult {
   movedFileCount: number;
 }
 
-export const MAKER_PREFIXES: Array<{ prefix: string; slug: string }>;
+export const MAKER_PREFIXES: MakerPrefix[];
 
 export function deriveMakerSlug(nameOrMaker: string): string;
 export function extractLensIdentityContent(content: string): LensIdentity;
@@ -79,6 +85,24 @@ export function collectLensData(options?: {
     fallbackDate: string,
   ) => LensFreshness;
 }): LensDataRecord[];
+
+export function collectLensDataAsync(options?: {
+  rootDir: string;
+  lensDataDir?: string;
+  fallbackDate: string;
+  trackedLensRecordsByKey?: Record<string, TrackedLensRecord>;
+  readdir?: (path: string, options?: { recursive?: boolean }) => Array<string | unknown>;
+  exists?: (path: string) => boolean;
+  getFreshness?: (
+    paths: string[],
+    options?: { cwd?: string; fallbackDate?: string },
+  ) => Promise<LensFreshness | null> | LensFreshness | null;
+  combineFreshness?: (
+    entries: Array<LensFreshness | null | undefined>,
+    fallbackDate: string,
+  ) => LensFreshness;
+  concurrency?: number;
+}): Promise<LensDataRecord[]>;
 
 export function collectRootLensMovePlan(
   lensDataDir: string,

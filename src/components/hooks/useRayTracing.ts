@@ -14,6 +14,7 @@ import useChromaticRays from "./useChromaticRays.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticRaySegment } from "./useChromaticRays.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface UseRayTracingParams {
   L: RuntimeLens | undefined;
@@ -27,7 +28,7 @@ interface UseRayTracingParams {
   currentPhysStopSD: number;
   currentEPSD: number;
   rayTracksF: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
   chromR: boolean;
   chromG: boolean;

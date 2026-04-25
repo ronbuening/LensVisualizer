@@ -579,15 +579,16 @@ export function entrancePupilAtState(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
+  geometry?: FieldGeometryState,
 ): EntrancePupilState {
-  const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
-  const yRatio = geometry.yRatio;
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const yRatio = geom.yRatio;
   const epSD = Math.abs(yRatio) > 1e-9 ? Math.abs(stopSD / yRatio) : 0;
   return {
     epSD,
     yRatio,
-    b: geometry.b,
-    epRatio: geometry.epRatio,
+    b: geom.b,
+    epRatio: geom.epRatio,
   };
 }
 
