@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "bertele-sonnar-50f2-scaled",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA SONNAR 50mm f/2",
   subtitle: "US 1,998,704 EXAMPLE I — BERTELE / ZEISS IKON (1932) — SCALED 0.5× TO 50mm",
   specs: ["6 ELEMENTS / 3 GROUPS", "f ≈ 50.0 mm (scaled from 100mm patent)", "F/2.0", "2ω ≈ 46.8°", "ALL SPHERICAL"],

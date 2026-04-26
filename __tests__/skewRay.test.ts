@@ -14,7 +14,7 @@ import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../sr
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
-import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 
 function build(raw: object): RuntimeLens {

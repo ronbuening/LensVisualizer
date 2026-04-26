@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-biogon-21-f45",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS BIOGON 21mm f/4.5",
   subtitle: "US 2,721,499 EXAMPLE 2 — BERTELE / CARL ZEISS",
   specs: ["8 ELEMENTS / 5 GROUPS", "f ≈ 19.0 mm (design)", "F/4.5", "2ω ≈ 91.7°", "ALL SPHERICAL"],

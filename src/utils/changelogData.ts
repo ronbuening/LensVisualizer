@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-26 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-26",
+    type: "improvement",
+    summary: "Split Carl Zeiss into separate Jena and Oberkochen maker pages reflecting the postwar division",
+  },
+  {
+    date: "2026-04-26",
+    type: "improvement",
+    summary: "Added maker pages for Konica, Minolta, Pentax, Schneider Kreuznach, Sigma, and Sony",
+  },
+  {
+    date: "2026-04-26",
     type: "lens",
     summary:
       "Added three Carl Zeiss lenses: Contarex Planar 55mm f/1.4, Jena Pancolar 50mm f/2, and Planar T* 50mm f/1.4",

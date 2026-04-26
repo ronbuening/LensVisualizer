@@ -56,7 +56,8 @@ describe("lens-data scripts", () => {
   });
 
   it("derives canonical maker slugs from maker fields and fallback names", () => {
-    expect(deriveMakerSlug("Carl Zeiss")).toBe("carl-zeiss");
+    expect(deriveMakerSlug("Carl Zeiss Jena")).toBe("carl-zeiss-jena");
+    expect(deriveMakerSlug("Carl Zeiss")).toBe("carl-zeiss-oberkochen");
     expect(deriveMakerSlug("Canon Demo Lens")).toBe("canon");
     expect(deriveMakerSlug("Acme Prototype 50 mm")).toBe("acme");
   });
@@ -67,8 +68,8 @@ describe("lens-data scripts", () => {
 
     writeLensDataFile(join(lensDataDir, "TestLens.data.ts"), {
       key: "test-lens",
-      maker: "Carl Zeiss",
-      name: "CARL ZEISS TEST LENS",
+      maker: "Carl Zeiss Jena",
+      name: "CARL ZEISS JENA TEST LENS",
     });
     writeFileSync(join(lensDataDir, "TestLens.analysis.md"), "# Test lens analysis\n", "utf-8");
     writeFileSync(join(lensDataDir, "defaults.ts"), "export default {};\n", "utf-8");
@@ -76,9 +77,9 @@ describe("lens-data scripts", () => {
     const movePlan = collectRootLensMovePlan(lensDataDir);
 
     expect(movePlan).toHaveLength(1);
-    expect(movePlan[0].makerSlug).toBe("carl-zeiss");
-    expect(movePlan[0].data.to).toBe(join(lensDataDir, "carl-zeiss", "TestLens.data.ts"));
-    expect(movePlan[0].analysis?.to).toBe(join(lensDataDir, "carl-zeiss", "TestLens.analysis.md"));
+    expect(movePlan[0].makerSlug).toBe("carl-zeiss-jena");
+    expect(movePlan[0].data.to).toBe(join(lensDataDir, "carl-zeiss-jena", "TestLens.data.ts"));
+    expect(movePlan[0].analysis?.to).toBe(join(lensDataDir, "carl-zeiss-jena", "TestLens.analysis.md"));
   });
 
   it("falls back to the lens name when maker is omitted", () => {
@@ -146,13 +147,13 @@ describe("lens-data scripts", () => {
     const { rootDir, lensDataDir } = createTempLensDataDir();
     tempRoots.push(rootDir);
 
-    mkdirSync(join(lensDataDir, "carl-zeiss"), { recursive: true });
-    const movedDataPath = join(lensDataDir, "carl-zeiss", "TestLens.data.ts");
-    const movedAnalysisPath = join(lensDataDir, "carl-zeiss", "TestLens.analysis.md");
+    mkdirSync(join(lensDataDir, "carl-zeiss-jena"), { recursive: true });
+    const movedDataPath = join(lensDataDir, "carl-zeiss-jena", "TestLens.data.ts");
+    const movedAnalysisPath = join(lensDataDir, "carl-zeiss-jena", "TestLens.analysis.md");
     writeLensDataFile(movedDataPath, {
       key: "test-lens",
-      maker: "Carl Zeiss",
-      name: "CARL ZEISS TEST LENS",
+      maker: "Carl Zeiss Jena",
+      name: "CARL ZEISS JENA TEST LENS",
     });
     writeFileSync(movedAnalysisPath, "# Test lens analysis\n", "utf-8");
 

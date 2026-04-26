@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "carl-zeiss-contarex-planar-55f14",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS CONTAREX PLANAR 55mm f/1.4",
   subtitle: "DE 1,170,157 B — CARL ZEISS / BERGER & LANGE",
   specs: ["7 ELEMENTS / 5 GROUPS", "f = 55.0 mm", "F/1.4", "2ω ≈ 42.9°", "ALL SPHERICAL"],

@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-planar-t-50f14",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS PLANAR T* 50mm f/1.4",
   subtitle: "US 3,874,771 EXAMPLE 5 — CARL ZEISS / BEHRENS & GLATZEL",
   specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 50.0 mm", "F/1.4", "2ω ≈ 46.8°", "ALL SPHERICAL"],

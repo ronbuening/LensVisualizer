@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-distagon-35f14",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS DISTAGON T* 35mm f/1.4",
   subtitle: "US 3,915,558 EXAMPLE 8 — CARL ZEISS / GLATZEL",
   specs: ["9 ELEMENTS / 8 GROUPS", "f ≈ 36.5 mm", "F/1.4", "2ω ≈ 62°", "1 ASPHERICAL SURFACE"],
