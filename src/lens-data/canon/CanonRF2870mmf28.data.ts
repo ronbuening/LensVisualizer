@@ -21,11 +21,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║  Estimated via combined marginal + chief ray trace at all three    ║
- * ║  zoom positions, refined against the patent cross-section figure   ║
- * ║  (FIG. 1). Constrained by: edge thickness ≥ 0.5 mm (L1, L4, L10, ║
- * ║  L11, L12, L15 are binding), cross-gap sag overlap (S4→S5 gap     ║
- * ║  limits SD to ~15.5 mm at that junction), sd/|R| ≤ 0.90 slope     ║
- * ║  limit, and 67 mm production filter thread (~29.5 mm max SD).     ║
+ * ║  zoom positions, refined against the Canon optical construction    ║
+ * ║  diagram and patent FIG. 1. The diagram proportions are used to    ║
+ * ║  avoid over-uniform middle/rear element heights: tall L1, compact  ║
+ * ║  stop-side lenses, stepped B5/B6, and a larger rear doublet.       ║
+ * ║  Constrained by: edge thickness ≥ 0.5 mm, cross-gap sag overlap    ║
+ * ║  (S4→S5 gap limits SD to ~15.5 mm at that junction), slope limit,  ║
+ * ║  and 67 mm production filter thread (~29.5 mm max SD).            ║
  * ║  Cover glass (nd=1.544, 2.00 mm) excluded; BFD includes its       ║
  * ║  physical thickness + 1.09 mm air gap to image plane.             ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -253,42 +255,42 @@ const LENS_DATA = {
     { label: "2", R: -1074.771, d: 0.85, nd: 1.0, elemId: 0, sd: 29.0 }, // d2 variable (zoom)
 
     // ── B2: Variator (L2, L3+L4, L5) ──
-    { label: "3", R: 95.769, d: 1.6, nd: 1.8919, elemId: 2, sd: 18.5 },
+    { label: "3", R: 95.769, d: 1.6, nd: 1.8919, elemId: 2, sd: 17.2 },
     { label: "4", R: 22.455, d: 7.05, nd: 1.0, elemId: 0, sd: 15.3 }, // R4 confirmed; cross-gap limited
-    { label: "5", R: -369.959, d: 1.25, nd: 1.60311, elemId: 3, sd: 15.5 }, // D1 front
-    { label: "6", R: 22.126, d: 7.0, nd: 1.90366, elemId: 4, sd: 16.0 }, // D1 junction
-    { label: "7", R: 412.508, d: 4.86, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "8", R: -36.457, d: 1.0, nd: 1.8515, elemId: 5, sd: 13.5 },
-    { label: "9", R: -89.252, d: 21.64, nd: 1.0, elemId: 0, sd: 13.0 }, // d9 variable (zoom)
+    { label: "5", R: -369.959, d: 1.25, nd: 1.60311, elemId: 3, sd: 15.4 }, // D1 front
+    { label: "6", R: 22.126, d: 7.0, nd: 1.90366, elemId: 4, sd: 16.2 }, // D1 junction
+    { label: "7", R: 412.508, d: 4.86, nd: 1.0, elemId: 0, sd: 15.8 },
+    { label: "8", R: -36.457, d: 1.0, nd: 1.8515, elemId: 5, sd: 11.2 },
+    { label: "9", R: -89.252, d: 21.64, nd: 1.0, elemId: 0, sd: 10.8 }, // d9 variable (zoom)
 
     // ── B3: First intermediate positive (Stop, L6, L7, L8) ──
     { label: "STO", R: 1e15, d: 0.65, nd: 1.0, elemId: 0, sd: 11.7 },
-    { label: "11", R: 43.928, d: 3.45, nd: 2.001, elemId: 6, sd: 12.0 },
-    { label: "12", R: -750.0, d: 2.4, nd: 1.0, elemId: 0, sd: 12.5 },
-    { label: "13A", R: 106.432, d: 3.7, nd: 1.58313, elemId: 7, sd: 13.0 },
-    { label: "14A", R: -70.798, d: 2.33, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "15", R: -41.445, d: 1.2, nd: 1.77047, elemId: 8, sd: 13.0 },
-    { label: "16", R: 220.269, d: 4.86, nd: 1.0, elemId: 0, sd: 13.0 }, // d16 variable (zoom)
+    { label: "11", R: 43.928, d: 3.45, nd: 2.001, elemId: 6, sd: 11.0 },
+    { label: "12", R: -750.0, d: 2.4, nd: 1.0, elemId: 0, sd: 11.4 },
+    { label: "13A", R: 106.432, d: 3.7, nd: 1.58313, elemId: 7, sd: 12.4 },
+    { label: "14A", R: -70.798, d: 2.33, nd: 1.0, elemId: 0, sd: 12.4 },
+    { label: "15", R: -41.445, d: 1.2, nd: 1.77047, elemId: 8, sd: 11.6 },
+    { label: "16", R: 220.269, d: 4.86, nd: 1.0, elemId: 0, sd: 11.6 }, // d16 variable (zoom)
 
     // ── B4: Weak negative compensator (L9+L10 cemented doublet D2) ──
-    { label: "17", R: 1e15, d: 1.2, nd: 1.85478, elemId: 9, sd: 14.5 },
-    { label: "18", R: 28.842, d: 6.1, nd: 1.497, elemId: 10, sd: 14.0 }, // D2 junction; edge-limited
-    { label: "19", R: -56.203, d: 2.0, nd: 1.0, elemId: 0, sd: 14.0 }, // d19 variable (zoom)
+    { label: "17", R: 1e15, d: 1.2, nd: 1.85478, elemId: 9, sd: 14.6 },
+    { label: "18", R: 28.842, d: 6.1, nd: 1.497, elemId: 10, sd: 14.6 }, // D2 junction; diagram-proportioned
+    { label: "19", R: -56.203, d: 2.0, nd: 1.0, elemId: 0, sd: 14.3 }, // d19 variable (zoom)
 
     // ── B5: Second intermediate positive (L11, L12) ──
-    { label: "20A", R: 55.622, d: 3.8, nd: 1.58313, elemId: 11, sd: 17.0 },
-    { label: "21A", R: -248.88, d: 0.2, nd: 1.0, elemId: 0, sd: 17.0 },
-    { label: "22", R: 69.909, d: 7.75, nd: 1.59522, elemId: 12, sd: 17.0 },
-    { label: "23", R: -31.69, d: 3.22, nd: 1.0, elemId: 0, sd: 17.0 }, // d23 variable (zoom)
+    { label: "20A", R: 55.622, d: 3.8, nd: 1.58313, elemId: 11, sd: 14.8 },
+    { label: "21A", R: -248.88, d: 0.2, nd: 1.0, elemId: 0, sd: 14.8 },
+    { label: "22", R: 69.909, d: 7.75, nd: 1.59522, elemId: 12, sd: 16.0 },
+    { label: "23", R: -31.69, d: 3.22, nd: 1.0, elemId: 0, sd: 15.5 }, // d23 variable (zoom)
 
     // ── B6: Focusing element (L13) ──
-    { label: "24", R: 71.379, d: 1.1, nd: 1.6134, elemId: 13, sd: 16.5 },
-    { label: "25", R: 23.38, d: 12.68, nd: 1.0, elemId: 0, sd: 16.0 }, // d25 variable (zoom)
+    { label: "24", R: 71.379, d: 1.1, nd: 1.6134, elemId: 13, sd: 13.0 },
+    { label: "25", R: 23.38, d: 12.68, nd: 1.0, elemId: 0, sd: 12.6 }, // d25 variable (zoom)
 
     // ── B7: Rear negative doublet (L14+L15 cemented doublet D3) ──
-    { label: "26", R: -53.964, d: 1.3, nd: 1.744, elemId: 14, sd: 17.0 },
-    { label: "27", R: 43.097, d: 4.8, nd: 1.92286, elemId: 15, sd: 18.0 }, // D3 junction
-    { label: "28", R: -750.0, d: 16.09, nd: 1.0, elemId: 0, sd: 18.0 }, // BFD (d28+CG+d30)
+    { label: "26", R: -53.964, d: 1.3, nd: 1.744, elemId: 14, sd: 17.2 },
+    { label: "27", R: 43.097, d: 4.8, nd: 1.92286, elemId: 15, sd: 18.4 }, // D3 junction
+    { label: "28", R: -750.0, d: 16.09, nd: 1.0, elemId: 0, sd: 18.4 }, // BFD (d28+CG+d30)
   ],
 
   /* ── Aspherical coefficients ── */

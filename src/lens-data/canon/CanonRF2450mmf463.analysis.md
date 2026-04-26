@@ -100,7 +100,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 
 **Optical role:** G1 is the first element the light encounters. Its strong negative meniscus shape — a gently curved front surface (R₁ = +238.756 mm) paired with a steeply curved rear surface (R₂ = +18.479 mm), both convex toward the object — provides the bulk of L1's negative refractive power. The rear surface carries the dominant refraction: with a radius of just 18.5 mm, it is the most steeply curved surface in the entire lens. As the outermost element in a negative-lead zoom, G1 must diverge the beam sharply to widen the field of view at the wide-angle end.
 
-**Semi-diameter constraint:** The rear surface R₂ = +18.479 mm imposes a hard physical limit on the clear aperture. The slope at the rim reaches the 64.2° fabrication threshold at sd ≈ 16.6 mm (sd/|R| ≈ 0.90), constraining the entire front group's maximum clear aperture. At the estimated rear SD of 16.5 mm, the rim slope is 1.98 — just under the 2.065 limit.
+**Semi-diameter constraint:** The rear surface R₂ = +18.479 mm imposes a hard physical limit on the clear aperture. The slope at the rim reaches the 64.2° fabrication threshold at sd ≈ 16.6 mm (sd/|R| ≈ 0.90), constraining the maximum clear aperture. The data file uses a smaller rear SD of 14.4 mm to better match Canon's published construction diagram while staying comfortably inside the rim-slope limit.
 
 ### Element 2 — G2: Second Negative Lens (PMo Aspherical)
 
@@ -117,7 +117,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 
 **Material identification:** The nd/νd pair does not match any conventional optical glass in the OHARA, SCHOTT, HOYA, or Sumita catalogs. Instead, it matches cyclo-olefin polymer (COP) optical resins used in precision molded (PMo) elements, such as ZEONEX E48R (nd ≈ 1.5310, νd ≈ 56.0, residual Δnd = 0.0001, Δνd = 0.1). The patent explicitly anticipates this at [0062]: the negative lens G2 may be made of a resin material to reduce the weight of the large-diameter front group.
 
-**Aspherical surface (3A):** The object-side surface carries the aspherical profile. At the estimated semi-diameter of 16.0 mm, the aspherical departure from the base sphere reaches approximately +315 µm. The dominant term is A4 (+2.06 × 10⁻⁶), which provides a positive departure — the surface becomes flatter than the base sphere at the margins, reducing its effective negative curvature at larger aperture heights.
+**Aspherical surface (3A):** The object-side surface carries the aspherical profile. At the estimated semi-diameter of 14.0 mm, the aspherical departure from the base sphere reaches approximately +126 µm. The dominant term is A4 (+2.06 × 10⁻⁶), which provides a positive departure — the surface becomes flatter than the base sphere at the margins, reducing its effective negative curvature at larger aperture heights.
 
 **Optical role:** G2 provides supplementary negative power in L1, assisting G1 in diverging the beam at the wide-angle end. Its aspherical front surface is the primary wide-angle aberration corrector: the aspherical departure on a nearly flat base curve (R = 994.673 mm) effectively creates a freeform correction plate at the front of the lens. The very weak base curvature means the aspherical terms dominate the surface profile at larger heights — the polynomial coefficients, not the base sphere, define the optical function of this surface at the periphery.
 
@@ -138,7 +138,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 
 **Optical role:** L1P is the only positive element in the otherwise negative L1 unit. It serves as a chromatic corrector for G1 and G2: the negative elements (G1: νd = 55.4; G2: νd = 55.9) introduce lateral and longitudinal chromatic aberration, and L1P's low νd = 30.1 (high dispersion) provides the counter-dispersive correction.
 
-**Edge thickness constraint:** L1P's strongly bent meniscus shape (shape factor +2.504) means the sag difference between the front and rear surfaces grows rapidly with aperture height. At the estimated SD of 15.5 mm, the edge thickness is approximately 1.0 mm — adequate but a binding constraint on the element's clear aperture.
+**Edge thickness constraint:** L1P's strongly bent meniscus shape (shape factor +2.504) means the sag difference between the front and rear surfaces grows rapidly with aperture height. The render-tuned SDs of 13.2/12.7 mm preserve a visibly smaller third front-group element, matching the manufacturer section while leaving healthier edge-thickness margin than a full ray-envelope estimate.
 
 ### Element 4 — L2 First Element (Positive)
 
@@ -225,10 +225,10 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 
 **Aspherical surfaces (17A, 18A):** Both surfaces of L4 are aspherical, with very large departures from their base spheres:
 
-- **Surface 17A** (front): departure ≈ −3.4 mm at the estimated SD of 13.5 mm. The A4 term (−1.02 × 10⁻⁴) provides the dominant low-order departure, but the A10 term (−1.16 × 10⁻¹¹) contributes significantly at larger heights due to the h¹⁰ dependence. The surface becomes substantially more concave than its base sphere at the margins.
-- **Surface 18A** (rear): departure ≈ −2.7 mm at the estimated SD of 14.0 mm. Again A4-dominated (−9.01 × 10⁻⁵), with the surface becoming more concave than its nearly flat base sphere (R = −1111.779 mm).
+- **Surface 17A** (front): departure ≈ −1.8 mm at the estimated SD of 11.8 mm. The A4 term (−1.02 × 10⁻⁴) provides the dominant low-order departure, but the A10 term (−1.16 × 10⁻¹¹) contributes significantly at larger heights due to the h¹⁰ dependence. The surface becomes substantially more concave than its base sphere at the margins.
+- **Surface 18A** (rear): departure ≈ −1.7 mm at the estimated SD of 12.5 mm. Again A4-dominated (−9.01 × 10⁻⁵), with the surface becoming more concave than its nearly flat base sphere (R = −1111.779 mm).
 
-These are extremely large aspherical departures — over 3 mm on the front surface. Such departures are feasible only through injection molding of optical-grade polymer and would be prohibitively expensive to achieve via glass grinding and polishing.
+These are still large, millimeter-scale aspherical departures. Such departures are feasible only through injection molding of optical-grade polymer and would be prohibitively expensive to achieve via glass grinding and polishing.
 
 **Optical role:** L4 is the rearmost element in the system. Despite its weak negative power (f = −185.51 mm), L4 performs a critical aberration correction role. The two heavily aspherized surfaces serve as a field-correction lens — a final aberration compensator that adjusts field curvature, astigmatism, and distortion before the image reaches the sensor plane. The negative power contribution also slightly extends the back focal distance. The two aspherical surfaces provide substantially more degrees of freedom for wavefront correction than any other element in the system.
 
@@ -240,13 +240,13 @@ The lens has three aspherical surfaces across two plastic molded elements:
 
 | Surface | Element | R (mm) | K | Departure at SD | Dominant term |
 |---------|---------|--------|---|-----------------|---------------|
-| 3A | G2 (PMo) | +994.673 | 0 | +315 µm (sd 16.0) | A4 = +2.06 × 10⁻⁶ |
-| 17A | L4 (PMo) | −90.404 | 0 | −3445 µm (sd 13.5) | A4 = −1.02 × 10⁻⁴ |
-| 18A | L4 (PMo) | −1111.779 | 0 | −2743 µm (sd 14.0) | A4 = −9.01 × 10⁻⁵ |
+| 3A | G2 (PMo) | +994.673 | 0 | +126 µm (sd 14.0) | A4 = +2.06 × 10⁻⁶ |
+| 17A | L4 (PMo) | −90.404 | 0 | −1844 µm (sd 11.8) | A4 = −1.02 × 10⁻⁴ |
+| 18A | L4 (PMo) | −1111.779 | 0 | −1744 µm (sd 12.5) | A4 = −9.01 × 10⁻⁵ |
 
 All three surfaces have K = 0 (spherical base curve, no conic component). The aspherical profiles are defined entirely by the even-order polynomial coefficients A4 through A12. The conic constant being zero on all surfaces is typical of injection-molded plastic optics — the polynomial terms alone provide sufficient degrees of freedom, and a nonzero K would complicate the mold fabrication.
 
-The departures on surfaces 17A and 18A are extremely large — over 3 mm and 2.7 mm respectively. These values are strongly SD-dependent because of the high-order terms (particularly A10 and A12), which grow very rapidly with ray height. The A10 term on surface 17A (−1.16 × 10⁻¹¹) contributes approximately −3.4 mm of sag at sd = 13.5 mm, dominating the departure at the rim despite its small coefficient. This is characteristic of injection-molded plastic optics where the entire surface profile is designed as a high-order polynomial rather than as a perturbation of a base sphere.
+The departures on surfaces 17A and 18A remain large — roughly 1.8 mm and 1.7 mm respectively. These values are strongly SD-dependent because of the high-order terms (particularly A10 and A12), which grow very rapidly with ray height. This is characteristic of injection-molded plastic optics where the entire surface profile is designed as a high-order polynomial rather than as a perturbation of a base sphere.
 
 The aspherical strategy follows a clear design philosophy: **surface 3A corrects wide-angle field aberrations** (where the beam footprint on G2 is largest), while **surfaces 17A and 18A correct residual field curvature and astigmatism across all zoom positions** (where the converged beam is small but the angular spread of off-axis rays is significant).
 

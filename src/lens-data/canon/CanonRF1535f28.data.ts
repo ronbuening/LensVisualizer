@@ -25,12 +25,14 @@
  * to A14. Maximum sag error from this omission is ~3 μm at the rim of
  * surface 1* — negligible for visualization.
  *
- * Semi-diameters: patent "Effective diameter" column ÷ 2.
- * L1 front/rear SDs use the full patent values (27.52 / 18.92 mm) now that
- * the renderer uses slope-based validation instead of the old sd/|R| ratio check.
- * The near-paraboloidal rear surface (K = −0.981) has a gentle slope at these
- * SDs (~49°, well under the 64° threshold for spheres at sd/|R| = 0.9).
- * STO semi-diameter uses the wide-angle value (16.52 / 2 = 8.26 mm).
+ * Semi-diameters start from the patent "Effective diameter" column ÷ 2, then
+ * receive a modest construction-diagram pass so the rendered element outlines
+ * track Canon's published section more closely. L1 front/rear SDs keep the full
+ * patent values (27.52 / 18.92 mm) now that the renderer uses slope-based
+ * validation instead of the old sd/|R| ratio check. The near-paraboloidal rear
+ * surface (K = −0.981) has a gentle slope at these SDs (~49°, well under the
+ * 64° threshold for spheres at sd/|R| = 0.9). STO semi-diameter uses the
+ * wide-angle value (16.52 / 2 = 8.26 mm).
  */
 
 import type { LensDataInput } from "../../types/optics.js";
@@ -271,20 +273,20 @@ const LENS_DATA = {
     { label: "4A", R: 91.828, d: 5.56, nd: 1.0, elemId: 0, sd: 15.74 },
     { label: "5", R: -53.256, d: 1.2, nd: 1.59522, elemId: 3, sd: 15.59 },
     { label: "6", R: 68.528, d: 0.15, nd: 1.0, elemId: 0, sd: 15.44 },
-    { label: "7", R: 43.587, d: 5.03, nd: 1.85478, elemId: 4, sd: 15.55 },
-    { label: "8", R: -485.244, d: 25.32, nd: 1.0, elemId: 0, sd: 15.31 },
+    { label: "7", R: 43.587, d: 5.03, nd: 1.85478, elemId: 4, sd: 13.25 },
+    { label: "8", R: -485.244, d: 25.32, nd: 1.0, elemId: 0, sd: 13.0 },
     // ── B2 (focus unit) ──
     { label: "9", R: 63.607, d: 2.67, nd: 1.84666, elemId: 5, sd: 12.32 },
     { label: "10", R: -1472.964, d: 0.15, nd: 1.0, elemId: 0, sd: 12.39 },
-    { label: "11", R: 52.737, d: 1.0, nd: 1.92286, elemId: 6, sd: 12.54 },
-    { label: "12", R: 22.996, d: 5.41, nd: 1.53172, elemId: 7, sd: 12.31 },
-    { label: "13", R: 489.976, d: 8.24, nd: 1.0, elemId: 0, sd: 12.45 },
+    { label: "11", R: 52.737, d: 1.0, nd: 1.92286, elemId: 6, sd: 11.35 },
+    { label: "12", R: 22.996, d: 5.41, nd: 1.53172, elemId: 7, sd: 11.05 },
+    { label: "13", R: 489.976, d: 8.24, nd: 1.0, elemId: 0, sd: 11.2 },
     // ── SP (Fno stop) ──
     { label: "STO", R: 1e15, d: 13.71, nd: 1.0, elemId: 0, sd: 8.26 },
     // ── B3 ──
-    { label: "15", R: 27.733, d: 1.2, nd: 2.00069, elemId: 8, sd: 13.86 },
-    { label: "16", R: 19.641, d: 9.29, nd: 1.53775, elemId: 9, sd: 13.27 },
-    { label: "17", R: -78.882, d: 1.6, nd: 1.0, elemId: 0, sd: 13.17 },
+    { label: "15", R: 27.733, d: 1.2, nd: 2.00069, elemId: 8, sd: 15.25 },
+    { label: "16", R: 19.641, d: 9.29, nd: 1.53775, elemId: 9, sd: 15.0 },
+    { label: "17", R: -78.882, d: 1.6, nd: 1.0, elemId: 0, sd: 14.8 },
     // ── B4 (IS unit) ──
     { label: "18", R: -67.558, d: 4.31, nd: 1.92286, elemId: 10, sd: 10.99 },
     { label: "19", R: -20.948, d: 0.77, nd: 1.834, elemId: 11, sd: 11.24 },
@@ -292,9 +294,9 @@ const LENS_DATA = {
     // ── B5 (PL unit) ──
     { label: "22", R: 30.487, d: 11.2, nd: 1.497, elemId: 12, sd: 17.43 },
     { label: "23", R: -50.182, d: 0.15, nd: 1.0, elemId: 0, sd: 17.34 },
-    { label: "24", R: 40.928, d: 11.0, nd: 1.497, elemId: 13, sd: 15.74 },
-    { label: "25", R: -25.8, d: 1.2, nd: 2.0509, elemId: 14, sd: 14.76 },
-    { label: "26", R: 208.835, d: 4.54, nd: 1.0, elemId: 0, sd: 14.74 },
+    { label: "24", R: 40.928, d: 11.0, nd: 1.497, elemId: 13, sd: 17.0 },
+    { label: "25", R: -25.8, d: 1.2, nd: 2.0509, elemId: 14, sd: 16.6 },
+    { label: "26", R: 208.835, d: 4.54, nd: 1.0, elemId: 0, sd: 16.4 },
     { label: "27A", R: -73.669, d: 2.1, nd: 1.854, elemId: 15, sd: 14.78 },
     { label: "28A", R: -1000.0, d: 0.15, nd: 1.0, elemId: 0, sd: 16.06 },
     { label: "29", R: 216.036, d: 3.4, nd: 1.92286, elemId: 16, sd: 17.13 },

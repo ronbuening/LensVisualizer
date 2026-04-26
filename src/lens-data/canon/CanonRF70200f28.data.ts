@@ -20,8 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters.  All SDs estimated via     ║
  * ║    paraxial marginal ray trace at wide/mid/tele, taking the max    ║
- * ║    height at each surface + 10% mechanical clearance.  Front       ║
- * ║    elements cross-checked against 77 mm filter thread.             ║
+ * ║    height at each surface + 10% mechanical clearance, then refined ║
+ * ║    against Canon's published construction diagram for proportional ║
+ * ║    rear-group rendering.  Front elements cross-checked against     ║
+ * ║    77 mm filter thread.                                            ║
  * ║                                                                    ║
  * ║  NOTE ON GROUP COUNT:                                              ║
  * ║    Patent defines 7 zoom groups (independently moving units).      ║
@@ -282,7 +284,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    *  31 surfaces: 17 glass elements + air gaps, front to rear.
-   *  All SDs estimated from paraxial ray trace (see file header).
+   *  SDs estimated from ray trace and manufacturer diagram proportions (see file header).
    *  Surface 6 is the flare-cut stop (FP), surface 12 is the aperture stop (STO).
    */
   surfaces: [
@@ -311,29 +313,29 @@ const LENS_DATA = {
     { label: "14", R: -87.607, d: 9.57, nd: 1.0, elemId: 0, sd: 18.0 }, // L7 rear → air [ZOOM VAR]
 
     // ── Group G4 (L4): negative field flattener — cemented doublet ──
-    { label: "15", R: -34.35, d: 1.2, nd: 1.5927, elemId: 8, sd: 15.5 }, // L8 front (cemented D3)
-    { label: "16", R: 51.821, d: 5.0, nd: 1.72825, elemId: 9, sd: 15.5 }, // L8→L9 junction — elemId: 9 (L9)
-    { label: "17", R: -93.944, d: 9.69, nd: 1.0, elemId: 0, sd: 15.5 }, // L9 rear → air [ZOOM VAR]
+    { label: "15", R: -34.35, d: 1.2, nd: 1.5927, elemId: 8, sd: 16.4 }, // L8 front (cemented D3)
+    { label: "16", R: 51.821, d: 5.0, nd: 1.72825, elemId: 9, sd: 16.4 }, // L8→L9 junction — elemId: 9 (L9)
+    { label: "17", R: -93.944, d: 9.69, nd: 1.0, elemId: 0, sd: 16.2 }, // L9 rear → air [ZOOM VAR]
 
     // ── Group G5 (LP/L5): main positive relay — 5 elements, 3 sub-groups ──
-    { label: "18", R: 126.864, d: 1.35, nd: 2.0509, elemId: 10, sd: 15.5 }, // L10 front (cemented D4)
-    { label: "19", R: 45.374, d: 6.25, nd: 1.497, elemId: 11, sd: 15.5 }, // L10→L11 junction — elemId: 11 (L11)
-    { label: "20", R: -64.472, d: 0.15, nd: 1.0, elemId: 0, sd: 15.5 }, // L11 rear → air
-    { label: "21", R: 114.577, d: 5.8, nd: 1.497, elemId: 12, sd: 15.5 }, // L12 front (cemented D5)
-    { label: "22", R: -44.904, d: 1.35, nd: 2.0509, elemId: 13, sd: 15.0 }, // L12→L13 junction — elemId: 13 (L13)
-    { label: "23", R: -77.708, d: 0.15, nd: 1.0, elemId: 0, sd: 15.0 }, // L13 rear → air
-    { label: "24", R: 61.735, d: 4.45, nd: 1.90043, elemId: 14, sd: 15.0 }, // L14 front — Biconvex
-    { label: "25", R: -412.192, d: 13.8, nd: 1.0, elemId: 0, sd: 14.0 }, // L14 rear → air [ZOOM VAR]
+    { label: "18", R: 126.864, d: 1.35, nd: 2.0509, elemId: 10, sd: 16.4 }, // L10 front (cemented D4)
+    { label: "19", R: 45.374, d: 6.25, nd: 1.497, elemId: 11, sd: 16.4 }, // L10→L11 junction — elemId: 11 (L11)
+    { label: "20", R: -64.472, d: 0.15, nd: 1.0, elemId: 0, sd: 16.4 }, // L11 rear → air
+    { label: "21", R: 114.577, d: 5.8, nd: 1.497, elemId: 12, sd: 16.6 }, // L12 front (cemented D5)
+    { label: "22", R: -44.904, d: 1.35, nd: 2.0509, elemId: 13, sd: 16.2 }, // L12→L13 junction — elemId: 13 (L13)
+    { label: "23", R: -77.708, d: 0.15, nd: 1.0, elemId: 0, sd: 16.0 }, // L13 rear → air
+    { label: "24", R: 61.735, d: 4.45, nd: 1.90043, elemId: 14, sd: 17.0 }, // L14 front — Biconvex
+    { label: "25", R: -412.192, d: 13.8, nd: 1.0, elemId: 0, sd: 16.2 }, // L14 rear → air [ZOOM VAR]
 
     // ── Group G6 (LN): focus group A — single element (Nano USM #1) ──
-    { label: "26", R: 159.922, d: 1.2, nd: 1.618, elemId: 15, sd: 13.0 }, // L15 front — Neg. Meniscus
-    { label: "27", R: 27.965, d: 17.06, nd: 1.0, elemId: 0, sd: 13.0 }, // L15 rear → air [ZOOM VAR]
+    { label: "26", R: 159.922, d: 1.2, nd: 1.618, elemId: 15, sd: 16.0 }, // L15 front — Neg. Meniscus
+    { label: "27", R: 27.965, d: 17.06, nd: 1.0, elemId: 0, sd: 15.4 }, // L15 rear → air [ZOOM VAR]
 
     // ── Group G7 (LR): floating focus group B — 2 elements (Nano USM #2) ──
-    { label: "28", R: -113.431, d: 3.2, nd: 1.85478, elemId: 16, sd: 8.5 }, // L16 front — Pos. Meniscus
-    { label: "29", R: -46.333, d: 6.54, nd: 1.0, elemId: 0, sd: 8.0 }, // L16 rear → air
-    { label: "30A", R: -23.301, d: 1.9, nd: 1.58313, elemId: 17, sd: 6.5 }, // L17 front — ASPH, SWC coated
-    { label: "31", R: -70.381, d: 15.86, nd: 1.0, elemId: 0, sd: 6.0 }, // L17 rear → image (BFD) [ZOOM VAR]
+    { label: "28", R: -113.431, d: 3.2, nd: 1.85478, elemId: 16, sd: 15.0 }, // L16 front — Pos. Meniscus
+    { label: "29", R: -46.333, d: 6.54, nd: 1.0, elemId: 0, sd: 14.2 }, // L16 rear → air
+    { label: "30A", R: -23.301, d: 1.9, nd: 1.58313, elemId: 17, sd: 17.0 }, // L17 front — ASPH, SWC coated
+    { label: "31", R: -70.381, d: 15.86, nd: 1.0, elemId: 0, sd: 16.0 }, // L17 rear → image (BFD) [ZOOM VAR]
   ],
 
   /* ── Aspherical coefficients ── */

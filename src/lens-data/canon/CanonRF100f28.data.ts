@@ -12,8 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║         control via differential displacement.                     ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent lists 有効径 (effective diameter) for every surface.      ║
- * ║    SDs = effective diameter / 2, rounded to 0.01 mm.               ║
+ * ║    Patent effective diameters were used as the starting point.      ║
+ * ║    Render SDs are proportionally tuned to Canon's published         ║
+ * ║    construction diagram while preserving f/2.8 ray clearance.       ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -252,37 +253,39 @@ const LENS_DATA = {
 
   /* ── Surface prescription ──
    *  All surfaces are spherical (no asph markers in patent).
-   *  Semi-diameters derived from patent 有効径 (effective diameter) / 2.
+   *  Semi-diameters are drawing-tuned from patent 有効径 (effective diameter)
+   *  values so the rendered clear-aperture taper matches Canon's published
+   *  construction diagram more closely.
    *  Variable gaps: d_STO, d20, d25, d29 (floating focus, 4 variable gaps).
    */
   surfaces: [
     /* ──── Group L1: fixed front positive group (surfaces 1–14) ──── */
 
     // D1 cemented doublet (L1 + L2)
-    { label: "1", R: -94.26, d: 1.74, nd: 1.83481, elemId: 1, sd: 18.3 },
-    { label: "2", R: 40.575, d: 7.43, nd: 1.76182, elemId: 2, sd: 18.12 },
-    { label: "3", R: -137.454, d: 0.2, nd: 1.0, elemId: 0, sd: 18.12 },
+    { label: "1", R: -94.26, d: 1.74, nd: 1.83481, elemId: 1, sd: 18.8 },
+    { label: "2", R: 40.575, d: 7.43, nd: 1.76182, elemId: 2, sd: 17.75 },
+    { label: "3", R: -137.454, d: 0.2, nd: 1.0, elemId: 0, sd: 17.35 },
 
     // L3 singlet
-    { label: "4", R: 124.812, d: 2.98, nd: 1.83481, elemId: 3, sd: 18.38 },
-    { label: "5", R: -698.851, d: 0.2, nd: 1.0, elemId: 0, sd: 18.35 },
+    { label: "4", R: 124.812, d: 2.98, nd: 1.83481, elemId: 3, sd: 17.6 },
+    { label: "5", R: -698.851, d: 0.2, nd: 1.0, elemId: 0, sd: 17.25 },
 
     // L4 singlet (low-dispersion positive)
-    { label: "6", R: 57.156, d: 6.6, nd: 1.48749, elemId: 4, sd: 18.17 },
-    { label: "7", R: -88.275, d: 0.69, nd: 1.0, elemId: 0, sd: 17.9 },
+    { label: "6", R: 57.156, d: 6.6, nd: 1.48749, elemId: 4, sd: 17.15 },
+    { label: "7", R: -88.275, d: 0.69, nd: 1.0, elemId: 0, sd: 16.55 },
 
     // L5 singlet (dense flint negative)
-    { label: "8", R: -105.533, d: 1.65, nd: 1.84666, elemId: 5, sd: 17.54 },
-    { label: "9", R: 51.436, d: 2.28, nd: 1.0, elemId: 0, sd: 16.98 },
+    { label: "8", R: -105.533, d: 1.65, nd: 1.84666, elemId: 5, sd: 16.15 },
+    { label: "9", R: 51.436, d: 2.28, nd: 1.0, elemId: 0, sd: 15.65 },
 
     // D2 cemented doublet (L6 + L7)
-    { label: "10", R: 74.803, d: 1.62, nd: 2.001, elemId: 6, sd: 18.0 },
-    { label: "11", R: 39.852, d: 6.53, nd: 1.7725, elemId: 7, sd: 18.0 },
-    { label: "12", R: -185.173, d: 0.53, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "10", R: 74.803, d: 1.62, nd: 2.001, elemId: 6, sd: 16.2 },
+    { label: "11", R: 39.852, d: 6.53, nd: 1.7725, elemId: 7, sd: 15.95 },
+    { label: "12", R: -185.173, d: 0.53, nd: 1.0, elemId: 0, sd: 15.7 },
 
     // L8 singlet (last element before stop)
-    { label: "13", R: 56.56, d: 4.3, nd: 1.72916, elemId: 8, sd: 16.65 },
-    { label: "14", R: -409.038, d: 2.55, nd: 1.0, elemId: 0, sd: 16.4 },
+    { label: "13", R: 56.56, d: 4.3, nd: 1.72916, elemId: 8, sd: 16.0 },
+    { label: "14", R: -409.038, d: 2.55, nd: 1.0, elemId: 0, sd: 15.75 },
 
     /* ──── Aperture stop ──── */
     { label: "STO", R: 1e15, d: 3.1, nd: 1.0, elemId: 0, sd: 15.41 }, // 9-blade iris (Canon spec)
@@ -290,40 +293,40 @@ const LENS_DATA = {
     /* ──── Group L2: 1st focus group / SA control, negative (surfaces 16–20) ──── */
 
     // L9 singlet (negative meniscus)
-    { label: "16", R: 312.322, d: 1.37, nd: 1.734, elemId: 9, sd: 14.22 },
-    { label: "17", R: 39.579, d: 3.71, nd: 1.0, elemId: 0, sd: 13.49 },
+    { label: "16", R: 312.322, d: 1.37, nd: 1.734, elemId: 9, sd: 13.45 },
+    { label: "17", R: 39.579, d: 3.71, nd: 1.0, elemId: 0, sd: 12.85 },
 
     // D3 cemented doublet (L10 + L11)
-    { label: "18", R: -83.866, d: 1.23, nd: 1.7725, elemId: 10, sd: 13.2 },
-    { label: "19", R: 44.224, d: 2.95, nd: 1.94595, elemId: 11, sd: 13.51 },
-    { label: "20", R: 176.627, d: 27.41, nd: 1.0, elemId: 0, sd: 13.49 },
+    { label: "18", R: -83.866, d: 1.23, nd: 1.7725, elemId: 10, sd: 12.75 },
+    { label: "19", R: 44.224, d: 2.95, nd: 1.94595, elemId: 11, sd: 12.95 },
+    { label: "20", R: 176.627, d: 27.41, nd: 1.0, elemId: 0, sd: 12.85 },
 
     /* ──── Group L3: fixed intermediate positive group (surfaces 21–25) ──── */
 
     // L12 singlet (plano-convex)
-    { label: "21", R: 1e15, d: 4.0, nd: 1.76385, elemId: 12, sd: 15.55 },
-    { label: "22", R: -44.068, d: 0.2, nd: 1.0, elemId: 0, sd: 15.55 },
+    { label: "21", R: 1e15, d: 4.0, nd: 1.76385, elemId: 12, sd: 13.35 },
+    { label: "22", R: -44.068, d: 0.2, nd: 1.0, elemId: 0, sd: 13.35 },
 
     // D4 cemented doublet (L13 + L14)
-    { label: "23", R: 96.46, d: 6.22, nd: 1.72916, elemId: 13, sd: 14.57 },
-    { label: "24", R: -37.249, d: 1.37, nd: 2.00069, elemId: 14, sd: 14.46 },
-    { label: "25", R: -102.953, d: 4.17, nd: 1.0, elemId: 0, sd: 14.52 },
+    { label: "23", R: 96.46, d: 6.22, nd: 1.72916, elemId: 13, sd: 13.75 },
+    { label: "24", R: -37.249, d: 1.37, nd: 2.00069, elemId: 14, sd: 13.9 },
+    { label: "25", R: -102.953, d: 4.17, nd: 1.0, elemId: 0, sd: 14.0 },
 
     /* ──── Group L4: 2nd focus group / SA control, negative (surfaces 26–29) ──── */
 
     // L15 singlet (L41 in patent)
-    { label: "26", R: -51.432, d: 1.21, nd: 1.83481, elemId: 15, sd: 14.17 },
-    { label: "27", R: 224.397, d: 19.35, nd: 1.0, elemId: 0, sd: 14.43 },
+    { label: "26", R: -51.432, d: 1.21, nd: 1.83481, elemId: 15, sd: 13.45 },
+    { label: "27", R: 224.397, d: 19.35, nd: 1.0, elemId: 0, sd: 13.25 },
 
     // L16 singlet (L42 in patent)
-    { label: "28", R: -76.056, d: 3.76, nd: 1.6727, elemId: 16, sd: 17.61 },
-    { label: "29", R: -37.684, d: 26.63, nd: 1.0, elemId: 0, sd: 17.88 },
+    { label: "28", R: -76.056, d: 3.76, nd: 1.6727, elemId: 16, sd: 15.65 },
+    { label: "29", R: -37.684, d: 26.63, nd: 1.0, elemId: 0, sd: 15.9 },
 
     /* ──── Group L5: fixed rear field-flattening group (surfaces 30–31) ──── */
 
     // L17 singlet
-    { label: "30", R: -53.234, d: 1.73, nd: 1.58913, elemId: 17, sd: 17.82 },
-    { label: "31", R: 291.242, d: 14.66, nd: 1.0, elemId: 0, sd: 18.51 }, // BFD to image plane
+    { label: "30", R: -53.234, d: 1.73, nd: 1.58913, elemId: 17, sd: 16.75 },
+    { label: "31", R: 291.242, d: 14.66, nd: 1.0, elemId: 0, sd: 17.25 }, // BFD to image plane
   ],
 
   /* ── Aspherical coefficients ──

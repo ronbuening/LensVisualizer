@@ -22,10 +22,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    group (L6) moves rearward; gaps D31, D33, and D37 would vary.  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs are taken directly from the patent's "effective diameter"   ║
- * ║    column (÷ 2). These represent beam footprints at infinity       ║
- * ║    focus, wide-angle position. Actual mechanical clear apertures   ║
- * ║    include additional clearance.                                   ║
+ * ║    SDs start from the patent's "effective diameter" column (÷ 2), ║
+ * ║    then are refined against Canon's construction diagram so the    ║
+ * ║    rendered glass outlines better match physical element scale.    ║
+ * ║    These are render clear-aperture estimates, not ray-trace data.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -335,35 +335,35 @@ const LENS_DATA = {
 
     // ── Unit 3 (L3): Stop + E10–E12, relay group ──
     { label: "STO", R: 1e15, d: 0.4, nd: 1.0, elemId: 0, sd: 12.96 }, // Aperture stop
-    { label: "17", R: 78.059, d: 4.31, nd: 1.76385, elemId: 10, sd: 13.43 }, // E10 front
-    { label: "18", R: -59.447, d: 0.15, nd: 1.0, elemId: 0, sd: 13.57 }, // E10 rear → air
-    { label: "19", R: 40.155, d: 7.4, nd: 1.497, elemId: 11, sd: 13.46 }, // E11 front (UD 2)
-    { label: "20", R: -33.807, d: 1.1, nd: 2.00069, elemId: 12, sd: 13.14 }, // E11→E12 junction
-    { label: "21", R: -143.919, d: 2.26, nd: 1.0, elemId: 0, sd: 13.17 }, // E12 rear → air (variable: L3→L4)
+    { label: "17", R: 78.059, d: 4.31, nd: 1.76385, elemId: 10, sd: 12.6 }, // E10 front
+    { label: "18", R: -59.447, d: 0.15, nd: 1.0, elemId: 0, sd: 12.4 }, // E10 rear → air
+    { label: "19", R: 40.155, d: 7.4, nd: 1.497, elemId: 11, sd: 15.6 }, // E11 front (UD 2)
+    { label: "20", R: -33.807, d: 1.1, nd: 2.00069, elemId: 12, sd: 15.3 }, // E11→E12 junction
+    { label: "21", R: -143.919, d: 2.26, nd: 1.0, elemId: 0, sd: 15.0 }, // E12 rear → air (variable: L3→L4)
 
     // ── Unit 4 (L4): E13–E14, IS group ──
-    { label: "22A", R: -63.149, d: 1.65, nd: 1.58313, elemId: 13, sd: 13.03 }, // E13 front (asph)
-    { label: "23", R: 45.825, d: 1.92, nd: 1.76182, elemId: 14, sd: 13.14 }, // E13→E14 junction
-    { label: "24", R: 84.251, d: 11.08, nd: 1.0, elemId: 0, sd: 13.12 }, // E14 rear → air (variable: L4→L5)
+    { label: "22A", R: -63.149, d: 1.65, nd: 1.58313, elemId: 13, sd: 16.2 }, // E13 front (asph)
+    { label: "23", R: 45.825, d: 1.92, nd: 1.76182, elemId: 14, sd: 16.0 }, // E13→E14 junction
+    { label: "24", R: 84.251, d: 11.08, nd: 1.0, elemId: 0, sd: 15.8 }, // E14 rear → air (variable: L4→L5)
 
     // ── Unit 5 (L5): E15–E18, main converging group ──
-    { label: "25", R: 26.393, d: 8.28, nd: 1.497, elemId: 15, sd: 13.71 }, // E15 front (Gfp, UD 3)
-    { label: "26", R: -69.36, d: 0.35, nd: 1.0, elemId: 0, sd: 13.63 }, // E15 rear → air
-    { label: "27", R: 39.335, d: 1.15, nd: 1.738, elemId: 16, sd: 13.45 }, // E16 front
-    { label: "28", R: 26.899, d: 7.03, nd: 1.53775, elemId: 17, sd: 13.07 }, // E16→E17 junction
-    { label: "29", R: -73.879, d: 0.15, nd: 1.0, elemId: 0, sd: 12.75 }, // E17 rear → air
-    { label: "30A", R: -602.944, d: 1.7, nd: 1.854, elemId: 18, sd: 12.64 }, // E18 front (asph)
-    { label: "31A", R: 131.941, d: 2.16, nd: 1.0, elemId: 0, sd: 12.45 }, // E18 rear → air (asph, variable: L5→L6)
+    { label: "25", R: 26.393, d: 8.28, nd: 1.497, elemId: 15, sd: 16.5 }, // E15 front (Gfp, UD 3)
+    { label: "26", R: -69.36, d: 0.35, nd: 1.0, elemId: 0, sd: 16.2 }, // E15 rear → air
+    { label: "27", R: 39.335, d: 1.15, nd: 1.738, elemId: 16, sd: 15.4 }, // E16 front
+    { label: "28", R: 26.899, d: 7.03, nd: 1.53775, elemId: 17, sd: 15.0 }, // E16→E17 junction
+    { label: "29", R: -73.879, d: 0.15, nd: 1.0, elemId: 0, sd: 14.5 }, // E17 rear → air
+    { label: "30A", R: -602.944, d: 1.7, nd: 1.854, elemId: 18, sd: 14.0 }, // E18 front (asph)
+    { label: "31A", R: 131.941, d: 2.16, nd: 1.0, elemId: 0, sd: 13.6 }, // E18 rear → air (asph, variable: L5→L6)
 
     // ── Unit 6 (L6): E19, focus group ──
-    { label: "32", R: 60.209, d: 0.9, nd: 1.804, elemId: 19, sd: 12.76 }, // E19 front
-    { label: "33", R: 23.878, d: 12.96, nd: 1.0, elemId: 0, sd: 12.53 }, // E19 rear → air (variable: L6→L7)
+    { label: "32", R: 60.209, d: 0.9, nd: 1.804, elemId: 19, sd: 11.5 }, // E19 front
+    { label: "33", R: 23.878, d: 12.96, nd: 1.0, elemId: 0, sd: 11.2 }, // E19 rear → air (variable: L6→L7)
 
     // ── Unit 7 (L7): E20–E21, rear field-flattening group ──
-    { label: "34A", R: -52.714, d: 1.7, nd: 1.58313, elemId: 20, sd: 14.93 }, // E20 front (asph)
-    { label: "35A", R: -3211.285, d: 0.15, nd: 1.0, elemId: 0, sd: 16.49 }, // E20 rear → air (asph)
-    { label: "36", R: 317.277, d: 3.23, nd: 2.001, elemId: 21, sd: 17.64 }, // E21 front (Grp)
-    { label: "37", R: -114.7, d: 14.37, nd: 1.0, elemId: 0, sd: 17.91 }, // E21 rear → BFD (variable)
+    { label: "34A", R: -52.714, d: 1.7, nd: 1.58313, elemId: 20, sd: 13.2 }, // E20 front (asph)
+    { label: "35A", R: -3211.285, d: 0.15, nd: 1.0, elemId: 0, sd: 14.2 }, // E20 rear → air (asph)
+    { label: "36", R: 317.277, d: 3.23, nd: 2.001, elemId: 21, sd: 15.0 }, // E21 front (Grp)
+    { label: "37", R: -114.7, d: 14.37, nd: 1.0, elemId: 0, sd: 15.4 }, // E21 rear → BFD (variable)
   ],
 
   /* ── Aspherical coefficients ──

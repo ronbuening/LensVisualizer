@@ -16,9 +16,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  f = 86.53 mm (production 85 mm) and Fno = 1.24 (production 1.2).║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Derived from patent "Effective Ray Diameter" / 2. Surface 20  ║
- * ║    is slightly reduced from the tabulated 18.2 mm to preserve     ║
- * ║    visible clearance across the tight L12→L13 air gap.             ║
+ * ║    Derived from patent "Effective Ray Diameter" / 2, then tuned  ║
+ * ║    conservatively against Canon's published construction diagram  ║
+ * ║    so the focus and aspherical groups render with the same visual ║
+ * ║    taper as the manufacturer section. Surface 20 is slightly      ║
+ * ║    reduced from the tabulated 18.2 mm to preserve visible         ║
+ * ║    clearance across the tight L12→L13 air gap.                     ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -244,12 +247,12 @@ const LENS_DATA = {
     { label: "5", R: 141.236, d: 0.3, nd: 1.0, elemId: 0, sd: 30.3 }, // L3 rear → air
 
     // G3: L4 (UD glass)
-    { label: "6", R: 39.868, d: 11.43, nd: 1.497, elemId: 4, sd: 27.5 }, // L4 front
-    { label: "7", R: 200.86, d: 6.51, nd: 1.0, elemId: 0, sd: 26.36 }, // L4 rear → air
+    { label: "6", R: 39.868, d: 11.43, nd: 1.497, elemId: 4, sd: 29.0 }, // L4 front
+    { label: "7", R: 200.86, d: 6.51, nd: 1.0, elemId: 0, sd: 27.8 }, // L4 rear → air
 
     // G4: L5 (aspherical negative meniscus)
-    { label: "8A", R: 75.484, d: 2.5, nd: 1.85478, elemId: 5, sd: 20.62 }, // L5 front (aspherical)
-    { label: "9", R: 27.701, d: 10.68, nd: 1.0, elemId: 0, sd: 17.58 }, // L5 rear → air
+    { label: "8A", R: 75.484, d: 2.5, nd: 1.85478, elemId: 5, sd: 24.8 }, // L5 front (aspherical)
+    { label: "9", R: 27.701, d: 10.68, nd: 1.0, elemId: 0, sd: 22.4 }, // L5 rear → air
 
     // Aperture stop
     { label: "STO", R: 1e15, d: 4.51, nd: 1.0, elemId: 0, sd: 16.55 },
