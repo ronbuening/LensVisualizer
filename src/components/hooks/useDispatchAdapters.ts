@@ -15,6 +15,7 @@ import {
   SET_STOPDOWN_T,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
+  SET_SELECTED_ELEMENT,
   SET_ANALYSIS_TAB,
 } from "../../utils/lensReducer.js";
 
@@ -41,6 +42,8 @@ export interface DispatchAdapters {
   onAberrationsExpandedChange: (v: boolean) => void;
   onAnalysisDrawerToggle: (v: boolean) => void;
   onAnalysisTabChange: (tab: string) => void;
+  onGlassMapToggle: (v: boolean) => void;
+  onSelectedElementChange: (panel: "a" | "b", elementId: number | null) => void;
   onZoomPanToggle: (v: boolean) => void;
   onBokehPreviewToggle: (v: boolean) => void;
 }
@@ -83,6 +86,9 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onAnalysisDrawerToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
       onAnalysisTabChange: (tab: string) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
+      onGlassMapToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: v }),
+      onSelectedElementChange: (panel: "a" | "b", elementId: number | null) =>
+        dispatch({ type: SET_SELECTED_ELEMENT, panel, elementId }),
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onBokehPreviewToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),

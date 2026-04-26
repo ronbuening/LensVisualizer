@@ -162,7 +162,7 @@
 | `themePreferences.ts` | `src/utils/` | Shared theme-mode conversion and system dark/high-contrast resolution used by page hooks and viewer chrome |
 | `lensCatalog.ts` | `src/utils/` | Auto-registration of lens data via import.meta.glob |
 | `lensMetadata.ts` | `src/utils/` | SEO metadata: maker extraction, page titles/descriptions, canonical URLs, JSON-LD |
-| `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing, `encodeSliderParams()` (shared slider→URL encoding), and slider state persistence |
+| `parseComparisonParams.ts` | `src/utils/` | URL deep-link parsing and encoding for sliders plus shareable analysis state (`el/ael/bel`, glass map, bokeh overlay, analysis drawer open/tab) |
 | `featureFlags.ts` | `src/utils/` | Feature flag controls |
 | `errorReporting.ts` | `src/utils/` | `buildIssueURL(error, context)` — builds a pre-filled GitHub `/issues/new` URL. `IssueContext` fields: `component`, `lensKey`, `componentStack` (React component tree from `ErrorInfo`), `extra` |
 | `useMediaQuery.ts` | `src/utils/` | Responsive breakpoint hook |
@@ -170,7 +170,7 @@
 | `lensReducer.ts` | `src/utils/` | Pure reducer: sliced state shape + action types |
 | `useLensState.ts` | `src/utils/` | Hook: useReducer wrapper with prefs/URL initialization |
 | `usePreferences.ts` | `src/utils/` | Hook: localStorage persistence from reducer state |
-| `useURLSync.ts` | `src/utils/` | Hook: URL read/write/zoom-init |
+| `useURLSync.ts` | `src/utils/` | Hook: URL read/write/zoom-init for both slider and shareable analysis UI state, with centralized helper builders to avoid duplicated query assembly paths |
 | `LensContext.ts` | `src/utils/` | React Context: `LensStateContext` + `LensDispatchContext` + `PanelStateContext`/`usePanelCtx` — panels context value is `state.panels` directly, which the reducer keeps stable across slider dispatches |
 | `usePageTheme.ts` | `src/utils/` | Hook: resolves theme from dark/HC preferences + system media query |
 | `usePageThemeToggle.ts` | `src/utils/` | Hook: extends usePageTheme with dark/HC toggle cycling (auto→dark→light) |

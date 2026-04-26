@@ -83,6 +83,29 @@ npm run seo:audit     # SEO audit over built output
 
 Requires Node.js 18+.
 
+## Shareable URL Parameters
+
+Lens pages (`/lens/:slug`) and comparison pages (`/compare/:slugA/:slugB`) accept query params for shareable analysis state.
+
+- Shared slider params:
+  - `focus` — normalized focus position (`0..1`)
+  - `aperture` — normalized stopdown position (`0..1`)
+  - `zoom` — focal length in mm (for zoom lenses)
+- Analysis/share params:
+  - `el` — selected element id (single-lens view)
+  - `ael`, `bel` — selected element ids (comparison panes A/B)
+  - `gm=1` — open glass-map overlay
+  - `bo=1` — open bokeh overlay
+  - `ad=1` — open analysis drawer
+  - `tab` — active analysis drawer tab (`aberrations`, `coma`, `distortion`, `breathing`, `vignetting`, `pupils`)
+
+Example URLs:
+
+- Single lens:
+  - `/lens/NikkorZ50f12?focus=0.300&el=7&gm=1&ad=1&tab=coma`
+- Comparison:
+  - `/compare/NikkorZ50f12/Nokton50f1?ael=3&bel=5&bo=1&ad=1&tab=distortion`
+
 ## SEO Pipeline
 
 - Route-level metadata is managed through [`src/components/SEOHead.tsx`](src/components/SEOHead.tsx), including canonical URLs, robots directives, social image tags, and JSON-LD payloads.

@@ -96,6 +96,7 @@ interface LensDiagramLoadedStateProps {
   adapters: {
     onAnalysisDrawerToggle: (open: boolean) => void;
     onAnalysisTabChange: (tab: string) => void;
+    onGlassMapToggle: (open: boolean) => void;
     onBokehPreviewToggle: (open: boolean) => void;
     onAberrationsExpandedChange: (expanded: boolean) => void;
     onEffectiveApertureChange: (expanded: boolean) => void;
@@ -312,14 +313,14 @@ export default function LensDiagramLoadedState({
               chromB={chromB}
               chromSpread={chromSpread ?? null}
               rayTracksF={rayTracksF}
-              onOpenAbbeDiagram={overlays.openAbbeDiagram}
+              onOpenAbbeDiagram={() => adapters.onGlassMapToggle(true)}
             />
           )}
         </div>
       </div>
 
       {overlays.showAbbeDiagram && (
-        <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
+        <OverlayModal onClose={() => adapters.onGlassMapToggle(false)} theme={t} maxWidth={580}>
           <AbbeDiagram
             L={L}
             t={t}

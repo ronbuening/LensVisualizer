@@ -27,6 +27,7 @@ export const SET_ZOOM_T = "SET_ZOOM_T";
 export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
+export const SET_SELECTED_ELEMENT = "SET_SELECTED_ELEMENT";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
@@ -62,6 +63,7 @@ const PANEL_FIELDS = new Set([
   "showEffectiveAperture",
   "aberrationsExpanded",
   "analysisDrawerOpen",
+  "glassMapOpen",
   "zoomPanActive",
   "bokehPreviewOpen",
 ]);
@@ -123,10 +125,13 @@ export function createInitialState(
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
-      analysisDrawerOpen: false,
-      analysisDrawerTab: prefs.analysisDrawerTab ?? "aberrations",
+      analysisDrawerOpen: urlState.analysisDrawerOpen ?? false,
+      analysisDrawerTab: urlState.analysisDrawerTab ?? prefs.analysisDrawerTab ?? "aberrations",
+      glassMapOpen: urlState.glassMapOpen ?? false,
       zoomPanActive: false,
-      bokehPreviewOpen: false,
+      bokehPreviewOpen: urlState.bokehPreviewOpen ?? false,
+      selectedElementA: urlState.selectedElementA ?? null,
+      selectedElementB: urlState.selectedElementB ?? null,
     },
     overlays: {
       showAbout: false,
@@ -192,6 +197,16 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_PANEL_EXPANDED:
       if (!PANEL_FIELDS.has(action.panel)) return state;
       return { ...state, panels: { ...state.panels, [action.panel]: action.expanded } };
+
+    case SET_SELECTED_ELEMENT:
+      return {
+        ...state,
+        panels: {
+          ...state.panels,
+          selectedElementA: action.panel === "a" ? action.elementId : state.panels.selectedElementA,
+          selectedElementB: action.panel === "b" ? action.elementId : state.panels.selectedElementB,
+        },
+      };
 
     /* ── Analysis drawer tab selection ── */
     case SET_ANALYSIS_TAB:

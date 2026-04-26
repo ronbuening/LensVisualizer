@@ -9,6 +9,7 @@
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
 import {
   buildComparisonURL,
+  encodeAnalysisViewParams,
   encodeSliderParams,
   focalLengthToZoomT,
   zoomTToFocalLength,
@@ -35,6 +36,21 @@ interface UseURLSyncResult {
   updateURLWithSliders: () => void;
 }
 
+interface SliderURLState {
+  zoom?: number | null;
+  focus?: number;
+  aperture?: number;
+}
+
+interface ShareURLState {
+  analysisDrawerOpen: boolean;
+  analysisDrawerTab: string;
+  glassMapOpen: boolean;
+  bokehPreviewOpen: boolean;
+  selectedElementA: number | null;
+  selectedElementB: number | null;
+}
+
 function getComparisonZoomLens(comparisonLenses: ComparisonLensesParam): ZoomConvertibleLens | null {
   if (!comparisonLenses || comparisonLenses.error) return null;
   const { LA, LB } = comparisonLenses as ComparisonLenses;
@@ -50,6 +66,15 @@ function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
   };
 }
 
+function mapSingleLensElementParam(params: URLSearchParams): void {
+  const singleElement = params.get("ael");
+  if (singleElement) {
+    params.delete("ael");
+    params.set("el", singleElement);
+  }
+  params.delete("bel");
+}
+
 export default function useURLSync(
   state: LensState,
   dispatch: Dispatch<LensAction>,
@@ -57,10 +82,85 @@ export default function useURLSync(
   isLensPage?: boolean,
   isComparePage?: boolean,
 ): UseURLSyncResult {
-  const { lens, sliders, sharedSliders } = state;
+  const { lens, sliders, sharedSliders, panels } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
   const { focusT, zoomT, stopdownT } = sliders;
   const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const { analysisDrawerOpen, analysisDrawerTab, glassMapOpen, bokehPreviewOpen, selectedElementA, selectedElementB } =
+    panels;
+
+  const isPathBasedRoute = (isLensPage && !comparing) || isComparePage;
+
+  const buildShareState = useCallback(
+    (): ShareURLState => ({
+      analysisDrawerOpen,
+      analysisDrawerTab,
+      glassMapOpen,
+      bokehPreviewOpen,
+      selectedElementA,
+      selectedElementB: comparing ? selectedElementB : null,
+    }),
+    [
+      analysisDrawerOpen,
+      analysisDrawerTab,
+      glassMapOpen,
+      bokehPreviewOpen,
+      selectedElementA,
+      selectedElementB,
+      comparing,
+    ],
+  );
+
+  const buildSliderState = useCallback(
+    (includeZoom: boolean): SliderURLState => {
+      const next: SliderURLState = {};
+      if (comparing) {
+        if (sharedFocusT > 0) next.focus = sharedFocusT;
+        if (sharedStopdownT > 0) next.aperture = sharedStopdownT;
+        if (includeZoom && sharedZoomT > 0) {
+          const zoomLens = getComparisonZoomLens(comparisonLenses);
+          if (zoomLens) next.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
+        }
+      } else {
+        if (focusT > 0) next.focus = focusT;
+        if (stopdownT > 0) next.aperture = stopdownT;
+        if (includeZoom && zoomT > 0) {
+          const zoomLens = getCatalogZoomLens(lensKeyA);
+          if (zoomLens) next.zoom = zoomTToFocalLength(zoomT, zoomLens);
+        }
+      }
+      return next;
+    },
+    [comparing, sharedFocusT, sharedStopdownT, sharedZoomT, comparisonLenses, focusT, stopdownT, zoomT, lensKeyA],
+  );
+
+  const buildSearchForPathRoute = useCallback(
+    (sliderState: SliderURLState, shareState: ShareURLState): string => {
+      const params = encodeSliderParams(sliderState);
+      const viewParams = encodeAnalysisViewParams(shareState);
+      viewParams.forEach((value, key) => params.set(key, value));
+      if (!comparing) mapSingleLensElementParam(params);
+      return params.toString() ? `?${params.toString()}` : "";
+    },
+    [comparing],
+  );
+
+  const syncURL = useCallback(
+    (sliderState: SliderURLState, shareState: ShareURLState): void => {
+      if (isPathBasedRoute) {
+        const search = buildSearchForPathRoute(sliderState, shareState);
+        if (search !== window.location.search) {
+          history.replaceState(null, "", window.location.pathname + search);
+        }
+        return;
+      }
+      const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, { ...sliderState, ...shareState });
+      if (url !== window.location.search) {
+        history.replaceState(null, "", url || window.location.pathname);
+      }
+    },
+    [isPathBasedRoute, buildSearchForPathRoute, comparing, lensKeyA, lensKeyB],
+  );
 
   /* ── Refs ── */
   const urlUpdateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -114,51 +214,17 @@ export default function useURLSync(
   const updateURLWithSliders = useCallback((): void => {
     if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
     urlUpdateTimer.current = setTimeout(() => {
-      const sliderState: { zoom?: number | null; focus?: number; aperture?: number } = {};
-      if (comparing) {
-        if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
-        if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
-        const zoomLens = getComparisonZoomLens(comparisonLenses);
-        if (zoomLens && sharedZoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
-        }
-      } else {
-        if (focusT > 0) sliderState.focus = focusT;
-        if (stopdownT > 0) sliderState.aperture = stopdownT;
-        const zoomLens = getCatalogZoomLens(lensKeyA);
-        if (zoomLens && zoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(zoomT, zoomLens);
-        }
-      }
-      if ((isLensPage && !comparing) || isComparePage) {
-        // On lens/compare pages, only encode slider params — the pathname already has the lens key(s)
-        const params = encodeSliderParams(sliderState);
-        const search = params.toString() ? `?${params.toString()}` : "";
-        if (search !== window.location.search) {
-          history.replaceState(null, "", window.location.pathname + search);
-        }
-      } else {
-        const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
-        const current = window.location.search;
-        if (url !== current) {
-          history.replaceState(null, "", url || window.location.pathname);
-        }
-      }
+      const sliderState = buildSliderState(true);
+      const shareState = buildShareState();
+      syncURL(sliderState, shareState);
     }, 300);
-  }, [
-    comparing,
-    lensKeyA,
-    lensKeyB,
-    focusT,
-    stopdownT,
-    zoomT,
-    sharedFocusT,
-    sharedStopdownT,
-    sharedZoomT,
-    comparisonLenses,
-    isLensPage,
-    isComparePage,
-  ]);
+  }, [buildSliderState, buildShareState, syncURL]);
+
+  useEffect(() => {
+    const sliderState = buildSliderState(false);
+    const shareState = buildShareState();
+    syncURL(sliderState, shareState);
+  }, [buildSliderState, buildShareState, syncURL]);
 
   return { updateURLWithSliders };
 }

@@ -87,8 +87,11 @@ export default function LensDiagramPanel({
     aberrationsExpanded,
     analysisDrawerOpen,
     analysisDrawerTab,
+    glassMapOpen,
     zoomPanActive,
     bokehPreviewOpen,
+    selectedElementA,
+    selectedElementB,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -98,19 +101,24 @@ export default function LensDiagramPanel({
 
   /* ── Extracted hooks ── */
   const adapters = useDispatchAdapters();
-  const overlays = useOverlayState(lensKey);
+  const overlayState = useOverlayState(lensKey);
   const { headerRef, headerHeight } = useHeaderHeight({ panelId, lensKey, onHeaderHeight });
   const { flashKey, flashVisible, flashFading } = useFlashOverlay(flashOverlay);
 
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
-  const [sel, setSel] = useState<number | null>(null);
+  const panelSide: "a" | "b" = panelId === "b" ? "b" : "a";
+  const [sel, setSel] = useState<number | null>(panelSide === "b" ? selectedElementB : selectedElementA);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setHov(null);
-    setSel(null);
-  }, [lensKey]);
+    setSel(panelSide === "b" ? selectedElementB : selectedElementA);
+  }, [lensKey, panelSide, selectedElementA, selectedElementB]);
+
+  useEffect(() => {
+    setSel(panelSide === "b" ? selectedElementB : selectedElementA);
+  }, [panelSide, selectedElementA, selectedElementB]);
 
   /* ── Side-panel overflow detection ── */
   const useSideLayout = useSideLayoutDetection({
@@ -161,12 +169,21 @@ export default function LensDiagramPanel({
       if (sel === eid) {
         setSel(null);
         setHov(null);
+        adapters.onSelectedElementChange(panelSide, null);
       } else {
         setSel(eid);
+        adapters.onSelectedElementChange(panelSide, eid);
       }
     },
-    [sel],
+    [adapters, panelSide, sel],
   );
+
+  const overlays = {
+    ...overlayState,
+    showAbbeDiagram: glassMapOpen,
+    openAbbeDiagram: () => adapters.onGlassMapToggle(true),
+    closeAbbeDiagram: () => adapters.onGlassMapToggle(false),
+  };
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;

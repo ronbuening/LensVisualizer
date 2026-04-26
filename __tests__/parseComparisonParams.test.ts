@@ -93,6 +93,25 @@ describe("parseComparisonParams", () => {
     expect(result.focus).toBe(0.6);
     expect(result.aperture).toBe(0.2);
   });
+
+  it("parses shareable analysis/query params in single mode", () => {
+    const result = parseComparisonParams("?lens=Sonnar50f15&el=12&gm=1&bo=1&ad=1&tab=distortion", KEYS);
+    expect(result.selectedElementA).toBe(12);
+    expect(result.glassMapOpen).toBe(true);
+    expect(result.bokehPreviewOpen).toBe(true);
+    expect(result.analysisDrawerOpen).toBe(true);
+    expect(result.analysisDrawerTab).toBe("distortion");
+  });
+
+  it("parses shareable analysis/query params in comparison mode", () => {
+    const result = parseComparisonParams("?a=NikkorZ50f12&b=Nokton50f1&ael=3&bel=7&gm=1&bo=1&ad=1&tab=coma", KEYS);
+    expect(result.selectedElementA).toBe(3);
+    expect(result.selectedElementB).toBe(7);
+    expect(result.glassMapOpen).toBe(true);
+    expect(result.bokehPreviewOpen).toBe(true);
+    expect(result.analysisDrawerOpen).toBe(true);
+    expect(result.analysisDrawerTab).toBe("coma");
+  });
 });
 
 describe("buildComparisonURL", () => {
@@ -130,6 +149,23 @@ describe("buildComparisonURL", () => {
   it("appends slider params in comparison mode", () => {
     const url = buildComparisonURL(true, "NikkorZ50f12", "Nokton50f1", { focus: 0.6 });
     expect(url).toBe("?a=NikkorZ50f12&b=Nokton50f1&focus=0.600");
+  });
+
+  it("encodes shareable view params only when enabled", () => {
+    const url = buildComparisonURL(true, "NikkorZ50f12", "Nokton50f1", {
+      glassMapOpen: true,
+      bokehPreviewOpen: true,
+      analysisDrawerOpen: true,
+      analysisDrawerTab: "coma",
+      selectedElementA: 5,
+      selectedElementB: 8,
+    });
+    expect(url).toBe("?a=NikkorZ50f12&b=Nokton50f1&ael=5&bel=8&gm=1&bo=1&ad=1&tab=coma");
+  });
+
+  it("uses single-lens element param key el", () => {
+    const url = buildComparisonURL(false, "Sonnar50f15", "", { selectedElementA: 5 });
+    expect(url).toBe("?lens=Sonnar50f15&el=5");
   });
 });
 
