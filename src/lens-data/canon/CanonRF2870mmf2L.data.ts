@@ -28,9 +28,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Not listed in patent. Estimated via combined marginal + chief   ║
  * ║    ray trace at all three zoom positions (80% field vignetting     ║
- * ║    model, 5% mechanical clearance), taking the maximum at each    ║
- * ║    surface, then locally reduced where cross-gap diagnostics show ║
- * ║    hidden trim. Front group capped at ≈ 44.5 mm; STO sd = 16.0. ║
+ * ║    model, 5% mechanical clearance), then visually calibrated      ║
+ * ║    against Canon's published construction diagram so the front    ║
+ * ║    collector dominates and rear groups keep proportional height.  ║
+ * ║    Front group capped at ≈ 44.5 mm; STO sd = 16.0.              ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -316,24 +317,24 @@ const LENS_DATA = {
     // ── Group 1: Front Collector ──
     // Cemented doublet D1 (L1 + L2)
     { label: "1", R: 187.418, d: 2.2, nd: 1.8081, elemId: 1, sd: 44.5 },
-    { label: "2", R: 76.661, d: 8.55, nd: 1.72916, elemId: 2, sd: 44.5 },
-    { label: "3", R: 335.605, d: 0.15, nd: 1.0, elemId: 0, sd: 39.25 },
+    { label: "2", R: 76.661, d: 8.55, nd: 1.72916, elemId: 2, sd: 44.0 },
+    { label: "3", R: 335.605, d: 0.15, nd: 1.0, elemId: 0, sd: 38.0 },
     // L3 singlet
-    { label: "4", R: 58.97, d: 8.05, nd: 1.7725, elemId: 3, sd: 36.0 },
-    { label: "5", R: 158.73, d: 3.93, nd: 1.0, elemId: 0, sd: 35.0 }, // [var: G1–G2]
+    { label: "4", R: 58.97, d: 8.05, nd: 1.7725, elemId: 3, sd: 32.0 },
+    { label: "5", R: 158.73, d: 3.93, nd: 1.0, elemId: 0, sd: 30.8 }, // [var: G1–G2]
 
     // ── Group 2: Variator ──
     // L4 singlet (1× asph front)
-    { label: "6A", R: 167.209, d: 1.55, nd: 1.76902, elemId: 4, sd: 20.5 },
+    { label: "6A", R: 167.209, d: 1.55, nd: 1.76902, elemId: 4, sd: 22.8 },
     { label: "7", R: 20.639, d: 9.56, nd: 1.0, elemId: 0, sd: 18.5 },
     // Cemented doublet D2 (L5 + L6)
     { label: "8", R: -49.152, d: 1.0, nd: 1.76385, elemId: 5, sd: 14.8 },
     { label: "9", R: 26.487, d: 8.15, nd: 1.85478, elemId: 6, sd: 16.1 },
     { label: "10", R: -51.463, d: 1.45, nd: 1.0, elemId: 0, sd: 16.5 },
     // Cemented doublet D3 (L7 + L8, rear asph)
-    { label: "11", R: -42.283, d: 5.85, nd: 1.48749, elemId: 7, sd: 16.5 },
+    { label: "11", R: -42.283, d: 5.85, nd: 1.48749, elemId: 7, sd: 16.7 },
     { label: "12", R: -19.11, d: 1.2, nd: 1.883, elemId: 8, sd: 16.25 },
-    { label: "13A", R: -64.186, d: 15.61, nd: 1.0, elemId: 0, sd: 16.5 }, // [var: G2–G3]
+    { label: "13A", R: -64.186, d: 15.61, nd: 1.0, elemId: 0, sd: 16.8 }, // [var: G2–G3]
 
     // ── Aperture Stop ──
     { label: "STO", R: 1e15, d: 0.3, nd: 1.0, elemId: 0, sd: 16.0 },
@@ -343,12 +344,12 @@ const LENS_DATA = {
     { label: "15", R: 55.781, d: 5.05, nd: 1.72916, elemId: 9, sd: 17.0 },
     { label: "16", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 18.0 },
     // L10 singlet (1× asph rear)
-    { label: "17", R: 42.901, d: 9.5, nd: 1.804, elemId: 10, sd: 18.5 },
-    { label: "18A", R: -87.269, d: 3.8, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "17", R: 42.901, d: 9.5, nd: 1.804, elemId: 10, sd: 19.2 },
+    { label: "18A", R: -87.269, d: 3.8, nd: 1.0, elemId: 0, sd: 19.4 },
     // Cemented doublet D4 (L11 + L12, UD)
-    { label: "19", R: -50.369, d: 1.5, nd: 1.738, elemId: 11, sd: 18.5 },
-    { label: "20", R: 24.706, d: 7.7, nd: 1.497, elemId: 12, sd: 18.5 },
-    { label: "21", R: 166.989, d: 6.08, nd: 1.0, elemId: 0, sd: 19.5 }, // [var: G3–G4, includes AP offset]
+    { label: "19", R: -50.369, d: 1.5, nd: 1.738, elemId: 11, sd: 19.0 },
+    { label: "20", R: 24.706, d: 7.7, nd: 1.497, elemId: 12, sd: 19.2 },
+    { label: "21", R: 166.989, d: 6.08, nd: 1.0, elemId: 0, sd: 18.8 }, // [var: G3–G4, includes AP offset]
 
     // ── Group 4: Rear Image-Forming ──
     // L13 singlet (Super UD)
@@ -358,16 +359,16 @@ const LENS_DATA = {
     { label: "24", R: 48.839, d: 5.5, nd: 1.59522, elemId: 14, sd: 20.0 },
     { label: "25", R: -100.131, d: 0.57, nd: 1.0, elemId: 0, sd: 18.45 },
     // Cemented doublet D5 (L15 + L16, UD)
-    { label: "26", R: 66.531, d: 4.55, nd: 1.497, elemId: 15, sd: 19.8 },
-    { label: "27", R: -115.19, d: 1.2, nd: 1.8061, elemId: 16, sd: 19.1 },
-    { label: "28", R: 51.069, d: 3.84, nd: 1.0, elemId: 0, sd: 18.5 },
+    { label: "26", R: 66.531, d: 4.55, nd: 1.497, elemId: 15, sd: 18.6 },
+    { label: "27", R: -115.19, d: 1.2, nd: 1.8061, elemId: 16, sd: 17.8 },
+    { label: "28", R: 51.069, d: 3.84, nd: 1.0, elemId: 0, sd: 17.2 },
     // L17 singlet (double-asphere)
     { label: "29A", R: -1000.0, d: 3.0, nd: 1.854, elemId: 17, sd: 13.7 },
     { label: "30A", R: 119.129, d: 3.42, nd: 1.0, elemId: 0, sd: 14.5 },
     // Cemented doublet D6 (L18 + L19, ultra-high-index)
-    { label: "31", R: -39.992, d: 1.3, nd: 1.48749, elemId: 18, sd: 18.0 },
-    { label: "32", R: 50.003, d: 6.3, nd: 2.001, elemId: 19, sd: 18.5 },
-    { label: "33", R: -131.617, d: 19.71, nd: 1.0, elemId: 0, sd: 19.5 }, // [var: BFD, includes CG path]
+    { label: "31", R: -39.992, d: 1.3, nd: 1.48749, elemId: 18, sd: 18.6 },
+    { label: "32", R: 50.003, d: 6.3, nd: 2.001, elemId: 19, sd: 19.8 },
+    { label: "33", R: -131.617, d: 19.71, nd: 1.0, elemId: 0, sd: 20.8 }, // [var: BFD, includes CG path]
   ],
 
   /* ── Aspherical coefficients ── */

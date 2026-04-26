@@ -15,11 +15,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    published in the patent.                                        ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    SDs estimated from paraxial marginal + chief ray trace at       ║
- * ║    60% off-axis field fraction, capped by element edge-thickness   ║
- * ║    constraints and the 82 mm filter thread (~39 mm max radius).   ║
- * ║    Rear-group SDs may be vignetting-limited — physically correct  ║
- * ║    for this telephoto architecture.                                ║
+ * ║    SDs are presentation clear-aperture estimates tuned against     ║
+ * ║    Canon's published construction diagram: large front positive    ║
+ * ║    unit, compact post-stop focus element, and a rear group that     ║
+ * ║    opens back up toward the mount while staying within renderer     ║
+ * ║    edge-thickness and cross-gap limits.                            ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -270,12 +270,12 @@ const LENS_DATA = {
     { label: "2", R: 245.193, d: 0.35, nd: 1.0, elemId: 0, sd: 38.2 }, // L1 rear → air
     { label: "3", R: 62.217, d: 9.16, nd: 1.497, elemId: 2, sd: 35.6 }, // L2 front
     { label: "4", R: 223.597, d: 0.55, nd: 1.0, elemId: 0, sd: 35.1 }, // L2 rear → air
-    { label: "5", R: 56.551, d: 10.42, nd: 1.497, elemId: 3, sd: 26.4 }, // L3 front (D1)
-    { label: "6", R: 799.841, d: 3.59, nd: 1.77047, elemId: 4, sd: 26.4 }, // L3→L4 junction (D1)
-    { label: "7", R: 33.661, d: 1.89, nd: 1.0, elemId: 0, sd: 26.4 }, // L4 rear → air
-    { label: "8", R: 40.413, d: 10.28, nd: 1.497, elemId: 5, sd: 20.6 }, // L5 front (D2)
-    { label: "9", R: -185.049, d: 1.9, nd: 1.77047, elemId: 6, sd: 20.6 }, // L5→L6 junction (D2)
-    { label: "10", R: 798.092, d: 3.38, nd: 1.0, elemId: 0, sd: 20.6 }, // L6 rear → air
+    { label: "5", R: 56.551, d: 10.42, nd: 1.497, elemId: 3, sd: 28.8 }, // L3 front (D1)
+    { label: "6", R: 799.841, d: 3.59, nd: 1.77047, elemId: 4, sd: 28.8 }, // L3→L4 junction (D1)
+    { label: "7", R: 33.661, d: 1.89, nd: 1.0, elemId: 0, sd: 28.0 }, // L4 rear → air
+    { label: "8", R: 40.413, d: 10.28, nd: 1.497, elemId: 5, sd: 21.9 }, // L5 front (D2)
+    { label: "9", R: -185.049, d: 1.9, nd: 1.77047, elemId: 6, sd: 21.9 }, // L5→L6 junction (D2)
+    { label: "10", R: 798.092, d: 3.38, nd: 1.0, elemId: 0, sd: 21.9 }, // L6 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R: 1e15, d: 2.45, nd: 1.0, elemId: 0, sd: 18.6 }, // d11 variable
@@ -285,27 +285,27 @@ const LENS_DATA = {
     { label: "13", R: 38.615, d: 24.03, nd: 1.0, elemId: 0, sd: 17.8 }, // L7 rear → air (d13 variable)
 
     // ── L3a subunit: D3 ──
-    { label: "14", R: 157.599, d: 1.25, nd: 1.92286, elemId: 8, sd: 17.0 }, // L8 front (D3)
-    { label: "15", R: 47.803, d: 4.6, nd: 1.804, elemId: 9, sd: 17.0 }, // L8→L9 junction (D3)
-    { label: "16", R: -142.411, d: 1.8, nd: 1.0, elemId: 0, sd: 17.0 }, // L9 rear → air
+    { label: "14", R: 157.599, d: 1.25, nd: 1.92286, elemId: 8, sd: 16.2 }, // L8 front (D3)
+    { label: "15", R: 47.803, d: 4.6, nd: 1.804, elemId: 9, sd: 16.2 }, // L8→L9 junction (D3)
+    { label: "16", R: -142.411, d: 1.8, nd: 1.0, elemId: 0, sd: 16.2 }, // L9 rear → air
 
     // ── L3b subunit: IS unit (L10 + L11) ──
-    { label: "17", R: -295.214, d: 2.08, nd: 1.92286, elemId: 10, sd: 18.4 }, // L10 front
-    { label: "18", R: -73.431, d: 0.97, nd: 1.0, elemId: 0, sd: 18.4 }, // L10 rear → air
-    { label: "19", R: -88.195, d: 1.0, nd: 1.91082, elemId: 11, sd: 18.7 }, // L11 front
-    { label: "20", R: 54.928, d: 3.89, nd: 1.0, elemId: 0, sd: 18.6 }, // L11 rear → air
+    { label: "17", R: -295.214, d: 2.08, nd: 1.92286, elemId: 10, sd: 18.0 }, // L10 front
+    { label: "18", R: -73.431, d: 0.97, nd: 1.0, elemId: 0, sd: 18.0 }, // L10 rear → air
+    { label: "19", R: -88.195, d: 1.0, nd: 1.91082, elemId: 11, sd: 18.4 }, // L11 front
+    { label: "20", R: 54.928, d: 3.89, nd: 1.0, elemId: 0, sd: 18.4 }, // L11 rear → air
 
     // ── L3c subunit: rear corrector ──
-    { label: "21", R: 40.006, d: 9.01, nd: 1.60311, elemId: 12, sd: 18.7 }, // L12 front (D4)
-    { label: "22", R: -50.592, d: 1.5, nd: 1.84666, elemId: 13, sd: 18.7 }, // L12→L13 junction (D4)
-    { label: "23", R: 797.299, d: 4.02, nd: 1.0, elemId: 0, sd: 18.7 }, // L13 rear → air
-    { label: "24", R: 197.831, d: 6.5, nd: 2.00069, elemId: 14, sd: 19.1 }, // L14 front
-    { label: "25", R: -52.908, d: 1.5, nd: 1.0, elemId: 0, sd: 18.9 }, // L14 rear → air
-    { label: "26", R: -59.824, d: 1.6, nd: 1.65844, elemId: 15, sd: 16.7 }, // L15 front (D5)
-    { label: "27", R: 31.679, d: 7.95, nd: 1.80518, elemId: 16, sd: 16.7 }, // L15→L16 junction (D5)
-    { label: "28", R: 207.181, d: 8.55, nd: 1.0, elemId: 0, sd: 16.7 }, // L16 rear → air
-    { label: "29", R: -28.564, d: 1.6, nd: 1.58913, elemId: 17, sd: 14.6 }, // L17 front
-    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 14.6 }, // L17 rear → image plane (BFD; cover glass modeled separately in camera body)
+    { label: "21", R: 40.006, d: 9.01, nd: 1.60311, elemId: 12, sd: 18.0 }, // L12 front (D4)
+    { label: "22", R: -50.592, d: 1.5, nd: 1.84666, elemId: 13, sd: 18.0 }, // L12→L13 junction (D4)
+    { label: "23", R: 797.299, d: 4.02, nd: 1.0, elemId: 0, sd: 18.0 }, // L13 rear → air
+    { label: "24", R: 197.831, d: 6.5, nd: 2.00069, elemId: 14, sd: 20.0 }, // L14 front
+    { label: "25", R: -52.908, d: 1.5, nd: 1.0, elemId: 0, sd: 19.4 }, // L14 rear → air
+    { label: "26", R: -59.824, d: 1.6, nd: 1.65844, elemId: 15, sd: 18.2 }, // L15 front (D5)
+    { label: "27", R: 31.679, d: 7.95, nd: 1.80518, elemId: 16, sd: 18.2 }, // L15→L16 junction (D5)
+    { label: "28", R: 207.181, d: 8.55, nd: 1.0, elemId: 0, sd: 18.8 }, // L16 rear → air
+    { label: "29", R: -28.564, d: 1.6, nd: 1.58913, elemId: 17, sd: 18.5 }, // L17 front
+    { label: "30", R: -50.386, d: 12.63, nd: 1.0, elemId: 0, sd: 18.5 }, // L17 rear → image plane (BFD; cover glass modeled separately in camera body)
   ],
 
   /* ── Aspherical coefficients ── */

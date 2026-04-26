@@ -24,9 +24,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    offAxisFieldFrac = 0.60 with ~8–10% mechanical clearance.      ║
  * ║    Front element SD constrained by edge thickness (biconvex       ║
  * ║    R1=80.1/R2=−68.2 limits practical SD to ~25.5 mm despite      ║
- * ║    77 mm filter thread). Gap 7 (d=7.45 mm between G4 and G5)     ║
- * ║    is the binding cross-gap constraint, limiting the G4 rear      ║
- * ║    boundary to ~15.4 mm while G5 keeps the larger clear aperture. ║
+ * ║    77 mm filter thread). Values are diagram-refined so G3 reads  ║
+ * ║    smaller than D1, the first rear doublet is not undersized,    ║
+ * ║    and the rear field doublet reads fuller in the manufacturer   ║
+ * ║    section while preserving its tight front air-gap clearance.   ║
+ * ║    Gap 7 (d=7.45 mm between G4 and G5) remains the binding       ║
+ * ║    cross-gap constraint, limiting the G4 rear boundary to        ║
+ * ║    ~15.4 mm while G5 keeps the larger clear aperture.            ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -274,8 +278,8 @@ const LENS_DATA = {
     { label: "3", R: 52.862, d: 0.2, nd: 1.0, elemId: 0, sd: 23.0 }, // G2 rear → air
 
     // Singlet G3
-    { label: "4", R: 42.184, d: 7.47, nd: 2.001, elemId: 3, sd: 23.0 }, // G3 front
-    { label: "5", R: 2510.576, d: 0.7, nd: 1.0, elemId: 0, sd: 22.0 }, // G3 rear → air
+    { label: "4", R: 42.184, d: 7.47, nd: 2.001, elemId: 3, sd: 21.0 }, // G3 front
+    { label: "5", R: 2510.576, d: 0.7, nd: 1.0, elemId: 0, sd: 20.5 }, // G3 rear → air
 
     // Singlet G4
     { label: "6", R: 99.979, d: 1.6, nd: 1.65412, elemId: 4, sd: 19.0 }, // G4 front
@@ -291,9 +295,9 @@ const LENS_DATA = {
 
     // ── Rear Lens Group (LR): G7–G15 ──
     // Cemented doublet D3: G7 (UD) + G8
-    { label: "12", R: -1398.232, d: 10.02, nd: 1.497, elemId: 7, sd: 16.0 }, // G7 front
-    { label: "13", R: -20.985, d: 1.29, nd: 1.738, elemId: 8, sd: 18.0 }, // G7→G8 junction
-    { label: "14", R: 251.143, d: 0.44, nd: 1.0, elemId: 0, sd: 18.0 }, // G8 rear → air
+    { label: "12", R: -1398.232, d: 10.02, nd: 1.497, elemId: 7, sd: 17.5 }, // G7 front
+    { label: "13", R: -20.985, d: 1.29, nd: 1.738, elemId: 8, sd: 18.5 }, // G7→G8 junction
+    { label: "14", R: 251.143, d: 0.44, nd: 1.0, elemId: 0, sd: 18.5 }, // G8 rear → air
 
     // Cemented doublet D4: G9 + G10
     { label: "15", R: 87.566, d: 7.29, nd: 1.76385, elemId: 9, sd: 19.0 }, // G9 front
@@ -310,9 +314,9 @@ const LENS_DATA = {
     { label: "22", R: 40.56, d: 7.14, nd: 1.0, elemId: 0, sd: 19.5 }, // G13 rear → air
 
     // Cemented doublet D6: G14 + G15
-    { label: "23", R: -58.17, d: 1.21, nd: 1.673, elemId: 14, sd: 17.0 }, // G14 front
-    { label: "24", R: 105.985, d: 5.08, nd: 1.804, elemId: 15, sd: 17.0 }, // G14→G15 junction
-    { label: "25A", R: -216.191, d: 14.6, nd: 1.0, elemId: 0, sd: 16.5 }, // G15 rear (asph) → air (BFD)
+    { label: "23", R: -58.17, d: 1.21, nd: 1.673, elemId: 14, sd: 17.1 }, // G14 front
+    { label: "24", R: 105.985, d: 5.08, nd: 1.804, elemId: 15, sd: 21.5 }, // G14→G15 junction
+    { label: "25A", R: -216.191, d: 14.6, nd: 1.0, elemId: 0, sd: 21.5 }, // G15 rear (asph) → air (BFD)
   ],
 
   /* ── Aspherical coefficients ── */

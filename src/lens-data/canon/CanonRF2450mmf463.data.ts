@@ -20,9 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS: Patent does not list semi-diameters.      ║
  * ║    Estimated via combined marginal + chief ray paraxial trace at   ║
- * ║    wide and tele positions with ~8% mechanical clearance.          ║
- * ║    Front group SDs constrained by G1 rear surface slope limit      ║
- * ║    (sd/|R| < 0.90 at R₂ = 18.479 mm) and L1P edge thickness.     ║
+ * ║    wide and tele positions, then render-tuned against Canon's      ║
+ * ║    construction diagram. The published section shows a dominant    ║
+ * ║    first element, stepped-down front correctors, a compact L2       ║
+ * ║    stop-side cluster, small LP focus element, and taller rear L4.  ║
  * ║    Production lens has heavy vignetting at 24 mm, corrected        ║
  * ║    electronically — SDs reflect the optical clear aperture, not    ║
  * ║    the full field circle.                                          ║
@@ -160,31 +161,31 @@ const LENS_DATA = {
   surfaces: [
     // ─── L1 (Unit 1): Negative front group ───
     { label: "1", R: 238.756, d: 1.4, nd: 1.63854, elemId: 1, sd: 16.0 }, // G1 front
-    { label: "2", R: 18.479, d: 7.21, nd: 1.0, elemId: 0, sd: 14.5 }, // G1 rear → air
-    { label: "3A", R: 994.673, d: 3.7, nd: 1.5311, elemId: 2, sd: 14.2 }, // G2 front (asph)
-    { label: "4", R: 56.399, d: 0.3, nd: 1.0, elemId: 0, sd: 15.4 }, // G2 rear → air
-    { label: "5", R: 28.004, d: 3.6, nd: 1.69895, elemId: 3, sd: 15.5 }, // L1P front
-    { label: "6", R: 65.231, d: 27.85, nd: 1.0, elemId: 0, sd: 15.0 }, // L1P rear → air (var: d6, zoom only)
+    { label: "2", R: 18.479, d: 7.21, nd: 1.0, elemId: 0, sd: 14.4 }, // G1 rear → air
+    { label: "3A", R: 994.673, d: 3.7, nd: 1.5311, elemId: 2, sd: 14.0 }, // G2 front (asph)
+    { label: "4", R: 56.399, d: 0.3, nd: 1.0, elemId: 0, sd: 14.2 }, // G2 rear → air
+    { label: "5", R: 28.004, d: 3.6, nd: 1.69895, elemId: 3, sd: 13.2 }, // L1P front
+    { label: "6", R: 65.231, d: 27.85, nd: 1.0, elemId: 0, sd: 12.7 }, // L1P rear → air (var: d6, zoom only)
 
     // ─── L2 (Unit 2): Positive converging group (IS group) ───
-    { label: "7", R: 21.644, d: 3.0, nd: 1.90366, elemId: 4, sd: 9.5 }, // L2a front
-    { label: "8", R: -709.102, d: 2.6, nd: 1.0, elemId: 0, sd: 8.5 }, // L2a rear → air
-    { label: "9", R: -102.707, d: 0.7, nd: 1.84666, elemId: 5, sd: 7.0 }, // L2b front
-    { label: "10", R: 16.164, d: 0.37, nd: 1.0, elemId: 0, sd: 5.1 }, // L2b rear → air
-    { label: "11", R: 26.583, d: 2.05, nd: 1.7725, elemId: 6, sd: 6.5 }, // L2c front
-    { label: "12", R: -76.939, d: 2.0, nd: 1.0, elemId: 0, sd: 5.6 }, // L2c rear → air
+    { label: "7", R: 21.644, d: 3.0, nd: 1.90366, elemId: 4, sd: 8.0 }, // L2a front
+    { label: "8", R: -709.102, d: 2.6, nd: 1.0, elemId: 0, sd: 7.5 }, // L2a rear → air
+    { label: "9", R: -102.707, d: 0.7, nd: 1.84666, elemId: 5, sd: 5.8 }, // L2b front
+    { label: "10", R: 16.164, d: 0.37, nd: 1.0, elemId: 0, sd: 4.7 }, // L2b rear → air
+    { label: "11", R: 26.583, d: 2.05, nd: 1.7725, elemId: 6, sd: 5.8 }, // L2c front
+    { label: "12", R: -76.939, d: 2.0, nd: 1.0, elemId: 0, sd: 5.2 }, // L2c rear → air
 
     // ─── Aperture stop + flare-cutting stop ───
     { label: "STO", R: 1e15, d: 6.15, nd: 1.0, elemId: 0, sd: 4.9 }, // aperture diaphragm
-    { label: "14", R: 1e15, d: 10.04, nd: 1.0, elemId: 0, sd: 7.0 }, // flare stop FP (var: d14, zoom + focus)
+    { label: "14", R: 1e15, d: 10.04, nd: 1.0, elemId: 0, sd: 6.5 }, // flare stop FP (var: d14, zoom + focus)
 
     // ─── LR: Rear group ───
     // LP (Unit 3): Focus lens unit
-    { label: "15", R: -65.961, d: 2.95, nd: 1.48749, elemId: 7, sd: 11.0 }, // LP front
-    { label: "16", R: -21.205, d: 11.24, nd: 1.0, elemId: 0, sd: 12.0 }, // LP rear → air (var: d16, zoom + focus)
+    { label: "15", R: -65.961, d: 2.95, nd: 1.48749, elemId: 7, sd: 8.6 }, // LP front
+    { label: "16", R: -21.205, d: 11.24, nd: 1.0, elemId: 0, sd: 9.0 }, // LP rear → air (var: d16, zoom + focus)
     // L4 (Unit 4): Negative field corrector
-    { label: "17A", R: -90.404, d: 3.5, nd: 1.5311, elemId: 8, sd: 13.5 }, // L4 front (asph)
-    { label: "18A", R: -1111.779, d: 16.94, nd: 1.0, elemId: 0, sd: 14.0 }, // L4 rear (asph) → image (var: d18/BF, zoom only)
+    { label: "17A", R: -90.404, d: 3.5, nd: 1.5311, elemId: 8, sd: 11.8 }, // L4 front (asph)
+    { label: "18A", R: -1111.779, d: 16.94, nd: 1.0, elemId: 0, sd: 12.5 }, // L4 rear (asph) → image (var: d18/BF, zoom only)
   ],
 
   /* ── Aspherical coefficients ── */

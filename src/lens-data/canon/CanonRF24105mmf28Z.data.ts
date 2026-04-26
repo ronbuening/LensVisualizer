@@ -21,11 +21,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                          ║
  * ║    Estimated from combined marginal + chief ray envelope across   ║
- * ║    all zoom positions, constrained by positive edge thickness,    ║
- * ║    cross-gap sag intrusion (≤ 90% of gap), and 82 mm filter      ║
- * ║    thread (front elements capped at SD ≤ 39 mm). The replica     ║
- * ║    resin layer is capped separately because it is only 0.05 mm    ║
- * ║    thick at center. Significant                                  ║
+ * ║    all zoom positions, then refined against Canon's published     ║
+ * ║    construction diagram so rendered element heights follow the    ║
+ * ║    production silhouette more closely. Values remain constrained  ║
+ * ║    by positive edge thickness, cross-gap sag intrusion (≤ 90% of  ║
+ * ║    gap), and 82 mm filter thread (front elements capped at        ║
+ * ║    SD ≤ 39 mm). The replica resin layer is capped separately      ║
+ * ║    because it is only 0.05 mm thick at center. Significant        ║
  * ║    vignetting is expected at field corners, especially in L2.     ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
@@ -359,60 +361,60 @@ const LENS_DATA = {
   surfaces: [
     // ── L1: Fixed front positive group ──
     { label: "1", R: -266.746, d: 1.6, nd: 1.90043, elemId: 1, sd: 38.0 }, // E1 front
-    { label: "2", R: 98.34, d: 2.81, nd: 1.0, elemId: 0, sd: 30.3 }, // E1 rear → air
-    { label: "3", R: 192.058, d: 6.58, nd: 1.53775, elemId: 2, sd: 30.3 }, // E2 front
-    { label: "4", R: -241.263, d: 0.15, nd: 1.0, elemId: 0, sd: 34.8 }, // E2 rear → air
-    { label: "5", R: 119.575, d: 5.31, nd: 1.72916, elemId: 3, sd: 31.5 }, // E3 front
-    { label: "6", R: -1682.093, d: 0.15, nd: 1.0, elemId: 0, sd: 31.5 }, // E3 rear → air
-    { label: "7", R: 76.157, d: 6.72, nd: 1.72916, elemId: 4, sd: 28.1 }, // E4 front
-    { label: "8", R: -880.3, d: 0.8, nd: 1.0, elemId: 0, sd: 28.1 }, // E4 rear → air [var d8]
+    { label: "2", R: 98.34, d: 2.81, nd: 1.0, elemId: 0, sd: 31.1 }, // E1 rear → air
+    { label: "3", R: 192.058, d: 6.58, nd: 1.53775, elemId: 2, sd: 31.1 }, // E2 front
+    { label: "4", R: -241.263, d: 0.15, nd: 1.0, elemId: 0, sd: 33.0 }, // E2 rear → air
+    { label: "5", R: 119.575, d: 5.31, nd: 1.72916, elemId: 3, sd: 30.4 }, // E3 front
+    { label: "6", R: -1682.093, d: 0.15, nd: 1.0, elemId: 0, sd: 30.4 }, // E3 rear → air
+    { label: "7", R: 76.157, d: 6.72, nd: 1.72916, elemId: 4, sd: 26.4 }, // E4 front
+    { label: "8", R: -880.3, d: 0.8, nd: 1.0, elemId: 0, sd: 26.4 }, // E4 rear → air [var d8]
 
     // ── L2: Negative variator ──
-    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 25.0 }, // E5 front
-    { label: "10", R: 29.841, d: 5.73, nd: 1.0, elemId: 0, sd: 15.4 }, // E5 rear → air
-    { label: "11", R: -218.33, d: 1.0, nd: 1.59522, elemId: 6, sd: 15.4 }, // E6 front
-    { label: "12", R: 63.389, d: 3.69, nd: 1.0, elemId: 0, sd: 14.5 }, // E6 rear → air
-    { label: "13", R: -74.215, d: 1.1, nd: 1.497, elemId: 7, sd: 14.5 }, // E7 front (UD, cemented Da)
-    { label: "14", R: 41.057, d: 4.98, nd: 1.77047, elemId: 8, sd: 14.5 }, // E7→E8 junction (cemented Da)
-    { label: "15", R: -204.631, d: 42.76, nd: 1.0, elemId: 0, sd: 15.5 }, // E8 rear → air [var d15]
+    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 22.0 }, // E5 front
+    { label: "10", R: 29.841, d: 5.73, nd: 1.0, elemId: 0, sd: 15.8 }, // E5 rear → air
+    { label: "11", R: -218.33, d: 1.0, nd: 1.59522, elemId: 6, sd: 15.8 }, // E6 front
+    { label: "12", R: 63.389, d: 3.69, nd: 1.0, elemId: 0, sd: 14.9 }, // E6 rear → air
+    { label: "13", R: -74.215, d: 1.1, nd: 1.497, elemId: 7, sd: 14.9 }, // E7 front (UD, cemented Da)
+    { label: "14", R: 41.057, d: 4.98, nd: 1.77047, elemId: 8, sd: 15.8 }, // E7→E8 junction (cemented Da)
+    { label: "15", R: -204.631, d: 42.76, nd: 1.0, elemId: 0, sd: 16.6 }, // E8 rear → air [var d15]
 
     // ── L3: Positive compensator with aperture stop ──
     { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 15.2 }, // Aperture stop
-    { label: "17", R: 78.578, d: 3.15, nd: 1.84666, elemId: 9, sd: 15.6 }, // E9 front
-    { label: "18", R: -594.031, d: 0.6, nd: 1.0, elemId: 0, sd: 16.1 }, // E9 rear → air
-    { label: "19", R: 59.615, d: 1.2, nd: 2.001, elemId: 10, sd: 16.3 }, // E10 front (cemented Db)
-    { label: "20", R: 36.734, d: 7.47, nd: 1.51742, elemId: 11, sd: 16.3 }, // E10→E11 junction
-    { label: "21", R: -83.322, d: 3.11, nd: 1.0, elemId: 0, sd: 17.3 }, // E11 rear → air
+    { label: "17", R: 78.578, d: 3.15, nd: 1.84666, elemId: 9, sd: 16.4 }, // E9 front
+    { label: "18", R: -594.031, d: 0.6, nd: 1.0, elemId: 0, sd: 16.8 }, // E9 rear → air
+    { label: "19", R: 59.615, d: 1.2, nd: 2.001, elemId: 10, sd: 16.9 }, // E10 front (cemented Db)
+    { label: "20", R: 36.734, d: 7.47, nd: 1.51742, elemId: 11, sd: 16.9 }, // E10→E11 junction
+    { label: "21", R: -83.322, d: 3.11, nd: 1.0, elemId: 0, sd: 17.7 }, // E11 rear → air
     { label: "22A", R: -44.261, d: 0.05, nd: 1.59022, elemId: 12, sd: 15.5 }, // E12 front (replica asph, cemented Ha)
     { label: "23", R: -47.091, d: 1.2, nd: 1.7725, elemId: 13, sd: 15.5 }, // E12→E13 junction
-    { label: "24", R: -640.625, d: 19.63, nd: 1.0, elemId: 0, sd: 18.1 }, // E13 rear → air [var d24]
+    { label: "24", R: -640.625, d: 19.63, nd: 1.0, elemId: 0, sd: 17.4 }, // E13 rear → air [var d24]
 
     // ── L4: Rear positive relay ──
-    { label: "25", R: 255.634, d: 8.1, nd: 1.497, elemId: 14, sd: 17.8 }, // E14 front (UD, cemented Dc)
-    { label: "26", R: -27.474, d: 1.3, nd: 1.90043, elemId: 15, sd: 17.8 }, // E14→E15 junction
-    { label: "27", R: -222.061, d: 0.15, nd: 1.0, elemId: 0, sd: 18.8 }, // E15 rear → air
-    { label: "28", R: 41.537, d: 8.18, nd: 1.497, elemId: 16, sd: 20.2 }, // E16 front (UD)
-    { label: "29", R: -105.932, d: 2.3, nd: 1.0, elemId: 0, sd: 20.2 }, // E16 rear → air
-    { label: "30", R: 63.231, d: 6.49, nd: 1.497, elemId: 17, sd: 20.6 }, // E17 front (UD)
-    { label: "31", R: -97.379, d: 0.15, nd: 1.0, elemId: 0, sd: 20.6 }, // E17 rear → air
-    { label: "32A", R: 85.354, d: 2.4, nd: 1.854, elemId: 18, sd: 19.9 }, // E18 front (GMo asph, cemented Dd)
-    { label: "33", R: 34.925, d: 8.89, nd: 1.60311, elemId: 19, sd: 18.9 }, // E18→E19 junction
-    { label: "34", R: -78.017, d: 2.5, nd: 1.0, elemId: 0, sd: 18.9 }, // E19 rear → air [var d34]
+    { label: "25", R: 255.634, d: 8.1, nd: 1.497, elemId: 14, sd: 18.3 }, // E14 front (UD, cemented Dc)
+    { label: "26", R: -27.474, d: 1.3, nd: 1.90043, elemId: 15, sd: 18.3 }, // E14→E15 junction
+    { label: "27", R: -222.061, d: 0.15, nd: 1.0, elemId: 0, sd: 20.1 }, // E15 rear → air
+    { label: "28", R: 41.537, d: 8.18, nd: 1.497, elemId: 16, sd: 21.2 }, // E16 front (UD)
+    { label: "29", R: -105.932, d: 2.3, nd: 1.0, elemId: 0, sd: 21.2 }, // E16 rear → air
+    { label: "30", R: 63.231, d: 6.49, nd: 1.497, elemId: 17, sd: 21.9 }, // E17 front (UD)
+    { label: "31", R: -97.379, d: 0.15, nd: 1.0, elemId: 0, sd: 21.9 }, // E17 rear → air
+    { label: "32A", R: 85.354, d: 2.4, nd: 1.854, elemId: 18, sd: 21.0 }, // E18 front (GMo asph, cemented Dd)
+    { label: "33", R: 34.925, d: 8.89, nd: 1.60311, elemId: 19, sd: 19.7 }, // E18→E19 junction
+    { label: "34", R: -78.017, d: 2.5, nd: 1.0, elemId: 0, sd: 19.7 }, // E19 rear → air [var d34]
 
     // ── L5: Focus group A (Nano USM #1) ──
-    { label: "35", R: 157.315, d: 1.2, nd: 1.72916, elemId: 20, sd: 24.6 }, // E20 front
-    { label: "36", R: 28.256, d: 8.07, nd: 1.0, elemId: 0, sd: 23.0 }, // E20 rear → air [var d36]
+    { label: "35", R: 157.315, d: 1.2, nd: 1.72916, elemId: 20, sd: 19.4 }, // E20 front
+    { label: "36", R: 28.256, d: 8.07, nd: 1.0, elemId: 0, sd: 18.6 }, // E20 rear → air [var d36]
 
     // ── L6: Focus group B (Nano USM #2) ──
-    { label: "37A", R: 47.159, d: 4.54, nd: 1.58313, elemId: 21, sd: 21.6 }, // E21 front (GMo asph)
-    { label: "38", R: 160.935, d: 6.12, nd: 1.0, elemId: 0, sd: 21.6 }, // E21 rear → air [var d38]
+    { label: "37A", R: 47.159, d: 4.54, nd: 1.58313, elemId: 21, sd: 18.2 }, // E21 front (GMo asph)
+    { label: "38", R: 160.935, d: 6.12, nd: 1.0, elemId: 0, sd: 18.2 }, // E21 rear → air [var d38]
 
     // ── L7: Rear field corrector ──
-    { label: "39", R: 210.344, d: 5.69, nd: 1.80518, elemId: 22, sd: 18.5 }, // E22 front (cemented De)
-    { label: "40", R: -46.896, d: 1.5, nd: 1.48749, elemId: 23, sd: 18.5 }, // E22→E23 junction
-    { label: "41", R: 59.11, d: 9.57, nd: 1.0, elemId: 0, sd: 18.5 }, // E23 rear → air
-    { label: "42", R: -33.883, d: 1.2, nd: 2.00069, elemId: 24, sd: 18.5 }, // E24 front
-    { label: "43", R: -66.006, d: 11.63, nd: 1.0, elemId: 0, sd: 18.5 }, // E24 rear → BFD [var d43]
+    { label: "39", R: 210.344, d: 5.69, nd: 1.80518, elemId: 22, sd: 17.4 }, // E22 front (cemented De)
+    { label: "40", R: -46.896, d: 1.5, nd: 1.48749, elemId: 23, sd: 17.4 }, // E22→E23 junction
+    { label: "41", R: 59.11, d: 9.57, nd: 1.0, elemId: 0, sd: 17.0 }, // E23 rear → air
+    { label: "42", R: -33.883, d: 1.2, nd: 2.00069, elemId: 24, sd: 20.6 }, // E24 front
+    { label: "43", R: -66.006, d: 11.63, nd: 1.0, elemId: 0, sd: 21.8 }, // E24 rear → BFD [var d43]
   ],
 
   /* ── Aspherical coefficients ── */

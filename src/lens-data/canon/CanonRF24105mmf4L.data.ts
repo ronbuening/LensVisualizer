@@ -15,8 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Reversing groups: D27 (non-monotonic), D29 (non-monotonic).      ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent lists effective diameters; sd = effective_diameter / 2.  ║
- * ║    Values taken directly from patent Table (Numerical Example 2). ║
+ * ║    Patent lists effective diameters, but the published construction║
+ * ║    diagram shows a more tapered mechanical envelope. SDs are       ║
+ * ║    render-tuned from the patent table to keep element proportions  ║
+ * ║    closer to Canon's side-view drawing while preserving validation.║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -277,60 +279,60 @@ const LENS_DATA = {
   surfaces: [
     // ── L1: Unit L1 (positive, f = +88.25 mm) ──
     // L1 + L2 cemented doublet (D1)
-    { label: "1", R: 266.275, d: 1.8, nd: 1.8081, elemId: 1, sd: 31.5 },
-    { label: "2", R: 93.368, d: 6.52, nd: 1.72916, elemId: 2, sd: 30.65 }, // junction → L2
-    { label: "3", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 30.44 }, // L2 rear → air
+    { label: "1", R: 266.275, d: 1.8, nd: 1.8081, elemId: 1, sd: 30.8 },
+    { label: "2", R: 93.368, d: 6.52, nd: 1.72916, elemId: 2, sd: 30.0 }, // junction → L2
+    { label: "3", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 29.2 }, // L2 rear → air
     // L3 standalone
-    { label: "4", R: 49.826, d: 6.97, nd: 1.72916, elemId: 3, sd: 27.97 },
-    { label: "5", R: 126.155, d: 0.75, nd: 1.0, elemId: 0, sd: 27.37 }, // variable gap L1→L2
+    { label: "4", R: 49.826, d: 6.97, nd: 1.72916, elemId: 3, sd: 26.4 },
+    { label: "5", R: 126.155, d: 0.75, nd: 1.0, elemId: 0, sd: 25.2 }, // variable gap L1→L2
 
     // ── L2: Unit L2 (negative, f = −18.38 mm) ──
     // L4 standalone
-    { label: "6", R: 65.832, d: 1.25, nd: 1.95375, elemId: 4, sd: 15.69 },
-    { label: "7", R: 15.019, d: 8.19, nd: 1.0, elemId: 0, sd: 11.72 },
+    { label: "6", R: 65.832, d: 1.25, nd: 1.95375, elemId: 4, sd: 16.6 },
+    { label: "7", R: 15.019, d: 8.19, nd: 1.0, elemId: 0, sd: 12.3 },
     // L5 standalone (both surfaces aspherical)
-    { label: "8A", R: -33.476, d: 1.1, nd: 1.58313, elemId: 5, sd: 11.44 },
-    { label: "9A", R: 65.137, d: 0.15, nd: 1.0, elemId: 0, sd: 10.98 },
+    { label: "8A", R: -33.476, d: 1.1, nd: 1.58313, elemId: 5, sd: 11.45 },
+    { label: "9A", R: 65.137, d: 0.15, nd: 1.0, elemId: 0, sd: 11.15 },
     // L6 standalone (symmetric biconvex)
-    { label: "10", R: 40.325, d: 5.03, nd: 1.8081, elemId: 6, sd: 10.86 },
+    { label: "10", R: 40.325, d: 5.03, nd: 1.8081, elemId: 6, sd: 11.2 },
     { label: "11", R: -40.325, d: 0.97, nd: 1.0, elemId: 0, sd: 10.42 },
     // L7 standalone
-    { label: "12", R: -25.491, d: 1.0, nd: 1.804, elemId: 7, sd: 10.28 },
+    { label: "12", R: -25.491, d: 1.0, nd: 1.804, elemId: 7, sd: 10.4 },
     { label: "13", R: -63.435, d: 21.53, nd: 1.0, elemId: 0, sd: 10.05 }, // variable gap L2→L3
 
     // ── L3: Unit L3 (positive, f = +24.16 mm) ──
     // Aperture stop
     { label: "STO", R: 1e15, d: 0.3, nd: 1.0, elemId: 0, sd: 9.68 },
     // L8 standalone (plano-convex)
-    { label: "14", R: 44.965, d: 2.3, nd: 1.91082, elemId: 8, sd: 9.97 },
-    { label: "15", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 9.97 },
+    { label: "14", R: 44.965, d: 2.3, nd: 1.91082, elemId: 8, sd: 9.2 },
+    { label: "15", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 9.4 },
     // L9 + L10 cemented doublet (D2)
-    { label: "16", R: 21.533, d: 1.0, nd: 1.95375, elemId: 9, sd: 9.95 },
-    { label: "17", R: 13.108, d: 6.76, nd: 1.59522, elemId: 10, sd: 9.33 }, // junction → L10
-    { label: "18", R: -795.231, d: 1.37, nd: 1.0, elemId: 0, sd: 9.05 }, // L10 rear → air
+    { label: "16", R: 21.533, d: 1.0, nd: 1.95375, elemId: 9, sd: 10.5 },
+    { label: "17", R: 13.108, d: 6.76, nd: 1.59522, elemId: 10, sd: 10.2 }, // junction → L10
+    { label: "18", R: -795.231, d: 1.37, nd: 1.0, elemId: 0, sd: 9.8 }, // L10 rear → air
     // L11 + L12 cemented doublet (D3) — IS subunit
-    { label: "19", R: -152.936, d: 0.8, nd: 1.74951, elemId: 11, sd: 8.85 },
-    { label: "20", R: 16.038, d: 2.88, nd: 2.00069, elemId: 12, sd: 8.6 }, // junction → L12
-    { label: "21", R: 30.717, d: 3.81, nd: 1.0, elemId: 0, sd: 8.39 }, // L12 rear → air
+    { label: "19", R: -152.936, d: 0.8, nd: 1.74951, elemId: 11, sd: 11.8 },
+    { label: "20", R: 16.038, d: 2.88, nd: 2.00069, elemId: 12, sd: 11.5 }, // junction → L12
+    { label: "21", R: 30.717, d: 3.81, nd: 1.0, elemId: 0, sd: 11.2 }, // L12 rear → air
     // L13 + L14 cemented doublet (D4) — Gfp
-    { label: "22", R: 76.401, d: 0.75, nd: 1.78472, elemId: 13, sd: 8.4 },
-    { label: "23", R: 19.11, d: 3.57, nd: 1.497, elemId: 14, sd: 8.3 }, // junction → L14
-    { label: "24", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 8.36 }, // L14 rear → air
+    { label: "22", R: 76.401, d: 0.75, nd: 1.78472, elemId: 13, sd: 10.8 },
+    { label: "23", R: 19.11, d: 3.57, nd: 1.497, elemId: 14, sd: 10.7 }, // junction → L14
+    { label: "24", R: 1e15, d: 0.15, nd: 1.0, elemId: 0, sd: 10.7 }, // L14 rear → air
     // L15 standalone (both surfaces aspherical)
-    { label: "25A", R: 24.461, d: 7.26, nd: 1.58313, elemId: 15, sd: 9.31 },
-    { label: "26A", R: -25.212, d: 1.8, nd: 1.0, elemId: 0, sd: 9.88 }, // variable gap L3→L4
+    { label: "25A", R: 24.461, d: 7.26, nd: 1.58313, elemId: 15, sd: 11.6 },
+    { label: "26A", R: -25.212, d: 1.8, nd: 1.0, elemId: 0, sd: 12.0 }, // variable gap L3→L4
 
     // ── L4: Unit L4 (negative, f = −40.84 mm) — Focus group ──
-    { label: "27", R: 121.315, d: 0.75, nd: 1.72916, elemId: 16, sd: 10.0 },
-    { label: "28", R: 23.846, d: 11.59, nd: 1.0, elemId: 0, sd: 9.95 }, // variable gap L4→L5
+    { label: "27", R: 121.315, d: 0.75, nd: 1.72916, elemId: 16, sd: 9.6 },
+    { label: "28", R: 23.846, d: 11.59, nd: 1.0, elemId: 0, sd: 9.4 }, // variable gap L4→L5
 
     // ── L5: Unit L5 (negative, f = −68.35 mm) ──
-    { label: "29A", R: -43.071, d: 1.5, nd: 1.7645, elemId: 17, sd: 12.09 },
+    { label: "29A", R: -43.071, d: 1.5, nd: 1.7645, elemId: 17, sd: 13.0 },
     { label: "30A", R: -248.821, d: 0.8, nd: 1.0, elemId: 0, sd: 13.57 }, // variable gap L5→L6
 
     // ── L6: Unit L6 (positive, f = +72.43 mm) — Grp ──
-    { label: "31", R: -68.116, d: 4.5, nd: 1.804, elemId: 18, sd: 17.55 },
-    { label: "32", R: -32.318, d: 17.88, nd: 1.0, elemId: 0, sd: 18.0 }, // BFD (variable)
+    { label: "31", R: -68.116, d: 4.5, nd: 1.804, elemId: 18, sd: 16.8 },
+    { label: "32", R: -32.318, d: 17.88, nd: 1.0, elemId: 0, sd: 17.4 }, // BFD (variable)
   ],
 
   /* ── Aspherical coefficients ── */
