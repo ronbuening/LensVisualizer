@@ -34,6 +34,7 @@ export default function MakerPage() {
   if (!displayName) return <Navigate to="/makers" replace />;
 
   const lenses = lensesForMaker(maker);
+  if (lenses.length === 0) return <Navigate to="/makers" replace />;
   const details = getMakerDetails(maker);
 
   const seoDescription = details

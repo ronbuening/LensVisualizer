@@ -18,12 +18,15 @@ describe("build-route-sync", () => {
     }
   });
 
-  it("maker slugs match between runtime and build-time", () => {
-    const runtimeSlugs = allMakerSlugs().sort();
-    const buildSlugs = [...buildMeta.makerSlugs].sort();
-
-    expect(buildSlugs).toEqual(expect.arrayContaining(runtimeSlugs));
-    expect(runtimeSlugs).toEqual(expect.arrayContaining(buildSlugs));
+  it("every shipped maker slug is registered in the runtime prefix table", () => {
+    /* Runtime prefixes may include makers that have no lenses yet (entries are
+       seeded ahead of lens additions), so we only assert the one-way subset:
+       every maker that actually appears in build metadata must be registered
+       at runtime. The reverse direction is allowed to differ. */
+    const runtimeSlugs = new Set(allMakerSlugs());
+    for (const slug of buildMeta.makerSlugs) {
+      expect(runtimeSlugs.has(slug), `build slug "${slug}" missing from runtime MAKER_PREFIXES`).toBe(true);
+    }
   });
 
   it("routes array is non-empty and includes expected static routes", () => {
