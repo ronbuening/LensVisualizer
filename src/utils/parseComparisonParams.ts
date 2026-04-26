@@ -1,5 +1,9 @@
 /**
- * URL parameter parsing/encoding for lens state.
+ * Legacy URL parameter parsing/encoding for lens state. Kept for backward
+ * compatibility with the pre-route comparison query (`?a=KEY&b=KEY` /
+ * `?lens=KEY`) and for callers that want lens-key resolution alongside
+ * sliders. Newer code should prefer `lensViewUrlState.ts` for view-state
+ * parsing and `parseLensKeysFromSearch` (below) for lens-key-only resolution.
  *
  * Supports:
  *   ?a=KEY&b=KEY           — comparison mode (two lenses)

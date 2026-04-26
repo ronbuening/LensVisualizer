@@ -58,7 +58,7 @@ Key responsibilities:
 | `useFlashOverlay.ts` | Sticky-slider flash animation state. |
 | `useSideLayoutDetection.ts` | ResizeObserver overflow detection with hysteresis. |
 | `useDispatchAdapters.ts` | Stable named dispatch callback adapters for children. |
-| `useOverlayState.ts` | LCA/Petzval/aspheric-compare overlay open/close state with lens-key reset. The Abbe/glass-map modal is reducer-backed so it can be shared through URLs. Aspheric state: `asphCompareElementId`, `openAsphCompare(eid)`, `closeAsphCompare`. |
+| `useOverlayState.ts` | Aspheric-compare modal state with lens-key reset (`asphCompareElementId`, `openAsphCompare(eid)`, `closeAsphCompare`). Abbe/glass-map, LCA, Petzval, bokeh, and analysis-drawer state are reducer-backed so they can be encoded in shareable URLs. |
 | `useHeaderHeight.ts` | Header ResizeObserver height tracking for multi-panel alignment. |
 | `useViewBoxZoom.ts` | SVG viewBox zoom/pan with wheel, drag, pinch, and keyboard support. |
 

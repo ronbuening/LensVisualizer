@@ -13,7 +13,7 @@ The goal is to make these designs tangible: to show how light actually moves thr
 
 ## Sharing Views
 
-Lens and comparison pages keep the current shareable view in the browser URL. Copy the address bar to share the selected element, glass map, bokeh preview, analysis drawer, active analysis tab, and focus/aperture/zoom settings.
+Lens and comparison pages keep the current shareable view in the browser URL. Copy the address bar to share the selected element, glass map, chromatic aberration overlay, Petzval curvature overlay, bokeh preview, analysis drawer, active analysis tab, and focus/aperture/zoom settings.
 
 ## How It's Made
 
