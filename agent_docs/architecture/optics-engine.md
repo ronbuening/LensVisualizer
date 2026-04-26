@@ -24,6 +24,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
 | `vignetteAnalysis.ts` | Vignetting / relative illumination curve. |
 | `pupilAberration.ts` | Entrance and exit pupil aberration profiles. |
+| `asphericComparison.ts` | Aspheric surface deviation: best-fit sphere solver, departure profiles, peak/RMS metrics, and click-surface routing. |
 | `aberrationAnalysis.ts` | Public barrel for decomposed aberration modules. |
 | `aberration/` | Spherical aberration, coma, field curvature, bokeh, off-axis, shared sampling/types. |
 | `internal/` | Shared surface math, multi-surface tracing, and zoom/state derivation. |
@@ -124,6 +125,18 @@ Prefer `computeBothPupilAberrationProfiles()` in UI code. All accept optional pr
 - `buildBokehDensityGrid()` - retained for future full-density/PSF visualizations.
 
 The traced image-plane point cloud is the source of truth; radial profiles are derived summaries.
+
+## Aspheric Comparison
+
+`asphericComparison.ts` provides pure helpers for analysing how much an aspheric surface departs from a sphere:
+
+- `computeBestFitSphereR(R_base, asph, sd)` — golden-section search for the radius that minimises RMS sag deviation across the clear aperture. Falls back to `R_base` for flat surfaces.
+- `computeAsphericDeparture(h, R_sphere, R_aspheric, asph)` — Δsag at a single radius.
+- `computeDepartureProfile(R_sphere, R_aspheric, asph, sd)` — sampled radial profile for rendering and metrics.
+- `peakAbsDeparture(profile)` / `rmsDeparture(profile)` — aggregate departure metrics displayed in the overlay footer.
+- `nearestSurfaceForClick(clickZ, surfaces)` — routes a click coordinate to the nearest aspheric surface for click-to-measure.
+
+These functions feed `AsphericComparisonOverlay.tsx` exclusively and must not be called from `buildLens()`.
 
 ## Validation And Rendering Geometry
 

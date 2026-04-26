@@ -11,6 +11,7 @@ import OverlayModal from "../OverlayModal.js";
 import DiagramControlPanel from "../DiagramControlPanel.js";
 import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
+import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
 import type { RuntimeLens, ChromaticSpread, ElementData, ElementShape } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
@@ -93,6 +94,9 @@ interface LensDiagramLoadedStateProps {
     openPetzvalOverlay: () => void;
     openAbbeDiagram: () => void;
     closeAbbeDiagram: () => void;
+    asphCompareElementId: number | null;
+    openAsphCompare: (eid: number) => void;
+    closeAsphCompare: () => void;
   };
   adapters: {
     onAnalysisDrawerToggle: (open: boolean) => void;
@@ -317,6 +321,7 @@ export default function LensDiagramLoadedState({
               chromSpread={chromSpread ?? null}
               rayTracksF={rayTracksF}
               onOpenAbbeDiagram={overlays.openAbbeDiagram}
+              onOpenAsphericCompare={overlays.openAsphCompare}
             />
           )}
         </div>
@@ -332,6 +337,17 @@ export default function LensDiagramLoadedState({
           />
         </OverlayModal>
       )}
+
+      {overlays.asphCompareElementId !== null &&
+        (() => {
+          const targetInfo = L.elements.find((e) => e.id === overlays.asphCompareElementId);
+          if (!targetInfo) return null;
+          return (
+            <OverlayModal onClose={overlays.closeAsphCompare} theme={t} maxWidth={760}>
+              <AsphericComparisonOverlay key={targetInfo.id} L={L} info={targetInfo} theme={t} />
+            </OverlayModal>
+          );
+        })()}
     </>
   );
 }

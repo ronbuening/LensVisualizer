@@ -1,6 +1,6 @@
 /**
  * useOverlayState — Manages open/close state for diagram panel overlays
- * (Abbe diagram, LCA overlay, Petzval overlay).
+ * (Abbe diagram, LCA overlay, Petzval overlay, aspheric deviation inspector).
  *
  * Resets all overlays when lensKey changes.
  */
@@ -17,17 +17,22 @@ export interface OverlayState {
   showPetzvalOverlay: boolean;
   openPetzvalOverlay: () => void;
   closePetzvalOverlay: () => void;
+  asphCompareElementId: number | null;
+  openAsphCompare: (eid: number) => void;
+  closeAsphCompare: () => void;
 }
 
 export default function useOverlayState(lensKey: string): OverlayState {
   const [showAbbeDiagram, setShowAbbeDiagram] = useState(false);
   const [showLcaOverlay, setShowLcaOverlay] = useState(false);
   const [showPetzvalOverlay, setShowPetzvalOverlay] = useState(false);
+  const [asphCompareElementId, setAsphCompareElementId] = useState<number | null>(null);
 
   useEffect(() => {
     setShowAbbeDiagram(false);
     setShowLcaOverlay(false);
     setShowPetzvalOverlay(false);
+    setAsphCompareElementId(null);
   }, [lensKey]);
 
   const openAbbeDiagram = useCallback(() => setShowAbbeDiagram(true), []);
@@ -36,6 +41,8 @@ export default function useOverlayState(lensKey: string): OverlayState {
   const closeLcaOverlay = useCallback(() => setShowLcaOverlay(false), []);
   const openPetzvalOverlay = useCallback(() => setShowPetzvalOverlay(true), []);
   const closePetzvalOverlay = useCallback(() => setShowPetzvalOverlay(false), []);
+  const openAsphCompare = useCallback((eid: number) => setAsphCompareElementId(eid), []);
+  const closeAsphCompare = useCallback(() => setAsphCompareElementId(null), []);
 
   return {
     showAbbeDiagram,
@@ -47,5 +54,8 @@ export default function useOverlayState(lensKey: string): OverlayState {
     showPetzvalOverlay,
     openPetzvalOverlay,
     closePetzvalOverlay,
+    asphCompareElementId,
+    openAsphCompare,
+    closeAsphCompare,
   };
 }

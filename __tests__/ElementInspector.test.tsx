@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../src/components/display/ElementInspector.js";
 
@@ -91,5 +91,60 @@ describe("ElementInspector", () => {
   it("renders focal length when available", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(/85\.3 mm/)).toBeTruthy();
+  });
+});
+
+describe("ElementInspector — aspheric comparison link", () => {
+  const asphCoeffs = { K: -0.5, A4: 1e-7, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 };
+  const asphMockLens = {
+    ...mockLens,
+    asphByIdx: { 0: asphCoeffs } as Record<number, unknown>,
+  } as unknown as RuntimeLens;
+
+  it("does not render the compare link when element is not aspheric", () => {
+    render(
+      <ElementInspector
+        info={basicElement}
+        L={mockLens}
+        t={mockTheme}
+        showChromatic={false}
+        onOpenAsphericCompare={() => {}}
+      />,
+    );
+    expect(screen.queryByText(/Compare to sphere/)).toBeFalsy();
+  });
+
+  it("does not render the compare link when callback is not provided", () => {
+    render(<ElementInspector info={basicElement} L={asphMockLens} t={mockTheme} showChromatic={false} />);
+    expect(screen.queryByText(/Compare to sphere/)).toBeFalsy();
+  });
+
+  it("renders the compare link when element is aspheric and callback is provided", () => {
+    render(
+      <ElementInspector
+        info={basicElement}
+        L={asphMockLens}
+        t={mockTheme}
+        showChromatic={false}
+        onOpenAsphericCompare={() => {}}
+      />,
+    );
+    expect(screen.getByText(/Compare to sphere/)).toBeTruthy();
+  });
+
+  it("calls the callback with the element id when the compare link is clicked", () => {
+    const onOpen = vi.fn();
+    render(
+      <ElementInspector
+        info={basicElement}
+        L={asphMockLens}
+        t={mockTheme}
+        showChromatic={false}
+        onOpenAsphericCompare={onOpen}
+      />,
+    );
+    screen.getByText(/Compare to sphere/).click();
+    expect(onOpen).toHaveBeenCalledOnce();
+    expect(onOpen).toHaveBeenCalledWith(basicElement.id);
   });
 });
