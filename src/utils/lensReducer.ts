@@ -36,6 +36,9 @@ export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
+export const SET_SELECTED_ELEMENT = "SET_SELECTED_ELEMENT";
+export const SET_GLASS_MAP_OPEN = "SET_GLASS_MAP_OPEN";
+export const APPLY_URL_VIEW_STATE = "APPLY_URL_VIEW_STATE";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
 
@@ -129,12 +132,18 @@ export function createInitialState(
       legendExpanded: prefs.legendExpanded ?? false,
       headerInfoExpanded: prefs.headerInfoExpanded ?? true,
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
+      glassMapOpen: urlState.glassMapOpen ?? false,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
-      analysisDrawerOpen: false,
-      analysisDrawerTab: isAnalysisTabId(prefs.analysisDrawerTab) ? prefs.analysisDrawerTab : "aberrations",
+      analysisDrawerOpen: urlState.analysisDrawerOpen ?? false,
+      analysisDrawerTab:
+        urlState.analysisDrawerTab ??
+        (isAnalysisTabId(prefs.analysisDrawerTab) ? prefs.analysisDrawerTab : "aberrations"),
       zoomPanActive: false,
-      bokehPreviewOpen: false,
+      bokehPreviewOpen: urlState.bokehPreviewOpen ?? false,
+      selectedElementId: urlState.selectedElementId ?? null,
+      selectedElementIdA: urlState.selectedElementIdA ?? null,
+      selectedElementIdB: urlState.selectedElementIdB ?? null,
     },
     overlays: {
       showAbout: false,
@@ -162,12 +171,25 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
         next.sliders = { focusT: 0, zoomT: 0, stopdownT: 0 };
-        next.panels = { ...state.panels, analysisDrawerOpen: false, zoomPanActive: false, bokehPreviewOpen: false };
+        next.panels = {
+          ...state.panels,
+          analysisDrawerOpen: false,
+          zoomPanActive: false,
+          bokehPreviewOpen: false,
+          glassMapOpen: false,
+          selectedElementId: null,
+        };
+      } else {
+        next.panels = { ...state.panels, selectedElementIdA: null };
       }
       return next;
     }
     case SET_LENS_B:
-      return { ...state, lens: { ...state.lens, lensKeyB: action.key } };
+      return {
+        ...state,
+        lens: { ...state.lens, lensKeyB: action.key },
+        panels: { ...state.panels, selectedElementIdB: null },
+      };
     case SWAP_LENSES:
       return { ...state, lens: { ...state.lens, lensKeyA: state.lens.lensKeyB, lensKeyB: state.lens.lensKeyA } };
 
@@ -205,6 +227,41 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_ANALYSIS_TAB:
       if (!isAnalysisTabId(action.tab)) return state;
       return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
+
+    case SET_SELECTED_ELEMENT: {
+      const key =
+        action.panelId === "a"
+          ? "selectedElementIdA"
+          : action.panelId === "b"
+            ? "selectedElementIdB"
+            : "selectedElementId";
+      return { ...state, panels: { ...state.panels, [key]: action.elementId } };
+    }
+
+    case SET_GLASS_MAP_OPEN:
+      return { ...state, panels: { ...state.panels, glassMapOpen: action.open } };
+
+    case APPLY_URL_VIEW_STATE: {
+      const urlState = action.state;
+      const panels = { ...state.panels };
+      if ("selectedElementId" in urlState) panels.selectedElementId = urlState.selectedElementId ?? null;
+      if ("selectedElementIdA" in urlState) panels.selectedElementIdA = urlState.selectedElementIdA ?? null;
+      if ("selectedElementIdB" in urlState) panels.selectedElementIdB = urlState.selectedElementIdB ?? null;
+      if ("glassMapOpen" in urlState) panels.glassMapOpen = urlState.glassMapOpen ?? false;
+      if ("bokehPreviewOpen" in urlState) panels.bokehPreviewOpen = urlState.bokehPreviewOpen ?? false;
+      if ("analysisDrawerOpen" in urlState) panels.analysisDrawerOpen = urlState.analysisDrawerOpen ?? false;
+      if (urlState.analysisDrawerTab) panels.analysisDrawerTab = urlState.analysisDrawerTab;
+
+      const sliders = { ...state.sliders };
+      if ("focus" in urlState && !state.lens.comparing) sliders.focusT = urlState.focus ?? 0;
+      if ("aperture" in urlState && !state.lens.comparing) sliders.stopdownT = urlState.aperture ?? 0;
+
+      const sharedSliders = { ...state.sharedSliders };
+      if ("focus" in urlState && state.lens.comparing) sharedSliders.sharedFocusT = urlState.focus ?? 0;
+      if ("aperture" in urlState && state.lens.comparing) sharedSliders.sharedStopdownT = urlState.aperture ?? 0;
+
+      return { ...state, panels, sliders, sharedSliders };
+    }
 
     /* ── Overlays ── */
     case SET_OVERLAY:

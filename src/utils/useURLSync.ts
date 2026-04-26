@@ -7,14 +7,10 @@
  */
 
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
-import {
-  buildComparisonURL,
-  encodeSliderParams,
-  focalLengthToZoomT,
-  zoomTToFocalLength,
-} from "./parseComparisonParams.js";
+import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "./parseComparisonParams.js";
+import { buildLensViewQuery, lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
-import { SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
+import { APPLY_URL_VIEW_STATE, SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
 import type { LensState, LensAction } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { ZoomConvertibleLens } from "./zoomConversion.js";
@@ -50,6 +46,45 @@ function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
   };
 }
 
+function buildRouteSearch(state: LensState, comparisonLenses: ComparisonLensesParam, isComparePage?: boolean): string {
+  const { lens, sliders, sharedSliders, panels } = state;
+  const { comparing, lensKeyA } = lens;
+  const { focusT, zoomT, stopdownT } = sliders;
+  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const zoomLens = comparing ? getComparisonZoomLens(comparisonLenses) : getCatalogZoomLens(lensKeyA);
+  const zoom =
+    zoomLens && (comparing ? sharedZoomT : zoomT) > 0
+      ? zoomTToFocalLength(comparing ? sharedZoomT : zoomT, zoomLens)
+      : zoomLens
+        ? null
+        : parseLensViewQuery(window.location.search).zoom;
+  const params = buildLensViewQuery({
+    comparing,
+    focus: comparing ? sharedFocusT : focusT,
+    aperture: comparing ? sharedStopdownT : stopdownT,
+    zoom,
+    selectedElementId: panels.selectedElementId,
+    selectedElementIdA: panels.selectedElementIdA,
+    selectedElementIdB: panels.selectedElementIdB,
+    glassMapOpen: panels.glassMapOpen,
+    bokehPreviewOpen: panels.bokehPreviewOpen,
+    analysisDrawerOpen: panels.analysisDrawerOpen,
+    analysisDrawerTab: panels.analysisDrawerTab,
+  });
+
+  if (isComparePage && !comparing) {
+    params.delete("a_el");
+    params.delete("b_el");
+  }
+  const search = params.toString();
+  return search ? `?${search}` : "";
+}
+
+function buildRouteUrl(state: LensState, comparisonLenses: ComparisonLensesParam, isComparePage?: boolean): string {
+  const search = buildRouteSearch(state, comparisonLenses, isComparePage);
+  return `${window.location.pathname}${search}`;
+}
+
 export default function useURLSync(
   state: LensState,
   dispatch: Dispatch<LensAction>,
@@ -65,13 +100,37 @@ export default function useURLSync(
   /* ── Refs ── */
   const urlUpdateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const urlZoomInitialized = useRef<boolean>(false);
+  const stateRef = useRef(state);
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   /* ── Parse zoom from URL once ── */
   const urlZoom = useMemo((): number | null => {
     if (typeof window === "undefined") return null;
-    const zoom = parseFloat(new URLSearchParams(window.location.search).get("zoom")!);
-    return isFinite(zoom) && zoom > 0 ? zoom : null;
+    return parseLensViewQuery(window.location.search).zoom ?? null;
   }, []);
+
+  const applyUrlViewState = useCallback(
+    (search: string): void => {
+      const parsed = parseLensViewQuery(search);
+      dispatch({ type: APPLY_URL_VIEW_STATE, state: lensViewQueryToUrlState(parsed, true) });
+      const zoom = parsed.zoom;
+      if (zoom == null) {
+        dispatch({ type: comparing ? SET_SHARED_ZOOM_T : SET_ZOOM_T, value: 0 });
+        return;
+      }
+      if (comparing) {
+        const zoomLens = getComparisonZoomLens(comparisonLenses);
+        if (zoomLens) dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(zoom, zoomLens) });
+      } else {
+        const zoomLens = getCatalogZoomLens(lensKeyA);
+        if (zoomLens) dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(zoom, zoomLens) });
+      }
+    },
+    [comparisonLenses, comparing, dispatch, lensKeyA],
+  );
 
   /* ── 1. Immediate URL update on lens selection change ── */
   useEffect(() => {
@@ -85,6 +144,34 @@ export default function useURLSync(
       history.replaceState(null, "", url || window.location.pathname);
     }
   }, [comparing, lensKeyA, lensKeyB, isLensPage, isComparePage]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onPopState = () => applyUrlViewState(window.location.search);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [applyUrlViewState]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!isLensPage && !isComparePage) return;
+    const url = buildRouteUrl(stateRef.current, comparisonLenses, isComparePage);
+    if (url !== window.location.pathname + window.location.search) {
+      history.replaceState(null, "", url);
+    }
+  }, [
+    comparing,
+    state.panels.selectedElementId,
+    state.panels.selectedElementIdA,
+    state.panels.selectedElementIdB,
+    state.panels.glassMapOpen,
+    state.panels.bokehPreviewOpen,
+    state.panels.analysisDrawerOpen,
+    state.panels.analysisDrawerTab,
+    comparisonLenses,
+    isLensPage,
+    isComparePage,
+  ]);
 
   /* ── 3a. Zoom init — comparison mode ── */
   useEffect(() => {
@@ -131,14 +218,25 @@ export default function useURLSync(
         }
       }
       if ((isLensPage && !comparing) || isComparePage) {
-        // On lens/compare pages, only encode slider params — the pathname already has the lens key(s)
-        const params = encodeSliderParams(sliderState);
-        const search = params.toString() ? `?${params.toString()}` : "";
-        if (search !== window.location.search) {
-          history.replaceState(null, "", window.location.pathname + search);
-        }
+        // On lens/compare pages, only encode query params — the pathname already has the lens key(s)
+        const url = buildRouteUrl(stateRef.current, comparisonLenses, isComparePage);
+        if (url !== window.location.pathname + window.location.search) history.replaceState(null, "", url);
       } else {
-        const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
+        const currentState = stateRef.current;
+        const viewParams = buildLensViewQuery({
+          comparing,
+          ...sliderState,
+          selectedElementId: currentState.panels.selectedElementId,
+          selectedElementIdA: currentState.panels.selectedElementIdA,
+          selectedElementIdB: currentState.panels.selectedElementIdB,
+          glassMapOpen: currentState.panels.glassMapOpen,
+          bokehPreviewOpen: currentState.panels.bokehPreviewOpen,
+          analysisDrawerOpen: currentState.panels.analysisDrawerOpen,
+          analysisDrawerTab: currentState.panels.analysisDrawerTab,
+        });
+        const baseUrl = buildComparisonURL(comparing, lensKeyA, lensKeyB);
+        const suffix = viewParams.toString();
+        const url = suffix ? `${baseUrl}${baseUrl ? "&" : "?"}${suffix}` : baseUrl;
         const current = window.location.search;
         if (url !== current) {
           history.replaceState(null, "", url || window.location.pathname);

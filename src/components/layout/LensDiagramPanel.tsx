@@ -29,9 +29,10 @@ import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
-import { useLensCtx, usePanelCtx } from "../../utils/LensContext.js";
+import { useLensCtx, useLensDispatch, usePanelCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
+import { SET_SELECTED_ELEMENT } from "../../utils/lensReducer.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
@@ -75,6 +76,7 @@ export default function LensDiagramPanel({
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
+  const dispatch = useLensDispatch();
   const { rays: raysState, display, sliders } = state;
   const panels = usePanelCtx();
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
@@ -86,6 +88,7 @@ export default function LensDiagramPanel({
     legendExpanded,
     headerInfoExpanded,
     abbeShowGlassType,
+    glassMapOpen,
     showEffectiveAperture,
     aberrationsExpanded,
     analysisDrawerOpen,
@@ -107,13 +110,17 @@ export default function LensDiagramPanel({
 
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
-  const [sel, setSel] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
+  const sel =
+    panelId === "a"
+      ? panels.selectedElementIdA
+      : panelId === "b"
+        ? panels.selectedElementIdB
+        : panels.selectedElementId;
 
   useEffect(() => {
     setHov(null);
-    setSel(null);
   }, [lensKey]);
 
   /* ── Side-panel overflow detection ── */
@@ -150,6 +157,24 @@ export default function LensDiagramPanel({
     filterId,
   } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
+  useEffect(() => {
+    if (!L || sel == null) return;
+    if (!L.elements.some((element) => element.id === sel)) {
+      dispatch({
+        type: SET_SELECTED_ELEMENT,
+        panelId: panelId === "a" || panelId === "b" ? panelId : "main",
+        elementId: null,
+      });
+    }
+  }, [L, dispatch, panelId, sel]);
+
+  const panelOverlays = {
+    ...overlays,
+    showAbbeDiagram: glassMapOpen,
+    openAbbeDiagram: () => adapters.onGlassMapOpenChange(true),
+    closeAbbeDiagram: () => adapters.onGlassMapOpenChange(false),
+  };
+
   /* ── Zoom/pan viewBox management ── */
   const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);
 
@@ -163,14 +188,14 @@ export default function LensDiagramPanel({
 
   const handleSelect = useCallback(
     (eid: number | null) => {
+      const urlPanelId = panelId === "a" || panelId === "b" ? panelId : "main";
+      const nextElementId = sel === eid ? null : eid;
+      dispatch({ type: SET_SELECTED_ELEMENT, panelId: urlPanelId, elementId: nextElementId });
       if (sel === eid) {
-        setSel(null);
         setHov(null);
-      } else {
-        setSel(eid);
       }
     },
-    [sel],
+    [dispatch, panelId, sel],
   );
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
@@ -282,7 +307,7 @@ export default function LensDiagramPanel({
           legendExpanded={legendExpanded}
           showEffectiveAperture={showEffectiveAperture}
           abbeShowGlassType={abbeShowGlassType}
-          overlays={overlays}
+          overlays={panelOverlays}
           adapters={adapters}
           zoomHook={zoomHook}
           onZoomPanToggle={handleZoomPanToggle}

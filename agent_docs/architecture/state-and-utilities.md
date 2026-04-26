@@ -25,9 +25,24 @@ persisted or URL-provided strings should be normalized at the boundary.
 | `useLensState.ts` | `useReducer` wrapper with preference and URL initialization. |
 | `preferences.ts` | localStorage load/save with runtime fallback guards. |
 | `usePreferences.ts` | Persists reducer state back to localStorage. |
-| `useURLSync.ts` | Reads/writes deep-link URL state and initializes zoom from params. |
-| `parseComparisonParams.ts` | Comparison route parsing plus shared slider URL encoding. |
+| `useURLSync.ts` | Reads/writes deep-link URL state, handles back/forward hydration, and initializes zoom from params. |
+| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. |
+| `parseComparisonParams.ts` | Legacy comparison query parsing plus shared slider URL compatibility helpers. |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
+
+## Shareable View URLs
+
+Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the
+shareable view state:
+
+- Stable slider params remain unversioned: `focus`, `aperture`, and `zoom`.
+- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `bo`, `ad`, and `tab`.
+- Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
+- `gm` opens the Abbe/glass-map modal, `bo` opens the bokeh preview, `ad` opens the analysis drawer, and `tab` names the
+  active analysis drawer tab.
+- Boolean params decode strictly as `1` for true and `0` or omitted for false. Invalid values fall back to defaults.
+- Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
+- `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 
 ## Contexts
 

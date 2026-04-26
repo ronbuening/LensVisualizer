@@ -172,6 +172,75 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?focus=0.500`);
   });
 
+  it("preserves route path and appends shareable view state on lens pages", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      panels: {
+        ...makeState().panels,
+        selectedElementId: 3,
+        glassMapOpen: true,
+        bokehPreviewOpen: true,
+        analysisDrawerOpen: true,
+        analysisDrawerTab: "coma",
+      },
+    };
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}`);
+    replaceStateSpy.mockClear();
+
+    renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?v=1&el=3&gm=1&bo=1&ad=1&tab=coma`);
+  });
+
+  it("uses shared overlay params and per-pane element params on compare pages", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const [lensKeyA, lensKeyB] = CATALOG_KEYS;
+    const state: LensState = {
+      ...makeState(),
+      lens: { ...makeState().lens, comparing: true, lensKeyA, lensKeyB },
+      panels: {
+        ...makeState().panels,
+        selectedElementId: 99,
+        selectedElementIdA: 2,
+        selectedElementIdB: 4,
+        glassMapOpen: true,
+        analysisDrawerOpen: true,
+        analysisDrawerTab: "distortion",
+      },
+    };
+    window.history.replaceState({}, "", `/compare/${lensKeyA}/${lensKeyB}`);
+    replaceStateSpy.mockClear();
+
+    renderHook(() => useURLSync(state, dispatch, null, false, true));
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?v=1&a_el=2&b_el=4&gm=1&ad=1&tab=distortion`);
+  });
+
+  it("hydrates URL view state on browser navigation", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state = makeState();
+    renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}?v=1&el=5&gm=1&bo=1&ad=1&tab=pupils`);
+    act(() => {
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: "APPLY_URL_VIEW_STATE",
+      state: expect.objectContaining({
+        selectedElementId: 5,
+        glassMapOpen: true,
+        bokehPreviewOpen: true,
+        analysisDrawerOpen: true,
+        analysisDrawerTab: "pupils",
+      }),
+    });
+  });
+
   it("does not call replaceState immediately when invoked", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state = makeState();
