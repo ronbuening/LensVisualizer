@@ -74,6 +74,9 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
       analysisDrawerTab: "aberrations",
       zoomPanActive: false,
       bokehPreviewOpen: false,
+      glassMapOpen: false,
+      selectedElementA: null,
+      selectedElementB: null,
     },
     overlays: {
       showAbout: false,

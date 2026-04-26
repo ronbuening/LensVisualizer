@@ -87,6 +87,7 @@ export type PanelField =
   | "showEffectiveAperture"
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
+  | "glassMapOpen"
   | "zoomPanActive"
   | "bokehPreviewOpen";
 
@@ -101,8 +102,11 @@ export interface PanelsSlice {
   aberrationsExpanded: boolean;
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
+  glassMapOpen: boolean;
   zoomPanActive: boolean;
   bokehPreviewOpen: boolean;
+  selectedElementA: number | null;
+  selectedElementB: number | null;
 }
 
 export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";
@@ -140,6 +144,7 @@ export type LensAction =
   | { type: "SET_STOPDOWN_T"; value: number }
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
+  | { type: "SET_SELECTED_ELEMENT"; panel: "a" | "b"; elementId: number | null }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
@@ -183,4 +188,10 @@ export interface URLState {
   aperture?: number;
   zoomA?: number;
   zoomB?: number;
+  analysisDrawerOpen?: boolean;
+  analysisDrawerTab?: string;
+  glassMapOpen?: boolean;
+  bokehPreviewOpen?: boolean;
+  selectedElementA?: number;
+  selectedElementB?: number;
 }

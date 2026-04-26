@@ -20,6 +20,8 @@ const mocks = vi.hoisted(() => {
   const adapters = {
     onAnalysisDrawerToggle: vi.fn(),
     onAnalysisTabChange: vi.fn(),
+    onGlassMapToggle: vi.fn(),
+    onSelectedElementChange: vi.fn(),
     onBokehPreviewToggle: vi.fn(),
     onAberrationsExpandedChange: vi.fn(),
     onEffectiveApertureChange: vi.fn(),
@@ -73,6 +75,9 @@ vi.mock("../src/components/hooks/useOverlayState.js", () => ({
     openPetzvalOverlay: vi.fn(),
     openAbbeDiagram: vi.fn(),
     closeAbbeDiagram: vi.fn(),
+    asphCompareElementId: null,
+    openAsphCompare: vi.fn(),
+    closeAsphCompare: vi.fn(),
   }),
 }));
 

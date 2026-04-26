@@ -44,5 +44,6 @@ in comparison orchestration and passed into diagram panels as explicit per-panel
 
 ## URL Sync
 
-Compare routes use `/compare/:slugA/:slugB` plus encoded shared slider params where needed. URL helpers live in
-`comparisonURLSync.ts` and `parseComparisonParams.ts`.
+Compare routes use `/compare/:slugA/:slugB` plus encoded shared slider and analysis-view params where needed. URL
+helpers live in `comparisonURLSync.ts` and `parseComparisonParams.ts`, keeping path builders and query parsing aligned
+for selected elements, glass map, bokeh preview, analysis drawer state, and active analysis tab.

@@ -101,6 +101,7 @@ interface LensDiagramLoadedStateProps {
   adapters: {
     onAnalysisDrawerToggle: (open: boolean) => void;
     onAnalysisTabChange: (tab: AnalysisTabId) => void;
+    onGlassMapToggle: (open: boolean) => void;
     onBokehPreviewToggle: (open: boolean) => void;
     onAberrationsExpandedChange: (expanded: boolean) => void;
     onEffectiveApertureChange: (expanded: boolean) => void;

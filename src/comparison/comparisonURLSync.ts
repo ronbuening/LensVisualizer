@@ -6,7 +6,7 @@
 
 import type { LensData } from "../types/optics.js";
 import type { BuildURLSliders } from "../utils/parseComparisonParams.js";
-import { encodeSliderParams } from "../utils/parseComparisonParams.js";
+import { encodeAnalysisViewParams, encodeSliderParams } from "../utils/parseComparisonParams.js";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
@@ -21,6 +21,8 @@ const SITE_URL = "https://opticalbench.net";
  */
 export function buildComparePath(slugA: string, slugB: string, sliders: BuildURLSliders = {}): string {
   const params = encodeSliderParams(sliders);
+  const viewParams = encodeAnalysisViewParams(sliders);
+  viewParams.forEach((value, key) => params.set(key, value));
   const search = params.toString() ? `?${params.toString()}` : "";
   return `/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`;
 }

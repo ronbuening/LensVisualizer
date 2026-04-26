@@ -25,8 +25,8 @@ persisted or URL-provided strings should be normalized at the boundary.
 | `useLensState.ts` | `useReducer` wrapper with preference and URL initialization. |
 | `preferences.ts` | localStorage load/save with runtime fallback guards. |
 | `usePreferences.ts` | Persists reducer state back to localStorage. |
-| `useURLSync.ts` | Reads/writes deep-link URL state and initializes zoom from params. |
-| `parseComparisonParams.ts` | Comparison route parsing plus shared slider URL encoding. |
+| `useURLSync.ts` | Reads/writes deep-link URL state and initializes zoom from params. Combines slider and analysis UI params for pathname-based lens/compare routes and query-based comparison links. |
+| `parseComparisonParams.ts` | Comparison route parsing plus shared slider URL encoding. Also parses/encodes shareable analysis state: selected elements (`el`, `ael`, `bel`), glass map (`gm`), bokeh overlay (`bo`), analysis drawer (`ad`), and active tab (`tab`). |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
 
 ## Contexts
