@@ -14,6 +14,7 @@ import {
   isAnalysisTabId,
   isDesktopView,
   isOffAxisMode,
+  selectedElementKeyForPanel,
   type LensState,
   type LensAction,
   type Preferences,
@@ -37,7 +38,6 @@ export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
 export const SET_SELECTED_ELEMENT = "SET_SELECTED_ELEMENT";
-export const SET_GLASS_MAP_OPEN = "SET_GLASS_MAP_OPEN";
 export const APPLY_URL_VIEW_STATE = "APPLY_URL_VIEW_STATE";
 export const SET_OVERLAY = "SET_OVERLAY";
 export const CLOSE_ALL_OVERLAYS = "CLOSE_ALL_OVERLAYS";
@@ -70,6 +70,7 @@ const PANEL_FIELDS = new Set([
   "legendExpanded",
   "headerInfoExpanded",
   "abbeShowGlassType",
+  "glassMapOpen",
   "showEffectiveAperture",
   "aberrationsExpanded",
   "analysisDrawerOpen",
@@ -229,17 +230,9 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
 
     case SET_SELECTED_ELEMENT: {
-      const key =
-        action.panelId === "a"
-          ? "selectedElementIdA"
-          : action.panelId === "b"
-            ? "selectedElementIdB"
-            : "selectedElementId";
+      const key = selectedElementKeyForPanel(action.panelId);
       return { ...state, panels: { ...state.panels, [key]: action.elementId } };
     }
-
-    case SET_GLASS_MAP_OPEN:
-      return { ...state, panels: { ...state.panels, glassMapOpen: action.open } };
 
     case APPLY_URL_VIEW_STATE: {
       const urlState = action.state;

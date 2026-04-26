@@ -84,6 +84,7 @@ export type PanelField =
   | "legendExpanded"
   | "headerInfoExpanded"
   | "abbeShowGlassType"
+  | "glassMapOpen"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
@@ -146,7 +147,6 @@ export type LensAction =
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
   | { type: "SET_SELECTED_ELEMENT"; panelId: "main" | "a" | "b"; elementId: number | null }
-  | { type: "SET_GLASS_MAP_OPEN"; open: boolean }
   | { type: "APPLY_URL_VIEW_STATE"; state: Partial<URLState> }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
@@ -198,4 +198,17 @@ export interface URLState {
   bokehPreviewOpen?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
+}
+
+export type SelectedElementPanelId = "main" | "a" | "b";
+export type SelectedElementPanelKey = "selectedElementId" | "selectedElementIdA" | "selectedElementIdB";
+
+export function selectedElementPanelIdForPanel(panelId: string): SelectedElementPanelId {
+  return panelId === "a" || panelId === "b" ? panelId : "main";
+}
+
+export function selectedElementKeyForPanel(panelId: SelectedElementPanelId): SelectedElementPanelKey {
+  if (panelId === "a") return "selectedElementIdA";
+  if (panelId === "b") return "selectedElementIdB";
+  return "selectedElementId";
 }

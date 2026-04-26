@@ -20,7 +20,6 @@ import lensReducer, {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
   SET_SELECTED_ELEMENT,
-  SET_GLASS_MAP_OPEN,
   APPLY_URL_VIEW_STATE,
   SET_OVERLAY,
   CLOSE_ALL_OVERLAYS,
@@ -341,6 +340,16 @@ describe("lensReducer", () => {
       });
       expect(next.panels.zoomPanActive).toBe(true);
     });
+
+    it("toggles glassMapOpen", () => {
+      expect(state.panels.glassMapOpen).toBe(false);
+      const next = lensReducer(state, {
+        type: SET_PANEL_EXPANDED,
+        panel: "glassMapOpen",
+        expanded: true,
+      });
+      expect(next.panels.glassMapOpen).toBe(true);
+    });
   });
 
   /* ── Analysis drawer tab ── */
@@ -369,7 +378,7 @@ describe("lensReducer", () => {
     });
 
     it("sets shared glass map open state", () => {
-      const next = lensReducer(state, { type: SET_GLASS_MAP_OPEN, open: true });
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: true });
       expect(next.panels.glassMapOpen).toBe(true);
     });
 
@@ -517,7 +526,7 @@ describe("lensReducer", () => {
 
 /* ── Action constant exhaustiveness ── */
 describe("lensReducer — action constant exports", () => {
-  it("exports all 24 expected action type constants", () => {
+  it("exports all 23 expected action type constants", () => {
     const EXPECTED = [
       SET_LENS_A,
       SET_LENS_B,
@@ -537,7 +546,6 @@ describe("lensReducer — action constant exports", () => {
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
       SET_SELECTED_ELEMENT,
-      SET_GLASS_MAP_OPEN,
       APPLY_URL_VIEW_STATE,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,
@@ -549,8 +557,8 @@ describe("lensReducer — action constant exports", () => {
       expect(typeof c).toBe("string");
       expect(c.length).toBeGreaterThan(0);
     }
-    // The full set must be exactly 24 unique values
-    expect(new Set(EXPECTED).size).toBe(24);
+    // The full set must be exactly 23 unique values
+    expect(new Set(EXPECTED).size).toBe(23);
   });
 
   it("every action constant's string value matches its export name", () => {
@@ -573,7 +581,6 @@ describe("lensReducer — action constant exports", () => {
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
       SET_SELECTED_ELEMENT,
-      SET_GLASS_MAP_OPEN,
       APPLY_URL_VIEW_STATE,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,

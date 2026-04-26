@@ -1,17 +1,23 @@
-import { isAnalysisTabId, type AnalysisTabId, type LensState, type URLState } from "../types/state.js";
+import { isAnalysisTabId, type LensState, type URLState } from "../types/state.js";
 
-export interface LensViewQueryState {
-  focus?: number | null;
-  aperture?: number | null;
-  zoom?: number | null;
-  selectedElementId?: number | null;
-  selectedElementIdA?: number | null;
-  selectedElementIdB?: number | null;
-  glassMapOpen?: boolean;
-  bokehPreviewOpen?: boolean;
-  analysisDrawerOpen?: boolean;
-  analysisDrawerTab?: AnalysisTabId;
-}
+type LensViewQueryKey =
+  | "focus"
+  | "aperture"
+  | "zoom"
+  | "selectedElementId"
+  | "selectedElementIdA"
+  | "selectedElementIdB"
+  | "glassMapOpen"
+  | "bokehPreviewOpen"
+  | "analysisDrawerOpen"
+  | "analysisDrawerTab";
+type NullableLensViewQueryKey = "focus" | "aperture" | "zoom";
+
+export type LensViewQueryState = Partial<
+  Omit<Pick<URLState, LensViewQueryKey>, NullableLensViewQueryKey> & {
+    [K in NullableLensViewQueryKey]: URLState[K] | null;
+  }
+>;
 
 export interface BuildLensViewQueryOptions extends LensViewQueryState {
   comparing?: boolean;

@@ -16,7 +16,6 @@ import {
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
-  SET_GLASS_MAP_OPEN,
 } from "../../utils/lensReducer.js";
 import type { AnalysisTabId, OffAxisMode } from "../../types/state.js";
 
@@ -89,7 +88,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onBokehPreviewToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),
-      onGlassMapOpenChange: (v: boolean) => dispatch({ type: SET_GLASS_MAP_OPEN, open: v }),
+      onGlassMapOpenChange: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );

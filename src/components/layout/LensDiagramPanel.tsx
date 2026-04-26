@@ -14,7 +14,7 @@
  *   DiagramControlPanel → sliders, inspector, legend
  *   PanelErrorBoundary  → panel-level error boundary
  *
- * Owns only: hover/selection state and the structural layout that
+ * Owns only: hover state and the structural layout that
  * wires sub-components.
  */
 
@@ -38,6 +38,7 @@ import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { selectedElementKeyForPanel, selectedElementPanelIdForPanel } from "../../types/state.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -112,12 +113,8 @@ export default function LensDiagramPanel({
   const [hov, setHov] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
-  const sel =
-    panelId === "a"
-      ? panels.selectedElementIdA
-      : panelId === "b"
-        ? panels.selectedElementIdB
-        : panels.selectedElementId;
+  const selectedElementPanelId = selectedElementPanelIdForPanel(panelId);
+  const sel = panels[selectedElementKeyForPanel(selectedElementPanelId)];
 
   useEffect(() => {
     setHov(null);
@@ -162,11 +159,11 @@ export default function LensDiagramPanel({
     if (!L.elements.some((element) => element.id === sel)) {
       dispatch({
         type: SET_SELECTED_ELEMENT,
-        panelId: panelId === "a" || panelId === "b" ? panelId : "main",
+        panelId: selectedElementPanelId,
         elementId: null,
       });
     }
-  }, [L, dispatch, panelId, sel]);
+  }, [L, dispatch, selectedElementPanelId, sel]);
 
   const panelOverlays = {
     ...overlays,
@@ -188,14 +185,13 @@ export default function LensDiagramPanel({
 
   const handleSelect = useCallback(
     (eid: number | null) => {
-      const urlPanelId = panelId === "a" || panelId === "b" ? panelId : "main";
       const nextElementId = sel === eid ? null : eid;
-      dispatch({ type: SET_SELECTED_ELEMENT, panelId: urlPanelId, elementId: nextElementId });
+      dispatch({ type: SET_SELECTED_ELEMENT, panelId: selectedElementPanelId, elementId: nextElementId });
       if (sel === eid) {
         setHov(null);
       }
     },
-    [dispatch, panelId, sel],
+    [dispatch, selectedElementPanelId, sel],
   );
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
