@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-25 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-25",
+    type: "fix",
+    summary:
+      "Improves accuracy of Canon RF and EF lens diagrams",
+  },
+  {
+    date: "2026-04-25",
     type: "lens",
     summary:
       "Added three Nikon Perspective Control lenses: PC NIKKOR 19mm f/4E ED, PC NIKKOR 24mm f/3.5D ED, and PC NIKKOR 45mm f/2.8D ED",
