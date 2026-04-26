@@ -90,6 +90,8 @@ export default function LensDiagramPanel({
     headerInfoExpanded,
     abbeShowGlassType,
     glassMapOpen,
+    lcaOverlayOpen,
+    petzvalOverlayOpen,
     showEffectiveAperture,
     aberrationsExpanded,
     analysisDrawerOpen,
@@ -165,17 +167,38 @@ export default function LensDiagramPanel({
     }
   }, [L, dispatch, selectedElementPanelId, sel]);
 
-  const onGlassMapOpenChange = adapters.onGlassMapOpenChange;
+  const { onGlassMapOpenChange, onLcaOverlayChange, onPetzvalOverlayChange } = adapters;
   const openAbbeDiagram = useCallback(() => onGlassMapOpenChange(true), [onGlassMapOpenChange]);
   const closeAbbeDiagram = useCallback(() => onGlassMapOpenChange(false), [onGlassMapOpenChange]);
+  const openLcaOverlay = useCallback(() => onLcaOverlayChange(true), [onLcaOverlayChange]);
+  const closeLcaOverlay = useCallback(() => onLcaOverlayChange(false), [onLcaOverlayChange]);
+  const openPetzvalOverlay = useCallback(() => onPetzvalOverlayChange(true), [onPetzvalOverlayChange]);
+  const closePetzvalOverlay = useCallback(() => onPetzvalOverlayChange(false), [onPetzvalOverlayChange]);
   const panelOverlays = useMemo(
     () => ({
       ...overlays,
       showAbbeDiagram: glassMapOpen,
       openAbbeDiagram,
       closeAbbeDiagram,
+      showLcaOverlay: lcaOverlayOpen,
+      openLcaOverlay,
+      closeLcaOverlay,
+      showPetzvalOverlay: petzvalOverlayOpen,
+      openPetzvalOverlay,
+      closePetzvalOverlay,
     }),
-    [overlays, glassMapOpen, openAbbeDiagram, closeAbbeDiagram],
+    [
+      overlays,
+      glassMapOpen,
+      lcaOverlayOpen,
+      petzvalOverlayOpen,
+      openAbbeDiagram,
+      closeAbbeDiagram,
+      openLcaOverlay,
+      closeLcaOverlay,
+      openPetzvalOverlay,
+      closePetzvalOverlay,
+    ],
   );
 
   /* ── Zoom/pan viewBox management ── */

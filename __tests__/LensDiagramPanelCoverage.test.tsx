@@ -42,6 +42,8 @@ const mocks = vi.hoisted(() => {
     onHeaderInfoExpandedChange: vi.fn(),
     onZoomPanToggle: vi.fn(),
     onGlassMapOpenChange: vi.fn(),
+    onLcaOverlayChange: vi.fn(),
+    onPetzvalOverlayChange: vi.fn(),
   };
   const zoomReset = vi.fn();
   const lensComputation = vi.fn();
@@ -65,15 +67,6 @@ vi.mock("../src/components/hooks/useDispatchAdapters.js", () => ({
 
 vi.mock("../src/components/hooks/useOverlayState.js", () => ({
   default: () => ({
-    showLcaOverlay: false,
-    showPetzvalOverlay: false,
-    showAbbeDiagram: false,
-    closeLcaOverlay: vi.fn(),
-    closePetzvalOverlay: vi.fn(),
-    openLcaOverlay: vi.fn(),
-    openPetzvalOverlay: vi.fn(),
-    openAbbeDiagram: vi.fn(),
-    closeAbbeDiagram: vi.fn(),
     asphCompareElementId: null,
     openAsphCompare: vi.fn(),
     closeAsphCompare: vi.fn(),

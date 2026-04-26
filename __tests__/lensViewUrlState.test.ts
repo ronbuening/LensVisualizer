@@ -83,6 +83,15 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("");
   });
 
+  it("round-trips LCA and Petzval overlay flags", () => {
+    const parsed = parseLensViewQuery("?v=1&lca=1&ptz=1");
+    expect(parsed.lcaOverlayOpen).toBe(true);
+    expect(parsed.petzvalOverlayOpen).toBe(true);
+
+    const params = buildLensViewQuery({ lcaOverlayOpen: true, petzvalOverlayOpen: true });
+    expect(params.toString()).toBe("v=1&lca=1&ptz=1");
+  });
+
   it("can materialize defaults for popstate hydration", () => {
     const state = lensViewQueryToUrlState(parseLensViewQuery(""), true);
     expect(state).toMatchObject({
@@ -93,6 +102,8 @@ describe("lensViewUrlState", () => {
       selectedElementIdA: null,
       selectedElementIdB: null,
       glassMapOpen: false,
+      lcaOverlayOpen: false,
+      petzvalOverlayOpen: false,
       bokehPreviewOpen: false,
       analysisDrawerOpen: false,
       analysisDrawerTab: "aberrations",

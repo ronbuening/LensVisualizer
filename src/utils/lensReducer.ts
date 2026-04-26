@@ -72,6 +72,8 @@ const PANEL_FIELDS = new Set([
   "headerInfoExpanded",
   "abbeShowGlassType",
   "glassMapOpen",
+  "lcaOverlayOpen",
+  "petzvalOverlayOpen",
   "showEffectiveAperture",
   "aberrationsExpanded",
   "analysisDrawerOpen",
@@ -135,6 +137,8 @@ export function createInitialState(
       headerInfoExpanded: prefs.headerInfoExpanded ?? true,
       abbeShowGlassType: prefs.abbeShowGlassType ?? true,
       glassMapOpen: urlState.glassMapOpen ?? false,
+      lcaOverlayOpen: urlState.lcaOverlayOpen ?? false,
+      petzvalOverlayOpen: urlState.petzvalOverlayOpen ?? false,
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
       analysisDrawerOpen: urlState.analysisDrawerOpen ?? false,
@@ -179,6 +183,8 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           zoomPanActive: false,
           bokehPreviewOpen: false,
           glassMapOpen: false,
+          lcaOverlayOpen: false,
+          petzvalOverlayOpen: false,
           selectedElementId: null,
         };
       } else {
