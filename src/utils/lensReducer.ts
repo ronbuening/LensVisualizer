@@ -21,6 +21,7 @@ import {
   type URLState,
 } from "../types/state.js";
 import comparisonReducer from "../comparison/comparisonReducer.js";
+import { VIEW_STATE_FIELDS } from "./lensViewUrlState.js";
 
 /* ── Action type constants ── */
 export const SET_LENS_A = "SET_LENS_A";
@@ -237,21 +238,23 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case APPLY_URL_VIEW_STATE: {
       const urlState = action.state;
       const panels = { ...state.panels };
-      if ("selectedElementId" in urlState) panels.selectedElementId = urlState.selectedElementId ?? null;
-      if ("selectedElementIdA" in urlState) panels.selectedElementIdA = urlState.selectedElementIdA ?? null;
-      if ("selectedElementIdB" in urlState) panels.selectedElementIdB = urlState.selectedElementIdB ?? null;
-      if ("glassMapOpen" in urlState) panels.glassMapOpen = urlState.glassMapOpen ?? false;
-      if ("bokehPreviewOpen" in urlState) panels.bokehPreviewOpen = urlState.bokehPreviewOpen ?? false;
-      if ("analysisDrawerOpen" in urlState) panels.analysisDrawerOpen = urlState.analysisDrawerOpen ?? false;
+      for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
+        if (key in urlState) {
+          (panels as Record<string, unknown>)[key] = urlState[key] ?? fallback;
+        }
+      }
       if (urlState.analysisDrawerTab) panels.analysisDrawerTab = urlState.analysisDrawerTab;
 
       const sliders = { ...state.sliders };
-      if ("focus" in urlState && !state.lens.comparing) sliders.focusT = urlState.focus ?? 0;
-      if ("aperture" in urlState && !state.lens.comparing) sliders.stopdownT = urlState.aperture ?? 0;
-
       const sharedSliders = { ...state.sharedSliders };
-      if ("focus" in urlState && state.lens.comparing) sharedSliders.sharedFocusT = urlState.focus ?? 0;
-      if ("aperture" in urlState && state.lens.comparing) sharedSliders.sharedStopdownT = urlState.aperture ?? 0;
+      if ("focus" in urlState) {
+        if (state.lens.comparing) sharedSliders.sharedFocusT = urlState.focus ?? 0;
+        else sliders.focusT = urlState.focus ?? 0;
+      }
+      if ("aperture" in urlState) {
+        if (state.lens.comparing) sharedSliders.sharedStopdownT = urlState.aperture ?? 0;
+        else sliders.stopdownT = urlState.aperture ?? 0;
+      }
 
       return { ...state, panels, sliders, sharedSliders };
     }

@@ -18,7 +18,7 @@
  * wires sub-components.
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
@@ -38,7 +38,7 @@ import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { selectedElementKeyForPanel, selectedElementPanelIdForPanel } from "../../types/state.js";
+import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -113,7 +113,7 @@ export default function LensDiagramPanel({
   const [hov, setHov] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
-  const selectedElementPanelId = selectedElementPanelIdForPanel(panelId);
+  const selectedElementPanelId = normalizePanelId(panelId);
   const sel = panels[selectedElementKeyForPanel(selectedElementPanelId)];
 
   useEffect(() => {
@@ -165,12 +165,18 @@ export default function LensDiagramPanel({
     }
   }, [L, dispatch, selectedElementPanelId, sel]);
 
-  const panelOverlays = {
-    ...overlays,
-    showAbbeDiagram: glassMapOpen,
-    openAbbeDiagram: () => adapters.onGlassMapOpenChange(true),
-    closeAbbeDiagram: () => adapters.onGlassMapOpenChange(false),
-  };
+  const onGlassMapOpenChange = adapters.onGlassMapOpenChange;
+  const openAbbeDiagram = useCallback(() => onGlassMapOpenChange(true), [onGlassMapOpenChange]);
+  const closeAbbeDiagram = useCallback(() => onGlassMapOpenChange(false), [onGlassMapOpenChange]);
+  const panelOverlays = useMemo(
+    () => ({
+      ...overlays,
+      showAbbeDiagram: glassMapOpen,
+      openAbbeDiagram,
+      closeAbbeDiagram,
+    }),
+    [overlays, glassMapOpen, openAbbeDiagram, closeAbbeDiagram],
+  );
 
   /* ── Zoom/pan viewBox management ── */
   const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);

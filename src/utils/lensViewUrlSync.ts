@@ -6,6 +6,12 @@ import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from
 import type { LensAction, LensState } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
 
+/**
+ * lensViewUrlSync — bridges reducer-shaped LensState to the URL surface
+ * defined by `lensViewUrlState`. Owns the route-vs-legacy URL build paths
+ * and the focal-length ↔ `zoomT` conversion gated by the loaded lens(es).
+ */
+
 export interface ComparisonLenses {
   LA: RuntimeLens;
   LB: RuntimeLens;
@@ -86,14 +92,6 @@ export function buildLegacyLensViewUrl(
 
 export function buildLegacyLensIdentityUrl(state: LensState): string {
   return buildComparisonURL(state.lens.comparing, state.lens.lensKeyA, state.lens.lensKeyB);
-}
-
-export function zoomActionFromUrl(
-  search: string,
-  state: LensState,
-  comparisonLenses: ComparisonLensesParam,
-): LensAction | null {
-  return zoomActionFromFocalLength(parseLensViewQuery(search).zoom ?? null, state, comparisonLenses);
 }
 
 export function zoomActionFromFocalLength(

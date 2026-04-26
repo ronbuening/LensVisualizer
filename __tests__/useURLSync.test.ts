@@ -189,6 +189,9 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     replaceStateSpy.mockClear();
 
     renderHook(() => useURLSync(state, dispatch, null, true, false));
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
     expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?v=1&el=3&gm=1&bo=1&ad=1&tab=coma`);
@@ -214,6 +217,9 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     replaceStateSpy.mockClear();
 
     renderHook(() => useURLSync(state, dispatch, null, false, true));
+    act(() => {
+      vi.advanceTimersByTime(100);
+    });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
     expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?v=1&a_el=2&b_el=4&gm=1&ad=1&tab=distortion`);
@@ -255,7 +261,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(replaceStateSpy.mock.calls.length).toBe(callsBefore);
   });
 
-  it("calls replaceState after 300ms debounce", () => {
+  it("calls replaceState after the debounce window", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     // Non-zero focusT so the debounced URL (with focus param) differs from the lens-only URL
     const state: LensState = { ...makeState(), sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0 } };

@@ -43,27 +43,41 @@ export interface BuildURLSliders {
  * @param catalogKeys — valid lens keys (used to reject stale URLs)
  * @returns parsed state
  */
+interface ParsedLensKeys {
+  comparing: boolean;
+  lensKeyA?: string;
+  lensKeyB?: string;
+  singleLens?: string;
+}
+
+/**
+ * Resolve lens key(s) from a search string against the catalog. Cheap and
+ * independent of slider/view-state parsing — callers that have already
+ * parsed `parseLensViewQuery` use this to avoid re-parsing query params
+ * via the heavier `parseComparisonParams`.
+ */
+export function parseLensKeysFromSearch(search: string, catalogKeys: string[]): ParsedLensKeys {
+  const params = new URLSearchParams(search);
+  const a = params.get("a");
+  const b = params.get("b");
+  if (a && b && catalogKeys.includes(a) && catalogKeys.includes(b)) {
+    return { comparing: true, lensKeyA: a, lensKeyB: b };
+  }
+  const single = params.get("lens");
+  if (single && catalogKeys.includes(single)) {
+    return { comparing: false, singleLens: single };
+  }
+  return { comparing: false };
+}
+
 export function parseComparisonParams(search: string, catalogKeys: string[]): ParsedComparisonParams {
-  const params: URLSearchParams = new URLSearchParams(search);
-  const a: string | null = params.get("a");
-  const b: string | null = params.get("b");
-
   const viewState = parseLensViewQuery(search);
-
   const sliders: ParsedSliders = {
     zoom: viewState.zoom ?? null,
     focus: viewState.focus ?? null,
     aperture: viewState.aperture ?? null,
   };
-
-  if (a && b && catalogKeys.includes(a) && catalogKeys.includes(b)) {
-    return { comparing: true, lensKeyA: a, lensKeyB: b, ...sliders };
-  }
-  const single: string | null = params.get("lens");
-  if (single && catalogKeys.includes(single)) {
-    return { comparing: false, singleLens: single, ...sliders };
-  }
-  return { comparing: false, ...sliders };
+  return { ...parseLensKeysFromSearch(search, catalogKeys), ...sliders };
 }
 
 /**

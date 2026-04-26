@@ -1,3 +1,13 @@
+/**
+ * lensViewUrlState — single source of truth for parsing and building the
+ * shareable lens-view query string.
+ *
+ * Stable params (`focus`, `aperture`, `zoom`) are parsed regardless of the
+ * `v` version param. v1-gated params (selection, overlay open-state,
+ * analysis tab) are only honored when `v=1`; unknown versions silently
+ * drop them so older clients do not misread future schemas.
+ */
+
 import { isAnalysisTabId, type LensState, type URLState } from "../types/state.js";
 
 type LensViewQueryKey =
@@ -22,6 +32,23 @@ export type LensViewQueryState = Partial<
 export interface BuildLensViewQueryOptions extends LensViewQueryState {
   comparing?: boolean;
 }
+
+/**
+ * Canonical list of v1 view-state fields shared by parsing, hydration, and
+ * the reducer. To add a new shareable field: extend this list, add the
+ * matching `URLState` / `PanelsSlice` entry, and wire build/parse keys.
+ */
+export const VIEW_STATE_FIELDS = [
+  { key: "selectedElementId", default: null as number | null },
+  { key: "selectedElementIdA", default: null as number | null },
+  { key: "selectedElementIdB", default: null as number | null },
+  { key: "glassMapOpen", default: false },
+  { key: "bokehPreviewOpen", default: false },
+  { key: "analysisDrawerOpen", default: false },
+] as const;
+
+export type ViewStateField = (typeof VIEW_STATE_FIELDS)[number];
+export type ViewStateFieldKey = ViewStateField["key"];
 
 const DEFAULT_URL_STATE: Partial<URLState> = {
   focus: 0,
@@ -110,50 +137,32 @@ export function buildLensViewQuery({
   analysisDrawerOpen,
   analysisDrawerTab,
 }: BuildLensViewQueryOptions): URLSearchParams {
-  const params = new URLSearchParams();
-  let usesV1ViewState = false;
+  const usesV1ViewState =
+    (comparing ? selectedElementIdA != null || selectedElementIdB != null : selectedElementId != null) ||
+    Boolean(glassMapOpen) ||
+    Boolean(bokehPreviewOpen) ||
+    Boolean(analysisDrawerOpen);
 
+  const params = new URLSearchParams();
+  if (usesV1ViewState) params.set("v", "1");
   if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
   if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
   if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
 
   if (comparing) {
-    if (selectedElementIdA != null) {
-      params.set("a_el", String(selectedElementIdA));
-      usesV1ViewState = true;
-    }
-    if (selectedElementIdB != null) {
-      params.set("b_el", String(selectedElementIdB));
-      usesV1ViewState = true;
-    }
+    if (selectedElementIdA != null) params.set("a_el", String(selectedElementIdA));
+    if (selectedElementIdB != null) params.set("b_el", String(selectedElementIdB));
   } else if (selectedElementId != null) {
     params.set("el", String(selectedElementId));
-    usesV1ViewState = true;
   }
 
-  if (glassMapOpen) {
-    params.set("gm", "1");
-    usesV1ViewState = true;
-  }
-  if (bokehPreviewOpen) {
-    params.set("bo", "1");
-    usesV1ViewState = true;
-  }
-  if (analysisDrawerOpen) {
-    params.set("ad", "1");
-    usesV1ViewState = true;
-  }
+  if (glassMapOpen) params.set("gm", "1");
+  if (bokehPreviewOpen) params.set("bo", "1");
+  if (analysisDrawerOpen) params.set("ad", "1");
   if (analysisDrawerOpen && analysisDrawerTab && analysisDrawerTab !== "aberrations") {
     params.set("tab", analysisDrawerTab);
-    usesV1ViewState = true;
   }
 
-  if (usesV1ViewState) {
-    const ordered = new URLSearchParams();
-    ordered.set("v", "1");
-    params.forEach((value, key) => ordered.set(key, value));
-    return ordered;
-  }
   return params;
 }
 
@@ -182,15 +191,11 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (state.focus != null) urlState.focus = state.focus;
   if (state.aperture != null) urlState.aperture = state.aperture;
   if (state.zoom != null) urlState.zoom = state.zoom;
-  if (includeViewDefaults || "selectedElementId" in state) urlState.selectedElementId = state.selectedElementId ?? null;
-  if (includeViewDefaults || "selectedElementIdA" in state)
-    urlState.selectedElementIdA = state.selectedElementIdA ?? null;
-  if (includeViewDefaults || "selectedElementIdB" in state)
-    urlState.selectedElementIdB = state.selectedElementIdB ?? null;
-  if (includeViewDefaults || "glassMapOpen" in state) urlState.glassMapOpen = state.glassMapOpen ?? false;
-  if (includeViewDefaults || "bokehPreviewOpen" in state) urlState.bokehPreviewOpen = state.bokehPreviewOpen ?? false;
-  if (includeViewDefaults || "analysisDrawerOpen" in state)
-    urlState.analysisDrawerOpen = state.analysisDrawerOpen ?? false;
+  for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
+    if (includeViewDefaults || key in state) {
+      (urlState as Record<string, unknown>)[key] = state[key] ?? fallback;
+    }
+  }
   if (state.analysisDrawerTab) urlState.analysisDrawerTab = state.analysisDrawerTab;
   return urlState;
 }

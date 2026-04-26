@@ -203,12 +203,14 @@ export interface URLState {
 export type SelectedElementPanelId = "main" | "a" | "b";
 export type SelectedElementPanelKey = "selectedElementId" | "selectedElementIdA" | "selectedElementIdB";
 
-export function selectedElementPanelIdForPanel(panelId: string): SelectedElementPanelId {
-  return panelId === "a" || panelId === "b" ? panelId : "main";
-}
-
-export function selectedElementKeyForPanel(panelId: SelectedElementPanelId): SelectedElementPanelKey {
+/** Maps a panel identifier (loose string or "main"/"a"/"b") to its `panels`-slice key. */
+export function selectedElementKeyForPanel(panelId: string): SelectedElementPanelKey {
   if (panelId === "a") return "selectedElementIdA";
   if (panelId === "b") return "selectedElementIdB";
   return "selectedElementId";
+}
+
+/** Normalises a loose panel identifier to the strict `SelectedElementPanelId` union. */
+export function normalizePanelId(panelId: string): SelectedElementPanelId {
+  return panelId === "a" || panelId === "b" ? panelId : "main";
 }
