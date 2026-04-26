@@ -1,6 +1,9 @@
 export const MAKER_PREFIXES = [
   { prefix: "CANON", display: "Canon", slug: "canon" },
-  { prefix: "CARL ZEISS", display: "Carl Zeiss", slug: "carl-zeiss" },
+  /* "CARL ZEISS JENA" must come before "CARL ZEISS" — startsWith matching is
+     order-sensitive, and a Jena lens must not be caught by the generic prefix. */
+  { prefix: "CARL ZEISS JENA", display: "Carl Zeiss Jena", slug: "carl-zeiss-jena" },
+  { prefix: "CARL ZEISS", display: "Carl Zeiss Oberkochen", slug: "carl-zeiss-oberkochen" },
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },

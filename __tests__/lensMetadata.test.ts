@@ -36,10 +36,16 @@ describe("deriveMaker", () => {
     expect(info.slug).toBe("nikon");
   });
 
-  it("derives Carl Zeiss from CARL ZEISS prefix", () => {
+  it("derives Carl Zeiss Oberkochen from generic CARL ZEISS prefix", () => {
     const info = deriveMaker("CARL ZEISS Otus 55mm f/1.4");
-    expect(info.display).toBe("Carl Zeiss");
-    expect(info.slug).toBe("carl-zeiss");
+    expect(info.display).toBe("Carl Zeiss Oberkochen");
+    expect(info.slug).toBe("carl-zeiss-oberkochen");
+  });
+
+  it("derives Carl Zeiss Jena from CARL ZEISS JENA prefix (longer prefix wins)", () => {
+    const info = deriveMaker("CARL ZEISS JENA SONNAR 50mm f/2");
+    expect(info.display).toBe("Carl Zeiss Jena");
+    expect(info.slug).toBe("carl-zeiss-jena");
   });
 
   it("derives Voigtländer from VOIGTLÄNDER prefix", () => {
@@ -80,7 +86,8 @@ describe("allMakerSlugs", () => {
     const slugs = allMakerSlugs();
     expect(slugs).toContain("canon");
     expect(slugs).toContain("nikon");
-    expect(slugs).toContain("carl-zeiss");
+    expect(slugs).toContain("carl-zeiss-jena");
+    expect(slugs).toContain("carl-zeiss-oberkochen");
     expect(slugs).toContain("voigtlander");
     expect(slugs).toContain("ricoh");
     expect(slugs).toContain("fujifilm");
@@ -94,7 +101,8 @@ describe("allMakerSlugs", () => {
 describe("makerDisplayName", () => {
   it("returns display name for known slug", () => {
     expect(makerDisplayName("nikon")).toBe("Nikon");
-    expect(makerDisplayName("carl-zeiss")).toBe("Carl Zeiss");
+    expect(makerDisplayName("carl-zeiss-jena")).toBe("Carl Zeiss Jena");
+    expect(makerDisplayName("carl-zeiss-oberkochen")).toBe("Carl Zeiss Oberkochen");
   });
 
   it("returns null for unknown slug", () => {

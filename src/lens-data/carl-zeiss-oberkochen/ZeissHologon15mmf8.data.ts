@@ -45,7 +45,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-hologon-15f8",
-  maker: "Carl Zeiss",
+  maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS HOLOGON 15 mm f/8",
   visible: false,
   subtitle: "DE 1,241,637 B — GLATZEL & SCHULZ / CARL ZEISS",

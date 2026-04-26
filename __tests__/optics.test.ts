@@ -512,7 +512,7 @@ import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f
 import NoktonRaw from "../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
 import NikkorRaw from "../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../src/lens-data/nikon/NikonNikkor105f14E.data.js";
-import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 describe("traceRay — Sonnar 50 f/1.5 production lens", () => {

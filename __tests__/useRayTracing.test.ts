@@ -8,7 +8,7 @@ import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optic
 import { createCoordinateTransforms } from "../src/optics/diagramGeometry.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
-import SonnarRaw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 

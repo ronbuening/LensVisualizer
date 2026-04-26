@@ -11,7 +11,7 @@ import DistortionTab from "../src/components/display/DistortionTab.js";
 import FocusBreathingTab from "../src/components/display/FocusBreathingTab.js";
 import PupilAberrationTab from "../src/components/display/PupilAberrationTab.js";
 import themes from "../src/utils/themes.js";
-import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import type { DistortionSample } from "../src/optics/distortionAnalysis.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 
