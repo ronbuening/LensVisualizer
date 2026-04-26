@@ -10,7 +10,15 @@
 import { ENABLE_EDGE_PROJECTION } from "./featureFlags.js";
 import { DEFAULT_COLOR_TRACING } from "./appConfig.js";
 import { readSystemThemePreferences } from "./themePreferences.js";
-import type { LensState, LensAction, Preferences, URLState } from "../types/state.js";
+import {
+  isAnalysisTabId,
+  isDesktopView,
+  isOffAxisMode,
+  type LensState,
+  type LensAction,
+  type Preferences,
+  type URLState,
+} from "../types/state.js";
 import comparisonReducer from "../comparison/comparisonReducer.js";
 
 /* ── Action type constants ── */
@@ -78,7 +86,7 @@ export function createInitialState(
   isWide: boolean,
   catalogKeys: string[],
 ): LensState {
-  const showOffAxisRaw = prefs.showOffAxis ?? "off";
+  const showOffAxisRaw = isOffAxisMode(prefs.showOffAxis) ? prefs.showOffAxis : "off";
   const showOffAxis = !ENABLE_EDGE_PROJECTION && showOffAxisRaw === "edge" ? "trueAngle" : showOffAxisRaw;
   const systemThemePrefs = readSystemThemePreferences();
 
@@ -94,7 +102,7 @@ export function createInitialState(
       dark: prefs.dark !== undefined ? prefs.dark : null,
       highContrast: prefs.highContrast ?? systemThemePrefs.highContrast,
       mobileView: "diagram",
-      desktopView: prefs.desktopView || "both",
+      desktopView: isDesktopView(prefs.desktopView) ? prefs.desktopView : "both",
     },
     rays: {
       showOnAxis: prefs.showOnAxis ?? true,
@@ -126,7 +134,11 @@ export function createInitialState(
       showEffectiveAperture: prefs.showEffectiveAperture ?? false,
       aberrationsExpanded: prefs.aberrationsExpanded ?? true,
       analysisDrawerOpen: urlState.analysisDrawerOpen ?? false,
-      analysisDrawerTab: urlState.analysisDrawerTab ?? prefs.analysisDrawerTab ?? "aberrations",
+      analysisDrawerTab: isAnalysisTabId(urlState.analysisDrawerTab)
+        ? urlState.analysisDrawerTab
+        : isAnalysisTabId(prefs.analysisDrawerTab)
+          ? prefs.analysisDrawerTab
+          : "aberrations",
       glassMapOpen: urlState.glassMapOpen ?? false,
       zoomPanActive: false,
       bokehPreviewOpen: urlState.bokehPreviewOpen ?? false,
@@ -210,6 +222,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
 
     /* ── Analysis drawer tab selection ── */
     case SET_ANALYSIS_TAB:
+      if (!isAnalysisTabId(action.tab)) return state;
       return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
 
     /* ── Overlays ── */

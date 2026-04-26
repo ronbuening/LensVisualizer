@@ -2,7 +2,7 @@
  * Persistent user preferences via localStorage.
  */
 
-import type { Preferences } from "../types/state.js";
+import { isAnalysisTabId, isDesktopView, isOffAxisMode, type Preferences } from "../types/state.js";
 
 export const PREFS_KEY: string = "lensvis:prefs";
 
@@ -27,7 +27,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.showOnAxis === "boolean") out.showOnAxis = p.showOnAxis;
     /* showOffAxis: v2 stored boolean (true→"trueAngle", false→"off"),
        v3+ stores string "off"|"trueAngle"|"edge" */
-    if (typeof p.showOffAxis === "string" && ["off", "trueAngle", "edge"].includes(p.showOffAxis)) {
+    if (isOffAxisMode(p.showOffAxis)) {
       out.showOffAxis = p.showOffAxis;
     } else if (typeof p.showOffAxis === "boolean") {
       out.showOffAxis = p.showOffAxis ? "trueAngle" : "off";
@@ -42,8 +42,7 @@ export function loadPrefs(): Partial<Preferences> {
        restored from preferences — it comes from the URL so the homepage
        isn't hijacked by a previously-viewed lens. */
     if (p.scaleMode === "independent" || p.scaleMode === "normalized") out.scaleMode = p.scaleMode;
-    if (typeof p.desktopView === "string" && ["diagram", "both", "analysis"].includes(p.desktopView))
-      out.desktopView = p.desktopView;
+    if (isDesktopView(p.desktopView)) out.desktopView = p.desktopView;
     if (typeof p.focusExpanded === "boolean") out.focusExpanded = p.focusExpanded;
     if (typeof p.apertureExpanded === "boolean") out.apertureExpanded = p.apertureExpanded;
     if (typeof p.headerControlsExpanded === "boolean") out.headerControlsExpanded = p.headerControlsExpanded;
@@ -52,7 +51,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.abbeShowGlassType === "boolean") out.abbeShowGlassType = p.abbeShowGlassType;
     if (typeof p.showEffectiveAperture === "boolean") out.showEffectiveAperture = p.showEffectiveAperture;
     if (typeof p.aberrationsExpanded === "boolean") out.aberrationsExpanded = p.aberrationsExpanded;
-    if (typeof p.analysisDrawerTab === "string") out.analysisDrawerTab = p.analysisDrawerTab;
+    if (isAnalysisTabId(p.analysisDrawerTab)) out.analysisDrawerTab = p.analysisDrawerTab;
     return out;
   } catch {
     return {};

@@ -10,7 +10,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag, aspheric overlays, and diagnostics that prevent hidden semi-diameter clipping artifacts
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
-- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, and chromatic field curvature
+- Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, chromatic field curvature, and aspheric surface deviation
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
 - Supports shared-control side-by-side comparison between two lenses
@@ -18,16 +18,17 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## Current Scope
 
-- `101` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
+- `108` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, Ricoh, and Vivitar
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
-The catalog is auto-registered from `src/lens-data/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
+The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
+- **Aspheric deviation inspector**: click any aspheric element to compare its surface profile against the base sphere or a least-squares best-fit sphere, with adjustable exaggeration and click-to-measure Δsag (mm or μm)
 - **Spherical aberration model**: combines a dense real-ray transverse fan (22 pupil zones with finer sampling near the edge) at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic; symmetric +/- ray pairing prevents asymmetric clipping from biasing metrics
 - **Distortion model**: iteratively solved chief rays correct for pupil aberration at wide field angles; 21-point sampling resolves moustache distortion transitions; 2D field grid uses a pre-computed pupil correction table; multi-bracket search handles non-monotonic image-height curves
 - **Coma point-cloud preview**: traces a fixed circular pupil pattern with the skew-ray core and plots chief-ray-centered tangential and sagittal image heights directly in millimeters
@@ -69,6 +70,7 @@ The dev server runs at `http://localhost:5173`.
 
 ```bash
 npm run dev           # Vite dev server with build metadata generation
+npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run build         # Production build + prerender + sitemap
 npm run preview       # Preview built output
 npm run test          # Full Vitest suite
@@ -137,9 +139,9 @@ agent_docs/     # Developer-facing architecture and workflow notes
 
 ## Adding A Lens
 
-1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to a new `.data.ts` file.
+1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to `src/lens-data/YourLens.data.ts`.
 2. Fill in the prescription and metadata fields.
-3. Optionally add a matching `.analysis.md` file for the description panel.
+3. Optionally add `src/lens-data/YourLens.analysis.md` beside the data file for the description panel.
 4. Run:
 
 ```bash
@@ -147,6 +149,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
 5. The catalog will pick the new lens up automatically through `import.meta.glob`.
+6. `npm run generate:metadata` or `npm run build` will move the lens into its maker folder and rewrite the type import to match the nested path.
 
 See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full format.
 

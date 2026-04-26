@@ -10,6 +10,7 @@ import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
 import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface VarReadout {
   label: string;
@@ -46,9 +47,10 @@ interface DiagramControlPanelProps {
   onApertureExpandedChange: (v: boolean) => void;
   onLegendExpandedChange: (v: boolean) => void;
   onSliderPointerUp: () => void;
+  onSliderInteractionChange?: (interacting: boolean) => void;
   info: ElementData | null;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
   chromR: boolean;
   chromG: boolean;
@@ -56,6 +58,7 @@ interface DiagramControlPanelProps {
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
+  onOpenAsphericCompare?: (eid: number) => void;
 }
 
 export default function DiagramControlPanel({
@@ -88,6 +91,7 @@ export default function DiagramControlPanel({
   onApertureExpandedChange,
   onLegendExpandedChange,
   onSliderPointerUp,
+  onSliderInteractionChange,
   info,
   showOnAxis,
   showOffAxis,
@@ -98,6 +102,7 @@ export default function DiagramControlPanel({
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
+  onOpenAsphericCompare,
 }: DiagramControlPanelProps) {
   return (
     <div
@@ -147,6 +152,7 @@ export default function DiagramControlPanel({
         apertureExpanded={apertureExpanded}
         onApertureExpandedChange={onApertureExpandedChange}
         onSliderPointerUp={onSliderPointerUp}
+        onInteractionChange={onSliderInteractionChange}
         showSliders={showSliders}
       />
 
@@ -160,7 +166,13 @@ export default function DiagramControlPanel({
         }}
       >
         {info ? (
-          <ElementInspector info={info} L={L} t={t} showChromatic={showChromatic} />
+          <ElementInspector
+            info={info}
+            L={L}
+            t={t}
+            showChromatic={showChromatic}
+            onOpenAsphericCompare={onOpenAsphericCompare}
+          />
         ) : (
           <DiagramLegend
             L={L}

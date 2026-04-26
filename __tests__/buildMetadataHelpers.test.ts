@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   buildRouteFreshness,
   combineFreshnessEntries,
+  getFirstGitFileFreshness,
   getGitFileFreshness,
+  mapLimit,
   parseGitLogDates,
 } from "../scripts/build-metadata-lib.mjs";
 
@@ -30,6 +32,59 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-27",
       lastModified: "2026-03-27",
     });
+  });
+
+  it("tries alternate history paths before falling back", () => {
+    const dates = getFirstGitFileFreshness(["new-path.md", "old-path.md"], {
+      fallbackDate: "2026-03-27",
+      exec: (command) => {
+        if (command.includes('"new-path.md"')) {
+          throw new Error("missing");
+        }
+        if (command.includes('"old-path.md"')) {
+          return ["2026-03-27T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n");
+        }
+        throw new Error(`unexpected command: ${command}`);
+      },
+    });
+
+    expect(dates).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
+    });
+  });
+
+  it("uses execFile-style arguments by default for git freshness", () => {
+    const calls: unknown[][] = [];
+    const dates = getGitFileFreshness("path with spaces.md", {
+      fallbackDate: "2026-03-27",
+      execFileImpl: (...args: unknown[]) => {
+        calls.push(args);
+        return ["2026-03-27T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n");
+      },
+    });
+
+    expect(dates).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
+    });
+    expect(calls[0][0]).toBe("git");
+    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%aI", "--", "path with spaces.md"]);
+  });
+
+  it("maps with bounded concurrency while preserving result order", async () => {
+    let active = 0;
+    let maxActive = 0;
+    const result = await mapLimit([1, 2, 3, 4], 2, async (value) => {
+      active++;
+      maxActive = Math.max(maxActive, active);
+      await Promise.resolve();
+      active--;
+      return value * 2;
+    });
+
+    expect(result).toEqual([2, 4, 6, 8]);
+    expect(maxActive).toBeLessThanOrEqual(2);
   });
 
   it("combines multiple freshness entries into a single range", () => {

@@ -19,6 +19,7 @@ import DiagramRayLayers from "./DiagramRayLayers.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface DiagramSVGProps {
   L: RuntimeLens;
@@ -40,7 +41,7 @@ interface DiagramSVGProps {
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
   zoomT: number;

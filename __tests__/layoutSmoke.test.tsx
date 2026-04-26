@@ -123,9 +123,9 @@ describe("SingleLensContent", () => {
   const baseProps = {
     theme: themes.dark,
     isWide: true,
-    effectiveDesktopView: "both",
+    effectiveDesktopView: "both" as const,
     showDesktopToggle: true,
-    mobileView: "diagram",
+    mobileView: "diagram" as const,
     lensKeyA: "test-lens-a",
     markdown: "# Test Analysis",
   };
@@ -173,9 +173,9 @@ describe("SingleLensContent", () => {
     expect(screen.queryByTestId("description-panel")).toBeNull();
   });
 
-  it("renders description on mobile when mobileView is 'analysis'", () => {
+  it("renders description on mobile when mobileView is 'description'", () => {
     const state = makeState();
-    renderWithLensContext(<SingleLensContent {...baseProps} isWide={false} mobileView="analysis" />, { state });
+    renderWithLensContext(<SingleLensContent {...baseProps} isWide={false} mobileView="description" />, { state });
 
     expect(screen.queryByTestId("diagram-panel-main")).toBeNull();
     expect(screen.getByTestId("description-panel")).toBeDefined();

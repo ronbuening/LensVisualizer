@@ -1,5 +1,5 @@
 /**
- * Lens catalog — auto-registered from lens-data/*.data.ts
+ * Lens catalog — auto-registered from nested lens-data data files
  *
  * Shared by LensViewer and LensDiagramPanel so the import.meta.glob
  * calls are not duplicated.
@@ -8,10 +8,10 @@
 import LENS_DEFAULTS from "../lens-data/defaults.js";
 import type { LensData } from "../types/optics.js";
 
-/* Eagerly import all *.data.ts files — Vite resolves the glob at build time.
+/* Eagerly import all lens data files under src/lens-data/ — Vite resolves the glob at build time.
  * Each module's default export is a LENS_DATA object; defaults are merged
  * underneath so per-lens values take precedence. */
-const _modules = import.meta.glob<{ default: LensData }>("../lens-data/*.data.ts", { eager: true });
+const _modules = import.meta.glob<{ default: LensData }>("../lens-data/**/*.data.ts", { eager: true });
 const LENS_CATALOG: Record<string, LensData> = {};
 for (const [path, mod] of Object.entries(_modules)) {
   const data = mod.default;
@@ -26,7 +26,7 @@ const CATALOG_KEYS: string[] = Object.keys(LENS_CATALOG)
   .filter((k) => LENS_CATALOG[k].visible !== false)
   .sort((a, b) => LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name));
 
-const _mdModules = import.meta.glob<string>("../lens-data/*.analysis.md", {
+const _mdModules = import.meta.glob<string>("../lens-data/**/*.analysis.md", {
   eager: true,
   query: "?raw",
   import: "default",

@@ -2,11 +2,11 @@
 
 ## Quick Steps
 
-1. Create `src/content/YourArticle.md` with YAML frontmatter (see below)
+1. Create `src/content/YourArticle.md` or a nested file like `src/content/series/YourArticle.md` with YAML frontmatter (see below)
 2. Write the body in GitHub-flavored markdown (headings, tables, footnotes, code fences all supported)
 3. Link internally with `[text](/lens/{key})` or `[text](/articles/{slug})` — see the link behavior section
 4. Run `npm run typecheck && npm run format:check && npm run test` — then `npm run build` to confirm the route was discovered
-5. Done — `import.meta.glob` auto-registers every `src/content/*.md` file; no imports or catalog edits required
+5. Done — the article pipeline auto-registers every `src/content/**/*.md` file; no imports or catalog edits required
 
 ---
 
@@ -108,7 +108,7 @@ The anchor handler also forwards the `id` prop so `remark-gfm` footnote referenc
 
 ## Key Files
 
-- **Markdown location:** `src/content/*.md` (auto-discovered)
+- **Markdown location:** `src/content/**/*.md` (auto-discovered)
 - **Frontmatter parsing:** `scripts/generate-build-metadata.mjs` — extend here if you add a new frontmatter field
 - **Registry + series grouping:** `src/utils/homepageContent.ts` — `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, `ARTICLE_CONTENT`
 - **Page rendering:** `src/pages/ArticlePage.tsx` (single article), `src/pages/ArticlesPage.tsx` (archive)

@@ -10,7 +10,7 @@ import SingleLensContent from "../SingleLensContent.js";
 import type { ComparisonLensesResult } from "../../../comparison/useComparisonMode.js";
 import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "../../../comparison/comparisonSliders.js";
 import type { Theme } from "../../../types/theme.js";
-import type { LensAction } from "../../../types/state.js";
+import type { DesktopView, LensAction, MobileView } from "../../../types/state.js";
 import type { Dispatch } from "react";
 
 interface ViewerContentProps {
@@ -37,9 +37,9 @@ interface ViewerContentProps {
   onSliderPointerUp: () => void;
   dispatch: Dispatch<LensAction>;
   showEffectiveAperture: boolean;
-  effectiveDesktopView: string;
+  effectiveDesktopView: DesktopView;
   showDesktopToggle: boolean;
-  mobileView: string;
+  mobileView: MobileView;
   markdown: string | null | undefined;
 }
 

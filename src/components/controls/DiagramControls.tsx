@@ -3,7 +3,7 @@
  * lens diagram. Extracted from LensDiagramPanel for separation of concerns.
  */
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
@@ -45,6 +45,7 @@ interface DiagramControlsProps {
   apertureExpanded: boolean;
   onApertureExpandedChange?: (value: boolean) => void;
   onSliderPointerUp?: () => void;
+  onInteractionChange?: (interacting: boolean) => void;
   showSliders: boolean;
 }
 
@@ -73,9 +74,14 @@ export default function DiagramControls({
   apertureExpanded,
   onApertureExpandedChange,
   onSliderPointerUp,
+  onInteractionChange,
   showSliders,
 }: DiagramControlsProps) {
-  const { beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+  const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+
+  useEffect(() => {
+    onInteractionChange?.(interacting);
+  }, [interacting, onInteractionChange]);
 
   const handlePointerUp = useCallback(() => {
     endInteraction();
@@ -109,6 +115,9 @@ export default function DiagramControls({
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
+  const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
+  const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
+  const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
 
   return (
     <>
@@ -199,7 +208,7 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && (
+      {showApertureControl && (
         <SliderControl
           t={t}
           compact={compact}
@@ -246,24 +255,22 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                {L.fstopSeries
-                  .filter((n) => n >= currentFOPEN - 0.1 && n <= L.maxFstop)
-                  .map((n) => (
-                    <span
-                      key={n}
-                      onClick={() => {
-                        handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
-                        handlePointerUp();
-                      }}
-                      style={{
-                        cursor: "pointer",
-                        opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
-                        transition: "opacity 0.15s",
-                      }}
-                    >
-                      f/{n}
-                    </span>
-                  ))}
+                {availableFStops.map((n) => (
+                  <span
+                    key={n}
+                    onClick={() => {
+                      handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
+                      handlePointerUp();
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
+                      transition: "opacity 0.15s",
+                    }}
+                  >
+                    f/{n}
+                  </span>
+                ))}
               </div>
               <div
                 style={{

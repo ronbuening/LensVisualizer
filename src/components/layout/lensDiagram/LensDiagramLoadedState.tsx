@@ -11,10 +11,12 @@ import OverlayModal from "../OverlayModal.js";
 import DiagramControlPanel from "../DiagramControlPanel.js";
 import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
+import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
 import type { RuntimeLens, ChromaticSpread, ElementData, ElementShape } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
+import type { AnalysisTabId, OffAxisMode } from "../../../types/state.js";
 
 interface VarReadout {
   label: string;
@@ -58,7 +60,7 @@ interface LensDiagramLoadedStateProps {
   act: number | null;
   sel: number | null;
   showOnAxis: boolean;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
   chromR: boolean;
@@ -75,7 +77,7 @@ interface LensDiagramLoadedStateProps {
   onHover: (eid: number | null) => void;
   onSelect: (eid: number | null) => void;
   analysisDrawerOpen: boolean;
-  analysisDrawerTab: string;
+  analysisDrawerTab: AnalysisTabId;
   bokehPreviewOpen: boolean;
   focusExpanded: boolean;
   apertureExpanded: boolean;
@@ -92,10 +94,13 @@ interface LensDiagramLoadedStateProps {
     openPetzvalOverlay: () => void;
     openAbbeDiagram: () => void;
     closeAbbeDiagram: () => void;
+    asphCompareElementId: number | null;
+    openAsphCompare: (eid: number) => void;
+    closeAsphCompare: () => void;
   };
   adapters: {
     onAnalysisDrawerToggle: (open: boolean) => void;
-    onAnalysisTabChange: (tab: string) => void;
+    onAnalysisTabChange: (tab: AnalysisTabId) => void;
     onGlassMapToggle: (open: boolean) => void;
     onBokehPreviewToggle: (open: boolean) => void;
     onAberrationsExpandedChange: (expanded: boolean) => void;
@@ -129,6 +134,7 @@ interface LensDiagramLoadedStateProps {
   analysisContent: ReactNode;
   bokehPreviewContent: ReactNode;
   header: ReactNode;
+  onSliderInteractionChange?: (interacting: boolean) => void;
 }
 
 export default function LensDiagramLoadedState({
@@ -199,6 +205,7 @@ export default function LensDiagramLoadedState({
   analysisContent,
   bokehPreviewContent,
   header,
+  onSliderInteractionChange,
 }: LensDiagramLoadedStateProps) {
   return (
     <>
@@ -304,6 +311,7 @@ export default function LensDiagramLoadedState({
               onApertureExpandedChange={adapters.onApertureExpandedChange}
               onLegendExpandedChange={adapters.onLegendExpandedChange}
               onSliderPointerUp={adapters.onSliderPointerUp}
+              onSliderInteractionChange={onSliderInteractionChange}
               info={info}
               showOnAxis={showOnAxis}
               showOffAxis={showOffAxis}
@@ -313,14 +321,15 @@ export default function LensDiagramLoadedState({
               chromB={chromB}
               chromSpread={chromSpread ?? null}
               rayTracksF={rayTracksF}
-              onOpenAbbeDiagram={() => adapters.onGlassMapToggle(true)}
+              onOpenAbbeDiagram={overlays.openAbbeDiagram}
+              onOpenAsphericCompare={overlays.openAsphCompare}
             />
           )}
         </div>
       </div>
 
       {overlays.showAbbeDiagram && (
-        <OverlayModal onClose={() => adapters.onGlassMapToggle(false)} theme={t} maxWidth={580}>
+        <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
           <AbbeDiagram
             L={L}
             t={t}
@@ -329,6 +338,17 @@ export default function LensDiagramLoadedState({
           />
         </OverlayModal>
       )}
+
+      {overlays.asphCompareElementId !== null &&
+        (() => {
+          const targetInfo = L.elements.find((e) => e.id === overlays.asphCompareElementId);
+          if (!targetInfo) return null;
+          return (
+            <OverlayModal onClose={overlays.closeAsphCompare} theme={t} maxWidth={760}>
+              <AsphericComparisonOverlay key={targetInfo.id} L={L} info={targetInfo} theme={t} />
+            </OverlayModal>
+          );
+        })()}
     </>
   );
 }

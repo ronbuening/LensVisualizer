@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import type { LensState, LensAction, RayField, PanelField, OverlayField } from "../src/types/state.js";
+import type { LensState, LensAction, RayField, PanelField, OverlayField, Preferences } from "../src/types/state.js";
 import lensReducer, {
   createInitialState,
   SET_LENS_A,
@@ -61,7 +61,7 @@ describe("createInitialState", () => {
   });
 
   it("prefs override defaults", () => {
-    const prefs = { dark: false, showOnAxis: false, desktopView: "diagram" };
+    const prefs = { dark: false, showOnAxis: false, desktopView: "diagram" } satisfies Partial<Preferences>;
     const state = createInitialState(prefs, {}, false, CATALOG_KEYS);
     expect(state.display.dark).toBe(false);
     expect(state.rays.showOnAxis).toBe(false);
@@ -194,7 +194,8 @@ describe("lensReducer", () => {
     });
 
     it("ignores invalid field", () => {
-      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "invalidField" as RayField, value: true });
+      const action = { type: SET_RAY_TOGGLE, field: "invalidField" as RayField, value: true } as unknown as LensAction;
+      const next = lensReducer(state, action);
       expect(next).toBe(state); // same reference = no change
     });
   });

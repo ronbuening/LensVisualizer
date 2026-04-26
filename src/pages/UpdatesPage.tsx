@@ -8,15 +8,8 @@ import { collectionPageJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import { ALL_LENSES_BY_DATE, LENS_CATALOG } from "../utils/lensCatalog.js";
 import { CHANGELOG } from "../utils/changelogData.js";
+import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 import type { ChangelogEntry, ChangelogEntryType } from "../utils/changelogData.js";
-
-const PAGE_BASE_STYLE = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "0 1.5rem 2rem",
-  fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  minHeight: "100vh",
-} satisfies React.CSSProperties;
 
 const ENTRY_TYPE_COLORS: Record<ChangelogEntryType, string> = {
   feature: "#58c",

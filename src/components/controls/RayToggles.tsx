@@ -8,13 +8,14 @@ import type { ReactNode } from "react";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { toggleGroup, toggleBtn } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
+import type { OffAxisMode } from "../../types/state.js";
 
 interface RayTogglesProps {
   t: Theme;
   showOnAxis: boolean;
   onShowOnAxisChange?: (value: boolean) => void;
-  showOffAxis: string;
-  onShowOffAxisChange?: (value: string) => void;
+  showOffAxis: OffAxisMode;
+  onShowOffAxisChange?: (value: OffAxisMode) => void;
   showPupils: boolean;
   onShowPupilsChange?: (value: boolean) => void;
 }
@@ -32,7 +33,10 @@ export default function RayToggles({
     toggleBtn(t, active, { hasRightBorder, padding: "5px 6px", gap: 4 });
   const offAxisActive = showOffAxis !== "off";
   const offAxisCycle = ENABLE_EDGE_PROJECTION
-    ? () => onShowOffAxisChange?.(showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off")
+    ? () => {
+        const next: OffAxisMode = showOffAxis === "off" ? "trueAngle" : showOffAxis === "trueAngle" ? "edge" : "off";
+        onShowOffAxisChange?.(next);
+      }
     : () => onShowOffAxisChange?.(offAxisActive ? "off" : "trueAngle");
   const offAxisLabel = ENABLE_EDGE_PROJECTION
     ? showOffAxis === "edge"

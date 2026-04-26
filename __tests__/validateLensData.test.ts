@@ -335,14 +335,14 @@ describe("validateLensData", () => {
 });
 
 /* ── Production lens validation ── */
-import ApoLantharRaw from "../src/lens-data/VoigtlanderApoLanthar50f2.data.js";
-import NoktonRaw from "../src/lens-data/VoigtlanderNokton50f1.data.js";
-import NikkorRaw from "../src/lens-data/NikonNikkorZ50f18S.data.js";
-import Nikkor105Raw from "../src/lens-data/NikonNikkor105f14E.data.js";
-import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
-import CanonRF1535Raw from "../src/lens-data/CanonRF1535f28.data.js";
-import Nikkor1424Raw from "../src/lens-data/NikonNikkorAFS1424mmf28.data.js";
-import Nikkor1635Raw from "../src/lens-data/NikonNikkorAFS1635mmf4.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import NoktonRaw from "../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.js";
+import NikkorRaw from "../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
+import Nikkor105Raw from "../src/lens-data/nikon/NikonNikkor105f14E.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import CanonRF1535Raw from "../src/lens-data/canon/CanonRF1535f28.data.js";
+import Nikkor1424Raw from "../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.js";
+import Nikkor1635Raw from "../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.js";
 
 describe("validateLensData — production lenses", () => {
   const lenses: [string, Record<string, unknown>][] = [
@@ -367,7 +367,7 @@ describe("validateLensData — production lenses", () => {
 /* ═══════════════════════════════════════════════════════════════════
  *  Zoom-specific validation
  * ═══════════════════════════════════════════════════════════════════ */
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 describe("validateLensData — zoom lens paths", () => {
   it("Nikkor Z 70-200 zoom lens passes validation", () => {

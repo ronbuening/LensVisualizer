@@ -8,8 +8,8 @@ import {
 import { computeFieldGeometryAtState } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../src/lens-data/ZeissSonnar50f15.data.js";
-import NikkorZ70200Raw from "../src/lens-data/NikonNikkorZ70200f28.data.js";
+import Sonnar50f15Raw from "../src/lens-data/carl-zeiss/ZeissSonnar50f15.data.js";
+import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import type { LensData } from "../src/types/optics.js";
 
 function build(raw: object) {
@@ -128,6 +128,14 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
       expect(withGeom.samples[i].chiefRayCorrection).toBeCloseTo(withoutGeom.samples[i].chiefRayCorrection, 8);
       expect(withGeom.samples[i].epShiftMm).toBeCloseTo(withoutGeom.samples[i].epShiftMm, 8);
     }
+  });
+
+  it("keeps the combined EP/XP profile identical with precomputed geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const geom = computeFieldGeometryAtState(0.25, 0, L);
+    expect(computeBothPupilAberrationProfiles(0.25, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom)).toEqual(
+      computeBothPupilAberrationProfiles(0.25, 0, L),
+    );
   });
 });
 

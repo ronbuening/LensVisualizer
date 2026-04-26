@@ -12,6 +12,7 @@ import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME, SITE_URL }
 import { getMakerDetails } from "../utils/makerDetails.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -22,23 +23,6 @@ function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
     data: LENS_CATALOG[key],
   }));
 }
-
-const PAGE_BASE_STYLE = {
-  maxWidth: 960,
-  margin: "0 auto",
-  padding: "0 1.5rem 2rem",
-  fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
-  minHeight: "100vh",
-} satisfies React.CSSProperties;
-
-const LENS_LINK_BASE_STYLE = {
-  display: "block",
-  padding: "0.5rem 0.75rem",
-  marginBottom: "0.25rem",
-  textDecoration: "none",
-  borderRadius: 4,
-  fontSize: "0.875rem",
-} satisfies React.CSSProperties;
 
 export default function MakerPage() {
   const { maker } = useParams<{ maker: string }>();

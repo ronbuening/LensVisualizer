@@ -1,12 +1,12 @@
 /**
  * Homepage content registry — articles and article page content.
  *
- * Articles are auto-discovered from src/content/*.md files with YAML
+ * Articles are auto-discovered from markdown files anywhere under src/content/
  * frontmatter. Dates are derived from git history at build time via
  * scripts/generate-build-metadata.mjs.
  *
  * Adding a new article:
- *   1. Create a markdown file in src/content/ with frontmatter:
+ *   1. Create a markdown file anywhere under src/content/ with frontmatter:
  *      ---
  *      slug: my-article
  *      title: My Article Title

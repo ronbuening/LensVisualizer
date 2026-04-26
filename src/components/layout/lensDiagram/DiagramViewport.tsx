@@ -6,6 +6,7 @@ import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
+import type { AnalysisTabId } from "../../../types/state.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
@@ -19,8 +20,8 @@ interface DiagramViewportProps extends Omit<
   onOpenPetzvalOverlay: () => void;
   analysisDrawerOpen: boolean;
   onAnalysisDrawerToggle: (open: boolean) => void;
-  analysisDrawerTab: string;
-  onAnalysisTabChange: (tab: string) => void;
+  analysisDrawerTab: AnalysisTabId;
+  onAnalysisTabChange: (tab: AnalysisTabId) => void;
   isWide: boolean;
   analysisContent: ReactNode;
   /** Whether zoom/pan mode is active */

@@ -19,6 +19,35 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-25 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-25",
+    type: "fix",
+    summary: "Improves accuracy of Canon RF and EF lens diagrams",
+  },
+  {
+    date: "2026-04-25",
+    type: "feature",
+    summary:
+      "Added aspheric deviation inspector: compare any aspheric surface to its spherical equivalent with zoom, exaggeration, and click-to-measure Δsag",
+  },
+  {
+    date: "2026-04-25",
+    type: "lens",
+    summary:
+      "Added three Nikon Perspective Control lenses: PC NIKKOR 19mm f/4E ED, PC NIKKOR 24mm f/3.5D ED, and PC NIKKOR 45mm f/2.8D ED",
+  },
+  // ── 2026-04-24 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-24",
+    type: "improvement",
+    summary: "Added an Olympus maker page with company history",
+  },
+  {
+    date: "2026-04-24",
+    type: "lens",
+    summary: "Added three Olympus fast normals: Zuiko 50mm f/1.2, 50mm f/1.4, and 55mm f/1.2",
+  },
   // ── 2026-04-23 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-23",

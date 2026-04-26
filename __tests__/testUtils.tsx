@@ -16,6 +16,15 @@ export interface MatchMediaController {
   removeEventListener: ReturnType<typeof vi.fn>;
 }
 
+export interface ResizeObserverController {
+  instances: Array<{
+    callback: ResizeObserverCallback;
+    observe: ReturnType<typeof vi.fn>;
+    disconnect: ReturnType<typeof vi.fn>;
+  }>;
+  trigger: (target?: Element) => void;
+}
+
 function createMatchMediaController(matches: boolean): {
   controller: MatchMediaController;
   factory: (query: string) => MediaQueryList;
@@ -65,6 +74,41 @@ export function installMatchMediaMock(matches = false): MatchMediaController {
     value: vi.fn().mockImplementation((query: string) => factory(query)),
   });
   return controller;
+}
+
+export function installResizeObserverMock(): ResizeObserverController {
+  const instances: ResizeObserverController["instances"] = [];
+
+  class MockResizeObserver {
+    private callback: ResizeObserverCallback;
+    observe = vi.fn();
+    disconnect = vi.fn();
+
+    constructor(callback: ResizeObserverCallback) {
+      this.callback = callback;
+      instances.push({
+        callback,
+        observe: this.observe,
+        disconnect: this.disconnect,
+      });
+    }
+  }
+
+  Object.defineProperty(window, "ResizeObserver", {
+    configurable: true,
+    writable: true,
+    value: MockResizeObserver,
+  });
+  vi.stubGlobal("ResizeObserver", MockResizeObserver);
+
+  return {
+    instances,
+    trigger(target = document.body) {
+      instances.forEach((instance) => {
+        instance.callback([{ target } as ResizeObserverEntry], {} as ResizeObserver);
+      });
+    },
+  };
 }
 
 export function mockReplaceState() {

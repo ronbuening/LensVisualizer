@@ -3,6 +3,13 @@ import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../src/utils/lensCatalog.j
 import buildLens from "../src/optics/buildLens.js";
 
 describe("lensCatalog", () => {
+  it("keeps nested maker-folder lenses discoverable with matching analysis markdown", () => {
+    const key = "zeiss-hologon-15f8";
+    expect(LENS_CATALOG[key]).toBeDefined();
+    expect(LENS_CATALOG[key].name).toBe("CARL ZEISS HOLOGON 15 mm f/8");
+    expect(mdForKey(key)).toContain("# Carl Zeiss Hologon 15 mm f/8");
+  });
+
   it("CATALOG_KEYS is non-empty", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
   });

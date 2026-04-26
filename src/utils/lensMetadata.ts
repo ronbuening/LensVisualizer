@@ -7,6 +7,7 @@
 
 import type { LensData } from "../types/optics.js";
 import buildMeta from "../generated/build-metadata.json";
+import makerPrefixes from "../generated/maker-prefixes.json";
 
 const SITE_NAME = "Optical Bench";
 const SITE_URL = "https://opticalbench.net";
@@ -16,19 +17,7 @@ const SOCIAL_IMAGE_ALT = "Optical Bench social card featuring the site's lens ma
 const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
 
-/* Known maker prefixes in lens names, mapped to display names and URL-safe slugs.
-   Build-time copy: scripts/generate-build-metadata.mjs MAKER_PREFIXES */
-const MAKER_PREFIXES: { prefix: string; display: string; slug: string }[] = [
-  { prefix: "CANON", display: "Canon", slug: "canon" },
-  { prefix: "CARL ZEISS", display: "Carl Zeiss", slug: "carl-zeiss" },
-  { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
-  { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
-  { prefix: "LEICA", display: "Leica", slug: "leica" },
-  { prefix: "VOIGTLÄNDER", display: "Voigtländer", slug: "voigtlander" },
-  { prefix: "NIKON", display: "Nikon", slug: "nikon" },
-  { prefix: "RICOH", display: "Ricoh", slug: "ricoh" },
-  { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
-];
+const MAKER_PREFIXES = makerPrefixes as { prefix: string; display: string; slug: string }[];
 
 export interface MakerInfo {
   display: string;

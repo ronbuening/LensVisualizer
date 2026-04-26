@@ -1,16 +1,18 @@
 /**
  * useOffAxisRays — Computes off-axis ray fan segments.
  *
- * Traces rays entering at an angle corresponding to offAxisFieldDeg.
+ * Traces rays entering at a state-aware angle corresponding to offAxisFieldDeg.
  * Two projection modes after the last surface:
  *   "trueAngle" — extend at the ray's natural exit slope, clamped to viewport
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { eflAtZoom, halfFieldAtZoom, yRatioAtZoom, bAtZoom, traceRay } from "../../optics/optics.js";
+import { eflAtZoom, traceRay } from "../../optics/optics.js";
+import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
+import type { OffAxisMode } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
 
 interface UseOffAxisRaysParams {
@@ -26,7 +28,7 @@ interface UseOffAxisRaysParams {
   currentEPSD: number;
   rayTracksF: boolean;
   focusK: number;
-  showOffAxis: string;
+  showOffAxis: OffAxisMode;
   lensKey: string;
 }
 
@@ -55,15 +57,9 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      /* Zoom-aware field angle and chief ray entry position.
-       * Note: yChief uses the paraxial EP position (B/yRatio), which is
-       * field-independent.  Real entrance pupils shift with field angle due
-       * to pupil aberration (pupil coma), but computing the field-dependent
-       * EP requires iterative real ray tracing — deferred as a known
-       * limitation since the error is small for typical visualization angles. */
-      const currentOffAxisDeg = halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac;
-      const uField = -Math.tan((currentOffAxisDeg * Math.PI) / 180);
-      const yChief = -(bAtZoom(zoomT, L) / yRatioAtZoom(zoomT, L)) * uField;
+      const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, L.offAxisFieldFrac);
+      if (geometry === null) return { segments: [], error: null };
+      const { fieldAngleDeg: currentOffAxisDeg, uField, yChief } = geometry;
 
       /* Image height for "edge" mode — trace a real chief ray to account for
        * distortion, falling back to the paraxial estimate on failure. */
