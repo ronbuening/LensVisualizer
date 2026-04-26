@@ -8,7 +8,7 @@
 
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
 import { buildComparisonURL, focalLengthToZoomT, zoomTToFocalLength } from "./parseComparisonParams.js";
-import { buildLensViewQuery, lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
+import { buildLensViewQueryFromState, lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
 import { LENS_CATALOG } from "./lensCatalog.js";
 import { APPLY_URL_VIEW_STATE, SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
 import type { LensState, LensAction } from "../types/state.js";
@@ -46,33 +46,20 @@ function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
   };
 }
 
-function buildRouteSearch(state: LensState, comparisonLenses: ComparisonLensesParam, isComparePage?: boolean): string {
-  const { lens, sliders, sharedSliders, panels } = state;
+function getStateZoom(state: LensState, comparisonLenses: ComparisonLensesParam): number | null {
+  const { lens, sliders, sharedSliders } = state;
   const { comparing, lensKeyA } = lens;
-  const { focusT, zoomT, stopdownT } = sliders;
-  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const { zoomT } = sliders;
+  const { sharedZoomT } = sharedSliders;
   const zoomLens = comparing ? getComparisonZoomLens(comparisonLenses) : getCatalogZoomLens(lensKeyA);
-  const zoom =
-    zoomLens && (comparing ? sharedZoomT : zoomT) > 0
-      ? zoomTToFocalLength(comparing ? sharedZoomT : zoomT, zoomLens)
-      : zoomLens
-        ? null
-        : parseLensViewQuery(window.location.search).zoom;
-  const params = buildLensViewQuery({
-    comparing,
-    focus: comparing ? sharedFocusT : focusT,
-    aperture: comparing ? sharedStopdownT : stopdownT,
-    zoom,
-    selectedElementId: panels.selectedElementId,
-    selectedElementIdA: panels.selectedElementIdA,
-    selectedElementIdB: panels.selectedElementIdB,
-    glassMapOpen: panels.glassMapOpen,
-    bokehPreviewOpen: panels.bokehPreviewOpen,
-    analysisDrawerOpen: panels.analysisDrawerOpen,
-    analysisDrawerTab: panels.analysisDrawerTab,
-  });
+  if (!zoomLens) return parseLensViewQuery(window.location.search).zoom ?? null;
+  const currentZoomT = comparing ? sharedZoomT : zoomT;
+  return currentZoomT > 0 ? zoomTToFocalLength(currentZoomT, zoomLens) : null;
+}
 
-  if (isComparePage && !comparing) {
+function buildViewSearch(state: LensState, comparisonLenses: ComparisonLensesParam, isComparePage?: boolean): string {
+  const params = buildLensViewQueryFromState(state, getStateZoom(state, comparisonLenses));
+  if (isComparePage && !state.lens.comparing) {
     params.delete("a_el");
     params.delete("b_el");
   }
@@ -81,8 +68,14 @@ function buildRouteSearch(state: LensState, comparisonLenses: ComparisonLensesPa
 }
 
 function buildRouteUrl(state: LensState, comparisonLenses: ComparisonLensesParam, isComparePage?: boolean): string {
-  const search = buildRouteSearch(state, comparisonLenses, isComparePage);
+  const search = buildViewSearch(state, comparisonLenses, isComparePage);
   return `${window.location.pathname}${search}`;
+}
+
+function buildLegacyUrl(state: LensState, comparisonLenses: ComparisonLensesParam): string {
+  const baseUrl = buildComparisonURL(state.lens.comparing, state.lens.lensKeyA, state.lens.lensKeyB);
+  const suffix = buildViewSearch(state, comparisonLenses).slice(1);
+  return suffix ? `${baseUrl}${baseUrl ? "&" : "?"}${suffix}` : baseUrl;
 }
 
 export default function useURLSync(
@@ -92,10 +85,8 @@ export default function useURLSync(
   isLensPage?: boolean,
   isComparePage?: boolean,
 ): UseURLSyncResult {
-  const { lens, sliders, sharedSliders } = state;
+  const { lens } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
-  const { focusT, zoomT, stopdownT } = sliders;
-  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
 
   /* ── Refs ── */
   const urlUpdateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -201,62 +192,19 @@ export default function useURLSync(
   const updateURLWithSliders = useCallback((): void => {
     if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
     urlUpdateTimer.current = setTimeout(() => {
-      const sliderState: { zoom?: number | null; focus?: number; aperture?: number } = {};
-      if (comparing) {
-        if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
-        if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
-        const zoomLens = getComparisonZoomLens(comparisonLenses);
-        if (zoomLens && sharedZoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
-        }
-      } else {
-        if (focusT > 0) sliderState.focus = focusT;
-        if (stopdownT > 0) sliderState.aperture = stopdownT;
-        const zoomLens = getCatalogZoomLens(lensKeyA);
-        if (zoomLens && zoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(zoomT, zoomLens);
-        }
-      }
       if ((isLensPage && !comparing) || isComparePage) {
         // On lens/compare pages, only encode query params — the pathname already has the lens key(s)
         const url = buildRouteUrl(stateRef.current, comparisonLenses, isComparePage);
         if (url !== window.location.pathname + window.location.search) history.replaceState(null, "", url);
       } else {
-        const currentState = stateRef.current;
-        const viewParams = buildLensViewQuery({
-          comparing,
-          ...sliderState,
-          selectedElementId: currentState.panels.selectedElementId,
-          selectedElementIdA: currentState.panels.selectedElementIdA,
-          selectedElementIdB: currentState.panels.selectedElementIdB,
-          glassMapOpen: currentState.panels.glassMapOpen,
-          bokehPreviewOpen: currentState.panels.bokehPreviewOpen,
-          analysisDrawerOpen: currentState.panels.analysisDrawerOpen,
-          analysisDrawerTab: currentState.panels.analysisDrawerTab,
-        });
-        const baseUrl = buildComparisonURL(comparing, lensKeyA, lensKeyB);
-        const suffix = viewParams.toString();
-        const url = suffix ? `${baseUrl}${baseUrl ? "&" : "?"}${suffix}` : baseUrl;
+        const url = buildLegacyUrl(stateRef.current, comparisonLenses);
         const current = window.location.search;
         if (url !== current) {
           history.replaceState(null, "", url || window.location.pathname);
         }
       }
     }, 300);
-  }, [
-    comparing,
-    lensKeyA,
-    lensKeyB,
-    focusT,
-    stopdownT,
-    zoomT,
-    sharedFocusT,
-    sharedStopdownT,
-    sharedZoomT,
-    comparisonLenses,
-    isLensPage,
-    isComparePage,
-  ]);
+  }, [comparing, comparisonLenses, isLensPage, isComparePage]);
 
   return { updateURLWithSliders };
 }

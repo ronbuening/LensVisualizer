@@ -7,17 +7,8 @@ import useOverlayState from "../src/components/hooks/useOverlayState.js";
 describe("useOverlayState", () => {
   it("all overlays start closed", () => {
     const { result } = renderHook(() => useOverlayState("lens-a"));
-    expect(result.current.showAbbeDiagram).toBe(false);
     expect(result.current.showLcaOverlay).toBe(false);
     expect(result.current.showPetzvalOverlay).toBe(false);
-  });
-
-  it("opens and closes Abbe diagram", () => {
-    const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(true);
-    act(() => result.current.closeAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(false);
   });
 
   it("opens and closes LCA overlay", () => {
@@ -41,25 +32,21 @@ describe("useOverlayState", () => {
       initialProps: { key: "lens-a" },
     });
     act(() => {
-      result.current.openAbbeDiagram();
       result.current.openLcaOverlay();
       result.current.openPetzvalOverlay();
     });
-    expect(result.current.showAbbeDiagram).toBe(true);
     expect(result.current.showLcaOverlay).toBe(true);
     expect(result.current.showPetzvalOverlay).toBe(true);
 
     rerender({ key: "lens-b" });
-    expect(result.current.showAbbeDiagram).toBe(false);
     expect(result.current.showLcaOverlay).toBe(false);
     expect(result.current.showPetzvalOverlay).toBe(false);
   });
 
   it("overlays are independent of each other", () => {
     const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(true);
-    expect(result.current.showLcaOverlay).toBe(false);
+    act(() => result.current.openLcaOverlay());
+    expect(result.current.showLcaOverlay).toBe(true);
     expect(result.current.showPetzvalOverlay).toBe(false);
   });
 });

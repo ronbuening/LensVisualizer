@@ -1,4 +1,4 @@
-import { isAnalysisTabId, type AnalysisTabId, type URLState } from "../types/state.js";
+import { isAnalysisTabId, type AnalysisTabId, type LensState, type URLState } from "../types/state.js";
 
 export interface LensViewQueryState {
   focus?: number | null;
@@ -16,6 +16,19 @@ export interface LensViewQueryState {
 export interface BuildLensViewQueryOptions extends LensViewQueryState {
   comparing?: boolean;
 }
+
+const DEFAULT_URL_STATE: Partial<URLState> = {
+  focus: 0,
+  aperture: 0,
+  zoom: 0,
+  selectedElementId: null,
+  selectedElementIdA: null,
+  selectedElementIdB: null,
+  glassMapOpen: false,
+  bokehPreviewOpen: false,
+  analysisDrawerOpen: false,
+  analysisDrawerTab: "aberrations",
+};
 
 function parseNumberParam(params: URLSearchParams, key: string): number | null {
   const value = params.get(key);
@@ -138,23 +151,31 @@ export function buildLensViewQuery({
   return params;
 }
 
+export function buildLensViewQueryFromState(state: LensState, zoom: number | null | undefined): URLSearchParams {
+  const { comparing } = state.lens;
+  const sliders = comparing
+    ? { focus: state.sharedSliders.sharedFocusT, aperture: state.sharedSliders.sharedStopdownT }
+    : { focus: state.sliders.focusT, aperture: state.sliders.stopdownT };
+
+  return buildLensViewQuery({
+    comparing,
+    ...sliders,
+    zoom,
+    selectedElementId: state.panels.selectedElementId,
+    selectedElementIdA: state.panels.selectedElementIdA,
+    selectedElementIdB: state.panels.selectedElementIdB,
+    glassMapOpen: state.panels.glassMapOpen,
+    bokehPreviewOpen: state.panels.bokehPreviewOpen,
+    analysisDrawerOpen: state.panels.analysisDrawerOpen,
+    analysisDrawerTab: state.panels.analysisDrawerTab,
+  });
+}
+
 export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDefaults = false): Partial<URLState> {
-  const urlState: Partial<URLState> = {};
-  if ("focus" in state && state.focus != null) {
-    urlState.focus = state.focus;
-  } else if (includeViewDefaults) {
-    urlState.focus = 0;
-  }
-  if ("aperture" in state && state.aperture != null) {
-    urlState.aperture = state.aperture;
-  } else if (includeViewDefaults) {
-    urlState.aperture = 0;
-  }
-  if ("zoom" in state && state.zoom != null) {
-    urlState.zoom = state.zoom;
-  } else if (includeViewDefaults) {
-    urlState.zoom = 0;
-  }
+  const urlState: Partial<URLState> = includeViewDefaults ? { ...DEFAULT_URL_STATE } : {};
+  if (state.focus != null) urlState.focus = state.focus;
+  if (state.aperture != null) urlState.aperture = state.aperture;
+  if (state.zoom != null) urlState.zoom = state.zoom;
   if (includeViewDefaults || "selectedElementId" in state) urlState.selectedElementId = state.selectedElementId ?? null;
   if (includeViewDefaults || "selectedElementIdA" in state)
     urlState.selectedElementIdA = state.selectedElementIdA ?? null;
@@ -164,10 +185,6 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (includeViewDefaults || "bokehPreviewOpen" in state) urlState.bokehPreviewOpen = state.bokehPreviewOpen ?? false;
   if (includeViewDefaults || "analysisDrawerOpen" in state)
     urlState.analysisDrawerOpen = state.analysisDrawerOpen ?? false;
-  if (state.analysisDrawerTab) {
-    urlState.analysisDrawerTab = state.analysisDrawerTab;
-  } else if (includeViewDefaults) {
-    urlState.analysisDrawerTab = "aberrations";
-  }
+  if (state.analysisDrawerTab) urlState.analysisDrawerTab = state.analysisDrawerTab;
   return urlState;
 }
