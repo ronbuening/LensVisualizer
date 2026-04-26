@@ -14,11 +14,11 @@
  *   DiagramControlPanel → sliders, inspector, legend
  *   PanelErrorBoundary  → panel-level error boundary
  *
- * Owns only: hover/selection state and the structural layout that
+ * Owns only: hover state and the structural layout that
  * wires sub-components.
  */
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
@@ -29,14 +29,16 @@ import useFlashOverlay from "../hooks/useFlashOverlay.js";
 import useSideLayoutDetection from "../hooks/useSideLayoutDetection.js";
 import DiagramHeader from "../controls/DiagramHeader.js";
 import PanelErrorBoundary from "../errors/PanelErrorBoundary.js";
-import { useLensCtx, usePanelCtx } from "../../utils/LensContext.js";
+import { useLensCtx, useLensDispatch, usePanelCtx } from "../../utils/LensContext.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
+import { SET_SELECTED_ELEMENT } from "../../utils/lensReducer.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
 
 interface LensDiagramPanelProps {
   lensKey: string;
@@ -75,6 +77,7 @@ export default function LensDiagramPanel({
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
+  const dispatch = useLensDispatch();
   const { rays: raysState, display, sliders } = state;
   const panels = usePanelCtx();
   const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
@@ -86,6 +89,9 @@ export default function LensDiagramPanel({
     legendExpanded,
     headerInfoExpanded,
     abbeShowGlassType,
+    glassMapOpen,
+    lcaOverlayOpen,
+    petzvalOverlayOpen,
     showEffectiveAperture,
     aberrationsExpanded,
     analysisDrawerOpen,
@@ -107,13 +113,13 @@ export default function LensDiagramPanel({
 
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
-  const [sel, setSel] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
   const panelContainerRef = useRef<HTMLDivElement | null>(null);
+  const selectedElementPanelId = normalizePanelId(panelId);
+  const sel = panels[selectedElementKeyForPanel(selectedElementPanelId)];
 
   useEffect(() => {
     setHov(null);
-    setSel(null);
   }, [lensKey]);
 
   /* ── Side-panel overflow detection ── */
@@ -150,6 +156,51 @@ export default function LensDiagramPanel({
     filterId,
   } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, scaleRatio, panelId });
 
+  useEffect(() => {
+    if (!L || sel == null) return;
+    if (!L.elements.some((element) => element.id === sel)) {
+      dispatch({
+        type: SET_SELECTED_ELEMENT,
+        panelId: selectedElementPanelId,
+        elementId: null,
+      });
+    }
+  }, [L, dispatch, selectedElementPanelId, sel]);
+
+  const { onGlassMapOpenChange, onLcaOverlayChange, onPetzvalOverlayChange } = adapters;
+  const openAbbeDiagram = useCallback(() => onGlassMapOpenChange(true), [onGlassMapOpenChange]);
+  const closeAbbeDiagram = useCallback(() => onGlassMapOpenChange(false), [onGlassMapOpenChange]);
+  const openLcaOverlay = useCallback(() => onLcaOverlayChange(true), [onLcaOverlayChange]);
+  const closeLcaOverlay = useCallback(() => onLcaOverlayChange(false), [onLcaOverlayChange]);
+  const openPetzvalOverlay = useCallback(() => onPetzvalOverlayChange(true), [onPetzvalOverlayChange]);
+  const closePetzvalOverlay = useCallback(() => onPetzvalOverlayChange(false), [onPetzvalOverlayChange]);
+  const panelOverlays = useMemo(
+    () => ({
+      ...overlays,
+      showAbbeDiagram: glassMapOpen,
+      openAbbeDiagram,
+      closeAbbeDiagram,
+      showLcaOverlay: lcaOverlayOpen,
+      openLcaOverlay,
+      closeLcaOverlay,
+      showPetzvalOverlay: petzvalOverlayOpen,
+      openPetzvalOverlay,
+      closePetzvalOverlay,
+    }),
+    [
+      overlays,
+      glassMapOpen,
+      lcaOverlayOpen,
+      petzvalOverlayOpen,
+      openAbbeDiagram,
+      closeAbbeDiagram,
+      openLcaOverlay,
+      closeLcaOverlay,
+      openPetzvalOverlay,
+      closePetzvalOverlay,
+    ],
+  );
+
   /* ── Zoom/pan viewBox management ── */
   const zoomHook = useViewBoxZoom(L?.svgW ?? 1200, L?.svgH ?? 600, zoomPanActive);
 
@@ -163,14 +214,13 @@ export default function LensDiagramPanel({
 
   const handleSelect = useCallback(
     (eid: number | null) => {
+      const nextElementId = sel === eid ? null : eid;
+      dispatch({ type: SET_SELECTED_ELEMENT, panelId: selectedElementPanelId, elementId: nextElementId });
       if (sel === eid) {
-        setSel(null);
         setHov(null);
-      } else {
-        setSel(eid);
       }
     },
-    [sel],
+    [dispatch, selectedElementPanelId, sel],
   );
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
@@ -282,7 +332,7 @@ export default function LensDiagramPanel({
           legendExpanded={legendExpanded}
           showEffectiveAperture={showEffectiveAperture}
           abbeShowGlassType={abbeShowGlassType}
-          overlays={overlays}
+          overlays={panelOverlays}
           adapters={adapters}
           zoomHook={zoomHook}
           onZoomPanToggle={handleZoomPanToggle}

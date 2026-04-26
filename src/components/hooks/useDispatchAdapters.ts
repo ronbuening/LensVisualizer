@@ -44,6 +44,9 @@ export interface DispatchAdapters {
   onAnalysisTabChange: (tab: AnalysisTabId) => void;
   onZoomPanToggle: (v: boolean) => void;
   onBokehPreviewToggle: (v: boolean) => void;
+  onGlassMapOpenChange: (v: boolean) => void;
+  onLcaOverlayChange: (v: boolean) => void;
+  onPetzvalOverlayChange: (v: boolean) => void;
 }
 
 export default function useDispatchAdapters(): DispatchAdapters {
@@ -87,6 +90,10 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onBokehPreviewToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),
+      onGlassMapOpenChange: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: v }),
+      onLcaOverlayChange: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "lcaOverlayOpen", expanded: v }),
+      onPetzvalOverlayChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "petzvalOverlayOpen", expanded: v }),
     }),
     [dispatch, updateURLWithSliders],
   );

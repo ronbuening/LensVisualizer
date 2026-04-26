@@ -1,53 +1,30 @@
 /**
  * Centralizes all URL synchronization for LensViewer:
  *
- * 1. Immediate URL update on lens selection change
- * 2. Debounced URL update on slider pointer-up
- * 3. One-time zoom initialization from URL after lens builds
+ * 1. Immediate URL update on lens-identity change (legacy ?a=/?b=/?lens= surface).
+ * 2. Single 100 ms-debounced URL writer for all v1 view state — sliders,
+ *    selected element(s), glass map, bokeh, analysis drawer, tab.
+ * 3. One-time zoom initialization from the URL after the lens(es) build.
+ * 4. `popstate` hydration: parses the search string and dispatches
+ *    APPLY_URL_VIEW_STATE so back/forward navigation restores view state.
  */
 
 import { useEffect, useRef, useMemo, useCallback, type Dispatch } from "react";
+import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
+import { APPLY_URL_VIEW_STATE } from "./lensReducer.js";
 import {
-  buildComparisonURL,
-  encodeSliderParams,
-  focalLengthToZoomT,
-  zoomTToFocalLength,
-} from "./parseComparisonParams.js";
-import { LENS_CATALOG } from "./lensCatalog.js";
-import { SET_ZOOM_T, SET_SHARED_ZOOM_T } from "./lensReducer.js";
+  buildLegacyLensIdentityUrl,
+  buildLegacyLensViewUrl,
+  buildRouteLensViewUrl,
+  zoomActionFromFocalLength,
+  type ComparisonLensesParam,
+} from "./lensViewUrlSync.js";
 import type { LensState, LensAction } from "../types/state.js";
-import type { RuntimeLens } from "../types/optics.js";
-import type { ZoomConvertibleLens } from "./zoomConversion.js";
 
-interface ComparisonLenses {
-  LA: RuntimeLens;
-  LB: RuntimeLens;
-  error?: undefined;
-}
-
-interface ComparisonError {
-  error: unknown;
-}
-
-type ComparisonLensesParam = ComparisonLenses | ComparisonError | null;
+const URL_UPDATE_DEBOUNCE_MS = 100;
 
 interface UseURLSyncResult {
   updateURLWithSliders: () => void;
-}
-
-function getComparisonZoomLens(comparisonLenses: ComparisonLensesParam): ZoomConvertibleLens | null {
-  if (!comparisonLenses || comparisonLenses.error) return null;
-  const { LA, LB } = comparisonLenses as ComparisonLenses;
-  return LA.isZoom ? LA : LB.isZoom ? LB : null;
-}
-
-function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null {
-  const lensData = LENS_CATALOG[lensKey];
-  if (!lensData || !Array.isArray(lensData.zoomPositions) || lensData.zoomPositions.length < 2) return null;
-  return {
-    isZoom: true,
-    zoomPositions: lensData.zoomPositions,
-  };
 }
 
 export default function useURLSync(
@@ -57,108 +34,111 @@ export default function useURLSync(
   isLensPage?: boolean,
   isComparePage?: boolean,
 ): UseURLSyncResult {
-  const { lens, sliders, sharedSliders } = state;
+  const { lens, panels } = state;
   const { comparing, lensKeyA, lensKeyB } = lens;
-  const { focusT, zoomT, stopdownT } = sliders;
-  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
 
   /* ── Refs ── */
   const urlUpdateTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const urlZoomInitialized = useRef<boolean>(false);
+  const stateRef = useRef(state);
+
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   /* ── Parse zoom from URL once ── */
   const urlZoom = useMemo((): number | null => {
     if (typeof window === "undefined") return null;
-    const zoom = parseFloat(new URLSearchParams(window.location.search).get("zoom")!);
-    return isFinite(zoom) && zoom > 0 ? zoom : null;
+    return parseLensViewQuery(window.location.search).zoom ?? null;
   }, []);
 
-  /* ── 1. Immediate URL update on lens selection change ── */
+  /* ── 1. Debounced URL writer covering all v1 view state ──
+   * Single source of writes. Reads fresh state via stateRef so the
+   * callback identity stays stable across slider/panel changes. */
+  const updateURLWithSliders = useCallback((): void => {
+    if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
+    urlUpdateTimer.current = setTimeout(() => {
+      const fresh = stateRef.current;
+      if ((isLensPage && !fresh.lens.comparing) || isComparePage) {
+        const url = buildRouteLensViewUrl(
+          fresh,
+          comparisonLenses,
+          window.location.pathname,
+          window.location.search,
+          isComparePage,
+        );
+        if (url !== window.location.pathname + window.location.search) history.replaceState(null, "", url);
+      } else {
+        const url = buildLegacyLensViewUrl(fresh, comparisonLenses, window.location.search);
+        const current = window.location.search;
+        if (url !== current) {
+          history.replaceState(null, "", url || window.location.pathname);
+        }
+      }
+    }, URL_UPDATE_DEBOUNCE_MS);
+  }, [comparisonLenses, isLensPage, isComparePage]);
+
+  /* ── 2. popstate hydration ── */
+  const applyUrlViewState = useCallback(
+    (search: string): void => {
+      const parsed = parseLensViewQuery(search);
+      dispatch({ type: APPLY_URL_VIEW_STATE, state: lensViewQueryToUrlState(parsed, true) });
+      const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, stateRef.current, comparisonLenses);
+      if (zoomAction) dispatch(zoomAction);
+    },
+    [comparisonLenses, dispatch],
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onPopState = () => applyUrlViewState(window.location.search);
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [applyUrlViewState]);
+
+  /* ── 3. Immediate URL update on lens-identity change (legacy surface) ── */
   useEffect(() => {
     // On lens pages in single-lens mode, navigation is handled by LensViewer via React Router
     if (isLensPage && !comparing) return;
     // On compare pages, navigation is handled by LensViewer via React Router
     if (isComparePage) return;
-    const url = buildComparisonURL(comparing, lensKeyA, lensKeyB);
+    const url = buildLegacyLensIdentityUrl(stateRef.current);
     const current = window.location.search;
     if (url !== current) {
       history.replaceState(null, "", url || window.location.pathname);
     }
   }, [comparing, lensKeyA, lensKeyB, isLensPage, isComparePage]);
 
-  /* ── 3a. Zoom init — comparison mode ── */
+  /* ── 4. View-state URL update — schedules through the same debounced writer ── */
   useEffect(() => {
-    if (urlZoomInitialized.current || urlZoom == null) return;
-    if (!comparing) return;
-    const zoomLens = getComparisonZoomLens(comparisonLenses);
-    if (zoomLens) {
-      dispatch({ type: SET_SHARED_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
-    }
-    urlZoomInitialized.current = true;
-  }, [comparisonLenses, comparing, urlZoom, dispatch]);
-
-  /* ── 3b. Zoom init — single-lens mode ── */
-  useEffect(() => {
-    if (urlZoomInitialized.current || urlZoom == null || comparing) return;
-    const zoomLens = getCatalogZoomLens(lensKeyA);
-    if (zoomLens) {
-      dispatch({ type: SET_ZOOM_T, value: focalLengthToZoomT(urlZoom, zoomLens) });
-    }
-    urlZoomInitialized.current = true;
-  }, [lensKeyA, comparing, urlZoom, dispatch]);
-
-  /* ── 2. Debounced slider URL update ──
-   * Uses a ref-based approach: the callback reads current values from
-   * its closure, and is recreated when deps change. The 300ms debounce
-   * timer prevents excessive history.replaceState calls. */
-  const updateURLWithSliders = useCallback((): void => {
-    if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
-    urlUpdateTimer.current = setTimeout(() => {
-      const sliderState: { zoom?: number | null; focus?: number; aperture?: number } = {};
-      if (comparing) {
-        if (sharedFocusT > 0) sliderState.focus = sharedFocusT;
-        if (sharedStopdownT > 0) sliderState.aperture = sharedStopdownT;
-        const zoomLens = getComparisonZoomLens(comparisonLenses);
-        if (zoomLens && sharedZoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(sharedZoomT, zoomLens);
-        }
-      } else {
-        if (focusT > 0) sliderState.focus = focusT;
-        if (stopdownT > 0) sliderState.aperture = stopdownT;
-        const zoomLens = getCatalogZoomLens(lensKeyA);
-        if (zoomLens && zoomT > 0) {
-          sliderState.zoom = zoomTToFocalLength(zoomT, zoomLens);
-        }
-      }
-      if ((isLensPage && !comparing) || isComparePage) {
-        // On lens/compare pages, only encode slider params — the pathname already has the lens key(s)
-        const params = encodeSliderParams(sliderState);
-        const search = params.toString() ? `?${params.toString()}` : "";
-        if (search !== window.location.search) {
-          history.replaceState(null, "", window.location.pathname + search);
-        }
-      } else {
-        const url = buildComparisonURL(comparing, lensKeyA, lensKeyB, sliderState);
-        const current = window.location.search;
-        if (url !== current) {
-          history.replaceState(null, "", url || window.location.pathname);
-        }
-      }
-    }, 300);
+    if (typeof window === "undefined") return;
+    if (!isLensPage && !isComparePage) return;
+    updateURLWithSliders();
   }, [
     comparing,
-    lensKeyA,
-    lensKeyB,
-    focusT,
-    stopdownT,
-    zoomT,
-    sharedFocusT,
-    sharedStopdownT,
-    sharedZoomT,
-    comparisonLenses,
+    panels.selectedElementId,
+    panels.selectedElementIdA,
+    panels.selectedElementIdB,
+    panels.glassMapOpen,
+    panels.bokehPreviewOpen,
+    panels.analysisDrawerOpen,
+    panels.analysisDrawerTab,
     isLensPage,
     isComparePage,
+    updateURLWithSliders,
   ]);
+
+  /* ── 5. One-time zoom initialization from URL ──
+   * Runs once the lens (or zoom-aware lens in comparison) has loaded;
+   * `zoomActionFromFocalLength` returns null until a zoom-convertible
+   * lens is available, which acts as the readiness gate. */
+  useEffect(() => {
+    if (urlZoomInitialized.current || urlZoom == null) return;
+    const action = zoomActionFromFocalLength(urlZoom, stateRef.current, comparisonLenses);
+    if (!action) return;
+    dispatch(action);
+    urlZoomInitialized.current = true;
+  }, [urlZoom, comparing, lensKeyA, comparisonLenses, dispatch]);
 
   return { updateURLWithSliders };
 }

@@ -19,6 +19,8 @@ import lensReducer, {
   RESET_SLIDERS,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
+  SET_SELECTED_ELEMENT,
+  APPLY_URL_VIEW_STATE,
   SET_OVERLAY,
   CLOSE_ALL_OVERLAYS,
   ENTER_COMPARE,
@@ -48,6 +50,8 @@ describe("createInitialState", () => {
     expect(state.panels.analysisDrawerOpen).toBe(false);
     expect(state.panels.analysisDrawerTab).toBe("aberrations");
     expect(state.panels.zoomPanActive).toBe(false);
+    expect(state.panels.glassMapOpen).toBe(false);
+    expect(state.panels.selectedElementId).toBeNull();
     expect(state.overlays.showAbout).toBe(false);
   });
 
@@ -58,6 +62,22 @@ describe("createInitialState", () => {
     expect(state.lens.lensKeyA).toBe("zeiss_35");
     expect(state.sliders.focusT).toBe(0.5);
     expect(state.sliders.stopdownT).toBe(0.3);
+  });
+
+  it("hydrates shareable panel state from URL params", () => {
+    const urlState = {
+      selectedElementId: 2,
+      glassMapOpen: true,
+      bokehPreviewOpen: true,
+      analysisDrawerOpen: true,
+      analysisDrawerTab: "distortion" as const,
+    };
+    const state = createInitialState({}, urlState, true, CATALOG_KEYS);
+    expect(state.panels.selectedElementId).toBe(2);
+    expect(state.panels.glassMapOpen).toBe(true);
+    expect(state.panels.bokehPreviewOpen).toBe(true);
+    expect(state.panels.analysisDrawerOpen).toBe(true);
+    expect(state.panels.analysisDrawerTab).toBe("distortion");
   });
 
   it("prefs override defaults", () => {
@@ -131,6 +151,31 @@ describe("lensReducer", () => {
       expect(next.panels.analysisDrawerOpen).toBe(false);
     });
 
+    it("clears single-lens shareable panel state when switching lens in single mode", () => {
+      state.panels = {
+        ...state.panels,
+        glassMapOpen: true,
+        lcaOverlayOpen: true,
+        petzvalOverlayOpen: true,
+        bokehPreviewOpen: true,
+        selectedElementId: 2,
+      };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.panels.glassMapOpen).toBe(false);
+      expect(next.panels.lcaOverlayOpen).toBe(false);
+      expect(next.panels.petzvalOverlayOpen).toBe(false);
+      expect(next.panels.bokehPreviewOpen).toBe(false);
+      expect(next.panels.selectedElementId).toBeNull();
+    });
+
+    it("clears pane A selection when switching lens A in comparison mode", () => {
+      state.lens.comparing = true;
+      state.panels = { ...state.panels, selectedElementIdA: 2, selectedElementIdB: 3 };
+      const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
+      expect(next.panels.selectedElementIdA).toBeNull();
+      expect(next.panels.selectedElementIdB).toBe(3);
+    });
+
     it("exits zoom/pan mode when switching lens in single mode", () => {
       state.panels = { ...state.panels, zoomPanActive: true };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
@@ -142,6 +187,12 @@ describe("lensReducer", () => {
     it("updates lensKeyB", () => {
       const next = lensReducer(state, { type: SET_LENS_B, key: "zeiss_35" });
       expect(next.lens.lensKeyB).toBe("zeiss_35");
+    });
+
+    it("clears pane B selection", () => {
+      state.panels = { ...state.panels, selectedElementIdB: 3 };
+      const next = lensReducer(state, { type: SET_LENS_B, key: "zeiss_35" });
+      expect(next.panels.selectedElementIdB).toBeNull();
     });
   });
 
@@ -293,6 +344,16 @@ describe("lensReducer", () => {
       });
       expect(next.panels.zoomPanActive).toBe(true);
     });
+
+    it("toggles glassMapOpen", () => {
+      expect(state.panels.glassMapOpen).toBe(false);
+      const next = lensReducer(state, {
+        type: SET_PANEL_EXPANDED,
+        panel: "glassMapOpen",
+        expanded: true,
+      });
+      expect(next.panels.glassMapOpen).toBe(true);
+    });
   });
 
   /* ── Analysis drawer tab ── */
@@ -306,6 +367,57 @@ describe("lensReducer", () => {
     it("accepts the breathing analysis tab", () => {
       const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "breathing" });
       expect(next.panels.analysisDrawerTab).toBe("breathing");
+    });
+  });
+
+  describe("URL view state actions", () => {
+    it("sets single and comparison selected element state", () => {
+      let next = lensReducer(state, { type: SET_SELECTED_ELEMENT, panelId: "main", elementId: 2 });
+      expect(next.panels.selectedElementId).toBe(2);
+
+      next = lensReducer(next, { type: SET_SELECTED_ELEMENT, panelId: "a", elementId: 4 });
+      next = lensReducer(next, { type: SET_SELECTED_ELEMENT, panelId: "b", elementId: 6 });
+      expect(next.panels.selectedElementIdA).toBe(4);
+      expect(next.panels.selectedElementIdB).toBe(6);
+    });
+
+    it("sets shared glass map open state", () => {
+      const next = lensReducer(state, { type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: true });
+      expect(next.panels.glassMapOpen).toBe(true);
+    });
+
+    it("applies URL view state in single-lens mode", () => {
+      const next = lensReducer(state, {
+        type: APPLY_URL_VIEW_STATE,
+        state: {
+          focus: 0.4,
+          aperture: 0.2,
+          selectedElementId: 5,
+          glassMapOpen: true,
+          bokehPreviewOpen: true,
+          analysisDrawerOpen: true,
+          analysisDrawerTab: "pupils",
+        },
+      });
+      expect(next.sliders.focusT).toBe(0.4);
+      expect(next.sliders.stopdownT).toBe(0.2);
+      expect(next.panels.selectedElementId).toBe(5);
+      expect(next.panels.glassMapOpen).toBe(true);
+      expect(next.panels.bokehPreviewOpen).toBe(true);
+      expect(next.panels.analysisDrawerOpen).toBe(true);
+      expect(next.panels.analysisDrawerTab).toBe("pupils");
+    });
+
+    it("applies shared slider and per-pane selection state in comparison mode", () => {
+      state.lens.comparing = true;
+      const next = lensReducer(state, {
+        type: APPLY_URL_VIEW_STATE,
+        state: { focus: 0.4, aperture: 0.2, selectedElementIdA: 1, selectedElementIdB: 3 },
+      });
+      expect(next.sharedSliders.sharedFocusT).toBe(0.4);
+      expect(next.sharedSliders.sharedStopdownT).toBe(0.2);
+      expect(next.panels.selectedElementIdA).toBe(1);
+      expect(next.panels.selectedElementIdB).toBe(3);
     });
   });
 
@@ -418,7 +530,7 @@ describe("lensReducer", () => {
 
 /* ── Action constant exhaustiveness ── */
 describe("lensReducer — action constant exports", () => {
-  it("exports all 21 expected action type constants", () => {
+  it("exports all 23 expected action type constants", () => {
     const EXPECTED = [
       SET_LENS_A,
       SET_LENS_B,
@@ -437,6 +549,8 @@ describe("lensReducer — action constant exports", () => {
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
+      SET_SELECTED_ELEMENT,
+      APPLY_URL_VIEW_STATE,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,
       ENTER_COMPARE,
@@ -447,8 +561,8 @@ describe("lensReducer — action constant exports", () => {
       expect(typeof c).toBe("string");
       expect(c.length).toBeGreaterThan(0);
     }
-    // The full set must be exactly 21 unique values
-    expect(new Set(EXPECTED).size).toBe(21);
+    // The full set must be exactly 23 unique values
+    expect(new Set(EXPECTED).size).toBe(23);
   });
 
   it("every action constant's string value matches its export name", () => {
@@ -470,6 +584,8 @@ describe("lensReducer — action constant exports", () => {
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
+      SET_SELECTED_ELEMENT,
+      APPLY_URL_VIEW_STATE,
       SET_OVERLAY,
       CLOSE_ALL_OVERLAYS,
       ENTER_COMPARE,

@@ -8,7 +8,8 @@
 import { useReducer, type Dispatch } from "react";
 import lensReducer, { createInitialState } from "./lensReducer.js";
 import { loadPrefs } from "./preferences.js";
-import { parseComparisonParams } from "./parseComparisonParams.js";
+import { parseLensKeysFromSearch } from "./parseComparisonParams.js";
+import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
 import useMediaQuery from "./useMediaQuery.js";
 import type { LensState, LensAction, URLState } from "../types/state.js";
 
@@ -34,18 +35,17 @@ export default function useLensState(
       initialLensKeyB?: string;
     }) => {
       const prefs = loadPrefs();
-      const parsed = typeof window !== "undefined" ? parseComparisonParams(window.location.search, keys) : {};
-      /* Extract slider values from query params (null → undefined for URLState compat) */
-      const sliders: Partial<URLState> = {};
-      if ("focus" in parsed && parsed.focus != null) sliders.focus = parsed.focus as number;
-      if ("aperture" in parsed && parsed.aperture != null) sliders.aperture = parsed.aperture as number;
+      const search = typeof window !== "undefined" ? window.location.search : "";
+      const viewState = lensViewQueryToUrlState(parseLensViewQuery(search));
       let urlState: Partial<URLState>;
       if (initKeyA && initKeyB && keys.includes(initKeyA) && keys.includes(initKeyB)) {
-        urlState = { ...sliders, comparing: true, lensKeyA: initKeyA, lensKeyB: initKeyB };
+        urlState = { ...viewState, comparing: true, lensKeyA: initKeyA, lensKeyB: initKeyB };
       } else if (initKeyA && keys.includes(initKeyA)) {
-        urlState = { ...sliders, singleLens: initKeyA };
+        urlState = { ...viewState, singleLens: initKeyA };
+      } else if (initKeyA) {
+        urlState = viewState;
       } else {
-        urlState = initKeyA ? sliders : { ...sliders, ...parsed };
+        urlState = { ...viewState, ...parseLensKeysFromSearch(search, keys) };
       }
       return createInitialState(prefs, urlState, wide, keys);
     },

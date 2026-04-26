@@ -112,6 +112,7 @@ interface LensDiagramLoadedStateProps {
     onLegendExpandedChange: (expanded: boolean) => void;
     onSliderPointerUp: () => void;
     onAbbeShowGlassTypeChange: (value: boolean) => void;
+    onGlassMapOpenChange: (value: boolean) => void;
   };
   zoomHook: {
     state: { zoom: number };
@@ -328,7 +329,7 @@ export default function LensDiagramLoadedState({
       </div>
 
       {overlays.showAbbeDiagram && (
-        <OverlayModal onClose={overlays.closeAbbeDiagram} theme={t} maxWidth={580}>
+        <OverlayModal onClose={() => adapters.onGlassMapOpenChange(false)} theme={t} maxWidth={580}>
           <AbbeDiagram
             L={L}
             t={t}

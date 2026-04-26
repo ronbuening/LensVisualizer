@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Dispatch, ReactNode } from "react";
 import LensDiagramPanel from "../src/components/layout/LensDiagramPanel.js";
@@ -41,6 +41,9 @@ const mocks = vi.hoisted(() => {
     onShowPupilsChange: vi.fn(),
     onHeaderInfoExpandedChange: vi.fn(),
     onZoomPanToggle: vi.fn(),
+    onGlassMapOpenChange: vi.fn(),
+    onLcaOverlayChange: vi.fn(),
+    onPetzvalOverlayChange: vi.fn(),
   };
   const zoomReset = vi.fn();
   const lensComputation = vi.fn();
@@ -64,15 +67,9 @@ vi.mock("../src/components/hooks/useDispatchAdapters.js", () => ({
 
 vi.mock("../src/components/hooks/useOverlayState.js", () => ({
   default: () => ({
-    showLcaOverlay: false,
-    showPetzvalOverlay: false,
-    showAbbeDiagram: false,
-    closeLcaOverlay: vi.fn(),
-    closePetzvalOverlay: vi.fn(),
-    openLcaOverlay: vi.fn(),
-    openPetzvalOverlay: vi.fn(),
-    openAbbeDiagram: vi.fn(),
-    closeAbbeDiagram: vi.fn(),
+    asphCompareElementId: null,
+    openAsphCompare: vi.fn(),
+    closeAsphCompare: vi.fn(),
   }),
 }));
 
@@ -144,6 +141,12 @@ vi.mock("../src/components/layout/lensDiagram/LensDiagramLoadedState.js", () => 
         </button>
         <button type="button" onClick={() => (props.onSelect as (eid: number | null) => void)(1)}>
           select-one
+        </button>
+        <button
+          type="button"
+          onClick={() => (props.overlays as { openAbbeDiagram: () => void }).openAbbeDiagram()}
+        >
+          open-glass-map
         </button>
         <button type="button" onClick={() => (props.onZoomPanToggle as (active: boolean) => void)(false)}>
           zoom-off
@@ -303,29 +306,24 @@ describe("LensDiagramPanel orchestration", () => {
     });
   });
 
-  it("tracks hover/selection and clears them when the lens changes", async () => {
-    const { rerender } = renderPanel();
+  it("tracks hover locally and dispatches selected element changes", () => {
+    const dispatch = vi.fn<Dispatch<LensAction>>();
+    renderPanel(makeState(), dispatch);
 
     fireEvent.click(screen.getByText("hover-one"));
     expect(screen.getByTestId("loaded-state").textContent).toBe("act:1 sel:none");
 
     fireEvent.click(screen.getByText("select-one"));
+    expect(dispatch).toHaveBeenCalledWith({ type: "SET_SELECTED_ELEMENT", panelId: "a", elementId: 1 });
+  });
+
+  it("reads selected element and glass-map state from reducer-backed panel state", () => {
+    renderPanel(makeState({ panels: { ...makeState().panels, selectedElementIdA: 1, glassMapOpen: true } }));
+
     expect(screen.getByTestId("loaded-state").textContent).toBe("act:1 sel:1");
+    expect(mocks.loadedState.mock.calls.at(-1)?.[0].overlays.showAbbeDiagram).toBe(true);
 
-    const state = makeState();
-    const value: LensCtxValue = { state, theme: themes.dark, isWide: true, updateURLWithSliders: vi.fn() };
-    rerender(
-      <LensStateContext.Provider value={value}>
-        <LensDispatchContext.Provider value={vi.fn()}>
-          <PanelStateContext.Provider value={state.panels}>
-            <LensDiagramPanel lensKey="lens-b" scaleRatio={null} panelId="a" compact={false} />
-          </PanelStateContext.Provider>
-        </LensDispatchContext.Provider>
-      </LensStateContext.Provider>,
-    );
-
-    await waitFor(() => {
-      expect(screen.getByTestId("loaded-state").textContent).toBe("act:none sel:none");
-    });
+    fireEvent.click(screen.getByText("open-glass-map"));
+    expect(mocks.adapters.onGlassMapOpenChange).toHaveBeenCalledWith(true);
   });
 });

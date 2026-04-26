@@ -11,6 +11,10 @@ Optical Bench is an interactive reference site for exploring the optical design 
 
 The goal is to make these designs tangible: to show how light actually moves through a lens, how elements are shaped and spaced, and how focus and aperture adjustments change the optical path. Rather than static diagrams, every cross-section is computed in real time from the patent data, with ray tracing that responds to your inputs.
 
+## Sharing Views
+
+Lens and comparison pages keep the current shareable view in the browser URL. Copy the address bar to share the selected element, glass map, chromatic aberration overlay, Petzval curvature overlay, bokeh preview, analysis drawer, active analysis tab, and focus/aperture/zoom settings.
+
 ## How It's Made
 
 This site is created by **Ron Buening**. The optical prescriptions are translated from patent filings — a process that involves interpreting lens tables, converting between notation conventions, and validating the data against known optical properties.

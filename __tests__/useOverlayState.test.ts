@@ -5,61 +5,27 @@ import { renderHook, act } from "@testing-library/react";
 import useOverlayState from "../src/components/hooks/useOverlayState.js";
 
 describe("useOverlayState", () => {
-  it("all overlays start closed", () => {
+  it("starts with no aspheric comparison element", () => {
     const { result } = renderHook(() => useOverlayState("lens-a"));
-    expect(result.current.showAbbeDiagram).toBe(false);
-    expect(result.current.showLcaOverlay).toBe(false);
-    expect(result.current.showPetzvalOverlay).toBe(false);
+    expect(result.current.asphCompareElementId).toBeNull();
   });
 
-  it("opens and closes Abbe diagram", () => {
+  it("opens and closes the aspheric comparison overlay", () => {
     const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(true);
-    act(() => result.current.closeAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(false);
+    act(() => result.current.openAsphCompare(7));
+    expect(result.current.asphCompareElementId).toBe(7);
+    act(() => result.current.closeAsphCompare());
+    expect(result.current.asphCompareElementId).toBeNull();
   });
 
-  it("opens and closes LCA overlay", () => {
-    const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openLcaOverlay());
-    expect(result.current.showLcaOverlay).toBe(true);
-    act(() => result.current.closeLcaOverlay());
-    expect(result.current.showLcaOverlay).toBe(false);
-  });
-
-  it("opens and closes Petzval overlay", () => {
-    const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openPetzvalOverlay());
-    expect(result.current.showPetzvalOverlay).toBe(true);
-    act(() => result.current.closePetzvalOverlay());
-    expect(result.current.showPetzvalOverlay).toBe(false);
-  });
-
-  it("resets all overlays when lensKey changes", () => {
+  it("clears the aspheric comparison element when lensKey changes", () => {
     const { result, rerender } = renderHook(({ key }) => useOverlayState(key), {
       initialProps: { key: "lens-a" },
     });
-    act(() => {
-      result.current.openAbbeDiagram();
-      result.current.openLcaOverlay();
-      result.current.openPetzvalOverlay();
-    });
-    expect(result.current.showAbbeDiagram).toBe(true);
-    expect(result.current.showLcaOverlay).toBe(true);
-    expect(result.current.showPetzvalOverlay).toBe(true);
+    act(() => result.current.openAsphCompare(3));
+    expect(result.current.asphCompareElementId).toBe(3);
 
     rerender({ key: "lens-b" });
-    expect(result.current.showAbbeDiagram).toBe(false);
-    expect(result.current.showLcaOverlay).toBe(false);
-    expect(result.current.showPetzvalOverlay).toBe(false);
-  });
-
-  it("overlays are independent of each other", () => {
-    const { result } = renderHook(() => useOverlayState("lens-a"));
-    act(() => result.current.openAbbeDiagram());
-    expect(result.current.showAbbeDiagram).toBe(true);
-    expect(result.current.showLcaOverlay).toBe(false);
-    expect(result.current.showPetzvalOverlay).toBe(false);
+    expect(result.current.asphCompareElementId).toBeNull();
   });
 });

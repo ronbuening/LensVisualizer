@@ -84,6 +84,9 @@ export type PanelField =
   | "legendExpanded"
   | "headerInfoExpanded"
   | "abbeShowGlassType"
+  | "glassMapOpen"
+  | "lcaOverlayOpen"
+  | "petzvalOverlayOpen"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
@@ -97,12 +100,18 @@ export interface PanelsSlice {
   legendExpanded: boolean;
   headerInfoExpanded: boolean;
   abbeShowGlassType: boolean;
+  glassMapOpen: boolean;
+  lcaOverlayOpen: boolean;
+  petzvalOverlayOpen: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
   zoomPanActive: boolean;
   bokehPreviewOpen: boolean;
+  selectedElementId: number | null;
+  selectedElementIdA: number | null;
+  selectedElementIdB: number | null;
 }
 
 export type OverlayField = "showAbout" | "showAboutSite" | "showOpticsPrimer" | "showAberrationsPrimer";
@@ -141,6 +150,8 @@ export type LensAction =
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
+  | { type: "SET_SELECTED_ELEMENT"; panelId: "main" | "a" | "b"; elementId: number | null }
+  | { type: "APPLY_URL_VIEW_STATE"; state: Partial<URLState> }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
   | { type: "CLOSE_ALL_OVERLAYS" }
   | { type: "SWAP_LENSES" }
@@ -183,4 +194,29 @@ export interface URLState {
   aperture?: number;
   zoomA?: number;
   zoomB?: number;
+  zoom?: number;
+  selectedElementId?: number | null;
+  selectedElementIdA?: number | null;
+  selectedElementIdB?: number | null;
+  glassMapOpen?: boolean;
+  lcaOverlayOpen?: boolean;
+  petzvalOverlayOpen?: boolean;
+  bokehPreviewOpen?: boolean;
+  analysisDrawerOpen?: boolean;
+  analysisDrawerTab?: AnalysisTabId;
+}
+
+export type SelectedElementPanelId = "main" | "a" | "b";
+export type SelectedElementPanelKey = "selectedElementId" | "selectedElementIdA" | "selectedElementIdB";
+
+/** Maps a panel identifier (loose string or "main"/"a"/"b") to its `panels`-slice key. */
+export function selectedElementKeyForPanel(panelId: string): SelectedElementPanelKey {
+  if (panelId === "a") return "selectedElementIdA";
+  if (panelId === "b") return "selectedElementIdB";
+  return "selectedElementId";
+}
+
+/** Normalises a loose panel identifier to the strict `SelectedElementPanelId` union. */
+export function normalizePanelId(panelId: string): SelectedElementPanelId {
+  return panelId === "a" || panelId === "b" ? panelId : "main";
 }

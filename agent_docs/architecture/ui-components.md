@@ -32,7 +32,7 @@ Read this for shared controls, display components, markdown rendering, analysis 
 | Module | Purpose |
 | --- | --- |
 | `ElementInspector.tsx` | Selected element properties, glass, aspheric data, and chromatic data. Renders a "Compare to sphere →" link for aspheric elements via the optional `onOpenAsphericCompare` prop. |
-| `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure Δsag. Opened from `ElementInspector`; state managed in `useOverlayState`. |
+| `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure Δsag. Opened from `ElementInspector`; state managed in `useOverlayState` — the only overlay that lives outside the URL-shareable panels slice. |
 | `DiagramLegend.tsx` | Legend with swatches, ray descriptions, and aberration readouts. |
 | `AbbeDiagram.tsx` | Abbe glass map on Vd x Nd axes. |
 | `AboutButtonRow.tsx` | Shared about button group. |

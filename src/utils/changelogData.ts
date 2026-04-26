@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-26 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-26",
+    type: "feature",
+    summary:
+      "Added shareable URLs for selected elements, overlays (glass map, LCA, Petzval), bokeh preview, and analysis tabs",
+  },
   // ── 2026-04-25 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-25",
