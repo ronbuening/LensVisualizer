@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-26 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-26",
+    type: "lens",
+    summary: "Added three Olympus OM lenses: Zuiko Auto-W 21mm f/2, Auto-Macro 50mm f/2, and Auto-Macro 90mm f/2",
+  },
+  {
+    date: "2026-04-26",
+    type: "lens",
+    summary: "Added Nikon Nikkor-S Auto 50mm f/1.4, a classic double-Gauss six-element standard",
+  },
+  {
+    date: "2026-04-26",
     type: "improvement",
     summary: "Split Carl Zeiss into separate Jena and Oberkochen maker pages reflecting the postwar division",
   },
