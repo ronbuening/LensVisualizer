@@ -34,6 +34,7 @@ describe("ControlsBar", () => {
         showScaleMode: true,
         showOnAxis: true,
         showOffAxis: "off",
+        rayDensity: "normal",
         rayTracksF: false,
         showChromatic: false,
         chromR: true,
@@ -47,10 +48,12 @@ describe("ControlsBar", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "ON-AXIS" }));
     fireEvent.click(screen.getByRole("button", { name: "OFF-AXIS" }));
+    fireEvent.click(screen.getByRole("button", { name: "DENSE" }));
     fireEvent.click(screen.getByRole("button", { name: /TRACKS FOCUS$/ }));
 
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: false });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "rayDensity", value: "dense" });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: true });
   });
 
@@ -62,6 +65,7 @@ describe("ControlsBar", () => {
         showScaleMode: true,
         showOnAxis: true,
         showOffAxis: "trueAngle",
+        rayDensity: "diagnostic",
         rayTracksF: true,
         showChromatic: true,
         chromR: true,
@@ -74,6 +78,7 @@ describe("ControlsBar", () => {
     );
 
     expect(screen.queryByRole("button", { name: "PUPILS" })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "DIAGNOSTIC" })).toBeTruthy();
 
     expect(screen.getByRole("button", { name: "PUPILS" }).parentElement?.style.width).toBe("228px");
 

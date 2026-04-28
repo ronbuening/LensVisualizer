@@ -400,6 +400,8 @@ export default function LensDiagramPanel({
                 onShowOnAxisChange={adapters.onShowOnAxisChange}
                 showOffAxis={showOffAxis}
                 onShowOffAxisChange={adapters.onShowOffAxisChange}
+                rayDensity={rayDensity}
+                onRayDensityChange={adapters.onRayDensityChange}
                 rayTracksF={rayTracksF}
                 onRayTracksFChange={adapters.onRayTracksFChange}
                 showChromatic={showChromatic}

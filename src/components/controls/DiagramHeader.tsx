@@ -18,7 +18,7 @@ import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import type { OffAxisMode } from "../../types/state.js";
+import type { OffAxisMode, RayDensity } from "../../types/state.js";
 
 interface DiagramHeaderProps {
   L: RuntimeLens;
@@ -32,6 +32,8 @@ interface DiagramHeaderProps {
   onShowOnAxisChange?: (value: boolean) => void;
   showOffAxis: OffAxisMode;
   onShowOffAxisChange?: (value: OffAxisMode) => void;
+  rayDensity: RayDensity;
+  onRayDensityChange?: (value: RayDensity) => void;
   rayTracksF: boolean;
   onRayTracksFChange?: (value: boolean) => void;
   showChromatic: boolean;
@@ -63,6 +65,8 @@ const DiagramHeader = memo(
       onShowOnAxisChange,
       showOffAxis,
       onShowOffAxisChange,
+      rayDensity,
+      onRayDensityChange,
       rayTracksF,
       onRayTracksFChange,
       showChromatic,
@@ -230,6 +234,24 @@ const DiagramHeader = memo(
                   >
                     {icon}
                   </span>
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
+            {/* Ray density */}
+            <div style={toggleGroup(t, { width: "100%" })}>
+              {(
+                [
+                  { label: "NORMAL", val: "normal" },
+                  { label: "DENSE", val: "dense" },
+                  { label: "DIAGNOSTIC", val: "diagnostic" },
+                ] as const
+              ).map(({ label, val }, idx) => (
+                <button
+                  key={val}
+                  onClick={() => onRayDensityChange?.(val)}
+                  style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < 2, gap: 4 })}
+                >
                   <span>{label}</span>
                 </button>
               ))}
