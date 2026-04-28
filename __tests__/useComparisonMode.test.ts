@@ -18,6 +18,8 @@ function makeParams(overrides: Record<string, unknown> = {}) {
     sharedFocusT: 0,
     sharedStopdownT: 0,
     sharedZoomT: 0,
+    sharedShiftMm: 0,
+    sharedTiltDeg: 0,
     ...overrides,
   };
 }
@@ -30,6 +32,7 @@ describe("useComparisonMode", () => {
     expect(result.current.focusPair).toBeNull();
     expect(result.current.aperturePair).toBeNull();
     expect(result.current.zoomPair).toBeNull();
+    expect(result.current.movementPair).toBeNull();
     expect(typeof result.current.handleHeaderHeight).toBe("function");
     expect(typeof result.current.maxHeaderHeight).toBe("number");
   });
@@ -40,6 +43,7 @@ describe("useComparisonMode", () => {
     expect(result.current.focusPair).toBeNull();
     expect(result.current.aperturePair).toBeNull();
     expect(result.current.zoomPair).toBeNull();
+    expect(result.current.movementPair).toBeNull();
     expect(result.current.scaleRatios).toBeNull();
   });
 
@@ -73,6 +77,7 @@ describe("useComparisonMode", () => {
     expect(result.current.aperturePair).not.toBeNull();
     expect(typeof result.current.aperturePair!.stopdownA).toBe("number");
     expect(result.current.zoomPair).not.toBeNull();
+    expect(result.current.movementPair).not.toBeNull();
   });
 
   it("returns null scaleRatios in independent mode", () => {

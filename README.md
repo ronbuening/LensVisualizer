@@ -10,6 +10,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag, aspheric overlays, and diagnostics that prevent hidden semi-diameter clipping artifacts
 - Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
+- Adds opt-in, URL-shareable tilt/shift visualization controls for supported perspective-control lenses
 - Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, chromatic field curvature, and aspheric surface deviation
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
@@ -27,6 +28,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
+- **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
 - **Aspheric deviation inspector**: click any aspheric element to compare its surface profile against the base sphere or a least-squares best-fit sphere, with adjustable exaggeration and click-to-measure Δsag (mm or μm)
 - **Spherical aberration model**: combines a dense real-ray transverse fan (22 pupil zones with finer sampling near the edge) at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic; symmetric +/- ray pairing prevents asymmetric clipping from biasing metrics
@@ -43,7 +45,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults
 - **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
 - **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
-- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, bokeh preview, analysis drawer + tab, and slider state
+- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, bokeh preview, analysis drawer + tab, and slider state including PC lens movement
 
 ## Tech Stack
 
@@ -118,6 +120,7 @@ agent_docs/     # Developer-facing architecture and workflow notes
 
 1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to `src/lens-data/YourLens.data.ts`.
 2. Fill in the prescription and metadata fields.
+   Only real perspective-control lenses should declare `perspectiveControl`; ordinary lenses omit it and get no SHIFT/TILT controls.
 3. Optionally add `src/lens-data/YourLens.analysis.md` beside the data file for the description panel.
 4. Run:
 

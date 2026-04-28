@@ -9,8 +9,9 @@ Lens viewer state is split into these slices:
 - `lens` - selected lens and comparison identity.
 - `display` - mobile/desktop view, theme, high contrast, scale behavior.
 - `rays` - on-axis/off-axis/chromatic display toggles.
-- `sliders` - focus, zoom, aperture, and related numeric UI state.
-- `sharedSliders` - comparison-mode shared slider positions.
+- `sliders` - focus, zoom, aperture, optional PC shift/tilt, and related numeric UI state.
+- `sharedSliders` - comparison-mode shared slider positions, including shared PC shift/tilt when either compared lens
+  supports it.
 - `panels` - inspector, drawer, legend, zoom/pan, and analysis tab state.
 - `overlays` - modal and diagram overlay state.
 
@@ -36,13 +37,15 @@ persisted or URL-provided strings should be normalized at the boundary.
 Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the
 shareable view state:
 
-- Stable slider params remain unversioned: `focus`, `aperture`, and `zoom`.
+- Stable slider params remain unversioned: `focus`, `aperture`, `zoom`, `shift`, and `tilt`.
 - Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `bo`, `ad`, and `tab`.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
 - Overlay flags: `gm` (Abbe/glass-map modal), `lca` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
   `bo` (bokeh preview), `ad` (analysis drawer); `tab` names the active analysis drawer tab.
 - Boolean params decode strictly as `1` for true and `0` or omitted for false. Invalid values fall back to defaults.
 - Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
+- `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that
+  config resolve both values to zero.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 
 `useOverlayState` keeps only the aspheric-comparison element open state (per-element modal lifecycle that does not
@@ -98,7 +101,8 @@ When adding or changing color tokens, update all four theme definitions.
 
 Definitions live in `src/types/`:
 
-- `optics.ts` - `LensData`, `LensDataInput`, `RuntimeLens`, surfaces, elements, rays, transforms, chromatic data.
+- `optics.ts` - `LensData`, `LensDataInput`, `RuntimeLens`, `PerspectiveControlConfig`, surfaces, elements, rays,
+  transforms, chromatic data.
 - `state.ts` - `LensState`, reducer actions, preferences, URL state, display/ray/panel unions and guards.
 - `theme.ts` - theme tokens, closures, and variants.
 - `index.ts` - barrel re-exports.

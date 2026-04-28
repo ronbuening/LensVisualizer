@@ -157,7 +157,10 @@ describe("useURLSync — zoom initialization", () => {
 describe("useURLSync — updateURLWithSliders (debounced)", () => {
   it("preserves the current lens-page pathname when only query params should change", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
-    const state: LensState = { ...makeState(), sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0 } };
+    const state: LensState = {
+      ...makeState(),
+      sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
+    };
     window.history.replaceState({}, "", `/lens/${CATALOG_KEYS[0]}`);
     replaceStateSpy.mockClear();
 
@@ -264,7 +267,10 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
   it("calls replaceState after the debounce window", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     // Non-zero focusT so the debounced URL (with focus param) differs from the lens-only URL
-    const state: LensState = { ...makeState(), sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0 } };
+    const state: LensState = {
+      ...makeState(),
+      sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
+    };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
     act(() => {
@@ -283,7 +289,10 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
   it("coalesces multiple rapid calls into a single replaceState", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     // Non-zero focusT so the debounced URL (with focus param) differs from the lens-only URL
-    const state: LensState = { ...makeState(), sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0 } };
+    const state: LensState = {
+      ...makeState(),
+      sliders: { focusT: 0.5, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
+    };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
     act(() => {
@@ -306,7 +315,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
       ...makeState(),
-      sliders: { focusT: 0.6, zoomT: 0, stopdownT: 0 },
+      sliders: { focusT: 0.6, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -325,7 +334,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
       ...makeState(),
-      sliders: { focusT: 0, zoomT: 0, stopdownT: 0.5 },
+      sliders: { focusT: 0, zoomT: 0, stopdownT: 0.5, shiftMm: 0, tiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -339,11 +348,30 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(urlArg).toContain("aperture=");
   });
 
+  it("encodes non-zero shift and tilt in the URL after debounce", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state: LensState = {
+      ...makeState(),
+      sliders: { focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: -5.5, tiltDeg: 3.25 },
+    };
+    const { result } = renderHook(() => useURLSync(state, dispatch, null));
+
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(300);
+    });
+
+    const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
+    const urlArg = lastCall[2] as string;
+    expect(urlArg).toContain("shift=-5.50");
+    expect(urlArg).toContain("tilt=3.25");
+  });
+
   it("omits focus from URL when focusT is 0 (infinity focus)", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {
       ...makeState(),
-      sliders: { focusT: 0, zoomT: 0, stopdownT: 0 },
+      sliders: { focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -364,7 +392,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, lensKeyA: zoomLensKey },
-      sliders: { focusT: 0, zoomT: 0.5, stopdownT: 0 },
+      sliders: { focusT: 0, zoomT: 0.5, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -387,7 +415,7 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true },
-      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0, sharedZoomT: 0 },
+      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
     };
     const { result } = renderHook(() => useURLSync(state, dispatch, null));
 
@@ -407,7 +435,7 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true, lensKeyA, lensKeyB },
-      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0.2, sharedZoomT: 0 },
+      sharedSliders: { sharedFocusT: 0.4, sharedStopdownT: 0.2, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
     };
     window.history.replaceState({}, "", `/compare/${lensKeyA}/${lensKeyB}`);
     replaceStateSpy.mockClear();
@@ -428,7 +456,7 @@ describe("useURLSync — comparison mode slider URL", () => {
     const state: LensState = {
       ...makeState(),
       lens: { ...makeState().lens, comparing: true },
-      sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0.5 },
+      sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0.5, sharedShiftMm: 0, sharedTiltDeg: 0 },
     };
     const zoomLens = { isZoom: true, zoomPositions: zoomLensPositions } as any;
     const { result } = renderHook(() =>

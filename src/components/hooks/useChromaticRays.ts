@@ -8,6 +8,7 @@
 import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
+import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import { compileRaySegment, filterChannels } from "./raySegmentUtils.js";
 
@@ -30,6 +31,7 @@ interface UseChromaticRaysParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayTracksF: boolean;
@@ -56,6 +58,7 @@ export default function useChromaticRays({
   sx,
   sy,
   clampedRayEnd,
+  movementTransform,
   currentPhysStopSD,
   currentEPSD,
   rayTracksF,
@@ -79,7 +82,8 @@ export default function useChromaticRays({
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
         for (const ch of channels) {
-          const result = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+          const rawResult = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+          const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
           const seg = compileRaySegment(
             result.pts,
             result.ghostPts,
@@ -115,6 +119,7 @@ export default function useChromaticRays({
     IMG_MM,
     lensKey,
     clampedRayEnd,
+    movementTransform,
     zoomT,
   ]);
 
@@ -134,8 +139,9 @@ export default function useChromaticRays({
         marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
       }
     }
-    return computeChromaticSpread(marginalRays, IMG_MM, zPos[L.N - 1]);
-  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L]);
+    const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
+    return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L, movementTransform]);
 
   return { chromaticRays, chromSpread, error: chromaticResult.error };
 }

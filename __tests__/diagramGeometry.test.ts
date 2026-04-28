@@ -180,6 +180,25 @@ describe("computeElementShapes", () => {
     expect(shapes[0].asphPaths).toEqual([]);
   });
 
+  it("zero point transform preserves element shape coordinates", () => {
+    const L = makeSingleElementLens({ R1: 50, R2: 1e15 });
+    const zPos = [0, 5];
+    const unmoved = computeElementShapes(L, zPos, sx, sy);
+    const movedIdentity = computeElementShapes(L, zPos, sx, sy, (z, y) => [z, y]);
+
+    expect(movedIdentity[0].d).toBe(unmoved[0].d);
+  });
+
+  it("non-zero point transform changes rendered element coordinates", () => {
+    const L = makeSingleElementLens({ R1: 1e15, R2: 1e15 });
+    const zPos = [0, 5];
+    const unmoved = pathCoords(computeElementShapes(L, zPos, sx, sy)[0].d);
+    const shifted = pathCoords(computeElementShapes(L, zPos, sx, sy, (z, y) => [z, y + 5])[0].d);
+
+    expect(shifted[0][0]).toBeCloseTo(unmoved[0][0]);
+    expect(shifted[0][1]).toBeCloseTo(unmoved[0][1] + 5);
+  });
+
   it("path contains expected number of line segments", () => {
     const L = makeSingleElementLens();
     const zPos = [0, 5];

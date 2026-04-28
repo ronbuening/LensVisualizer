@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, useMemo, useRef } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, type ReactNode } from "react";
 import AberrationsPanel from "../../display/AberrationsPanel.js";
 import ComaTab from "../../display/ComaTab.js";
 import DistortionTab from "../../display/DistortionTab.js";
@@ -21,6 +21,7 @@ interface AnalysisDrawerContentProps {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  movementActive?: boolean;
   sliderInteracting?: boolean;
   aberrationsExpanded: boolean;
   onAberrationsExpandedChange: (expanded: boolean) => void;
@@ -37,6 +38,7 @@ export default function AnalysisDrawerContent({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry = null,
+  movementActive = false,
   sliderInteracting = false,
   aberrationsExpanded,
   onAberrationsExpandedChange,
@@ -68,9 +70,30 @@ export default function AnalysisDrawerContent({
   }, [sliderInteracting, deferredInputs]);
 
   const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
+  const withMovementNotice = (content: ReactNode) => (
+    <>
+      {movementActive && (
+        <div
+          style={{
+            margin: "0 0 12px",
+            padding: "8px 10px",
+            border: `1px solid ${t.panelDivider}`,
+            borderRadius: 6,
+            color: t.desc,
+            background: t.panelBg,
+            fontSize: 10,
+            lineHeight: 1.5,
+          }}
+        >
+          Tilt/shift is active. Analysis tabs use the centered-lens diagnostics in this first movement pass.
+        </div>
+      )}
+      {content}
+    </>
+  );
 
   if (activeTab === "aberrations") {
-    return (
+    return withMovementNotice(
       <AberrationsPanel
         L={L}
         t={t}
@@ -81,12 +104,12 @@ export default function AnalysisDrawerContent({
         currentPhysStopSD={analysisInputs.currentPhysStopSD}
         expanded={aberrationsExpanded}
         onExpandedChange={onAberrationsExpandedChange}
-      />
+      />,
     );
   }
 
   if (activeTab === "coma") {
-    return (
+    return withMovementNotice(
       <ComaTab
         L={L}
         t={t}
@@ -95,12 +118,12 @@ export default function AnalysisDrawerContent({
         zoomT={analysisInputs.zoomT}
         currentEPSD={analysisInputs.currentEPSD}
         currentPhysStopSD={analysisInputs.currentPhysStopSD}
-      />
+      />,
     );
   }
 
   if (activeTab === "distortion") {
-    return (
+    return withMovementNotice(
       <DistortionTab
         L={L}
         t={t}
@@ -110,24 +133,24 @@ export default function AnalysisDrawerContent({
         dynamicEFL={analysisInputs.dynamicEFL}
         currentPhysStopSD={analysisInputs.currentPhysStopSD}
         fieldGeometry={analysisInputs.fieldGeometry}
-      />
+      />,
     );
   }
 
   if (activeTab === "breathing") {
-    return (
+    return withMovementNotice(
       <FocusBreathingTab
         L={L}
         t={t}
         focusT={analysisInputs.focusT}
         zoomT={analysisInputs.zoomT}
         dynamicEFL={analysisInputs.dynamicEFL}
-      />
+      />,
     );
   }
 
   if (activeTab === "vignetting") {
-    return (
+    return withMovementNotice(
       <VignettingTab
         L={L}
         t={t}
@@ -137,19 +160,19 @@ export default function AnalysisDrawerContent({
         currentEPSD={analysisInputs.currentEPSD}
         currentPhysStopSD={analysisInputs.currentPhysStopSD}
         fieldGeometry={analysisInputs.fieldGeometry}
-      />
+      />,
     );
   }
 
   if (activeTab === "pupils") {
-    return (
+    return withMovementNotice(
       <PupilAberrationTab
         L={L}
         t={t}
         focusT={analysisInputs.focusT}
         zoomT={analysisInputs.zoomT}
         fieldGeometry={analysisInputs.fieldGeometry}
-      />
+      />,
     );
   }
 

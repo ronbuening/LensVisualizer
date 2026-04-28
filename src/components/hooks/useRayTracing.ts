@@ -15,6 +15,7 @@ import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticRaySegment } from "./useChromaticRays.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { OffAxisMode } from "../../types/state.js";
+import type { LensMovementTransform } from "../../optics/lensMovement.js";
 
 interface UseRayTracingParams {
   L: RuntimeLens | undefined;
@@ -25,6 +26,7 @@ interface UseRayTracingParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayTracksF: boolean;
@@ -55,6 +57,7 @@ export default function useRayTracing({
   sx,
   sy,
   clampedRayEnd,
+  movementTransform,
   currentPhysStopSD,
   currentEPSD,
   rayTracksF,
@@ -78,6 +81,7 @@ export default function useRayTracing({
     sx,
     sy,
     clampedRayEnd,
+    movementTransform,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,
@@ -94,6 +98,7 @@ export default function useRayTracing({
     sx,
     sy,
     clampedRayEnd,
+    movementTransform,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,
@@ -115,6 +120,7 @@ export default function useRayTracing({
     sx,
     sy,
     clampedRayEnd,
+    movementTransform,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,

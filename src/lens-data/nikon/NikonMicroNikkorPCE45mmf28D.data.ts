@@ -52,6 +52,14 @@ const LENS_DATA = {
   patentYear: 2010,
   elementCount: 9,
   groupCount: 8,
+  perspectiveControl: {
+    /* Nikon Imaging lists shift +/-11.5 mm and tilt +/-8.5 deg:
+     * https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pce_45mmf_28ed/index.html */
+    shiftRangeMm: [-11.5, 11.5],
+    tiltRangeDeg: [-8.5, 8.5],
+    shiftStepMm: 0.1,
+    tiltStepDeg: 0.1,
+  },
 
   /* ── Elements ── */
   elements: [

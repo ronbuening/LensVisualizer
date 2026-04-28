@@ -3,7 +3,7 @@
  * for LensDiagramPanel's child components.
  *
  * Reads useLensDispatch() and useLensCtx() internally. Returns a stable
- * object of 18 dispatch adapter callbacks for sliders, ray toggles,
+ * object of named dispatch adapter callbacks for sliders, ray toggles,
  * display toggles, and panel-expanded toggles.
  */
 
@@ -13,6 +13,8 @@ import {
   SET_FOCUS_T,
   SET_ZOOM_T,
   SET_STOPDOWN_T,
+  SET_SHIFT_MM,
+  SET_TILT_DEG,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -23,6 +25,8 @@ export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
   onZoomChange: (v: number) => void;
   onStopdownChange: (v: number) => void;
+  onShiftChange: (v: number) => void;
+  onTiltChange: (v: number) => void;
   onSliderPointerUp: () => void;
   onShowOnAxisChange: (v: boolean) => void;
   onShowOffAxisChange: (v: OffAxisMode) => void;
@@ -59,6 +63,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onFocusChange: (v: number) => dispatch({ type: SET_FOCUS_T, value: v }),
       onZoomChange: (v: number) => dispatch({ type: SET_ZOOM_T, value: v }),
       onStopdownChange: (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v }),
+      onShiftChange: (v: number) => dispatch({ type: SET_SHIFT_MM, value: v }),
+      onTiltChange: (v: number) => dispatch({ type: SET_TILT_DEG, value: v }),
       onSliderPointerUp: updateURLWithSliders,
       onShowOnAxisChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
       onShowOffAxisChange: (v: OffAxisMode) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),

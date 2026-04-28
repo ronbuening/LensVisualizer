@@ -2,7 +2,7 @@
  * lensViewUrlState — single source of truth for parsing and building the
  * shareable lens-view query string.
  *
- * Stable params (`focus`, `aperture`, `zoom`) are parsed regardless of the
+ * Stable params (`focus`, `aperture`, `zoom`, `shift`, `tilt`) are parsed regardless of the
  * `v` version param. v1-gated params (selection, overlay open-state,
  * analysis tab) are only honored when `v=1`; unknown versions silently
  * drop them so older clients do not misread future schemas.
@@ -14,6 +14,8 @@ type LensViewQueryKey =
   | "focus"
   | "aperture"
   | "zoom"
+  | "shift"
+  | "tilt"
   | "selectedElementId"
   | "selectedElementIdA"
   | "selectedElementIdB"
@@ -23,7 +25,7 @@ type LensViewQueryKey =
   | "bokehPreviewOpen"
   | "analysisDrawerOpen"
   | "analysisDrawerTab";
-type NullableLensViewQueryKey = "focus" | "aperture" | "zoom";
+type NullableLensViewQueryKey = "focus" | "aperture" | "zoom" | "shift" | "tilt";
 
 export type LensViewQueryState = Partial<
   Omit<Pick<URLState, LensViewQueryKey>, NullableLensViewQueryKey> & {
@@ -58,6 +60,8 @@ const DEFAULT_URL_STATE: Partial<URLState> = {
   focus: 0,
   aperture: 0,
   zoom: 0,
+  shift: 0,
+  tilt: 0,
   selectedElementId: null,
   selectedElementIdA: null,
   selectedElementIdB: null,
@@ -107,6 +111,10 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
     aperture: parseUnitParam(params, "aperture"),
     zoom: parseZoomParam(params),
   };
+  const shift = parseNumberParam(params, "shift");
+  const tilt = parseNumberParam(params, "tilt");
+  if (shift != null) state.shift = shift;
+  if (tilt != null) state.tilt = tilt;
 
   const version = params.get("v");
   if (version != null && version !== "1") return state;
@@ -139,6 +147,8 @@ export function buildLensViewQuery({
   zoom,
   focus,
   aperture,
+  shift,
+  tilt,
   selectedElementId,
   selectedElementIdA,
   selectedElementIdB,
@@ -162,6 +172,8 @@ export function buildLensViewQuery({
   if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
   if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
   if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
+  if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", shift.toFixed(2));
+  if (tilt != null && Math.abs(tilt) > 1e-9) params.set("tilt", tilt.toFixed(2));
 
   if (comparing) {
     if (selectedElementIdA != null) params.set("a_el", String(selectedElementIdA));
@@ -185,8 +197,18 @@ export function buildLensViewQuery({
 export function buildLensViewQueryFromState(state: LensState, zoom: number | null | undefined): URLSearchParams {
   const { comparing } = state.lens;
   const sliders = comparing
-    ? { focus: state.sharedSliders.sharedFocusT, aperture: state.sharedSliders.sharedStopdownT }
-    : { focus: state.sliders.focusT, aperture: state.sliders.stopdownT };
+    ? {
+        focus: state.sharedSliders.sharedFocusT,
+        aperture: state.sharedSliders.sharedStopdownT,
+        shift: state.sharedSliders.sharedShiftMm,
+        tilt: state.sharedSliders.sharedTiltDeg,
+      }
+    : {
+        focus: state.sliders.focusT,
+        aperture: state.sliders.stopdownT,
+        shift: state.sliders.shiftMm,
+        tilt: state.sliders.tiltDeg,
+      };
 
   return buildLensViewQuery({
     comparing,
@@ -209,6 +231,8 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (state.focus != null) urlState.focus = state.focus;
   if (state.aperture != null) urlState.aperture = state.aperture;
   if (state.zoom != null) urlState.zoom = state.zoom;
+  if (state.shift != null) urlState.shift = state.shift;
+  if (state.tilt != null) urlState.tilt = state.tilt;
   for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
     if (includeViewDefaults || key in state) {
       (urlState as Record<string, unknown>)[key] = state[key] ?? fallback;

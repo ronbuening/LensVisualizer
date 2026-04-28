@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-28 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-28",
+    type: "feature",
+    summary: "Added tilt and shift controls for supported Nikon perspective-control lenses",
+  },
+  {
+    date: "2026-04-28",
     type: "lens",
     summary:
       "Added Fujifilm Fujinon XF 18mm f/2 R and XF 23mm f/1.4 R and Carl Zeiss Olympa-Sonnar 180mm f/2.8 and Pro-Tessar 35mm f/3.2",

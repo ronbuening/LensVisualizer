@@ -71,7 +71,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
   const { dark, highContrast, mobileView, desktopView } = display;
   const { showOnAxis, showOffAxis, rayTracksF, showChromatic, chromR, chromG, chromB, showPupils } = rays;
-  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
 
   /* ── Comparison mode orchestration ── */
@@ -81,11 +81,14 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     focusPair,
     aperturePair,
     zoomPair,
+    movementPair,
     handleHeaderHeight,
     maxHeaderHeight,
     flashPanel,
     handleSharedFocusChange,
     handleSharedStopdownChange,
+    handleSharedShiftChange,
+    handleSharedTiltChange,
     handleFocusPointerDown,
     handleAperturePointerDown,
     toggleCompare,
@@ -250,6 +253,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
               focusPair={focusPair}
               aperturePair={aperturePair}
               zoomPair={zoomPair}
+              movementPair={movementPair}
               scaleRatios={scaleRatios}
               maxHeaderHeight={maxHeaderHeight}
               onHeaderHeight={handleHeaderHeight}
@@ -257,8 +261,12 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
               sharedFocusT={sharedFocusT}
               sharedStopdownT={sharedStopdownT}
               sharedZoomT={sharedZoomT}
+              sharedShiftMm={sharedShiftMm}
+              sharedTiltDeg={sharedTiltDeg}
               onSharedFocusChange={handleSharedFocusChange}
               onSharedStopdownChange={handleSharedStopdownChange}
+              onSharedShiftChange={handleSharedShiftChange}
+              onSharedTiltChange={handleSharedTiltChange}
               onFocusPointerDown={handleFocusPointerDown}
               onAperturePointerDown={handleAperturePointerDown}
               onSliderPointerUp={updateURLWithSliders}

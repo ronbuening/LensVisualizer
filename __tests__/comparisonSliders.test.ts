@@ -3,6 +3,7 @@ import {
   computeFocusPair,
   computeAperturePair,
   computeZoomPair,
+  computeMovementPair,
   formatSharedFocusDist,
   sharedFNumber,
   snapToCommon,
@@ -229,5 +230,51 @@ describe("computeZoomPair", () => {
     const r = computeZoomPair(0.5, same, same);
     expect(r.showZoom).toBe(true);
     expect(r.zoomA).toBeCloseTo(r.zoomB, 5);
+  });
+});
+
+describe("computeMovementPair", () => {
+  const pcA = {
+    perspectiveControl: {
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-7.5, 7.5],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    },
+  } as unknown as RuntimeLens;
+  const pcB = {
+    perspectiveControl: {
+      shiftRangeMm: [-11.5, 11.5],
+      tiltRangeDeg: [-8.5, 8.5],
+      shiftStepMm: 0.2,
+      tiltStepDeg: 0.2,
+    },
+  } as unknown as RuntimeLens;
+  const ordinary = { perspectiveControl: null } as unknown as RuntimeLens;
+
+  it("hides movement controls for two non-PC lenses", () => {
+    const r = computeMovementPair(5, 5, ordinary, ordinary);
+    expect(r.showMovement).toBe(false);
+    expect(r.shiftA).toBe(0);
+    expect(r.tiltB).toBe(0);
+  });
+
+  it("maps shared movement to each PC lens and clamps unsupported lenses to zero", () => {
+    const r = computeMovementPair(15, -9, pcA, ordinary);
+    expect(r.showMovement).toBe(true);
+    expect(r.shiftA).toBe(12);
+    expect(r.tiltA).toBe(-7.5);
+    expect(r.shiftB).toBe(0);
+    expect(r.tiltB).toBe(0);
+  });
+
+  it("uses the union of supported ranges in dual-PC comparisons", () => {
+    const r = computeMovementPair(10, 8, pcA, pcB);
+    expect(r.shiftRangeMm).toEqual([-12, 12]);
+    expect(r.tiltRangeDeg).toEqual([-8.5, 8.5]);
+    expect(r.shiftB).toBe(10);
+    expect(r.tiltB).toBe(8);
+    expect(r.shiftStepMm).toBe(0.1);
+    expect(r.tiltStepDeg).toBe(0.1);
   });
 });

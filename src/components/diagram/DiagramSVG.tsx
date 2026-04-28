@@ -17,6 +17,7 @@ import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
 import DiagramOverlayLayer from "./DiagramOverlayLayer.js";
 import DiagramRayLayers from "./DiagramRayLayers.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
+import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { Theme } from "../../types/theme.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
 import type { OffAxisMode } from "../../types/state.js";
@@ -30,6 +31,8 @@ interface DiagramSVGProps {
   CX: number;
   IX: number;
   effectiveSC: number;
+  movementTransform?: LensMovementTransform;
+  lensAxis?: [[number, number], [number, number]] | null;
   zPos: number[];
   IMG_MM: number;
   shapes: ElementShape[];
@@ -83,6 +86,8 @@ const DiagramSVG = memo(function DiagramSVG({
   CX,
   IX,
   effectiveSC,
+  movementTransform,
+  lensAxis,
   zPos,
   IMG_MM,
   shapes,
@@ -148,6 +153,19 @@ const DiagramSVG = memo(function DiagramSVG({
     >
       <DiagramDefs dark={dark} filterId={filterId} theme={t} />
       <DiagramGridAxisLayer lens={L} theme={t} CX={CX} effectiveSC={effectiveSC} sy={sy} />
+      {lensAxis && (
+        <line
+          x1={sx(lensAxis[0][0])}
+          y1={sy(lensAxis[0][1])}
+          x2={sx(lensAxis[1][0])}
+          y2={sy(lensAxis[1][1])}
+          stroke={t.axis}
+          strokeWidth={0.9}
+          strokeDasharray="2,4"
+          opacity={0.55}
+          style={{ pointerEvents: "none" }}
+        />
+      )}
       <DiagramRayLayers
         lens={L}
         theme={t}
@@ -177,6 +195,7 @@ const DiagramSVG = memo(function DiagramSVG({
         sy={sy}
         IX={IX}
         effectiveSC={effectiveSC}
+        pointTransform={movementTransform?.point}
         zPos={zPos}
         IMG_MM={IMG_MM}
         shapes={shapes}

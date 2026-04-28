@@ -18,6 +18,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `buildLens.ts` | Validates lens data and constructs frozen `RuntimeLens` objects. |
 | `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
 | `diagramGeometry.ts` | SVG coordinate transforms and element shape/render diagnostics. |
+| `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `validateLensData.ts` | Runtime lens-data validation. |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
@@ -69,6 +70,17 @@ Use explicit naming:
 Visible off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the state-aware solved-chief-ray path
 where current focus/zoom can move pupil geometry. Keep legacy paraxial behavior only where the UI or test explicitly
 needs first-order comparison.
+
+## Perspective-Control Movement
+
+`lensMovement.ts` models v1 PC-lens movement as a 2D meridional display/ray layer: the optical trace is computed in the
+centered lens coordinates, then rendered lens geometry and ray segments are shifted/tilted relative to a fixed image
+plane. This keeps zero movement byte-for-byte equivalent to the existing coordinate path while making active movement
+visible in the SVG.
+
+Only lenses that declare `perspectiveControl` get movement controls. Use `clampLensMovement()` before rendering or
+sharing movement values, and keep analysis helpers centered-lens unless a future task explicitly adds full moved-optics
+diagnostics.
 
 ## Aberration Analysis
 
@@ -147,6 +159,7 @@ boundary-surface cross-gap overlap, conic limits, and zoom field consistency.
 
 - `createCoordinateTransforms()` - optical mm to SVG coordinate mapping.
 - `computeElementRenderDiagnostics()` - declared/rendered SD, trim amount, and trim cause.
-- `computeElementShapes()` - closed SVG element paths using the same rim and boundary gap policy as validation.
+- `computeElementShapes()` - closed SVG element paths using the same rim and boundary gap policy as validation; accepts an
+  optional point transform for perspective-control movement.
 
 Production tests treat excessive hidden render trim as a data-quality failure.

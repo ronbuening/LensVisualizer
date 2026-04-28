@@ -5,6 +5,7 @@
 
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { perspectiveControlSteps } from "../../optics/lensMovement.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -29,6 +30,10 @@ interface DiagramControlsProps {
   onZoomChange?: (value: number) => void;
   focusT: number;
   onFocusChange?: (value: number) => void;
+  shiftMm: number;
+  tiltDeg: number;
+  onShiftChange?: (value: number) => void;
+  onTiltChange?: (value: number) => void;
   focusExpanded: boolean;
   onFocusExpandedChange?: (value: boolean) => void;
   varReadouts: VarReadout[];
@@ -58,6 +63,10 @@ export default function DiagramControls({
   onZoomChange,
   focusT,
   onFocusChange,
+  shiftMm,
+  tiltDeg,
+  onShiftChange,
+  onTiltChange,
   focusExpanded,
   onFocusExpandedChange,
   varReadouts,
@@ -112,12 +121,31 @@ export default function DiagramControls({
     [onChangeActivity, onStopdownChange],
   );
 
+  const handleShiftChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onShiftChange?.(v);
+    },
+    [onChangeActivity, onShiftChange],
+  );
+
+  const handleTiltChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onTiltChange?.(v);
+    },
+    [onChangeActivity, onTiltChange],
+  );
+
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
   const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
+  const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
+  const signed = (value: number, digits: number, unit: string) =>
+    `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
 
   return (
     <>
@@ -206,6 +234,48 @@ export default function DiagramControls({
             </>
           )}
         </SliderControl>
+      )}
+
+      {showSliders && L.perspectiveControl && pcSteps && (
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label="SHIFT"
+          labelMinWidth={55}
+          displayValue={signed(shiftMm, 1, "mm")}
+          value={shiftMm}
+          min={L.perspectiveControl.shiftRangeMm[0]}
+          max={L.perspectiveControl.shiftRangeMm[1]}
+          step={pcSteps.shiftStepMm}
+          onPointerDown={beginInteraction}
+          onChange={handleShiftChange}
+          onPointerUp={handlePointerUp}
+          minLabel={signed(L.perspectiveControl.shiftRangeMm[0], 1, "mm")}
+          maxLabel={signed(L.perspectiveControl.shiftRangeMm[1], 1, "mm")}
+          flexBasis="190px"
+        />
+      )}
+
+      {showSliders && L.perspectiveControl && pcSteps && (
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label="TILT"
+          labelMinWidth={55}
+          displayValue={signed(tiltDeg, 1, "deg")}
+          value={tiltDeg}
+          min={L.perspectiveControl.tiltRangeDeg[0]}
+          max={L.perspectiveControl.tiltRangeDeg[1]}
+          step={pcSteps.tiltStepDeg}
+          onPointerDown={beginInteraction}
+          onChange={handleTiltChange}
+          onPointerUp={handlePointerUp}
+          minLabel={signed(L.perspectiveControl.tiltRangeDeg[0], 1, "deg")}
+          maxLabel={signed(L.perspectiveControl.tiltRangeDeg[1], 1, "deg")}
+          flexBasis="190px"
+        />
       )}
 
       {showApertureControl && (

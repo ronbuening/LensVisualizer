@@ -8,6 +8,7 @@
 
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
+import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
 
 export interface FocusPairResult {
   focusA: number;
@@ -35,6 +36,18 @@ export interface ZoomPairResult {
   maxFL?: number;
   commonPointLow?: number;
   commonPointHigh?: number;
+}
+
+export interface MovementPairResult {
+  showMovement: boolean;
+  shiftA: number;
+  shiftB: number;
+  tiltA: number;
+  tiltB: number;
+  shiftRangeMm: [number, number];
+  tiltRangeDeg: [number, number];
+  shiftStepMm: number;
+  tiltStepDeg: number;
 }
 
 /**
@@ -164,6 +177,57 @@ export function computeZoomPair(sharedZoomT: number, LA: RuntimeLens, LB: Runtim
   );
 
   return { zoomA, zoomB, showZoom: true, sharedFL, minFL, maxFL, commonPointLow, commonPointHigh };
+}
+
+export function computeMovementPair(
+  sharedShiftMm: number,
+  sharedTiltDeg: number,
+  LA: RuntimeLens,
+  LB: RuntimeLens,
+): MovementPairResult {
+  const configs = [LA.perspectiveControl, LB.perspectiveControl].filter(
+    (config): config is NonNullable<typeof config> => config != null,
+  );
+  if (configs.length === 0) {
+    return {
+      showMovement: false,
+      shiftA: 0,
+      shiftB: 0,
+      tiltA: 0,
+      tiltB: 0,
+      shiftRangeMm: [0, 0],
+      tiltRangeDeg: [0, 0],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+  }
+
+  const movementA = clampLensMovement(LA, { shiftMm: sharedShiftMm, tiltDeg: sharedTiltDeg });
+  const movementB = clampLensMovement(LB, { shiftMm: sharedShiftMm, tiltDeg: sharedTiltDeg });
+  const firstSteps = perspectiveControlSteps(configs[0]);
+  return {
+    showMovement: true,
+    shiftA: movementA.shiftMm,
+    shiftB: movementB.shiftMm,
+    tiltA: movementA.tiltDeg,
+    tiltB: movementB.tiltDeg,
+    shiftRangeMm: [
+      Math.min(...configs.map((config) => config.shiftRangeMm[0])),
+      Math.max(...configs.map((config) => config.shiftRangeMm[1])),
+    ],
+    tiltRangeDeg: [
+      Math.min(...configs.map((config) => config.tiltRangeDeg[0])),
+      Math.max(...configs.map((config) => config.tiltRangeDeg[1])),
+    ],
+    shiftStepMm: Math.min(
+      firstSteps.shiftStepMm,
+      ...configs.slice(1).map((config) => perspectiveControlSteps(config).shiftStepMm),
+    ),
+    tiltStepDeg: Math.min(
+      firstSteps.tiltStepDeg,
+      ...configs.slice(1).map((config) => perspectiveControlSteps(config).tiltStepDeg),
+    ),
+  };
 }
 
 /**

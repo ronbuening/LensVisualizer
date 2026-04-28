@@ -7,6 +7,8 @@ import {
   SET_FOCUS_T,
   SET_ZOOM_T,
   SET_STOPDOWN_T,
+  SET_SHIFT_MM,
+  SET_TILT_DEG,
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -37,6 +39,8 @@ describe("useDispatchAdapters", () => {
       "onFocusChange",
       "onZoomChange",
       "onStopdownChange",
+      "onShiftChange",
+      "onTiltChange",
       "onSliderPointerUp",
       "onShowOnAxisChange",
       "onShowOffAxisChange",
@@ -82,6 +86,18 @@ describe("useDispatchAdapters", () => {
     const { adapters, dispatch } = renderAdapters();
     adapters.onStopdownChange(1.0);
     expect(dispatch).toHaveBeenCalledWith({ type: SET_STOPDOWN_T, value: 1.0 });
+  });
+
+  it("onShiftChange dispatches SET_SHIFT_MM", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onShiftChange(-5.5);
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_SHIFT_MM, value: -5.5 });
+  });
+
+  it("onTiltChange dispatches SET_TILT_DEG", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onTiltChange(3.5);
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_TILT_DEG, value: 3.5 });
   });
 
   it("onSliderPointerUp calls updateURLWithSliders", () => {

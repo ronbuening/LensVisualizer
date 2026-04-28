@@ -11,6 +11,7 @@ import { eflAtZoom, traceRay } from "../../optics/optics.js";
 import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { OffAxisMode } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
@@ -24,6 +25,7 @@ interface UseOffAxisRaysParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayTracksF: boolean;
@@ -46,6 +48,7 @@ export default function useOffAxisRays({
   sx,
   sy,
   clampedRayEnd,
+  movementTransform,
   currentPhysStopSD,
   currentEPSD,
   rayTracksF,
@@ -82,7 +85,8 @@ export default function useOffAxisRays({
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
         const uIn = uField + uConverge;
-        const result = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const rawResult = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(
             result.pts,
@@ -116,6 +120,7 @@ export default function useOffAxisRays({
     IMG_MM,
     lensKey,
     clampedRayEnd,
+    movementTransform,
     zoomT,
   ]);
 }

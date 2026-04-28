@@ -55,11 +55,15 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
       focusT: 0,
       zoomT: 0,
       stopdownT: 0,
+      shiftMm: 0,
+      tiltDeg: 0,
     },
     sharedSliders: {
       sharedFocusT: 0,
       sharedStopdownT: 0,
       sharedZoomT: 0,
+      sharedShiftMm: 0,
+      sharedTiltDeg: 0,
     },
     panels: {
       focusExpanded: true,
@@ -113,6 +117,7 @@ describe("useComparisonOrchestration", () => {
       focusPair: null,
       aperturePair: null,
       zoomPair: null,
+      movementPair: null,
       handleHeaderHeight: vi.fn(),
       maxHeaderHeight: 0,
     }));
@@ -180,6 +185,7 @@ describe("useComparisonOrchestration", () => {
         sharedMaxFstop: 16,
       },
       zoomPair: null,
+      movementPair: { showMovement: true, shiftA: 4, shiftB: 0, tiltA: -3, tiltB: 0 },
       handleHeaderHeight: vi.fn(),
       maxHeaderHeight: 0,
     });
@@ -211,6 +217,8 @@ describe("useComparisonOrchestration", () => {
       type: EXIT_COMPARE,
       focusA: 0.3,
       stopdownA: 0.2,
+      shiftA: 4,
+      tiltA: -3,
     });
     expect(navigate).toHaveBeenCalledWith("/lens/lens-a", { replace: false });
   });

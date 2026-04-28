@@ -21,6 +21,10 @@ function renderControls(L: RuntimeLens) {
       onZoomChange={vi.fn()}
       focusT={0}
       onFocusChange={vi.fn()}
+      shiftMm={0}
+      tiltDeg={0}
+      onShiftChange={vi.fn()}
+      onTiltChange={vi.fn()}
       focusExpanded={false}
       onFocusExpandedChange={vi.fn()}
       varReadouts={[]}
@@ -54,5 +58,12 @@ describe("DiagramControls", () => {
     renderControls(buildLens(LENS_CATALOG["zeiss-distagon-35f14"]));
 
     expect(screen.getByText("APERTURE")).toBeTruthy();
+  });
+
+  it("shows shift and tilt sliders only for perspective-control lenses", () => {
+    renderControls(buildLens(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"]));
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.getByText("TILT")).toBeTruthy();
   });
 });

@@ -17,6 +17,8 @@ interface SliderControlProps {
   displayValueStyle?: React.CSSProperties;
   value: number;
   step: number;
+  min?: number;
+  max?: number;
   onChange?: (value: number) => void;
   onPointerDown?: () => void;
   onPointerUp?: () => void;
@@ -42,6 +44,8 @@ export default function SliderControl({
   displayValueStyle,
   value,
   step,
+  min = 0,
+  max = 1,
   onChange,
   onPointerDown,
   onPointerUp,
@@ -81,8 +85,8 @@ export default function SliderControl({
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
         <input
           type="range"
-          min="0"
-          max="1"
+          min={min}
+          max={max}
           step={step}
           value={value}
           onPointerDown={onPointerDown}

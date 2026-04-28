@@ -11,7 +11,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import LensIndexPage from "../src/pages/LensIndexPage.js";
-import { CATALOG_ENTRIES, FILTER_BOUNDS, defaultCustomFilter, matchesCustomFilter } from "../src/pages/lensIndex/catalog.js";
+import {
+  CATALOG_ENTRIES,
+  FILTER_BOUNDS,
+  defaultCustomFilter,
+  matchesCustomFilter,
+} from "../src/pages/lensIndex/catalog.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "./testUtils.js";
 
 vi.mock("../src/components/SEOHead.js", () => ({

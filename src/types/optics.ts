@@ -54,6 +54,13 @@ export interface ResolvedAnnotation {
   toSurface: number;
 }
 
+export interface PerspectiveControlConfig {
+  shiftRangeMm: [number, number];
+  tiltRangeDeg: [number, number];
+  shiftStepMm?: number;
+  tiltStepDeg?: number;
+}
+
 /** Variable gap range for prime lenses: [d_infinity, d_close] */
 export type PrimeVarRange = [number, number];
 
@@ -78,6 +85,7 @@ export interface LensData {
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
+  perspectiveControl?: PerspectiveControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
   focusStep: number;
@@ -156,6 +164,7 @@ export interface RuntimeLens {
   readonly varLabels: [number, string][];
   readonly groups: ResolvedAnnotation[];
   readonly doublets: ResolvedAnnotation[];
+  readonly perspectiveControl: PerspectiveControlConfig | null;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;

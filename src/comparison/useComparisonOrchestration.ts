@@ -12,8 +12,14 @@ import { useCallback, useEffect, useRef, type Dispatch } from "react";
 import type { NavigateFunction } from "react-router";
 import useComparisonMode, { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import useStickySliders from "./useStickySliders.js";
-import { SET_SHARED_STOPDOWN_T, ENTER_COMPARE, EXIT_COMPARE } from "./comparisonReducer.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import {
+  SET_SHARED_STOPDOWN_T,
+  SET_SHARED_SHIFT_MM,
+  SET_SHARED_TILT_DEG,
+  ENTER_COMPARE,
+  EXIT_COMPARE,
+} from "./comparisonReducer.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
@@ -32,11 +38,14 @@ export interface ComparisonOrchestration {
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
   zoomPair: ZoomPairResult | null;
+  movementPair: MovementPairResult | null;
   maxHeaderHeight: number;
   handleHeaderHeight: (panelId: string, height: number) => void;
   flashPanel: string | null;
   handleSharedFocusChange: (value: number) => void;
   handleSharedStopdownChange: (value: number) => void;
+  handleSharedShiftChange: (value: number) => void;
+  handleSharedTiltChange: (value: number) => void;
   handleFocusPointerDown: () => void;
   handleAperturePointerDown: () => void;
   toggleCompare: () => void;
@@ -50,11 +59,29 @@ export default function useComparisonOrchestration({
 }: UseComparisonOrchestrationParams): ComparisonOrchestration {
   const { lens, sharedSliders } = state;
   const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
-  const { sharedFocusT, sharedStopdownT, sharedZoomT } = sharedSliders;
+  const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
 
   /* ── Comparison mode: lens building, slider pairs, scale ratios, header alignment ── */
-  const { comparisonLenses, scaleRatios, focusPair, aperturePair, zoomPair, handleHeaderHeight, maxHeaderHeight } =
-    useComparisonMode({ comparing, lensKeyA, lensKeyB, scaleMode, sharedFocusT, sharedStopdownT, sharedZoomT });
+  const {
+    comparisonLenses,
+    scaleRatios,
+    focusPair,
+    aperturePair,
+    zoomPair,
+    movementPair,
+    handleHeaderHeight,
+    maxHeaderHeight,
+  } = useComparisonMode({
+    comparing,
+    lensKeyA,
+    lensKeyB,
+    scaleMode,
+    sharedFocusT,
+    sharedStopdownT,
+    sharedZoomT,
+    sharedShiftMm,
+    sharedTiltDeg,
+  });
 
   /* ── Sticky slider state machine ── */
   const justEnteredCompare = useRef(false);
@@ -67,6 +94,15 @@ export default function useComparisonOrchestration({
     resetSticky,
     prevStopdownT,
   } = useStickySliders(dispatch, focusPair, aperturePair, comparisonLenses as Parameters<typeof useStickySliders>[3]);
+
+  const handleSharedShiftChange = useCallback(
+    (value: number) => dispatch({ type: SET_SHARED_SHIFT_MM, value }),
+    [dispatch],
+  );
+  const handleSharedTiltChange = useCallback(
+    (value: number) => dispatch({ type: SET_SHARED_TILT_DEG, value }),
+    [dispatch],
+  );
 
   /* ── Set default aperture to slowest lens wide-open when entering comparison ── */
   useEffect(() => {
@@ -100,10 +136,22 @@ export default function useComparisonOrchestration({
         type: EXIT_COMPARE,
         focusA: focusPair?.focusA,
         stopdownA: aperturePair?.stopdownA,
+        ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
       });
       void navigate(`/lens/${lensKeyA}`, { replace: false });
     }
-  }, [comparing, lensKeyA, lensKeyB, focusPair, aperturePair, dispatch, resetSticky, navigate, catalogKeys]);
+  }, [
+    comparing,
+    lensKeyA,
+    lensKeyB,
+    focusPair,
+    aperturePair,
+    movementPair,
+    dispatch,
+    resetSticky,
+    navigate,
+    catalogKeys,
+  ]);
 
   return {
     comparisonLenses,
@@ -111,11 +159,14 @@ export default function useComparisonOrchestration({
     focusPair,
     aperturePair,
     zoomPair,
+    movementPair,
     maxHeaderHeight,
     handleHeaderHeight,
     flashPanel,
     handleSharedFocusChange,
     handleSharedStopdownChange,
+    handleSharedShiftChange,
+    handleSharedTiltChange,
     handleFocusPointerDown,
     handleAperturePointerDown,
     toggleCompare,

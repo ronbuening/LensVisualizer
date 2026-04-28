@@ -55,6 +55,8 @@ export default function DiagramViewport({
   CX,
   IX,
   effectiveSC,
+  movementTransform,
+  lensAxis,
   zPos,
   IMG_MM,
   shapes,
@@ -169,6 +171,8 @@ export default function DiagramViewport({
         CX={CX}
         IX={IX}
         effectiveSC={effectiveSC}
+        movementTransform={movementTransform}
+        lensAxis={lensAxis}
         zPos={zPos}
         IMG_MM={IMG_MM}
         shapes={shapes}

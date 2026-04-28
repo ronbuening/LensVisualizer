@@ -34,8 +34,8 @@ Single-lens mode keeps the fallback path where `useLensComputation` builds from 
 ## Shared Slider Flow
 
 Shared sliders represent a normalized comparison control surface. `comparisonSliders.ts` maps shared positions into each
-lens' actual focus, aperture, and zoom ranges. This keeps the UI ergonomic while preserving each lens' real optical
-limits.
+lens' actual focus, aperture, zoom, and optional perspective-control movement ranges. This keeps the UI ergonomic while
+preserving each lens' real optical limits; lenses without `perspectiveControl` clamp shared shift/tilt to zero.
 
 ## Scale Modes
 
@@ -45,7 +45,7 @@ in comparison orchestration and passed into diagram panels as explicit per-panel
 ## URL Sync
 
 Compare routes use `/compare/:slugA/:slugB`; lens identity does not move into query params. Shared sliders use the
-stable `focus`, `aperture`, and `zoom` params. Shared overlay/view state uses the v1 params from
+stable `focus`, `aperture`, `zoom`, `shift`, and `tilt` params. Shared overlay/view state uses the v1 params from
 `lensViewUrlState.ts`: `gm`, `lca`, `ptz`, `bo`, `ad`, and `tab` apply to both panes, while selected elements are
 pane-specific via `a_el` and `b_el`. URL helpers live in `comparisonURLSync.ts`, `parseComparisonParams.ts`, and
 `src/utils/lensViewUrlState.ts`. All URL writes flow through one 100 ms-debounced callback in `useURLSync.ts`.

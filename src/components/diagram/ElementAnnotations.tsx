@@ -12,6 +12,7 @@ interface ElementAnnotationsProps {
   sx: (z: number) => number;
   sy: (y: number) => number;
   zPos: number[];
+  pointTransform?: (z: number, y: number) => [number, number];
   act: number | null;
   showChromatic: boolean;
 }
@@ -23,20 +24,27 @@ export default function ElementAnnotations({
   sx,
   sy,
   zPos,
+  pointTransform,
   act,
   showChromatic,
 }: ElementAnnotationsProps) {
+  const screenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+    return [sx(zz), sy(yy)];
+  };
+
   return (
     <>
       {/* Element number labels */}
       {shapes.map(({ eid, z1, z2 }) => {
         const e = L.elements.find((x) => x.id === eid)!;
         const on = act === eid;
+        const [x, y] = screenPoint((z1 + z2) / 2, L.lyElemNum);
         return (
           <text
             key={`n${eid}`}
-            x={sx((z1 + z2) / 2)}
-            y={sy(L.lyElemNum)}
+            x={x}
+            y={y}
             textAnchor="middle"
             fill={on ? t.elemNumActive : t.elemNum(e)}
             fontSize={9}
@@ -56,11 +64,12 @@ export default function ElementAnnotations({
           if (!e || !e.vd) return null;
           const on = act === eid;
           const dispColor = e.vd < 35 ? t.chromDispHigh : e.vd < 55 ? t.chromDispMid : t.chromDispLow;
+          const [x, y] = screenPoint((z1 + z2) / 2, L.lyVdBadge);
           return (
             <text
               key={`vd${eid}`}
-              x={sx((z1 + z2) / 2)}
-              y={sy(L.lyVdBadge)}
+              x={x}
+              y={y}
               textAnchor="middle"
               fill={on ? t.elemNumActive : dispColor}
               fontSize={8.5}
@@ -75,35 +84,33 @@ export default function ElementAnnotations({
         })}
 
       {/* Group labels */}
-      {L.groups.map(({ text, fromSurface, toSurface }) => (
-        <text
-          key={text}
-          x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-          y={sy(L.lyGroup)}
-          fill={t.groupLabel}
-          fontSize={9}
-          fontFamily="inherit"
-          textAnchor="middle"
-          style={{ letterSpacing: "0.08em" }}
-        >
-          {text}
-        </text>
-      ))}
+      {L.groups.map(({ text, fromSurface, toSurface }) => {
+        const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyGroup);
+        return (
+          <text
+            key={text}
+            x={x}
+            y={y}
+            fill={t.groupLabel}
+            fontSize={9}
+            fontFamily="inherit"
+            textAnchor="middle"
+            style={{ letterSpacing: "0.08em" }}
+          >
+            {text}
+          </text>
+        );
+      })}
 
       {/* Doublet labels */}
-      {L.doublets.map(({ text, fromSurface, toSurface }) => (
-        <text
-          key={text}
-          x={sx((zPos[fromSurface] + zPos[toSurface]) / 2)}
-          y={sy(L.lyDoublet)}
-          textAnchor="middle"
-          fill={t.doubletLabel}
-          fontSize={9}
-          fontFamily="inherit"
-        >
-          {text}
-        </text>
-      ))}
+      {L.doublets.map(({ text, fromSurface, toSurface }) => {
+        const [x, y] = screenPoint((zPos[fromSurface] + zPos[toSurface]) / 2, L.lyDoublet);
+        return (
+          <text key={text} x={x} y={y} textAnchor="middle" fill={t.doubletLabel} fontSize={9} fontFamily="inherit">
+            {text}
+          </text>
+        );
+      })}
     </>
   );
 }

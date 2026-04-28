@@ -5,7 +5,7 @@
 
 import LensDiagramPanel from "../components/layout/LensDiagramPanel.js";
 import type { Theme } from "../types/theme.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { ComparisonLensesOk } from "./useComparisonMode.js";
 
 interface ComparisonLayoutProps {
@@ -16,6 +16,7 @@ interface ComparisonLayoutProps {
   focusPair: FocusPairResult;
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult;
+  movementPair?: MovementPairResult | null;
   comparisonLenses?: ComparisonLensesOk;
   scaleRatios: { a: number; b: number } | null;
   maxHeaderHeight: number;
@@ -31,6 +32,7 @@ export default function ComparisonLayout({
   focusPair,
   aperturePair,
   zoomPair,
+  movementPair = null,
   comparisonLenses,
   scaleRatios,
   maxHeaderHeight,
@@ -57,6 +59,8 @@ export default function ComparisonLayout({
           focusT={focusPair.focusA}
           zoomT={zoomPair.zoomA}
           stopdownT={aperturePair.stopdownA}
+          shiftMm={movementPair?.shiftA ?? 0}
+          tiltDeg={movementPair?.tiltA ?? 0}
           scaleRatio={scaleRatios?.a ?? null}
           panelId="a"
           compact={true}
@@ -75,6 +79,8 @@ export default function ComparisonLayout({
           focusT={focusPair.focusB}
           zoomT={zoomPair.zoomB}
           stopdownT={aperturePair.stopdownB}
+          shiftMm={movementPair?.shiftB ?? 0}
+          tiltDeg={movementPair?.tiltB ?? 0}
           scaleRatio={scaleRatios?.b ?? null}
           panelId="b"
           compact={true}

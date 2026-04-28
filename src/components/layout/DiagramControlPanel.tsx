@@ -27,6 +27,8 @@ interface DiagramControlPanelProps {
   showSliders: boolean;
   zoomT: number;
   focusT: number;
+  shiftMm: number;
+  tiltDeg: number;
   stopdownT: number;
   fNumber: number;
   currentFOPEN: number;
@@ -43,6 +45,8 @@ interface DiagramControlPanelProps {
   onZoomChange: (v: number) => void;
   onFocusChange: (v: number) => void;
   onStopdownChange: (v: number) => void;
+  onShiftChange: (v: number) => void;
+  onTiltChange: (v: number) => void;
   onFocusExpandedChange: (v: boolean) => void;
   onApertureExpandedChange: (v: boolean) => void;
   onLegendExpandedChange: (v: boolean) => void;
@@ -71,6 +75,8 @@ export default function DiagramControlPanel({
   showSliders,
   zoomT,
   focusT,
+  shiftMm,
+  tiltDeg,
   stopdownT,
   fNumber,
   currentFOPEN,
@@ -87,6 +93,8 @@ export default function DiagramControlPanel({
   onZoomChange,
   onFocusChange,
   onStopdownChange,
+  onShiftChange,
+  onTiltChange,
   onFocusExpandedChange,
   onApertureExpandedChange,
   onLegendExpandedChange,
@@ -136,6 +144,10 @@ export default function DiagramControlPanel({
         onZoomChange={onZoomChange}
         focusT={focusT}
         onFocusChange={onFocusChange}
+        shiftMm={shiftMm}
+        tiltDeg={tiltDeg}
+        onShiftChange={onShiftChange}
+        onTiltChange={onTiltChange}
         focusExpanded={focusExpanded}
         onFocusExpandedChange={onFocusExpandedChange}
         varReadouts={varReadouts}
