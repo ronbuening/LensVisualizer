@@ -6,6 +6,7 @@
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { perspectiveControlSteps } from "../../optics/lensMovement.js";
+import { snapToZeroStop } from "../../utils/sliderStops.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -87,6 +88,7 @@ export default function DiagramControls({
   showSliders,
 }: DiagramControlsProps) {
   const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
+  const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
 
   useEffect(() => {
     onInteractionChange?.(interacting);
@@ -124,17 +126,17 @@ export default function DiagramControls({
   const handleShiftChange = useCallback(
     (v: number) => {
       onChangeActivity();
-      onShiftChange?.(v);
+      onShiftChange?.(pcSteps ? snapToZeroStop(v, pcSteps.shiftStepMm) : v);
     },
-    [onChangeActivity, onShiftChange],
+    [onChangeActivity, onShiftChange, pcSteps],
   );
 
   const handleTiltChange = useCallback(
     (v: number) => {
       onChangeActivity();
-      onTiltChange?.(v);
+      onTiltChange?.(pcSteps ? snapToZeroStop(v, pcSteps.tiltStepDeg) : v);
     },
-    [onChangeActivity, onTiltChange],
+    [onChangeActivity, onTiltChange, pcSteps],
   );
 
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
@@ -143,7 +145,6 @@ export default function DiagramControls({
   const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
   const hasApertureRange = L.maxFstop > currentFOPEN + 0.15;
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
-  const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
 

@@ -31,6 +31,7 @@
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { snapToZeroStop } from "../utils/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 import SharedSliderSection from "./SharedSliderSection.js";
@@ -143,6 +144,12 @@ export default function SharedSlidersBar({
     onSharedStopdownChange(Math.max(0, stopT));
     onSliderPointerUp?.();
   };
+  const handleSharedShiftChange = (value: number) => {
+    onSharedShiftChange(snapToZeroStop(value, movementPair?.shiftStepMm ?? 0));
+  };
+  const handleSharedTiltChange = (value: number) => {
+    onSharedTiltChange(snapToZeroStop(value, movementPair?.tiltStepDeg ?? 0));
+  };
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
 
@@ -195,7 +202,7 @@ export default function SharedSlidersBar({
             sliderMin={movementPair.shiftRangeMm[0]}
             sliderMax={movementPair.shiftRangeMm[1]}
             sliderStep={movementPair.shiftStepMm}
-            onSliderChange={onSharedShiftChange}
+            onSliderChange={handleSharedShiftChange}
             onPointerUp={onSliderPointerUp}
             readouts={
               <>
@@ -217,7 +224,7 @@ export default function SharedSlidersBar({
             sliderMin={movementPair.tiltRangeDeg[0]}
             sliderMax={movementPair.tiltRangeDeg[1]}
             sliderStep={movementPair.tiltStepDeg}
-            onSliderChange={onSharedTiltChange}
+            onSliderChange={handleSharedTiltChange}
             onPointerUp={onSliderPointerUp}
             readouts={
               <>

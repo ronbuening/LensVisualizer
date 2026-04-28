@@ -202,6 +202,11 @@ describe("SharedSlidersBar", () => {
     fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "1" } });
     expect(callbacks.onSharedShiftChange).toHaveBeenCalledWith(-2);
     expect(callbacks.onSharedTiltChange).toHaveBeenCalledWith(1);
+
+    fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "0.1" } });
+    fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "-0.1" } });
+    expect(callbacks.onSharedShiftChange).toHaveBeenLastCalledWith(0);
+    expect(callbacks.onSharedTiltChange).toHaveBeenLastCalledWith(0);
   });
 
   it("renders dual-zoom union endpoints, marker positions, and quick f-stop callbacks", () => {

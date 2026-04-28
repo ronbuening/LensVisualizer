@@ -9,6 +9,7 @@
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
 import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
+import { snapToStop } from "../utils/sliderStops.js";
 
 export interface FocusPairResult {
   focusA: number;
@@ -134,7 +135,7 @@ export function sharedFNumber(sharedT: number, widerFOPEN: number, sharedMaxFsto
  */
 export function snapToCommon(rawT: number, commonPoint: number, snapRange: number = 0.008): number {
   if (commonPoint <= 0 || commonPoint >= 1) return rawT;
-  return Math.abs(rawT - commonPoint) < snapRange ? commonPoint : rawT;
+  return snapToStop(rawT, commonPoint, snapRange);
 }
 
 /**

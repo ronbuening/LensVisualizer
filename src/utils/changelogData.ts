@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-04-28",
     type: "feature",
-    summary: "Added tilt and shift controls for supported Nikon perspective-control lenses",
+    summary: "Added basic tilt and shift controls for supported Nikon perspective-control lenses",
   },
   {
     date: "2026-04-28",

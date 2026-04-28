@@ -78,7 +78,9 @@ export function transformMovedPoint(
   const cos = Math.cos(theta);
   const sin = Math.sin(theta);
   const dz = z - imagePlaneZ;
-  return [imagePlaneZ + dz * cos - y * sin, movement.shiftMm + dz * sin + y * cos];
+  /* Optical +Y renders downward in SVG space, so positive lens shift moves the lens upward on screen. */
+  const displayShiftY = -movement.shiftMm;
+  return [imagePlaneZ + dz * cos - y * sin, displayShiftY + dz * sin + y * cos];
 }
 
 export function transformMovedSlope(u: number, movement: LensMovementState): number {

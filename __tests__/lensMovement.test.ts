@@ -38,7 +38,7 @@ describe("lensMovement", () => {
   });
 
   it("transforms points and slopes around the fixed image plane", () => {
-    expect(transformMovedPoint(0, 2, 100, { shiftMm: 5, tiltDeg: 0 })).toEqual([0, 7]);
+    expect(transformMovedPoint(0, 2, 100, { shiftMm: 5, tiltDeg: 0 })).toEqual([0, -3]);
     expect(transformMovedSlope(0.25, { shiftMm: 5, tiltDeg: 0 })).toBeCloseTo(0.25);
 
     const [z, y] = transformMovedPoint(90, 0, 100, { shiftMm: 0, tiltDeg: 10 });
@@ -76,11 +76,11 @@ describe("lensMovement", () => {
     const moved = transform.trace(result);
 
     expect(moved.pts).toEqual([
-      [0, 5],
-      [10, 6],
+      [0, -5],
+      [10, -4],
     ]);
-    expect(moved.y).toBe(6);
+    expect(moved.y).toBe(-4);
     expect(moved.u).toBe(0.1);
-    expect(transform.rayEnd(10, 6, moved.u, 20)).toEqual([20, 7]);
+    expect(transform.rayEnd(10, -4, moved.u, 20)).toEqual([20, -3]);
   });
 });
