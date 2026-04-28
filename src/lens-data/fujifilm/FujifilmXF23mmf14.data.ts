@@ -51,7 +51,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujinon-xf-23mm-f14-r",
   maker: "Fujifilm",
-  name: "FUJINON XF 23mm F1.4 R",
+  name: "FUJIFILM FUJINON XF 23mm F1.4 R",
   subtitle: "US 2014/0368926 A1 EXAMPLE 4 — FUJIFILM / SUZUKI",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 23.7 mm", "F/1.4", "2ω ≈ 61.7°", "1 ASPHERICAL ELEMENT (2 SURFACES)"],
 
