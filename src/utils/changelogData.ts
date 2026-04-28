@@ -19,17 +19,21 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-28 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-28",
+    type: "lens",
+    summary:
+      "Added Fujifilm Fujinon XF 18mm f/2 R and XF 23mm f/1.4 R and Carl Zeiss Olympa-Sonnar 180mm f/2.8 and Pro-Tessar 35mm f/3.2",
+  },
+  // ── 2026-04-27 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-27",
+    type: "lens",
+    summary:
+      "Added three Olympus OM lenses: Zuiko Auto-W 21mm f/2, Auto-Macro 50mm f/2, and Auto-Macro 90mm f/2 and Nikon Nikkor-S Auto 50mm f/1.4",
+  },
   // ── 2026-04-26 ──────────────────────────────────────────────────────────
-  {
-    date: "2026-04-26",
-    type: "lens",
-    summary: "Added three Olympus OM lenses: Zuiko Auto-W 21mm f/2, Auto-Macro 50mm f/2, and Auto-Macro 90mm f/2",
-  },
-  {
-    date: "2026-04-26",
-    type: "lens",
-    summary: "Added Nikon Nikkor-S Auto 50mm f/1.4, a classic double-Gauss six-element standard",
-  },
   {
     date: "2026-04-26",
     type: "improvement",
