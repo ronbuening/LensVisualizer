@@ -6,14 +6,17 @@ import useChromaticRays from "../src/components/hooks/useChromaticRays.js";
 import buildLens from "../src/optics/buildLens.js";
 import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.js";
 import { createCoordinateTransforms } from "../src/optics/diagramGeometry.js";
+import { raySampleCountForDensity } from "../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
+const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
 
-function buildTestFixture(focusT = 0, zoomT = 0) {
-  const L = buildLens(Sonnar);
+function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
+  const L = buildLens(data);
   const ref = doLayout(0, 0, L);
   const IMG_MM = ref.imgZ;
   const cur = doLayout(focusT, zoomT, L);
@@ -51,9 +54,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: false,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: true,
         chromB: true,
@@ -78,9 +84,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 0,
         currentEPSD: 0,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: true,
         chromB: true,
@@ -105,9 +114,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: false,
         chromG: false,
         chromB: false,
@@ -117,7 +129,7 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticRays).toEqual([]);
   });
 
-  it("produces 3 fracs * 3 channels = 9 segments with all channels enabled", () => {
+  it("produces one on-axis chromatic segment per density sample and channel", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
       useChromaticRays({
@@ -131,9 +143,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: true,
         chromB: true,
@@ -141,11 +156,10 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.error).toBeNull();
-    // CHROM_FRACS = [0, 0.75, -0.75] = 3 fractions × 3 channels = 9 segments
-    expect(result.current.chromaticRays.length).toBe(9);
-    // Each segment has channel property
+    expect(result.current.chromaticRays.length).toBe(L.rayFractions.length * 3);
     for (const seg of result.current.chromaticRays) {
       expect(["R", "G", "B"]).toContain(seg.channel);
+      expect(seg.axis).toBe("onAxis");
       expect(Array.isArray(seg.sp)).toBe(true);
       expect(typeof seg.y).toBe("number");
       expect(typeof seg.u).toBe("number");
@@ -153,7 +167,7 @@ describe("useChromaticRays", () => {
     }
   });
 
-  it("produces 3 fracs * 1 channel = 3 segments with single channel", () => {
+  it("produces one channel per density sample with single channel", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
       useChromaticRays({
@@ -167,19 +181,87 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: false,
         chromB: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
-    expect(result.current.chromaticRays.length).toBe(3);
+    expect(result.current.chromaticRays.length).toBe(L.rayFractions.length);
     for (const seg of result.current.chromaticRays) {
       expect(seg.channel).toBe("R");
     }
+  });
+
+  it("adds off-axis chromatic rays when off-axis tracing is enabled", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "dense",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "trueAngle",
+        chromR: true,
+        chromG: false,
+        chromB: true,
+        lensKey: "ZeissSonnar50f15",
+      }),
+    );
+    const onAxisCount = raySampleCountForDensity(L.rayFractions, "dense") * 2;
+    const offAxisCount = raySampleCountForDensity(L.offAxisFractions, "dense") * 2;
+    expect(result.current.error).toBeNull();
+    expect(result.current.chromaticRays.filter((r) => r.axis === "onAxis").length).toBe(onAxisCount);
+    expect(result.current.chromaticRays.filter((r) => r.axis === "offAxis").length).toBe(offAxisCount);
+  });
+
+  it("returns only off-axis chromatic rays when on-axis is hidden", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: false,
+        showOffAxis: "trueAngle",
+        chromR: true,
+        chromG: true,
+        chromB: false,
+        lensKey: "ZeissSonnar50f15",
+      }),
+    );
+    expect(result.current.chromaticRays.every((r) => r.axis === "offAxis")).toBe(true);
+    expect(result.current.chromaticSpreads.onAxis).toBeNull();
+    expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
+    expect(result.current.chromSpread).toBe(result.current.chromaticSpreads.offAxis);
   });
 
   it("computes chromSpread with 2+ channels", () => {
@@ -196,9 +278,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: true,
         chromB: true,
@@ -206,8 +291,46 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromSpread).not.toBeNull();
+    expect(result.current.chromaticSpreads.onAxis).toBe(result.current.chromSpread);
+    expect(result.current.chromaticSpreads.offAxis).toBeNull();
     expect(typeof result.current.chromSpread!.lcaMm).toBe("number");
     expect(typeof result.current.chromSpread!.tcaMm).toBe("number");
+  });
+
+  it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
+      0,
+      0,
+      ApoLanthar,
+    );
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        lensKey: "ApoLanthar50f2",
+      }),
+    );
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.chromSpread).not.toBeNull();
+    expect(Object.keys(result.current.chromSpread!.intercepts).length).toBeGreaterThanOrEqual(2);
   });
 
   it("returns null chromSpread with only 1 channel", () => {
@@ -224,9 +347,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: false,
         chromG: true,
         chromB: false,
@@ -235,6 +361,7 @@ describe("useChromaticRays", () => {
     );
     // Only 1 channel → can't compute spread
     expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticSpreads).toEqual({ onAxis: null, offAxis: null });
   });
 
   it("catches errors gracefully", () => {
@@ -263,9 +390,12 @@ describe("useChromaticRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 5,
         currentEPSD: 5,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
         chromR: true,
         chromG: true,
         chromB: true,

@@ -7,14 +7,14 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { eflAtZoom, traceRay } from "../../optics/optics.js";
-import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
-import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import { traceRay } from "../../optics/optics.js";
+import { rayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
-import type { OffAxisMode } from "../../types/state.js";
+import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
+import { computeOffAxisTraceGeometry } from "./offAxisRayUtils.js";
 
 interface UseOffAxisRaysParams {
   L: RuntimeLens | undefined;
@@ -28,6 +28,7 @@ interface UseOffAxisRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
   showOffAxis: OffAxisMode;
@@ -51,6 +52,7 @@ export default function useOffAxisRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  rayDensity,
   rayTracksF,
   focusK,
   showOffAxis,
@@ -60,27 +62,11 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, L.offAxisFieldFrac);
+      const geometry = computeOffAxisTraceGeometry({ L, zPos, IMG_MM, focusT, zoomT, sx, sy, showOffAxis });
       if (geometry === null) return { segments: [], error: null };
-      const { fieldAngleDeg: currentOffAxisDeg, uField, yChief } = geometry;
+      const { uField, yChief, edgeEnd, useEdge } = geometry;
 
-      /* Image height for "edge" mode — trace a real chief ray to account for
-       * distortion, falling back to the paraxial estimate on failure. */
-      const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
-      let edgeImgH: number;
-      if (useEdge) {
-        const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L);
-        const lastSurfZ = zPos[L.N - 1];
-        const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - lastSurfZ);
-        edgeImgH = isFinite(chiefEndY)
-          ? chiefEndY
-          : -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      } else {
-        edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      }
-      const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
-
-      for (const f of L.offAxisFractions) {
+      for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
         const h = f * currentEPSD;
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
@@ -114,6 +100,7 @@ export default function useOffAxisRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     focusK,
     L,

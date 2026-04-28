@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-28 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-28",
+    type: "improvement",
+    summary:
+      "Improved chromatic ray tracing with ray-density controls, off-axis color fans, and LCA readouts for clipped marginal rays",
+  },
+  {
+    date: "2026-04-28",
     type: "feature",
     summary: "Added basic tilt and shift controls for supported Nikon perspective-control lenses",
   },

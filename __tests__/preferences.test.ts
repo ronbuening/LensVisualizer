@@ -60,6 +60,7 @@ describe("loadPrefs", () => {
         highContrast: false,
         showOnAxis: true,
         showOffAxis: false,
+        rayDensity: "dense",
         rayTracksF: true,
         showChromatic: true,
         chromR: false,
@@ -72,6 +73,7 @@ describe("loadPrefs", () => {
     expect(prefs.highContrast).toBe(false);
     expect(prefs.showOnAxis).toBe(true);
     expect(prefs.showOffAxis).toBe("off");
+    expect(prefs.rayDensity).toBe("dense");
     expect(prefs.rayTracksF).toBe(true);
     expect(prefs.showChromatic).toBe(true);
     expect(prefs.chromR).toBe(false);
@@ -92,6 +94,11 @@ describe("loadPrefs", () => {
     expect(prefs.dark).toBeUndefined();
     expect(prefs.highContrast).toBeUndefined();
     expect(prefs.showOnAxis).toBeUndefined();
+  });
+
+  it("ignores invalid rayDensity values", () => {
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ rayDensity: "extra-crispy" }));
+    expect(loadPrefs().rayDensity).toBeUndefined();
   });
 
   it("loads collapsible panel preferences", () => {

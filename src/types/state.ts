@@ -10,17 +10,23 @@ export type { SharedSlidersSlice, ComparisonAction } from "../comparison/compari
 /* ── State slices ── */
 
 export const OFF_AXIS_MODES = ["off", "trueAngle", "edge"] as const;
+export const RAY_DENSITIES = ["normal", "dense", "diagnostic"] as const;
 export const MOBILE_VIEWS = ["diagram", "description"] as const;
 export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
 export const ANALYSIS_TAB_IDS = ["aberrations", "coma", "distortion", "breathing", "vignetting", "pupils"] as const;
 
 export type OffAxisMode = (typeof OFF_AXIS_MODES)[number];
+export type RayDensity = (typeof RAY_DENSITIES)[number];
 export type MobileView = (typeof MOBILE_VIEWS)[number];
 export type DesktopView = (typeof DESKTOP_VIEWS)[number];
 export type AnalysisTabId = (typeof ANALYSIS_TAB_IDS)[number];
 
 export function isOffAxisMode(value: unknown): value is OffAxisMode {
   return typeof value === "string" && (OFF_AXIS_MODES as readonly string[]).includes(value);
+}
+
+export function isRayDensity(value: unknown): value is RayDensity {
+  return typeof value === "string" && (RAY_DENSITIES as readonly string[]).includes(value);
 }
 
 export function isMobileView(value: unknown): value is MobileView {
@@ -52,17 +58,19 @@ export interface DisplaySlice {
 export type RayField =
   | "showOnAxis"
   | "showOffAxis"
+  | "rayDensity"
   | "rayTracksF"
   | "showChromatic"
   | "chromR"
   | "chromG"
   | "chromB"
   | "showPupils";
-export type BooleanRayField = Exclude<RayField, "showOffAxis">;
+export type BooleanRayField = Exclude<RayField, "showOffAxis" | "rayDensity">;
 
 export interface RaysSlice {
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;
@@ -145,6 +153,7 @@ export type LensAction =
   | { type: "SET_MOBILE_VIEW"; mobileView: MobileView }
   | { type: "SET_DESKTOP_VIEW"; desktopView: DesktopView }
   | { type: "SET_RAY_TOGGLE"; field: "showOffAxis"; value: OffAxisMode }
+  | { type: "SET_RAY_TOGGLE"; field: "rayDensity"; value: RayDensity }
   | { type: "SET_RAY_TOGGLE"; field: BooleanRayField; value: boolean }
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
@@ -170,6 +179,7 @@ export interface Preferences {
   desktopView: DesktopView;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;

@@ -24,7 +24,7 @@ interface DiagramRayLayersProps {
 }
 
 const DiagramRayLayers = memo(function DiagramRayLayers({
-  lens: L,
+  lens: _lens,
   theme: t,
   rays,
   offAxisRays,
@@ -33,22 +33,29 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
   showOffAxis,
   showChromatic,
 }: DiagramRayLayersProps) {
+  const chromaticOnAxisRays = chromaticRays.filter((ray) => ray.axis === "onAxis");
+  const chromaticOffAxisRays = chromaticRays.filter((ray) => ray.axis === "offAxis");
+  const chromaticColor = (ray: ChromaticRaySegment | undefined) => {
+    const ch = ray?.channel;
+    return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
+  };
+
   return (
     <>
-      {showOnAxis && (
+      {showOnAxis && !showChromatic && (
         <RayPolylines
           rays={rays}
-          colorFn={(ri) => (ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm)}
+          colorFn={(ri) => (ri < rays.length / 2 ? t.rayCool : t.rayWarm)}
           solidWidth={1.2}
           rayWidthScale={t.rayWidthScale}
           keyPrefix="on"
         />
       )}
 
-      {showOffAxis !== "off" && (
+      {showOffAxis !== "off" && !showChromatic && (
         <RayPolylines
           rays={offAxisRays}
-          colorFn={(ri) => (ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm)}
+          colorFn={(ri) => (ri < offAxisRays.length / 2 ? t.rayOffCool : t.rayOffWarm)}
           solidWidth={1.1}
           rayWidthScale={t.rayWidthScale}
           solidDash={t.rayOffDash || undefined}
@@ -56,16 +63,24 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
         />
       )}
 
-      {showChromatic && (
+      {showChromatic && showOnAxis && (
         <RayPolylines
-          rays={chromaticRays}
-          colorFn={(ri) => {
-            const ch = chromaticRays[ri]?.channel;
-            return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
-          }}
+          rays={chromaticOnAxisRays}
+          colorFn={(ri) => chromaticColor(chromaticOnAxisRays[ri])}
           solidWidth={1.0}
           rayWidthScale={t.rayWidthScale}
-          keyPrefix="chrom"
+          keyPrefix="chrom-on"
+        />
+      )}
+
+      {showChromatic && showOffAxis !== "off" && (
+        <RayPolylines
+          rays={chromaticOffAxisRays}
+          colorFn={(ri) => chromaticColor(chromaticOffAxisRays[ri])}
+          solidWidth={1.0}
+          rayWidthScale={t.rayWidthScale}
+          solidDash={t.rayOffDash || undefined}
+          keyPrefix="chrom-off"
         />
       )}
     </>

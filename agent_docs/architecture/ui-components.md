@@ -7,7 +7,7 @@ Read this for shared controls, display components, markdown rendering, analysis 
 | Module | Purpose |
 | --- | --- |
 | `TopBar.tsx` | Lens selectors, compare button, and about buttons. |
-| `ControlsBar.tsx` | Theme/ray/chromatic/scale toggles with compact and full modes. |
+| `ControlsBar.tsx` | Theme/ray/ray-density/chromatic/scale toggles with compact and full modes. |
 | `ViewToggleBar.tsx` | Generic view-mode toggle used by mobile and desktop layouts. |
 | `OverlayModal.tsx` | Generic backdrop/modal/close button. |
 | `DropdownPanel.tsx` | Portal-based dropdown panel for settings/theme overlays. |
@@ -19,13 +19,17 @@ Read this for shared controls, display components, markdown rendering, analysis 
 
 | Module | Purpose |
 | --- | --- |
-| `DiagramHeader.tsx` | Title/spec header plus ray and chromatic controls; memoized and ref-forwarding. |
+| `DiagramHeader.tsx` | Title/spec header plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
 | `DiagramControls.tsx` | Zoom, focus, aperture sliders and interaction-signal wiring. |
 | `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional collapsible content. |
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
+
+The NORMAL / DENSE / DIAGNOSTIC ray-density segmented control belongs beside the FROM ∞ / TRACKS FOCUS tracing control
+in both `DiagramHeader` and `ControlsBar`. It is a preference-backed view setting, so do not add it to the breadcrumb
+settings menu or the URL query state.
 
 ## Display Components
 

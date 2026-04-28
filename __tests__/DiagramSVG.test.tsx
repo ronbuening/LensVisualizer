@@ -109,9 +109,35 @@ describe("DiagramSVG", () => {
         filterId="diagram-test"
         stopZ={220}
         currentPhysStopSD={8}
-        rays={[{ sp: [[0, 0], [20, 10]], gp: [] }]}
-        offAxisRays={[{ sp: [[0, 5], [20, 15]], gp: [] }]}
-        chromaticRays={[{ sp: [[0, 10], [20, 20]], gp: [], channel: "R" }]}
+        rays={[
+          {
+            sp: [
+              [0, 0],
+              [20, 10],
+            ],
+            gp: [],
+          },
+        ]}
+        offAxisRays={[
+          {
+            sp: [
+              [0, 5],
+              [20, 15],
+            ],
+            gp: [],
+          },
+        ]}
+        chromaticRays={[
+          {
+            sp: [
+              [0, 10],
+              [20, 20],
+            ],
+            gp: [],
+            channel: "R",
+            axis: "onAxis",
+          },
+        ]}
         chromSpread={{
           lcaMm: 0.1,
           tcaMm: 0.2,
@@ -139,9 +165,9 @@ describe("DiagramSVG", () => {
       />,
     );
 
-    expect(screen.getByTestId("ray-on")).toBeTruthy();
-    expect(screen.getByTestId("ray-off")).toBeTruthy();
-    expect(screen.getByTestId("ray-chrom")).toBeTruthy();
+    expect(screen.queryByTestId("ray-on")).toBeNull();
+    expect(screen.queryByTestId("ray-off")).toBeNull();
+    expect(screen.getByTestId("ray-chrom-on")).toBeTruthy();
     expect(screen.getByTestId("aperture-stop")).toBeTruthy();
     expect(screen.getByTestId("element-annotations")).toBeTruthy();
     expect(screen.getByTestId("lca-inset")).toBeTruthy();

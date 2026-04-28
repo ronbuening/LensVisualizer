@@ -19,7 +19,7 @@ import {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
 } from "../../utils/lensReducer.js";
-import type { AnalysisTabId, OffAxisMode } from "../../types/state.js";
+import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.js";
 
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
@@ -30,6 +30,7 @@ export interface DispatchAdapters {
   onSliderPointerUp: () => void;
   onShowOnAxisChange: (v: boolean) => void;
   onShowOffAxisChange: (v: OffAxisMode) => void;
+  onRayDensityChange: (v: RayDensity) => void;
   onRayTracksFChange: (v: boolean) => void;
   onShowChromaticChange: (v: boolean) => void;
   onChromRChange: (v: boolean) => void;
@@ -68,6 +69,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onSliderPointerUp: updateURLWithSliders,
       onShowOnAxisChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: v }),
       onShowOffAxisChange: (v: OffAxisMode) => dispatch({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: v }),
+      onRayDensityChange: (v: RayDensity) => dispatch({ type: SET_RAY_TOGGLE, field: "rayDensity", value: v }),
       onRayTracksFChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: v }),
       onShowChromaticChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: v }),
       onChromRChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v }),

@@ -1,22 +1,25 @@
 /**
  * useChromaticRays — Computes chromatic ray fan segments and aberration spread.
  *
- * Traces the same ray heights as on-axis but through wavelength-dependent
- * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
- * lower marginal] — shows both axial and lateral color (LCA and TCA).
+ * Traces density-derived axial and off-axis ray fans through wavelength-dependent
+ * refractive indices (R/G/B channels). Axial rays feed the LCA/TCA spread metric;
+ * off-axis chromatic rays share the same state-aware field geometry as the
+ * monochrome off-axis fan.
  */
 import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
-import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
+import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
+import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import { compileRaySegment, filterChannels } from "./raySegmentUtils.js";
-
-/** Chief ray + upper/lower marginal fractions for chromatic tracing */
-const CHROM_FRACS: number[] = [0, 0.75, -0.75];
+import { computeOffAxisTraceGeometry } from "./offAxisRayUtils.js";
 
 export interface ChromaticRaySegment extends RaySegment {
   channel: ChromaticChannel;
+  axis: "onAxis" | "offAxis";
+  fraction: number;
   y: number;
   u: number;
   clipped: boolean;
@@ -34,9 +37,12 @@ interface UseChromaticRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
   showChromatic: boolean;
+  showOnAxis: boolean;
+  showOffAxis: OffAxisMode;
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
@@ -46,7 +52,37 @@ interface UseChromaticRaysParams {
 interface UseChromaticRaysResult {
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
+  chromaticSpreads: ChromaticSpreadByAxis;
   error: unknown;
+}
+
+function spreadForAxis(
+  chromaticRays: ChromaticRaySegment[],
+  axis: ChromaticRaySegment["axis"],
+  IMG_MM: number,
+  lastSurfaceZ: number,
+): ChromaticSpread | null {
+  const axisRays = chromaticRays.filter((r) => r.axis === axis);
+  if (axisRays.length === 0) return null;
+
+  const candidateFractions = Array.from(new Set(axisRays.map((r) => r.fraction))).sort((a, b) => {
+    const absDelta = Math.abs(b) - Math.abs(a);
+    return Math.abs(absDelta) > 1e-12 ? absDelta : b - a;
+  });
+
+  for (const fraction of candidateFractions) {
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    for (const r of axisRays) {
+      if (Math.abs(r.fraction - fraction) < 1e-12 && !r.clipped && Math.abs(r.u) > 1e-15) {
+        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: false };
+      }
+    }
+    if (Object.keys(marginalRays).length >= 2) {
+      return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    }
+  }
+
+  return null;
 }
 
 export default function useChromaticRays({
@@ -61,9 +97,12 @@ export default function useChromaticRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  rayDensity,
   rayTracksF,
   focusK,
   showChromatic,
+  showOnAxis,
+  showOffAxis,
   chromR,
   chromG,
   chromB,
@@ -78,23 +117,70 @@ export default function useChromaticRays({
     if (channels.length === 0) return { segments: [], error: null };
     try {
       const out: ChromaticRaySegment[] = [];
-      for (const f of CHROM_FRACS) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        for (const ch of channels) {
-          const rawResult = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
-          const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
-          const seg = compileRaySegment(
-            result.pts,
-            result.ghostPts,
-            result.u,
-            result.clipped,
-            sx,
-            sy,
-            clampedRayEnd,
-            IMG_MM,
-          );
-          out.push({ ...seg, channel: ch, y: result.y, u: result.u, clipped: result.clipped });
+      if (showOnAxis) {
+        for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
+          const h = f * currentEPSD;
+          const uIn = rayTracksF ? h * focusK : 0;
+          for (const ch of channels) {
+            const rawResult = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+            const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
+            const seg = compileRaySegment(
+              result.pts,
+              result.ghostPts,
+              result.u,
+              result.clipped,
+              sx,
+              sy,
+              clampedRayEnd,
+              IMG_MM,
+            );
+            out.push({
+              ...seg,
+              channel: ch,
+              axis: "onAxis",
+              fraction: f,
+              y: result.y,
+              u: result.u,
+              clipped: result.clipped,
+            });
+          }
+        }
+      }
+
+      if (showOffAxis !== "off") {
+        const geometry = computeOffAxisTraceGeometry({ L, zPos, IMG_MM, focusT, zoomT, sx, sy, showOffAxis });
+        if (geometry) {
+          const { uField, yChief, edgeEnd, useEdge } = geometry;
+          for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
+            const h = f * currentEPSD;
+            const y0 = yChief + h;
+            const uConverge = rayTracksF ? h * focusK : 0;
+            const uIn = uField + uConverge;
+            for (const ch of channels) {
+              const rawResult = traceRayChromatic(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+              const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
+              const seg = compileRaySegment(
+                result.pts,
+                result.ghostPts,
+                result.u,
+                result.clipped,
+                sx,
+                sy,
+                clampedRayEnd,
+                IMG_MM,
+                useEdge ? edgeEnd : undefined,
+              );
+              out.push({
+                ...seg,
+                channel: ch,
+                axis: "offAxis",
+                fraction: f,
+                y: result.y,
+                u: result.u,
+                clipped: result.clipped,
+              });
+            }
+          }
         }
       }
       return { segments: out, error: null };
@@ -113,6 +199,7 @@ export default function useChromaticRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     focusK,
     L,
@@ -121,27 +208,27 @@ export default function useChromaticRays({
     clampedRayEnd,
     movementTransform,
     zoomT,
+    showOnAxis,
+    showOffAxis,
   ]);
 
   const chromaticRays = chromaticResult.segments;
 
   /* Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
-   * from the marginal chromatic rays. Requires at least 2 active channels. */
-  const chromSpread = useMemo((): ChromaticSpread | null => {
-    if (!L || !showChromatic || chromaticRays.length === 0) return null;
+   * from each visible marginal chromatic ray fan. Requires at least 2 active channels. */
+  const chromaticSpreads = useMemo((): ChromaticSpreadByAxis => {
+    const empty = { onAxis: null, offAxis: null };
+    if (!L || !showChromatic || chromaticRays.length === 0) return empty;
     const channels = filterChannels(chromR, chromG, chromB);
-    if (channels.length < 2) return null;
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
-    for (let ci = 0; ci < channels.length; ci++) {
-      const rayIdx = 1 * channels.length + ci;
-      if (rayIdx < chromaticRays.length) {
-        const r = chromaticRays[rayIdx];
-        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
-      }
-    }
+    if (channels.length < 2) return empty;
     const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
-    return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    return {
+      onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ),
+      offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ),
+    };
   }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L, movementTransform]);
 
-  return { chromaticRays, chromSpread, error: chromaticResult.error };
+  const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
+
+  return { chromaticRays, chromSpread, chromaticSpreads, error: chromaticResult.error };
 }

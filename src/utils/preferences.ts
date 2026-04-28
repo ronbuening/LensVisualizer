@@ -2,7 +2,7 @@
  * Persistent user preferences via localStorage.
  */
 
-import { isAnalysisTabId, isDesktopView, isOffAxisMode, type Preferences } from "../types/state.js";
+import { isAnalysisTabId, isDesktopView, isOffAxisMode, isRayDensity, type Preferences } from "../types/state.js";
 
 export const PREFS_KEY: string = "lensvis:prefs";
 
@@ -32,6 +32,7 @@ export function loadPrefs(): Partial<Preferences> {
     } else if (typeof p.showOffAxis === "boolean") {
       out.showOffAxis = p.showOffAxis ? "trueAngle" : "off";
     }
+    if (isRayDensity(p.rayDensity)) out.rayDensity = p.rayDensity;
     if (typeof p.rayTracksF === "boolean") out.rayTracksF = p.rayTracksF;
     if (typeof p.showChromatic === "boolean") out.showChromatic = p.showChromatic;
     if (typeof p.chromR === "boolean") out.chromR = p.chromR;

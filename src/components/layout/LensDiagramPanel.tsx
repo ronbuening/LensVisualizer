@@ -84,7 +84,8 @@ export default function LensDiagramPanel({
   const dispatch = useLensDispatch();
   const { rays: raysState, display, sliders } = state;
   const panels = usePanelCtx();
-  const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
+  const { showOnAxis, showOffAxis, rayDensity, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } =
+    raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = resolveDarkPreference(display.dark, systemDark);
   const {
@@ -237,7 +238,7 @@ export default function LensDiagramPanel({
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
-  const { rays, offAxisRays, chromaticRays, chromSpread, rayError } = useRayTracing({
+  const { rays, offAxisRays, chromaticRays, chromSpread, chromaticSpreads, rayError } = useRayTracing({
     L,
     zPos,
     IMG_MM,
@@ -249,7 +250,9 @@ export default function LensDiagramPanel({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
+    showOnAxis,
     showOffAxis,
     showChromatic,
     chromR,
@@ -331,6 +334,7 @@ export default function LensDiagramPanel({
           chromB={chromB}
           rayTracksF={rayTracksF}
           chromSpread={chromSpread ?? null}
+          chromaticSpreads={chromaticSpreads}
           rays={rays}
           offAxisRays={offAxisRays}
           chromaticRays={chromaticRays}
@@ -398,6 +402,8 @@ export default function LensDiagramPanel({
                 onShowOnAxisChange={adapters.onShowOnAxisChange}
                 showOffAxis={showOffAxis}
                 onShowOffAxisChange={adapters.onShowOffAxisChange}
+                rayDensity={rayDensity}
+                onRayDensityChange={adapters.onRayDensityChange}
                 rayTracksF={rayTracksF}
                 onRayTracksFChange={adapters.onRayTracksFChange}
                 showChromatic={showChromatic}

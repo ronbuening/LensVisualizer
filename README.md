@@ -9,7 +9,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 ## What The App Does
 
 - Renders patent-derived lens cross-sections as inline SVG with real surface sag, aspheric overlays, and diagnostics that prevent hidden semi-diameter clipping artifacts
-- Traces on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
+- Traces density-controlled on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
 - Adds opt-in, URL-shareable tilt/shift visualization controls for supported perspective-control lenses
 - Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, pupil aberration, chromatic field curvature, and aspheric surface deviation
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
@@ -27,7 +27,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 
 ## Key Features
 
-- **Interactive optical state**: focus, aperture, zoom, ray mode, chromatic channels, and comparison scale mode all update live
+- **Interactive optical state**: focus, aperture, zoom, ray mode, ray density, chromatic channels, and comparison scale mode all update live
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
 - **Aspheric deviation inspector**: click any aspheric element to compare its surface profile against the base sphere or a least-squares best-fit sphere, with adjustable exaggeration and click-to-measure Δsag (mm or μm)
@@ -37,7 +37,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Meridional coma model**: samples a dense off-axis ray fan across the current entrance pupil and reports the asymmetric image-plane span for the current focus, aperture, and zoom state; this detailed diagnostic is retained below the point-cloud preview
 - **Sagittal coma model**: traces a sagittal pupil fan orthogonal to the meridional plane and reports the x-intercept spread, displayed in its own collapsible section below the meridional coma view
 - **Chromatic field curvature**: per-wavelength (R/G/B) tangential and sagittal best-focus traces across the field, with a chromatic focus spread metric; displayed as a third chart inside the field curvature section
-- **Chromatic analysis**: RGB ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
+- **Chromatic analysis**: RGB axial/off-axis ray tracing, longitudinal chromatic spread, and enlarged LCA overlay
 - **Glass inspection**: element metadata, Abbe-number plotting, APD tagging, and lens role annotations
 - **Geometry validation**: shared rim-slope and cross-gap diagnostics keep lens element outlines clean and catch semi-diameter issues before they render as artifacts
 - **SEO-friendly multipage app**: prerendered routes for lenses, makers, articles, comparison pages, and static content

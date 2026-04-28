@@ -7,11 +7,13 @@ import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 import type { AnalysisTabId } from "../../../types/state.js";
+import type { ChromaticSpreadByAxis } from "../../../types/optics.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
   "onLcaInsetClick" | "onPetzvalBadgeClick"
 > {
+  chromaticSpreads?: ChromaticSpreadByAxis;
   showLcaOverlay: boolean;
   showPetzvalOverlay: boolean;
   onCloseLcaOverlay: () => void;
@@ -67,6 +69,7 @@ export default function DiagramViewport({
   offAxisRays,
   chromaticRays,
   chromSpread,
+  chromaticSpreads,
   showOnAxis,
   showOffAxis,
   showChromatic,
@@ -216,7 +219,13 @@ export default function DiagramViewport({
       {/* Overlays — hidden in zoom/pan mode */}
       {!zoomPanActive && showLcaOverlay && showChromatic && chromSpread ? (
         <PanelOverlay onClose={onCloseLcaOverlay} theme={t}>
-          <LCAOverlayContent chromSpread={chromSpread} effectiveSC={effectiveSC} IMG_MM={IMG_MM} t={t} />
+          <LCAOverlayContent
+            chromSpread={chromSpread}
+            chromaticSpreads={chromaticSpreads}
+            effectiveSC={effectiveSC}
+            IMG_MM={IMG_MM}
+            t={t}
+          />
         </PanelOverlay>
       ) : null}
 

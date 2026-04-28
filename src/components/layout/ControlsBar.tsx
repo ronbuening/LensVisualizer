@@ -10,7 +10,7 @@ import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
-import type { BooleanRayField, LensAction, OffAxisMode } from "../../types/state.js";
+import type { BooleanRayField, LensAction, OffAxisMode, RayDensity } from "../../types/state.js";
 import type { Dispatch } from "react";
 
 interface ControlsBarProps {
@@ -19,6 +19,7 @@ interface ControlsBarProps {
   showScaleMode: boolean;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   showChromatic: boolean;
   chromR: boolean;
@@ -35,6 +36,7 @@ export default function ControlsBar({
   showScaleMode,
   showOnAxis,
   showOffAxis,
+  rayDensity,
   rayTracksF,
   showChromatic,
   chromR,
@@ -113,6 +115,18 @@ export default function ControlsBar({
         { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
       ];
 
+  const rayDensities: ReadonlyArray<{ label: string; val: RayDensity }> = compact
+    ? [
+        { label: "NORM", val: "normal" },
+        { label: "DENSE", val: "dense" },
+        { label: "DIAG", val: "diagnostic" },
+      ]
+    : [
+        { label: "NORMAL", val: "normal" },
+        { label: "DENSE", val: "dense" },
+        { label: "DIAGNOSTIC", val: "diagnostic" },
+      ];
+
   /* ── Chromatic channel descriptors ── */
   const chromChannels: ReadonlyArray<{ ch: string; active: boolean; field: BooleanRayField; color: string }> = [
     { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
@@ -157,6 +171,19 @@ export default function ControlsBar({
                 {icon}
               </span>
             )}
+            <span>{label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Ray density */}
+      <div style={toggleGroup(t, compact ? undefined : { width: 228 })}>
+        {rayDensities.map(({ label, val }, idx) => (
+          <button
+            key={val}
+            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayDensity", value: val })}
+            style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < rayDensities.length - 1 })}
+          >
             <span>{label}</span>
           </button>
         ))}

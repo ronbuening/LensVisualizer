@@ -8,7 +8,7 @@ Lens viewer state is split into these slices:
 
 - `lens` - selected lens and comparison identity.
 - `display` - mobile/desktop view, theme, high contrast, scale behavior.
-- `rays` - on-axis/off-axis/chromatic display toggles.
+- `rays` - on-axis/off-axis/chromatic display toggles, ray tracing mode, and persisted ray density.
 - `sliders` - focus, zoom, aperture, optional PC shift/tilt, and related numeric UI state.
 - `sharedSliders` - comparison-mode shared slider positions, including shared PC shift/tilt when either compared lens
   supports it.
@@ -32,6 +32,9 @@ persisted or URL-provided strings should be normalized at the boundary.
 | `parseComparisonParams.ts` | Legacy comparison query parsing (kept for backward compat). Also exports `parseLensKeysFromSearch` for callers that have already parsed view state. |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
 
+`rayDensity` is a local preference, not a shareable URL parameter. Keep its runtime guard in `src/types/state.ts`,
+load/save handling in `preferences.ts` / `usePreferences.ts`, and reducer field guard in sync when adding density modes.
+
 ## Shareable View URLs
 
 Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the
@@ -47,6 +50,7 @@ shareable view state:
 - `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that
   config resolve both values to zero.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
+- Ray density intentionally stays out of this URL surface and persists only through localStorage preferences.
 
 `useOverlayState` keeps only the aspheric-comparison element open state (per-element modal lifecycle that does not
 belong in a shareable URL). All other diagram overlays live in the panels slice.

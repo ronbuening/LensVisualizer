@@ -107,9 +107,9 @@ describe("DiagramRayLayers", () => {
 
   it("renders chromatic rays when showChromatic is true", () => {
     const chromRays = [
-      { ...twoPointSeg, channel: "R" as const, y: 0, u: 0, clipped: false },
-      { ...twoPointSeg, channel: "G" as const, y: 0, u: 0, clipped: false },
-      { ...twoPointSeg, channel: "B" as const, y: 0, u: 0, clipped: false },
+      { ...twoPointSeg, channel: "R" as const, axis: "onAxis" as const, y: 0, u: 0, clipped: false },
+      { ...twoPointSeg, channel: "G" as const, axis: "onAxis" as const, y: 0, u: 0, clipped: false },
+      { ...twoPointSeg, channel: "B" as const, axis: "onAxis" as const, y: 0, u: 0, clipped: false },
     ];
     const { container } = render(
       <svg>
@@ -119,7 +119,7 @@ describe("DiagramRayLayers", () => {
           rays={[]}
           offAxisRays={[]}
           chromaticRays={chromRays}
-          showOnAxis={false}
+          showOnAxis={true}
           showOffAxis="off"
           showChromatic={true}
         />
@@ -128,8 +128,11 @@ describe("DiagramRayLayers", () => {
     expect(container.querySelectorAll("polyline").length).toBe(3);
   });
 
-  it("renders all three ray types simultaneously", () => {
-    const chromRays = [{ ...twoPointSeg, channel: "R" as const, y: 0, u: 0, clipped: false }];
+  it("hides normal rays and renders chromatic rays when color tracing is enabled", () => {
+    const chromRays = [
+      { ...twoPointSeg, channel: "R" as const, axis: "onAxis" as const, y: 0, u: 0, clipped: false },
+      { ...twoPointSeg, channel: "B" as const, axis: "offAxis" as const, y: 0, u: 0, clipped: false },
+    ];
     const { container } = render(
       <svg>
         <DiagramRayLayers
@@ -144,7 +147,28 @@ describe("DiagramRayLayers", () => {
         />
       </svg>,
     );
-    // 1 on-axis + 1 off-axis + 1 chromatic
-    expect(container.querySelectorAll("polyline").length).toBe(3);
+    expect(container.querySelectorAll("polyline").length).toBe(2);
+  });
+
+  it("lets on-axis and off-axis toggles gate chromatic ray groups", () => {
+    const chromRays = [
+      { ...twoPointSeg, channel: "R" as const, axis: "onAxis" as const, y: 0, u: 0, clipped: false },
+      { ...twoPointSeg, channel: "B" as const, axis: "offAxis" as const, y: 0, u: 0, clipped: false },
+    ];
+    const { container } = render(
+      <svg>
+        <DiagramRayLayers
+          lens={mockLens}
+          theme={mockTheme}
+          rays={[]}
+          offAxisRays={[]}
+          chromaticRays={chromRays}
+          showOnAxis={false}
+          showOffAxis="trueAngle"
+          showChromatic={true}
+        />
+      </svg>,
+    );
+    expect(container.querySelectorAll("polyline").length).toBe(1);
   });
 });

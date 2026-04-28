@@ -44,6 +44,7 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
     rays: {
       showOnAxis: true,
       showOffAxis: "off",
+      rayDensity: "normal",
       rayTracksF: false,
       showChromatic: false,
       chromR: true,

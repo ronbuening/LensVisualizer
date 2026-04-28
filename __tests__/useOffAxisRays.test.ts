@@ -6,6 +6,7 @@ import useOffAxisRays from "../src/components/hooks/useOffAxisRays.js";
 import buildLens from "../src/optics/buildLens.js";
 import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.js";
 import { createCoordinateTransforms } from "../src/optics/diagramGeometry.js";
+import { raySampleCountForDensity } from "../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -51,6 +52,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showOffAxis: "off",
@@ -74,6 +76,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 0,
         currentEPSD: 0,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showOffAxis: "trueAngle",
@@ -98,6 +101,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showOffAxis: "trueAngle",
@@ -110,6 +114,32 @@ describe("useOffAxisRays", () => {
       expect(Array.isArray(seg.sp)).toBe(true);
       expect(seg.sp.length).toBeGreaterThanOrEqual(2);
     }
+  });
+
+  it("uses diagnostic ray sampling when requested", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const { result } = renderHook(() =>
+      useOffAxisRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "diagnostic",
+        rayTracksF: false,
+        focusK: 0,
+        showOffAxis: "trueAngle",
+        lensKey: "ZeissSonnar50f15",
+      }),
+    );
+    expect(result.current.error).toBeNull();
+    expect(result.current.segments.length).toBe(raySampleCountForDensity(L.offAxisFractions, "diagnostic"));
+    expect(result.current.segments.length).toBeGreaterThanOrEqual(L.offAxisFractions.length * 3);
   });
 
   it("produces segments in edge mode", () => {
@@ -126,6 +156,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showOffAxis: "edge",
@@ -150,6 +181,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: true,
         focusK: 0.002,
         showOffAxis: "trueAngle",
@@ -180,6 +212,7 @@ describe("useOffAxisRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 5,
         currentEPSD: 5,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         showOffAxis: "trueAngle",

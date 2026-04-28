@@ -5,44 +5,89 @@
  * short description explaining what LCA represents. Used inside PanelOverlay.
  */
 
-import type { ChromaticSpread } from "../../types/optics.js";
+import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
 
 interface LCAOverlayContentProps {
   chromSpread: ChromaticSpread;
+  chromaticSpreads?: ChromaticSpreadByAxis;
   effectiveSC: number;
   IMG_MM: number;
   t: Theme;
 }
 
-const SVG_W = 340;
-const SVG_H = 280;
+const SINGLE_SVG_W = 340;
+const SINGLE_SVG_H = 280;
+const DUAL_SVG_W = 220;
+const DUAL_SVG_H = 220;
 const MARGIN = 12;
 
-export default function LCAOverlayContent({ chromSpread, effectiveSC, IMG_MM, t }: LCAOverlayContentProps) {
+export default function LCAOverlayContent({
+  chromSpread,
+  chromaticSpreads,
+  effectiveSC,
+  IMG_MM,
+  t,
+}: LCAOverlayContentProps) {
+  const spreads = [
+    { label: "ON-AXIS", spread: chromaticSpreads?.onAxis ?? null },
+    { label: "OFF-AXIS", spread: chromaticSpreads?.offAxis ?? null },
+  ].filter((item): item is { label: string; spread: ChromaticSpread } => item.spread !== null);
+  const visibleSpreads = spreads.length > 0 ? spreads : [{ label: "ON-AXIS", spread: chromSpread }];
+  const dual = visibleSpreads.length > 1;
+  const svgW = dual ? DUAL_SVG_W : SINGLE_SVG_W;
+  const svgH = dual ? DUAL_SVG_H : SINGLE_SVG_H;
+
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 20px 20px" }}>
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", minHeight: 0 }}>
-        <svg
-          viewBox={`0 0 ${SVG_W} ${SVG_H}`}
-          style={{ width: "100%", maxWidth: SVG_W, maxHeight: "100%", display: "block" }}
-        >
-          <LCAInsetWidget
-            chromSpread={chromSpread}
-            effectiveSC={effectiveSC}
-            IMG_MM={IMG_MM}
-            IX={0}
-            svgW={SVG_W}
-            sy={() => SVG_H / 2}
-            t={t}
-            width={SVG_W - MARGIN * 2}
-            height={SVG_H - MARGIN * 2}
-            originX={MARGIN}
-            originY={MARGIN}
-            fontScale={2.8}
-          />
-        </svg>
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 14,
+          minHeight: 0,
+        }}
+      >
+        {visibleSpreads.map(({ label, spread }) => (
+          <div key={label} style={{ flex: dual ? "1 1 0" : "0 1 auto", maxWidth: svgW, minWidth: 0 }}>
+            {dual && (
+              <div
+                style={{
+                  textAlign: "center",
+                  color: t.muted,
+                  fontSize: 11,
+                  letterSpacing: "0.12em",
+                  marginBottom: 4,
+                  fontFamily: "inherit",
+                }}
+              >
+                {label}
+              </div>
+            )}
+            <svg
+              viewBox={`0 0 ${svgW} ${svgH}`}
+              style={{ width: "100%", maxWidth: svgW, maxHeight: "100%", display: "block" }}
+            >
+              <LCAInsetWidget
+                chromSpread={spread}
+                effectiveSC={effectiveSC}
+                IMG_MM={IMG_MM}
+                IX={0}
+                svgW={svgW}
+                sy={() => svgH / 2}
+                t={t}
+                width={svgW - MARGIN * 2}
+                height={svgH - MARGIN * 2}
+                originX={MARGIN}
+                originY={MARGIN}
+                fontScale={dual ? 2.0 : 2.8}
+              />
+            </svg>
+          </div>
+        ))}
       </div>
       <p
         style={{
