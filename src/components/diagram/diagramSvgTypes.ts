@@ -14,4 +14,5 @@ export interface RaySegment {
 
 export interface ChromaticRaySegment extends RaySegment {
   channel: ChromaticChannel;
+  axis: "onAxis" | "offAxis";
 }

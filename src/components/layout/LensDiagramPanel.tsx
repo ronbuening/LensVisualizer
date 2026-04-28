@@ -252,6 +252,7 @@ export default function LensDiagramPanel({
     currentEPSD,
     rayDensity,
     rayTracksF,
+    showOnAxis,
     showOffAxis,
     showChromatic,
     chromR,

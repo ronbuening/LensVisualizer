@@ -31,6 +31,7 @@ interface UseRayTracingParams {
   currentEPSD: number;
   rayDensity: RayDensity;
   rayTracksF: boolean;
+  showOnAxis: boolean;
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
   chromR: boolean;
@@ -63,6 +64,7 @@ export default function useRayTracing({
   currentEPSD,
   rayDensity,
   rayTracksF,
+  showOnAxis,
   showOffAxis,
   showChromatic,
   chromR,
@@ -127,9 +129,12 @@ export default function useRayTracing({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     focusK,
     showChromatic,
+    showOnAxis,
+    showOffAxis,
     chromR,
     chromG,
     chromB,

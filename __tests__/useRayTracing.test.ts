@@ -53,6 +53,7 @@ describe("useRayTracing", () => {
         currentEPSD: 0,
         rayDensity: "normal",
         rayTracksF: false,
+        showOnAxis: true,
         showOffAxis: "off",
         showChromatic: false,
         chromR: false,
@@ -85,6 +86,7 @@ describe("useRayTracing", () => {
         currentEPSD,
         rayDensity: "normal",
         rayTracksF: false,
+        showOnAxis: true,
         showOffAxis: "off",
         showChromatic: false,
         chromR: false,
@@ -115,6 +117,7 @@ describe("useRayTracing", () => {
         currentEPSD,
         rayDensity: "diagnostic",
         rayTracksF: false,
+        showOnAxis: true,
         showOffAxis: "trueAngle",
         showChromatic: false,
         chromR: false,
@@ -144,6 +147,7 @@ describe("useRayTracing", () => {
         currentEPSD,
         rayDensity: "normal",
         rayTracksF: false,
+        showOnAxis: true,
         showOffAxis: "trueAngle",
         showChromatic: true,
         chromR: true,
@@ -155,7 +159,8 @@ describe("useRayTracing", () => {
     expect(result.current.rayError).toBeNull();
     expect(result.current.rays.length).toBeGreaterThan(0);
     expect(result.current.offAxisRays.length).toBeGreaterThan(0);
-    expect(result.current.chromaticRays.length).toBeGreaterThan(0);
+    expect(result.current.chromaticRays.some((r) => r.axis === "onAxis")).toBe(true);
+    expect(result.current.chromaticRays.some((r) => r.axis === "offAxis")).toBe(true);
     expect(result.current.chromSpread).not.toBeNull();
   });
 
@@ -175,6 +180,7 @@ describe("useRayTracing", () => {
         currentEPSD,
         rayDensity: "normal",
         rayTracksF: true,
+        showOnAxis: true,
         showOffAxis: "off",
         showChromatic: false,
         chromR: false,
@@ -203,6 +209,7 @@ describe("useRayTracing", () => {
         currentEPSD,
         rayDensity: "normal",
         rayTracksF: false,
+        showOnAxis: true,
         showOffAxis: "off",
         showChromatic: false,
         chromR: false,

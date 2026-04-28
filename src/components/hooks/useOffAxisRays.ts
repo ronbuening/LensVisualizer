@@ -7,15 +7,14 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { eflAtZoom, traceRay } from "../../optics/optics.js";
-import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
+import { traceRay } from "../../optics/optics.js";
 import { rayFractionsForDensity } from "../../optics/raySampling.js";
-import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
+import { computeOffAxisTraceGeometry } from "./offAxisRayUtils.js";
 
 interface UseOffAxisRaysParams {
   L: RuntimeLens | undefined;
@@ -63,25 +62,9 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, L.offAxisFieldFrac);
+      const geometry = computeOffAxisTraceGeometry({ L, zPos, IMG_MM, focusT, zoomT, sx, sy, showOffAxis });
       if (geometry === null) return { segments: [], error: null };
-      const { fieldAngleDeg: currentOffAxisDeg, uField, yChief } = geometry;
-
-      /* Image height for "edge" mode — trace a real chief ray to account for
-       * distortion, falling back to the paraxial estimate on failure. */
-      const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
-      let edgeImgH: number;
-      if (useEdge) {
-        const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L);
-        const lastSurfZ = zPos[L.N - 1];
-        const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - lastSurfZ);
-        edgeImgH = isFinite(chiefEndY)
-          ? chiefEndY
-          : -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      } else {
-        edgeImgH = -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));
-      }
-      const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
+      const { uField, yChief, edgeEnd, useEdge } = geometry;
 
       for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
         const h = f * currentEPSD;

@@ -7,16 +7,18 @@
  */
 import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
+import { rayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
+import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import { compileRaySegment, filterChannels } from "./raySegmentUtils.js";
-
-/** Chief ray + upper/lower marginal fractions for chromatic tracing */
-const CHROM_FRACS: number[] = [0, 0.75, -0.75];
+import { computeOffAxisTraceGeometry } from "./offAxisRayUtils.js";
 
 export interface ChromaticRaySegment extends RaySegment {
   channel: ChromaticChannel;
+  axis: "onAxis" | "offAxis";
+  fraction: number;
   y: number;
   u: number;
   clipped: boolean;
@@ -34,9 +36,12 @@ interface UseChromaticRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
   showChromatic: boolean;
+  showOnAxis: boolean;
+  showOffAxis: OffAxisMode;
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
@@ -61,9 +66,12 @@ export default function useChromaticRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  rayDensity,
   rayTracksF,
   focusK,
   showChromatic,
+  showOnAxis,
+  showOffAxis,
   chromR,
   chromG,
   chromB,
@@ -78,23 +86,70 @@ export default function useChromaticRays({
     if (channels.length === 0) return { segments: [], error: null };
     try {
       const out: ChromaticRaySegment[] = [];
-      for (const f of CHROM_FRACS) {
-        const h = f * currentEPSD;
-        const uIn = rayTracksF ? h * focusK : 0;
-        for (const ch of channels) {
-          const rawResult = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
-          const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
-          const seg = compileRaySegment(
-            result.pts,
-            result.ghostPts,
-            result.u,
-            result.clipped,
-            sx,
-            sy,
-            clampedRayEnd,
-            IMG_MM,
-          );
-          out.push({ ...seg, channel: ch, y: result.y, u: result.u, clipped: result.clipped });
+      if (showOnAxis) {
+        for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
+          const h = f * currentEPSD;
+          const uIn = rayTracksF ? h * focusK : 0;
+          for (const ch of channels) {
+            const rawResult = traceRayChromatic(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+            const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
+            const seg = compileRaySegment(
+              result.pts,
+              result.ghostPts,
+              result.u,
+              result.clipped,
+              sx,
+              sy,
+              clampedRayEnd,
+              IMG_MM,
+            );
+            out.push({
+              ...seg,
+              channel: ch,
+              axis: "onAxis",
+              fraction: f,
+              y: result.y,
+              u: result.u,
+              clipped: result.clipped,
+            });
+          }
+        }
+      }
+
+      if (showOffAxis !== "off") {
+        const geometry = computeOffAxisTraceGeometry({ L, zPos, IMG_MM, focusT, zoomT, sx, sy, showOffAxis });
+        if (geometry) {
+          const { uField, yChief, edgeEnd, useEdge } = geometry;
+          for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
+            const h = f * currentEPSD;
+            const y0 = yChief + h;
+            const uConverge = rayTracksF ? h * focusK : 0;
+            const uIn = uField + uConverge;
+            for (const ch of channels) {
+              const rawResult = traceRayChromatic(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, ch);
+              const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
+              const seg = compileRaySegment(
+                result.pts,
+                result.ghostPts,
+                result.u,
+                result.clipped,
+                sx,
+                sy,
+                clampedRayEnd,
+                IMG_MM,
+                useEdge ? edgeEnd : undefined,
+              );
+              out.push({
+                ...seg,
+                channel: ch,
+                axis: "offAxis",
+                fraction: f,
+                y: result.y,
+                u: result.u,
+                clipped: result.clipped,
+              });
+            }
+          }
         }
       }
       return { segments: out, error: null };
@@ -113,6 +168,7 @@ export default function useChromaticRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     focusK,
     L,
@@ -121,6 +177,8 @@ export default function useChromaticRays({
     clampedRayEnd,
     movementTransform,
     zoomT,
+    showOnAxis,
+    showOffAxis,
   ]);
 
   const chromaticRays = chromaticResult.segments;
@@ -131,11 +189,12 @@ export default function useChromaticRays({
     if (!L || !showChromatic || chromaticRays.length === 0) return null;
     const channels = filterChannels(chromR, chromG, chromB);
     if (channels.length < 2) return null;
+    const axialRays = chromaticRays.filter((r) => r.axis === "onAxis");
+    if (axialRays.length === 0) return null;
+    const marginalFraction = axialRays.reduce((best, r) => (r.fraction > best ? r.fraction : best), -Infinity);
     const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
-    for (let ci = 0; ci < channels.length; ci++) {
-      const rayIdx = 1 * channels.length + ci;
-      if (rayIdx < chromaticRays.length) {
-        const r = chromaticRays[rayIdx];
+    for (const r of axialRays) {
+      if (Math.abs(r.fraction - marginalFraction) < 1e-12) {
         marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
       }
     }
