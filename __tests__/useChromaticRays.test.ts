@@ -10,11 +10,13 @@ import { raySampleCountForDensity } from "../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
+const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
 
-function buildTestFixture(focusT = 0, zoomT = 0) {
-  const L = buildLens(Sonnar);
+function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
+  const L = buildLens(data);
   const ref = doLayout(0, 0, L);
   const IMG_MM = ref.imgZ;
   const cur = doLayout(focusT, zoomT, L);
@@ -257,7 +259,9 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromaticRays.every((r) => r.axis === "offAxis")).toBe(true);
-    expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticSpreads.onAxis).toBeNull();
+    expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
+    expect(result.current.chromSpread).toBe(result.current.chromaticSpreads.offAxis);
   });
 
   it("computes chromSpread with 2+ channels", () => {
@@ -287,8 +291,46 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromSpread).not.toBeNull();
+    expect(result.current.chromaticSpreads.onAxis).toBe(result.current.chromSpread);
+    expect(result.current.chromaticSpreads.offAxis).toBeNull();
     expect(typeof result.current.chromSpread!.lcaMm).toBe("number");
     expect(typeof result.current.chromSpread!.tcaMm).toBe("number");
+  });
+
+  it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
+      0,
+      0,
+      ApoLanthar,
+    );
+    const { result } = renderHook(() =>
+      useChromaticRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showChromatic: true,
+        showOnAxis: true,
+        showOffAxis: "off",
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        lensKey: "ApoLanthar50f2",
+      }),
+    );
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.chromSpread).not.toBeNull();
+    expect(Object.keys(result.current.chromSpread!.intercepts).length).toBeGreaterThanOrEqual(2);
   });
 
   it("returns null chromSpread with only 1 channel", () => {
@@ -319,6 +361,7 @@ describe("useChromaticRays", () => {
     );
     // Only 1 channel → can't compute spread
     expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticSpreads).toEqual({ onAxis: null, offAxis: null });
   });
 
   it("catches errors gracefully", () => {

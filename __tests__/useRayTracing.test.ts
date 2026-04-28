@@ -162,6 +162,8 @@ describe("useRayTracing", () => {
     expect(result.current.chromaticRays.some((r) => r.axis === "onAxis")).toBe(true);
     expect(result.current.chromaticRays.some((r) => r.axis === "offAxis")).toBe(true);
     expect(result.current.chromSpread).not.toBeNull();
+    expect(result.current.chromaticSpreads.onAxis).not.toBeNull();
+    expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
   });
 
   it("computes focusK when rayTracksF is true", () => {

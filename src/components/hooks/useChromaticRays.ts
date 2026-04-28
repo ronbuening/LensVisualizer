@@ -9,7 +9,7 @@
 import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
 import { rayFractionsForDensity } from "../../optics/raySampling.js";
-import type { RuntimeLens, ChromaticChannel, ChromaticSpread } from "../../types/optics.js";
+import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import type { RaySegment } from "./useOnAxisRays.js";
@@ -52,7 +52,37 @@ interface UseChromaticRaysParams {
 interface UseChromaticRaysResult {
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
+  chromaticSpreads: ChromaticSpreadByAxis;
   error: unknown;
+}
+
+function spreadForAxis(
+  chromaticRays: ChromaticRaySegment[],
+  axis: ChromaticRaySegment["axis"],
+  IMG_MM: number,
+  lastSurfaceZ: number,
+): ChromaticSpread | null {
+  const axisRays = chromaticRays.filter((r) => r.axis === axis);
+  if (axisRays.length === 0) return null;
+
+  const candidateFractions = Array.from(new Set(axisRays.map((r) => r.fraction))).sort((a, b) => {
+    const absDelta = Math.abs(b) - Math.abs(a);
+    return Math.abs(absDelta) > 1e-12 ? absDelta : b - a;
+  });
+
+  for (const fraction of candidateFractions) {
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    for (const r of axisRays) {
+      if (Math.abs(r.fraction - fraction) < 1e-12 && !r.clipped && Math.abs(r.u) > 1e-15) {
+        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: false };
+      }
+    }
+    if (Object.keys(marginalRays).length >= 2) {
+      return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    }
+  }
+
+  return null;
 }
 
 export default function useChromaticRays({
@@ -185,23 +215,20 @@ export default function useChromaticRays({
   const chromaticRays = chromaticResult.segments;
 
   /* Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
-   * from the marginal chromatic rays. Requires at least 2 active channels. */
-  const chromSpread = useMemo((): ChromaticSpread | null => {
-    if (!L || !showChromatic || chromaticRays.length === 0) return null;
+   * from each visible marginal chromatic ray fan. Requires at least 2 active channels. */
+  const chromaticSpreads = useMemo((): ChromaticSpreadByAxis => {
+    const empty = { onAxis: null, offAxis: null };
+    if (!L || !showChromatic || chromaticRays.length === 0) return empty;
     const channels = filterChannels(chromR, chromG, chromB);
-    if (channels.length < 2) return null;
-    const axialRays = chromaticRays.filter((r) => r.axis === "onAxis");
-    if (axialRays.length === 0) return null;
-    const marginalFraction = axialRays.reduce((best, r) => (r.fraction > best ? r.fraction : best), -Infinity);
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
-    for (const r of axialRays) {
-      if (Math.abs(r.fraction - marginalFraction) < 1e-12) {
-        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: r.clipped };
-      }
-    }
+    if (channels.length < 2) return empty;
     const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
-    return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    return {
+      onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ),
+      offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ),
+    };
   }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L, movementTransform]);
 
-  return { chromaticRays, chromSpread, error: chromaticResult.error };
+  const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
+
+  return { chromaticRays, chromSpread, chromaticSpreads, error: chromaticResult.error };
 }

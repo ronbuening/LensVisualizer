@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import FieldCurvatureMeanPlot from "../src/components/display/FieldCurvatureMeanPlot.js";
 import VignettingChart from "../src/components/display/VignettingChart.js";
 import LCAInsetWidget from "../src/components/diagram/LCAInsetWidget.js";
+import LCAOverlayContent from "../src/components/diagram/LCAOverlayContent.js";
 import {
   angleTicks,
   formatSignedCompactTick,
@@ -147,6 +148,26 @@ describe("analysis chart coverage", () => {
 
     fireEvent.click(container.querySelector("g")!);
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders on-axis and off-axis LCA overlay panels side by side when both spreads are available", () => {
+    render(
+      <LCAOverlayContent
+        chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
+        chromaticSpreads={{
+          onAxis: { lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} },
+          offAxis: { lcaMm: 0.0008, tcaMm: 0.0005, intercepts: { R: -0.04, G: 0, B: 0.04 }, imgHeights: {} },
+        }}
+        effectiveSC={1}
+        IMG_MM={0}
+        t={themes.dark}
+      />,
+    );
+
+    expect(screen.getByText("ON-AXIS")).toBeTruthy();
+    expect(screen.getByText("OFF-AXIS")).toBeTruthy();
+    expect(screen.getByText("0.4 µm")).toBeTruthy();
+    expect(screen.getByText("0.8 µm")).toBeTruthy();
   });
 
   it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {

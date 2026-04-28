@@ -259,6 +259,11 @@ export interface ChromaticSpread {
   imgHeights: Partial<Record<ChromaticChannel, number>>;
 }
 
+export interface ChromaticSpreadByAxis {
+  onAxis: ChromaticSpread | null;
+  offAxis: ChromaticSpread | null;
+}
+
 /* ── Diagram geometry types ── */
 
 export interface CoordinateTransforms {

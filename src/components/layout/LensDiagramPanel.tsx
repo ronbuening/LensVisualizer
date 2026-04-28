@@ -238,7 +238,7 @@ export default function LensDiagramPanel({
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
-  const { rays, offAxisRays, chromaticRays, chromSpread, rayError } = useRayTracing({
+  const { rays, offAxisRays, chromaticRays, chromSpread, chromaticSpreads, rayError } = useRayTracing({
     L,
     zPos,
     IMG_MM,
@@ -334,6 +334,7 @@ export default function LensDiagramPanel({
           chromB={chromB}
           rayTracksF={rayTracksF}
           chromSpread={chromSpread ?? null}
+          chromaticSpreads={chromaticSpreads}
           rays={rays}
           offAxisRays={offAxisRays}
           chromaticRays={chromaticRays}

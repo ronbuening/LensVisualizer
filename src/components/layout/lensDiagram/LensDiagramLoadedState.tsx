@@ -12,7 +12,13 @@ import DiagramControlPanel from "../DiagramControlPanel.js";
 import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
 import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
-import type { RuntimeLens, ChromaticSpread, ElementData, ElementShape } from "../../../types/optics.js";
+import type {
+  RuntimeLens,
+  ChromaticSpread,
+  ChromaticSpreadByAxis,
+  ElementData,
+  ElementShape,
+} from "../../../types/optics.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
@@ -73,6 +79,7 @@ interface LensDiagramLoadedStateProps {
   chromB: boolean;
   rayTracksF: boolean;
   chromSpread: ChromaticSpread | null;
+  chromaticSpreads: ChromaticSpreadByAxis;
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
@@ -193,6 +200,7 @@ export default function LensDiagramLoadedState({
   chromB,
   rayTracksF,
   chromSpread,
+  chromaticSpreads,
   rays,
   offAxisRays,
   chromaticRays,
@@ -244,6 +252,7 @@ export default function LensDiagramLoadedState({
             offAxisRays={offAxisRays}
             chromaticRays={chromaticRays}
             chromSpread={chromSpread ?? null}
+            chromaticSpreads={chromaticSpreads}
             showOnAxis={showOnAxis}
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}
