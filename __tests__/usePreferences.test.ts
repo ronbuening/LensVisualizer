@@ -66,6 +66,7 @@ describe("usePreferences — persisted fields", () => {
     const parsed = JSON.parse(localStorage.getItem(PREFS_KEY)!) as Record<string, unknown>;
     expect(typeof parsed.showOnAxis).toBe("boolean");
     expect(typeof parsed.showOffAxis).toBe("string");
+    expect(typeof parsed.rayDensity).toBe("string");
     expect(typeof parsed.rayTracksF).toBe("boolean");
     expect(typeof parsed.showChromatic).toBe("boolean");
     expect(typeof parsed.chromR).toBe("boolean");

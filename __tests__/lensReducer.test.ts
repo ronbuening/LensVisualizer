@@ -52,6 +52,7 @@ describe("createInitialState", () => {
     expect(state.sliders.tiltDeg).toBe(0);
     expect(state.rays.showOnAxis).toBe(true);
     expect(state.rays.showOffAxis).toBe("off");
+    expect(state.rays.rayDensity).toBe("normal");
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
     expect(state.panels.analysisDrawerOpen).toBe(false);
     expect(state.panels.analysisDrawerTab).toBe("aberrations");
@@ -89,10 +90,16 @@ describe("createInitialState", () => {
   });
 
   it("prefs override defaults", () => {
-    const prefs = { dark: false, showOnAxis: false, desktopView: "diagram" } satisfies Partial<Preferences>;
+    const prefs = {
+      dark: false,
+      showOnAxis: false,
+      rayDensity: "dense",
+      desktopView: "diagram",
+    } satisfies Partial<Preferences>;
     const state = createInitialState(prefs, {}, false, CATALOG_KEYS);
     expect(state.display.dark).toBe(false);
     expect(state.rays.showOnAxis).toBe(false);
+    expect(state.rays.rayDensity).toBe("dense");
     expect(state.display.desktopView).toBe("diagram");
   });
 
@@ -263,6 +270,11 @@ describe("lensReducer", () => {
     it("sets showOffAxis string value", () => {
       const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
       expect(next.rays.showOffAxis).toBe("trueAngle");
+    });
+
+    it("sets rayDensity string value", () => {
+      const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "rayDensity", value: "diagnostic" });
+      expect(next.rays.rayDensity).toBe("diagnostic");
     });
 
     it("ignores invalid field", () => {

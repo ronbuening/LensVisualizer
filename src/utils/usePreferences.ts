@@ -23,6 +23,7 @@ export default function usePreferences(state: LensState): void {
       scaleMode: lens.scaleMode,
       showOnAxis: rays.showOnAxis,
       showOffAxis: rays.showOffAxis,
+      rayDensity: rays.rayDensity,
       rayTracksF: rays.rayTracksF,
       showChromatic: rays.showChromatic,
       chromR: rays.chromR,

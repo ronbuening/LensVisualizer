@@ -14,6 +14,7 @@ import {
   isAnalysisTabId,
   isDesktopView,
   isOffAxisMode,
+  isRayDensity,
   selectedElementKeyForPanel,
   type LensState,
   type LensAction,
@@ -61,6 +62,7 @@ export {
 const RAY_FIELDS = new Set([
   "showOnAxis",
   "showOffAxis",
+  "rayDensity",
   "rayTracksF",
   "showChromatic",
   "chromR",
@@ -97,6 +99,7 @@ export function createInitialState(
 ): LensState {
   const showOffAxisRaw = isOffAxisMode(prefs.showOffAxis) ? prefs.showOffAxis : "off";
   const showOffAxis = !ENABLE_EDGE_PROJECTION && showOffAxisRaw === "edge" ? "trueAngle" : showOffAxisRaw;
+  const rayDensity = isRayDensity(prefs.rayDensity) ? prefs.rayDensity : "normal";
   const systemThemePrefs = readSystemThemePreferences();
 
   return {
@@ -116,6 +119,7 @@ export function createInitialState(
     rays: {
       showOnAxis: prefs.showOnAxis ?? true,
       showOffAxis,
+      rayDensity,
       rayTracksF: prefs.rayTracksF ?? false,
       showChromatic: prefs.showChromatic ?? DEFAULT_COLOR_TRACING,
       chromR: prefs.chromR ?? true,
@@ -222,6 +226,8 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     /* ── Ray toggles (generic) ── */
     case SET_RAY_TOGGLE:
       if (!RAY_FIELDS.has(action.field)) return state;
+      if (action.field === "showOffAxis" && !isOffAxisMode(action.value)) return state;
+      if (action.field === "rayDensity" && !isRayDensity(action.value)) return state;
       return { ...state, rays: { ...state.rays, [action.field]: action.value } };
 
     /* ── Single-lens sliders ── */
