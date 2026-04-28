@@ -558,6 +558,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     varLabels,
     groups,
     doublets,
+    perspectiveControl: data.perspectiveControl ?? null,
     stopIdx,
     stopPhysSD,
     EFL,

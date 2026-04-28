@@ -21,6 +21,7 @@ interface DiagramOverlayLayerProps {
   sy: (y: number) => number;
   IX: number;
   effectiveSC: number;
+  pointTransform?: (z: number, y: number) => [number, number];
   zPos: number[];
   IMG_MM: number;
   shapes: ElementShape[];
@@ -46,6 +47,7 @@ export default function DiagramOverlayLayer({
   sy,
   IX,
   effectiveSC,
+  pointTransform,
   zPos,
   IMG_MM,
   shapes,
@@ -62,6 +64,11 @@ export default function DiagramOverlayLayer({
   onLcaInsetClick,
   onPetzvalBadgeClick,
 }: DiagramOverlayLayerProps) {
+  const screenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+    return [sx(zz), sy(yy)];
+  };
+
   return (
     <>
       <ApertureStop
@@ -73,6 +80,7 @@ export default function DiagramOverlayLayer({
         currentPhysStopSD={currentPhysStopSD}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}
+        pointTransform={pointTransform}
         t={t}
       />
 
@@ -117,6 +125,7 @@ export default function DiagramOverlayLayer({
         sx={sx}
         sy={sy}
         zPos={zPos}
+        pointTransform={pointTransform}
         act={act}
         showChromatic={showChromatic}
       />
@@ -128,9 +137,19 @@ export default function DiagramOverlayLayer({
             const xpSD = xpAtZoom(zoomT, L);
             const epZRel = epZRelStopAtZoom(zoomT, L);
             const xpZRel = xpZRelLastSurfAtZoom(zoomT, L);
-            const epX = isFinite(epZRel) ? sx(zPos[L.stopIdx] + epZRel) : NaN;
-            const xpX = isFinite(xpZRel) ? sx(zPos[L.N - 1] + xpZRel) : NaN;
-            const midY = sy(0);
+            const epCenter = isFinite(epZRel)
+              ? screenPoint(zPos[L.stopIdx] + epZRel, 0)
+              : ([NaN, NaN] as [number, number]);
+            const xpCenter = isFinite(xpZRel)
+              ? screenPoint(zPos[L.N - 1] + xpZRel, 0)
+              : ([NaN, NaN] as [number, number]);
+            const epX = epCenter[0];
+            const xpX = xpCenter[0];
+            const epTop = isFinite(epZRel) ? screenPoint(zPos[L.stopIdx] + epZRel, -epSD) : epCenter;
+            const epBottom = isFinite(epZRel) ? screenPoint(zPos[L.stopIdx] + epZRel, epSD) : epCenter;
+            const xpTop = isFinite(xpZRel) ? screenPoint(zPos[L.N - 1] + xpZRel, -xpSD) : xpCenter;
+            const xpBottom = isFinite(xpZRel) ? screenPoint(zPos[L.N - 1] + xpZRel, xpSD) : xpCenter;
+            const midY = isFinite(epCenter[1]) ? epCenter[1] : sy(0);
             const tickLen = 4;
             const epColor = t.pupilEntrance;
             const xpColor = t.pupilExit;
@@ -153,36 +172,36 @@ export default function DiagramOverlayLayer({
                 {epInView && (
                   <>
                     <line
-                      x1={epX}
-                      y1={sy(-epSD)}
-                      x2={epX}
-                      y2={sy(epSD)}
+                      x1={epTop[0]}
+                      y1={epTop[1]}
+                      x2={epBottom[0]}
+                      y2={epBottom[1]}
                       stroke={epColor}
                       strokeWidth={1.2}
                       strokeDasharray="3,2"
                       style={{ pointerEvents: "none" }}
                     />
                     <line
-                      x1={epX - tickLen}
-                      y1={sy(-epSD)}
-                      x2={epX + tickLen}
-                      y2={sy(-epSD)}
+                      x1={epTop[0] - tickLen}
+                      y1={epTop[1]}
+                      x2={epTop[0] + tickLen}
+                      y2={epTop[1]}
                       stroke={epColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
                     <line
-                      x1={epX - tickLen}
-                      y1={sy(epSD)}
-                      x2={epX + tickLen}
-                      y2={sy(epSD)}
+                      x1={epBottom[0] - tickLen}
+                      y1={epBottom[1]}
+                      x2={epBottom[0] + tickLen}
+                      y2={epBottom[1]}
                       stroke={epColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
                     <text
                       x={epX}
-                      y={sy(-epSD) - L.lyStoPad}
+                      y={epTop[1] - L.lyStoPad}
                       textAnchor="middle"
                       fontSize={fontSize}
                       fill={epColor}
@@ -190,7 +209,7 @@ export default function DiagramOverlayLayer({
                     >
                       EP
                     </text>
-                    <circle cx={epX} cy={midY} r={2} fill={epColor} style={{ pointerEvents: "none" }} />
+                    <circle cx={epCenter[0]} cy={epCenter[1]} r={2} fill={epColor} style={{ pointerEvents: "none" }} />
                   </>
                 )}
                 {epOffLeft && (
@@ -220,36 +239,36 @@ export default function DiagramOverlayLayer({
                 {xpInView && (
                   <>
                     <line
-                      x1={xpX}
-                      y1={sy(-xpSD)}
-                      x2={xpX}
-                      y2={sy(xpSD)}
+                      x1={xpTop[0]}
+                      y1={xpTop[1]}
+                      x2={xpBottom[0]}
+                      y2={xpBottom[1]}
                       stroke={xpColor}
                       strokeWidth={1.2}
                       strokeDasharray="3,2"
                       style={{ pointerEvents: "none" }}
                     />
                     <line
-                      x1={xpX - tickLen}
-                      y1={sy(-xpSD)}
-                      x2={xpX + tickLen}
-                      y2={sy(-xpSD)}
+                      x1={xpTop[0] - tickLen}
+                      y1={xpTop[1]}
+                      x2={xpTop[0] + tickLen}
+                      y2={xpTop[1]}
                       stroke={xpColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
                     <line
-                      x1={xpX - tickLen}
-                      y1={sy(xpSD)}
-                      x2={xpX + tickLen}
-                      y2={sy(xpSD)}
+                      x1={xpBottom[0] - tickLen}
+                      y1={xpBottom[1]}
+                      x2={xpBottom[0] + tickLen}
+                      y2={xpBottom[1]}
                       stroke={xpColor}
                       strokeWidth={1.2}
                       style={{ pointerEvents: "none" }}
                     />
                     <text
                       x={xpX}
-                      y={sy(-xpSD) - L.lyStoPad}
+                      y={xpTop[1] - L.lyStoPad}
                       textAnchor="middle"
                       fontSize={fontSize}
                       fill={xpColor}
@@ -257,7 +276,7 @@ export default function DiagramOverlayLayer({
                     >
                       XP
                     </text>
-                    <circle cx={xpX} cy={midY} r={2} fill={xpColor} style={{ pointerEvents: "none" }} />
+                    <circle cx={xpCenter[0]} cy={xpCenter[1]} r={2} fill={xpColor} style={{ pointerEvents: "none" }} />
                   </>
                 )}
                 {xpOffRight && (

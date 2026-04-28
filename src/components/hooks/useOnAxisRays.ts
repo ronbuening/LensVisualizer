@@ -9,6 +9,7 @@
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
 
 export interface RaySegment {
@@ -25,6 +26,7 @@ interface UseOnAxisRaysParams {
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
+  movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
   rayTracksF: boolean;
@@ -46,6 +48,7 @@ export default function useOnAxisRays({
   sx,
   sy,
   clampedRayEnd,
+  movementTransform,
   currentPhysStopSD,
   currentEPSD,
   rayTracksF,
@@ -59,7 +62,8 @@ export default function useOnAxisRays({
       for (const f of L.rayFractions) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const result = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
         );
@@ -83,5 +87,6 @@ export default function useOnAxisRays({
     IMG_MM,
     lensKey,
     clampedRayEnd,
+    movementTransform,
   ]);
 }

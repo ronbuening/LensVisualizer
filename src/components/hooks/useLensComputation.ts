@@ -20,7 +20,9 @@ import {
   computeFieldGeometryAtState,
 } from "../../optics/optics.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
+import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
+import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/lensMovement.js";
 import type { FieldGeometryState } from "../../optics/optics.js";
 
 interface UseLensComputationParams {
@@ -29,6 +31,8 @@ interface UseLensComputationParams {
   focusT: number;
   zoomT: number;
   stopdownT: number;
+  shiftMm?: number;
+  tiltDeg?: number;
   scaleRatio: number | null;
   panelId: string;
 }
@@ -49,6 +53,9 @@ interface UseLensComputationResult {
   CX: number;
   IX: number;
   effectiveSC: number;
+  movement: ResolvedLensMovement;
+  movementTransform: LensMovementTransform;
+  lensAxis: [[number, number], [number, number]] | null;
   shapes: ElementShape[];
   shapeError: unknown;
   stopZ: number;
@@ -70,6 +77,8 @@ export default function useLensComputation({
   focusT,
   zoomT,
   stopdownT,
+  shiftMm = 0,
+  tiltDeg = 0,
   scaleRatio,
   panelId,
 }: UseLensComputationParams): UseLensComputationResult {
@@ -106,6 +115,13 @@ export default function useLensComputation({
     return next;
   }, [cur, dz]);
 
+  const movement = useMemo(() => clampLensMovement(L, { shiftMm, tiltDeg }), [L, shiftMm, tiltDeg]);
+  const movementTransform = useMemo(() => createLensMovementTransform(IMG_MM, movement), [IMG_MM, movement]);
+  const lensAxis = useMemo(
+    () => (movement.active && L && zPos.length > 0 ? movementTransform.axis(zPos[0] - L.rayLead, IMG_MM) : null),
+    [L, IMG_MM, movement.active, movementTransform, zPos],
+  );
+
   const fieldGeometry = useMemo(() => (L ? computeFieldGeometryAtState(focusT, zoomT, L) : null), [L, focusT, zoomT]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
@@ -137,12 +153,12 @@ export default function useLensComputation({
   const shapesResult = useMemo((): { shapes: ElementShape[]; error: unknown } => {
     if (!L) return { shapes: [], error: null };
     try {
-      return { shapes: computeElementShapes(L, zPos, sx, sy), error: null };
+      return { shapes: computeElementShapes(L, zPos, sx, sy, movementTransform.point), error: null };
     } catch (e) {
       console.error(`[useLensComputation] Element shape computation failed for "${lensKey}":`, e);
       return { shapes: [], error: e };
     }
-  }, [L, zPos, sx, sy, lensKey]);
+  }, [L, zPos, sx, sy, movementTransform, lensKey]);
 
   const shapes = shapesResult.shapes;
   const shapeError = shapesResult.error;
@@ -194,6 +210,9 @@ export default function useLensComputation({
     CX,
     IX,
     effectiveSC,
+    movement,
+    movementTransform,
+    lensAxis,
     shapes,
     shapeError,
     stopZ,

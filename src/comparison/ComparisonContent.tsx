@@ -11,7 +11,7 @@ import SharedSlidersBar from "./SharedSlidersBar.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import { SET_SHARED_ZOOM_T } from "./comparisonReducer.js";
 import { ErrorDisplay } from "../components/errors/ErrorBoundary.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { Theme } from "../types/theme.js";
 import type { LensAction } from "../types/state.js";
 import useComparisonDisplayValues from "./useComparisonDisplayValues.js";
@@ -25,6 +25,7 @@ interface ComparisonContentProps {
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
   zoomPair: ZoomPairResult | null;
+  movementPair: MovementPairResult | null;
   scaleRatios: { a: number; b: number } | null;
   maxHeaderHeight: number;
   onHeaderHeight: (panelId: string, height: number) => void;
@@ -32,8 +33,12 @@ interface ComparisonContentProps {
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
+  sharedShiftMm: number;
+  sharedTiltDeg: number;
   onSharedFocusChange: (value: number) => void;
   onSharedStopdownChange: (value: number) => void;
+  onSharedShiftChange: (value: number) => void;
+  onSharedTiltChange: (value: number) => void;
   onFocusPointerDown: () => void;
   onAperturePointerDown: () => void;
   onSliderPointerUp: () => void;
@@ -50,6 +55,7 @@ export default function ComparisonContent({
   focusPair,
   aperturePair,
   zoomPair,
+  movementPair,
   scaleRatios,
   maxHeaderHeight,
   onHeaderHeight,
@@ -57,8 +63,12 @@ export default function ComparisonContent({
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
+  sharedShiftMm,
+  sharedTiltDeg,
   onSharedFocusChange,
   onSharedStopdownChange,
+  onSharedShiftChange,
+  onSharedTiltChange,
   onFocusPointerDown,
   onAperturePointerDown,
   onSliderPointerUp,
@@ -100,6 +110,7 @@ export default function ComparisonContent({
             focusPair={focusPair}
             aperturePair={aperturePair}
             zoomPair={zoomPair}
+            movementPair={movementPair}
             comparisonLenses={comparisonLenses}
             scaleRatios={scaleRatios}
             maxHeaderHeight={maxHeaderHeight}
@@ -115,14 +126,19 @@ export default function ComparisonContent({
           sharedFocusT={sharedFocusT}
           sharedStopdownT={sharedStopdownT}
           sharedZoomT={sharedZoomT}
+          sharedShiftMm={sharedShiftMm}
+          sharedTiltDeg={sharedTiltDeg}
           onSharedFocusChange={onSharedFocusChange}
           onSharedStopdownChange={onSharedStopdownChange}
           onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
+          onSharedShiftChange={onSharedShiftChange}
+          onSharedTiltChange={onSharedTiltChange}
           onFocusPointerDown={onFocusPointerDown}
           onAperturePointerDown={onAperturePointerDown}
           focusPair={focusPair}
           aperturePair={aperturePair}
           zoomPair={zoomPair}
+          movementPair={movementPair}
           onSliderPointerUp={onSliderPointerUp}
           dynamicEflA={dynamicEflA}
           dynamicEflB={dynamicEflB}

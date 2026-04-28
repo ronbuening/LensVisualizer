@@ -13,9 +13,13 @@ import lensReducer, {
   SET_FOCUS_T,
   SET_ZOOM_T,
   SET_STOPDOWN_T,
+  SET_SHIFT_MM,
+  SET_TILT_DEG,
   SET_SHARED_FOCUS_T,
   SET_SHARED_STOPDOWN_T,
   SET_SHARED_ZOOM_T,
+  SET_SHARED_SHIFT_MM,
+  SET_SHARED_TILT_DEG,
   RESET_SLIDERS,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
@@ -44,6 +48,8 @@ describe("createInitialState", () => {
     expect(state.sliders.focusT).toBe(0);
     expect(state.sliders.zoomT).toBe(0);
     expect(state.sliders.stopdownT).toBe(0);
+    expect(state.sliders.shiftMm).toBe(0);
+    expect(state.sliders.tiltDeg).toBe(0);
     expect(state.rays.showOnAxis).toBe(true);
     expect(state.rays.showOffAxis).toBe("off");
     expect(state.panels.focusExpanded).toBe(true); // isWide = true
@@ -57,11 +63,13 @@ describe("createInitialState", () => {
 
   it("URL params override prefs", () => {
     const prefs = {};
-    const urlState = { singleLens: "zeiss_35", focus: 0.5, aperture: 0.3 };
+    const urlState = { singleLens: "zeiss_35", focus: 0.5, aperture: 0.3, shift: -4, tilt: 2 };
     const state = createInitialState(prefs, urlState, true, CATALOG_KEYS);
     expect(state.lens.lensKeyA).toBe("zeiss_35");
     expect(state.sliders.focusT).toBe(0.5);
     expect(state.sliders.stopdownT).toBe(0.3);
+    expect(state.sliders.shiftMm).toBe(-4);
+    expect(state.sliders.tiltDeg).toBe(2);
   });
 
   it("hydrates shareable panel state from URL params", () => {
@@ -89,11 +97,21 @@ describe("createInitialState", () => {
   });
 
   it("comparison URL sets shared sliders from URL params", () => {
-    const urlState = { comparing: true, lensKeyA: "nikon_58", lensKeyB: "canon_50", focus: 0.7, aperture: 0.4 };
+    const urlState = {
+      comparing: true,
+      lensKeyA: "nikon_58",
+      lensKeyB: "canon_50",
+      focus: 0.7,
+      aperture: 0.4,
+      shift: 3,
+      tilt: -2,
+    };
     const state = createInitialState({}, urlState, true, CATALOG_KEYS);
     expect(state.lens.comparing).toBe(true);
     expect(state.sharedSliders.sharedFocusT).toBe(0.7);
     expect(state.sharedSliders.sharedStopdownT).toBe(0.4);
+    expect(state.sharedSliders.sharedShiftMm).toBe(3);
+    expect(state.sharedSliders.sharedTiltDeg).toBe(-2);
   });
 
   it("non-comparison URL does not set shared sliders", () => {
@@ -101,6 +119,8 @@ describe("createInitialState", () => {
     const state = createInitialState({}, urlState, true, CATALOG_KEYS);
     expect(state.sharedSliders.sharedFocusT).toBe(0);
     expect(state.sharedSliders.sharedStopdownT).toBe(0);
+    expect(state.sharedSliders.sharedShiftMm).toBe(0);
+    expect(state.sharedSliders.sharedTiltDeg).toBe(0);
   });
 
   it("panel expanded defaults to isWide", () => {
@@ -133,16 +153,17 @@ describe("lensReducer", () => {
     });
 
     it("resets sliders in single mode", () => {
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
-      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0 });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
     });
 
     it("does NOT reset sliders in comparison mode", () => {
       state.lens.comparing = true;
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.sliders.focusT).toBe(0.5);
+      expect(next.sliders.shiftMm).toBe(5);
     });
 
     it("closes analysis drawer when switching lens in single mode", () => {
@@ -273,11 +294,25 @@ describe("lensReducer", () => {
     });
   });
 
+  describe("SET_SHIFT_MM", () => {
+    it("sets shiftMm", () => {
+      const next = lensReducer(state, { type: SET_SHIFT_MM, value: -6.5 });
+      expect(next.sliders.shiftMm).toBe(-6.5);
+    });
+  });
+
+  describe("SET_TILT_DEG", () => {
+    it("sets tiltDeg", () => {
+      const next = lensReducer(state, { type: SET_TILT_DEG, value: 4.5 });
+      expect(next.sliders.tiltDeg).toBe(4.5);
+    });
+  });
+
   describe("RESET_SLIDERS", () => {
     it("resets all sliders to 0", () => {
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
       const next = lensReducer(state, { type: RESET_SLIDERS });
-      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0 });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
     });
   });
 
@@ -300,6 +335,20 @@ describe("lensReducer", () => {
     it("sets sharedZoomT", () => {
       const next = lensReducer(state, { type: SET_SHARED_ZOOM_T, value: 0.8 });
       expect(next.sharedSliders.sharedZoomT).toBe(0.8);
+    });
+  });
+
+  describe("SET_SHARED_SHIFT_MM", () => {
+    it("sets sharedShiftMm", () => {
+      const next = lensReducer(state, { type: SET_SHARED_SHIFT_MM, value: 7 });
+      expect(next.sharedSliders.sharedShiftMm).toBe(7);
+    });
+  });
+
+  describe("SET_SHARED_TILT_DEG", () => {
+    it("sets sharedTiltDeg", () => {
+      const next = lensReducer(state, { type: SET_SHARED_TILT_DEG, value: -5 });
+      expect(next.sharedSliders.sharedTiltDeg).toBe(-5);
     });
   });
 
@@ -392,6 +441,8 @@ describe("lensReducer", () => {
         state: {
           focus: 0.4,
           aperture: 0.2,
+          shift: -5,
+          tilt: 6,
           selectedElementId: 5,
           glassMapOpen: true,
           bokehPreviewOpen: true,
@@ -401,6 +452,8 @@ describe("lensReducer", () => {
       });
       expect(next.sliders.focusT).toBe(0.4);
       expect(next.sliders.stopdownT).toBe(0.2);
+      expect(next.sliders.shiftMm).toBe(-5);
+      expect(next.sliders.tiltDeg).toBe(6);
       expect(next.panels.selectedElementId).toBe(5);
       expect(next.panels.glassMapOpen).toBe(true);
       expect(next.panels.bokehPreviewOpen).toBe(true);
@@ -412,10 +465,12 @@ describe("lensReducer", () => {
       state.lens.comparing = true;
       const next = lensReducer(state, {
         type: APPLY_URL_VIEW_STATE,
-        state: { focus: 0.4, aperture: 0.2, selectedElementIdA: 1, selectedElementIdB: 3 },
+        state: { focus: 0.4, aperture: 0.2, shift: 4, tilt: -3, selectedElementIdA: 1, selectedElementIdB: 3 },
       });
       expect(next.sharedSliders.sharedFocusT).toBe(0.4);
       expect(next.sharedSliders.sharedStopdownT).toBe(0.2);
+      expect(next.sharedSliders.sharedShiftMm).toBe(4);
+      expect(next.sharedSliders.sharedTiltDeg).toBe(-3);
       expect(next.panels.selectedElementIdA).toBe(1);
       expect(next.panels.selectedElementIdB).toBe(3);
     });
@@ -453,10 +508,22 @@ describe("lensReducer", () => {
   /* ── Comparison mode transitions ── */
   describe("ENTER_COMPARE", () => {
     it("sets comparing to true and resets shared sliders", () => {
-      state.sharedSliders = { sharedFocusT: 0.5, sharedStopdownT: 0.3, sharedZoomT: 0.2 };
+      state.sharedSliders = {
+        sharedFocusT: 0.5,
+        sharedStopdownT: 0.3,
+        sharedZoomT: 0.2,
+        sharedShiftMm: 7,
+        sharedTiltDeg: -4,
+      };
       const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       expect(next.lens.comparing).toBe(true);
-      expect(next.sharedSliders).toEqual({ sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0 });
+      expect(next.sharedSliders).toEqual({
+        sharedFocusT: 0,
+        sharedStopdownT: 0,
+        sharedZoomT: 0,
+        sharedShiftMm: 0,
+        sharedTiltDeg: 0,
+      });
     });
 
     it("picks next lens if A===B", () => {
@@ -484,18 +551,22 @@ describe("lensReducer", () => {
   describe("EXIT_COMPARE", () => {
     it("sets comparing to false and maps shared values back", () => {
       state.lens.comparing = true;
-      const next = lensReducer(state, { type: EXIT_COMPARE, focusA: 0.3, stopdownA: 0.5 });
+      const next = lensReducer(state, { type: EXIT_COMPARE, focusA: 0.3, stopdownA: 0.5, shiftA: 6, tiltA: -2 });
       expect(next.lens.comparing).toBe(false);
       expect(next.sliders.focusT).toBe(0.3);
       expect(next.sliders.stopdownT).toBe(0.5);
+      expect(next.sliders.shiftMm).toBe(6);
+      expect(next.sliders.tiltDeg).toBe(-2);
     });
 
     it("keeps existing slider values when payload is undefined", () => {
       state.lens.comparing = true;
-      state.sliders = { focusT: 0.2, zoomT: 0.1, stopdownT: 0.4 };
+      state.sliders = { focusT: 0.2, zoomT: 0.1, stopdownT: 0.4, shiftMm: 3, tiltDeg: 4 };
       const next = lensReducer(state, { type: EXIT_COMPARE });
       expect(next.sliders.focusT).toBe(0.2);
       expect(next.sliders.stopdownT).toBe(0.4);
+      expect(next.sliders.shiftMm).toBe(3);
+      expect(next.sliders.tiltDeg).toBe(4);
     });
 
     it("preserves zoomT on exit", () => {
@@ -530,7 +601,7 @@ describe("lensReducer", () => {
 
 /* ── Action constant exhaustiveness ── */
 describe("lensReducer — action constant exports", () => {
-  it("exports all 23 expected action type constants", () => {
+  it("exports all 27 expected action type constants", () => {
     const EXPECTED = [
       SET_LENS_A,
       SET_LENS_B,
@@ -543,9 +614,13 @@ describe("lensReducer — action constant exports", () => {
       SET_FOCUS_T,
       SET_ZOOM_T,
       SET_STOPDOWN_T,
+      SET_SHIFT_MM,
+      SET_TILT_DEG,
       SET_SHARED_FOCUS_T,
       SET_SHARED_STOPDOWN_T,
       SET_SHARED_ZOOM_T,
+      SET_SHARED_SHIFT_MM,
+      SET_SHARED_TILT_DEG,
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,
@@ -561,8 +636,8 @@ describe("lensReducer — action constant exports", () => {
       expect(typeof c).toBe("string");
       expect(c.length).toBeGreaterThan(0);
     }
-    // The full set must be exactly 23 unique values
-    expect(new Set(EXPECTED).size).toBe(23);
+    // The full set must be exactly 27 unique values
+    expect(new Set(EXPECTED).size).toBe(27);
   });
 
   it("every action constant's string value matches its export name", () => {
@@ -578,9 +653,13 @@ describe("lensReducer — action constant exports", () => {
       SET_FOCUS_T,
       SET_ZOOM_T,
       SET_STOPDOWN_T,
+      SET_SHIFT_MM,
+      SET_TILT_DEG,
       SET_SHARED_FOCUS_T,
       SET_SHARED_STOPDOWN_T,
       SET_SHARED_ZOOM_T,
+      SET_SHARED_SHIFT_MM,
+      SET_SHARED_TILT_DEG,
       RESET_SLIDERS,
       SET_PANEL_EXPANDED,
       SET_ANALYSIS_TAB,

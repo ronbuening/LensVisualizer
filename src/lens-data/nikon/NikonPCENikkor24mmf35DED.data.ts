@@ -52,6 +52,14 @@ const LENS_DATA = {
   patentYear: 2008,
   elementCount: 13,
   groupCount: 10,
+  perspectiveControl: {
+    /* Nikon USA's launch release lists shift +/-11.5 mm and tilt +/-8.5 deg:
+     * https://www.nikonusa.com/press-room/nikons-new-wide-angle-pc-e-ni */
+    shiftRangeMm: [-11.5, 11.5],
+    tiltRangeDeg: [-8.5, 8.5],
+    shiftStepMm: 0.1,
+    tiltStepDeg: 0.1,
+  },
 
   /* ── Elements ── */
   elements: [

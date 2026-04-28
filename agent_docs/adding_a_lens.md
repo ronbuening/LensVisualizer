@@ -37,6 +37,24 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 - Analysis: `*.analysis.md` (optional, matched by the same relative stem path as the `.data.ts` file)
 - Set `visible: false` in the data object to hide a lens from the UI
 
+### Perspective-Control Lenses
+
+Only real tilt/shift or perspective-control lenses should declare `perspectiveControl`. Ordinary lenses omit the field
+and default to no SHIFT/TILT controls.
+
+```typescript
+perspectiveControl: {
+  shiftRangeMm: [-11.5, 11.5],
+  tiltRangeDeg: [-8.5, 8.5],
+  shiftStepMm: 0.1,
+  tiltStepDeg: 0.1,
+},
+```
+
+Ranges must be finite, ascending, and include zero. Use official manufacturer sources when available and leave the source
+URL in a nearby comment. The v1 movement layer is a 2D meridional visualization: it shifts/tilts rendered geometry and
+rays relative to the fixed IMG plane, while analysis drawer diagnostics remain centered-lens calculations.
+
 ### Semi-Diameter Troubleshooting
 
 Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, rim slope, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples. The rim slope check uses actual aspherical slope at the SD (via `sagSlopeRaw`), not the old spherical `sd/|R|` proxy — aspherical surfaces (especially K near −1) can use larger SDs. Cross-gap overlap is checked against the two boundary surfaces that face each other: combined sag intrusion must not exceed `gapSagFrac × gap` (`gapSagFrac` defaults to 0.90 and must be ≤ 1), leaving visible clearance. Rendering uses the same rim-slope and cross-gap policy as validation, and production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface.

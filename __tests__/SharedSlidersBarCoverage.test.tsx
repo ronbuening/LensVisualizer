@@ -5,7 +5,12 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import SharedSlidersBar from "../src/comparison/SharedSlidersBar.js";
 import themes from "../src/utils/themes.js";
 import type { RuntimeLens } from "../src/types/optics.js";
-import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "../src/comparison/comparisonSliders.js";
+import type {
+  AperturePairResult,
+  FocusPairResult,
+  MovementPairResult,
+  ZoomPairResult,
+} from "../src/comparison/comparisonSliders.js";
 
 function lens(overrides: Partial<RuntimeLens> & Record<string, unknown> = {}): RuntimeLens {
   return {
@@ -41,13 +46,18 @@ function renderSharedSliders({
   LA = lens({ name: "A", FOPEN: 1.4 }),
   LB = lens({ name: "B", FOPEN: 2, closeFocusM: 1 }),
   zoomPair = null,
+  movementPair = null,
   sharedZoomT = 0.5,
+  sharedShiftMm = 0,
+  sharedTiltDeg = 0,
   showEffectiveAperture = false,
   effectiveFNumA = 2.1,
   effectiveFNumB = 2.2,
   onSharedFocusChange = vi.fn(),
   onSharedStopdownChange = vi.fn(),
   onSharedZoomChange = vi.fn(),
+  onSharedShiftChange = vi.fn(),
+  onSharedTiltChange = vi.fn(),
   onFocusPointerDown = vi.fn(),
   onAperturePointerDown = vi.fn(),
   onSliderPointerUp = vi.fn(),
@@ -56,13 +66,18 @@ function renderSharedSliders({
   LA?: RuntimeLens;
   LB?: RuntimeLens;
   zoomPair?: ZoomPairResult | null;
+  movementPair?: MovementPairResult | null;
   sharedZoomT?: number;
+  sharedShiftMm?: number;
+  sharedTiltDeg?: number;
   showEffectiveAperture?: boolean;
   effectiveFNumA?: number;
   effectiveFNumB?: number;
   onSharedFocusChange?: (value: number) => void;
   onSharedStopdownChange?: (value: number) => void;
   onSharedZoomChange?: (value: number) => void;
+  onSharedShiftChange?: (value: number) => void;
+  onSharedTiltChange?: (value: number) => void;
   onFocusPointerDown?: () => void;
   onAperturePointerDown?: () => void;
   onSliderPointerUp?: () => void;
@@ -76,15 +91,20 @@ function renderSharedSliders({
         sharedFocusT={0.25}
         sharedStopdownT={0.3}
         sharedZoomT={sharedZoomT}
+        sharedShiftMm={sharedShiftMm}
+        sharedTiltDeg={sharedTiltDeg}
         onSharedFocusChange={onSharedFocusChange}
         onSharedStopdownChange={onSharedStopdownChange}
         onSharedZoomChange={onSharedZoomChange}
+        onSharedShiftChange={onSharedShiftChange}
+        onSharedTiltChange={onSharedTiltChange}
         onFocusPointerDown={onFocusPointerDown}
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}
         focusPair={focusPair}
         aperturePair={aperturePair}
         zoomPair={zoomPair}
+        movementPair={movementPair}
         dynamicEflA={52}
         dynamicEflB={50}
         effectiveFNumA={effectiveFNumA}
@@ -99,6 +119,8 @@ function renderSharedSliders({
       onSharedFocusChange,
       onSharedStopdownChange,
       onSharedZoomChange,
+      onSharedShiftChange,
+      onSharedTiltChange,
       onFocusPointerDown,
       onAperturePointerDown,
       onSliderPointerUp,
@@ -147,6 +169,44 @@ describe("SharedSlidersBar", () => {
 
     fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "0.8" } });
     expect(callbacks.onSharedZoomChange).toHaveBeenCalledWith(0.8);
+  });
+
+  it("renders movement controls for perspective-control comparisons", () => {
+    const LA = lens({
+      name: "PC A",
+      perspectiveControl: { shiftRangeMm: [-12, 12], tiltRangeDeg: [-7.5, 7.5] },
+    });
+    const movementPair: MovementPairResult = {
+      showMovement: true,
+      shiftA: -4,
+      shiftB: 0,
+      tiltA: 3,
+      tiltB: 0,
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-7.5, 7.5],
+      shiftStepMm: 0.1,
+      tiltStepDeg: 0.1,
+    };
+    const { callbacks } = renderSharedSliders({
+      LA,
+      movementPair,
+      sharedShiftMm: -4,
+      sharedTiltDeg: 3,
+    });
+
+    expect(screen.getByText("SHIFT")).toBeTruthy();
+    expect(screen.getByText("TILT")).toBeTruthy();
+    expect(screen.getAllByRole("slider")).toHaveLength(4);
+
+    fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "-2" } });
+    fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "1" } });
+    expect(callbacks.onSharedShiftChange).toHaveBeenCalledWith(-2);
+    expect(callbacks.onSharedTiltChange).toHaveBeenCalledWith(1);
+
+    fireEvent.change(screen.getAllByRole("slider")[0], { target: { value: "0.1" } });
+    fireEvent.change(screen.getAllByRole("slider")[1], { target: { value: "-0.1" } });
+    expect(callbacks.onSharedShiftChange).toHaveBeenLastCalledWith(0);
+    expect(callbacks.onSharedTiltChange).toHaveBeenLastCalledWith(0);
   });
 
   it("renders dual-zoom union endpoints, marker positions, and quick f-stop callbacks", () => {

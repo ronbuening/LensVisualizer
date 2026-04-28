@@ -15,6 +15,8 @@ export const SET_SCALE_MODE = "SET_SCALE_MODE";
 export const SET_SHARED_FOCUS_T = "SET_SHARED_FOCUS_T";
 export const SET_SHARED_STOPDOWN_T = "SET_SHARED_STOPDOWN_T";
 export const SET_SHARED_ZOOM_T = "SET_SHARED_ZOOM_T";
+export const SET_SHARED_SHIFT_MM = "SET_SHARED_SHIFT_MM";
+export const SET_SHARED_TILT_DEG = "SET_SHARED_TILT_DEG";
 export const ENTER_COMPARE = "ENTER_COMPARE";
 export const EXIT_COMPARE = "EXIT_COMPARE";
 
@@ -35,6 +37,10 @@ export default function comparisonReducer(state: LensState, action: LensAction):
       return { ...state, sharedSliders: { ...state.sharedSliders, sharedStopdownT: action.value } };
     case SET_SHARED_ZOOM_T:
       return { ...state, sharedSliders: { ...state.sharedSliders, sharedZoomT: action.value } };
+    case SET_SHARED_SHIFT_MM:
+      return { ...state, sharedSliders: { ...state.sharedSliders, sharedShiftMm: action.value } };
+    case SET_SHARED_TILT_DEG:
+      return { ...state, sharedSliders: { ...state.sharedSliders, sharedTiltDeg: action.value } };
 
     /* ── Comparison mode transitions ── */
     case ENTER_COMPARE: {
@@ -48,7 +54,7 @@ export default function comparisonReducer(state: LensState, action: LensAction):
         ...state,
         lens,
         panels: { ...state.panels, analysisDrawerOpen: false },
-        sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0 },
+        sharedSliders: { sharedFocusT: 0, sharedStopdownT: 0, sharedZoomT: 0, sharedShiftMm: 0, sharedTiltDeg: 0 },
       };
     }
     case EXIT_COMPARE:
@@ -59,6 +65,8 @@ export default function comparisonReducer(state: LensState, action: LensAction):
           ...state.sliders,
           focusT: action.focusA ?? state.sliders.focusT,
           stopdownT: action.stopdownA ?? state.sliders.stopdownT,
+          shiftMm: action.shiftA ?? state.sliders.shiftMm,
+          tiltDeg: action.tiltA ?? state.sliders.tiltDeg,
         },
       };
 

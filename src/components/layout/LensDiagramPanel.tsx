@@ -46,6 +46,8 @@ interface LensDiagramPanelProps {
   focusT?: number;
   zoomT?: number;
   stopdownT?: number;
+  shiftMm?: number;
+  tiltDeg?: number;
   scaleRatio: number | null;
   panelId: string;
   compact: boolean;
@@ -64,6 +66,8 @@ export default function LensDiagramPanel({
   focusT: focusTProp,
   zoomT: zoomTProp,
   stopdownT: stopdownTProp,
+  shiftMm: shiftMmProp,
+  tiltDeg: tiltDegProp,
   scaleRatio,
   panelId,
   compact,
@@ -104,6 +108,8 @@ export default function LensDiagramPanel({
   const focusT = focusTProp ?? sliders.focusT;
   const zoomT = zoomTProp ?? sliders.zoomT;
   const stopdownT = stopdownTProp ?? sliders.stopdownT;
+  const shiftMm = shiftMmProp ?? sliders.shiftMm;
+  const tiltDeg = tiltDegProp ?? sliders.tiltDeg;
 
   /* ── Extracted hooks ── */
   const adapters = useDispatchAdapters();
@@ -141,6 +147,9 @@ export default function LensDiagramPanel({
     CX,
     IX,
     effectiveSC,
+    movement,
+    movementTransform,
+    lensAxis,
     shapes,
     shapeError,
     stopZ,
@@ -154,7 +163,8 @@ export default function LensDiagramPanel({
     dynamicEFL,
     effectiveFNum,
     filterId,
-  } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, scaleRatio, panelId });
+  } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, shiftMm, tiltDeg, scaleRatio, panelId });
+  const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
 
   useEffect(() => {
     if (!L || sel == null) return;
@@ -236,6 +246,7 @@ export default function LensDiagramPanel({
     sx,
     sy,
     clampedRayEnd,
+    movementTransform,
     currentPhysStopSD,
     currentEPSD,
     rayTracksF,
@@ -287,11 +298,15 @@ export default function LensDiagramPanel({
           focusT={focusT}
           zoomT={zoomT}
           stopdownT={stopdownT}
+          shiftMm={resolvedMovement.shiftMm}
+          tiltDeg={resolvedMovement.tiltDeg}
           sx={sx}
           sy={sy}
           CX={CX}
           IX={IX}
           effectiveSC={effectiveSC}
+          movementTransform={movementTransform}
+          lensAxis={lensAxis}
           zPos={zPos}
           IMG_MM={IMG_MM}
           shapes={shapes}
@@ -361,6 +376,7 @@ export default function LensDiagramPanel({
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
                 fieldGeometry={fieldGeometry}
+                movementActive={resolvedMovement.active}
                 sliderInteracting={sliderInteracting}
                 aberrationsExpanded={aberrationsExpanded}
                 onAberrationsExpandedChange={adapters.onAberrationsExpandedChange}

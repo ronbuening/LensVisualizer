@@ -8,7 +8,12 @@
 import ComparisonContent from "../../../comparison/ComparisonContent.js";
 import SingleLensContent from "../SingleLensContent.js";
 import type { ComparisonLensesResult } from "../../../comparison/useComparisonMode.js";
-import type { AperturePairResult, FocusPairResult, ZoomPairResult } from "../../../comparison/comparisonSliders.js";
+import type {
+  AperturePairResult,
+  FocusPairResult,
+  MovementPairResult,
+  ZoomPairResult,
+} from "../../../comparison/comparisonSliders.js";
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, LensAction, MobileView } from "../../../types/state.js";
 import type { Dispatch } from "react";
@@ -23,6 +28,7 @@ interface ViewerContentProps {
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
   zoomPair: ZoomPairResult | null;
+  movementPair: MovementPairResult | null;
   scaleRatios: { a: number; b: number } | null;
   maxHeaderHeight: number;
   onHeaderHeight: (panelId: string, height: number) => void;
@@ -30,8 +36,12 @@ interface ViewerContentProps {
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
+  sharedShiftMm: number;
+  sharedTiltDeg: number;
   onSharedFocusChange: (value: number) => void;
   onSharedStopdownChange: (value: number) => void;
+  onSharedShiftChange: (value: number) => void;
+  onSharedTiltChange: (value: number) => void;
   onFocusPointerDown: () => void;
   onAperturePointerDown: () => void;
   onSliderPointerUp: () => void;
@@ -53,6 +63,7 @@ export default function ViewerContent({
   focusPair,
   aperturePair,
   zoomPair,
+  movementPair,
   scaleRatios,
   maxHeaderHeight,
   onHeaderHeight,
@@ -60,8 +71,12 @@ export default function ViewerContent({
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
+  sharedShiftMm,
+  sharedTiltDeg,
   onSharedFocusChange,
   onSharedStopdownChange,
+  onSharedShiftChange,
+  onSharedTiltChange,
   onFocusPointerDown,
   onAperturePointerDown,
   onSliderPointerUp,
@@ -83,6 +98,7 @@ export default function ViewerContent({
         focusPair={focusPair}
         aperturePair={aperturePair}
         zoomPair={zoomPair}
+        movementPair={movementPair}
         scaleRatios={scaleRatios}
         maxHeaderHeight={maxHeaderHeight}
         onHeaderHeight={onHeaderHeight}
@@ -90,8 +106,12 @@ export default function ViewerContent({
         sharedFocusT={sharedFocusT}
         sharedStopdownT={sharedStopdownT}
         sharedZoomT={sharedZoomT}
+        sharedShiftMm={sharedShiftMm}
+        sharedTiltDeg={sharedTiltDeg}
         onSharedFocusChange={onSharedFocusChange}
         onSharedStopdownChange={onSharedStopdownChange}
+        onSharedShiftChange={onSharedShiftChange}
+        onSharedTiltChange={onSharedTiltChange}
         onFocusPointerDown={onFocusPointerDown}
         onAperturePointerDown={onAperturePointerDown}
         onSliderPointerUp={onSliderPointerUp}

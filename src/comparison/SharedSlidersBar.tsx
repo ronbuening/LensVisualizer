@@ -29,8 +29,9 @@
  */
 
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { snapToZeroStop } from "../utils/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 import SharedSliderSection from "./SharedSliderSection.js";
@@ -42,15 +43,20 @@ interface SharedSlidersBarProps {
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
+  sharedShiftMm: number;
+  sharedTiltDeg: number;
   onSharedFocusChange: (value: number) => void;
   onSharedStopdownChange: (value: number) => void;
   onSharedZoomChange: (value: number) => void;
+  onSharedShiftChange: (value: number) => void;
+  onSharedTiltChange: (value: number) => void;
   onFocusPointerDown: () => void;
   onAperturePointerDown: () => void;
   onSliderPointerUp?: () => void;
   focusPair: FocusPairResult;
   aperturePair: AperturePairResult;
   zoomPair: ZoomPairResult | null;
+  movementPair: MovementPairResult | null;
   dynamicEflA: number;
   dynamicEflB: number;
   effectiveFNumA: number;
@@ -67,15 +73,20 @@ export default function SharedSlidersBar({
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
+  sharedShiftMm,
+  sharedTiltDeg,
   onSharedFocusChange,
   onSharedStopdownChange,
   onSharedZoomChange,
+  onSharedShiftChange,
+  onSharedTiltChange,
   onFocusPointerDown,
   onAperturePointerDown,
   onSliderPointerUp,
   focusPair,
   aperturePair,
   zoomPair,
+  movementPair,
   dynamicEflA,
   dynamicEflB,
   effectiveFNumA,
@@ -94,6 +105,7 @@ export default function SharedSlidersBar({
   const showFocusCP = focusCP > 0.01 && focusCP < 0.99;
   const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
   const showZoom = zoomPair?.showZoom;
+  const showMovement = movementPair?.showMovement;
 
   /* Zoom readout helpers — dual-zoom uses the shared focal length from
    * computeZoomPair; single-zoom reads from the one zoom lens directly. */
@@ -132,6 +144,14 @@ export default function SharedSlidersBar({
     onSharedStopdownChange(Math.max(0, stopT));
     onSliderPointerUp?.();
   };
+  const handleSharedShiftChange = (value: number) => {
+    onSharedShiftChange(snapToZeroStop(value, movementPair?.shiftStepMm ?? 0));
+  };
+  const handleSharedTiltChange = (value: number) => {
+    onSharedTiltChange(snapToZeroStop(value, movementPair?.tiltStepDeg ?? 0));
+  };
+  const signed = (value: number, digits: number, unit: string) =>
+    `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
 
   return (
     <div
@@ -142,7 +162,14 @@ export default function SharedSlidersBar({
         transition: "background 0.3s,border-color 0.3s",
       }}
     >
-      <div style={{ display: "flex", flexDirection: isWide ? "row" : "column", gap: isWide ? 32 : 16 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isWide ? "row" : "column",
+          flexWrap: isWide ? "wrap" : undefined,
+          gap: isWide ? 32 : 16,
+        }}
+      >
         {/* Zoom slider (only when at least one lens is a zoom) */}
         {showZoom && (
           <SharedSliderSection
@@ -159,6 +186,50 @@ export default function SharedSlidersBar({
               <>
                 <span>A: {zoomReadoutA}</span>
                 <span>B: {zoomReadoutB}</span>
+              </>
+            }
+          />
+        )}
+
+        {showMovement && movementPair && (
+          <SharedSliderSection
+            theme={t}
+            label="SHIFT"
+            valueLabel={signed(sharedShiftMm, 1, "mm")}
+            minLabel={signed(movementPair.shiftRangeMm[0], 1, "mm")}
+            maxLabel={signed(movementPair.shiftRangeMm[1], 1, "mm")}
+            sliderValue={sharedShiftMm}
+            sliderMin={movementPair.shiftRangeMm[0]}
+            sliderMax={movementPair.shiftRangeMm[1]}
+            sliderStep={movementPair.shiftStepMm}
+            onSliderChange={handleSharedShiftChange}
+            onPointerUp={onSliderPointerUp}
+            readouts={
+              <>
+                <span>A: {LA.perspectiveControl ? signed(movementPair.shiftA, 1, "mm") : "n/a"}</span>
+                <span>B: {LB.perspectiveControl ? signed(movementPair.shiftB, 1, "mm") : "n/a"}</span>
+              </>
+            }
+          />
+        )}
+
+        {showMovement && movementPair && (
+          <SharedSliderSection
+            theme={t}
+            label="TILT"
+            valueLabel={signed(sharedTiltDeg, 1, "deg")}
+            minLabel={signed(movementPair.tiltRangeDeg[0], 1, "deg")}
+            maxLabel={signed(movementPair.tiltRangeDeg[1], 1, "deg")}
+            sliderValue={sharedTiltDeg}
+            sliderMin={movementPair.tiltRangeDeg[0]}
+            sliderMax={movementPair.tiltRangeDeg[1]}
+            sliderStep={movementPair.tiltStepDeg}
+            onSliderChange={handleSharedTiltChange}
+            onPointerUp={onSliderPointerUp}
+            readouts={
+              <>
+                <span>A: {LA.perspectiveControl ? signed(movementPair.tiltA, 1, "deg") : "n/a"}</span>
+                <span>B: {LB.perspectiveControl ? signed(movementPair.tiltB, 1, "deg") : "n/a"}</span>
               </>
             }
           />

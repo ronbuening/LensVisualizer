@@ -15,6 +15,7 @@ interface ApertureStopProps {
   currentPhysStopSD: number;
   bladeStubFrac: number;
   lyStoPad: number;
+  pointTransform?: (z: number, y: number) => [number, number];
   t: Theme;
 }
 
@@ -27,32 +28,43 @@ export default function ApertureStop({
   currentPhysStopSD,
   bladeStubFrac,
   lyStoPad,
+  pointTransform,
   t,
 }: ApertureStopProps) {
   const bladeInner = Math.min(currentPhysStopSD, stopPhysSD * (1 - bladeStubFrac));
+  const screenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+    return [sx(zz), sy(yy)];
+  };
+  const topHousing = screenPoint(stopZ, -stopHousingSD);
+  const topBlade = screenPoint(stopZ, -bladeInner);
+  const bottomHousing = screenPoint(stopZ, stopHousingSD);
+  const bottomBlade = screenPoint(stopZ, bladeInner);
+  const label = screenPoint(stopZ, -stopHousingSD - lyStoPad);
+
   return (
     <>
       <line
-        x1={sx(stopZ)}
-        y1={sy(-stopHousingSD)}
-        x2={sx(stopZ)}
-        y2={sy(-bladeInner)}
+        x1={topHousing[0]}
+        y1={topHousing[1]}
+        x2={topBlade[0]}
+        y2={topBlade[1]}
         stroke={t.stop}
         strokeWidth={2.2}
         strokeLinecap="round"
       />
       <line
-        x1={sx(stopZ)}
-        y1={sy(stopHousingSD)}
-        x2={sx(stopZ)}
-        y2={sy(bladeInner)}
+        x1={bottomHousing[0]}
+        y1={bottomHousing[1]}
+        x2={bottomBlade[0]}
+        y2={bottomBlade[1]}
         stroke={t.stop}
         strokeWidth={2.2}
         strokeLinecap="round"
       />
       <text
-        x={sx(stopZ)}
-        y={sy(-stopHousingSD - lyStoPad)}
+        x={label[0]}
+        y={label[1]}
         textAnchor="middle"
         fill={t.stopLabel}
         fontSize={9.5}

@@ -42,6 +42,8 @@ Key responsibilities:
 - Builds or receives a `RuntimeLens`. In comparison mode, `ComparisonLayout` passes prebuilt runtime lenses to avoid
   rebuilding the same lens inside each panel.
 - Wires computation hooks for layout, rays, chromatic spread, overlays, and slider feedback.
+- Applies optional perspective-control movement for supported lenses, including transformed geometry/rays and fixed
+  image-plane reference behavior.
 - Passes memoized field geometry into analysis drawer tabs.
 - Tracks slider interaction so heavy analysis can defer/freeze inputs while the user drags.
 - Surfaces build, shape, ray, and render errors through the panel error tiers.
@@ -50,8 +52,8 @@ Key responsibilities:
 
 | Hook | Purpose |
 | --- | --- |
-| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, and current-state field geometry. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks and reports the first ray error. |
+| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies optional movement transforms, and reports the first ray error. |
 | `useOnAxisRays.ts` | Computes on-axis ray fan segments. |
 | `useOffAxisRays.ts` | Computes visible off-axis rays using state-aware field geometry. |
 | `useChromaticRays.ts` | Computes chromatic R/G/B tracing and LCA/TCA spread. |
@@ -69,7 +71,7 @@ Key responsibilities:
 | `LensDiagramLoadedState.tsx` | Loaded panel composition after build/layout succeeds. |
 | `LensDiagramErrorState.tsx` | Build/shape/ray error presentation. |
 | `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
-| `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. |
+| `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. Shows a notice when PC movement is active because v1 analysis tabs remain centered-lens diagnostics. |
 | `DiagramControlPanel.tsx` | Sliders, inspector, legend, and analysis launch button. |
 | `analysisTabs.ts` | Typed analysis tab metadata shared by trigger and drawer. |
 
@@ -77,7 +79,7 @@ Key responsibilities:
 
 | Module | Purpose |
 | --- | --- |
-| `DiagramSVG.tsx` | Top-level SVG renderer. Accepts viewBox override and zoom handlers; wrapped in `React.memo`. |
+| `DiagramSVG.tsx` | Top-level SVG renderer. Accepts viewBox override, zoom handlers, optional movement transforms, and the subtle moved-lens axis; wrapped in `React.memo`. |
 | `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
 | `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements. |
 | `DiagramElementLayer.tsx` | Lens element paths and aspheric overlays. |

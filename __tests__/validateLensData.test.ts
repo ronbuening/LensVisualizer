@@ -97,6 +97,39 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid({ visible: false }))).toEqual([]);
   });
 
+  it("accepts valid perspectiveControl movement ranges", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          perspectiveControl: {
+            shiftRangeMm: [-11.5, 11.5],
+            tiltRangeDeg: [-8.5, 8.5],
+            shiftStepMm: 0.1,
+            tiltStepDeg: 0.1,
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("catches invalid perspectiveControl movement ranges", () => {
+    const errors = validateLensData(
+      makeValid({
+        perspectiveControl: {
+          shiftRangeMm: [1, 11.5],
+          tiltRangeDeg: [-8.5, -1],
+          shiftStepMm: 0,
+          tiltStepDeg: -0.1,
+        },
+      }),
+    );
+
+    expect(errors.some((error) => error.includes("perspectiveControl.shiftRangeMm"))).toBe(true);
+    expect(errors.some((error) => error.includes("perspectiveControl.tiltRangeDeg"))).toBe(true);
+    expect(errors.some((error) => error.includes("perspectiveControl.shiftStepMm"))).toBe(true);
+    expect(errors.some((error) => error.includes("perspectiveControl.tiltStepDeg"))).toBe(true);
+  });
+
   it("catches missing STO surface", () => {
     const data = makeValid({
       surfaces: [

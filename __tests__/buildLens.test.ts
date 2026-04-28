@@ -185,6 +185,7 @@ describe("buildLens — RuntimeLens property shape", () => {
     expect(typeof L.maxFstop).toBe("number");
     expect(typeof L.focusStep).toBe("number");
     expect(typeof L.apertureStep).toBe("number");
+    expect(L.perspectiveControl).toBeNull();
     // Zoom scalars
     expect(typeof L.isZoom).toBe("boolean");
     expect(typeof L.zoomStep).toBe("number");

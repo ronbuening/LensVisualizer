@@ -18,6 +18,8 @@ import type {
 
 const MAX_VISIBLE_GAP_INTRUSION_FRAC = 1.0;
 
+export type DiagramPointTransform = (z: number, y: number) => [number, number];
+
 interface CoordTransformParams {
   svgW: number;
   svgH: number;
@@ -220,8 +222,18 @@ export function computeElementShapes(
   zPos: number[],
   sx: (z: number) => number,
   sy: (y: number) => number,
+  pointTransform?: DiagramPointTransform,
 ): ElementShape[] {
   const diagnostics = computeElementRenderDiagnostics(L, zPos);
+  const screenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+    return [sx(zz), sy(yy)];
+  };
+  const pathPoint = (z: number, y: number): string => {
+    const [x, yy] = screenPoint(z, y);
+    return `${x},${yy}`;
+  };
+
   return L.ES.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
     const trim1 = diagnostics[elementIndex].front.renderSD;
     const trim2 = diagnostics[elementIndex].rear.renderSD;
@@ -235,50 +247,52 @@ export function computeElementShapes(
     let d = "";
     for (let i = 0; i <= NN; i++) {
       const y = -trim1 + (2 * trim1 * i) / NN;
-      d += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.abs(y), s1, L))},${sy(y)} `;
+      d += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
     }
     for (let i = NN; i >= 0; i--) {
       const y = -trim2 + (2 * trim2 * i) / NN;
-      d += `L${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
+      d += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
     const asphPaths: AsphPathData[] = [];
-    const midX = sx((z1 + z2) / 2);
+    const midZ = (z1 + z2) / 2;
     if (L.asphByIdx[s1]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
         const y = -trim1 + (2 * trim1 * i) / NN;
-        p += `${i ? "L" : "M"}${sx(z1 + renderSag(Math.abs(y), s1, L))},${sy(y)} `;
+        p += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
       }
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
-      const hp = p + `L${midX},${sy(trim1)} L${midX},${sy(-trim1)} Z`;
+      const hp = p + `L${pathPoint(midZ, trim1)} L${pathPoint(midZ, -trim1)} Z`;
+      const [labelX, labelY] = screenPoint(z1 + renderSag(trim1, s1, L), -trim1);
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z1 + renderSag(trim1, s1, L)),
-        labelY: sy(-trim1) - 4,
+        labelX,
+        labelY: labelY - 4,
       });
     }
     if (L.asphByIdx[s2]) {
       let p = "";
       for (let i = 0; i <= NN; i++) {
         const y = -trim2 + (2 * trim2 * i) / NN;
-        p += `${i ? "L" : "M"}${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
+        p += `${i ? "L" : "M"}${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
       }
       /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
-      let hp = `M${midX},${sy(-trim2)} L${midX},${sy(trim2)} `;
+      let hp = `M${pathPoint(midZ, -trim2)} L${pathPoint(midZ, trim2)} `;
       for (let i = NN; i >= 0; i--) {
         const y = -trim2 + (2 * trim2 * i) / NN;
-        hp += `L${sx(z2 + renderSag(Math.abs(y), s2, L))},${sy(y)} `;
+        hp += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
       }
       hp += "Z";
+      const [labelX, labelY] = screenPoint(z2 + renderSag(trim2, s2, L), -trim2);
       asphPaths.push({
         surfIdx: s2,
         pathD: p,
         halfPathD: hp,
-        labelX: sx(z2 + renderSag(trim2, s2, L)),
-        labelY: sy(-trim2) - 4,
+        labelX,
+        labelY: labelY - 4,
       });
     }
     return { eid, d: d + "Z", z1, z2, asphPaths };

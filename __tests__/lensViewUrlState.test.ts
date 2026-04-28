@@ -39,8 +39,8 @@ describe("lensViewUrlState", () => {
   });
 
   it("honors stable slider params for unknown versions but ignores v1-only params", () => {
-    const state = parseLensViewQuery("?v=99&focus=0.4&aperture=0.3&zoom=50&el=2&gm=1&tab=coma");
-    expect(state).toEqual({ focus: 0.4, aperture: 0.3, zoom: 50 });
+    const state = parseLensViewQuery("?v=99&focus=0.4&aperture=0.3&zoom=50&shift=-4.5&tilt=3&el=2&gm=1&tab=coma");
+    expect(state).toEqual({ focus: 0.4, aperture: 0.3, zoom: 50, shift: -4.5, tilt: 3 });
   });
 
   it("builds minimal single-lens query params", () => {
@@ -92,12 +92,23 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("v=1&lca=1&ptz=1");
   });
 
+  it("round-trips signed perspective-control movement", () => {
+    const parsed = parseLensViewQuery("?shift=-11.5&tilt=8.25");
+    expect(parsed.shift).toBe(-11.5);
+    expect(parsed.tilt).toBe(8.25);
+
+    const params = buildLensViewQuery({ shift: -11.5, tilt: 8.25 });
+    expect(params.toString()).toBe("shift=-11.50&tilt=8.25");
+  });
+
   it("can materialize defaults for popstate hydration", () => {
     const state = lensViewQueryToUrlState(parseLensViewQuery(""), true);
     expect(state).toMatchObject({
       focus: 0,
       aperture: 0,
       zoom: 0,
+      shift: 0,
+      tilt: 0,
       selectedElementId: null,
       selectedElementIdA: null,
       selectedElementIdB: null,

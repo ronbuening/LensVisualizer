@@ -39,6 +39,8 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; do not introduce module-level optical state.
 - Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time
   and infinity/default-state oriented.
+- Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis
+  itself is explicitly being upgraded for shifted/tilted optics. v1 analysis tabs remain centered-lens diagnostics.
 - Use shared chart helpers in `src/components/display/charts/` before adding bespoke SVG axes or tick math.
 - Use `ThemedMarkdown` for article and lens-description markdown so link handling, math, tables, and special images stay
   consistent.

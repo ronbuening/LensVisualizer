@@ -13,6 +13,7 @@ import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
 import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
 import type { RuntimeLens, ChromaticSpread, ElementData, ElementShape } from "../../../types/optics.js";
+import type { LensMovementTransform } from "../../../optics/lensMovement.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
@@ -39,11 +40,15 @@ interface LensDiagramLoadedStateProps {
   focusT: number;
   zoomT: number;
   stopdownT: number;
+  shiftMm: number;
+  tiltDeg: number;
   sx: (z: number) => number;
   sy: (y: number) => number;
   CX: number;
   IX: number;
   effectiveSC: number;
+  movementTransform: LensMovementTransform;
+  lensAxis: [[number, number], [number, number]] | null;
   zPos: number[];
   IMG_MM: number;
   shapes: ElementShape[];
@@ -107,6 +112,8 @@ interface LensDiagramLoadedStateProps {
     onZoomChange: (value: number) => void;
     onFocusChange: (value: number) => void;
     onStopdownChange: (value: number) => void;
+    onShiftChange: (value: number) => void;
+    onTiltChange: (value: number) => void;
     onFocusExpandedChange: (expanded: boolean) => void;
     onApertureExpandedChange: (expanded: boolean) => void;
     onLegendExpandedChange: (expanded: boolean) => void;
@@ -153,11 +160,15 @@ export default function LensDiagramLoadedState({
   focusT,
   zoomT,
   stopdownT,
+  shiftMm,
+  tiltDeg,
   sx,
   sy,
   CX,
   IX,
   effectiveSC,
+  movementTransform,
+  lensAxis,
   zPos,
   IMG_MM,
   shapes,
@@ -221,6 +232,8 @@ export default function LensDiagramLoadedState({
             CX={CX}
             IX={IX}
             effectiveSC={effectiveSC}
+            movementTransform={movementTransform}
+            lensAxis={lensAxis}
             zPos={zPos}
             IMG_MM={IMG_MM}
             shapes={shapes}
@@ -291,6 +304,8 @@ export default function LensDiagramLoadedState({
               showSliders={showSliders}
               zoomT={zoomT}
               focusT={focusT}
+              shiftMm={shiftMm}
+              tiltDeg={tiltDeg}
               stopdownT={stopdownT}
               fNumber={fNumber}
               currentFOPEN={currentFOPEN}
@@ -307,6 +322,8 @@ export default function LensDiagramLoadedState({
               onZoomChange={adapters.onZoomChange}
               onFocusChange={adapters.onFocusChange}
               onStopdownChange={adapters.onStopdownChange}
+              onShiftChange={adapters.onShiftChange}
+              onTiltChange={adapters.onTiltChange}
               onFocusExpandedChange={adapters.onFocusExpandedChange}
               onApertureExpandedChange={adapters.onApertureExpandedChange}
               onLegendExpandedChange={adapters.onLegendExpandedChange}

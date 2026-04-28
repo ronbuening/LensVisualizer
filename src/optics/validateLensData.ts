@@ -9,13 +9,55 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
 type UntrustedLensData = Record<string, any>;
+
+function validateNumberRange(
+  config: PerspectiveControlConfig,
+  field: "shiftRangeMm" | "tiltRangeDeg",
+  errors: string[],
+): void {
+  const range = config[field];
+  if (!Array.isArray(range) || range.length !== 2) {
+    errors.push(`"perspectiveControl.${field}" must be a [min, max] array`);
+    return;
+  }
+  const [min, max] = range;
+  if (typeof min !== "number" || typeof max !== "number" || !isFinite(min) || !isFinite(max)) {
+    errors.push(`"perspectiveControl.${field}" must contain finite numbers`);
+    return;
+  }
+  if (min > 0 || max < 0 || min >= max) {
+    errors.push(`"perspectiveControl.${field}" must be an ascending range that includes 0`);
+  }
+}
+
+function validatePerspectiveControl(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"perspectiveControl" must be an object when provided`);
+    return;
+  }
+  const config = value as PerspectiveControlConfig;
+  validateNumberRange(config, "shiftRangeMm", errors);
+  validateNumberRange(config, "tiltRangeDeg", errors);
+  if (
+    config.shiftStepMm !== undefined &&
+    (typeof config.shiftStepMm !== "number" || !isFinite(config.shiftStepMm) || config.shiftStepMm <= 0)
+  ) {
+    errors.push(`"perspectiveControl.shiftStepMm" must be a finite positive number when provided`);
+  }
+  if (
+    config.tiltStepDeg !== undefined &&
+    (typeof config.tiltStepDeg !== "number" || !isFinite(config.tiltStepDeg) || config.tiltStepDeg <= 0)
+  ) {
+    errors.push(`"perspectiveControl.tiltStepDeg" must be a finite positive number when provided`);
+  }
+}
 
 /**
  * Validate a LENS_DATA object for structural correctness.
@@ -90,6 +132,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── Optional boolean fields ── */
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
+  if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
 
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;

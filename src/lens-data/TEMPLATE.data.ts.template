@@ -59,6 +59,9 @@ const LENS_DATA = {
    *  patentYear            Year the patent was published or granted (e.g. 2019).
    *  elementCount          Total number of glass elements.
    *  groupCount            Total number of air-separated groups.
+   *  perspectiveControl    Optional tilt/shift movement limits for real PC lenses only.
+   *                        Omit for ordinary lenses; defaults are no tilt/shift controls.
+   *                        Use official manufacturer sources for shift/tilt ranges.
    */
   focalLengthMarketing: 50,             // or [70, 200] for zooms
   focalLengthDesign:    51.2,           // omit if same as focalLengthMarketing
@@ -67,6 +70,16 @@ const LENS_DATA = {
   patentYear:           2019,
   elementCount:         12,
   groupCount:           9,
+
+  // Optional: enable signed SHIFT/TILT controls for perspective-control lenses.
+  // The 2D diagram shifts/tilts the rendered lens and rays while keeping the IMG plane fixed.
+  // Analysis drawer diagnostics remain centered-lens calculations in the first movement pass.
+  // perspectiveControl: {
+  //   shiftRangeMm: [-11.5, 11.5],
+  //   tiltRangeDeg: [-8.5, 8.5],
+  //   shiftStepMm: 0.1,
+  //   tiltStepDeg: 0.1,
+  // },
 
   /* ── Elements ──
    *  One entry per physical glass element, front to rear.

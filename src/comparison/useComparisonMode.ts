@@ -14,8 +14,8 @@
 import { useMemo, useState, useCallback } from "react";
 import buildLens from "../optics/buildLens.js";
 import { LENS_CATALOG } from "../utils/lensCatalog.js";
-import { computeFocusPair, computeAperturePair, computeZoomPair } from "./comparisonSliders.js";
-import type { FocusPairResult, AperturePairResult, ZoomPairResult } from "./comparisonSliders.js";
+import { computeFocusPair, computeAperturePair, computeZoomPair, computeMovementPair } from "./comparisonSliders.js";
+import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /* ── Comparison result types ── */
@@ -50,6 +50,8 @@ interface UseComparisonModeParams {
   sharedFocusT: number;
   sharedStopdownT: number;
   sharedZoomT: number;
+  sharedShiftMm: number;
+  sharedTiltDeg: number;
 }
 
 interface UseComparisonModeResult {
@@ -58,6 +60,7 @@ interface UseComparisonModeResult {
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
   zoomPair: ZoomPairResult | null;
+  movementPair: MovementPairResult | null;
   handleHeaderHeight: (panelId: string, height: number) => void;
   maxHeaderHeight: number;
 }
@@ -72,6 +75,8 @@ export default function useComparisonMode({
   sharedFocusT,
   sharedStopdownT,
   sharedZoomT,
+  sharedShiftMm,
+  sharedTiltDeg,
 }: UseComparisonModeParams): UseComparisonModeResult {
   /* ── Build both lenses when comparison mode is active ── */
   const comparisonLenses: ComparisonLensesResult = useMemo(() => {
@@ -107,6 +112,11 @@ export default function useComparisonMode({
     return computeZoomPair(sharedZoomT, comparisonLenses.LA, comparisonLenses.LB);
   }, [sharedZoomT, comparisonLenses]);
 
+  const movementPair = useMemo(() => {
+    if (!isComparisonOk(comparisonLenses)) return null;
+    return computeMovementPair(sharedShiftMm, sharedTiltDeg, comparisonLenses.LA, comparisonLenses.LB);
+  }, [sharedShiftMm, sharedTiltDeg, comparisonLenses]);
+
   /* ── Header height alignment for comparison panels ── */
   const [headerHeights, setHeaderHeights] = useState<Record<string, number>>({ a: 0, b: 0 });
 
@@ -122,6 +132,7 @@ export default function useComparisonMode({
     focusPair,
     aperturePair,
     zoomPair,
+    movementPair,
     handleHeaderHeight,
     maxHeaderHeight,
   };

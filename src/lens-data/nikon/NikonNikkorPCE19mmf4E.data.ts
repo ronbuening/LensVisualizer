@@ -56,6 +56,14 @@ const LENS_DATA = {
   patentYear: 2017,
   elementCount: 17,
   groupCount: 13,
+  perspectiveControl: {
+    /* Nikon Imaging lists shift +/-12 mm and tilt +/-7.5 deg:
+     * https://imaging.nikon.com/imaging/lineup/lens/f-mount/specialpurpose/pc_pce/pc_19mmf_4e_ed/ */
+    shiftRangeMm: [-12, 12],
+    tiltRangeDeg: [-7.5, 7.5],
+    shiftStepMm: 0.1,
+    tiltStepDeg: 0.1,
+  },
 
   /* ── Elements ── */
   elements: [

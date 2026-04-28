@@ -75,6 +75,8 @@ export interface SlidersSlice {
   focusT: number;
   zoomT: number;
   stopdownT: number;
+  shiftMm: number;
+  tiltDeg: number;
 }
 
 export type PanelField =
@@ -147,6 +149,8 @@ export type LensAction =
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
   | { type: "SET_STOPDOWN_T"; value: number }
+  | { type: "SET_SHIFT_MM"; value: number }
+  | { type: "SET_TILT_DEG"; value: number }
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
@@ -192,6 +196,8 @@ export interface URLState {
   comparing?: boolean;
   focus?: number;
   aperture?: number;
+  shift?: number;
+  tilt?: number;
   zoomA?: number;
   zoomB?: number;
   zoom?: number;

@@ -17,6 +17,9 @@ interface SharedSliderSectionProps {
   minLabel: ReactNode;
   maxLabel: ReactNode;
   sliderValue: number;
+  sliderMin?: number;
+  sliderMax?: number;
+  sliderStep?: number;
   onSliderChange: (value: number) => void;
   onPointerDown?: () => void;
   onPointerUp?: () => void;
@@ -81,6 +84,9 @@ export default function SharedSliderSection({
   minLabel,
   maxLabel,
   sliderValue,
+  sliderMin = 0,
+  sliderMax = 1,
+  sliderStep = 0.004,
   onSliderChange,
   onPointerDown,
   onPointerUp,
@@ -108,9 +114,9 @@ export default function SharedSliderSection({
           {markerPositions.length > 0 && <CommonPointMarkers theme={t} positions={markerPositions} />}
           <input
             type="range"
-            min="0"
-            max="1"
-            step="0.004"
+            min={sliderMin}
+            max={sliderMax}
+            step={sliderStep}
             value={sliderValue}
             onPointerDown={onPointerDown}
             onChange={(event) => onSliderChange(parseFloat(event.target.value))}
