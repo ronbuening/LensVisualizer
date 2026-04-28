@@ -6,6 +6,7 @@ import useRayTracing from "../src/components/hooks/useRayTracing.js";
 import buildLens from "../src/optics/buildLens.js";
 import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.js";
 import { createCoordinateTransforms } from "../src/optics/diagramGeometry.js";
+import { raySampleCountForDensity } from "../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
 import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -50,6 +51,7 @@ describe("useRayTracing", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 0,
         currentEPSD: 0,
+        rayDensity: "normal",
         rayTracksF: false,
         showOffAxis: "off",
         showChromatic: false,
@@ -81,6 +83,7 @@ describe("useRayTracing", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         showOffAxis: "off",
         showChromatic: false,
@@ -94,6 +97,35 @@ describe("useRayTracing", () => {
     expect(result.current.rays.length).toBe(L.rayFractions.length);
     expect(result.current.offAxisRays).toEqual([]);
     expect(result.current.chromaticRays).toEqual([]);
+  });
+
+  it("applies ray density to monochrome ray categories", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const { result } = renderHook(() =>
+      useRayTracing({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "diagnostic",
+        rayTracksF: false,
+        showOffAxis: "trueAngle",
+        showChromatic: false,
+        chromR: false,
+        chromG: false,
+        chromB: false,
+        lensKey: "ZeissSonnar50f15",
+      }),
+    );
+    expect(result.current.rayError).toBeNull();
+    expect(result.current.rays.length).toBe(raySampleCountForDensity(L.rayFractions, "diagnostic"));
+    expect(result.current.offAxisRays.length).toBe(raySampleCountForDensity(L.offAxisFractions, "diagnostic"));
   });
 
   it("produces all three ray types when all enabled", () => {
@@ -110,6 +142,7 @@ describe("useRayTracing", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         showOffAxis: "trueAngle",
         showChromatic: true,
@@ -140,6 +173,7 @@ describe("useRayTracing", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: true,
         showOffAxis: "off",
         showChromatic: false,
@@ -167,6 +201,7 @@ describe("useRayTracing", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         showOffAxis: "off",
         showChromatic: false,

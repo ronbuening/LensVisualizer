@@ -24,7 +24,7 @@ interface DiagramRayLayersProps {
 }
 
 const DiagramRayLayers = memo(function DiagramRayLayers({
-  lens: L,
+  lens: _lens,
   theme: t,
   rays,
   offAxisRays,
@@ -38,7 +38,7 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
       {showOnAxis && (
         <RayPolylines
           rays={rays}
-          colorFn={(ri) => (ri < L.rayHeights.length / 2 ? t.rayCool : t.rayWarm)}
+          colorFn={(ri) => (ri < rays.length / 2 ? t.rayCool : t.rayWarm)}
           solidWidth={1.2}
           rayWidthScale={t.rayWidthScale}
           keyPrefix="on"
@@ -48,7 +48,7 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
       {showOffAxis !== "off" && (
         <RayPolylines
           rays={offAxisRays}
-          colorFn={(ri) => (ri < L.offAxisHeights.length / 2 ? t.rayOffCool : t.rayOffWarm)}
+          colorFn={(ri) => (ri < offAxisRays.length / 2 ? t.rayOffCool : t.rayOffWarm)}
           solidWidth={1.1}
           rayWidthScale={t.rayWidthScale}
           solidDash={t.rayOffDash || undefined}

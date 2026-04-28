@@ -9,11 +9,12 @@
 import { useMemo } from "react";
 import { eflAtZoom, traceRay } from "../../optics/optics.js";
 import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
+import { rayFractionsForDensity } from "../../optics/raySampling.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
-import type { OffAxisMode } from "../../types/state.js";
+import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import { compileRaySegment } from "./raySegmentUtils.js";
 
 interface UseOffAxisRaysParams {
@@ -28,6 +29,7 @@ interface UseOffAxisRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
   showOffAxis: OffAxisMode;
@@ -51,6 +53,7 @@ export default function useOffAxisRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  rayDensity,
   rayTracksF,
   focusK,
   showOffAxis,
@@ -80,7 +83,7 @@ export default function useOffAxisRays({
       }
       const edgeEnd: number[] = [sx(IMG_MM), sy(edgeImgH)];
 
-      for (const f of L.offAxisFractions) {
+      for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
         const h = f * currentEPSD;
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
@@ -114,6 +117,7 @@ export default function useOffAxisRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     focusK,
     L,

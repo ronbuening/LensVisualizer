@@ -84,7 +84,8 @@ export default function LensDiagramPanel({
   const dispatch = useLensDispatch();
   const { rays: raysState, display, sliders } = state;
   const panels = usePanelCtx();
-  const { showOnAxis, showOffAxis, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } = raysState;
+  const { showOnAxis, showOffAxis, rayDensity, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } =
+    raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = resolveDarkPreference(display.dark, systemDark);
   const {
@@ -249,6 +250,7 @@ export default function LensDiagramPanel({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    rayDensity,
     rayTracksF,
     showOffAxis,
     showChromatic,

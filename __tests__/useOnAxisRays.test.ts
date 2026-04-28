@@ -6,6 +6,7 @@ import useOnAxisRays from "../src/components/hooks/useOnAxisRays.js";
 import buildLens from "../src/optics/buildLens.js";
 import { doLayout, entrancePupilAtState, fopenAtZoom } from "../src/optics/optics.js";
 import { createCoordinateTransforms } from "../src/optics/diagramGeometry.js";
+import { raySampleCountForDensity } from "../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
 import SonnarRaw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -52,6 +53,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 0,
         currentEPSD: 0,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "none",
@@ -75,6 +77,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "ZeissSonnar50f15",
@@ -82,6 +85,31 @@ describe("useOnAxisRays", () => {
     );
     expect(result.current.error).toBeNull();
     expect(result.current.segments.length).toBe(L.rayFractions.length);
+  });
+
+  it("uses dense ray sampling when requested", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const { result } = renderHook(() =>
+      useOnAxisRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "dense",
+        rayTracksF: false,
+        focusK: 0,
+        lensKey: "ZeissSonnar50f15",
+      }),
+    );
+    expect(result.current.error).toBeNull();
+    expect(result.current.segments.length).toBe(raySampleCountForDensity(L.rayFractions, "dense"));
+    expect(result.current.segments.length).toBeGreaterThanOrEqual(L.rayFractions.length * 2);
   });
 
   it("each segment has sp and gp arrays", () => {
@@ -98,6 +126,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "ZeissSonnar50f15",
@@ -125,6 +154,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd,
         currentPhysStopSD,
         currentEPSD,
+        rayDensity: "normal",
         rayTracksF: true,
         focusK: 0.001,
         lensKey: "ZeissSonnar50f15",
@@ -154,6 +184,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd: () => [0, 0],
         currentPhysStopSD: 5,
         currentEPSD: 5,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "broken",
@@ -179,6 +210,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd: wide.clampedRayEnd,
         currentPhysStopSD: wide.currentPhysStopSD,
         currentEPSD: wide.currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "ZeissSonnar50f15",
@@ -196,6 +228,7 @@ describe("useOnAxisRays", () => {
         clampedRayEnd: stopped.clampedRayEnd,
         currentPhysStopSD: stopped.currentPhysStopSD,
         currentEPSD: stopped.currentEPSD,
+        rayDensity: "normal",
         rayTracksF: false,
         focusK: 0,
         lensKey: "ZeissSonnar50f15",
