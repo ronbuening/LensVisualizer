@@ -1,9 +1,10 @@
 /**
  * useChromaticRays — Computes chromatic ray fan segments and aberration spread.
  *
- * Traces the same ray heights as on-axis but through wavelength-dependent
- * refractive indices (R/G/B channels). CHROM_FRACS = [chief, upper marginal,
- * lower marginal] — shows both axial and lateral color (LCA and TCA).
+ * Traces density-derived axial and off-axis ray fans through wavelength-dependent
+ * refractive indices (R/G/B channels). Axial rays feed the LCA/TCA spread metric;
+ * off-axis chromatic rays share the same state-aware field geometry as the
+ * monochrome off-axis fan.
  */
 import { useMemo } from "react";
 import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";

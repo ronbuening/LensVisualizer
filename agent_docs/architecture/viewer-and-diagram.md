@@ -10,7 +10,7 @@ delegates rendering to children:
 
 - `BreadcrumbBar` - lens-page breadcrumb navigation.
 - `TopBar` - lens selectors, compare button, about buttons.
-- `ControlsBar` - theme, ray, chromatic, and scale toggles.
+- `ControlsBar` - theme, ray, ray-density, chromatic, and scale toggles.
 - `ViewToggleBar` - generic view-mode toggle used for mobile and desktop.
 - `SingleLensContent` - single-lens diagram plus description layout.
 - `ComparisonLayout` - two `LensDiagramPanel` instances for comparison mode.
@@ -41,7 +41,7 @@ Key responsibilities:
 
 - Builds or receives a `RuntimeLens`. In comparison mode, `ComparisonLayout` passes prebuilt runtime lenses to avoid
   rebuilding the same lens inside each panel.
-- Wires computation hooks for layout, rays, chromatic spread, overlays, and slider feedback.
+- Wires computation hooks for layout, density-controlled rays, chromatic spread, overlays, and slider feedback.
 - Applies optional perspective-control movement for supported lenses, including transformed geometry/rays and fixed
   image-plane reference behavior.
 - Passes memoized field geometry into analysis drawer tabs.
@@ -53,10 +53,11 @@ Key responsibilities:
 | Hook | Purpose |
 | --- | --- |
 | `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies optional movement transforms, and reports the first ray error. |
-| `useOnAxisRays.ts` | Computes on-axis ray fan segments. |
-| `useOffAxisRays.ts` | Computes visible off-axis rays using state-aware field geometry. |
-| `useChromaticRays.ts` | Computes chromatic R/G/B tracing and LCA/TCA spread. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. |
+| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments. |
+| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry. |
+| `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |
+| `useChromaticRays.ts` | Computes density-derived axial and off-axis chromatic R/G/B tracing plus axial LCA/TCA spread. |
 | `useFlashOverlay.ts` | Sticky-slider flash animation state. |
 | `useSideLayoutDetection.ts` | ResizeObserver overflow detection with hysteresis. |
 | `useDispatchAdapters.ts` | Stable named dispatch callback adapters for children. |
@@ -83,7 +84,7 @@ Key responsibilities:
 | `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
 | `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements. |
 | `DiagramElementLayer.tsx` | Lens element paths and aspheric overlays. |
-| `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. |
+| `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. |
 | `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |
 | `ElementAnnotations.tsx` | Element numbers, Abbe badges, group/doublet labels. |

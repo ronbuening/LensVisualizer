@@ -19,6 +19,11 @@
 - Perspective-control movement is opt-in via `perspectiveControl`. Do not add SHIFT/TILT controls to ordinary lenses.
   The v1 movement layer is a 2D meridional visualization against a fixed IMG plane; analysis tabs remain centered-lens
   diagnostics and show a notice when movement is active
+- Ray density is a persisted preference (`normal`, `dense`, `diagnostic`), not a URL field. `normal` must preserve the
+  lens-authored `rayFractions` / `offAxisFractions` exactly; denser modes should go through `src/optics/raySampling.ts`
+  so symmetry and chief rays stay predictable
+- Chromatic mode replaces the monochrome ray layers. When COLOR is on, ON-AXIS controls axial chromatic rays and
+  OFF-AXIS controls off-axis chromatic rays; do not render normal rays underneath the chromatic fan
 - New analysis tabs require: (1) adding to `ANALYSIS_TABS` in `src/components/layout/lensDiagram/analysisTabs.ts`, (2) creating a tab content component in `src/components/display/`, (3) adding a conditional render in `AnalysisDrawerContent.tsx`
 - The aspheric deviation inspector (`AsphericComparisonOverlay`) is **not** an analysis drawer tab — it is a standalone `OverlayModal` opened via the "Compare to sphere →" link in `ElementInspector`. Its open/close state lives in `useOverlayState.ts` (`asphCompareElementId`, `openAsphCompare`, `closeAsphCompare`) and resets automatically when switching lenses. This is the only diagram overlay still in `useOverlayState`; all the others (Abbe/glass-map, LCA, Petzval, bokeh, analysis drawer) live in the URL-shareable `panels` slice of the reducer. The callback flows: `useOverlayState` → `LensDiagramLoadedState` → `DiagramControlPanel` → `ElementInspector`
 - Adding a new shareable view-state field requires three coordinated edits: (1) the `[key, default]` entry in `VIEW_STATE_FIELDS` in `src/utils/lensViewUrlState.ts`, (2) the matching `URLState` and `PanelsSlice` (and `PanelField` union) entries in `src/types/state.ts`, and (3) the URL key + parse/build branch in `parseLensViewQuery` / `buildLensViewQuery` if the field needs a non-trivial encoding. The reducer's `APPLY_URL_VIEW_STATE` branch and `createInitialState` use the table directly, so they pick up new fields automatically once steps 1-2 are in place

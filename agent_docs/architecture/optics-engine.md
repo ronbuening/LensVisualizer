@@ -20,6 +20,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `diagramGeometry.ts` | SVG coordinate transforms and element shape/render diagnostics. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `validateLensData.ts` | Runtime lens-data validation. |
+| `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans. |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
@@ -59,6 +60,12 @@ Major public helpers:
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
+## Ray Sampling Policy
+
+Lens data owns the baseline ray fans through `rayFractions` and `offAxisFractions`. `raySampling.ts` preserves those
+arrays exactly for `normal`, then derives symmetric denser viewport-only samples for `dense` and `diagnostic`. Use the
+helper from display/tracing hooks instead of mutating runtime lens data or adding density-specific arrays to lens files.
+
 ## Off-Axis Geometry Policy
 
 Use explicit naming:
@@ -67,9 +74,9 @@ Use explicit naming:
 - `computeStateAwareOffAxisFieldGeometry()` - current focus/zoom-aware geometry using solved chief-ray behavior.
 - `computeOffAxisFieldGeometry` remains as a legacy compatibility alias for paraxial geometry.
 
-Visible off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the state-aware solved-chief-ray path
-where current focus/zoom can move pupil geometry. Keep legacy paraxial behavior only where the UI or test explicitly
-needs first-order comparison.
+Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
+state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Keep legacy paraxial behavior only
+where the UI or test explicitly needs first-order comparison.
 
 ## Perspective-Control Movement
 
