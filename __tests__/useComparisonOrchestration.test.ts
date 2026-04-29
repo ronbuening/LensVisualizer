@@ -51,6 +51,8 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
       chromG: true,
       chromB: true,
       showPupils: false,
+      showCardinals: false,
+      showCardinalDimensions: false,
     },
     sliders: {
       focusT: 0,

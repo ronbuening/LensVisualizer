@@ -443,6 +443,10 @@ export default function LensDiagramPanel({
                 onChromBChange={adapters.onChromBChange}
                 showPupils={showPupils}
                 onShowPupilsChange={adapters.onShowPupilsChange}
+                showCardinals={showCardinals}
+                onShowCardinalsChange={adapters.onShowCardinalsChange}
+                showCardinalDimensions={showCardinalDimensions}
+                onShowCardinalDimensionsChange={adapters.onShowCardinalDimensionsChange}
                 headerInfoExpanded={headerInfoExpanded}
                 onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
                 minHeaderHeight={minHeaderHeight}

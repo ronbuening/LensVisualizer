@@ -41,6 +41,8 @@ describe("ControlsBar", () => {
         chromG: true,
         chromB: true,
         showPupils: false,
+        showCardinals: false,
+        showCardinalDimensions: false,
         scaleMode: "independent",
         dispatch,
       }),
@@ -50,11 +52,13 @@ describe("ControlsBar", () => {
     fireEvent.click(screen.getByRole("button", { name: "OFF-AXIS" }));
     fireEvent.click(screen.getByRole("button", { name: "DENSE" }));
     fireEvent.click(screen.getByRole("button", { name: /TRACKS FOCUS$/ }));
+    fireEvent.click(screen.getByRole("button", { name: "CARDINALS" }));
 
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOnAxis", value: false });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "rayDensity", value: "dense" });
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: true });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinals", value: true });
   });
 
   it("shows chromatic channel controls when color tracing is enabled and updates scale mode", () => {
@@ -72,6 +76,8 @@ describe("ControlsBar", () => {
         chromG: false,
         chromB: true,
         showPupils: false,
+        showCardinals: true,
+        showCardinalDimensions: false,
         scaleMode: "independent",
         dispatch,
       }),

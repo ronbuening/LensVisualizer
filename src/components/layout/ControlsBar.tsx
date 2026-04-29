@@ -6,7 +6,8 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import CardinalControls from "../controls/CardinalControls.js";
+import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -26,6 +27,8 @@ interface ControlsBarProps {
   chromG: boolean;
   chromB: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalDimensions: boolean;
   scaleMode: "independent" | "normalized";
   dispatch: Dispatch<LensAction>;
 }
@@ -43,6 +46,8 @@ export default function ControlsBar({
   chromG,
   chromB,
   showPupils,
+  showCardinals,
+  showCardinalDimensions,
   scaleMode,
   dispatch,
 }: ControlsBarProps) {
@@ -145,6 +150,18 @@ export default function ControlsBar({
         justifyContent: "center",
       }}
     >
+      {ENABLE_CARDINAL_ELEMENTS && !compact ? (
+        <CardinalControls
+          t={t}
+          showCardinals={showCardinals}
+          onShowCardinalsChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value })}
+          showCardinalDimensions={showCardinalDimensions}
+          onShowCardinalDimensionsChange={(value) =>
+            dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value })
+          }
+        />
+      ) : null}
+
       {/* Ray toggles */}
       <div style={toggleGroup(t, rayToggleWidth == null ? undefined : { width: rayToggleWidth })}>
         {rayToggles.map(({ label, active, onClick, dotA, dotB }, idx) => (

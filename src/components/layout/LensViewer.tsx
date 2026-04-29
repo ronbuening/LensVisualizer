@@ -70,7 +70,19 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const { lens, display, rays, sharedSliders, panels, overlays } = state;
   const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
   const { dark, highContrast, mobileView, desktopView } = display;
-  const { showOnAxis, showOffAxis, rayDensity, rayTracksF, showChromatic, chromR, chromG, chromB, showPupils } = rays;
+  const {
+    showOnAxis,
+    showOffAxis,
+    rayDensity,
+    rayTracksF,
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    showPupils,
+    showCardinals,
+    showCardinalDimensions,
+  } = rays;
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
 
@@ -198,6 +210,8 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     chromG,
     chromB,
     showPupils,
+    showCardinals,
+    showCardinalDimensions,
     scaleMode,
     dispatch,
   } as const;
