@@ -68,9 +68,9 @@ A glass that lies measurably off the normal line is said to exhibit *anomalous p
 
 The term "anomalous" is somewhat misleading. There is nothing thermodynamically odd about these materials; they are simply not silicate-dominated and so do not lie on the silicate-glass line. From the lens designer's point of view, however, they are what makes three-color correction economically feasible.
 
-> **Figure 1.** *The P–V diagram: partial dispersion $P_{g,F}$ plotted against Abbe number $V_d$ for selected optical glasses.* The diagonal line is the "normal line" defined by ordinary silicate crowns and flints. Glasses on this line (e.g., BK7, F2) can form achromats but cannot eliminate secondary spectrum. Glasses departing below the line — fluorite (CaF₂), Schott N-FK51A, Ohara S-FPL-53 — exhibit anomalous partial dispersion and are the materials that make apochromatic correction possible. Short flints (e.g., KZF series) depart above the line and are sometimes paired with anomalous crowns to form apochromatic triplets. In OpticalBench, each element's **nd** and **νd** values can be checked against published glass-catalog data to determine whether a design's materials fall on or off the normal line.
->
-> *[Figure to be produced as SVG, generated from selected Schott/Ohara catalog glasses. Caption should note: "Generated from published glass-catalog data; included to illustrate relative partial-dispersion positions rather than to reproduce a complete glass map."]*
+![Illustrative P–V glass map: partial dispersion vs Abbe number for selected optical glasses](/diagrams/achromat/pv-diagram.svg)
+
+> **Figure 1.** *The P–V diagram: partial dispersion $P_{g,F}$ plotted against Abbe number $V_d$ for selected optical glasses.* The diagonal line is the "normal line" defined by ordinary silicate crowns and flints. Glasses on this line (e.g., BK7, F2) can form achromats but cannot eliminate secondary spectrum. Glasses departing below the line — fluorite (CaF₂), Schott N-FK51A, Ohara S-FPL-53 — exhibit anomalous partial dispersion and are the materials that make apochromatic correction possible. Short flints (e.g., KZF series) depart above the line and are sometimes paired with anomalous crowns to form apochromatic triplets. In OpticalBench, each element's **nd** and **νd** values can be checked against published glass-catalog data to determine whether a design's materials fall on or off the normal line. Glass positions are schematic; included to illustrate relative partial-dispersion positions rather than to reproduce a complete glass map.
 
 ### 2.4 The thin-lens achromat condition
 
@@ -94,9 +94,9 @@ where $P_i$ is the relevant partial dispersion ratio [3], [17]. If the two glass
 
 > **OpticalBench Note.** When the **COLOR** overlay is enabled in OpticalBench, the viewer traces rays at multiple wavelengths simultaneously. In an ordinary achromatic doublet, the red and blue ray fans converge to the same axial point while the green fan focuses slightly in front or behind — this is the secondary spectrum made visible.
 
-> **Figure 2.** *Longitudinal chromatic aberration: achromat vs. apochromat.* Left panel: in a standard crown–flint achromat, the back-focal-distance curve $\text{BFD}(\lambda)$ crosses the zero axis at two wavelengths (typically C and F). Between them, a residual hump — the secondary spectrum — displaces the green focus by approximately $f/2000$. Right panel: in an apochromat using anomalous-dispersion glass, the curve crosses zero at three wavelengths, and the residual between crossings is reduced by roughly an order of magnitude. The residual between the outermost crossings is the *tertiary spectrum*, which in a well-designed apochromat sits within the diffraction-limited depth of focus.
->
-> *[Schematic figure to be produced as SVG pair showing representative $\text{BFD}(\lambda)$ curves, with C, d, F, and g wavelengths marked. Not computed from a specific lens prescription.]*
+![Schematic BFD(λ) curves comparing achromat and apochromat chromatic correction](/diagrams/achromat/lca-diagram.svg)
+
+> **Figure 2.** *Longitudinal chromatic aberration: achromat vs. apochromat.* Left panel: in a standard crown–flint achromat, the back-focal-distance curve $\text{BFD}(\lambda)$ crosses the zero axis at two wavelengths (typically C and F). Between them, a residual hump — the secondary spectrum — displaces the green focus by approximately $f/2000$. Right panel: in an apochromat using anomalous-dispersion glass, the curve crosses zero at three wavelengths, and the residual between crossings is reduced by roughly an order of magnitude. The residual between the outermost crossings is the *tertiary spectrum*, which in a well-designed apochromat sits within the diffraction-limited depth of focus. C, d, F, and g wavelengths are marked. Not computed from a specific lens prescription.
 
 ### 2.6 Longitudinal vs. lateral chromatic aberration
 
@@ -321,9 +321,9 @@ Reasonable evidence for an apochromatic claim, in roughly increasing order of st
 4. **Patent prescriptions.** A patent gives the full glass list ($n_d$, $V_d$) and surface specifications, permitting independent reconstruction of the chromatic aberration curves. This is the gold standard for design-level inspection — and it is the evidence that OpticalBench's architecture is built around.
 5. **Independent laboratory measurement.** Bench MTF measured at multiple wavelengths, focus-shift-vs.-wavelength measured at multiple distances, and residual lateral color measured across the field. Few outlets publish such measurements systematically.
 
-> **Figure 3.** *Wavelength-resolved through-focus MTF: APO vs. non-APO.* Left panel: a lens with residual axial color shows the red, green, and blue MTF peaks displaced along the focus axis — the peaks do not coincide, and the polychromatic MTF (white light) is lower than any single-wavelength peak because the colors cannot all be sharp at the same focus position. Right panel: in a well-corrected apochromat, the three peaks nearly overlap, and the polychromatic MTF approaches the monochromatic value. The difference between the two panels is what "APO correction" means in measurable terms. In OpticalBench, the **COLOR** overlay provides a qualitative version of this test: tightly converging ray fans at the image plane correspond to overlapping MTF peaks, while spread fans correspond to displaced peaks.
->
-> *[Schematic figure to be produced as SVG pair showing representative through-focus MTF curves at 486 nm, 546 nm, and 656 nm, with polychromatic envelope. Not computed from a specific lens prescription.]*
+![Schematic through-focus MTF comparison: non-APO vs apochromat at 486, 587, and 656 nm](/diagrams/achromat/mtf-diagram.svg)
+
+> **Figure 3.** *Wavelength-resolved through-focus MTF: APO vs. non-APO.* Left panel: a lens with residual axial color shows the red, green, and blue MTF peaks displaced along the focus axis — the peaks do not coincide, and the polychromatic MTF (white light) is lower than any single-wavelength peak because the colors cannot all be sharp at the same focus position. Right panel: in a well-corrected apochromat, the three peaks nearly overlap, and the polychromatic MTF approaches the monochromatic value. The difference between the two panels is what "APO correction" means in measurable terms. In OpticalBench, the **COLOR** overlay provides a qualitative version of this test: tightly converging ray fans at the image plane correspond to overlapping MTF peaks, while spread fans correspond to displaced peaks. Not computed from a specific lens prescription.
 
 ### 8.2 Levels of correction that may be conflated
 
