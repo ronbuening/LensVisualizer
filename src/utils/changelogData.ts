@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-29 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-29",
+    type: "lens",
+    summary:
+      "Added Carl Zeiss Jena Tessar 50mm f/3.5, Carl Zeiss Oberkochen Tessar 50mm f/2.8, and Sony FE 90mm f/2.8 Macro G OSS",
+  },
   // ── 2026-04-28 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-28",
