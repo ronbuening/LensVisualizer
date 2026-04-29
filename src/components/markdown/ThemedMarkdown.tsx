@@ -10,6 +10,9 @@ import EntrancePupilDiagram from "../diagram/EntrancePupilDiagram.js";
 import ExitPupilDiagram from "../diagram/ExitPupilDiagram.js";
 import TelecentricityDiagram from "../diagram/TelecentricityDiagram.js";
 import WorkingFNumberDiagram from "../diagram/WorkingFNumberDiagram.js";
+import PVDiagram from "../diagram/PVDiagram.js";
+import LCADiagram from "../diagram/LCADiagram.js";
+import MTFDiagram from "../diagram/MTFDiagram.js";
 import type { Theme } from "../../types/theme.js";
 
 type MarkdownVariant = "article" | "description";
@@ -289,6 +292,30 @@ function renderMarkdownImage(src: string | undefined, alt: string | undefined, t
     return (
       <figure style={{ margin: "24px 0", textAlign: "center" }}>
         <WorkingFNumberDiagram isDark={isDark} />
+        {caption}
+      </figure>
+    );
+  }
+  if (src?.includes("pv-diagram")) {
+    return (
+      <figure style={{ margin: "24px 0", textAlign: "center" }}>
+        <PVDiagram isDark={isDark} />
+        {caption}
+      </figure>
+    );
+  }
+  if (src?.includes("lca-diagram")) {
+    return (
+      <figure style={{ margin: "24px 0", textAlign: "center" }}>
+        <LCADiagram isDark={isDark} />
+        {caption}
+      </figure>
+    );
+  }
+  if (src?.includes("mtf-diagram")) {
+    return (
+      <figure style={{ margin: "24px 0", textAlign: "center" }}>
+        <MTFDiagram isDark={isDark} />
         {caption}
       </figure>
     );
