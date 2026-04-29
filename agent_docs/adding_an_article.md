@@ -8,6 +8,9 @@
 4. Run `npm run typecheck && npm run format:check && npm run test` — then `npm run build` to confirm the route was discovered
 5. Done — the article pipeline auto-registers every `src/content/**/*.md` file; no imports or catalog edits required
 
+For article-page formatting expectations, including what is and is not necessary
+for Markdown-only changes, see `agent_docs/article_formatting.md`.
+
 ---
 
 ## Frontmatter Reference
