@@ -69,6 +69,8 @@ const RAY_FIELDS = new Set([
   "chromG",
   "chromB",
   "showPupils",
+  "showCardinals",
+  "showCardinalDimensions",
 ]);
 const PANEL_FIELDS = new Set([
   "focusExpanded",
@@ -126,6 +128,8 @@ export function createInitialState(
       chromG: prefs.chromG ?? true,
       chromB: prefs.chromB ?? true,
       showPupils: prefs.showPupils ?? false,
+      showCardinals: prefs.showCardinals ?? false,
+      showCardinalDimensions: prefs.showCardinalDimensions ?? false,
     },
     sliders: {
       focusT: urlState.focus ?? 0,

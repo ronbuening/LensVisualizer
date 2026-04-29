@@ -64,7 +64,9 @@ export type RayField =
   | "chromR"
   | "chromG"
   | "chromB"
-  | "showPupils";
+  | "showPupils"
+  | "showCardinals"
+  | "showCardinalDimensions";
 export type BooleanRayField = Exclude<RayField, "showOffAxis" | "rayDensity">;
 
 export interface RaysSlice {
@@ -77,6 +79,8 @@ export interface RaysSlice {
   chromG: boolean;
   chromB: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalDimensions: boolean;
 }
 
 export interface SlidersSlice {
@@ -186,6 +190,8 @@ export interface Preferences {
   chromG: boolean;
   chromB: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalDimensions: boolean;
   focusExpanded: boolean;
   apertureExpanded: boolean;
   headerControlsExpanded: boolean;

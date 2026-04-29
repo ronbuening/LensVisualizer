@@ -267,6 +267,18 @@ describe("lensReducer", () => {
       expect(next.rays.showOnAxis).toBe(false);
     });
 
+    it("sets cardinal overlay ray fields", () => {
+      const withCardinals = lensReducer(state, { type: SET_RAY_TOGGLE, field: "showCardinals", value: true });
+      const withDimensions = lensReducer(withCardinals, {
+        type: SET_RAY_TOGGLE,
+        field: "showCardinalDimensions",
+        value: true,
+      });
+
+      expect(withCardinals.rays.showCardinals).toBe(true);
+      expect(withDimensions.rays.showCardinalDimensions).toBe(true);
+    });
+
     it("sets showOffAxis string value", () => {
       const next = lensReducer(state, { type: SET_RAY_TOGGLE, field: "showOffAxis", value: "trueAngle" });
       expect(next.rays.showOffAxis).toBe("trueAngle");

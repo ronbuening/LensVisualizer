@@ -37,6 +37,8 @@ export interface DispatchAdapters {
   onChromGChange: (v: boolean) => void;
   onChromBChange: (v: boolean) => void;
   onShowPupilsChange: (v: boolean) => void;
+  onShowCardinalsChange: (v: boolean) => void;
+  onShowCardinalDimensionsChange: (v: boolean) => void;
   onFocusExpandedChange: (v: boolean) => void;
   onApertureExpandedChange: (v: boolean) => void;
   onHeaderControlsExpandedChange: (v: boolean) => void;
@@ -76,6 +78,10 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onChromGChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
       onChromBChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
       onShowPupilsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v }),
+      onShowCardinalsChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value: v }),
+      onShowCardinalDimensionsChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value: v }),
       onFocusExpandedChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v }),
       onApertureExpandedChange: (v: boolean) =>

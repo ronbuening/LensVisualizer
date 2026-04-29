@@ -72,6 +72,8 @@ describe("usePreferences — persisted fields", () => {
     expect(typeof parsed.chromR).toBe("boolean");
     expect(typeof parsed.chromG).toBe("boolean");
     expect(typeof parsed.chromB).toBe("boolean");
+    expect(typeof parsed.showCardinals).toBe("boolean");
+    expect(typeof parsed.showCardinalDimensions).toBe("boolean");
   });
 
   it("persists panel expand states", () => {

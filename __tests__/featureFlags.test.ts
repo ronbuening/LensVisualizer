@@ -15,7 +15,8 @@ describe("featureFlags", () => {
     expect(keys).toContain("ENABLE_ASPH_DIAMOND_FILL");
     expect(keys).toContain("ENABLE_EDGE_PROJECTION");
     expect(keys).toContain("ENABLE_REAL_RAY_LSA_DIAGNOSTIC");
-    expect(keys).toHaveLength(4);
+    expect(keys).toContain("ENABLE_CARDINAL_ELEMENTS");
+    expect(keys).toHaveLength(5);
   });
 
   it("all keys follow ENABLE_ naming convention", () => {

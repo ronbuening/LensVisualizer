@@ -39,6 +39,8 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     if (typeof p.showPupils === "boolean") out.showPupils = p.showPupils;
+    if (typeof p.showCardinals === "boolean") out.showCardinals = p.showCardinals;
+    if (typeof p.showCardinalDimensions === "boolean") out.showCardinalDimensions = p.showCardinalDimensions;
     /* Lens selection (lensKeyA, lensKeyB, comparing) is intentionally NOT
        restored from preferences — it comes from the URL so the homepage
        isn't hijacked by a previously-viewed lens. */

@@ -66,6 +66,8 @@ describe("loadPrefs", () => {
         chromR: false,
         chromG: true,
         chromB: true,
+        showCardinals: true,
+        showCardinalDimensions: false,
       }),
     );
     const prefs = loadPrefs();
@@ -79,6 +81,8 @@ describe("loadPrefs", () => {
     expect(prefs.chromR).toBe(false);
     expect(prefs.chromG).toBe(true);
     expect(prefs.chromB).toBe(true);
+    expect(prefs.showCardinals).toBe(true);
+    expect(prefs.showCardinalDimensions).toBe(false);
   });
 
   it("ignores non-boolean values for boolean fields", () => {
