@@ -23,6 +23,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans. |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
+| `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
 | `vignetteAnalysis.ts` | Vignetting / relative illumination curve. |
 | `pupilAberration.ts` | Entrance and exit pupil aberration profiles. |
@@ -65,6 +66,14 @@ All trace/layout functions accept `zoomT`; prime lenses ignore it.
 Lens data owns the baseline ray fans through `rayFractions` and `offAxisFractions`. `raySampling.ts` preserves those
 arrays exactly for `normal`, then derives symmetric denser viewport-only samples for `dense` and `diagnostic`. Use the
 helper from display/tracing hooks instead of mutating runtime lens data or adding density-specific arrays to lens files.
+
+## Cardinal Elements
+
+`cardinalElements.ts` computes the Tier 1 first-order overlay from the current focus and zoom state. It uses current
+surface spacings, receives the visible `zPos`/image-plane positions from the diagram computation pipeline, and returns
+all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. For ordinary same-index
+photographic lenses, H/N and H′/N′ are marked coincident explicitly; non-unity image-side systems compute N/N′
+independently.
 
 ## Off-Axis Geometry Policy
 

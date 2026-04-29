@@ -7,11 +7,13 @@
 
 import { epAtZoom, epZRelStopAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../optics/optics.js";
 import ApertureStop from "./ApertureStop.js";
+import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { CardinalElements } from "../../optics/cardinalElements.js";
 
 interface DiagramOverlayLayerProps {
   lens: RuntimeLens;
@@ -30,6 +32,17 @@ interface DiagramOverlayLayerProps {
   chromSpread: ChromaticSpread | null;
   showChromatic: boolean;
   showPupils: boolean;
+  showCardinals?: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
+  showCardinalDimensions?: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
+  cardinalElements?: CardinalElements | null;
   zoomT: number;
   act: number | null;
   flashVisible: boolean;
@@ -56,6 +69,17 @@ export default function DiagramOverlayLayer({
   chromSpread,
   showChromatic,
   showPupils,
+  showCardinals = false,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
+  showCardinalDimensions = false,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
+  cardinalElements,
   zoomT,
   act,
   flashVisible,
@@ -308,6 +332,26 @@ export default function DiagramOverlayLayer({
           })()}
         </>
       )}
+
+      {cardinalElements && (showCardinals || showCardinalDimensions) ? (
+        <CardinalElementsOverlay
+          lens={L}
+          theme={t}
+          cardinals={cardinalElements}
+          sx={sx}
+          sy={sy}
+          showCardinals={showCardinals}
+          showCardinalFocal={showCardinalFocal}
+          showCardinalPrincipal={showCardinalPrincipal}
+          showCardinalNodal={showCardinalNodal}
+          showCardinalDimensions={showCardinalDimensions}
+          showCardinalEfl={showCardinalEfl}
+          showCardinalBfd={showCardinalBfd}
+          showCardinalFfd={showCardinalFfd}
+          showCardinalHiatus={showCardinalHiatus}
+          showCardinalTotalTrack={showCardinalTotalTrack}
+        />
+      ) : null}
 
       <PetzvalSumBadge L={L} t={t} onClick={onPetzvalBadgeClick} />
 

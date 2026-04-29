@@ -66,6 +66,16 @@ describe("loadPrefs", () => {
         chromR: false,
         chromG: true,
         chromB: true,
+        showCardinals: true,
+        showCardinalFocal: false,
+        showCardinalPrincipal: true,
+        showCardinalNodal: false,
+        showCardinalDimensions: false,
+        showCardinalEfl: true,
+        showCardinalBfd: false,
+        showCardinalFfd: true,
+        showCardinalHiatus: false,
+        showCardinalTotalTrack: true,
       }),
     );
     const prefs = loadPrefs();
@@ -79,6 +89,16 @@ describe("loadPrefs", () => {
     expect(prefs.chromR).toBe(false);
     expect(prefs.chromG).toBe(true);
     expect(prefs.chromB).toBe(true);
+    expect(prefs.showCardinals).toBe(true);
+    expect(prefs.showCardinalFocal).toBe(false);
+    expect(prefs.showCardinalPrincipal).toBe(true);
+    expect(prefs.showCardinalNodal).toBe(false);
+    expect(prefs.showCardinalDimensions).toBe(false);
+    expect(prefs.showCardinalEfl).toBe(true);
+    expect(prefs.showCardinalBfd).toBe(false);
+    expect(prefs.showCardinalFfd).toBe(true);
+    expect(prefs.showCardinalHiatus).toBe(false);
+    expect(prefs.showCardinalTotalTrack).toBe(true);
   });
 
   it("ignores non-boolean values for boolean fields", () => {

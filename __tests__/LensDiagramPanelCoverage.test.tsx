@@ -39,6 +39,8 @@ const mocks = vi.hoisted(() => {
     onChromGChange: vi.fn(),
     onChromBChange: vi.fn(),
     onShowPupilsChange: vi.fn(),
+    onShowCardinalsChange: vi.fn(),
+    onShowCardinalDimensionsChange: vi.fn(),
     onHeaderInfoExpandedChange: vi.fn(),
     onZoomPanToggle: vi.fn(),
     onGlassMapOpenChange: vi.fn(),

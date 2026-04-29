@@ -14,8 +14,10 @@ import { forwardRef, memo } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/styles.js";
 import CollapseButton from "./CollapseButton.js";
+import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
+import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -46,6 +48,26 @@ interface DiagramHeaderProps {
   onChromBChange?: (value: boolean) => void;
   showPupils: boolean;
   onShowPupilsChange?: (value: boolean) => void;
+  showCardinals: boolean;
+  onShowCardinalsChange?: (value: boolean) => void;
+  showCardinalFocal: boolean;
+  onShowCardinalFocalChange?: (value: boolean) => void;
+  showCardinalPrincipal: boolean;
+  onShowCardinalPrincipalChange?: (value: boolean) => void;
+  showCardinalNodal: boolean;
+  onShowCardinalNodalChange?: (value: boolean) => void;
+  showCardinalDimensions: boolean;
+  onShowCardinalDimensionsChange?: (value: boolean) => void;
+  showCardinalEfl: boolean;
+  onShowCardinalEflChange?: (value: boolean) => void;
+  showCardinalBfd: boolean;
+  onShowCardinalBfdChange?: (value: boolean) => void;
+  showCardinalFfd: boolean;
+  onShowCardinalFfdChange?: (value: boolean) => void;
+  showCardinalHiatus: boolean;
+  onShowCardinalHiatusChange?: (value: boolean) => void;
+  showCardinalTotalTrack: boolean;
+  onShowCardinalTotalTrackChange?: (value: boolean) => void;
   headerInfoExpanded: boolean;
   onHeaderInfoExpandedChange?: (value: boolean) => void;
   minHeaderHeight?: number;
@@ -79,6 +101,26 @@ const DiagramHeader = memo(
       onChromBChange,
       showPupils,
       onShowPupilsChange,
+      showCardinals,
+      onShowCardinalsChange,
+      showCardinalFocal,
+      onShowCardinalFocalChange,
+      showCardinalPrincipal,
+      onShowCardinalPrincipalChange,
+      showCardinalNodal,
+      onShowCardinalNodalChange,
+      showCardinalDimensions,
+      onShowCardinalDimensionsChange,
+      showCardinalEfl,
+      onShowCardinalEflChange,
+      showCardinalBfd,
+      onShowCardinalBfdChange,
+      showCardinalFfd,
+      onShowCardinalFfdChange,
+      showCardinalHiatus,
+      onShowCardinalHiatusChange,
+      showCardinalTotalTrack,
+      onShowCardinalTotalTrackChange,
       headerInfoExpanded,
       onHeaderInfoExpandedChange,
       minHeaderHeight,
@@ -196,78 +238,106 @@ const DiagramHeader = memo(
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
               alignItems: "flex-end",
               gap: 8,
               flexShrink: 0,
-              width: 236,
             }}
           >
-            {/* Ray toggles */}
-            <RayToggles
-              t={t}
-              showOnAxis={showOnAxis}
-              onShowOnAxisChange={onShowOnAxisChange}
-              showOffAxis={showOffAxis}
-              onShowOffAxisChange={onShowOffAxisChange}
-              showPupils={showPupils}
-              onShowPupilsChange={onShowPupilsChange}
-            />
-            {/* Ray mode */}
-            <div style={toggleGroup(t, { width: "100%" })}>
-              {[
-                { label: "FROM \u221e", val: false, icon: "\u2225" },
-                { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-              ].map(({ label, val, icon }) => (
-                <button
-                  key={label}
-                  onClick={() => onRayTracksFChange?.(val)}
-                  style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
-                >
-                  <span
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      lineHeight: 1,
-                      opacity: rayTracksF === val ? 1 : 0.4,
-                    }}
+            {ENABLE_CARDINAL_ELEMENTS ? (
+              <div style={{ paddingTop: 0 }}>
+                <CardinalControls
+                  t={t}
+                  showCardinals={showCardinals}
+                  onShowCardinalsChange={onShowCardinalsChange}
+                  showCardinalFocal={showCardinalFocal}
+                  onShowCardinalFocalChange={onShowCardinalFocalChange}
+                  showCardinalPrincipal={showCardinalPrincipal}
+                  onShowCardinalPrincipalChange={onShowCardinalPrincipalChange}
+                  showCardinalNodal={showCardinalNodal}
+                  onShowCardinalNodalChange={onShowCardinalNodalChange}
+                  showCardinalDimensions={showCardinalDimensions}
+                  onShowCardinalDimensionsChange={onShowCardinalDimensionsChange}
+                  showCardinalEfl={showCardinalEfl}
+                  onShowCardinalEflChange={onShowCardinalEflChange}
+                  showCardinalBfd={showCardinalBfd}
+                  onShowCardinalBfdChange={onShowCardinalBfdChange}
+                  showCardinalFfd={showCardinalFfd}
+                  onShowCardinalFfdChange={onShowCardinalFfdChange}
+                  showCardinalHiatus={showCardinalHiatus}
+                  onShowCardinalHiatusChange={onShowCardinalHiatusChange}
+                  showCardinalTotalTrack={showCardinalTotalTrack}
+                  onShowCardinalTotalTrackChange={onShowCardinalTotalTrackChange}
+                />
+              </div>
+            ) : null}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8, width: 236 }}>
+              {/* Ray toggles */}
+              <RayToggles
+                t={t}
+                showOnAxis={showOnAxis}
+                onShowOnAxisChange={onShowOnAxisChange}
+                showOffAxis={showOffAxis}
+                onShowOffAxisChange={onShowOffAxisChange}
+                showPupils={showPupils}
+                onShowPupilsChange={onShowPupilsChange}
+              />
+              {/* Ray mode */}
+              <div style={toggleGroup(t, { width: "100%" })}>
+                {[
+                  { label: "FROM \u221e", val: false, icon: "\u2225" },
+                  { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
+                ].map(({ label, val, icon }) => (
+                  <button
+                    key={label}
+                    onClick={() => onRayTracksFChange?.(val)}
+                    style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
                   >
-                    {icon}
-                  </span>
-                  <span>{label}</span>
-                </button>
-              ))}
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        opacity: rayTracksF === val ? 1 : 0.4,
+                      }}
+                    >
+                      {icon}
+                    </span>
+                    <span>{label}</span>
+                  </button>
+                ))}
+              </div>
+              {/* Ray density */}
+              <div style={toggleGroup(t, { width: "100%" })}>
+                {(
+                  [
+                    { label: "NORMAL", val: "normal" },
+                    { label: "DENSE", val: "dense" },
+                    { label: "DIAGNOSTIC", val: "diagnostic" },
+                  ] as const
+                ).map(({ label, val }, idx) => (
+                  <button
+                    key={val}
+                    onClick={() => onRayDensityChange?.(val)}
+                    style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < 2, gap: 4 })}
+                  >
+                    <span>{label}</span>
+                  </button>
+                ))}
+              </div>
+              {/* Chromatic */}
+              <ChromaticControls
+                t={t}
+                showChromatic={showChromatic}
+                onShowChromaticChange={onShowChromaticChange}
+                chromR={chromR}
+                chromG={chromG}
+                chromB={chromB}
+                onChromRChange={onChromRChange}
+                onChromGChange={onChromGChange}
+                onChromBChange={onChromBChange}
+              />
             </div>
-            {/* Ray density */}
-            <div style={toggleGroup(t, { width: "100%" })}>
-              {(
-                [
-                  { label: "NORMAL", val: "normal" },
-                  { label: "DENSE", val: "dense" },
-                  { label: "DIAGNOSTIC", val: "diagnostic" },
-                ] as const
-              ).map(({ label, val }, idx) => (
-                <button
-                  key={val}
-                  onClick={() => onRayDensityChange?.(val)}
-                  style={toggleBtn(t, rayDensity === val, { hasRightBorder: idx < 2, gap: 4 })}
-                >
-                  <span>{label}</span>
-                </button>
-              ))}
-            </div>
-            {/* Chromatic */}
-            <ChromaticControls
-              t={t}
-              showChromatic={showChromatic}
-              onShowChromaticChange={onShowChromaticChange}
-              chromR={chromR}
-              chromG={chromG}
-              chromB={chromB}
-              onChromRChange={onChromRChange}
-              onChromGChange={onChromGChange}
-              onChromBChange={onChromBChange}
-            />
           </div>
         )}
       </div>

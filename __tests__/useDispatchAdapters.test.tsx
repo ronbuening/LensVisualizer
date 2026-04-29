@@ -50,6 +50,8 @@ describe("useDispatchAdapters", () => {
       "onChromGChange",
       "onChromBChange",
       "onShowPupilsChange",
+      "onShowCardinalsChange",
+      "onShowCardinalDimensionsChange",
       "onFocusExpandedChange",
       "onApertureExpandedChange",
       "onHeaderControlsExpandedChange",
@@ -154,6 +156,27 @@ describe("useDispatchAdapters", () => {
     const { adapters, dispatch } = renderAdapters();
     adapters.onShowPupilsChange(true);
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showPupils", value: true });
+  });
+
+  it("onShowCardinalsChange dispatches SET_RAY_TOGGLE for showCardinals", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onShowCardinalsChange(true);
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinals", value: true });
+  });
+
+  it("onShowCardinalDimensionsChange dispatches SET_RAY_TOGGLE for showCardinalDimensions", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onShowCardinalDimensionsChange(true);
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value: true });
+  });
+
+  it("cardinal sub-layer adapters dispatch SET_RAY_TOGGLE actions", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onShowCardinalFocalChange(false);
+    adapters.onShowCardinalEflChange(false);
+
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value: false });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value: false });
   });
 
   /* ── Panel expanded dispatches ── */

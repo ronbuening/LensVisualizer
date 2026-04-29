@@ -24,3 +24,6 @@ export const ENABLE_EDGE_PROJECTION = false;
 // --- UI experiments ---
 // Remove when the spherical-aberration diagnostic presentation settles.
 export const ENABLE_REAL_RAY_LSA_DIAGNOSTIC = false;
+
+// Remove when cardinal element overlays ship or are abandoned.
+export const ENABLE_CARDINAL_ELEMENTS = true;

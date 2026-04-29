@@ -18,6 +18,7 @@ import DiagramOverlayLayer from "./DiagramOverlayLayer.js";
 import DiagramRayLayers from "./DiagramRayLayers.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
+import type { CardinalElements } from "../../optics/cardinalElements.js";
 import type { Theme } from "../../types/theme.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
 import type { OffAxisMode } from "../../types/state.js";
@@ -47,6 +48,17 @@ interface DiagramSVGProps {
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
+  showCardinals?: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
+  showCardinalDimensions?: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
+  cardinalElements?: CardinalElements | null;
   zoomT: number;
   act: number | null;
   onHover: (eid: number | null) => void;
@@ -102,6 +114,17 @@ const DiagramSVG = memo(function DiagramSVG({
   showOffAxis,
   showChromatic,
   showPupils,
+  showCardinals = false,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
+  showCardinalDimensions = false,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
+  cardinalElements,
   zoomT,
   act,
   onHover,
@@ -204,6 +227,17 @@ const DiagramSVG = memo(function DiagramSVG({
         chromSpread={chromSpread}
         showChromatic={showChromatic}
         showPupils={showPupils}
+        showCardinals={showCardinals}
+        showCardinalFocal={showCardinalFocal}
+        showCardinalPrincipal={showCardinalPrincipal}
+        showCardinalNodal={showCardinalNodal}
+        showCardinalDimensions={showCardinalDimensions}
+        showCardinalEfl={showCardinalEfl}
+        showCardinalBfd={showCardinalBfd}
+        showCardinalFfd={showCardinalFfd}
+        showCardinalHiatus={showCardinalHiatus}
+        showCardinalTotalTrack={showCardinalTotalTrack}
+        cardinalElements={cardinalElements}
         zoomT={zoomT}
         act={act}
         flashVisible={flashVisible}

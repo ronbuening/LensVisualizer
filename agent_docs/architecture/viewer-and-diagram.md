@@ -87,6 +87,7 @@ Key responsibilities:
 | `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. |
 | `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |
+| `CardinalElementsOverlay.tsx` | Feature-flagged F/F′, H/H′, N/N′ and axial span overlay. |
 | `ElementAnnotations.tsx` | Element numbers, Abbe badges, group/doublet labels. |
 | `LCAInsetWidget.tsx` | Magnified LCA inset with fixed-reference scale. |
 | `LCAOverlayContent.tsx` | Enlarged LCA overlay content. |

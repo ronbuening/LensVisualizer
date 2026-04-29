@@ -77,6 +77,15 @@ describe("createCoordinateTransforms", () => {
     expect(yViewMax).toBeCloseTo(190 / 3);
   });
 
+  it("reduces scale when a requested z extent would otherwise exceed the viewport", () => {
+    const unbounded = createCoordinateTransforms(base);
+    const bounded = createCoordinateTransforms({ ...base, zExtent: { min: -300, max: 140 } });
+
+    expect(bounded.effectiveSC).toBeLessThan(unbounded.effectiveSC);
+    expect(bounded.sx(-300)).toBeGreaterThanOrEqual(37.9);
+    expect(bounded.sx(140)).toBeLessThanOrEqual(800 - 37.9);
+  });
+
   it("clampedRayEnd passes through when ray is within viewport", () => {
     const { clampedRayEnd, yViewMax } = createCoordinateTransforms(base);
     // Small slope, ray stays within viewport

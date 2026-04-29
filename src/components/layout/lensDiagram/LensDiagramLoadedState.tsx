@@ -20,6 +20,7 @@ import type {
   ElementShape,
 } from "../../../types/optics.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
+import type { CardinalElements } from "../../../optics/cardinalElements.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
@@ -74,6 +75,17 @@ interface LensDiagramLoadedStateProps {
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalFocal: boolean;
+  showCardinalPrincipal: boolean;
+  showCardinalNodal: boolean;
+  showCardinalDimensions: boolean;
+  showCardinalEfl: boolean;
+  showCardinalBfd: boolean;
+  showCardinalFfd: boolean;
+  showCardinalHiatus: boolean;
+  showCardinalTotalTrack: boolean;
+  cardinalElements: CardinalElements | null;
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
@@ -195,6 +207,17 @@ export default function LensDiagramLoadedState({
   showOffAxis,
   showChromatic,
   showPupils,
+  showCardinals,
+  showCardinalFocal,
+  showCardinalPrincipal,
+  showCardinalNodal,
+  showCardinalDimensions,
+  showCardinalEfl,
+  showCardinalBfd,
+  showCardinalFfd,
+  showCardinalHiatus,
+  showCardinalTotalTrack,
+  cardinalElements,
   chromR,
   chromG,
   chromB,
@@ -257,6 +280,17 @@ export default function LensDiagramLoadedState({
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}
             showPupils={showPupils}
+            showCardinals={showCardinals}
+            showCardinalFocal={showCardinalFocal}
+            showCardinalPrincipal={showCardinalPrincipal}
+            showCardinalNodal={showCardinalNodal}
+            showCardinalDimensions={showCardinalDimensions}
+            showCardinalEfl={showCardinalEfl}
+            showCardinalBfd={showCardinalBfd}
+            showCardinalFfd={showCardinalFfd}
+            showCardinalHiatus={showCardinalHiatus}
+            showCardinalTotalTrack={showCardinalTotalTrack}
+            cardinalElements={cardinalElements}
             zoomT={zoomT}
             act={act}
             onHover={onHover}

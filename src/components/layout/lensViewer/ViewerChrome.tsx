@@ -6,11 +6,15 @@
  * control strips, and diagram/analysis view toggles.
  */
 
-import type { ComponentProps } from "react";
+import { useState, type ComponentProps } from "react";
 import BreadcrumbBar from "../BreadcrumbBar.js";
+import CardinalControls from "../../controls/CardinalControls.js";
 import ControlsBar from "../ControlsBar.js";
 import TopBar from "../TopBar.js";
 import ViewToggleBar from "../ViewToggleBar.js";
+import { ENABLE_CARDINAL_ELEMENTS } from "../../../utils/featureFlags.js";
+import { SET_RAY_TOGGLE } from "../../../utils/lensReducer.js";
+import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/styles.js";
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, MobileView } from "../../../types/state.js";
 
@@ -65,6 +69,37 @@ export default function ViewerChrome({
   effectiveDesktopView,
   onDesktopViewChange,
 }: ViewerChromeProps) {
+  const [mobileControlPage, setMobileControlPage] = useState<"standard" | "cardinals">("standard");
+  const showMobileControlSwitcher = ENABLE_CARDINAL_ELEMENTS && !isWide && !comparing && mobileView === "diagram";
+
+  const mobileControlArrows = showMobileControlSwitcher ? (
+    <div
+      style={{
+        ...headerStrip(t, { padding: "6px 12px" }),
+        display: "flex",
+        justifyContent: "center",
+        borderBottom: "none",
+      }}
+    >
+      <div style={toggleGroup(t, { width: 90 })}>
+        <button
+          aria-label="Show ray controls"
+          onClick={() => setMobileControlPage("standard")}
+          style={toggleBtn(t, mobileControlPage === "standard", { hasRightBorder: true, padding: "5px 8px" })}
+        >
+          <span>{"\u2039"}</span>
+        </button>
+        <button
+          aria-label="Show cardinal controls"
+          onClick={() => setMobileControlPage("cardinals")}
+          style={toggleBtn(t, mobileControlPage === "cardinals", { hasRightBorder: false, padding: "5px 8px" })}
+        >
+          <span>{"\u203A"}</span>
+        </button>
+      </div>
+    </div>
+  ) : null;
+
   return (
     <>
       <BreadcrumbBar theme={t} isWide={isWide} lensKey={lensKeyA} />
@@ -114,8 +149,68 @@ export default function ViewerChrome({
         />
       )}
 
-      {!isWide && !comparing && mobileView === "diagram" && (
-        <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
+      {mobileControlArrows}
+
+      {!isWide &&
+        !comparing &&
+        mobileView === "diagram" &&
+        (!showMobileControlSwitcher || mobileControlPage === "standard") && (
+          <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
+        )}
+
+      {showMobileControlSwitcher && mobileControlPage === "cardinals" && (
+        <div
+          style={{
+            ...headerStrip(t, { padding: "6px 12px" }),
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CardinalControls
+            t={t}
+            compact={true}
+            showCardinals={controlsBarProps.showCardinals}
+            onShowCardinalsChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value })
+            }
+            showCardinalFocal={controlsBarProps.showCardinalFocal}
+            onShowCardinalFocalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value })
+            }
+            showCardinalPrincipal={controlsBarProps.showCardinalPrincipal}
+            onShowCardinalPrincipalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalPrincipal", value })
+            }
+            showCardinalNodal={controlsBarProps.showCardinalNodal}
+            onShowCardinalNodalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalNodal", value })
+            }
+            showCardinalDimensions={controlsBarProps.showCardinalDimensions}
+            onShowCardinalDimensionsChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value })
+            }
+            showCardinalEfl={controlsBarProps.showCardinalEfl}
+            onShowCardinalEflChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value })
+            }
+            showCardinalBfd={controlsBarProps.showCardinalBfd}
+            onShowCardinalBfdChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalBfd", value })
+            }
+            showCardinalFfd={controlsBarProps.showCardinalFfd}
+            onShowCardinalFfdChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFfd", value })
+            }
+            showCardinalHiatus={controlsBarProps.showCardinalHiatus}
+            onShowCardinalHiatusChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalHiatus", value })
+            }
+            showCardinalTotalTrack={controlsBarProps.showCardinalTotalTrack}
+            onShowCardinalTotalTrackChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalTotalTrack", value })
+            }
+          />
+        </div>
       )}
     </>
   );

@@ -34,6 +34,7 @@ persisted or URL-provided strings should be normalized at the boundary.
 
 `rayDensity` is a local preference, not a shareable URL parameter. Keep its runtime guard in `src/types/state.ts`,
 load/save handling in `preferences.ts` / `usePreferences.ts`, and reducer field guard in sync when adding density modes.
+Cardinal overlay toggles (`showCardinals`, `showCardinalDimensions`) are also local preferences, not URL parameters.
 
 ## Shareable View URLs
 

@@ -6,7 +6,8 @@
  * Props control presentation differences; logic is identical in both modes.
  */
 
-import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
+import CardinalControls from "../controls/CardinalControls.js";
+import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
 import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -26,6 +27,16 @@ interface ControlsBarProps {
   chromG: boolean;
   chromB: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
+  showCardinalDimensions: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
   scaleMode: "independent" | "normalized";
   dispatch: Dispatch<LensAction>;
 }
@@ -43,6 +54,16 @@ export default function ControlsBar({
   chromG,
   chromB,
   showPupils,
+  showCardinals,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
+  showCardinalDimensions,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
   scaleMode,
   dispatch,
 }: ControlsBarProps) {
@@ -145,6 +166,38 @@ export default function ControlsBar({
         justifyContent: "center",
       }}
     >
+      {ENABLE_CARDINAL_ELEMENTS && !compact ? (
+        <CardinalControls
+          t={t}
+          showCardinals={showCardinals}
+          onShowCardinalsChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value })}
+          showCardinalFocal={showCardinalFocal}
+          onShowCardinalFocalChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value })}
+          showCardinalPrincipal={showCardinalPrincipal}
+          onShowCardinalPrincipalChange={(value) =>
+            dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalPrincipal", value })
+          }
+          showCardinalNodal={showCardinalNodal}
+          onShowCardinalNodalChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalNodal", value })}
+          showCardinalDimensions={showCardinalDimensions}
+          onShowCardinalDimensionsChange={(value) =>
+            dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value })
+          }
+          showCardinalEfl={showCardinalEfl}
+          onShowCardinalEflChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value })}
+          showCardinalBfd={showCardinalBfd}
+          onShowCardinalBfdChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalBfd", value })}
+          showCardinalFfd={showCardinalFfd}
+          onShowCardinalFfdChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFfd", value })}
+          showCardinalHiatus={showCardinalHiatus}
+          onShowCardinalHiatusChange={(value) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalHiatus", value })}
+          showCardinalTotalTrack={showCardinalTotalTrack}
+          onShowCardinalTotalTrackChange={(value) =>
+            dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalTotalTrack", value })
+          }
+        />
+      ) : null}
+
       {/* Ray toggles */}
       <div style={toggleGroup(t, rayToggleWidth == null ? undefined : { width: rayToggleWidth })}>
         {rayToggles.map(({ label, active, onClick, dotA, dotB }, idx) => (
