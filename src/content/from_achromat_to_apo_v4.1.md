@@ -419,73 +419,73 @@ OpticalBench's mission — visualizing optical lens cross-sections from patent d
 
 ## Bibliography
 
-[^1] R. Kingslake, *A History of the Photographic Lens*. San Diego, CA, USA: Academic Press, 1989.
+[^1]: R. Kingslake, *A History of the Photographic Lens*. San Diego, CA, USA: Academic Press, 1989.
 
-[^2] R. Kingslake and R. B. Johnson, *Lens Design Fundamentals*, 2nd ed. Bellingham, WA, USA: SPIE Press, 2010.
+[^2]: R. Kingslake and R. B. Johnson, *Lens Design Fundamentals*, 2nd ed. Bellingham, WA, USA: SPIE Press, 2010.
 
-[^3] W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2008.
+[^3]: W. J. Smith, *Modern Optical Engineering*, 4th ed. New York, NY, USA: McGraw-Hill, 2008.
 
-[^4] W. J. Smith, *Modern Lens Design*, 2nd ed. New York, NY, USA: McGraw-Hill, 2005.
+[^4]: W. J. Smith, *Modern Lens Design*, 2nd ed. New York, NY, USA: McGraw-Hill, 2005.
 
-[^5] J. M. Sasian, *Introduction to Lens Design*. Cambridge, U.K.: Cambridge University Press, 2019.
+[^5]: J. M. Sasian, *Introduction to Lens Design*. Cambridge, U.K.: Cambridge University Press, 2019.
 
-[^6] V. N. Mahajan, *Optical Imaging and Aberrations, Part I: Ray Geometrical Optics*. Bellingham, WA, USA: SPIE Press, 1998.
+[^6]: V. N. Mahajan, *Optical Imaging and Aberrations, Part I: Ray Geometrical Optics*. Bellingham, WA, USA: SPIE Press, 1998.
 
-[^7] V. N. Mahajan, *Optical Imaging and Aberrations, Part II: Wave Diffraction Optics*, 2nd ed. Bellingham, WA, USA: SPIE Press, 2011.
+[^7]: V. N. Mahajan, *Optical Imaging and Aberrations, Part II: Wave Diffraction Optics*, 2nd ed. Bellingham, WA, USA: SPIE Press, 2011.
 
-[^8] M. Born and E. Wolf, *Principles of Optics*, 7th (expanded) ed. Cambridge, U.K.: Cambridge University Press, 1999.
+[^8]: M. Born and E. Wolf, *Principles of Optics*, 7th (expanded) ed. Cambridge, U.K.: Cambridge University Press, 1999.
 
-[^9] A. E. Conrady, *Applied Optics and Optical Design*, Parts 1 and 2. New York, NY, USA: Dover, 1957 (orig. pub. 1929–1960).
+[^9]: A. E. Conrady, *Applied Optics and Optical Design*, Parts 1 and 2. New York, NY, USA: Dover, 1957 (orig. pub. 1929–1960).
 
-[^10] R. E. Fischer, B. Tadic-Galeb, and P. R. Yoder, *Optical System Design*, 2nd ed. New York, NY, USA: McGraw-Hill, 2008.
+[^10]: R. E. Fischer, B. Tadic-Galeb, and P. R. Yoder, *Optical System Design*, 2nd ed. New York, NY, USA: McGraw-Hill, 2008.
 
-[^11] I. Newton, *Opticks: Or, A Treatise of the Reflections, Refractions, Inflections and Colours of Light*, orig. pub. London, U.K., 1704. New York, NY, USA: Dover, 1952.
+[^11]: I. Newton, *Opticks: Or, A Treatise of the Reflections, Refractions, Inflections and Colours of Light*, orig. pub. London, U.K., 1704. New York, NY, USA: Dover, 1952.
 
-[^12] J. Dollond, "An account of some experiments concerning the different refrangibility of light," *Phil. Trans. R. Soc. Lond.*, vol. 50, pp. 733–743, 1758.
+[^12]: J. Dollond, "An account of some experiments concerning the different refrangibility of light," *Phil. Trans. R. Soc. Lond.*, vol. 50, pp. 733–743, 1758.
 
-[^13] R. Sorrenson, "Dollond & Son's pursuit of achromaticity, 1758–1789," *Hist. Sci.*, vol. 39, no. 1, pp. 31–55, 2001.
+[^13]: R. Sorrenson, "Dollond & Son's pursuit of achromaticity, 1758–1789," *Hist. Sci.*, vol. 39, no. 1, pp. 31–55, 2001.
 
-[^14] R. Willach, "New light on the invention of the achromatic telescope objective," *Notes Rec. R. Soc. Lond.*, vol. 50, no. 2, pp. 195–210, 1996.
+[^14]: R. Willach, "New light on the invention of the achromatic telescope objective," *Notes Rec. R. Soc. Lond.*, vol. 50, no. 2, pp. 195–210, 1996.
 
-[^15] S. Klingenstierna, "Anmärkning vid brytnings-lagen af särskilta slags ljus-strålar," *Kungl. Sv. Vetenskapsakad. Handl.*, vol. 15, pp. 297–306, 1754.
+[^15]: S. Klingenstierna, "Anmärkning vid brytnings-lagen af särskilta slags ljus-strålar," *Kungl. Sv. Vetenskapsakad. Handl.*, vol. 15, pp. 297–306, 1754.
 
-[^16] J. J. Lister, "On some properties in achromatic object-glasses applicable to the improvement of the microscope," *Phil. Trans. R. Soc. Lond.*, vol. 120, pp. 187–200, 1830.
+[^16]: J. J. Lister, "On some properties in achromatic object-glasses applicable to the improvement of the microscope," *Phil. Trans. R. Soc. Lond.*, vol. 120, pp. 187–200, 1830.
 
-[^17] Schott AG, "Technical Information TIE-29: Refractive Index and Dispersion," Mainz, Germany. [Online]. Available: https://www.schott.com/shop/medias/tie-29-refractive-index-and-dispersion-eng.pdf. Accessed: Apr. 28, 2026.
+[^17]: Schott AG, "Technical Information TIE-29: Refractive Index and Dispersion," Mainz, Germany. [Online]. Available: https://www.schott.com/shop/medias/tie-29-refractive-index-and-dispersion-eng.pdf. Accessed: Apr. 28, 2026.
 
-[^18] H. H. Nasse, "Achromat and Apochromat — What is the Difference?" Carl Zeiss AG, Camera Lens Division, Oberkochen, Germany, 2000. [Online]. Available: https://lenspire.zeiss.com/photo/en/article/achromat-and-apochromat-what-is-the-difference. Accessed: Apr. 28, 2026.
+[^18]: H. H. Nasse, "Achromat and Apochromat — What is the Difference?" Carl Zeiss AG, Camera Lens Division, Oberkochen, Germany, 2000. [Online]. Available: https://lenspire.zeiss.com/photo/en/article/achromat-and-apochromat-what-is-the-difference. Accessed: Apr. 28, 2026.
 
-[^19] Carl Zeiss AG, "Ernst Abbe — Physicist, Inventor, Entrepreneur, and Social Reformer," Oberkochen, Germany. [Online]. Available: https://www.zeiss.com/corporate/en/about-zeiss/past/history/ernst-abbe.html. Accessed: Apr. 28, 2026.
+[^19]: Carl Zeiss AG, "Ernst Abbe — Physicist, Inventor, Entrepreneur, and Social Reformer," Oberkochen, Germany. [Online]. Available: https://www.zeiss.com/corporate/en/about-zeiss/past/history/ernst-abbe.html. Accessed: Apr. 28, 2026.
 
-[^20] F. Bociort and J. Braat, "Ernst Abbe's research program (1878–1886)," *Wiley Analytical Science*, 2021. [Online]. Available: https://analyticalscience.wiley.com/content/article-do/ernst-abbe-s-research-program-1878-1886. Accessed: Apr. 28, 2026.
+[^20]: F. Bociort and J. Braat, "Ernst Abbe's research program (1878–1886)," *Wiley Analytical Science*, 2021. [Online]. Available: https://analyticalscience.wiley.com/content/article-do/ernst-abbe-s-research-program-1878-1886. Accessed: Apr. 28, 2026.
 
-[^21] Canon Inc., "FL-F300mm f/5.6," Canon Camera Museum. [Online]. Available: https://global.canon/en/c-museum/product/fl117.html. Accessed: Apr. 28, 2026.
+[^21]: Canon Inc., "FL-F300mm f/5.6," Canon Camera Museum. [Online]. Available: https://global.canon/en/c-museum/product/fl117.html. Accessed: Apr. 28, 2026.
 
-[^22] Canon Inc., "Canon celebrates 50th anniversary of lens employing synthetic fluorite," Canon Global, Nov. 7, 2019. [Online]. Available: https://global.canon/en/news/2019/20191107.html. Accessed: Apr. 28, 2026.
+[^22]: Canon Inc., "Canon celebrates 50th anniversary of lens employing synthetic fluorite," Canon Global, Nov. 7, 2019. [Online]. Available: https://global.canon/en/news/2019/20191107.html. Accessed: Apr. 28, 2026.
 
-[^23] Nikon Corp., "NIKKOR — The Thousand and One Nights, Tale 11," Nikon Imaging. [Online]. Available: https://imaging.nikon.com/imaging/information/story/0011/. Accessed: Apr. 28, 2026.
+[^23]: Nikon Corp., "NIKKOR — The Thousand and One Nights, Tale 11," Nikon Imaging. [Online]. Available: https://imaging.nikon.com/imaging/information/story/0011/. Accessed: Apr. 28, 2026.
 
-[^24] Nikon Corp., "NIKKOR — The Thousand and One Nights, Tale 66," Nikon Imaging. [Online]. Available: https://imaging.nikon.com/history/story/0066/index.htm. Accessed: Apr. 28, 2026.
+[^24]: Nikon Corp., "NIKKOR — The Thousand and One Nights, Tale 66," Nikon Imaging. [Online]. Available: https://imaging.nikon.com/history/story/0066/index.htm. Accessed: Apr. 28, 2026.
 
-[^25] C. Merkin, "The Spy Who Came in From the Cold — The 180mm f/3.4 APO-Telyt-R," Leica Camera Blog, Aug. 28, 2012. [Online]. Available: https://leica-camera.com/en-int/blog/photography/carl-merkin-180mm-f34-apo-telyt-r. Accessed: Apr. 28, 2026.
+[^25]: C. Merkin, "The Spy Who Came in From the Cold — The 180mm f/3.4 APO-Telyt-R," Leica Camera Blog, Aug. 28, 2012. [Online]. Available: https://leica-camera.com/en-int/blog/photography/carl-merkin-180mm-f34-apo-telyt-r. Accessed: Apr. 28, 2026.
 
-[^26] A. Cröll, "Voigtländer Large Format Lenses from 1949–1972," arnecroell.com. [Online]. Available: https://www.arnecroell.com/voigtlaender.pdf. Accessed: Apr. 28, 2026.
+[^26]: A. Cröll, "Voigtländer Large Format Lenses from 1949–1972," arnecroell.com. [Online]. Available: https://www.arnecroell.com/voigtlaender.pdf. Accessed: Apr. 28, 2026.
 
-[^27] Jenoptik AG, "CoastalOpt UV-VIS-IR 60 mm 1:4 APO Macro," Jena, Germany. [Online]. Available: https://www.jenoptik.com/-/media/websitedocuments/optics/optics/product-brochure-multispectral-lenses-60mm.pdf. Accessed: Apr. 28, 2026.
+[^27]: Jenoptik AG, "CoastalOpt UV-VIS-IR 60 mm 1:4 APO Macro," Jena, Germany. [Online]. Available: https://www.jenoptik.com/-/media/websitedocuments/optics/optics/product-brochure-multispectral-lenses-60mm.pdf. Accessed: Apr. 28, 2026.
 
-[^28] Cosina Co., Ltd., "65 mm / 1:2.0 MACRO APO-Lanthar Aspherical," Voigtländer. [Online]. Available: https://www.voigtlaender.de/z-mount/65mm-120-macro-apo-lanthar-aspherical/?lang=en. Accessed: Apr. 28, 2026.
+[^28]: Cosina Co., Ltd., "65 mm / 1:2.0 MACRO APO-Lanthar Aspherical," Voigtländer. [Online]. Available: https://www.voigtlaender.de/z-mount/65mm-120-macro-apo-lanthar-aspherical/?lang=en. Accessed: Apr. 28, 2026.
 
-[^29] Cosina Co., Ltd., "110 mm / 1:2.5 MACRO APO-Lanthar," Voigtländer. [Online]. Available: https://www.voigtlaender.de/lenses/e-mount/110-mm-12-5-macro-apo-lanthar/?lang=en. Accessed: Apr. 28, 2026.
+[^29]: Cosina Co., Ltd., "110 mm / 1:2.5 MACRO APO-Lanthar," Voigtländer. [Online]. Available: https://www.voigtlaender.de/lenses/e-mount/110-mm-12-5-macro-apo-lanthar/?lang=en. Accessed: Apr. 28, 2026.
 
-[^30] Cosina Co., Ltd., "50 mm / 1:2.0 APO-Lanthar," Voigtländer. [Online]. Available: https://www.voigtlaender.de/lenses/e-mount/50-mm-120-apo-lanthar-e/?lang=en. Accessed: Apr. 28, 2026.
+[^30]: Cosina Co., Ltd., "50 mm / 1:2.0 APO-Lanthar," Voigtländer. [Online]. Available: https://www.voigtlaender.de/lenses/e-mount/50-mm-120-apo-lanthar-e/?lang=en. Accessed: Apr. 28, 2026.
 
-[^31] Carl Zeiss AG, "Sonnar T* 5.6/250 Superachromat," Oberkochen, Germany. [Online]. Available: https://www.zeiss.com/content/dam/consumer-products/downloads/historical-products/photography/hasselblad-c/en/datasheet-zeiss-sonnar-superachromat-56250-en.pdf. Accessed: Apr. 28, 2026.
+[^31]: Carl Zeiss AG, "Sonnar T* 5.6/250 Superachromat," Oberkochen, Germany. [Online]. Available: https://www.zeiss.com/content/dam/consumer-products/downloads/historical-products/photography/hasselblad-c/en/datasheet-zeiss-sonnar-superachromat-56250-en.pdf. Accessed: Apr. 28, 2026.
 
-[^32] Whipple Museum of the History of Science, "The Problems with Lenses, and the 19th-century Solution," University of Cambridge, Cambridge, U.K. [Online]. Available: https://www.whipplemuseum.cam.ac.uk/explore-whipple-collections/microscopes/problems-lenses-and-19th-century-solution. Accessed: Apr. 28, 2026.
+[^32]: Whipple Museum of the History of Science, "The Problems with Lenses, and the 19th-century Solution," University of Cambridge, Cambridge, U.K. [Online]. Available: https://www.whipplemuseum.cam.ac.uk/explore-whipple-collections/microscopes/problems-lenses-and-19th-century-solution. Accessed: Apr. 28, 2026.
 
-[^33] Ohara Inc., *Optical Glass Catalog*, Kanagawa, Japan. [Online]. Available: https://www.ohara-inc.co.jp/en/product/optical/. Accessed: Apr. 28, 2026.
+[^33]: Ohara Inc., *Optical Glass Catalog*, Kanagawa, Japan. [Online]. Available: https://www.ohara-inc.co.jp/en/product/optical/. Accessed: Apr. 28, 2026.
 
-[^34] Carl Zeiss AG, "Apo Sonnar T* 2/135 Product Datasheet," Oberkochen, Germany, 2012. [Online]. Available: https://www.zeiss.com/content/dam/consumer-products/downloads/historical-products/photography/classic-lenses/en/datasheet-zeiss-classic-apo-sonnar-2135.pdf. Accessed: Apr. 28, 2026.
+[^34]: Carl Zeiss AG, "Apo Sonnar T* 2/135 Product Datasheet," Oberkochen, Germany, 2012. [Online]. Available: https://www.zeiss.com/content/dam/consumer-products/downloads/historical-products/photography/classic-lenses/en/datasheet-zeiss-classic-apo-sonnar-2135.pdf. Accessed: Apr. 28, 2026.
 
 ---
 

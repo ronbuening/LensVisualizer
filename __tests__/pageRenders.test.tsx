@@ -129,6 +129,19 @@ describe("static page renders", () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 
+  it("renders GFM footnote references as article links", () => {
+    renderRoutes(
+      "/articles/achromat-apochromat",
+      <Routes>
+        <Route path="/articles/:slug" element={<ArticlePage />} />
+      </Routes>,
+    );
+
+    expect(document.querySelector('a[href="#user-content-fn-3"]')).toBeTruthy();
+    expect(document.getElementById("user-content-fn-3")).toBeTruthy();
+    expect(document.querySelector('a[href="#user-content-fnref-3"]')).toBeTruthy();
+  });
+
   it("redirects unknown article slugs to the archive", async () => {
     renderRoutes(
       "/articles/not-a-real-article",
