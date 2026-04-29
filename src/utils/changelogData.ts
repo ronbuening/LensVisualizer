@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-29",
+    type: "feature",
+    summary: "Added cardinal element and first-order distance overlays to lens diagrams",
+  },
+  {
+    date: "2026-04-29",
     type: "lens",
     summary:
       "Added Carl Zeiss Jena Tessar 50mm f/3.5, Carl Zeiss Oberkochen Tessar 50mm f/2.8, and Sony FE 90mm f/2.8 Macro G OSS",

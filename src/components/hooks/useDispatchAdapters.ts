@@ -78,8 +78,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onChromGChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
       onChromBChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
       onShowPupilsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v }),
-      onShowCardinalsChange: (v: boolean) =>
-        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value: v }),
+      onShowCardinalsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value: v }),
       onShowCardinalDimensionsChange: (v: boolean) =>
         dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value: v }),
       onFocusExpandedChange: (v: boolean) =>

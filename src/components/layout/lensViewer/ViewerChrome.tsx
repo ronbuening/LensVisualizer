@@ -70,8 +70,7 @@ export default function ViewerChrome({
   onDesktopViewChange,
 }: ViewerChromeProps) {
   const [mobileControlPage, setMobileControlPage] = useState<"standard" | "cardinals">("standard");
-  const showMobileControlSwitcher =
-    ENABLE_CARDINAL_ELEMENTS && !isWide && !comparing && mobileView === "diagram";
+  const showMobileControlSwitcher = ENABLE_CARDINAL_ELEMENTS && !isWide && !comparing && mobileView === "diagram";
 
   const mobileControlArrows = showMobileControlSwitcher ? (
     <div
@@ -152,9 +151,12 @@ export default function ViewerChrome({
 
       {mobileControlArrows}
 
-      {!isWide && !comparing && mobileView === "diagram" && (!showMobileControlSwitcher || mobileControlPage === "standard") && (
-        <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
-      )}
+      {!isWide &&
+        !comparing &&
+        mobileView === "diagram" &&
+        (!showMobileControlSwitcher || mobileControlPage === "standard") && (
+          <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
+        )}
 
       {showMobileControlSwitcher && mobileControlPage === "cardinals" && (
         <div

@@ -57,9 +57,7 @@ export function createCoordinateTransforms({
   const leftLimit =
     zMin < MID && CX > horizontalMargin ? (CX - horizontalMargin) / Math.max(MID - zMin, 1e-9) : Infinity;
   const rightLimit =
-    zMax > MID && svgW - horizontalMargin > CX
-      ? (svgW - horizontalMargin - CX) / Math.max(zMax - MID, 1e-9)
-      : Infinity;
+    zMax > MID && svgW - horizontalMargin > CX ? (svgW - horizontalMargin - CX) / Math.max(zMax - MID, 1e-9) : Infinity;
   const effectiveSC = Math.min(rawSC, leftLimit, rightLimit);
   const scaleFactor = rawSC > 0 ? effectiveSC / rawSC : 1;
   const effectiveYSC = rawYSC * scaleFactor;

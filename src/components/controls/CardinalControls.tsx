@@ -42,7 +42,10 @@ export default function CardinalControls({
         <button
           key={label}
           onClick={onClick}
-          style={toggleBtn(t, active, { hasRightBorder: idx < labels.length - 1, padding: compact ? "5px 7px" : "5px 8px" })}
+          style={toggleBtn(t, active, {
+            hasRightBorder: idx < labels.length - 1,
+            padding: compact ? "5px 7px" : "5px 8px",
+          })}
         >
           <span>{label}</span>
         </button>
