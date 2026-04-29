@@ -38,7 +38,15 @@ export interface DispatchAdapters {
   onChromBChange: (v: boolean) => void;
   onShowPupilsChange: (v: boolean) => void;
   onShowCardinalsChange: (v: boolean) => void;
+  onShowCardinalFocalChange: (v: boolean) => void;
+  onShowCardinalPrincipalChange: (v: boolean) => void;
+  onShowCardinalNodalChange: (v: boolean) => void;
   onShowCardinalDimensionsChange: (v: boolean) => void;
+  onShowCardinalEflChange: (v: boolean) => void;
+  onShowCardinalBfdChange: (v: boolean) => void;
+  onShowCardinalFfdChange: (v: boolean) => void;
+  onShowCardinalHiatusChange: (v: boolean) => void;
+  onShowCardinalTotalTrackChange: (v: boolean) => void;
   onFocusExpandedChange: (v: boolean) => void;
   onApertureExpandedChange: (v: boolean) => void;
   onHeaderControlsExpandedChange: (v: boolean) => void;
@@ -79,8 +87,21 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onChromBChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
       onShowPupilsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v }),
       onShowCardinalsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value: v }),
+      onShowCardinalFocalChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value: v }),
+      onShowCardinalPrincipalChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalPrincipal", value: v }),
+      onShowCardinalNodalChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalNodal", value: v }),
       onShowCardinalDimensionsChange: (v: boolean) =>
         dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value: v }),
+      onShowCardinalEflChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value: v }),
+      onShowCardinalBfdChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalBfd", value: v }),
+      onShowCardinalFfdChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFfd", value: v }),
+      onShowCardinalHiatusChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalHiatus", value: v }),
+      onShowCardinalTotalTrackChange: (v: boolean) =>
+        dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalTotalTrack", value: v }),
       onFocusExpandedChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "focusExpanded", expanded: v }),
       onApertureExpandedChange: (v: boolean) =>

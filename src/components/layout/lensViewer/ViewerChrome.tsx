@@ -173,9 +173,41 @@ export default function ViewerChrome({
             onShowCardinalsChange={(value) =>
               controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value })
             }
+            showCardinalFocal={controlsBarProps.showCardinalFocal}
+            onShowCardinalFocalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value })
+            }
+            showCardinalPrincipal={controlsBarProps.showCardinalPrincipal}
+            onShowCardinalPrincipalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalPrincipal", value })
+            }
+            showCardinalNodal={controlsBarProps.showCardinalNodal}
+            onShowCardinalNodalChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalNodal", value })
+            }
             showCardinalDimensions={controlsBarProps.showCardinalDimensions}
             onShowCardinalDimensionsChange={(value) =>
               controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value })
+            }
+            showCardinalEfl={controlsBarProps.showCardinalEfl}
+            onShowCardinalEflChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value })
+            }
+            showCardinalBfd={controlsBarProps.showCardinalBfd}
+            onShowCardinalBfdChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalBfd", value })
+            }
+            showCardinalFfd={controlsBarProps.showCardinalFfd}
+            onShowCardinalFfdChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalFfd", value })
+            }
+            showCardinalHiatus={controlsBarProps.showCardinalHiatus}
+            onShowCardinalHiatusChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalHiatus", value })
+            }
+            showCardinalTotalTrack={controlsBarProps.showCardinalTotalTrack}
+            onShowCardinalTotalTrackChange={(value) =>
+              controlsBarProps.dispatch({ type: SET_RAY_TOGGLE, field: "showCardinalTotalTrack", value })
             }
           />
         </div>

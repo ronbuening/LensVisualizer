@@ -40,7 +40,15 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
     if (typeof p.showPupils === "boolean") out.showPupils = p.showPupils;
     if (typeof p.showCardinals === "boolean") out.showCardinals = p.showCardinals;
+    if (typeof p.showCardinalFocal === "boolean") out.showCardinalFocal = p.showCardinalFocal;
+    if (typeof p.showCardinalPrincipal === "boolean") out.showCardinalPrincipal = p.showCardinalPrincipal;
+    if (typeof p.showCardinalNodal === "boolean") out.showCardinalNodal = p.showCardinalNodal;
     if (typeof p.showCardinalDimensions === "boolean") out.showCardinalDimensions = p.showCardinalDimensions;
+    if (typeof p.showCardinalEfl === "boolean") out.showCardinalEfl = p.showCardinalEfl;
+    if (typeof p.showCardinalBfd === "boolean") out.showCardinalBfd = p.showCardinalBfd;
+    if (typeof p.showCardinalFfd === "boolean") out.showCardinalFfd = p.showCardinalFfd;
+    if (typeof p.showCardinalHiatus === "boolean") out.showCardinalHiatus = p.showCardinalHiatus;
+    if (typeof p.showCardinalTotalTrack === "boolean") out.showCardinalTotalTrack = p.showCardinalTotalTrack;
     /* Lens selection (lensKeyA, lensKeyB, comparing) is intentionally NOT
        restored from preferences — it comes from the URL so the homepage
        isn't hijacked by a previously-viewed lens. */

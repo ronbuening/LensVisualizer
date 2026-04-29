@@ -96,7 +96,15 @@ export default function LensDiagramPanel({
     rayTracksF,
     showPupils,
     showCardinals,
+    showCardinalFocal,
+    showCardinalPrincipal,
+    showCardinalNodal,
     showCardinalDimensions,
+    showCardinalEfl,
+    showCardinalBfd,
+    showCardinalFfd,
+    showCardinalHiatus,
+    showCardinalTotalTrack,
   } = raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = resolveDarkPreference(display.dark, systemDark);
@@ -354,7 +362,15 @@ export default function LensDiagramPanel({
           showChromatic={showChromatic}
           showPupils={showPupils}
           showCardinals={ENABLE_CARDINAL_ELEMENTS && showCardinals}
+          showCardinalFocal={showCardinalFocal}
+          showCardinalPrincipal={showCardinalPrincipal}
+          showCardinalNodal={showCardinalNodal}
           showCardinalDimensions={ENABLE_CARDINAL_ELEMENTS && showCardinalDimensions}
+          showCardinalEfl={showCardinalEfl}
+          showCardinalBfd={showCardinalBfd}
+          showCardinalFfd={showCardinalFfd}
+          showCardinalHiatus={showCardinalHiatus}
+          showCardinalTotalTrack={showCardinalTotalTrack}
           cardinalElements={cardinalElements}
           chromR={chromR}
           chromG={chromG}
@@ -445,8 +461,24 @@ export default function LensDiagramPanel({
                 onShowPupilsChange={adapters.onShowPupilsChange}
                 showCardinals={showCardinals}
                 onShowCardinalsChange={adapters.onShowCardinalsChange}
+                showCardinalFocal={showCardinalFocal}
+                onShowCardinalFocalChange={adapters.onShowCardinalFocalChange}
+                showCardinalPrincipal={showCardinalPrincipal}
+                onShowCardinalPrincipalChange={adapters.onShowCardinalPrincipalChange}
+                showCardinalNodal={showCardinalNodal}
+                onShowCardinalNodalChange={adapters.onShowCardinalNodalChange}
                 showCardinalDimensions={showCardinalDimensions}
                 onShowCardinalDimensionsChange={adapters.onShowCardinalDimensionsChange}
+                showCardinalEfl={showCardinalEfl}
+                onShowCardinalEflChange={adapters.onShowCardinalEflChange}
+                showCardinalBfd={showCardinalBfd}
+                onShowCardinalBfdChange={adapters.onShowCardinalBfdChange}
+                showCardinalFfd={showCardinalFfd}
+                onShowCardinalFfdChange={adapters.onShowCardinalFfdChange}
+                showCardinalHiatus={showCardinalHiatus}
+                onShowCardinalHiatusChange={adapters.onShowCardinalHiatusChange}
+                showCardinalTotalTrack={showCardinalTotalTrack}
+                onShowCardinalTotalTrackChange={adapters.onShowCardinalTotalTrackChange}
                 headerInfoExpanded={headerInfoExpanded}
                 onHeaderInfoExpandedChange={adapters.onHeaderInfoExpandedChange}
                 minHeaderHeight={minHeaderHeight}

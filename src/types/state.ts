@@ -66,7 +66,15 @@ export type RayField =
   | "chromB"
   | "showPupils"
   | "showCardinals"
-  | "showCardinalDimensions";
+  | "showCardinalFocal"
+  | "showCardinalPrincipal"
+  | "showCardinalNodal"
+  | "showCardinalDimensions"
+  | "showCardinalEfl"
+  | "showCardinalBfd"
+  | "showCardinalFfd"
+  | "showCardinalHiatus"
+  | "showCardinalTotalTrack";
 export type BooleanRayField = Exclude<RayField, "showOffAxis" | "rayDensity">;
 
 export interface RaysSlice {
@@ -80,7 +88,15 @@ export interface RaysSlice {
   chromB: boolean;
   showPupils: boolean;
   showCardinals: boolean;
+  showCardinalFocal: boolean;
+  showCardinalPrincipal: boolean;
+  showCardinalNodal: boolean;
   showCardinalDimensions: boolean;
+  showCardinalEfl: boolean;
+  showCardinalBfd: boolean;
+  showCardinalFfd: boolean;
+  showCardinalHiatus: boolean;
+  showCardinalTotalTrack: boolean;
 }
 
 export interface SlidersSlice {
@@ -191,7 +207,15 @@ export interface Preferences {
   chromB: boolean;
   showPupils: boolean;
   showCardinals: boolean;
+  showCardinalFocal: boolean;
+  showCardinalPrincipal: boolean;
+  showCardinalNodal: boolean;
   showCardinalDimensions: boolean;
+  showCardinalEfl: boolean;
+  showCardinalBfd: boolean;
+  showCardinalFfd: boolean;
+  showCardinalHiatus: boolean;
+  showCardinalTotalTrack: boolean;
   focusExpanded: boolean;
   apertureExpanded: boolean;
   headerControlsExpanded: boolean;

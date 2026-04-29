@@ -75,7 +75,15 @@ export default function DiagramViewport({
   showChromatic,
   showPupils,
   showCardinals,
+  showCardinalFocal,
+  showCardinalPrincipal,
+  showCardinalNodal,
   showCardinalDimensions,
+  showCardinalEfl,
+  showCardinalBfd,
+  showCardinalFfd,
+  showCardinalHiatus,
+  showCardinalTotalTrack,
   cardinalElements,
   act,
   onHover,
@@ -194,7 +202,15 @@ export default function DiagramViewport({
         showChromatic={showChromatic}
         showPupils={showPupils}
         showCardinals={showCardinals}
+        showCardinalFocal={showCardinalFocal}
+        showCardinalPrincipal={showCardinalPrincipal}
+        showCardinalNodal={showCardinalNodal}
         showCardinalDimensions={showCardinalDimensions}
+        showCardinalEfl={showCardinalEfl}
+        showCardinalBfd={showCardinalBfd}
+        showCardinalFfd={showCardinalFfd}
+        showCardinalHiatus={showCardinalHiatus}
+        showCardinalTotalTrack={showCardinalTotalTrack}
         cardinalElements={cardinalElements}
         zoomT={zoomT}
         act={act}

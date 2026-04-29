@@ -49,7 +49,15 @@ interface DiagramSVGProps {
   showChromatic: boolean;
   showPupils: boolean;
   showCardinals?: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
   showCardinalDimensions?: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
   cardinalElements?: CardinalElements | null;
   zoomT: number;
   act: number | null;
@@ -107,7 +115,15 @@ const DiagramSVG = memo(function DiagramSVG({
   showChromatic,
   showPupils,
   showCardinals = false,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
   showCardinalDimensions = false,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
   cardinalElements,
   zoomT,
   act,
@@ -212,7 +228,15 @@ const DiagramSVG = memo(function DiagramSVG({
         showChromatic={showChromatic}
         showPupils={showPupils}
         showCardinals={showCardinals}
+        showCardinalFocal={showCardinalFocal}
+        showCardinalPrincipal={showCardinalPrincipal}
+        showCardinalNodal={showCardinalNodal}
         showCardinalDimensions={showCardinalDimensions}
+        showCardinalEfl={showCardinalEfl}
+        showCardinalBfd={showCardinalBfd}
+        showCardinalFfd={showCardinalFfd}
+        showCardinalHiatus={showCardinalHiatus}
+        showCardinalTotalTrack={showCardinalTotalTrack}
         cardinalElements={cardinalElements}
         zoomT={zoomT}
         act={act}

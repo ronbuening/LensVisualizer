@@ -33,7 +33,15 @@ interface DiagramOverlayLayerProps {
   showChromatic: boolean;
   showPupils: boolean;
   showCardinals?: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
   showCardinalDimensions?: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
   cardinalElements?: CardinalElements | null;
   zoomT: number;
   act: number | null;
@@ -62,7 +70,15 @@ export default function DiagramOverlayLayer({
   showChromatic,
   showPupils,
   showCardinals = false,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
   showCardinalDimensions = false,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
   cardinalElements,
   zoomT,
   act,
@@ -325,7 +341,15 @@ export default function DiagramOverlayLayer({
           sx={sx}
           sy={sy}
           showCardinals={showCardinals}
+          showCardinalFocal={showCardinalFocal}
+          showCardinalPrincipal={showCardinalPrincipal}
+          showCardinalNodal={showCardinalNodal}
           showCardinalDimensions={showCardinalDimensions}
+          showCardinalEfl={showCardinalEfl}
+          showCardinalBfd={showCardinalBfd}
+          showCardinalFfd={showCardinalFfd}
+          showCardinalHiatus={showCardinalHiatus}
+          showCardinalTotalTrack={showCardinalTotalTrack}
         />
       ) : null}
 

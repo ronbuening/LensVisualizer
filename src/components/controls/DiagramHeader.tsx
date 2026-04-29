@@ -50,8 +50,24 @@ interface DiagramHeaderProps {
   onShowPupilsChange?: (value: boolean) => void;
   showCardinals: boolean;
   onShowCardinalsChange?: (value: boolean) => void;
+  showCardinalFocal: boolean;
+  onShowCardinalFocalChange?: (value: boolean) => void;
+  showCardinalPrincipal: boolean;
+  onShowCardinalPrincipalChange?: (value: boolean) => void;
+  showCardinalNodal: boolean;
+  onShowCardinalNodalChange?: (value: boolean) => void;
   showCardinalDimensions: boolean;
   onShowCardinalDimensionsChange?: (value: boolean) => void;
+  showCardinalEfl: boolean;
+  onShowCardinalEflChange?: (value: boolean) => void;
+  showCardinalBfd: boolean;
+  onShowCardinalBfdChange?: (value: boolean) => void;
+  showCardinalFfd: boolean;
+  onShowCardinalFfdChange?: (value: boolean) => void;
+  showCardinalHiatus: boolean;
+  onShowCardinalHiatusChange?: (value: boolean) => void;
+  showCardinalTotalTrack: boolean;
+  onShowCardinalTotalTrackChange?: (value: boolean) => void;
   headerInfoExpanded: boolean;
   onHeaderInfoExpandedChange?: (value: boolean) => void;
   minHeaderHeight?: number;
@@ -87,8 +103,24 @@ const DiagramHeader = memo(
       onShowPupilsChange,
       showCardinals,
       onShowCardinalsChange,
+      showCardinalFocal,
+      onShowCardinalFocalChange,
+      showCardinalPrincipal,
+      onShowCardinalPrincipalChange,
+      showCardinalNodal,
+      onShowCardinalNodalChange,
       showCardinalDimensions,
       onShowCardinalDimensionsChange,
+      showCardinalEfl,
+      onShowCardinalEflChange,
+      showCardinalBfd,
+      onShowCardinalBfdChange,
+      showCardinalFfd,
+      onShowCardinalFfdChange,
+      showCardinalHiatus,
+      onShowCardinalHiatusChange,
+      showCardinalTotalTrack,
+      onShowCardinalTotalTrackChange,
       headerInfoExpanded,
       onHeaderInfoExpandedChange,
       minHeaderHeight,
@@ -218,8 +250,24 @@ const DiagramHeader = memo(
                   t={t}
                   showCardinals={showCardinals}
                   onShowCardinalsChange={onShowCardinalsChange}
+                  showCardinalFocal={showCardinalFocal}
+                  onShowCardinalFocalChange={onShowCardinalFocalChange}
+                  showCardinalPrincipal={showCardinalPrincipal}
+                  onShowCardinalPrincipalChange={onShowCardinalPrincipalChange}
+                  showCardinalNodal={showCardinalNodal}
+                  onShowCardinalNodalChange={onShowCardinalNodalChange}
                   showCardinalDimensions={showCardinalDimensions}
                   onShowCardinalDimensionsChange={onShowCardinalDimensionsChange}
+                  showCardinalEfl={showCardinalEfl}
+                  onShowCardinalEflChange={onShowCardinalEflChange}
+                  showCardinalBfd={showCardinalBfd}
+                  onShowCardinalBfdChange={onShowCardinalBfdChange}
+                  showCardinalFfd={showCardinalFfd}
+                  onShowCardinalFfdChange={onShowCardinalFfdChange}
+                  showCardinalHiatus={showCardinalHiatus}
+                  onShowCardinalHiatusChange={onShowCardinalHiatusChange}
+                  showCardinalTotalTrack={showCardinalTotalTrack}
+                  onShowCardinalTotalTrackChange={onShowCardinalTotalTrackChange}
                 />
               </div>
             ) : null}

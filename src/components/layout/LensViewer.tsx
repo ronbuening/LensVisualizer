@@ -81,7 +81,15 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     chromB,
     showPupils,
     showCardinals,
+    showCardinalFocal,
+    showCardinalPrincipal,
+    showCardinalNodal,
     showCardinalDimensions,
+    showCardinalEfl,
+    showCardinalBfd,
+    showCardinalFfd,
+    showCardinalHiatus,
+    showCardinalTotalTrack,
   } = rays;
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
@@ -211,7 +219,15 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     chromB,
     showPupils,
     showCardinals,
+    showCardinalFocal,
+    showCardinalPrincipal,
+    showCardinalNodal,
     showCardinalDimensions,
+    showCardinalEfl,
+    showCardinalBfd,
+    showCardinalFfd,
+    showCardinalHiatus,
+    showCardinalTotalTrack,
     scaleMode,
     dispatch,
   } as const;

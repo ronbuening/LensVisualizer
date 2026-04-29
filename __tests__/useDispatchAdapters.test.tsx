@@ -170,6 +170,15 @@ describe("useDispatchAdapters", () => {
     expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalDimensions", value: true });
   });
 
+  it("cardinal sub-layer adapters dispatch SET_RAY_TOGGLE actions", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onShowCardinalFocalChange(false);
+    adapters.onShowCardinalEflChange(false);
+
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalFocal", value: false });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_RAY_TOGGLE, field: "showCardinalEfl", value: false });
+  });
+
   /* ── Panel expanded dispatches ── */
 
   it("onFocusExpandedChange dispatches SET_PANEL_EXPANDED for focusExpanded", () => {

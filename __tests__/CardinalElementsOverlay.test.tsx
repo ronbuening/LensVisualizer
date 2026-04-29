@@ -98,4 +98,37 @@ describe("CardinalElementsOverlay", () => {
     expect(text).toContain("Total track 88.0 mm");
     expect(text).not.toContain("H/N");
   });
+
+  it("honors cardinal and dimension sub-layer visibility", () => {
+    const { container } = render(
+      <svg>
+        <CardinalElementsOverlay
+          lens={lens}
+          theme={themes.dark}
+          cardinals={baseCardinals}
+          sx={(z) => z + 100}
+          sy={(y) => 200 + y * 4}
+          showCardinals={true}
+          showCardinalFocal={false}
+          showCardinalPrincipal={true}
+          showCardinalNodal={false}
+          showCardinalDimensions={true}
+          showCardinalEfl={false}
+          showCardinalBfd={true}
+          showCardinalFfd={false}
+          showCardinalHiatus={false}
+          showCardinalTotalTrack={true}
+        />
+      </svg>,
+    );
+    const labels = Array.from(container.querySelectorAll("text")).map((el) => el.textContent || "");
+
+    expect(labels).not.toContain("F");
+    expect(labels).not.toContain("F'");
+    expect(labels).toContain("H/N");
+    expect(labels).toContain("H'/N'");
+    expect(labels.some((label) => label.startsWith("EFL "))).toBe(false);
+    expect(labels.some((label) => label.startsWith("BFD "))).toBe(true);
+    expect(labels.some((label) => label.startsWith("Total track "))).toBe(true);
+  });
 });

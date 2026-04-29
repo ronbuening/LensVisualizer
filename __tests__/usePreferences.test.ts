@@ -73,7 +73,15 @@ describe("usePreferences — persisted fields", () => {
     expect(typeof parsed.chromG).toBe("boolean");
     expect(typeof parsed.chromB).toBe("boolean");
     expect(typeof parsed.showCardinals).toBe("boolean");
+    expect(typeof parsed.showCardinalFocal).toBe("boolean");
+    expect(typeof parsed.showCardinalPrincipal).toBe("boolean");
+    expect(typeof parsed.showCardinalNodal).toBe("boolean");
     expect(typeof parsed.showCardinalDimensions).toBe("boolean");
+    expect(typeof parsed.showCardinalEfl).toBe("boolean");
+    expect(typeof parsed.showCardinalBfd).toBe("boolean");
+    expect(typeof parsed.showCardinalFfd).toBe("boolean");
+    expect(typeof parsed.showCardinalHiatus).toBe("boolean");
+    expect(typeof parsed.showCardinalTotalTrack).toBe("boolean");
   });
 
   it("persists panel expand states", () => {

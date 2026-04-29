@@ -9,7 +9,15 @@ interface CardinalElementsOverlayProps {
   sx: (z: number) => number;
   sy: (y: number) => number;
   showCardinals: boolean;
+  showCardinalFocal?: boolean;
+  showCardinalPrincipal?: boolean;
+  showCardinalNodal?: boolean;
   showCardinalDimensions: boolean;
+  showCardinalEfl?: boolean;
+  showCardinalBfd?: boolean;
+  showCardinalFfd?: boolean;
+  showCardinalHiatus?: boolean;
+  showCardinalTotalTrack?: boolean;
 }
 
 function fmtMm(value: number, signed = false): string {
@@ -95,7 +103,15 @@ export default function CardinalElementsOverlay({
   sx,
   sy,
   showCardinals,
+  showCardinalFocal = true,
+  showCardinalPrincipal = true,
+  showCardinalNodal = true,
   showCardinalDimensions,
+  showCardinalEfl = true,
+  showCardinalBfd = true,
+  showCardinalFfd = true,
+  showCardinalHiatus = true,
+  showCardinalTotalTrack = true,
 }: CardinalElementsOverlayProps) {
   const axisY = sy(0);
   const principalHalfHeight = Math.max(L.maxSD * 0.35, Math.min(L.maxSD * 1.2, L.svgH / Math.max(L.YSC, 1) / 5));
@@ -111,39 +127,52 @@ export default function CardinalElementsOverlay({
     <g aria-label="Cardinal elements overlay">
       {showCardinals ? (
         <>
-          <path
-            d={principalSurfacePath(frontFocal.z, frontPrincipal.z, principalHalfHeight, sx, sy)}
-            stroke={principalColor}
-            strokeWidth={1.3}
-            strokeDasharray="5,3"
-            fill="none"
-            style={{ pointerEvents: "none" }}
-          />
-          <path
-            d={principalSurfacePath(rearFocal.z, rearPrincipal.z, principalHalfHeight, sx, sy)}
-            stroke={principalColor}
-            strokeWidth={1.3}
-            strokeDasharray="5,3"
-            fill="none"
-            style={{ pointerEvents: "none" }}
-          />
-          {pointMarker(frontFocal, "F", sx(frontFocal.z), axisY, focalColor)}
-          {pointMarker(rearFocal, "F'", sx(rearFocal.z), axisY, focalColor)}
-          {pointMarker(frontPrincipal, frontPrincipalLabel, sx(frontPrincipal.z), axisY + 22, principalColor)}
-          {pointMarker(rearPrincipal, rearPrincipalLabel, sx(rearPrincipal.z), axisY + 22, principalColor)}
-          {!cardinals.nodalPrincipalCoincident &&
+          {showCardinalPrincipal ? (
+            <>
+              <path
+                d={principalSurfacePath(frontFocal.z, frontPrincipal.z, principalHalfHeight, sx, sy)}
+                stroke={principalColor}
+                strokeWidth={1.3}
+                strokeDasharray="5,3"
+                fill="none"
+                style={{ pointerEvents: "none" }}
+              />
+              <path
+                d={principalSurfacePath(rearFocal.z, rearPrincipal.z, principalHalfHeight, sx, sy)}
+                stroke={principalColor}
+                strokeWidth={1.3}
+                strokeDasharray="5,3"
+                fill="none"
+                style={{ pointerEvents: "none" }}
+              />
+              {pointMarker(frontPrincipal, frontPrincipalLabel, sx(frontPrincipal.z), axisY + 22, principalColor)}
+              {pointMarker(rearPrincipal, rearPrincipalLabel, sx(rearPrincipal.z), axisY + 22, principalColor)}
+            </>
+          ) : null}
+          {showCardinalFocal ? (
+            <>
+              {pointMarker(frontFocal, "F", sx(frontFocal.z), axisY, focalColor)}
+              {pointMarker(rearFocal, "F'", sx(rearFocal.z), axisY, focalColor)}
+            </>
+          ) : null}
+          {showCardinalNodal &&
+            !cardinals.nodalPrincipalCoincident &&
             pointMarker(frontNodal, "N", sx(frontNodal.z), axisY + 44, nodalColor)}
-          {!cardinals.nodalPrincipalCoincident && pointMarker(rearNodal, "N'", sx(rearNodal.z), axisY + 44, nodalColor)}
+          {showCardinalNodal &&
+            !cardinals.nodalPrincipalCoincident &&
+            pointMarker(rearNodal, "N'", sx(rearNodal.z), axisY + 44, nodalColor)}
         </>
       ) : null}
 
       {showCardinalDimensions ? (
         <>
-          {dimensionLine(cardinals.distances.efl, axisY + 70, sx, dimensionColor)}
-          {dimensionLine(cardinals.distances.bfd, axisY + 86, sx, dimensionColor)}
-          {dimensionLine(cardinals.distances.ffd, axisY + 102, sx, dimensionColor)}
-          {dimensionLine(cardinals.distances.hiatus, axisY + 118, sx, dimensionColor)}
-          {dimensionLine(cardinals.distances.totalTrack, axisY + 134, sx, dimensionColor)}
+          {showCardinalEfl ? dimensionLine(cardinals.distances.efl, axisY + 70, sx, dimensionColor) : null}
+          {showCardinalBfd ? dimensionLine(cardinals.distances.bfd, axisY + 86, sx, dimensionColor) : null}
+          {showCardinalFfd ? dimensionLine(cardinals.distances.ffd, axisY + 102, sx, dimensionColor) : null}
+          {showCardinalHiatus ? dimensionLine(cardinals.distances.hiatus, axisY + 118, sx, dimensionColor) : null}
+          {showCardinalTotalTrack
+            ? dimensionLine(cardinals.distances.totalTrack, axisY + 134, sx, dimensionColor)
+            : null}
         </>
       ) : null}
     </g>

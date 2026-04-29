@@ -76,7 +76,15 @@ interface LensDiagramLoadedStateProps {
   showChromatic: boolean;
   showPupils: boolean;
   showCardinals: boolean;
+  showCardinalFocal: boolean;
+  showCardinalPrincipal: boolean;
+  showCardinalNodal: boolean;
   showCardinalDimensions: boolean;
+  showCardinalEfl: boolean;
+  showCardinalBfd: boolean;
+  showCardinalFfd: boolean;
+  showCardinalHiatus: boolean;
+  showCardinalTotalTrack: boolean;
   cardinalElements: CardinalElements | null;
   chromR: boolean;
   chromG: boolean;
@@ -200,7 +208,15 @@ export default function LensDiagramLoadedState({
   showChromatic,
   showPupils,
   showCardinals,
+  showCardinalFocal,
+  showCardinalPrincipal,
+  showCardinalNodal,
   showCardinalDimensions,
+  showCardinalEfl,
+  showCardinalBfd,
+  showCardinalFfd,
+  showCardinalHiatus,
+  showCardinalTotalTrack,
   cardinalElements,
   chromR,
   chromG,
@@ -265,7 +281,15 @@ export default function LensDiagramLoadedState({
             showChromatic={showChromatic}
             showPupils={showPupils}
             showCardinals={showCardinals}
+            showCardinalFocal={showCardinalFocal}
+            showCardinalPrincipal={showCardinalPrincipal}
+            showCardinalNodal={showCardinalNodal}
             showCardinalDimensions={showCardinalDimensions}
+            showCardinalEfl={showCardinalEfl}
+            showCardinalBfd={showCardinalBfd}
+            showCardinalFfd={showCardinalFfd}
+            showCardinalHiatus={showCardinalHiatus}
+            showCardinalTotalTrack={showCardinalTotalTrack}
             cardinalElements={cardinalElements}
             zoomT={zoomT}
             act={act}
