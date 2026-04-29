@@ -33,6 +33,7 @@ import { useLensCtx, useLensDispatch, usePanelCtx } from "../../utils/LensContex
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { resolveDarkPreference } from "../../utils/themePreferences.js";
 import { SET_SELECTED_ELEMENT } from "../../utils/lensReducer.js";
+import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
@@ -84,8 +85,19 @@ export default function LensDiagramPanel({
   const dispatch = useLensDispatch();
   const { rays: raysState, display, sliders } = state;
   const panels = usePanelCtx();
-  const { showOnAxis, showOffAxis, rayDensity, showChromatic, chromR, chromG, chromB, rayTracksF, showPupils } =
-    raysState;
+  const {
+    showOnAxis,
+    showOffAxis,
+    rayDensity,
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    rayTracksF,
+    showPupils,
+    showCardinals,
+    showCardinalDimensions,
+  } = raysState;
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const dark = resolveDarkPreference(display.dark, systemDark);
   const {
@@ -160,11 +172,23 @@ export default function LensDiagramPanel({
     baseEPSD,
     currentEPSD,
     fieldGeometry,
+    cardinalElements,
     varReadouts,
     dynamicEFL,
     effectiveFNum,
     filterId,
-  } = useLensComputation({ lensKey, runtimeLens, focusT, zoomT, stopdownT, shiftMm, tiltDeg, scaleRatio, panelId });
+  } = useLensComputation({
+    lensKey,
+    runtimeLens,
+    focusT,
+    zoomT,
+    stopdownT,
+    shiftMm,
+    tiltDeg,
+    scaleRatio,
+    panelId,
+    includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
+  });
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
 
   useEffect(() => {
@@ -329,6 +353,9 @@ export default function LensDiagramPanel({
           showOffAxis={showOffAxis}
           showChromatic={showChromatic}
           showPupils={showPupils}
+          showCardinals={ENABLE_CARDINAL_ELEMENTS && showCardinals}
+          showCardinalDimensions={ENABLE_CARDINAL_ELEMENTS && showCardinalDimensions}
+          cardinalElements={cardinalElements}
           chromR={chromR}
           chromG={chromG}
           chromB={chromB}

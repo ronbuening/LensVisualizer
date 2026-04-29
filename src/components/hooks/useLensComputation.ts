@@ -19,6 +19,7 @@ import {
   effectiveFNumber,
   computeFieldGeometryAtState,
 } from "../../optics/optics.js";
+import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
@@ -35,6 +36,7 @@ interface UseLensComputationParams {
   tiltDeg?: number;
   scaleRatio: number | null;
   panelId: string;
+  includeCardinalExtents?: boolean;
 }
 
 interface VarReadout {
@@ -65,6 +67,7 @@ interface UseLensComputationResult {
   baseEPSD: number;
   currentEPSD: number;
   fieldGeometry: FieldGeometryState | null;
+  cardinalElements: CardinalElements | null;
   varReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
@@ -81,6 +84,7 @@ export default function useLensComputation({
   tiltDeg = 0,
   scaleRatio,
   panelId,
+  includeCardinalExtents = false,
 }: UseLensComputationParams): UseLensComputationResult {
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
@@ -124,6 +128,18 @@ export default function useLensComputation({
 
   const fieldGeometry = useMemo(() => (L ? computeFieldGeometryAtState(focusT, zoomT, L) : null), [L, focusT, zoomT]);
 
+  const cardinalElements = useMemo(
+    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM) : null),
+    [L, focusT, zoomT, zPos, IMG_MM],
+  );
+
+  const cardinalZExtent = useMemo(() => {
+    if (!includeCardinalExtents || !cardinalElements) return null;
+    const pointZ = Object.values(cardinalElements.points).map((point) => point.z);
+    const distanceZ = Object.values(cardinalElements.distances).flatMap((distance) => [distance.fromZ, distance.toZ]);
+    return { min: Math.min(...pointZ, ...distanceZ), max: Math.max(...pointZ, ...distanceZ) };
+  }, [includeCardinalExtents, cardinalElements]);
+
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
     (): CoordinateTransforms =>
@@ -136,6 +152,7 @@ export default function useLensComputation({
             lensShiftFrac: L.lensShiftFrac,
             imgMM: IMG_MM,
             scaleRatio,
+            zExtent: cardinalZExtent,
           })
         : {
             sx: (_z: number) => 0,
@@ -146,7 +163,7 @@ export default function useLensComputation({
             IX: 0,
             effectiveSC: 1,
           },
-    [L, IMG_MM, scaleRatio],
+    [L, IMG_MM, scaleRatio, cardinalZExtent],
   );
 
   /* ── Element shapes ── */
@@ -222,6 +239,7 @@ export default function useLensComputation({
     baseEPSD,
     currentEPSD,
     fieldGeometry,
+    cardinalElements,
     varReadouts,
     dynamicEFL,
     effectiveFNum,

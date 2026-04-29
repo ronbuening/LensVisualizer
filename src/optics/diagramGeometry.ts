@@ -28,6 +28,7 @@ interface CoordTransformParams {
   lensShiftFrac: number;
   imgMM: number;
   scaleRatio: number | null;
+  zExtent?: { min: number; max: number } | null;
 }
 
 /* ── Coordinate transforms (optical mm → SVG pixels) ──
@@ -44,11 +45,24 @@ export function createCoordinateTransforms({
   lensShiftFrac,
   imgMM,
   scaleRatio,
+  zExtent,
 }: CoordTransformParams): CoordinateTransforms {
-  const effectiveSC = scaleRatio != null ? SC * scaleRatio : SC;
-  const effectiveYSC = scaleRatio != null ? YSC * scaleRatio : YSC;
+  const rawSC = scaleRatio != null ? SC * scaleRatio : SC;
+  const rawYSC = scaleRatio != null ? YSC * scaleRatio : YSC;
   const MID = imgMM / 2;
   const CX = svgW / 2 + svgW * lensShiftFrac;
+  const horizontalMargin = 38;
+  const zMin = zExtent && isFinite(zExtent.min) ? zExtent.min : 0;
+  const zMax = zExtent && isFinite(zExtent.max) ? zExtent.max : imgMM;
+  const leftLimit =
+    zMin < MID && CX > horizontalMargin ? (CX - horizontalMargin) / Math.max(MID - zMin, 1e-9) : Infinity;
+  const rightLimit =
+    zMax > MID && svgW - horizontalMargin > CX
+      ? (svgW - horizontalMargin - CX) / Math.max(zMax - MID, 1e-9)
+      : Infinity;
+  const effectiveSC = Math.min(rawSC, leftLimit, rightLimit);
+  const scaleFactor = rawSC > 0 ? effectiveSC / rawSC : 1;
+  const effectiveYSC = rawYSC * scaleFactor;
   const CY = svgH / 2;
   const IX = CX + MID * effectiveSC;
 

@@ -49,6 +49,8 @@ vi.mock("../src/components/diagram/PetzvalSumBadge.js", () => ({
 const baseLens = {
   svgW: 1200,
   svgH: 600,
+  maxSD: 20,
+  YSC: 4,
   gridCount: 3,
   gridPitch: 60,
   rayHeights: [-1, 1],
@@ -325,5 +327,74 @@ describe("DiagramSVG", () => {
     expect(epText?.getAttribute("fill")).not.toBe(xpText?.getAttribute("fill"));
     const circles = container.querySelectorAll("circle");
     expect(circles.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("renders cardinal overlays when supplied and enabled", () => {
+    const { container } = render(
+      <DiagramSVG
+        L={baseLens}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={[120]}
+        IMG_MM={43}
+        shapes={[]}
+        filterId="diagram-cardinals"
+        stopZ={220}
+        currentPhysStopSD={8}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        showCardinals={true}
+        showCardinalDimensions={true}
+        cardinalElements={{
+          frontVertexZ: 0,
+          rearVertexZ: 20,
+          imagePlaneZ: 43,
+          objectIndex: 1,
+          imageIndex: 1,
+          nodalPrincipalCoincident: true,
+          points: {
+            frontFocal: { id: "F", z: -30 },
+            rearFocal: { id: "F'", z: 50 },
+            frontPrincipal: { id: "H", z: 0 },
+            rearPrincipal: { id: "H'", z: 20 },
+            frontNodal: { id: "N", z: 0 },
+            rearNodal: { id: "N'", z: 20 },
+          },
+          distances: {
+            efl: { id: "EFL", fromZ: 20, toZ: 50, valueMm: 30 },
+            bfd: { id: "BFD", fromZ: 20, toZ: 50, valueMm: 30 },
+            ffd: { id: "FFD", fromZ: 0, toZ: -30, valueMm: 30 },
+            hiatus: { id: "Hiatus", fromZ: 20, toZ: 0, valueMm: -20 },
+            totalTrack: { id: "Total track", fromZ: 0, toZ: 43, valueMm: 43 },
+          },
+        }}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    expect(container.textContent).toContain("H/N");
+    expect(container.textContent).toContain("EFL 30.0 mm");
   });
 });

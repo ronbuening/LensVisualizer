@@ -18,6 +18,7 @@ import DiagramOverlayLayer from "./DiagramOverlayLayer.js";
 import DiagramRayLayers from "./DiagramRayLayers.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
+import type { CardinalElements } from "../../optics/cardinalElements.js";
 import type { Theme } from "../../types/theme.js";
 import type { ChromaticRaySegment, RaySegment } from "./diagramSvgTypes.js";
 import type { OffAxisMode } from "../../types/state.js";
@@ -47,6 +48,9 @@ interface DiagramSVGProps {
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
+  showCardinals?: boolean;
+  showCardinalDimensions?: boolean;
+  cardinalElements?: CardinalElements | null;
   zoomT: number;
   act: number | null;
   onHover: (eid: number | null) => void;
@@ -102,6 +106,9 @@ const DiagramSVG = memo(function DiagramSVG({
   showOffAxis,
   showChromatic,
   showPupils,
+  showCardinals = false,
+  showCardinalDimensions = false,
+  cardinalElements,
   zoomT,
   act,
   onHover,
@@ -204,6 +211,9 @@ const DiagramSVG = memo(function DiagramSVG({
         chromSpread={chromSpread}
         showChromatic={showChromatic}
         showPupils={showPupils}
+        showCardinals={showCardinals}
+        showCardinalDimensions={showCardinalDimensions}
+        cardinalElements={cardinalElements}
         zoomT={zoomT}
         act={act}
         flashVisible={flashVisible}

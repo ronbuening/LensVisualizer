@@ -20,6 +20,7 @@ import type {
   ElementShape,
 } from "../../../types/optics.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
+import type { CardinalElements } from "../../../optics/cardinalElements.js";
 import type { Theme } from "../../../types/theme.js";
 import type { RaySegment } from "../../hooks/useOnAxisRays.js";
 import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
@@ -74,6 +75,9 @@ interface LensDiagramLoadedStateProps {
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
   showPupils: boolean;
+  showCardinals: boolean;
+  showCardinalDimensions: boolean;
+  cardinalElements: CardinalElements | null;
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
@@ -195,6 +199,9 @@ export default function LensDiagramLoadedState({
   showOffAxis,
   showChromatic,
   showPupils,
+  showCardinals,
+  showCardinalDimensions,
+  cardinalElements,
   chromR,
   chromG,
   chromB,
@@ -257,6 +264,9 @@ export default function LensDiagramLoadedState({
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}
             showPupils={showPupils}
+            showCardinals={showCardinals}
+            showCardinalDimensions={showCardinalDimensions}
+            cardinalElements={cardinalElements}
             zoomT={zoomT}
             act={act}
             onHover={onHover}
