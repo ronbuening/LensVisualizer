@@ -18,7 +18,7 @@ export default function CardinalControls({
   onShowCardinalDimensionsChange,
   compact = false,
 }: CardinalControlsProps) {
-  const labels = compact
+  const controls = compact
     ? [
         { label: "CARD", active: showCardinals, onClick: () => onShowCardinalsChange?.(!showCardinals) },
         {
@@ -37,18 +37,18 @@ export default function CardinalControls({
       ];
 
   return (
-    <div style={toggleGroup(t, { width: compact ? 160 : 190 })}>
-      {labels.map(({ label, active, onClick }, idx) => (
-        <button
-          key={label}
-          onClick={onClick}
-          style={toggleBtn(t, active, {
-            hasRightBorder: idx < labels.length - 1,
-            padding: compact ? "5px 7px" : "5px 8px",
-          })}
-        >
-          <span>{label}</span>
-        </button>
+    <div style={{ display: "flex", flexDirection: "column", gap: compact ? 6 : 8, width: compact ? 84 : 190 }}>
+      {controls.map(({ label, active, onClick }) => (
+        <div key={label} style={toggleGroup(t, { width: "100%" })}>
+          <button
+            onClick={onClick}
+            style={toggleBtn(t, active, {
+              padding: compact ? "5px 7px" : "5px 8px",
+            })}
+          >
+            <span>{label}</span>
+          </button>
+        </div>
       ))}
     </div>
   );

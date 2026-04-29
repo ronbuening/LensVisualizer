@@ -42,4 +42,21 @@ describe("CardinalControls", () => {
     expect(screen.getByRole("button", { name: "CARD" })).toBeTruthy();
     expect(screen.getByRole("button", { name: "DIMS" })).toBeTruthy();
   });
+
+  it("renders the two toggles as separate rows like the color control", () => {
+    render(
+      <CardinalControls
+        t={themes.dark}
+        showCardinals={false}
+        showCardinalDimensions={false}
+      />,
+    );
+
+    const cardinals = screen.getByRole("button", { name: "CARDINALS" });
+    const dimensions = screen.getByRole("button", { name: "DIMENSIONS" });
+
+    expect(cardinals.parentElement).not.toBe(dimensions.parentElement);
+    expect(cardinals.parentElement?.style.width).toBe("100%");
+    expect(dimensions.parentElement?.style.width).toBe("100%");
+  });
 });
