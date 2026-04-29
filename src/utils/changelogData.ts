@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-04-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-29",
+    type: "article",
+    summary:
+      "Added From Achromat to APO: Chromatic Correction, Optical Glass, and the Evolution of Color-Corrected Lenses",
+  },
+  {
+    date: "2026-04-29",
     type: "feature",
     summary: "Added cardinal element and first-order distance overlays to lens diagrams",
   },
