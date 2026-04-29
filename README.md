@@ -20,7 +20,8 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 ## Current Scope
 
 - `123` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
-- The catalog spans classic and modern designs from Nikon, Zeiss, Voigtlander, Canon, Ricoh, and Vivitar
+- The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm, Leica,
+  Nikon, Olympus, Ricoh, Sony, Vivitar, and Voigtländer
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
 The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
@@ -103,13 +104,16 @@ src/
     controls/   # Headers, toggles, sliders, shared control widgets
     diagram/    # SVG rendering, overlays, badges, annotations
     display/    # Analysis tabs, charts, inspectors, legends
-    homepage/   # Hero section, changelog, recent lenses, nav cards
+    homepage/   # Hero section, recent lenses, nav cards, reusable home sections
     hooks/      # Computation and UI orchestration hooks
     layout/     # LensViewer, LensDiagramPanel, drawers, wrappers
+    markdown/   # Shared article/description Markdown renderer
   content/      # About pages and optics primers
+  generated/    # Build-generated metadata and maker-prefix JSON
   lens-data/    # Lens prescriptions and accompanying analysis markdown
   optics/       # Ray tracing, lens construction, and analysis math
   pages/        # Route-level page components
+  routes/       # Shared React Router manifest
   utils/        # Themes, URL sync, reducer state, catalog helpers
 __tests__/      # Vitest coverage for optics, UI, routing, and state
 scripts/        # Build metadata, prerender, sitemap, SEO audit

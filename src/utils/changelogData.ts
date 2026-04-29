@@ -1,9 +1,9 @@
 /**
  * changelogData — manually curated list of user-facing site changes.
  *
- * Entries are ordered newest-first. The ChangelogBox component groups them
- * by date automatically. Add new entries at the top of the CHANGELOG array
- * when merging a user-facing PR; see agent_docs/changelog.md for the full
+ * Entries are ordered newest-first. UpdatesPage groups them by date
+ * automatically. Add new entries at the top of the CHANGELOG array when
+ * merging a user-facing PR; see agent_docs/changelog.md for the full
  * maintenance guide.
  */
 

@@ -41,4 +41,4 @@ CI enforces the same checks via `.github/workflows/quality.yml` — failing them
 - Base path set to `/` in `vite.config.js` — GitHub Actions deploy handles the Pages base path
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
 - Deploy is conditional — only runs after quality checks pass (or manual dispatch)
-- Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML + manifest validation) → `generate-sitemap.mjs` (reads routes from `build-metadata.json`)
+- Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML + manifest validation) → `generate-sitemap.mjs` (reads routes from `src/generated/build-metadata.json`)

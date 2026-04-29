@@ -89,7 +89,7 @@ When adding or changing color tokens, update all four theme definitions.
 | `lensMetadata.ts` | SEO metadata, maker extraction, page titles/descriptions, canonical URLs, JSON-LD helpers. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |
 | `homepageContent.ts` | Generated homepage/article/lens content registries. |
-| `changelogData.ts` | Homepage changelog entries. |
+| `changelogData.ts` | Update-history entries rendered on `/updates`. |
 | `structuredData.ts` | JSON-LD structured-data helpers. |
 
 ## Other Shared Utilities

@@ -34,7 +34,7 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
 - `main.tsx` mounts `RouterProvider` with the browser router.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
 - `scripts/prerender.mjs` expands routes from generated metadata and validates them against `routeManifest.tsx`.
-- `scripts/generate-sitemap.mjs` consumes the same route list from `build-metadata.json`.
+- `scripts/generate-sitemap.mjs` consumes the same route list from `src/generated/build-metadata.json`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
 `ClientOnly.tsx` wraps browser-only interactive components, including the lens visualizer, and renders nothing until after

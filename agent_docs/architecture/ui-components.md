@@ -111,5 +111,5 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 | `QuickNavCards.tsx` | Navigation cards for lenses, makers, and articles. |
 | `ArticleList.tsx` / `ArticleCard.tsx` | Homepage article list and cards. |
 | `SeriesCard.tsx` | Archive card for article series. |
-| `ChangelogBox.tsx` | Scrollable changelog panel grouped by date/type. |
+| `ChangelogBox.tsx` | Reusable compact changelog panel grouped by date/type; `/updates` renders the main changelog. |
 | `HomeFooter.tsx` | Homepage footer with about links and credits. |
