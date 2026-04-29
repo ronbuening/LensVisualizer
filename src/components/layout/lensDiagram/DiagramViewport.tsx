@@ -74,6 +74,9 @@ export default function DiagramViewport({
   showOffAxis,
   showChromatic,
   showPupils,
+  showCardinals,
+  showCardinalDimensions,
+  cardinalElements,
   act,
   onHover,
   onSelect,
@@ -190,6 +193,9 @@ export default function DiagramViewport({
         showOffAxis={showOffAxis}
         showChromatic={showChromatic}
         showPupils={showPupils}
+        showCardinals={showCardinals}
+        showCardinalDimensions={showCardinalDimensions}
+        cardinalElements={cardinalElements}
         zoomT={zoomT}
         act={act}
         onHover={onHover}

@@ -3,16 +3,21 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramViewport from "../src/components/layout/lensDiagram/DiagramViewport.js";
+import type { CardinalElements } from "../src/optics/cardinalElements.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
-const { mockAnalysisDrawer, mockPanelOverlay } = vi.hoisted(() => ({
+const { mockAnalysisDrawer, mockDiagramSVG, mockPanelOverlay } = vi.hoisted(() => ({
   mockAnalysisDrawer: vi.fn(),
+  mockDiagramSVG: vi.fn(),
   mockPanelOverlay: vi.fn(),
 }));
 
 vi.mock("../src/components/diagram/DiagramSVG.js", () => ({
-  default: () => <div>Diagram SVG</div>,
+  default: (props: Record<string, any>) => {
+    mockDiagramSVG(props);
+    return <div>Diagram SVG</div>;
+  },
 }));
 
 vi.mock("../src/components/layout/AnalysisDrawer.js", () => ({
@@ -103,6 +108,7 @@ const baseProps = {
 describe("DiagramViewport", () => {
   beforeEach(() => {
     mockAnalysisDrawer.mockReset();
+    mockDiagramSVG.mockReset();
     mockPanelOverlay.mockReset();
     Object.values(baseProps).forEach((v) => {
       if (typeof v === "function" && "mockReset" in v) (v as ReturnType<typeof vi.fn>).mockReset();
@@ -120,6 +126,49 @@ describe("DiagramViewport", () => {
 
     expect(baseProps.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
     expect(screen.queryByTestId("analysis-drawer")).toBeNull();
+  });
+
+  it("forwards cardinal overlay props into the SVG", () => {
+    const cardinalElements: CardinalElements = {
+      points: {
+        frontFocal: { id: "F", z: -10 },
+        rearFocal: { id: "F'", z: 50 },
+        frontPrincipal: { id: "H", z: 2 },
+        rearPrincipal: { id: "H'", z: 12 },
+        frontNodal: { id: "N", z: 2 },
+        rearNodal: { id: "N'", z: 12 },
+      },
+      distances: {
+        efl: { id: "EFL", fromZ: 12, toZ: 50, valueMm: 38 },
+        bfd: { id: "BFD", fromZ: 20, toZ: 50, valueMm: 30 },
+        ffd: { id: "FFD", fromZ: 0, toZ: -10, valueMm: 10 },
+        hiatus: { id: "Hiatus", fromZ: 12, toZ: 2, valueMm: -10 },
+        totalTrack: { id: "Total track", fromZ: 0, toZ: 36, valueMm: 36 },
+      },
+      frontVertexZ: 0,
+      rearVertexZ: 20,
+      imagePlaneZ: 36,
+      objectIndex: 1,
+      imageIndex: 1,
+      nodalPrincipalCoincident: true,
+    };
+
+    render(
+      <DiagramViewport
+        {...baseProps}
+        showCardinals={true}
+        showCardinalDimensions={true}
+        cardinalElements={cardinalElements}
+      />,
+    );
+
+    expect(mockDiagramSVG).toHaveBeenCalledWith(
+      expect.objectContaining({
+        showCardinals: true,
+        showCardinalDimensions: true,
+        cardinalElements,
+      }),
+    );
   });
 
   it("renders the analysis drawer content and hides the launch button when open", () => {
