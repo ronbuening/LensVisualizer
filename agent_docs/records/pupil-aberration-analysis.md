@@ -26,7 +26,7 @@ bokeh shape across the frame.
 - `CLAUDE.md` — Added pupil aberration pattern bullet to Key Design Patterns
 
 ## Verification
-- `npm run typecheck` — passed (pre-existing `build-metadata.json` errors unrelated)
+- `npm run typecheck` — passed (pre-existing `src/generated/build-metadata.json` errors unrelated)
 - `npm run format:check` — passed
 - `npm run lint` — passed
 - `npm run test -- --run __tests__/pupilAberration.test.ts` — 35/35 passed

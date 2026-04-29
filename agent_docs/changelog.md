@@ -2,13 +2,14 @@
 
 ## Overview
 
-The homepage changelog is a manually curated list of user-facing changes
-displayed in the `ChangelogBox` section on the home page. The data lives in
-`src/utils/changelogData.ts` as a flat array of `ChangelogEntry` objects.
+The site changelog is a manually curated list of user-facing changes displayed
+on `/updates`. The data lives in `src/utils/changelogData.ts` as a flat array of
+`ChangelogEntry` objects.
 
-The component (`src/components/homepage/ChangelogBox.tsx`) groups entries by
-date automatically and renders them with color-coded type badges. No other
-file needs to be updated when adding entries.
+`src/pages/UpdatesPage.tsx` groups entries by date automatically and renders
+them with color-coded type badges. No other file needs to be updated when adding
+entries. `src/components/homepage/ChangelogBox.tsx` is a reusable compact
+version, but it is not currently mounted on the home page.
 
 ---
 
@@ -69,8 +70,8 @@ the `CHANGELOG` array (before the first existing entry):
 },
 ```
 
-The array must remain sorted **newest-first**. The component handles grouping
-by date — no other code needs updating.
+The array must remain sorted **newest-first**. `UpdatesPage.tsx` handles
+grouping by date, so no other code needs updating.
 
 ---
 
@@ -89,10 +90,10 @@ one entry describing what the user can now do.
 
 ## Pruning Old Entries
 
-The changelog renders with a `max-height: 28rem` scrollable container and does
-not paginate. There is no hard expiry policy, but entries older than ~60 days
-can be removed if the list grows unwieldy. Prune from the **bottom** of the array
-(oldest entries first).
+The changelog renders in a scrollable `/updates` column and does not paginate.
+There is no hard expiry policy, but entries older than ~60 days can be removed
+if the list grows unwieldy. Prune from the **bottom** of the array (oldest
+entries first).
 
 ---
 
@@ -112,9 +113,8 @@ The initial entries cover **2026-03-26 through 2026-03-28** and include:
 
 | File | Role |
 |------|------|
-| `src/utils/changelogData.ts` | Data — `CHANGELOG` array, `ChangelogEntry` type |
-| `src/components/homepage/ChangelogBox.tsx` | UI — renders grouped entries with badges |
-| `src/pages/HomePage.tsx` | Layout — places ChangelogBox in right column (desktop) or page bottom (mobile) |
+| `src/utils/changelogData.ts` | Data - `CHANGELOG` array, `ChangelogEntry` type |
+| `src/pages/UpdatesPage.tsx` | Main UI - renders changelog plus full lens-addition history |
+| `src/components/homepage/ChangelogBox.tsx` | Reusable compact changelog panel, currently not mounted |
 
-**Desktop layout**: ChangelogBox appears in the right column below "Recently Added".
-**Mobile layout**: ChangelogBox appears below "Articles & Guides", before the footer.
+The homepage links to `/updates` from the "Recently Added" section.

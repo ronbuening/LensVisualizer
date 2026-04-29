@@ -1,5 +1,5 @@
 /**
- * ChangelogBox — homepage section showing recent site updates.
+ * ChangelogBox — compact section for recent site updates.
  *
  * Entries are manually curated in src/utils/changelogData.ts.
  * Grouped by date (newest first) with color-coded type badges.

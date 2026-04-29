@@ -2,7 +2,7 @@
  * Pre-build metadata generator.
  *
  * Produces src/generated/build-metadata.json with:
- *   - lensDates: mapping of lens catalog key → ISO date first committed
+ *   - lensFreshness: mapping of lens catalog key → first-published and last-modified dates
  *   - articles: array of article metadata extracted from markdown frontmatter + git dates
  *   - lensKeys: sorted array of all lens catalog keys
  *   - makerSlugs: sorted array of unique maker URL slugs
