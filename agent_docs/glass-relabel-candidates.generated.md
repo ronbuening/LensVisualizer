@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 148 mismatched surfaces across 99 unique groups.
+**Scope**: 147 mismatched surfaces across 98 unique groups.
 
 ## stored (nd=1.53110, vd=55.90) [code=531/559]  — 1 surface, current label resolves to S-BAL42
 
@@ -524,13 +524,6 @@ Surfaces:
 Surfaces:
 - [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) `8`: `851408 — S-LAH65V (OHARA)`
 
-## stored (nd=1.85249, vd=42.08)  — 1 surface, current label resolves to S-LAH79
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) `3A`: `S-LAH79 (OHARA) probable`
-
 ## stored (nd=1.85400, vd=40.40)  — 4 surfaces, current label resolves to S-LAH65V
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -819,4 +812,4 @@ Surfaces:
 ## Summary
 
 - **37** (nd, vd) groups have at least one candidate (60 surfaces) — actionable relabels.
-- **62** (nd, vd) groups have NO candidate (88 surfaces) — needs patent verification or Unmatched relabeling.
+- **61** (nd, vd) groups have NO candidate (87 surfaces) — needs patent verification or Unmatched relabeling.

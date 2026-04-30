@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **123** lenses scanned
 - **1414** glass surfaces examined
 - **1411** surfaces with non-empty `glass` strings
-- **566** of those resolved to a catalog entry
-- **148** mismatches found (26.1% of resolved surfaces)
-- **58** distinct lens files affected
+- **564** of those resolved to a catalog entry
+- **147** mismatches found (26.1% of resolved surfaces)
+- **57** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,7 +27,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 23 | |
+| S-LAH79 | 22 | |
 | S-NPH2 | 16 | |
 | S-LAH58 | 14 | |
 | S-TIH6 | 11 | |
@@ -53,12 +53,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-PHM53 | 1 | |
 
 ## Mismatches by lens
-
-### [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts)
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3A | `S-LAH79 (OHARA) probable` | S-LAH79 | 1.85249 | 2.00330 | +0.1508 |
 
 ### [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts)
 

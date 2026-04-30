@@ -203,8 +203,7 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     nd: 1.803999,
     vd: 46.5834,
     PgF: 0.5566,
-    source:
-      "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data. Voigtländer APO-Lanthar 50/2 element 8.",
+    source: "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data.",
   },
   {
     name: "S-LAH79",
@@ -215,8 +214,7 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     vd: 28.2733,
     PgF: 0.5985,
     code6: "003283",
-    source:
-      "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data. Voigtländer APO-Lanthar 50/2 element 2.",
+    source: "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data.",
   },
   {
     name: "S-NBH5",
