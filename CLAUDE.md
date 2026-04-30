@@ -78,6 +78,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
+- `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
 - `agent_docs/adding_an_article.md` - article/series frontmatter, TOC, links, verification
 - `agent_docs/article_formatting.md` - Markdown polishing expectations
 - `agent_docs/workflow.md` - commits, CI, deployment, branch records
@@ -87,7 +88,8 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/commenting_guide.md` - commenting standards
 - `agent_docs/gotchas.md` - non-obvious constraints and failure modes
 - `agent_docs/claude-md-best-practices.md` - how to keep this file short and useful
-- `src/lens-data/LENS_DATA_SPEC.md` - full lens data format
+- `src/lens-data/LENS_DATA_SPEC.md` - full lens data format, glass identification conventions, validation rules
+- `src/lens-data/LENS_ANALYSIS_SPEC.md` - companion analysis-file format: required skeleton, conditional sections, voice
 - `src/lens-data/TEMPLATE.data.ts.template` - annotated lens template and SD guidance
 
 ## Core Working Rules

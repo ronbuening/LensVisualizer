@@ -135,7 +135,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 5. The catalog will pick the new lens up automatically through `import.meta.glob`.
 6. `npm run generate:metadata` or `npm run build` will move the lens into its maker folder and rewrite the type import to match the nested path.
 
-See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full format.
+See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full data-file format, including glass identification conventions. See [`src/lens-data/LENS_ANALYSIS_SPEC.md`](src/lens-data/LENS_ANALYSIS_SPEC.md) for the companion analysis-file standard (required sections, voice, conditional sections).
 
 
 ## Agent Reference Docs
@@ -148,6 +148,8 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Architecture notes](agent_docs/architecture.md)
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
+- [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
+- [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)
 - [Optics primer](src/content/OpticsPrimerSimple.md)
 - [Aberrations primer](src/content/AberrationsPrimerSimple.md)
 

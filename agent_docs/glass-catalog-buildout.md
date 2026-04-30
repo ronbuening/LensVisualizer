@@ -155,3 +155,5 @@ The catalog never needs to be exhaustive. Diminishing returns kick in after the 
 1. The headline regression cases (Voigtländer APO-Lanthar 50/2, Leica APO 35/2 / 43/2) hit Sellmeier on every glass surface.
 2. `summarizeDispersionQuality(L)` returns `"sellmeier"` (not `"abbe"`) for the great majority of catalog lenses.
 3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name) — those are Phase 4 territory and should be backfilled per-lens with patent-published `nC`/`nF`/`ng`.
+
+For per-lens audits that consume the catalog (relabeling, mismatch resolution, `dPgF`/line-index enrichment), follow [lens-patent-audit.md](lens-patent-audit.md).

@@ -13,9 +13,11 @@ No manual imports or catalog edits required.
 
 ## Reference Documents
 
-- **Full format specification:** `src/lens-data/LENS_DATA_SPEC.md`
+- **Full data-file format specification:** `src/lens-data/LENS_DATA_SPEC.md`
+- **Companion analysis-file format:** `src/lens-data/LENS_ANALYSIS_SPEC.md` — required skeleton, conditional sections, voice and conventions for `*.analysis.md`.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
+- **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — use this when revisiting a data file already in the catalog, not when authoring a new one.
 
 ## Key Details
 

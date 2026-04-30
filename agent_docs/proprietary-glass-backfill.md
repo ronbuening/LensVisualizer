@@ -75,11 +75,9 @@ These remain on the Abbe path. The LCA inset's quality badge will read "Abbe app
 
 ## Workflow
 
-1. **Open the patent.** Use Espacenet ([https://worldwide.espacenet.com](https://worldwide.espacenet.com)) or J-PlatPat for JP patents; USPTO Public PAIR or Google Patents for US/EP.
-2. **Find the prescription table.** Patent embodiments tabulate per-surface (R, d, nd, vd) plus often per-element (nC, nF, ng) and (PgF, ΔPgF). Different embodiments may have different glass — make sure you're matching the embodiment whose dimensions correspond to this lens prescription.
-3. **Transcribe the data into the matching `*.data.ts` file's `spectral` block.** See `src/lens-data/TEMPLATE.data.ts.template` for the field layout. Use full patent precision (typically 5 decimal places for indices).
-4. **Verify.** Reload the lens in `npm run dev` and confirm the LCA inset quality badge changes from "Abbe approx" to "Measured (C/F)" or "Sellmeier" depending on which path the cascade lands on.
-5. **Delete the row from the Tier A table** above and update [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md) if the lens was a named regression case.
+Run the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md). Phase 3 (spectral enrichment) is the active phase for this queue — populate `dPgF`, `nC`, `nF`, and `ng` on the matching element from the patent's prescription tables. The audit guide also covers the `*.audit.md` log convention so the change is traceable.
+
+After verifying the LCA inset's quality badge upgrades from "Abbe approx" to "Measured (C/F)" or "Sellmeier", delete the row from the Tier A table above and update [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md) if the lens was a named regression case.
 
 ## Why this is per-lens authoring work, not a one-shot migration
 

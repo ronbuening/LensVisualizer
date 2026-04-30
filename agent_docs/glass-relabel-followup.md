@@ -83,16 +83,7 @@ The `Unmatched (…)` form is preferred for genuinely-proprietary glass (Sumita 
 
 ## Workflow for a single follow-up
 
-1. Open the relevant `*.data.ts` and (if it exists) `*.analysis.md`.
-2. Open the lens's patent (Espacenet, Google Patents, or J-PlatPat). The patent number is usually in the data file header comments.
-3. Find the surface in the patent's prescription table. Record nd, vd, and (if listed) any glass identification.
-4. Check if the glass exists in our catalog (`grep "name:" src/optics/glassCatalog.ts`).
-5. Relabel:
-   - **In catalog**: change `glass:` to the matching catalog name. Update the analysis.md narrative if it referenced the wrong glass.
-   - **Not in catalog, common**: add the glass to RAW_CATALOG per [glass-catalog-buildout.md](glass-catalog-buildout.md), then relabel.
-   - **Not in catalog, rare/proprietary**: relabel as `Unmatched (description, reason)`. If the patent provides line indices (nC, nF, ng), backfill the element's `spectral` block per [proprietary-glass-backfill.md](proprietary-glass-backfill.md).
-6. Run `npm test -- catalogMismatchScan glassRelabelCandidatesScan` to refresh both reports.
-7. Move the row from this followup file to the "Resolved this session" table when done.
+Follow the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md). It covers patent sourcing, glass relabeling, retained-information audit, dPgF/line-index enrichment, analysis-file sync, and the per-lens `*.audit.md` log convention. When the audit completes, move the row from this followup file to its "Resolved this session" table.
 
 ## Why this is per-lens authoring work, not a one-shot migration
 
