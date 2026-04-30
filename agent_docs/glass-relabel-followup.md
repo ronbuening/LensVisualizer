@@ -16,16 +16,58 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Status (Apr 2026, after Phase 2 catalog expansion + scanner upgrades)
+## Status (Apr 2026, after Phase 3 catalog expansion + relabel sweep)
 
-- Catalog: **38 entries** (24 → 32 → 38).
-- Mismatches: **148** (was 117 → 160 → 144 → 148).
-- Resolved this session: 16 surfaces across 6 lens files.
-- Actionable candidate groups: **37** (60 surfaces) — up from 25/42 after the Phase 2 adds.
-- No-candidate groups: **62** (88 surfaces) — down from 65/102.
-- Scanner now extracts embedded six-digit codes from annotations (e.g. `(903/313)`) and ranks candidates by code distance when present. Also reports ΔPgF when the lens-data element has `dPgF` populated.
+- Catalog: **53 entries** (24 → 32 → 38 → 53).
+- Mismatches: **162** (was 117 → 148 → 162; note increase reflects Phase 3 entries newly resolving previously-unresolved labels with wrong stored nd).
+- Resolved this session (Phase 3): ~55 surfaces across 25+ lens files — full details in the Phase 3 resolved table below.
+- Surfaces resolving to Sellmeier: **696** (was 564); 49.3% of all non-empty glass strings.
+- Actionable candidate groups: **31** (49 surfaces).
+- No-candidate groups: **80** (113 surfaces) — increased vs Phase 2 because Phase 3 entries exposed previously-hidden mismatches.
+- Phase 3 note: 15 new Ohara entries (dense flints S-TIH14/TIM35/TIM25/TIM22/TIM2, ED glasses S-FPL52/FPM3, crowns S-BAL35/NSL3, lanthanum S-LAH51/52/65/LAM54, ultra-HRI S-NPH1/NPH53). Two planned entries (S-LAH97 formula 3, TAFD25 formula 3) skipped — incompatible polynomial form.
 
-## Resolved this session — high-confidence relabels (audit trail)
+## Resolved Phase 3 — high-confidence relabels (audit trail)
+
+| Lens file | Surface(s) | Old annotation | New annotation | Justification |
+|---|---|---|---|---|
+| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.90366 | `S-LAH79 (OHARA)` | `S-LAH95 (OHARA)` | Code 904/313 = S-LAH95; stored nd matches exactly. |
+| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.7725 | `S-LAH52 (OHARA)` | `S-LAH66 (OHARA)` | S-LAH52 has nd=1.800; stored nd=1.7725 matches S-LAH66 (1.7725) exactly. |
+| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.816 | `S-LAH66 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH59 has nd=1.816; stored matches exactly. |
+| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.603 | `S-PHM52 (OHARA)` | `S-PHM53 (OHARA)` | S-PHM53 has nd=1.603001; Δnd=0, Δvd=0.04 — perfect match. |
+| [NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | nd=1.83481 | `S-LAH63 (OHARA)` | `S-LAH55 (OHARA)` | S-LAH55 nd=1.834807; stored matches. Default non-V. |
+| [FujifilmXF56mmf12.data.ts](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | L7, L15, L17 (nd=1.883) | `S-LAH66 (OHARA)` | `S-LAH58 (OHARA)` | S-LAH66 nd=1.772; stored nd=1.883 matches S-LAH58 (1.883) exactly. |
+| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.8044 | `S-LAH66 (OHARA)` | `S-LAH63 (OHARA)` | S-LAH63 nd=1.8044; exact match. |
+| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.772789 | `S-LAH59 (OHARA)` | `S-LAH66 (OHARA)` | S-LAH66 nd=1.7725; Δnd=0.0003. |
+| [NikonNikkorAFS1424mmf28.data.ts](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | nd=1.8061 | `S-LAH58 (OHARA)` | `S-LAH53 (OHARA)` | S-LAH53 nd=1.806098; Δnd=0.0001. |
+| [CanonRF24105mmf4L.data.ts](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | L12, L31 (nd=1.804) | `S-LAL18 (OHARA)` | `S-LAH65V (OHARA)` | S-LAH65V nd=1.804; exact match. S-LAL18 nd=1.729 (wrong). |
+| [CanonRF24105mmf4L.data.ts](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | nd=2.00069 | `S-NPH53 (OHARA)` | `S-LAH79 (OHARA)` | S-NPH53 now in catalog (nd=1.847); stored nd=2.001 matches S-LAH79 (nd=2.003, Δnd=0.002). |
+| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | L3, L11, L16 (nd=1.804) | `S-LAH55V (OHARA)` | `S-LAH65V (OHARA)` | S-LAH55V nd=1.835; stored nd=1.804 matches S-LAH65V exactly. |
+| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | nd≈1.808 | `S-NPH 1 (OHARA)` | `S-NPH1 (OHARA)` | Space in name prevented catalog resolution; fixed. |
+| [NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | nd≈1.762 | `S-TIH 14 (OHARA)` | `S-TIH14 (OHARA)` | Same — space in name fix. |
+| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 699/301 | `S-TIH6 (OHARA 699/301)` | `S-TIM35 (OHARA 699/301)` | Code 699301 = S-TIM35; stored nd=1.699 matches. |
+| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 904/313 | `S-LAH55V (OHARA 904/313)` | `S-LAH95 (OHARA 904/313)` | Code 904313 = S-LAH95. |
+| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 847/239 | `S-TIH53 (OHARA 847/239)` | `S-NPH53 (OHARA 847/239)` | Code 847239 = S-NPH53 (847238 = S-TIH53). |
+| [CanonRF2450mmf463.data.ts](../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 773/496 | `S-LAH53 (OHARA 773/496)` | `S-LAH66 (OHARA 773/496)` | Code 773496 = S-LAH66. |
+| [CanonRF24240mmf463.data.ts](../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 903/313 | `S-LAH79 type (903/313)` | `S-LAH95 type (903/313)` | Code matches S-LAH95. |
+| [CanonRF24240mmf463.data.ts](../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 773/496 | `S-LAL54 type (773/496)` | `S-LAH66 type (773/496)` | No S-LAL54 exists; code matches S-LAH66. |
+| Multiple (9 files) | nd=1.90366 | various → `S-LAH79/S-LAH65V/S-NPH53/S-LAH58` | `S-LAH95 (OHARA)` | CanonRF24240, FujifilmXF1655, NikonAFS200500, NikonNikkorPCE19, NikonNikkorZ24120, NikonNikkor85f14G, NikonNikkorAFS80400, LeicaAPO43mmf2. |
+| [NikonAF28f14D.data.ts](../src/lens-data/nikon/NikonAF28f14D.data.ts) | L2, L12 (nd=1.77279) | `LaM type (near S-LAM66)` | `S-LAH66 (OHARA)` | S-LAH66 nd=1.7725; Δnd=0.0003. |
+| [NikonAF28f14D.data.ts](../src/lens-data/nikon/NikonAF28f14D.data.ts) | L5, L10 (nd=1.80411) | `LaH type (near S-LAH55)` | `S-LAH65V (OHARA)` | S-LAH65V nd=1.804; Δnd=0.0001. |
+| Various (S-LAH66) | multiple | `S-LAH55V/S-LAM66/S-LAH59/S-LAH53/S-LAM66/S-LAH53` | `S-LAH66 (OHARA)` | CanonRF2870mmf2L, NikonAFS28f14E, Leica28mmf17, RicohGR428, NikonNikkorZ24120, NikonNikkorPCE19, NikonNikkorAFS2470mmf28E, OlympusZuikoAutoS50. |
+| Various (S-LAH58) | nd=1.883 | `S-LAH66 (OHARA)` / `S-LAH79 (OHARA)` | `S-LAH58 (OHARA)` | NikonNikkorZ1430mmf4S, LeicaAPO35mmf2. |
+| [CanonRF85mmf2Macro.data.ts](../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | nd=1.804 | `TAFD30 (HOYA)` | `S-LAH65V (OHARA)` | nd=1.804 matches S-LAH65V exactly; TAFD30 nd=1.883. |
+| [NikonPCENikkor24mmf35DED.data.ts](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | L1, L16 (nd=1.804) | `S-LAH58 (OHARA)` | `S-LAH65V (OHARA)` | S-LAH58 nd=1.883; stored nd=1.804 matches S-LAH65V. |
+| [NikonZ26f28.data.ts](../src/lens-data/nikon/NikonZ26f28.data.ts) | nd=1.816 | `S-LAL18 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH59 nd=1.816; exact match. |
+| [NikonNikkorZ1430mmf4S.data.ts](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | nd=1.816 | `S-LAH63 (OHARA)` | `S-LAH59 (OHARA)` | S-LAH63 nd=1.804; stored nd=1.816 matches S-LAH59. |
+| [OlympusZuikoAutoS50mmf12.data.ts](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | nd=1.83481 | `S-LAH58 (OHARA) / TAFD5 (HOYA)` | `S-LAH55 (OHARA) / TAFD5 (HOYA)` | Stored nd matches S-LAH55; default non-V. |
+| [OlympusZuikoAutoS50mmf12.data.ts](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | nd=1.7725 | `S-LAH51 (OHARA) / TAF1 (HOYA)` | `S-LAH66 (OHARA) / TAF1 (HOYA)` | TAF1 = nd=1.7725; matches S-LAH66. S-LAH51 nd=1.786 (wrong). |
+| [NikonNikkorZ100400f4556.data.ts](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | nd=1.8044 | `S-LAH55V (OHARA)` | `S-LAH63 (OHARA)` | S-LAH63 nd=1.8044; exact match. |
+| [NikonNikkorZ100400f4556.data.ts](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | nd=1.8061 | `S-LAH55 (OHARA) †` | `S-LAH53 (OHARA)` | S-LAH53 nd=1.806098; Δnd=0.0001. |
+| [NikonNikkorAFS200500mmf56.data.ts](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | nd=1.83481 | `S-LAH58 (OHARA)` | `S-LAH55 (OHARA)` | Stored nd=1.835 matches S-LAH55; default non-V. |
+| [NikonNikkorZ70200f28.data.ts](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | 6 surfaces (nd=1.498) | `S-FPL52 — ED (498-826)` | `S-FPL51 — ED (498-826)` | Code 498826 ≈ S-FPL51/FCD1 territory; stored nd=1.498, S-FPL52 catalog nd=1.456. |
+| [NikonZ1424f28S.data.ts](../src/lens-data/nikon/NikonZ1424f28S.data.ts) | 4 surfaces (nd=1.498) | `S-FPL52 (OHARA) — ED` | `S-FPL51 (OHARA) — ED` | Same as above. |
+
+## Resolved Phase 2 — high-confidence relabels (audit trail)
 
 | Lens file | Surface | Old annotation | New annotation | Justification |
 |---|---|---|---|---|

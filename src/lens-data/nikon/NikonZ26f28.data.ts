@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.816,
       vd: 46.6,
       fl: 9.7,
-      glass: "S-LAL18 (OHARA)",
+      glass: "S-LAH59 (OHARA)",
       apd: false,
       cemented: "D2",
       role: "Positive element of 2nd cemented doublet; mirror-symmetric arrangement with D1 for coma correction",

@@ -24,6 +24,12 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-04-30",
     type: "improvement",
     summary:
+      "Expanded glass catalog to 53 vendor-verified Sellmeier entries (adding 15 Ohara dense-flint, ED, crown, and lanthanum glasses) and corrected 50+ glass misidentifications across 25 lens files — 696 surfaces now use full Sellmeier dispersion, up from 564",
+  },
+  {
+    date: "2026-04-30",
+    type: "improvement",
+    summary:
       "Expanded glass catalog to 32 vendor-verified Sellmeier entries and corrected mislabeled glass annotations across several lens prescriptions for sharper chromatic readouts",
   },
   // ── 2026-04-29 ──────────────────────────────────────────────────────────

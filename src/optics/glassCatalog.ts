@@ -67,15 +67,15 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * STARTER CATALOG
+ * GLASS CATALOG — 53 vendor-verified entries (Phase 3, Apr 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
  * new entry, compute n at LINE_NM.d and compare to the listed nd; agreement
  * to ~1e-5 is the expected accuracy of a transcribed Sellmeier fit.
  *
- * The catalog is intentionally small in this first pass. The follow-up doc
- * agent_docs/glass-catalog-buildout.md lists prioritized additions.
+ * For the prioritized addition list and sourcing playbook, see
+ * agent_docs/glass-catalog-buildout.md.
  * ────────────────────────────────────────────────────────────────────────── */
 
 const RAW_CATALOG: readonly GlassEntry[] = [
@@ -433,6 +433,183 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5337,
     code6: "603655",
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Phosphate crown (603/655).",
+  },
+
+  /* ────── Ohara expansion (Phase 3 buildout, Apr 2026) ──────
+   * Fifteen additional Ohara glasses covering the next tier of frequency:
+   * dense TIM/TIH flints (S-TIH14, S-TIM35, S-TIM25, S-TIM22, S-TIM2),
+   * ED and fluorophosphate crowns (S-FPL52, S-FPM3),
+   * barium and borosilicate crowns (S-BAL35, S-NSL3),
+   * high-index lanthanum variants (S-LAH51, S-LAH52, S-LAH65, S-LAM54),
+   * and ultra-high-index flints (S-NPH1, S-NPH53).
+   * All sourced from ohara_2017-11-30.agf via refractiveindex.info (form 2).
+   */
+  {
+    name: "S-TIH14",
+    vendor: "Ohara",
+    B: [1.68915108, 0.290462024, 2.37971516],
+    C: [0.0128202514, 0.0618090841, 201.094352],
+    nd: 1.761821,
+    vd: 26.517885,
+    PgF: 0.6142,
+    code6: "762265",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (762/265).",
+  },
+  {
+    name: "S-TIM35",
+    vendor: "Ohara",
+    B: [1.55849775, 0.230767007, 1.84436099],
+    C: [0.0115367235, 0.0586095947, 162.981888],
+    nd: 1.698947,
+    vd: 30.127865,
+    PgF: 0.6034,
+    code6: "699301",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (699/301).",
+  },
+  {
+    name: "S-FPL52",
+    vendor: "Ohara",
+    B: [1.06785857, 0.0335857718, 1.10219763],
+    C: [0.00699227302, -0.0207608925, 226.496541],
+    nd: 1.455999,
+    vd: 90.288026,
+    PgF: 0.5305,
+    code6: "456903",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. ED fluorophosphate crown (456/903); sister to S-FPL51. C2 is negative — this is valid for fluorophosphate glasses with anomalous UV resonances.",
+  },
+  {
+    name: "S-TIM25",
+    vendor: "Ohara",
+    B: [1.50659233, 0.204786135, 1.92036668],
+    C: [0.0109501562, 0.0574980285, 178.128535],
+    nd: 1.6727,
+    vd: 32.099206,
+    PgF: 0.5991,
+    code6: "673321",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (673/321).",
+  },
+  {
+    name: "S-FPM3",
+    vendor: "Ohara",
+    B: [0.809407286, 0.527007033, 0.909127704],
+    C: [0.00376072389, 0.0135654895, 142.503612],
+    nd: 1.53775,
+    vd: 74.703119,
+    PgF: 0.5368,
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Fluorophosphate crown with +ΔPgF.",
+  },
+  {
+    name: "S-BAL35",
+    vendor: "Ohara",
+    B: [0.941357273, 0.546174895, 1.16168917],
+    C: [0.0140333996, 0.000906635683, 114.163758],
+    nd: 1.58913,
+    vd: 61.135024,
+    PgF: 0.5392,
+    code6: "589612",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Barium crown (589/612).",
+  },
+  {
+    name: "S-TIM22",
+    vendor: "Ohara",
+    B: [1.44222294, 0.194432265, 1.74092482],
+    C: [0.0104249404, 0.0550235257, 169.710769],
+    nd: 1.647689,
+    vd: 33.792803,
+    PgF: 0.594,
+    code6: "648338",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (648/338).",
+  },
+  {
+    name: "S-NPH1",
+    vendor: "Ohara",
+    B: [1.75156623, 0.364006304, 2.47874141],
+    C: [0.0135004681, 0.0668245147, 170.756006],
+    nd: 1.808095,
+    vd: 22.760817,
+    PgF: 0.6316,
+    code6: "808228",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Ultra-high-index niobophosphate flint (808/228).",
+  },
+  {
+    name: "S-TIM2",
+    vendor: "Ohara",
+    B: [1.42193846, 0.133827968, 1.45060574],
+    C: [0.0107291511, 0.0572587546, 145.381805],
+    nd: 1.620041,
+    vd: 36.263378,
+    PgF: 0.5879,
+    code6: "620363",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (620/363).",
+  },
+  {
+    name: "S-LAH65",
+    vendor: "Ohara",
+    B: [1.68191258, 0.493779818, 1.45682822],
+    C: [0.0077668425, 0.0288916181, 99.2574356],
+    nd: 1.804,
+    vd: 46.570373,
+    PgF: 0.5565,
+    code6: "804466",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (804/466); standard melt — distinct from S-LAH65V (vacuum-melt variant).",
+  },
+  {
+    name: "S-LAH52",
+    vendor: "Ohara",
+    B: [1.85390925, 0.297925555, 1.39382086],
+    C: [0.00955320687, 0.039381685, 102.706848],
+    nd: 1.799516,
+    vd: 42.225007,
+    PgF: 0.5668,
+    code6: "800422",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (800/422).",
+  },
+  {
+    name: "S-NSL3",
+    vendor: "Ohara",
+    B: [0.882514764, 0.389271907, 1.10693448],
+    C: [0.00464504582, 0.0200551397, 136.234339],
+    nd: 1.518229,
+    vd: 58.902057,
+    PgF: 0.5442,
+    code6: "518590",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Borosilicate crown (518/590).",
+  },
+  {
+    name: "S-LAM54",
+    vendor: "Ohara",
+    B: [1.84213306, 0.175468631, 1.25750878],
+    C: [0.0094399322, 0.0395281122, 86.5463013],
+    nd: 1.756998,
+    vd: 47.82317,
+    PgF: 0.5558,
+    code6: "757478",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Lanthanum medium-dispersion (757/478).",
+  },
+  {
+    name: "S-NPH53",
+    vendor: "Ohara",
+    B: [1.85484904, 0.396194484, 2.43512461],
+    C: [0.0134621486, 0.0631945361, 170.864886],
+    nd: 1.84666,
+    vd: 23.88395,
+    PgF: 0.6226,
+    code6: "847239",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Niobophosphate flint (847/239).",
+  },
+  {
+    name: "S-LAH51",
+    vendor: "Ohara",
+    B: [1.82586991, 0.283023349, 1.35964319],
+    C: [0.00935297152, 0.0373803057, 100.655798],
+    nd: 1.785896,
+    vd: 44.202637,
+    PgF: 0.5626,
+    code6: "786442",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (786/442).",
   },
 
   /* ────── Schott — high-dispersion flints and lanthanum crowns ──────

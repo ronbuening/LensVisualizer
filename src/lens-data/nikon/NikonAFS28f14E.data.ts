@@ -141,7 +141,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 54.29,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Terminal positive element of Gr1 (f₁ᵢ = 54.29 mm). Converges beam to reduce ray heights entering Gr2, enabling compact focus group. Drives Gr1 toward afocal condition (f₁ = +151 mm), stabilizing aberration across the focus range.",
     },

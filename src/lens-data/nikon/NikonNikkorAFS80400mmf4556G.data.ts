@@ -180,7 +180,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: -85.0,
-      glass: "S-LAH65V (OHARA)",
+      glass: "S-LAH95 (OHARA)",
       apd: false,
       cemented: "D3",
       role: "High-dispersion flint of focus doublet",

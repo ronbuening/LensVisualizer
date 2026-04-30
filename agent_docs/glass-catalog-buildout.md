@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog ships with **only 3 verified entries** at present (`N-BK7`, `S-BSL7`, `CaF2`). This document is the playbook for expanding it. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
+The catalog currently has **53 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
 
 ## Why So Few Entries To Start With
 

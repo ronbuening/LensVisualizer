@@ -129,7 +129,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: 92.1,
-      glass: "S-LAH79 (OHARA)",
+      glass: "S-LAH95 (OHARA)",
       apd: false,
       role: "Highest-index element — first half of L3N cemented doublet; sets refractive index difference at cement surface for SA tuning",
       cemented: "L3N",

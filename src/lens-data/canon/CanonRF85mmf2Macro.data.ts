@@ -136,7 +136,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.5,
       fl: 85.4,
-      glass: "TAFD30 (HOYA)",
+      glass: "S-LAH65V (OHARA)",
       apd: false,
       role: "Positive power in rear group; maintains Petzval balance. No exact OHARA match — HOYA TAFD30 is closest (Δnd = 0).",
     },

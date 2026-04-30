@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.76,
       fl: 16.6,
-      glass: "S-LAH79 (OHARA)",
+      glass: "S-LAH58 (OHARA)",
       apd: false,
       role: "Highest-index element (nd ≈ 1.883). Primary power element of VG (G2, f'/f = 2.47). High n minimizes Petzval contribution.",
       cemented: "G2",

@@ -163,7 +163,7 @@ const LENS_DATA = {
       nd: 1.77271,
       vd: 49.7,
       fl: 34.0,
-      glass: "S-LAM66 (OHARA)",
+      glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Double-asphere 2nd focusing singlet — primary focus corrector",
     },

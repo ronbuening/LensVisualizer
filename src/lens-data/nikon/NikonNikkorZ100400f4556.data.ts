@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       fl: -65.7,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH63 (OHARA)",
       cemented: "D1",
       role: "Dense lanthanum negative in D1. Dominant negative power makes D1 a net negative achromat (f = -167 mm).",
     },
@@ -231,7 +231,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.9,
       fl: -110.1,
-      glass: "S-LAH55 (OHARA) \u2020",
+      glass: "S-LAH53 (OHARA)",
       role: "Dense lanthanum negative immediately ahead of stop. Controls zonal spherical aberration. \u2020 Glass ambiguous: S-LAH55 (vd ~ 41) or S-LAH64 (vd ~ 47).",
     },
     {
