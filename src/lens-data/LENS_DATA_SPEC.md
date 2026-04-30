@@ -138,11 +138,22 @@ Each entry in the `elements` array describes one physical glass element.
   fl:       119.3,                          // recommended: focal length in mm (optional in type; needed for inspector display)
   glass:    "LaSF (LASF35 melt)",           // recommended: glass name/catalog (optional in type; needed for inspector display)
   apd:      false,                          // optional: false | "patent" | "inferred"
-  apdNote:  "dPgF = +0.0376",              // optional: APD details
+  apdNote:  "dPgF = +0.0376",              // optional: APD details (free-form prose)
+  dPgF:     0.0376,                         // optional: partial-dispersion deviation P_g,F − P_g,F(normal). Drives APO behavior. Numeric mirror of apdNote.
+  nC:       1.49514,                        // optional: measured refractive index at C line (656.3 nm), when published
+  nF:       1.50123,                        // optional: measured refractive index at F line (486.1 nm), when published
+  ng:       1.50632,                        // optional: measured refractive index at g line (435.8 nm), when published
   role:     "Front positive meniscus...",    // optional: optical role description
   cemented: "D1",                           // optional: doublet/triplet group name
 }
 ```
+
+**Spectral-data notes (chromatic modeling).** The chromatic-aberration ray trace consults
+spectral fields in this preference order: explicit `nC`/`nF`/`ng` → catalog Sellmeier resolved
+from `glass` → `dPgF`-corrected Abbe → plain Abbe (`nd` + `vd` only). Each level falls back
+to the next. So filling more spectral data is always strictly better, and lenses with no
+spectral data beyond `nd`/`vd` continue to work as before. For apochromatic designs where
+the patent publishes partial dispersion or line indices, prefer transcribing them.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`

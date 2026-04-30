@@ -711,7 +711,11 @@ function _traceRayCore(
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt);
     else pts.push(pt);
-    const nn = channel ? wavelengthNd(nd, L.vdByIdx[i], channel) : nd === 1.0 ? 1.0 : nd;
+    const nn = channel
+      ? (L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel))
+      : nd === 1.0
+        ? 1.0
+        : nd;
     if (nn !== n) {
       /* Exact Snell's law refraction:
        *   α  = surface normal tilt angle (from sagSlope)
@@ -824,7 +828,11 @@ function _traceSkewRayCore(
       clipped = true;
     }
 
-    const nn = channel ? wavelengthNd(nd, L.vdByIdx[i], channel) : nd === 1.0 ? 1.0 : nd;
+    const nn = channel
+      ? (L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel))
+      : nd === 1.0
+        ? 1.0
+        : nd;
     if (nn !== n) {
       const R = L.S[i].R;
       if (!(clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R)) {

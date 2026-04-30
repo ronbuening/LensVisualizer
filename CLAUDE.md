@@ -73,6 +73,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/viewer-and-diagram.md` - LensViewer, diagram panels, zoom/pan, error tiers
 - `agent_docs/architecture/ui-components.md` - controls, display components, markdown renderer, analysis tabs
 - `agent_docs/architecture/optics-engine.md` - ray tracing, aberrations, validation, diagram geometry
+- `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/architecture/state-and-utilities.md` - reducer state, preferences, URL sync, themes, metadata helpers
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations

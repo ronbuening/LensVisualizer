@@ -82,7 +82,7 @@ const LENS_DATA = {
       glass: "S-FPL51 / N-PK52A (universal)",
       apd: "patent",
       role: "Primary chromatic powerhouse; fluorophosphate crown, dPgF = +0.0376 — attacks secondary spectrum",
-      apdNote: "dPgF = +0.0376 (patent-listed)",
+      dPgF: 0.0376, apdNote: "dPgF = +0.0376 (patent-listed)",
     },
     {
       id: 4,
@@ -95,7 +95,7 @@ const LENS_DATA = {
       glass: "K-GFK68 (Sumita) — exact match",
       apd: "patent",
       role: "Secondary chromatic correction; Sumita fluorophosphate crown, dPgF = +0.0195 — power-sharing partner to Lfb",
-      apdNote: "dPgF = +0.0195 (patent-listed)",
+      dPgF: 0.0195, apdNote: "dPgF = +0.0195 (patent-listed)",
     },
     {
       id: 5,

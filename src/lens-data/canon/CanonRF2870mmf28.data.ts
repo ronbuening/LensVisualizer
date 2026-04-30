@@ -68,7 +68,7 @@ const LENS_DATA = {
       fl: 135.5,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.028 (S-FPL51 catalog)",
+      dPgF: 0.028, apdNote: "ΔPgF ≈ +0.028 (S-FPL51 catalog)",
       role: "Front collecting element; UD glass suppresses chromatic aberration at wide-angle where marginal ray height is greatest.",
     },
     {
@@ -180,7 +180,7 @@ const LENS_DATA = {
       fl: 39.3,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.028 (S-FPL51 catalog)",
+      dPgF: 0.028, apdNote: "ΔPgF ≈ +0.028 (S-FPL51 catalog)",
       role: "Rear element of D2; UD glass paired with L9 for secondary chromatic aberration correction across zoom range.",
       cemented: "D2",
     },

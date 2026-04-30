@@ -100,7 +100,7 @@ const LENS_DATA = {
       fl: 35.3,
       glass: "TAFD40 (HOYA)",
       apd: "patent",
-      apdNote: "θgF = 0.6133, ΔθgF = +0.013 above normal line",
+      dPgF: 0.013, apdNote: "θgF = 0.6133, ΔθgF = +0.013 above normal line",
       role: "Ultra-high-index positive; anomalous partial dispersion corrects secondary spectrum",
     },
     {

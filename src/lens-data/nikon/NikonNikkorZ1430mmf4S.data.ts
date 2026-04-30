@@ -98,7 +98,7 @@ const LENS_DATA = {
       fl: -54.7,
       glass: "S-FPL51 family (OHARA)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
       role: "ED element in G1 for lateral chromatic aberration correction at wide angles.",
     },
     {
@@ -187,7 +187,7 @@ const LENS_DATA = {
       fl: 41.4,
       glass: "S-FPL51 family (OHARA)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
       role: "Primary positive power in G3; ED element for axial chromatic correction.",
     },
     {
@@ -200,7 +200,7 @@ const LENS_DATA = {
       fl: 45.1,
       glass: "S-FPL51 family (OHARA)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
       role: "Second positive ED element in G3; distributes convergent power with L33.",
     },
     {
@@ -225,7 +225,7 @@ const LENS_DATA = {
       fl: 41.9,
       glass: "S-FPL51 family (OHARA)",
       apd: "inferred",
-      apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
+      dPgF: 0.035, apdNote: "ED fluorophosphate, ΔPgF ≈ +0.035",
       role: "Fourth ED element; field flattener near image plane. G5 net power ≈ 0.",
     },
     {

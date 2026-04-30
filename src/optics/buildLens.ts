@@ -12,11 +12,13 @@ import {
   buildLabelIndex,
   buildStateSurfaces,
   buildVarIndex,
+  buildSpectralIndex,
   buildVdIndex,
   resolveAnnotations,
   sumSurfaceThicknesses,
   zoomIndexToT,
 } from "./internal/lensState.js";
+import { buildSurfaceDispersionIndex } from "./dispersion.js";
 import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
 import {
   traceSurfacesParaxial,
@@ -188,8 +190,10 @@ export default function buildLens(data: LensData): RuntimeLens {
   );
   const ES = buildElementSpans(S, data.elements);
 
-  /* ── Per-surface Abbe number lookup (for chromatic tracing) ── */
+  /* ── Per-surface dispersion data (for chromatic tracing) ── */
   const vdByIdx = buildVdIndex(S, data.elements);
+  const spectralByIdx = buildSpectralIndex(S, data.elements);
+  const indexByIdx = buildSurfaceDispersionIndex(S, data.elements, spectralByIdx);
   const groups = resolveAnnotations(data.groups, labelIdx);
   const doublets = resolveAnnotations(data.doublets, labelIdx);
 
@@ -555,6 +559,8 @@ export default function buildLens(data: LensData): RuntimeLens {
     asphByIdx,
     varByIdx,
     vdByIdx,
+    spectralByIdx,
+    indexByIdx,
     varLabels,
     groups,
     doublets,

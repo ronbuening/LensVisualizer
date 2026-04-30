@@ -70,7 +70,7 @@ const LENS_DATA = {
       fl: 240.6,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred" as const,
-      apdNote: "UD fluorophosphate, ΔθgF ≈ +0.028",
+      dPgF: 0.028, apdNote: "UD fluorophosphate, ΔθgF ≈ +0.028",
       role: "Front positive; low-dispersion collector, gentle convergence for primary color correction across zoom range",
     },
     {
@@ -96,7 +96,7 @@ const LENS_DATA = {
       fl: 117.3,
       glass: "S-FPL55 (OHARA)",
       apd: "inferred" as const,
-      apdNote: "Super UD fluorophosphate, ΔθgF ≈ +0.046; flat rear surface",
+      dPgF: 0.046, apdNote: "Super UD fluorophosphate, ΔθgF ≈ +0.046; flat rear surface",
       role: "Positive component of front achromatic doublet; extreme anomalous PD provides strongest secondary spectrum correction in system",
       cemented: "D1",
     },

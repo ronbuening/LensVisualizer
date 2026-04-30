@@ -111,7 +111,7 @@ const LENS_DATA = {
       fl: -56.1,
       glass: "ED glass (FPL family, OHARA)",
       apd: "inferred",
-      apdNote: "S-FPL52 or equivalent; ΔPgF ≈ +0.038; ED element #1",
+      dPgF: 0.038, apdNote: "S-FPL52 or equivalent; ΔPgF ≈ +0.038; ED element #1",
       role: "First ED element; provides negative power with minimal chromatic contribution due to very high Abbe number",
     },
     {
@@ -211,7 +211,7 @@ const LENS_DATA = {
       fl: 26.3,
       glass: "ED glass (FPL family, OHARA)",
       apd: "inferred",
-      apdNote: "S-FPL52 or equivalent; ΔPgF ≈ +0.038; ED element #2",
+      dPgF: 0.038, apdNote: "S-FPL52 or equivalent; ΔPgF ≈ +0.038; ED element #2",
       cemented: "J3",
       role: "Second ED element; primary achromatic corrector in G2 paired with E12",
     },

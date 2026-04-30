@@ -181,7 +181,7 @@ const LENS_DATA = {
       fl: 56.2,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.014 (fluorophosphate ED glass)",
+      dPgF: 0.014, apdNote: "ΔPgF ≈ +0.014 (fluorophosphate ED glass)",
       cemented: "D1",
       role: "First of two ED elements. Pre-stop positive component of the achromatic cemented pair with L24. Anomalous partial dispersion corrects secondary spectrum in axial chromatic aberration.",
     },
@@ -235,7 +235,7 @@ const LENS_DATA = {
       fl: 33.6,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔPgF ≈ +0.014 (fluorophosphate ED glass, same as L23)",
+      dPgF: 0.014, apdNote: "ΔPgF ≈ +0.014 (fluorophosphate ED glass, same as L23)",
       role: "Second ED element — same glass as L23. Positioned symmetrically opposite L23 relative to the stop, corrects lateral chromatic aberration where chief ray height is significant. Strongest positive element in Gr2.",
     },
     {

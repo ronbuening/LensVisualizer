@@ -63,7 +63,7 @@ const LENS_DATA = {
       fl: 74.3,
       glass: "ED fluorophosphate crown (unidentified)",
       apd: "inferred",
-      apdNote: "ΔθgF = +0.014; LB positive lens per patent — maximum νd among all positive lenses before stop",
+      dPgF: 0.014, apdNote: "ΔθgF = +0.014; LB positive lens per patent — maximum νd among all positive lenses before stop",
       role: "LB positive lens (patent designation). Second unit (Gs2) of the wide-conversion structure. Reconverges the divergent beam from L1a. Low-dispersion ED glass corrects longitudinal chromatic aberration.",
     },
     {
@@ -76,7 +76,7 @@ const LENS_DATA = {
       fl: 86.5,
       glass: "ED fluorophosphate crown (unidentified)",
       apd: "inferred",
-      apdNote: "ΔθgF = +0.014; LC positive lens per patent — second-highest νd among positive lenses before stop",
+      dPgF: 0.014, apdNote: "ΔθgF = +0.014; LC positive lens per patent — second-highest νd among positive lenses before stop",
       role: "LC positive lens (patent designation). Shares the positive-power burden with L1b in low-dispersion glass, keeping curvatures moderate to suppress spherical aberration.",
     },
     {
@@ -89,7 +89,7 @@ const LENS_DATA = {
       fl: 158.4,
       glass: "S-NPH53 (Ohara)",
       apd: "patent",
-      apdNote:
+      dPgF: 0.047, apdNote:
         "ΔθgF = +0.047; LA positive lens per patent — high-index high-dispersion element for secondary spectrum correction",
       role: "LA positive lens — the patent's core innovation element. Strongly anomalous partial dispersion balances the ED elements' secondary spectrum. Very high nd (1.959) prevents excessive surface curvatures.",
     },

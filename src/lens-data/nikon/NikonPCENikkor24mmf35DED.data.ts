@@ -149,7 +149,7 @@ const LENS_DATA = {
       fl: -32.8,
       glass: "S-FPL51 (OHARA) — ED",
       apd: "inferred",
-      apdNote: "S-FPL51: dPgF ≈ +0.030 (positive APD, well-documented catalog value)",
+      dPgF: 0.03, apdNote: "S-FPL51: dPgF ≈ +0.030 (positive APD, well-documented catalog value)",
       role: "First ED element. Biconcave negative with high Abbe number; corrects axial/lateral color and secondary spectrum.",
     },
     {
@@ -214,7 +214,7 @@ const LENS_DATA = {
       fl: 36.6,
       glass: "S-FPL51 (OHARA) — ED",
       apd: "inferred",
-      apdNote: "S-FPL51: dPgF ≈ +0.030",
+      dPgF: 0.03, apdNote: "S-FPL51: dPgF ≈ +0.030",
       role: "G2 primary positive power element; symmetric biconvex (R = ±34.76) minimizes coma. Strongest G2 converger.",
     },
     {
@@ -240,7 +240,7 @@ const LENS_DATA = {
       fl: 39.7,
       glass: "S-FPL51 (OHARA) — ED",
       apd: "inferred",
-      apdNote: "S-FPL51: dPgF ≈ +0.030",
+      dPgF: 0.03, apdNote: "S-FPL51: dPgF ≈ +0.030",
       role: "Cemented with L22 (Jc). Third ED element; strong lateral color and secondary spectrum correction. Doublet f ≈ −49.7 mm.",
       cemented: "Jc",
     },

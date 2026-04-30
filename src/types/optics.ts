@@ -40,6 +40,14 @@ export interface ElementData {
   apd?: "patent" | "inferred" | false;
   apdNote?: string;
   cemented?: string;
+  /** Partial dispersion deviation from the normal line (P_g,F − P_g,F_normal). Drives APO behavior. */
+  dPgF?: number;
+  /** Measured refractive index at the C line (656.3 nm), when published. */
+  nC?: number;
+  /** Measured refractive index at the F line (486.1 nm), when published. */
+  nF?: number;
+  /** Measured refractive index at the g line (435.8 nm), when published. */
+  ng?: number;
 }
 
 export interface AnnotationData {
@@ -151,6 +159,18 @@ export interface EntrancePupil {
 /** Element span: [elementId, frontSurfaceIndex, rearSurfaceIndex] */
 export type ElementSpan = [number, number, number];
 
+/**
+ * Per-surface spectral data carried on the runtime lens for chromatic tracing.
+ * All fields are optional; the chromatic engine consults them in preference
+ * order before falling back to the Abbe-only approximation.
+ */
+export interface SurfaceSpectral {
+  dPgF?: number;
+  nC?: number;
+  nF?: number;
+  ng?: number;
+}
+
 /** Frozen runtime lens object returned by buildLens() */
 export interface RuntimeLens {
   readonly data: LensData;
@@ -161,6 +181,8 @@ export interface RuntimeLens {
   readonly asphByIdx: Record<number, AsphericCoefficients>;
   readonly varByIdx: Record<number, VarRange>;
   readonly vdByIdx: Record<number, number>;
+  readonly spectralByIdx: Record<number, SurfaceSpectral>;
+  readonly indexByIdx: Record<number, import("../optics/dispersion.js").SurfaceDispersion>;
   readonly varLabels: [number, string][];
   readonly groups: ResolvedAnnotation[];
   readonly doublets: ResolvedAnnotation[];

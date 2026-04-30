@@ -320,15 +320,19 @@ describe("traceSkewRayChromatic", () => {
     expect(redSkew.uy).not.toBeCloseTo(blueSkew.uy, 6);
   });
 
-  it("produces identical results to traceSkewRay for channel G (d-line)", () => {
+  it("produces results matching traceSkewRay at channel G (d-line) within data precision", () => {
     const L = build(ApoLantharRaw);
 
     const chromatic = traceSkewRayChromatic(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L, "G");
     const monochromatic = traceSkewRay(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L);
 
-    expect(chromatic.x).toBeCloseTo(monochromatic.x, 10);
-    expect(chromatic.y).toBeCloseTo(monochromatic.y, 10);
-    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 10);
-    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 10);
+    // Tolerance reflects data rounding: when an element's `glass` resolves in the catalog,
+    // Sellmeier-at-d-line can differ from the lens-data-stored `nd` by ~1e-4 (the precision
+    // at which patent values are typically transcribed). The chromatic engine is intentionally
+    // self-consistent with the catalog, not with the rounded scalar nd.
+    expect(chromatic.x).toBeCloseTo(monochromatic.x, 4);
+    expect(chromatic.y).toBeCloseTo(monochromatic.y, 4);
+    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 4);
+    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 4);
   });
 });
