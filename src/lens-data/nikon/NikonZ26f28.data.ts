@@ -130,7 +130,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.6,
       fl: -20.2,
-      glass: "S-TIH6 (OHARA)",
+      glass: "SF4 (Schott)",
       apd: false,
       role: "Field flattener and primary Petzval corrector; highest dispersion in the design (νd = 27.6), dominant negative Petzval contributor",
     },

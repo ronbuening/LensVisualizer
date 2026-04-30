@@ -97,6 +97,26 @@ Use these in preference order. Always cite the source in the entry's `source` fi
 ### Cross-reference (when a glass has multiple equivalents)
 - Many Hoya/Ohara/Schott/CDGM glasses are catalog equivalents (e.g. N-BK7 ≈ S-BSL7 ≈ BSC7 ≈ H-K9L). Always source coefficients from the **vendor whose name the lens data uses**, even when an equivalent exists. Different vendors publish slightly different Sellmeier fits to nominally-equivalent melts.
 
+### Refractiveindex.INFO — fast access to AGF data
+
+Refractiveindex.INFO mirrors the vendor-published AGF (Zemax catalog) files, which is convenient when the vendor's own download portal is awkward or behind a registration wall. The site's per-glass UI URLs (`?shelf=glass&book=...&page=...`) render via JavaScript and are not fetchable headlessly. The underlying data files **are** fetchable:
+
+- **Catalog index** (lists every glass and its data path):
+  `https://refractiveindex.info/database/catalog-nk.yml`
+- **Per-glass spec file** (Sellmeier coefficients, nd, vd, ΔPgF, glass_code):
+  `https://refractiveindex.info/database/data/specs/<vendor>/optical/<NAME>.yml`
+  - Ohara: `specs/ohara/optical/S-PHM52.yml`, etc.
+  - Schott: `specs/schott/optical/N-BK7.yml`
+  - Hoya: `specs/hoya/optical/FCD1.yml`
+  - Sumita: `specs/sumita/optical/K-GFK68.yml`
+  - To find the right path for a glass not listed above, grep the catalog index: `curl -sL https://refractiveindex.info/database/catalog-nk.yml | grep -A1 "PAGE: <NAME>"`.
+
+The YAML's `DATA[].coefficients` field for `type: formula 2` (Sellmeier-1, Zemax form) is laid out as **seven** numbers: `K B1 C1 B2 C2 B3 C3`. K is the additive constant in `n² = K + Σ Bᵢλ²/(λ²−Cᵢ)`; for the standard Sellmeier-1 form K=0 (verify before transcribing). Then map straight into the catalog entry's `B: [B1, B2, B3]` and `C: [C1, C2, C3]` arrays.
+
+PgF is **not** published in the rii.info YAML (only `dPgF` is). Compute PgF for the catalog entry from the Schott normal-line baseline plus dPgF: `PgF ≈ 0.6438 − 0.001682·vd + dPgF`. The catalog's PgF field is decorative — the dispersion engine derives V-channel partial dispersion from the lens-data element's `dPgF`, not from the catalog. If you need vendor-direct PgF (rare), pull from the OHARA/Schott PDF datasheet instead.
+
+The 1e-4 round-trip test will catch any transcription error — never relax the tolerance, fix the source.
+
 ## How to Add an Entry — Step by Step
 
 1. **Find the glass in the source vendor's catalog** (PDF, datasheet, or downloaded Excel). Confirm the formula form is the standard six-coefficient Sellmeier:

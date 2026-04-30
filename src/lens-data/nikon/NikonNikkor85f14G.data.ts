@@ -117,7 +117,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: 45.1,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL18 (OHARA)",
       apd: false,
       role: "Strong biconvex — primary crown element of Gr2 achromatic pair with L22; highest Abbe number in Gr2",
     },

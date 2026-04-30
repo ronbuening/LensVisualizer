@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-04-30 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-30",
+    type: "improvement",
+    summary:
+      "Expanded glass catalog to 32 vendor-verified Sellmeier entries and corrected mislabeled glass annotations across several lens prescriptions for sharper chromatic readouts",
+  },
   // ── 2026-04-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-29",

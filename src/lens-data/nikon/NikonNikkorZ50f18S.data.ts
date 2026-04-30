@@ -153,7 +153,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 65.37,
-      glass: "S-FPL53 / FCD100 class (super-ED fluorophosphate, νd = 82.6)",
+      glass: "S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)",
       apd: "inferred",
       role: "Second ED element — super-low-dispersion fluorophosphate. Placement within the focusing group provides chromatic correction that tracks with focus, preventing LoCA degradation at close distances. Thickest element in G2 (6.4 mm).",
       apdNote: "νd = 82.6; among the lowest-dispersion optical glasses commercially available",

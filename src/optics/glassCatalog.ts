@@ -264,6 +264,104 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     source: "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data.",
   },
 
+  /* ────── Ohara expansion (Phase 1 buildout, Apr 2026) ──────
+   * Eight high-frequency Ohara glasses each with ≥10 lens-element occurrences
+   * across the library. Sourced from the same OHARA Zemax catalog
+   * (ohara_2017-11-30.agf) as the entries above; coefficients pulled via
+   * refractiveindex.info's mirror of that AGF (form 2 = Sellmeier-1).
+   * PgF computed from Schott's normal-line baseline plus ΔPgF.
+   */
+  {
+    name: "S-PHM52",
+    vendor: "Ohara",
+    B: [1.0996655, 0.478125422, 1.13214074],
+    C: [0.0132718559, -0.000601649685, 130.595472],
+    nd: 1.618,
+    vd: 63.3335,
+    PgF: 0.5424,
+    code6: "618634",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Phosphate crown with notable +ΔPgF; APO-relevant.",
+  },
+  {
+    name: "S-FPM2",
+    vendor: "Ohara",
+    B: [0.761242785, 0.747033375, 0.938928947],
+    C: [0.00321174095, 0.0140234423, 139.52353],
+    nd: 1.59522,
+    vd: 67.7357,
+    PgF: 0.5422,
+    code6: "595677",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Fluorophosphate ED with significant +ΔPgF.",
+  },
+  {
+    name: "S-LAL14",
+    vendor: "Ohara",
+    B: [1.2372097, 0.589722623, 1.3192188],
+    C: [0.015355132, -0.00030789625, 93.7202947],
+    nd: 1.696797,
+    vd: 55.5322,
+    PgF: 0.5422,
+    code6: "697555",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Lanthanum crown.",
+  },
+  {
+    name: "S-LAH66",
+    vendor: "Ohara",
+    B: [1.39280586, 0.679577094, 1.38702069],
+    C: [0.00608475118, 0.0233925351, 95.8354094],
+    nd: 1.772499,
+    vd: 49.5984,
+    PgF: 0.5512,
+    code6: "773496",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum.",
+  },
+  {
+    name: "S-BAL42",
+    vendor: "Ohara",
+    B: [1.39570615, 0.071850507, 1.27129267],
+    C: [0.0112218843, -0.0252117422, 134.49786],
+    nd: 1.583126,
+    vd: 59.3747,
+    PgF: 0.5419,
+    code6: "583594",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Barium crown.",
+  },
+  {
+    name: "S-LAH63",
+    vendor: "Ohara",
+    B: [1.89458276, 0.268702978, 1.45705526],
+    C: [0.0102277048, 0.0442801243, 104.874927],
+    nd: 1.804398,
+    vd: 39.5862,
+    PgF: 0.5727,
+    code6: "804396",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum.",
+  },
+  {
+    name: "S-LAM66",
+    vendor: "Ohara",
+    B: [1.92094221, 0.219901208, 1.72705231],
+    C: [0.0115075241, 0.0547993543, 120.133674],
+    nd: 1.800999,
+    vd: 34.9674,
+    PgF: 0.5865,
+    code6: "801350",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Lanthanum medium-dispersion.",
+  },
+  {
+    name: "S-LAH55",
+    vendor: "Ohara",
+    B: [1.95615766, 0.319216215, 1.39173189],
+    C: [0.00979338965, 0.0376836296, 94.8775271],
+    nd: 1.834807,
+    vd: 42.7137,
+    PgF: 0.5638,
+    code6: "835427",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Standard melt; distinct from S-LAH55V (vacuum-melt variant) — different Sellmeier coefficients despite shared nominal nd.",
+  },
+
   /* ────── Schott — high-dispersion flints and lanthanum crowns ──────
    * SF6/SF4/SF1 are the legacy lead flints used widely in vintage designs.
    * N-LAK8 is a high-frequency lanthanum crown. N-KZFS5 carries notable

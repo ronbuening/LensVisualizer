@@ -293,7 +293,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 44.8,
-      glass: "S-FPL53 (OHARA) — Super ED",
+      glass: "S-FPL51 (OHARA) — ED",
       apd: "patent",
       apdNote: "Fluorite-crown with extreme anomalous dispersion; secondary spectrum correction",
       cemented: "Tc",

@@ -87,7 +87,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: 125.6,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL18 (OHARA)",
       role: "Second positive lens in L1. Carries bulk of L1's converging power.",
     },
     // ── Unit 2: Variator / zoom diverging group (f = −18.58 mm) ──
@@ -136,7 +136,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: -59.2,
-      glass: "S-LAL14 (OHARA)",
+      glass: "S-LAL18 (OHARA)",
       role: "Weakly curved biconcave adding negative power with minimal higher-order contribution. Same glass as E3.",
     },
     {
