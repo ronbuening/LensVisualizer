@@ -2,7 +2,7 @@
 
 ## Status
 
-The chromatic engine uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe) instead of unconditional Abbe. The vendor-published Sellmeier catalog covers the most-used ~32 glasses across the lens library (24 → 32 in the Apr 2026 buildout, past the documented 30-entry diminishing-returns line); remaining catalog buildout follows [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md).
+The chromatic engine uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe) instead of unconditional Abbe. The vendor-published Sellmeier catalog covers the most-used ~38 glasses across the lens library (24 → 32 → 38 across the Apr 2026 buildout, past the documented 30-entry diminishing-returns line); remaining catalog buildout follows [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md).
 
 The chromatic ray trace now spans four channels: R = C-line (656 nm), G = d-line (588 nm), B = F-line (486 nm), V = g-line (436 nm). The V channel is opt-in via the COLOR controls and reveals secondary spectrum residuals — the residual focus shift between G and V is what distinguishes a true APO lens from a conventional achromat.
 

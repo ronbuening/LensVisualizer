@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **123** lenses scanned
 - **1414** glass surfaces examined
 - **1411** surfaces with non-empty `glass` strings
-- **546** of those resolved to a catalog entry
-- **144** mismatches found (26.4% of resolved surfaces)
-- **57** distinct lens files affected
+- **566** of those resolved to a catalog entry
+- **148** mismatches found (26.1% of resolved surfaces)
+- **58** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -29,9 +29,9 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|
 | S-LAH79 | 23 | |
 | S-NPH2 | 16 | |
-| S-LAH58 | 15 | |
+| S-LAH58 | 14 | |
 | S-TIH6 | 11 | |
-| S-LAH66 | 11 | |
+| S-LAH66 | 10 | |
 | S-LAH55V | 9 | |
 | S-LAH65V | 7 | |
 | S-LAM66 | 6 | |
@@ -43,11 +43,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH53 | 4 | |
 | S-LAH63 | 4 | |
 | S-PHM52 | 4 | |
+| S-LAH53 | 3 | |
 | SF6 | 3 | |
 | S-LAH55 | 3 | |
+| S-LAH59 | 2 | |
 | S-NBH5 | 2 | |
 | SF4 | 2 | |
 | S-FPM2 | 1 | |
+| S-PHM53 | 1 | |
 
 ## Mismatches by lens
 
@@ -102,11 +105,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 1 | `S-BSL7 (OHARA 639/554)` | S-BSL7 | 1.63854 | 1.51624 | -0.1223 |
 | 5 | `S-TIH6 (OHARA 699/301)` | S-TIH6 | 1.69895 | 1.80518 | +0.1062 |
 | 7 | `S-LAH55V (OHARA 904/313)` | S-LAH55V | 1.90366 | 1.83481 | -0.0689 |
+| 11 | `S-LAH53 (OHARA 773/496)` | S-LAH53 | 1.77250 | 1.80610 | +0.0336 |
 
 ### [CANON RF 24-70mm f/2.8L IS USM](../src/lens-data/canon/CanonRF2470f28.data.ts)
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
+| 17 | `S-LAH59 (OHARA)` | S-LAH59 | 1.76385 | 1.81600 | +0.0521 |
 | 20 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00069 | 1.92286 | -0.0778 |
 | 30A | `S-LAH65V (OHARA) — PGM` | S-LAH65V | 1.85400 | 1.80400 | -0.0500 |
 
@@ -122,9 +127,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
-| 3 | `892371 — S-LAH66 family (OHARA)` | S-LAH66 | 1.89190 | 1.77250 | -0.1194 |
 | 5 | `603606 — S-BSL7 family (OHARA)` | S-BSL7 | 1.60311 | 1.51624 | -0.0869 |
-| 6 | `904313 — S-LAH58 family (OHARA)` | S-LAH58 | 1.90366 | 1.88300 | -0.0207 |
 | 8 | `851408 — S-LAH65V (OHARA)` | S-LAH65V | 1.85150 | 1.80400 | -0.0475 |
 | 26 | `744448 — S-LAL14 family (OHARA)` | S-LAL14 | 1.74400 | 1.69680 | -0.0472 |
 
@@ -283,8 +286,10 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
+| 5 | `S-LAH53 (OHARA)` | S-LAH53 | 1.74100 | 1.80610 | +0.0651 |
 | 10 | `S-LAH66 (OHARA)` | S-LAH66 | 1.80440 | 1.77250 | -0.0319 |
 | 20 | `S-BAL42 (OHARA)` | S-BAL42 | 1.57099 | 1.58313 | +0.0121 |
+| 22 | `S-LAH59 (OHARA)` | S-LAH59 | 1.77279 | 1.81600 | +0.0432 |
 | 25 | `S-LAH58 (OHARA)` | S-LAH58 | 1.80610 | 1.88300 | +0.0769 |
 
 ### [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts)
@@ -358,6 +363,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 10 | `S-TIH6 (OHARA)` | S-TIH6 | 1.72825 | 1.80518 | +0.0769 |
 | 17 | `S-PHM52 (OHARA)` | S-PHM52 | 1.59319 | 1.61800 | +0.0248 |
+| 24 | `S-PHM53 (OHARA)` | S-PHM53 | 1.59349 | 1.60300 | +0.0095 |
 | 28 | `S-NPH2 (OHARA)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
 | 32 | `S-BAL42 (OHARA)` | S-BAL42 | 1.58913 | 1.58313 | -0.0060 |
 
@@ -472,6 +478,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 1 | `S-LAH58 (OHARA) / TAFD5 (HOYA)` | S-LAH58 | 1.83481 | 1.88300 | +0.0482 |
 | 12 | `S-LAH52 (OHARA) / TAFD30 (HOYA)` | TAFD30 | 1.79952 | 1.88300 | +0.0835 |
+
+### [RICOH GR IV 18.3mm f/2.8](../src/lens-data/ricoh/RicohGR428f28.data.ts)
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10A | `S-LAH53 (OHARA)` | S-LAH53 | 1.76802 | 1.80610 | +0.0381 |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts)
 

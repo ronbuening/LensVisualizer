@@ -362,6 +362,81 @@ const RAW_CATALOG: readonly GlassEntry[] = [
       "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Standard melt; distinct from S-LAH55V (vacuum-melt variant) — different Sellmeier coefficients despite shared nominal nd.",
   },
 
+  /* ────── Ohara expansion (Phase 2 buildout, Apr 2026) ──────
+   * Six more OHARA glasses targeted at the largest "no candidate" clusters
+   * surfaced by the verified mismatch sweep (see agent_docs/glass-relabel-followup.md).
+   * Each fills a real gap: S-LAH95 covers the ~10 surfaces of "S-LAH79 type (903/313)"
+   * mislabels; S-LAH59 covers the (816/466) cluster; S-PHM53 / S-LAH53 / S-LAH92 /
+   * S-LAH88 fill smaller but distinct clusters. Same AGF source as the entries above.
+   */
+  {
+    name: "S-LAH95",
+    vendor: "Ohara",
+    B: [2.15636617, 0.329558178, 1.72178935],
+    C: [0.012288051, 0.0555507835, 124.43934],
+    nd: 1.903659,
+    vd: 31.3431,
+    PgF: 0.5966,
+    code6: "904313",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (904/313); resolves the largest cluster of mislabeled S-LAH79 surfaces in the lens library.",
+  },
+  {
+    name: "S-LAH59",
+    vendor: "Ohara",
+    B: [1.51372967, 0.702462343, 1.33600982],
+    C: [0.00705246901, 0.0249488689, 100.085908],
+    nd: 1.816,
+    vd: 46.6206,
+    PgF: 0.5654,
+    code6: "816466",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Lanthanum dense crown.",
+  },
+  {
+    name: "S-LAH53",
+    vendor: "Ohara",
+    B: [1.91811619, 0.253724399, 1.39473885],
+    C: [0.0102147684, 0.0433176011, 101.938021],
+    nd: 1.806098,
+    vd: 40.926,
+    PgF: 0.575,
+    code6: "806409",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum.",
+  },
+  {
+    name: "S-LAH92",
+    vendor: "Ohara",
+    B: [2.10440311, 0.358346161, 1.63010064],
+    C: [0.0108531811, 0.044340592, 123.2498],
+    nd: 1.891899,
+    vd: 37.134,
+    PgF: 0.578,
+    code6: "892371",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (892/371).",
+  },
+  {
+    name: "S-LAH88",
+    vendor: "Ohara",
+    B: [2.1284434, 0.405082139, 1.67918461],
+    C: [0.0117309815, 0.0508706599, 107.091456],
+    nd: 1.916499,
+    vd: 31.6041,
+    PgF: 0.5915,
+    code6: "916316",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Ultra-high-index lanthanum (916/316).",
+  },
+  {
+    name: "S-PHM53",
+    vendor: "Ohara",
+    B: [1.09775423, 0.434816432, 1.13894976],
+    C: [0.01233694, -0.000372522903, 124.276984],
+    nd: 1.603001,
+    vd: 65.4436,
+    PgF: 0.5337,
+    code6: "603655",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Phosphate crown (603/655).",
+  },
+
   /* ────── Schott — high-dispersion flints and lanthanum crowns ──────
    * SF6/SF4/SF1 are the legacy lead flints used widely in vintage designs.
    * N-LAK8 is a high-frequency lanthanum crown. N-KZFS5 carries notable

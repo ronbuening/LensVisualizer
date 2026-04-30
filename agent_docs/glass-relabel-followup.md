@@ -16,11 +16,14 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Status (Apr 2026, after Phase 1 catalog buildout)
+## Status (Apr 2026, after Phase 2 catalog expansion + scanner upgrades)
 
-- Catalog: 32 entries (was 24).
-- Mismatches: 144 (was 117 before Phase 1 catalog buildout exposed previously-unresolvable annotations).
+- Catalog: **38 entries** (24 → 32 → 38).
+- Mismatches: **148** (was 117 → 160 → 144 → 148).
 - Resolved this session: 16 surfaces across 6 lens files.
+- Actionable candidate groups: **37** (60 surfaces) — up from 25/42 after the Phase 2 adds.
+- No-candidate groups: **62** (88 surfaces) — down from 65/102.
+- Scanner now extracts embedded six-digit codes from annotations (e.g. `(903/313)`) and ranks candidates by code distance when present. Also reports ΔPgF when the lens-data element has `dPgF` populated.
 
 ## Resolved this session — high-confidence relabels (audit trail)
 
