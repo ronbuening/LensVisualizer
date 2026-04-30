@@ -2,9 +2,11 @@
 
 ## Status
 
-The chromatic engine now uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF` line indices → dPgF-corrected Abbe → plain Abbe) instead of unconditional Abbe. The schema, codemod, and dispersion engine are in place; the glass catalog itself is intentionally small (3 verified entries: N-BK7, S-BSL7, CaF2) and grows according to [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md).
+The chromatic engine uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe) instead of unconditional Abbe. The vendor-published Sellmeier catalog covers the most-used ~24 glasses across the lens library; remaining catalog buildout follows [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md).
 
-Per-surface dispersion quality is exposed via `summarizeDispersionQuality(L)` for future UI surfacing.
+The chromatic ray trace now spans four channels: R = C-line (656 nm), G = d-line (588 nm), B = F-line (486 nm), V = g-line (436 nm). The V channel is opt-in via the COLOR controls and reveals secondary spectrum residuals — the residual focus shift between G and V is what distinguishes a true APO lens from a conventional achromat.
+
+Per-surface dispersion quality is surfaced in the LCA inset and overlay via a small badge ("Sellmeier" / "Measured (C/F)" / "Abbe approx" / "No dispersion"), driven by `summarizeDispersionQuality(L)`.
 
 ## Background — what the model couldn't represent
 
@@ -40,13 +42,7 @@ to the C/F correction pair.
 
 ## Remaining Approximations and Follow-ups
 
-1. The catalog covers only 3 glasses; the rest of each lens still falls back to Abbe. See
-   [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md) for the prioritized buildout list and
-   sourcing protocol.
-2. Phase 3 (deferred): add g-line (435.8 nm) tracing to the LCA visualization and metric so the dPgF-corrected
-   secondary-spectrum behavior is visible. Until then, the populated dPgF data is recorded but inactive in C/d/F traces.
-3. Phase 4 (deferred): backfill `nC`/`nF`/`ng` on the truly proprietary glasses where the patent provides line indices
-   (e.g. several Voigtländer APO-Lanthar elements). A pattern for capturing these during lens authoring should land in
-   [agent_docs/adding_a_lens.md](agent_docs/adding_a_lens.md).
-4. Add a quality badge ("Sellmeier", "Abbe approx") to the LCA inset/overlay using `summarizeDispersionQuality(L)` so
-   approximate readings are surfaced to the user.
+1. ✅ Glass catalog now has ~24 vendor-verified Sellmeier entries, covering the headline regression cases plus the most-used Ohara/Schott/Hoya/Sumita glasses. Further buildout per [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md) remains optional — diminishing returns past the top 30.
+2. ✅ g-line (435.8 nm) tracing landed as the V channel. The dPgF data populated by the Phase 1 codemod is now active across all three cascade tiers (Sellmeier always was; line-indices honors `ng`; Abbe uses Schott normal-line + dPgF).
+3. **Open**: backfill `nC`/`nF`/`ng` on truly proprietary glass elements (Sumita unidentified melts, vintage Leitz, manufacturer-internal placeholders). This is per-lens patent-reading work, not catalog buildout. The prioritized list of lenses needing this is in [agent_docs/proprietary-glass-backfill.md](agent_docs/proprietary-glass-backfill.md), and the workflow for capturing line indices during lens authoring is in [agent_docs/adding_a_lens.md](agent_docs/adding_a_lens.md). A companion auto-generated report at [agent_docs/catalog-mismatches.generated.md](agent_docs/catalog-mismatches.generated.md) lists 117 surfaces (across 53 lens files) where a catalog-resolvable glass annotation disagrees with the stored `nd` by more than 5e-3 — typically speculative `"...probable"` guesses that should be relabelled or replaced with the correct glass identification.
+4. ✅ Quality badge in the LCA inset/overlay surfaces `summarizeDispersionQuality(L)` to the user.

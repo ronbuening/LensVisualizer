@@ -26,6 +26,7 @@ interface ControlsBarProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   showPupils: boolean;
   showCardinals: boolean;
   showCardinalFocal?: boolean;
@@ -53,6 +54,7 @@ export default function ControlsBar({
   chromR,
   chromG,
   chromB,
+  chromV,
   showPupils,
   showCardinals,
   showCardinalFocal = true,
@@ -153,6 +155,7 @@ export default function ControlsBar({
     { ch: "R", active: chromR, field: "chromR", color: t.rayChromR },
     { ch: "G", active: chromG, field: "chromG", color: t.rayChromG },
     { ch: "B", active: chromB, field: "chromB", color: t.rayChromB },
+    { ch: "V", active: chromV, field: "chromV", color: t.rayChromV },
   ];
 
   return (

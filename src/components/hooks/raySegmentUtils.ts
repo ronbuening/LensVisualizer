@@ -58,10 +58,11 @@ export function compileRaySegment(
 /**
  * Build an array of active chromatic channels from individual toggle flags.
  */
-export function filterChannels(chromR: boolean, chromG: boolean, chromB: boolean): ChromaticChannel[] {
+export function filterChannels(chromR: boolean, chromG: boolean, chromB: boolean, chromV: boolean): ChromaticChannel[] {
   const channels: ChromaticChannel[] = [];
   if (chromR) channels.push("R");
   if (chromG) channels.push("G");
   if (chromB) channels.push("B");
+  if (chromV) channels.push("V");
   return channels;
 }

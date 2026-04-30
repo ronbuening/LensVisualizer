@@ -67,6 +67,7 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   rayChromR: string;
   rayChromG: string;
   rayChromB: string;
+  rayChromV: string;
   chromDispHigh: string;
   chromDispMid: string;
   chromDispLow: string;

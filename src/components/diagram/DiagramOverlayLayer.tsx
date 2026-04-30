@@ -13,6 +13,7 @@ import LCAInsetWidget from "./LCAInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
 import type { CardinalElements } from "../../optics/cardinalElements.js";
 
 interface DiagramOverlayLayerProps {
@@ -30,6 +31,7 @@ interface DiagramOverlayLayerProps {
   stopZ: number;
   currentPhysStopSD: number;
   chromSpread: ChromaticSpread | null;
+  dispersionQuality?: DispersionQuality;
   showChromatic: boolean;
   showPupils: boolean;
   showCardinals?: boolean;
@@ -67,6 +69,7 @@ export default function DiagramOverlayLayer({
   stopZ,
   currentPhysStopSD,
   chromSpread,
+  dispersionQuality,
   showChromatic,
   showPupils,
   showCardinals = false,
@@ -139,6 +142,7 @@ export default function DiagramOverlayLayer({
           sy={sy}
           t={t}
           onClick={onLcaInsetClick}
+          dispersionQuality={dispersionQuality}
         />
       )}
 

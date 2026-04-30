@@ -59,6 +59,7 @@ describe("useRayTracing", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "none",
       }),
     );
@@ -92,6 +93,7 @@ describe("useRayTracing", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -123,6 +125,7 @@ describe("useRayTracing", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -153,6 +156,7 @@ describe("useRayTracing", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -188,6 +192,7 @@ describe("useRayTracing", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -217,6 +222,7 @@ describe("useRayTracing", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );

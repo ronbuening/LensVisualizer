@@ -17,6 +17,7 @@ import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
 import DiagramOverlayLayer from "./DiagramOverlayLayer.js";
 import DiagramRayLayers from "./DiagramRayLayers.js";
 import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { CardinalElements } from "../../optics/cardinalElements.js";
 import type { Theme } from "../../types/theme.js";
@@ -44,6 +45,7 @@ interface DiagramSVGProps {
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
   chromSpread: ChromaticSpread | null;
+  dispersionQuality?: DispersionQuality;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
   showChromatic: boolean;
@@ -110,6 +112,7 @@ const DiagramSVG = memo(function DiagramSVG({
   offAxisRays,
   chromaticRays,
   chromSpread,
+  dispersionQuality,
   showOnAxis,
   showOffAxis,
   showChromatic,
@@ -225,6 +228,7 @@ const DiagramSVG = memo(function DiagramSVG({
         stopZ={stopZ}
         currentPhysStopSD={currentPhysStopSD}
         chromSpread={chromSpread}
+        dispersionQuality={dispersionQuality}
         showChromatic={showChromatic}
         showPupils={showPupils}
         showCardinals={showCardinals}

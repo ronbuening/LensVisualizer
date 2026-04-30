@@ -59,6 +59,7 @@ interface DiagramControlPanelProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
@@ -107,6 +108,7 @@ export default function DiagramControlPanel({
   chromR,
   chromG,
   chromB,
+  chromV,
   chromSpread,
   rayTracksF,
   onOpenAbbeDiagram,
@@ -197,6 +199,7 @@ export default function DiagramControlPanel({
             chromR={chromR}
             chromG={chromG}
             chromB={chromB}
+            chromV={chromV}
             chromSpread={chromSpread}
             rayTracksF={rayTracksF}
             legendExpanded={legendExpanded}

@@ -272,7 +272,7 @@ export interface LayoutResult {
   imgZ: number;
 }
 
-export type ChromaticChannel = "R" | "G" | "B";
+export type ChromaticChannel = "R" | "G" | "B" | "V";
 
 export interface ChromaticSpread {
   lcaMm: number;

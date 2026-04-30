@@ -109,7 +109,9 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return -(radius - Math.sign(radius) * Math.sqrt(underRoot));
 }
 
-const CHROMATIC_CHANNELS: ChromaticChannel[] = ["R", "G", "B"];
+// Field-curvature shift is a longitudinal-focus metric on the C/d/F triplet only;
+// g-line (V) tracing is supported by the engine but not analyzed here.
+const CHROMATIC_CHANNELS: ("R" | "G" | "B")[] = ["R", "G", "B"];
 
 function parabasalPupilFraction(entrancePupilSemiDiameter: number): number {
   if (!isFinite(entrancePupilSemiDiameter) || entrancePupilSemiDiameter <= 0) {

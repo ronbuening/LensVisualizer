@@ -64,6 +64,7 @@ export type RayField =
   | "chromR"
   | "chromG"
   | "chromB"
+  | "chromV"
   | "showPupils"
   | "showCardinals"
   | "showCardinalFocal"
@@ -86,6 +87,7 @@ export interface RaysSlice {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   showPupils: boolean;
   showCardinals: boolean;
   showCardinalFocal: boolean;
@@ -205,6 +207,7 @@ export interface Preferences {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   showPupils: boolean;
   showCardinals: boolean;
   showCardinalFocal: boolean;

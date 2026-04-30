@@ -80,8 +80,8 @@ describe("resolveGlass", () => {
   });
 
   it("returns null for unknown glasses", () => {
-    expect(resolveGlass("S-LAH79 (OHARA) probable")).toBeNull();
-    expect(resolveGlass("K-GFK68 (Sumita)")).toBeNull();
+    expect(resolveGlass("S-FANTASY99 (made up)")).toBeNull();
+    expect(resolveGlass("Z-NOSUCH50")).toBeNull();
   });
 
   it("returns null for explicit 'unmatched' markers", () => {
@@ -104,6 +104,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBe(1.0);
     expect(d.fn("G")).toBe(1.0);
     expect(d.fn("B")).toBe(1.0);
+    expect(d.fn("V")).toBe(1.0);
   });
 
   it("prefers Sellmeier when the element resolves to a catalog entry", () => {
@@ -114,9 +115,10 @@ describe("makeSurfaceDispersion preference cascade", () => {
     );
     expect(d.quality).toBe("sellmeier");
     expect(d.glassEntry?.name).toBe("S-BSL7");
-    // n should grow from C to F (normal dispersion)
+    // n should grow from C to F to V (normal dispersion across the whole spectrum)
     expect(d.fn("R")).toBeLessThan(d.fn("G"));
     expect(d.fn("G")).toBeLessThan(d.fn("B"));
+    expect(d.fn("B")).toBeLessThan(d.fn("V"));
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {
@@ -129,6 +131,19 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBe(1.51);
     expect(d.fn("G")).toBe(nd);
     expect(d.fn("B")).toBe(1.52);
+    // V channel: estimated from dPgF=0 normal-line partial dispersion (≈ 0.536 for vd=64.14).
+    // n_g should sit above n_F (nF + PgF*(nF-nC) > nF since PgF > 0).
+    expect(d.fn("V")).toBeGreaterThan(1.52);
+  });
+
+  it("uses measured ng directly when present in line-indices spectral data", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "Unmatched proprietary" },
+      { nC: 1.51, nF: 1.52, ng: 1.527 },
+    );
+    expect(d.quality).toBe("lineIndices");
+    expect(d.fn("V")).toBe(1.527);
   });
 
   it("falls back to Abbe when only nd and vd are available", () => {
@@ -142,6 +157,28 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBeCloseTo(nd - delta, 10);
     expect(d.fn("G")).toBe(nd);
     expect(d.fn("B")).toBeCloseTo(nd + delta, 10);
+    // V channel: normal-line PgF = 0.6438 - 0.001682*64.14 ≈ 0.5359; ng = nF + PgF*(nF-nC).
+    const PgF = 0.6438 - 0.001682 * 64.14;
+    expect(d.fn("V")).toBeCloseTo(nd + delta + PgF * (2 * delta), 10);
+  });
+
+  it("dPgF on the element shifts the V-channel index away from the normal-line baseline", () => {
+    const baseline = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "Unmatched" },
+      undefined,
+    );
+    const apoLike = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "Unmatched", dPgF: 0.04 },
+      undefined,
+    );
+    // R/G/B unchanged by dPgF.
+    expect(apoLike.fn("R")).toBe(baseline.fn("R"));
+    expect(apoLike.fn("G")).toBe(baseline.fn("G"));
+    expect(apoLike.fn("B")).toBe(baseline.fn("B"));
+    // V is shifted: positive dPgF raises n_g (more secondary spectrum on the violet side).
+    expect(apoLike.fn("V")).toBeGreaterThan(baseline.fn("V"));
   });
 
   it("returns the surface nd as a constant when no spectral data exists at all", () => {
@@ -154,6 +191,7 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBe(nd);
     expect(d.fn("G")).toBe(nd);
     expect(d.fn("B")).toBe(nd);
+    expect(d.fn("V")).toBe(nd);
   });
 });
 

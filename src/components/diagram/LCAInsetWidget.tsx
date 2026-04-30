@@ -8,7 +8,16 @@
  */
 import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
 import { computeLcaBarOffsets } from "../../optics/lcaScaling.js";
+
+const QUALITY_LABEL: Record<DispersionQuality, string> = {
+  sellmeier: "Sellmeier",
+  lineIndices: "Measured (C/F)",
+  abbe: "Abbe approx",
+  constant: "No dispersion",
+  air: "",
+};
 
 interface LCAInsetWidgetProps {
   chromSpread: ChromaticSpread;
@@ -30,6 +39,8 @@ interface LCAInsetWidgetProps {
   onClick?: () => void;
   /** Base font scale multiplier (default 1). */
   fontScale?: number;
+  /** Aggregate dispersion-data quality across the lens (drives the small badge). */
+  dispersionQuality?: DispersionQuality;
 }
 
 export default function LCAInsetWidget({
@@ -46,13 +57,17 @@ export default function LCAInsetWidget({
   originY,
   onClick,
   fontScale = 1,
+  dispersionQuality,
 }: LCAInsetWidgetProps) {
   const insetW = width ?? 110;
   const insetH = height ?? 100;
   const gRef = chromSpread.intercepts.G ?? IMG_MM;
   const viewWidthPx = insetW - 24;
   const { barOffsets, mag } = computeLcaBarOffsets(chromSpread.intercepts, gRef, viewWidthPx, effectiveSC);
-  const activeChans = (["R", "G", "B"] as ChromaticChannel[]).filter((ch) => chromSpread.intercepts[ch] !== undefined);
+  const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
+    (ch) => chromSpread.intercepts[ch] !== undefined,
+  );
+  const qualityLabel = dispersionQuality && dispersionQuality !== "air" ? QUALITY_LABEL[dispersionQuality] : "";
 
   let insetX: number;
   let insetY: number;
@@ -106,7 +121,7 @@ export default function LCAInsetWidget({
       <line x1={insetX + 6} y1={yAxis} x2={insetX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
         const offset = barOffsets[ch] ?? 0;
-        const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
+        const color = ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
         return (
           <g key={ch}>
             <line
@@ -149,6 +164,19 @@ export default function LCAInsetWidget({
         {Math.round(mag)}
         {"\u00d7"}
       </text>
+      {qualityLabel && (
+        <text
+          x={insetX + insetW - 4}
+          y={insetY + insetH * 0.14}
+          textAnchor="end"
+          fill={dispersionQuality === "abbe" || dispersionQuality === "constant" ? t.muted : t.muted}
+          fontSize={fs(6.5)}
+          fontFamily="inherit"
+          opacity={0.75}
+        >
+          {qualityLabel}
+        </text>
+      )}
     </g>
   );
 }

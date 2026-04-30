@@ -11,9 +11,11 @@
  *   3. Measured nC/nF on the element          → exact at the listed lines
  *   4. Abbe approximation (the legacy path)   → unchanged fallback
  *
- * The dPgF data populated in Phase 1 is recorded on the runtime lens but does
- * not influence C/d/F traces by itself — partial dispersion is primarily a
- * g-line effect. It activates when g-line tracing lands in Phase 3.
+ * Channels: R = C-line (656.3 nm), G = d-line (587.6 nm), B = F-line (486.1 nm),
+ * V = g-line (435.8 nm — the secondary-spectrum probe). The Sellmeier path is
+ * λ-accurate at any wavelength; the line-indices path uses measured `ng` when
+ * present and extrapolates from `dPgF` otherwise; the Abbe path uses the
+ * Schott normal-line partial dispersion plus `dPgF` to estimate `ng`.
  *
  * Resolution happens once per lens load (`buildLens`) and is cached as a
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
@@ -27,7 +29,21 @@ const CHANNEL_NM: Record<ChromaticChannel, number> = {
   R: LINE_NM.C,
   G: LINE_NM.d,
   B: LINE_NM.F,
+  V: LINE_NM.g,
 };
+
+/**
+ * Schott "normal line" partial dispersion P_g,F as a function of Abbe number.
+ * The standard interpolation used to estimate g-line behavior from (vd) alone:
+ *   P_g,F_normal ≈ 0.6438 − 0.001682 · vd
+ * Anomalous-partial-dispersion glasses deviate from this line by ΔP_g,F (the
+ * `dPgF` field on ElementData), which is what makes apochromatic correction
+ * possible. Adding ΔP_g,F to the normal-line baseline gives the corrected
+ * partial dispersion used by the Abbe-channel cascade for the V channel.
+ */
+function partialDispersionPgF(vd: number, dPgF: number): number {
+  return 0.6438 - 0.001682 * vd + dPgF;
+}
 
 /** The quality of the dispersion data backing a per-surface index function. */
 export type DispersionQuality = "air" | "sellmeier" | "lineIndices" | "abbe" | "constant";
@@ -57,33 +73,63 @@ export function makeSurfaceDispersion(
   }
 
   // 1) Catalog Sellmeier — λ-accurate, the highest-fidelity path.
+  //    Only trust the catalog when its d-line index agrees with the stored
+  //    surface.nd within a transcription tolerance. Lens-data files sometimes
+  //    annotate glasses speculatively ("S-LAH79 (OHARA) probable") with stored
+  //    nd values that don't match the real catalog glass — in which case the
+  //    "probable" tag is wrong and the stored nd should win. Tolerance 5e-3
+  //    catches misidentifications while permitting normal transcription rounding.
   if (element?.glass) {
     const entry = resolveGlass(element.glass);
     if (entry) {
-      const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
-      return { fn, quality: "sellmeier", glassEntry: entry };
+      const sellmeierNd = evaluateSellmeier(entry, LINE_NM.d);
+      if (Math.abs(sellmeierNd - surface.nd) <= 5e-3) {
+        const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
+        return { fn, quality: "sellmeier", glassEntry: entry };
+      }
+      // Catalog match disagrees with surface.nd beyond rounding tolerance —
+      // the glass annotation is wrong. Fall through to the next cascade tier.
     }
   }
 
-  // 2) Measured line indices on the element — exact at the listed lines,
-  //    falls back to surface.nd for the d-line (the "G" channel).
+  // 2) Measured line indices on the element — exact at the listed lines.
+  //    Falls back to surface.nd at the d-line (G) and to a partial-dispersion
+  //    estimate at the g-line (V) when ng is not measured.
   if (spectral?.nC !== undefined && spectral?.nF !== undefined) {
     const nd = surface.nd;
     const nC = spectral.nC;
     const nF = spectral.nF;
-    const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : nd);
+    const ngMeasured = spectral.ng;
+    // Resolve V channel: prefer measured ng, otherwise extend from (nC, nF)
+    // using the dPgF-corrected partial dispersion. Fall back to nF (zero
+    // secondary spectrum) when no dPgF info is present.
+    let nVfallback: number;
+    if (ngMeasured !== undefined) {
+      nVfallback = ngMeasured;
+    } else if (element?.vd !== undefined) {
+      const PgF = partialDispersionPgF(element.vd, element.dPgF ?? 0);
+      nVfallback = nF + PgF * (nF - nC);
+    } else {
+      nVfallback = nF;
+    }
+    const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? nVfallback : nd);
     return { fn, quality: "lineIndices" };
   }
 
-  // 3) Abbe approximation — the legacy fallback. Unchanged behavior for any
-  //    lens whose elements only carry (nd, vd).
+  // 3) Abbe approximation — the legacy fallback for elements with only (nd, vd).
+  //    The V channel uses Schott's normal-line partial dispersion plus the
+  //    element's dPgF (when present). Without dPgF this is the standard
+  //    "normal glass" approximation; with dPgF the Phase 1 codemod data
+  //    finally influences a visible trace.
   const vd = element?.vd;
   if (vd) {
     const nd = surface.nd;
     const delta = (nd - 1) / (2 * vd);
     const nC = nd - delta;
     const nF = nd + delta;
-    const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : nd);
+    const PgF = partialDispersionPgF(vd, element?.dPgF ?? 0);
+    const ng = nF + PgF * (nF - nC);
+    const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? ng : nd);
     return { fn, quality: "abbe" };
   }
 

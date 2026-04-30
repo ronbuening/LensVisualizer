@@ -658,13 +658,23 @@ export function effectiveFNumber(nominalFNumber: number, focusT: number, zoomT: 
 
 /**
  * Refractive index adjusted for wavelength using Abbe number dispersion.
- * channel: 'R' (C-line 656.3nm), 'G' (d-line 587.6nm), 'B' (F-line 486.1nm)
+ * Legacy fallback used only when a surface's pre-resolved dispersion entry is
+ * unavailable; the per-surface cascade in `dispersion.ts` is the primary path.
+ * channel: 'R' (C-line 656.3nm), 'G' (d-line 587.6nm), 'B' (F-line 486.1nm),
+ *          'V' (g-line 435.8nm — secondary spectrum probe).
  */
 export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
   if (!vd || channel === "G") return nd;
   const delta = (nd - 1) / (2 * vd);
-  return channel === "R" ? nd - delta : nd + delta;
+  if (channel === "R") return nd - delta;
+  if (channel === "B") return nd + delta;
+  // V (g-line) — Schott normal-line partial dispersion (no dPgF available here;
+  // the per-surface cascade covers the dPgF case).
+  const nC = nd - delta;
+  const nF = nd + delta;
+  const PgF = 0.6438 - 0.001682 * vd;
+  return nF + PgF * (nF - nC);
 }
 
 /**

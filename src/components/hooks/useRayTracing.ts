@@ -37,6 +37,7 @@ interface UseRayTracingParams {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   lensKey: string;
 }
 
@@ -71,6 +72,7 @@ export default function useRayTracing({
   chromR,
   chromG,
   chromB,
+  chromV,
   lensKey,
 }: UseRayTracingParams): UseRayTracingResult {
   /* focusK = convergence curvature at the entrance pupil for "tracks focus"
@@ -140,6 +142,7 @@ export default function useRayTracing({
     chromR,
     chromG,
     chromB,
+    chromV,
     lensKey,
   });
 

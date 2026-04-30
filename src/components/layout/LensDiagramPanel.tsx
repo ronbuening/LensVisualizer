@@ -93,6 +93,7 @@ export default function LensDiagramPanel({
     chromR,
     chromG,
     chromB,
+    chromV,
     rayTracksF,
     showPupils,
     showCardinals,
@@ -290,6 +291,7 @@ export default function LensDiagramPanel({
     chromR,
     chromG,
     chromB,
+    chromV,
     lensKey,
   });
 
@@ -375,6 +377,7 @@ export default function LensDiagramPanel({
           chromR={chromR}
           chromG={chromG}
           chromB={chromB}
+          chromV={chromV}
           rayTracksF={rayTracksF}
           chromSpread={chromSpread ?? null}
           chromaticSpreads={chromaticSpreads}
@@ -454,9 +457,11 @@ export default function LensDiagramPanel({
                 chromR={chromR}
                 chromG={chromG}
                 chromB={chromB}
+                chromV={chromV}
                 onChromRChange={adapters.onChromRChange}
                 onChromGChange={adapters.onChromGChange}
                 onChromBChange={adapters.onChromBChange}
+                onChromVChange={adapters.onChromVChange}
                 showPupils={showPupils}
                 onShowPupilsChange={adapters.onShowPupilsChange}
                 showCardinals={showCardinals}
