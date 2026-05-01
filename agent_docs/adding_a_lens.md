@@ -13,9 +13,11 @@ No manual imports or catalog edits required.
 
 ## Reference Documents
 
-- **Full format specification:** `src/lens-data/LENS_DATA_SPEC.md`
+- **Full data-file format specification:** `src/lens-data/LENS_DATA_SPEC.md`
+- **Companion analysis-file format:** `src/lens-data/LENS_ANALYSIS_SPEC.md` — required skeleton, conditional sections, voice and conventions for `*.analysis.md`.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
+- **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — use this when revisiting a data file already in the catalog, not when authoring a new one.
 
 ## Key Details
 
@@ -104,3 +106,22 @@ For constant-aperture zooms (e.g., f/2.8), keep `nominalFno` as a single number.
 - Cross-gap overlap is checked at every zoom position
 
 **References:** Zoom Lens Fields section in `src/lens-data/LENS_DATA_SPEC.md`, zoom fields section in the template, `src/lens-data/nikon/NikonNikkorZ70200f28.data.ts` (constant-aperture zoom), and `src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts` (variable-aperture zoom).
+
+## Capturing nC / nF / ng during authoring
+
+When the patent embodiment lists per-element line indices (typically `nC`, `nF`, sometimes `ng`) alongside the standard `nd`/`vd`, capture them on the matching `ElementData.spectral` block:
+
+```typescript
+spectral: {
+  nC: 1.49234,   // C-line (656.3 nm)
+  nF: 1.49978,   // F-line (486.1 nm)
+  ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
+  dPgF: 0.0376,  // anomalous partial dispersion deviation (also recorded by the codemod)
+}
+```
+
+This matters for **proprietary glasses** that won't resolve to the public Sellmeier catalog (Sumita unidentified melts, "phosphate crown ED" placeholders, etc.). The dispersion engine cascade in `src/optics/dispersion.ts` then routes the surface to the `lineIndices` quality tier instead of falling back to the Abbe approximation, and the LCA inset's quality badge reflects the upgrade.
+
+For catalog-resolvable glass strings (`S-FPL51`, `N-BK7`, etc.) you don't need to populate `spectral` — the engine reaches Sellmeier quality directly from the catalog.
+
+The prioritized list of lenses still needing patent line-index backfill lives in [agent_docs/proprietary-glass-backfill.md](proprietary-glass-backfill.md).

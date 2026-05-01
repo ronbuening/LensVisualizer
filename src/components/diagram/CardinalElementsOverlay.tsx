@@ -120,8 +120,9 @@ export default function CardinalElementsOverlay({
   const nodalColor = t.pupilExit;
   const dimensionColor = t.spacingVal;
   const { frontFocal, rearFocal, frontPrincipal, rearPrincipal, frontNodal, rearNodal } = cardinals.points;
-  const frontPrincipalLabel = cardinals.nodalPrincipalCoincident ? "H/N" : "H";
-  const rearPrincipalLabel = cardinals.nodalPrincipalCoincident ? "H'/N'" : "H'";
+  const showCoincidentLabels = cardinals.nodalPrincipalCoincident && showCardinalNodal;
+  const frontPrincipalLabel = showCoincidentLabels ? "H/N" : "H";
+  const rearPrincipalLabel = showCoincidentLabels ? "H'/N'" : "H'";
 
   return (
     <g aria-label="Cardinal elements overlay">
@@ -156,10 +157,10 @@ export default function CardinalElementsOverlay({
             </>
           ) : null}
           {showCardinalNodal &&
-            !cardinals.nodalPrincipalCoincident &&
+            (!cardinals.nodalPrincipalCoincident || !showCardinalPrincipal) &&
             pointMarker(frontNodal, "N", sx(frontNodal.z), axisY + 44, nodalColor)}
           {showCardinalNodal &&
-            !cardinals.nodalPrincipalCoincident &&
+            (!cardinals.nodalPrincipalCoincident || !showCardinalPrincipal) &&
             pointMarker(rearNodal, "N'", sx(rearNodal.z), axisY + 44, nodalColor)}
         </>
       ) : null}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
 import LCAOverlayContent from "../../diagram/LCAOverlayContent.js";
@@ -6,6 +6,7 @@ import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
+import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticSpreadByAxis } from "../../../types/optics.js";
 
@@ -129,6 +130,10 @@ export default function DiagramViewport({
   onBokehPreviewToggle,
   bokehPreviewContent,
 }: DiagramViewportProps) {
+  /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
+     Cheap to recompute on every render — walks indexByIdx once. */
+  const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
+
   /* Keyboard shortcuts when zoom mode is active */
   useEffect(() => {
     if (!zoomPanActive) return;
@@ -197,6 +202,7 @@ export default function DiagramViewport({
         offAxisRays={offAxisRays}
         chromaticRays={chromaticRays}
         chromSpread={chromSpread}
+        dispersionQuality={dispersionQuality}
         showOnAxis={showOnAxis}
         showOffAxis={showOffAxis}
         showChromatic={showChromatic}
@@ -247,6 +253,7 @@ export default function DiagramViewport({
             effectiveSC={effectiveSC}
             IMG_MM={IMG_MM}
             t={t}
+            dispersionQuality={dispersionQuality}
           />
         </PanelOverlay>
       ) : null}

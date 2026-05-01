@@ -132,30 +132,30 @@ describe("compileRaySegment", () => {
 
 describe("filterChannels", () => {
   it("returns all channels when all enabled", () => {
-    expect(filterChannels(true, true, true)).toEqual(["R", "G", "B"]);
+    expect(filterChannels(true, true, true, false)).toEqual(["R", "G", "B"]);
   });
 
   it("returns empty array when all disabled", () => {
-    expect(filterChannels(false, false, false)).toEqual([]);
+    expect(filterChannels(false, false, false, false)).toEqual([]);
   });
 
   it("returns only R when only R enabled", () => {
-    expect(filterChannels(true, false, false)).toEqual(["R"]);
+    expect(filterChannels(true, false, false, false)).toEqual(["R"]);
   });
 
   it("returns only G when only G enabled", () => {
-    expect(filterChannels(false, true, false)).toEqual(["G"]);
+    expect(filterChannels(false, true, false, false)).toEqual(["G"]);
   });
 
   it("returns only B when only B enabled", () => {
-    expect(filterChannels(false, false, true)).toEqual(["B"]);
+    expect(filterChannels(false, false, true, false)).toEqual(["B"]);
   });
 
   it("returns R and B when G disabled", () => {
-    expect(filterChannels(true, false, true)).toEqual(["R", "B"]);
+    expect(filterChannels(true, false, true, false)).toEqual(["R", "B"]);
   });
 
   it("returns G and B when R disabled", () => {
-    expect(filterChannels(false, true, true)).toEqual(["G", "B"]);
+    expect(filterChannels(false, true, true, false)).toEqual(["G", "B"]);
   });
 });

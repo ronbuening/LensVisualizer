@@ -19,7 +19,25 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-01 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-01",
+    type: "lens",
+    summary: "Added Sigma 35mm f/1.4 DG DN Art and 85mm f/1.4 DG DN Art",
+  },
+  {
+    date: "2026-05-01",
+    type: "improvement",
+    summary:
+      "Expanded Sellmeier glass catalog from 65 to 92 entries, covering all Ohara and Schott glasses with 2+ element occurrences — more lenses now use full Sellmeier chromatic dispersion",
+  },
   // ── 2026-04-30 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-04-30",
+    type: "improvement",
+    summary:
+      "Expanded glass catalog to 53 vendor-verified Sellmeier entries (adding 15 Ohara dense-flint, ED, crown, and lanthanum glasses) and corrected 50+ glass misidentifications across 25 lens files — 696 surfaces now use full Sellmeier dispersion, up from 564",
+  },
   {
     date: "2026-04-30",
     type: "lens",

@@ -89,6 +89,7 @@ interface LensDiagramLoadedStateProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   rayTracksF: boolean;
   chromSpread: ChromaticSpread | null;
   chromaticSpreads: ChromaticSpreadByAxis;
@@ -221,6 +222,7 @@ export default function LensDiagramLoadedState({
   chromR,
   chromG,
   chromB,
+  chromV,
   rayTracksF,
   chromSpread,
   chromaticSpreads,
@@ -379,6 +381,7 @@ export default function LensDiagramLoadedState({
               chromR={chromR}
               chromG={chromG}
               chromB={chromB}
+              chromV={chromV}
               chromSpread={chromSpread ?? null}
               rayTracksF={rayTracksF}
               onOpenAbbeDiagram={overlays.openAbbeDiagram}

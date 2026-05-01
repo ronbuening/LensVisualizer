@@ -143,7 +143,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: 37.8,
-      glass: "S-NPH53 / TAFD30 (OHARA)",
+      glass: "S-LAH95 (OHARA)",
       apd: false,
       role: "High-index positive meniscus (convex to image) in D3 doublet; Petzval correction",
       cemented: "D3",

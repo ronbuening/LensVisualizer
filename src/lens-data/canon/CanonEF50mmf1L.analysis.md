@@ -157,8 +157,8 @@ The lens uses seven distinct glass types. The dominant material is a dense lanth
 
 | Element | nd | vd | Six-digit code | Probable glass | Family |
 |---------|-------|------|--------|---------------|--------|
-| L1 | 1.60311 | 60.7 | 1603/607 | S-BSL7 (OHARA) / N-SK16 (SCHOTT) | Borosilicate crown |
-| L2 | 1.69680 | 55.5 | 1696/555 | S-BSM14 (OHARA) / S-BAH28 (OHARA) | Barium dense crown |
+| L1 | 1.60311 | 60.7 | 1603/607 | S-BSM14 (OHARA) | Borosilicate medium crown |
+| L2 | 1.69680 | 55.5 | 1697/555 | S-LAL14 (OHARA) | Lanthanum crown |
 | L3 | 1.51742 | 52.4 | 1517/524 | S-NSL5 (OHARA) / K10 (SCHOTT) | Light crown |
 | L4 | 1.88300 | 40.8 | 1883/408 | S-LAH58 (OHARA) | Dense lanthanum flint |
 | L5 | 1.51742 | 52.4 | 1517/524 | S-NSL5 (OHARA) / K10 (SCHOTT) | Light crown |
@@ -181,7 +181,7 @@ The glass choices divide into three functional categories:
 
 **Dense flint elements at the stop (nd = 1.847 and 1.805, vd = 23.9 and 25.4):** L6 and L8 use dense flint glasses with very high dispersion. The patent's condition (5) requires that the mean Abbe number of the negative lenses on the image side of the stop (G5 and G7, i.e., L6 and L8) satisfy (v5 + v7)/2 < 30; the actual value is 24.65. This strong dispersion is essential for correcting both longitudinal and lateral chromatic aberration across the full 45° field. The high refractive index of these flint glasses also contributes negatively to the Petzval sum, helping to flatten the field.
 
-**Crown elements at the extremities (L1, L2, L11):** The front and rear positive elements use moderate-index crowns — borosilicate (L1, L11) and barium dense crown (L2). These provide positive power with low chromatic contribution, functioning as the outer "shell" of the modified Gauss design.
+**Crown elements at the extremities (L1, L2, L11):** The front and rear positive elements use moderate-index crowns — borosilicate medium crown (L1, L11) and lanthanum crown (L2). These provide positive power with low chromatic contribution, functioning as the outer "shell" of the modified Gauss design.
 
 ---
 
@@ -191,7 +191,7 @@ The glass choices divide into three functional categories:
 
 **Shape:** Positive meniscus, convex toward front (R1 = +265.49, R2 = +1254.83)
 **Focal length (standalone):** +556 mm (weak positive)
-**Glass:** S-BSL7 type (nd = 1.603, vd = 60.7)
+**Glass:** S-BSM14 (OHARA) (nd = 1.603, vd = 60.7)
 
 L1 is the first element the incoming light encounters. Its weak positive power begins converging the extremely wide marginal ray bundle (50 mm entrance pupil radius at f/1.0). The meniscus shape minimizes the angle of incidence on each surface, reducing spherical aberration and coma introduced by the front element — a standard technique for high-speed designs. The large radius of curvature (R1 = 265.49 at f = 100 scale, ≈ 133 mm at production) keeps surface powers low despite the large clear aperture.
 
@@ -199,7 +199,7 @@ L1 is the first element the incoming light encounters. Its weak positive power b
 
 **Shape:** Positive meniscus, convex toward front (R1 = +168.21, R2 = +522.76)
 **Focal length (standalone):** +352 mm (moderate positive)
-**Glass:** S-BSM14 type (nd = 1.697, vd = 55.5)
+**Glass:** S-LAL14 (OHARA) (nd = 1.697, vd = 55.5)
 
 L2 provides additional positive power that a single front element cannot deliver without excessive surface curvature. The slightly higher refractive index (1.697 vs 1.603 for L1) allows a stronger contribution to convergence while maintaining moderate curvatures. The two-element front unit is one of the features that distinguishes Example 2 from Example 1 (which has only one front element). The patent notes that while Example 1's front unit "consists of one positive lens," Example 2's "consists of two positive lenses" — this additional degree of freedom in the front group is presumably what enables Example 2 to achieve better control of marginal-ray aberrations, and is consistent with it being the design selected for production.
 

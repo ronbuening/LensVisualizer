@@ -36,6 +36,7 @@ export interface DispatchAdapters {
   onChromRChange: (v: boolean) => void;
   onChromGChange: (v: boolean) => void;
   onChromBChange: (v: boolean) => void;
+  onChromVChange: (v: boolean) => void;
   onShowPupilsChange: (v: boolean) => void;
   onShowCardinalsChange: (v: boolean) => void;
   onShowCardinalFocalChange: (v: boolean) => void;
@@ -85,6 +86,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onChromRChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromR", value: v }),
       onChromGChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromG", value: v }),
       onChromBChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromB", value: v }),
+      onChromVChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "chromV", value: v }),
       onShowPupilsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showPupils", value: v }),
       onShowCardinalsChange: (v: boolean) => dispatch({ type: SET_RAY_TOGGLE, field: "showCardinals", value: v }),
       onShowCardinalFocalChange: (v: boolean) =>

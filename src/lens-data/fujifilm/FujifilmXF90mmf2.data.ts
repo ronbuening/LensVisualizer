@@ -79,7 +79,7 @@ const LENS_DATA = {
       fl: 114.9,
       glass: "FCD1 (HOYA)",
       apd: "inferred",
-      apdNote: "ΔθgF ≈ +0.032, fluorophosphate crown — strongest ED element in design",
+      dPgF: 0.032, apdNote: "ΔθgF ≈ +0.032, fluorophosphate crown — strongest ED element in design",
       role: "Primary ED element — corrects longitudinal chromatic aberration in G1",
     },
     {
@@ -92,7 +92,7 @@ const LENS_DATA = {
       fl: 67.1,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔθgF ≈ +0.014, phosphate crown — moderate anomalous dispersion",
+      dPgF: 0.014, apdNote: "ΔθgF ≈ +0.014, phosphate crown — moderate anomalous dispersion",
       cemented: "D1",
       role: "Strongest G1 positive — bulk of front group convergence; cemented to L14",
     },
@@ -145,7 +145,7 @@ const LENS_DATA = {
       fl: 140.2,
       glass: "S-FPM2 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔθgF ≈ +0.014 — same ED glass as L13; third ED element",
+      dPgF: 0.014, apdNote: "ΔθgF ≈ +0.014 — same ED glass as L13; third ED element",
       role: "Third ED element — corrects lateral color and secondary spectrum in rear group",
     },
     {

@@ -56,7 +56,7 @@ const LENS_DATA = {
       fl: 189.8,
       glass: "SR glass (Nikon proprietary)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.035 (patent cond. 14); θgF = 0.632",
+      dPgF: 0.035, apdNote: "ΔPgF = +0.035 (patent cond. 14); θgF = 0.632",
       role: "Front SR element — pre-corrects secondary spectrum at maximum beam diameter. Anomalous dispersion 3× larger than standard S-TIH6 at same nd/νd.",
     },
     {
@@ -109,7 +109,7 @@ const LENS_DATA = {
       fl: -55.0,
       glass: "Anomalous high-index flint (Nf, non-catalog)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.010 (patent cond. 17)",
+      dPgF: 0.01, apdNote: "ΔPgF = +0.010 (patent cond. 17)",
       role: "Negative partner in L4+L5 cemented doublet — dominant negative power gives doublet net fl ≈ −138 mm.",
       cemented: "D1",
     },
@@ -147,7 +147,7 @@ const LENS_DATA = {
       fl: 172.4,
       glass: "S-NPH1-type phosphate flint (anomalous dispersion)",
       apd: "inferred",
-      apdNote:
+      dPgF: 0.029, apdNote:
         "ΔPgF ≈ +0.029 (est. from OHARA S-NPH1 catalog, ΔPgF = +0.0261 on OHARA normal line). Not ED — anomalous dispersion from the high-dispersion side of the Abbe diagram.",
       role: "Anomalous-dispersion high-index flint. Strong positive ΔPgF at very low νd balances chromatic contributions of front-group ED elements from the opposite side of the Abbe diagram. Concave to object — unusual orientation.",
     },
@@ -161,7 +161,7 @@ const LENS_DATA = {
       fl: -62.7,
       glass: "Anomalous high-index flint (same as L5)",
       apd: "patent",
-      apdNote: "ΔPgF = +0.010 (same glass as L5, patent cond. 17)",
+      dPgF: 0.01, apdNote: "ΔPgF = +0.010 (same glass as L5, patent cond. 17)",
       role: "Negative partner in L9+L10 cemented doublet (net fl ≈ −80 mm). Provides Petzval correction + local chromatic balancing in G3.",
       cemented: "D2",
     },

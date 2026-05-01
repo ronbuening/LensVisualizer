@@ -95,7 +95,11 @@ const LENS_DATA = {
    *    fl       (number, recommended)   Focal length in mm — optional in type, needed for inspector display
    *    glass    (string, recommended)   Glass designation or catalog match — optional in type, needed for inspector display
    *    apd      (string|false, optional)  Anomalous partial dispersion: false, "patent", or "inferred"
-   *    apdNote  (string, optional)  Additional APD details, e.g. "dPgF = +0.0376 (patent-listed)"
+   *    apdNote  (string, optional)  Additional APD details (free-form prose), e.g. "dPgF = +0.0376 (patent-listed)"
+   *    dPgF     (number, optional)  Partial-dispersion deviation P_g,F − P_g,F(normal). Numeric mirror of apdNote — drives APO chromatic correction.
+   *    nC       (number, optional)  Measured refractive index at C line (656.3 nm), when published in the source patent.
+   *    nF       (number, optional)  Measured refractive index at F line (486.1 nm), when published.
+   *    ng       (number, optional)  Measured refractive index at g line (435.8 nm), when published.
    *    role     (string, optional)  Description of the element's optical role/function
    *    cemented (string, optional)  Doublet/triplet group name if cemented, e.g. "Jb", "L4"
    */

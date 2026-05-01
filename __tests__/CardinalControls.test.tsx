@@ -56,6 +56,32 @@ describe("CardinalControls", () => {
     expect(onShowCardinalEflChange).toHaveBeenCalledWith(false);
   });
 
+  it("routes H and N sub-layer buttons to their independent callbacks", () => {
+    const onShowCardinalPrincipalChange = vi.fn();
+    const onShowCardinalNodalChange = vi.fn();
+
+    render(
+      <CardinalControls
+        t={themes.dark}
+        showCardinals={true}
+        showCardinalFocal={true}
+        showCardinalPrincipal={true}
+        onShowCardinalPrincipalChange={onShowCardinalPrincipalChange}
+        showCardinalNodal={true}
+        onShowCardinalNodalChange={onShowCardinalNodalChange}
+        showCardinalDimensions={false}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "H" }));
+    expect(onShowCardinalPrincipalChange).toHaveBeenCalledWith(false);
+    expect(onShowCardinalNodalChange).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "N" }));
+    expect(onShowCardinalNodalChange).toHaveBeenCalledWith(false);
+    expect(onShowCardinalPrincipalChange).toHaveBeenCalledTimes(1);
+  });
+
   it("uses compact labels for mobile control paging", () => {
     render(<CardinalControls t={themes.dark} compact={true} showCardinals={true} showCardinalDimensions={false} />);
 

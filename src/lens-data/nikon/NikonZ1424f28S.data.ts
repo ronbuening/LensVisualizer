@@ -13,7 +13,7 @@
  * ║  Constant aperture f/2.91 at all zoom positions.                  ║
  * ║                                                                    ║
  * ║  4 aspherical surfaces on 3 elements (1A, 2A, 4A, 27A).          ║
- * ║  4 ED elements: L13, L35, L37, L38 (all S-FPL52, νd = 82.6).    ║
+ * ║  4 ED elements: L13, L35, L37, L38 (all S-FPL51, νd = 82.6).    ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Patent prescription at f_w = 14.42 mm, f_t = 23.29 mm.        ║
@@ -48,7 +48,7 @@ const LENS_DATA = {
     "F/2.91 (constant)",
     "2ω = 115.2°–84.8°",
     "4 ASPHERICAL SURFACES (3 elements)",
-    "4 ED ELEMENTS (S-FPL52)",
+    "4 ED ELEMENTS (S-FPL51)",
   ],
   focalLengthMarketing: [14, 24] as [number, number],
   focalLengthDesign: [14.42, 23.29] as [number, number],
@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: -65.3,
-      glass: "S-FPL52 (OHARA) — ED fluorophosphate",
+      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
       apd: "inferred",
       apdNote:
         "ED class; anomalous partial dispersion. Negative ED in front group — unusual placement for secondary lateral color correction.",
@@ -201,7 +201,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 34.8,
-      glass: "S-FPL52 (OHARA) — ED fluorophosphate",
+      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion for primary LoCA correction.",
       role: "First ED positive behind stop — corrects primary and secondary longitudinal chromatic aberration at maximum marginal ray height.",
@@ -227,7 +227,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 42.9,
-      glass: "S-FPL52 (OHARA) — ED fluorophosphate",
+      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion for lateral color correction.",
       cemented: "D4",
@@ -241,7 +241,7 @@ const LENS_DATA = {
       nd: 1.49782,
       vd: 82.6,
       fl: 27.7,
-      glass: "S-FPL52 (OHARA) — ED fluorophosphate",
+      glass: "S-FPL51 (OHARA) — ED fluorophosphate",
       apd: "patent",
       apdNote: "Patent-identified 'specific lens' — anomalous partial dispersion.",
       cemented: "D5",

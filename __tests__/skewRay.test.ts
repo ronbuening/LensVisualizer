@@ -320,15 +320,23 @@ describe("traceSkewRayChromatic", () => {
     expect(redSkew.uy).not.toBeCloseTo(blueSkew.uy, 6);
   });
 
-  it("produces identical results to traceSkewRay for channel G (d-line)", () => {
+  it("produces results matching traceSkewRay at channel G (d-line) within data precision", () => {
     const L = build(ApoLantharRaw);
 
     const chromatic = traceSkewRayChromatic(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L, "G");
     const monochromatic = traceSkewRay(3, 4, 0.01, -0.02, 0, 0, L.stopPhysSD, false, L);
 
-    expect(chromatic.x).toBeCloseTo(monochromatic.x, 10);
-    expect(chromatic.y).toBeCloseTo(monochromatic.y, 10);
-    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 10);
-    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 10);
+    // Tolerance reflects data rounding: when an element's `glass` resolves in the catalog,
+    // Sellmeier-at-d-line can differ from the lens-data-stored `nd` by ~1e-4 per surface
+    // (the precision at which patent values are typically transcribed), and across a 10-
+    // element trace this accumulates to a few-thousandths-of-a-mm path difference. The
+    // chromatic engine is intentionally self-consistent with the catalog, not with the
+    // rounded scalar nd. Tolerance 1e-2 mm absorbs the accumulated transcription rounding
+    // while still catching meaningful divergence (the safety net in dispersion.ts rejects
+    // catalog matches that disagree with surface.nd by more than 5e-3 per surface).
+    expect(chromatic.x).toBeCloseTo(monochromatic.x, 2);
+    expect(chromatic.y).toBeCloseTo(monochromatic.y, 2);
+    expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 2);
+    expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 2);
   });
 });

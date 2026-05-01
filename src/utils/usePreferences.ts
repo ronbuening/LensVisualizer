@@ -29,6 +29,7 @@ export default function usePreferences(state: LensState): void {
       chromR: rays.chromR,
       chromG: rays.chromG,
       chromB: rays.chromB,
+      chromV: rays.chromV,
       showPupils: rays.showPupils,
       showCardinals: rays.showCardinals,
       showCardinalFocal: rays.showCardinalFocal,

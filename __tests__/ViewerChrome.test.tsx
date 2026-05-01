@@ -59,6 +59,7 @@ function renderChrome(dispatch = vi.fn()) {
           chromR: true,
           chromG: true,
           chromB: true,
+          chromV: false,
           showPupils: false,
           showCardinals: false,
           showCardinalDimensions: false,

@@ -43,9 +43,11 @@ interface DiagramHeaderProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   onChromRChange?: (value: boolean) => void;
   onChromGChange?: (value: boolean) => void;
   onChromBChange?: (value: boolean) => void;
+  onChromVChange?: (value: boolean) => void;
   showPupils: boolean;
   onShowPupilsChange?: (value: boolean) => void;
   showCardinals: boolean;
@@ -96,9 +98,11 @@ const DiagramHeader = memo(
       chromR,
       chromG,
       chromB,
+      chromV,
       onChromRChange,
       onChromGChange,
       onChromBChange,
+      onChromVChange,
       showPupils,
       onShowPupilsChange,
       showCardinals,
@@ -333,9 +337,11 @@ const DiagramHeader = memo(
                 chromR={chromR}
                 chromG={chromG}
                 chromB={chromB}
+                chromV={chromV}
                 onChromRChange={onChromRChange}
                 onChromGChange={onChromGChange}
                 onChromBChange={onChromBChange}
+                onChromVChange={onChromVChange}
               />
             </div>
           </div>

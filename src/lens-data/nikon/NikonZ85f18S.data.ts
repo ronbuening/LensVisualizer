@@ -92,7 +92,7 @@ const LENS_DATA = {
       fl: 91.6,
       glass: "S-FPL51 (OHARA)",
       apd: "patent",
-      apdNote: "S-FPL51: PgF = 0.5385, dPgF = +0.032 — strong anomalous partial dispersion",
+      dPgF: 0.032, apdNote: "S-FPL51: PgF = 0.5385, dPgF = +0.032 — strong anomalous partial dispersion",
       cemented: "D1",
       role: "Second ED element. S-FPL51 provides the primary secondary spectrum correction. Cemented with L14 to form the Gr1 achromatic doublet.",
     },

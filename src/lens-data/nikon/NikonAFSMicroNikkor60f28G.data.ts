@@ -135,7 +135,7 @@ const LENS_DATA = {
       fl: +79.4,
       glass: "S-FPM4 (OHARA) — ED glass",
       apd: "inferred",
-      apdNote: "Fluorophosphate crown; anomalous partial dispersion dPgF ≈ +0.033 (inferred from S-FPM4 catalog)",
+      dPgF: 0.033, apdNote: "Fluorophosphate crown; anomalous partial dispersion dPgF ≈ +0.033 (inferred from S-FPM4 catalog)",
       role: "ED glass element in moving G3; very low dispersion (vd = 82.56) provides secondary spectrum correction. Positioned in focusing group to compensate chromatic shift during focus travel.",
     },
     {

@@ -139,7 +139,7 @@ const LENS_DATA = {
       fl: 115.6,
       glass: "S-FPL51 (OHARA) — ED fluorophosphate",
       apd: "inferred",
-      apdNote: "S-FPL51: ΔPgF ≈ +0.028. Single ED element confirmed by Nikon product specifications.",
+      dPgF: 0.028, apdNote: "S-FPL51: ΔPgF ≈ +0.028. Single ED element confirmed by Nikon product specifications.",
       role: "ED element; symmetric biconvex minimizes coma. Paired with dense flint L9 to attack secondary spectrum.",
     },
     {

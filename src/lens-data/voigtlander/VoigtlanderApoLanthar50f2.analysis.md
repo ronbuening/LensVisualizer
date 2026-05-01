@@ -55,7 +55,7 @@ Example 5 matches the E-mount production lens on every verifiable structural cri
 | Floating focus | Multiple schemes (F31–F36) | Yes | ✓ |
 | Image height | 21.60 mm (from aberration plots) | 21.6 mm (FF diagonal/2) | ✓ |
 
-Example 6 also matches the structural criteria of 10 elements / 8 groups at ~50 mm and ~f/2 (f = 48.73 mm, f/1.92). The distinguishing criterion is the glass selection: Example 5 uses two patent-flagged dPgF glasses — S-FPL51 (Element 3, dPgF = +0.0376) and K-GFK68 (Element 4, dPgF = +0.0195) — while Example 6 uses only S-FPL51. The inclusion of the Sumita specialty glass K-GFK68 in Example 5 is consistent with the Z/E-mount lens's claim of five anomalous partial dispersion elements, making Example 5 the stronger production candidate.
+Example 6 also matches the structural criteria of 10 elements / 8 groups at ~50 mm and ~f/2 (f = 48.73 mm, f/1.92). The distinguishing criterion is the glass selection: Example 5 uses two patent-flagged dPgF glasses — S-FPL51 / FCD1-type (Element 3, dPgF = +0.0376) and Sumita K-GFK68 (Element 4, nd = 1.59282, dPgF = +0.0195) — while Example 6 uses only the S-FPL51-type. The inclusion of the Sumita specialty glass K-GFK68 in Example 5 is consistent with the Z/E-mount lens's claim of five anomalous partial dispersion elements, making Example 5 the stronger production candidate.
 
 The patent prescription explicitly lists dPgF for only two of the ten elements. The manufacturer's Z/E-mount specification of five APD elements implies that three additional elements (inferred to be Elements 1, 5, and 6 based on their glass-map positions and unmatched catalog status) use glasses with anomalous partial dispersion properties that the designer chose not to flag in the patent table. This is consistent with common patent practice: dPgF is typically listed only for glasses with the most extreme or design-critical anomalous partial dispersion values.
 
@@ -125,7 +125,7 @@ Example 5 specifies six distinct focus schemes (F31–F36), each moving differen
 
 At this position — the very front of the system — this element sees the full field angle. Its chief ray height is at its maximum, which means any anomalous partial dispersion would contribute strongly to lateral chromatic aberration correction. As a negative-power element, it would provide a chromatic correction term that complements the positive contributions from Elements 3 and 4.
 
-**Glass identification.** The nd/νd combination of 1.544/47.65 (glass code 544477) falls in a sparsely populated region of the glass map. It is too dispersive for standard crown glasses, too low in refractive index for barium or lanthanum flints at this Abbe number, and does not match any published KZFS series entry. The nearest cataloged glass across all surveyed manufacturers is N-KZFS2 (Schott, nd = 1.558, νd = 54.0), which differs by Δnd = 0.015 and Δνd = 6.4 — far outside patent rounding tolerances. Given the confirmed Sumita connection through Element 4 (see below), this is likely a Sumita proprietary type not included in publicly available catalog data.
+**Glass identification.** The nd/νd combination of 1.544/47.65 (glass code 544477) falls in a sparsely populated region of the glass map. It is too dispersive for standard crown glasses, too low in refractive index for barium or lanthanum flints at this Abbe number, and does not match any published KZFS series entry. The nearest cataloged glass across all surveyed manufacturers is N-KZFS2 (Schott, nd = 1.558, νd = 54.0), which differs by Δnd = 0.015 and Δνd = 6.4 — far outside patent rounding tolerances. Given the confirmed Sumita connection through Element 4 (see below), and the unmatched status it shares with Elements 5 and 6, this is likely a Sumita proprietary type not included in publicly available catalog data.
 
 **APD status.** This element's identification as APD is inferential, not patent-stated. The inference rests on: (a) the manufacturer's claim of 5 APD elements; (b) the glass's failure to match any standard catalog type, consistent with a specialty APD formulation; and (c) the VM version's reduced APD count of 2, suggesting this element may use a conventional glass substitute in that version.
 
@@ -138,7 +138,7 @@ At this position — the very front of the system — this element sees the full
 | nd / νd | 1.85249 / 42.08 |
 | Anomalous partial dispersion | No |
 | Element focal length | +74.53 mm (patent: +74.5266 mm) |
-| Glass identification | Probable: S-LAH79 (OHARA), nd = 1.85478, νd = 42.06 (Δnd = 0.0023, Δνd = 0.02) |
+| Glass identification | Unmatched — nd = 1.85249, νd = 42.08 does not correspond to any entry in OHARA, Schott, Hoya, or Sumita public catalogs (S-LAH79 is nd = 2.003, an entirely different glass) |
 
 **Optical function.** The primary monochromatic correction element and the most technically demanding component in the front group. At nd = 1.852, this dense lanthanum glass provides substantial refractive power without excessive curvature. The meniscus form — both surfaces curving toward the object — equalizes incidence angles on both faces, which the patent explicitly identifies as a strategy for reducing error sensitivity (¶42). The element sits immediately after the negative LF, receiving the diverging beam and beginning the convergence toward the stop.
 
@@ -150,7 +150,9 @@ At 13 mm semi-diameter (estimated from the lens geometry; the patent does not sp
 *Rear surface (ASP 4):* Coefficients K = 0, A4 = +6.4457×10⁻⁶, A6 = +1.9943×10⁻⁹, A8 = +2.8907×10⁻¹¹, A10 = −4.7319×10⁻¹⁵ on a base radius of R = 236.595 mm.
 At 13 mm semi-diameter, the departure reaches +216.7 µm — an order of magnitude stronger than the front surface. The A4 coefficient is 3.9× larger in absolute value than the front surface's, and all significant terms are positive, meaning the departures accumulate rather than partially canceling. The very gentle base radius (236.6 mm) means this surface is nearly flat spherically, with the aspheric terms building up a steep departure from that gentle baseline.
 
-**Manufacturing implications.** The front surface is comfortably within precision glass molding (PGM) or conventional CNC polishing tolerances. The rear surface's 217 µm departure is substantial and more demanding. However, the critical challenge for this element is the glass itself: S-LAH79-class lanthanum glass has a high glass transition temperature (~700°C+), making PGM require specialized high-temperature mold materials and tight thermal control. The alternative — CNC grinding plus magnetorheological finishing (MRF) — achieves the required surface accuracy but at higher per-unit cost. Given Cosina's production volumes, high-temperature PGM with a dedicated mold is the likely manufacturing path.
+**Glass identification.** The nd/νd combination of 1.852/42.08 (glass code 852421) does not match any entry in the OHARA, Schott, Hoya, or Sumita public catalogs. The nearest OHARA lanthanum glass, S-LAH55 (nd = 1.835, νd = 42.7), misses by Δnd = 0.017 — far outside patent rounding tolerances. Schott's N-LASF9 (nd = 1.850, νd = 40.8) is closer in nd but diverges by Δνd = 1.3. No cataloged glass satisfies the combination of high nd (≈1.852) with moderate νd (≈42.1). Given the unmatched status shared with Elements 1, 5, and 6, this element is likely a Sumita proprietary lanthanum type similar in character to the confirmed K-GFK68 sourcing for Element 4.
+
+**Manufacturing implications.** The front surface is comfortably within precision glass molding (PGM) or conventional CNC polishing tolerances. The rear surface's 217 µm departure is substantial and more demanding. The dense lanthanum glass has a high glass transition temperature (~680–720°C range for this nd/νd class), making PGM require specialized high-temperature mold materials and tight thermal control. The alternative — CNC grinding plus magnetorheological finishing (MRF) — achieves the required surface accuracy but at higher per-unit cost. Given Cosina's production volumes, high-temperature PGM with a dedicated mold is the likely manufacturing path.
 
 
 ### Element 3 — Lfb: Biconvex Positive
@@ -180,11 +182,11 @@ This is a universal glass type with exact equivalents across all major manufactu
 | dPgF | +0.0195 (patent-listed) |
 | Anomalous partial dispersion | Confirmed (patent-listed) |
 | Element focal length | +55.00 mm (patent: +55.0002 mm) |
-| Glass identification | Certain: K-GFK68 (Sumita). Exact triple match on nd, νd, and dPgF. Nearest alternative: S-FPM2 (OHARA, nd = 1.59522, νd = 67.73) differs by Δnd = 0.0024, Δνd = 0.89. |
+| Glass identification | Certain (Sumita K-GFK68 per Sumita catalog: nd = 1.59282, νd = 68.62, dPgF = +0.0195 — exact triple match). Catalog proxy: FCD505 (HOYA, nd = 1.59282, νd = 68.63). Note: the codebase's K-GFK68 entry uses a 2017 Sumita AGF value of nd = 1.5924, which exceeds 1e-4 tolerance; FCD505 is the round-trip-valid proxy. |
 
 **Optical function.** The secondary chromatic correction element and power-sharing partner to Lfb. K-GFK68 is a Sumita fluorophosphate crown ("ガラス蛍りん酸クラウン") with a higher refractive index than S-FPL51 (1.593 vs 1.497), allowing it to achieve more optical power per unit curvature. Its anomalous partial dispersion (+0.0195) is smaller than S-FPL51's (+0.0376) but still substantial. Together, Lfb and Lfc form a graded chromatic correction pair: Lfb handles the bulk of the secondary spectrum correction while Lfc supplements it with additional converging power on gentler curves.
 
-**Supplier identification.** The exact triple match to Sumita K-GFK68 — an unusual glass with no close equivalent in the OHARA, Schott, HOYA, HIKARI, or CDGM catalogs — is the single strongest evidence for Cosina's glass supply chain in this lens. The nearest OHARA alternative (S-FPM2) misses by Δnd = 0.0024 and Δνd = 0.89, which is outside the typical patent prescription rounding margin. This identification has cascading implications for the three unmatched glasses that may also be APD (Elements 1, 5, and 6), all of which resist identification across all surveyed standard catalogs and may also be Sumita proprietary types.
+**Supplier identification.** The exact triple match to Sumita K-GFK68 — confirmed against the current Sumita catalog (nd = 1.59282, νd = 68.62, dPgF = +0.0195) — is the single strongest evidence for Cosina's glass supply chain in this lens. The nearest OHARA alternative (S-FPM2) misses by Δnd = 0.0024 and Δνd = 0.89, which is outside the typical patent prescription rounding margin. Note: the codebase glass catalog's K-GFK68 entry was sourced from a 2017 Sumita AGF file and shows nd = 1.5924 (vs the current specification of 1.59282); the Hoya equivalent FCD505 (nd = 1.59282) is used as the catalog proxy. The supply chain conclusion — Sumita K-GFK68 — stands on the triple match with the published Sumita catalog data. This identification has cascading implications for the other unmatched glasses (Elements 1, 2, 5, and 6), all of which resist identification across all surveyed standard catalogs and may also be Sumita proprietary types.
 
 
 ### Element 5 — Lfd: Negative Meniscus
@@ -238,7 +240,7 @@ Within cemented doublet Jb, Element 6 pairs with Element 7 (Lrc, νd = 47.18) ac
 | nd / νd | 1.79334 / 47.18 |
 | Anomalous partial dispersion | No |
 | Element focal length | +23.37 mm (patent: +23.3706 mm) |
-| Glass identification | Possible: S-LAH64 (OHARA, nd = 1.78800, νd = 47.49), Δnd = 0.0053, Δνd = 0.31. The Δnd of 0.0053 is substantial, and this element may represent another unmatched catalog type rather than a variant of S-LAH64. |
+| Glass identification | Unmatched — S-LAH64 (OHARA, nd = 1.788, νd = 47.49) is the nearest published reference (Δnd = 0.0053, Δνd = 0.31) but is not in our glass catalog and the Δnd exceeds tolerable rounding. |
 
 **Optical function.** The positive partner in doublet Jb. A high-index lanthanum glass near the normal line. The refractive index step at the cemented interface (Δnd ≈ 0.09) provides spherical aberration correction, while the Abbe number difference with Element 6 (Δνd ≈ 12.3) handles primary chromatic correction. The positive convex face at surface 14 faces the positive convex face of Element 8 across a 0.56 mm air gap (ZD14), which the patent identifies as a tuning parameter for balancing aberration contributions between the two doublets during focus (¶44).
 
@@ -251,7 +253,7 @@ Within cemented doublet Jb, Element 6 pairs with Element 7 (Lrc, νd = 47.18) ac
 | nd / νd | 1.80258 / 46.60 |
 | Anomalous partial dispersion | No |
 | Element focal length | +26.31 mm (patent: +26.3092 mm) |
-| Glass identification | Probable: S-LAH65V (OHARA, nd = 1.80400, νd = 46.58), Δnd = 0.0014, Δνd = 0.02 |
+| Glass identification | Unmatched — S-LAH65V (OHARA, nd = 1.804000, νd = 46.58) is the nearest cataloged glass, but Δnd = 0.00142 exceeds 1e-4 round-trip tolerance. |
 
 **Optical function.** The positive partner in doublet Ja. The patent discusses the general principle that Abbe number differences enable chromatic correction while refractive index differences strengthen spherical aberration correction (¶19, ¶44). The numerical data for Example 5 reveals a concrete implementation of this principle: doublet Jb has a substantial Abbe number split (Δνd ≈ 12.3) suited to chromatic correction, while doublet Ja has negligible Abbe number difference (Δνd ≈ 1.2, comparing 46.60 vs 45.38) but a large refractive index step (Δnd ≈ 0.249) suited to monochromatic correction — primarily spherical aberration and coma. In effect, Jb handles chromatic duties while Ja handles monochromatic duties — a clean division of labor.
 
@@ -307,8 +309,8 @@ The five E-mount APD elements (two confirmed, three inferred) are distributed wi
 ```
  ★  Elem 1 (LF)  — Front of system. Negative. Full field angle exposure.     [inferred APD]
     Elem 2 (Lfa) — Aspheric, normal glass.
- ★  Elem 3 (Lfb) — S-FPL51, positive. Primary chromatic powerhouse.          [patent-listed dPgF]
- ★  Elem 4 (Lfc) — K-GFK68, positive. Secondary chromatic powerhouse.        [patent-listed dPgF]
+ ★  Elem 3 (Lfb) — S-FPL51 / FCD1-type, positive. Primary chromatic powerhouse. [patent-listed dPgF]
+ ★  Elem 4 (Lfc) — K-GFK68 (Sumita), positive. Secondary chromatic powerhouse.  [patent-listed dPgF]
  ★  Elem 5 (Lfd) — Negative meniscus. Last before stop.                      [inferred APD]
     ═══ STOP ═══
  ★  Elem 6 (Lrd) — Negative biconcave. First after stop.                     [inferred APD]
@@ -342,15 +344,15 @@ For apochromatic correction of secondary spectrum, a lens system needs anomalous
 | Element | nd | νd | dPgF | APD | Identification | Confidence |
 |---|---|---|---|---|---|---|
 | 1 (LF) | 1.54373 | 47.65 | ? | ★ (inferred) | Unmatched | — |
-| 2 (Lfa) | 1.85249 | 42.08 | — | — | S-LAH79 (OHARA) | Probable |
-| 3 (Lfb) | 1.49700 | 81.61 | +0.0376 | ★ (patent) | S-FPL51 / K-PFK80 (universal) | Certain |
-| 4 (Lfc) | 1.59282 | 68.62 | +0.0195 | ★ (patent) | K-GFK68 (Sumita) | Certain |
+| 2 (Lfa) | 1.85249 | 42.08 | — | — | Unmatched (dense lanthanum; no catalog equivalent) | — |
+| 3 (Lfb) | 1.49700 | 81.61 | +0.0376 | ★ (patent) | S-FPL51 / FCD1 (universal) | Certain |
+| 4 (Lfc) | 1.59282 | 68.62 | +0.0195 | ★ (patent) | K-GFK68 (Sumita); catalog proxy FCD505 (HOYA) | Certain |
 | 5 (Lfd) | 1.51322 | 57.22 | ? | ★ (inferred) | Unmatched | — |
 | 6 (Lrd) | 1.70269 | 34.87 | ~−0.01 (est.) | ★ (inferred) | Unmatched (KZFS-adjacent) | — |
-| 7 (Lrc) | 1.79334 | 47.18 | — | — | S-LAH64 (OHARA) | Possible (weak) |
-| 8 (Lrb) | 1.80258 | 46.60 | — | — | S-LAH65V (OHARA) | Probable |
+| 7 (Lrc) | 1.79334 | 47.18 | — | — | Unmatched (S-LAH64-type; not in catalog) | — |
+| 8 (Lrb) | 1.80258 | 46.60 | — | — | Unmatched (S-LAH65V nd=1.804 exceeds 1e-4) | — |
 | 9 (Lra) | 1.55362 | 45.38 | — | — | Unmatched | — |
-| 10 (LE) | 1.51633 | 64.06 | — | — | S-BSL7 / N-BK7 (universal) | Certain |
+| 10 (LE) | 1.51633 | 64.06 | — | — | S-BSL7 (OHARA) / N-BK7 (Schott) | Certain |
 
 ### 6.2 Sumita Connection
 
@@ -358,9 +360,11 @@ The exact triple match of Element 4 to Sumita K-GFK68 (nd, νd, and dPgF) is the
 
 This identification establishes that Cosina sources specialty glass from Sumita Optical Glass, Inc. (住田光学ガラス株式会社), headquartered in Saitama, Japan. Sumita is known for proprietary formulations in the fluorophosphate and phosphate crown families, and their published catalog is smaller and less widely indexed than OHARA's or Schott's.
 
-The three remaining unmatched glasses that may be APD (Elements 1, 5, and 6) all resist identification across every surveyed manufacturer's public catalog. Given the confirmed Sumita connection through Element 4, these are likely also Sumita proprietary types — possibly from the K-GFK, K-CaFK, or K-PSFn series, or from specialty compositions available only to established customers.
+The other unmatched glasses (Elements 1, 2, 5, and 6) all resist identification across every surveyed manufacturer's public catalog. Given the confirmed Sumita connection through Element 4, these are likely also Sumita proprietary types — possibly from the K-GFK, K-CaFK, or K-PSFn series, or from specialty compositions available only to established customers.
 
-A dual-supplier strategy emerges: OHARA (or equivalents) for standard high-index glasses (Elements 2, 7, 8) and the universal types (Elements 3, 10), and Sumita for the specialty anomalous partial dispersion glasses that define the APO-LANTHAR's chromatic correction.
+Elements 7 (Lrc, nd = 1.793) and 8 (Lrb, nd = 1.803) are also unmatched: the nearest OHARA candidates (S-LAH64 and S-LAH65V) differ by 0.005 and 0.001 in nd respectively, with S-LAH64 absent from the codebase catalog entirely and S-LAH65V's catalog nd (1.804) exceeding the 1e-4 round-trip tolerance. These may be OHARA types not in our current catalog, or alternative manufacturer equivalents (HIKARI, CDGM).
+
+The supply chain picture is more Sumita-heavy than previously assessed: of the ten elements, only two (Elements 3 and 10) are positively identified as universal catalog types. Element 4 is confirmed Sumita K-GFK68. The remaining seven are unmatched, with the APD-inferred elements (1, 2, 5, and 6) most likely Sumita proprietary formulations.
 
 
 ## 7. Evidentiary Boundaries
@@ -369,9 +373,9 @@ A dual-supplier strategy emerges: OHARA (or equivalents) for standard high-index
 
 1. **This patent covers the design space of the APO-LANTHAR 50mm f/2.0 Aspherical.** Filing date, applicant, design parameters, and structural match all converge.
 2. **Example 5 is the closest match to the E-mount production lens.** Every verifiable structural parameter aligns: 10/8 construction, 2 double-sided aspherics, ~50 mm/f2.0, full-frame image circle, floating focus. The inclusion of K-GFK68 (Element 4) distinguishes it from Example 6, which shares the structural parameters but uses only one patent-flagged dPgF glass.
-3. **Element 4 is Sumita K-GFK68.** Exact triple match (nd, νd, dPgF) with no close alternative in any other manufacturer's catalog.
-4. **Element 3 is S-FPL51 or its universal equivalent.** Exact match across all manufacturers.
-5. **Element 10 is S-BSL7 (BK7-type).** Exact match across all manufacturers.
+3. **Element 4 is Sumita K-GFK68.** Exact triple match (nd = 1.59282, νd = 68.62, dPgF = +0.0195) per the current Sumita catalog. The codebase's K-GFK68 entry uses an older AGF-file value (nd = 1.5924); FCD505 (Hoya) is the round-trip-valid catalog proxy.
+4. **Element 3 is S-FPL51 or its universal equivalent (FCD1, N-PK52A, etc.).** Exact match across all manufacturers at nd = 1.49700.
+5. **Element 10 is S-BSL7 (BK7-type).** nd = 1.51633 exact match; νd differs by 0.08 (catalog: 64.14 vs patent: 64.06), within normal rounding.
 6. **The patent explicitly flags two elements as APD** (Elements 3 and 4, via dPgF values in the prescription table).
 7. **The rear group performs a clean division of labor:** doublet Jb provides chromatic correction (large Δνd), doublet Ja provides monochromatic correction (large Δnd, negligible Δνd). This is inferred from the numerical data, supported by the patent's general discussion of these principles (¶19, ¶44).
 

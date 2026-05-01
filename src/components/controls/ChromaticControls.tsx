@@ -14,9 +14,11 @@ interface ChromaticControlsProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   onChromRChange?: (value: boolean) => void;
   onChromGChange?: (value: boolean) => void;
   onChromBChange?: (value: boolean) => void;
+  onChromVChange?: (value: boolean) => void;
 }
 
 export default function ChromaticControls({
@@ -26,9 +28,11 @@ export default function ChromaticControls({
   chromR,
   chromG,
   chromB,
+  chromV,
   onChromRChange,
   onChromGChange,
   onChromBChange,
+  onChromVChange,
 }: ChromaticControlsProps) {
   return (
     <div style={toggleGroup(t, { width: "100%" })}>
@@ -36,7 +40,7 @@ export default function ChromaticControls({
         onClick={() => onShowChromaticChange?.(!showChromatic)}
         style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
       >
-        <svg width="14" height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+        <svg width="14" height="11" viewBox="0 0 14 11" style={{ flexShrink: 0 }}>
           <line
             x1="0"
             y1="1"
@@ -61,6 +65,14 @@ export default function ChromaticControls({
             stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
             strokeWidth="1.5"
           />
+          <line
+            x1="0"
+            y1="10"
+            x2="14"
+            y2="10"
+            stroke={showChromatic && chromV ? t.rayChromV : "rgba(128,128,128,0.3)"}
+            strokeWidth="1.5"
+          />
         </svg>
         <span>COLOR</span>
       </button>
@@ -69,8 +81,9 @@ export default function ChromaticControls({
           { ch: "R", active: chromR, set: onChromRChange, color: t.rayChromR },
           { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
           { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
+          { ch: "V", active: chromV, set: onChromVChange, color: t.rayChromV },
         ].map(({ ch, active, set, color }, idx) => (
-          <button key={ch} onClick={() => set?.(!active)} style={chromChannelBtn(t, active, idx < 2)}>
+          <button key={ch} onClick={() => set?.(!active)} style={chromChannelBtn(t, active, idx < 3)}>
             <span
               style={{
                 width: 6,

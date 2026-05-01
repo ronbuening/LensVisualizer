@@ -24,6 +24,7 @@ function renderLegend({
   chromR = true,
   chromG = false,
   chromB = true,
+  chromV = false,
   rayTracksF = true,
   chromSpread = { lcaMm: 0.0012, tcaMm: 0.0004, intercepts: {}, imgHeights: {} },
   onLegendExpandedChange = vi.fn(),
@@ -43,6 +44,7 @@ function renderLegend({
         chromR={chromR}
         chromG={chromG}
         chromB={chromB}
+        chromV={chromV}
         chromSpread={chromSpread}
         rayTracksF={rayTracksF}
         legendExpanded={legendExpanded}
@@ -98,6 +100,7 @@ describe("DiagramLegend", () => {
         chromR={false}
         chromG={false}
         chromB={false}
+        chromV={false}
         chromSpread={null}
         rayTracksF={false}
         legendExpanded={true}

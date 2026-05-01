@@ -11,6 +11,8 @@ Reference for creating new `*.data.ts` files in `lens-data/`.
 
 File naming: `lens-data/**/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking. Optional analysis files use the same relative stem path with a `.analysis.md` suffix.
 
+Per-lens patent audit logs use `*.audit.md` alongside the data file. They are not consumed by any build script, runtime catalog, or test scanner — all of those filter strictly on `.data.ts` and `.analysis.md`. See [../../agent_docs/lens-patent-audit.md](../../agent_docs/lens-patent-audit.md) for the audit procedure and log format.
+
 ## Scope: What to Include
 
 **Include:**
@@ -138,11 +140,22 @@ Each entry in the `elements` array describes one physical glass element.
   fl:       119.3,                          // recommended: focal length in mm (optional in type; needed for inspector display)
   glass:    "LaSF (LASF35 melt)",           // recommended: glass name/catalog (optional in type; needed for inspector display)
   apd:      false,                          // optional: false | "patent" | "inferred"
-  apdNote:  "dPgF = +0.0376",              // optional: APD details
+  apdNote:  "dPgF = +0.0376",              // optional: APD details (free-form prose)
+  dPgF:     0.0376,                         // optional: partial-dispersion deviation P_g,F − P_g,F(normal). Drives APO behavior. Numeric mirror of apdNote.
+  nC:       1.49514,                        // optional: measured refractive index at C line (656.3 nm), when published
+  nF:       1.50123,                        // optional: measured refractive index at F line (486.1 nm), when published
+  ng:       1.50632,                        // optional: measured refractive index at g line (435.8 nm), when published
   role:     "Front positive meniscus...",    // optional: optical role description
   cemented: "D1",                           // optional: doublet/triplet group name
 }
 ```
+
+**Spectral-data notes (chromatic modeling).** The chromatic-aberration ray trace consults
+spectral fields in this preference order: explicit `nC`/`nF`/`ng` → catalog Sellmeier resolved
+from `glass` → `dPgF`-corrected Abbe → plain Abbe (`nd` + `vd` only). Each level falls back
+to the next. So filling more spectral data is always strictly better, and lenses with no
+spectral data beyond `nd`/`vd` continue to work as before. For apochromatic designs where
+the patent publishes partial dispersion or line indices, prefer transcribing them.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`
@@ -153,6 +166,78 @@ Each entry in the `elements` array describes one physical glass element.
 **Validation rules:**
 - Each `id` must be unique across all elements
 - Every element must be referenced by at least one surface's `elemId`
+
+---
+
+## Glass Identification
+
+The `glass` string on each element is consulted by the chromatic dispersion engine and is also displayed in the inspector. Its format is conventional rather than syntactic — there is no parser that requires a specific shape — but a small set of forms have proven reliable.
+
+### Canonical forms
+
+| Form | Example | Use when |
+|---|---|---|
+| Vendor catalog name | `"S-FPL51 (OHARA)"` | The element is a public catalog glass; the name resolves to a published Sellmeier source. |
+| Vendor name plus class hint | `"S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)"` | Multiple vendors publish equivalent glasses and the patent does not name one specifically; pick the most likely vendor and include the cross-reference. |
+| Generic class with code | `"Dense flint (752/251, uncertain)"` | The glass is identified only by its 6-digit Schott code in the patent; vendor identity is unknown. |
+| Schott legacy name | `"SF6 (Schott)"`, `"N-BK7 (Schott)"` | The glass is a Schott legacy or N-series entry with stable public Sellmeier data. |
+| Sumita / Hoya / CDGM name | `"FCD1 (Hoya)"`, `"K-GFK68 (Sumita)"` | The patent or vendor literature names the glass directly. |
+| Unmatched / proprietary | `"Unmatched (vintage Leitz proprietary, no public catalog)"` | The glass is a custom melt, vintage proprietary, or designer-attributed approximation that no public catalog will match. |
+
+### The `Unmatched` convention
+
+When stored `nd`/`νd` cannot be matched to any catalog entry within reasonable tolerance, prefer the explicit form:
+
+```javascript
+glass: "Unmatched (lanthanum flint, designer attribution to S-LAH79 inconsistent with stored nd=1.95375)",
+```
+
+This is preferable to leaving a wrong vendor name in place. The chromatic dispersion engine is expected to detect a mismatch between the stored prescription and the labeled glass and fall through to a lower-quality dispersion path. An explicit `Unmatched` annotation:
+
+- Documents to readers that the glass is not catalog-resolvable.
+- Stops downstream tooling from re-flagging the surface as a candidate for relabeling.
+- Honestly surfaces the data quality limit in any dispersion-quality readout the viewer exposes.
+
+### Round-trip verification
+
+When the dispersion engine resolves a `glass:` string against a Sellmeier catalog, it should reject the resolution if the catalog's d-line index disagrees with the element's stored `nd` by more than a small tolerance (typical: 5e-3). This safety net catches accidental relabels but it is not a substitute for the author's own check.
+
+Before committing a `glass:` change, verify:
+
+1. The catalog entry exists for the named glass and the catalog's stored Sellmeier coefficients reproduce the catalog's listed `nd` to high precision (typical tolerance: 1e-4 — this is a property of the catalog, enforced in CI when present).
+2. The element's stored `(nd, νd)` agrees with the catalog's published `(nd, νd)` to within transcription tolerance (Δnd ≤ 5e-3, Δνd ≤ 1.0 for confident matches; wider thresholds with explicit caveat for soft matches).
+
+When neither holds, prefer the `Unmatched` form over a speculative match.
+
+### Anomalous partial dispersion
+
+For elements with anomalous partial dispersion, populate the structured numeric fields when the patent or vendor publishes them:
+
+```javascript
+{
+  // ...
+  dPgF: 0.0376,         // P_g,F deviation from the Schott normal line — drives APO behavior
+  nC:   1.49234,        // C-line refractive index (656.3 nm), when published
+  nF:   1.49978,        // F-line refractive index (486.1 nm), when published
+  ng:   1.50387,        // g-line refractive index (435.8 nm) — recommended for APO designs
+  apdNote: "dPgF = +0.0376; secondary-spectrum corrector at L23",  // optional prose
+}
+```
+
+The structured fields (`dPgF`, `nC`, `nF`, `ng`) are consumed by the chromatic engine; the prose `apdNote` is for human readers and is ignored by the engine. When both are present, keep them consistent — the structured number is authoritative.
+
+### Cross-vendor equivalents
+
+Several glasses have catalog equivalents across vendors:
+
+- N-BK7 (Schott) ≈ S-BSL7 (Ohara) ≈ BSC7 (Hoya) ≈ H-K9L (CDGM)
+- S-FPL51 (Ohara) ≈ FCD1 (Hoya)
+- S-FPL53 (Ohara) ≈ FCD100 (Hoya)
+- N-LAK8 (Schott) ≈ S-LAL14 (Ohara) — close but not identical Sellmeier coefficients
+- SF6 (Schott) ≈ S-TIH6 (Ohara)
+- N-KZFS5 (Schott) and S-NBH-class (Ohara) — KZFS-family negative-ΔPgF glasses, different vendors
+
+When a patent does not specify the vendor, prefer the vendor whose name matches the rest of the lens (Japanese patents typically use Ohara codes; German patents Schott; Hoya for some Fuji and Pentax designs; Sumita for some Voigtländer K-prefix designs). When the patent does specify, use that vendor's name even if a catalog equivalent from another vendor would be slightly easier to source.
 
 ---
 
@@ -424,6 +509,10 @@ doublets: [
 
 On failure, `buildLens()` throws with all errors listed.
 
+### Glass-Annotation Audits (Non-Blocking)
+
+Glass-string mismatches are reported separately from the blocking validation above. When a `glass:` annotation resolves to a Sellmeier catalog entry whose listed `nd` disagrees with the element's stored `nd` by more than ~5e-3, the dispersion engine logs the mismatch and falls through to the lower-quality dispersion path rather than throwing. This non-blocking behavior is intentional: a wrong glass label is a data-quality issue worth fixing, but it should not break the lens. The companion catalog-mismatch and relabel-candidate scans (see project-internal docs) surface these for periodic auditing. The author's responsibility is to keep the annotation honest — relabel to a matching glass, or use the `Unmatched (...)` form (see **Glass Identification** above) when no public catalog matches.
+
 ---
 
 ## Data Sourcing Checklist
@@ -435,7 +524,7 @@ When transcribing from an optical patent:
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface
-6. **Glass identification** — Match nd/vd pairs against catalogs (OHARA, SCHOTT, HOYA, Sumita). Note when matches are uncertain
+6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Match `nd`/`νd` pairs against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM) and prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
 7. **Focal length** — Use the patent's stated EFL, or compute from the prescription via paraxial ray trace
 8. **F-number** — Use the patent's stated f-number. If the patent gives the stop diameter, compute `f/# = EFL / (2 × EP_SD)`
 9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor to ALL R, d, and sd values. Document the scale factor in the file header

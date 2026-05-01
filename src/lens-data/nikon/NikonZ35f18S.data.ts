@@ -116,7 +116,7 @@ const LENS_DATA = {
       fl: 1.84,
       glass: "S-FPL51 (OHARA)",
       apd: "inferred",
-      apdNote: "ΔPgF = +0.028 (OHARA catalog θgF = 0.5375). Fluorophosphate ED crown with very high νd = 81.6.",
+      dPgF: 0.028, apdNote: "ΔPgF = +0.028 (OHARA catalog θgF = 0.5375). Fluorophosphate ED crown with very high νd = 81.6.",
       role: "ED element #1. Extremely low dispersion for primary + secondary chromatic correction. Positioned before stop at full marginal ray height for maximum chromatic efficiency.",
     },
     {
@@ -153,7 +153,7 @@ const LENS_DATA = {
       fl: 1.46,
       glass: "Fluorophosphate crown (family-level ID only)",
       apd: "patent",
-      apdNote:
+      dPgF: 0.019, apdNote:
         "θgF = 0.5441, ΔθgF = +0.019 (patent condition 6). nd/νd = 1.59282/68.62 does not exactly match any single OHARA catalog glass; nearest is S-FPM2 (Δnd = 0.0024, Δνd = 0.88).",
       role: "ED element #2. Strongest positive element in Gr2. Anomalous partial dispersion maintains chromatic correction stability across the entire focus range.",
     },

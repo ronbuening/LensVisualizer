@@ -245,7 +245,7 @@ const LENS_DATA = {
       fl: 22.3,
       glass: "S-FPL51 (149710/8149)",
       apd: "inferred",
-      apdNote: "ΔP(g,F) ≈ +0.028 above normal line. Fluorophosphate crown, PGM-compatible.",
+      dPgF: 0.028, apdNote: "ΔP(g,F) ≈ +0.028 above normal line. Fluorophosphate crown, PGM-compatible.",
       cemented: "D4b",
       role: "Aspherical ED element — triple duty: ED glass (secondary spectrum), asph S28A (SA correction), achromatic relay power.",
     },

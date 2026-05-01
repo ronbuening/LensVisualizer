@@ -46,6 +46,7 @@ interface UseChromaticRaysParams {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   lensKey: string;
 }
 
@@ -106,6 +107,7 @@ export default function useChromaticRays({
   chromR,
   chromG,
   chromB,
+  chromV,
   lensKey,
 }: UseChromaticRaysParams): UseChromaticRaysResult {
   /* Separate ref to surface a caught error from the chromatic useMemo to the
@@ -113,7 +115,7 @@ export default function useChromaticRays({
    * error field without restructuring, so we pair the error here). */
   const chromaticResult = useMemo((): { segments: ChromaticRaySegment[]; error: unknown } => {
     if (!L || !showChromatic) return { segments: [], error: null };
-    const channels = filterChannels(chromR, chromG, chromB);
+    const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length === 0) return { segments: [], error: null };
     try {
       const out: ChromaticRaySegment[] = [];
@@ -193,6 +195,7 @@ export default function useChromaticRays({
     chromR,
     chromG,
     chromB,
+    chromV,
     zPos,
     focusT,
     sx,
@@ -219,14 +222,14 @@ export default function useChromaticRays({
   const chromaticSpreads = useMemo((): ChromaticSpreadByAxis => {
     const empty = { onAxis: null, offAxis: null };
     if (!L || !showChromatic || chromaticRays.length === 0) return empty;
-    const channels = filterChannels(chromR, chromG, chromB);
+    const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return empty;
     const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
     return {
       onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ),
       offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ),
     };
-  }, [showChromatic, chromR, chromG, chromB, chromaticRays, IMG_MM, zPos, L, movementTransform]);
+  }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, IMG_MM, zPos, L, movementTransform]);
 
   const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
 

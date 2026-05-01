@@ -76,14 +76,14 @@ L1 consists of six elements in four groups and carries the majority of the syste
 
 **L3 + L4 (Elements 3–4)** — Cemented doublet D1.
 - L3 (crown): nd = 1.49700, νd = 81.5 — UD glass, positive meniscus (fl = +121.9 mm). **[UD glass]**
-- L4 (flint): nd = 1.77047, νd = 29.7 — dense titanium flint (OHARA S-TIH6), negative meniscus (fl = −45.7 mm).
+- L4 (flint): nd = 1.77047, νd = 29.7 — dense titanium flint (OHARA S-TIH18 family, 6-digit code 770/297), negative meniscus (fl = −45.7 mm).
 - Combined focal length: −83.6 mm (net negative).
 - Achromatic residual: −0.000636.
 - Role: This is an unusual doublet — the negative flint element dominates, making D1 net negative despite containing a UD crown element. The UD crown corrects chromatic aberration produced by L4's high dispersion, while the overall negative power contributes divergence that helps flatten the Petzval surface. The doublet also corrects lateral chromatic aberration by bending the chief ray chromatically in the opposite sense to the downstream positive elements. The non-zero achromatic residual indicates this doublet is designed to participate in system-level chromatic balancing rather than being self-achromatic.
 
 **L5 + L6 (Elements 5–6)** — Cemented doublet D2.
 - L5 (crown): nd = 1.49700, νd = 81.5 — UD glass, biconvex (fl = +67.8 mm). **[UD glass]**
-- L6 (flint): nd = 1.77047, νd = 29.7 — dense titanium flint (OHARA S-TIH6), biconcave (fl = −194.8 mm).
+- L6 (flint): nd = 1.77047, νd = 29.7 — dense titanium flint (OHARA S-TIH18 family, 6-digit code 770/297), biconcave (fl = −194.8 mm).
 - Combined focal length: +99.3 mm (net positive).
 - Achromatic residual: +0.000009 (essentially perfectly achromatic).
 - Role: D2 is the primary achromatic power source in L1. The UD crown provides the positive power needed for the front group while the S-TIH6 flint corrects longitudinal chromatic aberration almost perfectly (achromatic residual ≈ 0). This doublet does the heavy lifting for LoCA correction in the front group. Its biconvex/biconcave form simultaneously addresses spherical aberration and coma.
@@ -92,7 +92,7 @@ L1 consists of six elements in four groups and carries the majority of the syste
 
 The three UD elements (L2, L3, L5) all use the same nd = 1.49700, νd = 81.5 fluorophosphate glass, which is Canon's designation for the UD type. Fluorophosphate glasses sit in the low-nd, high-νd corner of the glass map and exhibit anomalous partial dispersion — their blue-to-green dispersion ratio (PgF) deviates significantly from the normal line. This anomalous dispersion is essential for correcting secondary spectrum (the residual chromatic focus shift between the C and F spectral lines that persists even in a classically achromatic doublet).
 
-The two flint partners (L4 and L6) both use S-TIH6 (nd = 1.77047, νd = 29.7), a titanium-flint glass that also exhibits anomalous partial dispersion — but in the opposite direction from the fluorophosphate. Pairing these two anomalous-dispersion glasses across the cemented junction achieves chromatic correction superior to what any "normal glass" crown-flint pair could achieve.
+The two flint partners (L4 and L6) both use the same dense titanium flint (nd = 1.77047, νd = 29.7; OHARA S-TIH18 family, 6-digit code 770/297), a glass that also exhibits anomalous partial dispersion — but in the opposite direction from the fluorophosphate. Pairing these two anomalous-dispersion glasses across the cemented junction achieves chromatic correction superior to what any "normal glass" crown-flint pair could achieve.
 
 ---
 
@@ -146,23 +146,23 @@ All three subunits remain stationary during focusing. During image stabilization
 ### 7.1 Subunit L3a — Cemented doublet D3
 
 **L8 + L9 (Elements 8–9)** — Cemented doublet D3.
-- L8 (flint): nd = 1.92286, νd = 20.9 — very high-index dense short flint (OHARA S-NPH2 / Schott N-SF66), negative meniscus (fl = −74.8 mm).
+- L8 (flint): nd = 1.92286, νd = 20.9 — ultra-high-index dense flint (Schott N-SF66 / Ohara E-FDS1, 6-digit code 923/209), negative meniscus (fl = −74.8 mm).
 - L9 (crown): nd = 1.80400, νd = 46.5 — lanthanum dense flint (OHARA S-LAH65V), biconvex (fl = +45.0 mm).
 - Combined focal length: +111.7 mm.
-- Role: D3 provides convergent power for the rear group while maintaining chromatic correction. The use of S-NPH2 (extremely high-index, nd ≈ 1.923) as the negative element means this glass contributes positive refractive power to the system at the cemented junction while acting as the dispersive counterpart. The lanthanum crown (S-LAH65V) provides the dominant positive power. This high-index doublet architecture concentrates optical power in a compact doublet with manageable surface curvatures.
+- Role: D3 provides convergent power for the rear group while maintaining chromatic correction. The use of N-SF66 (extremely high-index, nd ≈ 1.923, νd ≈ 20.9) as the negative element means this glass contributes positive refractive power to the system at the cemented junction while acting as the dispersive counterpart. The lanthanum crown (S-LAH65V) provides the dominant positive power. This high-index doublet architecture concentrates optical power in a compact doublet with manageable surface curvatures.
 
 ### 7.2 Subunit L3b — Image Stabilization Unit
 
 L3b consists of two air-separated elements that move together perpendicular to the optical axis during IS operation.
 
 **L10 (Element 10)** — Positive meniscus, concave toward the object.
-- Glass: nd = 1.92286, νd = 20.9 — S-NPH2, same glass as L8.
+- Glass: nd = 1.92286, νd = 20.9 — N-SF66 / E-FDS1 class (same glass as L8).
 - Focal length: +105.4 mm.
 - Surface radii: R₁ = −295.214, R₂ = −73.431 (both negative — concave toward object).
 - Role: Despite being a positive meniscus, L10's primary function within the IS subunit is to contribute to the overall negative power of L3b while maintaining the high refractive index needed to keep the Petzval sum manageable during IS decentration. The meniscus form with both surfaces concave toward the object minimizes the element's contribution to coma when decentered.
 
 **L11 (Element 11)** — Biconcave negative.
-- Glass: nd = 1.91082, νd = 35.3 — lanthanum dense flint (OHARA S-LAH58).
+- Glass: nd = 1.91082, νd = 35.3 — ultra-high-index lanthanum dense flint (6-digit code 911353; not in catalog).
 - Focal length: −37.0 mm.
 - Surface radii: R₁ = −88.195, R₂ = +54.928.
 - Role: The dominant negative element of the IS pair. Its strong diverging power, combined with L10's weak positive power, yields L3b's net focal length of −57.9 mm.
@@ -223,12 +223,12 @@ The design uses **12 unique glass types** across 17 elements:
 | 1.60311 | 60.6 | S-BSM14 / N-SK14 | 1 | L12 | Crown in rear doublet D4 |
 | 1.61800 | 63.4 | S-PHM52 | 1 | L7 | Focus unit (plano-concave) |
 | 1.65844 | 50.9 | S-LAL8 | 1 | L15 | Lanthanum crown in inverted doublet D5 |
-| 1.77047 | 29.7 | S-TIH6 | 2 | L4, L6 | Flint partner for UD doublets |
+| 1.77047 | 29.7 | S-TIH18 family (770/297) | 2 | L4, L6 | Flint partner for UD doublets |
 | 1.80400 | 46.5 | S-LAH65V | 1 | L9 | Lanthanum crown in D3 |
 | 1.80518 | 25.5 | SF6 equiv. | 1 | L16 | Flint positive element in inverted D5 |
 | 1.84666 | 23.8 | S-TIH53 | 2 | L1, L13 | High-index dense flint |
-| 1.91082 | 35.3 | S-LAH58 | 1 | L11 | IS unit negative element |
-| 1.92286 | 20.9 | S-NPH2 / N-SF66 | 2 | L8, L10 | Very high-index flint (D3 and IS) |
+| 1.91082 | 35.3 | 911353 lanthanum | 1 | L11 | IS unit negative element |
+| 1.92286 | 20.9 | N-SF66 / E-FDS1 (923/209) | 2 | L8, L10 | Ultra-high-index flint (D3 and IS) |
 | 2.00069 | 25.5 | S-NPH7 | 1 | L14 | Ultra-high-index Petzval corrector |
 
 The glass selection is aggressive by any standard. The use of S-NPH7 (nd ≈ 2.0) and S-NPH2 (nd ≈ 1.923) places extreme demands on manufacturing homogeneity and thermal stability — these ultra-high-index glasses are expensive and difficult to fabricate in large diameters. Their deployment here reflects Canon's willingness to accept higher materials cost in exchange for wavefront performance in an all-spherical design.
@@ -253,7 +253,7 @@ The lens's chromatic correction rests on two pillars:
 
 **Primary LoCA correction** is handled by the three UD elements in L1. Doublet D2 (L5 + L6) is essentially perfectly achromatic (residual ≈ 0.000009), while D1 (L3 + L4) is intentionally under-corrected (residual = −0.000636), leaving a controlled residual that is balanced by elements downstream in L3. The standalone UD element L2 contributes additional positive power with minimal chromatic impact (owing to its high Abbe number, νd = 81.5), allowing the system to reach the total converging power required for L1 without burdening the cemented doublets with excessive chromatic correction demands.
 
-**Secondary spectrum control** arises from the anomalous partial dispersion of the UD fluorophosphate glass paired with the S-TIH6 titanium flint. Both glasses deviate from the "normal line" on the PgF vs. νd diagram but in complementary directions, reducing the secondary spectrum residual below what any normal-glass pair could achieve.
+**Secondary spectrum control** arises from the anomalous partial dispersion of the UD fluorophosphate glass paired with the S-TIH18-class titanium flint (nd = 1.77047, νd = 29.7). Both glasses deviate from the "normal line" on the PgF vs. νd diagram but in complementary directions, reducing the secondary spectrum residual below what any normal-glass pair could achieve.
 
 **Rear group correction** in L3 uses a different strategy: conventional glass pairs (N-SK14 + S-TIH53 in D4, S-LAL8 + SF6 in D5) handle longitudinal and lateral chromatic aberration locally. The rear group does not employ UD glass because the beam height and chief ray angles in L3 are smaller than in L1, making secondary spectrum less influential.
 
@@ -292,7 +292,7 @@ The Canon RF 135mm f/1.8 L IS USM, as embodied in Example 4 of US 2023/0213745 A
 
 **All-spherical correction at f/1.8** is achieved through a generous element count (17), five cemented doublets, and aggressive glass selection — including ultra-high-index glasses up to nd ≈ 2.0 — that provides sufficient degrees of freedom to correct spherical aberration, coma, and field curvature without aspherical surfaces.
 
-**Three UD fluorophosphate elements** in the front group correct primary and secondary longitudinal chromatic aberration, paired with anomalous-dispersion titanium flint (S-TIH6) to minimize secondary spectrum.
+**Three UD fluorophosphate elements** in the front group correct primary and secondary longitudinal chromatic aberration, paired with anomalous-dispersion titanium flint (S-TIH18 family, nd = 1.77047, νd = 29.7) to minimize secondary spectrum.
 
 **Inner focus with a single lightweight element** (a plano-concave negative lens) enables the fast, silent Nano USM autofocus performance while minimizing focus-induced aberration variation.
 

@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.76802,
       vd: 49.24,
       fl: 127.7,
-      glass: "S-LAH53 (OHARA)",
+      glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Weak positive meniscus — fine-tunes off-axis aberrations far from stop. S-prefix: likely CNC/MRF asphere.",
     },

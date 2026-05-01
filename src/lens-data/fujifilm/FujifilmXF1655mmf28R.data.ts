@@ -174,7 +174,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.31,
       fl: 14.6,
-      glass: "OHARA S-LAH58",
+      glass: "OHARA S-LAH95",
       apd: false,
       role: "Dense lanthanum-flint positive cemented to L22; balances G2 chromatic behaviour",
       cemented: "D2",

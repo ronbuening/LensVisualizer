@@ -5,6 +5,7 @@ import type {
   ElementSpan,
   ResolvedAnnotation,
   SurfaceData,
+  SurfaceSpectral,
   VarRange,
 } from "../../types/optics.js";
 
@@ -74,6 +75,24 @@ export function buildVdIndex(surfaces: SurfaceData[], elements: ElementData[]): 
     if (element?.vd) vdByIdx[i] = element.vd;
   }
   return vdByIdx;
+}
+
+export function buildSpectralIndex(surfaces: SurfaceData[], elements: ElementData[]): Record<number, SurfaceSpectral> {
+  const elementById = new Map(elements.map((element) => [element.id, element]));
+  const spectralByIdx: Record<number, SurfaceSpectral> = {};
+  for (let i = 0; i < surfaces.length; i++) {
+    const elementId = surfaces[i].elemId;
+    if (!elementId) continue;
+    const element = elementById.get(elementId);
+    if (!element) continue;
+    const entry: SurfaceSpectral = {};
+    if (element.dPgF !== undefined) entry.dPgF = element.dPgF;
+    if (element.nC !== undefined) entry.nC = element.nC;
+    if (element.nF !== undefined) entry.nF = element.nF;
+    if (element.ng !== undefined) entry.ng = element.ng;
+    if (Object.keys(entry).length > 0) spectralByIdx[i] = entry;
+  }
+  return spectralByIdx;
 }
 
 export function firstInfinityThickness(range: unknown, isZoom: boolean): number | null {

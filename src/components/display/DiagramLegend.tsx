@@ -26,6 +26,7 @@ interface DiagramLegendProps {
   chromR: boolean;
   chromG: boolean;
   chromB: boolean;
+  chromV: boolean;
   chromSpread: ChromaticSpread | null;
   rayTracksF: boolean;
   legendExpanded: boolean;
@@ -44,6 +45,7 @@ export default function DiagramLegend({
   chromR,
   chromG,
   chromB,
+  chromV,
   chromSpread,
   rayTracksF,
   legendExpanded,
@@ -175,7 +177,7 @@ export default function DiagramLegend({
           )}
           {showChromatic &&
             (() => {
-              const activeCh = [chromR && "R", chromG && "G", chromB && "B"].filter(Boolean);
+              const activeCh = [chromR && "R", chromG && "G", chromB && "B", chromV && "V"].filter(Boolean);
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const lcaStr =
                 chromSpread && chromSpread.lcaMm !== 0
@@ -183,10 +185,11 @@ export default function DiagramLegend({
                   : "";
               return (
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <svg width="22" height="14" viewBox="0 0 22 14">
+                  <svg width="22" height="17" viewBox="0 0 22 17">
                     {chromR && <line x1="0" y1="3" x2="22" y2="3" stroke={t.rayChromR} strokeWidth="1.8" />}
                     {chromG && <line x1="0" y1="7" x2="22" y2="7" stroke={t.rayChromG} strokeWidth="1.8" />}
                     {chromB && <line x1="0" y1="11" x2="22" y2="11" stroke={t.rayChromB} strokeWidth="1.8" />}
+                    {chromV && <line x1="0" y1="15" x2="22" y2="15" stroke={t.rayChromV} strokeWidth="1.8" />}
                   </svg>
                   <span style={{ color: t.legendText }}>
                     {chromLabel}

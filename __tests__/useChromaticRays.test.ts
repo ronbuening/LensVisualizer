@@ -63,6 +63,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -93,6 +94,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "none",
       }),
     );
@@ -123,6 +125,7 @@ describe("useChromaticRays", () => {
         chromR: false,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -152,6 +155,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -190,6 +194,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: false,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -222,6 +227,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: false,
         chromB: true,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -255,6 +261,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -287,6 +294,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -324,6 +332,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "ApoLanthar50f2",
       }),
     );
@@ -356,6 +365,7 @@ describe("useChromaticRays", () => {
         chromR: false,
         chromG: true,
         chromB: false,
+        chromV: false,
         lensKey: "ZeissSonnar50f15",
       }),
     );
@@ -399,6 +409,7 @@ describe("useChromaticRays", () => {
         chromR: true,
         chromG: true,
         chromB: true,
+        chromV: false,
         lensKey: "broken",
       }),
     );

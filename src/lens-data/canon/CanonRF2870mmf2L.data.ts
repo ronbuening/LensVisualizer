@@ -96,7 +96,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 121.5,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH66 (OHARA)",
       apd: false as const,
       role: "Dominant positive power element in G1; controls entrance pupil",
     },

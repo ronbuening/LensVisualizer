@@ -22,7 +22,16 @@ const mockTheme = {
 
 describe("ChromaticControls", () => {
   it("renders the COLOR master toggle", () => {
-    render(<ChromaticControls t={mockTheme} showChromatic={false} chromR={true} chromG={true} chromB={true} />);
+    render(
+      <ChromaticControls
+        t={mockTheme}
+        showChromatic={false}
+        chromR={true}
+        chromG={true}
+        chromB={true}
+        chromV={false}
+      />,
+    );
     expect(screen.getByText("COLOR")).toBeTruthy();
   });
 
@@ -36,6 +45,7 @@ describe("ChromaticControls", () => {
         chromR={true}
         chromG={true}
         chromB={true}
+        chromV={false}
       />,
     );
     fireEvent.click(screen.getByText("COLOR"));
@@ -43,14 +53,32 @@ describe("ChromaticControls", () => {
   });
 
   it("shows R/G/B channel buttons when showChromatic is true", () => {
-    render(<ChromaticControls t={mockTheme} showChromatic={true} chromR={true} chromG={true} chromB={true} />);
+    render(
+      <ChromaticControls
+        t={mockTheme}
+        showChromatic={true}
+        chromR={true}
+        chromG={true}
+        chromB={true}
+        chromV={false}
+      />,
+    );
     expect(screen.getByText("R")).toBeTruthy();
     expect(screen.getByText("G")).toBeTruthy();
     expect(screen.getByText("B")).toBeTruthy();
   });
 
   it("hides R/G/B channel buttons when showChromatic is false", () => {
-    render(<ChromaticControls t={mockTheme} showChromatic={false} chromR={true} chromG={true} chromB={true} />);
+    render(
+      <ChromaticControls
+        t={mockTheme}
+        showChromatic={false}
+        chromR={true}
+        chromG={true}
+        chromB={true}
+        chromV={false}
+      />,
+    );
     expect(screen.queryByText("R")).toBeNull();
     expect(screen.queryByText("G")).toBeNull();
     expect(screen.queryByText("B")).toBeNull();
@@ -67,6 +95,7 @@ describe("ChromaticControls", () => {
         chromR={true}
         chromG={false}
         chromB={true}
+        chromV={false}
         onChromRChange={onR}
         onChromGChange={onG}
         onChromBChange={onB}
@@ -84,17 +113,33 @@ describe("ChromaticControls", () => {
 
   it("renders SVG icon with three colored lines", () => {
     const { container } = render(
-      <ChromaticControls t={mockTheme} showChromatic={true} chromR={true} chromG={true} chromB={true} />,
+      <ChromaticControls
+        t={mockTheme}
+        showChromatic={true}
+        chromR={true}
+        chromG={true}
+        chromB={true}
+        chromV={false}
+      />,
     );
     const svgs = container.querySelectorAll("svg");
     expect(svgs.length).toBeGreaterThanOrEqual(1);
-    // The master toggle SVG has 3 lines (R/G/B)
+    // The master toggle SVG has 4 lines (R/G/B/V); the V line renders muted when chromV is off.
     const masterLines = svgs[0].querySelectorAll("line");
-    expect(masterLines.length).toBe(3);
+    expect(masterLines.length).toBe(4);
   });
 
   it("handles missing callbacks gracefully", () => {
-    render(<ChromaticControls t={mockTheme} showChromatic={true} chromR={true} chromG={true} chromB={true} />);
+    render(
+      <ChromaticControls
+        t={mockTheme}
+        showChromatic={true}
+        chromR={true}
+        chromG={true}
+        chromB={true}
+        chromV={false}
+      />,
+    );
     // Should not throw
     fireEvent.click(screen.getByText("COLOR"));
     fireEvent.click(screen.getByText("R"));

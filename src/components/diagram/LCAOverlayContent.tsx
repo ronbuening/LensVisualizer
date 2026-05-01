@@ -7,6 +7,7 @@
 
 import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
 
 interface LCAOverlayContentProps {
@@ -15,6 +16,7 @@ interface LCAOverlayContentProps {
   effectiveSC: number;
   IMG_MM: number;
   t: Theme;
+  dispersionQuality?: DispersionQuality;
 }
 
 const SINGLE_SVG_W = 340;
@@ -29,6 +31,7 @@ export default function LCAOverlayContent({
   effectiveSC,
   IMG_MM,
   t,
+  dispersionQuality,
 }: LCAOverlayContentProps) {
   const spreads = [
     { label: "ON-AXIS", spread: chromaticSpreads?.onAxis ?? null },
@@ -84,6 +87,7 @@ export default function LCAOverlayContent({
                 originX={MARGIN}
                 originY={MARGIN}
                 fontScale={dual ? 2.0 : 2.8}
+                dispersionQuality={dispersionQuality}
               />
             </svg>
           </div>
@@ -100,8 +104,9 @@ export default function LCAOverlayContent({
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
         different distances along the optical axis. The colored bars show where red (C-line, 656 nm), green (d-line, 588
-        nm), and blue (F-line, 486 nm) marginal rays cross the axis relative to the reference focus. Wider separation
-        indicates greater chromatic defocus.
+        nm), blue (F-line, 486 nm), and — when enabled — violet (g-line, 436 nm) marginal rays cross the axis relative
+        to the reference focus. Apochromatic designs aim to bring three wavelengths to a common focus; the violet bar
+        reveals the residual <em>secondary spectrum</em> that distinguishes a true APO from an achromat.
       </p>
     </div>
   );

@@ -38,6 +38,7 @@ export function loadPrefs(): Partial<Preferences> {
     if (typeof p.chromR === "boolean") out.chromR = p.chromR;
     if (typeof p.chromG === "boolean") out.chromG = p.chromG;
     if (typeof p.chromB === "boolean") out.chromB = p.chromB;
+    if (typeof p.chromV === "boolean") out.chromV = p.chromV;
     if (typeof p.showPupils === "boolean") out.showPupils = p.showPupils;
     if (typeof p.showCardinals === "boolean") out.showCardinals = p.showCardinals;
     if (typeof p.showCardinalFocal === "boolean") out.showCardinalFocal = p.showCardinalFocal;
