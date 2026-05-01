@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 182 mismatched surfaces across 128 unique groups.
+**Scope**: 180 mismatched surfaces across 128 unique groups.
 
 ## stored (nd=1.53110, vd=55.90) [code=531/559]  — 1 surface, current label resolves to S-BAL42
 
@@ -564,14 +564,6 @@ Candidates:
 Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `6A`: `S-LAM54 (OHARA)`
 
-## stored (nd=1.77047, vd=29.70)  — 2 surfaces, current label resolves to S-TIH6
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) `6`: `S-TIH6 (OHARA)`
-- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) `9`: `S-TIH6 (OHARA)`
-
 ## stored (nd=1.77250, vd=49.60) [code=773/496]  — 1 surface, current label resolves to S-LAL18
 
 Candidates:
@@ -900,12 +892,18 @@ Candidates:
 Surfaces:
 - [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) `7`: `S-NPH2 (Ohara) — exact match`
 
-## stored (nd=1.91082, vd=35.30)  — 2 surfaces, current label resolves to S-LAH58
+## stored (nd=1.91082, vd=35.30) [code=911/353]  — 1 surface, current label resolves to S-LAH58
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
-- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) `19`: `S-LAH58 (OHARA)`
+- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) `19`: `911/353 — S-LAH58 family (OHARA)`
+
+## stored (nd=1.91082, vd=35.30)  — 1 surface, current label resolves to S-LAH55V
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
 - [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) `14`: `S-LAH55V (OHARA)`
 
 ## stored (nd=1.91082, vd=35.25) [code=911/353]  — 1 surface, current label resolves to S-LAH58
@@ -1060,4 +1058,4 @@ Surfaces:
 ## Summary
 
 - **53** (nd, vd) groups have at least one candidate (73 surfaces) — actionable relabels.
-- **75** (nd, vd) groups have NO candidate (109 surfaces) — needs patent verification or Unmatched relabeling.
+- **75** (nd, vd) groups have NO candidate (107 surfaces) — needs patent verification or Unmatched relabeling.

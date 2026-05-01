@@ -16,8 +16,8 @@ with words like "probable" or "approx").
 - **127** lenses scanned
 - **1445** glass surfaces examined
 - **1442** surfaces with non-empty `glass` strings
-- **770** of those resolved to a catalog entry
-- **182** mismatches found (23.6% of resolved surfaces)
+- **766** of those resolved to a catalog entry
+- **180** mismatches found (23.5% of resolved surfaces)
 - **66** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
@@ -31,7 +31,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH14 | 15 | |
 | S-LAH79 | 15 | |
 | S-LAH58 | 10 | |
-| S-TIH6 | 9 | |
+| S-TIH6 | 7 | |
 | S-TIM25 | 7 | |
 | S-LAM54 | 6 | |
 | S-LAH65V | 6 | |
@@ -87,9 +87,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
-| 6 | `S-TIH6 (OHARA)` | S-TIH6 | 1.77047 | 1.80518 | +0.0347 |
-| 9 | `S-TIH6 (OHARA)` | S-TIH6 | 1.77047 | 1.80518 | +0.0347 |
-| 19 | `S-LAH58 (OHARA)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
+| 19 | `911/353 — S-LAH58 family (OHARA)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 
 ### [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts)
 
