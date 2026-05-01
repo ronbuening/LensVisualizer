@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-01 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-01",
+    type: "article",
+    summary:
+      "Added beginner primers on cardinal points (F, H, N) and lens dimensions (EFL, BFD, FFD, hiatus, total track)",
+  },
+  {
+    date: "2026-05-01",
     type: "lens",
     summary: "Added Sigma 35mm f/1.4 DG DN Art and 85mm f/1.4 DG DN Art",
   },
