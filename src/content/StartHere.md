@@ -16,6 +16,13 @@ Start with the basics: refraction, focal length, and how multiple glass elements
 - [How Camera Lenses Work](/articles/optics-primer) — A gentle conceptual introduction
 - [Optics In More Detail](/articles/optics-primer-intermediate) — Deeper dive into ray behavior and element roles
 
+## Cardinal Points and Dimensions
+
+Every lens, no matter how complex, can be summarized by a handful of reference points and distances along the optical axis. Once you know where they sit, you can predict where the image forms and how big it will be.
+
+- [Cardinal Points of a Lens](/articles/cardinal-elements-primer) — Focal, principal, and nodal points explained
+- [Lens Dimensions and Distances](/articles/lens-dimensions-primer) — EFL, BFD, FFD, hiatus, and total track
+
 ## Aberrations
 
 Real lenses are imperfect. Learn what aberrations are and why lens designers spend so much effort corralling them.
