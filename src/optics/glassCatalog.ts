@@ -67,7 +67,7 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 53 vendor-verified entries (Phase 3, Apr 2026)
+ * GLASS CATALOG — 65 vendor-verified entries (Phase 4, Apr 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -612,6 +612,34 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. High-index lanthanum (786/442).",
   },
 
+  /* ────── Ohara expansion (Phase 4 buildout, Apr 2026) ──────
+   * S-TIM28: dense TIM flint used in Canon RF, Nikon L35AF/PCE19, Fuji XF zooms.
+   * S-BSM14: borosilicate medium crown used in Canon EF/RF and other normal lenses.
+   * Coefficients from OHARA Zemax catalog (ohara_2017-11-30.agf) via refractiveindex.info.
+   */
+  {
+    name: "S-TIM28",
+    vendor: "Ohara",
+    B: [1.5427081, 0.217113891, 1.81904459],
+    C: [0.0113925005, 0.0579224572, 167.697189],
+    nd: 1.688931,
+    vd: 31.07545,
+    PgF: 0.6008,
+    code6: "689311",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (689/311).",
+  },
+  {
+    name: "S-BSM14",
+    vendor: "Ohara",
+    B: [1.2828627, 0.247647429, 1.10383999],
+    C: [0.0122902399, -0.00613142361, 106.883378],
+    nd: 1.603112,
+    vd: 60.64108,
+    PgF: 0.5399,
+    code6: "603607",
+    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Borosilicate medium crown (603/607).",
+  },
+
   /* ────── Schott — high-dispersion flints and lanthanum crowns ──────
    * SF6/SF4/SF1 are the legacy lead flints used widely in vintage designs.
    * N-LAK8 is a high-frequency lanthanum crown. N-KZFS5 carries notable
@@ -675,6 +703,102 @@ const RAW_CATALOG: readonly GlassEntry[] = [
       "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. KZFS family — negative ΔPgF, APO-relevant.",
   },
 
+  /* ────── Schott expansion (Phase 4 buildout, Apr 2026) ──────
+   * SF2: legacy dense flint (648/339), fills the gap between SF1 and N-BK7 in
+   *   pre-1990 Schott-dominant double-Gauss and Sonnar designs.
+   * N-SK16: dense lanthanum crown (620/603) ubiquitous in Zeiss, classic Nikon,
+   *   Leica Elmarit, and other pre-1990 normal/standard designs (also sold as
+   *   Hoya BACD5 — same glass, different vendor name).
+   * N-KZFS4: KZFS family with negative ΔPgF; APO paired glass for ED crowns.
+   * N-FK51A: fluorcrown with strong positive ΔPgF (+0.034); APO-relevant in
+   *   Zeiss and Nikon telephoto designs.
+   * N-SK11: barium crown used in Carl Zeiss zoom rear groups.
+   * F2: canonical Schott flint (620/364); dense lead flint in vintage designs.
+   * N-LAK22: lanthanum crown (651/559); common in compact zoom rear elements.
+   * All coefficients from SCHOTT Zemax catalog (schott_2017-01-20b.agf) via
+   * refractiveindex.info.
+   */
+  {
+    name: "SF2",
+    vendor: "Schott",
+    B: [1.40301821, 0.231767504, 0.939056586],
+    C: [0.0105795466, 0.0493226978, 112.405955],
+    nd: 1.64769,
+    vd: 33.85,
+    PgF: 0.5886,
+    code6: "648339",
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data.",
+  },
+  {
+    name: "N-SK16",
+    vendor: "Schott",
+    B: [1.34317774, 0.241144399, 0.994317969],
+    C: [0.00704687339, 0.0229005, 92.7508526],
+    nd: 1.62041,
+    vd: 60.32,
+    PgF: 0.5412,
+    code6: "620603",
+    source:
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Dense lanthanum crown; Hoya BACD5-equivalent.",
+  },
+  {
+    name: "N-KZFS4",
+    vendor: "Schott",
+    B: [1.35055424, 0.197575506, 1.09962992],
+    C: [0.0087628207, 0.0371767201, 90.3866994],
+    nd: 1.61336,
+    vd: 44.49,
+    PgF: 0.5590,
+    code6: "613445",
+    source:
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. KZFS family — negative ΔPgF, APO-relevant.",
+  },
+  {
+    name: "N-FK51A",
+    vendor: "Schott",
+    B: [0.971247817, 0.216901417, 0.904651666],
+    C: [0.00472301995, 0.0153575612, 168.68133],
+    nd: 1.48656,
+    vd: 84.47,
+    PgF: 0.5359,
+    code6: "487845",
+    source:
+      "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Fluorcrown with strong +ΔPgF (+0.034); APO-relevant.",
+  },
+  {
+    name: "N-SK11",
+    vendor: "Schott",
+    B: [1.17963631, 0.229817295, 0.935789652],
+    C: [0.00680282081, 0.0219737205, 101.513232],
+    nd: 1.56384,
+    vd: 60.8,
+    PgF: 0.5412,
+    code6: "564608",
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Barium crown.",
+  },
+  {
+    name: "F2",
+    vendor: "Schott",
+    B: [1.34533359, 0.209073176, 0.937357162],
+    C: [0.00997743871, 0.0470450767, 111.886764],
+    nd: 1.62004,
+    vd: 36.37,
+    PgF: 0.5829,
+    code6: "620364",
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Legacy lead flint.",
+  },
+  {
+    name: "N-LAK22",
+    vendor: "Schott",
+    B: [1.14229781, 0.535138441, 1.04088385],
+    C: [0.00585778594, 0.0198546147, 100.834017],
+    nd: 1.65113,
+    vd: 55.89,
+    PgF: 0.5467,
+    code6: "651559",
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. Lanthanum crown.",
+  },
+
   /* ────── Hoya — ED crowns and dense lanthanum flints ──────
    * Hoya AGF entries use the polynomial Schott formula (form 1), not
    * Sellmeier-1. The B/C below are a least-squares Sellmeier-1 fit to
@@ -716,6 +840,41 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     code6: "883408",
     source:
       "Hoya AGF (hoya_2017-04-01.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 7.1e-6 across 365–1014 nm.",
+  },
+  {
+    name: "TAFD37A",
+    vendor: "Hoya",
+    B: [2.188879041, 0.3049704899, 1.232253827],
+    C: [0.01151042519, 0.04599567769, 93.14898114],
+    nd: 1.90043,
+    vd: 37.37,
+    PgF: 0.5767,
+    code6: "900374",
+    source:
+      "Hoya Zemax catalog (hoya_2017-04-01, formula 3) via refractiveindex.info; Sellmeier-1 fit, max abs index error 5.1e-6 across 365–1014 nm. Ultra-high-index lanthanum; used in Voigtländer Nokton X 50mm f/1.2.",
+  },
+  {
+    name: "TAFD37",
+    vendor: "Hoya",
+    B: [2.259360214, 0.2343652859, 1.481042614],
+    C: [0.01221915793, 0.04989586099, 111.9367914],
+    nd: 1.90043,
+    vd: 37.37,
+    PgF: 0.5772,
+    source:
+      "Hoya Zemax catalog (hoya_2017-04-01, formula 3) via refractiveindex.info; Sellmeier-1 fit, max abs index error 3.7e-6 across 365–1014 nm. Distinct Sellmeier from TAFD37A.",
+  },
+  {
+    name: "TAFD33",
+    vendor: "Hoya",
+    B: [2.212737897, 0.2183360248, 1.27909893],
+    C: [0.01179423107, 0.04560326145, 100.6882193],
+    nd: 1.881,
+    vd: 40.14,
+    PgF: 0.5704,
+    code6: "881401",
+    source:
+      "Hoya Zemax catalog (hoya_2017-04-01, formula 3) via refractiveindex.info; Sellmeier-1 fit, max abs index error 1.0e-6 across 365–1014 nm. Dense lanthanum flint used in Ricoh GR III 28mm.",
   },
 
   /* ────── Sumita — APO-relevant K-prefix crowns ──────
@@ -771,6 +930,16 @@ const ALIASES: ReadonlyMap<string, string> = new Map([
   ["BSC7", "S-BSL7"],
   ["FLUORITE", "CaF2"],
   ["CAF2", "CaF2"],
+  // SF57 and N-SF57 are Schott names for the same high-dispersion glass family;
+  // S-TIH53 is the Ohara equivalent sharing the same 6-digit code (847/238 ≈ 847/239).
+  ["SF57", "S-TIH53"],
+  ["N-SF57", "S-TIH53"],
+  // SK16 is the legacy Schott name for N-SK16 (same glass, modernized designation).
+  ["SK16", "N-SK16"],
+  // BACD5 is the Hoya trade name for N-SK16-equivalent glass (same nd/vd).
+  ["BACD5", "N-SK16"],
+  // L-TIM28 is the Ohara large-format designation for S-TIM28 (identical Sellmeier).
+  ["L-TIM28", "S-TIM28"],
 ]);
 
 /** Map of 6-digit Schott codes to canonical names. */

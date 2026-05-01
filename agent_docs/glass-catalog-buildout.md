@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **53 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
+The catalog currently has **65 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -16,57 +16,74 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 
 | Glass | Lens-element occurrences | Vendor | Notes |
 |---|---|---|---|
-| **S-FPL51** | 74 | Ohara | Highest priority — primary ED crown across most APO designs |
-| S-LAH58 | 52 | Ohara | High-index lanthanum, ubiquitous |
-| S-TIH53 | 31 | Ohara | High-dispersion flint |
-| S-NPH2 | 31 | Ohara | Niobophosphate flint |
-| S-TIH6 | 30 | Ohara | |
-| S-LAH79 | 26 | Ohara | Voigtländer APO-Lanthar L2 |
-| S-LAH55V | 26 | Ohara | Vacuum melt variant |
+| ★ **S-FPL51** | 74 | Ohara | Highest priority — primary ED crown across most APO designs |
+| ★ S-LAH58 | 52 | Ohara | High-index lanthanum, ubiquitous |
+| ★ S-TIH53 | 31 | Ohara | High-dispersion flint |
+| ★ S-NPH2 | 31 | Ohara | Niobophosphate flint |
+| ★ S-TIH6 | 30 | Ohara | |
+| ★ S-LAH79 | 26 | Ohara | Voigtländer APO-Lanthar L2 |
+| ★ S-LAH55V | 26 | Ohara | Vacuum melt variant |
 | ★ S-BSL7 | 22 | Ohara | (in catalog) |
-| S-LAL18 | 21 | Ohara | |
-| S-LAH65V | 20 | Ohara | Voigtländer APO-Lanthar L8 |
-| SF6 | 19 | Schott | Legacy lead flint |
-| S-FSL5 | 19 | Ohara | Fluor crown |
-| S-TIH14 | 18 | Ohara | |
-| S-PHM52 | 18 | Ohara | Phosphate crown with notable +ΔPgF |
-| S-FPM2 | 17 | Ohara | Fluorophosphate ED |
-| S-LAL14 | 16 | Ohara | |
-| S-LAH66 | 15 | Ohara | |
+| ★ S-LAL18 | 21 | Ohara | |
+| ★ S-LAH65V | 20 | Ohara | Voigtländer APO-Lanthar L8 |
+| ★ SF6 | 19 | Schott | Legacy lead flint |
+| ★ S-FSL5 | 19 | Ohara | Fluor crown |
+| ★ S-TIH14 | 18 | Ohara | |
+| ★ S-PHM52 | 18 | Ohara | Phosphate crown with notable +ΔPgF |
+| ★ S-FPM2 | 17 | Ohara | Fluorophosphate ED |
+| ★ S-LAL14 | 16 | Ohara | |
+| ★ S-LAH66 | 15 | Ohara | |
 | ★ N-BK7 | 14 | Schott | (in catalog) |
-| FCD1 | 13 | Hoya | ED, FPL51-equivalent |
-| S-BAL42 | 12 | Ohara | |
-| S-FPL53 | 12 | Ohara | Super ED — defining glass for many APO triplets |
-| S-LAH63 | 11 | Ohara | |
-| S-LAM66 | 11 | Ohara | |
-| S-LAH55 | 11 | Ohara | |
-| S-TIM35 | 11 | Ohara | |
-| S-LAH53 | 10 | Ohara | |
-| S-FPL52 | 10 | Ohara | |
-| S-TIM25 | 9 | Ohara | |
-| S-FPM3 | 9 | Ohara | |
-| S-BAL35 | 9 | Ohara | |
-| S-TIM22 | 9 | Ohara | |
-| **S-NBH5** | 9 | Ohara | KZFS-class, **APO-relevant** (negative ΔPgF, paired with FPL51 in Leica APO 35/2) |
-| S-NPH1 | 8 | Ohara | |
-| S-TIM2 | 8 | Ohara | |
-| SF4 | 7 | Schott | |
-| S-LAH65 | 7 | Ohara | |
-| TAFD30 | 7 | Hoya | |
-| S-LAH52 | 7 | Ohara | |
-| S-NSL3 | 7 | Ohara | |
-| S-TIM28 | 7 | Ohara | |
-| S-LAM54 | 7 | Ohara | |
-| FCD505 | 7 | Hoya | |
-| S-NPH53 | 7 | Ohara | |
-| S-BSM14 | 7 | Ohara | |
-| SF1 | 6 | Schott | |
-| N-LAK8 | 6 | Schott | |
-| TAFD25 | 6 | Hoya | |
-| S-LAH51 | 6 | Ohara | |
-| BSC7 | 6 | Hoya | (currently aliased → S-BSL7) |
-| **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
-| **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+| ★ FCD1 | 13 | Hoya | ED, FPL51-equivalent |
+| ★ S-BAL42 | 12 | Ohara | |
+| ★ S-FPL53 | 12 | Ohara | Super ED — defining glass for many APO triplets |
+| ★ S-LAH63 | 11 | Ohara | |
+| ★ S-LAM66 | 11 | Ohara | |
+| ★ S-LAH55 | 11 | Ohara | |
+| ★ S-TIM35 | 11 | Ohara | |
+| ★ S-LAH53 | 10 | Ohara | |
+| ★ S-FPL52 | 10 | Ohara | |
+| ★ S-TIM25 | 9 | Ohara | |
+| ★ S-FPM3 | 9 | Ohara | |
+| ★ S-BAL35 | 9 | Ohara | |
+| ★ S-TIM22 | 9 | Ohara | |
+| ★ **S-NBH5** | 9 | Ohara | KZFS-class, **APO-relevant** (negative ΔPgF, paired with FPL51 in Leica APO 35/2) |
+| ★ S-NPH1 | 8 | Ohara | |
+| ★ S-TIM2 | 8 | Ohara | |
+| ★ SF4 | 7 | Schott | |
+| ★ S-LAH65 | 7 | Ohara | |
+| ★ TAFD30 | 7 | Hoya | |
+| ★ S-LAH52 | 7 | Ohara | |
+| ★ S-NSL3 | 7 | Ohara | |
+| ★ S-TIM28 | 7 | Ohara | Phase 4 addition |
+| ★ S-LAM54 | 7 | Ohara | |
+| ★ FCD505 | 7 | Hoya | |
+| ★ S-NPH53 | 7 | Ohara | |
+| ★ S-BSM14 | 7 | Ohara | Phase 4 addition |
+| ★ SF1 | 6 | Schott | |
+| ★ N-LAK8 | 6 | Schott | |
+| TAFD25 | 6 | Hoya | **Skip** — all lens files annotating TAFD25 store nd in 1.834–2.001; Hoya published nd=1.816; gap >5e-3, no Sellmeier surfaces would resolve |
+| ★ S-LAH51 | 6 | Ohara | |
+| ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
+| ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
+| ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 4 additions not in the original table** (sourced from survey of 127 lens files, Apr 2026):
+
+| Glass | Vendor | Notes |
+|---|---|---|
+| ★ N-SK16 | Schott | ~20 surfaces; aliases SK16 → N-SK16, BACD5 → N-SK16 |
+| ★ SF2 | Schott | ~5–7 surfaces; legacy lead flint |
+| ★ SF57 | Schott | alias SF57/N-SF57 → S-TIH53; ~11 surfaces |
+| ★ TAFD37A | Hoya | 2 surfaces in Voigtländer Nokton X 50mm; Sellmeier-1 fit to formula-3 polynomial |
+| ★ TAFD37 | Hoya | future coverage; distinct Sellmeier from TAFD37A |
+| ★ TAFD33 | Hoya | 2 surfaces in Ricoh GR III 28mm |
+| ★ F2 | Schott | future coverage — legacy lead flint for pre-1990 designs |
+| ★ N-SK11 | Schott | future coverage — barium crown for Zeiss zoom designs |
+| ★ N-FK51A | Schott | future coverage — fluorcrown, APO-relevant (+ΔPgF) |
+| ★ N-KZFS4 | Schott | future coverage — KZFS family, APO-relevant (negative ΔPgF) |
+| ★ N-LAK22 | Schott | future coverage — lanthanum crown for compact zooms |
+| S-LAH99 | Ohara | **Deferred** — not in rii.info 2017 catalog; requires direct Ohara source; unlocks ~2 surfaces in LeicaAPO43 |
 
 A handful of high-impact glasses (N-KZFS5, K-GFK68) appear infrequently but matter disproportionately for the marquee APO test cases the chromatic upgrade was designed to fix. Prioritize those alongside the high-frequency entries.
 
