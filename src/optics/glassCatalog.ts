@@ -748,7 +748,7 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     C: [0.0087628207, 0.0371767201, 90.3866994],
     nd: 1.61336,
     vd: 44.49,
-    PgF: 0.5590,
+    PgF: 0.559,
     code6: "613445",
     source:
       "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data. KZFS family — negative ΔPgF, APO-relevant.",
