@@ -67,7 +67,7 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 65 vendor-verified entries (Phase 4, Apr 2026)
+ * GLASS CATALOG — 92 vendor-verified entries (Phase 5, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -894,6 +894,287 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     source:
       "Sumita AGF (sumita_2017-02-02.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 6.7e-6 across 365–1014 nm. APO-relevant.",
   },
+
+  /* ────── Ohara Phase 5 additions (May 2026) ──────
+   * Sourced from OHARA Zemax catalog (ohara_2017-11-30.agf) via
+   * refractiveindex.info. All entries use formula 2 (standard Sellmeier-1,
+   * K=0). Covers dense flints, NBH niobophosphate family, LAH/LAM/LAL/BAL/BSM
+   * lanthanum and barium families, and NPH ultra-high-index flints not in the
+   * earlier phases.
+   */
+
+  /* Dense flints — TIH / TIM additions */
+  {
+    name: "S-TIH18",
+    vendor: "Ohara",
+    B: [1.59921608, 0.259532164, 2.12454543],
+    C: [0.0116469304, 0.0584824883, 186.927779],
+    nd: 1.721507,
+    vd: 29.23,
+    code6: "722292",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-TIH4",
+    vendor: "Ohara",
+    B: [1.66755531, 0.294411865, 2.49422119],
+    C: [0.0122052137, 0.0597775329, 214.869618],
+    nd: 1.755199,
+    vd: 27.51,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-TIM5",
+    vendor: "Ohara",
+    B: [1.38531342, 0.122372945, 1.40508326],
+    C: [0.0104074567, 0.0557440088, 144.878733],
+    nd: 1.60342,
+    vd: 38.03,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-TIM27",
+    vendor: "Ohara",
+    B: [1.4168047, 0.196785057, 1.68001322],
+    C: [0.0100732158, 0.0537616908, 164.672436],
+    nd: 1.639799,
+    vd: 34.47,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-NBH8",
+    vendor: "Ohara",
+    B: [1.61344136, 0.257295888, 1.98364455],
+    C: [0.0106386752, 0.0487071624, 159.784404],
+    nd: 1.720467,
+    vd: 34.71,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* NBH niobophosphate family — anomalous partial dispersion dense flints */
+  {
+    name: "S-NBH51",
+    vendor: "Ohara",
+    B: [1.71203689, 0.255989588, 1.81456998],
+    C: [0.0107724134, 0.0488593504, 136.359013],
+    nd: 1.749504,
+    vd: 35.33,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-NBH52",
+    vendor: "Ohara",
+    B: [1.50305799, 0.221715926, 1.84496391],
+    C: [0.00999021738, 0.0450327698, 163.722302],
+    nd: 1.672999,
+    vd: 38.15,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-NBH55",
+    vendor: "Ohara",
+    B: [1.83145156, 0.287818024, 2.152083],
+    C: [0.0122443139, 0.057387731, 186.099124],
+    nd: 1.799999,
+    vd: 29.84,
+    code6: "800298",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-NBH56",
+    vendor: "Ohara",
+    B: [1.85191438, 0.431102852, 3.45278284],
+    C: [0.013273262, 0.0585944644, 239.357089],
+    nd: 1.854779,
+    vd: 24.8,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* LAH lanthanum dense flint additions */
+  {
+    name: "S-LAH55VS",
+    vendor: "Ohara",
+    B: [1.92591095, 0.34895346, 1.42230744],
+    C: [0.0096115249, 0.036513298, 103.36409],
+    nd: 1.834809,
+    vd: 42.74,
+    source:
+      "Ohara Zemax catalog 2017-11-30 via refractiveindex.info. Vacuum-melt stabilized variant of S-LAH55V; distinct Sellmeier.",
+  },
+  {
+    name: "S-LAH60",
+    vendor: "Ohara",
+    B: [1.95243469, 0.30710021, 1.56578094],
+    C: [0.0106442437, 0.0456735302, 110.28141],
+    nd: 1.834,
+    vd: 37.16,
+    code6: "834372",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAH60V",
+    vendor: "Ohara",
+    B: [2.05081962, 0.208475257, 1.31486394],
+    C: [0.0116035991, 0.0526489359, 99.38065],
+    nd: 1.833999,
+    vd: 37.21,
+    source:
+      "Ohara Zemax catalog 2017-11-30 via refractiveindex.info. Vacuum-melt variant; distinct Sellmeier from S-LAH60.",
+  },
+  {
+    name: "S-LAH64",
+    vendor: "Ohara",
+    B: [1.83021453, 0.29156359, 1.28544024],
+    C: [0.0090482329, 0.0330756689, 89.3675501],
+    nd: 1.788001,
+    vd: 47.37,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAH89",
+    vendor: "Ohara",
+    B: [1.95118827, 0.377607223, 1.47757262],
+    C: [0.00976560799, 0.0382232043, 112.23672],
+    nd: 1.8515,
+    vd: 40.78,
+    code6: "852408",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAH97",
+    vendor: "Ohara",
+    B: [1.0273018, 0.989293564, 1.25781057],
+    C: [0.0183406129, 0.00371264195, 87.85105],
+    nd: 1.755,
+    vd: 52.32,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* LAM / LAL lanthanum crown additions */
+  {
+    name: "S-LAM2",
+    vendor: "Ohara",
+    B: [1.7713, 0.19581423, 1.19487834],
+    C: [0.00976652444, 0.0412718628, 110.458122],
+    nd: 1.743997,
+    vd: 44.79,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAM51",
+    vendor: "Ohara",
+    B: [1.638472, 0.188330533, 1.47502357],
+    C: [0.00904853452, 0.0372740173, 137.77005],
+    nd: 1.699998,
+    vd: 48.08,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAL8",
+    vendor: "Ohara",
+    B: [1.30663291, 0.571377253, 1.24303605],
+    C: [0.00611862448, 0.021272147, 90.6285686],
+    nd: 1.712995,
+    vd: 53.87,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-LAL9",
+    vendor: "Ohara",
+    B: [1.16195687, 0.644860099, 1.25062221],
+    C: [0.0159659509, 0.000505502467, 93.8284169],
+    nd: 1.691002,
+    vd: 54.82,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* BAM / BAL barium additions */
+  {
+    name: "S-BAM4",
+    vendor: "Ohara",
+    B: [1.41059317, 0.111201306, 1.34148939],
+    C: [0.00963312192, 0.049877821, 152.237696],
+    nd: 1.60562,
+    vd: 43.71,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-BAL14",
+    vendor: "Ohara",
+    B: [1.27553696, 0.146083393, 1.16754699],
+    C: [0.00749692359, 0.031042153, 128.947092],
+    nd: 1.568832,
+    vd: 56.36,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* BSM barium crown additions */
+  {
+    name: "S-BSM18",
+    vendor: "Ohara",
+    B: [0.927886025, 0.708858526, 1.18610897],
+    C: [0.00417549199, 0.0184691838, 122.210416],
+    nd: 1.638539,
+    vd: 55.38,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+  {
+    name: "S-BSM81",
+    vendor: "Ohara",
+    B: [0.996356844, 0.651392837, 1.22432622],
+    C: [0.0144821587, 0.00154826389, 89.9818604],
+    nd: 1.639999,
+    vd: 60.08,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* NSL light crown addition */
+  {
+    name: "S-NSL5",
+    vendor: "Ohara",
+    B: [1.04574577, 0.239613026, 1.1590685],
+    C: [0.0058523228, 0.0236858752, 131.329061],
+    nd: 1.522494,
+    vd: 59.84,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* NPH ultra-high-index dense flint addition */
+  {
+    name: "S-NPH4",
+    vendor: "Ohara",
+    B: [1.93563931, 0.449596478, 2.71828573],
+    C: [0.0152585289, 0.0696815778, 170.327149],
+    nd: 1.89286,
+    vd: 20.36,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
+  },
+
+  /* ────── Schott Phase 5 additions (May 2026) ──────
+   * N-SK10 and N-SK14 are barium / lanthanum crowns found in legacy Schott-
+   * dominant designs; SK10 and SK14 are the deprecated pre-2000 names.
+   * Coefficients from Schott Zemax catalog (schott_2017-01-20b.agf) via
+   * refractiveindex.info.
+   */
+  {
+    name: "N-SK10",
+    vendor: "Schott",
+    B: [1.34972093, 0.238587973, 0.9667336],
+    C: [0.00736272269, 0.0253765327, 103.502909],
+    nd: 1.62278,
+    vd: 56.98,
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data.",
+  },
+  {
+    name: "N-SK14",
+    vendor: "Schott",
+    B: [0.936155374, 0.594052018, 1.04374583],
+    C: [0.00461716525, 0.016885927, 103.736265],
+    nd: 1.60311,
+    vd: 60.6,
+    code6: "603606",
+    source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data.",
+  },
 ];
 
 /**
@@ -940,6 +1221,9 @@ const ALIASES: ReadonlyMap<string, string> = new Map([
   ["BACD5", "N-SK16"],
   // L-TIM28 is the Ohara large-format designation for S-TIM28 (identical Sellmeier).
   ["L-TIM28", "S-TIM28"],
+  // SK10 and SK14 are legacy Schott names superseded by N-SK10 and N-SK14.
+  ["SK10", "N-SK10"],
+  ["SK14", "N-SK14"],
 ]);
 
 /** Map of 6-digit Schott codes to canonical names. */

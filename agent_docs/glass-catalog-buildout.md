@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **65 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
+The catalog currently has **92 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -67,6 +67,43 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 5 additions** (sourced from survey of unresolved glasses across all lens files, May 2026 — all from Ohara or Schott Zemax catalog via refractiveindex.info):
+
+| Glass | Vendor | Occurrences | Notes |
+|---|---|---|---|
+| ★ S-TIH18 | Ohara | 5 | Dense flint 722/292 |
+| ★ S-LAM51 | Ohara | 5 | Lanthanum crown |
+| ★ S-BAM4 | Ohara | 5 | Barium flint |
+| ★ S-BAL14 | Ohara | 5 | Barium light crown |
+| ★ S-NBH56 | Ohara | 4 | NBH dense flint |
+| ★ S-NBH55 | Ohara | 4 | NBH dense flint 800/298 |
+| ★ S-LAH89 | Ohara | 4 | LAH family 852/408 |
+| ★ S-LAH60 | Ohara | 4 | LAH family 834/372 |
+| ★ S-LAH55VS | Ohara | 4 | VS vacuum-melt variant of S-LAH55V |
+| ★ S-NBH8 | Ohara | 3 | NBH dense flint |
+| ★ S-TIM5 | Ohara | 3 | Dense flint |
+| ★ S-LAL8 | Ohara | 3 | Lanthanum light crown |
+| ★ S-NSL5 | Ohara | 3 | Light crown |
+| ★ N-SK14 | Schott | 3 | Lanthanum crown 603/606; alias SK14 added |
+| ★ S-TIM27 | Ohara | 2 | Dense flint |
+| ★ S-TIH4 | Ohara | 2 | Dense flint |
+| ★ S-NPH4 | Ohara | 2 | Ultra-high-index dense flint |
+| ★ S-LAH64 | Ohara | 2 | LAH family |
+| ★ S-LAH60V | Ohara | 2 | Vacuum-melt variant of S-LAH60 |
+| ★ S-LAH97 | Ohara | 2 | LAH family |
+| ★ S-LAL9 | Ohara | 2 | Lanthanum light crown |
+| ★ S-NBH51 | Ohara | 2 | NBH dense flint |
+| ★ S-NBH52 | Ohara | 2 | NBH dense flint |
+| ★ S-BSM18 | Ohara | 2 | Barium crown |
+| ★ S-BSM81 | Ohara | 2 | Barium crown |
+| ★ S-LAM2 | Ohara | 2 | Lanthanum crown |
+| ★ N-SK10 | Schott | 2 | Barium crown; alias SK10 added |
+| NBFD3 | Hoya | 4 | **Skip** — formula 3 polynomial (Hoya), no direct Sellmeier; would need custom fitting like TAFD37A |
+| TAFD40 | Hoya | 3 | **Skip** — formula 3 polynomial (nd=2.001); same issue as NBFD3 |
+| S-TIF6 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
+| S-NPH7 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
+| N-SK18 | Schott | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
 
 **Phase 4 additions not in the original table** (sourced from survey of 127 lens files, Apr 2026):
 
