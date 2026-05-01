@@ -87,7 +87,7 @@ export default function LCAInsetWidget({
   // (small 100px inset and large 256px overlay). Fractions match the original
   // fixed values: 14/100, 30/100, 40/100, 56/100, 67/100, 82/100, 95/100.
   const yTitle = insetY + insetH * 0.14;
-  const yLineTop = insetY + insetH * 0.30;
+  const yLineTop = insetY + insetH * 0.3;
   const yAxis = insetY + insetH * 0.4;
   const yLineBot = insetY + insetH * 0.56;
   const yLabel = insetY + insetH * 0.67;
