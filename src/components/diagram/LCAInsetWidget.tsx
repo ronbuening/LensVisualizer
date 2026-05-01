@@ -85,9 +85,9 @@ export default function LCAInsetWidget({
 
   // Y positions scale proportionally with insetH so the layout works at any size
   // (small 100px inset and large 256px overlay). Fractions match the original
-  // fixed values: 14/100, 22/100, 40/100, 56/100, 67/100, 82/100, 95/100.
+  // fixed values: 14/100, 30/100, 40/100, 56/100, 67/100, 82/100, 95/100.
   const yTitle = insetY + insetH * 0.14;
-  const yLineTop = insetY + insetH * 0.22;
+  const yLineTop = insetY + insetH * 0.30;
   const yAxis = insetY + insetH * 0.4;
   const yLineBot = insetY + insetH * 0.56;
   const yLabel = insetY + insetH * 0.67;
@@ -166,10 +166,10 @@ export default function LCAInsetWidget({
       </text>
       {qualityLabel && (
         <text
-          x={insetX + insetW - 4}
-          y={insetY + insetH * 0.14}
-          textAnchor="end"
-          fill={dispersionQuality === "abbe" || dispersionQuality === "constant" ? t.muted : t.muted}
+          x={midX}
+          y={insetY + insetH * 0.21}
+          textAnchor="middle"
+          fill={t.muted}
           fontSize={fs(6.5)}
           fontFamily="inherit"
           opacity={0.75}
