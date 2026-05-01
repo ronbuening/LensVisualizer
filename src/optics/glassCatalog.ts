@@ -10,9 +10,8 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: this is a STARTER catalog (~Phase 2 of the chromatic
- * improvement plan). The follow-up doc agent_docs/glass-catalog-buildout.md
- * lists the prioritized list of glasses still needed and how to source them.
+ * Coverage status: Phase 5 (92 entries). See agent_docs/glass-catalog-buildout.md
+ * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
  * cites its source. Verify by computing n at 587.5618 nm (d-line) and checking

@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-01 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-01",
+    type: "improvement",
+    summary:
+      "Expanded Sellmeier glass catalog from 65 to 92 entries, covering all Ohara and Schott glasses with 2+ element occurrences — more lenses now use full Sellmeier chromatic dispersion",
+  },
   // ── 2026-04-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-04-30",
