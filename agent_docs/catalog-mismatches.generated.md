@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **127** lenses scanned
-- **1445** glass surfaces examined
-- **1442** surfaces with non-empty `glass` strings
-- **881** of those resolved to a catalog entry
-- **262** mismatches found (29.7% of resolved surfaces)
-- **72** distinct lens files affected
+- **129** lenses scanned
+- **1475** glass surfaces examined
+- **1472** surfaces with non-empty `glass` strings
+- **885** of those resolved to a catalog entry
+- **265** mismatches found (29.9% of resolved surfaces)
+- **73** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -46,6 +46,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NPH53 | 5 | |
 | S-NBH55 | 5 | |
 | S-LAL14 | 5 | |
+| S-NBH8 | 5 | |
 | S-NBH56 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
@@ -69,7 +70,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BSM81 | 2 | |
 | S-BSM14 | 2 | |
 | S-BSL7 | 2 | |
-| S-NBH8 | 2 | |
 | S-LAH89 | 2 | |
 | S-LAH65 | 2 | |
 | N-SK14 | 2 | |
@@ -681,6 +681,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | S-TIM35 | 1.68893 | 1.69895 | +0.0100 |
+
+### [SIGMA 85mm F/1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts)
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 8 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
+| 15 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
+| 18 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts)
 

@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 262 mismatched surfaces across 171 unique groups.
+**Scope**: 265 mismatched surfaces across 171 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -1162,13 +1162,16 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) `14`: `S-LAH65V (OHARA)`
 
-## stored (nd=1.85451, vd=25.15)  — 1 surface, current label resolves to S-TIM35
+## stored (nd=1.85451, vd=25.15)  — 4 surfaces, current label resolves to S-TIM35
 
 Candidates:
 - **S-NBH56** (nd=1.85478, vd=24.80, Δnd=+0.0003, Δvd=-0.35)
 
 Surfaces:
 - [NIKON NIKKOR Z 24-120mm f/4 S](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) `8`: `S-TIM35 (OHARA) or K-VC89 (Sumita)`
+- [SIGMA 85mm F/1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) `8`: `Anomalous flint (S-NBH8-class, νd=25.15)`
+- [SIGMA 85mm F/1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) `15`: `Anomalous flint (S-NBH8-class, νd=25.15)`
+- [SIGMA 85mm F/1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) `18`: `Anomalous flint (S-NBH8-class, νd=25.15)`
 
 ## stored (nd=1.85478, vd=24.80)  — 4 surfaces, current label resolves to S-NPH1
 
@@ -1453,5 +1456,5 @@ Surfaces:
 
 ## Summary
 
-- **95** (nd, vd) groups have at least one candidate (150 surfaces) — actionable relabels.
+- **95** (nd, vd) groups have at least one candidate (153 surfaces) — actionable relabels.
 - **76** (nd, vd) groups have NO candidate (112 surfaces) — needs patent verification or Unmatched relabeling.
