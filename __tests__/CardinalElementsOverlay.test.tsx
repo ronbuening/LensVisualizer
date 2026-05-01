@@ -39,7 +39,16 @@ const baseCardinals: CardinalElements = {
   },
 };
 
-function renderOverlay(cardinals = baseCardinals, showCardinals = true, showCardinalDimensions = true) {
+function renderOverlay(
+  cardinals = baseCardinals,
+  showCardinals = true,
+  showCardinalDimensions = true,
+  cardinalLayerProps: {
+    showCardinalFocal?: boolean;
+    showCardinalPrincipal?: boolean;
+    showCardinalNodal?: boolean;
+  } = {},
+) {
   return render(
     <svg>
       <CardinalElementsOverlay
@@ -50,6 +59,7 @@ function renderOverlay(cardinals = baseCardinals, showCardinals = true, showCard
         sy={(y) => 200 + y * 4}
         showCardinals={showCardinals}
         showCardinalDimensions={showCardinalDimensions}
+        {...cardinalLayerProps}
       />
     </svg>,
   );
@@ -85,6 +95,38 @@ describe("CardinalElementsOverlay", () => {
     expect(labels).toContain("H'");
     expect(labels).toContain("N");
     expect(labels).toContain("N'");
+  });
+
+  it("renders principal-only labels when coincident nodal points are hidden", () => {
+    const { container } = renderOverlay(baseCardinals, true, false, {
+      showCardinalFocal: false,
+      showCardinalPrincipal: true,
+      showCardinalNodal: false,
+    });
+    const labels = Array.from(container.querySelectorAll("text")).map((el) => el.textContent);
+
+    expect(labels).toContain("H");
+    expect(labels).toContain("H'");
+    expect(labels).not.toContain("H/N");
+    expect(labels).not.toContain("H'/N'");
+    expect(labels).not.toContain("N");
+    expect(labels).not.toContain("N'");
+  });
+
+  it("renders nodal-only labels when coincident principal points are hidden", () => {
+    const { container } = renderOverlay(baseCardinals, true, false, {
+      showCardinalFocal: false,
+      showCardinalPrincipal: false,
+      showCardinalNodal: true,
+    });
+    const labels = Array.from(container.querySelectorAll("text")).map((el) => el.textContent);
+
+    expect(labels).toContain("N");
+    expect(labels).toContain("N'");
+    expect(labels).not.toContain("H/N");
+    expect(labels).not.toContain("H'/N'");
+    expect(labels).not.toContain("H");
+    expect(labels).not.toContain("H'");
   });
 
   it("renders dimension lane labels independently of point labels", () => {
@@ -125,8 +167,10 @@ describe("CardinalElementsOverlay", () => {
 
     expect(labels).not.toContain("F");
     expect(labels).not.toContain("F'");
-    expect(labels).toContain("H/N");
-    expect(labels).toContain("H'/N'");
+    expect(labels).toContain("H");
+    expect(labels).toContain("H'");
+    expect(labels).not.toContain("H/N");
+    expect(labels).not.toContain("H'/N'");
     expect(labels.some((label) => label.startsWith("EFL "))).toBe(false);
     expect(labels.some((label) => label.startsWith("BFD "))).toBe(true);
     expect(labels.some((label) => label.startsWith("Total track "))).toBe(true);
