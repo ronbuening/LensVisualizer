@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 184 mismatched surfaces across 130 unique groups.
+**Scope**: 182 mismatched surfaces across 128 unique groups.
 
 ## stored (nd=1.53110, vd=55.90) [code=531/559]  — 1 surface, current label resolves to S-BAL42
 
@@ -171,14 +171,6 @@ Surfaces:
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) `9`: `S-PHM52 (OHARA)`
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `13`: `Near S-FPM3 (OHARA) — fluorophosphate crown`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `24`: `S-PHM53 (OHARA)`
-
-## stored (nd=1.60311, vd=60.70)  — 1 surface, current label resolves to S-BSL7
-
-Candidates:
-- **S-BSM14** (nd=1.60311, vd=60.64, Δnd=+0.0000, Δvd=-0.06)
-
-Surfaces:
-- [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts) `1`: `S-BSL7 (OHARA)`
 
 ## stored (nd=1.60311, vd=60.60) [code=603/606]  — 1 surface, current label resolves to S-BSL7
 
@@ -401,14 +393,6 @@ Candidates:
 
 Surfaces:
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) `36`: `S-LAM54 (OHARA)`
-
-## stored (nd=1.69680, vd=55.50)  — 1 surface, current label resolves to S-BSM14
-
-Candidates:
-- **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0000, Δvd=+0.03)
-
-Surfaces:
-- [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts) `3`: `S-BSM14 (OHARA)`
 
 ## stored (nd=1.69680, vd=55.60)  — 1 surface, current label resolves to N-SK16
 
@@ -1075,5 +1059,5 @@ Surfaces:
 
 ## Summary
 
-- **55** (nd, vd) groups have at least one candidate (75 surfaces) — actionable relabels.
+- **53** (nd, vd) groups have at least one candidate (73 surfaces) — actionable relabels.
 - **75** (nd, vd) groups have NO candidate (109 surfaces) — needs patent verification or Unmatched relabeling.

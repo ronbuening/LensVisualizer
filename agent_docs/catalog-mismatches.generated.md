@@ -17,8 +17,8 @@ with words like "probable" or "approx").
 - **1445** glass surfaces examined
 - **1442** surfaces with non-empty `glass` strings
 - **770** of those resolved to a catalog entry
-- **184** mismatches found (23.9% of resolved surfaces)
-- **67** distinct lens files affected
+- **182** mismatches found (23.6% of resolved surfaces)
+- **66** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -41,18 +41,18 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAL14 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
-| S-BSL7 | 4 | |
 | S-TIH53 | 4 | |
 | S-LAH66 | 4 | |
 | S-LAH51 | 4 | |
 | S-TIM2 | 4 | |
 | S-PHM52 | 4 | |
-| S-BSM14 | 3 | |
 | S-TIM28 | 3 | |
 | S-NPH1 | 3 | |
+| S-BSL7 | 3 | |
 | SF6 | 3 | |
 | S-LAL18 | 2 | |
 | S-BAL35 | 2 | |
+| S-BSM14 | 2 | |
 | S-LAH65 | 2 | |
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
@@ -73,13 +73,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH55 | 1 | |
 
 ## Mismatches by lens
-
-### [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts)
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-BSL7 (OHARA)` | S-BSL7 | 1.60311 | 1.51624 | -0.0869 |
-| 3 | `S-BSM14 (OHARA)` | S-BSM14 | 1.69680 | 1.60311 | -0.0937 |
 
 ### [CANON FD 50mm f/1.2 L](../src/lens-data/canon/CanonFD50mmf12L.data.ts)
 
