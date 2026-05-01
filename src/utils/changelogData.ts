@@ -28,9 +28,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-04-30",
-    type: "improvement",
-    summary:
-      "Expanded glass catalog to 32 vendor-verified Sellmeier entries and corrected mislabeled glass annotations across several lens prescriptions for sharper chromatic readouts",
+    type: "lens",
+    summary: "Added Canon FD 50mm f/1.2, and lenses for the Nikon 35Ti, Sigma DP2X, and DP3 Merrill compact cameras",
   },
   // ── 2026-04-29 ──────────────────────────────────────────────────────────
   {
