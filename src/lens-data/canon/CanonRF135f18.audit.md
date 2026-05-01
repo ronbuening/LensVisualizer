@@ -4,6 +4,16 @@ Patent: US 2023/0213745 A1, Example 4 (Nakada / Canon)
 
 ---
 
+## 2026-05-01 — L11 glass annotation fix: resolver short-circuit
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L11 (surface 19) | `glass` | `"911/353 — S-LAH58 family (OHARA)"` | `"911353 — lanthanum (nd=1.91082, νd=35.3)"` | The prior string contained the token "S-LAH58" which the resolver matched to catalog S-LAH58 (nd=1.883), triggering a Δnd=0.028 mismatch in the scan. The 6-digit token "911353" (no slash) is not in CODE6_INDEX, so the resolver returns null and Abbe approximation uses the correct patent values. When a catalog entry for this glass is added with `code6: "911353"`, this annotation auto-upgrades to Sellmeier — same pattern as "770297 — S-TIH18 family (OHARA)" for L4/L6. Analysis file updated to remove the "S-LAH58 family" label from §7.2 and §8. |
+
+Verification: `npm test -- catalogMismatchScan` confirms surface 19 no longer appears in the canon-rf-135 mismatch table.
+
+---
+
 ## 2026-04-30 — Glass relabel: three misidentified glass families
 
 ### Phase 1 — Glass corrections

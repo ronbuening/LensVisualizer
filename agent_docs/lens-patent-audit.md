@@ -42,7 +42,17 @@ For every element with a `glass:` annotation:
 2. Compare against the lens-data element's stored `nd` and `vd`. If the catalog scan flagged this surface, the candidate report names the in-tolerance options.
 3. Decide:
    - **Stored (nd, vd) matches the patent and a catalog entry exists** → relabel `glass:` to the catalog entry's name. Verify the round-trip matches by reading the resolver's quality badge after the change.
-   - **Stored (nd, vd) matches the patent but no catalog entry exists** → either add the glass per [glass-catalog-buildout.md](glass-catalog-buildout.md) (only if used across multiple lenses) or relabel as `Unmatched (description, reason)` so the resolver stops trying. The Abbe path will be used and the badge will read "Abbe approx" — that is honest.
+   - **Stored (nd, vd) matches the patent but no catalog entry exists** → either add the glass per [glass-catalog-buildout.md](glass-catalog-buildout.md) (only if used across multiple lenses) or choose an annotation that lets the resolver fall through gracefully while staying future-proof. Two sub-cases:
+     - **6-digit code is known** (from another lens file, from the nd/νd pair itself, or from a cross-reference with Schott/Ohara/Hoya code tables) → use the code-based format:
+       ```
+       "NNNNNN — descriptive label (Vendor)"
+       ```
+       Example: `"911353 — lanthanum (nd=1.91082, νd=35.3)"`. The resolver extracts `NNNNNN` as a `\d{6}` token and looks it up in `CODE6_INDEX`. Since no matching catalog entry exists yet, it returns null and Abbe approximation runs with the element's stored nd/νd. **When a catalog entry is later added with `code6: "NNNNNN"`, the annotation auto-upgrades from Abbe to Sellmeier with no changes to the data or analysis file.** Write the 6 digits as one unbroken string — a slash (`911/353`), space (`911 353`), or dash breaks the token and prevents the future auto-upgrade.
+     - **6-digit code is unknown** (vintage proprietary, designer-attributed, or composition fully opaque) → use the explicit `Unmatched` prefix:
+       ```
+       "Unmatched (description, reason)"
+       ```
+       The resolver short-circuits on the `Unmatched` keyword and returns null immediately, preventing any spurious catalog match. Reserve this form for cases where no upgrade path is anticipated.
    - **Stored (nd, vd) disagrees with the patent** → the prescription was transcribed wrong. Update the surface's `nd` (and the element's `nd`/`vd`) to the patent value. Then redo step 2.
    - **Patent provides no glass identifier, only (nd, vd)** → keep the existing annotation if it round-trips within tolerance; otherwise mark as `Unmatched (designer attribution to X inconsistent with stored nd/vd)`.
 4. **Never** relax the catalog round-trip tolerance (1e-4 in `assertCatalogConsistent`). If a catalog entry doesn't round-trip, fix the catalog source per [glass-catalog-buildout.md](glass-catalog-buildout.md) — do not mask the failure by mislabeling the lens.

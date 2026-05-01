@@ -181,7 +181,7 @@ const LENS_DATA = {
       nd: 1.91082,
       vd: 35.3,
       fl: -37.0,
-      glass: "911/353 — S-LAH58 family (OHARA)",
+      glass: "911353 — lanthanum (nd=1.91082, νd=35.3)",
       apd: false,
       role: "Dominant negative element in IS subunit L3b. Strong divergence yields L3b net focal length ≈ −57.9 mm. N3b_ave = 1.917 satisfies patent inequality (1).",
     },

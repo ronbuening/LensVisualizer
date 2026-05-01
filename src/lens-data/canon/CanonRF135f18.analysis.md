@@ -162,7 +162,7 @@ L3b consists of two air-separated elements that move together perpendicular to t
 - Role: Despite being a positive meniscus, L10's primary function within the IS subunit is to contribute to the overall negative power of L3b while maintaining the high refractive index needed to keep the Petzval sum manageable during IS decentration. The meniscus form with both surfaces concave toward the object minimizes the element's contribution to coma when decentered.
 
 **L11 (Element 11)** — Biconcave negative.
-- Glass: nd = 1.91082, νd = 35.3 — ultra-high-index lanthanum dense flint (OHARA S-LAH58 family, 6-digit code 911/353; catalog S-LAH58 is nd = 1.883 and does not match).
+- Glass: nd = 1.91082, νd = 35.3 — ultra-high-index lanthanum dense flint (6-digit code 911353; not in catalog).
 - Focal length: −37.0 mm.
 - Surface radii: R₁ = −88.195, R₂ = +54.928.
 - Role: The dominant negative element of the IS pair. Its strong diverging power, combined with L10's weak positive power, yields L3b's net focal length of −57.9 mm.
@@ -227,7 +227,7 @@ The design uses **12 unique glass types** across 17 elements:
 | 1.80400 | 46.5 | S-LAH65V | 1 | L9 | Lanthanum crown in D3 |
 | 1.80518 | 25.5 | SF6 equiv. | 1 | L16 | Flint positive element in inverted D5 |
 | 1.84666 | 23.8 | S-TIH53 | 2 | L1, L13 | High-index dense flint |
-| 1.91082 | 35.3 | S-LAH58 family (911/353) | 1 | L11 | IS unit negative element |
+| 1.91082 | 35.3 | 911353 lanthanum | 1 | L11 | IS unit negative element |
 | 1.92286 | 20.9 | N-SF66 / E-FDS1 (923/209) | 2 | L8, L10 | Ultra-high-index flint (D3 and IS) |
 | 2.00069 | 25.5 | S-NPH7 | 1 | L14 | Ultra-high-index Petzval corrector |
 
