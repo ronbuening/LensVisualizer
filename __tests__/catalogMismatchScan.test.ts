@@ -32,6 +32,7 @@ const MISMATCH_TOLERANCE = 5e-3;
 interface Mismatch {
   lensKey: string;
   lensName: string;
+  patentNumber: string | null;
   filePath: string;
   surfaceLabel: string;
   surfaceIdx: number;
@@ -40,6 +41,13 @@ interface Mismatch {
   storedNd: number;
   catalogNd: number;
   diff: number;
+}
+
+function extractPatentNumber(subtitle: string | undefined): string | null {
+  const match = subtitle?.match(
+    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?))?)/i,
+  );
+  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
 }
 
 const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
@@ -56,6 +64,7 @@ describe("catalog-mismatch scan", () => {
       const raw = mod.default;
       if (!raw?.key) continue;
       const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+      const patentNumber = extractPatentNumber(data.subtitle);
       totalLenses++;
 
       let L;
@@ -88,6 +97,7 @@ describe("catalog-mismatch scan", () => {
           mismatches.push({
             lensKey: data.key,
             lensName: data.name ?? data.key,
+            patentNumber,
             filePath,
             surfaceLabel: surface.label ?? `surface[${i}]`,
             surfaceIdx: i,
@@ -166,11 +176,22 @@ describe("catalog-mismatch scan", () => {
     } else {
       lines.push("## Mismatches by lens");
       lines.push("");
-      const sortedKeys = [...byLens.keys()].sort();
+      const sortedKeys = [...byLens.keys()].sort((a, b) => {
+        const aList = byLens.get(a)!;
+        const bList = byLens.get(b)!;
+        const countDiff = bList.length - aList.length;
+        if (countDiff !== 0) return countDiff;
+
+        const nameDiff = aList[0].lensName.localeCompare(bList[0].lensName);
+        if (nameDiff !== 0) return nameDiff;
+
+        return a.localeCompare(b);
+      });
       for (const key of sortedKeys) {
         const list = byLens.get(key)!;
         const first = list[0];
-        lines.push(`### [${first.lensName}](../${first.filePath})`);
+        const patentSuffix = first.patentNumber ? ` — ${first.patentNumber}` : "";
+        lines.push(`### [${first.lensName}](../${first.filePath})${patentSuffix}`);
         lines.push("");
         lines.push("| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |");
         lines.push("|---|---|---|---|---|---|");
