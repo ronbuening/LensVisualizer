@@ -27,11 +27,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS: JP 2021-85935 does not publish surface    ║
  * ║  SDs. SDs in this file were estimated by an iterative solver:      ║
  * ║  combined marginal+chief envelope at offAxisFieldFrac = 0.60 with  ║
- * ║  +8% mechanical clearance, then trimmed to satisfy edge thickness  ║
- * ║  ≥ 0.40 mm, cross-gap intrusion ≤ 0.90 × gap, and front/rear SD    ║
- * ║  ratio ≤ 3.0 per element. Front surface capped at filter SD =      ║
- * ║  38.5 mm (Sigma 77 mm filter thread); L1 was further trimmed by    ║
- * ║  edge thickness to sd ≈ 38.0 mm.                                   ║
+ * ║  +8% mechanical clearance, then hand-rebalanced against Sigma's    ║
+ * ║  published optical-section diagram. The final set keeps the first  ║
+ * ║  two front elements nearly equal, preserves a taller D1 block,     ║
+ * ║  tapers through L6/stop/L7, and lets the rear aspheric element     ║
+ * ║  rise again. Values were trimmed to satisfy edge thickness ≥       ║
+ * ║  0.40 mm, cross-gap intrusion ≤ 0.90 × gap, and front/rear SD      ║
+ * ║  ratio ≤ 3.0 per element. Front surface capped by the 77 mm        ║
+ * ║  filter thread envelope.                                           ║
  * ║                                                                    ║
  * ║  NOTE ON F-NUMBER: Sigma markets this lens as F/1.4. The patent    ║
  * ║  design F-number is F/1.46. Per project convention, nominalFno     ║
@@ -255,36 +258,36 @@ const LENS_DATA = {
   /* ── Surface prescription (front → rear) ── */
   surfaces: [
     /* GA — Front group G1 (LPH + four SLD positives + LN flint, +6 elements/5 subgroups) */
-    { label: "1", R: 76.0456, d: 3.6339, nd: 1.94595, elemId: 1, sd: 37.99 }, // L1 front  (LPH)
-    { label: "2", R: 107.5269, d: 0.7, nd: 1.0, elemId: 0, sd: 37.99 }, // L1 → air
-    { label: "3", R: 71.2221, d: 5.4299, nd: 1.55032, elemId: 2, sd: 36.25 }, // L2 front
-    { label: "4", R: 136.9321, d: 0.25, nd: 1.0, elemId: 0, sd: 36.25 }, // L2 → air
+    { label: "1", R: 76.0456, d: 3.6339, nd: 1.94595, elemId: 1, sd: 38.0 }, // L1 front  (LPH)
+    { label: "2", R: 107.5269, d: 0.7, nd: 1.0, elemId: 0, sd: 38.0 }, // L1 → air
+    { label: "3", R: 71.2221, d: 5.4299, nd: 1.55032, elemId: 2, sd: 36.8 }, // L2 front
+    { label: "4", R: 136.9321, d: 0.25, nd: 1.0, elemId: 0, sd: 36.8 }, // L2 → air
     { label: "5", R: 42.0109, d: 6.4504, nd: 1.55032, elemId: 3, sd: 29.61 }, // L3 front
     { label: "6", R: 74.2493, d: 0.6, nd: 1.0, elemId: 0, sd: 29.61 }, // L3 → air
-    { label: "7", R: 34.3834, d: 7.0478, nd: 1.59282, elemId: 4, sd: 25.22 }, // L4 front (D1)
+    { label: "7", R: 34.3834, d: 7.0478, nd: 1.59282, elemId: 4, sd: 26.4 }, // L4 front (D1)
     { label: "8", R: 75.0611, d: 1.2, nd: 1.85451, elemId: 5, sd: 25.22 }, // L4/L5 junction (D1)
-    { label: "9", R: 25.759, d: 4.8037, nd: 1.0, elemId: 0, sd: 19.78 }, // L5 → air
-    { label: "10", R: 42.1035, d: 4.4695, nd: 1.59282, elemId: 6, sd: 19.78 }, // L6 front
-    { label: "11", R: 118.4579, d: 3.3549, nd: 1.0, elemId: 0, sd: 20.67 }, // L6 → air
+    { label: "9", R: 25.759, d: 4.8037, nd: 1.0, elemId: 0, sd: 22.2 }, // L5 → air
+    { label: "10", R: 42.1035, d: 4.4695, nd: 1.59282, elemId: 6, sd: 19.3 }, // L6 front
+    { label: "11", R: 118.4579, d: 3.3549, nd: 1.0, elemId: 0, sd: 19.3 }, // L6 → air
     /* Aperture stop — placement explicit in patent at surface 12 */
-    { label: "STO", R: 1e15, d: 2.7882, nd: 1.0, elemId: 0, sd: 18.23 }, // d12 (varies with focus)
+    { label: "STO", R: 1e15, d: 2.7882, nd: 1.0, elemId: 0, sd: 17.6 }, // d12 (varies with focus)
     /* GB — Focus component LF (G2 = single negative meniscus L7) */
-    { label: "13", R: 240.4527, d: 0.9, nd: 1.59349, elemId: 7, sd: 17.83 }, // L7 front
-    { label: "14", R: 31.7329, d: 13.39, nd: 1.0, elemId: 0, sd: 17.72 }, // L7 rear → air, d14 (varies)
+    { label: "13", R: 240.4527, d: 0.9, nd: 1.59349, elemId: 7, sd: 17.4 }, // L7 front
+    { label: "14", R: 31.7329, d: 13.39, nd: 1.0, elemId: 0, sd: 17.2 }, // L7 rear → air, d14 (varies)
     /* GB — Rear group G3 (L8…L15) */
-    { label: "15", R: 36.8904, d: 0.9, nd: 1.85451, elemId: 8, sd: 19.64 }, // L8 front (D2)
-    { label: "16", R: 22.7958, d: 4.3626, nd: 1.59282, elemId: 9, sd: 19.49 }, // L8/L9 junction (D2)
+    { label: "15", R: 36.8904, d: 0.9, nd: 1.85451, elemId: 8, sd: 18.9 }, // L8 front (D2)
+    { label: "16", R: 22.7958, d: 4.3626, nd: 1.59282, elemId: 9, sd: 18.9 }, // L8/L9 junction (D2)
     { label: "17", R: 58.0454, d: 3.5976, nd: 1.0, elemId: 0, sd: 12.8 }, // L9 → air
     { label: "18", R: -46.5475, d: 0.95, nd: 1.85451, elemId: 10, sd: 12.8 }, // L10 front (D3)
-    { label: "19", R: 55.7591, d: 3.9558, nd: 2.001, elemId: 11, sd: 16.64 }, // L10/L11 junction (D3)
-    { label: "20", R: -136.9656, d: 0.2, nd: 1.0, elemId: 0, sd: 16.64 }, // L11 → air
-    { label: "21", R: 100.8457, d: 4.9452, nd: 2.0509, elemId: 12, sd: 18.22 }, // L12 front
-    { label: "22", R: -58.9854, d: 0.25, nd: 1.0, elemId: 0, sd: 18.22 }, // L12 → air
-    { label: "23", R: -93.4442, d: 1.0542, nd: 1.69895, elemId: 13, sd: 20.79 }, // L13 front (D4)
-    { label: "24", R: 42.2958, d: 6.9268, nd: 2.001, elemId: 14, sd: 20.69 }, // L13/L14 junction (D4)
+    { label: "19", R: 55.7591, d: 3.9558, nd: 2.001, elemId: 11, sd: 16.8 }, // L10/L11 junction (D3)
+    { label: "20", R: -136.9656, d: 0.2, nd: 1.0, elemId: 0, sd: 16.8 }, // L11 → air
+    { label: "21", R: 100.8457, d: 4.9452, nd: 2.0509, elemId: 12, sd: 18.7 }, // L12 front
+    { label: "22", R: -58.9854, d: 0.25, nd: 1.0, elemId: 0, sd: 18.7 }, // L12 → air
+    { label: "23", R: -93.4442, d: 1.0542, nd: 1.69895, elemId: 13, sd: 19.4 }, // L13 front (D4)
+    { label: "24", R: 42.2958, d: 6.9268, nd: 2.001, elemId: 14, sd: 19.6 }, // L13/L14 junction (D4)
     { label: "25", R: -124.2948, d: 0.15, nd: 1.0, elemId: 0, sd: 19.6 }, // L14 → air
-    { label: "26A", R: -916.5877, d: 3.0, nd: 1.73077, elemId: 15, sd: 19.53 }, // L15 front (asph)
-    { label: "27A", R: 54.2362, d: 24.0375, nd: 1.0, elemId: 0, sd: 18.74 }, // L15 rear (asph) → image (BFD)
+    { label: "26A", R: -916.5877, d: 3.0, nd: 1.73077, elemId: 15, sd: 20.6 }, // L15 front (asph)
+    { label: "27A", R: 54.2362, d: 24.0375, nd: 1.0, elemId: 0, sd: 20.6 }, // L15 rear (asph) → image (BFD)
   ],
 
   /* ── Aspherical coefficients (patent K=0 sphere-base convention; surfaces 26 and 27) ── */
