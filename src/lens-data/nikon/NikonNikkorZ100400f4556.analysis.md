@@ -1,6 +1,6 @@
 # Patent Analysis: JP2022-92388A — NIKKOR Z 100-400mm f/4.5-5.6 VR S
 
-> **Companion data file:** `NikonZ100400f4556.data.ts` — zoom lens prescription for interactive SVG renderer.
+> **Companion data file:** `NikonNikkorZ100400f4556.data.ts` — zoom lens prescription for interactive SVG renderer.
 
 ## Patent Overview
 
@@ -95,7 +95,7 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 
 ## Glass Identification
 
-**Methodological limitation:** This patent provides only nd for each element — the Abbe number (νd) is not listed. For several elements, multiple catalog glasses share the same nd but have significantly different Abbe numbers. These ambiguous cases are marked with † below.
+**Methodological limitation:** This patent provides only nd for each element — the Abbe number (νd) is not listed. Where no exact catalog glass is available, the companion data file uses a six-digit nd/vd code annotation instead of forcing a mismatched catalog name.
 
 ### Super ED Elements (2 total)
 
@@ -109,35 +109,35 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 | Element | nd | Catalog Match | νd (est.) | Group |
 |---|---|---|---|---|
 | **L1** | 1.487490 | N-FK5 / S-FSL5 | 70.4 | G1 |
-| **L3** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G2 |
-| **L7** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G3 |
-| **L12** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
-| **L13** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G4 |
-| **L24** | 1.497820 | S-FPL53 (OHARA) | 81.1 | G7 |
+| **L3** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G2 |
+| **L7** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G3 |
+| **L12** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G4 |
+| **L13** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G4 |
+| **L24** | 1.497820 | S-FPL51 (OHARA) | 81.1 | G7 |
 
 ### Standard Glass Elements (17 total)
 
 | Element | nd | Catalog Match | νd (est.) | Power | Group |
 |---|---|---|---|---|---|
-| L4 | 1.804400 | S-LAH55V | 39.6 | Negative | G2 |
-| L6 | 1.720467 | S-LAL18 | 50.2 | Positive | G3 |
+| L4 | 1.804400 | S-LAH63 | 39.6 | Negative | G2 |
+| L6 | 1.720467 | 720502 code; no exact catalog match | 50.2 | Positive | G3 |
 | L8 | 1.741000 | S-LAM3 | 52.6 | Negative | G3 |
-| L9 | 1.854505 | S-LAH65V | 39.9 | Positive | G3 |
-| L10 † | 1.755000 | S-LAM60 *or* S-TIM27 | 52.3 or 27.6 | Negative | G3 |
+| L9 | 1.854505 | 855399 code; no exact catalog match | 39.9 | Positive | G3 |
+| L10 | 1.755000 | S-LAH97 | 52.3 | Negative | G3 |
 | L11 | 1.593190 | S-SK14 | 60.5 | Positive | G4 |
-| L14 † | 1.806100 | S-LAH55 *or* S-LAH64 | 40.9 or 46.6 | Negative | G4 |
-| L15 | 1.808090 | S-LAH51 | 22.8 | Positive | G4 |
-| L16 | 2.000690 | S-NPH2 | 25.5 | Negative | G4 |
-| L17 | 1.552981 | S-BSM14 | 55.5 | Positive | G4 (VR) |
+| L14 | 1.806100 | S-LAH53 | 40.9 | Negative | G4 |
+| L15 | 1.808090 | S-NPH1 | 22.8 | Positive | G4 |
+| L16 | 2.000690 | 001255 code; no exact catalog match | 25.5 | Negative | G4 |
+| L17 | 1.552981 | 553555 code; no exact catalog match | 55.5 | Positive | G4 (VR) |
 | L18 | 1.953750 | S-LAH99 | 32.3 | Negative | G4 (VR) |
-| L19 | 1.603420 | S-PHM52 | 56.4 | Positive | G4 |
-| L20 † | 1.850260 | S-LAH58 *or* S-LAH79 | 32.3 or 44.2 | Positive | G5 |
-| L21 | 1.729160 | S-LAM54 | 54.7 | Negative | G5 |
-| L22 † | 1.654115 | S-BSM71 *or* S-BAM12 | ~40 or ~54 | Positive | G6 |
-| L23 | 1.902650 | S-LAH97 | 35.4 | Negative | G6 |
-| L25 † | 1.738000 | S-LAH63 *or* S-NBH5 | ~50 or ~32 | Positive | G7 |
+| L19 | 1.603420 | 603564 code; no exact catalog match | 56.4 | Positive | G4 |
+| L20 | 1.850260 | 850323 code; no exact catalog match | 32.3 | Positive | G5 |
+| L21 | 1.729160 | S-LAL18 | 54.7 | Negative | G5 |
+| L22 | 1.654115 | S-NBH5 | 39.7 | Positive | G6 |
+| L23 | 1.902650 | 903354 code; no exact catalog match | 35.4 | Negative | G6 |
+| L25 | 1.738000 | 738493 code; no exact catalog match | 49.3 | Positive | G7 |
 
-† = ambiguous identification from nd alone. Preferred candidate selected based on optical role.
+Code-based entries retain the inferred nd/vd pair without forcing a mismatched Sellmeier catalog resolution. They can auto-upgrade if a future catalog entry with the same six-digit code is added.
 
 ---
 

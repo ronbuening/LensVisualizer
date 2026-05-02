@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **129** lenses scanned
 - **1475** glass surfaces examined
 - **1472** surfaces with non-empty `glass` strings
-- **874** of those resolved to a catalog entry
-- **250** mismatches found (28.6% of resolved surfaces)
-- **71** distinct lens files affected
+- **868** of those resolved to a catalog entry
+- **240** mismatches found (27.6% of resolved surfaces)
+- **70** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,17 +27,17 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-NPH2 | 17 | |
+| S-NPH2 | 16 | |
 | S-TIH14 | 15 | |
 | S-LAH79 | 12 | |
-| S-LAH58 | 9 | |
+| S-LAH58 | 8 | |
 | S-TIH18 | 8 | |
 | S-TIH6 | 7 | |
 | S-TIM25 | 7 | |
-| S-LAM54 | 6 | |
 | S-NPH4 | 6 | |
-| S-LAH65V | 6 | |
+| S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
+| S-LAH65V | 5 | |
 | S-BAL14 | 5 | |
 | S-NBH55 | 5 | |
 | S-LAL14 | 5 | |
@@ -59,39 +59,39 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAL8 | 3 | |
 | S-NPH1 | 3 | |
 | S-TIH53 | 3 | |
-| S-LAH51 | 3 | |
 | S-LAH60 | 3 | |
 | S-TIH4 | 3 | |
 | SF6 | 3 | |
-| S-PHM52 | 3 | |
-| S-LAL18 | 2 | |
 | S-BAL35 | 2 | |
 | S-LAL9 | 2 | |
 | S-BSM81 | 2 | |
-| S-BSM14 | 2 | |
 | S-BSL7 | 2 | |
+| S-LAH51 | 2 | |
 | S-LAH89 | 2 | |
 | S-LAH65 | 2 | |
 | N-SK14 | 2 | |
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
 | S-LAM66 | 2 | |
-| S-LAH63 | 2 | |
 | SF4 | 2 | |
 | N-SK16 | 2 | |
 | S-BSM18 | 2 | |
 | S-NBH51 | 2 | |
-| S-LAH97 | 2 | |
 | S-NBH52 | 2 | |
 | S-LAH55VS | 2 | |
+| S-PHM52 | 2 | |
 | S-LAH52 | 1 | |
+| S-LAL18 | 1 | |
 | S-LAH55V | 1 | |
+| S-BSM14 | 1 | |
 | S-LAH59 | 1 | |
 | S-FPM2 | 1 | |
+| S-LAH63 | 1 | |
 | TAFD33 | 1 | |
 | S-NSL3 | 1 | |
 | TAFD30 | 1 | |
 | S-LAH53 | 1 | |
+| S-LAH97 | 1 | |
 | S-PHM53 | 1 | |
 | S-LAH55 | 1 | |
 | TAFD37 | 1 | |
@@ -444,21 +444,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 4 | `SF4 / PBM5 (dense flint)` | SF4 | 1.64831 | 1.75520 | +0.1069 |
 | 6 | `SF6 / PBM6 (dense flint)` | SF6 | 1.69895 | 1.80518 | +0.1062 |
 | 9 | `SK16 / BSL7 (barium crown)` | N-SK16 | 1.67790 | 1.62041 | -0.0575 |
-
-### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts)
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 10 | `S-LAL18 (OHARA)` | S-LAL18 | 1.72047 | 1.72916 | +0.0087 |
-| 14 | `S-LAH65V (OHARA)` | S-LAH65V | 1.85451 | 1.80400 | -0.0505 |
-| 27 | `S-LAH51 (OHARA)` | S-LAH51 | 1.80809 | 1.78590 | -0.0222 |
-| 29 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00069 | 1.92286 | -0.0778 |
-| 31 | `S-BSM14 (OHARA)` | S-BSM14 | 1.55298 | 1.60311 | +0.0501 |
-| 34 | `S-PHM52 (OHARA)` | S-PHM52 | 1.60342 | 1.61800 | +0.0146 |
-| 36 | `S-LAH58 (OHARA) †` | S-LAH58 | 1.85026 | 1.88300 | +0.0327 |
-| 37 | `S-LAM54 (OHARA)` | S-LAM54 | 1.72916 | 1.75700 | +0.0278 |
-| 41 | `S-LAH97 (OHARA)` | S-LAH97 | 1.90265 | 1.75500 | -0.1476 |
-| 45 | `S-LAH63 (OHARA) †` | S-LAH63 | 1.73800 | 1.80440 | +0.0664 |
 
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts)
 
