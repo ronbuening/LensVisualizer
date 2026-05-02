@@ -23,8 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-02",
     type: "lens",
-    summary:
-      "Added Sony FE 85mm f/1.4 GM II and FE 135mm f/1.8 GM",
+    summary: "Added Sony FE 85mm f/1.4 GM II and FE 135mm f/1.8 GM",
   },
   // ── 2026-05-01 ──────────────────────────────────────────────────────────
   {
