@@ -79,7 +79,7 @@ G1 is mechanically fixed during focusing but translates toward the object during
 G2 is the powerful negative variator that creates the zoom magnification change. Its short focal length (−16.5 mm) gives it very high magnification sensitivity — small movements produce large focal-length changes. G2 contains four air-spaced elements, making it the densest single-group corrector in the design.
 
 **L21 — Negative Meniscus** (nd = 1.9538, vd = 32.33)
-Glass: S-LAH79 equivalent (lanthanum dense flint). Convex toward the object, this is one of the highest-index glasses in the design. The very high nd (1.954) allows a strongly curved rear surface (R = 19.0 mm) while keeping the front radius gentle (R = 236.0 mm), distributing aberration contribution favorably. L21 provides the dominant negative power of G2 (f ≈ −21.7 mm).
+Glass: code 954323, an ultra-high-index lanthanum glass in the S-LAH98 / TAFD45 family. Convex toward the object, this is one of the highest-index glasses in the design. The very high nd (1.954) allows a strongly curved rear surface (R = 19.0 mm) while keeping the front radius gentle (R = 236.0 mm), distributing aberration contribution favorably. L21 provides the dominant negative power of G2 (f ≈ −21.7 mm).
 
 **L22 — Biconcave Negative** (nd = 1.7550, vd = 52.33)
 Glass: N-LAK33B equivalent (Schott lanthanum crown; nd = 1.75500, vd = 52.32). This element contributes additional negative power (f ≈ −36.7 mm) and, importantly, provides a different dispersion characteristic from L21. The combination of L21 (low vd) and L22 (moderate vd) with L23 (very low vd) enables fine chromatic balance across the zoom range where G2's magnification — and therefore its chromatic contribution — varies dramatically.
@@ -95,20 +95,20 @@ Glass: TAFD25 equivalent (HOYA lanthanum dense flint; nd = 1.81600, vd = 46.62).
 G3 is the first relay group after the stop and serves a dual role: it collects the divergent beam from G2 and contains the vibration-reduction (VR) sub-group. The aperture stop (surface 15) is placed immediately ahead of G3 — a 2.0 mm air gap separates the stop from L31.
 
 **L31 — Biconvex Positive** (nd = 1.9027, vd = 35.72)
-Glass: TAFD30 equivalent (HOYA lanthanum dense flint; nd = 1.90265, vd = 35.70). A strong positive element (f ≈ +38.8 mm) that begins reconverging the beam after the stop. The very high refractive index keeps surface curvatures moderate despite the short focal length, controlling spherical aberration at the maximum aperture.
+Glass: code 903357, high-index lanthanum flint. A strong positive element (f ≈ +38.8 mm) that begins reconverging the beam after the stop. The very high refractive index keeps surface curvatures moderate despite the short focal length, controlling spherical aberration at the maximum aperture.
 
 **L32 + L33 — Cemented Doublet (VR Sub-Group)** (combined f ≈ +67.7 mm)
 
 This cemented pair constitutes the **vibration-reduction element**. During image stabilization, the doublet decenters perpendicular to the optical axis, translating the image on the sensor to compensate for camera shake.
 
-- **L32 — Negative Meniscus** (nd = 2.0010, vd = 29.12): Glass S-NPH53 equivalent. This is the **highest-index glass in the entire lens** (nd = 2.001). The extreme refractive index allows the cemented interface to carry strong corrective power while the outer surfaces remain at manageable curvatures. L32's negative power (f ≈ −48.7 mm thin-lens) partially offsets L33's positive contribution.
+- **L32 — Negative Meniscus** (nd = 2.0010, vd = 29.12): Glass code 001291, an ultra-high-index dense flint. This is the **highest-index glass in the entire lens** (nd = 2.001). The extreme refractive index allows the cemented interface to carry strong corrective power while the outer surfaces remain at manageable curvatures. L32's negative power (f ≈ −48.7 mm thin-lens) partially offsets L33's positive contribution.
 
 - **L33 — Biconvex Positive** (nd = 1.5796, vd = 53.74): Glass N-BAF4 equivalent (Schott barium flint; nd = 1.57957, vd = 53.71). L33 provides the dominant positive power (f ≈ +28.3 mm thin-lens) that makes the cemented pair net-positive. The large nd step at the cemented interface (2.001 → 1.580, Δnd = 0.421) creates very strong refractive power at surface 19 (R = 20.9 mm), which is the primary correcting surface for lateral color during VR decentering.
 
 The combined doublet is positive (f ≈ +67.7 mm), which is characteristic of Nikon's VR implementations — a positive VR group produces image shift in the same direction as the decentration, simplifying the control algorithm. The patent specifically identifies this doublet as the "防振群" (vibration-compensation group).
 
 **L34 — Negative Meniscus** (nd = 1.9538, vd = 32.33)
-Glass: S-LAH79 equivalent (same as L21). Concave toward the object, L34 provides negative power (f ≈ −42.5 mm) that partially compensates for L31's strong convergence, reducing the beam divergence angle entering G4. This Petzval-flattening role is critical — without it, the strong positive power of L31 and the L32/L33 doublet would produce excessive inward-curving field curvature.
+Glass: code 954323, same ultra-high-index lanthanum family as L21. Concave toward the object, L34 provides negative power (f ≈ −42.5 mm) that partially compensates for L31's strong convergence, reducing the beam divergence angle entering G4. This Petzval-flattening role is critical — without it, the strong positive power of L31 and the L32/L33 doublet would produce excessive inward-curving field curvature.
 
 ### Group 4: Positive Relay with Aspherical ED (L41–L44, f = +28.9 mm)
 
@@ -124,9 +124,9 @@ G4 is the strongest positive group in the design (f = +28.9 mm) and contains two
 
 This is the most technically demanding element pair in the lens:
 
-- **L43 — Negative Meniscus** (nd = 1.9538, vd = 32.33): Glass S-LAH79 equivalent. Convex toward the object, L43 provides the high-dispersion counterpart to L44's ED glass. The thin-lens focal length is approximately −31.0 mm.
+- **L43 — Negative Meniscus** (nd = 1.9538, vd = 32.33): Glass code 954323, the same ultra-high-index lanthanum family as L21 and L34. Convex toward the object, L43 provides the high-dispersion counterpart to L44's ED glass. The thin-lens focal length is approximately −31.0 mm.
 
-- **L44 — Biconvex Positive, rear surface aspherical** (nd = 1.4971, vd = 81.49): Glass **S-FPL51** equivalent (Ohara fluorophosphate crown). This is the lens's **aspherical ED element** — the special element Nikon highlights in the product's marketing literature. S-FPL51 (nd = 1.49700, vd = 81.54, residuals Δnd = 0.0001, Δvd = 0.05) is a high-grade fluorophosphate ED glass exhibiting anomalous partial dispersion (APD): its P(g,F) value deviates approximately +0.028 above the normal glass line, enabling superior secondary spectrum correction that ordinary crown-flint achromats cannot achieve.
+- **L44 — Biconvex Positive, rear surface aspherical** (nd = 1.4971, vd = 81.49): Glass **S-FPL51** (Ohara fluorophosphate crown). This is the lens's **aspherical ED element** — the special element Nikon highlights in the product's marketing literature. S-FPL51 (nd = 1.49700, vd = 81.54, residuals Δnd = 0.0001, Δvd = 0.05) is a high-grade fluorophosphate ED glass exhibiting anomalous partial dispersion (APD): its P(g,F) value deviates approximately +0.028 above the normal glass line, enabling superior secondary spectrum correction that ordinary crown-flint achromats cannot achieve.
 
   The aspherical surface (surface 28) has a spherical base curve (K = 0) with polynomial correction terms through A12. At a semi-diameter of 8 mm, the aspherical departure from the base sphere is approximately +0.110 mm — a substantial correction that primarily targets residual spherical aberration and coma in the converging beam toward the image. The positive departure (surface becomes less concave at the rim) flattens the wavefront error across the pupil.
 
@@ -136,9 +136,9 @@ This is the most technically demanding element pair in the lens:
 
 G5 is a single cemented doublet that constitutes the **focus group**. The patent states that focusing from infinity to close range is accomplished by moving G5 toward the image plane. G5's negative power means it acts as a diverging relay — as it moves rearward, the divergence increases, shortening the effective back focal distance and shifting the conjugate to a closer object distance.
 
-- **L51 — Biconvex Positive** (nd = 1.8467, vd = 23.80): Glass TAFD37 equivalent (HOYA dense flint; nd = 1.84666, vd = 23.78). The extremely low Abbe number (23.80) makes this a **high-dispersion element** — paired with L52, the two form an achromatized doublet that minimizes focus-dependent chromatic shift (focus breathing in color).
+- **L51 — Biconvex Positive** (nd = 1.8467, vd = 23.80): Glass S-TIH53 (Ohara; nd = 1.84666, vd = 23.78). The extremely low Abbe number (23.80) makes this a **high-dispersion element** — paired with L52, the two form an achromatized doublet that minimizes focus-dependent chromatic shift (focus breathing in color).
 
-- **L52 — Biconcave Negative, rear surface aspherical** (nd = 1.8514, vd = 40.13): Glass TAFD33 equivalent (HOYA lanthanum dense flint; nd = 1.85135, vd = 40.10). The aspherical surface (surface 31, K = 0) provides a modest but critical correction: at h = 8 mm, the departure is approximately −0.016 mm. This small correction targets the residual spherical aberration that would otherwise vary during focusing, ensuring consistent image quality from infinity to the 0.5 m close-focus distance.
+- **L52 — Biconcave Negative, rear surface aspherical** (nd = 1.8514, vd = 40.13): Glass code 851401, a dense lanthanum flint near S-LAH89 but not catalog-resolved in the current data set. The aspherical surface (surface 31, K = 0) provides a modest but critical correction: at h = 8 mm, the departure is approximately −0.016 mm. This small correction targets the residual spherical aberration that would otherwise vary during focusing, ensuring consistent image quality from infinity to the 0.5 m close-focus distance.
 
 The focus travel analysis reveals the mechanical elegance of this design:
 
@@ -159,7 +159,7 @@ G6's combined focal length is approximately −15,600 mm — effectively near-af
 Glass: Lanthanum dense flint (nearest catalog match: CDGM H-LAF3, nd = 1.82080, vd = 42.41, Δvd = 0.10 — identification uncertain). Concave toward the object, L61 is positioned in the rear of the lens where off-axis ray heights are substantial. Its aspherical rear surface (surface 33, K = 0) corrects field curvature and astigmatism at the image periphery. At h = 8 mm, the aspherical departure is −0.012 mm — a subtle correction that bends the tangential and sagittal focal surfaces toward a common plane.
 
 **L62 — Biconvex Positive** (nd = 1.6838, vd = 37.57)
-Glass: S-TIM22 equivalent (titanium flint). The final optical element before the image plane. Despite being a "positive" element (f ≈ +101 mm), its weak power contributes minimally to the focal length. Its primary function is to complete the air-lens correction started by L61: the shape factor of the air lens between L61 and L62 is specified by patent condition (12), which controls field curvature at the wide end. The patent's computed value for Example 1 is 0.931 — confirming the concave-to-convex air lens profile that opposes the Petzval curvature of the preceding groups.
+Glass: code 684376, a titanium flint not catalog-resolved in the current data set. The final optical element before the image plane. Despite being a "positive" element (f ≈ +101 mm), its weak power contributes minimally to the focal length. Its primary function is to complete the air-lens correction started by L61: the shape factor of the air lens between L61 and L62 is specified by patent condition (12), which controls field curvature at the wide end. The patent's computed value for Example 1 is 0.931 — confirming the concave-to-convex air lens profile that opposes the Petzval curvature of the preceding groups.
 
 G6 moves as a unit with the aperture stop and G3 during zooming. This linked motion means the field-correction characteristics of G6 track with the pupil position defined by the stop, maintaining consistent edge-to-edge performance across the zoom range.
 
@@ -216,13 +216,13 @@ Located near the image plane where off-axis ray heights are large, this surface 
 
 The design uses 15 distinct glass types across 19 elements (with three types shared: L11=L42, L12=L13, L21=L34=L43). The glass map coverage reveals a deliberate strategy:
 
-**Ultra-high-index glasses (nd > 1.90):** Eight of the nineteen elements use glasses with nd > 1.90, including the remarkable S-NPH53 (nd = 2.001) in L32. This pervasive use of ultra-high-index glass is the key enabler of the lens's compact size — high refractive indices reduce surface curvatures for a given power, which simultaneously reduces higher-order aberrations and allows thinner elements.
+**Ultra-high-index glasses (nd > 1.90):** Eight of the nineteen elements use glasses with nd > 1.90, including the remarkable 001291-code glass (nd = 2.001) in L32. This pervasive use of ultra-high-index glass is the key enabler of the lens's compact size — high refractive indices reduce surface curvatures for a given power, which simultaneously reduces higher-order aberrations and allows thinner elements.
 
 **High-dispersion glasses (vd < 25):** L23 (vd = 20.88) and L51 (vd = 23.80) occupy the extreme flint corner of the glass map. These elements provide the chromatic "leverage" that allows the design to achieve achromatization with fewer correcting elements. L23 in the variator (G2) is particularly critical — the zoom-dependent chromatic shift must be nulled across a nearly 8× magnification change, and only a glass with extreme dispersion can do this efficiently.
 
 **ED glasses (vd > 63):** L12, L13, and L44 occupy the low-dispersion crown region. L44's S-FPL51 (nd = 1.497, vd = 81.49) is a premium fluorophosphate crown glass, exhibiting anomalous partial dispersion that corrects the secondary spectrum (the residual g-line/F-line chromatic error that persists after ordinary achromatization). L12 and L13 use a more moderate ED glass (nd = 1.593, vd = 67.90) that provides partial secondary-spectrum correction in the front group, where the beam diameter is largest.
 
-**Anomalous Partial Dispersion (APD):** L44 (S-FPL51) exhibits positive APD, with ΔP(g,F) ≈ +0.028 above the normal glass line. When cemented to L43 (S-LAH79, a normal-dispersion lanthanum flint), the partial-dispersion mismatch cancels the secondary spectrum that would otherwise limit telephoto-end resolution at short visible wavelengths.
+**Anomalous Partial Dispersion (APD):** L44 (S-FPL51) exhibits positive APD, with ΔP(g,F) ≈ +0.028 above the normal glass line. When cemented to L43 (954323-code lanthanum flint), the partial-dispersion mismatch cancels the secondary spectrum that would otherwise limit telephoto-end resolution at short visible wavelengths.
 
 ---
 
@@ -262,7 +262,7 @@ Condition (6) is particularly noteworthy: a value of −0.114 means the combined
 | L12 | G1 | PCD4 (vd = 67.90) | Extra-low dispersion | ED element |
 | L13 | G1 | PCD4 (vd = 67.90) | Extra-low dispersion | ED element |
 | L44 | G4 | S-FPL51 (vd = 81.49) | ED + aspherical (surface 28) + APD | Aspherical ED element |
-| L52 | G5 | TAFD33 (vd = 40.13) | Aspherical (surface 31) | Aspherical element |
+| L52 | G5 | 851401-code dense lanthanum flint (vd = 40.13) | Aspherical (surface 31) | Aspherical element |
 | L61 | G6 | Lanthanum flint (vd = 42.51) | Aspherical (surface 33) | Aspherical element |
 
 This yields the production specification: **2 ED elements + 1 aspherical ED element + 2 aspherical elements**.
@@ -275,7 +275,7 @@ The design exhibits several features consistent with Nikon's cost-conscious posi
 
 - **Glass molding potential:** L44's fluorophosphate glass (S-FPL51) has a low transformation temperature suitable for precision glass molding (PGM), which is the likely manufacturing method for the aspherical surface. L61 and L52 use lanthanum glasses that are also PGM-compatible.
 
-- **Repeated glass types:** Three elements use S-LAH79 (L21, L34, L43), two use TAFD45 (L11, L42), and two use PCD4 (L12, L13). These three shared types reduce the unique glass procurement lines from 19 elements to 15 distinct melts.
+- **Repeated glass types:** Three elements use the 954323-code ultra-high-index lanthanum family (L21, L34, L43), two use the 190366/3127 dense-flint family (L11, L42), and two use PCD4-class ED glass (L12, L13). These three shared types reduce the unique glass procurement lines from 19 elements to 15 distinct melts.
 
 - **All conic constants are zero:** The three aspherical surfaces use pure polynomial corrections on spherical base curves, which simplifies both the molding tooling and the testing metrology (interferometric null testing against a sphere, with the polynomial departure measured differentially).
 
