@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **129** lenses scanned
 - **1475** glass surfaces examined
 - **1472** surfaces with non-empty `glass` strings
-- **880** of those resolved to a catalog entry
-- **258** mismatches found (29.3% of resolved surfaces)
-- **72** distinct lens files affected
+- **874** of those resolved to a catalog entry
+- **250** mismatches found (28.6% of resolved surfaces)
+- **71** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -29,7 +29,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|
 | S-NPH2 | 17 | |
 | S-TIH14 | 15 | |
-| S-LAH79 | 15 | |
+| S-LAH79 | 12 | |
 | S-LAH58 | 9 | |
 | S-TIH18 | 8 | |
 | S-TIH6 | 7 | |
@@ -37,14 +37,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM54 | 6 | |
 | S-NPH4 | 6 | |
 | S-LAH65V | 6 | |
-| S-TIM22 | 6 | |
 | S-LAM51 | 5 | |
 | S-BAL14 | 5 | |
-| S-NPH53 | 5 | |
 | S-NBH55 | 5 | |
 | S-LAL14 | 5 | |
 | S-NBH8 | 5 | |
 | S-NBH56 | 5 | |
+| S-TIM22 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
 | S-LAH64 | 4 | |
@@ -52,6 +51,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH66 | 4 | |
 | S-BAM4 | 4 | |
 | S-BAL42 | 4 | |
+| S-NPH53 | 4 | |
 | S-TIM2 | 4 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
@@ -77,24 +77,24 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH5 | 2 | |
 | S-LAM66 | 2 | |
 | S-LAH63 | 2 | |
-| TAFD33 | 2 | |
 | SF4 | 2 | |
 | N-SK16 | 2 | |
-| TAFD30 | 2 | |
 | S-BSM18 | 2 | |
 | S-NBH51 | 2 | |
 | S-LAH97 | 2 | |
-| TAFD37 | 2 | |
 | S-NBH52 | 2 | |
 | S-LAH55VS | 2 | |
 | S-LAH52 | 1 | |
 | S-LAH55V | 1 | |
 | S-LAH59 | 1 | |
 | S-FPM2 | 1 | |
+| TAFD33 | 1 | |
 | S-NSL3 | 1 | |
+| TAFD30 | 1 | |
 | S-LAH53 | 1 | |
 | S-PHM53 | 1 | |
 | S-LAH55 | 1 | |
+| TAFD37 | 1 | |
 
 ## Mismatches by lens
 
@@ -468,19 +468,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 8 | `S-TIM35 (OHARA) or K-VC89 (Sumita)` | S-TIM35 | 1.85451 | 1.69895 | -0.1556 |
 | 19 | `S-LAH58 (OHARA)` | S-LAH58 | 1.90043 | 1.88300 | -0.0174 |
 | 22 | `S-TIM25 (OHARA)` | S-TIM25 | 1.78472 | 1.67270 | -0.1120 |
-
-### [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts)
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-LAH79 (195375/3233)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
-| 16 | `TAFD30 equiv. (190265/3572)` | TAFD30 | 1.90265 | 1.88300 | -0.0196 |
-| 18 | `S-NPH53 (200100/2912)` | S-NPH53 | 2.00100 | 1.84666 | -0.1543 |
-| 21 | `S-LAH79 (195375/3233)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
-| 26 | `S-LAH79 (195375/3233)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
-| 29 | `TAFD37 equiv. (184666/2380)` | TAFD37 | 1.84666 | 1.90043 | +0.0538 |
-| 30 | `TAFD33 equiv. (185135/4013)` | TAFD33 | 1.85135 | 1.88100 | +0.0297 |
-| 34 | `S-TIM22 equiv. (168376/3757)` | S-TIM22 | 1.68376 | 1.64769 | -0.0361 |
 
 ### [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts)
 

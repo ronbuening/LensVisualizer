@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 258 mismatched surfaces across 166 unique groups.
+**Scope**: 250 mismatched surfaces across 162 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -432,13 +432,6 @@ Surfaces:
 
 Surfaces:
 - [NIKON NIKKOR-S AUTO 50mm f/1.4](../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) `9`: `SK16 / BSL7 (barium crown)`
-
-## stored (nd=1.68376, vd=37.57)  — 1 surface, current label resolves to S-TIM22
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `34`: `S-TIM22 equiv. (168376/3757)`
 
 ## stored (nd=1.68893, vd=31.07)  — 1 surface, current label resolves to S-TIM25
 
@@ -1053,15 +1046,6 @@ Candidates:
 Surfaces:
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) `18`: `S-NPH4 (OHARA high-index dense flint)`
 
-## stored (nd=1.84666, vd=23.80)  — 1 surface, current label resolves to TAFD37
-
-Candidates:
-- **S-NPH53** (nd=1.84666, vd=23.88, Δnd=-0.0000, Δvd=+0.08)
-- **S-TIH53** (nd=1.84666, vd=23.78, Δnd=-0.0000, Δvd=-0.02)
-
-Surfaces:
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `29`: `TAFD37 equiv. (184666/2380)`
-
 ## stored (nd=1.85026, vd=32.30)  — 1 surface, current label resolves to S-LAH58
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -1076,14 +1060,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `27A`: `Probable S-LAH97 (OHARA)`
-
-## stored (nd=1.85135, vd=40.13)  — 1 surface, current label resolves to TAFD33
-
-Candidates:
-- **S-LAH89** (nd=1.85150, vd=40.78, Δnd=+0.0001, Δvd=+0.65)
-
-Surfaces:
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `30`: `TAFD33 equiv. (185135/4013)`
 
 ## stored (nd=1.85150, vd=40.80) [code=852/408]  — 2 surfaces, current label resolves to S-LAH66
 
@@ -1217,15 +1193,6 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) `41`: `S-LAH97 (OHARA)`
 
-## stored (nd=1.90265, vd=35.72)  — 1 surface, current label resolves to TAFD30
-
-Candidates:
-- **TAFD37** (nd=1.90043, vd=37.37, Δnd=-0.0022, Δvd=+1.65)
-- **TAFD37A** (nd=1.90043, vd=37.37, Δnd=-0.0022, Δvd=+1.65)
-
-Surfaces:
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `16`: `TAFD30 equiv. (190265/3572)`
-
 ## stored (nd=1.90265, vd=35.80)  — 1 surface, current label resolves to S-LAH79
 
 Candidates:
@@ -1333,23 +1300,20 @@ Surfaces:
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `9`: `S-LAH79 (OHARA)`
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) `25`: `S-LAH79 (OHARA ultra-high-index lanthanum)`
 
-## stored (nd=1.95375, vd=32.33)  — 5 surfaces, current label resolves to S-LAH79
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `7`: `S-LAH79 (195375/3233)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `21`: `S-LAH79 (195375/3233)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `26`: `S-LAH79 (195375/3233)`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `19`: `S-LAH79 (OHARA)`
-- [NIKON NIKKOR Z 35mm f/1.8 S](../src/lens-data/nikon/NikonZ35f18S.data.ts) `3`: `S-LAH79 (OHARA)`
-
 ## stored (nd=1.95375, vd=32.30) [code=954/323]  — 1 surface, current label resolves to S-LAH79
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `9`: `S-LAH79 (954323, OHARA S-LAH79)`
+
+## stored (nd=1.95375, vd=32.33)  — 2 surfaces, current label resolves to S-LAH79
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `19`: `S-LAH79 (OHARA)`
+- [NIKON NIKKOR Z 35mm f/1.8 S](../src/lens-data/nikon/NikonZ35f18S.data.ts) `3`: `S-LAH79 (OHARA)`
 
 ## stored (nd=1.95906, vd=17.47) [PgF=0.6614 (dPgF=0.0470)]  — 2 surfaces, current label resolves to S-NPH53
 
@@ -1391,7 +1355,7 @@ Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `32`: `S-NPH2 (OHARA)`
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) `6`: `S-NPH2 (OHARA) — HRI`
 
-## stored (nd=2.00100, vd=29.12)  — 4 surfaces, current label resolves to S-NPH2
+## stored (nd=2.00100, vd=29.12)  — 3 surfaces, current label resolves to S-NPH2
 
 Candidates:
 - **S-LAH79** (nd=2.00330, vd=28.27, Δnd=+0.0023, Δvd=-0.85)
@@ -1399,7 +1363,6 @@ Candidates:
 Surfaces:
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) `29`: `OHARA S-NPH2`
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) `40`: `OHARA S-NPH2`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `18`: `S-NPH53 (200100/2912)`
 - [NIKON NIKKOR Z 28mm f/2.8](../src/lens-data/nikon/NikonZ28f28.data.ts) `6`: `S-NPH1 (OHARA)`
 
 ## stored (nd=2.05090, vd=26.90)  — 2 surfaces, current label resolves to S-NPH2
@@ -1414,5 +1377,5 @@ Surfaces:
 
 ## Summary
 
-- **92** (nd, vd) groups have at least one candidate (148 surfaces) — actionable relabels.
-- **74** (nd, vd) groups have NO candidate (110 surfaces) — needs patent verification or Unmatched relabeling.
+- **89** (nd, vd) groups have at least one candidate (144 surfaces) — actionable relabels.
+- **73** (nd, vd) groups have NO candidate (106 surfaces) — needs patent verification or Unmatched relabeling.
