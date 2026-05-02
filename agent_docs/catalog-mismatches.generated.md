@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **129** lenses scanned
 - **1475** glass surfaces examined
 - **1472** surfaces with non-empty `glass` strings
-- **885** of those resolved to a catalog entry
-- **265** mismatches found (29.9% of resolved surfaces)
-- **73** distinct lens files affected
+- **880** of those resolved to a catalog entry
+- **258** mismatches found (29.3% of resolved surfaces)
+- **72** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -37,12 +37,9 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM54 | 6 | |
 | S-NPH4 | 6 | |
 | S-LAH65V | 6 | |
-| S-BAM4 | 6 | |
 | S-TIM22 | 6 | |
-| S-LAH64 | 5 | |
 | S-LAM51 | 5 | |
 | S-BAL14 | 5 | |
-| S-BAL42 | 5 | |
 | S-NPH53 | 5 | |
 | S-NBH55 | 5 | |
 | S-LAL14 | 5 | |
@@ -50,20 +47,23 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH56 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
+| S-LAH64 | 4 | |
 | S-TIM27 | 4 | |
-| S-TIH53 | 4 | |
 | S-LAH66 | 4 | |
-| S-LAH51 | 4 | |
+| S-BAM4 | 4 | |
+| S-BAL42 | 4 | |
 | S-TIM2 | 4 | |
-| S-PHM52 | 4 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
 | S-TIM28 | 3 | |
 | S-LAL8 | 3 | |
 | S-NPH1 | 3 | |
+| S-TIH53 | 3 | |
+| S-LAH51 | 3 | |
 | S-LAH60 | 3 | |
 | S-TIH4 | 3 | |
 | SF6 | 3 | |
+| S-PHM52 | 3 | |
 | S-LAL18 | 2 | |
 | S-BAL35 | 2 | |
 | S-LAL9 | 2 | |
@@ -459,18 +459,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 37 | `S-LAM54 (OHARA)` | S-LAM54 | 1.72916 | 1.75700 | +0.0278 |
 | 41 | `S-LAH97 (OHARA)` | S-LAH97 | 1.90265 | 1.75500 | -0.1476 |
 | 45 | `S-LAH63 (OHARA) †` | S-LAH63 | 1.73800 | 1.80440 | +0.0664 |
-
-### [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts)
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-BAM4 (OHARA)` | S-BAM4 | 1.69370 | 1.60562 | -0.0881 |
-| 3 | `S-BAM4 (OHARA)` | S-BAM4 | 1.69370 | 1.60562 | -0.0881 |
-| 7 | `S-TIH53 (OHARA)` | S-TIH53 | 1.90265 | 1.84666 | -0.0560 |
-| 9 | `S-PHM52 (OHARA)` | S-PHM52 | 1.59349 | 1.61800 | +0.0245 |
-| 12 | `S-BAL42 (OHARA)` | S-BAL42 | 1.56883 | 1.58313 | +0.0143 |
-| 22 | `S-LAH51 (OHARA)` | S-LAH51 | 1.79500 | 1.78590 | -0.0091 |
-| 26A | `Lanthanum flint (catalog uncertain; near S-LAH64)` | S-LAH64 | 1.76546 | 1.78800 | +0.0225 |
 
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts)
 

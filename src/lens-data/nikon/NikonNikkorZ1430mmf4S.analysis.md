@@ -68,13 +68,13 @@ The total track length (first surface to image plane) decreases from 126.5 mm at
 ### Group G1 — Front Negative Group (4 elements, 4 sub-groups)
 
 **L11 — Negative meniscus, convex toward object**
-- nd = 1.69370, νd = 53.32 — Glass: S-BAM4 (OHARA) or E-BAC5 (HOYA)
+- nd = 1.69370, νd = 53.32 — Glass: high-index crown, patent code 694533
 - Surfaces: S1 (R = +190.754) / S2★ (R = +18.810, aspherical)
 - Focal length: f = −30.3 mm
 - Role: L11 is the outermost element and the first surface the incoming light encounters. Its very weak convex front surface (R = +190.8 mm, nearly flat) is a defining feature of this design — it enables the production lens to accept 82 mm screw-in filters, a breakthrough for 14 mm coverage. The nearly flat front is unusual for ultra-wide zooms, which traditionally require a large-radius bulbous front element. The aspherical rear surface (S2) carries a strong negative departure (approximately −4.5 mm at the edge) that compensates for the under-corrected spherical aberration and coma that would otherwise result from the weak front curvature. The aspherical profile uses a paraboloidal base (K = −1.0) with A4 through A10 polynomial terms. The glass choice is a mid-index crown (nd ≈ 1.69, νd ≈ 53) that balances mechanical strength for the exposed front element with acceptable dispersion.
 
 **L12 — Negative meniscus, convex toward object**
-- nd = 1.69370, νd = 53.32 — Glass: S-BAM4 / E-BAC5 (same as L11)
+- nd = 1.69370, νd = 53.32 — Glass: high-index crown, patent code 694533 (same as L11)
 - Surfaces: S3 (R = +51.563) / S4★ (R = +22.702, aspherical)
 - Focal length: f = −61.0 mm
 - Role: L12 continues the diverging action of G1 and shares the same glass type as L11. Its aspherical rear surface (S4) provides a large positive departure at the rim (approximately +2.5 mm at h = 15 mm), which acts in opposition to the negative departure on S2. Together, the L11 and L12 aspheres form a matched correction pair: S2 flattens the wavefront excessively in one direction, and S4 partially restores it, with the net effect being precise control over wide-angle field curvature and distortion at the extreme margin of the field. The non-zero A12 coefficient (−5.615 × 10⁻¹⁵) indicates that higher-order correction extending to 12th-order is needed. The S4 polynomial causes the surface slope to exceed 59° at h ≈ 15 mm, limiting the usable clear aperture of this element to roughly 15 mm semi-diameter — well below the paraxial beam estimate.
@@ -86,7 +86,7 @@ The total track length (first surface to image plane) decreases from 126.5 mm at
 - Role: L13 is the only ED glass element in the front group. Its extremely low dispersion (νd = 82.57) provides chromatic correction where it matters most — at the point in the system where the marginal ray height is large and the angular subtense from different field points creates maximum lateral color. In a negative-lead zoom, placing ED glass in the front negative group is essential to control lateral chromatic aberration across the wide zoom range. The S-FPL51 fluorophosphate glass has anomalous partial dispersion (positive ΔPgF) that bends the secondary spectrum correction beyond what normal crown/flint pairing can achieve.
 
 **L14 — Positive meniscus, concave toward image**
-- nd = 1.90265, νd = 35.73 — Glass: S-TIH53 (OHARA) or TAFD25 (HOYA)
+- nd = 1.90265, νd = 35.73 — Glass: dense flint, patent code 903357
 - Surfaces: S7 (R = +32.608) / S8 (R = +296.586)
 - Focal length: f = +40.3 mm
 - Role: L14 is the rear element of G1 and the sole positive element in the group. Both surfaces have R > 0 (centers of curvature to the right), forming a meniscus that presents its concave face toward the image — a shape the patent confirms. The very long rear radius (R = +296.6 mm) means the concave image-side face is nearly flat, giving the element an effectively plano-convex character. Its very high refractive index (nd = 1.90) combined with a low Abbe number (νd = 35.7) makes it a dense flint — paired with L13's ED glass, it forms a widely separated "air-spaced chromatic doublet" that corrects primary color while the anomalous dispersion of S-FPL51 attacks secondary color. The strong positive power also partially offsets the Petzval contribution of the three preceding negative elements, curving the Petzval surface back toward flatness. Edge thickness limits this element's semi-diameter to approximately 15–16 mm despite larger paraxial beam predictions; this reflects the normal wide-angle vignetting expected at 14 mm.
@@ -94,14 +94,14 @@ The total track length (first surface to image plane) decreases from 126.5 mm at
 ### Group G2 — Positive Variator (3 elements, 2 sub-groups)
 
 **L21 — Positive meniscus, concave toward image**
-- nd = 1.59349, νd = 67.00 — Glass: S-PHM52 (OHARA) or MC-PCD4 (HOYA)
+- nd = 1.59349, νd = 67.00 — Glass: S-FPM2-class fluorophosphate crown (OHARA-near)
 - Surfaces: S9 (R = +63.060) / S10 (R = +499.876)
 - Focal length: f = +121.4 mm
 - Role: L21 is a weakly positive singlet that begins the convergence of the beam after the strongly divergent G1 group. The phosphate crown glass (νd = 67) is chosen for low dispersion to minimize chromatic contribution in the variator. The weak power means L21 primarily serves as a field lens to manage the chief ray height entering the cemented doublet.
 
 **L22 + L23 — Cemented doublet**
-- L22: nd = 1.88300, νd = 40.66 — Glass: S-LAH66 (OHARA), negative meniscus
-- L23: nd = 1.56883, νd = 56.00 — Glass: S-BAL42 (OHARA), positive meniscus
+- L22: nd = 1.88300, νd = 40.66 — Glass: S-LAH58 (OHARA), negative meniscus
+- L23: nd = 1.56883, νd = 56.00 — Glass: S-BAL14 (OHARA), positive meniscus
 - Surfaces: S11 (R = +24.006) / S12 (R = +13.347, cemented) / S13 (R = +333.982)
 - Combined focal length: f = +82.0 mm
 - Role: The L22+L23 doublet is the primary color-correcting element in G2. The high-index lanthanum flint (L22, nd = 1.88) cemented to a barium crown (L23) creates a classic achromatic doublet configuration. The cemented interface at R = +13.347 mm has a strong curvature that provides most of the chromatic correction, while the overall positive power contributes to the convergence needed for the relay group.
@@ -113,7 +113,7 @@ The aperture stop S is located in the air space between G2 and G3, at surface 14
 ### Group G3 — Positive Relay (4 elements, 3 sub-groups)
 
 **L31 + L32 — Cemented doublet**
-- L31: nd = 1.81600, νd = 46.59 — Glass: S-LAH63 (OHARA), negative meniscus
+- L31: nd = 1.81600, νd = 46.59 — Glass: S-LAH59 (OHARA), negative meniscus
 - L32: nd = 1.51612, νd = 64.08 — Glass: S-BSL7 (OHARA, BK7-class borosilicate), positive meniscus
 - Surfaces: S15 (R = +36.378) / S16 (R = +14.010, cemented) / S17★ (R = +61.045, aspherical)
 - Combined focal length: f = −143.1 mm (net negative)
@@ -134,7 +134,7 @@ The aperture stop S is located in the air space between G2 and G3, at surface 14
 ### Group G4 — Focusing Group (1 element)
 
 **L41 — Negative meniscus, concave toward image**
-- nd = 1.79500, νd = 45.31 — Glass: S-LAH51 (OHARA)
+- nd = 1.79500, νd = 45.31 — Glass: high-index lanthanum, patent code 795453
 - Surfaces: S22 (R = +72.093) / S23 (R = +20.993)
 - Focal length: f = −37.6 mm
 - Role: L41 is the entire focusing group. Its single-element, lightweight construction is a deliberate choice for fast, quiet autofocus via stepping motor — a single lanthanum flint element with a center thickness of only 1.0 mm can be translated extremely quickly with minimal inertia. The negative meniscus shape provides a modest diverging action that fine-tunes the convergence of the beam before it reaches G5. During focusing from infinity to close range, L41 moves toward the image plane, increasing the D3 gap (G3→G4) while decreasing D4 (G4→G5). This internal focusing mechanism ensures the overall lens length does not change during AF.
@@ -148,7 +148,7 @@ The aperture stop S is located in the air space between G2 and G3, at surface 14
 - Role: L51 is the fourth and final ED element in the design. Its strongly curved rear surface (R = −20.1 mm) produces positive power while the nearly flat front surface (R = −538 mm) contributes negligible refraction. Positioned close to the image plane, L51 acts as a field flattener, curving the Petzval surface to match the flat sensor. Edge thickness constrains this element's semi-diameter to approximately 12.4 mm.
 
 **L52 — Biconcave negative**
-- nd = 1.76546, νd = 46.75 — Glass: lanthanum flint family (exact catalog code uncertain; see §4)
+- nd = 1.76546, νd = 46.75 — Glass: lanthanum flint, patent code 765468 (catalog unresolved; see §4)
 - Surfaces: S26★ (R = −38.934, aspherical) / S27 (R = +154.832)
 - Focal length: f = −40.5 mm
 - Role: L52 is the rearmost glass element, positioned very close to the image plane. Its aspherical front surface (S26, K = −1.0, paraboloid) provides the final correction of off-axis aberrations — principally astigmatism and field curvature at the extreme corners of the full-frame field. The negative departure at the rim (approximately −448 µm at h = 11 mm) curves the wavefront to flatten the sagittal and tangential focal surfaces. The combination of L51 (+41.9 mm) and L52 (−40.5 mm) nearly cancels in power (net f ≈ −1393 mm), confirming that G5's primary purpose is aberrational correction rather than refraction.
@@ -161,11 +161,11 @@ The design uses glass from seven distinct types, drawing primarily from the OHAR
 
 **ED Fluorophosphate — S-FPL51 family (nd ≈ 1.498, νd ≈ 82.6):** Used in four elements (L13, L33, L34, L51). The patent's nd/νd values (1.49782/82.57) are close to but not identical to the OHARA S-FPL51 catalog listing (1.49700/81.61); the residual Δnd = +0.00082, Δνd = +0.96 is consistent with normal melt-to-melt variation in fluorophosphate glasses or may indicate a proprietary variant. The glass family identification — calcium fluorophosphate ED with anomalous partial dispersion (positive ΔPgF ≈ +0.035) — is confident regardless of the exact catalog code. The four ED elements are distributed strategically: one in the front group (L13) for lateral color control, two in the relay group (L33, L34) for axial color at the convergent beam, and one in the field corrector (L51) for residual correction near the image.
 
-**Lanthanum Heavy Flints — S-LAH51/63/66 and similar (nd = 1.77–1.88, νd = 40–47):** Used in four elements (L22, L31, L41, L52). The L22 (nd=1.883/νd=40.66) matches OHARA S-LAH66 well; L31 (1.816/46.59) matches S-LAH63; L41 (1.795/45.31) matches S-LAH51. L52 (nd=1.76546/νd=46.75) does not closely match any single OHARA catalog entry — the nearest is S-LAH64 (1.788/47.37), which differs by Δnd = −0.023. This glass may be sourced from HOYA (possibly NBFD-class) or CDGM. The glass family identification as a lanthanum flint is secure, but the exact catalog code for L52 remains uncertain.
+**Lanthanum and high-index glasses — S-LAH58/59 and code-only melts:** Used in four elements (L22, L31, L41, L52). The L22 (nd=1.883/νd=40.66) matches OHARA S-LAH58 well; L31 (1.816/46.59) matches S-LAH59. L41 (1.795/45.31, code 795453) and L52 (1.76546/46.75, code 765468) do not closely match any catalog entry currently in the project, so they are kept as code-based patent glasses rather than being forced onto S-LAH51 or S-LAH64. The family identification as high-index lanthanum glass remains secure, but exact vendor catalog names for L41 and L52 are unresolved.
 
-**Dense Flint — S-TIH53 (nd = 1.903, νd = 35.7):** Used once (L14). The extremely high refractive index provides strong positive power in a compact meniscus while the very low Abbe number creates maximum chromatic leverage when paired with the ED element L13.
+**Dense Flint — code 903357 (nd = 1.903, νd = 35.7):** Used once (L14). The extremely high refractive index provides strong positive power in a compact meniscus while the very low Abbe number creates maximum chromatic leverage when paired with the ED element L13.
 
-**Crown / Phosphate Glasses — S-BAM4, S-PHM52, S-BAL42, S-BSL7:** Used in five elements (L11, L12, L21, L23, L32). These moderate-index, moderate-dispersion glasses fill roles where cost and manufacturability are balanced against optical performance.
+**Crown / Phosphate Glasses — code 694533, S-FPM2-class, S-BAL14, S-BSL7:** Used in five elements (L11, L12, L21, L23, L32). These moderate-index, moderate-dispersion glasses fill roles where cost and manufacturability are balanced against optical performance. Where the patent gives only refractive constants, the data file now uses a code-based label rather than a misleading exact catalog name.
 
 ---
 
@@ -210,7 +210,7 @@ The patent does not tabulate close-focus spacings for Example 1, so these D3/D4 
 
 The computed Petzval sum for this system is +0.00394 mm⁻¹, yielding a Petzval radius of approximately −254 mm. The Petzval sum × f(wide) product is +0.057. This relatively modest magnitude indicates that the natural Petzval curvature is reasonably well balanced by the distribution of positive and negative powers across the five groups — the three negative elements in G1 contribute a strongly negative Petzval sum that is partially compensated by the positive elements in G2 and G3. The remaining residual field curvature is then corrected by the field-flattening pair L51+L52 in G5 and by the aspherical surface S26.
 
-The chromatic correction strategy distributes the four ED elements across the system: L13 in G1 primarily addresses lateral (transverse) chromatic aberration, which is especially severe at wide angles. L33 and L34 in G3 attack axial chromatic aberration in the convergent beam behind the stop. L51 in G5 provides final lateral color cleanup near the image plane. Each ED element is paired (either cemented or air-spaced) with a high-dispersion flint to form an achromatic or apochromatic correction pair.
+The chromatic correction strategy distributes the four ED elements across the system: L13 in G1 primarily addresses lateral (transverse) chromatic aberration, which is especially severe at wide angles. L33 and L34 in G3 attack axial chromatic aberration in the convergent beam behind the stop. L51 in G5 provides final lateral color cleanup near the image plane. Each ED element is paired (either cemented or air-spaced) with a high-dispersion flint to form an achromatic correction pair; the patent does not publish measured line indices for this example, so the stronger APO language is best avoided here.
 
 The four aspherical surfaces handle the most difficult monochromatic aberrations: S2 and S4 in the front group correct the severe higher-order field curvature and distortion inherent in the nearly flat front element. S17 behind the stop corrects residual spherical aberration. S26 near the image corrects astigmatism and residual field curvature at the extreme corners.
 
