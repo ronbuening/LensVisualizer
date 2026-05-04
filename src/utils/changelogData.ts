@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-04 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-04",
+    type: "lens",
+    summary:
+      "Added Sigma 50mm f/1.4 DG DN Art, Sigma 30mm f/2.8 for DP2 Merrill, and Vivitar Series 1 70-210mm f/2.8-4",
+  },
   // ── 2026-05-03 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-03",
