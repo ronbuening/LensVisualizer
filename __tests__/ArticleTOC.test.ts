@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { extractTOCHeadings, resolveActiveHeadingId } from "../src/components/display/ArticleTOC.js";
+import {
+  ARTICLE_SCROLL_MARGIN_TOP,
+  TOC_OBSERVER_BOTTOM_ROOT_MARGIN,
+  TOC_OBSERVER_THRESHOLDS,
+  extractTOCHeadings,
+  resolveActiveHeadingId,
+} from "../src/components/display/ArticleTOC.js";
 
 describe("resolveActiveHeadingId", () => {
   it("returns first heading when no headings intersect activation line", () => {
@@ -36,6 +42,12 @@ describe("resolveActiveHeadingId", () => {
 
     const active = resolveActiveHeadingId(ids, 80, (id) => tops.get(id) ?? null);
     expect(active).toBe("summary");
+  });
+
+  it("uses observer config aligned with markdown heading scroll margin behavior", () => {
+    expect(ARTICLE_SCROLL_MARGIN_TOP).toBe(88);
+    expect(TOC_OBSERVER_BOTTOM_ROOT_MARGIN).toBe("-35%");
+    expect(TOC_OBSERVER_THRESHOLDS).toEqual([0, 0.1, 0.25, 0.5]);
   });
 });
 
