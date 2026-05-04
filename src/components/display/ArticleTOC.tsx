@@ -95,6 +95,23 @@ function useMediaQueryMatch(query: string): boolean {
 }
 
 /** Track the currently-visible heading via IntersectionObserver. */
+export function resolveActiveHeadingId(
+  ids: string[],
+  offsetTop: number,
+  getTop: (id: string) => number | null,
+  activationPadding = 12,
+): string | null {
+  if (ids.length === 0) return null;
+  const activationLine = offsetTop + activationPadding;
+  let nextId = ids[0] ?? null;
+  for (const id of ids) {
+    const top = getTop(id);
+    if (top === null) continue;
+    if (top <= activationLine) nextId = id;
+  }
+  return nextId;
+}
+
 function useActiveHeading(ids: string[], offsetTop: number): string | null {
   const [activeId, setActiveId] = useState<string | null>(null);
   useEffect(() => {
@@ -103,30 +120,38 @@ function useActiveHeading(ids: string[], offsetTop: number): string | null {
     if (elements.length === 0) return;
 
     const visible = new Map<string, number>();
+    const resolveActiveId = () => {
+      const nextId = resolveActiveHeadingId(
+        ids,
+        offsetTop,
+        (id) => document.getElementById(id)?.getBoundingClientRect().top ?? null,
+      );
+      if (nextId) {
+        setActiveId((current) => (current === nextId ? current : nextId));
+      }
+    };
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
           else visible.delete(entry.target.id);
         }
-        if (visible.size > 0) {
-          let topId: string | null = null;
-          let topY = Infinity;
-          for (const id of visible.keys()) {
-            const rect = document.getElementById(id)?.getBoundingClientRect();
-            if (rect && rect.top < topY) {
-              topY = rect.top;
-              topId = id;
-            }
-          }
-          if (topId) setActiveId(topId);
-        }
+        resolveActiveId();
       },
       { rootMargin: `-${offsetTop}px 0px -60% 0px`, threshold: [0, 1] },
     );
 
     for (const el of elements) observer.observe(el);
-    return () => observer.disconnect();
+    const onScrollOrResize = () => resolveActiveId();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    resolveActiveId();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
   }, [ids, offsetTop]);
   return activeId;
 }
