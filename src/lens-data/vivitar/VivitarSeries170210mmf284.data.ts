@@ -23,8 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON CLOSE-FOCUS DATA:                                         ║
  * ║    The patent does not publish close-focus spacing data for        ║
- * ║    Example 4. All variable gaps are zoom-only (identical           ║
- * ║    infinity/close values). The production MFD is 0.9 m.           ║
+ * ║    Example 4. Close-focus S5 values are derived from a paraxial    ║
+ * ║    finite-conjugate solve at the production 0.9 m MFD, treating   ║
+ * ║    G1 as the front focusing unit and keeping G2/G3/BFL fixed.     ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    SDs estimated from combined marginal + chief ray traces at     ║
@@ -285,17 +286,20 @@ const LENS_DATA = {
   zoomStep: 0.004,
   zoomLabels: ["Wide", "Tele"],
 
-  /* ── Variable air spacings (zoom only — no close-focus data in patent) ──
-   *  D1 (S5): G1–G2 gap. Increases wide→tele (G2 moves rearward).
+  /* ── Variable air spacings (zoom + front-group focus) ──
+   *  D1 (S5): G1–G2 gap. Increases wide→tele (G2 moves rearward), and
+   *    increases again during close focus as G1 extends toward the object.
+   *    Close-focus endpoints are derived from a paraxial finite-conjugate
+   *    solve at the production 0.9 m MFD: ΔG1 ≈ 7.57 / 7.57 / 7.60 mm.
    *  D2 (S11): G2–G3 gap. Decreases wide→tele (G3 moves forward).
    *    Wide-position D2 corrected from patent's 3.490 to 37.490 (total-track conservation).
-   *  BFL (S24): Back focal length. Increases wide→tele.
+   *  BFL (S24): Back focal length. Increases wide→tele; unchanged by front-group focus.
    */
   var: {
     "5": [
-      [2.5, 2.5],
-      [10.692, 10.692],
-      [14.468, 14.468],
+      [2.5, 10.069],
+      [10.692, 18.259],
+      [14.468, 22.071],
     ],
     "11": [
       [37.49, 37.49],
