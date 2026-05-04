@@ -96,7 +96,7 @@ This gives 6 cemented doublets and 9 singlets, totaling 15 groups — matching C
 ### 4.1 Lens Unit 1 — Front Positive Collector (f = +103.63 mm)
 
 **L1** (surfaces 1–2): nd = 1.90366, νd = 31.3
-A **negative meniscus** (f = −160.9 mm) convex toward the object, made of ultra-high-index lanthanum dense flint glass (glass code 90366/313, matching OHARA S-LAH79 or equivalent). Both radii are positive (R₁ = +131.4 mm, R₂ = +68.6 mm), giving a crescent-shaped cross-section with the convex face toward the object and the concave face toward the image. The rear surface is more strongly curved than the front, which is characteristic of a thick negative meniscus in a front collector group. Despite being a negative element, its role is primarily to control spherical aberration and field curvature contributed by the strong positive elements behind it. The very high refractive index (nd ≈ 1.90) allows the surface curvatures to remain moderate despite the element's corrective power.
+A **negative meniscus** (f = −160.9 mm) convex toward the object, made of ultra-high-index lanthanum dense flint glass (glass code 903313, matching OHARA S-LAH95 or equivalent). Both radii are positive (R₁ = +131.4 mm, R₂ = +68.6 mm), giving a crescent-shaped cross-section with the convex face toward the object and the concave face toward the image. The rear surface is more strongly curved than the front, which is characteristic of a thick negative meniscus in a front collector group. Despite being a negative element, its role is primarily to control spherical aberration and field curvature contributed by the strong positive elements behind it. The very high refractive index (nd ≈ 1.90) allows the surface curvatures to remain moderate despite the element's corrective power.
 
 **L2** (surfaces 2–3): nd = 1.49700, νd = 81.5 — **★ UD Element**
 A **positive biconvex** element (f = +126.6 mm) cemented to L1. This is one of the two UD (Ultra-low Dispersion) elements Canon specifies for the production lens. The glass code 49700/815 corresponds to a fluorophosphate crown such as OHARA S-FPL51 or Canon's proprietary equivalent. With νd = 81.5, this glass has exceptionally low chromatic dispersion. The L1/L2 cemented doublet forms a powerful achromatic pair: the high-dispersion negative flint (L1) and low-dispersion positive crown (L2) work together to control axial chromatic aberration across the wide zoom range. This achromat is critical because the front group sees the full entrance pupil diameter and must manage chromatic errors at maximum aperture.
@@ -111,16 +111,16 @@ The front group's effective diameter spans 52–57 mm, the largest apertures in 
 This is the most powerful unit in the system. Its strong negative focal length (−16.74 mm) makes it the primary zoom variator: as it moves away from the front group during zooming to tele, the divergence it introduces shifts the effective focal length of the combined system dramatically.
 
 **L4** (surfaces 6–7): nd = 1.85150, νd = 40.8
-A **negative meniscus** (f = −26.5 mm) in lanthanum dense flint (OHARA S-LAH66 equivalent). Both radii are positive (R₁ = +243.5 mm, R₂ = +20.6 mm), making this a meniscus convex toward the object with a very weakly curved front face and a strongly curved rear face. The extreme curvature mismatch gives this element its strong negative power and contributes the bulk of the variator's diverging capability.
+A **negative meniscus** (f = −26.5 mm) in lanthanum dense flint (OHARA S-LAH89 equivalent). Both radii are positive (R₁ = +243.5 mm, R₂ = +20.6 mm), making this a meniscus convex toward the object with a very weakly curved front face and a strongly curved rear face. The extreme curvature mismatch gives this element its strong negative power and contributes the bulk of the variator's diverging capability.
 
 **L5** (surfaces 8–9): nd = 1.85150, νd = 40.8
-A **biconcave negative** element (f = −29.5 mm) in the same glass as L4. Together with L4, they form a strong negative doublet pair that efficiently diverges the beam.
+A **biconcave negative** element (f = −29.5 mm) in the same S-LAH89-class glass as L4. Together with L4, they form a strong negative doublet pair that efficiently diverges the beam.
 
 **L6** (surfaces 10–11): nd = 1.92286, νd = 20.9
 A **positive biconvex** element (f = +25.1 mm) in ultra-high-index dense flint glass (glass code 923/209, HOYA E-FD15 or equivalent). This positive element within the negative variator serves as a chromatic corrector—its very high dispersion (νd = 20.9) paired with its positive power provides the opposite chromatic contribution to the two negative elements, keeping longitudinal chromatic aberration controlled across the zoom range.
 
 **L7** (surfaces 12–13): nd = 1.77250, νd = 49.6
-A **biconcave negative** element (f = −40.3 mm) in lanthanum light flint (OHARA S-LAL54), with R₁ = −32.4 mm and R₂ = +821.5 mm. The front surface is strongly concave; the rear is very weakly concave (nearly flat). This trailing negative element shapes the exit beam of the variator and helps correct higher-order aberrations. The variator's four-element, all-singlet configuration gives the designer maximum freedom to balance coma, astigmatism, and chromatic aberration across the zoom range.
+A **biconcave negative** element (f = −40.3 mm) in lanthanum crown glass (OHARA S-LAH66), with R₁ = −32.4 mm and R₂ = +821.5 mm. The front surface is strongly concave; the rear is very weakly concave (nearly flat). This trailing negative element shapes the exit beam of the variator and helps correct higher-order aberrations. The variator's four-element, all-singlet configuration gives the designer maximum freedom to balance coma, astigmatism, and chromatic aberration across the zoom range.
 
 ### 4.3 Lens Unit 3 — Correction Group with Image Stabilization (f = +60.67 mm)
 
@@ -129,20 +129,20 @@ This is the most complex unit in the design, containing six elements organized i
 #### Subunit X — Front positive subgroup (fx = +55.81 mm)
 
 **L8** (surfaces 15–16): nd = 1.76182, νd = 26.5
-A **positive biconvex** element (f = +34.5 mm) in heavy flint glass (OHARA S-TIH6). Located immediately after the aperture stop, it begins converging the beam toward the image. Its high dispersion enables chromatic correction when paired with the subsequent cemented doublet.
+A **positive biconvex** element (f = +34.5 mm) in heavy flint glass (OHARA S-TIH14). Located immediately after the aperture stop, it begins converging the beam toward the image. Its high dispersion enables chromatic correction when paired with the subsequent cemented doublet.
 
 **L9** (surfaces 17–18): nd = 1.58144, νd = 40.8
-A **positive plano-convex** element (f = +34.1 mm) in barium crown glass (OHARA S-BAM4). The rear surface is flat (R = ∞). This element is cemented to L10.
+A **positive plano-convex** element (f = +34.1 mm) in barium crown glass (six-digit code 581408; no current catalog match). The rear surface is flat (R = ∞). This element is cemented to L10.
 
 **L10** (surfaces 18–19): nd = 2.00100, νd = 29.1
-A negative element (f = −20.5 mm) in ultra-high-index dense flint glass (OHARA S-NPH2), with a **plano-convex geometric form** — the front surface is flat (the cemented junction with L9) and the rear surface is convex (R₂ = +20.5 mm). Despite its convex exit surface, the element has strong negative optical power because light transitions from the very high refractive index glass (nd = 2.001) into air at that surface, producing divergence. The L9/L10 cemented doublet provides achromatic correction within subunit X and controls the beam diameter entering the OIS subunit.
+A negative element (f = −20.5 mm) in ultra-high-index dense flint glass (six-digit code 001291; no current catalog match), with a **plano-convex geometric form** — the front surface is flat (the cemented junction with L9) and the rear surface is convex (R₂ = +20.5 mm). Despite its convex exit surface, the element has strong negative optical power because light transitions from the very high refractive index glass (nd = 2.001) into air at that surface, producing divergence. The L9/L10 cemented doublet provides achromatic correction within subunit X and controls the beam diameter entering the OIS subunit.
 
 #### Subunit Y — Image Stabilization Unit (fy = +41.45 mm)
 
 This is the subunit that physically shifts perpendicular to the optical axis during image stabilization (OIS). At the telephoto end, the patent specifies a correction shift of 0.509 mm. The subunit consists of a single cemented doublet:
 
 **L11** (surfaces 20–21): nd = 2.00069, νd = 25.5
-A **negative meniscus** (f = −40.9 mm) in ultra-high-index dense flint glass (OHARA S-NPH1). This is the first element of the cemented IS doublet.
+A **negative meniscus** (f = −40.9 mm) in ultra-high-index dense flint glass (six-digit code 001255; no current catalog match). This is the first element of the cemented IS doublet.
 
 **L12** (surfaces 21–22): nd = 1.72000, νd = 43.7
 A **positive biconvex** element (f = +20.6 mm) in lanthanum flint glass (OHARA S-LAM3), cemented to L11.
@@ -154,7 +154,7 @@ The cemented doublet configuration also provides chromatic correction during IS 
 #### Subunit Z — Rear negative subgroup (fz = −30.98 mm)
 
 **L13** (surfaces 23–24): nd = 2.00100, νd = 29.1
-A **negative meniscus** (f = −31.0 mm) in the same ultra-high-index dense flint glass as L10 (OHARA S-NPH2). This singlet provides the negative power needed to increase the effective positive power of the IS subunit Y, thereby reducing the physical shift distance required for a given amount of image correction. The patent explains this explicitly: "the third subunit Z with a negative refractive power is arranged on the image side of the image blurring correction unit to increase the positive refractive power of the second subunit Y, so that the movement amount in the image blurring correction is suppressed."
+A **negative meniscus** (f = −31.0 mm) in the same 001291 ultra-high-index dense flint glass as L10. This singlet provides the negative power needed to increase the effective positive power of the IS subunit Y, thereby reducing the physical shift distance required for a given amount of image correction. The patent explains this explicitly: "the third subunit Z with a negative refractive power is arranged on the image side of the image blurring correction unit to increase the positive refractive power of the second subunit Y, so that the movement amount in the image blurring correction is suppressed."
 
 The boundary between subunit Y and subunit Z is confirmed by the patent's conditional expression (6) parameters: Ryz1 = −63.451 mm (the image-side surface of L12, surface 22) and Ryz2 = −26.036 mm (the object-side surface of L13, surface 23).
 
@@ -163,11 +163,11 @@ The boundary between subunit Y and subunit Z is confirmed by the patent's condit
 This is the strongest positive unit in the rear half of the lens. It relays the image formed by the front groups toward the sensor and contains the only aspherical element in the design.
 
 **L14** (surfaces 25–26): nd = 1.53110, νd = 55.9 — **★ Aspherical Element**
-A weak **positive meniscus** singlet (f = +105.0 mm) in barium light crown glass (OHARA S-BAL42 or equivalent), convex toward the object (R₁ = +45.6 mm, R₂ = +246.6 mm — both radii positive). Both surfaces carry aspherical profiles (detailed in Section 5). The relatively low refractive index (1.531) and moderate Abbe number suggest this is a glass-molded aspherical element (as opposed to polished), which is consistent with Canon's manufacturing approach for non-L consumer zoom lenses.
+A weak **positive meniscus** singlet (f = +105.0 mm) in moldable barium light crown glass (six-digit code 531559; no current catalog match), convex toward the object (R₁ = +45.6 mm, R₂ = +246.6 mm — both radii positive). Both surfaces carry aspherical profiles (detailed in Section 5). The relatively low refractive index (1.531) and moderate Abbe number suggest this is a glass-molded aspherical element (as opposed to polished), which is consistent with Canon's manufacturing approach for non-L consumer zoom lenses.
 
 **L15 + L16** (surfaces 27–29): Cemented doublet
 - **L15**: nd = 1.85478, νd = 24.8 — **biconcave negative** (f = −99.6 mm) in short flint glass (OHARA S-TIH53W)
-- **L16**: nd = 1.59282, νd = 68.6 — **biconvex positive** (f = +39.3 mm) in borosilicate crown glass (OHARA S-BSM81)
+- **L16**: nd = 1.59282, νd = 68.6 — **biconvex positive** (f = +39.3 mm) in borosilicate crown glass (six-digit code 593686; current catalog S-BSM81 entry does not round-trip these patent values)
 
 This cemented doublet is a classic achromat with a strong positive element and a weaker negative corrector. Located behind the aspherical element, it handles the primary chromatic correction duties for unit 4.
 
@@ -256,9 +256,9 @@ Both elements use the same fluorophosphate crown glass. UD glass has anomalous p
 
 The design makes extensive use of ultra-high-index glasses:
 
-- **nd = 2.00100** (νd = 29.1): Used in L10 and L13 — both negative elements in the correction group. This glass (OHARA S-NPH2 or equivalent) allows extremely strong curvatures in compact form. In the IS unit, the high index keeps the elements thin and lightweight, directly benefiting the stabilization mechanism's speed and power consumption.
+- **nd = 2.00100** (νd = 29.1): Used in L10 and L13 — both negative elements in the correction group. This 001291-code glass allows extremely strong curvatures in compact form. In the IS unit, the high index keeps the elements thin and lightweight, directly benefiting the stabilization mechanism's speed and power consumption.
 
-- **nd = 2.00069** (νd = 25.5): Used in L11 — the negative element of the IS cemented doublet. Similar to S-NPH1.
+- **nd = 2.00069** (νd = 25.5): Used in L11 — the negative element of the IS cemented doublet. This 001255-code glass is not currently catalog-resolved in the project.
 
 These nd ≈ 2.0 glasses are expensive specialty materials, but their use is justified in the IS subunit where minimizing weight and diameter directly improves stabilization performance.
 
@@ -266,27 +266,27 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 
 | Element | nd | νd | Glass Type | Category |
 |---------|-------|-------|------------|----------|
-| L1 | 1.90366 | 31.3 | S-LAH79 type | Lanthanum dense flint |
+| L1 | 1.90366 | 31.3 | S-LAH95 type | Lanthanum dense flint |
 | L2 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
 | L3 | 1.61800 | 63.4 | S-PHM52 type | Phosphate crown |
-| L4 | 1.85150 | 40.8 | S-LAH66 type | Lanthanum dense flint |
-| L5 | 1.85150 | 40.8 | S-LAH66 type | Lanthanum dense flint |
+| L4 | 1.85150 | 40.8 | S-LAH89 type | Lanthanum dense flint |
+| L5 | 1.85150 | 40.8 | S-LAH89 type | Lanthanum dense flint |
 | L6 | 1.92286 | 20.9 | E-FD15 type | Ultra-high index dense flint |
-| L7 | 1.77250 | 49.6 | S-LAL54 type | Lanthanum light flint |
-| L8 | 1.76182 | 26.5 | S-TIH6 type | Heavy flint |
-| L9 | 1.58144 | 40.8 | S-BAM4 type | Barium crown |
-| L10 | 2.00100 | 29.1 | S-NPH2 type | Ultra-high index dense flint |
-| L11 | 2.00069 | 25.5 | S-NPH1 type | Ultra-high index dense flint |
+| L7 | 1.77250 | 49.6 | S-LAH66 type | Lanthanum crown |
+| L8 | 1.76182 | 26.5 | S-TIH14 type | Heavy flint |
+| L9 | 1.58144 | 40.8 | 581408 code | Barium crown |
+| L10 | 2.00100 | 29.1 | 001291 code | Ultra-high index dense flint |
+| L11 | 2.00069 | 25.5 | 001255 code | Ultra-high index dense flint |
 | L12 | 1.72000 | 43.7 | S-LAM3 type | Lanthanum flint |
-| L13 | 2.00100 | 29.1 | S-NPH2 type | Ultra-high index dense flint |
-| L14 | 1.53110 | 55.9 | S-BAL42 type | Barium light crown **(ASPH)** |
+| L13 | 2.00100 | 29.1 | 001291 code | Ultra-high index dense flint |
+| L14 | 1.53110 | 55.9 | 531559 code | Barium light crown **(ASPH)** |
 | L15 | 1.85478 | 24.8 | S-TIH53W type | Short flint |
-| L16 | 1.59282 | 68.6 | S-BSM81 type | Borosilicate crown |
+| L16 | 1.59282 | 68.6 | 593686 code | Borosilicate crown |
 | L17 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
 | L18 | 1.80518 | 25.4 | S-TIH10 type | Heavy flint |
-| L19 | 1.63854 | 55.4 | S-BSM14 type | Barium crown |
+| L19 | 1.63854 | 55.4 | S-BSM18 type | Barium crown |
 | L20 | 1.83481 | 42.7 | S-LAH60 type | Lanthanum dense flint |
-| L21 | 1.84666 | 23.8 | S-TIH14 type | Heavy flint |
+| L21 | 1.84666 | 23.8 | S-TIH53 type | Heavy flint |
 
 *Note: Glass identifications are based on 6-digit nd/νd code matching against major catalogs. Canon may use proprietary melt equivalents; the catalog names here indicate the glass type and optical properties.*
 

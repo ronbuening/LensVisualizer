@@ -22,10 +22,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    mechanical clearance. Edge thickness (≥0.5 mm), cross-gap sag      ║
  * ║    overlap, and sd/|R| constraints applied. Front element SD           ║
  * ║    constrained by 72 mm filter thread (~34 mm max SD).                ║
- * ║    Aspherical sag corrections included in ET validation for S5A,      ║
- * ║    S11A, S22A, S24A. Some beam clipping at wide-end field edges       ║
- * ║    is expected — Nikon applies digital vignetting/distortion           ║
- * ║    correction in-camera for this compact zoom design.                  ║
+ * ║    Refined against Nikon's production lens-construction diagram so    ║
+ * ║    G2, G3, and rear-field clear apertures read closer to the shipped   ║
+ * ║    optical section. Aspherical sag corrections included in ET          ║
+ * ║    validation for S5A, S11A, S22A, S24A. Some beam clipping at         ║
+ * ║    wide-end field edges is expected — Nikon applies digital            ║
+ * ║    vignetting/distortion correction in-camera for this compact zoom    ║
+ * ║    design.                                                            ║
  * ║                                                                        ║
  * ║  NOTE ON COVER GLASS:                                                  ║
  * ║    Patent surfaces 27-28 (filter, nd=1.51680, d=1.60) excluded.       ║
@@ -251,8 +254,8 @@ const LENS_DATA = {
     { label: "3", R: 417.0433, d: 1.6, nd: 1.0, elemId: 0, sd: 26.5 }, // D3 var — G1/G2 zoom gap
 
     /* G2 — L21 (asph rear), L22, L23 */
-    { label: "4", R: 400.0, d: 1.8, nd: 1.74353, elemId: 3, sd: 19.0 },
-    { label: "5A", R: 17.04241, d: 8.087, nd: 1.0, elemId: 0, sd: 15.0 }, // L21 rear (asph) → air
+    { label: "4", R: 400.0, d: 1.8, nd: 1.74353, elemId: 3, sd: 21.5 },
+    { label: "5A", R: 17.04241, d: 8.087, nd: 1.0, elemId: 0, sd: 16.7 }, // L21 rear (asph) → air
     { label: "6", R: -181.13172, d: 1.35, nd: 1.755, elemId: 4, sd: 13.8 },
     { label: "7", R: 49.98466, d: 2.108, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "8", R: 37.80684, d: 3.693, nd: 2.00069, elemId: 5, sd: 14.5 },
@@ -262,11 +265,11 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 1.5, nd: 1.0, elemId: 0, sd: 8.5 },
 
     /* G3 — L31 (asph front), L32+L33 (cemented), L34+L35 (cemented) */
-    { label: "11A", R: 25.88353, d: 4.048, nd: 1.55332, elemId: 6, sd: 9.5 }, // L31 front (asph)
-    { label: "12", R: -254.63176, d: 0.8, nd: 1.0, elemId: 0, sd: 9.5 },
-    { label: "13", R: 52.19394, d: 1.0, nd: 1.83481, elemId: 7, sd: 9.5 }, // L32 front
-    { label: "14", R: 26.38369, d: 3.546, nd: 1.618, elemId: 8, sd: 9.5 }, // L32/L33 junction
-    { label: "15", R: -150.0, d: 3.743, nd: 1.0, elemId: 0, sd: 9.5 }, // L33 rear → air
+    { label: "11A", R: 25.88353, d: 4.048, nd: 1.55332, elemId: 6, sd: 12.4 }, // L31 front (asph)
+    { label: "12", R: -254.63176, d: 0.8, nd: 1.0, elemId: 0, sd: 12.2 },
+    { label: "13", R: 52.19394, d: 1.0, nd: 1.83481, elemId: 7, sd: 10.8 }, // L32 front
+    { label: "14", R: 26.38369, d: 3.546, nd: 1.618, elemId: 8, sd: 10.8 }, // L32/L33 junction
+    { label: "15", R: -150.0, d: 3.743, nd: 1.0, elemId: 0, sd: 10.6 }, // L33 rear → air
     { label: "16", R: -33.68615, d: 1.0, nd: 1.816, elemId: 9, sd: 10.0 }, // L34 front
     { label: "17", R: 17.28639, d: 6.494, nd: 1.59319, elemId: 10, sd: 10.0 }, // L34/L35 junction
     { label: "18", R: -23.04098, d: 4.579, nd: 1.0, elemId: 0, sd: 10.0 }, // D18 var — G3/G4 gap
@@ -280,8 +283,8 @@ const LENS_DATA = {
     /* G5 — field flattener (L51 asph rear, L52) */
     { label: "23", R: -40.60645, d: 3.489, nd: 1.58913, elemId: 13, sd: 15.0 },
     { label: "24A", R: -24.0, d: 5.786, nd: 1.0, elemId: 0, sd: 15.5 }, // L51 rear (asph) → air
-    { label: "25", R: -24.36536, d: 1.5, nd: 1.618, elemId: 14, sd: 16.0 },
-    { label: "26", R: 107.45414, d: 15.558, nd: 1.0, elemId: 0, sd: 15.5 }, // D26 var — BFD (incl. filter OPL)
+    { label: "25", R: -24.36536, d: 1.5, nd: 1.618, elemId: 14, sd: 18.0 },
+    { label: "26", R: 107.45414, d: 15.558, nd: 1.0, elemId: 0, sd: 17.5 }, // D26 var — BFD (incl. filter OPL)
   ],
 
   /* ── Aspherical coefficients ── */

@@ -345,6 +345,12 @@ export default function validateLensData(data: UntrustedLensData): string[] {
    *  MAX_RIM_SLOPE_TAN corresponds to a 64.2° slope angle, matching the
    *  old sd/|R| = 0.9 threshold for spheres exactly.
    */
+  const maxRimAngleDeg = typeof data.maxRimAngleDeg === "number" ? data.maxRimAngleDeg : undefined;
+  const maxRimSlopeTan =
+    maxRimAngleDeg !== undefined && isFinite(maxRimAngleDeg)
+      ? Math.tan((maxRimAngleDeg * Math.PI) / 180)
+      : MAX_RIM_SLOPE_TAN;
+
   for (let i = 0; i < S.length; i++) {
     const s = S[i];
     if (typeof s.sd !== "number" || typeof s.R !== "number") continue;
@@ -362,10 +368,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
 
     const slope = Math.abs(sagSlopeRaw(s.sd, s.R, asph));
-    if (slope > MAX_RIM_SLOPE_TAN) {
+    if (slope > maxRimSlopeTan) {
       const angleDeg = (Math.atan(slope) * 180) / Math.PI;
+      const maxAngleDeg = (Math.atan(maxRimSlopeTan) * 180) / Math.PI;
       errors.push(
-        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${MAX_RIM_SLOPE_TAN.toFixed(2)} (64.2°) — risk of TIR and rendering artifacts`,
+        `Surface "${s.label}": rim slope ${slope.toFixed(2)} (${angleDeg.toFixed(1)}°) at sd=${s.sd} exceeds threshold ${maxRimSlopeTan.toFixed(2)} (${maxAngleDeg.toFixed(1)}°) — risk of TIR and rendering artifacts`,
       );
     }
   }
