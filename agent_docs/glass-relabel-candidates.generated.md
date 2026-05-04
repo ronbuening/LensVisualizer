@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 244 mismatched surfaces across 161 unique groups.
+**Scope**: 234 mismatched surfaces across 156 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -132,14 +132,6 @@ Candidates:
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `9A`: `S-BAL35 (OHARA)`
 
-## stored (nd=1.58913, vd=61.22)  — 1 surface, current label resolves to S-BAL42
-
-Candidates:
-- **S-BAL35** (nd=1.58913, vd=61.14, Δnd=-0.0000, Δvd=-0.08)
-
-Surfaces:
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `32`: `S-BAL42 (OHARA)`
-
 ## stored (nd=1.59270, vd=35.30)  — 2 surfaces, current label resolves to S-TIM25
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -165,7 +157,7 @@ Candidates:
 Surfaces:
 - [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) `3`: `S-PHM52 (Ohara) — exact match`
 
-## stored (nd=1.59319, vd=67.90)  — 4 surfaces, current label resolves to S-FPM3
+## stored (nd=1.59319, vd=67.90)  — 3 surfaces, current label resolves to S-FPM3
 
 Candidates:
 - **FCD505** (nd=1.59283, vd=68.63, Δnd=-0.0004, Δvd=+0.73)
@@ -176,9 +168,8 @@ Surfaces:
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `4`: `S-FPM3 (OHARA)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `6`: `S-FPM3 (OHARA)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `17`: `S-FPM3 (OHARA)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `17`: `S-PHM52 (OHARA)`
 
-## stored (nd=1.59349, vd=67.00)  — 2 surfaces, current label resolves to S-FPM3
+## stored (nd=1.59349, vd=67.00)  — 1 surface, current label resolves to S-FPM3
 
 Candidates:
 - **FCD505** (nd=1.59283, vd=68.63, Δnd=-0.0007, Δvd=+1.63)
@@ -187,7 +178,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `13`: `Near S-FPM3 (OHARA) — fluorophosphate crown`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `24`: `S-PHM53 (OHARA)`
 
 ## stored (nd=1.60342, vd=38.01)  — 1 surface, current label resolves to S-TIM27
 
@@ -545,7 +535,7 @@ Candidates:
 Surfaces:
 - [CANON RF 85mm f/2 Macro IS STM](../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) `13`: `S-TIH4 (OHARA)`
 
-## stored (nd=1.72047, vd=34.71)  — 3 surfaces, current label resolves to S-LAM2
+## stored (nd=1.72047, vd=34.71)  — 2 surfaces, current label resolves to S-LAM2
 
 Candidates:
 - **S-NBH8** (nd=1.72047, vd=34.71, Δnd=-0.0000, Δvd=+0.00)
@@ -553,7 +543,6 @@ Candidates:
 Surfaces:
 - [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) `6`: `S-LAM2 equiv. (Ohara)`
 - [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) `19`: `S-LAM2 equiv. (Ohara)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `22`: `S-NBH56 (OHARA)`
 
 ## stored (nd=1.72047, vd=34.70) [code=720/347]  — 1 surface, current label resolves to S-NBH55
 
@@ -562,13 +551,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `19`: `S-NBH55 (720347, OHARA S-NBH55)`
-
-## stored (nd=1.72825, vd=28.38)  — 1 surface, current label resolves to S-TIH6
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `10`: `S-TIH6 (OHARA)`
 
 ## stored (nd=1.72916, vd=54.70)  — 5 surfaces, current label resolves to S-LAL9
 
@@ -629,13 +611,6 @@ Surfaces:
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `7`: `S-NBH52 (738323, OHARA S-NBH52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `16`: `S-NBH52 (738323, OHARA S-NBH52)`
-
-## stored (nd=1.73800, vd=32.33)  — 1 surface, current label resolves to S-NBH8
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `19`: `S-NBH8 (OHARA)`
 
 ## stored (nd=1.74000, vd=28.20) [PgF=0.6094 (dPgF=0.0130)]  — 1 surface, current label resolves to S-TIH4
 
@@ -725,14 +700,13 @@ Candidates:
 Surfaces:
 - [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) `19`: `S-TIM27 (OHARA)`
 
-## stored (nd=1.75500, vd=52.34)  — 2 surfaces, current label resolves to S-LAL14
+## stored (nd=1.75500, vd=52.34)  — 1 surface, current label resolves to S-LAL14
 
 Candidates:
 - **S-LAH97** (nd=1.75500, vd=52.32, Δnd=+0.0000, Δvd=-0.02)
 
 Surfaces:
 - [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) `3`: `S-LAL14 / N-LAK12 (lanthanum crown)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `2`: `S-LAL8 (OHARA)`
 
 ## stored (nd=1.75500, vd=52.30)  — 2 surfaces, current label resolves to S-LAL14
 
@@ -835,15 +809,6 @@ Candidates:
 Surfaces:
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `11`: `S-LAM54 (OHARA)`
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `18`: `S-LAM54 (OHARA)`
-
-## stored (nd=1.77250, vd=49.62)  — 2 surfaces, current label resolves to S-LAH55VS
-
-Candidates:
-- **S-LAH66** (nd=1.77250, vd=49.60, Δnd=-0.0000, Δvd=-0.02)
-
-Surfaces:
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `4`: `S-LAH55VS (OHARA)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `8`: `S-LAH55VS (OHARA)`
 
 ## stored (nd=1.77300, vd=49.60)  — 1 surface, current label resolves to S-LAH65
 
@@ -1261,13 +1226,6 @@ Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `2`: `S-NPH2 / E-FDS2 (ultra-high-index short flint, nd = 1.946)`
 - [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `20`: `S-NPH2 (ultra-high-index short flint, nd = 1.946)`
 
-## stored (nd=1.94595, vd=17.98)  — 1 surface, current label resolves to S-NPH2
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) `28`: `S-NPH2 (OHARA)`
-
 ## stored (nd=1.95000, vd=29.37)  — 2 surfaces, current label resolves to S-LAH79
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -1362,5 +1320,5 @@ Surfaces:
 
 ## Summary
 
-- **91** (nd, vd) groups have at least one candidate (141 surfaces) — actionable relabels.
-- **70** (nd, vd) groups have NO candidate (103 surfaces) — needs patent verification or Unmatched relabeling.
+- **89** (nd, vd) groups have at least one candidate (134 surfaces) — actionable relabels.
+- **67** (nd, vd) groups have NO candidate (100 surfaces) — needs patent verification or Unmatched relabeling.

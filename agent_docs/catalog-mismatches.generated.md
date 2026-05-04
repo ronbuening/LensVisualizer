@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **140** lenses scanned
 - **1593** glass surfaces examined
 - **1590** surfaces with non-empty `glass` strings
-- **929** of those resolved to a catalog entry
-- **244** mismatches found (26.3% of resolved surfaces)
-- **78** distinct lens files affected
+- **925** of those resolved to a catalog entry
+- **234** mismatches found (25.3% of resolved surfaces)
+- **77** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,42 +28,40 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 14 | |
-| S-NPH2 | 12 | |
 | S-TIH14 | 12 | |
+| S-NPH2 | 11 | |
 | S-TIH18 | 9 | |
 | S-LAH58 | 7 | |
 | S-NPH4 | 7 | |
 | S-TIM25 | 7 | |
 | S-LAL14 | 6 | |
-| S-NBH56 | 6 | |
 | S-TIM22 | 6 | |
-| S-TIH6 | 6 | |
 | S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
 | S-BAL14 | 5 | |
 | S-NPH53 | 5 | |
 | S-NBH55 | 5 | |
-| S-NBH8 | 5 | |
+| S-NBH56 | 5 | |
 | S-TIM35 | 5 | |
+| S-TIH6 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIM2 | 5 | |
 | S-LAH64 | 4 | |
-| S-LAL8 | 4 | |
 | S-LAH65V | 4 | |
 | S-TIM27 | 4 | |
 | S-TIH53 | 4 | |
+| S-NBH8 | 4 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
 | S-BAL35 | 3 | |
+| S-LAL8 | 3 | |
 | S-LAH51 | 3 | |
 | S-LAH60 | 3 | |
 | S-TIH4 | 3 | |
 | S-LAH65 | 3 | |
-| S-BAL42 | 3 | |
 | SF6 | 3 | |
 | S-LAH97 | 3 | |
-| S-PHM53 | 3 | |
 | S-LAL9 | 2 | |
 | S-NPH1 | 2 | |
 | S-BSL7 | 2 | |
@@ -74,15 +72,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH5 | 2 | |
 | S-LAM66 | 2 | |
 | S-BAM4 | 2 | |
+| S-BAL42 | 2 | |
 | SF4 | 2 | |
 | N-SK16 | 2 | |
 | TAFD30 | 2 | |
 | S-BSM18 | 2 | |
 | S-NBH51 | 2 | |
 | S-NBH52 | 2 | |
-| S-LAH55VS | 2 | |
-| S-PHM52 | 2 | |
 | S-LAH55 | 2 | |
+| S-PHM53 | 2 | |
 | S-LAH52 | 1 | |
 | S-LAL18 | 1 | |
 | S-LAH55V | 1 | |
@@ -93,24 +91,10 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NSL3 | 1 | |
 | S-LAH53 | 1 | |
 | S-BSM81 | 1 | |
+| S-PHM52 | 1 | |
 | TAFD37 | 1 | |
 
 ## Mismatches by lens
-
-### [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) — WO2020/136749 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-LAL8 (OHARA)` | S-LAL8 | 1.75500 | 1.71299 | -0.0420 |
-| 4 | `S-LAH55VS (OHARA)` | S-LAH55VS | 1.77250 | 1.83481 | +0.0623 |
-| 8 | `S-LAH55VS (OHARA)` | S-LAH55VS | 1.77250 | 1.83481 | +0.0623 |
-| 10 | `S-TIH6 (OHARA)` | S-TIH6 | 1.72825 | 1.80518 | +0.0769 |
-| 17 | `S-PHM52 (OHARA)` | S-PHM52 | 1.59319 | 1.61800 | +0.0248 |
-| 19 | `S-NBH8 (OHARA)` | S-NBH8 | 1.73800 | 1.72047 | -0.0175 |
-| 22 | `S-NBH56 (OHARA)` | S-NBH56 | 1.72047 | 1.85478 | +0.1343 |
-| 24 | `S-PHM53 (OHARA)` | S-PHM53 | 1.59349 | 1.60300 | +0.0095 |
-| 28 | `S-NPH2 (OHARA)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
-| 32 | `S-BAL42 (OHARA)` | S-BAL42 | 1.58913 | 1.58313 | -0.0060 |
 
 ### [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) — US 2019/0265441 A1
 
