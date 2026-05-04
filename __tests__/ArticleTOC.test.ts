@@ -1,11 +1,55 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   ARTICLE_SCROLL_MARGIN_TOP,
   TOC_OBSERVER_BOTTOM_ROOT_MARGIN,
   TOC_OBSERVER_THRESHOLDS,
   extractTOCHeadings,
-  resolveTopmostVisibleHeading,
+  resolveActiveHeadingId,
 } from "../src/components/display/ArticleTOC.js";
+
+describe("resolveActiveHeadingId", () => {
+  it("returns first heading when no headings intersect activation line", () => {
+    const ids = ["intro", "details", "summary"];
+    const tops = new Map([
+      ["intro", 140],
+      ["details", 300],
+      ["summary", 520],
+    ]);
+
+    const active = resolveActiveHeadingId(ids, 80, (id) => tops.get(id) ?? null);
+    expect(active).toBe("intro");
+  });
+
+  it("tracks fast-scroll transitions to later headings", () => {
+    const ids = ["intro", "details", "summary"];
+    const tops = new Map([
+      ["intro", -400],
+      ["details", -8],
+      ["summary", 180],
+    ]);
+
+    const active = resolveActiveHeadingId(ids, 80, (id) => tops.get(id) ?? null);
+    expect(active).toBe("details");
+  });
+
+  it("selects final heading near page bottom", () => {
+    const ids = ["intro", "details", "summary"];
+    const tops = new Map([
+      ["intro", -700],
+      ["details", -250],
+      ["summary", 50],
+    ]);
+
+    const active = resolveActiveHeadingId(ids, 80, (id) => tops.get(id) ?? null);
+    expect(active).toBe("summary");
+  });
+
+  it("uses observer config aligned with markdown heading scroll margin behavior", () => {
+    expect(ARTICLE_SCROLL_MARGIN_TOP).toBe(88);
+    expect(TOC_OBSERVER_BOTTOM_ROOT_MARGIN).toBe("-35%");
+    expect(TOC_OBSERVER_THRESHOLDS).toEqual([0, 0.1, 0.25, 0.5]);
+  });
+});
 
 describe("extractTOCHeadings", () => {
   it("extracts h2 and h3 headings and ignores h1/h4+", () => {
@@ -21,65 +65,38 @@ describe("extractTOCHeadings", () => {
     expect(headings.map((h) => h.text)).toEqual(["Real", "AlsoReal"]);
   });
 
-  it("handles tilde-fenced blocks without eating later headings", () => {
-    const md = ["## First", "~~~js", "## InsideFence", "~~~", "## Second"].join("\n");
-    const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.text)).toEqual(["First", "Second"]);
+  it("extracts heading text with inline HTML and entities", () => {
+    const md = ["## <em>Alpha</em> &amp; <span>Beta</span>"].join("\n");
+    const [heading] = extractTOCHeadings(md);
+    expect(heading.text).toBe("Alpha & Beta");
+    expect(heading.id).toBe("alpha--beta");
   });
 
-  it("strips inline markdown (bold, italic, code, links) from heading text", () => {
-    const md = ["## A **bold** `code` [link](/x) word"].join("\n");
-    const [h] = extractTOCHeadings(md);
-    expect(h.text).toBe("A bold code link word");
+  it("extracts emphasis + links + code combinations", () => {
+    const md = ["## A *bold* [linked **phrase**](/x) with `code`"].join("\n");
+    const [heading] = extractTOCHeadings(md);
+    expect(heading.text).toBe("A bold linked phrase with code");
+    expect(heading.id).toBe("a-bold-linked-phrase-with-code");
   });
 
-  it("produces unique slugs for duplicate heading text", () => {
-    const md = ["## Intro", "## Intro", "## Intro"].join("\n");
+  it("produces unique slugs for duplicate complex heading text", () => {
+    const md = [
+      "## [Lens](/lens) *Field* `Notes`",
+      "## [Lens](/lens) *Field* `Notes`",
+      "## [Lens](/lens) *Field* `Notes`",
+    ].join("\n");
     const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.id)).toEqual(["intro", "intro-1", "intro-2"]);
+    expect(headings.map((h) => h.id)).toEqual(["lens-field-notes", "lens-field-notes-1", "lens-field-notes-2"]);
+  });
+
+  it("handles non-Latin punctuation in slugs", () => {
+    const md = ["## 你好，世界！", "## Привет, мир!", "## مرحبًا، عالم!"];
+    const headings = extractTOCHeadings(md.join("\n"));
+    expect(headings.map((h) => h.id)).toEqual(["你好世界", "привет-мир", "مرحبًا-عالم"]);
   });
 
   it("returns an empty array for markdown without h2/h3", () => {
     const md = ["# Only top", "Some paragraph.", "#### Too deep"].join("\n");
     expect(extractTOCHeadings(md)).toEqual([]);
-  });
-
-  it("slugs match github-slugger conventions (lowercase, hyphens, punctuation dropped)", () => {
-    const md = ["## Hello, World!", "## Stop-Shift Equations"].join("\n");
-    const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.id)).toEqual(["hello-world", "stop-shift-equations"]);
-  });
-});
-
-describe("TOC active heading resolver", () => {
-  it("prefers the topmost heading for adjacent short H3s", () => {
-    const tops = new Map([
-      ["h3-a", 180],
-      ["h3-b", 192],
-    ]);
-    const active = resolveTopmostVisibleHeading(["h3-a", "h3-b"], (id) => tops.get(id) ?? null);
-    expect(active).toBe("h3-a");
-  });
-
-  it("keeps the only visible heading active for long sparse sections", () => {
-    const tops = new Map([["h2-long", 260]]);
-    const active = resolveTopmostVisibleHeading(["h2-long"], (id) => tops.get(id) ?? null);
-    expect(active).toBe("h2-long");
-  });
-
-  it("handles top-of-page and bottom-of-page transitions by choosing the smallest top", () => {
-    const topOfPage = resolveTopmostVisibleHeading(["intro"], (id) => (id === "intro" ? 88 : null));
-    expect(topOfPage).toBe("intro");
-
-    const nearBottom = resolveTopmostVisibleHeading(["middle", "end"], (id) =>
-      id === "middle" ? 40 : id === "end" ? -12 : null,
-    );
-    expect(nearBottom).toBe("end");
-  });
-
-  it("uses observer config aligned with markdown heading scroll margin behavior", () => {
-    expect(ARTICLE_SCROLL_MARGIN_TOP).toBe(88);
-    expect(TOC_OBSERVER_BOTTOM_ROOT_MARGIN).toBe("-35%");
-    expect(TOC_OBSERVER_THRESHOLDS).toEqual([0, 0.1, 0.25, 0.5]);
   });
 });

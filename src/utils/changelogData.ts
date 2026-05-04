@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-04",
     type: "improvement",
+    summary: "Expanded Sellmeier coverage for moldable Ohara glasses and Hoya TAFD40",
+  },
+  {
+    date: "2026-05-04",
+    type: "improvement",
     summary: "Expanded the glass catalog to 111 verified entries with priority ED and high-index glasses",
   },
   {

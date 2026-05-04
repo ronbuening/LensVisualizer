@@ -10,7 +10,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import GithubSlugger from "github-slugger";
+import { extractHeadingsFromAst } from "../markdown/extractHeadingsFromAst.js";
 import type { Theme } from "../../types/theme.js";
 
 export interface TOCHeading {
@@ -44,45 +44,9 @@ export const TOC_OBSERVER_BOTTOM_ROOT_MARGIN = "-35%";
 
 /**
  * Pure markdown → headings extractor. Exported for unit testing.
- * Skips fenced code blocks so `## ` inside ``` blocks isn't misread.
  */
 export function extractTOCHeadings(markdown: string): TOCHeading[] {
-  const slugger = new GithubSlugger();
-  const out: TOCHeading[] = [];
-  let inFence = false;
-  let fenceChar = "";
-  for (const line of markdown.split(/\r?\n/)) {
-    const fenceMatch = line.match(/^(`{3,}|~{3,})/);
-    if (fenceMatch) {
-      if (!inFence) {
-        inFence = true;
-        fenceChar = fenceMatch[1][0];
-      } else if (fenceMatch[1][0] === fenceChar) {
-        inFence = false;
-      }
-      continue;
-    }
-    if (inFence) continue;
-    const headingMatch = line.match(/^(#{2,3})\s+(.+?)\s*#*\s*$/);
-    if (!headingMatch) continue;
-    const level = headingMatch[1].length as 2 | 3;
-    const text = stripInlineMarkdown(headingMatch[2]);
-    if (!text) continue;
-    out.push({ level, text, id: slugger.slug(text) });
-  }
-  return out;
-}
-
-/** Strip common inline markdown syntax so heading text reads cleanly. */
-function stripInlineMarkdown(raw: string): string {
-  return raw
-    .replace(/`([^`]+)`/g, "$1")
-    .replace(/\*\*([^*]+)\*\*/g, "$1")
-    .replace(/__([^_]+)__/g, "$1")
-    .replace(/\*([^*]+)\*/g, "$1")
-    .replace(/_([^_]+)_/g, "$1")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .trim();
+  return extractHeadingsFromAst(markdown);
 }
 
 function useMediaQueryMatch(query: string): boolean {
@@ -98,21 +62,22 @@ function useMediaQueryMatch(query: string): boolean {
   return matches;
 }
 
-/** Track the currently-visible heading via IntersectionObserver. */
-export function resolveTopmostVisibleHeading(
-  visibleIds: Iterable<string>,
+/** Track the currently-active heading using the document positions. */
+export function resolveActiveHeadingId(
+  ids: string[],
+  offsetTop: number,
   getTop: (id: string) => number | null,
+  activationPadding = 12,
 ): string | null {
-  let topId: string | null = null;
-  let topY = Infinity;
-  for (const id of visibleIds) {
+  if (ids.length === 0) return null;
+  const activationLine = offsetTop + activationPadding;
+  let nextId = ids[0] ?? null;
+  for (const id of ids) {
     const top = getTop(id);
-    if (top !== null && top < topY) {
-      topY = top;
-      topId = id;
-    }
+    if (top === null) continue;
+    if (top <= activationLine) nextId = id;
   }
-  return topId;
+  return nextId;
 }
 
 function useActiveHeading(ids: string[], offsetTop: number): string | null {
@@ -122,21 +87,20 @@ function useActiveHeading(ids: string[], offsetTop: number): string | null {
     const elements = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
     if (elements.length === 0) return;
 
-    const visible = new Map<string, number>();
     const rootTopOffset = Math.max(offsetTop, ARTICLE_SCROLL_MARGIN_TOP);
+    const resolveActiveId = () => {
+      const nextId = resolveActiveHeadingId(
+        ids,
+        offsetTop,
+        (id) => document.getElementById(id)?.getBoundingClientRect().top ?? null,
+      );
+      if (nextId) {
+        setActiveId((current) => (current === nextId ? current : nextId));
+      }
+    };
     const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio);
-          else visible.delete(entry.target.id);
-        }
-        if (visible.size > 0) {
-          const topId = resolveTopmostVisibleHeading(visible.keys(), (id) => {
-            const rect = document.getElementById(id)?.getBoundingClientRect();
-            return rect ? rect.top : null;
-          });
-          if (topId) setActiveId(topId);
-        }
+      () => {
+        resolveActiveId();
       },
       {
         rootMargin: `-${rootTopOffset}px 0px ${TOC_OBSERVER_BOTTOM_ROOT_MARGIN} 0px`,
@@ -145,7 +109,16 @@ function useActiveHeading(ids: string[], offsetTop: number): string | null {
     );
 
     for (const el of elements) observer.observe(el);
-    return () => observer.disconnect();
+    const onScrollOrResize = () => resolveActiveId();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    resolveActiveId();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
   }, [ids, offsetTop]);
   return activeId;
 }

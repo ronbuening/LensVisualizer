@@ -10,7 +10,7 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: Phase 6 (111 entries). See agent_docs/glass-catalog-buildout.md
+ * Coverage status: Phase 7 (115 entries). See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -80,7 +80,7 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 111 vendor-verified entries (Phase 6, May 2026)
+ * GLASS CATALOG — 115 vendor-verified entries (Phase 7, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1263,6 +1263,38 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NPH5 page.",
   },
   {
+    name: "S-LAH63Q",
+    vendor: "Ohara",
+    B: [1.96723017, 0.194953915, 1.25386282],
+    C: [0.0110456086, 0.0497137061, 104.84352],
+    nd: 1.8044,
+    vd: 39.580489,
+    PgF: 0.576,
+    code6: "804396",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAH63Q page.",
+  },
+  {
+    name: "S-LAH65VS",
+    vendor: "Ohara",
+    B: [1.76068422, 0.414128906, 1.33415439],
+    C: [0.00853607198, 0.0301826383, 98.09421],
+    nd: 1.804,
+    vd: 46.527532,
+    PgF: 0.557,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAH65VS page.",
+  },
+  {
+    name: "S-NBM51",
+    vendor: "Ohara",
+    B: [1.37023101, 0.177665568, 1.30515471],
+    C: [0.00871920342, 0.0405725552, 112.703058],
+    nd: 1.613397,
+    vd: 44.267706,
+    PgF: 0.5628,
+    code6: "613443",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NBM51 page.",
+  },
+  {
     name: "S-FTM16",
     vendor: "Ohara",
     B: [1.32940907, 0.141512125, 1.44299068],
@@ -1389,6 +1421,16 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     vd: 29.13,
     PgF: 0.5986,
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD55 page (formula 3 polynomial).",
+  },
+  {
+    name: "TAFD40",
+    vendor: "Hoya",
+    polynomial: [3.8106232, -0.016351565, 0.058801097, 0.0034919026, -0.0001694811, 0.000032569333],
+    nd: 2.00069,
+    vd: 25.46,
+    PgF: 0.6121,
+    code6: "001255",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD40 page (formula 3 polynomial).",
   },
 
   /* Sumita priority addition */
