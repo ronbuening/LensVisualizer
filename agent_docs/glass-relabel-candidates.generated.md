@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 234 mismatched surfaces across 156 unique groups.
+**Scope**: 217 mismatched surfaces across 149 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -301,17 +301,13 @@ Candidates:
 Surfaces:
 - [NIKON AF-S NIKKOR 85mm f/1.4G](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) `17`: `S-TIH53 (OHARA)`
 
-## stored (nd=1.64769, vd=33.70)  — 5 surfaces, current label resolves to S-TIH14
+## stored (nd=1.64769, vd=33.70)  — 1 surface, current label resolves to S-TIM27
 
 Candidates:
 - **SF2** (nd=1.64769, vd=33.85, Δnd=-0.0000, Δvd=+0.15)
 - **S-TIM22** (nd=1.64769, vd=33.79, Δnd=-0.0000, Δvd=+0.09)
 
 Surfaces:
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `10`: `S-TIH14 class (dense flint)`
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `14`: `S-TIH14 class (dense flint)`
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `21`: `S-TIH14 class (dense flint)`
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `23`: `S-TIH14 class (dense flint)`
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `10`: `S-TIM27 (OHARA)`
 
 ## stored (nd=1.64831, vd=33.80)  — 1 surface, current label resolves to SF4
@@ -354,14 +350,6 @@ Surfaces:
 Surfaces:
 - [NIKON NIKKOR-S AUTO 50mm f/1.4](../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) `1`: `SF2 / NSL36 (dense flint)`
 
-## stored (nd=1.66565, vd=35.64)  — 2 surfaces, current label resolves to S-TIM22
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `8`: `S-TIM22 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `16`: `S-TIM22 (OHARA)`
-
 ## stored (nd=1.67246, vd=32.30) [code=672/323]  — 1 surface, current label resolves to SF2
 
 Candidates:
@@ -379,14 +367,6 @@ Surfaces:
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `28`: `S-TIM28 (OHARA)`
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) `15`: `S-TIM22 (OHARA)`
 
-## stored (nd=1.67270, vd=32.20)  — 1 surface, current label resolves to S-TIH6
-
-Candidates:
-- **S-TIM25** (nd=1.67270, vd=32.10, Δnd=-0.0000, Δvd=-0.10)
-
-Surfaces:
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `1`: `S-TIH6 class (dense flint)`
-
 ## stored (nd=1.67270, vd=32.17)  — 1 surface, current label resolves to S-TIM35
 
 Candidates:
@@ -394,14 +374,6 @@ Candidates:
 
 Surfaces:
 - [SONY FE 90 mm F2.8 Macro G OSS](../src/lens-data/sony/SonyFE90mmf28.data.ts) `20`: `S-TIM35 (OHARA)`
-
-## stored (nd=1.67300, vd=38.15)  — 1 surface, current label resolves to S-TIM35
-
-Candidates:
-- **S-NBH52** (nd=1.67300, vd=38.15, Δnd=-0.0000, Δvd=+0.00)
-
-Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `23`: `S-TIM35 (OHARA)`
 
 ## stored (nd=1.67790, vd=55.50)  — 1 surface, current label resolves to N-SK16
 
@@ -416,14 +388,6 @@ Surfaces:
 
 Surfaces:
 - [SONY SONNAR T* FE 35mm F2.8 ZA](../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) `12A`: `S-TIM28 (OHARA)`
-
-## stored (nd=1.68893, vd=31.07)  — 1 surface, current label resolves to S-TIM25
-
-Candidates:
-- **S-TIM28** (nd=1.68893, vd=31.08, Δnd=+0.0000, Δvd=+0.01)
-
-Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `2`: `S-TIM25 (OHARA)`
 
 ## stored (nd=1.68893, vd=31.10)  — 2 surfaces, current label resolves to S-TIM27
 
@@ -597,13 +561,6 @@ Surfaces:
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) `18`: `S-TIH14 (OHARA)`
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `7`: `S-TIH14 (OHARA)`
 
-## stored (nd=1.73800, vd=32.26)  — 1 surface, current label resolves to S-NBH55
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `13`: `S-NBH55 (OHARA)`
-
 ## stored (nd=1.73800, vd=32.30) [code=738/323]  — 2 surfaces, current label resolves to S-NBH52
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -748,13 +705,6 @@ Surfaces:
 Surfaces:
 - [CANON RF 24-70mm f/2.8L IS USM](../src/lens-data/canon/CanonRF2470f28.data.ts) `17`: `S-LAH59 (OHARA)`
 
-## stored (nd=1.76385, vd=48.51)  — 1 surface, current label resolves to S-LAL14
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `15`: `S-LAL14 (OHARA)`
-
 ## stored (nd=1.76450, vd=49.10)  — 1 surface, current label resolves to S-NBH56
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -817,14 +767,6 @@ Candidates:
 
 Surfaces:
 - [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) `7`: `S-LAH65 class (Ohara)`
-
-## stored (nd=1.77377, vd=47.20)  — 1 surface, current label resolves to S-LAH60
-
-Candidates:
-- **S-LAH66** (nd=1.77250, vd=49.60, Δnd=-0.0013, Δvd=+2.40)
-
-Surfaces:
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `16A`: `S-LAH60 class (lanthanum dense flint, nd = 1.774)`
 
 ## stored (nd=1.78470, vd=26.10) [PgF=0.6139 (dPgF=0.0140)]  — 3 surfaces, current label resolves to S-TIH14
 
@@ -1113,7 +1055,7 @@ Candidates:
 Surfaces:
 - [CANON FD 50mm f/1.2 L](../src/lens-data/canon/CanonFD50mmf12L.data.ts) `9`: `OHARA S-LAH64 (883408)`
 
-## stored (nd=1.88300, vd=40.80)  — 4 surfaces, current label resolves to S-LAH60
+## stored (nd=1.88300, vd=40.80)  — 2 surfaces, current label resolves to S-LAH60
 
 Candidates:
 - **S-LAH58** (nd=1.88300, vd=40.77, Δnd=-0.0000, Δvd=-0.03)
@@ -1122,8 +1064,6 @@ Candidates:
 
 Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `12`: `S-LAH60 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `18A`: `S-LAH89 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `20`: `S-LAH89 (OHARA)`
 - [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) `1`: `S-LAH55 (Ohara) / TAC8 (Hoya) — Δnd = 0, ΔVd = +0.04`
 
 ## stored (nd=1.90043, vd=37.40)  — 2 surfaces, current label resolves to S-LAH64
@@ -1217,14 +1157,12 @@ Candidates:
 Surfaces:
 - [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) `10`: `High-index heavy flint (923209; OHARA S-NPH53)`
 
-## stored (nd=1.94595, vd=18.00)  — 3 surfaces, current label resolves to S-NPH4
+## stored (nd=1.94595, vd=18.00)  — 1 surface, current label resolves to S-NPH4
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `19`: `S-NPH4 (OHARA)`
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `2`: `S-NPH2 / E-FDS2 (ultra-high-index short flint, nd = 1.946)`
-- [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) `20`: `S-NPH2 (ultra-high-index short flint, nd = 1.946)`
 
 ## stored (nd=1.95000, vd=29.37)  — 2 surfaces, current label resolves to S-LAH79
 
@@ -1247,12 +1185,11 @@ Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `16`: `S-LAH79 (OHARA)`
 - [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) `13`: `S-LAH79 (OHARA)`
 
-## stored (nd=1.95375, vd=32.32)  — 2 surfaces, current label resolves to S-LAH79
+## stored (nd=1.95375, vd=32.32)  — 1 surface, current label resolves to S-LAH79
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `9`: `S-LAH79 (OHARA)`
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) `25`: `S-LAH79 (OHARA ultra-high-index lanthanum)`
 
 ## stored (nd=1.95375, vd=32.30) [code=954/323]  — 1 surface, current label resolves to S-LAH79
@@ -1320,5 +1257,5 @@ Surfaces:
 
 ## Summary
 
-- **89** (nd, vd) groups have at least one candidate (134 surfaces) — actionable relabels.
-- **67** (nd, vd) groups have NO candidate (100 surfaces) — needs patent verification or Unmatched relabeling.
+- **85** (nd, vd) groups have at least one candidate (124 surfaces) — actionable relabels.
+- **64** (nd, vd) groups have NO candidate (93 surfaces) — needs patent verification or Unmatched relabeling.

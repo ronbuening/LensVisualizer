@@ -46,7 +46,7 @@ G1 consists of six elements arranged from the object side:
    - L11: Biconcave negative meniscus (nd = 1.67270, νd = 32.2)
    - L12: Positive meniscus, convex toward object (nd = 1.94595, νd = 18.0)
 
-   This front cemented doublet serves as an **aberration pre-corrector**. The leading negative element, placed at the very front of the system, is unusual for a lens of this type — most traditional double-Gauss derivatives begin with a positive element. The patent (paragraph 0054) specifically notes that placing a negative lens at the front of G1 enables effective coma correction. L12 uses an ultra-high-index, ultra-low-dispersion short flint glass (nd = 1.94595, the highest refractive index in the system), which provides strong chromatic correction in a compact cemented pair. The large index difference between L11 and L12 at the cemented interface creates a powerfully correcting buried surface.
+   This front cemented doublet serves as an **aberration pre-corrector**. The leading negative element, placed at the very front of the system, is unusual for a lens of this type — most traditional double-Gauss derivatives begin with a positive element. The patent (paragraph 0054) specifically notes that placing a negative lens at the front of G1 enables effective coma correction. L12 uses an ultra-high-index, high-dispersion short flint glass (nd = 1.94595, νd = 18.0, 946/180 code), the highest refractive index in the system. This provides strong chromatic correction in a compact cemented pair, and the large index difference between L11 and L12 at the cemented interface creates a powerfully correcting buried surface.
 
 2. **L13 — Positive Meniscus** (Surfaces 4–5)
    - Concave toward object (nd = 1.72916, νd = 54.6)
@@ -73,7 +73,7 @@ G1 consists of six elements arranged from the object side:
    - L15: Biconvex positive (nd = 1.59319, νd = 67.9) — **ED glass**
    - L16: Biconcave negative (nd = 1.64769, νd = 33.7)
 
-   This is the inner cemented doublet positioned immediately before the aperture stop, playing a critical role in **axial chromatic aberration correction**. L15 uses an ED (Extra-low Dispersion) glass — likely Ohara S-FPM2 or Hoya FCD1 class — characterized by anomalous partial dispersion. When paired with L16's dense flint glass (high dispersion, νd = 33.7), the doublet achieves chromatic correction superior to what normal crown-flint pairs can provide. The anomalous partial dispersion of the ED glass means it corrects not just primary chromatic aberration (at two wavelengths) but also secondary spectrum, reducing the residual color fringing that limits resolution in conventional designs.
+   This is the inner cemented doublet positioned immediately before the aperture stop, playing a critical role in **axial chromatic aberration correction**. L15 uses an ED (Extra-low Dispersion) fluorophosphate glass in the S-FPM2 / FCD505 class. When paired with L16's S-TIM22-class dense flint glass (high dispersion, νd = 33.7), the doublet achieves chromatic correction superior to what normal crown-flint pairs can provide. The anomalous partial dispersion of the ED glass means it corrects not just primary chromatic aberration (at two wavelengths) but also secondary spectrum, reducing the residual color fringing that limits resolution in conventional designs.
 
 **Aperture Stop (S)** — Located at Surface 12, between G1 and G2. The patent (paragraph 0026) notes that placing the stop on the image side of G1 enables good correction of coma and astigmatism at close focus distances.
 
@@ -111,9 +111,9 @@ G2 consists of three elements:
    The image-side surface (17) carries significantly larger aspherical departure than the object side (A4 is roughly 75× larger), meaning it does the heavy lifting of the aspherical correction. This element, sitting within the focusing group, primarily corrects **spherical aberration, coma, and their variation during focusing**. Placing the asphere in the moving group is a deliberate design choice: as the group shifts, the aspherical correction tracks with the changing ray geometry, maintaining image quality across the focus range. The high-index lanthanum glass (nd = 1.77377) enables strong optical power in a thin element, reducing the group's mass and thereby the load on the stepping motor (STM) autofocus actuator.
 
 7. **L23 — Positive Meniscus, Concave Toward Object** (Surfaces 18–19)
-   - nd = 1.49782, νd = 82.6 — **Super ED glass**
+   - nd = 1.49782, νd = 82.6 — **ED fluorophosphate glass**
 
-   This is the second ED element and uses an anomalous-partial-dispersion fluorophosphate glass matching the Ohara S-FPL53 or Hoya FCD100 specification. With νd = 82.6, this is one of the lowest-dispersion optical glasses commercially available. Its placement within the focusing group means it provides **in-situ chromatic correction that tracks with focus position**, preventing longitudinal chromatic aberration (LoCA) from degrading as the lens focuses closer. This is a 6.400 mm thick element — the thickest in G2 — which provides substantial positive power to maintain the group's overall converging function while keeping dispersion minimal.
+   This is the second ED element and uses an anomalous-partial-dispersion fluorophosphate glass in the S-FPL51 / FCD1 class. With νd = 82.6, it is a very-low-dispersion glass, but the audit value does not match Ohara S-FPL53 or Hoya FCD100. Its placement within the focusing group means it provides **in-situ chromatic correction that tracks with focus position**, preventing longitudinal chromatic aberration (LoCA) from degrading as the lens focuses closer. This is a 6.400 mm thick element — the thickest in G2 — which provides substantial positive power to maintain the group's overall converging function while keeping dispersion minimal.
 
    Together, the three G2 elements form a modified triplet: negative-positive-positive. The negative leading element controls field curvature; the double-aspherical middle element handles monochromatic aberrations; and the trailing ED element suppresses chromatic errors. This combination allows the focusing group to maintain high optical performance from infinity to close focus while remaining compact and lightweight enough for responsive autofocus.
 
@@ -140,7 +140,7 @@ G3 consists of three elements:
    - L31: Positive meniscus, concave toward object (nd = 1.94595, νd = 18.0)
    - L32: Negative meniscus, concave toward object (nd = 1.64769, νd = 33.7)
 
-   This cemented pair uses the same ultra-high-index short flint glass (nd = 1.94595) seen in L12, now functioning in a different context. L31's positive power combined with L32's negative power creates a net weakly-negative doublet that performs **lateral chromatic aberration correction** and contributes to field flattening. The cemented interface between two relatively high-dispersion glasses with different partial dispersions provides a buried surface for fine-tuning color correction independent of monochromatic power. The patent (paragraph 0025) confirms that having both positive and negative elements in G3 enables good correction of chromatic aberration and other residual aberrations.
+   This cemented pair uses the same ultra-high-index short flint glass (nd = 1.94595, νd = 18.0, 946/180 code) seen in L12, now functioning in a different context. L31's positive power combined with L32's negative power creates a net weakly-negative doublet that performs **lateral chromatic aberration correction** and contributes to field flattening. The cemented interface between two relatively high-dispersion glasses with different partial dispersions provides a buried surface for fine-tuning color correction independent of monochromatic power. The patent (paragraph 0025) confirms that having both positive and negative elements in G3 enables good correction of chromatic aberration and other residual aberrations.
 
 9. **L33 — Plano-Concave Negative Lens** (Surfaces 23–24)
    - Concave toward object, flat on the image side (nd = 1.64769, νd = 33.7)
@@ -179,13 +179,13 @@ The design employs 8 distinct glass types across 12 elements (several types are 
 
 The two ED elements work in concert despite being in different groups:
 
-- **L15** (G1, nd = 1.59319, νd = 67.9): A moderate-ED glass with anomalous partial dispersion, likely in the Ohara S-FPM2 / Hoya FCD1 family. Located in G1's inner cemented doublet before the stop, it corrects axial chromatic aberration for the primary convergence of the entrance pupil.
+- **L15** (G1, nd = 1.59319, νd = 67.9): A moderate-ED glass with anomalous partial dispersion in the Ohara S-FPM2 / Hoya FCD505 family. Located in G1's inner cemented doublet before the stop, it corrects axial chromatic aberration for the primary convergence of the entrance pupil.
 
-- **L23** (G2, nd = 1.49782, νd = 82.6): A super-ED fluorophosphate glass, likely Ohara S-FPL53 or Hoya FCD100. This is among the most effective anomalous-dispersion glasses available. Its position within the focusing group means it provides chromatic correction that tracks with focus, preventing LoCA from degrading at close distances.
+- **L23** (G2, nd = 1.49782, νd = 82.6): A very-low-dispersion ED fluorophosphate glass in the Ohara S-FPL51 / Hoya FCD1 class. The patent value is not an S-FPL53/FCD100 match. Its position within the focusing group means it provides chromatic correction that tracks with focus, preventing LoCA from degrading at close distances.
 
 ### Ultra-High-Index Elements (nd = 1.94595)
 
-Two elements use this extreme refractive index (L12 in G1 and L31 in G3). This glass — likely Ohara S-NPH2 — has a very low Abbe number (νd = 18.0) meaning high dispersion, but its extremely high refractive index allows strong optical power from gentle surface curvatures. In cemented doublets, it enables large index differences at buried surfaces, which is the mechanism for chromatic correction at those interfaces. The symmetric placement of these elements near the front and rear of the system contributes to overall chromatic balance.
+Two elements use this extreme refractive index (L12 in G1 and L31 in G3). The patent gives nd = 1.94595 and νd = 18.0, corresponding to 946/180 code glass rather than the public S-NPH2 catalog entry currently in the project. Its extremely high refractive index allows strong optical power from gentle surface curvatures, while its high dispersion helps create a chromatic correction lever in cemented doublets. The symmetric placement of these elements near the front and rear of the system contributes to overall chromatic balance.
 
 ### Dense Flint Group (nd = 1.64769, νd = 33.7)
 
@@ -195,19 +195,19 @@ This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-h
 
 | Element | nd | νd | Glass Class | Optical Role |
 |---------|-----|-----|-------------|-------------|
-| L11 | 1.67270 | 32.2 | Dense flint (S-TIH6 class) | Front negative corrector |
-| L12 | 1.94595 | 18.0 | Ultra-high-index short flint (S-NPH2) | Chromatic correction, high-power cemented surface |
+| L11 | 1.67270 | 32.2 | Dense flint (S-TIM25 class) | Front negative corrector |
+| L12 | 1.94595 | 18.0 | 946/180 ultra-high-index short flint | Chromatic correction, high-power cemented surface |
 | L13 | 1.72916 | 54.6 | Lanthanum crown (S-LAL18 class) | Positive convergence |
 | L14 layer | 1.56093 | 36.6 | Probable UV-curing optical resin (inferred) | Aspherical layer on glass substrate |
 | L14 glass | 1.80400 | 46.6 | Lanthanum dense flint (S-LAH65V class) | Aspherical convergence element |
-| L15 | 1.59319 | 67.9 | ED glass (S-FPM2 / FCD1 class) | Primary chromatic correction |
-| L16 | 1.64769 | 33.7 | Dense flint (S-TIH14 class) | Achromatizing partner to L15 |
-| L21 | 1.64769 | 33.7 | Dense flint (S-TIH14 class) | Field curvature control in focus group |
-| L22 | 1.77377 | 47.2 | Lanthanum dense flint (S-LAH60 class) | Double-aspherical corrector |
-| L23 | 1.49782 | 82.6 | Super ED glass (S-FPL53 / FCD100) | Focus-tracking chromatic correction |
-| L31 | 1.94595 | 18.0 | Ultra-high-index short flint (S-NPH2) | Rear chromatic balance |
-| L32 | 1.64769 | 33.7 | Dense flint (S-TIH14 class) | Lateral color correction |
-| L33 | 1.64769 | 33.7 | Dense flint (S-TIH14 class) | Field flattener |
+| L15 | 1.59319 | 67.9 | ED glass (S-FPM2 / FCD505 class) | Primary chromatic correction |
+| L16 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Achromatizing partner to L15 |
+| L21 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field curvature control in focus group |
+| L22 | 1.77377 | 47.2 | 774/472 lanthanum dense flint | Double-aspherical corrector |
+| L23 | 1.49782 | 82.6 | ED glass (S-FPL51 / FCD1 class) | Focus-tracking chromatic correction |
+| L31 | 1.94595 | 18.0 | 946/180 ultra-high-index short flint | Rear chromatic balance |
+| L32 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Lateral color correction |
+| L33 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field flattener |
 
 ---
 

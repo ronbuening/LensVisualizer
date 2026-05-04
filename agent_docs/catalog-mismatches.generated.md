@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **140** lenses scanned
 - **1593** glass surfaces examined
 - **1590** surfaces with non-empty `glass` strings
-- **925** of those resolved to a catalog entry
-- **234** mismatches found (25.3% of resolved surfaces)
-- **77** distinct lens files affected
+- **917** of those resolved to a catalog entry
+- **217** mismatches found (23.7% of resolved surfaces)
+- **75** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,37 +27,36 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 14 | |
-| S-TIH14 | 12 | |
-| S-NPH2 | 11 | |
+| S-LAH79 | 13 | |
 | S-TIH18 | 9 | |
+| S-NPH2 | 9 | |
+| S-TIH14 | 8 | |
 | S-LAH58 | 7 | |
 | S-NPH4 | 7 | |
-| S-TIM25 | 7 | |
-| S-LAL14 | 6 | |
-| S-TIM22 | 6 | |
+| S-TIM25 | 6 | |
 | S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
 | S-BAL14 | 5 | |
 | S-NPH53 | 5 | |
-| S-NBH55 | 5 | |
+| S-LAL14 | 5 | |
 | S-NBH56 | 5 | |
-| S-TIM35 | 5 | |
-| S-TIH6 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIM2 | 5 | |
 | S-LAH64 | 4 | |
 | S-LAH65V | 4 | |
 | S-TIM27 | 4 | |
 | S-TIH53 | 4 | |
+| S-NBH55 | 4 | |
 | S-NBH8 | 4 | |
+| S-TIM22 | 4 | |
+| S-TIM35 | 4 | |
+| S-TIH6 | 4 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
 | S-BAL35 | 3 | |
 | S-LAL8 | 3 | |
 | S-LAH51 | 3 | |
-| S-LAH60 | 3 | |
 | S-TIH4 | 3 | |
 | S-LAH65 | 3 | |
 | SF6 | 3 | |
@@ -65,8 +64,8 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAL9 | 2 | |
 | S-NPH1 | 2 | |
 | S-BSL7 | 2 | |
+| S-LAH60 | 2 | |
 | S-LAH66 | 2 | |
-| S-LAH89 | 2 | |
 | N-SK14 | 2 | |
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
@@ -96,20 +95,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 ## Mismatches by lens
 
-### [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) — US 2019/0265441 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-TIM25 (OHARA)` | S-TIM25 | 1.68893 | 1.67270 | -0.0162 |
-| 8 | `S-TIM22 (OHARA)` | S-TIM22 | 1.66565 | 1.64769 | -0.0180 |
-| 9 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
-| 13 | `S-NBH55 (OHARA)` | S-NBH55 | 1.73800 | 1.80000 | +0.0620 |
-| 15 | `S-LAL14 (OHARA)` | S-LAL14 | 1.76385 | 1.69680 | -0.0671 |
-| 16 | `S-TIM22 (OHARA)` | S-TIM22 | 1.66565 | 1.64769 | -0.0180 |
-| 18A | `S-LAH89 (OHARA)` | S-LAH89 | 1.88300 | 1.85150 | -0.0315 |
-| 20 | `S-LAH89 (OHARA)` | S-LAH89 | 1.88300 | 1.85150 | -0.0315 |
-| 23 | `S-TIM35 (OHARA)` | S-TIM35 | 1.67300 | 1.69895 | +0.0259 |
-
 ### [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) — JP2021-47297A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -135,19 +120,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 19 | `S-TIM27 (OHARA)` | S-TIM27 | 1.74951 | 1.63980 | -0.1097 |
 | 22 | `S-TIH53 (OHARA)` | S-TIH53 | 1.78472 | 1.84666 | +0.0619 |
 | 27 | `S-BAL14 (OHARA)` | S-BAL14 | 1.72916 | 1.56883 | -0.1603 |
-
-### [NIKON NIKKOR Z 50mm f/1.8 S](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) — WO2019/220618 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-TIH6 class (dense flint)` | S-TIH6 | 1.67270 | 1.80518 | +0.1325 |
-| 2 | `S-NPH2 / E-FDS2 (ultra-high-index short flint, nd = 1.946)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
-| 10 | `S-TIH14 class (dense flint)` | S-TIH14 | 1.64769 | 1.76182 | +0.1141 |
-| 14 | `S-TIH14 class (dense flint)` | S-TIH14 | 1.64769 | 1.76182 | +0.1141 |
-| 16A | `S-LAH60 class (lanthanum dense flint, nd = 1.774)` | S-LAH60 | 1.77377 | 1.83400 | +0.0602 |
-| 20 | `S-NPH2 (ultra-high-index short flint, nd = 1.946)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
-| 21 | `S-TIH14 class (dense flint)` | S-TIH14 | 1.64769 | 1.76182 | +0.1141 |
-| 23 | `S-TIH14 class (dense flint)` | S-TIH14 | 1.64769 | 1.76182 | +0.1141 |
 
 ### [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) — WO 2025/239028 A1
 
