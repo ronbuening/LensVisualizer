@@ -38,6 +38,10 @@ export interface ArticleTOCProps {
   wideQuery?: string;
 }
 
+export const ARTICLE_SCROLL_MARGIN_TOP = 88;
+export const TOC_OBSERVER_THRESHOLDS = [0, 0.1, 0.25, 0.5];
+export const TOC_OBSERVER_BOTTOM_ROOT_MARGIN = "-35%";
+
 /**
  * Pure markdown → headings extractor. Exported for unit testing.
  * Skips fenced code blocks so `## ` inside ``` blocks isn't misread.
@@ -95,6 +99,22 @@ function useMediaQueryMatch(query: string): boolean {
 }
 
 /** Track the currently-visible heading via IntersectionObserver. */
+export function resolveTopmostVisibleHeading(
+  visibleIds: Iterable<string>,
+  getTop: (id: string) => number | null,
+): string | null {
+  let topId: string | null = null;
+  let topY = Infinity;
+  for (const id of visibleIds) {
+    const top = getTop(id);
+    if (top !== null && top < topY) {
+      topY = top;
+      topId = id;
+    }
+  }
+  return topId;
+}
+
 function useActiveHeading(ids: string[], offsetTop: number): string | null {
   const [activeId, setActiveId] = useState<string | null>(null);
   useEffect(() => {
@@ -103,6 +123,7 @@ function useActiveHeading(ids: string[], offsetTop: number): string | null {
     if (elements.length === 0) return;
 
     const visible = new Map<string, number>();
+    const rootTopOffset = Math.max(offsetTop, ARTICLE_SCROLL_MARGIN_TOP);
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -110,19 +131,17 @@ function useActiveHeading(ids: string[], offsetTop: number): string | null {
           else visible.delete(entry.target.id);
         }
         if (visible.size > 0) {
-          let topId: string | null = null;
-          let topY = Infinity;
-          for (const id of visible.keys()) {
+          const topId = resolveTopmostVisibleHeading(visible.keys(), (id) => {
             const rect = document.getElementById(id)?.getBoundingClientRect();
-            if (rect && rect.top < topY) {
-              topY = rect.top;
-              topId = id;
-            }
-          }
+            return rect ? rect.top : null;
+          });
           if (topId) setActiveId(topId);
         }
       },
-      { rootMargin: `-${offsetTop}px 0px -60% 0px`, threshold: [0, 1] },
+      {
+        rootMargin: `-${rootTopOffset}px 0px ${TOC_OBSERVER_BOTTOM_ROOT_MARGIN} 0px`,
+        threshold: TOC_OBSERVER_THRESHOLDS,
+      },
     );
 
     for (const el of elements) observer.observe(el);
@@ -136,7 +155,7 @@ export default function ArticleTOC({
   theme: t,
   title = "On this page",
   minHeadings = 3,
-  offsetTop = 80,
+  offsetTop = ARTICLE_SCROLL_MARGIN_TOP,
   width = 220,
   wideQuery = "(min-width: 1200px)",
 }: ArticleTOCProps) {

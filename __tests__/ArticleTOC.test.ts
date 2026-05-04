@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { extractTOCHeadings } from "../src/components/display/ArticleTOC.js";
+import {
+  ARTICLE_SCROLL_MARGIN_TOP,
+  TOC_OBSERVER_BOTTOM_ROOT_MARGIN,
+  TOC_OBSERVER_THRESHOLDS,
+  extractTOCHeadings,
+  resolveTopmostVisibleHeading,
+} from "../src/components/display/ArticleTOC.js";
 
 describe("extractTOCHeadings", () => {
   it("extracts h2 and h3 headings and ignores h1/h4+", () => {
@@ -42,5 +48,38 @@ describe("extractTOCHeadings", () => {
     const md = ["## Hello, World!", "## Stop-Shift Equations"].join("\n");
     const headings = extractTOCHeadings(md);
     expect(headings.map((h) => h.id)).toEqual(["hello-world", "stop-shift-equations"]);
+  });
+});
+
+describe("TOC active heading resolver", () => {
+  it("prefers the topmost heading for adjacent short H3s", () => {
+    const tops = new Map([
+      ["h3-a", 180],
+      ["h3-b", 192],
+    ]);
+    const active = resolveTopmostVisibleHeading(["h3-a", "h3-b"], (id) => tops.get(id) ?? null);
+    expect(active).toBe("h3-a");
+  });
+
+  it("keeps the only visible heading active for long sparse sections", () => {
+    const tops = new Map([["h2-long", 260]]);
+    const active = resolveTopmostVisibleHeading(["h2-long"], (id) => tops.get(id) ?? null);
+    expect(active).toBe("h2-long");
+  });
+
+  it("handles top-of-page and bottom-of-page transitions by choosing the smallest top", () => {
+    const topOfPage = resolveTopmostVisibleHeading(["intro"], (id) => (id === "intro" ? 88 : null));
+    expect(topOfPage).toBe("intro");
+
+    const nearBottom = resolveTopmostVisibleHeading(["middle", "end"], (id) =>
+      id === "middle" ? 40 : id === "end" ? -12 : null,
+    );
+    expect(nearBottom).toBe("end");
+  });
+
+  it("uses observer config aligned with markdown heading scroll margin behavior", () => {
+    expect(ARTICLE_SCROLL_MARGIN_TOP).toBe(88);
+    expect(TOC_OBSERVER_BOTTOM_ROOT_MARGIN).toBe("-35%");
+    expect(TOC_OBSERVER_THRESHOLDS).toEqual([0, 0.1, 0.25, 0.5]);
   });
 });
