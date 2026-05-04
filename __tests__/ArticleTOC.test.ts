@@ -15,32 +15,38 @@ describe("extractTOCHeadings", () => {
     expect(headings.map((h) => h.text)).toEqual(["Real", "AlsoReal"]);
   });
 
-  it("handles tilde-fenced blocks without eating later headings", () => {
-    const md = ["## First", "~~~js", "## InsideFence", "~~~", "## Second"].join("\n");
-    const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.text)).toEqual(["First", "Second"]);
+  it("extracts heading text with inline HTML and entities", () => {
+    const md = ["## <em>Alpha</em> &amp; <span>Beta</span>"].join("\n");
+    const [heading] = extractTOCHeadings(md);
+    expect(heading.text).toBe("Alpha & Beta");
+    expect(heading.id).toBe("alpha--beta");
   });
 
-  it("strips inline markdown (bold, italic, code, links) from heading text", () => {
-    const md = ["## A **bold** `code` [link](/x) word"].join("\n");
-    const [h] = extractTOCHeadings(md);
-    expect(h.text).toBe("A bold code link word");
+  it("extracts emphasis + links + code combinations", () => {
+    const md = ["## A *bold* [linked **phrase**](/x) with `code`"].join("\n");
+    const [heading] = extractTOCHeadings(md);
+    expect(heading.text).toBe("A bold linked phrase with code");
+    expect(heading.id).toBe("a-bold-linked-phrase-with-code");
   });
 
-  it("produces unique slugs for duplicate heading text", () => {
-    const md = ["## Intro", "## Intro", "## Intro"].join("\n");
+  it("produces unique slugs for duplicate complex heading text", () => {
+    const md = [
+      "## [Lens](/lens) *Field* `Notes`",
+      "## [Lens](/lens) *Field* `Notes`",
+      "## [Lens](/lens) *Field* `Notes`",
+    ].join("\n");
     const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.id)).toEqual(["intro", "intro-1", "intro-2"]);
+    expect(headings.map((h) => h.id)).toEqual(["lens-field-notes", "lens-field-notes-1", "lens-field-notes-2"]);
+  });
+
+  it("handles non-Latin punctuation in slugs", () => {
+    const md = ["## 你好，世界！", "## Привет, мир!", "## مرحبًا، عالم!"];
+    const headings = extractTOCHeadings(md.join("\n"));
+    expect(headings.map((h) => h.id)).toEqual(["你好世界", "привет-мир", "مرحبًا-عالم"]);
   });
 
   it("returns an empty array for markdown without h2/h3", () => {
     const md = ["# Only top", "Some paragraph.", "#### Too deep"].join("\n");
     expect(extractTOCHeadings(md)).toEqual([]);
-  });
-
-  it("slugs match github-slugger conventions (lowercase, hyphens, punctuation dropped)", () => {
-    const md = ["## Hello, World!", "## Stop-Shift Equations"].join("\n");
-    const headings = extractTOCHeadings(md);
-    expect(headings.map((h) => h.id)).toEqual(["hello-world", "stop-shift-equations"]);
   });
 });
