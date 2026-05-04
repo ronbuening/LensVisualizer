@@ -1,16 +1,16 @@
 /**
  * Optical glass catalog — Sellmeier dispersion coefficients keyed by glass name.
  *
- * Each entry holds the 6 Sellmeier coefficients (B1..B3, C1..C3) plus reference
- * d-line index and Abbe number. The chromatic ray-trace consults this catalog
- * to replace the Abbe-only n(λ) approximation with vendor-published spectral
- * data when an element's `glass` string resolves to a known entry.
+ * Most entries hold the 6 Sellmeier coefficients (B1..B3, C1..C3) plus reference
+ * d-line index and Abbe number. Some Hoya/Sumita catalog glasses are published
+ * only in Zemax polynomial form; those entries store the vendor polynomial
+ * exactly instead of fitting fake Sellmeier coefficients.
  *
  * Sellmeier dispersion formula (vendor standard form):
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: Phase 5 (92 entries). See agent_docs/glass-catalog-buildout.md
+ * Coverage status: Phase 6 (111 entries). See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -25,9 +25,14 @@ export interface GlassEntry {
   /** Vendor (Schott, Ohara, Hoya, Sumita, CDGM, special). */
   readonly vendor: "Schott" | "Ohara" | "Hoya" | "Sumita" | "CDGM" | "Special";
   /** Sellmeier B1, B2, B3 coefficients. */
-  readonly B: readonly [number, number, number];
+  readonly B?: readonly [number, number, number];
   /** Sellmeier C1, C2, C3 coefficients (μm²). */
-  readonly C: readonly [number, number, number];
+  readonly C?: readonly [number, number, number];
+  /**
+   * Zemax formula 3 polynomial coefficients:
+   * n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸.
+   */
+  readonly polynomial?: readonly [number, number, number, number, number, number];
   /** Reference d-line index (587.5618 nm). For sanity-check / display. */
   readonly nd: number;
   /** Reference Abbe number νd. For sanity-check / display. */
@@ -59,6 +64,15 @@ export const LINE_NM = {
 export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
   const lUm = lambdaNm / 1000;
   const l2 = lUm * lUm;
+  if (entry.polynomial) {
+    const [a0, a1, a2, a3, a4, a5] = entry.polynomial;
+    const inv2 = 1 / l2;
+    const n2 = a0 + a1 * l2 + a2 * inv2 + a3 * inv2 * inv2 + a4 * inv2 ** 3 + a5 * inv2 ** 4;
+    return Math.sqrt(n2);
+  }
+  if (!entry.B || !entry.C) {
+    throw new Error(`Glass catalog entry ${entry.name} has no supported dispersion coefficients.`);
+  }
   const [B1, B2, B3] = entry.B;
   const [C1, C2, C3] = entry.C;
   const n2 = 1 + (B1 * l2) / (l2 - C1) + (B2 * l2) / (l2 - C2) + (B3 * l2) / (l2 - C3);
@@ -66,7 +80,7 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 92 vendor-verified entries (Phase 5, May 2026)
+ * GLASS CATALOG — 111 vendor-verified entries (Phase 6, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1174,6 +1188,220 @@ const RAW_CATALOG: readonly GlassEntry[] = [
     code6: "603606",
     source: "Schott AGF (schott_2017-01-20b.agf), vendor-published Zemax catalog data.",
   },
+
+  /* ────── Phase 6 priority additions (May 2026) ──────
+   * High-impact unresolved glasses from the catalog-priority sweep. Formula-2
+   * entries are standard Sellmeier. Formula-3 Hoya/Sumita entries store the
+   * vendor polynomial exactly rather than using a fitted Sellmeier surrogate.
+   */
+
+  /* Ohara priority additions */
+  {
+    name: "S-FPL55",
+    vendor: "Ohara",
+    B: [0.839067682, 0.214083503, 1.47914677],
+    C: [0.00795286639, -0.00232581717, 340.0437],
+    nd: 1.43875,
+    vd: 94.661059,
+    PgF: 0.5303,
+    code6: "439948",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-FPL55 page.",
+  },
+  {
+    name: "S-LAH98",
+    vendor: "Ohara",
+    B: [2.28510629, 0.385532264, 2.0655112],
+    C: [0.0122178962, 0.0514752342, 145.92087],
+    nd: 1.95375,
+    vd: 32.32,
+    PgF: 0.5907,
+    code6: "954323",
+    source: "Ohara S-LAH98 datasheet (Ohara public PDF, OHARA 24-01).",
+  },
+  {
+    name: "S-LAH99",
+    vendor: "Ohara",
+    B: [2.39140662, 0.439219228, 2.38358467],
+    C: [0.01314675, 0.0553226042, 161.2599],
+    nd: 2.001,
+    vd: 29.14,
+    PgF: 0.5997,
+    code6: "001291",
+    source: "Ohara S-LAH99 datasheet (Ohara public PDF, 2026 page crawl).",
+  },
+  {
+    name: "S-LAM60",
+    vendor: "Ohara",
+    B: [1.60673056, 0.36641564, 1.31761804],
+    C: [0.0077504614, 0.0289967611, 93.0720709],
+    nd: 1.743198,
+    vd: 49.339444,
+    PgF: 0.5523,
+    code6: "743493",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAM60 page.",
+  },
+  {
+    name: "S-NPH3",
+    vendor: "Ohara",
+    B: [2.09834903, 0.489088388, 2.94009268],
+    C: [0.0179123869, 0.0776653353, 160.930428],
+    nd: 1.95906,
+    vd: 17.471252,
+    PgF: 0.661,
+    code6: "959175",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NPH3 page.",
+  },
+  {
+    name: "S-NPH5",
+    vendor: "Ohara",
+    B: [1.89108996, 0.395220126, 2.20492127],
+    C: [0.0141164499, 0.0662834445, 148.6807],
+    nd: 1.858955,
+    vd: 22.728736,
+    PgF: 0.6293,
+    code6: "859227",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NPH5 page.",
+  },
+  {
+    name: "S-FTM16",
+    vendor: "Ohara",
+    B: [1.32940907, 0.141512125, 1.44299068],
+    C: [0.0102377287, 0.0578081956, 150.597139],
+    nd: 1.592701,
+    vd: 35.310075,
+    PgF: 0.5934,
+    code6: "593353",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-FTM16 page.",
+  },
+  {
+    name: "S-NSL36",
+    vendor: "Ohara",
+    B: [1.09666153, 0.168990073, 1.20580827],
+    C: [0.00667491123, 0.033609545, 141.668738],
+    nd: 1.517417,
+    vd: 52.430903,
+    PgF: 0.5554,
+    code6: "517524",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NSL36 page.",
+  },
+
+  /* Schott priority additions */
+  {
+    name: "N-SF66",
+    vendor: "Schott",
+    B: [2.0245976, 0.470187196, 2.59970433],
+    C: [0.0147053225, 0.0692998276, 161.817601],
+    nd: 1.92286,
+    vd: 20.88,
+    PgF: 0.6394,
+    code6: "923209",
+    source: "Schott AGF (schott_2017-01-20b.agf) via refractiveindex.info; N-SF66 page.",
+  },
+  {
+    name: "N-LAF21",
+    vendor: "Schott",
+    B: [1.87134529, 0.25078301, 1.22048639],
+    C: [0.0093332228, 0.0345637762, 83.2404866],
+    nd: 1.788,
+    vd: 47.49,
+    PgF: 0.5555,
+    code6: "788475",
+    source: "Schott AGF (schott_2017-01-20b.agf) via refractiveindex.info; N-LAF21 page.",
+  },
+  {
+    name: "SF11",
+    vendor: "Schott",
+    B: [1.73848403, 0.311168974, 1.17490871],
+    C: [0.0136068604, 0.0615960463, 121.922711],
+    nd: 1.78472,
+    vd: 25.76,
+    PgF: 0.6147,
+    code6: "785258",
+    source: "Schott AGF (schott_2017-01-20b.agf) via refractiveindex.info; SF11 page.",
+  },
+  {
+    name: "N-SK2",
+    vendor: "Schott",
+    B: [1.28189012, 0.257738258, 0.96818604],
+    C: [0.0072719164, 0.0242823527, 110.377773],
+    nd: 1.60738,
+    vd: 56.65,
+    PgF: 0.5477,
+    code6: "607567",
+    source: "Schott AGF (schott_2017-01-20b.agf) via refractiveindex.info; N-SK2 page.",
+  },
+
+  /* Hoya priority additions */
+  {
+    name: "E-FDS1",
+    vendor: "Hoya",
+    polynomial: [3.5044639, -0.020333833, 0.0538027, 0.0062874192, -0.00056922176, 0.000073559387],
+    nd: 1.92286,
+    vd: 20.88,
+    PgF: 0.6369,
+    code6: "923209",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FDS1 page (formula 3 polynomial).",
+  },
+  {
+    name: "FCD100",
+    vendor: "Hoya",
+    polynomial: [2.0482157, -0.0043211222, 0.0061826755, 0.00003141148, 0.0000035370793, -0.00000016694497],
+    nd: 1.437,
+    vd: 95.1,
+    PgF: 0.54,
+    code6: "437951",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FCD100 page (formula 3 polynomial).",
+  },
+  {
+    name: "FCD515",
+    vendor: "Hoya",
+    polynomial: [2.502355, -0.0072080042, 0.012012743, 0.00034920842, -0.000024729676, 0.0000013801567],
+    nd: 1.59282,
+    vd: 68.63,
+    PgF: 0.5478,
+    code6: "593686",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FCD515 page (formula 3 polynomial).",
+  },
+  {
+    name: "FCD705",
+    vendor: "Hoya",
+    polynomial: [2.3742832, -0.0062014418, 0.010582967, 0.000063100703, 0.000008196715, -0.00000034424446],
+    nd: 1.55032,
+    vd: 75.5,
+    PgF: 0.5445,
+    code6: "550755",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FCD705 page (formula 3 polynomial).",
+  },
+  {
+    name: "TAFD45",
+    vendor: "Hoya",
+    polynomial: [3.672962, -0.0151805, 0.0457187, 0.002186221, -0.0000993742, 0.00001490466],
+    nd: 1.95375,
+    vd: 32.32,
+    code6: "954323",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD45 page (formula 3 polynomial).",
+  },
+  {
+    name: "TAFD55",
+    vendor: "Hoya",
+    polynomial: [3.8317578, -0.015266397, 0.054573843, 0.0023109346, -0.000044476201, 0.000016143887],
+    nd: 2.001,
+    vd: 29.13,
+    PgF: 0.5986,
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD55 page (formula 3 polynomial).",
+  },
+
+  /* Sumita priority addition */
+  {
+    name: "K-VC89",
+    vendor: "Sumita",
+    polynomial: [3.1860388, -0.013756822, 0.029614017, 0.0012383727, -0.000080134175, 0.0000072330635],
+    nd: 1.81,
+    vd: 41,
+    PgF: 0.5664,
+    code6: "810410",
+    source: "Sumita Zemax catalog 2017-02-02 via refractiveindex.info; K-VC89 page (formula 3 polynomial).",
+  },
 ];
 
 /**
@@ -1220,15 +1448,28 @@ const ALIASES: ReadonlyMap<string, string> = new Map([
   ["BACD5", "N-SK16"],
   // L-TIM28 is the Ohara large-format designation for S-TIM28 (identical Sellmeier).
   ["L-TIM28", "S-TIM28"],
+  // Low-softening / PGM Ohara variants that share the same optical constants in
+  // the public catalog data used by the lens files.
+  ["L-BAL42", "S-BAL42"],
+  ["L-BSL7", "S-BSL7"],
+  ["L-BAL35", "S-BAL35"],
   // SK10 and SK14 are legacy Schott names superseded by N-SK10 and N-SK14.
   ["SK10", "N-SK10"],
   ["SK14", "N-SK14"],
+  // Legacy Schott names with modern N- prefixed equivalents.
+  ["LAF21", "N-LAF21"],
+  ["LA-F21", "N-LAF21"],
+  ["SK2", "N-SK2"],
 ]);
 
 /** Map of 6-digit Schott codes to canonical names. */
-const CODE6_INDEX: ReadonlyMap<string, string> = new Map(
-  RAW_CATALOG.filter((e) => e.code6).map((e) => [e.code6!, e.name]),
-);
+const CODE6_INDEX: ReadonlyMap<string, string> = (() => {
+  const map = new Map<string, string>();
+  for (const entry of RAW_CATALOG) {
+    if (entry.code6 && !map.has(entry.code6)) map.set(entry.code6, entry.name);
+  }
+  return map;
+})();
 
 /**
  * Resolve a real-world `glass` string from a lens-data file to a catalog entry.

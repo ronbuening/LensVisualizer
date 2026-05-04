@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **92 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published Sellmeier coefficients.
+The catalog currently has **111 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -167,15 +167,17 @@ Refractiveindex.INFO mirrors the vendor-published AGF (Zemax catalog) files, whi
 
 The YAML's `DATA[].coefficients` field for `type: formula 2` (Sellmeier-1, Zemax form) is laid out as **seven** numbers: `K B1 C1 B2 C2 B3 C3`. K is the additive constant in `n² = K + Σ Bᵢλ²/(λ²−Cᵢ)`; for the standard Sellmeier-1 form K=0 (verify before transcribing). Then map straight into the catalog entry's `B: [B1, B2, B3]` and `C: [C1, C2, C3]` arrays.
 
+For `type: formula 3` (Zemax polynomial), do **not** force the values into `B`/`C`. Store the six polynomial terms in `polynomial: [a0, a1, a2, a3, a4, a5]` where `n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸`. The d-line consistency test covers these entries too.
+
 PgF is **not** published in the rii.info YAML (only `dPgF` is). Compute PgF for the catalog entry from the Schott normal-line baseline plus dPgF: `PgF ≈ 0.6438 − 0.001682·vd + dPgF`. The catalog's PgF field is decorative — the dispersion engine derives V-channel partial dispersion from the lens-data element's `dPgF`, not from the catalog. If you need vendor-direct PgF (rare), pull from the OHARA/Schott PDF datasheet instead.
 
 The 1e-4 round-trip test will catch any transcription error — never relax the tolerance, fix the source.
 
 ## How to Add an Entry — Step by Step
 
-1. **Find the glass in the source vendor's catalog** (PDF, datasheet, or downloaded Excel). Confirm the formula form is the standard six-coefficient Sellmeier:
+1. **Find the glass in the source vendor's catalog** (PDF, datasheet, or downloaded Excel). Confirm whether the formula is standard six-coefficient Sellmeier:
    $$n^2(\lambda) = 1 + \frac{B_1 \lambda^2}{\lambda^2 - C_1} + \frac{B_2 \lambda^2}{\lambda^2 - C_2} + \frac{B_3 \lambda^2}{\lambda^2 - C_3}$$
-   with λ in **micrometres** and C in **micrometres²**. Reject any other formula until you have explicitly converted it.
+   with λ in **micrometres** and C in **micrometres²**, or Zemax formula 3 polynomial as described above. Reject any other formula until you have explicitly converted it.
 
 2. **Transcribe** the six coefficients verbatim into a new entry in `RAW_CATALOG` in [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts). Keep all digits the source publishes — typically 8–10 significant figures.
 
