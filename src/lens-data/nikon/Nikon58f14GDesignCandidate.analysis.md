@@ -117,7 +117,7 @@ The refractive index step at the cemented junction is Ncp − Ncn = +0.1548 (the
 
 - **Surfaces:** 12 (R = +118.766), 13 (junction, R = −44.232), 14 (junction, R = +44.268), 15A (aspherical, R = −77.294)
 - **Ldp1 glass:** nd = 1.88300, νd = 40.66 → **OHARA S-LAH64** (exact match). Note: this is a *different* catalog glass from Lcp's S-LAH58 (νd = 40.77), not a melt variation — S-LAH64 has a distinct composition.
-- **Ldn glass:** nd = 1.53172, νd = 48.78 → **OHARA S-NBM51** (exact match) or **Schott KZFS2** (Δνd = 0.06)
+- **Ldn glass:** nd = 1.53172, νd = 48.78 → KZFS2-type short flint; public OHARA S-NBM51 is not an nd/νd match.
 - **Ldp2 glass:** nd = 1.74443, νd = 49.53 → Same glass as La (Sumita K-LaKn2 / HIKARI E-LAF7 / OHARA S-LAH55)
 - **Combined focal length:** +35.2 mm (strong net positive)
 - **Aspherical surface:** Surface 15 (rear), patent κ = 14.1597, standard K = +13.1597 (oblate ellipsoid)
@@ -126,7 +126,7 @@ The refractive index step at the cemented junction is Ncp − Ncn = +0.1548 (the
 
 The patent's conditional expression 1 specifies that the average refractive index of the two positive elements must exceed the negative element's index by 0.01–0.50 (actual value: 0.2820). This ensures a strongly negative contribution to the Petzval sum from within the triplet, counteracting the overall positive power's tendency to curve the field inward.
 
-The central negative element Ldn uses S-NBM51 / KZFS2-type glass, which is a **short flint** known for anomalous partial dispersion (positive ΔPgF deviation from the normal line). Paired with the high-index lanthanum positive elements, the triplet achieves partial-dispersion balancing that reduces secondary spectrum within the rear group. This is consistent with the production lens's reported absence of purple fringing.
+The central negative element Ldn uses a KZFS2-type short flint with anomalous partial dispersion. Paired with the high-index lanthanum positive elements, the triplet achieves partial-dispersion balancing that reduces secondary spectrum within the rear group. This is consistent with the production lens's reported absence of purple fringing.
 
 The conditional expression 3 specifies the shape factor of Ldn: (rd2 + rd1)/(rd2 − rd1) = 0.0004, which means rd1 ≈ −rd2 — essentially a symmetric biconcave lens. The patent states this is optimal for simultaneously correcting spherical aberration, meridional coma, and sagittal coma (paragraph 0035).
 
@@ -145,13 +145,13 @@ The nine elements use **seven distinct glass types** (corrected from the origina
 | Dense flint (high) | Lcn | 1.72825 | 28.46 | OHARA S-TIH11 / Schott N-SF10 | Chromatic balancing |
 | High-index lanthanum | Lcp | 1.88300 | 40.77 | OHARA S-LAH58 | Petzval correction |
 | High-index lanthanum | Ldp1 | 1.88300 | 40.66 | OHARA S-LAH64 | Petzval correction |
-| Short flint (APD) | Ldn | 1.53172 | 48.78 | OHARA S-NBM51 | Secondary spectrum control |
+| Short flint (APD) | Ldn | 1.53172 | 48.78 | Unmatched KZFS2-type | Secondary spectrum control |
 
 **Key correction from earlier analysis:** The La/Ldp2 glass was previously identified as "Schott LASF35," which has νd ≈ 44.8 — a 4.7-unit Abbe number discrepancy. The correct match is Sumita K-LaKn2 (νd = 49.52, Δνd = 0.01) or HIKARI E-LAF7. Nikon frequently sources specialty glasses from Japanese suppliers including Sumita and HIKARI, making these identifications plausible. However, Nikon may also use in-house or custom-melt glasses not available in public catalogs; all identifications remain inferential.
 
 **Additional correction:** Lcp (S-LAH58, νd = 40.77) and Ldp1 (S-LAH64, νd = 40.66) are **distinct catalog glasses** with different compositions, not melt variations of the same type as previously suggested. The 0.11 νd difference corresponds to a meaningful dispersion difference relevant to chromatic balancing within the rear triplet.
 
-The design uses no ED glass (νd > 80), consistent with Nikon's marketing — the lens carries no ED designation. Chromatic correction relies on the FK5-type glass in Lb1n (νd = 70.3) for primary color, and the anomalous-dispersion S-NBM51 in Ldn for secondary spectrum control within the rear triplet.
+The design uses no ED glass (νd > 80), consistent with Nikon's marketing — the lens carries no ED designation. Chromatic correction relies on the FK5-type glass in Lb1n (νd = 70.3) for primary color, and the anomalous-dispersion KZFS2-type glass in Ldn for secondary spectrum control within the rear triplet.
 
 ---
 
@@ -291,7 +291,7 @@ The inventor, Haruo Sato, is one of Nikon's optical designers associated with th
 6. **NikonForums** — "AF-S Nikkor 58mm F1.4G Review": "Focusing is not internal, so at the minimum focusing distance, the front element moves forward by about one centimeter."
 7. **Thom Hogan (DSLRBodies)** — "Nikon 58mm f/1.4G AF-S Lens Review."
 8. **Nikon "NIKKOR — The Thousand and One Nights"** — Tale 16 (Ai Noct-NIKKOR 58mm f/1.2), Tale 40 (Nikkor-S Auto 5.8cm f/1.4). imaging.nikon.com.
-9. **OHARA Optical Glass Catalog** — Glass identification reference (S-LAH58, S-LAH64, S-LAL14, S-FSL5, S-TIH11, S-TIH4, S-NBM51).
+9. **OHARA Optical Glass Catalog** — Glass identification reference (S-LAH58, S-LAH64, S-LAL14, S-FSL5, S-TIH11, S-TIH4).
 10. **Schott Optical Glass Catalog** — Glass identification reference (N-LAK14, FK5, N-SF8, N-SF10, N-LASF44, KZFS2).
 11. **Sumita Optical Glass Catalog** — Glass identification reference (K-LaKn2).
 

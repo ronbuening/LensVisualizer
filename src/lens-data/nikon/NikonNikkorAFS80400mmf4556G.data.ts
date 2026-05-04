@@ -260,7 +260,7 @@ const LENS_DATA = {
       nd: 1.95,
       vd: 29.4,
       fl: -27.8,
-      glass: "TAFD40 (HOYA)",
+      glass: "TAFD45 (HOYA)",
       apd: false,
       cemented: "T1",
       role: "Ultra-high-index center negative; Petzval flattener",
