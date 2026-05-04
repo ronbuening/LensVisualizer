@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **111 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **115 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -62,11 +62,20 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ S-BSM14 | 7 | Ohara | Phase 4 addition |
 | ★ SF1 | 6 | Schott | |
 | ★ N-LAK8 | 6 | Schott | |
-| TAFD25 | 6 | Hoya | **Skip** — all lens files annotating TAFD25 store nd in 1.834–2.001; Hoya published nd=1.816; gap >5e-3, no Sellmeier surfaces would resolve |
+| TAFD25 | 6 | Hoya | **Skip for now** — Hoya catalog TAFD25 is nd=1.90366/vd=31.32, while current lens annotations use several unrelated nd/vd regions; relabel per lens instead of adding a broad resolver target |
 | ★ S-LAH51 | 6 | Ohara | |
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 7 additions** (May 2026 — first pass from the latest unresolved-token priority list):
+
+| Glass | Vendor | Occurrences | Notes |
+|---|---|---|---|
+| ★ S-LAH63Q | Ohara | 4 | Q/thermal variant; distinct coefficients from S-LAH63; matches low-Tg asphere annotations |
+| ★ S-LAH65VS | Ohara | 3 | VS vacuum-melt variant; distinct from S-LAH65V |
+| ★ S-NBM51 | Ohara | 3 | KZFS-class short flint; added after removing one incorrect Nikon S-NBM51 label whose nd/vd did not match |
+| ★ TAFD40 | Hoya | 3 | Formula-3 polynomial entry; supports nd≈2.00069 high-index APD surfaces |
 
 **Phase 5 additions** (sourced from survey of unresolved glasses across all lens files, May 2026 — all from Ohara or Schott Zemax catalog via refractiveindex.info):
 
@@ -99,10 +108,10 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ S-BSM81 | Ohara | 2 | Barium crown |
 | ★ S-LAM2 | Ohara | 2 | Lanthanum crown |
 | ★ N-SK10 | Schott | 2 | Barium crown; alias SK10 added |
-| NBFD3 | Hoya | 4 | **Skip** — formula 3 polynomial (Hoya), no direct Sellmeier; would need custom fitting like TAFD37A |
-| TAFD40 | Hoya | 3 | **Skip** — formula 3 polynomial (nd=2.001); same issue as NBFD3 |
+| NBFD3 | Hoya | 8 | **Skip for direct add** — Hoya catalog NBFD3 is nd=1.80450/vd=39.63, but current annotations span several nd/vd regions; relabel or mark unmatched per lens first |
+| ★ TAFD40 | Hoya | 3 | Added in Phase 7 as formula-3 polynomial |
 | S-TIF6 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
-| S-NPH7 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
+| S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, but current annotations use high-index nd≈2.0 values; needs per-lens relabeling |
 | N-SK18 | Schott | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
 
 **Phase 4 additions not in the original table** (sourced from survey of 127 lens files, Apr 2026):
@@ -210,6 +219,6 @@ The catalog never needs to be exhaustive. Diminishing returns kick in after the 
 
 1. The headline regression cases (Voigtländer APO-Lanthar 50/2, Leica APO 35/2 / 43/2) hit Sellmeier on every glass surface.
 2. `summarizeDispersionQuality(L)` returns `"sellmeier"` (not `"abbe"`) for the great majority of catalog lenses.
-3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or require custom fitting (Hoya formula-3 polynomial glasses like NBFD3 and TAFD40), or are absent from the rii.info 2017 archive — those should be backfilled per-lens with patent-published `nC`/`nF`/`ng`.
+3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or are catalog names used inconsistently across multiple nd/vd regions (notably NBFD3, TAFD25, and the current S-NPH7 annotations), or are absent from the rii.info 2017 archive — those should be resolved per lens or backfilled with patent-published `nC`/`nF`/`ng`.
 
 For per-lens audits that consume the catalog (relabeling, mismatch resolution, `dPgF`/line-index enrichment), follow [lens-patent-audit.md](lens-patent-audit.md).

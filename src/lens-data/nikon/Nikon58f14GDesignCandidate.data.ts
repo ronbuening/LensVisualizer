@@ -156,7 +156,7 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.78,
       fl: -41.4,
-      glass: "S-NBM51 / KZFS2-type (short flint, anomalous partial dispersion)",
+      glass: "Unmatched (KZFS2-type short flint; S-NBM51 name rejected by stored nd/vd)",
       apd: "inferred",
       apdNote: "Short flint with positive ΔPgF; paired with S-LAH58 positive elements for secondary spectrum control",
       cemented: "Ld",
