@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 250 mismatched surfaces across 160 unique groups.
+**Scope**: 255 mismatched surfaces across 164 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -122,6 +122,13 @@ Surfaces:
 
 Surfaces:
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `9`: `S-TIH14 (OHARA)`
+
+## stored (nd=1.58144, vd=40.90)  — 1 surface, current label resolves to S-TIM2
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY SONNAR T* FE 55mm F1.8 ZA](../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) `1`: `S-TIM2 (OHARA)`
 
 ## stored (nd=1.58267, vd=46.43)  — 1 surface, current label resolves to S-TIM22
 
@@ -250,6 +257,15 @@ Candidates:
 
 Surfaces:
 - [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) `3`: `S-BAM4 (OHARA)`
+
+## stored (nd=1.61800, vd=63.40)  — 2 surfaces, current label resolves to S-PHM53
+
+Candidates:
+- **S-PHM52** (nd=1.61800, vd=63.33, Δnd=-0.0000, Δvd=-0.07)
+
+Surfaces:
+- [SONY CARL ZEISS SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) `9`: `PCD4 (Hoya) / S-PHM53 (OHARA)`
+- [SONY CARL ZEISS SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) `15`: `PCD4 (Hoya) / S-PHM53 (OHARA)`
 
 ## stored (nd=1.62004, vd=36.30)  — 1 surface, current label resolves to S-TIM22
 
@@ -435,6 +451,13 @@ Surfaces:
 
 Surfaces:
 - [NIKON NIKKOR-S AUTO 50mm f/1.4](../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) `9`: `SK16 / BSL7 (barium crown)`
+
+## stored (nd=1.68000, vd=31.16)  — 1 surface, current label resolves to S-TIM28
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY SONNAR T* FE 35mm F2.8 ZA](../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) `12A`: `S-TIM28 (OHARA)`
 
 ## stored (nd=1.68893, vd=31.07)  — 1 surface, current label resolves to S-TIM25
 
@@ -901,6 +924,13 @@ Surfaces:
 - [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) `13`: `S-NBH5 / S-LAH53 family (OHARA, 800 298)`
 - [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) `33`: `S-NBH5 / S-LAH53 family (OHARA, 800 298)`
 
+## stored (nd=1.80000, vd=25.46) [code=800/255]  — 1 surface, current label resolves to S-TIH6
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY SONNAR T* FE 35mm F2.8 ZA](../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) `1`: `Dense flint, 800/255 class — S-TIH6 (OHARA) or FD60 (Hoya)`
+
 ## stored (nd=1.80100, vd=34.90)  — 1 surface, current label resolves to S-TIH18
 
 Candidates:
@@ -1364,5 +1394,5 @@ Surfaces:
 
 ## Summary
 
-- **90** (nd, vd) groups have at least one candidate (146 surfaces) — actionable relabels.
-- **70** (nd, vd) groups have NO candidate (104 surfaces) — needs patent verification or Unmatched relabeling.
+- **91** (nd, vd) groups have at least one candidate (148 surfaces) — actionable relabels.
+- **73** (nd, vd) groups have NO candidate (107 surfaces) — needs patent verification or Unmatched relabeling.
