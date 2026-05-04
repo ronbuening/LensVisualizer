@@ -886,6 +886,7 @@ Surfaces:
 Candidates:
 - **S-LAH65V** (nd=1.80400, vd=46.58, Δnd=-0.0000, Δvd=-0.02, codeΔ=0.2)
 - **S-LAH65** (nd=1.80400, vd=46.57, Δnd=-0.0000, Δvd=-0.03, codeΔ=0.3)
+- **S-LAH65VS** (nd=1.80400, vd=46.53, Δnd=-0.0000, Δvd=-0.07, codeΔ=0.7)
 
 Surfaces:
 - [CANON FD 50mm f/1.2 L](../src/lens-data/canon/CanonFD50mmf12L.data.ts) `1`: `OHARA S-LAH58 (804466)`
@@ -894,6 +895,7 @@ Surfaces:
 
 Candidates:
 - **S-LAH65** (nd=1.80400, vd=46.57, Δnd=-0.0000, Δvd=-0.03)
+- **S-LAH65VS** (nd=1.80400, vd=46.53, Δnd=-0.0000, Δvd=-0.07)
 - **S-LAH65V** (nd=1.80400, vd=46.58, Δnd=-0.0000, Δvd=-0.02)
 
 Surfaces:
@@ -904,6 +906,7 @@ Surfaces:
 
 Candidates:
 - **S-LAH65** (nd=1.80400, vd=46.57, Δnd=-0.0002, Δvd=+0.07)
+- **S-LAH65VS** (nd=1.80400, vd=46.53, Δnd=-0.0002, Δvd=+0.03)
 - **S-LAH65V** (nd=1.80400, vd=46.58, Δnd=-0.0002, Δvd=+0.08)
 
 Surfaces:
@@ -942,6 +945,7 @@ Surfaces:
 
 Candidates:
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=-0.01)
+- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.36)
 - **S-LAH63** (nd=1.80440, vd=39.59, Δnd=-0.0017, Δvd=-1.35)
 - **K-VC89** (nd=1.80998, vd=41.00, Δnd=+0.0039, Δvd=+0.06)
 
@@ -1291,6 +1295,7 @@ Surfaces:
 ## stored (nd=2.00060, vd=25.40)  — 1 surface, current label resolves to S-NPH2
 
 Candidates:
+- **TAFD40** (nd=2.00069, vd=25.46, Δnd=+0.0001, Δvd=+0.06)
 - **S-LAH79** (nd=2.00330, vd=28.27, Δnd=+0.0027, Δvd=+2.87)
 
 Surfaces:
@@ -1299,6 +1304,7 @@ Surfaces:
 ## stored (nd=2.00069, vd=25.50)  — 3 surfaces, current label resolves to S-NPH3
 
 Candidates:
+- **TAFD40** (nd=2.00069, vd=25.46, Δnd=+0.0000, Δvd=-0.04)
 - **S-LAH79** (nd=2.00330, vd=28.27, Δnd=+0.0026, Δvd=+2.77)
 
 Surfaces:
@@ -1309,6 +1315,7 @@ Surfaces:
 ## stored (nd=2.00069, vd=25.46)  — 1 surface, current label resolves to S-NPH5
 
 Candidates:
+- **TAFD40** (nd=2.00069, vd=25.46, Δnd=+0.0000, Δvd=+0.00)
 - **S-LAH79** (nd=2.00330, vd=28.27, Δnd=+0.0026, Δvd=+2.81)
 
 Surfaces:

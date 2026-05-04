@@ -129,7 +129,7 @@ Nikon states the lens incorporates **four ED (Extra-low Dispersion) glass elemen
 | L42 | 1.90265 | 35.7 | 1903/357 | Same as L11 | Normal |
 | L51 | 1.74400 | 44.8 | 1744/448 | S-LAM2 (OHARA), exact | Normal |
 | L52 | 1.48749 | 70.3 | 1487/703 | S-FSL5 (OHARA) / N-FK5 (Schott) | Normal |
-| L53 | 1.95000 | 29.4 | 1950/294 | TAFD40 (HOYA), exact | Normal |
+| L53 | 1.95000 | 29.4 | 1950/294 | TAFD45 (HOYA), near match | Normal |
 | L54 | 1.51742 | 52.2 | 1517/522 | S-NSL36 (OHARA) / K10 (Schott) | Normal |
 | L55 | 1.64769 | 33.7 | 1648/337 | S-TIF6 (OHARA), exact | Normal |
 | L56 | 1.60300 | 65.4 | 1603/654 | No close catalog match; likely proprietary | Normal |
