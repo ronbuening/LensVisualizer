@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-04",
     type: "improvement",
+    summary: "Expanded the glass catalog to 111 verified entries with priority ED and high-index glasses",
+  },
+  {
+    date: "2026-05-04",
+    type: "improvement",
     summary:
       "Conducted glass audit across an additional five lens files, improved SD estimates for Nikkor Z 24-70mm f/4 S",
   },

@@ -46,10 +46,17 @@ describe("glass catalog", () => {
   });
 
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(3);
+    expect(catalogSize()).toBeGreaterThanOrEqual(111);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
+  });
+
+  it("evaluates vendor polynomial catalog entries", () => {
+    const tafd45 = resolveGlass("TAFD45 (HOYA)");
+    expect(tafd45).not.toBeNull();
+    expect(evaluateSellmeier(tafd45!, LINE_NM.d)).toBeCloseTo(1.95375, 5);
+    expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
   });
 });
 
@@ -73,6 +80,12 @@ describe("resolveGlass", () => {
   it("resolves an alias (BSC7 → S-BSL7, BK7 → N-BK7)", () => {
     expect(resolveGlass("BSC7 (HOYA)")?.name).toBe("S-BSL7");
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
+  });
+
+  it("resolves Ohara PGM / large-format aliases to catalog equivalents", () => {
+    expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("S-BAL42");
+    expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("S-BSL7");
+    expect(resolveGlass("L-BAL35 (OHARA)")?.name).toBe("S-BAL35");
   });
 
   it("resolves a 6-digit Schott CID", () => {
