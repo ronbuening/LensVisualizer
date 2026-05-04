@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **140** lenses scanned
 - **1593** glass surfaces examined
 - **1590** surfaces with non-empty `glass` strings
-- **934** of those resolved to a catalog entry
-- **253** mismatches found (27.1% of resolved surfaces)
-- **79** distinct lens files affected
+- **929** of those resolved to a catalog entry
+- **244** mismatches found (26.3% of resolved surfaces)
+- **78** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,30 +27,30 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-NPH2 | 14 | |
 | S-LAH79 | 14 | |
-| S-TIH14 | 14 | |
+| S-NPH2 | 12 | |
+| S-TIH14 | 12 | |
 | S-TIH18 | 9 | |
-| S-LAH58 | 8 | |
+| S-LAH58 | 7 | |
 | S-NPH4 | 7 | |
 | S-TIM25 | 7 | |
-| S-TIH6 | 7 | |
 | S-LAL14 | 6 | |
 | S-NBH56 | 6 | |
 | S-TIM22 | 6 | |
-| S-TIM2 | 6 | |
+| S-TIH6 | 6 | |
 | S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
-| S-LAH65V | 5 | |
 | S-BAL14 | 5 | |
 | S-NPH53 | 5 | |
 | S-NBH55 | 5 | |
 | S-NBH8 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
+| S-TIM2 | 5 | |
 | S-LAH64 | 4 | |
 | S-LAL8 | 4 | |
+| S-LAH65V | 4 | |
 | S-TIM27 | 4 | |
 | S-TIH53 | 4 | |
 | S-NSL5 | 3 | |
@@ -58,7 +58,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BAL35 | 3 | |
 | S-LAH51 | 3 | |
 | S-LAH60 | 3 | |
-| S-BAM4 | 3 | |
 | S-TIH4 | 3 | |
 | S-LAH65 | 3 | |
 | S-BAL42 | 3 | |
@@ -74,6 +73,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
 | S-LAM66 | 2 | |
+| S-BAM4 | 2 | |
 | SF4 | 2 | |
 | N-SK16 | 2 | |
 | TAFD30 | 2 | |
@@ -125,20 +125,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 18A | `S-LAH89 (OHARA)` | S-LAH89 | 1.88300 | 1.85150 | -0.0315 |
 | 20 | `S-LAH89 (OHARA)` | S-LAH89 | 1.88300 | 1.85150 | -0.0315 |
 | 23 | `S-TIM35 (OHARA)` | S-TIM35 | 1.67300 | 1.69895 | +0.0259 |
-
-### [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) — JP2021-056407A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `S-BAM4 (OHARA)` | S-BAM4 | 1.61340 | 1.60562 | -0.0078 |
-| 9 | `S-LAH65V (OHARA)` | S-LAH65V | 1.76385 | 1.80400 | +0.0401 |
-| 10 | `S-TIH14 (OHARA)` | S-TIH14 | 1.85478 | 1.76182 | -0.0930 |
-| 15 | `S-TIM2 (OHARA)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
-| 16 | `S-TIH6 (OHARA)` | S-TIH6 | 1.72825 | 1.80518 | +0.0769 |
-| 18 | `S-NPH2 (OHARA)` | S-NPH2 | 2.05090 | 1.92286 | -0.1280 |
-| 22 | `S-NPH2 (OHARA)` | S-NPH2 | 2.05090 | 1.92286 | -0.1280 |
-| 24 | `S-LAH58 (OHARA)` | S-LAH58 | 1.90043 | 1.88300 | -0.0174 |
-| 28 | `S-TIH14 (OHARA)` | S-TIH14 | 1.85478 | 1.76182 | -0.0930 |
 
 ### [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) — JP2021-47297A
 

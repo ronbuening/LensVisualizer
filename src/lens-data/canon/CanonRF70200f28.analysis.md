@@ -53,28 +53,28 @@ The gap d27 (between G6/LN and G7/LR) exhibits non-monotonic behavior: it decrea
 
 ## 3. Glass Identification and Special Elements
 
-All 17 elements in Example 3 can be identified against the OHARA optical glass catalog with high confidence — 11 of the 12 unique glass types match to within Δnd < 0.00001 and Δνd < 0.1, indicating that the patent nd/νd values are drawn directly from catalog data rather than being approximations.
+Example 3 publishes nd and νd values but not vendor glass names. Several elements match current catalog entries exactly; the remaining high-index and flint glasses are retained as code-based patent annotations so the dispersion resolver uses the patent nd/νd values instead of forcing a wrong catalog Sellmeier match.
 
 ### Complete Element Table
 
-| # | Name | nd | νd | Glass (OHARA) | Type | f (mm) | Special |
+| # | Name | nd | νd | Glass | Type | f (mm) | Special |
 |---|------|----|----|--------------|------|--------|---------|
 | 1 | L1 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +240.6 | **UD** |
-| 2 | L2 | 1.61340 | 44.3 | S-BAM4 | Barium flint | −163.3 | — |
+| 2 | L2 | 1.61340 | 44.3 | N-KZFS4 / S-NBM51 class | KZFS-class short flint | −163.3 | — |
 | 3 | L3 | 1.43875 | 94.7 | S-FPL55 | Extreme anomalous PD fluorophosphate | +117.3 | **Super UD** |
 | 4 | L4 | 1.59282 | 68.6 | S-FPM2 | Fluorophosphate crown | −101.2 | — |
-| 5 | L5 | 1.76385 | 48.5 | S-LAH65V | Lanthanum crown | −36.6 | — |
-| 6 | L6 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +58.3 | — |
+| 5 | L5 | 1.76385 | 48.5 | 764485 / M-TAFD305 class | High-index lanthanum | −36.6 | — |
+| 6 | L6 | 1.85478 | 24.8 | S-NBH56 | Dense barium flint | +58.3 | — |
 | 7 | L7 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +67.0 | **UD + Asph (GMo)** |
-| 8 | L8 | 1.59270 | 35.3 | S-TIM2 | Titanium flint | −34.7 | — |
-| 9 | L9 | 1.72825 | 28.5 | S-TIH6 | Dense flint | +46.5 | — |
-| 10 | L10 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −67.8 | — |
+| 8 | L8 | 1.59270 | 35.3 | 593353 / S-FTM16 class | Titanium flint | −34.7 | — |
+| 9 | L9 | 1.72825 | 28.5 | 728285 class | Dense flint | +46.5 | — |
+| 10 | L10 | 2.05090 | 26.9 | 051269 class | Ultra-high-index dense flint | −67.8 | — |
 | 11 | L11 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +54.6 | **UD** |
 | 12 | L12 | 1.49700 | 81.5 | S-FPL51 | UD glass, fluorophosphate | +65.7 | **UD** |
-| 13 | L13 | 2.05090 | 26.9 | S-NPH2 | Ultra-high-index dense flint | −103.4 | — |
-| 14 | L14 | 1.90043 | 37.4 | S-LAH58 | Lanthanum crown | +59.9 | — |
+| 13 | L13 | 2.05090 | 26.9 | 051269 class | Ultra-high-index dense flint | −103.4 | — |
+| 14 | L14 | 1.90043 | 37.4 | TAFD37A | High-index lanthanum | +59.9 | — |
 | 15 | L15 | 1.61800 | 63.4 | S-PHM52 | Phosphate crown | −55.0 | — |
-| 16 | L16 | 1.85478 | 24.8 | S-TIH14 | Dense flint | +89.7 | — |
+| 16 | L16 | 1.85478 | 24.8 | S-NBH56 | Dense barium flint | +89.7 | — |
 | 17 | L17 | 1.58313 | 59.4 | S-BAL42 | Barium crown | −60.6 | **Asph (GMo)** |
 
 Focal lengths are computed via the thick-lens (lensmaker's) equation from the patent prescription values and independently verified by script.
@@ -93,7 +93,7 @@ The S-FPL51 elements (L1, L7, L11, L12, νd = 81.5, ΔθgF ≈ +0.028) are distr
 
 ### Ultra-High-Index Flints
 
-Elements L10 and L13 use S-NPH2 (nd = 2.05090, νd = 26.9), one of the highest-refractive-index optical glasses commercially available. At nd > 2.0, this glass provides extreme negative power in a compact element thickness, which is essential for the tight cemented doublet arrangements in Group G5 where it is paired with S-FPL51 UD glass to form powerful chromatic correction cells.
+Elements L10 and L13 use the same 051269 ultra-high-index glass (nd = 2.05090, νd = 26.9). No current project catalog entry round-trips that pair, so the data file deliberately keeps a non-resolving code annotation. At nd > 2.0, this glass provides extreme negative power in a compact element thickness, which is essential for the tight cemented doublet arrangements in Group G5 where it is paired with S-FPL51 UD glass to form powerful chromatic correction cells.
 
 ---
 
@@ -144,7 +144,7 @@ The paraxial ray trace yields a maximum marginal ray height of approximately 5.6
 
 **Element L1** (S-FPL51, UD, positive meniscus, f = +240.6 mm): The first element in the system, with both radii positive (R1 = +99.6, R2 = +581.4) forming a meniscus shape. As a low-dispersion positive element at the front, it collects and converges the incoming light while introducing minimal chromatic aberration. Its long focal length means it contributes gently to the overall convergence — the real work of G1's +155 mm combined power comes from the cemented doublet behind it.
 
-**Elements L2 + L3** (S-BAM4 / S-FPL55, cemented doublet): This is the most important chromatic correction cell in the front group. L2 is a negative meniscus of moderate-dispersion barium flint (νd = 44.3) cemented to L3, a thick plano-convex element of Super UD glass (S-FPL55, νd = 94.7). The enormous Abbe number difference (Δνd = 50.4) between the two elements creates powerful chromatic correction. L3's flat rear surface (R = ∞) and substantial thickness (12.70 mm) indicate it carries significant positive power while maintaining a manageable edge thickness for manufacturing.
+**Elements L2 + L3** (N-KZFS4 / S-NBM51 class + S-FPL55, cemented doublet): This is the most important chromatic correction cell in the front group. L2 is a negative meniscus of KZFS-class short flint (νd = 44.3) cemented to L3, a thick plano-convex element of Super UD glass (S-FPL55, νd = 94.7). The enormous Abbe number difference (Δνd = 50.4) between the two elements creates powerful chromatic correction. L3's flat rear surface (R = ∞) and substantial thickness (12.70 mm) indicate it carries significant positive power while maintaining a manageable edge thickness for manufacturing.
 
 The average Abbe number of the positive elements in G1 (L1 and L3) is νd = 88.10, which is listed directly in the patent's Table 1 as νd1Pave and satisfies conditional expression (12): 65.00 < 88.10 < 99.00. This confirms that the front group's chromatic correction relies on combining two types of anomalous-dispersion glass.
 
@@ -154,7 +154,7 @@ This group is notable for being **stationary during zoom** (patent claim 16). It
 
 **Element L4** (S-FPM2, biconcave, f = −101.2 mm): A fluorophosphate crown element with relatively high Abbe number (νd = 68.6). Its front radius is very weakly curved (R = −617.95 mm, nearly flat), but the sign convention confirms both surfaces curve to create a biconcave shape. It provides negative power with controlled chromatic contribution, and its position before the cemented doublet helps manage the beam diameter entering the IS unit.
 
-**Elements L5 + L6** (S-LAH65V / S-TIH14, cemented doublet): A powerfully divergent doublet. L5 is a strong negative biconcave element (f = −36.6 mm) of lanthanum crown, cemented to L6, a positive meniscus of dense flint (S-TIH14, νd = 24.8). The combination provides strong negative power (the group's overall f = −48.48 mm derives primarily from this doublet) while partially correcting the chromatic aberration introduced by the negative power. The S-LAH65V lanthanum crown (nd = 1.764) provides a good refractive index–dispersion balance for compact variator elements.
+**Elements L5 + L6** (764485 lanthanum + S-NBH56, cemented doublet): A powerfully divergent doublet. L5 is a strong negative biconcave element (f = −36.6 mm) of high-index lanthanum glass, cemented to L6, a positive meniscus of dense barium flint (S-NBH56, νd = 24.8). The combination provides strong negative power (the group's overall f = −48.48 mm derives primarily from this doublet) while partially correcting the chromatic aberration introduced by the negative power. The L5 glass (nd = 1.764) provides a good refractive index-dispersion balance for compact variator elements.
 
 ### Group G3 — Compensator (L7, aspherical)
 
@@ -164,17 +164,17 @@ This element moves only −7.51 mm during zoom (the smallest movement of any mov
 
 ### Group G4 — Negative Field Flattener (L8/L9 cemented doublet)
 
-**Elements L8 + L9** (S-TIM2 / S-TIH6, cemented doublet, f = −155.65 mm): A weakly negative cemented doublet using two flint glasses with very low Abbe numbers (νd = 35.3 and 28.5). Both glasses are on the high-dispersion side, which is unusual for a correction cell — normally one would pair a crown with a flint. Here, the purpose is not chromatic correction per se but Petzval sum management. The patent description (paragraph [0030]) explicitly notes that placing multiple negative groups near the image creates a tendency toward excessive negative Petzval sum (resulting in backward-curving fields). This weakly negative doublet, positioned between the strong positive G5 and the aperture stop, provides a gentle counterbalance.
+**Elements L8 + L9** (593353 titanium flint + 728285 dense flint, cemented doublet, f = −155.65 mm): A weakly negative cemented doublet using two flint glasses with very low Abbe numbers (νd = 35.3 and 28.5). Both glasses are on the high-dispersion side, which is unusual for a correction cell — normally one would pair a crown with a flint. Here, the purpose is not chromatic correction per se but Petzval sum management. The patent description (paragraph [0030]) explicitly notes that placing multiple negative groups near the image creates a tendency toward excessive negative Petzval sum (resulting in backward-curving fields). This weakly negative doublet, positioned between the strong positive G5 and the aperture stop, provides a gentle counterbalance.
 
 ### Group G5 (LP) — Main Positive Relay (L10/L11, L12/L13, L14)
 
 This is the most complex zoom group: five elements in three air-separated sub-groups, with a combined focal length of +38.75 mm — the strongest positive power of any group in the system.
 
-**Elements L10 + L11** (S-NPH2 / S-FPL51, cemented doublet): An ultra-high-index flint (nd = 2.051) paired with a UD glass. The S-NPH2 negative element (f = −67.8 mm) and S-FPL51 positive element (f = +54.6 mm) form a powerful achromatic correction cell. The extreme refractive index of S-NPH2 allows the cemented interface to have strong differential curvature (R = +45.374 mm) in a physically thin package.
+**Elements L10 + L11** (051269 ultra-high-index flint + S-FPL51, cemented doublet): An ultra-high-index flint (nd = 2.051) paired with a UD glass. The negative 051269 element (f = −67.8 mm) and S-FPL51 positive element (f = +54.6 mm) form a powerful achromatic correction cell. The extreme refractive index of the flint allows the cemented interface to have strong differential curvature (R = +45.374 mm) in a physically thin package.
 
-**Elements L12 + L13** (S-FPL51 / S-NPH2, cemented doublet): An inverted version of the L10/L11 doublet — UD glass first, then ultra-high-index flint. The power arrangement is reversed (L12 positive at +65.7 mm, L13 negative at −103.4 mm), creating a net positive sub-group that provides additional achromatic correction. Using the same glass pair in both doublets but with inverted element order is a hallmark of systematic aberration balancing: the residual higher-order chromatic aberrations from one doublet partially cancel those from the other.
+**Elements L12 + L13** (S-FPL51 + 051269 ultra-high-index flint, cemented doublet): An inverted version of the L10/L11 doublet — UD glass first, then ultra-high-index flint. The power arrangement is reversed (L12 positive at +65.7 mm, L13 negative at −103.4 mm), creating a net positive sub-group that provides additional achromatic correction. Using the same glass pair in both doublets but with inverted element order is a hallmark of systematic aberration balancing: the residual higher-order chromatic aberrations from one doublet partially cancel those from the other.
 
-**Element L14** (S-LAH58, biconvex, f = +59.9 mm): A single positive lanthanum crown element that adds convergent power to the group. S-LAH58 (nd = 1.900, νd = 37.4) has the highest refractive index of the crown-type glasses in the system, allowing a relatively weakly curved element to contribute significant power. Its position at the rear of G5 converges the beam before it enters the focus groups.
+**Element L14** (TAFD37A, biconvex, f = +59.9 mm): A single positive high-index lanthanum element that adds convergent power to the group. TAFD37A (nd = 1.900, νd = 37.4) has the highest refractive index of the crown-type glasses in the system, allowing a relatively weakly curved element to contribute significant power. Its position at the rear of G5 converges the beam before it enters the focus groups.
 
 ### Group G6 (LN) — Focus Group A (L15)
 
@@ -184,7 +184,7 @@ The choice of S-PHM52 (nd = 1.618, νd = 63.4) is driven by weight consideration
 
 ### Group G7 (LR) — Focus Group B / Floating Group (L16, L17)
 
-**Element L16** (S-TIH14, positive meniscus, f = +89.7 mm): A dense flint element with positive power, positioned as the first element of the floating focus group. Despite being a flint glass (νd = 24.8), it serves a primarily monochromatic correction role — managing coma and astigmatism that change as the primary focus group (L15) moves.
+**Element L16** (S-NBH56, positive meniscus, f = +89.7 mm): A dense barium flint element with positive power, positioned as the first element of the floating focus group. Despite being a flint glass (νd = 24.8), it serves a primarily monochromatic correction role — managing coma and astigmatism that change as the primary focus group (L15) moves.
 
 **Element L17** (S-BAL42, glass-molded aspheric negative meniscus, f = −60.6 mm): The final optical element before the image plane and the second aspherical element in the system. Its aspherical front surface corrects residual field curvature and distortion across the zoom range. Canon's developer interview confirms this element carries SWC (Sub-Wavelength Coating) — necessary because its position near the image plane makes it susceptible to flare from stray light reflecting off the sensor and returning to the rear element surfaces.
 
@@ -283,7 +283,7 @@ Expression (12) confirms the front group's reliance on high-νd anomalous-disper
 
 **Telescoping barrel.** The 58.44 mm zoom extension (d5 change from wide to tele) is the mechanical basis for the lens's retracted compactness. At 146 mm retracted length and 1,070 g, the lens was Canon's shortest and lightest 70-200mm f/2.8 at the time of release — 50 mm shorter and nearly one-third lighter than the EF 70-200mm f/2.8L IS III USM.
 
-**Five anomalous-dispersion elements.** The aggressive use of S-FPL51 (4 elements) and S-FPL55 (1 element) is unusual for a zoom lens of this type and reflects the challenge of controlling chromatic aberration across a 2.7× zoom range at f/2.89. The S-NPH2 ultra-high-index flint elements in G5 are the complementary half of this strategy, providing the necessary negative chromatic power in compact cemented doublets.
+**Five anomalous-dispersion elements.** The aggressive use of S-FPL51 (4 elements) and S-FPL55 (1 element) is unusual for a zoom lens of this type and reflects the challenge of controlling chromatic aberration across a 2.7× zoom range at f/2.89. The 051269 ultra-high-index flint elements in G5 are the complementary half of this strategy, providing the necessary negative chromatic power in compact cemented doublets.
 
 **Electronic floating focus.** The dual Nano USM system with independent control of the focusing lens and floating lens was a Canon first. It reduced the minimum focus distance from 1.2 m (EF predecessor) to 0.7 m while improving close-up image quality through real-time electronic optimization.
 
@@ -299,7 +299,7 @@ Expression (12) confirms the front group's reliance on high-νd anomalous-disper
 
 3. **Group count discrepancy.** The patent's 12 air-separated sub-groups vs. Canon's marketed 13 groups remains unresolved. The most likely explanation is a minor production modification not reflected in this patent example.
 
-4. **Third-party source limitations.** Glass identification relies on nd/νd matching against the OHARA catalog. While all matches are high-confidence (Δνd < 0.1 for all but the S-FPL55/53 pair, which is resolved at Δνd = 0.04), Canon may use internally specified glass variants with subtly different properties.
+4. **Third-party source limitations.** Glass identification relies on nd/νd matching against public catalogs when a match exists. Code-based annotations preserve the patent nd/νd values where no current catalog entry round-trips the pair; Canon may use internally specified glass variants with subtly different properties.
 
 ---
 
@@ -308,4 +308,4 @@ Expression (12) confirms the front group's reliance on high-νd anomalous-disper
 - JP2021-056407A, Numerical Example 3 (full prescription, variable spacings, conditional expressions, Table 1)
 - Canon USA product page for RF70-200mm F2.8 L IS USM (specifications: 17 elements/13 groups, special elements, 77mm filter, 0.7m MFD)
 - Canon Europe/CNA developer interview with Kenji Shinohara (Optical Design), Kazuharu Osawa (Mechanical Design), et al.
-- OHARA optical glass catalog and Zemax catalog 2017-11 (glass identification by nd/νd matching; ΔθgF values via refractiveindex.info)
+- Public OHARA, HOYA, and Schott optical glass catalog data (glass identification by nd/νd matching; ΔθgF values via refractiveindex.info)
