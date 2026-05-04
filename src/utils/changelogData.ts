@@ -22,6 +22,17 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-04 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-04",
+    type: "improvement",
+    summary:
+      "Conducted glass audit across an additional five lens files, improved SD estimates for Nikkor Z 24-70mm f/4 S",
+  },
+  {
+    date: "2026-05-04",
+    type: "lens",
+    summary: "Added Panasonic S 35mm f/1.8, S Pro 50mm f/1.4, and Pentax FA 31mm f/1.8 AL Limited",
+  },
+  {
+    date: "2026-05-04",
     type: "lens",
     summary:
       "Added Sigma 50mm f/1.4 DG DN Art, Sigma 30mm f/2.8 for DP2 Merrill, and Vivitar Series 1 70-210mm f/2.8-4",
