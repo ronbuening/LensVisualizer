@@ -184,6 +184,19 @@ export default function buildLens(data: LensData): RuntimeLens {
   const labelIdx = buildLabelIndex(S);
   const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
   const varByIdx = buildVarIndex(data.var, labelIdx);
+  const aberrationControl = data.aberrationControl
+    ? {
+        label: data.aberrationControl.label,
+        description: data.aberrationControl.description,
+        minLabel: data.aberrationControl.minLabel,
+        maxLabel: data.aberrationControl.maxLabel,
+        step: data.aberrationControl.step,
+        varByIdx: buildVarIndex(data.aberrationControl.var, labelIdx),
+        varLabels: (data.aberrationControl.varLabels || []).map(
+          ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
+        ),
+      }
+    : null;
 
   const varLabels: [number, string][] = (data.varLabels || []).map(
     ([label, text]: [string, string]) => [labelIdx[label], text] as [number, string],
@@ -565,6 +578,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     groups,
     doublets,
     perspectiveControl: data.perspectiveControl ?? null,
+    aberrationControl,
     stopIdx,
     stopPhysSD,
     EFL,

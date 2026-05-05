@@ -109,26 +109,41 @@ export function resolveVariableThickness(
   baseThickness: number,
   range: VarRange | undefined,
   isZoom: boolean,
-  focusT: number,
+  controlT: number,
   zoomT: number,
 ): number {
   if (!range) return baseThickness;
   if (!isZoom) {
     const [dInfinity, dClose] = range as [number, number];
-    return dInfinity + (dClose - dInfinity) * focusT;
+    return dInfinity + (dClose - dInfinity) * controlT;
   }
   const zoomRanges = range as [number, number][];
   if (zoomRanges.length === 0) return baseThickness;
   if (zoomRanges.length === 1) {
     const [dInfinity, dClose] = zoomRanges[0];
-    return dInfinity + (dClose - dInfinity) * focusT;
+    return dInfinity + (dClose - dInfinity) * controlT;
   }
   const position = zoomT * (zoomRanges.length - 1);
   const index = Math.min(Math.floor(position), zoomRanges.length - 2);
   const fraction = position - index;
   const dInfinity = zoomRanges[index][0] + (zoomRanges[index + 1][0] - zoomRanges[index][0]) * fraction;
   const dClose = zoomRanges[index][1] + (zoomRanges[index + 1][1] - zoomRanges[index][1]) * fraction;
-  return dInfinity + (dClose - dInfinity) * focusT;
+  return dInfinity + (dClose - dInfinity) * controlT;
+}
+
+export function resolveControlledThickness(
+  baseThickness: number,
+  focusRange: VarRange | undefined,
+  aberrationRange: VarRange | undefined,
+  isZoom: boolean,
+  focusT: number,
+  zoomT: number,
+  aberrationT: number,
+): number {
+  const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT);
+  if (!aberrationRange) return focusThickness;
+  const aberrationThickness = resolveVariableThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
+  return focusThickness + (aberrationThickness - baseThickness);
 }
 
 export function buildStateSurfaces(
@@ -137,10 +152,20 @@ export function buildStateSurfaces(
   isZoom: boolean,
   focusT: number,
   zoomT: number,
+  aberrationVarByIdx: Record<number, VarRange> = {},
+  aberrationT = 0,
 ): SurfaceData[] {
   return surfaces.map((surface, index) => ({
     ...surface,
-    d: resolveVariableThickness(surface.d, varByIdx[index], isZoom, focusT, zoomT),
+    d: resolveControlledThickness(
+      surface.d,
+      varByIdx[index],
+      aberrationVarByIdx[index],
+      isZoom,
+      focusT,
+      zoomT,
+      aberrationT,
+    ),
   }));
 }
 

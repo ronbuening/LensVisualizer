@@ -19,6 +19,19 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-05 ──────────────────────────────────────────────────────────
+
+  {
+    date: "2026-05-05",
+    type: "feature",
+    summary: "Added aberration control variable support for lenses with separate soft-focus rings",
+  },
+  {
+    date: "2026-05-05",
+    type: "lens",
+    summary:
+      "Added Canon EF 40mm f/2.8, 100mm f/2.8 L Macro IS USM, Minolta Rokkor MD 45mm f/2, Rokkor MD 50mm f/1.4, and Varisoft 85mm f/2.8",
+  },
   // ── 2026-05-04 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-04",

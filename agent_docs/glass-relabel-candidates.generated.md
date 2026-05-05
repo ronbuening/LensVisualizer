@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 237 mismatched surfaces across 154 unique groups.
+**Scope**: 239 mismatched surfaces across 156 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -648,6 +648,14 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `3`: `S-LAM51 (OHARA)`
 
+## stored (nd=1.74320, vd=49.30)  — 1 surface, current label resolves to S-LAM66
+
+Candidates:
+- **S-LAM60** (nd=1.74320, vd=49.34, Δnd=-0.0000, Δvd=+0.04)
+
+Surfaces:
+- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) `28`: `S-LAM66 (OHARA)`
+
 ## stored (nd=1.74330, vd=49.22)  — 2 surfaces, current label resolves to S-NBH51
 
 Candidates:
@@ -814,6 +822,14 @@ Candidates:
 
 Surfaces:
 - [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) `7`: `S-LAH65 class (Ohara)`
+
+## stored (nd=1.78100, vd=44.50)  — 1 surface, current label resolves to S-NBH55
+
+Candidates:
+- **S-LAH51** (nd=1.78590, vd=44.20, Δnd=+0.0049, Δvd=-0.30)
+
+Surfaces:
+- [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) `10`: `S-NBH55 class (OHARA, near match Δnd = 0.001)`
 
 ## stored (nd=1.78470, vd=26.10) [PgF=0.6139 (dPgF=0.0140)]  — 3 surfaces, current label resolves to S-TIH14
 
@@ -1356,5 +1372,5 @@ Surfaces:
 
 ## Summary
 
-- **108** (nd, vd) groups have at least one candidate (173 surfaces) — actionable relabels.
+- **110** (nd, vd) groups have at least one candidate (175 surfaces) — actionable relabels.
 - **46** (nd, vd) groups have NO candidate (64 surfaces) — needs patent verification or Unmatched relabeling.

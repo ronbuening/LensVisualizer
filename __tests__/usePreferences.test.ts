@@ -154,7 +154,7 @@ describe("usePreferences — change detection", () => {
     // Change only slider positions (not persisted)
     const state2: LensState = {
       ...state1,
-      sliders: { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 4, tiltDeg: -3 },
+      sliders: { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 4, tiltDeg: -3 },
     };
     act(() => {
       rerender({ s: state2 });

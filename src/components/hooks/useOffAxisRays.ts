@@ -22,6 +22,7 @@ interface UseOffAxisRaysParams {
   IMG_MM: number;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
@@ -46,6 +47,7 @@ export default function useOffAxisRays({
   IMG_MM,
   focusT,
   zoomT,
+  aberrationT = 0,
   sx,
   sy,
   clampedRayEnd,
@@ -62,7 +64,17 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      const geometry = computeOffAxisTraceGeometry({ L, zPos, IMG_MM, focusT, zoomT, sx, sy, showOffAxis });
+      const geometry = computeOffAxisTraceGeometry({
+        L,
+        zPos,
+        IMG_MM,
+        focusT,
+        zoomT,
+        aberrationT,
+        sx,
+        sy,
+        showOffAxis,
+      });
       if (geometry === null) return { segments: [], error: null };
       const { uField, yChief, edgeEnd, useEdge } = geometry;
 
@@ -71,7 +83,7 @@ export default function useOffAxisRays({
         const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
         const uIn = uField + uConverge;
-        const rawResult = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const rawResult = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(
@@ -96,6 +108,7 @@ export default function useOffAxisRays({
     showOffAxis,
     zPos,
     focusT,
+    aberrationT,
     sx,
     sy,
     currentPhysStopSD,

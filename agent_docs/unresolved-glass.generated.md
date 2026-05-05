@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **140** lenses scanned
-- **1593** non-air surfaces examined
-- **1590** element glass declarations examined
-- **533** non-explicit-unmatched annotations did not resolve
-- **195** distinct unresolved glass-like tokens found
+- **145** lenses scanned
+- **1633** non-air surfaces examined
+- **1630** element glass declarations examined
+- **541** non-explicit-unmatched annotations did not resolve
+- **196** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -23,6 +23,8 @@ or per-lens patent backfills.
 | S-NPH7 | 6 | 5 | |
 | L-PHM52 | 5 | 2 | |
 | TAFD25 | 5 | 4 | |
+| S-TIH11 | 4 | 4 | |
+| S-TIL25 | 4 | 4 | |
 | 694533 | 3 | 2 | |
 | E-FDS3HT | 3 | 2 | |
 | S-LAH93 | 3 | 3 | |
@@ -30,10 +32,10 @@ or per-lens patent backfills.
 | S-LAM55 | 3 | 3 | |
 | S-NBH52V | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
-| S-TIH11 | 3 | 3 | |
 | S-TIH53W | 3 | 3 | |
-| S-TIL25 | 3 | 3 | |
+| S-TIL27 | 3 | 3 | |
 | S-TIL6 | 3 | 3 | |
+| TAFD5F | 3 | 3 | |
 | 051269 | 2 | 1 | |
 | 159319 | 2 | 1 | |
 | 519699 | 2 | 1 | |
@@ -73,15 +75,14 @@ or per-lens patent backfills.
 | S-LAL13 | 2 | 2 | |
 | S-LAL7 | 2 | 2 | |
 | S-LAM3 | 2 | 2 | |
+| S-LAM52 | 2 | 2 | |
 | S-TIH10 | 2 | 2 | |
-| S-TIL27 | 2 | 2 | |
 | SF10 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK5 | 2 | 2 | |
 | SK7 | 2 | 2 | |
 | TAF5 | 2 | 1 | |
 | TAFD35 | 2 | 1 | |
-| TAFD5F | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 175500 | 1 | 1 | |
 | 181600 | 1 | 1 | |
@@ -181,9 +182,9 @@ or per-lens patent backfills.
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH78 | 1 | 1 | |
+| S-LAL10 | 1 | 1 | |
 | S-LAL60 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
-| S-LAM52 | 1 | 1 | |
 | S-LAM61 | 1 | 1 | |
 | S-LAM7 | 1 | 1 | |
 | S-NBF1 | 1 | 1 | |
@@ -260,6 +261,20 @@ or per-lens patent backfills.
 - [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 27: `TAFD25 (HOYA)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 13: `TAFD25 equiv. (181600/4659)`
 
+### S-TIH11 — 4 occurrences
+
+- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 9: `S-TIH11 (OHARA)`
+- [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) 9: `S-TIH11 / N-SF10 (dense flint)`
+- [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) 8: `SF10 (Schott) / S-TIH11 (OHARA)`
+- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 10: `S-TIH11 (OHARA)`
+
+### S-TIL25 — 4 occurrences
+
+- [CANON EF 40mm f/2.8 STM](../src/lens-data/canon/CanonEF40mmf28.data.ts) 2: `S-TIL25 (OHARA)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 24: `E-FL5 (HOYA) / S-TIL25 (OHARA)`
+- [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 5: `S-TIL25 (OHARA)`
+- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 3: `S-TIL25 (OHARA)`
+
 ### 694533 — 3 occurrences
 
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 1: `694533 — high-index crown (patent nd=1.69370, νd=53.32)`
@@ -302,29 +317,29 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
-### S-TIH11 — 3 occurrences
-
-- [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) 9: `S-TIH11 / N-SF10 (dense flint)`
-- [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) 8: `SF10 (Schott) / S-TIH11 (OHARA)`
-- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 10: `S-TIH11 (OHARA)`
-
 ### S-TIH53W — 3 occurrences
 
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 27: `S-TIH53W type (855/248)`
 - [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) 17: `855248 — S-TIH53W family (OHARA)`
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 27: `OHARA S-TIH53W`
 
-### S-TIL25 — 3 occurrences
+### S-TIL27 — 3 occurrences
 
-- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 24: `E-FL5 (HOYA) / S-TIL25 (OHARA)`
-- [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 5: `S-TIL25 (OHARA)`
-- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 3: `S-TIL25 (OHARA)`
+- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 11: `S-TIL27 (OHARA)`
+- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 6: `S-TIL27 (OHARA)`
+- [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 9: `S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)`
 
 ### S-TIL6 — 3 occurrences
 
 - [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) 12: `S-TIL6 (OHARA)`
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 10: `OHARA S-TIL6`
 - [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) 12: `S-TIL6 (OHARA)`
+
+### TAFD5F — 3 occurrences
+
+- [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 3: `E-LAF7 / TAFD5F (HOYA)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
+- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 27: `Lanthanum crown (no confirmed catalog match; near TAFD5F)`
 
 ### 051269 — 2 occurrences
 
@@ -521,15 +536,15 @@ or per-lens patent backfills.
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 21: `S-LAM3 type (720/437)`
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 13: `S-LAM3 (OHARA)`
 
+### S-LAM52 — 2 occurrences
+
+- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 24: `S-LAM52 (OHARA)`
+- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 6: `OHARA S-LAM52 (≈Schott N-KZFS8)`
+
 ### S-TIH10 — 2 occurrences
 
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 32: `S-TIH10 type (805/254)`
 - [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 7: `SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)`
-
-### S-TIL27 — 2 occurrences
-
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 6: `S-TIL27 (OHARA)`
-- [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 9: `S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)`
 
 ### SF10 — 2 occurrences
 
@@ -560,11 +575,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) 14: `HOYA TAFD35 class (911 352)`
 - [FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) 39: `HOYA TAFD35 class (911 352)`
-
-### TAFD5F — 2 occurrences
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
-- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 27: `Lanthanum crown (no confirmed catalog match; near TAFD5F)`
 
 ### 157957 — 1 occurrence
 
@@ -962,6 +972,10 @@ or per-lens patent backfills.
 
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 24: `S-LAH78 (OHARA)`
 
+### S-LAL10 — 1 occurrence
+
+- [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 12: `S-LAL10 (OHARA)`
+
 ### S-LAL60 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 4: `Near OHARA S-LAL60 (755523)`
@@ -969,10 +983,6 @@ or per-lens patent backfills.
 ### S-LAL61 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
-
-### S-LAM52 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 6: `OHARA S-LAM52 (≈Schott N-KZFS8)`
 
 ### S-LAM61 — 1 occurrence
 

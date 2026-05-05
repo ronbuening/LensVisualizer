@@ -29,6 +29,8 @@ interface DiagramControlsProps {
   useSideLayout: boolean;
   zoomT: number;
   onZoomChange?: (value: number) => void;
+  aberrationT: number;
+  onAberrationChange?: (value: number) => void;
   focusT: number;
   onFocusChange?: (value: number) => void;
   shiftMm: number;
@@ -38,6 +40,7 @@ interface DiagramControlsProps {
   focusExpanded: boolean;
   onFocusExpandedChange?: (value: boolean) => void;
   varReadouts: VarReadout[];
+  aberrationReadouts: VarReadout[];
   stopdownT: number;
   onStopdownChange?: (value: number) => void;
   fNumber: number;
@@ -62,6 +65,8 @@ export default function DiagramControls({
   useSideLayout,
   zoomT,
   onZoomChange,
+  aberrationT,
+  onAberrationChange,
   focusT,
   onFocusChange,
   shiftMm,
@@ -71,6 +76,7 @@ export default function DiagramControls({
   focusExpanded,
   onFocusExpandedChange,
   varReadouts,
+  aberrationReadouts,
   stopdownT,
   onStopdownChange,
   fNumber,
@@ -115,6 +121,14 @@ export default function DiagramControls({
     [onChangeActivity, onFocusChange],
   );
 
+  const handleAberrationChange = useCallback(
+    (v: number) => {
+      onChangeActivity();
+      onAberrationChange?.(v);
+    },
+    [onChangeActivity, onAberrationChange],
+  );
+
   const handleStopdownChange = useCallback(
     (v: number) => {
       onChangeActivity();
@@ -147,6 +161,12 @@ export default function DiagramControls({
   const showApertureControl = showSliders && (hasApertureRange || availableFStops.length > 1);
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
+  const aberrationValue = (() => {
+    const min = Number(L.aberrationControl?.minLabel);
+    const max = Number(L.aberrationControl?.maxLabel);
+    if (Number.isFinite(min) && Number.isFinite(max)) return (min + (max - min) * aberrationT).toFixed(1);
+    return `${Math.round(aberrationT * 100)}%`;
+  })();
 
   return (
     <>
@@ -233,6 +253,58 @@ export default function DiagramControls({
                 </div>
               )}
             </>
+          )}
+        </SliderControl>
+      )}
+
+      {showSliders && L.aberrationControl && (
+        <SliderControl
+          t={t}
+          compact={compact}
+          useSideLayout={useSideLayout}
+          label={L.aberrationControl.label}
+          labelMinWidth={85}
+          displayValue={aberrationValue}
+          value={aberrationT}
+          step={L.aberrationControl.step ?? 0.01}
+          onPointerDown={beginInteraction}
+          onChange={handleAberrationChange}
+          onPointerUp={handlePointerUp}
+          minLabel={L.aberrationControl.minLabel ?? "normal"}
+          maxLabel={L.aberrationControl.maxLabel ?? "max"}
+          flexBasis="230px"
+        >
+          {L.aberrationControl.description && (
+            <div
+              style={{
+                marginTop: 8,
+                fontSize: 9.5,
+                color: t.desc,
+                lineHeight: 1.6,
+                transition: "color 0.3s",
+              }}
+            >
+              {L.aberrationControl.description}
+            </div>
+          )}
+          {aberrationReadouts.length > 0 && (
+            <div
+              style={{
+                marginTop: 6,
+                display: "flex",
+                gap: 14,
+                fontSize: 9,
+                color: t.spacingVal,
+                fontVariantNumeric: "tabular-nums",
+                transition: "color 0.3s",
+              }}
+            >
+              {aberrationReadouts.map(({ label, val }) => (
+                <span key={label}>
+                  {label} {val}
+                </span>
+              ))}
+            </div>
           )}
         </SliderControl>
       )}

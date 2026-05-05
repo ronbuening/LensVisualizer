@@ -128,20 +128,21 @@ export function computeStateAwareOffAxisFieldGeometry(
   zoomT: number,
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
+  aberrationT = 0,
 ): OffAxisFieldGeometry | null {
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
-  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg < 0) return null;
 
   const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
   if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
 
   const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L);
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;
 
   return {
@@ -162,6 +163,7 @@ export function traceOffAxisChiefRay(
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
+  aberrationT = 0,
 ): OffAxisChiefRaySample | null {
   const trace = channel
     ? traceChiefRelativeSkewRayChromatic(
@@ -176,6 +178,7 @@ export function traceOffAxisChiefRay(
         true,
         L,
         channel,
+        aberrationT,
       )
     : traceChiefRelativeSkewRay(
         0,
@@ -188,6 +191,7 @@ export function traceOffAxisChiefRay(
         stopSemiDiameter,
         true,
         L,
+        aberrationT,
       );
   if (trace.clipped) return null;
 
@@ -216,6 +220,7 @@ export function traceOffAxisBundleFromSamples(
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
+  aberrationT = 0,
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
@@ -227,6 +232,7 @@ export function traceOffAxisBundleFromSamples(
     entrancePupilSemiDiameter,
     stopSemiDiameter,
     channel,
+    aberrationT,
   );
   if (chiefRay === null) return null;
 
@@ -244,6 +250,7 @@ export function traceOffAxisBundleFromSamples(
           true,
           L,
           channel,
+          aberrationT,
         )
       : traceChiefRelativeSkewRay(
           sample.xFraction,
@@ -256,6 +263,7 @@ export function traceOffAxisBundleFromSamples(
           stopSemiDiameter,
           true,
           L,
+          aberrationT,
         );
     if (trace.clipped) return [];
 
@@ -292,6 +300,7 @@ export function traceOrthogonalOffAxisBundle(
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
+  aberrationT = 0,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleOrthogonalPupilFan(sampleCount, orientation),
@@ -302,6 +311,7 @@ export function traceOrthogonalOffAxisBundle(
     entrancePupilSemiDiameter,
     stopSemiDiameter,
     channel,
+    aberrationT,
   );
 }
 
@@ -314,6 +324,7 @@ export function traceCircularOffAxisBundle(
   entrancePupilSemiDiameter: number,
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
+  aberrationT = 0,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleCircularPupil(ringSamples),
@@ -324,6 +335,7 @@ export function traceCircularOffAxisBundle(
     entrancePupilSemiDiameter,
     stopSemiDiameter,
     channel,
+    aberrationT,
   );
 }
 

@@ -41,9 +41,10 @@ describe("useLensState — defaults", () => {
 
   it("defaults sliders to zero", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
-    const { focusT, zoomT, stopdownT } = result.current[0].sliders;
+    const { focusT, zoomT, aberrationT, stopdownT } = result.current[0].sliders;
     expect(focusT).toBe(0);
     expect(zoomT).toBe(0);
+    expect(aberrationT).toBe(0);
     expect(stopdownT).toBe(0);
   });
 });
@@ -61,6 +62,12 @@ describe("useLensState — URL params override defaults", () => {
     window.history.replaceState({}, "", "?focus=0.6");
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     expect(result.current[0].sliders.focusT).toBeCloseTo(0.6, 5);
+  });
+
+  it("applies ?aberration= slider to aberrationT", () => {
+    window.history.replaceState({}, "", "?aberration=0.4");
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    expect(result.current[0].sliders.aberrationT).toBeCloseTo(0.4, 5);
   });
 
   it("applies ?aperture= slider to stopdownT", () => {

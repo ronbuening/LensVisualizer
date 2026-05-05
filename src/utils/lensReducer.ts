@@ -35,6 +35,7 @@ export const SET_DESKTOP_VIEW = "SET_DESKTOP_VIEW";
 export const SET_RAY_TOGGLE = "SET_RAY_TOGGLE";
 export const SET_FOCUS_T = "SET_FOCUS_T";
 export const SET_ZOOM_T = "SET_ZOOM_T";
+export const SET_ABERRATION_T = "SET_ABERRATION_T";
 export const SET_STOPDOWN_T = "SET_STOPDOWN_T";
 export const SET_SHIFT_MM = "SET_SHIFT_MM";
 export const SET_TILT_DEG = "SET_TILT_DEG";
@@ -152,6 +153,7 @@ export function createInitialState(
     sliders: {
       focusT: urlState.focus ?? 0,
       zoomT: 0,
+      aberrationT: urlState.aberration ?? 0,
       stopdownT: urlState.aperture ?? 0,
       shiftMm: urlState.shift ?? 0,
       tiltDeg: urlState.tilt ?? 0,
@@ -210,7 +212,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       const next = { ...state, lens: { ...state.lens, lensKeyA: action.key } };
       /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
-        next.sliders = { focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 };
+        next.sliders = { focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 };
         next.panels = {
           ...state.panels,
           analysisDrawerOpen: false,
@@ -257,6 +259,8 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       return { ...state, sliders: { ...state.sliders, focusT: action.value } };
     case SET_ZOOM_T:
       return { ...state, sliders: { ...state.sliders, zoomT: action.value } };
+    case SET_ABERRATION_T:
+      return { ...state, sliders: { ...state.sliders, aberrationT: action.value } };
     case SET_STOPDOWN_T:
       return { ...state, sliders: { ...state.sliders, stopdownT: action.value } };
     case SET_SHIFT_MM:
@@ -264,7 +268,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
     case SET_TILT_DEG:
       return { ...state, sliders: { ...state.sliders, tiltDeg: action.value } };
     case RESET_SLIDERS:
-      return { ...state, sliders: { focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 } };
+      return { ...state, sliders: { focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 } };
 
     /* ── Panel expand/collapse (generic) ── */
     case SET_PANEL_EXPANDED:
@@ -300,6 +304,9 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if ("aperture" in urlState) {
         if (state.lens.comparing) sharedSliders.sharedStopdownT = urlState.aperture ?? 0;
         else sliders.stopdownT = urlState.aperture ?? 0;
+      }
+      if ("aberration" in urlState && !state.lens.comparing) {
+        sliders.aberrationT = urlState.aberration ?? 0;
       }
       if ("shift" in urlState) {
         if (state.lens.comparing) sharedSliders.sharedShiftMm = urlState.shift ?? 0;

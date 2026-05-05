@@ -26,6 +26,7 @@ interface DiagramControlPanelProps {
   headerHeight: number;
   showSliders: boolean;
   zoomT: number;
+  aberrationT: number;
   focusT: number;
   shiftMm: number;
   tiltDeg: number;
@@ -39,10 +40,12 @@ interface DiagramControlPanelProps {
   showEffectiveAperture: boolean;
   onToggleEffectiveAperture: () => void;
   varReadouts: VarReadout[];
+  aberrationReadouts: VarReadout[];
   focusExpanded: boolean;
   apertureExpanded: boolean;
   legendExpanded: boolean;
   onZoomChange: (v: number) => void;
+  onAberrationChange: (v: number) => void;
   onFocusChange: (v: number) => void;
   onStopdownChange: (v: number) => void;
   onShiftChange: (v: number) => void;
@@ -75,6 +78,7 @@ export default function DiagramControlPanel({
   headerHeight,
   showSliders,
   zoomT,
+  aberrationT,
   focusT,
   shiftMm,
   tiltDeg,
@@ -88,10 +92,12 @@ export default function DiagramControlPanel({
   showEffectiveAperture,
   onToggleEffectiveAperture,
   varReadouts,
+  aberrationReadouts,
   focusExpanded,
   apertureExpanded,
   legendExpanded,
   onZoomChange,
+  onAberrationChange,
   onFocusChange,
   onStopdownChange,
   onShiftChange,
@@ -144,6 +150,8 @@ export default function DiagramControlPanel({
         useSideLayout={useSideLayout}
         zoomT={zoomT}
         onZoomChange={onZoomChange}
+        aberrationT={aberrationT}
+        onAberrationChange={onAberrationChange}
         focusT={focusT}
         onFocusChange={onFocusChange}
         shiftMm={shiftMm}
@@ -153,6 +161,7 @@ export default function DiagramControlPanel({
         focusExpanded={focusExpanded}
         onFocusExpandedChange={onFocusExpandedChange}
         varReadouts={varReadouts}
+        aberrationReadouts={aberrationReadouts}
         stopdownT={stopdownT}
         onStopdownChange={onStopdownChange}
         fNumber={fNumber}

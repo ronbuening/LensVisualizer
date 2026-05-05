@@ -3,10 +3,13 @@ import { buildLensViewQuery, lensViewQueryToUrlState, parseLensViewQuery } from 
 
 describe("lensViewUrlState", () => {
   it("parses v1 single-lens view params", () => {
-    const state = parseLensViewQuery("?v=1&focus=0.25&aperture=0.5&zoom=70&el=12&gm=1&bo=1&ad=1&tab=distortion");
+    const state = parseLensViewQuery(
+      "?v=1&focus=0.25&aberration=0.75&aperture=0.5&zoom=70&el=12&gm=1&bo=1&ad=1&tab=distortion",
+    );
 
     expect(state).toMatchObject({
       focus: 0.25,
+      aberration: 0.75,
       aperture: 0.5,
       zoom: 70,
       selectedElementId: 12,
@@ -25,9 +28,12 @@ describe("lensViewUrlState", () => {
   });
 
   it("clamps sliders and ignores invalid v1 values", () => {
-    const state = parseLensViewQuery("?v=1&focus=-1&aperture=2&zoom=0&el=1.5&a_el=-2&gm=yes&bo=maybe&ad=no&tab=bogus");
+    const state = parseLensViewQuery(
+      "?v=1&focus=-1&aberration=2&aperture=2&zoom=0&el=1.5&a_el=-2&gm=yes&bo=maybe&ad=no&tab=bogus",
+    );
 
     expect(state.focus).toBe(0);
+    expect(state.aberration).toBe(1);
     expect(state.aperture).toBe(1);
     expect(state.zoom).toBeNull();
     expect(state.selectedElementId).toBeUndefined();
@@ -39,13 +45,16 @@ describe("lensViewUrlState", () => {
   });
 
   it("honors stable slider params for unknown versions but ignores v1-only params", () => {
-    const state = parseLensViewQuery("?v=99&focus=0.4&aperture=0.3&zoom=50&shift=-4.5&tilt=3&el=2&gm=1&tab=coma");
-    expect(state).toEqual({ focus: 0.4, aperture: 0.3, zoom: 50, shift: -4.5, tilt: 3 });
+    const state = parseLensViewQuery(
+      "?v=99&focus=0.4&aberration=0.6&aperture=0.3&zoom=50&shift=-4.5&tilt=3&el=2&gm=1&tab=coma",
+    );
+    expect(state).toEqual({ focus: 0.4, aberration: 0.6, aperture: 0.3, zoom: 50, shift: -4.5, tilt: 3 });
   });
 
   it("builds minimal single-lens query params", () => {
     const params = buildLensViewQuery({
       focus: 0.25,
+      aberration: 0.75,
       aperture: 0,
       selectedElementId: 4,
       glassMapOpen: true,
@@ -54,7 +63,7 @@ describe("lensViewUrlState", () => {
       analysisDrawerTab: "coma",
     });
 
-    expect(params.toString()).toBe("v=1&focus=0.250&el=4&gm=1&ad=1&tab=coma");
+    expect(params.toString()).toBe("v=1&focus=0.250&aberration=0.750&el=4&gm=1&ad=1&tab=coma");
   });
 
   it("builds minimal comparison query params", () => {
@@ -72,6 +81,7 @@ describe("lensViewUrlState", () => {
   it("omits defaults and unimplemented ai state", () => {
     const params = buildLensViewQuery({
       focus: 0,
+      aberration: 0,
       aperture: 0,
       zoom: null,
       glassMapOpen: false,
@@ -105,6 +115,7 @@ describe("lensViewUrlState", () => {
     const state = lensViewQueryToUrlState(parseLensViewQuery(""), true);
     expect(state).toMatchObject({
       focus: 0,
+      aberration: 0,
       aperture: 0,
       zoom: 0,
       shift: 0,

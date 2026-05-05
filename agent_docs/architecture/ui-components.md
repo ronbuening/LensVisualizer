@@ -23,7 +23,7 @@ Read this for shared controls, display components, markdown rendering, analysis 
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
-| `DiagramControls.tsx` | Zoom, focus, aperture sliders and interaction-signal wiring. |
+| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. |
 | `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional collapsible content. |
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
@@ -35,6 +35,9 @@ settings menu or the URL query state.
 The CARDINALS / DIMENSIONS overlay controls are feature-flagged by `ENABLE_CARDINAL_ELEMENTS`. Desktop renders them to
 the left of the existing ray controls; mobile uses left/right arrow buttons to page between the existing controls and
 the cardinal control set.
+
+Lens-specific aberration controls are declared by `LensData.aberrationControl`. `DiagramControls` renders them only when
+present, using the data-provided label, endpoint labels, step, and readout labels.
 
 ## Display Components
 

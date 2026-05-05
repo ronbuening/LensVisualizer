@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **140** lenses scanned
-- **1593** glass surfaces examined
-- **1590** surfaces with non-empty `glass` strings
-- **1018** of those resolved to a catalog entry
-- **237** mismatches found (23.3% of resolved surfaces)
-- **77** distinct lens files affected
+- **145** lenses scanned
+- **1633** glass surfaces examined
+- **1630** surfaces with non-empty `glass` strings
+- **1039** of those resolved to a catalog entry
+- **239** mismatches found (23.0% of resolved surfaces)
+- **79** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -40,6 +40,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
 | S-BAL14 | 5 | |
+| S-NBH55 | 5 | |
 | S-LAL14 | 5 | |
 | S-NBH56 | 5 | |
 | S-FPM3 | 5 | |
@@ -49,12 +50,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIM27 | 4 | |
 | S-TIH53 | 4 | |
 | S-NPH53 | 4 | |
-| S-NBH55 | 4 | |
 | S-NBH8 | 4 | |
 | S-TIM22 | 4 | |
 | S-TIM35 | 4 | |
 | S-TIH6 | 4 | |
 | K-VC89 | 4 | |
+| S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
 | S-LAL8 | 3 | |
@@ -72,7 +73,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
 | S-NPH5 | 2 | |
-| S-LAM66 | 2 | |
 | S-BAM4 | 2 | |
 | S-BAL42 | 2 | |
 | S-LAH99 | 2 | |
@@ -611,6 +611,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 4 | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 | 6 | `S-LAH58 (OHARA)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 
+### [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) — US 7,864,451 B2
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 28 | `S-LAM66 (OHARA)` | S-LAM66 | 1.74320 | 1.80100 | +0.0578 |
+
 ### [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) — US 3,748,022
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -640,6 +646,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 5 | `≈SF4 (dense flint)` | SF4 | 1.74710 | 1.75520 | +0.0081 |
+
+### [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) — US 4,182,550
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10 | `S-NBH55 class (OHARA, near match Δnd = 0.001)` | S-NBH55 | 1.78100 | 1.80000 | +0.0190 |
 
 ### [NIKON 28Ti NIKKOR 28mm f/2.8](../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) — US 5,528,428
 

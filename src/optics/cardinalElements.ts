@@ -46,10 +46,19 @@ export function computeCardinalElementsAtState(
   zoomT: number,
   zPos: number[],
   imagePlaneZ: number,
+  aberrationT = 0,
 ): CardinalElements | null {
   if (zPos.length < L.N) return null;
 
-  const S = buildStateSurfaces(L.S, L.varByIdx, Boolean(L.isZoom), focusT, zoomT);
+  const S = buildStateSurfaces(
+    L.S,
+    L.varByIdx,
+    Boolean(L.isZoom),
+    focusT,
+    zoomT,
+    L.aberrationControl?.varByIdx,
+    aberrationT,
+  );
   const marginal = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
   const chief = traceSurfacesParaxial(S, 0, 1, { skipLastTransfer: true });
   const objectIndex = 1;

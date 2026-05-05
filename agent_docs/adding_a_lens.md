@@ -57,6 +57,31 @@ Ranges must be finite, ascending, and include zero. Use official manufacturer so
 URL in a nearby comment. The v1 movement layer is a 2D meridional visualization: it shifts/tilts rendered geometry and
 rays relative to the fixed IMG plane, while analysis drawer diagnostics remain centered-lens calculations.
 
+### Aberration-Control Lenses
+
+For lenses with a real soft-focus or spherical-aberration-control ring, declare `aberrationControl` instead of folding
+that motion into focus `var`. The field is a normalized slider from 0 to 1 with lens-specific labels and one or more
+controlled surface spacings:
+
+```typescript
+aberrationControl: {
+  label: "SOFT",
+  minLabel: "0",
+  maxLabel: "3",
+  var: {
+    "9": [2.074, 6.962],
+    "11": [64.427, 53.951],
+  },
+  varLabels: [
+    ["9", "D(B0)"],
+    ["11", "BF"],
+  ],
+},
+```
+
+Use this only for an independent optical control, not for ordinary floating focus. The base surface table should match
+the minimum/sharp setting, and every controlled surface's first value must match its surface `d`.
+
 ### Semi-Diameter Troubleshooting
 
 Surface `sd` values are the most common source of rendering bugs. If validation fails on SD-related checks (edge thickness, rim slope, cross-gap overlap, conic height limits), see the Semi-Diameter Guidelines section in `src/lens-data/TEMPLATE.data.ts.template` for detailed constraints and examples. The rim slope check uses actual aspherical slope at the SD (via `sagSlopeRaw`), not the old spherical `sd/|R|` proxy — aspherical surfaces (especially K near −1) can use larger SDs. Cross-gap overlap is checked against the two boundary surfaces that face each other: combined sag intrusion must not exceed `gapSagFrac × gap` (`gapSagFrac` defaults to 0.90 and must be ≤ 1), leaving visible clearance. Rendering uses the same rim-slope and cross-gap policy as validation, and production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface.
