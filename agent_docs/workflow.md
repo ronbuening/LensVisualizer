@@ -35,7 +35,10 @@ CI enforces the same checks via `.github/workflows/quality.yml` — failing them
 
 ## Deployment
 
-- **GitHub Pages** via GitHub Actions (`.github/workflows/deploy.yml`)
+- **Current legacy path:** GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`) until the manual
+  Surface & Stop Cloudflare Pages cutover is complete.
+- **Target production path:** Cloudflare Pages using `npm run build` and `dist/`; see
+  `SURFACE_AND_STOP_MIGRATION.md` for the exact cutover and redirect steps.
 - Triggers on push to `main` or manual dispatch
 - Builds with `npm ci && npm run build`, deploys `dist/` to Pages
 - Base path set to `/` in `vite.config.js` — GitHub Actions deploy handles the Pages base path

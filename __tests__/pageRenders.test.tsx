@@ -60,7 +60,7 @@ describe("static page renders", () => {
       </Routes>,
     );
 
-    expect(screen.getAllByText("Optical Bench").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Surface & Stop").length).toBeGreaterThan(0);
     expect(screen.getByText("Interactive Camera Lens Cross-Section Visualizer")).toBeTruthy();
     expect(screen.getAllByRole("link", { name: /Lens Library/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /Browse by Maker/i }).length).toBeGreaterThan(0);
@@ -193,7 +193,7 @@ describe("static page renders", () => {
     );
 
     expect(screen.getByText("404")).toBeTruthy();
-    expect(screen.getByRole("link", { name: /Go to Optical Bench/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /Go to Surface & Stop/i })).toBeTruthy();
     expect(screen.getByRole("link", { name: /Browse all lenses/i })).toBeTruthy();
   });
 });

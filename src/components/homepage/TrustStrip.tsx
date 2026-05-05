@@ -13,7 +13,7 @@ export default function TrustStrip({ theme: t }: TrustStripProps) {
   const stats = ["Patent-derived optical models", `${ARTICLES.length} articles & guides on numerous topics`];
 
   const links: { label: string; to: string }[] = [
-    { label: "About Optical Bench", to: "/articles/about-site" },
+    { label: "About Surface & Stop", to: "/articles/about-site" },
     { label: "About the Author", to: "/articles/about-author" },
   ];
 

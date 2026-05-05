@@ -1,7 +1,7 @@
 ---
 slug: start-here
 title: Getting Started
-summary: New to Optical Bench? These primers explain how lenses work, what aberrations are, and how to get the most out of the interactive diagrams.
+summary: New to Surface & Stop? These primers explain how lenses work, what aberrations are, and how to get the most out of the interactive diagrams.
 tag: guide
 ---
 

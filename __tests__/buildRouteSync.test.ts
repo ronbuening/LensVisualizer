@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { allMakerSlugs } from "../src/utils/lensMetadata.js";
+import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
 import buildMeta from "../src/generated/build-metadata.json";
 
 /**
@@ -43,6 +44,7 @@ describe("build-route-sync", () => {
     const lensKeys = buildMeta.lensKeys;
     const lensRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/lens/"));
 
+    expect(lensKeys).toEqual([...CATALOG_KEYS].sort());
     expect(lensRoutes.length).toBe(lensKeys.length);
     for (const key of lensKeys) {
       expect(lensRoutes).toContain(`/lens/${key}`);

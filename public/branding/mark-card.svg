@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 108" width="320" height="108">
   <!--
-    OpticalBench mark — standalone Heliar diagram for print.
+    Surface & Stop mark — standalone Heliar diagram for print.
     No wordmark. Transparent background.
     Designed for light card stock at ~1.5–2" wide.
     At 300 DPI, 320px ≈ 1.07" — scale as needed via CSS or print layout.

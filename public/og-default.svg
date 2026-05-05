@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Optical Bench social card</title>
-  <desc id="desc">A stylized camera lens cross-section with ray traces and the Optical Bench brand text.</desc>
+  <title id="title">Surface &amp; Stop social card</title>
+  <desc id="desc">A stylized camera lens cross-section with ray traces and the Surface &amp; Stop brand text.</desc>
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#081321" />
@@ -89,7 +89,7 @@
       INTERACTIVE OPTICAL DESIGN VIEWER
     </text>
     <text x="0" y="108" font-size="76" font-weight="700" font-family="Helvetica, Arial, sans-serif">
-      Optical Bench
+      Surface &amp; Stop
     </text>
     <text x="0" y="162" font-size="34" font-family="Helvetica, Arial, sans-serif" fill="#d7e7f2">
       Lens diagrams, ray tracing, and aberration analysis
@@ -109,11 +109,11 @@
     </g>
 
     <g transform="translate(0 400)">
-      <rect width="254" height="52" rx="26" fill="#10263a" stroke="#4d6c86" stroke-opacity="0.52" />
+      <rect width="330" height="52" rx="26" fill="#10263a" stroke="#4d6c86" stroke-opacity="0.52" />
       <circle cx="30" cy="26" r="6" fill="#7cd3ff" />
       <circle cx="52" cy="26" r="6" fill="#ffb35c" />
       <text x="78" y="34" font-size="24" font-family="Helvetica, Arial, sans-serif" fill="#e8f2f8">
-        opticalbench.net
+        surfaceandstop.com
       </text>
     </g>
   </g>

@@ -1,5 +1,5 @@
 /**
- * Home page — landing page for Optical Bench.
+ * Home page — landing page for Surface & Stop.
  *
  * Renders the site hero, trust strip, navigation cards, recent articles,
  * and recently added lenses. Preserves legacy ?lens=KEY redirects to /lens/KEY.
@@ -74,7 +74,7 @@ export default function HomePage() {
         onToggleHC={toggleHC}
       >
         <Link to="/" style={{ color: t.title, textDecoration: "none", fontWeight: 600 }}>
-          Optical Bench
+          Surface & Stop
         </Link>
       </PageNavBar>
 

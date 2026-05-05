@@ -41,7 +41,7 @@ export default function HomeFooter({ theme: t }: HomeFooterProps) {
         Updates
       </Link>
       <Link to="/articles/about-site" style={linkStyle}>
-        About Optical Bench
+        About Surface & Stop
       </Link>
     </footer>
   );

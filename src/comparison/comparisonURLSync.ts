@@ -8,8 +8,8 @@ import type { LensData } from "../types/optics.js";
 import type { BuildURLSliders } from "../utils/parseComparisonParams.js";
 import { encodeSliderParams } from "../utils/parseComparisonParams.js";
 
-const SITE_NAME = "Optical Bench";
-const SITE_URL = "https://opticalbench.net";
+const SITE_NAME = "Surface & Stop";
+const SITE_URL = "https://surfaceandstop.com";
 
 /**
  * Build a pathname-based comparison URL.

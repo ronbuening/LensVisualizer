@@ -23,11 +23,13 @@ function extractLensIdentityContent(content) {
   const keyMatch = content.match(/key:\s*"([^"]+)"/);
   const nameMatch = content.match(/name:\s*"([^"]+)"/);
   const makerMatch = content.match(/maker:\s*"([^"]+)"/);
+  const visibleFalseMatch = content.match(/visible:\s*false\b/);
 
   return {
     key: keyMatch ? keyMatch[1] : null,
     name: nameMatch ? nameMatch[1] : null,
     maker: makerMatch ? makerMatch[1] : null,
+    visible: visibleFalseMatch ? false : true,
   };
 }
 
@@ -118,7 +120,7 @@ function collectLensData({
 
   for (const relativeDataPath of dataFiles) {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker } = extractLensIdentity(dataPath);
+    const { key, name, maker, visible } = extractLensIdentity(dataPath);
     if (!key) continue;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -139,6 +141,7 @@ function collectLensData({
     lenses.push({
       key,
       name,
+      visible,
       makerSlug: deriveMakerSlug(maker || name || key),
       freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
     });
@@ -165,7 +168,7 @@ async function collectLensDataAsync({
 
   const lenses = await mapLimit(dataFiles, concurrency, async (relativeDataPath) => {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker } = extractLensIdentity(dataPath);
+    const { key, name, maker, visible } = extractLensIdentity(dataPath);
     if (!key) return null;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -186,6 +189,7 @@ async function collectLensDataAsync({
     return {
       key,
       name,
+      visible,
       makerSlug: deriveMakerSlug(maker || name || key),
       freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
     };

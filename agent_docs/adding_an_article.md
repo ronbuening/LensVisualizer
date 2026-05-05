@@ -134,7 +134,7 @@ Then confirm:
 
 - `src/generated/build-metadata.json` lists the new slug under `articles[]` and `/articles/{slug}` under `routes[]`
 - `dist/articles/{slug}/index.html` exists (prerendered)
-- `dist/sitemap.xml` includes `https://opticalbench.net/articles/{slug}` at priority 0.6
+- `dist/sitemap.xml` includes `https://surfaceandstop.com/articles/{slug}` at priority 0.6
 - For TOC-enabled articles, grep the prerendered HTML for `id="…"` on H2/H3 elements to confirm `rehype-slug` ran
 
 ---

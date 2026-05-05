@@ -8,7 +8,7 @@ toc: true
 
 # From Achromat to APO: Chromatic Correction, Optical Glass, and the Evolution of Color-Corrected Lenses
 
-*A Monograph for OpticalBench.net — v4.1*
+*A Monograph for SurfaceAndStop.com — v4.1*
 
 ---
 
@@ -27,7 +27,7 @@ Chromatic aberration is one of the oldest persistent problems of refractive opti
 
 This monograph traces the path from Newton's pessimism to the modern apochromat and superachromat. It proceeds in five stages: first, the optical theory of dispersion and color correction; second, the eighteenth-century achromat and its contested invention; third, the migration of achromatism into photographic objectives; fourth, the Abbe–Schott–Zeiss revolution that made true apochromatism practical; and fifth, the modern photographic APO as both optical achievement and marketing label.
 
-> **OpticalBench Note.** Throughout this article, references to the OpticalBench.net interface use the site's standard terminology: **EFL** (effective focal length), **f-number**, **STO** (aperture stop), **IMG** (image plane), **nd** and **νd** (refractive index and Abbe number per element), **FL** (focal length), **LCA** and **TCA** (longitudinal and transverse chromatic aberration), **APD** (anomalous partial dispersion), **COLOR** overlay, **FROM ∞** mode (infinite-conjugate ray trace), and **TRACKS FOCUS** mode (variable conjugate). Readers can use the COLOR overlay on any patent prescription to visualize the chromatic behavior discussed here at the level of individual surfaces and glasses.
+> **Surface & Stop Note.** Throughout this article, references to the SurfaceAndStop.com interface use the site's standard terminology: **EFL** (effective focal length), **f-number**, **STO** (aperture stop), **IMG** (image plane), **nd** and **νd** (refractive index and Abbe number per element), **FL** (focal length), **LCA** and **TCA** (longitudinal and transverse chromatic aberration), **APD** (anomalous partial dispersion), **COLOR** overlay, **FROM ∞** mode (infinite-conjugate ray trace), and **TRACKS FOCUS** mode (variable conjugate). Readers can use the COLOR overlay on any patent prescription to visualize the chromatic behavior discussed here at the level of individual surfaces and glasses.
 
 ---
 
@@ -49,7 +49,7 @@ $$V_d = \frac{n_d - 1}{n_F - n_C}.$$
 
 A high $V_d$ corresponds to low dispersion (a "crown" glass); a low $V_d$ corresponds to high dispersion (a "flint" glass) [^3], [^17]. The Abbe number captures only the average slope of $n(\lambda)$ across the visible band; it does not describe the *shape* of the $n(\lambda)$ curve. Two glasses can have nearly identical $V_d$ and yet differ measurably in how they distribute their dispersion between the blue and the red halves of the spectrum [^17]. This finer-grained behavior is what apochromatism turns out to require.
 
-> **OpticalBench Note.** In the OpticalBench cross-section viewer, the **nd** and **νd** values are displayed for each element. Comparing νd across elements shows immediately which elements are high-dispersion flints and which are low-dispersion crowns.
+> **Surface & Stop Note.** In the Surface & Stop cross-section viewer, the **nd** and **νd** values are displayed for each element. Comparing νd across elements shows immediately which elements are high-dispersion flints and which are low-dispersion crowns.
 
 ### 2.3 Partial dispersion ratios and the normal line
 
@@ -70,7 +70,7 @@ The term "anomalous" is somewhat misleading. There is nothing thermodynamically 
 
 ![Illustrative P–V glass map: partial dispersion vs Abbe number for selected optical glasses](/diagrams/achromat/pv-diagram.svg)
 
-> **Figure 1.** *The P–V diagram: partial dispersion $P_{g,F}$ plotted against Abbe number $V_d$ for selected optical glasses.* The diagonal line is the "normal line" defined by ordinary silicate crowns and flints. Glasses on this line (e.g., BK7, F2) can form achromats but cannot eliminate secondary spectrum. Glasses departing below the line — fluorite (CaF₂), Schott N-FK51A, Ohara S-FPL-53 — exhibit anomalous partial dispersion and are the materials that make apochromatic correction possible. Short flints (e.g., KZF series) depart above the line and are sometimes paired with anomalous crowns to form apochromatic triplets. In OpticalBench, each element's **nd** and **νd** values can be checked against published glass-catalog data to determine whether a design's materials fall on or off the normal line. Glass positions are schematic; included to illustrate relative partial-dispersion positions rather than to reproduce a complete glass map.
+> **Figure 1.** *The P–V diagram: partial dispersion $P_{g,F}$ plotted against Abbe number $V_d$ for selected optical glasses.* The diagonal line is the "normal line" defined by ordinary silicate crowns and flints. Glasses on this line (e.g., BK7, F2) can form achromats but cannot eliminate secondary spectrum. Glasses departing below the line — fluorite (CaF₂), Schott N-FK51A, Ohara S-FPL-53 — exhibit anomalous partial dispersion and are the materials that make apochromatic correction possible. Short flints (e.g., KZF series) depart above the line and are sometimes paired with anomalous crowns to form apochromatic triplets. In Surface & Stop, each element's **nd** and **νd** values can be checked against published glass-catalog data to determine whether a design's materials fall on or off the normal line. Glass positions are schematic; included to illustrate relative partial-dispersion positions rather than to reproduce a complete glass map.
 
 ### 2.4 The thin-lens achromat condition
 
@@ -92,7 +92,7 @@ $$\frac{\Delta f_{\text{secondary}}}{f} \approx \frac{P_1 - P_2}{V_1 - V_2},$$
 
 where $P_i$ is the relevant partial dispersion ratio [^3], [^17]. If the two glasses lie on the normal line, the numerator $(P_1 - P_2)$ varies almost linearly with $(V_1 - V_2)$, so the ratio is nearly the same for any normal-line pair. This is why secondary spectrum is, for ordinary glasses, a *property of glass families* rather than a parameter the designer can dial out. Smith, in *Modern Optical Engineering*, makes this point forcefully: the ordinary achromat's secondary spectrum is a hard floor, not a tunable parameter [^3].
 
-> **OpticalBench Note.** When the **COLOR** overlay is enabled in OpticalBench, the viewer traces rays at multiple wavelengths simultaneously. In an ordinary achromatic doublet, the red and blue ray fans converge to the same axial point while the green fan focuses slightly in front or behind — this is the secondary spectrum made visible.
+> **Surface & Stop Note.** When the **COLOR** overlay is enabled in Surface & Stop, the viewer traces rays at multiple wavelengths simultaneously. In an ordinary achromatic doublet, the red and blue ray fans converge to the same axial point while the green fan focuses slightly in front or behind — this is the secondary spectrum made visible.
 
 ![Schematic BFD(λ) curves comparing achromat and apochromat chromatic correction](/diagrams/achromat/lca-diagram.svg)
 
@@ -106,7 +106,7 @@ LCA arises from the variation of focal length with wavelength on the axis. TCA a
 
 Spherochromatism is the variation of spherical aberration with wavelength [^6], [^7]. At fast apertures, even a doublet whose paraxial axial color has been zeroed at F and C may show different amounts of spherical aberration in red, green, and blue marginal rays. The result is that the LCA observed at the *edge of the aperture* is not the LCA observed at the center. In a fast normal lens, spherochromatism is usually the single largest residual color contribution, and modern "APO" branding on fast standard primes typically advertises the suppression of spherochromatism rather than just the suppression of paraxial axial color [^18].
 
-Photographers encounter spherochromatism most directly as *bokeh chromatism*: the colored fringing of out-of-focus highlights. Because spherochromatism shifts the best-focus position differently for marginal and paraxial rays at each wavelength, the defocused disc produced by a point source in front of the focal plane has a different color profile from the disc produced by a source behind it. In a typical under-corrected fast lens, out-of-focus highlights on the near side of focus show green-fringed edges while those on the far side show magenta-fringed edges (or vice versa, depending on the sign of the residual). In a well-corrected APO, both discs are nearly neutral. This is one of the most visually obvious differences between a fast APO and a fast non-APO lens at wide apertures, and it is observable in OpticalBench's **COLOR** overlay as the differential spread of the wavelength-specific ray fans at the marginal zone versus the paraxial zone.
+Photographers encounter spherochromatism most directly as *bokeh chromatism*: the colored fringing of out-of-focus highlights. Because spherochromatism shifts the best-focus position differently for marginal and paraxial rays at each wavelength, the defocused disc produced by a point source in front of the focal plane has a different color profile from the disc produced by a source behind it. In a typical under-corrected fast lens, out-of-focus highlights on the near side of focus show green-fringed edges while those on the far side show magenta-fringed edges (or vice versa, depending on the sign of the residual). In a well-corrected APO, both discs are nearly neutral. This is one of the most visually obvious differences between a fast APO and a fast non-APO lens at wide apertures, and it is observable in Surface & Stop's **COLOR** overlay as the differential spread of the wavelength-specific ray fans at the marginal zone versus the paraxial zone.
 
 ### 2.8 The path to apochromatic correction
 
@@ -293,9 +293,9 @@ The combination of mirrorless cameras (with no mirror box constraint on rear-ele
 - **Macro APO-Lanthar 110mm f/2.5** (Sony FE, 2019): 14 elements in 12 groups, three-group floating optical system, 1:1 life-size maximum magnification at 0.35 m, 10-blade aperture [^29].
 - **APO-Lanthar 50mm f/2 Aspherical** (Sony FE, Nikon Z, 2019): two aspherical elements, five elements with abnormal partial dispersion, integrated floating-focus system, 12-blade aperture [^30].
 
-Cosina's published specifications for the modern APO-Lanthar lenses show unusually aggressive use of abnormal-partial-dispersion glass (five such elements in both the 65mm f/2 and the 50mm f/2) and floating groups, making them strong candidates for APO verification through patent-prescription reconstruction and wavelength-resolved ray tracing in OpticalBench [^28].
+Cosina's published specifications for the modern APO-Lanthar lenses show unusually aggressive use of abnormal-partial-dispersion glass (five such elements in both the 65mm f/2 and the 50mm f/2) and floating groups, making them strong candidates for APO verification through patent-prescription reconstruction and wavelength-resolved ray tracing in Surface & Stop [^28].
 
-> **OpticalBench Note.** For APO-Lanthar and similar modern APO designs that appear in the OpticalBench patent corpus, users can examine the **nd** and **νd** values per element to identify anomalous-dispersion glasses, then enable the **COLOR** overlay to visualize the degree of chromatic correction. The **TRACKS FOCUS** mode can also reveal whether chromatic correction holds at different conjugate distances — a critical distinction for macro APO lenses.
+> **Surface & Stop Note.** For APO-Lanthar and similar modern APO designs that appear in the Surface & Stop patent corpus, users can examine the **nd** and **νd** values per element to identify anomalous-dispersion glasses, then enable the **COLOR** overlay to visualize the degree of chromatic correction. The **TRACKS FOCUS** mode can also reveal whether chromatic correction holds at different conjugate distances — a critical distinction for macro APO lenses.
 
 **CoastalOpt 60mm f/4 UV-VIS-IR APO Macro.** Designed by **Brian Caldwell** for Coastal Optical Systems (Jupiter, FL), launched in 2008 and now produced by Jenoptik [^27]. The lens has 10 elements in 9 groups, of which five are calcium fluoride. Its specified apochromatic range runs from 315 nm (atmospheric UV cutoff) to 1100 nm (silicon-sensor cutoff), with usable transmission from 290 nm to 1500 nm [^27]. It is parfocal across that band: a focus made in visible light is correct for ultraviolet and near-infrared. The 12-layer broadband AR coating is matched to the 315–1100 nm window. The lens is a Nikon F-mount macro with 1:1.5 maximum magnification, an aperture range f/4 to f/45, covering the 24×36 full-frame format [^27]. It has no autofocus, no stabilization, and no electronic aperture; it is sold for forensic, scientific, and fine-art technical work. It represents one of the most rigorously specified apochromats ever offered as an off-the-shelf photographic lens.
 
@@ -303,13 +303,13 @@ Cosina's published specifications for the modern APO-Lanthar lenses show unusual
 
 Modern apochromats are products of *global optimization*: the designer specifies error functions over multiple wavelengths, multiple field heights, and multiple object distances simultaneously, and the optimizer searches a configuration space large enough to discover non-obvious solutions [^5], [^10]. Multi-configuration optimization is what makes today's macro APO lenses — which must perform from 1:1 to infinity — possible. Aspheric surfaces, once expensive, are now routinely molded in glass; floating-element groups address focus-distance-dependent residuals; and tolerancing inside the optimization loop ensures that the solution is manufacturable, not merely mathematically optimal [^5]. The practical meaning of "APO" has shifted accordingly: designers now have tools that were unavailable in the Abbe era, and the boundary between achromatic and apochromatic is no longer a binary step function but a continuum of correction quality.
 
-> **OpticalBench Note.** The patent prescriptions rendered on OpticalBench contain the full glass list ($n_d$, $\nu_d$) and surface specifications for each element, permitting readers to independently assess whether a design's material content is consistent with an APO claim. Comparing the **FROM ∞** ray trace against the **TRACKS FOCUS** (near-distance) ray trace in the **COLOR** overlay reveals whether chromatic correction holds at multiple conjugate distances — a hallmark of well-optimized multi-configuration APO design.
+> **Surface & Stop Note.** The patent prescriptions rendered on Surface & Stop contain the full glass list ($n_d$, $\nu_d$) and surface specifications for each element, permitting readers to independently assess whether a design's material content is consistent with an APO claim. Comparing the **FROM ∞** ray trace against the **TRACKS FOCUS** (near-distance) ray trace in the **COLOR** overlay reveals whether chromatic correction holds at multiple conjugate distances — a hallmark of well-optimized multi-configuration APO design.
 
 ---
 
 ## 8. APO as Optical Fact vs. APO as Marketing Label
 
-There is no regulatory body in the photographic industry that defines or audits the term "apochromat." A manufacturer may apply "APO" to any lens it wishes, and the absence of "APO" on a lens does not preclude apochromatic performance [^18]. The reader of an OpticalBench cross-section is therefore obliged to apply optical-design judgment rather than nameplate inspection.
+There is no regulatory body in the photographic industry that defines or audits the term "apochromat." A manufacturer may apply "APO" to any lens it wishes, and the absence of "APO" on a lens does not preclude apochromatic performance [^18]. The reader of an Surface & Stop cross-section is therefore obliged to apply optical-design judgment rather than nameplate inspection.
 
 ### 8.1 Evidence standards
 
@@ -318,12 +318,12 @@ Reasonable evidence for an apochromatic claim, in roughly increasing order of st
 1. **Manufacturer marketing copy.** Lowest weight. Canon, Nikon, Leica, and Zeiss are generally truthful in technical claims but selective in what they choose to specify; lesser brands sometimes use "APO" decoratively.
 2. **Glass-content disclosure.** A lens with one or more fluorite elements, multiple ED/UD/FPL elements, or both, has the *materials* requirement for apochromatism. This is necessary but not sufficient.
 3. **Manufacturer-published longitudinal-color and lateral-color plots.** Zeiss, Leica, and Schneider routinely publish such plots; Canon and Nikon do so for their flagship telephotos.
-4. **Patent prescriptions.** A patent gives the full glass list ($n_d$, $V_d$) and surface specifications, permitting independent reconstruction of the chromatic aberration curves. This is the gold standard for design-level inspection — and it is the evidence that OpticalBench's architecture is built around.
+4. **Patent prescriptions.** A patent gives the full glass list ($n_d$, $V_d$) and surface specifications, permitting independent reconstruction of the chromatic aberration curves. This is the gold standard for design-level inspection — and it is the evidence that Surface & Stop's architecture is built around.
 5. **Independent laboratory measurement.** Bench MTF measured at multiple wavelengths, focus-shift-vs.-wavelength measured at multiple distances, and residual lateral color measured across the field. Few outlets publish such measurements systematically.
 
 ![Schematic through-focus MTF comparison: non-APO vs apochromat at 486, 587, and 656 nm](/diagrams/achromat/mtf-diagram.svg)
 
-> **Figure 3.** *Wavelength-resolved through-focus MTF: APO vs. non-APO.* Left panel: a lens with residual axial color shows the red, green, and blue MTF peaks displaced along the focus axis — the peaks do not coincide, and the polychromatic MTF (white light) is lower than any single-wavelength peak because the colors cannot all be sharp at the same focus position. Right panel: in a well-corrected apochromat, the three peaks nearly overlap, and the polychromatic MTF approaches the monochromatic value. The difference between the two panels is what "APO correction" means in measurable terms. In OpticalBench, the **COLOR** overlay provides a qualitative version of this test: tightly converging ray fans at the image plane correspond to overlapping MTF peaks, while spread fans correspond to displaced peaks. Not computed from a specific lens prescription.
+> **Figure 3.** *Wavelength-resolved through-focus MTF: APO vs. non-APO.* Left panel: a lens with residual axial color shows the red, green, and blue MTF peaks displaced along the focus axis — the peaks do not coincide, and the polychromatic MTF (white light) is lower than any single-wavelength peak because the colors cannot all be sharp at the same focus position. Right panel: in a well-corrected apochromat, the three peaks nearly overlap, and the polychromatic MTF approaches the monochromatic value. The difference between the two panels is what "APO correction" means in measurable terms. In Surface & Stop, the **COLOR** overlay provides a qualitative version of this test: tightly converging ray fans at the image plane correspond to overlapping MTF peaks, while spread fans correspond to displaced peaks. Not computed from a specific lens prescription.
 
 ### 8.2 Levels of correction that may be conflated
 
@@ -331,13 +331,13 @@ A lens may be optically distinguishable from another lens labeled "APO" along se
 
 - *Reduced axial color only* vs. *reduced axial color + reduced lateral color*.
 - *On-axis APO* vs. *full-field APO*. Many fast normal lenses are nearly apochromatic on-axis but show rising color at the edge of the frame.
-- *Single-distance APO* vs. *multi-distance APO*. A lens whose chromatic correction is optimized at infinity may show rising axial color at closer focus distances, because element spacings, ray heights, and glass-path lengths all change with conjugate. The aberration balance that produces three-wavelength crossing at infinity does not automatically hold at 1:2 or 1:1 magnification. Floating-element designs — mechanically coupled internal groups whose spacings shift during focusing — are the standard solution: the Voigtländer APO-Lanthar 110mm f/2.5 uses a three-group floating system [^29], and the CoastalOpt 60mm f/4 uses an advanced floating formula to maintain apochromatic correction from infinity to its 1:1.5 close limit [^27]. A lens corrected only at infinity is a single-distance APO; a lens that holds correction across the focus range is a multi-distance APO, and the distinction is directly observable in OpticalBench's **TRACKS FOCUS** mode.
+- *Single-distance APO* vs. *multi-distance APO*. A lens whose chromatic correction is optimized at infinity may show rising axial color at closer focus distances, because element spacings, ray heights, and glass-path lengths all change with conjugate. The aberration balance that produces three-wavelength crossing at infinity does not automatically hold at 1:2 or 1:1 magnification. Floating-element designs — mechanically coupled internal groups whose spacings shift during focusing — are the standard solution: the Voigtländer APO-Lanthar 110mm f/2.5 uses a three-group floating system [^29], and the CoastalOpt 60mm f/4 uses an advanced floating formula to maintain apochromatic correction from infinity to its 1:1.5 close limit [^27]. A lens corrected only at infinity is a single-distance APO; a lens that holds correction across the focus range is a multi-distance APO, and the distinction is directly observable in Surface & Stop's **TRACKS FOCUS** mode.
 - *Visible-band APO* (400–700 nm) vs. *broadband APO* (e.g., the CoastalOpt 60mm f/4 at 315–1100 nm [^27]).
 - *Apochromatic in axial color* vs. *also corrected for spherochromatism*. The latter matters most at f/1.4 to f/2 apertures.
 
-Many modern lenses occupy a middle ground that is not well served by the achromat/apochromat binary. For editorial purposes, OpticalBench uses *semi-apochromat* (sometimes "quasi-APO" or, informally, "ED-corrected") to describe lenses whose residual secondary spectrum is substantially reduced below ordinary achromatic correction but where strict three-wavelength correction is not demonstrated. This is an interpretive category for design analysis, not a manufacturer designation or an industry standard. A semi-apochromat typically uses one or two anomalous-dispersion elements to reduce secondary spectrum measurably below the ordinary achromatic floor — often by a factor of two to four — without achieving the strict three-wavelength crossing that defines a true apochromat. Most consumer telephoto lenses branded "ED" but not "APO" fall into this category, as do many wide-angle and normal primes that use a single FPL or fluorite element alongside otherwise conventional glass. The semi-apochromat is an honest and useful design class: for a 200 mm f/4 telephoto, halving the secondary spectrum may be all that is needed to place the residual inside the diffraction-limited depth of focus. In OpticalBench's **COLOR** overlay, a semi-apochromat typically shows partial but incomplete convergence of the three wavelength ray fans — tighter than an ordinary achromat, but with a visible residual spread that a full apochromat would eliminate.
+Many modern lenses occupy a middle ground that is not well served by the achromat/apochromat binary. For editorial purposes, Surface & Stop uses *semi-apochromat* (sometimes "quasi-APO" or, informally, "ED-corrected") to describe lenses whose residual secondary spectrum is substantially reduced below ordinary achromatic correction but where strict three-wavelength correction is not demonstrated. This is an interpretive category for design analysis, not a manufacturer designation or an industry standard. A semi-apochromat typically uses one or two anomalous-dispersion elements to reduce secondary spectrum measurably below the ordinary achromatic floor — often by a factor of two to four — without achieving the strict three-wavelength crossing that defines a true apochromat. Most consumer telephoto lenses branded "ED" but not "APO" fall into this category, as do many wide-angle and normal primes that use a single FPL or fluorite element alongside otherwise conventional glass. The semi-apochromat is an honest and useful design class: for a 200 mm f/4 telephoto, halving the secondary spectrum may be all that is needed to place the residual inside the diffraction-limited depth of focus. In Surface & Stop's **COLOR** overlay, a semi-apochromat typically shows partial but incomplete convergence of the three wavelength ray fans — tighter than an ordinary achromat, but with a visible residual spread that a full apochromat would eliminate.
 
-A modest editorial proposal — not enforceable, but useful — is that the OpticalBench gloss for a given lens should annotate which of these conditions hold *based on the patent prescription and any available bench data*, rather than echoing the manufacturer's APO label.
+A modest editorial proposal — not enforceable, but useful — is that the Surface & Stop gloss for a given lens should annotate which of these conditions hold *based on the patent prescription and any available bench data*, rather than echoing the manufacturer's APO label.
 
 ---
 
@@ -413,7 +413,7 @@ The important modern question is not simply whether a lens says "APO," but:
 
 Modern computational design tools have shifted the landscape: optimization across multiple configurations and wavelengths is routine, and the boundary between "achromatic" and "apochromatic" is no longer a binary step function but a continuum of correction quality [^5], [^10]. The history of achromats and apochromats is therefore not the history of color being "solved" once and for all, but the history of increasingly disciplined compromises between wavelength, glass, geometry, field, speed, and use.
 
-OpticalBench's mission — visualizing optical lens cross-sections from patent data, with the full glass list and surface prescriptions available for inspection — is one way of joining that conversation at the level where the truth of any APO claim resides: at the surfaces and glasses themselves.
+Surface & Stop's mission — visualizing optical lens cross-sections from patent data, with the full glass list and surface prescriptions available for inspection — is one way of joining that conversation at the level where the truth of any APO claim resides: at the surfaces and glasses themselves.
 
 ---
 
@@ -489,9 +489,9 @@ OpticalBench's mission — visualizing optical lens cross-sections from patent d
 
 ---
 
-## Appendix A: OpticalBench Terminology
+## Appendix A: Surface & Stop Terminology
 
-The following terms appear throughout this article and correspond to specific features or data fields in the OpticalBench.net lens cross-section viewer.
+The following terms appear throughout this article and correspond to specific features or data fields in the SurfaceAndStop.com lens cross-section viewer.
 
 **EFL (Effective Focal Length).** The focal length of the complete optical system, computed from the patent prescription's surface data. Displayed in the lens header.
 
@@ -503,7 +503,7 @@ The following terms appear throughout this article and correspond to specific fe
 
 **nd (Refractive Index at d-line).** The refractive index of each glass element at the helium d-line (587.6 nm). Displayed per element in the cross-section viewer. Higher nd generally indicates a denser glass.
 
-**νd (Abbe Number).** The constringence of each glass element, measuring its dispersion. Displayed per element alongside nd in the OpticalBench viewer. This is the same quantity denoted $V_d$ in the equations throughout this article; OpticalBench uses the Greek-letter convention νd. Low νd indicates a high-dispersion flint; high νd indicates a low-dispersion crown. A high Abbe number alone does not confirm anomalous partial dispersion; APD must be verified against partial-dispersion data (see §2.3).
+**νd (Abbe Number).** The constringence of each glass element, measuring its dispersion. Displayed per element alongside nd in the Surface & Stop viewer. This is the same quantity denoted $V_d$ in the equations throughout this article; Surface & Stop uses the Greek-letter convention νd. Low νd indicates a high-dispersion flint; high νd indicates a low-dispersion crown. A high Abbe number alone does not confirm anomalous partial dispersion; APD must be verified against partial-dispersion data (see §2.3).
 
 **FL (Focal Length).** Used interchangeably with EFL in single-group contexts. In multi-group systems, individual group focal lengths may differ from the system EFL.
 
@@ -527,7 +527,7 @@ The following terms appear throughout this article and correspond to specific fe
 
 ## Appendix B: Chromatic Correction Classes
 
-The following table summarizes the correction continuum from achromat to superachromat. The numerical ranges are heuristic, not formal definitions; actual classification depends on wavelength selection, aperture, focal length, field position, focus distance, and the accepted tolerance criterion. The table is intended as a guide for interpreting patent prescriptions and OpticalBench visualizations.
+The following table summarizes the correction continuum from achromat to superachromat. The numerical ranges are heuristic, not formal definitions; actual classification depends on wavelength selection, aperture, focal length, field position, focus distance, and the accepted tolerance criterion. The table is intended as a guide for interpreting patent prescriptions and Surface & Stop visualizations.
 
 | Correction Class | Chromatic Correction | Spherical Correction | Typical Secondary Spectrum | Typical Materials | Representative Example |
 |---|---|---|---|---|---|
@@ -536,11 +536,11 @@ The following table summarizes the correction continuum from achromat to superac
 | **Apochromat** | Three wavelengths brought to common focus; secondary spectrum substantially eliminated | Spherical aberration corrected at two wavelengths; spherochromatism substantially controlled | Greatly reduced (often within diffraction-limited depth of focus at working aperture) | Typically two or more anomalous-dispersion elements (e.g., multiple FPL crowns, fluorite, or KZF short flints) | Goerz Apochromat-Artar; Leica APO-Telyt-R 180mm f/3.4; Voigtländer Macro APO-Lanthar 65mm f/2; Zeiss Apo Sonnar T* 2/135 |
 | **Superachromat** | Four or more wavelengths brought to common focus; correction extended into UV and/or near-IR | Spherical aberration corrected at two or more wavelengths across extended spectral range | Within Rayleigh limit across 400–1000+ nm | Multiple fluorite elements plus anomalous-dispersion glass; broadband AR coatings | Carl Zeiss Sonnar 5.6/250 Superachromat; CoastalOpt 60mm f/4 UV-VIS-IR APO |
 
-**Reading this table with OpticalBench:**
+**Reading this table with Surface & Stop:**
 
 - **Achromat vs. semi-apochromat:** In the COLOR overlay, an achromat shows a clear axial gap between the green ray-fan convergence and the coincident red/blue convergence. A semi-apochromat narrows this gap but does not close it.
 - **Semi-apochromat vs. apochromat:** An apochromat shows all three ray fans (red, green, blue) converging to essentially the same axial point. A semi-apochromat shows partial convergence — tighter than an achromat, but with a visible residual spread.
-- **Apochromat vs. superachromat:** The difference is primarily visible outside the standard visible band. A superachromat maintains its tight convergence into the near-UV and near-IR — observable if OpticalBench traces rays at extended wavelengths.
+- **Apochromat vs. superachromat:** The difference is primarily visible outside the standard visible band. A superachromat maintains its tight convergence into the near-UV and near-IR — observable if Surface & Stop traces rays at extended wavelengths.
 - **Materials identification:** A high Abbe number ($V_d$) indicates low dispersion, but anomalous partial dispersion is determined by deviation from the partial-dispersion normal line, not by $V_d$ alone. An element with $V_d$ above approximately 80 is a candidate for closer inspection, but APD must be confirmed against partial-dispersion data (e.g., Schott TIE-29 [^17] or Ohara catalog [^33] $P_{g,F}$ values). The count and placement of confirmed anomalous-dispersion elements in a design are the strongest predictors of which correction class the lens belongs to.
 
 Note that these classes are not sharply bounded. Real lenses fall on a continuum, and a given lens may be apochromatic on-axis but only semi-apochromatic across the full field, or apochromatic at infinity but semi-apochromatic at close focus. The table describes the best-case correction level the design achieves under favorable conditions.

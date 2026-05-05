@@ -43,7 +43,7 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
         >
           <img
             src={brandMarkSrc}
-            alt="Optical Bench lens mark"
+            alt="Surface & Stop lens mark"
             style={{
               display: "block",
               width: "100%",
@@ -62,7 +62,7 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
               letterSpacing: "-0.02em",
             }}
           >
-            Optical Bench
+            Surface & Stop
           </h1>
           <p
             style={{

@@ -436,4 +436,4 @@ Statements in this monograph fall into three categories:
 
 ---
 
-*This monograph is part of the [Focusing Architectures](/articles/focusing-architectures) series on OpticalBench. For short, standalone primers on each architecture, see the individual entries linked throughout the text.*
+*This monograph is part of the [Focusing Architectures](/articles/focusing-architectures) series on Surface & Stop. For short, standalone primers on each architecture, see the individual entries linked throughout the text.*

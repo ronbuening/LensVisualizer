@@ -1,7 +1,7 @@
 ---
 slug: focusing-architectures
 title: Focusing Architectures in Photographic Lenses
-summary: A series of primers on how camera lenses focus — unit focusing, floating elements, front-of-stop, rear-of-stop, dual-side, monolithic, and rear-group retrofocus — with worked examples from the OpticalBench catalog.
+summary: A series of primers on how camera lenses focus — unit focusing, floating elements, front-of-stop, rear-of-stop, dual-side, monolithic, and rear-group retrofocus — with worked examples from the Surface & Stop catalog.
 tag: guide
 series: focusing-architectures
 seriesOrder: 0
@@ -14,7 +14,7 @@ When a lens refocuses, it changes the object conjugate that the system was optim
 
 Every focusing strategy is therefore a compromise. The designer chooses which aberrations to hold stable across the focus range, and which to allow to drift. The decision of *which group moves* is not a mechanical convenience — it is one of the most consequential optical design choices in the lens.
 
-This series walks through the seven recurrent patterns, one primer per architecture, each grounded in a real production lens available in the OpticalBench catalog.
+This series walks through the seven recurrent patterns, one primer per architecture, each grounded in a real production lens available in the Surface & Stop catalog.
 
 ---
 

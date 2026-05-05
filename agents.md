@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-LensVisualizer (public site: Optical Bench) is an interactive React + TypeScript optical lens cross-section visualizer.
+LensVisualizer (public site: Surface & Stop) is an interactive React + TypeScript optical lens cross-section visualizer.
 It renders patent-derived camera lens sections as inline SVG, traces rays in real time, and exposes analysis tools for
 aberrations, pupils, distortion, vignetting, bokeh, chromatic behavior, glass, lens comparison, and perspective-control
 movement. The site is prerendered for SEO and deployed to GitHub Pages.

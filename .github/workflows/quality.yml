@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.19.0"
+          node-version: "24.15.0"
           cache: npm
       - run: npm ci
       - run: npm run lint
@@ -27,7 +27,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.19.0"
+          node-version: "24.15.0"
           cache: npm
       - run: npm ci
       - run: npm run generate:metadata
@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.19.0"
+          node-version: "24.15.0"
           cache: npm
       - run: npm ci
       - run: npm run generate:metadata
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.19.0"
+          node-version: "24.15.0"
           cache: npm
       - run: npm ci
       - run: npm audit --audit-level=high
@@ -67,7 +67,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.19.0"
+          node-version: "24.15.0"
           cache: npm
       - run: npm ci
       - run: npm run build

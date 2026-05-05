@@ -72,7 +72,7 @@ function auditSitemap(routes) {
   /* Verify every route appears in the sitemap */
   let missing = 0;
   for (const route of routes) {
-    const url = `https://opticalbench.net${route}`;
+    const url = `https://surfaceandstop.com${route}`;
     if (!content.includes(url)) {
       error(`sitemap.xml missing URL: ${url}`);
       missing++;
@@ -88,7 +88,7 @@ function auditSitemap(routes) {
   let lastmodMismatches = 0;
 
   for (const route of routes) {
-    const loc = `https://opticalbench.net${route}`;
+    const loc = `https://surfaceandstop.com${route}`;
     const expectedLastmod = routeFreshness[route]?.lastModified;
     if (!expectedLastmod) {
       error(`routeFreshness missing lastModified for ${route}`);
@@ -275,7 +275,7 @@ function audit404() {
 
 /* ── Run audit ───────────────────────────────────────────────────────── */
 
-console.log("SEO Audit — OpticalBench.net");
+console.log("SEO Audit — SurfaceAndStop.com");
 console.log("============================");
 
 if (!existsSync(DIST_DIR)) {

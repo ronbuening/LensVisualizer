@@ -9,11 +9,11 @@ import type { LensData } from "../types/optics.js";
 import buildMeta from "../generated/build-metadata.json";
 import makerPrefixes from "../generated/maker-prefixes.json";
 
-const SITE_NAME = "Optical Bench";
-const SITE_URL = "https://opticalbench.net";
-const SOCIAL_IMAGE_PATH = "/branding/social-dark.png";
+const SITE_NAME = "Surface & Stop";
+const SITE_URL = "https://surfaceandstop.com";
+const SOCIAL_IMAGE_PATH = "/branding/social-dark.svg";
 const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
-const SOCIAL_IMAGE_ALT = "Optical Bench social card featuring the site's lens mark with RGB ray traces.";
+const SOCIAL_IMAGE_ALT = "Surface & Stop social card featuring the site's lens mark with RGB ray traces.";
 const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
 
