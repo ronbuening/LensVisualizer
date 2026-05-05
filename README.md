@@ -86,7 +86,7 @@ npm run format:check  # Prettier check
 npm run seo:audit     # SEO audit over built output
 ```
 
-Requires Node.js 18+.
+Requires Node.js 24.15.0 or newer within the Node 24 LTS line.
 
 ## SEO Pipeline
 

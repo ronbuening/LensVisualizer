@@ -13,7 +13,7 @@ These are the exact manual steps required after this rebrand branch is merged.
    - Build output directory: `dist`
    - Root directory: repository root
 4. Add these production environment variables:
-   - `NODE_VERSION=20.19.0`
+   - `NODE_VERSION=24.15.0`
    - `VITE_GOATCOUNTER_URL=<the current GoatCounter URL value, if analytics should remain enabled>`
 5. Save and run the first production deployment.
 6. Open the Cloudflare Pages preview URL and verify:

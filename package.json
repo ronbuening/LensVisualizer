@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
   "scripts": {
     "dev": "node scripts/generate-build-metadata.mjs && vite",
     "build": "node scripts/organize-lens-data.mjs && node scripts/generate-build-metadata.mjs && vite build && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
