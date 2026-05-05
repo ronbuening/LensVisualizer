@@ -23,6 +23,7 @@ interface UseRayTracingParams {
   IMG_MM: number;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
@@ -58,6 +59,7 @@ export default function useRayTracing({
   IMG_MM,
   focusT,
   zoomT,
+  aberrationT = 0,
   sx,
   sy,
   clampedRayEnd,
@@ -77,7 +79,10 @@ export default function useRayTracing({
 }: UseRayTracingParams): UseRayTracingResult {
   /* focusK = convergence curvature at the entrance pupil for "tracks focus"
    * ray mode; 0 when rays arrive from infinity. */
-  const focusK = useMemo(() => (L && rayTracksF ? conjugateK(focusT, zoomT, L) : 0), [focusT, zoomT, rayTracksF, L]);
+  const focusK = useMemo(
+    () => (L && rayTracksF ? conjugateK(focusT, zoomT, L, aberrationT) : 0),
+    [focusT, zoomT, aberrationT, rayTracksF, L],
+  );
 
   const { segments: rays, error: onAxisError } = useOnAxisRays({
     L,
@@ -85,6 +90,7 @@ export default function useRayTracing({
     IMG_MM,
     focusT,
     zoomT,
+    aberrationT,
     sx,
     sy,
     clampedRayEnd,
@@ -103,6 +109,7 @@ export default function useRayTracing({
     IMG_MM,
     focusT,
     zoomT,
+    aberrationT,
     sx,
     sy,
     clampedRayEnd,
@@ -127,6 +134,7 @@ export default function useRayTracing({
     IMG_MM,
     focusT,
     zoomT,
+    aberrationT,
     sx,
     sy,
     clampedRayEnd,

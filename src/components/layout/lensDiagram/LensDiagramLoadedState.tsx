@@ -46,6 +46,7 @@ interface LensDiagramLoadedStateProps {
   zoomPanActive: boolean;
   focusT: number;
   zoomT: number;
+  aberrationT: number;
   stopdownT: number;
   shiftMm: number;
   tiltDeg: number;
@@ -66,6 +67,7 @@ interface LensDiagramLoadedStateProps {
   currentPhysStopSD: number;
   baseEPSD: number;
   varReadouts: VarReadout[];
+  aberrationReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
   info: ElementData | null;
@@ -130,6 +132,7 @@ interface LensDiagramLoadedStateProps {
     onAberrationsExpandedChange: (expanded: boolean) => void;
     onEffectiveApertureChange: (expanded: boolean) => void;
     onZoomChange: (value: number) => void;
+    onAberrationChange: (value: number) => void;
     onFocusChange: (value: number) => void;
     onStopdownChange: (value: number) => void;
     onShiftChange: (value: number) => void;
@@ -179,6 +182,7 @@ export default function LensDiagramLoadedState({
   zoomPanActive,
   focusT,
   zoomT,
+  aberrationT,
   stopdownT,
   shiftMm,
   tiltDeg,
@@ -199,6 +203,7 @@ export default function LensDiagramLoadedState({
   currentPhysStopSD,
   baseEPSD,
   varReadouts,
+  aberrationReadouts,
   dynamicEFL,
   effectiveFNum,
   info,
@@ -348,6 +353,7 @@ export default function LensDiagramLoadedState({
               headerHeight={headerHeight}
               showSliders={showSliders}
               zoomT={zoomT}
+              aberrationT={aberrationT}
               focusT={focusT}
               shiftMm={shiftMm}
               tiltDeg={tiltDeg}
@@ -361,10 +367,12 @@ export default function LensDiagramLoadedState({
               showEffectiveAperture={showEffectiveAperture}
               onToggleEffectiveAperture={() => adapters.onEffectiveApertureChange(!showEffectiveAperture)}
               varReadouts={varReadouts}
+              aberrationReadouts={aberrationReadouts}
               focusExpanded={focusExpanded}
               apertureExpanded={apertureExpanded}
               legendExpanded={legendExpanded}
               onZoomChange={adapters.onZoomChange}
+              onAberrationChange={adapters.onAberrationChange}
               onFocusChange={adapters.onFocusChange}
               onStopdownChange={adapters.onStopdownChange}
               onShiftChange={adapters.onShiftChange}

@@ -17,6 +17,7 @@ export function computeOffAxisTraceGeometry({
   IMG_MM,
   focusT,
   zoomT,
+  aberrationT = 0,
   sx,
   sy,
   showOffAxis,
@@ -26,18 +27,27 @@ export function computeOffAxisTraceGeometry({
   IMG_MM: number;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   sx: (z: number) => number;
   sy: (y: number) => number;
   showOffAxis: OffAxisMode;
 }): OffAxisTraceGeometry | null {
-  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, L.offAxisFieldFrac);
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    L.offAxisFieldFrac,
+    undefined,
+    aberrationT,
+  );
   if (geometry === null) return null;
   const { fieldAngleDeg: currentOffAxisDeg, uField, yChief } = geometry;
 
   const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
   let edgeImgH: number;
   if (useEdge) {
-    const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L);
+    const chiefTrace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, false, L, aberrationT);
     const lastSurfZ = zPos[L.N - 1];
     const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - lastSurfZ);
     edgeImgH = isFinite(chiefEndY) ? chiefEndY : -(eflAtZoom(zoomT, L) * Math.tan((currentOffAxisDeg * Math.PI) / 180));

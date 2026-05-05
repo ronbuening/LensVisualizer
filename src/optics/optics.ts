@@ -13,7 +13,7 @@ import type {
   ChromaticSpread,
   ParaxialTraceResult,
 } from "../types/optics.js";
-import { buildStateSurfaces, resolveVariableThickness } from "./internal/lensState.js";
+import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 import { traceSurfacesParaxial, traceSurfacesReal } from "./internal/traceSurfaces.js";
 
@@ -163,8 +163,16 @@ export function slopeTrimHeight(surfIdx: number, sd: number, maxSlopeTan: number
  * @param L       — runtime lens object
  * @returns         thickness in mm
  */
-export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  return resolveVariableThickness(L.S[i].d, L.varByIdx[i], Boolean(L.isZoom), focusT, zoomT);
+export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+  return resolveControlledThickness(
+    L.S[i].d,
+    L.varByIdx[i],
+    L.aberrationControl?.varByIdx[i],
+    Boolean(L.isZoom),
+    focusT,
+    zoomT,
+    aberrationT,
+  );
 }
 
 /**
@@ -175,19 +183,32 @@ export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens):
  * @param L       — runtime lens object
  * @returns   z[i] = axial position of surface i; imgZ = image plane position
  */
-export function doLayout(focusT: number, zoomT: number, L: RuntimeLens): LayoutResult {
-  const th = L.S.map((_: unknown, i: number) => thick(i, focusT, zoomT, L));
+export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): LayoutResult {
+  const th = L.S.map((_: unknown, i: number) => thick(i, focusT, zoomT, L, aberrationT));
   const z = [0];
   for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
   return { z, th, imgZ: z[z.length - 1] + th[th.length - 1] };
 }
 
-function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens) {
-  return buildStateSurfaces(L.S, L.varByIdx, Boolean(L.isZoom), focusT, zoomT);
+function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0) {
+  return buildStateSurfaces(
+    L.S,
+    L.varByIdx,
+    Boolean(L.isZoom),
+    focusT,
+    zoomT,
+    L.aberrationControl?.varByIdx,
+    aberrationT,
+  );
 }
 
-export function computeFieldGeometryAtState(focusT: number, zoomT: number, L: RuntimeLens): FieldGeometryState {
-  const S = stateSurfaces(focusT, zoomT, L);
+export function computeFieldGeometryAtState(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): FieldGeometryState {
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const stopIdx = L.stopIdx;
   const delta = 1e-4;
 
@@ -242,12 +263,13 @@ export function traceChiefRayAtAngle(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): RayTraceResult {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
   const yChief = -geom.epRatio * uField;
-  return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
+  return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
 }
 
 /**
@@ -276,9 +298,10 @@ export function chiefRayImageHeight(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): number {
-  const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry);
-  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
+  const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
+  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
 /**
@@ -298,8 +321,9 @@ export function solveChiefRayLaunchHeight(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): number {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
   const paraxialYChief = -geom.epRatio * uField;
@@ -309,7 +333,7 @@ export function solveChiefRayLaunchHeight(
    * groups can exhibit non-negligible pupil aberration even at 2-3°. */
   if (Math.abs(fieldAngleDeg) < 1) return paraxialYChief;
 
-  const S = stateSurfaces(focusT, zoomT, L);
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const stopIdx = L.stopIdx;
 
   const heightAtStop = (yLaunch: number): number | null => {
@@ -355,12 +379,13 @@ export function chiefRayImageHeightAccurate(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): number {
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry);
-  const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L);
-  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+  return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
 /**
@@ -378,13 +403,14 @@ export function solveFieldAngleForImageHeightAccurate(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): number | null {
   if (!isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (!isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
 
   const target = -Math.abs(targetImageHeight);
-  const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom);
+  const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom, aberrationT);
 
   /* Sample the field to find a valid bracket that contains the target.
      This handles both monotonic and non-monotonic image height curves.
@@ -580,8 +606,9 @@ export function entrancePupilAtState(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  aberrationT = 0,
 ): EntrancePupilState {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const yRatio = geom.yRatio;
   const epSD = Math.abs(yRatio) > 1e-9 ? Math.abs(stopSD / yRatio) : 0;
   return {
@@ -615,11 +642,11 @@ function _lerpZoomArray(zoomT: number, arr: number[]): number {
  * Uses a paraxial marginal ray (y=1, u=0) with focus-aware thicknesses,
  * skipping the last transfer: EFL = −1/u_final.
  */
-export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD) {
+export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
     return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   }
-  const S = stateSurfaces(focusT, zoomT, L);
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const trace = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
   if (Math.abs(trace.u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   return -1.0 / trace.u;
@@ -636,10 +663,16 @@ export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens): numbe
  *
  * At infinity focus (m ≈ 0), returns the nominal f-number unchanged.
  */
-export function effectiveFNumber(nominalFNumber: number, focusT: number, zoomT: number, L: RuntimeLens): number {
+export function effectiveFNumber(
+  nominalFNumber: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return nominalFNumber;
 
-  const efl = eflAtFocus(focusT, zoomT, L);
+  const efl = eflAtFocus(focusT, zoomT, L, aberrationT);
   const focusDistMm = (L.closeFocusM / focusT) * 1000;
   const denom = focusDistMm - efl;
   if (Math.abs(denom) < 1e-10) return nominalFNumber;
@@ -701,6 +734,7 @@ function _traceRayCore(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel | undefined,
+  aberrationT = 0,
 ): RayTraceResult {
   const pts: number[][] = [];
   const ghostPts: number[][] = [];
@@ -756,7 +790,7 @@ function _traceRayCore(
       }
     }
     n = nn;
-    if (i < L.N - 1) y += thick(i, focusT, zoomT, L) * Math.tan(U);
+    if (i < L.N - 1) y += thick(i, focusT, zoomT, L, aberrationT) * Math.tan(U);
   }
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
@@ -821,6 +855,7 @@ function _traceSkewRayCore(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel | undefined,
+  aberrationT = 0,
 ): SkewRayTraceResult {
   let x = x0;
   let y = y0;
@@ -859,7 +894,7 @@ function _traceSkewRayCore(
     n = nn;
 
     if (i < L.N - 1) {
-      const dz = thick(i, focusT, zoomT, L);
+      const dz = thick(i, focusT, zoomT, L, aberrationT);
       const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : 0;
       x += dz * direction[0] * invDz;
       y += dz * direction[1] * invDz;
@@ -886,8 +921,9 @@ export function traceSkewRay(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  aberrationT = 0,
 ): SkewRayTraceResult {
-  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined);
+  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 export function traceSkewRayChromatic(
@@ -901,8 +937,9 @@ export function traceSkewRayChromatic(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel,
+  aberrationT = 0,
 ): SkewRayTraceResult {
-  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel);
+  return _traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 export function skewImagePlaneIntercept(
@@ -987,6 +1024,7 @@ export function traceChiefRelativeSkewRay(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  aberrationT = 0,
 ): SkewRayTraceResult {
   return traceSkewRay(
     xFraction * entrancePupilSemiDiameter,
@@ -998,6 +1036,7 @@ export function traceChiefRelativeSkewRay(
     stopSD,
     ghost,
     L,
+    aberrationT,
   );
 }
 
@@ -1013,6 +1052,7 @@ export function traceChiefRelativeSkewRayChromatic(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel,
+  aberrationT = 0,
 ): SkewRayTraceResult {
   return traceSkewRayChromatic(
     xFraction * entrancePupilSemiDiameter,
@@ -1025,6 +1065,7 @@ export function traceChiefRelativeSkewRayChromatic(
     ghost,
     L,
     channel,
+    aberrationT,
   );
 }
 
@@ -1049,8 +1090,9 @@ export function traceRay(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  aberrationT = 0,
 ): RayTraceResult {
-  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined);
+  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 /**
@@ -1081,8 +1123,9 @@ export function traceRayChromatic(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel,
+  aberrationT = 0,
 ): RayTraceResult {
-  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel);
+  return _traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 /** Marginal ray data for one chromatic channel */
@@ -1146,8 +1189,15 @@ export function computeChromaticSpread(
  * @param L       — runtime lens object
  * @returns         ray height at image plane (mm)
  */
-export function traceToImage(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  const S = stateSurfaces(focusT, zoomT, L);
+export function traceToImage(
+  y0: number,
+  u0: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): number {
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const trace = traceSurfacesParaxial(S, y0, u0);
   return trace.y + S[S.length - 1].d * trace.u;
 }
@@ -1157,8 +1207,15 @@ export function traceToImage(y0: number, u0: number, focusT: number, zoomT: numb
  * exact Snell's law and aspheric surface normals (sagSlope).  This makes
  * conjugateK self-consistent with the rendering engine (traceRay).
  */
-function traceToImageReal(y0: number, u0: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  const S = stateSurfaces(focusT, zoomT, L);
+function traceToImageReal(
+  y0: number,
+  u0: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): number {
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const trace = traceSurfacesReal(S, L.asphByIdx, y0, u0);
   if (!isFinite(trace.y)) return NaN;
   return trace.y + S[S.length - 1].d * trace.u;
@@ -1172,9 +1229,9 @@ function traceToImageReal(y0: number, u0: number, focusT: number, zoomT: number,
  * normalized by the reference height.  Used by conjugateK to measure
  * the shift in focus between infinity and close focus.
  */
-function realK(yRef: number, du: number, focusT: number, zoomT: number, L: RuntimeLens): number {
-  const y0 = traceToImageReal(yRef, 0, focusT, zoomT, L);
-  const y1 = traceToImageReal(yRef, du, focusT, zoomT, L);
+function realK(yRef: number, du: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+  const y0 = traceToImageReal(yRef, 0, focusT, zoomT, L, aberrationT);
+  const y1 = traceToImageReal(yRef, du, focusT, zoomT, L, aberrationT);
   if (isNaN(y0) || isNaN(y1)) return NaN;
   const dydu = (y1 - y0) / du;
   if (Math.abs(dydu) < 1e-15) return NaN;
@@ -1196,14 +1253,14 @@ function realK(yRef: number, du: number, focusT: number, zoomT: number, L: Runti
  * @param L       — runtime lens object
  * @returns         convergence shift (0 at infinity focus)
  */
-export function conjugateK(focusT: number, zoomT: number, L: RuntimeLens): number {
+export function conjugateK(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
   const du = 1e-5;
-  const currentEP = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
+  const currentEP = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT).epSD;
   const infinityEP = entrancePupilAtState(L.stopPhysSD, 0, zoomT, L).epSD;
   const yRefCurrent = currentEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
   const yRefInfinity = infinityEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
-  const Kt = realK(yRefCurrent, du, focusT, zoomT, L);
+  const Kt = realK(yRefCurrent, du, focusT, zoomT, L, aberrationT);
   const K0 = realK(yRefInfinity, du, 0, zoomT, L);
   if (isNaN(Kt) || isNaN(K0)) return 0;
   return Kt - K0;

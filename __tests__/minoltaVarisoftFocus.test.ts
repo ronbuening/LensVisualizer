@@ -59,4 +59,19 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     expect(magnification).toBeCloseTo(-0.11, 2);
     expect(-raySensitivity / magnification).toBeGreaterThan(0);
   });
+
+  it("drives the soft-focus ring separately from focus travel", () => {
+    const L = buildMinoltaVarisoft();
+    const dA7 = surfaceIndex(L, "7");
+    const dB0 = surfaceIndex(L, "9");
+    const bfd = surfaceIndex(L, "11");
+
+    expect(L.aberrationControl?.label).toBe("SOFT");
+    expect(thick(dB0, 0, 0, L, 1)).toBeCloseTo(6.962, 8);
+    expect(thick(bfd, 0, 0, L, 1)).toBeCloseTo(53.951, 8);
+    expect(thick(dA7, 0, 0, L, 1)).toBeCloseTo(thick(dA7, 0, 0, L, 0), 8);
+
+    const softParaxialFocus = traceToImage(1, 0, 0, 0, L, 1);
+    expect(softParaxialFocus).toBeCloseTo(0, 2);
+  });
 });

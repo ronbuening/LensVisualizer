@@ -66,6 +66,7 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
     sliders: {
       focusT: 0,
       zoomT: 0,
+      aberrationT: 0,
       stopdownT: 0,
       shiftMm: 0,
       tiltDeg: 0,

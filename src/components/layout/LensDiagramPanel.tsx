@@ -46,6 +46,7 @@ interface LensDiagramPanelProps {
   runtimeLens?: RuntimeLens;
   focusT?: number;
   zoomT?: number;
+  aberrationT?: number;
   stopdownT?: number;
   shiftMm?: number;
   tiltDeg?: number;
@@ -66,6 +67,7 @@ export default function LensDiagramPanel({
   runtimeLens,
   focusT: focusTProp,
   zoomT: zoomTProp,
+  aberrationT: aberrationTProp,
   stopdownT: stopdownTProp,
   shiftMm: shiftMmProp,
   tiltDeg: tiltDegProp,
@@ -129,6 +131,7 @@ export default function LensDiagramPanel({
   /* Per-instance sliders: use props if provided (comparison mode), else context */
   const focusT = focusTProp ?? sliders.focusT;
   const zoomT = zoomTProp ?? sliders.zoomT;
+  const aberrationT = aberrationTProp ?? sliders.aberrationT ?? 0;
   const stopdownT = stopdownTProp ?? sliders.stopdownT;
   const shiftMm = shiftMmProp ?? sliders.shiftMm;
   const tiltDeg = tiltDegProp ?? sliders.tiltDeg;
@@ -183,6 +186,7 @@ export default function LensDiagramPanel({
     fieldGeometry,
     cardinalElements,
     varReadouts,
+    aberrationReadouts,
     dynamicEFL,
     effectiveFNum,
     filterId,
@@ -191,6 +195,7 @@ export default function LensDiagramPanel({
     runtimeLens,
     focusT,
     zoomT,
+    aberrationT,
     stopdownT,
     shiftMm,
     tiltDeg,
@@ -277,6 +282,7 @@ export default function LensDiagramPanel({
     IMG_MM,
     focusT,
     zoomT,
+    aberrationT,
     sx,
     sy,
     clampedRayEnd,
@@ -334,6 +340,7 @@ export default function LensDiagramPanel({
           zoomPanActive={zoomPanActive}
           focusT={focusT}
           zoomT={zoomT}
+          aberrationT={aberrationT}
           stopdownT={stopdownT}
           shiftMm={resolvedMovement.shiftMm}
           tiltDeg={resolvedMovement.tiltDeg}
@@ -354,6 +361,7 @@ export default function LensDiagramPanel({
           currentPhysStopSD={currentPhysStopSD}
           baseEPSD={baseEPSD}
           varReadouts={varReadouts}
+          aberrationReadouts={aberrationReadouts}
           dynamicEFL={dynamicEFL}
           effectiveFNum={effectiveFNum}
           info={info ?? null}

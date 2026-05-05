@@ -142,6 +142,8 @@ A Minolta dealer notebook (1981) and published lens diagram describe the product
 
 The patent's FIGS. 11a and 11b show the aberration state at maximum soft focus ($d_{B0} = 8.19$ at patent scale), where the spherical aberration curve shows strong over-correction — the marginal ray is displaced by several millimeters from the paraxial focus.
 
+The visualizer models this as a lens-specific **SOFT** slider. At the sharp end it uses the Table 6 spacing $d_{B0} = 2.44$ (2.074 mm after scaling to the 85 mm production focal length). At the maximum-soft end it uses the FIG. 11 spacing $d_{B0} = 8.19$ (6.962 mm production scale) and a compensated image-side spacing solved from the patent's infinity-focus condition. This keeps the aberration-control movement separate from the focus slider, which continues to vary only $d_{A7}$.
+
 ### Physics of the Soft Focus Effect
 
 The patent's key insight is that the meniscus-shaped air space, placed where the light rays are convergent (between the stop and the image), introduces a differential between the third-order ($\Sigma I$) and fifth-order ($\Sigma I^*$) spherical aberration coefficients. As the air gap $d_{B0}$ changes:

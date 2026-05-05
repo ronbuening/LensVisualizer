@@ -9,7 +9,7 @@ Lens viewer state is split into these slices:
 - `lens` - selected lens and comparison identity.
 - `display` - mobile/desktop view, theme, high contrast, scale behavior.
 - `rays` - on-axis/off-axis/chromatic display toggles, ray tracing mode, and persisted ray density.
-- `sliders` - focus, zoom, aperture, optional PC shift/tilt, and related numeric UI state.
+- `sliders` - focus, zoom, optional aberration-control, aperture, optional PC shift/tilt, and related numeric UI state.
 - `sharedSliders` - comparison-mode shared slider positions, including shared PC shift/tilt when either compared lens
   supports it.
 - `panels` - inspector, drawer, legend, zoom/pan, and analysis tab state.
@@ -41,7 +41,7 @@ Cardinal overlay toggles (`showCardinals`, `showCardinalDimensions`) are also lo
 Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA/:slugB`. Query params encode the
 shareable view state:
 
-- Stable slider params remain unversioned: `focus`, `aperture`, `zoom`, `shift`, and `tilt`.
+- Stable slider params remain unversioned: `focus`, `aberration`, `aperture`, `zoom`, `shift`, and `tilt`.
 - Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `bo`, `ad`, and `tab`.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
 - Overlay flags: `gm` (Abbe/glass-map modal), `lca` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
@@ -50,6 +50,8 @@ shareable view state:
 - Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
 - `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that
   config resolve both values to zero.
+- `aberration` is a normalized single-lens control for lenses that declare `aberrationControl`; comparison mode does not
+  share it because the cam meaning is lens-specific.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 - Ray density intentionally stays out of this URL surface and persists only through localStorage preferences.
 

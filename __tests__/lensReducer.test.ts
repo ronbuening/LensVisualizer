@@ -11,6 +11,7 @@ import lensReducer, {
   SET_DESKTOP_VIEW,
   SET_RAY_TOGGLE,
   SET_FOCUS_T,
+  SET_ABERRATION_T,
   SET_ZOOM_T,
   SET_STOPDOWN_T,
   SET_SHIFT_MM,
@@ -47,6 +48,7 @@ describe("createInitialState", () => {
     expect(state.lens.scaleMode).toBe("independent");
     expect(state.sliders.focusT).toBe(0);
     expect(state.sliders.zoomT).toBe(0);
+    expect(state.sliders.aberrationT).toBe(0);
     expect(state.sliders.stopdownT).toBe(0);
     expect(state.sliders.shiftMm).toBe(0);
     expect(state.sliders.tiltDeg).toBe(0);
@@ -64,10 +66,11 @@ describe("createInitialState", () => {
 
   it("URL params override prefs", () => {
     const prefs = {};
-    const urlState = { singleLens: "zeiss_35", focus: 0.5, aperture: 0.3, shift: -4, tilt: 2 };
+    const urlState = { singleLens: "zeiss_35", focus: 0.5, aberration: 0.6, aperture: 0.3, shift: -4, tilt: 2 };
     const state = createInitialState(prefs, urlState, true, CATALOG_KEYS);
     expect(state.lens.lensKeyA).toBe("zeiss_35");
     expect(state.sliders.focusT).toBe(0.5);
+    expect(state.sliders.aberrationT).toBe(0.6);
     expect(state.sliders.stopdownT).toBe(0.3);
     expect(state.sliders.shiftMm).toBe(-4);
     expect(state.sliders.tiltDeg).toBe(2);
@@ -160,14 +163,14 @@ describe("lensReducer", () => {
     });
 
     it("resets sliders in single mode", () => {
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
-      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
     });
 
     it("does NOT reset sliders in comparison mode", () => {
       state.lens.comparing = true;
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -2 };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.sliders.focusT).toBe(0.5);
       expect(next.sliders.shiftMm).toBe(5);
@@ -323,6 +326,13 @@ describe("lensReducer", () => {
     });
   });
 
+  describe("SET_ABERRATION_T", () => {
+    it("sets aberrationT", () => {
+      const next = lensReducer(state, { type: SET_ABERRATION_T, value: 0.65 });
+      expect(next.sliders.aberrationT).toBe(0.65);
+    });
+  });
+
   describe("SET_STOPDOWN_T", () => {
     it("sets stopdownT", () => {
       const next = lensReducer(state, { type: SET_STOPDOWN_T, value: 0.3 });
@@ -346,9 +356,9 @@ describe("lensReducer", () => {
 
   describe("RESET_SLIDERS", () => {
     it("resets all sliders to 0", () => {
-      state.sliders = { focusT: 0.5, zoomT: 0.3, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
+      state.sliders = { focusT: 0.5, zoomT: 0.3, aberrationT: 0.4, stopdownT: 0.2, shiftMm: 5, tiltDeg: -3 };
       const next = lensReducer(state, { type: RESET_SLIDERS });
-      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
+      expect(next.sliders).toEqual({ focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 });
     });
   });
 
@@ -476,6 +486,7 @@ describe("lensReducer", () => {
         type: APPLY_URL_VIEW_STATE,
         state: {
           focus: 0.4,
+          aberration: 0.7,
           aperture: 0.2,
           shift: -5,
           tilt: 6,
@@ -487,6 +498,7 @@ describe("lensReducer", () => {
         },
       });
       expect(next.sliders.focusT).toBe(0.4);
+      expect(next.sliders.aberrationT).toBe(0.7);
       expect(next.sliders.stopdownT).toBe(0.2);
       expect(next.sliders.shiftMm).toBe(-5);
       expect(next.sliders.tiltDeg).toBe(6);
@@ -597,7 +609,7 @@ describe("lensReducer", () => {
 
     it("keeps existing slider values when payload is undefined", () => {
       state.lens.comparing = true;
-      state.sliders = { focusT: 0.2, zoomT: 0.1, stopdownT: 0.4, shiftMm: 3, tiltDeg: 4 };
+      state.sliders = { focusT: 0.2, zoomT: 0.1, aberrationT: 0.3, stopdownT: 0.4, shiftMm: 3, tiltDeg: 4 };
       const next = lensReducer(state, { type: EXIT_COMPARE });
       expect(next.sliders.focusT).toBe(0.2);
       expect(next.sliders.stopdownT).toBe(0.4);

@@ -104,6 +104,7 @@ export interface RaysSlice {
 export interface SlidersSlice {
   focusT: number;
   zoomT: number;
+  aberrationT: number;
   stopdownT: number;
   shiftMm: number;
   tiltDeg: number;
@@ -179,6 +180,7 @@ export type LensAction =
   | { type: "SET_RAY_TOGGLE"; field: BooleanRayField; value: boolean }
   | { type: "SET_FOCUS_T"; value: number }
   | { type: "SET_ZOOM_T"; value: number }
+  | { type: "SET_ABERRATION_T"; value: number }
   | { type: "SET_STOPDOWN_T"; value: number }
   | { type: "SET_SHIFT_MM"; value: number }
   | { type: "SET_TILT_DEG"; value: number }
@@ -238,6 +240,7 @@ export interface URLState {
   lensKeyB?: string;
   comparing?: boolean;
   focus?: number;
+  aberration?: number;
   aperture?: number;
   shift?: number;
   tilt?: number;

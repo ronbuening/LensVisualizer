@@ -12,6 +12,7 @@ afterEach(() => cleanup());
 
 function renderControls(L: RuntimeLens) {
   const callbacks = {
+    onAberrationChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
   };
@@ -24,6 +25,8 @@ function renderControls(L: RuntimeLens) {
         useSideLayout={false}
         zoomT={0}
         onZoomChange={vi.fn()}
+        aberrationT={0}
+        onAberrationChange={callbacks.onAberrationChange}
         focusT={0}
         onFocusChange={vi.fn()}
         shiftMm={0}
@@ -33,6 +36,7 @@ function renderControls(L: RuntimeLens) {
         focusExpanded={false}
         onFocusExpandedChange={vi.fn()}
         varReadouts={[]}
+        aberrationReadouts={[]}
         stopdownT={0}
         onStopdownChange={vi.fn()}
         fNumber={L.FOPEN}
@@ -72,6 +76,17 @@ describe("DiagramControls", () => {
 
     expect(screen.getByText("SHIFT")).toBeTruthy();
     expect(screen.getByText("TILT")).toBeTruthy();
+  });
+
+  it("shows an aberration-control slider when declared by lens data", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["varisoft-rokkor-85f28"]));
+
+    expect(screen.getByText("SOFT")).toBeTruthy();
+    expect(screen.getByText(/varies the rear meniscus air space d_B0/i)).toBeTruthy();
+
+    const sliders = screen.getAllByRole("slider");
+    fireEvent.change(sliders[1], { target: { value: "0.5" } });
+    expect(callbacks.onAberrationChange).toHaveBeenCalledWith(0.5);
   });
 
   it("snaps shift and tilt controls to zero near the reset point", () => {

@@ -31,6 +31,7 @@ interface UseLensComputationParams {
   runtimeLens?: RuntimeLens;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   stopdownT: number;
   shiftMm?: number;
   tiltDeg?: number;
@@ -69,6 +70,7 @@ interface UseLensComputationResult {
   fieldGeometry: FieldGeometryState | null;
   cardinalElements: CardinalElements | null;
   varReadouts: VarReadout[];
+  aberrationReadouts: VarReadout[];
   dynamicEFL: number;
   effectiveFNum: number;
   filterId: string;
@@ -79,6 +81,7 @@ export default function useLensComputation({
   runtimeLens,
   focusT,
   zoomT,
+  aberrationT = 0,
   stopdownT,
   shiftMm = 0,
   tiltDeg = 0,
@@ -106,7 +109,7 @@ export default function useLensComputation({
    * regardless of focus or zoom changes. */
   const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
   const IMG_MM = ref ? ref.imgZ : 0;
-  const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L) : null), [focusT, zoomT, L]);
+  const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
   const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
   const zPosRef = useRef<number[]>([]);
   const zPos = useMemo((): number[] => {
@@ -126,11 +129,14 @@ export default function useLensComputation({
     [L, IMG_MM, movement.active, movementTransform, zPos],
   );
 
-  const fieldGeometry = useMemo(() => (L ? computeFieldGeometryAtState(focusT, zoomT, L) : null), [L, focusT, zoomT]);
+  const fieldGeometry = useMemo(
+    () => (L ? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT) : null),
+    [L, focusT, zoomT, aberrationT],
+  );
 
   const cardinalElements = useMemo(
-    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM) : null),
-    [L, focusT, zoomT, zPos, IMG_MM],
+    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
+    [L, focusT, zoomT, zPos, IMG_MM, aberrationT],
   );
 
   const cardinalZExtent = useMemo(() => {
@@ -194,24 +200,34 @@ export default function useLensComputation({
   const fNumber = Math.max(rawFNumber, currentFOPEN);
   const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
-  const baseEPSD = L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry).epSD : 0;
+  const baseEPSD =
+    L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
     ? L.varLabels.map(([idx, label]) => {
-        const val = thick(idx, focusT, zoomT, L).toFixed(2);
+        const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
+        return { label, val };
+      })
+    : [];
+  const aberrationReadouts: VarReadout[] = L?.aberrationControl
+    ? L.aberrationControl.varLabels.map(([idx, label]) => {
+        const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
         return { label, val };
       })
     : [];
 
   /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
-  const dynamicEFL = useMemo(() => (L ? eflAtFocus(focusT, zoomT, L) : 0), [L, focusT, zoomT]);
+  const dynamicEFL = useMemo(
+    () => (L ? eflAtFocus(focusT, zoomT, L, aberrationT) : 0),
+    [L, focusT, zoomT, aberrationT],
+  );
 
   /* ── Effective f-number (bellows factor correction at close focus) ── */
   const effectiveFNum = useMemo(
-    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L) : fNumber),
-    [L, fNumber, focusT, zoomT],
+    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
+    [L, fNumber, focusT, zoomT, aberrationT],
   );
 
   const filterId = `gl-${panelId}`;
@@ -241,6 +257,7 @@ export default function useLensComputation({
     fieldGeometry,
     cardinalElements,
     varReadouts,
+    aberrationReadouts,
     dynamicEFL,
     effectiveFNum,
     filterId,

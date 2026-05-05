@@ -10,9 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  6 elements / 5 groups, 0 aspherical surfaces.                    ║
  * ║  Focus: inner focus — front sub-group AI (L1–L4) moves forward;   ║
  * ║         AII (L5) and B (L6) remain stationary.  The focus ring     ║
- * ║         varies d_A7 only; BFD stays fixed.  Separate 4-position    ║
- * ║         soft-focus control ring varies d_B0 — NOT modeled in var  ║
- * ║         (fixed at "sharp" #0).                                    ║
+ * ║         varies d_A7 only; BFD stays fixed. Separate 4-position     ║
+ * ║         soft-focus control ring is modeled by aberrationControl:   ║
+ * ║         it varies d_B0 and the compensated image-side spacing.     ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Patent at f = 100; all R, d, sd values scaled ×0.85 to         ║
@@ -156,8 +156,8 @@ const LENS_DATA = {
     { label: "7", R: -46.084, d: 2.346, nd: 1.0, elemId: 0, sd: 15.2 }, // L4 rear → air (focus gap d_A7)
     // ── Group AII (stationary during focus) ──
     { label: "8", R: -42.2, d: 4.913, nd: 1.6968, elemId: 5, sd: 15.1 }, // L5 front
-    { label: "9", R: -29.521, d: 2.074, nd: 1.0, elemId: 0, sd: 15.7 }, // L5 rear → air (soft-focus gap d_B0, fixed at "sharp" #0)
-    // ── Group B (soft-focus control; fixed at #0 in this model) ──
+    { label: "9", R: -29.521, d: 2.074, nd: 1.0, elemId: 0, sd: 15.7 }, // L5 rear → air (soft-focus gap d_B0, sharp #0)
+    // ── Group B (soft-focus control) ──
     { label: "10", R: -26.825, d: 2.737, nd: 1.57616, elemId: 6, sd: 15.4 }, // L6 front
     { label: "11", R: -41.432, d: 64.427, nd: 1.0, elemId: 0, sd: 15.7 }, // L6 rear → image (BFD)
   ],
@@ -171,14 +171,34 @@ const LENS_DATA = {
    *  Only d_A7 (focus gap between AI and AII) widens for close focus.
    *
    *  The soft-focus control gap d_B0 (surface "9") is orthogonal to focus
-   *  and is NOT modeled here. This file represents the "sharp" (#0) setting
-   *  with d_B0 fixed at 2.074 mm (production). At maximum soft (#3),
-   *  d_B0 = 6.962 mm (production) — see analysis for details.
+   *  and is modeled separately below as an aberration-control variable.
+   *  The base surface table represents the "sharp" (#0) setting.
    */
   var: {
     "7": [2.346, 11.433],
   },
   varLabels: [["7", "D(A7)"]],
+
+  /* ── Aberration control (soft-focus ring) ──
+   *  The separate Varisoft ring opens d_B0 from the sharp #0 setting to
+   *  the patent's maximum-soft #3 setting. BFD compensation is solved from
+   *  the patent's FIG. 11 infinity-focus condition at d_B0 = 8.19.
+   */
+  aberrationControl: {
+    label: "SOFT",
+    description: "Aberration control ring — varies the rear meniscus air space d_B0 to introduce spherical aberration.",
+    minLabel: "0",
+    maxLabel: "3",
+    step: 0.001,
+    var: {
+      "9": [2.074, 6.962],
+      "11": [64.427, 53.951],
+    },
+    varLabels: [
+      ["9", "D(B0)"],
+      ["11", "BF"],
+    ],
+  },
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -192,7 +212,7 @@ const LENS_DATA = {
   closeFocusM: 0.8,
   focusDescription:
     "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
-    "Separate 4-position click-stopped ring varies d_B0 for soft-focus control (not modeled).",
+    "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",
 
   /* ── Aperture configuration ── */
   nominalFno: 2.8,

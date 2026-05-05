@@ -221,10 +221,10 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   const labelToIdx = buildLabelIndex(
     data.surfaces.filter((surface: SurfaceData) => typeof surface.label === "string") as Pick<SurfaceData, "label">[],
   );
+  const nz = isZoom ? data.zoomPositions.length : 0;
 
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === "object") {
-    const nz = isZoom ? data.zoomPositions.length : 0;
     for (const [label, range] of Object.entries(data.var)) {
       if (!surfaceLabels.has(label)) errors.push(`var key "${label}" does not match any surface label`);
       if (isZoom) {
@@ -266,6 +266,64 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         errors.push(`varLabels entry is not a [label, text] pair: ${JSON.stringify(entry)}`);
       else if (!surfaceLabels.has(entry[0]))
         errors.push(`varLabels label "${entry[0]}" does not match any surface label`);
+    }
+  }
+
+  if (data.aberrationControl !== undefined) {
+    const control = data.aberrationControl as Record<string, unknown>;
+    if (typeof control !== "object" || control === null) {
+      errors.push("aberrationControl must be an object");
+    } else {
+      if (typeof control.label !== "string" || control.label.trim() === "")
+        errors.push("aberrationControl.label must be a non-empty string");
+      if (control.step !== undefined && (typeof control.step !== "number" || control.step <= 0))
+        errors.push("aberrationControl.step must be a positive number");
+      const ranges = control.var;
+      if (typeof ranges !== "object" || ranges === null || Array.isArray(ranges)) {
+        errors.push("aberrationControl.var must be an object keyed by surface label");
+      } else {
+        for (const [label, range] of Object.entries(ranges as Record<string, unknown>)) {
+          if (!surfaceLabels.has(label)) {
+            errors.push(`aberrationControl.var["${label}"]: surface label not found`);
+            continue;
+          }
+          if (isZoom) {
+            if (!Array.isArray(range) || range.length !== nz)
+              errors.push(
+                `aberrationControl.var["${label}"]: expected array of ${nz} [normal, maximum] pairs (one per zoom position)`,
+              );
+            else {
+              for (let zi = 0; zi < nz; zi++) {
+                if (!Array.isArray(range[zi]) || range[zi].length !== 2) {
+                  errors.push(`aberrationControl.var["${label}"][${zi}]: expected [normal, maximum] array of length 2`);
+                } else {
+                  if (range[zi][0] < 0)
+                    errors.push(`aberrationControl.var["${label}"][${zi}]: normal=${range[zi][0]} is negative`);
+                  if (range[zi][1] < 0)
+                    errors.push(`aberrationControl.var["${label}"][${zi}]: maximum=${range[zi][1]} is negative`);
+                }
+              }
+            }
+          } else if (!Array.isArray(range) || range.length !== 2) {
+            errors.push(`aberrationControl.var["${label}"]: expected [normal, maximum] array of length 2`);
+          } else {
+            if (range[0] < 0) errors.push(`aberrationControl.var["${label}"]: normal=${range[0]} is negative`);
+            if (range[1] < 0) errors.push(`aberrationControl.var["${label}"]: maximum=${range[1]} is negative`);
+          }
+          const surfD = data.surfaces[labelToIdx[label]].d;
+          const normal = firstInfinityThickness(range, isZoom);
+          if (typeof surfD === "number" && typeof normal === "number" && Math.abs(surfD - normal) > 1e-6)
+            errors.push(`aberrationControl.var["${label}"]: surface d=${surfD} does not match normal value ${normal}`);
+        }
+      }
+      if (Array.isArray(control.varLabels)) {
+        for (const entry of control.varLabels) {
+          if (!Array.isArray(entry) || entry.length < 2)
+            errors.push(`aberrationControl.varLabels entry is not a [label, text] pair: ${JSON.stringify(entry)}`);
+          else if (!surfaceLabels.has(entry[0]))
+            errors.push(`aberrationControl.varLabels label "${entry[0]}" does not match any surface label`);
+        }
+      }
     }
   }
 

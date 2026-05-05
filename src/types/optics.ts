@@ -69,6 +69,21 @@ export interface PerspectiveControlConfig {
   tiltStepDeg?: number;
 }
 
+export interface AberrationControlConfig {
+  label: string;
+  description?: string;
+  minLabel?: string;
+  maxLabel?: string;
+  step?: number;
+  var: Record<string, VarRange>;
+  varLabels?: [string, string][];
+}
+
+export interface ResolvedAberrationControlConfig extends Omit<AberrationControlConfig, "var" | "varLabels"> {
+  varByIdx: Record<number, VarRange>;
+  varLabels: [number, string][];
+}
+
 /** Variable gap range for prime lenses: [d_infinity, d_close] */
 export type PrimeVarRange = [number, number];
 
@@ -94,6 +109,7 @@ export interface LensData {
   groupCount?: number;
   visible?: boolean;
   perspectiveControl?: PerspectiveControlConfig;
+  aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
   focusStep: number;
@@ -187,6 +203,7 @@ export interface RuntimeLens {
   readonly groups: ResolvedAnnotation[];
   readonly doublets: ResolvedAnnotation[];
   readonly perspectiveControl: PerspectiveControlConfig | null;
+  readonly aberrationControl: ResolvedAberrationControlConfig | null;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;

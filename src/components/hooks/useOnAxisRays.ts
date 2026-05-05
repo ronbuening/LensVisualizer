@@ -25,6 +25,7 @@ interface UseOnAxisRaysParams {
   IMG_MM: number;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   sx: (z: number) => number;
   sy: (y: number) => number;
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number];
@@ -48,6 +49,7 @@ export default function useOnAxisRays({
   IMG_MM,
   focusT,
   zoomT,
+  aberrationT = 0,
   sx,
   sy,
   clampedRayEnd,
@@ -66,7 +68,7 @@ export default function useOnAxisRays({
       for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
-        const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+        const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
@@ -81,6 +83,7 @@ export default function useOnAxisRays({
     zPos,
     focusT,
     zoomT,
+    aberrationT,
     sx,
     sy,
     currentPhysStopSD,

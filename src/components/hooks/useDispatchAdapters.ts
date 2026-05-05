@@ -12,6 +12,7 @@ import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import {
   SET_FOCUS_T,
   SET_ZOOM_T,
+  SET_ABERRATION_T,
   SET_STOPDOWN_T,
   SET_SHIFT_MM,
   SET_TILT_DEG,
@@ -24,6 +25,7 @@ import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.j
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
   onZoomChange: (v: number) => void;
+  onAberrationChange: (v: number) => void;
   onStopdownChange: (v: number) => void;
   onShiftChange: (v: number) => void;
   onTiltChange: (v: number) => void;
@@ -74,6 +76,7 @@ export default function useDispatchAdapters(): DispatchAdapters {
     () => ({
       onFocusChange: (v: number) => dispatch({ type: SET_FOCUS_T, value: v }),
       onZoomChange: (v: number) => dispatch({ type: SET_ZOOM_T, value: v }),
+      onAberrationChange: (v: number) => dispatch({ type: SET_ABERRATION_T, value: v }),
       onStopdownChange: (v: number) => dispatch({ type: SET_STOPDOWN_T, value: v }),
       onShiftChange: (v: number) => dispatch({ type: SET_SHIFT_MM, value: v }),
       onTiltChange: (v: number) => dispatch({ type: SET_TILT_DEG, value: v }),

@@ -93,6 +93,7 @@ These must be specified in every lens file — they have no defaults.
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
 | `varLabels` | `array` | | Display labels for variable gaps |
+| `aberrationControl` | `object` | | Optional independent soft-focus or spherical-aberration-control slider (see below) |
 | `groups` | `array` | | Group annotations for SVG diagram |
 | `doublets` | `array` | | Cemented doublet annotations for SVG diagram |
 | `zoomPositions` | `number[]` | | Focal lengths in mm at each zoom position (see Zoom Lens Fields) |
@@ -398,6 +399,38 @@ The surface's `d` field should equal `var[label][0][0]` (infinity focus at the f
 | 1 | Unit focus | Entire lens moves; only BFD changes |
 | 2 | Inner focus | Internal group moves; 2 gaps change |
 | 3+ | Floating focus | Multiple groups move independently |
+
+---
+
+## Aberration Control (`aberrationControl`)
+
+Declare this only for lenses with an independent optical control for spherical aberration or soft focus. Do not use it
+for ordinary focus floating groups; those remain in `var`.
+
+```javascript
+aberrationControl: {
+  label: "SOFT",          // slider label
+  description: "Varies d_B0 for spherical-aberration control.",
+  minLabel: "0",          // optional endpoint label
+  maxLabel: "3",          // optional endpoint label
+  step: 0.001,            // optional normalized slider step
+  var: {
+    "9": [2.074, 6.962],  // [minimum/sharp, maximum effect]
+    "11": [64.427, 53.951],
+  },
+  varLabels: [
+    ["9", "D(B0)"],
+    ["11", "BF"],
+  ],
+},
+```
+
+The base surface table must represent the minimum-control state, and each controlled surface's first value must match
+the corresponding surface `d`. Runtime thickness combines the current focus/zoom spacing with the aberration-control
+delta from the base surface value, so the control can be layered with focus travel without overloading focus `var`.
+
+The URL parameter is `aberration`, a normalized `0..1` value. It is single-lens state only; comparison mode omits it
+because each lens' control scale is mechanism-specific.
 
 ---
 
