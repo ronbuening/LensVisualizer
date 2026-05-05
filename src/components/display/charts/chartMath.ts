@@ -77,6 +77,41 @@ export function imageHeightPercentTicks(): number[] {
   return [0, 20, 40, 60, 80, 100];
 }
 
+export function fieldFractionTicks(): number[] {
+  return [0, 0.25, 0.5, 0.75, 1];
+}
+
+export function formatFieldFractionTick(value: number): string {
+  return Math.abs(value) < 1e-12 ? "C" : `${Math.round(value * 100)}%`;
+}
+
+export function formatMmTick(value: number): string {
+  if (Math.abs(value) < 1e-9) return "0";
+  if (Math.abs(value) >= 1) return value.toFixed(1);
+  return value.toFixed(2);
+}
+
+export function symmetricMmTicks(halfRange: number): number[] {
+  const tickMm = halfRange >= 2 ? 1 : halfRange >= 1 ? 0.5 : halfRange >= 0.4 ? 0.2 : halfRange >= 0.05 ? 0.05 : 0.01;
+  return Array.from(new Set([-halfRange, -tickMm, 0, tickMm, halfRange]));
+}
+
+export function positiveMmTicks(max: number, count = 5): number[] {
+  return Array.from({ length: count }, (_, index) => (max * index) / Math.max(count - 1, 1));
+}
+
+export function fieldFractionScale(plotLeft: number, plotWidth: number) {
+  return (fieldFraction: number) => plotLeft + fieldFraction * plotWidth;
+}
+
+export function centeredMmScale(plotTop: number, plotHeight: number, halfRange: number) {
+  return (shiftMm: number) => plotTop + plotHeight / 2 - (shiftMm / halfRange) * (plotHeight / 2);
+}
+
+export function positiveMmScale(plotTop: number, plotHeight: number, max: number) {
+  return (value: number) => plotTop + plotHeight - (value / max) * plotHeight;
+}
+
 export function svgPath<T>(items: readonly T[], x: (item: T) => number, y: (item: T) => number): string {
   return items.map((item, index) => `${index === 0 ? "M" : "L"}${x(item).toFixed(1)},${y(item).toFixed(1)}`).join(" ");
 }

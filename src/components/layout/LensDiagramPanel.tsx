@@ -327,88 +327,97 @@ export default function LensDiagramPanel({
       ) : L ? (
         <LensDiagramLoadedState
           panelContainerRef={panelContainerRef}
-          L={L}
-          theme={t}
-          dark={dark}
-          isWide={isWide}
-          compact={compact}
-          showControls={showControls}
-          showSliders={showSliders}
-          headerHeight={headerHeight}
-          maxSvgHeight={maxSvgHeight}
-          useSideLayout={useSideLayout}
-          zoomPanActive={zoomPanActive}
-          focusT={focusT}
-          zoomT={zoomT}
-          aberrationT={aberrationT}
-          stopdownT={stopdownT}
-          shiftMm={resolvedMovement.shiftMm}
-          tiltDeg={resolvedMovement.tiltDeg}
-          sx={sx}
-          sy={sy}
-          CX={CX}
-          IX={IX}
-          effectiveSC={effectiveSC}
-          movementTransform={movementTransform}
-          lensAxis={lensAxis}
-          zPos={zPos}
-          IMG_MM={IMG_MM}
-          shapes={shapes}
-          filterId={filterId}
-          stopZ={stopZ}
-          currentFOPEN={currentFOPEN}
-          fNumber={fNumber}
-          currentPhysStopSD={currentPhysStopSD}
-          baseEPSD={baseEPSD}
-          varReadouts={varReadouts}
-          aberrationReadouts={aberrationReadouts}
-          dynamicEFL={dynamicEFL}
-          effectiveFNum={effectiveFNum}
-          info={info ?? null}
-          act={act}
-          sel={sel}
-          showOnAxis={showOnAxis}
-          showOffAxis={showOffAxis}
-          showChromatic={showChromatic}
-          showPupils={showPupils}
-          showCardinals={ENABLE_CARDINAL_ELEMENTS && showCardinals}
-          showCardinalFocal={showCardinalFocal}
-          showCardinalPrincipal={showCardinalPrincipal}
-          showCardinalNodal={showCardinalNodal}
-          showCardinalDimensions={ENABLE_CARDINAL_ELEMENTS && showCardinalDimensions}
-          showCardinalEfl={showCardinalEfl}
-          showCardinalBfd={showCardinalBfd}
-          showCardinalFfd={showCardinalFfd}
-          showCardinalHiatus={showCardinalHiatus}
-          showCardinalTotalTrack={showCardinalTotalTrack}
-          cardinalElements={cardinalElements}
-          chromR={chromR}
-          chromG={chromG}
-          chromB={chromB}
-          chromV={chromV}
-          rayTracksF={rayTracksF}
-          chromSpread={chromSpread ?? null}
-          chromaticSpreads={chromaticSpreads}
-          rays={rays}
-          offAxisRays={offAxisRays}
-          chromaticRays={chromaticRays}
-          flashVisible={flashVisible}
-          flashKey={flashKey}
-          flashFading={flashFading}
-          onHover={setHov}
-          onSelect={handleSelect}
-          analysisDrawerOpen={analysisDrawerOpen}
-          analysisDrawerTab={analysisDrawerTab}
-          bokehPreviewOpen={bokehPreviewOpen}
-          focusExpanded={focusExpanded}
-          apertureExpanded={apertureExpanded}
-          legendExpanded={legendExpanded}
-          showEffectiveAperture={showEffectiveAperture}
-          abbeShowGlassType={abbeShowGlassType}
+          computed={{
+            L,
+            focusT,
+            zoomT,
+            aberrationT,
+            stopdownT,
+            shiftMm: resolvedMovement.shiftMm,
+            tiltDeg: resolvedMovement.tiltDeg,
+            sx,
+            sy,
+            CX,
+            IX,
+            effectiveSC,
+            movementTransform,
+            lensAxis,
+            zPos,
+            IMG_MM,
+            shapes,
+            filterId,
+            stopZ,
+            currentFOPEN,
+            fNumber,
+            currentPhysStopSD,
+            baseEPSD,
+            varReadouts,
+            aberrationReadouts,
+            dynamicEFL,
+            effectiveFNum,
+            info: info ?? null,
+            act,
+            sel,
+            cardinalElements,
+          }}
+          rayData={{
+            chromSpread: chromSpread ?? null,
+            chromaticSpreads,
+            rays,
+            offAxisRays,
+            chromaticRays,
+          }}
+          displayFlags={{
+            theme: t,
+            dark,
+            isWide,
+            compact,
+            showControls,
+            showSliders,
+            headerHeight,
+            maxSvgHeight,
+            useSideLayout,
+            zoomPanActive,
+            showOnAxis,
+            showOffAxis,
+            showChromatic,
+            showPupils,
+            showCardinals: ENABLE_CARDINAL_ELEMENTS && showCardinals,
+            showCardinalFocal,
+            showCardinalPrincipal,
+            showCardinalNodal,
+            showCardinalDimensions: ENABLE_CARDINAL_ELEMENTS && showCardinalDimensions,
+            showCardinalEfl,
+            showCardinalBfd,
+            showCardinalFfd,
+            showCardinalHiatus,
+            showCardinalTotalTrack,
+            chromR,
+            chromG,
+            chromB,
+            chromV,
+            rayTracksF,
+            flashVisible,
+            flashKey,
+            flashFading,
+            analysisDrawerOpen,
+            analysisDrawerTab,
+            bokehPreviewOpen,
+            focusExpanded,
+            apertureExpanded,
+            legendExpanded,
+            showEffectiveAperture,
+            abbeShowGlassType,
+          }}
           overlays={panelOverlays}
           adapters={adapters}
-          zoomHook={zoomHook}
-          onZoomPanToggle={handleZoomPanToggle}
+          interactions={{
+            onHover: setHov,
+            onSelect: handleSelect,
+            zoomHook,
+            onZoomPanToggle: handleZoomPanToggle,
+            onSliderInteractionChange: setSliderInteracting,
+          }}
           bokehPreviewContent={
             bokehPreviewOpen ? (
               <BokehPreviewOverlay
@@ -498,7 +507,6 @@ export default function LensDiagramPanel({
               />
             ) : null
           }
-          onSliderInteractionChange={setSliderInteracting}
         />
       ) : null}
     </PanelErrorBoundary>
