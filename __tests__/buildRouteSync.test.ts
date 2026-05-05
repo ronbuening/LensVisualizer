@@ -68,6 +68,19 @@ describe("build-route-sync", () => {
     }
   });
 
+  it("published dates retain historical ordering instead of collapsing to one build date", () => {
+    const lensFreshness = Object.values(
+      buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>,
+    );
+    const lensPublishedDates = new Set(lensFreshness.map((entry) => entry.publishedOn));
+    const articlePublishedDates = new Set(
+      (buildMeta.articles as { publishedOn: string; lastModified: string }[]).map((article) => article.publishedOn),
+    );
+
+    expect(lensPublishedDates.size).toBeGreaterThan(1);
+    expect(articlePublishedDates.size).toBeGreaterThan(1);
+  });
+
   it("makerSlugs match routes with /makers/ prefix", () => {
     const makerRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/makers/"));
 

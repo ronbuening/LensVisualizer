@@ -4,6 +4,28 @@ import { promisify } from "node:util";
 const execFileAsync = promisify(execFile);
 
 /**
+ * Metadata dates depend on complete file history. A shallow checkout makes
+ * every tracked file look newly published at the shallow boundary.
+ */
+export function assertFullGitHistory({ cwd, execFileImpl = execFileSync } = {}) {
+  try {
+    const isShallow = execFileImpl("git", ["rev-parse", "--is-shallow-repository"], {
+      cwd,
+      encoding: "utf-8",
+    }).trim();
+
+    if (isShallow === "true") {
+      throw new Error(
+        "Build metadata requires full git history, but this checkout is shallow. " +
+          "Use actions/checkout with fetch-depth: 0, or run git fetch --unshallow before generating metadata.",
+      );
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes("checkout is shallow")) throw error;
+  }
+}
+
+/**
  * Parse `git log --format=%aI` output into published + modified dates.
  *
  * `git log` returns newest-first, so the first line is the most recent
@@ -127,6 +149,41 @@ export function combineFreshnessEntries(entries, fallbackDate) {
       valid[0].lastModified,
     ),
   };
+}
+
+function assertPublishedDateDiversity(label, entries, { minimumEntries, minimumDistinctDates }) {
+  if (entries.length < minimumEntries) return;
+
+  const publishedDates = new Set(entries.map((entry) => entry.publishedOn));
+  if (publishedDates.size >= minimumDistinctDates) return;
+
+  const onlyDate = [...publishedDates][0] ?? "none";
+  throw new Error(
+    `Build metadata generated ${entries.length} ${label} with only ${publishedDates.size} publication date (${onlyDate}). ` +
+      "This usually means git history is unavailable, shallow, or the content was moved without preserving history. " +
+      "Check the checkout depth and rerun metadata generation before deploying.",
+  );
+}
+
+export function assertFreshnessDiversity({
+  lenses,
+  articles,
+  minimumLensEntries = 10,
+  minimumArticleEntries = 5,
+  minimumDistinctPublishedDates = 2,
+}) {
+  assertPublishedDateDiversity(
+    "lenses",
+    lenses.map((lens) => lens.freshness),
+    {
+      minimumEntries: minimumLensEntries,
+      minimumDistinctDates: minimumDistinctPublishedDates,
+    },
+  );
+  assertPublishedDateDiversity("articles", articles, {
+    minimumEntries: minimumArticleEntries,
+    minimumDistinctDates: minimumDistinctPublishedDates,
+  });
 }
 
 /**
