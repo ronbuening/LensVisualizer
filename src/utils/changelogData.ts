@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
 
   {
     date: "2026-05-05",
+    type: "fix",
+    summary: "Fixed LCA inset values when chromatic color channels are toggled",
+  },
+  {
+    date: "2026-05-05",
     type: "feature",
     summary: "Added aberration control variable support for lenses with separate soft-focus rings",
   },

@@ -38,6 +38,13 @@ describe("computeLcaBarOffsets", () => {
     expect(result.barOffsets.B).toBeUndefined();
   });
 
+  it("includes violet offsets when present", () => {
+    const result = computeLcaBarOffsets({ G: 50.0, V: 49.95 }, 50.0, 66, SC);
+    expect(result.barOffsets.G).toBeCloseTo(0, 10);
+    expect(result.barOffsets.V).toBeDefined();
+    expect(result.barOffsets.V).toBeLessThan(0);
+  });
+
   it("scales proportionally with wider view width", () => {
     const narrow = computeLcaBarOffsets({ R: 50.05, G: 50.0, B: 49.95 }, 50.0, 66, SC);
     const wide = computeLcaBarOffsets({ R: 50.05, G: 50.0, B: 49.95 }, 50.0, 132, SC);

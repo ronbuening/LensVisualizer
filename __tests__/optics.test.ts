@@ -460,7 +460,7 @@ describe("computeChromaticSpread", () => {
     // B: 0.5 + 10*0.03 = 0.8
     expect(result.imgHeights.R).toBeCloseTo(0.7, 8);
     expect(result.imgHeights.B).toBeCloseTo(0.8, 8);
-    expect(result.tcaMm).toBeCloseTo(-0.1, 8);
+    expect(result.tcaMm).toBeCloseTo(0.1, 8);
   });
 
   it("handles missing channels gracefully", () => {
@@ -502,6 +502,32 @@ describe("computeChromaticSpread", () => {
     const bIntercept = 40 - 1.0 / -0.06;
     expect(result.lcaMm).toBeCloseTo(gIntercept - bIntercept, 4);
     expect(result.lcaMm).not.toBe(0);
+  });
+
+  it("uses the selected channel span so hiding a channel cannot increase LCA", () => {
+    const marginalRays = {
+      R: { y: 1.0, u: -0.1, clipped: false }, // intercept = 50
+      G: { y: 1.0, u: -0.0666666667, clipped: false }, // intercept = 55
+      B: { y: 1.0, u: -0.0833333333, clipped: false }, // intercept = 52
+    };
+    const allChannels = computeChromaticSpread(marginalRays, 60, 40);
+    const withoutBlue = computeChromaticSpread({ R: marginalRays.R, G: marginalRays.G }, 60, 40);
+    const withoutGreen = computeChromaticSpread({ R: marginalRays.R, B: marginalRays.B }, 60, 40);
+
+    expect(allChannels.lcaMm).toBeCloseTo(5, 4);
+    expect(withoutBlue.lcaMm).toBeLessThanOrEqual(allChannels.lcaMm);
+    expect(withoutGreen.lcaMm).toBeLessThanOrEqual(allChannels.lcaMm);
+  });
+
+  it("includes violet in chromatic spread when supplied", () => {
+    const marginalRays = {
+      R: { y: 1.0, u: -0.1, clipped: false },
+      G: { y: 1.0, u: -0.0833333333, clipped: false },
+      V: { y: 1.0, u: -0.05, clipped: false },
+    };
+    const result = computeChromaticSpread(marginalRays, 70, 40);
+    expect(result.intercepts.V).toBeCloseTo(60, 4);
+    expect(result.lcaMm).toBeCloseTo(10, 4);
   });
 });
 

@@ -19,6 +19,13 @@ const QUALITY_LABEL: Record<DispersionQuality, string> = {
   air: "",
 };
 
+function referenceIntercept(intercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
+  if (intercepts.G !== undefined) return intercepts.G;
+  const values = Object.values(intercepts);
+  if (values.length === 0) return fallback;
+  return (Math.min(...values) + Math.max(...values)) / 2;
+}
+
 interface LCAInsetWidgetProps {
   chromSpread: ChromaticSpread;
   effectiveSC: number;
@@ -61,7 +68,7 @@ export default function LCAInsetWidget({
 }: LCAInsetWidgetProps) {
   const insetW = width ?? 110;
   const insetH = height ?? 100;
-  const gRef = chromSpread.intercepts.G ?? IMG_MM;
+  const gRef = referenceIntercept(chromSpread.intercepts, IMG_MM);
   const viewWidthPx = insetW - 24;
   const { barOffsets, mag } = computeLcaBarOffsets(chromSpread.intercepts, gRef, viewWidthPx, effectiveSC);
   const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(

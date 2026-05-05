@@ -409,6 +409,11 @@ interface MarginalRayData {
   clipped: boolean;
 }
 
+function spanOf(values: number[]): number {
+  if (values.length < 2) return 0;
+  return Math.max(...values) - Math.min(...values);
+}
+
 export function computeChromaticSpread(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,
@@ -416,7 +421,7 @@ export function computeChromaticSpread(
 ): ChromaticSpread {
   const intercepts: Partial<Record<ChromaticChannel, number>> = {};
   const imgHeights: Partial<Record<ChromaticChannel, number>> = {};
-  for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
+  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
     if (Math.abs(ray.u) > 1e-15) {
@@ -426,15 +431,8 @@ export function computeChromaticSpread(
     imgHeights[ch] = ray.y + dz * ray.u;
   }
 
-  let lcaMm = 0;
-  if (intercepts.R !== undefined && intercepts.B !== undefined) lcaMm = intercepts.R - intercepts.B;
-  else if (intercepts.R !== undefined && intercepts.G !== undefined) lcaMm = intercepts.R - intercepts.G;
-  else if (intercepts.G !== undefined && intercepts.B !== undefined) lcaMm = intercepts.G - intercepts.B;
-
-  let tcaMm = 0;
-  if (imgHeights.R !== undefined && imgHeights.B !== undefined) tcaMm = imgHeights.R - imgHeights.B;
-  else if (imgHeights.R !== undefined && imgHeights.G !== undefined) tcaMm = imgHeights.R - imgHeights.G;
-  else if (imgHeights.G !== undefined && imgHeights.B !== undefined) tcaMm = imgHeights.G - imgHeights.B;
+  const lcaMm = spanOf(Object.values(intercepts));
+  const tcaMm = spanOf(Object.values(imgHeights));
   return { lcaMm, tcaMm, intercepts, imgHeights };
 }
 
