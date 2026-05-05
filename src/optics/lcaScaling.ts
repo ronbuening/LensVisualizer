@@ -46,7 +46,7 @@ export function computeLcaBarOffsets(
   const barOffsets: Partial<Record<ChromaticChannel, number>> = {};
   let maxAbsPx = 0;
 
-  for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
+  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
     if (intercepts[ch] === undefined) continue;
     const px = (intercepts[ch] - referenceIntercept) * baseMag * effectiveSC;
     barOffsets[ch] = px;

@@ -305,6 +305,47 @@ describe("useChromaticRays", () => {
     expect(typeof result.current.chromSpread!.tcaMm).toBe("number");
   });
 
+  it("does not report a larger LCA when a selected RGB channel is hidden", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const getLca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {
+      const { result } = renderHook(() =>
+        useChromaticRays({
+          L,
+          zPos,
+          IMG_MM,
+          focusT: 0,
+          zoomT: 0,
+          sx,
+          sy,
+          clampedRayEnd,
+          currentPhysStopSD,
+          currentEPSD,
+          rayDensity: "normal",
+          rayTracksF: false,
+          focusK: 0,
+          showChromatic: true,
+          showOnAxis: true,
+          showOffAxis: "off",
+          ...channels,
+          chromV: false,
+          lensKey: "ZeissSonnar50f15",
+        }),
+      );
+      expect(result.current.error).toBeNull();
+      expect(result.current.chromSpread).not.toBeNull();
+      return result.current.chromSpread!.lcaMm;
+    };
+
+    const allRgb = getLca({ chromR: true, chromG: true, chromB: true });
+    const noRed = getLca({ chromR: false, chromG: true, chromB: true });
+    const noGreen = getLca({ chromR: true, chromG: false, chromB: true });
+    const noBlue = getLca({ chromR: true, chromG: true, chromB: false });
+
+    expect(noRed).toBeLessThanOrEqual(allRgb + 1e-9);
+    expect(noGreen).toBeLessThanOrEqual(allRgb + 1e-9);
+    expect(noBlue).toBeLessThanOrEqual(allRgb + 1e-9);
+  });
+
   it("falls back to the outermost usable sample when marginal chromatic rays clip", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
       0,
