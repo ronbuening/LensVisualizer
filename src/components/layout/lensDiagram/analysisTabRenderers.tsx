@@ -13,6 +13,7 @@ import type { Theme } from "../../../types/theme.js";
 export interface AnalysisDrawerInputs {
   focusT: number;
   zoomT: number;
+  aberrationT: number;
   currentEPSD: number;
   currentPhysStopSD: number;
   dynamicEFL: number;
@@ -38,6 +39,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
       expanded={aberrationsExpanded}
@@ -51,6 +53,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
     />
@@ -62,6 +65,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
       dynamicEFL={inputs.dynamicEFL}
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
@@ -77,6 +81,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}

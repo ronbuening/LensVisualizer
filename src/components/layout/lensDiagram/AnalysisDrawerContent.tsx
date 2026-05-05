@@ -12,6 +12,7 @@ interface AnalysisDrawerContentProps {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
@@ -29,6 +30,7 @@ export default function AnalysisDrawerContent({
   zPos,
   focusT,
   zoomT,
+  aberrationT = 0,
   dynamicEFL,
   currentEPSD,
   currentPhysStopSD,
@@ -42,6 +44,7 @@ export default function AnalysisDrawerContent({
   // has idle time, keeping the main viewport responsive during drag.
   const dFocusT = useDeferredValue(focusT);
   const dZoomT = useDeferredValue(zoomT);
+  const dAberrationT = useDeferredValue(aberrationT);
   const dEPSD = useDeferredValue(currentEPSD);
   const dStopSD = useDeferredValue(currentPhysStopSD);
   const dDynamicEFL = useDeferredValue(dynamicEFL);
@@ -50,12 +53,13 @@ export default function AnalysisDrawerContent({
     () => ({
       focusT: dFocusT,
       zoomT: dZoomT,
+      aberrationT: dAberrationT,
       currentEPSD: dEPSD,
       currentPhysStopSD: dStopSD,
       dynamicEFL: dDynamicEFL,
       fieldGeometry: dFieldGeometry,
     }),
-    [dFocusT, dZoomT, dEPSD, dStopSD, dDynamicEFL, dFieldGeometry],
+    [dFocusT, dZoomT, dAberrationT, dEPSD, dStopSD, dDynamicEFL, dFieldGeometry],
   );
   const lastSettledInputsRef = useRef(deferredInputs);
 

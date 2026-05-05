@@ -8,11 +8,20 @@ interface Params {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
 }
 
-export default function useComaData({ L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD }: Params) {
+export default function useComaData({
+  L,
+  zPos,
+  focusT,
+  zoomT,
+  aberrationT: _aberrationT = 0,
+  currentEPSD,
+  currentPhysStopSD,
+}: Params) {
   return useMemo(() => {
     const {
       meridionalComa: comaResult,

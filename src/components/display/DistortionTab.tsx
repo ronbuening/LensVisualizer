@@ -22,6 +22,7 @@ interface DistortionTabProps {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   dynamicEFL: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
@@ -33,6 +34,7 @@ export default function DistortionTab({
   zPos,
   focusT,
   zoomT,
+  aberrationT: _aberrationT = 0,
   dynamicEFL,
   currentPhysStopSD,
   fieldGeometry,
@@ -55,7 +57,14 @@ export default function DistortionTab({
   const fieldGrid = useMemo(
     () =>
       probe("computeDistortionFieldGrid", () =>
-        analysisJobs.computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry ?? undefined),
+        analysisJobs.computeDistortionFieldGrid(
+          L,
+          zPos,
+          focusT,
+          zoomT,
+          currentPhysStopSD,
+          fieldGeometry ?? undefined,
+        ),
       ),
     [L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry],
   );

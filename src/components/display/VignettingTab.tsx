@@ -21,6 +21,7 @@ interface VignettingTabProps {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
@@ -32,6 +33,7 @@ export default function VignettingTab({
   zPos,
   focusT,
   zoomT,
+  aberrationT: _aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry,

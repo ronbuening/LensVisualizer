@@ -439,6 +439,7 @@ export default function LensDiagramPanel({
                 zPos={zPos}
                 focusT={focusT}
                 zoomT={zoomT}
+                aberrationT={aberrationT}
                 dynamicEFL={dynamicEFL}
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
