@@ -57,14 +57,7 @@ export default function DistortionTab({
   const fieldGrid = useMemo(
     () =>
       probe("computeDistortionFieldGrid", () =>
-        analysisJobs.computeDistortionFieldGrid(
-          L,
-          zPos,
-          focusT,
-          zoomT,
-          currentPhysStopSD,
-          fieldGeometry ?? undefined,
-        ),
+        analysisJobs.computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry ?? undefined),
       ),
     [L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry],
   );

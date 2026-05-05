@@ -22,15 +22,15 @@ export default function useSphericalAberrationData({
   zPos,
   focusT,
   zoomT,
-  aberrationT: _aberrationT = 0,
+  aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
 }: Params) {
   return useMemo(() => {
     const saResult = probe("computeSphericalAberration", () =>
-      computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+      computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
     );
-    const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const saProfile = computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
     const saBlurCharacter = computeSphericalAberrationBlurCharacter(
       L,
       zPos,
@@ -41,5 +41,5 @@ export default function useSphericalAberrationData({
       saResult,
     );
     return { saResult, saProfile, saBlurCharacter };
-  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
+  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD]);
 }

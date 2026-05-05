@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { computeSphericalAberration } from "../src/optics/aberrationAnalysis.js";
 import buildLens from "../src/optics/buildLens.js";
-import { doLayout, thick, traceToImage } from "../src/optics/optics.js";
+import { doLayout, entrancePupilAtState, thick, traceToImage } from "../src/optics/optics.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import MinoltaVarisoftRaw from "../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.js";
 import type { LensData, RuntimeLens } from "../src/types/optics.js";
@@ -73,5 +74,24 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
 
     const softParaxialFocus = traceToImage(1, 0, 0, 0, L, 1);
     expect(softParaxialFocus).toBeCloseTo(0, 2);
+  });
+
+  it("changes spherical aberration when the soft-focus slider is adjusted", () => {
+    const L = buildMinoltaVarisoft();
+    const focusT = 0;
+    const zoomT = 0;
+    const stopSd = L.stopPhysSD;
+
+    const sharpLayout = doLayout(focusT, zoomT, L, 0);
+    const softLayout = doLayout(focusT, zoomT, L, 1);
+    const sharpEpsd = entrancePupilAtState(stopSd, focusT, zoomT, L, undefined, 0).epSD;
+    const softEpsd = entrancePupilAtState(stopSd, focusT, zoomT, L, undefined, 1).epSD;
+
+    const sharp = computeSphericalAberration(L, sharpLayout.z, focusT, zoomT, sharpEpsd, stopSd, 0);
+    const soft = computeSphericalAberration(L, softLayout.z, focusT, zoomT, softEpsd, stopSd, 1);
+
+    expect(sharp).not.toBeNull();
+    expect(soft).not.toBeNull();
+    expect(Math.abs(soft!.longitudinalSaUm - sharp!.longitudinalSaUm)).toBeGreaterThan(1);
   });
 });
