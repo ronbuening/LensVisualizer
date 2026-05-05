@@ -1,5 +1,13 @@
 import type { FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
+import {
+  centeredMmScale,
+  fieldFractionScale,
+  fieldFractionTicks,
+  formatFieldFractionTick,
+  formatMmTick,
+  symmetricMmTicks,
+} from "./charts/chartMath.js";
 
 interface FieldCurvatureMeanPlotProps {
   result: FieldCurvatureResult;
@@ -15,12 +23,6 @@ const MB = 42;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
-function formatShiftMm(value: number): string {
-  if (Math.abs(value) < 1e-9) return "0";
-  if (Math.abs(value) >= 1) return value.toFixed(1);
-  return value.toFixed(2);
-}
-
 export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMeanPlotProps) {
   const usableFields = result.fields.filter((field) => field.usable);
   const meanShiftHalfRange = Math.max(...usableFields.map((field) => Math.abs(field.petzvalShiftMm)), 0);
@@ -30,11 +32,10 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
   const scaleCapped = uncappedHalfRange > imageCircleRadiusMm + 1e-9;
   const curveColor = t.stopLabel ?? "#f8fafc";
   const fillColor = t.panelBorder;
-  const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
-  const yScale = (shiftMm: number) => MT + PH / 2 - (shiftMm / yHalfRange) * (PH / 2);
+  const xScale = fieldFractionScale(ML, PW);
+  const yScale = centeredMmScale(MT, PH, yHalfRange);
   const zeroY = yScale(0);
-  const tickMm = yHalfRange >= 2 ? 1 : yHalfRange >= 1 ? 0.5 : yHalfRange >= 0.4 ? 0.2 : 0.1;
-  const tickValues = Array.from(new Set([-yHalfRange, -tickMm, 0, tickMm, yHalfRange]));
+  const tickValues = symmetricMmTicks(yHalfRange);
 
   const curvePoints = usableFields
     .map((field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(field.petzvalShiftMm).toFixed(1)}`)
@@ -69,19 +70,19 @@ export default function FieldCurvatureMeanPlot({ result, t }: FieldCurvatureMean
           <g key={tick}>
             <line x1={ML - 4} y1={y} x2={ML} y2={y} stroke={t.muted} strokeWidth={0.75} />
             <text x={ML - 7} y={y + 4} textAnchor="end" fill={t.muted} fontSize={8.5} fontFamily="inherit">
-              {formatShiftMm(tick)}
+              {formatMmTick(tick)}
             </text>
           </g>
         );
       })}
 
-      {[0, 0.25, 0.5, 0.75, 1].map((tick) => {
+      {fieldFractionTicks().map((tick) => {
         const x = xScale(tick);
         return (
           <g key={tick}>
             <line x1={x} y1={MT + PH} x2={x} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
             <text x={x} y={VB_H - 12} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
-              {tick === 0 ? "C" : `${Math.round(tick * 100)}%`}
+              {formatFieldFractionTick(tick)}
             </text>
           </g>
         );

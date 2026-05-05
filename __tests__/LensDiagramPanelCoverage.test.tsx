@@ -132,16 +132,20 @@ vi.mock("../src/components/layout/lensDiagram/LensDiagramErrorState.js", () => (
 vi.mock("../src/components/layout/lensDiagram/LensDiagramLoadedState.js", () => ({
   default: (props: Record<string, unknown>) => {
     mocks.loadedState(props);
+    const computed = props.computed as Record<string, unknown>;
+    const interactions = props.interactions as Record<string, unknown>;
     return (
       <div>
-        <div data-testid="loaded-state">{`act:${String(props.act ?? "none")} sel:${String(props.sel ?? "none")}`}</div>
+        <div data-testid="loaded-state">{`act:${String(computed.act ?? "none")} sel:${String(
+          computed.sel ?? "none",
+        )}`}</div>
         <div data-testid="analysis-slot">{props.analysisContent as ReactNode}</div>
         <div data-testid="bokeh-slot">{props.bokehPreviewContent as ReactNode}</div>
         <div data-testid="header-slot">{props.header as ReactNode}</div>
-        <button type="button" onClick={() => (props.onHover as (eid: number | null) => void)(1)}>
+        <button type="button" onClick={() => (interactions.onHover as (eid: number | null) => void)(1)}>
           hover-one
         </button>
-        <button type="button" onClick={() => (props.onSelect as (eid: number | null) => void)(1)}>
+        <button type="button" onClick={() => (interactions.onSelect as (eid: number | null) => void)(1)}>
           select-one
         </button>
         <button
@@ -150,7 +154,7 @@ vi.mock("../src/components/layout/lensDiagram/LensDiagramLoadedState.js", () => 
         >
           open-glass-map
         </button>
-        <button type="button" onClick={() => (props.onZoomPanToggle as (active: boolean) => void)(false)}>
+        <button type="button" onClick={() => (interactions.onZoomPanToggle as (active: boolean) => void)(false)}>
           zoom-off
         </button>
       </div>
@@ -300,11 +304,15 @@ describe("LensDiagramPanel orchestration", () => {
     expect(mocks.zoomReset).toHaveBeenCalledTimes(1);
     expect(mocks.adapters.onZoomPanToggle).toHaveBeenCalledWith(false);
     expect(mocks.loadedState.mock.calls.at(-1)?.[0]).toMatchObject({
-      useSideLayout: true,
-      flashVisible: true,
-      focusT: 0,
-      zoomT: 0,
-      stopdownT: 0,
+      computed: {
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+      },
+      displayFlags: {
+        useSideLayout: true,
+        flashVisible: true,
+      },
     });
   });
 

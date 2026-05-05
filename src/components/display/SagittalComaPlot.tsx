@@ -8,6 +8,7 @@
 
 import type { SagittalComaResult } from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
+import { centeredMmScale, fieldFractionScale, symmetricMmTicks } from "./charts/chartMath.js";
 
 interface SagittalComaPlotProps {
   result: SagittalComaResult;
@@ -39,8 +40,8 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
   );
   const zeroY = MT + PH / 2;
 
-  const xScale = (pupilFraction: number) => ML + ((pupilFraction + 1) / 2) * PW;
-  const yScale = (imageX: number) => zeroY - (imageX / yHalfRange) * (PH / 2);
+  const xScale = (pupilFraction: number) => fieldFractionScale(ML, PW)((pupilFraction + 1) / 2);
+  const yScale = centeredMmScale(MT, PH, yHalfRange);
 
   const validSamples = result.samples.filter(
     (sample): sample is typeof sample & { imageX: number } => sample.imageX !== null && !sample.clipped,
@@ -50,8 +51,7 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
     .map((sample) => `${xScale(sample.pupilFraction).toFixed(1)},${yScale(sample.imageX).toFixed(1)}`)
     .join(" ");
 
-  const tickMm = yHalfRange >= 1 ? 1 : yHalfRange >= 0.2 ? 0.2 : yHalfRange >= 0.05 ? 0.05 : 0.01;
-  const tickValues = [-tickMm, 0, tickMm];
+  const tickValues = symmetricMmTicks(yHalfRange).filter((tick) => Math.abs(tick) < yHalfRange);
 
   const sagittalColor = t.rayChromB ?? "#38bdf8";
 
@@ -86,7 +86,7 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
           <g key={tick}>
             <line x1={ML - 4} y1={y} x2={ML} y2={y} stroke={t.muted} strokeWidth={0.75} />
             <text x={ML - 7} y={y + 4} textAnchor="end" fill={t.muted} fontSize={9} fontFamily="inherit">
-              {tick === 0 ? "0" : tick.toFixed(tickMm < 0.1 ? 2 : 1)}
+              {tick === 0 ? "0" : tick.toFixed(Math.abs(tick) < 0.1 ? 2 : 1)}
             </text>
           </g>
         );

@@ -1,5 +1,13 @@
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../types/theme.js";
+import {
+  fieldFractionScale,
+  fieldFractionTicks,
+  formatFieldFractionTick,
+  formatMmTick,
+  positiveMmScale,
+  positiveMmTicks,
+} from "./charts/chartMath.js";
 
 interface AstigmatismPlotProps {
   result: FieldCurvatureResult;
@@ -15,12 +23,6 @@ const MT = 20;
 const MB = 72;
 const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
-
-function formatSplitMm(value: number): string {
-  if (Math.abs(value) < 1e-9) return "0";
-  if (Math.abs(value) >= 1) return value.toFixed(1);
-  return value.toFixed(2);
-}
 
 function splitMagnitudeForMode(field: FieldCurvatureFieldResult, mode: "parabasal" | "realRay"): number {
   if (mode === "realRay") {
@@ -45,10 +47,10 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
   const plotLabel = mode === "parabasal" ? "Parabasal astigmatism split" : "Real-ray astigmatism split";
   const maxSplitMm = Math.max(0.02, ...plotFields.map((field) => splitMagnitudeForMode(field, mode)));
   const yMax = maxSplitMm * 1.08;
-  const xScale = (fieldFraction: number) => ML + fieldFraction * PW;
-  const yScale = (splitMm: number) => MT + PH - (splitMm / yMax) * PH;
+  const xScale = fieldFractionScale(ML, PW);
+  const yScale = positiveMmScale(MT, PH, yMax);
   const zeroY = yScale(0);
-  const tickValues = Array.from({ length: 5 }, (_, index) => (yMax * index) / 4);
+  const tickValues = positiveMmTicks(yMax);
   const splitPoints = plotFields
     .map(
       (field) => `${xScale(field.fieldFraction).toFixed(1)},${yScale(splitMagnitudeForMode(field, mode)).toFixed(1)}`,
@@ -75,19 +77,19 @@ export default function AstigmatismPlot({ result, t, mode }: AstigmatismPlotProp
           <g key={tick}>
             <line x1={ML - 4} y1={y} x2={ML} y2={y} stroke={t.muted} strokeWidth={0.75} />
             <text x={ML - 7} y={y + 4} textAnchor="end" fill={t.muted} fontSize={9} fontFamily="inherit">
-              {formatSplitMm(tick)}
+              {formatMmTick(tick)}
             </text>
           </g>
         );
       })}
 
-      {[0, 0.25, 0.5, 0.75, 1].map((tick) => {
+      {fieldFractionTicks().map((tick) => {
         const x = xScale(tick);
         return (
           <g key={tick}>
             <line x1={x} y1={MT + PH} x2={x} y2={MT + PH + 4} stroke={t.muted} strokeWidth={0.75} />
             <text x={x} y={VB_H - 34} textAnchor="middle" fill={t.muted} fontSize={8} fontFamily="inherit">
-              {tick === 0 ? "C" : `${Math.round(tick * 100)}%`}
+              {formatFieldFractionTick(tick)}
             </text>
           </g>
         );

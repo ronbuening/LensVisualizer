@@ -3,17 +3,21 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import AnalysisDrawerContent from "../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
+import { ANALYSIS_TAB_RENDERERS } from "../src/components/layout/lensDiagram/analysisTabRenderers.js";
+import { ANALYSIS_TABS } from "../src/components/layout/lensDiagram/analysisTabs.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
 const {
   mockAberrationsPanel,
+  mockComaTab,
   mockDistortionTab,
   mockFocusBreathingTab,
   mockPupilAberrationTab,
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
+  mockComaTab: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
   mockPupilAberrationTab: vi.fn(),
@@ -31,6 +35,13 @@ vi.mock("../src/components/display/DistortionTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockDistortionTab(props);
     return <div>Distortion</div>;
+  },
+}));
+
+vi.mock("../src/components/display/ComaTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockComaTab(props);
+    return <div>Coma</div>;
   },
 }));
 
@@ -72,6 +83,7 @@ const baseProps = {
 describe("AnalysisDrawerContent", () => {
   beforeEach(() => {
     mockAberrationsPanel.mockReset();
+    mockComaTab.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
     mockPupilAberrationTab.mockReset();
@@ -95,6 +107,14 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
+  it("maps the coma tab to ComaTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="coma" />);
+
+    expect(screen.getByText("Coma")).toBeTruthy();
+    expect(mockComaTab).toHaveBeenCalledTimes(1);
+    expect(mockAberrationsPanel).not.toHaveBeenCalled();
+  });
+
   it("maps the breathing tab to FocusBreathingTab", () => {
     render(<AnalysisDrawerContent {...baseProps} activeTab="breathing" />);
 
@@ -115,5 +135,9 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText("Pupils")).toBeTruthy();
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
     expect(mockVignettingTab).not.toHaveBeenCalled();
+  });
+
+  it("has exactly one renderer for every registered analysis tab", () => {
+    expect(Object.keys(ANALYSIS_TAB_RENDERERS).sort()).toEqual(ANALYSIS_TABS.map((tab) => tab.id).sort());
   });
 });

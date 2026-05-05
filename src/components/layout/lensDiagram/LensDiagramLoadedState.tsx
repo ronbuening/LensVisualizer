@@ -6,256 +6,103 @@
  * data is ready.
  */
 
-import type { ReactNode } from "react";
 import OverlayModal from "../OverlayModal.js";
 import DiagramControlPanel from "../DiagramControlPanel.js";
 import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
 import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
-import type {
-  RuntimeLens,
-  ChromaticSpread,
-  ChromaticSpreadByAxis,
-  ElementData,
-  ElementShape,
-} from "../../../types/optics.js";
-import type { LensMovementTransform } from "../../../optics/lensMovement.js";
-import type { CardinalElements } from "../../../optics/cardinalElements.js";
-import type { Theme } from "../../../types/theme.js";
-import type { RaySegment } from "../../hooks/useOnAxisRays.js";
-import type { ChromaticRaySegment } from "../../hooks/useChromaticRays.js";
-import type { AnalysisTabId, OffAxisMode } from "../../../types/state.js";
-
-interface VarReadout {
-  label: string;
-  val: string;
-}
-
-interface LensDiagramLoadedStateProps {
-  panelContainerRef: React.RefObject<HTMLDivElement | null>;
-  L: RuntimeLens;
-  theme: Theme;
-  dark: boolean;
-  isWide: boolean;
-  compact: boolean;
-  showControls: boolean;
-  showSliders: boolean;
-  headerHeight: number;
-  maxSvgHeight: string;
-  useSideLayout: boolean;
-  zoomPanActive: boolean;
-  focusT: number;
-  zoomT: number;
-  aberrationT: number;
-  stopdownT: number;
-  shiftMm: number;
-  tiltDeg: number;
-  sx: (z: number) => number;
-  sy: (y: number) => number;
-  CX: number;
-  IX: number;
-  effectiveSC: number;
-  movementTransform: LensMovementTransform;
-  lensAxis: [[number, number], [number, number]] | null;
-  zPos: number[];
-  IMG_MM: number;
-  shapes: ElementShape[];
-  filterId: string;
-  stopZ: number;
-  currentFOPEN: number;
-  fNumber: number;
-  currentPhysStopSD: number;
-  baseEPSD: number;
-  varReadouts: VarReadout[];
-  aberrationReadouts: VarReadout[];
-  dynamicEFL: number;
-  effectiveFNum: number;
-  info: ElementData | null;
-  act: number | null;
-  sel: number | null;
-  showOnAxis: boolean;
-  showOffAxis: OffAxisMode;
-  showChromatic: boolean;
-  showPupils: boolean;
-  showCardinals: boolean;
-  showCardinalFocal: boolean;
-  showCardinalPrincipal: boolean;
-  showCardinalNodal: boolean;
-  showCardinalDimensions: boolean;
-  showCardinalEfl: boolean;
-  showCardinalBfd: boolean;
-  showCardinalFfd: boolean;
-  showCardinalHiatus: boolean;
-  showCardinalTotalTrack: boolean;
-  cardinalElements: CardinalElements | null;
-  chromR: boolean;
-  chromG: boolean;
-  chromB: boolean;
-  chromV: boolean;
-  rayTracksF: boolean;
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads: ChromaticSpreadByAxis;
-  rays: RaySegment[];
-  offAxisRays: RaySegment[];
-  chromaticRays: ChromaticRaySegment[];
-  flashVisible: boolean;
-  flashKey: number;
-  flashFading: boolean;
-  onHover: (eid: number | null) => void;
-  onSelect: (eid: number | null) => void;
-  analysisDrawerOpen: boolean;
-  analysisDrawerTab: AnalysisTabId;
-  bokehPreviewOpen: boolean;
-  focusExpanded: boolean;
-  apertureExpanded: boolean;
-  legendExpanded: boolean;
-  showEffectiveAperture: boolean;
-  abbeShowGlassType: boolean;
-  overlays: {
-    showLcaOverlay: boolean;
-    showPetzvalOverlay: boolean;
-    showAbbeDiagram: boolean;
-    closeLcaOverlay: () => void;
-    closePetzvalOverlay: () => void;
-    openLcaOverlay: () => void;
-    openPetzvalOverlay: () => void;
-    openAbbeDiagram: () => void;
-    closeAbbeDiagram: () => void;
-    asphCompareElementId: number | null;
-    openAsphCompare: (eid: number) => void;
-    closeAsphCompare: () => void;
-  };
-  adapters: {
-    onAnalysisDrawerToggle: (open: boolean) => void;
-    onAnalysisTabChange: (tab: AnalysisTabId) => void;
-    onBokehPreviewToggle: (open: boolean) => void;
-    onAberrationsExpandedChange: (expanded: boolean) => void;
-    onEffectiveApertureChange: (expanded: boolean) => void;
-    onZoomChange: (value: number) => void;
-    onAberrationChange: (value: number) => void;
-    onFocusChange: (value: number) => void;
-    onStopdownChange: (value: number) => void;
-    onShiftChange: (value: number) => void;
-    onTiltChange: (value: number) => void;
-    onFocusExpandedChange: (expanded: boolean) => void;
-    onApertureExpandedChange: (expanded: boolean) => void;
-    onLegendExpandedChange: (expanded: boolean) => void;
-    onSliderPointerUp: () => void;
-    onAbbeShowGlassTypeChange: (value: boolean) => void;
-    onGlassMapOpenChange: (value: boolean) => void;
-  };
-  zoomHook: {
-    state: { zoom: number };
-    viewBox: string;
-    isPanning: boolean;
-    reset: () => void;
-    zoomIn: () => void;
-    zoomOut: () => void;
-    panBy: (dx: number, dy: number) => void;
-    handleWheel: (e: React.WheelEvent<SVGSVGElement>) => void;
-    handlePointerDown: (e: React.PointerEvent<SVGSVGElement>) => void;
-    handlePointerMove: (e: React.PointerEvent<SVGSVGElement>) => void;
-    handlePointerUp: (e: React.PointerEvent<SVGSVGElement>) => void;
-    handleTouchStart: (e: React.TouchEvent<SVGSVGElement>) => void;
-    handleTouchMove: (e: React.TouchEvent<SVGSVGElement>) => void;
-    handleTouchEnd: (e: React.TouchEvent<SVGSVGElement>) => void;
-  };
-  onZoomPanToggle: (active: boolean) => void;
-  analysisContent: ReactNode;
-  bokehPreviewContent: ReactNode;
-  header: ReactNode;
-  onSliderInteractionChange?: (interacting: boolean) => void;
-}
+import type { LensDiagramLoadedStateProps } from "./panelModel.js";
 
 export default function LensDiagramLoadedState({
   panelContainerRef,
-  L,
-  theme: t,
-  dark,
-  isWide,
-  compact,
-  showControls,
-  showSliders,
-  maxSvgHeight,
-  useSideLayout,
-  headerHeight,
-  zoomPanActive,
-  focusT,
-  zoomT,
-  aberrationT,
-  stopdownT,
-  shiftMm,
-  tiltDeg,
-  sx,
-  sy,
-  CX,
-  IX,
-  effectiveSC,
-  movementTransform,
-  lensAxis,
-  zPos,
-  IMG_MM,
-  shapes,
-  filterId,
-  stopZ,
-  currentFOPEN,
-  fNumber,
-  currentPhysStopSD,
-  baseEPSD,
-  varReadouts,
-  aberrationReadouts,
-  dynamicEFL,
-  effectiveFNum,
-  info,
-  act,
-  sel,
-  showOnAxis,
-  showOffAxis,
-  showChromatic,
-  showPupils,
-  showCardinals,
-  showCardinalFocal,
-  showCardinalPrincipal,
-  showCardinalNodal,
-  showCardinalDimensions,
-  showCardinalEfl,
-  showCardinalBfd,
-  showCardinalFfd,
-  showCardinalHiatus,
-  showCardinalTotalTrack,
-  cardinalElements,
-  chromR,
-  chromG,
-  chromB,
-  chromV,
-  rayTracksF,
-  chromSpread,
-  chromaticSpreads,
-  rays,
-  offAxisRays,
-  chromaticRays,
-  flashVisible,
-  flashKey,
-  flashFading,
-  onHover,
-  onSelect,
-  analysisDrawerOpen,
-  analysisDrawerTab,
-  bokehPreviewOpen,
-  focusExpanded,
-  apertureExpanded,
-  legendExpanded,
-  showEffectiveAperture,
-  abbeShowGlassType,
+  computed,
+  rayData,
+  displayFlags,
   overlays,
   adapters,
-  zoomHook,
-  onZoomPanToggle,
+  interactions,
   analysisContent,
   bokehPreviewContent,
   header,
-  onSliderInteractionChange,
 }: LensDiagramLoadedStateProps) {
+  const {
+    L,
+    focusT,
+    zoomT,
+    aberrationT,
+    stopdownT,
+    shiftMm,
+    tiltDeg,
+    sx,
+    sy,
+    CX,
+    IX,
+    effectiveSC,
+    movementTransform,
+    lensAxis,
+    zPos,
+    IMG_MM,
+    shapes,
+    filterId,
+    stopZ,
+    currentFOPEN,
+    fNumber,
+    currentPhysStopSD,
+    baseEPSD,
+    varReadouts,
+    aberrationReadouts,
+    dynamicEFL,
+    effectiveFNum,
+    info,
+    act,
+    sel,
+    cardinalElements,
+  } = computed;
+  const { chromSpread, chromaticSpreads, rays, offAxisRays, chromaticRays } = rayData;
+  const {
+    theme: t,
+    dark,
+    isWide,
+    compact,
+    showControls,
+    showSliders,
+    maxSvgHeight,
+    useSideLayout,
+    headerHeight,
+    zoomPanActive,
+    showOnAxis,
+    showOffAxis,
+    showChromatic,
+    showPupils,
+    showCardinals,
+    showCardinalFocal,
+    showCardinalPrincipal,
+    showCardinalNodal,
+    showCardinalDimensions,
+    showCardinalEfl,
+    showCardinalBfd,
+    showCardinalFfd,
+    showCardinalHiatus,
+    showCardinalTotalTrack,
+    chromR,
+    chromG,
+    chromB,
+    chromV,
+    rayTracksF,
+    flashVisible,
+    flashKey,
+    flashFading,
+    analysisDrawerOpen,
+    analysisDrawerTab,
+    bokehPreviewOpen,
+    focusExpanded,
+    apertureExpanded,
+    legendExpanded,
+    showEffectiveAperture,
+    abbeShowGlassType,
+  } = displayFlags;
+  const { onHover, onSelect, zoomHook, onZoomPanToggle, onSliderInteractionChange } = interactions;
+
   return (
     <>
       <div ref={panelContainerRef} style={{ position: "relative" }}>
