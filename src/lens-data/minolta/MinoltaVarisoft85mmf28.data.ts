@@ -9,10 +9,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Modified Tessar with rear divergent soft-focus control group.     ║
  * ║  6 elements / 5 groups, 0 aspherical surfaces.                    ║
  * ║  Focus: inner focus — front sub-group AI (L1–L4) moves forward;   ║
- * ║         AII (L5) and B (L6) stationary within barrel.             ║
- * ║         Two variable gaps: d_A7 (focus) and BFD (barrel           ║
- * ║         extension).  Separate 4-position soft-focus control ring   ║
- * ║         varies d_B0 — NOT modeled in var (fixed at "sharp" #0).   ║
+ * ║         AII (L5) and B (L6) remain stationary.  The focus ring     ║
+ * ║         varies d_A7 only; BFD stays fixed.  Separate 4-position    ║
+ * ║         soft-focus control ring varies d_B0 — NOT modeled in var  ║
+ * ║         (fixed at "sharp" #0).                                    ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                  ║
  * ║    Patent at f = 100; all R, d, sd values scaled ×0.85 to         ║
@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
- * ║    ✓ Aperture stop and variable focus gaps                        ║
+ * ║    ✓ Aperture stop and variable focus gap                         ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -125,7 +125,7 @@ const LENS_DATA = {
       fl: 121.7,
       glass: "S-LAL14 (OHARA)",
       apd: false,
-      role: "Group AII field relay — weak positive meniscus concave to object; stationary within barrel during focus; pivot between focus gap (d_A7) and soft-focus gap (d_B0).",
+      role: "Group AII field relay — weak positive meniscus concave to object; stationary during focus; pivot between focus gap (d_A7) and soft-focus gap (d_B0).",
     },
     {
       id: 6,
@@ -154,7 +154,7 @@ const LENS_DATA = {
     { label: "5", R: 553.109, d: 2.151, nd: 1.54072, elemId: 3, sd: 13.8 }, // L3 front (cemented D1)
     { label: "6", R: 30.354, d: 9.087, nd: 1.72, elemId: 4, sd: 14.2 }, // L3→L4 junction
     { label: "7", R: -46.084, d: 2.346, nd: 1.0, elemId: 0, sd: 15.2 }, // L4 rear → air (focus gap d_A7)
-    // ── Group AII (stationary within barrel) ──
+    // ── Group AII (stationary during focus) ──
     { label: "8", R: -42.2, d: 4.913, nd: 1.6968, elemId: 5, sd: 15.1 }, // L5 front
     { label: "9", R: -29.521, d: 2.074, nd: 1.0, elemId: 0, sd: 15.7 }, // L5 rear → air (soft-focus gap d_B0, fixed at "sharp" #0)
     // ── Group B (soft-focus control; fixed at #0 in this model) ──
@@ -166,10 +166,9 @@ const LENS_DATA = {
   asph: {},
 
   /* ── Variable air spacings (focus) ──
-   *  Inner focus: AI (L1–L4) moves forward on helicoid extension.
-   *  AII (L5) and B (L6) are stationary within the barrel.
-   *  Two gaps change: d_A7 (focus gap between AI and AII) widens,
-   *  and BFD (barrel extension to image plane) shortens.
+   *  Inner focus: AI (L1–L4) moves forward on the focus helicoid.
+   *  AII (L5), B (L6), and the image-side back focus remain fixed.
+   *  Only d_A7 (focus gap between AI and AII) widens for close focus.
    *
    *  The soft-focus control gap d_B0 (surface "9") is orthogonal to focus
    *  and is NOT modeled here. This file represents the "sharp" (#0) setting
@@ -178,12 +177,8 @@ const LENS_DATA = {
    */
   var: {
     "7": [2.346, 11.433],
-    "11": [64.427, 45.478],
   },
-  varLabels: [
-    ["7", "D(A7)"],
-    ["11", "BF"],
-  ],
+  varLabels: [["7", "D(A7)"]],
 
   /* ── Group and doublet annotations ── */
   groups: [
@@ -196,7 +191,7 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.8,
   focusDescription:
-    "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) stationary within barrel. " +
+    "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
     "Separate 4-position click-stopped ring varies d_B0 for soft-focus control (not modeled).",
 
   /* ── Aperture configuration ── */

@@ -27,7 +27,7 @@ The system divides into three groups:
 
 **Group AI** (front, moves forward independently for focusing; moves with AII as a unit during soft-focus operation): Contains four elements in three air-separated units — a strong positive singlet (L1), a biconcave negative singlet (L2), and a cemented positive doublet (L3 + L4). The aperture stop lies in the air gap between L2 and the doublet (7.39 mm at patent scale). The patent does not specify the exact stop position within this gap; for the data file, the stop is placed at 54% of the gap from L2's rear surface, a position constrained by the cross-gap sag intrusion limit against L2's strongly curved rear surface ($r_4 = +35.967$, which bulges toward the stop). This group carries the majority of the system's refracting power and is responsible for primary aberration correction at the "sharp" ($\#0$) setting. Its optical construction is a classic Tessar arrangement: a front positive collector, a biconcave negative disperser adjacent to the stop, and a rear cemented doublet that provides achromatization and field flattening.
 
-**Group AII** (middle, stationary within the barrel during focusing; moves with AI as a unit during soft-focus adjustment): A single positive meniscus element (L5), concave toward the object. This element sits in the converging beam between the stop and the image and acts as a field-flattening relay. The meniscus-shaped air gap between AI and AII ($d_{A7}$) is the focusing variable; it widens as the lens focuses closer while the entire barrel extends forward on the helicoid, simultaneously reducing the back focal distance. During soft-focus adjustment, $d_{A7}$ is held constant — AII moves with AI so the internal spacing of Group A does not change.
+**Group AII** (middle, stationary during focusing; moves with AI as a unit during soft-focus adjustment): A single positive meniscus element (L5), concave toward the object. This element sits in the converging beam between the stop and the image and acts as a field-flattening relay. The meniscus-shaped air gap between AI and AII ($d_{A7}$) is the focusing variable; it widens as the lens focuses closer because Group AI advances toward the object while AII and Group B remain fixed. During soft-focus adjustment, $d_{A7}$ is held constant — AII moves with AI so the internal spacing of Group A does not change.
 
 **Group B** (rear, moves for soft-focus control): A single negative meniscus element (L6), also concave toward the object. The meniscus-shaped air gap between AII and B ($d_{B0}$) is the soft-focus control variable. As $d_{B0}$ is increased from its "sharp" value (2.44 at $f = 100$ scale), the height at which the converging marginal ray strikes L6's front surface decreases, altering the balance of third- and fifth-order spherical aberration while leaving astigmatism, coma, and distortion substantially unchanged.
 
@@ -79,7 +79,7 @@ Surfaces: $r_8 = -49.647$, $r_9 = -34.730$. Center thickness: 5.78 mm. Shape: po
 
 L5 is the sole element of Group AII. Its meniscus form — both surfaces concave to the object, with the rear surface more strongly curved — acts as a weak positive relay that bends the converging beam toward the image while contributing to Petzval sum correction. The surface $r_8 = -49.647$ forms the image-side boundary of the focusing air space $d_{A7}$, and is concave toward the diaphragm as required by the patent's design principle. Surface $r_9 = -34.730$ forms the object-side boundary of the soft-focus control air space $d_{B0}$.
 
-L5 is mechanically stationary within the barrel during both focusing and soft-focus adjustment — it does not move relative to L6 or the barrel rear. During focus, the barrel extends forward on the helicoid (reducing the back focal distance), but AII's position within the barrel does not change. L5 serves as the fixed pivot point around which the two variable air spaces operate.
+L5 is mechanically stationary during focusing — it does not move relative to L6 or the image-side reference. L5 serves as the fixed pivot point around which the two variable air spaces operate.
 
 ### L6 — Negative Meniscus (Group B, soft-focus control)
 
@@ -110,18 +110,18 @@ The choice of a low-index light flint ($n_d = 1.57616$) for L6 is optically moti
 
 ## Focus Mechanism
 
-Focus type: **inner focus** via Group AI axial translation with barrel extension.
+Focus type: **inner focus** via Group AI axial translation.
 
 - **Focusing group:** Sub-group AI (elements L1 through L4) moves forward along the optical axis as a unit, driven by the lens barrel's helicoid.
-- **Stationary within barrel during focusing:** Sub-group AII (L5) and Group B (L6) do not move relative to each other or to the barrel rear.
-- **Focus variable gaps:** $d_{A7}$ (between $r_7$ and $r_8$), the meniscus-shaped air space between AI and AII, widens as the lens focuses closer. Simultaneously, the back focal distance (from $r_{11}$ to the image plane) shortens as the barrel extends forward on the helicoid.
+- **Stationary during focusing:** Sub-group AII (L5) and Group B (L6) do not move relative to each other or to the image-side reference.
+- **Focus variable gap:** $d_{A7}$ (between $r_7$ and $r_8$), the meniscus-shaped air space between AI and AII, widens as the lens focuses closer. The patent mechanism and FIG. 28 describe AI alone shifting forward for focus; the back focal distance is therefore held fixed in the visualization.
 
 | Condition | $d_{A7}$ (patent) | $d_{A7}$ (production) | BFD (patent) | BFD (production) |
 |-----------|:---:|:---:|:---:|:---:|
 | Infinity focus | 2.76 mm | 2.35 mm | 75.80 mm | 64.43 mm |
-| Close focus ($\beta \approx -0.11$) | 13.45 mm | 11.43 mm | 53.50 mm | 45.48 mm |
+| Close focus ($\beta \approx -0.11$) | 13.45 mm | 11.43 mm | 75.80 mm | 64.43 mm |
 
-The focus travel of $d_{A7}$ is substantial ($\approx 10.7$ mm at patent scale, $\approx 9.1$ mm production) and represents a significant forward shift of the heavy four-element front group. The barrel extends by $\approx 19.0$ mm (production) from infinity to close focus — of which 9.1 mm is the internal $d_{A7}$ widening and 9.9 mm is the additional BFD reduction as AII/B move forward with the barrel relative to the film plane. The patent text (Column 8, line 60 through Column 9, line 5) states that the two surfaces defining this meniscus air space — $r_7 = -54.216$ (rear of L4) and $r_8 = -49.647$ (front of L5) — are both concave toward the diaphragm. This geometric condition minimizes the variation in off-axis aberrations during focusing, because the symmetry of the meniscus air space about the stop position partially cancels the coma and astigmatism changes that would otherwise accompany a large shift of the front group.
+The focus travel of $d_{A7}$ is substantial ($\approx 10.7$ mm at patent scale, $\approx 9.1$ mm production) and represents a significant forward shift of the heavy four-element front group. The patent text (Column 8, line 60 through Column 9, line 5) states that the two surfaces defining this meniscus air space — $r_7 = -54.216$ (rear of L4) and $r_8 = -49.647$ (front of L5) — are both concave toward the diaphragm. This geometric condition minimizes the variation in off-axis aberrations during focusing, because the symmetry of the meniscus air space about the stop position partially cancels the coma and astigmatism changes that would otherwise accompany a large shift of the front group.
 
 The close-focus distance of 0.8 m (manufacturer specification) corresponds to $\beta \approx -0.11$ at $f = 85$ mm, consistent with the patent's test condition for FIGS. 10a and 10b.
 
@@ -186,7 +186,7 @@ A paraxial ABCD-matrix ray trace of the Embodiment 3 prescription (all surfaces 
 
 The EFL matches the patent value to within 0.002%, confirming that the radii and refractive indices are correctly transcribed. At production scale ($\times 0.85$): EFL = 85.00 mm, BFD = 64.43 mm, track (front vertex to rear vertex) = 47.6 mm.
 
-**Close-focus verification.** A conjugate-distance solve at MFD = 0.8 m (production) was performed using the ABCD system matrix with $d_{A7} = 13.45$ (patent scale). The solver found BFD = 53.50 mm at patent scale (45.48 mm production), yielding a total conjugate of 941.2 mm (patent) = 800.0 mm (production) and a magnification of $\beta = -0.113$, consistent with the patent's stated $\beta \approx -0.11$. The close-focus BFD of 45.48 mm at production scale is 2.0 mm above the Minolta SR-mount flange distance of 43.5 mm — physically consistent with the rear element sitting just inside the mount throat.
+**Close-focus verification.** A paraxial ABCD-matrix check at $d_{A7} = 13.45$ (patent scale), with BFD held at the corrected infinity value of 75.80 mm, gives $\beta \approx -0.110$. This matches the patent's stated close-focus condition for FIGS. 10a and 10b. In the fixed-image-plane viewer this means Group AI moves forward by the $d_{A7}$ increase, while L5, L6, and the image plane remain fixed.
 
 **BFD discrepancy analysis.** To determine whether the 8.9 mm BFD discrepancy reflects a methodological error or a patent error, the same ABCD-matrix trace was applied to six other embodiments and the reference design in the patent:
 
@@ -202,7 +202,7 @@ Four of these match to within ±0.3 mm, with Embodiment 10 essentially exact (±
 
 A corrected BFD of 75.80 mm would produce ΔBFD = −0.003 mm, consistent with the best-matching embodiments. A plausible single-digit misprint — "66.90" for "75.80" or "75.90" — would explain the entire discrepancy. The patent's Certificate of Correction already documents eight separate typographical errors across the patent text, including column misalignments in Table 2, a mislabeled embodiment number in Table 5, a sign error in a Table 15 coefficient, and missing absolute-value notation in the conditional expressions. A BFD misprint in Table 6 is consistent with this pattern.
 
-No alternative measurement convention (BFD from the stop, BFD from the rear of Group AI) produces a value near 66.90, nor does any alternative operating condition (soft-focus at $d_{B0} = 8.19$ yields BFD = 63.6; close-focus at $d_{A7} = 13.45$ yields BFD = 64.9). The conclusion is that the patent's stated BFD of 66.90 is a typographical error; the correct value is approximately **75.80 mm** at $f = 100$ scale (≈ 64.4 mm at $f = 85$ production scale, comfortably above the 43.5 mm Minolta SR mount flange distance).
+No alternative measurement convention (BFD from the stop, BFD from the rear of Group AI) produces a value near 66.90, nor does the soft-focus condition at $d_{B0} = 8.19$ explain the discrepancy. The conclusion is that the patent's stated BFD of 66.90 is a typographical error; the correct value is approximately **75.80 mm** at $f = 100$ scale (≈ 64.4 mm at $f = 85$ production scale, comfortably above the 43.5 mm Minolta SR mount flange distance).
 
 ## Design Heritage and Context
 
