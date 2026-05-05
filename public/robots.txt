@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://opticalbench.net/sitemap.xml
+Sitemap: https://surfaceandstop.com/sitemap.xml

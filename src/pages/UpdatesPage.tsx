@@ -17,7 +17,7 @@ export default function UpdatesPage() {
   }, []);
 
   const seoDescription =
-    "Full update history for Optical Bench — recently added lenses and a complete changelog of features, fixes, and improvements.";
+    "Full update history for Surface & Stop — recently added lenses and a complete changelog of features, fixes, and improvements.";
 
   return (
     <StaticPageShell breadcrumbs={[{ label: "Home", to: "/" }, { label: "Updates" }]}>

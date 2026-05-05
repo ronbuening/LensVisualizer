@@ -4,7 +4,7 @@
  * Produces src/generated/build-metadata.json with:
  *   - lensFreshness: mapping of lens catalog key → first-published and last-modified dates
  *   - articles: array of article metadata extracted from markdown frontmatter + git dates
- *   - lensKeys: sorted array of all lens catalog keys
+ *   - lensKeys: sorted array of all visible lens catalog keys
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - routes: flat array of all concrete URL paths to pre-render
  *
@@ -157,7 +157,7 @@ async function main() {
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
 
-  const [lenses, articles, makerDetailsFreshness] = await Promise.all([
+  const [allLenses, articles, makerDetailsFreshness] = await Promise.all([
     collectLensDataAsync({
       rootDir: ROOT,
       lensDataDir: LENS_DATA_DIR,
@@ -168,6 +168,7 @@ async function main() {
     getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
   ]);
 
+  const lenses = allLenses.filter((lens) => lens.visible !== false);
   const lensKeys = lenses.map((l) => l.key).sort();
   const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs);
@@ -182,10 +183,10 @@ async function main() {
   const metadata = { lensFreshness, articles, lensKeys, makerSlugs, routes, routeFreshness };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
 
-  // Keep the README lens count in sync automatically
+  // Keep the README public lens count in sync automatically
   const readme = readFileSync(README_FILE, "utf-8");
   const updatedReadme = readme.replace(
-    /^(- )`\d+`( lens data files are currently included)/m,
+    /^(- )`\d+`( visible lens pages are currently published)/m,
     `$1\`${lensKeys.length}\`$2`,
   );
   if (updatedReadme !== readme) {

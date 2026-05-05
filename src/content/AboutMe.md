@@ -1,7 +1,7 @@
 ---
 slug: about-author
 title: About the Author
-summary: Meet the creator of Optical Bench — photographer and optical science enthusiast.
+summary: Meet the creator of Surface & Stop — photographer and optical science enthusiast.
 tag: article
 ---
 

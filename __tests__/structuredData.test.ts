@@ -15,7 +15,7 @@ describe("structuredData helpers", () => {
     const schema = websiteJsonLd();
     expect(schema["@type"]).toBe("WebSite");
     expect(schema.url).toBe(SITE_URL);
-    expect((schema.publisher as Record<string, unknown>).name).toBe("Optical Bench");
+    expect((schema.publisher as Record<string, unknown>).name).toBe("Surface & Stop");
   });
 
   it("builds a CollectionPage schema with freshness", () => {

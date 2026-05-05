@@ -81,10 +81,10 @@
   </g>
 
   <text x="600" y="500" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="52" font-weight="300" letter-spacing="4" fill="#1a2030" text-anchor="middle">
-    Optical<tspan font-weight="600">Bench</tspan>
+    Surface <tspan font-weight="600">&amp; Stop</tspan>
   </text>
   <text x="600" y="540" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="20" font-weight="400" letter-spacing="8" fill="#4a5a6a" text-anchor="middle">
-    .net
+    .com
   </text>
   <text x="600" y="575" font-family="'Gill Sans', 'Optima', 'Avenir', sans-serif" font-size="14" font-weight="300" letter-spacing="3" fill="#7a8898" text-anchor="middle">
     Lens Patent Analysis &amp; Optical Decomposition

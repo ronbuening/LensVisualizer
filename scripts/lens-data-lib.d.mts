@@ -2,6 +2,7 @@ export interface LensIdentity {
   key: string | null;
   name: string | null;
   maker: string | null;
+  visible: boolean;
 }
 
 export interface LensFreshness {
@@ -17,6 +18,7 @@ export interface TrackedLensRecord {
 export interface LensDataRecord {
   key: string;
   name: string | null;
+  visible: boolean;
   makerSlug: string;
   freshness: LensFreshness;
 }

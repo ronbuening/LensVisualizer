@@ -83,7 +83,7 @@ describe("SSR render — content pages produce non-empty HTML", () => {
 describe("SSR render — home page /", () => {
   it("title contains site name", () => {
     const { helmet } = render("/");
-    expect(helmet.title.toString()).toContain(SITE_NAME);
+    expect(helmet.title.toString()).toContain(SITE_NAME.replace("&", "&amp;"));
   });
 
   it("canonical points to site root", () => {

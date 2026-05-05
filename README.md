@@ -2,7 +2,7 @@
 
 LensVisualizer is a React + TypeScript optical design viewer for real camera lenses reconstructed from patent prescriptions. It renders 2D cross-sections, traces rays in real time, and exposes analysis tools for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, vignetting, chromatic spread, chromatic field curvature, glass selection, and field curvature.
 
-**Live app:** [opticalbench.net](https://opticalbench.net/)
+**Live app:** [surfaceandstop.com](https://surfaceandstop.com/)
 
 Created by **Ron Buening**. For project background and methodology, see [About This Site](src/content/AboutSite.md).
 
@@ -19,7 +19,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 
 ## Current Scope
 
-- `145` lens data files are currently included under [`src/lens-data/`](src/lens-data/)
+- `144` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm, Leica,
   Nikon, Olympus, Ricoh, Sony, Vivitar, and Voigtländer
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
@@ -58,7 +58,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - `react-markdown` + `remark-gfm`
 - Vitest + Testing Library
 - ESLint + Prettier
-- GitHub Actions for quality checks and Pages deployment
+- GitHub Actions for quality checks; Cloudflare Pages is the intended production host after migration
 
 ## Getting Started
 
@@ -93,7 +93,7 @@ Requires Node.js 18+.
 - Route-level metadata is managed through [`src/components/SEOHead.tsx`](src/components/SEOHead.tsx), including canonical URLs, robots directives, social image tags, and JSON-LD payloads.
 - Build metadata is generated before dev/build runs and tracks lens/article freshness for sitemap and structured-data use.
 - Production builds prerender the crawlable routes, write a freshness-aware sitemap, and generate a real `404.html` with `noindex,follow`.
-- [`public/og-default.png`](public/og-default.png) is the shared social preview asset used across public routes.
+- [`public/branding/social-dark.svg`](public/branding/social-dark.svg) is the shared social preview asset used across public routes.
 - `npm run seo:audit` validates the built output for metadata presence, sitemap coverage, route freshness, internal links, and 404 behavior.
 
 ## Project Structure

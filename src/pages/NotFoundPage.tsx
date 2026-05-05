@@ -38,7 +38,7 @@ export default function NotFoundPage() {
         <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>404</h1>
         <p style={{ marginBottom: "2rem", color: t.muted }}>Page not found.</p>
         <Link to="/" style={{ color: t.descLinkColor }}>
-          Go to Optical Bench
+          Go to Surface & Stop
         </Link>
         <span style={{ margin: "0 1rem", color: t.label }}>|</span>
         <Link to="/lenses" style={{ color: t.descLinkColor }}>

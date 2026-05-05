@@ -10,7 +10,7 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
-const SITE_URL = "https://opticalbench.net";
+const SITE_URL = "https://surfaceandstop.com";
 const META_PATH = join(import.meta.dirname, "..", "src", "generated", "build-metadata.json");
 const DIST_DIR = join(import.meta.dirname, "..", "dist");
 

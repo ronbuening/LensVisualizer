@@ -54,7 +54,7 @@ otherwise.
 - Write in normal Markdown paragraphs, separated by blank lines.
 - Use italics for titles, terms of art, and mild emphasis.
 - Use bold only when the phrase should stand out during scanning.
-- Prefer concise explanatory notes in blockquotes when the article needs an aside, such as an OpticalBench-specific note.
+- Prefer concise explanatory notes in blockquotes when the article needs an aside, such as an Surface & Stop-specific note.
 - Avoid visible instructions about how the Markdown renderer works; the article should read as an article, not as implementation documentation.
 
 ### Links
