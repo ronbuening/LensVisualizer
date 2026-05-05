@@ -19,6 +19,8 @@ import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import {
+  assertFreshnessDiversity,
+  assertFullGitHistory,
   buildRouteFreshness,
   getFirstGitFileFreshnessAsync,
   getGitFileFreshnessAsync,
@@ -153,6 +155,7 @@ async function collectArticles(fallbackDate) {
 
 async function main() {
   if (!existsSync(OUT_DIR)) mkdirSync(OUT_DIR, { recursive: true });
+  assertFullGitHistory({ cwd: ROOT });
   const fallbackDate = new Date().toISOString().slice(0, 10);
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
@@ -169,6 +172,7 @@ async function main() {
   ]);
 
   const lenses = allLenses.filter((lens) => lens.visible !== false);
+  assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();
   const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs);

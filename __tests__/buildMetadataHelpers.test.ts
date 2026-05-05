@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  assertFreshnessDiversity,
+  assertFullGitHistory,
   buildRouteFreshness,
   combineFreshnessEntries,
   getFirstGitFileFreshness,
@@ -9,6 +11,54 @@ import {
 } from "../scripts/build-metadata-lib.mjs";
 
 describe("build metadata helpers", () => {
+  it("rejects shallow git history before freshness generation", () => {
+    expect(() =>
+      assertFullGitHistory({
+        allowFetch: false,
+        execFileImpl: () => "true\n",
+      }),
+    ).toThrow(/checkout is shallow/);
+  });
+
+  it("unshallows git history before freshness generation when possible", () => {
+    const calls: string[][] = [];
+    const shallowStates = ["true\n", "false\n"];
+
+    expect(() =>
+      assertFullGitHistory({
+        execFileImpl: (_file, args) => {
+          calls.push(args);
+          if (args[0] === "fetch") return "";
+          return shallowStates.shift() ?? "false\n";
+        },
+      }),
+    ).not.toThrow();
+    expect(calls).toEqual([
+      ["rev-parse", "--is-shallow-repository"],
+      ["fetch", "--unshallow"],
+      ["rev-parse", "--is-shallow-repository"],
+    ]);
+  });
+
+  it("rejects shallow git history when unshallowing fails", () => {
+    expect(() =>
+      assertFullGitHistory({
+        execFileImpl: (_file, args) => {
+          if (args[0] === "fetch") throw new Error("network unavailable");
+          return "true\n";
+        },
+      }),
+    ).toThrow(/git fetch --unshallow failed/);
+  });
+
+  it("allows complete git history before freshness generation", () => {
+    expect(() =>
+      assertFullGitHistory({
+        execFileImpl: () => "false\n",
+      }),
+    ).not.toThrow();
+  });
+
   it("parses git log output into published and modified dates", () => {
     const dates = parseGitLogDates(
       ["2026-03-27T10:00:00-04:00", "2026-03-25T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n"),
@@ -100,6 +150,57 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
     });
+  });
+
+  it("rejects mature metadata when publication dates collapse to one date", () => {
+    const lenses = Array.from({ length: 10 }, (_, index) => ({
+      key: `lens-${index}`,
+      makerSlug: "canon",
+      freshness: { publishedOn: "2026-05-05", lastModified: "2026-05-05" },
+    }));
+    const articles = Array.from({ length: 5 }, (_, index) => ({
+      slug: `article-${index}`,
+      publishedOn: "2026-05-05",
+      lastModified: "2026-05-05",
+    }));
+
+    expect(() => assertFreshnessDiversity({ lenses, articles })).toThrow(/only 1 publication date/);
+  });
+
+  it("allows mature metadata with diverse publication dates", () => {
+    const lenses = [
+      {
+        key: "lens-a",
+        makerSlug: "canon",
+        freshness: { publishedOn: "2026-03-19", lastModified: "2026-04-01" },
+      },
+      {
+        key: "lens-b",
+        makerSlug: "nikon",
+        freshness: { publishedOn: "2026-04-01", lastModified: "2026-04-01" },
+      },
+    ];
+    const articles = [
+      {
+        slug: "article-a",
+        publishedOn: "2026-03-19",
+        lastModified: "2026-04-01",
+      },
+      {
+        slug: "article-b",
+        publishedOn: "2026-04-01",
+        lastModified: "2026-04-01",
+      },
+    ];
+
+    expect(() =>
+      assertFreshnessDiversity({
+        lenses,
+        articles,
+        minimumLensEntries: 2,
+        minimumArticleEntries: 2,
+      }),
+    ).not.toThrow();
   });
 
   it("builds route freshness from content freshness", () => {
