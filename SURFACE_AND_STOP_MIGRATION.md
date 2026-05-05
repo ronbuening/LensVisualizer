@@ -25,14 +25,30 @@ These are the exact manual steps required after this rebrand branch is merged.
 
 ## 2. Attach the new production domain
 
-1. In the Cloudflare Pages project, go to **Custom domains**.
-2. Add `surfaceandstop.com`.
-3. Add `www.surfaceandstop.com` if the `www` hostname should work.
-4. Let Cloudflare create the required DNS records.
-5. Confirm both hostnames issue valid Cloudflare SSL certificates.
-6. Decide the canonical host:
+1. Make sure `surfaceandstop.com` exists as a Cloudflare zone in the same Cloudflare account as the Pages project.
+2. At the domain registrar for `surfaceandstop.com`, replace the current nameservers with the two Cloudflare nameservers shown for the zone.
+3. Wait until Cloudflare shows the `surfaceandstop.com` zone as active.
+4. In Cloudflare, go to **Workers & Pages**.
+5. Select the Surface & Stop Pages project.
+6. Go to **Custom domains**.
+7. Select **Set up a domain**.
+8. Enter `surfaceandstop.com`.
+9. Select **Continue**.
+10. Confirm the DNS record Cloudflare proposes. For an apex domain, Cloudflare should create the required Pages DNS record automatically once the zone is active on Cloudflare nameservers.
+11. Wait for the custom domain status to become active and for the SSL certificate to finish issuing.
+12. Open `https://surfaceandstop.com/` and verify it serves the Cloudflare Pages deployment.
+13. Add `www.surfaceandstop.com` if the `www` hostname should work:
+   - In the same Pages project, go to **Custom domains**.
+   - Select **Set up a domain**.
+   - Enter `www.surfaceandstop.com`.
+   - Select **Continue**.
+   - Confirm the DNS record Cloudflare proposes. If the zone is managed in Cloudflare, Cloudflare should add the CNAME automatically.
+   - Wait for the custom domain status and SSL certificate to become active.
+14. Open `https://www.surfaceandstop.com/` and verify it serves the same Pages deployment.
+15. Decide the canonical host:
    - Canonical host in this codebase is `https://surfaceandstop.com`.
    - If `www.surfaceandstop.com` is added, create a Cloudflare Redirect Rule from `www.surfaceandstop.com` to `surfaceandstop.com` that keeps the original path and query string. Use the same wildcard pattern format shown in section 3.
+16. Do not manually create only a DNS CNAME to the Pages project without adding the custom domain in the Pages dashboard first; Cloudflare documents that this can fail to resolve correctly.
 
 ## 3. Redirect OpticalBench.net to SurfaceAndStop.com
 
