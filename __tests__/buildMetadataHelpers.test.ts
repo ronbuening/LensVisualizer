@@ -14,9 +14,41 @@ describe("build metadata helpers", () => {
   it("rejects shallow git history before freshness generation", () => {
     expect(() =>
       assertFullGitHistory({
+        allowFetch: false,
         execFileImpl: () => "true\n",
       }),
     ).toThrow(/checkout is shallow/);
+  });
+
+  it("unshallows git history before freshness generation when possible", () => {
+    const calls: string[][] = [];
+    const shallowStates = ["true\n", "false\n"];
+
+    expect(() =>
+      assertFullGitHistory({
+        execFileImpl: (_file, args) => {
+          calls.push(args);
+          if (args[0] === "fetch") return "";
+          return shallowStates.shift() ?? "false\n";
+        },
+      }),
+    ).not.toThrow();
+    expect(calls).toEqual([
+      ["rev-parse", "--is-shallow-repository"],
+      ["fetch", "--unshallow"],
+      ["rev-parse", "--is-shallow-repository"],
+    ]);
+  });
+
+  it("rejects shallow git history when unshallowing fails", () => {
+    expect(() =>
+      assertFullGitHistory({
+        execFileImpl: (_file, args) => {
+          if (args[0] === "fetch") throw new Error("network unavailable");
+          return "true\n";
+        },
+      }),
+    ).toThrow(/git fetch --unshallow failed/);
   });
 
   it("allows complete git history before freshness generation", () => {

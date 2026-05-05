@@ -7,12 +7,30 @@ const execFileAsync = promisify(execFile);
  * Metadata dates depend on complete file history. A shallow checkout makes
  * every tracked file look newly published at the shallow boundary.
  */
-export function assertFullGitHistory({ cwd, execFileImpl = execFileSync } = {}) {
+export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFetch = true } = {}) {
   try {
-    const isShallow = execFileImpl("git", ["rev-parse", "--is-shallow-repository"], {
+    let isShallow = execFileImpl("git", ["rev-parse", "--is-shallow-repository"], {
       cwd,
       encoding: "utf-8",
     }).trim();
+
+    if (isShallow === "true" && allowFetch) {
+      try {
+        execFileImpl("git", ["fetch", "--unshallow"], {
+          cwd,
+          encoding: "utf-8",
+        });
+        isShallow = execFileImpl("git", ["rev-parse", "--is-shallow-repository"], {
+          cwd,
+          encoding: "utf-8",
+        }).trim();
+      } catch {
+        throw new Error(
+          "Build metadata requires full git history, but this checkout is shallow and git fetch --unshallow failed. " +
+            "Configure the build provider to clone full history, or run git fetch --unshallow before generating metadata.",
+        );
+      }
+    }
 
     if (isShallow === "true") {
       throw new Error(

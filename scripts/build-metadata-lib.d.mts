@@ -17,7 +17,11 @@ export interface ArticleFreshnessInput {
 
 export type ExecFileSyncLike = (file: string, args: string[], options: { cwd?: string; encoding: string }) => string;
 
-export function assertFullGitHistory(options?: { cwd?: string; execFileImpl?: ExecFileSyncLike }): void;
+export function assertFullGitHistory(options?: {
+  cwd?: string;
+  execFileImpl?: ExecFileSyncLike;
+  allowFetch?: boolean;
+}): void;
 
 export function parseGitLogDates(raw: string): FreshnessEntry | null;
 
