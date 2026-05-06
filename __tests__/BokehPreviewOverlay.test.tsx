@@ -80,7 +80,11 @@ function makeField(
   };
 }
 
-function makeResult(label: string, defocusDeltaMm: number, brightnessCharacter: BokehBrightnessCharacter): BokehPreviewResult {
+function makeResult(
+  label: string,
+  defocusDeltaMm: number,
+  brightnessCharacter: BokehBrightnessCharacter,
+): BokehPreviewResult {
   return {
     label,
     defocusDeltaMm,
@@ -148,5 +152,27 @@ describe("BokehPreviewOverlay", () => {
     );
 
     expect(screen.getByText(/Insufficient focus range to compute bokeh preview/i)).toBeTruthy();
+  });
+
+  it("passes aberration-control state into the bokeh computation", () => {
+    mockComputeBokehPreviewPair.mockReturnValue({
+      infinity: makeResult("Infinity", 0.35, "edge-bright"),
+      nearFocus: null,
+    });
+    const L = { N: 2 } as RuntimeLens;
+
+    render(
+      <BokehPreviewOverlay
+        L={L}
+        focusT={0.5}
+        zoomT={0}
+        aberrationT={0.64}
+        currentEPSD={10}
+        currentPhysStopSD={5}
+        t={theme}
+      />,
+    );
+
+    expect(mockComputeBokehPreviewPair).toHaveBeenCalledWith(L, 0.5, 0, 10, 5, 0.64);
   });
 });

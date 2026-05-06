@@ -3,6 +3,7 @@
 import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AberrationsPanel from "../src/components/display/AberrationsPanel.js";
+import ComaTab from "../src/components/display/ComaTab.js";
 import type { RuntimeLens } from "../src/types/optics.js";
 import type { Theme } from "../src/types/theme.js";
 
@@ -449,6 +450,88 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
     expect(screen.getByText("T -0.45 mm / S -0.21 mm")).toBeTruthy();
     expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
+  });
+
+  it("forwards aberration-control state into spherical and field-curvature calculations", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} aberrationT={0.42} />);
+
+    expect(mockComputeSphericalAberration).toHaveBeenCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      0.42,
+    );
+    expect(mockComputeSAProfile).toHaveBeenCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      0.42,
+    );
+    expect(mockComputeSphericalAberrationBlurCharacter).toHaveBeenCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      expect.anything(),
+      0.42,
+    );
+    expect(mockComputeFieldCurvature).toHaveBeenNthCalledWith(
+      1,
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      false,
+      0.42,
+    );
+    expect(mockComputeFieldCurvature).toHaveBeenNthCalledWith(
+      2,
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      true,
+      0.42,
+    );
+  });
+
+  it("forwards aberration-control state into coma calculations", () => {
+    render(
+      <ComaTab
+        L={baseProps.L}
+        t={baseProps.t}
+        zPos={baseProps.zPos}
+        focusT={baseProps.focusT}
+        zoomT={baseProps.zoomT}
+        aberrationT={0.42}
+        currentEPSD={baseProps.currentEPSD}
+        currentPhysStopSD={baseProps.currentPhysStopSD}
+      />,
+    );
+
+    expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      0.42,
+    );
   });
 
   it("labels field curve direction correctly: positive shift toward sensor, negative toward lens", () => {

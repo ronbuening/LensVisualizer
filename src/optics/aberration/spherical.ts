@@ -1,4 +1,4 @@
-import { computeFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept } from "../optics.js";
+import { computeFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept, thick } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   BokehPoint,
@@ -32,11 +32,12 @@ export function computeSphericalAberration(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): SphericalAberrationResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
   const nearAxisSample = computeSymmetricRealSample(
@@ -49,6 +50,7 @@ export function computeSphericalAberration(
     lastSurfZ,
     imagePlaneZ,
     NEAR_AXIS_REAL_FRAC,
+    aberrationT,
   );
   if (nearAxisSample === null) return null;
 
@@ -64,6 +66,7 @@ export function computeSphericalAberration(
       lastSurfZ,
       imagePlaneZ,
       fraction,
+      aberrationT,
     );
     if (marginalSample !== null) break;
   }
@@ -80,6 +83,7 @@ export function computeSphericalAberration(
       lastSurfZ,
       imagePlaneZ,
       fraction,
+      aberrationT,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -91,6 +95,7 @@ export function computeSphericalAberration(
       lastSurfZ,
       imagePlaneZ,
       -fraction,
+      aberrationT,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
@@ -135,11 +140,12 @@ export function computeSAProfile(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): SAProfilePoint[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return [];
 
   const hits = PROFILE_FRACS.flatMap((fraction) => {
@@ -153,6 +159,7 @@ export function computeSAProfile(
       lastSurfZ,
       imagePlaneZ,
       fraction,
+      aberrationT,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -164,6 +171,7 @@ export function computeSAProfile(
       lastSurfZ,
       imagePlaneZ,
       -fraction,
+      aberrationT,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
@@ -255,17 +263,19 @@ export function computeSphericalAberrationBlurCharacter(
   currentEPSD: number,
   currentPhysStopSD: number,
   baseResult: Pick<SphericalAberrationResult, "bestFocusZ" | "longitudinalSaMm"> | null = null,
+  aberrationT = 0,
 ): SphericalAberrationBlurCharacterResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const resolvedBase = baseResult ?? computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const resolvedBase =
+    baseResult ?? computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
   if (resolvedBase === null) return null;
 
   const defocusOffsetMm = Math.abs(resolvedBase.longitudinalSaMm) * SA_BLUR_CHARACTER_DEFOCUS_SCALE;
   if (!isFinite(defocusOffsetMm) || defocusOffsetMm < SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM) return null;
 
-  const geometryState = computeFieldGeometryAtState(focusT, zoomT, L);
-  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState);
+  const geometryState = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState, aberrationT);
   if (geometry === null) return null;
 
   const bundle = traceOffAxisBundleFromSamples(
@@ -276,6 +286,8 @@ export function computeSphericalAberrationBlurCharacter(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    undefined,
+    aberrationT,
   );
   if (bundle === null || bundle.validSampleCount < SA_BLUR_CHARACTER_MIN_VALID_SAMPLES) return null;
 

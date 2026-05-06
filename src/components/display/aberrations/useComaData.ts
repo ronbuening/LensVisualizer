@@ -18,7 +18,7 @@ export default function useComaData({
   zPos,
   focusT,
   zoomT,
-  aberrationT: _aberrationT = 0,
+  aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
 }: Params) {
@@ -27,7 +27,9 @@ export default function useComaData({
       meridionalComa: comaResult,
       sagittalComa: sagittalComaResult,
       pointCloudPreview: comaPreviewResult,
-    } = probe("computeComaAnalysis", () => computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD));
+    } = probe("computeComaAnalysis", () =>
+      computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    );
     return { comaResult, sagittalComaResult, comaPreviewResult };
-  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
+  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD]);
 }

@@ -88,6 +88,13 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
     />
   ),
   pupils: ({ L, t, inputs }) => (
-    <PupilAberrationTab L={L} t={t} focusT={inputs.focusT} zoomT={inputs.zoomT} fieldGeometry={inputs.fieldGeometry} />
+    <PupilAberrationTab
+      L={L}
+      t={t}
+      focusT={inputs.focusT}
+      zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
+      fieldGeometry={inputs.fieldGeometry}
+    />
   ),
 };

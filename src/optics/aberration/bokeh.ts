@@ -83,7 +83,7 @@ function computeBestFocusZFromLayout(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
-  _aberrationT = 0,
+  aberrationT = 0,
 ): number {
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
@@ -99,6 +99,7 @@ function computeBestFocusZFromLayout(
       lastSurfZ,
       imagePlaneZ,
       fraction,
+      aberrationT,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -110,6 +111,7 @@ function computeBestFocusZFromLayout(
       lastSurfZ,
       imagePlaneZ,
       -fraction,
+      aberrationT,
     );
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });
@@ -552,7 +554,6 @@ function computeBokehPreviewFromContext(
   currentEPSD: number,
   currentPhysStopSD: number,
   label: string,
-  _aberrationT = 0,
 ): BokehPreviewResult | null {
   const defocusDelta = sensorZ - context.layout.imgZ;
 

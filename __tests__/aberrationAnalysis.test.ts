@@ -19,7 +19,6 @@ import {
 } from "../src/optics/aberrationAnalysis.js";
 import {
   bestFocusPlaneForDirection,
-  computeOffAxisFieldGeometry,
   computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
   traceCircularOffAxisBundle,
@@ -1121,7 +1120,7 @@ describe("computeFieldCurvature", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeOffAxisFieldGeometry(L, zPos, 0, field!.fieldFraction);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction);
     expect(geometry).not.toBeNull();
     const standardizedField = standardizedFieldFocusAt(L, geometry!, 0, 0, currentEPSD, currentPhysStopSD);
 
