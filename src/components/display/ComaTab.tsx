@@ -19,16 +19,27 @@ interface ComaTabProps {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
 }
 
-export default function ComaTab({ L, t, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD }: ComaTabProps) {
+export default function ComaTab({
+  L,
+  t,
+  zPos,
+  focusT,
+  zoomT,
+  aberrationT = 0,
+  currentEPSD,
+  currentPhysStopSD,
+}: ComaTabProps) {
   const { comaResult, sagittalComaResult, comaPreviewResult } = useComaData({
     L,
     zPos,
     focusT,
     zoomT,
+    aberrationT,
     currentEPSD,
     currentPhysStopSD,
   });

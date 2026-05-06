@@ -84,21 +84,30 @@ function computeDistortionReference(
   focusT: number,
   zoomT: number,
   fieldGeometry?: FieldGeometryState,
+  aberrationT = 0,
 ): DistortionReference | null {
   if (L.N < 1) return null;
 
-  const geometry = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geometry = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
   /* Use the iteratively corrected chief ray for the edge image height so
      pupil aberration at wide field angles is accounted for. */
-  const edgeImageHeight = chiefRayImageHeightAccurate(geometry.halfFieldDeg, zPos, focusT, zoomT, L, geometry);
+  const edgeImageHeight = chiefRayImageHeightAccurate(
+    geometry.halfFieldDeg,
+    zPos,
+    focusT,
+    zoomT,
+    L,
+    geometry,
+    aberrationT,
+  );
   if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
 
   /* The near-axis scale probe uses the paraxial chief ray — the probe angle
      is always tiny (0.05–0.25 deg), where the paraxial EP is exact. */
   const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.01, 0.02), 0.5);
-  const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry);
+  const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
   const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
   if (!isFinite(probeImageHeight) || Math.abs(probeTan) < 1e-12) return null;
 
@@ -145,8 +154,9 @@ export function computeDistortionCurve(
   _dynamicEFL: number,
   _currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  aberrationT = 0,
 ): DistortionSample[] {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) return [];
 
   const samples: DistortionSample[] = [];
@@ -168,7 +178,15 @@ export function computeDistortionCurve(
     }
 
     const realHeight = -edgeAbsHeight * normalizedImageHeight;
-    const fieldAngleDeg = solveFieldAngleForImageHeightAccurate(realHeight, zPos, focusT, zoomT, L, reference.geometry);
+    const fieldAngleDeg = solveFieldAngleForImageHeightAccurate(
+      realHeight,
+      zPos,
+      focusT,
+      zoomT,
+      L,
+      reference.geometry,
+      aberrationT,
+    );
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
@@ -210,6 +228,7 @@ function buildPupilCorrectionTable(
   focusT: number,
   zoomT: number,
   L: RuntimeLens,
+  aberrationT = 0,
 ): PupilCorrectionEntry[] {
   const table: PupilCorrectionEntry[] = [];
   for (let i = 0; i < PUPIL_CORRECTION_SAMPLE_COUNT; i++) {
@@ -217,7 +236,7 @@ function buildPupilCorrectionTable(
     const thetaRad = (angleDeg * Math.PI) / 180;
     const tanTheta = Math.tan(thetaRad);
     const paraxialYChief = reference.geometry.epRatio * tanTheta;
-    const solvedYChief = solveChiefRayLaunchHeight(angleDeg, focusT, zoomT, L, reference.geometry);
+    const solvedYChief = solveChiefRayLaunchHeight(angleDeg, focusT, zoomT, L, reference.geometry, aberrationT);
     const ratio = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
     table.push({ angleDeg, ratio: isFinite(ratio) ? ratio : 1 });
   }
@@ -246,6 +265,7 @@ function traceDistortionGridPoint(
   currentPhysStopSD: number,
   L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
+  aberrationT = 0,
 ): DistortionGridPoint {
   const radiusNormalized = Math.hypot(xNormalized, yNormalized);
   const insideImageCircle = radiusNormalized <= 1 + 1e-9;
@@ -284,6 +304,7 @@ function traceDistortionGridPoint(
     currentPhysStopSD,
     true,
     L,
+    aberrationT,
   );
 
   if (trace.clipped) {
@@ -325,8 +346,9 @@ export function computeDistortionFieldGrid(
   zoomT: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  aberrationT = 0,
 ): DistortionFieldGridResult {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) {
     return {
       lines: [],
@@ -339,7 +361,7 @@ export function computeDistortionFieldGrid(
     (_, index) => -1 + (2 * index) / (DISTORTION_GRID_SEGMENT_COUNT - 1),
   );
 
-  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L);
+  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L, aberrationT);
 
   return {
     idealFieldRadius: reference.idealFieldRadius,
@@ -348,14 +370,34 @@ export function computeDistortionFieldGrid(
         orientation: "vertical",
         idealCoordinate: coordinate,
         points: axisSamples.map((y) =>
-          traceDistortionGridPoint(coordinate, y, reference, focusT, zoomT, currentPhysStopSD, L, pupilCorrection),
+          traceDistortionGridPoint(
+            coordinate,
+            y,
+            reference,
+            focusT,
+            zoomT,
+            currentPhysStopSD,
+            L,
+            pupilCorrection,
+            aberrationT,
+          ),
         ),
       };
       const horizontal: DistortionGridLine = {
         orientation: "horizontal",
         idealCoordinate: coordinate,
         points: axisSamples.map((x) =>
-          traceDistortionGridPoint(x, coordinate, reference, focusT, zoomT, currentPhysStopSD, L, pupilCorrection),
+          traceDistortionGridPoint(
+            x,
+            coordinate,
+            reference,
+            focusT,
+            zoomT,
+            currentPhysStopSD,
+            L,
+            pupilCorrection,
+            aberrationT,
+          ),
         ),
       };
       return [vertical, horizontal];
