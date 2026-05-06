@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 239 mismatched surfaces across 156 unique groups.
+**Scope**: 244 mismatched surfaces across 160 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -142,6 +142,14 @@ Candidates:
 
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `9A`: `S-BAL35 (OHARA)`
+
+## stored (nd=1.58913, vd=61.30)  — 1 surface, current label resolves to S-BAL14
+
+Candidates:
+- **S-BAL35** (nd=1.58913, vd=61.14, Δnd=-0.0000, Δvd=-0.16)
+
+Surfaces:
+- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) `12`: `S-BAL14 (OHARA) / K-BAL14 (Sumita)`
 
 ## stored (nd=1.59270, vd=35.30)  — 2 surfaces, current label resolves to S-TIM25
 
@@ -301,6 +309,13 @@ Surfaces:
 
 Surfaces:
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) `5`: `S-TIM35 (OHARA dense flint)`
+
+## stored (nd=1.62588, vd=35.74)  — 1 surface, current label resolves to S-TIM35
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) `24`: `S-TIM35 (OHARA)`
 
 ## stored (nd=1.63854, vd=55.40) [code=639/554]  — 1 surface, current label resolves to S-BSL7
 
@@ -558,6 +573,13 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `19`: `S-NBH55 (720347, OHARA S-NBH55)`
+
+## stored (nd=1.72825, vd=28.30)  — 1 surface, current label resolves to S-TIH4
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `11`: `S-TIH4 (OHARA)`
 
 ## stored (nd=1.72916, vd=54.70)  — 5 surfaces, current label resolves to S-LAL9
 
@@ -975,6 +997,18 @@ Surfaces:
 Surfaces:
 - [PANASONIC LUMIX S 35mm F1.8](../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) `11`: `S-LAH55 (OHARA) / CDGM equivalent — dense lanthanum flint, code 806/333`
 
+## stored (nd=1.80610, vd=40.70)  — 2 surfaces, current label resolves to S-LAH51
+
+Candidates:
+- **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=+0.23)
+- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.12)
+- **S-LAH63** (nd=1.80440, vd=39.59, Δnd=-0.0017, Δvd=-1.11)
+- **K-VC89** (nd=1.80998, vd=41.00, Δnd=+0.0039, Δvd=+0.30)
+
+Surfaces:
+- [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `10`: `S-LAH51 (OHARA)`
+- [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `15`: `S-LAH51 (OHARA)`
+
 ## stored (nd=1.81265, vd=25.24)  — 2 surfaces, current label resolves to SF6
 
 Candidates:
@@ -1372,5 +1406,5 @@ Surfaces:
 
 ## Summary
 
-- **110** (nd, vd) groups have at least one candidate (175 surfaces) — actionable relabels.
-- **46** (nd, vd) groups have NO candidate (64 surfaces) — needs patent verification or Unmatched relabeling.
+- **112** (nd, vd) groups have at least one candidate (178 surfaces) — actionable relabels.
+- **48** (nd, vd) groups have NO candidate (66 surfaces) — needs patent verification or Unmatched relabeling.

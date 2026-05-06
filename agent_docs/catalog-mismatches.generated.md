@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **145** lenses scanned
-- **1633** glass surfaces examined
-- **1630** surfaces with non-empty `glass` strings
-- **1039** of those resolved to a catalog entry
-- **239** mismatches found (23.0% of resolved surfaces)
-- **79** distinct lens files affected
+- **148** lenses scanned
+- **1668** glass surfaces examined
+- **1665** surfaces with non-empty `glass` strings
+- **1064** of those resolved to a catalog entry
+- **244** mismatches found (22.9% of resolved surfaces)
+- **82** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -34,15 +34,17 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH58 | 7 | |
 | S-BSL7 | 7 | |
 | S-NPH4 | 6 | |
+| S-BAL14 | 6 | |
 | S-TIM25 | 6 | |
 | S-BAL35 | 5 | |
 | S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
-| S-BAL14 | 5 | |
 | S-NBH55 | 5 | |
+| S-LAH51 | 5 | |
 | S-LAL14 | 5 | |
 | S-NBH56 | 5 | |
+| S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIM2 | 5 | |
 | S-LAH64 | 4 | |
@@ -52,7 +54,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NPH53 | 4 | |
 | S-NBH8 | 4 | |
 | S-TIM22 | 4 | |
-| S-TIM35 | 4 | |
+| S-TIH4 | 4 | |
 | S-TIH6 | 4 | |
 | K-VC89 | 4 | |
 | S-LAM66 | 3 | |
@@ -60,8 +62,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM2 | 3 | |
 | S-LAL8 | 3 | |
 | TAFD45 | 3 | |
-| S-LAH51 | 3 | |
-| S-TIH4 | 3 | |
 | S-LAH65 | 3 | |
 | SF6 | 3 | |
 | S-LAH97 | 3 | |
@@ -485,6 +485,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 13 | `TAC4 (Hoya) / N-SK2 (Schott)` | N-SK2 | 1.69700 | 1.60738 | -0.0896 |
 | 15 | `PCD4 (Hoya) / S-PHM53 (OHARA)` | S-PHM53 | 1.61800 | 1.60300 | -0.0150 |
 
+### [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) — JP 2003-270529 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10 | `S-LAH51 (OHARA)` | S-LAH51 | 1.80610 | 1.78590 | -0.0202 |
+| 11 | `S-TIH4 (OHARA)` | S-TIH4 | 1.72825 | 1.75520 | +0.0269 |
+| 15 | `S-LAH51 (OHARA)` | S-LAH51 | 1.80610 | 1.78590 | -0.0202 |
+
 ### [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts) — US 4,717,245
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -725,6 +733,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | S-TIM35 | 1.68893 | 1.69895 | +0.0100 |
 
+### [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) — JP 2020-012952 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 24 | `S-TIM35 (OHARA)` | S-TIM35 | 1.62588 | 1.69895 | +0.0731 |
+
 ### [SONY SONNAR T* FE 55mm F1.8 ZA](../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) — US 2015/0092100 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -736,4 +750,10 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 7 | `S-LAH65 class (Ohara)` | S-LAH65 | 1.77300 | 1.80400 | +0.0310 |
+
+### [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) — JP 2002-090622 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 12 | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | S-BAL14 | 1.58913 | 1.56883 | -0.0203 |
 
