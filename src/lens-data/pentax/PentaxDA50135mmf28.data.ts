@@ -42,7 +42,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-da-50-135-f28",
   maker: "Pentax",
-  name: "smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM",
+  name: "PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM",
   subtitle: "US 7,289,274 B1 Example 5 — PENTAX / Saori",
   specs: [
     "18 ELEMENTS / 14 GROUPS",

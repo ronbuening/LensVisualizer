@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-06",
     type: "lens",
+    summary: "Added three Pentax lenses: DA 16-50mm f/2.8, DA 50-135mm f/2.8, and F 85mm f/2.8 Soft",
+  },
+  {
+    date: "2026-05-06",
+    type: "lens",
     summary:
       "Added Sigma 40mm f/1.4 DG DN Art, Voigtlander Macro Apo-Lanthar 125mm f/2.5, and Apo-Lanthar 180mm f/4 SL Close Focus",
   },
