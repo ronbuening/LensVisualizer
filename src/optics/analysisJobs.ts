@@ -12,8 +12,9 @@ export const analysisJobs = {
     dynamicEFL: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    aberrationT = 0,
   ) {
-    return computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD, fieldGeometry);
+    return computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD, fieldGeometry, aberrationT);
   },
 
   computeDistortionFieldGrid(
@@ -23,8 +24,9 @@ export const analysisJobs = {
     zoomT: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    aberrationT = 0,
   ) {
-    return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry);
+    return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT);
   },
 
   computeVignettingCurve(
@@ -35,7 +37,8 @@ export const analysisJobs = {
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    aberrationT = 0,
   ) {
-    return computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry);
+    return computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
   },
 };

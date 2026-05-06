@@ -19,6 +19,7 @@ interface BokehPreviewOverlayProps {
   L: RuntimeLens;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
   t: Theme;
@@ -28,20 +29,23 @@ export default function BokehPreviewOverlay({
   L,
   focusT,
   zoomT,
+  aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
   t,
 }: BokehPreviewOverlayProps) {
   const dFocusT = useDeferredValue(focusT);
   const dZoomT = useDeferredValue(zoomT);
+  const dAberrationT = useDeferredValue(aberrationT);
   const dEPSD = useDeferredValue(currentEPSD);
   const dStopSD = useDeferredValue(currentPhysStopSD);
 
-  const isStale = dFocusT !== focusT || dZoomT !== zoomT;
+  const isStale = dFocusT !== focusT || dZoomT !== zoomT || dAberrationT !== aberrationT;
 
   const pair = useMemo(
-    () => probe("computeBokehPreviewPair", () => computeBokehPreviewPair(L, dFocusT, dZoomT, dEPSD, dStopSD)),
-    [L, dFocusT, dZoomT, dEPSD, dStopSD],
+    () =>
+      probe("computeBokehPreviewPair", () => computeBokehPreviewPair(L, dFocusT, dZoomT, dEPSD, dStopSD, dAberrationT)),
+    [L, dFocusT, dZoomT, dEPSD, dStopSD, dAberrationT],
   );
 
   const hasInfinity = pair.infinity !== null;

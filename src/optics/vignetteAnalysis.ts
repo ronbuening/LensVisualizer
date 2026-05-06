@@ -75,6 +75,7 @@ export function computeVignettingCurve(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  aberrationT = 0,
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
@@ -84,7 +85,7 @@ export function computeVignettingCurve(
   /* Pre-compute field geometry for the solved chief ray — accounts for
    * pupil aberration (EP position shifts with field angle) which the old
    * paraxial (B/yRatio) launch ignored.  Critical for retrofocus designs. */
-  const geom = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
 
   /* Adaptive field sampling: ~3° spacing, min 7 samples.  Ultra-wide lenses
    * (>50° half-field) get denser sampling to capture rapid vignetting onset
@@ -101,7 +102,7 @@ export function computeVignettingCurve(
     /* Solved chief-ray launch: iteratively corrects for pupil aberration.
      * Falls back to paraxial for small angles (<1°) automatically. */
     const uField = -Math.tan(thetaRad);
-    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom);
+    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT);
 
     /* Dense meridional pupil sweep: N_PUPIL evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
@@ -109,7 +110,7 @@ export function computeVignettingCurve(
       /* Map j ∈ [0, N_PUPIL−1] → pupilFrac ∈ [−1, +1] */
       const pupilFrac = -1 + (2 * j) / (N_PUPIL - 1);
       const y0 = yChief + pupilFrac * currentEPSD;
-      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
       if (!trace.clipped) surviving++;
     }
 

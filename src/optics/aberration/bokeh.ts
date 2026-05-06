@@ -59,6 +59,7 @@ const BOKEH_BRIGHTNESS_RATIO_THRESHOLD = 1.15;
 interface BokehTraceContext {
   focusT: number;
   zoomT: number;
+  aberrationT: number;
   layout: LayoutResult;
   bestFocusZ: number;
   fieldGeometryState: FieldGeometryState;
@@ -82,6 +83,7 @@ function computeBestFocusZFromLayout(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  _aberrationT = 0,
 ): number {
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
@@ -134,9 +136,10 @@ export function computeBestFocusZ(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): number {
-  const layout = doLayout(focusT, zoomT, L);
-  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const layout = doLayout(focusT, zoomT, L, aberrationT);
+  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
 }
 
 function buildBokehTraceContext(
@@ -145,14 +148,16 @@ function buildBokehTraceContext(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): BokehTraceContext {
-  const layout = doLayout(focusT, zoomT, L);
+  const layout = doLayout(focusT, zoomT, L, aberrationT);
   return {
     focusT,
     zoomT,
+    aberrationT,
     layout,
-    bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD),
-    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L),
+    bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L, aberrationT),
     circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
 }
@@ -359,6 +364,7 @@ function computeBokehFieldFootprintFromContext(
     context.zoomT,
     fieldFraction,
     context.fieldGeometryState,
+    context.aberrationT,
   );
   if (geometry === null) return null;
 
@@ -370,6 +376,8 @@ function computeBokehFieldFootprintFromContext(
     context.zoomT,
     currentEPSD,
     currentPhysStopSD,
+    undefined,
+    context.aberrationT,
   );
   if (bundle === null) return null;
 
@@ -474,8 +482,9 @@ export function computeBokehFieldFootprint(
   currentPhysStopSD: number,
   fieldFraction: number,
   sensorZ: number,
+  aberrationT = 0,
 ): BokehFieldResult | null {
-  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD);
+  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
   return computeBokehFieldFootprintFromContext(L, context, currentEPSD, currentPhysStopSD, fieldFraction, sensorZ);
 }
 
@@ -543,6 +552,7 @@ function computeBokehPreviewFromContext(
   currentEPSD: number,
   currentPhysStopSD: number,
   label: string,
+  _aberrationT = 0,
 ): BokehPreviewResult | null {
   const defocusDelta = sensorZ - context.layout.imgZ;
 
@@ -596,10 +606,11 @@ export function computeBokehPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
   label: string,
+  aberrationT = 0,
 ): BokehPreviewResult | null {
   return computeBokehPreviewFromContext(
     L,
-    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD),
+    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
     sensorZ,
     currentEPSD,
     currentPhysStopSD,
@@ -634,12 +645,13 @@ export function computeBokehPreviewPair(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): BokehPreviewPair {
   const contextCache = new Map<number, BokehTraceContext>();
   const getContext = (contextFocusT: number): BokehTraceContext => {
     const cached = contextCache.get(contextFocusT);
     if (cached) return cached;
-    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD);
+    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
     contextCache.set(contextFocusT, next);
     return next;
   };

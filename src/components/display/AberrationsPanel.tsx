@@ -21,6 +21,7 @@ interface AberrationsPanelProps {
   zPos: number[];
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
   expanded: boolean;
@@ -33,6 +34,7 @@ export default function AberrationsPanel({
   zPos,
   focusT,
   zoomT,
+  aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
   expanded,
@@ -43,6 +45,7 @@ export default function AberrationsPanel({
     zPos,
     focusT,
     zoomT,
+    aberrationT,
     currentEPSD,
     currentPhysStopSD,
   });
@@ -51,6 +54,7 @@ export default function AberrationsPanel({
     zPos,
     focusT,
     zoomT,
+    aberrationT,
     currentEPSD,
     currentPhysStopSD,
   });
