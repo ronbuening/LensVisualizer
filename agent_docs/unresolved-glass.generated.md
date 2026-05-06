@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **148** lenses scanned
-- **1668** non-air surfaces examined
-- **1665** element glass declarations examined
-- **551** non-explicit-unmatched annotations did not resolve
-- **201** distinct unresolved glass-like tokens found
+- **151** lenses scanned
+- **1707** non-air surfaces examined
+- **1704** element glass declarations examined
+- **560** non-explicit-unmatched annotations did not resolve
+- **203** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,10 +21,11 @@ or per-lens patent backfills.
 | NBFD3 | 7 | 6 | |
 | 593679 | 6 | 3 | |
 | S-NPH7 | 6 | 5 | |
+| TAFD25 | 6 | 5 | |
 | L-PHM52 | 5 | 2 | |
-| TAFD25 | 5 | 4 | |
 | E-FD15 | 4 | 3 | |
 | S-TIH11 | 4 | 4 | |
+| S-TIH53W | 4 | 4 | |
 | S-TIL25 | 4 | 4 | |
 | 694533 | 3 | 2 | |
 | E-FDS3HT | 3 | 2 | |
@@ -35,7 +36,6 @@ or per-lens patent backfills.
 | S-LAM55 | 3 | 3 | |
 | S-NBH52V | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
-| S-TIH53W | 3 | 3 | |
 | S-TIL27 | 3 | 3 | |
 | S-TIL6 | 3 | 3 | |
 | TAFD5F | 3 | 3 | |
@@ -132,6 +132,7 @@ or per-lens patent backfills.
 | 863415 | 1 | 1 | |
 | 903354 | 1 | 1 | |
 | 921240 | 1 | 1 | |
+| BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | BSC3 | 1 | 1 | |
 | E-F3 | 1 | 1 | |
@@ -187,6 +188,7 @@ or per-lens patent backfills.
 | S-LAH75 | 1 | 1 | |
 | S-LAH78 | 1 | 1 | |
 | S-LAL10 | 1 | 1 | |
+| S-LAL12 | 1 | 1 | |
 | S-LAL60 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
 | S-LAM61 | 1 | 1 | |
@@ -250,6 +252,15 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
 - [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 22: `S-NPH7 (OHARA)`
 
+### TAFD25 — 6 occurrences
+
+- [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) 15: `TAFD25 (HOYA)`
+- [NIKON 28Ti NIKKOR 28mm f/2.8](../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `TAFD25 (HOYA)`
+- [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 12: `TAFD25 (HOYA)`
+- [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 27: `TAFD25 (HOYA)`
+- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 13: `TAFD25 equiv. (181600/4659)`
+- [smc PENTAX-F 85mm f/2.8 Soft](../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 6: `TAFD25 (HOYA)`
+
 ### L-PHM52 — 5 occurrences
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 22A: `Near OHARA L-PHM52 (619636)`
@@ -257,14 +268,6 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-
-### TAFD25 — 5 occurrences
-
-- [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) 15: `TAFD25 (HOYA)`
-- [NIKON 28Ti NIKKOR 28mm f/2.8](../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `TAFD25 (HOYA)`
-- [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 12: `TAFD25 (HOYA)`
-- [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 27: `TAFD25 (HOYA)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 13: `TAFD25 equiv. (181600/4659)`
 
 ### E-FD15 — 4 occurrences
 
@@ -279,6 +282,13 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) 9: `S-TIH11 / N-SF10 (dense flint)`
 - [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) 8: `SF10 (Schott) / S-TIH11 (OHARA)`
 - [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 10: `S-TIH11 (OHARA)`
+
+### S-TIH53W — 4 occurrences
+
+- [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 27: `S-TIH53W type (855/248)`
+- [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) 17: `855248 — S-TIH53W family (OHARA)`
+- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 27: `OHARA S-TIH53W`
+- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 13: `S-TIH53W (OHARA)`
 
 ### S-TIL25 — 4 occurrences
 
@@ -340,12 +350,6 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
-
-### S-TIH53W — 3 occurrences
-
-- [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 27: `S-TIH53W type (855/248)`
-- [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) 17: `855248 — S-TIH53W family (OHARA)`
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 27: `OHARA S-TIH53W`
 
 ### S-TIL27 — 3 occurrences
 
@@ -782,6 +786,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
 
+### BACD14 — 1 occurrence
+
+- [smc PENTAX-F 85mm f/2.8 Soft](../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 1: `BACD14 (HOYA)`
+
 ### BK3 — 1 occurrence
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
@@ -1001,6 +1009,10 @@ or per-lens patent backfills.
 ### S-LAL10 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 12: `S-LAL10 (OHARA)`
+
+### S-LAL12 — 1 occurrence
+
+- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
 
 ### S-LAL60 — 1 occurrence
 

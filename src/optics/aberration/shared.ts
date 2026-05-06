@@ -53,9 +53,10 @@ export function computeRealRayHit(
   lastSurfZ: number,
   imagePlaneZ: number,
   signedFraction: number,
+  aberrationT = 0,
 ): RealRayHit | null {
   const h = signedFraction * currentEPSD;
-  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L);
+  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
   if (ray.clipped) return null;
 
   const intercept = axialIntercept(ray.y, ray.u, lastSurfZ);
@@ -84,6 +85,7 @@ export function computeSymmetricRealSample(
   lastSurfZ: number,
   imagePlaneZ: number,
   fraction: number,
+  aberrationT = 0,
 ): SymmetricRealSample | null {
   const plusHit = computeRealRayHit(
     L,
@@ -95,6 +97,7 @@ export function computeSymmetricRealSample(
     lastSurfZ,
     imagePlaneZ,
     fraction,
+    aberrationT,
   );
   const minusHit = computeRealRayHit(
     L,
@@ -106,6 +109,7 @@ export function computeSymmetricRealSample(
     lastSurfZ,
     imagePlaneZ,
     -fraction,
+    aberrationT,
   );
   if (plusHit === null || minusHit === null) return null;
 

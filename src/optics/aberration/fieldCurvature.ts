@@ -5,12 +5,19 @@ import {
   FIELD_CURVATURE_FIELD_FRACTIONS,
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
-import { traceChiefRelativeSkewRay, traceChiefRelativeSkewRayChromatic } from "../optics.js";
+import {
+  computeFieldGeometryAtState,
+  thick,
+  traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
+  type FieldGeometryState,
+} from "../optics.js";
 import {
   bestFocusPlaneForDirection,
-  computeOffAxisFieldGeometry,
+  computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
   traceOrthogonalOffAxisBundle,
+  type OffAxisFieldGeometry,
 } from "./offAxis.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
@@ -140,14 +147,24 @@ function focusPlaneFromRelativeHits(
 
 function computeStandardizedFieldFocus(
   L: RuntimeLens,
-  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  geometry: OffAxisFieldGeometry,
   focusT: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
   channel?: ChromaticChannel,
+  aberrationT = 0,
 ): StandardizedFieldFocus | null {
-  const chiefRay = traceOffAxisChiefRay(geometry, L, focusT, zoomT, currentEPSD, currentPhysStopSD, channel);
+  const chiefRay = traceOffAxisChiefRay(
+    geometry,
+    L,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    channel,
+    aberrationT,
+  );
   if (chiefRay === null) return null;
 
   const parabasalFraction = parabasalPupilFraction(currentEPSD);
@@ -167,6 +184,7 @@ function computeStandardizedFieldFocus(
           true,
           L,
           channel,
+          aberrationT,
         )
       : traceChiefRelativeSkewRay(
           xFraction,
@@ -179,6 +197,7 @@ function computeStandardizedFieldFocus(
           currentPhysStopSD,
           true,
           L,
+          aberrationT,
         );
     if (trace.clipped) return null;
 
@@ -221,11 +240,12 @@ function computeStandardizedFieldFocus(
 
 function computeDiagnosticFieldFocus(
   L: RuntimeLens,
-  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  geometry: OffAxisFieldGeometry,
   focusT: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): DiagnosticFieldFocus | null {
   const tangentialBundle = traceOrthogonalOffAxisBundle(
     "tangential",
@@ -236,6 +256,8 @@ function computeDiagnosticFieldFocus(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    undefined,
+    aberrationT,
   );
   const sagittalBundle = traceOrthogonalOffAxisBundle(
     "sagittal",
@@ -246,6 +268,8 @@ function computeDiagnosticFieldFocus(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    undefined,
+    aberrationT,
   );
   if (tangentialBundle === null || sagittalBundle === null) return null;
   if (tangentialBundle.validSampleCount < 3 || sagittalBundle.validSampleCount < 3) return null;
@@ -272,11 +296,12 @@ function computeDiagnosticFieldFocus(
 
 function computeChromaticFieldShifts(
   L: RuntimeLens,
-  geometry: ReturnType<typeof computeOffAxisFieldGeometry> & object,
+  geometry: OffAxisFieldGeometry,
   focusT: number,
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  aberrationT = 0,
 ): ChromaticFieldShift[] | null {
   const shifts: ChromaticFieldShift[] = [];
 
@@ -289,6 +314,7 @@ function computeChromaticFieldShifts(
       currentEPSD,
       currentPhysStopSD,
       channel,
+      aberrationT,
     );
     if (fieldFocus === null) return null;
 
@@ -311,10 +337,20 @@ function computeFieldCurvatureField(
   currentPhysStopSD: number,
   meta: FieldCurvatureFieldMeta,
   chromatic: boolean,
+  stateGeometry: FieldGeometryState,
+  aberrationT = 0,
 ): FieldCurvatureFieldResult {
   if (currentEPSD <= 0 || L.N < 1) return emptyFieldCurvatureFieldResult(meta);
 
-  const geometry = computeOffAxisFieldGeometry(L, zPos, zoomT, meta.fieldFraction);
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    meta.fieldFraction,
+    stateGeometry,
+    aberrationT,
+  );
   if (geometry === null) return emptyFieldCurvatureFieldResult(meta);
 
   const standardizedFieldFocus = computeStandardizedFieldFocus(
@@ -324,10 +360,20 @@ function computeFieldCurvatureField(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
+    undefined,
+    aberrationT,
   );
   if (standardizedFieldFocus === null) return emptyFieldCurvatureFieldResult(meta);
 
-  const diagnosticFieldFocus = computeDiagnosticFieldFocus(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD);
+  const diagnosticFieldFocus = computeDiagnosticFieldFocus(
+    L,
+    geometry,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+  );
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
   const petzvalBestFocusZ = geometry.imagePlaneZ + petzvalShiftMm;
@@ -355,7 +401,7 @@ function computeFieldCurvatureField(
     diagnosticAstigmaticDifferenceMm: diagnosticFieldFocus?.astigmaticDifferenceMm,
     diagnosticAstigmaticDifferenceUm: diagnosticFieldFocus?.astigmaticDifferenceUm,
     chromaticFieldShifts: chromatic
-      ? computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD)
+      ? computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT)
       : null,
     usable: true,
   };
@@ -369,18 +415,42 @@ export function computeFieldCurvature(
   currentEPSD: number,
   currentPhysStopSD: number,
   chromatic = false,
+  aberrationT = 0,
 ): FieldCurvatureResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
+  const stateGeometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
-    computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta, chromatic),
+    computeFieldCurvatureField(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      meta,
+      chromatic,
+      stateGeometry,
+      aberrationT,
+    ),
   );
   const curveFields = fieldCurvatureFieldMeta(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS).map((meta) =>
-    computeFieldCurvatureField(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, meta, chromatic),
+    computeFieldCurvatureField(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      meta,
+      chromatic,
+      stateGeometry,
+      aberrationT,
+    ),
   );
   const usableFields = fields.filter((field) => field.usable);
   const usableCurveFields = curveFields.filter((field) => field.usable);

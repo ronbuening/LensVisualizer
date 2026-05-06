@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **148** lenses scanned
-- **1668** glass surfaces examined
-- **1665** surfaces with non-empty `glass` strings
-- **1064** of those resolved to a catalog entry
-- **244** mismatches found (22.9% of resolved surfaces)
-- **82** distinct lens files affected
+- **151** lenses scanned
+- **1707** glass surfaces examined
+- **1704** surfaces with non-empty `glass` strings
+- **1094** of those resolved to a catalog entry
+- **253** mismatches found (23.1% of resolved surfaces)
+- **84** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -33,13 +33,16 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH14 | 8 | |
 | S-LAH58 | 7 | |
 | S-BSL7 | 7 | |
+| S-LAH64 | 6 | |
 | S-NPH4 | 6 | |
 | S-BAL14 | 6 | |
+| S-TIH53 | 6 | |
 | S-TIM25 | 6 | |
 | S-BAL35 | 5 | |
 | S-LAM54 | 5 | |
 | S-LAM51 | 5 | |
 | S-TIM28 | 5 | |
+| S-TIM27 | 5 | |
 | S-NBH55 | 5 | |
 | S-LAH51 | 5 | |
 | S-LAL14 | 5 | |
@@ -47,10 +50,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIM2 | 5 | |
-| S-LAH64 | 4 | |
 | S-LAH65V | 4 | |
-| S-TIM27 | 4 | |
-| S-TIH53 | 4 | |
 | S-NPH53 | 4 | |
 | S-NBH8 | 4 | |
 | S-TIM22 | 4 | |
@@ -62,19 +62,20 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM2 | 3 | |
 | S-LAL8 | 3 | |
 | TAFD45 | 3 | |
+| S-LAH66 | 3 | |
 | S-LAH65 | 3 | |
+| S-BAL42 | 3 | |
 | SF6 | 3 | |
 | S-LAH97 | 3 | |
 | S-LAL9 | 2 | |
 | S-NPH1 | 2 | |
+| S-LAH59 | 2 | |
 | S-LAH60 | 2 | |
-| S-LAH66 | 2 | |
 | N-SK14 | 2 | |
 | SF2 | 2 | |
 | S-NBH5 | 2 | |
 | S-NPH5 | 2 | |
 | S-BAM4 | 2 | |
-| S-BAL42 | 2 | |
 | S-LAH99 | 2 | |
 | SF4 | 2 | |
 | N-SK16 | 2 | |
@@ -88,7 +89,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAL18 | 1 | |
 | S-NPH3 | 1 | |
 | S-LAH55V | 1 | |
-| S-LAH59 | 1 | |
 | S-FPM2 | 1 | |
 | S-LAM60 | 1 | |
 | S-LAH63 | 1 | |
@@ -97,6 +97,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BSM81 | 1 | |
 | TAFD55 | 1 | |
 | E-FDS1 | 1 | |
+| S-LAH63Q | 1 | |
 | S-PHM52 | 1 | |
 | TAFD37 | 1 | |
 | N-SK2 | 1 | |
@@ -216,6 +217,17 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 27 | `S-NBH56 (OHARA)` | S-NBH56 | 1.80610 | 1.85478 | +0.0487 |
 | 29A | `S-LAH66 (OHARA)` | S-LAH66 | 1.85400 | 1.77250 | -0.0815 |
 | 32 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00100 | 1.92286 | -0.0781 |
+
+### [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) — US 7,289,274 B1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `S-LAH66 (OHARA)` | S-LAH66 | 1.74400 | 1.77250 | +0.0285 |
+| 6 | `S-TIH53 (OHARA)` | S-TIH53 | 1.80518 | 1.84666 | +0.0415 |
+| 17 | `S-LAH64 (OHARA)` | S-LAH64 | 1.77250 | 1.78800 | +0.0155 |
+| 20 | `S-TIH53 (OHARA)` | S-TIH53 | 1.80518 | 1.84666 | +0.0415 |
+| 22 | `S-LAH64 (OHARA)` | S-LAH64 | 1.77250 | 1.78800 | +0.0155 |
+| 29 | `S-LAH59 (OHARA)` | S-LAH59 | 1.80100 | 1.81600 | +0.0150 |
 
 ### [CANON FD 50mm f/1.2 L](../src/lens-data/canon/CanonFD50mmf12L.data.ts) — US 4,364,644
 
@@ -476,6 +488,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 8 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
 | 15 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
 | 18 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
+
+### [smc PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) — US 7,301,711 B2
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 2 | `S-BAL42 (OHARA)` | S-BAL42 | 1.71300 | 1.58313 | -0.1299 |
+| 4 | `S-LAH63Q (OHARA)` | S-LAH63Q | 1.77250 | 1.80440 | +0.0319 |
+| 11 | `S-TIM27 (OHARA)` | S-TIM27 | 1.64769 | 1.63980 | -0.0079 |
 
 ### [SONY SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) — US 2013/0033768 A1
 

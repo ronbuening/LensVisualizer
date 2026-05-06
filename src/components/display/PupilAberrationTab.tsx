@@ -4,7 +4,7 @@
  *
  * Both profiles are computed in a single pass via computeBothPupilAberrationProfiles,
  * which shares the per-angle chief-ray bisection between the two computations.
- * The memoized result reacts to changes in focusT or zoomT.
+ * The memoized result reacts to changes in focusT, zoomT, or aberrationT.
  */
 
 import { useMemo } from "react";
@@ -20,13 +20,21 @@ interface PupilAberrationTabProps {
   t: Theme;
   focusT: number;
   zoomT: number;
+  aberrationT?: number;
   fieldGeometry?: FieldGeometryState | null;
 }
 
-export default function PupilAberrationTab({ L, t, focusT, zoomT, fieldGeometry }: PupilAberrationTabProps) {
+export default function PupilAberrationTab({
+  L,
+  t,
+  focusT,
+  zoomT,
+  aberrationT = 0,
+  fieldGeometry,
+}: PupilAberrationTabProps) {
   const profiles = useMemo(
-    () => computeBothPupilAberrationProfiles(focusT, zoomT, L, undefined, fieldGeometry ?? undefined),
-    [L, focusT, zoomT, fieldGeometry],
+    () => computeBothPupilAberrationProfiles(focusT, zoomT, L, undefined, fieldGeometry ?? undefined, aberrationT),
+    [L, focusT, zoomT, aberrationT, fieldGeometry],
   );
 
   if (profiles.ep.samples.length < 2) {

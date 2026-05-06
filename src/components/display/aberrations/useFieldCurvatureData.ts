@@ -17,12 +17,21 @@ export default function useFieldCurvatureData({
   zPos,
   focusT,
   zoomT,
-  aberrationT: _aberrationT = 0,
+  aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
 }: Params) {
   return useMemo(() => {
-    const fieldCurvatureResult = computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+    const fieldCurvatureResult = computeFieldCurvature(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      false,
+      aberrationT,
+    );
     const chromaticFieldCurvatureResult = computeFieldCurvature(
       L,
       zPos,
@@ -31,7 +40,8 @@ export default function useFieldCurvatureData({
       currentEPSD,
       currentPhysStopSD,
       true,
+      aberrationT,
     );
     return { fieldCurvatureResult, chromaticFieldCurvatureResult };
-  }, [L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD]);
+  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD]);
 }

@@ -108,10 +108,11 @@ describe("AnalysisDrawerContent", () => {
   });
 
   it("maps the coma tab to ComaTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="coma" />);
+    render(<AnalysisDrawerContent {...baseProps} activeTab="coma" aberrationT={0.37} />);
 
     expect(screen.getByText("Coma")).toBeTruthy();
     expect(mockComaTab).toHaveBeenCalledTimes(1);
+    expect(mockComaTab.mock.calls[0][0].aberrationT).toBe(0.37);
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
@@ -130,10 +131,11 @@ describe("AnalysisDrawerContent", () => {
   });
 
   it("maps the pupils tab to PupilAberrationTab", () => {
-    render(<AnalysisDrawerContent {...baseProps} activeTab="pupils" />);
+    render(<AnalysisDrawerContent {...baseProps} activeTab="pupils" aberrationT={0.37} />);
 
     expect(screen.getByText("Pupils")).toBeTruthy();
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
+    expect(mockPupilAberrationTab.mock.calls[0][0].aberrationT).toBe(0.37);
     expect(mockVignettingTab).not.toHaveBeenCalled();
   });
 
