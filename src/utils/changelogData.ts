@@ -19,8 +19,14 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-06 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-06",
+    type: "lens",
+    summary:
+      "Added Sigma 40mm f/1.4 DG DN Art, Voigtlander Macro Apo-Lanthar 125mm f/2.5, and Apo-Lanthar 180mm f/4 SL Close Focus",
+  },
   // ── 2026-05-05 ──────────────────────────────────────────────────────────
-
   {
     date: "2026-05-05",
     type: "fix",
