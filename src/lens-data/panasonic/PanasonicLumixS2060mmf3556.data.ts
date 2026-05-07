@@ -45,6 +45,8 @@ const LENS_DATA = {
   focalLengthDesign: [20.81, 57.63],
   apertureMarketing: 3.5,
   apertureDesign: 3.57,
+  lensMounts: ["l-mount"],
+  imageFormat: "135-full-frame",
   patentYear: 2021,
   elementCount: 11,
   groupCount: 9,

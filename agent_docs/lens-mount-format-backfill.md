@@ -7,7 +7,7 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Seeded lens files: 71
+- Seeded lens files: 101
 - Seeded formats: `110`, `135-full-frame`, `aps-c`
 - Seeded mounts: `canon-ef`, `canon-fd`, `canon-rf`, `fujifilm-x`, `l-mount`, `nikon-f`, `nikon-z`,
   `pentax-110`, `pentax-k`, `sony-fe`
@@ -51,20 +51,34 @@ the fields unset and add a note here until a source check resolves it.
 - Pentax K APS-C: `PentaxDA1650mmf28`, `PentaxDA50135mmf28`
 - L-mount full-frame: `PanasonicS35mmf18`, `PanasonicSPro50mmf14`
 
+### Batch 4
+
+- Fujifilm X APS-C: `FujifilmXF1655mmf28R`, `FujifilmXF1680mmf4`, `FujifilmXF200mmf2R`,
+  `FujifilmXF50140mmf28R`, `FujifilmXF50f1`, `FujifilmXF60mmf24R`, `FujifilmXF90mmf2`
+- Olympus OM full-frame: `OlympusZuiko85mmf2`, `OlympusZuikoAuto21mmf2`, `OlympusZuikoAutoMacro50mmf2`,
+  `OlympusZuikoAutoMacro90mmf2`, `OlympusZuikoAutoS50mmf12`, `OlympusZuikoAutoS50mmf14`,
+  `OlympusZuikoAutoS55mmf12`
+- Minolta SR full-frame: `MinoltaRokkor45mmf2MD`, `MinoltaRokkor50mmf14MD`, `MinoltaVarisoft85mmf28`
+- Leica LTM / M39 full-frame: `CanonSerenar28mmf35`, `CanonSerenar35mmf32`, `CanonSerenar50mmf18`,
+  `CanonSerenar85mmf15`
+- Pentax K full-frame: `PentaxF85mmf28Soft`, `PentaxFA31mmf18ALLtd`
+- L-mount full-frame: `PanasonicLumixS2060mmf3556`
+- Sony E: `SonyFE135mmf18GM`, `SonyFE35mmf28ZA`, `SonyFE55mmf18ZA`, `SonyFE85mmf14GMII`,
+  `SonyFE24mmf18ZA` (APS-C)
+- Fujifilm X APS-C third-party: `VoigtlanderNoktonX50mmf12`
+
 ## Still Needs Review
 
 Prioritize remaining obvious production systems first, then historical and fixed-lens cases:
 
-- Remaining Fujifilm XF lenses: likely `fujifilm-x` with `aps-c`.
-- Remaining Sony E lenses: verify whether each file represents full-frame Sony E (`sony-fe`, `135-full-frame`) or APS-C
-  Sony E before seeding. `SonyFE24mmf18ZA` especially needs review because the product family/name can be confusing.
-- Remaining Panasonic and Sigma mirrorless lenses: likely L-mount full-frame where the file name/product line says S, DG
-  DN, or Lumix S; confirm APS-C/fixed-lens Sigma DP files separately.
-- Remaining Pentax K lenses: Pentax FA/F likely `pentax-k` with `135-full-frame`; confirm any DA/F soft-focus edge cases.
+- Sigma DG DN mirrorless lenses: likely multi-mount Sony E / L-mount full-frame, but confirm the exact production variants
+  represented by each file before seeding.
 - Ricoh GR and Sigma DP compact cameras: leave `lensMounts` unset unless a fixed-camera taxonomy is added; seed only
   `imageFormat` after confirming sensor/film format.
-- Leica, Zeiss, Voigtländer, Olympus, Minolta, Vivitar, and historical Canon Serenar lenses need source checks because
-  production variants and mount histories are easy to mislabel.
+- Leica, Zeiss, Voigtländer, Vivitar, and remaining historical lenses need source checks because production variants and
+  mount histories are easy to mislabel.
+- Skipped this pass: `VoigtlanderNokton50f1` needs source review for exact production mount coverage before assigning
+  mount ids.
 
 Useful scan commands:
 

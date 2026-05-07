@@ -38,6 +38,8 @@ const LENS_DATA = {
   focalLengthDesign: 85.0,
   apertureMarketing: 1.5,
   apertureDesign: 1.5,
+  lensMounts: ["leica-ltm"],
+  imageFormat: "135-full-frame",
   patentYear: 1953,
   elementCount: 7,
   groupCount: 4,

@@ -45,6 +45,8 @@ const LENS_DATA = {
   /* ── Explicit metadata ── */
   focalLengthMarketing: 50,
   apertureMarketing: 1.4,
+  lensMounts: ["minolta-sr"],
+  imageFormat: "135-full-frame",
   patentYear: 1980,
   elementCount: 7,
   groupCount: 6,
