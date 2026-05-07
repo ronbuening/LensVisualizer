@@ -49,6 +49,8 @@ const LENS_DATA = {
   focalLengthDesign: [16.48, 48.5],
   apertureMarketing: 2.8,
   apertureDesign: 2.9,
+  lensMounts: ["pentax-k"],
+  imageFormat: "aps-c",
   patentYear: 2007,
   elementCount: 15,
   groupCount: 12,

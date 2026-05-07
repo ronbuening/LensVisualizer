@@ -45,6 +45,8 @@ const LENS_DATA = {
   focalLengthDesign: [14.4, 23.8],
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
+  lensMounts: ["nikon-f"],
+  imageFormat: "135-full-frame",
   patentYear: 2008,
   elementCount: 15,
   groupCount: 11,
