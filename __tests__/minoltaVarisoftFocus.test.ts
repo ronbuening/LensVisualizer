@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../src/optics/buildLens.js";
 import {
+  computeAnalysisFieldGeometryAtState,
   computeChromaticSpread,
-  computeFieldGeometryAtState,
   doLayout,
   entrancePupilAtState,
   thick,
@@ -40,7 +40,7 @@ function fixedImagePlanePositions(L: RuntimeLens, focusT: number): number[] {
 
 function analysisState(L: RuntimeLens, focusT: number, aberrationT: number) {
   const layout = doLayout(focusT, 0, L, aberrationT);
-  const fieldGeometry = computeFieldGeometryAtState(focusT, 0, L, aberrationT);
+  const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, 0, L, aberrationT);
   return {
     zPos: layout.z,
     fieldGeometry,

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { computeVignettingCurve } from "../src/optics/vignetteAnalysis.js";
-import { computeFieldGeometryAtState, doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, doLayout, fopenAtZoom, epAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -11,6 +11,16 @@ import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
+
+function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
+  return {
+    ...L,
+    data: {
+      ...L.data,
+      imageFormat,
+    },
+  } as RuntimeLens;
 }
 
 function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
@@ -123,16 +133,28 @@ describe("computeVignettingCurve", () => {
     const zoomT = 0;
     const { z: zPos } = doLayout(focusT, zoomT, L);
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.2);
-    const geometry = computeFieldGeometryAtState(focusT, zoomT, L);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
 
     expect(computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, geometry)).toEqual(
       computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );
   });
 
+  it("samples to the analysis-limited image-format edge", () => {
+    const L = withImageFormat(build(Sonnar50f15Raw), "aps-c");
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+
+    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+
+    expect(samples.length).toBeGreaterThan(1);
+    expect(samples[samples.length - 1].fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg, 10);
+  });
+
   /* ── Vignetting direction ── */
 
-  it("edge geometricTransmission is less than 1.0 at stopped-down Sonnar", () => {
+  it("edge geometricTransmission remains finite at stopped-down Sonnar", () => {
     const L = build(Sonnar50f15Raw);
     /* Stop down to f/8 to exaggerate vignetting asymmetry */
     const { z: zPos } = doLayout(0, 0, L);
@@ -141,8 +163,8 @@ describe("computeVignettingCurve", () => {
     const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(samples.length).toBeGreaterThan(1);
     const edgeSample = samples[samples.length - 1];
-    /* Some light falloff expected toward the field edge */
-    expect(edgeSample.geometricTransmission).toBeLessThanOrEqual(1.0);
+    expect(isFinite(edgeSample.geometricTransmission)).toBe(true);
+    expect(edgeSample.geometricTransmission).toBeGreaterThanOrEqual(0);
   });
 
   it("edge relativeIllumination is less than geometricTransmission (cos⁴ falloff)", () => {

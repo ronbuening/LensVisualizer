@@ -17,6 +17,7 @@ import {
   computeBestFocusZ,
 } from "../src/optics/aberration/bokeh.js";
 import {
+  computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
   doLayout,
   epAtZoom,
@@ -37,6 +38,16 @@ import type { BokehPoint } from "../src/optics/aberration/types.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
+
+function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
+  return {
+    ...L,
+    data: {
+      ...L.data,
+      imageFormat,
+    },
+  } as RuntimeLens;
 }
 
 function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
@@ -164,6 +175,36 @@ describe("state-aware off-axis geometry", () => {
   });
 });
 
+describe("analysis field geometry", () => {
+  const L = build(NikonAF28f14DRaw);
+
+  it("matches full-frame when imageFormat is missing", () => {
+    const missingFormat = withImageFormat(L, undefined);
+    const fullFrame = withImageFormat(L, "135-full-frame");
+
+    const missingGeometry = computeAnalysisFieldGeometryAtState(0, 0, missingFormat);
+    const fullFrameGeometry = computeAnalysisFieldGeometryAtState(0, 0, fullFrame);
+
+    expect(missingGeometry.halfFieldDeg).toBeCloseTo(fullFrameGeometry.halfFieldDeg, 10);
+  });
+
+  it("uses a smaller APS-C analysis field than full-frame for the same optics", () => {
+    const apsC = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "aps-c"));
+    const fullFrame = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "135-full-frame"));
+
+    expect(apsC.halfFieldDeg).toBeGreaterThan(0);
+    expect(apsC.halfFieldDeg).toBeLessThan(fullFrame.halfFieldDeg);
+  });
+
+  it("does not expand beyond the raw vignetting-limited field for larger formats", () => {
+    const raw = computeFieldGeometryAtState(0, 0, L);
+    const largeFormat = computeAnalysisFieldGeometryAtState(0, 0, withImageFormat(L, "8x10"));
+
+    expect(largeFormat.halfFieldDeg).toBeLessThanOrEqual(raw.halfFieldDeg);
+    expect(largeFormat.halfFieldDeg).toBeCloseTo(raw.halfFieldDeg, 10);
+  });
+});
+
 describe("computeBokehFieldFootprint", () => {
   const L = build(ApoLantharRaw);
   const layout = doLayout(0, 0, L);
@@ -213,6 +254,25 @@ describe("computeBokehFieldFootprint", () => {
       expect(offAxis!.pupilFootprint.shiftRadius).toBeGreaterThan(onAxis!.pupilFootprint.shiftRadius);
       expect(offAxis!.pupilFootprint.transmission).toBeLessThanOrEqual(onAxis!.pupilFootprint.transmission);
     }
+  });
+
+  it("uses the analysis-limited image-format field angle", () => {
+    const apsC = withImageFormat(L, "aps-c");
+    const apsCLayout = doLayout(0, 0, apsC);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, apsC);
+    const result = computeBokehFieldFootprint(
+      apsC,
+      apsCLayout.z,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+      0.75,
+      apsCLayout.imgZ + 0.5,
+    );
+
+    expect(result).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg * 0.75, 8);
   });
 
   it("returns unusable result when currentEPSD is zero", () => {

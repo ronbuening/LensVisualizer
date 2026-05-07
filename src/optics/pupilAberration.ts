@@ -28,7 +28,7 @@
  */
 
 import {
-  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
   solveChiefRayLaunchHeight,
   epZRelStopAtZoom,
   xpZRelLastSurfAtZoom,
@@ -198,7 +198,7 @@ export function computePupilAberrationProfile(
   geometry?: FieldGeometryState,
   aberrationT = 0,
 ): PupilAberrationProfile {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
 
@@ -252,7 +252,7 @@ export function computeExitPupilAberrationProfile(
   geometry?: FieldGeometryState,
   aberrationT = 0,
 ): ExitPupilAberrationProfile {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg } = geom;
   const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
 
@@ -333,7 +333,7 @@ export function computeBothPupilAberrationProfiles(
   geometry?: FieldGeometryState,
   aberrationT = 0,
 ): BothPupilAberrationProfiles {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
     focusT,

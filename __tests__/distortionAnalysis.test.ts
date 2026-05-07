@@ -1,12 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optics/distortionAnalysis.js";
-import {
-  computeFieldGeometryAtState,
-  doLayout,
-  eflAtFocus,
-  fopenAtZoom,
-  halfFieldAtZoom,
-} from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, doLayout, eflAtFocus, fopenAtZoom } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -63,7 +57,7 @@ describe("computeDistortionCurve", () => {
     const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD);
     expect(samples.length).toBeGreaterThan(1);
 
-    const halfField = halfFieldAtZoom(0, L);
+    const halfField = computeAnalysisFieldGeometryAtState(0, 0, L).halfFieldDeg;
     const lastAngle = samples[samples.length - 1].fieldAngleDeg;
     expect(lastAngle).toBeGreaterThan(0);
     expect(lastAngle).toBeLessThanOrEqual(halfField);
@@ -104,7 +98,7 @@ describe("computeDistortionCurve", () => {
     const { z: zPos } = doLayout(0.25, 0, L);
     const dynamicEFL = eflAtFocus(0.25, 0, L);
     const { currentPhysStopSD } = apertureAt(L, 0, 0.2);
-    const geometry = computeFieldGeometryAtState(0.25, 0, L);
+    const geometry = computeAnalysisFieldGeometryAtState(0.25, 0, L);
 
     expect(computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD, geometry)).toEqual(
       computeDistortionCurve(L, zPos, 0.25, 0, dynamicEFL, currentPhysStopSD),

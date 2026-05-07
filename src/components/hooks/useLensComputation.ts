@@ -17,7 +17,7 @@ import {
   fopenAtZoom,
   eflAtFocus,
   effectiveFNumber,
-  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
 } from "../../optics/optics.js";
 import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
 import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
@@ -130,7 +130,7 @@ export default function useLensComputation({
   );
 
   const fieldGeometry = useMemo(
-    () => (L ? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT) : null),
+    () => (L ? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT) : null),
     [L, focusT, zoomT, aberrationT],
   );
 

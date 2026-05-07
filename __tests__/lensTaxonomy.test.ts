@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { IMAGE_FORMATS, LENS_MOUNTS } from "../src/utils/lensTaxonomy.js";
+import {
+  DEFAULT_IMAGE_FORMAT_ID,
+  IMAGE_FORMATS,
+  LENS_MOUNTS,
+  resolveImageFormatMetadata,
+} from "../src/utils/lensTaxonomy.js";
 
 describe("lensTaxonomy", () => {
   it("keeps mount ids unique", () => {
@@ -26,5 +31,16 @@ describe("lensTaxonomy", () => {
       const expectedDiagonal = Math.hypot(format.widthMm, format.heightMm);
       expect(format.diagonalMm, `${format.id}: diagonal`).toBeCloseTo(expectedDiagonal, 1);
     }
+  });
+
+  it("includes canonical larger film sheet and roll-film formats", () => {
+    expect(IMAGE_FORMATS.map((format) => format.id)).toEqual(expect.arrayContaining(["6x7", "6x9", "5x7", "8x10"]));
+  });
+
+  it("falls back to full-frame metadata when a format id is missing", () => {
+    expect(DEFAULT_IMAGE_FORMAT_ID).toBe("135-full-frame");
+    expect(resolveImageFormatMetadata(undefined).id).toBe("135-full-frame");
+    expect(resolveImageFormatMetadata("not-a-format").id).toBe("135-full-frame");
+    expect(resolveImageFormatMetadata("aps-c").id).toBe("aps-c");
   });
 });

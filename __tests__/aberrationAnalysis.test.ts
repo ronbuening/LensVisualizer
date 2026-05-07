@@ -25,6 +25,7 @@ import {
   traceOrthogonalOffAxisBundle,
 } from "../src/optics/aberration/offAxis.js";
 import {
+  computeAnalysisFieldGeometryAtState,
   doLayout,
   entrancePupilAtState,
   epAtZoom,
@@ -47,6 +48,16 @@ import { bestRelativeFocusPlane } from "../src/optics/aberration/shared.js";
 /** Build a RuntimeLens from raw lens data + defaults. */
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
+}
+
+function withImageFormat(L: RuntimeLens, imageFormat: LensData["imageFormat"]): RuntimeLens {
+  return {
+    ...L,
+    data: {
+      ...L.data,
+      imageFormat,
+    },
+  } as RuntimeLens;
 }
 
 /** Compute aperture metrics at given zoom/stopdown for a lens. */
@@ -615,7 +626,8 @@ describe("computeMeridionalComa", () => {
 
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
     expect(geometry).not.toBeNull();
     expect(result!.fieldAngleDeg).toBeCloseTo(geometry!.fieldAngleDeg, 8);
   });
@@ -628,7 +640,8 @@ describe("computeMeridionalComa", () => {
     const result = computeMeridionalComa(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
     expect(result).not.toBeNull();
 
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
     expect(geometry).not.toBeNull();
 
     const bundle = traceOrthogonalOffAxisBundle(
@@ -669,6 +682,20 @@ describe("computeComaPreview", () => {
     expect(result!.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5, 0.75]);
     expect(result!.fields.map((field) => field.label)).toEqual(["Center", "25%", "50%", "75%"]);
     expect(result!.fields).toHaveLength(4);
+  });
+
+  it("uses the analysis-limited image-format field angle", () => {
+    const L = withImageFormat(build(ApoLantharRaw), "aps-c");
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+
+    const result = computeComaPreview(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    const field = result!.fields.find((sample) => sample.fieldFraction === 0.75);
+    expect(field).toBeDefined();
+    expect(field!.usable).toBe(true);
+    expect(field!.fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg * 0.75, 8);
   });
 
   it("returns dense samples for each usable preview tile", () => {
@@ -757,7 +784,8 @@ describe("computeComaPointCloudPreview", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction, fieldGeometry);
     expect(geometry).not.toBeNull();
 
     const bundle = traceCircularOffAxisBundle(
@@ -1072,6 +1100,20 @@ describe("computeFieldCurvature", () => {
     expect(result!.curveFields[result!.curveFields.length - 1]?.label).toBe("100%");
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);
+  });
+
+  it("uses the analysis-limited image-format edge for the 100% field", () => {
+    const L = withImageFormat(build(ApoLantharRaw), "aps-c");
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+
+    const result = computeFieldCurvature(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    expect(result).not.toBeNull();
+    const edgeField = result!.fields.find((field) => field.fieldFraction === 1);
+    expect(edgeField).toBeDefined();
+    expect(edgeField!.usable).toBe(true);
+    expect(edgeField!.fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg, 8);
   });
 
   it("keeps the dense curve sweep aligned with the standard checkpoint fields", () => {

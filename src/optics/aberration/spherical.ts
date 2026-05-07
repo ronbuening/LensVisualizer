@@ -1,4 +1,4 @@
-import { computeFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept, thick } from "../optics.js";
+import { computeAnalysisFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept, thick } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   BokehPoint,
@@ -274,7 +274,7 @@ export function computeSphericalAberrationBlurCharacter(
   const defocusOffsetMm = Math.abs(resolvedBase.longitudinalSaMm) * SA_BLUR_CHARACTER_DEFOCUS_SCALE;
   if (!isFinite(defocusOffsetMm) || defocusOffsetMm < SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM) return null;
 
-  const geometryState = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState, aberrationT);
   if (geometry === null) return null;
 

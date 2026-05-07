@@ -1,4 +1,5 @@
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../types/optics.js";
+import { resolveImageFormatMetadata } from "../utils/lensTaxonomy.js";
 import { stateSurfaces, thick, FOCUS_INFINITY_THRESHOLD } from "./layout.js";
 import { traceSurfacesParaxial, traceSurfacesReal } from "./internal/traceSurfaces.js";
 import { traceRay } from "./rayTrace.js";
@@ -71,6 +72,50 @@ export function computeFieldGeometryAtState(
   }
 
   return { halfFieldDeg, yRatio, b, epRatio };
+}
+
+export function computeAnalysisFieldGeometryAtState(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+): FieldGeometryState {
+  const geometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg <= 0 || L.N < 1) return geometry;
+
+  const format = resolveImageFormatMetadata(L.data?.imageFormat);
+  const maxImageHeight = format.diagonalMm / 2;
+  if (!isFinite(maxImageHeight) || maxImageHeight <= 0) return geometry;
+
+  const zPos = [0];
+  for (let i = 0; i < L.N - 1; i++) zPos.push(zPos[i] + thick(i, focusT, zoomT, L, aberrationT));
+
+  const edgeImageHeight = chiefRayImageHeightAccurate(
+    geometry.halfFieldDeg,
+    zPos,
+    focusT,
+    zoomT,
+    L,
+    geometry,
+    aberrationT,
+  );
+  if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return geometry;
+
+  const formatHalfFieldDeg = solveFieldAngleForImageHeightAccurate(
+    maxImageHeight,
+    zPos,
+    focusT,
+    zoomT,
+    L,
+    geometry,
+    aberrationT,
+  );
+  if (formatHalfFieldDeg === null || !isFinite(formatHalfFieldDeg)) return geometry;
+
+  return {
+    ...geometry,
+    halfFieldDeg: Math.min(geometry.halfFieldDeg, Math.max(0, formatHalfFieldDeg)),
+  };
 }
 
 export function traceChiefRayAtAngle(
