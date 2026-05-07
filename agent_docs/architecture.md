@@ -52,6 +52,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 ## Related Docs
 
 - [`adding_a_lens.md`](adding_a_lens.md) - lens data workflow and validation troubleshooting.
+- [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) - mount/format metadata backfill status.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.

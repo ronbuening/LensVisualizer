@@ -27,6 +27,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-05-07",
+    type: "improvement",
+    summary:
+      "Expanded lens mount and image-format metadata coverage across modern Canon, Nikon, Fujifilm, and Sony lenses",
+  },
+  {
+    date: "2026-05-07",
     type: "lens",
     summary: "Added Panasonic S 20-60mm f/3.5-5.6 and two Pentax 110 lenses: 24mm f/2.8 and 50mm f/2.8",
   },

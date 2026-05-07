@@ -31,6 +31,8 @@ const LENS_DATA = {
   focalLengthDesign: 100.81,
   apertureMarketing: 2.8,
   apertureDesign: 2.92,
+  lensMounts: ["canon-rf"],
+  imageFormat: "135-full-frame",
   patentYear: 2021,
   elementCount: 17,
   groupCount: 13,

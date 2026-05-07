@@ -8,6 +8,8 @@
 - `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
 - Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
 - Lens data files are TypeScript (`.data.ts`) with `satisfies LensDataInput` for compile-time type checking — also validated at runtime by `validateLensData()`
+- `lensMounts` and `imageFormat` must use canonical ids from `src/utils/lensTaxonomy.ts`; leave uncertain lenses unset
+  and track them in `agent_docs/lens-mount-format-backfill.md`
 - Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
 - `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
