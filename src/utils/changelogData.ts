@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-07",
+    type: "improvement",
+    summary: "Limited field-based analysis views to each lens image-format diagonal",
+  },
+  {
+    date: "2026-05-07",
     type: "feature",
     summary: "Added lens mount and image-format filters to the lens library",
   },

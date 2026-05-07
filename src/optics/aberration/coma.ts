@@ -1,5 +1,5 @@
 import {
-  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
@@ -115,7 +115,7 @@ interface FixedComaPointCloudPreviewFootprint {
 function buildComaTraceContext(L: RuntimeLens, focusT: number, zoomT: number, aberrationT = 0): ComaTraceContext {
   return {
     aberrationT,
-    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L, aberrationT),
+    fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
     tangentialPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential"),
     sagittalPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal"),
     circularPupilSamples: sampleCircularPupil(COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES),

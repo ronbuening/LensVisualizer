@@ -111,6 +111,24 @@ export const IMAGE_FORMATS = [
     sortOrder: 520,
   },
   {
+    id: "6x7",
+    label: "6x7",
+    widthMm: 70,
+    heightMm: 56,
+    diagonalMm: 89.6,
+    aspectRatio: 70 / 56,
+    sortOrder: 540,
+  },
+  {
+    id: "6x9",
+    label: "6x9",
+    widthMm: 84,
+    heightMm: 56,
+    diagonalMm: 101,
+    aspectRatio: 84 / 56,
+    sortOrder: 560,
+  },
+  {
     id: "4x5",
     label: "4x5",
     widthMm: 127,
@@ -118,6 +136,24 @@ export const IMAGE_FORMATS = [
     diagonalMm: 162.6,
     aspectRatio: 5 / 4,
     sortOrder: 700,
+  },
+  {
+    id: "5x7",
+    label: "5x7",
+    widthMm: 177.8,
+    heightMm: 127,
+    diagonalMm: 218.5,
+    aspectRatio: 7 / 5,
+    sortOrder: 720,
+  },
+  {
+    id: "8x10",
+    label: "8x10",
+    widthMm: 254,
+    heightMm: 203.2,
+    diagonalMm: 325.3,
+    aspectRatio: 5 / 4,
+    sortOrder: 740,
   },
 ] as const;
 
@@ -138,6 +174,12 @@ export const IMAGE_FORMAT_BY_ID = Object.fromEntries(IMAGE_FORMATS.map((format) 
   ImageFormatMetadata
 >;
 
+export const DEFAULT_IMAGE_FORMAT_ID: ImageFormatId = "135-full-frame";
+
 export function isImageFormatId(value: unknown): value is ImageFormatId {
   return typeof value === "string" && value in IMAGE_FORMAT_BY_ID;
+}
+
+export function resolveImageFormatMetadata(value: unknown): ImageFormatMetadata {
+  return isImageFormatId(value) ? IMAGE_FORMAT_BY_ID[value] : IMAGE_FORMAT_BY_ID[DEFAULT_IMAGE_FORMAT_ID];
 }

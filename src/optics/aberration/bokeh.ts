@@ -13,7 +13,7 @@
  */
 
 import {
-  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
   doLayout,
   sampleCircularPupil,
   skewImagePlaneIntercept,
@@ -159,7 +159,7 @@ function buildBokehTraceContext(
     aberrationT,
     layout,
     bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
-    fieldGeometryState: computeFieldGeometryAtState(focusT, zoomT, L, aberrationT),
+    fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
     circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
 }

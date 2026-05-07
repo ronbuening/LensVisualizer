@@ -13,6 +13,7 @@
 import {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
+  computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
   skewImagePlaneIntercept,
   solveChiefRayLaunchHeight,
@@ -88,7 +89,7 @@ function computeDistortionReference(
 ): DistortionReference | null {
   if (L.N < 1) return null;
 
-  const geometry = fieldGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
   /* Use the iteratively corrected chief ray for the edge image height so

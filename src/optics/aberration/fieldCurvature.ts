@@ -6,7 +6,7 @@ import {
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
 import {
-  computeFieldGeometryAtState,
+  computeAnalysisFieldGeometryAtState,
   thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
@@ -423,7 +423,7 @@ export function computeFieldCurvature(
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
-  const stateGeometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const stateGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
     computeFieldCurvatureField(
       L,

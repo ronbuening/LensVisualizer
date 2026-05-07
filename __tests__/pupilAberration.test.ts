@@ -5,7 +5,7 @@ import {
   computeBothPupilAberrationProfiles,
   PUPIL_ABERRATION_SAMPLE_COUNT,
 } from "../src/optics/pupilAberration.js";
-import { computeFieldGeometryAtState } from "../src/optics/optics.js";
+import { computeAnalysisFieldGeometryAtState } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -118,7 +118,7 @@ describe("computePupilAberrationProfile — profile metadata", () => {
 describe("computePupilAberrationProfile — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
     const L = build(Sonnar50f15Raw);
-    const geom = computeFieldGeometryAtState(0, 0, L);
+    const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computePupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computePupilAberrationProfile(0, 0, L);
     expect(withGeom.halfFieldDeg).toBeCloseTo(withoutGeom.halfFieldDeg, 10);
@@ -132,7 +132,7 @@ describe("computePupilAberrationProfile — pre-computed geometry shortcut", () 
 
   it("keeps the combined EP/XP profile identical with precomputed geometry", () => {
     const L = build(Sonnar50f15Raw);
-    const geom = computeFieldGeometryAtState(0.25, 0, L);
+    const geom = computeAnalysisFieldGeometryAtState(0.25, 0, L);
     expect(computeBothPupilAberrationProfiles(0.25, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom)).toEqual(
       computeBothPupilAberrationProfiles(0.25, 0, L),
     );
@@ -273,7 +273,7 @@ describe("computeExitPupilAberrationProfile — profile metadata", () => {
 describe("computeExitPupilAberrationProfile — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
     const L = build(Sonnar50f15Raw);
-    const geom = computeFieldGeometryAtState(0, 0, L);
+    const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computeExitPupilAberrationProfile(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computeExitPupilAberrationProfile(0, 0, L);
     expect(withGeom.halfFieldDeg).toBeCloseTo(withoutGeom.halfFieldDeg, 10);
@@ -393,7 +393,7 @@ describe("computeBothPupilAberrationProfiles — agreement with separate functio
 describe("computeBothPupilAberrationProfiles — pre-computed geometry shortcut", () => {
   it("produces the same result when geometry is pre-computed vs derived internally", () => {
     const L = build(Sonnar50f15Raw);
-    const geom = computeFieldGeometryAtState(0, 0, L);
+    const geom = computeAnalysisFieldGeometryAtState(0, 0, L);
     const withGeom = computeBothPupilAberrationProfiles(0, 0, L, PUPIL_ABERRATION_SAMPLE_COUNT, geom);
     const withoutGeom = computeBothPupilAberrationProfiles(0, 0, L);
     expect(withGeom.halfFieldDeg).toBeCloseTo(withoutGeom.halfFieldDeg, 10);

@@ -30,6 +30,7 @@ export {
 export {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
+  computeAnalysisFieldGeometryAtState,
   computeFieldGeometryAtState,
   conjugateK,
   entrancePupilAtState,
