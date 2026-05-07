@@ -69,8 +69,8 @@ const ALL_LENSES_BY_DATE: RecentLensEntry[] = Object.entries(
   .sort(([, a], [, b]) => b.publishedOn.localeCompare(a.publishedOn))
   .map(([key, freshness]) => ({ key, date: freshness.publishedOn }));
 
-/** Up to 5 most recently added lenses, newest-first. */
-const RECENT_LENS_KEYS: RecentLensEntry[] = ALL_LENSES_BY_DATE.slice(0, 5);
+/** Up to 7 most recently added lenses, newest-first. */
+const RECENT_LENS_KEYS: RecentLensEntry[] = ALL_LENSES_BY_DATE.slice(0, 7);
 
 export { LENS_CATALOG, CATALOG_KEYS, mdForKey, RECENT_LENS_KEYS, ALL_LENSES_BY_DATE };
 export type { RecentLensEntry };
