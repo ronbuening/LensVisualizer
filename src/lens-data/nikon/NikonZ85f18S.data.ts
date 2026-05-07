@@ -44,6 +44,8 @@ const LENS_DATA = {
   focalLengthDesign: 83.0,
   apertureMarketing: 1.8,
   apertureDesign: 1.85,
+  lensMounts: ["nikon-z"],
+  imageFormat: "135-full-frame",
   patentYear: 2020,
   elementCount: 12,
   groupCount: 8,
