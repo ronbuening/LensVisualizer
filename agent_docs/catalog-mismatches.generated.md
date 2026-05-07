@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **151** lenses scanned
-- **1707** glass surfaces examined
-- **1704** surfaces with non-empty `glass` strings
-- **1094** of those resolved to a catalog entry
-- **253** mismatches found (23.1% of resolved surfaces)
-- **84** distinct lens files affected
+- **154** lenses scanned
+- **1729** glass surfaces examined
+- **1726** surfaces with non-empty `glass` strings
+- **1109** of those resolved to a catalog entry
+- **259** mismatches found (23.4% of resolved surfaces)
+- **87** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -30,7 +30,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH79 | 13 | |
 | S-TIH18 | 9 | |
 | S-NPH2 | 9 | |
-| S-TIH14 | 8 | |
+| S-TIH14 | 9 | |
 | S-LAH58 | 7 | |
 | S-BSL7 | 7 | |
 | S-LAH64 | 6 | |
@@ -47,15 +47,16 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH51 | 5 | |
 | S-LAL14 | 5 | |
 | S-NBH56 | 5 | |
+| S-TIM22 | 5 | |
+| S-TIH4 | 5 | |
 | S-TIM35 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIM2 | 5 | |
 | S-LAH65V | 4 | |
 | S-NPH53 | 4 | |
 | S-NBH8 | 4 | |
-| S-TIM22 | 4 | |
-| S-TIH4 | 4 | |
 | S-TIH6 | 4 | |
+| SF6 | 4 | |
 | K-VC89 | 4 | |
 | S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
@@ -65,7 +66,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH66 | 3 | |
 | S-LAH65 | 3 | |
 | S-BAL42 | 3 | |
-| SF6 | 3 | |
+| N-SK16 | 3 | |
 | S-LAH97 | 3 | |
 | S-LAL9 | 2 | |
 | S-NPH1 | 2 | |
@@ -78,11 +79,11 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BAM4 | 2 | |
 | S-LAH99 | 2 | |
 | SF4 | 2 | |
-| N-SK16 | 2 | |
 | TAFD30 | 2 | |
 | S-BSM18 | 2 | |
 | S-NBH51 | 2 | |
 | S-NBH52 | 2 | |
+| S-LAH63Q | 2 | |
 | S-LAH55 | 2 | |
 | S-PHM53 | 2 | |
 | S-LAH52 | 1 | |
@@ -97,7 +98,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BSM81 | 1 | |
 | TAFD55 | 1 | |
 | E-FDS1 | 1 | |
-| S-LAH63Q | 1 | |
 | S-PHM52 | 1 | |
 | TAFD37 | 1 | |
 | N-SK2 | 1 | |
@@ -218,7 +218,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 29A | `S-LAH66 (OHARA)` | S-LAH66 | 1.85400 | 1.77250 | -0.0815 |
 | 32 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00100 | 1.92286 | -0.0781 |
 
-### [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) — US 7,289,274 B1
+### [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) — US 7,289,274 B1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
@@ -465,6 +465,22 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 13 | `S-BAL14 (OHARA)` | S-BAL14 | 1.54814 | 1.56883 | +0.0207 |
 | 17 | `S-BAL14 (OHARA)` | S-BAL14 | 1.54814 | 1.56883 | +0.0207 |
 
+### [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) — JP 2021-179551 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 6 | `S-TIH14 (OHARA)` | S-TIH14 | 1.85883 | 1.76182 | -0.0970 |
+| 11A | `S-LAH63Q (OHARA)` | S-LAH63Q | 1.80998 | 1.80440 | -0.0056 |
+| 15 | `S-TIH4 (OHARA)` | S-TIH4 | 1.80610 | 1.75520 | -0.0509 |
+
+### [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) — US 7,301,711 B2
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 2 | `S-BAL42 (OHARA)` | S-BAL42 | 1.71300 | 1.58313 | -0.1299 |
+| 4 | `S-LAH63Q (OHARA)` | S-LAH63Q | 1.77250 | 1.80440 | +0.0319 |
+| 11 | `S-TIM27 (OHARA)` | S-TIM27 | 1.64769 | 1.63980 | -0.0079 |
+
 ### [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) — JP 2013-156459 A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -488,14 +504,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 8 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
 | 15 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
 | 18 | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 | 1.85451 | 1.72047 | -0.1340 |
-
-### [smc PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) — US 7,301,711 B2
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-BAL42 (OHARA)` | S-BAL42 | 1.71300 | 1.58313 | -0.1299 |
-| 4 | `S-LAH63Q (OHARA)` | S-LAH63Q | 1.77250 | 1.80440 | +0.0319 |
-| 11 | `S-TIM27 (OHARA)` | S-TIM27 | 1.64769 | 1.63980 | -0.0079 |
 
 ### [SONY SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) — US 2013/0033768 A1
 
@@ -596,6 +604,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 8 | `H-LAK53A (CDGM) / S-LAL8 class (OHARA) — lanthanum crown, code 729/547` | S-LAL8 | 1.72916 | 1.71299 | -0.0162 |
 | 11 | `S-LAH55 (OHARA) / CDGM equivalent — dense lanthanum flint, code 806/333` | S-LAH55 | 1.80610 | 1.83481 | +0.0287 |
+
+### [PENTAX-110 24mm f/2.8](../src/lens-data/pentax/Pentax11024mmf28.data.ts) — US 4,223,982
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `SF6 (Schott) / S-TIH6 (Ohara)` | SF6 | 1.72825 | 1.80518 | +0.0769 |
+| 5 | `SK5 (Schott) / BACD5 (Hoya)` | N-SK16 | 1.58913 | 1.62041 | +0.0313 |
 
 ### [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) — WO 2019/187633
 
@@ -746,6 +761,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 7 | `TAFD30 (HOYA)` | TAFD30 | 1.80100 | 1.88300 | +0.0820 |
+
+### [PENTAX-110 50mm f/2.8](../src/lens-data/pentax/Pentax11050mmf28.data.ts) — US 4,289,385
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 9 | `S-TIM22 (OHARA)` | S-TIM22 | 1.66446 | 1.64769 | -0.0168 |
 
 ### [RICOH GR 28mm f/2.8](../src/lens-data/ricoh/RicohGR28f28.data.ts) — US 5,760,973
 

@@ -6,6 +6,7 @@ export const MAKER_PREFIXES = [
   { prefix: "CARL ZEISS", display: "Carl Zeiss Oberkochen", slug: "carl-zeiss-oberkochen" },
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
+  { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },
   { prefix: "LEICA", display: "Leica", slug: "leica" },
   { prefix: "MINOLTA", display: "Minolta", slug: "minolta" },

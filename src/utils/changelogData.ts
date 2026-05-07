@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-07 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-07",
+    type: "lens",
+    summary: "Added Panasonic S 20-60mm f/3.5-5.6 and two Pentax 110 lenses: 24mm f/2.8 and 50mm f/2.8",
+  },
   // ── 2026-05-06 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-06",
