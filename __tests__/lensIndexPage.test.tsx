@@ -53,6 +53,8 @@ describe("LensIndexPage", () => {
     expect(screen.getByText("Aperture")).toBeTruthy();
     expect(screen.getByText("Patent Date")).toBeTruthy();
     expect(screen.getByText("Maker")).toBeTruthy();
+    expect(screen.getByText("Mount")).toBeTruthy();
+    expect(screen.getByText("Image Format")).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: /^Nikon \(\d+\)$/ }));
     fireEvent.change(screen.getByLabelText("Minimum patent year value"), { target: { value: "2024" } });
@@ -106,6 +108,31 @@ describe("LensIndexPage", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "By Patent Year ↑" }));
     expect(screen.getByRole("button", { name: "By Patent Year ↓" })).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: "By Mount" }));
+    expect(screen.getByText("Nikon Z")).toBeTruthy();
+    expect(screen.getByText("Sony E")).toBeTruthy();
+    expect(screen.getByText("Unknown Mount")).toBeTruthy();
+    expect(screen.getAllByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2\.0 Aspherical/i }).length).toBe(2);
+
+    fireEvent.click(screen.getByRole("button", { name: "By Format" }));
+    expect(screen.getByText("135 / Full-frame")).toBeTruthy();
+    expect(screen.getByText("Unknown Format")).toBeTruthy();
+  });
+
+  it("filters by lens mount and image format", () => {
+    renderLensIndexPage();
+
+    fireEvent.click(screen.getByRole("button", { name: "Custom Filter" }));
+    fireEvent.click(screen.getByRole("button", { name: /^Sony E \(\d+\)$/ }));
+    fireEvent.click(screen.getByRole("button", { name: /^135 \/ Full-frame \(\d+\)$/ }));
+
+    expect(screen.getByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2\.0 Aspherical/i })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));
+
+    expect(screen.getByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeTruthy();
   });
 
   it("supports maker multi-select plus Enter and Escape numeric-input behavior", () => {

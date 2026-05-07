@@ -41,6 +41,8 @@ const LENS_DATA = {
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 50,
   apertureMarketing: 1.4,
+  lensMounts: ["olympus-om"],
+  imageFormat: "135-full-frame",
   patentYear: 1978,
   elementCount: 7,
   groupCount: 6,

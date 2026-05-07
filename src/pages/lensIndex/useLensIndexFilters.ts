@@ -15,6 +15,7 @@ import {
   numericFilterInputValues,
 } from "./catalog.js";
 import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
+import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
 
 export interface NumericFilterConfig {
   min: number;
@@ -36,6 +37,10 @@ interface LensIndexFiltersResult {
   clearFilters: () => void;
   toggleMaker: (makerSlug: string) => void;
   clearMakerSelection: () => void;
+  toggleMount: (mountId: LensMountId) => void;
+  clearMountSelection: () => void;
+  toggleImageFormat: (formatId: ImageFormatId) => void;
+  clearImageFormatSelection: () => void;
   applyNumericField: (field: NumericFilterField, value: number) => void;
   handleNumericInputChange: (field: NumericFilterField, value: string) => void;
   commitNumericInput: (field: NumericFilterField) => void;
@@ -116,6 +121,34 @@ export default function useLensIndexFilters({ entries, bounds }: UseLensIndexFil
       makerSlugs: [],
     }));
 
+  const toggleMount = (mountId: LensMountId) =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      lensMountIds: previous.lensMountIds.includes(mountId)
+        ? previous.lensMountIds.filter((id) => id !== mountId)
+        : [...previous.lensMountIds, mountId].sort((a, b) => a.localeCompare(b)),
+    }));
+
+  const clearMountSelection = () =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      lensMountIds: [],
+    }));
+
+  const toggleImageFormat = (formatId: ImageFormatId) =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      imageFormatIds: previous.imageFormatIds.includes(formatId)
+        ? previous.imageFormatIds.filter((id) => id !== formatId)
+        : [...previous.imageFormatIds, formatId].sort((a, b) => a.localeCompare(b)),
+    }));
+
+  const clearImageFormatSelection = () =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      imageFormatIds: [],
+    }));
+
   const handleNumericInputChange = (field: NumericFilterField, value: string) =>
     setFilterInputValues((previous) => ({
       ...previous,
@@ -159,6 +192,10 @@ export default function useLensIndexFilters({ entries, bounds }: UseLensIndexFil
     clearFilters,
     toggleMaker,
     clearMakerSelection,
+    toggleMount,
+    clearMountSelection,
+    toggleImageFormat,
+    clearImageFormatSelection,
     applyNumericField,
     handleNumericInputChange,
     commitNumericInput,

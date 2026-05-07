@@ -8,19 +8,33 @@
 
 import type { CSSProperties, KeyboardEvent } from "react";
 import { formatFilterValue } from "./catalog.js";
-import type { CustomFilterState, FilterBounds, MakerOption, NumericFilterField } from "./types.js";
+import type {
+  CustomFilterState,
+  FilterBounds,
+  ImageFormatOption,
+  MakerOption,
+  MountOption,
+  NumericFilterField,
+} from "./types.js";
 import type { Theme } from "../../types/theme.js";
+import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
 
 interface LensIndexFilterPanelProps {
   theme: Theme;
   customFilter: CustomFilterState;
   bounds: FilterBounds;
   makerOptions: MakerOption[];
+  mountOptions: MountOption[];
+  imageFormatOptions: ImageFormatOption[];
   filterInputValues: Record<NumericFilterField, string>;
   activeFilters: boolean;
   onClearFilters: () => void;
   onClearMakerSelection: () => void;
   onToggleMaker: (makerSlug: string) => void;
+  onClearMountSelection: () => void;
+  onToggleMount: (mountId: LensMountId) => void;
+  onClearImageFormatSelection: () => void;
+  onToggleImageFormat: (formatId: ImageFormatId) => void;
   onApplyNumericField: (field: NumericFilterField, value: number) => void;
   onNumericInputChange: (field: NumericFilterField, value: string) => void;
   onNumericInputCommit: (field: NumericFilterField) => void;
@@ -150,11 +164,17 @@ export default function LensIndexFilterPanel({
   customFilter,
   bounds,
   makerOptions,
+  mountOptions,
+  imageFormatOptions,
   filterInputValues,
   activeFilters,
   onClearFilters,
   onClearMakerSelection,
   onToggleMaker,
+  onClearMountSelection,
+  onToggleMount,
+  onClearImageFormatSelection,
+  onToggleImageFormat,
   onApplyNumericField,
   onNumericInputChange,
   onNumericInputCommit,
@@ -278,7 +298,7 @@ export default function LensIndexFilterPanel({
         <div>
           <h2 style={{ ...filterTitleStyle, marginBottom: "0.25rem" }}>Custom Filter</h2>
           <p style={{ margin: 0, fontSize: "0.78rem", color: t.muted }}>
-            Adjust the ranges below and optionally select one or more makers.
+            Adjust the ranges below and optionally select makers, mounts, or image formats.
           </p>
         </div>
         <button
@@ -388,6 +408,74 @@ export default function LensIndexFilterPanel({
                   aria-pressed={selected}
                 >
                   {maker.display} ({maker.count})
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section>
+          <h3 style={filterTitleStyle}>
+            Mount
+            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+              {customFilter.lensMountIds.length === 0 ? "All Mounts" : `${customFilter.lensMountIds.length} selected`}
+            </span>
+          </h3>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button
+              type="button"
+              style={makerSelectorStyle(customFilter.lensMountIds.length === 0)}
+              onClick={onClearMountSelection}
+              aria-pressed={customFilter.lensMountIds.length === 0}
+            >
+              All Mounts
+            </button>
+            {mountOptions.map((mount) => {
+              const selected = customFilter.lensMountIds.includes(mount.id);
+              return (
+                <button
+                  key={mount.id}
+                  type="button"
+                  style={makerSelectorStyle(selected)}
+                  onClick={() => onToggleMount(mount.id)}
+                  aria-pressed={selected}
+                >
+                  {mount.label} ({mount.count})
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section>
+          <h3 style={filterTitleStyle}>
+            Image Format
+            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+              {customFilter.imageFormatIds.length === 0
+                ? "All Formats"
+                : `${customFilter.imageFormatIds.length} selected`}
+            </span>
+          </h3>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button
+              type="button"
+              style={makerSelectorStyle(customFilter.imageFormatIds.length === 0)}
+              onClick={onClearImageFormatSelection}
+              aria-pressed={customFilter.imageFormatIds.length === 0}
+            >
+              All Formats
+            </button>
+            {imageFormatOptions.map((format) => {
+              const selected = customFilter.imageFormatIds.includes(format.id);
+              return (
+                <button
+                  key={format.id}
+                  type="button"
+                  style={makerSelectorStyle(selected)}
+                  onClick={() => onToggleImageFormat(format.id)}
+                  aria-pressed={selected}
+                >
+                  {format.label} ({format.count})
                 </button>
               );
             })}

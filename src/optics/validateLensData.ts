@@ -10,6 +10,7 @@
  */
 
 import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import { isImageFormatId, isLensMountId } from "../utils/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 
@@ -56,6 +57,36 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
     (typeof config.tiltStepDeg !== "number" || !isFinite(config.tiltStepDeg) || config.tiltStepDeg <= 0)
   ) {
     errors.push(`"perspectiveControl.tiltStepDeg" must be a finite positive number when provided`);
+  }
+}
+
+function validateLensMounts(value: unknown, errors: string[]): void {
+  if (!Array.isArray(value)) {
+    errors.push(`"lensMounts" must be a non-empty array of canonical mount ids when provided`);
+    return;
+  }
+  if (value.length === 0) {
+    errors.push(`"lensMounts" must not be empty when provided`);
+    return;
+  }
+
+  const seen = new Set<string>();
+  for (let i = 0; i < value.length; i++) {
+    const mount = value[i];
+    if (!isLensMountId(mount)) {
+      errors.push(`"lensMounts[${i}]" must be a known canonical mount id`);
+      continue;
+    }
+    if (seen.has(mount)) {
+      errors.push(`"lensMounts" must not contain duplicate mount id "${mount}"`);
+    }
+    seen.add(mount);
+  }
+}
+
+function validateImageFormat(value: unknown, errors: string[]): void {
+  if (!isImageFormatId(value)) {
+    errors.push(`"imageFormat" must be a known canonical format id when provided`);
   }
 }
 
@@ -133,6 +164,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
+  if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
+  if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
 
   /* ── Early exit if surfaces/elements are missing — rest of checks depend on them ── */
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements)) return errors;

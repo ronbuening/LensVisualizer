@@ -50,6 +50,8 @@ const LENS_DATA = {
   focalLengthMarketing: 24,
   focalLengthDesign: 24.0,
   apertureMarketing: 2.8,
+  lensMounts: ["pentax-110"],
+  imageFormat: "110",
   patentYear: 1980,
   elementCount: 6,
   groupCount: 5,

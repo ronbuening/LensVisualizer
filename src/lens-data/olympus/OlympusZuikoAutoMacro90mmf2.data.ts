@@ -40,6 +40,8 @@ const LENS_DATA = {
   // focalLengthDesign omitted — computed EFL ≈ 89.98, essentially identical to marketing
   apertureMarketing: 2,
   apertureDesign: 2.06,
+  lensMounts: ["olympus-om"],
+  imageFormat: "135-full-frame",
   patentYear: 1988,
   elementCount: 9,
   groupCount: 9,

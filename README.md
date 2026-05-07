@@ -15,6 +15,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
 - Supports shared-control side-by-side comparison between two lenses
+- Offers lens-library filters and groupings by maker, focal length, patent year, mount, and image format
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
 
 ## Current Scope
@@ -47,6 +48,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
 - **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
 - **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, bokeh preview, analysis drawer + tab, and slider state including PC lens movement
+- **Catalog metadata**: lens data can declare canonical mount ids and image-format ids for library filtering and future field-aware analysis
 
 ## Tech Stack
 
@@ -124,7 +126,8 @@ agent_docs/     # Developer-facing architecture and workflow notes
 
 1. Copy [`src/lens-data/TEMPLATE.data.ts.template`](src/lens-data/TEMPLATE.data.ts.template) to `src/lens-data/YourLens.data.ts`.
 2. Fill in the prescription and metadata fields.
-   Only real perspective-control lenses should declare `perspectiveControl`; ordinary lenses omit it and get no SHIFT/TILT controls.
+   Add `lensMounts` and `imageFormat` when the production mount/format is unambiguous. Only real perspective-control
+   lenses should declare `perspectiveControl`; ordinary lenses omit it and get no SHIFT/TILT controls.
 3. Optionally add `src/lens-data/YourLens.analysis.md` beside the data file for the description panel.
 4. Run:
 
@@ -135,7 +138,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 5. The catalog will pick the new lens up automatically through `import.meta.glob`.
 6. `npm run generate:metadata` or `npm run build` will move the lens into its maker folder and rewrite the type import to match the nested path.
 
-See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full data-file format, including glass identification conventions. See [`src/lens-data/LENS_ANALYSIS_SPEC.md`](src/lens-data/LENS_ANALYSIS_SPEC.md) for the companion analysis-file standard (required sections, voice, conditional sections).
+See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the full data-file format, including glass identification conventions and canonical mount/format metadata. See [`src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md`](src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md) for the allowed mount and image-format ids. See [`src/lens-data/LENS_ANALYSIS_SPEC.md`](src/lens-data/LENS_ANALYSIS_SPEC.md) for the companion analysis-file standard (required sections, voice, conditional sections).
 
 
 ## Agent Reference Docs
@@ -148,7 +151,9 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Architecture notes](agent_docs/architecture.md)
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
+- [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
+- [Lens mount/format options](src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md)
 - [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)
 - [Optics primer](src/content/OpticsPrimerSimple.md)
 - [Aberrations primer](src/content/AberrationsPrimerSimple.md)

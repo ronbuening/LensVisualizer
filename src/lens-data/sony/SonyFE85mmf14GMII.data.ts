@@ -50,6 +50,8 @@ const LENS_DATA = {
   focalLengthDesign: 82.45,
   apertureMarketing: 1.4,
   apertureDesign: 1.46,
+  lensMounts: ["sony-fe"],
+  imageFormat: "135-full-frame",
   patentYear: 2025,
   elementCount: 14,
   groupCount: 11,

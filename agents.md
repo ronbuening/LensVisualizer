@@ -78,6 +78,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
+- `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
 - `agent_docs/adding_an_article.md` - article/series frontmatter, TOC, links, verification
 - `agent_docs/article_formatting.md` - Markdown polishing expectations
@@ -89,6 +90,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/gotchas.md` - non-obvious constraints and failure modes
 - `agent_docs/claude-md-best-practices.md` - how to keep this file short and useful
 - `src/lens-data/LENS_DATA_SPEC.md` - full lens data format, glass identification conventions, validation rules
+- `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` - allowed `lensMounts` and `imageFormat` ids
 - `src/lens-data/LENS_ANALYSIS_SPEC.md` - companion analysis-file format: required skeleton, conditional sections, voice
 - `src/lens-data/TEMPLATE.data.ts.template` - annotated lens template and SD guidance
 
@@ -103,12 +105,15 @@ Read only the relevant focused doc before changing that area:
 - Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens.
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
+- Lens mount and image-format metadata use canonical ids from `src/utils/lensTaxonomy.ts`; see
+  `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
 
 ## Adding Content
 
 For a lens: start from `src/lens-data/TEMPLATE.data.ts.template`, use `satisfies LensDataInput`, optionally add a matching
-`*.analysis.md`, then run the normal checks. `npm run generate:metadata` or `npm run build` will move root-level draft
-lens files into maker folders and fix nested imports.
+`*.analysis.md`, and populate `lensMounts` / `imageFormat` when the mount and format are unambiguous. Track backfill
+status in `agent_docs/lens-mount-format-backfill.md`. `npm run generate:metadata` or `npm run build` will move
+root-level draft lens files into maker folders and fix nested imports.
 
 For an article: create `src/content/**/*.md` with required `slug` and `title` frontmatter. Use `series` and
 `seriesOrder` for article series, and `toc: true` for long pieces. Run `npm run build` when route metadata should be

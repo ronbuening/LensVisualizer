@@ -9,18 +9,24 @@
 
 import { CATALOG_KEYS, LENS_CATALOG } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
+import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/lensTaxonomy.js";
 import type {
   CatalogLensEntry,
   CustomFilterState,
   FilterBounds,
   FocalSubGroup,
+  ImageFormatGroup,
+  ImageFormatOption,
   MakerGroup,
   MakerOption,
+  MountGroup,
+  MountOption,
   NumericFilterField,
   PrimeZoomSection,
   YearGroup,
 } from "./types.js";
 import type { LensData } from "../../types/optics.js";
+import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultrawide (≤24mm)", maxFl: 24 },
@@ -64,6 +70,8 @@ function lensAperture(data: LensData): number | null {
 function buildCatalogEntries(): CatalogLensEntry[] {
   return CATALOG_KEYS.map((key) => {
     const data = LENS_CATALOG[key];
+    const lensMounts = (data.lensMounts ?? []).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
+    const imageFormat = data.imageFormat ? IMAGE_FORMAT_BY_ID[data.imageFormat] : null;
     return {
       key,
       data,
@@ -71,6 +79,8 @@ function buildCatalogEntries(): CatalogLensEntry[] {
       focalRange: lensFocalRange(data),
       aperture: lensAperture(data),
       patentYear: data.patentYear ?? null,
+      lensMounts,
+      imageFormat,
     };
   });
 }
@@ -113,6 +123,8 @@ export function defaultCustomFilter(bounds: FilterBounds): CustomFilterState {
   return {
     ...bounds,
     makerSlugs: [],
+    lensMountIds: [],
+    imageFormatIds: [],
   };
 }
 
@@ -129,6 +141,39 @@ function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
 }
 
+function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
+  const counts = new Map<LensMountId, MountOption>();
+  for (const entry of entries) {
+    for (const mount of entry.lensMounts) {
+      const existing = counts.get(mount.id);
+      if (existing) {
+        existing.count++;
+      } else {
+        counts.set(mount.id, { id: mount.id, label: mount.label, count: 1 });
+      }
+    }
+  }
+  return Array.from(counts.values()).sort(
+    (a, b) => LENS_MOUNT_BY_ID[a.id].sortOrder - LENS_MOUNT_BY_ID[b.id].sortOrder || a.label.localeCompare(b.label),
+  );
+}
+
+function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageFormatOption[] {
+  const counts = new Map<ImageFormatId, ImageFormatOption>();
+  for (const entry of entries) {
+    if (!entry.imageFormat) continue;
+    const existing = counts.get(entry.imageFormat.id);
+    if (existing) {
+      existing.count++;
+    } else {
+      counts.set(entry.imageFormat.id, { id: entry.imageFormat.id, label: entry.imageFormat.label, count: 1 });
+    }
+  }
+  return Array.from(counts.values()).sort(
+    (a, b) => IMAGE_FORMAT_BY_ID[a.id].sortOrder - IMAGE_FORMAT_BY_ID[b.id].sortOrder || a.label.localeCompare(b.label),
+  );
+}
+
 /**
  * Test whether a catalog entry survives the active custom-filter state.
  *
@@ -142,6 +187,11 @@ function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
  */
 export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilterState, bounds: FilterBounds): boolean {
   const makerMatch = filter.makerSlugs.length === 0 || filter.makerSlugs.includes(entry.maker.slug);
+  const mountMatch =
+    filter.lensMountIds.length === 0 || entry.lensMounts.some((mount) => filter.lensMountIds.includes(mount.id));
+  const imageFormatMatch =
+    filter.imageFormatIds.length === 0 ||
+    (entry.imageFormat !== null && filter.imageFormatIds.includes(entry.imageFormat.id));
   const focalMatch =
     entry.focalRange === null
       ? filter.focalMin === bounds.focalMin && filter.focalMax === bounds.focalMax
@@ -155,7 +205,7 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
       ? filter.patentYearMin === bounds.patentYearMin && filter.patentYearMax === bounds.patentYearMax
       : entry.patentYear >= filter.patentYearMin && entry.patentYear <= filter.patentYearMax;
 
-  return makerMatch && focalMatch && apertureMatch && patentYearMatch;
+  return makerMatch && mountMatch && imageFormatMatch && focalMatch && apertureMatch && patentYearMatch;
 }
 
 /**
@@ -173,7 +223,9 @@ export function hasActiveCustomFilters(filter: CustomFilterState, bounds: Filter
     filter.apertureMax !== bounds.apertureMax ||
     filter.patentYearMin !== bounds.patentYearMin ||
     filter.patentYearMax !== bounds.patentYearMax ||
-    filter.makerSlugs.length > 0
+    filter.makerSlugs.length > 0 ||
+    filter.lensMountIds.length > 0 ||
+    filter.imageFormatIds.length > 0
   );
 }
 
@@ -252,6 +304,68 @@ export function groupByPatentYear(entries: CatalogLensEntry[], direction: "asc" 
 }
 
 /**
+ * Group entries by declared lens mount.
+ *
+ * Multi-mount lenses are intentionally included once in each matching mount
+ * group. Untagged entries are grouped last.
+ *
+ * @param entries - filtered catalog entries
+ * @returns mount sections sorted by canonical mount order, with Unknown last
+ */
+export function groupByMount(entries: CatalogLensEntry[]): MountGroup[] {
+  const groups = new Map<LensMountId, CatalogLensEntry[]>();
+  const unknown: CatalogLensEntry[] = [];
+
+  for (const entry of entries) {
+    if (entry.lensMounts.length === 0) {
+      unknown.push(entry);
+      continue;
+    }
+    for (const mount of entry.lensMounts) {
+      if (!groups.has(mount.id)) groups.set(mount.id, []);
+      groups.get(mount.id)!.push(entry);
+    }
+  }
+
+  const knownGroups: MountGroup[] = Array.from(groups.entries())
+    .sort(([a], [b]) => LENS_MOUNT_BY_ID[a].sortOrder - LENS_MOUNT_BY_ID[b].sortOrder)
+    .map(([id, lenses]) => ({ id, label: LENS_MOUNT_BY_ID[id].label, lenses }));
+
+  if (unknown.length > 0) knownGroups.push({ id: "unknown", label: "Unknown Mount", lenses: unknown });
+  return knownGroups;
+}
+
+/**
+ * Group entries by declared image format.
+ *
+ * Each lens belongs to at most one image-format group. Untagged entries are
+ * grouped last.
+ *
+ * @param entries - filtered catalog entries
+ * @returns image-format sections sorted by canonical format order, with Unknown last
+ */
+export function groupByImageFormat(entries: CatalogLensEntry[]): ImageFormatGroup[] {
+  const groups = new Map<ImageFormatId, CatalogLensEntry[]>();
+  const unknown: CatalogLensEntry[] = [];
+
+  for (const entry of entries) {
+    if (!entry.imageFormat) {
+      unknown.push(entry);
+      continue;
+    }
+    if (!groups.has(entry.imageFormat.id)) groups.set(entry.imageFormat.id, []);
+    groups.get(entry.imageFormat.id)!.push(entry);
+  }
+
+  const knownGroups: ImageFormatGroup[] = Array.from(groups.entries())
+    .sort(([a], [b]) => IMAGE_FORMAT_BY_ID[a].sortOrder - IMAGE_FORMAT_BY_ID[b].sortOrder)
+    .map(([id, lenses]) => ({ id, label: IMAGE_FORMAT_BY_ID[id].label, lenses }));
+
+  if (unknown.length > 0) knownGroups.push({ id: "unknown", label: "Unknown Format", lenses: unknown });
+  return knownGroups;
+}
+
+/**
  * Format a numeric filter value for a text input or readout label.
  *
  * @param value - raw numeric filter value
@@ -306,3 +420,5 @@ export function clampNumericFilterValue(value: number, min: number, max: number,
 export const CATALOG_ENTRIES = buildCatalogEntries();
 export const FILTER_BOUNDS = buildFilterBounds(CATALOG_ENTRIES);
 export const MAKER_OPTIONS = buildMakerOptions(CATALOG_ENTRIES);
+export const MOUNT_OPTIONS = buildMountOptions(CATALOG_ENTRIES);
+export const IMAGE_FORMAT_OPTIONS = buildImageFormatOptions(CATALOG_ENTRIES);

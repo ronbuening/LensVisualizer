@@ -48,6 +48,8 @@ const LENS_DATA = {
   patentYear: 2014,
   elementCount: 19,
   groupCount: 12,
+  lensMounts: ["nikon-f"],
+  imageFormat: "135-full-frame",
 
   /* ── Elements ── */
   elements: [

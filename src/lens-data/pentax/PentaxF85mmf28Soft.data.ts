@@ -36,6 +36,8 @@ const LENS_DATA = {
   focalLengthMarketing: 85,
   focalLengthDesign: 85.0,
   apertureMarketing: 2.8,
+  lensMounts: ["pentax-k"],
+  imageFormat: "135-full-frame",
   patentYear: 1993,
   elementCount: 5,
   groupCount: 4,

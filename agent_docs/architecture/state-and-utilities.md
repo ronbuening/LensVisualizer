@@ -88,6 +88,7 @@ When adding or changing color tokens, update all four theme definitions.
 | Module | Purpose |
 | --- | --- |
 | `lensCatalog.ts` | Auto-registers lens data and lens analysis markdown via `import.meta.glob`. |
+| `lensTaxonomy.ts` | Canonical lens mount ids and image-format dimensions used by lens data and the lens index. |
 | `lensMetadata.ts` | SEO metadata, maker extraction, page titles/descriptions, canonical URLs, JSON-LD helpers. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |
 | `homepageContent.ts` | Generated homepage/article/lens content registries. |

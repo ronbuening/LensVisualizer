@@ -5,6 +5,8 @@
 
 /* ── Raw lens data types (as declared in .data.ts files) ── */
 
+import type { ImageFormatId, LensMountId } from "../utils/lensTaxonomy.js";
+
 export interface SurfaceData {
   label: string;
   R: number;
@@ -104,6 +106,8 @@ export interface LensData {
   focalLengthDesign?: number | [number, number];
   apertureMarketing?: number;
   apertureDesign?: number;
+  lensMounts?: LensMountId[];
+  imageFormat?: ImageFormatId;
   patentYear?: number;
   elementCount?: number;
   groupCount?: number;

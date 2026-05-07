@@ -17,6 +17,7 @@ No manual imports or catalog edits required.
 - **Companion analysis-file format:** `src/lens-data/LENS_ANALYSIS_SPEC.md` — required skeleton, conditional sections, voice and conventions for `*.analysis.md`.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
+- **Mount/format backfill status:** [lens-mount-format-backfill.md](lens-mount-format-backfill.md)
 - **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — use this when revisiting a data file already in the catalog, not when authoring a new one.
 
 ## Key Details
@@ -32,6 +33,20 @@ Shared defaults from `src/lens-data/defaults.ts` are merged automatically under 
 ### Maker Field
 
 Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Zeiss"`). This is used for maker pages (`/makers/:slug`) and SEO metadata. If omitted, `lensMetadata.ts` derives the maker from the lens `name` via prefix matching against `MAKER_PREFIXES`. Explicit `maker` is preferred for accuracy — especially for lenses whose `name` doesn't start with a recognized prefix.
+
+### Mount And Image Format Fields
+
+Use `lensMounts` and `imageFormat` when the production system and coverage are clear. Values must be canonical ids from
+`src/utils/lensTaxonomy.ts`; see `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` for the available options and do not
+free-type display labels.
+
+```typescript
+lensMounts: ["nikon-z"],
+imageFormat: "135-full-frame",
+```
+
+A lens may declare multiple mount ids, but only one image-format id. Leave ambiguous historical variants unset and add a
+note to [lens-mount-format-backfill.md](lens-mount-format-backfill.md) instead of guessing.
 
 ### Naming Conventions
 
@@ -90,7 +105,7 @@ After the SDs validate, compare the rendered silhouette against any published op
 
 ### Validation
 
-`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
+`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, canonical mount/format ids when present, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
 
 ### Zoom Lenses
 

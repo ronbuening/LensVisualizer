@@ -29,6 +29,8 @@ const LENS_DATA = {
   focalLengthDesign: 78.79,
   apertureMarketing: 2.8,
   apertureDesign: 2.88,
+  lensMounts: ["fujifilm-x"],
+  imageFormat: "aps-c",
   patentYear: 2018,
   elementCount: 16,
   groupCount: 12,

@@ -38,6 +38,8 @@ const LENS_DATA = {
   focalLengthDesign: 85.0,
   apertureMarketing: 2,
   apertureDesign: 2.04,
+  lensMounts: ["olympus-om"],
+  imageFormat: "135-full-frame",
   patentYear: 1977,
   elementCount: 5,
   groupCount: 4,
