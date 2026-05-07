@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 253 mismatched surfaces across 163 unique groups.
+**Scope**: 259 mismatched surfaces across 168 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -142,6 +142,14 @@ Candidates:
 
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `9A`: `S-BAL35 (OHARA)`
+
+## stored (nd=1.58913, vd=61.10)  — 1 surface, current label resolves to N-SK16
+
+Candidates:
+- **S-BAL35** (nd=1.58913, vd=61.14, Δnd=-0.0000, Δvd=+0.04)
+
+Surfaces:
+- [PENTAX-110 24mm f/2.8](../src/lens-data/pentax/Pentax11024mmf28.data.ts) `5`: `SK5 (Schott) / BACD5 (Hoya)`
 
 ## stored (nd=1.58913, vd=61.30)  — 1 surface, current label resolves to S-BAL14
 
@@ -341,7 +349,7 @@ Candidates:
 
 Surfaces:
 - [NIKON AF-S NIKKOR 85mm f/1.4G](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) `17`: `S-TIH53 (OHARA)`
-- [smc PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `11`: `S-TIM27 (OHARA)`
+- [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `11`: `S-TIM27 (OHARA)`
 
 ## stored (nd=1.64769, vd=33.70)  — 1 surface, current label resolves to S-TIM27
 
@@ -391,6 +399,13 @@ Surfaces:
 
 Surfaces:
 - [NIKON NIKKOR-S AUTO 50mm f/1.4](../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) `1`: `SF2 / NSL36 (dense flint)`
+
+## stored (nd=1.66446, vd=35.80)  — 1 surface, current label resolves to S-TIM22
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PENTAX-110 50mm f/2.8](../src/lens-data/pentax/Pentax11050mmf28.data.ts) `9`: `S-TIM22 (OHARA)`
 
 ## stored (nd=1.67246, vd=32.30) [code=672/323]  — 1 surface, current label resolves to SF2
 
@@ -548,7 +563,7 @@ Candidates:
 - **S-LAL8** (nd=1.71299, vd=53.87, Δnd=-0.0000, Δvd=-0.03)
 
 Surfaces:
-- [smc PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `2`: `S-BAL42 (OHARA)`
+- [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `2`: `S-BAL42 (OHARA)`
 
 ## stored (nd=1.71999, vd=50.27)  — 3 surfaces, current label resolves to S-LAM51
 
@@ -583,6 +598,13 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `19`: `S-NBH55 (720347, OHARA S-NBH55)`
+
+## stored (nd=1.72825, vd=28.50)  — 1 surface, current label resolves to SF6
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PENTAX-110 24mm f/2.8](../src/lens-data/pentax/Pentax11024mmf28.data.ts) `1`: `SF6 (Schott) / S-TIH6 (Ohara)`
 
 ## stored (nd=1.72825, vd=28.30)  — 1 surface, current label resolves to S-TIH4
 
@@ -727,7 +749,7 @@ Candidates:
 - **S-LAM2** (nd=1.74400, vd=44.79, Δnd=-0.0000, Δvd=-0.01)
 
 Surfaces:
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `1`: `S-LAH66 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `1`: `S-LAH66 (OHARA)`
 
 ## stored (nd=1.74710, vd=27.40)  — 1 surface, current label resolves to SF4
 
@@ -854,9 +876,9 @@ Candidates:
 Surfaces:
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `11`: `S-LAM54 (OHARA)`
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `18`: `S-LAM54 (OHARA)`
-- [smc PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `4`: `S-LAH63Q (OHARA)`
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `17`: `S-LAH64 (OHARA)`
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `22`: `S-LAH64 (OHARA)`
+- [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `4`: `S-LAH63Q (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `17`: `S-LAH64 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `22`: `S-LAH64 (OHARA)`
 
 ## stored (nd=1.77300, vd=49.60)  — 1 surface, current label resolves to S-LAH65
 
@@ -938,7 +960,7 @@ Candidates:
 - **S-LAM66** (nd=1.80100, vd=34.97, Δnd=-0.0000, Δvd=-0.03)
 
 Surfaces:
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `29`: `S-LAH59 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `29`: `S-LAH59 (OHARA)`
 - [PENTAX FA 31mm F1.8 AL Limited](../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) `7`: `TAFD30 (HOYA)`
 
 ## stored (nd=1.80400, vd=46.60) [code=804/466]  — 1 surface, current label resolves to S-LAH58
@@ -991,8 +1013,8 @@ Candidates:
 - **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0029, Δvd=-2.64)
 
 Surfaces:
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `6`: `S-TIH53 (OHARA)`
-- [smc PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `20`: `S-TIH53 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `6`: `S-TIH53 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `20`: `S-TIH53 (OHARA)`
 
 ## stored (nd=1.80518, vd=25.50)  — 1 surface, current label resolves to S-TIH14
 
@@ -1004,13 +1026,14 @@ Candidates:
 Surfaces:
 - [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) `12`: `S-TIH14 (OHARA)`
 
-## stored (nd=1.80610, vd=33.30)  — 2 surfaces, current label resolves to S-NBH56
+## stored (nd=1.80610, vd=33.30)  — 3 surfaces, current label resolves to S-NBH56
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `27`: `S-NBH56 (OHARA)`
 - [NIKON AF-S NIKKOR 85mm f/1.4G](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) `5`: `S-NBH56 (OHARA)`
+- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) `15`: `S-TIH4 (OHARA)`
 
 ## stored (nd=1.80610, vd=40.94)  — 1 surface, current label resolves to S-TIH53
 
@@ -1041,6 +1064,15 @@ Candidates:
 Surfaces:
 - [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `10`: `S-LAH51 (OHARA)`
 - [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `15`: `S-LAH51 (OHARA)`
+
+## stored (nd=1.80998, vd=40.90)  — 1 surface, current label resolves to S-LAH63Q
+
+Candidates:
+- **K-VC89** (nd=1.80998, vd=41.00, Δnd=-0.0000, Δvd=+0.10)
+- **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0039, Δvd=+0.03)
+
+Surfaces:
+- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) `11A`: `S-LAH63Q (OHARA)`
 
 ## stored (nd=1.81265, vd=25.24)  — 2 surfaces, current label resolves to SF6
 
@@ -1165,6 +1197,13 @@ Candidates:
 Surfaces:
 - [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) `7`: `S-NPH1 (OHARA)`
 - [CANON RF 24-70mm f/2.8L IS USM](../src/lens-data/canon/CanonRF2470f28.data.ts) `9`: `S-NPH53 (OHARA)`
+
+## stored (nd=1.85883, vd=30.00)  — 1 surface, current label resolves to S-TIH14
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) `6`: `S-TIH14 (OHARA)`
 
 ## stored (nd=1.86966, vd=20.00)  — 1 surface, current label resolves to S-NPH4
 
@@ -1439,5 +1478,5 @@ Surfaces:
 
 ## Summary
 
-- **115** (nd, vd) groups have at least one candidate (187 surfaces) — actionable relabels.
-- **48** (nd, vd) groups have NO candidate (66 surfaces) — needs patent verification or Unmatched relabeling.
+- **117** (nd, vd) groups have at least one candidate (189 surfaces) — actionable relabels.
+- **51** (nd, vd) groups have NO candidate (70 surfaces) — needs patent verification or Unmatched relabeling.
