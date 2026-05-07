@@ -97,6 +97,29 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid({ visible: false }))).toEqual([]);
   });
 
+  it("accepts canonical lens mount and image-format metadata", () => {
+    expect(validateLensData(makeValid({ lensMounts: ["nikon-z", "sony-fe"], imageFormat: "135-full-frame" }))).toEqual(
+      [],
+    );
+  });
+
+  it("rejects invalid lens mount metadata", () => {
+    const nonArrayErrors = validateLensData(makeValid({ lensMounts: "nikon-z" }));
+    expect(nonArrayErrors.some((error) => error.includes('"lensMounts"'))).toBe(true);
+
+    const unknownErrors = validateLensData(makeValid({ lensMounts: ["nikon-z", "not-a-mount"] }));
+    expect(unknownErrors.some((error) => error.includes('"lensMounts[1]"'))).toBe(true);
+
+    const duplicateErrors = validateLensData(makeValid({ lensMounts: ["nikon-z", "nikon-z"] }));
+    expect(duplicateErrors.some((error) => error.includes("duplicate mount id"))).toBe(true);
+  });
+
+  it("rejects invalid image-format metadata", () => {
+    const errors = validateLensData(makeValid({ imageFormat: "medium-ish" }));
+
+    expect(errors.some((error) => error.includes('"imageFormat"'))).toBe(true);
+  });
+
   it("accepts valid perspectiveControl movement ranges", () => {
     expect(
       validateLensData(

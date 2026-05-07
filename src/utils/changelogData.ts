@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-07",
+    type: "feature",
+    summary: "Added lens mount and image-format filters to the lens library",
+  },
+  {
+    date: "2026-05-07",
     type: "lens",
     summary: "Added Panasonic S 20-60mm f/3.5-5.6 and two Pentax 110 lenses: 24mm f/2.8 and 50mm f/2.8",
   },

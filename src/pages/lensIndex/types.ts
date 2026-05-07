@@ -7,8 +7,9 @@
  */
 
 import type { LensData } from "../../types/optics.js";
+import type { ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata } from "../../utils/lensTaxonomy.js";
 
-export type GroupMode = "maker" | "focal" | "year-asc" | "year-desc";
+export type GroupMode = "maker" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
 
 export interface CatalogLensEntry {
   key: string;
@@ -20,6 +21,8 @@ export interface CatalogLensEntry {
   focalRange: [number, number] | null;
   aperture: number | null;
   patentYear: number | null;
+  lensMounts: LensMountMetadata[];
+  imageFormat: ImageFormatMetadata | null;
 }
 
 export interface MakerOption {
@@ -28,9 +31,33 @@ export interface MakerOption {
   count: number;
 }
 
+export interface MountOption {
+  id: LensMountId;
+  label: string;
+  count: number;
+}
+
+export interface ImageFormatOption {
+  id: ImageFormatId;
+  label: string;
+  count: number;
+}
+
 export interface MakerGroup {
   display: string;
   slug: string;
+  lenses: CatalogLensEntry[];
+}
+
+export interface MountGroup {
+  id: LensMountId | "unknown";
+  label: string;
+  lenses: CatalogLensEntry[];
+}
+
+export interface ImageFormatGroup {
+  id: ImageFormatId | "unknown";
+  label: string;
   lenses: CatalogLensEntry[];
 }
 
@@ -60,6 +87,8 @@ export interface FilterBounds {
 
 export interface CustomFilterState extends FilterBounds {
   makerSlugs: string[];
+  lensMountIds: LensMountId[];
+  imageFormatIds: ImageFormatId[];
 }
 
 export type NumericFilterField = keyof FilterBounds;

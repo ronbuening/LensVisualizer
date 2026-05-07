@@ -1,3 +1,5 @@
+export type { ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata } from "../utils/lensTaxonomy.js";
+
 export type {
   SurfaceData,
   AsphericCoefficients,

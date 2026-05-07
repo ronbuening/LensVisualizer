@@ -56,6 +56,10 @@ const LENS_DATA = {
    *  apertureMarketing     Marketed/nominal max f-number (e.g. 1.8 for an "f/1.8" lens).
    *  apertureDesign        Patent/computed max f-number (precise value, e.g. 1.85).
    *                        Omit if identical to apertureMarketing.
+   *  lensMounts            Optional canonical mount ids from src/utils/lensTaxonomy.ts.
+   *                        A lens may declare multiple mounts; do not free-type display labels.
+   *  imageFormat           Optional single canonical format id from src/utils/lensTaxonomy.ts.
+   *                        Used by lens index filters now and future image-field analysis.
    *  patentYear            Year the patent was published or granted (e.g. 2019).
    *  elementCount          Total number of glass elements.
    *  groupCount            Total number of air-separated groups.
@@ -67,6 +71,8 @@ const LENS_DATA = {
   focalLengthDesign:    51.2,           // omit if same as focalLengthMarketing
   apertureMarketing:    1.8,
   apertureDesign:       1.85,           // omit if same as apertureMarketing
+  lensMounts:           ["nikon-z"],     // optional; canonical ids only, e.g. ["nikon-z", "sony-fe"]
+  imageFormat:          "135-full-frame", // optional; one canonical id only, e.g. "aps-c", "110", "4x5"
   patentYear:           2019,
   elementCount:         12,
   groupCount:           9,

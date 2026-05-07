@@ -9,7 +9,7 @@
 import { Link } from "react-router";
 import { getMakerDetails } from "../../utils/makerDetails.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
-import type { GroupMode, MakerGroup, PrimeZoomSection, YearGroup } from "./types.js";
+import type { GroupMode, ImageFormatGroup, MakerGroup, MountGroup, PrimeZoomSection, YearGroup } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 
 function LensEntryLink({
@@ -154,20 +154,78 @@ function PatentYearSections({ groups, theme }: { groups: YearGroup[]; theme: The
   );
 }
 
+function MountSections({ groups, theme }: { groups: MountGroup[]; theme: Theme }) {
+  return (
+    <>
+      {groups.map((group) => (
+        <section key={group.id}>
+          <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
+            {group.label}
+            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+              ({group.lenses.length})
+            </span>
+          </h2>
+          {group.lenses.map((entry) => (
+            <LensEntryLink
+              key={`${group.id}-${entry.key}`}
+              lensKey={entry.key}
+              text={entry.data.name}
+              meta={entry.data.specs && entry.data.specs.length > 0 ? entry.data.specs.slice(0, 2).join(", ") : null}
+              theme={theme}
+            />
+          ))}
+        </section>
+      ))}
+    </>
+  );
+}
+
+function ImageFormatSections({ groups, theme }: { groups: ImageFormatGroup[]; theme: Theme }) {
+  return (
+    <>
+      {groups.map((group) => (
+        <section key={group.id}>
+          <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
+            {group.label}
+            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+              ({group.lenses.length})
+            </span>
+          </h2>
+          {group.lenses.map((entry) => (
+            <LensEntryLink
+              key={`${group.id}-${entry.key}`}
+              lensKey={entry.key}
+              text={entry.data.name}
+              meta={entry.lensMounts.length > 0 ? entry.lensMounts.map((mount) => mount.label).join(", ") : null}
+              theme={theme}
+            />
+          ))}
+        </section>
+      ))}
+    </>
+  );
+}
+
 export default function LensIndexResults({
   groupMode,
   makerGroups,
   focalSections,
   yearGroups,
+  mountGroups,
+  imageFormatGroups,
   theme,
 }: {
   groupMode: GroupMode;
   makerGroups: MakerGroup[];
   focalSections: PrimeZoomSection[];
   yearGroups: YearGroup[];
+  mountGroups: MountGroup[];
+  imageFormatGroups: ImageFormatGroup[];
   theme: Theme;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} />;
   if (groupMode === "focal") return <FocalSections sections={focalSections} theme={theme} />;
+  if (groupMode === "mount") return <MountSections groups={mountGroups} theme={theme} />;
+  if (groupMode === "format") return <ImageFormatSections groups={imageFormatGroups} theme={theme} />;
   return <PatentYearSections groups={yearGroups} theme={theme} />;
 }

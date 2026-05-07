@@ -18,9 +18,13 @@ import LensIndexResults from "./lensIndex/LensIndexResults.js";
 import {
   CATALOG_ENTRIES,
   FILTER_BOUNDS,
+  IMAGE_FORMAT_OPTIONS,
   MAKER_OPTIONS,
+  MOUNT_OPTIONS,
   groupByFocalLength,
+  groupByImageFormat,
   groupByMaker,
+  groupByMount,
   groupByPatentYear,
 } from "./lensIndex/catalog.js";
 import { H1_STYLE, PAGE_BASE_STYLE } from "./lensIndex/styles.js";
@@ -42,6 +46,10 @@ export default function LensIndexPage() {
     clearFilters,
     clearMakerSelection,
     toggleMaker,
+    clearMountSelection,
+    toggleMount,
+    clearImageFormatSelection,
+    toggleImageFormat,
     applyNumericField,
     handleNumericInputChange,
     commitNumericInput,
@@ -53,6 +61,8 @@ export default function LensIndexPage() {
   const makerGroups = useMemo(() => groupByMaker(filteredEntries), [filteredEntries]);
   const focalSections = useMemo(() => groupByFocalLength(filteredEntries), [filteredEntries]);
   const yearGroups = useMemo(() => groupByPatentYear(filteredEntries, yearDir), [filteredEntries, yearDir]);
+  const mountGroups = useMemo(() => groupByMount(filteredEntries), [filteredEntries]);
+  const imageFormatGroups = useMemo(() => groupByImageFormat(filteredEntries), [filteredEntries]);
 
   const toggleButtonStyle = (active: boolean): React.CSSProperties => ({
     padding: "0.25rem 0.75rem",
@@ -152,6 +162,20 @@ export default function LensIndexPage() {
             </button>
             <button
               type="button"
+              style={toggleButtonStyle(groupMode === "mount")}
+              onClick={() => setGroupMode("mount")}
+            >
+              By Mount
+            </button>
+            <button
+              type="button"
+              style={toggleButtonStyle(groupMode === "format")}
+              onClick={() => setGroupMode("format")}
+            >
+              By Format
+            </button>
+            <button
+              type="button"
               style={toggleButtonStyle(filterOpen || activeFilters)}
               onClick={() => setFilterOpen((open) => !open)}
               aria-expanded={filterOpen}
@@ -168,11 +192,17 @@ export default function LensIndexPage() {
             customFilter={customFilter}
             bounds={FILTER_BOUNDS}
             makerOptions={MAKER_OPTIONS}
+            mountOptions={MOUNT_OPTIONS}
+            imageFormatOptions={IMAGE_FORMAT_OPTIONS}
             filterInputValues={filterInputValues}
             activeFilters={activeFilters}
             onClearFilters={clearFilters}
             onClearMakerSelection={clearMakerSelection}
             onToggleMaker={toggleMaker}
+            onClearMountSelection={clearMountSelection}
+            onToggleMount={toggleMount}
+            onClearImageFormatSelection={clearImageFormatSelection}
+            onToggleImageFormat={toggleImageFormat}
             onApplyNumericField={applyNumericField}
             onNumericInputChange={handleNumericInputChange}
             onNumericInputCommit={commitNumericInput}
@@ -202,6 +232,8 @@ export default function LensIndexPage() {
           makerGroups={makerGroups}
           focalSections={focalSections}
           yearGroups={yearGroups}
+          mountGroups={mountGroups}
+          imageFormatGroups={imageFormatGroups}
           theme={t}
         />
       </div>

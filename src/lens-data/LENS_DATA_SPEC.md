@@ -85,6 +85,8 @@ These must be specified in every lens file — they have no defaults.
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
 | `apertureMarketing` | `number` | | Marketed/nominal maximum f-number (e.g. `1.8` for an "f/1.8" lens). |
 | `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
+| `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
+| `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
@@ -101,6 +103,33 @@ These must be specified in every lens file — they have no defaults.
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
 | `apertureBlades` | `number` | | Number of aperture blades (reserved for future polygonal bokeh rendering) |
 | `apertureBladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 = straight polygon, 1 = circular) |
+
+---
+
+## Mount And Image-Format Metadata
+
+Use canonical ids from `src/utils/lensTaxonomy.ts`; do not free-type labels such as `"Full Frame"` or `"Nikon Z mount"`.
+These ids drive lens-index filtering now and will be reused by distortion and aberration views.
+
+```javascript
+lensMounts: ["nikon-z", "sony-fe"],
+imageFormat: "135-full-frame",
+```
+
+- `lensMounts` is optional during catalog backfill, but when present it must be a non-empty array of unique known ids.
+- `imageFormat` is optional during catalog backfill, but when present it must be one known id.
+- A lens may have multiple mounts, but only one image format.
+- Fixed-lens cameras should usually declare only `imageFormat` unless the project later adds a separate fixed-camera mount taxonomy.
+
+Source these fields from official specs, patent examples, or documented production variants. Backfill existing lenses in
+small maker/system batches rather than mixing unrelated historical systems in a single edit.
+
+Suggested backfill order:
+
+1. Nikon Z/F and Canon RF/EF/FD, where names often encode the mount.
+2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
+3. Fixed-lens cameras by format only.
+4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
 
 ---
 
