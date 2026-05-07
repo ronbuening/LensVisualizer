@@ -22,6 +22,7 @@ export const LENS_MOUNTS = [
   { id: "pentax-k", label: "Pentax K", sortOrder: 710 },
   { id: "sony-a", label: "Sony A", sortOrder: 800 },
   { id: "sony-fe", label: "Sony E", sortOrder: 810 },
+  { id: "fixed-lens-camera", label: "Fixed-lens Camera", sortOrder: 900 },
 ] as const;
 
 export type LensMountId = (typeof LENS_MOUNTS)[number]["id"];

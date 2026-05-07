@@ -54,6 +54,8 @@ const LENS_DATA = {
   patentYear: 1971,
   elementCount: 9,
   groupCount: 7,
+  lensMounts: ["nikon-f"],
+  imageFormat: "135-full-frame",
 
   /* ── Elements ──
    *  9 elements, front to rear. Five glass types.

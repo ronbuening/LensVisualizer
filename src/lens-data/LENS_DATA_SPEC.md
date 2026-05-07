@@ -109,7 +109,8 @@ These must be specified in every lens file — they have no defaults.
 ## Mount And Image-Format Metadata
 
 Use canonical ids from `src/utils/lensTaxonomy.ts`; do not free-type labels such as `"Full Frame"` or `"Nikon Z mount"`.
-These ids drive lens-index filtering now and will be reused by distortion and aberration views.
+See [LENS_MOUNT_FORMAT_OPTIONS.md](LENS_MOUNT_FORMAT_OPTIONS.md) for the current list of allowed ids. These ids drive
+lens-index filtering now and will be reused by distortion and aberration views.
 
 ```javascript
 lensMounts: ["nikon-z", "sony-fe"],
@@ -119,7 +120,7 @@ imageFormat: "135-full-frame",
 - `lensMounts` is optional during catalog backfill, but when present it must be a non-empty array of unique known ids.
 - `imageFormat` is optional during catalog backfill, but when present it must be one known id.
 - A lens may have multiple mounts, but only one image format.
-- Fixed-lens cameras should usually declare only `imageFormat` unless the project later adds a separate fixed-camera mount taxonomy.
+- Fixed-lens cameras should use `lensMounts: ["fixed-lens-camera"]` plus the appropriate `imageFormat`.
 
 Source these fields from official specs, patent examples, or documented production variants. Backfill existing lenses in
 small maker/system batches rather than mixing unrelated historical systems in a single edit.

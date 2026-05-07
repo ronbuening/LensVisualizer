@@ -43,6 +43,8 @@ const LENS_DATA = {
   focalLengthDesign: 29.6,
   apertureMarketing: 2.8,
   apertureDesign: 2.86,
+  lensMounts: ["fixed-lens-camera"],
+  imageFormat: "aps-c",
   patentYear: 2013,
   elementCount: 8,
   groupCount: 6,

@@ -37,7 +37,8 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 ### Mount And Image Format Fields
 
 Use `lensMounts` and `imageFormat` when the production system and coverage are clear. Values must be canonical ids from
-`src/utils/lensTaxonomy.ts`; do not free-type display labels.
+`src/utils/lensTaxonomy.ts`; see `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` for the available options and do not
+free-type display labels.
 
 ```typescript
 lensMounts: ["nikon-z"],

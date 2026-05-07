@@ -90,6 +90,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/gotchas.md` - non-obvious constraints and failure modes
 - `agent_docs/claude-md-best-practices.md` - how to keep this file short and useful
 - `src/lens-data/LENS_DATA_SPEC.md` - full lens data format, glass identification conventions, validation rules
+- `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` - allowed `lensMounts` and `imageFormat` ids
 - `src/lens-data/LENS_ANALYSIS_SPEC.md` - companion analysis-file format: required skeleton, conditional sections, voice
 - `src/lens-data/TEMPLATE.data.ts.template` - annotated lens template and SD guidance
 
@@ -104,7 +105,8 @@ Read only the relevant focused doc before changing that area:
 - Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens.
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
-- Lens mount and image-format metadata use canonical ids from `src/utils/lensTaxonomy.ts`; do not free-type labels.
+- Lens mount and image-format metadata use canonical ids from `src/utils/lensTaxonomy.ts`; see
+  `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
 
 ## Adding Content
 

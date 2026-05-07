@@ -38,6 +38,8 @@ const LENS_DATA = {
   focalLengthDesign: 26.05,
   apertureMarketing: 2.8,
   apertureDesign: 2.87,
+  lensMounts: ["fixed-lens-camera"],
+  imageFormat: "aps-c",
   patentYear: 2022,
   elementCount: 7,
   groupCount: 5, // air-separated count (patent uses 4 power-groups; marketing counts 5)

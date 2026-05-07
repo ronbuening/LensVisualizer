@@ -7,10 +7,10 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Seeded lens files: 101
+- Seeded lens files: 119
 - Seeded formats: `110`, `135-full-frame`, `aps-c`
-- Seeded mounts: `canon-ef`, `canon-fd`, `canon-rf`, `fujifilm-x`, `l-mount`, `nikon-f`, `nikon-z`,
-  `pentax-110`, `pentax-k`, `sony-fe`
+- Seeded mounts: `canon-ef`, `canon-fd`, `canon-rf`, `fixed-lens-camera`, `fujifilm-x`, `l-mount`,
+  `nikon-f`, `nikon-z`, `pentax-110`, `pentax-k`, `sony-fe`
 
 ## Seeded This Session
 
@@ -67,18 +67,50 @@ the fields unset and add a note here until a source check resolves it.
   `SonyFE24mmf18ZA` (APS-C)
 - Fujifilm X APS-C third-party: `VoigtlanderNoktonX50mmf12`
 
-## Still Needs Review
+### Batch 5
 
-Prioritize remaining obvious production systems first, then historical and fixed-lens cases:
+- Fixed-lens Camera full-frame: `Nikon28Ti28mmf28`, `Nikon35Ti35mmf28`, `NikonL35AF35mmf28`,
+  `RicohGR28f28`
+- Fixed-lens Camera APS-C: `RicohGR218mmf28`, `RicohGR328f28`, `RicohGR3x`, `RicohGR428f28`,
+  `RicohGXRA1218mmf25`, `SigmaDP2X24mmf28`, `SigmaDp2M30mmf28`, `SigmaDP3M50mmf28`
 
-- Sigma DG DN mirrorless lenses: likely multi-mount Sony E / L-mount full-frame, but confirm the exact production variants
-  represented by each file before seeding.
-- Ricoh GR and Sigma DP compact cameras: leave `lensMounts` unset unless a fixed-camera taxonomy is added; seed only
-  `imageFormat` after confirming sensor/film format.
-- Leica, Zeiss, Voigtländer, Vivitar, and remaining historical lenses need source checks because production variants and
-  mount histories are easy to mislabel.
-- Skipped this pass: `VoigtlanderNokton50f1` needs source review for exact production mount coverage before assigning
-  mount ids.
+### Batch 6
+
+- Nikon F full-frame: `Nikon58f14GDesignCandidate`, `NikonNikkorAFS120300mmf28`,
+  `NikonNikkorAFS200500mmf56`, `NikonNikkorAuto24f28`, `NikonNikkorN28mmf2`,
+  `NikonNikkorSAuto50mmf14`
+
+## Remaining Work
+
+### Needs Human Intervention / Source Review
+
+Do not seed these from filename alone:
+
+- Sigma interchangeable lenses:
+  - `SigmaArt40mmf14` — DSLR-era DG HSM Art; exact catalog mount coverage varied by system.
+  - `SigmaDGDNA35mmf14`, `SigmaDGDNA85mmf14`, `SigmaDGDNArt50mmf14` — likely Sony E and L-mount
+    full-frame, but confirm the exact production variants represented by each file.
+- Leica:
+  - `Leica28mmf17` and `LeicaAPO43mmf2` — likely fixed-lens Q-family full-frame; verify before setting
+    `imageFormat` and `lensMounts: ["fixed-lens-camera"]`.
+  - `LeicaAPO35mmf2`, `LeicaSummicronV550mmf2`, `LeicaElmarit28mmf28`, `LeicaElmarit90mmf28`,
+    `LeicaElcan50mmf2` — confirm M/R/other mount identity and coverage.
+- Zeiss historical/system lenses:
+  - Carl Zeiss Jena: `CarlZeissJenaPancolar50mmf2`, `CarlZeissJenaTessar50mmf28`,
+    `ZeissJenaSonnar50f2`, `ZeissSonnar50f15`, `ZeissTessar144f55`
+  - Carl Zeiss Oberkochen: `CarlZeissContarexPlanar55mmf14`, `CarlZeissOlympiaSonnar180mmf28`,
+    `CarlZeissPlanarT50mmf14`, `CarlZeissProTessar35mmf32`, `CarlZeissTessar50mmf35`,
+    `ZeissBiogon21mmf45`, `ZeissDistagon35mmf14`, `ZeissHologon15mmf8`
+- Voigtländer:
+  - `VoigtlanderNokton50f1` — exact production mount coverage needs source review before assigning mount ids.
+  - `VoigtlanderNokton35mmf12`, `VoigtlanderUltron28f2`, `VoigtlanderApoLanthar180mmf4`,
+    `VoigtlanderMacroApoLanthar125mmf25`, `VoigtlanderHeliar`, `VoigtlanderUltron50f2` — verify historical
+    or multi-mount variants before seeding.
+- Vivitar:
+  - `VivitarSeries1200mmf3`, `VivitarSeries13585mmf28`, `VivitarSeries170210mmf284` — Series 1 lenses were
+    sold in multiple mounts; need source review before choosing one or more ids.
+- Nikon rangefinder:
+  - `NikonN5cmf11` — likely not Nikon F; taxonomy may need a Nikon S/rangefinder id before seeding.
 
 Useful scan commands:
 
