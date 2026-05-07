@@ -80,6 +80,11 @@ the fields unset and add a note here until a source check resolves it.
   `NikonNikkorAFS200500mmf56`, `NikonNikkorAuto24f28`, `NikonNikkorN28mmf2`,
   `NikonNikkorSAuto50mmf14`
 
+### Resolved Over Time
+- `VoigtlanderNokton50f1` — COMPLETE
+- `Leica28mmf17` and `LeicaAPO43mmf2` — likely fixed-lens Q-family full-frame; verify before setting
+    `imageFormat` and `lensMounts: ["fixed-lens-camera"]`.
+    
 ## Remaining Work
 
 ### Needs Human Intervention / Source Review
@@ -91,8 +96,6 @@ Do not seed these from filename alone:
   - `SigmaDGDNA35mmf14`, `SigmaDGDNA85mmf14`, `SigmaDGDNArt50mmf14` — likely Sony E and L-mount
     full-frame, but confirm the exact production variants represented by each file.
 - Leica:
-  - `Leica28mmf17` and `LeicaAPO43mmf2` — likely fixed-lens Q-family full-frame; verify before setting
-    `imageFormat` and `lensMounts: ["fixed-lens-camera"]`.
   - `LeicaAPO35mmf2`, `LeicaSummicronV550mmf2`, `LeicaElmarit28mmf28`, `LeicaElmarit90mmf28`,
     `LeicaElcan50mmf2` — confirm M/R/other mount identity and coverage.
 - Zeiss historical/system lenses:
@@ -102,7 +105,6 @@ Do not seed these from filename alone:
     `CarlZeissPlanarT50mmf14`, `CarlZeissProTessar35mmf32`, `CarlZeissTessar50mmf35`,
     `ZeissBiogon21mmf45`, `ZeissDistagon35mmf14`, `ZeissHologon15mmf8`
 - Voigtländer:
-  - `VoigtlanderNokton50f1` — exact production mount coverage needs source review before assigning mount ids.
   - `VoigtlanderNokton35mmf12`, `VoigtlanderUltron28f2`, `VoigtlanderApoLanthar180mmf4`,
     `VoigtlanderMacroApoLanthar125mmf25`, `VoigtlanderHeliar`, `VoigtlanderUltron50f2` — verify historical
     or multi-mount variants before seeding.
