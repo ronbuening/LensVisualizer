@@ -19,7 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
-  // ── 2026-05-07 ──────────────────────────────────────────────────────────
+  // ── 2026-05-08 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-08",
+    type: "lens",
+    summary:
+      "Added three Fujifilm lenses: GF110mm f/2 R, GF80mm f/1.7 R, and GF120mm f/4 R LM OIS WR Macro; and three Sony lenses: FE 20-70mm f/4.0G, Planar FE 50mm f/1.4, and Planar T* 50mm f/1.4 ZA",
+  }, // ── 2026-05-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-07",
     type: "improvement",
