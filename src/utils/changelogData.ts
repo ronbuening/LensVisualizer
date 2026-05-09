@@ -19,13 +19,21 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-09 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-09",
+    type: "lens",
+    summary:
+      "Added six new Hasselblad lenses: XCD 65mm f/2.8, XCD 90mm f/2.5, XCD 120mm f/3.2, HC 80mm f/2.8, HC 120mm f/4.0, and HC 150mm f/3.2",
+  },
   // ── 2026-05-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-08",
     type: "lens",
     summary:
       "Added three Fujifilm lenses: GF110mm f/2 R, GF80mm f/1.7 R, and GF120mm f/4 R LM OIS WR Macro; and three Sony lenses: FE 20-70mm f/4.0G, Planar FE 50mm f/1.4, and Planar T* 50mm f/1.4 ZA",
-  }, // ── 2026-05-07 ──────────────────────────────────────────────────────────
+  },
+  // ── 2026-05-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-07",
     type: "improvement",
