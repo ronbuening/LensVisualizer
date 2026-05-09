@@ -30,7 +30,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 115 vendor-verified entries (Phase 7, May 2026)
+ * GLASS CATALOG — 129 vendor-verified entries (Phase 8, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1381,6 +1381,166 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.6121,
     code6: "001255",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD40 page (formula 3 polynomial).",
+  },
+
+  /* ────── Phase 8 unresolved-token additions (May 2026) ──────
+   * Clean, sourceable names from the unresolved-glass report. Ambiguous
+   * high-frequency labels such as NBFD3, S-NPH7, and TAFD25 are intentionally
+   * left for per-lens patent relabeling rather than broad catalog resolution.
+   */
+
+  /* Ohara unresolved-token additions */
+  {
+    name: "S-LAH93",
+    vendor: "Ohara",
+    B: [2.17884378, 0.325508683, 1.70608646],
+    C: [0.0115760879, 0.0495982503, 128.91358],
+    nd: 1.90525,
+    vd: 35.036826,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAH93 page.",
+  },
+  {
+    name: "S-TIH11",
+    vendor: "Ohara",
+    B: [1.72677471, 0.324568628, 2.65816809],
+    C: [0.0129369958, 0.0618255245, 221.904637],
+    nd: 1.784723,
+    vd: 25.683446,
+    PgF: 0.6168,
+    code6: "785257",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH11 page.",
+  },
+  {
+    name: "S-TIL25",
+    vendor: "Ohara",
+    B: [1.32122534, 0.123824976, 1.43685254],
+    C: [0.00952091436, 0.0516062665, 149.064883],
+    nd: 1.581439,
+    vd: 40.747566,
+    PgF: 0.5772,
+    code6: "581407",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL25 page.",
+  },
+  {
+    name: "S-BAH27",
+    vendor: "Ohara",
+    B: [1.68939052, 0.133081013, 1.41165515],
+    C: [0.0103598193, 0.0533982239, 126.515503],
+    nd: 1.701536,
+    vd: 41.23944,
+    PgF: 0.5762,
+    code6: "702412",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BAH27 page.",
+  },
+  {
+    name: "S-NBH52V",
+    vendor: "Ohara",
+    B: [1.51336868, 0.212341478, 1.54149143],
+    C: [0.00987077827, 0.0462843662, 126.97851],
+    nd: 1.673,
+    vd: 38.256077,
+    PgF: 0.5756,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NBH52V page.",
+  },
+  {
+    name: "S-TIH53W",
+    vendor: "Ohara",
+    B: [1.87904886, 0.369719775, 2.33730863],
+    C: [0.014412177, 0.063881799, 182.66818],
+    nd: 1.84666,
+    vd: 23.77794,
+    PgF: 0.6213,
+    code6: "847238",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH53W page. Improved-transmittance variant.",
+  },
+  {
+    name: "S-BAH28",
+    vendor: "Ohara",
+    B: [1.69493484, 0.192890298, 1.56385948],
+    C: [0.010272319, 0.052118764, 137.818035],
+    nd: 1.72342,
+    vd: 37.955602,
+    PgF: 0.5835,
+    code6: "723380",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BAH28 page.",
+  },
+  {
+    name: "S-LAL59",
+    vendor: "Ohara",
+    B: [1.13962742, 0.805227838, 1.29488061],
+    C: [0.00493294862, 0.020247996, 93.4746507],
+    nd: 1.733997,
+    vd: 51.47057,
+    PgF: 0.5476,
+    code6: "734515",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAL59 page.",
+  },
+  {
+    name: "S-TIL27",
+    vendor: "Ohara",
+    B: [1.31433154, 0.112300168, 1.413901],
+    C: [0.00950404477, 0.0524112772, 148.429972],
+    nd: 1.575006,
+    vd: 41.505207,
+    PgF: 0.5764,
+    code6: "575415",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL27 page.",
+  },
+  {
+    name: "S-TIL6",
+    vendor: "Ohara",
+    B: [1.17701777, 0.12795803, 1.34740124],
+    C: [0.00771087686, 0.0411325328, 154.531692],
+    nd: 1.531717,
+    vd: 48.840718,
+    PgF: 0.5623,
+    code6: "532489",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL6 page.",
+  },
+
+  /* Schott unresolved-token addition */
+  {
+    name: "N-FK5",
+    vendor: "Schott",
+    B: [0.844309338, 0.344147824, 0.910790213],
+    C: [0.00475111955, 0.0149814849, 97.8600293],
+    nd: 1.48749,
+    vd: 70.41,
+    PgF: 0.529,
+    code6: "487704",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-FK5 page.",
+  },
+
+  /* Hoya unresolved-token additions */
+  {
+    name: "FC5",
+    vendor: "Hoya",
+    polynomial: [2.1894054, -0.0099044908, 0.008640337, 0.00022263067, -0.000012291942, 0.00000059386349],
+    nd: 1.48749,
+    vd: 70.45,
+    PgF: 0.5345,
+    code6: "487704",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FC5 page (formula 3 polynomial).",
+  },
+  {
+    name: "E-FD15",
+    vendor: "Hoya",
+    polynomial: [2.7919943, -0.012311206, 0.028802741, 0.0021430059, -0.00016932119, 0.000019741766],
+    nd: 1.69895,
+    vd: 30.05,
+    PgF: 0.6019,
+    code6: "699301",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD15 page (formula 3 polynomial).",
+  },
+  {
+    name: "TAFD5F",
+    vendor: "Hoya",
+    polynomial: [3.275546, -0.014470354, 0.030922062, 0.00073289981, 0.0000046573307, 0.0000018242746],
+    nd: 1.83481,
+    vd: 42.72,
+    PgF: 0.5657,
+    code6: "835427",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD5F page (formula 3 polynomial).",
   },
 
   /* Sumita priority addition */
