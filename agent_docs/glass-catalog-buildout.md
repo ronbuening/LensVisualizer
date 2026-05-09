@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **115 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **129 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -67,6 +67,25 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 8 additions** (May 2026 — clean named tokens from the unresolved-glass report; ambiguous high-frequency tokens such as NBFD3, S-NPH7, and TAFD25 remain deferred for per-lens patent relabeling):
+
+| Glass | Vendor | Occurrences before add | Notes |
+|---|---|---:|---|
+| ★ S-LAH93 | Ohara | 5 | High-index lanthanum; resolves repeated modern mirrorless annotations |
+| ★ S-TIH11 | Ohara | 5 | Dense flint; several annotations also mention Schott SF10/N-SF10-class equivalents |
+| ★ S-TIL25 | Ohara | 5 | Lightweight flint; some current labels are now visible mismatch/relabel candidates |
+| ★ FC5 | Hoya | 4 | Fluor crown; legacy/SLD-style low-dispersion coverage |
+| ★ S-BAH27 | Ohara | 4 | Barium crown |
+| ★ S-NBH52V | Ohara | 4 | Vacuum-melt NBH variant; distinct from S-NBH52 |
+| ★ S-TIH53W | Ohara | 4 | Improved-transmittance W variant sharing optical constants with S-TIH53 |
+| ★ E-FD15 | Hoya | 5 | Formula-3 polynomial dense flint; broad resolver hits now need relabel review |
+| ★ N-FK5 | Schott | 3 | Legacy FK5 alias added; fluorcrown counterpart to Hoya FC5 |
+| ★ S-BAH28 | Ohara | 3 | Barium crown |
+| ★ S-LAL59 | Ohara | 3 | Lanthanum light crown |
+| ★ S-TIL27 | Ohara | 3 | Lightweight flint; some current labels are now visible mismatch/relabel candidates |
+| ★ S-TIL6 | Ohara | 3 | Lightweight flint |
+| ★ TAFD5F | Hoya | 3 | Formula-3 polynomial high-index lanthanum/tantalum flint |
 
 **Phase 7 additions** (May 2026 — first pass from the latest unresolved-token priority list):
 

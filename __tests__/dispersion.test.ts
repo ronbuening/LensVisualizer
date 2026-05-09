@@ -46,7 +46,7 @@ describe("glass catalog", () => {
   });
 
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(111);
+    expect(catalogSize()).toBeGreaterThanOrEqual(129);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);

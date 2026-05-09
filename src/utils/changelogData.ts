@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-09 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-09",
+    type: "improvement",
+    summary: "Expanded the Sellmeier glass catalog to 129 verified entries",
+  },
+  {
+    date: "2026-05-09",
     type: "lens",
     summary:
       "Added six new Hasselblad lenses: XCD 65mm f/2.8, XCD 90mm f/2.5, XCD 120mm f/3.2, HC 80mm f/2.8, HC 120mm f/4.0, and HC 150mm f/3.2",

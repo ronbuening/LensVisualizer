@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **166** lenses scanned
 - **1861** non-air surfaces examined
 - **1855** element glass declarations examined
-- **605** non-explicit-unmatched annotations did not resolve
-- **212** distinct unresolved glass-like tokens found
+- **550** non-explicit-unmatched annotations did not resolve
+- **191** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -22,28 +22,12 @@ or per-lens patent backfills.
 | S-NPH7 | 7 | 6 | |
 | TAFD25 | 7 | 6 | |
 | 593679 | 6 | 3 | |
-| E-FD15 | 5 | 4 | |
 | L-PHM52 | 5 | 2 | |
-| S-LAH93 | 5 | 5 | |
-| S-TIH11 | 5 | 5 | |
-| S-TIL25 | 5 | 5 | |
-| FC5 | 4 | 2 | |
-| S-BAH27 | 4 | 4 | |
-| S-NBH52V | 4 | 4 | |
-| S-TIH53W | 4 | 4 | |
 | 694533 | 3 | 2 | |
 | E-FD5 | 3 | 3 | |
-| E-FDS3HT | 3 | 2 | |
-| E-FL5 | 3 | 3 | |
-| FK5 | 3 | 3 | |
-| S-BAH28 | 3 | 3 | |
-| S-LAL59 | 3 | 3 | |
 | S-LAM55 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | S-TIH10 | 3 | 3 | |
-| S-TIL27 | 3 | 3 | |
-| S-TIL6 | 3 | 3 | |
-| TAFD5F | 3 | 3 | |
 | 051269 | 2 | 1 | |
 | 159319 | 2 | 1 | |
 | 519699 | 2 | 1 | |
@@ -65,6 +49,8 @@ or per-lens patent backfills.
 | E-FD2 | 2 | 2 | |
 | E-FD4 | 2 | 2 | |
 | E-FD8 | 2 | 1 | |
+| E-FDS3HT | 2 | 1 | |
+| E-FL5 | 2 | 2 | |
 | F7 | 2 | 2 | |
 | H-LAK6A | 2 | 2 | |
 | H-ZF88 | 2 | 1 | |
@@ -85,7 +71,6 @@ or per-lens patent backfills.
 | S-LAM3 | 2 | 2 | |
 | S-LAM52 | 2 | 2 | |
 | S-TIH13 | 2 | 2 | |
-| SF10 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK5 | 2 | 2 | |
 | SK7 | 2 | 2 | |
@@ -135,17 +120,14 @@ or per-lens patent backfills.
 | 850323 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
-| 855248 | 1 | 1 | |
 | 855399 | 1 | 1 | |
 | 863415 | 1 | 1 | |
 | 903354 | 1 | 1 | |
-| 921240 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | BSC3 | 1 | 1 | |
 | E-F3 | 1 | 1 | |
 | E-FD7 | 1 | 1 | |
-| E-FEL1 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
 | F5 | 1 | 1 | |
@@ -161,7 +143,6 @@ or per-lens patent backfills.
 | H-ZLAF68C | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
 | K-BAF10 | 1 | 1 | |
-| K-FK5 | 1 | 1 | |
 | K-SFS5 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH85 | 1 | 1 | |
@@ -172,12 +153,9 @@ or per-lens patent backfills.
 | N-BAF4 | 1 | 1 | |
 | N-BAK4 | 1 | 1 | |
 | N-F2 | 1 | 1 | |
-| N-FK5 | 1 | 1 | |
 | N-KZFS8 | 1 | 1 | |
 | N-LAK12 | 1 | 1 | |
 | N-LAK33B | 1 | 1 | |
-| N-SF10 | 1 | 1 | |
-| N-SF14 | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
 | N-SSK5 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
@@ -220,6 +198,7 @@ or per-lens patent backfills.
 | S-TIM1 | 1 | 1 | |
 | S-TIM3 | 1 | 1 | |
 | S-TIM8 | 1 | 1 | |
+| SF10 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -272,14 +251,6 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
 
-### E-FD15 — 5 occurrences
-
-- [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 10: `E-FD15 type (923/209)`
-- [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) 7: `E-FD15 (HOYA)`
-- [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) 22: `E-FD15 (HOYA)`
-- [SONY PLANAR T* 50mm F1.4 ZA SSM](../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 12: `E-FD15 (HIKARI)`
-- [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) 7: `E-FD15 (HOYA) / N-SF14 (Schott)`
-
 ### L-PHM52 — 5 occurrences
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 22A: `Near OHARA L-PHM52 (619636)`
@@ -287,58 +258,6 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-
-### S-LAH93 — 5 occurrences
-
-- [FUJIFILM FUJINON GF80mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) 16: `S-LAH93 (OHARA)`
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 1: `OHARA S-LAH93`
-- [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) 35: `J-LASFH9A / ~S-LAH93 (903-358)`
-- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 3: `S-LAH93 (OHARA)`
-- [PANASONIC LUMIX S PRO 50mm f/1.4](../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) 7A: `LAH-type (808/409, PGM-moldable, uncertain — S-LAH93 region)`
-
-### S-TIH11 — 5 occurrences
-
-- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 9: `S-TIH11 (OHARA)`
-- [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) 9: `S-TIH11 / N-SF10 (dense flint)`
-- [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) 8: `SF10 (Schott) / S-TIH11 (OHARA)`
-- [PENTAX-110 50mm f/2.8](../src/lens-data/pentax/Pentax11050mmf28.data.ts) 7: `S-TIH11 (OHARA)`
-- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 10: `S-TIH11 (OHARA)`
-
-### S-TIL25 — 5 occurrences
-
-- [CANON EF 40mm f/2.8 STM](../src/lens-data/canon/CanonEF40mmf28.data.ts) 2: `S-TIL25 (OHARA)`
-- [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 10: `S-TIL25 (OHARA)`
-- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 24: `E-FL5 (HOYA) / S-TIL25 (OHARA)`
-- [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 5: `S-TIL25 (OHARA)`
-- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 3: `S-TIL25 (OHARA)`
-
-### FC5 — 4 occurrences
-
-- [HASSELBLAD HC MACRO 4/120](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 12: `FC5 (HOYA)`
-- [HASSELBLAD HC MACRO 4/120](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 18: `FC5 (HOYA)`
-- [SIGMA 35mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 1: `HOYA FC5 (487/704)`
-- [SIGMA 35mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 16: `HOYA FC5 (487/704)`
-
-### S-BAH27 — 4 occurrences
-
-- [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 17: `S-BAH27 (OHARA)`
-- [FUJIFILM FUJINON GF80mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) 8: `S-BAH27 (OHARA)`
-- [NIKON NIKKOR Z 135mm f/1.8 S Plena](../src/lens-data/nikon/NikonZ135f18.data.ts) 13: `Barium crown (near S-BAH27)`
-- [SONY FE 90 mm F2.8 Macro G OSS](../src/lens-data/sony/SonyFE90mmf28.data.ts) 24: `S-BAH27 (OHARA)`
-
-### S-NBH52V — 4 occurrences
-
-- [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 20: `S-NBH52V (OHARA)`
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 12: `OHARA S-NBH52V`
-- [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 16: `S-NBH52V (OHARA)`
-- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 24: `Dense flint (near S-NBH52V)`
-
-### S-TIH53W — 4 occurrences
-
-- [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 27: `S-TIH53W type (855/248)`
-- [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) 17: `855248 — S-TIH53W family (OHARA)`
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 27: `OHARA S-TIH53W`
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 13: `S-TIH53W (OHARA)`
 
 ### 694533 — 3 occurrences
 
@@ -351,36 +270,6 @@ or per-lens patent backfills.
 - [HASSELBLAD HC MACRO 4/120](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 3: `E-FD5 (HOYA)`
 - [NIKON AF-S NIKKOR 16-35mm f/4G ED VR](../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) 1A: `LAM family (cf. HOYA E-FD5)`
 - [SONY PLANAR T* 50mm F1.4 ZA SSM](../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 3: `E-FD5 class (HOYA/HIKARI equivalent, 593/355)`
-
-### E-FDS3HT — 3 occurrences
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
-
-### E-FL5 — 3 occurrences
-
-- [NIKON AI NIKKOR 85mm f/1.4S](../src/lens-data/nikon/Nikon85f14AIS.data.ts) 8: `Light flint (HOYA E-FL5 / Schott LF5 class, 581-408)`
-- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 24: `E-FL5 (HOYA) / S-TIL25 (OHARA)`
-- [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) 18: `E-FL5 (HOYA)`
-
-### FK5 — 3 occurrences
-
-- [CARL ZEISS BIOGON 21mm f/4.5](../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 3: `FK5 fluorite crown (487/703)`
-- [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 15: `FK5 (Schott)`
-- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 1: `FK5 (Schott) / K-FK5 (Sumita)`
-
-### S-BAH28 — 3 occurrences
-
-- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 32: `OHARA S-BAH28`
-- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 15: `S-BAH28 (OHARA)`
-- [SONY PLANAR T* FE 50mm F1.4 ZA](../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) 1: `S-BAH28 (OHARA)`
-
-### S-LAL59 — 3 occurrences
-
-- [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../src/lens-data/nikon/NikonAFS105f28G.data.ts) 19: `S-LAL59 (OHARA)`
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 3: `S-LAL59 (729/547)`
-- [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) 8: `S-LAL59 (OHARA, probable)`
 
 ### S-LAM55 — 3 occurrences
 
@@ -399,24 +288,6 @@ or per-lens patent backfills.
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 32: `S-TIH10 type (805/254)`
 - [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 7: `SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)`
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 8: `S-TIH10 (OHARA)`
-
-### S-TIL27 — 3 occurrences
-
-- [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 11: `S-TIL27 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 6: `S-TIL27 (OHARA)`
-- [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 9: `S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)`
-
-### S-TIL6 — 3 occurrences
-
-- [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) 12: `S-TIL6 (OHARA)`
-- [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 10: `OHARA S-TIL6`
-- [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) 12: `S-TIL6 (OHARA)`
-
-### TAFD5F — 3 occurrences
-
-- [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 3: `E-LAF7 / TAFD5F (HOYA)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
-- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 27: `Lanthanum crown (no confirmed catalog match; near TAFD5F)`
 
 ### 051269 — 2 occurrences
 
@@ -523,6 +394,16 @@ or per-lens patent backfills.
 - [RICOH GR/GR2 18.3mm f/2.8](../src/lens-data/ricoh/RicohGR218mmf28.data.ts) 3: `E-FD8 (HOYA)`
 - [RICOH GR/GR2 18.3mm f/2.8](../src/lens-data/ricoh/RicohGR218mmf28.data.ts) 10: `E-FD8 (HOYA)`
 
+### E-FDS3HT — 2 occurrences
+
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
+
+### E-FL5 — 2 occurrences
+
+- [NIKON AI NIKKOR 85mm f/1.4S](../src/lens-data/nikon/Nikon85f14AIS.data.ts) 8: `Light flint (HOYA E-FL5 / Schott LF5 class, 581-408)`
+- [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) 18: `E-FL5 (HOYA)`
+
 ### F7 — 2 occurrences
 
 - [CANON SERENAR 28mm f/3.5](../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
@@ -622,11 +503,6 @@ or per-lens patent backfills.
 
 - [HASSELBLAD XCD 3,5/120mm Macro](../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) 4: `S-TIH13 (OHARA)`
 - [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../src/lens-data/nikon/NikonAFS105f28G.data.ts) 5: `S-TIH13 (OHARA)`
-
-### SF10 — 2 occurrences
-
-- [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) 8: `SF10 (Schott) / S-TIH11 (OHARA)`
-- [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 7: `SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)`
 
 ### SK18 — 2 occurrences
 
@@ -830,10 +706,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 14: `855399 - high-index lanthanum (nd=1.854505, vd~39.9)`
 
-### 855248 — 1 occurrence
-
-- [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) 17: `855248 — S-TIH53W family (OHARA)`
-
 ### 855399 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 14: `855399 - high-index lanthanum (nd=1.854505, vd~39.9)`
@@ -845,10 +717,6 @@ or per-lens patent backfills.
 ### 903354 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 41: `903354 - ultra-high-index lanthanum (nd=1.90265, vd~35.4)`
-
-### 921240 — 1 occurrence
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 5: `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)`
 
 ### BACD14 — 1 occurrence
 
@@ -869,10 +737,6 @@ or per-lens patent backfills.
 ### E-FD7 — 1 occurrence
 
 - [SONY PLANAR T* 50mm F1.4 ZA SSM](../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 6: `E-FD7 class (HOYA/HIKARI equivalent, 613/370)`
-
-### E-FEL1 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 18: `N-FK5 (Schott) / E-FEL1 (HOYA)`
 
 ### E-FPL51 — 1 occurrence
 
@@ -934,10 +798,6 @@ or per-lens patent backfills.
 
 - [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 9: `N-BAF10 (Schott) / K-BAF10 (Sumita)`
 
-### K-FK5 — 1 occurrence
-
-- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 1: `FK5 (Schott) / K-FK5 (Sumita)`
-
 ### K-SFS5 — 1 occurrence
 
 - [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
@@ -978,10 +838,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 26mm f/2.8](../src/lens-data/nikon/NikonZ26f28.data.ts) 8: `N-F2 (Schott)`
 
-### N-FK5 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 18: `N-FK5 (Schott) / E-FEL1 (HOYA)`
-
 ### N-KZFS8 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 6: `OHARA S-LAM52 (≈Schott N-KZFS8)`
@@ -993,14 +849,6 @@ or per-lens patent backfills.
 ### N-LAK33B — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 9: `N-LAK33B equiv. (175500/5233)`
-
-### N-SF10 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 58mm f/1.4G](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) 9: `S-TIH11 / N-SF10 (dense flint)`
-
-### N-SF14 — 1 occurrence
-
-- [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) 7: `E-FD15 (HOYA) / N-SF14 (Schott)`
 
 ### N-SF5 — 1 occurrence
 
@@ -1169,6 +1017,10 @@ or per-lens patent backfills.
 ### S-TIM8 — 1 occurrence
 
 - [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 23: `S-TIM8 (OHARA)`
+
+### SF10 — 1 occurrence
+
+- [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 7: `SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)`
 
 ### SF14 — 1 occurrence
 
