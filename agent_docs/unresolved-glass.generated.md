@@ -8,44 +8,48 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **166** lenses scanned
-- **1861** non-air surfaces examined
-- **1855** element glass declarations examined
-- **550** non-explicit-unmatched annotations did not resolve
-- **191** distinct unresolved glass-like tokens found
+- **172** lenses scanned
+- **1931** non-air surfaces examined
+- **1925** element glass declarations examined
+- **580** non-explicit-unmatched annotations did not resolve
+- **199** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
+| 593679 | 10 | 5 | |
 | NBFD3 | 7 | 6 | |
-| S-NPH7 | 7 | 6 | |
 | TAFD25 | 7 | 6 | |
-| 593679 | 6 | 3 | |
+| 593670 | 6 | 3 | |
+| S-NPH7 | 6 | 5 | |
 | L-PHM52 | 5 | 2 | |
-| 694533 | 3 | 2 | |
+| 694533 | 4 | 3 | |
+| 720503 | 3 | 1 | |
+| 744495 | 3 | 3 | |
+| 764485 | 3 | 3 | |
+| 903357 | 3 | 3 | |
+| 911353 | 3 | 3 | |
+| 946180 | 3 | 3 | |
 | E-FD5 | 3 | 3 | |
+| S-BAL2 | 3 | 3 | |
 | S-LAM55 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | S-TIH10 | 3 | 3 | |
+| TAF5 | 3 | 2 | |
 | 051269 | 2 | 1 | |
 | 159319 | 2 | 1 | |
 | 519699 | 2 | 1 | |
-| 593670 | 2 | 2 | |
 | 603380 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 717479 | 2 | 1 | |
 | 738323 | 2 | 2 | |
-| 744495 | 2 | 2 | |
 | 755523 | 2 | 2 | |
-| 764485 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 788474 | 2 | 1 | |
 | 855252 | 2 | 1 | |
-| 903357 | 2 | 2 | |
-| 911353 | 2 | 2 | |
-| 946180 | 2 | 2 | |
+| 950294 | 2 | 1 | |
 | E-FD2 | 2 | 2 | |
 | E-FD4 | 2 | 2 | |
 | E-FD8 | 2 | 1 | |
@@ -54,14 +58,15 @@ or per-lens patent backfills.
 | F7 | 2 | 2 | |
 | H-LAK6A | 2 | 2 | |
 | H-ZF88 | 2 | 1 | |
+| L-LAH53 | 2 | 2 | |
 | L-LAH86 | 2 | 2 | |
 | L-LAM60 | 2 | 2 | |
 | N-BAF10 | 2 | 2 | |
 | N-LAF34 | 2 | 2 | |
 | N-LAK14 | 2 | 2 | |
 | NBFD11 | 2 | 2 | |
+| NBFD15 | 2 | 2 | |
 | S-BAH11 | 2 | 2 | |
-| S-BAL2 | 2 | 2 | |
 | S-BSM16 | 2 | 2 | |
 | S-BSM2 | 2 | 2 | |
 | S-BSM71 | 2 | 2 | |
@@ -70,12 +75,13 @@ or per-lens patent backfills.
 | S-LAL7 | 2 | 2 | |
 | S-LAM3 | 2 | 2 | |
 | S-LAM52 | 2 | 2 | |
+| S-NBH53V | 2 | 2 | |
+| S-PHM52Q | 2 | 2 | |
 | S-TIH13 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK5 | 2 | 2 | |
 | SK7 | 2 | 2 | |
 | TAF1 | 2 | 2 | |
-| TAF5 | 2 | 1 | |
 | TAFD35 | 2 | 1 | |
 | 157957 | 1 | 1 | |
 | 175500 | 1 | 1 | |
@@ -85,6 +91,7 @@ or per-lens patent backfills.
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
+| 553717 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
 | 581408 | 1 | 1 | |
@@ -109,7 +116,9 @@ or per-lens patent backfills.
 | 728284 | 1 | 1 | |
 | 728285 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
+| 770297 | 1 | 1 | |
 | 775473 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 795453 | 1 | 1 | |
@@ -122,7 +131,9 @@ or per-lens patent backfills.
 | 854505 | 1 | 1 | |
 | 855399 | 1 | 1 | |
 | 863415 | 1 | 1 | |
+| 870200 | 1 | 1 | |
 | 903354 | 1 | 1 | |
+| 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | BSC3 | 1 | 1 | |
@@ -145,8 +156,10 @@ or per-lens patent backfills.
 | K-BAF10 | 1 | 1 | |
 | K-SFS5 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
+| L-LAH83 | 1 | 1 | |
 | L-LAH85 | 1 | 1 | |
 | L-LAH85V | 1 | 1 | |
+| L-LAL13 | 1 | 1 | |
 | L-LAL14 | 1 | 1 | |
 | L-LAM69 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
@@ -160,7 +173,6 @@ or per-lens patent backfills.
 | N-SSK5 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
-| NBFD15 | 1 | 1 | |
 | NBFD25 | 1 | 1 | |
 | S-BAH10 | 1 | 1 | |
 | S-BAL41 | 1 | 1 | |
@@ -172,7 +184,6 @@ or per-lens patent backfills.
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH7 | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
-| S-LAH78 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL10 | 1 | 1 | |
 | S-LAL12 | 1 | 1 | |
@@ -182,11 +193,9 @@ or per-lens patent backfills.
 | S-LAM7 | 1 | 1 | |
 | S-NBF1 | 1 | 1 | |
 | S-NBH53 | 1 | 1 | |
-| S-NBH53V | 1 | 1 | |
 | S-NBH58 | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-PHM51 | 1 | 1 | |
-| S-PHM52Q | 1 | 1 | |
 | S-SK14 | 1 | 1 | |
 | S-TIF1 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
@@ -197,7 +206,6 @@ or per-lens patent backfills.
 | S-TIL26 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
 | S-TIM3 | 1 | 1 | |
-| S-TIM8 | 1 | 1 | |
 | SF10 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
@@ -212,6 +220,19 @@ or per-lens patent backfills.
 
 ## Occurrences
 
+### 593679 — 10 occurrences
+
+- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 3: `Fluorophosphate Crown (glass code 593679)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 32: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 29: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 38: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 15: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+
 ### NBFD3 — 7 occurrences
 
 - [CANON SERENAR 50mm f/1.8](../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 4: `NBFD3 (HOYA)`
@@ -221,16 +242,6 @@ or per-lens patent backfills.
 - [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 9: `NBFD3 (HOYA)`
 - [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) 15: `NBFD3 (HOYA)`
 - [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) 10: `LaSF3 (Schott LaSF3 / HOYA NBFD3 — exact)`
-
-### S-NPH7 — 7 occurrences
-
-- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 4: `S-NPH7 (OHARA)`
-- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 20: `S-NPH7 (OHARA ultra-high-index dense flint, nd > 2.0)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
-- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 20: `S-NPH7 (OHARA)`
-- [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 22: `S-NPH7 (OHARA)`
 
 ### TAFD25 — 7 occurrences
 
@@ -242,14 +253,23 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 13: `TAFD25 equiv. (181600/4659)`
 - [PENTAX-F 85mm f/2.8 Soft](../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 6: `TAFD25 (HOYA)`
 
-### 593679 — 6 occurrences
+### 593670 — 6 occurrences
 
-- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 3: `Fluorophosphate Crown (glass code 593679)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 15: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 8: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 10: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 12: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 25: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 13: `Phosphate crown ED (593670, same as L16)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 24: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+
+### S-NPH7 — 6 occurrences
+
+- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
+- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 4: `S-NPH7 (OHARA)`
+- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 20: `S-NPH7 (OHARA ultra-high-index dense flint, nd > 2.0)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
+- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 20: `S-NPH7 (OHARA)`
 
 ### L-PHM52 — 5 occurrences
 
@@ -259,17 +279,60 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
 
-### 694533 — 3 occurrences
+### 694533 — 4 occurrences
 
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 36: `694533 - lanthanum crown (patent nd=1.69350, vd=53.30)`
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 1: `694533 — high-index crown (patent nd=1.69370, νd=53.32)`
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 3: `694533 — high-index crown (patent nd=1.69370, νd=53.32)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 15A: `694533 - lanthanum crown (patent nd=1.69370, vd=53.32)`
+
+### 720503 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 6: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 34: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 40: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+
+### 744495 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 - lanthanum crown (patent nd=1.74389, vd=49.50)`
+- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)`
+
+### 764485 — 3 occurrences
+
+- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 21: `764485 — Hikari/CDGM lanthanum flint class (nd=1.76385, νd=48.5)`
+- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 15: `764485 — lanthanum crown (nd=1.76385, νd=48.51)`
+- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 9: `764485 - M-TAFD305 / high-index lanthanum`
+
+### 903357 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 23: `903357 - high-index lanthanum flint (patent nd=1.90265, vd=35.73)`
+- [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 7: `903357 — dense flint (patent nd=1.90265, νd=35.73)`
+- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 16: `903357 — high-index lanthanum flint (patent nd=1.90265, νd=35.72)`
+
+### 911353 — 3 occurrences
+
+- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) 19: `911353 — lanthanum (nd=1.91082, νd=35.3)`
+- [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 14: `911353 — lanthanum (nd=1.91082, νd=35.3)`
+- [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 14: `Ultra-high-index La dense flint (code 911353)`
+
+### 946180 — 3 occurrences
+
+- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 19: `946180 — ultra-high-index dense flint (nd=1.94595, νd=18.0)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 28: `946180 - ultra-high-index dense flint (patent nd=1.94595, vd=17.98)`
 
 ### E-FD5 — 3 occurrences
 
 - [HASSELBLAD HC MACRO 4/120](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 3: `E-FD5 (HOYA)`
 - [NIKON AF-S NIKKOR 16-35mm f/4G ED VR](../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) 1A: `LAM family (cf. HOYA E-FD5)`
 - [SONY PLANAR T* 50mm F1.4 ZA SSM](../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 3: `E-FD5 class (HOYA/HIKARI equivalent, 593/355)`
+
+### S-BAL2 — 3 occurrences
+
+- [LEICA APO-MACRO-ELMARIT-TL 60 mm f/2.8 ASPH.](../src/lens-data/leica/LeicaAPOMacroElmaritTL60mmf28.data.ts) 16: `S-BAL2 (OHARA)`
+- [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) 8: `S-BAL2 (OHARA)`
+- [SONY SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) 3: `S-BAL2 (OHARA)`
 
 ### S-LAM55 — 3 occurrences
 
@@ -289,6 +352,12 @@ or per-lens patent backfills.
 - [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 7: `SF (S-TIH10 equivalent, OHARA / SF10 SCHOTT)`
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 8: `S-TIH10 (OHARA)`
 
+### TAF5 — 3 occurrences
+
+- [NIKON L35AF 35mm f/2.8](../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) 3: `TAF5 (1773/494)`
+- [NIKON L35AF 35mm f/2.8](../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) 7: `TAF5 (1773/494)`
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `TAF5 (HOYA)`
+
 ### 051269 — 2 occurrences
 
 - [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 18: `051269 - ultra-high-index dense flint`
@@ -303,11 +372,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 8: `Phosphate crown (glass code 519699)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 21: `Phosphate crown (glass code 519699)`
-
-### 593670 — 2 occurrences
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 13: `Phosphate crown ED (593670, same as L16)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 24: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
 
 ### 603380 — 2 occurrences
 
@@ -329,20 +393,10 @@ or per-lens patent backfills.
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 13: `738323 — niobium dense flint (nd=1.73800, νd=32.26)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 19: `738323 - niobium dense flint (patent nd=1.73800, vd=32.33)`
 
-### 744495 — 2 occurrences
-
-- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)`
-
 ### 755523 — 2 occurrences
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 4: `Near OHARA S-LAL60 (755523)`
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 9: `OHARA 755523 (TaC6; see analysis §5.2)`
-
-### 764485 — 2 occurrences
-
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 15: `764485 — lanthanum crown (nd=1.76385, νd=48.51)`
-- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 9: `764485 - M-TAFD305 / high-index lanthanum`
 
 ### 774492 — 2 occurrences
 
@@ -364,20 +418,10 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `High-index APD flint (glass code 855252)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `High-index APD flint (glass code 855252)`
 
-### 903357 — 2 occurrences
+### 950294 — 2 occurrences
 
-- [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 7: `903357 — dense flint (patent nd=1.90265, νd=35.73)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 16: `903357 — high-index lanthanum flint (patent nd=1.90265, νd=35.72)`
-
-### 911353 — 2 occurrences
-
-- [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) 19: `911353 — lanthanum (nd=1.91082, νd=35.3)`
-- [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 14: `Ultra-high-index La dense flint (code 911353)`
-
-### 946180 — 2 occurrences
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 28: `946180 - ultra-high-index dense flint (patent nd=1.94595, vd=17.98)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 1: `950294 - ultra-high-index dense flint (patent nd=1.95000, vd=29.37)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 28: `950294 - ultra-high-index dense flint (patent nd=1.95000, vd=29.37)`
 
 ### E-FD2 — 2 occurrences
 
@@ -419,6 +463,11 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) 14: `FDS18 (HOYA) / H-ZF88 (946-180)`
 - [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) 31: `FDS18 (HOYA) / H-ZF88 (946-180)`
 
+### L-LAH53 — 2 occurrences
+
+- [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) 25A: `L-LAH53 (OHARA)`
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `L-LAH53 (OHARA)`
+
 ### L-LAH86 — 2 occurrences
 
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) 32A: `OHARA L-LAH86 PGM glass (854/404)`
@@ -449,15 +498,15 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 1: `NBFD11 (HOYA)`
 - [SONY SONNAR T* FE 35mm F2.8 ZA](../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 10: `NBFD11 (Hoya)`
 
+### NBFD15 — 2 occurrences
+
+- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `NbFD15 class (786/275, HOYA family)`
+
 ### S-BAH11 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 3: `S-BAH11 (OHARA)`
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) 21: `S-BAH11 (OHARA)`
-
-### S-BAL2 — 2 occurrences
-
-- [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) 8: `S-BAL2 (OHARA)`
-- [SONY SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) 3: `S-BAL2 (OHARA)`
 
 ### S-BSM16 — 2 occurrences
 
@@ -499,6 +548,16 @@ or per-lens patent backfills.
 - [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) 24: `S-LAM52 (OHARA)`
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 6: `OHARA S-LAM52 (≈Schott N-KZFS8)`
 
+### S-NBH53V — 2 occurrences
+
+- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 12: `High-dispersion flint (near S-NBH53V; used ×2)`
+- [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) 21: `S-NBH53V (OHARA)`
+
+### S-PHM52Q — 2 occurrences
+
+- [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) 10: `S-PHM52Q (OHARA)`
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 20: `S-PHM52Q (OHARA)`
+
 ### S-TIH13 — 2 occurrences
 
 - [HASSELBLAD XCD 3,5/120mm Macro](../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) 4: `S-TIH13 (OHARA)`
@@ -523,11 +582,6 @@ or per-lens patent backfills.
 
 - [NIKON AI NIKKOR 85mm f/1.4S](../src/lens-data/nikon/Nikon85f14AIS.data.ts) 1: `LaK–LaF border (HOYA TAF1 / Schott N-LAF34 class, 773-494)`
 - [PENTAX-110 24mm f/2.8](../src/lens-data/pentax/Pentax11024mmf28.data.ts) 8: `N-LAF34 (Schott) / TAF1 (Hoya)`
-
-### TAF5 — 2 occurrences
-
-- [NIKON L35AF 35mm f/2.8](../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) 3: `TAF5 (1773/494)`
-- [NIKON L35AF 35mm f/2.8](../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) 7: `TAF5 (1773/494)`
 
 ### TAFD35 — 2 occurrences
 
@@ -565,6 +619,10 @@ or per-lens patent backfills.
 ### 553555 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 - borosilicate crown (nd=1.552981, vd~55.5)`
+
+### 553717 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 29A: `553717 - ASP/ED fluorophosphate crown (patent nd=1.55332, vd=71.70)`
 
 ### 574425 — 1 occurrence
 
@@ -662,9 +720,17 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 - lanthanum crown (nd=1.738, vd~49.3)`
 
+### 764491 — 1 occurrence
+
+- [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
+
 ### 765468 — 1 occurrence
 
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 26A: `765468 — lanthanum flint (patent nd=1.76546, νd=46.75)`
+
+### 770297 — 1 occurrence
+
+- [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
 ### 775473 — 1 occurrence
 
@@ -714,9 +780,17 @@ or per-lens patent backfills.
 
 - [CANON New FD 50mm f/1.2](../src/lens-data/canon/CanonFDn50f12.data.ts) 10: `Lanthanum special flint (high-index) [863415] — OHARA LASF07`
 
+### 870200 — 1 occurrence
+
+- [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 25: `870200 — dense flint (patent nd=1.86966, νd=20.0)`
+
 ### 903354 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 41: `903354 - ultra-high-index lanthanum (nd=1.90265, vd~35.4)`
+
+### 986165 — 1 occurrence
+
+- [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 22: `986165 — ultra-high-index dense flint (patent nd=1.98613, νd=16.5)`
 
 ### BACD14 — 1 occurrence
 
@@ -806,6 +880,10 @@ or per-lens patent backfills.
 
 - [HASSELBLAD XCD 2,5/90V](../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 17A: `L-BBH1 (OHARA)`
 
+### L-LAH83 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 14: `L-LAH83 (OHARA)`
+
 ### L-LAH85 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 25A: `PGM lanthanum (775473, OHARA L-LAH85)`
@@ -814,13 +892,17 @@ or per-lens patent backfills.
 
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 1A: `OHARA L-LAH85V (PGM)`
 
+### L-LAL13 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 15A: `L-LAL13 (OHARA)`
+
 ### L-LAL14 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.8 S](../src/lens-data/nikon/NikonZ35f18S.data.ts) 18A: `L-LAL14 (OHARA), probable`
 
 ### L-LAM69 — 1 occurrence
 
-- [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `L-LAM69 (OHARA)`
+- [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
 
 ### L-PHL1 — 1 occurrence
 
@@ -866,10 +948,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
 
-### NBFD15 — 1 occurrence
-
-- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
-
 ### NBFD25 — 1 occurrence
 
 - [SIGMA 35mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 18: `HOYA NBFD25 (854/252)`
@@ -914,10 +992,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 45: `OHARA S-LAH75`
 
-### S-LAH78 — 1 occurrence
-
-- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 24: `S-LAH78 (OHARA)`
-
 ### S-LAH85V — 1 occurrence
 
 - [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 6: `S-LAH85V (OHARA)`
@@ -954,10 +1028,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 
-### S-NBH53V — 1 occurrence
-
-- [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 12: `High-dispersion flint (near S-NBH53V; used ×2)`
-
 ### S-NBH58 — 1 occurrence
 
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 2: `OHARA S-NBH58`
@@ -969,10 +1039,6 @@ or per-lens patent backfills.
 ### S-PHM51 — 1 occurrence
 
 - [VIVITAR SERIES 1 200mm f/3.0 VMC](../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `PSK2 (Schott) / S-PHM51 (OHARA)`
-
-### S-PHM52Q — 1 occurrence
-
-- [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) 10: `S-PHM52Q (OHARA)`
 
 ### S-SK14 — 1 occurrence
 
@@ -1013,10 +1079,6 @@ or per-lens patent backfills.
 ### S-TIM3 — 1 occurrence
 
 - [HASSELBLAD XCD 2,8/65](../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) 8: `S-TIM3 (OHARA)`
-
-### S-TIM8 — 1 occurrence
-
-- [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 23: `S-TIM8 (OHARA)`
 
 ### SF10 — 1 occurrence
 

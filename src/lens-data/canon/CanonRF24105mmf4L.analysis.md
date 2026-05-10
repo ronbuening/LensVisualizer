@@ -64,15 +64,15 @@ The total track length grows from 125.3 mm at 24 mm to 169.3 mm at 102 mm, an in
 
 The patent specifies that **L4** (a single negative meniscus element, L16) moves toward the image side for focusing from infinity to the closest distance. This is an inner-focusing architecture: the focus group sits between L3 and L5, well inside the barrel, so focusing does not change the overall lens length or rotate the filter thread. (The barrel does extend during *zoom*, as all units move forward at different rates, but this is independent of focus action.) Inner focusing is characteristic of modern Canon L-series zooms and is essential for compatibility with the Nano USM actuator.
 
-L4 consists of a single element (S-BAL14 glass, nd = 1.72916), which keeps the focus group mass extremely low — likely under two grams — enabling the rapid, silent focus response that was a key selling point for this lens as Canon's first L-series Nano USM design.
+L4 consists of a single element (S-LAL18 glass, nd = 1.72916), which keeps the focus group mass extremely low — likely under two grams — enabling the rapid, silent focus response that was a key selling point for this lens as Canon's first L-series Nano USM design.
 
-**Note on close-focus data:** The patent does not provide variable-gap tables at close-focus distances. The Canon-specified minimum focus distance of 0.45 m is used in the data file, but all variable-gap pairs are coded as zoom-only (identical infinity/close values) because the close-focus air spacings cannot be derived from the patent alone. Gaps d27 (L3→L4) and d29 (L4→L5) are the focus-affected gaps — they change as L4 translates rearward — but their close-focus values remain unknown.
+**Note on close-focus data:** The patent does not provide variable-gap tables at close-focus distances. The data file therefore preserves the patent's infinity-focus spacings as the first value in each pair and estimates only the focus-affected d27/d29 close-focus travel from Canon's published 0.45 m minimum focus distance. The other variable gaps remain zoom-only.
 
 ### 2.3 Image Stabilization
 
-A subunit IS within L3 moves perpendicular to the optical axis for optical image stabilization. The patent text (§0069–0070) states that the IS subunit is within L3 and that "the positive lens Gfp is a lens arranged adjacent to, and on the image side of, the subunit IS." Since Gfp is identified as L14 (the UD glass element; see Section 3.3), the IS subunit must be the air-separated group immediately before L14 in L3. This identifies the IS group as the **L11 + L12** cemented doublet — the pair containing the S-NPH53 ultra-high-index glass (nd = 2.001). Canon's own block diagram on the Camera Museum page marks the IS unit with a distinct indicator, confirming its location between the stop and the UD element. The doublet has a thick-lens focal length of −46.8 mm.
+A subunit IS within L3 moves perpendicular to the optical axis for optical image stabilization. The patent text (§0069–0070) states that the IS subunit is within L3 and that "the positive lens Gfp is a lens arranged adjacent to, and on the image side of, the subunit IS." Since Gfp is identified as L14 (the UD glass element; see Section 3.3), the IS subunit must be the air-separated group immediately before L14 in L3. This identifies the IS group as the **L11 + L12** cemented doublet — the pair containing the TAFD40 ultra-high-index glass (nd = 2.001). Canon's own block diagram on the Camera Museum page marks the IS unit with a distinct indicator, confirming its location between the stop and the UD element. The doublet has a thick-lens focal length of −46.8 mm.
 
-The choice of a negative doublet for IS is deliberate: a weakly powered IS group minimizes the optical aberrations introduced by the decentering motion required for stabilization. The use of the ultra-high-index S-NPH53 in this doublet allows the required optical power to be achieved with shallower surface curvatures, which in turn reduces the sensitivity of off-axis performance to the IS shift.
+The choice of a negative doublet for IS is deliberate: a weakly powered IS group minimizes the optical aberrations introduced by the decentering motion required for stabilization. The use of the ultra-high-index TAFD40 in this doublet allows the required optical power to be achieved with shallower surface curvatures, which in turn reduces the sensitivity of off-axis performance to the IS shift.
 
 ---
 
@@ -82,15 +82,15 @@ The 18 elements span 12 distinct glass types. The following table summarizes eac
 
 ### 3.1 L1 — Front Positive Group (f = +88.25 mm)
 
-**L1 (G1n)** — Negative Meniscus, S-TIH6 (nd = 1.808, vd = 22.8)
+**L1 (G1n)** — Negative Meniscus, S-NPH1 (nd = 1.808, vd = 22.8)
 R₁ = +266.275, R₂ = +93.368 (cemented to L2). Center thickness 1.80 mm.
 Thin-lens f ≈ −178 mm. This is the patent's designated "negative lens G1n," the object-side negative element whose low Abbe number (vd = 22.8) is the key to the design's compactness. By using a high-dispersion material here, Canon increases the refractive power density of L1 while maintaining chromatic correction — but at the cost of increased lateral color at the telephoto end, which must be compensated by the rear Grp element.
 
-**L2 (G2p)** — Plano-Convex, S-BAL14 (nd = 1.729, vd = 54.7)
+**L2 (G2p)** — Plano-Convex, S-LAL18 (nd = 1.729, vd = 54.7)
 R₁ = +93.368 (junction), R₂ = ∞ (plano rear). Center thickness 6.52 mm.
 Thin-lens f ≈ +128 mm. Cemented to L1 to form a doublet (f_doublet ≈ +456 mm via thick-lens ABCD trace). The cemented junction corrects axial chromatic aberration within L1, and the plano rear surface simplifies manufacture. The very long doublet focal length indicates that L1+L2 function primarily as a chromatic corrector rather than a strong positive contributor — the bulk of L1's positive power comes from G3p.
 
-**L3 (G3p)** — Positive Meniscus, S-BAL14 (nd = 1.729, vd = 54.7)
+**L3 (G3p)** — Positive Meniscus, S-LAL18 (nd = 1.729, vd = 54.7)
 R₁ = +49.826, R₂ = +126.155. Center thickness 6.97 mm.
 Thin-lens f ≈ +113 mm (thick-lens: +108.8 mm). Same glass as G2p, which allows both positive elements to share a glass melt in production. G3p carries most of L1's converging power and sets the marginal ray height entering L2.
 
@@ -98,19 +98,19 @@ Thin-lens f ≈ +113 mm (thick-lens: +108.8 mm). Same glass as G2p, which allows
 
 L2 is the high-power negative variator that drives the zoom magnification change. Its four elements span a wide range of glass types.
 
-**L4** — Negative Meniscus, S-NPH2 (nd = 1.954, vd = 32.3)
+**L4** — Negative Meniscus, S-LAH98 (nd = 1.954, vd = 32.3)
 R₁ = +65.832, R₂ = +15.019. Center thickness 1.25 mm.
 Thin-lens f ≈ −20.4 mm. The front element of the variator is a strongly curved meniscus in ultra-dense flint glass. Its high index allows steep curvatures without excessive thickness, and the meniscus form minimizes spherical aberration contribution. This is the single strongest-powered element in the variator.
 
-**L5** — Biconcave, L-BAL35 (nd = 1.583, vd = 59.4) — **Glass-Molded Aspheric #1**
+**L5** — Biconcave, L-BAL42 (nd = 1.583, vd = 59.4) — **Glass-Molded Aspheric #1**
 R₁ = −33.476, R₂ = +65.137. Center thickness 1.10 mm. Both surfaces aspherical (K = 0, even-order polynomial through A12/A6 respectively).
-Thin-lens f ≈ −37.9 mm. This is the first of three glass-molded aspherical elements. L-BAL35 is a low-Tg barium crown specifically formulated by OHARA for precision glass molding. The aspherical departures are modest — under 1 µm on the front surface and approximately 200 µm on the rear — consistent with the relatively small beam diameter at this position. The aspherization corrects residual spherical aberration and coma introduced by the steep curvatures of L4.
+Thin-lens f ≈ −37.9 mm. This is the first of three glass-molded aspherical elements. L-BAL42 is a low-Tg barium crown specifically formulated by OHARA for precision glass molding. The aspherical departures are modest — under 1 µm on the front surface and approximately 200 µm on the rear — consistent with the relatively small beam diameter at this position. The aspherization corrects residual spherical aberration and coma introduced by the steep curvatures of L4.
 
-**L6** — Biconvex (symmetric), S-TIH6 (nd = 1.808, vd = 22.8)
+**L6** — Biconvex (symmetric), S-NPH1 (nd = 1.808, vd = 22.8)
 R₁ = +40.325, R₂ = −40.325. Center thickness 5.03 mm.
 Thin-lens f ≈ +25.0 mm. A perfectly symmetric biconvex positive element in the same high-dispersion flint used for G1n. Its symmetry minimizes odd-order coma contribution, and the high-dispersion glass provides the chromatic counterbalance needed within the variator group. The positive power of L6 partially offsets the strong negative powers of L4 and L5, reducing the overall variator-group sensitivity to manufacturing tolerances.
 
-**L7** — Negative Meniscus, S-LAL18 (nd = 1.804, vd = 46.6)
+**L7** — Negative Meniscus, S-LAH65V (nd = 1.804, vd = 46.6)
 R₁ = −25.491, R₂ = −63.435. Center thickness 1.00 mm.
 Thin-lens f ≈ −53.0 mm. The rear element of L2 is a concave-toward-object meniscus in dense lanthanum crown. It acts as a field-flattening element within the variator, bending the Petzval surface closer to flat before the beam crosses the stop.
 
@@ -121,56 +121,56 @@ L3 is the most complex unit, containing 8 elements across 5 air-separated groups
 **Aperture Stop (STO)** — Flat, d = 0.30 mm.
 Located at the very front of L3, consistent with all five patent examples.
 
-**L8** — Plano-Convex, S-LAH55V (nd = 1.911, vd = 35.3)
+**L8** — Plano-Convex, 911353-code lanthanum glass (nd = 1.911, vd = 35.3)
 R₁ = +44.965, R₂ = ∞ (plano rear). Center thickness 2.30 mm.
 Thin-lens f ≈ +49.4 mm. A dense lanthanum flint placed immediately after the stop to start converging the beam. Its high index allows the required power with relatively gentle curvature, keeping spherical aberration low at the stop where the marginal ray height is at its minimum.
 
 **L9 + L10** — Cemented Doublet (f = +54.84 mm thick-lens)
 
-L9: Negative meniscus, S-NPH2 (nd = 1.954, vd = 32.3). R₁ = +21.533, R₂ = +13.108 (junction). d = 1.00 mm.
-L10: Biconvex (nearly plano-convex), HOYA MC-7 (nd = 1.595, vd = 67.7). R_junction = +13.108, R₂ = −795.231 (nearly plano). d = 6.76 mm.
+L9: Negative meniscus, S-LAH98 (nd = 1.954, vd = 32.3). R₁ = +21.533, R₂ = +13.108 (junction). d = 1.00 mm.
+L10: Biconvex (nearly plano-convex), S-FPM2 / HOYA MC-7 class (nd = 1.595, vd = 67.7). R_junction = +13.108, R₂ = −795.231 (nearly plano). d = 6.76 mm.
 
 This is an achromatizing doublet that corrects the axial chromatic aberration introduced by L8. The combination of a thin high-index negative meniscus (L9) cemented to a thick low-dispersion positive element (L10) is a classic telephoto-achromat configuration. The nearly-plano rear surface of L10 simplifies alignment.
 
 **L11 + L12** — Cemented Doublet / IS Group (f = −46.84 mm thick-lens)
 
-L11: Biconcave, S-TIM27 (nd = 1.750, vd = 35.3). R₁ = −152.936, R₂ = +16.038 (junction). d = 0.80 mm.
-L12: Positive meniscus, **S-NPH53 (nd = 2.001, vd = 25.5)**. R_junction = +16.038, R₂ = +30.717. d = 2.88 mm.
+L11: Biconcave, S-NBH51 (nd = 1.750, vd = 35.3). R₁ = −152.936, R₂ = +16.038 (junction). d = 0.80 mm.
+L12: Positive meniscus, **TAFD40 (nd = 2.001, vd = 25.5)**. R_junction = +16.038, R₂ = +30.717. d = 2.88 mm.
 
 This is the **image stabilization subunit** — the doublet that shifts perpendicular to the axis for shake correction. The nd = 2.001 glass in L12 is the highest-index material in the design, and one of the highest commercially available optical glasses. Its extreme refractive index serves two purposes: first, it contributes strongly to correcting the Petzval sum (the surface-by-surface Petzval contribution is proportional to (n'−n)/(nn'R), and a high n' at the cemented junction generates a large positive Petzval contribution that counteracts the overall negative Petzval contributions from the negative groups); second, the high index allows the IS doublet's net power to remain modest (−46.8 mm) despite steep junction curvatures, which keeps aberration sensitivity to the IS decentering shift manageable.
 
 **L13 + L14** — Cemented Doublet / Gfp (f = −211.87 mm thick-lens)
 
-L13: Negative meniscus, S-TIH53 (nd = 1.785, vd = 25.7). R₁ = +76.401, R₂ = +19.110 (junction). d = 0.75 mm.
+L13: Negative meniscus, S-TIH11 (nd = 1.785, vd = 25.7). R₁ = +76.401, R₂ = +19.110 (junction). d = 0.75 mm.
 L14: Plano-convex, **S-FPL51 (nd = 1.497, vd = 81.5)** — **Canon UD Glass**. R_junction = +19.110, R₂ = ∞ (plano). d = 3.57 mm.
 
-This doublet contains the design's lone UD (Ultra-low Dispersion) element. The patent designates L14 specifically — not the entire doublet — as the positive lens "Gfp," defined as the element positioned on the image side of the IS subunit and adjacent to it. Its Abbe number of 81.5 satisfies conditional expression (13): 73.00 < vfp < 100.00. The fluorophosphate crown's low dispersion and positive anomalous partial dispersion work in tandem with the high-dispersion S-TIH53 flint of L13 to provide secondary-spectrum correction. The focal length of L14 alone (thin-lens f ≈ +38.5 mm) matches the patent's conditional expression (14) value of ffp/fw = 1.56, confirming ffp ≈ 38.6 mm. The combined thick-lens focal length of the L13+L14 doublet is −211.9 mm — weakly negative — because the strong individual powers (L13 negative, L14 positive) largely cancel.
+This doublet contains the design's lone UD (Ultra-low Dispersion) element. The patent designates L14 specifically — not the entire doublet — as the positive lens "Gfp," defined as the element positioned on the image side of the IS subunit and adjacent to it. Its Abbe number of 81.5 satisfies conditional expression (13): 73.00 < vfp < 100.00. The fluorophosphate crown's low dispersion and positive anomalous partial dispersion work in tandem with the high-dispersion S-TIH11 flint of L13 to provide secondary-spectrum correction. The focal length of L14 alone (thin-lens f ≈ +38.5 mm) matches the patent's conditional expression (14) value of ffp/fw = 1.56, confirming ffp ≈ 38.6 mm. The combined thick-lens focal length of the L13+L14 doublet is −211.9 mm — weakly negative — because the strong individual powers (L13 negative, L14 positive) largely cancel.
 
 While the doublet's combined power is nearly neutral, the individual components have steep, opposing curvatures at the cemented junction (R = 19.110 mm), creating a powerful chromatic corrector that operates with minimal net influence on beam convergence. Its role is almost purely achromatizing.
 
-**L15** — Biconvex, L-BAL35 (nd = 1.583, vd = 59.4) — **Glass-Molded Aspheric #2**
+**L15** — Biconvex, L-BAL42 (nd = 1.583, vd = 59.4) — **Glass-Molded Aspheric #2**
 R₁ = +24.461, R₂ = −25.212. Center thickness 7.26 mm. Both surfaces aspherical (K = 0, even-order polynomial through A10).
 Thin-lens f ≈ +21.3 mm (thick-lens: +22.5 mm). This is the second glass-molded aspheric and the strongest positive element in L3. It sits at the rear of the relay group where the beam is diverging toward L4, and its aspherization corrects higher-order spherical aberration and coma that accumulate through the relay. The aspherical departures are substantial — approximately 190 µm on the front surface and 125 µm on the rear — indicating significant correction burden. The nearly-symmetric biconvex form provides a natural coma-balancing geometry.
 
 ### 3.4 L4 — Focus Group (f = −40.84 mm)
 
-**L16** — Negative Meniscus, S-BAL14 (nd = 1.729, vd = 54.7)
+**L16** — Negative Meniscus, S-LAL18 (nd = 1.729, vd = 54.7)
 R₁ = +121.315, R₂ = +23.846. Center thickness 0.75 mm.
-Thin-lens f ≈ −40.7 mm. This single element constitutes the entire focus group. It translates toward the image during close focusing, changing the d27 and d29 air gaps. Its choice of barium crown glass — the same type used in L1's positive elements — keeps the weight extremely low (essential for the Nano USM actuator's speed and silence) and provides a moderate Abbe number that minimizes chromatic focus shift (the change in axial color balance as the focus group translates). The meniscus form (weakly convex front, strongly convex rear, both toward the object) is well suited for inner-focus applications because it introduces minimal change in the off-axis aberration balance as it translates along the axis.
+Thin-lens f ≈ −40.7 mm. This single element constitutes the entire focus group. It translates toward the image during close focusing, changing the d27 and d29 air gaps. Its choice of S-LAL18 lanthanum crown glass — the same type used in L1's positive elements — keeps the weight extremely low (essential for the Nano USM actuator's speed and silence) and provides a moderate Abbe number that minimizes chromatic focus shift (the change in axial color balance as the focus group translates). The meniscus form (weakly convex front, strongly convex rear, both toward the object) is well suited for inner-focus applications because it introduces minimal change in the off-axis aberration balance as it translates along the axis.
 
 ### 3.5 L5 — Rear Compensator (f = −68.35 mm)
 
-**L17** — Negative Meniscus, L-LAM69 (nd = 1.765, vd = 49.1) — **Glass-Molded Aspheric #3**
+**L17** — Negative Meniscus, 764491-code L-LAM69 PGM glass (nd = 1.765, vd = 49.1) — **Glass-Molded Aspheric #3**
 R₁ = −43.071, R₂ = −248.821. Center thickness 1.50 mm. Both surfaces aspherical (K = 0, even-order polynomial through A12).
 Thin-lens f ≈ −68.1 mm.
 
-This is the most aggressively aspherized element in the entire design. The aspherical departures reach **−1.56 mm on the front surface and −1.67 mm on the rear** at the estimated semi-diameters — over 1.5 mm of departure from the base sphere. These are among the largest aspherical departures seen in any Canon interchangeable lens patent, and they are only achievable through precision glass molding (the L-LAM69 glass has a low glass-transition temperature specifically formulated for this process).
+This is the most aggressively aspherized element in the entire design. The aspherical departures reach **−1.56 mm on the front surface and −1.67 mm on the rear** at the estimated semi-diameters — over 1.5 mm of departure from the base sphere. These are among the largest aspherical departures seen in any Canon interchangeable lens patent, and they are only achievable through precision glass molding (the L-LAM69-class glass has a low glass-transition temperature specifically formulated for this process).
 
 The extreme aspherization on L17 serves a critical function: as the beam diameter expands rapidly between L4 and L6 (especially at the telephoto end, where d31 reaches 17.24 mm), L17 provides field curvature and distortion correction that would otherwise require multiple additional spherical elements. The negative meniscus form contributes a negative Petzval component that partially compensates for the strong positive Petzval from L6.
 
 ### 3.6 L6 — Rear Positive Element / Grp (f = +72.43 mm)
 
-**L18** — Positive Meniscus, S-LAL18 (nd = 1.804, vd = 46.6)
+**L18** — Positive Meniscus, S-LAH65V (nd = 1.804, vd = 46.6)
 R₁ = −68.116, R₂ = −32.318. Center thickness 4.50 mm.
 Thin-lens f ≈ +76.5 mm (thick-lens: +72.4 mm).
 
@@ -182,24 +182,24 @@ The positive meniscus form (concave toward the object) also contributes a positi
 
 ## 4. Glass Selection Summary
 
-The design uses 12 distinct glass types across 18 elements. All identifications match published catalog glasses (OHARA and HOYA) to within Δnd < 0.00001 and Δvd < 0.05, well within manufacturing tolerance.
+The design uses 12 distinct glass types across 18 elements. The patent publishes only optical constants, not vendor glass names; after audit, ten of the twelve glass families resolve to catalog entries and two are retained as code-based fallbacks pending a future catalog source.
 
-| Glass Code | OHARA ID | nd | vd | Elements | Category |
+| Glass Code | Catalog label | nd | vd | Elements | Category |
 |---|---|---|---|---|---|
-| 1808/228 | S-TIH6 | 1.80810 | 22.8 | L1, L6 | Dense flint |
-| 1729/547 | S-BAL14 | 1.72916 | 54.7 | L2, L3, L16 | Barium crown |
-| 1954/323 | S-NPH2 | 1.95375 | 32.3 | L4, L9 | Ultra-dense flint |
-| 1583/594 | L-BAL35 | 1.58313 | 59.4 | **L5, L15** | Moldable barium crown |
-| 1911/353 | S-LAH55V | 1.91082 | 35.3 | L8 | Dense lanthanum flint |
-| 1595/677 | HOYA MC-7 | 1.59522 | 67.7 | L10 | Phosphate crown |
-| 1750/353 | S-TIM27 | 1.74951 | 35.3 | L11 | Dense flint |
-| 2001/255 | S-NPH53 | 2.00069 | 25.5 | **L12** | Ultra-high-index flint |
-| 1785/257 | S-TIH53 | 1.78472 | 25.7 | L13 | High-dispersion flint |
+| 1808/228 | S-NPH1 | 1.80810 | 22.8 | L1, L6 | High-dispersion phosphate flint |
+| 1729/547 | S-LAL18 | 1.72916 | 54.7 | L2, L3, L16 | Lanthanum crown |
+| 1954/323 | S-LAH98 | 1.95375 | 32.3 | L4, L9 | Ultra-high-index lanthanum flint |
+| 1583/594 | L-BAL42 | 1.58313 | 59.4 | **L5, L15** | Moldable barium crown |
+| 1911/353 | 911353 code | 1.91082 | 35.3 | L8 | Dense lanthanum flint |
+| 1595/677 | S-FPM2 / MC-7 | 1.59522 | 67.7 | L10 | Phosphate crown |
+| 1750/353 | S-NBH51 | 1.74951 | 35.3 | L11 | Dense flint |
+| 2001/255 | TAFD40 | 2.00069 | 25.5 | **L12** | Ultra-high-index flint |
+| 1785/257 | S-TIH11 | 1.78472 | 25.7 | L13 | High-dispersion flint |
 | 1497/815 | S-FPL51 | 1.49700 | 81.5 | **L14** | Fluorophosphate (UD) |
-| 1764/491 | L-LAM69 | 1.76450 | 49.1 | **L17** | Moldable lanthanum crown |
-| 1804/466 | S-LAL18 | 1.80400 | 46.6 | L7, L18 | Dense lanthanum crown |
+| 1764/491 | 764491 code / L-LAM69 | 1.76450 | 49.1 | **L17** | Moldable lanthanum crown |
+| 1804/466 | S-LAH65V | 1.80400 | 46.6 | L7, L18 | Dense lanthanum crown |
 
-The three glass-molded aspherical elements use two moldable glasses: L-BAL35 (L5 and L15) and L-LAM69 (L17). Both carry the OHARA "L-" prefix indicating low glass-transition temperature, which is required for the precision glass-molding process that Canon describes as "glass-molded aspheric" in their specifications. Eleven of the twelve glass types match OHARA catalog designations; the twelfth (nd = 1.595, vd = 67.7 in L10) matches HOYA MC-7 exactly, confirming that Canon sources glass from multiple manufacturers. All catalog matches achieve residuals below Δnd = 0.00001 and Δvd = 0.05.
+The three glass-molded aspherical elements use two moldable glass families: L-BAL42 (L5 and L15) and the 764491 / L-LAM69-class glass on L17. L8 and L17 remain Abbe-based until matching catalog entries are added; their six-digit codes are kept in the data file so they can auto-upgrade if a future catalog source supplies exact Sellmeier data.
 
 ---
 
@@ -252,9 +252,9 @@ The RF 24-105mm f/4 L IS USM represents Canon's first full redesign of the 24-10
 
 **Compact front group.** The cemented G1n+G2p doublet in L1, using a high-dispersion negative meniscus (vd = 22.8), allows Canon to achieve strong converging power in L1 while maintaining a modest front element diameter (effective diameter 63 mm). The patent notes that without the low Abbe number of G1n, the positive elements would need to be much stronger, increasing both thickness and diameter.
 
-**Lightweight internal focus.** L4 is a single 0.75 mm-thick meniscus in barium crown glass — likely weighing under 2 grams. This minimal mass is what enables the Nano USM motor to achieve the rapid, silent focus transitions that were a key marketing point of the lens.
+**Lightweight internal focus.** L4 is a single 0.75 mm-thick meniscus in S-LAL18 lanthanum crown glass — likely weighing under 2 grams. This minimal mass is what enables the Nano USM motor to achieve the rapid, silent focus transitions that were a key marketing point of the lens.
 
-**Ultra-high-index IS doublet.** The use of S-NPH53 (nd = 2.001) in the IS group is unusual even for L-series designs. The extreme index provides strong Petzval correction within a compact doublet, and the relatively modest doublet power (−47 mm) keeps IS-shift aberration sensitivity low.
+**Ultra-high-index IS doublet.** The use of TAFD40-class glass (nd = 2.001) in the IS group is unusual even for L-series designs. The extreme index provides strong Petzval correction within a compact doublet, and the relatively modest doublet power (−47 mm) keeps IS-shift aberration sensitivity low.
 
 **Aggressive rear aspherization.** The 1.5+ mm aspherical departures on L17 are among the largest in any Canon interchangeable lens. This single element replaces what would otherwise be a multi-element field-flattening group, contributing directly to the lens's compact 107.3 mm length — 10.7 mm shorter than the preceding EF 24-105mm f/4L IS II USM.
 

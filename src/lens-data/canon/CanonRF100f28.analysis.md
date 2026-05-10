@@ -111,7 +111,7 @@ The following analysis proceeds element-by-element from front (object side) to r
 | Radii | R₁ = +40.575 mm (junction), R₂ = −137.454 mm |
 | Center thickness | 7.43 mm |
 | nd / νd | 1.76182 / 26.5 |
-| Glass match | **S-TIH18** (OHARA) / SF14 (Schott) — Titanium flint |
+| Glass match | **S-TIH14** (OHARA) / N-SF14 (Schott) — Titanium flint |
 | Focal length | +41.88 mm (patent) |
 | Shape | Biconvex positive |
 
@@ -169,7 +169,7 @@ The following analysis proceeds element-by-element from front (object side) to r
 | Radii | R₁ = +74.803 mm, R₂ = +39.852 mm |
 | Center thickness | 1.62 mm |
 | nd / νd | 2.00100 / 29.1 |
-| Glass match | **S-LAH79** (OHARA) — Ultra-high-index lanthanum heavy flint |
+| Glass match | **S-LAH99** (OHARA) / TAFD55 (HOYA) — Ultra-high-index lanthanum/dense flint |
 | Focal length | −87.23 mm (patent) |
 | Shape | Negative meniscus, convex toward object |
 
@@ -181,11 +181,11 @@ The following analysis proceeds element-by-element from front (object side) to r
 | Radii | R₁ = +39.852 mm (junction), R₂ = −185.173 mm |
 | Center thickness | 6.53 mm |
 | nd / νd | 1.77250 / 49.6 |
-| Glass match | **S-LAM54** (OHARA) / N-LAF34 (Schott) — Lanthanum flint |
+| Glass match | **S-LAH66** (OHARA) / N-LAF34 (Schott) — Lanthanum flint |
 | Focal length | +43.00 mm (patent) |
 | Shape | Biconvex positive |
 
-**Optical role of D2:** This cemented doublet is the final element pair in L1 before the aperture stop. L6 uses S-LAH79, which at nd = 2.001 is one of the highest-index optical glasses commercially available. The extreme index allows strong curvature effects with physically moderate surface radii. As a thin negative meniscus cemented to the much thicker L7 positive element, D2 forms a net positive doublet that provides the final convergence of the marginal ray bundle toward the stop while correcting both chromatic aberration (via the crown/flint pairing) and higher-order spherical aberration through the high-index bending at the cemented interface.
+**Optical role of D2:** This cemented doublet is the final element pair in L1 before the aperture stop. L6 uses the S-LAH99 / TAFD55 high-index class, which at nd = 2.001 is one of the highest-index optical glasses commercially available. The extreme index allows strong curvature effects with physically moderate surface radii. As a thin negative meniscus cemented to the much thicker L7 positive element, D2 forms a net positive doublet that provides the final convergence of the marginal ray bundle toward the stop while correcting both chromatic aberration (via the crown/flint pairing) and higher-order spherical aberration through the high-index bending at the cemented interface.
 
 The combined D2 focal length is +85.34 mm (from the patent group data).
 
@@ -197,7 +197,7 @@ The combined D2 focal length is +85.34 mm (from the patent group data).
 | Radii | R₁ = +56.560 mm, R₂ = −409.038 mm |
 | Center thickness | 4.30 mm |
 | nd / νd | 1.72916 / 54.7 |
-| Glass match | **S-LAL9** (OHARA) / N-LAK9 (Schott) — Lanthanum crown |
+| Glass match | **S-LAL18** (OHARA) — Lanthanum crown |
 | Focal length | +68.41 mm (patent) |
 | Shape | Biconvex (nearly plano-convex, weak rear surface) |
 
@@ -219,7 +219,7 @@ The 9-blade aperture stop (Canon product specification; not patent-stated) is lo
 | Radii | R₁ = +312.322 mm, R₂ = +39.579 mm |
 | Center thickness | 1.37 mm |
 | nd / νd | 1.73400 / 51.5 |
-| Glass match | **S-LAM51** (OHARA) / LACL60 (HOYA) — Lanthanum flint |
+| Glass match | **S-LAL59** (OHARA) — Lanthanum light crown |
 | Focal length | −61.88 mm (patent) |
 | Shape | Negative meniscus, convex toward object |
 | Group | L2 (1st focus group) |
@@ -236,7 +236,7 @@ The 9-blade aperture stop (Canon product specification; not patent-stated) is lo
 | Radii | R₁ = −83.866 mm, R₂ = +44.224 mm |
 | Center thickness | 1.23 mm |
 | nd / νd | 1.77250 / 49.6 |
-| Glass match | **S-LAM54** (OHARA) / N-LAF34 (Schott) |
+| Glass match | **S-LAH66** (OHARA) / N-LAF34 (Schott) |
 | Focal length | −37.33 mm (patent) |
 | Shape | Biconcave negative |
 
@@ -248,11 +248,11 @@ The 9-blade aperture stop (Canon product specification; not patent-stated) is lo
 | Radii | R₁ = +44.224 mm (junction), R₂ = +176.627 mm |
 | Center thickness | 2.95 mm |
 | nd / νd | 1.94595 / 18.0 |
-| Glass match | **S-NPH4** (OHARA) — Ultra-high-dispersion special flint |
+| Glass match | **946180** — Ultra-high-index dense flint (catalog-unmatched code label) |
 | Focal length | +61.70 mm (patent) |
 | Shape | Positive meniscus, convex toward object |
 
-**Optical role of D3:** This doublet completes focus group L2. The glass pairing is striking: L10 uses a moderate-index lanthanum flint (νd = 49.6) as the negative element, while L11 uses S-NPH4, an ultra-high-dispersion glass (νd = 18.0, nd = 1.946) as the positive element. This is an **anomalous doublet configuration** — normally, the higher-dispersion glass is the negative (flint) element in a crown/flint achromatic doublet. Here, the highly dispersive glass carries positive power.
+**Optical role of D3:** This doublet completes focus group L2. The glass pairing is striking: L10 uses a moderate-index lanthanum flint (νd = 49.6) as the negative element, while L11 uses a catalog-unmatched 946/180 ultra-high-dispersion glass (νd = 18.0, nd = 1.946) as the positive element. This is an **anomalous doublet configuration** — normally, the higher-dispersion glass is the negative (flint) element in a crown/flint achromatic doublet. Here, the highly dispersive glass carries positive power.
 
 This inversion serves the SA control function: the chromatic sensitivity of D3 is deliberately unbalanced so that when L2 translates axially, the resulting change in spherical aberration dominates over changes in chromatic aberration. The combined L2 group focal length is −36.20 mm.
 
@@ -266,12 +266,12 @@ This inversion serves the SA control function: the chromatic sensitivity of D3 i
 | Radii | R₁ = ∞ (flat), R₂ = −44.068 mm |
 | Center thickness | 4.00 mm |
 | nd / νd | 1.76385 / 48.5 |
-| Glass match | **E-LAF8** (Hikari) / H-LAK12 (CDGM) — Lanthanum flint |
+| Glass match | **764485** — Hikari/CDGM lanthanum flint class |
 | Focal length | +57.69 mm (patent) |
 | Shape | Plano-convex (flat front, convex rear) |
 | Group | L3 (fixed intermediate positive group) |
 
-**Optical role:** L12 begins the fixed positive group L3, positioned between the two focus groups. The flat front surface is unusual in high-performance lens design and likely reflects a manufacturing or mounting advantage — a flat surface at this position can serve as a precision reference for the mechanical spacing of the surrounding moving groups. The glass (nd = 1.764, νd = 48.5) is a lanthanum flint type. Of the candidate matches, Hikari E-LAF8 and CDGM H-LAK12 both match exactly; Canon has sourced glass from both manufacturers. This element provides the primary positive power of L3, reconverging the beam after the diverging L2 focus group.
+**Optical role:** L12 begins the fixed positive group L3, positioned between the two focus groups. The flat front surface is unusual in high-performance lens design and likely reflects a manufacturing or mounting advantage — a flat surface at this position can serve as a precision reference for the mechanical spacing of the surrounding moving groups. The glass (nd = 1.764, νd = 48.5) is a lanthanum flint type. Hikari E-LAF8 and CDGM H-LAK12 both match this 764/485 class, but no current project catalog entry round-trips it, so the data file uses a code-based label. This element provides the primary positive power of L3, reconverging the beam after the diverging L2 focus group.
 
 #### Elements 13–14 (L13–L14) — Cemented Doublet D4
 
@@ -283,7 +283,7 @@ This inversion serves the SA control function: the chromatic sensitivity of D3 i
 | Radii | R₁ = +96.460 mm, R₂ = −37.249 mm |
 | Center thickness | 6.22 mm |
 | nd / νd | 1.72916 / 54.7 |
-| Glass match | **S-LAL9** (OHARA) / N-LAK9 (Schott) — same glass as L8 |
+| Glass match | **S-LAL18** (OHARA) — same glass as L8 |
 | Focal length | +37.59 mm (patent) |
 | Shape | Biconvex positive |
 
@@ -295,11 +295,11 @@ This inversion serves the SA control function: the chromatic sensitivity of D3 i
 | Radii | R₁ = −37.249 mm (junction), R₂ = −102.953 mm |
 | Center thickness | 1.37 mm |
 | nd / νd | 2.00069 / 25.5 |
-| Glass match | **S-LAH78** (OHARA) — Ultra-high-index lanthanum heavy flint |
+| Glass match | **TAFD40** (HOYA) — Ultra-high-index dense flint |
 | Focal length | −58.94 mm (patent) |
 | Shape | Negative meniscus, concave toward object |
 
-**Optical role of D4:** The second element of L3 is another powerfully correcting cemented doublet. L14 uses S-LAH78, the second ultra-high-index glass (nd = 2.001) in the design. The crown/flint pairing (S-LAL9 crown, νd = 54.7 vs. S-LAH78 flint, νd = 25.5) provides strong chromatic correction. The combined L3 focal length is +37.11 mm — nearly a perfect match in magnitude to L2's −36.20 mm, creating an approximate local telescopic (afocal) relay between the two focus groups. This near-symmetry means that L3 reimages the L2 aberration pattern into L4 with controlled magnification, enabling the SA control mechanism to operate with balanced sensitivity across both focus groups.
+**Optical role of D4:** The second element of L3 is another powerfully correcting cemented doublet. L14 uses TAFD40, the second ultra-high-index glass (nd = 2.001) in the design. The crown/flint pairing (S-LAL18 crown, νd = 54.7 vs. TAFD40 flint, νd = 25.5) provides strong chromatic correction. The combined L3 focal length is +37.11 mm — nearly a perfect match in magnitude to L2's −36.20 mm, creating an approximate local telescopic (afocal) relay between the two focus groups. This near-symmetry means that L3 reimages the L2 aberration pattern into L4 with controlled magnification, enabling the SA control mechanism to operate with balanced sensitivity across both focus groups.
 
 ---
 
@@ -326,14 +326,14 @@ This inversion serves the SA control function: the chromatic sensitivity of D3 i
 | Radii | R₁ = −76.056 mm, R₂ = −37.684 mm |
 | Center thickness | 3.76 mm |
 | nd / νd | 1.67270 / 32.1 |
-| Glass match | **S-TIM28** (OHARA) — Titanium flint |
+| Glass match | **S-TIM25** (OHARA) — Titanium flint |
 | Focal length | +106.82 mm (patent) |
 | Shape | Positive meniscus, concave toward object |
 | Group | L4 (2nd focus group) — designated L42 in patent |
 
 **Optical role:** L16/L42 is the positive element of L4, partially compensating L41's negative power. The combined L4 focal length is −163.75 mm — much weaker than L2's −36.20 mm. This asymmetry is by design: L4 operates as a weak negative group with a large internal air space, giving it high sensitivity to spherical aberration change per unit of axial translation while having relatively low focus sensitivity. The patent's conditional expression (5) requires 0.20 < ff₁/ff₂ < 0.50, where ff₁ and ff₂ are the focal lengths of L2 and L4 respectively. For Example 1, ff₁/ff₂ = (−36.20)/(−163.75) = 0.22, satisfying this condition.
 
-The use of S-TIM28 (νd = 32.1) — a moderately dispersive titanium flint — for the positive L42 element is another instance of the anomalous glass-power pairing seen in D3. In conventional doublet design, flint glass carries negative power; here it carries positive power. This choice prioritizes the aberration sensitivity profile needed for SA control over conventional chromatic correction strategy.
+The use of S-TIM25 (νd = 32.1) — a moderately dispersive titanium flint — for the positive L42 element is another instance of the anomalous glass-power pairing seen in D3. In conventional doublet design, flint glass carries negative power; here it carries positive power. This choice prioritizes the aberration sensitivity profile needed for SA control over conventional chromatic correction strategy.
 
 ---
 
@@ -433,28 +433,28 @@ The 17 elements use 13 distinct glass types spanning a wide range of the nd/νd 
 | Glass | nd | νd | Category | Elements | Count |
 |---|---|---|---|---|---|
 | S-LAH55V (OHARA) | 1.83481 | 42.7 | High-index lanthanum crown | L1, L3, L15 | 3 |
-| S-TIH18 (OHARA) | 1.76182 | 26.5 | Titanium flint | L2 | 1 |
+| S-TIH14 (OHARA) | 1.76182 | 26.5 | Titanium flint | L2 | 1 |
 | S-FSL5 (OHARA) | 1.48749 | 70.2 | Low-dispersion fluorine crown | L4 | 1 |
 | S-TIH53 (OHARA) | 1.84666 | 23.8 | Dense titanium flint | L5 | 1 |
-| S-LAH79 (OHARA) | 2.00100 | 29.1 | Ultra-high-index La heavy flint | L6 | 1 |
-| S-LAM54 (OHARA) | 1.77250 | 49.6 | Lanthanum flint | L7, L10 | 2 |
-| S-LAL9 (OHARA) | 1.72916 | 54.7 | Lanthanum crown | L8, L13 | 2 |
-| S-LAM51 (OHARA) | 1.73400 | 51.5 | Lanthanum flint | L9 | 1 |
-| S-NPH4 (OHARA) | 1.94595 | 18.0 | Ultra-high-dispersion special flint | L11 | 1 |
-| E-LAF8 (Hikari) | 1.76385 | 48.5 | Lanthanum flint | L12 | 1 |
-| S-LAH78 (OHARA) | 2.00069 | 25.5 | Ultra-high-index La heavy flint | L14 | 1 |
-| S-TIM28 (OHARA) | 1.67270 | 32.1 | Titanium flint | L16 | 1 |
+| S-LAH99 (OHARA) | 2.00100 | 29.1 | Ultra-high-index La heavy flint | L6 | 1 |
+| S-LAH66 (OHARA) | 1.77250 | 49.6 | Lanthanum flint | L7, L10 | 2 |
+| S-LAL18 (OHARA) | 1.72916 | 54.7 | Lanthanum crown | L8, L13 | 2 |
+| S-LAL59 (OHARA) | 1.73400 | 51.5 | Lanthanum light crown | L9 | 1 |
+| 946180 code label | 1.94595 | 18.0 | Ultra-high-dispersion dense flint | L11 | 1 |
+| 764485 code label | 1.76385 | 48.5 | Hikari/CDGM lanthanum flint class | L12 | 1 |
+| TAFD40 (HOYA) | 2.00069 | 25.5 | Ultra-high-index dense flint | L14 | 1 |
+| S-TIM25 (OHARA) | 1.67270 | 32.1 | Titanium flint | L16 | 1 |
 | S-BAL35 (OHARA) | 1.58913 | 61.2 | Barium crown | L17 | 1 |
 
 ### 7.2 Notable Glass Choices
 
 **Ultra-high-index glasses (nd ≥ 2.0):** Two elements (L6 and L14) use glasses with nd ≈ 2.00, among the highest refractive indices available in commercial optical glass. These enable strong aberration correction at cemented interfaces with physically moderate curvatures. Both are positioned at critical doublet junctions — L6 in the pre-stop convergence group and L14 in the inter-focus-group relay.
 
-**Ultra-high-dispersion glass (S-NPH4, νd = 18.0):** L11 uses one of the most dispersive optical glasses available. Its placement as a positive element in the L2 focus group — rather than in the conventional negative-flint role — is a deliberate design choice that optimizes the SA sensitivity profile of L2 for the aberration control function.
+**Ultra-high-dispersion glass (946/180, νd = 18.0):** L11 uses one of the most dispersive optical glasses available. Its placement as a positive element in the L2 focus group — rather than in the conventional negative-flint role — is a deliberate design choice that optimizes the SA sensitivity profile of L2 for the aberration control function. The project does not currently have a catalog entry for this exact pair, so the data uses a code-based label rather than a false S-NPH4 assignment.
 
 **Low-dispersion element (S-FSL5, νd = 70.2):** L4's fluorine crown is the lowest-dispersion glass in the design and serves as the primary longitudinal chromatic aberration corrector for the wide-aperture front group.
 
-**Repeated glass types:** Three glasses are used in multiple elements — S-LAH55V (3×), S-LAM54 (2×), and S-LAL9 (2×). Glass reuse reduces manufacturing complexity and material inventory costs. The repeated use of S-LAH55V in L1, L3, and L15 (spanning both the front fixed group and the second focus group) suggests this glass was selected for its combination of high index, moderate dispersion, and established manufacturing reliability.
+**Repeated glass types:** Three glasses are used in multiple elements — S-LAH55V (3×), S-LAH66 (2×), and S-LAL18 (2×). Glass reuse reduces manufacturing complexity and material inventory costs. The repeated use of S-LAH55V in L1, L3, and L15 (spanning both the front fixed group and the second focus group) suggests this glass was selected for its combination of high index, moderate dispersion, and established manufacturing reliability.
 
 ---
 
@@ -486,7 +486,7 @@ This lens represents an unusual intersection of macro lens, portrait lens, and c
 
 2. **Dual floating-focus groups with integrated SA control:** The same two groups that provide focusing also enable the SA control feature, avoiding the need for additional moving elements. This is mechanically elegant — the dual Nano USM motors serve double duty.
 
-3. **Deliberate use of anomalous glass-power pairings:** Multiple doublets in the design use high-dispersion glass for the positive element (L11/S-NPH4, L16/S-TIM28) rather than the conventional negative-flint configuration. This prioritizes the SA control aberration profile over purely minimizing chromatic aberration.
+3. **Deliberate use of anomalous glass-power pairings:** Multiple doublets in the design use high-dispersion glass for the positive element (L11/946180, L16/S-TIM25) rather than the conventional negative-flint configuration. This prioritizes the SA control aberration profile over purely minimizing chromatic aberration.
 
 4. **Weak L4 with large internal air space:** The 19.35 mm air gap within L4 (between L41 and L42) is exceptional. It allows the two sub-elements to function as a "distributed negative group" with aberration properties that differ fundamentally from a compact cemented pair.
 

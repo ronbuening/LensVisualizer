@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-10 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-10",
+    type: "fix",
+    summary: "Conducted five glass audits across different lens models",
+  },
+  {
+    date: "2026-05-10",
+    type: "lens",
+    summary: "Added six new lenses: three Panasonic Leica lenses, two Olympus M. Zuiko lenses, and one Leica TL lens",
+  },
   // ── 2026-05-09 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-09",

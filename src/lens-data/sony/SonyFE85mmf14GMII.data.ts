@@ -18,10 +18,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    into an air-equivalent BFD on surface 26:                      ║
  * ║      12.86 + 2.50/1.51680 + 1.00 = 15.508 mm.                    ║
  * ║                                                                    ║
- * ║  NOTE ON L8 GLASS:                                                 ║
- * ║    Patent nd=1.59349, νd=67.0 (code 593/670). No exact OHARA     ║
- * ║    catalog match; nearest is S-FPM2 (595/677, Δnd ≈ +0.002).     ║
- * ║    Hoya PCD51 (593/670) and HIKARI J-PSKH4 (593/670) are exact.  ║
+ * ║  NOTE ON GLASS LABELS:                                             ║
+ * ║    Patent Table 6 gives nd/νd rather than vendor names. Labels    ║
+ * ║    below use exact/near catalog matches where they round-trip,    ║
+ * ║    and six-digit patent codes where no catalog entry exists.      ║
+ * ║    L8 is S-PHM52 (618/634), not the 593/670 S-FPM2-class glass.  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -104,7 +105,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.2,
       fl: -45.9,
-      glass: "S-TIH53 (OHARA)",
+      glass: "S-NBH56 class (OHARA; patent nd=1.85451, νd=25.2)",
       apd: false,
       role: "Dense flint negative meniscus at image side of G1; achromatizes against L2–L3 and corrects coma during focusing (¶0049).",
     },
@@ -116,7 +117,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: -36.9,
-      glass: "S-NBH56 (OHARA)",
+      glass: "S-NBH5 (OHARA)",
       apd: false,
       cemented: "D1",
       role: "Negative front of cemented doublet 2A in focus group G2; concave-toward-object front surface facilitates coma correction during focus travel (¶0046).",
@@ -129,7 +130,7 @@ const LENS_DATA = {
       nd: 1.85108,
       vd: 40.1,
       fl: 64.0,
-      glass: "S-LAH97 (OHARA)",
+      glass: "S-LAH89 class (OHARA; patent nd=1.85108, νd=40.1)",
       apd: false,
       cemented: "D1",
       role: "Positive rear of doublet 2A; rear surface S12A carries aspherical correction (XA element 1) targeting SA and coma at f/1.4.",
@@ -142,22 +143,22 @@ const LENS_DATA = {
       nd: 1.95375,
       vd: 32.3,
       fl: 43.5,
-      glass: "S-LAH79 (OHARA)",
+      glass: "S-LAH98 (OHARA)",
       apd: false,
-      role: "Strongest positive singlet in the system (component 2B); ultra-high-index S-LAH79 minimizes curvatures and focus-group mass for fast AF.",
+      role: "Strongest positive singlet in the system (component 2B); ultra-high-index S-LAH98 minimizes curvatures and focus-group mass for fast AF.",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
-      nd: 1.59349,
-      vd: 67.0,
-      fl: 104.3,
-      glass: "S-FPM2 class (OHARA, inferred — patent 593/670 vs. catalog 595/677)",
+      nd: 1.618,
+      vd: 63.4,
+      fl: 100.2,
+      glass: "S-PHM52 (OHARA)",
       apd: "inferred",
       apdNote:
-        "Phosphate crown in FPM family; probable positive ΔPgF contributes to secondary-spectrum correction within the moving G2.",
+        "S-PHM52 phosphate crown; catalog positive partial-dispersion anomaly contributes to secondary-spectrum correction within the moving G2.",
       cemented: "D2",
       role: "Positive crown front of cemented doublet 2F; high-Abbe phosphate crown provides low-dispersion positive power and contributes anomalous partial dispersion for chromatic stability during focus travel.",
     },
@@ -168,8 +169,8 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.77047,
       vd: 29.7,
-      fl: -35.0,
-      glass: "S-TIH18 (OHARA)",
+      fl: -34.5,
+      glass: "770297 — dense titanium flint (patent nd=1.77047, νd=29.7)",
       apd: false,
       cemented: "D2",
       role: "Negative flint rear of doublet 2F; L8+L9 pair (f = −53.4 mm) provides local achromatization within the focus group, stabilizing chromatic correction across the focus range.",
@@ -182,7 +183,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       fl: 49.8,
-      glass: "S-LAH51 (OHARA)",
+      glass: "S-LAH65V (OHARA)",
       apd: false,
       role: "Rear positive singlet of G2 (component 2R); works with L7 to deliver net positive power (f_G2 = +70.1 mm) before the fixed rear group.",
     },
@@ -194,7 +195,7 @@ const LENS_DATA = {
       nd: 1.85108,
       vd: 40.1,
       fl: 91.6,
-      glass: "S-LAH97 (OHARA)",
+      glass: "S-LAH89 class (OHARA; patent nd=1.85108, νd=40.1)",
       apd: false,
       role: "Double-asphere XA element 2 (subgroup 3F); both surfaces carry independent aspherical corrections for high-order SA and coma control near the image end. Same glass as L6.",
     },
@@ -206,7 +207,7 @@ const LENS_DATA = {
       nd: 1.98613,
       vd: 16.5,
       fl: 121.7,
-      glass: "S-NPH7 (OHARA)",
+      glass: "986165 — ultra-high-index dense flint (patent nd=1.98613, νd=16.5)",
       apd: false,
       cemented: "D3",
       role: "Ultra-high-index dense flint (nd ≈ 1.986) in rear cemented doublet; provides maximum refraction per unit curvature for field-flattening and lateral color correction.",
@@ -219,10 +220,10 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.4,
       fl: -58.2,
-      glass: "S-TIM8 (OHARA)",
+      glass: "S-FTM16 (OHARA)",
       apd: false,
       cemented: "D3",
-      role: "Negative flint partner in rear doublet; wide Δnd = 0.394 at junction enables strong lateral-color correction.",
+      role: "Negative flint partner in rear doublet; wide Δnd = 0.393 at junction enables strong lateral-color correction.",
     },
     {
       id: 14,
@@ -232,7 +233,7 @@ const LENS_DATA = {
       nd: 1.86966,
       vd: 20.0,
       fl: -139.9,
-      glass: "S-NPH4 (OHARA)",
+      glass: "870200 — dense flint (patent nd=1.86966, νd=20.0)",
       apd: false,
       role: "Final field flattener; high-dispersion dense flint meniscus (convex to image) for peripheral lateral color correction.",
     },
@@ -260,9 +261,9 @@ const LENS_DATA = {
     { label: "13", R: 47.112, d: 6.62, nd: 1.95375, elemId: 7, sd: 16.2 },
     { label: "14", R: -325.0, d: 0.2, nd: 1.0, elemId: 0, sd: 15.75 },
     // Cemented doublet 2F: L8 + L9
-    { label: "15", R: 275.212, d: 3.42, nd: 1.59349, elemId: 8, sd: 15.42 },
+    { label: "15", R: 275.212, d: 3.42, nd: 1.618, elemId: 8, sd: 15.42 },
     { label: "16", R: -79.543, d: 1.1, nd: 1.77047, elemId: 9, sd: 15.085 },
-    { label: "17", R: 41.044, d: 5.16, nd: 1.0, elemId: 0, sd: 14.165 },
+    { label: "17", R: 40.184, d: 5.16, nd: 1.0, elemId: 0, sd: 14.165 },
     // Component 2R: L10
     { label: "18", R: 88.519, d: 6.82, nd: 1.8042, elemId: 10, sd: 15.64 },
     { label: "19", R: -70.582, d: 3.43, nd: 1.0, elemId: 0, sd: 16.165 },
