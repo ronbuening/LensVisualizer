@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **169** lenses scanned
 - **1891** glass surfaces examined
 - **1885** surfaces with non-empty `glass` strings
-- **1269** of those resolved to a catalog entry
-- **328** mismatches found (25.8% of resolved surfaces)
-- **104** distinct lens files affected
+- **1254** of those resolved to a catalog entry
+- **304** mismatches found (24.2% of resolved surfaces)
+- **101** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,20 +27,18 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 16 | |
-| S-NPH2 | 11 | |
-| S-TIH18 | 10 | |
+| S-LAH79 | 14 | |
+| S-NPH2 | 10 | |
+| S-TIH18 | 9 | |
 | S-TIH14 | 9 | |
-| S-BSL7 | 8 | |
 | S-LAH58 | 7 | |
 | S-LAH64 | 7 | |
-| S-NPH4 | 7 | |
 | S-TIM27 | 7 | |
 | S-TIH53 | 7 | |
 | S-TIM25 | 7 | |
 | S-TIM35 | 7 | |
 | S-TIM2 | 7 | |
-| S-LAM51 | 6 | |
+| S-NPH4 | 6 | |
 | S-BAL14 | 6 | |
 | S-NPH53 | 6 | |
 | S-LAH51 | 6 | |
@@ -50,8 +48,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH4 | 6 | |
 | S-TIH11 | 5 | |
 | S-BAL35 | 5 | |
-| S-LAM54 | 5 | |
-| S-TIM28 | 5 | |
 | S-NBH55 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIL25 | 4 | |
@@ -60,14 +56,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | E-FD15 | 4 | |
 | S-NBH8 | 4 | |
 | S-NBH52V | 4 | |
+| S-TIM28 | 4 | |
 | S-TIH6 | 4 | |
 | SF6 | 4 | |
-| K-VC89 | 4 | |
 | S-TIL27 | 3 | |
 | S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
 | TAFD45 | 3 | |
+| S-BSL7 | 3 | |
 | S-LAH66 | 3 | |
 | S-LAH65 | 3 | |
 | S-BAM4 | 3 | |
@@ -77,14 +74,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | TAFD5F | 3 | |
 | N-SK16 | 3 | |
 | S-LAH97 | 3 | |
-| S-LAL9 | 2 | |
 | S-NPH1 | 2 | |
 | S-LAH55V | 2 | |
 | S-TIH53W | 2 | |
 | S-LAH59 | 2 | |
-| S-LAH60 | 2 | |
+| S-LAM54 | 2 | |
 | N-SK14 | 2 | |
 | SF2 | 2 | |
+| S-LAM51 | 2 | |
 | S-BAH27 | 2 | |
 | S-LAH93 | 2 | |
 | S-BSM81 | 2 | |
@@ -104,6 +101,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH52 | 1 | |
 | S-LAL18 | 1 | |
 | S-NPH3 | 1 | |
+| S-LAH60 | 1 | |
 | S-NBM51 | 1 | |
 | S-LAM60 | 1 | |
 | S-LAH63 | 1 | |
@@ -112,6 +110,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | TAFD55 | 1 | |
 | E-FDS1 | 1 | |
 | TAFD33 | 1 | |
+| K-VC89 | 1 | |
 | TAFD37 | 1 | |
 | S-LAH98 | 1 | |
 | N-SK2 | 1 | |
@@ -132,45 +131,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 22 | `S-TIH53 (OHARA)` | S-TIH53 | 1.78472 | 1.84666 | +0.0619 |
 | 25A | `L-BAL35 (OHARA)` | S-BAL35 | 1.58313 | 1.58913 | +0.0060 |
 | 27 | `S-BAL14 (OHARA)` | S-BAL14 | 1.72916 | 1.56883 | -0.1603 |
-
-### [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) — JP2021-47297A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-TIH18 (OHARA)` | S-TIH18 | 1.76182 | 1.72151 | -0.0403 |
-| 11 | `S-LAM54 (OHARA)` | S-LAM54 | 1.77250 | 1.75700 | -0.0155 |
-| 13 | `S-LAL9 (OHARA)` | S-LAL9 | 1.72916 | 1.69100 | -0.0382 |
-| 16 | `S-LAM51 (OHARA)` | S-LAM51 | 1.73400 | 1.70000 | -0.0340 |
-| 18 | `S-LAM54 (OHARA)` | S-LAM54 | 1.77250 | 1.75700 | -0.0155 |
-| 19 | `S-NPH4 (OHARA)` | S-NPH4 | 1.94595 | 1.89286 | -0.0531 |
-| 23 | `S-LAL9 (OHARA)` | S-LAL9 | 1.72916 | 1.69100 | -0.0382 |
-| 28 | `S-TIM28 (OHARA)` | S-TIM28 | 1.67270 | 1.68893 | +0.0162 |
-
-### [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) — US 2020/0142168 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-LAH60 (OHARA)` | S-LAH60 | 1.74389 | 1.83400 | +0.0901 |
-| 6 | `S-NPH2 (OHARA) — HRI` | S-NPH2 | 2.00100 | 1.92286 | -0.0781 |
-| 8 | `L-BSL7 (OHARA)` | S-BSL7 | 1.59349 | 1.51624 | -0.0773 |
-| 10 | `L-BSL7 (OHARA)` | S-BSL7 | 1.59349 | 1.51624 | -0.0773 |
-| 12 | `L-BSL7 (OHARA)` | S-BSL7 | 1.59349 | 1.51624 | -0.0773 |
-| 25 | `L-BSL7 (OHARA)` | S-BSL7 | 1.59349 | 1.51624 | -0.0773 |
-| 32 | `L-BSL7 variant (OHARA)` | S-BSL7 | 1.59319 | 1.51624 | -0.0770 |
-| 36 | `S-LAM54 (OHARA)` | S-LAM54 | 1.69350 | 1.75700 | +0.0635 |
-
-### [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) — WO 2019/097669 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95000 | 2.00330 | +0.0533 |
-| 6 | `S-LAM51 (OHARA)` | S-LAM51 | 1.71999 | 1.70000 | -0.0200 |
-| 17 | `K-VC89 (Sumita) / J-PSKH1 (HIKARI)` | K-VC89 | 1.59319 | 1.80998 | +0.2168 |
-| 28 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95000 | 2.00330 | +0.0533 |
-| 29 | `K-VC89 (Sumita) / J-PSKH1 (HIKARI)` | K-VC89 | 1.59319 | 1.80998 | +0.2168 |
-| 34 | `S-LAM51 (OHARA)` | S-LAM51 | 1.71999 | 1.70000 | -0.0200 |
-| 38 | `K-VC89 (Sumita) / J-PSKH1 (HIKARI)` | K-VC89 | 1.59319 | 1.80998 | +0.2168 |
-| 40 | `S-LAM51 (OHARA)` | S-LAM51 | 1.71999 | 1.70000 | -0.0200 |
 
 ### [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) — WO 2025/239028 A1
 

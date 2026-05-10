@@ -82,34 +82,34 @@ For reference, Example 3 in the same patent does include one aspherical surface 
 
 ## 4. Glass Strategy
 
-The design uses 14 unique glass types across 22 elements. The glass selection is dominated by high-performance anomalous-dispersion types, with special emphasis on chromatic aberration control across a 2.74× zoom range at f/2.9.
+The design uses 14 unique glass types across 22 elements. The glass selection is dominated by low-dispersion crowns, high-index flints, and fluorite, with special emphasis on chromatic aberration control across a 2.74× zoom range at f/2.9.
 
 ### Glass Identification Table
 
 | Element | nd | νd | Code | Best Catalog Match | Confidence | APD |
 |---|---|---|---|---|---|---|
-| L11 | 1.950000 | 29.37 | 950/293 | OHARA S-LAH79 | Exact | No |
-| L12 | 1.497820 | 82.57 | 497/825 | HOYA FCD1 / OHARA S-FPL51 family | Exact | Yes (ED) |
+| L11 | 1.950000 | 29.37 | 950294 | High-index dense flint | Code label; no exact catalog match | No |
+| L12 | 1.497820 | 82.57 | 498826 | HOYA FCD1 / OHARA S-FPL51 family | Catalog-backed family | Yes (ED) |
 | L13 | 1.433852 | 95.25 | 433/952 | Fluorite (CaF₂) | Confirmed | Yes (FL) |
-| L21 | 1.719990 | 50.27 | 719/502 | OHARA S-LAM51 | Exact | No |
+| L21 | 1.719990 | 50.27 | 720503 | Lanthanum crown | Code label; no exact catalog match | No |
 | L22 | 1.618000 | 63.34 | 618/633 | OHARA S-PHM52 / HOYA PCD4 | Exact | No |
 | L23 | 1.846660 | 23.83 | 846/238 | Schott N-SF57 / OHARA S-TIH53 | Exact | No |
 | L24 | 1.603000 | 65.44 | 603/654 | OHARA S-PHM53 | Exact | No |
 | L31 | 1.834810 | 42.73 | 834/427 | OHARA S-LAH55VS / HOYA TAFD5G | Exact | No |
-| L32 | 1.593190 | 67.90 | 593/679 | Sumita K-VC89 / HIKARI J-PSKH1 | Exact | Yes (ED) |
-| L33 | 1.497820 | 82.57 | 497/825 | HOYA FCD1 / OHARA S-FPL51 family | Exact | Yes (ED) |
+| L32 | 1.593190 | 67.90 | 593679 | Fluorophosphate crown | Code label; no exact catalog match | ED candidate |
+| L33 | 1.497820 | 82.57 | 498826 | HOYA FCD1 / OHARA S-FPL51 family | Catalog-backed family | Yes (ED) |
 | L34 | 2.001000 | 29.12 | 001/291 | HOYA TAFD55 / OHARA S-LAH99 | Exact | No (HRI) |
-| L35 | 1.902650 | 35.73 | 902/357 | LaH family (no exact catalog match) | Unmatched | No |
+| L35 | 1.902650 | 35.73 | 903357 | High-index lanthanum flint | Code label; no exact catalog match | No |
 | L36 | 1.581440 | 40.98 | 581/409 | HOYA E-FL5 / OHARA S-TIL25 | Close | No |
-| L41 | 1.497820 | 82.57 | 497/825 | HOYA FCD1 / OHARA S-FPL51 family | Exact | Yes (ED) |
-| L42 | 1.950000 | 29.37 | 950/293 | OHARA S-LAH79 | Exact | No |
-| L43 | 1.593190 | 67.90 | 593/679 | Sumita K-VC89 / HIKARI J-PSKH1 | Exact | Yes (ED) |
+| L41 | 1.497820 | 82.57 | 498826 | HOYA FCD1 / OHARA S-FPL51 family | Catalog-backed family | Yes (ED) |
+| L42 | 1.950000 | 29.37 | 950294 | High-index dense flint | Code label; no exact catalog match | No |
+| L43 | 1.593190 | 67.90 | 593679 | Fluorophosphate crown | Code label; no exact catalog match | ED candidate |
 | L51 | 1.804000 | 46.60 | 804/466 | OHARA S-LAH65VS / HOYA TAF3D | Exact | No |
 | L52 | 1.846660 | 23.83 | 846/238 | Schott N-SF57 / OHARA S-TIH53 | Exact | No |
-| L53 | 1.719990 | 50.27 | 719/502 | OHARA S-LAM51 | Exact | No |
+| L53 | 1.719990 | 50.27 | 720503 | Lanthanum crown | Code label; no exact catalog match | No |
 | L54 | 1.953750 | 32.33 | 953/323 | HOYA TAFD45 / OHARA S-LAH98 | Exact | No |
-| L55 | 1.593190 | 67.90 | 593/679 | Sumita K-VC89 / HIKARI J-PSKH1 | Exact | Yes (ED) |
-| L56 | 1.719990 | 50.27 | 719/502 | OHARA S-LAM51 | Exact | No |
+| L55 | 1.593190 | 67.90 | 593679 | Fluorophosphate crown | Code label; no exact catalog match | ED candidate |
+| L56 | 1.719990 | 50.27 | 720503 | Lanthanum crown | Code label; no exact catalog match | No |
 
 ### Special Glass Summary
 
@@ -117,11 +117,11 @@ The design's chromatic correction relies on three categories of special glass:
 
 **Fluorite (CaF₂) — L13**: The fluorite element in G1 provides extreme anomalous partial dispersion (νd = 95.25) for superior secondary-spectrum correction at the front of the system where the marginal ray height is largest. Fluorite is also significantly lighter than optical glass of comparable refractive power, contributing to the production lens's weight reduction versus its predecessor.
 
-**ED (Extra-low Dispersion) glasses — L12, L32, L33, L41, L43, L55**: Six elements use two distinct ED glass types. Three elements (L12, L33, L41) use a phosphate crown with nd = 1.497820 and νd = 82.57, matching the HOYA FCD1 catalog type. Three more (L32, L43, L55) use a glass with nd = 1.593190 and νd = 67.90, matching Sumita K-VC89 or HIKARI J-PSKH1. Both types exhibit anomalous partial dispersion (positive ΔPgF), enabling correction of secondary chromatic aberration that conventional glasses cannot address. Notably, the ED elements are distributed across G1, G3, G4, and G5, ensuring chromatic correction is maintained across all zoom positions.
+**ED (Extra-low Dispersion) glasses — L12, L32, L33, L41, L43, L55**: Six elements use two low-dispersion crown families. Three elements (L12, L33, L41) use a phosphate crown with nd = 1.497820 and νd = 82.57, close to the HOYA FCD1 / OHARA S-FPL51 catalog family and backed by catalog dispersion in the data file. Three more (L32, L43, L55) use the 593679 fluorophosphate-crown code with nd = 1.593190 and νd = 67.90. Nikon's production ED-element count supports treating these as ED candidates, but the patent publishes only nd/νd, so the data file deliberately avoids a specific K-VC89/Sumita assignment or a catalog-derived anomalous-partial-dispersion claim for the 593679 elements.
 
 **HRI (High Refractive Index) — L34**: Element L34 uses a glass with nd = 2.001000 and νd = 29.12, matching the HOYA TAFD55 / OHARA S-LAH99 family. Nikon's marketing specifically highlights this element: with a refractive index exceeding 2.0, a single HRI element can achieve optical effects that would otherwise require several conventional elements, simultaneously correcting field curvature and spherical aberration while enabling a more compact design.
 
-**Unmatched glass — L35**: The glass with nd = 1.902650 and νd = 35.73 (code 902/357) does not exactly match any current standard catalog type. The nearest candidates fall within the lanthanum heavy flint (LaH) family, but residuals exceed typical matching thresholds. This may represent a proprietary or specialty melt optimized for this design.
+**Code-labeled unresolved glasses — L11, L21, L35, L42, L53, L56**: These elements retain the patent nd/νd values but no exact current catalog entry is used for dispersion. L11/L42 use 950294 high-index dense flint, L21/L53/L56 use 720503 lanthanum crown, and L35 uses 903357 high-index lanthanum flint. The code labels prevent false catalog Sellmeier matches while preserving a future upgrade path if matching public catalog entries are added.
 
 ---
 
@@ -131,9 +131,9 @@ The design's chromatic correction relies on three categories of special glass:
 
 G1 collects light from the object and provides positive power that forms a real intermediate image for the subsequent groups. Being fixed relative to the image sensor, G1's aberration contribution remains constant across the zoom range.
 
-**L11 (Negative meniscus, convex toward object)**: nd = 1.950000 (S-LAH79), f = −327.1 mm. The front element uses the highest-index standard glass in the design. Its meniscus shape contributes negative power to flatten the field while its high index minimizes surface curvatures and thus surface contributions to spherical aberration. As the element with the largest clear aperture, the meniscus form reduces the angle of incidence of off-axis rays, controlling coma and astigmatism. It is cemented to L12.
+**L11 (Negative meniscus, convex toward object)**: nd = 1.950000 (950294 high-index dense flint), f = −327.1 mm. The front element uses a very high-index, high-dispersion glass with no exact current catalog match. Its meniscus shape contributes negative power to flatten the field while its high index minimizes surface curvatures and thus surface contributions to spherical aberration. As the element with the largest clear aperture, the meniscus form reduces the angle of incidence of off-axis rays, controlling coma and astigmatism. It is cemented to L12.
 
-**L12 (Plano-convex positive, cemented to L11)**: nd = 1.497820 (FCD1 family, ED), f = +165.2 mm. The patent text [0049] describes this element as 平凸レンズ (plano-convex); the rear surface R = −998.249 mm is effectively flat (|R| ≈ 1000 mm). The cemented doublet L11+L12 pairs a high-index dense flint (L11) with a low-index anomalous-dispersion crown (L12). This classic achromatic combination corrects primary longitudinal chromatic aberration at the front of the system. The anomalous partial dispersion of FCD1 additionally addresses secondary spectrum.
+**L12 (Weak biconvex positive, cemented to L11)**: nd = 1.497820 (FCD1 family, ED), f = +165.2 mm. The patent text [0049] describes this element as biconvex; the rear surface R = −998.249 mm is so weak that the element is nearly plano-convex in form. The cemented doublet L11+L12 pairs a high-index dense flint (L11) with a low-index anomalous-dispersion crown (L12). This classic achromatic combination corrects primary longitudinal chromatic aberration at the front of the system. The catalog-backed FCD1-family dispersion additionally addresses secondary spectrum.
 
 **L13 (Positive meniscus, convex toward object)**: nd = 1.433852 (fluorite, CaF₂), f = +243.4 mm. The fluorite element provides additional positive power with extremely low dispersion (νd = 95.25), contributing to both primary and secondary chromatic correction. Its meniscus shape with convex front follows the curvature of the converging beam, minimizing surface aberrations. Fluorite's low density (3.18 g/cm³ vs ~3.5–5.5 for optical glass) also reduces the weight of this large-diameter front element.
 
@@ -141,7 +141,7 @@ G1 collects light from the object and provides positive power that forms a real 
 
 G2 provides negative power and moves along the optical axis during zooming. Its motion is the primary mechanism that changes the system's effective focal length. G2 moves toward the image during wide-to-tele zoom, causing D1 to increase from 3.0 mm to 51.0 mm while D2 decreases from 50.6 mm to 2.7 mm.
 
-**L21 (Negative meniscus, convex toward object)**: nd = 1.719990 (S-LAM51), f = −93.9 mm. The leading element of G2 uses a meniscus shape to progressively bend rays away from the axis. The lanthanum glass (S-LAM51) provides moderate index with controlled dispersion.
+**L21 (Negative meniscus, convex toward object)**: nd = 1.719990 (720503 lanthanum crown), f = −93.9 mm. The leading element of G2 uses a meniscus shape to progressively bend rays away from the axis. The code-labeled lanthanum glass provides moderate index with controlled dispersion while avoiding a false S-LAM51 catalog match.
 
 **L22 (Biconcave negative)**: nd = 1.618000 (S-PHM52), f = −92.2 mm. A strong diverging element using a phosphate glass with νd = 63.34. The biconcave form produces strong negative power for zoom range, while the relatively low dispersion of PHM52 limits chromatic variation during zoom.
 
@@ -157,13 +157,13 @@ G3 follows the aperture stop and relays the image while providing positive power
 
 **L31 (Biconvex positive)**: nd = 1.834810 (S-LAH55VS), f = +128.0 mm. The first glass element after the stop provides moderate positive power using a high-index lanthanum glass that contributes favorable Petzval sum.
 
-**L32 (Plano-convex, convex toward object)**: nd = 1.593190 (K-VC89, ED), f = +152.3 mm. The first of three ED elements using the K-VC89 anomalous-dispersion glass. Its plano-convex form (flat rear surface, R = ∞) minimizes spherical aberration for near-collimated beams emerging from the stop region. The anomalous dispersion corrects secondary chromatic aberration in the relay path.
+**L32 (Plano-convex, convex toward object)**: nd = 1.593190 (593679 fluorophosphate crown), f = +152.3 mm. This is the first of three 593679 ED-candidate elements. Its plano-convex form (flat rear surface, R = ∞) minimizes spherical aberration for near-collimated beams emerging from the stop region. The patent does not publish partial-dispersion data for this glass, so the analysis treats the ED role as an nd/νd and production-count inference.
 
 **L33 (Positive meniscus, convex toward object)**: nd = 1.497820 (FCD1, ED), f = +119.6 mm. The second FCD1-type ED element in the system, contributing additional positive power with very low dispersion. Paired with L34 (following), this forms a loose air-spaced achromatic combination.
 
 **L34 (Biconcave negative) — HRI element**: nd = 2.001000 (TAFD55 / S-LAH99), f = −70.1 mm. This is the High Refractive Index element highlighted in Nikon's marketing. With nd exceeding 2.0, the surface curvatures required for a given power are much gentler than with conventional glass, dramatically reducing higher-order aberrations (spherical, coma) at each surface. Positioned after two positive ED elements, L34 provides strong negative power for Petzval sum flattening and chromatic aberration control. Its high dispersion (νd = 29.12) is deliberately paired against the preceding low-dispersion elements.
 
-**L35 + L36 (Cemented negative doublet)**: L35 is a biconvex positive element (nd = 1.902650, νd = 35.73, f = +47.5 mm) cemented to L36, a biconcave negative (nd = 1.581440, νd = 40.98, f = −44.0 mm). The patent text [0049] describes this pair as 接合負レンズ (cemented negative lens), confirming a net negative focal length of approximately −1420 mm — very weak combined power, functioning primarily as a field-flattening corrector at the exit of G3. The L35 glass (code 902/357) does not match any current standard catalog type and may represent a proprietary or specialty melt. L36 matches the HOYA E-FL5 / OHARA S-TIL25 family, a light flint glass.
+**L35 + L36 (Cemented negative doublet)**: L35 is a biconvex positive element (nd = 1.902650, νd = 35.73, f = +47.5 mm) cemented to L36, a biconcave negative (nd = 1.581440, νd = 40.98, f = −44.0 mm). The patent text [0049] describes this pair as 接合負レンズ (cemented negative lens), confirming a net negative focal length of approximately −1420 mm — very weak combined power, functioning primarily as a field-flattening corrector at the exit of G3. The L35 glass is now recorded by code 903357 because it does not match any current standard catalog type. L36 remains a close light-flint family match near HOYA E-FL5 / OHARA S-TIL25.
 
 ### Group 4 — Focusing Group (f = +58.20 mm, moves during zoom and focus)
 
@@ -171,7 +171,7 @@ G4 is the internal focusing group. It moves toward the object during focus from 
 
 **L41 (Biconvex positive)**: nd = 1.497820 (FCD1, ED), f = +89.7 mm. The third FCD1-type ED element, providing positive power with extremely low dispersion. Placing an ED element in the focusing group ensures that chromatic performance is maintained across the focus range, not just at infinity.
 
-**L42 + L43 (Cemented positive doublet)**: L42 is a negative meniscus (nd = 1.950000, S-LAH79, f = −89.9 mm) cemented to L43, a positive meniscus (nd = 1.593190, K-VC89, ED, f = +57.1 mm). The patent text describes this as 接合正レンズ (cemented positive lens), with a net positive focal length of approximately +170 mm. The pairing of S-LAH79 (high-index, high-dispersion) with K-VC89 (moderate-index, anomalous-dispersion) creates a powerful achromatic combination. The meniscus forms reduce higher-order aberrations, and the use of an ED glass ensures chromatic correction survives focus changes. Note: L43's steep junction radius (R = 28.478 mm) produces the tightest edge-thickness constraint in the entire design, limiting the cemented doublet's maximum semi-diameter to approximately 17 mm.
+**L42 + L43 (Cemented positive doublet)**: L42 is a negative meniscus (nd = 1.950000, 950294 dense flint, f = −89.9 mm) cemented to L43, a positive meniscus (nd = 1.593190, 593679 fluorophosphate crown, f = +57.1 mm). The patent text describes this as 接合正レンズ (cemented positive lens), with a net positive focal length of approximately +170 mm. The pairing of high-index dense flint with a low-dispersion crown creates a powerful achromatic combination. The meniscus forms reduce higher-order aberrations, and the ED-candidate crown helps chromatic correction survive focus changes. Note: L43's steep junction radius (R = 28.478 mm) produces the tightest edge-thickness constraint in the entire design, limiting the cemented doublet's maximum semi-diameter to approximately 17 mm.
 
 ### Group 5 — VR Group (f = −109.09 mm, fixed overall; VR subgroup shifts laterally)
 
@@ -179,13 +179,13 @@ G5 has a net negative focal length, making the complete system shorter than G1�
 
 **L51 (Negative meniscus, convex toward object)**: nd = 1.804000 (S-LAH65VS), f = −98.7 mm. The leading element of G5, providing negative power to diverge the converging beam from G4. Its high-index lanthanum glass (νd = 46.60) contributes to favorable Petzval sum balance.
 
-**L52 + L53 (Cemented doublet — VR subgroup, part 1)**: L52 is a biconvex positive (nd = 1.846660, N-SF57, f = +61.2 mm) cemented to L53, a biconcave negative (nd = 1.719990, S-LAM51, f = −41.3 mm). This cemented doublet (net f ≈ −138 mm) is part of the VR moving subgroup. The pairing creates a diverging achromatic element with well-controlled chromatic performance during lateral decentering. The N-SF57 dense flint (L52) paired with the S-LAM51 lanthanum glass (L53) provides the necessary power balance for image-shift correction.
+**L52 + L53 (Cemented doublet — VR subgroup, part 1)**: L52 is a biconvex positive (nd = 1.846660, N-SF57, f = +61.2 mm) cemented to L53, a biconcave negative (nd = 1.719990, 720503 lanthanum crown, f = −41.3 mm). This cemented doublet (net f ≈ −138 mm) is part of the VR moving subgroup. The pairing creates a diverging achromatic element with well-controlled chromatic performance during lateral decentering. The N-SF57 dense flint (L52) paired with the 720503 lanthanum glass (L53) provides the necessary power balance for image-shift correction.
 
 **L54 (Plano-concave, concave toward image — VR subgroup, part 2)**: nd = 1.953750 (TAFD45 / S-LAH98), f = −71.9 mm. This plano-concave element moves with L52+L53 as part of the VR subgroup. Its flat front surface and curved rear surface produce strong negative power. The high-index glass (nd = 1.954) minimizes aberrations generated during the lateral shift needed for image stabilization. Note: the patent prescription table renders the flat-surface radius as "0.000" — a rendering artifact; the patent text explicitly describes L54 as 平凹レンズ (plano-concave), and the EFL computation confirms R = ∞.
 
-**L55 (Biconvex positive)**: nd = 1.593190 (K-VC89, ED), f = +108.0 mm. The third K-VC89 ED element, providing positive power after the VR subgroup. Its anomalous dispersion ensures that the color correction introduced by the VR elements during lateral shift does not degrade overall chromatic performance.
+**L55 (Biconvex positive)**: nd = 1.593190 (593679 fluorophosphate crown), f = +108.0 mm. The third 593679 ED-candidate element provides positive power after the VR subgroup and helps keep the chromatic balance introduced by the VR elements from degrading during lateral shift.
 
-**L56 (Positive meniscus, convex toward object)**: nd = 1.719990 (S-LAM51), f = +100.4 mm. The final element before the image plane, a positive meniscus that helps control the back-focal field curvature and provides final positive power to direct the converging beam to the sensor. Using S-LAM51 (the same glass as L21 and L53) maintains manufacturing simplicity.
+**L56 (Positive meniscus, convex toward object)**: nd = 1.719990 (720503 lanthanum crown), f = +100.4 mm. The final element before the image plane, a positive meniscus that helps control the back-focal field curvature and provides final positive power to direct the converging beam to the sensor. Reusing the same 720503 glass as L21 and L53 maintains manufacturing simplicity.
 
 ---
 

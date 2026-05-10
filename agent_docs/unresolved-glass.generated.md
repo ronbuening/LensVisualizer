@@ -11,19 +11,25 @@ or per-lens patent backfills.
 - **169** lenses scanned
 - **1891** non-air surfaces examined
 - **1885** element glass declarations examined
-- **557** non-explicit-unmatched annotations did not resolve
-- **194** distinct unresolved glass-like tokens found
+- **572** non-explicit-unmatched annotations did not resolve
+- **196** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
+| 593679 | 10 | 5 | |
 | NBFD3 | 7 | 6 | |
 | S-NPH7 | 7 | 6 | |
 | TAFD25 | 7 | 6 | |
-| 593679 | 6 | 3 | |
+| 593670 | 6 | 3 | |
 | L-PHM52 | 5 | 2 | |
-| 694533 | 3 | 2 | |
+| 694533 | 4 | 3 | |
+| 720503 | 3 | 1 | |
+| 744495 | 3 | 3 | |
+| 764485 | 3 | 3 | |
+| 903357 | 3 | 3 | |
+| 946180 | 3 | 3 | |
 | E-FD5 | 3 | 3 | |
 | S-LAM55 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
@@ -32,21 +38,17 @@ or per-lens patent backfills.
 | 051269 | 2 | 1 | |
 | 159319 | 2 | 1 | |
 | 519699 | 2 | 1 | |
-| 593670 | 2 | 2 | |
 | 603380 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 717479 | 2 | 1 | |
 | 738323 | 2 | 2 | |
-| 744495 | 2 | 2 | |
 | 755523 | 2 | 2 | |
-| 764485 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 788474 | 2 | 1 | |
 | 855252 | 2 | 1 | |
-| 903357 | 2 | 2 | |
 | 911353 | 2 | 2 | |
-| 946180 | 2 | 2 | |
+| 950294 | 2 | 1 | |
 | E-FD2 | 2 | 2 | |
 | E-FD4 | 2 | 2 | |
 | E-FD8 | 2 | 1 | |
@@ -87,6 +89,7 @@ or per-lens patent backfills.
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
+| 553717 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
 | 581408 | 1 | 1 | |
@@ -176,7 +179,6 @@ or per-lens patent backfills.
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH7 | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
-| S-LAH78 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL10 | 1 | 1 | |
 | S-LAL12 | 1 | 1 | |
@@ -215,6 +217,19 @@ or per-lens patent backfills.
 
 ## Occurrences
 
+### 593679 — 10 occurrences
+
+- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 3: `Fluorophosphate Crown (glass code 593679)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 32: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 29: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 38: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 15: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+
 ### NBFD3 — 7 occurrences
 
 - [CANON SERENAR 50mm f/1.8](../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 4: `NBFD3 (HOYA)`
@@ -245,14 +260,14 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 13: `TAFD25 equiv. (181600/4659)`
 - [PENTAX-F 85mm f/2.8 Soft](../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 6: `TAFD25 (HOYA)`
 
-### 593679 — 6 occurrences
+### 593670 — 6 occurrences
 
-- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 3: `Fluorophosphate Crown (glass code 593679)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 15: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 21: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 17: `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 8: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 10: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 12: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 25: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 13: `Phosphate crown ED (593670, same as L16)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 24: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
 
 ### L-PHM52 — 5 occurrences
 
@@ -262,11 +277,42 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 23: `PGM phosphate crown ED (593679, OHARA L-PHM52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 27: `Phosphate crown ED (593679, OHARA L-PHM52 nearest)`
 
-### 694533 — 3 occurrences
+### 694533 — 4 occurrences
 
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 36: `694533 - lanthanum crown (patent nd=1.69350, vd=53.30)`
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 1: `694533 — high-index crown (patent nd=1.69370, νd=53.32)`
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 3: `694533 — high-index crown (patent nd=1.69370, νd=53.32)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 15A: `694533 - lanthanum crown (patent nd=1.69370, vd=53.32)`
+
+### 720503 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 6: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 34: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 40: `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)`
+
+### 744495 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 - lanthanum crown (patent nd=1.74389, vd=49.50)`
+- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)`
+
+### 764485 — 3 occurrences
+
+- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 21: `764485 — Hikari/CDGM lanthanum flint class (nd=1.76385, νd=48.5)`
+- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 15: `764485 — lanthanum crown (nd=1.76385, νd=48.51)`
+- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 9: `764485 - M-TAFD305 / high-index lanthanum`
+
+### 903357 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 23: `903357 - high-index lanthanum flint (patent nd=1.90265, vd=35.73)`
+- [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 7: `903357 — dense flint (patent nd=1.90265, νd=35.73)`
+- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 16: `903357 — high-index lanthanum flint (patent nd=1.90265, νd=35.72)`
+
+### 946180 — 3 occurrences
+
+- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 19: `946180 — ultra-high-index dense flint (nd=1.94595, νd=18.0)`
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 28: `946180 - ultra-high-index dense flint (patent nd=1.94595, vd=17.98)`
 
 ### E-FD5 — 3 occurrences
 
@@ -313,11 +359,6 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 8: `Phosphate crown (glass code 519699)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 21: `Phosphate crown (glass code 519699)`
 
-### 593670 — 2 occurrences
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 13: `Phosphate crown ED (593670, same as L16)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 24: `593670 - fluorophosphate crown (patent nd=1.59349, vd=67.00)`
-
 ### 603380 — 2 occurrences
 
 - [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 9: `Flint (code 603380)`
@@ -338,20 +379,10 @@ or per-lens patent backfills.
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 13: `738323 — niobium dense flint (nd=1.73800, νd=32.26)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 19: `738323 - niobium dense flint (patent nd=1.73800, vd=32.33)`
 
-### 744495 — 2 occurrences
-
-- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)`
-
 ### 755523 — 2 occurrences
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 4: `Near OHARA S-LAL60 (755523)`
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 9: `OHARA 755523 (TaC6; see analysis §5.2)`
-
-### 764485 — 2 occurrences
-
-- [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 15: `764485 — lanthanum crown (nd=1.76385, νd=48.51)`
-- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 9: `764485 - M-TAFD305 / high-index lanthanum`
 
 ### 774492 — 2 occurrences
 
@@ -373,20 +404,15 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `High-index APD flint (glass code 855252)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `High-index APD flint (glass code 855252)`
 
-### 903357 — 2 occurrences
-
-- [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 7: `903357 — dense flint (patent nd=1.90265, νd=35.73)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 16: `903357 — high-index lanthanum flint (patent nd=1.90265, νd=35.72)`
-
 ### 911353 — 2 occurrences
 
 - [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) 19: `911353 — lanthanum (nd=1.91082, νd=35.3)`
 - [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 14: `Ultra-high-index La dense flint (code 911353)`
 
-### 946180 — 2 occurrences
+### 950294 — 2 occurrences
 
-- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 29: `S-NPH7 (946180, OHARA S-NPH7)`
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 28: `946180 - ultra-high-index dense flint (patent nd=1.94595, vd=17.98)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 1: `950294 - ultra-high-index dense flint (patent nd=1.95000, vd=29.37)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) 28: `950294 - ultra-high-index dense flint (patent nd=1.95000, vd=29.37)`
 
 ### E-FD2 — 2 occurrences
 
@@ -579,6 +605,10 @@ or per-lens patent backfills.
 ### 553555 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 - borosilicate crown (nd=1.552981, vd~55.5)`
+
+### 553717 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 29A: `553717 - ASP/ED fluorophosphate crown (patent nd=1.55332, vd=71.70)`
 
 ### 574425 — 1 occurrence
 
@@ -935,10 +965,6 @@ or per-lens patent backfills.
 ### S-LAH75 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 45: `OHARA S-LAH75`
-
-### S-LAH78 — 1 occurrence
-
-- [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) 24: `S-LAH78 (OHARA)`
 
 ### S-LAH85V — 1 occurrence
 
