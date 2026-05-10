@@ -62,9 +62,9 @@ L3 is the second ED element and provides the strongest positive power in G1. S-F
 
 ### L4 — Negative Meniscus, convex to object
 
-nd = 1.85451, νd = 25.2. Glass: S-TIH53 (OHARA) — dense titanium flint. f = −45.9 mm.
+nd = 1.85451, νd = 25.2. Glass: S-NBH56 class (OHARA; patent nd = 1.85451, νd = 25.2) — dense flint. f = −45.9 mm.
 
-L4 is the final element of G1 and the strongest negative element in the front group. Its meniscus shape (R1 = 111.08, R2 = 28.80, both positive, with the steeper R2 facing the image) creates a strongly diverging action on the marginal ray just before it reaches the stop. The patent identifies (¶0049) that placing a negative element at the image-side end of G1 facilitates coma correction during focusing. The high-dispersion S-TIH53 glass achromatizes against L2 and L3, completing the primary color correction of the front group.
+L4 is the final element of G1 and the strongest negative element in the front group. Its meniscus shape (R1 = 111.08, R2 = 28.80, both positive, with the steeper R2 facing the image) creates a strongly diverging action on the marginal ray just before it reaches the stop. The patent identifies (¶0049) that placing a negative element at the image-side end of G1 facilitates coma correction during focusing. The high-dispersion dense-flint glass achromatizes against L2 and L3, completing the primary color correction of the front group.
 
 The air gap between L4 and the stop (d = 10.63 mm) plus the stop-to-G2 gap (d9 = 18.19 mm at infinity) form the largest air space in the system, providing room for the aperture mechanism and establishing the separation between the fixed G1 and the moving G2.
 
@@ -74,53 +74,53 @@ The stop is positioned between G1 and G2, at the rear of G1 in the patent's grou
 
 ### L5 — Biconcave Negative (cemented front of 2A)
 
-nd = 1.65412, νd = 39.7. Glass: S-NBH56 (OHARA) — niobium-containing barium heavy flint. f = −36.9 mm.
+nd = 1.65412, νd = 39.7. Glass: S-NBH5 (OHARA) — KZFS-class short flint. f = −36.9 mm.
 
-L5 is the first element of the focusing group G2 and the negative front half of the cemented doublet component 2A. Its biconcave shape (R1 = −54.13, R2 = 44.00) creates strong divergence at the entrance to G2. The concave-toward-object front surface is a deliberate design feature (¶0046) that the patent says facilitates coma correction during the focus travel. S-NBH56 is a moderate-index, moderate-dispersion glass — not itself a chromatic corrector, but positioned to balance the strong positive contributions of L7 and L10 that follow.
+L5 is the first element of the focusing group G2 and the negative front half of the cemented doublet component 2A. Its biconcave shape (R1 = −54.13, R2 = 44.00) creates strong divergence at the entrance to G2. The concave-toward-object front surface is a deliberate design feature (¶0046) that the patent says facilitates coma correction during the focus travel. S-NBH5 is a moderate-index, moderate-dispersion short flint positioned to balance the strong positive contributions of L7 and L10 that follow.
 
 ### L6 — Positive Meniscus, convex to object (cemented rear of 2A, 1× Asph)
 
-nd = 1.85108, νd = 40.1. Glass: S-LAH97 (OHARA) — lanthanum-containing heavy crown. f = +64.0 mm.
+nd = 1.85108, νd = 40.1. Glass: S-LAH89 class (OHARA; patent nd = 1.85108, νd = 40.1) — lanthanum heavy crown. f = +64.0 mm.
 
 L6 completes the cemented doublet 2A. Its rear surface (S12A, R = 218.67) carries the first aspherical correction in the system. The cemented pair L5+L6 has a combined focal length of −86.5 mm, making component 2A the weaker of the two negative components in G2.
 
-The aspherical surface S12A (K = 0, A4 = +2.88×10⁻⁶) has a positive fourth-order coefficient on a weakly curved convex surface, which flattens the peripheral zone relative to the spherical base curve. This aspherical correction acts directly on the converging bundle immediately after it passes through the stop, primarily targeting spherical aberration and coma at f/1.4. Being on the rear surface of a cemented doublet — an air-contact asphere — it would be manufactured as a precision-ground or precision-glass-molded (PGM) surface on S-LAH97, a moldable glass.
+The aspherical surface S12A (K = 0, A4 = +2.88×10⁻⁶) has a positive fourth-order coefficient on a weakly curved convex surface, which flattens the peripheral zone relative to the spherical base curve. This aspherical correction acts directly on the converging bundle immediately after it passes through the stop, primarily targeting spherical aberration and coma at f/1.4. Being on the rear surface of a cemented doublet — an air-contact asphere — it would be manufactured as a precision-ground or precision-glass-molded (PGM) surface on an S-LAH89-class lanthanum glass.
 
 This is one of Sony's two XA (extreme aspherical) elements, where XA denotes surface precision on the order of 0.01 μm to suppress onion-ring artifacts in bokeh.
 
 ### L7 — Biconvex Positive (component 2B)
 
-nd = 1.95375, νd = 32.3. Glass: S-LAH79 (OHARA) — ultra-high-index lanthanum crown. f = +43.5 mm.
+nd = 1.95375, νd = 32.3. Glass: S-LAH98 (OHARA) — ultra-high-index lanthanum crown. f = +43.5 mm.
 
-L7 is the strongest positive singlet in the entire system and the most powerful element in the focusing group. S-LAH79 provides the highest refractive index (nd ≈ 1.95) available in a production-grade lanthanum crown, which allows strong power (R1 = 47.11, R2 = −325.00) to be packed into a 6.62 mm thick element. This is critical because every gram in the focusing group affects AF speed — Sony claims the XD linear motors achieve AF up to 3× faster than the predecessor.
+L7 is the strongest positive singlet in the entire system and the most powerful element in the focusing group. S-LAH98-class glass provides an ultra-high refractive index (nd ≈ 1.954), which allows strong power (R1 = 47.11, R2 = −325.00) to be packed into a 6.62 mm thick element. This is critical because every gram in the focusing group affects AF speed — Sony claims the XD linear motors achieve AF up to 3× faster than the predecessor.
 
 The biconvex shape distributes the refractive power across both surfaces, minimizing the surface contribution to spherical aberration per the bending-for-minimum-SA principle. L7 is the engine of the focusing group: its strong positive power means the intermediate group G2 converges the beam sufficiently that the rear group G3 need only provide mild negative correction.
 
 ### L8 — Biconvex Positive (cemented front of 2F)
 
-nd = 1.59349, νd = 67.0. Glass: S-FPM2 class (OHARA, inferred — patent 593/670 vs. catalog 595/677). f = +104.3 mm.
+nd = 1.61800, νd = 63.4. Glass: S-PHM52 (OHARA). f = +100.2 mm.
 
-L8 is the positive front half of the cemented doublet component 2F. The patent prescription lists nd = 1.59349, νd = 67.0 (6-digit code 593/670), which does not correspond exactly to any current OHARA catalog entry. The nearest OHARA glass is S-FPM2 (code 595/677, nd ≈ 1.595, νd ≈ 67.7), with a residual Δnd ≈ +0.002 — within the soft-match tolerance but not an exact identification. Hoya PCD51 (593/670) and HIKARI J-PSKH4 (593/670) are exact matches for the patent's values. Given Sony's established relationship with OHARA, S-FPM2 is the most likely production glass, with the patent prescription using slightly modified constants for IP reasons.
+L8 is the positive front half of the cemented doublet component 2F. The patent prescription lists nd = 1.61800, νd = 63.4 (6-digit code 618/634), which round-trips to OHARA S-PHM52 in the project catalog. This corrects an earlier transcription that had assigned L8 a 593/670 S-FPM2-class glass.
 
-The glass belongs to the FPM (fluorophosphate) family, which carries positive anomalous partial dispersion. This means L8 contributes not just low primary chromatic aberration (by virtue of its high Abbe number), but also secondary-spectrum correction within the moving G2 — a more significant chromatic role than a conventional crown would provide. Paired with the high-dispersion S-TIH18 of L9, the L8+L9 doublet achieves local achromatization that stabilizes chromatic performance as G2 translates during focusing.
+S-PHM52 is a phosphate crown with positive anomalous partial dispersion in the OHARA catalog. This means L8 contributes not just low primary chromatic aberration (by virtue of its high Abbe number), but also secondary-spectrum correction within the moving G2 — a more significant chromatic role than a conventional crown would provide. Paired with the high-dispersion patent-code flint of L9, the L8+L9 doublet achieves local achromatization that stabilizes chromatic performance as G2 translates during focusing.
 
 ### L9 — Biconcave Negative (cemented rear of 2F)
 
-nd = 1.77047, νd = 29.7. Glass: S-TIH18 (OHARA) — titanium-containing flint. f = −35.0 mm.
+nd = 1.77047, νd = 29.7. Glass: 770297 — dense titanium flint (patent code only). f = −34.5 mm.
 
-L9 completes the cemented doublet 2F. The L8+L9 pair has a combined focal length of −53.4 mm, making it the stronger of the two negative components in G2. The crown/flint pairing (S-FPM2 class + S-TIH18) provides local achromatization within the focus group, which is essential because the entire G2 translates during focusing — uncorrected chromatic aberration would vary with focus position.
+L9 completes the cemented doublet 2F. The L8+L9 pair has a combined focal length of −53.4 mm, making it the stronger of the two negative components in G2. The crown/flint pairing (S-PHM52 + 770297 patent-code dense flint) provides local achromatization within the focus group, which is essential because the entire G2 translates during focusing — uncorrected chromatic aberration would vary with focus position.
 
 ### L10 — Biconvex Positive (component 2R)
 
-nd = 1.80420, νd = 46.5. Glass: S-LAH51 (OHARA) — lanthanum crown. f = +49.8 mm.
+nd = 1.80420, νd = 46.5. Glass: S-LAH65V (OHARA) — lanthanum crown. f = +49.8 mm.
 
-L10 is the final element of the focusing group and the second-strongest positive singlet in G2. It works in concert with L7 to provide the net positive power (f_G2 = +70.1 mm) needed to converge the beam before it enters the fixed rear group G3. S-LAH51 is a well-balanced lanthanum crown — high index (nd = 1.80) with moderate dispersion (νd = 46.5) — allowing efficient light bending without excessive chromatic contribution.
+L10 is the final element of the focusing group and the second-strongest positive singlet in G2. It works in concert with L7 to provide the net positive power (f_G2 = +70.1 mm) needed to converge the beam before it enters the fixed rear group G3. S-LAH65V is a well-balanced lanthanum crown — high index (nd ≈ 1.804) with moderate dispersion (νd ≈ 46.5) — allowing efficient light bending without excessive chromatic contribution.
 
 The air gap between L10 and L11 (d19 = 3.43 mm at infinity, expanding to 14.60 mm at close focus) is the rear boundary of the focus travel. As G2 moves forward, this gap widens, and the gap ahead of G2 (d9) narrows by the same amount, conserving the overall track length exactly.
 
 ### L11 — Biconvex Positive, double asphere (XA element)
 
-nd = 1.85108, νd = 40.1. Glass: S-LAH97 (OHARA) — lanthanum-containing heavy crown. f = +91.6 mm.
+nd = 1.85108, νd = 40.1. Glass: S-LAH89 class (OHARA; patent nd = 1.85108, νd = 40.1) — lanthanum heavy crown. f = +91.6 mm.
 
 L11 is the first element of the fixed rear group G3 and the most important aberration-correcting element in the system. Both surfaces carry aspherical corrections (S20A and S21A), making this the second XA element.
 
@@ -128,19 +128,19 @@ Surface 20A (front, R = 112.28 mm) has A4 = −3.32×10⁻⁶ (negative fourth-o
 
 Surface 21A (rear, R = −251.31 mm) has A4 = −2.88×10⁻⁶ (also negative fourth-order), which acts on the diverging surface to fine-tune the spherical and coma correction. The combination of aspherical corrections on both surfaces of the same element provides the designer with two independent degrees of freedom for balancing aberrations — a hallmark of Sony's XA approach, where surface precision is controlled to nanometer tolerances to eliminate the "onion ring" bokeh artifacts that arise from residual higher-order surface irregularities on conventional aspherics.
 
-L11 uses the same glass (S-LAH97) as L6, which simplifies manufacturing logistics and indicates the designer valued this glass's moldability and optical properties highly enough to use it twice.
+L11 uses the same S-LAH89-class glass as L6, which simplifies manufacturing logistics and indicates the designer valued this glass's moldability and optical properties highly enough to use it twice.
 
 ### L12 — Biconvex Positive (cemented front of rear doublet)
 
-nd = 1.98613, νd = 16.5. Glass: S-NPH7 (OHARA) — ultra-high-index dense flint. f = +121.7 mm.
+nd = 1.98613, νd = 16.5. Glass: 986165 — ultra-high-index dense flint (patent code only). f = +121.7 mm.
 
 L12 is the most extreme glass in the design: nd ≈ 1.986 (nearly 2.0) with νd = 16.5, an extraordinarily dispersive dense flint. Its role is to provide positive power with maximum refractive effect per unit of curvature, allowing the cemented doublet L12+L13 to flatten the field while simultaneously providing achromatizing flint-glass dispersion. The weakly curved front surface (R = +410.0 mm) and more strongly curved rear junction (R = −168.2 mm) create a biconvex element dominated by its rear surface — functionally close to a plano-convex — that bends the beam with minimal higher-order contribution.
 
 ### L13 — Biconcave Negative (cemented rear of rear doublet)
 
-nd = 1.59270, νd = 35.4. Glass: S-TIM8 (OHARA) — titanium flint. f = −58.2 mm.
+nd = 1.59270, νd = 35.4. Glass: S-FTM16 (OHARA) — titanium flint. f = −58.2 mm.
 
-L13 is the negative partner in the rear cemented doublet. The L12+L13 pair has a combined focal length of −114.3 mm, providing the negative power that — together with L14 — gives subgroup 3R its overall diverging character. The wide index gap at the cemented junction (Δnd = 1.98613 − 1.59270 = 0.394) creates exceptionally strong refraction at the internal surface, enabling tight control of lateral color without excessive element thickness.
+L13 is the negative partner in the rear cemented doublet. The L12+L13 pair has a combined focal length of −114.3 mm, providing the negative power that — together with L14 — gives subgroup 3R its overall diverging character. The wide index gap at the cemented junction (Δnd = 1.98613 − 1.59270 = 0.393) creates exceptionally strong refraction at the internal surface, enabling tight control of lateral color without excessive element thickness.
 
 ### Air Lens Gnr
 
@@ -150,37 +150,37 @@ The air lens Gnr satisfies conditional expression (6): |f_Gnr/f| = 0.358, within
 
 ### L14 — Negative Meniscus, convex to image
 
-nd = 1.86966, νd = 20.0. Glass: S-NPH4 (OHARA) — dense flint. f = −139.9 mm.
+nd = 1.86966, νd = 20.0. Glass: 870200 — dense flint (patent code only). f = −139.9 mm.
 
-L14 is the final optical element before the cover glass. Its meniscus shape (R1 = −47.08, R2 = −77.61, both negative) with both surfaces concave toward the object acts as a mild negative field flattener. The high-dispersion S-NPH4 glass contributes to the lateral color correction in the image periphery. The large air gap from L14 to the cover glass (d = 12.86 mm) provides clearance for the sensor's IR-cut filter stack and the physical back focal distance required by the E-mount flange specification (18 mm).
+L14 is the final optical element before the cover glass. Its meniscus shape (R1 = −47.08, R2 = −77.61, both negative) with both surfaces concave toward the object acts as a mild negative field flattener. The high-dispersion dense-flint glass contributes to the lateral color correction in the image periphery. The large air gap from L14 to the cover glass (d = 12.86 mm) provides clearance for the sensor's IR-cut filter stack and the physical back focal distance required by the E-mount flange specification (18 mm).
 
 ---
 
 ## Glass Identification and Selection
 
-The design uses 13 distinct glass types across 14 elements (L6 and L11 share S-LAH97). All glasses except L8 resolve to OHARA catalog entries with Δnd ≤ 0.00025. L8's patent prescription (nd = 1.59349, νd = 67.0, code 593/670) has no exact OHARA catalog match; the nearest is S-FPM2 (595/677, Δnd ≈ +0.002).
+The design uses 13 distinct glass types across 14 elements (L6 and L11 share the same S-LAH89-class glass). Table 6 gives refractive indices and Abbe numbers but not vendor glass names, so the labels below use exact catalog matches where available and patent-code labels where no current catalog entry round-trips safely. The corrected L8 value is nd = 1.61800, νd = 63.4, resolving to OHARA S-PHM52; the earlier 593/670 S-FPM2-class assignment was a transcription error.
 
 | Element | nd | νd | Glass | Vendor | Class | Role |
 |---|---|---|---|---|---|---|
 | L1 | 1.92286 | 20.9 | S-NPH2 | OHARA | Dense flint | High-nd front collector |
 | L2 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED fluorophosphate | Primary + secondary spectrum correction |
 | L3 | 1.53775 | 74.7 | S-FPM3 | OHARA | ED phosphate crown | Additional low-dispersion positive power |
-| L4 | 1.85451 | 25.2 | S-TIH53 | OHARA | Ti-containing flint | Achromatizing negative in G1 |
-| L5 | 1.65412 | 39.7 | S-NBH56 | OHARA | Nb-Ba heavy flint | Negative power in 2A doublet |
-| L6, L11 | 1.85108 | 40.1 | S-LAH97 | OHARA | La heavy crown | XA asphere substrate (×2) |
-| L7 | 1.95375 | 32.3 | S-LAH79 | OHARA | Ultra-high-nd La crown | Main positive power in G2 |
-| L8 | 1.59349 | 67.0 | S-FPM2 class | OHARA (inferred) | Phosphate crown (FPM) | Crown partner in 2F doublet; anomalous dispersion |
-| L9 | 1.77047 | 29.7 | S-TIH18 | OHARA | Ti-containing flint | Flint partner in 2F doublet |
-| L10 | 1.80420 | 46.5 | S-LAH51 | OHARA | La crown | Rear positive in G2 |
-| L12 | 1.98613 | 16.5 | S-NPH7 | OHARA | Ultra-high-index dense flint | Extreme-nd positive in rear doublet |
-| L13 | 1.59270 | 35.4 | S-TIM8 | OHARA | Ti flint | Negative partner in rear doublet |
-| L14 | 1.86966 | 20.0 | S-NPH4 | OHARA | Dense flint | Final field flattener |
+| L4 | 1.85451 | 25.2 | S-NBH56 class | OHARA | Dense flint | Achromatizing negative in G1 |
+| L5 | 1.65412 | 39.7 | S-NBH5 | OHARA | Short flint | Negative power in 2A doublet |
+| L6, L11 | 1.85108 | 40.1 | S-LAH89 class | OHARA | La heavy crown | XA asphere substrate (×2) |
+| L7 | 1.95375 | 32.3 | S-LAH98 | OHARA | Ultra-high-nd La crown | Main positive power in G2 |
+| L8 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown | Crown partner in 2F doublet; anomalous dispersion |
+| L9 | 1.77047 | 29.7 | 770297 | Patent code | Dense titanium flint | Flint partner in 2F doublet |
+| L10 | 1.80420 | 46.5 | S-LAH65V | OHARA | La crown | Rear positive in G2 |
+| L12 | 1.98613 | 16.5 | 986165 | Patent code | Ultra-high-index dense flint | Extreme-nd positive in rear doublet |
+| L13 | 1.59270 | 35.4 | S-FTM16 | OHARA | Ti flint | Negative partner in rear doublet |
+| L14 | 1.86966 | 20.0 | 870200 | Patent code | Dense flint | Final field flattener |
 
 **Cover glass (GC):** nd = 1.51680, νd = 64.2 → S-BSL7 (OHARA), equivalent to N-BK7 (Schott).
 
-The chromatic correction strategy rests on three pillars. First, the two ED elements L2 (S-FPL51, νd = 81.6) and L3 (S-FPM3, νd = 74.7) in G1 provide the anomalous partial dispersion needed for secondary spectrum correction. These correspond to Sony's marketed "2 ED glass elements." Second, the focusing group G2 contains its own internal achromatization via the crown/flint doublet L8+L9, where L8 (S-FPM2 class, νd = 67.0) belongs to the FPM fluorophosphate family and likely contributes positive anomalous partial dispersion, stabilizing both primary and secondary chromatic performance as the group translates during focusing. Third, the rear doublet L12+L13 with its extreme index gap (Δnd = 0.394) controls lateral color in the image periphery.
+The chromatic correction strategy rests on three pillars. First, the two ED elements L2 (S-FPL51, νd = 81.6) and L3 (S-FPM3, νd = 74.7) in G1 provide the anomalous partial dispersion needed for secondary spectrum correction. These correspond to Sony's marketed "2 ED glass elements." Second, the focusing group G2 contains its own internal achromatization via the crown/flint doublet L8+L9, where L8 (S-PHM52, νd = 63.4) is a phosphate crown with positive anomalous partial dispersion, stabilizing both primary and secondary chromatic performance as the group translates during focusing. Third, the rear doublet L12+L13 with its extreme index gap (Δnd = 0.393) controls lateral color in the image periphery.
 
-The use of three ultra-high-index flint glasses — S-NPH2 (nd = 1.923), S-NPH7 (nd = 1.986), and S-NPH4 (nd = 1.870) — at positions L1, L12, and L14 is a distinctive signature of this design. These glasses allow strong optical power at each position with manageable curvatures, reducing the total element count and track length. The tradeoff is high dispersion (νd < 21 for all three), which must be compensated by the ED and crown elements elsewhere in the system.
+The use of three ultra-high-index flint glasses — S-NPH2 (nd = 1.923), patent-code 986165 (nd = 1.986), and patent-code 870200 (nd = 1.870) — at positions L1, L12, and L14 is a distinctive signature of this design. These glasses allow strong optical power at each position with manageable curvatures, reducing the total element count and track length. The tradeoff is high dispersion (νd < 21 for all three), which must be compensated by the ED and crown elements elsewhere in the system.
 
 ---
 
@@ -280,7 +280,7 @@ All paraxial quantities were independently verified by Python y-nu ray trace aga
 | Focus travel conservation | 0.0000 mm | 0 (exact) | 0.00 |
 | Close focus distance | 845.9 mm | 846 mm | 0.1 |
 
-Glass identifications resolve to OHARA catalog entries with Δnd = 0.00000 for all elements except L8 (S-FPM2 class, Δnd ≈ +0.002; patent code 593/670 vs. catalog 595/677 — see Glass Identification section for details).
+Glass identifications now use catalog entries for L1–L8, L10, L11, L13, and the cover glass where the patent nd/νd values round-trip safely. L9, L12, and L14 remain patent-code-only because no current catalog entry matches those nd/νd pairs without forcing a misleading Sellmeier model.
 
 ---
 
@@ -288,5 +288,4 @@ Glass identifications resolve to OHARA catalog entries with Δnd = 0.00000 for a
 
 1. WO 2025/239028 A1, "Imaging Optical System and Imaging Device," Sony Group Corporation, published November 20, 2025. Example 2 (Tables 6–10, Figure 6).
 2. Sony Electronics, "FE 85mm F1.4 GM II" product page and specifications (SEL85F14GM2), announced August 28, 2024.
-3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for S-NPH2, S-FPL51, S-FPM3, S-TIH53, S-NBH56, S-LAH97, S-LAH79, S-TIH18, S-LAH51, S-NPH7, S-TIM8, S-NPH4, S-BSL7.
-4. Hoya Corporation, *Glass Cross Reference Index* — cross-reference for PCD51 (593/670) to OHARA S-FPM2 (595/677).
+3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for S-NPH2, S-FPL51, S-FPM3, S-NBH56, S-NBH5, S-LAH89, S-LAH98, S-PHM52, S-LAH65V, S-FTM16, and S-BSL7.
