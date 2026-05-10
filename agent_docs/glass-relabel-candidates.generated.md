@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 318 mismatched surfaces across 201 unique groups.
+**Scope**: 328 mismatched surfaces across 209 unique groups.
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -70,6 +70,13 @@ Candidates:
 
 Surfaces:
 - [NIKON 28Ti NIKKOR 28mm f/2.8](../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) `1`: `S-NSL3 (OHARA)`
+
+## stored (nd=1.53380, vd=55.60)  — 1 surface, current label resolves to S-BSL7
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) `3A`: `L-BSL7 (OHARA)`
 
 ## stored (nd=1.53775, vd=74.70)  — 2 surfaces, current label resolves to S-FPM2
 
@@ -189,6 +196,14 @@ Candidates:
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `9A`: `S-BAL35 (OHARA)`
 
+## stored (nd=1.58542, vd=41.70) [code=585/417]  — 1 surface, current label resolves to S-TIM2
+
+Candidates:
+- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0040, Δvd=-0.95, codeΔ=13.1)
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) `3A`: `S-TIM2 class (585/417, OHARA family)`
+
 ## stored (nd=1.58913, vd=61.10)  — 1 surface, current label resolves to N-SK16
 
 Candidates:
@@ -222,6 +237,14 @@ Candidates:
 Surfaces:
 - [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) `18`: `S-TIM28 (OHARA)`
 
+## stored (nd=1.59270, vd=35.40)  — 1 surface, current label resolves to S-TIM35
+
+Candidates:
+- **S-FTM16** (nd=1.59270, vd=35.31, Δnd=+0.0000, Δvd=-0.09)
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) `8`: `S-TIM35 (OHARA)`
+
 ## stored (nd=1.59282, vd=68.62)  — 2 surfaces, current label resolves to K-VC89
 
 Candidates:
@@ -251,7 +274,7 @@ Surfaces:
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `6`: `S-FPM3 (OHARA)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) `17`: `S-FPM3 (OHARA)`
 
-## stored (nd=1.59349, vd=67.00)  — 5 surfaces, current label resolves to S-BSL7
+## stored (nd=1.59349, vd=67.00)  — 6 surfaces, current label resolves to S-BSL7
 
 Candidates:
 - **FCD505** (nd=1.59283, vd=68.63, Δnd=-0.0007, Δvd=+1.63)
@@ -265,6 +288,7 @@ Surfaces:
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) `12`: `L-BSL7 (OHARA)`
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) `25`: `L-BSL7 (OHARA)`
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `13`: `Near S-FPM3 (OHARA) — fluorophosphate crown`
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) `7`: `S-PHM52 (OHARA)`
 
 ## stored (nd=1.60342, vd=38.00)  — 1 surface, current label resolves to S-TIM2
 
@@ -811,6 +835,13 @@ Candidates:
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `14`: `S-LAL14 (OHARA)`
 
+## stored (nd=1.73077, vd=40.50)  — 1 surface, current label resolves to S-LAL8
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) `14A`: `S-LAL8 (OHARA)`
+
 ## stored (nd=1.73400, vd=51.50)  — 1 surface, current label resolves to S-LAM51
 
 Candidates:
@@ -963,6 +994,15 @@ Candidates:
 Surfaces:
 - [CANON RF 24-105mm f/4 L IS USM](../src/lens-data/canon/CanonRF24105mmf4L.data.ts) `19`: `S-TIM27 (OHARA)`
 
+## stored (nd=1.75409, vd=26.00) [code=754/260]  — 1 surface, current label resolves to S-NPH5
+
+Candidates:
+- **S-TIH4** (nd=1.75520, vd=27.51, Δnd=+0.0011, Δvd=+1.51, codeΔ=16.3)
+- **SF4** (nd=1.75520, vd=27.58, Δnd=+0.0011, Δvd=+1.58, codeΔ=17.0)
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) `6`: `S-NPH5 class (754/260, OHARA family)`
+
 ## stored (nd=1.75500, vd=52.34)  — 2 surfaces, current label resolves to S-NBH56
 
 Candidates:
@@ -1101,6 +1141,14 @@ Surfaces:
 - [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) `4`: `S-LAH63Q (OHARA)`
 - [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `17`: `S-LAH64 (OHARA)`
 - [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `22`: `S-LAH64 (OHARA)`
+
+## stored (nd=1.77250, vd=49.62)  — 1 surface, current label resolves to S-LAH51
+
+Candidates:
+- **S-LAH66** (nd=1.77250, vd=49.60, Δnd=-0.0000, Δvd=-0.02)
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) `16A`: `S-LAH51 (OHARA)`
 
 ## stored (nd=1.77250, vd=49.47)  — 1 surface, current label resolves to S-LAL59
 
@@ -1622,6 +1670,13 @@ Surfaces:
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) `4`: `S-LAH58 (OHARA) / N-LASF46A (Schott)`
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) `6`: `S-LAH58 (OHARA)`
 
+## stored (nd=1.91597, vd=36.40)  — 1 surface, current label resolves to TAFD33
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) `8`: `TAFD33 (HOYA)`
+
 ## stored (nd=1.92119, vd=24.00) [code=921/240]  — 1 surface, current label resolves to TAFD5F
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -1649,13 +1704,14 @@ Candidates:
 Surfaces:
 - [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) `1`: `S-NPH53 (OHARA)`
 
-## stored (nd=1.94595, vd=18.00)  — 5 surfaces, current label resolves to S-NPH4
+## stored (nd=1.94595, vd=18.00)  — 6 surfaces, current label resolves to S-NPH4
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
 - [CANON RF 100mm f/2.8 L MACRO IS USM](../src/lens-data/canon/CanonRF100f28.data.ts) `19`: `S-NPH4 (OHARA)`
 - [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `3`: `E-FDS1-W (HIKARI)`
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) `17`: `S-NPH2 (OHARA)`
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) `19`: `S-NPH5 (OHARA)`
 - [SONY FE 20–70 mm F4 G](../src/lens-data/sony/SonyFE2070mmf4G.data.ts) `1`: `S-NPH53 (OHARA)`
 - [SONY FE 20–70 mm F4 G](../src/lens-data/sony/SonyFE2070mmf4G.data.ts) `23`: `S-NPH53 (OHARA)`
@@ -1735,6 +1791,15 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `9`: `S-NPH2 (OHARA) — ultra-high-index dense flint`
 
+## stored (nd=2.00060, vd=25.46)  — 1 surface, current label resolves to S-NPH2
+
+Candidates:
+- **TAFD40** (nd=2.00069, vd=25.46, Δnd=+0.0001, Δvd=+0.00)
+- **S-LAH79** (nd=2.00330, vd=28.27, Δnd=+0.0027, Δvd=+2.81)
+
+Surfaces:
+- [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) `1`: `S-NPH2 (OHARA)`
+
 ## stored (nd=2.00069, vd=25.50)  — 3 surfaces, current label resolves to S-NPH3
 
 Candidates:
@@ -1790,5 +1855,5 @@ Surfaces:
 
 ## Summary
 
-- **146** (nd, vd) groups have at least one candidate (237 surfaces) — actionable relabels.
-- **55** (nd, vd) groups have NO candidate (81 surfaces) — needs patent verification or Unmatched relabeling.
+- **151** (nd, vd) groups have at least one candidate (243 surfaces) — actionable relabels.
+- **58** (nd, vd) groups have NO candidate (85 surfaces) — needs patent verification or Unmatched relabeling.

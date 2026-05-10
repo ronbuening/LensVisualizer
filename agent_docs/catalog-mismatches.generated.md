@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **166** lenses scanned
-- **1861** glass surfaces examined
-- **1855** surfaces with non-empty `glass` strings
-- **1246** of those resolved to a catalog entry
-- **318** mismatches found (25.5% of resolved surfaces)
-- **101** distinct lens files affected
+- **169** lenses scanned
+- **1891** glass surfaces examined
+- **1885** surfaces with non-empty `glass` strings
+- **1269** of those resolved to a catalog entry
+- **328** mismatches found (25.8% of resolved surfaces)
+- **104** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,33 +28,34 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 16 | |
+| S-NPH2 | 11 | |
 | S-TIH18 | 10 | |
-| S-NPH2 | 9 | |
 | S-TIH14 | 9 | |
+| S-BSL7 | 8 | |
 | S-LAH58 | 7 | |
 | S-LAH64 | 7 | |
 | S-NPH4 | 7 | |
 | S-TIM27 | 7 | |
 | S-TIH53 | 7 | |
-| S-BSL7 | 7 | |
 | S-TIM25 | 7 | |
+| S-TIM35 | 7 | |
+| S-TIM2 | 7 | |
 | S-LAM51 | 6 | |
 | S-BAL14 | 6 | |
 | S-NPH53 | 6 | |
+| S-LAH51 | 6 | |
 | S-LAL14 | 6 | |
 | S-NBH56 | 6 | |
 | S-TIM22 | 6 | |
 | S-TIH4 | 6 | |
-| S-TIM35 | 6 | |
-| S-TIM2 | 6 | |
 | S-TIH11 | 5 | |
 | S-BAL35 | 5 | |
 | S-LAM54 | 5 | |
 | S-TIM28 | 5 | |
 | S-NBH55 | 5 | |
-| S-LAH51 | 5 | |
 | S-FPM3 | 5 | |
 | S-TIL25 | 4 | |
+| S-LAL8 | 4 | |
 | S-LAH65V | 4 | |
 | E-FD15 | 4 | |
 | S-NBH8 | 4 | |
@@ -66,11 +67,11 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
 | S-LAM2 | 3 | |
-| S-LAL8 | 3 | |
 | TAFD45 | 3 | |
 | S-LAH66 | 3 | |
 | S-LAH65 | 3 | |
 | S-BAM4 | 3 | |
+| S-NPH5 | 3 | |
 | TAFD30 | 3 | |
 | S-BAL42 | 3 | |
 | TAFD5F | 3 | |
@@ -88,7 +89,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH93 | 2 | |
 | S-BSM81 | 2 | |
 | S-NBH5 | 2 | |
-| S-NPH5 | 2 | |
 | S-FPM2 | 2 | |
 | S-LAH99 | 2 | |
 | SF4 | 2 | |
@@ -97,6 +97,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BAH28 | 2 | |
 | S-NBH51 | 2 | |
 | S-NBH52 | 2 | |
+| S-PHM52 | 2 | |
 | S-LAH63Q | 2 | |
 | S-LAH55 | 2 | |
 | S-PHM53 | 2 | |
@@ -110,7 +111,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH53 | 1 | |
 | TAFD55 | 1 | |
 | E-FDS1 | 1 | |
-| S-PHM52 | 1 | |
+| TAFD33 | 1 | |
 | TAFD37 | 1 | |
 | S-LAH98 | 1 | |
 | N-SK2 | 1 | |
@@ -447,6 +448,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 6 | `SF6 / PBM6 (dense flint)` | SF6 | 1.69895 | 1.80518 | +0.1062 |
 | 9 | `SK16 / BSL7 (barium crown)` | N-SK16 | 1.67790 | 1.62041 | -0.0575 |
 
+### [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) — US 2023/0367186 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3A | `L-BSL7 (OHARA)` | S-BSL7 | 1.53380 | 1.51624 | -0.0176 |
+| 7 | `S-PHM52 (OHARA)` | S-PHM52 | 1.59349 | 1.61800 | +0.0245 |
+| 8 | `S-TIM35 (OHARA)` | S-TIM35 | 1.59270 | 1.69895 | +0.1062 |
+| 17 | `S-NPH2 (OHARA)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
+
 ### [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) — JP 2013-156459 A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -584,6 +594,22 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 9 | `S-TIH14 (OHARA)` | S-TIH14 | 1.58144 | 1.76182 | +0.1804 |
 | 13 | `S-BAL14 (OHARA)` | S-BAL14 | 1.54814 | 1.56883 | +0.0207 |
 | 17 | `S-BAL14 (OHARA)` | S-BAL14 | 1.54814 | 1.56883 | +0.0207 |
+
+### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) — US 2015/0268449 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3A | `S-TIM2 class (585/417, OHARA family)` | S-TIM2 | 1.58542 | 1.62004 | +0.0346 |
+| 6 | `S-NPH5 class (754/260, OHARA family)` | S-NPH5 | 1.75409 | 1.85896 | +0.1049 |
+| 8 | `TAFD33 (HOYA)` | TAFD33 | 1.91597 | 1.88100 | -0.0350 |
+
+### [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) — JP 2013-3324 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00060 | 1.92286 | -0.0777 |
+| 14A | `S-LAL8 (OHARA)` | S-LAL8 | 1.73077 | 1.71299 | -0.0178 |
+| 16A | `S-LAH51 (OHARA)` | S-LAH51 | 1.77250 | 1.78590 | +0.0134 |
 
 ### [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) — JP 2021-179551 A
 
