@@ -46,7 +46,7 @@ describe("glass catalog", () => {
   });
 
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(129);
+    expect(catalogSize()).toBeGreaterThanOrEqual(149);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
@@ -57,6 +57,13 @@ describe("glass catalog", () => {
     expect(tafd45).not.toBeNull();
     expect(evaluateSellmeier(tafd45!, LINE_NM.d)).toBeCloseTo(1.95375, 5);
     expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
+  });
+
+  it("evaluates explicit power-series catalog entries", () => {
+    const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
+    expect(hikariPskh1?.name).toBe("J-PSKH1");
+    expect(evaluateSellmeier(hikariPskh1!, LINE_NM.d)).toBeCloseTo(1.59319, 5);
+    expect(evaluateSellmeier(hikariPskh1!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(hikariPskh1!, LINE_NM.F));
   });
 });
 

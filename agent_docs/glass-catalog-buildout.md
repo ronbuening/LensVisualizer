@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **129 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **149 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -67,6 +67,33 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 9 additions** (May 2026 — named-token coverage plus six-digit code-family backfill; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ S-BSM16 | Ohara | 4 | Clean named-token match for nd≈1.62041 / νd≈60.29 annotations |
+| ★ S-TIH13 | Ohara | 3 | Dense flint; new broad hits are now visible in mismatch reports when existing annotations were only approximate |
+| ★ S-NBH53V | Ohara | 3 | Vacuum-melt NBH variant |
+| ★ S-TIH23 | Ohara | 3 | Dense flint 785/263 |
+| ★ N-SK5 | Schott | 3 | Legacy `SK5` alias added |
+| ★ N-BAF10 | Schott | 2 | Barium flint 670/471 |
+| ★ N-LAF34 | Schott | 2 | High-index lanthanum 773/496 |
+| ★ N-LAK14 | Schott | 2 | Lanthanum crown 697/554 |
+| ★ E-FD2 | Hoya | 3 | Formula-3 dense flint 648/338 |
+| ★ E-FD8 | Hoya | 2 | Formula-3 dense flint 689/312 |
+| ★ TAFD35 | Hoya | 3 | Code-family 911353; resolves Nikon high-index lanthanum dense-flint annotations |
+| ★ LAC13 | Hoya | 4 | Code-family 694533; discontinued special glass but Hoya AGF data is public |
+| ★ S-LAH96 | Ohara | 4 | Code-family 764485; high-index lanthanum glass matching the patent nd/vd cluster |
+| ★ H-ZF88 | CDGM | 2 | Named 946/180-class dense flint; official CDGM d-code is 946179, so code-only 946180 labels remain unresolved |
+| ★ J-PSKH1 | Hikari | 10 | Code-family 593679; Hikari power-series entry, not a standard six-term polynomial |
+| ★ J-PSKH4 | Hikari | 6 | Code-family 593670; Hikari power-series entry |
+| ★ J-KZFH9 | Hikari | 4 | Code-family 738323; sourced from Hikari 2023 catalog |
+| ★ J-LAK10 | Hikari | 3 | Code-family 720503; Hikari power-series entry |
+| ★ J-LASFH9 | Hikari | 3 | Code-family 903357; older Hikari type now superseded by J-LASFH9A, but the 2012 catalog gives the exact d-code |
+| ★ J-LASFH15 | Hikari | 2 | Code-family 950294; high-index dense flint |
+
+Phase 9 deliberately left several high-frequency names unresolved: `S-BAL2`, `S-TIH10`, `S-LAM55`, `S-BSM28`, `S-BSM71`, `E-FD4`, `E-FD5`, and `TAF5` have public catalog constants that do not match the current lens annotations' nd/vd clusters closely enough for a safe broad resolver target. The remaining code-family priority queue is now led by `946180`, `744495`, `051269`, and a misleading `159319` token that appears to be shorthand for `1.59319/67.90` rather than a true six-digit d-code.
 
 **Phase 8 additions** (May 2026 — clean named tokens from the unresolved-glass report; ambiguous high-frequency tokens such as NBFD3, S-NPH7, and TAFD25 remain deferred for per-lens patent relabeling):
 
@@ -170,6 +197,11 @@ Use these in preference order. Always cite the source in the entry's `source` fi
 1. **Hoya Optical Glass Catalog** — at [https://www.hoya-opticalworld.com/english/datadownload/](https://www.hoya-opticalworld.com/english/datadownload/). Provides Sellmeier coefficients alongside the index/Abbe table.
 2. Per-glass PDFs.
 
+### Hikari / Nikon
+1. **Nikon/Hikari optical glass catalog** — Nikon publishes current Hikari glass catalogs at [https://www.nikon.com/business/components/lineup/materials/optical-glass/](https://www.nikon.com/business/components/lineup/materials/optical-glass/). The PDF lists nd, νd, line indices, relative partial dispersions, six-digit d/e codes, and formula-3 power-series constants.
+2. **Historical Hikari catalogs** — useful for discontinued types such as J-LASFH9 where the current catalog only lists the replacement J-LASFH9A. Prefer a vendor PDF when a d-code is absent from the refractiveindex.info YAML.
+3. RefractiveIndex.INFO mirrors many Nikon/Hikari AGF entries, but some newer or discontinued pages are missing. Cross-check the vendor PDF before concluding no data exists.
+
 ### Sumita
 1. **Sumita Optical Glass Catalog** — [https://www.sumita-opt.co.jp/en/products/optical-glass/](https://www.sumita-opt.co.jp/en/products/optical-glass/). Their PDF catalog includes Sellmeier constants for each K-prefix glass.
 
@@ -195,7 +227,7 @@ Refractiveindex.INFO mirrors the vendor-published AGF (Zemax catalog) files, whi
 
 The YAML's `DATA[].coefficients` field for `type: formula 2` (Sellmeier-1, Zemax form) is laid out as **seven** numbers: `K B1 C1 B2 C2 B3 C3`. K is the additive constant in `n² = K + Σ Bᵢλ²/(λ²−Cᵢ)`; for the standard Sellmeier-1 form K=0 (verify before transcribing). Then map straight into the catalog entry's `B: [B1, B2, B3]` and `C: [C1, C2, C3]` arrays.
 
-For `type: formula 3` (Zemax polynomial), do **not** force the values into `B`/`C`. Store the six polynomial terms in `polynomial: [a0, a1, a2, a3, a4, a5]` where `n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸`. The d-line consistency test covers these entries too.
+For `type: formula 3` (Zemax polynomial / power series), do **not** force the values into `B`/`C`. If the exponents are exactly `0, 2, -2, -4, -6, -8`, store the six terms in `polynomial: [a0, a1, a2, a3, a4, a5]` where `n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸`. If the source uses explicit exponents outside that fixed shorthand, such as Hikari entries with `λ⁴`, `λ⁻¹⁰`, or `λ⁻¹²`, store them in `powerSeries: [[coefficient, exponent], ...]` exactly as published. The d-line consistency test covers both forms.
 
 PgF is **not** published in the rii.info YAML (only `dPgF` is). Compute PgF for the catalog entry from the Schott normal-line baseline plus dPgF: `PgF ≈ 0.6438 − 0.001682·vd + dPgF`. The catalog's PgF field is decorative — the dispersion engine derives V-channel partial dispersion from the lens-data element's `dPgF`, not from the catalog. If you need vendor-direct PgF (rare), pull from the OHARA/Schott PDF datasheet instead.
 
@@ -207,7 +239,7 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    $$n^2(\lambda) = 1 + \frac{B_1 \lambda^2}{\lambda^2 - C_1} + \frac{B_2 \lambda^2}{\lambda^2 - C_2} + \frac{B_3 \lambda^2}{\lambda^2 - C_3}$$
    with λ in **micrometres** and C in **micrometres²**, or Zemax formula 3 polynomial as described above. Reject any other formula until you have explicitly converted it.
 
-2. **Transcribe** the six coefficients verbatim into a new entry in `RAW_CATALOG` in [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts). Keep all digits the source publishes — typically 8–10 significant figures.
+2. **Transcribe** the coefficients verbatim into a new entry in `RAW_CATALOG` in [src/optics/glassCatalogData.ts](../src/optics/glassCatalogData.ts). Keep all digits the source publishes — typically 8–10 significant figures.
 
 3. **Fill in `nd` and `vd`** from the same vendor's published table (not from the lens data file). Provide `PgF` if listed and `code6` if it's a Schott-style 6-digit code.
 
@@ -231,6 +263,8 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
 - **Anisotropic crystals** (sapphire, lithium niobate) have wavelength-dependent indices that differ along ordinary vs. extraordinary axes. None are present in the current lens data; this concern is forward-looking only.
 - **Vacuum-melt variants** (suffix V or VS, e.g. S-LAH55V, S-LAH55VS) have slightly different coefficients from their non-V forms. Treat as distinct entries.
 - **Discontinued glasses** (e.g. some "BAL" and old "F"-series Schott) may not appear in current PDFs. Use the last historical Schott catalog (search "Schott Optical Glass 2014" or earlier) — the coefficients of discontinued glasses are still physical fact.
+- **Six-digit codes are not vendor names.** They encode rounded nd/νd and can describe equivalent glasses from multiple makers. Prefer a vendor-canonical name when the lens annotation includes one; for code-only patent labels, only add a `code6` mapping when the sourced catalog constants match the stored patent nd/vd cluster closely.
+- **Not every six-digit-looking token is a glass code.** Strings like `159319/6790` may be compact nd/vd shorthand (`1.59319 / 67.90`) rather than a d-code. Relabel those annotations before adding catalog aliases.
 
 ## When to Stop
 

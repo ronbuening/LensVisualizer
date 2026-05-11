@@ -2,15 +2,16 @@
  * Optical glass catalog — Sellmeier dispersion coefficients keyed by glass name.
  *
  * Most entries hold the 6 Sellmeier coefficients (B1..B3, C1..C3) plus reference
- * d-line index and Abbe number. Some Hoya/Sumita catalog glasses are published
- * only in Zemax polynomial form; those entries store the vendor polynomial
- * exactly instead of fitting fake Sellmeier coefficients.
+ * d-line index and Abbe number. Some Hoya/Sumita/Hikari catalog glasses are
+ * published only in Zemax polynomial or explicit power-series form; those
+ * entries store the vendor coefficients exactly instead of fitting fake
+ * Sellmeier coefficients.
  *
  * Sellmeier dispersion formula (vendor standard form):
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: Phase 8 (129 entries). See agent_docs/glass-catalog-buildout.md
+ * Coverage status: Phase 9 (149 entries). See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -46,6 +47,10 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
     const [a0, a1, a2, a3, a4, a5] = entry.polynomial;
     const inv2 = 1 / l2;
     const n2 = a0 + a1 * l2 + a2 * inv2 + a3 * inv2 * inv2 + a4 * inv2 ** 3 + a5 * inv2 ** 4;
+    return Math.sqrt(n2);
+  }
+  if (entry.powerSeries) {
+    const n2 = entry.powerSeries.reduce((sum, [coefficient, exponent]) => sum + coefficient * lUm ** exponent, 0);
     return Math.sqrt(n2);
   }
   if (!entry.B || !entry.C) {

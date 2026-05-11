@@ -6,8 +6,8 @@
 export interface GlassEntry {
   /** Vendor-canonical glass name, e.g. "N-BK7", "S-FPL51". */
   readonly name: string;
-  /** Vendor (Schott, Ohara, Hoya, Sumita, CDGM, special). */
-  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Sumita" | "CDGM" | "Special";
+  /** Vendor (Schott, Ohara, Hoya, Hikari, Sumita, CDGM, special). */
+  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Hikari" | "Sumita" | "CDGM" | "Special";
   /** Sellmeier B1, B2, B3 coefficients. */
   readonly B?: readonly [number, number, number];
   /** Sellmeier C1, C2, C3 coefficients (μm²). */
@@ -17,6 +17,11 @@ export interface GlassEntry {
    * n² = a0 + a1·λ² + a2·λ⁻² + a3·λ⁻⁴ + a4·λ⁻⁶ + a5·λ⁻⁸.
    */
   readonly polynomial?: readonly [number, number, number, number, number, number];
+  /**
+   * Explicit power-series terms for formula-3 entries whose published exponents
+   * do not fit the fixed six-slot `polynomial` shorthand.
+   */
+  readonly powerSeries?: readonly (readonly [coefficient: number, exponent: number])[];
   /** Reference d-line index (587.5618 nm). For sanity-check / display. */
   readonly nd: number;
   /** Reference Abbe number νd. For sanity-check / display. */
@@ -30,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 129 vendor-verified entries (Phase 8, May 2026)
+ * GLASS CATALOG — 149 vendor-verified entries (Phase 9, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1541,6 +1546,285 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5657,
     code6: "835427",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD5F page (formula 3 polynomial).",
+  },
+
+  /* ────── Phase 9 named-token additions (May 2026) ──────
+   * Directly sourceable 2+ occurrence names whose catalog constants match at
+   * least one current lens-data declaration. Ambiguous names from the same
+   * survey remain deferred to per-lens patent relabeling.
+   */
+
+  /* Ohara Phase 9 additions */
+  {
+    name: "S-BSM16",
+    vendor: "Ohara",
+    B: [1.14490383, 0.439563911, 1.27688079],
+    C: [0.0137034916, -0.00186514205, 119.535585],
+    nd: 1.620411,
+    vd: 60.289582,
+    PgF: 0.5412,
+    code6: "620603",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BSM16 page.",
+  },
+  {
+    name: "S-TIH13",
+    vendor: "Ohara",
+    B: [1.62224674, 0.293844589, 1.99225164],
+    C: [0.0118368386, 0.0590208025, 171.959976],
+    nd: 1.740769,
+    vd: 27.789359,
+    PgF: 0.6101,
+    code6: "741278",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH13 page.",
+  },
+  {
+    name: "S-NBH53V",
+    vendor: "Ohara",
+    B: [1.65444141, 0.267453927, 2.14530347],
+    C: [0.0112485533, 0.052027274, 167.3661],
+    nd: 1.737999,
+    vd: 32.32659,
+    PgF: 0.5902,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-NBH53V page.",
+  },
+  {
+    name: "S-TIH23",
+    vendor: "Ohara",
+    B: [1.73986485, 0.313894918, 2.31093206],
+    C: [0.01294413, 0.0612116868, 197.420482],
+    nd: 1.784696,
+    vd: 26.291221,
+    PgF: 0.6142,
+    code6: "785263",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH23 page.",
+  },
+
+  /* Schott Phase 9 additions */
+  {
+    name: "N-SK5",
+    vendor: "Schott",
+    B: [0.991463823, 0.495982121, 0.987393925],
+    C: [0.00522730467, 0.0172733646, 98.3594579],
+    nd: 1.58913,
+    vd: 61.27,
+    PgF: 0.54,
+    code6: "589613",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SK5 page.",
+  },
+  {
+    name: "N-BAF10",
+    vendor: "Schott",
+    B: [1.5851495, 0.143559385, 1.08521269],
+    C: [0.00926681282, 0.0424489805, 105.613573],
+    nd: 1.67003,
+    vd: 47.11,
+    PgF: 0.563,
+    code6: "670471",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAF10 page.",
+  },
+  {
+    name: "N-LAF34",
+    vendor: "Schott",
+    B: [1.75836958, 0.313537785, 1.18925231],
+    C: [0.00872810026, 0.0293020832, 85.1780644],
+    nd: 1.7725,
+    vd: 49.62,
+    PgF: 0.5518,
+    code6: "773496",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAF34 page.",
+  },
+  {
+    name: "N-LAK14",
+    vendor: "Schott",
+    B: [1.50781212, 0.318866829, 1.14287213],
+    C: [0.00746098727, 0.0242024834, 80.9565165],
+    nd: 1.6968,
+    vd: 55.41,
+    PgF: 0.5427,
+    code6: "697554",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK14 page.",
+  },
+
+  /* Hoya Phase 9 additions */
+  {
+    name: "E-FD2",
+    vendor: "Hoya",
+    polynomial: [2.6399644, -0.011645718, 0.023061733, 0.0017348219, -0.00013986059, 0.00001391667],
+    nd: 1.64769,
+    vd: 33.84,
+    PgF: 0.5918,
+    code6: "648338",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD2 page (formula 3 polynomial).",
+  },
+  {
+    name: "E-FD8",
+    vendor: "Hoya",
+    polynomial: [2.7617586, -0.011254039, 0.028221737, 0.0017540315, -0.00012127053, 0.000015522384],
+    nd: 1.68893,
+    vd: 31.16,
+    PgF: 0.5981,
+    code6: "689312",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD8 page (formula 3 polynomial).",
+  },
+  {
+    name: "TAFD35",
+    vendor: "Hoya",
+    polynomial: [3.5274747, -0.014839948, 0.039745402, 0.001803472, -0.000089279334, 0.000011377783],
+    nd: 1.91082,
+    vd: 35.25,
+    PgF: 0.5819,
+    code6: "911353",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD35 page (formula 3 polynomial).",
+  },
+
+  /* Phase 9 six-digit code-family additions */
+  {
+    name: "S-LAH96",
+    vendor: "Ohara",
+    B: [1.85078519, 0.189204854, 1.19763137],
+    C: [0.00940657541, 0.0380345187, 101.426835],
+    nd: 1.76385,
+    vd: 48.488692,
+    PgF: 0.5581,
+    code6: "764485",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAH96 page.",
+  },
+  {
+    name: "H-ZF88",
+    vendor: "CDGM",
+    B: [2.04275349, 1.98276153, 0.504267829],
+    C: [0.0169742976, 109.068151, 0.075171071],
+    nd: 1.94595,
+    vd: 17.941964,
+    PgF: 0.6537,
+    code6: "946179",
+    source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZF88 page.",
+  },
+  {
+    name: "LAC13",
+    vendor: "Hoya",
+    polynomial: [2.8125316, -0.012915271, 0.019960339, 0.00019877888, 0.000017647061, -0.00000044767632],
+    nd: 1.6935,
+    vd: 53.34,
+    PgF: 0.5475,
+    code6: "694533",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; LAC13 page (formula 3 polynomial).",
+  },
+  {
+    name: "J-PSKH1",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.50208083, 0],
+      [-0.00672143907, 2],
+      [-0.0000534313751, 4],
+      [0.01282644, -2],
+      [0.000156205388, -4],
+      [0.00000121593549, -6],
+      [0.0000000959550869, -8],
+    ],
+    nd: 1.59319,
+    vd: 67.900555,
+    PgF: 0.544,
+    code6: "593679",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-PSKH1 page (formula 3 power series, d-code 593679).",
+  },
+  {
+    name: "J-PSKH4",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.50453078, 0],
+      [-0.0101597822, 2],
+      [-0.000108653142, 4],
+      [0.0127723327, -2],
+      [0.000133860625, -4],
+      [0.00000337285381, -6],
+      [-0.0000000256491019, -8],
+    ],
+    nd: 1.59349,
+    vd: 67.001281,
+    PgF: 0.5358,
+    code6: "593670",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-PSKH4 page (formula 3 power series, d-code 593670).",
+  },
+  {
+    name: "J-KZFH9",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.92190512, 0],
+      [-0.0131913454, 2],
+      [-0.0000794286252, 4],
+      [0.0327997049, -2],
+      [0.000700950165, -4],
+      [0.00012416909, -6],
+      [-0.0000112359582, -8],
+      [0.000000911052912, -10],
+    ],
+    nd: 1.738,
+    vd: 32.26,
+    PgF: 0.5896,
+    code6: "738323",
+    source: "Hikari Optical Glass Catalog 2023, J-KZFH9 page (formula 3 power series, d-code 738323).",
+  },
+  {
+    name: "J-LAK10",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.89571408, 0],
+      [-0.0120013315, 2],
+      [-0.000136916169, 4],
+      [0.0219522159, -2],
+      [0.000357973143, -4],
+      [0.00000826304425, -6],
+      [0.00000027388172, -8],
+    ],
+    nd: 1.71999,
+    vd: 50.27,
+    PgF: 0.5527,
+    code6: "720503",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-LAK10 page (formula 3 power series, d-code 720503).",
+  },
+  {
+    name: "J-LASFH15",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.64640666, 0],
+      [-0.0151039558, 2],
+      [0.0480157444, -2],
+      [0.00349072452, -4],
+      [-0.000573639028, -6],
+      [0.000130249514, -8],
+      [-0.0000129576789, -10],
+      [0.000000592144355, -12],
+    ],
+    nd: 1.95,
+    vd: 29.37,
+    PgF: 0.6001,
+    code6: "950294",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-LASFH15 page (formula 3 power series, d-code 950294).",
+  },
+  {
+    name: "J-LASFH9",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.49709032, 0],
+      [-0.0138248635, 2],
+      [-0.000132935974, 4],
+      [0.0409278939, -2],
+      [0.000880758278, -4],
+      [0.0000893285504, -6],
+      [-0.0000066176262, -8],
+      [0.000000624399823, -10],
+    ],
+    nd: 1.90265,
+    vd: 35.725382,
+    PgF: 0.5805,
+    code6: "903357",
+    source:
+      "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2012, J-LASFH9 page (formula 3 power series, d-code 903357).",
   },
 
   /* Sumita priority addition */

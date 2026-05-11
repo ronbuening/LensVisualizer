@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-11 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-11",
+    type: "improvement",
+    summary: "Expanded the Sellmeier glass catalog to 149 verified entries",
+  },
+  {
+    date: "2026-05-11",
     type: "fix",
     summary: "Conducted three glass audits across different lens models",
   },
