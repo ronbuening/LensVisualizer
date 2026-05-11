@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **149 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **169 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -68,6 +68,31 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
 
+**Phase 10 additions** (May 2026 — research pass over the current unresolved-glass, catalog-mismatch, and six-digit code-family queues; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks / focus | Notes |
+|---|---|---:|---|
+| ★ FDS18 | Hoya | 4 | Exact code-family target for `946180`; Hoya formula-3 data is a better d-code match than the Phase 9 CDGM `H-ZF88` 946179 entry |
+| ★ NBFD3 | Hoya | 9 | High-frequency named token; catalog guard still rejects existing annotations whose stored nd/vd do not match the real Hoya glass |
+| ★ NBFD11 | Hoya | 2 | NBFD family coverage for modern high-index groups |
+| ★ TAFD25 | Hoya | 7 | Sourceable HOYA TAFD-class glass; broad resolver hits remain protected by the nd consistency guard |
+| ★ TAF5 | Hoya | 3 | Completes a common high-index lanthanum/tantalum family token |
+| ★ E-FD4 | Hoya | 2 | Dense flint formula-3 entry from the HOYA Zemax catalog |
+| ★ E-FD5 | Hoya | 3 | Dense flint formula-3 entry; common equivalent-family reference in recent analyses |
+| ★ E-FL5 | Hoya | 2 | Medium flint code-family coverage for `581409` annotations |
+| ★ S-BAL2 | Ohara | 3 | Frequently cited barium light crown in Leica/Olympus-style prescriptions |
+| ★ S-LAM55 | Ohara | 3 | Lanthanum crown; adds exact vendor constants for current named-token labels |
+| ★ S-TIH10 | Ohara | 3 | Dense flint `728285`; high-priority unresolved named token |
+| ★ S-BSM28 | Ohara | 2 | Barium crown `618498`; helps surface relabel candidates |
+| ★ S-BSM71 | Ohara | 2 | Barium crown `649530`; nearby S-BSM family annotations now have a direct catalog target |
+| ★ S-LAL13 | Ohara | 2 | Lanthanum light crown `694532` |
+| ★ S-LAM3 | Ohara | 2 | Exact code-family target for `717479` |
+| ★ S-LAM52 | Ohara | 2 | Lanthanum crown `720437` |
+| ★ J-PKH1 | Hikari | 2 | Exact Hikari code-family target for `519699`; uses published power-series coefficients |
+| ★ Q-SK52S | Hikari | 2 | Exact code-family target for `583595`; useful for older Nikon-style code-only prescriptions |
+| ★ J-LASKH2 | Hikari | 2 | Exact code-family target for `755523`; Hikari power-series entry |
+| ★ J-LASF014 | Hikari | 2 | Exact code-family target for `788474`; Hikari power-series entry |
+
 **Phase 9 additions** (May 2026 — named-token coverage plus six-digit code-family backfill; all entries round-trip through `assertCatalogConsistent`):
 
 | Glass | Vendor | Unlocks | Notes |
@@ -93,7 +118,7 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ J-LASFH9 | Hikari | 3 | Code-family 903357; older Hikari type now superseded by J-LASFH9A, but the 2012 catalog gives the exact d-code |
 | ★ J-LASFH15 | Hikari | 2 | Code-family 950294; high-index dense flint |
 
-Phase 9 deliberately left several high-frequency names unresolved: `S-BAL2`, `S-TIH10`, `S-LAM55`, `S-BSM28`, `S-BSM71`, `E-FD4`, `E-FD5`, and `TAF5` have public catalog constants that do not match the current lens annotations' nd/vd clusters closely enough for a safe broad resolver target. The remaining code-family priority queue is now led by `946180`, `744495`, `051269`, and a misleading `159319` token that appears to be shorthand for `1.59319/67.90` rather than a true six-digit d-code.
+Phase 9 deliberately left several high-frequency names unresolved because their public catalog constants did not match all current lens annotations' nd/vd clusters closely enough for an immediate broad resolver target. Phase 10 added many of those real vendor entries after confirming the dispersion cascade's nd guard rejects bad annotations before Sellmeier is used. Remaining code-family research is still led by `744495`, `051269`, and a misleading `159319` token that appears to be shorthand for `1.59319/67.90` rather than a true six-digit d-code.
 
 **Phase 8 additions** (May 2026 — clean named tokens from the unresolved-glass report; ambiguous high-frequency tokens such as NBFD3, S-NPH7, and TAFD25 remain deferred for per-lens patent relabeling):
 
