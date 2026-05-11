@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-11",
     type: "improvement",
-    summary: "Expanded the Sellmeier glass catalog to 169 verified entries",
+    summary: "Expanded the Sellmeier glass catalog to 180 verified entries",
   },
   {
     date: "2026-05-11",

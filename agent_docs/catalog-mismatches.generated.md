@@ -16,8 +16,8 @@ with words like "probable" or "approx").
 - **178** lenses scanned
 - **2008** glass surfaces examined
 - **2002** surfaces with non-empty `glass` strings
-- **1474** of those resolved to a catalog entry
-- **334** mismatches found (22.7% of resolved surfaces)
+- **1493** of those resolved to a catalog entry
+- **334** mismatches found (22.4% of resolved surfaces)
 - **111** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
@@ -39,10 +39,10 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH4 | 7 | |
 | NBFD3 | 7 | |
 | S-TIM25 | 7 | |
-| S-TIH11 | 6 | |
 | S-NPH2 | 6 | |
 | S-TIM22 | 6 | |
 | S-TIM35 | 6 | |
+| S-TIH11 | 5 | |
 | S-BAL35 | 5 | |
 | S-NPH4 | 5 | |
 | S-NBH56 | 5 | |
@@ -62,7 +62,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL27 | 3 | |
 | S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
-| S-LAM2 | 3 | |
 | S-LAH65V | 3 | |
 | S-BSL7 | 3 | |
 | S-LAH66 | 3 | |
@@ -95,6 +94,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | N-SK16 | 2 | |
 | S-LAL59 | 2 | |
 | S-BSM18 | 2 | |
+| S-LAM2 | 2 | |
 | S-BAH28 | 2 | |
 | NBFD11 | 2 | |
 | S-NBH51 | 2 | |
@@ -126,9 +126,11 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM3 | 1 | |
 | S-TIH23 | 1 | |
 | S-NBH53V | 1 | |
+| LAC12 | 1 | |
 | TAFD33 | 1 | |
 | S-LAH59 | 1 | |
 | K-VC89 | 1 | |
+| TAFD65 | 1 | |
 | S-LAH98 | 1 | |
 | S-BAL2 | 1 | |
 | N-SK2 | 1 | |
@@ -250,6 +252,17 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 22 | `S-LAH64 (OHARA)` | S-LAH64 | 1.77250 | 1.78800 | +0.0155 |
 | 29 | `S-LAH59 (OHARA)` | S-LAH59 | 1.80100 | 1.81600 | +0.0150 |
 
+### [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) — JP 2023-183894 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `S-NPH53 (OHARA)` | S-NPH53 | 1.92286 | 1.84666 | -0.0762 |
+| 3 | `S-TIL25 (OHARA)` | S-TIL25 | 1.51742 | 1.58144 | +0.0640 |
+| 9 | `K-VC89 (Sumita) / FCD515 class — SLD fluorophosphate crown` | K-VC89 | 1.59282 | 1.80998 | +0.2172 |
+| 10 | `S-TIH11 (OHARA)` | S-TIH11 | 1.69895 | 1.78472 | +0.0858 |
+| 20 | `TAFD65 (Hoya)` | TAFD65 | 2.00100 | 2.05090 | +0.0499 |
+| 23 | `S-TIM22 (OHARA)` | S-TIM22 | 1.62004 | 1.64769 | +0.0276 |
+
 ### [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) — JP2018-5099A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -301,16 +314,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 35 | `S-NBM51 (OHARA)` | S-NBM51 | 1.58144 | 1.61340 | +0.0320 |
 | 39 | `S-NBH5 (OHARA)` | S-NBH5 | 1.72342 | 1.65412 | -0.0693 |
 
-### [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) — US 4,057,330
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
-| 3 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
-| 5 | `S-TIH14 (OHARA)` | S-TIH14 | 1.78470 | 1.76182 | -0.0229 |
-| 6 | `S-TIH4 (OHARA)` | S-TIH4 | 1.74000 | 1.75520 | +0.0152 |
-| 8 | `SF10 (Schott) / S-TIH11 (OHARA)` | S-TIH11 | 1.72825 | 1.78472 | +0.0565 |
-
 ### [NIKON NIKKOR Z 35mm f/1.8 S](../src/lens-data/nikon/NikonZ35f18S.data.ts) — JP 2019-090947A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -330,16 +333,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 16 | `S-NBH52V (OHARA)` | S-NBH52V | 1.73800 | 1.67300 | -0.0650 |
 | 25A | `S-NBH56 (OHARA)` | S-NBH56 | 1.76450 | 1.85478 | +0.0903 |
 | 29 | `S-LAH79 (OHARA)` | S-LAH79 | 1.90265 | 2.00330 | +0.1007 |
-
-### [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) — JP 2023-183894 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-NPH53 (OHARA)` | S-NPH53 | 1.92286 | 1.84666 | -0.0762 |
-| 3 | `S-TIL25 (OHARA)` | S-TIL25 | 1.51742 | 1.58144 | +0.0640 |
-| 9 | `K-VC89 (Sumita) / FCD515 class — SLD fluorophosphate crown` | K-VC89 | 1.59282 | 1.80998 | +0.2172 |
-| 10 | `S-TIH11 (OHARA)` | S-TIH11 | 1.69895 | 1.78472 | +0.0858 |
-| 23 | `S-TIM22 (OHARA)` | S-TIM22 | 1.62004 | 1.64769 | +0.0276 |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) — JP 2014-126652 A
 
@@ -431,6 +424,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 9 | `S-TIM22 (OHARA)` | S-TIM22 | 1.58267 | 1.64769 | +0.0650 |
 | 19 | `S-LAL59 (OHARA)` | S-LAL59 | 1.62041 | 1.73400 | +0.1136 |
 | 21 | `S-TIH53 (OHARA), Δνd = 0.21; alt. CDGM H-LAF3B (Δνd = 0.01)` | S-TIH53 | 1.80610 | 1.84666 | +0.0406 |
+
+### [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) — US 4,057,330
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
+| 3 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
+| 5 | `S-TIH14 (OHARA)` | S-TIH14 | 1.78470 | 1.76182 | -0.0229 |
+| 6 | `S-TIH4 (OHARA)` | S-TIH4 | 1.74000 | 1.75520 | +0.0152 |
 
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) — WO 2022/259649 A1
 
@@ -880,12 +882,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 2 | `S-TIL25 (OHARA)` | S-TIL25 | 1.53172 | 1.58144 | +0.0497 |
 
-### [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) — US 3,748,022
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `LaK (697485, S-LAM2 family)` | S-LAM2 | 1.69700 | 1.74400 | +0.0470 |
-
 ### [CANON RF 24-50mm F4.5-6.3 IS STM](../src/lens-data/canon/CanonRF2450mmf463.data.ts) — US 2023/0213739 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -957,6 +953,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 5 | `BaF-type (581-408; OHARA S-TIM25 family — close)` | S-TIM25 | 1.58140 | 1.67270 | +0.0913 |
+
+### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) — US 4,210,388
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 5 | `LAC12 / LaK10 (OHARA / Schott)` | LAC12 | 1.77250 | 1.67790 | -0.0946 |
 
 ### [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) — US 4,792,219
 

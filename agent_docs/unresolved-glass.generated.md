@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **178** lenses scanned
 - **2008** non-air surfaces examined
 - **2002** element glass declarations examined
-- **467** non-explicit-unmatched annotations did not resolve
-- **154** distinct unresolved glass-like tokens found
+- **448** non-explicit-unmatched annotations did not resolve
+- **138** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,9 +21,7 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | S-NPH7 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
-| 051269 | 2 | 1 | |
 | 159319 | 2 | 1 | |
-| 603380 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
@@ -41,7 +39,6 @@ or per-lens patent backfills.
 | S-PHM52Q | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK7 | 2 | 2 | |
-| 003193 | 1 | 1 | |
 | 157957 | 1 | 1 | |
 | 175500 | 1 | 1 | |
 | 182080 | 1 | 1 | |
@@ -49,30 +46,21 @@ or per-lens patent backfills.
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
-| 553717 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
-| 581408 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612372 | 1 | 1 | |
 | 619636 | 1 | 1 | |
 | 623581 | 1 | 1 | |
 | 624584 | 1 | 1 | |
-| 626357 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 661508 | 1 | 1 | |
 | 667330 | 1 | 1 | |
 | 673382 | 1 | 1 | |
-| 678555 | 1 | 1 | |
 | 684376 | 1 | 1 | |
 | 694534 | 1 | 1 | |
-| 697485 | 1 | 1 | |
 | 700480 | 1 | 1 | |
 | 702411 | 1 | 1 | |
-| 720347 | 1 | 1 | |
-| 720467 | 1 | 1 | |
-| 720502 | 1 | 1 | |
-| 728284 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
@@ -101,7 +89,6 @@ or per-lens patent backfills.
 | E-FD7 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
-| F5 | 1 | 1 | |
 | F8 | 1 | 1 | |
 | FCD10A | 1 | 1 | |
 | FK3 | 1 | 1 | |
@@ -125,7 +112,6 @@ or per-lens patent backfills.
 | N-BAF4 | 1 | 1 | |
 | N-BAK4 | 1 | 1 | |
 | N-F2 | 1 | 1 | |
-| N-LAK12 | 1 | 1 | |
 | N-LAK33B | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
 | N-SSK5 | 1 | 1 | |
@@ -142,7 +128,6 @@ or per-lens patent backfills.
 | S-LAH7 | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
-| S-LAL10 | 1 | 1 | |
 | S-LAL12 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
 | S-LAM61 | 1 | 1 | |
@@ -170,7 +155,6 @@ or per-lens patent backfills.
 | SK4 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
-| TAFD65 | 1 | 1 | |
 | TAFL3 | 1 | 1 | |
 
 ## Occurrences
@@ -193,20 +177,10 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
-### 051269 — 2 occurrences
-
-- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 18: `051269 - ultra-high-index dense flint`
-- [CANON RF 70-200mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF70200f28.data.ts) 22: `051269 - ultra-high-index dense flint`
-
 ### 159319 — 2 occurrences
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 3: `PCD4 equiv. (159319/6790)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 5: `PCD4 equiv. (159319/6790)`
-
-### 603380 — 2 occurrences
-
-- [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 9: `Flint (code 603380)`
-- [NIKON NIKKOR Z 85mm f/1.8 S](../src/lens-data/nikon/NikonZ85f18S.data.ts) 18: `Flint (code 603380, same as L22)`
 
 ### 666356 — 2 occurrences
 
@@ -293,10 +267,6 @@ or per-lens patent backfills.
 - [CANON SERENAR 35mm f/3.2](../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
 - [CARL ZEISS BIOGON 21mm f/4.5](../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 6: `SK7 dense crown (607/595)`
 
-### 003193 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 20: `003193 — ultra-high-index dense flint (patent nd=2.00272, νd=19.32; no exact catalog match)`
-
 ### 157957 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 19: `N-BAF4 equiv. (157957/5374)`
@@ -325,10 +295,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 - borosilicate crown (nd=1.552981, vd~55.5)`
 
-### 553717 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 29A: `553717 - ASP/ED fluorophosphate crown (patent nd=1.55332, vd=71.70)`
-
 ### 574425 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 5: `574425 LF`
@@ -336,10 +302,6 @@ or per-lens patent backfills.
 ### 575413 — 1 occurrence
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
-
-### 581408 — 1 occurrence
-
-- [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 17: `581408 - barium crown (patent nd=1.58144, vd=40.8)`
 
 ### 603564 — 1 occurrence
 
@@ -361,10 +323,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
 
-### 626357 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 5: `626357 — dense flint (patent nd=1.62588, νd=35.70; no exact catalog match)`
-
 ### 640601 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
@@ -381,10 +339,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 11: `673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)`
 
-### 678555 — 1 occurrence
-
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 1: `678555 LaK (≈ Schott N-LaK12)`
-
 ### 684376 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 34: `684376 — titanium flint (patent nd=1.68376, νd=37.57)`
@@ -393,10 +347,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 26: `Lanthanum crown (694534; HOYA E-LAC14 family)`
 
-### 697485 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 21: `697485 — lanthanum crown (patent nd=1.69700, νd=48.52; no exact catalog match)`
-
 ### 700480 — 1 occurrence
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 7: `LaK (700480, S-LAL7 family)`
@@ -404,22 +354,6 @@ or per-lens patent backfills.
 ### 702411 — 1 occurrence
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
-
-### 720347 — 1 occurrence
-
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 10: `Lanthanum/titanium flint (glass code 720347)`
-
-### 720467 — 1 occurrence
-
-- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 10: `720502 - lanthanum crown (nd=1.720467, vd~50.2)`
-
-### 720502 — 1 occurrence
-
-- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 10: `720502 - lanthanum crown (nd=1.720467, vd~50.2)`
-
-### 728284 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 10: `728284 - high-dispersion flint (patent nd=1.72825, vd=28.38)`
 
 ### 738493 — 1 occurrence
 
@@ -533,10 +467,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
-### F5 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 1: `F5 (603/380)`
-
 ### F8 — 1 occurrence
 
 - [CARL ZEISS TESSAR 50mm f/3.5](../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
@@ -629,10 +559,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 26mm f/2.8](../src/lens-data/nikon/NikonZ26f28.data.ts) 8: `N-F2 (Schott)`
 
-### N-LAK12 — 1 occurrence
-
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 1: `678555 LaK (≈ Schott N-LaK12)`
-
 ### N-LAK33B — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 9: `N-LAK33B equiv. (175500/5233)`
@@ -696,10 +622,6 @@ or per-lens patent backfills.
 ### S-LAH85V — 1 occurrence
 
 - [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 6: `S-LAH85V (OHARA)`
-
-### S-LAL10 — 1 occurrence
-
-- [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) 12: `S-LAL10 (OHARA)`
 
 ### S-LAL12 — 1 occurrence
 
@@ -808,10 +730,6 @@ or per-lens patent backfills.
 ### TAFD5 — 1 occurrence
 
 - [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) 5: `TAFD5 (HOYA)`
-
-### TAFD65 — 1 occurrence
-
-- [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 20: `TAFD65 (Hoya)`
 
 ### TAFL3 — 1 occurrence
 

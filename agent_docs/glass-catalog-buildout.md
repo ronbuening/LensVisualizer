@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **169 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **180 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 ## Why So Few Entries To Start With
 
@@ -67,6 +67,22 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 11 additions** (May 2026 — exact six-digit code-family backfill from the remaining unresolved report; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ TAFD65 | Hoya | 2 | Exact code-family target for `051269`; ultra-high-index dense flint in Canon RF 70-200 f/2.8 |
+| ★ F5 | Schott | 2 | Legacy flint code `603380`; resolves Nikon Z 85mm f/1.8 code-only annotations |
+| ★ E-FDS2 | Hoya | 1 | Exact code-family target for `003193`; ultra-high-index dense flint |
+| ★ M-FCD500 | Hoya | 1 | ED fluorophosphate crown `553717` |
+| ★ PBL25 | Ohara | 1 | Exact code-family target for `581408`; formula-3 Ohara entry |
+| ★ E-F1 | Hoya | 1 | Dense flint `626357` |
+| ★ LAC12 | Hoya | 1 | Lanthanum crown `678555`; historical LaK-style code match |
+| ★ S-LAM59 | Ohara | 1 | Lanthanum crown `697485` |
+| ★ N-KZFS8 | Schott | 1 | KZFS-class short flint `720347`; exact match for code-only Nikon annotation |
+| ★ S-LAL10 | Ohara | 1 | Lanthanum light crown `720502` |
+| ★ SF10 | Schott | 1 | Heavy flint `728284`; exact match for Nikon Z 24-70 f/2.8 patent-code label |
 
 **Phase 10 additions** (May 2026 — research pass over the current unresolved-glass, catalog-mismatch, and six-digit code-family queues; all entries round-trip through `assertCatalogConsistent`):
 
