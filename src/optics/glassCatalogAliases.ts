@@ -24,6 +24,7 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   ["L-BSL7", "S-BSL7"],
   ["L-BAL35", "S-BAL35"],
   // SK10 and SK14 are legacy Schott names superseded by N-SK10 and N-SK14.
+  ["SK5", "N-SK5"],
   ["SK10", "N-SK10"],
   ["SK14", "N-SK14"],
   // Legacy Schott names with modern N- prefixed equivalents.

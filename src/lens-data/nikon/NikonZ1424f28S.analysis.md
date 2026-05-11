@@ -78,19 +78,19 @@ G1 is the large, strongly negative front group that creates the retrofocus field
 - The L-BAL35 glass variant (OHARA's "L-" prefix denotes low-softening-temperature PGM glass) is consistent with the extremely large aspherical departures on both surfaces — precision glass molding is the only economically viable manufacturing method for aspheres of this magnitude.
 
 **L12 — Negative Meniscus (rear surface aspherical)**
-- Glass: nd = 1.743104, νd = 49.4 → **S-LAM51** (OHARA; nd = 1.74330, νd = 49.33)
+- Glass: nd = 1.743104, νd = 49.4 → **S-LAM60** (OHARA; nd = 1.74320, νd = 49.34)
 - Focal length: −54.2 mm
 - Surface 4\* is aspherical with a paraboloidal base (K = −1) and positive higher-order terms. At 90% of its clear aperture the departure exceeds 2,900 µm. Like L11, this element helps tame the oblique spherical aberration and coma of the extreme off-axis rays. The high refractive index (1.743) reduces the surface curvatures needed for a given power, which in turn reduces higher-order aberration contributions.
 
-**L13 — Biconcave Negative (anomalous partial dispersion)**
-- Glass: nd = 1.49782, νd = 82.6 → **S-FPL52** (OHARA; nd = 1.49782, νd = 82.56) — ED fluorophosphate crown
+**L13 — Biconcave Negative (ED-class fluorophosphate)**
+- Glass: nd = 1.49782, νd = 82.6 → **S-FPL51** (OHARA; catalog nd = 1.49700, νd = 81.55) — ED fluorophosphate crown
 - Focal length: −65.3 mm
-- Patent explicitly identifies this element as using anomalous partial dispersion glass. Although it is a negative element with weak power, placing an ED glass here allows it to act as a chromatic aberration corrector for the front group. The negative power in a high-νd, low-ΔPgF glass generates anomalous secondary spectrum of opposite sign to that produced by the positive rear groups, partially canceling the overall lateral color across the wide field.
+- The patent table gives L13 the same high-Abbe nd/νd pair as the rear ED elements. Although it is a negative element with weak power, placing an ED-class glass here allows it to act as a chromatic aberration corrector for the front group. The negative power in a high-νd fluorophosphate glass generates secondary-spectrum correction of opposite sign to that produced by the positive rear groups, partially canceling the overall lateral color across the wide field.
 
 **L13 is unusual** — most designers place ED glass in positive elements to correct primary longitudinal chromatic aberration. Using ED glass in a *negative* element in the front group suggests that secondary lateral chromatic aberration (secondary spectrum of lateral color) was a dominant residual in the design, and this was the most effective placement to address it.
 
 **L14 — Biconvex Positive (nearly plano-convex)**
-- Glass: nd = 1.737999, νd = 32.3 → **S-TIH14** (OHARA; nd = 1.73800, νd = 32.33)
+- Glass: nd = 1.737999, νd = 32.3 → **738323 dense-flint code** (no public catalog entry currently round-trips)
 - Focal length: +47.7 mm
 - This positive element partially compensates the strong negative power of L11–L13, reducing the divergence angle of the beam entering G2. Its low Abbe number (νd = 32.3, a dense flint) provides the complementary dispersion needed to achromatize the front group in combination with L13's ED glass. The rear surface R = −644.56 mm is nearly flat, making this effectively a plano-convex element — a form that minimizes coma contribution from the individual element.
 
@@ -99,12 +99,12 @@ G1 is the large, strongly negative front group that creates the retrofocus field
 G2 is a single cemented doublet with a group focal length of +105.3 mm. It functions as both the focusing element and a relay of the diverging beam from G1 toward G3.
 
 **L21 — Negative Meniscus**
-- Glass: nd = 2.00060, νd = 25.4 → **S-NPH2** (OHARA; nd = 2.00069, νd = 25.46) — ultra-high-index dense flint
+- Glass: nd = 2.00060, νd = 25.4 → **TAFD40** (HOYA; nd = 2.00069, νd = 25.46) — ultra-high-index dense flint
 - Focal length: −47.4 mm
 - With nd = 2.0006, this is among the highest-index glasses in production optical catalogs. The extreme refractive index allows very strong surface curvatures to be "hidden" behind a high-index-to-air interface, reducing both the physical curvature and the associated higher-order aberration contributions. Its very low Abbe number makes it an effective flint element in the cemented pair.
 
 **L22 — Positive Meniscus**
-- Glass: nd = 1.64769, νd = 33.7 → **S-TIM27** (OHARA; nd = 1.64769, νd = 33.80)
+- Glass: nd = 1.64769, νd = 33.7 → **S-TIM22** (OHARA; nd = 1.64769, νd = 33.79)
 - Focal length: +31.9 mm
 - Despite both L21 and L22 being relatively low-νd glasses, the cemented doublet as a whole is weakly positive (+105.3 mm), acting primarily as a field lens and aberration compensator rather than a strong power contributor. Its main job during focusing is to shift the exit pupil position smoothly without introducing significant focus breathing — consistent with Nikon's claim of virtually eliminated focus breathing.
 
@@ -113,8 +113,8 @@ G2 is a single cemented doublet with a group focal length of +105.3 mm. It funct
 G3 is the most complex group, with 10 elements in 6 sub-groups and a net focal length of +39.3 mm. It contains the aperture stop and does the heavy lifting of image formation and aberration balancing. This group includes all four of the lens's ED elements.
 
 **L31 + L32 — Cemented Doublet D2 (negative meniscus + positive meniscus)**
-- L31: nd = 1.85000, νd = 27.0 → **Dense flint** (probable CDGM H-ZF88 or Schott SF57-class equivalent; round nd value prevents definitive catalog identification)
-- L32: nd = 1.59349, νd = 67.0 → **Near S-FPM3** (OHARA; nd = 1.59319, νd = 67.87; Δnd = +0.0003)
+- L31: nd = 1.85000, νd = 27.0 → **850270 dense-flint code** (no public catalog entry currently round-trips)
+- L32: nd = 1.59349, νd = 67.0 → **S-FPM2** (OHARA; nd = 1.59522, νd = 67.74; close fluorophosphate-crown match)
 - Combined focal length: +67.5 mm
 - This doublet sits just ahead of the aperture stop. Its primary role is to pre-correct spherical aberration and coma for the rays about to pass through the stop. The large index difference at the cemented junction (Δnd = 0.257) creates significant chromatic correction power. L31's low νd against L32's high νd forms a conventional crown-flint achromatic correction.
 
@@ -123,30 +123,30 @@ G3 is the most complex group, with 10 elements in 6 sub-groups and a net focal l
 The patent also mentions a **sub-aperture stop Sa** near the object side of L31. During zooming, Sa moves together with G3 along the optical axis. This supplementary stop helps control vignetting and stray light at the extreme wide-angle setting, where the cone of light entering G3 is at its widest.
 
 **L33 + L34 — Cemented Doublet D3 (biconcave negative + biconvex positive)**
-- L33: nd = 1.95375, νd = 32.3 → **S-LAH79** (OHARA; nd = 1.95375, νd = 32.32)
+- L33: nd = 1.95375, νd = 32.3 → **S-LAH98** (OHARA; nd = 1.95375, νd = 32.32)
 - L34: nd = 1.84666, νd = 23.7 → **S-TIH53** (OHARA; nd = 1.84666, νd = 23.78)
 - Combined focal length: −142.0 mm (weakly negative)
 - Immediately behind the stop, this doublet corrects the zonal spherical aberration and chromatic variation of spherical aberration (spherochromatism). Both glasses are high-index flints, but with different dispersive properties — L33 is a lanthanum flint (high nd, moderate νd) while L34 is a titanium flint (high nd, very low νd). The strongly negative L33 (fl = −19.4 mm) against the strongly positive L34 (fl = +23.4 mm) creates a "thick meniscus" effect that controls the Petzval sum contribution while also bending the chromatic correction curve.
 
 **L35 — Biconvex Positive (ED, anomalous partial dispersion)**
-- Glass: nd = 1.49782, νd = 82.6 → **S-FPL52** (OHARA; nd = 1.49782, νd = 82.56) — ED fluorophosphate crown
+- Glass: nd = 1.49782, νd = 82.6 → **S-FPL51** (OHARA; catalog nd = 1.49700, νd = 81.55) — ED fluorophosphate crown
 - Focal length: +34.8 mm
 - The first of three ED elements in the rear group. Its strong positive power and anomalous partial dispersion correct both primary and secondary longitudinal chromatic aberration. Positioned immediately behind the stop, it handles the on-axis color correction.
 
 **L36 + L37 — Cemented Doublet D4 (negative meniscus + positive meniscus, ED)**
 - L36: nd = 1.83481, νd = 42.7 → **S-LAH55** (OHARA; nd = 1.83481, νd = 42.73)
-- L37: nd = 1.49782, νd = 82.6 → **S-FPL52** (OHARA) — ED fluorophosphate crown
+- L37: nd = 1.49782, νd = 82.6 → **S-FPL51** (OHARA) — ED fluorophosphate crown
 - Combined focal length: −142.9 mm (weakly negative)
 - This is the patent-identified "specific lens" (特定レンズ) within group GBa. L37's ED glass corrects lateral chromatic aberration (lateral color), which is the dominant chromatic defect in ultra-wide-angle systems. By placing the ED element in a cemented pair with a lanthanum crown, the designer achieves anomalous chromatic correction without introducing excessive monochromatic aberrations. The weak net negative power of the doublet also contributes to Petzval sum correction (flattening the field).
 
 **L38 + L39 — Cemented Doublet D5 (biconvex positive ED + biconcave negative)**
-- L38: nd = 1.49782, νd = 82.6 → **S-FPL52** (OHARA) — ED fluorophosphate crown
+- L38: nd = 1.49782, νd = 82.6 → **S-FPL51** (OHARA) — ED fluorophosphate crown
 - L39: nd = 1.83481, νd = 42.7 → **S-LAH55** (OHARA; nd = 1.83481, νd = 42.73)
 - Combined focal length: −84.6 mm (negative)
 - This doublet mirrors the L36+L37 pair in glass selection (the same two glass types, swapped in element order). L38 is the fourth and final ED element. The pair provides additional secondary spectrum correction and contributes negative Petzval curvature to flatten the image field. The symmetric pairing of L36+L37 and L38+L39 — same glasses, reversed roles — is a hallmark of Nikon's approach to lateral color correction in wide-angle designs, distributing the chromatic workload across multiple doublets to avoid overburdening any single interface.
 
 **L40 — Positive Meniscus (front surface aspherical)**
-- Glass: nd = 1.85108, νd = 40.1 → **Probable S-LAH97** (OHARA) or HOYA equivalent
+- Glass: nd = 1.85108, νd = 40.1 → **S-LAH89** (OHARA; nd = 1.85150, νd = 40.78) — close lanthanum-crown match
 - Focal length: +286.4 mm (very weak positive)
 - Surface 27\* is aspherical with a spherical base (K = 0) and negative higher-order coefficients — the aspherical departure at 90% of the clear aperture is approximately −449 µm, bending the surface away from the image relative to the sphere. This is the "field-correcting" asphere: positioned near the image plane where the chief ray height is large relative to the marginal ray, it primarily corrects field-dependent aberrations (astigmatism, field curvature, and distortion) without significantly affecting on-axis performance. The weak overall power means it acts almost as a corrector plate rather than a focusing element.
 
@@ -182,7 +182,7 @@ The rear asphere is far more modest in departure — under 0.5 mm even at the ed
 
 ## 5. ED Glass Distribution and Chromatic Strategy
 
-The four ED elements (all S-FPL52 type, nd = 1.49782, νd = 82.6) are distributed across the optical system in a deliberate pattern:
+The four ED elements (all S-FPL51-class, nd = 1.49782, νd = 82.6 in the patent table) are distributed across the optical system in a deliberate pattern:
 
 | Element | Group | Power | Role in Chromatic Correction |
 |---------|-------|-------|------------------------------|
@@ -191,9 +191,9 @@ The four ED elements (all S-FPL52 type, nd = 1.49782, νd = 82.6) are distribute
 | L37 | G3 (rear) | Positive (+42.9 mm) | Lateral color correction (cemented with flint) |
 | L38 | G3 (rear) | Positive (+27.7 mm) | Lateral + longitudinal CA correction |
 
-Three of the four ED elements are positive, which is the conventional use — the anomalous partial dispersion of S-FPL52 overcorrects the secondary spectrum relative to a normal crown glass, compensating for the undercorrection from the paired flint elements.
+Three of the four ED elements are positive, which is the conventional use — the anomalous partial dispersion of S-FPL51-class glass overcorrects the secondary spectrum relative to a normal crown glass, compensating for the undercorrection from the paired flint elements.
 
-The fourth ED element (L13) is negative and placed in the front group. This is the unusual and interesting placement. In a retrofocus ultra-wide, the lateral color (chromatic difference of magnification) is the dominant chromatic defect because the front negative group and rear positive group have very different heights for the chief ray. Placing an ED glass element with negative power in the front group provides a secondary-spectrum lateral color correction that cannot be efficiently achieved from the rear group alone. This is a signature feature of this design — the patent explicitly identifies L13, L35, L37, and L38 as anomalous dispersion elements.
+The fourth ED element (L13) is negative and placed in the front group. This is the unusual and interesting placement. In a retrofocus ultra-wide, the lateral color (chromatic difference of magnification) is the dominant chromatic defect because the front negative group and rear positive group have very different heights for the chief ray. Placing an ED glass element with negative power in the front group provides a secondary-spectrum lateral color correction that cannot be efficiently achieved from the rear group alone. This is a signature feature of this design: the patent's rear-group "specific lens" condition explicitly covers the rear ED elements, while L13 is treated as the fourth ED-class element by its matching high-Abbe nd/νd pair and the production lens's four-ED-element specification.
 
 ---
 
@@ -260,26 +260,26 @@ At close focus, D8 increases by 3.18 mm (wide) to 3.60 mm (tele) relative to inf
 
 ## 8. Glass Budget Summary
 
-The design uses 10 distinct glass types across 16 elements:
+The design uses 12 distinct glass identifications across 16 elements:
 
 | Glass (Catalog Match) | nd | νd | Elements | Count |
 |----------------------|------|------|----------|-------|
-| S-FPL52 (ED) | 1.49782 | 82.6 | L13, L35, L37, L38 | 4 |
+| S-FPL51 (ED) | 1.49782 | 82.6 | L13, L35, L37, L38 | 4 |
 | S-LAH55 | 1.83481 | 42.7 | L36, L39 | 2 |
 | S-BAL35 / L-BAL35 | 1.58887 | 61.1 | L11 | 1 |
-| S-LAM51 | 1.74310 | 49.4 | L12 | 1 |
-| S-TIH14 | 1.73800 | 32.3 | L14 | 1 |
-| S-NPH2 | 2.00060 | 25.4 | L21 | 1 |
-| S-TIM27 | 1.64769 | 33.7 | L22 | 1 |
-| Dense flint (850/270) | 1.85000 | 27.0 | L31 | 1 |
-| Near S-FPM3 | 1.59349 | 67.0 | L32 | 1 |
-| S-LAH79 | 1.95375 | 32.3 | L33 | 1 |
+| S-LAM60 | 1.74310 | 49.4 | L12 | 1 |
+| 738323 dense-flint code | 1.73800 | 32.3 | L14 | 1 |
+| TAFD40 | 2.00060 | 25.4 | L21 | 1 |
+| S-TIM22 | 1.64769 | 33.7 | L22 | 1 |
+| 850270 dense-flint code | 1.85000 | 27.0 | L31 | 1 |
+| S-FPM2 | 1.59349 | 67.0 | L32 | 1 |
+| S-LAH98 | 1.95375 | 32.3 | L33 | 1 |
 | S-TIH53 | 1.84666 | 23.7 | L34 | 1 |
-| Probable S-LAH97 | 1.85108 | 40.1 | L40 | 1 |
+| S-LAH89 | 1.85108 | 40.1 | L40 | 1 |
 
-Glass identifications are based on matching the patent's nd/νd values against published OHARA catalog data. Most matches are exact (Δnd < 0.001, Δνd < 0.3). Two identifications carry caveats: L31 (nd = 1.85000, νd = 27.0) has a round nd value that could match multiple catalogs; L32 (nd = 1.59349, νd = 67.0) is close to S-FPM3 (nd = 1.59319) but the Δnd of +0.0003 and the νd discrepancy (67.0 vs. 67.87) suggest it may be a proprietary Nikon melt or a less common catalog variant.
+Glass identifications are based on matching the patent's nd/νd values against published catalog data. Most relabels either round-trip directly or fall within the project mismatch tolerance. Two patent pairs are kept as six-digit code annotations instead of speculative catalog names: L14 (738323) and L31 (850270). L32 is closest to the OHARA S-FPM2 fluorophosphate family, and L40 is closest to S-LAH89 among the current catalog entries.
 
-The design makes heavy use of high-index glasses (seven elements have nd > 1.73) to keep surface curvatures manageable despite the very strong total power of the system. The single ultra-high-index element (L21, nd = 2.0006) is notable — S-NPH2 is one of the densest commercially available optical glasses, and its use in the compact focusing group helps keep that group physically small.
+The design makes heavy use of high-index glasses (seven elements have nd > 1.73) to keep surface curvatures manageable despite the very strong total power of the system. The single ultra-high-index element (L21, nd = 2.0006) is notable — the relabeled TAFD40 match is one of the densest commercially available optical glasses, and its use in the compact focusing group helps keep that group physically small.
 
 ---
 
@@ -326,19 +326,21 @@ The NIKKOR Z 14-24mm f/2.8 S, as revealed by Example 4 of WO 2021/117563, is a c
 
 **Minimal focusing mass.** The focusing group is a single cemented doublet (L21+L22). This is the lightest possible focusing element for a lens of this complexity, and it explains the fast, quiet AF and negligible focus breathing. The weak positive power of G2 (+105 mm) means its focal shift during focus is small relative to the system, minimizing aberration variation.
 
-**Distributed chromatic correction.** Rather than concentrating all ED glass in one location, the design distributes four S-FPL52 elements across the front and rear groups. The unusual negative ED element (L13) in the front group addresses secondary lateral color — the chromatic defect that is hardest to correct in ultra-wide retrofocus designs and most visible as purple fringing at high-contrast edges near the frame corners.
+**Distributed chromatic correction.** Rather than concentrating all ED glass in one location, the design distributes four S-FPL51-class elements across the front and rear groups. The unusual negative ED element (L13) in the front group addresses secondary lateral color — the chromatic defect that is hardest to correct in ultra-wide retrofocus designs and most visible as purple fringing at high-contrast edges near the frame corners.
 
 **Extreme front-group aspheres.** The three front-element aspherical surfaces carry millimeter-scale departures, far larger than typical photographic lens aspheres. Two surfaces use paraboloidal base curves (K = −1) to manage the departure profile. L11 is almost certainly precision glass-molded (PGM) given its use of L-BAL35 glass (OHARA's L-prefix denotes low-softening-temperature PGM glass), and the millimeter-scale departures on both surfaces confirm this — conventional polishing of aspheres this deep would be prohibitively expensive.
 
 **Rear corrector asphere.** L40's much more modest aspherical surface (sub-millimeter departure) performs the fine-tuning of field curvature and residual distortion. Positioned near the image, where field angles are well separated, it efficiently corrects field-dependent aberrations without disturbing the on-axis performance established by the rest of the system.
 
-**Symmetric ED doublet pairs.** The L36+L37 and L38+L39 doublets use the same two glass types (S-LAH55 and S-FPL52) in swapped configurations. This near-symmetric arrangement is effective for canceling odd-order aberrations (particularly lateral color and coma) across the image field — a technique Nikon has employed in other high-performance Z-mount designs.
+**Symmetric ED doublet pairs.** The L36+L37 and L38+L39 doublets use the same two glass types (S-LAH55 and S-FPL51-class ED glass) in swapped configurations. This near-symmetric arrangement is effective for canceling odd-order aberrations (particularly lateral color and coma) across the image field — a technique Nikon has employed in other high-performance Z-mount designs.
 
 ---
 
 ## Revision Log
 
-**v2 (this document):** Corrected glass identifications for L11 (S-BAM4 → S-BAL35/L-BAL35), L12 (S-LAM2 → S-LAM51), L32 (S-BSM14 → near S-FPM3), and all four ED elements (S-FPL51 → S-FPL52). Added note on L-BAL35 PGM glass variant for L11. Added independent numerical verification table (§9). Added total track values at all four zoom positions. Corrected aspherical departure discussion for surfaces 2\* and 4\* (previous departure figures were computed at unrealistically large semi-diameters; now noted as SD-dependent). Added semi-diameter estimation methodology (§10). Corrected total track change during zoom (was "~6 mm," now correctly "~8.6 mm"). Added intermediate-focus variable spacing table (β = 0.025). Corrected MFD calculation with explicit sum (141 + 138.3 = 279.3 mm ≈ 0.28 m).
+**v3 (this document):** Synced the narrative with the May 2026 patent audit: L12 S-LAM60, L14 738323 code, L21 TAFD40, L22 S-TIM22, L31 850270 code, L32 S-FPM2, L33 S-LAH98, L40 S-LAH89, and the four ED elements as S-FPL51-class rather than S-FPL52.
+
+**v2:** Corrected glass identifications for L11 (S-BAM4 → S-BAL35/L-BAL35), L12 (S-LAM2 → S-LAM51), L32 (S-BSM14 → near S-FPM3), and all four ED elements (S-FPL51 → S-FPL52). Added note on L-BAL35 PGM glass variant for L11. Added independent numerical verification table (§9). Added total track values at all four zoom positions. Corrected aspherical departure discussion for surfaces 2\* and 4\* (previous departure figures were computed at unrealistically large semi-diameters; now noted as SD-dependent). Added semi-diameter estimation methodology (§10). Corrected total track change during zoom (was "~6 mm," now correctly "~8.6 mm"). Added intermediate-focus variable spacing table (β = 0.025). Corrected MFD calculation with explicit sum (141 + 138.3 = 279.3 mm ≈ 0.28 m).
 
 ---
 
@@ -346,4 +348,4 @@ The NIKKOR Z 14-24mm f/2.8 S, as revealed by Example 4 of WO 2021/117563, is a c
 
 1. WO 2021/117563 A1, "Variable Magnification Optical System, Optical Apparatus and Method for Manufacturing Variable Magnification Optical System," Nikon Corporation, PCT/JP2020/044761, published 17 June 2021. Example 4 (Table 4), paragraphs [0107]–[0114].
 2. Nikon Corporation, "NIKKOR Z 14-24mm f/2.8 S" product page: 16 elements / 11 groups, 4 ED, 3 aspherical elements. nikonusa.com.
-3. OHARA Optical Glass Catalog (glass identification reference for nd/νd matching: S-FPL52, S-BAL35, L-BAL35, S-LAM51, S-TIH14, S-NPH2, S-TIM27, S-FPM3, S-LAH79, S-TIH53, S-LAH55, S-LAH97).
+3. OHARA and HOYA optical glass catalog data in the project resolver (glass identification reference for nd/νd matching: S-FPL51, S-BAL35, L-BAL35, S-LAM60, TAFD40, S-TIM22, S-FPM2, S-LAH98, S-TIH53, S-LAH55, S-LAH89; code annotations retained for unmatched 738323 and 850270 patent pairs).
