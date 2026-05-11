@@ -15,11 +15,13 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus variable gaps: d18, d21 (zoom + focus).                    ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    Patent does not list semi-diameters. Estimated from combined    ║
- * ║    marginal + chief ray trace (multiple zoom positions), then      ║
- * ║    reduced where edge thickness, conic height, or tight air gaps   ║
- * ║    set stricter geometric limits. Front group capped by the        ║
- * ║    62 mm filter thread constraint (~30 mm SD).                     ║
+ * ║    Patent does not list semi-diameters. SDs are estimated from     ║
+ * ║    FIGS. 5A–5C (Example 5) and ray clearance, then reduced where   ║
+ * ║    edge thickness, conic height, or tight air gaps set stricter    ║
+ * ║    geometric limits. FIG. 5B is the primary silhouette reference:  ║
+ * ║    G1 is kept below the 62 mm filter-thread cap, G4 is opened up, ║
+ * ║    and G5 sits near the L14 edge-thickness limit. G2 surfaces      ║
+ * ║    5→6 and 8→9 remain the binding air-gap constraints.            ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent close-focus data at 0.25 m object-to-image distance.     ║
@@ -83,7 +85,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.53,
       fl: 80.7,
-      glass: "TAC4 class (HOYA) — lanthanum crown (697/555)",
+      glass: "S-LAL14 (OHARA) — lanthanum crown (697555)",
       apd: false,
       role: "Crown partner for G1 achromatic doublet. Moderate dispersion balances L1.",
       cemented: "G1",
@@ -96,7 +98,7 @@ const LENS_DATA = {
       nd: 1.7432,
       vd: 49.29,
       fl: -18.9,
-      glass: "Lanthanum class (743/493), moldable",
+      glass: "S-LAM60 (OHARA) — lanthanum (743493)",
       apd: false,
       role: "DSA (Dual Super Aspherical). Strongest single element in G2; dual aspherics correct SA and coma.",
     },
@@ -135,7 +137,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: -49.0,
-      glass: "S-LAM66 (OHARA) / TAF1 class (HOYA) — (773/496)",
+      glass: "S-LAH66 (OHARA) — high-index lanthanum (773496)",
       apd: false,
       role: "Field-flattening element at rear of G2. Controls divergence angle toward stop.",
     },
@@ -172,7 +174,7 @@ const LENS_DATA = {
       nd: 1.80518,
       vd: 25.42,
       fl: -31.0,
-      glass: "TAFD30 class (HOYA) — dense flint (805/254)",
+      glass: "S-TIH6 (OHARA) / SF6 (Schott) — dense flint (805254)",
       apd: false,
       role: "Dense flint in G3 cemented ED achromat (with L10).",
       cemented: "D3",
@@ -199,7 +201,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.88,
       fl: -16.3,
-      glass: "LAH class (806/409), likely moldable",
+      glass: "S-LAH53 (OHARA) — high-index lanthanum (806409)",
       apd: false,
       role: "Focus group front element. Aspherical front surface (S19A) maintains focus-dependent aberration balance.",
       cemented: "D4",
@@ -212,7 +214,7 @@ const LENS_DATA = {
       nd: 1.94595,
       vd: 17.98,
       fl: 53.9,
-      glass: "Extreme dense flint (946/180), TAFD45 class (HOYA)",
+      glass: "946180 — extreme high-dispersion dense flint (patent nd=1.94595, νd=17.98)",
       apd: false,
       role: "HR candidate. Achromatizing dense flint partner in G4 negative cemented doublet.",
       cemented: "D4",
@@ -225,7 +227,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       fl: -92.2,
-      glass: "Ultra-high-index dense flint (2001/255)",
+      glass: "TAFD40 (HOYA) — ultra-high-index dense flint (001255)",
       apd: false,
       role: "HR candidate (nd > 2.0). Negative element in stationary G5; final Petzval corrector.",
       cemented: "D5",
@@ -248,40 +250,40 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ─── G1: L1 + L2 (cemented doublet) ───
-    { label: "1", R: 55.0572, d: 2.4, nd: 1.92286, elemId: 1, sd: 29.5 },
-    { label: "2", R: 44.2744, d: 7.101, nd: 1.6968, elemId: 2, sd: 29.5 }, // L1→L2 junction
-    { label: "3", R: 207.849, d: 0.8433, nd: 1.0, elemId: 0, sd: 26.0 }, // L2 rear → air (d3 zoom var)
+    { label: "1", R: 55.0572, d: 2.4, nd: 1.92286, elemId: 1, sd: 26.0 },
+    { label: "2", R: 44.2744, d: 7.101, nd: 1.6968, elemId: 2, sd: 26.0 }, // L1→L2 junction
+    { label: "3", R: 207.849, d: 0.8433, nd: 1.0, elemId: 0, sd: 24.2 }, // L2 rear → air (d3 zoom var)
 
     // ─── G2: L3 / L4+L5 / L6 ───
-    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 18.0 }, // L3 front (DSA asph)
-    { label: "5A", R: 12.8384, d: 7.332, nd: 1.0, elemId: 0, sd: 9.5 }, // L3 rear (DSA asph) → air
+    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 18.5 }, // L3 front (DSA asph)
+    { label: "5A", R: 12.8384, d: 7.332, nd: 1.0, elemId: 0, sd: 9.6 }, // L3 rear (DSA asph) → air
     { label: "6", R: -22.1355, d: 1.2, nd: 1.497, elemId: 4, sd: 15.0 }, // L4 front (ED)
     { label: "7", R: 22.1355, d: 4.241, nd: 1.7552, elemId: 5, sd: 15.0 }, // L4→L5 junction
-    { label: "8", R: -56.895, d: 1.807, nd: 1.0, elemId: 0, sd: 8.0 }, // L5 rear → air
-    { label: "9", R: -16.7113, d: 1.1, nd: 1.7725, elemId: 6, sd: 13.0 }, // L6 front
-    { label: "10", R: -29.9316, d: 19.7674, nd: 1.0, elemId: 0, sd: 13.5 }, // L6 rear → air (d10 zoom var)
+    { label: "8", R: -56.895, d: 1.807, nd: 1.0, elemId: 0, sd: 8.3 }, // L5 rear → air
+    { label: "9", R: -16.7113, d: 1.1, nd: 1.7725, elemId: 6, sd: 12.8 }, // L6 front
+    { label: "10", R: -29.9316, d: 19.7674, nd: 1.0, elemId: 0, sd: 12.8 }, // L6 rear → air (d10 zoom var)
 
     // ─── Aperture stop ───
     { label: "STO", R: 1e15, d: 1.0, nd: 1.0, elemId: 0, sd: 10.0 },
 
     // ─── G3: L7 / L8 / L9+L10 ───
-    { label: "12A", R: 29.3834, d: 4.596, nd: 1.58313, elemId: 7, sd: 12.5 }, // L7 front (HD asph)
-    { label: "13A", R: -148.0986, d: 3.53, nd: 1.0, elemId: 0, sd: 13.0 }, // L7 rear (HD asph) → air
-    { label: "14", R: 91.1635, d: 4.632, nd: 1.497, elemId: 8, sd: 13.0 }, // L8 front (ED)
-    { label: "15", R: -24.2108, d: 0.13, nd: 1.0, elemId: 0, sd: 12.7 }, // L8 rear → air
+    { label: "12A", R: 29.3834, d: 4.596, nd: 1.58313, elemId: 7, sd: 11.5 }, // L7 front (HD asph)
+    { label: "13A", R: -148.0986, d: 3.53, nd: 1.0, elemId: 0, sd: 11.5 }, // L7 rear (HD asph) → air
+    { label: "14", R: 91.1635, d: 4.632, nd: 1.497, elemId: 8, sd: 12.2 }, // L8 front (ED)
+    { label: "15", R: -24.2108, d: 0.13, nd: 1.0, elemId: 0, sd: 12.2 }, // L8 rear → air
     { label: "16", R: 42.3361, d: 1.2, nd: 1.80518, elemId: 9, sd: 12.5 }, // L9 front
     { label: "17", R: 15.6885, d: 8.296, nd: 1.497, elemId: 10, sd: 12.5 }, // L9→L10 junction
     { label: "18A", R: -32.0641, d: 1.8876, nd: 1.0, elemId: 0, sd: 12.0 }, // L10 rear (EDA asph) → air (d18 var)
 
     // ─── G4: L11 + L12 (cemented doublet, focus group) ───
-    { label: "19A", R: 573.6706, d: 0.92, nd: 1.8061, elemId: 11, sd: 8.5 }, // L11 front (asph)
-    { label: "20", R: 12.8813, d: 2.041, nd: 1.94595, elemId: 12, sd: 8.5 }, // L11→L12 junction
-    { label: "21", R: 17.2342, d: 4.6989, nd: 1.0, elemId: 0, sd: 8.0 }, // L12 rear → air (d21 var)
+    { label: "19A", R: 573.6706, d: 0.92, nd: 1.8061, elemId: 11, sd: 10.2 }, // L11 front (asph)
+    { label: "20", R: 12.8813, d: 2.041, nd: 1.94595, elemId: 12, sd: 10.2 }, // L11→L12 junction
+    { label: "21", R: 17.2342, d: 4.6989, nd: 1.0, elemId: 0, sd: 10.0 }, // L12 rear → air (d21 var)
 
     // ─── G5: L13 + L14 (cemented doublet, stationary) ───
-    { label: "22", R: 30.0105, d: 1.395, nd: 2.00069, elemId: 13, sd: 11.0 }, // L13 front
-    { label: "23", R: 22.6466, d: 7.173, nd: 1.58313, elemId: 14, sd: 11.0 }, // L13→L14 junction
-    { label: "24", R: -36.2011, d: 15.997, nd: 1.0, elemId: 0, sd: 12.0 }, // L14 rear → image (BFD air-equiv)
+    { label: "22", R: 30.0105, d: 1.395, nd: 2.00069, elemId: 13, sd: 13.2 }, // L13 front
+    { label: "23", R: 22.6466, d: 7.173, nd: 1.58313, elemId: 14, sd: 13.2 }, // L13→L14 junction
+    { label: "24", R: -36.2011, d: 15.997, nd: 1.0, elemId: 0, sd: 13.2 }, // L14 rear → image (BFD air-equiv)
   ],
 
   /* ── Aspherical coefficients ── */

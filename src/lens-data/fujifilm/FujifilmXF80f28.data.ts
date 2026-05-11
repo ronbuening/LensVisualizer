@@ -11,6 +11,8 @@
  * 16 elements in 12 groups — 4 group P-N-P-N architecture.
  * Floating focus (G2 + G3 move independently).
  * OIS via G4a perpendicular shift.
+ * Patent publishes nd/νd values, not vendor glass names; unresolved glasses use
+ * six-digit code annotations so future catalog entries can auto-resolve.
  *
  * Semi-diameters estimated via combined marginal + chief ray trace at
  * f/2.88, ω = 10.1°, with ~50% field vignetting and 8% mechanical clearance.
@@ -71,7 +73,7 @@ const LENS_DATA = {
       nd: 1.62588,
       vd: 35.7,
       fl: -31.0,
-      glass: "S-TIM35 (OHARA dense flint)",
+      glass: "626357 — dense flint (patent nd=1.62588, νd=35.70; no exact catalog match)",
       role: "Chromatic counterpart to L1b. Strong negative power also corrects Petzval sum for flat-field macro performance.",
     },
     {
@@ -82,7 +84,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.46,
       fl: 32.4,
-      glass: "S-BAL41 (OHARA barium crown)",
+      glass: "583595 — S-BAL41 (OHARA barium crown)",
       role: "Sole aspherical element (both surfaces). Strongest positive in G1, placed at large marginal ray height for maximum SA correction leverage.",
     },
 
@@ -95,7 +97,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.13,
       fl: -31.2,
-      glass: "S-BSM2 (OHARA barium crown)",
+      glass: "S-BAL35 (OHARA barium crown)",
       role: "Leading element of front focus group. Strongly curved rear surface (R = +21.9 mm) does the diverging.",
     },
     {
@@ -106,7 +108,7 @@ const LENS_DATA = {
       nd: 1.673,
       vd: 38.15,
       fl: -29.3,
-      glass: "Barium flint (nearest: HOYA NBFD3; no exact OHARA match)",
+      glass: "673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)",
       cemented: "D1",
       role: "Front element of G2 cemented pair. Near-zero net power with L2c; primary role is chromatic balance during focus shift.",
     },
@@ -118,7 +120,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.46,
       fl: 29.1,
-      glass: "S-NPH5 (OHARA ultra-high-index dense flint, nd > 2.0)",
+      glass: "TAFD40 (Hoya ultra-high-index dense flint)",
       cemented: "D1",
       role: "Rear element of G2 cemented pair. Ultra-high index enables strong correction at the cemented junction with minimal curvature.",
     },
@@ -159,7 +161,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.78,
       fl: -90.7,
-      glass: "S-NPH4 (OHARA high-index dense flint)",
+      glass: "S-TIH53 (OHARA dense flint)",
       cemented: "D2",
       role: "Achromatic flint of G3. High-index, high-dispersion partner to the ED crown L3b.",
     },
@@ -173,7 +175,7 @@ const LENS_DATA = {
       nd: 2.00272,
       vd: 19.32,
       fl: 52.6,
-      glass: "S-NPH7 (OHARA ultra-high-index dense flint, nd > 2.0)",
+      glass: "003193 — ultra-high-index dense flint (patent nd=2.00272, νd=19.32; no exact catalog match)",
       cemented: "D3",
       role: "VR cemented doublet front. nd = 2.003 enables strong correction at modest curvatures.",
     },
@@ -185,7 +187,7 @@ const LENS_DATA = {
       nd: 1.697,
       vd: 48.52,
       fl: -24.3,
-      glass: "S-LAM66 (OHARA lanthanum crown)",
+      glass: "697485 — lanthanum crown (patent nd=1.69700, νd=48.52; no exact catalog match)",
       cemented: "D3",
       role: "VR cemented doublet rear. Symmetric radii (|R| = 33.867 mm). Internal VR achromatization (Δν = 29.2).",
     },
@@ -197,7 +199,7 @@ const LENS_DATA = {
       nd: 1.53775,
       vd: 74.7,
       fl: -63.3,
-      glass: "S-FPM2 (OHARA fluorophosphate)",
+      glass: "S-FPM3 (OHARA fluorophosphate)",
       apd: "inferred",
       apdNote: "νd = 74.70 satisfies patent Cond. (9); moderate APD. Probable third ED per Fujifilm spec.",
       role: "Third VR element. High-νd fluorophosphate provides chromatic fine-tuning during lateral OIS shift.",
@@ -212,7 +214,7 @@ const LENS_DATA = {
       nd: 1.95375,
       vd: 32.32,
       fl: 41.5,
-      glass: "S-LAH79 (OHARA ultra-high-index lanthanum)",
+      glass: "S-LAH98 (OHARA ultra-high-index lanthanum)",
       role: "Strong positive meniscus partially counteracts G4a negative power. Petzval sum control.",
     },
     {
@@ -235,7 +237,7 @@ const LENS_DATA = {
       nd: 1.95906,
       vd: 17.47,
       fl: -48.9,
-      glass: "S-NPH53 (OHARA ultra-high-index dense flint, lowest νd in design)",
+      glass: "S-NPH3 (OHARA ultra-high-index dense flint, lowest νd in design)",
       cemented: "D4",
       role: "Final chromatic trim near image plane. νd = 17.47 provides extreme chromatic leverage for lateral color control.",
     },

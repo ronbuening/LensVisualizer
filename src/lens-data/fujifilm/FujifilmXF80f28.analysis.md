@@ -17,7 +17,7 @@ Example 1 of US 2018/0246292 A1 is identified as the production design for the *
 | Full angle of view | 20.2° | 20.1° |
 | Element/group count | 16 / 12 | 16 / 12 |
 | Aspherical elements | 1 (double-sided) | 1 |
-| ED elements | 3 (S-FPL51 × 2; S-FPM2 × 1, inferred) | 3 ED |
+| ED elements | 3 (S-FPL51 × 2; S-FPM3 × 1, inferred) | 3 ED |
 | Super ED elements | 1 (S-FPL55) | 1 Super ED |
 | Focus type | Floating (G2 + G3), internal | Floating, internal |
 | Image stabilization | G4a perpendicular shift | 5-stop OIS |
@@ -103,13 +103,13 @@ G1 is composed of four air-spaced elements and carries a net focal length of +44
 - Role: Primary chromatic corrector in the front group. The anomalous partial dispersion of S-FPL51 enables correction of secondary spectrum. Paired with the neighboring flint L1c, the Abbe number difference νd(L1b) − νd(L1c) = 45.84 satisfies the patent's Conditional Expression (3) (35 < Δν < 50), ensuring strong longitudinal chromatic aberration correction at infinity focus without overcorrection.
 
 **L1c — Negative biconcave (Element 3)**
-- Glass: nd = 1.62588, νd = 35.70 → **OHARA S-TIM35** (dense flint)
+- Glass: nd = 1.62588, νd = 35.70 → **626357 dense flint** (no exact current catalog match)
 - Thin-lens focal length: −31.0 mm
 - Radii: R₁ = −67.240 mm, R₂ = +27.219 mm
 - Role: Chromatic counterpart to L1b. The high-dispersion flint works against the low-dispersion ED glass to achromatize the front group. Its strong negative power also contributes to Petzval sum correction — critical for a macro lens that must maintain a flat field from infinity to 1:1.
 
 **L1d — Positive biconvex, double asphere (Element 4) — Aspherical Element**
-- Glass: nd = 1.58313, νd = 59.46 → **OHARA S-BAL41** (barium crown)
+- Glass: nd = 1.58313, νd = 59.46 → **583595 — OHARA S-BAL41** (barium crown; catalog pending)
 - Thin-lens focal length: +32.4 mm
 - Radii: R₁ = +25.205 mm (asph), R₂ = −75.345 mm (asph)
 - Role: This is the single aspherical element in the design, carrying aspherical correction on both surfaces. It is the strongest positive element in G1 and sits at the position of greatest marginal ray height within the front group, making it the most effective location for controlling spherical aberration. Both surfaces share KA = 1.0 (K = 0 in standard convention), meaning the base curves are spherical and all aspherical departure comes from the even-order polynomial coefficients A₄ through A₂₀. At the estimated clear aperture (h ≈ 13 mm), the front surface departs approximately −164 μm from its base sphere, while the rear departs −70 μm. Both departures are negative, meaning both surfaces are slightly flatter at the rim than their base spheres — the classic correction profile for undercorrected spherical aberration.
@@ -119,16 +119,16 @@ G1 is composed of four air-spaced elements and carries a net focal length of +44
 G2 has a net focal length of −31.02 mm and is one of two floating focus groups. During focusing from infinity to 1:1, G2 translates +15.35 mm toward the image, opening the gap between G1 and G2 from 2.34 mm to 17.69 mm.
 
 **L2a — Negative biconcave (Element 5)**
-- Glass: nd = 1.58913, νd = 61.13 → **OHARA S-BSM2** (barium crown)
+- Glass: nd = 1.58913, νd = 61.13 → **OHARA S-BAL35** (barium crown)
 - Thin-lens focal length: −31.2 mm
 - Radii: R₁ = −115.008 mm, R₂ = +21.887 mm (both surfaces concave)
 - Role: The leading element of the front focus group. Both surfaces are concave, with the strongly curved rear surface (R₂ = +21.9 mm) doing most of the diverging work. The relatively low-dispersion glass keeps chromatic contribution manageable during focus travel.
 
 **L2b + L2c — Cemented doublet (Elements 6 + 7)**
-- L2b: nd = 1.67300, νd = 38.15 → Barium flint; **nearest catalog match: HOYA NBFD3** (nd = 1.67339, νd = 38.26; Δnd = +0.0004, Δνd = +0.11). No exact OHARA equivalent identified. Possible proprietary melt selection.
-- L2c: nd = 2.00069, νd = 25.46 → **OHARA S-NPH5** (ultra-high index dense flint)
+- L2b: nd = 1.67300, νd = 38.15 → **673382 barium flint** (no exact current catalog match)
+- L2c: nd = 2.00069, νd = 25.46 → **HOYA TAFD40** (ultra-high index dense flint)
 - Standalone thin-lens focal lengths: L2b ≈ −29.3 mm, L2c ≈ +29.1 mm (near-zero combined power)
-- Role: This is a chromatic corrector doublet — the two elements have nearly canceling powers, so their primary contribution is to the chromatic balance of G2 rather than its net refracting power. The use of S-NPH5 (nd = 2.001, one of the highest-index optical glasses commercially available) allows the cemented junction surface at R = +22.32 mm to carry strong chromatic correction with minimal surface curvature. The Abbe number difference of only 12.7 between L2b and L2c is unusually small for an achromatic doublet, reflecting the fact that this pair is optimized for chromatic fine-tuning during focus shift rather than primary achromatization.
+- Role: This is a chromatic corrector doublet — the two elements have nearly canceling powers, so their primary contribution is to the chromatic balance of G2 rather than its net refracting power. The use of TAFD40 (nd = 2.001, one of the highest-index optical glasses commercially available) allows the cemented junction surface at R = +22.32 mm to carry strong chromatic correction with minimal surface curvature. The Abbe number difference of only 12.7 between L2b and L2c is unusually small for an achromatic doublet, reflecting the fact that this pair is optimized for chromatic fine-tuning during focus shift rather than primary achromatization.
 
 ### Aperture Stop
 
@@ -146,42 +146,42 @@ G3 has a net focal length of +36.48 mm and is the second floating focus group. D
 
 **L3b + L3c — Cemented doublet (Elements 9 + 10) — Contains ED Glass**
 - L3b: nd = 1.49700, νd = 81.54 → **OHARA S-FPL51** (ED glass)
-- L3c: nd = 1.84666, νd = 23.78 → **OHARA S-NPH4** (high-index dense flint)
+- L3c: nd = 1.84666, νd = 23.78 → **OHARA S-TIH53** (dense flint)
 - Standalone thin-lens focal lengths: L3b ≈ +41.1 mm, L3c ≈ −90.7 mm; combined (thick-lens): approximately +75 mm
 - Abbe number difference: 57.76 — the largest Δν in the design
-- Role: Powerhouse achromatic doublet of the rear focus group. The enormous Δν provides aggressive chromatic correction, particularly important because this group moves during focusing. L3b's S-FPL51 reinforces secondary spectrum correction. L3c's S-NPH4 (nd = 1.847, νd = 23.78) provides a strong chromatic lever arm against L3b without requiring excessive surface curvatures.
+- Role: Powerhouse achromatic doublet of the rear focus group. The enormous Δν provides aggressive chromatic correction, particularly important because this group moves during focusing. L3b's S-FPL51 reinforces secondary spectrum correction. L3c's S-TIH53 (nd = 1.847, νd = 23.78) provides a strong chromatic lever arm against L3b without requiring excessive surface curvatures.
 
 ### Group 4a — Vibration Reduction Group (OIS, Stationary Along Axis)
 
 G4a has a net focal length of −25.58 mm and translates perpendicular to the optical axis for image stabilization, shifting the image on the sensor to compensate for camera shake. Its |f₄ₐ/f| = 0.325 satisfies Conditional Expression (1).
 
 **L4aa + L4ab — Cemented doublet (Elements 11 + 12)**
-- L4aa: nd = 2.00272, νd = 19.32 → **OHARA S-NPH7** (ultra-high index dense flint)
-- L4ab: nd = 1.69700, νd = 48.52 → **OHARA S-LAM66** (lanthanum crown)
+- L4aa: nd = 2.00272, νd = 19.32 → **003193 ultra-high index dense flint** (no exact current catalog match)
+- L4ab: nd = 1.69700, νd = 48.52 → **697485 lanthanum crown** (no exact current catalog match)
 - Standalone focal lengths: L4aa ≈ +52.6 mm (positive), L4ab ≈ −24.3 mm (negative)
 - Conditional (2): ν₄ₐᵦ − ν₄ₐₐ = 29.20 (within 18–35 range)
 - Role: VR cemented doublet. L4aa's nd = 2.003 is one of the highest refractive indices used in production optics. The positive-negative arrangement provides internal achromatization of the VR group, suppressing chromatic aberration generation during lateral shift.
 
 **L4ac — Negative meniscus (Element 13) — ED Candidate**
-- Glass: nd = 1.53775, νd = 74.70 → **OHARA S-FPM2** (fluorophosphate)
+- Glass: nd = 1.53775, νd = 74.70 → **OHARA S-FPM3** (fluorophosphate)
 - Thin-lens focal length: −63.3 mm
 - Radii: R₁ = +395.226 mm (nearly flat), R₂ = +31.350 mm (strongly curved)
 - Conditional (9): ν₄ₐc = 74.70 (within 60–100 range)
-- Role: Third element of the VR group. Its high νd of 74.70 satisfies Conditional Expression (9), which the patent identifies as important for suppressing chromatic aberration during OIS operation. S-FPM2 is a fluorophosphate glass with moderate anomalous partial dispersion — not as exotic as S-FPL51 or S-FPL55, but it sits above the normal line on the glass map and is the only remaining candidate to account for Fujifilm's third "ED" element designation.
+- Role: Third element of the VR group. Its high νd of 74.70 satisfies Conditional Expression (9), which the patent identifies as important for suppressing chromatic aberration during OIS operation. S-FPM3 is a fluorophosphate glass with moderate anomalous partial dispersion — not as exotic as S-FPL51 or S-FPL55, but it sits above the normal line on the glass map and is the only remaining candidate to account for Fujifilm's third "ED" element designation.
 
 ### Group 4b — Rear Fixed Group (Stationary)
 
 G4b has a net focal length of +39.54 mm and remains stationary during all operations.
 
 **L4ba — Positive meniscus (Element 14)**
-- Glass: nd = 1.95375, νd = 32.32 → **OHARA S-LAH79** (ultra-high index lanthanum)
+- Glass: nd = 1.95375, νd = 32.32 → **OHARA S-LAH98** (ultra-high index lanthanum)
 - Thin-lens focal length: +41.5 mm
 - Radii: R₁ = +37.523 mm, R₂ = +709.784 mm
 - Role: Strong positive element using ultra-high-index lanthanum glass. Its positive power partially counteracts G4a's negative power, bringing the net G4 power to a moderate −102.4 mm. Significant contributor to Petzval sum and field curvature control.
 
 **L4bb + L4bc — Cemented doublet (Elements 15 + 16)**
 - L4bb: nd = 1.51680, νd = 64.20 → **OHARA S-BSL7 / Schott N-BK7** (standard borosilicate crown)
-- L4bc: nd = 1.95906, νd = 17.47 → **OHARA S-NPH53** (ultra-high index dense flint)
+- L4bc: nd = 1.95906, νd = 17.47 → **OHARA S-NPH3** (ultra-high index dense flint)
 - Standalone focal lengths: L4bb ≈ +48.2 mm, L4bc ≈ −48.9 mm
 - Abbe number difference: 46.73
 - Role: The final optical doublet before the image plane. L4bc's νd = 17.47 (the lowest Abbe number in the design) provides extreme chromatic leverage. Position close to the sensor gives strong influence over lateral color correction.
@@ -256,13 +256,13 @@ The fourth-a lens group (G4a) serves as the vibration-proof group, translating p
 
 **Conditional (8):** |(1 − β₄ₐ) × β₄ᵦ| = 1.450 — controls the "VR sensitivity," the ratio between the image shift and the lateral translation of G4a. A value of 1.45 means the image moves 1.45× further than the lens group, providing good correction amplification while keeping sensitivity manageable.
 
-The three-element construction of G4a (cemented doublet + singlet) minimizes aberration degradation during off-axis displacement. The cemented pair (L4aa + L4ab) provides internal achromatization so the group doesn't generate chromatic aberration as it shifts. The separated singlet L4ac, made from S-FPM2 (ν₄ₐc = 74.70, satisfying Conditional Expression 9), provides additional chromatic fine-tuning.
+The three-element construction of G4a (cemented doublet + singlet) minimizes aberration degradation during off-axis displacement. The cemented pair (L4aa + L4ab) provides internal achromatization so the group doesn't generate chromatic aberration as it shifts. The separated singlet L4ac, made from S-FPM3 (ν₄ₐc = 74.70, satisfying Conditional Expression 9), provides additional chromatic fine-tuning.
 
 ---
 
 ## 8. Glass Selection Strategy
 
-The design uses 10 distinct glass types across 16 elements.
+The design uses 15 distinct glass annotations across 16 elements, with two repeated S-FPL51 ED elements.
 
 ### Summary Table
 
@@ -270,40 +270,40 @@ The design uses 10 distinct glass types across 16 elements.
 |---|---|---|---|---|---|
 | L1a | S-LAL18 | 1.72916 | 54.67 | Lanthanum crown | — |
 | L1b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
-| L1c | S-TIM35 | 1.62588 | 35.70 | Dense flint | — |
-| L1d | S-BAL41 | 1.58313 | 59.46 | Barium crown | Aspherical substrate |
-| L2a | S-BSM2 | 1.58913 | 61.13 | Barium crown | — |
-| L2b | *(see note)* | 1.67300 | 38.15 | Barium flint | Nearest: HOYA NBFD3 |
-| L2c | S-NPH5 | 2.00069 | 25.46 | Ultra-high index flint | nd > 2.0 |
+| L1c | 626357 | 1.62588 | 35.70 | Dense flint | Catalog pending |
+| L1d | 583595 — S-BAL41 | 1.58313 | 59.46 | Barium crown | Aspherical substrate; catalog pending |
+| L2a | S-BAL35 | 1.58913 | 61.13 | Barium crown | — |
+| L2b | 673382 | 1.67300 | 38.15 | Barium flint | Catalog pending |
+| L2c | TAFD40 | 2.00069 | 25.46 | Ultra-high index flint | nd > 2.0 |
 | L3a | **S-FPL55** | 1.43875 | 94.66 | **Super ED** | **Fluorite-equivalent APD** |
 | L3b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
-| L3c | S-NPH4 | 1.84666 | 23.78 | High-index dense flint | — |
-| L4aa | S-NPH7 | 2.00272 | 19.32 | Ultra-high index flint | nd > 2.0 |
-| L4ab | S-LAM66 | 1.69700 | 48.52 | Lanthanum crown | — |
-| L4ac | S-FPM2 | 1.53775 | 74.70 | Fluorophosphate | Moderate APD |
-| L4ba | S-LAH79 | 1.95375 | 32.32 | Ultra-high index lanthanum | nd ≈ 1.95 |
+| L3c | S-TIH53 | 1.84666 | 23.78 | Dense flint | — |
+| L4aa | 003193 | 2.00272 | 19.32 | Ultra-high index flint | nd > 2.0; catalog pending |
+| L4ab | 697485 | 1.69700 | 48.52 | Lanthanum crown | Catalog pending |
+| L4ac | S-FPM3 | 1.53775 | 74.70 | Fluorophosphate | Moderate APD |
+| L4ba | S-LAH98 | 1.95375 | 32.32 | Ultra-high index lanthanum | nd ≈ 1.95 |
 | L4bb | S-BSL7 | 1.51680 | 64.20 | Borosilicate crown (N-BK7) | — |
-| L4bc | S-NPH53 | 1.95906 | 17.47 | Ultra-high index flint | Lowest νd in design |
+| L4bc | S-NPH3 | 1.95906 | 17.47 | Ultra-high index flint | Lowest νd in design |
 
-**Note on L2b:** The patent values nd = 1.67300, νd = 38.15 have no exact match in the current OHARA catalog. The nearest identified glass is **HOYA NBFD3** (nd = 1.67339, νd = 38.26; Δnd = +0.0004, Δνd = +0.11), which is within typical melt variation tolerance. OHARA S-BAH32 (nd = 1.66998, νd = 39.27) is a more distant second candidate. This may reflect a proprietary melt selection or a glass from a secondary supplier.
+**Catalog-pending note:** The patent gives refractive index and Abbe number, not vendor glass names. Code-only labels preserve those nd/νd coordinates without forcing a mismatched Sellmeier catalog entry; they can auto-resolve later if a matching catalog glass is added with the same six-digit code.
 
 ### Chromatic Correction Architecture
 
 The design achieves chromatic correction through four achromatic "engines" distributed across the lens:
 
-1. **G1 air-spaced pair (L1b/L1c):** S-FPL51 (νd = 81.5) vs. S-TIM35 (νd = 35.7), Δν = 45.8. Primary achromatization and secondary spectrum correction for the front group.
+1. **G1 air-spaced pair (L1b/L1c):** S-FPL51 (νd = 81.5) vs. 626357 dense flint (νd = 35.7), Δν = 45.8. Primary achromatization and secondary spectrum correction for the front group.
 
-2. **G3 cemented doublet (L3b/L3c):** S-FPL51 (νd = 81.5) vs. S-NPH4 (νd = 23.8), Δν = 57.8. The largest Abbe number difference in the design, providing aggressive chromatic correction in the rear focus group.
+2. **G3 cemented doublet (L3b/L3c):** S-FPL51 (νd = 81.5) vs. S-TIH53 (νd = 23.8), Δν = 57.8. The largest Abbe number difference in the design, providing aggressive chromatic correction in the rear focus group.
 
-3. **G4a cemented doublet (L4aa/L4ab):** S-NPH7 (νd = 19.3) vs. S-LAM66 (νd = 48.5), Δν = 29.2. Internal achromatization of the VR group.
+3. **G4a cemented doublet (L4aa/L4ab):** 003193 ultra-high-index flint (νd = 19.3) vs. 697485 lanthanum crown (νd = 48.5), Δν = 29.2. Internal achromatization of the VR group.
 
-4. **G4b cemented doublet (L4bb/L4bc):** S-BSL7 (νd = 64.2) vs. S-NPH53 (νd = 17.5), Δν = 46.7. Final chromatic trim near the image plane.
+4. **G4b cemented doublet (L4bb/L4bc):** S-BSL7 (νd = 64.2) vs. S-NPH3 (νd = 17.5), Δν = 46.7. Final chromatic trim near the image plane.
 
 The Super ED element L3a (S-FPL55) sits between these pairs, providing the critical anomalous partial dispersion correction that reduces secondary spectrum.
 
 ### Ultra-High Index Glasses
 
-Three elements use glasses with nd approaching or exceeding 2.0: L2c (2.001), L4aa (2.003), and L4ba/L4bc (1.954/1.959). These ultra-high-index materials allow strong refractive power with reduced surface curvature, reducing higher-order aberrations. The tradeoff is high dispersion, so each appears cemented to or paired with a lower-dispersion partner.
+Four elements use glasses with nd approaching or exceeding 2.0: L2c (2.001), L4aa (2.003), and L4ba/L4bc (1.954/1.959). These ultra-high-index materials allow strong refractive power with reduced surface curvature, reducing higher-order aberrations. The tradeoff is high dispersion, so each appears cemented to or paired with a lower-dispersion partner.
 
 ---
 
@@ -337,10 +337,10 @@ All values satisfy both the primary and tightened conditional expression ranges.
 
 ## 10. Design Summary
 
-The Fujifilm XF 80mm f/2.8 R LM OIS WR Macro (as represented by Example 1) is a four-group positive-negative-positive-negative macro lens with floating focus and integrated optical image stabilization. Its 16 elements span 10 distinct glass types, ranging from the fluorite-equivalent S-FPL55 (νd = 94.7) to the ultra-high-dispersion S-NPH53 (νd = 17.5), with three elements using nd > 1.95. A single double-sided aspherical element in the front group controls spherical aberration and coma across the entire focus range.
+The Fujifilm XF 80mm f/2.8 R LM OIS WR Macro (as represented by Example 1) is a four-group positive-negative-positive-negative macro lens with floating focus and integrated optical image stabilization. Its 16 elements span 15 distinct glass annotations, ranging from the fluorite-equivalent S-FPL55 (νd = 94.7) to the ultra-high-dispersion S-NPH3 (νd = 17.5), with four elements using nd > 1.95. A single double-sided aspherical element in the front group controls spherical aberration and coma across the entire focus range.
 
 The design's defining achievement is maintaining high optical performance across an enormous conjugate range — from infinity to 1:1 magnification — while simultaneously providing 5-stop image stabilization and a sealed, constant-length barrel. The floating focus architecture, with G2 and G3 traveling ±15–16 mm in opposite directions, allows independent optimization at both conjugates rather than accepting the progressive degradation inherent in simpler unit-focus designs.
 
 ---
 
-*Document prepared from US 2018/0246292 A1, Example 1 prescription data. Glass identifications are inferential based on nd/νd matching against published catalog values (OHARA, HOYA). L2b glass identification remains uncertain — nearest match is HOYA NBFD3 (Δnd = +0.0004, Δνd = +0.11). All focal lengths and conditional expression values independently computed via paraxial ray trace and verified against the patent's Table 28.*
+*Document prepared from US 2018/0246292 A1, Example 1 prescription data. Glass identifications are inferential based on nd/νd matching against published catalog values (OHARA, HOYA); code-only entries remain catalog-pending and fall back to Abbe dispersion. All focal lengths and conditional expression values independently computed via paraxial ray trace and verified against the patent's Table 28.*

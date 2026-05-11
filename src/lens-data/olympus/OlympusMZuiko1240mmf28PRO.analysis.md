@@ -46,7 +46,7 @@ The zoom ratio is 3.19×, and the total track increases by roughly 25 mm from wi
 nd = 1.92286, νd = 18.90. Glass: S-NPH2 (OHARA) — an ultra-high-index dense flint. f_standalone ≈ −245 mm (thin-lens, in air). As a standalone element L1 is weakly negative, contributing controlled divergence and strongly negative chromatic dispersion to the G1 doublet. Its very high refractive index makes it a candidate for one of the two "HR" (High Refractive) elements in the production designation, although the second HR element could be either L12 (nd = 1.946) or L13 (nd = 2.001); the official Olympus optical diagram, which would resolve this assignment, is not available for independent verification. The deep negative meniscus form (R1 = +55.06, R2 = +44.27) corrects lateral chromatic aberration at the wide end by introducing controlled short-wavelength overcorrection that the subsequent positive element compensates.
 
 **L2 — Positive Meniscus, convex to object.**
-nd = 1.69680, νd = 55.53. Glass: consistent with TAC4 (HOYA) or equivalent lanthanum crown (glass code 697/555). f_standalone ≈ +80.7 mm. L2 is the positive crown element of the G1 doublet, whose moderate Abbe number provides the chromatic counterbalance to L1's extreme dispersion. The cemented G1 doublet has a combined focal length of +115.67 mm — intentionally weak, so that G1 functions primarily as a field-angle converter and chromatic pre-corrector rather than a strong power contributor.
+nd = 1.69680, νd = 55.53. Glass: S-LAL14 (OHARA), a lanthanum crown with glass code 697555. f_standalone ≈ +80.7 mm. L2 is the positive crown element of the G1 doublet, whose moderate Abbe number provides the chromatic counterbalance to L1's extreme dispersion. The cemented G1 doublet has a combined focal length of +115.67 mm — intentionally weak, so that G1 functions primarily as a field-angle converter and chromatic pre-corrector rather than a strong power contributor.
 
 The patent's conditional expression (8) requires 15 < ν₁ₙ < 30 for the negative element in G1; L1's νd = 18.90 satisfies this comfortably, ensuring effective correction of chromatic aberration of magnification at the wide end.
 
@@ -55,7 +55,7 @@ The patent's conditional expression (8) requires 15 < ν₁ₙ < 30 for the nega
 G2 carries strong negative power (f₂ = −12.76 mm) and is the principal zoom-action group. It contains four elements in three air-separated sub-groups.
 
 **L3 — Negative Meniscus, convex to object (DSA — Dual Super Aspherical).**
-nd = 1.74320, νd = 49.29. Glass: lanthanum-class (glass code 743/493). f_standalone ≈ −18.9 mm. Both surfaces (S4, S5) are aspherical, making L3 the "DSA" element in the production designation. This is the most powerful single element in G2. At the wide end, the marginal ray height on L3 is large (the beam entering G2 is nearly parallel after the weak G1), and the dual-asphere configuration provides two independent correction handles — S4 primarily manages spherical aberration of the diverging bundle, while S5 controls coma and higher-order terms. The aspherical coefficients on S5 include a moderate conic constant (K = +0.2022), indicating a mildly oblate ellipsoidal base profile combined with fourth- through tenth-order polynomial corrections.
+nd = 1.74320, νd = 49.29. Glass: S-LAM60 (OHARA), a lanthanum glass with code 743493. f_standalone ≈ −18.9 mm. Both surfaces (S4, S5) are aspherical, making L3 the "DSA" element in the production designation. This is the most powerful single element in G2. At the wide end, the marginal ray height on L3 is large (the beam entering G2 is nearly parallel after the weak G1), and the dual-asphere configuration provides two independent correction handles — S4 primarily manages spherical aberration of the diverging bundle, while S5 controls coma and higher-order terms. The aspherical coefficients on S5 include a moderate conic constant (K = +0.2022), indicating a mildly oblate ellipsoidal base profile combined with fourth- through tenth-order polynomial corrections.
 
 **L4 + L5 — Cemented Doublet (ED achromat).**
 L4: nd = 1.49700, νd = 81.54 — biconcave negative. Glass: S-FPL51 (OHARA) or FCD1 (HOYA), an ED (extra-low dispersion) fluorophosphate crown. This is one of the two standalone "ED" elements in the production designation.
@@ -64,7 +64,7 @@ L5: nd = 1.75520, νd = 27.51 — biconvex positive. Glass: consistent with S-TI
 The cemented pair has a combined focal length of approximately +305 mm — very weakly positive relative to the system's 12–39 mm range (contributing roughly 4% of the system power at the wide end). Its primary purpose is chromatic rather than refractive: the ED crown and dense flint are matched to yield strong achromatization within G2, correcting the axial chromatic aberration that would otherwise accumulate in the telephoto configuration. The patent's conditional expression (9), which requires n₂ₚ > 1.70 for the positive element in G2, is satisfied by L5 (nd = 1.75520). This high-index positive element is essential for maintaining an acceptable Petzval sum (¶0155).
 
 **L6 — Negative Meniscus, convex to image.**
-nd = 1.77250, νd = 49.60. Glass: consistent with TAF1 (HOYA) or equivalent (glass code 773/496). f_standalone ≈ −49.0 mm. Positioned at the rear of G2, L6 acts as a field-flattening element that also controls the divergence angle of pencils exiting G2 before they reach the aperture stop. Its concave-toward-object form provides negative field curvature contribution that counteracts the strong positive Petzval contribution of G3.
+nd = 1.77250, νd = 49.60. Glass: S-LAH66 (OHARA), a high-index lanthanum glass with code 773496. f_standalone ≈ −49.0 mm. Positioned at the rear of G2, L6 acts as a field-flattening element that also controls the divergence angle of pencils exiting G2 before they reach the aperture stop. Its concave-toward-object form provides negative field curvature contribution that counteracts the strong positive Petzval contribution of G3.
 
 ### Aperture Stop (between G2 and G3)
 
@@ -83,7 +83,7 @@ As the object-side sub-unit of G3, L7 receives the divergent beam exiting G2 at 
 nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA) or FCD1 (HOYA) — the same ED fluorophosphate as L4. f_standalone ≈ +38.5 mm. This is the second standalone "ED" element in the production designation. Its high Abbe number satisfies the patent's conditional expression (1), which requires the largest νd among positive elements in G3 to exceed 72 (actual value: 81.54). The patent emphasizes (¶0093–0094) that this condition is essential for correcting axial chromatic aberration at the telephoto end, where G3 carries the bulk of the converging power.
 
 **L9 + L10 — Cemented Doublet.**
-L9: nd = 1.80518, νd = 25.42 — negative meniscus, convex to object. Glass: consistent with TAFD30 (HOYA) or equivalent dense flint (glass code 805/254). f_standalone ≈ −31.0 mm.
+L9: nd = 1.80518, νd = 25.42 — negative meniscus, convex to object. Glass: S-TIH6 (OHARA) / SF6 (Schott), a dense flint with glass code 805254. f_standalone ≈ −31.0 mm.
 L10: nd = 1.49700, νd = 81.54 — biconvex positive. Glass: S-FPL51 (OHARA) or FCD1 (HOYA) — ED glass, same as L4 and L8. The image-side surface of L10 (S18) is aspherical, making this the "EDA" (ED Aspherical) element in the production designation. f_standalone ≈ +21.2 mm; f_cemented (L9+L10) ≈ +66.84 mm.
 
 The L9–L10 pair is a classic ED achromatic doublet placed on the image side of G3. The aspherical surface on L10's rear face (K = −0.7208, with fourth- through tenth-order polynomial terms) primarily controls coma in the image-side sub-unit. The patent explains (¶0144) that by the time the beam reaches the image-side sub-unit, axial and off-axis pencils are spatially separated, making this location effective for independent coma correction via aspherical departure.
@@ -93,10 +93,10 @@ The G3 sub-unit analysis satisfies all three related conditional expressions: D�
 ### G4 — Focus Unit (L11 + L12, cemented doublet)
 
 **L11 — Negative Meniscus, convex to object (aspherical front surface).**
-nd = 1.80610, νd = 40.88. Glass: LAH-class, glass code 806/409 — likely a precision-moldable lanthanum flint (L-prefix or M-prefix). f_standalone ≈ −16.3 mm (negative). The object-side surface (S19) is aspherical with a large conic constant K = +9.034 (strongly oblate ellipsoidal base), which provides strong negative fourth-order spherical correction. This aspheric is critical for maintaining focus-dependent aberration stability.
+nd = 1.80610, νd = 40.88. Glass: S-LAH53 (OHARA), a high-index lanthanum glass with code 806409. f_standalone ≈ −16.3 mm (negative). The object-side surface (S19) is aspherical with a large conic constant K = +9.034 (strongly oblate ellipsoidal base), which provides strong negative fourth-order spherical correction. This aspheric is critical for maintaining focus-dependent aberration stability.
 
 **L12 — Positive Meniscus, convex to object.**
-nd = 1.94595, νd = 17.98. Glass: extreme dense flint (glass code 946/180), consistent with TAFD45 (HOYA) or equivalent. f_standalone ≈ +53.9 mm (individually positive, serving as the achromatizing dense flint partner to L11 within the negative cemented doublet). Although L12 is individually positive, its extreme dispersion (νd = 17.98 — the lowest Abbe number in the design) provides the chromatic counterbalance to L11's moderate-dispersion glass (νd = 40.88). Both elements are in the flint family (νd < 50), but the large Abbe-number differential between them (Δνd ≈ 23) produces effective achromatization within the cemented pair. The cemented G4 doublet has a combined focal length of −23.87 mm.
+nd = 1.94595, νd = 17.98. Glass: 946180, an extreme high-dispersion dense flint with no confirmed catalog Sellmeier entry in the current resolver. f_standalone ≈ +53.9 mm (individually positive, serving as the achromatizing dense flint partner to L11 within the negative cemented doublet). Although L12 is individually positive, its extreme dispersion (νd = 17.98 — the lowest Abbe number in the design) provides the chromatic counterbalance to L11's moderate-dispersion glass (νd = 40.88). Both elements are in the flint family (νd < 50), but the large Abbe-number differential between them (Δνd ≈ 23) produces effective achromatization within the cemented pair. The cemented G4 doublet has a combined focal length of −23.87 mm.
 
 G4 is the **focus group**. The patent states (¶0202) that focusing from infinity to the close-focus distance (0.25 m object-to-image) is achieved by moving G4 toward the image side. The focus travel amounts at each zoom position are:
 
@@ -113,7 +113,7 @@ The conditional expression (4) requires 1.0 < |f₄|/f_w < 5.0; the actual value
 ### G5 — Stationary Rear Unit (L13 + L14, cemented doublet)
 
 **L13 — Negative Meniscus, convex to object.**
-nd = 2.00069, νd = 25.46. Glass: ultra-high-index dense flint (glass code 2001/255). f_standalone ≈ −92.2 mm. With a refractive index exceeding 2.0 — among the highest used in any modern photographic lens — L13 is almost certainly one of the two "HR" (High Refractive) elements in the production designation. The most likely HR pairing is L13 with either L1 (nd = 1.923) or L12 (nd = 1.946); without the official Olympus optical diagram, the exact assignment cannot be confirmed.
+nd = 2.00069, νd = 25.46. Glass: TAFD40 (HOYA), an ultra-high-index dense flint with glass code 001255. f_standalone ≈ −92.2 mm. With a refractive index exceeding 2.0 — among the highest used in any modern photographic lens — L13 is almost certainly one of the two "HR" (High Refractive) elements in the production designation. The most likely HR pairing is L13 with either L1 (nd = 1.923) or L12 (nd = 1.946); without the official Olympus optical diagram, the exact assignment cannot be confirmed.
 
 **L14 — Biconvex Positive.**
 nd = 1.58313, νd = 59.38. Glass: L-BAL42 (OHARA) — the same barium crown used in L7. f_standalone ≈ +23.9 mm. The cemented G5 doublet has a combined focal length of +33.39 mm.
@@ -127,18 +127,18 @@ The design employs a distinctive glass palette spanning an unusually wide range 
 | Element | nd | νd | Glass / Class | Role |
 |---|---|---|---|---|
 | L1 | 1.92286 | 18.90 | S-NPH2 (OHARA) | HR candidate — chromatic pre-corrector |
-| L2 | 1.69680 | 55.53 | TAC4 (HOYA) class (697/555) | Crown partner for G1 achromat |
-| L3 | 1.74320 | 49.29 | Lanthanum class (743/493) | DSA substrate (moldable) |
+| L2 | 1.69680 | 55.53 | S-LAL14 (OHARA) | Crown partner for G1 achromat |
+| L3 | 1.74320 | 49.29 | S-LAM60 (OHARA) | DSA substrate |
 | L4 | 1.49700 | 81.54 | S-FPL51 (OHARA) / FCD1 (HOYA) | ED — G2 achromat |
 | L5 | 1.75520 | 27.51 | Dense flint, TIH4 class (755/275) | Flint partner for L4 |
-| L6 | 1.77250 | 49.60 | TAF1 (HOYA) class (773/496) | Field-flattening meniscus |
+| L6 | 1.77250 | 49.60 | S-LAH66 (OHARA) | Field-flattening meniscus |
 | L7 | 1.58313 | 59.38 | L-BAL42 (OHARA) | HD (inferred) — PGM asphere substrate |
 | L8 | 1.49700 | 81.54 | S-FPL51 (OHARA) / FCD1 (HOYA) | ED — G3 chromatic corrector |
-| L9 | 1.80518 | 25.42 | TAFD30 (HOYA) class (805/254) | Dense flint for L9+L10 achromat |
+| L9 | 1.80518 | 25.42 | S-TIH6 (OHARA) / SF6 (Schott) | Dense flint for L9+L10 achromat |
 | L10 | 1.49700 | 81.54 | S-FPL51 (OHARA) / FCD1 (HOYA) | EDA — ED + aspherical |
-| L11 | 1.80610 | 40.88 | LAH class (806/409), moldable | Aspherical focus element |
-| L12 | 1.94595 | 17.98 | Extreme dense flint (946/180) | HR candidate; flint in G4 achromat |
-| L13 | 2.00069 | 25.46 | Ultra-high-index flint (2001/255) | HR candidate — Petzval corrector in G5 |
+| L11 | 1.80610 | 40.88 | S-LAH53 (OHARA) | Aspherical focus element |
+| L12 | 1.94595 | 17.98 | 946180 dense flint, unmatched | HR candidate; flint in G4 achromat |
+| L13 | 2.00069 | 25.46 | TAFD40 (HOYA) | HR candidate — Petzval corrector in G5 |
 | L14 | 1.58313 | 59.38 | L-BAL42 (OHARA) | Crown partner for G5 doublet |
 
 Three distinct glass types dominate the design: the ED fluorophosphate (nd = 1.497, νd = 81.54) appears three times (L4, L8, L10), and the PGM barium crown L-BAL42 (nd = 1.583, νd = 59.38) appears twice (L7, L14). This consolidation reduces manufacturing complexity and cost. The three strongest HR candidates — L1 (nd = 1.923), L12 (nd = 1.946), and L13 (nd = 2.001) — account for the production lens's "2 HR" designation; the most probable pairing is L1 + L13 (bracketing the system at front and rear) or L12 + L13 (both in the rear half), but the official assignment has not been independently confirmed.
@@ -289,5 +289,5 @@ The overall aberration signature demonstrates the effectiveness of the symmetric
 
 1. US 2014/0139720 A1, "Zoom Lens and Image Pickup Apparatus Equipped with Same," Ogata et al., published May 22, 2014. Example 5 (¶0259).
 2. OM System / Olympus official product specifications for the M.Zuiko Digital ED 12–40 mm f/2.8 PRO and PRO II.
-3. OHARA optical glass catalog (S-NPH2, S-FPL51, L-BAL42 designations).
-4. HOYA optical glass catalog (TAC4, TAF1, FCD1, TAFD30 designations).
+3. OHARA optical glass catalog (S-NPH2, S-LAL14, S-LAM60, S-FPL51, S-LAH66, L-BAL42/S-BAL42, S-TIH6, S-LAH53 designations).
+4. HOYA optical glass catalog (FCD1, TAFD40 designations).

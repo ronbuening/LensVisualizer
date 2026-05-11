@@ -94,7 +94,7 @@ S-NPH1 is a high-index, very high-dispersion glass (an "extra-dense flint" in cl
 Cemented directly to G1n, this lanthanum-crown positive meniscus forms an achromatic pair with the negative element. The Abbe number difference (Δνd ≈ 27 between G2p and G1n) provides the dispersion contrast needed to control axial chromatic aberration at the telephoto end. The cemented interface eliminates one air-glass reflection, improving transmittance through the front group.
 
 **Element 3 — G3p: Positive Meniscus (S4–S5)**
-- Glass: OHARA S-LAL14 (nd = 1.72916, νd = 54.68)
+- Glass: OHARA S-LAL18 (nd = 1.72916, νd = 54.68)
 - Radii: R₁ = +59.139, R₂ = +166.984
 - Center thickness: 7.05 mm
 - Thin-lens focal length: +125.6 mm
@@ -118,46 +118,46 @@ The leading element of L2, carrying strong negative power. Both surfaces are con
 **Elements 5–6 — Cemented Doublet (S8–S10)**
 - Element 5: OHARA S-FPL51 (nd = 1.49700, νd = 81.54) — **UD glass, 1st of 3**
   - Biconcave, fl = −36.3 mm
-- Element 6: OHARA S-NPH53 (nd = 1.85478, νd = 24.80)
+- Element 6: OHARA S-NBH56 (nd = 1.85478, νd = 24.80)
   - Positive meniscus, fl = +45.5 mm
 
-This is the first of the three UD-glass doublets in the design. The S-FPL51 element provides anomalous partial dispersion correction: its position on the glass map (below the "normal line") means it under-corrects secondary spectrum relative to normal glasses, which can be exploited in combination with the high-dispersion S-NPH53 to achieve superior chromatic correction across the zoom range. The doublet as a whole contributes net negative power to L2 while controlling lateral color.
+This is the first of the three UD-glass doublets in the design. The S-FPL51 element provides anomalous partial dispersion correction: its position on the glass map (below the "normal line") means it under-corrects secondary spectrum relative to normal glasses, which can be exploited in combination with the high-dispersion S-NBH56 to achieve superior chromatic correction across the zoom range. The doublet as a whole contributes net negative power to L2 while controlling lateral color.
 
 **Element 7 — Biconcave Negative (S11–S12)**
-- Glass: OHARA S-LAL14 (nd = 1.72916, νd = 54.68)
+- Glass: OHARA S-LAL18 (nd = 1.72916, νd = 54.68)
 - Radii: R₁ = −48.039, R₂ = +425.782
 - Center thickness: 1.00 mm
 - Thin-lens focal length: −59.2 mm
 
-A weakly curved biconcave element that adds negative power while the nearly flat rear surface (R₂ = 425.8 mm) minimizes higher-order aberrations. The same S-LAL14 glass used in Element 3 (G3p), reducing the number of distinct glass types that must be stocked in production.
+A weakly curved biconcave element that adds negative power while the nearly flat rear surface (R₂ = 425.8 mm) minimizes higher-order aberrations. The same S-LAL18 glass used in Element 3 (G3p), reducing the number of distinct glass types that must be stocked in production.
 
 **Elements 8–9 — Cemented Doublet (S13–S15)**
-- Element 8: OHARA S-TIM25 (nd = 1.59270, νd = 35.29)
+- Element 8: OHARA S-FTM16 (nd = 1.59270, νd = 35.31)
   - Biconvex, fl = +32.8 mm
 - Element 9: OHARA S-LAH55V (nd = 1.83481, νd = 42.72)
   - Negative meniscus, fl = −44.5 mm
 
-The rear doublet of L2, providing additional chromatic correction and field flattening. The positive S-TIM25 element paired with the negative S-LAH55V controls the Petzval sum contribution of L2, preventing excessive field curvature. The net power of this doublet is weakly negative, contributing to L2's overall diverging character without adding excessive chromatic aberration.
+The rear doublet of L2, providing additional chromatic correction and field flattening. The positive S-FTM16 element paired with the negative S-LAH55V controls the Petzval sum contribution of L2, preventing excessive field curvature. The net power of this doublet is weakly negative, contributing to L2's overall diverging character without adding excessive chromatic aberration.
 
 ### Unit 3: Aperture Stop and Relay Group (f = +35.84 mm)
 
 The aperture stop (surface 16) sits at the front of L3, positioned at the point where the chief ray crosses the optical axis. This placement minimizes the diameter of L3's elements while ensuring symmetric aberration correction. L3 provides strong positive power to relay the image from the variator to the rear groups.
 
 **Element 10 — Biconvex Positive (S17–S18)**
-- Glass: OHARA S-LAH59 (nd = 1.76385, νd = 48.51)
+- Glass: 764485 patent-only lanthanum crown (nd = 1.76385, νd = 48.5)
 - Radii: R₁ = +78.059, R₂ = −59.447
 - Center thickness: 4.31 mm
 - Thin-lens focal length: +44.2 mm
 
-Immediately behind the stop, this biconvex element provides strong converging power. The high-index S-LAH59 glass allows moderate curvatures while maintaining a compact element. Its position directly after the stop means axial rays are near-centered on this element, making it effective for controlling spherical aberration.
+Immediately behind the stop, this biconvex element provides strong converging power. The patent nd/vd pair does not currently have an exact project catalog match, so the data file keeps a code-based label that preserves the patent glass coordinates. Its position directly after the stop means axial rays are near-centered on this element, making it effective for controlling spherical aberration.
 
 **Elements 11–12 — Cemented Doublet (S19–S21)**
 - Element 11: OHARA S-FPL51 (nd = 1.49700, νd = 81.54) — **UD glass, 2nd of 3**
   - Biconvex, fl = +36.9 mm
-- Element 12: OHARA S-NPH2 (nd = 2.00069, νd = 25.46)
+- Element 12: HOYA TAFD40 (nd = 2.00069, νd = 25.46)
   - Negative meniscus, fl = −44.2 mm
 
-This is arguably the most optically significant doublet in the lens. The S-FPL51 provides the same anomalous partial dispersion benefits as in L2, but here it is paired with S-NPH2 — an extraordinary glass with a refractive index exceeding 2.0. S-NPH2 is one of the highest-index optical glasses commercially available, and its use here serves two purposes. First, the extreme index difference between the two elements (Δnd = 0.504) produces strong chromatic correction at the cemented interface despite moderate curvatures. Second, the high index of S-NPH2 contributes a strong negative Petzval contribution (since the Petzval sum contribution of a surface is proportional to φ/n), helping to flatten the field — a critical requirement for full-frame digital sensors. The patent text (§0037) explicitly discusses how the high-index rear-group positive lens corrects both lateral chromatic aberration and Petzval curvature.
+This is arguably the most optically significant doublet in the lens. The S-FPL51 provides the same anomalous partial dispersion benefits as in L2, but here it is paired with TAFD40 — an extraordinary glass with a refractive index exceeding 2.0. TAFD40 is one of the highest-index optical glasses commercially available, and its use here serves two purposes. First, the extreme index difference between the two elements (Δnd = 0.504) produces strong chromatic correction at the cemented interface despite moderate curvatures. Second, the high index of TAFD40 contributes a strong negative Petzval contribution (since the Petzval sum contribution of a surface is proportional to φ/n), helping to flatten the field — a critical requirement for full-frame digital sensors. The patent text (§0037) explicitly discusses how the high-index rear-group positive lens corrects both lateral chromatic aberration and Petzval curvature.
 
 ### Unit 4: Image Stabilization Group (f = −69.07 mm)
 
@@ -188,34 +188,34 @@ This is the positive lens Gfp referenced in conditional expressions (13) and (14
 Gfp is the "chromatic anchor" of the rear group. Positioned adjacent to and on the image side of the IS subunit (§0088), its high-Abbe-number glass corrects axial chromatic aberration at the telephoto end while simultaneously correcting lateral chromatic aberration at the wide-angle end (§0053). The thick biconvex shape (8.28 mm center thickness with a clear aperture of ~27.4 mm) indicates this element handles substantial beam convergence.
 
 **Elements 16–17 — Cemented Doublet (S27–S29)**
-- Element 16: OHARA S-NBH55 (nd = 1.73800, νd = 32.26)
+- Element 16: 738323 patent-only niobium dense flint (nd = 1.73800, νd = 32.3)
   - Negative meniscus, fl = −115.3 mm
 - Element 17: OHARA S-FPM3 (nd = 1.53775, νd = 74.70)
   - Biconvex, fl = +36.7 mm
 
-This doublet provides additional chromatic correction and contributes net positive power. The S-NBH55 negative element has moderately high dispersion, while the S-FPM3 positive element is a phosphate-crown glass with low dispersion (νd = 74.7). The combination fine-tunes the secondary spectrum correction established by the UD doublets elsewhere in the system. Note that the junction surface (R = 26.899) is strongly curved, indicating significant chromatic work at this interface.
+This doublet provides additional chromatic correction and contributes net positive power. The negative element has moderately high dispersion, while the S-FPM3 positive element is a phosphate-crown glass with low dispersion (νd = 74.7). The combination fine-tunes the secondary spectrum correction established by the UD doublets elsewhere in the system. Note that the junction surface (R = 26.899) is strongly curved, indicating significant chromatic work at this interface.
 
 **Element 18 — Double-Aspherical Negative (S30*–S31*)**
-- Glass: OHARA S-LAH65V (nd = 1.85400, νd = 40.38) — **Aspherical, 2nd of 3**
+- Glass: 854404 patent-only moldable high-index lanthanum glass (nd = 1.85400, νd = 40.4) — **Aspherical, 2nd of 3**
 - Radii: R₁ = −602.944, R₂ = +131.941 (both aspherical)
 - Center thickness: 1.70 mm
 - Thin-lens focal length: −126.8 mm
 
 This is the most aggressively aspherical element in the lens. Surface S30 has an aspherical departure of −0.752 mm at the semi-diameter — nearly six times the spherical sag of the base curve (−0.133 mm). This means the aspherical correction completely dominates the surface shape at the margin: the element functions more like a Schmidt-plate-style corrector than a conventional lens at the rim. Surface S31 has a more moderate departure of −0.030 mm.
 
-S-LAH65V is a high-index lanthanum glass that Canon has qualified for precision glass molding. The double-asphere configuration allows this single element to correct multiple higher-order aberrations simultaneously — primarily field-dependent coma and astigmatism that arise from the strong convergence in L5. Its weak net negative power (f = −126.8 mm) means it acts more as a corrector plate than a power element.
+The patent nd/vd pair identifies a high-index lanthanum-class glass qualified for precision glass molding, but it does not currently correspond to an exact project catalog entry. The double-asphere configuration allows this single element to correct multiple higher-order aberrations simultaneously — primarily field-dependent coma and astigmatism that arise from the strong convergence in L5. Its weak net negative power (f = −126.8 mm) means it acts more as a corrector plate than a power element.
 
 ### Unit 6: Focus Group (f = −49.77 mm)
 
 L6 is the autofocus group, driven by Canon's Nano USM motor. Its motion toward the image side during close focusing is indicated by the broken-line arrow in FIG. 9 of the patent.
 
 **Element 19 — Negative Meniscus (S32–S33)**
-- Glass: OHARA S-LAH51 (nd = 1.80400, νd = 46.57)
+- Glass: OHARA S-LAH65 (nd = 1.80400, νd = 46.57)
 - Radii: R₁ = +60.209, R₂ = +23.878 (concave toward image)
 - Center thickness: 0.90 mm
 - Thin-lens focal length: −49.2 mm
 
-This is a single thin negative meniscus — the lightest possible focusing element. At only 0.90 mm center thickness with a clear aperture of ~25.5 mm, this element has minimal mass, enabling the Nano USM motor to achieve the rapid, silent focus transitions Canon specifies. The high-index S-LAH51 glass provides the required negative power with moderate curvatures, keeping aberration sensitivity during focus travel manageable.
+This is a single thin negative meniscus — the lightest possible focusing element. At only 0.90 mm center thickness with a clear aperture of ~25.5 mm, this element has minimal mass, enabling the Nano USM motor to achieve the rapid, silent focus transitions Canon specifies. The high-index S-LAH65 glass provides the required negative power with moderate curvatures, keeping aberration sensitivity during focus travel manageable.
 
 The variable gaps on either side of L6 (d31 and d33) change only slightly across the zoom range (Δd31 = −0.83 mm, Δd33 = +0.83 mm), meaning the focus group's position relative to L5 and L7 is nearly constant regardless of zoom setting. This decoupling of zoom and focus motion simplifies the cam mechanism and ensures consistent AF performance across the zoom range.
 
@@ -236,16 +236,16 @@ The third and final glass-moulded aspherical element. Surface S34 has the larges
 The diverging beam from L6 passes through this element at relatively large diameters (clear aperture up to ~33 mm), which is why such strong aspherical correction is needed here. The element's position near the image plane means it sees a strongly field-dependent ray geometry, making it effective for correcting field-varying aberrations like distortion and lateral color.
 
 **Element 21 — Grp: Biconvex Positive (S36–S37)**
-- Glass: HOYA FDS30 or equivalent (nd = 2.00100, νd = 29.13)
+- Glass: HOYA TAFD55 / OHARA S-LAH99 equivalent (nd = 2.00100, νd ≈ 29.1)
 - Radii: R₁ = +317.277, R₂ = −114.700
 - Center thickness: 3.23 mm
 - Thin-lens focal length: +84.2 mm
 
 This is the positive lens Grp — the element whose properties are constrained by the patent's core conditional expressions (1)–(3). Its refractive index of 2.00100 satisfies expression (2): 1.70 < ndrp < 2.20. This places it among the very highest-index optical glasses used in any production photographic lens.
 
-The nd = 2.00100 value does not match any current OHARA catalog glass exactly (the closest is S-NPH2 at nd = 2.00069, but with νd = 25.46 rather than 29.1). It matches HOYA FDS30 (nd = 2.00100, νd = 29.13) to within rounding precision, and also matches CDGM H-ZLaF92 (nd = 2.00100, νd = 29.13). Canon may source this glass from HOYA, CDGM, or produce it under a proprietary designation.
+The nd = 2.00100 value matches HOYA TAFD55 and OHARA S-LAH99 to patent precision. Canon may source this glass from a catalog vendor or use a proprietary equivalent, but the current data file points at catalog entries that round-trip through the dispersion resolver.
 
-The ultra-high refractive index serves the same dual purpose as S-NPH2 in Element 12: chromatic correction and Petzval flattening. The patent (§0037) explains that the high-index Grp, positioned in the image-side lens unit of the rear group, corrects both wide-angle and telephoto lateral chromatic aberration. The physical mechanism is that the varying back focus across the zoom range changes the marginal ray height at Grp: at the wide angle end (short BF), the marginal ray is low, reducing Grp's chromatic contribution; at the telephoto end (long BF), the marginal ray is higher, and Grp's dispersion generates the lateral color correction needed to cancel the first unit's contribution.
+The ultra-high refractive index serves the same dual purpose as TAFD40 in Element 12: chromatic correction and Petzval flattening. The patent (§0037) explains that the high-index Grp, positioned in the image-side lens unit of the rear group, corrects both wide-angle and telephoto lateral chromatic aberration. The physical mechanism is that the varying back focus across the zoom range changes the marginal ray height at Grp: at the wide angle end (short BF), the marginal ray is low, reducing Grp's chromatic contribution; at the telephoto end (long BF), the marginal ray is higher, and Grp's dispersion generates the lateral color correction needed to cancel the first unit's contribution.
 
 The shape factor (R1 + R2)/(R1 − R2) = (317.277 + (−114.700))/(317.277 − (−114.700)) = 202.577/431.977 = 0.47, satisfying expression (12): 0.00 < shape < 4.00. This positive shape factor indicates a biconvex element with the stronger curvature on the image side — a configuration that minimizes coma contribution from this field-flattening element.
 
@@ -355,35 +355,35 @@ Element 20 carries the second-strongest aspherical departures in the lens. Surfa
 
 ## Glass Selection Strategy
 
-The lens uses 17 distinct glass types across 21 elements (with three types reused: S-LAL14 in Elements 3 and 7, S-FPL51 in Elements 5, 11, and 15, and S-BAL42 in Elements 13 and 20):
+The lens uses 17 distinct glass types across 21 elements (with three types reused: S-LAL18 in Elements 3 and 7, S-FPL51 in Elements 5, 11, and 15, and S-BAL42 in Elements 13 and 20):
 
 | Glass | Catalog | nd | νd | Elements | Count | Classification |
 |-------|---------|----|----|----------|-------|----------------|
 | S-NPH1 | OHARA | 1.80810 | 22.76 | 1 | 1 | Extra-dense flint |
 | S-LAH66 | OHARA | 1.77250 | 49.62 | 2 | 1 | Lanthanum crown |
-| S-LAL14 | OHARA | 1.72916 | 54.68 | 3, 7 | 2 | Lanthanum crown |
+| S-LAL18 | OHARA | 1.72916 | 54.68 | 3, 7 | 2 | Lanthanum crown |
 | S-LAH58 | OHARA | 1.88300 | 40.76 | 4 | 1 | Dense lanthanum crown |
 | S-FPL51 | OHARA | 1.49700 | 81.54 | 5, 11, 15 | 3 | UD fluorophosphate crown |
-| S-NPH53 | OHARA | 1.85478 | 24.80 | 6 | 1 | Extra-dense flint |
-| S-TIM25 | OHARA | 1.59270 | 35.29 | 8 | 1 | Titanium flint |
+| S-NBH56 | OHARA | 1.85478 | 24.80 | 6 | 1 | Niobophosphate dense flint |
+| S-FTM16 | OHARA | 1.59270 | 35.31 | 8 | 1 | Fluorotitanium flint |
 | S-LAH55V | OHARA | 1.83481 | 42.72 | 9 | 1 | Dense lanthanum crown |
-| S-LAH59 | OHARA | 1.76385 | 48.51 | 10 | 1 | Lanthanum crown |
-| S-NPH2 | OHARA | 2.00069 | 25.46 | 12 | 1 | Ultra-high-index dense flint |
+| 764485 | Patent-only | 1.76385 | 48.5 | 10 | 1 | Lanthanum crown |
+| TAFD40 | HOYA | 2.00069 | 25.46 | 12 | 1 | Ultra-high-index dense flint |
 | S-BAL42 | OHARA | 1.58313 | 59.38 | 13, 20 | 2 | Barium crown (PGM) |
 | S-TIH14 | OHARA | 1.76182 | 26.52 | 14 | 1 | Titanium dense flint |
-| S-NBH55 | OHARA | 1.73800 | 32.26 | 16 | 1 | Niobium dense flint |
+| 738323 | Patent-only | 1.73800 | 32.3 | 16 | 1 | Niobium dense flint |
 | S-FPM3 | OHARA | 1.53775 | 74.70 | 17 | 1 | Fluorophosphate crown |
-| S-LAH65V | OHARA | 1.85400 | 40.38 | 18 | 1 | Dense lanthanum crown (PGM) |
-| S-LAH51 | OHARA | 1.80400 | 46.57 | 19 | 1 | Dense lanthanum crown |
-| FDS30 | HOYA | 2.00100 | 29.13 | 21 | 1 | Ultra-high-index dense flint |
+| 854404 | Patent-only | 1.85400 | 40.4 | 18 | 1 | Moldable high-index lanthanum glass (PGM) |
+| S-LAH65 | OHARA | 1.80400 | 46.57 | 19 | 1 | Dense lanthanum crown |
+| TAFD55 / S-LAH99 | HOYA / OHARA | 2.00100 | 29.13–29.14 | 21 | 1 | Ultra-high-index dense flint |
 
 Several observations emerge from this glass map:
 
 **UD glass strategy.** All three UD elements use S-FPL51 (or Canon's equivalent), placed strategically in L2, L3, and L5. Each UD element is cemented with a high-dispersion partner to form an achromatic correction pair. The L2 doublet (Elements 5–6) corrects the variator's chromatic contribution; the L3 doublet (Elements 11–12) handles the relay group; and the L5 element (15, Gfp) provides the "chromatic anchor" for the rear group. The consistent use of a single UD glass type across all three locations simplifies procurement and quality control.
 
-**Ultra-high-index glass.** Two elements use glass with nd ≥ 2.0: Element 12 (S-NPH2, nd = 2.00069) and Element 21 (FDS30, nd = 2.00100). These are among the densest commercially available optical glasses. Their primary roles are Petzval field flattening and lateral chromatic aberration correction. The use of two different ultra-high-index glasses (from different manufacturers, with different Abbe numbers) suggests each was chosen for its specific position on the partial dispersion diagram rather than being interchangeable.
+**Ultra-high-index glass.** Two elements use glass with nd ≥ 2.0: Element 12 (TAFD40, nd = 2.00069) and Element 21 (TAFD55 / S-LAH99 class, nd = 2.00100). These are among the densest commercially available optical glasses. Their primary roles are Petzval field flattening and lateral chromatic aberration correction. The use of two different ultra-high-index glasses, with different Abbe numbers, suggests each was chosen for its specific position on the partial dispersion diagram rather than being interchangeable.
 
-**PGM glass selection.** The three aspherical elements use two moldable glass types: S-BAL42 (Elements 13 and 20) and S-LAH65V (Element 18). S-BAL42 is a workhorse PGM glass with moderate index and low transformation temperature (Tg ≈ 506°C), making it one of the most reliably moldable glasses available. S-LAH65V (Tg ≈ 593°C) is a higher-index moldable lanthanum glass — more difficult to mold but necessary for Element 18's aberration correction requirements. Canon's description of these as "glass moulded aspherical" elements on the Canon Camera Museum confirms the PGM manufacturing process.
+**PGM glass selection.** The three aspherical elements use two moldable glass families: S-BAL42 (Elements 13 and 20) and the patent-only 854404 lanthanum-class glass (Element 18). S-BAL42 is a workhorse PGM glass with moderate index and low transformation temperature (Tg ≈ 506°C), making it one of the most reliably moldable glasses available. The higher-index Element 18 glass is necessary for its double-asphere corrector role, even though the exact catalog identity is not currently resolved. Canon's description of these as "glass moulded aspherical" elements on the Canon Camera Museum confirms the PGM manufacturing process.
 
 **Production coatings (beyond patent scope).** The production lens incorporates Canon's Air Sphere Coating (ASC) — a proprietary anti-reflective coating technology that uses a layer containing silica nanospheres to create an ultra-low-refractive-index film. Canon specifies ASC on the RF 24-70mm f/2.8L IS USM to reduce flare and ghosting, particularly from backlit light sources. ASC is a manufacturing and thin-film engineering feature that does not appear in the optical patent, which describes only the glass prescription. Fluorine coatings on the front and rear elements are also specified for the production lens to repel dust, moisture, and fingerprints.
 
@@ -391,7 +391,7 @@ Several observations emerge from this glass map:
 
 ## Focus Mechanism
 
-The focusing element is **Unit 6 (L6)**, consisting of a single negative meniscus (Element 19, S-LAH51 glass). During focusing from infinity to the closest distance, L6 moves toward the image side (§0087).
+The focusing element is **Unit 6 (L6)**, consisting of a single negative meniscus (Element 19, S-LAH65 glass). During focusing from infinity to the closest distance, L6 moves toward the image side (§0087).
 
 Key characteristics of the focus mechanism:
 
@@ -428,7 +428,7 @@ All 14 conditional expressions evaluated in Table 1 of the patent are satisfied 
 
 ## Verification Notes
 
-All numerical values in this document were independently verified by paraxial ray trace computation. The computed effective focal lengths at all three zoom positions match the patent's stated values exactly (24.72 / 44.86 / 67.89 mm). Total lens lengths match to within 0.02 mm (rounding). Element focal lengths were computed using the thin-lens approximation f = 1/[(n−1)(1/R₁ − 1/R₂)]; actual thick-lens focal lengths will differ slightly but the thin-lens values are sufficient for classifying element power and shape. Glass identifications are based on matching nd and νd values against the OHARA, HOYA, and CDGM catalogs; all matches are exact to ±0.05 in νd and ±0.00005 in nd, consistent with patent-precision rounding. The sole exception is Element 1 (G1n), where the patent lists nd = 1.80809 versus the OHARA S-NPH1 catalog value of 1.80810 — a discrepancy of 0.00001 that is below the measurement precision of standard glass metrology and has no optical significance.
+All numerical values in this document were independently verified by paraxial ray trace computation. The computed effective focal lengths at all three zoom positions match the patent's stated values exactly (24.72 / 44.86 / 67.89 mm). Total lens lengths match to within 0.02 mm (rounding). Element focal lengths were computed using the thin-lens approximation f = 1/[(n−1)(1/R₁ − 1/R₂)]; actual thick-lens focal lengths will differ slightly but the thin-lens values are sufficient for classifying element power and shape. Glass identifications are based on matching nd and νd values against the OHARA and HOYA catalogs where an exact resolver-backed entry exists. Elements 10, 16, and 18 retain code-based patent-only labels because the current project catalog has no exact entry for their nd/vd pairs. Element 1 (G1n) lists nd = 1.80809 versus the OHARA S-NPH1 catalog value of 1.80810 — a discrepancy of 0.00001 that is below the measurement precision of standard glass metrology and has no optical significance.
 
 One conditional expression value differs between thin-lens and patent computation: expression (14), ffp/fw, computes as 1.56 via the thin-lens approximation for Element 15 but is reported as 1.60 in the patent's Table 1. The discrepancy arises because Element 15 has substantial center thickness (8.28 mm), making thick-lens effects non-negligible. The conditional expression table in this document uses the patent's authoritative thick-lens value.
 
@@ -446,6 +446,8 @@ The accompanying lens data file (`CanonRF2470f28.data.ts`) encodes the full opti
 
 **Refractive index precision.** The patent lists nd = 1.80809 for Element 1 (G1n) in Example 5, while the OHARA catalog value for S-NPH1 is nd = 1.80810. Other examples in the same patent (Examples 1–4) use 1.80810 for the same glass designation. The difference of 0.00001 in nd is at the limit of patent rounding precision and has no optical significance. The data file uses the patent value (1.80809) as transcribed. Similarly, prettier formatting strips trailing zeros from numeric literals (e.g., 1.49700 → 1.497), which are numerically identical IEEE 754 values.
 
+**Glass annotation precision.** The patent gives nd/vd values rather than manufacturer glass names. Where the project catalog contains an exact or patent-precision match, the data file uses that catalog name. Where it does not, the data file uses an unbroken six-digit code derived from the patent nd/vd pair so a future catalog addition can resolve automatically without changing the prescription.
+
 **Semi-diameters.** The patent's "effective diameter" column (÷ 2) gives beam-footprint diameters at infinity focus in the wide-angle configuration, not physical element diameters. The data file uses those values as the starting point, then refines the middle and rear group clear apertures against Canon's construction diagram so the SVG outlines better match the proportional scale of the production optical block. The largest refinements are around the L3/L4/L5 groups, where the patent footprint values understate the visible glass height in the manufacturer cross-section. Element 4 (the leading negative meniscus of L2) keeps the patent front/rear sd shape; its ratio is physically expected because the steep meniscus shape causes significant beam divergence within the element.
 
 **Non-monotonic zoom gap.** The L3→L4 air gap (D21) exhibits non-monotonic zoom behavior: 2.26 mm (wide) → 2.23 mm (mid) → 2.54 mm (tele). This is handled by the piecewise-linear interpolation in the zoom renderer; the three patent zoom positions bracket the reversal point adequately.
@@ -459,4 +461,4 @@ The accompanying lens data file (`CanonRF2470f28.data.ts`) encodes the full opti
 - Canon Europe, "Specifications & Features — RF 24-70mm F2.8L IS USM," https://www.canon-europe.com/lenses/rf-24-70mm-f2-8l-usm-lens/specifications/
 - Canon Camera Museum, "RF24-70mm F2.8 L IS USM," https://global.canon/en/c-museum/product/rf485.html
 - OHARA Optical Glass Catalog, https://www.ohara-inc.co.jp/en/product/optical/list/
-- HOYA Optical Glass Catalog (for FDS30 identification)
+- HOYA Optical Glass Catalog (for TAFD40 and TAFD55 identification)
