@@ -130,7 +130,15 @@ export default function LensIndexPage() {
             Showing {filteredEntries.length} of {totalLenses} interactive optical cross-section diagrams built from
             patent data.
           </p>
-          <div style={{ display: "flex", gap: "0.375rem", flexShrink: 0, flexWrap: "wrap" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "0.375rem",
+              flexWrap: "wrap",
+              width: "100%",
+              justifyContent: "flex-start",
+            }}
+          >
             <button
               type="button"
               style={toggleButtonStyle(groupMode === "maker")}
