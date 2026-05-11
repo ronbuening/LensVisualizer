@@ -19,7 +19,18 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 299 mismatched surfaces across 204 unique groups.
+**Scope**: 319 mismatched surfaces across 215 unique groups.
+
+## stored (nd=1.43875, vd=95.00) [PgF=0.5299 (dPgF=0.0459)]  — 1 surface, current label resolves to S-FPL51
+
+Candidates:
+- **S-FPL53** (nd=1.43875, vd=94.95, Δnd=+0.0000, Δvd=-0.05, ΔPgF=+0.0003)
+- **S-FPL55** (nd=1.43875, vd=94.66, Δnd=-0.0000, Δvd=-0.34, ΔPgF=+0.0004)
+- **FCD100** (nd=1.43700, vd=95.10, Δnd=-0.0017, Δvd=+0.10, ΔPgF=+0.0101)
+- **CaF2** (nd=1.43385, vd=95.10, Δnd=-0.0049, Δvd=+0.10, ΔPgF=+0.0049)
+
+Surfaces:
+- [HASSELBLAD HC 4.5/300](../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) `5`: `S-FPL51 (OHARA)`
 
 ## stored (nd=1.51742, vd=52.40)  — 2 surfaces, current label resolves to S-NSL5
 
@@ -95,6 +106,15 @@ Surfaces:
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `13`: `S-BAL14 (OHARA)`
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `17`: `S-BAL14 (OHARA)`
 
+## stored (nd=1.55032, vd=75.50) [PgF=0.5443 (dPgF=0.0275)]  — 2 surfaces, current label resolves to FCD515
+
+Candidates:
+- **FCD705** (nd=1.55032, vd=75.50, Δnd=+0.0000, Δvd=+0.00, ΔPgF=+0.0002)
+
+Surfaces:
+- [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) `3`: `FCD515 (HOYA)`
+- [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) `13`: `FCD515 (HOYA)`
+
 ## stored (nd=1.55298, vd=55.10)  — 1 surface, current label resolves to S-TIL25
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -147,6 +167,23 @@ Candidates:
 Surfaces:
 - [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) `5`: `BaF-type (581-408; OHARA S-TIM25 family — close)`
 
+## stored (nd=1.58144, vd=40.70)  — 1 surface, current label resolves to S-TIM2
+
+Candidates:
+- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=+0.05)
+
+Surfaces:
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `6`: `S-TIM2 (OHARA)`
+
+## stored (nd=1.58144, vd=40.90)  — 2 surfaces, current label resolves to S-NBM51
+
+Candidates:
+- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.15)
+
+Surfaces:
+- [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) `35`: `S-NBM51 (OHARA)`
+- [SONY SONNAR T* FE 55mm F1.8 ZA](../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) `1`: `S-TIM2 (OHARA)`
+
 ## stored (nd=1.58144, vd=40.89)  — 2 surfaces, current label resolves to S-TIM2
 
 Candidates:
@@ -163,14 +200,6 @@ Candidates:
 
 Surfaces:
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `9`: `S-TIH14 (OHARA)`
-
-## stored (nd=1.58144, vd=40.90)  — 1 surface, current label resolves to S-TIM2
-
-Candidates:
-- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.15)
-
-Surfaces:
-- [SONY SONNAR T* FE 55mm F1.8 ZA](../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) `1`: `S-TIM2 (OHARA)`
 
 ## stored (nd=1.58267, vd=46.43)  — 1 surface, current label resolves to S-TIM22
 
@@ -441,6 +470,14 @@ Candidates:
 Surfaces:
 - [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) `8`: `S-NBM51 (OHARA)`
 
+## stored (nd=1.63980, vd=34.50)  — 1 surface, current label resolves to S-NBH52
+
+Candidates:
+- **S-TIM27** (nd=1.63980, vd=34.47, Δnd=-0.0000, Δvd=-0.03)
+
+Surfaces:
+- [HASSELBLAD HC 3.5/50](../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) `14`: `S-NBH52 (OHARA)`
+
 ## stored (nd=1.64769, vd=33.84)  — 3 surfaces, current label resolves to S-BSM81
 
 Candidates:
@@ -496,6 +533,15 @@ Candidates:
 
 Surfaces:
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) `6`: `S-TIL27 (OHARA)`
+
+## stored (nd=1.65412, vd=39.70)  — 1 surface, current label resolves to S-NBM51
+
+Candidates:
+- **N-KZFS5** (nd=1.65412, vd=39.70, Δnd=+0.0000, Δvd=+0.00)
+- **S-NBH5** (nd=1.65412, vd=39.68, Δnd=-0.0000, Δvd=-0.02)
+
+Surfaces:
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `4`: `S-NBM51 (OHARA)`
 
 ## stored (nd=1.65840, vd=50.85)  — 1 surface, current label resolves to S-BAH27
 
@@ -667,13 +713,14 @@ Surfaces:
 - [NIKON AF-S NIKKOR 85mm f/1.4G](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) `10`: `S-TIH18 (OHARA)`
 - [NIKON NIKKOR-S AUTO 50mm f/1.4](../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) `6`: `SF6 / PBM6 (dense flint)`
 
-## stored (nd=1.69895, vd=30.05)  — 2 surfaces, current label resolves to S-TIH11
+## stored (nd=1.69895, vd=30.05) [PgF=0.6019 (dPgF=0.0086)]  — 3 surfaces, current label resolves to TAFD37
 
 Candidates:
-- **E-FD15** (nd=1.69895, vd=30.05, Δnd=-0.0000, Δvd=+0.00)
-- **S-TIM35** (nd=1.69895, vd=30.13, Δnd=-0.0000, Δvd=+0.08)
+- **E-FD15** (nd=1.69895, vd=30.05, Δnd=-0.0000, Δvd=+0.00, ΔPgF=+0.0000)
+- **S-TIM35** (nd=1.69895, vd=30.13, Δnd=-0.0000, Δvd=+0.08, ΔPgF=+0.0015)
 
 Surfaces:
+- [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) `18`: `TAFD37 (HOYA)`
 - [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) `10`: `S-TIH11 (OHARA)`
 - [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) `5`: `S-TIM28 (OHARA)`
 
@@ -712,6 +759,15 @@ Candidates:
 Surfaces:
 - [SONY PLANAR T* FE 50mm F1.4 ZA](../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) `6`: `S-TIM27 (OHARA)`
 
+## stored (nd=1.71736, vd=29.50)  — 1 surface, current label resolves to S-TIH11
+
+Candidates:
+- **SF1** (nd=1.71736, vd=29.51, Δnd=-0.0000, Δvd=+0.01)
+- **S-TIH18** (nd=1.72151, vd=29.23, Δnd=+0.0041, Δvd=-0.27)
+
+Surfaces:
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `12`: `S-TIH11 (OHARA)`
+
 ## stored (nd=1.72000, vd=43.69)  — 1 surface, current label resolves to S-LAM51
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -744,6 +800,14 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `19`: `S-NBH55 (720347, OHARA S-NBH55)`
+
+## stored (nd=1.72342, vd=38.00)  — 1 surface, current label resolves to S-NBH5
+
+Candidates:
+- **S-BAH28** (nd=1.72342, vd=37.96, Δnd=-0.0000, Δvd=-0.04)
+
+Surfaces:
+- [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) `39`: `S-NBH5 (OHARA)`
 
 ## stored (nd=1.72825, vd=28.31)  — 1 surface, current label resolves to S-TIM35
 
@@ -833,6 +897,13 @@ Surfaces:
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `7`: `S-NBH52 (738323, OHARA S-NBH52)`
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) `16`: `S-NBH52 (738323, OHARA S-NBH52)`
 
+## stored (nd=1.74000, vd=28.30)  — 1 surface, current label resolves to S-TIH14
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `16`: `S-TIH14 (OHARA)`
+
 ## stored (nd=1.74000, vd=28.20) [PgF=0.6094 (dPgF=0.0130)]  — 1 surface, current label resolves to S-TIH4
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -870,13 +941,14 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 14-24mm f/2.8 S](../src/lens-data/nikon/NikonZ1424f28S.data.ts) `3`: `S-LAM51 (OHARA)`
 
-## stored (nd=1.74320, vd=49.30)  — 1 surface, current label resolves to S-LAM66
+## stored (nd=1.74320, vd=49.30)  — 2 surfaces, current label resolves to S-LAM66
 
 Candidates:
 - **S-LAM60** (nd=1.74320, vd=49.34, Δnd=-0.0000, Δvd=+0.04)
 
 Surfaces:
 - [CANON EF 100mm f/2.8L Macro IS USM](../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) `28`: `S-LAM66 (OHARA)`
+- [HASSELBLAD HC 4.5/300](../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) `13`: `S-LAL14 (OHARA)`
 
 ## stored (nd=1.74330, vd=49.30)  — 1 surface, current label resolves to S-LAL14
 
@@ -1106,6 +1178,15 @@ Candidates:
 Surfaces:
 - [MINOLTA MD ROKKOR 50mm f/1.4](../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) `10`: `S-NBH55 class (OHARA, near match Δnd = 0.001)`
 
+## stored (nd=1.78470, vd=26.30)  — 1 surface, current label resolves to S-NPH4
+
+Candidates:
+- **SF11** (nd=1.78472, vd=25.76, Δnd=+0.0000, Δvd=-0.54)
+- **S-TIH11** (nd=1.78472, vd=25.68, Δnd=+0.0000, Δvd=-0.62)
+
+Surfaces:
+- [HASSELBLAD HC 3.5/50](../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) `5`: `S-NPH4 (OHARA)`
+
 ## stored (nd=1.78470, vd=26.10) [PgF=0.6139 (dPgF=0.0140)]  — 3 surfaces, current label resolves to S-TIH14
 
 Candidates:
@@ -1216,6 +1297,31 @@ Candidates:
 Surfaces:
 - [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) `16`: `TAFD37 (Hoya) — tentative; S-LAH65 (Ohara): Δnd = +0.0002`
 
+## stored (nd=1.80518, vd=25.40)  — 4 surfaces, current label resolves to S-TIH53
+
+Candidates:
+- **S-TIH6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=+0.03)
+- **SF6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=+0.03)
+- **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0029, Δvd=-2.64)
+
+Surfaces:
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `8`: `S-TIH53 (OHARA)`
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `15`: `S-TIH53 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `6`: `S-TIH53 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `20`: `S-TIH53 (OHARA)`
+
+## stored (nd=1.80518, vd=25.50)  — 3 surfaces, current label resolves to S-TIH53
+
+Candidates:
+- **S-TIH6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=-0.07)
+- **SF6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=-0.07)
+- **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0029, Δvd=-2.74)
+
+Surfaces:
+- [HASSELBLAD HC 4.5/300](../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) `9`: `S-TIH53 (OHARA)`
+- [HASSELBLAD HC 4.5/300](../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) `15`: `S-TIH53 (OHARA)`
+- [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) `12`: `S-TIH14 (OHARA)`
+
 ## stored (nd=1.80518, vd=25.45)  — 1 surface, current label resolves to S-TIH14
 
 Candidates:
@@ -1236,33 +1342,13 @@ Candidates:
 Surfaces:
 - [OLYMPUS M.ZUIKO DIGITAL ED 12–40 mm f/2.8 PRO](../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) `16`: `TAFD30 class (HOYA) — dense flint (805/254)`
 
-## stored (nd=1.80518, vd=25.40)  — 2 surfaces, current label resolves to S-TIH53
-
-Candidates:
-- **S-TIH6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=+0.03)
-- **SF6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=+0.03)
-- **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0029, Δvd=-2.64)
-
-Surfaces:
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `6`: `S-TIH53 (OHARA)`
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `20`: `S-TIH53 (OHARA)`
-
-## stored (nd=1.80518, vd=25.50)  — 1 surface, current label resolves to S-TIH14
-
-Candidates:
-- **S-TIH6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=-0.07)
-- **SF6** (nd=1.80518, vd=25.43, Δnd=+0.0000, Δvd=-0.07)
-- **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0029, Δvd=-2.74)
-
-Surfaces:
-- [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) `12`: `S-TIH14 (OHARA)`
-
-## stored (nd=1.80610, vd=33.30)  — 3 surfaces, current label resolves to S-NBH56
+## stored (nd=1.80610, vd=33.30)  — 4 surfaces, current label resolves to S-NBH56
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
 
 Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `27`: `S-NBH56 (OHARA)`
+- [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) `25`: `S-TIM28 (OHARA)`
 - [NIKON AF-S NIKKOR 85mm f/1.4G](../src/lens-data/nikon/NikonNikkor85f14G.data.ts) `5`: `S-NBH56 (OHARA)`
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) `15`: `S-TIH4 (OHARA)`
 
@@ -1290,6 +1376,17 @@ Surfaces:
 
 Surfaces:
 - [PANASONIC LUMIX S 35mm F1.8](../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) `11`: `S-LAH55 (OHARA) / CDGM equivalent — dense lanthanum flint, code 806/333`
+
+## stored (nd=1.80610, vd=40.73)  — 1 surface, current label resolves to E-FDS1
+
+Candidates:
+- **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=+0.20)
+- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.15)
+- **S-LAH63** (nd=1.80440, vd=39.59, Δnd=-0.0017, Δvd=-1.14)
+- **K-VC89** (nd=1.80998, vd=41.00, Δnd=+0.0039, Δvd=+0.27)
+
+Surfaces:
+- [SIGMA dp0 Quattro 14mm f/4](../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) `18`: `E-FDS1 (HOYA) / S-TIH6 (OHARA)`
 
 ## stored (nd=1.80610, vd=40.70)  — 2 surfaces, current label resolves to S-LAH51
 
@@ -1572,6 +1669,14 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `29`: `S-LAH79 (OHARA)`
 
+## stored (nd=1.90366, vd=31.30)  — 1 surface, current label resolves to S-LAH79
+
+Candidates:
+- **S-LAH95** (nd=1.90366, vd=31.34, Δnd=-0.0000, Δvd=+0.04)
+
+Surfaces:
+- [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) `1`: `S-LAH79 (OHARA)`
+
 ## stored (nd=1.90366, vd=31.27)  — 2 surfaces, current label resolves to TAFD45
 
 Candidates:
@@ -1800,5 +1905,5 @@ Surfaces:
 
 ## Summary
 
-- **148** (nd, vd) groups have at least one candidate (218 surfaces) — actionable relabels.
-- **56** (nd, vd) groups have NO candidate (81 surfaces) — needs patent verification or Unmatched relabeling.
+- **158** (nd, vd) groups have at least one candidate (236 surfaces) — actionable relabels.
+- **57** (nd, vd) groups have NO candidate (83 surfaces) — needs patent verification or Unmatched relabeling.
