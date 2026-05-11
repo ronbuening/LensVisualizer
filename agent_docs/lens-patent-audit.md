@@ -26,7 +26,7 @@ Before opening either lens file, collect:
 2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing.
 3. **The current mismatch reports** — regenerate before starting so the surface lists are current:
    ```bash
-   npm test -- catalogMismatchScan glassRelabelCandidatesScan
+   npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
    ```
 4. **Glass equivalence references** — Schott/Ohara/Hoya/Sumita cross-tables when the patent names a glass from a different vendor than the annotation.
 
@@ -218,7 +218,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 If glass annotations changed, regenerate the catalog scans and confirm the lens drops off the affected mismatch lists:
 
 ```bash
-npm test -- catalogMismatchScan glassRelabelCandidatesScan
+npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
 ```
 
 If the audit relabeled a surface that the global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).

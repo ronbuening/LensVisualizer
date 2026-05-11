@@ -1,12 +1,12 @@
 # Proprietary Glass Patent Backfill
 
-A focused follow-up to the chromatic dispersion overhaul (see [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic engine now has a four-tier preference cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a ~24-entry vendor catalog covers most catalog-resolvable glass declarations. What remains is a small set of lens prescriptions that name proprietary or unidentified glasses no public catalog will ever publish Sellmeier coefficients for.
+A focused follow-up to the chromatic dispersion overhaul (see [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic engine now has a four-tier preference cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 180-entry vendor catalog covers most catalog-resolvable glass declarations. What remains is a per-lens queue of proprietary, unidentified, or inconsistently annotated glasses that no public catalog can safely resolve by name alone.
 
 ## Companion report: catalog mismatches
 
 Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose `glass` annotation **does** resolve to a vendor catalog entry but whose stored `surface.nd` disagrees with the catalog Sellmeier nd by more than the safety-net tolerance (5e-3) — typically because the annotation was a speculative guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
-The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [agent_docs/catalog-mismatches.generated.md](catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`.
+The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`.
 
 The fix for a mismatch is one of:
 

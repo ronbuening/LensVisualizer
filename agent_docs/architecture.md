@@ -53,8 +53,15 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 
 - [`adding_a_lens.md`](adding_a_lens.md) - lens data workflow and validation troubleshooting.
 - [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) - mount/format metadata backfill status.
+- [`glass-catalog-buildout.md`](glass-catalog-buildout.md) - glass catalog expansion and sourcing playbook.
+- [`glass-relabel-followup.md`](glass-relabel-followup.md) - per-lens glass mismatch relabel queue.
+- [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) - patent line-index backfill workflow.
+- [`catalog-mismatches.generated.md`](catalog-mismatches.generated.md), [`glass-relabel-candidates.generated.md`](glass-relabel-candidates.generated.md), and [`unresolved-glass.generated.md`](unresolved-glass.generated.md) - generated glass reports; regenerate before glass-audit work.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.
 - [`commenting_guide.md`](commenting_guide.md) - project commenting standards.
 - [`gotchas.md`](gotchas.md) - non-obvious constraints and failure modes.
+
+Files under [`records/`](records/) are historical branch/task snapshots. Use them for context archaeology, not as the
+current source of architecture or workflow truth.
