@@ -19,6 +19,13 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-12 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-12",
+    type: "lens",
+    summary:
+      "Adds six new Nikon lenses: Z DX 16-50mm f/3.5-6.3 VR, Z DX 18-14mm f/3.5-6.3 VR, Z DX 50-140mm f/3.5-6.3 VR, AF-P DX 10-20mm f/5.6-6.3G VR, AF-P DX 70-300mm f/4.5-6.3G ED VR, and AF-P 70-300mm f/4.5-5.6E ED VR",
+  },
   // ── 2026-05-11 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-11",

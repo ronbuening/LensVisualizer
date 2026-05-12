@@ -8,17 +8,18 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **178** lenses scanned
-- **2008** non-air surfaces examined
-- **2002** element glass declarations examined
-- **448** non-explicit-unmatched annotations did not resolve
-- **138** distinct unresolved glass-like tokens found
+- **184** lenses scanned
+- **2101** non-air surfaces examined
+- **2095** element glass declarations examined
+- **509** non-explicit-unmatched annotations did not resolve
+- **139** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
 | 744495 | 3 | 3 | |
+| L-LAM60 | 3 | 3 | |
 | S-NPH7 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | 159319 | 2 | 1 | |
@@ -31,7 +32,6 @@ or per-lens patent backfills.
 | H-LAK6A | 2 | 2 | |
 | L-LAH53 | 2 | 2 | |
 | L-LAH86 | 2 | 2 | |
-| L-LAM60 | 2 | 2 | |
 | NBFD15 | 2 | 2 | |
 | S-BAH11 | 2 | 2 | |
 | S-FPM4 | 2 | 2 | |
@@ -113,6 +113,7 @@ or per-lens patent backfills.
 | N-BAK4 | 1 | 1 | |
 | N-F2 | 1 | 1 | |
 | N-LAK33B | 1 | 1 | |
+| N-LASF43 | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
 | N-SSK5 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
@@ -164,6 +165,12 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 - lanthanum crown (patent nd=1.74389, vd=49.50)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)`
+
+### L-LAM60 — 3 occurrences
+
+- [LEICA SUMMILUX 28 mm f/1.7 ASPH.](../src/lens-data/leica/Leica28mmf17.data.ts) 7: `L-LAM60 (OHARA)`
+- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 17: `L-LAM60 (OHARA)`
+- [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) 25: `L-LAM60 (OHARA, tentative, Δνd ≈ 0.06)`
 
 ### S-NPH7 — 3 occurrences
 
@@ -226,11 +233,6 @@ or per-lens patent backfills.
 
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) 32A: `OHARA L-LAH86 PGM glass (854/404)`
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `OHARA L-LAH86 (PGM)`
-
-### L-LAM60 — 2 occurrences
-
-- [LEICA SUMMILUX 28 mm f/1.7 ASPH.](../src/lens-data/leica/Leica28mmf17.data.ts) 7: `L-LAM60 (OHARA)`
-- [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 17: `L-LAM60 (OHARA)`
 
 ### NBFD15 — 2 occurrences
 
@@ -562,6 +564,10 @@ or per-lens patent backfills.
 ### N-LAK33B — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 9: `N-LAK33B equiv. (175500/5233)`
+
+### N-LASF43 — 1 occurrence
+
+- [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 5: `J-LASF03 / N-LASF43 class (catalog-equivalent dense lanthanum flint)`
 
 ### N-SF5 — 1 occurrence
 

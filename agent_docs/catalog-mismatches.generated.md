@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **178** lenses scanned
-- **2008** glass surfaces examined
-- **2002** surfaces with non-empty `glass` strings
-- **1493** of those resolved to a catalog entry
-- **334** mismatches found (22.4% of resolved surfaces)
-- **111** distinct lens files affected
+- **184** lenses scanned
+- **2101** glass surfaces examined
+- **2095** surfaces with non-empty `glass` strings
+- **1523** of those resolved to a catalog entry
+- **339** mismatches found (22.3% of resolved surfaces)
+- **113** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,13 +27,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 13 | |
+| S-LAH79 | 15 | |
+| S-TIH53 | 10 | |
 | S-TIH14 | 10 | |
 | S-TIH18 | 9 | |
-| S-TIH53 | 9 | |
+| S-TIM2 | 9 | |
+| S-LAH58 | 8 | |
 | TAFD25 | 8 | |
-| S-TIM2 | 8 | |
-| S-LAH58 | 7 | |
 | S-LAH64 | 7 | |
 | S-LAL14 | 7 | |
 | S-TIH4 | 7 | |
@@ -643,6 +643,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 6 | `S-LAL14 (OHARA)` | S-LAL14 | 1.75500 | 1.69680 | -0.0582 |
 | 19 | `S-TIH18 (OHARA)` | S-TIH18 | 1.80100 | 1.72151 | -0.0795 |
 
+### [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) — WO 2022/264542 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10 | `S-TIH53 (OHARA)` | S-TIH53 | 1.80809 | 1.84666 | +0.0386 |
+| 18 | `S-TIM2 (OHARA)` | S-TIM2 | 1.60342 | 1.62004 | +0.0166 |
+| 30 | `S-LAH58 (OHARA)` | S-LAH58 | 1.90265 | 1.88300 | -0.0197 |
+
 ### [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) — JP 2008-151949A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -812,6 +820,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 24 | `Dense flint (near S-NBH52V)` | S-NBH52V | 1.69895 | 1.67300 | -0.0260 |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | TAFD5F | 1.76554 | 1.83481 | +0.0693 |
+
+### [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) — WO 2020/012638 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
+| 17 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
 
 ### [NIKON NIKKOR-N Auto 24mm f/2.8](../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) — US 3,622,227
 
