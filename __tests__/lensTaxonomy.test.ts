@@ -82,7 +82,7 @@ describe("lensTaxonomy", () => {
         "samsung-nx-mini",
         "sigma-sa",
         "xpan",
-        "yashica-contax",
+        "contax-yashica",
       ]),
     );
   });

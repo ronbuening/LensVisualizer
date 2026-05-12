@@ -13,6 +13,9 @@ import { describe, it, expect } from "vitest";
 import { render } from "../src/entry-server.js";
 import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
+import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
+import { getMountDetails } from "../src/utils/mountDetails.js";
+import { getImageFormatDetails } from "../src/utils/imageFormatDetails.js";
 import {
   allMakerSlugs,
   makerDisplayName,
@@ -29,7 +32,20 @@ const TEST_LENS_SLUG = CATALOG_KEYS[0];
 const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
 const TEST_MAKER_SLUG = allMakerSlugs()[0];
 const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+const TEST_MOUNT = MOUNT_OPTIONS[0];
+const TEST_MOUNT_DETAILS = getMountDetails(TEST_MOUNT.id)!;
+const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
+const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
+
+function escapeHtmlText(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("<", "&lt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#x27;");
+}
 
 /* ── Preconditions ── */
 
@@ -51,6 +67,10 @@ describe("SSR render — all routes produce valid helmet output", () => {
     [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/mounts", "mounts index"],
+    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
+    ["/formats", "formats index"],
+    [`/formats/${TEST_FORMAT.id}`, "format page"],
     ["/this-route-does-not-exist", "404"],
   ] as const;
 
@@ -70,6 +90,10 @@ describe("SSR render — content pages produce non-empty HTML", () => {
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/mounts", "mounts index"],
+    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
+    ["/formats", "formats index"],
+    [`/formats/${TEST_FORMAT.id}`, "format page"],
   ] as const;
 
   it.each(contentRoutes)("%s (%s) returns non-empty html", (url) => {
@@ -251,6 +275,50 @@ describe("SSR render — maker page /makers/:maker", () => {
   });
 });
 
+/* ── Mounts ── */
+
+describe("SSR render — mounts", () => {
+  it("mounts index has title, canonical, and structured data", () => {
+    const { helmet, html } = render("/mounts");
+    expect(helmet.title.toString()).toContain("Lens Mounts");
+    expect(helmet.link.toString()).toContain("/mounts");
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain("fully electronic EOS SLR mount");
+  });
+
+  it("mount detail has title, canonical, and breadcrumbs", () => {
+    const { helmet, html } = render(`/mounts/${TEST_MOUNT.id}`);
+    const scripts = helmet.script.toString();
+    expect(helmet.title.toString()).toContain(TEST_MOUNT.label);
+    expect(helmet.link.toString()).toContain(`/mounts/${TEST_MOUNT.id}`);
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(html).toContain(TEST_MOUNT.label);
+    expect(html).toContain(escapeHtmlText(TEST_MOUNT_DETAILS.description.split("\n\n")[0]));
+  });
+});
+
+/* ── Formats ── */
+
+describe("SSR render — formats", () => {
+  it("formats index has title, canonical, and structured data", () => {
+    const { helmet, html } = render("/formats");
+    expect(helmet.title.toString()).toContain("Lens Image Formats");
+    expect(helmet.link.toString()).toContain("/formats");
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain(TEST_FORMAT_DETAILS.summary);
+  });
+
+  it("format detail has title, canonical, and breadcrumbs", () => {
+    const { helmet, html } = render(`/formats/${TEST_FORMAT.id}`);
+    const scripts = helmet.script.toString();
+    expect(helmet.title.toString()).toContain(TEST_FORMAT.label);
+    expect(helmet.link.toString()).toContain(`/formats/${TEST_FORMAT.id}`);
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(html).toContain(TEST_FORMAT.label);
+    expect(html).toContain(escapeHtmlText(TEST_FORMAT_DETAILS.description.split("\n\n")[0]));
+  });
+});
+
 /* ── Article page ── */
 
 describe("SSR render — article page /articles/:slug", () => {
@@ -258,7 +326,7 @@ describe("SSR render — article page /articles/:slug", () => {
 
   it("title contains the article title", () => {
     const { helmet } = render(url);
-    const encodedTitle = TEST_ARTICLE.title.replaceAll("'", "&#x27;");
+    const encodedTitle = escapeHtmlText(TEST_ARTICLE.title);
     expect(helmet.title.toString()).toContain(encodedTitle);
   });
 

@@ -5,8 +5,8 @@
  * and custom filters, with crawlable <a> links.
  */
 
-import { useMemo, useState } from "react";
-import { Link } from "react-router";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
@@ -30,10 +30,15 @@ import {
 import { H1_STYLE, PAGE_BASE_STYLE } from "./lensIndex/styles.js";
 import type { GroupMode } from "./lensIndex/types.js";
 import useLensIndexFilters from "./lensIndex/useLensIndexFilters.js";
+import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
+import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
+import { parseLensIndexUrlState, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
 
 export default function LensIndexPage() {
-  const [groupMode, setGroupMode] = useState<GroupMode>("maker");
-  const [filterOpen, setFilterOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const parsedUrlState = useMemo(() => parseLensIndexUrlState(searchParams.toString(), FILTER_BOUNDS), [searchParams]);
+  const [groupMode, setGroupMode] = useState<GroupMode>(parsedUrlState.groupMode);
+  const [filterOpen, setFilterOpen] = useState(parsedUrlState.filterOpen);
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
   const totalLenses = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
@@ -57,12 +62,36 @@ export default function LensIndexPage() {
   } = useLensIndexFilters({
     entries: CATALOG_ENTRIES,
     bounds: FILTER_BOUNDS,
+    initialFilter: parsedUrlState.customFilter,
   });
   const makerGroups = useMemo(() => groupByMaker(filteredEntries), [filteredEntries]);
   const focalSections = useMemo(() => groupByFocalLength(filteredEntries), [filteredEntries]);
   const yearGroups = useMemo(() => groupByPatentYear(filteredEntries, yearDir), [filteredEntries, yearDir]);
   const mountGroups = useMemo(() => groupByMount(filteredEntries), [filteredEntries]);
   const imageFormatGroups = useMemo(() => groupByImageFormat(filteredEntries), [filteredEntries]);
+  const currentLensIndexSearch = serializeLensIndexUrlState({
+    groupMode,
+    filterOpen,
+    customFilter,
+    bounds: FILTER_BOUNDS,
+  });
+  const returnTo = currentLensIndexSearch ? `/lenses?${currentLensIndexSearch}` : "/lenses";
+  const hrefForLens = useCallback(
+    (lensKey: string, context?: LensLibraryBreadcrumbContext) => lensLinkFromLibrary(lensKey, returnTo, context),
+    [returnTo],
+  );
+
+  useEffect(() => {
+    setGroupMode(parsedUrlState.groupMode);
+    setFilterOpen(parsedUrlState.filterOpen);
+  }, [parsedUrlState.groupMode, parsedUrlState.filterOpen]);
+
+  useEffect(() => {
+    const nextSearch = currentLensIndexSearch;
+    if (nextSearch !== searchParams.toString()) {
+      setSearchParams(nextSearch, { replace: true });
+    }
+  }, [currentLensIndexSearch, searchParams, setSearchParams]);
 
   const toggleButtonStyle = (active: boolean): React.CSSProperties => ({
     padding: "0.25rem 0.75rem",
@@ -116,6 +145,42 @@ export default function LensIndexPage() {
 
       <div style={PAGE_BASE_STYLE}>
         <h1 style={H1_STYLE}>Lens Library</h1>
+        <nav
+          aria-label="Lens clusters"
+          style={{
+            display: "flex",
+            gap: "0.5rem",
+            flexWrap: "wrap",
+            marginBottom: "1rem",
+          }}
+        >
+          <Link
+            to="/mounts"
+            style={{
+              color: t.descLinkColor,
+              textDecoration: "none",
+              border: `1px solid ${t.panelBorder}`,
+              borderRadius: 4,
+              padding: "0.35rem 0.65rem",
+              fontSize: "0.8rem",
+            }}
+          >
+            Browse by Mount
+          </Link>
+          <Link
+            to="/formats"
+            style={{
+              color: t.descLinkColor,
+              textDecoration: "none",
+              border: `1px solid ${t.panelBorder}`,
+              borderRadius: 4,
+              padding: "0.35rem 0.65rem",
+              fontSize: "0.8rem",
+            }}
+          >
+            Browse by Format
+          </Link>
+        </nav>
         <div
           style={{
             display: "flex",
@@ -243,6 +308,7 @@ export default function LensIndexPage() {
           mountGroups={mountGroups}
           imageFormatGroups={imageFormatGroups}
           theme={t}
+          hrefForLens={hrefForLens}
         />
       </div>
     </div>

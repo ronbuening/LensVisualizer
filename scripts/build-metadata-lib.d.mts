@@ -6,6 +6,8 @@ export interface FreshnessEntry {
 export interface LensFreshnessInput {
   key: string;
   makerSlug: string;
+  lensMountIds?: string[];
+  imageFormatId?: string | null;
   freshness: FreshnessEntry;
 }
 
@@ -93,6 +95,8 @@ export function buildRouteFreshness(options: {
   lenses: LensFreshnessInput[];
   articles: ArticleFreshnessInput[];
   makerSlugs: string[];
+  mountIds?: string[];
+  formatIds?: string[];
   makerDetailsFreshness: FreshnessEntry | null;
   fallbackDate: string;
 }): Record<string, FreshnessEntry>;

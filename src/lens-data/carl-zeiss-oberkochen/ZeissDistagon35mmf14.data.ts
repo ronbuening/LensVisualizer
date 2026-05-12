@@ -35,7 +35,7 @@ const LENS_DATA = {
   focalLengthMarketing: 35,
   focalLengthDesign: 36.5,
   apertureMarketing: 1.4,
-  lensMounts: ["yashica-contax"],
+  lensMounts: ["contax-yashica"],
   imageFormat: "135-full-frame",
   patentYear: 1975,
   elementCount: 9,

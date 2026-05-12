@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { allMakerSlugs } from "../src/utils/lensMetadata.js";
 import { CATALOG_KEYS } from "../src/utils/lensCatalog.js";
+import { CATALOG_ENTRIES } from "../src/pages/lensIndex/catalog.js";
 import buildMeta from "../src/generated/build-metadata.json";
 
 /**
@@ -37,6 +38,8 @@ describe("build-route-sync", () => {
     expect(routes).toContain("/");
     expect(routes).toContain("/lenses");
     expect(routes).toContain("/makers");
+    expect(routes).toContain("/mounts");
+    expect(routes).toContain("/formats");
     expect(routes).toContain("/articles");
   });
 
@@ -87,6 +90,28 @@ describe("build-route-sync", () => {
     expect(makerRoutes.length).toBe(buildMeta.makerSlugs.length);
     for (const slug of buildMeta.makerSlugs) {
       expect(makerRoutes).toContain(`/makers/${slug}`);
+    }
+  });
+
+  it("mountIds and formatIds match cluster routes", () => {
+    const expectedMountIds = [
+      ...new Set(CATALOG_ENTRIES.flatMap((entry) => entry.lensMounts.map((mount) => mount.id))),
+    ].sort();
+    const expectedFormatIds = [
+      ...new Set(CATALOG_ENTRIES.flatMap((entry) => (entry.imageFormat ? [entry.imageFormat.id] : []))),
+    ].sort();
+    const mountRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/mounts/"));
+    const formatRoutes = buildMeta.routes.filter((r: string) => r.startsWith("/formats/"));
+
+    expect(buildMeta.mountIds).toEqual(expectedMountIds);
+    expect(buildMeta.formatIds).toEqual(expectedFormatIds);
+    expect(mountRoutes.length).toBe(expectedMountIds.length);
+    expect(formatRoutes.length).toBe(expectedFormatIds.length);
+    for (const id of expectedMountIds) {
+      expect(mountRoutes).toContain(`/mounts/${id}`);
+    }
+    for (const id of expectedFormatIds) {
+      expect(formatRoutes).toContain(`/formats/${id}`);
     }
   });
 

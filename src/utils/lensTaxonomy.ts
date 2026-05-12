@@ -69,7 +69,7 @@ export const LENS_MOUNTS = [
   { id: "bronica-etr", label: "Zenza Bronica ETR", sortOrder: 850 },
   { id: "bronica-gs", label: "Zenza Bronica GS", sortOrder: 860 },
   { id: "bronica-sq", label: "Zenza Bronica SQ", sortOrder: 870 },
-  { id: "yashica-contax", label: "Yashica / Contax", sortOrder: 880 },
+  { id: "contax-yashica", label: "Yashica / Contax", sortOrder: 880 },
   { id: "fixed-lens-camera", label: "Fixed-lens Camera", sortOrder: 900 },
 ] as const;
 

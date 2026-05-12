@@ -24,11 +24,16 @@ function extractLensIdentityContent(content) {
   const nameMatch = content.match(/name:\s*"([^"]+)"/);
   const makerMatch = content.match(/maker:\s*"([^"]+)"/);
   const visibleFalseMatch = content.match(/visible:\s*false\b/);
+  const lensMountsMatch = content.match(/lensMounts:\s*\[([^\]]*)\]/m);
+  const imageFormatMatch = content.match(/imageFormat:\s*"([^"]+)"/);
+  const lensMountIds = lensMountsMatch ? [...lensMountsMatch[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]) : [];
 
   return {
     key: keyMatch ? keyMatch[1] : null,
     name: nameMatch ? nameMatch[1] : null,
     maker: makerMatch ? makerMatch[1] : null,
+    lensMountIds,
+    imageFormatId: imageFormatMatch ? imageFormatMatch[1] : null,
     visible: visibleFalseMatch ? false : true,
   };
 }
@@ -120,7 +125,7 @@ function collectLensData({
 
   for (const relativeDataPath of dataFiles) {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker, visible } = extractLensIdentity(dataPath);
+    const { key, name, maker, lensMountIds, imageFormatId, visible } = extractLensIdentity(dataPath);
     if (!key) continue;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -143,6 +148,8 @@ function collectLensData({
       name,
       visible,
       makerSlug: deriveMakerSlug(maker || name || key),
+      lensMountIds,
+      imageFormatId,
       freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
     });
   }
@@ -168,7 +175,7 @@ async function collectLensDataAsync({
 
   const lenses = await mapLimit(dataFiles, concurrency, async (relativeDataPath) => {
     const dataPath = join(lensDataDir, relativeDataPath);
-    const { key, name, maker, visible } = extractLensIdentity(dataPath);
+    const { key, name, maker, lensMountIds, imageFormatId, visible } = extractLensIdentity(dataPath);
     if (!key) return null;
 
     const analysisPath = join(lensDataDir, analysisRelativePathForDataPath(relativeDataPath));
@@ -191,6 +198,8 @@ async function collectLensDataAsync({
       name,
       visible,
       makerSlug: deriveMakerSlug(maker || name || key),
+      lensMountIds,
+      imageFormatId,
       freshness: combineFreshness([dataFreshness, analysisFreshness], fallbackDate),
     };
   });

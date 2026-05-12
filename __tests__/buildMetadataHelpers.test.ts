@@ -209,11 +209,15 @@ describe("build metadata helpers", () => {
         {
           key: "lens-a",
           makerSlug: "nikon",
+          lensMountIds: ["nikon-z"],
+          imageFormatId: "135-full-frame",
           freshness: { publishedOn: "2026-03-19", lastModified: "2026-03-25" },
         },
         {
           key: "lens-b",
           makerSlug: "canon",
+          lensMountIds: ["canon-rf"],
+          imageFormatId: "135-full-frame",
           freshness: { publishedOn: "2026-03-21", lastModified: "2026-03-27" },
         },
       ],
@@ -225,6 +229,8 @@ describe("build metadata helpers", () => {
         },
       ],
       makerSlugs: ["canon", "nikon"],
+      mountIds: ["canon-rf", "nikon-z"],
+      formatIds: ["135-full-frame"],
       makerDetailsFreshness: { publishedOn: "2026-03-17", lastModified: "2026-03-26" },
       fallbackDate: "2026-03-27",
     });
@@ -244,6 +250,14 @@ describe("build metadata helpers", () => {
     expect(routeFreshness["/makers/nikon"]).toEqual({
       publishedOn: "2026-03-17",
       lastModified: "2026-03-26",
+    });
+    expect(routeFreshness["/mounts/nikon-z"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-25",
+    });
+    expect(routeFreshness["/formats/135-full-frame"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
     });
   });
 });

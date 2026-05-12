@@ -14,6 +14,7 @@ import {
   matchesCustomFilter,
   numericFilterInputValues,
 } from "./catalog.js";
+import { isSameCustomFilter } from "./urlState.js";
 import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
 import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
 
@@ -26,6 +27,7 @@ export interface NumericFilterConfig {
 interface UseLensIndexFiltersParams {
   entries: CatalogLensEntry[];
   bounds: FilterBounds;
+  initialFilter?: CustomFilterState;
 }
 
 interface LensIndexFiltersResult {
@@ -70,11 +72,22 @@ function updateNumericField(previous: CustomFilterState, field: NumericFilterFie
  * @param params - catalog entries and derived numeric bounds for the feature
  * @returns committed filter state, derived filtered entries, and UI handlers
  */
-export default function useLensIndexFilters({ entries, bounds }: UseLensIndexFiltersParams): LensIndexFiltersResult {
-  const [customFilter, setCustomFilter] = useState<CustomFilterState>(() => defaultCustomFilter(bounds));
-  const [filterInputValues, setFilterInputValues] = useState<Record<NumericFilterField, string>>(() =>
-    numericFilterInputValues(defaultCustomFilter(bounds)),
+export default function useLensIndexFilters({
+  entries,
+  bounds,
+  initialFilter,
+}: UseLensIndexFiltersParams): LensIndexFiltersResult {
+  const [customFilter, setCustomFilter] = useState<CustomFilterState>(
+    () => initialFilter ?? defaultCustomFilter(bounds),
   );
+  const [filterInputValues, setFilterInputValues] = useState<Record<NumericFilterField, string>>(() =>
+    numericFilterInputValues(initialFilter ?? defaultCustomFilter(bounds)),
+  );
+
+  useEffect(() => {
+    if (!initialFilter) return;
+    setCustomFilter((previous) => (isSameCustomFilter(previous, initialFilter) ? previous : initialFilter));
+  }, [initialFilter]);
 
   useEffect(() => {
     setFilterInputValues(numericFilterInputValues(customFilter));

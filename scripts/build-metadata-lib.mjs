@@ -207,7 +207,15 @@ export function assertFreshnessDiversity({
 /**
  * Build route freshness for every prerendered path from the collected content.
  */
-export function buildRouteFreshness({ lenses, articles, makerSlugs, makerDetailsFreshness, fallbackDate }) {
+export function buildRouteFreshness({
+  lenses,
+  articles,
+  makerSlugs,
+  mountIds = [],
+  formatIds = [],
+  makerDetailsFreshness,
+  fallbackDate,
+}) {
   const routeFreshness = {};
   const allLensFreshness = lenses.map((lens) => lens.freshness);
   const allArticleFreshness = articles.map((article) => ({
@@ -221,6 +229,8 @@ export function buildRouteFreshness({ lenses, articles, makerSlugs, makerDetails
   );
   routeFreshness["/lenses"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/makers"] = combineFreshnessEntries([...allLensFreshness, makerDetailsFreshness], fallbackDate);
+  routeFreshness["/mounts"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  routeFreshness["/formats"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
   routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
 
@@ -242,6 +252,18 @@ export function buildRouteFreshness({ lenses, articles, makerSlugs, makerDetails
       [...makerLensFreshness, makerDetailsFreshness],
       fallbackDate,
     );
+  }
+
+  for (const mountId of mountIds) {
+    const mountLensFreshness = lenses
+      .filter((lens) => (lens.lensMountIds ?? []).includes(mountId))
+      .map((lens) => lens.freshness);
+    routeFreshness[`/mounts/${mountId}`] = combineFreshnessEntries(mountLensFreshness, fallbackDate);
+  }
+
+  for (const formatId of formatIds) {
+    const formatLensFreshness = lenses.filter((lens) => lens.imageFormatId === formatId).map((lens) => lens.freshness);
+    routeFreshness[`/formats/${formatId}`] = combineFreshnessEntries(formatLensFreshness, fallbackDate);
   }
 
   return routeFreshness;
