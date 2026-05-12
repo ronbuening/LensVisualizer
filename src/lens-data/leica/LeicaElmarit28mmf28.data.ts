@@ -42,6 +42,8 @@ const LENS_DATA = {
   /* ── Explicit metadata ── */
   focalLengthMarketing: 28,
   apertureMarketing: 2.8,
+  lensMounts: ["leica-r"],
+  imageFormat: "135-full-frame",
   patentYear: 1971,
   elementCount: 8,
   groupCount: 6,

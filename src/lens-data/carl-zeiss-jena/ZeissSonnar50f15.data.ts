@@ -37,6 +37,8 @@ const LENS_DATA = {
   focalLengthDesign: 50.2,
   apertureMarketing: 1.5,
   apertureDesign: 1.5,
+  lensMounts: ["contax-rf"],
+  imageFormat: "135-full-frame",
   patentYear: 1934,
   elementCount: 7,
   groupCount: 3,

@@ -30,6 +30,7 @@ interface SliderControlProps {
   collapsible?: boolean;
   expanded?: boolean;
   onExpandedChange?: (value: boolean) => void;
+  action?: ReactNode;
   /** Content shown when expanded (or always if not collapsible) */
   children?: ReactNode;
 }
@@ -55,6 +56,7 @@ export default function SliderControl({
   collapsible,
   expanded,
   onExpandedChange,
+  action,
   children,
 }: SliderControlProps) {
   return (
@@ -72,12 +74,13 @@ export default function SliderControl({
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
         <span style={{ ...SLIDER_LABEL, color: t.label, minWidth: labelMinWidth }}>{label}</span>
         <span style={{ ...SLIDER_VALUE_BASE, color: t.focusDist, ...displayValueStyle }}>{displayValue}</span>
+        {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
         {collapsible && (
           <CollapseButton
             expanded={!!expanded}
             onToggle={() => onExpandedChange?.(!expanded)}
             theme={t}
-            style={{ marginLeft: "auto" }}
+            style={{ marginLeft: action ? 0 : "auto" }}
           />
         )}
       </div>

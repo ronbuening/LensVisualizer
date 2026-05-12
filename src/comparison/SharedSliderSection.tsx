@@ -24,6 +24,7 @@ interface SharedSliderSectionProps {
   onPointerDown?: () => void;
   onPointerUp?: () => void;
   markerPositions?: number[];
+  action?: ReactNode;
   readouts?: ReactNode;
   footer?: ReactNode;
 }
@@ -91,6 +92,7 @@ export default function SharedSliderSection({
   onPointerDown,
   onPointerUp,
   markerPositions = [],
+  action,
   readouts,
   footer,
 }: SharedSliderSectionProps) {
@@ -107,6 +109,7 @@ export default function SharedSliderSection({
         >
           {valueLabel}
         </span>
+        {action && <span style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}>{action}</span>}
       </div>
       <div style={SLIDER_ROW}>
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>

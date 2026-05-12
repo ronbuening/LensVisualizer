@@ -49,6 +49,7 @@ describe("lensTaxonomy", () => {
         "contax-n",
         "contax-g",
         "contax-rf",
+        "zeiss-contarex",
         "dkl",
         "exakta",
         "four-thirds",

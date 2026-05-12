@@ -23,8 +23,8 @@ Read this for shared controls, display components, markdown rendering, analysis 
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
-| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. |
-| `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional collapsible content. |
+| `DiagramControls.tsx` | Zoom, focus, optional aberration-control, aperture, and movement sliders plus interaction-signal wiring. Focus/zoom sliders expose compact MOTION actions when modeled group movement is available. |
+| `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional compact action slot, and optional collapsible content. |
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
 
@@ -45,6 +45,7 @@ present, using the data-provided label, endpoint labels, step, and readout label
 | --- | --- |
 | `ElementInspector.tsx` | Selected element properties, glass, aspheric data, and chromatic data. Renders a "Compare to sphere →" link for aspheric elements via the optional `onOpenAsphericCompare` prop. |
 | `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure Δsag. Opened from `ElementInspector`; state managed in `useOverlayState` — the only overlay that lives outside the URL-shareable panels slice. |
+| `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
 | `DiagramLegend.tsx` | Legend with swatches, ray descriptions, and aberration readouts. |
 | `AbbeDiagram.tsx` | Abbe glass map on Vd x Nd axes. |
 | `AboutButtonRow.tsx` | Shared about button group. |

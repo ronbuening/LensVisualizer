@@ -47,6 +47,12 @@ interface DiagramViewportProps extends Omit<
   onBokehPreviewToggle: (open: boolean) => void;
   /** Pre-rendered bokeh preview content (ReactNode) */
   bokehPreviewContent: ReactNode;
+  /** Whether the group movement overlay is visible */
+  showGroupMovement: boolean;
+  /** Close group movement overlay */
+  onGroupMovementClose: () => void;
+  /** Pre-rendered group movement overlay content */
+  groupMovementContent: ReactNode;
 }
 
 export default function DiagramViewport({
@@ -129,6 +135,9 @@ export default function DiagramViewport({
   showBokehPreview,
   onBokehPreviewToggle,
   bokehPreviewContent,
+  showGroupMovement,
+  onGroupMovementClose,
+  groupMovementContent,
 }: DiagramViewportProps) {
   /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
      Cheap to recompute on every render — walks indexByIdx once. */
@@ -267,6 +276,12 @@ export default function DiagramViewport({
       {!zoomPanActive && showBokehPreview ? (
         <PanelOverlay onClose={() => onBokehPreviewToggle(false)} theme={t}>
           {bokehPreviewContent}
+        </PanelOverlay>
+      ) : null}
+
+      {!zoomPanActive && showGroupMovement ? (
+        <PanelOverlay onClose={onGroupMovementClose} theme={t}>
+          {groupMovementContent}
         </PanelOverlay>
       ) : null}
 

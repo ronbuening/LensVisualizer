@@ -4,7 +4,7 @@ import { buildLensViewQuery, lensViewQueryToUrlState, parseLensViewQuery } from 
 describe("lensViewUrlState", () => {
   it("parses v1 single-lens view params", () => {
     const state = parseLensViewQuery(
-      "?v=1&focus=0.25&aberration=0.75&aperture=0.5&zoom=70&el=12&gm=1&bo=1&ad=1&tab=distortion",
+      "?v=1&focus=0.25&aberration=0.75&aperture=0.5&zoom=70&el=12&gm=1&bo=1&ad=1&tab=distortion&mv=zoom",
     );
 
     expect(state).toMatchObject({
@@ -17,6 +17,8 @@ describe("lensViewUrlState", () => {
       bokehPreviewOpen: true,
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion",
+      groupMovementOpen: true,
+      groupMovementMode: "zoom",
     });
   });
 
@@ -29,7 +31,7 @@ describe("lensViewUrlState", () => {
 
   it("clamps sliders and ignores invalid v1 values", () => {
     const state = parseLensViewQuery(
-      "?v=1&focus=-1&aberration=2&aperture=2&zoom=0&el=1.5&a_el=-2&gm=yes&bo=maybe&ad=no&tab=bogus",
+      "?v=1&focus=-1&aberration=2&aperture=2&zoom=0&el=1.5&a_el=-2&gm=yes&bo=maybe&ad=no&tab=bogus&mv=bogus",
     );
 
     expect(state.focus).toBe(0);
@@ -42,6 +44,8 @@ describe("lensViewUrlState", () => {
     expect(state.bokehPreviewOpen).toBeUndefined();
     expect(state.analysisDrawerOpen).toBeUndefined();
     expect(state.analysisDrawerTab).toBeUndefined();
+    expect(state.groupMovementOpen).toBeUndefined();
+    expect(state.groupMovementMode).toBeUndefined();
   });
 
   it("honors stable slider params for unknown versions but ignores v1-only params", () => {
@@ -111,6 +115,15 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("shift=-11.50&tilt=8.25");
   });
 
+  it("round-trips group movement overlay mode", () => {
+    const parsed = parseLensViewQuery("?v=1&mv=combined");
+    expect(parsed.groupMovementOpen).toBe(true);
+    expect(parsed.groupMovementMode).toBe("combined");
+
+    const params = buildLensViewQuery({ groupMovementOpen: true, groupMovementMode: "focus" });
+    expect(params.toString()).toBe("v=1&mv=focus");
+  });
+
   it("can materialize defaults for popstate hydration", () => {
     const state = lensViewQueryToUrlState(parseLensViewQuery(""), true);
     expect(state).toMatchObject({
@@ -129,6 +142,8 @@ describe("lensViewUrlState", () => {
       bokehPreviewOpen: false,
       analysisDrawerOpen: false,
       analysisDrawerTab: "aberrations",
+      groupMovementOpen: false,
+      groupMovementMode: "focus",
     });
   });
 });

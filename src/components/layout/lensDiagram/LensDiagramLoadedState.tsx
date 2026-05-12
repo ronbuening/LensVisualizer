@@ -23,6 +23,7 @@ export default function LensDiagramLoadedState({
   interactions,
   analysisContent,
   bokehPreviewContent,
+  groupMovementContent,
   header,
 }: LensDiagramLoadedStateProps) {
   const {
@@ -95,6 +96,7 @@ export default function LensDiagramLoadedState({
     analysisDrawerOpen,
     analysisDrawerTab,
     bokehPreviewOpen,
+    groupMovementOpen,
     focusExpanded,
     apertureExpanded,
     legendExpanded,
@@ -187,6 +189,9 @@ export default function LensDiagramLoadedState({
             showBokehPreview={bokehPreviewOpen}
             onBokehPreviewToggle={adapters.onBokehPreviewToggle}
             bokehPreviewContent={bokehPreviewContent}
+            showGroupMovement={groupMovementOpen}
+            onGroupMovementClose={adapters.onGroupMovementClose}
+            groupMovementContent={groupMovementContent}
             analysisContent={analysisContent}
           />
 
@@ -229,6 +234,7 @@ export default function LensDiagramLoadedState({
               onLegendExpandedChange={adapters.onLegendExpandedChange}
               onSliderPointerUp={adapters.onSliderPointerUp}
               onSliderInteractionChange={onSliderInteractionChange}
+              onOpenGroupMovement={adapters.onGroupMovementOpen}
               info={info}
               showOnAxis={showOnAxis}
               showOffAxis={showOffAxis}

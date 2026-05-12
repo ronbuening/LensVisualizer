@@ -36,6 +36,7 @@ import { SET_SELECTED_ELEMENT } from "../../utils/lensReducer.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
 import BokehPreviewOverlay from "../display/BokehPreviewOverlay.js";
+import LensGroupMovementOverlay from "../display/LensGroupMovementOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
@@ -126,6 +127,8 @@ export default function LensDiagramPanel({
     analysisDrawerTab,
     zoomPanActive,
     bokehPreviewOpen,
+    groupMovementOpen,
+    groupMovementMode,
   } = panels;
 
   /* Per-instance sliders: use props if provided (comparison mode), else context */
@@ -403,6 +406,8 @@ export default function LensDiagramPanel({
             analysisDrawerOpen,
             analysisDrawerTab,
             bokehPreviewOpen,
+            groupMovementOpen,
+            groupMovementMode,
             focusExpanded,
             apertureExpanded,
             legendExpanded,
@@ -428,6 +433,19 @@ export default function LensDiagramPanel({
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
                 t={t}
+              />
+            ) : null
+          }
+          groupMovementContent={
+            groupMovementOpen ? (
+              <LensGroupMovementOverlay
+                L={L}
+                t={t}
+                focusT={focusT}
+                zoomT={zoomT}
+                aberrationT={aberrationT}
+                mode={groupMovementMode}
+                onModeChange={adapters.onGroupMovementModeChange}
               />
             ) : null
           }

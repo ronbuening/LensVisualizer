@@ -31,9 +31,11 @@
 import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
+import { getGroupMovementAvailability } from "../optics/groupMovement.js";
 import { snapToZeroStop } from "../utils/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
+import type { GroupMovementMode } from "../types/groupMovement.js";
 import SharedSliderSection from "./SharedSliderSection.js";
 import SharedFStopQuickSelect from "./SharedFStopQuickSelect.js";
 
@@ -63,6 +65,7 @@ interface SharedSlidersBarProps {
   effectiveFNumB: number;
   showEffectiveAperture: boolean;
   onToggleEffectiveAperture?: () => void;
+  onOpenGroupMovement?: (mode: GroupMovementMode) => void;
   theme: Theme;
   isWide: boolean;
 }
@@ -93,6 +96,7 @@ export default function SharedSlidersBar({
   effectiveFNumB,
   showEffectiveAperture,
   onToggleEffectiveAperture,
+  onOpenGroupMovement,
   theme: t,
   isWide,
 }: SharedSlidersBarProps) {
@@ -106,6 +110,8 @@ export default function SharedSlidersBar({
   const showApertureCP = apertureCP > 0.01 && apertureCP < 0.99;
   const showZoom = zoomPair?.showZoom;
   const showMovement = movementPair?.showMovement;
+  const movementAvailabilityA = getGroupMovementAvailability(LA);
+  const movementAvailabilityB = getGroupMovementAvailability(LB);
 
   /* Zoom readout helpers — dual-zoom uses the shared focal length from
    * computeZoomPair; single-zoom reads from the one zoom lens directly. */
@@ -152,6 +158,26 @@ export default function SharedSlidersBar({
   };
   const signed = (value: number, digits: number, unit: string) =>
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
+  const motionButton = (mode: GroupMovementMode, label: string) => (
+    <button
+      type="button"
+      aria-label={`Open ${label} group motion chart`}
+      onClick={() => onOpenGroupMovement?.(mode)}
+      style={{
+        borderRadius: 10,
+        cursor: "pointer",
+        padding: "3px 8px",
+        fontSize: 8,
+        fontFamily: "inherit",
+        letterSpacing: "0.08em",
+        background: t.toggleBg,
+        border: `1px solid ${t.toggleBorder}`,
+        color: t.muted,
+      }}
+    >
+      MOTION
+    </button>
+  );
 
   return (
     <div
@@ -182,6 +208,7 @@ export default function SharedSlidersBar({
             onSliderChange={onSharedZoomChange}
             onPointerUp={onSliderPointerUp}
             markerPositions={zoomMarkerPositions}
+            action={movementAvailabilityA.zoom || movementAvailabilityB.zoom ? motionButton("zoom", "zoom") : undefined}
             readouts={
               <>
                 <span>A: {zoomReadoutA}</span>
@@ -247,6 +274,9 @@ export default function SharedSlidersBar({
           onPointerDown={onFocusPointerDown}
           onPointerUp={onSliderPointerUp}
           markerPositions={showFocusCP ? [focusCP] : []}
+          action={
+            movementAvailabilityA.focus || movementAvailabilityB.focus ? motionButton("focus", "focus") : undefined
+          }
           readouts={
             <>
               <span>

@@ -21,6 +21,7 @@ import {
   type Preferences,
   type URLState,
 } from "../types/state.js";
+import { isGroupMovementMode } from "../types/groupMovement.js";
 import comparisonReducer from "../comparison/comparisonReducer.js";
 import { VIEW_STATE_FIELDS } from "./lensViewUrlState.js";
 
@@ -42,6 +43,7 @@ export const SET_TILT_DEG = "SET_TILT_DEG";
 export const RESET_SLIDERS = "RESET_SLIDERS";
 export const SET_PANEL_EXPANDED = "SET_PANEL_EXPANDED";
 export const SET_ANALYSIS_TAB = "SET_ANALYSIS_TAB";
+export const SET_GROUP_MOVEMENT = "SET_GROUP_MOVEMENT";
 export const SET_SELECTED_ELEMENT = "SET_SELECTED_ELEMENT";
 export const APPLY_URL_VIEW_STATE = "APPLY_URL_VIEW_STATE";
 export const SET_OVERLAY = "SET_OVERLAY";
@@ -97,6 +99,7 @@ const PANEL_FIELDS = new Set([
   "analysisDrawerOpen",
   "zoomPanActive",
   "bokehPreviewOpen",
+  "groupMovementOpen",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
 
@@ -183,6 +186,8 @@ export function createInitialState(
         (isAnalysisTabId(prefs.analysisDrawerTab) ? prefs.analysisDrawerTab : "aberrations"),
       zoomPanActive: false,
       bokehPreviewOpen: urlState.bokehPreviewOpen ?? false,
+      groupMovementOpen: urlState.groupMovementOpen ?? false,
+      groupMovementMode: urlState.groupMovementMode ?? "focus",
       selectedElementId: urlState.selectedElementId ?? null,
       selectedElementIdA: urlState.selectedElementIdA ?? null,
       selectedElementIdB: urlState.selectedElementIdB ?? null,
@@ -218,6 +223,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           analysisDrawerOpen: false,
           zoomPanActive: false,
           bokehPreviewOpen: false,
+          groupMovementOpen: false,
           glassMapOpen: false,
           lcaOverlayOpen: false,
           petzvalOverlayOpen: false,
@@ -280,6 +286,17 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
       if (!isAnalysisTabId(action.tab)) return state;
       return { ...state, panels: { ...state.panels, analysisDrawerTab: action.tab } };
 
+    case SET_GROUP_MOVEMENT:
+      if (action.mode !== undefined && !isGroupMovementMode(action.mode)) return state;
+      return {
+        ...state,
+        panels: {
+          ...state.panels,
+          groupMovementOpen: action.open,
+          groupMovementMode: action.mode ?? state.panels.groupMovementMode,
+        },
+      };
+
     case SET_SELECTED_ELEMENT: {
       const key = selectedElementKeyForPanel(action.panelId);
       return { ...state, panels: { ...state.panels, [key]: action.elementId } };
@@ -294,6 +311,9 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
         }
       }
       if (urlState.analysisDrawerTab) panels.analysisDrawerTab = urlState.analysisDrawerTab;
+      if (urlState.groupMovementMode && isGroupMovementMode(urlState.groupMovementMode)) {
+        panels.groupMovementMode = urlState.groupMovementMode;
+      }
 
       const sliders = { ...state.sliders };
       const sharedSliders = { ...state.sharedSliders };

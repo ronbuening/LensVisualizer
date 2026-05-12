@@ -123,6 +123,8 @@ export default function useURLSync(
     panels.bokehPreviewOpen,
     panels.analysisDrawerOpen,
     panels.analysisDrawerTab,
+    panels.groupMovementOpen,
+    panels.groupMovementMode,
     isLensPage,
     isComparePage,
     updateURLWithSliders,

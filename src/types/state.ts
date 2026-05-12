@@ -3,6 +3,7 @@
  */
 
 import type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
+import type { GroupMovementMode } from "./groupMovement.js";
 
 /* Re-export comparison types for backward compatibility */
 export type { SharedSlidersSlice, ComparisonAction } from "../comparison/comparisonTypes.js";
@@ -124,7 +125,8 @@ export type PanelField =
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
   | "zoomPanActive"
-  | "bokehPreviewOpen";
+  | "bokehPreviewOpen"
+  | "groupMovementOpen";
 
 export interface PanelsSlice {
   focusExpanded: boolean;
@@ -142,6 +144,8 @@ export interface PanelsSlice {
   analysisDrawerTab: AnalysisTabId;
   zoomPanActive: boolean;
   bokehPreviewOpen: boolean;
+  groupMovementOpen: boolean;
+  groupMovementMode: GroupMovementMode;
   selectedElementId: number | null;
   selectedElementIdA: number | null;
   selectedElementIdB: number | null;
@@ -187,6 +191,7 @@ export type LensAction =
   | { type: "RESET_SLIDERS" }
   | { type: "SET_PANEL_EXPANDED"; panel: PanelField; expanded: boolean }
   | { type: "SET_ANALYSIS_TAB"; tab: AnalysisTabId }
+  | { type: "SET_GROUP_MOVEMENT"; open: boolean; mode?: GroupMovementMode }
   | { type: "SET_SELECTED_ELEMENT"; panelId: "main" | "a" | "b"; elementId: number | null }
   | { type: "APPLY_URL_VIEW_STATE"; state: Partial<URLState> }
   | { type: "SET_OVERLAY"; overlay: OverlayField; visible: boolean }
@@ -256,6 +261,8 @@ export interface URLState {
   bokehPreviewOpen?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
+  groupMovementOpen?: boolean;
+  groupMovementMode?: GroupMovementMode;
 }
 
 export type SelectedElementPanelId = "main" | "a" | "b";
