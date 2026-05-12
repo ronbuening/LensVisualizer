@@ -17,6 +17,7 @@ export const LENS_MOUNTS = [
   { id: "contax-g", label: "Contax G", sortOrder: 160 },
   { id: "contax-n", label: "Contax N", sortOrder: 170 },
   { id: "contax-rf", label: "Contax RF", sortOrder: 180 },
+  { id: "zeiss-contarex", label: "Zeiss Contarex", sortOrder: 185 },
   { id: "dkl", label: "DKL / Deckel", sortOrder: 190 },
   { id: "exakta", label: "Exakta", sortOrder: 195 },
   { id: "fujifilm-x", label: "Fujifilm X", sortOrder: 200 },

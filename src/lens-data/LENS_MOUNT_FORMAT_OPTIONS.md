@@ -27,6 +27,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `contax-g` | Contax G | Contax G autofocus rangefinder-style mount; usually pairs with `135-full-frame`. |
 | `contax-n` | Contax N | Contax N autofocus SLR mount; usually pairs with `135-full-frame`. |
 | `contax-rf` | Contax RF | Contax rangefinder mount; usually pairs with `135-full-frame`. |
+| `zeiss-contarex` | Zeiss Contarex | Zeiss Ikon Contarex SLR mount; usually pairs with `135-full-frame`. |
 | `dkl` | DKL / Deckel | Deckel bayonet family; usually pairs with `135-full-frame`. |
 | `exakta` | Exakta | Ihagee Exakta/Exa bayonet family; usually pairs with `135-full-frame`. |
 | `fixed-lens-camera` | Fixed-lens Camera | Integral camera lens with no interchangeable mount. |

@@ -52,6 +52,8 @@ const LENS_DATA = {
   focalLengthDesign: 50.03,
   apertureMarketing: 3.5,
   apertureDesign: 3.5,
+  lensMounts: ["hasselblad-h"],
+  imageFormat: "645",
   patentYear: 2003,
   elementCount: 10,
   groupCount: 9,

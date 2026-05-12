@@ -54,6 +54,8 @@ const LENS_DATA = {
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 15,
   apertureMarketing: 8,
+  lensMounts: ["fixed-lens-camera","leica-m"],
+  imageFormat: "135-full-frame",
   patentYear: 1967,
   elementCount: 3,
   groupCount: 3,

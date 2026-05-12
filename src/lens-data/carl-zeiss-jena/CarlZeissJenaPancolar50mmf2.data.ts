@@ -41,6 +41,8 @@ const LENS_DATA = {
   focalLengthDesign: 50.6,
   apertureMarketing: 2.0,
   // apertureDesign omitted — matches marketing
+  lensMounts: ["m42","exakta"],
+  imageFormat: "135-full-frame",
   patentYear: 1960,
   elementCount: 6,
   groupCount: 4,

@@ -41,6 +41,8 @@ const LENS_DATA = {
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 55,
   apertureMarketing: 1.4,
+  lensMounts: ["zeiss-contarex"],
+  imageFormat: "135-full-frame",
   patentYear: 1964,
   elementCount: 7,
   groupCount: 5,

@@ -56,6 +56,8 @@ const LENS_DATA = {
   focalLengthDesign: 34.8,
   apertureMarketing: 2.0,
   apertureDesign: 2.0,
+  lensMounts: ["leica-m"],
+  imageFormat: "135-full-frame",
   patentYear: 2022,
   elementCount: 10,
   groupCount: 5,
