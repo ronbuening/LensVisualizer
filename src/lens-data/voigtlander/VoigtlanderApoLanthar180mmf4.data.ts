@@ -41,6 +41,8 @@ const LENS_DATA = {
   focalLengthMarketing: 180,
   focalLengthDesign: 197.9,
   apertureMarketing: 4,
+  lensMounts: ["nikon-f","canon-fd","m42","pentax-k","minolta-sr","olympus-om"],
+  imageFormat: "135-full-frame",
   patentYear: 2003,
   elementCount: 9,
   groupCount: 7,
