@@ -15,6 +15,10 @@ build metadata.
 | `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`. |
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker lenses. |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
+| `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
+| `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
+| `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
+| `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
 | `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
@@ -34,7 +38,8 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
 - `main.tsx` mounts `RouterProvider` with the browser router.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
 - `scripts/prerender.mjs` expands routes from generated metadata and validates them against `routeManifest.tsx`.
-- `scripts/generate-sitemap.mjs` consumes the same route list from `src/generated/build-metadata.json`.
+- `scripts/generate-sitemap.mjs` consumes the same route list from `src/generated/build-metadata.json`, including lens,
+  maker, mount, format, and article detail routes.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
 `ClientOnly.tsx` wraps browser-only interactive components, including the lens visualizer, and renders nothing until after

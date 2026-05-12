@@ -365,6 +365,18 @@ export function groupByImageFormat(entries: CatalogLensEntry[]): ImageFormatGrou
   return knownGroups;
 }
 
+export function lensesForMount(mountId: LensMountId): CatalogLensEntry[] {
+  return CATALOG_ENTRIES.filter((entry) => entry.lensMounts.some((mount) => mount.id === mountId)).sort((a, b) =>
+    a.data.name.localeCompare(b.data.name),
+  );
+}
+
+export function lensesForImageFormat(formatId: ImageFormatId): CatalogLensEntry[] {
+  return CATALOG_ENTRIES.filter((entry) => entry.imageFormat?.id === formatId).sort((a, b) =>
+    a.data.name.localeCompare(b.data.name),
+  );
+}
+
 /**
  * Format a numeric filter value for a text input or readout label.
  *

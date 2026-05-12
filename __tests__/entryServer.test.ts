@@ -13,6 +13,7 @@ import { describe, it, expect } from "vitest";
 import { render } from "../src/entry-server.js";
 import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
+import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
 import {
   allMakerSlugs,
   makerDisplayName,
@@ -29,6 +30,8 @@ const TEST_LENS_SLUG = CATALOG_KEYS[0];
 const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
 const TEST_MAKER_SLUG = allMakerSlugs()[0];
 const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+const TEST_MOUNT = MOUNT_OPTIONS[0];
+const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
 const TEST_ARTICLE = ARTICLES[0];
 
 /* ── Preconditions ── */
@@ -51,6 +54,10 @@ describe("SSR render — all routes produce valid helmet output", () => {
     [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/mounts", "mounts index"],
+    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
+    ["/formats", "formats index"],
+    [`/formats/${TEST_FORMAT.id}`, "format page"],
     ["/this-route-does-not-exist", "404"],
   ] as const;
 
@@ -70,6 +77,10 @@ describe("SSR render — content pages produce non-empty HTML", () => {
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/mounts", "mounts index"],
+    [`/mounts/${TEST_MOUNT.id}`, "mount page"],
+    ["/formats", "formats index"],
+    [`/formats/${TEST_FORMAT.id}`, "format page"],
   ] as const;
 
   it.each(contentRoutes)("%s (%s) returns non-empty html", (url) => {
@@ -248,6 +259,46 @@ describe("SSR render — maker page /makers/:maker", () => {
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"CollectionPage"');
     expect(scripts).toContain('"@type":"BreadcrumbList"');
+  });
+});
+
+/* ── Mounts ── */
+
+describe("SSR render — mounts", () => {
+  it("mounts index has title, canonical, and structured data", () => {
+    const { helmet } = render("/mounts");
+    expect(helmet.title.toString()).toContain("Lens Mounts");
+    expect(helmet.link.toString()).toContain("/mounts");
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+  });
+
+  it("mount detail has title, canonical, and breadcrumbs", () => {
+    const { helmet, html } = render(`/mounts/${TEST_MOUNT.id}`);
+    const scripts = helmet.script.toString();
+    expect(helmet.title.toString()).toContain(TEST_MOUNT.label);
+    expect(helmet.link.toString()).toContain(`/mounts/${TEST_MOUNT.id}`);
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(html).toContain(TEST_MOUNT.label);
+  });
+});
+
+/* ── Formats ── */
+
+describe("SSR render — formats", () => {
+  it("formats index has title, canonical, and structured data", () => {
+    const { helmet } = render("/formats");
+    expect(helmet.title.toString()).toContain("Lens Image Formats");
+    expect(helmet.link.toString()).toContain("/formats");
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+  });
+
+  it("format detail has title, canonical, and breadcrumbs", () => {
+    const { helmet, html } = render(`/formats/${TEST_FORMAT.id}`);
+    const scripts = helmet.script.toString();
+    expect(helmet.title.toString()).toContain(TEST_FORMAT.label);
+    expect(helmet.link.toString()).toContain(`/formats/${TEST_FORMAT.id}`);
+    expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(html).toContain(TEST_FORMAT.label);
   });
 });
 

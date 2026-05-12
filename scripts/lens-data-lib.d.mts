@@ -2,6 +2,8 @@ export interface LensIdentity {
   key: string | null;
   name: string | null;
   maker: string | null;
+  lensMountIds: string[];
+  imageFormatId: string | null;
   visible: boolean;
 }
 
@@ -20,6 +22,8 @@ export interface LensDataRecord {
   name: string | null;
   visible: boolean;
   makerSlug: string;
+  lensMountIds: string[];
+  imageFormatId: string | null;
   freshness: LensFreshness;
 }
 

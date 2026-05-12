@@ -11,6 +11,10 @@ import LensPage from "../pages/LensPage.js";
 import LensIndexPage from "../pages/LensIndexPage.js";
 import MakersIndexPage from "../pages/MakersIndexPage.js";
 import MakerPage from "../pages/MakerPage.js";
+import MountsIndexPage from "../pages/MountsIndexPage.js";
+import MountPage from "../pages/MountPage.js";
+import FormatsIndexPage from "../pages/FormatsIndexPage.js";
+import FormatPage from "../pages/FormatPage.js";
 import ComparePage from "../pages/ComparePage.js";
 import ArticlesPage from "../pages/ArticlesPage.js";
 import ArticlePage from "../pages/ArticlePage.js";
@@ -29,6 +33,10 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/compare/:slugA/:slugB", element: <ComparePage /> },
   { path: "/makers", element: <MakersIndexPage /> },
   { path: "/makers/:maker", element: <MakerPage /> },
+  { path: "/mounts", element: <MountsIndexPage /> },
+  { path: "/mounts/:mountId", element: <MountPage /> },
+  { path: "/formats", element: <FormatsIndexPage /> },
+  { path: "/formats/:formatId", element: <FormatPage /> },
   { path: "/articles", element: <ArticlesPage /> },
   { path: "/articles/:slug", element: <ArticlePage /> },
   { path: "/updates", element: <UpdatesPage /> },

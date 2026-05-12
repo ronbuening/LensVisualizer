@@ -75,6 +75,16 @@ export function makerCanonicalURL(makerSlug: string): string {
   return `${SITE_URL}/makers/${makerSlug}`;
 }
 
+/** Canonical URL for a mount page. */
+export function mountCanonicalURL(mountId: string): string {
+  return `${SITE_URL}/mounts/${mountId}`;
+}
+
+/** Canonical URL for an image-format page. */
+export function formatCanonicalURL(formatId: string): string {
+  return `${SITE_URL}/formats/${formatId}`;
+}
+
 /** Generate JSON-LD structured data for a lens page. */
 export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unknown> {
   const freshness = (buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>)[lensKey];

@@ -195,7 +195,7 @@ function auditLensPages(lensKeys) {
   );
 }
 
-function auditInternalLinks(lensKeys, articleSlugs, makerSlugs) {
+function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], formatIds = []) {
   console.log("\n[Internal links]");
 
   /* /lenses → all lens pages */
@@ -206,7 +206,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs) {
     const html = readFileSync(lensesPage, "utf-8");
     let foundLinks = 0;
     for (const key of lensKeys) {
-      if (html.includes(`href="/lens/${key}"`)) {
+      if (html.includes(`href="/lens/${key}`)) {
         foundLinks++;
       } else {
         error(`/lenses page missing link to /lens/${key}`);
@@ -248,6 +248,40 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs) {
     }
     ok(`/makers page has ${foundLinks}/${makerSlugs.length} maker links`);
   }
+
+  /* /mounts → all mount pages */
+  const mountsPage = join(DIST_DIR, "mounts", "index.html");
+  if (!existsSync(mountsPage)) {
+    error("Missing /mounts/index.html");
+  } else {
+    const html = readFileSync(mountsPage, "utf-8");
+    let foundLinks = 0;
+    for (const id of mountIds) {
+      if (html.includes(`href="/mounts/${id}"`)) {
+        foundLinks++;
+      } else {
+        error(`/mounts page missing link to /mounts/${id}`);
+      }
+    }
+    ok(`/mounts page has ${foundLinks}/${mountIds.length} mount links`);
+  }
+
+  /* /formats → all format pages */
+  const formatsPage = join(DIST_DIR, "formats", "index.html");
+  if (!existsSync(formatsPage)) {
+    error("Missing /formats/index.html");
+  } else {
+    const html = readFileSync(formatsPage, "utf-8");
+    let foundLinks = 0;
+    for (const id of formatIds) {
+      if (html.includes(`href="/formats/${id}"`)) {
+        foundLinks++;
+      } else {
+        error(`/formats page missing link to /formats/${id}`);
+      }
+    }
+    ok(`/formats page has ${foundLinks}/${formatIds.length} format links`);
+  }
 }
 
 function audit404() {
@@ -288,18 +322,18 @@ if (!existsSync(META_PATH)) {
 }
 
 const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
-const { routes, lensKeys, makerSlugs } = buildMeta;
+const { routes, lensKeys, makerSlugs, mountIds = [], formatIds = [] } = buildMeta;
 const articleSlugs = buildMeta.articles.map((a) => a.slug);
 
 console.log(
-  `Found ${lensKeys.length} lenses, ${articleSlugs.length} articles, ${makerSlugs.length} makers (${routes.length} routes).`,
+  `Found ${lensKeys.length} lenses, ${articleSlugs.length} articles, ${makerSlugs.length} makers, ${mountIds.length} mounts, ${formatIds.length} formats (${routes.length} routes).`,
 );
 
 auditRobotsTxt();
 auditSitemap(routes);
 auditAllPrerenderedPages(routes);
 auditLensPages(lensKeys);
-auditInternalLinks(lensKeys, articleSlugs, makerSlugs);
+auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds);
 audit404();
 
 console.log("\n============================");

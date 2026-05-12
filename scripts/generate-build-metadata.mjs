@@ -6,6 +6,7 @@
  *   - articles: array of article metadata extracted from markdown frontmatter + git dates
  *   - lensKeys: sorted array of all visible lens catalog keys
  *   - makerSlugs: sorted array of unique maker URL slugs
+ *   - mountIds / formatIds: sorted arrays of used taxonomy ids
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
@@ -101,16 +102,20 @@ function collectTrackedArticlePathsBySlug() {
 /* ── Route collection ────────────────────────────────────────────────── */
 
 /** Build the flat array of all concrete routes to pre-render. */
-function collectRoutes(lenses, articles, makerSlugs) {
+function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds) {
   return [
     "/",
     "/lenses",
     "/makers",
+    "/mounts",
+    "/formats",
     "/articles",
     "/updates",
     ...articles.map((a) => `/articles/${a.slug}`),
     ...lenses.map((l) => `/lens/${l.key}`),
     ...makerSlugs.map((s) => `/makers/${s}`),
+    ...mountIds.map((id) => `/mounts/${id}`),
+    ...formatIds.map((id) => `/formats/${id}`),
   ];
 }
 
@@ -175,16 +180,20 @@ async function main() {
   assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();
   const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
-  const routes = collectRoutes(lenses, articles, makerSlugs);
+  const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
+  const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
+  const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds);
   const routeFreshness = buildRouteFreshness({
     lenses,
     articles,
     makerSlugs,
+    mountIds,
+    formatIds,
     makerDetailsFreshness,
     fallbackDate,
   });
   const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
-  const metadata = { lensFreshness, articles, lensKeys, makerSlugs, routes, routeFreshness };
+  const metadata = { lensFreshness, articles, lensKeys, makerSlugs, mountIds, formatIds, routes, routeFreshness };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
 
   // Keep the README public lens count in sync automatically
@@ -199,7 +208,7 @@ async function main() {
   }
 
   console.log(
-    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${routes.length} routes)`,
+    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,
   );
 }
 

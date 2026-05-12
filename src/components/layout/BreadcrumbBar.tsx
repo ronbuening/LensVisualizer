@@ -11,14 +11,17 @@
  */
 
 import { useCallback, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/styles.js";
 import { THEME_ICON, THEME_LABEL } from "../../utils/themeConstants.js";
 import { LENS_CATALOG } from "../../utils/lensCatalog.js";
 import { deriveMaker } from "../../utils/lensMetadata.js";
+import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID, isImageFormatId, isLensMountId } from "../../utils/lensTaxonomy.js";
 import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
 import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/lensReducer.js";
+import { FILTER_BOUNDS } from "../../pages/lensIndex/catalog.js";
+import { isValidLensLibraryReturnPath } from "../../pages/lensIndex/urlState.js";
 import {
   darkPreferenceFromThemeMode,
   nextThemeMode,
@@ -34,7 +37,29 @@ interface BreadcrumbBarProps {
   lensKey: string;
 }
 
+type BreadcrumbSource =
+  | { type: "lenses"; returnTo: string }
+  | { type: "mount"; id: keyof typeof LENS_MOUNT_BY_ID }
+  | { type: "format"; id: keyof typeof IMAGE_FORMAT_BY_ID };
+
+function sourceFromSearch(search: string): BreadcrumbSource | null {
+  const params = new URLSearchParams(search);
+  const from = params.get("from");
+  const id = params.get("id");
+
+  if (from === "lenses") {
+    const returnTo = params.get("returnTo");
+    if (returnTo && isValidLensLibraryReturnPath(returnTo, FILTER_BOUNDS)) return { type: "lenses", returnTo };
+    return null;
+  }
+
+  if (from === "mount" && isLensMountId(id)) return { type: "mount", id };
+  if (from === "format" && isImageFormatId(id)) return { type: "format", id };
+  return null;
+}
+
 export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbBarProps) {
+  const location = useLocation();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsPos, setSettingsPos] = useState<DropdownPanelPos | null>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -56,6 +81,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
   if (!lensA) return null;
 
   const maker = deriveMaker(lensA.name, lensA.maker);
+  const source = sourceFromSearch(location.search);
   const padding = isWide ? "6px 24px" : "6px 12px";
 
   const linkStyle: React.CSSProperties = {
@@ -104,15 +130,51 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
             </>
           ) : (
             <>
-              <Link to="/makers" style={linkStyle}>
-                Makers
-              </Link>
-              <span style={separatorStyle}>/</span>
-              <Link to={`/makers/${maker.slug}`} style={linkStyle}>
-                {maker.display}
-              </Link>
-              <span style={separatorStyle}>/</span>
-              <span style={{ color: t.body }}>{lensA.name}</span>
+              {source?.type === "lenses" ? (
+                <>
+                  <Link to={source.returnTo} style={linkStyle}>
+                    Lenses
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              ) : source?.type === "mount" ? (
+                <>
+                  <Link to="/mounts" style={linkStyle}>
+                    Mounts
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/mounts/${source.id}`} style={linkStyle}>
+                    {LENS_MOUNT_BY_ID[source.id].label}
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              ) : source?.type === "format" ? (
+                <>
+                  <Link to="/formats" style={linkStyle}>
+                    Formats
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/formats/${source.id}`} style={linkStyle}>
+                    {IMAGE_FORMAT_BY_ID[source.id].label}
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              ) : (
+                <>
+                  <Link to="/makers" style={linkStyle}>
+                    Makers
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <Link to={`/makers/${maker.slug}`} style={linkStyle}>
+                    {maker.display}
+                  </Link>
+                  <span style={separatorStyle}>/</span>
+                  <span style={{ color: t.body }}>{lensA.name}</span>
+                </>
+              )}
             </>
           )}
         </div>
