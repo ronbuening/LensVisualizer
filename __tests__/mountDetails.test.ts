@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { MOUNT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
+import { LENS_MOUNTS } from "../src/utils/lensTaxonomy.js";
 import { MOUNT_DETAILS, getMountDetails } from "../src/utils/mountDetails.js";
 
 describe("MOUNT_DETAILS", () => {
-  it("has an entry for every represented mount", () => {
-    for (const mount of MOUNT_OPTIONS) {
+  it("has an entry for every canonical mount", () => {
+    for (const mount of LENS_MOUNTS) {
       expect(MOUNT_DETAILS[mount.id], `missing entry for "${mount.id}"`).toBeDefined();
     }
   });

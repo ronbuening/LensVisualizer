@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { IMAGE_FORMAT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
 import { IMAGE_FORMAT_DETAILS, getImageFormatDetails } from "../src/utils/imageFormatDetails.js";
+import { IMAGE_FORMATS } from "../src/utils/lensTaxonomy.js";
 
 describe("IMAGE_FORMAT_DETAILS", () => {
-  it("has an entry for every represented image format", () => {
-    for (const format of IMAGE_FORMAT_OPTIONS) {
+  it("has an entry for every canonical image format", () => {
+    for (const format of IMAGE_FORMATS) {
       expect(IMAGE_FORMAT_DETAILS[format.id], `missing entry for "${format.id}"`).toBeDefined();
     }
   });
@@ -18,7 +18,7 @@ describe("IMAGE_FORMAT_DETAILS", () => {
 });
 
 describe("getImageFormatDetails", () => {
-  it("returns details for a represented image format", () => {
+  it("returns details for a canonical image format", () => {
     const details = getImageFormatDetails("135-full-frame");
     expect(details).not.toBeNull();
     expect(details!.summary).toContain("35 mm");
