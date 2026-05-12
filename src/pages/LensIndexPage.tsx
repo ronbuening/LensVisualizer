@@ -31,6 +31,7 @@ import { H1_STYLE, PAGE_BASE_STYLE } from "./lensIndex/styles.js";
 import type { GroupMode } from "./lensIndex/types.js";
 import useLensIndexFilters from "./lensIndex/useLensIndexFilters.js";
 import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
+import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
 import { parseLensIndexUrlState, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
 
 export default function LensIndexPage() {
@@ -75,7 +76,10 @@ export default function LensIndexPage() {
     bounds: FILTER_BOUNDS,
   });
   const returnTo = currentLensIndexSearch ? `/lenses?${currentLensIndexSearch}` : "/lenses";
-  const hrefForLens = useCallback((lensKey: string) => lensLinkFromLibrary(lensKey, returnTo), [returnTo]);
+  const hrefForLens = useCallback(
+    (lensKey: string, context?: LensLibraryBreadcrumbContext) => lensLinkFromLibrary(lensKey, returnTo, context),
+    [returnTo],
+  );
 
   useEffect(() => {
     setGroupMode(parsedUrlState.groupMode);

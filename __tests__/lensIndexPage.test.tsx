@@ -135,6 +135,8 @@ describe("LensIndexPage", () => {
     const href = lensLink.getAttribute("href") ?? "";
     expect(href).toContain("/lens/nikon-z-26f28");
     expect(href).toContain("from=lenses");
+    expect(href).toContain("context=mount");
+    expect(href).toContain("id=nikon-z");
     expect(href).toContain("returnTo=%2Flenses%3Fgroup%3Dmount%26mounts%3Dnikon-z");
   });
 

@@ -9,6 +9,7 @@
 import { Link } from "react-router";
 import { getMakerDetails } from "../../utils/makerDetails.js";
 import { isImageFormatId, isLensMountId } from "../../utils/lensTaxonomy.js";
+import type { LensLibraryBreadcrumbContext } from "./clusterLinks.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
 import type { GroupMode, ImageFormatGroup, MakerGroup, MountGroup, PrimeZoomSection, YearGroup } from "./types.js";
 import type { Theme } from "../../types/theme.js";
@@ -24,7 +25,7 @@ function LensEntryLink({
   text: string;
   meta: string | null;
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <Link key={lensKey} to={hrefForLens(lensKey)} style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor }}>
@@ -41,7 +42,7 @@ function MakerSections({
 }: {
   groups: MakerGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <>
@@ -94,7 +95,7 @@ function FocalSections({
 }: {
   sections: PrimeZoomSection[];
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <>
@@ -156,7 +157,7 @@ function PatentYearSections({
 }: {
   groups: YearGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <>
@@ -191,7 +192,7 @@ function MountSections({
 }: {
   groups: MountGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <>
@@ -216,7 +217,9 @@ function MountSections({
               text={entry.data.name}
               meta={entry.data.specs && entry.data.specs.length > 0 ? entry.data.specs.slice(0, 2).join(", ") : null}
               theme={theme}
-              hrefForLens={hrefForLens}
+              hrefForLens={(lensKey) =>
+                hrefForLens(lensKey, isLensMountId(group.id) ? { type: "mount", id: group.id } : undefined)
+              }
             />
           ))}
         </section>
@@ -232,7 +235,7 @@ function ImageFormatSections({
 }: {
   groups: ImageFormatGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   return (
     <>
@@ -257,7 +260,9 @@ function ImageFormatSections({
               text={entry.data.name}
               meta={entry.lensMounts.length > 0 ? entry.lensMounts.map((mount) => mount.label).join(", ") : null}
               theme={theme}
-              hrefForLens={hrefForLens}
+              hrefForLens={(lensKey) =>
+                hrefForLens(lensKey, isImageFormatId(group.id) ? { type: "format", id: group.id } : undefined)
+              }
             />
           ))}
         </section>
@@ -283,7 +288,7 @@ export default function LensIndexResults({
   mountGroups: MountGroup[];
   imageFormatGroups: ImageFormatGroup[];
   theme: Theme;
-  hrefForLens?: (lensKey: string) => string;
+  hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} hrefForLens={hrefForLens} />;
   if (groupMode === "focal") return <FocalSections sections={focalSections} theme={theme} hrefForLens={hrefForLens} />;

@@ -4,8 +4,14 @@
 
 import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
 
-export function lensLinkFromLibrary(lensKey: string, returnTo: string): string {
+export type LensLibraryBreadcrumbContext = { type: "mount"; id: LensMountId } | { type: "format"; id: ImageFormatId };
+
+export function lensLinkFromLibrary(lensKey: string, returnTo: string, context?: LensLibraryBreadcrumbContext): string {
   const params = new URLSearchParams({ from: "lenses", returnTo });
+  if (context) {
+    params.set("context", context.type);
+    params.set("id", context.id);
+  }
   return `/lens/${lensKey}?${params.toString()}`;
 }
 

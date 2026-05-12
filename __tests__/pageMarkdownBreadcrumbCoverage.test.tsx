@@ -12,6 +12,7 @@ import type { LensAction, LensState } from "../src/types/state.js";
 import { CATALOG_KEYS, ALL_LENSES_BY_DATE, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../src/utils/LensContext.js";
 import { createInitialState } from "../src/utils/lensReducer.js";
+import { deriveMaker } from "../src/utils/lensMetadata.js";
 import { CHANGELOG } from "../src/utils/changelogData.js";
 import themes from "../src/utils/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "./testUtils.js";
@@ -172,7 +173,8 @@ describe("page, markdown, and breadcrumb coverage", () => {
   it("renders source-aware lens breadcrumbs for library, mount, and format sources", () => {
     const lensKey = CATALOG_KEYS[0];
     const state = makeState({ lens: { lensKeyA: lensKey } as LensState["lens"] });
-    const returnTo = encodeURIComponent("/lenses?group=mount&mounts=nikon-z");
+    const maker = deriveMaker(LENS_CATALOG[lensKey].name, LENS_CATALOG[lensKey].maker);
+    const returnTo = encodeURIComponent("/lenses?group=focal");
 
     renderBreadcrumb({
       lensKey,
@@ -180,10 +182,37 @@ describe("page, markdown, and breadcrumb coverage", () => {
       initialEntry: `/lens/${lensKey}?from=lenses&returnTo=${returnTo}`,
     });
 
+    expect(screen.getByRole("link", { name: "Lenses" }).getAttribute("href")).toBe("/lenses?group=focal");
+    expect(screen.getByRole("link", { name: maker.display }).getAttribute("href")).toBe(`/makers/${maker.slug}`);
+    expect(screen.queryByRole("link", { name: "Makers" })).toBeNull();
+
+    cleanup();
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: `/lens/${lensKey}?from=lenses&returnTo=${encodeURIComponent(
+        "/lenses?group=mount&mounts=nikon-z",
+      )}&context=mount&id=nikon-z`,
+    });
+
     expect(screen.getByRole("link", { name: "Lenses" }).getAttribute("href")).toBe(
       "/lenses?group=mount&mounts=nikon-z",
     );
-    expect(screen.queryByRole("link", { name: "Makers" })).toBeNull();
+    expect(screen.getByRole("link", { name: "Nikon Z" }).getAttribute("href")).toBe("/mounts/nikon-z");
+
+    cleanup();
+    renderBreadcrumb({
+      lensKey,
+      state,
+      initialEntry: `/lens/${lensKey}?from=lenses&returnTo=${encodeURIComponent(
+        "/lenses?group=format&formats=aps-c",
+      )}&context=format&id=aps-c`,
+    });
+
+    expect(screen.getByRole("link", { name: "Lenses" }).getAttribute("href")).toBe(
+      "/lenses?group=format&formats=aps-c",
+    );
+    expect(screen.getByRole("link", { name: "APS-C" }).getAttribute("href")).toBe("/formats/aps-c");
 
     cleanup();
     renderBreadcrumb({ lensKey, state, initialEntry: `/lens/${lensKey}?from=mount&id=nikon-z` });
