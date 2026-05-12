@@ -14,6 +14,7 @@ import { render } from "../src/entry-server.js";
 import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
+import { getMountDetails } from "../src/utils/mountDetails.js";
 import {
   allMakerSlugs,
   makerDisplayName,
@@ -31,6 +32,7 @@ const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
 const TEST_MAKER_SLUG = allMakerSlugs()[0];
 const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
 const TEST_MOUNT = MOUNT_OPTIONS[0];
+const TEST_MOUNT_DETAILS = getMountDetails(TEST_MOUNT.id)!;
 const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
 const TEST_ARTICLE = ARTICLES[0];
 
@@ -266,10 +268,11 @@ describe("SSR render — maker page /makers/:maker", () => {
 
 describe("SSR render — mounts", () => {
   it("mounts index has title, canonical, and structured data", () => {
-    const { helmet } = render("/mounts");
+    const { helmet, html } = render("/mounts");
     expect(helmet.title.toString()).toContain("Lens Mounts");
     expect(helmet.link.toString()).toContain("/mounts");
     expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain("fully electronic EOS SLR mount");
   });
 
   it("mount detail has title, canonical, and breadcrumbs", () => {
@@ -279,6 +282,7 @@ describe("SSR render — mounts", () => {
     expect(helmet.link.toString()).toContain(`/mounts/${TEST_MOUNT.id}`);
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_MOUNT.label);
+    expect(html).toContain(TEST_MOUNT_DETAILS.description.split("\n\n")[0]);
   });
 });
 
