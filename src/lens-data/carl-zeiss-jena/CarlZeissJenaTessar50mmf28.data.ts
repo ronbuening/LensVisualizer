@@ -41,6 +41,8 @@ const LENS_DATA = {
   // focalLengthDesign omitted — identical to focalLengthMarketing after scaling
   apertureMarketing: 2.8,
   // apertureDesign omitted — patent does not specify f-number; 2.8 is production identification
+  lensMounts: ["m42"],
+  imageFormat: "135-full-frame",
   patentYear: 1952,
   elementCount: 4,
   groupCount: 3,

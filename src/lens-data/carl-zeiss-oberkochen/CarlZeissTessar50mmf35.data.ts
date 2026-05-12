@@ -48,6 +48,8 @@ const LENS_DATA = {
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 50,
   apertureMarketing: 3.5,
+  lensMounts: ["exakta","m42","leica-ltm"],
+  imageFormat: "135-full-frame",
   patentYear: 1956,
   elementCount: 4,
   groupCount: 3,
