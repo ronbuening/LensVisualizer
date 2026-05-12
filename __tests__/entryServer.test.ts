@@ -38,6 +38,15 @@ const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
 const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
 
+function escapeHtmlText(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("<", "&lt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#x27;");
+}
+
 /* ── Preconditions ── */
 
 describe("SSR test preconditions", () => {
@@ -284,7 +293,7 @@ describe("SSR render — mounts", () => {
     expect(helmet.link.toString()).toContain(`/mounts/${TEST_MOUNT.id}`);
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_MOUNT.label);
-    expect(html).toContain(TEST_MOUNT_DETAILS.description.split("\n\n")[0]);
+    expect(html).toContain(escapeHtmlText(TEST_MOUNT_DETAILS.description.split("\n\n")[0]));
   });
 });
 
@@ -306,7 +315,7 @@ describe("SSR render — formats", () => {
     expect(helmet.link.toString()).toContain(`/formats/${TEST_FORMAT.id}`);
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_FORMAT.label);
-    expect(html).toContain(TEST_FORMAT_DETAILS.description.split("\n\n")[0]);
+    expect(html).toContain(escapeHtmlText(TEST_FORMAT_DETAILS.description.split("\n\n")[0]));
   });
 });
 
@@ -317,7 +326,7 @@ describe("SSR render — article page /articles/:slug", () => {
 
   it("title contains the article title", () => {
     const { helmet } = render(url);
-    const encodedTitle = TEST_ARTICLE.title.replaceAll("'", "&#x27;");
+    const encodedTitle = escapeHtmlText(TEST_ARTICLE.title);
     expect(helmet.title.toString()).toContain(encodedTitle);
   });
 
