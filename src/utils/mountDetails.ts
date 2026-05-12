@@ -209,7 +209,7 @@ export const MOUNT_DETAILS: Partial<Record<LensMountId, MountDetails>> = {
     description:
       "Sony E mount began with compact APS-C NEX cameras and expanded to full-frame Alpha bodies with FE lenses. The short flange distance made it highly adaptable, while Sony's early full-frame mirrorless push attracted extensive third-party lens support.\n\nThe mount's single mechanical standard spans small APS-C lenses, professional full-frame GM lenses, Zeiss-branded collaborations, cinema-oriented optics, and manual-focus specialty lenses. In this catalog, Sony E/FE designs are useful for comparing how the same mount handles both compactness and very high performance.",
   },
-  "yashica-contax": {
+  "contax-yashica": {
     era: "Contax/Yashica SLR mount, 1970s-2000s",
     formatNotes: "35 mm SLR",
     summary: "The SLR mount shared by Yashica and Contax bodies, famous for Carl Zeiss T* manual-focus lenses.",

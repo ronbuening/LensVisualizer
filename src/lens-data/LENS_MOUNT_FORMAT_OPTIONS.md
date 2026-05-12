@@ -80,7 +80,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `bronica-etr` | Zenza Bronica ETR | Bronica ETR 6x4.5 medium-format SLR mount; usually pairs with `645`. |
 | `bronica-gs` | Zenza Bronica GS | Bronica GS-1 6x7 medium-format SLR mount; usually pairs with `6x7`. |
 | `bronica-sq` | Zenza Bronica SQ | Bronica SQ 6x6 medium-format SLR mount; usually pairs with `6x6`. |
-| `yashica-contax` | Yashica / Contax | Contax/Yashica 35 mm SLR mount; usually pairs with `135-full-frame`. |
+| `contax-yashica` | Yashica / Contax | Contax/Yashica 35 mm SLR mount; usually pairs with `135-full-frame`. |
 
 ## Image Format IDs
 
