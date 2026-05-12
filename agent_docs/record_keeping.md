@@ -2,7 +2,8 @@
 
 ## Purpose
 
-Keep a lightweight, durable record of branch work so future sessions can recover context quickly without bloating `CLAUDE.md`.
+Keep a lightweight, durable record of branch work so future sessions can recover context quickly without bloating
+`CLAUDE.md`. Records are historical snapshots of work as it happened; they are not living architecture guides.
 
 ## What To Record
 
@@ -24,6 +25,8 @@ Do **not** copy large diffs, command transcripts, or code snippets here.
 - Prefer one file per branch or task, with a descriptive name such as:
   - `agent_docs/records/focus-breathing-distortion-overhaul.md`
   - `agent_docs/records/pr-123-followups.md`
+- Treat older records as context only. If a record conflicts with `agent_docs/architecture*.md`, `gotchas.md`, or a
+  generated report, the current focused doc/report wins.
 
 ## Recommended Template
 

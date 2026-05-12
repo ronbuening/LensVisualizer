@@ -4,6 +4,7 @@ A focused per-lens worklist for the remaining catalog mismatches surfaced by the
 
 - [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — the auto-generated raw mismatch list (regenerate with `npm test -- catalogMismatchScan`).
 - [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — the auto-generated candidate report grouping mismatches by `(stored nd, stored vd)` and showing each group's catalog candidates within tolerance (regenerate with `npm test -- glassRelabelCandidatesScan`).
+- [unresolved-glass.generated.md](unresolved-glass.generated.md) — the auto-generated unresolved-token report for glass strings that never resolve through `resolveGlass` (regenerate with `npm test -- unresolvedGlassScan`).
 - [glass-catalog-buildout.md](glass-catalog-buildout.md) — Sellmeier sourcing playbook (where to find vendor data, the round-trip test, etc.).
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — workflow for patent-sourced `nC`/`nF`/`ng` line indices on truly proprietary glasses.
 
@@ -16,15 +17,13 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Status (Apr 2026, after Phase 3 catalog expansion + relabel sweep)
+## Current Status (May 2026, Phase 11 catalog)
 
-- Catalog: **53 entries** (24 → 32 → 38 → 53).
-- Mismatches: **162** (was 117 → 148 → 162; note increase reflects Phase 3 entries newly resolving previously-unresolved labels with wrong stored nd).
-- Resolved this session (Phase 3): ~55 surfaces across 25+ lens files — full details in the Phase 3 resolved table below.
-- Surfaces resolving to Sellmeier: **696** (was 564); 49.3% of all non-empty glass strings.
-- Actionable candidate groups: **31** (49 surfaces).
-- No-candidate groups: **80** (113 surfaces) — increased vs Phase 2 because Phase 3 entries exposed previously-hidden mismatches.
-- Phase 3 note: 15 new Ohara entries (dense flints S-TIH14/TIM35/TIM25/TIM22/TIM2, ED glasses S-FPL52/FPM3, crowns S-BAL35/NSL3, lanthanum S-LAH51/52/65/LAM54, ultra-HRI S-NPH1/NPH53). Two planned entries (S-LAH97 formula 3, TAFD25 formula 3) skipped — incompatible polynomial form.
+- Catalog: **180 verified entries** in `src/optics/glassCatalogData.ts`.
+- `catalogMismatchScan`: **178** lenses scanned, **2002** non-empty glass strings, **1493** resolved catalog hits, **334** rejected mismatches across **111** lens files.
+- `glassRelabelCandidatesScan`: **334** mismatched surfaces across **226** unique `(stored nd, stored vd, label)` groups.
+- `unresolvedGlassScan`: **448** non-explicit-unmatched annotations still do not resolve, covering **138** distinct glass-like tokens.
+- The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work.
 
 ## Resolved Phase 3 — high-confidence relabels (audit trail)
 
@@ -83,7 +82,7 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Pending — actionable relabels (single catalog candidate, vd matches)
 
-Run [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) for the current list. As of this writing, **31 (nd, vd) groups have at least one in-tolerance candidate** (~58 surfaces). Tackle these in future sessions — each is a per-lens authoring decision that should be cross-checked against the lens's analysis.md or patent narrative when present.
+Run [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) for the current list. Tackle candidates one lens at a time; each is a per-lens authoring decision that should be cross-checked against the lens's analysis.md or patent narrative when present.
 
 Non-trivial cases worth special note:
 
@@ -94,7 +93,7 @@ Non-trivial cases worth special note:
 
 ## Pending — patent verification needed (no catalog candidate within tolerance)
 
-These (nd, vd) groups don't match any catalog glass within Δnd=0.005 / Δvd=3.0. The annotated glass is wrong AND there's no obvious better candidate in the catalog. For each, the right resolution is to:
+These (nd, vd) groups don't match any catalog glass within Δnd=0.005 / Δvd=3.0. The annotated glass is wrong AND there's no obvious better candidate in the current candidate report. For each, the right resolution is to:
 
 1. Open the lens patent prescription tables.
 2. Identify the correct glass at the cited surface (often listed by code or by vendor part number).
@@ -105,12 +104,16 @@ These (nd, vd) groups don't match any catalog glass within Δnd=0.005 / Δvd=3.0
 
 The `Unmatched (…)` form is preferred for genuinely-proprietary glass (Sumita custom melts, vintage Leitz, designer-attributed approximations). It is honest about the data quality and surfaces in the LCA badge as "Abbe approx".
 
-### Most-frequent patterns (groups, not individual surfaces)
+### Historical high-frequency patterns (groups, not individual surfaces)
+
+These patterns explain why many mismatches exist, but they are not the current worklist. Several once-missing glasses
+have since been added to the catalog; rerun the generated reports and trust the report row for the current candidate
+state.
 
 | Pattern | Surfaces | Notes |
 |---|---|---|
-| `S-LAH79` mislabel with stored nd≈1.90366 / vd≈31.3 | ~10 | Real S-LAH79 is 2.003/28.3. The stored values point to a high-index lanthanum near OHARA S-LAH92 / S-LAH96 / S-LAH97 — none currently in catalog. |
-| `S-LAH79` mislabel with stored nd≈1.95375 / vd≈32.3 | ~13 | Same family; possibly OHARA S-LAH98 / S-NBH52 / E-FDS3 — outside current catalog. |
+| `S-LAH79` mislabel with stored nd≈1.90366 / vd≈31.3 | ~10 | Real S-LAH79 is 2.003/28.3. Stored values point to a nearby high-index lanthanum family; current reports may now surface catalogued candidates, but the patent should settle the label. |
+| `S-LAH79` mislabel with stored nd≈1.95375 / vd≈32.3 | ~13 | Same family; possibly OHARA S-LAH98 / S-NBH52 / E-FDS3. Check the current candidate report before deciding whether to relabel or mark unmatched. |
 | `S-NPH2` mislabel with stored nd≈2.001 / vd≈29.1 | ~5 | Real S-NPH2 is 1.923/18.9. Stored values closer to S-LAH79 (2.003/28.3) — already in catalog (Δnd ≈ 0.003 — borderline tolerance). |
 | `S-NPH2` mislabel with stored nd≈2.05090 / vd≈26.9 | ~2 | Above S-LAH79's nd; could be OHARA S-NBH56 / E-FDS4 (newer ultra-high-index flints, not in catalog). |
 | `S-LAH58` mislabel with stored nd≈1.91082 / vd≈35.2 | ~6 | Real S-LAH58 is 1.883/40.8. Stored values match S-LAH59 / S-LAH60 / S-LAH63V (none in catalog). |

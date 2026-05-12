@@ -74,6 +74,11 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/ui-components.md` - controls, display components, markdown renderer, analysis tabs
 - `agent_docs/architecture/optics-engine.md` - ray tracing, aberrations, validation, diagram geometry
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
+- `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
+- `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
+- `agent_docs/catalog-mismatches.generated.md` - generated mismatch report; refresh with `npm test -- catalogMismatchScan`
+- `agent_docs/glass-relabel-candidates.generated.md` - generated relabel candidates; refresh with `npm test -- glassRelabelCandidatesScan`
+- `agent_docs/unresolved-glass.generated.md` - generated unresolved-token report; refresh with `npm test -- unresolvedGlassScan`
 - `agent_docs/architecture/state-and-utilities.md` - reducer state, preferences, URL sync, themes, metadata helpers
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations

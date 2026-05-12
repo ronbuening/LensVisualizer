@@ -4,6 +4,12 @@ A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_
 
 The catalog currently has **180 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
+The generated reports are the current work queues:
+
+- [unresolved-glass.generated.md](unresolved-glass.generated.md) — unresolved tokens that may need catalog entries, aliases, or patent backfills; regenerate with `npm test -- unresolvedGlassScan`.
+- [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — labels that resolve to a catalog entry but disagree with stored `nd`; regenerate with `npm test -- catalogMismatchScan`.
+- [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — candidate relabel targets for mismatches; regenerate with `npm test -- glassRelabelCandidatesScan`.
+
 ## Why So Few Entries To Start With
 
 The first cut of the catalog had nine entries. Six were wrong: when the Sellmeier coefficients were validated against the listed `nd` at 587.5618 nm via `assertCatalogConsistent`, four diverged by 5e-3 to 2e-2 — well outside any reasonable transcription tolerance. The values came from memory and were unreliable.
@@ -12,7 +18,9 @@ The conclusion drove the design: **every entry must round-trip through `assertCa
 
 ## Prioritized Glasses to Add
 
-Frequency derived from `glass:` declarations across all 123 lens data files (1413 declarations total). The top 50 covers the lion's share. Asterisks mark entries already in the catalog.
+This original priority table was derived from `glass:` declarations when the catalog was much smaller. Keep it as a
+historical prioritization aid; use the generated reports above for the current 178-lens queue. Asterisks mark entries
+already in the catalog.
 
 | Glass | Lens-element occurrences | Vendor | Notes |
 |---|---|---|---|
@@ -62,7 +70,7 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ S-BSM14 | 7 | Ohara | Phase 4 addition |
 | ★ SF1 | 6 | Schott | |
 | ★ N-LAK8 | 6 | Schott | |
-| TAFD25 | 6 | Hoya | **Skip for now** — Hoya catalog TAFD25 is nd=1.90366/vd=31.32, while current lens annotations use several unrelated nd/vd regions; relabel per lens instead of adding a broad resolver target |
+| ★ TAFD25 | 6 | Hoya | Added in Phase 10. The nd guard still rejects annotations whose stored values belong to a different glass; relabel those per lens. |
 | ★ S-LAH51 | 6 | Ohara | |
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
@@ -134,9 +142,9 @@ Frequency derived from `glass:` declarations across all 123 lens data files (141
 | ★ J-LASFH9 | Hikari | 3 | Code-family 903357; older Hikari type now superseded by J-LASFH9A, but the 2012 catalog gives the exact d-code |
 | ★ J-LASFH15 | Hikari | 2 | Code-family 950294; high-index dense flint |
 
-Phase 9 deliberately left several high-frequency names unresolved because their public catalog constants did not match all current lens annotations' nd/vd clusters closely enough for an immediate broad resolver target. Phase 10 added many of those real vendor entries after confirming the dispersion cascade's nd guard rejects bad annotations before Sellmeier is used. Remaining code-family research is still led by `744495`, `051269`, and a misleading `159319` token that appears to be shorthand for `1.59319/67.90` rather than a true six-digit d-code.
+Phase 9 deliberately left several high-frequency names unresolved because their public catalog constants did not match all current lens annotations' nd/vd clusters closely enough for an immediate broad resolver target. Phase 10 and Phase 11 added many of those real vendor entries after confirming the dispersion cascade's nd guard rejects bad annotations before Sellmeier is used. Remaining code-family research is currently led by the generated unresolved-token report, especially `744495`, `S-NPH7`, `S-TIF6`, and shorthand-looking tokens such as `159319`.
 
-**Phase 8 additions** (May 2026 — clean named tokens from the unresolved-glass report; ambiguous high-frequency tokens such as NBFD3, S-NPH7, and TAFD25 remain deferred for per-lens patent relabeling):
+**Phase 8 additions** (May 2026 — clean named tokens from the unresolved-glass report; NBFD3 and TAFD25 were still deferred here, then added in Phase 10 once the nd guard behavior was verified):
 
 | Glass | Vendor | Occurrences before add | Notes |
 |---|---|---:|---|
@@ -195,7 +203,7 @@ Phase 9 deliberately left several high-frequency names unresolved because their 
 | ★ S-BSM81 | Ohara | 2 | Barium crown |
 | ★ S-LAM2 | Ohara | 2 | Lanthanum crown |
 | ★ N-SK10 | Schott | 2 | Barium crown; alias SK10 added |
-| NBFD3 | Hoya | 8 | **Skip for direct add** — Hoya catalog NBFD3 is nd=1.80450/vd=39.63, but current annotations span several nd/vd regions; relabel or mark unmatched per lens first |
+| ★ NBFD3 | Hoya | 8 | Added in Phase 10. Current annotations still span several nd/vd regions, so mismatch rows must be relabeled or marked unmatched per lens. |
 | ★ TAFD40 | Hoya | 3 | Added in Phase 7 as formula-3 polynomial |
 | S-TIF6 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
 | S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, but current annotations use high-index nd≈2.0 values; needs per-lens relabeling |
