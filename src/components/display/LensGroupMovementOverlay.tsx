@@ -10,14 +10,7 @@ import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../../types/groupM
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
-import {
-  createPlotArea,
-  formatShiftTick,
-  linearScale,
-  niceTicks,
-  svgPath,
-  symmetricDomain,
-} from "./charts/chartMath.js";
+import { createPlotArea, formatMmTick, linearScale, niceTicks, svgPath } from "./charts/chartMath.js";
 import { AnalysisEmptyState, AnalysisMetricRow } from "./analysisUi.js";
 
 interface LensGroupMovementOverlayProps {
@@ -51,55 +44,41 @@ function movementColors(t: Theme): string[] {
   ];
 }
 
-function xTicksForProfile(profile: GroupMovementProfile): number[] {
-  if (profile.mode === "focus") return [0, 0.25, 0.5, 0.75, 1];
-  const [min, max] = profile.xDomain;
-  return niceTicks(min, max, 5, [1, 2, 5, 10, 20, 25, 50, 100]);
+function positionTicksForProfile(profile: GroupMovementProfile): number[] {
+  const [min, max] = profile.positionDomain;
+  return [...new Set([...niceTicks(min, max, 6, [1, 2, 5, 10, 20, 25, 50, 100]), 0])].sort((a, b) => a - b);
 }
 
-function xTickLabel(profile: GroupMovementProfile, value: number): string {
-  if (profile.mode === "focus") {
-    if (Math.abs(value) < 1e-9) return "∞";
-    if (Math.abs(value - 1) < 1e-9) return "Close";
-    return `${Math.round(value * 100)}%`;
-  }
-  return `${Math.round(value)}`;
+function groupPath(points: readonly GroupMovementPoint[], rowY: number, xScale: (value: number) => number): string {
+  return svgPath(
+    points,
+    (point) => xScale(point.positionMm),
+    () => rowY,
+  );
 }
 
-function xLabel(profile: GroupMovementProfile): string {
-  return profile.mode === "focus" ? "Focus position" : "Focal length (mm)";
-}
-
-function bandPath(
-  lower: readonly GroupMovementPoint[],
-  upper: readonly GroupMovementPoint[],
-  xScale: (value: number) => number,
-  yScale: (value: number) => number,
-): string {
-  if (lower.length === 0 || lower.length !== upper.length) return "";
-  const forward = lower
-    .map(
-      (point, index) => `${index === 0 ? "M" : "L"}${xScale(point.x).toFixed(1)},${yScale(point.shiftMm).toFixed(1)}`,
-    )
-    .join(" ");
-  const backward = [...upper]
-    .reverse()
-    .map((point) => `L${xScale(point.x).toFixed(1)},${yScale(point.shiftMm).toFixed(1)}`)
-    .join(" ");
-  return `${forward} ${backward} Z`;
+function seriesPositionRange(series: GroupMovementProfile["series"][number]): [number, number] {
+  const positions = [
+    ...series.samples.map((point) => point.positionMm),
+    ...(series.secondarySamples ?? []).map((point) => point.positionMm),
+    series.currentPoint.positionMm,
+  ];
+  return [Math.min(...positions), Math.max(...positions)];
 }
 
 function LensGroupMovementChart({ profile, t }: { profile: GroupMovementProfile; t: Theme }) {
   const width = 680;
-  const height = 320;
-  const area = createPlotArea(width, height, { top: 24, right: 20, bottom: 38, left: 56 });
+  const height = Math.max(250, profile.series.length * 34 + 76);
+  const area = createPlotArea(width, height, { top: 28, right: 18, bottom: 38, left: 72 });
   const { margin, plotW, plotH } = area;
-  const [yMin, yMax] = symmetricDomain(profile.maxAbsShiftMm, 1.15, 0.1);
-  const xScale = linearScale(profile.xDomain[0], profile.xDomain[1], margin.left, margin.left + plotW);
-  const yScale = linearScale(yMin, yMax, margin.top + plotH, margin.top);
-  const xTicks = xTicksForProfile(profile);
-  const yTicks = niceTicks(yMin, yMax, 6, [0.05, 0.1, 0.2, 0.25, 0.5, 1, 2, 5, 10, 20, 50]);
+  const plotTop = margin.top;
+  const plotBottom = margin.top + plotH;
+  const xScale = linearScale(profile.positionDomain[0], profile.positionDomain[1], margin.left, margin.left + plotW);
+  const yScale = linearScale(0, Math.max(profile.series.length - 1, 1), margin.top + 18, margin.top + plotH - 18);
+  const xTicks = positionTicksForProfile(profile);
+  const yTicks = profile.series.map((_, index) => index);
   const colors = movementColors(t);
+  const focusPlaneX = xScale(0);
 
   return (
     <SvgChartFrame
@@ -109,50 +88,82 @@ function LensGroupMovementChart({ profile, t }: { profile: GroupMovementProfile;
       yTicks={yTicks}
       xScale={xScale}
       yScale={yScale}
-      xTickLabel={(value) => xTickLabel(profile, value)}
-      yTickLabel={formatShiftTick}
-      xLabel={xLabel(profile)}
-      yLabel="Shift (mm)"
-      referenceLines={[{ value: 0, opacity: 0.5 }]}
+      xTickLabel={formatMmTick}
+      yTickLabel={(value) => profile.series[value]?.group.label ?? ""}
+      xLabel="Position from focus plane (mm)"
+      yLabel="Group"
     >
+      <line
+        x1={focusPlaneX}
+        y1={plotTop}
+        x2={focusPlaneX}
+        y2={plotBottom}
+        stroke={t.sliderAccent}
+        strokeWidth={1.1}
+        strokeDasharray="4,3"
+        opacity={0.85}
+        data-testid="group-motion-focus-plane"
+      />
+      <text
+        x={focusPlaneX - 5}
+        y={plotTop - 8}
+        textAnchor="end"
+        fill={t.muted}
+        fontSize={7.5}
+        fontFamily="inherit"
+        letterSpacing="0.06em"
+      >
+        FOCUS PLANE
+      </text>
       {profile.series.map((series, index) => {
         const color = colors[index % colors.length];
-        const primaryPath = svgPath(
-          series.samples,
-          (point) => xScale(point.x),
-          (point) => yScale(point.shiftMm),
-        );
-        const secondaryPath = series.secondarySamples
-          ? svgPath(
-              series.secondarySamples,
-              (point) => xScale(point.x),
-              (point) => yScale(point.shiftMm),
-            )
-          : null;
+        const rowY = yScale(index);
+        const primaryY = series.secondarySamples ? rowY - 4 : rowY;
+        const secondaryY = rowY + 4;
+        const primaryPath = groupPath(series.samples, primaryY, xScale);
+        const secondaryPath = series.secondarySamples ? groupPath(series.secondarySamples, secondaryY, xScale) : null;
+        const [rangeMin, rangeMax] = seriesPositionRange(series);
+        const rangeX = xScale(rangeMin);
+        const rangeWidth = Math.max(1, xScale(rangeMax) - rangeX);
+        const startPoint = series.samples[0];
+        const endPoint = series.samples[series.samples.length - 1];
         return (
-          <g key={series.group.id}>
+          <g key={series.group.id} data-testid={`group-motion-row-${index + 1}`}>
             {series.secondarySamples ? (
-              <path d={bandPath(series.samples, series.secondarySamples, xScale, yScale)} fill={color} opacity={0.08} />
+              <rect x={rangeX} y={rowY - 9} width={rangeWidth} height={18} rx={3} fill={color} opacity={0.08} />
             ) : null}
-            <path d={primaryPath} fill="none" stroke={color} strokeWidth={1.4} strokeLinejoin="round" />
+            <path d={primaryPath} fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" />
             {secondaryPath ? (
               <path
                 d={secondaryPath}
                 fill="none"
                 stroke={color}
-                strokeWidth={1.2}
-                strokeLinejoin="round"
+                strokeWidth={1.6}
+                strokeLinecap="round"
                 strokeDasharray="4,3"
                 opacity={0.85}
               />
             ) : null}
+            {startPoint ? (
+              <circle
+                cx={xScale(startPoint.positionMm)}
+                cy={primaryY}
+                r={3}
+                fill={t.panelBg}
+                stroke={color}
+                strokeWidth={1.2}
+              />
+            ) : null}
+            {endPoint ? (
+              <circle cx={xScale(endPoint.positionMm)} cy={primaryY} r={2.6} fill={color} opacity={0.7} />
+            ) : null}
             <circle
-              cx={xScale(series.currentPoint.x)}
-              cy={yScale(series.currentPoint.shiftMm)}
-              r={3}
+              cx={xScale(series.currentPoint.positionMm)}
+              cy={rowY}
+              r={3.7}
               fill={color}
               stroke={t.value}
-              strokeWidth={0.8}
+              strokeWidth={0.9}
             />
           </g>
         );
@@ -247,7 +258,7 @@ export default function LensGroupMovementOverlay({
         <div style={{ display: "grid", gap: 3 }}>
           <span style={{ color: t.value, fontSize: 14, fontWeight: 700 }}>Lens Group Movement</span>
           <span style={{ color: t.muted, fontSize: 9.5 }}>
-            Axial group-center shift in the diagram&apos;s fixed image-plane reference.
+            Group-center positions relative to the fixed focus plane; 0 is the image side on the right.
           </span>
         </div>
         <AnalysisMetricRow label="Groups" value={profile.groups.length} t={t} />
@@ -270,25 +281,13 @@ export default function LensGroupMovementOverlay({
                   lineHeight: 1.4,
                 }}
               >
-                {profile.series.map((series, index) => {
-                  const color = movementColors(t)[index % movementColors(t).length];
-                  return (
-                    <span key={series.group.id} style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-                      <span
-                        style={{
-                          width: 10,
-                          height: 2,
-                          background: color,
-                          display: "inline-block",
-                        }}
-                      />
-                      {series.group.label}
-                    </span>
-                  );
-                })}
+                <span>Open circle = start</span>
+                <span>Filled dot = end</span>
+                <span>Outlined dot = current slider state</span>
+                {profile.mode === "combined" ? <span>Dashed line = close focus across zoom</span> : null}
               </div>
               <div style={{ display: "flex", gap: 16, flexWrap: "wrap", fontSize: 9.5 }}>
-                <AnalysisMetricRow label="Max shift" value={`${profile.maxAbsShiftMm.toFixed(2)} mm`} t={t} />
+                <AnalysisMetricRow label="Max travel" value={`${profile.maxAbsShiftMm.toFixed(2)} mm`} t={t} />
                 <AnalysisMetricRow label="Current" value={MODE_LABELS[activeMode]} t={t} />
               </div>
             </>

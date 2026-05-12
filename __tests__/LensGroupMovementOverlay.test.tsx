@@ -33,6 +33,7 @@ describe("LensGroupMovementOverlay", () => {
     expect((screen.getByRole("radio", { name: /zoom/i }) as HTMLInputElement).disabled).toBe(false);
     expect((screen.getByRole("radio", { name: /combined/i }) as HTMLInputElement).disabled).toBe(true);
     expect(screen.getByText("Lens Group Movement")).toBeTruthy();
+    expect(screen.getByText("FOCUS PLANE")).toBeTruthy();
   });
 
   it("enables all three modes for a zoom with modeled focus travel", () => {
@@ -50,6 +51,6 @@ describe("LensGroupMovementOverlay", () => {
     expect((screen.getByRole("radio", { name: /focus/i }) as HTMLInputElement).disabled).toBe(false);
     expect((screen.getByRole("radio", { name: /zoom/i }) as HTMLInputElement).disabled).toBe(false);
     expect((screen.getByRole("radio", { name: /combined/i }) as HTMLInputElement).disabled).toBe(false);
-    expect(screen.getByText("MAX SHIFT")).toBeTruthy();
+    expect(screen.getByText("MAX TRAVEL")).toBeTruthy();
   });
 });

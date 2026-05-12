@@ -19,6 +19,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
 | `diagramGeometry.ts` | SVG coordinate transforms and element shape/render diagnostics. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
+| `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans. |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
@@ -97,6 +98,14 @@ visible in the SVG.
 Only lenses that declare `perspectiveControl` get movement controls. Use `clampLensMovement()` before rendering or
 sharing movement values, and keep analysis helpers centered-lens unless a future task explicitly adds full moved-optics
 diagnostics.
+
+## Lens-Group Movement
+
+`groupMovement.ts` infers display groups from `RuntimeLens.groups` and falls back to construction groups when annotations
+are absent. It samples focus and zoom states through `doLayout()`, applies the same fixed-image-plane anchoring used by
+the viewer, and reports each group center as a signed axial position relative to the fixed focus plane (`0` on the image
+side, negative toward the object side). The overlay consumes these pure profiles; do not move the calculations into
+React components or `buildLens()`.
 
 ## Aberration Analysis
 

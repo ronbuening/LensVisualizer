@@ -42,6 +42,7 @@ describe("group movement optics helpers", () => {
       const closePoint = series.samples.find((point) => Math.abs(point.focusT - 1) < 1e-9);
       expect(closePoint?.shiftMm).toBeLessThan(-2.9);
       expect(closePoint?.shiftMm).toBeGreaterThan(-3.1);
+      expect(closePoint?.positionMm).toBeLessThan(0);
     }
   });
 

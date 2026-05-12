@@ -71,7 +71,7 @@ Key responsibilities:
 | --- | --- |
 | `LensDiagramLoadedState.tsx` | Loaded panel composition after build/layout succeeds. |
 | `LensDiagramErrorState.tsx` | Build/shape/ray error presentation. |
-| `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
+| `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval/group-movement overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
 | `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. Shows a notice when PC movement is active because v1 analysis tabs remain centered-lens diagnostics. |
 | `DiagramControlPanel.tsx` | Sliders, inspector, legend, and analysis launch button. |
 | `analysisTabs.ts` | Typed analysis tab metadata shared by trigger and drawer. |
@@ -93,7 +93,7 @@ Key responsibilities:
 | `LCAOverlayContent.tsx` | Enlarged LCA overlay content. |
 | `PetzvalOverlayContent.tsx` | Enlarged Petzval overlay content. |
 | `PetzvalSumBadge.tsx` | Diagram badge for Petzval sum and field radius. |
-| `PanelOverlay.tsx` | Panel-scoped absolute overlay for diagram-level measure overlays. |
+| `PanelOverlay.tsx` | Panel-scoped absolute overlay for diagram-level measure overlays, including LCA, Petzval, bokeh preview, and lens-group movement. |
 
 ## Error Display Tiers
 
