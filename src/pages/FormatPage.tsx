@@ -9,6 +9,7 @@ import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../utils/lensTaxonomy.js";
 import { formatCanonicalURL, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { getImageFormatDetails } from "../utils/imageFormatDetails.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 import { lensLinkFromFormat } from "./lensIndex/clusterLinks.js";
 import { lensesForImageFormat } from "./lensIndex/catalog.js";
@@ -22,8 +23,11 @@ export default function FormatPage() {
   const format = IMAGE_FORMAT_BY_ID[formatId];
   const lenses = lensesForImageFormat(formatId);
   if (lenses.length === 0) return <Navigate to="/formats" replace />;
+  const details = getImageFormatDetails(formatId);
 
-  const seoDescription = `Explore ${lenses.length} ${format.label} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
+  const seoDescription = details
+    ? `${details.summary} Explore ${lenses.length} ${format.label} lens designs with interactive cross-section diagrams.`
+    : `Explore ${lenses.length} ${format.label} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -72,6 +76,21 @@ export default function FormatPage() {
           {format.widthMm} x {format.heightMm} mm image area · {lenses.length} interactive lens{" "}
           {lenses.length === 1 ? "diagram" : "diagrams"}
         </p>
+
+        {details && (
+          <section style={{ marginBottom: "1.5rem" }}>
+            {(details.commonUses || details.coverageNotes) && (
+              <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
+                {[details.commonUses, details.coverageNotes].filter(Boolean).join(" | ")}
+              </p>
+            )}
+            {details.description.split("\n\n").map((paragraph, i) => (
+              <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
+                {paragraph}
+              </p>
+            ))}
+          </section>
+        )}
 
         <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
           {lenses.map((entry) => (

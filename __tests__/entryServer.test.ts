@@ -15,6 +15,7 @@ import { ARTICLES } from "../src/utils/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../src/utils/lensCatalog.js";
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../src/pages/lensIndex/catalog.js";
 import { getMountDetails } from "../src/utils/mountDetails.js";
+import { getImageFormatDetails } from "../src/utils/imageFormatDetails.js";
 import {
   allMakerSlugs,
   makerDisplayName,
@@ -34,6 +35,7 @@ const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
 const TEST_MOUNT = MOUNT_OPTIONS[0];
 const TEST_MOUNT_DETAILS = getMountDetails(TEST_MOUNT.id)!;
 const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
+const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
 
 /* ── Preconditions ── */
@@ -290,10 +292,11 @@ describe("SSR render — mounts", () => {
 
 describe("SSR render — formats", () => {
   it("formats index has title, canonical, and structured data", () => {
-    const { helmet } = render("/formats");
+    const { helmet, html } = render("/formats");
     expect(helmet.title.toString()).toContain("Lens Image Formats");
     expect(helmet.link.toString()).toContain("/formats");
     expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain(TEST_FORMAT_DETAILS.summary);
   });
 
   it("format detail has title, canonical, and breadcrumbs", () => {
@@ -303,6 +306,7 @@ describe("SSR render — formats", () => {
     expect(helmet.link.toString()).toContain(`/formats/${TEST_FORMAT.id}`);
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_FORMAT.label);
+    expect(html).toContain(TEST_FORMAT_DETAILS.description.split("\n\n")[0]);
   });
 });
 

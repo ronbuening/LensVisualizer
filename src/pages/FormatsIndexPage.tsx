@@ -10,6 +10,7 @@ import PageNavBar from "../components/layout/PageNavBar.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { getImageFormatDetails } from "../utils/imageFormatDetails.js";
 import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
 import { IMAGE_FORMAT_OPTIONS } from "./lensIndex/catalog.js";
 
@@ -62,22 +63,30 @@ export default function FormatsIndexPage() {
           Lens Image Formats
         </h1>
 
-        {IMAGE_FORMAT_OPTIONS.map((format) => (
-          <div
-            key={format.id}
-            style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-          >
-            <Link
-              to={`/formats/${format.id}`}
-              style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+        {IMAGE_FORMAT_OPTIONS.map((format) => {
+          const details = getImageFormatDetails(format.id);
+          return (
+            <div
+              key={format.id}
+              style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
             >
-              {format.label}
-            </Link>
-            <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-              ({format.count} {format.count === 1 ? "lens" : "lenses"})
-            </span>
-          </div>
-        ))}
+              <Link
+                to={`/formats/${format.id}`}
+                style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+              >
+                {format.label}
+              </Link>
+              <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                ({format.count} {format.count === 1 ? "lens" : "lenses"})
+              </span>
+              {details && (
+                <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                  {details.summary}
+                </p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
