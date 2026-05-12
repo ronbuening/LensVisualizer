@@ -19,8 +19,10 @@ import {
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
+  SET_GROUP_MOVEMENT,
 } from "../../utils/lensReducer.js";
 import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.js";
+import type { GroupMovementMode } from "../../types/groupMovement.js";
 
 export interface DispatchAdapters {
   onFocusChange: (v: number) => void;
@@ -60,6 +62,9 @@ export interface DispatchAdapters {
   onAberrationsExpandedChange: (v: boolean) => void;
   onAnalysisDrawerToggle: (v: boolean) => void;
   onAnalysisTabChange: (tab: AnalysisTabId) => void;
+  onGroupMovementOpen: (mode: GroupMovementMode) => void;
+  onGroupMovementClose: () => void;
+  onGroupMovementModeChange: (mode: GroupMovementMode) => void;
   onZoomPanToggle: (v: boolean) => void;
   onBokehPreviewToggle: (v: boolean) => void;
   onGlassMapOpenChange: (v: boolean) => void;
@@ -126,6 +131,9 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onAnalysisDrawerToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "analysisDrawerOpen", expanded: v }),
       onAnalysisTabChange: (tab: AnalysisTabId) => dispatch({ type: SET_ANALYSIS_TAB, tab }),
+      onGroupMovementOpen: (mode: GroupMovementMode) => dispatch({ type: SET_GROUP_MOVEMENT, open: true, mode }),
+      onGroupMovementClose: () => dispatch({ type: SET_GROUP_MOVEMENT, open: false }),
+      onGroupMovementModeChange: (mode: GroupMovementMode) => dispatch({ type: SET_GROUP_MOVEMENT, open: true, mode }),
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onBokehPreviewToggle: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: v }),

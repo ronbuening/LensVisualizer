@@ -62,6 +62,7 @@ function renderSharedSliders({
   onAperturePointerDown = vi.fn(),
   onSliderPointerUp = vi.fn(),
   onToggleEffectiveAperture = vi.fn(),
+  onOpenGroupMovement = vi.fn(),
 }: {
   LA?: RuntimeLens;
   LB?: RuntimeLens;
@@ -82,6 +83,7 @@ function renderSharedSliders({
   onAperturePointerDown?: () => void;
   onSliderPointerUp?: () => void;
   onToggleEffectiveAperture?: () => void;
+  onOpenGroupMovement?: (mode: "focus" | "zoom" | "combined") => void;
 } = {}) {
   return {
     ...render(
@@ -111,6 +113,7 @@ function renderSharedSliders({
         effectiveFNumB={effectiveFNumB}
         showEffectiveAperture={showEffectiveAperture}
         onToggleEffectiveAperture={onToggleEffectiveAperture}
+        onOpenGroupMovement={onOpenGroupMovement}
         theme={themes.dark}
         isWide={true}
       />,
@@ -125,6 +128,7 @@ function renderSharedSliders({
       onAperturePointerDown,
       onSliderPointerUp,
       onToggleEffectiveAperture,
+      onOpenGroupMovement,
     },
   };
 }
@@ -256,5 +260,27 @@ describe("SharedSlidersBar", () => {
 
     fireEvent.click(screen.getByText(/Show effective aperture/i));
     expect(onToggleEffectiveAperture).toHaveBeenCalledTimes(1);
+  });
+
+  it("opens shared focus and zoom motion charts when movement is modeled", () => {
+    const onOpenGroupMovement = vi.fn();
+    const LA = lens({
+      name: "Zoom A",
+      isZoom: true,
+      zoomPositions: [24, 70],
+      zoomEFLs: [24, 70],
+      varByIdx: { 0: [[1, 2], [4, 5]] },
+    });
+    renderSharedSliders({
+      LA,
+      onOpenGroupMovement,
+      zoomPair: { zoomA: 0.5, zoomB: 0, showZoom: true },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /open zoom group motion chart/i }));
+    fireEvent.click(screen.getByRole("button", { name: /open focus group motion chart/i }));
+
+    expect(onOpenGroupMovement).toHaveBeenCalledWith("zoom");
+    expect(onOpenGroupMovement).toHaveBeenCalledWith("focus");
   });
 });

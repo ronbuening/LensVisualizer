@@ -24,6 +24,7 @@ import lensReducer, {
   RESET_SLIDERS,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
+  SET_GROUP_MOVEMENT,
   SET_SELECTED_ELEMENT,
   APPLY_URL_VIEW_STATE,
   SET_OVERLAY,
@@ -83,6 +84,8 @@ describe("createInitialState", () => {
       bokehPreviewOpen: true,
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion" as const,
+      groupMovementOpen: true,
+      groupMovementMode: "zoom" as const,
     };
     const state = createInitialState({}, urlState, true, CATALOG_KEYS);
     expect(state.panels.selectedElementId).toBe(2);
@@ -90,6 +93,8 @@ describe("createInitialState", () => {
     expect(state.panels.bokehPreviewOpen).toBe(true);
     expect(state.panels.analysisDrawerOpen).toBe(true);
     expect(state.panels.analysisDrawerTab).toBe("distortion");
+    expect(state.panels.groupMovementOpen).toBe(true);
+    expect(state.panels.groupMovementMode).toBe("zoom");
   });
 
   it("prefs override defaults", () => {
@@ -189,6 +194,7 @@ describe("lensReducer", () => {
         lcaOverlayOpen: true,
         petzvalOverlayOpen: true,
         bokehPreviewOpen: true,
+        groupMovementOpen: true,
         selectedElementId: 2,
       };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
@@ -196,6 +202,7 @@ describe("lensReducer", () => {
       expect(next.panels.lcaOverlayOpen).toBe(false);
       expect(next.panels.petzvalOverlayOpen).toBe(false);
       expect(next.panels.bokehPreviewOpen).toBe(false);
+      expect(next.panels.groupMovementOpen).toBe(false);
       expect(next.panels.selectedElementId).toBeNull();
     });
 
@@ -465,6 +472,27 @@ describe("lensReducer", () => {
     });
   });
 
+  describe("SET_GROUP_MOVEMENT", () => {
+    it("opens directly to a movement mode", () => {
+      const next = lensReducer(state, { type: SET_GROUP_MOVEMENT, open: true, mode: "zoom" });
+      expect(next.panels.groupMovementOpen).toBe(true);
+      expect(next.panels.groupMovementMode).toBe("zoom");
+    });
+
+    it("closes while preserving the selected movement mode", () => {
+      state.panels = { ...state.panels, groupMovementOpen: true, groupMovementMode: "combined" };
+      const next = lensReducer(state, { type: SET_GROUP_MOVEMENT, open: false });
+      expect(next.panels.groupMovementOpen).toBe(false);
+      expect(next.panels.groupMovementMode).toBe("combined");
+    });
+
+    it("ignores invalid movement modes", () => {
+      const action = { type: SET_GROUP_MOVEMENT, open: true, mode: "bogus" } as unknown as LensAction;
+      const next = lensReducer(state, action);
+      expect(next).toBe(state);
+    });
+  });
+
   describe("URL view state actions", () => {
     it("sets single and comparison selected element state", () => {
       let next = lensReducer(state, { type: SET_SELECTED_ELEMENT, panelId: "main", elementId: 2 });
@@ -495,6 +523,8 @@ describe("lensReducer", () => {
           bokehPreviewOpen: true,
           analysisDrawerOpen: true,
           analysisDrawerTab: "pupils",
+          groupMovementOpen: true,
+          groupMovementMode: "combined",
         },
       });
       expect(next.sliders.focusT).toBe(0.4);
@@ -507,6 +537,8 @@ describe("lensReducer", () => {
       expect(next.panels.bokehPreviewOpen).toBe(true);
       expect(next.panels.analysisDrawerOpen).toBe(true);
       expect(next.panels.analysisDrawerTab).toBe("pupils");
+      expect(next.panels.groupMovementOpen).toBe(true);
+      expect(next.panels.groupMovementMode).toBe("combined");
     });
 
     it("applies shared slider and per-pane selection state in comparison mode", () => {

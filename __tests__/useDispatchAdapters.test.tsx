@@ -12,6 +12,7 @@ import {
   SET_RAY_TOGGLE,
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
+  SET_GROUP_MOVEMENT,
 } from "../src/utils/lensReducer.js";
 import { renderWithLensContext } from "./testUtils.js";
 import { createInitialState } from "../src/utils/lensReducer.js";
@@ -62,6 +63,9 @@ describe("useDispatchAdapters", () => {
       "onAberrationsExpandedChange",
       "onAnalysisDrawerToggle",
       "onAnalysisTabChange",
+      "onGroupMovementOpen",
+      "onGroupMovementClose",
+      "onGroupMovementModeChange",
       "onZoomPanToggle",
       "onBokehPreviewToggle",
     ];
@@ -257,6 +261,16 @@ describe("useDispatchAdapters", () => {
     const { adapters, dispatch } = renderAdapters();
     adapters.onBokehPreviewToggle(true);
     expect(dispatch).toHaveBeenCalledWith({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: true });
+  });
+
+  it("group movement adapters dispatch SET_GROUP_MOVEMENT", () => {
+    const { adapters, dispatch } = renderAdapters();
+    adapters.onGroupMovementOpen("focus");
+    adapters.onGroupMovementModeChange("combined");
+    adapters.onGroupMovementClose();
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_GROUP_MOVEMENT, open: true, mode: "focus" });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_GROUP_MOVEMENT, open: true, mode: "combined" });
+    expect(dispatch).toHaveBeenCalledWith({ type: SET_GROUP_MOVEMENT, open: false });
   });
 
   /* ── Analysis tab ── */

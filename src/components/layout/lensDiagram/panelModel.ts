@@ -1,6 +1,7 @@
 import type { PointerEvent, ReactNode, RefObject, TouchEvent, WheelEvent } from "react";
 import type { CardinalElements } from "../../../optics/cardinalElements.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
+import type { GroupMovementMode } from "../../../types/groupMovement.js";
 import type {
   ChromaticSpread,
   ChromaticSpreadByAxis,
@@ -96,6 +97,8 @@ export interface PanelDisplayFlagsModel {
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
   bokehPreviewOpen: boolean;
+  groupMovementOpen: boolean;
+  groupMovementMode: GroupMovementMode;
   focusExpanded: boolean;
   apertureExpanded: boolean;
   legendExpanded: boolean;
@@ -121,6 +124,9 @@ export interface PanelOverlaysModel {
 export interface PanelAdaptersModel {
   onAnalysisDrawerToggle: (open: boolean) => void;
   onAnalysisTabChange: (tab: AnalysisTabId) => void;
+  onGroupMovementOpen: (mode: GroupMovementMode) => void;
+  onGroupMovementClose: () => void;
+  onGroupMovementModeChange: (mode: GroupMovementMode) => void;
   onBokehPreviewToggle: (open: boolean) => void;
   onAberrationsExpandedChange: (expanded: boolean) => void;
   onEffectiveApertureChange: (expanded: boolean) => void;
@@ -173,5 +179,6 @@ export interface LensDiagramLoadedStateProps {
   interactions: PanelInteractionsModel;
   analysisContent: ReactNode;
   bokehPreviewContent: ReactNode;
+  groupMovementContent: ReactNode;
   header: ReactNode;
 }

@@ -9,6 +9,7 @@
  */
 
 import { isAnalysisTabId, type LensState, type URLState } from "../types/state.js";
+import { isGroupMovementMode } from "../types/groupMovement.js";
 
 type LensViewQueryKey =
   | "focus"
@@ -25,7 +26,9 @@ type LensViewQueryKey =
   | "petzvalOverlayOpen"
   | "bokehPreviewOpen"
   | "analysisDrawerOpen"
-  | "analysisDrawerTab";
+  | "analysisDrawerTab"
+  | "groupMovementOpen"
+  | "groupMovementMode";
 type NullableLensViewQueryKey = "focus" | "aberration" | "aperture" | "zoom" | "shift" | "tilt";
 
 export type LensViewQueryState = Partial<
@@ -52,6 +55,7 @@ export const VIEW_STATE_FIELDS = [
   { key: "petzvalOverlayOpen", default: false },
   { key: "bokehPreviewOpen", default: false },
   { key: "analysisDrawerOpen", default: false },
+  { key: "groupMovementOpen", default: false },
 ] as const;
 
 export type ViewStateField = (typeof VIEW_STATE_FIELDS)[number];
@@ -73,6 +77,8 @@ const DEFAULT_URL_STATE: Partial<URLState> = {
   bokehPreviewOpen: false,
   analysisDrawerOpen: false,
   analysisDrawerTab: "aberrations",
+  groupMovementOpen: false,
+  groupMovementMode: "focus",
 };
 
 function parseNumberParam(params: URLSearchParams, key: string): number | null {
@@ -130,6 +136,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const petzvalOverlayOpen = parseBooleanParam(params, "ptz");
   const bokehPreviewOpen = parseBooleanParam(params, "bo");
   const analysisDrawerOpen = parseBooleanParam(params, "ad");
+  const movementMode = params.get("mv");
   const tab = params.get("tab");
 
   if (selectedElementId != null) state.selectedElementId = selectedElementId;
@@ -141,6 +148,10 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (bokehPreviewOpen !== undefined) state.bokehPreviewOpen = bokehPreviewOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
+  if (isGroupMovementMode(movementMode)) {
+    state.groupMovementOpen = true;
+    state.groupMovementMode = movementMode;
+  }
 
   return state;
 }
@@ -162,6 +173,8 @@ export function buildLensViewQuery({
   bokehPreviewOpen,
   analysisDrawerOpen,
   analysisDrawerTab,
+  groupMovementOpen,
+  groupMovementMode,
 }: BuildLensViewQueryOptions): URLSearchParams {
   const usesV1ViewState =
     (comparing ? selectedElementIdA != null || selectedElementIdB != null : selectedElementId != null) ||
@@ -169,7 +182,8 @@ export function buildLensViewQuery({
     Boolean(lcaOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
     Boolean(bokehPreviewOpen) ||
-    Boolean(analysisDrawerOpen);
+    Boolean(analysisDrawerOpen) ||
+    Boolean(groupMovementOpen);
 
   const params = new URLSearchParams();
   if (usesV1ViewState) params.set("v", "1");
@@ -195,6 +209,7 @@ export function buildLensViewQuery({
   if (analysisDrawerOpen && analysisDrawerTab && analysisDrawerTab !== "aberrations") {
     params.set("tab", analysisDrawerTab);
   }
+  if (groupMovementOpen) params.set("mv", groupMovementMode ?? "focus");
 
   return params;
 }
@@ -229,6 +244,8 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     bokehPreviewOpen: state.panels.bokehPreviewOpen,
     analysisDrawerOpen: state.panels.analysisDrawerOpen,
     analysisDrawerTab: state.panels.analysisDrawerTab,
+    groupMovementOpen: state.panels.groupMovementOpen,
+    groupMovementMode: state.panels.groupMovementMode,
   });
 }
 
@@ -246,5 +263,6 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
     }
   }
   if (state.analysisDrawerTab) urlState.analysisDrawerTab = state.analysisDrawerTab;
+  if (state.groupMovementMode) urlState.groupMovementMode = state.groupMovementMode;
   return urlState;
 }

@@ -5,12 +5,14 @@
 
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/sliderStops.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { GroupMovementMode } from "../../types/groupMovement.js";
 
 interface VarReadout {
   label: string;
@@ -56,6 +58,7 @@ interface DiagramControlsProps {
   onSliderPointerUp?: () => void;
   onInteractionChange?: (interacting: boolean) => void;
   showSliders: boolean;
+  onOpenGroupMovement?: (mode: GroupMovementMode) => void;
 }
 
 export default function DiagramControls({
@@ -92,9 +95,11 @@ export default function DiagramControls({
   onSliderPointerUp,
   onInteractionChange,
   showSliders,
+  onOpenGroupMovement,
 }: DiagramControlsProps) {
   const { interacting, beginInteraction, endInteraction, onChangeActivity } = useInteractionSignal();
   const pcSteps = L.perspectiveControl ? perspectiveControlSteps(L.perspectiveControl) : null;
+  const groupMovementAvailability = getGroupMovementAvailability(L);
 
   useEffect(() => {
     onInteractionChange?.(interacting);
@@ -167,6 +172,26 @@ export default function DiagramControls({
     if (Number.isFinite(min) && Number.isFinite(max)) return (min + (max - min) * aberrationT).toFixed(1);
     return `${Math.round(aberrationT * 100)}%`;
   })();
+  const motionButton = (mode: GroupMovementMode, label: string) => (
+    <button
+      type="button"
+      aria-label={`Open ${label.toLowerCase()} group motion chart`}
+      onClick={() => onOpenGroupMovement?.(mode)}
+      style={{
+        borderRadius: 10,
+        cursor: "pointer",
+        padding: "3px 8px",
+        fontSize: 8,
+        fontFamily: "inherit",
+        letterSpacing: "0.08em",
+        background: t.toggleBg,
+        border: `1px solid ${t.toggleBorder}`,
+        color: t.muted,
+      }}
+    >
+      MOTION
+    </button>
+  );
 
   return (
     <>
@@ -186,6 +211,7 @@ export default function DiagramControls({
           minLabel={`${L.zoomPositions![0]} mm`}
           maxLabel={`${L.zoomPositions![L.zoomPositions!.length - 1]} mm`}
           flexBasis="200px"
+          action={groupMovementAvailability.zoom ? motionButton("zoom", "zoom") : undefined}
         />
       )}
 
@@ -208,6 +234,7 @@ export default function DiagramControls({
           collapsible={true}
           expanded={focusExpanded}
           onExpandedChange={onFocusExpandedChange}
+          action={groupMovementAvailability.focus ? motionButton("focus", "focus") : undefined}
         >
           {focusExpanded && (
             <>

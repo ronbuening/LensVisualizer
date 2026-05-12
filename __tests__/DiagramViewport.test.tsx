@@ -103,6 +103,9 @@ const baseProps = {
   showBokehPreview: false,
   onBokehPreviewToggle: vi.fn(),
   bokehPreviewContent: null,
+  showGroupMovement: false,
+  onGroupMovementClose: vi.fn(),
+  groupMovementContent: <div>Movement Overlay</div>,
 };
 
 describe("DiagramViewport", () => {
@@ -251,9 +254,16 @@ describe("DiagramViewport", () => {
   });
 
   it("hides overlays in zoom mode", () => {
-    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay />);
+    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay showGroupMovement />);
     expect(screen.queryByText("LCA Overlay")).toBeNull();
     expect(screen.queryByText("Petzval Overlay")).toBeNull();
+    expect(screen.queryByText("Movement Overlay")).toBeNull();
+  });
+
+  it("renders the group movement overlay when open", () => {
+    render(<DiagramViewport {...baseProps} showGroupMovement />);
+
+    expect(screen.getByText("Movement Overlay")).toBeTruthy();
   });
 
   /* ── Keyboard shortcuts ── */

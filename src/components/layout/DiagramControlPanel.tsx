@@ -11,6 +11,7 @@ import DiagramLegend from "../display/DiagramLegend.js";
 import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
+import type { GroupMovementMode } from "../../types/groupMovement.js";
 
 interface VarReadout {
   label: string;
@@ -55,6 +56,7 @@ interface DiagramControlPanelProps {
   onLegendExpandedChange: (v: boolean) => void;
   onSliderPointerUp: () => void;
   onSliderInteractionChange?: (interacting: boolean) => void;
+  onOpenGroupMovement?: (mode: GroupMovementMode) => void;
   info: ElementData | null;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
@@ -107,6 +109,7 @@ export default function DiagramControlPanel({
   onLegendExpandedChange,
   onSliderPointerUp,
   onSliderInteractionChange,
+  onOpenGroupMovement,
   info,
   showOnAxis,
   showOffAxis,
@@ -177,6 +180,7 @@ export default function DiagramControlPanel({
         onSliderPointerUp={onSliderPointerUp}
         onInteractionChange={onSliderInteractionChange}
         showSliders={showSliders}
+        onOpenGroupMovement={onOpenGroupMovement}
       />
 
       <div

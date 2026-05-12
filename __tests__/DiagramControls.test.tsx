@@ -15,6 +15,7 @@ function renderControls(L: RuntimeLens) {
     onAberrationChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
+    onOpenGroupMovement: vi.fn(),
   };
   return {
     ...render(
@@ -51,6 +52,7 @@ function renderControls(L: RuntimeLens) {
         onApertureExpandedChange={vi.fn()}
         onSliderPointerUp={vi.fn()}
         showSliders={true}
+        onOpenGroupMovement={callbacks.onOpenGroupMovement}
       />,
     ),
     callbacks,
@@ -102,5 +104,21 @@ describe("DiagramControls", () => {
     fireEvent.change(sliders[2], { target: { value: "-0.3" } });
     expect(callbacks.onShiftChange).toHaveBeenLastCalledWith(0.3);
     expect(callbacks.onTiltChange).toHaveBeenLastCalledWith(-0.3);
+  });
+
+  it("opens the focus motion overlay from a focus slider action", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["sonnar-50f15"]));
+
+    fireEvent.click(screen.getByRole("button", { name: /open focus group motion chart/i }));
+
+    expect(callbacks.onOpenGroupMovement).toHaveBeenCalledWith("focus");
+  });
+
+  it("opens the zoom motion overlay from a zoom slider action", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["nikon-afp-dx-70-300-f4563g"]));
+
+    fireEvent.click(screen.getByRole("button", { name: /open zoom group motion chart/i }));
+
+    expect(callbacks.onOpenGroupMovement).toHaveBeenCalledWith("zoom");
   });
 });
