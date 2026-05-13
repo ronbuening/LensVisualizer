@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **184** lenses scanned
-- **2101** glass surfaces examined
-- **2095** surfaces with non-empty `glass` strings
-- **1523** of those resolved to a catalog entry
-- **339** mismatches found (22.3% of resolved surfaces)
-- **113** distinct lens files affected
+- **190** lenses scanned
+- **2173** glass surfaces examined
+- **2167** surfaces with non-empty `glass` strings
+- **1588** of those resolved to a catalog entry
+- **350** mismatches found (22.0% of resolved surfaces)
+- **115** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -34,21 +34,23 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIM2 | 9 | |
 | S-LAH58 | 8 | |
 | TAFD25 | 8 | |
+| S-TIM22 | 7 | |
 | S-LAH64 | 7 | |
 | S-LAL14 | 7 | |
 | S-TIH4 | 7 | |
 | NBFD3 | 7 | |
 | S-TIM25 | 7 | |
+| S-TIM27 | 6 | |
 | S-NPH2 | 6 | |
-| S-TIM22 | 6 | |
 | S-TIM35 | 6 | |
 | S-TIH11 | 5 | |
+| S-LAH55V | 5 | |
 | S-BAL35 | 5 | |
 | S-NPH4 | 5 | |
 | S-NBH56 | 5 | |
-| S-TIM27 | 5 | |
 | S-TIM28 | 5 | |
 | S-TIL25 | 4 | |
+| S-BAL42 | 4 | |
 | S-LAL8 | 4 | |
 | E-FD15 | 4 | |
 | S-NBH8 | 4 | |
@@ -62,6 +64,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL27 | 3 | |
 | S-LAM66 | 3 | |
 | S-NSL5 | 3 | |
+| S-TIH10 | 3 | |
 | S-LAH65V | 3 | |
 | S-BSL7 | 3 | |
 | S-LAH66 | 3 | |
@@ -74,14 +77,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | E-FD5 | 3 | |
 | TAFD30 | 3 | |
 | S-NBH52 | 3 | |
-| S-BAL42 | 3 | |
 | TAFD5F | 3 | |
 | TAF5 | 3 | |
 | S-LAM55 | 3 | |
 | S-BAL14 | 3 | |
+| S-LAH59 | 2 | |
 | S-NPH1 | 2 | |
 | S-TIH53W | 2 | |
-| S-TIH10 | 2 | |
 | S-LAM54 | 2 | |
 | N-SK14 | 2 | |
 | SF2 | 2 | |
@@ -107,6 +109,8 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | FCD515 | 2 | |
 | TAFD37 | 2 | |
 | S-PHM53 | 2 | |
+| S-TIM5 | 1 | |
+| S-BSM14 | 1 | |
 | S-LAH52 | 1 | |
 | S-LAL18 | 1 | |
 | TAFD45 | 1 | |
@@ -118,7 +122,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | E-FD2 | 1 | |
 | S-FPL51 | 1 | |
 | S-FPM2 | 1 | |
-| S-LAH55V | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
 | S-LAH53 | 1 | |
@@ -128,7 +131,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH53V | 1 | |
 | LAC12 | 1 | |
 | TAFD33 | 1 | |
-| S-LAH59 | 1 | |
 | K-VC89 | 1 | |
 | TAFD65 | 1 | |
 | S-LAH98 | 1 | |
@@ -136,6 +138,19 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | N-SK2 | 1 | |
 
 ## Mismatches by lens
+
+### [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../src/lens-data/canon/CanonEFS1018mmf4.data.ts) — JP 2015-31869 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 9 | `S-TIM27 (OHARA)` | S-TIM27 | 1.72047 | 1.63980 | -0.0807 |
+| 13 | `S-LAH55V (OHARA)` | S-LAH55V | 1.91082 | 1.83481 | -0.0760 |
+| 14 | `S-TIM22 (OHARA)` | S-TIM22 | 1.60342 | 1.64769 | +0.0443 |
+| 17 | `S-LAH59 (OHARA)` | S-LAH59 | 1.83481 | 1.81600 | -0.0188 |
+| 18 | `S-TIM5 (OHARA)` | S-TIM5 | 1.64769 | 1.60342 | -0.0443 |
+| 22 | `S-LAH55V (OHARA)` | S-LAH55V | 1.91082 | 1.83481 | -0.0760 |
+| 24 | `S-LAH55V (OHARA)` | S-LAH55V | 1.91082 | 1.83481 | -0.0760 |
+| 25 | `S-BSM14 (OHARA)` | S-BSM14 | 1.58313 | 1.60311 | +0.0200 |
 
 ### [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) — US 2018/0100988 A1
 
@@ -522,6 +537,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 9 | `S-TIH11 (OHARA)` | S-TIH11 | 1.72047 | 1.78472 | +0.0643 |
 | 11 | `S-TIL27 (OHARA)` | S-TIL27 | 1.53172 | 1.57501 | +0.0433 |
 | 28 | `S-LAM66 (OHARA)` | S-LAM66 | 1.74320 | 1.80100 | +0.0578 |
+
+### [CANON EF-S 24mm f/2.8 STM](../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) — JP 2015-111192 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `S-LAH55V (OHARA)` | S-LAH55V | 1.91082 | 1.83481 | -0.0760 |
+| 5 | `S-BAL42 (OHARA)` | S-BAL42 | 1.69680 | 1.58313 | -0.1137 |
+| 6 | `S-TIH10 (OHARA)` | S-TIH10 | 1.80610 | 1.72825 | -0.0779 |
 
 ### [CANON RF 135mm f/1.8 L IS USM](../src/lens-data/canon/CanonRF135f18.data.ts) — US 2023/0213745 A1
 
