@@ -8,6 +8,7 @@
 
 export const LENS_MOUNTS = [
   { id: "canon-ef", label: "Canon EF", sortOrder: 100 },
+  { id: "canon-ef-s", label: "Canon EF-S", sortOrder: 103 },
   { id: "canon-ef-m", label: "Canon EF-M", sortOrder: 105 },
   { id: "canon-fd", label: "Canon FD", sortOrder: 110 },
   { id: "canon-fl", label: "Canon FL", sortOrder: 115 },

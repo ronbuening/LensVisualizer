@@ -18,6 +18,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | ID | Display Label | Notes |
 |----|---------------|-------|
 | `canon-ef` | Canon EF | Canon EF SLR mount. |
+| `canon-ef-s` | Canon EF-S | Canon EF-derived APS-C DSLR mount; pairs with `aps-c`. |
 | `canon-ef-m` | Canon EF-M | Canon EF-M APS-C mirrorless mount; usually pairs with `aps-c`. |
 | `canon-fd` | Canon FD | Canon FD manual-focus SLR mount. |
 | `canon-fl` | Canon FL | Canon FL manual-focus SLR mount; usually pairs with `135-full-frame`. |

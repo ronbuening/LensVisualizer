@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **184** lenses scanned
-- **2101** non-air surfaces examined
-- **2095** element glass declarations examined
-- **509** non-explicit-unmatched annotations did not resolve
-- **139** distinct unresolved glass-like tokens found
+- **190** lenses scanned
+- **2173** non-air surfaces examined
+- **2167** element glass declarations examined
+- **515** non-explicit-unmatched annotations did not resolve
+- **141** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,6 +27,7 @@ or per-lens patent backfills.
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 855252 | 2 | 1 | |
+| BSC3 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAK6A | 2 | 2 | |
@@ -74,6 +75,7 @@ or per-lens patent backfills.
 | 850270 | 1 | 1 | |
 | 850301 | 1 | 1 | |
 | 850323 | 1 | 1 | |
+| 851401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854404 | 1 | 1 | |
 | 854505 | 1 | 1 | |
@@ -84,7 +86,6 @@ or per-lens patent backfills.
 | 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
-| BSC3 | 1 | 1 | |
 | E-F3 | 1 | 1 | |
 | E-FD7 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
@@ -118,6 +119,7 @@ or per-lens patent backfills.
 | N-SSK5 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
+| NBFD13 | 1 | 1 | |
 | NBFD25 | 1 | 1 | |
 | S-BAH10 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
@@ -208,6 +210,11 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `High-index APD flint (glass code 855252)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `High-index APD flint (glass code 855252)`
+
+### BSC3 — 2 occurrences
+
+- [CANON EF-S 24mm f/2.8 STM](../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) 10A: `E-C3 / BSC3 class (HOYA)`
+- [NIKON NIKKOR-N Auto 24mm f/2.8](../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 8: `BSC3 (Hoya) / historical crown equivalent`
 
 ### E-FDS3HT — 2 occurrences
 
@@ -409,6 +416,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 36: `850323 - high-index lanthanum (nd=1.85026, vd~32.3)`
 
+### 851401 — 1 occurrence
+
+- [Canon EF-M 32mm f/1.4 STM](../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) 19: `MP-TAFD305 / MC-TAFD305 (HOYA, 851401)`
+
 ### 852402 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 30A: `852402 - dense lanthanum flint (patent nd=1.85207, vd=40.15)`
@@ -448,10 +459,6 @@ or per-lens patent backfills.
 ### BK3 — 1 occurrence
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
-
-### BSC3 — 1 occurrence
-
-- [NIKON NIKKOR-N Auto 24mm f/2.8](../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 8: `BSC3 (Hoya) / historical crown equivalent`
 
 ### E-F3 — 1 occurrence
 
@@ -584,6 +591,10 @@ or per-lens patent backfills.
 ### NBFD12 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
+
+### NBFD13 — 1 occurrence
+
+- [CANON EF-S 17-55mm f/2.8 IS USM](../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) 34: `NBFD13 (HOYA)`
 
 ### NBFD25 — 1 occurrence
 

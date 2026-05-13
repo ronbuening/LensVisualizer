@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-13 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-13",
+    type: "lens",
+    summary: "Added six Canon APS-C lenses across EF-M and EF-S systems",
+  },
+  {
+    date: "2026-05-13",
+    type: "improvement",
+    summary: "Added Canon EF-S as a distinct lens-library mount filter",
+  },
   // ── 2026-05-12 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-12",
