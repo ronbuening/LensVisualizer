@@ -13,9 +13,9 @@ import {
   computeFieldCurvature,
   computeMeridionalComa,
   computeSagittalComa,
-  computeSphericalAberration,
+  computeSphericalAberration as computeSphericalAberrationBase,
   computeSphericalAberrationBlurCharacter,
-  computeSAProfile,
+  computeSAProfile as computeSAProfileBase,
 } from "../src/optics/aberrationAnalysis.js";
 import {
   bestFocusPlaneForDirection,
@@ -32,6 +32,7 @@ import {
   fopenAtZoom,
   traceChiefRelativeSkewRay,
   traceRay,
+  type RayTraceOptions,
 } from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -44,6 +45,9 @@ import type { OffAxisFieldGeometry } from "../src/optics/aberration/offAxis.js";
 import { bestRelativeFocusPlane } from "../src/optics/aberration/shared.js";
 
 /* ── Helpers ── */
+
+const LEGACY_TRACE_OPTIONS: RayTraceOptions = { mode: "legacy" };
+const EXACT_TRACE_OPTIONS: RayTraceOptions = { mode: "exact" };
 
 /** Build a RuntimeLens from raw lens data + defaults. */
 function build(raw: object): RuntimeLens {
@@ -77,6 +81,48 @@ function axialIntercept(y: number, u: number, lastSurfZ: number): number {
 
 function standardizedParabasalFraction(currentEPSD: number): number {
   return Math.min(0.02, Math.max(1e-4, 0.01 / currentEPSD));
+}
+
+function computeSphericalAberration(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  aberrationT = 0,
+) {
+  return computeSphericalAberrationBase(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+    LEGACY_TRACE_OPTIONS,
+  );
+}
+
+function computeSAProfile(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  aberrationT = 0,
+) {
+  return computeSAProfileBase(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+    LEGACY_TRACE_OPTIONS,
+  );
 }
 
 function standardizedFieldFocusAt(
@@ -181,6 +227,27 @@ describe("computeSphericalAberration", () => {
     expect(isFinite(result!.longitudinalSaUm)).toBe(true);
   });
 
+  it("handles exact-mode Sonnar clipping as a graceful nullable SA result", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const result = computeSphericalAberrationBase(
+      L,
+      zPos,
+      0,
+      0,
+      currentEPSD,
+      currentPhysStopSD,
+      0,
+      EXACT_TRACE_OPTIONS,
+    );
+    if (result === null) return;
+
+    expect(isFinite(result.longitudinalSaUm)).toBe(true);
+    expect(result.validSampleCount).toBeGreaterThanOrEqual(4);
+  });
+
   /* ── µm conversion consistency ── */
 
   it("longitudinalSaUm equals longitudinalSaMm × 1000", () => {
@@ -225,7 +292,18 @@ describe("computeSphericalAberration", () => {
     const { currentEPSD } = apertureAt(L, 0, 0);
     const lastSurfZ = zPos[L.N - 1];
 
-    const nearAxisRay = traceRay(NEAR_AXIS_REAL_FRAC * currentEPSD, 0, zPos, 0, 0, undefined, true, L);
+    const nearAxisRay = traceRay(
+      NEAR_AXIS_REAL_FRAC * currentEPSD,
+      0,
+      zPos,
+      0,
+      0,
+      undefined,
+      true,
+      L,
+      0,
+      LEGACY_TRACE_OPTIONS,
+    );
     expect(nearAxisRay.clipped).toBe(false);
     const nearAxisIntercept = axialIntercept(nearAxisRay.y, nearAxisRay.u, lastSurfZ);
     const result = computeSphericalAberration(L, zPos, 0, 0, currentEPSD, L.stopPhysSD);
@@ -407,6 +485,20 @@ describe("computeSAProfile", () => {
     }
   });
 
+  it("handles exact-mode Sonnar clipping as a graceful nullable SA profile", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+
+    const profile = computeSAProfileBase(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, EXACT_TRACE_OPTIONS);
+
+    for (const { fraction, transverseSaMm } of profile) {
+      expect(fraction).toBeGreaterThan(0);
+      expect(fraction).toBeLessThanOrEqual(1);
+      expect(isFinite(transverseSaMm)).toBe(true);
+    }
+  });
+
   it("profile values stay within twice the best-focus peak spread", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
@@ -516,7 +608,17 @@ describe("computeSphericalAberrationBlurCharacter", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
     const baseResult = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
-    const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 12, 15, baseResult);
+    const blurCharacter = computeSphericalAberrationBlurCharacter(
+      L,
+      zPos,
+      0,
+      0,
+      12,
+      15,
+      baseResult,
+      0,
+      LEGACY_TRACE_OPTIONS,
+    );
 
     expect(baseResult).not.toBeNull();
     expect(blurCharacter).not.toBeNull();

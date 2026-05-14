@@ -13,6 +13,7 @@ import {
   type CircularPupilSample,
   type FieldGeometryState,
   type OrthogonalPupilSample,
+  type RayTraceOptions,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "../optics.js";
@@ -164,6 +165,7 @@ export function traceOffAxisChiefRay(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisChiefRaySample | null {
   const trace = channel
     ? traceChiefRelativeSkewRayChromatic(
@@ -179,6 +181,7 @@ export function traceOffAxisChiefRay(
         L,
         channel,
         aberrationT,
+        options,
       )
     : traceChiefRelativeSkewRay(
         0,
@@ -192,6 +195,7 @@ export function traceOffAxisChiefRay(
         true,
         L,
         aberrationT,
+        options,
       );
   if (trace.clipped) return null;
 
@@ -221,6 +225,7 @@ export function traceOffAxisBundleFromSamples(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
@@ -233,6 +238,7 @@ export function traceOffAxisBundleFromSamples(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
   if (chiefRay === null) return null;
 
@@ -251,6 +257,7 @@ export function traceOffAxisBundleFromSamples(
           L,
           channel,
           aberrationT,
+          options,
         )
       : traceChiefRelativeSkewRay(
           sample.xFraction,
@@ -264,6 +271,7 @@ export function traceOffAxisBundleFromSamples(
           true,
           L,
           aberrationT,
+          options,
         );
     if (trace.clipped) return [];
 
@@ -301,6 +309,7 @@ export function traceOrthogonalOffAxisBundle(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleOrthogonalPupilFan(sampleCount, orientation),
@@ -312,6 +321,7 @@ export function traceOrthogonalOffAxisBundle(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
 }
 
@@ -325,6 +335,7 @@ export function traceCircularOffAxisBundle(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleCircularPupil(ringSamples),
@@ -336,6 +347,7 @@ export function traceCircularOffAxisBundle(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
 }
 

@@ -158,9 +158,9 @@ function traceRayExactCore(
       radius = hit.radius;
     } else {
       clipped = true;
+      if (!ghost) break;
       const fallback = fallbackSurfacePoint(origin, direction, z, i, L);
       if (fallback === null) {
-        if (!ghost) break;
         continue;
       }
       point = fallback.point;

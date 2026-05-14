@@ -7,6 +7,7 @@ import {
   traceChiefRelativeSkewRay,
   traceRay,
   traceRayChromatic,
+  resolveSurfaceTraceMode,
   traceSkewRay,
   traceSkewRayChromatic,
 } from "../src/optics/optics.js";
@@ -92,11 +93,13 @@ describe("traceSkewRay", () => {
     expect(isFinite(intercept!.y)).toBe(true);
   });
 
-  it("keeps legacy skew tracing as the default rollout behavior", () => {
+  it("keeps default skew tracing equivalent to the resolved rollout mode", () => {
     const defaultTrace = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
-    const explicitLegacy = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L, 0, { mode: "legacy" });
+    const explicitResolved = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L, 0, {
+      mode: resolveSurfaceTraceMode(L),
+    });
 
-    expect(explicitLegacy).toEqual(defaultTrace);
+    expect(explicitResolved).toEqual(defaultTrace);
   });
 
   it("matches exact meridional tracing when launched in the tangential plane", () => {

@@ -24,6 +24,7 @@
 
 import { traceRay, solveChiefRayLaunchHeight, computeAnalysisFieldGeometryAtState } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
+import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -76,6 +77,7 @@ export function computeVignettingCurve(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
@@ -109,7 +111,7 @@ export function computeVignettingCurve(
       /* Map j ∈ [0, N_PUPIL−1] → pupilFrac ∈ [−1, +1] */
       const pupilFrac = -1 + (2 * j) / (N_PUPIL - 1);
       const y0 = yChief + pupilFrac * currentEPSD;
-      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
       if (!trace.clipped) surviving++;
     }
 
