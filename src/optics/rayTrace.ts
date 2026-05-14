@@ -230,6 +230,23 @@ function projectPointToZ(point: Vector3, direction: Vector3, z: number): number 
   return point[1] + ((z - point[2]) * direction[1]) / direction[2];
 }
 
+function projectCoordinateToZ(
+  coordinate: number,
+  pointZ: number,
+  directionCoordinate: number,
+  directionZ: number,
+  z: number,
+): number {
+  if (Math.abs(directionZ) <= 1e-12) return coordinate;
+  return coordinate + ((z - pointZ) * directionCoordinate) / directionZ;
+}
+
+function surfaceZPositions(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number[] {
+  const z = [0];
+  for (let i = 0; i < L.N - 1; i++) z.push(z[i] + thick(i, focusT, zoomT, L, aberrationT));
+  return z;
+}
+
 function surfaceIntersectionMaxT(
   surfIdx: number,
   origin: Vector3,
@@ -262,10 +279,11 @@ function fallbackSurfacePoint(
   if (!isFinite(t) || t < 0) return null;
 
   const y = origin[1] + direction[1] * t;
-  const surfaceZ = vertexZ + renderSag(Math.abs(y), surfIdx, L);
+  const x = origin[0] + direction[0] * t;
+  const surfaceZ = vertexZ + renderSag(Math.hypot(x, y), surfIdx, L);
   return {
-    point: [0, y, surfaceZ],
-    normal: surfaceNormalAtPoint(0, y, surfIdx, L),
+    point: [x, y, surfaceZ],
+    normal: surfaceNormalAtPoint(x, y, surfIdx, L),
   };
 }
 
@@ -306,7 +324,7 @@ function refractDirection(
   return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
 }
 
-function traceSkewRayCore(
+function traceSkewRayLegacyCore(
   x0: number,
   y0: number,
   ux0: number,
@@ -373,6 +391,101 @@ function traceSkewRayCore(
   };
 }
 
+function traceSkewRayExactCore(
+  x0: number,
+  y0: number,
+  ux0: number,
+  uy0: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
+  aberrationT = 0,
+): SkewRayTraceResult {
+  const zPos = surfaceZPositions(focusT, zoomT, L, aberrationT);
+  const lead = L.rayLead ?? 0;
+  let origin: Vector3 = [x0 - ux0 * lead, y0 - uy0 * lead, zPos[0] - lead];
+  let direction: Vector3 = normalizeDirection(ux0, uy0);
+  let n = 1.0;
+  let clipped = false;
+  let lastPoint: Vector3 = origin;
+  let lastSurfaceIdx = -1;
+
+  for (let i = 0; i < L.N; i++) {
+    const { nd, sd } = L.S[i];
+    const z = zPos[i];
+    const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, focusT, zoomT, L, aberrationT);
+    const hit = intersectSagSurface({ origin, direction } satisfies SurfaceIntersectionRay, i, z, L, {
+      maxT,
+      refractiveIndex: n,
+    });
+
+    let point: Vector3;
+    let normal: Vector3;
+    let radius: number;
+    if (hit.ok) {
+      point = hit.point;
+      normal = hit.normal;
+      radius = hit.radius;
+    } else {
+      clipped = true;
+      const fallback = fallbackSurfacePoint(origin, direction, z, i, L);
+      if (fallback === null) {
+        if (!ghost) break;
+        continue;
+      }
+      point = fallback.point;
+      normal = fallback.normal;
+      radius = Math.hypot(point[0], point[1]);
+    }
+
+    lastPoint = point;
+    lastSurfaceIdx = i;
+
+    const isStop = i === L.stopIdx;
+    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
+    if (!clipped && exceedsTraceAperture(radius, clip)) {
+      clipped = true;
+      if (!ghost) break;
+    }
+
+    const nn = channel
+      ? (L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel))
+      : nd === 1
+        ? 1
+        : nd;
+    if (nn !== n) {
+      const R = L.S[i].R;
+      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R) {
+        // Ghost ray beyond sphere extent: propagate straight, no refraction.
+      } else {
+        const refracted = refractDirection(direction, normal, n, nn);
+        if (refracted === null) {
+          clipped = true;
+          if (!ghost) break;
+        } else {
+          direction = refracted;
+        }
+      }
+    }
+    n = nn;
+    origin = point;
+  }
+
+  const returnSurfaceIdx = lastSurfaceIdx >= 0 ? lastSurfaceIdx : 0;
+  const returnZ = zPos[returnSurfaceIdx];
+  const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : Infinity;
+  return {
+    x: projectCoordinateToZ(lastPoint[0], lastPoint[2], direction[0], direction[2], returnZ),
+    y: projectCoordinateToZ(lastPoint[1], lastPoint[2], direction[1], direction[2], returnZ),
+    ux: direction[0] * invDz,
+    uy: direction[1] * invDz,
+    clipped,
+  };
+}
+
 export function traceSkewRay(
   x0: number,
   y0: number,
@@ -384,8 +497,12 @@ export function traceSkewRay(
   ghost: boolean,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
-  return traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT)
+    : traceSkewRayLegacyCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 export function traceSkewRayChromatic(
@@ -400,8 +517,12 @@ export function traceSkewRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
-  return traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
+    : traceSkewRayLegacyCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 export function skewImagePlaneIntercept(
@@ -487,6 +608,7 @@ export function traceChiefRelativeSkewRay(
   ghost: boolean,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
   return traceSkewRay(
     xFraction * entrancePupilSemiDiameter,
@@ -499,6 +621,7 @@ export function traceChiefRelativeSkewRay(
     ghost,
     L,
     aberrationT,
+    options,
   );
 }
 
@@ -515,6 +638,7 @@ export function traceChiefRelativeSkewRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
   return traceSkewRayChromatic(
     xFraction * entrancePupilSemiDiameter,
@@ -528,6 +652,7 @@ export function traceChiefRelativeSkewRayChromatic(
     L,
     channel,
     aberrationT,
+    options,
   );
 }
 
