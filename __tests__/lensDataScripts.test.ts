@@ -59,6 +59,8 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Carl Zeiss Jena")).toBe("carl-zeiss-jena");
     expect(deriveMakerSlug("Carl Zeiss")).toBe("carl-zeiss-oberkochen");
     expect(deriveMakerSlug("Canon Demo Lens")).toBe("canon");
+    expect(deriveMakerSlug("Laowa 12mm f/2.8 Zero-D")).toBe("laowa");
+    expect(deriveMakerSlug("Venus Optics Laowa 24mm f/14 2X Macro Probe")).toBe("laowa");
     expect(deriveMakerSlug("Acme Prototype 50 mm")).toBe("acme");
   });
 
