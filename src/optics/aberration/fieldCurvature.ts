@@ -416,6 +416,7 @@ export function computeFieldCurvature(
   currentPhysStopSD: number,
   chromatic = false,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
 ): FieldCurvatureResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -423,7 +424,7 @@ export function computeFieldCurvature(
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
-  const stateGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const stateGeometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
     computeFieldCurvatureField(
       L,

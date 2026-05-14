@@ -1007,6 +1007,19 @@ describe("computeComaAnalysis", () => {
     expect(outerField!.tailSkewRatio).toBeGreaterThanOrEqual(1);
     expect(outerField!.sagittalToTangentialRatio).toBeGreaterThanOrEqual(0);
   });
+
+  it("matches when using precomputed field geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.25;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+
+    expect(computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, geometry)).toEqual(
+      computeComaAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
+  });
 });
 
 describe("computeSagittalComa", () => {
@@ -1100,6 +1113,22 @@ describe("computeFieldCurvature", () => {
     expect(result!.curveFields[result!.curveFields.length - 1]?.label).toBe("100%");
     expect(result!.usableFieldCount).toBeGreaterThanOrEqual(2);
     expect(result!.sharedFocusShiftHalfRangeMm).toBeGreaterThan(0);
+  });
+
+  it("matches when using precomputed field geometry", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.25;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+
+    expect(computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, false, 0, geometry)).toEqual(
+      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
+    expect(computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true, 0, geometry)).toEqual(
+      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true),
+    );
   });
 
   it("uses the analysis-limited image-format edge for the 100% field", () => {

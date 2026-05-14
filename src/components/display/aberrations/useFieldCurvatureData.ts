@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { computeFieldCurvature } from "../../../optics/aberrationAnalysis.js";
+import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 
 interface Params {
@@ -10,6 +11,7 @@ interface Params {
   aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
 }
 
 export default function useFieldCurvatureData({
@@ -20,6 +22,7 @@ export default function useFieldCurvatureData({
   aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
+  fieldGeometry,
 }: Params) {
   return useMemo(() => {
     const fieldCurvatureResult = computeFieldCurvature(
@@ -31,6 +34,7 @@ export default function useFieldCurvatureData({
       currentPhysStopSD,
       false,
       aberrationT,
+      fieldGeometry ?? undefined,
     );
     const chromaticFieldCurvatureResult = computeFieldCurvature(
       L,
@@ -41,7 +45,8 @@ export default function useFieldCurvatureData({
       currentPhysStopSD,
       true,
       aberrationT,
+      fieldGeometry ?? undefined,
     );
     return { fieldCurvatureResult, chromaticFieldCurvatureResult };
-  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD]);
+  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, fieldGeometry]);
 }

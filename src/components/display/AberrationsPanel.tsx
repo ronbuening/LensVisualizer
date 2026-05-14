@@ -9,6 +9,7 @@
 import { useEffect, useState } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { FieldGeometryState } from "../../optics/optics.js";
 import AstigmatismSection from "./aberrations/AstigmatismSection.js";
 import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
 import SphericalAberrationSection from "./aberrations/SphericalAberrationSection.js";
@@ -24,6 +25,7 @@ interface AberrationsPanelProps {
   aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  fieldGeometry?: FieldGeometryState | null;
   expanded: boolean;
   onExpandedChange?: (expanded: boolean) => void;
 }
@@ -37,6 +39,7 @@ export default function AberrationsPanel({
   aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
+  fieldGeometry,
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
@@ -57,6 +60,7 @@ export default function AberrationsPanel({
     aberrationT,
     currentEPSD,
     currentPhysStopSD,
+    fieldGeometry,
   });
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);
