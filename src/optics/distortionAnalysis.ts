@@ -18,6 +18,7 @@ import {
   skewImagePlaneIntercept,
   solveChiefRayLaunchHeight,
   solveFieldAngleForImageHeightAccurate,
+  thick,
   traceSkewRay,
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
@@ -117,7 +118,7 @@ function computeDistortionReference(
 
   const idealFieldRadius = Math.abs(rectilinearScale * Math.tan((geometry.halfFieldDeg * Math.PI) / 180));
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0 || !isFinite(imagePlaneZ)) return null;
 
   return {

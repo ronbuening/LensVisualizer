@@ -1,6 +1,15 @@
 import { describe, it, expect } from "vitest";
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../src/optics/distortionAnalysis.js";
-import { computeAnalysisFieldGeometryAtState, doLayout, eflAtFocus, fopenAtZoom } from "../src/optics/optics.js";
+import {
+  computeAnalysisFieldGeometryAtState,
+  doLayout,
+  eflAtFocus,
+  fopenAtZoom,
+  skewImagePlaneIntercept,
+  solveChiefRayLaunchHeight,
+  thick,
+  traceSkewRay,
+} from "../src/optics/optics.js";
 import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -8,6 +17,7 @@ import ApoLantharRaw from "../src/lens-data/voigtlander/VoigtlanderApoLanthar50f
 import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonZ100400Raw from "../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
+import MinoltaAF100MacroRaw from "../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import type { RuntimeLens, LensData } from "../src/types/optics.js";
 
 /* ── Helpers ── */
@@ -272,5 +282,66 @@ describe("computeDistortionFieldGrid", () => {
         expect(isFinite(point.tracedY!)).toBe(true);
       }
     }
+  });
+
+  it("projects close-focus grid points to the current variable image plane", () => {
+    const L = build(MinoltaAF100MacroRaw);
+    const focusT = 1;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+    const centerLine = grid.lines.find((line) => line.orientation === "horizontal" && line.idealCoordinate === 0);
+
+    expect(centerLine).toBeDefined();
+    const edgePoint = centerLine!.points[centerLine!.points.length - 1];
+    expect(edgePoint).toBeDefined();
+    expect(edgePoint.usable).toBe(true);
+    expect(grid.idealFieldRadius).toBeGreaterThan(0);
+
+    const rectilinearScale = grid.idealFieldRadius / Math.tan((geometry.halfFieldDeg * Math.PI) / 180);
+    const fieldSlopeX = edgePoint.idealX / rectilinearScale;
+    const fieldSlopeY = -edgePoint.idealY / rectilinearScale;
+    const equivalentAngleDeg = (Math.atan(Math.hypot(fieldSlopeX, fieldSlopeY)) * 180) / Math.PI;
+    const paraxialYChief = geometry.epRatio * Math.tan((equivalentAngleDeg * Math.PI) / 180);
+    const solvedYChief = solveChiefRayLaunchHeight(equivalentAngleDeg, focusT, zoomT, L, geometry);
+    const correction = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
+    const correctedEpRatio = geometry.epRatio * correction;
+    const trace = traceSkewRay(
+      -correctedEpRatio * fieldSlopeX,
+      -correctedEpRatio * fieldSlopeY,
+      fieldSlopeX,
+      fieldSlopeY,
+      focusT,
+      zoomT,
+      currentPhysStopSD,
+      true,
+      L,
+    );
+
+    const lastSurfZ = zPos[L.N - 1];
+    const currentImage = skewImagePlaneIntercept(
+      trace.x,
+      trace.y,
+      trace.ux,
+      trace.uy,
+      lastSurfZ,
+      lastSurfZ + thick(L.N - 1, focusT, zoomT, L),
+    );
+    const staleImage = skewImagePlaneIntercept(
+      trace.x,
+      trace.y,
+      trace.ux,
+      trace.uy,
+      lastSurfZ,
+      lastSurfZ + L.S[L.N - 1].d,
+    );
+
+    expect(currentImage).not.toBeNull();
+    expect(staleImage).not.toBeNull();
+    expect(edgePoint.tracedX).toBeCloseTo(currentImage!.x, 8);
+    expect(edgePoint.tracedY).toBeCloseTo(-currentImage!.y, 8);
+    expect(Math.abs(edgePoint.tracedX! - staleImage!.x)).toBeGreaterThan(1);
   });
 });

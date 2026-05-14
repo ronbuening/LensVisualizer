@@ -29,10 +29,11 @@
 
 import {
   computeAnalysisFieldGeometryAtState,
-  solveChiefRayLaunchHeight,
+  FOCUS_INFINITY_THRESHOLD,
   epZRelStopAtZoom,
   xpZRelLastSurfAtZoom,
   doLayout,
+  solveChiefRayLaunchHeight,
   traceRay,
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
@@ -145,7 +146,7 @@ function computeStatePupilBaselines(
   geometry: FieldGeometryState,
   aberrationT = 0,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
-  if (aberrationT <= 0) {
+  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
     return {
       paraxialEpZRelStop: epZRelStopAtZoom(zoomT, L),
       paraxialXpZRelLastSurf: xpZRelLastSurfAtZoom(zoomT, L),
