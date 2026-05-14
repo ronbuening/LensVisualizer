@@ -24,6 +24,7 @@
 
 import { traceRay, solveChiefRayLaunchHeight, computeAnalysisFieldGeometryAtState } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
+import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -76,13 +77,14 @@ export function computeVignettingCurve(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   /* Pre-compute field geometry for the solved chief ray — accounts for
    * pupil aberration (EP position shifts with field angle) which the old
    * paraxial (B/yRatio) launch ignored.  Critical for retrofocus designs. */
-  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const halfFieldDeg = geom.halfFieldDeg;
   if (halfFieldDeg <= 0 || !isFinite(halfFieldDeg)) return [];
 
@@ -101,7 +103,7 @@ export function computeVignettingCurve(
     /* Solved chief-ray launch: iteratively corrects for pupil aberration.
      * Falls back to paraxial for small angles (<1°) automatically. */
     const uField = -Math.tan(thetaRad);
-    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT);
+    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
 
     /* Dense meridional pupil sweep: N_PUPIL evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
@@ -109,7 +111,7 @@ export function computeVignettingCurve(
       /* Map j ∈ [0, N_PUPIL−1] → pupilFrac ∈ [−1, +1] */
       const pupilFrac = -1 + (2 * j) / (N_PUPIL - 1);
       const y0 = yChief + pupilFrac * currentEPSD;
-      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
       if (!trace.clipped) surviving++;
     }
 

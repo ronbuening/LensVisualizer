@@ -1,8 +1,15 @@
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../types/optics.js";
 import { resolveImageFormatMetadata } from "../utils/lensTaxonomy.js";
 import { stateSurfaces, thick, FOCUS_INFINITY_THRESHOLD } from "./layout.js";
-import { traceSurfacesParaxial, traceSurfacesReal } from "./internal/traceSurfaces.js";
-import { traceRay } from "./rayTrace.js";
+import {
+  traceSurfacesParaxial,
+  traceSurfacesVertexReal,
+  type RealSurfaceTraceOptions,
+  type RealSurfaceTraceResult,
+} from "./internal/traceSurfaces.js";
+import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { traceRay, type RayTraceOptions } from "./rayTrace.js";
+import { resolveSurfaceTraceMode } from "./traceMode.js";
 
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 
@@ -25,6 +32,7 @@ export function computeFieldGeometryAtState(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): FieldGeometryState {
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const stopIdx = L.stopIdx;
@@ -32,8 +40,8 @@ export function computeFieldGeometryAtState(
 
   const paraxMarg = traceSurfacesParaxial(S, 1, 0, { stopAt: stopIdx });
   const paraxChief = traceSurfacesParaxial(S, 0, 1, { stopAt: stopIdx });
-  const realMarg = traceSurfacesReal(S, L.asphByIdx, delta, 0, { stopAt: stopIdx });
-  const realChief = traceSurfacesReal(S, L.asphByIdx, 0, delta, { stopAt: stopIdx });
+  const realMarg = traceStateSurfacesReal(S, L, delta, 0, { stopAt: stopIdx }, options);
+  const realChief = traceStateSurfacesReal(S, L, 0, delta, { stopAt: stopIdx }, options);
 
   const yRatio = isFinite(realMarg.y) ? realMarg.y / delta : paraxMarg.y;
   const b = isFinite(realChief.y) ? realChief.y / delta : paraxChief.y;
@@ -56,7 +64,7 @@ export function computeFieldGeometryAtState(
   const testChief = (deg: number): boolean => {
     const uField = -Math.tan((deg * Math.PI) / 180);
     const yChiefIn = -epRatio * uField;
-    const trace = traceSurfacesReal(S, L.asphByIdx, yChiefIn, uField, { checkSemiDiameter: true });
+    const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
     return isFinite(trace.y) && !trace.clipped;
   };
 
@@ -79,8 +87,9 @@ export function computeAnalysisFieldGeometryAtState(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): FieldGeometryState {
-  const geometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg <= 0 || L.N < 1) return geometry;
 
   const format = resolveImageFormatMetadata(L.data?.imageFormat);
@@ -98,6 +107,7 @@ export function computeAnalysisFieldGeometryAtState(
     L,
     geometry,
     aberrationT,
+    options,
   );
   if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) <= maxImageHeight + 1e-9) return geometry;
 
@@ -109,6 +119,7 @@ export function computeAnalysisFieldGeometryAtState(
     L,
     geometry,
     aberrationT,
+    options,
   );
   if (formatHalfFieldDeg === null || !isFinite(formatHalfFieldDeg)) return geometry;
 
@@ -126,12 +137,13 @@ export function traceChiefRayAtAngle(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): RayTraceResult {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
   const yChief = -geom.epRatio * uField;
-  return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+  return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
 }
 
 export function traceParaxialRay(
@@ -154,8 +166,9 @@ export function chiefRayImageHeight(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
-  const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
+  const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT, options);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
@@ -166,8 +179,9 @@ export function solveChiefRayLaunchHeight(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
   const paraxialYChief = -geom.epRatio * uField;
@@ -178,7 +192,7 @@ export function solveChiefRayLaunchHeight(
   const stopIdx = L.stopIdx;
 
   const heightAtStop = (yLaunch: number): number | null => {
-    const result = traceSurfacesReal(S, L.asphByIdx, yLaunch, uField, { stopAt: stopIdx });
+    const result = traceStateSurfacesReal(S, L, yLaunch, uField, { stopAt: stopIdx }, options);
     return isFinite(result.y) ? result.y : null;
   };
 
@@ -210,11 +224,12 @@ export function chiefRayImageHeightAccurate(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
   const uField = -Math.tan(thetaRad);
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
-  const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
@@ -226,13 +241,15 @@ export function solveFieldAngleForImageHeightAccurate(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number | null {
   if (!isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   if (!isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
 
   const target = -Math.abs(targetImageHeight);
-  const imageHeightAt = (deg: number) => chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom, aberrationT);
+  const imageHeightAt = (deg: number) =>
+    chiefRayImageHeightAccurate(deg, zPos, focusT, zoomT, L, geom, aberrationT, options);
 
   const bracketSegments = Math.max(Math.ceil(geom.halfFieldDeg), 20);
   const segmentAngles: number[] = [];
@@ -284,22 +301,23 @@ export function solveFieldAngleForImageHeight(
   zoomT: number,
   L: RuntimeLens,
   geometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): number | null {
   if (!isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12) return 0;
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, 0, options);
   if (!isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) return null;
 
   const target = -Math.abs(targetImageHeight);
   let lo = 0;
   let hi = geom.halfFieldDeg;
-  const yLo = chiefRayImageHeight(lo, zPos, focusT, zoomT, L, geom);
-  const yHi = chiefRayImageHeight(hi, zPos, focusT, zoomT, L, geom);
+  const yLo = chiefRayImageHeight(lo, zPos, focusT, zoomT, L, geom, 0, options);
+  const yHi = chiefRayImageHeight(hi, zPos, focusT, zoomT, L, geom, 0, options);
   if (!isFinite(yLo) || !isFinite(yHi)) return null;
   if (target > yLo || target < yHi) return null;
 
   for (let i = 0; i < 40; i++) {
     const mid = (lo + hi) / 2;
-    const yMid = chiefRayImageHeight(mid, zPos, focusT, zoomT, L, geom);
+    const yMid = chiefRayImageHeight(mid, zPos, focusT, zoomT, L, geom, 0, options);
     if (!isFinite(yMid)) return null;
     if (Math.abs(yMid - target) < 1e-4) return mid;
     if (yMid > target) lo = mid;
@@ -315,8 +333,9 @@ export function entrancePupilAtState(
   L: RuntimeLens,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): EntrancePupilState {
-  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const yRatio = geom.yRatio;
   const epSD = Math.abs(yRatio) > 1e-9 ? Math.abs(stopSD / yRatio) : 0;
   return {
@@ -334,31 +353,77 @@ function traceToImageReal(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
-  const trace = traceSurfacesReal(S, L.asphByIdx, y0, u0);
+  const trace = traceStateSurfacesReal(S, L, y0, u0, {}, options);
   if (!isFinite(trace.y)) return NaN;
   return trace.y + S[S.length - 1].d * trace.u;
 }
 
-function realK(yRef: number, du: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  const y0 = traceToImageReal(yRef, 0, focusT, zoomT, L, aberrationT);
-  const y1 = traceToImageReal(yRef, du, focusT, zoomT, L, aberrationT);
+function realK(
+  yRef: number,
+  du: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+  options?: RayTraceOptions,
+): number {
+  const y0 = traceToImageReal(yRef, 0, focusT, zoomT, L, aberrationT, options);
+  const y1 = traceToImageReal(yRef, du, focusT, zoomT, L, aberrationT, options);
   if (isNaN(y0) || isNaN(y1)) return NaN;
   const dydu = (y1 - y0) / du;
   if (Math.abs(dydu) < 1e-15) return NaN;
   return -y0 / dydu / yRef;
 }
 
-export function conjugateK(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+export function conjugateK(
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  aberrationT = 0,
+  options?: RayTraceOptions,
+): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
   const du = 1e-5;
-  const currentEP = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT).epSD;
-  const infinityEP = entrancePupilAtState(L.stopPhysSD, 0, zoomT, L).epSD;
+  const currentEP = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT, options).epSD;
+  const infinityEP = entrancePupilAtState(L.stopPhysSD, 0, zoomT, L, undefined, 0, options).epSD;
   const yRefCurrent = currentEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
   const yRefInfinity = infinityEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
-  const Kt = realK(yRefCurrent, du, focusT, zoomT, L, aberrationT);
-  const K0 = realK(yRefInfinity, du, 0, zoomT, L);
+  const Kt = realK(yRefCurrent, du, focusT, zoomT, L, aberrationT, options);
+  const K0 = realK(yRefInfinity, du, 0, zoomT, L, 0, options);
   if (isNaN(Kt) || isNaN(K0)) return 0;
   return Kt - K0;
+}
+
+function traceStateSurfacesReal(
+  S: ReturnType<typeof stateSurfaces>,
+  L: RuntimeLens,
+  y0: number,
+  u0: number,
+  traceOptions: RealSurfaceTraceOptions = {},
+  options?: RayTraceOptions,
+): RealSurfaceTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode === "legacy") return traceSurfacesVertexReal(S, L.asphByIdx, y0, u0, traceOptions);
+
+  const result = traceExactSurfaceStack(
+    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+    { y0, uy0: u0 },
+    {
+      stopAt: traceOptions.stopAt,
+      skipLastTransfer: traceOptions.skipLastTransfer,
+      recordHeights: traceOptions.recordHeights,
+      checkSemiDiameter: traceOptions.checkSemiDiameter,
+    },
+  );
+  const failed = result.failureReason !== null;
+  return {
+    y: failed ? NaN : result.y,
+    u: failed ? NaN : result.uy,
+    n: result.n,
+    clipped: result.clipped,
+    heights: result.heights,
+  };
 }

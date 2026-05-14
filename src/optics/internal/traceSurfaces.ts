@@ -55,7 +55,7 @@ export function traceSurfacesParaxial(
   return { y, u, n, heights };
 }
 
-export function traceSurfacesReal(
+export function traceSurfacesVertexReal(
   surfaces: TraceSurface[],
   asphByIdx: Record<number, AsphericCoefficients>,
   y0: number,
@@ -93,3 +93,5 @@ export function traceSurfacesReal(
   }
   return { y, u: Math.tan(U), n, clipped, heights };
 }
+
+export const traceSurfacesReal = traceSurfacesVertexReal;

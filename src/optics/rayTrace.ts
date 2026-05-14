@@ -1,7 +1,19 @@
 import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../types/optics.js";
+import type { SurfaceTraceMode } from "./traceMode.js";
 import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
+import {
+  normalizeDirection,
+  refractDirection,
+  traceExactSurfaceStack,
+  type ExactSurfaceTraceHit,
+} from "./internal/exactSurfaceTrace.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
+import { resolveSurfaceTraceMode } from "./traceMode.js";
 import { renderSag, sagSlope, stateSurfaces, thick } from "./layout.js";
+
+export interface RayTraceOptions {
+  mode?: SurfaceTraceMode;
+}
 
 export interface SkewRayTraceResult {
   x: number;
@@ -34,6 +46,7 @@ export interface CircularPupilSample {
 
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
+const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
 
 export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
@@ -47,7 +60,7 @@ export function wavelengthNd(nd: number, vd: number | undefined, channel: Chroma
   return nF + PgF * (nF - nC);
 }
 
-function traceRayCore(
+function traceRayLegacyCore(
   y0: number,
   u0: number,
   zPos: number[],
@@ -71,9 +84,9 @@ function traceRayCore(
     const z = zPos[i];
     const isStop = i === L.stopIdx;
     const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && Math.abs(y) > clip) {
-      if (!ghost) break;
+    if (!clipped && exceedsTraceAperture(Math.abs(y), clip)) {
       clipped = true;
+      if (!ghost) break;
     }
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt);
@@ -94,8 +107,8 @@ function traceRayCore(
         const I = U - alpha;
         const sinIp = (n / nn) * Math.sin(I);
         if (Math.abs(sinIp) > 1.0) {
-          if (!ghost) break;
           clipped = true;
+          if (!ghost) break;
         } else {
           U = alpha + Math.asin(sinIp);
         }
@@ -107,9 +120,70 @@ function traceRayCore(
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
 }
 
-function normalizeDirection(ux: number, uy: number): [number, number, number] {
-  const invMag = 1 / Math.hypot(ux, uy, 1);
-  return [ux * invMag, uy * invMag, invMag];
+function traceRayExactCore(
+  y0: number,
+  u0: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
+  _aberrationT = 0,
+): RayTraceResult {
+  const pts: number[][] = [];
+  const ghostPts: number[][] = [];
+  const rayLead = L.rayLead ?? 0;
+  const leadZ = zPos[0] - rayLead;
+  const leadY = y0 - u0 * rayLead;
+  pts.push([leadZ, leadY]);
+
+  const result = traceExactSurfaceStack(
+    L,
+    { y0, uy0: u0 },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      leadDistance: rayLead,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
+
+  appendExactTracePoints(result.hits, pts, ghostPts, ghost);
+  return { pts, ghostPts, y: result.y, u: result.uy, clipped: result.clipped };
+}
+
+function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {
+  const tolerance = Math.max(TRACE_CLIP_ABS_TOLERANCE, Math.abs(semiDiameter) * 1e-12);
+  return radius > semiDiameter + tolerance;
+}
+
+function appendExactTracePoints(
+  hits: readonly ExactSurfaceTraceHit[],
+  pts: number[][],
+  ghostPts: number[][],
+  ghost: boolean,
+): void {
+  for (const hit of hits) {
+    const pt = [hit.point[2], hit.point[1]];
+    if (hit.clipped) {
+      if (ghost) ghostPts.push(pt);
+    } else {
+      pts.push(pt);
+    }
+  }
+}
+
+function surfaceZPositions(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number[] {
+  const z = [0];
+  for (let i = 0; i < L.N - 1; i++) z.push(z[i] + thick(i, focusT, zoomT, L, aberrationT));
+  return z;
 }
 
 function surfaceNormalAtPoint(x: number, y: number, surfIdx: number, L: RuntimeLens): [number, number, number] {
@@ -124,32 +198,7 @@ function surfaceNormalAtPoint(x: number, y: number, surfIdx: number, L: RuntimeL
   return [-dzdx * invMag, -dzdy * invMag, invMag];
 }
 
-function refractDirection(
-  direction: [number, number, number],
-  normal: [number, number, number],
-  n: number,
-  nn: number,
-): [number, number, number] | null {
-  const eta = n / nn;
-  const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
-  const tangentX = direction[0] - cosIncident * normal[0];
-  const tangentY = direction[1] - cosIncident * normal[1];
-  const tangentZ = direction[2] - cosIncident * normal[2];
-  const tangentSq = tangentX * tangentX + tangentY * tangentY + tangentZ * tangentZ;
-  const scaledTangentSq = eta * eta * tangentSq;
-  if (scaledTangentSq > 1 + 1e-12) return null;
-
-  const normalScale = Math.sqrt(Math.max(0, 1 - scaledTangentSq));
-  const transmitted: [number, number, number] = [
-    eta * tangentX + normalScale * normal[0],
-    eta * tangentY + normalScale * normal[1],
-    eta * tangentZ + normalScale * normal[2],
-  ];
-  const invMag = 1 / Math.hypot(transmitted[0], transmitted[1], transmitted[2]);
-  return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
-}
-
-function traceSkewRayCore(
+function traceSkewRayLegacyCore(
   x0: number,
   y0: number,
   ux0: number,
@@ -173,9 +222,9 @@ function traceSkewRayCore(
     const isStop = i === L.stopIdx;
     const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
     const radius = Math.hypot(x, y);
-    if (!clipped && radius > clip) {
-      if (!ghost) break;
+    if (!clipped && exceedsTraceAperture(radius, clip)) {
       clipped = true;
+      if (!ghost) break;
     }
 
     const nn = channel
@@ -189,8 +238,8 @@ function traceSkewRayCore(
         const normal = surfaceNormalAtPoint(x, y, i, L);
         const refracted = refractDirection(direction, normal, n, nn);
         if (refracted === null) {
-          if (!ghost) break;
           clipped = true;
+          if (!ghost) break;
         } else {
           direction = refracted;
         }
@@ -216,6 +265,45 @@ function traceSkewRayCore(
   };
 }
 
+function traceSkewRayExactCore(
+  x0: number,
+  y0: number,
+  ux0: number,
+  uy0: number,
+  focusT: number,
+  zoomT: number,
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
+  aberrationT = 0,
+): SkewRayTraceResult {
+  const zPos = surfaceZPositions(focusT, zoomT, L, aberrationT);
+  const result = traceExactSurfaceStack(
+    L,
+    { x0, y0, ux0, uy0 },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      leadDistance: L.rayLead ?? 0,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
+
+  return {
+    x: result.x,
+    y: result.y,
+    ux: result.ux,
+    uy: result.uy,
+    clipped: result.clipped,
+  };
+}
+
 export function traceSkewRay(
   x0: number,
   y0: number,
@@ -227,8 +315,12 @@ export function traceSkewRay(
   ghost: boolean,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
-  return traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT)
+    : traceSkewRayLegacyCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 export function traceSkewRayChromatic(
@@ -243,8 +335,12 @@ export function traceSkewRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
-  return traceSkewRayCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
+    : traceSkewRayLegacyCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 export function skewImagePlaneIntercept(
@@ -330,6 +426,7 @@ export function traceChiefRelativeSkewRay(
   ghost: boolean,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
   return traceSkewRay(
     xFraction * entrancePupilSemiDiameter,
@@ -342,6 +439,7 @@ export function traceChiefRelativeSkewRay(
     ghost,
     L,
     aberrationT,
+    options,
   );
 }
 
@@ -358,6 +456,7 @@ export function traceChiefRelativeSkewRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): SkewRayTraceResult {
   return traceSkewRayChromatic(
     xFraction * entrancePupilSemiDiameter,
@@ -371,6 +470,7 @@ export function traceChiefRelativeSkewRayChromatic(
     L,
     channel,
     aberrationT,
+    options,
   );
 }
 
@@ -384,8 +484,12 @@ export function traceRay(
   ghost: boolean,
   L: RuntimeLens,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): RayTraceResult {
-  return traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT)
+    : traceRayLegacyCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
 export function traceRayChromatic(
@@ -399,8 +503,12 @@ export function traceRayChromatic(
   L: RuntimeLens,
   channel: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): RayTraceResult {
-  return traceRayCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  return mode === "exact"
+    ? traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
+    : traceRayLegacyCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
 interface MarginalRayData {

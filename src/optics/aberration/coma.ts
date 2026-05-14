@@ -5,6 +5,7 @@ import {
   type CircularPupilSample,
   type FieldGeometryState,
   type OrthogonalPupilSample,
+  type RayTraceOptions,
 } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
@@ -46,6 +47,7 @@ const COMA_PREVIEW_FIELD_LABELS: Record<(typeof COMA_PREVIEW_FIELD_FRACTIONS)[nu
 
 interface ComaTraceContext {
   aberrationT: number;
+  traceOptions?: RayTraceOptions;
   fieldGeometryState: FieldGeometryState;
   tangentialPupilSamples: OrthogonalPupilSample[];
   sagittalPupilSamples: OrthogonalPupilSample[];
@@ -112,10 +114,18 @@ interface FixedComaPointCloudPreviewFootprint {
   footprint: ComaPointCloudFieldFootprint | null;
 }
 
-function buildComaTraceContext(L: RuntimeLens, focusT: number, zoomT: number, aberrationT = 0): ComaTraceContext {
+function buildComaTraceContext(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
+): ComaTraceContext {
   return {
     aberrationT,
-    fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
+    traceOptions: options,
+    fieldGeometryState: fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options),
     tangentialPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential"),
     sagittalPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal"),
     circularPupilSamples: sampleCircularPupil(COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES),
@@ -186,6 +196,7 @@ function traceComaFieldBundle(
     fieldFraction,
     traceContext.fieldGeometryState,
     traceContext.aberrationT,
+    traceContext.traceOptions,
   );
   if (geometry === null) return null;
 
@@ -199,6 +210,7 @@ function traceComaFieldBundle(
     currentPhysStopSD,
     undefined,
     traceContext.aberrationT,
+    traceContext.traceOptions,
   );
   if (bundle === null) return null;
 
@@ -721,8 +733,10 @@ export function computeMeridionalComa(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): MeridionalComaResult | null {
-  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT);
+  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, options);
   const footprint = computeMeridionalComaFieldFootprint(
     L,
     zPos,
@@ -759,6 +773,8 @@ export function computeComaPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): ComaPreviewResult | null {
   return computeComaPreviewFromContext(
     L,
@@ -767,7 +783,7 @@ export function computeComaPreview(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, options),
   );
 }
 
@@ -779,6 +795,8 @@ export function computeSagittalComa(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): SagittalComaResult | null {
   return computeSagittalComaResultAtField(
     L,
@@ -788,7 +806,7 @@ export function computeSagittalComa(
     currentEPSD,
     currentPhysStopSD,
     L.offAxisFieldFrac,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, options),
   );
 }
 
@@ -800,6 +818,8 @@ export function computeComaPointCloudPreview(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): ComaPointCloudPreviewResult | null {
   return computeComaPointCloudPreviewFromContext(
     L,
@@ -808,7 +828,7 @@ export function computeComaPointCloudPreview(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, options),
   );
 }
 
@@ -820,8 +840,10 @@ export function computeComaAnalysis(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+  options?: RayTraceOptions,
 ): ComaAnalysisResult {
-  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT);
+  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, options);
   const meridionalFootprint = computeMeridionalComaFieldFootprint(
     L,
     zPos,

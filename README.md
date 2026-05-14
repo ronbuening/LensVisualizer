@@ -30,6 +30,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, ray density, chromatic channels, and comparison scale mode all update live
+- **Ray-tracing engine controls**: the legacy real-ray trace remains the default, with an experimental exact sag-surface trace mode available through a central per-lens rollout switch for diagnostics
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Lens-group movement**: focus and zoom sliders can open a URL-shareable overlay that stacks inferred lens groups vertically and charts each group center against the fixed focus plane
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab

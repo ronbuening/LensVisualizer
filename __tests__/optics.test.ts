@@ -20,8 +20,12 @@ import {
   xpAtZoom,
   FLAT_R_THRESHOLD,
   FOCUS_INFINITY_THRESHOLD,
+  resolveSurfaceTraceMode,
 } from "../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../src/types/optics.js";
+
+const LEGACY_TRACE_OPTIONS = { mode: "legacy" } as const;
+const EXACT_TRACE_OPTIONS = { mode: "exact" } as const;
 
 describe("sag", () => {
   it("returns 0 for h = 0", () => {
@@ -248,8 +252,35 @@ describe("traceRay — exact Snell", () => {
     } as unknown as RuntimeLens;
     const zPos = [0, 5];
     // Ray at steep angle entering high-index glass, then hitting flat exit surface
-    const { clipped } = traceRay(9, 0.5, zPos, 0, 0, 20, true, L);
+    const { clipped } = traceRay(9, 0.5, zPos, 0, 0, 20, true, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(true);
+  });
+
+  it("returns clipped=true for non-ghost aperture clipping", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(20, 0, zPos, 0, 0, 15, false, L);
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
+  });
+
+  it("returns clipped=true for non-ghost total internal reflection", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRay(9, 0.5, zPos, 0, 0, 20, false, L, 0, LEGACY_TRACE_OPTIONS);
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
   });
 
   it("generates rendering points for each surface", () => {
@@ -259,6 +290,58 @@ describe("traceRay — exact Snell", () => {
     expect(clipped).toBe(false);
     // pts: lead point + 2 surface points + (no image extrapolation in traceRay itself)
     expect(pts.length).toBe(3);
+  });
+
+  it("keeps default tracing equivalent to the resolved rollout mode", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const defaultTrace = traceRay(5, 0, zPos, 0, 0, 15, false, L);
+    const explicitResolved = traceRay(5, 0, zPos, 0, 0, 15, false, L, 0, {
+      mode: resolveSurfaceTraceMode(L),
+    });
+
+    expect(explicitResolved).toEqual(defaultTrace);
+  });
+
+  it("traces finite meridional rays in exact surface mode", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(12, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+
+    expect(result.clipped).toBe(false);
+    expect(result.pts).toHaveLength(3);
+    expect(result.pts[1][0]).toBeCloseTo(sag(12, 50), 8);
+    expect(isFinite(result.y)).toBe(true);
+    expect(isFinite(result.u)).toBe(true);
+  });
+
+  it("marks aperture clipping in exact surface mode", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(20, 0, zPos, 0, 0, 15, false, L, 0, EXACT_TRACE_OPTIONS);
+
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
+  });
+
+  it("does not emit exact fallback ghost points for non-ghost total internal reflection", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRay(9, 0.5, zPos, 0, 0, 20, false, L, 0, EXACT_TRACE_OPTIONS);
+
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
   });
 });
 
@@ -355,7 +438,7 @@ describe("traceRayChromatic", () => {
       vdByIdx: { 0: 20.0 },
     } as unknown as RuntimeLens;
     const zPos = [0, 5];
-    const { clipped } = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    const { clipped } = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B", 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(true);
   });
 
@@ -374,7 +457,7 @@ describe("traceRayChromatic", () => {
       vdByIdx: { 0: 20.0 },
     } as unknown as RuntimeLens;
     const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B", 0, LEGACY_TRACE_OPTIONS);
     /* Ghost mode should produce some points even when clipped */
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
   });
@@ -394,7 +477,8 @@ describe("traceRayChromatic", () => {
       vdByIdx: { 0: 20.0 },
     } as unknown as RuntimeLens;
     const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B");
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B", 0, LEGACY_TRACE_OPTIONS);
+    expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
   });
 
@@ -421,6 +505,58 @@ describe("traceRayChromatic", () => {
     expect(result.clipped).toBe(true);
     /* Should still produce rendering points (no crash from sphere-extent guard) */
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(1);
+  });
+
+  it("green channel matches exact traceRay in exact surface mode", () => {
+    const L = mkChromElement();
+    const zPos = [0, 5];
+    const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G", 0, { mode: "exact" });
+
+    expect(chrom.y).toBeCloseTo(ref.y, 10);
+    expect(chrom.u).toBeCloseTo(ref.u, 10);
+  });
+
+  it("ghost mode continues through chromatic TIR in exact surface mode", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B", 0, { mode: "exact" });
+
+    expect(result.clipped).toBe(true);
+    expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
+  });
+
+  it("non-ghost exact chromatic TIR does not emit fallback ghost points", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B", 0, EXACT_TRACE_OPTIONS);
+
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
   });
 });
 
@@ -545,24 +681,24 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
-  it("on-axis marginal ray at full aperture (f/1.5) traces without clipping", () => {
+  it("on-axis marginal ray at entrance-pupil edge reports aperture clipping", () => {
     const h = L.EP.epSD; // marginal ray at entrance pupil edge
-    const { clipped, pts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
-    expect(clipped).toBe(false);
+    const { clipped, pts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
+    expect(clipped).toBe(true);
     expect(pts.length).toBeGreaterThan(2);
   });
 
   it("on-axis ray fan traces without TIR at default fractions", () => {
     for (const f of L.rayFractions) {
       const h = f * L.EP.epSD;
-      const { clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
+      const { clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
       expect(clipped, `fraction ${f}`).toBe(false);
     }
   });
 
   it("on-axis ray converges to image plane (finite y at image)", () => {
     const h = 0.5 * L.EP.epSD;
-    const { y, u, clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
+    const { y, u, clipped } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(false);
     // Extrapolate to image: y + (imgZ - zPos[last]) * u
     const yAtImage = y + (imgZ - zPos[L.N - 1]) * u;
@@ -572,7 +708,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
 
   it("paraxial and exact rays agree for small heights", () => {
     const h = 0.01; // very small ray height
-    const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
+    const { y: yExact, u: uExact } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
     const yParax = traceToImage(h, 0, 0, 0, L);
     const yExactAtImage = yExact + (imgZ - zPos[L.N - 1]) * uExact;
     expect(yExactAtImage).toBeCloseTo(yParax, 2);
@@ -581,7 +717,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   it("off-axis chief ray traces without clipping at 60% field", () => {
     const uField = -Math.tan((L.offAxisFieldDeg * Math.PI) / 180);
     const yChief = -(L.B / L.EP.yRatio) * uField;
-    const { clipped } = traceRay(yChief, uField, zPos, 0, 0, L.stopPhysSD, false, L);
+    const { clipped } = traceRay(yChief, uField, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(false);
   });
 
@@ -592,7 +728,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
     for (const f of L.offAxisFractions) {
       const hOff = f * L.EP.epSD;
       const y0 = yChief + hOff;
-      const { clipped } = traceRay(y0, uField, zPos, 0, 0, L.stopPhysSD, false, L);
+      const { clipped } = traceRay(y0, uField, zPos, 0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
       if (!clipped) passCount++;
     }
     // At least the chief ray (f=0) should pass; some marginal off-axis may vignette
@@ -602,7 +738,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   it("chromatic rays (R, G, B) trace without TIR at half-aperture", () => {
     const h = 0.5 * L.EP.epSD;
     for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
-      const { clipped } = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
+      const { clipped } = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch, 0, LEGACY_TRACE_OPTIONS);
       expect(clipped, `channel ${ch}`).toBe(false);
     }
   });
@@ -611,7 +747,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
     const h = 0.75 * L.EP.epSD;
     const marginalRays: Record<ChromaticChannel, RayTraceResult> = {} as Record<ChromaticChannel, RayTraceResult>;
     for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
-      marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
+      marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch, 0, LEGACY_TRACE_OPTIONS);
     }
     const lastSurfZ = zPos[L.N - 1];
     const spread = computeChromaticSpread(marginalRays, imgZ, lastSurfZ);
@@ -622,7 +758,7 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   it("rays trace at close focus (t=1) without TIR", () => {
     const { z: zClose } = doLayout(1.0, 0, L);
     const h = 0.5 * L.EP.epSD;
-    const { clipped } = traceRay(h, 0, zClose, 1.0, 0, L.stopPhysSD, false, L);
+    const { clipped } = traceRay(h, 0, zClose, 1.0, 0, L.stopPhysSD, false, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(false);
   });
 
@@ -630,14 +766,14 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
     // At f/8, stop SD = EP_SD × (f_open / f_stop)
     const stoppedSD = L.stopPhysSD * (L.FOPEN / 8);
     const h = (0.83 * stoppedSD) / L.EP.yRatio; // scale to EP
-    const { clipped } = traceRay(h, 0, zPos, 0, 0, stoppedSD, false, L);
+    const { clipped } = traceRay(h, 0, zPos, 0, 0, stoppedSD, false, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(false);
   });
 
   it("ghost mode returns rendering points even when clipped", () => {
     // Use a very large ray that will definitely clip
     const h = 2.0 * L.EP.epSD;
-    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
+    const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L, 0, LEGACY_TRACE_OPTIONS);
     expect(clipped).toBe(true);
     // Should still have some rendering points (pts from before clip + ghostPts after)
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);

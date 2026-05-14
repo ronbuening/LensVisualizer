@@ -42,6 +42,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
+      fieldGeometry={inputs.fieldGeometry}
       expanded={aberrationsExpanded}
       onExpandedChange={onAberrationsExpandedChange}
     />
@@ -56,6 +57,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
+      fieldGeometry={inputs.fieldGeometry}
     />
   ),
   distortion: ({ L, t, zPos, inputs }) => (

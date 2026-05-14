@@ -10,6 +10,7 @@ import buildLens from "../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+import MinoltaAF100MacroRaw from "../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import type { LensData } from "../src/types/optics.js";
 
 function build(raw: object) {
@@ -435,5 +436,18 @@ describe("computeBothPupilAberrationProfiles — zoom lens", () => {
       const both = computeBothPupilAberrationProfiles(0, zoomT, L);
       expect(both.ep.halfFieldDeg).toBeCloseTo(both.xp.halfFieldDeg, 10);
     }
+  });
+});
+
+describe("computeBothPupilAberrationProfiles — current-state pupil baselines", () => {
+  it("updates pupil baselines at close focus for a floating-focus macro lens", () => {
+    const L = build(MinoltaAF100MacroRaw);
+    const infinity = computeBothPupilAberrationProfiles(0, 0, L);
+    const close = computeBothPupilAberrationProfiles(1, 0, L);
+
+    expect(infinity.ep.paraxialEpZRelStop).toBeCloseTo(L.epZRelStop, 10);
+    expect(infinity.xp.paraxialXpZRelLastSurf).toBeCloseTo(L.xpZRelLastSurf, 10);
+    expect(close.ep.paraxialEpZRelStop).not.toBeCloseTo(infinity.ep.paraxialEpZRelStop, 3);
+    expect(close.xp.paraxialXpZRelLastSurf).not.toBeCloseTo(infinity.xp.paraxialXpZRelLastSurf, 3);
   });
 });

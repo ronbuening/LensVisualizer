@@ -495,6 +495,7 @@ describe("AberrationsPanel", () => {
       baseProps.currentPhysStopSD,
       false,
       0.42,
+      undefined,
     );
     expect(mockComputeFieldCurvature).toHaveBeenNthCalledWith(
       2,
@@ -506,6 +507,7 @@ describe("AberrationsPanel", () => {
       baseProps.currentPhysStopSD,
       true,
       0.42,
+      undefined,
     );
   });
 
@@ -531,6 +533,52 @@ describe("AberrationsPanel", () => {
       baseProps.currentEPSD,
       baseProps.currentPhysStopSD,
       0.42,
+      undefined,
+    );
+  });
+
+  it("forwards precomputed field geometry into coma and field-curvature calculations", () => {
+    const fieldGeometry = { halfFieldDeg: 12, yRatio: 0.8, b: 4, epRatio: 5 };
+
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    render(<AberrationsPanel {...baseProps} fieldGeometry={fieldGeometry} />);
+    expect(mockComputeFieldCurvature).toHaveBeenNthCalledWith(
+      1,
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      false,
+      0,
+      fieldGeometry,
+    );
+
+    cleanup();
+    mockComputeComaAnalysis.mockClear();
+    render(
+      <ComaTab
+        L={baseProps.L}
+        t={baseProps.t}
+        zPos={baseProps.zPos}
+        focusT={baseProps.focusT}
+        zoomT={baseProps.zoomT}
+        currentEPSD={baseProps.currentEPSD}
+        currentPhysStopSD={baseProps.currentPhysStopSD}
+        fieldGeometry={fieldGeometry}
+      />,
+    );
+
+    expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      0,
+      fieldGeometry,
     );
   });
 

@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-14 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-14",
+    type: "improvement",
+    summary: "Added experimental exact surface tracing for opt-in lens diagnostics",
+  },
+  {
+    date: "2026-05-14",
     type: "lens",
     summary: "Added three new Minolta lenses: AF 100mm f/2.8 Macro, AF 35-105mm f/3.5-4.5, and AF 70-200mm f/2.8 APO",
   },

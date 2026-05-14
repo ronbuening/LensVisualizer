@@ -13,6 +13,7 @@ import {
   type CircularPupilSample,
   type FieldGeometryState,
   type OrthogonalPupilSample,
+  type RayTraceOptions,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "../optics.js";
@@ -129,18 +130,19 @@ export function computeStateAwareOffAxisFieldGeometry(
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisFieldGeometry | null {
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
-  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg < 0) return null;
 
   const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
   if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
 
   const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;
@@ -164,6 +166,7 @@ export function traceOffAxisChiefRay(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisChiefRaySample | null {
   const trace = channel
     ? traceChiefRelativeSkewRayChromatic(
@@ -179,6 +182,7 @@ export function traceOffAxisChiefRay(
         L,
         channel,
         aberrationT,
+        options,
       )
     : traceChiefRelativeSkewRay(
         0,
@@ -192,6 +196,7 @@ export function traceOffAxisChiefRay(
         true,
         L,
         aberrationT,
+        options,
       );
   if (trace.clipped) return null;
 
@@ -221,6 +226,7 @@ export function traceOffAxisBundleFromSamples(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   if (entrancePupilSemiDiameter <= 0 || L.N < 1) return null;
 
@@ -233,6 +239,7 @@ export function traceOffAxisBundleFromSamples(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
   if (chiefRay === null) return null;
 
@@ -251,6 +258,7 @@ export function traceOffAxisBundleFromSamples(
           L,
           channel,
           aberrationT,
+          options,
         )
       : traceChiefRelativeSkewRay(
           sample.xFraction,
@@ -264,6 +272,7 @@ export function traceOffAxisBundleFromSamples(
           true,
           L,
           aberrationT,
+          options,
         );
     if (trace.clipped) return [];
 
@@ -301,6 +310,7 @@ export function traceOrthogonalOffAxisBundle(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleOrthogonalPupilFan(sampleCount, orientation),
@@ -312,6 +322,7 @@ export function traceOrthogonalOffAxisBundle(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
 }
 
@@ -325,6 +336,7 @@ export function traceCircularOffAxisBundle(
   stopSemiDiameter: number,
   channel?: ChromaticChannel,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisBundle | null {
   return traceOffAxisBundleFromSamples(
     sampleCircularPupil(ringSamples),
@@ -336,6 +348,7 @@ export function traceCircularOffAxisBundle(
     stopSemiDiameter,
     channel,
     aberrationT,
+    options,
   );
 }
 
