@@ -16,8 +16,12 @@ export interface SurfaceTraceModeResolutionOptions {
  */
 export const SURFACE_TRACE_ROLLOUT_MODE: SurfaceTraceRolloutMode = "per-lens";
 export const EXACT_SURFACE_TRACE_LENS_KEYS: readonly string[] = [
-  // Add catalog lens keys here when enabling exact tracing for a specific prescription.
-  // Example: "apo-lanthar-50f2",
+  // Add catalog lens keys here, one string per lens, when enabling exact tracing
+  // for specific prescriptions. Keys come from the lens data object's `key` field.
+  // Example:
+  // "apo-lanthar-50f2",
+  // "nokton-50f1",
+  // "sonnar-50f15",
 ];
 
 export function resolveSurfaceTraceMode(

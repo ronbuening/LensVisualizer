@@ -1,85 +1,84 @@
-# Exact Surface Ray-Tracing Idea
+# Exact Surface Ray-Tracing Implementation State
 
 ## Summary
 
-The current real-ray trace steps rays surface-by-surface at each surface vertex plane, then evaluates sag and surface
-normal at the resulting ray height. This is fast and stable for display, but it is not a true ray-to-sag-surface
-intersection. A future engine upgrade could solve the exact intersection between each incoming ray and the spherical or
-aspheric sag profile before applying Snell's law.
+Exact surface tracing has moved from a proposal to an implemented internal opt-in trace engine. The legacy vertex-plane
+trace remains the safe production behavior when `SURFACE_TRACE_ROLLOUT_MODE` is left at `"per-lens"` with an empty
+allowlist. For testing, the rollout was temporarily switched to `"exact"` in `src/optics/traceMode.ts`; that forced all
+default trace calls through the exact engine and exposed several legacy-assumption failures.
 
-## Proposed Implementation
+The current exact engine solves ray intersections against flat, spherical, conic, and polynomial-aspheric sag surfaces,
+then applies Snell refraction at the exact hit normal. It keeps public trace APIs compatible by projecting returned
+terminal `y`/`u` or `x`/`y`/`ux`/`uy` values back to the current surface vertex plane.
 
-- Add an internal intersection helper that solves `z_ray(t) = z_surface + sag(r_ray(t))` for meridional and skew rays.
-- Use Newton iteration with bisection fallback, bounded to the gap between adjacent vertex planes.
-- Return the exact hit point, surface normal, propagated optical path length, and failure reason when no valid hit exists.
-- Introduce the helper behind a feature flag or trace option, then compare exact and legacy traces across the catalog.
-- Keep `traceRay`, `traceSkewRay`, and chromatic wrappers API-compatible while moving shared intersection/refraction logic into a focused internal module.
+## Implemented State
 
-## Expected Gains
+- `src/optics/traceMode.ts` provides the central tri-state rollout control:
+  - `SURFACE_TRACE_ROLLOUT_MODE: "legacy" | "exact" | "per-lens"`.
+  - `EXACT_SURFACE_TRACE_LENS_KEYS` for per-lens exact opt-in.
+  - `resolveSurfaceTraceMode(L, requestedMode?)`, where explicit test/comparison options override rollout config.
+- `featureFlags.ts` remains boolean-only; exact tracing uses the optics-specific rollout config instead.
+- `RayTraceOptions` supports `mode?: "legacy" | "exact"` for tests and comparison utilities.
+- `src/optics/internal/surfaceIntersection.ts` implements the exact intersection helper with hit point, normal,
+  residual, iteration count, segment length, optical path length, and failure reasons.
+- `traceRay`, `traceRayChromatic`, `traceSkewRay`, `traceSkewRayChromatic`, and chief-relative skew wrappers all route
+  default calls through `resolveSurfaceTraceMode`.
+- Exact meridional and skew paths have explicit unit coverage for finite traces, chromatic behavior, symmetry,
+  meridional/skew equivalence, clipping, and catalog smoke coverage.
+- Documentation, changelog, and agent guidance now describe the rollout policy and the central config location.
 
-- More physically accurate marginal rays. The current trace transfers each ray to the next surface vertex plane, then
-  evaluates sag and normal at that transferred height. Exact intersection would instead find the true point where the
-  ray meets the sagged surface. The difference is small for paraxial rays, but can matter for fast lenses, steep menisci,
-  ultra-wide designs, and high-aspheric surfaces.
-- More reliable off-axis diagnostics. Distortion, vignetting, coma, field curvature, bokeh, and pupil aberration all
-  depend on chief-ray and pupil-bundle traces. If the traced hit point is exact, those analyses share a stronger
-  geometric foundation and should disagree less in edge-field cases where the current approximation compounds over many
-  surfaces.
-- Better clipping and aperture interpretation. Exact hit points make semi-diameter checks more meaningful because the
-  ray is tested where it actually intersects the physical surface, not at the vertex plane. This should reduce ambiguous
-  cases near clear-aperture edges and improve catalog-quality diagnostics for hidden trim, vignetting, and stop behavior.
-- Cleaner skew-ray behavior. The current skew trace uses a rotationally symmetric surface normal at the transferred
-  radius, but it still inherits the vertex-plane approximation. Exact 3D-ish hit solving would improve sagittal coma,
-  field-grid distortion, circular bokeh pupil bundles, and any future full-field spot diagram work.
-- A path to optical path length and wavefront features. Once each segment has an exact intersection and propagation
-  length, the engine can start tracking optical path length, OPD, wavefront error, focus metrics, or rough MTF/PSF-style
-  diagnostics without bolting on a separate tracing model.
-- Better support for future moved-optics analysis. Perspective-control movement is currently a render-layer transform.
-  Exact surface intersection is a prerequisite for any future true shifted/tilted optical trace, where the ray no longer
-  meets surfaces in the centered, vertex-plane-friendly geometry.
-- Stronger patent audit confidence. For patent-derived prescriptions, exact tracing would make numerical comparisons
-  against recalculated back focus, image height, vignetting limits, and aberration behavior easier to trust when the lens
-  includes steep groups or close-focus floating movement.
-- A cleaner internal architecture. Pulling intersection, normal calculation, refraction, clipping, and failure reporting
-  into focused helpers would reduce duplicated meridional/skew logic and make future trace modes easier to reason about.
+## Current Test Run With Forced Exact Rollout
 
-## Risks
+Command:
 
-- Performance cost in dense analyses. Vignetting, bokeh, coma previews, and field-curvature sweeps trace many rays per
-  render. Replacing simple thickness transfers with iterative root solving could make slider interaction feel worse
-  unless the implementation uses fast analytic paths for flats/spheres, tight iteration caps, caching, and deferred UI
-  calculation where appropriate.
-- Harder numerical failure modes. Extreme aspheres, rays near grazing incidence, surfaces with invalid sag domains, and
-  rays that skim the rim can all produce roots that are hard to bracket. The solver needs clear failure states such as
-  `missedSurface`, `outsideClearAperture`, `totalInternalReflection`, and `noConvergedIntersection` so callers do not
-  silently treat a numerical failure as optical clipping.
-- Edge behavior may change across the catalog. Some existing lens data and tests have been tuned around the current
-  approximation. Exact intersection may shift half-field limits, pupil positions, distortion curves, spherical
-  aberration values, bokeh footprints, and edge clipping. Those changes may be correct, but they still need review so
-  data-quality regressions are not confused with physics improvements.
-- More complicated state and coordinate conventions. The engine currently keeps a simple convention: surface vertex
-  positions come from `doLayout()`, and rays advance by current `thick()`. Exact intersection must preserve those public
-  conventions while carefully distinguishing vertex z, sagged hit z, local surface coordinates, and image-plane
-  propagation.
-- Aspheric sag derivatives become more central. The solver would rely heavily on `renderSag()` and `sagSlope()` for
-  convergence and normals. Any coefficient transcription issue, missing higher-order term, or near-domain conic behavior
-  would have more visible consequences than it does in the current approximation.
-- Ghost-ray rendering needs policy decisions. Today clipped rays can continue as ghost paths for visualization. Exact
-  tracing must decide how far ghost rays should be solved after clipping, how to render a ray that misses a physical
-  surface, and whether diagnostic overlays should distinguish clipping from numerical miss.
-- Backward compatibility pressure. Public callers expect `traceRay`, `traceRayChromatic`, `traceSkewRay`, and the
-  analysis helpers to return the same broad shapes. Exact tracing should be introduced behind an internal option or
-  feature flag first, with legacy parity tests, before becoming the default.
-- Harder debugging. The current approximation is easy to inspect by reading surface-by-surface heights. An iterative
-  solver needs good diagnostics: iteration count, bracket interval, hit residual, surface index, failure reason, and
-  possibly a dev-only trace log for one selected ray.
-- Possible overkill for display-only rays. The SVG diagram is primarily educational and interactive. Exact tracing may
-  offer little visible improvement for many ordinary lenses while adding maintenance cost. The upgrade is most justified
-  if it unlocks analysis accuracy and future wavefront/moved-optics functionality, not merely prettier ray polylines.
+```bash
+npm run test
+```
 
-## Test Plan
+Result with `SURFACE_TRACE_ROLLOUT_MODE = "exact"`:
 
-- Unit-test spherical, flat, conic, and polynomial-aspheric intersections against analytic or high-precision fixtures.
-- Add parity tests proving paraxial and low-height exact traces stay close to the current engine.
-- Add catalog smoke tests for finite, non-NaN traced rays across on-axis, off-axis, chromatic, distortion, vignetting, coma, bokeh, and pupil analyses.
-- Benchmark dense analysis paths before enabling exact intersection by default.
+- Test files: 6 failed, 121 passed.
+- Tests: 26 failed, 1618 passed.
+- Important context: these failures were produced by changing the global default rollout, not by passing
+  `{ mode: "exact" }` only to comparison tests.
+
+## Failure Categories
+
+- **Category 1: New exact-engine math or failure-policy issue.** The exact path is doing something that should be fixed
+  before broad rollout.
+- **Category 2: Brittle or legacy-specific test expectation.** The test assumes the vertex-plane model, the safe default
+  rollout config, or catalog data tuned around legacy tracing.
+
+## Failing Tests And RC
+
+| Test area | Failing tests | RC | Category |
+| --- | --- | --- | --- |
+| Rollout config contract | `traceMode.test.ts`: `defaults to per-lens rollout with an empty exact-trace allowlist` | The working tree intentionally changed `SURFACE_TRACE_ROLLOUT_MODE` from the committed safe default `"per-lens"` to `"exact"` for testing. The test is checking the production safety contract, so this failure is expected under the forced-exact experiment. | Category 2 |
+| Default trace equals explicit legacy | `optics.test.ts`: `keeps legacy tracing as the default rollout behavior`; `skewRay.test.ts`: `keeps legacy skew tracing as the default rollout behavior`; `exactTraceCatalog.test.ts`: five representative-lens `keeps default rollout equivalent to explicit legacy` cases | These tests assert that omitted `RayTraceOptions` resolves to legacy. With the global rollout set to `"exact"`, default traces correctly resolve to exact and no longer deep-equal explicit legacy traces. The catalog diffs are small numeric exact-vs-legacy ray differences, not evidence of a solver break. | Category 2 |
+| Non-ghost TIR fixture | `optics.test.ts`: `returns clipped=true for non-ghost total internal reflection`; `traceRayChromatic`: `non-ghost mode breaks on chromatic TIR without ghostPts` | The synthetic TIR lens/ray is vertex-plane-friendly but exact-surface-hostile: the steep ray does not physically intersect the first `R = 10` spherical sag surface in the exact model. Exact tracing falls back to a surface point, marks the ray clipped, and currently appends that fallback point to `ghostPts` even when `ghost=false`. The fixture's intended "TIR" event becomes an exact surface miss, and the non-ghost fallback behavior should be tightened. | Category 1 |
+| Sonnar production meridional traces | `optics.test.ts`: on-axis default ray fan without TIR; half-aperture image convergence; chromatic R/G/B half-aperture traces; chromatic dispersion measurable; close-focus trace without TIR | Exact tracing shows the Sonnar 50/1.5 prescription is not geometrically compatible with the old assumptions at wider zones. A half-aperture ray hits the steep L4 rear sag at `z ~= 17.282 mm`, while the stop vertex is at `z = 17.1 mm`; the exact hit has already passed the following stop plane. Legacy tracing never sees that because it transfers only between vertex planes. Subsequent exact intersections are treated as clipped/ghost, so chromatic spread collapses to zero when all marginal channels are skipped as clipped. | Category 2 |
+| Spherical aberration result nulls | `aberrationAnalysis.test.ts`: finite SA result for Sonnar; um/mm conversion; non-zero Sonnar SA; near-axis real-ray reference; close-focus Sonnar result; comparison-lens finite spread metrics; best-focus no worse than current-plane; SA profile bounded by best-focus peak; profile marginal sign convention | These failures are downstream of the Sonnar exact clipping above. `computeSphericalAberration` requires a surviving near-axis sample, a surviving marginal sample, and enough symmetric profile hits. With forced exact rollout, wider Sonnar samples clip or miss around the steep rear/front-stop region, so the analysis returns `null` rather than finite legacy-derived metrics. | Category 2 |
+| Stopped-down SA profile count | `aberrationAnalysis.test.ts`: `returns fewer or equal valid points when stopped down` | The test assumes a smaller pupil cannot produce more valid profile zones. Under exact tracing, wide-open Sonnar zones are clipped by the geometric surface/stop conflict, while stopped-down zones avoid the problematic heights and therefore produce more valid samples. The assertion is a legacy-era monotonicity expectation, not a general exact-trace invariant. | Category 2 |
+| Vignetting normalized transmission | `vignetteAnalysis.test.ts`: `geometricTransmission does not exceed 1.0 at any sample` | Exact tracing clips some on-axis Sonnar pupil samples, reducing the on-axis normalization baseline. A few off-axis sampled bundles survive slightly better than that baseline, so normalized `geometricTransmission` rises above 1.0, e.g. `1.01136`. This is a brittle normalization/test expectation exposed by exact clipping and discrete sampling. | Category 2 |
+
+## Important Observations
+
+- The forced-exact suite still passed 1618 tests, including the exact intersection unit coverage and explicit exact catalog
+  finite-smoke tests.
+- The exact engine is doing something meaningfully different from legacy even on near-axis catalog rays. That is expected:
+  exact mode finds the sag-surface hit, while legacy transfers to the next vertex plane and evaluates sag at that height.
+- The Sonnar failures are especially useful rollout evidence. Its patent-derived semi-diameters and short gaps were tuned
+  around legacy tracing; exact tracing exposes possible physical overlap/trim issues around steep surfaces and the stop.
+- The one clear exact-path implementation issue from this run is non-ghost failure handling after an exact intersection
+  miss: fallback/diagnostic points should not be emitted as `ghostPts` when `ghost=false`.
+
+## Recommended Follow-Up
+
+1. Restore the committed safe default after forced-exact testing: `SURFACE_TRACE_ROLLOUT_MODE = "per-lens"`.
+2. Fix exact non-ghost miss/TIR handling so `ghost=false` never returns fallback points in `ghostPts`.
+3. Keep legacy-default tests as safety-contract tests, or run forced-exact experiments through an explicit test helper that
+   expects those rollout-contract failures.
+4. Add a focused exact-mode diagnostic test for the Sonnar 50/1.5 steep L4 rear/stop interaction so future work can decide
+   whether to treat it as catalog geometry, clear-aperture trim, or exact-mode clipping policy.
+5. Update exact-mode analysis tests only after deciding whether production analyses should remain legacy by default, use
+   per-lens allowlisting, or intentionally tolerate `null`/reduced sample counts for exact-incompatible prescriptions.
