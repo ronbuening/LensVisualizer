@@ -78,6 +78,11 @@ describe("traceSkewRay", () => {
     expect(clipped.clipped).toBe(true);
   });
 
+  it("marks non-ghost skew rays clipped when they exceed the stop radius", () => {
+    const clipped = traceSkewRay(20, 0, 0, 0, 0, 0, 15, false, L);
+    expect(clipped.clipped).toBe(true);
+  });
+
   it("projects finite skew intercepts to the image plane", () => {
     const skew = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
     const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ);

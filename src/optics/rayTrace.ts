@@ -34,6 +34,7 @@ export interface CircularPupilSample {
 
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
+const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
 
 export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
@@ -71,9 +72,9 @@ function traceRayCore(
     const z = zPos[i];
     const isStop = i === L.stopIdx;
     const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && Math.abs(y) > clip) {
-      if (!ghost) break;
+    if (!clipped && exceedsTraceAperture(Math.abs(y), clip)) {
       clipped = true;
+      if (!ghost) break;
     }
     const pt = [z + renderSag(Math.abs(y), i, L), y];
     if (clipped) ghostPts.push(pt);
@@ -94,8 +95,8 @@ function traceRayCore(
         const I = U - alpha;
         const sinIp = (n / nn) * Math.sin(I);
         if (Math.abs(sinIp) > 1.0) {
-          if (!ghost) break;
           clipped = true;
+          if (!ghost) break;
         } else {
           U = alpha + Math.asin(sinIp);
         }
@@ -105,6 +106,11 @@ function traceRayCore(
     if (i < L.N - 1) y += thick(i, focusT, zoomT, L, aberrationT) * Math.tan(U);
   }
   return { pts, ghostPts, y, u: Math.tan(U), clipped };
+}
+
+function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {
+  const tolerance = Math.max(TRACE_CLIP_ABS_TOLERANCE, Math.abs(semiDiameter) * 1e-12);
+  return radius > semiDiameter + tolerance;
 }
 
 function normalizeDirection(ux: number, uy: number): [number, number, number] {
@@ -173,9 +179,9 @@ function traceSkewRayCore(
     const isStop = i === L.stopIdx;
     const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
     const radius = Math.hypot(x, y);
-    if (!clipped && radius > clip) {
-      if (!ghost) break;
+    if (!clipped && exceedsTraceAperture(radius, clip)) {
       clipped = true;
+      if (!ghost) break;
     }
 
     const nn = channel
@@ -189,8 +195,8 @@ function traceSkewRayCore(
         const normal = surfaceNormalAtPoint(x, y, i, L);
         const refracted = refractDirection(direction, normal, n, nn);
         if (refracted === null) {
-          if (!ghost) break;
           clipped = true;
+          if (!ghost) break;
         } else {
           direction = refracted;
         }

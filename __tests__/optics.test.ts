@@ -252,6 +252,33 @@ describe("traceRay — exact Snell", () => {
     expect(clipped).toBe(true);
   });
 
+  it("returns clipped=true for non-ghost aperture clipping", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(20, 0, zPos, 0, 0, 15, false, L);
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
+  });
+
+  it("returns clipped=true for non-ghost total internal reflection", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRay(9, 0.5, zPos, 0, 0, 20, false, L);
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
+  });
+
   it("generates rendering points for each surface", () => {
     const L = mkSingleElement();
     const zPos = [0, 5];
@@ -395,6 +422,7 @@ describe("traceRayChromatic", () => {
     } as unknown as RuntimeLens;
     const zPos = [0, 5];
     const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B");
+    expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
   });
 
@@ -545,10 +573,10 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
   const { z: zPos, imgZ } = doLayout(0, 0, L);
 
-  it("on-axis marginal ray at full aperture (f/1.5) traces without clipping", () => {
+  it("on-axis marginal ray at entrance-pupil edge reports aperture clipping", () => {
     const h = L.EP.epSD; // marginal ray at entrance pupil edge
     const { clipped, pts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, false, L);
-    expect(clipped).toBe(false);
+    expect(clipped).toBe(true);
     expect(pts.length).toBeGreaterThan(2);
   });
 
