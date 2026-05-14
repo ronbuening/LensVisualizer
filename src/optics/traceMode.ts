@@ -14,14 +14,14 @@ export interface SurfaceTraceModeResolutionOptions {
  * Keep the default at "per-lens" with an empty allowlist until exact tracing has
  * enough catalog coverage to be enabled for selected prescriptions.
  */
-export const SURFACE_TRACE_ROLLOUT_MODE: SurfaceTraceRolloutMode = "per-lens";
+export const SURFACE_TRACE_ROLLOUT_MODE: SurfaceTraceRolloutMode = "exact";
 export const EXACT_SURFACE_TRACE_LENS_KEYS: readonly string[] = [
   // Add catalog lens keys here, one string per lens, when enabling exact tracing
   // for specific prescriptions. Keys come from the lens data object's `key` field.
   // Example:
   "apo-lanthar-50f2",
   "nokton-50f1",
-  // "sonnar-50f15",
+  "sonnar-50f15",
 ];
 
 export function resolveSurfaceTraceMode(
