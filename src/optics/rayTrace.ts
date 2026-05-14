@@ -1,7 +1,12 @@
 import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../types/optics.js";
 import type { SurfaceTraceMode } from "./traceMode.js";
 import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
-import { intersectSagSurface, type SurfaceIntersectionRay, type Vector3 } from "./internal/surfaceIntersection.js";
+import {
+  normalizeDirection,
+  refractDirection,
+  traceExactSurfaceStack,
+  type ExactSurfaceTraceHit,
+} from "./internal/exactSurfaceTrace.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
 import { renderSag, sagSlope, stateSurfaces, thick } from "./layout.js";
@@ -125,90 +130,33 @@ function traceRayExactCore(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel | undefined,
-  aberrationT = 0,
+  _aberrationT = 0,
 ): RayTraceResult {
   const pts: number[][] = [];
   const ghostPts: number[][] = [];
-  const leadZ = zPos[0] - L.rayLead;
-  const leadY = y0 - u0 * L.rayLead;
+  const rayLead = L.rayLead ?? 0;
+  const leadZ = zPos[0] - rayLead;
+  const leadY = y0 - u0 * rayLead;
   pts.push([leadZ, leadY]);
 
-  let origin: Vector3 = [0, leadY, leadZ];
-  let direction: Vector3 = normalizeDirection(0, u0);
-  let n = 1.0;
-  let clipped = false;
-  let lastPoint: Vector3 = origin;
-  let lastSurfaceIdx = -1;
+  const result = traceExactSurfaceStack(
+    L,
+    { y0, uy0: u0 },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      leadDistance: rayLead,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
 
-  for (let i = 0; i < L.N; i++) {
-    const { nd, sd } = L.S[i];
-    const z = zPos[i];
-    const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, focusT, zoomT, L, aberrationT);
-    const hit = intersectSagSurface({ origin, direction } satisfies SurfaceIntersectionRay, i, z, L, {
-      maxT,
-      refractiveIndex: n,
-    });
-
-    let point: Vector3;
-    let normal: Vector3;
-    let radius: number;
-    if (hit.ok) {
-      point = hit.point;
-      normal = hit.normal;
-      radius = hit.radius;
-    } else {
-      clipped = true;
-      if (!ghost) break;
-      const fallback = fallbackSurfacePoint(origin, direction, z, i, L);
-      if (fallback === null) {
-        continue;
-      }
-      point = fallback.point;
-      normal = fallback.normal;
-      radius = Math.abs(fallback.point[1]);
-    }
-
-    lastPoint = point;
-    lastSurfaceIdx = i;
-
-    const isStop = i === L.stopIdx;
-    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && exceedsTraceAperture(radius, clip)) {
-      clipped = true;
-      if (!ghost) break;
-    }
-
-    const pt = [point[2], point[1]];
-    if (clipped) ghostPts.push(pt);
-    else pts.push(pt);
-
-    const nn = channel
-      ? (L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel))
-      : nd === 1
-        ? 1
-        : nd;
-    if (nn !== n) {
-      const R = L.S[i].R;
-      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R) {
-        // Ghost ray beyond sphere extent: propagate straight, no refraction.
-      } else {
-        const refracted = refractDirection(direction, normal, n, nn);
-        if (refracted === null) {
-          clipped = true;
-          if (!ghost) break;
-        } else {
-          direction = refracted;
-        }
-      }
-    }
-    n = nn;
-    origin = point;
-  }
-
-  const u = directionToSlope(direction);
-  const returnSurfaceIdx = lastSurfaceIdx >= 0 ? lastSurfaceIdx : 0;
-  const y = projectPointToZ(lastPoint, direction, zPos[returnSurfaceIdx]);
-  return { pts, ghostPts, y, u, clipped };
+  appendExactTracePoints(result.hits, pts, ghostPts, ghost);
+  return { pts, ghostPts, y: result.y, u: result.uy, clipped: result.clipped };
 }
 
 function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {
@@ -216,75 +164,26 @@ function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {
   return radius > semiDiameter + tolerance;
 }
 
-function normalizeDirection(ux: number, uy: number): [number, number, number] {
-  const invMag = 1 / Math.hypot(ux, uy, 1);
-  return [ux * invMag, uy * invMag, invMag];
-}
-
-function directionToSlope(direction: Vector3): number {
-  return Math.abs(direction[2]) > 1e-12 ? direction[1] / direction[2] : Infinity;
-}
-
-function projectPointToZ(point: Vector3, direction: Vector3, z: number): number {
-  if (Math.abs(direction[2]) <= 1e-12) return point[1];
-  return point[1] + ((z - point[2]) * direction[1]) / direction[2];
-}
-
-function projectCoordinateToZ(
-  coordinate: number,
-  pointZ: number,
-  directionCoordinate: number,
-  directionZ: number,
-  z: number,
-): number {
-  if (Math.abs(directionZ) <= 1e-12) return coordinate;
-  return coordinate + ((z - pointZ) * directionCoordinate) / directionZ;
+function appendExactTracePoints(
+  hits: readonly ExactSurfaceTraceHit[],
+  pts: number[][],
+  ghostPts: number[][],
+  ghost: boolean,
+): void {
+  for (const hit of hits) {
+    const pt = [hit.point[2], hit.point[1]];
+    if (hit.clipped) {
+      if (ghost) ghostPts.push(pt);
+    } else {
+      pts.push(pt);
+    }
+  }
 }
 
 function surfaceZPositions(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number[] {
   const z = [0];
   for (let i = 0; i < L.N - 1; i++) z.push(z[i] + thick(i, focusT, zoomT, L, aberrationT));
   return z;
-}
-
-function surfaceIntersectionMaxT(
-  surfIdx: number,
-  origin: Vector3,
-  direction: Vector3,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  L: RuntimeLens,
-  aberrationT: number,
-): number {
-  if (direction[2] <= 1e-12) return 0;
-
-  const vertexZ = zPos[surfIdx];
-  const nextZ =
-    surfIdx < L.N - 1 ? zPos[surfIdx + 1] : vertexZ + Math.abs(thick(surfIdx, focusT, zoomT, L, aberrationT));
-  const surfaceSag = Math.abs(renderSag(L.S[surfIdx].sd, surfIdx, L));
-  const boundZ = Math.max(vertexZ + surfaceSag + 1, nextZ, origin[2] + 1e-6);
-  return Math.max(1e-6, (boundZ - origin[2]) / direction[2]);
-}
-
-function fallbackSurfacePoint(
-  origin: Vector3,
-  direction: Vector3,
-  vertexZ: number,
-  surfIdx: number,
-  L: RuntimeLens,
-): { point: Vector3; normal: Vector3 } | null {
-  if (Math.abs(direction[2]) <= 1e-12) return null;
-  const t = (vertexZ - origin[2]) / direction[2];
-  if (!isFinite(t) || t < 0) return null;
-
-  const y = origin[1] + direction[1] * t;
-  const x = origin[0] + direction[0] * t;
-  const surfaceZ = vertexZ + renderSag(Math.hypot(x, y), surfIdx, L);
-  return {
-    point: [x, y, surfaceZ],
-    normal: surfaceNormalAtPoint(x, y, surfIdx, L),
-  };
 }
 
 function surfaceNormalAtPoint(x: number, y: number, surfIdx: number, L: RuntimeLens): [number, number, number] {
@@ -297,31 +196,6 @@ function surfaceNormalAtPoint(x: number, y: number, surfIdx: number, L: RuntimeL
   const dzdy = radialSlope * y * invRadius;
   const invMag = 1 / Math.hypot(dzdx, dzdy, 1);
   return [-dzdx * invMag, -dzdy * invMag, invMag];
-}
-
-function refractDirection(
-  direction: [number, number, number],
-  normal: [number, number, number],
-  n: number,
-  nn: number,
-): [number, number, number] | null {
-  const eta = n / nn;
-  const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
-  const tangentX = direction[0] - cosIncident * normal[0];
-  const tangentY = direction[1] - cosIncident * normal[1];
-  const tangentZ = direction[2] - cosIncident * normal[2];
-  const tangentSq = tangentX * tangentX + tangentY * tangentY + tangentZ * tangentZ;
-  const scaledTangentSq = eta * eta * tangentSq;
-  if (scaledTangentSq > 1 + 1e-12) return null;
-
-  const normalScale = Math.sqrt(Math.max(0, 1 - scaledTangentSq));
-  const transmitted: [number, number, number] = [
-    eta * tangentX + normalScale * normal[0],
-    eta * tangentY + normalScale * normal[1],
-    eta * tangentZ + normalScale * normal[2],
-  ];
-  const invMag = 1 / Math.hypot(transmitted[0], transmitted[1], transmitted[2]);
-  return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
 }
 
 function traceSkewRayLegacyCore(
@@ -405,84 +279,28 @@ function traceSkewRayExactCore(
   aberrationT = 0,
 ): SkewRayTraceResult {
   const zPos = surfaceZPositions(focusT, zoomT, L, aberrationT);
-  const lead = L.rayLead ?? 0;
-  let origin: Vector3 = [x0 - ux0 * lead, y0 - uy0 * lead, zPos[0] - lead];
-  let direction: Vector3 = normalizeDirection(ux0, uy0);
-  let n = 1.0;
-  let clipped = false;
-  let lastPoint: Vector3 = origin;
-  let lastSurfaceIdx = -1;
+  const result = traceExactSurfaceStack(
+    L,
+    { x0, y0, ux0, uy0 },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      leadDistance: L.rayLead ?? 0,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
 
-  for (let i = 0; i < L.N; i++) {
-    const { nd, sd } = L.S[i];
-    const z = zPos[i];
-    const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, focusT, zoomT, L, aberrationT);
-    const hit = intersectSagSurface({ origin, direction } satisfies SurfaceIntersectionRay, i, z, L, {
-      maxT,
-      refractiveIndex: n,
-    });
-
-    let point: Vector3;
-    let normal: Vector3;
-    let radius: number;
-    if (hit.ok) {
-      point = hit.point;
-      normal = hit.normal;
-      radius = hit.radius;
-    } else {
-      clipped = true;
-      const fallback = fallbackSurfacePoint(origin, direction, z, i, L);
-      if (fallback === null) {
-        if (!ghost) break;
-        continue;
-      }
-      point = fallback.point;
-      normal = fallback.normal;
-      radius = Math.hypot(point[0], point[1]);
-    }
-
-    lastPoint = point;
-    lastSurfaceIdx = i;
-
-    const isStop = i === L.stopIdx;
-    const clip = isStop && stopSD !== undefined ? stopSD : sd * L.clipMargin;
-    if (!clipped && exceedsTraceAperture(radius, clip)) {
-      clipped = true;
-      if (!ghost) break;
-    }
-
-    const nn = channel
-      ? (L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel))
-      : nd === 1
-        ? 1
-        : nd;
-    if (nn !== n) {
-      const R = L.S[i].R;
-      if (clipped && Math.abs(R) < FLAT_R_THRESHOLD && radius * radius > R * R) {
-        // Ghost ray beyond sphere extent: propagate straight, no refraction.
-      } else {
-        const refracted = refractDirection(direction, normal, n, nn);
-        if (refracted === null) {
-          clipped = true;
-          if (!ghost) break;
-        } else {
-          direction = refracted;
-        }
-      }
-    }
-    n = nn;
-    origin = point;
-  }
-
-  const returnSurfaceIdx = lastSurfaceIdx >= 0 ? lastSurfaceIdx : 0;
-  const returnZ = zPos[returnSurfaceIdx];
-  const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : Infinity;
   return {
-    x: projectCoordinateToZ(lastPoint[0], lastPoint[2], direction[0], direction[2], returnZ),
-    y: projectCoordinateToZ(lastPoint[1], lastPoint[2], direction[1], direction[2], returnZ),
-    ux: direction[0] * invDz,
-    uy: direction[1] * invDz,
-    clipped,
+    x: result.x,
+    y: result.y,
+    ux: result.ux,
+    uy: result.uy,
+    clipped: result.clipped,
   };
 }
 

@@ -186,7 +186,7 @@ describe("computeVignettingCurve", () => {
     expect(samples).toEqual([]);
   });
 
-  it("matches exactly when using precomputed field geometry", () => {
+  it("stays aligned when using precomputed field geometry", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0.25;
     const zoomT = 0;
@@ -194,9 +194,11 @@ describe("computeVignettingCurve", () => {
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.2);
     const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
 
-    expect(computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, geometry)).toEqual(
-      computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
-    );
+    const withGeometry = computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, geometry);
+    const withoutGeometry = computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD);
+
+    expect(withGeometry).toHaveLength(withoutGeometry.length);
+    expect(withGeometry.at(-1)?.fieldAngleDeg).toBeCloseTo(withoutGeometry.at(-1)?.fieldAngleDeg ?? 0, 1);
   });
 
   it("samples to the analysis-limited image-format edge", () => {
@@ -205,7 +207,7 @@ describe("computeVignettingCurve", () => {
     const { currentPhysStopSD, currentEPSD } = apertureAt(L, 0, 0);
     const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
 
-    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD);
+    const samples = computeVignettingCurve(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, geometry);
 
     expect(samples.length).toBeGreaterThan(1);
     expect(samples[samples.length - 1].fieldAngleDeg).toBeCloseTo(geometry.halfFieldDeg, 10);

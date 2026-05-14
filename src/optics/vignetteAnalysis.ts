@@ -84,7 +84,7 @@ export function computeVignettingCurve(
   /* Pre-compute field geometry for the solved chief ray — accounts for
    * pupil aberration (EP position shifts with field angle) which the old
    * paraxial (B/yRatio) launch ignored.  Critical for retrofocus designs. */
-  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const halfFieldDeg = geom.halfFieldDeg;
   if (halfFieldDeg <= 0 || !isFinite(halfFieldDeg)) return [];
 
@@ -103,7 +103,7 @@ export function computeVignettingCurve(
     /* Solved chief-ray launch: iteratively corrects for pupil aberration.
      * Falls back to paraxial for small angles (<1°) automatically. */
     const uField = -Math.tan(thetaRad);
-    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT);
+    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
 
     /* Dense meridional pupil sweep: N_PUPIL evenly-spaced fractions in [−1, +1] */
     let surviving = 0;

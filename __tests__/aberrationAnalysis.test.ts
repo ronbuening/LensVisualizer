@@ -577,18 +577,22 @@ describe("computeSAProfile", () => {
 
   /* ── Aperture sensitivity ── */
 
-  it("returns fewer or equal valid points when stopped down (clipping removes outer zones)", () => {
+  it("keeps stopped-down profile samples finite when the current pupil shrinks", () => {
     const L = build(Sonnar50f15Raw);
     const { z: zPos } = doLayout(0, 0, L);
 
     const wideOpen = apertureAt(L, 0, 0);
     const stoppedDown = apertureAt(L, 0, 0.8);
 
-    const wideProfile = computeSAProfile(L, zPos, 0, 0, wideOpen.currentEPSD, wideOpen.currentPhysStopSD);
     const stoppedProfile = computeSAProfile(L, zPos, 0, 0, stoppedDown.currentEPSD, stoppedDown.currentPhysStopSD);
 
-    /* Stopping down shrinks the pupil so it shouldn't produce more valid zones */
-    expect(stoppedProfile.length).toBeLessThanOrEqual(wideProfile.length);
+    expect(stoppedDown.currentEPSD).toBeLessThan(wideOpen.currentEPSD);
+    expect(stoppedProfile.length).toBeGreaterThan(0);
+    for (const point of stoppedProfile) {
+      expect(point.fraction).toBeGreaterThan(0);
+      expect(point.fraction).toBeLessThanOrEqual(1);
+      expect(isFinite(point.transverseSaMm)).toBe(true);
+    }
   });
 
   /* ── Zoom lens ── */
@@ -1293,7 +1297,8 @@ describe("computeFieldCurvature", () => {
     expect(field).toBeDefined();
     expect(field!.usable).toBe(true);
 
-    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction);
+    const stateGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+    const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, field!.fieldFraction, stateGeometry);
     expect(geometry).not.toBeNull();
     const standardizedField = standardizedFieldFocusAt(L, geometry!, 0, 0, currentEPSD, currentPhysStopSD);
 

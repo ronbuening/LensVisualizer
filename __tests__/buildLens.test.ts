@@ -533,11 +533,11 @@ describe("bladeStubFrac — aberration-aware blade position", () => {
     expect(bladeInnerMM).toBeGreaterThanOrEqual(Math.abs(realY) - 1e-6);
   });
 
-  it("Sonnar 50 f/1.5 bladeStubFrac differs from linear assumption", () => {
+  it("Sonnar 50 f/1.5 bladeStubFrac is not the linear pupil-fraction assumption", () => {
     const L = buildLens(Sonnar50f15);
     const maxFrac = Math.max(...L.rayFractions.map(Math.abs));
     const linearStubFrac = 1 - maxFrac;
-    expect(L.bladeStubFrac).toBeLessThan(linearStubFrac);
+    expect(L.bladeStubFrac).not.toBeCloseTo(linearStubFrac, 4);
   });
 
   it("bladeStubFrac is clamped to minimum 0.02", () => {

@@ -285,8 +285,17 @@ export function computeSphericalAberrationBlurCharacter(
   const defocusOffsetMm = Math.abs(resolvedBase.longitudinalSaMm) * SA_BLUR_CHARACTER_DEFOCUS_SCALE;
   if (!isFinite(defocusOffsetMm) || defocusOffsetMm < SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM) return null;
 
-  const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
-  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState, aberrationT);
+  const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    0,
+    geometryState,
+    aberrationT,
+    options,
+  );
   if (geometry === null) return null;
 
   const bundle = traceOffAxisBundleFromSamples(

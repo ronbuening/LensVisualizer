@@ -38,7 +38,14 @@ import {
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
 import { stateSurfaces } from "./layout.js";
-import { traceSurfacesReal } from "./internal/traceSurfaces.js";
+import {
+  traceSurfacesVertexReal,
+  type RealSurfaceTraceOptions,
+  type RealSurfaceTraceResult,
+} from "./internal/traceSurfaces.js";
+import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import type { RayTraceOptions } from "./rayTrace.js";
+import { resolveSurfaceTraceMode } from "./traceMode.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -145,6 +152,7 @@ function computeStatePupilBaselines(
   L: RuntimeLens,
   geometry: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
   if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
     return {
@@ -156,15 +164,15 @@ function computeStatePupilBaselines(
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   const delta = 1e-4;
-  const marginalStop = traceSurfacesReal(S, L.asphByIdx, delta, 0, { stopAt: L.stopIdx });
-  const chiefStop = traceSurfacesReal(S, L.asphByIdx, 0, delta, { stopAt: L.stopIdx });
+  const marginalStop = traceStateSurfacesReal(S, L, delta, 0, { stopAt: L.stopIdx }, options);
+  const chiefStop = traceStateSurfacesReal(S, L, 0, delta, { stopAt: L.stopIdx }, options);
   const realYRatio = isFinite(marginalStop.y) ? marginalStop.y / delta : geometry.yRatio;
   const realB = isFinite(chiefStop.y) ? chiefStop.y / delta : geometry.b;
   const paraxialEpZRelStop =
     Math.abs(realYRatio) > 1e-9 ? realB / realYRatio - layout.z[L.stopIdx] : epZRelStopAtZoom(zoomT, L);
 
-  const marginalFull = traceSurfacesReal(S, L.asphByIdx, delta, 0, { skipLastTransfer: true });
-  const chiefFull = traceSurfacesReal(S, L.asphByIdx, 0, delta, { skipLastTransfer: true });
+  const marginalFull = traceStateSurfacesReal(S, L, delta, 0, { skipLastTransfer: true }, options);
+  const chiefFull = traceStateSurfacesReal(S, L, 0, delta, { skipLastTransfer: true }, options);
   let paraxialXpZRelLastSurf = xpZRelLastSurfAtZoom(zoomT, L);
   if (isFinite(marginalFull.y) && isFinite(chiefFull.y)) {
     const mY = marginalFull.y / delta;
@@ -198,10 +206,11 @@ export function computePupilAberrationProfile(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): PupilAberrationProfile {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT, options);
 
   const n = Math.max(sampleCount, 2);
   const samples: PupilAberrationSample[] = [];
@@ -217,7 +226,7 @@ export function computePupilAberrationProfile(
     // paraxialYChief = epRatio × tanTheta (mm).  Zero at fieldDeg = 0.
     const paraxialYChief = epRatio * tanTheta;
     if (Math.abs(paraxialYChief) > 1e-12) {
-      const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT);
+      const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
       chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
       epShiftMm = (chiefRayCorrection - 1) * epRatio;
     }
@@ -252,10 +261,11 @@ export function computeExitPupilAberrationProfile(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): ExitPupilAberrationProfile {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const { halfFieldDeg } = geom;
-  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
+  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT, options);
 
   const n = Math.max(sampleCount, 2);
 
@@ -286,8 +296,8 @@ export function computeExitPupilAberrationProfile(
     // At θ = 0, uField = 0 and the chief ray is the optical axis — no useful
     // back-projection is possible.  Use the paraxial baseline directly.
     if (Math.abs(fieldDeg) > 1e-9) {
-      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT);
-      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
 
       // Back-project: XP z = −y_last / u_last (relative to last surface).
       // Guard against near-zero exit slope (XP at infinity).
@@ -333,8 +343,9 @@ export function computeBothPupilAberrationProfiles(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): BothPupilAberrationProfiles {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
     focusT,
@@ -342,6 +353,7 @@ export function computeBothPupilAberrationProfiles(
     L,
     geom,
     aberrationT,
+    options,
   );
 
   const n = Math.max(sampleCount, 2);
@@ -358,7 +370,7 @@ export function computeBothPupilAberrationProfiles(
         let chiefRayCorrection = 1;
         let epShiftMm = 0;
         if (Math.abs(paraxialYChief) > 1e-12) {
-          const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT);
+          const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
           chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
           epShiftMm = (chiefRayCorrection - 1) * epRatio;
         }
@@ -403,7 +415,7 @@ export function computeBothPupilAberrationProfiles(
     const paraxialYChief = epRatio * tanTheta;
 
     if (Math.abs(fieldDeg) > 1e-9) {
-      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT);
+      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
 
       // EP fields
       if (Math.abs(paraxialYChief) > 1e-12) {
@@ -412,7 +424,7 @@ export function computeBothPupilAberrationProfiles(
       }
 
       // XP fields — trace the same solved chief ray through the full system
-      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
       if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
         xpZRelLastSurf = -result.y / result.u;
         xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;
@@ -440,4 +452,35 @@ export function computeBothPupilAberrationProfiles(
   };
 
   return { ep, xp, halfFieldDeg, maxAbsEpShiftMm, maxAbsXpShiftMm };
+}
+
+function traceStateSurfacesReal(
+  S: ReturnType<typeof stateSurfaces>,
+  L: RuntimeLens,
+  y0: number,
+  u0: number,
+  traceOptions: RealSurfaceTraceOptions = {},
+  options?: RayTraceOptions,
+): RealSurfaceTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode === "legacy") return traceSurfacesVertexReal(S, L.asphByIdx, y0, u0, traceOptions);
+
+  const result = traceExactSurfaceStack(
+    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+    { y0, uy0: u0 },
+    {
+      stopAt: traceOptions.stopAt,
+      skipLastTransfer: traceOptions.skipLastTransfer,
+      recordHeights: traceOptions.recordHeights,
+      checkSemiDiameter: traceOptions.checkSemiDiameter,
+    },
+  );
+  const failed = result.failureReason !== null;
+  return {
+    y: failed ? NaN : result.y,
+    u: failed ? NaN : result.uy,
+    n: result.n,
+    clipped: result.clipped,
+    heights: result.heights,
+  };
 }

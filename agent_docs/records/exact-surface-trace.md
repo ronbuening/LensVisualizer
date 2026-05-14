@@ -2,12 +2,18 @@
 
 ## Summary
 - Added an internal exact ray-to-sag-surface trace mode with a central rollout control.
-- Default behavior remains legacy through `SURFACE_TRACE_ROLLOUT_MODE = "per-lens"` and an empty exact lens allowlist.
+- Finalized the migration so exact surface tracing is the production default through `SURFACE_TRACE_ROLLOUT_MODE =
+  "exact"`.
 
 ## Changes
 - Added `traceMode.ts` with `legacy` / `exact` / `per-lens` resolution and explicit trace-mode override support.
 - Added `internal/surfaceIntersection.ts` for flat, spherical, conic, and polynomial-aspheric surface intersections.
-- Wired exact mode through meridional, chromatic meridional, skew, chromatic skew, and chief-relative skew trace paths.
+- Added `internal/exactSurfaceTrace.ts` as the shared exact surface-stack tracer.
+- Wired exact mode through meridional, chromatic meridional, skew, chromatic skew, chief-relative skew trace paths,
+  build-derived real-ray constants, field geometry, chief-ray solving, conjugate focus tracking, and pupil aberration
+  baselines.
+- Renamed the old vertex-plane real-ray helper to `traceSurfacesVertexReal`; `traceSurfacesReal` remains as a legacy
+  compatibility alias for tests/diagnostics.
 - Added exact-mode unit, parity, representative-lens, full-catalog on-axis smoke, and non-threshold timing coverage.
 
 ## Verification
@@ -18,5 +24,4 @@
 - Stage 5 full gate passed: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`
 
 ## Follow-ups
-- Review exact/legacy deltas on candidate lenses before adding keys to `EXACT_SURFACE_TRACE_LENS_KEYS`.
 - Consider adding developer-facing diagnostics output if exact intersection failures need catalog triage.

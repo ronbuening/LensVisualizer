@@ -1,9 +1,8 @@
 # Gotchas — LensVisualizer
 
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- Exact surface tracing is an experimental opt-in path controlled by `src/optics/traceMode.ts`. Keep
-  `SURFACE_TRACE_ROLLOUT_MODE` at `"per-lens"` with an empty allowlist unless intentionally testing or enabling specific
-  lens keys; do not put rollout state in lens data files
+- Exact surface tracing is the production default controlled by `src/optics/traceMode.ts`. Keep explicit legacy/per-lens
+  modes available for comparisons and rollback, and do not put rollout state in lens data files
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path

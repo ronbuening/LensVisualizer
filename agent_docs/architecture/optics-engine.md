@@ -21,7 +21,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
-| `traceMode.ts` | Short-lived tri-state rollout control for exact surface tracing (`legacy`, `exact`, `per-lens`). |
+| `traceMode.ts` | Tri-state rollout/comparison control for exact surface tracing (`legacy`, `exact`, `per-lens`). |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans. |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
@@ -71,15 +71,16 @@ callers unless doing explicit comparison work; the default path resolves through
 
 `SURFACE_TRACE_ROLLOUT_MODE` is the experiment switch:
 
-- `"legacy"` forces the vertex-plane transfer model everywhere.
-- `"exact"` forces iterative sag-surface intersection everywhere.
-- `"per-lens"` uses `EXACT_SURFACE_TRACE_LENS_KEYS` and otherwise falls back to legacy. This is the safe default, and
-  the allowlist starts empty.
+- `"legacy"` forces the vertex-plane transfer model for comparison/rollback.
+- `"exact"` forces iterative sag-surface intersection everywhere and is the production default.
+- `"per-lens"` uses `EXACT_SURFACE_TRACE_LENS_KEYS` and otherwise falls back to legacy.
 
-Exact mode solves each ray/sag intersection with `internal/surfaceIntersection.ts`, then projects the outgoing ray back
-to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. This keeps existing image-plane
-callers compatible while allowing display points to use exact hit positions. Keep the rollout config central; do not put
-experiment state in lens data files.
+Exact mode uses the shared `internal/exactSurfaceTrace.ts` stack tracer, which solves each ray/sag intersection with
+`internal/surfaceIntersection.ts`, then projects the outgoing ray back to the current surface vertex plane before
+returning `y`/`u` or `x`/`y`/`ux`/`uy`. This keeps existing image-plane callers compatible while allowing display points
+to use exact hit positions. Keep rollout config central; do not put experiment state in lens data files. The legacy
+vertex-plane real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal` compatibility
+alias in production optics code.
 
 ## Ray Sampling Policy
 

@@ -130,18 +130,19 @@ export function computeStateAwareOffAxisFieldGeometry(
   fieldFraction: number,
   stateGeometry?: FieldGeometryState,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): OffAxisFieldGeometry | null {
   if (L.N < 1) return null;
   if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
 
-  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg < 0) return null;
 
   const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
   if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
 
   const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;

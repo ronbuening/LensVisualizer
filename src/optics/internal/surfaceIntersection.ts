@@ -1,4 +1,4 @@
-import type { RuntimeLens } from "../../types/optics.js";
+import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
 
 export type SurfaceIntersectionFailureReason =
@@ -21,6 +21,11 @@ export interface SurfaceIntersectionOptions {
   maxIterations?: number;
   bracketSamples?: number;
   refractiveIndex?: number;
+}
+
+export interface SurfaceIntersectionLens {
+  S: readonly { R: number }[];
+  asphByIdx: Record<number, AsphericCoefficients>;
 }
 
 export interface SurfaceIntersectionSuccess {
@@ -69,7 +74,7 @@ export function normalizeVector3([x, y, z]: Vector3): Vector3 | null {
   return [x / length, y / length, z / length];
 }
 
-export function surfaceNormalAtHit(x: number, y: number, surfaceIdx: number, L: RuntimeLens): Vector3 {
+export function surfaceNormalAtHit(x: number, y: number, surfaceIdx: number, L: SurfaceIntersectionLens): Vector3 {
   const radius = Math.hypot(x, y);
   if (radius < 1e-12) return [0, 0, 1];
 
@@ -85,7 +90,7 @@ export function intersectSagSurface(
   ray: SurfaceIntersectionRay,
   surfaceIdx: number,
   vertexZ: number,
-  L: RuntimeLens,
+  L: SurfaceIntersectionLens,
   {
     minT = 0,
     maxT = Infinity,
@@ -193,7 +198,7 @@ function evaluateSurface(
   direction: Vector3,
   surfaceIdx: number,
   vertexZ: number,
-  L: RuntimeLens,
+  L: SurfaceIntersectionLens,
   t: number,
 ): SurfaceEvaluation {
   const x = origin[0] + direction[0] * t;
@@ -257,7 +262,7 @@ function findBracket(
 function makeSuccess(
   evaluation: SurfaceEvaluation,
   surfaceIdx: number,
-  L: RuntimeLens,
+  L: SurfaceIntersectionLens,
   tolerance: number,
   refractiveIndex: number | undefined,
   iterations: number,

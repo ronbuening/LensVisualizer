@@ -20,6 +20,7 @@ import {
   type CircularPupilSample,
   type FieldGeometryState,
   type SkewImagePlaneIntercept,
+  type RayTraceOptions,
 } from "../optics.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
 import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
@@ -60,6 +61,7 @@ interface BokehTraceContext {
   focusT: number;
   zoomT: number;
   aberrationT: number;
+  traceOptions?: RayTraceOptions;
   layout: LayoutResult;
   bestFocusZ: number;
   fieldGeometryState: FieldGeometryState;
@@ -84,6 +86,7 @@ function computeBestFocusZFromLayout(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
   const lastSurfZ = layout.z[L.N - 1];
   const imagePlaneZ = layout.imgZ;
@@ -100,6 +103,7 @@ function computeBestFocusZFromLayout(
       imagePlaneZ,
       fraction,
       aberrationT,
+      options,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -112,6 +116,7 @@ function computeBestFocusZFromLayout(
       imagePlaneZ,
       -fraction,
       aberrationT,
+      options,
     );
     return [plusHit, minusHit].filter((h): h is NonNullable<typeof h> => h !== null);
   });
@@ -139,9 +144,10 @@ export function computeBestFocusZ(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): number {
   const layout = doLayout(focusT, zoomT, L, aberrationT);
-  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  return computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, options);
 }
 
 function buildBokehTraceContext(
@@ -151,15 +157,26 @@ function buildBokehTraceContext(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): BokehTraceContext {
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   return {
     focusT,
     zoomT,
     aberrationT,
+    traceOptions: options,
     layout,
-    bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
-    fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
+    bestFocusZ: computeBestFocusZFromLayout(
+      L,
+      layout,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      aberrationT,
+      options,
+    ),
+    fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options),
     circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
 }
@@ -367,6 +384,7 @@ function computeBokehFieldFootprintFromContext(
     fieldFraction,
     context.fieldGeometryState,
     context.aberrationT,
+    context.traceOptions,
   );
   if (geometry === null) return null;
 
@@ -380,6 +398,7 @@ function computeBokehFieldFootprintFromContext(
     currentPhysStopSD,
     undefined,
     context.aberrationT,
+    context.traceOptions,
   );
   if (bundle === null) return null;
 
@@ -485,8 +504,9 @@ export function computeBokehFieldFootprint(
   fieldFraction: number,
   sensorZ: number,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): BokehFieldResult | null {
-  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  const context = buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, options);
   return computeBokehFieldFootprintFromContext(L, context, currentEPSD, currentPhysStopSD, fieldFraction, sensorZ);
 }
 
@@ -608,10 +628,11 @@ export function computeBokehPreview(
   currentPhysStopSD: number,
   label: string,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): BokehPreviewResult | null {
   return computeBokehPreviewFromContext(
     L,
-    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, options),
     sensorZ,
     currentEPSD,
     currentPhysStopSD,
@@ -647,12 +668,13 @@ export function computeBokehPreviewPair(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  options?: RayTraceOptions,
 ): BokehPreviewPair {
   const contextCache = new Map<number, BokehTraceContext>();
   const getContext = (contextFocusT: number): BokehTraceContext => {
     const cached = contextCache.get(contextFocusT);
     if (cached) return cached;
-    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, options);
     contextCache.set(contextFocusT, next);
     return next;
   };
