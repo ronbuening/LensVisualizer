@@ -15,7 +15,10 @@ export interface SurfaceTraceModeResolutionOptions {
  * enough catalog coverage to be enabled for selected prescriptions.
  */
 export const SURFACE_TRACE_ROLLOUT_MODE: SurfaceTraceRolloutMode = "per-lens";
-export const EXACT_SURFACE_TRACE_LENS_KEYS: readonly string[] = [];
+export const EXACT_SURFACE_TRACE_LENS_KEYS: readonly string[] = [
+  // Add catalog lens keys here when enabling exact tracing for a specific prescription.
+  // Example: "apo-lanthar-50f2",
+];
 
 export function resolveSurfaceTraceMode(
   L: Pick<RuntimeLens, "data"> | null | undefined,

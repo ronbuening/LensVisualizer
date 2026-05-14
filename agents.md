@@ -82,6 +82,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/state-and-utilities.md` - reducer state, preferences, URL sync, themes, metadata helpers
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations
+- `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
@@ -102,6 +103,8 @@ Read only the relevant focused doc before changing that area:
 ## Core Working Rules
 
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
+- Keep exact surface tracing rollout state centralized in `src/optics/traceMode.ts`; default to `per-lens` with an empty
+  allowlist unless deliberately enabling exact tracing for selected catalog keys.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.
