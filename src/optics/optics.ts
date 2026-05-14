@@ -59,6 +59,7 @@ export {
   wavelengthNd,
   type CircularPupilSample,
   type OrthogonalPupilSample,
+  type RayTraceOptions,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "./rayTrace.js";

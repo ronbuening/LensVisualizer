@@ -287,6 +287,36 @@ describe("traceRay — exact Snell", () => {
     // pts: lead point + 2 surface points + (no image extrapolation in traceRay itself)
     expect(pts.length).toBe(3);
   });
+
+  it("keeps legacy tracing as the default rollout behavior", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const defaultTrace = traceRay(5, 0, zPos, 0, 0, 15, false, L);
+    const explicitLegacy = traceRay(5, 0, zPos, 0, 0, 15, false, L, 0, { mode: "legacy" });
+
+    expect(explicitLegacy).toEqual(defaultTrace);
+  });
+
+  it("traces finite meridional rays in exact surface mode", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(12, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+
+    expect(result.clipped).toBe(false);
+    expect(result.pts).toHaveLength(3);
+    expect(result.pts[1][0]).toBeCloseTo(sag(12, 50), 8);
+    expect(isFinite(result.y)).toBe(true);
+    expect(isFinite(result.u)).toBe(true);
+  });
+
+  it("marks aperture clipping in exact surface mode", () => {
+    const L = mkSingleElement();
+    const zPos = [0, 5];
+    const result = traceRay(20, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+
+    expect(result.clipped).toBe(true);
+    expect(result.ghostPts).toHaveLength(0);
+  });
 });
 
 describe("wavelengthNd", () => {
@@ -449,6 +479,37 @@ describe("traceRayChromatic", () => {
     expect(result.clipped).toBe(true);
     /* Should still produce rendering points (no crash from sphere-extent guard) */
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(1);
+  });
+
+  it("green channel matches exact traceRay in exact surface mode", () => {
+    const L = mkChromElement();
+    const zPos = [0, 5];
+    const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+    const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G", 0, { mode: "exact" });
+
+    expect(chrom.y).toBeCloseTo(ref.y, 10);
+    expect(chrom.u).toBeCloseTo(ref.u, 10);
+  });
+
+  it("ghost mode continues through chromatic TIR in exact surface mode", () => {
+    const L = {
+      S: [
+        { R: 10, nd: 2.0, sd: 20, d: 5 },
+        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
+      ],
+      N: 2,
+      stopIdx: 0,
+      clipMargin: 1.0,
+      rayLead: 1,
+      asphByIdx: {},
+      varByIdx: {},
+      vdByIdx: { 0: 20.0 },
+    } as unknown as RuntimeLens;
+    const zPos = [0, 5];
+    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B", 0, { mode: "exact" });
+
+    expect(result.clipped).toBe(true);
+    expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
   });
 });
 
