@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-14 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-14",
+    type: "lens",
+    summary: "Added three new Minolta lenses: AF 100mm f/2.8 Macro, AF 35-105mm f/3.5-4.5, and AF 70-200mm f/2.8 APO",
+  },
+  {
+    date: "2026-05-14",
+    type: "fix",
+    summary: "Fixed lens mount titling for C/Y mount",
+  },
   // ── 2026-05-13 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-13",

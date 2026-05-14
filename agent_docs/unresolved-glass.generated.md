@@ -8,16 +8,17 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **190** lenses scanned
-- **2173** non-air surfaces examined
-- **2167** element glass declarations examined
-- **515** non-explicit-unmatched annotations did not resolve
-- **141** distinct unresolved glass-like tokens found
+- **193** lenses scanned
+- **2213** non-air surfaces examined
+- **2207** element glass declarations examined
+- **519** non-explicit-unmatched annotations did not resolve
+- **146** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
+| NBFD15 | 4 | 3 | |
 | 744495 | 3 | 3 | |
 | L-LAM60 | 3 | 3 | |
 | S-NPH7 | 3 | 3 | |
@@ -33,7 +34,6 @@ or per-lens patent backfills.
 | H-LAK6A | 2 | 2 | |
 | L-LAH53 | 2 | 2 | |
 | L-LAH86 | 2 | 2 | |
-| NBFD15 | 2 | 2 | |
 | S-BAH11 | 2 | 2 | |
 | S-FPM4 | 2 | 2 | |
 | S-LAL7 | 2 | 2 | |
@@ -87,6 +87,7 @@ or per-lens patent backfills.
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-F3 | 1 | 1 | |
+| E-FD1L | 1 | 1 | |
 | E-FD7 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
@@ -113,8 +114,11 @@ or per-lens patent backfills.
 | N-BAF4 | 1 | 1 | |
 | N-BAK4 | 1 | 1 | |
 | N-F2 | 1 | 1 | |
+| N-LAF7 | 1 | 1 | |
 | N-LAK33B | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
+| N-PSK53A | 1 | 1 | |
+| N-SF1 | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
 | N-SSK5 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
@@ -144,6 +148,7 @@ or per-lens patent backfills.
 | S-TIF1 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
+| S-TIH1 | 1 | 1 | |
 | S-TIL1 | 1 | 1 | |
 | S-TIL2 | 1 | 1 | |
 | S-TIL26 | 1 | 1 | |
@@ -161,6 +166,13 @@ or per-lens patent backfills.
 | TAFL3 | 1 | 1 | |
 
 ## Occurrences
+
+### NBFD15 — 4 occurrences
+
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 32: `NBFD15-W / NBFD15 (HOYA)`
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 32: `NBFD15-W / NBFD15 (HOYA)`
+- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `NbFD15 class (786/275, HOYA family)`
 
 ### 744495 — 3 occurrences
 
@@ -240,11 +252,6 @@ or per-lens patent backfills.
 
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) 32A: `OHARA L-LAH86 PGM glass (854/404)`
 - [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `OHARA L-LAH86 (PGM)`
-
-### NBFD15 — 2 occurrences
-
-- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
-- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `NbFD15 class (786/275, HOYA family)`
 
 ### S-BAH11 — 2 occurrences
 
@@ -464,6 +471,10 @@ or per-lens patent backfills.
 
 - [SIGMA 40mm F1.4 DG HSM | Art](../src/lens-data/sigma/SigmaArt40mmf14.data.ts) 11: `E-F3 (HOYA)`
 
+### E-FD1L — 1 occurrence
+
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
+
 ### E-FD7 — 1 occurrence
 
 - [SONY PLANAR T* 50mm F1.4 ZA SSM](../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 6: `E-FD7 class (HOYA/HIKARI equivalent, 613/370)`
@@ -568,6 +579,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 26mm f/2.8](../src/lens-data/nikon/NikonZ26f28.data.ts) 8: `N-F2 (Schott)`
 
+### N-LAF7 — 1 occurrence
+
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 22: `E-LAF7 (HOYA) / N-LAF7 class`
+
 ### N-LAK33B — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 9: `N-LAK33B equiv. (175500/5233)`
@@ -575,6 +590,14 @@ or per-lens patent backfills.
 ### N-LASF43 — 1 occurrence
 
 - [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 5: `J-LASF03 / N-LASF43 class (catalog-equivalent dense lanthanum flint)`
+
+### N-PSK53A — 1 occurrence
+
+- [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
+
+### N-SF1 — 1 occurrence
+
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
 
 ### N-SF5 — 1 occurrence
 
@@ -691,6 +714,10 @@ or per-lens patent backfills.
 ### S-TIF8 — 1 occurrence
 
 - [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) 5: `S-TIF8 (OHARA) / TIF6 (HOYA)`
+
+### S-TIH1 — 1 occurrence
+
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
 
 ### S-TIL1 — 1 occurrence
 

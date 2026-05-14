@@ -54,6 +54,17 @@ describe("deriveMaker", () => {
     expect(info.slug).toBe("voigtlander");
   });
 
+  it("derives Laowa from LAOWA and Venus Optics prefixes", () => {
+    expect(deriveMaker("LAOWA 12mm f/2.8 Zero-D")).toEqual({
+      display: "Laowa",
+      slug: "laowa",
+    });
+    expect(deriveMaker("VENUS OPTICS Laowa 24mm f/14 2X Macro Probe")).toEqual({
+      display: "Laowa",
+      slug: "laowa",
+    });
+  });
+
   it("falls back to first word for unknown maker", () => {
     const info = deriveMaker("TAMRON 28-75mm f/2.8");
     expect(info.display).toBe("TAMRON");
@@ -92,6 +103,7 @@ describe("allMakerSlugs", () => {
     expect(slugs).toContain("ricoh");
     expect(slugs).toContain("fujifilm");
     expect(slugs).toContain("vivitar");
+    expect(slugs).toContain("laowa");
     expect(slugs.length).toBeGreaterThan(0);
   });
 });
@@ -103,6 +115,7 @@ describe("makerDisplayName", () => {
     expect(makerDisplayName("nikon")).toBe("Nikon");
     expect(makerDisplayName("carl-zeiss-jena")).toBe("Carl Zeiss Jena");
     expect(makerDisplayName("carl-zeiss-oberkochen")).toBe("Carl Zeiss Oberkochen");
+    expect(makerDisplayName("laowa")).toBe("Laowa");
   });
 
   it("returns null for unknown slug", () => {
