@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 350 mismatched surfaces across 231 unique groups.
+**Scope**: 351 mismatched surfaces across 232 unique groups.
 
 ## stored (nd=1.43875, vd=95.00) [PgF=0.5299 (dPgF=0.0459)]  — 1 surface, current label resolves to S-FPL51
 
@@ -1411,6 +1411,16 @@ Candidates:
 Surfaces:
 - [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) `1`: `S-TIH18 (OHARA)`
 
+## stored (nd=1.78472, vd=25.72)  — 1 surface, current label resolves to H-ZF88
+
+Candidates:
+- **SF11** (nd=1.78472, vd=25.76, Δnd=-0.0000, Δvd=+0.04)
+- **S-TIH11** (nd=1.78472, vd=25.68, Δnd=+0.0000, Δvd=-0.04)
+- **S-TIH23** (nd=1.78470, vd=26.29, Δnd=-0.0000, Δvd=+0.57)
+
+Surfaces:
+- [VENUS LAOWA 58 mm f/2.8 2× Ultra-Macro APO](../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) `3`: `H-ZF88 (CDGM)`
+
 ## stored (nd=1.78472, vd=25.64)  — 1 surface, current label resolves to S-TIM25
 
 Candidates:
@@ -2180,5 +2190,5 @@ Surfaces:
 
 ## Summary
 
-- **198** (nd, vd) groups have at least one candidate (309 surfaces) — actionable relabels.
+- **199** (nd, vd) groups have at least one candidate (310 surfaces) — actionable relabels.
 - **33** (nd, vd) groups have NO candidate (41 surfaces) — needs patent verification or Unmatched relabeling.
