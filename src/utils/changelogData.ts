@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-15 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-15",
+    type: "improvement",
+    summary: "Improved patent-focused search metadata and sitemap discoverability",
+  },
+  {
+    date: "2026-05-15",
     type: "lens",
     summary: "Added six Laowa lenses: 12mm, 15mm, 15mm Macro, 24mm Probe, 58mm Macro APO, and 65mm Macro APO",
   },

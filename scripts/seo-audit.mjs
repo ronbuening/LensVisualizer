@@ -85,6 +85,11 @@ function auditSitemap(routes) {
   const routeFreshness = buildMeta.routeFreshness || {};
   const sitemapBlocks = [...content.matchAll(/<url>\s*<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>[\s\S]*?<\/url>/g)];
   const lastmodByLoc = Object.fromEntries(sitemapBlocks.map(([, loc, lastmod]) => [loc, lastmod]));
+  for (const [, loc] of sitemapBlocks) {
+    if (loc.includes("?")) {
+      error(`sitemap.xml URL should not include query params: ${loc}`);
+    }
+  }
   let lastmodMismatches = 0;
 
   for (const route of routes) {
@@ -134,6 +139,11 @@ function auditAllPrerenderedPages(routes) {
     /* Canonical URL */
     if (!html.includes('rel="canonical"')) {
       error(`${route}: No canonical URL`);
+    } else {
+      const canonicalMatch = html.match(/<link[^>]*rel="canonical"[^>]*href="([^"]+)"/);
+      if (canonicalMatch?.[1]?.includes("?")) {
+        error(`${route}: Canonical URL should not include query params: ${canonicalMatch[1]}`);
+      }
     }
 
     checked++;

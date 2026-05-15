@@ -66,6 +66,7 @@ describe("static page renders", () => {
     expect(screen.getAllByRole("link", { name: /Browse by Maker/i }).length).toBeGreaterThan(0);
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
     expect(screen.getByText(HOMEPAGE_ARTICLES[0].title)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Sitemap" }).getAttribute("href")).toBe("/sitemap.xml");
   });
 
   it("redirects legacy lens query URLs on the homepage", async () => {

@@ -43,6 +43,9 @@ export default function HomeFooter({ theme: t }: HomeFooterProps) {
       <Link to="/articles/about-site" style={linkStyle}>
         About Surface & Stop
       </Link>
+      <a href="/sitemap.xml" style={linkStyle}>
+        Sitemap
+      </a>
     </footer>
   );
 }
