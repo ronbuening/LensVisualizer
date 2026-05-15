@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-15",
     type: "improvement",
-    summary: "Improved patent-focused search metadata and sitemap discoverability",
+    summary: "Improved patent-focused search metadata, sitemap links, and social previews",
   },
   {
     date: "2026-05-15",

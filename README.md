@@ -97,7 +97,7 @@ Requires Node.js 24.15.0 or newer within the Node 24 LTS line.
 - Route-level metadata is managed through [`src/components/SEOHead.tsx`](src/components/SEOHead.tsx), including canonical URLs, robots directives, social image tags, and JSON-LD payloads.
 - Build metadata is generated before dev/build runs and tracks lens/article freshness for sitemap and structured-data use.
 - Production builds prerender the crawlable routes, write a freshness-aware sitemap, and generate a real `404.html` with `noindex,follow`.
-- [`public/branding/social-dark.svg`](public/branding/social-dark.svg) is the shared social preview asset used across public routes.
+- [`public/og-default.png`](public/og-default.png) is the shared social preview asset used across public routes.
 - `npm run seo:audit` validates the built output for metadata presence, sitemap coverage, route freshness, internal links, and 404 behavior.
 
 ## Project Structure

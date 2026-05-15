@@ -22,6 +22,7 @@ import {
   SITE_NAME,
   SITE_URL,
   SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
 } from "../src/utils/lensMetadata.js";
@@ -127,6 +128,7 @@ describe("SSR render — home page /", () => {
     const { helmet } = render("/");
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
     expect(meta).toContain(`property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
@@ -215,6 +217,7 @@ describe("SSR render — lens page /lens/:slug", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
@@ -267,6 +270,7 @@ describe("SSR render — maker page /makers/:maker", () => {
     const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
@@ -337,6 +341,7 @@ describe("SSR render — article page /articles/:slug", () => {
     const { helmet } = render(url);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 

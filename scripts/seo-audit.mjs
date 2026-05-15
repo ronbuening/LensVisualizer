@@ -146,6 +146,17 @@ function auditAllPrerenderedPages(routes) {
       }
     }
 
+    const socialImageMatch = html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]+)"/);
+    if (!socialImageMatch) {
+      error(`${route}: No og:image URL`);
+    } else if (socialImageMatch[1].endsWith(".svg")) {
+      error(`${route}: og:image should use a raster format, found ${socialImageMatch[1]}`);
+    }
+
+    if (!html.match(/<meta[^>]*property="og:image:type"[^>]*content="image\/png"/)) {
+      error(`${route}: Missing og:image:type image/png`);
+    }
+
     checked++;
   }
 

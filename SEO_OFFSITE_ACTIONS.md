@@ -20,7 +20,7 @@ Use this checklist after the SEO metadata changes are deployed to Cloudflare Pag
 
 - Test `/`, `/lenses`, one lens page, and one article page in LinkedIn Post Inspector.
 - Test the same representative URLs with Facebook Sharing Debugger and X Card Validator.
-- Re-scrape cached previews after the PNG social card replacement lands.
+- Re-scrape cached previews so platforms pick up the PNG social card.
 
 ## Monitoring
 

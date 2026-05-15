@@ -7,6 +7,7 @@
 - Added patent-focused title and description wording for crawlable lens library pages.
 - Added WebApplication and Dataset JSON-LD where it matches visible site content.
 - Added a homepage footer link to `/sitemap.xml`.
+- Replaced the default social card with a 1200 x 630 PNG and added social-image audit guards.
 - Documented Cloudflare Pages, Search Console, Bing, and social preview checks in `SEO_OFFSITE_ACTIONS.md`.
 
 ## Verification
@@ -19,4 +20,4 @@
 - `npm run seo:audit` — passed
 
 ## Follow-ups
-- Replace the default SVG social card with a correctly rendered 1200 x 630 PNG and add social-image audit guards.
+- Complete the off-site checks after the Cloudflare Pages deployment.
