@@ -11,7 +11,7 @@ import makerPrefixes from "../generated/maker-prefixes.json";
 
 const SITE_NAME = "Surface & Stop";
 const SITE_URL = "https://surfaceandstop.com";
-const SOCIAL_IMAGE_PATH = "/og-default.png";
+const SOCIAL_IMAGE_PATH = "/branding/social-dark.png";
 const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
 const SOCIAL_IMAGE_ALT = "Surface & Stop social card featuring the site's lens mark with RGB ray traces.";
 const SOCIAL_IMAGE_TYPE = "image/png";

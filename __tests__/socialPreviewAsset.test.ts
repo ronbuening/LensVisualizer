@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 describe("social preview asset", () => {
   it("ships a 1200 x 630 PNG social card", () => {
-    const asset = readFileSync(new URL("../public/og-default.png", import.meta.url));
+    const asset = readFileSync(new URL("../public/branding/social-dark.png", import.meta.url));
     const signature = Array.from(asset.subarray(0, 8))
       .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
