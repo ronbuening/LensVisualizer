@@ -26,13 +26,13 @@ export default function MountPage() {
   const details = getMountDetails(mountId);
 
   const seoDescription = details
-    ? `${details.summary} Explore ${lenses.length} ${mount.label} lens designs with interactive cross-section diagrams.`
-    : `Explore ${lenses.length} ${mount.label} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
+    ? `${details.summary} Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with optical analysis.`
+    : `Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with ray tracing and optical analysis.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
-        title={`${mount.label} Lenses — ${SITE_NAME}`}
+        title={`${mount.label} Lens Diagrams | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={mountCanonicalURL(mountId)}
         jsonLd={[

@@ -16,6 +16,7 @@ const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
 const SOCIAL_IMAGE_ALT = "Surface & Stop social card featuring the site's lens mark with RGB ray traces.";
 const SOCIAL_IMAGE_WIDTH = 1200;
 const SOCIAL_IMAGE_HEIGHT = 630;
+const META_DESCRIPTION_MAX_LENGTH = 160;
 
 const MAKER_PREFIXES = makerPrefixes as { prefix: string; display: string; slug: string }[];
 
@@ -52,17 +53,46 @@ export function makerDisplayName(slug: string): string | null {
   return entry ? entry.display : null;
 }
 
+function compactSentence(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function truncateAtWord(value: string, maxLength = META_DESCRIPTION_MAX_LENGTH): string {
+  const compact = compactSentence(value);
+  if (compact.length <= maxLength) return compact;
+
+  const slice = compact.slice(0, maxLength - 3);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > maxLength * 0.55 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.replace(/[,\s.;:]+$/u, "")}...`;
+}
+
+function lensSpecSummary(lens: LensData, maxSpecs = 3): string {
+  return lens.specs?.slice(0, maxSpecs).join(", ") || "";
+}
+
+export function lensPatentReference(lens: LensData): string | null {
+  const subtitle = lens.subtitle?.trim();
+  if (!subtitle) return null;
+  if (/\bpatent\b/i.test(subtitle)) return subtitle;
+
+  const patentMatch = subtitle.match(/\b(?:US|WO|JP|EP|GB|DE|CN)\s?[A-Z]?\d[\d/,-]*(?:\s?[A-Z]\d?)?\b/i);
+  return patentMatch ? patentMatch[0].trim() : null;
+}
+
 /** Title-case a lens name (e.g., "NIKON NIKKOR Z 50mm f/1.8 S" stays as-is since it's already styled). */
 export function lensPageTitle(lens: LensData): string {
-  return `${lens.name} — Interactive Lens Diagram | ${SITE_NAME}`;
+  return `${lens.name} — Optical Cross-Section & Ray Tracing | ${SITE_NAME}`;
 }
 
 /** Generate a meta description from lens specs and subtitle. */
 export function lensPageDescription(lens: LensData): string {
-  const specStr = lens.specs?.slice(0, 3).join(", ") || "";
-  const patent = lens.subtitle ? ` From ${lens.subtitle}.` : "";
-  const base = `Explore the ${specStr} lens.${patent} Interactive ray tracing, element inspection, and aberration analysis.`;
-  return base.length > 160 ? base.slice(0, 157) + "..." : base;
+  const specStr = lensSpecSummary(lens);
+  const patentRef = lensPatentReference(lens);
+  const specClause = specStr ? ` (${specStr})` : "";
+  const patentClause = patentRef ? ` from ${patentRef}` : "";
+  const base = `${lens.name}${specClause}: patent-derived optical analysis${patentClause}, interactive ray tracing, and aberration tools.`;
+  return truncateAtWord(base);
 }
 
 /** Canonical URL for a lens page. */
@@ -97,6 +127,14 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
     mainEntityOfPage: lensCanonicalURL(lensKey),
     author: { "@type": "Person", name: "Ron Buening" },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+    ...(lensPatentReference(lens)
+      ? {
+          isBasedOn: {
+            "@type": "CreativeWork",
+            name: lensPatentReference(lens),
+          },
+        }
+      : {}),
     ...(freshness
       ? {
           datePublished: freshness.publishedOn,

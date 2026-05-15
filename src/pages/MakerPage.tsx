@@ -38,13 +38,13 @@ export default function MakerPage() {
   const details = getMakerDetails(maker);
 
   const seoDescription = details
-    ? `${details.summary} Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`
-    : `Explore ${lenses.length} ${displayName} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
+    ? `${details.summary} Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`
+    : `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
-        title={`${displayName} Lenses — ${SITE_NAME}`}
+        title={`${displayName} Lens Cross-Sections | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={makerCanonicalURL(maker)}
         jsonLd={[

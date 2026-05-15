@@ -136,6 +136,7 @@ describe("SSR render — home page /", () => {
     const { helmet } = render("/");
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"WebSite"');
+    expect(scripts).toContain('"@type":"WebApplication"');
     expect(scripts).toContain('"@type":"Organization"');
   });
 });
@@ -159,9 +160,9 @@ describe("SSR render — compare page /compare/:slugA/:slugB", () => {
 /* ── Lens index ── */
 
 describe("SSR render — lens index /lenses", () => {
-  it("title contains 'All Lenses'", () => {
+  it("title calls out the patent cross-section library", () => {
     const { helmet } = render("/lenses");
-    expect(helmet.title.toString()).toContain("All Lenses");
+    expect(helmet.title.toString()).toContain("Lens Patent Cross-Section Library");
   });
 
   it("canonical contains /lenses", () => {
@@ -173,6 +174,7 @@ describe("SSR render — lens index /lenses", () => {
     const { helmet } = render("/lenses");
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"Dataset"');
     expect(scripts).toContain('"@type":"ItemList"');
   });
 });
@@ -195,10 +197,11 @@ describe("SSR render — lens page /lens/:slug", () => {
     expect(helmet.script.toString()).toContain("TechArticle");
   });
 
-  it("includes BreadcrumbList structured data and freshness fields", () => {
+  it("includes BreadcrumbList structured data, patent source, and freshness fields", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"isBasedOn"');
     expect(scripts).toContain('"datePublished"');
     expect(scripts).toContain('"dateModified"');
   });

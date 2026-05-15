@@ -26,13 +26,13 @@ export default function FormatPage() {
   const details = getImageFormatDetails(formatId);
 
   const seoDescription = details
-    ? `${details.summary} Explore ${lenses.length} ${format.label} lens designs with interactive cross-section diagrams.`
-    : `Explore ${lenses.length} ${format.label} lens designs with interactive cross-section diagrams, ray tracing, and element inspection.`;
+    ? `${details.summary} Explore ${lenses.length} patent-derived ${format.label} lens diagrams with optical analysis.`
+    : `Explore ${lenses.length} patent-derived ${format.label} lens diagrams with ray tracing and optical analysis.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
-        title={`${format.label} Lenses — ${SITE_NAME}`}
+        title={`${format.label} Lens Diagrams | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={formatCanonicalURL(formatId)}
         jsonLd={[
