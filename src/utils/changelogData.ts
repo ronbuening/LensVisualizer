@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-15 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-15",
+    type: "lens",
+    summary: "Added five Laowa lenses: 12mm, 15mm, 24mm Probe, 58mm Macro APO, and 65mm Macro APO",
+  },
   // ── 2026-05-14 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-14",

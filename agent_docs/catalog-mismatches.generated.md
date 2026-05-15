@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **193** lenses scanned
-- **2213** glass surfaces examined
-- **2207** surfaces with non-empty `glass` strings
-- **1603** of those resolved to a catalog entry
-- **350** mismatches found (21.8% of resolved surfaces)
-- **115** distinct lens files affected
+- **198** lenses scanned
+- **2296** glass surfaces examined
+- **2290** surfaces with non-empty `glass` strings
+- **1619** of those resolved to a catalog entry
+- **351** mismatches found (21.7% of resolved surfaces)
+- **116** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -122,6 +122,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | E-FD2 | 1 | |
 | S-FPL51 | 1 | |
 | S-FPM2 | 1 | |
+| H-ZF88 | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
 | S-LAH53 | 1 | |
@@ -1057,6 +1058,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 1 | `S-TIM2 (OHARA)` | S-TIM2 | 1.58144 | 1.62004 | +0.0386 |
+
+### [VENUS LAOWA 58 mm f/2.8 2× Ultra-Macro APO](../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts)
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3 | `H-ZF88 (CDGM)` | H-ZF88 | 1.78472 | 1.94595 | +0.1612 |
 
 ### [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) — JP 2002-090622 A
 
