@@ -22,6 +22,7 @@ import {
   SITE_NAME,
   SITE_URL,
   SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
 } from "../src/utils/lensMetadata.js";
@@ -127,6 +128,7 @@ describe("SSR render — home page /", () => {
     const { helmet } = render("/");
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
     expect(meta).toContain(`property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
@@ -136,6 +138,7 @@ describe("SSR render — home page /", () => {
     const { helmet } = render("/");
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"WebSite"');
+    expect(scripts).toContain('"@type":"WebApplication"');
     expect(scripts).toContain('"@type":"Organization"');
   });
 });
@@ -159,9 +162,9 @@ describe("SSR render — compare page /compare/:slugA/:slugB", () => {
 /* ── Lens index ── */
 
 describe("SSR render — lens index /lenses", () => {
-  it("title contains 'All Lenses'", () => {
+  it("title calls out the patent cross-section library", () => {
     const { helmet } = render("/lenses");
-    expect(helmet.title.toString()).toContain("All Lenses");
+    expect(helmet.title.toString()).toContain("Lens Patent Cross-Section Library");
   });
 
   it("canonical contains /lenses", () => {
@@ -173,6 +176,7 @@ describe("SSR render — lens index /lenses", () => {
     const { helmet } = render("/lenses");
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"CollectionPage"');
+    expect(scripts).toContain('"@type":"Dataset"');
     expect(scripts).toContain('"@type":"ItemList"');
   });
 });
@@ -195,10 +199,11 @@ describe("SSR render — lens page /lens/:slug", () => {
     expect(helmet.script.toString()).toContain("TechArticle");
   });
 
-  it("includes BreadcrumbList structured data and freshness fields", () => {
+  it("includes BreadcrumbList structured data, patent source, and freshness fields", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"BreadcrumbList"');
+    expect(scripts).toContain('"isBasedOn"');
     expect(scripts).toContain('"datePublished"');
     expect(scripts).toContain('"dateModified"');
   });
@@ -212,6 +217,7 @@ describe("SSR render — lens page /lens/:slug", () => {
     const { helmet } = render(`/lens/${TEST_LENS_SLUG}`);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
@@ -264,6 +270,7 @@ describe("SSR render — maker page /makers/:maker", () => {
     const { helmet } = render(`/makers/${TEST_MAKER_SLUG}`);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 
@@ -334,6 +341,7 @@ describe("SSR render — article page /articles/:slug", () => {
     const { helmet } = render(url);
     const meta = helmet.meta.toString();
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);
   });
 

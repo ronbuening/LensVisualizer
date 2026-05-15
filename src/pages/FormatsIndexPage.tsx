@@ -16,7 +16,7 @@ import { IMAGE_FORMAT_OPTIONS } from "./lensIndex/catalog.js";
 
 export default function FormatsIndexPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse camera lens diagrams by image format, including ${IMAGE_FORMAT_OPTIONS.map(
+  const seoDescription = `Browse patent-derived camera lens diagrams by image format, including ${IMAGE_FORMAT_OPTIONS.map(
     (format) => format.label,
   ).join(", ")}.`;
 

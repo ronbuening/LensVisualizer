@@ -6,7 +6,9 @@ import {
   articleJsonLd,
   breadcrumbJsonLd,
   collectionPageJsonLd,
+  datasetJsonLd,
   itemListJsonLd,
+  webApplicationJsonLd,
   websiteJsonLd,
 } from "../src/utils/structuredData.js";
 
@@ -16,6 +18,14 @@ describe("structuredData helpers", () => {
     expect(schema["@type"]).toBe("WebSite");
     expect(schema.url).toBe(SITE_URL);
     expect((schema.publisher as Record<string, unknown>).name).toBe("Surface & Stop");
+  });
+
+  it("builds a WebApplication schema for the interactive viewer", () => {
+    const schema = webApplicationJsonLd();
+    expect(schema["@type"]).toBe("WebApplication");
+    expect(schema.applicationCategory).toBe("ReferenceApplication");
+    expect(schema.description).toContain("patent-derived");
+    expect(schema.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
   it("builds a CollectionPage schema with freshness", () => {
@@ -45,6 +55,19 @@ describe("structuredData helpers", () => {
     expect(schema["@type"]).toBe("ItemList");
     expect(schema.numberOfItems).toBe(2);
     expect((schema.itemListElement as Array<Record<string, unknown>>)[0].position).toBe(1);
+  });
+
+  it("builds a Dataset schema with freshness", () => {
+    const schema = datasetJsonLd({
+      name: "Patent-Derived Camera Lens Cross-Section Library",
+      description: "Patent-derived lens diagrams.",
+      url: `${SITE_URL}/lenses`,
+      route: "/lenses",
+    });
+
+    expect(schema["@type"]).toBe("Dataset");
+    expect(schema.url).toBe(`${SITE_URL}/lenses`);
+    expect(schema.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
   it("builds an Article schema with published and modified dates", () => {

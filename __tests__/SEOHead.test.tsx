@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import SEOHead from "../src/components/SEOHead.js";
 import {
   SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
 } from "../src/utils/lensMetadata.js";
@@ -43,6 +44,7 @@ describe("SEOHead", () => {
     expect(meta).toContain('name="twitter:card" content="summary_large_image"');
     expect(meta).toContain('property="og:image" content="https://surfaceandstop.com/og/example.png"');
     expect(meta).toContain('property="og:image:alt" content="Example alt"');
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain('property="og:image:width" content="1200"');
     expect(meta).toContain('property="og:image:height" content="630"');
     expect(meta).toContain('name="twitter:image" content="https://surfaceandstop.com/og/example.png"');
@@ -57,6 +59,7 @@ describe("SEOHead", () => {
     const meta = helmet.meta.toString();
     expect(meta).toContain('name="twitter:card" content="summary_large_image"');
     expect(meta).toContain(`property="og:image" content="${SOCIAL_IMAGE_URL}"`);
+    expect(meta).toContain(`property="og:image:type" content="${SOCIAL_IMAGE_TYPE}"`);
     expect(meta).toContain(`property="og:image:width" content="${SOCIAL_IMAGE_WIDTH}"`);
     expect(meta).toContain(`property="og:image:height" content="${SOCIAL_IMAGE_HEIGHT}"`);
     expect(meta).toContain(`name="twitter:image" content="${SOCIAL_IMAGE_URL}"`);

@@ -64,6 +64,58 @@ export function websiteJsonLd(): Record<string, unknown> {
   );
 }
 
+export function webApplicationJsonLd(): Record<string, unknown> {
+  return withFreshness(
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: SITE_NAME,
+      url: SITE_URL,
+      applicationCategory: "ReferenceApplication",
+      operatingSystem: "Web browser",
+      description:
+        "Interactive patent-derived camera lens cross-section viewer with ray tracing, element inspection, and optical analysis tools.",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      publisher: publisherRef(),
+    },
+    routeFreshness["/"],
+  );
+}
+
+export function datasetJsonLd({
+  name,
+  description,
+  url,
+  route,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  route: string;
+}): Record<string, unknown> {
+  return withFreshness(
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      name,
+      description,
+      url,
+      creator: publisherRef(),
+      publisher: publisherRef(),
+      isPartOf: {
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: SITE_URL,
+      },
+    },
+    routeFreshness[route],
+  );
+}
+
 export function collectionPageJsonLd({
   name,
   description,

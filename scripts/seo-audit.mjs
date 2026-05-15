@@ -85,6 +85,11 @@ function auditSitemap(routes) {
   const routeFreshness = buildMeta.routeFreshness || {};
   const sitemapBlocks = [...content.matchAll(/<url>\s*<loc>(.*?)<\/loc>\s*<lastmod>(.*?)<\/lastmod>[\s\S]*?<\/url>/g)];
   const lastmodByLoc = Object.fromEntries(sitemapBlocks.map(([, loc, lastmod]) => [loc, lastmod]));
+  for (const [, loc] of sitemapBlocks) {
+    if (loc.includes("?")) {
+      error(`sitemap.xml URL should not include query params: ${loc}`);
+    }
+  }
   let lastmodMismatches = 0;
 
   for (const route of routes) {
@@ -134,6 +139,22 @@ function auditAllPrerenderedPages(routes) {
     /* Canonical URL */
     if (!html.includes('rel="canonical"')) {
       error(`${route}: No canonical URL`);
+    } else {
+      const canonicalMatch = html.match(/<link[^>]*rel="canonical"[^>]*href="([^"]+)"/);
+      if (canonicalMatch?.[1]?.includes("?")) {
+        error(`${route}: Canonical URL should not include query params: ${canonicalMatch[1]}`);
+      }
+    }
+
+    const socialImageMatch = html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]+)"/);
+    if (!socialImageMatch) {
+      error(`${route}: No og:image URL`);
+    } else if (socialImageMatch[1].endsWith(".svg")) {
+      error(`${route}: og:image should use a raster format, found ${socialImageMatch[1]}`);
+    }
+
+    if (!html.match(/<meta[^>]*property="og:image:type"[^>]*content="image\/png"/)) {
+      error(`${route}: Missing og:image:type image/png`);
     }
 
     checked++;

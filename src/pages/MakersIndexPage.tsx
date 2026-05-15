@@ -38,7 +38,7 @@ function getAllMakers(): MakerEntry[] {
 export default function MakersIndexPage() {
   const makers = getAllMakers();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse lenses by maker: ${makers.map((m) => m.display).join(", ")}. Interactive cross-section diagrams with ray tracing and element inspection.`;
+  const seoDescription = `Browse patent-derived lens cross-sections by maker: ${makers.map((m) => m.display).join(", ")}. Includes ray tracing and optical analysis.`;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>

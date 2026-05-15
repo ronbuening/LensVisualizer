@@ -16,7 +16,7 @@ import { MOUNT_OPTIONS } from "./lensIndex/catalog.js";
 
 export default function MountsIndexPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse camera lens diagrams by mount, including ${MOUNT_OPTIONS.map(
+  const seoDescription = `Browse patent-derived camera lens diagrams by mount, including ${MOUNT_OPTIONS.map(
     (mount) => mount.label,
   ).join(", ")}.`;
 

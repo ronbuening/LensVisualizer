@@ -3,6 +3,7 @@ import {
   deriveMaker,
   allMakerSlugs,
   makerDisplayName,
+  lensPatentReference,
   lensPageTitle,
   lensPageDescription,
   lensCanonicalURL,
@@ -129,7 +130,19 @@ describe("lensPageTitle", () => {
   it("returns formatted title with lens name and site name", () => {
     const lens = makeLens();
     const title = lensPageTitle(lens);
-    expect(title).toBe(`NIKON NIKKOR Z 50mm f/1.8 S — Interactive Lens Diagram | ${SITE_NAME}`);
+    expect(title).toBe(`NIKON NIKKOR Z 50mm f/1.8 S — Optical Cross-Section & Ray Tracing | ${SITE_NAME}`);
+  });
+});
+
+/* ── lensPatentReference ── */
+
+describe("lensPatentReference", () => {
+  it("uses explicit patent subtitles as the patent reference", () => {
+    expect(lensPatentReference(makeLens())).toBe("US Patent 2019/0234567");
+  });
+
+  it("returns null when no patent-like subtitle is present", () => {
+    expect(lensPatentReference(makeLens({ subtitle: "Production lens notes" }))).toBeNull();
   });
 });
 
@@ -139,21 +152,24 @@ describe("lensPageDescription", () => {
   it("includes specs and subtitle", () => {
     const lens = makeLens();
     const desc = lensPageDescription(lens);
+    expect(desc).toContain("NIKON NIKKOR Z 50mm f/1.8 S");
     expect(desc).toContain("50mm, f/1.8, 9 elements");
     expect(desc).toContain("US Patent 2019/0234567");
-    expect(desc).toContain("Interactive ray tracing");
+    expect(desc).toContain("patent-derived optical analysis");
   });
 
   it("handles missing specs gracefully", () => {
     const lens = makeLens({ specs: undefined });
     const desc = lensPageDescription(lens);
-    expect(desc).toContain("Explore the  lens.");
+    expect(desc).toContain("NIKON NIKKOR Z 50mm f/1.8 S");
+    expect(desc).toContain("patent-derived optical analysis");
+    expect(desc).not.toContain("Explore the  lens");
   });
 
   it("handles missing subtitle", () => {
     const lens = makeLens({ subtitle: undefined });
     const desc = lensPageDescription(lens);
-    expect(desc).not.toContain("From");
+    expect(desc).not.toContain("from US Patent");
   });
 
   it("truncates to 160 characters with ellipsis", () => {
@@ -163,7 +179,7 @@ describe("lensPageDescription", () => {
     });
     const desc = lensPageDescription(lens);
     expect(desc.length).toBeLessThanOrEqual(160);
-    if (desc.length === 160) {
+    if (desc.length >= 158) {
       expect(desc).toMatch(/\.\.\.$/);
     }
   });
@@ -198,6 +214,7 @@ describe("lensJsonLd", () => {
     expect(ld.mainEntityOfPage).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
     expect((ld.author as Record<string, unknown>).name).toBe("Ron Buening");
     expect((ld.publisher as Record<string, unknown>).name).toBe(SITE_NAME);
+    expect(((ld.isBasedOn as Record<string, unknown>) || {}).name).toBe("US Patent 2019/0234567");
   });
 
   it("includes manufacturer derived from lens name", () => {

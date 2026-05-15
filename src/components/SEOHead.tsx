@@ -9,6 +9,7 @@ import {
   SITE_NAME,
   SOCIAL_IMAGE_ALT,
   SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
 } from "../utils/lensMetadata.js";
@@ -26,6 +27,7 @@ interface SEOHeadProps {
   twitterCard?: "summary" | "summary_large_image";
   socialImageURL?: string;
   socialImageAlt?: string;
+  socialImageType?: string;
   socialImageWidth?: number;
   socialImageHeight?: number;
   jsonLd?: JsonLdSchema | JsonLdSchema[];
@@ -45,6 +47,7 @@ export default function SEOHead({
   twitterCard = "summary_large_image",
   socialImageURL = SOCIAL_IMAGE_URL,
   socialImageAlt = SOCIAL_IMAGE_ALT,
+  socialImageType = SOCIAL_IMAGE_TYPE,
   socialImageWidth = SOCIAL_IMAGE_WIDTH,
   socialImageHeight = SOCIAL_IMAGE_HEIGHT,
   jsonLd,
@@ -65,6 +68,7 @@ export default function SEOHead({
       <meta property="og:site_name" content={SITE_NAME} />
       {socialImageURL && <meta property="og:image" content={socialImageURL} />}
       {socialImageAlt && <meta property="og:image:alt" content={socialImageAlt} />}
+      {socialImageType && <meta property="og:image:type" content={socialImageType} />}
       {socialImageWidth && <meta property="og:image:width" content={String(socialImageWidth)} />}
       {socialImageHeight && <meta property="og:image:height" content={String(socialImageHeight)} />}
 

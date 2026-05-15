@@ -11,7 +11,7 @@ import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
+import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/structuredData.js";
 import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
@@ -42,7 +42,7 @@ export default function LensIndexPage() {
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
   const totalLenses = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse ${totalLenses} interactive lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more. Each lens features ray tracing, element inspection, and aberration analysis.`;
+  const seoDescription = `Browse ${totalLenses} patent-derived lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
   const {
     customFilter,
     filterInputValues,
@@ -108,12 +108,18 @@ export default function LensIndexPage() {
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
-        title={`All Lenses — ${SITE_NAME}`}
+        title={`Lens Patent Cross-Section Library — ${totalLenses} Diagrams | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={`${SITE_URL}/lenses`}
         jsonLd={[
           collectionPageJsonLd({
             name: "Lens Library",
+            description: seoDescription,
+            url: `${SITE_URL}/lenses`,
+            route: "/lenses",
+          }),
+          datasetJsonLd({
+            name: "Patent-Derived Camera Lens Cross-Section Library",
             description: seoDescription,
             url: `${SITE_URL}/lenses`,
             route: "/lenses",
