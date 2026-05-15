@@ -1419,7 +1419,7 @@ Candidates:
 - **S-TIH23** (nd=1.78470, vd=26.29, Δnd=-0.0000, Δvd=+0.57)
 
 Surfaces:
-- [VENUS LAOWA 58 mm f/2.8 2× Ultra-Macro APO](../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) `3`: `H-ZF88 (CDGM)`
+- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) `3`: `H-ZF88 (CDGM)`
 
 ## stored (nd=1.78472, vd=25.64)  — 1 surface, current label resolves to S-TIM25
 
