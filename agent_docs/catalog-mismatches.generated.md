@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **199** lenses scanned
-- **2308** glass surfaces examined
-- **2302** surfaces with non-empty `glass` strings
-- **1619** of those resolved to a catalog entry
-- **351** mismatches found (21.7% of resolved surfaces)
-- **116** distinct lens files affected
+- **205** lenses scanned
+- **2385** glass surfaces examined
+- **2379** surfaces with non-empty `glass` strings
+- **1661** of those resolved to a catalog entry
+- **371** mismatches found (22.3% of resolved surfaces)
+- **119** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,37 +28,38 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 15 | |
+| S-TIH14 | 11 | |
 | S-TIH53 | 10 | |
-| S-TIH14 | 10 | |
 | S-TIH18 | 9 | |
 | S-TIM2 | 9 | |
+| S-TIM22 | 8 | |
 | S-LAH58 | 8 | |
 | TAFD25 | 8 | |
-| S-TIM22 | 7 | |
 | S-LAH64 | 7 | |
+| S-NPH4 | 7 | |
 | S-LAL14 | 7 | |
 | S-TIH4 | 7 | |
 | NBFD3 | 7 | |
 | S-TIM25 | 7 | |
 | S-TIM27 | 6 | |
+| S-BAL35 | 6 | |
 | S-NPH2 | 6 | |
 | S-TIM35 | 6 | |
+| TAFD30 | 6 | |
 | S-TIH11 | 5 | |
 | S-LAH55V | 5 | |
-| S-BAL35 | 5 | |
-| S-NPH4 | 5 | |
 | S-NBH56 | 5 | |
 | S-TIM28 | 5 | |
+| S-NPH53 | 5 | |
+| S-FPM3 | 5 | |
 | S-TIL25 | 4 | |
 | S-BAL42 | 4 | |
 | S-LAL8 | 4 | |
 | E-FD15 | 4 | |
 | S-NBH8 | 4 | |
 | S-NBH52V | 4 | |
-| S-NPH53 | 4 | |
 | S-NBH55 | 4 | |
 | S-TIH6 | 4 | |
-| S-FPM3 | 4 | |
 | SF6 | 4 | |
 | S-LAH51 | 4 | |
 | S-TIL27 | 3 | |
@@ -75,13 +76,19 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BSM81 | 3 | |
 | S-NBH5 | 3 | |
 | E-FD5 | 3 | |
-| TAFD30 | 3 | |
 | S-NBH52 | 3 | |
+| S-FPM2 | 3 | |
 | TAFD5F | 3 | |
 | TAF5 | 3 | |
 | S-LAM55 | 3 | |
+| S-TIH23 | 3 | |
 | S-BAL14 | 3 | |
+| S-NPH5 | 3 | |
+| S-LAH55 | 3 | |
+| S-LAH98 | 3 | |
 | S-LAH59 | 2 | |
+| S-BSM14 | 2 | |
+| S-LAH52 | 2 | |
 | S-NPH1 | 2 | |
 | S-TIH53W | 2 | |
 | S-LAM54 | 2 | |
@@ -102,16 +109,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH51 | 2 | |
 | S-LAH96 | 2 | |
 | E-FDS1 | 2 | |
-| S-NPH5 | 2 | |
 | S-PHM52 | 2 | |
 | S-LAH63Q | 2 | |
-| S-LAH55 | 2 | |
 | FCD515 | 2 | |
 | TAFD37 | 2 | |
 | S-PHM53 | 2 | |
 | S-TIM5 | 1 | |
-| S-BSM14 | 1 | |
-| S-LAH52 | 1 | |
 | S-LAL18 | 1 | |
 | TAFD45 | 1 | |
 | S-NPH3 | 1 | |
@@ -121,24 +124,36 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAM60 | 1 | |
 | E-FD2 | 1 | |
 | S-FPL51 | 1 | |
-| S-FPM2 | 1 | |
 | H-ZF88 | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
 | S-LAH53 | 1 | |
 | TAFD55 | 1 | |
 | S-LAM3 | 1 | |
-| S-TIH23 | 1 | |
 | S-NBH53V | 1 | |
 | LAC12 | 1 | |
 | TAFD33 | 1 | |
 | K-VC89 | 1 | |
 | TAFD65 | 1 | |
-| S-LAH98 | 1 | |
 | S-BAL2 | 1 | |
 | N-SK2 | 1 | |
 
 ## Mismatches by lens
+
+### [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) — WO 2025/263124 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 2 | `S-FPM3 (OHARA)` | S-FPM3 | 1.59489 | 1.53775 | -0.0571 |
+| 6A | `S-LAH55 (OHARA)` | S-LAH55 | 1.77373 | 1.83481 | +0.0611 |
+| 8 | `S-TIH14 (OHARA)` | S-TIH14 | 1.77660 | 1.76182 | -0.0148 |
+| 9 | `S-NPH4 (OHARA)` | S-NPH4 | 1.93024 | 1.89286 | -0.0374 |
+| 11 | `S-BSM14 (OHARA)` | S-BSM14 | 1.69980 | 1.60311 | -0.0967 |
+| 14A | `S-LAH98 (OHARA)` | S-LAH98 | 1.85612 | 1.95375 | +0.0976 |
+| 17 | `S-BAL35 (OHARA)` | S-BAL35 | 1.57125 | 1.58913 | +0.0179 |
+| 23 | `S-TIH23 (OHARA)` | S-TIH23 | 1.86252 | 1.78470 | -0.0778 |
+| 25A | `S-LAH98 (OHARA)` | S-LAH98 | 1.85612 | 1.95375 | +0.0976 |
+| 32 | `S-TIH23 (OHARA)` | S-TIH23 | 1.86252 | 1.78470 | -0.0778 |
 
 ### [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../src/lens-data/canon/CanonEFS1018mmf4.data.ts) — JP 2015-31869 A
 
@@ -359,6 +374,26 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 7 | `S-NPH2 (Ohara) — exact match` | S-NPH2 | 1.90366 | 1.92286 | +0.0192 |
 | 8 | `S-LAH58 (Ohara) / TAC4 (Hoya) — exact match` | S-LAH58 | 1.83481 | 1.88300 | +0.0482 |
 | 16 | `TAFD37 (Hoya) — tentative; S-LAH65 (Ohara): Δnd = +0.0002` | TAFD37 | 1.80420 | 1.90043 | +0.0962 |
+
+### [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) — WO 2023/181666 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 8A | `S-LAH52 class (OHARA)` | S-LAH52 | 1.77002 | 1.79952 | +0.0295 |
+| 18 | `S-FPM2 (OHARA)` | S-FPM2 | 1.43700 | 1.59522 | +0.1582 |
+| 22 | `S-NPH5 (OHARA)` | S-NPH5 | 2.00100 | 1.85896 | -0.1420 |
+| 25 | `S-FPM2 (OHARA)` | S-FPM2 | 1.43700 | 1.59522 | +0.1582 |
+| 34 | `S-NPH4 (OHARA)` | S-NPH4 | 1.94595 | 1.89286 | -0.0531 |
+
+### [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) — JP 2023-039817 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10 | `TAFD30 (HOYA) — ultra-dense flint` | TAFD30 | 1.86290 | 1.88300 | +0.0201 |
+| 17 | `TAFD30 (HOYA) — ultra-dense flint` | TAFD30 | 1.86290 | 1.88300 | +0.0201 |
+| 19 | `TAFD30 (HOYA) — ultra-dense flint` | TAFD30 | 1.86290 | 1.88300 | +0.0201 |
+| 24 | `S-NPH53 (OHARA) — ultra-dense flint` | S-NPH53 | 1.93323 | 1.84666 | -0.0866 |
+| 25 | `S-TIM22 (OHARA) — titanium flint` | S-TIM22 | 1.65803 | 1.64769 | -0.0103 |
 
 ### [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) — US 2024/0329367 A1
 
