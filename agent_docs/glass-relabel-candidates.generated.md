@@ -19,7 +19,19 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 351 mismatched surfaces across 232 unique groups.
+**Scope**: 371 mismatched surfaces across 245 unique groups.
+
+## stored (nd=1.43700, vd=95.10)  — 2 surfaces, current label resolves to S-FPM2
+
+Candidates:
+- **FCD100** (nd=1.43700, vd=95.10, Δnd=+0.0000, Δvd=+0.00)
+- **S-FPL55** (nd=1.43875, vd=94.66, Δnd=+0.0017, Δvd=-0.44)
+- **S-FPL53** (nd=1.43875, vd=94.95, Δnd=+0.0018, Δvd=-0.15)
+- **CaF2** (nd=1.43385, vd=95.10, Δnd=-0.0032, Δvd=+0.00)
+
+Surfaces:
+- [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) `18`: `S-FPM2 (OHARA)`
+- [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) `25`: `S-FPM2 (OHARA)`
 
 ## stored (nd=1.43875, vd=95.00) [PgF=0.5299 (dPgF=0.0459)]  — 1 surface, current label resolves to S-FPL51
 
@@ -168,6 +180,14 @@ Candidates:
 Surfaces:
 - [FUJIFILM FUJINON GF80mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) `8`: `S-BAH27 (OHARA)`
 - [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) `20`: `S-BAL42 (OHARA)`
+
+## stored (nd=1.57125, vd=56.00)  — 1 surface, current label resolves to S-BAL35
+
+Candidates:
+- **S-BAL14** (nd=1.56883, vd=56.36, Δnd=-0.0024, Δvd=+0.36)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `17`: `S-BAL35 (OHARA)`
 
 ## stored (nd=1.58140, vd=40.80) [code=581/408]  — 1 surface, current label resolves to S-TIM25
 
@@ -358,6 +378,18 @@ Candidates:
 
 Surfaces:
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) `7`: `S-PHM52 (OHARA)`
+
+## stored (nd=1.59489, vd=68.60)  — 1 surface, current label resolves to S-FPM3
+
+Candidates:
+- **S-FPM2** (nd=1.59522, vd=67.74, Δnd=+0.0003, Δvd=-0.86)
+- **J-PSKH4** (nd=1.59349, vd=67.00, Δnd=-0.0014, Δvd=-1.60)
+- **J-PSKH1** (nd=1.59319, vd=67.90, Δnd=-0.0017, Δvd=-0.70)
+- **FCD505** (nd=1.59283, vd=68.63, Δnd=-0.0021, Δvd=+0.03)
+- **FCD515** (nd=1.59282, vd=68.63, Δnd=-0.0021, Δvd=+0.03)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `2`: `S-FPM3 (OHARA)`
 
 ## stored (nd=1.60342, vd=38.00)  — 2 surfaces, current label resolves to S-TIM22
 
@@ -611,6 +643,15 @@ Candidates:
 Surfaces:
 - [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) `4`: `S-NBM51 (OHARA)`
 
+## stored (nd=1.65803, vd=39.70)  — 1 surface, current label resolves to S-TIM22
+
+Candidates:
+- **N-KZFS5** (nd=1.65412, vd=39.70, Δnd=-0.0039, Δvd=+0.00)
+- **S-NBH5** (nd=1.65412, vd=39.68, Δnd=-0.0039, Δvd=-0.02)
+
+Surfaces:
+- [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `25`: `S-TIM22 (OHARA) — titanium flint`
+
 ## stored (nd=1.65840, vd=50.85)  — 1 surface, current label resolves to S-BAH27
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -812,6 +853,15 @@ Surfaces:
 - [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) `18`: `TAFD37 (HOYA)`
 - [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) `10`: `S-TIH11 (OHARA)`
 - [SIGMA 30mm f/2.8 (DP2 Merrill)](../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) `5`: `S-TIM28 (OHARA)`
+
+## stored (nd=1.69980, vd=55.50)  — 1 surface, current label resolves to S-BSM14
+
+Candidates:
+- **N-LAK14** (nd=1.69680, vd=55.41, Δnd=-0.0030, Δvd=-0.09)
+- **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0030, Δvd=+0.03)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `11`: `S-BSM14 (OHARA)`
 
 ## stored (nd=1.70154, vd=41.17)  — 1 surface, current label resolves to S-LAM54
 
@@ -1302,6 +1352,15 @@ Candidates:
 Surfaces:
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `6A`: `S-LAM54 (OHARA)`
 
+## stored (nd=1.77002, vd=49.40)  — 1 surface, current label resolves to S-LAH52
+
+Candidates:
+- **S-LAH66** (nd=1.77250, vd=49.60, Δnd=+0.0025, Δvd=+0.20)
+- **N-LAF34** (nd=1.77250, vd=49.62, Δnd=+0.0025, Δvd=+0.22)
+
+Surfaces:
+- [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) `8A`: `S-LAH52 class (OHARA)`
+
 ## stored (nd=1.77047, vd=29.70) [code=770/297]  — 3 surfaces, current label resolves to S-TIH18
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -1369,6 +1428,22 @@ Candidates:
 
 Surfaces:
 - [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) `7`: `S-LAH65 class (Ohara)`
+
+## stored (nd=1.77373, vd=49.40)  — 1 surface, current label resolves to S-LAH55
+
+Candidates:
+- **N-LAF34** (nd=1.77250, vd=49.62, Δnd=-0.0012, Δvd=+0.22)
+- **S-LAH66** (nd=1.77250, vd=49.60, Δnd=-0.0012, Δvd=+0.20)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `6A`: `S-LAH55 (OHARA)`
+
+## stored (nd=1.77660, vd=29.70)  — 1 surface, current label resolves to S-TIH14
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `8`: `S-TIH14 (OHARA)`
 
 ## stored (nd=1.78100, vd=44.50)  — 1 surface, current label resolves to S-NBH55
 
@@ -1830,6 +1905,15 @@ Surfaces:
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) `27`: `S-TIH53W type (855/248)`
 - [CANON RF 28-70mm F2.8 IS STM](../src/lens-data/canon/CanonRF2870mmf28.data.ts) `17`: `855248 — S-TIH53W family (OHARA)`
 
+## stored (nd=1.85612, vd=40.10)  — 2 surfaces, current label resolves to S-LAH98
+
+Candidates:
+- **S-LAH89** (nd=1.85150, vd=40.78, Δnd=-0.0046, Δvd=+0.68)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `14A`: `S-LAH98 (OHARA)`
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `25A`: `S-LAH98 (OHARA)`
+
 ## stored (nd=1.85883, vd=30.00)  — 1 surface, current label resolves to S-TIH14
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -1845,6 +1929,25 @@ Candidates:
 
 Surfaces:
 - [HASSELBLAD XCD 2,5/90V](../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) `9`: `S-NPH4 (OHARA)`
+
+## stored (nd=1.86252, vd=25.20)  — 2 surfaces, current label resolves to S-TIH23
+
+Candidates:
+- **S-NPH5** (nd=1.85896, vd=22.73, Δnd=-0.0036, Δvd=-2.47)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `23`: `S-TIH23 (OHARA)`
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `32`: `S-TIH23 (OHARA)`
+
+## stored (nd=1.86290, vd=24.80)  — 3 surfaces, current label resolves to TAFD30
+
+Candidates:
+- **S-NPH5** (nd=1.85896, vd=22.73, Δnd=-0.0039, Δvd=-2.07)
+
+Surfaces:
+- [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `10`: `TAFD30 (HOYA) — ultra-dense flint`
+- [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `17`: `TAFD30 (HOYA) — ultra-dense flint`
+- [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `19`: `TAFD30 (HOYA) — ultra-dense flint`
 
 ## stored (nd=1.86994, vd=39.82)  — 1 surface, current label resolves to TAFD30
 
@@ -2056,7 +2159,21 @@ Candidates:
 Surfaces:
 - [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) `1`: `S-NPH53 (OHARA)`
 
-## stored (nd=1.94595, vd=18.00)  — 5 surfaces, current label resolves to E-FDS1
+## stored (nd=1.93024, vd=24.00)  — 1 surface, current label resolves to S-NPH4
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `9`: `S-NPH4 (OHARA)`
+
+## stored (nd=1.93323, vd=20.90)  — 1 surface, current label resolves to S-NPH53
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [SONY FE 70-200mm F2.8 GM OSS II](../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `24`: `S-NPH53 (OHARA) — ultra-dense flint`
+
+## stored (nd=1.94595, vd=18.00)  — 6 surfaces, current label resolves to E-FDS1
 
 Candidates:
 - **H-ZF88** (nd=1.94595, vd=17.94, Δnd=+0.0000, Δvd=-0.06)
@@ -2068,6 +2185,7 @@ Surfaces:
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) `19`: `S-NPH5 (OHARA)`
 - [SONY FE 20–70 mm F4 G](../src/lens-data/sony/SonyFE2070mmf4G.data.ts) `1`: `S-NPH53 (OHARA)`
 - [SONY FE 20–70 mm F4 G](../src/lens-data/sony/SonyFE2070mmf4G.data.ts) `23`: `S-NPH53 (OHARA)`
+- [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) `34`: `S-NPH4 (OHARA)`
 
 ## stored (nd=1.95375, vd=32.30)  — 5 surfaces, current label resolves to S-LAH79
 
@@ -2145,7 +2263,7 @@ Surfaces:
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) `42`: `Extreme dense flint — OHARA S-NPH3 (001/255)`
 - [LEICA APO-SUMMICRON 43mm f/2 ASPH.](../src/lens-data/leica/LeicaAPO43mmf2.data.ts) `3`: `S-NPH4 (OHARA)`
 
-## stored (nd=2.00100, vd=29.10)  — 2 surfaces, current label resolves to S-NPH4
+## stored (nd=2.00100, vd=29.10)  — 3 surfaces, current label resolves to S-NPH4
 
 Candidates:
 - **S-LAH99** (nd=2.00100, vd=29.14, Δnd=+0.0000, Δvd=+0.04)
@@ -2155,6 +2273,7 @@ Candidates:
 Surfaces:
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) `19`: `Extreme dense flint — OHARA S-NPH4 (001/291)`
 - [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) `32`: `S-NPH2 (OHARA)`
+- [SONY FE 24-70mm f/2.8 GM II](../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) `22`: `S-NPH5 (OHARA)`
 
 ## stored (nd=2.00100, vd=29.12)  — 3 surfaces, current label resolves to S-NPH2
 
@@ -2190,5 +2309,5 @@ Surfaces:
 
 ## Summary
 
-- **199** (nd, vd) groups have at least one candidate (310 surfaces) — actionable relabels.
-- **33** (nd, vd) groups have NO candidate (41 surfaces) — needs patent verification or Unmatched relabeling.
+- **209** (nd, vd) groups have at least one candidate (327 surfaces) — actionable relabels.
+- **36** (nd, vd) groups have NO candidate (44 surfaces) — needs patent verification or Unmatched relabeling.
