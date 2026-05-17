@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **205** lenses scanned
-- **2385** non-air surfaces examined
-- **2379** element glass declarations examined
-- **625** non-explicit-unmatched annotations did not resolve
-- **183** distinct unresolved glass-like tokens found
+- **209** lenses scanned
+- **2426** non-air surfaces examined
+- **2420** element glass declarations examined
+- **635** non-explicit-unmatched annotations did not resolve
+- **192** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -63,17 +63,21 @@ or per-lens patent backfills.
 | S-LAL7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-PHM52Q | 2 | 2 | |
+| S-TIL26 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK7 | 2 | 2 | |
+| TAFD35L | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 175500 | 1 | 1 | |
 | 182080 | 1 | 1 | |
+| 487698 | 1 | 1 | |
 | 498826 | 1 | 1 | |
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
+| 596392 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612372 | 1 | 1 | |
 | 619636 | 1 | 1 | |
@@ -82,12 +86,15 @@ or per-lens patent backfills.
 | 640601 | 1 | 1 | |
 | 661508 | 1 | 1 | |
 | 667330 | 1 | 1 | |
+| 670393 | 1 | 1 | |
+| 670573 | 1 | 1 | |
 | 673382 | 1 | 1 | |
 | 684376 | 1 | 1 | |
 | 694534 | 1 | 1 | |
 | 700480 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
 | 770297 | 1 | 1 | |
@@ -161,6 +168,7 @@ or per-lens patent backfills.
 | NBFD12 | 1 | 1 | |
 | NBFD25 | 1 | 1 | |
 | S-BAH10 | 1 | 1 | |
+| S-BAH32 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
@@ -171,6 +179,7 @@ or per-lens patent backfills.
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL12 | 1 | 1 | |
+| S-LAL52 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
 | S-LAM61 | 1 | 1 | |
 | S-LAM7 | 1 | 1 | |
@@ -187,9 +196,9 @@ or per-lens patent backfills.
 | S-TIH1 | 1 | 1 | |
 | S-TIL1 | 1 | 1 | |
 | S-TIL2 | 1 | 1 | |
-| S-TIL26 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
 | S-TIM3 | 1 | 1 | |
+| S-TIM8 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -462,6 +471,11 @@ or per-lens patent backfills.
 - [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) 10: `S-PHM52Q (OHARA)`
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 20: `S-PHM52Q (OHARA)`
 
+### S-TIL26 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) 22: `S-TIL26 (Ohara)`
+- [Olympus M.Zuiko Digital 17mm f/1.8](../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) 3: `S-TIL26 (OHARA)`
+
 ### SK18 — 2 occurrences
 
 - [CANON SERENAR 50mm f/1.8](../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
@@ -471,6 +485,11 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 35mm f/3.2](../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
 - [CARL ZEISS BIOGON 21mm f/4.5](../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 6: `SK7 dense crown (607/595)`
+
+### TAFD35L — 2 occurrences
+
+- [Olympus M.Zuiko Digital ED 12-100mm f/4.0 IS PRO](../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) 18: `TAFD35L (HOYA)`
+- [Olympus M.Zuiko Digital 17mm f/1.8](../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) 4: `TAFD35L (HOYA)`
 
 ### 157957 — 1 occurrence
 
@@ -483,6 +502,10 @@ or per-lens patent backfills.
 ### 182080 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
+
+### 487698 — 1 occurrence
+
+- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)`
 
 ### 498826 — 1 occurrence
 
@@ -507,6 +530,10 @@ or per-lens patent backfills.
 ### 575413 — 1 occurrence
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
+
+### 596392 — 1 occurrence
+
+- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 10: `S-TIM8 class (OHARA), 596392`
 
 ### 603564 — 1 occurrence
 
@@ -540,6 +567,14 @@ or per-lens patent backfills.
 
 - [CANON New FD 50mm f/1.2](../src/lens-data/canon/CanonFDn50f12.data.ts) 5: `Dense flint [667330] — OHARA SF19`
 
+### 670393 — 1 occurrence
+
+- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 6: `S-BAH32 (OHARA) exact match (670393)`
+
+### 670573 — 1 occurrence
+
+- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
+
 ### 673382 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 11: `673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)`
@@ -563,6 +598,10 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 - lanthanum crown (nd=1.738, vd~49.3)`
+
+### 757479 — 1 occurrence
+
+- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 1: `J-LAF04 class (HIKARI), 757479`
 
 ### 764491 — 1 occurrence
 
@@ -856,6 +895,10 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 
+### S-BAH32 — 1 occurrence
+
+- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 6: `S-BAH32 (OHARA) exact match (670393)`
+
 ### S-BSL10 — 1 occurrence
 
 - [CANON EF 50mm f/1.0L USM](../src/lens-data/canon/CanonEF50mmf1L.data.ts) 19: `S-BSL10 (OHARA)`
@@ -895,6 +938,10 @@ or per-lens patent backfills.
 ### S-LAL12 — 1 occurrence
 
 - [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
+
+### S-LAL52 — 1 occurrence
+
+- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
 
 ### S-LAL61 — 1 occurrence
 
@@ -960,10 +1007,6 @@ or per-lens patent backfills.
 
 - [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) 17: `S-TIL2 (OHARA)`
 
-### S-TIL26 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) 22: `S-TIL26 (Ohara)`
-
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
@@ -971,6 +1014,10 @@ or per-lens patent backfills.
 ### S-TIM3 — 1 occurrence
 
 - [HASSELBLAD XCD 2,8/65](../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) 8: `S-TIM3 (OHARA)`
+
+### S-TIM8 — 1 occurrence
+
+- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 10: `S-TIM8 class (OHARA), 596392`
 
 ### SF14 — 1 occurrence
 
