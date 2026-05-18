@@ -12,9 +12,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list SDs. Values estimated via combined         ║
  * ║    marginal + chief ray trace (0.6× field, 8% clearance),         ║
- * ║    validated against cross-gap sag intrusion, edge thickness,      ║
- * ║    and patent cross-section proportions (Fig. 2). L6 SDs           ║
- * ║    capped at 6.0 mm to stay within polynomial convergence range.  ║
+ * ║    then tuned to the manufacturer cross-section proportions.      ║
+ * ║    Values are validated against cross-gap sag intrusion, edge      ║
+ * ║    thickness, and molded-asphere polynomial behavior; S11A stays  ║
+ * ║    capped at 6.0 mm to avoid a steep polynomial rim.              ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
  * ║    Patent uses Zd = C·h²/{1+√(1−K·C²h²)} + Σ Am·h^m (m=3..20).  ║
@@ -162,27 +163,27 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1: Cemented doublet L1 + L2 ──
-    { label: "1", R: 29.787, d: 0.91, nd: 1.74077, elemId: 1, sd: 7.4 }, // L1 front
-    { label: "2", R: 10.216, d: 3.07, nd: 1.883, elemId: 2, sd: 7.1 }, // L1/L2 junction → L2
-    { label: "3", R: 85.567, d: 0.9, nd: 1.0, elemId: 0, sd: 6.1 }, // L2 rear → air
+    { label: "1", R: 29.787, d: 0.91, nd: 1.74077, elemId: 1, sd: 7.6 }, // L1 front
+    { label: "2", R: 10.216, d: 3.07, nd: 1.883, elemId: 2, sd: 6.8 }, // L1/L2 junction → L2
+    { label: "3", R: 85.567, d: 0.9, nd: 1.0, elemId: 0, sd: 5.6 }, // L2 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R: 1e15, d: 5.01, nd: 1.0, elemId: 0, sd: 5.17 },
 
     // ── G2: L3 + cemented doublet L4/L5 + aspherical L6 ──
-    { label: "5", R: -15.211, d: 1.7, nd: 1.883, elemId: 3, sd: 6.7 }, // L3 front
-    { label: "6", R: -11.699, d: 0.3, nd: 1.0, elemId: 0, sd: 5.1 }, // L3 rear → air
-    { label: "7", R: -10.059, d: 0.91, nd: 1.5927, elemId: 4, sd: 5.1 }, // L4 front
-    { label: "8", R: 13.211, d: 7.36, nd: 1.883, elemId: 5, sd: 7.1 }, // L4/L5 junction → L5
-    { label: "9", R: -18.976, d: 0.2, nd: 1.0, elemId: 0, sd: 7.1 }, // L5 rear → air
-    { label: "10A", R: 47.945, d: 2.5, nd: 1.56865, elemId: 6, sd: 6.0 }, // L6 front (asph)
+    { label: "5", R: -15.211, d: 1.7, nd: 1.883, elemId: 3, sd: 5.4 }, // L3 front
+    { label: "6", R: -11.699, d: 0.3, nd: 1.0, elemId: 0, sd: 4.8 }, // L3 rear → air
+    { label: "7", R: -10.059, d: 0.91, nd: 1.5927, elemId: 4, sd: 5.4 }, // L4 front
+    { label: "8", R: 13.211, d: 7.36, nd: 1.883, elemId: 5, sd: 6.9 }, // L4/L5 junction → L5
+    { label: "9", R: -18.976, d: 0.2, nd: 1.0, elemId: 0, sd: 7.2 }, // L5 rear → air
+    { label: "10A", R: 47.945, d: 2.5, nd: 1.56865, elemId: 6, sd: 6.4 }, // L6 front (asph)
     { label: "11A", R: 89.234, d: 5.13, nd: 1.0, elemId: 0, sd: 6.0 }, // L6 rear (asph) → air
 
     // ── G3: L7 (neg. meniscus) + L8 (plano-convex) ──
-    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 7.8 }, // L7 front
-    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 8.0 }, // L7 rear → air
-    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 8.1 }, // L8 front
-    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 8.2 }, // L8 rear → air (BFD to PP)
+    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 7.2 }, // L7 front
+    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 7.8 }, // L7 rear → air
+    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 8.2 }, // L8 front
+    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 8.8 }, // L8 rear → air (BFD to PP)
     // BFD from S15 to image plane ≈ 5.53 mm in air (includes air-equiv. of PP cover glass)
   ],
 

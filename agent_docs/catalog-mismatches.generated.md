@@ -803,7 +803,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 7 | `SK14 (Schott)` | N-SK14 | 1.62040 | 1.60311 | -0.0173 |
 | 9 | `SK14 (Schott)` | N-SK14 | 1.62040 | 1.60311 | -0.0173 |
 
-### [FUJIFILM X100 FUJINON 23mm f/2](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) — US 2012/0069456 A1
+### [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) — US 2012/0069456 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|

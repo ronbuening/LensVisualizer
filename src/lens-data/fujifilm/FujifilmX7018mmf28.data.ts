@@ -19,8 +19,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. Estimated from combined   ║
- * ║    marginal + chief ray trace at 60% field with ~8% mechanical    ║
- * ║    clearance.                                                      ║
+ * ║    marginal + chief ray trace, then visually tuned against the     ║
+ * ║    published Fujifilm lens configuration section.                  ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -143,25 +143,25 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1: cemented doublet L11 + L12 ──
-    { label: "1", R: 33.667, d: 0.5, nd: 1.5927, elemId: 1, sd: 4.9 }, // L11 front
-    { label: "2", R: 6.365, d: 2.28, nd: 1.883, elemId: 2, sd: 4.9 }, // L11→L12 junction
-    { label: "3", R: 51.962, d: 1.14, nd: 1.0, elemId: 0, sd: 3.9 }, // L12 rear → air
+    { label: "1", R: 33.667, d: 0.5, nd: 1.5927, elemId: 1, sd: 4.6 }, // L11 front
+    { label: "2", R: 6.365, d: 2.28, nd: 1.883, elemId: 2, sd: 4.35 }, // L11→L12 junction
+    { label: "3", R: 51.962, d: 1.14, nd: 1.0, elemId: 0, sd: 3.45 }, // L12 rear → air
 
     // ── Aperture stop ──
-    { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 2.87 },
+    { label: "STO", R: 1e15, d: 1.4, nd: 1.0, elemId: 0, sd: 2.65 },
 
     // ── G2: cemented doublet L21 + L22, then singlet L23 ──
-    { label: "5", R: -10.752, d: 0.5, nd: 1.69895, elemId: 3, sd: 3.6 }, // L21 front
-    { label: "6", R: 8.04, d: 3.11, nd: 1.883, elemId: 4, sd: 3.6 }, // L21→L22 junction
-    { label: "7", R: -10.931, d: 1.17, nd: 1.0, elemId: 0, sd: 4.5 }, // L22 rear → air
-    { label: "8A", R: -6.79295, d: 1.55, nd: 1.56867, elemId: 5, sd: 4.7 }, // L23 front (asph)
-    { label: "9A", R: -10.81559, d: 4.493, nd: 1.0, elemId: 0, sd: 5.1 }, // L23 rear → air (asph) — variable gap
+    { label: "5", R: -10.752, d: 0.5, nd: 1.69895, elemId: 3, sd: 3.05 }, // L21 front
+    { label: "6", R: 8.04, d: 3.11, nd: 1.883, elemId: 4, sd: 3.1 }, // L21→L22 junction
+    { label: "7", R: -10.931, d: 1.17, nd: 1.0, elemId: 0, sd: 3.85 }, // L22 rear → air
+    { label: "8A", R: -6.79295, d: 1.55, nd: 1.56867, elemId: 5, sd: 4.75 }, // L23 front (asph)
+    { label: "9A", R: -10.81559, d: 4.493, nd: 1.0, elemId: 0, sd: 5.15 }, // L23 rear → air (asph) — variable gap
 
     // ── G3: singlet L31, singlet L32 ──
-    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 6.2 }, // L31 front (asph)
-    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 6.5 }, // L31 rear → air (asph)
-    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 6.6 }, // L32 front
-    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 7.5 }, // L32 rear → image (air-equiv BFD, cover glass folded)
+    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 6.25 }, // L31 front (asph)
+    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 6.55 }, // L31 rear → air (asph)
+    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 7.55 }, // L32 front
+    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 8.2 }, // L32 rear → image (air-equiv BFD, cover glass folded)
   ],
 
   /* ── Aspherical coefficients ──

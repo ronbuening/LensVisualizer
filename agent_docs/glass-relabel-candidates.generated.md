@@ -179,7 +179,7 @@ Candidates:
 - **N-SK11** (nd=1.56384, vd=60.80, Δnd=-0.0048, Δvd=+2.20)
 
 Surfaces:
-- [FUJIFILM X100 FUJINON 23mm f/2](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `10A`: `K-VC89 (Sumita)`
+- [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `10A`: `K-VC89 (Sumita)`
 
 ## stored (nd=1.57099, vd=50.80)  — 2 surfaces, current label resolves to S-BAH27
 
@@ -1757,7 +1757,7 @@ Candidates:
 - **S-TIH6** (nd=1.80518, vd=25.43, Δnd=-0.0029, Δvd=+2.63)
 
 Surfaces:
-- [FUJIFILM X100 FUJINON 23mm f/2](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `12`: `S-NBH55 (OHARA)`
+- [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `12`: `S-NBH55 (OHARA)`
 
 ## stored (nd=1.80809, vd=22.74)  — 1 surface, current label resolves to S-TIH53
 
