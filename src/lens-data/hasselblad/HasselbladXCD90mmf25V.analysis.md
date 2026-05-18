@@ -7,9 +7,9 @@
 ("Imaging optical system, and imaging device and camera system using imaging optical system")
 **Applicant:** Panasonic IP Management Co., Ltd.
 **Inventor:** Nishioka Takehiro (西岡 毅洋)
-**Filing date:** 23 December 2020
-**Publication date:** 5 July 2022
-**Embodiment used:** 数値実施例１ (Numerical Example 1), corresponding to 実施の形態１ (Embodiment 1)
+**Filed:** 23 December 2020
+**Published:** 5 July 2022
+**Embodiment analyzed:** 数値実施例１ (Numerical Example 1), corresponding to 実施の形態１ (Embodiment 1)
 
 ### Patent-to-Production Matching
 

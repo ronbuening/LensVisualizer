@@ -2,11 +2,14 @@
 
 ## Patent WO2020/136749 A1, Example 1
 
+**Patent:** WO2020/136749 A1
 **Applicant:** Nikon Corporation (Tokyo, Japan)
 **Inventors:** Machida Kōsuke (町田 幸介), Gomibuchi Osamu (五味渕 治)
-**International Filing Date:** December 26, 2018
+**Filed:** December 26, 2018
 **PCT Number:** PCT/JP2018/047781
-**Japanese Publication:** JP WO2020/136749 A1, published July 2, 2020
+**Published:** July 2, 2020
+**Japanese Publication:** JP WO2020/136749 A1
+**Embodiment analyzed:** Example 1
 
 ---
 

@@ -5,10 +5,10 @@
 **Patent:** WO 2023/181666 A1, "Zoom Lens and Imaging Device"
 **Applicant:** Sony Group Corporation
 **Inventor:** Masaki Maruyama
-**Filing date:** 6 February 2023 (PCT/JP2023/003793)
-**Publication date:** 28 September 2023
+**Filed:** 6 February 2023 (PCT/JP2023/003793)
+**Published:** 28 September 2023
 **Priority:** JP 2022-046233, filed 23 March 2022
-**Embodiment used:** Example 4 (第4実施例), Figure 40, Tables 16–20
+**Embodiment analyzed:** Example 4 (第4実施例), Figure 40, Tables 16–20
 
 The identification of Example 4 as the production embodiment rests on the following convergent evidence:
 

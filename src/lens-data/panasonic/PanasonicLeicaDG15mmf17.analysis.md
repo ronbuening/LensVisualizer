@@ -7,7 +7,7 @@
 **Inventors:** Yoshiaki Kurioka (Osaka), Takehiro Nishioka (Nara).
 **Filed:** February 25, 2015. **Published:** September 24, 2015. **Priority:** March 20, 2014 (JP 2014-057474).
 
-**Embodiment used:** Numerical Example 2, corresponding to Embodiment 2 (FIG. 3, Tables 6–10).
+**Embodiment analyzed:** Numerical Example 2, corresponding to Embodiment 2 (FIG. 3, Tables 6–10).
 
 The identification of Example 2 as the production prescription for the Panasonic Leica DG Summilux 15mm f/1.7 ASPH (model H-X015) rests on the following convergent evidence:
 

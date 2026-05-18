@@ -1,9 +1,10 @@
 # Nikon NIKKOR Z 35mm f/1.8 S — Optical Design Analysis
 
-**Patent:** JP 2019-090947A (Published 2019-06-13)  
+**Patent:** JP 2019-090947A  
 **Applicants:** Konica Minolta Inc. / Nikon Corporation  
 **Inventors:** Yamada Keiko, Imashima Ryosuke, Tatsuno Wataru, Sato Haruo  
-**Embodiment:** Example 4 (EX4)  
+**Published:** June 13, 2019  
+**Embodiment analyzed:** Example 4 (EX4)  
 **Production match confidence:** High — convergent evidence across element count (11), group count (9), aspherical element count (3), ED element count (2), field angle (64.9° patent vs 63° Nikon spec), f-number (f/1.85 patent vs f/1.8 marketed), MFD (≈0.257 m scaled vs 0.25 m Nikon spec), and floating focus mechanism with three variable gaps. Note: EX1 shares the same EFL, f-number, and field angle as EX4, but has only 1 aspherical element (L23, 2 aspherical surfaces) versus EX4's 3 aspherical elements (L17, L23, L31, 6 aspherical surfaces). Nikon specifies 3 aspherical elements, uniquely matching EX4.
 
 ---

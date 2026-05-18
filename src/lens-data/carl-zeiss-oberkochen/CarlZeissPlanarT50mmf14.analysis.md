@@ -2,11 +2,14 @@
 
 ## Patent Attribution
 
-**US Patent 3,874,771** — *Photographic Objective of the Extended Gauss Type*
-Filed: June 25, 1973 (German priority DE 2232101, June 30, 1972)
-Granted: April 1, 1975
-Inventors: Karl-Heinrich Behrens, Erhard Glatzel
-Assignee: Carl Zeiss Stiftung d/b/a Carl Zeiss, Oberkochen, Germany
+**Patent:** US 3,874,771
+**Inventors:** Karl-Heinrich Behrens, Erhard Glatzel
+**Assignee:** Carl Zeiss Stiftung d/b/a Carl Zeiss, Oberkochen, Germany
+**Priority:** DE 2232101, June 30, 1972
+**Filed:** June 25, 1973
+**Granted:** April 1, 1975
+**Title:** Photographic Objective of the Extended Gauss Type
+**Embodiment analyzed:** Example 5 (Table 5)
 
 This analysis is based on **Example 5** (Table 5) of the patent, one of two "fine-corrected" embodiments designed for color photography at f/1.4. The patent provides five examples; Examples 1–3 are monochromatic rough forms at f/1.5, while Examples 4 and 5 are fully achromatized designs at f/1.4 with glass dispersion data (Abbe numbers). Both Examples 4 and 5 use identical glass types and share the 7-element/6-group configuration of the production lens; without direct confirmation from Zeiss, either (or a closely related derivative) could be the basis of the production design. Example 5 is analyzed here as the more likely candidate, being the final and presumably most refined example in the patent sequence.
 

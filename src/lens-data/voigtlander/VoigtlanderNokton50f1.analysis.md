@@ -1,10 +1,11 @@
 # Cosina / Voigtländer Nokton 50mm f/1.0 — Complete Optical Analysis
-## Patent JP2023063766A (also published as JP7748091B2)
 
-**Inventor:** Kazuhiro Ogino  
-**Assignee:** Cosina Co., Ltd.  
-**Filed:** 25 October 2021 · **Granted:** 2 October 2025  
-**Analysis performed:** March 2026
+**Patent:** JP2023063766A; JP7748091B2
+**Filed:** October 25, 2021
+**Granted:** October 2, 2025
+**Inventor:** Kazuhiro Ogino
+**Applicant:** Cosina Co., Ltd.
+**Embodiment analyzed:** First embodiment, Table 1 / Table 2
 
 ---
 

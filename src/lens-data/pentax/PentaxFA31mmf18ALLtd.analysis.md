@@ -7,7 +7,7 @@
 **Inventors:** Masayuki Murata; Takayuki Ito
 **Filed:** August 28, 2001 (priority: JP 2000-265256, September 1, 2000)
 **Granted:** May 6, 2003
-**Embodiment used:** Numerical Example 3 (Table 3, Figs. 9–12)
+**Embodiment analyzed:** Numerical Example 3 (Table 3, Figs. 9–12)
 
 The production lens is identified as the SMC Pentax-FA 31mm F1.8 AL Limited (later re-released with HD coating as the HD Pentax-FA 31mm F1.8 Limited) by convergence of the following evidence:
 

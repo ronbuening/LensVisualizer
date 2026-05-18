@@ -1,6 +1,11 @@
 # Nikon Nikkor 35 mm f/2.8 — Nikon 35Ti  
-### US Patent 5,243,468 · Fifth Embodiment (Table 5 / Claim 9)  
-*Motoyuki Ohtake, Nikon Corporation — Filed 1 December 1992 · Granted 7 September 1993*
+
+**Patent:** US 5,243,468
+**Inventor:** Motoyuki Ohtake
+**Assignee:** Nikon Corporation
+**Filed:** December 1, 1992
+**Granted:** September 7, 1993
+**Embodiment analyzed:** Fifth Embodiment (Table 5 / Claim 9)
 
 ---
 

@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 5,870,234
+**Inventor:** Hiltrud Ebbesmeier née Schitthof
+**Assignee:** Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG
+**Priority:** DE 196 36 152.4, September 6, 1996
+**Filed:** September 4, 1997
+**Granted:** February 9, 1999
+**Title:** Compact Wide-Angle Lens
+**Embodiment analyzed:** Example 2 (Claim 3)
+
 **US 5,870,234**, "Compact Wide-Angle Lens," assigned to Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG (Bad Kreuznach, Germany). Inventor: Hiltrud Ebbesmeier née Schitthof. Filed September 4, 1997 (US); German priority DE 196 36 152.4, filed September 6, 1996. Granted February 9, 1999.
 
 The patent discloses two numerical embodiments of a five-member compact wide-angle lens. Both embodiments are tabulated at the **e-line (546.1 nm)**, using refractive indices $n_e$ and e-line-referenced Abbe numbers $\nu_e$, as is conventional for German optical patents. All patent-derived optical values quoted in this analysis are e-line quantities unless stated otherwise.

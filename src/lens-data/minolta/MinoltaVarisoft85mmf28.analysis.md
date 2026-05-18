@@ -6,7 +6,7 @@
 **Assignee:** Minolta Camera Kabushiki Kaisha, Japan.
 **Inventors:** Yukio Okano, Akiyoshi Nakamura, Toshinobu Ogura.
 **Filed:** December 15, 1976. **Priority:** JP 50/154540 (December 22, 1975), JP 51/109281 (September 10, 1976).
-**Embodiment used:** Embodiment 3 (Table 6, FIG. 8).
+**Embodiment analyzed:** Embodiment 3 (Table 6, FIG. 8).
 
 A second related patent, US 4,214,814A (Ogino, Ogura, Okano, Nakamura, 1977), covers an alternative variable soft focus mechanism using the same optical concept. Minolta marketing literature and a published lens diagram confirm that the production Varisoft Rokkor is based on the first patent, with the rearmost element moved to control spherical aberration.
 

@@ -2,6 +2,16 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 8,854,747 B2; US 2013/0242414 A1
+**Inventor:** Shunji Iwamoto
+**Applicant:** Canon Kabushiki Kaisha
+**Priority:** JP priority, March 15, 2012
+**Filed:** March 11, 2013
+**Published:** September 19, 2013
+**Granted:** October 7, 2014
+**Title:** Optical System and Image Pickup Apparatus Including the Same
+**Embodiment analyzed:** Example 1 / First Numerical Example
+
 The prescription analyzed here is **Example 1 / First Numerical Example** of Canon U.S. Patent **US 8,854,747 B2**, *Optical System and Image Pickup Apparatus Including the Same*. The applicant and assignee are Canon Kabushiki Kaisha, the inventor is Shunji Iwamoto, the Japanese priority date is 15 March 2012, the U.S. filing date is 11 March 2013, the U.S. publication is US 2013/0242414 A1 on 19 September 2013, and the grant date is 7 October 2014.
 
 The patent does not name the retail lens. The correspondence to the **Canon EF-M 22mm f/2 STM** is nevertheless strong enough to treat Example 1 as the production-related prescription, with the normal qualification that the patent is a generic optical-system filing rather than a retail service drawing.

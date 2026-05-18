@@ -1,10 +1,12 @@
 # Voigtländer NOKTON 50mm f/1.2 X-Mount — Patent Optical Analysis
 
-**Patent:** JP 2025-58577 A (Published 2025-04-09)
-**Filing date:** 2023-09-28 (Application No. 2023-168590)
-**Applicant:** Cosina Co., Ltd. (Nakano-shi, Nagano)
+**Patent:** JP 2025-58577 A
+**Application Number:** 2023-168590
+**Filed:** September 28, 2023
+**Published:** April 9, 2025
 **Inventor:** Shibata Yūki (柴田 裕輝)
-**Focus:** Example 1 (実施例1) — the implemented production design
+**Applicant:** Cosina Co., Ltd. (Nakano-shi, Nagano)
+**Embodiment analyzed:** Example 1 (実施例1)
 
 ---
 

@@ -6,6 +6,14 @@
 
 ## 1. Patent provenance
 
+**Patent:** FR 1.066.698
+**Applicant:** VEB Optik Carl Zeiss Jena (East Germany)
+**Filed:** 19 November 1952, 16 h 46 min, Paris
+**Granted:** 20 January 1954
+**Published:** 9 June 1954
+**Title:** Objectif à correction sphérique, chromatique et astigmatique
+**Embodiment analyzed:** Example 1
+
 | Field | Value |
 |---|---|
 | Patent number | FR 1.066.698 |

@@ -5,8 +5,8 @@
 **Patent:** US 6,445,511 B1, "Inner-Focus-Type Lens," granted September 3, 2002.
 **Applicant:** Fuji Photo Optical Co., Ltd., Saitama (JP).
 **Inventor:** You Kitahara.
-**Filing date:** January 31, 2002; priority date March 15, 2001 (JP 2001-075010).
-**Embodiment used:** Example 3, corresponding to Figure 3 and Table 3.
+**Filed:** January 31, 2002; priority date March 15, 2001 (JP 2001-075010).
+**Embodiment analyzed:** Example 3, corresponding to Figure 3 and Table 3.
 
 The prescription is normalized to $f = 1.0$. All radii, thicknesses, and spacings were scaled by a factor of $\times 210.07$ to match the marketed 210 mm focal length.
 

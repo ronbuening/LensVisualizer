@@ -7,7 +7,7 @@
 **Inventor:** Hiroaki Tanaka (田中 宏明).
 **Filed:** 31 October 2014 (特願 2014-223123).
 **Published:** 23 May 2016.
-**Embodiment used:** Example 9 (第9実施例), §0054, §0110–§0116.
+**Embodiment analyzed:** Example 9 (第9実施例), §0054, §0110–§0116.
 
 The following convergent evidence links Example 9 to the production Leica APO-Macro-Elmarit-TL 60 mm f/2.8 ASPH (order numbers 11086/11087):
 

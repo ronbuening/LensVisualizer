@@ -1,10 +1,13 @@
 ## Patent Reference and Design Identification
 
-**US 2021/0294073 A1**, "Imaging Lens and Imaging Apparatus."
-Applicant: FUJIFILM Corporation, Tokyo, Japan.
-Inventor: Masato Kondo (Saitama, JP).
-Filed: March 4, 2021. Priority: JP 2020-047018, March 17, 2020.
-Published: September 23, 2021.
+**Patent:** US 2021/0294073 A1
+**Inventor:** Masato Kondo (Saitama, JP)
+**Applicant:** FUJIFILM Corporation, Tokyo, Japan
+**Priority:** JP 2020-047018, March 17, 2020
+**Filed:** March 4, 2021
+**Published:** September 23, 2021
+**Title:** Imaging Lens and Imaging Apparatus
+**Embodiment analyzed:** Example 1 (Tables 1-4, FIG. 2, FIG. 3)
 
 The prescription transcribed here is **Example 1** (Tables 1–4, FIG. 2, FIG. 3). Convergent evidence linking this embodiment to the production FUJINON GF80mmF1.7 R WR:
 

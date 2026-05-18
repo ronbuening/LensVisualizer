@@ -6,8 +6,8 @@
 **Title:** 撮像レンズ (Imaging Lens)
 **Applicant:** Sigma Corporation (株式会社シグマ), Kawasaki-shi, Kanagawa, Japan
 **Inventor:** Yamanaka Kenji (山中 健史)
-**Filing date:** 18 July 2018 (Heisei 30), priority application 特願2018-134615
-**Publication date:** 23 January 2020 (Reiwa 2)
+**Filed:** 18 July 2018 (Heisei 30), priority application 特願2018-134615
+**Published:** 23 January 2020 (Reiwa 2)
 
 The prescription transcribed here is **Numerical Example 1** (数値実施例1), the first of four embodiments disclosed. It is identified as the production design of the **Sigma 40mm f/1.4 DG HSM | Art** (edition A018) by the following convergent evidence:
 

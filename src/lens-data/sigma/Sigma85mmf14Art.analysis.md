@@ -8,7 +8,7 @@
 **Filed:** 7 July 2016 (Priority: P2016-134770)
 **Published:** 11 January 2018
 
-**Embodiment used:** Numerical Example 4 (数値実施例４), described in ¶0110–0116 and the accompanying prescription tables.
+**Embodiment analyzed:** Numerical Example 4 (数値実施例４), described in ¶0110–0116 and the accompanying prescription tables.
 
 The identification of Example 4 as the production Sigma 85mm F1.4 DG HSM | Art (product code A016) rests on the following convergent evidence:
 

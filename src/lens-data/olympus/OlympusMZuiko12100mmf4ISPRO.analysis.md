@@ -5,9 +5,9 @@
 **Patent:** JP2017-090535A, "ズームレンズ及びそれを備えた撮像装置" (Zoom Lens and Imaging Device Equipped with Same)  
 **Applicant:** Olympus Corporation  
 **Inventors:** Tetsuya Yanai, Tokinori Ima, Daichi Murakami, and Yuki Kubota  
-**Filing date:** November 4, 2015  
-**Publication date:** May 25, 2017  
-**Embodiment used:** Numerical Example 1 (数値実施例1)
+**Filed:** November 4, 2015  
+**Published:** May 25, 2017  
+**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
 
 Numerical Example 1 remains the strongest match to the production **M.Zuiko Digital ED 12-100mm f/4.0 IS PRO**. The patent example gives $f = 12.36, 34.62, 97.98$ mm and constant FNO = 4.08 at the wide, middle, and tele positions, while Olympus/OM System publishes the production lens as a 12-100 mm constant-f/4 Micro Four Thirds zoom. The patent half-to-full field value, $2\omega = 83.05^\circ$ at the wide end, also tracks the production 84° wide-angle specification.
 

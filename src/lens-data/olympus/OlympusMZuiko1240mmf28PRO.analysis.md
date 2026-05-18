@@ -7,7 +7,7 @@
 **Inventors:** Yasuji Ogata, Yasuharu Yamada, Akiyoshi Tochigi, Keitaro Yokoyama
 **Filed:** October 2, 2013 — **Published:** May 22, 2014
 **Priority:** JP 2012-256607, filed November 22, 2012
-**Embodiment used:** Example 5 (Numerical Example 5, ¶0259)
+**Embodiment analyzed:** Example 5 (Numerical Example 5, ¶0259)
 
 The identification of Example 5 as the production optical formula for the M.Zuiko Digital ED 12–40 mm f/2.8 PRO rests on the convergence of eight independent criteria:
 

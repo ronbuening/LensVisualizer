@@ -1,6 +1,10 @@
 # Olympus G.Zuiko Auto-S 55mm f/1.2 — Optical Analysis
 
-**Patent:** US 3,743,387 · Jihei Nakagawa · Olympus Optical Co., Ltd. · Filed Nov. 5, 1971 · Granted July 3, 1973
+**Patent:** US 3,743,387
+**Inventor:** Jihei Nakagawa
+**Assignee:** Olympus Optical Co., Ltd.
+**Filed:** November 5, 1971
+**Granted:** July 3, 1973
 **Design type:** Modified Gauss (double Gauss variant)
 **Construction:** 7 elements / 6 groups · All spherical surfaces
 **Mount:** Olympus OM bayonet (flange distance 46.0 mm)

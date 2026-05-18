@@ -7,7 +7,7 @@
 **Assignee:** Vivitar Corporation, Santa Monica, California.
 **Filed:** April 5, 1984. Continuation-in-part of Ser. No. 189,591 (Oct. 1, 1980, issued as US 4,462,664), itself a CIP of Ser. No. 082,010 (Oct. 5, 1979, abandoned).
 
-**Embodiment used:** Example 4 (Table IV, FIG. 4).
+**Embodiment analyzed:** Example 4 (Table IV, FIG. 4).
 
 The patent discloses eight numerical examples of a three-group telephoto zoom lens in a plus–minus–plus configuration. Example 4 — the fourth of the eight — is the embodiment that was adopted for the production Vivitar Series 1 70–210 mm f/2.8–4 VMC Macro Focusing Zoom, the fourth-generation variant of Vivitar's flagship telephoto zoom. The identification rests on the following convergent evidence:
 

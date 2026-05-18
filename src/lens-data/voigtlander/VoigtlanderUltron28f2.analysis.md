@@ -1,10 +1,11 @@
 # Voigtländer ULTRON Vintage Line 28mm F2 Aspherical — Patent Analysis
 
-## JP2022-100641A, Example 1 (Cosina Co., Ltd.)
-
+**Patent:** JP2022-100641A
+**Filed:** December 24, 2020
+**Published:** July 6, 2022
 **Inventors:** Shōju Hatta (蓬田祥寿), Yūki Shibata (柴田裕輝)
-**Filed:** 2020-12-24 · **Published:** 2022-07-06
-**Assignee:** Cosina Co., Ltd., Nakano, Nagano, Japan
+**Applicant:** Cosina Co., Ltd., Nakano, Nagano, Japan
+**Embodiment analyzed:** Example 1
 
 ---
 

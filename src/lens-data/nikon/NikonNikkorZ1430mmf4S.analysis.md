@@ -1,8 +1,11 @@
 # Nikon NIKKOR Z 14-30mm f/4 S — Optical Design Analysis
 
-**Patent:** JP 2019-008031 A (filed 2017-06-21, published 2019-01-17)
+**Patent:** JP 2019-008031 A
 **Inventor:** Uehara Ken (上原 健), Nikon Corporation
-**Design Example:** Example 1 (第1実施例), Table 1
+**Assignee:** Nikon Corporation
+**Filed:** June 21, 2017
+**Published:** January 17, 2019
+**Embodiment analyzed:** Example 1 (第1実施例), Table 1
 **Production Lens:** NIKKOR Z 14-30mm f/4 S (announced January 8, 2019)
 
 ---

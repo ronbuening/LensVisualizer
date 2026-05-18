@@ -1,8 +1,11 @@
 # FUJINON XF60mmF2.4 R Macro — Optical Analysis
 
 **Patent:** US 2014/0247506 A1, Example 1 (Tetsuya Ori / FUJIFILM Corporation)
+**Inventor:** Tetsuya Ori
+**Applicant:** FUJIFILM Corporation
 **Priority:** November 14, 2011 (JP 2011-248180)
 **Published:** September 4, 2014
+**Embodiment analyzed:** Example 1
 **Design:** 10 elements / 8 groups, 2 aspherical surfaces, 1 ED element
 **Design EFL:** 61.06 mm | **FNO:** 2.48 | **2ω:** 25.4°
 

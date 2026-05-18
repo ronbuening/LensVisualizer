@@ -4,7 +4,7 @@
 
 **Patent:** US 2022/0026670 A1, *Imaging Lens, Camera, and Portable Information Terminal Apparatus*
 **Inventor:** Kazuyasu Ohashi (individual applicant, Chiba, Japan)
-**Priority date:** March 7, 2019 (JP 2019-041727)
+**Priority:** March 7, 2019 (JP 2019-041727)
 **PCT filed:** February 17, 2020 (PCT/JP2020/006106)
 **Published:** January 27, 2022
 

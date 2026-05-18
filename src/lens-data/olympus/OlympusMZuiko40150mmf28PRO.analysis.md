@@ -7,7 +7,7 @@
 **Inventor:** Yasuji Ogata
 **Filed:** December 16, 2014 (US); **Priority:** JP 2013-259561, December 16, 2013
 **Published:** June 18, 2015
-**Embodiment used:** Example 4 (Numerical Example 4, ¶0316)
+**Embodiment analyzed:** Example 4 (Numerical Example 4, ¶0316)
 
 The following evidence converges to identify Example 4 as the prescription underlying the production Olympus M.Zuiko Digital ED 40-150mm f/2.8 PRO:
 

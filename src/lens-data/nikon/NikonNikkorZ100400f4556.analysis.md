@@ -4,16 +4,15 @@
 
 ## Patent Overview
 
-| Field | Value |
-|---|---|
-| **Patent number** | JP2022-92388A (Kokai / Unexamined) |
-| **Filed** | 10 December 2020 |
-| **Published** | 22 June 2022 |
-| **Applicant** | Nikon Corporation (株式会社ニコン) |
-| **Inventor** | Hiroshi Yabumoto (籔本 洋) |
-| **Title** | Optical System, Optical Apparatus, and Method for Manufacturing Optical System |
-| **IPC** | G02B 15/22, G02B 13/02, G02B 15/20 |
-| **Prior art** | WO2013/027364 |
+**Patent:** JP2022-92388A (Kokai / Unexamined)
+**Filed:** December 10, 2020
+**Published:** June 22, 2022
+**Applicant:** Nikon Corporation (株式会社ニコン)
+**Inventor:** Hiroshi Yabumoto (籔本 洋)
+**Title:** Optical System, Optical Apparatus, and Method for Manufacturing Optical System
+**IPC:** G02B 15/22, G02B 13/02, G02B 15/20
+**Prior art:** WO2013/027364
+**Embodiment analyzed:** Example 1
 
 This patent discloses a zoom optical system with multiple focusing groups that move along different trajectories during focus, optimized for telephoto zoom lenses covering the super-telephoto range. Four numerical examples are provided. **Example 1** is the principal subject of this analysis and is a strong candidate for the production NIKKOR Z 100-400mm f/4.5-5.6 VR S, as demonstrated by the convergent evidence below.
 

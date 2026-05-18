@@ -6,9 +6,9 @@
 **Title:** 変倍光学系、光学機器、および変倍光学系の製造方法 (Variable magnification optical system, optical apparatus, and method for manufacturing variable magnification optical system).
 **Applicant:** Nikon Corporation, Tokyo.
 **Inventors:** Yoko Komatsubara (小松原陽子), Takeshi Umeda (梅田武).
-**Filing date:** 13 July 2018 (priority, as PCT/JP2018/026486).
-**Publication date:** 16 January 2020 (international), 10 June 2021 (Japanese re-publication).
-**Embodiment used:** Numerical Example 8 (第8実施例), Table 8 (¶0168).
+**Filed:** 13 July 2018 (priority, as PCT/JP2018/026486).
+**Published:** 16 January 2020 (international), 10 June 2021 (Japanese re-publication).
+**Embodiment analyzed:** Numerical Example 8 (第8実施例), Table 8 (¶0168).
 
 The identification of Example 8 as the production NIKKOR Z DX 16-50mm f/3.5-6.3 VR rests on the following convergent evidence:
 

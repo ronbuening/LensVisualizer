@@ -2,6 +2,13 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** JP WO2019/220618 A1
+**Inventors:** Saburo Masugi, Tomoyuki Koshima
+**Applicant:** Nikon Corporation
+**Filed:** May 18, 2018 (PCT/JP2018/019269)
+**Title:** Optical System, Optical Apparatus, and Method of Manufacturing Optical System
+**Embodiment analyzed:** Example 9 (第9実施例)
+
 This analysis is based on **Example 9 (第9実施例)** of Japanese patent publication **JP WO2019/220618 A1**, filed by Nikon Corporation on May 18, 2018 (PCT/JP2018/019269), with inventors Saburo Masugi and Tomoyuki Koshima. The patent covers an optical system, optical apparatus, and method of manufacturing the optical system, classified under IPC G02B 13/00 and G02B 13/18.
 
 Example 9 corresponds to the production NIKKOR Z 50mm f/1.8 S based on the following confirmation criteria:

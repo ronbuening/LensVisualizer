@@ -2,6 +2,14 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** JP WO2020/105107 A1; WO2020/105107
+**Inventors:** Takahiro Ishikawa, Norikazu Yokoi
+**Applicant:** Nikon Corporation
+**Filed:** November 20, 2018 (PCT/JP2018/042790)
+**Published:** May 28, 2020 (WO); September 27, 2021 (JPO republication)
+**Title:** Variable-magnification optical system, optical apparatus, and method for manufacturing a variable-magnification optical system
+**Embodiment analyzed:** Example 1 / 第1実施例
+
 The prescription analyzed here is **Example 1 / 第1実施例** of **JP WO2020/105107 A1**, the Japanese republication of international publication **WO2020/105107**, titled **“Variable-magnification optical system, optical apparatus, and method for manufacturing a variable-magnification optical system”**. The applicant is **Nikon Corporation**. The listed inventors are **Takahiro Ishikawa** and **Norikazu Yokoi**. The international application **PCT/JP2018/042790** was filed on **2018-11-20** and published on **2020-05-28**; the JPO republication issue date is **2021-09-27**.
 
 Example 1 is the strongest embodiment for comparison with the production **NIKKOR Z DX 50-250mm f/4.5-6.3 VR**. The patent's camera embodiment states that the illustrated mirrorless interchangeable-lens camera uses the variable-magnification optical system of Example 1 as its photographic lens (¶0200). The patent does not name the retail product, so the identification rests on convergent evidence:

@@ -1,8 +1,11 @@
 # Canon RF 15-35mm f/2.8 L IS USM — Optical Analysis
 
 **Patent:** US 2020/0257181 A1 (Gyoda, Canon Kabushiki Kaisha)
-**Published:** August 13, 2020 · **Priority:** JP 2019-021356, February 8, 2019
-**Embodiment:** Numerical Example 1 (FIGS. 1A/1B, aberration plots FIGS. 2A/2B)
+**Inventor:** Yuichi Gyoda
+**Assignee:** Canon Kabushiki Kaisha
+**Priority:** JP 2019-021356, February 8, 2019
+**Published:** August 13, 2020
+**Embodiment analyzed:** Numerical Example 1 (FIGS. 1A/1B, aberration plots FIGS. 2A/2B)
 
 ---
 

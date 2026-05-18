@@ -2,8 +2,10 @@
 
 **Patent:** JPWO2020/157904 A1, Example 1 (Table 1)
 **Inventors:** Makita Ayumu (槇田 歩), Itō Tomoki (伊藤 智希), Miwa Tetsushi (三輪 哲史) — Nikon Corporation
-**International Filing Date:** January 31, 2019
-**International Publication Date:** August 6, 2020
+**Applicant:** Nikon Corporation
+**Filed:** January 31, 2019
+**Published:** August 6, 2020
+**Embodiment analyzed:** Example 1 (Table 1)
 
 ---
 

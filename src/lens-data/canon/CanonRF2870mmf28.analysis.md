@@ -2,7 +2,9 @@
 
 **Patent:** US 2024/0329367 A1 (Pub. Oct 3, 2024)
 **Inventor:** Yasuaki Hagiwara (Canon Kabushiki Kaisha)
+**Assignee:** Canon Kabushiki Kaisha
 **Priority:** JP 2023-051695 (Mar 28, 2023)
+**Published:** October 3, 2024
 **Embodiment analyzed:** First Numerical Example (§0083)
 
 ---

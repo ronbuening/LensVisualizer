@@ -4,7 +4,9 @@
 
 **Patent:** WO 2021/117563 A1 (PCT/JP2020/044761), published 17 June 2021
 **Inventors:** Ohtake Fumiaki, Nonaka Azuna, Yuasa Yoshiharu, Umeda Takeshi (Nikon Corporation)
+**Applicant:** Nikon Corporation
 **Priority:** JP 2019-223165 / JP 2019-223166, filed 10 December 2019
+**Published:** June 17, 2021
 **Embodiment analyzed:** Example 4 (Table 4, Figures 10–12)
 **Production lens:** NIKKOR Z 14-24mm f/2.8 S (released November 2020)
 

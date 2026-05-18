@@ -1,12 +1,13 @@
 # Voigtländer Ultron 50mm f/2 — Optical Design Analysis
 
-## US 2,627,204 Example II (Production Embodiment)
-
-**Patent:** US 2,627,204 — "Four-Component Gauss-Type Photographic Objective of High Light-Transmitting Capacity"
+**Patent:** US 2,627,204
+**Priority:** April 29, 1950 (Swiss priority)
+**Filed:** December 28, 1950
+**Granted:** February 3, 1953
 **Inventor:** Albrecht Wilhelm Tronnier, Göttingen, Germany
 **Assignee:** Voigtländer & Sohn AG, Braunschweig, Germany
-**Filed:** December 28, 1950 (Swiss priority: April 29, 1950)
-**Granted:** February 3, 1953
+**Title:** Four-Component Gauss-Type Photographic Objective of High Light-Transmitting Capacity
+**Embodiment analyzed:** Example II
 
 ---
 

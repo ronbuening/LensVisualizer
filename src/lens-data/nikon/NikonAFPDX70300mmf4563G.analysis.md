@@ -2,6 +2,13 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 2021/0026133 A1
+**Applicant:** Nikon Corporation
+**Filed:** December 15, 2017 (PCT/JP2017/045187)
+**Published:** January 28, 2021
+**Title:** Optical System, Optical Apparatus, and Method of Manufacturing Optical System
+**Embodiment analyzed:** Example 4, Table 4 / FIG. 7
+
 The relevant patent filing is **US 2021/0026133 A1, “Optical System, Optical Apparatus, and Method of Manufacturing Optical System,”** assigned to Nikon Corporation and published on 2021-01-28 from PCT/JP2017/045187, filed 2017-12-15. The numerical embodiment transcribed here is **Example 4**, corresponding to Table 4 and the sectional diagram of FIG. 7.
 
 The production lens matched to this embodiment is the **AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR**. Nikon’s product documentation describes a Nikon F-mount DX telephoto zoom covering 70-300 mm, with VR, AF-P pulse-motor autofocus, 14 elements in 10 groups, one ED element, and a 1.1 m minimum focusing distance. The patent example is not an exact production specification table, but the match is strong:

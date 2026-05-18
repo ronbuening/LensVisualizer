@@ -13,7 +13,7 @@
 **Granted:** November 27, 2007
 **Priority:** JP P2005-322558, filed November 7, 2005
 
-**Embodiment used:** Numerical Example 6 (Table 6; Figs. 21–24E)
+**Embodiment analyzed:** Numerical Example 6 (Table 6; Figs. 21–24E)
 
 The identification of Example 6 as the production design rests on the following convergent evidence:
 

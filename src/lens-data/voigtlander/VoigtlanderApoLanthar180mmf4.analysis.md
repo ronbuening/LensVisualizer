@@ -2,11 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2003-270529 A (P2003-270529A), 「望遠レンズ」 (Telephoto Lens).
-**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano, Nagano, Japan.
-**Inventor:** 蓬田 祥寿 (romanization uncertain; possibly Yomogida Yoshitoshi or similar).
-**Filed:** 2002-03-14 (Heisei 14). **Published:** 2003-09-25 (Heisei 15).
-**Application No.:** 特願2002-069772.
+**Patent:** JP 2003-270529 A (P2003-270529A)
+**Application Number:** 特願2002-069772
+**Filed:** March 14, 2002 (Heisei 14)
+**Published:** September 25, 2003 (Heisei 15)
+**Inventor:** 蓬田 祥寿 (romanization uncertain; possibly Yomogida Yoshitoshi or similar)
+**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano, Nagano, Japan
+**Title:** Telephoto Lens (望遠レンズ)
+**Embodiment analyzed:** Example 1 (第1実施例), Table 1 (表1)
 
 The prescription transcribes **Example 1** (第1実施例, Table 1 / 表1), the primary embodiment in the patent filed for the Cosina Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. The following evidence links the patent to the production lens, though questions remain about which of the two examples was manufactured:
 

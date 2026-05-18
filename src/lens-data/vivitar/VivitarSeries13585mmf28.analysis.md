@@ -1,6 +1,14 @@
 # Vivitar Series 1 35–85mm f/2.8 VMC — Key Findings
 
 ## Patent Overview
+
+**Patent:** US 3,975,089
+**Inventor:** Ellis I. Betensky
+**Assignee:** Ponder & Best, Inc.
+**Filed:** April 1974
+**Granted:** August 1976
+**Embodiment analyzed:** Published optical prescription
+
 US Patent 3,975,089, filed April 1974 and granted August 1976, describes Ellis I. Betensky's innovative zoom lens design for Vivitar's premium Series 1 line. The optical prescription comprises 12 spherical elements arranged in four functional groups with a distinctive three-moving-group architecture.
 
 ## Core Innovation

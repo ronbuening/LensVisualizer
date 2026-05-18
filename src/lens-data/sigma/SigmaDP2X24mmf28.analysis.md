@@ -3,7 +3,7 @@
 ## Source
 
 **Patent:** JP 2010-101979 A (特開2010-101979), published 2010-05-06  
-**Filing date:** 2008-10-22 (Application 特願2008-271510)  
+**Filed:** 2008-10-22 (Application 特願2008-271510)  
 **Applicant:** 株式会社シグマ (Sigma Inc.), Kawasaki, Japan  
 **Inventor:** Noriyuki Ogasahara (小笹原 典行)  
 **Example analysed:** Numerical Example 5 (数値実施例5)

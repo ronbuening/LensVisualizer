@@ -6,6 +6,15 @@
 
 ## 1. Patent Identification
 
+**Patent:** JP 2014-126652 A
+**Inventor:** Noriyuki Ogasawara (小笠原 典行)
+**Assignee:** Sigma Corporation (株式会社シグマ), Kawasaki, Japan
+**Application Number:** 特願2012-282344
+**Filed:** 2012-12-26
+**Published:** 2014-07-07
+**Title:** 結像光学系 (Imaging Optical System)
+**Embodiment analyzed:** Example 3 (数値実施例3)
+
 | Field | Value |
 |---|---|
 | Publication number | JP 2014-126652 A (特開2014-126652) |

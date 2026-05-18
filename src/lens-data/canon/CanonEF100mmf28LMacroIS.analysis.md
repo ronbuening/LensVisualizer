@@ -8,7 +8,7 @@
 **Filed:** December 16, 2009 (US); **Priority:** December 19, 2008 (JP 2008-324167)
 **Granted:** January 4, 2011
 
-**Embodiment used:** First Numerical Example (FIGS. 1A–1B, 2A–2B, 3A–3B).
+**Embodiment analyzed:** First Numerical Example (FIGS. 1A–1B, 2A–2B, 3A–3B).
 
 The identification of this embodiment with the Canon EF 100mm f/2.8L Macro IS USM (marketed October 2009) rests on the following convergent evidence:
 

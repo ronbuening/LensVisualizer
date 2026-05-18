@@ -3,7 +3,8 @@
 **Patent:** JP 2021-189377 A (published 2021-12-13)
 **Applicants:** Konica Minolta / Nikon Corporation
 **Inventors:** Hirose Takumo, Yamada Keiko, Yamamoto Yasushi, Yamamoto Hiroshi
-**Example:** No. 1 (corresponding to the First Embodiment, Figure 1)
+**Published:** December 13, 2021
+**Embodiment analyzed:** Example No. 1 (corresponding to the First Embodiment, Figure 1)
 
 ---
 

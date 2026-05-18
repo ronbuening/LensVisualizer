@@ -6,6 +6,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** WO 2022/264542 A1
+**Applicant:** Nikon Corporation
+**Inventors:** Tomoyuki Sashima, Norikazu Yokoi, Takahiro Ishikawa
+**Priority:** JP 2021-099589, June 15, 2021
+**Filed:** March 4, 2022 (PCT/JP2022/009426)
+**Published:** December 22, 2022
+**Title:** Variable-Magnification Optical System, Optical Apparatus, and Method for Manufacturing Variable-Magnification Optical System
+**Embodiment analyzed:** Example 1 (第1実施例, Table 1)
+
 Patent WO 2022/264542 A1, "Variable-Magnification Optical System, Optical Apparatus, and Method for Manufacturing Variable-Magnification Optical System," was filed by Nikon Corporation on 4 March 2022 (PCT/JP2022/009426) with a priority date of 15 June 2021 (JP 2021-099589). The patent was published on 22 December 2022. Inventors are Tomoyuki Sashima, Norikazu Yokoi, and Takahiro Ishikawa.
 
 The analysis that follows is based on Example 1 (第1実施例, Table 1), which corresponds to the production Nikon NIKKOR Z DX 18-140mm f/3.5-6.3 VR (Nikon product code 20104). The identification is supported by convergent evidence across multiple specifications:

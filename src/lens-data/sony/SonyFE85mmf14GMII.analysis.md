@@ -5,10 +5,10 @@
 **Patent:** WO 2025/239028 A1 — *Imaging Optical System and Imaging Device*
 **Applicant:** Sony Group Corporation (JP)
 **Inventors:** Yamagishi Masakazu, Tasaki Ryohei, Kumisawa Yuma
-**Filing date:** March 25, 2025 (PCT/JP2025/011665)
-**Priority date:** May 17, 2024 (JP 2024-081162)
-**Publication date:** November 20, 2025
-**Embodiment used:** Example 2 (第2の構成例, Numerical Example 2)
+**Filed:** March 25, 2025 (PCT/JP2025/011665)
+**Priority:** May 17, 2024 (JP 2024-081162)
+**Published:** November 20, 2025
+**Embodiment analyzed:** Example 2 (第2の構成例, Numerical Example 2)
 
 Example 2 is identified as the production design of the Sony FE 85mm F1.4 GM II (SEL85F14GM2) by the following convergent criteria:
 

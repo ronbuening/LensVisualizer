@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **209** lenses scanned
-- **2426** non-air surfaces examined
-- **2420** element glass declarations examined
-- **635** non-explicit-unmatched annotations did not resolve
-- **192** distinct unresolved glass-like tokens found
+- **211** lenses scanned
+- **2442** non-air surfaces examined
+- **2436** element glass declarations examined
+- **638** non-explicit-unmatched annotations did not resolve
+- **193** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -57,10 +57,12 @@ or per-lens patent backfills.
 | N-BALF5 | 2 | 1 | |
 | N-F2 | 2 | 2 | |
 | NBFD13 | 2 | 2 | |
+| S-APL1 | 2 | 1 | |
 | S-BAH11 | 2 | 2 | |
 | S-BAL41 | 2 | 1 | |
 | S-LAH52Q | 2 | 2 | |
 | S-LAL7 | 2 | 2 | |
+| S-LAM61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-PHM52Q | 2 | 2 | |
 | S-TIL26 | 2 | 2 | |
@@ -181,7 +183,6 @@ or per-lens patent backfills.
 | S-LAL12 | 1 | 1 | |
 | S-LAL52 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
-| S-LAM61 | 1 | 1 | |
 | S-LAM7 | 1 | 1 | |
 | S-NBF1 | 1 | 1 | |
 | S-NBH53 | 1 | 1 | |
@@ -441,6 +442,11 @@ or per-lens patent backfills.
 - [CANON EF-S 17-55mm f/2.8 IS USM](../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) 34: `NBFD13 (HOYA)`
 - [Laowa 15mm f/2 Zero-D](../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) 3A: `M-NBFD130 / NBFD13 class (806-407)`
 
+### S-APL1 — 2 occurrences
+
+- [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `S-APL1 (OHARA)`
+- [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `S-APL1 (OHARA)`
+
 ### S-BAH11 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 3: `S-BAH11 (OHARA)`
@@ -460,6 +466,11 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 7: `LaK (700480, S-LAL7 family)`
 - [SIGMA DP2X 24mm f/2.8](../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) 1: `S-LAL7 / LACL5 (OHARA / HOYA)`
+
+### S-LAM61 — 2 occurrences
+
+- [OLYMPUS XA F.ZUIKO 35mm f/2.8](../src/lens-data/olympus/OlympusXAZuiko35mmf28.data.ts) 6: `S-LAM61 class (720/460)`
+- [SONY FE 90 mm F2.8 Macro G OSS](../src/lens-data/sony/SonyFE90mmf28.data.ts) 6: `S-LAM61 (OHARA)`
 
 ### S-LAM73 — 2 occurrences
 
@@ -946,10 +957,6 @@ or per-lens patent backfills.
 ### S-LAL61 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
-
-### S-LAM61 — 1 occurrence
-
-- [SONY FE 90 mm F2.8 Macro G OSS](../src/lens-data/sony/SonyFE90mmf28.data.ts) 6: `S-LAM61 (OHARA)`
 
 ### S-LAM7 — 1 occurrence
 

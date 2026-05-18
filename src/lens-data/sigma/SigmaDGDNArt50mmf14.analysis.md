@@ -5,9 +5,9 @@
 **Patent:** JP 2023-183894 A, "結像光学系" (Imaging Optical System)
 **Applicant:** Sigma Corporation (株式会社シグマ), Kawasaki, Kanagawa, Japan
 **Inventor:** Yukihiro Yamamoto (山本 幸広)
-**Filing date:** June 17, 2022
-**Publication date:** December 28, 2023
-**Embodiment used:** Numerical Example 1 (数値実施例 1), described in ¶0062–0068 and ¶0136
+**Filed:** June 17, 2022
+**Published:** December 28, 2023
+**Embodiment analyzed:** Numerical Example 1 (数値実施例 1), described in ¶0062–0068 and ¶0136
 
 The prescription in Numerical Example 1 is identified as the design basis of the production Sigma 50mm F1.4 DG DN | Art (Edition A023, released February 2023) on the basis of the following convergent evidence:
 

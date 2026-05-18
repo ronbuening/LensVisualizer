@@ -2,13 +2,13 @@
 
 ## Patent Identification
 
-**US Patent 3,748,022** — *Reverse Telephoto Type Lens Prevented from the Deterioration of Image at the Time of Close Shot*
-
-- **Inventor:** Akira Tajima (Kawasaki, Japan)
-- **Assignee:** Canon Kabushiki Kaisha (Tokyo, Japan)
-- **Filed:** March 3, 1972 (JP priority March 11, 1971, No. 46/12786)
-- **Granted:** July 24, 1973
-- **Classification:** US 350/214; Int. Cl. G02b 9/64
+**Patent:** US 3,748,022 — *Reverse Telephoto Type Lens Prevented from the Deterioration of Image at the Time of Close Shot*
+**Inventor:** Akira Tajima (Kawasaki, Japan)
+**Assignee:** Canon Kabushiki Kaisha (Tokyo, Japan)
+**Filed:** March 3, 1972 (JP priority March 11, 1971, No. 46/12786)
+**Granted:** July 24, 1973
+**Classification:** US 350/214; Int. Cl. G02b 9/64
+**Embodiment analyzed:** Single numerical embodiment
 
 This patent discloses the optical formula for the **Canon FD 35mm f/2 S.S.C. (I)** — the first version of Canon's professional-grade 35mm wide-angle lens for the FD-mount system, and the first Canon wide-angle interchangeable lens to incorporate what Canon calls a "floating mechanism." This version is identified by its distinctive **concave front element** (R₁ < 0) and is known to employ **thoriated glass elements**, which produce the characteristic yellowing observed in aged examples. The single numerical embodiment given in the patent is the production design.
 

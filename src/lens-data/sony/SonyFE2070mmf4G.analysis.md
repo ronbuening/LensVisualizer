@@ -5,11 +5,11 @@
 **Patent:** WO 2023/153076 A1 — "Zoom Lens and Imaging Device"
 **Applicant:** Sony Group Corporation (JP)
 **Inventors:** Tasaki Ryohei (田崎 涼平), Kumisawa Yuma (組澤 悠真), Juri Hiroo (重里 比呂生)
-**Priority date:** 9 February 2022 (JP 2022-019115)
-**International filing:** 15 December 2022 (PCT/JP2022/046159)
-**Publication:** 17 August 2023
+**Priority:** 9 February 2022 (JP 2022-019115)
+**Filed:** 15 December 2022 (PCT/JP2022/046159)
+**Published:** 17 August 2023
 
-**Embodiment used:** Example 8 (実施例 8), described at ¶0189–¶0198 and illustrated in Figure 92. The prescription is given in Tables 36–40 (¶0199–¶0203).
+**Embodiment analyzed:** Example 8 (実施例 8), described at ¶0189–¶0198 and illustrated in Figure 92. The prescription is given in Tables 36–40 (¶0199–¶0203).
 
 The identification of Example 8 as the production SEL2070G design rests on the following convergent evidence:
 

@@ -2,8 +2,10 @@
 
 **Patent:** US 2020/0142167 A1 (Pub. May 7, 2020)
 **Inventor:** Shohei Kikuchi (Canon Kabushiki Kaisha)
+**Assignee:** Canon Kabushiki Kaisha
 **Priority:** JP 2018-207200, filed November 2, 2018
-**Numerical Example:** 1 (of 5 examples in the patent)
+**Published:** May 7, 2020
+**Embodiment analyzed:** Numerical Example 1 (of 5 examples in the patent)
 **Production Lens:** Canon RF24-240mm F4-6.3 IS USM (Canon RF mount, released 2019)
 
 ---

@@ -2,6 +2,13 @@
 
 ## US 4,792,219 — Embodiment 3 (Shin-ichi Mihara / Olympus Optical Co., Ltd.)
 
+**Patent:** US 4,792,219
+**Inventor:** Shin-ichi Mihara
+**Assignee:** Olympus Optical Co., Ltd.
+**Priority:** JP 60-157052, July 18, 1985
+**Granted:** December 20, 1988
+**Embodiment analyzed:** Embodiment 3
+
 ### Patent overview
 
 US Patent 4,792,219 was granted on December 20, 1988, from a Japanese priority filing dated July 18, 1985 (JP 60-157052). The inventor, Shin-ichi Mihara, was one of Olympus's most prolific optical designers during the 1980s and early 1990s, responsible for a broad range of designs spanning catadioptric telephotos, compact camera lenses, and video zoom systems. This particular patent covers the optical design of the Zuiko Auto-Macro 90mm f/2, a lens that held the distinction of being the first macro lens in the 90–105 mm focal length class to offer an f/2 maximum aperture. It was introduced in 1986 as part of the Olympus OM system and remained in production until 2003.

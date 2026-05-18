@@ -2,6 +2,14 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 2002/0075570 A1
+**Inventor:** Hiromitsu Yamakawa
+**Priority:** JP 2000-293710, September 27, 2000
+**Filed:** September 13, 2001
+**Published:** June 20, 2002
+**Title:** Inner-Focus-Type Lens
+**Embodiment analyzed:** Embodiment 1 (Table 1, FIG. 1)
+
 **US 2002/0075570 A1**, "Inner-Focus-Type Lens." Inventor: Hiromitsu Yamakawa (Saitama City, Japan). Filed September 13, 2001; published June 20, 2002. Priority: JP 2000-293710, filed September 27, 2000. The prescription used is **Embodiment 1** (Table 1, FIG. 1, aberration plots FIGS. 3A–3H).
 
 The patent was filed by Yamakawa through the correspondence firm Arnold International. Yamakawa is a prolific optical designer whose subsequent patents — covering wide-angle, imaging, and ultra-wide-angle lenses — were assigned to Fujinon Corporation and later Fujifilm Corporation. The Hasselblad H-system lenses were jointly developed with Fujifilm and manufactured by Fujinon; the HC lenses were also sold under Fujinon branding for the Fujifilm GX645AF platform. This patent therefore represents a Fujinon-designed lens produced for the Hasselblad H system.

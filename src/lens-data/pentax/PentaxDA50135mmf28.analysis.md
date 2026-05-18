@@ -12,7 +12,7 @@
 **Filed:** February 7, 2007 (US); Priority date February 10, 2006 (JP 2006-033506)
 **Granted:** October 30, 2007
 
-**Embodiment used:** Numerical Example 5 (Table 5, Figs. 17–20E)
+**Embodiment analyzed:** Numerical Example 5 (Table 5, Figs. 17–20E)
 
 ### Identification Evidence
 

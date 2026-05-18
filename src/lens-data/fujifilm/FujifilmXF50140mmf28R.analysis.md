@@ -1,5 +1,13 @@
 # FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR — Optical Analysis
 
+**Patent:** US 2017/0090163 A1
+**Inventor:** T. Ori
+**Applicant:** FUJIFILM Corporation
+**Priority:** JP 2015-186957, September 24, 2015
+**Filed:** August 26, 2016
+**Title:** Rear Convertor Lens and Imaging Apparatus
+**Embodiment analyzed:** Master lens prescription with Example 1 rear converter
+
 **Primary source:** US 2017/0090163 A1 (Fujifilm Corporation, inventor T. Ori; filed 26 August 2016; priority JP 2015‑186957, 24 September 2015). The patent is titled *"Rear Convertor Lens and Imaging Apparatus"*; the XF 50‑140mm prescription appears as the **master lens** against which the claimed rear converter is demonstrated.
 
 **Verification methodology.** Every quantitative claim in this document was cross‑checked by an independent paraxial ray trace (y‑u method; geometric angles; n·u conserved at refractions) executed against a fresh transcription of the patent prescription. The final section, **§12 — Numerical Verification**, documents the residual agreement between computed and patent‑stated quantities.

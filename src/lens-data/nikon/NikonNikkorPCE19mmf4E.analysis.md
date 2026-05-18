@@ -3,7 +3,8 @@
 **Patent:** JP 2017-161685 A (published 2017.09.14)
 **Applicants:** Konica Minolta, Inc. & Nikon Corporation
 **Inventors:** Ryosuke Imashima, Taisei Fukuda (Konica Minolta); Toshinori Take, Takayuki Sensui (Nikon)
-**Examined Example:** Example 1 (EX1)
+**Published:** September 14, 2017
+**Embodiment analyzed:** Example 1 (EX1)
 **Lens type:** Retrofocus ultra-wide-angle perspective control (tilt-shift) prime
 
 ---

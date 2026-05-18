@@ -6,7 +6,7 @@
 **Inventor:** Kazunori Ohno (Omiya City, Japan).
 **Filed:** March 8, 2001 (US). **Priority:** March 28, 2000 (JP 2000-089202).
 **Published:** December 13, 2001.
-**Embodiment used:** Embodiment 3 (Table 3, Figs. 4A–4C).
+**Embodiment analyzed:** Embodiment 3 (Table 3, Figs. 4A–4C).
 
 The patent is not assigned to a corporate entity, but Kazunori Ohno is a career lens designer at Fuji Photo Optical Co., Ltd. (later Fujinon Corporation, now a division of Fujifilm). His name appears on multiple Fujifilm-assigned patents spanning zoom lenses, viewfinder optics, and imaging objectives (e.g., US 5,179,472 assigned to Fuji Photo Optical; US 8,514,504 assigned to Fujifilm Corporation). A Fujifilm corporate blog identifies "Kazunori Oono" (alternate romanization of 大野) as a former Senior Manager of the Optical Device Division. The Hasselblad H-system lenses are manufactured by Fujifilm under the SUPER-EBC Fujinon designation.
 

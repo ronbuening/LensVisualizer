@@ -1,7 +1,11 @@
 # Nikon PC-E Nikkor 24mm f/3.5D ED — Optical Design Analysis
 
 **Patent:** JP 2008-151949A, Example 2 (Nikon Corporation / Takayuki Sensui)
-**Filed:** December 15, 2006 · **Published:** July 3, 2008
+**Inventor:** Takayuki Sensui
+**Applicant:** Nikon Corporation
+**Filed:** December 15, 2006
+**Published:** July 3, 2008
+**Embodiment analyzed:** Example 2
 **Production lens:** PC-E NIKKOR 24mm f/3.5D ED (Nikon product code 2168)
 
 ---

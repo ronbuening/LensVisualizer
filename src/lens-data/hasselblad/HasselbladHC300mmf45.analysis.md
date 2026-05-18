@@ -8,7 +8,7 @@
 **Filed:** March 6, 2006
 **Published:** September 21, 2006
 **Priority:** JP P.2005-062459, March 7, 2005
-**Embodiment used:** Example 1 (Table 1, corresponding to FIG. 1)
+**Embodiment analyzed:** Example 1 (Table 1, corresponding to FIG. 1)
 
 The identification of Example 1 with the production Hasselblad HC 4.5/300 rests on the following convergent evidence:
 

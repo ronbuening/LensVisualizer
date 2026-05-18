@@ -5,11 +5,11 @@
 **Patent:** WO 2019/187633 A1 (JP re-publication), titled "撮像レンズ及び撮像装置" (Imaging Lens and Imaging Apparatus).
 **Applicant:** Sony Corporation (000002185), Tokyo, Japan.
 **Inventors:** Matsuoka Dai (松岡 大), Miyagawa Naoki (宮川 直己), Matsumoto Hiroyuki (松本 博之).
-**International filing date:** 4 February 2019 (PCT/JP2019/003857).
-**Priority date:** 30 March 2018 (JP 2018-67276).
-**International publication date:** 3 October 2019.
+**Filed:** 4 February 2019 (PCT/JP2019/003857).
+**Priority:** 30 March 2018 (JP 2018-67276).
+**Published:** 3 October 2019.
 
-**Embodiment used:** Numerical Example 1 (数値実施例 1), corresponding to the first embodiment (第1の実施の形態) described beginning at ¶0102 and tabulated in Tables 1–5 (pages 17–18).
+**Embodiment analyzed:** Numerical Example 1 (数値実施例 1), corresponding to the first embodiment (第1の実施の形態) described beginning at ¶0102 and tabulated in Tables 1–5 (pages 17–18).
 
 The production lens is the **Sony FE 135mm F1.8 GM** (model SEL135F18GM), announced in February 2019 and shipped in spring 2019. The following convergent evidence identifies Example 1 as the production embodiment:
 

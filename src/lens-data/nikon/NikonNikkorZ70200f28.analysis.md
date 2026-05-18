@@ -1,10 +1,11 @@
 # Optical Analysis: NIKKOR Z 70-200mm f/2.8 VR S
 
-**Patent WO2020/105104 A1 — Example 1 (Nikon Corporation)**
-
+**Patent:** WO2020/105104 A1
 **Inventor:** Ken Uehara  
+**Applicant:** Nikon Corporation  
 **Filed:** November 20, 2018 (PCT/JP2018/042763)  
 **Published:** May 28, 2020  
+**Embodiment analyzed:** Example 1
 
 ---
 

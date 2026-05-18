@@ -2,6 +2,14 @@
 
 ## US 2020/0049962 A1 · Example 1 (ZL1) · Inventor: Tomoki Ito · Nikon Corporation
 
+**Patent:** US 2020/0049962 A1
+**Inventor:** Tomoki Ito
+**Applicant:** Nikon Corporation
+**Priority:** JP 2013-012752 through JP 2013-012758, January 28, 2013
+**Filed:** January 27, 2014 (PCT/JP2014/000396)
+**Published:** February 13, 2020
+**Embodiment analyzed:** Example 1 (ZL1)
+
 ---
 
 ## 1. Identification and Provenance

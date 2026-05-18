@@ -1,8 +1,11 @@
 # Canon RF 85mm f/2 Macro IS STM — Optical Analysis
 
 **Patent:** US 2021/0072505 A1, First Numerical Example (Kobayashi, Canon Kabushiki Kaisha)  
-**Priority:** JP 2019-161981, September 5, 2019 · **Published:** March 11, 2021  
 **Inventor:** Kana Kobayashi, Utsunomiya-shi, Japan
+**Assignee:** Canon Kabushiki Kaisha
+**Priority:** JP 2019-161981, September 5, 2019
+**Published:** March 11, 2021
+**Embodiment analyzed:** First Numerical Example
 
 ---
 

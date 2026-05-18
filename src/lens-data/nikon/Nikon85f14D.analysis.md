@@ -2,10 +2,13 @@
 
 ## US Patent 5,640,277 · Example 2 (Production Design)
 
-**Patent:** US 5,640,277 · Filed Dec 27, 1994 · Granted Jun 17, 1997
+**Patent:** US 5,640,277
+**Filed:** December 27, 1994
+**Granted:** June 17, 1997
 **Inventor:** Koichi Ohshita (大下浩一)
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Japanese Priority:** JP 5-353455, filed Dec 28, 1993
+**Embodiment analyzed:** Example 2
 **Production Lens:** Nikon AF Nikkor 85mm f/1.4D IF (released December 1995, in production 1995–2010)
 
 ---

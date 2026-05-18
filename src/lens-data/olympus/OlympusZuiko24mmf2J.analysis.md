@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 3,830,559
+**Inventor:** Masaki Matsubara
+**Assignee:** Olympus Optical Co., Ltd.
+**Priority:** JP 47-31302, March 29, 1972
+**Filed:** March 14, 1973
+**Granted:** August 20, 1974
+**Title:** Super-wide-angle lens systems for photographic cameras
+**Embodiment analyzed:** Example 1, FIG. 1
+
 The relevant patent is **US 3,830,559, "Super-wide-angle lens systems for photographic cameras,"** filed by Masaki Matsubara for Olympus Optical Co., Ltd. The U.S. application was filed on 14 March 1973, claims Japanese priority of 29 March 1972 (No. 47-31302), and was granted on 20 August 1974. The patent describes a large-aperture retrofocus wide-angle lens for 35 mm single-lens reflex cameras with an aperture ratio on the order of **F/2.0**, a picture angle up to **84°**, and use of a conventional **55 mm** front filter.
 
 This analysis uses **Example 1**, the FIG. 1 embodiment. The production lens is not named in the patent, so the match to the Olympus OM-System **J. Zuiko Auto-W 24mm f/2** is inferential rather than explicit. The identification rests on the following convergent evidence:

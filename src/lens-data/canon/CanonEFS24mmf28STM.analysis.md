@@ -8,7 +8,7 @@
 **Filed:** December 6, 2013 (Priority: 特願2013-252979)
 **Published:** June 18, 2015
 
-**Embodiment used:** Numerical Example 1 (数値実施例１, ¶0066)
+**Embodiment analyzed:** Numerical Example 1 (数値実施例１, ¶0066)
 
 The following convergent evidence identifies Example 1 as the production Canon EF-S 24mm f/2.8 STM (released November 2014):
 

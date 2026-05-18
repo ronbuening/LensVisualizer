@@ -1,8 +1,11 @@
 # Nikon NIKKOR Z 35mm f/1.2 S — Optical Analysis
 
-**Patent:** JP 2025-52870A (filed 2023-09-26, published 2025-04-07)
-**Numerical Example:** 1 (Table 1)
+**Patent:** JP 2025-52870A
+**Filed:** September 26, 2023
+**Published:** April 7, 2025
 **Inventors:** Sōki Harada, Toshiyuki Shimada (Nikon Corporation)
+**Applicant:** Nikon Corporation
+**Embodiment analyzed:** Numerical Example 1 (Table 1)
 
 ---
 

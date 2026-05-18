@@ -7,7 +7,7 @@
 **Inventor:** Tomoki Kōno (幸野 朋来)
 **Filed:** 2012-01-31 (Priority: P2012-17449)
 **Published:** 2013-08-15
-**Embodiment used:** Numerical Example 4 (数値実施例４), ¶0065–¶0070
+**Embodiment analyzed:** Numerical Example 4 (数値実施例４), ¶0065–¶0070
 
 The prescription is identified with the production lens used in the Sigma DP2 Merrill (2012) compact camera by the following convergent evidence:
 

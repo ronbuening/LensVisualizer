@@ -2,11 +2,13 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2002-090622 A (特開2002-90622), "中望遠マクロレンズ" (Medium Telephoto Macro Lens).
-**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano-shi, Nagano Prefecture.
-**Inventor:** Aida Yoshihisa (逢田 祥寿).
-**Filed:** September 20, 2000 (平成12年9月20日). **Published:** March 27, 2002 (平成14年3月27日).
-**Embodiment analyzed:** Example 2 (第2実施形態), Table 2 (表2), described at ¶0018–0022.
+**Patent:** JP 2002-090622 A (特開2002-90622)
+**Filed:** September 20, 2000 (平成12年9月20日)
+**Published:** March 27, 2002 (平成14年3月27日)
+**Inventor:** Aida Yoshihisa (逢田 祥寿)
+**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano-shi, Nagano Prefecture
+**Title:** Medium Telephoto Macro Lens (中望遠マクロレンズ)
+**Embodiment analyzed:** Example 2 (第2実施形態), Table 2 (表2), ¶0018–0022
 
 This analysis transcribes Example 2 as requested. The following evidence supports and complicates the identification of this embodiment as the production design:
 

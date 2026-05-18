@@ -1,10 +1,12 @@
 # Carl Zeiss Tessar 50 mm f/3.5 — A Detailed Analysis of Swiss Patent CH 314381 (Example 1)
 
+**Patent:** CH 314381
 **Inventors:** Dr. Günther Lange (Königsbronn) & Dr. phil. Robert Richter (Aalen)
 **Assignee:** Firma Carl Zeiss, Heidenheim a.d. Brenz
 **Priority:** Germany, 21 July 1952
 **Filed (Switzerland):** 24 June 1953
 **Published:** 31 July 1956
+**Embodiment analyzed:** Example 1
 
 ---
 

@@ -2,6 +2,14 @@
 
 ## Patent and Production Identification
 
+**Patent:** US 4,057,330
+**Inventor:** Sei Matui (松井 清, commonly romanized as Matsui)
+**Assignee:** Nippon Kogaku K.K.
+**Filed:** October 3, 1974
+**Granted:** November 8, 1977
+**Title:** Lens System Having Large Relative Aperture and Long Focus
+**Embodiment analyzed:** Example 2
+
 US Patent 4,057,330, "Lens System Having Large Relative Aperture and Long Focus," was filed on October 3, 1974, by inventor Sei Matui (松井 清, commonly romanized as Matsui) and assigned to Nippon Kogaku K.K. (the corporate name Nikon used until 1988). The patent was granted November 8, 1977. It presents three numerical examples, all specified at a normalized composite focal length of f = 100 mm, a relative aperture of 1:2.8, and a half-angle of view of 9.05° (full angle 18.1°).
 
 The patent's 5-element, 4-group Ernostar-variant layout matches the production AI Nikkor 135mm f/2.8 specification exactly. The "New K" version of this lens was introduced in 1976 with the revised 5/4 formula and carried forward through the AI (1977) and AI-S (1981–2005) versions without optical change. The earlier Nikkor-Q 135mm f/2.8 (1965–1976) used a simpler 4-element, 4-group construction; the patent design replaced it with the addition of a fifth element (L2) to improve correction of spherical aberration and coma at the f/2.8 aperture.
