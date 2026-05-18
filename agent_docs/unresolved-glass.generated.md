@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **211** lenses scanned
-- **2442** non-air surfaces examined
-- **2436** element glass declarations examined
-- **638** non-explicit-unmatched annotations did not resolve
+- **214** lenses scanned
+- **2465** non-air surfaces examined
+- **2459** element glass declarations examined
+- **639** non-explicit-unmatched annotations did not resolve
 - **193** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -65,6 +65,7 @@ or per-lens patent backfills.
 | S-LAM61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-PHM52Q | 2 | 2 | |
+| S-TIH1 | 2 | 2 | |
 | S-TIL26 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK7 | 2 | 2 | |
@@ -194,7 +195,6 @@ or per-lens patent backfills.
 | S-TIF1 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
-| S-TIH1 | 1 | 1 | |
 | S-TIL1 | 1 | 1 | |
 | S-TIL2 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
@@ -481,6 +481,11 @@ or per-lens patent backfills.
 
 - [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) 10: `S-PHM52Q (OHARA)`
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 20: `S-PHM52Q (OHARA)`
+
+### S-TIH1 — 2 occurrences
+
+- [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) 1: `S-TIH1 (OHARA)`
+- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
 
 ### S-TIL26 — 2 occurrences
 
@@ -1001,10 +1006,6 @@ or per-lens patent backfills.
 ### S-TIF8 — 1 occurrence
 
 - [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) 5: `S-TIF8 (OHARA) / TIF6 (HOYA)`
-
-### S-TIH1 — 1 occurrence
-
-- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
 
 ### S-TIL1 — 1 occurrence
 
