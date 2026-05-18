@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 4,182,550
+**Inventor:** Tamikazu Yamaguchi
+**Assignee:** Minolta Camera Kabushiki Kaisha, Osaka, Japan
+**Priority:** JP 52-32728, March 23, 1977
+**Filed:** March 15, 1978
+**Granted:** January 8, 1980
+**Title:** Modified Gauss Type Lens System
+**Embodiment analyzed:** Embodiment 2 (Table 2)
+
 **US Patent 4,182,550**, "Modified Gauss Type Lens System." Inventor: Tamikazu Yamaguchi. Assignee: Minolta Camera Kabushiki Kaisha, Osaka, Japan. Filed March 15, 1978; granted January 8, 1980. Japanese priority date: March 23, 1977 (JP 52-32728). A Certificate of Correction was issued July 15, 1980, correcting condition (5) from $N_3 < 1.67, N_4 < 1.67$ to $N_3 > 1.67, N_4 > 1.67$.
 
 The prescription used here is **Embodiment 2** (Table 2), the f/1.4 variant. The patent discloses three embodiments: Embodiment 1 at f/1.2 with 2ω = 46°, Embodiment 2 at f/1.4 with 2ω = 46°, and Embodiment 3 at f/1.8 with 2ω = 52°. Embodiment 2 is identified as the design corresponding to the production Minolta MD 50mm f/1.4 lens based on the following convergent evidence:

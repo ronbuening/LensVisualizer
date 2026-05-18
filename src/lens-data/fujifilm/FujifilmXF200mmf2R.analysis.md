@@ -1,6 +1,11 @@
 # Fujifilm Fujinon XF 200 mm f/2 R LM OIS WR — Optical Analysis
 
-**Patent:** US 2019/0265504 A1 · Example 1 · Applicant FUJIFILM Corporation · Inventor Hiroki Saito · Priority JP 2018‑035614 (28 Feb 2018) · Published 29 Aug 2019
+**Patent:** US 2019/0265504 A1
+**Inventor:** Hiroki Saito
+**Applicant:** FUJIFILM Corporation
+**Priority:** JP 2018-035614, February 28, 2018
+**Published:** August 29, 2019
+**Embodiment analyzed:** Example 1
 
 **Production lens:** Fujinon XF 200 mm F2 R LM OIS WR · Fujifilm X‑mount · Announced September 2018; shipping since November 2018
 

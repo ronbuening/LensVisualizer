@@ -1,6 +1,14 @@
 # Fujifilm Fujinon XF 16–80 mm f/4 R OIS WR — Optical Analysis
 
-**Patent embodiment:** US 2020/0166735 A1, Example 11 (Kawamura & Noda, assigned to FUJIFILM Corporation; filed 20 Nov 2019; priority JP 2018‑221597, 27 Nov 2018; published 28 May 2020). Example 11 is the uniquely matching embodiment among the eleven in the application: it contains 16 elements in 12 groups, four elements with aspherical surfaces (one of which is also the ED element), a constant f/4 aperture across the zoom range (FNo 4.12 at wide, 4.13 at tele), a focal range of 16.497–77.751 mm that maps cleanly to the marketed 16–80 mm, and the positive‑negative‑positive‑negative‑positive five‑group topology Fujifilm's product documentation attributes to the shipping lens.
+**Patent:** US 2020/0166735 A1
+**Inventors:** Kawamura, Noda
+**Assignee:** FUJIFILM Corporation
+**Priority:** JP 2018-221597, November 27, 2018
+**Filed:** November 20, 2019
+**Published:** May 28, 2020
+**Embodiment analyzed:** Example 11
+
+Example 11 is the uniquely matching embodiment among the eleven in the application: it contains 16 elements in 12 groups, four elements with aspherical surfaces (one of which is also the ED element), a constant f/4 aperture across the zoom range (FNo 4.12 at wide, 4.13 at tele), a focal range of 16.497–77.751 mm that maps cleanly to the marketed 16–80 mm, and the positive‑negative‑positive‑negative‑positive five‑group topology Fujifilm's product documentation attributes to the shipping lens.
 
 This analysis is derived from the patent prescription alone, cross‑referenced with Fujifilm's published product specifications. All quantitative claims have been independently verified via paraxial ray trace using ABCD matrix methods (the Python verification reproduces the patent's stated EFLs at all three zoom positions to within 0.001 mm and matches eighteen of the nineteen Table 34 conditional expressions that the patent lists for Example 11; the single discrepancy — Expression 11 — is identified in § 10 as a transcription error in the patent's printed table).
 

@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 4,871,239
+**Inventors:** Hisayuki Masumoto, Akira Fukushima
+**Assignee:** Minolta Camera Kabushiki Kaisha
+**Priority:** JP September 9, 1986 and JP October 29, 1986
+**Filed:** September 9, 1987
+**Granted:** October 3, 1989
+**Title:** Zoom Lens System for Minimal Lens System Length and Minimal Aberrations
+**Embodiment analyzed:** Example 3 / Embodiment 3
+
 The relevant first-party technical source is US Patent 4,871,239, **"Zoom Lens System for Minimal Lens System Length and Minimal Aberrations"**, assigned to Minolta Camera Kabushiki Kaisha. The named inventors are Hisayuki Masumoto and Akira Fukushima. The US application was filed on 9 September 1987, with Japanese priorities of 9 September 1986 and 29 October 1986, and the patent issued on 3 October 1989.
 
 This document analyzes **Example 3 / Embodiment 3**, which appears as Table 3 in the specification and again as claim 29. Claim 29 gives the design as **f = 36.0-60.0-102.0 mm**, **FNo = 3.6-4.2-4.65**, and **2ω = 61.93°-39.60°-23.91°**. Those values are the patent-scale counterpart of the marketed **Minolta AF 35-105mm f/3.5-4.5 New / RS / v2** normal zoom. The later Certificate of Correction removes several other embodiments and makes text/table corrections elsewhere, but it does not supply a corrected printed value for the Example 3 wide-angle d13 entry; the d13 correction used here is therefore a numerical reconstruction rather than an issued textual correction.

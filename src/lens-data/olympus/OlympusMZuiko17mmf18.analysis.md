@@ -8,9 +8,11 @@
 
 **Inventors:** Yamada Yasuharu (山田 康晴), Murakami Daichi (村上 大地), Kubota Yuki (窪田 勇樹).
 
-**Filing date:** 2012-03-12 (Japanese application 特願2012-54267).
+**Filed:** 2012-03-12 (Japanese application 特願2012-54267).
 
-**Embodiment used:** Numerical Example 3 (数値実施例3, ¶0080).
+**Published:** 2013-09-19.
+
+**Embodiment analyzed:** Numerical Example 3 (数値実施例3, ¶0080).
 
 Example 3 is the best match to the production Olympus M.Zuiko Digital 17mm f/1.8. The identification is convergent rather than explicit: the patent does not name the retail product. The matching evidence is as follows.
 

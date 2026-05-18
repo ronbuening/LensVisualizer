@@ -2,8 +2,10 @@
 
 **Patent:** US 2014/0285903 A1 — Example 1
 **Inventor:** Takashi Suzuki (Fujifilm Corporation)
-**Priority date:** December 16, 2011 (JP 2011-275177)
-**Publication date:** September 25, 2014
+**Applicant:** Fujifilm Corporation
+**Priority:** December 16, 2011 (JP 2011-275177)
+**Published:** September 25, 2014
+**Embodiment analyzed:** Example 1
 
 *Note on patent title:* The US publication is titled "Imaging Zoom Lens and Imaging Apparatus Including the Same," but the patent describes fixed focal length (prime) lens designs exclusively. None of the three numerical examples include variable magnification or zoom mechanisms. The title is likely an artifact of broad PCT filing language or a translation convention from the original Japanese application.
 

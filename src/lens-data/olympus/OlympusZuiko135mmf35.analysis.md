@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 3,838,911
+**Inventor:** Yoshitsugi Ikeda
+**Assignee:** Olympus Optical Co. Ltd.
+**Priority:** JP 47-66514, July 3, 1972
+**Filed:** April 24, 1973
+**Granted:** October 1, 1974
+**Title:** Telephoto Lens System
+**Embodiment analyzed:** Embodiment 1 / Example 1
+
 The relevant patent is **US 3,838,911, "Telephoto Lens System,"** assigned to Olympus Optical Co. Ltd. and naming Yoshitsugi Ikeda as inventor. The U.S. filing date is 24 April 1973, the Japanese priority date is 3 July 1972 (Japanese Application 47-66514), and the U.S. grant date is 1 October 1974. The analysis below uses **Embodiment 1 / Example 1**, the f/3.5 example in the patent.
 
 The identification of Example 1 with the Olympus E.Zuiko Auto-T 1:3.5 f=135mm rests on the convergence of several independent specifications between the patent and the Olympus OM System lens leaflet. No first-party interview or designer commentary naming specific glass melts or describing the internal focusing mechanism was located; all conclusions therefore rest on the patent prescription and the first-party lens sheet.

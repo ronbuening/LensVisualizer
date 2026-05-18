@@ -11,9 +11,9 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 | Total analysis files | 209 | `find src/lens-data -name '*.analysis.md'` |
 | Robust bold blocks before this standardization | 103 | Approximate scan: patent + inventor/applicant/assignee + date |
 | Missing robust bold block before this standardization | 106 | Grouped by maker below |
-| Completed so far | 58 | Voigtländer, Canon, and Nikon analyses |
-| Current robust count | 161 | Latest scan after Nikon batch |
-| Current missing count | 48 | Latest scan after Nikon batch |
+| Completed so far | 82 | Voigtländer, Canon, Nikon, Olympus, Fujifilm, Sony, and Minolta batches |
+| Current robust count | 185 | Latest scan after Olympus/Fujifilm/Sony/Minolta batch |
+| Current missing count | 24 | Latest scan after Olympus/Fujifilm/Sony/Minolta batch |
 
 ## Initial Missing Robust Count by Maker
 
@@ -41,6 +41,36 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Done
 
+- Olympus, Fujifilm, Sony, and Minolta batch complete: all analysis files in those four maker folders now satisfy the robust-block scan.
+- `src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.analysis.md`
+- `src/lens-data/olympus/OlympusMZuiko17mmf18.analysis.md`
+- `src/lens-data/olympus/OlympusZuiko135mmf35.analysis.md`
+- `src/lens-data/olympus/OlympusZuiko24mmf2J.analysis.md`
+- `src/lens-data/olympus/OlympusZuiko85mmf2.analysis.md`
+- `src/lens-data/olympus/OlympusZuikoAuto21mmf2.analysis.md`
+- `src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.analysis.md`
+- `src/lens-data/olympus/OlympusZuikoAutoS50mmf12.analysis.md`
+- `src/lens-data/olympus/OlympusZuikoAutoS55mmf12.analysis.md`
+- `src/lens-data/fujifilm/FujifilmGF80mmf17R.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF1680mmf4.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF1655mmf28R.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF200mmf2R.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF35mmf14R.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF50140mmf28R.analysis.md`
+- `src/lens-data/fujifilm/FujifilmXF60mmf24R.analysis.md`
+- `src/lens-data/sony/SonyFE135mmf18GM.analysis.md`
+- `src/lens-data/sony/SonyFE2070mmf4G.analysis.md`
+- `src/lens-data/sony/SonyFE2470mmf28GMII.analysis.md`
+- `src/lens-data/sony/SonyFE2870mmf2GM.analysis.md`
+- `src/lens-data/sony/SonyFE85mmf14GMII.analysis.md`
+- `src/lens-data/sony/SonyFE90mmf28.analysis.md`
+- `src/lens-data/sony/SonyPlanarFE50mmf14ZA.analysis.md`
+- `src/lens-data/sony/SonyPlanarT50mmf14ZA.analysis.md`
+- `src/lens-data/minolta/MinoltaAF100mmf28Macro.analysis.md`
+- `src/lens-data/minolta/MinoltaAF35105mmf3545v2.analysis.md`
+- `src/lens-data/minolta/MinoltaAF70200mmf28APO.analysis.md`
+- `src/lens-data/minolta/MinoltaRokkor45mmf2MD.analysis.md`
+- `src/lens-data/minolta/MinoltaRokkor50mmf14MD.analysis.md`
 - Nikon batch complete: all 54 Nikon analysis files now satisfy the robust-block scan.
 - `src/lens-data/nikon/Nikon28Ti28mmf28.analysis.md`
 - `src/lens-data/nikon/Nikon35Ti35mmf28.analysis.md`

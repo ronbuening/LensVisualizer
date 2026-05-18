@@ -2,11 +2,12 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2014/0071331 A1, "Imaging Lens and Imaging Apparatus," published 13 March 2014.
+**Patent:** US 2014/0071331 A1, "Imaging Lens and Imaging Apparatus."
 **Applicant:** Sony Corporation, Tokyo, Japan.
 **Inventors:** Kouji Katou, Yumiko Uehara, Motoyuki Otake.
 **Priority:** JP 2012-196889, filed 7 September 2012.
-**Embodiment used:** Numerical Example 4 (Table 10, aspheric Table 11, specs Table 12; cross-section FIG. 7; aberrations FIG. 8).
+**Published:** 13 March 2014.
+**Embodiment analyzed:** Numerical Example 4 (Table 10, aspheric Table 11, specs Table 12; cross-section FIG. 7; aberrations FIG. 8).
 
 The prescription is identified with the production **Sony Planar T* 50mm F1.4 ZA SSM** (model SAL50F14Z) on the basis of converging evidence:
 

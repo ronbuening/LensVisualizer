@@ -8,13 +8,12 @@
 
 The lens under analysis is the **Fujinon XF 16-55mm F2.8 R LM WR**, Fujifilm's weather-sealed standard zoom for the APS-C X mount, first announced in January 2015. The published patent filing most closely aligned with this product is:
 
-| | |
-|---|---|
-| Application | US 2016/0154221 A1 |
-| Priority | JP 2014-243845, filed 2 December 2014 |
-| Applicant | FUJIFILM Corporation |
-| Inventors | Taiga Noda; Michio Cho |
-| Examples in filing | 3 numerical examples; this document analyses **Example 1** |
+**Patent:** US 2016/0154221 A1
+**Inventors:** Taiga Noda; Michio Cho
+**Applicant:** FUJIFILM Corporation
+**Priority:** JP 2014-243845, December 2, 2014
+**Published:** June 2, 2016
+**Embodiment analyzed:** Example 1
 
 The patent discloses three closely related numerical examples of a five-group standard zoom; all three meet the stated design targets (small F-number across the full zoom range, aberration-corrected at high pixel counts). Example 1 is the variant whose paraxial specifications (EFL range 16.49–53.44 mm, F/2.88–2.89, image heights consistent with APS-C) match Fujifilm's marketed XF 16-55mm product most closely. Examples 2 and 3 are design-space alternatives with modified Conditional Formula values; they were not commercialised. The analysis below is confined to Example 1.
 

@@ -2,7 +2,14 @@
 
 ## US Patent 4,099,843 · Embodiment 6 · Toshihiro Imai (Olympus Optical Co., Ltd.)
 
-Filed March 1, 1977 · Granted July 11, 1978 · Priority: Japan 51-22482 (March 2, 1976)
+**Patent:** US 4,099,843
+**Inventor:** Toshihiro Imai
+**Assignee:** Olympus Optical Co., Ltd.
+**Priority:** JP 51-22482, March 2, 1976
+**Filed:** March 1, 1977
+**Granted:** July 11, 1978
+**Title:** Compact Large-Aperture Photographic Lens System with Long Back Focal Length
+**Embodiment analyzed:** Embodiment 6
 
 ---
 

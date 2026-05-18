@@ -1,10 +1,13 @@
 # Sony FE 90 mm F2.8 Macro G OSS — Optical Analysis
 
-**Patent reference:** WIPO **WO 2016/136352 A1** — Sony Corporation, *"Macro lens and imaging device"*. Priority: JP 2015‑036470 (26 February 2015). International filing: PCT/JP2016/051987 (25 January 2016). Publication: 1 September 2016.
-
-**Inventors:** Yumiko UEHARA, Fumikazu KANETAKA, Hisashi UNO (all Sony Corporation).
-
-**Numerical example analysed:** Example 2 — the embodiment that corresponds to the production lens.
+**Patent:** WO 2016/136352 A1
+**Inventors:** Yumiko Uehara, Fumikazu Kanetaka, Hisashi Uno
+**Applicant:** Sony Corporation
+**Priority:** JP 2015-036470, February 26, 2015
+**Filed:** January 25, 2016 (PCT/JP2016/051987)
+**Published:** September 1, 2016
+**Title:** Macro lens and imaging device
+**Embodiment analyzed:** Example 2
 
 **Production model:** Sony **FE 90 mm F2.8 Macro G OSS** (model **SEL90M28G**), announced March 2015. Sony's product page lists the lens as a 35 mm full‑frame E‑mount macro: 11 groups / 15 elements, 9‑blade circular aperture, F2.8 maximum aperture, F22 minimum aperture, 0.28 m minimum focusing distance, 1:1 maximum magnification, 62 mm filter, 79 × 130.5 mm body, 602 g, with Optical SteadyShot image stabilisation. Sony's lens‑construction diagram on the product page identifies one Aspherical, one Super ED, and one ED element.
 
