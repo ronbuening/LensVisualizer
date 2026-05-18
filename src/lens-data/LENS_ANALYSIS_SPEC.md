@@ -28,10 +28,25 @@ Every analysis file should contain the following H2 sections in this order. Sect
 
 Opens the file. Contains:
 
-- Patent number (with publication country prefix), title, applicant, inventor(s).
+- Patent number (with publication country prefix), title when known, applicant or assignee, inventor(s).
 - Filing and publication or grant dates. Priority date when relevant.
 - The specific embodiment (`Example N`, `第N実施例`, `Numerical Example N`) used.
 - The convergent evidence linking the embodiment to the production lens. Use a numbered list when multiple criteria converge — element/group count, special-element count (ED, asph), focal length, aperture, image-circle diameter, focus mechanism, IS configuration, MFD, and patent timing.
+
+Begin this section with a robust bold-label metadata block before the identification prose. When backfilling an existing analysis, normalize older one-off tables, title-only summaries, or partial metadata lines into this block rather than duplicating the same facts in multiple formats.
+
+```md
+**Patent:** ...
+**Application Number:** ... <!-- optional -->
+**Filed:** ...
+**Published:** ... <!-- or Granted -->
+**Inventor:** ...
+**Applicant:** ... <!-- or Assignee -->
+**Title:** ... <!-- optional but preferred -->
+**Embodiment analyzed:** ...
+```
+
+Use the block adaptively. A robust block has, at minimum, `**Patent:**`, one ownership/authorship line (`**Inventor:**`, `**Inventors:**`, `**Applicant:**`, or `**Assignee:**`), one date line (`**Filed:**`, `**Published:**`, or `**Granted:**`), and the selected embodiment when the source provides one. Include optional rows such as application number, priority date, title, classification, total claims, or worked-example count only when known or readily verified; omit optional unknowns rather than inventing values. For older granted patents, `**Granted:**` can replace `**Published:**` when the grant is the meaningful public event. For multi-patent analyses, use the block for the primary transcribed patent and describe secondary or context patents in the prose unless multiple patents directly supply prescriptions; in that case, use one block per primary prescription source.
 
 A reader who knows the lens but not the patent should be able to verify the identification from this section alone.
 

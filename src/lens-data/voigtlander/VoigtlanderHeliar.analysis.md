@@ -1,9 +1,12 @@
 # The Original Voigtländer Heliar: Analysis of US Patent 716,035
 
-**Patent:** US 716,035 — *Lens*
+**Patent:** US 716,035
+**Filed:** February 4, 1901
+**Granted:** December 16, 1902
 **Inventor:** Carl August Hans Harting, Brunswick, Germany
 **Assignee:** Voigtländer & Sohn Aktien Gesellschaft, Brunswick, Germany
-**Filed:** February 4, 1901 — **Granted:** December 16, 1902
+**Title:** Lens
+**Embodiment analyzed:** Original symmetric Heliar design
 
 ---
 

@@ -4,18 +4,17 @@
 
 ## 1. Patent Overview
 
-| Field | Detail |
-|---|---|
-| Patent Number | JP2021-43376A |
-| Application Number | 特願2019-166556 (P2019-166556) |
-| Filing Date | September 12, 2019 (令和1年9月12日) |
-| Publication Date | March 18, 2021 (令和3年3月18日) |
-| Inventor | Yasuyuki Sugano (菅野 靖之) |
-| Applicant | Cosina Co., Ltd. (株式会社コシナ), Nakano-shi, Nagano |
-| Title | Imaging Optical System (撮像光学系) |
-| Classification | G02B 13/00, G02B 13/18 |
-| Total Claims | 18 |
-| Total Worked Examples | 14 |
+**Patent:** JP2021-43376A
+**Application Number:** 特願2019-166556 (P2019-166556)
+**Filed:** September 12, 2019 (令和1年9月12日)
+**Published:** March 18, 2021 (令和3年3月18日)
+**Inventor:** Yasuyuki Sugano (菅野 靖之)
+**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nakano-shi, Nagano
+**Title:** Imaging Optical System (撮像光学系)
+**Classification:** G02B 13/00, G02B 13/18
+**Total Claims:** 18
+**Total Worked Examples:** 14
+**Embodiment analyzed:** Example 5
 
 This patent was filed by Cosina in September 2019 — the same year the Voigtländer APO-LANTHAR 50mm f/2.0 Aspherical launched for Sony E-mount. It discloses a family of quasi-symmetric imaging optical systems for interchangeable-lens digital cameras, covering 14 worked examples that span focal lengths from 25.8 mm to 134 mm, all at f/2.2 or faster. The inventor, Yasuyuki Sugano, is distinct from the designers named in previously analyzed Cosina patents (Kazuhiro Ogino for the Nokton 50mm f/1.0; Shoju Hatta and Yoshitoshi Aida for the Nokton 35mm f/1.2).
 

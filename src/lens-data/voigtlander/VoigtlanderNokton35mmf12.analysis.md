@@ -1,10 +1,11 @@
 # Voigtländer NOKTON 35mm f/1.2 Aspherical — Optical Analysis
 
-**Patent:** JP 2004-101880A, Example 2 (Table 3 / Table 4)
-**Inventor:** Yoshitoshi Hoda (蓬田 祥寿)
-**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nagano Prefecture, Japan
+**Patent:** JP 2004-101880 A
 **Filed:** September 10, 2002 (Heisei 14)
 **Published:** April 2, 2004 (Heisei 16)
+**Inventor:** Yoshitoshi Hoda (蓬田 祥寿)
+**Applicant:** Cosina Co., Ltd. (株式会社コシナ), Nagano Prefecture, Japan
+**Embodiment analyzed:** Example 2, Table 3 / Table 4
 
 ---
 
