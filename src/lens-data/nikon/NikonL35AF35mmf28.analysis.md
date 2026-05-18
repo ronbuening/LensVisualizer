@@ -2,6 +2,13 @@
 
 ## US 4,457,596 · Embodiment 1 · Koichi Wakamiya / Nippon Kogaku K.K.
 
+**Patent:** US 4,457,596
+**Inventor:** Koichi Wakamiya
+**Assignee:** Nippon Kogaku K.K.
+**Filed:** September 27, 1982
+**Granted:** July 3, 1984
+**Embodiment analyzed:** Embodiment 1
+
 ---
 
 ## 1. Historical Context

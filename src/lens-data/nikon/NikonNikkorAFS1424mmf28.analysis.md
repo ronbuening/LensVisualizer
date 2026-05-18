@@ -2,9 +2,13 @@
 
 ## US 7,359,125 B2 — Example 1 (Kimura & Sato, Nikon Corporation)
 
-**Patent filed:** September 7, 2006 · **Granted:** April 15, 2008
+**Patent:** US 7,359,125 B2
+**Filed:** September 7, 2006
+**Granted:** April 15, 2008
 **Priority:** JP 2005-285398 (September 29, 2005)
 **Inventors:** Yoko Kimura, Haruo Sato
+**Assignee:** Nikon Corporation
+**Embodiment analyzed:** Example 1
 **Production lens:** AF-S Nikkor 14-24mm f/2.8G ED (released August 2007)
 
 ---

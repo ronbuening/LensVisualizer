@@ -1,8 +1,12 @@
 # Nikon Nikkor-N Auto 28mm f/2 — Patent Analysis
 
-**Patent:** US 3,736,049 · Filed September 29, 1971 · Granted May 29, 1973
-**Inventor:** Yoshiyuki Shimizu · **Assignee:** Nippon Kogaku K.K. (Nikon)
+**Patent:** US 3,736,049
+**Filed:** September 29, 1971
+**Granted:** May 29, 1973
+**Inventor:** Yoshiyuki Shimizu
+**Assignee:** Nippon Kogaku K.K. (Nikon)
 **Japanese Priority:** JP 45/85417, September 30, 1970
+**Embodiment analyzed:** Single worked numerical example
 **Production lens:** Nikkor-N Auto 28mm f/2 (1970–1977), AI Nikkor 28mm f/2 (1977–1981), AI-S Nikkor 28mm f/2S (1981–2005)
 
 ---

@@ -2,8 +2,10 @@
 
 **Patent:** WO 2022/071249 A1 — Example 2 (Table 2)
 **Priority:** JP 2020-164402 (30 September 2020)
+**Published:** April 7, 2022
 **Inventor:** SHIMADA, Toshiyuki (嶋田 俊之)
 **Applicant:** Nikon Corporation
+**Embodiment analyzed:** Example 2 (Table 2)
 **Production Design Identification:** Confirmed — see §1 below
 
 ---

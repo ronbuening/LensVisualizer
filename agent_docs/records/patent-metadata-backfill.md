@@ -11,9 +11,9 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 | Total analysis files | 209 | `find src/lens-data -name '*.analysis.md'` |
 | Robust bold blocks before this standardization | 103 | Approximate scan: patent + inventor/applicant/assignee + date |
 | Missing robust bold block before this standardization | 106 | Grouped by maker below |
-| Completed so far | 24 | Voigtländer and Canon analyses |
-| Current robust count | 127 | Latest scan after Canon batch |
-| Current missing count | 82 | Latest scan after Canon batch |
+| Completed so far | 58 | Voigtländer, Canon, and Nikon analyses |
+| Current robust count | 161 | Latest scan after Nikon batch |
+| Current missing count | 48 | Latest scan after Nikon batch |
 
 ## Initial Missing Robust Count by Maker
 
@@ -41,6 +41,41 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Done
 
+- Nikon batch complete: all 54 Nikon analysis files now satisfy the robust-block scan.
+- `src/lens-data/nikon/Nikon28Ti28mmf28.analysis.md`
+- `src/lens-data/nikon/Nikon35Ti35mmf28.analysis.md`
+- `src/lens-data/nikon/Nikon58f14GDesignCandidate.analysis.md`
+- `src/lens-data/nikon/Nikon85f14D.analysis.md`
+- `src/lens-data/nikon/NikonAF28f14D.analysis.md`
+- `src/lens-data/nikon/NikonAFPDX1020mmf4556G.analysis.md`
+- `src/lens-data/nikon/NikonAFPDX70300mmf4563G.analysis.md`
+- `src/lens-data/nikon/NikonAFP70300mmf4556E.analysis.md`
+- `src/lens-data/nikon/NikonAI135mmf2.analysis.md`
+- `src/lens-data/nikon/NikonAI135mmf28.analysis.md`
+- `src/lens-data/nikon/NikonL35AF35mmf28.analysis.md`
+- `src/lens-data/nikon/NikonNikkorAFS120300mmf28.analysis.md`
+- `src/lens-data/nikon/NikonNikkorAFS1424mmf28.analysis.md`
+- `src/lens-data/nikon/NikonNikkorAFS200500mmf56.analysis.md`
+- `src/lens-data/nikon/NikonNikkorAFS2470mmf28E.analysis.md`
+- `src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.analysis.md`
+- `src/lens-data/nikon/NikonNikkorN28mmf2.analysis.md`
+- `src/lens-data/nikon/NikonNikkorPCE19mmf4E.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ100400f4556.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ1430mmf4S.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ24200mmf463VR.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ2450mmf463.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ35mmf12S.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ40mmf2.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ50f18S.analysis.md`
+- `src/lens-data/nikon/NikonNikkorZ70200f28.analysis.md`
+- `src/lens-data/nikon/NikonPCENikkor24mmf35DED.analysis.md`
+- `src/lens-data/nikon/NikonZ1424f28S.analysis.md`
+- `src/lens-data/nikon/NikonZ2470f28.analysis.md`
+- `src/lens-data/nikon/NikonZ28f28.analysis.md`
+- `src/lens-data/nikon/NikonZ35f18S.analysis.md`
+- `src/lens-data/nikon/NikonZ85f18S.analysis.md`
+- `src/lens-data/nikon/NikonZDX18140mmf3563VR.analysis.md`
+- `src/lens-data/nikon/NikonZDX50250mmf4564VR.analysis.md`
 - Canon batch complete: all 30 Canon analysis files now satisfy the robust-block scan.
 - `src/lens-data/canon/CanonEFM22mmf2STM.analysis.md`
 - `src/lens-data/canon/CanonEFM28mmf34MacroISSTM.analysis.md`
@@ -90,5 +125,5 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 ## Scan Command
 
 ```bash
-node -e 'const fs=require("fs"); const cp=require("child_process"); const files=cp.execFileSync("find",["src/lens-data","-name","*.analysis.md"],{encoding:"utf8"}).trim().split("\n").filter(Boolean); const patent=/^\*\*Patent(s)?\s*:?\*\*/mi; const owner=/^\*\*(Inventor(s)?|Applicant(s)?|Assignee)\s*:?\*\*/mi; const date=/^\*\*(Filed|Published|Granted|Filing Date|Publication Date)\s*:?\*\*/mi; const missing=files.filter(f=>{const s=fs.readFileSync(f,"utf8"); return !(patent.test(s)&&owner.test(s)&&date.test(s));}); const by={}; for(const f of missing){const maker=f.split("/")[2]; by[maker]=(by[maker]||0)+1;} console.log("missing robust bold block:",missing.length,"of",files.length); console.log(Object.entries(by).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([k,v])=>`${k}: ${v}`).join("\n"));'
+node -e 'const fs=require("fs"); const cp=require("child_process"); const files=cp.execFileSync("find",["src/lens-data","-name","*.analysis.md"],{encoding:"utf8"}).trim().split("\n").filter(Boolean); const patent=/^\*\*Patent(s)?\s*:?\*\*/mi; const owner=/^\*\*(Inventor(s)?|Applicant(s)?|Applicants|Assignee)\s*:?\*\*/mi; const date=/^\*\*(Filed|Published|Granted|Filing Date|Publication Date)\s*:?\*\*/mi; const missing=files.filter(f=>{const s=fs.readFileSync(f,"utf8"); return !(patent.test(s)&&owner.test(s)&&date.test(s));}); const by={}; for(const f of missing){const maker=f.split("/")[2]; by[maker]=(by[maker]||0)+1;} console.log("missing robust bold block:",missing.length,"of",files.length); console.log(Object.entries(by).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([k,v])=>`${k}: ${v}`).join("\n"));'
 ```

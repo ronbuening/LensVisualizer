@@ -1,7 +1,11 @@
 # Nikon AF-S NIKKOR 58mm f/1.4G — Patent Analysis
 
-**Patent:** JP 2013-019993 A (published 2013.01.31, filed 2011.07.08)
+**Patent:** JP 2013-019993 A
 **Inventor:** Haruo Sato (佐藤治夫), Nikon Corporation
+**Assignee:** Nikon Corporation
+**Filed:** July 8, 2011
+**Published:** January 31, 2013
+**Embodiment analyzed:** Example 2 (OS2)
 **Production Lens:** AF-S NIKKOR 58mm f/1.4G, announced October 2013
 
 ---

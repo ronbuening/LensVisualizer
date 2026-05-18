@@ -2,6 +2,14 @@
 
 ## US 2020/0142168 A1 · Example 1 · Inventor: Hiroki Harada · Nikon Corporation
 
+**Patent:** US 2020/0142168 A1
+**Inventor:** Hiroki Harada
+**Applicant:** Nikon Corporation
+**Priority:** JP 2015-017916, January 30, 2015
+**Filed:** January 29, 2016 (PCT/JP2016/052683)
+**Published:** May 7, 2020
+**Embodiment analyzed:** Example 1
+
 ---
 
 ## 1. Identification and Provenance

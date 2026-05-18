@@ -2,6 +2,11 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** WO2021039813A1; US20220269056A1
+**Applicant:** Nikon Corporation
+**Published:** March 4, 2021 (WO); August 25, 2022 (US)
+**Embodiment analyzed:** Example 2 / LS(2), Table 2
+
 The prescription transcribed here is **Example 2** of Nikon's WO2021039813A1 family, with the same numerical data available in the English Google Patents text of **US20220269056A1**. The applicant is Nikon Corporation. The relevant embodiment is the zoom optical system **LS(2)**, and its numerical prescription is **Table 2**. The uploaded WO pamphlet scan contains the publication front matter and early description pages; the full Table 2 numerical data used for this review was therefore cross-checked against the text-searchable equivalent publication.
 
 The production lens identified with this embodiment is the **Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR**. Nikon's official specifications give a 10-20 mm DX-format zoom, maximum aperture f/4.5-5.6, 14 elements in 11 groups, three aspherical lens elements, vibration reduction, internal focusing, closest focus distance 0.22 m from the focal plane, and maximum reproduction ratio 0.17x. The patent example gives a 10.310-19.394 mm design focal-length range, 14 production lens elements in 11 air-separated groups, three aspherical surfaces on three elements, an internal focusing G3 group, and an L23 vibration-reduction sub-group.

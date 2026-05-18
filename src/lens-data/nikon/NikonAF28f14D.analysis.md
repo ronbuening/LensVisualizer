@@ -2,9 +2,11 @@
 
 **Patent:** US 5,315,441 · *Inverse Telephoto Large Aperture Wide Angle Lens*
 **Inventors:** Kenji Hori, Wataru Tatsuno (Nikon Corporation)
+**Assignee:** Nikon Corporation
 **Priority:** January 16, 1992 (JP 4-005862)
-**Filed (US):** September 13, 1993 · **Granted:** May 24, 1994
-**Production embodiment:** Embodiment 1 (Table 1)
+**Filed:** September 13, 1993
+**Granted:** May 24, 1994
+**Embodiment analyzed:** Embodiment 1 (Table 1)
 
 ---
 

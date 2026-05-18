@@ -1,7 +1,11 @@
 # Nikon AI Nikkor 135mm f/2 — Optical Analysis
 
-**Patent:** US 4,062,630 · Sei Matsui · Nippon Kogaku K.K. · Filed March 11, 1976 · Granted December 13, 1977  
-**Embodiment:** Example V (conventionally identified as the production design; see §11)  
+**Patent:** US 4,062,630  
+**Inventor:** Sei Matsui  
+**Assignee:** Nippon Kogaku K.K.  
+**Filed:** March 11, 1976  
+**Granted:** December 13, 1977  
+**Embodiment analyzed:** Example V (conventionally identified as the production design; see §11)  
 **Production lens:** NEW Nikkor 135mm f/2 (1976–1977) → Ai Nikkor 135mm f/2 (1977–1981) → Ai-S Nikkor 135mm f/2 (1981–2005)
 
 ---

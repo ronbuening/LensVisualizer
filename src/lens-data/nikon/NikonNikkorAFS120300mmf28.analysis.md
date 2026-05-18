@@ -1,8 +1,11 @@
 # Nikon AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR — Optical Analysis
 
-**Patent:** JP 2020-177057 A (filed 2019-04-16, published 2020-10-29)  
+**Patent:** JP 2020-177057 A  
 **Inventors:** Masashi Yamashita, Toshinori Take (Nikon Corporation)  
-**Embodiment analysed:** Example 1 (Table 1)  
+**Applicant:** Nikon Corporation  
+**Filed:** April 16, 2019  
+**Published:** October 29, 2020  
+**Embodiment analyzed:** Example 1 (Table 1)  
 **Production lens:** AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR (released January 2020)
 
 ---

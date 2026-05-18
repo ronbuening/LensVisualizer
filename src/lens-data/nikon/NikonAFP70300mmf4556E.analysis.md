@@ -2,6 +2,14 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 2019/0353880 A1
+**Inventor:** Kosuke Machida
+**Applicant:** Nikon Corporation
+**Filed:** November 21, 2016 (PCT filing)
+**Published:** November 21, 2019
+**Title:** Zoom optical system, optical apparatus, imaging apparatus and method for manufacturing the zoom optical system
+**Embodiment analyzed:** First Example / Example 1, Fig. 1 and Table 1
+
 The working patent is **US 2019/0353880 A1**, "Zoom optical system, optical apparatus, imaging apparatus and method for manufacturing the zoom optical system." The applicant is Nikon Corporation and the named inventor is Kosuke Machida. The PCT filing date is 21 November 2016, and the United States publication date is 21 November 2019. The numerical embodiment transcribed here is **First Example / Example 1**, shown in Fig. 1 and Table 1 of the patent.
 
 The production lens identified with this embodiment is the **AF-P NIKKOR 70-300mm f/4.5-5.6E ED VR**, announced by Nikon on 11 July 2017. The identification rests on convergent evidence rather than a single matching parameter:

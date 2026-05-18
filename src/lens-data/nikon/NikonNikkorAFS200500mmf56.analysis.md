@@ -3,7 +3,8 @@
 **Patent:** JP 2014-209144 A (Published 2014-11-06)  
 **Applicants:** Nikon Corporation / Tamron Co., Ltd.  
 **Inventors:** Matsuo Taku, Suzuki Tsuyoshi, Sato Haruo (Nikon); Yamanaka Hisayuki (Tamron)  
-**Production embodiment:** Example 2 (第2実施形態)  
+**Published:** November 6, 2014  
+**Embodiment analyzed:** Example 2 (第2実施形態)  
 **Lens released:** August 2015
 
 ---
