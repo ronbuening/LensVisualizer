@@ -160,27 +160,27 @@ const LENS_DATA = {
    */
   surfaces: [
     // ── G1: cemented doublet L11+L12 ──
-    { label: "1", R: 30.98019, d: 0.59, nd: 1.71736, elemId: 1, sd: 7.5 }, // L11 front
-    { label: "2", R: 12.429, d: 2.67, nd: 1.883, elemId: 2, sd: 7.2 }, // L11→L12 cemented junction
-    { label: "3", R: 64.17602, d: 1.57, nd: 1.0, elemId: 0, sd: 6.4 }, // L12 rear → air
+    { label: "1", R: 30.98019, d: 0.59, nd: 1.71736, elemId: 1, sd: 7.2 }, // L11 front
+    { label: "2", R: 12.429, d: 2.67, nd: 1.883, elemId: 2, sd: 6.9 }, // L11→L12 cemented junction
+    { label: "3", R: 64.17602, d: 1.57, nd: 1.0, elemId: 0, sd: 6.7 }, // L12 rear → air
 
     // ── Aperture stop ──
     { label: "STO", R: 1e15, d: 5.88, nd: 1.0, elemId: 0, sd: 5.2 },
 
     // ── G2: cemented doublet L21+L22, then singlet L23 ──
-    { label: "4", R: -10.58606, d: 0.61, nd: 1.69895, elemId: 3, sd: 7.0 }, // L21 front
-    { label: "5", R: 42.295, d: 4.35, nd: 1.7725, elemId: 4, sd: 7.2 }, // L21→L22 cemented junction
-    { label: "6", R: -15.33039, d: 0.2, nd: 1.0, elemId: 0, sd: 8.5 }, // L22 rear → air
-    { label: "7A", R: 34.72225, d: 5.0, nd: 1.8078, elemId: 5, sd: 6.2 }, // L23 front (asph)
+    { label: "4", R: -10.58606, d: 0.61, nd: 1.69895, elemId: 3, sd: 6.8 }, // L21 front
+    { label: "5", R: 42.295, d: 4.35, nd: 1.7725, elemId: 4, sd: 7.3 }, // L21→L22 cemented junction
+    { label: "6", R: -15.33039, d: 0.2, nd: 1.0, elemId: 0, sd: 7.4 }, // L22 rear → air
+    { label: "7A", R: 34.72225, d: 5.0, nd: 1.8078, elemId: 5, sd: 6.3 }, // L23 front (asph)
     { label: "8A", R: -33.47682, d: 1.1, nd: 1.0, elemId: 0, sd: 6.2 }, // L23 rear (asph) → air [variable gap]
 
     // ── G3: three singlets L31, L32, L33 (fixed during focus) ──
-    { label: "9A", R: 666.57127, d: 2.84, nd: 1.51633, elemId: 6, sd: 7.5 }, // L31 front (asph)
-    { label: "10A", R: 135.03773, d: 5.86, nd: 1.0, elemId: 0, sd: 7.0 }, // L31 rear (asph) → air
-    { label: "11", R: -15.17144, d: 0.74, nd: 1.69895, elemId: 7, sd: 4.5 }, // L32 front
-    { label: "12", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 3.8 }, // L32 rear → air
-    { label: "13", R: 82.50113, d: 1.98, nd: 1.883, elemId: 8, sd: 3.8 }, // L33 front
-    { label: "14", R: 1e15, d: 4.861, nd: 1.0, elemId: 0, sd: 4.5 }, // L33 rear → image (BFD, air equiv.)
+    { label: "9A", R: 666.57127, d: 2.84, nd: 1.51633, elemId: 6, sd: 7.6 }, // L31 front (asph)
+    { label: "10A", R: 135.03773, d: 5.86, nd: 1.0, elemId: 0, sd: 7.6 }, // L31 rear (asph) → air
+    { label: "11", R: -15.17144, d: 0.74, nd: 1.69895, elemId: 7, sd: 6.0 }, // L32 front
+    { label: "12", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 4.0 }, // L32 rear → air
+    { label: "13", R: 82.50113, d: 1.98, nd: 1.883, elemId: 8, sd: 4.0 }, // L33 front
+    { label: "14", R: 1e15, d: 4.861, nd: 1.0, elemId: 0, sd: 6.0 }, // L33 rear → image (BFD, air equiv.)
   ],
 
   /* ── Aspherical coefficients ──
