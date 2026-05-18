@@ -8,12 +8,12 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 | Status | Count | Notes |
 |---|---:|---|
-| Total analysis files | 209 | `find src/lens-data -name '*.analysis.md'` |
+| Total analysis files | 211 | `find src/lens-data -name '*.analysis.md'` |
 | Robust bold blocks before this standardization | 103 | Approximate scan: patent + inventor/applicant/assignee + date |
 | Missing robust bold block before this standardization | 106 | Grouped by maker below |
 | Completed so far | 106 | All initially missing analyses |
-| Current robust count | 209 | Latest scan after final backfill batch |
-| Current missing count | 0 | Latest scan after final backfill batch |
+| Current robust count | 211 | Latest scan after Olympus new-analysis check |
+| Current missing count | 0 | Latest scan after Olympus new-analysis check |
 
 ## Initial Missing Robust Count by Maker
 
@@ -41,6 +41,9 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Done
 
+- Olympus new-analysis check complete: the newly added Zuiko 16mm f/3.5 Fisheye and XA F.Zuiko 35mm f/2.8 analyses satisfy the robust-block scan.
+- `src/lens-data/olympus/OlympusZuiko16mmf35.analysis.md`
+- `src/lens-data/olympus/OlympusXAZuiko35mmf28.analysis.md`
 - Final backfill batch complete: Carl Zeiss Oberkochen, Carl Zeiss Jena, Schneider-Kreuznach, Ricoh, Laowa, Sigma, Leica, Hasselblad, Vivitar, and Pentax pending analyses now satisfy the robust-block scan.
 - `src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.analysis.md`
 - `src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.analysis.md`
