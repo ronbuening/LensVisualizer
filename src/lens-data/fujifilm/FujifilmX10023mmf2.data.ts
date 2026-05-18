@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-x100-23f2",
   maker: "Fujifilm",
-  name: "FUJIFILM X100 FUJINON 23mm f/2",
+  name: "FUJIFILM FUJINON 23mm f/2 (X100)",
   subtitle: "US 2012/0069456 A1 Example 1 — Fujifilm / Suzuki",
   specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 23.7 mm", "F/2.0", "2ω ≈ 62.0°", "2 ASPHERICAL SURFACES (1 GMo ELEMENT)"],
 
