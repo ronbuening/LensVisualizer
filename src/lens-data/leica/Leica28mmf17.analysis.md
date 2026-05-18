@@ -2,11 +2,14 @@
 
 ## Patent Identification
 
-**US 2016/0266350 A1**, "Lens System and Imaging Device"
-Filed by Panasonic Intellectual Property Management Co., Ltd., Osaka, Japan.
-Inventors: Tomoko Iiyama (Osaka), Masafumi Sueyoshi (Kanagawa).
-Japanese priority: JP 2014-195434, filed September 25, 2014.
-US continuation filed May 20, 2016; published September 15, 2016.
+**Patent:** US 2016/0266350 A1
+**Inventors:** Tomoko Iiyama (Osaka), Masafumi Sueyoshi (Kanagawa)
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd., Osaka, Japan
+**Priority:** JP 2014-195434, September 25, 2014
+**Filed:** May 20, 2016
+**Published:** September 15, 2016
+**Title:** Lens System and Imaging Device
+**Embodiment analyzed:** Example 1 (Numerical Example 1)
 
 **Production lens:** Leica Summilux 28 mm f/1.7 ASPH, the fixed lens of the Leica Q (Typ 116), Q2, and Q3 compact cameras. Designed by Peter Karbe (head of optics at Leica Camera AG), manufactured by Panasonic, which produces the Q-series hardware. This patent covers the optical prescription used in the production lens, with Example 1 (Numerical Example 1) being the implemented embodiment.
 

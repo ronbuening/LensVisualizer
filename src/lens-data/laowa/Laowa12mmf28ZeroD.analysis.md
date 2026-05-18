@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** CN205720849U
+**Inventor:** Zhang Xiaohua
+**Assignee:** Anhui Changgeng Optical Technology Co., Ltd.
+**Filed:** April 12, 2016
+**Published:** November 23, 2016
+**Granted:** November 23, 2016
+**Title:** 一种大光圈广角微距镜头 / Large-aperture wide-angle macro lens
+**Embodiment analyzed:** Example 2 / 第二实施例
+
 The relevant filing is **CN205720849U**, *一种大光圈广角微距镜头* / “large-aperture wide-angle macro lens,” assigned to **Anhui Changgeng Optical Technology Co., Ltd.** and naming **Zhang Xiaohua** as inventor. The Chinese utility-model application was filed on 2016-04-12 and published/granted on 2016-11-23. The same optical disclosure is also present in **WO2017177665A1**, *一种超广角大光圈镜头*, which is text-searchable and was used as a cross-check against the image-only CN scan.
 
 This analysis uses **Example 2 / 第二实施例**. In the attached CN document, Example 2 is the design drawn in Figure 3, with its aberration plots in Figure 4. The numerical example gives **f = 12.5 mm**, **Fno = 2.87**, and **half-field angle ω = 60.1°**. Independent reduced-angle paraxial tracing of the transcribed prescription gives **EFL = 12.49993 mm** and **back focal distance = 38.83061 mm**, matching the patent’s stated focal length and the infinity **LB = 38.8325 mm** spacing within transcription precision.

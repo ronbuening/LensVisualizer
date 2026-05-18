@@ -2,6 +2,14 @@
 
 **Paul Rudolph · Carl Zeiss, Jena · Filed July 15, 1902 · Patented February 24, 1903**
 
+**Patent:** US 721,240
+**Inventor:** Paul Rudolph
+**Assignee:** Carl Zeiss, Jena
+**Filed:** July 15, 1902
+**Granted:** February 24, 1903
+**Title:** Photographic Objective
+**Embodiment analyzed:** Single worked example
+
 ---
 
 ## 1. Introduction

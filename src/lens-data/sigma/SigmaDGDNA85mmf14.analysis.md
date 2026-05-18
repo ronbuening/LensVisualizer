@@ -1,10 +1,12 @@
 # Sigma 85 mm F/1.4 DG DN | Art — Optical Analysis
 
-**Patent reference:** JP 2021-85935 A (公開特許公報, published 3 June 2021)
+**Patent:** JP 2021-85935 A
 **Applicant:** 株式会社シグマ (SIGMA Corporation)
 **Inventor:** 塩田 了 (Ryo Shioda)
-**Filing date:** 26 November 2019 · **Priority:** P2019-213387
-**Embodiment analysed:** Numerical Example 1 (数値実施例 1, fig. 1)
+**Priority:** P2019-213387
+**Filed:** 26 November 2019
+**Published:** 3 June 2021
+**Embodiment analyzed:** Numerical Example 1 (数値実施例 1, fig. 1)
 **Production lens identified as:** Sigma 85 mm F/1.4 DG DN | Art (announced 6 August 2020; mounts: Sony E and L-mount)
 
 ---

@@ -1,6 +1,13 @@
 # SIGMA 35 mm F1.4 DG DN | Art — Optical Analysis
 
-*Patent: JP 2022-33487 A · Numerical Example 1 · Sigma Corporation · Inventor: Ryo Shioda · Filed 17 August 2020 · Published 2 March 2022*
+**Patent:** JP 2022-33487 A
+**Inventor:** Ryo Shioda
+**Assignee:** Sigma Corporation
+**Priority:** JP 2020-137411
+**Filed:** 17 August 2020
+**Published:** 2 March 2022
+**Title:** Optical System
+**Embodiment analyzed:** Numerical Example 1
 
 ---
 

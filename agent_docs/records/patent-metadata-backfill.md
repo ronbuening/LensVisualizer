@@ -11,9 +11,9 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 | Total analysis files | 209 | `find src/lens-data -name '*.analysis.md'` |
 | Robust bold blocks before this standardization | 103 | Approximate scan: patent + inventor/applicant/assignee + date |
 | Missing robust bold block before this standardization | 106 | Grouped by maker below |
-| Completed so far | 82 | Voigtländer, Canon, Nikon, Olympus, Fujifilm, Sony, and Minolta batches |
-| Current robust count | 185 | Latest scan after Olympus/Fujifilm/Sony/Minolta batch |
-| Current missing count | 24 | Latest scan after Olympus/Fujifilm/Sony/Minolta batch |
+| Completed so far | 106 | All initially missing analyses |
+| Current robust count | 209 | Latest scan after final backfill batch |
+| Current missing count | 0 | Latest scan after final backfill batch |
 
 ## Initial Missing Robust Count by Maker
 
@@ -41,6 +41,31 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Done
 
+- Final backfill batch complete: Carl Zeiss Oberkochen, Carl Zeiss Jena, Schneider-Kreuznach, Ricoh, Laowa, Sigma, Leica, Hasselblad, Vivitar, and Pentax pending analyses now satisfy the robust-block scan.
+- `src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.analysis.md`
+- `src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.analysis.md`
+- `src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.analysis.md`
+- `src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.analysis.md`
+- `src/lens-data/carl-zeiss-jena/ZeissTessar144f55.analysis.md`
+- `src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.analysis.md`
+- `src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.analysis.md`
+- `src/lens-data/ricoh/RicohGR218mmf28.analysis.md`
+- `src/lens-data/ricoh/RicohGXRA1218mmf25.analysis.md`
+- `src/lens-data/laowa/Laowa15mmf2ZeroD.analysis.md`
+- `src/lens-data/laowa/Laowa12mmf28ZeroD.analysis.md`
+- `src/lens-data/laowa/Laowa24mmf14Probe.analysis.md`
+- `src/lens-data/sigma/SigmaDGDNA35mmf14.analysis.md`
+- `src/lens-data/sigma/SigmaDP3M50mmf28.analysis.md`
+- `src/lens-data/sigma/SigmaDGDNA85mmf14.analysis.md`
+- `src/lens-data/leica/LeicaAPO43mmf2.analysis.md`
+- `src/lens-data/leica/LeicaAPO35mmf2.analysis.md`
+- `src/lens-data/leica/Leica28mmf17.analysis.md`
+- `src/lens-data/hasselblad/HasselbladHC150mmf32.analysis.md`
+- `src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.analysis.md`
+- `src/lens-data/hasselblad/HasselbladXCD65mmf28.analysis.md`
+- `src/lens-data/vivitar/VivitarSeries1200mmf3.analysis.md`
+- `src/lens-data/vivitar/VivitarSeries13585mmf28.analysis.md`
+- `src/lens-data/pentax/Pentax11024mmf28.analysis.md`
 - Olympus, Fujifilm, Sony, and Minolta batch complete: all analysis files in those four maker folders now satisfy the robust-block scan.
 - `src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.analysis.md`
 - `src/lens-data/olympus/OlympusMZuiko17mmf18.analysis.md`
@@ -134,23 +159,19 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Ready From Existing Prose
 
-- Analyses with patent metadata in prose, title lines, or source sections that can be lifted into the robust block without external research.
-- Good candidates: Sony, Olympus, and Nikon modern patent files.
+- Complete. No files remain in this bucket after the final backfill scan.
 
 ### Has Partial Block
 
-- Analyses that already have `**Patent:**` but are missing inventor/applicant/assignee, a date, or embodiment.
-- Normalize by adding missing known rows from existing prose and avoiding duplicate one-off headings.
+- Complete. No files remain in this bucket after the final backfill scan.
 
 ### Needs Patent Lookup
 
-- Files whose core patent metadata is not available near the top of the analysis or source section.
-- Do not add placeholder rows; leave these queued until the source patent is checked.
+- None currently identified by the robust-block scan.
 
 ### Multi-Patent / Special Case
 
-- Historical-lineage analyses and files comparing multiple embodiments or patent families.
-- Use the robust block for the primary transcribed prescription and keep context patents in prose unless multiple prescriptions are directly transcribed.
+- Complete for this pass. Multi-patent and historical-lineage files now carry a robust block for the primary transcribed prescription.
 
 ## Scan Command
 

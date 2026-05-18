@@ -5,10 +5,10 @@
 **Patent:** US 2020/0319427 A1, "Lens System and Image Pickup Apparatus"
 **Applicant:** Nittoh Inc., Suwa-shi, Nagano (JP)
 **Inventor:** Takuya Yazaki
-**PCT Filed:** December 26, 2018 (PCT/JP2018/047819)
-**US Publication Date:** October 8, 2020
+**Filed:** December 26, 2018 (PCT/JP2018/047819)
+**Published:** October 8, 2020
 **Priority Dates:** December 28, 2017 (JP 2017-254496, 2017-254497, 2017-254498)
-**Embodiment used:** Example 1 (Figs. 1–6)
+**Embodiment analyzed:** Example 1 (Figs. 1–6)
 
 The patent was filed by Nittoh Inc., a Suwa-based optical manufacturer known to design and produce lenses for Hasselblad's X-system. Example 1 of this patent is identified as the production design for the **Hasselblad XCD 2,8/65** based on the following convergent evidence:
 

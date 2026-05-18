@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 6,028,720
+**Inventors:** Rolf Wartmann and Udo Schauss
+**Applicant:** Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG
+**Priority:** DE 197 54 758, December 10, 1997
+**Filed:** December 7, 1998
+**Granted:** February 22, 2000
+**Title:** High Resolution Objective for Large-Format Photography
+**Embodiment analyzed:** Second numerical embodiment
+
 US 6,028,720, "High Resolution Objective for Large-Format Photography." Applicant: Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG, Bad Kreuznach, Germany. Inventors: Rolf Wartmann and Udo Schauss. Filed December 7, 1998 (US); priority date December 10, 1997 (DE 197 54 758). Granted February 22, 2000.
 
 The prescription transcribed here is from the patent's **second numerical embodiment** (column 5, lines 1–20; restated in Claim 5), which corresponds to production lenses in the Schneider-Kreuznach APO-Symmar family. Since Example 2 uses an entirely lead-free, arsenic-free, and antimony-free glass palette — a stated design objective — it most likely represents the APO-Symmar L variant ("L" widely understood to denote the later environmentally-reformulated line), rather than the original APO-Symmar. The patent's scalability clause ("any desired scale," column 4) means this prescription covers the entire focal-length family; at the tabulated scale of $f' = 101.2$ mm, it maps to the 100 mm production focal length. Convergent evidence supporting this identification:

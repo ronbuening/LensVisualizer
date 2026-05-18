@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 2018/0149842 A1
+**Inventor:** Xiaohua Zhang
+**Assignee:** Anhui Changgeng Optics Technology Co., Ltd.
+**Priority:** CN 201611050404.7, November 25, 2016
+**Filed:** May 5, 2017
+**Published:** May 31, 2018
+**Title:** Mirrorless Large-Aperture Ultra Wide-Angle Lens
+**Embodiment analyzed:** Example 1
+
 The relevant patent is **US 2018/0149842 A1**, titled **"Mirrorless Large-Aperture Ultra Wide-Angle Lens"**, assigned to **Anhui Changgeng Optics Technology Co., Ltd.** with **Xiaohua Zhang** as inventor. The U.S. application was filed on 2017-05-05, published on 2018-05-31, and claims Chinese priority **CN 201611050404.7** from 2016-11-25.[^patent]
 
 This prescription uses **Example 1**, not Example 2. The identification is based on convergence between the patent prescription and production specifications:

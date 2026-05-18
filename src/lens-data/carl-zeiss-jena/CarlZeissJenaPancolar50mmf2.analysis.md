@@ -1,9 +1,12 @@
 # Carl Zeiss Jena Pancolar 50mm f/2 — Patent Analysis
 
-**Patent:** GB 850,117 (filed 28 March 1958, published 28 September 1960)
+**Patent:** GB 850,117
 **Inventors:** Eduard Hubert and Harry Zöllner, VEB Carl Zeiss Jena
+**Applicant:** VEB Carl Zeiss Jena
+**Filed:** 28 March 1958
+**Published:** 28 September 1960
 **Design:** Gauss-type (double-Gauss), 6 elements in 4 groups
-**Numerical Example:** Claim 2 — f = 100, relative aperture 1:2, S′ = 72.4
+**Embodiment analyzed:** Claim 2 — f = 100, relative aperture 1:2, S′ = 72.4
 
 ---
 

@@ -2,7 +2,8 @@
 
 **Patent:** US 2022/0066176 A1 (published March 3, 2022)  
 **Priority:** DE 10 2018 132 472.3 (December 17, 2018)  
-**PCT Filing:** PCT/EP2019/085673 (December 17, 2019)  
+**Filed:** PCT/EP2019/085673 (December 17, 2019)  
+**Published:** March 3, 2022  
 **Inventors:** Stefan Roth, Kathrin Keller (Lahnau, Germany)  
 **Applicant:** Leica Camera AG, Wetzlar  
 **Embodiment analyzed:** Example 1 (the sole worked example; FIGS. 1–3)

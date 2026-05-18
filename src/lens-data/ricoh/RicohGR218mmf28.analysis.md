@@ -2,9 +2,11 @@
 
 *Companion to `RicohGR218mmf28.data.ts`*
 
-**Patent:** US 2013/0321936 A1 · Example 3  
-**Inventor / Applicant:** Kazuyasu Ohashi (Funabashi-shi, JP)  
-**Filed:** May 31, 2013 · Priority: JP 2012-127431 (June 4, 2012)  
+**Patent:** US 2013/0321936 A1
+**Inventor:** Kazuyasu Ohashi (Funabashi-shi, JP)
+**Priority:** JP 2012-127431, June 4, 2012
+**Filed:** May 31, 2013
+**Embodiment analyzed:** Example 3
 **Production lens:** Ricoh GR (2013), Ricoh GR II (2015)  
 **Note:** The published application lists no corporate assignee; the inventor filed individually. The described designs are clearly intended for Ricoh compact cameras and portable information terminals.
 

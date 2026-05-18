@@ -1,8 +1,11 @@
 # Ricoh GR LENS A12 28mm f/2.5 — Optical Analysis
 
-**Patent:** JP 2012-003015 A (filed 2010-06-16, published 2012-01-05)
+**Patent:** JP 2012-003015 A
 **Inventor:** Takashi Kubota (窪田 高士), Ricoh Co., Ltd.
-**Example analyzed:** Example 3 (実施例３), Figure 5
+**Applicant:** Ricoh Co., Ltd.
+**Filed:** 2010-06-16
+**Published:** 2012-01-05
+**Embodiment analyzed:** Example 3 (実施例３), Figure 5
 **Design focal length:** 18.3 mm (28 mm equiv. on APS-C)
 **Design f-number:** f/2.56
 

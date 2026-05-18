@@ -5,10 +5,10 @@
 **Patent:** US 2020/0192060 A1, "Optical System for Image Pickup, and Image Pickup Device"
 **Applicant / Assignee:** Nittoh Inc., Suwa-shi, Nagano, Japan
 **Inventor:** Akira Sawamoto
-**PCT Filed:** May 25, 2018 (PCT/JP2018/020089)
+**Filed:** May 25, 2018 (PCT/JP2018/020089)
 **Priority Date:** May 26, 2017 (JP 2017-104151)
-**US Publication Date:** June 18, 2020
-**Embodiment used:** Example 2 (Figs. 5–8)
+**Published:** June 18, 2020
+**Embodiment analyzed:** Example 2 (Figs. 5–8)
 
 The prescription in Example 2 of this patent corresponds to the production Hasselblad XCD 3,5/120mm Macro lens. The identification rests on the following convergent evidence:
 

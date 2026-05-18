@@ -3,7 +3,9 @@
 **Patent:** US 2024/0241349 A1, Example 1 (First Embodiment)
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
 **Inventors:** Takehiro Nishioka, Yoshiaki Kurioka
-**Priority:** JP 2022-142614 (Sep. 8, 2022) · Published Jul. 18, 2024
+**Priority:** JP 2022-142614 (Sep. 8, 2022)
+**Published:** Jul. 18, 2024
+**Embodiment analyzed:** Example 1 (First Embodiment)
 **Production lens:** Leica APO-Summicron 43mm f/2 ASPH. (fixed to the Leica Q3 43)
 
 ---

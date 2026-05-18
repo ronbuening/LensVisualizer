@@ -1,9 +1,13 @@
 ## Patent Reference and Design Identification
 
-**US 4,223,982** — *Semi-Wide Angle Photographic Lens Having Short Overall Length*
-Inventor: Takahiro Sugiyama. Assignee: Asahi Kogaku Kogyo Kabushiki Kaisha (Tokyo, Japan).
-Filed January 9, 1979; granted September 23, 1980.
-Japanese priority: January 23, 1978 (JP 53-6031).
+**Patent:** US 4,223,982
+**Inventor:** Takahiro Sugiyama
+**Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha (Tokyo, Japan)
+**Priority:** JP 53-6031, January 23, 1978
+**Filed:** January 9, 1979
+**Granted:** September 23, 1980
+**Title:** Semi-Wide Angle Photographic Lens Having Short Overall Length
+**Embodiment analyzed:** Example 2
 
 The prescription transcribes **Example 2** of the patent. The identification of this embodiment with the production Pentax-110 24mm f/2.8 lens rests on the following convergent evidence:
 
