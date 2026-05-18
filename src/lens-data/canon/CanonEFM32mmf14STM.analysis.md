@@ -2,6 +2,13 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** JP 2018-180366 A
+**Filed:** April 17, 2017
+**Published:** November 2018
+**Assignee:** Canon Inc.
+**Title:** Imaging Optical System and Imaging Apparatus
+**Embodiment analyzed:** Numerical Data 1 / Example 1
+
 The relevant patent is Japanese published application **JP 2018-180366 A**, titled *Imaging Optical System and Imaging Apparatus*, assigned to Canon Inc. and filed on 17 April 2017. The implemented prescription is **Numerical Data 1 / Example 1**.
 
 The production lens is the **Canon EF-M 32mm f/1.4 STM**, marketed for the EOS M / EF-M APS-C system. Canon's published product specifications give a 32 mm focal length, f/1.4 maximum aperture, 14 elements in 8 groups, one high-precision glass-molded aspherical lens, 7 aperture blades, a 0.23 m closest focusing distance, and 0.25× maximum magnification. The patent example gives f = 32.34 mm, Fno = 1.45, half-field angle ω = 22.90°, 14 powered lens elements in 8 air-separated optical groups, and a plane-parallel GB block before the image plane.

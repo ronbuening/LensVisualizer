@@ -11,7 +11,9 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 | Total analysis files | 209 | `find src/lens-data -name '*.analysis.md'` |
 | Robust bold blocks before this standardization | 103 | Approximate scan: patent + inventor/applicant/assignee + date |
 | Missing robust bold block before this standardization | 106 | Grouped by maker below |
-| Completed in this pass | 9 | Voigtländer analyses |
+| Completed so far | 24 | Voigtländer and Canon analyses |
+| Current robust count | 127 | Latest scan after Canon batch |
+| Current missing count | 82 | Latest scan after Canon batch |
 
 ## Initial Missing Robust Count by Maker
 
@@ -39,6 +41,22 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 
 ### Done
 
+- Canon batch complete: all 30 Canon analysis files now satisfy the robust-block scan.
+- `src/lens-data/canon/CanonEFM22mmf2STM.analysis.md`
+- `src/lens-data/canon/CanonEFM28mmf34MacroISSTM.analysis.md`
+- `src/lens-data/canon/CanonEFM32mmf14STM.analysis.md`
+- `src/lens-data/canon/CanonFD35mmf2.analysis.md`
+- `src/lens-data/canon/CanonFD50mmf12L.analysis.md`
+- `src/lens-data/canon/CanonFDn50f12.analysis.md`
+- `src/lens-data/canon/CanonRF1535f28.analysis.md`
+- `src/lens-data/canon/CanonRF24105mmf28Z.analysis.md`
+- `src/lens-data/canon/CanonRF24105mmf4L.analysis.md`
+- `src/lens-data/canon/CanonRF24240mmf463.analysis.md`
+- `src/lens-data/canon/CanonRF2870mmf28.analysis.md`
+- `src/lens-data/canon/CanonRF85mmf2Macro.analysis.md`
+- `src/lens-data/canon/CanonSerenar35mmf32.analysis.md`
+- `src/lens-data/canon/CanonSerenar50mmf18.analysis.md`
+- `src/lens-data/canon/CanonSerenar85mmf15.analysis.md`
 - `src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.analysis.md`
 - `src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.analysis.md`
 - `src/lens-data/voigtlander/VoigtlanderHeliar.analysis.md`
@@ -52,7 +70,7 @@ Target format: each `*.analysis.md` file should begin its patent/design-identifi
 ### Ready From Existing Prose
 
 - Analyses with patent metadata in prose, title lines, or source sections that can be lifted into the robust block without external research.
-- Good candidates: Sony, Olympus, Canon, Nikon modern patent files.
+- Good candidates: Sony, Olympus, and Nikon modern patent files.
 
 ### Has Partial Block
 

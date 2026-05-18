@@ -1,9 +1,11 @@
 # Canon RF 24-105mm f/4 L IS USM — Optical Design Analysis
 
 **Patent:** US 2019/0278068 A1 (Hatada, Canon Kabushiki Kaisha)
-**Example:** Numerical Example 2 (Fig. 3)
+**Inventor:** Takahiro Hatada
+**Assignee:** Canon Kabushiki Kaisha
 **Published:** September 12, 2019
 **Priority:** JP 2018-042214, filed March 8, 2018
+**Embodiment analyzed:** Numerical Example 2 (Fig. 3)
 
 ---
 

@@ -1,9 +1,12 @@
 # Canon Serenar 35mm f/3.2 — Optical Analysis
 
-**Patent:** US 2,645,975 — Hiroshi Ito, assigned to Canon Camera Company, Ltd.
+**Patent:** US 2,645,975
+**Inventor:** Hiroshi Ito
+**Assignee:** Canon Camera Company, Ltd.
 **Filed:** June 29, 1951 (priority: Japan, July 14, 1950)
 **Granted:** July 21, 1953
 **Marketed:** June 1951
+**Embodiment analyzed:** Example 1
 **Design type:** Modified double-Gauss (four-component, six-element)
 
 ---

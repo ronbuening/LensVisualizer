@@ -2,6 +2,15 @@
 
 ## Patent Reference and Design Identification
 
+**Patent:** US 2016/0313535 A1
+**Inventor:** Makoto Nakahara
+**Applicant:** Canon Kabushiki Kaisha
+**Priority:** JP 2015-089582, April 24, 2015
+**Filed:** April 19, 2016
+**Published:** October 27, 2016
+**Title:** Optical System and Imaging Apparatus Including the Same
+**Embodiment analyzed:** Numerical Example 1, first embodiment, FIGS. 1A–1D / 2A–2D
+
 This analysis concerns Canon patent publication **US 2016/0313535 A1**, “Optical System and Imaging Apparatus Including the Same,” filed by **Canon Kabushiki Kaisha**, inventor **Makoto Nakahara**, filed 19 April 2016, published 27 October 2016, and claiming priority from Japanese application JP 2015-089582 of 24 April 2015. The prescription transcribed here is **Numerical Example 1**, corresponding to the patent's first embodiment and FIGS. 1A–1D / 2A–2D.
 
 The first embodiment remains the closest patent match for the production **Canon EF-M 28mm f/3.5 Macro IS STM**. Canon's first-party specifications give a 28 mm f/3.5 EF-M APS-C macro lens, 11 elements in 10 groups, 51°55′ diagonal angle of view, 0.097 m normal-mode minimum focus, 0.093 m Super Macro minimum focus, 1.0× normal magnification, 1.2× Super Macro magnification, Hybrid IS, and STM autofocus. Numerical Example 1 gives a 27.74 mm infinity-state focal length, F-number 3.61, 13.66 mm image height, first-mode focusing to 1.0×, and a second focusing mode reaching 1.2×. The patent was filed in April 2016 and published in October 2016; Canon's Camera Museum lists the lens as marketed in June 2016.

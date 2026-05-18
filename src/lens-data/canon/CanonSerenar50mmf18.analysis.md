@@ -1,8 +1,11 @@
 # Canon Serenar 50mm f/1.8 — Optical Analysis
 
-**Patent:** US 2,681,594 · Hiroshi Ito, assignor to Canon Camera Company, Ltd.  
+**Patent:** US 2,681,594  
+**Inventor:** Hiroshi Ito  
+**Assignee:** Canon Camera Company, Ltd.  
 **Filed:** June 29, 1951 (priority: Japan, November 7, 1950)  
 **Granted:** June 22, 1954  
+**Embodiment analyzed:** Example 1, Claim 3  
 **Marketed:** November 1951 (Canon Camera Museum)
 
 ---

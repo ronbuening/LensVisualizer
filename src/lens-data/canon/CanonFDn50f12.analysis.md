@@ -1,8 +1,12 @@
 # Canon New FD 50mm f/1.2 — Optical Analysis
 
-**Patent:** US 4,364,643 (Momiyama, assigned to Canon K.K.), filed May 28, 1980, granted December 21, 1982
-**Design basis:** Embodiment 3 (7 elements in 6 groups, all spherical)
+**Patent:** US 4,364,643
+**Inventor:** Momiyama
+**Assignee:** Canon K.K.
 **Japanese priority:** JP 54-67047, May 30, 1979
+**Filed:** May 28, 1980
+**Granted:** December 21, 1982
+**Embodiment analyzed:** Embodiment 3 (7 elements in 6 groups, all spherical)
 
 ---
 
