@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 371 mismatched surfaces across 245 unique groups.
+**Scope**: 375 mismatched surfaces across 248 unique groups.
 
 ## stored (nd=1.43700, vd=95.10)  — 2 surfaces, current label resolves to S-FPM2
 
@@ -171,6 +171,15 @@ Surfaces:
 Surfaces:
 - [LEICA SUMMILUX 28 mm f/1.7 ASPH.](../src/lens-data/leica/Leica28mmf17.data.ts) `1`: `S-BAL42 (OHARA)`
 - [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) `3`: `S-BAM4 (OHARA)`
+
+## stored (nd=1.56865, vd=58.60)  — 1 surface, current label resolves to K-VC89
+
+Candidates:
+- **S-BAL14** (nd=1.56883, vd=56.36, Δnd=+0.0002, Δvd=-2.24)
+- **N-SK11** (nd=1.56384, vd=60.80, Δnd=-0.0048, Δvd=+2.20)
+
+Surfaces:
+- [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `10A`: `K-VC89 (Sumita)`
 
 ## stored (nd=1.57099, vd=50.80)  — 2 surfaces, current label resolves to S-BAH27
 
@@ -823,13 +832,14 @@ Candidates:
 Surfaces:
 - [SONY SONNAR T* E 24mm F1.8 ZA](../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) `13`: `TAC4 (Hoya) / N-SK2 (Schott)`
 
-## stored (nd=1.69895, vd=30.13)  — 2 surfaces, current label resolves to S-TIM22
+## stored (nd=1.69895, vd=30.13)  — 3 surfaces, current label resolves to S-TIH53
 
 Candidates:
 - **E-FD15** (nd=1.69895, vd=30.05, Δnd=-0.0000, Δvd=-0.08)
 - **S-TIM35** (nd=1.69895, vd=30.13, Δnd=-0.0000, Δvd=-0.00)
 
 Surfaces:
+- [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) `5`: `S-TIH53 (OHARA)`
 - [HASSELBLAD XCD 2,8/65](../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) `14`: `S-TIM22 (OHARA)`
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `24`: `Dense flint (near S-NBH52V)`
 
@@ -908,6 +918,15 @@ Candidates:
 
 Surfaces:
 - [SONY PLANAR T* FE 50mm F1.4 ZA](../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) `6`: `S-TIM27 (OHARA)`
+
+## stored (nd=1.71736, vd=29.51)  — 1 surface, current label resolves to TAFD25
+
+Candidates:
+- **SF1** (nd=1.71736, vd=29.51, Δnd=-0.0000, Δvd=+0.00)
+- **S-TIH18** (nd=1.72151, vd=29.23, Δnd=+0.0041, Δvd=-0.28)
+
+Surfaces:
+- [FUJIFILM FUJINON 23mm f/2 (X100V)](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) `1`: `TAFD25 (HOYA)`
 
 ## stored (nd=1.71736, vd=29.50)  — 1 surface, current label resolves to S-TIH11
 
@@ -1730,6 +1749,16 @@ Candidates:
 Surfaces:
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) `7A`: `LAH-type (808/409, PGM-moldable, uncertain — S-LAH93 region)`
 
+## stored (nd=1.80809, vd=22.80)  — 1 surface, current label resolves to S-NBH55
+
+Candidates:
+- **S-NPH1** (nd=1.80809, vd=22.76, Δnd=+0.0000, Δvd=-0.04)
+- **SF6** (nd=1.80518, vd=25.43, Δnd=-0.0029, Δvd=+2.63)
+- **S-TIH6** (nd=1.80518, vd=25.43, Δnd=-0.0029, Δvd=+2.63)
+
+Surfaces:
+- [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) `12`: `S-NBH55 (OHARA)`
+
 ## stored (nd=1.80809, vd=22.74)  — 1 surface, current label resolves to S-TIH53
 
 Candidates:
@@ -2309,5 +2338,5 @@ Surfaces:
 
 ## Summary
 
-- **209** (nd, vd) groups have at least one candidate (327 surfaces) — actionable relabels.
+- **212** (nd, vd) groups have at least one candidate (331 surfaces) — actionable relabels.
 - **36** (nd, vd) groups have NO candidate (44 surfaces) — needs patent verification or Unmatched relabeling.

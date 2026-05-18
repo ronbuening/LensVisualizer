@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **211** lenses scanned
-- **2442** glass surfaces examined
-- **2436** surfaces with non-empty `glass` strings
-- **1705** of those resolved to a catalog entry
-- **371** mismatches found (21.8% of resolved surfaces)
-- **119** distinct lens files affected
+- **214** lenses scanned
+- **2465** glass surfaces examined
+- **2459** surfaces with non-empty `glass` strings
+- **1722** of those resolved to a catalog entry
+- **375** mismatches found (21.8% of resolved surfaces)
+- **122** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,13 +28,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 15 | |
+| S-TIH53 | 11 | |
 | S-TIH14 | 11 | |
-| S-TIH53 | 10 | |
 | S-TIH18 | 9 | |
+| TAFD25 | 9 | |
 | S-TIM2 | 9 | |
 | S-TIM22 | 8 | |
 | S-LAH58 | 8 | |
-| TAFD25 | 8 | |
 | S-LAH64 | 7 | |
 | S-NPH4 | 7 | |
 | S-LAL14 | 7 | |
@@ -49,6 +49,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH11 | 5 | |
 | S-LAH55V | 5 | |
 | S-NBH56 | 5 | |
+| S-NBH55 | 5 | |
 | S-TIM28 | 5 | |
 | S-NPH53 | 5 | |
 | S-FPM3 | 5 | |
@@ -58,7 +59,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | E-FD15 | 4 | |
 | S-NBH8 | 4 | |
 | S-NBH52V | 4 | |
-| S-NBH55 | 4 | |
 | S-TIH6 | 4 | |
 | SF6 | 4 | |
 | S-LAH51 | 4 | |
@@ -96,6 +96,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | SF2 | 2 | |
 | S-LAH93 | 2 | |
 | S-BSM71 | 2 | |
+| K-VC89 | 2 | |
 | E-FD4 | 2 | |
 | S-LAH99 | 2 | |
 | S-TIH13 | 2 | |
@@ -133,7 +134,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NBH53V | 1 | |
 | LAC12 | 1 | |
 | TAFD33 | 1 | |
-| K-VC89 | 1 | |
 | TAFD65 | 1 | |
 | S-BAL2 | 1 | |
 | N-SK2 | 1 | |
@@ -803,6 +803,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 7 | `SK14 (Schott)` | N-SK14 | 1.62040 | 1.60311 | -0.0173 |
 | 9 | `SK14 (Schott)` | N-SK14 | 1.62040 | 1.60311 | -0.0173 |
 
+### [FUJIFILM FUJINON 23mm f/2 (X100)](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) — US 2012/0069456 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 10A | `K-VC89 (Sumita)` | K-VC89 | 1.56865 | 1.80998 | +0.2413 |
+| 12 | `S-NBH55 (OHARA)` | S-NBH55 | 1.80809 | 1.80000 | -0.0081 |
+
 ### [HASSELBLAD HC 3.5/50](../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) — US 2003/0011895 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -979,6 +986,18 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `SF2 equivalent (Jena in-house, 672/323)` | SF2 | 1.67246 | 1.64769 | -0.0248 |
+
+### [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) — US 2017/0075089 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 5 | `S-TIH53 (OHARA)` | S-TIH53 | 1.69895 | 1.84666 | +0.1477 |
+
+### [FUJIFILM FUJINON 23mm f/2 (X100V)](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) — US 2020/0333569 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `TAFD25 (HOYA)` | TAFD25 | 1.71736 | 1.90366 | +0.1863 |
 
 ### [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) — US 2021/0231927 A1
 
