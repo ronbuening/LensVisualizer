@@ -6,7 +6,7 @@
 **Applicant:** Sony Corporation (000002185), Tokyo, Japan.
 **Inventors:** Matsuoka Dai (松岡 大), Miyagawa Naoki (宮川 直己), Matsumoto Hiroyuki (松本 博之).
 **Filed:** 4 February 2019 (PCT/JP2019/003857).
-**Priority date:** 30 March 2018 (JP 2018-67276).
+**Priority:** 30 March 2018 (JP 2018-67276).
 **Published:** 3 October 2019.
 
 **Embodiment analyzed:** Numerical Example 1 (数値実施例 1), corresponding to the first embodiment (第1の実施の形態) described beginning at ¶0102 and tabulated in Tables 1–5 (pages 17–18).

@@ -6,7 +6,7 @@
 **Applicant / Assignee:** Nittoh Inc., Suwa-shi, Nagano, Japan
 **Inventor:** Akira Sawamoto
 **Filed:** May 25, 2018 (PCT/JP2018/020089)
-**Priority Date:** May 26, 2017 (JP 2017-104151)
+**Priority:** May 26, 2017 (JP 2017-104151)
 **Published:** June 18, 2020
 **Embodiment analyzed:** Example 2 (Figs. 5–8)
 

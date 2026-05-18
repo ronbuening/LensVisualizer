@@ -6,7 +6,7 @@
 **Applicant:** Fuji Photo Optical Co., Ltd. (富士写真光機株式会社), Saitama, Japan.
 **Inventor:** Kazunori Ohno (大野 和則).
 **Filed:** 31 March 2003 (Heisei 15). **Published:** 28 October 2004 (Heisei 16).
-**Embodiment used:** Example 4 (第4実施例, Table 4).
+**Embodiment analyzed:** Example 4 (第4実施例, Table 4).
 
 The prescription data in the patent is normalised to $f = 100\text{ mm}$. The production lens scales all linear dimensions by a factor of approximately 1.187 to reach the actual focal length of 118.7 mm.
 

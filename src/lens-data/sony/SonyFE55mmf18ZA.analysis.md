@@ -7,7 +7,7 @@
 **Inventors:** Yonghua Chen (Tokyo), Naoki Miyagawa (Kanagawa)
 **Filed:** August 21, 2014 (US); **Priority:** September 27, 2013 (JP 2013-201345)
 **Published:** April 2, 2015
-**Embodiment used:** Example 1 (Numerical Example 1, Tables 1–3; Figs. 1, 12, 13)
+**Embodiment analyzed:** Example 1 (Numerical Example 1, Tables 1–3; Figs. 1, 12, 13)
 
 The identification of Example 1 as the production Sony Sonnar T* FE 55mm F1.8 ZA (SEL55F18Z) rests on the following convergent evidence:
 

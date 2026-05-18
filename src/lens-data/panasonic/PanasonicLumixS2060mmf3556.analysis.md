@@ -5,9 +5,9 @@
 **Patent:** JP 2021-179551 A, "ズームレンズ系、撮像装置、カメラシステム" (Zoom Lens System, Imaging Device, Camera System).
 **Applicant:** Panasonic Intellectual Property Management Co., Ltd. (パナソニックＩＰマネジメント株式会社), Osaka, Japan.
 **Inventors:** Kitada Takahiro (北田 高博), Kudo Yuka (工藤 有華), Sueyoshi Masashi (末吉 正史), Li Jindong (李 金東).
-**Filing date:** 15 May 2020 (令和2年5月15日), Application No. 2020-85568.
-**Publication date:** 18 November 2021 (令和3年11月18日).
-**Embodiment used:** Numerical Example 2 (数値実施例2), corresponding to Embodiment 2 (実施の形態2), illustrated in Figs. 3–4.
+**Filed:** 15 May 2020 (令和2年5月15日), Application No. 2020-85568.
+**Published:** 18 November 2021 (令和3年11月18日).
+**Embodiment analyzed:** Numerical Example 2 (数値実施例2), corresponding to Embodiment 2 (実施の形態2), illustrated in Figs. 3–4.
 
 The following convergent evidence identifies Example 2 as the production design for the LUMIX S 20–60mm F3.5–5.6 (model S-R2060):
 

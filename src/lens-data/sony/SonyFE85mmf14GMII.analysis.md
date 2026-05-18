@@ -6,7 +6,7 @@
 **Applicant:** Sony Group Corporation (JP)
 **Inventors:** Yamagishi Masakazu, Tasaki Ryohei, Kumisawa Yuma
 **Filed:** March 25, 2025 (PCT/JP2025/011665)
-**Priority date:** May 17, 2024 (JP 2024-081162)
+**Priority:** May 17, 2024 (JP 2024-081162)
 **Published:** November 20, 2025
 **Embodiment analyzed:** Example 2 (第2の構成例, Numerical Example 2)
 

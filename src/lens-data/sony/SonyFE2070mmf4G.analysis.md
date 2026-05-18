@@ -5,7 +5,7 @@
 **Patent:** WO 2023/153076 A1 — "Zoom Lens and Imaging Device"
 **Applicant:** Sony Group Corporation (JP)
 **Inventors:** Tasaki Ryohei (田崎 涼平), Kumisawa Yuma (組澤 悠真), Juri Hiroo (重里 比呂生)
-**Priority date:** 9 February 2022 (JP 2022-019115)
+**Priority:** 9 February 2022 (JP 2022-019115)
 **Filed:** 15 December 2022 (PCT/JP2022/046159)
 **Published:** 17 August 2023
 

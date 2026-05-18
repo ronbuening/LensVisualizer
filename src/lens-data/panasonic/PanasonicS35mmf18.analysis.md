@@ -5,8 +5,8 @@
 **Patent:** CN 216772097 U (Utility Model), "大口径内对焦式光学系" (Large-Aperture Inner-Focus Optical System)  
 **Applicant:** 厦门松下电子信息有限公司 (Xiamen Panasonic Electronic Information Co., Ltd.)  
 **Inventors:** 郑艺丹, 陈汉钊, 詹晓晴  
-**Filing date:** 2021-10-11 &ensp;|&ensp; **Grant date:** 2022-06-17  
-**Embodiment used:** Example 1 (第一实施例, ¶0096–0120)
+**Filed:** 2021-10-11 &ensp;|&ensp; **Granted:** 2022-06-17  
+**Embodiment analyzed:** Example 1 (第一实施例, ¶0096–0120)
 
 ---
 

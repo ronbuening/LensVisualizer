@@ -2,7 +2,7 @@
 
 **Patent:** US 2014/0240851 A1, Example 4  
 **Inventor:** Daiki Kawamura (Fujifilm Corporation)  
-**Priority date:** November 9, 2011 (JP 2011-245310)  
+**Priority:** November 9, 2011 (JP 2011-245310)  
 **Published:** August 28, 2014  
 **Production lens:** Fujinon XF18mmF2 R (launched March 2012 with X-Pro1)
 

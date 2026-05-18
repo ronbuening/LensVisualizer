@@ -7,7 +7,7 @@
 **Inventor:** Imaoka Takuya (今岡 卓也).
 **Filed:** 2015-12-22 (priority: 2015-01-21, JP 2015-9845).
 **Published:** 2016-08-04.
-**Embodiment used:** Numerical Example 1 (数値実施例1), corresponding to Embodiment 1 (実施の形態1).
+**Embodiment analyzed:** Numerical Example 1 (数値実施例1), corresponding to Embodiment 1 (実施の形態1).
 
 The prescription is identified with the production Leica APO-Vario-Elmarit-SL 90–280 mm f/2.8–4 (order number 11 175) by the following convergent evidence:
 

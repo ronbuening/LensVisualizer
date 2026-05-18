@@ -1,7 +1,7 @@
 # NIKON NIKKOR Z 58mm f/0.95 S Noct — Optical Design Analysis
 
 **Patent:** WO2019/229849 A1 (JPWO2019229849A1)  
-**PCT Filed:** 29 May 2018 (PCT/JP2018/020552)  
+**Filed:** 29 May 2018 (PCT/JP2018/020552)  
 **Published:** 5 December 2019  
 **Applicant:** Nikon Corporation  
 **Inventors:** Keisuke Tsubonoya, Sōki Harada, Toshinori Take  

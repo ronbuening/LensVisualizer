@@ -7,7 +7,7 @@
 **Inventors:** Yuka Ikegami (Hyogo), Takahiro Kitada (Osaka), Kunio Dohno (Osaka).
 **Filed:** May 2, 2023. **Published:** November 16, 2023. **Priority:** JP 2022-080128, filed May 16, 2022.
 
-**Embodiment used:** First Example of Numerical Values (Tables 1A–1F), corresponding to the first embodiment illustrated in FIG. 1A.
+**Embodiment analyzed:** First Example of Numerical Values (Tables 1A–1F), corresponding to the first embodiment illustrated in FIG. 1A.
 
 The following convergent evidence identifies Example 1 as the production Panasonic Leica DG Summilux 9mm F1.7 ASPH (H-X09):
 

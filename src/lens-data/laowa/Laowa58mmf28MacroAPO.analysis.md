@@ -5,9 +5,9 @@
 **Patent:** CN 116520542 A, "一种高倍率微距镜头" (*A High-Magnification Macro Lens*)
 **Applicant:** 安徽长庚光学科技有限公司 (Anhui ChangGeng Optical Technology Co., Ltd. — Laowa)
 **Inventor:** 李大勇 (Li Dayong)
-**Filing date:** 2023-02-16
-**Publication date:** 2023-08-01
-**Embodiment used:** Example 2 (实施例2, ¶0051–0064)
+**Filed:** 2023-02-16
+**Published:** 2023-08-01
+**Embodiment analyzed:** Example 2 (实施例2, ¶0051–0064)
 
 The patent discloses two numerical examples. Example 1 is a longer-focal-length variant ($f = 87.1$ mm) that does not correspond to any known production lens. Example 2 is identified as the production Laowa 58 mm f/2.8 2× Ultra-Macro APO by the following convergent evidence:
 

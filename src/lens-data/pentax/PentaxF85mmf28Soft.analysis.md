@@ -12,7 +12,7 @@
 **Filed:** October 19, 1990 (US); **Priority:** October 25, 1989 (JP 1-277895)
 **Granted:** November 30, 1993
 
-**Embodiment used:** Example 1 (Numerical Example 1), corresponding to Figs. 1–4 of the patent.
+**Embodiment analyzed:** Example 1 (Numerical Example 1), corresponding to Figs. 1–4 of the patent.
 
 The identification of Example 1 as the production smc PENTAX-F 85mm f/2.8 Soft rests on the following convergent evidence:
 

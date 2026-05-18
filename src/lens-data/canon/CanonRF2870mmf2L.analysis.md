@@ -2,7 +2,7 @@
 
 **Patent:** JP 2020-118807 A (Published 2020-08-06), Example A Main Optical System  
 **Inventor:** Kohei Kimura (木村 公平), Canon Inc.  
-**Filing date:** 2019-01-22  
+**Filed:** 2019-01-22  
 **Manufacturer specification:** 19 elements in 13 groups, f/2 constant aperture, 28–70 mm zoom  
 
 ---

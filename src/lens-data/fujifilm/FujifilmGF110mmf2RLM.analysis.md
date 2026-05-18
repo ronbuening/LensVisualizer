@@ -9,7 +9,7 @@
 **Published:** April 12, 2018
 **Priority:** JP 2016-197954 (October 6, 2016)
 
-**Embodiment used:** Example 1 (Tables 1–3; Figs. 1, 2, 12)
+**Embodiment analyzed:** Example 1 (Tables 1–3; Figs. 1, 2, 12)
 
 The prescription is identified as the basis for the production Fujinon GF110mmF2 R LM WR by the following convergent evidence:
 

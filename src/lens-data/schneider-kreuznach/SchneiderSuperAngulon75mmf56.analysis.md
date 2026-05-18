@@ -9,7 +9,7 @@
 **Priority:** August 14, 1963 (Germany, Sch 33,712)
 **Granted:** April 2, 1968
 
-**Embodiment used:** Table I (Example 1), which defines an objective system with an aperture ratio of 1:5.6, an overall focal length of 100 linear units, an effective field angle of 100°, and a back-focal length $s' = 68.46$ units. The total axial length $d_\text{total} = 100.56$ units.
+**Embodiment analyzed:** Table I (Example 1), which defines an objective system with an aperture ratio of 1:5.6, an overall focal length of 100 linear units, an effective field angle of 100°, and a back-focal length $s' = 68.46$ units. The total axial length $d_\text{total} = 100.56$ units.
 
 The Table I embodiment is identified as the design basis for the Schneider-Kreuznach Super-Angulon 75mm f/5.6 large-format lens by convergent evidence:
 

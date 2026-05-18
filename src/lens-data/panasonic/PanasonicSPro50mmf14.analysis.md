@@ -7,7 +7,7 @@
 **Inventors:** Yoshinaga Shunichiro (吉永 俊一郎), Suzuki Yasuhito (鈴木 靖人).
 **Filed:** 2020-01-24 (international), priority 2019-01-28.
 **Published:** 2020-08-06.
-**Embodiment used:** Numerical Example 3 (数値実施例3), corresponding to Embodiment 3 (実施の形態3, ¶0058–0078).
+**Embodiment analyzed:** Numerical Example 3 (数値実施例3), corresponding to Embodiment 3 (実施の形態3, ¶0058–0078).
 
 The identification of Example 3 as the production prescription rests on the following convergent evidence:
 

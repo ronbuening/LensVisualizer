@@ -6,7 +6,7 @@
 **Applicant:** Canon Inc. (Tokyo, Japan).
 **Inventor:** Endo Hiroshi (遠藤 宏志).
 **Filed:** October 13, 2005 (特願 2005-298895). **Published:** April 26, 2007.
-**Embodiment used:** Numerical Example 1 (数値実施例 1).
+**Embodiment analyzed:** Numerical Example 1 (数値実施例 1).
 
 The identification of Example 1 with the production Canon EF-S 17-55mm f/2.8 IS USM rests on the following convergent evidence:
 

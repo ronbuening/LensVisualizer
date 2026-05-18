@@ -7,7 +7,7 @@
 **Inventor:** Satoshi Maetaki, Utsunomiya (JP)
 **Filed:** December 19, 2012 (US); priority JP 2011-288116, December 28, 2011
 **Granted:** March 3, 2015
-**Embodiment used:** Numerical Example 2
+**Embodiment analyzed:** Numerical Example 2
 
 The prescription transcribed here corresponds to Numerical Example 2 of the patent. The following convergent evidence links this embodiment to the Canon EF 40mm f/2.8 STM production lens:
 

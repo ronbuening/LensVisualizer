@@ -7,7 +7,7 @@
 **Inventor:** Taiga Noda, Saitama (JP).
 **Filed:** June 13, 2017. **Published:** March 1, 2018.
 **Priority:** Japanese Patent Application No. 2016-162462, filed August 23, 2016.
-**Embodiment used:** Example 1 (Tables 1–3, FIGS. 1, 6–7).
+**Embodiment analyzed:** Example 1 (Tables 1–3, FIGS. 1, 6–7).
 
 The identification of Example 1 as the production Fujinon GF120mmF4 R LM OIS WR Macro rests on convergent evidence across multiple independent criteria:
 

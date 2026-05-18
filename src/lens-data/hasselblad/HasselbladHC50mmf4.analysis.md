@@ -11,7 +11,7 @@
 **Inventor:** Masao Mori
 **Filed:** July 11, 2002 (US); priority July 12, 2001 (JP 2001-211937)
 **Published:** January 16, 2003
-**Embodiment used:** Example 4 (Numerical Example 4, FIG. 4 / FIG. 8)
+**Embodiment analyzed:** Example 4 (Numerical Example 4, FIG. 4 / FIG. 8)
 
 ### Production Identification
 

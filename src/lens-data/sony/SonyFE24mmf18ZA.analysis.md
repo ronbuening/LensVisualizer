@@ -8,7 +8,7 @@
 **Filed:** June 26, 2012 (US); **Priority:** August 4, 2011 (JP 2011-171294)
 **Published:** February 7, 2013
 
-**Embodiment used:** Numerical Example 2 (Tables 4–6, Figs. 4–6)
+**Embodiment analyzed:** Numerical Example 2 (Tables 4–6, Figs. 4–6)
 
 The following convergent evidence links Example 2 to the production Sony Carl Zeiss Sonnar T* E 24mm F1.8 ZA (SEL24F18Z):
 

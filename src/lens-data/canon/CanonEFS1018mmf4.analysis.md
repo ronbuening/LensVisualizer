@@ -5,9 +5,9 @@
 **Patent:** JP 2015-31869 A, "ズームレンズ及びそれを有する撮像装置" (Zoom Lens and Imaging Apparatus Having the Same).
 **Applicant:** Canon Inc. (キヤノン株式会社), Tokyo, Japan.
 **Inventor:** Makoto Nakahara (中原 誠).
-**Filing date:** 5 August 2013 (Priority: 特願2013-162437).
-**Publication date:** 16 February 2015.
-**Embodiment used:** Numerical Example 1 (数値実施例１), corresponding to the lens cross-section in Figure 1.
+**Filed:** 5 August 2013 (Priority: 特願2013-162437).
+**Published:** 16 February 2015.
+**Embodiment analyzed:** Numerical Example 1 (数値実施例１), corresponding to the lens cross-section in Figure 1.
 
 ### Production Lens Identification
 
