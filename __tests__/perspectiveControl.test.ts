@@ -3,6 +3,7 @@ import buildLens from "../src/optics/buildLens.js";
 import { LENS_CATALOG } from "../src/utils/lensCatalog.js";
 
 const ENABLED_PC_KEYS = [
+  "fujifilm-gf-30mm-f56-ts",
   "nikon-pc-nikkor-19mm-f4e-ed",
   "nikon-pc-e-nikkor-24-f35d-ed",
   "nikon-pce-micro-nikkor-45f28d",
@@ -19,6 +20,10 @@ describe("perspectiveControl lens data", () => {
   });
 
   it("declares official Nikon shift and tilt limits for the enabled PC lenses", () => {
+    expect(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].perspectiveControl).toMatchObject({
+      shiftRangeMm: [-15, 15],
+      tiltRangeDeg: [-8.5, 8.5],
+    });
     expect(LENS_CATALOG["nikon-pc-nikkor-19mm-f4e-ed"].perspectiveControl).toMatchObject({
       shiftRangeMm: [-12, 12],
       tiltRangeDeg: [-7.5, 7.5],
