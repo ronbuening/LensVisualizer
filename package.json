@@ -14,6 +14,7 @@
     "preview": "vite preview",
     "test": "vitest run --testTimeout 30000",
     "test:coverage": "vitest run --coverage --testTimeout 30000",
+    "generate:glass-reports": "vitest run --testTimeout 30000 unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

@@ -26,7 +26,7 @@ Before opening either lens file, collect:
 2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing.
 3. **The current mismatch reports** — regenerate before starting so the surface lists are current:
    ```bash
-   npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
+   npm run generate:glass-reports
    ```
 4. **Glass equivalence references** — Schott/Ohara/Hoya/Sumita cross-tables when the patent names a glass from a different vendor than the annotation.
 
@@ -218,7 +218,7 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 If glass annotations changed, regenerate the catalog scans and confirm the lens drops off the affected mismatch lists:
 
 ```bash
-npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
+npm run generate:glass-reports
 ```
 
 If the audit relabeled a surface that the global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).
@@ -243,5 +243,6 @@ The log's purpose is forensic: future-you should be able to reconstruct which pa
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — line-index backfill workflow when Phase 3 picks up `nC`/`nF`/`ng` from the patent.
 - [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).
 - [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — auto-generated candidate suggestions per mismatch group.
+- [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) — auto-generated per-lens relabel queue for patent-audit execution.
 - [../src/lens-data/LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) — full data-file format reference, including the Glass Identification section.
 - [../src/lens-data/LENS_ANALYSIS_SPEC.md](../src/lens-data/LENS_ANALYSIS_SPEC.md) — analysis-file format and writing conventions consumed by Phase 4.

@@ -9,6 +9,9 @@ The generated reports are the current work queues:
 - [unresolved-glass.generated.md](unresolved-glass.generated.md) — unresolved tokens that may need catalog entries, aliases, or patent backfills; regenerate with `npm test -- unresolvedGlassScan`.
 - [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — labels that resolve to a catalog entry but disagree with stored `nd`; regenerate with `npm test -- catalogMismatchScan`.
 - [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — candidate relabel targets for mismatches; regenerate with `npm test -- glassRelabelCandidatesScan`.
+- [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) — per-lens patent-audit work queue combining mismatches and candidates; regenerate with `npm test -- glassRelabelByLensScan`.
+
+Regenerate all glass reports together with `npm run generate:glass-reports`.
 
 ## Why So Few Entries To Start With
 

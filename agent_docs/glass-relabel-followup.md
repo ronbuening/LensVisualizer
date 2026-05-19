@@ -4,9 +4,12 @@ A focused per-lens worklist for the remaining catalog mismatches surfaced by the
 
 - [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — the auto-generated raw mismatch list (regenerate with `npm test -- catalogMismatchScan`).
 - [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — the auto-generated candidate report grouping mismatches by `(stored nd, stored vd)` and showing each group's catalog candidates within tolerance (regenerate with `npm test -- glassRelabelCandidatesScan`).
+- [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) — the auto-generated per-lens work queue that combines mismatch rows and candidate suggestions for patent-audit passes (regenerate with `npm test -- glassRelabelByLensScan`).
 - [unresolved-glass.generated.md](unresolved-glass.generated.md) — the auto-generated unresolved-token report for glass strings that never resolve through `resolveGlass` (regenerate with `npm test -- unresolvedGlassScan`).
 - [glass-catalog-buildout.md](glass-catalog-buildout.md) — Sellmeier sourcing playbook (where to find vendor data, the round-trip test, etc.).
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — workflow for patent-sourced `nC`/`nF`/`ng` line indices on truly proprietary glasses.
+
+Regenerate all glass reports together with `npm run generate:glass-reports`.
 
 ## How this queue is structured
 
@@ -23,7 +26,7 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalogMismatchScan`: **223** lenses scanned, **2567** non-empty glass strings, **1815** resolved catalog hits, **338** rejected mismatches across **117** lens files.
 - `glassRelabelCandidatesScan`: **338** mismatched surfaces across **230** unique `(stored nd, stored vd, label)` groups.
 - `unresolvedGlassScan`: **648** non-explicit-unmatched annotations still do not resolve, covering **204** distinct glass-like tokens.
-- The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work.
+- The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md).
 
 ## Resolved Phase 3 — high-confidence relabels (audit trail)
 

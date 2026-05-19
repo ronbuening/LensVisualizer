@@ -57,7 +57,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - [`glass-catalog-buildout.md`](glass-catalog-buildout.md) - glass catalog expansion and sourcing playbook.
 - [`glass-relabel-followup.md`](glass-relabel-followup.md) - per-lens glass mismatch relabel queue.
 - [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) - patent line-index backfill workflow.
-- [`catalog-mismatches.generated.md`](catalog-mismatches.generated.md), [`glass-relabel-candidates.generated.md`](glass-relabel-candidates.generated.md), and [`unresolved-glass.generated.md`](unresolved-glass.generated.md) - generated glass reports; regenerate before glass-audit work.
+- [`catalog-mismatches.generated.md`](catalog-mismatches.generated.md), [`glass-relabel-candidates.generated.md`](glass-relabel-candidates.generated.md), [`glass-relabel-by-lens.generated.md`](glass-relabel-by-lens.generated.md), and [`unresolved-glass.generated.md`](unresolved-glass.generated.md) - generated glass reports; regenerate before glass-audit work with `npm run generate:glass-reports`.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.
