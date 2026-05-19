@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 336 mismatched surfaces across 228 unique groups.
+**Scope**: 338 mismatched surfaces across 230 unique groups.
 
 ## stored (nd=1.43700, vd=95.10)  — 2 surfaces, current label resolves to S-FPM2
 
@@ -117,6 +117,13 @@ Surfaces:
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `13`: `S-BAL14 (OHARA)`
 - [NIKON PC-E NIKKOR 24mm f/3.5D ED](../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) `17`: `S-BAL14 (OHARA)`
 
+## stored (nd=1.54814, vd=45.80)  — 1 surface, current label resolves to S-TIL2
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) `17`: `S-TIL2 (OHARA)`
+
 ## stored (nd=1.55032, vd=75.50) [PgF=0.5443 (dPgF=0.0275)]  — 2 surfaces, current label resolves to FCD515
 
 Candidates:
@@ -150,7 +157,8 @@ Surfaces:
 
 ## stored (nd=1.56732, vd=42.80)  — 2 surfaces, current label resolves to S-BAL42
 
-**No catalog candidate within tolerance** — needs per-lens follow-up.
+Candidates:
+- **S-TIL26** (nd=1.56732, vd=42.82, Δnd=+0.0000, Δvd=+0.02)
 
 Surfaces:
 - [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../src/lens-data/leica/Leica28mmf17.data.ts) `1`: `S-BAL42 (OHARA)`
@@ -203,6 +211,16 @@ Candidates:
 Surfaces:
 - [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) `35`: `S-NBM51 (OHARA)`
 - [SONY SONNAR T* FE 55mm F1.8 ZA](../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) `1`: `S-TIM2 (OHARA)`
+
+## stored (nd=1.58144, vd=40.98)  — 1 surface, current label resolves to S-TIL26
+
+Candidates:
+- **E-FL5** (nd=1.58144, vd=40.89, Δnd=-0.0000, Δvd=-0.09)
+- **PBL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.23)
+- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.23)
+
+Surfaces:
+- [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) `22`: `S-TIL26 (Ohara)`
 
 ## stored (nd=1.58144, vd=40.75)  — 1 surface, current label resolves to S-TIH14
 
@@ -1141,6 +1159,7 @@ Surfaces:
 
 Candidates:
 - **J-LASKH2** (nd=1.75500, vd=52.34, Δnd=+0.0000, Δvd=+0.00)
+- **N-LAK33B** (nd=1.75500, vd=52.30, Δnd=+0.0000, Δvd=-0.04)
 - **S-LAH97** (nd=1.75500, vd=52.32, Δnd=+0.0000, Δvd=-0.02)
 
 Surfaces:
@@ -1151,6 +1170,7 @@ Surfaces:
 
 Candidates:
 - **J-LASKH2** (nd=1.75500, vd=52.34, Δnd=+0.0000, Δvd=+0.04)
+- **N-LAK33B** (nd=1.75500, vd=52.30, Δnd=+0.0000, Δvd=+0.00)
 - **S-LAH97** (nd=1.75500, vd=52.32, Δnd=+0.0000, Δvd=+0.02)
 
 Surfaces:
@@ -1822,7 +1842,8 @@ Surfaces:
 
 ## stored (nd=1.86994, vd=39.82)  — 1 surface, current label resolves to TAFD30
 
-**No catalog candidate within tolerance** — needs per-lens follow-up.
+Candidates:
+- **TAFD32** (nd=1.87070, vd=40.73, Δnd=+0.0008, Δvd=+0.91)
 
 Surfaces:
 - [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) `15`: `Very Dense Lanthanum Flint (TAFD30)`
@@ -2148,5 +2169,5 @@ Surfaces:
 
 ## Summary
 
-- **196** (nd, vd) groups have at least one candidate (296 surfaces) — actionable relabels.
-- **32** (nd, vd) groups have NO candidate (40 surfaces) — needs patent verification or Unmatched relabeling.
+- **199** (nd, vd) groups have at least one candidate (300 surfaces) — actionable relabels.
+- **31** (nd, vd) groups have NO candidate (38 surfaces) — needs patent verification or Unmatched relabeling.

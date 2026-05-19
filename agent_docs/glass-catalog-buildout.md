@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **180 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **185 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports are the current work queues:
 
@@ -75,6 +75,16 @@ already in the catalog.
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 12 additions** (May 2026 — high-frequency unresolved-token pass; all entries round-trip through `assertCatalogConsistent`; `H-ZF88A` was resolved as an alias to the already cataloged 847/238 `S-TIH53` equivalent, not as CDGM `H-ZF88`, which is a different 946/179 glass):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ H-FK61 | CDGM | 9 | CDGM ED fluorophosphate `497816`; direct coverage for Laowa macro/APO data |
+| ★ S-TIL26 | Ohara | 5 | Lightweight titanium glass `567428`; also unlocks code/equivalent class strings |
+| ★ S-TIL2 | Ohara | 4 | Lightweight titanium glass `541472`; resolves S-TIL2/E-FEL2 class annotations |
+| ★ N-LAK33B | Schott | 3 | Lanthanum crown `755523`; useful for Schneider large-format and Nikon equivalent labels |
+| ★ TAFD32 | Hoya | 3 | Formula-3 high-index lanthanum/tantalum glass `871407`; resolves Fuji TAFD32/H-ZLaF64 class labels |
 
 **Phase 11 additions** (May 2026 — exact six-digit code-family backfill from the remaining unresolved report; all entries round-trip through `assertCatalogConsistent`):
 

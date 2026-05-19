@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 180 vendor-verified entries (Phase 11, May 2026)
+ * GLASS CATALOG — 185 vendor-verified entries (Phase 12, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -2212,5 +2212,60 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5664,
     code6: "810410",
     source: "Sumita Zemax catalog 2017-02-02 via refractiveindex.info; K-VC89 page (formula 3 polynomial).",
+  },
+
+  /* ────── Phase 12 high-frequency unresolved-token additions (May 2026) ──────
+   * Direct coefficient-backed names from the unresolved-glass report. Entries
+   * without public dispersion coefficients remain unresolved until a vendor
+   * coefficient source can be checked.
+   */
+  {
+    name: "H-FK61",
+    vendor: "CDGM",
+    B: [0.502504076, 0.715240076, 0.836628986],
+    C: [0.00132743798, 0.0108378966, 155.933755],
+    nd: 1.497,
+    vd: 81.612838,
+    code6: "497816",
+    source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-FK61 page.",
+  },
+  {
+    name: "S-TIL2",
+    vendor: "Ohara",
+    B: [1.23401499, 0.0959796833, 1.20503991],
+    C: [0.00869507801, 0.0465611429, 137.953301],
+    nd: 1.54072,
+    vd: 47.227127,
+    code6: "541472",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL2 page.",
+  },
+  {
+    name: "S-TIL26",
+    vendor: "Ohara",
+    B: [1.31066488, 0.0941903094, 1.23292644],
+    C: [0.00968897812, 0.0527763106, 133.296422],
+    nd: 1.567322,
+    vd: 42.817076,
+    code6: "567428",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIL26 page.",
+  },
+  {
+    name: "N-LAK33B",
+    vendor: "Schott",
+    B: [1.42288601, 0.593661336, 1.1613526],
+    C: [0.00670283452, 0.021941621, 80.7407701],
+    nd: 1.755,
+    vd: 52.3,
+    code6: "755523",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK33B page.",
+  },
+  {
+    name: "TAFD32",
+    vendor: "Hoya",
+    polynomial: [3.396108, -0.013087065, 0.034853516, 0.00079083177, 0.0000076995212, 0.0000023516742],
+    nd: 1.8707,
+    vd: 40.73,
+    code6: "871407",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD32 page (formula 3 polynomial).",
   },
 ];

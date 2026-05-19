@@ -12,6 +12,9 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   // S-TIH53 is the Ohara equivalent sharing the same 6-digit code (847/238 ≈ 847/239).
   ["SF57", "S-TIH53"],
   ["N-SF57", "S-TIH53"],
+  // CDGM H-ZF88A annotations in Laowa Probe data use the 847/238 dense-flint
+  // class; CDGM's cataloged H-ZF88 is a different 946/179 glass.
+  ["H-ZF88A", "S-TIH53"],
   // SK16 is the legacy Schott name for N-SK16 (same glass, modernized designation).
   ["SK16", "N-SK16"],
   // BACD5 is the Hoya trade name for N-SK16-equivalent glass (same nd/vd).

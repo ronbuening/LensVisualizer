@@ -16,8 +16,8 @@ with words like "probable" or "approx").
 - **223** lenses scanned
 - **2573** glass surfaces examined
 - **2567** surfaces with non-empty `glass` strings
-- **1780** of those resolved to a catalog entry
-- **336** mismatches found (18.9% of resolved surfaces)
+- **1815** of those resolved to a catalog entry
+- **338** mismatches found (18.6% of resolved surfaces)
 - **117** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
@@ -118,6 +118,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | H-ZF88 | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
+| S-TIL26 | 1 | |
 | S-BAH28 | 1 | |
 | S-LAH53 | 1 | |
 | TAFD55 | 1 | |
@@ -134,6 +135,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | N-SK2 | 1 | |
 | NBFD11 | 1 | |
 | S-BSM71 | 1 | |
+| S-TIL2 | 1 | |
 
 ## Mismatches by lens
 
@@ -391,6 +393,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 12A | `S-LAH63 (OHARA)` | S-LAH63 | 1.87722 | 1.80440 | -0.0728 |
 | 15 | `S-NBH55 (OHARA)` | S-NBH55 | 1.74077 | 1.80000 | +0.0592 |
 
+### [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) — WO2019/116563 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 6 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
+| 19 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
+| 20 | `S-LAH64 equiv. (Ohara)` | S-LAH64 | 1.76684 | 1.78800 | +0.0212 |
+| 22 | `S-TIL26 (Ohara)` | S-TIL26 | 1.58144 | 1.56732 | -0.0141 |
+
 ### [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) — US 7,359,125 B2
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -579,14 +590,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 13 | `S-LAH79 (OHARA)` | S-LAH79 | 1.89190 | 2.00330 | +0.1114 |
 | 14 | `S-TIM22 (OHARA)` | S-TIM22 | 1.69895 | 1.64769 | -0.0513 |
 
-### [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) — WO2019/116563 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
-| 19 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
-| 20 | `S-LAH64 equiv. (Ohara)` | S-LAH64 | 1.76684 | 1.78800 | +0.0212 |
-
 ### [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) — JP2017-227799A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -706,6 +709,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 10 | `S-LAH51 (OHARA)` | S-LAH51 | 1.80610 | 1.78590 | -0.0202 |
 | 11 | `S-TIH4 (OHARA)` | S-TIH4 | 1.72825 | 1.75520 | +0.0269 |
 | 15 | `S-LAH51 (OHARA)` | S-LAH51 | 1.80610 | 1.78590 | -0.0202 |
+
+### [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) — JP 2004-101880A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3 | `S-BAM4 (OHARA)` | S-BAM4 | 1.56732 | 1.60562 | +0.0383 |
+| 12 | `S-TIH14 (OHARA)` | S-TIH14 | 1.80518 | 1.76182 | -0.0434 |
+| 17 | `S-TIL2 (OHARA)` | S-TIL2 | 1.54814 | 1.54072 | -0.0074 |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) — JP2022-100641A
 
@@ -875,13 +886,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 7 | `S-LAH65 class (Ohara)` | S-LAH65 | 1.77300 | 1.80400 | +0.0310 |
 | 9 | `S-BSM71 (Ohara)` | S-BSM71 | 1.64000 | 1.64850 | +0.0085 |
-
-### [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) — JP 2004-101880A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `S-BAM4 (OHARA)` | S-BAM4 | 1.56732 | 1.60562 | +0.0383 |
-| 12 | `S-TIH14 (OHARA)` | S-TIH14 | 1.80518 | 1.76182 | -0.0434 |
 
 ### [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) — JP 2025-58577 A
 
