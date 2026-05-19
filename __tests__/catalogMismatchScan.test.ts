@@ -15,19 +15,20 @@
  *
  * In either case the dispersion cascade rejects the catalog entry and falls
  * through to the Abbe approximation. This test outputs a report to
- * `agent_docs/catalog-mismatches.generated.md` so the team can decide per-case
- * whether to relabel the glass or update the stored `nd`.
+ * `agent_docs/generated/catalog-mismatches.generated.md` so the team can decide
+ * per-case whether to relabel the glass or update the stored `nd`.
  *
  * Always passes — its job is to surface the data, not to gate CI.
  */
 import { describe, it, expect } from "vitest";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../src/optics/buildLens.js";
 import { resolveGlass, evaluateSellmeier, LINE_NM } from "../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
 
 const MISMATCH_TOLERANCE = 5e-3;
+const REPORT_DIR = "agent_docs/generated";
 
 interface Mismatch {
   lensKey: string;
@@ -135,7 +136,9 @@ describe("catalog-mismatch scan", () => {
       `but the catalog Sellmeier d-line index disagrees with the stored \`surface.nd\` by more than ${MISMATCH_TOLERANCE}.`,
     );
     lines.push("");
-    lines.push("These are rejected by the safety net in [src/optics/dispersion.ts](../src/optics/dispersion.ts) — the");
+    lines.push(
+      "These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the",
+    );
     lines.push("dispersion cascade falls through to Abbe rather than trust a misidentified glass label. This");
     lines.push("report exists so the team can decide per-case whether to relabel the glass, update the stored `nd`,");
     lines.push("or accept the mismatch (some glass annotations in lens-data files are explicitly marked as guesses");
@@ -191,7 +194,7 @@ describe("catalog-mismatch scan", () => {
         const list = byLens.get(key)!;
         const first = list[0];
         const patentSuffix = first.patentNumber ? ` — ${first.patentNumber}` : "";
-        lines.push(`### [${first.lensName}](../${first.filePath})${patentSuffix}`);
+        lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
         lines.push("");
         lines.push("| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |");
         lines.push("|---|---|---|---|---|---|");
@@ -206,7 +209,8 @@ describe("catalog-mismatch scan", () => {
     }
 
     // Vitest runs from the project root; this relative path is resolved against cwd.
-    const reportPath = "agent_docs/catalog-mismatches.generated.md";
+    mkdirSync(REPORT_DIR, { recursive: true });
+    const reportPath = `${REPORT_DIR}/catalog-mismatches.generated.md`;
     writeFileSync(reportPath, lines.join("\n") + "\n");
 
     // Test always passes — this scan is observational, not a CI gate.

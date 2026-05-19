@@ -2,14 +2,14 @@
 
 A standard procedure for reviewing an existing `*.data.ts` file against its source patent, correcting mismatched glass annotations, auditing retained values, enriching spectral data, and syncing the companion `*.analysis.md`. Every audit produces a per-lens `*.audit.md` log that records what changed and why.
 
-This is the procedure to follow when working a lens off the [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md), [glass-relabel-followup.md](glass-relabel-followup.md), or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.
+This is the procedure to follow when working a lens off the [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md), [glass-relabel-followup.md](glass-relabel-followup.md), or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.
 
 ## When to use this guide
 
 Use it when:
 
-- A lens appears in [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) and you have time to settle its flagged surfaces against the patent.
-- A row in [catalog-mismatches.generated.md](catalog-mismatches.generated.md) or [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) needs a deeper patent pass.
+- A lens appears in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) and you have time to settle its flagged surfaces against the patent.
+- A row in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) or [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) needs a deeper patent pass.
 - You are revisiting a lens for any reason and the patent is open.
 - A reader has reported that the analysis narrative disagrees with the data file.
 - A new vendor catalog entry has just landed and you want to upgrade nearby annotations.
@@ -29,12 +29,12 @@ Before opening either lens file, collect:
    ```bash
    npm run generate:glass-reports
    ```
-4. **The per-lens queue section** — open the target lens in [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md). This is the working checklist for Phase 1; the raw mismatch and candidate reports are supporting references.
+4. **The per-lens queue section** — open the target lens in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md). This is the working checklist for Phase 1; the raw mismatch and candidate reports are supporting references.
 5. **Glass equivalence references** — Schott/Ohara/Hoya/Sumita cross-tables when the patent names a glass from a different vendor than the annotation.
 
 ## Using the per-lens relabel queue
 
-[glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) is the preferred entry point for relabel audits. It groups all flagged surfaces for a lens together so you can compare the patent's table, repeated glass codes, cemented groups, and analysis prose in one pass.
+[glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) is the preferred entry point for relabel audits. It groups all flagged surfaces for a lens together so you can compare the patent's table, repeated glass codes, cemented groups, and analysis prose in one pass.
 
 Each row is a prompt for review, not an automatic edit:
 
@@ -255,7 +255,7 @@ If glass annotations changed, regenerate the catalog scans and confirm the lens 
 npm run generate:glass-reports
 ```
 
-After regeneration, check the lens section in [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md):
+After regeneration, check the lens section in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md):
 
 - If the section disappeared, Phase 1 is fully cleared for catalog mismatches.
 - If rows remain, copy the remaining surface numbers and reasons into the audit log.
@@ -278,11 +278,11 @@ The log's purpose is forensic: future-you should be able to reconstruct which pa
 ## Related docs
 
 - [adding_a_lens.md](adding_a_lens.md) — workflow for new lens files (what this guide assumes is already complete).
-- [glass-relabel-by-lens.generated.md](glass-relabel-by-lens.generated.md) — auto-generated per-lens relabel queue for patent-audit execution; the primary queue this audit drains.
+- [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — auto-generated per-lens relabel queue for patent-audit execution; the primary queue this audit drains.
 - [glass-relabel-followup.md](glass-relabel-followup.md) — historical follow-up notes and most-frequent mismatch patterns.
 - [glass-catalog-buildout.md](glass-catalog-buildout.md) — adding new vendor Sellmeier entries when Phase 1 needs one.
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — line-index backfill workflow when Phase 3 picks up `nC`/`nF`/`ng` from the patent.
-- [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).
-- [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — auto-generated candidate suggestions per mismatch group.
+- [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).
+- [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) — auto-generated candidate suggestions per mismatch group.
 - [../src/lens-data/LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) — full data-file format reference, including the Glass Identification section.
 - [../src/lens-data/LENS_ANALYSIS_SPEC.md](../src/lens-data/LENS_ANALYSIS_SPEC.md) — analysis-file format and writing conventions consumed by Phase 4.

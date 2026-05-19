@@ -29,7 +29,7 @@
  * Regenerate: `npm test -- glassRelabelCandidatesScan`
  */
 import { describe, it, expect } from "vitest";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../src/optics/buildLens.js";
 import { allEntries, evaluateSellmeier, LINE_NM, resolveGlass, type GlassEntry } from "../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -38,6 +38,7 @@ import type { LensData } from "../src/types/optics.js";
 const ND_TOLERANCE = 5e-3; // matches dispersion safety net
 const VD_TOLERANCE = 3.0; // absolute Abbe units; loose enough to allow melt variants
 const PGF_TOLERANCE = 0.02; // ΔPgF spread that's plausible across melt variants
+const REPORT_DIR = "agent_docs/generated";
 
 /**
  * Extract a Schott-style six-digit glass code from a glass annotation.
@@ -203,7 +204,7 @@ describe("glass-relabel candidate scan", () => {
     lines.push("- **Embedded code in annotation** (e.g. `(903/313)`): when present, candidates are");
     lines.push("  ranked by code distance — the code is independent ground truth.");
     lines.push("- **No candidate**: relabel as `Unmatched (...reason)` and add a row to");
-    lines.push("  [glass-relabel-followup.md](glass-relabel-followup.md) for per-lens patent verification.");
+    lines.push("  [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.");
     lines.push("");
     lines.push(`**Scope**: ${mismatches.length} mismatched surfaces across ${byStored.size} unique groups.`);
     lines.push("");
@@ -260,7 +261,7 @@ describe("glass-relabel candidate scan", () => {
       lines.push("Surfaces:");
       const shown = group.slice(0, 8);
       for (const m of shown) {
-        lines.push(`- [${m.lensName}](../${m.filePath}) \`${m.surfaceLabel}\`: \`${m.glassString}\``);
+        lines.push(`- [${m.lensName}](../../${m.filePath}) \`${m.surfaceLabel}\`: \`${m.glassString}\``);
       }
       if (group.length > shown.length) lines.push(`- ... and ${group.length - shown.length} more`);
       lines.push("");
@@ -277,7 +278,8 @@ describe("glass-relabel candidate scan", () => {
       `- **${withoutCandidates}** (nd, vd) groups have NO candidate (${totalSurfacesWithoutCandidate} surfaces) — needs patent verification or Unmatched relabeling.`,
     );
 
-    writeFileSync("agent_docs/glass-relabel-candidates.generated.md", lines.join("\n") + "\n");
+    mkdirSync(REPORT_DIR, { recursive: true });
+    writeFileSync(`${REPORT_DIR}/glass-relabel-candidates.generated.md`, lines.join("\n") + "\n");
 
     expect(byStored.size).toBeGreaterThanOrEqual(0); // observational test
   });

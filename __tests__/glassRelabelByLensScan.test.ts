@@ -11,7 +11,7 @@
  * Regenerate: `npm test -- glassRelabelByLensScan`
  */
 import { describe, expect, it } from "vitest";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../src/optics/buildLens.js";
 import { allEntries, evaluateSellmeier, LINE_NM, resolveGlass, type GlassEntry } from "../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
@@ -20,6 +20,7 @@ import type { LensData } from "../src/types/optics.js";
 const ND_TOLERANCE = 5e-3;
 const VD_TOLERANCE = 3.0;
 const PGF_TOLERANCE = 0.02;
+const REPORT_DIR = "agent_docs/generated";
 
 interface EmbeddedCode {
   raw: string;
@@ -255,7 +256,7 @@ describe("glass relabel by lens scan", () => {
         const lensRows = rows.filter((row) => row.lensKey === lensKey);
         const first = lensRows[0];
         const patentSuffix = first.patentNumber ? ` - ${first.patentNumber}` : "";
-        lines.push(`### [${first.lensName}](../${first.filePath})${patentSuffix}`);
+        lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
         lines.push("");
         lines.push(
           "| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |",
@@ -273,7 +274,8 @@ describe("glass relabel by lens scan", () => {
       }
     }
 
-    writeFileSync("agent_docs/glass-relabel-by-lens.generated.md", lines.join("\n") + "\n");
+    mkdirSync(REPORT_DIR, { recursive: true });
+    writeFileSync(`${REPORT_DIR}/glass-relabel-by-lens.generated.md`, lines.join("\n") + "\n");
 
     expect(lensKeys.length).toBeGreaterThanOrEqual(0);
   });

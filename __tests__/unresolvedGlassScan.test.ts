@@ -9,13 +9,14 @@
  * Always passes — its job is to emit an authoring report, not to gate CI.
  */
 import { describe, expect, it } from "vitest";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../src/optics/buildLens.js";
 import { resolveGlass } from "../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const REPORT_DIR = "agent_docs/generated";
 
 interface Occurrence {
   filePath: string;
@@ -135,14 +136,15 @@ describe("unresolved glass scan", () => {
         for (const occurrence of occurrences) {
           const surfaceList = occurrence.surfaceLabels.join(", ") || "element";
           lines.push(
-            `- [${occurrence.lensName}](../${occurrence.filePath}) ${surfaceList}: \`${occurrence.glassString}\``,
+            `- [${occurrence.lensName}](../../${occurrence.filePath}) ${surfaceList}: \`${occurrence.glassString}\``,
           );
         }
         lines.push("");
       }
     }
 
-    writeFileSync("agent_docs/unresolved-glass.generated.md", lines.join("\n") + "\n");
+    mkdirSync(REPORT_DIR, { recursive: true });
+    writeFileSync(`${REPORT_DIR}/unresolved-glass.generated.md`, lines.join("\n") + "\n");
     expect(totalLenses).toBeGreaterThan(0);
   });
 });

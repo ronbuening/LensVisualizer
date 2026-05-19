@@ -14,7 +14,7 @@
  *
  * Regenerate: `npm test -- sixDigitGlassCodeScan`
  */
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../src/optics/buildLens.js";
 import { evaluateSellmeier, LINE_NM, resolveGlass } from "../src/optics/glassCatalog.js";
@@ -23,6 +23,7 @@ import LENS_DEFAULTS from "../src/lens-data/defaults.js";
 import type { LensData } from "../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../src/lens-data/**/*.data.ts", { eager: true });
+const REPORT_DIR = "agent_docs/generated";
 
 interface SurfaceRef {
   label: string;
@@ -187,7 +188,7 @@ function renderReport(options: {
   )) {
     const first = lensRows[0];
     const patentSuffix = first.patentNumber ? ` - ${first.patentNumber}` : "";
-    lines.push(`### [${first.lensName}](../${first.filePath})${patentSuffix}`);
+    lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
     lines.push("");
     lines.push(
       "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |",
@@ -265,9 +266,10 @@ describe("six-digit glass-code scan", () => {
     }
 
     const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
+    mkdirSync(REPORT_DIR, { recursive: true });
 
     writeFileSync(
-      "agent_docs/six-digit-glass-codes.generated.md",
+      `${REPORT_DIR}/six-digit-glass-codes.generated.md`,
       renderReport({
         title: "Six-Digit Glass Code Elements",
         description: [
@@ -283,7 +285,7 @@ describe("six-digit glass-code scan", () => {
     );
 
     writeFileSync(
-      "agent_docs/six-digit-glass-codes-missing-sellmeier.generated.md",
+      `${REPORT_DIR}/six-digit-glass-codes-missing-sellmeier.generated.md`,
       renderReport({
         title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
         description: [

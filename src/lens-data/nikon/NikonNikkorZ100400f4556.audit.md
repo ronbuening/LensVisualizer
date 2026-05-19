@@ -34,7 +34,7 @@ The patent lists d-line refractive indices only; vd values remain catalog/code i
 
 - No patent spectral line-index, vd, or partial-dispersion data was available to add.
 - Existing top-level metadata already covered patent year, design focal lengths, design aperture, element/group counts, maker, and focus description.
-- Regenerated catalog mismatch reports after relabeling; the lens no longer appears in `agent_docs/catalog-mismatches.generated.md`.
+- Regenerated catalog mismatch reports after relabeling; the lens no longer appears in `agent_docs/generated/catalog-mismatches.generated.md`.
 
 ### Phase 4 - Analysis sync
 

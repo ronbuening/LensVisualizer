@@ -6,7 +6,7 @@ A focused follow-up to the chromatic dispersion overhaul (see [CHROMATIC_DISPERS
 
 Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose `glass` annotation **does** resolve to a vendor catalog entry but whose stored `surface.nd` disagrees with the catalog Sellmeier nd by more than the safety-net tolerance (5e-3) — typically because the annotation was a speculative guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
-The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`.
+The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`.
 
 The fix for a mismatch is one of:
 
