@@ -33,3 +33,13 @@ Patent: JP 2020-177057 A, Example 1
 - `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
 - `npm run typecheck` passed.
 - `npm run test` passed.
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/JP2020177057A.pdf`, Example 1. The L25 / surface 12 row gives nd=1.755750, νd=24.71, and θgF=0.629. Public Nikon/Hikari catalog data now provides an exact coefficient-backed match: Hikari J-SFH5, d-code `756247`, nd=1.755750, νd=24.71, PgF≈0.6291.
+
+Changes made:
+
+- Added Hikari J-SFH5 to `glassCatalogData.ts`.
+- Relabeled L25 in `NikonNikkorAFS120300mmf28.data.ts` to `J-SFH5 (Hikari) — anomalous-dispersion niobium flint (756247)`.
+- Updated `NikonNikkorAFS120300mmf28.analysis.md` so the G2 secondary-spectrum discussion no longer treats L25 as an unresolved code fallback.

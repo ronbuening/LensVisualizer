@@ -49,3 +49,18 @@ The patent lists d-line refractive indices only; vd values remain catalog/code i
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed (116 files, 1507 tests).
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/JP2022092388A.pdf`, Example 1 / Table 1. The remaining code-only rows checked in this pass were L9 / S14 (`855399`, nd=1.854505), L17 / S31 (`553555`, nd=1.552981), L19 / S34 (`603564`, nd=1.603420), L23 / S41 (`903354`, nd=1.902650), and L25 / S45 (`738493`, nd=1.738000).
+
+Catalog-search disposition:
+
+- Searched public Hikari/Nikon, OHARA, HOYA, SCHOTT, and refractiveindex.info-backed catalog data for each six-digit code and nd pair.
+- No coefficient-backed exact matches were found for `855399`, `553555`, `603564`, `903354`, or `738493`.
+- Existing labels were kept unresolved but reworded to say no exact public catalog match while preserving unbroken codes.
+
+Changes made:
+
+- Reworded the five unresolved labels in `NikonNikkorZ100400f4556.data.ts`.
+- Updated `NikonNikkorZ100400f4556.analysis.md` to use the same “no exact public catalog match” disposition.

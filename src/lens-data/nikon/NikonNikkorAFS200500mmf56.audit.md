@@ -43,3 +43,19 @@ Patent: JP 2014-209144 A, Example 2
 - `npm run format:check` — passed.
 - `npm run lint` — passed.
 - `npm run test` — passed.
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/JP2014209144A.pdf`, Example 2. The relevant rows remain row 2 and row 4 (nd=1.49782, νd=82.57) plus row 15 (nd=1.65844, νd=50.85).
+
+Catalog disposition:
+
+- Hikari/Nikon J-FKH1 is an exact coefficient-backed match for the `498826` ED fluorophosphate row.
+- Schott N-SSK5 is a coefficient-backed extra-dense crown with code `658509.371` and matches the patent nd with only a small Abbe rounding difference.
+- L6 / `517522` was already code-resolvable to HOYA E-CF6 in the project catalog.
+
+Changes made:
+
+- Added Hikari J-FKH1 and Schott N-SSK5 to `glassCatalogData.ts`.
+- Relabeled L2/L3 to J-FKH1 and L10 to N-SSK5 in `NikonNikkorAFS200500mmf56.data.ts`.
+- Updated `NikonNikkorAFS200500mmf56.analysis.md` so the front ED elements and L2C doublet no longer read as unresolved code fallbacks.

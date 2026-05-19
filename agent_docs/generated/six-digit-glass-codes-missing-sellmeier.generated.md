@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **250** total code-only elements found
-- **179** elements in this report
-- **63** distinct lens files affected
+- **229** total code-only elements found
+- **158** elements in this report
+- **58** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -23,24 +23,20 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 670571 | 4 | 2 |
 | 855252 | 4 | 3 |
 | 946180 | 4 | 3 |
-| 498826 | 3 | 2 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 744495 | 3 | 3 |
-| 850324 | 3 | 2 |
 | 531559 | 2 | 2 |
 | 561453 | 2 | 2 |
 | 586609 | 2 | 1 |
 | 607595 | 2 | 1 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
-| 700481 | 2 | 2 |
 | 717479 | 2 | 1 |
 | 755516 | 2 | 1 |
 | 755523 | 2 | 2 |
 | 774492 | 2 | 1 |
 | 777297 | 2 | 2 |
-| 801349 | 2 | 2 |
 | 806333 | 2 | 2 |
 | 807316 | 2 | 2 |
 | 856401 | 2 | 1 |
@@ -49,10 +45,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 911352 | 2 | 2 |
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
-| 487703 | 1 | 1 |
-| 497817 | 1 | 1 |
 | 504667 | 1 | 1 |
-| 517522 | 1 | 1 |
 | 517639 | 1 | 1 |
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
@@ -66,7 +59,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 576414 | 1 | 1 |
 | 581408 | 1 | 1 |
 | 581409 | 1 | 1 |
-| 589612 | 1 | 1 |
 | 592670 | 1 | 1 |
 | 593354 | 1 | 1 |
 | 593355 | 1 | 1 |
@@ -74,7 +66,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593686 | 1 | 1 |
 | 595686 | 1 | 1 |
 | 602352 | 1 | 1 |
-| 603380 | 1 | 1 |
 | 603564 | 1 | 1 |
 | 612313 | 1 | 1 |
 | 614551 | 1 | 1 |
@@ -87,16 +78,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 639555 | 1 | 1 |
 | 642581 | 1 | 1 |
 | 648338 | 1 | 1 |
-| 658509 | 1 | 1 |
 | 667311 | 1 | 1 |
 | 672323 | 1 | 1 |
 | 675348 | 1 | 1 |
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
-| 684376 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 694533 | 1 | 1 |
-| 697555 | 1 | 1 |
+| 700481 | 1 | 1 |
 | 700555 | 1 | 1 |
 | 702411 | 1 | 1 |
 | 713433 | 1 | 1 |
@@ -109,16 +98,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 741278 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
-| 756247 | 1 | 1 |
 | 757316 | 1 | 1 |
 | 760492 | 1 | 1 |
 | 764485 | 1 | 1 |
 | 764491 | 1 | 1 |
-| 765468 | 1 | 1 |
 | 770479 | 1 | 1 |
 | 772493 | 1 | 1 |
 | 772496 | 1 | 1 |
-| 773496 | 1 | 1 |
 | 773498 | 1 | 1 |
 | 774472 | 1 | 1 |
 | 774494 | 1 | 1 |
@@ -126,20 +112,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 792257 | 1 | 1 |
 | 792450 | 1 | 1 |
 | 795452 | 1 | 1 |
-| 795453 | 1 | 1 |
 | 797454 | 1 | 1 |
+| 801349 | 1 | 1 |
 | 801454 | 1 | 1 |
 | 801455 | 1 | 1 |
 | 803404 | 1 | 1 |
 | 805410 | 1 | 1 |
-| 808227 | 1 | 1 |
 | 808409 | 1 | 1 |
 | 834373 | 1 | 1 |
 | 835427 | 1 | 1 |
 | 835447 | 1 | 1 |
 | 849438 | 1 | 1 |
-| 850270 | 1 | 1 |
 | 850301 | 1 | 1 |
+| 850324 | 1 | 1 |
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 855399 | 1 | 1 |
@@ -314,84 +299,38 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11 (L11) | 1 | `Crown glass (517/639; catalog identity not asserted)` | 1.51680 / 63.88 | No catalog entry | abbe |
-| L12 (L12) | 3 | `Anomalous-dispersion flint class (612/313; patent-specified)` | 1.61155 / 31.26 | No catalog entry | abbe |
-| L13 (L13) | 4 | `Medium-dispersion crown (517/522; catalog identity not asserted)` | 1.51742 / 52.20 | No catalog entry | abbe |
-| L21 (L21) | 6 | `High-index crown (697/555; catalog identity not asserted)` | 1.69680 / 55.52 | No catalog entry | abbe |
-| L22 (L22) | 7 | `Dense flint (808/227; catalog identity not asserted)` | 1.80809 / 22.74 | No catalog entry | abbe |
-| L23 (L23) | 9 | `Dense flint / lanthanum-flint class (850/324; catalog identity not asserted)` | 1.85026 / 32.35 | No catalog entry | abbe |
-| L31 (L31) | 11 | `Crown glass (589/612; catalog identity not asserted)` | 1.58913 / 61.22 | No catalog entry | abbe |
-| L41 (L41) | 13 | `ED fluorophosphate crown class (497/817; catalog identity not asserted)` | 1.49700 / 81.73 | No catalog entry | abbe |
-| L42 (L42) | 14 | `Dense flint / lanthanum-flint class (850/324; catalog identity not asserted)` | 1.85026 / 32.35 | No catalog entry | abbe |
-| L43 (L43) | 16 | `Low-dispersion crown (487/703; catalog identity not asserted)` | 1.48749 / 70.31 | No catalog entry | abbe |
-| L44 (L44) | 19 | `Dense flint / high-index medium-dispersion class (801/349; catalog identity not asserted)` | 1.80100 / 34.92 | No catalog entry | abbe |
-| L45 (L45) | 20 | `High-index flint class (700/481; catalog identity not asserted)` | 1.70000 / 48.11 | No catalog entry | abbe |
-| L46 (L46) | 22 | `Medium-index flint (603/380; catalog identity not asserted)` | 1.60342 / 38.03 | No catalog entry | abbe |
-| L47 (L47) | 24 | `High-index medium-dispersion flint class (773/496; catalog identity not asserted)` | 1.77250 / 49.62 | No catalog entry | abbe |
-
-### [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) - JP 2020-177057 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L25 (Element 8) | 12 | `756247 - anomalous-dispersion niobium glass (patent nd=1.75575, vd=24.71, theta_gF=0.629)` | 1.75575 / 24.71 | No catalog entry | abbe |
-
-### [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) - JP 2014-209144 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L2 (Element 2) | 2 | `498826 — ED fluorophosphate crown (patent nd=1.49782, νd=82.57)` | 1.49782 / 82.57 | No catalog entry | abbe |
-| L3 (Element 3) | 4 | `498826 — ED fluorophosphate crown (patent nd=1.49782, νd=82.57)` | 1.49782 / 82.57 | No catalog entry | abbe |
-| L10 (Element 10) | 15 | `658509 — lanthanum crown (patent nd=1.65844, νd=50.85)` | 1.65844 / 50.85 | No catalog entry | abbe |
+| L11 (L11) | 1 | `517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)` | 1.51680 / 63.88 | No catalog entry | abbe |
+| L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe |
 
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - US 2020/0142168 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11 (Element 1) | 1 | `744495 - lanthanum crown (patent nd=1.74389, vd=49.50)` | 1.74389 / 49.50 | No catalog entry | abbe |
+| L11 (Element 1) | 1 | `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)` | 1.74389 / 49.50 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) - US 5,528,428
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L4 (Element 6) | 9 | `797/454 (discontinued lanthanum glass)` | 1.79668 / 45.40 | No catalog entry | abbe |
+| L4 (Element 6) | 9 | `797454 — discontinued lanthanum glass (no exact public catalog match)` | 1.79668 / 45.40 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP2022-92388A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L9 (Element 9) | 14 | `855399 - high-index lanthanum (nd=1.854505, vd~39.9)` | 1.85451 / 39.90 | No catalog entry | abbe |
-| L17 (Element 17 (VR)) | 31 | `553555 - borosilicate crown (nd=1.552981, vd~55.5)` | 1.55298 / 55.50 | No catalog entry | abbe |
-| L19 (Element 19) | 34 | `603564 - medium crown (nd=1.60342, vd~56.4)` | 1.60342 / 56.40 | No catalog entry | abbe |
-| L23 (Element 23) | 41 | `903354 - ultra-high-index lanthanum (nd=1.90265, vd~35.4)` | 1.90265 / 35.40 | No catalog entry | abbe |
-| L25 (Element 25) | 45 | `738493 - lanthanum crown (nd=1.738, vd~49.3)` | 1.73800 / 49.30 | No catalog entry | abbe |
-
-### [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) - WO 2021/117563 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L31 (Element 7) | 12 | `850270 — dense flint (patent nd=1.85000, νd=27.0)` | 1.85000 / 27.00 | No catalog entry | abbe |
-
-### [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) - JP 2019-008031 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L41 (Element 12) | 22 | `795453 — high-index lanthanum (patent nd=1.79500, νd=45.31)` | 1.79500 / 45.31 | No catalog entry | abbe |
-| L52 (Element 14) | 26A | `765468 — lanthanum flint (patent nd=1.76546, νd=46.75)` | 1.76546 / 46.75 | No catalog entry | abbe |
-
-### [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) - JPWO2020/157904 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L62 (Element 19) | 34 | `684376 — titanium flint (patent nd=1.68376, νd=37.57)` | 1.68376 / 37.57 | No catalog entry | abbe |
+| L9 (Element 9) | 14 | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | 1.85451 / 39.90 | No catalog entry | abbe |
+| L17 (Element 17 (VR)) | 31 | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | 1.55298 / 55.50 | No catalog entry | abbe |
+| L19 (Element 19) | 34 | `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)` | 1.60342 / 56.40 | No catalog entry | abbe |
+| L23 (Element 23) | 41 | `903354 — ultra-high-index lanthanum (patent nd=1.90265, νd≈35.4; no exact public catalog match)` | 1.90265 / 35.40 | No catalog entry | abbe |
+| L25 (Element 25) | 45 | `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)` | 1.73800 / 49.30 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) - WO2020/136749 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L21 (Element 4) | 6A | `744495 - moldable lanthanum crown (patent nd=1.74389, vd=49.53)` | 1.74389 / 49.53 | No catalog entry | abbe |
-| L42 (Element 11) | 20 | `498826 - fluorophosphate ED (patent nd=1.49782, vd=82.57)` | 1.49782 / 82.57 | No catalog entry | abbe |
-| L61 (Element 14) | 26 | `792450 - dense lanthanum crown (patent nd=1.79189, vd=45.04)` | 1.79189 / 45.04 | No catalog entry | abbe |
-| L72 (Element 16) | 30A | `852402 - dense lanthanum flint (patent nd=1.85207, vd=40.15)` | 1.85207 / 40.15 | No catalog entry | abbe |
+| L21 (Element 4) | 6A | `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)` | 1.74389 / 49.53 | No catalog entry | abbe |
+| L61 (Element 14) | 26 | `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)` | 1.79189 / 45.04 | No catalog entry | abbe |
+| L72 (Element 16) | 30A | `852402 — dense lanthanum flint (patent nd=1.85207, νd=40.15; no exact public catalog match)` | 1.85207 / 40.15 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) - WO2019/049372
 

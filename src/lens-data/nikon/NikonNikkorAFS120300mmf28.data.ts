@@ -157,7 +157,7 @@ const LENS_DATA = {
       nd: 1.75575,
       vd: 24.71,
       fl: 213.2,
-      glass: "756247 - anomalous-dispersion niobium glass (patent nd=1.75575, vd=24.71, theta_gF=0.629)",
+      glass: "J-SFH5 (Hikari) — anomalous-dispersion niobium flint (756247)",
       apd: "patent" as const,
       apdNote:
         "θgF = 0.629; niobium-phosphate with strong anomalous dispersion. Patent conditions (6)–(8) constrain this glass for secondary spectrum correction.",

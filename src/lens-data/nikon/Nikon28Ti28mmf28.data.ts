@@ -114,7 +114,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       fl: 22.8,
-      glass: "797/454 (discontinued lanthanum glass)",
+      glass: "797454 — discontinued lanthanum glass (no exact public catalog match)",
       apd: "inferred",
       apdNote: "Lanthanum glass — likely contributor to Nikon 'low-dispersion' claim",
       role: "Strong positive meniscus — spherical aberration correction, key patent innovation",

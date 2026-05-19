@@ -40,7 +40,7 @@ Example 4 contains no aspherical surfaces. Its correction strategy is convention
 
 ### L11 — Biconvex Positive Front Element
 
-**$n_d = 1.51680$, $\nu_d = 63.88$. Glass: crown glass class, 517/639 code; catalog identity not asserted. Standalone in-air $f \approx +150.7$ mm.**
+**$n_d = 1.51680$, $\nu_d = 63.88$. Glass: 517639 crown glass code; no exact public catalog match. Standalone in-air $f \approx +150.7$ mm.**
 
 L11 is the front positive collector. Its job is to begin convergence at a moderate refractive index without making the front element strongly dispersive. It carries the largest clear aperture in the inferred data file and sets much of the beam scale for the rest of the zoom.
 
@@ -48,9 +48,9 @@ Because L11 is separated from the L12/L13 cemented pair by only 0.2 mm, the firs
 
 ### L12/L13 — Cemented Negative/Positive Front Doublet
 
-**L12:** $n_d = 1.61155$, $\nu_d = 31.26$. Glass: anomalous-dispersion flint class, 612/313 code; patent-specified LZ material. Standalone in-air $f \approx -98.7$ mm.
+**L12:** $n_d = 1.61155$, $\nu_d = 31.26$. Glass: 612313 anomalous-dispersion flint class; patent-specified LZ material with $\theta_{gF}=0.618$ and no exact public catalog match. Standalone in-air $f \approx -98.7$ mm.
 
-**L13:** $n_d = 1.51742$, $\nu_d = 52.20$. Glass: medium-dispersion crown class, 517/522 code; catalog identity not asserted. Standalone in-air $f \approx +87.5$ mm.
+**L13:** $n_d = 1.51742$, $\nu_d = 52.20$. Glass: HOYA E-CF6 (517522). Standalone in-air $f \approx +87.5$ mm.
 
 This cemented pair completes G1. L12 is the element identified by the patent’s conditional-expression table. Its low Abbe number and listed partial-dispersion ratio make it materially important for secondary-spectrum control, but it should not be conflated with the production lens’s ED marketing term. The ED-class element in this prescription is L41, not L12.
 
@@ -58,9 +58,9 @@ The L12/L13 cemented interface reduces chromatic and spherical residuals introdu
 
 ### L21/L22 — Cemented Negative/Positive Variator Doublet
 
-**L21:** $n_d = 1.69680$, $\nu_d = 55.52$. Glass: high-index crown class, 697/555 code; catalog identity not asserted. Standalone in-air $f \approx -26.6$ mm.
+**L21:** $n_d = 1.69680$, $\nu_d = 55.52$. Glass: OHARA S-LAL14 (697555). Standalone in-air $f \approx -26.6$ mm.
 
-**L22:** $n_d = 1.80809$, $\nu_d = 22.74$. Glass: dense flint class, 808/227 code; catalog identity not asserted. Standalone in-air $f \approx +35.7$ mm.
+**L22:** $n_d = 1.80809$, $\nu_d = 22.74$. Glass: Hikari J-SFH1 (808227). Standalone in-air $f \approx +35.7$ mm.
 
 L21 and L22 form the front doublet of G2, the negative zoom variator. The individual standalone powers are not a reliable guide to the pair’s in-situ behavior: together with L23 and the surrounding air spaces, the group has a focal length of -31.532 mm.
 
@@ -68,7 +68,7 @@ The high index of both elements allows strong variator power without extreme cur
 
 ### L23 — Biconcave Negative Element
 
-**$n_d = 1.85026$, $\nu_d = 32.35$. Glass: dense flint / lanthanum-flint class, 850/324 code; catalog identity not asserted. Standalone in-air $f \approx -48.2$ mm.**
+**$n_d = 1.85026$, $\nu_d = 32.35$. Glass: Hikari J-LASF021 (850324). Standalone in-air $f \approx -48.2$ mm.**
 
 L23 is the rear element of G2. It reinforces the group’s negative power and strongly affects the spacing sensitivity between G2 and G3. Its high index permits a comparatively compact negative element.
 
@@ -76,7 +76,7 @@ The inferred semi-diameter for L23 is deliberately conservative because the air 
 
 ### L31 — Biconvex Positive Focusing Element
 
-**$n_d = 1.58913$, $\nu_d = 61.22$. Glass: crown class, 589/612 code; catalog identity not asserted. Standalone in-air $f \approx +70.5$ mm.**
+**$n_d = 1.58913$, $\nu_d = 61.22$. Glass: OHARA S-BAL35 (589612). Standalone in-air $f \approx +70.5$ mm.**
 
 L31 is the entire third group. The patent states that the third group moves toward the object when focusing from infinity to a short-distance object. This makes L31 the sole focusing element.
 
@@ -84,9 +84,9 @@ The zoom data place G3 between the two zoom-variable air spaces D10 and D12. At 
 
 ### L41/L42 — ED-Containing Rear Cemented Doublet
 
-**L41:** $n_d = 1.49700$, $\nu_d = 81.73$. Glass: ED fluorophosphate crown class, 497/817 code; catalog identity not asserted. Standalone in-air $f \approx +40.4$ mm.
+**L41:** $n_d = 1.49700$, $\nu_d = 81.73$. Glass: Hikari J-FK01A (497817). Standalone in-air $f \approx +40.4$ mm.
 
-**L42:** $n_d = 1.85026$, $\nu_d = 32.35$. Glass: dense flint / lanthanum-flint class, 850/324 code; catalog identity not asserted. Standalone in-air $f \approx -38.7$ mm.
+**L42:** $n_d = 1.85026$, $\nu_d = 32.35$. Glass: Hikari J-LASF021 (850324). Standalone in-air $f \approx -38.7$ mm.
 
 This doublet opens G4 and is the main ED-class correction pair in Example 4. Placing the ED-class positive element in the rear group is efficient because the beam is smaller than in the front collector, while the group still has enough leverage to correct longitudinal and lateral color left by the front and variator groups.
 
@@ -94,7 +94,7 @@ L42 pairs the low-dispersion L41 with high-index flint power. The cemented inter
 
 ### L43 — Biconvex Positive Element Ahead of the Aperture Stop
 
-**$n_d = 1.48749$, $\nu_d = 70.31$. Glass: low-dispersion crown class, 487/703 code; catalog identity not asserted. Standalone in-air $f \approx +70.0$ mm.**
+**$n_d = 1.48749$, $\nu_d = 70.31$. Glass: Hikari J-FK5 (487703). Standalone in-air $f \approx +70.0$ mm.**
 
 L43 is a positive relay element immediately before the stop-side air space. It stabilizes ray angles entering the stop region and supports the rear group’s positive power with relatively little added secondary spectrum.
 
@@ -102,9 +102,9 @@ The aperture stop is located after L43 and before the L44/L45 doublet. The axial
 
 ### L44/L45 — Cemented Positive/Negative Doublet Behind the Stop
 
-**L44:** $n_d = 1.80100$, $\nu_d = 34.92$. Glass: dense flint / high-index medium-dispersion class, 801/349 code; catalog identity not asserted. Standalone in-air $f \approx +28.3$ mm.
+**L44:** $n_d = 1.80100$, $\nu_d = 34.92$. Glass: Hikari J-LAF016 (801349). Standalone in-air $f \approx +28.3$ mm.
 
-**L45:** $n_d = 1.70000$, $\nu_d = 48.11$. Glass: high-index flint class, 700/481 code; catalog identity not asserted. Standalone in-air $f \approx -15.9$ mm.
+**L45:** $n_d = 1.70000$, $\nu_d = 48.11$. Glass: Hikari J-LAF01 (700481). Standalone in-air $f \approx -15.9$ mm.
 
 The L44/L45 cemented doublet is the first lens assembly after the stop. It has strong internal power contrast and therefore contributes substantially to spherical aberration, coma, pupil aberration, and chromatic balancing in the rear half of the lens.
 
@@ -112,7 +112,7 @@ The Abbe numbers place both components in flint or flint-border territory rather
 
 ### L46 — Biconvex Positive Rear Relay Element
 
-**$n_d = 1.60342$, $\nu_d = 38.03$. Glass: medium-index flint class, 603/380 code; catalog identity not asserted. Standalone in-air $f \approx +35.8$ mm.**
+**$n_d = 1.60342$, $\nu_d = 38.03$. Glass: Schott F5 (603380). Standalone in-air $f \approx +35.8$ mm.**
 
 L46 restores positive relay power after the post-stop doublet. Its moderate Abbe number indicates that it participates in residual color balancing rather than acting as a spectrally neutral crown relay.
 
@@ -120,7 +120,7 @@ It also contributes to field shape control before the final negative meniscus.
 
 ### L47 — Negative Meniscus Final Element
 
-**$n_d = 1.77250$, $\nu_d = 49.62$. Glass: high-index medium-dispersion flint class, 773/496 code; catalog identity not asserted. Standalone in-air $f \approx -67.8$ mm.**
+**$n_d = 1.77250$, $\nu_d = 49.62$. Glass: OHARA S-LAH66 (773496). Standalone in-air $f \approx -67.8$ mm.**
 
 L47 is the image-side lens of Example 4. Its negative meniscus shape helps control field curvature, distortion, and final ray angles approaching the sensor.
 
@@ -132,19 +132,19 @@ The patent gives refractive index, Abbe number, and partial-dispersion ratio, bu
 
 | Element(s) | $n_d$ | $\nu_d$ | Class-level description | Role |
 |---|---:|---:|---|---|
-| L11 | 1.51680 | 63.88 | Crown glass, 517/639 | Front collector |
-| L12 | 1.61155 | 31.26 | Patent-specified anomalous-dispersion flint, 612/313 | Secondary-spectrum control in G1 |
-| L13 | 1.51742 | 52.20 | Medium-dispersion crown, 517/522 | Cemented partner for L12 |
-| L21 | 1.69680 | 55.52 | High-index crown, 697/555 | Negative variator component |
-| L22 | 1.80809 | 22.74 | Dense flint, 808/227 | Variator achromatizing partner |
-| L23 / L42 | 1.85026 | 32.35 | Dense flint / lanthanum-flint class, 850/324 | Strong negative correction |
-| L31 | 1.58913 | 61.22 | Crown glass, 589/612 | Positive internal-focus group |
-| L41 | 1.49700 | 81.73 | ED fluorophosphate crown class, 497/817 | Primary ED-class chromatic corrector |
-| L43 | 1.48749 | 70.31 | Low-dispersion crown, 487/703 | Relay before stop |
-| L44 | 1.80100 | 34.92 | Dense medium-dispersion flint class, 801/349 | Post-stop positive correction |
-| L45 | 1.70000 | 48.11 | High-index flint class, 700/481 | Post-stop negative correction |
-| L46 | 1.60342 | 38.03 | Medium-index flint, 603/380 | Rear relay and residual color correction |
-| L47 | 1.77250 | 49.62 | High-index medium-dispersion flint class, 773/496 | Final field and distortion correction |
+| L11 | 1.51680 | 63.88 | 517639 crown glass, no exact public match | Front collector |
+| L12 | 1.61155 | 31.26 | 612313 anomalous-dispersion flint, no exact public match | Secondary-spectrum control in G1 |
+| L13 | 1.51742 | 52.20 | HOYA E-CF6 (517522) | Cemented partner for L12 |
+| L21 | 1.69680 | 55.52 | OHARA S-LAL14 (697555) | Negative variator component |
+| L22 | 1.80809 | 22.74 | Hikari J-SFH1 (808227) | Variator achromatizing partner |
+| L23 / L42 | 1.85026 | 32.35 | Hikari J-LASF021 (850324) | Strong negative correction |
+| L31 | 1.58913 | 61.22 | OHARA S-BAL35 (589612) | Positive internal-focus group |
+| L41 | 1.49700 | 81.73 | Hikari J-FK01A (497817) | Primary ED-class chromatic corrector |
+| L43 | 1.48749 | 70.31 | Hikari J-FK5 (487703) | Relay before stop |
+| L44 | 1.80100 | 34.92 | Hikari J-LAF016 (801349) | Post-stop positive correction |
+| L45 | 1.70000 | 48.11 | Hikari J-LAF01 (700481) | Post-stop negative correction |
+| L46 | 1.60342 | 38.03 | Schott F5 (603380) | Rear relay and residual color correction |
+| L47 | 1.77250 | 49.62 | OHARA S-LAH66 (773496) | Final field and distortion correction |
 
 The safest production-level statement is that Example 4 contains one ED-class element, L41. L12 is important to the patent’s conditional-expression strategy, but its $\nu_d = 31.26$ is in the flint range and should not be called the ED element.
 
