@@ -118,11 +118,11 @@ The design uses 10 distinct glass types across 14 elements. Glass identification
 | L7 | 1.88300 | 40.8 | 883/408 | S-LAH58 (OHARA) | Lanthanum heavy flint |
 | L8 | 1.54072 | 47.2 | 541/472 | No catalog match; likely custom | BR carrier glass (object-side) |
 | L9 (Lp2) | 1.60401 | 20.8 | 604/208 | **BR optics** (organic material) | Canon proprietary |
-| L10 | 1.95375 | 32.3 | 954/323 | S-LAH79 (OHARA) | Ultra-high-index lanthanum |
-| L11 | 1.95375 | 32.3 | 954/323 | S-LAH79 (OHARA) | Same as L10 |
-| L12 | 1.62004 | 36.3 | 620/363 | S-TIM22 (OHARA) — exact match | Titanium flint |
-| L13 | 1.68893 | 31.1 | 689/311 | S-TIM27 (OHARA) | Titanium flint |
-| L14 | 1.90043 | 37.4 | 900/374 | S-LAH64 (OHARA) | Lanthanum heavy flint |
+| L10 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Ultra-high-index lanthanum |
+| L11 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Same as L10 |
+| L12 | 1.62004 | 36.3 | 620/363 | S-TIM2 (OHARA) | Titanium flint |
+| L13 | 1.68893 | 31.1 | 689/311 | S-TIM28 (OHARA) | Titanium flint |
+| L14 | 1.90043 | 37.4 | 900/374 | TAFD37A (HOYA) | Lanthanum/tantalum dense flint |
 
 ### Key material observations
 
@@ -195,7 +195,7 @@ The BR optics assembly. L8 is a weakly negative biconcave carrier (fl = −48.6 
 L11 is a strongly positive biconvex element (fl = +41.4 mm, nd = 1.954, νd = 32.3), cemented to L12, a negative biconcave element (fl = −51.6 mm, nd = 1.620, νd = 36.3). This achromatic doublet in the rear group helps control chromatic aberration in the strongly converging beam approaching the image plane. The ultra-high-index glass of L11 keeps the Petzval contribution small.
 
 **Lens 13** — Biconcave negative (fl = −61.9 mm), nd = 1.689, νd = 31.1.
-A weakly negative singlet that provides field curvature correction and helps control astigmatism in the outer field zones. Its titanium flint glass (S-TIM27) balances the chromatic residuals from the preceding doublet.
+A weakly negative singlet that provides field curvature correction and helps control astigmatism in the outer field zones. Its titanium flint glass (S-TIM28) balances the chromatic residuals from the preceding doublet.
 
 **Lens 14** — Biconvex positive (fl = +86.3 mm), nd = 1.900, νd = 37.4.
 The final element, a strongly positive biconvex in ultra-high-index lanthanum glass. This element serves two purposes: it provides positive power to reduce the convergence angle of the exit rays (bringing them closer to perpendicular incidence on the sensor for better microlens compatibility), and it contributes final chromatic balancing. Its focal length (+86.3 mm) is almost identical to the system focal length, and its strong convergence helps place the exit pupil 38 mm in front of the image plane — far enough that ray angles at the sensor remain moderate across the field.

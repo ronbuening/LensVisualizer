@@ -60,9 +60,9 @@ G1 is the outermost group and remains fixed during both zooming and focusing. It
 
 #### L1 — Negative Meniscus, Convex to Object
 
-$n_d$ = 1.90366, $\nu_d$ = 31.3. Glass: S-LAH79 (OHARA) — lanthanum dense flint. $f$ = –197.6 mm.
+$n_d$ = 1.90366, $\nu_d$ = 31.3. Glass: S-LAH95 (OHARA) — lanthanum dense flint. $f$ = –197.6 mm.
 
-L1 is a strongly curved negative meniscus (R1 = +178.67, R2 = +88.73) with a very high refractive index. Positioned at the front of the objective, it acts as a field-correcting element: its negative power at high ray height counteracts the spherical aberration and coma that the subsequent positive elements (L2, L3) would otherwise introduce. The high-index lanthanum glass minimises the surface curvatures needed for the required power, reducing higher-order aberrations. The S-LAH79 glass ($n_d$ = 1.90366) is one of the densest lanthanum flints available and is characteristic of Panasonic telephoto zoom designs.
+L1 is a strongly curved negative meniscus (R1 = +178.67, R2 = +88.73) with a very high refractive index. Positioned at the front of the objective, it acts as a field-correcting element: its negative power at high ray height counteracts the spherical aberration and coma that the subsequent positive elements (L2, L3) would otherwise introduce. The high-index lanthanum glass minimises the surface curvatures needed for the required power, reducing higher-order aberrations. S-LAH95 ($n_d$ = 1.90366) is the catalog match for this patent row.
 
 #### L2 — Biconvex Positive (Super-ED)
 
@@ -145,7 +145,7 @@ The doublet's overall negative power (f = –32.9 mm) contributes to the Petzval
 
 #### G4C — OIS Sub-Group (L14 + L15 cemented, L16 separate)
 
-L14: $n_d$ = 1.80610, $\nu_d$ = 33.3. Glass: S-TIM28 (OHARA) — titanium flint. 
+L14: $n_d$ = 1.80610, $\nu_d$ = 33.3. Glass: NBFD15 (HOYA) — dense flint.
 L15: $n_d$ = 1.48749, $\nu_d$ = 70.4. Glass: S-FSL5 (OHARA) — fluor-silicate crown (APD).
 L14–L15 doublet $f$ = +102.3 mm.
 
@@ -174,10 +174,10 @@ G5 moves during both zooming and focusing. During zoom from wide to tele, it tra
 
 #### L19 + L20 — Cemented Doublet (Positive Meniscus, Convex to Image + Biconcave)
 
-L19: $n_d$ = 1.80518, $\nu_d$ = 25.5. Glass: S-TIH13 (OHARA) — titanium flint.
-L20: $n_d$ = 1.58144, $\nu_d$ = 40.9. Glass: S-NBM51 (OHARA) — niobium flint. Doublet $f$ = –65.9 mm.
+L19: $n_d$ = 1.80518, $\nu_d$ = 25.5. Glass: S-TIH6 (OHARA) — titanium heavy flint.
+L20: $n_d$ = 1.58144, $\nu_d$ = 40.9. Glass: E-FL5 (HOYA) — medium flint. Doublet $f$ = –65.9 mm.
 
-G5 is a single cemented doublet carrying significant negative power. Both elements use flint-family glasses (νd < 50), which is unusual for a doublet — typically one would expect a crown–flint pair. The design choice reflects the constraint that G5 is a *focus* group and must maintain chromatic correction across the entire object-distance range. The high-dispersion L19 and moderate-dispersion L20, while both flints, have sufficiently different partial dispersion characteristics (S-TIH13 is a titanium flint; S-NBM51 is a niobium flint with mildly anomalous ΔPgF) to provide adequate chromatic balance during focus shifts.
+G5 is a single cemented doublet carrying significant negative power. Both elements use flint-family glasses (νd < 50), which is unusual for a doublet — typically one would expect a crown–flint pair. The design choice reflects the constraint that G5 is a *focus* group and must maintain chromatic correction across the entire object-distance range. The high-dispersion L19 and moderate-dispersion L20 have sufficiently different partial dispersion characteristics to provide adequate chromatic balance during focus shifts.
 
 The patent's conditional expression (3) stipulates νp2 < 30 for the most strongly positive element in the second focus group (G6), and the corresponding condition (4) requires νp1 < 30 for the most strongly positive element in the first focus group (¶0110–¶0114). For G5, the positive element L19 has νd = 25.5 < 30, satisfying condition (4) and confirming that high-dispersion glass in the focus groups is a deliberate design strategy for zoom-dependent colour correction.
 
@@ -203,9 +203,9 @@ G7 is fixed during both zoom and focus. It provides the final correction of the 
 
 #### L22 — Biconcave Negative
 
-$n_d$ = 1.72342, $\nu_d$ = 38.0. Glass: S-NBH5 (OHARA) — niobium heavy flint. $f$ = –38.4 mm.
+$n_d$ = 1.72342, $\nu_d$ = 38.0. Glass: S-BAH28 (OHARA) — barium heavy flint. $f$ = –38.4 mm.
 
-L22 is a strongly negative biconcave element. Its primary role is Petzval correction — the negative power reduces the system's Petzval sum, flattening the image field at the sensor plane. The niobium heavy flint glass (S-NBH5) provides moderate dispersion and a relatively high refractive index, permitting strong negative power with tolerable surface curvatures.
+L22 is a strongly negative biconcave element. Its primary role is Petzval correction — the negative power reduces the system's Petzval sum, flattening the image field at the sensor plane. The barium heavy flint glass (S-BAH28) provides moderate dispersion and a relatively high refractive index, permitting strong negative power with tolerable surface curvatures.
 
 #### L23 — Plano-Convex Positive
 
@@ -222,7 +222,7 @@ The design employs 15 distinct glass types across 23 elements. All glasses are i
 
 | Element(s) | Glass | nd | νd | Family | APD |
 |---|---|---|---|---|---|
-| L1 | S-LAH79 (OHARA) | 1.90366 | 31.3 | Lanthanum dense flint | — |
+| L1 | S-LAH95 (OHARA) | 1.90366 | 31.3 | Lanthanum dense flint | — |
 | L2, L3, L11 | S-FPL55 (OHARA) | 1.43700 | 95.1 | Fluorophosphate super-ED | ΔPgF = +0.046 |
 | L4, L21 | S-TIH53 (OHARA) | 1.84666 | 23.8 | Titanium heavy flint | — |
 | L5, L7 | 593/670 code | 1.59349 | 67.0 | Phosphate crown (ED class) | ΔPgF ≈ +0.015 (est) |
@@ -232,14 +232,14 @@ The design employs 15 distinct glass types across 23 elements. All glasses are i
 | L10 | S-LAH55V (OHARA) | 1.83481 | 42.7 | Lanthanum dense flint | — |
 | L12 | S-FPL51 (OHARA) | 1.49700 | 81.6 | Fluorophosphate ED crown | ΔPgF = +0.028 |
 | L13 | S-LAH99 (OHARA) | 2.00100 | 29.1 | Lanthanum dense flint | ΔPgF ≈ +0.004 |
-| L14 | S-TIM28 (OHARA) | 1.80610 | 33.3 | Titanium flint | — |
+| L14 | NBFD15 (HOYA) | 1.80610 | 33.3 | Dense flint | — |
 | L15 | S-FSL5 (OHARA) | 1.48749 | 70.4 | Fluor-silicate crown | ΔPgF = +0.002 |
 | L16 | S-LAL8 (OHARA) | 1.71300 | 53.9 | Lanthanum crown | — |
 | L17 | S-NSL36 (OHARA) | 1.51823 | 59.0 | New light silicate crown | — |
 | L18, L23 | S-BSM28 (OHARA) | 1.62041 | 60.3 | Barium silicate crown | — |
-| L19 | S-TIH13 (OHARA) | 1.80518 | 25.5 | Titanium flint | — |
-| L20 | S-NBM51 (OHARA) | 1.58144 | 40.9 | Niobium flint | — |
-| L22 | S-NBH5 (OHARA) | 1.72342 | 38.0 | Niobium heavy flint | — |
+| L19 | S-TIH6 (OHARA) | 1.80518 | 25.5 | Titanium heavy flint | — |
+| L20 | E-FL5 (HOYA) | 1.58144 | 40.9 | Medium flint | — |
+| L22 | S-BAH28 (OHARA) | 1.72342 | 38.0 | Barium heavy flint | — |
 
 ### S-LAH99 (L13) — Ultra-High-Index Lanthanum Dense Flint
 
@@ -253,7 +253,7 @@ The glass at nd = 1.59349, νd = 67.0 does not match any entry in the current OH
 
 The "APO" designation requires correction of both primary chromatic aberration (C–F line) and secondary spectrum (the residual longitudinal colour after achromatisation). The design achieves this through three mechanisms distributed across the zoom range:
 
-1. **Front group secondary-spectrum correction (G1).** The L1 (S-LAH79 flint, νd = 31.3) + L2/L3 (S-FPL55 super-ED, νd = 95.1) combination corrects secondary spectrum in the front collector. The ΔPgF of S-FPL55 (+0.046) is far from the normal line, enabling secondary-spectrum correction that a conventional crown–flint pair cannot achieve.
+1. **Front group secondary-spectrum correction (G1).** The L1 (S-LAH95 flint, νd = 31.3) + L2/L3 (S-FPL55 super-ED, νd = 95.1) combination corrects secondary spectrum in the front collector. The ΔPgF of S-FPL55 (+0.046) is far from the normal line, enabling secondary-spectrum correction that a conventional crown–flint pair cannot achieve.
 
 2. **Stop-region chromatic correction (G4B).** The L12 (S-FPL51) + L13 (S-LAH99) cemented doublet exploits the extreme Abbe-number contrast between a low-dispersion ED crown (νd = 81.6) and an ultra-high-index dense flint (νd = 29.1, nd = 2.001) to achieve strong primary achromatisation. The secondary-spectrum correction is carried by L12's positive anomalous partial dispersion (ΔPgF = +0.028); S-LAH99 has near-normal partial dispersion (ΔPgF ≈ +0.004), so the correction mechanism is single-sided APD rather than an opposing-sign pair. The junction's large Δn (0.504) generates strong corrective power with a single cemented interface.
 

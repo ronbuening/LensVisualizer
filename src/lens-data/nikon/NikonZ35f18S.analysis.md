@@ -99,10 +99,10 @@ L11 is the front element: a steeply curved negative meniscus in ordinary borosil
 | nd / νd | 1.95375 / 32.33 | 1.60342 / 38.03 |
 | Thick-lens fl | +32.3 mm / −45.7 mm | |
 | Doublet fl | +99.1 mm (scaled) | |
-| Glass ID (L12) | S-LAH79 (OHARA). Exact match. Ultra-high-index La flint. |
-| Glass ID (L13) | S-TIM2 (OHARA). Near-exact (Δνd = 0.02). Light titanium flint. |
+| Glass ID (L12) | S-LAH98 (OHARA). Exact match. Ultra-high-index La flint. |
+| Glass ID (L13) | S-TIM5 (OHARA). Exact match. Light titanium flint. |
 
-This doublet is weakly positive overall, combining an ultra-high-index lanthanum glass (nd = 1.954, the highest refractive index in the entire design) with a lighter titanium flint. The extreme refractive index of S-LAH79 provides strong positive power with relatively weak curvatures, which helps control higher-order spherical aberration at the wide f/1.8 aperture. Notably, both glasses sit below the conventional crown-flint boundary (νd < 50), so this is not a traditional achromatic doublet — the Abbe number differential (Δνd ≈ 5.7) is modest and both materials are on the low-νd side of the glass map, indicating that D1 prioritizes monochromatic aberration correction (primarily coma and astigmatism balancing at the cemented interface) over chromatic correction. The chromatic correction burden is delegated to the ED elements downstream.
+This doublet is weakly positive overall, combining an ultra-high-index lanthanum glass (nd = 1.954, the highest refractive index in the entire design) with a lighter titanium flint. The extreme refractive index of S-LAH98 provides strong positive power with relatively weak curvatures, which helps control higher-order spherical aberration at the wide f/1.8 aperture. Notably, both glasses sit below the conventional crown-flint boundary (νd < 50), so this is not a traditional achromatic doublet — the Abbe number differential (Δνd ≈ 5.7) is modest and both materials are on the low-νd side of the glass map, indicating that D1 prioritizes monochromatic aberration correction (primarily coma and astigmatism balancing at the cemented interface) over chromatic correction. The chromatic correction burden is delegated to the ED elements downstream.
 
 #### L14 + L15 — Cemented Doublet (D2)
 
@@ -114,8 +114,8 @@ This doublet is weakly positive overall, combining an ultra-high-index lanthanum
 | nd / νd | 1.68893 / 31.16 | 1.85150 / 40.78 |
 | Thick-lens fl | −23.5 mm / +23.9 mm | |
 | Doublet fl | +192.6 mm (scaled) | |
-| Glass ID (L14) | S-TIH14 (OHARA). Exact match. Dense titanium flint. |
-| Glass ID (L15) | S-LAH51 (OHARA). Exact match. High-index La crown. |
+| Glass ID (L14) | S-TIM28 (OHARA). Exact match. Dense titanium flint. |
+| Glass ID (L15) | S-LAH89 (OHARA). Exact match. High-index La crown. |
 
 This doublet is also weakly positive, but with a different glass strategy: a dense flint (low νd = 31.16) cemented to a high-index lanthanum crown (νd = 40.78). The Abbe number differential of ≈9.6 provides meaningful chromatic correction. Note that L15 is equi-convex (|R₇| = |R₈| = 1.7517), which is the optimal shape for minimizing spherical aberration from a single element at this conjugate. This doublet carries significant positive power (each element has fl ≈ ±24 mm) and is the primary workhorse for converging the wide marginal ray bundle, with the cemented interface providing a buried surface for aberration correction.
 
@@ -167,9 +167,9 @@ Placing the stop between two positive groups (Gr1 ahead, Gr2 behind) creates a q
 | R₁ / R₂ | −0.9917 / −5.7790 |
 | nd / νd | 1.61293 / 36.94 |
 | Thick-lens fl | −43.7 mm (scaled) |
-| Glass ID | S-TIM25 (OHARA). Near-exact: Δnd = 0.000, Δνd = 0.02. Titanium flint. |
+| Glass ID | S-TIM3 (OHARA). Exact source-backed match. Titanium flint. |
 
-L21 is the first element of the focus group, positioned immediately behind the stop. Its concave-toward-object shape diverges the converging beam from Gr1, as the patent explains: "placing a negative lens with a concave surface toward the object allows the beam from Gr1 to diverge gently, suppressing abrupt aberration changes during focusing." The titanium flint glass has moderate dispersion and refractive index.
+L21 is the first element of the focus group, positioned immediately behind the stop. Its concave-toward-object shape diverges the converging beam from Gr1, as the patent explains: "placing a negative lens with a concave surface toward the object allows the beam from Gr1 to diverge gently, suppressing abrupt aberration changes during focusing." The S-TIM3 titanium flint glass has moderate dispersion and refractive index; the audit added the source-backed catalog entry rather than leaving this surface on the prior S-TIM25 mismatch.
 
 #### L22 — Biconvex Positive (ED Element #2)
 
@@ -279,7 +279,7 @@ The lens employs a two-pronged chromatic correction strategy:
 
 ### 5.3 Refractive Index Distribution
 
-The design makes strategic use of very high refractive indices in Gr1 — S-LAH79 at nd = 1.954 (L12) and S-LAH51 at nd = 1.852 (L15) — to achieve the necessary positive power with manageable curvatures. These high-index elements are exclusively in the fixed front group, where thermal and mechanical stability are less critical than in the lightweight focus groups. The focus groups (Gr2, Gr3) use moderate-index glasses (nd = 1.58–1.69), keeping element weight low for fast AF response, as the patent explicitly emphasizes.
+The design makes strategic use of very high refractive indices in Gr1 — S-LAH98 at nd = 1.954 (L12) and S-LAH89 at nd = 1.852 (L15) — to achieve the necessary positive power with manageable curvatures. These high-index elements are exclusively in the fixed front group, where thermal and mechanical stability are less critical than in the lightweight focus groups. The focus groups (Gr2, Gr3) use moderate-index glasses (nd = 1.58–1.69), keeping element weight low for fast AF response, as the patent explicitly emphasizes.
 
 ---
 

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **638** non-explicit-unmatched annotations did not resolve
-- **201** distinct unresolved glass-like tokens found
+- **637** non-explicit-unmatched annotations did not resolve
+- **200** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -207,7 +207,6 @@ or per-lens patent backfills.
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
-| S-TIM3 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -1049,10 +1048,6 @@ or per-lens patent backfills.
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
-
-### S-TIM3 — 1 occurrence
-
-- [HASSELBLAD XCD 2,8/65](../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) 8: `S-TIM3 (OHARA)`
 
 ### SF14 — 1 occurrence
 

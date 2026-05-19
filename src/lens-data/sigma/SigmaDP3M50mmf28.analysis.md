@@ -221,7 +221,7 @@ The counterintuitive result that DB1 is net-negative despite having a biconvex p
 
 Both radii are positive and the front surface is more strongly curved (|R₁| < |R₂|), forming a positive meniscus convex toward the object. EFL = +33.5 mm.
 
-**Glass:** nd = 1.88300, Vd = 40.80. This matches **Ohara S-LAH55** (nd = 1.88300, Vd = 40.76; Δnd = 0, ΔVd = +0.04) and its Hoya equivalent **TAC8** to within catalog melt tolerances. S-LAH55 is a dense lanthanum aluminate glass — very high index, moderate dispersion.
+**Glass:** nd = 1.88300, Vd = 40.80. This matches **Ohara S-LAH58** (nd = 1.88300, Vd = 40.77) to within catalog melt tolerances. S-LAH58 is a dense lanthanum glass — very high index, moderate dispersion.
 
 **Role:** L1 is specifically identified in the patent as LP1 and is the subject of Condition (4): NdLP1 > 1.85 (Example 3: nd = 1.883 ✓). The very high refractive index achieves the required positive convergence with gentle surface curvatures, suppressing third-order spherical aberration and coma. The meniscus form reduces the Petzval contribution per unit refractive power compared to a biconvex design. Crucially, L1 concentrates the axial beam into a smaller diameter before the aperture stop — the mechanism by which Condition (1) (φA/φENP < 0.70) is satisfied, enabling compact leaf-shutter operation.
 
@@ -240,20 +240,20 @@ This is understood from the individual surface refracting powers:
 
 The cemented interface (R₄ = −133.17 mm) contributes negligible power because both the radius is large and the refractive index difference across it is modest (n₃ − n₂ = 1.806 − 1.593 = 0.213). L2's front surface contributes +31 mm equivalent focal length. L3's rear surface, where dense glass (nd = 1.806) exits to air across a tightly curved convex surface (R₅ = +15.34 mm), contributes −19 mm. The thin-lens combination of +31 and −19 gives a diverging result; the exact thick-lens EFL is −57.97 mm. **L3's rear surface dominates the power of DB1.**
 
-**L2 glass:** nd = 1.59282, Vd = 68.62. This matches **Ohara S-PHM52** exactly (Δnd = 0, ΔVd = 0). S-PHM52 is an **anomalous partial dispersion (APD)** glass: its Pg,F value (≈ 0.545) lies above the standard glass line by ΔPg,F ≈ +0.017 at Vd = 68.62 (standard value: 0.528). Positive anomalous partial dispersion means the glass refracts short wavelengths relatively more than expected for a glass of its Abbe number class. When used as the positive element of an achromatic doublet, this property reduces the secondary chromatic aberration (the residual color left uncorrected by a conventional achromat). L2 satisfies Condition (5): VdDB1 > 65 (Example 3: Vd = 68.62 ✓).
+**L2 glass:** nd = 1.59282, Vd = 68.62. This matches **Hoya FCD515** exactly. FCD515 is an **anomalous partial dispersion (APD)** glass: its Pg,F value lies above the standard glass line by roughly ΔPg,F ≈ +0.017 at Vd = 68.62. Positive anomalous partial dispersion means the glass refracts short wavelengths relatively more than expected for a glass of its Abbe number class. When used as the positive element of an achromatic doublet, this property reduces the secondary chromatic aberration (the residual color left uncorrected by a conventional achromat). L2 satisfies Condition (5): VdDB1 > 65 (Example 3: Vd = 68.62 ✓).
 
 **L3 glass:** nd = 1.80610, Vd = 33.27. No exact match has been confirmed in the Ohara, Hoya, or Schott catalog lines. The closest confirmed identification is **CDGM H-ZF52** (nd = 1.80610, Vd = 33.27; exact match on both parameters). Given that CDGM glasses appear in other Sigma designs, this is plausible but unconfirmed. The combination of L2 (APD crown, Vd = 68.62) and L3 (dense flint, Vd = 33.27) yields an Abbe difference ΔVd ≈ 35.4, sufficient for achromatic correction plus secondary-spectrum reduction via L2's APD property.
 
-**Role:** DB1 provides the principal chromatic correction for the entire front group. The use of an APD glass (L2, S-PHM52) as the doublet's positive element, paired with a dense flint negative (L3), corrects primary color via the Abbe number difference and reduces secondary spectrum via L2's anomalous partial dispersion. Together with the positive L1 ahead of it, DB1 completes G1A as a compact telephoto sub-system: L1 (EFL +33.5 mm) followed by DB1 (EFL −58.0 mm) gives G1A a net EFL of +51.9 mm while keeping the physical length short.
+**Role:** DB1 provides the principal chromatic correction for the entire front group. The use of an APD glass (L2, FCD515) as the doublet's positive element, paired with a dense flint negative (L3), corrects primary color via the Abbe number difference and reduces secondary spectrum via L2's anomalous partial dispersion. Together with the positive L1 ahead of it, DB1 completes G1A as a compact telephoto sub-system: L1 (EFL +33.5 mm) followed by DB1 (EFL −58.0 mm) gives G1A a net EFL of +51.9 mm while keeping the physical length short.
 
 ### L4+L5 Cemented Doublet (G1B)
 **Surfaces 7–9 | L4: R₇ = −15.154 mm, junction R₈ = +24.200 mm | L5: junction R₈, R₉ = −18.334 mm**
 
 L4 is biconcave (R₇ < 0, R₈ > 0 from within L4); L5 is biconvex (R₈ > 0, R₉ < 0). The doublet sits immediately behind the aperture stop, with a combined EFL of −93.4 mm.
 
-**L4 glass:** nd = 1.90366, Vd = 31.32. This matches **Ohara S-NPH2** exactly (Δnd = 0, ΔVd ≈ 0). S-NPH2 is among Ohara's densest glasses — extremely high index with very low Abbe number.
+**L4 glass:** nd = 1.90366, Vd = 31.32. This matches **Ohara S-LAH95** exactly. S-LAH95 is among Ohara's densest lanthanum glasses — extremely high index with very low Abbe number.
 
-**L5 glass:** nd = 1.83481, Vd = 42.72. This matches **Ohara S-LAH58** and its Hoya equivalent **TAC4** exactly (Δnd = 0, ΔVd = 0). S-LAH58 is a dense lanthanum crown — high index, moderate dispersion, complementary to L4 as the achromat pair.
+**L5 glass:** nd = 1.83481, Vd = 42.72. This matches **Ohara S-LAH55** exactly. S-LAH55 is a dense lanthanum crown — high index, moderate dispersion, complementary to L4 as the achromat pair.
 
 **Role:** The doublet sits immediately behind the stop, where marginal ray height is small (~4.2 mm) and the chief ray grows rapidly with field angle. It therefore corrects axial aberrations introduced by G1A — primarily spherical aberration and axial chromatic aberration — efficiently and without greatly affecting field aberrations. The very high index of L4 (nd = 1.904) enables a strongly curved concave entry surface (R₇ = −15.15 mm) to contribute large negative power in small physical extent. The net-negative L4+L5 combined with the following positive L6 creates the G1B telephoto arrangement, yielding a net positive G1B EFL of +38.0 mm.
 
@@ -291,7 +291,7 @@ Both radii are negative, with R₁₄ nearly flat (very large radius). R₁₅ =
 
 Both radii are negative; |R₁₆| < |R₁₇| (front surface more strongly curved), forming a negative meniscus with concave face toward the object (convex toward the image). EFL = −20.89 mm — the shortest negative focal length of any single element in the system.
 
-**Glass:** nd = 1.80420, Vd = 46.50. This matches **Hoya TAFD37** exactly (Δnd = 0, ΔVd = 0) and approximately **Ohara S-LAH65** (nd = 1.80440, Vd = 46.57; Δnd = +0.0002, ΔVd = +0.07). Identification is likely Hoya TAFD37 or equivalent but not definitively confirmed.
+**Glass:** nd = 1.80420, Vd = 46.50. This matches **Ohara S-LAH65** closely (nd = 1.80440, Vd = 46.57; Δnd = +0.0002, ΔVd = +0.07). Earlier Hoya TAFD37 identifications used the same broad glass family but no longer round-trip against the catalog entry.
 
 **Role:** L9 is the highest-power negative element in the system (EFL = −20.89 mm). Its principal function is Petzval correction: a strong negative element with moderately high Vd at large off-axis height efficiently counteracts the cumulative positive Petzval from the many high-index positive elements throughout G1 and G2. Together with L7 and L8, L9 forms a loosely achromatic sub-assembly in G2 with balanced chromatic contributions.
 
@@ -363,15 +363,15 @@ For context, the uncorrected thin-lens Petzval sum for the same focal length is 
 
 | Element | nd | Vd | Best catalog match | Confidence | Note |
 |---|---|---|---|---|---|
-| L1 | 1.88300 | 40.80 | Ohara S-LAH55 / Hoya TAC8 | High | Δnd = 0, ΔVd = +0.04 |
-| L2 | 1.59282 | 68.62 | Ohara S-PHM52 | High | Exact; APD glass, ΔPg,F ≈ +0.017 |
+| L1 | 1.88300 | 40.80 | Ohara S-LAH58 | High | Exact catalog match |
+| L2 | 1.59282 | 68.62 | Hoya FCD515 | High | Exact; APD glass, ΔPg,F ≈ +0.017 |
 | L3 | 1.80610 | 33.27 | CDGM H-ZF52 | Moderate | No Ohara/Hoya/Schott exact match |
-| L4 | 1.90366 | 31.32 | Ohara S-NPH2 | High | Exact match |
-| L5 | 1.83481 | 42.72 | Ohara S-LAH58 / Hoya TAC4 | High | Exact match |
+| L4 | 1.90366 | 31.32 | Ohara S-LAH95 | High | Exact match |
+| L5 | 1.83481 | 42.72 | Ohara S-LAH55 | High | Exact match |
 | L6 | 1.83400 | 37.34 | CDGM H-LAF51 or Hikari J-LASF019 | Low | No confirmed major-catalog match |
 | L7 | 1.62004 | 36.30 | Hoya CF6 | Moderate | ΔVd ≈ +0.04 |
 | L8 | 1.84666 | 23.78 | Schott SF57 / Ohara S-TIH53 | High | Exact match |
-| L9 | 1.80420 | 46.50 | Hoya TAFD37 | Moderate | Ohara S-LAH65: Δnd = +0.0002 |
+| L9 | 1.80420 | 46.50 | Ohara S-LAH65 | Moderate | Δnd = +0.0002 |
 | L10 | 1.80834 | 40.92 | Uncertain; Hoya TACD5 possible | Low | No confirmed match |
 
 Glass identification is inferential: catalog nd/Vd pairs are compared against the patent values and residuals reported. For L3 and L6, no major Western catalog provides an exact match; CDGM or Hikari formulations are the most likely sources. L10's glass remains unconfirmed at catalog level. Sigma may also use proprietary or non-catalog glass formulations. Identifications marked "Low" confidence should not be cited as confirmed without additional sourcing.
@@ -385,7 +385,7 @@ The Sigma DP3 Merrill lens (JP 2014-126652 A, Example 3) is a purpose-designed m
 - A **telephoto power structure** that places H′ only 15.1 mm from surface 1 (39.9 mm ahead of the last surface), enabling BFD = 8.8 mm at f = 48.7 mm — a BFD/EFL ratio of 0.18 — in a 55 mm total track.
 - An **internal aperture stop** between G1A and G1B, positioned 19.05 mm in front of the first surface as an entrance pupil, contracting the marginal beam to 62.5% of the entrance pupil diameter and enabling compact leaf-shutter operation.
 - A **high-index front positive meniscus** (L1, nd = 1.883) that efficiently converges the axial beam before the stop with minimal spherical aberration and Petzval contribution.
-- A **net-negative cemented doublet DB1** (L2+L3) in which L3's rear surface (f_surface = −19.0 mm) dominates the power, combined with an APD positive element (L2, S-PHM52, ΔPg,F ≈ +0.017) to achieve secondary-spectrum correction within G1A.
+- A **net-negative cemented doublet DB1** (L2+L3) in which L3's rear surface (f_surface = −19.0 mm) dominates the power, combined with an APD positive element (L2, FCD515, ΔPg,F ≈ +0.017) to achieve secondary-spectrum correction within G1A.
 - **Unit focus of G1** with G2 (magnification > +1.0) amplifying focus displacement — G1 travels approximately half the distance of an equivalent unit-focus design at β = |10|.
 - A single **strongly aspherical surface** (surface 19, rear of L10) correcting pincushion distortion and tangential field curvature, with departures reaching −736 µm at h = 12 mm.
 - A **92.1% reduction in Petzval sum** relative to the uncorrected thin-lens value, achieved through careful placement of high-index negative elements (L3, L4, L9) at strategic heights within the optical train.

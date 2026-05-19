@@ -513,6 +513,17 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Dense flint (620/363).",
   },
   {
+    name: "S-TIM3",
+    vendor: "Ohara",
+    B: [1.40691144, 0.128369745, 1.51826191],
+    C: [0.0105633641, 0.0568483105, 152.107924],
+    nd: 1.612929,
+    vd: 37.005342,
+    PgF: 0.586,
+    code6: "613370",
+    source: "Ohara S-TIM/S-FTM table and Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIM3 page.",
+  },
+  {
     name: "S-LAH65",
     vendor: "Ohara",
     B: [1.68191258, 0.493779818, 1.45682822],

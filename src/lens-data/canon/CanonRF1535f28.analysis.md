@@ -131,7 +131,7 @@ Together, the two surfaces of L1 produce a net focal length of −28.51 mm while
 
 L2 is a biconcave negative element with aspherical surfaces on both faces. The front surface (R = −809 mm) has a weakly curved base with 483 μm of aspherical departure, while the rear (R = 91.8 mm) accumulates 1244 μm. Together they yield a focal length of −96.46 mm — a weaker negative contribution than L1, acting primarily as a field-flattening and distortion-correcting asphere rather than a power element.
 
-The glass is OHARA S-LAH65V (nd = 1.854, νd = 40.4), a high-index lanthanum dense flint. The high refractive index keeps the element thin despite its negative power, and the relatively low dispersion for a dense flint limits chromatic error from the strongly curved rear surface.
+The glass is OHARA L-LAH85V (nd = 1.854, νd = 40.4), a high-index lanthanum dense flint. The high refractive index keeps the element thin despite its negative power, and the relatively low dispersion for a dense flint limits chromatic error from the strongly curved rear surface.
 
 ### 3.3 L15 — Double-Aspherical Negative Meniscus (Surfaces 27\*, 28\*)
 
@@ -139,7 +139,7 @@ L15 is positioned in the rear group B5, between the cemented doublet D4 and the 
 
 This element's role is primarily correction of field curvature, astigmatism, and residual distortion at the image-side of the optical system, where off-axis ray bundles are most spatially separated from the on-axis bundle. Placing aspherical surfaces here gives the designer independent control over field-dependent aberrations without disturbing the axial correction established by the front groups.
 
-The glass is again OHARA S-LAH65V (nd = 1.854, νd = 40.4), identical to L2. The shared glass type between the front and rear aspherical elements suggests manufacturing and inventory efficiency — a practical consideration in production lens design.
+The glass is again OHARA L-LAH85V (nd = 1.854, νd = 40.4), identical to L2. The shared glass type between the front and rear aspherical elements suggests manufacturing and inventory efficiency — a practical consideration in production lens design.
 
 ---
 
@@ -152,17 +152,17 @@ Twelve distinct glass types are used across the 16 elements. All identifications
 | Element | nd | νd | Best Match | Catalog | Δnd | Δνd | Glass Family |
 |---|---|---|---|---|---|---|---|
 | L1 | 1.58313 | 59.4 | S-BAL42 | OHARA | 0.00000 | 0.02 | Barium crown |
-| L2, L15 | 1.85400 | 40.4 | S-LAH65V | OHARA | 0.00000 | 0.02 | Lanthanum dense flint |
+| L2, L15 | 1.85400 | 40.4 | L-LAH85V | OHARA | 0.00000 | 0.02 | Lanthanum dense flint |
 | L3 | 1.59522 | 67.7 | S-FPM2 | OHARA | 0.00000 | 0.04 | Fluorophosphate crown |
-| L4 | 1.85478 | 24.8 | S-NPH1 | OHARA | 0.00000 | 0.00 | Niobium phosphate heavy flint |
+| L4 | 1.85478 | 24.8 | S-NBH56 | OHARA | 0.00000 | 0.00 | Niobium heavy flint |
 | L5 | 1.84666 | 23.9 | S-TIH53 | OHARA | 0.00000 | 0.02 | Titanium dense flint |
 | L6, L10, L16 | 1.92286 | 20.9 | S-NPH2 | OHARA | 0.00000 | 0.02 | Niobium phosphate heavy flint |
 | L7 | 1.53172 | 48.8 | S-TIL6 | OHARA | 0.00000 | 0.04 | Titanium light flint |
-| L8 | 2.00069 | 25.5 | TAFD25 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
+| L8 | 2.00069 | 25.5 | TAFD40 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
 | L9 | 1.53775 | 74.7 | S-FPM3 | OHARA | 0.00000 | 0.00 | Fluorophosphate crown |
 | L11 | 1.83400 | 37.2 | S-LAH55V | OHARA | 0.00000 | 0.04 | Lanthanum dense flint |
 | L12, L13 | 1.49700 | 81.6 | FCD1 / S-FPL51 | HOYA / OHARA | 0.00000 | 0.01–0.06 | **Fluorophosphate crown (UD)** |
-| L14 | 2.05090 | 26.9 | TAFD45 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
+| L14 | 2.05090 | 26.9 | TAFD65 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
 
 All nd matches are exact to five decimal places. The νd residuals are ≤0.06, well within the typical catalog truncation tolerance (±0.1). These are high-confidence identifications.
 
@@ -174,11 +174,11 @@ The front group's strong net negative power is the hallmark of a retrofocus wide
 
 - **L1** (S-BAL42, f = −28.51 mm): The large-aperture front meniscus is the primary negative power contributor. Its double-aspherical surfaces handle the extreme ray bending required at 15 mm, where the half-field angle exceeds 54°. The barium crown glass provides a good balance of moderate refractive index (keeping curvatures manageable) and moderate dispersion (limiting the chromatic load on this largest element).
 
-- **L2** (S-LAH65V, f = −96.46 mm): A supplementary negative element with aspherical correction. The high-index lanthanum glass (nd = 1.854) allows weak power in a thin package while providing higher-order aberration correction through its aspherical surfaces.
+- **L2** (L-LAH85V, f = −96.46 mm): A supplementary negative element with aspherical correction. The high-index lanthanum glass (nd = 1.854) allows weak power in a thin package while providing higher-order aberration correction through its aspherical surfaces.
 
 - **L3** (S-FPM2, f = −50.16 mm): A biconcave negative element in fluorophosphate crown glass (νd = 67.7). This low-dispersion crown adds negative power to B1 while keeping the chromatic load moderate — its fluorophosphate composition (S-FPM2 is in the same glass family as the UD elements, though at lower νd) limits the chromatic aberration contributed per unit of refractive power.
 
-- **L4** (S-NPH1, f = +47.00 mm): A biconvex positive element in niobium phosphate heavy flint glass (νd = 24.8). L4 is the only positive element in B1 and partially offsets the strong net negative power of L1–L3, limiting the total divergence angle of the ray bundle before it enters the long air gap to B2. The very low Abbe number glass paired with positive power contributes positive chromatic aberration that partially compensates the negative chromatic contributions of L1–L3. This is not a classical achromatic pair with L3 — the chromatic residual of the L3+L4 combination is still substantial — but L4's role as the sole positive counterweight in B1 is critical for keeping both the power balance and the chromatic balance of the front group within correctable limits for the downstream elements.
+- **L4** (S-NBH56, f = +47.00 mm): A biconvex positive element in niobium heavy flint glass (νd = 24.8). L4 is the only positive element in B1 and partially offsets the strong net negative power of L1–L3, limiting the total divergence angle of the ray bundle before it enters the long air gap to B2. The very low Abbe number glass paired with positive power contributes positive chromatic aberration that partially compensates the negative chromatic contributions of L1–L3. This is not a classical achromatic pair with L3 — the chromatic residual of the L3+L4 combination is still substantial — but L4's role as the sole positive counterweight in B1 is critical for keeping both the power balance and the chromatic balance of the front group within correctable limits for the downstream elements.
 
 **B2 — Positive Variator / Focus Unit (f = +73.31 mm)**
 
@@ -190,7 +190,7 @@ B2 converges the diverging beam from B1 and delivers it to the relay groups behi
 
 **B3 — Positive Relay Doublet (f = +52.20 mm)**
 
-- **L8 + L9** (cemented doublet D2): L8 is a negative meniscus in HOYA TAFD25 (nd = 2.001, νd = 25.5 — the highest refractive index glass in the entire system), cemented to L9 in OHARA S-FPM3 (nd = 1.538, νd = 74.7), a fluorophosphate crown. The Δνd = 49.2 between these two elements is the second-largest in the design (after D4 at Δνd = 54.7), making D2 a powerful achromatic doublet. The extreme index of L8 (nd > 2.0) allows a strongly curved negative surface to be realized with reasonable curvatures while maintaining thin center thickness (1.20 mm). B3's net positive power relays the image through the mid-section of the lens while aggressively correcting axial chromatic aberration.
+- **L8 + L9** (cemented doublet D2): L8 is a negative meniscus in HOYA TAFD40 (nd = 2.001, νd = 25.5 — the highest refractive index glass in the entire system), cemented to L9 in OHARA S-FPM3 (nd = 1.538, νd = 74.7), a fluorophosphate crown. The Δνd = 49.2 between these two elements is the second-largest in the design (after D4 at Δνd = 54.7), making D2 a powerful achromatic doublet. The extreme index of L8 (nd > 2.0) allows a strongly curved negative surface to be realized with reasonable curvatures while maintaining thin center thickness (1.20 mm). B3's net positive power relays the image through the mid-section of the lens while aggressively correcting axial chromatic aberration.
 
 **B4 — Negative IS Unit (f = −63.99 mm)**
 
@@ -204,9 +204,9 @@ B5 is the largest subassembly, containing five elements in four groups. It serve
 
 - **L12** (FCD1 / S-FPL51, f = +40.00 mm): A biconvex positive singlet in Canon's UD (Ultra-Low Dispersion) glass. With νd = 81.6, this fluorophosphate crown has extremely low dispersion, making it the primary lateral chromatic aberration corrector at the wide-angle end. Canon identifies nd = 1.497, νd = 81.6 as their "UD" designation — this glass has properties intermediate between standard optical glass and crystalline fluorite (CaF₂, nd = 1.434, νd = 95.0).
 
-- **L13 + L14** (cemented doublet D4): L13 is a second UD element (same glass as L12, f = +33.68 mm), cemented to L14 in HOYA TAFD45 (nd = 2.051, νd = 26.9), the second-highest-index glass in the system. The Δνd = 54.7 makes this the most chromatically powerful cemented pair per unit aperture. The combination of UD positive power (L13) with ultra-high-index negative power (L14) simultaneously corrects lateral color and helps control Petzval curvature. L14's strong negative power (f = −21.79 mm) combined with its very high refractive index contributes a significant negative Petzval term (1/(n·f) = −0.022) that partially offsets the positive Petzval contributions of L12 and L13, moderating the overall field curvature of the positive rear group.
+- **L13 + L14** (cemented doublet D4): L13 is a second UD element (same glass as L12, f = +33.68 mm), cemented to L14 in HOYA TAFD65 (nd = 2.051, νd = 26.9), the second-highest-index glass in the system. The Δνd = 54.7 makes this the most chromatically powerful cemented pair per unit aperture. The combination of UD positive power (L13) with ultra-high-index negative power (L14) simultaneously corrects lateral color and helps control Petzval curvature. L14's strong negative power (f = −21.79 mm) combined with its very high refractive index contributes a significant negative Petzval term (1/(n·f) = −0.022) that partially offsets the positive Petzval contributions of L12 and L13, moderating the overall field curvature of the positive rear group.
 
-- **L15** (S-LAH65V, f = −93.22 mm): The third aspherical element, discussed in detail in Section 3.3. Its double-aspherical surfaces provide field-dependent correction of residual astigmatism, field curvature, and distortion that cannot be addressed by the spherical elements alone.
+- **L15** (L-LAH85V, f = −93.22 mm): The third aspherical element, discussed in detail in Section 3.3. Its double-aspherical surfaces provide field-dependent correction of residual astigmatism, field curvature, and distortion that cannot be addressed by the spherical elements alone.
 
 - **L16** (S-NPH2, f = +87.31 mm): A biconvex positive element in niobium phosphate heavy flint (nd = 1.923, νd = 20.9). The very high index allows a weak positive power to be realized with gentle curvatures, and its high-dispersion glass partially compensates any residual longitudinal chromatic aberration from the UD elements. L16 is the rearmost lens element and carries Canon's fluorine coating for environmental protection.
 
@@ -327,6 +327,6 @@ The Canon RF 15-35mm f/2.8 L IS USM represents a mature implementation of the ne
 - US 2020/0257181 A1, "Zoom Lens and Optical Apparatus," Yuichi Gyoda, Canon Kabushiki Kaisha, published August 13, 2020.
 - Canon U.S.A. product page: RF 15-35mm F2.8 L IS USM (accessed 2025).
 - Canon Europe specifications page: RF 15-35mm F2.8 L IS USM (accessed 2025).
-- OHARA optical glass catalog: S-BAL42, S-LAH65V, S-FPM2, S-NPH1, S-TIH53, S-NPH2, S-TIL6, S-FPM3, S-LAH55V, S-FPL51.
-- HOYA optical glass catalog: TAFD25, FCD1, TAFD45.
+- OHARA optical glass catalog: S-BAL42, L-LAH85V, S-FPM2, S-NBH56, S-TIH53, S-NPH2, S-TIL6, S-FPM3, S-LAH55V, S-FPL51.
+- HOYA optical glass catalog: TAFD40, FCD1, TAFD65.
 - Paraxial ray trace verification performed computationally (Python) against patent-stated focal lengths.
