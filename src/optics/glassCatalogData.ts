@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 222 vendor-verified entries (Phase 14, May 2026)
+ * GLASS CATALOG — 225 vendor-verified entries (Phase 15, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -465,6 +465,7 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     nd: 1.53775,
     vd: 74.703119,
     PgF: 0.5368,
+    code6: "538747",
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Fluorophosphate crown with +ΔPgF.",
   },
   {
@@ -873,6 +874,26 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     source:
       "Sumita AGF (sumita_2017-02-02.agf) form-1 polynomial; Sellmeier-1 fit, max abs index error 6.7e-6 across 365–1014 nm. APO-relevant.",
   },
+  {
+    name: "K-SK7",
+    vendor: "Sumita",
+    polynomial: [2.5429277, -0.01031719, 0.014356944, 0.00031433872, -0.000010824341, 0.00000068100892],
+    nd: 1.60729,
+    vd: 59.5,
+    PgF: 0.5431,
+    code6: "607595",
+    source: "Sumita Zemax catalog 2017-02-02 via refractiveindex.info; K-SK7 page (formula 3 polynomial).",
+  },
+  {
+    name: "K-SK18",
+    vendor: "Sumita",
+    polynomial: [2.6383229, -0.010806956, 0.016153414, 0.00046673954, -0.000025414619, 0.0000019703165],
+    nd: 1.63854,
+    vd: 55.5,
+    PgF: 0.5497,
+    code6: "639555",
+    source: "Sumita Zemax catalog 2017-02-02 via refractiveindex.info; K-SK18 page (formula 3 polynomial).",
+  },
 
   /* ────── Ohara Phase 5 additions (May 2026) ──────
    * Sourced from OHARA Zemax catalog (ohara_2017-11-30.agf) via
@@ -966,6 +987,7 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     C: [0.013273262, 0.0585944644, 239.357089],
     nd: 1.854779,
     vd: 24.8,
+    code6: "855248",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
 
@@ -1837,6 +1859,16 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5896,
     code6: "738323",
     source: "Hikari Optical Glass Catalog 2023, J-KZFH9 page (formula 3 power series, d-code 738323).",
+  },
+  {
+    name: "BAF3",
+    vendor: "Hikari",
+    polynomial: [2.438682, 0.001609961, 0.02688829, -0.002446579, 0.0003965661, -0.00001973046],
+    nd: 1.58267,
+    vd: 46.476929,
+    PgF: 0.5673,
+    code6: "583465",
+    source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; BAF3 page (formula 3 polynomial).",
   },
   {
     name: "J-LAK10",

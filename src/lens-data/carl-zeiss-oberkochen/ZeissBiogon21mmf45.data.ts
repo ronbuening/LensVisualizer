@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.60739,
       vd: 59.5,
       fl: 7.9,
-      glass: "SK7 dense crown (607/595)",
+      glass: "K-SK7 (Sumita)",
       apd: false,
       role: "Rear element of Component C — primary convergent power of front positive group",
       cemented: "Ja",

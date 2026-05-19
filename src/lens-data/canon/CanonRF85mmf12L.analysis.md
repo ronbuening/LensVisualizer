@@ -110,13 +110,13 @@ The design uses 10 distinct glass types across 14 elements. Glass identification
 | Element | nd | νd | Code | Probable glass family | Notes |
 |---|---|---|---|---|---|
 | L1 | 1.61800 | 63.4 | 618/634 | S-PHM52 (OHARA) or equiv. | Phosphate crown |
-| L2 | 1.72047 | 34.7 | 720/347 | S-LAF2 or S-NBF1 (OHARA) | Lanthanum flint |
+| L2 | 1.72047 | 34.7 | 720/347 | N-KZFS8 (Schott) | KZFS short flint |
 | L3 (Lp1) | 1.92286 | 20.9 | 923/209 | S-NPH2 (OHARA) | Ultra-high-index dense flint |
 | L4 | 1.49700 | 81.5 | 497/815 | S-FPL51 (OHARA) | UD glass (fluorophosphate crown) |
-| L5 | 1.85478 | 24.8 | 855/248 | E-FDS2 (HIKARI) or FDS18 (HOYA) | High-index flint (aspherical) |
-| L6 | 1.85478 | 24.8 | 855/248 | Same as L5 | High-index flint |
+| L5 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint (aspherical) |
+| L6 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint |
 | L7 | 1.88300 | 40.8 | 883/408 | S-LAH58 (OHARA) | Lanthanum heavy flint |
-| L8 | 1.54072 | 47.2 | 541/472 | No catalog match; likely custom | BR carrier glass (object-side) |
+| L8 | 1.54072 | 47.2 | 541/472 | S-TIL2 (OHARA) | BR carrier glass (object-side) |
 | L9 (Lp2) | 1.60401 | 20.8 | 604/208 | **BR optics** (organic material) | Canon proprietary |
 | L10 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Ultra-high-index lanthanum |
 | L11 | 1.95375 | 32.3 | 954/323 | S-LAH98 (OHARA) | Same as L10 |
@@ -142,7 +142,7 @@ Canon's BR optics technology, first deployed in the EF 35mm f/1.4L II USM (2015)
 
 In this design, the BR element (Lens 9) is just 1.00 mm thick at center, sandwiched between two conventional glass elements in the cemented triplet DL2:
 
-- **L8** (nd = 1.54072, νd = 47.2) — the convex glass carrier on the object side
+- **L8** (S-TIL2, nd = 1.54072, νd = 47.2) — the convex glass carrier on the object side
 - **L9** (nd = 1.60401, νd = 20.8, ΔθgF = 0.092) — the BR organic element
 - **L10** (nd = 1.95375, νd = 32.3) — the concave glass carrier on the image side
 
@@ -184,10 +184,10 @@ The sole aspherical element, a strongly negative meniscus positioned immediately
 **Aperture Stop (STO)** — Located between surfaces 9 and 11 (d = 10.68 + 4.51 = 15.19 mm from L5 rear to L6 front). The 9-blade diaphragm sits in this air gap.
 
 **Lens 6 + Lens 7 (Doublet DL1)** — Combined fl = +223.8 mm.
-L6 is a strongly negative biconcave flint (fl = −27.9 mm, nd = 1.855, νd = 24.8), cemented to L7, a strongly positive biconvex element (fl = +26.6 mm, nd = 1.883, νd = 40.8). This is a classic achromatic doublet positioned just after the stop, where it corrects axial color and spherical aberration in the diverging beam. The combined group is weakly positive, maintaining beam convergence toward the image.
+L6 is a strongly negative biconcave S-NBH56 flint (fl = −27.9 mm, nd = 1.855, νd = 24.8), cemented to L7, a strongly positive biconvex element (fl = +26.6 mm, nd = 1.883, νd = 40.8). This is a classic achromatic doublet positioned just after the stop, where it corrects axial color and spherical aberration in the diverging beam. The combined group is weakly positive, maintaining beam convergence toward the image.
 
 **Lens 8 + Lens 9 + Lens 10 (Triplet DL2 / BR triplet)** — Combined fl = +137.9 mm.
-The BR optics assembly. L8 is a weakly negative biconcave carrier (fl = −48.6 mm, nd = 1.541), L9 is the BR organic element (fl = +375.2 mm, nd = 1.604), and L10 is a strongly positive biconvex element (fl = +41.7 mm, nd = 1.954). The triplet as a whole is moderately positive, providing the secondary chromatic correction (secondary spectrum reduction) that is the patent's central innovation. The BR element's extreme anomalous dispersion (ΔθgF = 0.092) cancels the lateral chromatic overcorrection from Lp1 in the front group.
+The BR optics assembly. L8 is a weakly negative biconcave S-TIL2 carrier (fl = −48.6 mm, nd = 1.541), L9 is the BR organic element (fl = +375.2 mm, nd = 1.604), and L10 is a strongly positive biconvex element (fl = +41.7 mm, nd = 1.954). The triplet as a whole is moderately positive, providing the secondary chromatic correction (secondary spectrum reduction) that is the patent's central innovation. The BR element's extreme anomalous dispersion (ΔθgF = 0.092) cancels the lateral chromatic overcorrection from Lp1 in the front group.
 
 ### Rear Group — Unit L3 (fixed)
 

@@ -73,7 +73,7 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 ### L2 — Positive Meniscus (Group II, front element of cemented triplet)
 
 - **Shape:** Positive meniscus (R₃ = +0.440, R₄ = +0.805)
-- **Glass:** nd = 1.6385, νd = 55.5 → likely a dense barium crown of the **SK/BSM family** (six-digit code 639/555). No exact modern catalog match has been confirmed; this may be a proprietary Japanese melt from the early 1950s, or the historical Schott SK18.
+- **Glass:** nd = 1.6385, νd = 55.5 → **Sumita K-SK18** (six-digit code 639/555), used here as a public coefficient-backed match to the patent constants.
 - **Focal length:** +118.4 mm (thick-lens)
 - **Cemented to:** L3 at surface r₄
 - **Role:** L2 is the leading element of the critical object-side cemented triplet. Its steeply curved front surface (r₃ = +0.440, the third-strongest curvature in the system after r₆ and r₇) introduces substantial spherical aberration on-axis, which is intentional — per the patent text, the object-side meniscus is designed to "act in concave manner to correct spherical aberration on the axis." L2's crown glass provides positive power with moderate dispersion.
@@ -89,7 +89,7 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 ### L4 — Biconcave Negative (Group II, rear element of cemented triplet)
 
 - **Shape:** Biconcave (R₅ = −1.850, R₆ = +0.252)
-- **Glass:** nd = 1.6889, νd = 31.1 → **Schott SF8** (exact match)
+- **Glass:** nd = 1.6889, νd = 31.1 → **S-TIM28 (OHARA)** (exact public catalog match to code 689/311 within patent rounding)
 - **Focal length:** −27.3 mm (thick-lens) — the strongest individual element
 - **Cemented to:** L3 at r₅
 - **Role:** L4 is the key dispersive (flint) element of the front meniscus group and the single most powerful element in the entire system. Its extremely short focal length dominates Group II's net negative power. The steeply curved rear surface r₆ = +0.252 (the strongest curvature in the system at |R| = 21.4 mm production scale) is the concave face that directly confronts the aperture stop. The patent specifies that the refractive power at the L3–L4 cemented interface (r₅) must exceed −0.08 in absolute value; the computed value is φ(r₅) = −0.0933, satisfying this condition. This interface is the primary surface for correcting axial spherical aberration. L4's high-dispersion flint glass also provides critical chromatic aberration correction by counteracting the dispersion of L2 and L3.
@@ -113,7 +113,7 @@ The overall power arrangement is P–N–P–P, which departs from the classic d
 ### L7 — Biconvex Positive (Group IV)
 
 - **Shape:** Biconvex (R₁₀ = +1.500, R₁₁ = −0.846)
-- **Glass:** nd = 1.6385, νd = 55.5 → same glass type as L2 (dense barium crown, SK/BSM family)
+- **Glass:** nd = 1.6385, νd = 55.5 → same glass type as L2, **Sumita K-SK18**
 - **Focal length:** +72.7 mm (thick-lens)
 - **Role:** L7 is the rear collector element. It provides the final convergence needed to bring the image to focus at the film plane, contributing the second-strongest positive power among the individual elements. Its asymmetric biconvex shape (rear surface more steeply curved than front) helps minimize coma and astigmatism for off-axis rays that have already passed through the stop. The use of the same glass as L2 was likely a deliberate manufacturing economy — sharing glass types across a design reduces inventory complexity, a meaningful consideration for a low-volume production lens like the Serenar 85mm f/1.5.
 
@@ -124,9 +124,9 @@ The design uses only five distinct glass types across seven elements:
 | Glass Code | nd | νd | Catalog Match | Elements | Type |
 |------------|----:|-----:|---------------|----------|------|
 | 623/569 | 1.6228 | 56.9 | Schott SK10 | L1 | Dense barium crown |
-| 639/555 | 1.6385 | 55.5 | SK family (unconfirmed) | L2, L7 | Dense barium crown |
+| 639/555 | 1.6385 | 55.5 | K-SK18 (Sumita) | L2, L7 | Dense barium crown |
 | 517/640 | 1.5163 | 64.0 | Schott BK7 (≈) | L3 | Borosilicate crown |
-| 689/311 | 1.6889 | 31.1 | Schott SF8 | L4 | Dense flint |
+| 689/311 | 1.6889 | 31.1 | S-TIM28 (OHARA) | L4 | Dense flint |
 | 532/489 | 1.5317 | 48.9 | Schott LLF6 (≈) | L5 | Light light flint |
 | 658/508 | 1.6584 | 50.8 | Schott KzFS2 | L6 | Short flint special |
 
@@ -206,4 +206,4 @@ The companion `.data.ts` file adapts the patent prescription for the interactive
 
 ---
 
-*Analysis based on US Patent 2,645,973 Example 1 (Figure 1). All focal lengths, powers, and conditional expression values independently verified via ABCD paraxial ray trace. Glass identifications are best-effort matches against historical Schott catalogs; production glasses may have been sourced from Japanese manufacturers (Ohara, Hoya, or Sumita) using equivalent or proprietary melt formulations.*
+*Analysis based on US Patent 2,645,973 Example 1 (Figure 1). All focal lengths, powers, and conditional expression values independently verified via ABCD paraxial ray trace. Glass identifications are best-effort matches against historical Schott and public Japanese catalog data; production glasses may have used equivalent or proprietary melt formulations.*

@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **223** lenses scanned
 - **2573** glass surfaces examined
 - **2567** surfaces with non-empty `glass` strings
-- **1913** of those resolved to a catalog entry
-- **275** mismatches found (14.4% of resolved surfaces)
-- **104** distinct lens files affected
+- **1941** of those resolved to a catalog entry
+- **271** mismatches found (14.0% of resolved surfaces)
+- **102** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -34,7 +34,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | TAFD30 | 6 | |
 | S-TIM2 | 6 | |
 | S-TIH14 | 6 | |
-| S-NPH4 | 5 | |
 | TAFD25 | 5 | |
 | S-TIM22 | 5 | |
 | S-TIM35 | 5 | |
@@ -47,6 +46,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIM25 | 4 | |
 | S-NPH53 | 4 | |
 | S-LAM60 | 4 | |
+| S-NPH4 | 4 | |
 | H-ZLAF50D | 4 | |
 | H-ZF6 | 4 | |
 | S-TIH6 | 4 | |
@@ -67,11 +67,9 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL25 | 2 | |
 | S-NSL5 | 2 | |
 | S-LAH55V | 2 | |
-| S-TIH53W | 2 | |
 | S-TIL27 | 2 | |
 | N-SK14 | 2 | |
 | NBFD3 | 2 | |
-| SF2 | 2 | |
 | S-NBH5 | 2 | |
 | S-LAL13 | 2 | |
 | S-BAM4 | 2 | |
@@ -103,7 +101,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-PHM53 | 2 | |
 | S-BAL41 | 2 | |
 | NBFD13 | 1 | |
-| S-NPH3 | 1 | |
+| S-TIH53W | 1 | |
 | S-LAH65V | 1 | |
 | K-VC89 | 1 | |
 | S-TIH1 | 1 | |
@@ -119,6 +117,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH13 | 1 | |
 | S-BSM81 | 1 | |
 | S-LAM54 | 1 | |
+| SF2 | 1 | |
 | S-LAM3 | 1 | |
 | S-LAH66 | 1 | |
 | S-TIH23 | 1 | |
@@ -249,15 +248,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 8 | `S-TIM35 (OHARA)` | S-TIM35 | 1.59270 | 1.69895 | +0.1062 |
 | 15A | `L-LAL13 (OHARA)` | S-LAL13 | 1.58575 | 1.69350 | +0.1078 |
 | 17 | `S-NPH2 (OHARA)` | S-NPH2 | 1.94595 | 1.92286 | -0.0231 |
-
-### [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) — US 2024/0329367 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 8 | `851408 — S-LAH65V (OHARA)` | S-LAH65V | 1.85150 | 1.80400 | -0.0475 |
-| 15 | `770297 — S-TIH18 family (OHARA)` | S-TIH18 | 1.77047 | 1.72151 | -0.0490 |
-| 17 | `855248 — S-TIH53W family (OHARA)` | S-TIH53W | 1.85478 | 1.84666 | -0.0081 |
-| 26 | `744448 — S-LAL14 family (OHARA)` | S-LAL14 | 1.74400 | 1.69680 | -0.0472 |
 
 ### [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) — JP 2004-302170 A
 
@@ -445,6 +435,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 27 | `S-TIH53W type (855/248)` | S-TIH53W | 1.85478 | 1.84666 | -0.0081 |
 | 32 | `S-TIH10 type (805/254)` | S-TIH10 | 1.80518 | 1.72825 | -0.0769 |
 
+### [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) — US 2024/0329367 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 8 | `851408 — S-LAH65V (OHARA)` | S-LAH65V | 1.85150 | 1.80400 | -0.0475 |
+| 15 | `770297 — S-TIH18 family (OHARA)` | S-TIH18 | 1.77047 | 1.72151 | -0.0490 |
+| 26 | `744448 — S-LAL14 family (OHARA)` | S-LAL14 | 1.74400 | 1.69680 | -0.0472 |
+
 ### [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) — US 2021/0072505 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -611,13 +609,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 5A | `S-NSL5 (OHARA)` | S-NSL5 | 1.51742 | 1.52249 | +0.0051 |
 | 8 | `S-NSL5 (OHARA)` | S-NSL5 | 1.51742 | 1.52249 | +0.0051 |
-
-### [CANON RF24-105mm F2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) — US 2024/0192474 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 19 | `Extreme dense flint — OHARA S-NPH4 (001/291)` | S-NPH4 | 2.00100 | 1.89286 | -0.1081 |
-| 42 | `Extreme dense flint — OHARA S-NPH3 (001/255)` | S-NPH3 | 2.00069 | 1.95906 | -0.0416 |
 
 ### [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) — US 2,645,974
 
@@ -802,12 +793,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `NBFD3 (HOYA)` | NBFD3 | 1.74000 | 1.80450 | +0.0645 |
-
-### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) — GB 850,117 C
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 4 | `SF2 equivalent (Jena in-house, 672/323)` | SF2 | 1.67246 | 1.64769 | -0.0248 |
 
 ### [FUJIFILM FUJINON 23mm f/2 (X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) — US 2020/0333569 A1
 

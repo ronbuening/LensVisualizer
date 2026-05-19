@@ -10,16 +10,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **297** total code-only elements found
-- **226** elements in this report
-- **76** distinct lens files affected
+- **274** total code-only elements found
+- **203** elements in this report
+- **73** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
 | 770297 | 5 | 4 |
-| 497815 | 4 | 1 |
 | 662561 | 4 | 1 |
 | 670571 | 4 | 2 |
 | 806333 | 4 | 3 |
@@ -28,8 +27,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 498826 | 3 | 2 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
-| 639555 | 3 | 2 |
-| 729547 | 3 | 1 |
 | 744495 | 3 | 3 |
 | 850324 | 3 | 2 |
 | 531559 | 2 | 2 |
@@ -48,34 +45,27 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 717479 | 2 | 1 |
 | 755516 | 2 | 1 |
 | 755523 | 2 | 2 |
-| 773496 | 2 | 2 |
 | 774492 | 2 | 1 |
 | 777297 | 2 | 2 |
 | 801349 | 2 | 2 |
 | 807316 | 2 | 2 |
-| 855248 | 2 | 1 |
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 883392 | 2 | 2 |
-| 900374 | 2 | 1 |
 | 911352 | 2 | 2 |
 | 917316 | 2 | 1 |
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
-| 487702 | 1 | 1 |
 | 487703 | 1 | 1 |
 | 497817 | 1 | 1 |
 | 504667 | 1 | 1 |
 | 517522 | 1 | 1 |
-| 517524 | 1 | 1 |
 | 517639 | 1 | 1 |
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
 | 531621 | 1 | 1 |
-| 538747 | 1 | 1 |
 | 541468 | 1 | 1 |
-| 541472 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 561575 | 1 | 1 |
 | 567427 | 1 | 1 |
@@ -84,17 +74,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 576414 | 1 | 1 |
 | 581408 | 1 | 1 |
 | 581409 | 1 | 1 |
-| 583465 | 1 | 1 |
 | 589612 | 1 | 1 |
 | 592670 | 1 | 1 |
 | 593354 | 1 | 1 |
 | 593355 | 1 | 1 |
-| 595677 | 1 | 1 |
 | 595686 | 1 | 1 |
 | 602352 | 1 | 1 |
 | 603380 | 1 | 1 |
 | 603564 | 1 | 1 |
-| 603606 | 1 | 1 |
 | 612313 | 1 | 1 |
 | 614551 | 1 | 1 |
 | 614563 | 1 | 1 |
@@ -104,10 +91,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 625533 | 1 | 1 |
 | 626356 | 1 | 1 |
 | 639554 | 1 | 1 |
+| 639555 | 1 | 1 |
 | 642581 | 1 | 1 |
 | 648338 | 1 | 1 |
 | 658509 | 1 | 1 |
 | 667311 | 1 | 1 |
+| 672323 | 1 | 1 |
 | 675348 | 1 | 1 |
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
@@ -140,6 +129,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 770479 | 1 | 1 |
 | 772493 | 1 | 1 |
 | 772496 | 1 | 1 |
+| 773496 | 1 | 1 |
 | 773498 | 1 | 1 |
 | 774472 | 1 | 1 |
 | 774494 | 1 | 1 |
@@ -153,7 +143,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801454 | 1 | 1 |
 | 801455 | 1 | 1 |
 | 803404 | 1 | 1 |
-| 805254 | 1 | 1 |
 | 805410 | 1 | 1 |
 | 808227 | 1 | 1 |
 | 808409 | 1 | 1 |
@@ -161,7 +150,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 834373 | 1 | 1 |
 | 835427 | 1 | 1 |
 | 835447 | 1 | 1 |
-| 847238 | 1 | 1 |
 | 849438 | 1 | 1 |
 | 850270 | 1 | 1 |
 | 850301 | 1 | 1 |
@@ -169,7 +157,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 855399 | 1 | 1 |
-| 883408 | 1 | 1 |
 | 892371 | 1 | 1 |
 | 893204 | 1 | 1 |
 | 903354 | 1 | 1 |
@@ -208,44 +195,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | G5 (Element 5) | 8 | `666356 — dense flint (nd=1.66565, νd=35.64)` | 1.66565 / 35.64 | No catalog entry | abbe |
 | G10 (Element 10) | 16 | `666356 — dense flint (nd=1.66565, νd=35.64)` | 1.66565 / 35.64 | No catalog entry | abbe |
 
-### [CANON RF 85mm f/1.2L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) - US 2020/0012073 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L5 (Element 5) | 8A | `855/248 — high-index dense flint` | 1.85478 / 24.80 | No catalog entry | abbe |
-| L6 (Element 6) | 11 | `855/248 — high-index dense flint` | 1.85478 / 24.80 | No catalog entry | abbe |
-| L8 (Element 8) | 14 | `541/472 — likely custom BR carrier` | 1.54072 / 47.20 | No catalog entry | abbe |
-
 ### [CANON RF24-105mm F2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) - US 2024/0192474 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Lanthanum dense flint (900/374)` | 1.90043 / 37.40 | No catalog entry | abbe |
-| L2 (Element 2) | 3 | `Phosphate crown (538/747)` | 1.53775 / 74.70 | No catalog entry | abbe |
-| L3 (Element 3) | 5 | `Lanthanum crown (729/547)` | 1.72916 / 54.70 | No catalog entry | abbe |
-| L4 (Element 4) | 7 | `Lanthanum crown (729/547)` | 1.72916 / 54.70 | No catalog entry | abbe |
-| L5 (Element 5) | 9 | `Dense lanthanum flint (883/408)` | 1.88300 / 40.80 | No catalog entry | abbe |
-| L6 (Element 6) | 11 | `Barium crown (595/677)` | 1.59522 / 67.70 | No catalog entry | abbe |
-| L7 (Element 7) | 13 | `UD fluorophosphate crown (497/815)` | 1.49700 / 81.50 | No catalog entry | abbe |
 | L8 (Element 8) | 14 | `Heavy flint (770/297)` | 1.77047 / 29.70 | No catalog entry | abbe |
-| L9 (Element 9) | 17 | `Very heavy flint (847/238)` | 1.84666 / 23.80 | No catalog entry | abbe |
-| L11 (Element 11) | 20 | `Borosilicate crown (517/524)` | 1.51742 / 52.40 | No catalog entry | abbe |
-| L13 (Element 13) | 23 | `Lanthanum crown (773/496)` | 1.77250 / 49.60 | No catalog entry | abbe |
-| L14 (Element 14) | 25 | `UD fluorophosphate crown (497/815)` | 1.49700 / 81.50 | No catalog entry | abbe |
-| L15 (Element 15) | 26 | `Lanthanum dense flint (900/374)` | 1.90043 / 37.40 | No catalog entry | abbe |
-| L16 (Element 16) | 28 | `UD fluorophosphate crown (497/815)` | 1.49700 / 81.50 | No catalog entry | abbe |
-| L17 (Element 17) | 30 | `UD fluorophosphate crown (497/815)` | 1.49700 / 81.50 | No catalog entry | abbe |
-| L19 (Element 19) | 33 | `Barium crown (603/606)` | 1.60311 / 60.60 | No catalog entry | abbe |
-| L20 (Element 20) | 35 | `Lanthanum crown (729/547)` | 1.72916 / 54.70 | No catalog entry | abbe |
-| L22 (Element 22) | 39 | `Heavy flint (805/254)` | 1.80518 / 25.40 | No catalog entry | abbe |
-| L23 (Element 23) | 40 | `Fluorocrown (487/702)` | 1.48749 / 70.20 | No catalog entry | abbe |
-
-### [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) - US 2,645,973
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `SK family (639/555, unconfirmed)` | 1.63850 / 55.50 | No catalog entry | abbe |
-| L7 (Element 7) | 11 | `SK family (639/555, unconfirmed)` | 1.63850 / 55.50 | No catalog entry | abbe |
 
 ### [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) - US 2,721,499
 
@@ -256,18 +210,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 9 | `SK-type dense crown (625/533)` | 1.62500 / 53.30 | No catalog entry | abbe |
 | L8 (Element 8) | 12 | `LaK/SK crown (642/581)` | 1.64200 / 58.10 | No catalog entry | abbe |
 
-### [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) - US 3,915,558
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Barium flint 583/465` | 1.58270 / 46.50 | No catalog entry | abbe |
-
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - GB 850,117 C
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe |
 | L2 (Element 2) | 3 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe |
+| L3 (Element 3) | 4 | `Dense flint (672/323, Jena in-house; no exact public catalog match)` | 1.67246 / 32.30 | No catalog entry | abbe |
 | L4 (Element 4) | 6 | `Special light flint (Jena in-house, 602/352)` | 1.60156 / 35.20 | No catalog entry | abbe |
 | L5 (Element 5) | 7 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe |
 | L6 (Element 6) | 9 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe |

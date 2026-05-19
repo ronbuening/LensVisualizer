@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **552** non-explicit-unmatched annotations did not resolve
-- **152** distinct unresolved glass-like tokens found
+- **524** non-explicit-unmatched annotations did not resolve
+- **149** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -35,11 +35,9 @@ or per-lens patent backfills.
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
-| L-LAH86 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
 | SK18 | 2 | 1 | |
-| SK7 | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
@@ -120,6 +118,7 @@ or per-lens patent backfills.
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
 | L-LAH85 | 1 | 1 | |
+| L-LAH86 | 1 | 1 | |
 | L-LAM69 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
 | N-BAF4 | 1 | 1 | |
@@ -141,7 +140,6 @@ or per-lens patent backfills.
 | S-BSM10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
-| S-LAF2 | 1 | 1 | |
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
@@ -149,7 +147,6 @@ or per-lens patent backfills.
 | S-LAL52 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
 | S-LAM7 | 1 | 1 | |
-| S-NBF1 | 1 | 1 | |
 | S-NBH53 | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
@@ -164,8 +161,8 @@ or per-lens patent backfills.
 | SF3 | 1 | 1 | |
 | SF5 | 1 | 1 | |
 | SF56A | 1 | 1 | |
-| SF8 | 1 | 1 | |
 | SK4 | 1 | 1 | |
+| SK7 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
 | TAFD5G | 1 | 1 | |
@@ -263,11 +260,6 @@ or per-lens patent backfills.
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 46: `H-ZLaF4A (CDGM)`
 
-### L-LAH86 — 2 occurrences
-
-- [CANON RF24-105mm F2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) 32A: `OHARA L-LAH86 PGM glass (854/404)`
-- [RICOH GR IIIx 26.1mm f/2.8](../../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `OHARA L-LAH86 (PGM)`
-
 ### S-APL1 — 2 occurrences
 
 - [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `S-APL1 (OHARA)`
@@ -282,11 +274,6 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 9: `SK18 (Schott)`
-
-### SK7 — 2 occurrences
-
-- [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
-- [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 6: `SK7 dense crown (607/595)`
 
 ### 157957 — 1 occurrence
 
@@ -608,6 +595,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 25A: `PGM lanthanum (775473, OHARA L-LAH85)`
 
+### L-LAH86 — 1 occurrence
+
+- [RICOH GR IIIx 26.1mm f/2.8](../../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `OHARA L-LAH86 (PGM)`
+
 ### L-LAM69 — 1 occurrence
 
 - [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
@@ -692,10 +683,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 29A: `S-FPM5 (OHARA)`
 
-### S-LAF2 — 1 occurrence
-
-- [CANON RF 85mm f/1.2L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) 2: `S-NBF1 or S-LAF2 (OHARA)`
-
 ### S-LAH60MQ — 1 occurrence
 
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) 13: `S-LAH60MQ (OHARA)`
@@ -723,10 +710,6 @@ or per-lens patent backfills.
 ### S-LAM7 — 1 occurrence
 
 - [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
-
-### S-NBF1 — 1 occurrence
-
-- [CANON RF 85mm f/1.2L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) 2: `S-NBF1 or S-LAF2 (OHARA)`
 
 ### S-NBH53 — 1 occurrence
 
@@ -784,13 +767,13 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 12: `FDS9 (HOYA) / SF56A (Schott)`
 
-### SF8 — 1 occurrence
-
-- [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) 5: `SF8 (Schott)`
-
 ### SK4 — 1 occurrence
 
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 1: `SK4 (Schott)`
+
+### SK7 — 1 occurrence
+
+- [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
 
 ### TAF105 — 1 occurrence
 
