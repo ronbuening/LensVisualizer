@@ -11,14 +11,13 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **650** non-explicit-unmatched annotations did not resolve
-- **206** distinct unresolved glass-like tokens found
+- **638** non-explicit-unmatched annotations did not resolve
+- **201** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| NBFD15 | 6 | 4 | |
 | H-QK3L | 4 | 3 | |
 | H-ZF6 | 4 | 2 | |
 | H-ZLAF50D | 4 | 2 | |
@@ -56,7 +55,6 @@ or per-lens patent backfills.
 | H-ZLAF4A | 2 | 1 | |
 | H-ZLAF52A | 2 | 1 | |
 | H-ZLAF68C | 2 | 2 | |
-| L-LAH85V | 2 | 2 | |
 | L-LAH86 | 2 | 2 | |
 | N-BALF5 | 2 | 1 | |
 | N-F2 | 2 | 2 | |
@@ -78,7 +76,6 @@ or per-lens patent backfills.
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
-| 517522 | 1 | 1 | |
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
@@ -90,7 +87,6 @@ or per-lens patent backfills.
 | 603564 | 1 | 1 | |
 | 612372 | 1 | 1 | |
 | 619636 | 1 | 1 | |
-| 623581 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 658509 | 1 | 1 | |
@@ -114,9 +110,9 @@ or per-lens patent backfills.
 | 774494 | 1 | 1 | |
 | 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
+| 789284 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 795453 | 1 | 1 | |
-| 806333 | 1 | 1 | |
 | 808409 | 1 | 1 | |
 | 849438 | 1 | 1 | |
 | 850270 | 1 | 1 | |
@@ -124,7 +120,6 @@ or per-lens patent backfills.
 | 850323 | 1 | 1 | |
 | 851401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
-| 854404 | 1 | 1 | |
 | 854505 | 1 | 1 | |
 | 855399 | 1 | 1 | |
 | 863415 | 1 | 1 | |
@@ -226,15 +221,6 @@ or per-lens patent backfills.
 | TAFL3 | 1 | 1 | |
 
 ## Occurrences
-
-### NBFD15 — 6 occurrences
-
-- [Laowa 15mm f/2 Zero-D](../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) 14: `NBFD15 / NBFD15-W class (806-333)`
-- [Laowa 15mm f/2 Zero-D](../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) 14: `NBFD15 / NBFD15-W class (806-333)`
-- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 32: `NBFD15-W / NBFD15 (HOYA)`
-- [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 32: `NBFD15-W / NBFD15 (HOYA)`
-- [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
-- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `NbFD15 class (786/275, HOYA family)`
 
 ### H-QK3L — 4 occurrences
 
@@ -438,11 +424,6 @@ or per-lens patent backfills.
 - [Laowa 65mm f/2.8 2× Ultra Macro APO](../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 11: `H-ZLAF68C (CDGM)`
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) 7: `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)`
 
-### L-LAH85V — 2 occurrences
-
-- [FUJIFILM FUJINON GF45mmF2.8 R WR](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) 16A: `L-LAH85V (OHARA, low-Tg moldable class)`
-- [RICOH GR IIIx 26.1mm f/2.8](../src/lens-data/ricoh/RicohGR3x.data.ts) 1A: `OHARA L-LAH85V (PGM)`
-
 ### L-LAH86 — 2 occurrences
 
 - [CANON RF24-105mm F2.8 L IS USM Z](../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) 32A: `OHARA L-LAH86 PGM glass (854/404)`
@@ -545,10 +526,6 @@ or per-lens patent backfills.
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)`
 
-### 517522 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 9: `517522 — crown (patent nd=1.51742, νd=52.15)`
-
 ### 531559 — 1 occurrence
 
 - [CANON RF 24-240mm F4-6.3 IS USM](../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
@@ -592,10 +569,6 @@ or per-lens patent backfills.
 ### 619636 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 22A: `Near OHARA L-PHM52 (619636)`
-
-### 623581 — 1 occurrence
-
-- [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 3: `SK/SSK family (623581, discontinued?)`
 
 ### 624584 — 1 occurrence
 
@@ -689,6 +662,10 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 8: `777297 — dense flint (patent nd=1.77660, νd=29.7)`
 
+### 789284 — 1 occurrence
+
+- [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 30: `789284 - dense flint (no exact public catalog match)`
+
 ### 792450 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 - dense lanthanum crown (patent nd=1.79189, vd=45.04)`
@@ -696,10 +673,6 @@ or per-lens patent backfills.
 ### 795453 — 1 occurrence
 
 - [NIKON NIKKOR Z 14-30mm f/4 S](../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 22: `795453 — high-index lanthanum (patent nd=1.79500, νd=45.31)`
-
-### 806333 — 1 occurrence
-
-- [SONY FE 90 mm F2.8 Macro G OSS](../src/lens-data/sony/SonyFE90mmf28.data.ts) 13: `High-index Nb dense flint (806333)`
 
 ### 808409 — 1 occurrence
 
@@ -728,10 +701,6 @@ or per-lens patent backfills.
 ### 852402 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 30A: `852402 - dense lanthanum flint (patent nd=1.85207, vd=40.15)`
-
-### 854404 — 1 occurrence
-
-- [CANON RF 24-70mm f/2.8L IS USM](../src/lens-data/canon/CanonRF2470f28.data.ts) 30A: `854404 — moldable high-index lanthanum glass (patent nd=1.85400, νd=40.4) — PGM`
 
 ### 854505 — 1 occurrence
 

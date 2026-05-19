@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **223** lenses scanned
 - **2573** glass surfaces examined
 - **2567** surfaces with non-empty `glass` strings
-- **1813** of those resolved to a catalog entry
-- **306** mismatches found (16.9% of resolved surfaces)
-- **112** distinct lens files affected
+- **1825** of those resolved to a catalog entry
+- **280** mismatches found (15.3% of resolved surfaces)
+- **107** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,91 +27,85 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 14 | |
+| S-LAH79 | 13 | |
 | S-TIH14 | 9 | |
-| S-LAH58 | 8 | |
 | S-TIH18 | 8 | |
 | S-LAL14 | 7 | |
-| S-TIM22 | 7 | |
+| S-LAH58 | 7 | |
 | S-TIM2 | 7 | |
 | TAFD25 | 6 | |
+| S-TIM22 | 6 | |
 | S-TIH4 | 6 | |
 | S-TIH53 | 6 | |
 | TAFD30 | 6 | |
 | S-NPH4 | 5 | |
-| NBFD3 | 5 | |
-| S-NBH55 | 5 | |
 | S-TIM25 | 5 | |
-| S-NPH53 | 5 | |
 | S-TIM35 | 5 | |
-| S-TIH11 | 4 | |
-| S-TIL25 | 4 | |
 | S-BAL42 | 4 | |
-| S-LAH64 | 4 | |
-| S-BAL35 | 4 | |
 | S-LAL8 | 4 | |
 | E-FD15 | 4 | |
-| S-NBH8 | 4 | |
-| S-NBH56 | 4 | |
-| S-NPH2 | 4 | |
+| S-NBH55 | 4 | |
 | S-TIM28 | 4 | |
+| S-NPH53 | 4 | |
 | S-TIH6 | 4 | |
 | S-FPM3 | 4 | |
 | SF6 | 4 | |
 | S-LAH51 | 4 | |
+| S-TIH11 | 3 | |
 | S-TIL27 | 3 | |
+| S-TIL25 | 3 | |
 | S-TIH10 | 3 | |
 | S-LAH65V | 3 | |
 | S-BSL7 | 3 | |
 | S-TIM27 | 3 | |
+| S-LAH64 | 3 | |
 | S-LAH65 | 3 | |
 | S-NBH52V | 3 | |
 | S-NBH5 | 3 | |
 | E-FD5 | 3 | |
-| S-NBH52 | 3 | |
 | S-FPM2 | 3 | |
-| TAFD5F | 3 | |
+| S-BAL35 | 3 | |
 | TAF5 | 3 | |
 | S-BAL14 | 3 | |
 | S-NPH5 | 3 | |
+| S-NPH2 | 3 | |
+| S-NBH8 | 3 | |
 | S-LAM66 | 2 | |
 | S-NSL5 | 2 | |
 | S-LAH55V | 2 | |
-| S-LAH52 | 2 | |
 | S-NPH1 | 2 | |
 | S-TIH53W | 2 | |
-| S-LAM54 | 2 | |
-| S-LAH66 | 2 | |
 | N-SK14 | 2 | |
+| NBFD3 | 2 | |
 | SF2 | 2 | |
-| K-VC89 | 2 | |
 | S-BAM4 | 2 | |
 | E-FD4 | 2 | |
 | S-LAH99 | 2 | |
 | S-TIH13 | 2 | |
 | SF4 | 2 | |
+| TAFD5F | 2 | |
 | N-SK16 | 2 | |
+| NBFD15 | 2 | |
 | S-LAL59 | 2 | |
 | S-BSM18 | 2 | |
 | S-LAM2 | 2 | |
+| S-NBH56 | 2 | |
 | S-LAH96 | 2 | |
 | E-FDS1 | 2 | |
 | S-LAM55 | 2 | |
 | S-PHM52 | 2 | |
 | S-LAH63Q | 2 | |
 | S-LAH55 | 2 | |
-| FCD515 | 2 | |
-| TAFD37 | 2 | |
 | S-PHM53 | 2 | |
-| S-LAL18 | 1 | |
 | TAFD45 | 1 | |
 | S-NPH3 | 1 | |
-| S-LAH60 | 1 | |
 | S-LAM51 | 1 | |
+| K-VC89 | 1 | |
 | S-LAL13 | 1 | |
 | S-LAM60 | 1 | |
 | E-FD2 | 1 | |
 | S-FPL51 | 1 | |
+| S-NBH52 | 1 | |
 | H-ZF88 | 1 | |
 | S-LAH63 | 1 | |
 | S-NBM51 | 1 | |
@@ -119,13 +113,17 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL26 | 1 | |
 | S-LAH53 | 1 | |
 | S-BSM81 | 1 | |
+| S-LAM54 | 1 | |
 | S-LAM3 | 1 | |
+| S-LAH66 | 1 | |
 | S-TIH23 | 1 | |
 | LAC12 | 1 | |
+| E-CF6 | 1 | |
 | TAFD33 | 1 | |
 | S-LAH93 | 1 | |
-| TAFD65 | 1 | |
+| TAFD37 | 1 | |
 | S-LAH98 | 1 | |
+| S-LAH52 | 1 | |
 | S-BAL2 | 1 | |
 | N-SK2 | 1 | |
 | NBFD11 | 1 | |
@@ -134,60 +132,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL2 | 1 | |
 
 ## Mismatches by lens
-
-### [CANON RF 28-70mm F2 L USM](../src/lens-data/canon/CanonRF2870mmf2L.data.ts) — JP 2020-118807 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6A | `S-LAM54 (OHARA)` | S-LAM54 | 1.76902 | 1.75700 | -0.0120 |
-| 12 | `S-LAH60 (OHARA)` | S-LAH60 | 1.88300 | 1.83400 | -0.0490 |
-| 19 | `S-NBH8 (OHARA)` | S-NBH8 | 1.73800 | 1.72047 | -0.0175 |
-| 27 | `S-NBH56 (OHARA)` | S-NBH56 | 1.80610 | 1.85478 | +0.0487 |
-| 29A | `S-LAH66 (OHARA)` | S-LAH66 | 1.85400 | 1.77250 | -0.0815 |
-| 32 | `S-NPH2 (OHARA)` | S-NPH2 | 2.00100 | 1.92286 | -0.0781 |
-
-### [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) — JP 2025-52870A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 5 | `Ultra-high-index dense flint (921240, HOYA TAFD5F / HIKARI E-FDS3HT)` | TAFD5F | 1.92119 | 1.83481 | -0.0864 |
-| 7 | `S-NBH52 (738323, OHARA S-NBH52)` | S-NBH52 | 1.73800 | 1.67300 | -0.0650 |
-| 9 | `S-LAH79 (954323, OHARA S-LAH79)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
-| 16 | `S-NBH52 (738323, OHARA S-NBH52)` | S-NBH52 | 1.73800 | 1.67300 | -0.0650 |
-| 19 | `S-NBH55 (720347, OHARA S-NBH55)` | S-NBH55 | 1.72047 | 1.80000 | +0.0795 |
-| 30 | `S-NBH56 (789284, OHARA S-NBH56)` | S-NBH56 | 1.78880 | 1.85478 | +0.0660 |
-
-### [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) — JP 2023-183894 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-NPH53 (OHARA)` | S-NPH53 | 1.92286 | 1.84666 | -0.0762 |
-| 3 | `S-TIL25 (OHARA)` | S-TIL25 | 1.51742 | 1.58144 | +0.0640 |
-| 9 | `K-VC89 (Sumita) / FCD515 class — SLD fluorophosphate crown` | K-VC89 | 1.59282 | 1.80998 | +0.2172 |
-| 10 | `S-TIH11 (OHARA)` | S-TIH11 | 1.69895 | 1.78472 | +0.0858 |
-| 20 | `TAFD65 (Hoya)` | TAFD65 | 2.00100 | 2.05090 | +0.0499 |
-| 23 | `S-TIM22 (OHARA)` | S-TIM22 | 1.62004 | 1.64769 | +0.0276 |
-
-### [SIGMA 85mm F1.4 DG HSM | Art](../src/lens-data/sigma/Sigma85mmf14Art.data.ts) — JP2018-5099A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `FCD515 (HOYA)` | FCD515 | 1.55032 | 1.59282 | +0.0425 |
-| 7 | `NBFD3 (HOYA)` | NBFD3 | 1.73800 | 1.80450 | +0.0665 |
-| 9 | `NBFD3 (HOYA)` | NBFD3 | 1.73800 | 1.80450 | +0.0665 |
-| 13 | `FCD515 (HOYA)` | FCD515 | 1.55032 | 1.59282 | +0.0425 |
-| 18 | `TAFD37 (HOYA)` | TAFD37 | 1.69895 | 1.90043 | +0.2015 |
-| 21 | `NBFD3 (HOYA)` | NBFD3 | 1.73800 | 1.80450 | +0.0665 |
-
-### [CANON FD 50mm f/1.2 L](../src/lens-data/canon/CanonFD50mmf12L.data.ts) — US 4,364,644
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `OHARA S-LAH58 (804466)` | S-LAH58 | 1.80400 | 1.88300 | +0.0790 |
-| 3A | `OHARA S-LAH52 (744447)` | S-LAH52 | 1.74400 | 1.79952 | +0.0555 |
-| 9 | `OHARA S-LAH64 (883408)` | S-LAH64 | 1.88300 | 1.78800 | -0.0950 |
-| 11 | `OHARA S-LAL18 (773496)` | S-LAL18 | 1.77250 | 1.72916 | -0.0433 |
-| 13 | `OHARA S-BAL35* (623582; provisional, Δν_d=−1.12)` | S-BAL35 | 1.62299 | 1.58913 | -0.0339 |
 
 ### [CANON RF 15-35mm f/2.8 L IS USM](../src/lens-data/canon/CanonRF1535f28.data.ts) — US 2020/0257181 A1
 
@@ -238,6 +182,16 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 16 | `S-NBH52V (OHARA)` | S-NBH52V | 1.73800 | 1.67300 | -0.0650 |
 | 25A | `S-NBH56 (OHARA)` | S-NBH56 | 1.76450 | 1.85478 | +0.0903 |
 | 29 | `S-LAH79 (OHARA)` | S-LAH79 | 1.90265 | 2.00330 | +0.1007 |
+
+### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) — US 2015/0268449 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3A | `S-TIM2 class (585/417, OHARA family)` | S-TIM2 | 1.58542 | 1.62004 | +0.0346 |
+| 6 | `S-NPH5 class (754/260, OHARA family)` | S-NPH5 | 1.75409 | 1.85896 | +0.1049 |
+| 8 | `TAFD33 (HOYA)` | TAFD33 | 1.91597 | 1.88100 | -0.0350 |
+| 11 | `NbFD15 class (786/275, HOYA family)` | NBFD15 | 1.78630 | 1.80610 | +0.0198 |
+| 12 | `TAF5 (HOYA)` | TAF5 | 1.76864 | 1.81600 | +0.0474 |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) — JP 2014-126652 A
 
@@ -395,15 +349,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 6 | `SF6 / PBM6 (dense flint)` | SF6 | 1.69895 | 1.80518 | +0.1062 |
 | 9 | `SK16 / BSL7 (barium crown)` | N-SK16 | 1.67790 | 1.62041 | -0.0575 |
 
-### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) — US 2015/0268449 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3A | `S-TIM2 class (585/417, OHARA family)` | S-TIM2 | 1.58542 | 1.62004 | +0.0346 |
-| 6 | `S-NPH5 class (754/260, OHARA family)` | S-NPH5 | 1.75409 | 1.85896 | +0.1049 |
-| 8 | `TAFD33 (HOYA)` | TAFD33 | 1.91597 | 1.88100 | -0.0350 |
-| 12 | `TAF5 (HOYA)` | TAF5 | 1.76864 | 1.81600 | +0.0474 |
-
 ### [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) — US 2023/0367186 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -528,6 +473,14 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 11 | `S-FPM2 (OHARA)` | S-FPM2 | 1.53775 | 1.59522 | +0.0575 |
 | 13 | `S-LAH79 (OHARA)` | S-LAH79 | 1.89190 | 2.00330 | +0.1114 |
 | 14 | `S-TIM22 (OHARA)` | S-TIM22 | 1.69895 | 1.64769 | -0.0513 |
+
+### [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) — US 5,640,277
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 5 | `Dense Lanthanum Flint (LaSF3 / NBFD15)` | NBFD15 | 1.79631 | 1.80610 | +0.0098 |
+| 15 | `Very Dense Lanthanum Flint (TAFD30)` | TAFD30 | 1.86994 | 1.88300 | +0.0131 |
+| 19 | `Lanthanum Crown (S-LAM66)` | S-LAM66 | 1.74810 | 1.80100 | +0.0529 |
 
 ### [NIKON AF-S NIKKOR 28mm f/1.4E ED](../src/lens-data/nikon/NikonAFS28f14E.data.ts) — JP2017-227799A
 
@@ -721,13 +674,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 3 | `E-LAF7 / TAFD5F (HOYA)` | TAFD5F | 1.76500 | 1.83481 | +0.0698 |
 | 10 | `S-NBH55 class (OHARA, near match Δnd = 0.001)` | S-NBH55 | 1.78100 | 1.80000 | +0.0190 |
 
-### [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) — US 5,640,277
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 15 | `Very Dense Lanthanum Flint (TAFD30)` | TAFD30 | 1.86994 | 1.88300 | +0.0131 |
-| 19 | `Lanthanum Crown (S-LAM66)` | S-LAM66 | 1.74810 | 1.80100 | +0.0529 |
-
 ### [NIKON AF-S NIKKOR 16-35mm f/4G ED VR](../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) — US 2010/0238560 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -783,6 +729,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 10 | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 | 1.78470 | 1.80518 | +0.0205 |
 | 12 | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 | 1.78470 | 1.80518 | +0.0205 |
+
+### [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) — US 4,099,843
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3 | `S-LAH65 (OHARA) / TAFD25 (HOYA)` | S-LAH65 | 1.83400 | 1.80400 | -0.0300 |
+| 8 | `E-CF6 (HOYA)` | E-CF6 | 1.67790 | 1.51742 | -0.1605 |
 
 ### [PANASONIC LUMIX S 35mm F1.8](../src/lens-data/panasonic/PanasonicS35mmf18.data.ts)
 
@@ -940,12 +893,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 17 | `BSC7 (HOYA)` | S-BSL7 | 1.65160 | 1.51624 | -0.1354 |
-
-### [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) — US 4,099,843
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `S-LAH65 (OHARA) / TAFD25 (HOYA)` | S-LAH65 | 1.83400 | 1.80400 | -0.0300 |
 
 ### [PENTAX FA 31mm F1.8 AL Limited](../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) — US 6,560,042 B2
 

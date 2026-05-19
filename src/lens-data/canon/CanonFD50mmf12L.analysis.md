@@ -178,24 +178,24 @@ The patent tabulates n_d (d-line, 587.6 nm) and ν_d (Abbe number) for each elem
 
 | Elem. | n_d | ν_d | 6-digit code | Best catalogue match | Δn_d | Δν_d | Quality |
 |:-----:|:---:|:---:|:------------:|:--------------------:|:----:|:----:|:-------:|
-| L1 | 1.80400 | 46.6 | 804466 | OHARA S-LAH58 (1.80400 / 46.57) | 0.00000 | −0.03 | Excellent |
-| L2 | 1.74400 | 44.7 | 744447 | OHARA S-LAH52 (1.74400 / 44.80) | 0.00000 | +0.10 | Good |
+| L1 | 1.80400 | 46.6 | 804466 | OHARA S-LAH65V (1.80400 / 46.68) | 0.00000 | +0.08 | Excellent |
+| L2 | 1.74400 | 44.7 | 744447 | OHARA S-LAM2 (1.74397 / 44.79) | −0.00003 | +0.09 | Good |
 | L3 | 1.63636 | 35.4 | 636354 | OHARA S-TIM27 (1.63636 / 35.37) | 0.00000 | −0.03 | Excellent |
 | L4 | 1.80518 | 25.4 | 805254 | Schott SF6 / OHARA S-TIH6 (1.80518 / 25.43) | 0.00000 | +0.03 | Excellent |
 | L5 | 1.81600 | 46.6 | 816466 | OHARA S-LAH59 (1.81600 / 46.62) | 0.00000 | +0.02 | Excellent |
-| L6 | 1.88300 | 40.8 | 883408 | OHARA S-LAH64 (1.88300 / 40.76) | 0.00000 | −0.04 | Excellent |
-| L7 | 1.77250 | 49.6 | 773496 | OHARA S-LAL18 (1.77250 / 49.60) | 0.00000 | 0.00 | Exact |
-| L8 | 1.62299 | 58.2 | 623582 | OHARA S-BAL35 (1.62280 / 57.08) | −0.00019 | −1.12 | Moderate* |
+| L6 | 1.88300 | 40.8 | 883408 | HOYA TAFD30 (1.88300 / 40.80) | 0.00000 | 0.00 | Exact |
+| L7 | 1.77250 | 49.6 | 773496 | OHARA S-LAH66 (1.77250 / 49.60) | 0.00000 | 0.00 | Exact |
+| L8 | 1.62299 | 58.2 | 623581 | HOYA BACD15 (1.62299 / 58.12) | 0.00000 | −0.08 | Good |
 
 **Notes:**
 
 **L4 (Schott SF6 / S-TIH6):** Dense flint glass with the lowest Abbe number in the design (ν_d = 25.4), placed immediately adjacent to the diaphragm in the rear doublet. The large dispersion contrast with L5 (Δν = 46.6 − 25.4 = 21.2) provides thorough rear-group chromatic correction.
 
-**L6 (S-LAH64):** At n_d = 1.883, the highest-index glass in the design. The Δν_d residual of −0.04 is negligible; this is a reliable identification. The high index is essential for bending the rear-group rays sharply toward the axis without extreme curvatures.
+**L6 (TAFD30):** At n_d = 1.883, the highest-index glass in the design. The exact ν_d match makes this a reliable identification. The high index is essential for bending the rear-group rays sharply toward the axis without extreme curvatures.
 
-**L2 (S-LAH52):** The Δν_d residual of +0.10 is the second-largest in the design (after L8) but still falls within the uncertainty expected of 1979-era glass melts; this identification is considered good.
+**L2 (S-LAM2):** The Δν_d residual of +0.09 is small enough for the 1979-era patent values; this identification is considered good.
 
-**L8 (provisional):** The Δν_d residual of −1.12 between the patent value (ν_d = 58.2) and S-BAL35 (ν_d = 57.08) is the largest in the design and is flagged accordingly. OHARA S-BAL35 and the equivalent Schott SK10 are the closest standard-catalogue matches; both fall short. Canon may have used a proprietary crown formulation for this fixed rear element in 1980 production, or a Japanese domestic glass no longer listed in current catalogues.
+**L8 (BACD15):** refractiveindex.info lists HOYA BACD15 at n_d = 1.62299 and ν_d = 58.12, clearing the previous S-BAL35 provisional mismatch. The remaining Δν_d of about −0.08 is smaller than the patent rounding precision.
 
 ---
 
@@ -261,7 +261,7 @@ The slight increase in ray height from R8 through R10 — where the rear group i
 
 ### L1 — Front Positive Meniscus (n_d = 1.804, ν_d = 46.6; f₁ = +180.65 mm)
 
-Shape: Positive meniscus. Both radii are positive (R1 = +108.67, R2 = +416.22), placing both centres of curvature to the right of their respective surfaces. The front surface is convex toward the object; the rear surface, with its centre also to the right, is concave toward the image — making both surfaces curve in the same sense and identifying the element as a positive meniscus. L1 serves as the primary light-gathering element, contributing the most to collecting the cone of rays from the entrance pupil. The choice of high-index glass (S-LAH58 type, n_d = 1.804) allows the required power to be achieved with weaker curvatures than a lower-index glass would require, reducing higher-order spherical aberration. The meniscus form, with both radii approximately concentric to the entrance pupil, reduces off-axis ray deviation and therefore coma and astigmatism contributions. The minimum gap D2 = 0.291 mm (normalised; 0.146 mm production) is mechanical clearance.
+Shape: Positive meniscus. Both radii are positive (R1 = +108.67, R2 = +416.22), placing both centres of curvature to the right of their respective surfaces. The front surface is convex toward the object; the rear surface, with its centre also to the right, is concave toward the image — making both surfaces curve in the same sense and identifying the element as a positive meniscus. L1 serves as the primary light-gathering element, contributing the most to collecting the cone of rays from the entrance pupil. The choice of high-index glass (S-LAH65V type, n_d = 1.804) allows the required power to be achieved with weaker curvatures than a lower-index glass would require, reducing higher-order spherical aberration. The meniscus form, with both radii approximately concentric to the entrance pupil, reduces off-axis ray deviation and therefore coma and astigmatism contributions. The minimum gap D2 = 0.291 mm (normalised; 0.146 mm production) is mechanical clearance.
 
 ### L2 — Positive Element, Aspherical Front Surface (n_d = 1.744, ν_d = 44.7; part of doublet)
 

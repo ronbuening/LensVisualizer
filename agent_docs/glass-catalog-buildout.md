@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **185 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **191 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports are the current work queues:
 
@@ -78,6 +78,17 @@ already in the catalog.
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 13 additions** (May 2026 — next-five glass relabel audit; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of HOYA/Ohara Zemax data so patent-code rows can resolve to catalog glass instead of six-digit fallbacks):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ E-CF6 | Hoya | 1+ | Exact code-family target for `517522`; clears Sigma 50/1.4 DG DN Art L2 and future crown/flint boundary labels |
+| ★ MC-TAF101-100 | Hoya | 1+ | Exact code-family target for `769493`; precision-molding lanthanum/tantalum glass |
+| ★ NBFD15 | Hoya | 1+ | Exact code-family target for `806333`; dense flint used where prior S-NBH56 labels were only approximate |
+| ★ FDS24 | Hoya | 1+ | Exact code-family target for `921240`; ultra-high-index dense flint in Nikon Z 35/1.2 patent data |
+| ★ BACD15 | Hoya | 1+ | Exact code-family target for `623581`; resolves the Canon FD 50/1.2 L rear crown near the patent's 623/582 code |
+| ★ L-LAH85V | Ohara | 1+ | Exact code-family target for `854404`; low-softening-temperature lanthanum glass for large aspheric high-index rows |
 
 **Phase 12 additions** (May 2026 — high-frequency unresolved-token pass; all entries round-trip through `assertCatalogConsistent`; `H-ZF88A` was resolved as an alias to the already cataloged 847/238 `S-TIH53` equivalent, not as CDGM `H-ZF88`, which is a different 946/179 glass):
 
