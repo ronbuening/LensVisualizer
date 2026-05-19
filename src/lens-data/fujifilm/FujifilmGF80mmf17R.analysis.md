@@ -90,9 +90,9 @@ The aspherical corrections are detailed in the Aspherical Surfaces section below
 
 ### L31 — Biconvex Positive (cemented with L32)
 
-$n_d$ = 1.88300, $\nu_d$ = 39.22. Glass: 883392 high-index lanthanum class; no current catalog entry round-trips to the patent pair. $f$ = +42.0 mm.
+$n_d$ = 1.88300, $\nu_d$ = 39.22. Glass: H-ZLaF68L (NHG), d-code 883392. $f$ = +42.0 mm.
 
-L31 is the most strongly powered positive element in the entire system ($f$ ≈ 42 mm). It serves as the positive element of the G3 cemented doublet (L31 + L32). Despite G3's near-afocal overall power ($f_{G3}$ ≈ 1675 mm), L31 itself is aggressively positive. This is by design: the strong positive power of L31 paired with the negative L32 creates an achromatic corrector whose net power is nearly zero but whose Petzval contribution is strongly negative — exactly what the system needs to flatten the field. The biconvex shape ($R_{16}$ = +145.6, $R_{17}$ = −48.3 mm) concentrates power at the rear surface, which also forms the cemented junction with L32. The use of a high-index glass at $n_d$ = 1.883, the highest index in the system, reduces the surface curvatures needed to achieve this power, keeping higher-order aberrations under control.
+L31 is the most strongly powered positive element in the entire system ($f$ ≈ 42 mm). It serves as the positive element of the G3 cemented doublet (L31 + L32). Despite G3's near-afocal overall power ($f_{G3}$ ≈ 1675 mm), L31 itself is aggressively positive. This is by design: the strong positive power of L31 paired with the negative L32 creates an achromatic corrector whose net power is nearly zero but whose Petzval contribution is strongly negative — exactly what the system needs to flatten the field. The biconvex shape ($R_{16}$ = +145.6, $R_{17}$ = −48.3 mm) concentrates power at the rear surface, which also forms the cemented junction with L32. NHG's H-ZLaF68L data sheet publishes the same 883392 code and coefficient data, making this a catalog-backed high-index glass rather than a bare code label.
 
 ### L32 — Plano-Concave Negative (cemented with L31)
 
@@ -112,7 +112,7 @@ $n_d$ = 1.64769, $\nu_d$ = 33.84. Glass: E-FD2 (HOYA). $f$ = −133.6 mm.
 
 L34 is the rearmost element of the imaging lens and the strongest of the three rear negative singlets in G3. Its object-side surface ($R_{21}$ = −86.6 mm) is concave toward the object, consistent with the patent's preference (¶0055) that this surface be concave — an arrangement that corrects astigmatism. The rear surface is flat. The patent (¶0056) notes that making the last element a negative lens with a concave object-side surface provides three benefits: it improves the Petzval sum, it reduces the total optical length, and it corrects distortion. L34's moderate index ($n_d$ = 1.648) and low Abbe number ($\nu_d$ = 33.84) place it in the short-flint region of the glass map, providing a useful negative-Petzval contribution through its dispersive, negative-power character.
 
-*Glass-catalog note:* The patent lists only refractive index and Abbe number, not vendor glass names. The catalog labels here are exact or nearest round-tripping matches to the patent values in the current project catalog; L31 remains code-labeled because no catalog entry matches its $n_d$/$\nu_d$ pair closely enough.
+*Glass-catalog note:* The patent lists only refractive index and Abbe number, not vendor glass names. The catalog labels here are exact or nearest round-tripping matches to the patent values in the current project catalog; L31 is catalog-backed through NHG H-ZLaF68L, whose d-code is 883392.
 
 
 ## Glass Identification and Selection
@@ -129,7 +129,7 @@ The design uses twelve distinct glass types. The patent gives optical constants 
 | L24 | S-FPL55 | OHARA | 1.43875 | 94.66 | 94.66 | 0 | Super-ED fluorophosphate. Post-stop crown. |
 | L25 | E-FD5 | HOYA | 1.67270 | 32.18 | 32.17 | +0.01 | Dense flint. Post-stop flint partner. |
 | L26 | K-VC89 | Sumita | 1.81000 | 41.00 | 41.00 | 0 | High-index aspherical element. |
-| L31 | 883392 code label | — | 1.88300 | 39.22 | — | — | High-index lanthanum class (highest $n_d$). Petzval corrector. |
+| L31 | H-ZLaF68L | NHG | 1.88300 | 39.22 | 39.22 | 0 | High-index lanthanum class (highest $n_d$). Petzval corrector. |
 | L32 | S-FTM16 | OHARA | 1.59270 | 35.31 | 35.31 | 0 | Flint. Petzval corrector partner. |
 | L33 | N-BK7 | Schott | 1.51680 | 64.21 | 64.17 | +0.04 | Borosilicate crown. Weak negative field flattener. |
 | L34 | E-FD2 | HOYA | 1.64769 | 33.84 | 33.84 | 0 | Dense flint. Negative field flattener. |
@@ -272,4 +272,4 @@ Group focal lengths: $f_{G1}$ ≈ 814 mm (weak positive), $f_{G2}$ ≈ 88 mm (st
 
 1. US 2021/0294073 A1, "Imaging Lens and Imaging Apparatus," Masato Kondo (Fujifilm), published September 23, 2021. Example 1 (Tables 1–4, FIG. 2–3).
 2. FUJIFILM Corporation, "GF80mmF1.7 R WR — Specifications," https://www.fujifilm-x.com/en-us/products/lenses/gf80mmf17-r-wr/specifications/. Accessed May 2026.
-3. Project glass catalog sources for glass identifications: OHARA, Hikari, HOYA, Sumita, and Schott catalog data as recorded in `src/optics/glassCatalogData.ts`.
+3. Project glass catalog sources for glass identifications: OHARA, Hikari, HOYA, Sumita, Schott, and NHG catalog data as recorded in `src/optics/glassCatalogData.ts`.

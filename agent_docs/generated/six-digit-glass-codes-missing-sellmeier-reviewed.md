@@ -8,6 +8,7 @@ Last verification for this batch, 2026-05-19:
 - `npm run generate:glass-reports` - passed
 - `npm run typecheck` - passed
 - `npm run format:check` - passed
+- `npm run lint` - passed
 - `npm run test` - passed
 
 ## Reviewed Lenses
@@ -25,4 +26,9 @@ Last verification for this batch, 2026-05-19:
 | 2026-05-19 | Carl Zeiss Biogon 21mm f/4.5 | [ZeissBiogon21mmf45.data.ts](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | US 2,721,499, Example 2 | Relabeled L4 / 607595 to Sumita K-SK7. L1 / 504667, L5 / 561575, L6 / 625533, and L8 / 642581 remain unresolved legacy codes. | [audit](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.audit.md) |
 | 2026-05-19 | Carl Zeiss Distagon T* 35mm f/1.4 | [ZeissDistagon35mmf14.data.ts](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | US 3,915,558, Example 8 | Relabeled L1 / 583465 to Hikari BAF3. Corrected row cleared from generated queues. | [audit](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.audit.md) |
 | 2026-05-19 | Carl Zeiss Jena Pancolar 50mm f/2 | [CarlZeissJenaPancolar50mmf2.data.ts](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | GB 850,117, Claim 2 | No exact public catalog match found for the Jena in-house glasses. Reworded L3 / 672323 to avoid a false SF2 resolution; 662561, 672323, and 602352 remain code-only. | [audit](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.audit.md) |
-
+| 2026-05-19 | Carl Zeiss Jena Tessar 50mm f/2.8 | [CarlZeissJenaTessar50mmf28.data.ts](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) | FR 1.066.698, Example 1 | No exact public catalog match found for L3 / 574425. Reworded the label to an unbroken code plus light-flint note; remains in the missing-Sellmeier queue. | [audit](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.audit.md) |
+| 2026-05-19 | FUJIFILM FUJINON GF 110mm f/2 R LM WR | [FujifilmGF110mmf2RLM.data.ts](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) | US 2018/0100988 A1, Example 1 | Added NHG H-ZLaF68L to the catalog and relabeled L14 / 883392. Corrected row cleared from the missing-Sellmeier queue. | [audit](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.audit.md) |
+| 2026-05-19 | FUJIFILM FUJINON GF 20-35mm f/4 R WR | [FujifilmGF2035mmf4.data.ts](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | US 2022/0236544 A1, Example 10 | Relabeled L22 / 689312 to coefficient-backed HOYA E-FD8 code family. Corrected row cleared from the missing-Sellmeier queue. | [audit](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.audit.md) |
+| 2026-05-19 | FUJIFILM FUJINON GF30mmF5.6 T/S | [FujifilmGF30mmf56TS.data.ts](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | WO 2024/195273 A1, Example 4 | No exact public catalog match found for L11/L25/L31 / 585587. Reworded labels to unbroken code annotations; rows remain in the missing-Sellmeier queue. | [audit](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.audit.md) |
+| 2026-05-19 | FUJIFILM GF55mmF1.7 R WR | [FujifilmGF55mmf17.data.ts](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | US 2023/0341664 A1, Example 1 | No exact public catalog match found for L24 / 772493. Reworded the label to an unbroken code annotation; remains in the missing-Sellmeier queue. | [audit](../../src/lens-data/fujifilm/FujifilmGF55mmf17.audit.md) |
+| 2026-05-19 | FUJIFILM GF80mmF1.7 R WR | [FujifilmGF80mmf17R.data.ts](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | US 2021/0294073 A1, Example 1 | Relabeled L31 / 883392 to the newly added NHG H-ZLaF68L catalog entry. Corrected row cleared from the missing-Sellmeier queue. | [audit](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.audit.md) |

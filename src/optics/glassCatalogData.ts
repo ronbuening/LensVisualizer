@@ -6,8 +6,8 @@
 export interface GlassEntry {
   /** Vendor-canonical glass name, e.g. "N-BK7", "S-FPL51". */
   readonly name: string;
-  /** Vendor (Schott, Ohara, Hoya, Hikari, Sumita, CDGM, special). */
-  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Hikari" | "Sumita" | "CDGM" | "Special";
+  /** Vendor (Schott, Ohara, Hoya, Hikari, Sumita, CDGM, NHG, special). */
+  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Hikari" | "Sumita" | "CDGM" | "NHG" | "Special";
   /** Sellmeier B1, B2, B3 coefficients. */
   readonly B?: readonly [number, number, number];
   /** Sellmeier C1, C2, C3 coefficients (μm²). */
@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 225 vendor-verified entries (Phase 15, May 2026)
+ * GLASS CATALOG — 226 vendor-verified entries (Phase 15, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1768,6 +1768,16 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5819,
     code6: "911353",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD35 page (formula 3 polynomial).",
+  },
+  {
+    name: "H-ZLaF68L",
+    vendor: "NHG",
+    polynomial: [3.43867274, -0.0143248055, 0.0349115425, 0.0014530167, -0.0000762581625, 0.0000074766879],
+    nd: 1.883,
+    vd: 39.22,
+    PgF: 0.5698,
+    code6: "883392",
+    source: "NHG/Hubei New Huaguang H-ZLaF68L data sheet (d-code 883392, formula constants A0-A5).",
   },
 
   /* Phase 9 six-digit code-family additions */

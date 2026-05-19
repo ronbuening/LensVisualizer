@@ -86,9 +86,9 @@ The stop is placed between L23 and L24. In the patent table, surface 9 has 4.260
 
 ### L24 — Aspherical positive meniscus, convex to image
 
-$n_d = 1.77210$, $\nu_d = 49.30$. Glass: unmatched molded lanthanum-crown class, 772/493 code. $f = +65.40$ mm.
+$n_d = 1.77210$, $\nu_d = 49.30$. Glass: code-labeled 772493 molded lanthanum-crown class. $f = +65.40$ mm.
 
-L24 is the first aspherical element and sits immediately behind the aperture stop. It is the aspherical element Fujifilm describes as controlling spherical aberration behind the aperture blades. The glass constants do not match a single public OHARA, HOYA, Schott, HIKARI, CDGM, or Sumita catalog entry closely enough to justify a specific catalog name. The safest designation is therefore a molded lanthanum-crown class glass, not the previously tempting but incorrect L-LAH84 assignment.
+L24 is the first aspherical element and sits immediately behind the aperture stop. It is the aspherical element Fujifilm describes as controlling spherical aberration behind the aperture blades. The glass constants do not match a single public OHARA, HOYA, Schott, HIKARI, CDGM, Sumita, or NHG catalog entry closely enough to justify a specific catalog name. The safest designation is therefore a code-labeled molded lanthanum-crown class glass, not the previously tempting but incorrect L-LAH84 assignment.
 
 Both surfaces of L24 are aspherical. The element's meniscus orientation places a concave surface toward the stop and the steeper convex surface toward the image side. Its polynomial departure reaches −843 µm on surface 11 and −317 µm on surface 12 at $h = 15$ mm; at the conservative inferred clear semi-diameter of 16.6 mm the departures are approximately −1525 µm and −536 µm.
 
@@ -153,7 +153,7 @@ The patent gives optical constants but does not name glass suppliers. The table 
 | L21 | 2.05091 | 26.95 | TAFD65, HOYA 051-269 code | Exact by code |
 | L22 | 1.49700 | 81.61 | FCD1 / S-FPL51 class | Exact |
 | L23 | 1.78880 | 28.43 | S-NBH58 | Exact |
-| L24 | 1.77210 | 49.30 | Unmatched molded lanthanum-crown class, 772/493 | Unmatched |
+| L24 | 1.77210 | 49.30 | 772493 code-labeled molded lanthanum-crown class | Unmatched |
 | L25 | 1.62589 | 35.71 | E-F1 / S-TIM1 class | Exact by code |
 | L26 | 1.59283 | 68.63 | FCD515/FCD505 class, 593-686 code | Exact by code |
 | L27 | 1.78880 | 28.43 | S-NBH58 | Exact |

@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **274** total code-only elements found
-- **274** elements in this report
-- **83** distinct lens files affected
+- **271** total code-only elements found
+- **271** elements in this report
+- **81** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -53,7 +53,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 623581 | 2 | 2 |
 | 666356 | 2 | 1 |
 | 673382 | 2 | 2 |
-| 689312 | 2 | 2 |
 | 694508 | 2 | 1 |
 | 697565 | 2 | 2 |
 | 700481 | 2 | 2 |
@@ -70,7 +69,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
-| 883392 | 2 | 2 |
 | 911352 | 2 | 2 |
 | 917316 | 2 | 1 |
 | 950294 | 2 | 1 |
@@ -122,6 +120,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 684376 | 1 | 1 |
+| 689312 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 697485 | 1 | 1 |
 | 697555 | 1 | 1 |
@@ -297,40 +296,27 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `574425 LF` | 1.57380 / 42.50 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `574425 — light flint (no exact public catalog match)` | 1.57380 / 42.50 | No catalog entry | abbe |
 
 ### [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) - US 2018/0100988 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L13 (Element 3) | 5 | `567428 — high-index barium glass (patent nd=1.56732, νd=42.81)` | 1.56732 / 42.81 | S-TIL26 (trusted Sellmeier) | sellmeier |
-| L14 (Element 4) | 6 | `883392 — high-index lanthanum glass (patent nd=1.88300, νd=39.22)` | 1.88300 / 39.22 | No catalog entry | abbe |
-
-### [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) - US 2022/0236544 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L22 (L22) | 10A | `Unmatched (light dense flint, 689/312; no exact public catalog match confirmed)` | 1.68863 / 31.20 | No catalog entry | abbe |
 
 ### [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) - WO 2024/195273 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11 (Element L11) | 1A | `Unmatched moldable glass (585/587; patent-listed)` | 1.58480 / 58.71 | No catalog entry | abbe |
-| L25 (Element L25) | 20A | `Unmatched moldable glass (585/587; patent-listed)` | 1.58480 / 58.71 | No catalog entry | abbe |
-| L31 (Element L31) | 24A | `Unmatched moldable glass (585/587; patent-listed)` | 1.58480 / 58.71 | No catalog entry | abbe |
+| L11 (Element L11) | 1A | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | 1.58480 / 58.71 | No catalog entry | abbe |
+| L25 (Element L25) | 20A | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | 1.58480 / 58.71 | No catalog entry | abbe |
+| L31 (Element L31) | 24A | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | 1.58480 / 58.71 | No catalog entry | abbe |
 
 ### [FUJIFILM FUJINON GF55mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) - US 2023/0341664 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L24 (L24) | 11A | `Unmatched (molded lanthanum-crown class, 772/493 code)` | 1.77210 / 49.30 | No catalog entry | abbe |
-
-### [FUJIFILM FUJINON GF80mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) - US 2021/0294073 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L31 (Element 9) | 16 | `883392 — high-index lanthanum (nd=1.88300, νd=39.22)` | 1.88300 / 39.22 | No catalog entry | abbe |
+| L24 (L24) | 11A | `772493 — molded lanthanum-crown class (no exact public catalog match)` | 1.77210 / 49.30 | No catalog entry | abbe |
 
 ### [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) - US 2020/0166735 A1
 

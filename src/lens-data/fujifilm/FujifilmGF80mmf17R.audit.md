@@ -45,3 +45,13 @@ Catalog version: 88dde1c
 - `npm run lint` — passed.
 - `npm run test` — passed (129 files, 1664 tests). React error-boundary tests print expected stack traces while passing.
 - Generated reports now show no GF80 catalog-mismatch or relabel-candidate rows. One unresolved GF80 entry remains: L31 / S16 `883392`, intentionally code-labeled because no current catalog glass matches Patent Table 1 nd=1.88300, vd=39.22.
+
+## 2026-05-19 — Six-digit Sellmeier source recheck
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L31 / S16 | `glass` | `883392 — high-index lanthanum (nd=1.88300, νd=39.22)` | `H-ZLaF68L (NHG)` | Patent Table 1 row 16 gives nd=1.88300, vd=39.22. NHG/Hubei New Huaguang publishes H-ZLaF68L with d-code 883392, nd=1.88300, vd=39.22, and formula constants, so the prior code-only status is superseded. |
+
+- Updated [FujifilmGF80mmf17R.analysis.md](FujifilmGF80mmf17R.analysis.md) to describe L31 as a catalog-backed NHG glass.
+- Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).

@@ -63,9 +63,9 @@ L13 has a flat front face (R = ∞) and a rear surface with R2 = +49.38 (convex 
 
 ### L14 — Positive Meniscus, convex to object (cemented with L13 as doublet D1)
 
-nd = 1.88300, νd = 39.22. Glass: 883392 high-index lanthanum glass; no current catalog entry resolves this patent pair. f = +73.8 mm.
+nd = 1.88300, νd = 39.22. Glass: H-ZLaF68L (NHG), d-code 883392. f = +73.8 mm.
 
-L14 is the positive partner in doublet D1. Its high index (1.883) creates a strongly refracting junction with L13, and the meniscus shape (R1 = +49.38, R2 = +192.19) carries substantial positive power (f = +73.8 mm). The patent gives only nd/νd, and the pair does not match the current project catalog within tolerance: nearby high-index lanthanum glasses have similar nd but Abbe numbers around 40.1–40.8 rather than 39.22.
+L14 is the positive partner in doublet D1. Its high index (1.883) creates a strongly refracting junction with L13, and the meniscus shape (R1 = +49.38, R2 = +192.19) carries substantial positive power (f = +73.8 mm). The patent gives only nd/νd, but the same 883392 d-code is published for NHG H-ZLaF68L with coefficient-backed dispersion data, so the data file now uses that catalog entry rather than a bare code label.
 
 Doublet D1 as a whole has a very long focal length (+528.7 mm) — it is nearly afocal, serving primarily as a chromatic corrector rather than a power element.
 
@@ -148,7 +148,7 @@ The design employs 12 distinct nd/νd glass pairs across 14 elements (three elem
 | TAFD45 / S-LAH98 | 1.95375 | 32.32 | HOYA / OHARA | L11 | High-index front collector |
 | FCD705 | 1.55032 | 75.50 | HOYA | L12, L16, L31 | ED crown (×3) — primary achromat partner |
 | 567428 code | 1.56732 | 42.81 | Unresolved | L13 | Barium/high-index glass in cemented doublet D1 |
-| 883392 code | 1.88300 | 39.22 | Unresolved | L14 | High-index lanthanum glass in cemented doublet D1 |
+| H-ZLaF68L | 1.88300 | 39.22 | NHG | L14 | High-index lanthanum glass in cemented doublet D1 |
 | S-TIM27 | 1.63980 | 34.49 | OHARA | L15 | Titanium flint in cemented doublet D2 |
 | S-NPH3 | 1.95906 | 17.47 | OHARA | L21 | Ultra-dense flint — focus group achromat |
 | S-LAH89 | 1.85150 | 40.78 | OHARA | L22 | Lanthanum crown — focus group partner |
@@ -160,7 +160,7 @@ The design employs 12 distinct nd/νd glass pairs across 14 elements (three elem
 
 The chromatic correction strategy distributes achromatization across five cemented interfaces and all three groups. Each cemented doublet pairs a low-dispersion crown with a high-dispersion flint. The four ED elements (L12, L16, L31, L33) are all fluorophosphate crowns with anomalous partial dispersion, meaning their P(g,F) values deviate from the Schott normal line. This anomalous dispersion allows the design to address secondary spectrum — the residual chromatic error that persists even after primary color correction — which is important for maintaining contrast and color fidelity across the large GFX sensor's image circle.
 
-The confirmed catalog matches still show extensive HOYA use: the four ED elements are HOYA fluorophosphate crowns (three FCD705 and one FCD515), L32 resolves to HOYA E-FD8, and the highest-index element L35 is HOYA TAFD55. L11's nd/νd code is shared by HOYA TAFD45 and OHARA S-LAH98, so the analysis treats it as an equivalent class rather than a patent-confirmed vendor choice. The remaining resolved glasses align with OHARA catalog entries, while L13 and L14 remain patent-code annotations pending a catalog source.
+The confirmed catalog matches still show extensive HOYA use: the four ED elements are HOYA fluorophosphate crowns (three FCD705 and one FCD515), L32 resolves to HOYA E-FD8, and the highest-index element L35 is HOYA TAFD55. L11's nd/νd code is shared by HOYA TAFD45 and OHARA S-LAH98, so the analysis treats it as an equivalent class rather than a patent-confirmed vendor choice. L14 is now coefficient-backed through NHG H-ZLaF68L. L13 remains a patent-code annotation pending a catalog source.
 
 ## Focus Mechanism
 
@@ -230,4 +230,5 @@ The air-equivalent BFD was computed as 23.857 mm (air) + 3.200/1.51680 mm (cover
 1. US 2018/0100988 A1, "Imaging Lens and Imaging Apparatus," Masato Kondo / FUJIFILM Corporation. Published April 12, 2018.
 2. Fujifilm official product page: GF110mmF2 R LM WR specifications. https://www.fujifilm-x.com/global/products/lenses/gf110mmf2-r-lm-wr/specifications/
 3. HOYA optical glass catalog (FCD705, FCD515, E-FD8, TAFD45, TAFD55) — confirmed via refractiveindex.info and HOYA product data where nd/νd matches.
-4. OHARA optical glass catalog (S-LAH98, S-TIM27, S-NPH3, S-LAH89, S-TIH14, S-BSL7) — identifications based on nd/νd catalog matching; L13 and L14 remain code-only annotations.
+4. NHG/Hubei New Huaguang H-ZLaF68L product data sheet — confirms d-code 883392, nd = 1.88300, νd = 39.22, and formula constants.
+5. OHARA optical glass catalog (S-LAH98, S-TIM27, S-NPH3, S-LAH89, S-TIH14, S-BSL7) — identifications based on nd/νd catalog matching; L13 remains code-only pending a catalog source.

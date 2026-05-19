@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **225 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026, +30 in Phase 14 May 2026, +3 in Phase 15 May 2026, plus one earlier bookkeeping correction). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **226 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026, +30 in Phase 14 May 2026, +4 in Phase 15 May 2026, plus one earlier bookkeeping correction). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -80,6 +80,12 @@ already in the catalog.
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 15 additions** (May 2026 — patent-audit backfill from the six-digit missing-Sellmeier queue; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ H-ZLaF68L | NHG | 2 | Official NHG d-code 883392; clears Fujifilm GF110 L14 and GF80 L31 code-only rows |
 
 **Phase 14 additions** (May 2026 — broad unresolved-token pass over the CDGM/Laowa block, current Ohara AGF, and small Hoya/Schott queues; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of CDGM/Hoya/Schott Zemax data and Ohara's 2025 vendor AGF):
 

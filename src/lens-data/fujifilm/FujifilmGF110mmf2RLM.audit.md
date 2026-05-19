@@ -43,3 +43,13 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 - `npm run test` — passed, 129 test files / 1664 tests.
 - `npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan` — passed. Regenerated output removed this lens from `catalog-mismatches.generated.md` and `glass-relabel-candidates.generated.md`; only the two deliberate unresolved code annotations remain in `unresolved-glass.generated.md`. Generated report files were restored afterward to preserve unrelated pre-existing edits.
 - After the files were overwritten by an external save, the same scoped audit edits were reapplied and `npm run typecheck` was rerun successfully.
+
+## 2026-05-19 — Six-digit Sellmeier source recheck
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L14 / S6 | `glass` | `883392 — high-index lanthanum glass (patent nd=1.88300, νd=39.22)` | `H-ZLaF68L (NHG)` | Patent Table 1 row 6 gives nd=1.88300, vd=39.22. NHG/Hubei New Huaguang publishes H-ZLaF68L with d-code 883392, nd=1.88300, vd=39.22, and formula constants, so the prior code-only status is superseded. |
+
+- Updated [FujifilmGF110mmf2RLM.analysis.md](FujifilmGF110mmf2RLM.analysis.md) to describe L14 as coefficient-backed by NHG while keeping L13 unresolved.
+- Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
+- Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).

@@ -94,7 +94,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 39.22,
       fl: +73.8,
-      glass: "883392 — high-index lanthanum glass (patent nd=1.88300, νd=39.22)",
+      glass: "H-ZLaF68L (NHG)",
       apd: false,
       cemented: "D1",
       role: "Positive partner of doublet D1; high-index meniscus carries strong convergent power in G1.",

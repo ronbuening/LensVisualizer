@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **524** non-explicit-unmatched annotations did not resolve
-- **149** distinct unresolved glass-like tokens found
+- **526** non-explicit-unmatched annotations did not resolve
+- **150** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | S-NPH7 | 4 | 4 | |
 | 498826 | 3 | 2 | |
+| 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | 159319 | 2 | 1 | |
@@ -29,7 +30,6 @@ or per-lens patent backfills.
 | 855252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
 | 863252 | 2 | 1 | |
-| 883392 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
@@ -68,6 +68,7 @@ or per-lens patent backfills.
 | 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
 | 770297 | 1 | 1 | |
+| 772493 | 1 | 1 | |
 | 774494 | 1 | 1 | |
 | 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
@@ -183,6 +184,12 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 4: `498826 — ED fluorophosphate crown (patent nd=1.49782, νd=82.57)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 20: `498826 - fluorophosphate ED (patent nd=1.49782, vd=82.57)`
 
+### 585587 — 3 occurrences
+
+- [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 1A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
+- [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 20A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
+- [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 24A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
+
 ### 744495 — 3 occurrences
 
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 - lanthanum crown (patent nd=1.74389, vd=49.50)`
@@ -229,11 +236,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
-
-### 883392 — 2 occurrences
-
-- [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) 6: `883392 — high-index lanthanum glass (patent nd=1.88300, νd=39.22)`
-- [FUJIFILM FUJINON GF80mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) 16: `883392 — high-index lanthanum (nd=1.88300, νd=39.22)`
 
 ### BSC3 — 2 occurrences
 
@@ -305,7 +307,7 @@ or per-lens patent backfills.
 
 ### 574425 — 1 occurrence
 
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 5: `574425 LF`
+- [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 5: `574425 — light flint (no exact public catalog match)`
 
 ### 575413 — 1 occurrence
 
@@ -394,6 +396,10 @@ or per-lens patent backfills.
 ### 770297 — 1 occurrence
 
 - [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
+
+### 772493 — 1 occurrence
+
+- [FUJIFILM FUJINON GF55mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
 
 ### 774494 — 1 occurrence
 

@@ -178,7 +178,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 39.22,
       fl: 42.0,
-      glass: "883392 — high-index lanthanum (nd=1.88300, νd=39.22)",
+      glass: "H-ZLaF68L (NHG)",
       apd: false,
       cemented: "D3",
       role: "Strongest positive in system (f ≈ 42 mm). Petzval corrector; high-index (highest nd in design).",
