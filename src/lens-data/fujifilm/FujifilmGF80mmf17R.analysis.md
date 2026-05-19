@@ -46,13 +46,13 @@ L11 is the front collector element of G1. Its high-index glass (S-NBH55, a dense
 
 ### L12 — Negative Biconcave
 
-$n_d$ = 1.72825, $\nu_d$ = 28.31. Glass: S-TIM35 (OHARA) — a titanium flint with low Abbe number. $f$ = −202.5 mm.
+$n_d$ = 1.72825, $\nu_d$ = 28.31. Glass: S-TIH10 (OHARA) — a dense titanium flint with low Abbe number. $f$ = −202.5 mm.
 
 L12 is the chromatic corrector of G1. Paired with L11, the strongly dispersive flint counteracts the longitudinal chromatic aberration introduced by L11's positive power. The high dispersion ($\nu_d$ = 28.31) provides substantial color correction despite L12's relatively weak negative power. The biconcave shape ($R_3$ = −420.1 mm, $R_4$ = +227.6 mm) is gentle, consistent with its role as a slow diverging element rather than a strong field-shaping lens. The Abbe-number difference $\Delta\nu$ = 42.25 − 28.31 = 13.94 across the G1 pair is modest, reflecting the fact that G1's primary job is beam conditioning rather than achromatic perfection — the heavy chromatic work falls to the cemented doublets in G2.
 
 ### L21 — Positive Meniscus, convex toward object
 
-$n_d$ = 1.75500, $\nu_d$ = 52.34. Glass: S-NBH56 (OHARA). $f$ = +63.2 mm.
+$n_d$ = 1.75500, $\nu_d$ = 52.34. Glass: J-LASKH2 (Hikari). $f$ = +63.2 mm.
 
 L21 is the leading positive element of the focus group (G2). With $f$ ≈ 63 mm, it is one of the strongest individual elements in the system. Its convex-toward-object meniscus shape is specified by the patent (¶0048–0049) as advantageous for reducing the ray diameter downstream, thereby shrinking the focus group, and for suppressing spherical aberration. The high refractive index ($n_d$ = 1.755) is required by Conditional Expression (3): $1.6 < N_2 < 2.2$, where $N_2$ is the d-line index of the first lens in G2. The patent states that this high index helps reduce element diameters in the image-side portion of the focus group, reducing the mass that the DC motor must accelerate during autofocus.
 
@@ -64,7 +64,7 @@ L22 is the positive crown of the first cemented achromatic doublet (L22 + L23), 
 
 ### L23 — Negative Meniscus, convex toward object
 
-$n_d$ = 1.57099, $\nu_d$ = 50.80. Glass: S-BAH27 (OHARA) — a barium crown. $f$ = −33.4 mm.
+$n_d$ = 1.57099, $\nu_d$ = 50.80. Glass: S-BAL2 (OHARA) — a barium-lanthanum crown. $f$ = −33.4 mm.
 
 L23 is the more dispersive negative partner of L22 in the first cemented doublet. With $\nu_d$ = 50.80, L23 provides an Abbe-number difference of $\Delta\nu$ = 94.66 − 50.80 = 43.86 across the cemented interface — a large color spread that drives powerful achromatic correction. The rear surface of L23 ($R$ = +17.99 mm) is the most steeply curved surface in the entire system, creating a strongly diverging exit that spreads the beam before it crosses the aperture stop. The meniscus shape (convex to object) and the concave image-side surface of L23 satisfy the patent's requirement (¶0051) that the image-side surface of the lens adjacent to the object side of the stop be concave — this geometry suppresses spherical aberration and helps correct astigmatism and field curvature.
 
@@ -76,13 +76,13 @@ L24 is the positive crown of the second cemented achromatic doublet (L24 + L25),
 
 ### L25 — Negative Meniscus, convex toward image
 
-$n_d$ = 1.67270, $\nu_d$ = 32.18. Glass: S-TIM27 (OHARA) — a titanium flint. $f$ = −36.0 mm.
+$n_d$ = 1.67270, $\nu_d$ = 32.18. Glass: E-FD5 (HOYA) — a dense flint. $f$ = −36.0 mm.
 
 L25 is the negative flint partner of L24 in the second cemented doublet. The Abbe-number difference across this cemented pair is $\Delta\nu$ = 94.66 − 32.18 = 62.48, the maximum $\Delta\nu$ in the system and the value reported in Table 17 for Conditional Expression (10). This large dispersion spread provides the most aggressive achromatic correction in the design and is located immediately after the stop where the marginal ray height is still substantial. The stronger chromatic correction in the second doublet (62.48 vs. 43.86 for the first doublet) compensates for the fact that the post-stop sub-group also contains L26, which introduces additional dispersion through its high-index glass.
 
 ### L26 — Positive Meniscus, convex toward image (Aspherical, 2× Asph)
 
-$n_d$ = 1.81000, $\nu_d$ = 41.00. Glass: S-LAH7 (OHARA) — a high-index lanthanum glass. $f$ = +51.3 mm.
+$n_d$ = 1.81000, $\nu_d$ = 41.00. Glass: K-VC89 (Sumita) — a high-index glass. $f$ = +51.3 mm.
 
 L26 is the aspherical element, carrying aspherical surfaces on both its front ($R_{14}$) and rear ($R_{15}$). It is the final and strongest positive element in G2, with $f$ ≈ 51 mm. The high refractive index ($n_d$ = 1.81) permits strong curvature at the rear surface ($R_{15}$ = −33.08 mm) while keeping total internal angles within manufacturing limits. The meniscus shape, convex toward the image, is consistent with its position at the trailing edge of the converging bundle exiting the stop.
 
@@ -90,9 +90,9 @@ The aspherical corrections are detailed in the Aspherical Surfaces section below
 
 ### L31 — Biconvex Positive (cemented with L32)
 
-$n_d$ = 1.88300, $\nu_d$ = 39.22. Glass: S-LAH93 (OHARA) — a high-index lanthanum glass. $f$ = +42.0 mm.
+$n_d$ = 1.88300, $\nu_d$ = 39.22. Glass: 883392 high-index lanthanum class; no current catalog entry round-trips to the patent pair. $f$ = +42.0 mm.
 
-L31 is the most strongly powered positive element in the entire system ($f$ ≈ 42 mm). It serves as the positive element of the G3 cemented doublet (L31 + L32). Despite G3's near-afocal overall power ($f_{G3}$ ≈ 1675 mm), L31 itself is aggressively positive. This is by design: the strong positive power of L31 paired with the negative L32 creates an achromatic corrector whose net power is nearly zero but whose Petzval contribution is strongly negative — exactly what the system needs to flatten the field. The biconvex shape ($R_{16}$ = +145.6, $R_{17}$ = −48.3 mm) concentrates power at the rear surface, which also forms the cemented junction with L32. The use of S-LAH93 ($n_d$ = 1.883, the highest index in the system) reduces the surface curvatures needed to achieve this power, keeping higher-order aberrations under control.
+L31 is the most strongly powered positive element in the entire system ($f$ ≈ 42 mm). It serves as the positive element of the G3 cemented doublet (L31 + L32). Despite G3's near-afocal overall power ($f_{G3}$ ≈ 1675 mm), L31 itself is aggressively positive. This is by design: the strong positive power of L31 paired with the negative L32 creates an achromatic corrector whose net power is nearly zero but whose Petzval contribution is strongly negative — exactly what the system needs to flatten the field. The biconvex shape ($R_{16}$ = +145.6, $R_{17}$ = −48.3 mm) concentrates power at the rear surface, which also forms the cemented junction with L32. The use of a high-index glass at $n_d$ = 1.883, the highest index in the system, reduces the surface curvatures needed to achieve this power, keeping higher-order aberrations under control.
 
 ### L32 — Plano-Concave Negative (cemented with L31)
 
@@ -102,41 +102,41 @@ L32 is the negative flint partner of L31 in the G3 cemented doublet. Its rear su
 
 ### L33 — Plano-Concave Negative
 
-$n_d$ = 1.51680, $\nu_d$ = 64.21. Glass: S-BSM71 (OHARA) — a borosilicate crown. $f$ = −204.1 mm.
+$n_d$ = 1.51680, $\nu_d$ = 64.21. Glass: N-BK7 (Schott) — a borosilicate crown. $f$ = −204.1 mm.
 
 L33 is a weakly negative field-flattening element. Its front surface ($R_{19}$ = −105.5 mm) is concave toward the object, and the rear surface is flat. The low-index, high-Abbe-number glass introduces minimal chromatic disturbance while providing a negative Petzval contribution. L33 works in concert with L34 to pull the image surface toward the flat sensor plane.
 
 ### L34 — Plano-Concave Negative
 
-$n_d$ = 1.64769, $\nu_d$ = 33.84. Glass: S-BSM81 (OHARA). $f$ = −133.6 mm.
+$n_d$ = 1.64769, $\nu_d$ = 33.84. Glass: E-FD2 (HOYA). $f$ = −133.6 mm.
 
 L34 is the rearmost element of the imaging lens and the strongest of the three rear negative singlets in G3. Its object-side surface ($R_{21}$ = −86.6 mm) is concave toward the object, consistent with the patent's preference (¶0055) that this surface be concave — an arrangement that corrects astigmatism. The rear surface is flat. The patent (¶0056) notes that making the last element a negative lens with a concave object-side surface provides three benefits: it improves the Petzval sum, it reduces the total optical length, and it corrects distortion. L34's moderate index ($n_d$ = 1.648) and low Abbe number ($\nu_d$ = 33.84) place it in the short-flint region of the glass map, providing a useful negative-Petzval contribution through its dispersive, negative-power character.
 
-*Glass-catalog note:* The OHARA catalog lists S-BSM81 at $n_d$ = 1.64769, $\nu_d$ = 33.79, while the patent gives $\nu_d$ = 33.84 — a difference of 0.05. The match is within normal transcription tolerance for patent data. Several other elements show similarly small $\nu_d$ offsets between patent and catalog values (see Glass Identification table).
+*Glass-catalog note:* The patent lists only refractive index and Abbe number, not vendor glass names. The catalog labels here are exact or nearest round-tripping matches to the patent values in the current project catalog; L31 remains code-labeled because no catalog entry matches its $n_d$/$\nu_d$ pair closely enough.
 
 
 ## Glass Identification and Selection
 
-The design uses twelve distinct glass types, all from the OHARA catalog, consistent with Fujifilm's established supply chain for GF-mount optics. The table below lists patent values alongside OHARA catalog reference values; minor $\nu_d$ offsets are noted.
+The design uses twelve distinct glass types. The patent gives optical constants rather than vendor glass names, so the table below lists the project catalog labels that best round-trip to the patent values; minor $\nu_d$ offsets are noted.
 
-| Element | Glass | Vendor | $n_d$ (patent) | $\nu_d$ (patent) | $\nu_d$ (OHARA) | Δνd | Class / Role |
+| Element | Glass | Vendor | $n_d$ (patent) | $\nu_d$ (patent) | $\nu_d$ (catalog) | Δνd | Class / Role |
 |---------|-------|--------|-------|---------|---------|-----|-------------|
 | L11 | S-NBH55 | OHARA | 1.79952 | 42.25 | 42.24 | +0.01 | Dense barium high-index. Front collector. |
-| L12 | S-TIM35 | OHARA | 1.72825 | 28.31 | 28.46 | −0.15 | Titanium flint. Chromatic corrector in G1. |
-| L21 | S-NBH56 | OHARA | 1.75500 | 52.34 | 52.32 | +0.02 | Niobium-borate high-crown. Focus group lead. |
+| L12 | S-TIH10 | OHARA | 1.72825 | 28.31 | 28.46 | −0.15 | Dense titanium flint. Chromatic corrector in G1. |
+| L21 | J-LASKH2 | Hikari | 1.75500 | 52.34 | 52.34 | 0 | Lanthanum crown. Focus group lead. |
 | L22 | S-FPL55 | OHARA | 1.43875 | 94.66 | 94.66 | 0 | Super-ED fluorophosphate. Pre-stop crown. |
-| L23 | S-BAH27 | OHARA | 1.57099 | 50.80 | 50.80 | 0 | Barium crown. Pre-stop flint partner. |
+| L23 | S-BAL2 | OHARA | 1.57099 | 50.80 | 50.80 | 0 | Barium-lanthanum crown. Pre-stop flint partner. |
 | L24 | S-FPL55 | OHARA | 1.43875 | 94.66 | 94.66 | 0 | Super-ED fluorophosphate. Post-stop crown. |
-| L25 | S-TIM27 | OHARA | 1.67270 | 32.18 | 32.18 | 0 | Titanium flint. Post-stop flint partner. |
-| L26 | S-LAH7 | OHARA | 1.81000 | 41.00 | 40.93 | +0.07 | High-index lanthanum. Aspherical element. |
-| L31 | S-LAH93 | OHARA | 1.88300 | 39.22 | 39.22 | 0 | High-index lanthanum (highest $n_d$). Petzval corrector. |
+| L25 | E-FD5 | HOYA | 1.67270 | 32.18 | 32.17 | +0.01 | Dense flint. Post-stop flint partner. |
+| L26 | K-VC89 | Sumita | 1.81000 | 41.00 | 41.00 | 0 | High-index aspherical element. |
+| L31 | 883392 code label | — | 1.88300 | 39.22 | — | — | High-index lanthanum class (highest $n_d$). Petzval corrector. |
 | L32 | S-FTM16 | OHARA | 1.59270 | 35.31 | 35.31 | 0 | Flint. Petzval corrector partner. |
-| L33 | S-BSM71 | OHARA | 1.51680 | 64.21 | 64.20 | +0.01 | Borosilicate crown. Weak negative field flattener. |
-| L34 | S-BSM81 | OHARA | 1.64769 | 33.84 | 33.79 | +0.05 | Borate-silicate glass. Negative field flattener. |
+| L33 | N-BK7 | Schott | 1.51680 | 64.21 | 64.17 | +0.04 | Borosilicate crown. Weak negative field flattener. |
+| L34 | E-FD2 | HOYA | 1.64769 | 33.84 | 33.84 | 0 | Dense flint. Negative field flattener. |
 
-The chromatic strategy centers on the two S-FPL55 super-ED elements (L22 and L24). S-FPL55 has one of the lowest dispersions of any commercially available optical glass ($\nu_d$ = 94.66) and exhibits significant positive anomalous partial dispersion, making it valuable for controlling secondary spectrum. By pairing each S-FPL55 element with a medium-dispersion flint in a cemented doublet — S-BAH27 ($\nu_d$ = 50.80) on the object side and S-TIM27 ($\nu_d$ = 32.18) on the image side — the designer achieves large Abbe-number spreads (43.9 and 62.5 respectively) that provide powerful primary chromatic correction. The asymmetric doublet design (weaker correction pre-stop, stronger post-stop) likely reflects the asymmetric ray geometry: the post-stop marginal ray is already converging and carries more chromatic sensitivity.
+The chromatic strategy centers on the two S-FPL55 super-ED elements (L22 and L24). S-FPL55 has one of the lowest dispersions of any commercially available optical glass ($\nu_d$ = 94.66) and exhibits significant positive anomalous partial dispersion, making it valuable for controlling secondary spectrum. By pairing each S-FPL55 element with a more dispersive partner in a cemented doublet — S-BAL2 ($\nu_d$ = 50.80) on the object side and E-FD5 ($\nu_d$ = 32.18) on the image side — the designer achieves large Abbe-number spreads (43.9 and 62.5 respectively) that provide powerful primary chromatic correction. The asymmetric doublet design (weaker correction pre-stop, stronger post-stop) likely reflects the asymmetric ray geometry: the post-stop marginal ray is already converging and carries more chromatic sensitivity.
 
-The three highest-index glasses in the design (S-LAH7 at 1.810, S-LAH93 at 1.883, and S-NBH55 at 1.800) all appear in high-power positive elements (L26, L31, and L11 respectively). High refractive index reduces the surface curvatures needed to achieve a given power, which suppresses higher-order spherical aberration and reduces sensitivity to manufacturing tolerances — important in a fast $f$/1.7 design.
+The three highest-index glasses in the design (K-VC89 at 1.810, the L31 code-labeled high-index glass at 1.883, and S-NBH55 at 1.800) all appear in high-power positive elements (L26, L31, and L11 respectively). High refractive index reduces the surface curvatures needed to achieve a given power, which suppresses higher-order spherical aberration and reduces sensitivity to manufacturing tolerances — important in a fast $f$/1.7 design.
 
 
 ## Focus Mechanism
@@ -272,4 +272,4 @@ Group focal lengths: $f_{G1}$ ≈ 814 mm (weak positive), $f_{G2}$ ≈ 88 mm (st
 
 1. US 2021/0294073 A1, "Imaging Lens and Imaging Apparatus," Masato Kondo (Fujifilm), published September 23, 2021. Example 1 (Tables 1–4, FIG. 2–3).
 2. FUJIFILM Corporation, "GF80mmF1.7 R WR — Specifications," https://www.fujifilm-x.com/en-us/products/lenses/gf80mmf17-r-wr/specifications/. Accessed May 2026.
-3. OHARA Optical Glass Catalog (for glass identifications: S-FPL55, S-NBH55, S-NBH56, S-TIM35, S-BAH27, S-TIM27, S-LAH7, S-LAH93, S-FTM16, S-BSM71, S-BSM81).
+3. Project glass catalog sources for glass identifications: OHARA, Hikari, HOYA, Sumita, and Schott catalog data as recorded in `src/optics/glassCatalogData.ts`.

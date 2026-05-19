@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **669** non-explicit-unmatched annotations did not resolve
-- **205** distinct unresolved glass-like tokens found
+- **683** non-explicit-unmatched annotations did not resolve
+- **216** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,6 +27,7 @@ or per-lens patent backfills.
 | H-ZLAF50D | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
 | S-TIL2 | 4 | 4 | |
+| 498826 | 3 | 2 | |
 | 744495 | 3 | 3 | |
 | H-ZF4A | 3 | 2 | |
 | L-LAH53 | 3 | 3 | |
@@ -42,6 +43,9 @@ or per-lens patent backfills.
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 855252 | 2 | 1 | |
+| 856401 | 2 | 1 | |
+| 863252 | 2 | 1 | |
+| 883392 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
 | E-F2 | 2 | 2 | |
 | E-F3 | 2 | 2 | |
@@ -83,12 +87,15 @@ or per-lens patent backfills.
 | 175500 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
-| 498826 | 1 | 1 | |
+| 517522 | 1 | 1 | |
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
+| 567428 | 1 | 1 | |
+| 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
+| 595686 | 1 | 1 | |
 | 596392 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612372 | 1 | 1 | |
@@ -96,6 +103,7 @@ or per-lens patent backfills.
 | 623581 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 640601 | 1 | 1 | |
+| 658509 | 1 | 1 | |
 | 661508 | 1 | 1 | |
 | 667330 | 1 | 1 | |
 | 670393 | 1 | 1 | |
@@ -104,13 +112,16 @@ or per-lens patent backfills.
 | 684376 | 1 | 1 | |
 | 694534 | 1 | 1 | |
 | 700480 | 1 | 1 | |
+| 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
 | 770297 | 1 | 1 | |
+| 774494 | 1 | 1 | |
 | 775473 | 1 | 1 | |
+| 777297 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 795453 | 1 | 1 | |
 | 806333 | 1 | 1 | |
@@ -127,6 +138,7 @@ or per-lens patent backfills.
 | 863415 | 1 | 1 | |
 | 870200 | 1 | 1 | |
 | 903354 | 1 | 1 | |
+| 930240 | 1 | 1 | |
 | 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
@@ -193,7 +205,6 @@ or per-lens patent backfills.
 | S-FPM5 | 1 | 1 | |
 | S-LAF2 | 1 | 1 | |
 | S-LAH60MQ | 1 | 1 | |
-| S-LAH7 | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL12 | 1 | 1 | |
@@ -264,7 +275,7 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 27: `S-TIL26 / E-FL6 / H-QF56 class (567/428)`
 - [FUJIFILM FUJINON GF45mmF2.8 R WR](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) 1: `S-TIL26 (OHARA)`
-- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 10: `S-TIL26 (OHARA)`
+- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 10: `S-TIL26 (OHARA)`
 - [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) 22: `S-TIL26 (Ohara)`
 - [Olympus M.Zuiko Digital 17mm f/1.8](../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) 3: `S-TIL26 (OHARA)`
 
@@ -299,9 +310,15 @@ or per-lens patent backfills.
 ### S-TIL2 — 4 occurrences
 
 - [FUJIFILM FUJINON GF23mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) 13: `S-TIL2 (OHARA) / E-FEL2 class`
-- [FUJIFILMFUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 7: `S-TIL2 (OHARA)`
+- [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 7: `S-TIL2 (OHARA)`
 - [FUJIFILM FUJINON GF55mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 22: `E-FEL2 (HOYA) / S-TIL2 class`
 - [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) 17: `S-TIL2 (OHARA)`
+
+### 498826 — 3 occurrences
+
+- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 2: `498826 — ED fluorophosphate crown (patent nd=1.49782, νd=82.57)`
+- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 4: `498826 — ED fluorophosphate crown (patent nd=1.49782, νd=82.57)`
+- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 20: `498826 - fluorophosphate ED (patent nd=1.49782, vd=82.57)`
 
 ### 744495 — 3 occurrences
 
@@ -323,7 +340,7 @@ or per-lens patent backfills.
 
 ### L-LAM60 — 3 occurrences
 
-- [LEICA SUMMILUX 28 mm f/1.7 ASPH.](../src/lens-data/leica/Leica28mmf17.data.ts) 7: `L-LAM60 (OHARA)`
+- [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../src/lens-data/leica/Leica28mmf17.data.ts) 7: `L-LAM60 (OHARA)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 17: `L-LAM60 (OHARA)`
 - [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) 25: `L-LAM60 (OHARA, tentative, Δνd ≈ 0.06)`
 
@@ -361,7 +378,7 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
 - [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 17: `TAFD32 (HOYA)`
-- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
+- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
 
 ### 159319 — 2 occurrences
 
@@ -387,6 +404,21 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `High-index APD flint (glass code 855252)`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `High-index APD flint (glass code 855252)`
+
+### 856401 — 2 occurrences
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
+
+### 863252 — 2 occurrences
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
+
+### 883392 — 2 occurrences
+
+- [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) 6: `883392 — high-index lanthanum glass (patent nd=1.88300, νd=39.22)`
+- [FUJIFILM FUJINON GF80mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) 16: `883392 — high-index lanthanum (nd=1.88300, νd=39.22)`
 
 ### BSC3 — 2 occurrences
 
@@ -471,7 +503,7 @@ or per-lens patent backfills.
 ### H-ZLAF64 — 2 occurrences
 
 - [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
-- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
+- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
 
 ### H-ZLAF68C — 2 occurrences
 
@@ -525,7 +557,7 @@ or per-lens patent backfills.
 
 ### S-LAH71 — 2 occurrences
 
-- [FUJIFILMFUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 24: `S-LAH71 (OHARA)`
+- [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 24: `S-LAH71 (OHARA)`
 - [FUJIFILM FUJINON GF45mmF2.8 R WR](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) 18: `S-LAH71 (OHARA)`
 
 ### S-LAM61 — 2 occurrences
@@ -550,7 +582,7 @@ or per-lens patent backfills.
 
 ### S-TIL1 — 2 occurrences
 
-- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 1: `S-TIL1 (OHARA)`
+- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 1: `S-TIL1 (OHARA)`
 - [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) 16: `S-TIL1 family (OHARA, 548 458)`
 
 ### S-TIM8 — 2 occurrences
@@ -589,9 +621,9 @@ or per-lens patent backfills.
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)`
 
-### 498826 — 1 occurrence
+### 517522 — 1 occurrence
 
-- [NIKON NIKKOR Z 24-70mm f/2.8 S](../src/lens-data/nikon/NikonZ2470f28.data.ts) 20: `498826 - fluorophosphate ED (patent nd=1.49782, vd=82.57)`
+- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 9: `517522 — crown (patent nd=1.51742, νd=52.15)`
 
 ### 531559 — 1 occurrence
 
@@ -605,6 +637,14 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 - borosilicate crown (nd=1.552981, vd~55.5)`
 
+### 567428 — 1 occurrence
+
+- [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) 5: `567428 — high-index barium glass (patent nd=1.56732, νd=42.81)`
+
+### 571560 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 17: `571560 — barium crown (patent nd=1.57125, νd=56.0)`
+
 ### 574425 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 5: `574425 LF`
@@ -612,6 +652,10 @@ or per-lens patent backfills.
 ### 575413 — 1 occurrence
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
+
+### 595686 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 2: `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)`
 
 ### 596392 — 1 occurrence
 
@@ -640,6 +684,10 @@ or per-lens patent backfills.
 ### 640601 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
+
+### 658509 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) 15: `658509 — lanthanum crown (patent nd=1.65844, νd=50.85)`
 
 ### 661508 — 1 occurrence
 
@@ -673,6 +721,10 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 7: `LaK (700480, S-LAL7 family)`
 
+### 700555 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 11: `700555 — barium crown (patent nd=1.69980, νd=55.5)`
+
 ### 702411 — 1 occurrence
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
@@ -697,9 +749,17 @@ or per-lens patent backfills.
 
 - [SONY FE 85mm F1.4 GM II](../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
+### 774494 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 6A: `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)`
+
 ### 775473 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 25A: `PGM lanthanum (775473, OHARA L-LAH85)`
+
+### 777297 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 8: `777297 — dense flint (patent nd=1.77660, νd=29.7)`
 
 ### 792450 — 1 occurrence
 
@@ -764,6 +824,10 @@ or per-lens patent backfills.
 ### 903354 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 41: `903354 - ultra-high-index lanthanum (nd=1.90265, vd~35.4)`
+
+### 930240 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 9: `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)`
 
 ### 986165 — 1 occurrence
 
@@ -855,7 +919,7 @@ or per-lens patent backfills.
 
 ### H-PK65 — 1 occurrence
 
-- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 8: `PCD40 (HOYA) / H-PK65 class`
+- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 8: `PCD40 (HOYA) / H-PK65 class`
 
 ### H-QF50 — 1 occurrence
 
@@ -875,7 +939,7 @@ or per-lens patent backfills.
 
 ### H-ZF52A — 1 occurrence
 
-- [LEICA SUMMILUX 28 mm f/1.7 ASPH.](../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `H-ZF52A (CDGM)`
+- [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `H-ZF52A (CDGM)`
 
 ### H-ZF72 — 1 occurrence
 
@@ -1003,7 +1067,7 @@ or per-lens patent backfills.
 
 ### S-BAM12 — 1 occurrence
 
-- [FUJIFILMFUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 10: `S-BAM12 (OHARA)`
+- [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 10: `S-BAM12 (OHARA)`
 
 ### S-BSL10 — 1 occurrence
 
@@ -1028,10 +1092,6 @@ or per-lens patent backfills.
 ### S-LAH60MQ — 1 occurrence
 
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) 13: `S-LAH60MQ (OHARA)`
-
-### S-LAH7 — 1 occurrence
-
-- [FUJIFILM FUJINON GF80mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) 14A: `S-LAH7 (OHARA)`
 
 ### S-LAH75 — 1 occurrence
 

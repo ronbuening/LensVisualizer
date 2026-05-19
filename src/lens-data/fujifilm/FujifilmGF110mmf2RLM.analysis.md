@@ -41,11 +41,11 @@ The GF 110mm f/2 is a three-group inner-focus design of the form **positive–ne
 
 ### L11 — Positive Meniscus, convex to object
 
-nd = 1.95375, νd = 32.32. Glass: S-LAH79 (OHARA) — lanthanum-titanium dense crown. f = +161.0 mm.
+nd = 1.95375, νd = 32.32. Glass: TAFD45 (HOYA; S-LAH98 equivalent) — lanthanum-titanium dense crown. f = +161.0 mm.
 
 L11 is the front element and the first surface the incoming light encounters. Its very high refractive index (the joint-highest in the system, tied with the L35 glass family) allows a gently curved meniscus to contribute substantial positive power without introducing excessive spherical aberration. The meniscus shape (R1 = +98.02, R2 = +265.84, both convex to object) collects the on-axis beam while keeping the marginal ray angle manageable for the elements downstream. The patent notes (¶0088) that giving L11 positive power shortens the total length and minimizes the beam diameter entering G2, which in turn shrinks the focusing group.
 
-S-LAH79 is a heavy lanthanum crown with nd = 1.954 and relatively low dispersion for its index class (νd = 32.3). Its high index enables a weak-curvature meniscus to carry significant power, which reduces surface contributions to spherical aberration and coma.
+The six-digit glass code 954323 is shared by HOYA TAFD45 and OHARA S-LAH98 class materials. Its high index enables a weak-curvature meniscus to carry significant power, which reduces surface contributions to spherical aberration and coma.
 
 ### L12 — Biconvex Positive (ED element 1 of 4)
 
@@ -57,21 +57,21 @@ FCD705 is a HOYA anomalous-dispersion fluorophosphate crown, classified as ED gl
 
 ### L13 — Negative Element, flat front / convex rear (cemented with L14 as doublet D1)
 
-nd = 1.56732, νd = 42.81. Glass: S-BAM4 (OHARA) — barium flint. f = −87.0 mm.
+nd = 1.56732, νd = 42.81. Glass: 567428 high-index barium glass; no current catalog entry resolves this patent pair. f = −87.0 mm.
 
 L13 has a flat front face (R = ∞) and a rear surface with R2 = +49.38 (convex toward the object side), which serves as the cemented junction with L14. Although the geometric shape is plano-convex, the element produces negative power (f = −87 mm) because the only curved surface acts as a diverging interface in air. Within the cemented doublet, the large index step at the junction (from nd = 1.567 in L13 to nd = 1.883 in L14) creates a strong refracting interface that dominates the doublet's chromatic behavior. The νd difference between L13 and L14 is modest (42.8 vs. 39.2), but the steep index gradient provides an effective color-correcting interface.
 
 ### L14 — Positive Meniscus, convex to object (cemented with L13 as doublet D1)
 
-nd = 1.88300, νd = 39.22. Glass: TAFD25 (HOYA). f = +73.8 mm.
+nd = 1.88300, νd = 39.22. Glass: 883392 high-index lanthanum glass; no current catalog entry resolves this patent pair. f = +73.8 mm.
 
-L14 is the positive partner in doublet D1. Its high index (1.883) creates a strongly refracting junction with L13, and the meniscus shape (R1 = +49.38, R2 = +192.19) carries substantial positive power (f = +73.8 mm). The glass identification is notable: the nd/νd pair (1.88300/39.22) matches HOYA's TAFD25 exactly but does not match any standard OHARA catalog entry at this Abbe number (OHARA's S-LAH66 has the same nd but νd = 40.76). This is one of the uncommon instances in a Fujifilm design where a HOYA glass appears alongside predominantly OHARA material.
+L14 is the positive partner in doublet D1. Its high index (1.883) creates a strongly refracting junction with L13, and the meniscus shape (R1 = +49.38, R2 = +192.19) carries substantial positive power (f = +73.8 mm). The patent gives only nd/νd, and the pair does not match the current project catalog within tolerance: nearby high-index lanthanum glasses have similar nd but Abbe numbers around 40.1–40.8 rather than 39.22.
 
 Doublet D1 as a whole has a very long focal length (+528.7 mm) — it is nearly afocal, serving primarily as a chromatic corrector rather than a power element.
 
 ### L15 — Negative Element, flat front / convex rear (cemented with L16 as doublet D2)
 
-nd = 1.63980, νd = 34.49. Glass: S-NBM51 (OHARA) — niobium-barium flint. f = −48.1 mm.
+nd = 1.63980, νd = 34.49. Glass: S-TIM27 (OHARA) — titanium flint. f = −48.1 mm.
 
 L15 is the negative partner of doublet D2 at the rear of G1. Like L13, it has a flat front face and a rear surface (R2 = +30.78) convex toward the object side that forms the cemented junction. Its focal length (−48.1 mm) is the shortest among the negative elements in G1, making it the strongest negative contributor in the front group. Its νd of 34.49 differs from L16's 75.50 by 41.01, satisfying the patent's Conditional Expression (10): 15 < Δν1r < 50 (¶0130–0131). This large Abbe-number difference creates an effective achromatizing doublet.
 
@@ -83,17 +83,17 @@ L16 is the second ED element and the rear element of G1. Its plano-convex shape 
 
 ### L21 — Positive Meniscus, concave to object (cemented with L22; focus group, G2)
 
-nd = 1.95906, νd = 17.47. Glass: S-TIH53 (OHARA) — titanium dense flint. f = +90.0 mm.
+nd = 1.95906, νd = 17.47. Glass: S-NPH3 (OHARA) — ultra-high-dispersion dense flint. f = +90.0 mm.
 
 L21 is the front element of the two-element focusing group G2. The patent devotes significant attention to this element: its shape factor is governed by Conditional Expression (1), which constrains the ratio (R21+R22)/(R21−R22) to between 1.2 and 3.5 (Example 1 value: 1.456). The meniscus shape — concave toward the object (R1 = −380.43, R2 = −70.63) — is unusual for a positive element and is critical to suppressing astigmatism during focus travel (¶0091).
 
-L21's glass is S-TIH53, the most dispersive glass in the entire system (νd = 17.47). This extremely high dispersion is intentional: paired with L22 in a cemented doublet, the large νd difference (17.47 vs. 40.78 = Δν of 23.3) enables effective chromatic correction within the tiny, lightweight focus group. The patent states (¶0093) that making L21's refractive index greater than L22's (1.959 > 1.852) is advantageous for correcting both longitudinal and lateral chromatic aberration, as well as spherical aberration.
+L21's glass is S-NPH3, the most dispersive glass in the entire system (νd = 17.47). This extremely high dispersion is intentional: paired with L22 in a cemented doublet, the large νd difference (17.47 vs. 40.78 = Δν of 23.3) enables effective chromatic correction within the tiny, lightweight focus group. The patent states (¶0093) that making L21's refractive index greater than L22's (1.959 > 1.852) is advantageous for correcting both longitudinal and lateral chromatic aberration, as well as spherical aberration.
 
 The patent's Conditional Expression (2) requires 1.70 < N2 < 2.2 (Example 1 value: 1.954), ensuring that the dense flint contributes enough refractive power to keep focus travel short while maintaining aberration stability.
 
 ### L22 — Biconcave Negative (cemented with L21; focus group, G2)
 
-nd = 1.85150, νd = 40.78. Glass: S-LAH64 (OHARA) — lanthanum crown. f = −34.7 mm.
+nd = 1.85150, νd = 40.78. Glass: S-LAH89 (OHARA) — lanthanum crown. f = −34.7 mm.
 
 L22 is the strongly negative rear partner of the focus doublet. Its biconcave shape (R1 = −70.63, R2 = +51.26) contributes the dominant negative power of G2 (f = −34.7 mm, compared to L21's +90.0 mm). The cemented doublet G2 has a combined focal length of −56.6 mm. During focusing from infinity to 1.1 m, G2 translates approximately 8.6 mm toward the image, with the air gap DD[11] (before G2) expanding from 4.70 mm to 13.31 mm and DD[14] (after G2) contracting from 18.19 mm to 9.58 mm. The total gap is conserved at 22.89 mm.
 
@@ -105,7 +105,7 @@ L31 opens group G3 and is the third ED element. Its concave-to-object meniscus s
 
 ### L32 — Negative Meniscus, concave to image (cemented with L31 as doublet D3)
 
-nd = 1.68893, νd = 31.16. Glass: S-TIM25 (OHARA) — titanium flint (νd catalog value 31.07; the 0.09 difference is within patent rounding tolerance). f = −93.4 mm.
+nd = 1.68893, νd = 31.16. Glass: E-FD8 (HOYA) — dense flint. f = −93.4 mm.
 
 L32 is the flint partner of doublet D3. The doublet as a whole has a very long focal length (+1137 mm), making it nearly afocal — its primary role is chromatic correction rather than power contribution. The D3 doublet sits immediately behind the focus group and stabilizes lateral color as G2 translates during focusing.
 
@@ -141,26 +141,26 @@ L36's concave-to-object meniscus shape (R1 = −37.76, R2 = −164.00) places it
 
 ## Glass Selection and Chromatic Strategy
 
-The design employs 12 distinct glass types across 14 elements (three elements share the same FCD705 glass). Six of these types — including FCD705, FCD515, TAFD25, and TAFD55 from HOYA — are specialized optical materials. The remaining glasses are conventional crowns and flints, likely from OHARA (based on nd/νd proximity to OHARA catalog entries, though exact vendor attribution cannot be confirmed from the patent alone).
+The design employs 12 distinct nd/νd glass pairs across 14 elements (three elements share the same FCD705 glass). Several pairs resolve cleanly to HOYA and OHARA catalog glasses; two patent pairs, L13 and L14, are retained as six-digit code annotations because the patent gives only nd/νd and no current catalog entry matches within tolerance.
 
 | Glass | nd | νd | Vendor | Used in | Role |
 |-------|------|------|--------|---------|------|
-| S-LAH79 | 1.95375 | 32.32 | OHARA | L11 | High-index front collector |
+| TAFD45 / S-LAH98 | 1.95375 | 32.32 | HOYA / OHARA | L11 | High-index front collector |
 | FCD705 | 1.55032 | 75.50 | HOYA | L12, L16, L31 | ED crown (×3) — primary achromat partner |
-| S-BAM4 | 1.56732 | 42.82 | OHARA | L13 | Barium flint in cemented doublet D1 |
-| TAFD25 | 1.88300 | 39.22 | HOYA | L14 | Lanthanum flint in cemented doublet D1 |
-| S-NBM51 | 1.63980 | 34.47 | OHARA | L15 | Niobium-barium flint in cemented doublet D2 |
-| S-TIH53 | 1.95906 | 17.47 | OHARA | L21 | Ultra-dense flint — focus group achromat |
-| S-LAH64 | 1.85150 | 40.78 | OHARA | L22 | Lanthanum crown — focus group partner |
+| 567428 code | 1.56732 | 42.81 | Unresolved | L13 | Barium/high-index glass in cemented doublet D1 |
+| 883392 code | 1.88300 | 39.22 | Unresolved | L14 | High-index lanthanum glass in cemented doublet D1 |
+| S-TIM27 | 1.63980 | 34.49 | OHARA | L15 | Titanium flint in cemented doublet D2 |
+| S-NPH3 | 1.95906 | 17.47 | OHARA | L21 | Ultra-dense flint — focus group achromat |
+| S-LAH89 | 1.85150 | 40.78 | OHARA | L22 | Lanthanum crown — focus group partner |
 | FCD515 | 1.59282 | 68.63 | HOYA | L33 | ED crown — rear-group achromat |
-| S-TIM25 | 1.68893 | 31.07 | OHARA | L32 | Titanium flint in cemented doublet D3 |
+| E-FD8 | 1.68893 | 31.16 | HOYA | L32 | Dense flint in cemented doublet D3 |
 | S-TIH14 | 1.76182 | 26.52 | OHARA | L34 | Titanium flint in cemented doublet D4 |
 | TAFD55 | 2.00100 | 29.13 | HOYA | L35 | Ultra-high-index power relay |
 | S-BSL7 | 1.51680 | 64.20 | OHARA | L36 | Borosilicate crown — field flattener |
 
 The chromatic correction strategy distributes achromatization across five cemented interfaces and all three groups. Each cemented doublet pairs a low-dispersion crown with a high-dispersion flint. The four ED elements (L12, L16, L31, L33) are all fluorophosphate crowns with anomalous partial dispersion, meaning their P(g,F) values deviate from the Schott normal line. This anomalous dispersion allows the design to address secondary spectrum — the residual chromatic error that persists even after primary color correction — which is important for maintaining contrast and color fidelity across the large GFX sensor's image circle.
 
-A striking finding of this glass identification is that Fujifilm uses HOYA glass extensively in this design — at minimum six of the fourteen elements (L12, L14, L16, L31, L33, L35) are HOYA types, confirmed by exact nd/νd matches against the HOYA catalog. The four ED elements are all HOYA fluorophosphate crowns (three FCD705 and one FCD515), and the highest-index element (L35, nd = 2.001) is HOYA TAFD55. The remaining eight elements have nd/νd pairs consistent with OHARA catalog entries (S-LAH79, S-BAM4, S-NBM51, S-TIH53, S-LAH64, S-TIM25, S-TIH14, S-BSL7), though some show small νd discrepancies (0.07–0.14) that may reflect either rounding in the patent or melt-to-melt variation. The extensive use of HOYA glass is consistent with HOYA's long-standing supply relationship with Fujifilm for photographic optics.
+The confirmed catalog matches still show extensive HOYA use: the four ED elements are HOYA fluorophosphate crowns (three FCD705 and one FCD515), L32 resolves to HOYA E-FD8, and the highest-index element L35 is HOYA TAFD55. L11's nd/νd code is shared by HOYA TAFD45 and OHARA S-LAH98, so the analysis treats it as an equivalent class rather than a patent-confirmed vendor choice. The remaining resolved glasses align with OHARA catalog entries, while L13 and L14 remain patent-code annotations pending a catalog source.
 
 ## Focus Mechanism
 
@@ -229,5 +229,5 @@ The air-equivalent BFD was computed as 23.857 mm (air) + 3.200/1.51680 mm (cover
 
 1. US 2018/0100988 A1, "Imaging Lens and Imaging Apparatus," Masato Kondo / FUJIFILM Corporation. Published April 12, 2018.
 2. Fujifilm official product page: GF110mmF2 R LM WR specifications. https://www.fujifilm-x.com/global/products/lenses/gf110mmf2-r-lm-wr/specifications/
-3. HOYA optical glass catalog (FCD705, FCD515, TAFD25, TAFD55) — confirmed via refractiveindex.info and HOYA product data.
-4. OHARA optical glass catalog (S-LAH79, S-BAM4, S-NBM51, S-TIH53, S-LAH64, S-TIM25, S-TIH14, S-BSL7) — probable identifications based on nd/νd proximity.
+3. HOYA optical glass catalog (FCD705, FCD515, E-FD8, TAFD45, TAFD55) — confirmed via refractiveindex.info and HOYA product data where nd/νd matches.
+4. OHARA optical glass catalog (S-LAH98, S-TIM27, S-NPH3, S-LAH89, S-TIH14, S-BSL7) — identifications based on nd/νd catalog matching; L13 and L14 remain code-only annotations.
