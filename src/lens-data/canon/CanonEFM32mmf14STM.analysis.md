@@ -75,8 +75,8 @@ Optically, L4 adds positive power before the stop while keeping surface curvatur
 
 ### L5-L6 (LF) — Stop-Front Cemented Chromatic Corrector
 
-**L5 / LFP: nd = 1.59282, νd = 68.6, θgF = 0.5441. Glass: HOYA FCD505. Standalone f = +34.17 mm.**  
-**L6 / LFN: nd = 1.73800, νd = 32.3, θgF = 0.5899. Glass: S-NBH53/S-NBH53V class (OHARA 738323). Standalone f = −19.23 mm.**  
+**L5 / LFP: nd = 1.59282, νd = 68.6, θgF = 0.5441, ΔPgF ≈ +0.0157. Glass: HOYA FCD505. Standalone f = +34.17 mm.**  
+**L6 / LFN: nd = 1.73800, νd = 32.3, θgF = 0.5899, ΔPgF ≈ +0.0004. Glass: S-NBH53/S-NBH53V class (OHARA 738323). Standalone f = −19.23 mm.**  
 **Cemented-pair f = −54.17 mm.**
 
 LF is the cemented doublet immediately in front of the stop. The positive member is a low-dispersion glass with patent-listed anomalous partial-dispersion behavior. The negative member is a higher-dispersion flint-class glass whose θgF value is selected to satisfy the patent's stop-near chromatic condition.
@@ -91,8 +91,8 @@ The patent does not publish a stop diameter. The data file therefore uses an inf
 
 ### L7-L8 (LR) — Stop-Rear Cemented Chromatic and Petzval Corrector
 
-**L7 / LRP: nd = 1.76385, νd = 48.5, θgF = 0.5589. Glass: S-LAH96 class (OHARA 764485). Standalone f = +42.69 mm.**  
-**L8 / LRN: nd = 1.67542, νd = 34.8, θgF = 0.5825. Glass: unmatched 675/348 partial-dispersion flint class. Standalone f = −17.53 mm.**  
+**L7 / LRP: nd = 1.76385, νd = 48.5, θgF = 0.5589, ΔPgF ≈ −0.0033. Glass: S-LAH96 class (OHARA 764485). Standalone f = +42.69 mm.**  
+**L8 / LRN: nd = 1.67542, νd = 34.8, θgF = 0.5825, ΔPgF ≈ −0.0028. Glass: unmatched 675/348 partial-dispersion flint class. Standalone f = −17.53 mm.**  
 **Cemented-pair f = −27.38 mm.**
 
 LR is the main object of the patent claims. In Example 1 the order is positive LRP followed by negative LRN. The object-side surface of the cemented group is concave, and the whole cemented group is net negative, with fR/f = −0.846 by the patent table and −0.8463 by recalculation.
@@ -143,7 +143,7 @@ The patent publishes nd and νd for every element and θgF for the stop-adjacent
 | L5 / LFP | 1.59282 / 68.6 / 0.5441 | HOYA FCD505 | Exact match including θgF; low-dispersion anomalous positive member. |
 | L6 / LFN | 1.73800 / 32.3 / 0.5899 | S-NBH53/S-NBH53V class (OHARA 738323) | Code match; high-dispersion stop-front negative member. |
 | L7 / LRP | 1.76385 / 48.5 / 0.5589 | S-LAH96 class (OHARA 764485) | Code match; positive member of LR. |
-| L8 / LRN | 1.67542 / 34.8 / 0.5825 | Unmatched 675/348 partial-dispersion flint | Patent value retained; no exact public catalog match found in checked references. |
+| L8 / LRN | 1.67542 / 34.8 / 0.5825 | Unmatched 675/348 partial-dispersion flint | Patent value retained with derived ΔPgF ≈ −0.0028; no exact public catalog match found in checked references. |
 | L9, L13 | 1.88300 / 40.8 | S-LAH58 class (OHARA 883408) | Code match; high-index positive power. |
 | L10 | 1.67270 / 32.1 | S-TIM25 class (OHARA 673321) | Code match; negative partner behind LR. |
 | L11 | 1.51742 / 52.4 | S-NSL36 class (OHARA 517524) | Code match; low-index negative member. |

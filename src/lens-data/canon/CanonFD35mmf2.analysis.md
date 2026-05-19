@@ -181,7 +181,7 @@ Element 3 sits at the front of Group II₁, immediately after the large 12.1 mm 
 
 Element 4 contributes strong positive power, almost entirely from its front surface R₇. The near-flat rear surface (R₈ = +15.83, a radius of 554 mm) contributes negligible power but provides a degree of freedom for correcting higher-order aberrations. This element begins the convergence of the ray bundle that was diverged by Group I.
 
-**Glass identification:** N = 1.700, V = 48.0 is a lanthanum crown glass (code 700480). Probable match: **Ohara S-LAL7** or **Schott N-LAK22**.
+**Glass identification:** N = 1.700, V = 48.0 is a lanthanum glass in the S-LAM51 neighborhood. OHARA S-LAM51 (catalog code 700481, nd = 1.70000, νd = 48.08) is the closest public catalog match; the one-digit code difference is within the patent's rounded Abbe-code precision.
 
 ### Element 5 — Thick Positive Meniscus (Group II₁)
 
@@ -334,7 +334,7 @@ The repeated use of N₅ = N₈ = 1.7737 (the same dense lanthanum crown in both
 | E1 | 1.697 | 48.5 | 697485 | Lanthanum/barium crown | Moderate n, low dispersion |
 | E2 | 1.516 | 64.0 | 516640 | Borosilicate crown (BK7) | Low n, very low dispersion |
 | E3 | 1.702 | 41.1 | 702411 | Barium flint | Field correction |
-| E4 | 1.700 | 48.0 | 700480 | Lanthanum crown | Positive power with low dispersion |
+| E4 | 1.700 | 48.0 | S-LAM51 | Lanthanum glass | Positive power with low dispersion |
 | E5 | 1.774 | 49.2 | 774492 | Dense lanthanum crown (prob. thoriated) | High n, low dispersion |
 | E6 | 1.762 | 26.5 | 762265 | Dense barium flint | Strong chromatic corrector |
 | E7 | 1.805 | 25.4 | 805254 | Dense flint (SF6, exact match) | Achromatic doublet flint |

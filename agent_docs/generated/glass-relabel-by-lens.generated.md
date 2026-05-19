@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **279** mismatched surfaces across **106** lens files
-- **251** surfaces have at least one candidate
-- **70** surfaces have high-confidence candidate ranking
+- **275** mismatched surfaces across **104** lens files
+- **247** surfaces have at least one candidate
+- **67** surfaces have high-confidence candidate ranking
 - **28** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
@@ -280,14 +280,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 20 | `S-TIM35 (OHARA)` | 1.67270 / 32.17 | S-TIM35 (Δnd=+0.0262) | S-TIM25 (Δnd=-0.0000, Δvd=-0.07)<br>E-FD5 (Δnd=-0.0000, Δvd=+0.00) | Medium | Yes - choose candidate |
 | 22 | `S-NBH55 (OHARA)` | 1.90370 / 31.32 | S-NBH55 (Δnd=-0.1037) | S-LAH95 (Δnd=-0.0000, Δvd=+0.02)<br>TAFD25 (Δnd=-0.0000, Δvd=+0.00) | Medium | Yes - choose candidate |
 | 24 | `S-BAH27 (OHARA)` | 1.65840 / 50.85 | S-BAH27 (Δnd=+0.0431) | No catalog candidate | Patent review | Yes - no catalog match |
-
-### [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) - US 7,864,451 B2
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 9 | `S-TIH11 (OHARA)` | 1.72047 / 34.70 | S-TIH11 (Δnd=+0.0643) | N-KZFS8 (Δnd=-0.0000, Δvd=+0.00)<br>S-NBH8 (Δnd=-0.0000, Δvd=+0.01) | Medium | Yes - choose candidate |
-| 11 | `S-TIL27 (OHARA)` | 1.53172 / 48.80 | S-TIL27 (Δnd=+0.0433) | S-TIL6 (Δnd=-0.0000, Δvd=+0.04) | High | Check lens notes |
-| 28 | `S-LAM66 (OHARA)` | 1.74320 / 49.30 | S-LAM66 (Δnd=+0.0578) | S-LAM60 (Δnd=-0.0000, Δvd=+0.04) | High | Check lens notes |
 
 ### [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) - JP 2015-111192 A
 
@@ -654,12 +646,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 34 | `NBFD13 (HOYA)` | 1.74950 / 35.30 | NBFD13 (Δnd=+0.0566) | S-NBH51 (Δnd=+0.0000, Δvd=+0.03) | High | Check lens notes |
-
-### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - US 3,748,022
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 7 | `LaK (700480, S-LAL7 family)` | 1.70000 / 48.00 | S-LAL7 (Δnd=-0.0484) | S-LAM51 (Δnd=-0.0000, Δvd=+0.08, codeΔ=0.8)<br>S-LAM59 (Δnd=-0.0030, Δvd=+0.52, codeΔ=8.2) | High | Check lens notes |
 
 ### [CANON RF 24-50mm F4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) - US 2023/0213739 A1
 

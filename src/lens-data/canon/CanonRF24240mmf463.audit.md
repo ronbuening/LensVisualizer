@@ -47,3 +47,29 @@ Catalog version: 5c81522
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed (116 test files, 1507 tests).
+
+## 2026-05-19 - Code-only glass source recheck
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L14 / surface 25 | `glass` | `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)` | retained | US 2020/0142167 A1 Numerical Data 1 row 25 lists nd=1.53110, vd=55.9. Searches for code 531559 and the exact nd/vd pair did not find a public manufacturer or refractiveindex.info catalog entry with usable coefficients. |
+
+### Phase 2 - Retained-information audit
+
+- Rechecked Numerical Data 1 row 25 and aspherical rows 25/26 in the local patent PDF; the data file remains consistent with the existing 2026-05-04 full audit.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- No C/F/g line-index or partial-dispersion columns are published in Numerical Data 1, so no `nC`, `nF`, `ng`, or `dPgF` fields were added.
+
+### Phase 4 - Analysis sync
+
+- No analysis changes were needed; the existing L14 prose already identifies 531559 as a no-current-catalog-match moldable barium light crown.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed; the 531559 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
+- `npm run typecheck` - passed.
+- `npm run format:check` - passed.

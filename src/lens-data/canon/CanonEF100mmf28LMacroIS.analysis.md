@@ -54,9 +54,9 @@ The second element is a positive meniscus (R1 = +44.50, R2 = +319.50 mm) sharing
 
 #### E3 — Biconcave Negative
 
-nd = 1.801, νd = 35.0. Glass: Dense lanthanum flint (801/350 code). f ≈ −41.5 mm.
+nd = 1.801, νd = 35.0. Glass: S-LAM66 (OHARA, 801/350). f ≈ −41.5 mm.
 
-The third element is a strongly negative biconcave lens (R1 = −182.56, R2 = +40.76 mm) that serves as the primary dispersive corrector in L1. Paired against the two preceding S-LAL18 crowns, it provides chromatic correction for the front group. The high refractive index (1.801) allows the negative power to be achieved without excessively steep surface curvatures. This glass does not match any publicly cataloged OHARA type; it may be a restricted Canon/OHARA melt. The same glass reappears on E8 in L3.
+The third element is a strongly negative biconcave lens (R1 = −182.56, R2 = +40.76 mm) that serves as the primary dispersive corrector in L1. Paired against the two preceding S-LAL18 crowns, it provides chromatic correction for the front group. The high refractive index (1.801) allows the negative power to be achieved without excessively steep surface curvatures. The same glass reappears on E8 in L3.
 
 #### E4 — Biconvex Positive (UD Element)
 
@@ -64,22 +64,22 @@ nd = 1.497, νd = 81.5. Glass: S-FPL51 (OHARA) — Canon's UD glass. f ≈ +61.3
 
 This is the sole UD (Ultra-low Dispersion) element in the design. The patent provides nd = 1.497 and νd = 81.5, which match OHARA S-FPL51 exactly (catalog nd = 1.49700, νd = 81.54). S-FPL51 is a fluorophosphate crown widely used in Canon L-series lenses; its catalog-documented anomalous partial dispersion (positive ΔPgF) is the physical basis for secondary-spectrum correction, though the patent itself does not publish ΔPgF or per-line refractive indices for any element. Placed at the rear of L1, where the marginal ray height is still substantial (~31 mm), E4 provides the strongest chromatic correction leverage of any single element in the system. The biconvex shape (R1 = +38.34, R2 = −140.69 mm) makes it the most strongly curved positive element in L1, concentrating the achromatic correction in a single low-dispersion station.
 
-The combination of E3 (801/350 flint) and E4 (S-FPL51 crown) forms the chromatic corrector pair for the front group. Canon's decision to keep the UD element in the fixed L1 group — rather than in a moving focus group — ensures that the chromatic correction remains stable across the entire focus range from infinity to 1:1.
+The combination of E3 (S-LAM66 flint) and E4 (S-FPL51 crown) forms the chromatic corrector pair for the front group. Canon's decision to keep the UD element in the fixed L1 group — rather than in a moving focus group — ensures that the chromatic correction remains stable across the entire focus range from infinity to 1:1.
 
 ### L2 — Focus Group A (Elements 5–7)
 
 #### E5 — Biconcave Negative
 
-nd = 1.72047, νd = 34.7. Glass: S-TIH11 (OHARA). f ≈ −34.2 mm.
+nd = 1.72047, νd = 34.7. Glass: S-NBH8 (OHARA). f ≈ −34.2 mm.
 
-The first element of the negative L2 group is a strongly negative biconcave (R1 = −248.52, R2 = +27.42 mm). S-TIH11 is a titanium flint with relatively high dispersion, used here to provide diverging power and to generate overcorrected chromatic aberration that interacts with the L1 group during focus travel. As L2 moves toward the image side during close-focus, the changing air gaps between L1 and L2 cause controlled variation in spherical and chromatic aberration that is balanced by L4's simultaneous motion.
+The first element of the negative L2 group is a strongly negative biconcave (R1 = −248.52, R2 = +27.42 mm). S-NBH8 is a niobium/barium flint with relatively high dispersion, used here to provide diverging power and to generate overcorrected chromatic aberration that interacts with the L1 group during focus travel. As L2 moves toward the image side during close-focus, the changing air gaps between L1 and L2 cause controlled variation in spherical and chromatic aberration that is balanced by L4's simultaneous motion.
 
 #### E6 + E7 — Cemented Doublet (Negative–Positive)
 
-E6: nd = 1.53172, νd = 48.8. Glass: S-TIL27 (OHARA). Biconcave negative, f ≈ −40.0 mm.
+E6: nd = 1.53172, νd = 48.8. Glass: S-TIL6 (OHARA). Biconcave negative, f ≈ −40.0 mm.
 E7: nd = 1.84666, νd = 23.9. Glass: S-TIH53 (OHARA). Positive meniscus convex to object (nearly plano-convex; R2 = +1984 mm), f ≈ +35.8 mm.
 
-The cemented doublet completes L2. E6 (S-TIL27, a light flint) provides negative power, while E7 (S-TIH53, a very dense titanium flint with extreme dispersion, νd = 23.9) provides partially compensating positive power. The combined doublet has weak positive power (f ≈ +327 mm) individually, but its role is to balance chromatic contributions within L2 and to control coma variation during the large focus travel. The high-index flint E7 keeps the cemented junction curvature moderate (R = 29.90 mm shared), which is important for minimizing higher-order chromatic error at the junction.
+The cemented doublet completes L2. E6 (S-TIL6, a light titanium flint) provides negative power, while E7 (S-TIH53, a very dense titanium flint with extreme dispersion, νd = 23.9) provides partially compensating positive power. The combined doublet has weak positive power (f ≈ +327 mm) individually, but its role is to balance chromatic contributions within L2 and to control coma variation during the large focus travel. The high-index flint E7 keeps the cemented junction curvature moderate (R = 29.90 mm shared), which is important for minimizing higher-order chromatic error at the junction.
 
 ### L3 — Aperture Region (Element 8)
 
@@ -87,7 +87,7 @@ Between L2 and L3 sits a sub-aperture stop SP2 (surface 14) and the main apertur
 
 #### E8 — Positive Meniscus, concave to object
 
-nd = 1.801, νd = 35.0. Glass: Dense lanthanum flint (801/350 code), same as E3. f ≈ +252.7 mm.
+nd = 1.801, νd = 35.0. Glass: S-LAM66 (OHARA, 801/350), same as E3. f ≈ +252.7 mm.
 
 This single element constitutes the entirety of L3. It is a weak positive meniscus (R1 = −64.03, R2 = −49.36 mm) with both surfaces concave to the object side. Its focal length of +253 mm is intentionally weak — the patent explains (¶ on Conditional Expression 1) that L3's role is to compensate for the reduction in L4's spherical aberration correction capacity that arises from the eccentric field curvature constraints imposed by the IS system. The conditional expression f3/f = 2.53 (within the 1.5–3.0 range) represents the balance point: too weak, and it cannot compensate; too strong, and overcorrected spherical aberration results.
 
@@ -133,9 +133,9 @@ E14 is a weak negative meniscus (R1 = −57.78, R2 = −162.96 mm) with both sur
 
 #### E15 — Biconvex Positive
 
-nd = 1.7432, νd = 49.3. Glass: S-LAM66 (OHARA). f ≈ +67.8 mm.
+nd = 1.7432, νd = 49.3. Glass: S-LAM60 (OHARA). f ≈ +67.8 mm.
 
-The final optical element is a biconvex (R1 = +79.42, R2 = −134.42 mm) in S-LAM66, a lanthanum crown. This strong positive element provides the converging power needed to form the final image at the sensor plane, 48.35 mm behind the last surface. Its Petzval contribution (positive) partially offsets the negative Petzval from L5a, and the combined L5 sub-system (L5a + L5b) has an overall focal length of approximately −113.5 mm.
+The final optical element is a biconvex (R1 = +79.42, R2 = −134.42 mm) in S-LAM60, a lanthanum glass. This strong positive element provides the converging power needed to form the final image at the sensor plane, 48.35 mm behind the last surface. Its Petzval contribution (positive) partially offsets the negative Petzval from L5a, and the combined L5 sub-system (L5a + L5b) has an overall focal length of approximately −113.5 mm.
 
 ## Glass Identification and Selection
 
@@ -146,13 +146,13 @@ The design uses 10 distinct glass types across 15 elements. The glass palette is
 | S-LAL18 (OHARA) | 1.72916 | 54.7 | E1, E2, E10 | Lanthanum crown, primary positive elements | Confirmed |
 | S-FPL51 (OHARA) | 1.49700 | 81.5 | E4 | UD fluorophosphate crown, chromatic corrector | Confirmed |
 | S-TIH53 (OHARA) | 1.84666 | 23.9 | E7, E11, E12 | Dense titanium flint, achromatic partner | Confirmed |
-| S-TIH11 (OHARA) | 1.72047 | 34.7 | E5 | Titanium flint, diverging element | Confirmed |
-| S-TIL27 (OHARA) | 1.53172 | 48.8 | E6 | Light titanium flint, doublet component | Confirmed |
+| S-NBH8 (OHARA) | 1.72047 | 34.7 | E5 | Niobium/barium flint, diverging element | Confirmed |
+| S-TIL6 (OHARA) | 1.53172 | 48.8 | E6 | Light titanium flint, doublet component | Confirmed |
 | S-PHM52 (OHARA) | 1.61800 | 63.4 | E9 | Phosphate crown, low-dispersion positive | Confirmed |
 | S-LAM52 (OHARA) | 1.72000 | 50.2 | E13 | Lanthanum crown, IS doublet partner | Probable (Δnd = 1×10⁻⁵) |
 | S-NBM51 (OHARA) | 1.61340 | 44.3 | E14 | Niobium barium flint, field flattener | Confirmed |
-| S-LAM66 (OHARA) | 1.74320 | 49.3 | E15 | Lanthanum crown, rear positive | Probable |
-| Dense LaF (801/350) | 1.80100 | 35.0 | E3, E8 | Dense lanthanum flint, chromatically active negative | Unmatched in public OHARA catalog |
+| S-LAM60 (OHARA) | 1.74320 | 49.3 | E15 | Lanthanum glass, rear positive | Confirmed |
+| S-LAM66 (OHARA) | 1.80100 | 35.0 | E3, E8 | Dense lanthanum flint, chromatically active negative | Confirmed |
 
 The most notable design choices in the glass selection are:
 
@@ -160,7 +160,7 @@ The most notable design choices in the glass selection are:
 
 **S-FPL51 (UD) positioned in the fixed front group.** Placing the single UD element in L1 — which does not move during focus — provides stable secondary-spectrum correction independent of focus position. This is particularly important for a macro lens, where focus travel is extreme and even small variations in chromatic correction become visible at high magnifications.
 
-**The 801/350 glass (E3, E8) is not publicly cataloged by OHARA.** It may be a Canon-specific restricted melt. HOYA TAFD25 and HIKARI E-LASF013 have matching nd/νd values; alternatively, this glass may be an older or special-order OHARA type. Its high index (1.801) combined with moderate dispersion (νd = 35) places it in the dense lanthanum flint family, intermediate between standard lanthanum crowns and high-dispersion titanium flints.
+**S-LAM66 (E3, E8) anchors the front chromatic pair.** The patent's 801/350 pair matches OHARA S-LAM66 (nd = 1.80100, νd ≈ 34.97), so these elements now resolve to catalog Sellmeier data rather than the former code-only fallback. Its high index combined with moderate dispersion places it in the dense lanthanum flint family, intermediate between standard lanthanum crowns and high-dispersion titanium flints.
 
 ## Conditional Expressions
 
@@ -258,7 +258,7 @@ The lens remained in Canon's lineup through the EF-mount era and continues to be
 2. Canon Camera Museum, EF100mm f/2.8L Macro IS USM product page: https://global.canon/en/c-museum/product/ef405.html
 3. Canon Camera Museum, EF100mm f/2.8 Macro USM product page (predecessor, "three-group floating" reference): https://global.canon/en/c-museum/product/ef357.html
 4. Canon U.S.A., Inc., EF 100mm f/2.8L Macro IS USM product specifications.
-5. OHARA Inc., Optical Glass Pocket Catalog (May 2023 edition), for glass identification reference.
+5. OHARA Inc., Optical Glass Pocket Catalog and current S-LAM66, S-NBH8, S-TIL6, and S-LAM60 datasheets, for glass identification reference.
 6. B&H Photo, Canon EF 100mm f/2.8L Macro IS USM product description (UD element confirmation).
 7. DPReview, "Canon EF 100mm F2.8L USM Macro with Hybrid IS" announcement article (September 2009), for Hybrid IS technology description.
 8. DPReview, Canon EF 100mm F2.8 L IS USM Macro full review (November 2009), for IS performance characterization.

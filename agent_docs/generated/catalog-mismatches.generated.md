@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **223** lenses scanned
 - **2573** glass surfaces examined
 - **2567** surfaces with non-empty `glass` strings
-- **1911** of those resolved to a catalog entry
-- **279** mismatches found (14.6% of resolved surfaces)
-- **106** distinct lens files affected
+- **1913** of those resolved to a catalog entry
+- **275** mismatches found (14.4% of resolved surfaces)
+- **104** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -52,8 +52,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH6 | 4 | |
 | S-FPM3 | 4 | |
 | SF6 | 4 | |
-| S-TIH11 | 3 | |
-| S-TIL27 | 3 | |
 | S-TIH10 | 3 | |
 | S-BSL7 | 3 | |
 | S-LAH65 | 3 | |
@@ -66,12 +64,11 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-NPH5 | 3 | |
 | S-LAH51 | 3 | |
 | S-NBH8 | 3 | |
-| S-LAM66 | 2 | |
 | S-TIL25 | 2 | |
 | S-NSL5 | 2 | |
 | S-LAH55V | 2 | |
-| S-LAL7 | 2 | |
 | S-TIH53W | 2 | |
+| S-TIL27 | 2 | |
 | N-SK14 | 2 | |
 | NBFD3 | 2 | |
 | SF2 | 2 | |
@@ -89,6 +86,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | SF4 | 2 | |
 | TAFD5F | 2 | |
 | N-SK16 | 2 | |
+| S-TIH11 | 2 | |
 | NBFD15 | 2 | |
 | S-LAL59 | 2 | |
 | S-NBH56 | 2 | |
@@ -117,6 +115,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | H-ZF4A | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
+| S-LAM66 | 1 | |
 | S-TIH13 | 1 | |
 | S-BSM81 | 1 | |
 | S-LAM54 | 1 | |
@@ -131,6 +130,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-PHM52 | 1 | |
 | S-LAH55 | 1 | |
 | S-LAH93 | 1 | |
+| S-LAL7 | 1 | |
 | H-ZF52 | 1 | |
 | S-BAL35 | 1 | |
 | S-LAH98 | 1 | |
@@ -420,14 +420,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 4 | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 | 6 | `S-LAH58 (OHARA)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 | 7 | `E-FD15 (HOYA) / N-SF14 (Schott)` | E-FD15 | 1.76182 | 1.69895 | -0.0629 |
-
-### [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) — US 7,864,451 B2
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 9 | `S-TIH11 (OHARA)` | S-TIH11 | 1.72047 | 1.78472 | +0.0643 |
-| 11 | `S-TIL27 (OHARA)` | S-TIL27 | 1.53172 | 1.57501 | +0.0433 |
-| 28 | `S-LAM66 (OHARA)` | S-LAM66 | 1.74320 | 1.80100 | +0.0578 |
 
 ### [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) — JP 2015-111192 A
 
@@ -792,12 +784,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 34 | `NBFD13 (HOYA)` | NBFD13 | 1.74950 | 1.80610 | +0.0566 |
-
-### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) — US 3,748,022
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `LaK (700480, S-LAL7 family)` | S-LAL7 | 1.70000 | 1.65160 | -0.0484 |
 
 ### [CANON RF 24-50mm F4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) — US 2023/0213739 A1
 

@@ -35,7 +35,7 @@ Catalog version: fd7376b
 
 ### Phase 3 - Spectral / metadata enrichment
 
-- No additional C/F/g-line indices or dPgF values are published in Numerical Data 2, so no spectral fields were added.
+- This pass did not add spectral fields from the application text; a later 2026-05-19 follow-up added patent-family `dPgF` values from the corresponding granted patent.
 - Existing metadata already records patent year, design focal length/aperture, element count, group count, maker, and focus description.
 
 ### Phase 4 - Analysis sync
@@ -50,3 +50,32 @@ Catalog version: fd7376b
 - `npm run lint` - passed.
 - `npm run test` - passed (116 files, 1507 tests; expected error-boundary console errors were emitted by tests).
 - `npm test -- catalogMismatchScan glassRelabelCandidatesScan` - passed; Canon RF 50mm f/1.2 no longer appears in either generated report.
+
+## 2026-05-19 - Partial-dispersion enrichment and code search
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| G5 / surface 8 | `glass` | `666356 — dense flint (nd=1.66565, νd=35.64)` | retained | Local US 2019/0265441 A1 and granted-family US 10,838,201 B2 Numerical Data 2 both list nd=1.66565, vd=35.64. Searches for code 666356 and the exact nd/vd pair did not find a public manufacturer or refractiveindex.info catalog entry with coefficients. |
+| G10 / surface 16 | `glass` | `666356 — dense flint (nd=1.66565, νd=35.64)` | retained | Numerical Data 2 repeats the same nd/vd pair as G5; the code-based label preserves the future upgrade path. |
+
+### Phase 2 - Retained-information audit
+
+- Rechecked Numerical Data 2 rows 1-25 in the local PDF against the data file. Stored `R`, `d`, `nd`, variable gap `d19`, and aspherical coefficients remain consistent with the patent table.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- Added patent-family `dPgF` values from the granted US 10,838,201 B2 Numerical Data 2 `ΔθgF` column to G1-G15.
+- Most catalog-resolved glasses still use Sellmeier data first; the new fields chiefly improve unresolved or future fallback paths, especially G5/G10's 666356 glass.
+
+### Phase 4 - Analysis sync
+
+- Added ΔθgF details for G5, G7, and G10 in the element narrative.
+- Added a glass-selection note explaining that patent-family ΔθgF values are now stored as `dPgF`.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed; the unresolved 666356 rows remain in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
+- `npm run typecheck` - passed.
+- `npm run format:check` - passed.

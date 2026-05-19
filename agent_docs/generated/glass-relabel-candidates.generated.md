@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 279 mismatched surfaces across 210 unique groups.
+**Scope**: 275 mismatched surfaces across 208 unique groups.
 
 ## stored (nd=1.43700, vd=95.10)  — 2 surfaces, current label resolves to S-FPM2
 
@@ -72,13 +72,12 @@ Surfaces:
 Surfaces:
 - [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) `9`: `S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)`
 
-## stored (nd=1.53172, vd=48.80)  — 2 surfaces, current label resolves to S-TIL27
+## stored (nd=1.53172, vd=48.80)  — 1 surface, current label resolves to S-TIL25
 
 Candidates:
 - **S-TIL6** (nd=1.53172, vd=48.84, Δnd=-0.0000, Δvd=+0.04)
 
 Surfaces:
-- [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) `11`: `S-TIL27 (OHARA)`
 - [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) `2`: `S-TIL25 (OHARA)`
 
 ## stored (nd=1.53172, vd=49.10)  — 1 surface, current label resolves to S-NSL3
@@ -568,11 +567,11 @@ Candidates:
 Surfaces:
 - [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) `17`: `BSC7 (HOYA)`
 
-## stored (nd=1.65412, vd=39.68)  — 1 surface, current label resolves to S-TIL27
+## stored (nd=1.65412, vd=39.68) [PgF=0.5735 (dPgF=-0.0036)]  — 1 surface, current label resolves to S-TIL27
 
 Candidates:
-- **N-KZFS5** (nd=1.65412, vd=39.70, Δnd=+0.0000, Δvd=+0.02)
-- **S-NBH5** (nd=1.65412, vd=39.68, Δnd=-0.0000, Δvd=+0.00)
+- **N-KZFS5** (nd=1.65412, vd=39.70, Δnd=+0.0000, Δvd=+0.02, ΔPgF=-0.0025)
+- **S-NBH5** (nd=1.65412, vd=39.68, Δnd=-0.0000, Δvd=+0.00, ΔPgF=+0.0000)
 
 Surfaces:
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) `6`: `S-TIL27 (OHARA)`
@@ -802,15 +801,6 @@ Candidates:
 Surfaces:
 - [SIGMA 30mm f/2.8 (DP2 Merrill)](../../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) `5`: `S-TIM28 (OHARA)`
 
-## stored (nd=1.70000, vd=48.00) [code=700/480]  — 1 surface, current label resolves to S-LAL7
-
-Candidates:
-- **S-LAM51** (nd=1.70000, vd=48.08, Δnd=-0.0000, Δvd=+0.08, codeΔ=0.8)
-- **S-LAM59** (nd=1.69700, vd=48.52, Δnd=-0.0030, Δvd=+0.52, codeΔ=8.2)
-
-Surfaces:
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) `7`: `LaK (700480, S-LAL7 family)`
-
 ## stored (nd=1.70154, vd=41.17)  — 1 surface, current label resolves to S-LAM54
 
 Candidates:
@@ -898,14 +888,13 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) `2`: `S-TIH23 (OHARA)`
 
-## stored (nd=1.72047, vd=34.70)  — 2 surfaces, current label resolves to S-TIH11
+## stored (nd=1.72047, vd=34.70)  — 1 surface, current label resolves to S-TIH4
 
 Candidates:
 - **N-KZFS8** (nd=1.72047, vd=34.70, Δnd=-0.0000, Δvd=+0.00)
 - **S-NBH8** (nd=1.72047, vd=34.71, Δnd=-0.0000, Δvd=+0.01)
 
 Surfaces:
-- [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) `9`: `S-TIH11 (OHARA)`
 - [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) `13`: `S-TIH4 (OHARA)`
 
 ## stored (nd=1.72342, vd=38.00)  — 1 surface, current label resolves to E-FD5
@@ -1034,14 +1023,6 @@ Candidates:
 
 Surfaces:
 - [SIGMA DP2X 24mm f/2.8](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) `11`: `S-LAM55 (≈) / LACL60 (OHARA / HOYA)`
-
-## stored (nd=1.74320, vd=49.30)  — 1 surface, current label resolves to S-LAM66
-
-Candidates:
-- **S-LAM60** (nd=1.74320, vd=49.34, Δnd=-0.0000, Δvd=+0.04)
-
-Surfaces:
-- [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) `28`: `S-LAM66 (OHARA)`
 
 ## stored (nd=1.74330, vd=49.30)  — 1 surface, current label resolves to S-LAL14
 
@@ -2015,5 +1996,5 @@ Surfaces:
 
 ## Summary
 
-- **184** (nd, vd) groups have at least one candidate (251 surfaces) — actionable relabels.
+- **182** (nd, vd) groups have at least one candidate (247 surfaces) — actionable relabels.
 - **26** (nd, vd) groups have NO candidate (28 surfaces) — needs patent verification or Unmatched relabeling.

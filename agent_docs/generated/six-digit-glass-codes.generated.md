@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **299** total code-only elements found
-- **299** elements in this report
-- **87** distinct lens files affected
+- **297** total code-only elements found
+- **297** elements in this report
+- **86** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -69,7 +69,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 774492 | 2 | 1 |
 | 777297 | 2 | 2 |
 | 801349 | 2 | 2 |
-| 801350 | 2 | 1 |
 | 807316 | 2 | 2 |
 | 850323 | 2 | 2 |
 | 855248 | 2 | 1 |
@@ -205,13 +204,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 995293 | 1 | 1 |
 
 ## Elements by Lens
-
-### [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) - US 7,864,451 B2
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L13 (Element 3) | 5 | `Dense lanthanum flint (801/350, unmatched in public OHARA catalog)` | 1.80100 / 35.00 | No catalog entry | abbe |
-| L31 (Element 8) | 16 | `Dense lanthanum flint (801/350, unmatched in public OHARA catalog)` | 1.80100 / 35.00 | No catalog entry | abbe |
 
 ### [Canon EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP2018180366A
 
