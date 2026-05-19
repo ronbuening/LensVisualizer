@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **648** non-explicit-unmatched annotations did not resolve
-- **204** distinct unresolved glass-like tokens found
+- **650** non-explicit-unmatched annotations did not resolve
+- **206** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -105,6 +105,8 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 740283 | 1 | 1 | |
+| 756247 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 765468 | 1 | 1 | |
@@ -650,6 +652,14 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 - lanthanum crown (nd=1.738, vd~49.3)`
+
+### 740283 — 1 occurrence
+
+- [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) 16: `740283 - titanium flint (patent nd=1.74000, vd=28.3)`
+
+### 756247 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 12: `756247 - anomalous-dispersion niobium glass (patent nd=1.75575, vd=24.71, theta_gF=0.629)`
 
 ### 757479 — 1 occurrence
 

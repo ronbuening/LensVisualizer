@@ -9,69 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **338** mismatched surfaces across **117** lens files
-- **300** surfaces have at least one candidate
-- **82** surfaces have high-confidence candidate ranking
+- **306** mismatched surfaces across **112** lens files
+- **268** surfaces have at least one candidate
+- **74** surfaces have high-confidence candidate ranking
 - **38** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
-
-### [NIKON PC NIKKOR 19mm f/4E ED](../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) - JP 2017-161685 A
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 9 | `NBFD3 (HOYA)` | 1.64769 / 33.84 | NBFD3 (Δnd=+0.1568) | E-FD2 (Δnd=-0.0000, Δvd=+0.00)<br>SF2 (Δnd=-0.0000, Δvd=+0.01)<br>S-TIM22 (Δnd=-0.0000, Δvd=-0.05) | Choose by context | Yes - choose candidate |
-| 12 | `TAFD25 (HOYA)` | 1.83481 / 42.72 | TAFD25 (Δnd=+0.0688) | S-LAH55VS (Δnd=-0.0000, Δvd=+0.02)<br>S-LAH55V (Δnd=-0.0000, Δvd=+0.01)<br>S-LAH55 (Δnd=-0.0000, Δvd=-0.01) | Choose by context | Yes - choose candidate |
-| 15 | `NBFD3 (HOYA)` | 1.64769 / 33.84 | NBFD3 (Δnd=+0.1568) | E-FD2 (Δnd=-0.0000, Δvd=+0.00)<br>SF2 (Δnd=-0.0000, Δvd=+0.01)<br>S-TIM22 (Δnd=-0.0000, Δvd=-0.05) | Choose by context | Yes - choose candidate |
-| 18 | `S-TIM28 (OHARA)` | 1.59270 / 35.44 | S-TIM28 (Δnd=+0.0962) | S-FTM16 (Δnd=+0.0000, Δvd=-0.13) | High | Check lens notes |
-| 21 | `S-NSL5 (OHARA)` | 1.51742 / 52.15 | S-NSL5 (Δnd=+0.0051) | S-NSL36 (Δnd=-0.0000, Δvd=+0.28) | Medium | Yes - choose candidate |
-| 23 | `TAFD55 (HOYA)` | 1.91082 / 35.25 | TAFD55 (Δnd=+0.0902) | TAFD35 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
-| 27 | `TAFD25 (HOYA)` | 1.83481 / 42.72 | TAFD25 (Δnd=+0.0688) | S-LAH55VS (Δnd=-0.0000, Δvd=+0.02)<br>S-LAH55V (Δnd=-0.0000, Δvd=+0.01)<br>S-LAH55 (Δnd=-0.0000, Δvd=-0.01) | Choose by context | Yes - choose candidate |
-
-### [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) - US 2015/0168697 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 1 | `S-TIH18 (OHARA)` | 1.78470 / 26.29 | S-TIH18 (Δnd=-0.0632) | S-TIH23 (Δnd=-0.0000, Δvd=+0.00)<br>SF11 (Δnd=+0.0000, Δvd=-0.53)<br>S-TIH11 (Δnd=+0.0000, Δvd=-0.61) | Choose by context | Yes - choose candidate |
-| 6 | `S-TIH4 (OHARA)` | 1.80810 / 22.76 | S-TIH4 (Δnd=-0.0529) | S-NPH1 (Δnd=-0.0000, Δvd=+0.00)<br>SF6 (Δnd=-0.0029, Δvd=+2.67)<br>S-TIH6 (Δnd=-0.0029, Δvd=+2.67) | Choose by context | Yes - choose candidate |
-| 8 | `S-BAH27 (OHARA)` | 1.80000 / 29.84 | S-BAH27 (Δnd=-0.0985) | S-NBH55 (Δnd=-0.0000, Δvd=+0.00) | High | Check lens notes |
-| 10 | `S-LAM66 (OHARA)` | 1.83481 / 42.73 | S-LAM66 (Δnd=-0.0338) | S-LAH55VS (Δnd=-0.0000, Δvd=+0.01)<br>S-LAH55V (Δnd=-0.0000, Δvd=-0.00)<br>S-LAH55 (Δnd=-0.0000, Δvd=-0.02) | Choose by context | Yes - choose candidate |
-| 16 | `S-BSM81 (OHARA)` | 1.59282 / 68.63 | S-BSM81 (Δnd=+0.0472) | FCD515 (Δnd=+0.0000, Δvd=+0.00)<br>FCD505 (Δnd=+0.0000, Δvd=+0.00)<br>J-PSKH1 (Δnd=+0.0004, Δvd=-0.73) | Choose by context | Yes - choose candidate |
-| 21 | `S-NBH53V (OHARA)` | 1.74320 / 49.29 | S-NBH53V (Δnd=-0.0052) | S-LAM60 (Δnd=-0.0000, Δvd=+0.05) | High | Check lens notes |
-| 23 | `S-TIM25 (OHARA)` | 1.62004 / 36.26 | S-TIM25 (Δnd=+0.0527) | F2 (Δnd=+0.0000, Δvd=+0.11)<br>S-TIM2 (Δnd=+0.0000, Δvd=+0.00) | Medium | Yes - choose candidate |
-
-### [HASSELBLAD HC 4/210](../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) - US 6,445,511 B1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 4 | `S-NBM51 (OHARA)` | 1.65412 / 39.70 | S-NBM51 (Δnd=-0.0407) | N-KZFS5 (Δnd=+0.0000, Δvd=+0.00)<br>S-NBH5 (Δnd=-0.0000, Δvd=-0.02) | Medium | Yes - choose candidate |
-| 6 | `S-TIM2 (OHARA)` | 1.58144 / 40.70 | S-TIM2 (Δnd=+0.0386) | E-FL5 (Δnd=-0.0000, Δvd=+0.19)<br>PBL25 (Δnd=-0.0000, Δvd=+0.05)<br>S-TIL25 (Δnd=-0.0000, Δvd=+0.05) | Choose by context | Yes - choose candidate |
-| 8 | `S-TIH53 (OHARA)` | 1.80518 / 25.40 | S-TIH53 (Δnd=+0.0415) | S-TIH6 (Δnd=+0.0000, Δvd=+0.03)<br>SF6 (Δnd=+0.0000, Δvd=+0.03)<br>S-NPH1 (Δnd=+0.0029, Δvd=-2.64) | Choose by context | Yes - choose candidate |
-| 12 | `S-TIH11 (OHARA)` | 1.71736 / 29.50 | S-TIH11 (Δnd=+0.0674) | SF1 (Δnd=-0.0000, Δvd=+0.01)<br>S-TIH18 (Δnd=+0.0041, Δvd=-0.27) | Medium | Yes - choose candidate |
-| 15 | `S-TIH53 (OHARA)` | 1.80518 / 25.40 | S-TIH53 (Δnd=+0.0415) | S-TIH6 (Δnd=+0.0000, Δvd=+0.03)<br>SF6 (Δnd=+0.0000, Δvd=+0.03)<br>S-NPH1 (Δnd=+0.0029, Δvd=-2.64) | Choose by context | Yes - choose candidate |
-| 16 | `S-TIH14 (OHARA)` | 1.74000 / 28.30 | S-TIH14 (Δnd=+0.0218) | S-TIH13 (Δnd=+0.0008, Δvd=-0.51) | Medium | Yes - choose candidate |
-
-### [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) - JP 2020-177057 A
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 12 | `OHARA S-NBH52V` | 1.75575 / 24.71 | S-NBH52V (Δnd=-0.0828) | SF4 (Δnd=-0.0005, Δvd=+2.87)<br>E-FD4 (Δnd=-0.0006, Δvd=+2.82)<br>S-TIH4 (Δnd=-0.0006, Δvd=+2.80) | Choose by context | Yes - choose candidate |
-| 16 | `OHARA S-LAM55` | 1.75500 / 52.34 | S-LAM55 (Δnd=+0.0070) | J-LASKH2 (Δnd=+0.0000, Δvd=+0.00)<br>N-LAK33B (Δnd=+0.0000, Δvd=-0.04)<br>S-LAH97 (Δnd=+0.0000, Δvd=-0.02) | Choose by context | Yes - choose candidate |
-| 22 | `OHARA S-NPH4` | 1.91082 / 35.25 | S-NPH4 (Δnd=-0.0180) | TAFD35 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
-| 29 | `OHARA S-NPH2` | 2.00100 / 29.12 | S-NPH2 (Δnd=-0.0781) | S-LAH99 (Δnd=+0.0000, Δvd=+0.02)<br>TAFD55 (Δnd=+0.0000, Δvd=+0.01)<br>S-LAH79 (Δnd=+0.0023, Δvd=-0.85) | Choose by context | Yes - choose candidate |
-| 32 | `OHARA S-BAH28` | 1.72916 / 54.61 | S-BAH28 (Δnd=-0.0057) | S-LAL18 (Δnd=-0.0000, Δvd=+0.07) | High | Check lens notes |
-| 40 | `OHARA S-NPH2` | 2.00100 / 29.12 | S-NPH2 (Δnd=-0.0781) | S-LAH99 (Δnd=+0.0000, Δvd=+0.02)<br>TAFD55 (Δnd=+0.0000, Δvd=+0.01)<br>S-LAH79 (Δnd=+0.0023, Δvd=-0.85) | Choose by context | Yes - choose candidate |
-
-### [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) - US 7,289,274 B1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 1 | `S-LAH66 (OHARA)` | 1.74400 / 44.80 | S-LAH66 (Δnd=+0.0285) | S-LAM2 (Δnd=-0.0000, Δvd=-0.01) | High | Check lens notes |
-| 6 | `S-TIH53 (OHARA)` | 1.80518 / 25.40 | S-TIH53 (Δnd=+0.0415) | S-TIH6 (Δnd=+0.0000, Δvd=+0.03)<br>SF6 (Δnd=+0.0000, Δvd=+0.03)<br>S-NPH1 (Δnd=+0.0029, Δvd=-2.64) | Choose by context | Yes - choose candidate |
-| 17 | `S-LAH64 (OHARA)` | 1.77250 / 49.60 | S-LAH64 (Δnd=+0.0155) | N-LAF34 (Δnd=+0.0000, Δvd=+0.02)<br>S-LAH66 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
-| 20 | `S-TIH53 (OHARA)` | 1.80518 / 25.40 | S-TIH53 (Δnd=+0.0415) | S-TIH6 (Δnd=+0.0000, Δvd=+0.03)<br>SF6 (Δnd=+0.0000, Δvd=+0.03)<br>S-NPH1 (Δnd=+0.0029, Δvd=-2.64) | Choose by context | Yes - choose candidate |
-| 22 | `S-LAH64 (OHARA)` | 1.77250 / 49.60 | S-LAH64 (Δnd=+0.0155) | N-LAF34 (Δnd=+0.0000, Δvd=+0.02)<br>S-LAH66 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
-| 29 | `S-LAH59 (OHARA)` | 1.80100 / 35.00 | S-LAH59 (Δnd=+0.0150) | S-LAM66 (Δnd=-0.0000, Δvd=-0.03) | High | Check lens notes |
 
 ### [SIGMA 50mm F1.4 DG DN | Art](../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) - JP 2023-183894 A
 

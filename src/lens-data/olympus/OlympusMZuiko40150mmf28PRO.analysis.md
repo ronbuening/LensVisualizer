@@ -48,7 +48,7 @@ The focal-length ratio $|f_2|/f_3$ is the design's signature parameter. The pate
 
 #### L1 — Negative Meniscus (HD Glass)
 
-$n_d = 1.78470$, $\nu_d = 26.29$. Glass: S-TIH18 (OHARA). $f \approx -307\;\text{mm}$.
+$n_d = 1.78470$, $\nu_d = 26.29$. Glass: S-TIH23 (OHARA). $f \approx -307\;\text{mm}$.
 
 L1 is a negative meniscus with its convex surface facing the object. Its high refractive index ($n_d = 1.785$) and high dispersion ($\nu_d = 26.3$) qualify it as an HD (High Refractive Index and Dispersion) element in Olympus's nomenclature. It is cemented directly to L2 to form the first lens component, a classic negative–positive achromatic doublet that provides the initial correction of axial chromatic aberration at the front of the system where the marginal ray height is greatest. The strong curvature mismatch between its surfaces ($R_1 = +137.03$, $R_2 = +86.65$) creates the negative meniscus form that bends marginal rays inward without introducing excessive higher-order spherical aberration.
 
@@ -70,7 +70,7 @@ L3 is a positive meniscus with both surfaces convex-to-object ($R_1 = +96.82$, $
 
 #### L4 — Positive Meniscus
 
-$n_d = 1.80810$, $\nu_d = 22.76$. Glass: S-TIH4 (OHARA). $f \approx +99\;\text{mm}$.
+$n_d = 1.80810$, $\nu_d = 22.76$. Glass: S-NPH1 (OHARA). $f \approx +99\;\text{mm}$.
 
 L4 is the first element of G2 and crucially is a *positive* lens, which is a deliberate and unusual design choice. It is a positive meniscus with its convex surface facing the image side ($R_1 = -227.21$, $R_2 = -59.41$; both radii negative, confirming the meniscus is concave toward the object). Note: the patent text at ¶0266 describes L4 as having "a convex surface directed toward the object side," but this appears to be a transcription error — the corresponding description in Examples 1–3 (¶0228, ¶0240, ¶0253) correctly states "toward an image side" for the same surface-radius pattern.
 
@@ -86,13 +86,13 @@ L5 is the strongest negative element in G2 and provides the core diverging power
 
 #### L6 — Positive Meniscus
 
-$n_d = 1.80000$, $\nu_d = 29.84$. Glass: S-BAH27 (OHARA). $f \approx +158\;\text{mm}$.
+$n_d = 1.80000$, $\nu_d = 29.84$. Glass: S-NBH55 (OHARA). $f \approx +158\;\text{mm}$.
 
 L6 is the rear element of the cemented triplet. It is a weak positive meniscus that provides lateral-color correction within G2. Its high-index, high-dispersion glass ($n_d = 1.800$, $\nu_d = 29.84$) opposes L5's dispersion characteristics across the cemented interface. The patent's conditional expression (6) requires $18 < \bar{\nu}_{2p} < 28$ for the positive lenses in G2; with L4 ($\nu_d = 22.76$) and L6 ($\nu_d = 29.84$), the average is 26.30, satisfying this bound.
 
 #### L7 — Biconcave Negative
 
-$n_d = 1.83481$, $\nu_d = 42.73$. Glass: S-LAM66 (OHARA). $f \approx -54\;\text{mm}$.
+$n_d = 1.83481$, $\nu_d = 42.73$. Glass: S-LAH55V (OHARA). $f \approx -54\;\text{mm}$.
 
 L7 is an air-spaced biconcave negative that provides additional diverging power at the rear of G2. Its lanthanum-crown glass ($n_d = 1.835$, $\nu_d = 42.73$) contributes to field curvature control through its high refractive index, which produces a smaller Petzval contribution per unit of power compared to lower-index alternatives. L7 completes the G2 variator; together, the four elements of G2 yield a group focal length of approximately $-35.9\;\text{mm}$.
 
@@ -120,7 +120,7 @@ L9 is a negative meniscus with its convex surface facing the object, cemented to
 
 #### L10 — Biconvex Positive
 
-$n_d = 1.59282$, $\nu_d = 68.63$. Glass: S-BSM81 (OHARA). $f \approx +35\;\text{mm}$.
+$n_d = 1.59282$, $\nu_d = 68.63$. Glass: FCD515 (HOYA). $f \approx +35\;\text{mm}$.
 
 L10 is the positive partner in the L9–L10 cemented doublet. Its moderate-index borosilicate crown ($n_d = 1.593$) provides the convergence needed to further reduce the beam diameter heading toward G4. The doublet is positioned with the "maximum air space" in G3 separating it from L8 — the patent's conditional expression (9) requires $0.1 < d(A)/f_3 < 0.5$, and the patent's conditional expression table gives $d(A)/f_3 = 0.284$ for Example 4, where $d(A) = 7.98\;\text{mm}$ is the air gap between L8 and the L9–L10 doublet (¶0155, ¶0163–0164). This spacing gives L8 room to converge the beam partially before the doublet refines the correction.
 
@@ -142,7 +142,7 @@ L12 uses an ultra-high-index glass ($n_d = 1.923$) — the highest in the entire
 
 #### L13 — Biconcave Negative (Rear Surface Aspherical)
 
-$n_d = 1.74320$, $\nu_d = 49.29$. Glass: S-NBH53V (OHARA). $f \approx -23\;\text{mm}$.
+$n_d = 1.74320$, $\nu_d = 49.29$. Glass: S-LAM60 (OHARA). $f \approx -23\;\text{mm}$.
 
 L13 is the negative partner in the G4 cemented doublet. Its rear surface (surface 22) is aspherical with a mild conic constant ($K = -0.0326$) and a negative fourth-order coefficient ($A_4 = -2.585 \times 10^{-6}$). This aspherical correction suppresses residual spherical aberration and field curvature that would otherwise fluctuate during focus travel. The patent's conditional expression (12) requires $15 < \Delta\nu_4 < 40$; the difference $\nu_{d,\text{L13}} - \nu_{d,\text{L12}} = 49.29 - 18.90 = 30.39$ satisfies this, confirming adequate chromatic achromatization within G4 to suppress focus-induced chromatic shifts (¶0174).
 
@@ -150,7 +150,7 @@ L13 is the negative partner in the G4 cemented doublet. Its rear surface (surfac
 
 #### L14 — Biconcave Negative
 
-$n_d = 1.62004$, $\nu_d = 36.26$. Glass: S-TIM25 (OHARA). $f \approx -43\;\text{mm}$.
+$n_d = 1.62004$, $\nu_d = 36.26$. Glass: S-TIM2 (OHARA). $f \approx -43\;\text{mm}$.
 
 L14 is a single biconcave negative lens that constitutes the entire G5 unit. It is the second VCM-driven focusing group, and its minimal mass (one small-diameter element) enables the extremely high-speed reciprocating motion needed for wobbling AF during video recording. At the wide end, L14 moves toward the image side during close-focus; at the tele end, its locus reverses — the patent tabulates these position-dependent movements (¶0319).
 
@@ -180,20 +180,20 @@ The design uses an aggressive chromatic correction strategy centered on ED-class
 
 | Element | Glass | Vendor | $n_d$ | $\nu_d$ | Olympus Designation | Role in Design |
 |---------|-------|--------|-------|---------|---------------------|----------------|
-| L1 | S-TIH18 | OHARA | 1.78470 | 26.29 | HD | Chromatic partner for L2 in front doublet |
+| L1 | S-TIH23 | OHARA | 1.78470 | 26.29 | HD | Chromatic partner for L2 in front doublet |
 | L2 | FCD1 / S-FPL51 | HOYA/OHARA | 1.49700 | 81.61 | ED | Primary axial-color corrector in G1 |
 | L3 | S-FPL53 | OHARA | 1.43875 | 94.93 | Super ED | Secondary-spectrum correction in G1 |
-| L4 | S-TIH4 | OHARA | 1.80810 | 22.76 | — | Beam-height reducer at G2 entry |
+| L4 | S-NPH1 | OHARA | 1.80810 | 22.76 | — | Beam-height reducer at G2 entry |
 | L5 | S-FSL5 | OHARA | 1.48749 | 70.23 | — | Core negative power in G2 |
-| L6 | S-BAH27 | OHARA | 1.80000 | 29.84 | — | Lateral-color corrector in G2 triplet |
-| L7 | S-LAM66 | OHARA | 1.83481 | 42.73 | — | Supplementary negative power, Petzval |
+| L6 | S-NBH55 | OHARA | 1.80000 | 29.84 | — | Lateral-color corrector in G2 triplet |
+| L7 | S-LAH55V | OHARA | 1.83481 | 42.73 | — | Supplementary negative power, Petzval |
 | L8 | FCD1 / S-FPL51 | HOYA/OHARA | 1.49700 | 81.61 | EDA | SA/coma corrector after stop (2× asph) |
 | L9 | S-TIH53 | OHARA | 1.84666 | 23.78 | — | Chromatic partner for L10 in G3 doublet |
-| L10 | S-BSM81 | OHARA | 1.59282 | 68.63 | — | Convergence and coma correction |
+| L10 | FCD515 | HOYA | 1.59282 | 68.63 | — | Convergence and coma correction |
 | L11 | FCD1 / S-FPL51 | HOYA/OHARA | 1.49700 | 81.61 | ED | Chromatic correction at G3 exit |
 | L12 | S-NPH2 | OHARA | 1.92286 | 18.90 | — | Ultra-high-index focus element (light weight) |
-| L13 | S-NBH53V | OHARA | 1.74320 | 49.29 | — | Focus doublet negative (asph rear) |
-| L14 | S-TIM25 | OHARA | 1.62004 | 36.26 | — | Single-element secondary focus group |
+| L13 | S-LAM60 | OHARA | 1.74320 | 49.29 | — | Focus doublet negative (asph rear) |
+| L14 | S-TIM2 | OHARA | 1.62004 | 36.26 | — | Single-element secondary focus group |
 | L15 | L-LAH53 | OHARA | 1.80610 | 40.88 | — | PGM-molded asph, field flattener |
 | L16 | S-TIM22 class | OHARA | 1.64769 | 33.79 | — | Chromatic balance in G6 doublet |
 
