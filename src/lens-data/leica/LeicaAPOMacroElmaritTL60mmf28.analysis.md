@@ -23,7 +23,7 @@ The following convergent evidence links Example 9 to the production Leica APO-Ma
 
 Among the eleven numerical examples in the patent, only two combine all the production-matching criteria: 1:1 magnification (β = −1.0), four aspherical surfaces on two elements (L12 in Gr1 and L23 in Gr2), and a super-ED fluorophosphate crown (FCD100, νd = 95.10) in the focus group. These are Examples 9 and 10. Examples 1–4 achieve only β = −0.5; Examples 5–8 and 11 achieve 1:1 but use S-FPL51 (νd ≈ 81.6) instead of FCD100, falling short of the APO chromatic standard; Example 7 has five aspherical surfaces and Example 8 has three, neither matching the production count of four.
 
-Examples 9 and 10 differ principally in Gr1 glass choices (L12 uses S-BAL35 in Ex. 9 vs a higher-index glass in Ex. 10; L13 uses S-TIM28 vs a denser flint) and in element shapes (L11 is biconvex in Ex. 9 vs a positive meniscus in Ex. 10; L23 is a meniscus convex to image in Ex. 9 vs biconvex in Ex. 10). Without a production cross-section, either could be the implemented design. Example 9 is adopted here as the working match; the architectural analysis — group structure, focus mechanism, chromatic strategy, and aspherical surface roles — is essentially identical for both embodiments.
+Examples 9 and 10 differ principally in Gr1 glass choices (L12 uses S-BAL42 in Ex. 9 vs a higher-index glass in Ex. 10; L13 uses S-TIM28 vs a denser flint) and in element shapes (L11 is biconvex in Ex. 9 vs a positive meniscus in Ex. 10; L23 is a meniscus convex to image in Ex. 9 vs biconvex in Ex. 10). Without a production cross-section, either could be the implemented design. Example 9 is adopted here as the working match; the architectural analysis — group structure, focus mechanism, chromatic strategy, and aspherical surface roles — is essentially identical for both embodiments.
 
 ## Optical Architecture
 
@@ -66,11 +66,11 @@ The choice of a dense flint (νd = 23.78) as the front element is unusual for a 
 
 ### L12 — Positive Meniscus, Double-Aspheric (Gr1)
 
-nd = 1.58313, νd = 59.38. Glass: S-BAL35 (OHARA) — barium crown. f = +105.2 mm.
+nd = 1.58313, νd = 59.38. Glass: S-BAL42 (OHARA) — barium crown. f = +105.2 mm.
 
 L12 is the first of two double-aspheric elements in the design. Both surfaces (patent surfaces 3 and 4) carry aspherical departures. The element is a positive meniscus concave toward the object (R₃ = −103.1, R₄ = −38.5), strongly curved on the image side.
 
-The front surface (S3) has a mild positive A₄ coefficient (+5.42 × 10⁻⁶), producing approximately +60 µm of aspherical departure at h = 10 mm. This departure bends the marginal rays slightly more than a sphere would, acting to reduce undercorrected spherical aberration from L11. The rear surface (S4) has only an A₄ term (+6.76 × 10⁻⁶), with all higher-order coefficients zero — a remarkably simple aspherical profile that shifts the base sphere by approximately +68 µm at h = 10 mm. The moderate aspherical departures on both surfaces (under 70 µm) are within the range of conventional CNC polishing. S-BAL35 carries OHARA's S-prefix (environmentally safe, for conventional polishing), not the L-prefix designated for precision glass molding; the aspherical surfaces are therefore likely produced by polishing rather than PGM.
+The front surface (S3) has a mild positive A₄ coefficient (+5.42 × 10⁻⁶), producing approximately +60 µm of aspherical departure at h = 10 mm. This departure bends the marginal rays slightly more than a sphere would, acting to reduce undercorrected spherical aberration from L11. The rear surface (S4) has only an A₄ term (+6.76 × 10⁻⁶), with all higher-order coefficients zero — a remarkably simple aspherical profile that shifts the base sphere by approximately +68 µm at h = 10 mm. The moderate aspherical departures on both surfaces (under 70 µm) are within the range of conventional CNC polishing. S-BAL42 carries OHARA's S-prefix (environmentally safe, for conventional polishing), not the L-prefix designated for precision glass molding; the aspherical surfaces are therefore likely produced by polishing rather than PGM.
 
 L12's aspherical surfaces correct spherical aberration contributions from the front group, ensuring that the beam reaching the aperture stop is well-conditioned regardless of object distance. The patent (¶0032) notes that placing an asphere in Gr1 is particularly effective for suppressing spherical aberration.
 
@@ -98,7 +98,7 @@ Placing the super-ED element as the leading element of the focus group (the most
 
 ### L22 — Negative Meniscus, Concave to Object (Gr2)
 
-nd = 1.80610, νd = 33.27. Glass: S-TIH14 (OHARA) — dense flint. f = −42.3 mm.
+nd = 1.80610, νd = 33.27. Glass: NBFD15 (HOYA) — dense flint. f = −42.3 mm.
 
 L22 is the chromatic partner to L21. Its dense flint glass (νd = 33.27) provides the compensating negative chromatic contribution that, combined with L21's super-ED positive contribution, achieves apochromatic correction within the focus group. The meniscus shape (R₁₀ = −19.5, R₁₁ = −45.5, both concave to object) controls the Petzval contribution while maintaining the corrected state.
 
@@ -106,9 +106,9 @@ The Abbe number difference between L21 and L22 is Δν = 95.10 − 33.27 = 61.83
 
 ### L23 — Positive Meniscus, Double-Aspheric (Gr2, focus group rear)
 
-nd = 1.58313, νd = 59.38. Glass: S-BAL35 (OHARA) — barium crown. f = +36.8 mm.
+nd = 1.58313, νd = 59.38. Glass: S-BAL42 (OHARA) — barium crown. f = +36.8 mm.
 
-L23 is the second double-aspheric element and the rearmost element of the moving focus group. It uses the same S-BAL35 glass as L12, and like L12, both surfaces carry aspherical profiles. The element is a positive meniscus concave toward the object (R₁₂ = −502.2, R₁₃ = −20.6), with a nearly flat front surface and a strongly curved rear.
+L23 is the second double-aspheric element and the rearmost element of the moving focus group. It uses the same S-BAL42 glass as L12, and like L12, both surfaces carry aspherical profiles. The element is a positive meniscus concave toward the object (R₁₂ = −502.2, R₁₃ = −20.6), with a nearly flat front surface and a strongly curved rear.
 
 The front surface (S12) has a large negative A₄ coefficient (−1.85 × 10⁻⁵) producing approximately −270 µm of aspherical departure at h = 10 mm. This is the strongest aspherical correction in the entire design and serves to flatten the field curvature and suppress spherical aberration variation during focusing. The rear surface (S13) has a weaker positive A₄ (+4.51 × 10⁻⁶) with significant higher-order terms (A₆ through A₁₀), producing a more complex correction profile that addresses residual coma and astigmatism at the edge of the field.
 
@@ -116,7 +116,7 @@ The patent (¶0031) specifically recommends placing a double-aspheric positive e
 
 ### L31 + L32 — Cemented Doublet (Gr3, front)
 
-**L31:** nd = 1.91082, νd = 35.25. Glass: S-LAH79 (OHARA) — dense lanthanum flint (νd < 50). f = +35.7 mm (standalone in air).
+**L31:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA) — dense lanthanum/tantalum flint (νd < 50). f = +35.7 mm (standalone in air).
 **L32:** nd = 1.51742, νd = 52.15. Glass: S-NSL3 (OHARA) — normal crown. f = −23.2 mm (standalone in air).
 **Doublet:** f ≈ −67 mm (thick-lens ABCD computation).
 
@@ -124,7 +124,7 @@ The cemented doublet L31+L32 is the leading element assembly of the fixed rear g
 
 This doublet has overall negative power (f ≈ −67 mm), consistent with Gr3's diverging function. The high-index / low-index cement interface (R₁₅ = −31.27, with nd dropping from 1.91082 to 1.51742) provides strong negative refraction at the junction, which is the primary source of Gr3's diverging power. The large index step (Δnd = 0.393) at the cement surface also provides substantial chromatic correction within Gr3, acting as a secondary achromatic corrector downstream of the focus group.
 
-S-LAH79 (nd = 1.91082) is one of the highest-index lanthanum flints in the OHARA catalog. Despite its relatively low Abbe number (νd = 35.25, placing it firmly in the flint family), the lanthanum content gives it a high refractive index that permits the doublet to achieve a large amount of negative power without requiring excessively steep curvatures, which helps control higher-order aberrations — particularly the zonal spherical aberration and oblique spherical that are problematic at macro magnifications.
+TAFD35 (nd = 1.91082) is one of the highest-index flints in the HOYA catalog. Despite its relatively low Abbe number (νd = 35.25, placing it firmly in the flint family), its dense lanthanum/tantalum formulation gives it a high refractive index that permits the doublet to achieve a large amount of negative power without requiring excessively steep curvatures, which helps control higher-order aberrations — particularly the zonal spherical aberration and oblique spherical that are problematic at macro magnifications.
 
 ### L33 — Negative Meniscus, Concave to Object (Gr3)
 
@@ -147,21 +147,21 @@ The gap between L33 and L34 is only 0.300 mm — the thinnest air space in the d
 | Element | Glass | nd | νd | Class | Role |
 |---|---|---|---|---|---|
 | L11 | S-TIH53 (OHARA) | 1.84666 | 23.78 | Dense flint | High-dispersion front collector |
-| L12 | S-BAL35 (OHARA) | 1.58313 | 59.38 | Barium crown | Polished aspheric substrate |
+| L12 | S-BAL42 (OHARA) | 1.58313 | 59.38 | Barium crown | Polished aspheric substrate |
 | L13 | S-TIM28 (OHARA) | 1.68893 | 31.16 | Medium flint | Gr1 diverger / achromatizer |
 | L21 | FCD100 (HOYA) | 1.43700 | 95.10 | Super-ED fluorophosphate | APO primary corrector |
-| L22 | S-TIH14 (OHARA) | 1.80610 | 33.27 | Dense flint | APO chromatic partner |
-| L23 | S-BAL35 (OHARA) | 1.58313 | 59.38 | Barium crown | Polished aspheric substrate |
-| L31 | S-LAH79 (OHARA) | 1.91082 | 35.25 | Dense lanthanum flint | High-index doublet component |
+| L22 | NBFD15 (HOYA) | 1.80610 | 33.27 | Dense flint | APO chromatic partner |
+| L23 | S-BAL42 (OHARA) | 1.58313 | 59.38 | Barium crown | Polished aspheric substrate |
+| L31 | TAFD35 (HOYA) | 1.91082 | 35.25 | Dense lanthanum/tantalum flint | High-index doublet component |
 | L32 | S-NSL3 (OHARA) | 1.51742 | 52.15 | Normal crown | Doublet diverger |
 | L33 | S-BAL2 (OHARA) | 1.56883 | 56.04 | Barium light crown | Field flattener |
 | L34 | S-LAL18 (OHARA) | 1.72916 | 54.67 | Lanthanum crown | Exit pupil / telecentric corrector |
 
-The chromatic correction strategy operates at two levels. Within Gr1, the triplet L11–L12–L13 spans Abbe numbers from 23.78 to 59.38, forming an achromatic front section that is nearly color-neutral. Within Gr2, the L21–L22 pair (νd = 95.10 vs 33.27, Δν = 61.83) provides the apochromatic correction that earns the "APO" designation. The super-ED glass FCD100 has strongly anomalous partial dispersion (ΔPgF ≈ +0.0564 per HOYA catalog), and its pairing with the dense flint S-TIH14 (negative ΔPgF) enables three-wavelength color correction — bringing the d, C, and F (or g) lines to a substantially common focus.
+The chromatic correction strategy operates at two levels. Within Gr1, the triplet L11–L12–L13 spans Abbe numbers from 23.78 to 59.38, forming an achromatic front section that is nearly color-neutral. Within Gr2, the L21–L22 pair (νd = 95.10 vs 33.27, Δν = 61.83) provides the apochromatic correction that earns the "APO" designation. The super-ED glass FCD100 has strongly anomalous partial dispersion (ΔPgF ≈ +0.0564 per HOYA catalog), and its pairing with the dense flint NBFD15 enables three-wavelength color correction — bringing the d, C, and F (or g) lines to a substantially common focus.
 
 This two-tier chromatic strategy is architecturally important for a macro lens: because Gr2 moves during focusing, its chromatic contribution changes with magnification. By making Gr2 internally apochromatic (rather than relying on chromatic balance between groups), the design ensures that the residual chromatic aberration remains small at all focus positions from infinity to 1:1 — a requirement for the Leica "APO" standard.
 
-The glass palette mixes OHARA and HOYA vendors. Nine of ten elements use OHARA glasses (all with exact nd/νd matches), while L21 uses HOYA FCD100 (nd = 1.43700, νd = 95.10 — exact match). OHARA does not have a catalog glass at this precise index and Abbe number; S-FPL55 (nd = 1.43875, νd = 94.66) and S-FPL53 (nd = 1.43875, νd = 94.93) both differ in nd by 0.00175. This cross-vendor selection is not unusual in Konica Minolta patents.
+The glass palette mixes OHARA and HOYA vendors. Seven of ten elements use OHARA glasses with exact nd/νd matches, while L21 uses HOYA FCD100, L22 uses HOYA NBFD15, and L31 uses HOYA TAFD35. This cross-vendor selection is not unusual in Konica Minolta patents.
 
 ## Focus Mechanism
 
@@ -184,7 +184,7 @@ The focus group weight is minimized by the three-singlet construction using rela
 
 ## Aspherical Surfaces
 
-The design employs four aspherical surfaces on two elements: L12 (surfaces 3 and 4, both aspheric) and L23 (surfaces 12 and 13, both aspheric). Both elements use S-BAL35 (OHARA), a barium crown glass carrying OHARA's S-prefix designation (conventional polishing grade, not the L-prefix used for precision glass molding). The aspherical surfaces are therefore inferred to be polished glass aspherics rather than PGM-molded.
+The design employs four aspherical surfaces on two elements: L12 (surfaces 3 and 4, both aspheric) and L23 (surfaces 12 and 13, both aspheric). Both elements use S-BAL42 (OHARA), a barium crown glass carrying OHARA's S-prefix designation (conventional polishing grade, not the L-prefix used for precision glass molding). The aspherical surfaces are therefore inferred to be polished glass aspherics rather than PGM-molded.
 
 The sag equation used in the patent (¶0060, equation AS) is:
 
@@ -238,12 +238,12 @@ Condition (4) constrains Gr1's power and is the most distinctive condition in th
 
 This patent belongs to a lineage of Konica Minolta macro lens designs for Leica's mirrorless camera systems. The three cited prior art references (JP 2011-180226A, JP 2008-257088A, JP 2011-048232A) represent earlier macro lens approaches that either used floating focus (multiple moving groups, mechanically complex) or single-group focus with more elements in the moving group (heavier, slower AF). The present invention's contribution is the combination of single-group inner focus (for mechanical simplicity and AF speed) with a near-afocal front group (for focus-invariant aberration correction), enabled by strong aspherical correction in both Gr1 and Gr2.
 
-The production lens was announced on 1 September 2016 as the sixth TL-mount lens and the first macro lens in Leica's TL system. It carries the "APO" designation, which under Leica's internal standard requires apochromatic correction at all apertures and all focus distances — a requirement met by the FCD100/S-TIH14 pairing in the focus group and verified by the aberration plots in the patent (Figures 39–40) showing well-corrected lateral color at both infinity and 1:1.
+The production lens was announced on 1 September 2016 as the sixth TL-mount lens and the first macro lens in Leica's TL system. It carries the "APO" designation, which under Leica's internal standard requires apochromatic correction at all apertures and all focus distances — a requirement met by the FCD100/NBFD15 pairing in the focus group and verified by the aberration plots in the patent (Figures 39–40) showing well-corrected lateral color at both infinity and 1:1.
 
 ## Sources
 
 1. JP 2016-090725 A (Konica Minolta, Inc. / Tanaka Hiroaki), published 23 May 2016. Full text and figures consulted.
 2. Leica Camera AG product specification: APO-Macro-Elmarit-TL 60 mm f/2.8 ASPH (11086/11087). Accessed via leica-camera.com.
-3. OHARA Inc. optical glass catalog (2018 edition). Used for glass identification of S-TIH53, S-BAL35, S-TIM28, S-TIH14, S-LAH79, S-NSL3, S-BAL2, S-LAL18.
-4. HOYA Corporation optical glass catalog. Used for identification of FCD100 (nd = 1.43700, νd = 95.10).
+3. OHARA Inc. optical glass catalog (2018 edition). Used for glass identification of S-TIH53, S-BAL42, S-TIM28, S-NSL3, S-BAL2, S-LAL18.
+4. HOYA Corporation optical glass catalog. Used for identification of FCD100 (nd = 1.43700, νd = 95.10), NBFD15, and TAFD35.
 5. PhotoArk review of the Leica APO-Macro-Elmarit-TL 60 mm f/2.8 (photoark.co.uk). Production behavior note regarding automatic aperture stop-down at closest focus.

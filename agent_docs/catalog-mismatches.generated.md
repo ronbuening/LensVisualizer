@@ -17,8 +17,8 @@ with words like "probable" or "approx").
 - **2573** glass surfaces examined
 - **2567** surfaces with non-empty `glass` strings
 - **1826** of those resolved to a catalog entry
-- **256** mismatches found (14.0% of resolved surfaces)
-- **102** distinct lens files affected
+- **236** mismatches found (12.9% of resolved surfaces)
+- **97** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,15 +27,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
-| S-LAH79 | 9 | |
 | S-TIH18 | 8 | |
-| S-TIH14 | 8 | |
-| S-LAL14 | 7 | |
+| S-LAH79 | 8 | |
+| S-LAL14 | 6 | |
 | S-LAH58 | 6 | |
-| S-TIH4 | 6 | |
-| S-TIH53 | 6 | |
 | TAFD30 | 6 | |
 | S-TIM2 | 6 | |
+| S-TIH14 | 6 | |
 | S-NPH4 | 5 | |
 | TAFD25 | 5 | |
 | S-TIM22 | 5 | |
@@ -43,7 +41,9 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BAL42 | 4 | |
 | S-LAL8 | 4 | |
 | E-FD15 | 4 | |
+| S-TIH4 | 4 | |
 | S-NBH55 | 4 | |
+| S-TIH53 | 4 | |
 | S-TIM25 | 4 | |
 | S-NPH53 | 4 | |
 | S-TIH6 | 4 | |
@@ -51,21 +51,19 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | SF6 | 4 | |
 | S-TIH11 | 3 | |
 | S-TIL27 | 3 | |
-| S-TIL25 | 3 | |
 | S-TIH10 | 3 | |
 | S-BSL7 | 3 | |
 | S-LAH65 | 3 | |
-| S-NBH52V | 3 | |
 | S-TIM28 | 3 | |
 | E-FD5 | 3 | |
 | S-FPM2 | 3 | |
-| S-BAL35 | 3 | |
 | TAF5 | 3 | |
 | S-BAL14 | 3 | |
 | S-NPH5 | 3 | |
 | S-LAH51 | 3 | |
 | S-NBH8 | 3 | |
 | S-LAM66 | 2 | |
+| S-TIL25 | 2 | |
 | S-NSL5 | 2 | |
 | S-LAH55V | 2 | |
 | S-TIH53W | 2 | |
@@ -81,12 +79,10 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | N-SK16 | 2 | |
 | NBFD15 | 2 | |
 | S-LAL59 | 2 | |
-| S-BSM18 | 2 | |
-| S-LAM2 | 2 | |
-| S-LAH64 | 2 | |
 | S-NBH56 | 2 | |
 | S-LAH96 | 2 | |
 | E-FDS1 | 2 | |
+| S-NBH52V | 2 | |
 | S-LAM55 | 2 | |
 | S-NPH2 | 2 | |
 | S-LAH63Q | 2 | |
@@ -94,25 +90,23 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-PHM53 | 2 | |
 | S-NPH3 | 1 | |
 | S-LAH65V | 1 | |
-| S-LAM51 | 1 | |
 | K-VC89 | 1 | |
 | S-LAL13 | 1 | |
 | S-LAM60 | 1 | |
 | E-FD2 | 1 | |
-| S-FPL51 | 1 | |
 | S-NBH52 | 1 | |
 | S-TIM3 | 1 | |
 | H-ZF88 | 1 | |
 | S-LAH63 | 1 | |
 | S-NSL3 | 1 | |
 | S-TIH13 | 1 | |
-| S-TIL26 | 1 | |
 | S-LAH53 | 1 | |
 | S-BSM81 | 1 | |
 | S-LAM54 | 1 | |
 | S-LAM3 | 1 | |
 | S-LAH66 | 1 | |
 | S-TIH23 | 1 | |
+| S-LAH64 | 1 | |
 | S-NPH1 | 1 | |
 | LAC12 | 1 | |
 | E-CF6 | 1 | |
@@ -120,6 +114,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-PHM52 | 1 | |
 | S-LAH55 | 1 | |
 | S-LAH93 | 1 | |
+| S-BAL35 | 1 | |
 | S-LAH98 | 1 | |
 | S-LAH52 | 1 | |
 | S-BAL2 | 1 | |
@@ -180,24 +175,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 17 | `855248 — S-TIH53W family (OHARA)` | S-TIH53W | 1.85478 | 1.84666 | -0.0081 |
 | 26 | `744448 — S-LAL14 family (OHARA)` | S-LAL14 | 1.74400 | 1.69680 | -0.0472 |
 
-### [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) — US 2018/0059384 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 4 | `S-TIH4 (OHARA)` | S-TIH4 | 1.74950 | 1.75520 | +0.0057 |
-| 10 | `S-TIL25 (OHARA)` | S-TIL25 | 1.51742 | 1.58144 | +0.0640 |
-| 15 | `S-LAM51 (OHARA)` | S-LAM51 | 1.72000 | 1.70000 | -0.0200 |
-| 20 | `S-NBH52V (OHARA)` | S-NBH52V | 1.62588 | 1.67300 | +0.0471 |
-
-### [HASSELBLAD HC 4.5/300](../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) — US 2006/0209426 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 5 | `S-FPL51 (OHARA)` | S-FPL51 | 1.43875 | 1.49700 | +0.0582 |
-| 9 | `S-TIH53 (OHARA)` | S-TIH53 | 1.80518 | 1.84666 | +0.0415 |
-| 13 | `S-LAL14 (OHARA)` | S-LAL14 | 1.74320 | 1.69680 | -0.0464 |
-| 15 | `S-TIH53 (OHARA)` | S-TIH53 | 1.80518 | 1.84666 | +0.0415 |
-
 ### [HASSELBLAD HC MACRO 4/120](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) — JP 2004-302170 A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -215,15 +192,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 11 | `S-FPM2 (OHARA)` | S-FPM2 | 1.53775 | 1.59522 | +0.0575 |
 | 13 | `S-LAH79 (OHARA)` | S-LAH79 | 1.89190 | 2.00330 | +0.1114 |
 | 14 | `S-TIM22 (OHARA)` | S-TIM22 | 1.69895 | 1.64769 | -0.0513 |
-
-### [LEICA APO-MACRO-ELMARIT-TL 60 mm f/2.8 ASPH.](../src/lens-data/leica/LeicaAPOMacroElmaritTL60mmf28.data.ts) — JP 2016-090725A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3A | `S-BAL35 (OHARA)` | S-BAL35 | 1.58313 | 1.58913 | +0.0060 |
-| 9 | `S-TIH14 (OHARA)` | S-TIH14 | 1.80610 | 1.76182 | -0.0443 |
-| 11A | `S-BAL35 (OHARA)` | S-BAL35 | 1.58313 | 1.58913 | +0.0060 |
-| 13 | `S-LAH79 (OHARA)` | S-LAH79 | 1.91082 | 2.00330 | +0.0925 |
 
 ### [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Q3 43)](../src/lens-data/leica/LeicaAPO43mmf2.data.ts) — US 2024/0241349 A1
 
@@ -243,15 +211,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 12A | `S-LAH63 (OHARA)` | S-LAH63 | 1.87722 | 1.80440 | -0.0728 |
 | 15 | `S-NBH55 (OHARA)` | S-NBH55 | 1.74077 | 1.80000 | +0.0592 |
 
-### [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) — WO2019/116563 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
-| 19 | `S-LAM2 equiv. (Ohara)` | S-LAM2 | 1.72047 | 1.74400 | +0.0235 |
-| 20 | `S-LAH64 equiv. (Ohara)` | S-LAH64 | 1.76684 | 1.78800 | +0.0212 |
-| 22 | `S-TIL26 (Ohara)` | S-TIL26 | 1.58144 | 1.56732 | -0.0141 |
-
 ### [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) — US 7,359,125 B2
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -269,15 +228,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 9 | `S-TIM22 (OHARA)` | S-TIM22 | 1.58267 | 1.64769 | +0.0650 |
 | 19 | `S-LAL59 (OHARA)` | S-LAL59 | 1.62041 | 1.73400 | +0.1136 |
 | 21 | `S-TIH53 (OHARA), Δνd = 0.21; alt. CDGM H-LAF3B (Δνd = 0.01)` | S-TIH53 | 1.80610 | 1.84666 | +0.0406 |
-
-### [NIKON AI Nikkor 135mm f/2.8](../src/lens-data/nikon/NikonAI135mmf28.data.ts) — US 4,057,330
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
-| 3 | `S-BSM18 (OHARA)` | S-BSM18 | 1.62041 | 1.63854 | +0.0181 |
-| 5 | `S-TIH14 (OHARA)` | S-TIH14 | 1.78470 | 1.76182 | -0.0229 |
-| 6 | `S-TIH4 (OHARA)` | S-TIH4 | 1.74000 | 1.75520 | +0.0152 |
 
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) — WO 2022/259649 A1
 

@@ -81,9 +81,9 @@ The first ED element (f ≈ +177 mm). The glass is identified with high confiden
 | 6 (junction) | −266.98950 | 3.500 | 1.72047 | 34.71 | 0.583 | L14 (neg) |
 | 7 | 168.27370 | D7 (var) | (air) | | | |
 
-The second cemented group in G1 pairs another S-FPL51 ED element (L13, f ≈ +112 mm) with a lanthanum flint negative element (L14, f ≈ −143 mm). This is a classic achromatic doublet configuration — a low-dispersion positive element cemented to a high-dispersion negative element — and it performs the primary chromatic correction for the front group. The L13 element is the thickest single element in the system at 11.648 mm, consistent with the patent's observation that the positive APD/ED lenses require substantial axial thickness (condition 5: DP1 > 0.80 mm) to achieve effective aberration correction.
+The second cemented group in G1 pairs another S-FPL51 ED element (L13, f ≈ +112 mm) with a high-dispersion negative element (L14, f ≈ −143 mm). This is a classic achromatic doublet configuration — a low-dispersion positive element cemented to a high-dispersion negative element — and it performs the primary chromatic correction for the front group. The L13 element is the thickest single element in the system at 11.648 mm, consistent with the patent's observation that the positive APD/ED lenses require substantial axial thickness (condition 5: DP1 > 0.80 mm) to achieve effective aberration correction.
 
-L14's glass (nd = 1.72047, νd = 34.71, θgF = 0.583) is a lanthanum-containing medium-flint type, likely **Ohara S-LAM2** or an equivalent melt. It sits nearly exactly on the Schott normal line (ΔθgF ≈ −0.002), which is ideal for the flint component of an achromatic doublet — the ED element provides the anomalous dispersion for secondary spectrum correction, while the flint partner provides normal dispersion behavior for first-order achromatization.
+L14's glass (nd = 1.72047, νd = 34.71, θgF = 0.583) is a niobium-barium heavy flint type, identified as **Ohara S-NBH8**. It sits nearly exactly on the Schott normal line (ΔθgF ≈ −0.002), which is ideal for the flint component of an achromatic doublet — the ED element provides the anomalous dispersion for secondary spectrum correction, while the flint partner provides normal dispersion behavior for first-order achromatization.
 
 ### Group G2 — Focusing Group (Negative)
 
@@ -163,7 +163,7 @@ The third ED element (f ≈ +80 mm), again in **S-FPL51**. Positioned immediatel
 | 20 (junction) | 23.56120 | 8.119 | 1.76684 | 46.78 | 0.558 | L36 (pos) |
 | 21 | −400.50550 | 2.828 | (air) | | | |
 
-This doublet pairs a thin biconcave negative element (L35, same glass as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, tentatively **Ohara S-LAH64** or equivalent, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
+This doublet pairs a thin biconcave negative element (L35, same glass as L14: nd = 1.72047, νd = 34.71) with a thick biconvex positive element (L36, f ≈ +29 mm). L36's glass (nd = 1.76684, νd = 46.78, θgF = 0.558) is a lanthanum heavy flint, identified as **Ohara S-LAH96**, sitting slightly below the normal line (ΔθgF ≈ −0.007). This doublet provides strong positive power in the rear group while correcting higher-order spherical aberration and coma in the diverging beam behind the stop. The strongly curved junction surface (R₂₀ = 23.56 mm) generates substantial monochromatic surface power at the cemented interface — the large refractive index step (Δnd = 0.046) provides leverage for correcting zonal spherical aberration, while the moderate difference in V-number between the two glasses (Δνd ≈ 12) keeps the chromatic contribution at the junction manageable.
 
 **L37–L38 — Cemented doublet (Elements 13–14)**
 
@@ -173,7 +173,7 @@ This doublet pairs a thin biconcave negative element (L35, same glass as L14: nd
 | 23 (junction) | 124.06960 | 5.332 | 2.00100 | 29.13 | 0.599 | L38 (pos) |
 | 24 | −52.63590 | BF = 39.632 | (air) | | | |
 
-The final cemented doublet in the system. L37 is a thin biconcave negative element (f ≈ −51 mm) in a titanium flint glass strongly matched to **Ohara S-TIL26** (catalog: nd = 1.58144, νd = 40.98 — exact match). L38 is the second ultra-high-index element (f ≈ +37 mm), using the same nd ≈ 2.001 glass as L31.
+The final cemented doublet in the system. L37 is a thin biconcave negative element (f ≈ −51 mm) in a HOYA dense flint glass strongly matched to **E-FL5** (catalog: nd = 1.58144, νd = 40.98 — exact match). L38 is the second ultra-high-index element (f ≈ +37 mm), using the same nd ≈ 2.001 glass as L31.
 
 This doublet is the last optical element before the image plane and plays a critical role in final aberration balancing. The ultra-high-index rear component (L38) provides the strong positive power needed to bring the beam to focus while its high dispersion contributes to chromatic balance. The negative component (L37) corrects the residual Petzval curvature and provides a flattening contribution to the field. Together, this doublet handles the final convergence of the off-axis bundles and fine-tunes the residual lateral color, distortion, and astigmatism for the image.
 
@@ -181,7 +181,7 @@ This doublet is the last optical element before the image plane and plays a crit
 
 ## 4. Glass Map Summary
 
-The system employs 10 distinct glass types across its 14 elements. Three elements use the same ED glass (S-FPL51), two elements share the nd ≈ 2.001 ultra-high-index glass, and two share the nd = 1.72047 lanthanum flint. The glass selection strategy is characteristic of Nikon's approach to high-performance fast primes:
+The system employs 10 distinct glass types across its 14 elements. Three elements use the same ED glass (S-FPL51), two elements share the nd ≈ 2.001 ultra-high-index glass, and two share the nd = 1.72047 niobium-barium heavy flint. The glass selection strategy is characteristic of Nikon's approach to high-performance fast primes:
 
 | Glass | nd | νd | θgF | ΔθgF | Elements | Role |
 |-------|----|----|-----|------|----------|------|
@@ -189,12 +189,12 @@ The system employs 10 distinct glass types across its 14 elements. Three element
 | APD specialty | 1.65940 | 26.87 | 0.633 | +0.034 | L21 | High-dispersion anomalous glass — secondary spectrum via different mechanism |
 | S-LAH79 equiv. | 2.00100 | 29.13 | 0.599 | +0.004 | L31, L38 | Ultra-high index for compact power, monochromatic correction |
 | S-LAL14 (Ohara) | 1.69680 | 55.52 | 0.543 | −0.007 | L32 | Lanthanum crown, positive power near stop |
-| Lanthanum flint | 1.72047 | 34.71 | 0.583 | −0.002 | L14, L35 | Achromatic flint partner for ED doublets |
+| S-NBH8 (Ohara) | 1.72047 | 34.71 | 0.583 | −0.002 | L14, L35 | Achromatic flint partner for ED doublets |
 | S-FPM2 equiv. | 1.59349 | 67.00 | 0.537 | +0.006 | L11 | Fluorophosphate crown, front element |
 | S-BSL7 equiv. | 1.51680 | 63.88 | 0.536 | −0.000 | L22 | Standard borosilicate crown |
 | Specialty flint | 1.71736 | 29.57 | 0.604 | +0.010 | L33 | High-dispersion with moderate APD |
-| LAH-type | 1.76684 | 46.78 | 0.558 | −0.007 | L36 | Lanthanum heavy flint |
-| S-TIL26 (Ohara) | 1.58144 | 40.98 | 0.576 | +0.001 | L37 | Light titanium flint |
+| S-LAH96 (Ohara) | 1.76684 | 46.78 | 0.558 | −0.007 | L36 | Lanthanum heavy flint |
+| E-FL5 (HOYA) | 1.58144 | 40.98 | 0.576 | +0.001 | L37 | Dense flint |
 
 The ΔθgF column quantifies the deviation from the Schott normal line (θgF = −0.001682 × νd + 0.6438). Values significantly above zero indicate positive anomalous partial dispersion (APD), which is the key property for correcting secondary spectrum. The three S-FPL51 elements and the specialty L21 glass all show ΔθgF > +0.03, confirming they are the principal contributors to secondary spectrum correction.
 
@@ -221,7 +221,7 @@ G2's negative power (acting as a diverging element within the converging beam fr
 
 The patent's central claim is the use of a positive lens with specific anomalous partial dispersion properties (conditions 1–3) placed ahead of the aperture stop to achieve superior secondary spectrum correction. The chromatic correction strategy in Example 3 operates on two complementary levels.
 
-**First-order achromatization** is handled by classical crown-flint doublet pairing throughout the system: L13+L14 in G1 (S-FPL51 + lanthanum flint), L21+L22 in G2 (APD glass + borosilicate crown), L32+L33 in G3, L35+L36 in G3, and L37+L38 in G3. Each doublet pairs a lower-dispersion positive element with a higher-dispersion negative element (or vice versa) to bring two wavelengths to a common focus.
+**First-order achromatization** is handled by classical crown-flint doublet pairing throughout the system: L13+L14 in G1 (S-FPL51 + S-NBH8), L21+L22 in G2 (APD glass + borosilicate crown), L32+L33 in G3, L35+L36 in G3, and L37+L38 in G3. Each doublet pairs a lower-dispersion positive element with a higher-dispersion negative element (or vice versa) to bring two wavelengths to a common focus.
 
 **Secondary spectrum correction** — the correction of the residual longitudinal chromatic aberration at a third wavelength after first-order achromatization — is achieved through the use of glasses with anomalous partial dispersion. The three S-FPL51 elements (L12, L13, L34) and the specialty APD glass in L21 all deviate significantly above the normal line (ΔθgF > +0.03). When these glasses are paired with normal-dispersion flint partners, the anomalous dispersion of the positive elements partially cancels the secondary spectrum that a normal-glass doublet would produce.
 
@@ -294,5 +294,6 @@ Several features visible in the patent but not explicitly described in Nikon's m
 - Nikon Corporation press release, 27 July 2016: "AF-S NIKKOR 105mm f/1.4E ED" (nikon.com/company/news/2016/0727_lens_01.html)
 - "NIKKOR — The Thousand and One Nights," Tale 59: AI Nikkor 105mm f/1.8S and AF-S NIKKOR 105mm f/1.4E ED (imaging.nikon.com/imaging/information/story/0059/)
 - CameraGossip Nikon lens patent database (cameragossip.github.io/nikon-lens-patents.html)
-- Ohara optical glass catalog — S-FPL51, S-LAL14, S-TIL26, S-BSL7 datasheets
+- Ohara optical glass catalog — S-FPL51, S-NBH8, S-LAH96, S-LAL14, S-BSL7 datasheets
+- HOYA optical glass catalog — E-FL5 datasheet
 - Schott optical glass catalog — normal line coefficient reference (θgF = −0.001682 × νd + 0.6438)

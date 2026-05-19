@@ -61,11 +61,11 @@ The θgF = 0.53007 places this glass slightly above the Schott normal line (ΔPg
 
 **L12** — Biconvex Positive (ED). nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +70.5 mm.
 
-**L13** — Biconcave Negative. nd = 1.74950, νd = 35.28. Glass: S-TIH4 (OHARA) — titanium flint. f = −41.0 mm.
+**L13** — Biconcave Negative. nd = 1.74950, νd = 35.28. Glass: S-NBH51 (OHARA) — niobium-barium heavy flint. f = −41.0 mm.
 
 **Doublet combined:** f = −112.9 mm (net negative).
 
-This is the first of the three ED-containing doublets and constitutes the primary longitudinal chromatic aberration corrector for the front group. The pairing of S-FPL51 (νd = 81.54, ΔPgF ≈ +0.031) with S-TIH4 (νd = 35.28) achieves a large Abbe-number difference of Δν ≈ 46 in a compact cemented interface, providing strong primary chromatic correction. The anomalous partial dispersion of S-FPL51 simultaneously addresses secondary spectrum.
+This is the first of the three ED-containing doublets and constitutes the primary longitudinal chromatic aberration corrector for the front group. The pairing of S-FPL51 (νd = 81.54, ΔPgF ≈ +0.031) with S-NBH51 (νd = 35.28) achieves a large Abbe-number difference of Δν ≈ 46 in a compact cemented interface, providing strong primary chromatic correction. The anomalous partial dispersion of S-FPL51 simultaneously addresses secondary spectrum.
 
 Despite containing two individually strong elements, the doublet as a combined unit is weakly negative (f ≈ −113 mm). The patent text at ¶0122 explains this arrangement: the positive-negative-positive sub-structure of G1 (L11, then L12+L13 net negative, then L14 positive) suppresses spherical aberration and longitudinal chromatic aberration while maintaining the overall positive power of G1.
 
@@ -85,19 +85,19 @@ L21 is the front element of the focusing group G2, a strongly negative biconcave
 
 ### L22+L23 — Cemented Doublet (D2), G2
 
-**L22** — Biconcave Negative. nd = 1.51742, νd = 52.43. Glass: S-TIL25 (OHARA) — titanium crown. f = −43.3 mm.
+**L22** — Biconcave Negative. nd = 1.51742, νd = 52.43. Glass: S-NSL36 (OHARA) — light silicate glass. f = −43.3 mm.
 
 **L23** — Biconvex Positive. nd = 1.80000, νd = 29.84. Glass: S-LAH52Q (OHARA) — high-index anomalous-dispersion lanthanum flint. f = +34.2 mm.
 
 **Doublet combined:** f = +148.3 mm (weakly positive).
 
-This doublet is the chromatic corrector for G2. The pairing is unusual: S-TIL25 is a titanium crown of moderate dispersion (νd = 52.43) while S-LAH52Q is a strongly dispersive lanthanum flint (νd = 29.84, θgF = 0.60178 — well above the normal line). The large Abbe difference (Δν ≈ 23) provides lateral chromatic aberration correction within G2. The doublet is net weakly positive, so the overall negative power of G2 comes predominantly from L21. The patent at ¶0135 states that this three-element negative-negative-positive structure in G2 suppresses variation in astigmatism during focusing.
+This doublet is the chromatic corrector for G2. The pairing is unusual: S-NSL36 is a moderate-dispersion silicate glass (νd = 52.43) while S-LAH52Q is a strongly dispersive lanthanum flint (νd = 29.84, θgF = 0.60178 — well above the normal line). The large Abbe difference (Δν ≈ 23) provides lateral chromatic aberration correction within G2. The doublet is net weakly positive, so the overall negative power of G2 comes predominantly from L21. The patent at ¶0135 states that this three-element negative-negative-positive structure in G2 suppresses variation in astigmatism during focusing.
 
 ### L31+L32 — Cemented Doublet (D3 / G3, OIS Group)
 
 **L31** — Biconvex Positive (ED). nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +53.5 mm.
 
-**L32** — Negative Meniscus, Concave to Object. nd = 1.72000, νd = 43.69. Glass: S-LAM51 (OHARA) — lanthanum flint. f = −100.7 mm.
+**L32** — Negative Meniscus, Concave to Object. nd = 1.72000, νd = 43.69. Glass: S-LAM52 (OHARA) — lanthanum flint. f = −100.7 mm.
 
 **Doublet combined (= G3):** f = +113.4 mm.
 
@@ -119,11 +119,11 @@ L41 is the front element of focusing group G4, a meniscus with both radii negati
 
 **L42** — Biconvex Positive (ED). nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA) — ED fluorophosphate crown. f = +61.7 mm.
 
-**L43** — Negative Meniscus, Concave to Object. nd = 1.62588, νd = 35.70. Glass: S-NBH52V (OHARA) — niobium-barium heavy flint. f = −74.7 mm.
+**L43** — Negative Meniscus, Concave to Object. nd = 1.62588, νd = 35.70. Glass: E-F1 (HOYA) — dense flint. f = −74.7 mm.
 
 **Doublet combined:** f = +342.4 mm (weakly positive).
 
-This is the third ED doublet. The S-FPL51 + S-NBH52V pairing achieves a large Abbe difference (Δν ≈ 46) and also leverages the anomalous partial dispersion of S-FPL51 to correct secondary spectrum introduced by the converging beam geometry at this location. The doublet is weakly positive, contributing modestly to G4's overall positive power (f₄ = +90.6 mm), with L41 providing the majority. The distribution of power between L41 (a singlet) and the weakly positive D4 helps maintain stable aberration correction across the focus range.
+This is the third ED doublet. The S-FPL51 + E-F1 pairing achieves a large Abbe difference (Δν ≈ 46) and also leverages the anomalous partial dispersion of S-FPL51 to correct secondary spectrum introduced by the converging beam geometry at this location. The doublet is weakly positive, contributing modestly to G4's overall positive power (f₄ = +90.6 mm), with L41 providing the majority. The distribution of power between L41 (a singlet) and the weakly positive D4 helps maintain stable aberration correction across the focus range.
 
 ### L51+L52 — Cemented Doublet (D5 / G5, Rear Group)
 
@@ -147,16 +147,16 @@ All 14 glasses resolve to OHARA catalog entries with exact (Δnd = 0, Δνd < 0.
 |---|---|---|---|---|---|---|
 | L11 | 1.48749 | 70.24 | 0.53007 | S-FSL5 | Fluorosilicate crown | Low-aberration front element |
 | L12 | 1.49700 | 81.54 | 0.53748 | S-FPL51 | ED fluorophosphate crown | Primary chromatic corrector (G1) |
-| L13 | 1.74950 | 35.28 | 0.58704 | S-TIH4 | Titanium flint | Achromatic partner to L12 |
+| L13 | 1.74950 | 35.28 | 0.58704 | S-NBH51 | Niobium-barium heavy flint | Achromatic partner to L12 |
 | L14 | 1.85150 | 40.78 | 0.56958 | S-LAH85V | High-index lanthanum glass | Strong positive power, low SA |
 | L21 | 1.83481 | 42.72 | 0.56486 | S-LAH55V | High-index lanthanum glass | Primary diverger (G2) |
-| L22 | 1.51742 | 52.43 | 0.55649 | S-TIL25 | Titanium crown | Chromatic corrector (G2) |
+| L22 | 1.51742 | 52.43 | 0.55649 | S-NSL36 | Light silicate glass | Chromatic corrector (G2) |
 | L23 | 1.80000 | 29.84 | 0.60178 | S-LAH52Q | High-index lanthanum flint | Chromatic corrector flint (G2) |
 | L31 | 1.49700 | 81.54 | 0.53748 | S-FPL51 | ED fluorophosphate crown | OIS group chromatic corrector |
-| L32 | 1.72000 | 43.69 | 0.56995 | S-LAM51 | Lanthanum flint | Achromatic partner to L31 |
+| L32 | 1.72000 | 43.69 | 0.56995 | S-LAM52 | Lanthanum flint | Achromatic partner to L31 |
 | L41 | 1.70154 | 41.24 | 0.57664 | S-BAH27 | Barium flint | Focus group singlet (G4) |
 | L42 | 1.49700 | 81.54 | 0.53748 | S-FPL51 | ED fluorophosphate crown | Focus group chromatic corrector |
-| L43 | 1.62588 | 35.70 | 0.58935 | S-NBH52V | Niobium-barium heavy flint | Achromatic partner to L42 |
+| L43 | 1.62588 | 35.70 | 0.58935 | E-F1 | Dense flint | Achromatic partner to L42 |
 | L51 | 1.80400 | 46.58 | 0.55730 | S-LAH65V | High-index lanthanum glass | Rear diverger |
 | L52 | 1.83400 | 37.16 | 0.57759 | S-LAH60V | High-index lanthanum flint | Lateral chromatic corrector |
 
