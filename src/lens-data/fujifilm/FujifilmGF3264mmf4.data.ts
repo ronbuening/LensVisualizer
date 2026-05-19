@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-32-64mm-f4-r-lm-wr",
   maker: "Fujifilm",
-  name: "FUJIFILMFUJINON GF32-64mmF4 R LM WR",
+  name: "FUJIFILM FUJINON GF32-64mmF4 R LM WR",
   subtitle: "US 10,191,246 B2 Example 1 — Fujifilm / Hiroki Saito",
   specs: [
     "14 lens elements / 11 groups",
