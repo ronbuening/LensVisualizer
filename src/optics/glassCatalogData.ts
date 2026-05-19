@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 226 vendor-verified entries (Phase 15, May 2026)
+ * GLASS CATALOG — 229 vendor-verified entries (Phase 16, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -208,6 +208,16 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     source: "Ohara AGF (ohara_2017-11-30.agf), vendor-published Zemax catalog data.",
   },
   {
+    name: "S-TIH3",
+    vendor: "Ohara",
+    B: [1.64797648, 0.267261917, 2.19772845],
+    C: [0.0121917693, 0.0597893039, 192.15834],
+    nd: 1.739998,
+    vd: 28.296005,
+    code6: "740283",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH3 page.",
+  },
+  {
     name: "S-TIH6",
     vendor: "Ohara",
     B: [1.77227611, 0.34569125, 2.40788501],
@@ -292,6 +302,16 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5419,
     code6: "583594",
     source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Barium crown.",
+  },
+  {
+    name: "S-BSM22",
+    vendor: "Ohara",
+    B: [1.44305741, 0.140786358, 1.26093951],
+    C: [0.0081920891, 0.0356911455, 131.959337],
+    nd: 1.622296,
+    vd: 53.169067,
+    code6: "622532",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BSM22 page.",
   },
   {
     name: "S-LAH63",
@@ -968,6 +988,7 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     C: [0.00999021738, 0.0450327698, 163.722302],
     nd: 1.672999,
     vd: 38.15,
+    code6: "673382",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info.",
   },
   {
@@ -1758,6 +1779,15 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5981,
     code6: "689312",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD8 page (formula 3 polynomial).",
+  },
+  {
+    name: "FF8",
+    vendor: "Hoya",
+    polynomial: [2.9564361, -0.019762195, 0.029878823, 0.0051830852, -0.00054202389, 0.000048463245],
+    nd: 1.75211,
+    vd: 25.05,
+    code6: "752251",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FF8 page (formula 3 polynomial).",
   },
   {
     name: "TAFD35",

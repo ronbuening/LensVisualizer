@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **223** lenses scanned
 - **2573** non-air surfaces examined
 - **2567** element glass declarations examined
-- **526** non-explicit-unmatched annotations did not resolve
-- **150** distinct unresolved glass-like tokens found
+- **519** non-explicit-unmatched annotations did not resolve
+- **151** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -44,6 +44,7 @@ or per-lens patent backfills.
 | 531559 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
+| 561453 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
@@ -54,15 +55,14 @@ or per-lens patent backfills.
 | 640601 | 1 | 1 | |
 | 658509 | 1 | 1 | |
 | 661508 | 1 | 1 | |
+| 667311 | 1 | 1 | |
 | 667330 | 1 | 1 | |
 | 670393 | 1 | 1 | |
 | 670573 | 1 | 1 | |
-| 673382 | 1 | 1 | |
 | 684376 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
-| 740283 | 1 | 1 | |
 | 756247 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
@@ -74,6 +74,7 @@ or per-lens patent backfills.
 | 777297 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 795453 | 1 | 1 | |
+| 803404 | 1 | 1 | |
 | 808409 | 1 | 1 | |
 | 849438 | 1 | 1 | |
 | 850270 | 1 | 1 | |
@@ -301,6 +302,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 - borosilicate crown (nd=1.552981, vd~55.5)`
 
+### 561453 — 1 occurrence
+
+- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 12: `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)`
+
 ### 571560 — 1 occurrence
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 17: `571560 — barium crown (patent nd=1.57125, νd=56.0)`
@@ -341,6 +346,10 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 6: `661508 SSK (≈ Schott N-SSK5)`
 
+### 667311 — 1 occurrence
+
+- [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 6: `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)`
+
 ### 667330 — 1 occurrence
 
 - [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 5: `Dense flint [667330] — OHARA SF19`
@@ -352,10 +361,6 @@ or per-lens patent backfills.
 ### 670573 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
-
-### 673382 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) 11: `673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)`
 
 ### 684376 — 1 occurrence
 
@@ -372,10 +377,6 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 - lanthanum crown (nd=1.738, vd~49.3)`
-
-### 740283 — 1 occurrence
-
-- [HASSELBLAD HC 4/210](../../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) 16: `740283 - titanium flint (patent nd=1.74000, vd=28.3)`
 
 ### 756247 — 1 occurrence
 
@@ -421,9 +422,13 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) 22: `795453 — high-index lanthanum (patent nd=1.79500, νd=45.31)`
 
+### 803404 — 1 occurrence
+
+- [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
+
 ### 808409 — 1 occurrence
 
-- [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `PGM lanthanum dense flint (808409)`
+- [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)`
 
 ### 849438 — 1 occurrence
 

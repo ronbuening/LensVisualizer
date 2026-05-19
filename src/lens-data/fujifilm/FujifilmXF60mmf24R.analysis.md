@@ -74,7 +74,7 @@ L12 is another weakly positive element in a barium crown glass. Like L11, its hi
 | Shape | Positive meniscus | Negative meniscus |
 | Surfaces | S5 (R = +18.512) | S6 junction (R = +57.135) / S7 (R = +12.794) |
 | nd / νd | 1.72916 / 54.7 | 1.66680 / 31.1 |
-| Glass | **S-LAL18** (OHARA) | Dense flint family (no exact catalog match; see §4) |
+| Glass | **S-LAL18** (OHARA) | 667311 dense flint family (no exact catalog match; see §4) |
 | Standalone fl | +35.4 mm | −25.0 mm |
 | Combined fl | −173.6 mm (net negative) |
 
@@ -172,10 +172,10 @@ Glass matches were determined by comparing nd/νd pairs against the OHARA, HOYA,
 | L11 | 1.48749 | 70.2 | 487/702 | **S-FSL5** (OHARA) | Exact |
 | L12 | 1.58913 | 61.1 | 589/611 | **S-BAL35** (OHARA) | Exact |
 | L13 | 1.72916 | 54.7 | 729/547 | **S-LAL18** (OHARA) | Exact |
-| L14 | 1.66680 | 31.1 | 667/311 | Dense flint family | Family only |
+| L14 | 1.66680 | 31.1 | 667311 | Dense flint family; no exact catalog match found | Unresolved |
 | L15 | 1.51742 | 48.8† | 517/522‡ | **S-TIL27** (OHARA) — probable (νd corrected to ≈52.2) | High confidence |
 | L16 | 1.49700 | 81.5 | 497/815 | **S-FPL51** (OHARA) — **ED glass** | Exact |
-| L17 | 1.80348 | 40.4 | 803/404 | Lanthanum heavy flint (PGM-suitable) | Family only |
+| L17 | 1.80348 | 40.4 | 803404 | Lanthanum heavy flint (PGM-suitable); no exact catalog match found | Unresolved |
 | L21 | 1.72916 | 54.7 | 729/547 | **S-LAL18** (OHARA) | Exact (same as L13) |
 | L22 | 1.51823 | 58.9 | 518/589 | **S-NSL3** (OHARA) | Exact |
 | L23 | 1.80400 | 46.6 | 804/466 | **S-LAH65V** (OHARA) | Very close |

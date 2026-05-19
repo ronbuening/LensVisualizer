@@ -125,7 +125,7 @@ G2 has a net focal length of −31.02 mm and is one of two floating focus groups
 - Role: The leading element of the front focus group. Both surfaces are concave, with the strongly curved rear surface (R₂ = +21.9 mm) doing most of the diverging work. The relatively low-dispersion glass keeps chromatic contribution manageable during focus travel.
 
 **L2b + L2c — Cemented doublet (Elements 6 + 7)**
-- L2b: nd = 1.67300, νd = 38.15 → **673382 barium flint** (no exact current catalog match)
+- L2b: nd = 1.67300, νd = 38.15 → **OHARA S-NBH52** (exact code-family match)
 - L2c: nd = 2.00069, νd = 25.46 → **HOYA TAFD40** (ultra-high index dense flint)
 - Standalone thin-lens focal lengths: L2b ≈ −29.3 mm, L2c ≈ +29.1 mm (near-zero combined power)
 - Role: This is a chromatic corrector doublet — the two elements have nearly canceling powers, so their primary contribution is to the chromatic balance of G2 rather than its net refracting power. The use of TAFD40 (nd = 2.001, one of the highest-index optical glasses commercially available) allows the cemented junction surface at R = +22.32 mm to carry strong chromatic correction with minimal surface curvature. The Abbe number difference of only 12.7 between L2b and L2c is unusually small for an achromatic doublet, reflecting the fact that this pair is optimized for chromatic fine-tuning during focus shift rather than primary achromatization.
@@ -273,7 +273,7 @@ The design uses 15 distinct glass annotations across 16 elements, with two repea
 | L1c | 626357 | 1.62588 | 35.70 | Dense flint | Catalog pending |
 | L1d | 583595 — S-BAL41 | 1.58313 | 59.46 | Barium crown | Aspherical substrate; catalog pending |
 | L2a | S-BAL35 | 1.58913 | 61.13 | Barium crown | — |
-| L2b | 673382 | 1.67300 | 38.15 | Barium flint | Catalog pending |
+| L2b | S-NBH52 | 1.67300 | 38.15 | Barium flint | OHARA Sellmeier |
 | L2c | TAFD40 | 2.00069 | 25.46 | Ultra-high index flint | nd > 2.0 |
 | L3a | **S-FPL55** | 1.43875 | 94.66 | **Super ED** | **Fluorite-equivalent APD** |
 | L3b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |

@@ -87,7 +87,7 @@ This doublet controls the sagittal and tangential field curvatures immediately b
 
 **L9:** $n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH6 (OHARA) — titanium dense flint. $f_{L9} = -139.4$ mm.
 
-**L10:** $n_d = 1.74000$, $\nu_d = 28.3$. Glass: 740283 code glass — titanium flint. $f_{L10} = +67.1$ mm.
+**L10:** $n_d = 1.74000$, $\nu_d = 28.3$. Glass: S-TIH3 (OHARA) — titanium flint. $f_{L10} = +67.1$ mm.
 
 Cemented focal length: $f_{L9+L10} = +129.7$ mm.
 
@@ -110,7 +110,7 @@ The design uses nine distinct optical glasses across ten elements (L5 and L9 sha
 | L7 | 1.71736 | 29.5 | SF1 | — | Dense flint | Post-stop field corrector |
 | L8 | 1.80400 | 46.6 | S-LAH65 | TAFD21 | Lanthanum dense flint | Post-stop positive partner |
 | L9 | 1.80518 | 25.4 | S-TIH6 | SF6 | Titanium dense flint | Rear relay meniscus |
-| L10 | 1.74000 | 28.3 | 740283 | — | Titanium flint | Rear relay biconvex |
+| L10 | 1.74000 | 28.3 | S-TIH3 | — | Titanium flint | Rear relay biconvex |
 
 The glass palette reveals a clear strategy. The front group uses two low-dispersion glasses (L1 at $\nu_d = 70.2$, L2 at $\nu_d = 81.6$) to minimize chromatic introduction where the beam diameter is largest. The focus group and rear group shift to high-index, high-dispersion glasses ($n_d > 1.71$ throughout), which allows strongly curved surfaces at smaller diameters to achieve the required power without excessive thickness. The lanthanum dense glasses in L6 ($n_d = 1.816$, S-LAH59) and L8 ($n_d = 1.804$, S-LAH65) supply the high refractive index needed for compact negative and positive elements while maintaining moderate Abbe numbers ($\nu_d \approx 46.6$). Despite the "LAH" (lanthanum heavy) OHARA prefix, these are properly classified as lanthanum flints by the $\nu_d = 50$ boundary convention.
 

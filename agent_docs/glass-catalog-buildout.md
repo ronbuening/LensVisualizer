@@ -81,6 +81,14 @@ already in the catalog.
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
 
+**Phase 16 additions** (May 2026 — Fujifilm/Hasselblad six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ S-BSM22 | Ohara | 1+ | Exact code-family target for `622532`; clears Fujifilm XF 50-140 L22 |
+| ★ FF8 | Hoya | 1+ | Exact code-family target for `752251`; clears Fujifilm XF 56 L15 and future fluor-flint labels |
+| ★ S-TIH3 | Ohara | 1+ | Exact code-family target for `740283`; clears Hasselblad HC 4/210 L10 |
+
 **Phase 15 additions** (May 2026 — patent-audit backfill from the six-digit missing-Sellmeier queue; all entries round-trip through `assertCatalogConsistent`):
 
 | Glass | Vendor | Unlocks | Notes |

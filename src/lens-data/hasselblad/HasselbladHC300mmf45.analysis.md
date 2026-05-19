@@ -63,7 +63,7 @@ The glass choice is unusual for a positive element in a telephoto lens. With νd
 
 ### L2 — G12: Negative Meniscus, convex to object (concave on image side)
 
-nd = 1.80610, νd = 33.3. Glass: 806/333 (dense flint, vendor uncertain — see Glass Identification below). f = −100.0 mm.
+nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA, 806333 code-family — see Glass Identification below). f = −100.0 mm.
 
 G12 is the strongest single element in the lens (|f| = 100 mm). Its rear surface R₄ = +48.901 mm is deeply curved and concave toward the image, producing the dominant negative-power surface of the entire front group (φ₄ = −0.01648 mm⁻¹, surface focal length −60.7 mm). This surface also contributes substantial overcorrected (negative) spherical aberration that partially cancels the undercorrected contribution from G11 and G13.
 
@@ -111,7 +111,7 @@ The lanthanum glass (νd = 49.3, nd = 1.743) provides a good balance of high ind
 ### L8 + L9 — G32 + G33 (Cemented Doublet): Rear Corrector
 
 **G32:** nd = 1.80518, νd = 25.5. Glass: S-TIH6 (OHARA) — titanium heavy flint. Negative meniscus, convex to object.
-**G33:** nd = 1.80610, νd = 33.3. Glass: 806/333 (dense flint, vendor uncertain — same glass as G12). Positive meniscus, convex to object.
+**G33:** nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA, same 806333 code-family as G12). Positive meniscus, convex to object.
 
 The rear cemented doublet is the final optical element before the image plane. Its combined focal length is f = +136.3 mm (weakly positive), contributing a small amount of converging power that helps bring the diverging beam from Group 20 to focus.
 
@@ -123,27 +123,27 @@ The front surface S15 (R = +73.260, φ = +0.01099, surface focal length +91.0 mm
 
 ## Glass Identification and Selection
 
-The lens uses 6 distinct glass types across 9 elements. The identification confidence is high for most glasses — every nd value matches a known catalog entry exactly (to five decimal places), and the νd values agree within typical rounding tolerance (< 0.15 units). One glass type (used in G12 and G33) has no confirmed match in current OHARA, HOYA, Schott, or CDGM catalogs and is designated by its six-digit code.
+The lens uses 6 distinct glass types across 9 elements. The identification confidence is high: every nd value matches a known catalog entry exactly or at the six-digit-code-family level, and the νd values agree within typical rounding tolerance (< 0.15 units). The repeated G12/G33 glass now maps to HOYA NBFD15.
 
 | Element | nd | νd | Best match | Vendor | Glass family | ΔPg,F | Confidence |
 |---------|------|------|-----------|--------|-------------|-------|-----------|
 | G11 | 1.70154 | 41.1 | S-BAH27 | OHARA | Dense barium crown (flint by νd) | — | High (nd/νd match) |
-| G12 | 1.80610 | 33.3 | 806/333 | uncertain | Dense flint | — | Code only |
+| G12 | 1.80610 | 33.3 | NBFD15 | Hoya | Dense niobium flint | 806333 | Code-family exact |
 | G13 | 1.43875 | 95.0 | S-FPL53 | OHARA | Fluorophosphate ED crown | +0.046 | High |
 | G14 | 1.62041 | 60.4 | S-BSM16 / N-SK16 | OHARA / Schott | Dense borosilicate crown | — | High |
 | G21 | 1.80518 | 25.5 | S-TIH6 | OHARA | Titanium heavy flint | — | High |
 | G22 | 1.74400 | 44.8 | S-LAM2 / N-LAF2 | OHARA / Schott | Lanthanum flint | −0.004 | High |
 | G31 | 1.74320 | 49.3 | S-LAM60 | OHARA | Lanthanum (borderline crown/flint) | — | High |
 | G32 | 1.80518 | 25.5 | S-TIH6 | OHARA | Titanium heavy flint | — | High |
-| G33 | 1.80610 | 33.3 | 806/333 | uncertain | Dense flint | — | Code only |
+| G33 | 1.80610 | 33.3 | NBFD15 | Hoya | Dense niobium flint | 806333 | Code-family exact |
 
-The G12/G33 glass (nd = 1.80610, νd = 33.3) does not match S-LAH55 (nd = 1.83400, νd = 37.2) as previously reported, nor any current OHARA catalog glass. The closest candidates — S-NBH52 (nd = 1.80400, νd = 46.5) and Schott N-LASF43 (nd = 1.80610, νd = 40.6) — differ significantly in νd. This glass may be a discontinued formulation from the patent era (2005) or a proprietary Fujinon specification. It is designated by its six-digit code 806/333 pending future catalog confirmation.
+The G12/G33 glass (nd = 1.80610, νd = 33.3) matches the coefficient-backed HOYA NBFD15 entry at the 806333 code family. The earlier S-LAH55 and generic-code interpretations were too loose: S-LAH55 differs in both index and Abbe number, while NBFD15 preserves the patent's high-index dense-flint role with only normal catalog rounding in νd.
 
 Because Fujinon is a Japanese manufacturer, OHARA (also Japanese) is the most likely primary glass vendor, with HOYA as the cross-reference equivalent.
 
 The glass palette is distinctive for what it excludes. The design uses only a single ED glass element (G13, S-FPL53). This is the patent's core claim: that by deliberately choosing a moderate-dispersion glass for G11 (νd = 41.1, violating the conventional "high-νd for positive elements" rule), the designer forces the achromatizing role onto G13, which then carries a larger share of the total anomalous dispersion correction. This allows one ED element to do the work that other telephoto designs achieve with two or three — reducing cost while maintaining secondary-spectrum performance (¶0004, ¶0007, ¶0027).
 
-Two glasses are reused: S-TIH6 (G21 and G32) and the 806/333 glass (G12 and G33). This reduces the number of distinct glass melts required for production — a practical cost advantage.
+Two glasses are reused: S-TIH6 (G21 and G32) and NBFD15 (G12 and G33). This reduces the number of distinct glass melts required for production — a practical cost advantage.
 
 ---
 

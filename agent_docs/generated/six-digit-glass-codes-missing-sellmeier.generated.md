@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **271** total code-only elements found
-- **200** elements in this report
-- **70** distinct lens files affected
+- **263** total code-only elements found
+- **192** elements in this report
+- **65** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -21,7 +21,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 770297 | 5 | 4 |
 | 662561 | 4 | 1 |
 | 670571 | 4 | 2 |
-| 806333 | 4 | 3 |
 | 855252 | 4 | 3 |
 | 946180 | 4 | 3 |
 | 498826 | 3 | 2 |
@@ -37,7 +36,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593686 | 2 | 2 |
 | 607595 | 2 | 1 |
 | 666356 | 2 | 1 |
-| 673382 | 2 | 2 |
 | 694508 | 2 | 1 |
 | 697565 | 2 | 2 |
 | 700481 | 2 | 2 |
@@ -47,6 +45,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 774492 | 2 | 1 |
 | 777297 | 2 | 2 |
 | 801349 | 2 | 2 |
+| 806333 | 2 | 2 |
 | 807316 | 2 | 2 |
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
@@ -83,7 +82,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 612313 | 1 | 1 |
 | 614551 | 1 | 1 |
 | 614563 | 1 | 1 |
-| 622532 | 1 | 1 |
 | 623581 | 1 | 1 |
 | 624584 | 1 | 1 |
 | 625533 | 1 | 1 |
@@ -99,7 +97,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 684376 | 1 | 1 |
-| 689312 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 694533 | 1 | 1 |
 | 697555 | 1 | 1 |
@@ -113,12 +110,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720503 | 1 | 1 |
 | 728403 | 1 | 1 |
 | 738493 | 1 | 1 |
-| 740283 | 1 | 1 |
 | 740317 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
-| 752251 | 1 | 1 |
 | 756247 | 1 | 1 |
 | 757316 | 1 | 1 |
 | 760492 | 1 | 1 |
@@ -244,53 +239,20 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L21 (Element 4) | 6A | `PGM lanthanum dense flint (808409)` | 1.80780 / 40.89 | No catalog entry | abbe |
-
-### [FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) - US 2017/0090163 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L22 (Element 6) | 9 | `Barium-flint class (622 532 — no current-catalog match; specialty or internal Fujifilm melt)` | 1.62230 / 53.17 | No catalog entry | abbe |
-
-### [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) - US 2015/0212302 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L15 (Element 5) | 8 | `Dense flint (752/251, uncertain)` | 1.75211 / 25.10 | No catalog entry | abbe |
-| L16 (Element 6) | 10 | `Flint (673/382, uncertain)` | 1.67300 / 38.20 | No catalog entry | abbe |
+| L21 (Element 4) | 6A | `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)` | 1.80780 / 40.89 | No catalog entry | abbe |
 
 ### [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) - US 2014/0247506 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L14 (Element 4) | 6 | `Dense flint (unidentified; nd/νd = 667/311)` | 1.66680 / 31.10 | No catalog entry | abbe |
-| L17 (Element 7) | 12A | `Lanthanum heavy flint (PGM, unidentified; nd/νd = 803/404)` | 1.80348 / 40.40 | No catalog entry | abbe |
-
-### [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) - US 2018/0246292 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L2b (Element 6) | 11 | `673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)` | 1.67300 / 38.15 | No catalog entry | abbe |
+| L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe |
+| L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe |
 
 ### [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) - US 2002/0075570 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `Dense flint (689/312 code, uncertain)` | 1.68893 / 31.20 | No catalog entry | abbe |
-| L7 (Element 7) | 12 | `Barium light flint (561/453 code, uncertain)` | 1.56093 / 45.30 | No catalog entry | abbe |
-
-### [HASSELBLAD HC 4.5/300](../../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) - US 2006/0209426 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| G12 (Element 2) | 3 | `806/333 (vendor uncertain)` | 1.80610 / 33.30 | No catalog entry | abbe |
-| G33 (Element 9) | 16 | `806/333 (vendor uncertain)` | 1.80610 / 33.30 | No catalog entry | abbe |
-
-### [HASSELBLAD HC 4/210](../../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) - US 6,445,511 B1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L10 (Element 10) | 16 | `740283 - titanium flint (patent nd=1.74000, vd=28.3)` | 1.74000 / 28.30 | No catalog entry | abbe |
+| L7 (Element 7) | 12 | `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)` | 1.56093 / 45.30 | No catalog entry | abbe |
 
 ### [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) - JP 2022-99402 A
 

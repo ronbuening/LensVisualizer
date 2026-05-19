@@ -975,6 +975,7 @@ Surfaces:
 ## stored (nd=1.74000, vd=28.20)  — 1 surface, current label resolves to NBFD3
 
 Candidates:
+- **S-TIH3** (nd=1.74000, vd=28.30, Δnd=-0.0000, Δvd=+0.10)
 - **S-TIH13** (nd=1.74077, vd=27.79, Δnd=+0.0008, Δvd=-0.41)
 
 Surfaces:
@@ -984,6 +985,7 @@ Surfaces:
 
 Candidates:
 - **S-TIH13** (nd=1.74077, vd=27.79, Δnd=-0.0000, Δvd=-0.01)
+- **S-TIH3** (nd=1.74000, vd=28.30, Δnd=-0.0008, Δvd=+0.50)
 
 Surfaces:
 - [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) `15`: `S-NBH55 (OHARA)`
@@ -993,6 +995,7 @@ Surfaces:
 
 Candidates:
 - **S-TIH13** (nd=1.74077, vd=27.79, Δnd=-0.0000, Δvd=+0.05)
+- **S-TIH3** (nd=1.74000, vd=28.30, Δnd=-0.0008, Δvd=+0.56)
 
 Surfaces:
 - [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) `7`: `S-TIH14 (OHARA)`
@@ -1062,6 +1065,7 @@ Surfaces:
 ## stored (nd=1.75409, vd=26.00) [code=754/260]  — 1 surface, current label resolves to S-NPH5
 
 Candidates:
+- **FF8** (nd=1.75211, vd=25.05, Δnd=-0.0020, Δvd=-0.95, codeΔ=11.4)
 - **S-TIH4** (nd=1.75520, vd=27.51, Δnd=+0.0011, Δvd=+1.51, codeΔ=16.3)
 - **E-FD4** (nd=1.75520, vd=27.53, Δnd=+0.0011, Δvd=+1.53, codeΔ=16.5)
 - **H-ZF6** (nd=1.75520, vd=27.53, Δnd=+0.0011, Δvd=+1.53, codeΔ=16.5)

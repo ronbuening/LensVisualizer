@@ -35,3 +35,35 @@ Patent: US 2006/0209426 A1, Example 1
 - `npm run lint` — passed.
 - `npm run format:check` — passed.
 - `git diff --check` — passed.
+
+## 2026-05-19 — Missing-Sellmeier queue follow-up
+
+### Phase 1 — Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| G12 / S3 | `glass` | `806/333 (vendor uncertain)` | `NBFD15 (HOYA, 806333 code)` | Patent Example 1 row 3 gives nd=1.80610 and vd=33.3. HOYA NBFD15 is a coefficient-backed 806333 code-family match already present in the catalog. |
+| G33 / S16 | `glass` | `806/333 (vendor uncertain)` | `NBFD15 (HOYA, 806333 code)` | Patent Example 1 row 16 repeats nd=1.80610 and vd=33.3, so the same NBFD15 catalog entry applies. |
+
+### Phase 2 — Patent evidence
+
+- Local patent file: `patents/US20060209426A1.pdf` is present but gitignored; rechecked it via local text extraction and cross-checked the public Google Patents HTML.
+- Reconfirmed Example 1 rows 3 and 16 for the repeated 806333 glass.
+- No radius, spacing, focus, stop, mount, or format edits made.
+
+### Phase 3 — Catalog-search disposition
+
+- Used the existing HOYA NBFD15 catalog entry (`code6: "806333"`).
+- This supersedes the earlier unresolved/vendor-uncertain interpretation for G12 and G33.
+
+### Phase 4 — Analysis sync
+
+- Updated G12/G33 narratives, the glass-identification table, and the glass-reuse summary.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed.
+- `npm run typecheck` - passed.
+- `npm run format:check` - passed.
+- `npm run lint` - passed.
+- `npm run test` - passed, 131 test files / 1666 tests.

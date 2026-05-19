@@ -168,7 +168,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.3,
       fl: 67.1,
-      glass: "740283 - titanium flint (patent nd=1.74000, vd=28.3)",
+      glass: "S-TIH3 (OHARA)",
       apd: false,
       role: "Rear relay biconvex — delivers final convergence; two-flint pair with L9 is near-achromatically neutral.",
       cemented: "D4",

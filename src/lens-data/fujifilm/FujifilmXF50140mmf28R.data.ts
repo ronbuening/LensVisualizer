@@ -133,7 +133,7 @@ const LENS_DATA = {
     // prettier-ignore
     { id:  5, name: "L21",  label: "Element 5",  type: "Biconvex Positive", nd: 1.72047, vd: 34.71, fl: +42.4, glass: "S-NBH8 / N-KZFS8 (720 347)", apd: false, role: "Front of G2 cemented doublet; dense crown-flint", cemented: "D2" },
     // prettier-ignore
-    { id:  6, name: "L22",  label: "Element 6",  type: "Biconcave Negative", nd: 1.62230, vd: 53.17, fl:  -25.4, glass: "Barium-flint class (622 532 — no current-catalog match; specialty or internal Fujifilm melt)", apd: false, role: "Rear of G2 cemented doublet; provides negative power and local chromatic balance within the variator", cemented: "D2" },
+    { id:  6, name: "L22",  label: "Element 6",  type: "Biconcave Negative", nd: 1.62230, vd: 53.17, fl:  -25.4, glass: "S-BSM22 (OHARA)", apd: false, role: "Rear of G2 cemented doublet; provides negative power and local chromatic balance within the variator", cemented: "D2" },
     // prettier-ignore
     { id:  7, name: "L23",  label: "Element 7",  type: "Biconcave Negative (ED)", nd: 1.49700, vd: 81.54, fl:  -38.6, glass: "S-FPL51 (497 815, ED)", apd: "inferred", apdNote: "Buried ED inside variator — stabilises chromatic correction across zoom", role: "Front of G2 cemented triplet; negative ED controlling axial-colour variation with focal length", cemented: "T1" },
     // prettier-ignore

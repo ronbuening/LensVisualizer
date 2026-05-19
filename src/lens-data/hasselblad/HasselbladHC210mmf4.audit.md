@@ -33,3 +33,34 @@ Patent: US 6,445,511 B1, Embodiment 3 / Table 3
 - `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
 - `npm run typecheck` passed.
 - `npm run test` passed.
+
+## 2026-05-19 - Missing-Sellmeier queue follow-up
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L10 / S16 | `glass` | `740283 - titanium flint (patent nd=1.74000, vd=28.3)` | `S-TIH3 (OHARA)` | Patent Embodiment 3 / Table 3 row 16 gives nd=1.74000 and vd=28.3. OHARA S-TIH3 is a coefficient-backed 740283 code-family match. |
+
+### Phase 2 - Patent evidence
+
+- Local patent file: `patents/US6445511.pdf` is present but gitignored; rechecked it via local text extraction and cross-checked the public Google Patents HTML.
+- Reconfirmed Embodiment 3 / Table 3 surface 16 for L10: nd=1.74000, vd=28.3.
+- No radius, spacing, scaled prescription, focus, stop, mount, or format edits made.
+
+### Phase 3 - Catalog-search disposition
+
+- Added OHARA S-TIH3 to `glassCatalogData.ts` from the public OHARA Zemax / refractiveindex.info coefficient row.
+- This supersedes the earlier same-day unresolved 740283 disposition.
+
+### Phase 4 - Analysis sync
+
+- Updated the L10 narrative and glass-identification table to identify OHARA S-TIH3.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed.
+- `npm run typecheck` - passed.
+- `npm run format:check` - passed.
+- `npm run lint` - passed.
+- `npm run test` - passed, 131 test files / 1666 tests.
