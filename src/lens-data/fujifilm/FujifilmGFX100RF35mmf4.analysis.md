@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2025/0362482 A1  
-**Application number:** US 19/212,617  
-**Filed:** May 19, 2025  
-**Published:** November 27, 2025  
-**Priority:** JP 2024-085849, filed May 27, 2024  
-**Inventor:** Daiki Komatsu  
-**Applicant / Assignee:** Fujifilm Corporation, Tokyo  
-**Title:** Imaging Lens and Imaging Apparatus  
+**Patent:** US 2025/0362482 A1
+**Application number:** US 19/212,617
+**Filed:** May 19, 2025
+**Published:** November 27, 2025
+**Priority:** JP 2024-085849, filed May 27, 2024
+**Inventor:** Daiki Komatsu
+**Applicant / Assignee:** Fujifilm Corporation, Tokyo
+**Title:** Imaging Lens and Imaging Apparatus
 **Embodiment analyzed:** Example 5; Tables 13, 14, and 15; FIG. 13 and FIG. 14
 
 Example 5 is the strongest match to the fixed 35 mm f/4 lens in the Fujifilm GFX100RF. The patent table gives $f = 34.8463$ mm, $FNo = 4.12$, $Bf = 5.3962$ mm, and $2ω = 83.0°$. The production camera is specified by Fujifilm as a 35 mm f/4 fixed-focal-length lens, equivalent to 28 mm on 135 format, built as 10 elements in 8 groups including 2 aspherical elements, with a 0.20 m minimum focus distance measured from the front of the lens. Fujifilm also states that the lens was designed as a single fixed-lens unit, uses two glass-molded aspherical lenses, and shortens back focus by using a leaf shutter instead of a focal-plane shutter.

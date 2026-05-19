@@ -2,15 +2,15 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 5,621,575 / US5621575A  
-**Priority:** JP 7-085471, filed April 11, 1995  
-**Filed (US):** March 6, 1996  
-**Granted:** April 15, 1997  
-**Inventor:** Nobuaki Toyama  
-**Assignee:** Fuji Photo Optical Co., Ltd.  
-**Title:** Wide Angle Lens System  
-**Claims:** 2  
-**Worked examples:** 6  
+**Patent:** US 5,621,575 / US5621575A
+**Priority:** JP 7-085471, filed April 11, 1995
+**Filed (US):** March 6, 1996
+**Granted:** April 15, 1997
+**Inventor:** Nobuaki Toyama
+**Assignee:** Fuji Photo Optical Co., Ltd.
+**Title:** Wide Angle Lens System
+**Claims:** 2
+**Worked examples:** 6
 **Embodiment analyzed:** Embodiment 6, Table 6 and Fig. 11[^patent]
 
 US 5,621,575 describes a compact wide-angle lens for lens-shutter cameras. The claimed form is a seven-element system: a front negative meniscus, a first cemented doublet, a second cemented doublet after the stop, a positive sixth lens, and a rear negative meniscus. The patent states that the design is intended to provide high resolving power and high contrast from distant subjects to close-up use while keeping distortion and other aberrations under control.[^patent]

@@ -2,13 +2,13 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 5,548,447  
-**Priority:** JP 6-059060, filed March 29, 1994  
-**Filed:** March 28, 1995  
-**Granted:** August 20, 1996  
-**Inventor:** Nobuaki Toyama  
-**Assignee:** Fuji Photo Optical Co., Ltd., Saitama-ken, Japan  
-**Title:** Photographic Lens System  
+**Patent:** US 5,548,447
+**Priority:** JP 6-059060, filed March 29, 1994
+**Filed:** March 28, 1995
+**Granted:** August 20, 1996
+**Inventor:** Nobuaki Toyama
+**Assignee:** Fuji Photo Optical Co., Ltd., Saitama-ken, Japan
+**Title:** Photographic Lens System
 **Embodiment analyzed:** Example 1, Table I, Fig. 1
 
 US 5,548,447 describes a compact wide-angle photographic lens system for a lens-shutter camera. The patent objective is a lens with an angle of view near 60°, an F number between approximately f/2.8 and f/4, and an overall length approximately 1.1–1.2 times the focal length while retaining a large axial space for a between-the-lens shutter.
