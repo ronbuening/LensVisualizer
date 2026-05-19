@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-19 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-19",
+    type: "improvement",
+    summary: "Expanded Sellmeier coverage to 247 vendor-verified glass entries",
+  },
+  {
+    date: "2026-05-19",
+    type: "fix",
+    summary: "Audited 52 lens prescriptions and corrected glass labels across the catalog",
+  },
+  {
+    date: "2026-05-19",
     type: "lens",
     summary: "Added six Fujifilm GF medium-format lenses",
   },
