@@ -92,7 +92,7 @@ The back focal distance is 39.70 mm at all zoom positions, confirming that Group
 #### Sub-group 10F (fixed; surfaces 1–5; L1–L3)
 
 **L1 — Negative Meniscus, convex to object (cemented with L2)**
-$n_d = 1.74400$, $\nu_d = 44.8$. Glass: S-LAH66 (OHARA). $f = -164.4$ mm.
+$n_d = 1.74400$, $\nu_d = 44.8$. Glass: S-LAM2 (OHARA). $f = -164.4$ mm.
 
 L1 forms the front half of a cemented doublet with L2. As a high-index lanthanum crown ($n_d = 1.744$), it provides a strongly curved front surface ($R_1 = 105.4$ mm) that gathers light from the large entrance pupil while the meniscus shape minimizes the angle of incidence and thus surface reflections. Its negative power partially offsets the positive power of L2, creating an achromatic pair that corrects axial chromatic aberration at the front of the system.
 
@@ -109,7 +109,7 @@ L3 is the first of three ED elements in the design. With $\nu_d = 81.6$, S-FPL51
 #### Sub-group 10R — Focusing Group (surfaces 6–9; L4–L5)
 
 **L4 — Negative Meniscus, convex to object**
-$n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH53 (OHARA) / TAFD25 (HOYA) class — dense flint. $f = -269.7$ mm.
+$n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH6 (OHARA) / SF6 (Schott) class — dense flint. $f = -269.7$ mm.
 
 L4 is the front element of the two-element focusing sub-group. It is a dense flint with high dispersion ($\nu_d = 25.4$), paired with the positive L5 to form a chromatically self-correcting focusing unit. The patent text (col. 6, lines 5–15) emphasizes that a two-element focusing group is superior to a single positive element because it can internally correct chromatic aberration, reducing focus-dependent chromatic shift across the zoom range. The meniscus shape (both surfaces convex to the object, $R_6 = 54.225$, $R_7 = 42.675$) keeps incident angles small and controls spherical aberration within the group.
 
@@ -141,7 +141,7 @@ L9 is a weakly negative meniscus ($R_{15} = -52.3$ mm, $R_{16} = -100.3$ mm) tha
 ### Group 3 — Compensator (surfaces 17–21; L10–L12)
 
 **L10 — Positive Biconvex, symmetrical**
-$n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH64 (OHARA) class. $f = +113.4$ mm.
+$n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH66 (OHARA) class. $f = +113.4$ mm.
 
 L10 has a remarkable property: its front and rear radii are equal in magnitude and opposite in sign ($R_{17} = +174.749$ mm, $R_{18} = -174.749$ mm), making it a perfectly symmetrical biconvex element. Symmetrical biconvex elements produce zero coma and zero distortion at unity conjugate, and even off-conjugate they contribute very little to odd-order aberrations. The high-index lanthanum glass ($n_d = 1.773$) achieves the needed positive power with relatively gentle curvatures, keeping spherical aberration moderate. L10 provides the bulk of Group 3's collecting power and begins re-converging the beam after Group 2's strong divergence.
 
@@ -151,7 +151,7 @@ $n_d = 1.49700$, $\nu_d = 81.6$. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) — **Extr
 L11 is the second ED element in the design and a potent positive element ($f = +58.8$ mm). Its nearly flat front surface ($R_{19} = -4485.5$ mm) and strongly curved rear surface ($R_{20} = -29.0$ mm) create a meniscus with the convex face toward the image. The ED glass provides secondary spectrum correction within Group 3 and achromatizes against the dense flint L12 in the cemented pair.
 
 **L12 — Negative Meniscus, convex to image (cemented with L11)**
-$n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH53 (OHARA) — dense flint. $f = -88.7$ mm.
+$n_d = 1.80518$, $\nu_d = 25.4$. Glass: S-TIH6 (OHARA) — dense flint. $f = -88.7$ mm.
 
 L12 partners with L11 in a strongly achromatizing cemented doublet ($\Delta\nu_d = 81.6 - 25.4 = 56.2$, the largest Abbe number difference of any cemented pair in the design). The doublet's net focal length is $+179.6$ mm (moderately positive), contributing convergent power to Group 3 while providing the design's most potent chromatic correction station. Because Group 3 translates during zooming, the correction it provides shifts in the optical path — requiring the fixed Groups 1 and 4 to carry independent chromatic correction as well.
 
@@ -160,9 +160,9 @@ L12 partners with L11 in a strongly achromatizing cemented doublet ($\Delta\nu_d
 #### Sub-group 40F (surfaces 22–26; L13–L15)
 
 **L13 — Positive Meniscus, convex to object**
-$n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH64 (OHARA) class. $f = +105.9$ mm.
+$n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH66 (OHARA) class. $f = +105.9$ mm.
 
-L13 uses the same glass as L10 (S-LAH64). Its meniscus shape ($R_{22} = 73.8$ mm, $R_{23} = 743.1$ mm — weakly curved rear) provides moderate positive power at the entrance to Group 4. Positioned just after the variable-aperture diaphragm KS, L13 sees the on-axis beam at near-maximum convergence and begins the relay toward the image plane.
+L13 uses the same glass as L10 (S-LAH66). Its meniscus shape ($R_{22} = 73.8$ mm, $R_{23} = 743.1$ mm — weakly curved rear) provides moderate positive power at the entrance to Group 4. Positioned just after the variable-aperture diaphragm KS, L13 sees the on-axis beam at near-maximum convergence and begins the relay toward the image plane.
 
 **L14 — Positive Biconvex (ED; cemented with L15)**
 $n_d = 1.49700$, $\nu_d = 81.6$. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) — **Extra-low Dispersion**. $f = +37.6$ mm.
@@ -184,7 +184,7 @@ $n_d = 1.60562$, $\nu_d = 43.7$. Glass: S-BAM4 (OHARA) / BAC4 (HOYA) class. $f =
 L16 is a strong biconvex element ($R_{27} = 120.4$ mm, $R_{28} = -28.9$ mm) positioned behind the fixed field stop. It provides the primary image-forming power for the rear sub-group and directs the converging beam toward the sensor. The moderate-index barium crown glass ($n_d = 1.606$) offers a balance between refractive power and manufacturing ease.
 
 **L17 — Negative Meniscus, convex to image**
-$n_d = 1.80100$, $\nu_d = 35.0$. Glass: S-LAH59 (OHARA) class. $f = -42.2$ mm.
+$n_d = 1.80100$, $\nu_d = 35.0$. Glass: S-LAM66 (OHARA) class. $f = -42.2$ mm.
 
 L17 is a high-index lanthanum glass with moderate dispersion. Its negative meniscus shape ($R_{29} = -22.3$ mm, $R_{30} = -67.0$ mm) curves away from the image, generating strong negative field curvature contribution. This element is the primary Petzval sum corrector for the rear section: its high index and negative power flatten the field. It also introduces negative distortion that partially compensates the pincushion tendency inherent to telephoto zoom designs.
 
@@ -205,17 +205,17 @@ The design uses 11 distinct glass types across 18 elements:
 |---------------------|-------|---------|-------|----------|-------|
 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate crown | L3, L11, L14 | 3 |
 | S-FSL5 (OHARA) | 1.48749 | 70.2 | Fluorophosphate crown | L2, L5, L7, L18 | 4 |
-| S-LAH66 (OHARA) | 1.74400 | 44.8 | Lanthanum crown | L1 | 1 |
-| S-LAH64 (OHARA) | 1.77250 | 49.6 | Lanthanum crown | L10, L13 | 2 |
+| S-LAM2 (OHARA) | 1.74400 | 44.8 | Lanthanum crown | L1 | 1 |
+| S-LAH66 (OHARA) | 1.77250 | 49.6 | Lanthanum crown | L10, L13 | 2 |
 | S-LAH65V (OHARA) | 1.80400 | 46.6 | Lanthanum crown | L6 | 1 |
-| S-LAH59 (OHARA) | 1.80100 | 35.0 | Dense lanthanum flint | L17 | 1 |
-| S-TIH53 (OHARA) | 1.80518 | 25.4 | Dense flint | L4, L12 | 2 |
+| S-LAM66 (OHARA) | 1.80100 | 35.0 | Dense lanthanum flint | L17 | 1 |
+| S-TIH6 (OHARA) | 1.80518 | 25.4 | Dense flint | L4, L12 | 2 |
 | S-TIH53W (OHARA) | 1.84666 | 23.8 | Very dense flint | L8 | 1 |
 | S-LAL18 (OHARA) | 1.72916 | 54.7 | Lanthanum crown | L9 | 1 |
 | S-LAL12 (OHARA) | 1.65844 | 50.9 | Lanthanum crown | L15 | 1 |
 | S-BAM4 (OHARA) | 1.60562 | 43.7 | Barium crown | L16 | 1 |
 
-Glass identifications are based on six-digit $n_d$/$\nu_d$ code matching against the OHARA, HOYA, and Schott catalogs. OHARA is the preferred vendor for a Pentax design of this era; HOYA equivalents exist for most entries (FCD1 for S-FPL51, FC5 for S-FSL5, TAFD25 for S-TIH53, etc.) but the patent does not specify a vendor. All glass assignments carry a confidence level of "probable" rather than "confirmed."
+Glass identifications are based on six-digit $n_d$/$\nu_d$ code matching against the OHARA, HOYA, and Schott catalogs. OHARA is the preferred vendor for a Pentax design of this era; HOYA equivalents exist for most entries (FCD1 for S-FPL51, FC5 for S-FSL5, etc.) but the patent does not specify a vendor. All glass assignments carry a confidence level of "probable" rather than "confirmed."
 
 ### Chromatic Correction Architecture
 
@@ -340,5 +340,5 @@ The lens remained in Pentax's product lineup from 2007 until its discontinuation
 1. US Patent 7,289,274 B1, "Telescopic Zoom Lens System," Masakazu Saori, PENTAX Corporation, granted October 30, 2007.
 2. Ricoh Imaging official product page: smc PENTAX-DA★ 50-135mmF2.8 ED [IF] SDM.
 3. Ricoh Imaging Star Lens Lineup page (confirms 18 elements / 14 groups, three ED glass elements, no AL designation).
-4. OHARA optical glass catalog (S-FPL51, S-FSL5, S-LAH66, S-LAH64, S-LAH65V, S-TIH53, S-TIH53W, S-LAL18, S-LAL12, S-BAM4, S-LAH59).
-5. HOYA optical glass catalog (FCD1, FC5, TAFD25, TAFD30, NBFD10, LAC14, LAC12, BAC4, NBFD15).
+4. OHARA optical glass catalog (S-FPL51, S-FSL5, S-LAM2, S-LAH66, S-LAH65V, S-TIH6, S-TIH53W, S-LAL18, S-LAL12, S-BAM4, S-LAM66).
+5. HOYA optical glass catalog (FCD1, FC5, TAFD30, NBFD10, LAC14, LAC12, BAC4, NBFD15).

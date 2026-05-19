@@ -81,23 +81,23 @@ This element is central to the macro compromise. The front group must be strong 
 
 ### L4 — Negative Meniscus, Convex to Object
 
-**nd = 1.74000, νd = 31.72. Glass: unmatched dense flint, 740/317 class. f = −34.2 mm.**
+**nd = 1.74000, νd = 31.72. Glass: BPH50 (OHARA), an exact coefficient-backed 740317 dense-flint match. f = −34.2 mm.**
 
 L4 is the strong negative terminator of Group I. In isolation it is the most powerful element in the front assembly, and its dense-flint dispersion counteracts the chromatic contribution of L1–L3.
 
 Its rear placement also shapes the angular bundle entering the first variable space, **d8**, so it directly affects how the negative floating group sees the front-group output during focus travel. L4 should therefore be treated as both an achromatizing element and an input-shaper for the compensator.
 
-No current authoritative catalog match was confirmed for the patent’s nd = 1.74000 and νd = 31.72. The data file therefore leaves it as an unmatched 740/317 dense-flint class rather than assigning a speculative catalog name.
+The 2026-05-19 audit matched the patent's nd = 1.74000 and νd = 31.72 row to OHARA BPH50, using the public formula-3 coefficients from the Ohara/refractiveindex.info catalog row.
 
 ### L5 — Negative Meniscus, Convex to Object
 
-**nd = 1.69680, νd = 56.47. Glass: unmatched high-index crown, 697/565 class. f = −98.1 mm.**
+**nd = 1.69680, νd = 56.47. Glass: H-LAK12 (CDGM equivalent; patent 697565). f = −98.1 mm.**
 
 L5 begins Group II, the negative floating compensator. Its front radius is long and positive, while its rear radius is much shorter and positive, so the element has negative power despite using a crown-like Abbe number.
 
 Because **d8** increases and **d12** decreases during close focusing, L5 changes its separation from both the positive front group and the positive rear group. This is the main mechanism that prevents the lens from behaving like a simple unit-focusing 100 mm lens.
 
-The nd/νd pair was not resolved to a safe current catalog entry. The data file therefore marks it as unmatched instead of forcing an index-only identification.
+The exact patent code 697565 maps in public cross-reference tables to old OHARA LAL64, but no coefficient-backed public LAL64 row was found. The data file therefore uses CDGM H-LAK12 as the coefficient-backed equivalent: it preserves the same nd = 1.69680 and is cross-referenced against the 697565 LAL64 family, though its catalog νd is 56.18 rather than the patent's 56.47.
 
 ### L6 — Very Weak Positive Meniscus, Convex to Image
 
@@ -111,13 +111,13 @@ OHARA S-LAH60 is code 834372 with nd = 1.83400 and νd = 37.16; the patent gives
 
 ### L7 — Negative Meniscus, Convex to Image
 
-**nd = 1.80741, νd = 31.59. Glass: unmatched dense lanthanum flint, 807/316 class. f = −244.9 mm.**
+**nd = 1.80741, νd = 31.59. Glass: 807316 dense lanthanum flint, unresolved. f = −244.9 mm.**
 
 L7 is the negative element in Group III. It has two negative radii, with the rear radius longer in magnitude than the front radius, giving modest negative power.
 
 Its role is principally corrective. It helps control field curvature, astigmatism, and lateral color before the final positive element forms the image. The patent states that it is desirable for the third group to include a negative meniscus convex to the image side; L7 is that element in Example 8.[^patent]
 
-No authoritative current catalog match was confirmed for nd = 1.80741 and νd = 31.59, so the data file leaves it as an unmatched 807/316 dense-lanthanum-flint class.
+No authoritative current catalog match was confirmed for nd = 1.80741 and νd = 31.59, so the data file leaves it as unresolved 807316 dense-lanthanum-flint class.
 
 ### L8 — Biconvex Positive Rear Element
 
@@ -138,10 +138,10 @@ The patent publishes only d-line refractive indices and Abbe numbers. It does no
 | L1 | 1.51823 | 58.96 | S-NSL3-class crown, OHARA 518590 | Strong class match; νd differs by 0.06 from current OHARA listing | Weak positive front collector |
 | L2 | 1.69100 | 54.75 | S-LAL9-class lanthanum crown, OHARA 691548 | Strong class match; νd differs by 0.07 | Front positive power |
 | L3 | 1.69100 | 54.75 | S-LAL9-class lanthanum crown, OHARA 691548 | Strong class match; νd differs by 0.07 | Strong front positive power |
-| L4 | 1.74000 | 31.72 | Unmatched dense flint, 740/317 class | Exact current catalog name unresolved | Front-group achromatizing negative |
-| L5 | 1.69680 | 56.47 | Unmatched high-index crown, 697/565 class | Exact current catalog name unresolved | Negative floating-group element |
+| L4 | 1.74000 | 31.72 | BPH50 (OHARA) | Exact coefficient-backed catalog match | Front-group achromatizing negative |
+| L5 | 1.69680 | 56.47 | H-LAK12 (CDGM equivalent; patent 697565) | Coefficient-backed equivalent, not supplier proof | Negative floating-group element |
 | L6 | 1.83400 | 37.05 | S-LAH60-class dense lanthanum flint, OHARA 834372 | Strong class match; νd differs by 0.11 | Stop-near aberration corrector |
-| L7 | 1.80741 | 31.59 | Unmatched dense lanthanum flint, 807/316 class | Exact current catalog name unresolved | Rear-group negative corrector |
+| L7 | 1.80741 | 31.59 | 807316 dense lanthanum flint | Exact current catalog name unresolved | Rear-group negative corrector |
 | L8 | 1.58913 | 61.11 | S-BAL35-class barium crown, OHARA 589612 | Strong class match; νd differs by 0.03 | Rear positive relay |
 
 The glass strategy is conventional and restrained. Group I uses crown-positive power followed by a dense-flint negative element. Group II combines a negative high-index crown-shaped element with a weak dense-lanthanum-flint positive meniscus. Group III pairs a dense flint with a moderate-index barium crown.

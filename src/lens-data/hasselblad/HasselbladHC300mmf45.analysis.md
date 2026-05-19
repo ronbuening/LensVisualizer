@@ -63,7 +63,7 @@ The glass choice is unusual for a positive element in a telephoto lens. With νd
 
 ### L2 — G12: Negative Meniscus, convex to object (concave on image side)
 
-nd = 1.80610, νd = 33.3. Glass: 806/333 (dense flint, vendor uncertain — see Glass Identification below). f = −100.0 mm.
+nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA, 806333 code-family — see Glass Identification below). f = −100.0 mm.
 
 G12 is the strongest single element in the lens (|f| = 100 mm). Its rear surface R₄ = +48.901 mm is deeply curved and concave toward the image, producing the dominant negative-power surface of the entire front group (φ₄ = −0.01648 mm⁻¹, surface focal length −60.7 mm). This surface also contributes substantial overcorrected (negative) spherical aberration that partially cancels the undercorrected contribution from G11 and G13.
 
@@ -71,15 +71,15 @@ The choice of a dense flint (νd = 33.3) satisfies Condition (2): ν12 < 45, and
 
 ### L3 — G13: Biconvex Positive (ED element)
 
-nd = 1.43875, νd = 95.0. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) — fluorophosphate ED crown. f = +108.4 mm.
+nd = 1.43875, νd = 95.0. Glass: S-FPL53 (OHARA) — fluorophosphate ED crown. f = +108.4 mm.
 
-G13 is the single most important element for the chromatic correction strategy. It is a biconvex positive element using S-FPL51, one of the most widely used extra-low-dispersion (ED) fluorophosphate glasses in modern optical design. With νd = 95.0, it has exceptionally low dispersion; and with ΔPg,F = +0.0459 (OHARA catalog, NSL 7/PBM 2 reference), it has significant positive anomalous partial dispersion — meaning its blue-violet partial dispersion deviates substantially from the "normal" reference line. The patent states a preferred condition δθg,F ≥ 0.18 (¶0028), though this threshold appears inconsistent with the computed deviation under either standard reference convention; the patent's text defining the condition (¶0029) conflates the partial dispersion ratio θg,F itself with its deviation δθg,F, suggesting a textual error in the published application. Regardless of the specific numerical threshold, S-FPL51 is among the strongest anomalous-dispersion glasses available in the fluorophosphate family, and its role as the design's secondary-spectrum corrector is unambiguous.
+G13 is the single most important element for the chromatic correction strategy. It is a biconvex positive element using S-FPL53, one of OHARA's strongest extra-low-dispersion fluorophosphate glasses. With νd = 95.0, it has exceptionally low dispersion; and with ΔPg,F ≈ +0.046 (OHARA catalog, NSL 7/PBM 2 reference), it has significant positive anomalous partial dispersion — meaning its blue-violet partial dispersion deviates substantially from the "normal" reference line. The patent states a preferred condition δθg,F ≥ 0.18 (¶0028), though this threshold appears inconsistent with the computed deviation under either standard reference convention; the patent's text defining the condition (¶0029) conflates the partial dispersion ratio θg,F itself with its deviation δθg,F, suggesting a textual error in the published application. Regardless of the specific numerical threshold, S-FPL53 is among the strongest anomalous-dispersion glasses available in the fluorophosphate family, and its role as the design's secondary-spectrum corrector is unambiguous.
 
 The function of G13 is dual. First, it provides strong positive power (f = +108.4 mm), making it the most powerful positive element in the front group. Second, because of its extreme Abbe number and anomalous dispersion, when paired with the lower-νd elements G11 and G12, it corrects not only primary longitudinal chromatic aberration (bringing C-line and F-line to a common focus) but also secondary spectrum — the residual separation between the g-line focus and the C/F-line focus that limits the performance of telephoto lenses made entirely with "normal" glasses.
 
 The patent's Condition (3) requires ν13 > 75 (satisfied at 95.0), ensuring that this element is genuinely in the ED class rather than merely a conventional crown.
 
-The nearly flat rear surface (R₆ = −1650.8 mm, surface focal length +3763 mm) means the rear face of G13 contributes almost no optical power. Essentially all of G13's power comes from its steeply curved front surface R₅ = +48.803 mm (surface focal length +111.2 mm). This asymmetry is likely intentional: it minimizes higher-order aberrations contributed by the rear surface while keeping the element thick enough (16.36 mm center thickness) for structural rigidity — S-FPL51 is a soft, low-index glass that requires more physical thickness than dense flints.
+The nearly flat rear surface (R₆ = −1650.8 mm, surface focal length +3763 mm) means the rear face of G13 contributes almost no optical power. Essentially all of G13's power comes from its steeply curved front surface R₅ = +48.803 mm (surface focal length +111.2 mm). This asymmetry is likely intentional: it minimizes higher-order aberrations contributed by the rear surface while keeping the element thick enough (16.36 mm center thickness) for structural rigidity — S-FPL53 is a soft, low-index glass that requires more physical thickness than dense flints.
 
 ### L4 — G14: Positive Meniscus, convex to object
 
@@ -91,18 +91,18 @@ The thick meniscus form serves a structural purpose: it acts as the rear boundar
 
 ### L5 + L6 — G21 + G22 (Cemented Doublet): Focus Group
 
-**G21:** nd = 1.80518, νd = 25.5. Glass: S-TIH53 (OHARA) / FD1 (HOYA) — titanium heavy flint. Biconvex (weakly).
+**G21:** nd = 1.80518, νd = 25.5. Glass: S-TIH6 (OHARA) — titanium heavy flint. Biconvex (weakly).
 **G22:** nd = 1.74400, νd = 44.8. Glass: S-LAM2 (OHARA) / N-LAF2 (Schott) — lanthanum flint. Biconcave.
 
 The cemented doublet G21+G22 constitutes the entire second lens group and serves as the focusing unit. At infinity focus, it sits with its front surface (S9) at a distance of 5.55 mm behind G14; when focusing to close range, it translates rearward along the optical axis. The group focal length is f₂₀ = −106.1 mm.
 
 The junction surface at S10 (R = −88.987 mm) carries a small refractive index step: Δn = 1.74400 − 1.80518 = −0.06118. This produces a weak positive surface power (φ₁₀ = +0.00069 mm⁻¹, surface focal length +1455 mm). The cemented interface therefore contributes nearly negligible optical power to the group — the group's negative power comes overwhelmingly from the diverging rear surface S11 (R = +69.551, φ = −0.01070, surface focal length −93.5 mm). The purpose of the cementation is primarily chromatic: by pairing a very high-dispersion flint (νd = 25.5) with a moderate-dispersion lanthanum flint (νd = 44.8), the doublet corrects its own internal chromatic aberration so that focus shift during close-focus travel introduces minimal color change.
 
-G22's glass, S-LAM2 (νd = 44.8), falls in the lanthanum glass family and has mild negative anomalous partial dispersion (ΔPg,F ≈ −0.004 per OHARA catalog). This mild negative deviation from the normal line complements the positive anomalous dispersion of G13 (S-FPL51). During close-focus travel, the focusing group's translation changes the ray heights at which chromatic aberration is sampled; S-LAM2's anomalous dispersion helps maintain the secondary-spectrum balance established at infinity focus.
+G22's glass, S-LAM2 (νd = 44.8), falls in the lanthanum glass family and has mild negative anomalous partial dispersion (ΔPg,F ≈ −0.004 per OHARA catalog). This mild negative deviation from the normal line complements the positive anomalous dispersion of G13 (S-FPL53). During close-focus travel, the focusing group's translation changes the ray heights at which chromatic aberration is sampled; S-LAM2's anomalous dispersion helps maintain the secondary-spectrum balance established at infinity focus.
 
 ### L7 — G31: Negative Meniscus, convex to object
 
-nd = 1.74320, νd = 49.3. Glass: S-LAL14 (OHARA) / LAC14 (HOYA) — lanthanum crown by manufacturer designation; borderline flint by νd < 50 project convention. f = −134.8 mm.
+nd = 1.74320, νd = 49.3. Glass: S-LAM60 (OHARA) — lanthanum glass; borderline flint by νd < 50 project convention. f = −134.8 mm.
 
 G31 is the first element after the aperture stop. It is a negative meniscus whose rear surface (R₁₄ = +59.167, concave toward the image) is more strongly curved than the front (R₁₃ = +147.6), producing net negative power. Positioned immediately after the stop, G31 controls off-axis aberrations — primarily coma and lateral color — that would otherwise degrade the image toward the corners of the 645 frame.
 
@@ -110,8 +110,8 @@ The lanthanum glass (νd = 49.3, nd = 1.743) provides a good balance of high ind
 
 ### L8 + L9 — G32 + G33 (Cemented Doublet): Rear Corrector
 
-**G32:** nd = 1.80518, νd = 25.5. Glass: S-TIH53 (OHARA) / FD1 (HOYA) — titanium heavy flint. Negative meniscus, convex to object.
-**G33:** nd = 1.80610, νd = 33.3. Glass: 806/333 (dense flint, vendor uncertain — same glass as G12). Positive meniscus, convex to object.
+**G32:** nd = 1.80518, νd = 25.5. Glass: S-TIH6 (OHARA) — titanium heavy flint. Negative meniscus, convex to object.
+**G33:** nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA, same 806333 code-family as G12). Positive meniscus, convex to object.
 
 The rear cemented doublet is the final optical element before the image plane. Its combined focal length is f = +136.3 mm (weakly positive), contributing a small amount of converging power that helps bring the diverging beam from Group 20 to focus.
 
@@ -123,27 +123,27 @@ The front surface S15 (R = +73.260, φ = +0.01099, surface focal length +91.0 mm
 
 ## Glass Identification and Selection
 
-The lens uses 6 distinct glass types across 9 elements. The identification confidence is high for most glasses — every nd value matches a known catalog entry exactly (to five decimal places), and the νd values agree within typical rounding tolerance (< 0.15 units). One glass type (used in G12 and G33) has no confirmed match in current OHARA, HOYA, Schott, or CDGM catalogs and is designated by its six-digit code.
+The lens uses 6 distinct glass types across 9 elements. The identification confidence is high: every nd value matches a known catalog entry exactly or at the six-digit-code-family level, and the νd values agree within typical rounding tolerance (< 0.15 units). The repeated G12/G33 glass now maps to HOYA NBFD15.
 
 | Element | nd | νd | Best match | Vendor | Glass family | ΔPg,F | Confidence |
 |---------|------|------|-----------|--------|-------------|-------|-----------|
 | G11 | 1.70154 | 41.1 | S-BAH27 | OHARA | Dense barium crown (flint by νd) | — | High (nd/νd match) |
-| G12 | 1.80610 | 33.3 | 806/333 | uncertain | Dense flint | — | Code only |
-| G13 | 1.43875 | 95.0 | S-FPL51 / FCD1 | OHARA / HOYA | Fluorophosphate ED crown | +0.046 | High |
+| G12 | 1.80610 | 33.3 | NBFD15 | Hoya | Dense niobium flint | 806333 | Code-family exact |
+| G13 | 1.43875 | 95.0 | S-FPL53 | OHARA | Fluorophosphate ED crown | +0.046 | High |
 | G14 | 1.62041 | 60.4 | S-BSM16 / N-SK16 | OHARA / Schott | Dense borosilicate crown | — | High |
-| G21 | 1.80518 | 25.5 | S-TIH53 / FD1 | OHARA / HOYA | Titanium heavy flint | — | High |
+| G21 | 1.80518 | 25.5 | S-TIH6 | OHARA | Titanium heavy flint | — | High |
 | G22 | 1.74400 | 44.8 | S-LAM2 / N-LAF2 | OHARA / Schott | Lanthanum flint | −0.004 | High |
-| G31 | 1.74320 | 49.3 | S-LAL14 / LAC14 | OHARA / HOYA | Lanthanum (borderline crown/flint) | — | High |
-| G32 | 1.80518 | 25.5 | S-TIH53 / FD1 | OHARA / HOYA | Titanium heavy flint | — | High |
-| G33 | 1.80610 | 33.3 | 806/333 | uncertain | Dense flint | — | Code only |
+| G31 | 1.74320 | 49.3 | S-LAM60 | OHARA | Lanthanum (borderline crown/flint) | — | High |
+| G32 | 1.80518 | 25.5 | S-TIH6 | OHARA | Titanium heavy flint | — | High |
+| G33 | 1.80610 | 33.3 | NBFD15 | Hoya | Dense niobium flint | 806333 | Code-family exact |
 
-The G12/G33 glass (nd = 1.80610, νd = 33.3) does not match S-LAH55 (nd = 1.83400, νd = 37.2) as previously reported, nor any current OHARA catalog glass. The closest candidates — S-NBH52 (nd = 1.80400, νd = 46.5) and Schott N-LASF43 (nd = 1.80610, νd = 40.6) — differ significantly in νd. This glass may be a discontinued formulation from the patent era (2005) or a proprietary Fujinon specification. It is designated by its six-digit code 806/333 pending future catalog confirmation.
+The G12/G33 glass (nd = 1.80610, νd = 33.3) matches the coefficient-backed HOYA NBFD15 entry at the 806333 code family. The earlier S-LAH55 and generic-code interpretations were too loose: S-LAH55 differs in both index and Abbe number, while NBFD15 preserves the patent's high-index dense-flint role with only normal catalog rounding in νd.
 
 Because Fujinon is a Japanese manufacturer, OHARA (also Japanese) is the most likely primary glass vendor, with HOYA as the cross-reference equivalent.
 
-The glass palette is distinctive for what it excludes. The design uses only a single ED glass element (G13, S-FPL51). This is the patent's core claim: that by deliberately choosing a moderate-dispersion glass for G11 (νd = 41.1, violating the conventional "high-νd for positive elements" rule), the designer forces the achromatizing role onto G13, which then carries a larger share of the total anomalous dispersion correction. This allows one ED element to do the work that other telephoto designs achieve with two or three — reducing cost while maintaining secondary-spectrum performance (¶0004, ¶0007, ¶0027).
+The glass palette is distinctive for what it excludes. The design uses only a single ED glass element (G13, S-FPL53). This is the patent's core claim: that by deliberately choosing a moderate-dispersion glass for G11 (νd = 41.1, violating the conventional "high-νd for positive elements" rule), the designer forces the achromatizing role onto G13, which then carries a larger share of the total anomalous dispersion correction. This allows one ED element to do the work that other telephoto designs achieve with two or three — reducing cost while maintaining secondary-spectrum performance (¶0004, ¶0007, ¶0027).
 
-Two glasses are reused: S-TIH53 (G21 and G32) and the 806/333 glass (G12 and G33). This reduces the number of distinct glass melts required for production — a practical cost advantage.
+Two glasses are reused: S-TIH6 (G21 and G32) and NBFD15 (G12 and G33). This reduces the number of distinct glass melts required for production — a practical cost advantage.
 
 ---
 
@@ -151,7 +151,7 @@ Two glasses are reused: S-TIH53 (G21 and G32) and the 806/333 glass (G12 and G33
 
 The patent's intellectual contribution centers on chromatic aberration management. The conventional approach to achromatizing a telephoto lens pairs high-νd crowns (positive elements) with low-νd flints (negative elements). The residual secondary spectrum after such correction depends on how much anomalous partial dispersion the positive elements contribute; to reduce it, designers typically use multiple ED glass elements — expensive and difficult to polish.
 
-Suzuki's approach inverts the front element's role. By using a glass with νd = 41.1 for G11 (below the conventional crown range), G11 becomes a deliberate source of primary chromatic aberration. This creates a larger correction burden that must be absorbed by G13 (S-FPL51, νd = 95.0). Because G13 now carries a greater fraction of the system's total positive power devoted to achromatism, the anomalous dispersion of S-FPL51 accounts for a proportionally larger share of the total chromatic correction — and therefore reduces secondary spectrum more effectively than if the same glass were sharing the positive-power role with conventional high-νd crowns. The patent summarizes this in ¶0027: "anomalous dispersion shares a large rate in a total of the lenses and secondary chromatic aberration on the axis is reduced."
+Suzuki's approach inverts the front element's role. By using a glass with νd = 41.1 for G11 (below the conventional crown range), G11 becomes a deliberate source of primary chromatic aberration. This creates a larger correction burden that must be absorbed by G13 (S-FPL53, νd = 95.0). Because G13 now carries a greater fraction of the system's total positive power devoted to achromatism, the anomalous dispersion of S-FPL53 accounts for a proportionally larger share of the total chromatic correction — and therefore reduces secondary spectrum more effectively than if the same glass were sharing the positive-power role with conventional high-νd crowns. The patent summarizes this in ¶0027: "anomalous dispersion shares a large rate in a total of the lenses and secondary chromatic aberration on the axis is reduced."
 
 The strategy is governed by four conditional inequalities, all of which Example 1 satisfies:
 
@@ -223,10 +223,10 @@ The patent aberration diagrams (FIG. 3) show FNO = 4.66, ω = 6.7° — both con
 - Hasselblad HC 4.5/300 official product page: https://www.hasselblad.com/h-system/lenses/hc45-300mm/
 - B&H Photo product listing (production specifications): 9 elements / 7 groups, f/4.5–f/45, MFD 8', 95 mm filter thread
 - LENS-DB.COM entry: "Also known as: Super-EBC FUJINON 300mm F/4.5 Hasselblad"
-- OHARA glass catalog — S-FPL51 data sheet: nd = 1.43875, νd = 94.93, ΔPg,F = +0.0459 (NSL 7 / PBM 2 reference)
+- OHARA glass catalog — S-FPL53 data sheet: nd = 1.43875, νd = 94.93, ΔPg,F ≈ +0.046 (NSL 7 / PBM 2 reference)
 - OHARA glass catalog — S-BAH27 data sheet: nd = 1.70154, νd = 41.24
 - OHARA glass catalog — S-BSM16 data sheet: nd = 1.62041, νd = 60.29
 - OHARA glass catalog — S-LAM2 data sheet: nd = 1.74400, νd = 44.79, ΔPg,F ≈ −0.004
-- OHARA glass catalog — S-LAL14 data sheet: nd = 1.74320, νd = 49.31
-- OHARA glass catalog — S-TIH53 data sheet: nd = 1.80518, νd = 25.42
+- OHARA glass catalog — S-LAM60 data sheet: nd = 1.74320, νd = 49.31
+- OHARA glass catalog — S-TIH6 data sheet: nd = 1.80518, νd = 25.42
 - Hasselblad H mount flange focal distance: 61.63 mm (FDTimes lens mount chart, Issue 81-82, 2017)

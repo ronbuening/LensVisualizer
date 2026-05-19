@@ -155,7 +155,7 @@ The patent provides refractive index (n_d) and Abbe number (V_d) for each elemen
 | L₁ | 1.50380 | 66.7 | 504/667 | BK10 (1.4978/66.9) | +0.0060 | −0.2 | Family (BK crown) |
 | L₂ | 1.48697 | 70.3 | 487/703 | FK5 (1.4875/70.4) | −0.0005 | −0.1 | **Near-exact** |
 | L₃ | 1.72050 | 50.3 | 721/503 | LaK10 (1.7200/50.3) | +0.0005 | 0.0 | **Near-exact** |
-| L₄ | 1.60739 | 59.5 | 607/595 | SK7 (1.6073/59.5) | +0.0001 | 0.0 | **Near-exact** |
+| L₄ | 1.60739 | 59.5 | 607/595 | K-SK7 (Sumita, 1.60729/59.5) | +0.0001 | 0.0 | **Near-exact** |
 | L₅ | 1.56093 | 57.5 | 561/575 | No close match | — | — | Family (BaK/SK crown) |
 | L₆ | 1.62500 | 53.3 | 625/533 | SK10 (1.6228/53.3) | +0.0022 | 0.0 | Family (SK crown) |
 | L₇ | 1.71966 | 29.3 | 720/293 | SF1 (1.7174/29.5) | +0.0023 | −0.2 | Family (SF flint) |
@@ -207,7 +207,7 @@ The high Abbe number (70.3) ensures that L₂ introduces minimal lateral chromat
 **L₃ — Glass:** LaK10 lanthanum crown (n_d = 1.721, V_d = 50.3).
 
 **L₄ — Shape:** Biconvex; strongly positive (f = +38 mm thick-lens).
-**L₄ — Glass:** SK7 dense crown (n_d = 1.607, V_d = 59.5).
+**L₄ — Glass:** K-SK7 (Sumita) dense crown (n_d = 1.607, V_d = 59.5).
 
 **Doublet net power:** Positive (f = +86.8 mm).
 

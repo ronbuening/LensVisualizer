@@ -210,7 +210,7 @@ I report six‑digit codes verbatim from the patent; catalog‑name matches are 
 | L11     | 1.84666 / 23.78 / 0.62054 |   847 238    | OHARA S‑NBH family / HOYA E‑FDS family            |   Family   |
 | L12     | 1.72916 / 54.67 / 0.54503 |   729 547    | OHARA S‑LAM66 (729547) — exact six‑digit match    |   Exact    |
 | L13     | 1.69680 / 55.53 / 0.54404 |   697 555    | OHARA S‑LAL14 (697555)                            |   Exact    |
-| L21     | 1.80780 / 40.89 / 0.56949 |   808 409    | PGM lanthanum dense flint — OHARA L‑LAH family    |   Family   |
+| L21     | 1.80780 / 40.89 / 0.56949 |   808409    | PGM lanthanum dense flint; no exact coefficient-backed public catalog match found | Unresolved |
 | L22     | 1.61800 / 63.39 / 0.54015 |   618 634    | OHARA S‑PHM52 (618634)                            |   Exact    |
 | L23     | 1.92287 / 20.88 / 0.63943 |   923 209    | OHARA S‑NPH53 (923209)                            |   Exact    |
 | L24     | 1.84667 / 23.79 / 0.61771 |   847 238    | Same family as L11                                |   Family   |

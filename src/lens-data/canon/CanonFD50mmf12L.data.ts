@@ -48,7 +48,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON GLASS IDENTIFICATION (L8):                               ║
  * ║    L8 (n_d = 1.62299, ν_d = 58.2) — best catalogue match OHARA   ║
- * ║    S-BAL35 (1.62280 / 57.08), Δν_d = −1.12. Flagged provisional; ║
+ * ║    BACD15 (1.62299 / 58.12), Δν_d ≈ −0.08. Catalog-backed via HOYA. ║
  * ║    Canon may have used a proprietary domestic glass in 1980.      ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.804,
       vd: 46.6,
       fl: 90.3,
-      glass: "OHARA S-LAH58 (804466)",
+      glass: "S-LAH65V (OHARA)",
       apd: false,
       role: "Front light-gathering positive meniscus; high index suppresses higher-order spherical aberration",
     },
@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.7,
       fl: 64.1,
-      glass: "OHARA S-LAH52 (744447)",
+      glass: "S-LAM2 (OHARA)",
       apd: false,
       cemented: "D1",
       role: "Aspherical front surface corrects sagittal flare and over-corrected spherical aberration; part of L2+L3 achromat",
@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.8,
       fl: 65.7,
-      glass: "OHARA S-LAH64 (883408)",
+      glass: "TAFD30 (HOYA)",
       apd: false,
       role: "Highest-index element (n_d=1.883); strongest rear singlet (condition 6: f₆<f₇<f₈); folds off-axis bundle, limits rear element diameters",
     },
@@ -157,7 +157,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: 91.2,
-      glass: "OHARA S-LAL18 (773496)",
+      glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Last element of moving focus unit; asymmetric biconvex concentrates power at R12; contributes longitudinal chromatic correction",
     },
@@ -169,7 +169,7 @@ const LENS_DATA = {
       nd: 1.62299,
       vd: 58.2,
       fl: 371.9,
-      glass: "OHARA S-BAL35* (623582; provisional, Δν_d=−1.12)",
+      glass: "BACD15 (HOYA)",
       apd: false,
       role: "Fixed rear corrector; very weak positive power (f₈≈7.4f); Petzval fine-corrector; high Abbe number trims lateral colour",
     },

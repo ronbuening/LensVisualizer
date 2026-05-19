@@ -167,7 +167,7 @@ L14 is the fourth and final negative element in the front sub-group. It uses **S
 
 | Element | Glass | nd | νd | θgf | Radii | ct |
 |---|---|---|---|---|---|---|
-| L15 (positive) | NBFD3 (HOYA) | 1.64769 | 33.84 | — | R₉ = +76.016 (front), R₁₀ = −16.389 (junction) | 8.40 mm |
+| L15 (positive) | E-FD2 (HOYA) | 1.64769 | 33.84 | — | R₉ = +76.016 (front), R₁₀ = −16.389 (junction) | 8.40 mm |
 | L16 (negative) | S-LAH79 (OHARA) | 1.90366 | 31.32 | 0.5947 | R₁₀ = −16.389 (junction), R₁₁ = +60.949 (rear) | 5.29 mm |
 
 | Property | L15 | L16 |
@@ -184,7 +184,7 @@ L16 is notable: S-LAH79 (nd = 1.90366) is one of the highest-index commercial op
 
 | Element | Glass | nd | νd | θgf | Radii | ct |
 |---|---|---|---|---|---|---|
-| L17 (negative) | TAFD25 (HOYA) | 1.83481 | 42.72 | — | R₁₂ = +34.641 (front), R₁₃ = +19.438 (junction) | 5.00 mm |
+| L17 (negative) | S-LAH55V (OHARA) | 1.83481 | 42.72 | — | R₁₂ = +34.641 (front), R₁₃ = +19.438 (junction) | 5.00 mm |
 | L18 (positive) | S-NBH5 (OHARA) | 1.65412 | 39.68 | 0.5737 | R₁₃ = +19.438 (junction), R₁₄ = −31.576 (rear) | 6.73 mm |
 
 | Property | L17 | L18 |
@@ -201,13 +201,13 @@ L18 is an anomalous partial dispersion glass (θgf = 0.5737), which contributes 
 
 | Property | Value |
 |---|---|
-| Glass | NBFD3 (HOYA); nd = 1.64769, νd = 33.84 |
+| Glass | E-FD2 (HOYA); nd = 1.64769, νd = 33.84 |
 | Radii | R₁₅ = +31.187, R₁₆ = +74.264 |
 | Center thickness | 2.25 mm |
 | Standalone focal length | +81.3 mm |
 | Shape | Meniscus convex to object, positive power |
 
-L19 is the last element of Gr1 and provides weak positive power that begins converging the divergent beam before it passes through the stop. Using the same glass as L15 (NBFD3), it shares L15's dispersion characteristics. The air gap after L19 (surface 16, d = 6.81 mm at infinity) is the first variable gap — it decreases to 3.14 mm at close focus as Gr2 (and the stop) advance toward the object.
+L19 is the last element of Gr1 and provides weak positive power that begins converging the divergent beam before it passes through the stop. Using the same glass as L15 (E-FD2), it shares L15's dispersion characteristics. The air gap after L19 (surface 16, d = 6.81 mm at infinity) is the first variable gap — it decreases to 3.14 mm at close focus as Gr2 (and the stop) advance toward the object.
 
 ### 3.2 Aperture Stop (Surface 17)
 
@@ -221,7 +221,7 @@ Group 2 is the focusing group. It translates axially toward the object for close
 
 | Property | Value |
 |---|---|
-| Glass | S-TIM28 (OHARA); nd = 1.59270, νd = 35.44, θgf = 0.5926 |
+| Glass | S-FTM16 (OHARA); nd = 1.59270, νd = 35.44, θgf = 0.5926 |
 | Radii | R₁₈ = +49.359, R₁₉ = −27.494 |
 | Center thickness | 3.23 mm |
 | Standalone focal length | +30.3 mm |
@@ -233,17 +233,17 @@ L21 is the first element of the focusing group and provides substantial positive
 | Element | Glass | nd | νd | Radii | ct | fl |
 |---|---|---|---|---|---|---|
 | L22 (neg) | S-LAH55V (OHARA) | 1.77250 | 49.62 | R₂₀ = −23.268, R₂₁ = +14.617 | 1.20 mm | −11.5 mm |
-| L23 (pos) | S-NSL5 (OHARA) | 1.51742 | 52.15 | R₂₁ = +14.617, R₂₂ = −27.000 | 4.90 mm | +19.1 mm |
+| L23 (pos) | S-NSL36 (OHARA) | 1.51742 | 52.15 | R₂₁ = +14.617, R₂₂ = −27.000 | 4.90 mm | +19.1 mm |
 
 This negative-positive doublet provides aberration correction within the focusing group. The junction's large refractive index difference (Δnd = 1.77250 − 1.51742 = 0.255) creates a "buried surface" effect — strong aberration control with minimal chromatic impact at the cemented interface.
 
-**Glass identification note for L23:** The glass nd = 1.51742, νd = 52.15 (six-digit code 517/522) matches closely to OHARA S-NSL5 (nd = 1.51742, νd = 52.43, Δνd = +0.28). CDGM H-K10 is also a near-exact match. Given the Konica Minolta co-applicant status, a Japanese glass catalog match is more likely; S-NSL5 is the nearest OHARA candidate.
+**Glass identification note for L23:** The glass nd = 1.51742, νd = 52.15 (six-digit code 517/522) now resolves to OHARA S-NSL36, whose catalog nd round-trips the patent row more closely than the previous S-NSL5 annotation.
 
 #### L24 — Negative Meniscus (Surfaces 23–24)
 
 | Property | Value |
 |---|---|
-| Glass | TAFD55 (HOYA); nd = 1.91082, νd = 35.25 |
+| Glass | TAFD35 (HOYA); nd = 1.91082, νd = 35.25 |
 | Radii | R₂₃ = −25.008, R₂₄ = −188.788 |
 | Center thickness | 1.00 mm |
 | Standalone focal length | −31.7 mm |
@@ -266,10 +266,10 @@ L25 is the first of three ED elements (all using S-FPL51) and provides the stron
 
 | Element | Glass | nd | νd | θgf | Radii | ct | fl |
 |---|---|---|---|---|---|---|---|
-| L26 (neg) | TAFD25 (HOYA) | 1.83481 | 42.72 | — | R₂₇ = +112.277, R₂₈ = +18.718 | 1.20 mm | −27.1 mm |
+| L26 (neg) | S-LAH55V (OHARA) | 1.83481 | 42.72 | — | R₂₇ = +112.277, R₂₈ = +18.718 | 1.20 mm | −27.1 mm |
 | L27 (pos) | S-FPL51 (OHARA) | 1.49700 | 81.61 | 0.5388 | R₂₈ = +18.718, R₂₉ = −22.556 | 11.00 mm | +22.6 mm |
 
-This is a classic achromatic doublet pairing a high-index flint (L26, nd = 1.83481) with a low-index ED crown (L27, nd = 1.49700). The large Abbe number difference (Δνd = 81.61 − 42.72 = 38.89) makes this doublet a powerful chromatic corrector. L27 is notably thick (11.00 mm), contributing substantially to the positive power of Gr2. L26 uses the same glass as L17 (TAFD25), maintaining inventory efficiency.
+This is a classic achromatic doublet pairing a high-index flint (L26, nd = 1.83481) with a low-index ED crown (L27, nd = 1.49700). The large Abbe number difference (Δνd = 81.61 − 42.72 = 38.89) makes this doublet a powerful chromatic corrector. L27 is notably thick (11.00 mm), contributing substantially to the positive power of Gr2. L26 uses the same glass as L17 (S-LAH55V), maintaining inventory efficiency.
 
 #### L28 + L29 — Composite Aspherical Element "H1" (Surfaces 30A–32)
 
@@ -305,14 +305,14 @@ The design uses 13 distinct optical materials (12 glasses plus 1 UV-cure resin) 
 | S-LAL14 | OHARA | 1.69680 | 55.46 | L11, L12 | 2 | Front negative group |
 | L-BAL42 | OHARA | 1.58313 | 59.39 | L13 | 1 | Moldable asphere |
 | S-FPL51 | OHARA | 1.49700 | 81.61 | L14, L25, L27 | 3 | ED elements |
-| NBFD3 | HOYA | 1.64769 | 33.84 | L15, L19 | 2 | Doublet Ja & Gr1 meniscus |
+| E-FD2 | HOYA | 1.64769 | 33.84 | L15, L19 | 2 | Doublet Ja & Gr1 meniscus |
 | S-LAH79 | OHARA | 1.90366 | 31.32 | L16 | 1 | Ultra-high-index negative (APD) |
-| TAFD25 | HOYA | 1.83481 | 42.72 | L17, L26 | 2 | High-index flint |
+| S-LAH55V | OHARA | 1.83481 | 42.72 | L17, L26 | 2 | High-index flint |
 | S-NBH5 | OHARA | 1.65412 | 39.68 | L18 | 1 | APD positive |
-| S-TIM28 | OHARA | 1.59270 | 35.44 | L21 | 1 | Near-APD positive |
+| S-FTM16 | OHARA | 1.59270 | 35.44 | L21 | 1 | Near-APD positive |
 | S-LAH55V | OHARA | 1.77250 | 49.62 | L22 | 1 | High-index LaF |
-| S-NSL5 | OHARA | 1.51742 | 52.15 | L23 | 1 | Low-index crown |
-| TAFD55 | HOYA | 1.91082 | 35.25 | L24 | 1 | Ultra-high-index flint |
+| S-NSL36 | OHARA | 1.51742 | 52.15 | L23 | 1 | Low-index crown |
+| TAFD35 | HOYA | 1.91082 | 35.25 | L24 | 1 | Ultra-high-index flint |
 | UV-cure resin | Polymer | 1.51380 | 52.97 | L28 | 1 | Composite asphere |
 | BSC7 | HOYA | 1.51680 | 64.20 | L29 | 1 | Base glass for composite |
 

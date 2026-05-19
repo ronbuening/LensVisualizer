@@ -108,7 +108,7 @@ const LENS_DATA = {
       nd: 1.673,
       vd: 38.15,
       fl: -29.3,
-      glass: "673382 — barium flint (patent nd=1.67300, νd=38.15; no exact catalog match)",
+      glass: "S-NBH52 (OHARA)",
       cemented: "D1",
       role: "Front element of G2 cemented pair. Near-zero net power with L2c; primary role is chromatic balance during focus shift.",
     },

@@ -53,3 +53,18 @@ Catalog version: local working tree, 2026-05-04
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed (116 files, 1507 tests; expected error-boundary console errors emitted by tests).
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reopened `patents/WO2020136749A1.pdf`, Example 1 / Table 1. The reviewed missing-Sellmeier rows were L21 / S6 (`744495`, nd=1.74389, νd=49.53), L42 / S20 (`498826`, nd=1.49782, νd=82.57), L61 / S26 (`792450`, nd=1.79189, νd=45.04), and L72 / S30 (`852402`, nd=1.85207, νd=40.15).
+
+Catalog-search disposition:
+
+- Hikari J-FKH1 exactly backs `498826` with nd=1.49782, νd=82.57, and published formula-3 power-series coefficients.
+- No coefficient-backed exact public matches were found for `744495`, `792450`, or `852402`; those remain explicit unresolved six-digit labels.
+
+Changes made:
+
+- Added Hikari J-FKH1 to `glassCatalogData.ts`.
+- Relabeled L42 in `NikonZ2470f28.data.ts` to J-FKH1 and reworded the unresolved L21/L61/L72 labels.
+- Updated `NikonZ2470f28.analysis.md` so L42 is catalog-backed and the other reviewed rows are explicitly unresolved.

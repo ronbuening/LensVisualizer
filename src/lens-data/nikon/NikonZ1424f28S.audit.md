@@ -61,3 +61,18 @@ Confirmed without data-file changes:
 ### Outstanding follow-ups
 
 - Consider adding catalog entries only if public Sellmeier sources are found for patent codes 738323 and 850270. Until then those labels intentionally fall back to Abbe approximation using the patent's stored nd/νd.
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reopened `patents/WO2021117563A1.pdf`, Example 4 / Table 4. The reviewed row is L31 / surface 12, nd=1.850000, νd=27.0, code `850270`.
+
+Catalog-search disposition:
+
+- Public Nikon/Hikari catalog data now provides Hikari J-LASFH23, d-code `850270`, nd=1.850000, νd=27.03, with formula-3 power-series coefficients.
+- The Hikari row is a defensible coefficient-backed match for the patent row, allowing this element to leave the missing-Sellmeier queue.
+
+Changes made:
+
+- Added Hikari J-LASFH23 to `glassCatalogData.ts`.
+- Relabeled L31 in `NikonZ1424f28S.data.ts` to `J-LASFH23 (Hikari) — dense flint (850270)`.
+- Updated `NikonZ1424f28S.analysis.md` to replace the old unresolved 850270 narrative.

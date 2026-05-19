@@ -113,7 +113,7 @@ const LENS_DATA = {
       nd: 1.7721,
       vd: 49.3,
       fl: 65.4,
-      glass: "Unmatched (molded lanthanum-crown class, 772/493 code)",
+      glass: "772493 — molded lanthanum-crown class (no exact public catalog match)",
       role: "Post-stop aspherical positive meniscus; primary spherical-aberration and bokeh-transition corrector.",
     },
     {

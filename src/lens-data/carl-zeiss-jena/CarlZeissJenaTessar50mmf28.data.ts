@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.5738,
       vd: 42.5,
       fl: -30.09,
-      glass: "574425 LF",
+      glass: "574425 — light flint (no exact public catalog match)",
       apd: false,
       cemented: "D1",
       role: "Weak negative meniscus forming the front of the rear cemented doublet; its near-flat front surface (R ≈ 382 mm) contributes almost no power — the relevant interface is the cementing surface to L4.",

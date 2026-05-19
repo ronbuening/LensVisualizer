@@ -56,11 +56,11 @@ The second ED element. Paired with L12, it allows the front group to achieve hig
 
 **L14 + L15 — Cemented Doublet D1**
 L14: nd = 1.88300, νd = 40.8. Glass: S-LAH66 (OHARA). f = +66.4 mm.
-L15: nd = 1.75211, νd = 25.1. Glass: Dense flint (752/251, uncertain). f = −90.4 mm.
+L15: nd = 1.75211, νd = 25.1. Glass: FF8 (HOYA fluor flint). f = −90.4 mm.
 This cemented doublet is a weak positive achromatic corrector. L14 uses S-LAH66, a high-index lanthanum glass (nd = 1.883), which provides strong positive power without excessive surface curvatures. L15 is a dense flint glass with very low Abbe number (25.1), creating a large dispersion difference across the cemented interface for chromatic correction.
 
 **L16 — Negative Meniscus (convex to object)**
-nd = 1.67300, νd = 38.2. Glass: Flint (673/382, uncertain). f = −29.1 mm.
+nd = 1.67300, νd = 38.2. Glass: S-NBH52 (OHARA). f = −29.1 mm.
 The strongest single element in G1 and the "negative lens having a concave surface toward the image side" referenced throughout the patent claims. Its concave image-side surface creates a powerful diverging action that balances the combined positive power of L11–L14/L15. L16's strong negative power also contributes significantly to reducing the Petzval sum.
 
 ### Aperture Stop
@@ -117,8 +117,8 @@ The Petzval sum for the complete lens is 0.00345, corresponding to a Petzval rad
 | L12 | 1.49700 | 81.6 | 497/816 | S-FPL51 (OHARA) — ED | Exact |
 | L13 | 1.49700 | 81.6 | 497/816 | S-FPL51 (OHARA) — ED | Exact |
 | L14 | 1.88300 | 40.8 | 883/408 | S-LAH66 (OHARA) | Exact |
-| L15 | 1.75211 | 25.1 | 752/251 | Dense flint (uncertain) | Uncertain |
-| L16 | 1.67300 | 38.2 | 673/382 | Flint (uncertain) | Uncertain |
+| L15 | 1.75211 | 25.1 | 752251 | FF8 (HOYA fluor flint) | Exact |
+| L16 | 1.67300 | 38.2 | 673382 | S-NBH52 (OHARA) | Exact |
 | L21 | 1.58313 | 59.4 | 583/594 | L-BAL42 (OHARA) — PGM | Probable |
 | L22 | 1.88300 | 40.8 | 883/408 | S-LAH66 (OHARA) | Exact |
 | L23 | 1.66680 | 33.0 | 667/330 | S-TIF6 (OHARA) | Exact |

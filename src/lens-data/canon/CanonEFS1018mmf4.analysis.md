@@ -71,7 +71,7 @@ A concave-to-object negative meniscus made from a fluorophosphate crown with unu
 
 #### L5 — Biconvex Positive
 
-nd = 1.72047, νd = 34.7. Glass: S-TIM27 class (OHARA) — titanium flint, high dispersion. f = +27.9 mm.
+nd = 1.72047, νd = 34.7. Glass: S-NBH8 (OHARA) — high-dispersion niobate flint. f = +27.9 mm.
 
 The sole positive element in Group 1. Its relatively high dispersion (νd = 34.7) is intentional: as a positive element, it contributes lateral color of the opposite sign to the negative elements (L1–L4). The high dispersion amplifies this compensating effect, making L5 the most effective single-element lateral-color corrector in the front group. The glass choice is thus driven by the lateral color budget: a low-dispersion positive element would contribute less correction. L5's positive power also reduces the total negative power of Group 1, preventing excessive divergence that would demand impractically large rear elements.
 
@@ -89,11 +89,11 @@ The IS group is positioned ahead of the aperture stop (¶0019, ¶0046), which pl
 
 #### L7 + L8 — Cemented Doublet (Negative Meniscus + Biconvex Positive)
 
-**L7:** nd = 1.91082, νd = 35.3. Glass: S-LAH55V class (OHARA) — dense lanthanum flint. f = −19.9 mm (standalone).
-**L8:** nd = 1.60342, νd = 38.0. Glass: S-TIM22 class (OHARA) — titanium flint. f = +14.5 mm (standalone).
+**L7:** nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −19.9 mm (standalone).
+**L8:** nd = 1.60342, νd = 38.0. Glass: S-TIM5 (OHARA) — titanium flint. f = +14.5 mm (standalone).
 **Doublet net focal length** (computed from cemented system, surfaces 13–15): approximately +53.5 mm.
 
-This cemented doublet sits between the IS element and the aperture stop. L7 is a steeply curved negative meniscus of very high-index dense lanthanum flint (nd = 1.911), while L8 is a biconvex positive of moderate-index titanium flint. Together they form a net positive doublet that serves as the first power-contributing unit in Group 2.
+This cemented doublet sits between the IS element and the aperture stop. L7 is a steeply curved negative meniscus of very high-index dense flint (nd = 1.911), while L8 is a biconvex positive of moderate-index titanium flint. Together they form a net positive doublet that serves as the first power-contributing unit in Group 2.
 
 The glass pairing is notable: both elements have relatively high dispersion (νd = 35.3 and 38.0 respectively), which means the doublet does not function as a classical achromatic pair. Instead, the cemented interface (R14 = +10.275 mm, a strongly convex surface from the L7 side) acts primarily as a coma and spherical aberration corrector. The steep cemented interface creates a large angular deflection at the junction, and the refractive index step (1.91082 → 1.60342, a negative Δn of −0.307) generates significant correction of the monochromatic aberrations introduced by the converging beam geometry.
 
@@ -103,8 +103,8 @@ The aperture stop is a flat surface (R = ∞) positioned in the air gap between 
 
 #### L9 + L10 — Cemented Doublet (Biconcave Negative + Biconvex Positive)
 
-**L9:** nd = 1.83481, νd = 42.7. Glass: S-LAH59 class (OHARA) — lanthanum flint. f = −10.6 mm (standalone).
-**L10:** nd = 1.64769, νd = 33.8. Glass: S-TIM5 class (OHARA) — titanium flint, high dispersion. f = +14.3 mm (standalone).
+**L9:** nd = 1.83481, νd = 42.7. Glass: S-LAH55 (OHARA) — lanthanum flint. f = −10.6 mm (standalone).
+**L10:** nd = 1.64769, νd = 33.8. Glass: S-TIM22 (OHARA) — titanium flint, high dispersion. f = +14.3 mm (standalone).
 **Doublet net focal length:** approximately −44.8 mm (net negative).
 
 This doublet is positioned immediately behind the aperture stop (separated by 4.04 mm). L9 is a strong biconcave negative of high-index lanthanum flint, and L10 is a biconvex positive of high-dispersion titanium flint. The net power of the cemented pair is weakly negative — the strong negative L9 (f = −10.6 mm) slightly overwhelms L10 (f = +14.3 mm).
@@ -125,7 +125,7 @@ The Petzval contribution of L11 is significant: the two surfaces contribute +0.0
 
 #### L12 — Biconcave Negative (Focus Element, LF)
 
-nd = 1.91082, νd = 35.3. Glass: S-LAH55V class (OHARA) — dense lanthanum flint. f = −26.7 mm.
+nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −26.7 mm.
 
 This single biconcave element constitutes the entire focus group (¶0021). It moves image-ward along the optical axis when focusing from infinity to the minimum focus distance of 0.22 m. The use of a single lightweight element as the focus group is consistent with the STM (Stepping Motor) drive system, which benefits from a low-inertia moving element for fast, quiet autofocus performance during both stills and video.
 
@@ -137,11 +137,11 @@ The zoom variable spacing data show that d21 and d23 change during zooming (d21:
 
 #### L13 + L14 — Cemented Doublet (Negative Meniscus + Biconvex Positive, 1× Asph)
 
-**L13:** nd = 1.91082, νd = 35.3. Glass: S-LAH55V class (OHARA) — dense lanthanum flint. f = −16.8 mm (standalone).
-**L14:** nd = 1.58313, νd = 59.4. Glass: S-BSM14 class (OHARA) — barium crown. f = +14.5 mm (standalone).
+**L13:** nd = 1.91082, νd = 35.3. Glass: TAFD35 (HOYA) — high-index dense flint. f = −16.8 mm (standalone).
+**L14:** nd = 1.58313, νd = 59.4. Glass: S-BAL42 (OHARA) — barium crown. f = +14.5 mm (standalone).
 **Doublet net focal length:** +58.2 mm (= Group 4 focal length).
 
-This cemented doublet functions as the final field-flattening relay group. L13 is a negative meniscus of high-index dense lanthanum flint (the same glass used in L7 and L12, used three times total in the design), and L14 is a biconvex positive of barium crown glass. The pairing is a classic Fraunhofer-type achromatic doublet: the higher-dispersion negative flint (νd = 35.3) is paired with a lower-dispersion positive crown (νd = 59.4), giving the doublet both net positive power and partial achromatization.
+This cemented doublet functions as the final field-flattening relay group. L13 is a negative meniscus of high-index dense flint (the same glass used in L7 and L12, used three times total in the design), and L14 is a biconvex positive of barium crown glass. The pairing is a classic Fraunhofer-type achromatic doublet: the higher-dispersion negative flint (νd = 35.3) is paired with a lower-dispersion positive crown (νd = 59.4), giving the doublet both net positive power and partial achromatization.
 
 The rear surface of L14 (surface 26) carries the design's second aspherical profile. Unlike surface 4 which has a significant conic constant, surface 26 uses a spherical base (K = 0) with purely polynomial correction through the 12th order. At h = 10 mm the total aspherical departure is +0.219 mm (the surface is less concave than a best-fit sphere at the periphery). The polynomial contributions show a complex oscillating pattern with alternating-sign terms of increasing magnitude at high ray heights, indicating that the surface corrects multiple orders of aberration simultaneously — primarily residual field curvature and distortion at the edge of the APS-C image field.
 
@@ -156,18 +156,18 @@ The design uses a palette of 8 distinct glasses plus one optical plastic, deploy
 | L1, L3 | 1.77250 | 49.6 | S-LAH66 (OHARA) | Dense lanthanum flint | 2 |
 | L2 | 1.52996 | 55.8 | PMo optical plastic | Cyclo-olefin polymer / acrylate resin | 1 |
 | L4 | 1.59522 | 67.7 | S-FPM2 (OHARA) | Fluorophosphate crown | 1 |
-| L5 | 1.72047 | 34.7 | S-TIM27 (OHARA) | Titanium flint | 1 |
+| L5 | 1.72047 | 34.7 | S-NBH8 (OHARA) | Niobate flint | 1 |
 | L6 | 1.48749 | 70.2 | S-FSL5 (OHARA) | Fluorosilicate crown | 1 |
-| L7, L12, L13 | 1.91082 | 35.3 | S-LAH55V (OHARA) | Dense lanthanum flint | 3 |
-| L8 | 1.60342 | 38.0 | S-TIM22 (OHARA) | Titanium flint | 1 |
-| L9 | 1.83481 | 42.7 | S-LAH59 (OHARA) | Lanthanum flint | 1 |
-| L10 | 1.64769 | 33.8 | S-TIM5 (OHARA) | Titanium flint | 1 |
+| L7, L12, L13 | 1.91082 | 35.3 | TAFD35 (HOYA) | Dense flint | 3 |
+| L8 | 1.60342 | 38.0 | S-TIM5 (OHARA) | Titanium flint | 1 |
+| L9 | 1.83481 | 42.7 | S-LAH55 (OHARA) | Lanthanum flint | 1 |
+| L10 | 1.64769 | 33.8 | S-TIM22 (OHARA) | Titanium flint | 1 |
 | L11 | 1.49700 | 81.5 | S-FPL51 (OHARA) | ED fluorophosphate (UD) | 1 |
-| L14 | 1.58313 | 59.4 | S-BSM14 (OHARA) | Barium crown | 1 |
+| L14 | 1.58313 | 59.4 | S-BAL42 (OHARA) | Barium crown | 1 |
 
-Glass identifications are based on six-digit code matching (nd × 1000 / νd × 10) against the OHARA catalog. Canon patents typically use OHARA or HOYA glasses; OHARA equivalents are listed here. Cross-vendor equivalents include S-FPM2 ≈ FCD10 (HOYA) for L4, and S-FPL51 ≈ FCD1 (HOYA) for L11. The PMo plastic element (L2) has no catalog glass equivalent — its nd/νd values are characteristic of injection-molded optical polymers.
+Glass identifications are based on six-digit code matching (nd × 1000 / νd × 10) against the project glass catalog. Canon patents typically use OHARA or HOYA glasses; exact catalog matches are listed where the patent's nd/νd pair round-trips cleanly. Cross-vendor equivalents include S-FPM2 ≈ FCD10 (HOYA) for L4, and S-FPL51 ≈ FCD1 (HOYA) for L11. The PMo plastic element (L2) has no catalog glass equivalent — its nd/νd values are characteristic of injection-molded optical polymers.
 
-The most notable feature of the glass palette is the heavy use of S-LAH55V (nd = 1.91082), appearing in three elements (L7, L12, L13). This very high-index dense lanthanum flint allows strong negative power in compact element forms, and its relatively moderate dispersion for its index (νd = 35.3) makes it suitable for both field-flattening negative elements and the achromatizing negative partner in the L13–L14 doublet.
+The most notable feature of the glass palette is the heavy use of TAFD35-class dense flint (nd = 1.91082), appearing in three elements (L7, L12, L13). This very high-index glass allows strong negative power in compact element forms, and its relatively moderate dispersion for its index (νd = 35.3) makes it suitable for both field-flattening negative elements and the achromatizing negative partner in the L13–L14 doublet.
 
 ## Focus Mechanism
 
@@ -317,4 +317,4 @@ The lens was discontinued following Canon's transition to the RF mount system, w
 1. JP 2015-31869 A (Canon Inc., published 16 February 2015). Full patent text and numerical examples.
 2. Canon Camera Museum, product entry EF431: "EF-S10-18mm f/4.5-5.6 IS STM." Confirms 1 UD element, 2 aspherical elements (1 PMo), and IS specification.
 3. Canon U.S.A. product page: EF-S 10-18mm f/4.5-5.6 IS STM. Published specifications: 14 elements / 11 groups, f/4.5-5.6, MFD 0.22 m, filter 67 mm, 240 g.
-4. OHARA Optical Glass Catalog (current edition). Glass identification cross-references for S-LAH66, S-FPM2, S-TIM27, S-FSL5, S-LAH55V, S-TIM22, S-LAH59, S-TIM5, S-FPL51, S-BSM14.
+4. OHARA and HOYA optical glass catalog data in the project glass resolver. Glass identification cross-references for S-LAH66, S-FPM2, S-NBH8, S-FSL5, TAFD35, S-TIM5, S-LAH55, S-TIM22, S-FPL51, and S-BAL42.

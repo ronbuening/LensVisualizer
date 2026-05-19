@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-ga645widepro-45mm-f4",
   maker: "Fujifilm",
-  name: "Fujifilm GA645W/GA645Wi Professional Super EBC Fujinon 45mm f/4",
+  name: "FUJIFILM Super EBC Fujinon 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)",
   subtitle: "US 5,621,575 Embodiment 6 — Fuji Photo Optical / Toyama",
   specs: ["7 elements / 5 groups", "45mm f/4", "2ω = 75.2° patent field", "All spherical"],
 

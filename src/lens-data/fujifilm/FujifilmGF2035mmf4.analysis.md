@@ -91,11 +91,11 @@ HOYA TAFD35 is the direct nd/νd match for this focus-group element.
 
 ### L22 - Weak negative moving aspheric corrector
 
-nd = 1.68863, νd = 31.20. Glass: unmatched light dense flint, 689/312 class. f = -355.86 mm.
+nd = 1.68863, νd = 31.20. Glass: HOYA E-FD8 / M-FD80 code family, 689312. f = -355.86 mm.
 
 L22 has little standalone power, but it is critical because it moves with the focus group and carries two aspherical surfaces. Its weak negative power moderates the net positive power of G2 while allowing the aspheric profile to suppress focus-induced spherical aberration and coma variation.
 
-No exact public catalog match was confirmed for nd = 1.68863, νd = 31.20 with the patent's partial-dispersion and density values. The data file therefore uses an explicit `Unmatched` glass annotation rather than a speculative vendor name.
+HOYA's public cross-reference and refractiveindex.info coefficient page both place E-FD8/M-FD80 at code 689312. The catalog E-FD8 index is nd = 1.68893, 0.00030 above the patent value, so this should be read as a coefficient-backed code-family assignment rather than proof of the exact production melt.
 
 ### L31 + L32 + L33 - Stop-adjacent cemented triplet
 
@@ -153,7 +153,7 @@ The patent does not print manufacturer glass names, so the identification must b
 | L13, L33, L42 | 1.49700 / 81.60-81.61 | N-PK52A / FCD1 / S-FPL51-class ED             | High as class; exact vendor not stated |
 | L14           |       1.84667 / 23.79 | S-TIH53-class high-dispersion flint           | Moderate; density mismatch             |
 | L21           |       1.91082 / 35.25 | HOYA TAFD35                                   | High                                   |
-| L22           |       1.68863 / 31.20 | Unmatched light dense flint                   | Unresolved                             |
+| L22           |       1.68863 / 31.20 | HOYA E-FD8 / M-FD80, 689312                   | Code-family coefficient-backed match   |
 | L31           |       1.48749 / 70.44 | N-FK5 / S-FSL5 class                          | Moderate-high                          |
 | L32           |       1.75700 / 47.71 | H-LaF6L / lanthanum-flint class               | Moderate                               |
 | L34           |       1.49648 / 81.30 | Unmatched ED fluorophosphate near 497/816     | Unresolved exact vendor                |
@@ -250,4 +250,4 @@ The agreement is within the precision expected from the patent's rounded variabl
 - Fujifilm official specifications, FUJINON GF20-35mmF4 R WR.
 - OHARA S-NPH3 and S-TIH53 official glass data.
 - SCHOTT N-PK52A and N-LASF46B official glass datasheets.
-- HOYA Optics news and cross-reference materials for TAFD35 and precision-molding glass families.
+- HOYA Optics news and cross-reference materials for TAFD35, E-FD8/M-FD80, and precision-molding glass families.

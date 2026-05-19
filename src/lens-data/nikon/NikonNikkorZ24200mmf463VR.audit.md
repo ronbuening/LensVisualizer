@@ -45,3 +45,18 @@ Catalog version: local working tree, 2026-05-02
 - `npm run format:check` — passed.
 - `npm run lint` — passed.
 - `npm run test` — passed (116 files, 1507 tests; expected error-boundary console errors emitted by tests).
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/JPWO2020157904A1.pdf`, Example 1 / Table 1. The L62 / surface 34 row gives nd=1.683760 and νd=37.57, code `684376`.
+
+Catalog-search disposition:
+
+- Public Nikon/Hikari catalog data identifies `684376` as Hikari J-KZFH6, nd=1.683760, νd=37.64, with published formula-3 power-series coefficients.
+- The Abbe-number difference is the patent/catalog rounding already seen in this family; the d-line index and code are exact.
+
+Changes made:
+
+- Added Hikari J-KZFH6 to `glassCatalogData.ts`.
+- Relabeled L62 in `NikonNikkorZ24200mmf463VR.data.ts` to `J-KZFH6 (Hikari) — titanium flint (684376)`.
+- Updated `NikonNikkorZ24200mmf463VR.analysis.md` so L62 is no longer described as catalog-unresolved.

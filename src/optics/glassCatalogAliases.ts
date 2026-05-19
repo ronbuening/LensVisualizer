@@ -12,6 +12,9 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   // S-TIH53 is the Ohara equivalent sharing the same 6-digit code (847/238 ≈ 847/239).
   ["SF57", "S-TIH53"],
   ["N-SF57", "S-TIH53"],
+  // CDGM H-ZF88A annotations in Laowa Probe data use the 847/238 dense-flint
+  // class; CDGM's cataloged H-ZF88 is a different 946/179 glass.
+  ["H-ZF88A", "S-TIH53"],
   // SK16 is the legacy Schott name for N-SK16 (same glass, modernized designation).
   ["SK16", "N-SK16"],
   // BACD5 is the Hoya trade name for N-SK16-equivalent glass (same nd/vd).
@@ -23,13 +26,23 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   ["L-BAL42", "S-BAL42"],
   ["L-BSL7", "S-BSL7"],
   ["L-BAL35", "S-BAL35"],
+  ["L-LAH53", "S-LAH53"],
+  ["L-LAM60", "S-LAM60"],
+  ["L-LAL13", "S-LAL13"],
+  ["L-LAL14", "S-LAL14"],
+  ["L-PHM52", "S-PHM52"],
   // SK10 and SK14 are legacy Schott names superseded by N-SK10 and N-SK14.
   ["SK5", "N-SK5"],
   ["SK10", "N-SK10"],
   ["SK14", "N-SK14"],
   // Legacy Schott names with modern N- prefixed equivalents.
+  ["N-F2", "F2"],
+  ["N-SF1", "SF1"],
+  ["N-SF6", "SF6"],
   ["FK5", "N-FK5"],
   ["LAF21", "N-LAF21"],
   ["LA-F21", "N-LAF21"],
   ["SK2", "N-SK2"],
+  // HOYA's TAFD35L PGM/pressed-glass row shares the TAFD35 911/353 optical constants.
+  ["TAFD35L", "TAFD35"],
 ]);

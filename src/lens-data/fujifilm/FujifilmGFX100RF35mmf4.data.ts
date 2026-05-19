@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gfx100rf-35mm-f4",
   maker: "Fujifilm",
-  name: "FUJIFILM GFX100RF 35mm f/4",
+  name: "FUJIFILM FUJINON 35mm f/4 (GFX100RF)",
   subtitle: "US 2025/0362482 A1 Example 5 — Fujifilm / Komatsu",
   specs: [
     "10 elements / 8 groups",

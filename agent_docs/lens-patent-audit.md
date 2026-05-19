@@ -2,13 +2,14 @@
 
 A standard procedure for reviewing an existing `*.data.ts` file against its source patent, correcting mismatched glass annotations, auditing retained values, enriching spectral data, and syncing the companion `*.analysis.md`. Every audit produces a per-lens `*.audit.md` log that records what changed and why.
 
-This is the procedure to follow when working a lens off the [glass-relabel-followup.md](glass-relabel-followup.md) or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.
+This is the procedure to follow when working a lens off the [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md), [glass-relabel-followup.md](glass-relabel-followup.md), or [proprietary-glass-backfill.md](proprietary-glass-backfill.md) queues, or any time a lens is revisited with the patent in hand.
 
 ## When to use this guide
 
 Use it when:
 
-- A lens appears in [catalog-mismatches.generated.md](catalog-mismatches.generated.md) and you have time to settle it against the patent.
+- A lens appears in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) and you have time to settle its flagged surfaces against the patent.
+- A row in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) or [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) needs a deeper patent pass.
 - You are revisiting a lens for any reason and the patent is open.
 - A reader has reported that the analysis narrative disagrees with the data file.
 - A new vendor catalog entry has just landed and you want to upgrade nearby annotations.
@@ -23,12 +24,37 @@ Skip it for:
 Before opening either lens file, collect:
 
 1. **The patent.** Use Espacenet ([https://worldwide.espacenet.com](https://worldwide.espacenet.com)) for EP/WO, J-PlatPat for JP, USPTO/Google Patents for US. The patent number is in the data file's header comments — search by number, not by title. If multiple embodiments, identify the embodiment number (`Example N`, `第N実施例`) that matches the lens spec.
-2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing.
+2. **The vendor catalog Sellmeier source** (only when relabeling toward a glass not already in our catalog). See [glass-catalog-buildout.md](glass-catalog-buildout.md) for sourcing. Before accepting a code-only fallback, search refractiveindex.info and the original manufacturer catalogs/datasheets for the patent's glass code, exact `nd`/`νd` pair, and likely vendor-family names.
 3. **The current mismatch reports** — regenerate before starting so the surface lists are current:
    ```bash
-   npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
+   npm run generate:glass-reports
    ```
-4. **Glass equivalence references** — Schott/Ohara/Hoya/Sumita cross-tables when the patent names a glass from a different vendor than the annotation.
+4. **The per-lens queue section** — open the target lens in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md). This is the working checklist for Phase 1; the raw mismatch and candidate reports are supporting references.
+5. **Glass equivalence references** — Schott/Ohara/Hoya/Sumita cross-tables when the patent names a glass from a different vendor than the annotation.
+
+## Using the per-lens relabel queue
+
+[glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) is the preferred entry point for relabel audits. It groups all flagged surfaces for a lens together so you can compare the patent's table, repeated glass codes, cemented groups, and analysis prose in one pass.
+
+Each row is a prompt for review, not an automatic edit:
+
+| Column | How to use it |
+|---|---|
+| `Surface` | Match this to the patent row and the data file surface. For a cemented junction, confirm which adjacent element owns the glass annotation before editing. |
+| `Current label` | The annotation currently resolving to a catalog entry whose Sellmeier `nd` disagrees with the stored surface `nd`. |
+| `Stored nd/vd` | The value already in the lens data. Treat this as suspect until checked against the patent. |
+| `Rejected as` | The catalog entry currently being rejected by the scan, with the `nd` delta that caused the mismatch. |
+| `Best candidate(s)` | Catalog entries whose `nd`/`vd` are near the stored values. They are ranked suggestions, not proof. |
+| `Confidence` | Triage signal. `High` is usually a single close match; `Medium` still needs context; `Choose by context` means several glasses fit the numeric pair. |
+| `Patent review` | Indicates whether the likely next step is checking notes for a straightforward relabel, choosing between candidates, or treating the row as a no-candidate patent investigation. |
+
+Recommended triage:
+
+1. Start with one lens section and audit all of its rows together. Do not cherry-pick one surface from a multi-row lens unless the patent review is intentionally scoped.
+2. Handle `High` rows first, especially repeated patterns. These often clear clean typos or vendor-family label drift.
+3. Treat `Choose by context` rows as patent/table lookups. Use glass codes, vendor names, nearby repeated elements, and analysis claims to choose; never choose only because a candidate appears first.
+4. Treat no-candidate rows as a source-research prompt before making a fallback decision. Search refractiveindex.info and manufacturer sources for the exact six-digit code, exact `nd`/`νd` pair, and nearby vendor-family names. If a reusable commercial glass is sourceable, add it through [glass-catalog-buildout.md](glass-catalog-buildout.md); if the glass remains opaque/private after that check, preserve the numeric data and annotate honestly with a future-upgrade code or `Unmatched`.
+5. After edits, regenerate the glass reports. The lens should either disappear from the per-lens queue or retain only rows you explicitly documented as unresolved follow-ups.
 
 ## The four-phase audit
 
@@ -39,25 +65,32 @@ Work the phases in order. Each phase ends with the `*.audit.md` log being update
 For every element with a `glass:` annotation:
 
 1. Look up the patent's prescription table and read the glass identifier or (nd, vd) for the matching surface index.
-2. Compare against the lens-data element's stored `nd` and `vd`. If the catalog scan flagged this surface, the candidate report names the in-tolerance options.
+2. Compare against the lens-data element's stored `nd` and `vd`. If the per-lens queue flagged this surface, use its candidate list and confidence label as the starting point.
 3. Decide:
    - **Stored (nd, vd) matches the patent and a catalog entry exists** → relabel `glass:` to the catalog entry's name. Verify the round-trip matches by reading the resolver's quality badge after the change.
-   - **Stored (nd, vd) matches the patent but no catalog entry exists** → either add the glass per [glass-catalog-buildout.md](glass-catalog-buildout.md) (only if used across multiple lenses) or choose an annotation that lets the resolver fall through gracefully while staying future-proof. Two sub-cases:
+   - **Stored (nd, vd) matches the patent but no catalog entry exists** → first do a short source pass before falling back:
+     - Search refractiveindex.info for the exact six-digit glass code (`NNNVVV`), the exact `nd`/`νd` pair, and likely vendor names from the patent context.
+     - Check manufacturer sources directly when available (Schott, Ohara, Hoya, Hikari, Sumita, CDGM, etc.), especially if refractiveindex.info points to a mirrored Zemax catalog or PDF datasheet.
+     - If the source gives coefficients and the entry is reusable, add it per [glass-catalog-buildout.md](glass-catalog-buildout.md) and validate `assertCatalogConsistent` rather than leaving the lens on Abbe fallback.
+     - If the source gives only identity/summary data but no usable coefficients, document the source in the audit log and keep a future-upgrade annotation.
+     After that source pass, either add the glass or choose an annotation that lets the resolver fall through gracefully while staying future-proof. Two sub-cases:
      - **6-digit code is known** (from another lens file, from the nd/νd pair itself, or from a cross-reference with Schott/Ohara/Hoya code tables) → use the code-based format:
        ```
        "NNNNNN — descriptive label (Vendor)"
        ```
-       Example: `"911353 — lanthanum (nd=1.91082, νd=35.3)"`. The resolver extracts `NNNNNN` as a `\d{6}` token and looks it up in `CODE6_INDEX`. Since no matching catalog entry exists yet, it returns null and Abbe approximation runs with the element's stored nd/νd. **When a catalog entry is later added with `code6: "NNNNNN"`, the annotation auto-upgrades from Abbe to Sellmeier with no changes to the data or analysis file.** Write the 6 digits as one unbroken string — a slash (`911/353`), space (`911 353`), or dash breaks the token and prevents the future auto-upgrade.
+       Example: `"911353 — lanthanum (nd=1.91082, νd=35.3)"`. Use this only after checking whether the code can be resolved to a sourceable catalog entry. The resolver extracts `NNNNNN` as a `\d{6}` token and looks it up in `CODE6_INDEX`. Since no matching catalog entry exists yet, it returns null and Abbe approximation runs with the element's stored nd/νd. **When a catalog entry is later added with `code6: "NNNNNN"`, the annotation auto-upgrades from Abbe to Sellmeier with no changes to the data or analysis file.** Write the 6 digits as one unbroken string — a slash (`911/353`), space (`911 353`), or dash breaks the token and prevents the future auto-upgrade.
      - **6-digit code is unknown** (vintage proprietary, designer-attributed, or composition fully opaque) → use the explicit `Unmatched` prefix:
        ```
        "Unmatched (description, reason)"
        ```
        The resolver short-circuits on the `Unmatched` keyword and returns null immediately, preventing any spurious catalog match. Reserve this form for cases where no upgrade path is anticipated.
    - **Stored (nd, vd) disagrees with the patent** → the prescription was transcribed wrong. Update the surface's `nd` (and the element's `nd`/`vd`) to the patent value. Then redo step 2.
-   - **Patent provides no glass identifier, only (nd, vd)** → keep the existing annotation if it round-trips within tolerance; otherwise mark as `Unmatched (designer attribution to X inconsistent with stored nd/vd)`.
+   - **Patent provides no glass identifier, only (nd, vd)** → keep the existing annotation if it round-trips within tolerance; otherwise search refractiveindex.info/manufacturer catalogs for that exact `nd`/`νd` pair and use the per-lens candidate list to find a catalog-equivalent label only when the row is unique enough to defend in the audit log. If no sourceable match exists and the candidate list is ambiguous, mark as `Unmatched (designer attribution to X inconsistent with stored nd/vd)` or use a 6-digit code annotation when one is known.
 4. **Never** relax the catalog round-trip tolerance (1e-4 in `assertCatalogConsistent`). If a catalog entry doesn't round-trip, fix the catalog source per [glass-catalog-buildout.md](glass-catalog-buildout.md) — do not mask the failure by mislabeling the lens.
 
 Common patterns and their preferred resolutions are tabulated under "Most-frequent patterns" in [glass-relabel-followup.md](glass-relabel-followup.md).
+
+Phase 1 refinement from the per-lens queue: when several surfaces share the same stored `nd`/`vd`, resolve them as a set. A repeated high-confidence candidate is stronger evidence than an isolated row; a repeated ambiguous candidate is a sign to inspect the patent's glass-code column before editing.
 
 ### Phase 2 — Audit retained information
 
@@ -198,6 +231,7 @@ Catalog version: <commit short SHA, optional>
 
 - Per-field before/after values, not narrative descriptions of changes.
 - The patent paragraph or table reference for each justification.
+- The queue row status for each flagged surface: resolved, intentionally left unmatched, added to catalog-buildout, or deferred with reason.
 - Verification commands run and their result.
 - Outstanding follow-ups (mismatches not resolved this pass, missing patent embodiments, etc.).
 
@@ -218,10 +252,16 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 If glass annotations changed, regenerate the catalog scans and confirm the lens drops off the affected mismatch lists:
 
 ```bash
-npm test -- catalogMismatchScan glassRelabelCandidatesScan unresolvedGlassScan
+npm run generate:glass-reports
 ```
 
-If the audit relabeled a surface that the global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).
+After regeneration, check the lens section in [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md):
+
+- If the section disappeared, Phase 1 is fully cleared for catalog mismatches.
+- If rows remain, copy the remaining surface numbers and reasons into the audit log.
+- If the row moved from candidate-backed to no-candidate, treat that as evidence that the new annotation resolved one mismatch but exposed a catalog gap.
+
+If the audit relabeled a surface that the historical global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).
 
 If the audit was on a lens listed in [proprietary-glass-backfill.md](proprietary-glass-backfill.md) Tier A and successfully populated the `spectral` block, delete the row from that table.
 
@@ -238,10 +278,11 @@ The log's purpose is forensic: future-you should be able to reconstruct which pa
 ## Related docs
 
 - [adding_a_lens.md](adding_a_lens.md) — workflow for new lens files (what this guide assumes is already complete).
-- [glass-relabel-followup.md](glass-relabel-followup.md) — per-lens worklist of catalog mismatches; the queue this audit drains.
+- [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — auto-generated per-lens relabel queue for patent-audit execution; the primary queue this audit drains.
+- [glass-relabel-followup.md](glass-relabel-followup.md) — historical follow-up notes and most-frequent mismatch patterns.
 - [glass-catalog-buildout.md](glass-catalog-buildout.md) — adding new vendor Sellmeier entries when Phase 1 needs one.
 - [proprietary-glass-backfill.md](proprietary-glass-backfill.md) — line-index backfill workflow when Phase 3 picks up `nC`/`nF`/`ng` from the patent.
-- [catalog-mismatches.generated.md](catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).
-- [glass-relabel-candidates.generated.md](glass-relabel-candidates.generated.md) — auto-generated candidate suggestions per mismatch group.
+- [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — auto-generated raw mismatch list (regenerate first).
+- [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) — auto-generated candidate suggestions per mismatch group.
 - [../src/lens-data/LENS_DATA_SPEC.md](../src/lens-data/LENS_DATA_SPEC.md) — full data-file format reference, including the Glass Identification section.
 - [../src/lens-data/LENS_ANALYSIS_SPEC.md](../src/lens-data/LENS_ANALYSIS_SPEC.md) — analysis-file format and writing conventions consumed by Phase 4.

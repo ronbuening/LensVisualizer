@@ -119,7 +119,7 @@ const LENS_DATA = {
       nd: 1.68863,
       vd: 31.2,
       fl: -355.86,
-      glass: "Unmatched (light dense flint, 689/312; no exact public catalog match confirmed)",
+      glass: "E-FD8 (HOYA, 689312 code)",
       role: "Weak-power moving aspheric corrector in the focus group.",
     },
     {

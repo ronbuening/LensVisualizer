@@ -59,15 +59,15 @@ This gives 4 + 1 + 1 + 1 + 1 = **8 air-separated groups**, matching the Leica sp
 |---|---|---|---|---|---|---|---|---|
 | L1 | Biconcave | 1.64769 | 33.8 | S-TIM22 (OHARA) | −35.6 | — | — | Front negative; field flattening, retrofocus contribution |
 | L2 | Biconvex | 2.00069 | 25.5 | S-NPH4 (OHARA) | +29.9 | — | — | Ultra-high-index positive; strong refraction at minimum curvature |
-| L3 | Biconvex | 1.59282 | 68.6 | 593/686 (PK crown, uncertain ID) | +28.7 | — | D1 (with L4) | Positive crown; primary positive power in G1; APD glass |
+| L3 | Biconvex | 1.59282 | 68.6 | FCD515 (HOYA) | +28.7 | — | D1 (with L4) | Positive crown; primary positive power in G1; APD glass |
 | L4 | Biconcave | 1.76182 | 26.6 | S-TIH6 (OHARA) | −24.4 | — | D1 (with L3) | Negative flint; chromatic correction partner for L3 |
-| L5 | Biconvex (2× Asph) | 1.58660 | 59.0 | 587/590 (HOYA FDS family) | +66.0 | 8A, 9A | — | OIS element; weak positive with aspherics for SA/coma |
+| L5 | Biconvex (2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | +66.0 | 8A, 9A | — | OIS element; weak positive with aspherics for SA/coma |
 | L6 | Biconcave (1× Asph) | 1.68948 | 31.0 | S-TIM28 / L-TIM28 (OHARA) | −22.3 | 10A | D2 (with L7) | Negative flint; aberration control at stop |
 | L7 | Biconvex | 1.95375 | 32.3 | S-LAH99 / TAFD33 (OHARA) | +19.0 | — | D2 (with L6) | Ultra-high-index positive; primary power in G2 |
 | L8 | Pos. Meniscus (convex to image) | 1.90366 | 31.3 | S-NPH53 / TAFD30 (OHARA) | +37.8 | — | D3 (with L9) | Positive meniscus; high-index short flint for Petzval correction |
 | L9 | Biconcave | 1.69895 | 30.1 | S-TIM35 (OHARA) | −31.0 | — | D3 (with L8) | Negative flint; G3 diverging power for field correction |
 | L10 | Biconvex (2× Asph) | 1.55332 | 71.7 | S-FPM3 / L-FPM3 (OHARA) | +40.0 | 16A, 17A | — | Fluorophosphate positive; main APD contributor; focus group |
-| L11 | Neg. Meniscus (convex to image, 2× Asph) | 1.58660 | 59.0 | 587/590 (HOYA FDS family) | −31.2 | 18A, 19A | — | Rear field-flattener; G5 negative for Petzval balance |
+| L11 | Neg. Meniscus (convex to image, 2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | −31.2 | 18A, 19A | — | Rear field-flattener; G5 negative for Petzval balance |
 
 ---
 
@@ -89,11 +89,11 @@ Three elements use glasses with refractive indices approaching or exceeding 1.9:
 
 The APO correction depends on anomalous partial dispersion (APD) to bring a third wavelength (typically g-line at 435.8 nm) to a common focus alongside the standard d-line and C-line correction of an ordinary achromat.
 
-**L3 — Six-digit code 593/686 (nd = 1.59282, νd = 68.6).** This glass sits in the phosphate crown (PK) region of the glass map, characteristic of low-dispersion positive crown glasses. The closest standard catalog match is OHARA S-FPM2 (nd = 1.59522, νd = 67.73), but with non-trivial residuals (Δnd = +0.0024, Δνd = −0.87), suggesting the patent may use a specialty melt, a glass from a secondary supplier (CDGM, Sumita), or intentionally rounded values. Regardless of the specific designation, a glass at this position on the nd/νd diagram will have positive anomalous partial dispersion (ΔPgF > 0). Paired with the normal-dispersion flint L4 (S-TIH6, νd = 26.6) in a cemented doublet, L3's APD helps pull the short-wavelength (blue/violet) focus closer to the long-wavelength focus, reducing secondary spectrum in the front group.
+**L3 — FCD515 (HOYA, nd = 1.59282, νd = 68.6).** This glass sits in the phosphate/fluor crown region of the glass map, characteristic of low-dispersion positive crown glasses. The 2026-05-19 audit matched the patent's 593686 row to the coefficient-backed HOYA FCD515 catalog entry. A glass at this position on the nd/νd diagram has positive anomalous partial dispersion (ΔPgF > 0). Paired with the normal-dispersion flint L4 (S-TIH6, νd = 26.6) in a cemented doublet, L3's APD helps pull the short-wavelength (blue/violet) focus closer to the long-wavelength focus, reducing secondary spectrum in the front group.
 
 **L10 — S-FPM3 (nd = 1.55332, νd = 71.7).** This fluorophosphate glass is the cornerstone of the APO correction. With a high Abbe number (71.7) and positive APD, it provides the same kind of secondary-spectrum reduction as ED (extra-low dispersion) glass does in telephoto designs, but here applied to a fast normal lens. L10 is a powerful biconvex element (f = +40.0 mm) with two aspherical surfaces — the most optically complex single element in the design. The patent's Inequality (7) requires νd4G > 62, and the actual value of 71.7 provides substantial margin, indicating that chromatic correction was a primary design driver for this element.
 
-**L5 and L11 — Six-digit code 587/590 (nd = 1.58660, νd = 59.0).** Both the OIS element and the rear field-flattener use the same glass, a crown in the BAL/BAM region of the glass map. The closest catalog match is in the HOYA FDS family (nd = 1.58660, νd = 59.01, exact to five decimal places), available in PGM-compatible grades. While not as strongly anomalous as fluorophosphate glass, the νd = 59.0 of these elements contributes to keeping the overall secondary spectrum low. The patent's Inequality (8) requires νd5G > 50 for L11; the value of 59.0 satisfies this comfortably.
+**L5 and L11 — K-SKLD200 (Sumita, nd = 1.58660, νd = 59.0).** Both the OIS element and the rear field-flattener use the same 587590 crown. The 2026-05-19 audit found Sumita K-SKLD200 as the exact coefficient-backed catalog match, including the published d-code 587590 and formula constants. While not as strongly anomalous as fluorophosphate glass, the νd = 59.0 of these elements contributes to keeping the overall secondary spectrum low. The patent's Inequality (8) requires νd5G > 50 for L11; the value of 59.0 satisfies this comfortably.
 
 ### 3.3 Optical Cement
 
@@ -141,7 +141,7 @@ The extreme aspherization of surface 18A reflects L11's role as a field-flattene
 
 The four aspherical elements span two glass types:
 
-- **L5 and L11** use the 587/590 glass (best match: HOYA FDS family, nd = 1.58660). HOYA offers this glass in PGM-compatible ("M-" prefix) grades, making it a standard choice for high-volume aspherical element production via precision glass molding.
+- **L5 and L11** use Sumita K-SKLD200, an exact 587590 coefficient-backed precision-molding glass.
 - **L10** uses OHARA S-FPM3 (nd = 1.55332), a fluorophosphate glass. OHARA offers L-FPM3 as the low-Tg PGM variant with identical optical constants. Given the production volumes of the Q3 43, PGM is the likely manufacturing method.
 - **L6** uses S-TIM28 (nd = 1.68948). OHARA offers L-TIM28 as the PGM variant, suggesting this element is also glass-molded.
 
@@ -227,4 +227,4 @@ Example 1 was selected as the production design based on its match with the Leic
 
 ---
 
-*Analysis based on US 2024/0241349 A1, Example 1. All element focal lengths, inequality values, and glass identifications independently verified via thick-lens computation and catalog matching. Aspherical departures computed from patent polynomial coefficients at paraxially ray-traced semi-diameters. Petzval sum verified via surface-by-surface computation. Manufacturer specifications sourced from Leica Camera AG product pages and DPReview.*
+*Analysis based on US 2024/0241349 A1, Example 1. All element focal lengths, inequality values, and glass identifications independently verified via thick-lens computation and catalog matching. The 2026-05-19 glass audit resolved L3 to HOYA FCD515 and L5/L11 to Sumita K-SKLD200. Aspherical departures computed from patent polynomial coefficients at paraxially ray-traced semi-diameters. Petzval sum verified via surface-by-surface computation. Manufacturer specifications sourced from Leica Camera AG product pages and DPReview.*

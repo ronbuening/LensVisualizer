@@ -61,7 +61,7 @@ The surface-by-surface Petzval sum, using $\sum \Phi/(n n')$, is **+0.00983476 m
 
 ### L1 — Front negative meniscus
 
-**nd = 1.74916, νd = 54.67. Glass: 749/547 high-index crown class, unmatched in checked public catalogs. f = -77.64 mm.**
+**nd = 1.74916, νd = 54.67. Glass: 749547 high-index crown class, unresolved after the 2026-05-19 public catalog pass. f = -77.64 mm.**
 
 L1 is the first element of the fixed front group. It begins the retrofocus conversion by receiving a very wide off-axis bundle and beginning the chief-ray bending needed for the downstream groups to work with a long back focus.
 
@@ -88,7 +88,7 @@ This is the first of the three ED-class elements in the design. The patent gives
 ### L4–L5 — First cemented correction doublet in G2
 
 **L4: nd = 1.62588, νd = 35.74. Glass: HOYA E-F1 class. f = +22.07 mm.**  
-**L5: nd = 1.83481, νd = 44.72. Glass: 835/447 high-index lanthanum-type class, unmatched in checked public catalogs. f = -13.76 mm.**  
+**L5: nd = 1.83481, νd = 44.72. Glass: 835447 high-index lanthanum-type class, unresolved after the 2026-05-19 public catalog pass. f = -13.76 mm.**
 **Cemented doublet focal length in air = -36.91 mm.**
 
 L4 and L5 form the first cemented doublet in moving G2. L4 is a positive component; L5 is a high-index negative component. The pair has net negative power, but the cemented interface allows the group to correct spherical aberration and axial color more cleanly than an equivalent air-spaced pair.
@@ -123,12 +123,12 @@ The triplet is not merely a positive relay. Its positive-negative-positive struc
 ### L11–L12 — Rear-group correction doublet
 
 **L11: nd = 1.78472, νd = 25.72. Glass: HOYA FD110 dense-flint class. f = +15.97 mm.**  
-**L12: nd = 1.90366, νd = 29.31. Glass: 904/293 dense-flint class, unmatched in checked public catalogs. f = -13.64 mm.**  
+**L12: nd = 1.90366, νd = 29.31. Glass: 904293 dense-flint class, unresolved after the 2026-05-19 public catalog pass. f = -13.64 mm.**
 **Cemented doublet focal length in air = -74.77 mm.**
 
 This doublet provides weak net negative correction inside the positive rear group. Its role is to restrain the rear relay from becoming a simple high-Petzval positive group.
 
-The positive L11 / negative L12 pairing contributes to field flattening and lateral color control after the post-stop triplet. L12 should remain labeled as an unmatched dense-flint class unless a catalog entry is found with a close nd/νd match.
+The positive L11 / negative L12 pairing contributes to field flattening and lateral color control after the post-stop triplet. L12 remains labeled as unresolved 904293 unless a coefficient-backed catalog entry is found with a close nd/νd match.
 
 ### L13 — Thick ED positive lens
 
@@ -150,7 +150,7 @@ L15 is the third ED-class element. Placing this ED positive component near the r
 
 ### L16 — Rear double-aspheric field corrector
 
-**nd = 1.80781, νd = 40.97. Glass: 808/410 high-index class, unmatched in checked public catalogs. f = -63.30 mm.**
+**nd = 1.80781, νd = 40.97. Glass: D-ZLAF81-25 (CDGM), a coefficient-backed 808410 catalog match. f = -63.30 mm.**
 
 L16 is the second physical aspherical element. Both surfaces are aspherical. It is positioned close to the image plane, so it acts mainly as a rear field corrector rather than as the primary front distortion-control element.
 
@@ -158,23 +158,23 @@ The rear double asphere works on a converged beam. That placement is well suited
 
 ## Glass Identification and Selection
 
-The patent does **not** name glass manufacturers. The following identifications are therefore nd/νd-based catalog or class identifications, not patent-printed melt names. Where a catalog match is not sufficiently supported, the glass is deliberately left as an unmatched code class.
+The patent does **not** name glass manufacturers. The following identifications are therefore nd/νd-based catalog or class identifications, not patent-printed melt names. Where a catalog match is not sufficiently supported, the glass is deliberately left as an explicit unresolved code class.
 
 | Element(s) | Patent nd / νd | Six-digit code | Best-supported identification | Role |
 |---|---:|---:|---|---|
-| L1 | 1.74916 / 54.67 | 749/547 | Unmatched high-index crown / lanthanum-crown class | Front negative power with moderate dispersion. |
+| L1 | 1.74916 / 54.67 | 749547 | Unresolved high-index crown / lanthanum-crown class | Front negative power with moderate dispersion. |
 | L2 | 1.58313 / 59.46 | 583/595 | BACD12 / S-BAL42 barium-crown class | Large double-aspheric front correction element. |
 | L3, L13, L15 | 1.49700 / 81.61 | 497/816 | FCD1 / H-FK61 / S-FPL51-class ED fluorophosphate / fluorocrown | Three ED-class elements. |
 | L4 | 1.62588 / 35.74 | 626/357 | HOYA E-F1 class | Positive member of first G2 doublet. |
-| L5 | 1.83481 / 44.72 | 835/447 | Unmatched high-index lanthanum-type class | Negative partner in first G2 doublet. |
+| L5 | 1.83481 / 44.72 | 835447 | Unresolved high-index lanthanum-type class | Negative partner in first G2 doublet. |
 | L6 | 1.76182 / 26.61 | 762/266 | HOYA FD140 dense-flint class | Positive dense-flint member of second G2 doublet. |
 | L7 | 1.92286 / 20.88 | 923/209 | SCHOTT N-SF66 / HOYA E-FDS1-class dense flint | Strong pre-stop chromatic leverage. |
 | L8 | 1.61293 / 36.96 | 613/370 | HOYA E-F3 class | First positive component of post-stop triplet. |
 | L9, L14 | 1.91082 / 35.25 | 911/353 | HOYA TAFD35 / TAFD35L class | High-index low-dispersion negative components. |
 | L10 | 1.62004 / 36.30 | 620/363 | HOYA E-F2 class | Positive member completing the post-stop triplet. |
 | L11 | 1.78472 / 25.72 | 785/257 | HOYA FD110 dense-flint class | Positive dense-flint member of rear doublet. |
-| L12 | 1.90366 / 29.31 | 904/293 | Unmatched dense-flint class | Negative partner in rear correction doublet. |
-| L16 | 1.80781 / 40.97 | 808/410 | Unmatched high-index class | Rear double-aspheric field corrector. |
+| L12 | 1.90366 / 29.31 | 904293 | Unresolved dense-flint class | Negative partner in rear correction doublet. |
+| L16 | 1.80781 / 40.97 | 808410 | D-ZLAF81-25 (CDGM) | Rear double-aspheric field corrector. |
 
 The chromatic strategy is distributed. The three ED-class elements are not clustered: one is in moving G2, one is a thick positive element in the middle of G3, and one is cemented into a rear achromatizing doublet. This distribution is appropriate for a rectilinear ultra-wide lens, where axial color, lateral color, field curvature, and focus-distance-dependent color must be controlled simultaneously.
 

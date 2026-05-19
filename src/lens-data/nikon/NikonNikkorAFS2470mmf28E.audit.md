@@ -49,3 +49,17 @@ Catalog version: 952b877, local working tree
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed (120 files, 1566 tests; expected error-boundary console errors emitted by tests).
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/US20200142168A1.pdf`, Example 1 / Table 1. L11 / surface 1 remains the only reviewed missing-Sellmeier row for this pass: nd=1.74389, νd=49.50, code `744495`.
+
+Catalog-search disposition:
+
+- Searched public Hikari/Nikon, OHARA, HOYA, SCHOTT, and refractiveindex.info-backed catalog data for `744495` and the nd/νd pair.
+- No coefficient-backed exact match was found. The label now explicitly says no exact public catalog match, and retains the unbroken code for future auto-upgrade.
+
+Changes made:
+
+- Reworded the L11 glass label in `NikonNikkorAFS2470mmf28E.data.ts`.
+- Updated the L11 narrative in `NikonNikkorAFS2470mmf28E.analysis.md`.

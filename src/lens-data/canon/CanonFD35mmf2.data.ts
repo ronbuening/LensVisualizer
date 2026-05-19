@@ -75,7 +75,7 @@ const LENS_DATA = {
       nd: 1.7,
       vd: 48.0,
       fl: 57.3,
-      glass: "LaK (700480, S-LAL7 family)",
+      glass: "S-LAM51 (OHARA)",
       role: "Strong positive in Group II₁; begins convergence of diverged beam",
     },
     {

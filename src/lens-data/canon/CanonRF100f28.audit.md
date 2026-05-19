@@ -39,8 +39,8 @@ Catalog version: 952b877
 ### Phase 4 - Analysis sync
 
 - Updated `CanonRF100f28.analysis.md` element narratives, D2/D3/D4 prose, glass map, repeated-glass summary, and anomalous glass-power pairing notes for the corrected labels.
-- Regenerated `agent_docs/catalog-mismatches.generated.md` and `agent_docs/glass-relabel-candidates.generated.md`; this lens no longer appears in either report.
-- Regenerated `agent_docs/unresolved-glass.generated.md`; only the intentional 946180 and 764485 code-based labels remain for this lens.
+- Regenerated `agent_docs/generated/catalog-mismatches.generated.md` and `agent_docs/generated/glass-relabel-candidates.generated.md`; this lens no longer appears in either report.
+- Regenerated `agent_docs/generated/unresolved-glass.generated.md`; only the intentional 946180 and 764485 code-based labels remain for this lens.
 
 ### Verification
 

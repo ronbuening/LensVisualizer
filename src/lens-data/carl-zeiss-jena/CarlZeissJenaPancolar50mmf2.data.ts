@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.67246,
       vd: 32.3,
       fl: -45.3,
-      glass: "SF2 equivalent (Jena in-house, 672/323)",
+      glass: "Dense flint (672/323, Jena in-house; no exact public catalog match)",
       apd: false,
       cemented: "D1",
       role: "Front doublet flint; steep r₅ generates negative Petzval and spherical correction",

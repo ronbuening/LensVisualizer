@@ -54,3 +54,34 @@ Patent: US 2018/0246292 A1 — Example 1
 ### Outstanding follow-ups
 
 - `agent_docs/glass-relabel-followup.md` still contains the global S-FPM2/XF80 queue row. It was not edited because this audit was requested to avoid non-lens files.
+
+## 2026-05-19 - Missing-Sellmeier queue follow-up
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L2b / surface 11 | `glass` | `673382 - barium flint (patent nd=1.67300, vd=38.15; no exact catalog match)` | `S-NBH52 (OHARA)` | Patent Table 1 gives nd=1.67300 and vd=38.15. OHARA S-NBH52 is an existing coefficient-backed catalog entry; this pass added its 673382 code alias and upgraded the label. |
+
+### Phase 2 - Patent evidence
+
+- Local patent file: `patents/US20180246292A1.pdf` is present but gitignored; rechecked it via local text extraction and cross-checked the public Google Patents HTML.
+- Reconfirmed Example 1 / Table 1 surface 11 for L2b: nd=1.67300, vd=38.15.
+- No radius, spacing, focus, OIS group, stop, mount, or format edits made.
+
+### Phase 3 - Catalog-search disposition
+
+- Added `code6: "673382"` to existing OHARA S-NBH52.
+- This supersedes the earlier same-day unresolved disposition for L2b.
+
+### Phase 4 - Analysis sync
+
+- Updated the L2b narrative and glass table to identify OHARA S-NBH52.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed.
+- `npm run typecheck` - passed.
+- `npm run format:check` - passed.
+- `npm run lint` - passed.
+- `npm run test` - passed, 131 test files / 1666 tests.

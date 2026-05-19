@@ -72,7 +72,7 @@ The patent's Claim 1, condition (g), explicitly requires that all four convergen
 
 ### Element III: nd = 1.67246, νd = 32.3 — Dense Flint (SF family)
 
-This glass is used only in Element III, the negative (dispersive) component of the front cemented doublet. Its six-digit code is 672/323, placing it squarely in the dense flint (SF — *Schwer-Flint*) family. The closest modern equivalent is Schott SF2 (nd = 1.67270, νd = 32.17), which differs by only Δnd = −0.00024 and Δνd = +0.13 — close enough to constitute an effective match. The Jena equivalent was almost certainly their in-house SF2 formulation.
+This glass is used only in Element III, the negative (dispersive) component of the front cemented doublet. Its six-digit code is 672/323, placing it squarely in the dense flint (SF — *Schwer-Flint*) family. The earlier SF2-equivalent label was too confident: the current Schott SF2 catalog entry does not match this nd/vd pair closely enough, and the public coefficient-backed catalogs checked during the audit did not provide an exact 672323 match. The data therefore keeps this as a Jena in-house dense flint rather than assigning a modern catalog name.
 
 Dense flint glass is the traditional choice for the negative elements in achromatic doublets. Its high dispersion (low Abbe number) provides the chromatic correction needed when cemented to the positive crown (Element II). The difference in refractive index between Elements II and III is remarkably small — only Δnd = 0.01046 — while the difference in dispersion is large (Δνd = 23.8). This is an order of magnitude smaller than the Δnd ≈ 0.10 typical of conventional Fraunhofer achromatic doublets, and it was highlighted as a design innovation in contemporary coverage: a 1957 article in Modern Photography described the selection of glasses for Elements II and III such that they had nearly identical refractive indices at yellow light. The practical consequence is that the cemented interface at r₄ contributes almost no refractive power at the design wavelength — it acts nearly purely as a chromatic corrector, introducing differential dispersion without generating significant monochromatic aberrations at the cemented surface. This "power-free chromatic surface" is a hallmark of sophisticated double-Gauss optimization.
 
@@ -88,7 +88,7 @@ The choice of a different flint glass in the rear doublet versus the front doubl
 |---------|----|----|-------------|------|
 | I | 1.66200 | 56.1 | Dense Ba Crown (SSK) | Front positive |
 | II | 1.66200 | 56.1 | Dense Ba Crown (SSK) | Doublet crown |
-| III | 1.67246 | 32.3 | Dense Flint (SF2 equiv.) | Doublet flint |
+| III | 1.67246 | 32.3 | Dense Flint (672/323, no exact public match) | Doublet flint |
 | IV | 1.60156 | 35.2 | Special Light Flint | Doublet flint |
 | V | 1.66200 | 56.1 | Dense Ba Crown (SSK) | Doublet crown |
 | VI | 1.66200 | 56.1 | Dense Ba Crown (SSK) | Rear positive |
@@ -227,6 +227,6 @@ The back focal length deserves particular attention. As the German CZJ reference
 
 The Pancolar sits firmly in the lineage of symmetric double-Gauss derivatives that began with Rudolph's Planar (1896) and evolved through the Biotar, Ultron, Xenon, and Summicron families. Its 6-element, 4-group configuration with two cemented meniscus doublets flanking a central stop is the most common form of this archetype.
 
-What distinguishes the Pancolar's design from many of its contemporaries is the extreme economy of its glass selection — four of six elements using identical glass. This is not merely a manufacturing convenience; it is a deliberate optical strategy. By using the same crown glass on both sides of the diaphragm, the designers ensured that the chromatic properties of the front and rear groups would be inherently matched, simplifying the chromatic balancing problem and allowing the (necessarily asymmetric) monochromatic correction to be tuned independently. The intentional asymmetry is then introduced through the flint glass selection: a heavier flint (SF2 equivalent, νd = 32.3) in the front doublet and a lighter special flint (νd = 35.2) in the rear doublet.
+What distinguishes the Pancolar's design from many of its contemporaries is the extreme economy of its glass selection — four of six elements using identical glass. This is not merely a manufacturing convenience; it is a deliberate optical strategy. By using the same crown glass on both sides of the diaphragm, the designers ensured that the chromatic properties of the front and rear groups would be inherently matched, simplifying the chromatic balancing problem and allowing the (necessarily asymmetric) monochromatic correction to be tuned independently. The intentional asymmetry is then introduced through the flint glass selection: a heavier unresolved dense flint (νd = 32.3) in the front doublet and a lighter special flint (νd = 35.2) in the rear doublet.
 
 The design achieves a Petzval sum of 0.00167 (at f = 100), corresponding to a Petzval radius approximately 5.9× the focal length — excellent field flatness for a double-Gauss of this era and speed.

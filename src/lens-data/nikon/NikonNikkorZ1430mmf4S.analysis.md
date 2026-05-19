@@ -137,7 +137,7 @@ The aperture stop S is located in the air space between G2 and G3, at surface 14
 ### Group G4 — Focusing Group (1 element)
 
 **L41 — Negative meniscus, concave toward image**
-- nd = 1.79500, νd = 45.31 — Glass: high-index lanthanum, patent code 795453
+- nd = 1.79500, νd = 45.31 — Glass: Hikari J-LASF017, patent code 795453
 - Surfaces: S22 (R = +72.093) / S23 (R = +20.993)
 - Focal length: f = −37.6 mm
 - Role: L41 is the entire focusing group. Its single-element, lightweight construction is a deliberate choice for fast, quiet autofocus via stepping motor — a single lanthanum flint element with a center thickness of only 1.0 mm can be translated extremely quickly with minimal inertia. The negative meniscus shape provides a modest diverging action that fine-tunes the convergence of the beam before it reaches G5. During focusing from infinity to close range, L41 moves toward the image plane, increasing the D3 gap (G3→G4) while decreasing D4 (G4→G5). This internal focusing mechanism ensures the overall lens length does not change during AF.
@@ -151,7 +151,7 @@ The aperture stop S is located in the air space between G2 and G3, at surface 14
 - Role: L51 is the fourth and final ED element in the design. Its strongly curved rear surface (R = −20.1 mm) produces positive power while the nearly flat front surface (R = −538 mm) contributes negligible refraction. Positioned close to the image plane, L51 acts as a field flattener, curving the Petzval surface to match the flat sensor. Edge thickness constrains this element's semi-diameter to approximately 12.4 mm.
 
 **L52 — Biconcave negative**
-- nd = 1.76546, νd = 46.75 — Glass: lanthanum flint, patent code 765468 (catalog unresolved; see §4)
+- nd = 1.76546, νd = 46.75 — Glass: Hikari Q-LASFPH2S, patent code 765468 (moldable lanthanum flint)
 - Surfaces: S26★ (R = −38.934, aspherical) / S27 (R = +154.832)
 - Focal length: f = −40.5 mm
 - Role: L52 is the rearmost glass element, positioned very close to the image plane. Its aspherical front surface (S26, K = −1.0, paraboloid) provides the final correction of off-axis aberrations — principally astigmatism and field curvature at the extreme corners of the full-frame field. The negative departure at the rim (approximately −448 µm at h = 11 mm) curves the wavefront to flatten the sagittal and tangential focal surfaces. The combination of L51 (+41.9 mm) and L52 (−40.5 mm) nearly cancels in power (net f ≈ −1393 mm), confirming that G5's primary purpose is aberrational correction rather than refraction.
@@ -164,7 +164,7 @@ The design uses glass from seven distinct types, drawing primarily from the OHAR
 
 **ED Fluorophosphate — S-FPL51 family (nd ≈ 1.498, νd ≈ 82.6):** Used in four elements (L13, L33, L34, L51). The patent's nd/νd values (1.49782/82.57) are close to but not identical to the OHARA S-FPL51 catalog listing (1.49700/81.61); the residual Δnd = +0.00082, Δνd = +0.96 is consistent with normal melt-to-melt variation in fluorophosphate glasses or may indicate a proprietary variant. The glass family identification — calcium fluorophosphate ED with anomalous partial dispersion (positive ΔPgF ≈ +0.035) — is confident regardless of the exact catalog code. The four ED elements are distributed strategically: one in the front group (L13) for lateral color control, two in the relay group (L33, L34) for axial color at the convergent beam, and one in the field corrector (L51) for residual correction near the image.
 
-**Lanthanum and high-index glasses — S-LAH58/59 and code-only melts:** Used in four elements (L22, L31, L41, L52). The L22 (nd=1.883/νd=40.66) matches OHARA S-LAH58 well; L31 (1.816/46.59) matches S-LAH59. L41 (1.795/45.31, code 795453) and L52 (1.76546/46.75, code 765468) do not closely match any catalog entry currently in the project, so they are kept as code-based patent glasses rather than being forced onto S-LAH51 or S-LAH64. The family identification as high-index lanthanum glass remains secure, but exact vendor catalog names for L41 and L52 are unresolved.
+**Lanthanum and high-index glasses — S-LAH58/59 plus Hikari catalog melts:** Used in four elements (L22, L31, L41, L52). The L22 (nd=1.883/νd=40.66) matches OHARA S-LAH58 well; L31 (1.816/46.59) matches S-LAH59. L41 (1.795/45.31, code 795453) now resolves to Hikari J-LASF017, and L52 (1.76546/46.75, code 765468) resolves to the Nikon/Hikari Q-series moldable glass Q-LASFPH2S.
 
 **Dense Flint — code 903357 (nd = 1.903, νd = 35.7):** Used once (L14). The extremely high refractive index provides strong positive power in a compact meniscus while the very low Abbe number creates maximum chromatic leverage when paired with the ED element L13.
 

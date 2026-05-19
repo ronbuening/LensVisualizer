@@ -151,7 +151,7 @@ const LENS_DATA = {
       nd: 1.85,
       vd: 27.0,
       fl: -61.8,
-      glass: "850270 — dense flint (patent nd=1.85000, νd=27.0)",
+      glass: "J-LASFH23 (Hikari) — dense flint (850270)",
       cemented: "D2",
       apd: false,
       role: "Dense flint negative in pre-stop achromatic doublet D2.",

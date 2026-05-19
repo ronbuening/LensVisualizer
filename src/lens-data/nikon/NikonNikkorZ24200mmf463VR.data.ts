@@ -298,7 +298,7 @@ const LENS_DATA = {
       nd: 1.68376,
       vd: 37.57,
       fl: 101.0,
-      glass: "684376 — titanium flint (patent nd=1.68376, νd=37.57)",
+      glass: "J-KZFH6 (Hikari) — titanium flint (684376)",
       apd: false,
       role: "Final element — completes G6 air-lens field correction. Weak power, primarily corrective.",
     },

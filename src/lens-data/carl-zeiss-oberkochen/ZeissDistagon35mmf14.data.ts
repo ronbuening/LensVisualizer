@@ -51,7 +51,7 @@ const LENS_DATA = {
       nd: 1.5827,
       vd: 46.5,
       fl: -65.6,
-      glass: "Barium flint 583/465",
+      glass: "BAF3 (HIKARI)",
       apd: false,
       role: "Front negative diverger — expands the beam to establish the retrofocus geometry. Concave toward front.",
     },

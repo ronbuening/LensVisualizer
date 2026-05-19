@@ -96,7 +96,7 @@ This sum represents the balance of large competing contributions: the negative e
 
 | Property | Value |
 |---|---|
-| Glass | 583/46.5 — Barium flint (BaF family) |
+| Glass | BAF3 (HIKARI), 583/465 barium flint |
 | nd / νd | 1.5827 / 46.5 |
 | Shape | Negative meniscus, concave toward front |
 | Radii | R₁ = +8.3325, R'₁ = +0.9281 |
@@ -104,7 +104,7 @@ This sum represents the balance of large competing contributions: the negative e
 
 L1 is a deeply curved negative meniscus with its concave surface facing the object. Both radii are positive (centers of curvature to the right), but because the rear surface (R'₁ = +0.928) curves far more strongly than the front (R₁ = +8.333), the element is thicker at the edges than at the center — the defining geometry of a negative meniscus. Its primary role is to expand the beam entering the lens, contributing the largest single negative surface power in the system (φ at R'₁ = −0.628). This expansion is essential for achieving the retrofocus geometry.
 
-The six-digit glass code 583465 corresponds to a glass type in the old Schott catalog that has since been discontinued or reformulated. No exact match exists in modern Schott, OHARA, or HOYA catalogs.
+The six-digit glass code 583465 corresponds to a barium flint type. A modern public Hikari BAF3 catalog row matches the patent constants closely (nd = 1.58267, νd = 46.48), so the data file now uses that coefficient-backed public match while retaining the historical BaF interpretation.
 
 ### Element L2 — Secondary Negative Element
 
@@ -209,7 +209,7 @@ Converted to standard conic+polynomial with K = 0: A₄ = c₂ − 1/(8R³) = �
 
 ## 5. Glass Selection Strategy
 
-Five glass types serve nine elements: barium flint 583/465 (L1), LLF1 548/458 (L2, L5), N-LaK8 713/539 (L3a, L3b, L4), SF57 847/238 (L6), and N-LaF21 788/474 (L7, L8). The achromatization strategy pairs the front member's modest dispersion contrast (~8 units, LaK8 vs LLF1/BaF) with the rear doublet's strong contrast (23.6 units, SF57 vs N-LaF21). The refractive index hierarchy satisfying Rules E' and E″ simultaneously optimizes Petzval field curvature and higher-order oblique aberration balance.
+Five glass types serve nine elements: BAF3 / 583465 barium flint (L1), LLF1 548/458 (L2, L5), N-LaK8 713/539 (L3a, L3b, L4), SF57 847/238 (L6), and N-LaF21 788/474 (L7, L8). The achromatization strategy pairs the front member's modest dispersion contrast (~8 units, LaK8 vs LLF1/BaF) with the rear doublet's strong contrast (23.6 units, SF57 vs N-LaF21). The refractive index hierarchy satisfying Rules E' and E″ simultaneously optimizes Petzval field curvature and higher-order oblique aberration balance.
 
 ---
 

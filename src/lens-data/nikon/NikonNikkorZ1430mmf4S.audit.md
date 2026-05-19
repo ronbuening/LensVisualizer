@@ -62,3 +62,18 @@ Confirmed without data-file changes:
 ### Outstanding follow-ups
 
 - Consider adding catalog entries only if public Sellmeier sources are found for patent codes 694533, 903357, 795453, and 765468. Until then these labels intentionally fall back to Abbe approximation using the patent's stored nd/νd.
+
+## 2026-05-19 — Six-digit glass-code backfill review
+
+Reviewed `patents/JP2019008031A.pdf`, Example 1 / Table 1. The rows rechecked here were L41 / surface 22 (nd=1.79500, νd=45.31, code `795453`) and L52 / surface 26 (nd=1.76546, νd=46.75, code `765468`).
+
+Catalog-search disposition:
+
+- Hikari J-LASF017 exactly backs `795453` with nd=1.795000, νd=45.31, and published formula-3 power-series coefficients.
+- Nikon/Hikari Q-LASFPH2S backs `765468` with nd=1.765437, νd=46.75, and published formula-3 power-series coefficients. The tiny nd difference is within rounding between the patent and catalog values.
+
+Changes made:
+
+- Added Hikari J-LASF017 and Q-LASFPH2S to `glassCatalogData.ts`.
+- Relabeled L41 and L52 in `NikonNikkorZ1430mmf4S.data.ts`.
+- Updated `NikonNikkorZ1430mmf4S.analysis.md` so the lanthanum-glass discussion no longer treats those elements as unresolved code-only melts.

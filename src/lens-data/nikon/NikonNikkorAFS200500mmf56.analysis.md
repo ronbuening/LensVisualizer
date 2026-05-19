@@ -97,25 +97,25 @@ The table below lists all 19 elements with their optical properties, computed fo
 
 | E# | nd | vd | Code | Shape | fl (mm) | Probable Glass | Catalog |
 |:--:|:----:|:----:|:----:|:------|:-------:|:---------------|:--------|
-| 1 | 1.80400 | 46.60 | 1804/466 | Pos. Meniscus | −211.8 | NBFD11 | HOYA |
-| 2 | 1.49782 | 82.57 | 1498/826 | Biconvex | +205.2 | FPL51 variant | — [ED] |
-| 3 | 1.49782 | 82.57 | 1498/826 | Biconvex | +236.7 | FPL51 variant | — [ED] |
-| 4 | 1.60342 | 38.01 | 1603/380 | Neg. Meniscus | +115.7 | S-TIM27 | OHARA |
-| 5 | 1.72916 | 54.67 | 1729/547 | Biconcave | −57.4 | TAC4 / S-LAL18 | HOYA / OHARA |
-| 6 | 1.51742 | 52.15 | 1517/522 | Biconcave | −71.6 | S-NSL3 | OHARA |
-| 7 | 1.80518 | 25.46 | 1805/255 | Pos. Meniscus | +104.1 | S-TIH6 | OHARA |
-| 8 | 1.74330 | 49.22 | 1743/492 | Biconcave | −143.2 | S-NBH51 | OHARA |
-| 9 | 1.60738 | 56.82 | 1607/568 | Biconvex | +45.2 | S-BAL35 | OHARA |
-| 10 | 1.65844 | 50.85 | 1658/508 | Neg. Meniscus | −59.3 | S-BAH28 | OHARA |
-| 11 | 1.90366 | 31.31 | 1904/313 | Pos. Meniscus | −209.5 | S-LAH79 | OHARA |
-| 12 | 1.48749 | 70.44 | 1487/704 | Biconvex | +71.6 | N-FK5 / E-FEL1 | Schott / HOYA |
-| 13 | 1.49700 | 81.61 | 1497/816 | Biconvex | +99.0 | S-FPL51 / FCD1 | OHARA / HOYA [ED] |
-| 14 | 1.83400 | 37.34 | 1834/373 | Neg. Meniscus | −97.2 | S-LAH55V / TAFD5 | OHARA / HOYA |
-| 15 | 1.74330 | 49.22 | 1743/492 | Pos. Meniscus | +139.2 | S-NBH51 | OHARA |
-| 16 | 1.64769 | 33.84 | 1648/338 | Biconvex | +97.2 | E-ADF10 | HOYA |
-| 17 | 1.72916 | 54.67 | 1729/547 | Biconcave | −42.8 | TAC4 / S-LAL18 | HOYA / OHARA |
-| 18 | 1.58144 | 40.89 | 1581/409 | Neg. Meniscus | +131.4 | S-TIM2 | OHARA |
-| 19 | 1.83481 | 42.72 | 1835/427 | Neg. Meniscus | −121.7 | S-LAH58 | OHARA |
+| 1 | 1.80400 | 46.60 | 804/466 | Pos. Meniscus | −211.8 | S-LAH65 | OHARA |
+| 2 | 1.49782 | 82.57 | 498/826 | Biconvex | +205.2 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
+| 3 | 1.49782 | 82.57 | 498/826 | Biconvex | +236.7 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
+| 4 | 1.60342 | 38.01 | 603/380 | Neg. Meniscus | +115.7 | S-TIM5 | OHARA |
+| 5 | 1.72916 | 54.67 | 729/547 | Biconcave | −57.4 | TAC4 / S-LAL18 | HOYA / OHARA |
+| 6 | 1.51742 | 52.15 | 517/522 | Biconcave | −71.6 | 517522 crown | — |
+| 7 | 1.80518 | 25.46 | 805/255 | Pos. Meniscus | +104.1 | S-TIH6 | OHARA |
+| 8 | 1.74330 | 49.22 | 743/492 | Biconcave | −143.2 | S-LAM60 | OHARA |
+| 9 | 1.60738 | 56.82 | 607/568 | Biconvex | +45.2 | N-SK2 | Schott |
+| 10 | 1.65844 | 50.85 | 658/509 | Neg. Meniscus | −59.3 | Schott N-SSK5 extra dense crown | Schott |
+| 11 | 1.90366 | 31.31 | 904/313 | Pos. Meniscus | −209.5 | S-LAH95 | OHARA |
+| 12 | 1.48749 | 70.44 | 487/704 | Biconvex | +71.6 | N-FK5 / E-FEL1 | Schott / HOYA |
+| 13 | 1.49700 | 81.61 | 497/816 | Biconvex | +99.0 | S-FPL51 / FCD1 | OHARA / HOYA [ED] |
+| 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | S-LAH55V / TAFD5 | OHARA / HOYA |
+| 15 | 1.74330 | 49.22 | 743/492 | Pos. Meniscus | +139.2 | S-LAM60 | OHARA |
+| 16 | 1.64769 | 33.84 | 648/338 | Biconvex | +97.2 | E-ADF10 | HOYA |
+| 17 | 1.72916 | 54.67 | 729/547 | Biconcave | −42.8 | TAC4 / S-LAL18 | HOYA / OHARA |
+| 18 | 1.58144 | 40.89 | 581/409 | Neg. Meniscus | +131.4 | E-FL5 | HOYA |
+| 19 | 1.83481 | 42.72 | 835/427 | Neg. Meniscus | −121.7 | S-LAH55 | OHARA |
 
 ### 4.3 Glass Selection Rationale
 
@@ -125,7 +125,7 @@ The glass palette reflects several deliberate design strategies:
 
 **Anomalous partial dispersion.** The ED elements (S-FPL51 family) are fluorophosphate crown glasses with anomalous partial dispersion, meaning their secondary spectrum departure (ΔθgF) is strongly negative relative to normal glasses. This is critical for a super-telephoto zoom where secondary spectrum would otherwise produce noticeable color fringing at 500 mm.
 
-**VR group optimization.** The VR group (L2B) uses comparatively lightweight glasses: E6 (S-NSL3, nd = 1.517) and E7 (S-TIH6, nd = 1.805 but very thin at 3.8 mm). E8 (S-NBH51, nd = 1.743) is a thin singlet at 1.7 mm. The low density of the crown element and the thinness of all three elements minimize the VR group's mass, directly benefiting actuator size, power consumption, and responsiveness.
+**VR group optimization.** The VR group (L2B) uses comparatively lightweight glasses: E6 (517522 crown, nd = 1.517) and E7 (S-TIH6, nd = 1.805 but very thin at 3.8 mm). E8 (S-LAM60, nd = 1.743) is a thin singlet at 1.7 mm. The low density of the crown element and the thinness of all three elements minimize the VR group's mass, directly benefiting actuator size, power consumption, and responsiveness.
 
 **Mixed catalog sourcing.** The glass identifications span OHARA (majority), HOYA, and Schott catalogs. This is consistent with Tamron's known sourcing practices and the joint Nikon–Tamron development.
 
@@ -135,7 +135,7 @@ The glass palette reflects several deliberate design strategies:
 
 ### Group 1 (L1): Front Objective — Elements 1–3
 
-**E1 (positive meniscus, nd = 1.804)** cemented to **E2 (biconvex ED, nd = 1.498):** This cemented doublet forms the first component of the front group. Element 1 is a high-index flint (HOYA NBFD11) that serves as the negative chromatic corrector for the strongly positive ED element behind it. Despite its meniscus shape being geometrically "positive" (both radii positive, convex toward the object), E1 has negative optical power (fl = −211.8 mm) because the rear surface (R = 122.1 mm) is more strongly curved than the front (R = 436.4 mm). The cemented pair has an extremely long focal length (+5,992 mm) — it contributes almost no net power but provides critical chromatic correction at the entrance aperture where the axial beam diameter is largest.
+**E1 (positive meniscus, nd = 1.804)** cemented to **E2 (biconvex ED, nd = 1.498):** This cemented doublet forms the first component of the front group. Element 1 is a high-index lanthanum glass (S-LAH65 class) that serves as the negative chromatic corrector for the strongly positive ED element behind it. Despite its meniscus shape being geometrically "positive" (both radii positive, convex toward the object), E1 has negative optical power (fl = −211.8 mm) because the rear surface (R = 122.1 mm) is more strongly curved than the front (R = 436.4 mm). The cemented pair has an extremely long focal length (+5,992 mm) — it contributes almost no net power but provides critical chromatic correction at the entrance aperture where the axial beam diameter is largest.
 
 **E3 (biconvex ED, nd = 1.498):** A standalone singlet separated from the doublet by a 0.3 mm air gap. Its focal length of +236.7 mm makes it the primary positive power contributor in G1. Using ED glass for this element ensures minimal chromatic contribution from the strongest individual positive element in the front group.
 
@@ -145,23 +145,23 @@ The front group collectively has strong positive power, as befits the front elem
 
 This is the most complex group, containing seven elements organized into three subgroups.
 
-**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a negative meniscus of moderate-index flint (S-TIM27), cemented to E5, a biconcave crown (TAC4). This negative doublet conditions the beam angle entering the VR group. Its negative meniscus-biconcave configuration generates strong divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
+**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a negative meniscus of moderate-index flint (S-TIM5), cemented to E5, a biconcave crown (TAC4). This negative doublet conditions the beam angle entering the VR group. Its negative meniscus-biconcave configuration generates strong divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
 
 **L2B (VR Group) — Elements 6+7 (cemented doublet) + E8 (singlet), combined fl = −86.1 mm:** This is the image-stabilization group that shifts perpendicular to the optical axis during vibration reduction.
 
-- E6 (biconcave, S-NSL3, nd = 1.517): A low-index crown with moderate dispersion. The biconcave shape provides strong negative power. As the lowest-index element in the VR group, it is also the lightest, keeping the VR assembly mass down.
+- E6 (biconcave, 517522 crown, nd = 1.517): A low-index crown with moderate dispersion. The biconcave shape provides strong negative power. As the lowest-index element in the VR group, it is also the lightest, keeping the VR assembly mass down.
 - E7 (positive meniscus, S-TIH6, nd = 1.805, vd = 25.46): A very high-dispersion flint cemented to E6. This pairing corrects chromatic aberration within the VR group itself — critical because any residual chromatism in the VR group would produce wavelength-dependent image shift during stabilization, manifesting as color fringing during VR operation.
-- E8 (biconcave, S-NBH51, nd = 1.743): A standalone negative element separated from the doublet by a 2.0 mm air gap. It contributes additional negative power to increase the VR group's decentering sensitivity. The air gap between E7 and E8 provides a degree of freedom for correcting the off-axis aberrations (particularly coma and astigmatism) that arise when the VR group is decentered.
+- E8 (biconcave, S-LAM60, nd = 1.743): A standalone negative element separated from the doublet by a 2.0 mm air gap. It contributes additional negative power to increase the VR group's decentering sensitivity. The air gap between E7 and E8 provides a degree of freedom for correcting the off-axis aberrations (particularly coma and astigmatism) that arise when the VR group is decentered.
 
-**L2C — Elements 9+10 (cemented doublet, fl = +178.2 mm):** E9 is a thick biconvex crown (S-BAL35, d = 9.5 mm) cemented to E10, a thin negative meniscus (S-BAH28). This positive doublet partially cancels the strong negative aberrations generated by L2A and L2B. The patent text (paragraph [0031]) explicitly states that placing a positive subgroup after the VR group allows the VR group's negative power to be strengthened — increasing decentering sensitivity — while the positive L2C compensates the resulting aberration penalty.
+**L2C — Elements 9+10 (cemented doublet, fl = +178.2 mm):** E9 is a thick biconvex crown (N-SK2, d = 9.5 mm) cemented to E10, a thin negative meniscus now identified as Schott N-SSK5 (658509). This positive doublet partially cancels the strong negative aberrations generated by L2A and L2B. The patent text (paragraph [0031]) explicitly states that placing a positive subgroup after the VR group allows the VR group's negative power to be strengthened — increasing decentering sensitivity — while the positive L2C compensates the resulting aberration penalty.
 
 **Group 2 overall:** f2 = −68.4 mm. The ratio |f2|/ft = 0.140, well within the patent's condition (1) range of 0.1–0.2. This relatively strong negative power is essential for achieving the 2.5× zoom range within a manageable barrel length, but it also means G2 is the dominant contributor to Petzval field curvature, which the downstream positive groups must compensate.
 
 ### Group 3 (L3): Compensator — Elements 11–12
 
-**E11 (positive meniscus, S-LAH79, nd = 1.904) cemented to E12 (biconvex, N-FK5, nd = 1.487):** This doublet has a combined focal length of +107.0 mm. Element 11 is the highest-index glass in the entire system (nd = 1.904). Its meniscus shape is geometrically "positive" (both radii positive, convex toward the object), but it has negative optical power (fl = −209.5 mm) because the rear surface is more strongly curved. Its role in the cemented pair is as the chromatic corrector: paired with the low-dispersion E12, it forms a strongly achromatic positive doublet.
+**E11 (positive meniscus, S-LAH95, nd = 1.904) cemented to E12 (biconvex, N-FK5, nd = 1.487):** This doublet has a combined focal length of +107.0 mm. Element 11 is the highest-index glass in the entire system (nd = 1.904). Its meniscus shape is geometrically "positive" (both radii positive, convex toward the object), but it has negative optical power (fl = −209.5 mm) because the rear surface is more strongly curved. Its role in the cemented pair is as the chromatic corrector: paired with the low-dispersion E12, it forms a strongly achromatic positive doublet.
 
-The choice of S-LAH79 (vd = 31.31) paired with N-FK5 (vd = 70.44) gives a large Abbe number difference (Δvd ≈ 39), enabling efficient chromatic correction with moderate curvatures. Element 12's biconvex shape carries the majority of the group's positive power.
+The choice of S-LAH95 (vd = 31.31) paired with N-FK5 (vd = 70.44) gives a large Abbe number difference (Δvd ≈ 39), enabling efficient chromatic correction with moderate curvatures. Element 12's biconvex shape carries the majority of the group's positive power.
 
 G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm wide-to-tele, closing the gap with G2; d19 increases from 1.5 mm to 12.3 mm, opening the gap to G4). The ratio f3/|f2| = 1.564, satisfying condition (5): 1.0 < f3/|f2| < 2.0.
 
@@ -169,7 +169,7 @@ G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm 
 
 **E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, S-LAH55V, nd = 1.834):** The third and final achromatic ED doublet. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
 
-**E15 (positive meniscus, S-NBH51, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
+**E15 (positive meniscus, S-LAM60, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
 
 The gap between G4 and the stop (d24) decreases from 32.6 mm to 5.0 mm during zooming. G2 and G4 are stated to be mechanically fixed during zoom — they do not move axially. This is a key simplification enabling a less complex barrel mechanism, as stated in the patent (paragraph [0014], claim 5).
 
@@ -196,9 +196,9 @@ The glass pairing is unusual: E16 uses E-ADF10, a HOYA anomalous-dispersion flin
 
 ### Group 6 (L6): Fixed Rear — Elements 18–19
 
-**E18 (negative meniscus, S-TIM2, nd = 1.581, vd = 40.89):** A weakly positive singlet (fl = +131.4 mm) despite its meniscus shape — both radii are negative, but |R2| < |R1| makes the rear surface more strongly curved, yielding net positive power.
+**E18 (negative meniscus, E-FL5, nd = 1.581, vd = 40.89):** A weakly positive singlet (fl = +131.4 mm) despite its meniscus shape — both radii are negative, but |R2| < |R1| makes the rear surface more strongly curved, yielding net positive power.
 
-**E19 (negative meniscus, S-LAH58, nd = 1.835, vd = 42.72):** A negative singlet (fl = −121.7 mm) with high-index glass.
+**E19 (negative meniscus, S-LAH55, nd = 1.835, vd = 42.72):** A negative singlet (fl = −121.7 mm) with high-index glass.
 
 These two elements are separated by a large fixed air gap of 21.04 mm and are themselves separated from the image plane by a fixed back focal distance of 54.32 mm. The constant BFD across all zoom positions and focus states confirms that G6 is rigidly fixed relative to the sensor. Its role is primarily field correction: flattening the image surface and correcting residual astigmatism and distortion from the upstream groups. The large gap between E18 and E19 provides design freedom for balancing Petzval curvature — the positive E18 followed by the negative E19 acts as a field-flattening pair.
 

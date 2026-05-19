@@ -96,7 +96,7 @@ Every glass medium in the prescription is matched here to its **six‑digit manu
 | **L13** | 1.43875 | 94.94 | 439 949 | Pos (plano‑convex) | OHARA **S‑FPL53** (Super ED / fluorite‑class) — n_d exact; catalogue lists νd ≈ 94.66 for the S‑FPL53 reference melt (0.28 difference is within typical melt variation) |
 | **L14** | 1.49700 | 81.54 | 497 815 | Pos meniscus | OHARA **S‑FPL51** — exact (ED) |
 | **L21** | 1.72047 | 34.71 | 720 347 | Pos (front of G2 doublet) | OHARA **S‑NBH8** / SCHOTT N‑KZFS8 — exact |
-| **L22** | 1.62230 | 53.17 | 622 532 | Neg (rear of G2 doublet) | barium‑flint family *(no match in current OHARA / SCHOTT / HOYA / HIKARI main catalogues — see note below)* |
+| **L22** | 1.62230 | 53.17 | 622532 | Neg (rear of G2 doublet) | OHARA **S‑BSM22** — exact code-family match |
 | **L23** | 1.49700 | 81.54 | 497 815 | Neg (front of G2 triplet) | OHARA **S‑FPL51** — exact (ED) |
 | **L24** | 1.84661 | 23.88 | 847 239 | Pos (rear of G2 triplet) | OHARA **S‑TIH53** / SCHOTT **N‑SF57** / HOYA FDS90 / HIKARI J‑SF03 — exact on code 847 238; melt variation in νd (23.88 vs catalogue 23.78) |
 | **L25** | 1.91082 | 35.25 | 911 352 | Neg biconcave (rear of G2) | **HOYA TAFD35** — exact match on code 911 352 |
@@ -127,7 +127,7 @@ An additional four elements use **anomalous‑partial‑dispersion glasses** in 
 
 Fujifilm's marketed count ("5 ED + 1 Super ED") agrees **exactly** with the five 497 815 ED elements plus the one 439 949 Super‑ED element in the prescription. The four additional anomalous‑dispersion elements listed above sit below the manufacturer's threshold for the "ED" designation but are just as consequential to the lens's apochromatic performance — this is one of the reasons the chromatic correction can be done without aspherics (see §5).
 
-**Note on L22 (code 622 532).** This is the single glass in the master‑lens prescription for which no exact catalogue identification was found, after checking the OHARA (May 2023), HOYA, SCHOTT and HIKARI nd/νd tables. The nearest catalogue neighbours (OHARA S‑BSM10 at 623 571 and S‑BSM15 at 623 582) have incompatible Abbe numbers. Two hypotheses remain open: (a) the value could correspond to a *specialty or vintage melt* from one of the major makers that is no longer carried in current product catalogues, or (b) the glass could be produced internally by Fujifilm (Fujinon), whose Odawara glass factory has supplied internal melts to Fujinon‑branded lenses since 1940. Without independent design documentation from Fujifilm the distinction cannot be resolved; the six‑digit code remains the unambiguous identifier.
+**Note on L22 (code 622532).** This row now resolves to OHARA S‑BSM22, whose public AGF coefficients match the patent nd/vd pair at the six-digit-code level. The earlier "specialty or internal Fujifilm melt" interpretation is no longer needed; the prescription can use a coefficient-backed Sellmeier catalog glass for this negative member of the G2 doublet.
 
 ### Why the six marketed ED / Super ED elements, and where they sit
 

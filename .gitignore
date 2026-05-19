@@ -6,6 +6,10 @@
 # Generated build metadata
 src/generated/
 
+# Local patent PDF/source archive
+patents/*
+!patents/.gitkeep
+
 # Dependencies
 node_modules/
 npm-debug.log*
