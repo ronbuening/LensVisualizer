@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **226 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026, +30 in Phase 14 May 2026, +4 in Phase 15 May 2026, plus one earlier bookkeeping correction). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **234 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026, +30 in Phase 14 May 2026, +4 in Phase 15 May 2026, +3 in Phase 16 May 2026, +5 in Phase 17 May 2026, plus one earlier bookkeeping correction). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -80,6 +80,18 @@ already in the catalog.
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Unlocks | Notes |
+|---|---|---:|---|
+| ★ BPH50 | Ohara | 1+ | Exact `740317` target for Minolta AF 100mm f/2.8 Macro L4 |
+| ★ H-LAK12 | CDGM | 3+ | Coefficient-backed equivalent for patent `697565` / old LAL64-family rows; used for Minolta AF 100 Macro L5, AF 35-105 v2 L3, and AF 70-200 L5; not supplier proof |
+| ★ S-LAM58 | Ohara | 1+ | Exact `720420` target for Minolta AF 35-105 v2 L11 |
+| ★ D-ZLAF81-25 | CDGM | 1+ | Coefficient-backed `808410` target for Laowa 12mm f/2.8 Zero-D L16 |
+| ★ K-SKLD200 | Sumita | 2+ | Exact `587590` target for Leica APO-Summicron 43mm f/2 ASPH. L5/L11 |
+
+This pass also corrected the S-LAH88 `code6` value from `916316` to `917316`, matching the published nd/vd row used by Hasselblad XCD 120mm Macro L23/L52.
 
 **Phase 16 additions** (May 2026 — Fujifilm/Hasselblad six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

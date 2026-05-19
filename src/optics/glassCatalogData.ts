@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 229 vendor-verified entries (Phase 16, May 2026)
+ * GLASS CATALOG — 234 vendor-verified entries (Phase 17, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -408,8 +408,9 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     nd: 1.916499,
     vd: 31.6041,
     PgF: 0.5915,
-    code6: "916316",
-    source: "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info. Ultra-high-index lanthanum (916/316).",
+    code6: "917316",
+    source:
+      "Ohara AGF (ohara_2017-11-30.agf) via refractiveindex.info; Ohara GmbH S-LAH88 datasheet gives d-code 917316.",
   },
   {
     name: "S-PHM53",
@@ -2722,5 +2723,62 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     vd: 65.77,
     code6: "464658",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info.",
+  },
+
+  /* ────── Phase 17 additions (May 2026) ──────
+   * Six-digit missing-Sellmeier audit over Hasselblad, Laowa, Leica, Minolta,
+   * and Nikon rows. Entries below are coefficient-backed public matches or
+   * documented catalog equivalents that round-trip through the d-line guard.
+   */
+  {
+    name: "BPH50",
+    vendor: "Ohara",
+    polynomial: [2.9271459, -0.011970157, 0.031922538, 0.0015457537, -0.000063507309, 0.0000096835139],
+    nd: 1.739997,
+    vd: 31.710001,
+    code6: "740317",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; BPH50 page (formula 3 polynomial).",
+  },
+  {
+    name: "H-LAK12",
+    vendor: "CDGM",
+    B: [0.786703112, 1.04086924, 1.21770392],
+    C: [0.00202073208, 0.0163643393, 86.703479],
+    nd: 1.6968,
+    vd: 56.175305,
+    code6: "697562",
+    source:
+      "CDGM Zemax catalog 2022-06 via refractiveindex.info; public CDGM cross-reference lists old Ohara LAL64 as the 697565 equivalent.",
+  },
+  {
+    name: "S-LAM58",
+    vendor: "Ohara",
+    B: [1.70984856, 0.173342897, 1.64833565],
+    C: [0.0100852127, 0.0470890831, 157.46852],
+    nd: 1.72,
+    vd: 41.98,
+    PgF: 0.5729,
+    code6: "720420",
+    source: "Ohara GmbH S-LAM58 datasheet, April 2018; Sellmeier constants A1-A3/B1-B3.",
+  },
+  {
+    name: "D-ZLAF81-25",
+    vendor: "CDGM",
+    B: [1.90958888, 0.266893034, 1.26585975],
+    C: [0.0102182926, 0.0421328894, 97.0733228],
+    nd: 1.80757,
+    vd: 40.97334,
+    code6: "808410",
+    source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; D-ZLAF81-25 page.",
+  },
+  {
+    name: "K-SKLD200",
+    vendor: "Sumita",
+    polynomial: [2.4786815, -0.010928711, 0.014104052, 0.00015365594, 0.00001194296, -0.00000053372519],
+    nd: 1.5866,
+    vd: 59.0,
+    PgF: 0.541,
+    code6: "587590",
+    source: "Sumita Optical Glass K-SKLD200 datasheet, catalog Ver. 14.01.00; formula-3 coefficients A0-A5.",
   },
 ];

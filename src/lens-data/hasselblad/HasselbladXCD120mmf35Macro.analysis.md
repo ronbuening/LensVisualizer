@@ -50,7 +50,7 @@ The design achieves macro capability (1:2 magnification at 0.43 m) with a consta
 
 ### L11 — Equiconvex Positive (G1)
 
-nd = 1.85026, νd = 32.27. Glass: lanthanum flint, 850/323 (no confirmed public catalog match; possible S-NBH55 class, OHARA). $f = +156.7$ mm.
+nd = 1.85026, νd = 32.27. Glass: S-LAH71 (OHARA), an exact coefficient-backed 850323 catalog match. $f = +156.7$ mm.
 
 L11 is a symmetric biconvex singlet ($R_1 = +265.47$, $R_2 = -265.47$) serving as the front positive collector. Its high refractive index (1.850) allows the necessary convergent power with large radii of curvature, minimizing the surface contribution to spherical aberration at the full 42 mm clear aperture. The equiconvex symmetry further minimizes coma for on-axis ray bundles.
 
@@ -76,7 +76,7 @@ Note that B1 has net negative power ($f = -108.8$ mm) despite belonging to a pos
 
 ### L23 — Positive Meniscus, Convex to Object (G2, rear sub-group)
 
-nd = 1.91650, νd = 31.60. Glass: very high-index lanthanum flint, 917/316 (no confirmed public catalog match). $f = +63.6$ mm.
+nd = 1.91650, νd = 31.60. Glass: S-LAH88 (OHARA), an exact coefficient-backed 917316 catalog match. $f = +63.6$ mm.
 
 L23 is the positive power contributor of G2. Its object-side surface ($R = +40.36$) is convex toward the object and is placed adjacent to the concave image-side surface of B1 ($R = +36.66$, concave toward image) with a minimal 0.77 mm air gap. The patent explicitly describes this arrangement: "a combination of the cemented lens B1 that is concave on the image plane side and the lens L23 that is convex toward the object side" places "many surfaces that are effective in correcting aberration in a narrow space" (¶0033).
 
@@ -85,7 +85,7 @@ The very high refractive index (1.917) of L23 allows the meniscus to carry stron
 ### Cemented Doublet B2: L31 + L32 (G3)
 
 **L31 — Nearly Plano-Convex Positive (convex toward image).**
-nd = 1.89286, νd = 20.36. Glass: ultra-high-dispersion dense flint, 893/204 (no confirmed public catalog match). $f = +50.4$ mm.
+nd = 1.89286, νd = 20.36. Glass: 893204 ultra-high-dispersion dense flint; no coefficient-backed public catalog match confirmed. $f = +50.4$ mm.
 
 **L32 — Biconcave Negative.**
 nd = 1.67270, νd = 32.10. Glass: S-TIM25 (OHARA) / E-FD5 (HOYA) — dense flint. $f = -31.6$ mm.
@@ -115,10 +115,10 @@ The equiconvex symmetry of L41 minimizes coma at the stop, where the chief ray c
 ### Cemented Doublet B3: L51 + L52 (G5)
 
 **L51 — Biconcave Negative.**
-nd = 1.80000, νd = 29.84. Glass: dense flint, 800/298 (no confirmed public catalog match). $f = -45.4$ mm.
+nd = 1.80000, νd = 29.84. Glass: S-NBH55 (OHARA), an exact coefficient-backed 800298 catalog match. $f = -45.4$ mm.
 
 **L52 — Biconvex Positive.**
-nd = 1.91650, νd = 31.60. Glass: very high-index lanthanum flint, 917/316 (same glass as L23). $f = +35.5$ mm.
+nd = 1.91650, νd = 31.60. Glass: S-LAH88 (OHARA), same glass as L23. $f = +35.5$ mm.
 
 **Cemented doublet B3 net:** $f = +147.4$ mm.
 
@@ -144,18 +144,18 @@ The design uses nine distinct glass types across ten elements (L23 and L52 share
 
 | Element | nd | νd | Code | Identification | Confidence | Class |
 |---------|-------|-------|------|---------------|------------|-------|
-| L11 | 1.85026 | 32.27 | 850/323 | Lanthanum flint | Unmatched | LaF |
+| L11 | 1.85026 | 32.27 | 850323 | S-LAH71 | OHARA | LaF |
 | L21 | 1.53775 | 74.70 | 538/747 | S-FPM3 (OHARA) | High | ED fluorophosphate crown |
 | L22 | 1.74077 | 27.79 | 741/278 | S-TIH13 (OHARA) / E-FD13 (HOYA) | High | Dense flint |
-| L23 | 1.91650 | 31.60 | 917/316 | Very high-index lanthanum flint | Unmatched | LaF |
-| L31 | 1.89286 | 20.36 | 893/204 | Ultra-high-dispersion flint | Unmatched | Dense flint |
+| L23 | 1.91650 | 31.60 | 917316 | S-LAH88 | OHARA | LaF |
+| L31 | 1.89286 | 20.36 | 893204 | Ultra-high-dispersion flint | Unresolved | Dense flint |
 | L32 | 1.67270 | 32.10 | 673/321 | S-TIM25 (OHARA) / E-FD5 (HOYA) | High | Dense flint |
 | L41 | 1.48749 | 70.24 | 487/702 | S-FSL5 (OHARA) / N-FK5 (Schott) | Exact | Fluorine crown (ED) |
-| L51 | 1.80000 | 29.84 | 800/298 | Dense flint | Unmatched | Dense flint |
-| L52 | 1.91650 | 31.60 | 917/316 | Same glass as L23 | — | LaF |
+| L51 | 1.80000 | 29.84 | 800298 | S-NBH55 | OHARA | Dense flint |
+| L52 | 1.91650 | 31.60 | 917316 | S-LAH88, same glass as L23 | OHARA | LaF |
 | L61 | 1.69895 | 30.13 | 699/301 | E-FD15L (HOYA) / S-TIM35 (OHARA) | High | Dense flint |
 
-The glass palette draws from multiple vendors — OHARA (S-FPM3, S-FSL5, S-TIM25), HOYA (E-FD13, E-FD15L), and Schott (N-SF15 equivalent) — which is consistent with Nittoh Kogaku's multi-vendor sourcing practice. Five glasses (L11, L23/L52, L31, and L51) do not match standard catalog entries within the tolerance thresholds of Δnd ≤ 0.005 and Δνd ≤ 1.0. These may be specialty melts, custom compositions, or glasses from less commonly indexed catalogs. The L31 glass (nd = 1.89286, νd = 20.36) is particularly unusual — its ultra-high dispersion places it in the extreme short-flint region of the glass map, a sparsely populated zone in most vendor catalogs.
+The glass palette draws from multiple vendors — OHARA (S-LAH71, S-LAH88, S-NBH55, S-FPM3, S-FSL5, S-TIM25), HOYA (E-FD13, E-FD15L), and Schott (N-SF15 equivalent) — which is consistent with Nittoh Kogaku's multi-vendor sourcing practice. The 2026-05-19 catalog pass resolved L11, L23/L52, and L51 to coefficient-backed OHARA rows. L31 remains unresolved: no coefficient-backed public catalog row was found for 893204 / nd = 1.89286, νd = 20.36. Its ultra-high dispersion places it in the extreme short-flint region of the glass map, a sparsely populated zone in most vendor catalogs.
 
 ### Chromatic strategy
 

@@ -240,6 +240,7 @@ Surfaces:
 Candidates:
 - **S-BAL42** (nd=1.58313, vd=59.37, Δnd=-0.0000, Δvd=-0.01)
 - **Q-SK52S** (nd=1.58286, vd=59.51, Δnd=-0.0003, Δvd=+0.13)
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=+0.0035, Δvd=-0.38)
 
 Surfaces:
 - [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) `9A`: `S-BAL35 (OHARA)`
@@ -257,6 +258,7 @@ Surfaces:
 ## stored (nd=1.58547, vd=59.40)  — 2 surfaces, current label resolves to S-BAL41
 
 Candidates:
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=+0.0011, Δvd=-0.40)
 - **S-BAL42** (nd=1.58313, vd=59.37, Δnd=-0.0023, Δvd=-0.03)
 - **Q-SK52S** (nd=1.58286, vd=59.51, Δnd=-0.0026, Δvd=+0.11)
 - **S-BAL35** (nd=1.58913, vd=61.14, Δnd=+0.0037, Δvd=+1.74)
@@ -269,6 +271,7 @@ Surfaces:
 ## stored (nd=1.58575, vd=59.50)  — 1 surface, current label resolves to S-LAL13
 
 Candidates:
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=+0.0009, Δvd=-0.50)
 - **S-BAL42** (nd=1.58313, vd=59.37, Δnd=-0.0026, Δvd=-0.13)
 - **Q-SK52S** (nd=1.58286, vd=59.51, Δnd=-0.0029, Δvd=+0.01)
 - **S-BAL35** (nd=1.58913, vd=61.14, Δnd=+0.0034, Δvd=+1.64)
@@ -282,6 +285,7 @@ Surfaces:
 Candidates:
 - **S-BAL35** (nd=1.58913, vd=61.14, Δnd=+0.0001, Δvd=-0.11)
 - **N-SK5** (nd=1.58913, vd=61.27, Δnd=+0.0001, Δvd=+0.02)
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=-0.0024, Δvd=-2.25)
 
 Surfaces:
 - [SONY SONNAR T* E 24mm F1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) `3`: `S-BAL2 (OHARA)`
@@ -291,6 +295,7 @@ Surfaces:
 Candidates:
 - **S-BAL35** (nd=1.58913, vd=61.14, Δnd=-0.0000, Δvd=-0.16)
 - **N-SK5** (nd=1.58913, vd=61.27, Δnd=+0.0000, Δvd=-0.03)
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=-0.0025, Δvd=-2.30)
 
 Surfaces:
 - [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) `12`: `S-BAL14 (OHARA) / K-BAL14 (Sumita)`
@@ -734,10 +739,10 @@ Surfaces:
 
 Candidates:
 - **N-LAK14** (nd=1.69680, vd=55.41, Δnd=+0.0000, Δvd=-0.09)
+- **H-LAK12** (nd=1.69680, vd=56.18, Δnd=-0.0000, Δvd=+0.68)
 - **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0000, Δvd=+0.03)
 - **LAC13** (nd=1.69350, vd=53.34, Δnd=-0.0033, Δvd=-2.16)
 - **S-LAL13** (nd=1.69350, vd=53.21, Δnd=-0.0033, Δvd=-2.29)
-- **H-LAK6A** (nd=1.69350, vd=53.38, Δnd=-0.0033, Δvd=-2.12)
 
 Surfaces:
 - [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) `5`: `S-BAL42 (OHARA)`
@@ -746,10 +751,10 @@ Surfaces:
 
 Candidates:
 - **N-LAK14** (nd=1.69680, vd=55.41, Δnd=+0.0000, Δvd=-0.19)
+- **H-LAK12** (nd=1.69680, vd=56.18, Δnd=-0.0000, Δvd=+0.58)
 - **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0000, Δvd=-0.07)
 - **LAC13** (nd=1.69350, vd=53.34, Δnd=-0.0033, Δvd=-2.26)
 - **S-LAL13** (nd=1.69350, vd=53.21, Δnd=-0.0033, Δvd=-2.39)
-- **H-LAK6A** (nd=1.69350, vd=53.38, Δnd=-0.0033, Δvd=-2.22)
 
 Surfaces:
 - [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) `1`: `Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)`
@@ -758,10 +763,10 @@ Surfaces:
 
 Candidates:
 - **N-LAK14** (nd=1.69680, vd=55.41, Δnd=-0.0002, Δvd=-0.05)
+- **H-LAK12** (nd=1.69680, vd=56.18, Δnd=-0.0002, Δvd=+0.72)
 - **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0002, Δvd=+0.07)
 - **LAC13** (nd=1.69350, vd=53.34, Δnd=-0.0035, Δvd=-2.12)
 - **S-LAL13** (nd=1.69350, vd=53.21, Δnd=-0.0035, Δvd=-2.25)
-- **H-LAK6A** (nd=1.69350, vd=53.38, Δnd=-0.0035, Δvd=-2.08)
 
 Surfaces:
 - [SONY SONNAR T* E 24mm F1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) `13`: `TAC4 (Hoya) / N-SK2 (Schott)`
@@ -967,6 +972,7 @@ Surfaces:
 Candidates:
 - **J-KZFH9** (nd=1.73800, vd=32.26, Δnd=+0.0000, Δvd=-0.04)
 - **S-NBH53V** (nd=1.73800, vd=32.33, Δnd=-0.0000, Δvd=+0.03)
+- **BPH50** (nd=1.74000, vd=31.71, Δnd=+0.0020, Δvd=-0.59)
 
 Surfaces:
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) `18`: `S-TIH14 (OHARA)`
@@ -1469,8 +1475,8 @@ Candidates:
 - **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=+0.0000, Δvd=+0.08)
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=-0.01)
 - **NBFD13** (nd=1.80610, vd=40.73, Δnd=+0.0000, Δvd=-0.21)
+- **D-ZLAF81-25** (nd=1.80757, vd=40.97, Δnd=+0.0015, Δvd=+0.03)
 - **NBFD3** (nd=1.80450, vd=39.63, Δnd=-0.0016, Δvd=-1.31)
-- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.36)
 
 Surfaces:
 - [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) `21`: `S-TIH53 (OHARA), Δνd = 0.21; alt. CDGM H-LAF3B (Δνd = 0.01)`
@@ -1497,8 +1503,8 @@ Candidates:
 - **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=+0.0000, Δvd=+0.29)
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=+0.20)
 - **NBFD13** (nd=1.80610, vd=40.73, Δnd=+0.0000, Δvd=+0.00)
+- **D-ZLAF81-25** (nd=1.80757, vd=40.97, Δnd=+0.0015, Δvd=+0.24)
 - **NBFD3** (nd=1.80450, vd=39.63, Δnd=-0.0016, Δvd=-1.10)
-- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.15)
 
 Surfaces:
 - [SIGMA dp0 Quattro 14mm f/4](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) `18`: `E-FDS1 (HOYA) / S-TIH6 (OHARA)`
@@ -1509,8 +1515,8 @@ Candidates:
 - **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=+0.0000, Δvd=+0.32)
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0000, Δvd=+0.23)
 - **NBFD13** (nd=1.80610, vd=40.73, Δnd=+0.0000, Δvd=+0.03)
+- **D-ZLAF81-25** (nd=1.80757, vd=40.97, Δnd=+0.0015, Δvd=+0.27)
 - **NBFD3** (nd=1.80450, vd=39.63, Δnd=-0.0016, Δvd=-1.07)
-- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=-0.0017, Δvd=-1.12)
 
 Surfaces:
 - [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) `10`: `S-LAH51 (OHARA)`
@@ -1519,11 +1525,11 @@ Surfaces:
 ## stored (nd=1.80755, vd=40.90) [code=808/409]  — 1 surface, current label resolves to S-LAH93
 
 Candidates:
+- **D-ZLAF81-25** (nd=1.80757, vd=40.97, Δnd=+0.0000, Δvd=+0.07, codeΔ=1.2)
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0015, Δvd=+0.03, codeΔ=2.2)
 - **K-VC89** (nd=1.80998, vd=41.00, Δnd=+0.0024, Δvd=+0.10, codeΔ=3.0)
 - **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=-0.0014, Δvd=+0.12, codeΔ=3.1)
 - **NBFD13** (nd=1.80610, vd=40.73, Δnd=-0.0014, Δvd=-0.17, codeΔ=3.6)
-- **NBFD3** (nd=1.80450, vd=39.63, Δnd=-0.0030, Δvd=-1.27, codeΔ=16.2)
 
 Surfaces:
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) `7A`: `LAH-type (808/409, PGM-moldable, uncertain — S-LAH93 region)`
@@ -1554,6 +1560,7 @@ Surfaces:
 
 Candidates:
 - **K-VC89** (nd=1.80998, vd=41.00, Δnd=-0.0000, Δvd=+0.10)
+- **D-ZLAF81-25** (nd=1.80757, vd=40.97, Δnd=-0.0024, Δvd=+0.07)
 - **NBFD13** (nd=1.80610, vd=40.73, Δnd=-0.0039, Δvd=-0.17)
 - **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=-0.0039, Δvd=+0.12)
 - **S-LAH53** (nd=1.80610, vd=40.93, Δnd=-0.0039, Δvd=+0.03)

@@ -10,15 +10,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **223** lenses scanned
-- **263** total code-only elements found
-- **263** elements in this report
-- **77** distinct lens files affected
+- **250** total code-only elements found
+- **250** elements in this report
+- **75** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
-| 593670 | 8 | 5 |
+| 593670 | 7 | 4 |
 | 946180 | 7 | 6 |
 | 593679 | 6 | 4 |
 | 694533 | 5 | 4 |
@@ -47,13 +47,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 561453 | 2 | 2 |
 | 581408 | 2 | 2 |
 | 586609 | 2 | 1 |
-| 587590 | 2 | 1 |
-| 593686 | 2 | 2 |
 | 607595 | 2 | 1 |
 | 623581 | 2 | 2 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
-| 697565 | 2 | 2 |
 | 700481 | 2 | 2 |
 | 717479 | 2 | 1 |
 | 720347 | 2 | 2 |
@@ -64,12 +61,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801349 | 2 | 2 |
 | 807316 | 2 | 2 |
 | 847238 | 2 | 1 |
-| 850323 | 2 | 2 |
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
-| 917316 | 2 | 1 |
 | 950294 | 2 | 1 |
 | 003193 | 1 | 1 |
 | 434952 | 1 | 1 |
@@ -95,6 +90,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 592670 | 1 | 1 |
 | 593354 | 1 | 1 |
 | 593355 | 1 | 1 |
+| 593686 | 1 | 1 |
 | 595686 | 1 | 1 |
 | 602352 | 1 | 1 |
 | 603564 | 1 | 1 |
@@ -125,14 +121,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 702411 | 1 | 1 |
 | 713433 | 1 | 1 |
 | 717295 | 1 | 1 |
-| 720420 | 1 | 1 |
 | 720460 | 1 | 1 |
 | 720502 | 1 | 1 |
 | 728284 | 1 | 1 |
 | 728285 | 1 | 1 |
 | 728403 | 1 | 1 |
 | 738493 | 1 | 1 |
-| 740317 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
@@ -155,7 +149,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 795452 | 1 | 1 |
 | 795453 | 1 | 1 |
 | 797454 | 1 | 1 |
-| 800298 | 1 | 1 |
 | 801454 | 1 | 1 |
 | 801455 | 1 | 1 |
 | 803404 | 1 | 1 |
@@ -163,13 +156,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 805410 | 1 | 1 |
 | 808227 | 1 | 1 |
 | 808409 | 1 | 1 |
-| 808410 | 1 | 1 |
 | 834373 | 1 | 1 |
 | 835427 | 1 | 1 |
 | 835447 | 1 | 1 |
 | 849438 | 1 | 1 |
 | 850270 | 1 | 1 |
 | 850301 | 1 | 1 |
+| 850323 | 1 | 1 |
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 854404 | 1 | 1 |
@@ -348,81 +341,58 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `Unmatched dense flint (770/297)` | 1.77047 / 29.70 | No catalog entry | abbe |
-| L4 (Element 4) | 7 | `Unmatched dense flint (770/297)` | 1.77047 / 29.70 | No catalog entry | abbe |
-| L6 (Element 6) | 11 | `Unmatched ultra-high-index glass (911/352)` | 1.91082 / 35.20 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)` | 1.77047 / 29.70 | No catalog entry | abbe |
+| L4 (Element 4) | 7 | `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)` | 1.77047 / 29.70 | No catalog entry | abbe |
+| L6 (Element 6) | 11 | `911352 - ultra-high-index glass (patent nd=1.91082, vd=35.2; unresolved)` | 1.91082 / 35.20 | No catalog entry | abbe |
 
 ### [HASSELBLAD XCD 3,5/120mm Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) - US 2020/0192060 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11 (Element 1) | 1 | `Lanthanum flint, 850/323 (unmatched)` | 1.85026 / 32.27 | No catalog entry | abbe |
-| L23 (Element 4) | 6 | `Very high-index lanthanum flint, 917/316 (unmatched)` | 1.91650 / 31.60 | No catalog entry | abbe |
-| L31 (Element 5) | 8 | `Ultra-high-dispersion flint, 893/204 (unmatched)` | 1.89286 / 20.36 | No catalog entry | abbe |
-| L51 (Element 8) | 14 | `Dense flint, 800/298 (unmatched)` | 1.80000 / 29.84 | No catalog entry | abbe |
-| L52 (Element 9) | 15 | `Very high-index lanthanum flint, 917/316 (same as L23, unmatched)` | 1.91650 / 31.60 | No catalog entry | abbe |
+| L31 (Element 5) | 8 | `893204 - ultra-high-dispersion flint (patent nd=1.89286, vd=20.36; unresolved)` | 1.89286 / 20.36 | No catalog entry | abbe |
 
 ### [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts)
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched high-index crown class (749/547)` | 1.74916 / 54.67 | No catalog entry | abbe |
-| L5 (Element 5) | 8 | `Unmatched high-index lanthanum class (835/447)` | 1.83481 / 44.72 | No catalog entry | abbe |
-| L12 (Element 12) | 19 | `Unmatched dense flint class (904/293)` | 1.90366 / 29.31 | No catalog entry | abbe |
-| L16 (Element 16) | 26A | `Unmatched high-index class (808/410)` | 1.80781 / 40.97 | No catalog entry | abbe |
-
-### [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Q3 43)](../../src/lens-data/leica/LeicaAPO43mmf2.data.ts) - US 2024/0241349 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `593/686 (PK crown, uncertain ID)` | 1.59282 / 68.60 | No catalog entry | abbe |
-| L5 (Element 5) | 8A | `587/590 (HOYA FDS family / PGM)` | 1.58660 / 59.00 | No catalog entry | abbe |
-| L11 (Element 11) | 18A | `587/590 (HOYA FDS family / PGM)` | 1.58660 / 59.00 | No catalog entry | abbe |
-
-### [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) - JP 2016-139125 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L7 (Element 7) | 12 | `Phosphate crown, 593/670 code (same as L5, unmatched OHARA)` | 1.59349 / 67.00 | No catalog entry | abbe |
+| L1 (Element 1) | 1 | `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)` | 1.74916 / 54.67 | No catalog entry | abbe |
+| L5 (Element 5) | 8 | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | 1.83481 / 44.72 | No catalog entry | abbe |
+| L12 (Element 12) | 19 | `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)` | 1.90366 / 29.31 | No catalog entry | abbe |
 
 ### [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `Unmatched dense flint (740/317 class; patent nd/vd only)` | 1.74000 / 31.72 | No catalog entry | abbe |
-| L5 (Element 5) | 9 | `Unmatched high-index crown (697/565 class; patent nd/vd only)` | 1.69680 / 56.47 | No catalog entry | abbe |
-| L7 (Element 7) | 13 | `Unmatched dense lanthanum flint (807/316 class; patent nd/vd only)` | 1.80741 / 31.59 | No catalog entry | abbe |
+| L7 (Element 7) | 13 | `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)` | 1.80741 / 31.59 | No catalog entry | abbe |
 
 ### [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) - US 4,871,239
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L2 (Element 2) | 2 | `Unmatched 670/571 high-index crown / lanthanum-crown class` | 1.67000 / 57.07 | No catalog entry | abbe |
-| L3 (Element 3) | 4 | `Unmatched 697/565 high-index crown / lanthanum-crown class` | 1.69680 / 56.47 | No catalog entry | abbe |
-| L4 (Element 4) | 6 | `Unmatched 773/498 dense lanthanum-flint boundary class` | 1.77250 / 49.77 | No catalog entry | abbe |
-| L5 (Element 5) | 8 | `Unmatched 670/571 high-index crown / lanthanum-crown class` | 1.67000 / 57.07 | No catalog entry | abbe |
-| L8 (Element 8) | 14 | `Unmatched 670/571 high-index crown / lanthanum-crown class` | 1.67000 / 57.07 | No catalog entry | abbe |
-| L10 (Element 10) | 17 | `Unmatched 807/316 high-index dense flint class` | 1.80741 / 31.59 | No catalog entry | abbe |
-| L11 (Element 11) | 19 | `Unmatched 720/420 lanthanum-flint / LAM-class high-index glass` | 1.72000 / 42.02 | No catalog entry | abbe |
-| L12 (Element 12) | 21A | `Unmatched 518/523 thin hybrid aspheric layer` | 1.51790 / 52.31 | No catalog entry | abbe |
-| L13 (Element 13) | 22 | `Unmatched 805/410 dense lanthanum-flint / LASF-class glass` | 1.80500 / 40.97 | No catalog entry | abbe |
+| L2 (Element 2) | 2 | `670571 - high-index crown / lanthanum-crown class (unresolved)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L4 (Element 4) | 6 | `773498 - dense lanthanum-flint boundary class (unresolved)` | 1.77250 / 49.77 | No catalog entry | abbe |
+| L5 (Element 5) | 8 | `670571 - high-index crown / lanthanum-crown class (unresolved)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L8 (Element 8) | 14 | `670571 - high-index crown / lanthanum-crown class (unresolved)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L10 (Element 10) | 17 | `807316 - high-index dense flint class (unresolved)` | 1.80741 / 31.59 | No catalog entry | abbe |
+| L12 (Element 12) | 21A | `518523 - thin hybrid aspheric layer (unresolved)` | 1.51790 / 52.31 | No catalog entry | abbe |
+| L13 (Element 13) | 22 | `805410 - dense lanthanum-flint / LASF-class glass (unresolved)` | 1.80500 / 40.97 | No catalog entry | abbe |
 
 ### [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - JP 2004-109559 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L6 (Element 6) | 10 | `Unmatched (high-index crown, 755/516 code)` | 1.75450 / 51.57 | No catalog entry | abbe |
-| L8 (Element 8) | 13 | `Unmatched (moderate-index crown, 670/571 code)` | 1.67000 / 57.07 | No catalog entry | abbe |
-| L10 (Element 10) | 17 | `Unmatched (high-index crown, 755/516 code)` | 1.75450 / 51.57 | No catalog entry | abbe |
-| L14 (Element 14) | 25 | `Unmatched (high-index mid-dispersion, 781/446 code)` | 1.78100 / 44.55 | No catalog entry | abbe |
+| L6 (Element 6) | 10 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe |
+| L8 (Element 8) | 13 | `670571 - moderate-index crown (unresolved)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L10 (Element 10) | 17 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe |
+| L14 (Element 14) | 25 | `781446 - high-index mid-dispersion glass (unresolved)` | 1.78100 / 44.55 | No catalog entry | abbe |
 
 ### [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) - US 4,124,276
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Proprietary lanthanum crown (749/501)` | 1.74950 / 50.10 | No catalog entry | abbe |
-| L3 (Element 3) | 5 | `Proprietary light flint (541/468)` | 1.54072 / 46.80 | No catalog entry | abbe |
-| L6 (Element 6) | 10 | `Proprietary light flint (576/414)` | 1.57616 / 41.40 | No catalog entry | abbe |
+| L1 (Element 1) | 1 | `749501 - proprietary lanthanum crown (unresolved)` | 1.74950 / 50.10 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `541468 - proprietary light flint (unresolved)` | 1.54072 / 46.80 | No catalog entry | abbe |
+| L6 (Element 6) | 10 | `576414 - proprietary light flint (unresolved)` | 1.57616 / 41.40 | No catalog entry | abbe |
 
 ### [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) - US 5,640,277
 
@@ -434,8 +404,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L13 (L13) | 7 | `Unmatched (patent-specified 683/548 glass; θgF = 0.5501)` | 1.68348 / 54.80 | No catalog entry | abbe |
-| L41 (L41) | 25 | `Unmatched (patent-specified 531/559 crown-like glass; θgF = 0.5684)` | 1.53110 / 55.91 | No catalog entry | abbe |
+| L13 (L13) | 7 | `683548 - patent-specified glass (theta_gF=0.5501; unresolved)` | 1.68348 / 54.80 | No catalog entry | abbe |
+| L41 (L41) | 25 | `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)` | 1.53110 / 55.91 | No catalog entry | abbe |
 
 ### [Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) - US 2021/0026133 A1
 

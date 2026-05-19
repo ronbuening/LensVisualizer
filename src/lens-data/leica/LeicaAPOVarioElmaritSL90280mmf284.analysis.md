@@ -18,7 +18,7 @@ The prescription is identified with the production Leica APO-Vario-Elmarit-SL 90
 5. **Dual internal focusing.** The patent describes two focus groups (G5 negative, G6 positive) moving in opposite directions during focusing, matching Leica's description of "double internal focusing, in which two lens elements move towards each other."
 6. **Optical image stabilisation (OIS).** The patent designates sub-group G4C (L14 + L15 + L16) as the image-stabilisation group, moved perpendicular to the optical axis.
 7. **Constant overall length.** The total optical track is 256.0 mm at all zoom positions, confirming the internal zoom architecture described in the Leica technical data sheet.
-8. **Seven APD elements.** The patent prescription contains exactly 7 glasses with anomalous partial dispersion (3× S-FPL55, 1× S-FPL51, 2× 593/670-class phosphate crown, 1× S-FSL5), matching the Leica specification of "seven elements made from glasses with anomalous partial dispersion."
+8. **Seven APD elements.** The patent prescription contains exactly 7 glasses with anomalous partial dispersion (3× S-FPL55, 1× S-FPL51, 2× J-PSKH4 phosphate crown, 1× S-FSL5), matching the Leica specification of "seven elements made from glasses with anomalous partial dispersion."
 9. **No aspherical surfaces.** Example 1 is entirely spherical, consistent with the production lens name lacking the "ASPH" designation.
 10. **Patent timing.** The priority date (January 2015) and the designer attribution "Stuible, 12.08.2015" visible in the Leica technical data sheet's MTF headers (project codename "LONGISLAND") place the design development squarely in the same period.
 
@@ -90,14 +90,14 @@ L4 is a weakly powered biconvex element (R1 = +293.1, R2 = –307.2) using a ver
 
 #### L5 + L6 — Cemented Doublet (Negative Meniscus + Positive Meniscus)
 
-L5: $n_d$ = 1.59349, $\nu_d$ = 67.0. Glass: phosphate crown, 593/670 code (APD). $f_{\text{L5 standalone}}$ — weak negative.
+L5: $n_d$ = 1.59349, $\nu_d$ = 67.0. Glass: J-PSKH4 (Hikari), a coefficient-backed 593670 phosphate crown (APD). $f_{\text{L5 standalone}}$ — weak negative.
 L6: $n_d$ = 1.69895, $\nu_d$ = 30.0. Glass: S-TIM35 (OHARA) — titanium flint. Doublet $f$ = –304.2 mm.
 
-The L5–L6 doublet is a weakly negative cemented pair. L5's phosphate crown glass (nd = 1.59349, νd = 67.0) is not matched to any standard OHARA catalog entry; the closest catalog equivalents are CDGM H-ZPK2A (exact match) and HOYA FCD515 (Δnd = 0.0007). This glass sits in the ED region of the glass map and exhibits positive anomalous partial dispersion (estimated ΔPgF ≈ +0.015), contributing to secondary-spectrum correction within the variator. The cemented interface with the high-dispersion S-TIM35 creates a colour-corrected sub-unit that maintains chromatic balance as G2 traverses its full zoom stroke.
+The L5–L6 doublet is a weakly negative cemented pair. L5's J-PSKH4 phosphate crown glass (nd = 1.59349, νd = 67.0) is a coefficient-backed Hikari catalog match for the patent's 593670 row. This glass sits in the ED region of the glass map and exhibits positive anomalous partial dispersion (catalog $P_{g,F}$ = 0.5358), contributing to secondary-spectrum correction within the variator. The cemented interface with the high-dispersion S-TIM35 creates a colour-corrected sub-unit that maintains chromatic balance as G2 traverses its full zoom stroke.
 
 #### L7 — Negative Meniscus, Convex to Object (APD)
 
-$n_d$ = 1.59349, $\nu_d$ = 67.0. Glass: 593/670 phosphate crown (same as L5, APD). $f$ = –186.6 mm.
+$n_d$ = 1.59349, $\nu_d$ = 67.0. Glass: J-PSKH4 (Hikari), same as L5, APD. $f$ = –186.6 mm.
 
 L7 uses the same APD phosphate crown as L5. Its nearly flat front surface (R1 = +2761) and moderately curved rear (R2 = +106.4) produce a weak negative meniscus that contributes modest negative power to the variator while maintaining chromatic neutrality. Positioned after the L5–L6 doublet and before the L8–L9 doublet, L7 acts as a spacing element that controls the Petzval contribution of G2 — its negative power partially offsets the positive Petzval contributions of G1 and G3.
 
@@ -218,14 +218,14 @@ The L22–L23 pair (negative biconcave + positive plano-convex) functions as a q
 
 ## Glass Identification and Selection
 
-The design employs 15 distinct glass types across 23 elements. All glasses are identified from the OHARA catalog except one (593/670 code, used in L5 and L7), which is discussed separately below.
+The design employs 15 distinct glass types across 23 elements. Most glasses are identified from the OHARA catalog. The 593670 APD glass used in L5 and L7 is now modeled as the coefficient-backed Hikari J-PSKH4 catalog entry.
 
 | Element(s) | Glass | nd | νd | Family | APD |
 |---|---|---|---|---|---|
 | L1 | S-LAH95 (OHARA) | 1.90366 | 31.3 | Lanthanum dense flint | — |
 | L2, L3, L11 | S-FPL55 (OHARA) | 1.43700 | 95.1 | Fluorophosphate super-ED | ΔPgF = +0.046 |
 | L4, L21 | S-TIH53 (OHARA) | 1.84666 | 23.8 | Titanium heavy flint | — |
-| L5, L7 | 593/670 code | 1.59349 | 67.0 | Phosphate crown (ED class) | ΔPgF ≈ +0.015 (est) |
+| L5, L7 | J-PSKH4 (Hikari) | 1.59349 | 67.0 | Phosphate crown (ED class) | $P_{g,F}$ = 0.5358 |
 | L6 | S-TIM35 (OHARA) | 1.69895 | 30.0 | Titanium flint | — |
 | L8 | S-LAL18 (OHARA) | 1.72916 | 54.7 | Lanthanum crown | — |
 | L9 | S-TIH23 (OHARA) | 1.78472 | 25.7 | Titanium heavy flint | — |
@@ -245,9 +245,9 @@ The design employs 15 distinct glass types across 23 elements. All glasses are i
 
 The L13 glass at nd = 2.00100, νd = 29.1 matches OHARA S-LAH99 (glass code 001/291), confirmed via the OHARA May 2023 pocket catalog cross-reference. The equivalent designations are HOYA TAFD55 and HIKARI J-LASFH16. S-LAH99 is a lanthanum dense flint with near-normal partial dispersion (ΔPgF ≈ +0.004). It is not counted among the design's seven APD elements. Its role is purely as a high-index flint partner for the S-FPL51 crown in the G4B achromatic doublet, where the extreme refractive-index step (Δn = 0.504) across the cemented junction generates strong corrective power.
 
-### The 593/670 Glass (L5, L7)
+### The J-PSKH4 / 593670 Glass (L5, L7)
 
-The glass at nd = 1.59349, νd = 67.0 does not match any entry in the current OHARA public catalog (May 2023 edition). The nearest OHARA match is S-PHM53 (nd = 1.60300, νd = 65.44), which differs by Δnd = 0.0095 — well outside transcription tolerance. An exact match exists in the CDGM catalog as H-ZPK2A (nd = 1.59349, νd = 67.00), and HOYA FCD515 (nd = 1.59282, νd = 68.62) is close but not exact. Given that Panasonic patents typically employ OHARA glass, this entry may represent a proprietary specification, a glass that has since been discontinued from the OHARA public catalog, or a specification equivalent supplied from an alternative vendor. The glass is classified here by its six-digit code (593/670) and its position on the glass map identifies it as a phosphate crown in the ED region, with moderate positive anomalous partial dispersion.
+The glass at nd = 1.59349, νd = 67.0 does not match any entry in the current OHARA public catalog (May 2023 edition). The 2026-05-19 audit found Hikari J-PSKH4 as a coefficient-backed exact d-code match (593670), with public Hikari/refractiveindex.info formula data. Given that Panasonic patents often employ OHARA glass, this should be read as a catalog-equivalent dispersion assignment rather than proof of production supplier. The glass remains a phosphate crown in the ED region, with moderate positive anomalous partial dispersion.
 
 ### Chromatic Correction Strategy
 
@@ -257,7 +257,7 @@ The "APO" designation requires correction of both primary chromatic aberration (
 
 2. **Stop-region chromatic correction (G4B).** The L12 (S-FPL51) + L13 (S-LAH99) cemented doublet exploits the extreme Abbe-number contrast between a low-dispersion ED crown (νd = 81.6) and an ultra-high-index dense flint (νd = 29.1, nd = 2.001) to achieve strong primary achromatisation. The secondary-spectrum correction is carried by L12's positive anomalous partial dispersion (ΔPgF = +0.028); S-LAH99 has near-normal partial dispersion (ΔPgF ≈ +0.004), so the correction mechanism is single-sided APD rather than an opposing-sign pair. The junction's large Δn (0.504) generates strong corrective power with a single cemented interface.
 
-3. **Variator-distributed ED elements (G2).** L5 and L7 (593/670 phosphate crown) maintain chromatic balance within the variator across the full zoom stroke. Because G2 moves during zoom, its chromatic contribution changes with focal length; using APD glass in G2 prevents zoom-dependent secondary spectrum from degrading the apochromatic correction established by G1 and G4.
+3. **Variator-distributed ED elements (G2).** L5 and L7 (J-PSKH4 / 593670 phosphate crown) maintain chromatic balance within the variator across the full zoom stroke. Because G2 moves during zoom, its chromatic contribution changes with focal length; using APD glass in G2 prevents zoom-dependent secondary spectrum from degrading the apochromatic correction established by G1 and G4.
 
 
 ## Focus Mechanism

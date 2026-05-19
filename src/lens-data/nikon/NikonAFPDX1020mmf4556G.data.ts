@@ -105,7 +105,7 @@ const LENS_DATA = {
       nd: 1.68348,
       vd: 54.8,
       fl: -56.71,
-      glass: "Unmatched (patent-specified 683/548 glass; θgF = 0.5501)",
+      glass: "683548 - patent-specified glass (theta_gF=0.5501; unresolved)",
       apd: "patent",
       apdNote: "Patent partial-dispersion condition: θgF = 0.5501; θgF − (0.6418 − 0.00168νd) = +0.0004.",
       role: "Conditioned negative element in G1 for lateral-color and field correction.",
@@ -210,7 +210,7 @@ const LENS_DATA = {
       nd: 1.5311,
       vd: 55.91,
       fl: 148.46,
-      glass: "Unmatched (patent-specified 531/559 crown-like glass; θgF = 0.5684)",
+      glass: "531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)",
       role: "Weak positive rear-group meniscus with image-side field-correction asphere.",
     },
     {

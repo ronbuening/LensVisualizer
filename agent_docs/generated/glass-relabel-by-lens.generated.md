@@ -11,7 +11,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **271** mismatched surfaces across **102** lens files
 - **244** surfaces have at least one candidate
-- **61** surfaces have high-confidence candidate ranking
+- **62** surfaces have high-confidence candidate ranking
 - **27** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
@@ -23,8 +23,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 10 | `TAFD30 (HOYA) — ultra-dense flint` | 1.86290 / 24.80 | TAFD30 (Δnd=+0.0201) | S-NPH5 (Δnd=-0.0039, Δvd=-2.07) | Medium | Yes - choose candidate |
 | 17 | `TAFD30 (HOYA) — ultra-dense flint` | 1.86290 / 24.80 | TAFD30 (Δnd=+0.0201) | S-NPH5 (Δnd=-0.0039, Δvd=-2.07) | Medium | Yes - choose candidate |
 | 19 | `TAFD30 (HOYA) — ultra-dense flint` | 1.86290 / 24.80 | TAFD30 (Δnd=+0.0201) | S-NPH5 (Δnd=-0.0039, Δvd=-2.07) | Medium | Yes - choose candidate |
-| 20 | `S-BAL41 (OHARA) — barium crown` | 1.58547 / 59.40 | S-BAL41 (Δnd=-0.0216) | S-BAL42 (Δnd=-0.0023, Δvd=-0.03)<br>Q-SK52S (Δnd=-0.0026, Δvd=+0.11)<br>S-BAL35 (Δnd=+0.0037, Δvd=+1.74) | Choose by context | Yes - choose candidate |
-| 22A | `S-BAL41 (OHARA) — barium crown, XA element` | 1.58547 / 59.40 | S-BAL41 (Δnd=-0.0216) | S-BAL42 (Δnd=-0.0023, Δvd=-0.03)<br>Q-SK52S (Δnd=-0.0026, Δvd=+0.11)<br>S-BAL35 (Δnd=+0.0037, Δvd=+1.74) | Choose by context | Yes - choose candidate |
+| 20 | `S-BAL41 (OHARA) — barium crown` | 1.58547 / 59.40 | S-BAL41 (Δnd=-0.0216) | K-SKLD200 (Δnd=+0.0011, Δvd=-0.40)<br>S-BAL42 (Δnd=-0.0023, Δvd=-0.03)<br>Q-SK52S (Δnd=-0.0026, Δvd=+0.11) | Choose by context | Yes - choose candidate |
+| 22A | `S-BAL41 (OHARA) — barium crown, XA element` | 1.58547 / 59.40 | S-BAL41 (Δnd=-0.0216) | K-SKLD200 (Δnd=+0.0011, Δvd=-0.40)<br>S-BAL42 (Δnd=-0.0023, Δvd=-0.03)<br>Q-SK52S (Δnd=-0.0026, Δvd=+0.11) | Choose by context | Yes - choose candidate |
 | 24 | `S-NPH53 (OHARA) — ultra-dense flint` | 1.93323 / 20.90 | S-NPH53 (Δnd=-0.0866) | No catalog candidate | Patent review | Yes - no catalog match |
 | 25 | `S-TIM22 (OHARA) — titanium flint` | 1.65803 / 39.70 | S-TIM22 (Δnd=-0.0103) | N-KZFS5 (Δnd=-0.0039, Δvd=+0.00)<br>S-NBH5 (Δnd=-0.0039, Δvd=-0.02) | Medium | Yes - choose candidate |
 
@@ -96,7 +96,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|
 | 3 | `E-FDS1-W (HIKARI)` | 1.94595 / 18.00 | E-FDS1 (Δnd=-0.0231) | H-ZF88 (Δnd=+0.0000, Δvd=-0.06)<br>FDS18 (Δnd=-0.0000, Δvd=-0.02) | Medium | Yes - choose candidate |
 | 5 | `S-TIL25 (OHARA)` | 1.55298 / 55.10 | S-TIL25 (Δnd=+0.0285) | No catalog candidate | Patent review | Yes - no catalog match |
-| 16 | `S-NBH52V (OHARA)` | 1.73800 / 32.30 | S-NBH52V (Δnd=-0.0650) | J-KZFH9 (Δnd=+0.0000, Δvd=-0.04)<br>S-NBH53V (Δnd=-0.0000, Δvd=+0.03) | Medium | Yes - choose candidate |
+| 16 | `S-NBH52V (OHARA)` | 1.73800 / 32.30 | S-NBH52V (Δnd=-0.0650) | J-KZFH9 (Δnd=+0.0000, Δvd=-0.04)<br>S-NBH53V (Δnd=-0.0000, Δvd=+0.03)<br>BPH50 (Δnd=+0.0020, Δvd=-0.59) | Choose by context | Yes - choose candidate |
 | 25A | `S-NBH56 (OHARA)` | 1.76450 / 49.10 | S-NBH56 (Δnd=+0.0903) | S-LAH96 (Δnd=-0.0006, Δvd=-0.61)<br>MC-TAF101-100 (Δnd=+0.0045, Δvd=+0.19) | Medium | Yes - choose candidate |
 | 29 | `S-LAH79 (OHARA)` | 1.90265 / 35.80 | S-LAH79 (Δnd=+0.1007) | J-LASFH9 (Δnd=+0.0000, Δvd=-0.07)<br>TAFD37 (Δnd=-0.0022, Δvd=+1.57)<br>TAFD37A (Δnd=-0.0022, Δvd=+1.57) | Choose by context | Yes - choose candidate |
 
@@ -107,7 +107,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 3A | `L-BSL7 (OHARA)` | 1.53380 / 55.60 | S-BSL7 (Δnd=-0.0176) | No catalog candidate | Patent review | Yes - no catalog match |
 | 7 | `S-PHM52 (OHARA)` | 1.59349 / 67.00 | S-PHM52 (Δnd=+0.0245) | J-PSKH4 (Δnd=+0.0000, Δvd=+0.00)<br>J-PSKH1 (Δnd=-0.0003, Δvd=+0.90)<br>FCD505 (Δnd=-0.0007, Δvd=+1.63) | Choose by context | Yes - choose candidate |
 | 8 | `S-TIM35 (OHARA)` | 1.59270 / 35.40 | S-TIM35 (Δnd=+0.1062) | S-FTM16 (Δnd=+0.0000, Δvd=-0.09) | High | Check lens notes |
-| 15A | `L-LAL13 (OHARA)` | 1.58575 / 59.50 | S-LAL13 (Δnd=+0.1078) | S-BAL42 (Δnd=-0.0026, Δvd=-0.13)<br>Q-SK52S (Δnd=-0.0029, Δvd=+0.01)<br>S-BAL35 (Δnd=+0.0034, Δvd=+1.64) | Choose by context | Yes - choose candidate |
+| 15A | `L-LAL13 (OHARA)` | 1.58575 / 59.50 | S-LAL13 (Δnd=+0.1078) | K-SKLD200 (Δnd=+0.0009, Δvd=-0.50)<br>S-BAL42 (Δnd=-0.0026, Δvd=-0.13)<br>Q-SK52S (Δnd=-0.0029, Δvd=+0.01) | Choose by context | Yes - choose candidate |
 | 17 | `S-NPH2 (OHARA)` | 1.94595 / 18.00 | S-NPH2 (Δnd=-0.0231) | H-ZF88 (Δnd=+0.0000, Δvd=-0.06)<br>FDS18 (Δnd=-0.0000, Δvd=-0.02) | Medium | Yes - choose candidate |
 
 ### [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) - JP 2004-302170 A
@@ -177,7 +177,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 7A | `LAH-type (808/409, PGM-moldable, uncertain — S-LAH93 region)` | 1.80755 / 40.90 | S-LAH93 (Δnd=+0.0977) | S-LAH53 (Δnd=-0.0015, Δvd=+0.03, codeΔ=2.2)<br>K-VC89 (Δnd=+0.0024, Δvd=+0.10, codeΔ=3.0)<br>H-ZLAF52A (Δnd=-0.0014, Δvd=+0.12, codeΔ=3.1) | Choose by context | Yes - choose candidate |
+| 7A | `LAH-type (808/409, PGM-moldable, uncertain — S-LAH93 region)` | 1.80755 / 40.90 | S-LAH93 (Δnd=+0.0977) | D-ZLAF81-25 (Δnd=+0.0000, Δvd=+0.07, codeΔ=1.2)<br>S-LAH53 (Δnd=-0.0015, Δvd=+0.03, codeΔ=2.2)<br>K-VC89 (Δnd=+0.0024, Δvd=+0.10, codeΔ=3.0) | High | Check lens notes |
 | 19 | `S-NPH5 (OHARA)` | 1.94595 / 18.00 | S-NPH5 (Δnd=-0.0870) | H-ZF88 (Δnd=+0.0000, Δvd=-0.06)<br>FDS18 (Δnd=-0.0000, Δvd=-0.02) | Medium | Yes - choose candidate |
 | 21 | `S-BAH11 (OHARA)` | 1.56732 / 42.80 | S-BAH11 (Δnd=+0.0994) | S-TIL26 (Δnd=+0.0000, Δvd=+0.02) | High | Check lens notes |
 | 22 | `S-FPM4 (OHARA)` | 1.55032 / 75.50 | S-FPM4 (Δnd=-0.0219) | FCD705 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
@@ -213,9 +213,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 3 | `S-BAL2 (OHARA)` | 1.58900 / 61.25 | S-BAL2 (Δnd=-0.0180) | S-BAL35 (Δnd=+0.0001, Δvd=-0.11)<br>N-SK5 (Δnd=+0.0001, Δvd=+0.02) | Medium | Yes - choose candidate |
+| 3 | `S-BAL2 (OHARA)` | 1.58900 / 61.25 | S-BAL2 (Δnd=-0.0180) | S-BAL35 (Δnd=+0.0001, Δvd=-0.11)<br>N-SK5 (Δnd=+0.0001, Δvd=+0.02)<br>K-SKLD200 (Δnd=-0.0024, Δvd=-2.25) | Choose by context | Yes - choose candidate |
 | 9 | `PCD4 (Hoya) / S-PHM53 (OHARA)` | 1.61800 / 63.40 | S-PHM53 (Δnd=-0.0150) | S-PHM52 (Δnd=-0.0000, Δvd=-0.07)<br>S-PHM52Q (Δnd=-0.0000, Δvd=-0.08) | Medium | Yes - choose candidate |
-| 13 | `TAC4 (Hoya) / N-SK2 (Schott)` | 1.69700 / 55.46 | N-SK2 (Δnd=-0.0896) | N-LAK14 (Δnd=-0.0002, Δvd=-0.05)<br>S-LAL14 (Δnd=-0.0002, Δvd=+0.07)<br>LAC13 (Δnd=-0.0035, Δvd=-2.12) | Choose by context | Yes - choose candidate |
+| 13 | `TAC4 (Hoya) / N-SK2 (Schott)` | 1.69700 / 55.46 | N-SK2 (Δnd=-0.0896) | N-LAK14 (Δnd=-0.0002, Δvd=-0.05)<br>H-LAK12 (Δnd=-0.0002, Δvd=+0.72)<br>S-LAL14 (Δnd=-0.0002, Δvd=+0.07) | Choose by context | Yes - choose candidate |
 | 15 | `PCD4 (Hoya) / S-PHM53 (OHARA)` | 1.61800 / 63.40 | S-PHM53 (Δnd=-0.0150) | S-PHM52 (Δnd=-0.0000, Δvd=-0.07)<br>S-PHM52Q (Δnd=-0.0000, Δvd=-0.08) | Medium | Yes - choose candidate |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) - JP2022-100641A
@@ -260,7 +260,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|
 | 6 | `S-TIH14 (OHARA)` | 1.85883 / 30.00 | S-TIH14 (Δnd=-0.0970) | No catalog candidate | Patent review | Yes - no catalog match |
 | 8 | `S-TIH10 (OHARA)` | 1.85000 / 32.40 | S-TIH10 (Δnd=-0.1218) | S-LAH71 (Δnd=+0.0003, Δvd=-0.13) | High | Check lens notes |
-| 11A | `S-LAH63Q (OHARA)` | 1.80998 / 40.90 | S-LAH63Q (Δnd=-0.0056) | K-VC89 (Δnd=-0.0000, Δvd=+0.10)<br>NBFD13 (Δnd=-0.0039, Δvd=-0.17)<br>H-ZLAF52A (Δnd=-0.0039, Δvd=+0.12) | Choose by context | Yes - choose candidate |
+| 11A | `S-LAH63Q (OHARA)` | 1.80998 / 40.90 | S-LAH63Q (Δnd=-0.0056) | K-VC89 (Δnd=-0.0000, Δvd=+0.10)<br>D-ZLAF81-25 (Δnd=-0.0024, Δvd=+0.07)<br>NBFD13 (Δnd=-0.0039, Δvd=-0.17) | Choose by context | Yes - choose candidate |
 | 15 | `S-TIH4 (OHARA)` | 1.80610 / 33.30 | S-TIH4 (Δnd=-0.0509) | NBFD15 (Δnd=-0.0000, Δvd=-0.03) | High | Check lens notes |
 
 ### [SONY FE 90 mm F2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) - WO 2016/136352 A1
@@ -277,7 +277,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 1 | `S-LAH55V (OHARA)` | 1.91082 / 35.30 | S-LAH55V (Δnd=-0.0760) | TAFD35 (Δnd=+0.0000, Δvd=-0.05) | High | Check lens notes |
-| 5 | `S-BAL42 (OHARA)` | 1.69680 / 55.50 | S-BAL42 (Δnd=-0.1137) | N-LAK14 (Δnd=+0.0000, Δvd=-0.09)<br>S-LAL14 (Δnd=-0.0000, Δvd=+0.03)<br>LAC13 (Δnd=-0.0033, Δvd=-2.16) | Choose by context | Yes - choose candidate |
+| 5 | `S-BAL42 (OHARA)` | 1.69680 / 55.50 | S-BAL42 (Δnd=-0.1137) | N-LAK14 (Δnd=+0.0000, Δvd=-0.09)<br>H-LAK12 (Δnd=-0.0000, Δvd=+0.68)<br>S-LAL14 (Δnd=-0.0000, Δvd=+0.03) | Choose by context | Yes - choose candidate |
 | 6 | `S-TIH10 (OHARA)` | 1.80610 / 33.30 | S-TIH10 (Δnd=-0.0779) | NBFD15 (Δnd=-0.0000, Δvd=-0.03) | High | Check lens notes |
 
 ### [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - US 2020/0142167 A1
@@ -341,7 +341,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 1 | `S-TIH18 (OHARA)` | 1.68893 / 31.20 | S-TIH18 (Δnd=+0.0326) | E-FD8 (Δnd=-0.0000, Δvd=-0.04)<br>S-TIM28 (Δnd=+0.0000, Δvd=-0.12) | Medium | Yes - choose candidate |
-| 18 | `S-TIH14 (OHARA)` | 1.73800 / 32.30 | S-TIH14 (Δnd=+0.0238) | J-KZFH9 (Δnd=+0.0000, Δvd=-0.04)<br>S-NBH53V (Δnd=-0.0000, Δvd=+0.03) | Medium | Yes - choose candidate |
+| 18 | `S-TIH14 (OHARA)` | 1.73800 / 32.30 | S-TIH14 (Δnd=+0.0238) | J-KZFH9 (Δnd=+0.0000, Δvd=-0.04)<br>S-NBH53V (Δnd=-0.0000, Δvd=+0.03)<br>BPH50 (Δnd=+0.0020, Δvd=-0.59) | Choose by context | Yes - choose candidate |
 | 26A | `S-LAL8 (OHARA)` | 1.69350 / 53.20 | S-LAL8 (Δnd=+0.0195) | H-LAK6A (Δnd=+0.0000, Δvd=+0.18)<br>S-LAL13 (Δnd=+0.0000, Δvd=+0.01)<br>LAC13 (Δnd=+0.0000, Δvd=+0.14) | Choose by context | Yes - choose candidate |
 
 ### [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) - JP2013-019993A
@@ -588,7 +588,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 9A | `S-BAL35 (OHARA)` | 1.58313 / 59.38 | S-BAL35 (Δnd=+0.0060) | S-BAL42 (Δnd=-0.0000, Δvd=-0.01)<br>Q-SK52S (Δnd=-0.0003, Δvd=+0.13) | Medium | Yes - choose candidate |
+| 9A | `S-BAL35 (OHARA)` | 1.58313 / 59.38 | S-BAL35 (Δnd=+0.0060) | S-BAL42 (Δnd=-0.0000, Δvd=-0.01)<br>Q-SK52S (Δnd=-0.0003, Δvd=+0.13)<br>K-SKLD200 (Δnd=+0.0035, Δvd=-0.38) | Choose by context | Yes - choose candidate |
 | 14 | `S-LAL14 (OHARA)` | 1.72916 / 54.67 | S-LAL14 (Δnd=-0.0324) | S-LAL18 (Δnd=-0.0000, Δvd=+0.01) | High | Check lens notes |
 
 ### [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) - US 4,758,073
@@ -679,7 +679,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 1 | `Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)` | 1.69680 / 55.60 | N-SK16 (Δnd=-0.0764) | N-LAK14 (Δnd=+0.0000, Δvd=-0.19)<br>S-LAL14 (Δnd=-0.0000, Δvd=-0.07)<br>LAC13 (Δnd=-0.0033, Δvd=-2.26) | Choose by context | Yes - choose candidate |
+| 1 | `Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)` | 1.69680 / 55.60 | N-SK16 (Δnd=-0.0764) | N-LAK14 (Δnd=+0.0000, Δvd=-0.19)<br>H-LAK12 (Δnd=-0.0000, Δvd=+0.58)<br>S-LAL14 (Δnd=-0.0000, Δvd=-0.07) | Choose by context | Yes - choose candidate |
 
 ### [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) - WO 2024/147268 A1
 
@@ -769,7 +769,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 12 | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | 1.58913 / 61.30 | S-BAL14 (Δnd=-0.0203) | S-BAL35 (Δnd=-0.0000, Δvd=-0.16)<br>N-SK5 (Δnd=+0.0000, Δvd=-0.03) | Medium | Yes - choose candidate |
+| 12 | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | 1.58913 / 61.30 | S-BAL14 (Δnd=-0.0203) | S-BAL35 (Δnd=-0.0000, Δvd=-0.16)<br>N-SK5 (Δnd=+0.0000, Δvd=-0.03)<br>K-SKLD200 (Δnd=-0.0025, Δvd=-2.30) | Choose by context | Yes - choose candidate |
 
 ### [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) - US 2023/0213745 A1
 

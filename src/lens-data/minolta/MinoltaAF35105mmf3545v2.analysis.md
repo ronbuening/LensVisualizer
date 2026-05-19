@@ -72,19 +72,19 @@ The first surface is weakly convex and the cemented rear surface is much stronge
 
 ### L2 - Biconvex Positive
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670/571 high-index crown or lanthanum-crown class. f = +59.4 mm.`
+`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = +59.4 mm.`
 
 L2 is the main positive component in the front cemented doublet. It carries positive power with relatively low dispersion while L1 supplies the flint partner. The cemented L1/L2 doublet is only weakly positive as a standalone component, with a computed EFL of about **+195.8 mm**, showing that it is primarily an achromatizing and aberration-shaping component rather than a simple strong collector.
 
 ### L3 - Positive Meniscus, convex to object
 
-`nd = 1.69680, νd = 56.47. Glass: unresolved 697/565 high-index crown or lanthanum-crown class. f = +93.5 mm.`
+`nd = 1.69680, νd = 56.47. Glass: H-LAK12 (CDGM equivalent; patent 697565). f = +93.5 mm.`
 
 L3 is a positive meniscus placed behind the front doublet. It strengthens Group I while keeping the surface curvatures moderate. Because it is air-spaced from the cemented doublet, it gives the designer an additional control for balancing spherical aberration and off-axis astigmatism before the beam enters the negative variator.
 
 ### L4 - Strong Negative Meniscus, convex to object
 
-`nd = 1.77250, νd = 49.77. Glass: unresolved 773/498 dense lanthanum-flint or crown/flint-boundary class. f = -24.1 mm.`
+`nd = 1.77250, νd = 49.77. Glass: unresolved 773498 dense lanthanum-flint or crown/flint-boundary class. f = -24.1 mm.`
 
 L4 is the first and strongest element in Group II, the negative variator group. Its short negative focal length is a major contributor to the zoom ratio. The high index permits strong negative power without forcing both surfaces to extremely small radii.
 
@@ -92,7 +92,7 @@ Although its Abbe number is near the crown/flint boundary, the element should be
 
 ### L5 - Nearly Plano-Concave Negative
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670/571 high-index crown or lanthanum-crown class. f = -50.5 mm.`
+`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = -50.5 mm.`
 
 L5 is a weaker negative element in Group II. Its first surface, r8 = -1357.755 mm, is almost plane in paraxial effect, so the element behaves as a nearly plano-concave negative lens. It continues the negative action of the variator with less power than L4.
 
@@ -116,7 +116,7 @@ Its high Abbe number keeps the trailing negative power of Group II from adding e
 
 ### L8 - Biconvex Positive
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670/571 high-index crown or lanthanum-crown class. f = +27.6 mm.`
+`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = +27.6 mm.`
 
 L8 is the first element of Group III-F. It is a strong positive biconvex relay element immediately behind the aperture region. It reconverges the beam after the negative variator and establishes much of Group III's positive power.
 
@@ -132,7 +132,7 @@ The L9/L10 cemented pair is slightly negative as a standalone component, with a 
 
 ### L10 - Biconcave Negative, rear element of cemented pair
 
-`nd = 1.80741, νd = 31.59. Glass: unresolved 807/316 high-index dense-flint class. f = -15.7 mm.`
+`nd = 1.80741, νd = 31.59. Glass: unresolved 807316 high-index dense-flint class. f = -15.7 mm.`
 
 L10 is the flint member of the L9/L10 cemented doublet. It has very strong negative power and high dispersion. It offsets L9's strong positive power and helps suppress chromatic and spherical-aberration residuals inside Group III-F.
 
@@ -140,7 +140,7 @@ The high index keeps the negative curvatures compact, which matters in a short r
 
 ### L11 - Biconvex Positive
 
-`nd = 1.72000, νd = 42.02. Glass: unresolved 720/420 lanthanum-flint / LAM-class high-index glass. f = +22.7 mm.`
+`nd = 1.72000, νd = 42.02. Glass: S-LAM58 (OHARA), an exact coefficient-backed 720420 catalog match. f = +22.7 mm.`
 
 L11 is the positive front member of Group III-B. It forms the positive portion of the rear unit's telephoto-like positive-negative arrangement.
 
@@ -148,7 +148,7 @@ This element is important to both focusing and compactness. Group III-B particip
 
 ### L12 - Thin Aspheric Layer
 
-`nd = 1.51790, νd = 52.31. Glass: thin hybrid/composite aspheric layer, code 518/523; bulk catalog identity not assigned. f = +379.6 mm in air, not physically meaningful as a separate thick lens.`
+`nd = 1.51790, νd = 52.31. Glass: thin hybrid/composite aspheric layer, code 518523; bulk catalog identity not assigned. f = +379.6 mm in air, not physically meaningful as a separate thick lens.`
 
 L12 is only **0.035 mm** thick and carries the aspheric surface r21. It is best modeled as a thin bonded or hybrid aspheric layer on the front of the rear negative component. The patent gives the optical medium and its index, but it does not name the manufacturing method.
 
@@ -156,7 +156,7 @@ The paraxial power of this layer alone is weak. Its purpose is to place the asph
 
 ### L13 - Rear Negative Meniscus / Weak Plano-Concave Element
 
-`nd = 1.80500, νd = 40.97. Glass: unresolved 805/410 dense lanthanum-flint / LASF-class glass. f = -27.1 mm.`
+`nd = 1.80500, νd = 40.97. Glass: unresolved 805410 dense lanthanum-flint / LASF-class glass. f = -27.1 mm.`
 
 L13 is the final powered body of the lens. Together with the thin L12 layer, it forms the negative component of Group III-B. The element has a strong negative front region and a very weak rear curvature at r23 = 503.492 mm.
 
@@ -169,15 +169,15 @@ The patent gives refractive index and Abbe number, not glass trade names. Exact 
 | Element(s) | Patent nd / νd | Six-digit code | Identification used here | Role |
 |---|---:|---:|---|---|
 | L1, L6 | 1.84666 / 23.83 | 847/238 | SF57-class dense flint; exact Schott SF57 match | High-index, high-dispersion flint for front achromat and Group II chromatic balance |
-| L2, L5, L8 | 1.67000 / 57.07 | 670/571 | Unresolved high-index crown / lanthanum-crown class | Positive power and moderate negative corrective power |
-| L3 | 1.69680 / 56.47 | 697/565 | Unresolved high-index crown / lanthanum-crown class | Additional front-group positive power |
-| L4 | 1.77250 / 49.77 | 773/498 | Unresolved dense lanthanum-flint or crown/flint-boundary class | Strong negative variator power |
+| L2, L5, L8 | 1.67000 / 57.07 | 670571 | Unresolved high-index crown / lanthanum-crown class | Positive power and moderate negative corrective power |
+| L3 | 1.69680 / 56.47 | 697565 | H-LAK12 (CDGM equivalent to old LAL64 family) | Additional front-group positive power |
+| L4 | 1.77250 / 49.77 | 773498 | Unresolved dense lanthanum-flint or crown/flint-boundary class | Strong negative variator power |
 | L7 | 1.61800 / 63.39 | 618/634 | N-PSK53A-class high-Abbe crown; exact Schott N-PSK53A match | High-Abbe negative corrector at rear of Group II |
 | L9 | 1.51680 / 64.20 | 517/642 | BK7-family borosilicate crown | Low-dispersion positive member of the Group III-F doublet |
-| L10 | 1.80741 / 31.59 | 807/316 | Unresolved high-index dense flint | Strong negative cemented partner to L9 |
-| L11 | 1.72000 / 42.02 | 720/420 | Unresolved lanthanum-flint / LAM-class high-index glass | Positive front member of rear unit |
-| L12 | 1.51790 / 52.31 | 518/523 | Thin hybrid/composite aspheric layer | Carries the r21 aspheric departure |
-| L13 | 1.80500 / 40.97 | 805/410 | Unresolved dense lanthanum-flint / LASF-class glass | Rear negative component and field/coma control |
+| L10 | 1.80741 / 31.59 | 807316 | Unresolved high-index dense flint | Strong negative cemented partner to L9 |
+| L11 | 1.72000 / 42.02 | 720420 | S-LAM58 (OHARA) | Positive front member of rear unit |
+| L12 | 1.51790 / 52.31 | 518523 | Thin hybrid/composite aspheric layer | Carries the r21 aspheric departure |
+| L13 | 1.80500 / 40.97 | 805410 | Unresolved dense lanthanum-flint / LASF-class glass | Rear negative component and field/coma control |
 
 The palette is typical of a compact late-1980s zoom: high-index dense flints are used where strong corrective power is needed, high-Abbe crowns restrain color, and lanthanum-type glasses carry compact positive power. The patent gives no basis for claiming ED, anomalous partial dispersion, fluorite, or apochromatic behavior.
 

@@ -50,7 +50,7 @@ The construction is reversed relative to L11. Surface 4 is the outer object-side
 
 ### L13 — Biconcave Negative Conditional Partial-Dispersion Element
 
-**nd = 1.68348, νd = 54.80. Glass: Unmatched patent-specified 683/548 glass, θgF = 0.5501. f = -56.71 mm.**
+**nd = 1.68348, νd = 54.80. Glass: 683548 patent-specified glass, unresolved; θgF = 0.5501. f = -56.71 mm.**
 
 L13 is the biconcave negative element placed after the two composite menisci and before the positive rear element of G1. It is the element singled out by the patent's conditional expressions. Table 2 gives `ndN1 − (2.015 − 0.0068 × νdN1) = 0.041`, `νdN1 = 54.80`, `θgFN1 = 0.5501`, and `θgFN1 − (0.6418 − 0.00168 × νdN1) = 0.0004`.
 
@@ -104,11 +104,11 @@ The data file includes a first-order close-focus model because the production le
 
 ### L41 — Weak Positive Rear Meniscus, Image-Side Asphere
 
-**nd = 1.53110, νd = 55.91. Glass: Unmatched patent-specified 531/559 crown-like glass, θgF = 0.5684. f = +148.46 mm.**
+**nd = 1.53110, νd = 55.91. Glass: 531559 patent-specified crown-like glass, unresolved; θgF = 0.5684. f = +148.46 mm.**
 
 L41 is a weak positive meniscus at the front of G4, with its concave surface facing the object. Its image-side surface, surface 26, is aspherical.
 
-The element has little standalone power, but its position close to the image plane gives it leverage over field curvature, astigmatism, and distortion. The data file keeps the glass as unmatched rather than assigning a speculative catalog name.
+The element has little standalone power, but its position close to the image plane gives it leverage over field curvature, astigmatism, and distortion. The data file keeps the glass as unresolved 531559 rather than assigning a speculative catalog name.
 
 ### L42-L43 — Final Cemented Doublet in G4
 
@@ -122,7 +122,7 @@ G4 as a complete group computes to **+70.213 mm**. Its power is much weaker than
 
 ## Glass Identification and Selection
 
-The patent publishes nd, νd, and θgF; it does not name commercial glass products. The data file therefore uses catalog-equivalent labels where the constants are consistent with familiar Hikari, Hoya, or Schott-family glasses, and it leaves unresolved materials explicitly unmatched. These labels should be read as optical catalog equivalents, not as claims about Nikon's purchasing records.
+The patent publishes nd, νd, and θgF; it does not name commercial glass products. The data file therefore uses catalog-equivalent labels where the constants are consistent with familiar Hikari, Hoya, or Schott-family glasses, and it leaves unresolved materials with explicit unbroken six-digit codes. These labels should be read as optical catalog equivalents, not as claims about Nikon's purchasing records.
 
 | Element / medium | Patent nd | Patent νd | Patent θgF | Data-file assignment | Status |
 |---|---:|---:|---:|---|---|
@@ -130,7 +130,7 @@ The patent publishes nd, νd, and θgF; it does not name commercial glass produc
 | L11 resin | 1.56093 | 36.64 | 0.5931 | Resin / polymer | Patent-specified composite layer. |
 | L12 resin | 1.55389 | 38.09 | 0.5928 | Resin / polymer | Patent-specified composite layer. |
 | L12 glass body | 1.80610 | 40.97 | 0.5688 | J-LASF03 / N-LASF43 class | Catalog-equivalent dense lanthanum flint. |
-| L13 | 1.68348 | 54.80 | 0.5501 | Unmatched patent-specified 683/548 glass | Conditional partial-dispersion element. |
+| L13 | 1.68348 | 54.80 | 0.5501 | 683548 patent-specified glass | Conditional partial-dispersion element; no coefficient-backed public match found. |
 | L14 | 1.71736 | 29.57 | 0.6036 | J-SF1 class | Dense flint balancing element. |
 | L21 | 1.72825 | 28.38 | 0.6069 | J-SF10 class | Dense flint positive doublet member. |
 | L22 | 1.91082 | 35.25 | 0.5824 | TAFD35 / TAFD35L class | High-index negative doublet member. |
@@ -139,7 +139,7 @@ The patent publishes nd, νd, and θgF; it does not name commercial glass produc
 | L25 | 1.91082 | 35.25 | 0.5824 | TAFD35 / TAFD35L class | High-index negative doublet member. |
 | L31 | 1.91082 | 35.25 | 0.5824 | TAFD35 / TAFD35L class | Negative focusing-group member. |
 | L32 | 1.51680 | 63.88 | 0.5360 | BK7-family crown | Positive focusing-group member. |
-| L41 | 1.53110 | 55.91 | 0.5684 | Unmatched patent-specified 531/559 glass | Rear weak positive aspherical meniscus. |
+| L41 | 1.53110 | 55.91 | 0.5684 | 531559 patent-specified glass | Rear weak positive aspherical meniscus; no coefficient-backed public match found. |
 | L42 | 1.91082 | 35.25 | 0.5824 | TAFD35 / TAFD35L class | Final doublet negative member. |
 | L43 | 1.48749 | 70.31 | 0.5291 | J-FK5 class | Low-dispersion final positive member. |
 
@@ -236,4 +236,4 @@ Primary patent source: WO2021039813A1, Nikon Corporation; text-searchable equiva
 
 Production and design-history sources: Nikon Imaging product page for the AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR; Nikon Imaging, *NIKKOR - The Thousand and One Nights No. 90*.
 
-Catalog references used as equivalence labels: Hikari, Hoya, and Schott-family optical-glass catalog conventions. The file leaves unresolved glasses explicitly marked as unmatched rather than assigning speculative commercial names.
+Catalog references used as equivalence labels: Hikari, Hoya, and Schott-family optical-glass catalog conventions. The file leaves unresolved glasses with explicit unbroken six-digit codes rather than assigning speculative commercial names.
