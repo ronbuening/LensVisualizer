@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **220** lenses scanned
-- **2549** non-air surfaces examined
-- **2543** element glass declarations examined
-- **662** non-explicit-unmatched annotations did not resolve
-- **204** distinct unresolved glass-like tokens found
+- **223** lenses scanned
+- **2573** non-air surfaces examined
+- **2567** element glass declarations examined
+- **669** non-explicit-unmatched annotations did not resolve
+- **205** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,12 +21,12 @@ or per-lens patent backfills.
 | H-ZF88A | 10 | 1 | |
 | H-FK61 | 9 | 3 | |
 | NBFD15 | 6 | 4 | |
+| S-TIL26 | 5 | 5 | |
 | H-QK3L | 4 | 3 | |
 | H-ZF6 | 4 | 2 | |
 | H-ZLAF50D | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
 | S-TIL2 | 4 | 4 | |
-| S-TIL26 | 4 | 4 | |
 | 744495 | 3 | 3 | |
 | H-ZF4A | 3 | 2 | |
 | L-LAH53 | 3 | 3 | |
@@ -36,6 +36,7 @@ or per-lens patent backfills.
 | S-LAL7 | 3 | 3 | |
 | S-NBH58 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
+| TAFD32 | 3 | 3 | |
 | 159319 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 774492 | 2 | 1 | |
@@ -57,6 +58,7 @@ or per-lens patent backfills.
 | H-ZF7LA | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | H-ZLAF52A | 2 | 1 | |
+| H-ZLAF64 | 2 | 2 | |
 | H-ZLAF68C | 2 | 2 | |
 | L-LAH85V | 2 | 2 | |
 | L-LAH86 | 2 | 2 | |
@@ -72,10 +74,10 @@ or per-lens patent backfills.
 | S-LAM73 | 2 | 1 | |
 | S-PHM52Q | 2 | 2 | |
 | S-TIH1 | 2 | 2 | |
+| S-TIL1 | 2 | 2 | |
 | S-TIM8 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK7 | 2 | 2 | |
-| TAFD32 | 2 | 2 | |
 | TAFD35L | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 175500 | 1 | 1 | |
@@ -147,6 +149,7 @@ or per-lens patent backfills.
 | H-LAK53A | 1 | 1 | |
 | H-LAK5A | 1 | 1 | |
 | H-LAK7 | 1 | 1 | |
+| H-PK65 | 1 | 1 | |
 | H-QF50 | 1 | 1 | |
 | H-QF56 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
@@ -155,7 +158,6 @@ or per-lens patent backfills.
 | H-ZF72 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
 | H-ZLAF55C | 1 | 1 | |
-| H-ZLAF64 | 1 | 1 | |
 | H-ZLAF68N | 1 | 1 | |
 | H-ZLAF75B | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
@@ -208,7 +210,6 @@ or per-lens patent backfills.
 | S-TIF1 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
-| S-TIL1 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
 | S-TIM3 | 1 | 1 | |
 | SF14 | 1 | 1 | |
@@ -259,6 +260,14 @@ or per-lens patent backfills.
 - [NIKON AF NIKKOR 85mm f/1.4D IF](../src/lens-data/nikon/Nikon85f14D.data.ts) 5: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `NbFD15 class (786/275, HOYA family)`
 
+### S-TIL26 — 5 occurrences
+
+- [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 27: `S-TIL26 / E-FL6 / H-QF56 class (567/428)`
+- [FUJIFILM FUJINON GF45mmF2.8 R WR](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) 1: `S-TIL26 (OHARA)`
+- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 10: `S-TIL26 (OHARA)`
+- [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) 22: `S-TIL26 (Ohara)`
+- [Olympus M.Zuiko Digital 17mm f/1.8](../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) 3: `S-TIL26 (OHARA)`
+
 ### H-QK3L — 4 occurrences
 
 - [Laowa 24mm f/14 2× Macro Probe](../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 9: `H-QK3L (CDGM)`
@@ -293,13 +302,6 @@ or per-lens patent backfills.
 - [FUJIFILMFUJINON GF32-64mmF4 R LM WR](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 7: `S-TIL2 (OHARA)`
 - [FUJIFILM FUJINON GF55mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 22: `E-FEL2 (HOYA) / S-TIL2 class`
 - [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) 17: `S-TIL2 (OHARA)`
-
-### S-TIL26 — 4 occurrences
-
-- [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 27: `S-TIL26 / E-FL6 / H-QF56 class (567/428)`
-- [FUJIFILM FUJINON GF45mmF2.8 R WR](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) 1: `S-TIL26 (OHARA)`
-- [NIKON AF-S NIKKOR 105mm f/1.4E ED](../src/lens-data/nikon/NikonNikkor105f14E.data.ts) 22: `S-TIL26 (Ohara)`
-- [Olympus M.Zuiko Digital 17mm f/1.8](../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) 3: `S-TIL26 (OHARA)`
 
 ### 744495 — 3 occurrences
 
@@ -354,6 +356,12 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
+
+### TAFD32 — 3 occurrences
+
+- [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
+- [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 17: `TAFD32 (HOYA)`
+- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
 
 ### 159319 — 2 occurrences
 
@@ -460,6 +468,11 @@ or per-lens patent backfills.
 - [Laowa 24mm f/14 2× Macro Probe](../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 23: `H-ZLaF52A (CDGM)`
 - [Laowa 24mm f/14 2× Macro Probe](../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 25: `H-ZLaF52A (CDGM)`
 
+### H-ZLAF64 — 2 occurrences
+
+- [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
+- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 2: `TAFD32 (HOYA) / H-ZLaF64 class`
+
 ### H-ZLAF68C — 2 occurrences
 
 - [Laowa 65mm f/2.8 2× Ultra Macro APO](../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 11: `H-ZLAF68C (CDGM)`
@@ -535,6 +548,11 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) 1: `S-TIH1 (OHARA)`
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 6: `E-FD1L (HOYA) / S-TIH1 / N-SF1 class`
 
+### S-TIL1 — 2 occurrences
+
+- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 1: `S-TIL1 (OHARA)`
+- [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) 16: `S-TIL1 family (OHARA, 548 458)`
+
 ### S-TIM8 — 2 occurrences
 
 - [FUJIFILM FUJINON GF55mmF1.7 R WR](../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 20: `E-F8 (HOYA) / S-TIM8 class`
@@ -549,11 +567,6 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 35mm f/3.2](../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
 - [CARL ZEISS BIOGON 21mm f/4.5](../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) 6: `SK7 dense crown (607/595)`
-
-### TAFD32 — 2 occurrences
-
-- [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
-- [FUJIFILM FUJINON GF30mmF5.6 T/S](../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 17: `TAFD32 (HOYA)`
 
 ### TAFD35L — 2 occurrences
 
@@ -840,6 +853,10 @@ or per-lens patent backfills.
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 1: `H-LAK7 (CDGM)`
 
+### H-PK65 — 1 occurrence
+
+- [FUJIFILM GFX100RF 35mm f/4](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 8: `PCD40 (HOYA) / H-PK65 class`
+
 ### H-QF50 — 1 occurrence
 
 - [Laowa 65mm f/2.8 2× Ultra Macro APO](../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 2: `H-QF50 (CDGM)`
@@ -871,10 +888,6 @@ or per-lens patent backfills.
 ### H-ZLAF55C — 1 occurrence
 
 - [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 21: `H-ZLAF55C (CDGM)`
-
-### H-ZLAF64 — 1 occurrence
-
-- [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 24: `TAFD32 / H-ZLaF64 class (871/407)`
 
 ### H-ZLAF68N — 1 occurrence
 
@@ -1083,10 +1096,6 @@ or per-lens patent backfills.
 ### S-TIF8 — 1 occurrence
 
 - [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) 5: `S-TIF8 (OHARA) / TIF6 (HOYA)`
-
-### S-TIL1 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) 16: `S-TIL1 family (OHARA, 548 458)`
 
 ### S-TIM1 — 1 occurrence
 

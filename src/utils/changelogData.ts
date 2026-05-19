@@ -29,7 +29,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-18",
     type: "lens",
-    summary: "Added three new lenses for fixed-lens Fujifilm Cameras",
+    summary: "Added six new lenses for fixed-lens Fujifilm Cameras",
   },
   // ── 2026-05-17 ──────────────────────────────────────────────────────────
   {
