@@ -8,6 +8,7 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { projectionLaunchSlopeForField } from "./projection.js";
 import { traceRay, type RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
 
@@ -25,6 +26,47 @@ export interface EntrancePupilState {
   yRatio: number;
   b: number;
   epRatio: number;
+}
+
+export interface ChiefRaySolveResult {
+  yLaunch: number;
+  uField: number;
+  status: "converged" | "paraxial-fallback" | "bracket-failed" | "out-of-domain";
+  iterations: number;
+}
+
+const CHIEF_RAY_MAX_ITERATIONS = 30;
+const CHIEF_RAY_BRACKET_EPSILON = 1e-9;
+const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-6;
+
+const chiefRaySolveCache: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult>> = new WeakMap();
+
+function chiefRaySolveCacheKey(
+  focusT: number,
+  zoomT: number,
+  aberrationT: number,
+  fieldAngleDeg: number,
+  options: RayTraceOptions | undefined,
+): string {
+  const mode = options?.mode ?? "default";
+  return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${mode}`;
+}
+
+function reportChiefRayFallback(
+  L: RuntimeLens,
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  status: ChiefRaySolveResult["status"],
+): void {
+  if (status === "converged" || status === "paraxial-fallback") return;
+  if (typeof import.meta === "undefined") return;
+  const env = (import.meta as { env?: { DEV?: boolean } }).env;
+  if (!env?.DEV) return;
+  const key = L.data?.key ?? "<unknown-lens>";
+  console.warn(
+    `[chiefRaySolver] ${status} key=${key} field=${fieldAngleDeg.toFixed(3)}° focus=${focusT.toFixed(4)} zoom=${zoomT.toFixed(4)}`,
+  );
 }
 
 export function computeFieldGeometryAtState(
@@ -175,7 +217,7 @@ export function chiefRayImageHeight(
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
-export function solveChiefRayLaunchHeight(
+export function solveChiefRay(
   fieldAngleDeg: number,
   focusT: number,
   zoomT: number,
@@ -183,13 +225,47 @@ export function solveChiefRayLaunchHeight(
   geometry?: FieldGeometryState,
   aberrationT = 0,
   options?: RayTraceOptions,
-): number {
+): ChiefRaySolveResult {
+  let perLensCache = chiefRaySolveCache.get(L);
+  if (!perLensCache) {
+    perLensCache = new Map();
+    chiefRaySolveCache.set(L, perLensCache);
+  }
+  const cacheKey = chiefRaySolveCacheKey(focusT, zoomT, aberrationT, fieldAngleDeg, options);
+  const cached = perLensCache.get(cacheKey);
+  if (cached) return cached;
+
+  const result = computeChiefRaySolve(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  perLensCache.set(cacheKey, result);
+  reportChiefRayFallback(L, fieldAngleDeg, focusT, zoomT, result.status);
+  return result;
+}
+
+function computeChiefRaySolve(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState | undefined,
+  aberrationT: number,
+  options: RayTraceOptions | undefined,
+): ChiefRaySolveResult {
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  if (launch.status === "out-of-domain") {
+    const geomFallback = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+    const fallbackTheta = (fieldAngleDeg * Math.PI) / 180;
+    const fallbackU = isFinite(fallbackTheta) ? -Math.tan(fallbackTheta) : NaN;
+    const paraxialYChief = isFinite(fallbackU) ? -geomFallback.epRatio * fallbackU : NaN;
+    return { yLaunch: paraxialYChief, uField: fallbackU, status: "out-of-domain", iterations: 0 };
+  }
+
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const uField = launch.uField;
   const paraxialYChief = -geom.epRatio * uField;
 
-  if (Math.abs(fieldAngleDeg) < 1) return paraxialYChief;
+  if (Math.abs(fieldAngleDeg) < 1) {
+    return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0 };
+  }
 
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const stopIdx = L.stopIdx;
@@ -205,18 +281,38 @@ export function solveChiefRayLaunchHeight(
 
   const yLo = heightAtStop(lo);
   const yHi = heightAtStop(hi);
-  if (yLo === null || yHi === null) return paraxialYChief;
-  if (yLo * yHi > 0) return paraxialYChief;
+  if (yLo === null || yHi === null || yLo * yHi > 0) {
+    return { yLaunch: paraxialYChief, uField, status: "bracket-failed", iterations: 0 };
+  }
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
     const mid = (lo + hi) / 2;
     const yMid = heightAtStop(mid);
-    if (yMid === null) return paraxialYChief;
-    if (Math.abs(yMid) < 1e-6) return mid;
+    if (yMid === null) {
+      return { yLaunch: paraxialYChief, uField, status: "paraxial-fallback", iterations: i + 1 };
+    }
+    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      return { yLaunch: mid, uField, status: "converged", iterations: i + 1 };
+    }
     if (yMid < 0 === yLo < 0) lo = mid;
     else hi = mid;
+    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
+      return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1 };
+    }
   }
-  return (lo + hi) / 2;
+  return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: CHIEF_RAY_MAX_ITERATIONS };
+}
+
+export function solveChiefRayLaunchHeight(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+  aberrationT = 0,
+  options?: RayTraceOptions,
+): number {
+  return solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options).yLaunch;
 }
 
 export function chiefRayImageHeightAccurate(

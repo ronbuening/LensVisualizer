@@ -34,11 +34,13 @@ export {
   computeFieldGeometryAtState,
   conjugateK,
   entrancePupilAtState,
+  solveChiefRay,
   solveChiefRayLaunchHeight,
   solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate,
   traceChiefRayAtAngle,
   traceParaxialRay,
+  type ChiefRaySolveResult,
   type EntrancePupilState,
   type FieldGeometryState,
 } from "./fieldGeometry.js";

@@ -61,6 +61,31 @@ export function projectionFieldAngleForImageHeight(reference: ProjectionReferenc
   }
 }
 
+export interface ProjectionLaunchSlope {
+  uField: number;
+  status: "ok" | "out-of-domain";
+}
+
+/**
+ * Forward-cone field-angle limit beyond which slope-based ray launch overflows
+ * and the exact tracer's `direction[2] > 0` precondition fails. Bounding-sphere
+ * launch (see TRACE_MODEL_IMPROVEMENT_PLAN.md Phase 5) will relax this for
+ * fisheye projections; until then every callsite shares the same cap.
+ */
+export const MAX_FIELD_LAUNCH_DEG = 89;
+
+export function projectionLaunchSlopeForField(
+  L: Pick<RuntimeLens, "projection">,
+  fieldAngleDeg: number,
+): ProjectionLaunchSlope {
+  void resolveProjection(L.projection);
+  if (!isFinite(fieldAngleDeg) || Math.abs(fieldAngleDeg) >= MAX_FIELD_LAUNCH_DEG) {
+    return { uField: NaN, status: "out-of-domain" };
+  }
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  return { uField: -Math.tan(thetaRad), status: "ok" };
+}
+
 export function projectionFieldSlopesForImagePoint(
   reference: ProjectionReference,
   imageX: number,
