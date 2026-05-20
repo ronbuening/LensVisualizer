@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **546** non-explicit-unmatched annotations did not resolve
-- **200** distinct unresolved glass-like tokens found
+- **547** non-explicit-unmatched annotations did not resolve
+- **201** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -91,6 +91,7 @@ or per-lens patent backfills.
 | 731405 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 741527 | 1 | 1 | |
+| 747274 | 1 | 1 | |
 | 749547 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 757316 | 1 | 1 | |
@@ -556,6 +557,10 @@ or per-lens patent backfills.
 ### 741527 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 5: `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)`
+
+### 747274 — 1 occurrence
+
+- [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) 5: `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)`
 
 ### 749547 — 1 occurrence
 

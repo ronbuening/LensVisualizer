@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **53** mismatched surfaces across **30** lens files
-- **46** surfaces have at least one candidate
-- **8** surfaces have high-confidence candidate ranking
-- **7** surfaces have no catalog candidate and need patent review
+- **43** mismatched surfaces across **20** lens files
+- **37** surfaces have at least one candidate
+- **7** surfaces have high-confidence candidate ranking
+- **6** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
 
@@ -129,36 +129,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|
 | 4 | `S-TIM2 (OHARA)` | 1.59270 / 35.30 | S-TIM2 (Δnd=+0.0273) | S-FTM16 (Δnd=+0.0000, Δvd=+0.01) | High | Check lens notes |
 
-### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) - US 4,210,388
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 5 | `LAC12 / LaK10 (OHARA / Schott)` | 1.77250 / 49.60 | LAC12 (Δnd=-0.0946) | N-LAF34 (Δnd=+0.0000, Δvd=+0.02)<br>S-LAH66 (Δnd=-0.0000, Δvd=-0.00)<br>MC-TAF101-100 (Δnd=-0.0035, Δvd=-0.31) | Choose by context | Yes - choose candidate |
-
-### [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) - US 4,792,219
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 17 | `BSC7 (HOYA)` | 1.65160 / 58.52 | S-BSL7 (Δnd=-0.1354) | S-LAL7 (Δnd=-0.0000, Δvd=+0.03)<br>N-LAK22 (Δnd=-0.0005, Δvd=-2.63) | Medium | Yes - choose candidate |
-
-### [PENTAX FA 31mm F1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) - US 6,560,042 B2
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 7 | `TAFD30 (HOYA)` | 1.80100 / 35.00 | TAFD30 (Δnd=+0.0820) | J-LAF016 (Δnd=+0.0000, Δvd=-0.08)<br>S-LAM66 (Δnd=-0.0000, Δvd=-0.03) | Medium | Yes - choose candidate |
-
-### [PENTAX-110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) - US 4,223,982
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 1 | `SF6 (Schott) / S-TIH6 (Ohara)` | 1.72825 / 28.50 | SF6 (Δnd=+0.0769) | H-ZF4A (Δnd=+0.0000, Δvd=-0.18)<br>S-TIH10 (Δnd=-0.0000, Δvd=-0.04)<br>SF10 (Δnd=+0.0000, Δvd=-0.09) | Choose by context | Yes - choose candidate |
-
-### [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) - US 5,267,086
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 6 | `TAFD25 (HOYA)` | 1.80440 / 39.60 | TAFD25 (Δnd=+0.0993) | S-LAH63Q (Δnd=+0.0000, Δvd=-0.02)<br>S-LAH63 (Δnd=-0.0000, Δvd=-0.01)<br>NBFD3 (Δnd=+0.0001, Δvd=+0.03) | Choose by context | Yes - choose candidate |
-
 ### [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) - US 5,760,973
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
@@ -177,30 +147,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|
 | 4 | `S-FPM4 (OHARA)` | 1.59561 / 67.00 | S-FPM4 (Δnd=-0.0672) | S-FPM2 (Δnd=-0.0004, Δvd=+0.74)<br>J-PSKH4 (Δnd=-0.0021, Δvd=+0.00)<br>J-PSKH1 (Δnd=-0.0024, Δvd=+0.90) | Choose by context | Yes - choose candidate |
 
-### [SONY PLANAR T* 50mm F1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) - US 2014/0071331 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 3 | `E-FD5 class (HOYA/HIKARI equivalent, 593/355)` | 1.59270 / 35.50 | E-FD5 (Δnd=+0.0800) | S-FTM16 (Δnd=-0.0000, Δvd=-0.19, codeΔ=2.2) | High | Check lens notes |
-
-### [SONY PLANAR T* FE 50mm F1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) - WO 2017/138250 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 6 | `S-TIM27 (OHARA)` | 1.71735 / 29.50 | S-TIM27 (Δnd=-0.0776) | SF1 (Δnd=+0.0000, Δvd=+0.01)<br>S-TIH1 (Δnd=+0.0000, Δvd=+0.02)<br>S-TIH18 (Δnd=+0.0042, Δvd=-0.27) | Choose by context | Yes - choose candidate |
-
-### [SONY SONNAR T* FE 55mm F1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) - US 2015/0092100 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 1 | `S-TIM2 (OHARA)` | 1.58144 / 40.90 | S-TIM2 (Δnd=+0.0386) | E-FL5 (Δnd=-0.0000, Δvd=-0.01)<br>PBL25 (Δnd=-0.0000, Δvd=-0.15)<br>S-TIL25 (Δnd=-0.0000, Δvd=-0.15) | Choose by context | Yes - choose candidate |
-
-### [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) - JP 2002-090622 A
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 12 | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | 1.58913 / 61.30 | S-BAL14 (Δnd=-0.0203) | S-BAL35 (Δnd=-0.0000, Δvd=-0.16)<br>N-SK5 (Δnd=+0.0000, Δvd=-0.03)<br>K-SKLD200 (Δnd=-0.0025, Δvd=-2.30) | Choose by context | Yes - choose candidate |
-
 ### [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) - US 2014/0247506 A1
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
@@ -212,10 +158,4 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 9 | `Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)` | 1.67003 / 57.20 | H-LAK6A (Δnd=+0.0235) | No catalog candidate | Patent review | Yes - no catalog match |
-
-### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - US 3,649,104
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 5 | `≈SF4 (dense flint)` | 1.74710 / 27.40 | SF4 (Δnd=+0.0081) | No catalog candidate | Patent review | Yes - no catalog match |
 

@@ -65,7 +65,7 @@ const LENS_DATA = {
       nd: 1.592703,
       vd: 35.5,
       fl: -48.1,
-      glass: "E-FD5 class (HOYA/HIKARI equivalent, 593/355)",
+      glass: "S-FTM16 (OHARA)",
       apd: false,
       role: "G1F diverging partner; achromatizes with L1 and extends back focus.",
     },

@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **235** lenses scanned
 - **2678** glass surfaces examined
 - **2672** surfaces with non-empty `glass` strings
-- **2067** of those resolved to a catalog entry
-- **53** mismatches found (2.6% of resolved surfaces)
-- **30** distinct lens files affected
+- **2066** of those resolved to a catalog entry
+- **43** mismatches found (2.1% of resolved surfaces)
+- **20** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -32,18 +32,16 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH18 | 2 | |
 | S-TIL27 | 2 | |
 | H-LAK6A | 2 | |
-| TAFD30 | 2 | |
 | S-FPM4 | 2 | |
 | S-TIH6 | 2 | |
 | S-NBH52V | 2 | |
-| S-TIM2 | 2 | |
 | S-LAH58 | 2 | |
 | S-LAL8 | 1 | |
-| SF4 | 1 | |
 | S-LAL14 | 1 | |
 | S-TIH4 | 1 | |
 | S-TIH11 | 1 | |
 | NBFD15 | 1 | |
+| TAFD30 | 1 | |
 | S-LAM66 | 1 | |
 | S-LAM3 | 1 | |
 | S-LAH99 | 1 | |
@@ -51,19 +49,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL25 | 1 | |
 | S-NBH56 | 1 | |
 | S-LAM55 | 1 | |
+| S-TIM2 | 1 | |
 | S-NPH1 | 1 | |
 | S-TIH14 | 1 | |
 | H-ZLAF68C | 1 | |
 | TAFD5F | 1 | |
-| LAC12 | 1 | |
-| S-BSL7 | 1 | |
-| SF6 | 1 | |
-| TAFD25 | 1 | |
 | S-TIM35 | 1 | |
 | H-ZF52 | 1 | |
-| S-TIM27 | 1 | |
-| E-FD5 | 1 | |
-| S-BAL14 | 1 | |
 | E-F3 | 1 | |
 | E-FD15 | 1 | |
 
@@ -182,12 +174,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 9 | `Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)` | H-LAK6A | 1.67003 | 1.69350 | +0.0235 |
 
-### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) — US 3,649,104
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 5 | `≈SF4 (dense flint)` | SF4 | 1.74710 | 1.75520 | +0.0081 |
-
 ### [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) — WO 2024/147268 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -199,36 +185,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-TIM2 (OHARA)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
-
-### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) — US 4,210,388
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 5 | `LAC12 / LaK10 (OHARA / Schott)` | LAC12 | 1.77250 | 1.67790 | -0.0946 |
-
-### [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) — US 4,792,219
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 17 | `BSC7 (HOYA)` | S-BSL7 | 1.65160 | 1.51624 | -0.1354 |
-
-### [PENTAX FA 31mm F1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) — US 6,560,042 B2
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `TAFD30 (HOYA)` | TAFD30 | 1.80100 | 1.88300 | +0.0820 |
-
-### [PENTAX-110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) — US 4,223,982
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `SF6 (Schott) / S-TIH6 (Ohara)` | SF6 | 1.72825 | 1.80518 | +0.0769 |
-
-### [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) — US 5,267,086
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6 | `TAFD25 (HOYA)` | TAFD25 | 1.80440 | 1.90366 | +0.0993 |
 
 ### [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) — US 5,760,973
 
@@ -247,28 +203,4 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-FPM4 (OHARA)` | S-FPM4 | 1.59561 | 1.52841 | -0.0672 |
-
-### [SONY PLANAR T* 50mm F1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) — US 2014/0071331 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `E-FD5 class (HOYA/HIKARI equivalent, 593/355)` | E-FD5 | 1.59270 | 1.67270 | +0.0800 |
-
-### [SONY PLANAR T* FE 50mm F1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) — WO 2017/138250 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6 | `S-TIM27 (OHARA)` | S-TIM27 | 1.71735 | 1.63980 | -0.0776 |
-
-### [SONY SONNAR T* FE 55mm F1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) — US 2015/0092100 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-TIM2 (OHARA)` | S-TIM2 | 1.58144 | 1.62004 | +0.0386 |
-
-### [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) — JP 2002-090622 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 12 | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | S-BAL14 | 1.58913 | 1.56883 | -0.0203 |
 

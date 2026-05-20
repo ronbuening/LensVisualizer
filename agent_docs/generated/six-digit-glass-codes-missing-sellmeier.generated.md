@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **247** total code-only elements found
-- **176** elements in this report
-- **72** distinct lens files affected
+- **248** total code-only elements found
+- **177** elements in this report
+- **73** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -100,6 +100,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 738493 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 741527 | 1 | 1 |
+| 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
 | 754260 | 1 | 1 |
@@ -281,6 +282,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe |
 | L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe |
+
+### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - US 3,649,104
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 

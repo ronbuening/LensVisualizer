@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.71735,
       vd: 29.5,
       fl: -33.1,
-      glass: "S-TIM27 (OHARA)",
+      glass: "S-TIH1 (OHARA)",
       apd: false,
       role: "Dense titanium flint, achromatic partner to Lp2 (Δνd = 25.1). Part of quasi-symmetric Gauss arrangement.",
       cemented: "D2",

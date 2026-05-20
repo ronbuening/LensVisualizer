@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 35.0,
       fl: +37.5,
-      glass: "TAFD30 (HOYA)",
+      glass: "S-LAM66 (OHARA)",
       apd: false,
       role: "Strong biconvex positive forming sub-group 20F; bridges the negative front group and the positive rear assembly. Part of the Fa focusing group.",
     },

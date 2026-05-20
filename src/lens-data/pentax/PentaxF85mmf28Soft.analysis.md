@@ -103,11 +103,11 @@ The choice of a second dense flint (νd = 28.5) rather than a lighter flint is d
 
 ### L4 — Biconvex Positive
 
-nd = 1.80440, νd = 39.6. Glass: TAFD25 (HOYA) — lanthanum flint. f = +43.6 mm (scaled to 85mm).
+nd = 1.80440, νd = 39.6. Glass: S-LAH63 (OHARA) — lanthanum flint. f = +43.6 mm (scaled to 85mm).
 
 L4 is the strongest positive element in the system (f = +43.6 mm) and acts as the primary converging element that brings the image to focus behind the rear group. It is a biconvex lens (R₁ = +54.3 mm, R₂ = −95.0 mm at 85mm scale), positioned immediately behind the aperture stop.
 
-The glass choice is notable: TAFD25 is a lanthanum flint with high index (nd = 1.804) but moderate dispersion (νd = 39.6). This is not a crown glass — it sits in the "short flint" or "lanthanum dense flint" region of the glass map. The high index allows strong positive power from moderate curvatures, which controls higher-order aberrations. The moderate Abbe number means L4 does introduce some chromatic aberration, but this is partially balanced by the dispersion from L3 and L2.
+The glass choice is notable: S-LAH63 is a lanthanum flint with high index (nd = 1.804) but moderate dispersion (νd = 39.6). This is not a crown glass — it sits in the "short flint" or "lanthanum dense flint" region of the glass map. The high index allows strong positive power from moderate curvatures, which controls higher-order aberrations. The moderate Abbe number means L4 does introduce some chromatic aberration, but this is partially balanced by the dispersion from L3 and L2.
 
 L4's position immediately after the stop means its contribution to spherical aberration is relatively small — the marginal ray height at L4 (≈ 12.3 mm at f/2.8, 85mm scale) is lower than at L1 (≈ 17.9 mm at patent scale, ≈15.2 mm at 85mm scale), and its surfaces are less aggressively curved. This is by design: L4 provides the converging power needed to form the image without significantly altering the SA balance established by L1.
 
@@ -146,7 +146,7 @@ All five glasses in Example 1 are identified with high confidence against the HO
 | L1 | 1.65844 | 50.9 | BACD14 | S-BAL42 (OHARA), N-BASF2 (Schott) | Barium crown; positive SA generator |
 | L2 | 1.78472 | 25.7 | FD110 | S-TIH53 (OHARA), N-SF11 (Schott) | Dense flint; chromatic corrector |
 | L3 | 1.72825 | 28.5 | FD60 | S-TIH14 (OHARA), N-SF5 (Schott) | Dense flint; field flattener + chromatic |
-| L4 | 1.80440 | 39.6 | TAFD25 | S-LAH64 (OHARA), N-LAF33 (Schott) | Lanthanum flint; primary converger |
+| L4 | 1.80440 | 39.6 | S-LAH63 | OHARA | Lanthanum flint; primary converger |
 | L5 | 1.51633 | 64.1 | BSC7 | S-BSL7 (OHARA), N-BK7 (Schott) | Borosilicate crown; field flattener/relay |
 
 All matches are exact to the catalog's published precision (Δnd < 0.00001, Δνd < 0.05). The HOYA attribution is preferred because Pentax historically sourced glass from HOYA for its domestic optical production.
@@ -272,6 +272,6 @@ Among soft focus lenses of this era, the Pentax design is distinguished by its s
 - US Patent 5,267,086 (Hirano / Asahi Kogaku Kogyo, 1993). Primary source for all optical prescription data, conditional expressions, and design rationale.
 - The K-Mount Page (kmp.pentaxians.eu), "F 85/2.8 Soft" and "K 85/2.2 Soft." Production specifications, catalog number, mechanical details, diaphragm behavior comparison between F and FA versions.
 - LENS-DB (lens-db.com), "smc Pentax-F 85mm F/2.8 Soft" and "smc Pentax-FA 85mm F/2.8 Soft." Element/group counts, magnification (1:4.35), introduction dates.
-- HOYA Optical Glass Catalog. Glass identification reference (BACD14, FD110, FD60, TAFD25, BSC7).
-- OHARA Optical Glass Catalog. Cross-reference glass identification (S-BAL42, S-TIH53, S-TIH14, S-LAH64, S-BSL7).
+- HOYA Optical Glass Catalog. Glass identification reference (BACD14, FD110, FD60, BSC7).
+- OHARA Optical Glass Catalog. Cross-reference glass identification (S-BAL42, S-TIH53, S-TIH14, S-LAH63, S-BSL7).
 - Schott Optical Glass Catalog. Cross-reference glass identification (N-BASF2, N-SF11, N-SF5, N-LAF33, N-BK7).

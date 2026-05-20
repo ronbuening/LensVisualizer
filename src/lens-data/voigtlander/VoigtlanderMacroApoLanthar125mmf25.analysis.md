@@ -82,7 +82,7 @@ L45's barium flint (N-BAF10) has moderate dispersion and relatively high index, 
 
 ### L47 — Biconvex Positive
 
-nd = 1.58913, νd = 61.3. Glass: S-BAL14 (OHARA) / K-BAL14 (Sumita) — barium crown. f = +57.6 mm.
+nd = 1.58913, νd = 61.3. Glass: S-BAL35 (OHARA) — barium crown. f = +57.6 mm.
 
 The closing element of Group 1. L47 is a simple biconvex (R1 = +42.6 mm, R2 = −160.0 mm) that collects the diverging beam from the cemented doublet and converges it toward the image. Its moderate-index barium crown glass provides good transmission and low stress birefringence. At f = +57.6 mm, L47 is the strongest positive element in Group 1 and the primary element controlling the exit cone angle. The strong front curvature and weaker rear curvature distribute the bending asymmetrically, which helps control coma at the Group 1 exit.
 
@@ -118,7 +118,7 @@ The design uses seven distinct glass types across ten elements. Cosina is docume
 | L44 | 1.67270 | 32.2 | SF5 / K-SFS5 | Schott / Sumita | Dense flint, chromatic corrector |
 | L45 | 1.67003 | 47.2 | N-BAF10 / K-BAF10 | Schott / Sumita | Barium flint, coma corrector |
 | L46 | 1.83400 | 37.3 | S-LAH60 / K-LASH60 | OHARA / Sumita | Dense lanthanum flint, high-index corrector |
-| L47 | 1.58913 | 61.3 | S-BAL14 / K-BAL14 | OHARA / Sumita | Barium crown, closing collector |
+| L47 | 1.58913 | 61.3 | S-BAL35 | OHARA | Barium crown, closing collector |
 | L51, L61 | 1.51680 | 64.2 | S-BSL7 / K-BK7 | OHARA / Sumita | Borosilicate crown, chromatically neutral |
 | L62 | 1.71300 | 53.9 | S-LAL8 / K-LaL8 | OHARA / Sumita | Lanthanum crown, rear relay |
 
@@ -194,6 +194,6 @@ Note: Example 1 of the same patent yields EFL = 99.975 mm and BFD = 42.26 mm at 
 1. JP 2002-090622 A (特開2002-90622), Cosina Co., Ltd., published 2002-03-27. Primary source for all prescription data, conditional expressions, and design rationale.
 2. Cosina Co., Ltd., product documentation for Macro Apo-Lanthar 125mm F2.5 SL (discontinued product archives). Marketing copy reproduced on lens-db.com specifies "two anomalous dispersion elements in its 11-element optical formula."
 3. Schroiff, Klaus, "Voigtlander APO-Lanthar 125mm f/2.5 SL — Review / Test Report," Photozone / OpticalLimits, March 2007. Independently confirms "11 elements in 9 groups including 2x ED elements."
-4. OHARA Optical Glass Catalog — nd/νd values and Sellmeier coefficients for S-FPL51, S-FSL5, S-BAL14, S-BSL7, S-LAL8, S-LAH60, S-TIH4, S-BAM4.
+4. OHARA Optical Glass Catalog — nd/νd values and Sellmeier coefficients for S-FPL51, S-FSL5, S-BAL35, S-BSL7, S-LAL8, S-LAH60, S-TIH4, S-BAM4.
 5. Schott Optical Glass Catalog — nd/νd values for FK5, SF5, N-BAF10, N-LAK8.
 6. Sumita Optical Glass Catalog — nd/νd values for K-FK5, K-FPL51, K-SFS5, K-BAF10, K-LASH60, K-BAL14, K-BK7, K-LaL8.

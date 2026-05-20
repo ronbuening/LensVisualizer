@@ -104,7 +104,7 @@ L2 sits only 0.19 mm (patent scale) behind L1 — essentially in contact — for
 
 L3 is the sole diverging element and the thinnest element in the system. The front surface is nearly flat (R₅ = +200.5), while the rear surface is steeply curved (R₆ = +23.4), producing the most extreme power in the entire design: φ₃₂ = −3.189. The patent's central innovation claim rests heavily on this surface. The strongly powered rear surface of L3 generates large negative contributions to spherical aberration, astigmatism, and coma that cancel the correspondingly large positive contributions from the front surfaces of L1 and L2.
 
-**Glass identification:** The nd/νd of 1.7471/27.4 places this glass in the dense flint (SF) region. The closest standard match is Schott **SF4** (nd = 1.7552, νd = 27.58).
+**Glass identification:** The nd/νd of 1.7471/27.4 places this glass in the dense flint (SF) region. No exact public coefficient-backed catalog match was found, so the data file keeps the unbroken code-backed label `747274`.
 
 ### 3.4 Element L4 — Rear Biconvex Positive
 
@@ -160,7 +160,7 @@ The ELCAN 50mm f/2 belongs to the "four-component objective" or "Ernostar deriva
 |:-------:|:------------:|:----------------:|:------:|:----:|
 | L1 | 1.6940 / 54.5 | LaK9 (lanthanum crown) | Crown | Primary positive power |
 | L2 | 1.6734 / 46.8 | Leitz proprietary (≈BaF10) | Barium flint | Secondary positive |
-| L3 | 1.7471 / 27.4 | Dense flint (≈SF4) | Dense flint | Sole diverging element |
+| L3 | 1.7471 / 27.4 | 747274 code-backed dense flint | Dense flint | Sole diverging element |
 | L4 | 1.7546 / 34.7 | LAFN7 (lanthanum flint) | LaF | Rear positive |
 
 All four glasses are conventional polished types with no anomalous partial dispersion (APD). The patent explicitly notes that the "most inexpensive glasses" were used, keeping manufacturing costs comparable to those of triplet objectives despite the superior four-element performance.

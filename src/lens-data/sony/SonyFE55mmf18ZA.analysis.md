@@ -41,9 +41,9 @@ The overall total track length is 79.35 mm (from front surface to image), yieldi
 
 ### L11 — Biconcave Negative (cemented with L12)
 
-nd = 1.58144, νd = 40.9. Glass: S-TIM2 (OHARA) — light flint. f = −36.6 mm.
+nd = 1.58144, νd = 40.9. Glass: E-FL5 (HOYA) — light flint. f = −36.6 mm.
 
-L11 is the first element of the front cemented doublet. Its biconcave form generates strong negative power, causing the incoming collimated beam to diverge slightly. This divergence serves two purposes: it reduces the ray height on the subsequent positive elements (moderating their contribution to spherical aberration) and establishes a chromatic under-correction that L12 partially compensates. S-TIM2 is a conventional light flint with moderate dispersion (νd = 40.9), making it an effective chromatic counterpart to the higher-Abbe lanthanum crown of L12. The element's center thickness of 3.78 mm and its relatively modest index (nd = 1.58) keep its weight low.
+L11 is the first element of the front cemented doublet. Its biconcave form generates strong negative power, causing the incoming collimated beam to diverge slightly. This divergence serves two purposes: it reduces the ray height on the subsequent positive elements (moderating their contribution to spherical aberration) and establishes a chromatic under-correction that L12 partially compensates. E-FL5 is a conventional light flint with moderate dispersion (νd = 40.9), making it an effective chromatic counterpart to the higher-Abbe lanthanum crown of L12. The element's center thickness of 3.78 mm and its relatively modest index (nd = 1.58) keep its weight low.
 
 ### L12 — Biconvex Positive (cemented with L11)
 
@@ -95,7 +95,7 @@ S-TIM35 is a medium flint with νd = 30.1 — the second-highest dispersion in t
 
 | Element | nd | νd | Glass (confirmed/candidate) | Vendor | Type | Confidence |
 |---|---|---|---|---|---|---|
-| L11 | 1.58144 | 40.9 | S-TIM2 | OHARA | Light flint (TiF) | Exact match |
+| L11 | 1.58144 | 40.9 | E-FL5 | HOYA | Light flint | Exact match |
 | L12 | 1.72916 | 54.7 | S-LAL18 | OHARA | Lanthanum crown (LaK) | Exact match |
 | L13 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint (TiH/SF) | Exact match |
 | L14 | 1.76802 | 49.2 | M-TAF101 | HOYA | Lanthanum flint, moldable (TAF) | Exact match |
@@ -105,7 +105,7 @@ S-TIM35 is a medium flint with νd = 30.1 — the second-highest dispersion in t
 
 The glass palette reveals a consistent chromatic strategy. Each doublet or pseudo-doublet pair uses a high-dispersion flint opposite a low-dispersion positive element: L11 (νd = 40.9) vs. L12 (νd = 54.7) in the first doublet; L13 (νd = 23.8) vs. L14 (νd = 49.2) in the second doublet; L31 (νd = 67.0) vs. L32 (νd = 30.1) in the G3 sub-system. The focus element L21 uses a fluorocrown (νd = 70.4) — the lowest-dispersion glass in the system — to minimize chromatic focus shift during inner-focus travel.
 
-The presence of both OHARA and HOYA glasses in the same design is not unusual for Sony/Zeiss designs, which commonly source from multiple vendors. The five OHARA-matched glasses (L11, L12, L13, L21, L32) and one HOYA match (L14, M-TAF101 — a moldable grade) represent standard catalog entries; the remaining glass (L31) is likely a proprietary or specialty moldable glass optimized for precision glass molding of double-sided aspherics.
+The presence of both OHARA and HOYA glasses in the same design is not unusual for Sony/Zeiss designs, which commonly source from multiple vendors. The standard catalog entries include HOYA E-FL5 for L11 and M-TAF101 for L14, plus OHARA-matched glasses for L12, L13, L21, and L32; the remaining glass (L31) is likely a proprietary or specialty moldable glass optimized for precision glass molding of double-sided aspherics.
 
 ## Focus Mechanism
 

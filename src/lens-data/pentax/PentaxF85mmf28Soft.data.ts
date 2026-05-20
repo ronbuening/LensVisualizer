@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       fl: 43.6,
-      glass: "TAFD25 (HOYA)",
+      glass: "S-LAH63 (OHARA)",
       apd: false,
       role: "Primary converging element; high-index lanthanum flint yields strong power from moderate curvatures, controlling higher-order aberrations.",
     },

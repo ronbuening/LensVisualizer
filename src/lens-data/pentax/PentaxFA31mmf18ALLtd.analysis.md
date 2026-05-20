@@ -60,13 +60,13 @@ The air gap following L3 ($d_6 = 12.29$ mm) is the largest internal spacing in t
 
 ### L4 — Biconvex Positive (Element 4, Sub-group 20F)
 
-$n_d = 1.80100$, $\nu_d = 35.0$. Glass: TAFD30 (HOYA) — lanthanum–titanium flint, or equivalent 801/350 class. $f = +37.5$ mm.
+$n_d = 1.80100$, $\nu_d = 35.0$. Glass: S-LAM66 (OHARA) — lanthanum medium-dispersion glass. $f = +37.5$ mm.
 
 L4 is a strong biconvex positive element forming the single-element sub-group 20F. With a focal length of +37.5 mm — close to the system focal length — L4 is one of the most powerful individual elements. Its high refractive index ($n_d = 1.801$) limits surface curvatures despite the strong power, which is critical at f/1.8 where spherical aberration from strongly curved surfaces would otherwise be severe.
 
 L4 is part of the "Fa" focusing group: during focusing, L4 moves integrally with the entire front group (Group 10). The air gap behind L4 ($d_8 = 5.46$ mm at infinity) is the primary variable spacing within the lens, decreasing to 3.87 mm at the closest focus distance of 0.30 m.
 
-The $n_d/\nu_d$ pair (1.80100/35.0) matches HOYA TAFD30 exactly. This is consistent with Pentax's known use of both OHARA and HOYA glass catalogs.
+The $n_d/\nu_d$ pair (1.80100/35.0) is a coefficient-backed match to OHARA S-LAM66, clearing the prior TAFD30 mismatch.
 
 ### L5 — Biconcave Negative (Element 5, Sub-group 20R, cemented with L6)
 
@@ -121,7 +121,7 @@ The prescription uses a palette of seven distinct glasses across nine elements, 
 | L1 | 1.72916 | 54.7 | TAC8 | HOYA | Lanthanum crown; front positive collector |
 | L2 | 1.76182 | 26.5 | S-TIH14 | OHARA | Dense titanium flint; front group achromatizer |
 | L3 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown; lateral color control |
-| L4 | 1.80100 | 35.0 | TAFD30 | HOYA | Lanthanum–titanium flint; main front positive |
+| L4 | 1.80100 | 35.0 | S-LAM66 | OHARA | Lanthanum medium-dispersion glass; main front positive |
 | L5 | 1.51742 | 52.4 | S-NSL3 | OHARA | Normal special low crown; D1 negative partner |
 | L6 | 1.80400 | 46.6 | S-LAH65 | OHARA | Lanthanum crown; D1 positive, strongest element |
 | L7 | 1.84666 | 23.8 | S-TIH53 | OHARA | Extra-dense titanium flint; Petzval corrector |

@@ -56,7 +56,7 @@ This asymmetric biconvex form directs the exit beam gently toward L2, keeping th
 
 ### L2 — Biconcave Negative (G1F)
 
-$n_d = 1.592703$, $\nu_d = 35.5$. Glass: E-FD5 class (HOYA/HIKARI equivalent) — light flint, 593/355. $f = -48.1$ mm.
+$n_d = 1.592703$, $\nu_d = 35.5$. Glass: S-FTM16 (OHARA) — light flint, 593/355. $f = -48.1$ mm.
 
 L2 provides the negative power that gives G1F its diverging character. The low refractive index paired with a flint-range Abbe number ($\nu_d = 35.5$) creates a dispersion differential with L1 ($\nu_d = 42.7$) that partially achromatizes the front group. The biconcave shape ensures the negative power is divided across two surfaces, reducing higher-order spherical aberration.
 
@@ -123,7 +123,7 @@ Sony's marketing materials refer to "Glass-Molded Aspherical Lens Elements" for 
 | Element | $n_d$    | $\nu_d$ | Glass (probable)       | Vendor  | Class         | Role |
 |---------|----------|---------|------------------------|---------|---------------|------|
 | L1      | 1.834805 | 42.7    | S-LAH55V               | OHARA   | La high-index glass | Front collector; high-$n$ reduces surface angles |
-| L2      | 1.592703 | 35.5    | E-FD5 class            | HOYA/HIKARI | Light flint | G1F diverging partner; achromatizes with L1 |
+| L2      | 1.592703 | 35.5    | S-FTM16                | OHARA | Light flint | G1F diverging partner; achromatizes with L1 |
 | L3      | 1.851348 | 40.1    | E-LASFH13              | HIKARI  | La dense flint | Main positive element; asph front surface |
 | L4      | 1.612930 | 37.0    | E-FD7 class            | HOYA/HIKARI | Moderate flint | G1R corrector; cemented with L3 |
 | L5      | 1.647690 | 33.8    | S-TIF4 / SF2           | OHARA/Schott | Dense flint | Inner negative; strong flint for chromatic correction |
