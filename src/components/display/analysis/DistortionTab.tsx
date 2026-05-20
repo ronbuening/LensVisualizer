@@ -80,8 +80,17 @@ export default function DistortionTab({
   }
 
   const edgeSample = samples[samples.length - 1];
+  const isProjectionResidual = edgeSample.referenceKind === "fisheye-equidistant";
   const directionLabel =
-    edgeSample.distortionPercent > 0.01 ? "barrel" : edgeSample.distortionPercent < -0.01 ? "pincushion" : "negligible";
+    edgeSample.distortionPercent > 0.01
+      ? isProjectionResidual
+        ? "outward residual"
+        : "barrel"
+      : edgeSample.distortionPercent < -0.01
+        ? isProjectionResidual
+          ? "inward residual"
+          : "pincushion"
+        : "negligible";
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const breathingPercent = Math.abs(infinityEFL) > 1e-9 ? (100 * (dynamicEFL - infinityEFL)) / infinityEFL : 0;
   const breathingLabel =
@@ -91,12 +100,12 @@ export default function DistortionTab({
     <div>
       <div style={{ marginBottom: 8, display: "grid", gap: 4 }}>
         <span style={{ fontSize: 10.5, color: t.muted, transition: "color 0.3s" }}>
-          Rectilinear distortion (F-Tan(theta))
+          {isProjectionResidual ? "Equidistant projection residual" : "Rectilinear distortion (F-Tan(theta))"}
         </span>
         <span style={{ fontSize: 9, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field
-          grid below now traces real chief-ray image positions across the current image circle against that same
-          rectilinear reference. Focus breathing is reported separately from distortion.
+          {isProjectionResidual
+            ? "Computed against the declared equidistant fisheye projection at fixed image height. The curve reports residual mapping error rather than treating the intended fisheye projection as rectilinear barrel distortion."
+            : "Computed against a near-axis rectilinear reference at fixed image height. The curve stays 1D, while the field grid below now traces real chief-ray image positions across the current image circle against that same rectilinear reference. Focus breathing is reported separately from distortion."}
         </span>
       </div>
       <DistortionChart samples={samples} t={t} />
@@ -106,9 +115,9 @@ export default function DistortionTab({
         </span>
         <DistortionFieldGrid grid={fieldGrid} t={t} />
         <span style={{ fontSize: 8.5, color: t.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-          Dashed lines show the ideal rectilinear field grid clipped to the current image circle. Solid lines show the
-          traced chief-ray image positions for those same 2D field samples, so this view is now a real field trace
-          rather than a radial approximation.
+          {isProjectionResidual
+            ? "Dashed lines show the ideal equidistant projection grid clipped to the current trace field. Solid lines show traced chief-ray image positions for those same 2D field samples."
+            : "Dashed lines show the ideal rectilinear field grid clipped to the current image circle. Solid lines show the traced chief-ray image positions for those same 2D field samples, so this view is now a real field trace rather than a radial approximation."}
         </span>
       </div>
       <div

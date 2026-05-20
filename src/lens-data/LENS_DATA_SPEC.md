@@ -91,6 +91,7 @@ These must be specified in every lens file — they have no defaults.
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional tilt/shift movement limits for perspective-control lenses. Omit for all ordinary lenses. |
+| `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use only when the published focal length is a projection constant rather than the Gaussian EFL used by the centered paraxial trace, e.g. circular fisheyes. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
@@ -131,6 +132,24 @@ Suggested backfill order:
 2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
 3. Fixed-lens cameras by format only.
 4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
+
+## Projection Metadata
+
+Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions.
+
+```javascript
+projection: {
+  kind: "fisheye-equidistant",
+  focalLengthMm: 6.3,
+  fullFieldDeg: 220,
+  imageCircleMm: 23,
+  maxTraceFieldDeg: 80,
+},
+```
+
+- `kind: "rectilinear"` is the implicit default.
+- `kind: "fisheye-equidistant"` uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics.
+- `fullFieldDeg` and `imageCircleMm` describe the published circular fisheye projection. Analysis tabs still use the central forward-traced cone rather than pretending the whole fisheye field is rectilinear.
 
 ---
 

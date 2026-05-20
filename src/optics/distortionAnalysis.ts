@@ -4,7 +4,7 @@
  *
  * Samples fixed image heights from center to the current field edge,
  * solves the object-space field angle that lands at each height, and
- * compares the traced image height to the current rectilinear ideal.
+ * compares the traced image height to the current projection ideal.
  *
  * No React dependencies — fully testable in isolation. Memoize from
  * current state in a hook rather than embedding in a component.
@@ -21,6 +21,14 @@ import {
   thick,
   traceSkewRay,
 } from "./optics.js";
+import {
+  distortionProjectionReferenceForLens,
+  projectionFieldAngleForImageHeight,
+  projectionFieldSlopesForImagePoint,
+  projectionImageHeightForAngle,
+  type ProjectionReference,
+  type ProjectionReferenceKind,
+} from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -33,14 +41,18 @@ export interface DistortionSample {
   normalizedImageHeight: number;
   /** Current image height on the sensor/image plane (mm, signed). */
   imageHeight: number;
-  /** Distortion as a percentage: 100 × (real − ideal) / ideal. */
+  /** Distortion/residual as a percentage: 100 × (real − ideal) / ideal. */
   distortionPercent: number;
   /** Traced chief-ray image height (mm, signed). */
   realHeight: number;
-  /** Ideal rectilinear image height: EFL × tan(θ) (mm, signed). */
+  /** Ideal projection image height (mm, signed). */
   idealHeight: number;
-  /** Ideal rectilinear object angle for this image height at current scale. */
+  /** Ideal-reference object angle for this image height at current scale. */
   idealFieldAngleDeg: number;
+  /** Projection model used as the ideal reference. */
+  referenceKind?: ProjectionReferenceKind;
+  /** Human-readable ideal-reference label. */
+  referenceLabel?: string;
 }
 
 /** One point in the traced 2D distortion field grid. */
@@ -65,6 +77,8 @@ export interface DistortionGridLine {
 export interface DistortionFieldGridResult {
   lines: DistortionGridLine[];
   idealFieldRadius: number;
+  referenceKind: ProjectionReferenceKind;
+  referenceLabel: string;
 }
 
 /** Number of evenly-spaced field samples (including center and edge). */
@@ -74,7 +88,7 @@ const DISTORTION_GRID_SEGMENT_COUNT = 17;
 
 interface DistortionReference {
   geometry: ReturnType<typeof computeFieldGeometryAtState>;
-  rectilinearScale: number;
+  projectionReference: ProjectionReference;
   edgeImageHeight: number;
   idealFieldRadius: number;
   lastSurfZ: number;
@@ -128,14 +142,17 @@ function computeDistortionReference(
   const rectilinearScale = -probeImageHeight / probeTan;
   if (!isFinite(rectilinearScale) || Math.abs(rectilinearScale) < 1e-9) return null;
 
-  const idealFieldRadius = Math.abs(rectilinearScale * Math.tan((geometry.halfFieldDeg * Math.PI) / 180));
+  const projectionReference = distortionProjectionReferenceForLens(L, rectilinearScale);
+  const idealFieldRadius = Math.abs(
+    projectionImageHeightForAngle(projectionReference, (geometry.halfFieldDeg * Math.PI) / 180),
+  );
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0 || !isFinite(imagePlaneZ)) return null;
 
   return {
     geometry,
-    rectilinearScale,
+    projectionReference,
     edgeImageHeight,
     idealFieldRadius,
     lastSurfZ,
@@ -149,8 +166,9 @@ function computeDistortionReference(
  * Samples the image plane from center to the current traced field edge at
  * SAMPLE_COUNT evenly-spaced image heights. At each height, solves the
  * object-space field angle that reaches that point, then compares the
- * actual image height to an ideal rectilinear mapping derived from the
- * current near-axis scale.
+ * actual image height to an ideal projection mapping. Rectilinear lenses use
+ * the current near-axis F-tan(theta) scale; fisheyes use their declared
+ * projection model.
  *
  * @param L               — runtime lens object
  * @param zPos            — surface z-positions for current focus/zoom
@@ -188,6 +206,8 @@ export function computeDistortionCurve(
         realHeight: 0,
         idealHeight: 0,
         idealFieldAngleDeg: 0,
+        referenceKind: reference.projectionReference.kind,
+        referenceLabel: reference.projectionReference.label,
       });
       continue;
     }
@@ -206,11 +226,12 @@ export function computeDistortionCurve(
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-    const idealHeight = -(reference.rectilinearScale * Math.tan(thetaRad));
+    const idealHeight = -projectionImageHeightForAngle(reference.projectionReference, thetaRad);
     if (!isFinite(idealHeight) || idealHeight === 0) continue;
 
     const distortionPercent = (100 * (realHeight - idealHeight)) / idealHeight;
-    const idealFieldAngleDeg = (Math.atan(Math.abs(realHeight) / reference.rectilinearScale) * 180) / Math.PI;
+    const idealFieldAngleDeg =
+      (projectionFieldAngleForImageHeight(reference.projectionReference, realHeight) * 180) / Math.PI;
 
     samples.push({
       fieldAngleDeg,
@@ -220,6 +241,8 @@ export function computeDistortionCurve(
       realHeight,
       idealHeight,
       idealFieldAngleDeg,
+      referenceKind: reference.projectionReference.kind,
+      referenceLabel: reference.projectionReference.label,
     });
   }
 
@@ -310,11 +333,21 @@ function traceDistortionGridPoint(
     };
   }
 
-  const fieldSlopeX = idealX / reference.rectilinearScale;
-  const fieldSlopeY = -idealY / reference.rectilinearScale;
+  const fieldSlopes = projectionFieldSlopesForImagePoint(reference.projectionReference, idealX, idealY);
+  if (fieldSlopes === null) {
+    return {
+      idealX,
+      idealY,
+      tracedX: null,
+      tracedY: null,
+      radiusNormalized,
+      insideImageCircle: true,
+      usable: false,
+    };
+  }
+  const { fieldSlopeX, fieldSlopeY, equivalentAngleDeg } = fieldSlopes;
 
   /* Apply pupil-aberration correction based on the equivalent field angle */
-  const equivalentAngleDeg = (Math.atan(Math.hypot(fieldSlopeX, fieldSlopeY)) * 180) / Math.PI;
   const correction = interpolatePupilCorrection(pupilCorrection, equivalentAngleDeg);
   const correctedEpRatio = reference.geometry.epRatio * correction;
 
@@ -381,6 +414,8 @@ export function computeDistortionFieldGrid(
     return {
       lines: [],
       idealFieldRadius: 0,
+      referenceKind: "rectilinear",
+      referenceLabel: "Rectilinear distortion",
     };
   }
 
@@ -393,6 +428,8 @@ export function computeDistortionFieldGrid(
 
   return {
     idealFieldRadius: reference.idealFieldRadius,
+    referenceKind: reference.projectionReference.kind,
+    referenceLabel: reference.projectionReference.label,
     lines: DISTORTION_GRID_LINE_COORDINATES.flatMap((coordinate) => {
       const vertical: DistortionGridLine = {
         orientation: "vertical",

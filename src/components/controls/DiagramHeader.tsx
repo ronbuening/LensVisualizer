@@ -131,6 +131,12 @@ const DiagramHeader = memo(
     },
     ref,
   ) {
+    const projection = L.projection ?? { kind: "rectilinear" };
+    const compactFocalReadout =
+      projection.kind === "fisheye-equidistant"
+        ? `Proj f ${L.apertureReferenceFocalLength.toFixed(1)}`
+        : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
+
     return (
       <div
         ref={ref}
@@ -230,7 +236,7 @@ const DiagramHeader = memo(
                   {L.isZoom && <span>{eflAtZoom(zoomT, L).toFixed(0)} mm</span>}
                   <span>{formatDist(focusT, L)}</span>
                   <span>f/{fNumber < 10 ? fNumber.toFixed(1) : Math.round(fNumber)}</span>
-                  <span>EFL {L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}</span>
+                  <span>{compactFocalReadout}</span>
                 </div>
               )}
             </>

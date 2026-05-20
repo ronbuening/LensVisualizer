@@ -277,6 +277,11 @@ export default function LensDiagramPanel({
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
+  const projectionKind = L?.projection?.kind ?? "rectilinear";
+  const heavyRayWork = Boolean(
+    L && (projectionKind !== "rectilinear" || L.N >= 32 || L.maxSD >= 50 || L.halfField >= 40),
+  );
+  const effectiveRayDensity = sliderInteracting && heavyRayWork ? "normal" : rayDensity;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
   const { rays, offAxisRays, chromaticRays, chromSpread, chromaticSpreads, rayError } = useRayTracing({
@@ -292,7 +297,7 @@ export default function LensDiagramPanel({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
-    rayDensity,
+    rayDensity: effectiveRayDensity,
     rayTracksF,
     showOnAxis,
     showOffAxis,

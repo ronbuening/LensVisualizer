@@ -159,6 +159,10 @@ export default function DiagramControls({
   );
 
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
+  const projection = L.projection ?? { kind: "rectilinear" };
+  const isFisheye = projection.kind === "fisheye-equidistant";
+  const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
+  const apertureReferenceValue = isFisheye ? L.apertureReferenceFocalLength : dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
   const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);
@@ -410,8 +414,8 @@ export default function DiagramControls({
                   transition: "color 0.3s",
                 }}
               >
-                EFL {dynamicEFL.toFixed(2)} mm · EP {"\u2300"} {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"}{" "}
-                {(currentPhysStopSD * 2).toFixed(2)} mm
+                {apertureReferenceLabel} {apertureReferenceValue.toFixed(2)} mm · EP {"\u2300"}{" "}
+                {(baseEPSD * 2).toFixed(2)} mm · Stop {"\u2300"} {(currentPhysStopSD * 2).toFixed(2)} mm
               </div>
               <div
                 style={{

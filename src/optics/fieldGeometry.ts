@@ -78,6 +78,9 @@ export function computeFieldGeometryAtState(
     }
     halfFieldDeg = lo;
   }
+  if (L.projection?.kind === "fisheye-equidistant" && L.projection.maxTraceFieldDeg !== undefined) {
+    halfFieldDeg = Math.min(halfFieldDeg, L.projection.maxTraceFieldDeg);
+  }
 
   return { halfFieldDeg, yRatio, b, epRatio };
 }

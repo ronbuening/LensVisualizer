@@ -38,6 +38,13 @@ const LENS_DATA = {
   focalLengthDesign: 6.0,
   apertureMarketing: 5.6,
   apertureDesign: 5.6,
+  projection: {
+    kind: "fisheye-equidistant",
+    focalLengthMm: 6.0,
+    fullFieldDeg: 220,
+    imageCircleMm: 21.6,
+    maxTraceFieldDeg: 80,
+  },
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentYear: 1970,

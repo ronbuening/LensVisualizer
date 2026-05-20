@@ -33,6 +33,7 @@ import type {
   SurfaceData,
   AsphericCoefficients,
   EntrancePupil,
+  LensProjectionConfig,
   RuntimeLens,
   ParaxialTraceResult,
 } from "../types/optics.js";
@@ -203,6 +204,30 @@ function traceSurfaceStackReal(
   };
 }
 
+function resolveProjection(data: LensData): LensProjectionConfig {
+  return data.projection ?? { kind: "rectilinear" };
+}
+
+function firstFiniteScalar(value: number | [number, number] | number[] | undefined): number | null {
+  if (typeof value === "number" && isFinite(value)) return value;
+  if (Array.isArray(value) && typeof value[0] === "number" && isFinite(value[0])) return value[0];
+  return null;
+}
+
+function assertRectilinearFocalReference(data: LensData, projection: LensProjectionConfig, EFL: number): void {
+  if (projection.kind !== "rectilinear") return;
+  const designFocalLength = firstFiniteScalar(data.focalLengthDesign);
+  if (designFocalLength === null || designFocalLength <= 0) return;
+
+  const ratio = EFL / designFocalLength;
+  if (ratio < 0.8 || ratio > 1.25) {
+    throw new Error(
+      `Lens "${data.key}": computed Gaussian EFL ${EFL.toFixed(3)} mm differs from focalLengthDesign ${designFocalLength.toFixed(3)} mm by ${(Math.abs(ratio - 1) * 100).toFixed(1)}%. ` +
+        `If this is an intentional fisheye/projection constant, declare data.projection so aperture and analysis use the correct reference.`,
+    );
+  }
+}
+
 /**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
@@ -227,6 +252,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const traceMode = resolveSurfaceTraceMode({ data } as Pick<RuntimeLens, "data">, options.traceMode);
+  const projection = resolveProjection(data);
 
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
   const labelIdx = buildLabelIndex(S);
@@ -262,7 +288,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
 
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
    *  nominalFno is a required field (validated).  We back-compute:
-   *    epSD = EFL / (2·Fno)  →  the entrance pupil semi-diameter
+   *    epSD = aperture-reference focal length / (2·Fno)
+   *  where the reference is Gaussian EFL for rectilinear lenses and an
+   *  explicit projection focal length for non-rectilinear fisheyes.
    *  then trace a real (Snell's law) ray at that height to the stop to get
    *  the physical stop SD.  This accounts for aspherics and higher-order
    *  aberrations that the paraxial model ignores — without it, real rays
@@ -271,8 +299,10 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
+  assertRectilinearFocalReference(data, projection, nomEFL);
+  const apertureReferenceFocalLength = projection.kind === "fisheye-equidistant" ? projection.focalLengthMm : nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
-  const nominalEPSD = nomEFL / (2 * baseNomFno);
+  const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx, traceMode);
   S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
 
@@ -347,9 +377,11 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   }
 
   const stopPhysSD = S[stopIdx].sd;
-  const FOPEN = EFL / (2 * EP.epSD); /* wide-open f-number */
+  const FOPEN = apertureReferenceFocalLength / (2 * EP.epSD); /* wide-open f-number */
   if (!isFinite(FOPEN))
-    throw new Error(`Lens "${data.key}": Wide-open f-number is not finite (EFL=${EFL}, epSD=${EP.epSD})`);
+    throw new Error(
+      `Lens "${data.key}": Wide-open f-number is not finite (apertureReferenceFocalLength=${apertureReferenceFocalLength}, epSD=${EP.epSD})`,
+    );
 
   /* ── Half-field angle (vignetting-limited) ──
    *  Find the maximum chief-ray angle (field angle) before any surface
@@ -401,6 +433,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
       halfField = lo;
     }
     /* If the paraxial field passes the real check, keep it (conservative). */
+  }
+  if (projection.kind === "fisheye-equidistant" && projection.maxTraceFieldDeg !== undefined) {
+    halfField = Math.min(halfField, projection.maxTraceFieldDeg);
   }
 
   /* ── Petzval sum ──
@@ -596,6 +631,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         }
         zHalfField = lo;
       }
+      if (projection.kind === "fisheye-equidistant" && projection.maxTraceFieldDeg !== undefined) {
+        zHalfField = Math.min(zHalfField, projection.maxTraceFieldDeg);
+      }
       zoomHalfFields.push(zHalfField);
     }
   }
@@ -627,9 +665,11 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     doublets,
     perspectiveControl: data.perspectiveControl ?? null,
     aberrationControl,
+    projection,
     stopIdx,
     stopPhysSD,
     EFL,
+    apertureReferenceFocalLength,
     EP,
     B,
     FOPEN,
