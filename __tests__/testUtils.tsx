@@ -132,7 +132,9 @@ export function renderWithRouter(
   { initialEntries = ["/"], ...options }: RenderOptions & { initialEntries?: string[] } = {},
 ) {
   return render(ui, {
-    wrapper: ({ children }: { children: ReactNode }) => <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>,
+    wrapper: ({ children }: { children: ReactNode }) => (
+      <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
+    ),
     ...options,
   });
 }

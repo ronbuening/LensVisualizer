@@ -29,7 +29,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    0.5 mm mechanical-clearance floor on all variable gaps. Δ5 and Δ6   ║
  * ║    denote displacement of G5 and G6 toward the object; total-track is  ║
  * ║    conserved so d21 also varies with focus. See                        ║
- * ║    __tests__/solveZ24120CloseFocus.test.ts for the derivation. At tele ║
+ * ║    __tests__/src/lens-data/nikon/solveZ24120CloseFocus.test.ts for     ║
+ * ║    the derivation. At tele                                             ║
  * ║    the solver reproduces the published MRR (0.39×) to within ~5%.      ║
  * ║                                                                        ║
  * ║  NOTE ON ZOOM POSITIONS:                                               ║

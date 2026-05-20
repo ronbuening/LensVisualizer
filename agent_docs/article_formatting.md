@@ -179,7 +179,7 @@ the content.
 For content-only formatting changes:
 
 ```bash
-npm run test -- __tests__/pageRenders.test.tsx
+npm run test -- __tests__/src/pages/pageRenders.test.tsx
 npm run typecheck
 ```
 
