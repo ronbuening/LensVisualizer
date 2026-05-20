@@ -24,6 +24,7 @@
 
 import { traceRay, solveChiefRayLaunchHeight, computeAnalysisFieldGeometryAtState } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
+import { isHeavyLensForRayWork } from "./raySampling.js";
 import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
@@ -49,8 +50,14 @@ export interface VignettingSample {
  * Issue #299 preferred starting point: 128, raised to 192 for better
  * resolution of sharp clipping transitions on extreme wide-angle meniscus
  * elements.  This is ~16× denser than the display ray fan.
+ *
+ * Heavy lenses (fisheyes, ≥32 surfaces, ≥50 mm SD, ≥40° half-field) halve this
+ * to keep settled-compute time tolerable; the curve smoothness loss is minor
+ * because clipping transitions on those lenses are dominated by element
+ * geometry that the lower sampling still resolves.
  */
-const N_PUPIL = 192;
+const N_PUPIL_FULL = 192;
+const N_PUPIL_HEAVY = 96;
 
 /**
  * Compute the vignetting / relative illumination curve for the current lens state.
@@ -92,6 +99,7 @@ export function computeVignettingCurve(
    * (>50° half-field) get denser sampling to capture rapid vignetting onset
    * near the field edge. */
   const fieldSamples = Math.max(Math.ceil(halfFieldDeg / 3) + 1, 7);
+  const nPupil = isHeavyLensForRayWork(L) ? N_PUPIL_HEAVY : N_PUPIL_FULL;
 
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];
@@ -105,17 +113,16 @@ export function computeVignettingCurve(
     const uField = -Math.tan(thetaRad);
     const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
 
-    /* Dense meridional pupil sweep: N_PUPIL evenly-spaced fractions in [−1, +1] */
+    /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
-    for (let j = 0; j < N_PUPIL; j++) {
-      /* Map j ∈ [0, N_PUPIL−1] → pupilFrac ∈ [−1, +1] */
-      const pupilFrac = -1 + (2 * j) / (N_PUPIL - 1);
+    for (let j = 0; j < nPupil; j++) {
+      const pupilFrac = -1 + (2 * j) / (nPupil - 1);
       const y0 = yChief + pupilFrac * currentEPSD;
       const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
       if (!trace.clipped) surviving++;
     }
 
-    rawGT.push(surviving / N_PUPIL);
+    rawGT.push(surviving / nPupil);
   }
 
   /* ── Normalise to on-axis = 1.0 ── */

@@ -30,6 +30,7 @@ import {
   type ProjectionReferenceKind,
 } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
+import { isHeavyLensForRayWork } from "./raySampling.js";
 import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
@@ -260,7 +261,8 @@ interface PupilCorrectionEntry {
   ratio: number;
 }
 
-const PUPIL_CORRECTION_SAMPLE_COUNT = 17;
+const PUPIL_CORRECTION_SAMPLE_COUNT_FULL = 17;
+const PUPIL_CORRECTION_SAMPLE_COUNT_HEAVY = 9;
 
 function buildPupilCorrectionTable(
   reference: DistortionReference,
@@ -271,8 +273,11 @@ function buildPupilCorrectionTable(
   options?: RayTraceOptions,
 ): PupilCorrectionEntry[] {
   const table: PupilCorrectionEntry[] = [];
-  for (let i = 0; i < PUPIL_CORRECTION_SAMPLE_COUNT; i++) {
-    const angleDeg = (i / (PUPIL_CORRECTION_SAMPLE_COUNT - 1)) * reference.geometry.halfFieldDeg;
+  const sampleCount = isHeavyLensForRayWork(L)
+    ? PUPIL_CORRECTION_SAMPLE_COUNT_HEAVY
+    : PUPIL_CORRECTION_SAMPLE_COUNT_FULL;
+  for (let i = 0; i < sampleCount; i++) {
+    const angleDeg = (i / (sampleCount - 1)) * reference.geometry.halfFieldDeg;
     const thetaRad = (angleDeg * Math.PI) / 180;
     const tanTheta = Math.tan(thetaRad);
     const paraxialYChief = reference.geometry.epRatio * tanTheta;

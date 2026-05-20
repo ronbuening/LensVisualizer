@@ -40,6 +40,7 @@ import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverl
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { isHeavyLensForRayWork } from "../../optics/raySampling.js";
 import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
 
 interface LensDiagramPanelProps {
@@ -277,10 +278,7 @@ export default function LensDiagramPanel({
 
   const act = L ? (zoomPanActive ? null : sel || hov) : null;
   const info = act && L ? L.elements.find((e) => e.id === act) : null;
-  const projectionKind = L?.projection?.kind ?? "rectilinear";
-  const heavyRayWork = Boolean(
-    L && (projectionKind !== "rectilinear" || L.N >= 32 || L.maxSD >= 50 || L.halfField >= 40),
-  );
+  const heavyRayWork = Boolean(L && isHeavyLensForRayWork(L));
   const effectiveRayDensity = sliderInteracting && heavyRayWork ? "normal" : rayDensity;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
