@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **223** lenses scanned
-- **229** total code-only elements found
-- **158** elements in this report
-- **58** distinct lens files affected
+- **235** lenses scanned
+- **237** total code-only elements found
+- **166** elements in this report
+- **64** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -26,6 +26,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 744495 | 3 | 3 |
+| 514428 | 2 | 1 |
 | 531559 | 2 | 2 |
 | 561453 | 2 | 2 |
 | 586609 | 2 | 1 |
@@ -46,10 +47,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
+| 514530 | 1 | 1 |
 | 517639 | 1 | 1 |
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
 | 531621 | 1 | 1 |
+| 534554 | 1 | 1 |
 | 541468 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 561575 | 1 | 1 |
@@ -79,6 +82,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 642581 | 1 | 1 |
 | 648338 | 1 | 1 |
 | 667311 | 1 | 1 |
+| 670575 | 1 | 1 |
 | 672323 | 1 | 1 |
 | 675348 | 1 | 1 |
 | 683447 | 1 | 1 |
@@ -102,6 +106,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 760492 | 1 | 1 |
 | 764485 | 1 | 1 |
 | 764491 | 1 | 1 |
+| 768465 | 1 | 1 |
 | 770479 | 1 | 1 |
 | 772493 | 1 | 1 |
 | 772496 | 1 | 1 |
@@ -117,8 +122,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801454 | 1 | 1 |
 | 801455 | 1 | 1 |
 | 803404 | 1 | 1 |
+| 804339 | 1 | 1 |
 | 805410 | 1 | 1 |
 | 808409 | 1 | 1 |
+| 821426 | 1 | 1 |
 | 834373 | 1 | 1 |
 | 835427 | 1 | 1 |
 | 835447 | 1 | 1 |
@@ -302,11 +309,49 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L11 (L11) | 1 | `517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)` | 1.51680 / 63.88 | No catalog entry | abbe |
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe |
 
+### [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - JP 2016-021011 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L12r (L12 resin layer) | 4 | `Patent UV-cure resin (514/530)` | 1.51380 / 53.00 | No catalog entry | abbe |
+| C1 (LS cement layer) | 9 | `Patent cement layer (514/428)` | 1.51400 / 42.80 | No catalog entry | abbe |
+| C2 (Rear doublet cement layer) | 19 | `Patent cement layer (514/428)` | 1.51400 / 42.80 | No catalog entry | abbe |
+
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - US 2020/0142168 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L11 (Element 1) | 1 | `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)` | 1.74389 / 49.50 | No catalog entry | abbe |
+
+### [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - US 2010/0220400 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L54 (G5 rear aspherical negative lens) | 34 | `Unmatched (patent glass 821/426; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe |
+
+### [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L7 (Element 7) | 15 | `Unmatched crown (534/554; no current HIKARI catalog match)` | 1.53375 / 55.40 | No catalog entry | abbe |
+
+### [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) - US 3,524,697
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L8 (Patent L8) | 11 | `Unmatched (lanthanum flint, 768/465 patent melt)` | 1.76764 / 46.50 | No catalog entry | abbe |
+
+### [Nikon Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) - US 5,764,425
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L2 (Rear element of front doublet) | 2 | `Unmatched (804/339 dense flint; exact public catalog match not identified)` | 1.80384 / 33.89 | No catalog entry | abbe |
+
+### [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) - US 5,949,588
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L3 (Element 3) | 4 | `Unmatched (Nikon patent glass, code 670/575; no current public OHARA/SCHOTT catalog match within tolerance)` | 1.67025 / 57.53 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) - US 5,528,428
 

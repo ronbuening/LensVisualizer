@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **223** lenses scanned
-- **2573** non-air surfaces examined
-- **2567** element glass declarations examined
-- **504** non-explicit-unmatched annotations did not resolve
-- **158** distinct unresolved glass-like tokens found
+- **235** lenses scanned
+- **2678** non-air surfaces examined
+- **2672** element glass declarations examined
+- **531** non-explicit-unmatched annotations did not resolve
+- **162** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -40,6 +40,8 @@ or per-lens patent backfills.
 | H-LAF3 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | S-APL1 | 2 | 1 | |
+| S-BSM10 | 2 | 2 | |
+| S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | SK18 | 2 | 1 | |
 | 157957 | 1 | 1 | |
@@ -55,6 +57,7 @@ or per-lens patent backfills.
 | 575413 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 603564 | 1 | 1 | |
+| 606637 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
 | 624584 | 1 | 1 | |
@@ -97,6 +100,7 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
+| BACD4 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-FD7 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
@@ -139,6 +143,7 @@ or per-lens patent backfills.
 | N-PK51 | 1 | 1 | |
 | N-PSK53A | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
+| N-SK4 | 1 | 1 | |
 | NBFD10 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
 | NBFD25 | 1 | 1 | |
@@ -146,7 +151,6 @@ or per-lens patent backfills.
 | S-BAH32 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
-| S-BSM10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
 | S-LAH60MQ | 1 | 1 | |
@@ -155,7 +159,6 @@ or per-lens patent backfills.
 | S-LAL12 | 1 | 1 | |
 | S-LAL52 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
-| S-LAM7 | 1 | 1 | |
 | S-NBH53 | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
@@ -173,6 +176,7 @@ or per-lens patent backfills.
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
+| TAF2 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
 | TAFD5G | 1 | 1 | |
 | TAFL3 | 1 | 1 | |
@@ -297,6 +301,16 @@ or per-lens patent backfills.
 - [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `S-APL1 (OHARA)`
 - [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `S-APL1 (OHARA)`
 
+### S-BSM10 — 2 occurrences
+
+- [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
+- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
+
+### S-LAM7 — 2 occurrences
+
+- [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) 5: `S-LAM7 (OHARA)`
+- [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
+
 ### S-LAM73 — 2 occurrences
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
@@ -358,6 +372,10 @@ or per-lens patent backfills.
 ### 603564 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 34: `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)`
+
+### 606637 — 1 occurrence
+
+- [Nikon AF-S NIKKOR 24mm f/1.4G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) 13: `LBC3N class (606637 phosphate crown)`
 
 ### 612313 — 1 occurrence
 
@@ -527,6 +545,10 @@ or per-lens patent backfills.
 
 - [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 1: `BACD14 (HOYA)`
 
+### BACD4 — 1 occurrence
+
+- [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
+
 ### BK3 — 1 occurrence
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
@@ -695,6 +717,10 @@ or per-lens patent backfills.
 
 - [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
+### N-SK4 — 1 occurrence
+
+- [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
+
 ### NBFD10 — 1 occurrence
 
 - [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
@@ -722,10 +748,6 @@ or per-lens patent backfills.
 ### S-BSL10 — 1 occurrence
 
 - [CANON EF 50mm f/1.0L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) 19: `S-BSL10 (OHARA)`
-
-### S-BSM10 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
 
 ### S-BSM2 — 1 occurrence
 
@@ -758,10 +780,6 @@ or per-lens patent backfills.
 ### S-LAL61 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
-
-### S-LAM7 — 1 occurrence
-
-- [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
 
 ### S-NBH53 — 1 occurrence
 
@@ -830,6 +848,10 @@ or per-lens patent backfills.
 ### TAF105 — 1 occurrence
 
 - [SIGMA 85mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
+
+### TAF2 — 1 occurrence
+
+- [Nikon 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) 5: `TAF2 class (HOYA; patent nd/vd close but not exact)`
 
 ### TAFD5 — 1 occurrence
 
