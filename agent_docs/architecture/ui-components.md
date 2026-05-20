@@ -1,6 +1,7 @@
 # UI Components Architecture
 
-Read this for shared controls, display components, markdown rendering, analysis drawer tabs, charts, and homepage UI.
+Read this for shared controls, display components, content components, markdown rendering, analysis drawer tabs, charts,
+and homepage UI.
 
 ## Layout And Navigation Components
 
@@ -44,15 +45,24 @@ present, using the data-provided label, endpoint labels, step, and readout label
 | Module | Purpose |
 | --- | --- |
 | `ElementInspector.tsx` | Selected element properties, glass, aspheric data, and chromatic data. Renders a "Compare to sphere →" link for aspheric elements via the optional `onOpenAsphericCompare` prop. |
-| `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure Δsag. Opened from `ElementInspector`; state managed in `useOverlayState` — the only overlay that lives outside the URL-shareable panels slice. |
-| `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
 | `DiagramLegend.tsx` | Legend with swatches, ray descriptions, and aberration readouts. |
 | `AbbeDiagram.tsx` | Abbe glass map on Vd x Nd axes. |
 | `AboutButtonRow.tsx` | Shared about button group. |
 | `AboutFooter.tsx` | Mobile footer delegating to `AboutButtonRow`. |
-| `ArticleTOC.tsx` | Floating article table-of-contents with scrollspy; opt-in via `toc: true`. |
 | `DescriptionPanel.tsx` | Lens markdown description panel using `ThemedMarkdown`. |
 | `ThemedMarkdown.tsx` | Shared article/description markdown renderer. |
+
+## Content Components
+
+`src/components/content/` contains reusable article/archive/update UI that is shared by pages and the homepage:
+
+| Module | Purpose |
+| --- | --- |
+| `ArticleCard.tsx` / `ArticleList.tsx` | Article cards and lists used by homepage and archives. |
+| `ArticleTOC.tsx` | Floating article table-of-contents with scrollspy; opt-in via `toc: true`. |
+| `SeriesCard.tsx` | Archive card for article series. |
+| `ChangelogBox.tsx` | Compact changelog panel grouped by date/type. |
+| `ChangelogList.tsx` | Full changelog list for `/updates`. |
 
 ## Analysis Drawer
 
@@ -65,7 +75,7 @@ closed, preventing hidden analysis work during slider drag.
 New analysis tabs require:
 
 1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
-2. Create tab content under `src/components/display/`.
+2. Create tab content under `src/components/display/analysis/`.
 3. Add the conditional render in `AnalysisDrawerContent.tsx`.
 4. Add reducer/URL/persistence typing only if the tab can be externally addressed.
 
@@ -73,26 +83,35 @@ New analysis tabs require:
 
 | Module | Purpose |
 | --- | --- |
-| `AberrationsPanel.tsx` | Thin container wiring shared data hooks into spherical, field-curve, astigmatism, and coma sections. |
-| `aberrations/` | Presentational aberration sections and focused data hooks. |
-| `ComaTab.tsx` | Coma drawer tab. |
-| `DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
-| `DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
-| `FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
-| `VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. |
-| `PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
+| `analysis/AberrationsPanel.tsx` | Thin container wiring shared data hooks into spherical, field-curve, astigmatism, and coma sections. |
+| `analysis/aberrations/` | Presentational aberration sections and focused data hooks. |
+| `analysis/ComaTab.tsx` | Coma drawer tab. |
+| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
+| `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
+| `analysis/FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
+| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. |
+| `analysis/PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
+| `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
+
+## Display Overlays
+
+`src/components/display/overlays/` holds diagram/modal overlays whose lifecycle is managed by viewer state:
+
+| Module | Purpose |
+| --- | --- |
+| `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure sag delta. Opened from `ElementInspector`; state managed in `useOverlayState` - the only overlay that lives outside the URL-shareable panels slice. |
 | `BokehPreviewOverlay.tsx` | Deferred bokeh preview overlay. |
-| `BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
+| `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
 
 ## Shared Chart Primitives
 
-Use `src/components/display/charts/` before adding chart-local SVG axis or tick math.
+Use `src/components/display/analysis/charts/` before adding chart-local SVG axis or tick math.
 
 | Module | Purpose |
 | --- | --- |
 | `chartMath.ts` | Linear scales, plot area, symmetric domains, ticks, polyline/path generation, compact formatters. |
 | `SvgChartFrame.tsx` | Plot frame, grid lines, axes, reference lines, labels, and legend helper. |
-| `analysisUi.tsx` | Shared compact metric/readout rows and empty states. |
+| `analysis/analysisUi.tsx` | Shared compact metric/readout rows and empty states. |
 
 Current chart consumers include distortion, vignetting, pupil aberration, and field curvature. `StandardFieldCurvaturePlot`
 is a compatibility wrapper around the configurable `FieldCurvaturePlot`.
@@ -113,7 +132,4 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 | `HeroSection.tsx` | Homepage hero and primary calls to action. |
 | `RecentLenses.tsx` | Recently added lens cards. |
 | `QuickNavCards.tsx` | Navigation cards for lenses, makers, and articles. |
-| `ArticleList.tsx` / `ArticleCard.tsx` | Homepage article list and cards. |
-| `SeriesCard.tsx` | Archive card for article series. |
-| `ChangelogBox.tsx` | Reusable compact changelog panel grouped by date/type; `/updates` renders the main changelog. |
 | `HomeFooter.tsx` | Homepage footer with about links and credits. |

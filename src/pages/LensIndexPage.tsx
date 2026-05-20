@@ -9,10 +9,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
 import {

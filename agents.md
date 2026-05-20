@@ -88,7 +88,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/adding_an_article.md` - article/series frontmatter, TOC, links, verification
 - `agent_docs/article_formatting.md` - Markdown polishing expectations
 - `agent_docs/workflow.md` - commits, CI, deployment, branch records
-- `agent_docs/changelog.md` - update-history entry rules for `src/utils/changelogData.ts`
+- `agent_docs/changelog.md` - update-history entry rules for `src/utils/content/changelogData.ts`
 - `agent_docs/record_keeping.md` - branch/task notes under `agent_docs/records/`
 - `agent_docs/code_conventions.md` - TypeScript, naming, formatting, architecture constraints
 - `agent_docs/commenting_guide.md` - commenting standards
@@ -108,11 +108,11 @@ Read only the relevant focused doc before changing that area:
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.
 - Add analysis drawer tabs through `analysisTabs.ts`, a display tab component, and `AnalysisDrawerContent.tsx`.
-- Add shareable view state through `src/utils/lensViewUrlState.ts`, matching state types, and reducer hydration.
+- Add shareable view state through `src/utils/state/lensViewUrlState.ts`, matching state types, and reducer hydration.
 - Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens.
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
-- Lens mount and image-format metadata use canonical ids from `src/utils/lensTaxonomy.ts`; see
+- Lens mount and image-format metadata use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; see
   `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
 
 ## Adding Content

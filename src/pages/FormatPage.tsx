@@ -5,12 +5,12 @@
 import { Navigate, Link, useParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../utils/lensTaxonomy.js";
-import { formatCanonicalURL, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { getImageFormatDetails } from "../utils/imageFormatDetails.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { IMAGE_FORMAT_BY_ID, isImageFormatId } from "../utils/catalog/lensTaxonomy.js";
+import { formatCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromFormat } from "./lensIndex/clusterLinks.js";
 import { lensesForImageFormat } from "./lensIndex/catalog.js";
 

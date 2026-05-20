@@ -10,7 +10,7 @@ import ComparisonLayout from "./ComparisonLayout.js";
 import SharedSlidersBar from "./SharedSlidersBar.js";
 import { isComparisonOk, type ComparisonLensesResult } from "./useComparisonMode.js";
 import { SET_SHARED_ZOOM_T } from "./comparisonReducer.js";
-import { SET_GROUP_MOVEMENT } from "../utils/lensReducer.js";
+import { SET_GROUP_MOVEMENT } from "../utils/state/lensReducer.js";
 import { ErrorDisplay } from "../components/errors/ErrorBoundary.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { Theme } from "../types/theme.js";

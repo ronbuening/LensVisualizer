@@ -12,7 +12,7 @@
 
 import { forwardRef, memo } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
-import { toggleGroup, toggleBtn, headerStrip } from "../../utils/styles.js";
+import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";

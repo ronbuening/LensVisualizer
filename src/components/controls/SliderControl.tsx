@@ -3,7 +3,7 @@
  * endpoint labels, and optional collapsible description section.
  */
 import type { ReactNode } from "react";
-import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/styles.js";
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import type { Theme } from "../../types/theme.js";
 

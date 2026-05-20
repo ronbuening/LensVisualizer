@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { PAGE_BASE_STYLE } from "../../utils/pageStyles.js";
-import { usePageThemeToggle } from "../../utils/usePageThemeToggle.js";
+import { PAGE_BASE_STYLE } from "../../utils/style/pageStyles.js";
+import { usePageThemeToggle } from "../../utils/theme/usePageThemeToggle.js";
 import PageNavBar from "./PageNavBar.js";
 
 interface StaticPageBreadcrumb {

@@ -2,7 +2,7 @@
  * Link helpers for catalog cluster navigation.
  */
 
-import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 
 export type LensLibraryBreadcrumbContext = { type: "mount"; id: LensMountId } | { type: "format"; id: ImageFormatId };
 

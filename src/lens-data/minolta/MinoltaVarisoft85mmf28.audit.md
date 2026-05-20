@@ -30,7 +30,7 @@ Patent: US 4,124,276A, Embodiment 3
 
 - Rechecked the patent text around Table 6, FIG. 8, and FIG. 28. During focusing, sub-group AI shifts forward and changes `d_A7`; soft-focus adjustment is the separate operation that changes `d_B0`.
 - With BFD held at the corrected infinity value of 75.80 mm patent scale and `d_A7 = 13.45`, the paraxial magnification is approximately `-0.110`, matching the patent's FIGS. 10a/10b close-focus condition.
-- Added `__tests__/minoltaVarisoftFocus.test.ts` to lock the fixed-image-plane behavior: AI moves objectward, AII/B remain fixed, `d_B0` remains fixed, and BFD remains fixed.
+- Added `__tests__/src/lens-data/minolta/minoltaVarisoftFocus.test.ts` to lock the fixed-image-plane behavior: AI moves objectward, AII/B remain fixed, `d_B0` remains fixed, and BFD remains fixed.
 
 ## 2026-05-19 — Six-digit missing-Sellmeier follow-up
 

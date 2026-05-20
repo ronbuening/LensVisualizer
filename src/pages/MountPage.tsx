@@ -5,12 +5,12 @@
 import { Navigate, Link, useParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_MOUNT_BY_ID, isLensMountId } from "../utils/lensTaxonomy.js";
-import { mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { getMountDetails } from "../utils/mountDetails.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { LENS_MOUNT_BY_ID, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
+import { mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { getMountDetails } from "../utils/catalog/mountDetails.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 

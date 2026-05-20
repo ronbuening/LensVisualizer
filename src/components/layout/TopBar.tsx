@@ -4,7 +4,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, labelStyle as makeLabelStyle } from "../../utils/styles.js";
+import { headerStrip, labelStyle as makeLabelStyle } from "../../utils/style/styles.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
 import LensSelector from "../controls/LensSelector.js";
 

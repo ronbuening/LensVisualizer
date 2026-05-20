@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { Link } from "react-router";
 import useMediaQuery from "../utils/useMediaQuery.js";
 import SEOHead from "../components/SEOHead.js";
-import ChangelogList from "../components/display/ChangelogList.js";
+import ChangelogList from "../components/content/ChangelogList.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { collectionPageJsonLd } from "../utils/structuredData.js";
-import { ALL_LENSES_BY_DATE, LENS_CATALOG } from "../utils/lensCatalog.js";
-import { formatDisplayDate } from "../utils/changelogHelpers.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
+import { ALL_LENSES_BY_DATE, LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
+import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");

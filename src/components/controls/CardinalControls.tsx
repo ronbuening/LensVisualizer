@@ -1,4 +1,4 @@
-import { toggleBtn, toggleGroup } from "../../utils/styles.js";
+import { toggleBtn, toggleGroup } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
 
 interface CardinalControlsProps {

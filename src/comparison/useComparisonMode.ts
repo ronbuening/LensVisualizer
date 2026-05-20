@@ -13,7 +13,7 @@
 
 import { useMemo, useState, useCallback } from "react";
 import buildLens from "../optics/buildLens.js";
-import { LENS_CATALOG } from "../utils/lensCatalog.js";
+import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import { computeFocusPair, computeAperturePair, computeZoomPair, computeMovementPair } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { RuntimeLens } from "../types/optics.js";

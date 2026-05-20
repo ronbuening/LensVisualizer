@@ -8,7 +8,7 @@
  */
 
 import { useMemo, useRef } from "react";
-import { LENS_CATALOG } from "../../utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
 import {
   thick,

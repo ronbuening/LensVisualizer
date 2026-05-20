@@ -9,7 +9,7 @@
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../optics/optics.js";
 import { clampLensMovement, perspectiveControlSteps } from "../optics/lensMovement.js";
-import { snapToStop } from "../utils/sliderStops.js";
+import { snapToStop } from "../utils/style/sliderStops.js";
 
 export interface FocusPairResult {
   focusA: number;

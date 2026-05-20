@@ -113,10 +113,10 @@ The anchor handler also forwards the `id` prop so `remark-gfm` footnote referenc
 
 - **Markdown location:** `src/content/**/*.md` (auto-discovered)
 - **Frontmatter parsing:** `scripts/generate-build-metadata.mjs` — extend here if you add a new frontmatter field
-- **Registry + series grouping:** `src/utils/homepageContent.ts` — `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, `ARTICLE_CONTENT`
+- **Registry + series grouping:** `src/utils/content/homepageContent.ts` — `ARTICLES`, `HOMEPAGE_ARTICLES`, `ARTICLE_SERIES`, `ARTICLE_CONTENT`
 - **Page rendering:** `src/pages/ArticlePage.tsx` (single article), `src/pages/ArticlesPage.tsx` (archive)
-- **TOC component:** `src/components/display/ArticleTOC.tsx`
-- **Series card:** `src/components/homepage/SeriesCard.tsx`
+- **TOC component:** `src/components/content/ArticleTOC.tsx`
+- **Series card:** `src/components/content/SeriesCard.tsx`
 - **Generated metadata:** `src/generated/build-metadata.json` (gitignored; regenerated on every build)
 
 ---
@@ -141,4 +141,4 @@ Then confirm:
 
 ## Changelog
 
-User-visible article launches warrant a `type: "article"` entry in `src/utils/changelogData.ts`. See `agent_docs/changelog.md` for format and rules.
+User-visible article launches warrant a `type: "article"` entry in `src/utils/content/changelogData.ts`. See `agent_docs/changelog.md` for format and rules.

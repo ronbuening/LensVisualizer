@@ -7,7 +7,7 @@ import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { perspectiveControlSteps } from "../../optics/lensMovement.js";
-import { snapToZeroStop } from "../../utils/sliderStops.js";
+import { snapToZeroStop } from "../../utils/style/sliderStops.js";
 import SliderControl from "./SliderControl.js";
 import useInteractionSignal from "../hooks/useInteractionSignal.js";
 import type { RuntimeLens } from "../../types/optics.js";

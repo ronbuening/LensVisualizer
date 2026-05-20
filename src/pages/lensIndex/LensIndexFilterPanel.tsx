@@ -17,7 +17,7 @@ import type {
   NumericFilterField,
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
-import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 
 interface LensIndexFilterPanelProps {
   theme: Theme;

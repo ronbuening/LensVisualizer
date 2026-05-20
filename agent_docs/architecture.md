@@ -27,10 +27,13 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - `src/pages/` owns route-level screens and SEO shell content.
 - `src/components/layout/` owns viewer orchestration and page/panel composition.
 - `src/components/diagram/` owns SVG rendering.
-- `src/components/display/` owns inspector, legend, analysis tabs, charts, and article/table-of-contents style display.
+- `src/components/display/` owns inspector, legend, display-domain UI, analysis modules under `analysis/`, and diagram
+  overlays under `overlays/`.
+- `src/components/content/` owns article/archive/changelog cards, lists, and table-of-contents components.
 - `src/components/hooks/` owns viewer computation hooks and interaction-state helpers.
 - `src/optics/` owns all optical calculations and has no React dependencies.
-- `src/utils/` owns shared state, preferences, theme, metadata, catalog, URL, and JSON-LD helpers.
+- `src/utils/` owns shared helpers, partitioned by domain: `catalog/`, `content/`, `seo/`, `state/`, `style/`, and
+  `theme/`, plus root-level general utilities.
 - `src/comparison/` owns comparison-mode state, layout, sliders, and URL synchronization.
 - `scripts/` owns prerender, sitemap, metadata, lens-data organization, and SEO audit build helpers.
 
@@ -42,11 +45,11 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   and infinity/default-state oriented.
 - Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis
   itself is explicitly being upgraded for shifted/tilted optics. v1 analysis tabs remain centered-lens diagnostics.
-- Use shared chart helpers in `src/components/display/charts/` before adding bespoke SVG axes or tick math.
+- Use shared chart helpers in `src/components/display/analysis/charts/` before adding bespoke SVG axes or tick math.
 - Use `ThemedMarkdown` for article and lens-description markdown so link handling, math, tables, and special images stay
   consistent.
-- Add new analysis drawer tabs by updating `analysisTabs.ts`, adding tab content under `src/components/display/`, and
-  wiring it in `AnalysisDrawerContent.tsx`.
+- Add new analysis drawer tabs by updating `analysisTabs.ts`, adding tab content under
+  `src/components/display/analysis/`, and wiring it in `AnalysisDrawerContent.tsx`.
 - When adding route patterns, update the route manifest and metadata/prerender pipeline together.
 - When changing theme colors, update all four theme variants.
 

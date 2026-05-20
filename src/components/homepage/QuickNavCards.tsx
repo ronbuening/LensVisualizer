@@ -7,8 +7,8 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { CATALOG_KEYS, LENS_CATALOG, RECENT_LENS_KEYS } from "../../utils/lensCatalog.js";
-import { deriveMaker } from "../../utils/lensMetadata.js";
+import { CATALOG_KEYS, LENS_CATALOG, RECENT_LENS_KEYS } from "../../utils/catalog/lensCatalog.js";
+import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface QuickNavCardsProps {

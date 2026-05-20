@@ -7,8 +7,8 @@
  */
 
 import { Link } from "react-router";
-import { getMakerDetails } from "../../utils/makerDetails.js";
-import { isImageFormatId, isLensMountId } from "../../utils/lensTaxonomy.js";
+import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
+import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { LensLibraryBreadcrumbContext } from "./clusterLinks.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
 import type { GroupMode, ImageFormatGroup, MakerGroup, MountGroup, PrimeZoomSection, YearGroup } from "./types.js";

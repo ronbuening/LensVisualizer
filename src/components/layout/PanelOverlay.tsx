@@ -11,7 +11,7 @@
 
 import type { ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
-import { PANEL_OVERLAY_BACKDROP, panelOverlayContent, closeBtn } from "../../utils/styles.js";
+import { PANEL_OVERLAY_BACKDROP, panelOverlayContent, closeBtn } from "../../utils/style/styles.js";
 
 interface PanelOverlayProps {
   onClose: () => void;

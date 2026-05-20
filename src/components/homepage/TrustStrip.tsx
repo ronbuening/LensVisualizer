@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { ARTICLES } from "../../utils/homepageContent.js";
+import { ARTICLES } from "../../utils/content/homepageContent.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface TrustStripProps {

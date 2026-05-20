@@ -8,7 +8,7 @@
  */
 
 import { useMemo } from "react";
-import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
+import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
 import {
   SET_FOCUS_T,
   SET_ZOOM_T,
@@ -20,7 +20,7 @@ import {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
   SET_GROUP_MOVEMENT,
-} from "../../utils/lensReducer.js";
+} from "../../utils/state/lensReducer.js";
 import type { AnalysisTabId, OffAxisMode, RayDensity } from "../../types/state.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
 

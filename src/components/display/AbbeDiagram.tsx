@@ -12,7 +12,7 @@
 
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
-import { toggleGroup, toggleBtn } from "../../utils/styles.js";
+import { toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 
 interface AbbeDiagramProps {
   L: RuntimeLens;

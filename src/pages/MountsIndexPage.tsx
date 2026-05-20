@@ -7,11 +7,11 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { getMountDetails } from "../utils/mountDetails.js";
-import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { getMountDetails } from "../utils/catalog/mountDetails.js";
+import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { MOUNT_OPTIONS } from "./lensIndex/catalog.js";
 
 export default function MountsIndexPage() {

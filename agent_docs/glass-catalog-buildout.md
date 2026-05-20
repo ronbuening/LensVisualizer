@@ -19,7 +19,7 @@ Regenerate all glass reports together with `npm run generate:glass-reports`.
 
 The first cut of the catalog had nine entries. Six were wrong: when the Sellmeier coefficients were validated against the listed `nd` at 587.5618 nm via `assertCatalogConsistent`, four diverged by 5e-3 to 2e-2 — well outside any reasonable transcription tolerance. The values came from memory and were unreliable.
 
-The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` (tolerance 1e-4) before being committed.** This is enforced by the unit test `every entry's Sellmeier coefficients reproduce the listed nd within 1e-4` in [__tests__/dispersion.test.ts](../__tests__/dispersion.test.ts). A bad transcription fails CI.
+The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` (tolerance 1e-4) before being committed.** This is enforced by the unit test `every entry's Sellmeier coefficients reproduce the listed nd within 1e-4` in [__tests__/src/optics/dispersion.test.ts](../__tests__/src/optics/dispersion.test.ts). A bad transcription fails CI.
 
 ## Prioritized Glasses to Add
 

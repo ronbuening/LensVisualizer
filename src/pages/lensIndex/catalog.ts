@@ -7,9 +7,9 @@
  * instead of a 1000-line mix of SEO, state, and grouping math.
  */
 
-import { CATALOG_KEYS, LENS_CATALOG } from "../../utils/lensCatalog.js";
-import { deriveMaker } from "../../utils/lensMetadata.js";
-import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/lensTaxonomy.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
+import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/catalog/lensTaxonomy.js";
 import type {
   CatalogLensEntry,
   CustomFilterState,
@@ -26,7 +26,7 @@ import type {
   YearGroup,
 } from "./types.js";
 import type { LensData } from "../../types/optics.js";
-import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultrawide (≤24mm)", maxFl: 24 },

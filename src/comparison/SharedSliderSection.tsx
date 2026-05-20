@@ -7,7 +7,7 @@
  */
 
 import type { CSSProperties, ReactNode } from "react";
-import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/styles.js";
+import { SLIDER_LABEL, SLIDER_VALUE_BASE, sliderInput } from "../utils/style/styles.js";
 import type { Theme } from "../types/theme.js";
 
 interface SharedSliderSectionProps {

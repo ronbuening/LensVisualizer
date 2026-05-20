@@ -6,7 +6,7 @@ Read this for test layout, coverage expectations, shared helpers, and where to a
 
 - Vitest
 - `@testing-library/react`
-- TypeScript test files under `__tests__/`
+- TypeScript test files under `__tests__/`, with source-facing tests mirrored under `__tests__/src/`
 - V8 coverage via `npm run test:coverage`
 
 ## Coverage Scope
@@ -20,9 +20,23 @@ Coverage configuration lives in `vite.config.js` and includes:
 - `src/components/**`
 - `src/comparison/**`
 
+## Test Layout
+
+Most tests mirror the files they cover:
+
+- `src/components/display/analysis/AberrationsPanel.tsx` -> `__tests__/src/components/display/analysis/AberrationsPanel.test.tsx`
+- `src/optics/internal/exactSurfaceTrace.ts` -> `__tests__/src/optics/internal/exactSurfaceTrace.test.ts`
+- `src/pages/lensIndex/catalog.ts` -> `__tests__/src/pages/lensIndex/lensIndexCatalog.test.ts`
+
+Keep tests that cover generated metadata, build scripts, or public assets in the matching top-level test area:
+
+- `__tests__/src/generated/`
+- `__tests__/scripts/`
+- `__tests__/public/`
+
 ## Shared Test Helpers
 
-Shared browser/router helpers live in `__tests__/testUtils.tsx`. They cover:
+Shared browser/router helpers remain at `__tests__/testUtils.tsx`. They cover:
 
 - Router mounting.
 - Lens-context rendering.

@@ -5,7 +5,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
+import { headerStrip, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 
 interface ViewToggleBarProps<TValue extends string> {
   theme: Theme;

@@ -7,7 +7,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip } from "../../utils/styles.js";
+import { headerStrip } from "../../utils/style/styles.js";
 import AboutButtonRow from "./AboutButtonRow.js";
 
 interface AboutFooterProps {

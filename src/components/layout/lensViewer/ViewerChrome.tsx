@@ -13,8 +13,8 @@ import ControlsBar from "../ControlsBar.js";
 import TopBar from "../TopBar.js";
 import ViewToggleBar from "../ViewToggleBar.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../../utils/featureFlags.js";
-import { SET_RAY_TOGGLE } from "../../../utils/lensReducer.js";
-import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/styles.js";
+import { SET_RAY_TOGGLE } from "../../../utils/state/lensReducer.js";
+import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/style/styles.js";
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, MobileView } from "../../../types/state.js";
 

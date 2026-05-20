@@ -5,8 +5,8 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { SITE_NAME } from "../utils/lensMetadata.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
+import { SITE_NAME } from "../utils/catalog/lensMetadata.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 
 export default function NotFoundPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();

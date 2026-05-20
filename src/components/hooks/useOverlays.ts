@@ -8,7 +8,7 @@
  */
 
 import { useState, useCallback, useEffect, type Dispatch } from "react";
-import { SET_OVERLAY, CLOSE_ALL_OVERLAYS } from "../../utils/lensReducer.js";
+import { SET_OVERLAY, CLOSE_ALL_OVERLAYS } from "../../utils/state/lensReducer.js";
 import type { LensAction } from "../../types/state.js";
 
 interface UseOverlaysParams {

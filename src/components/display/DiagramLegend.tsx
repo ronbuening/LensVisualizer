@@ -8,7 +8,7 @@
 
 import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
-import { collapseBtn } from "../../utils/styles.js";
+import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
 import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
