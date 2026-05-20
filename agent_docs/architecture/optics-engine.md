@@ -21,8 +21,9 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
-| `traceMode.ts` | Tri-state rollout/comparison control for exact surface tracing (`legacy`, `exact`, `per-lens`). |
-| `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans. |
+| `traceMode.ts` | Test/debug escape hatch for switching between `legacy` and `exact` surface tracing on a per-call basis; production always resolves to `exact`. |
+| `projection.ts` | Projection model (rectilinear, fisheye-equidistant), forward/inverse maps, distortion residual reference, and `projectionLaunchSlopeForField` (the canonical way to derive `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`). |
+| `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
 | `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
@@ -58,35 +59,56 @@ Major public helpers:
   `bAtZoom()`.
 - Current-state pupil geometry: `entrancePupilAtState(stopSD, focusT, zoomT, L, geometry?)`.
 - Current-state field geometry: `computeFieldGeometryAtState()`.
-- Chief ray solving: `solveChiefRayLaunchHeight()` with bisection and small-angle guards.
+- Chief ray solving: `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback`
+  / `bracket-failed` / `out-of-domain` + iteration count), memoized per-lens via `WeakMap` keyed on focusT /
+  zoomT / aberrationT / fieldAngleDeg / mode. `solveChiefRayLaunchHeight()` remains as a thin shim that
+  returns the `yLaunch` field for callers that don't need the status. New analysis code should prefer
+  `solveChiefRay` and respect non-converged statuses.
 - Utilities: `conjugateK()`, `formatDist()`, `formatPetzvalRadius()`.
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
-## Exact Surface Trace Rollout
+## Exact Surface Trace
 
-`traceRay()`, `traceRayChromatic()`, `traceSkewRay()`, `traceSkewRayChromatic()`, and the chief-relative skew wrappers
-accept an optional final `RayTraceOptions` object with `mode?: "legacy" | "exact"`. Omit this option in production
-callers unless doing explicit comparison work; the default path resolves through `traceMode.ts`.
+Exact tracing is the production default for every lens. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,
+`traceSkewRayChromatic()`, and the chief-relative skew wrappers accept an optional final `RayTraceOptions`
+object with `mode?: "legacy" | "exact"`; omit it in production. `resolveSurfaceTraceMode()` simply returns the
+caller's requested mode or `"exact"`. The `"legacy"` value is retained only so tests and diagnostics can
+compare the legacy vertex-plane transfer model against the exact path on the same lens.
 
-`SURFACE_TRACE_ROLLOUT_MODE` is the experiment switch:
+The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
 
-- `"legacy"` forces the vertex-plane transfer model for comparison/rollback.
-- `"exact"` forces iterative sag-surface intersection everywhere and is the production default.
-- `"per-lens"` uses `EXACT_SURFACE_TRACE_LENS_KEYS` and otherwise falls back to legacy.
+- `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes
+  `[ux0, uy0, 1]` into a `Vector3` direction and applies the configured lead distance.
+- `traceExactSurfaceStackVector({ origin, direction }, options)` — vector-native launch for callers that
+  already have a 3D ray. Direction must be normalized with `direction[2] > 0`; the slope entry is a thin
+  adapter that calls into this core.
 
-Exact mode uses the shared `internal/exactSurfaceTrace.ts` stack tracer, which solves each ray/sag intersection with
-`internal/surfaceIntersection.ts`, then projects the outgoing ray back to the current surface vertex plane before
-returning `y`/`u` or `x`/`y`/`ux`/`uy`. This keeps existing image-plane callers compatible while allowing display points
-to use exact hit positions. Keep rollout config central; do not put experiment state in lens data files. The legacy
-vertex-plane real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal` compatibility
+Both solve each ray/sag intersection via `internal/surfaceIntersection.ts` and project the outgoing ray back
+to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. The legacy vertex-plane
+real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal` compatibility
 alias in production optics code.
+
+## Field-Launch Convention
+
+Every analysis launch slope should flow through `projectionLaunchSlopeForField(L, fieldAngleDeg)` in
+`projection.ts` rather than computing `uField = -Math.tan(θ)` inline. The helper returns
+`{ uField, status: "ok" | "out-of-domain" }` and applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard so
+overflow cannot leak into downstream tracers. As of 2026-05-20 only the chief-ray solver consumes the helper;
+the analysis modules (vignette, distortion, pupil-aberration, off-axis, parts of field-geometry) still inline
+their slope and remain on the migration list. See [TRACE_MODEL_IMPROVEMENT_PLAN.md](../../TRACE_MODEL_IMPROVEMENT_PLAN.md) PR 5.
 
 ## Ray Sampling Policy
 
-Lens data owns the baseline ray fans through `rayFractions` and `offAxisFractions`. `raySampling.ts` preserves those
-arrays exactly for `normal`, then derives symmetric denser viewport-only samples for `dense` and `diagnostic`. Use the
-helper from display/tracing hooks instead of mutating runtime lens data or adding density-specific arrays to lens files.
+Lens data owns the baseline ray fans through `rayFractions` and `offAxisFractions`. `raySampling.ts` preserves
+those arrays exactly for `normal`, then derives symmetric denser viewport-only samples for `dense` and
+`diagnostic`. Use the helper from display/tracing hooks instead of mutating runtime lens data or adding
+density-specific arrays to lens files.
+
+`raySampling.ts` also exports `isHeavyLensForRayWork(L)` — the shared heaviness heuristic. `LensDiagramPanel`
+uses it to downgrade interactive diagram ray density during slider drag; analysis modules use it to halve
+pupil sweep / pupil-correction sample counts on heavy lenses regardless of interaction state. Reuse this
+helper instead of reimplementing the criteria.
 
 ## Cardinal Elements
 
@@ -149,16 +171,22 @@ primers aligned to that convention.
 
 `distortionAnalysis.ts` computes:
 
-- `computeDistortionCurve()` - 21-sample 1D rectilinear distortion curve from center to edge.
-- `computeDistortionFieldGrid()` - traced 2D chief-ray field grid against the same rectilinear reference.
-- `computeDistortionReference()` - near-axis rectilinear reference setup.
+- `computeDistortionCurve()` - 21-sample 1D distortion curve from center to edge. Residual is measured against
+  the lens's declared projection (rectilinear or fisheye-equidistant), not always rectilinear.
+- `computeDistortionFieldGrid()` - traced 2D chief-ray field grid; sampled as image-plane Cartesian coordinates
+  today, which leaves blank cells at the image-circle edge for non-rectilinear projections. A projection-native
+  sampler is queued as PR 6 in the trace-model plan.
+- `computeDistortionReference()` - near-axis reference setup; picks `rectilinear` or `fisheye-equidistant`
+  based on `L.projection.kind` via `distortionProjectionReferenceForLens()`.
 
-These functions accept optional precomputed `FieldGeometryState` so UI code can avoid recomputing current-state field
-geometry.
+The per-field pupil correction table size halves on heavy lenses (17 → 9) via `isHeavyLensForRayWork`. All
+three functions accept an optional precomputed `FieldGeometryState`.
 
 ## Vignetting
 
-`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing, and pupil sweeps.
+`vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing
+(~3° spacing, min 7 samples), and dense meridional pupil sweeps. The per-field pupil sweep is 192 rays for
+rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD, or ≥40° half-field).
 `computeVignettingCurve()` accepts optional precomputed field geometry.
 
 ## Pupil Aberration

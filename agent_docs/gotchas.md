@@ -1,8 +1,14 @@
 # Gotchas — LensVisualizer
 
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- Exact surface tracing is the production default controlled by `src/optics/traceMode.ts`. Keep explicit legacy/per-lens
-  modes available for comparisons and rollback, and do not put rollout state in lens data files
+- Exact surface tracing is the production default; `src/optics/traceMode.ts` retains only a `"legacy"` mode as a
+  test/debug escape hatch. Do not reintroduce a per-lens rollout or put trace-mode state in lens data files
+- Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
+  than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; raising any fisheye's
+  `projection.maxTraceFieldDeg` past that requires the bounding-sphere launch tracked in TRACE_MODEL_IMPROVEMENT_PLAN.md
+- The chief-ray solver `solveChiefRay` in `fieldGeometry.ts` is memoized per-`RuntimeLens` via a `WeakMap` keyed on
+  `(focusT, zoomT, aberrationT, fieldAngleDeg, mode)`. Cache invalidation relies on `RuntimeLens` being a fresh
+  object per `buildLens()` call — never mutate `L` in place
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
