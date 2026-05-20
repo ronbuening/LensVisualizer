@@ -63,7 +63,7 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.9,
       fl: -36.6,
-      glass: "S-TIM2 (OHARA)",
+      glass: "E-FL5 (HOYA)",
       apd: false,
       role: "Front negative of G1 first doublet. Diverges incoming beam to reduce ray height on subsequent positive elements, moderating their spherical aberration contribution. Provides chromatic under-correction that L12 compensates.",
       cemented: "D1",

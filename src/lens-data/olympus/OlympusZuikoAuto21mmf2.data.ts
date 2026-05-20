@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.6,
       fl: -23.6,
-      glass: "LAC12 / LaK10 (OHARA / Schott)",
+      glass: "S-LAH66 (OHARA)",
       apd: false,
       role: "Strongest negative element; with L2 provides dominant retrofocus divergence",
     },

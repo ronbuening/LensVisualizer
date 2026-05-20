@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.3,
       fl: 57.6,
-      glass: "S-BAL14 (OHARA) / K-BAL14 (Sumita)",
+      glass: "S-BAL35 (OHARA)",
       apd: false,
       role: "Closing element of Group 1; strongest positive element, sets the exit cone angle and controls coma at Group 1 exit.",
     },

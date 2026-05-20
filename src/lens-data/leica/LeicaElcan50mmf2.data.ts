@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.7471,
       vd: 27.4,
       fl: -17.8,
-      glass: "≈SF4 (dense flint)",
+      glass: "747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)",
       apd: false,
       role: "Sole diverging element; rear surface carries strongest power in the system (φ₃₂ = −3.189)",
     },

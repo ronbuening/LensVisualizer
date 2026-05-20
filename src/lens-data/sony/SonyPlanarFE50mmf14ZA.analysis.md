@@ -59,7 +59,7 @@ The net negative power of this doublet (f = −133.5 mm) means it acts as a dive
 
 ### Ln2 + Lp2 — Cemented Doublet (negative–positive, sub-group G1a rear pair)
 
-**Ln2:** nd = 1.71735, νd = 29.5. Glass: S-TIM27 (OHARA) — dense titanium flint. f = −33.1 mm.
+**Ln2:** nd = 1.71735, νd = 29.5. Glass: S-TIH1 (OHARA) — dense titanium flint. f = −33.1 mm.
 
 **Lp2:** nd = 1.72916, νd = 54.6. Glass: S-LAL18 (OHARA) — lanthanum crown. f = +35.4 mm.
 
@@ -124,7 +124,7 @@ The rear surface (surface 22) carries the second aspherical profile in the desig
 | L11 | 1.72341 | 37.9 | S-BAH28 | OHARA | Barium heavy flint — front collector |
 | Lp1 | 1.85134 | 40.1 | 851/401 class | (uncertain) | High-index lanthanum crown — AA aspherical element |
 | Ln1 | 1.51679 | 64.1 | S-BSL7 / N-BK7 | OHARA / Schott | Borosilicate crown — achromatic partner to Lp1 |
-| Ln2 | 1.71735 | 29.5 | S-TIM27 | OHARA | Dense titanium flint — achromatic partner to Lp2 |
+| Ln2 | 1.71735 | 29.5 | S-TIH1 | OHARA | Dense titanium flint — achromatic partner to Lp2 |
 | Lp2 | 1.72916 | 54.6 | S-LAL18 | OHARA | Lanthanum crown — achromatic partner to Ln2 |
 | Lp3 | 1.59282 | 68.6 | 593/686 class (ED) | (uncertain) | Fluorophosphate crown — **ED element** |
 | L21 | 1.99502 | 29.3 | 995/293 class | (uncertain) | Ultra-high-index heavy flint — focus group negative |
@@ -227,5 +227,5 @@ Residuals are within expected rounding tolerance for the patent's four-decimal-p
 
 1. WO 2017/138250 A1, *撮像レンズおよび撮像装置*, Sony Corporation, published 17 August 2017. Numerical Example 2, Tables 6–10.
 2. Sony product page for SEL50F14Z (Planar T\* FE 50mm F1.4 ZA): optical specifications, element/group count, special element designations (AA, aspherical, ED).
-3. OHARA Optical Glass Catalog (2018/2023 editions) — cross-reference for S-BAH28, S-BSL7, S-TIM27, S-LAL18, S-LAH65V, S-TIH6, S-BAL42. Glass codes verified against OHARA pocket catalog cross-reference tables.
+3. OHARA Optical Glass Catalog — cross-reference for S-BAH28, S-BSL7, S-TIH1, S-LAL18, S-LAH65V, S-TIH6, S-BAL42. Glass codes verified against OHARA pocket catalog cross-reference tables.
 4. Glass identifications for Lp1 (851/401), Lp3 (593/686), L21 (995/293), and L22 (946/179) are tentative assignments based on nd/νd matching against available public catalogs (OHARA, HOYA, CDGM, HIKARI, Schott). The actual production glasses may differ.

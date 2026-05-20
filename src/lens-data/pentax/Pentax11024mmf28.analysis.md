@@ -35,7 +35,7 @@ There are **no aspherical surfaces** in this design. The patent text, prescripti
 
 ### L1 — Negative Meniscus, Convex to Object
 
-$n_d = 1.72825$, $\nu_d = 28.5$. Glass: SF6 (Schott) / S-TIH6 (Ohara) / FD6 (Hoya) — dense flint. $f = -150.6$ (F = 100 units); $-36.1$ mm in production.
+$n_d = 1.72825$, $\nu_d = 28.5$. Glass: S-TIH10 (OHARA) — dense flint. $f = -150.6$ (F = 100 units); $-36.1$ mm in production.
 
 L1 is a negative meniscus with its convex surface directed toward the object ($R_1 = +76.53$, $R_2 = +44.06$; both radii positive, forming a meniscus that bulges toward the object side). Its role is to pre-bend the oblique ray bundles inward before they enter the strongly positive L2. By placing a negative element at the front, the designer reduces the diameter required of L2 and subsequent elements, directly contributing to the compact form factor. The dense flint glass ($\nu_d = 28.5$) provides high dispersion, which is deliberately paired against L2's lower dispersion to achieve partial chromatic correction across the front group. The meniscus shape minimizes coma introduction by keeping the element approximately concentric to the stop — a standard technique in wide-angle front groups.
 
@@ -93,7 +93,7 @@ Example 2 uses four distinct glass types across six elements. The design employs
 
 | Element | $n_d$ | $\nu_d$ | Glass (Primary Match) | Class | Role |
 |---------|-------|---------|----------------------|-------|------|
-| L1 | 1.72825 | 28.5 | SF6 (Schott) / S-TIH6 (Ohara) / FD6 (Hoya) | Dense flint | Negative meniscus; ray bending, coma control |
+| L1 | 1.72825 | 28.5 | S-TIH10 (OHARA) | Dense flint | Negative meniscus; ray bending, coma control |
 | L2 | 1.80610 | 40.9 | S-LAH53 (Ohara) / NBFD3 (Hoya) | Lanthanum dense flint | Main positive power; reduced SA via high index |
 | L3 | 1.58913 | 61.1 | SK5 (Schott) / BACD5 (Hoya) | Barium crown | Negative diverger; Petzval flattener; axial color corrector |
 | L4 | 1.76182 | 26.6 | TiSF6 (Schott) / FD4 (Hoya) | Titanium super flint | Doublet flint; high-dispersion chromatic partner |
@@ -183,6 +183,6 @@ The design's defining achievement is its combination of a very long back focal d
 - Pentax Auto 110 product specifications (6 elements / 5 groups, 24mm f/2.8, MFD 0.35m, filter Ø25.5mm, weight 13g).
 - Schott Optical Glass Catalog and datasheet for N-LAF34 ($n_d = 1.77250$, $\nu_d = 49.62$; glass code 773496).
 - Hoya Optical Glass Catalog (TAF1 glass identification, $n_d = 1.77250$, $\nu_d = 49.6$).
-- Ohara Optical Glass Catalog (S-LAH53 and S-TIH6 glass identification cross-references).
+- Ohara Optical Glass Catalog (S-LAH53 and S-TIH10 glass identification cross-references).
 - Camera-wiki.org, Wikipedia "Pentax Auto 110" (production history and system specifications).
 - "Known and Unknown Pentax Lens Designers and Their Lenses" (Douglas Viewfinder blog) — Sugiyama biographical attribution.

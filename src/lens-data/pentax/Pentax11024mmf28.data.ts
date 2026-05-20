@@ -66,7 +66,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.5,
       fl: -36.1,
-      glass: "SF6 (Schott) / S-TIH6 (Ohara)",
+      glass: "S-TIH10 (OHARA)",
       apd: false,
       role: "Front negative meniscus convex to object; bends oblique bundles inward for compact diameter.",
     },

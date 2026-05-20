@@ -152,7 +152,7 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.52,
       fl: 62.1,
-      glass: "BSC7 (HOYA)",
+      glass: "S-LAL7 (OHARA)",
       apd: false,
       role: "Rear positive — strongest element in Group III, off-axis aberration leverage",
     },
