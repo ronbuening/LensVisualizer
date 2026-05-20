@@ -66,11 +66,4 @@ export {
   type SkewRayTraceResult,
 } from "./rayTrace.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
-export {
-  EXACT_SURFACE_TRACE_LENS_KEYS,
-  SURFACE_TRACE_ROLLOUT_MODE,
-  resolveSurfaceTraceMode,
-  type SurfaceTraceMode,
-  type SurfaceTraceModeResolutionOptions,
-  type SurfaceTraceRolloutMode,
-} from "./traceMode.js";
+export { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";

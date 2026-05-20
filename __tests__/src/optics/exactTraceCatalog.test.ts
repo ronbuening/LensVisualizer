@@ -2,14 +2,14 @@ import { describe, expect, it } from "vitest";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import buildLens from "../../../src/optics/buildLens.js";
-import {
-  EXACT_SURFACE_TRACE_LENS_KEYS,
-  doLayout,
-  epAtZoom,
-  resolveSurfaceTraceMode,
-  traceRay,
-  traceSkewRay,
-} from "../../../src/optics/optics.js";
+import { doLayout, epAtZoom, resolveSurfaceTraceMode, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
+
+/**
+ * Historical exact-trace fixtures — the first three lenses validated when the
+ * exact tracer landed. Kept as a deliberately small smoke set; the next test
+ * in this file iterates the full catalog for broader coverage.
+ */
+const EXACT_TRACE_FIXTURE_KEYS = ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15"] as const;
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
@@ -72,8 +72,8 @@ describe("exact surface trace catalog smoke coverage", () => {
     );
   });
 
-  it("traces finite on-axis and safe near-axis exact rays for allowlisted lenses", () => {
-    for (const key of EXACT_SURFACE_TRACE_LENS_KEYS) {
+  it("traces finite on-axis and safe near-axis exact rays for the legacy fixture set", () => {
+    for (const key of EXACT_TRACE_FIXTURE_KEYS) {
       const L = buildCatalogLens(key);
       for (const zoomT of zoomSamples(L)) {
         const layout = doLayout(0, zoomT, L);

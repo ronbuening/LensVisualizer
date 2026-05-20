@@ -1,5 +1,11 @@
 # Exact Surface Trace
 
+> **2026-05-20 update.** The rollout machinery described below has been removed.
+> `SURFACE_TRACE_ROLLOUT_MODE`, `EXACT_SURFACE_TRACE_LENS_KEYS`, and
+> `SurfaceTraceRolloutMode` are gone; `resolveSurfaceTraceMode` now simply returns
+> `requestedMode ?? "exact"`. `SurfaceTraceMode = "legacy" | "exact"` is retained
+> as a test/debug escape hatch only.
+
 ## Summary
 - Added an internal exact ray-to-sag-surface trace mode with a central rollout control.
 - Finalized the migration so exact surface tracing is the production default through `SURFACE_TRACE_ROLLOUT_MODE =
