@@ -23,3 +23,21 @@ Patent: CN 216772097 U, Example 1
 - Public catalog search found no exact coefficient-backed match for `516565`, so the three aspherical PGM elements remain unresolved.
 - Updated the analysis glass narrative and summary table.
 
+## 2026-05-20 — Glass relabel follow-up
+
+### Patent evidence
+
+- Re-opened the data file, existing audit log, and local patent file `patents/CN216772097U.pdf`.
+- The local PDF OCR still does not expose the optical-parameter rows cleanly, so the prior patent-table confirmation was retained as the source of record for the prescription values.
+
+### Glass corrections
+
+| Element(s) | Before | After | Disposition |
+|---|---|---|---|
+| L12 | `H-ZF13 (CDGM) — dense flint` | `S-TIM28 (OHARA)` | Stored nd/vd matches the OHARA catalog row closely enough for a coefficient-backed Sellmeier relabel. |
+| L14 | `H-LAK53A (CDGM) — S-LAL8 class` | `S-LAL18 (OHARA)` | Public catalog candidate matches the stored high-index crown row. |
+| L32 | `S-LAH55 (OHARA)` | `NBFD15 (HOYA)` | Stored nd/vd matches HOYA NBFD15 rather than OHARA S-LAH55. |
+
+### Remaining disposition
+
+- The `516565` PGM rows remain code-backed unresolved glasses because no exact public coefficient-backed match was found.

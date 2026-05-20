@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **239** total code-only elements found
-- **239** elements in this report
-- **86** distinct lens files affected
+- **244** total code-only elements found
+- **244** elements in this report
+- **89** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -20,7 +20,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|---:|
 | 593670 | 7 | 4 |
 | 593679 | 6 | 4 |
-| 770297 | 5 | 4 |
+| 770297 | 6 | 5 |
 | 855252 | 5 | 4 |
 | 662561 | 4 | 1 |
 | 670571 | 4 | 2 |
@@ -54,6 +54,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 777297 | 2 | 2 |
 | 807316 | 2 | 2 |
 | 808409 | 2 | 2 |
+| 813252 | 2 | 1 |
 | 847238 | 2 | 1 |
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
@@ -121,6 +122,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728284 | 1 | 1 |
 | 728285 | 1 | 1 |
 | 728403 | 1 | 1 |
+| 731405 | 1 | 1 |
 | 738493 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 741527 | 1 | 1 |
@@ -156,6 +158,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 821426 | 1 | 1 |
 | 834373 | 1 | 1 |
 | 835447 | 1 | 1 |
+| 840433 | 1 | 1 |
 | 850323 | 1 | 1 |
 | 850324 | 1 | 1 |
 | 851401 | 1 | 1 |
@@ -230,6 +233,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L10 (Element 10) | 17 | `764485 — lanthanum crown (patent nd=1.76385, νd=48.5)` | 1.76385 / 48.50 | S-LAH96 (trusted Sellmeier) | sellmeier |
 | L16 (Element 16) | 27 | `738323 — niobium dense flint (patent nd=1.73800, νd=32.3)` | 1.73800 / 32.30 | J-KZFH9 (trusted Sellmeier) | sellmeier |
 | L18 (Element 18) | 30A | `854404 — moldable high-index lanthanum glass (patent nd=1.85400, νd=40.4) — PGM` | 1.85400 / 40.40 | L-LAH85V (trusted Sellmeier) | sellmeier |
+
+### [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) - US 2024/0329367 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L8 (Element 8) | 15 | `770297 - dense flint (patent nd=1.77047, vd=29.70; no exact public catalog match)` | 1.77047 / 29.70 | No catalog entry | abbe |
 
 ### [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) - US 2019/0265441 A1
 
@@ -366,6 +375,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe |
 | L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe |
+
+### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe |
+| L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe |
 
 ### [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
 
@@ -511,6 +527,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L2a (Element 2) | 3 | `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)` | 1.84042 / 43.30 | No catalog entry | abbe |
 | L4 (Element 6) | 9 | `797454 — discontinued lanthanum glass (no exact public catalog match)` | 1.79668 / 45.40 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP2022-92388A
@@ -669,6 +686,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)` | 1.91597 / 36.40 | No catalog entry | abbe |
 | L6 (Element 6) | 11 | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | 1.78630 / 27.50 | No catalog entry | abbe |
 | L7 (Element 7) | 12 | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | 1.76864 / 49.70 | No catalog entry | abbe |
+
+### [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) - JP 2013-3324 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L8 (Element 8) | 14A | `731405 - moldable flint (patent nd=1.73077, vd=40.50; no exact public catalog match)` | 1.73077 / 40.50 | No catalog entry | abbe |
 
 ### [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - US 2023/0367186 A1
 

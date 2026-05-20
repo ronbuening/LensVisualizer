@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.7847,
       vd: 26.3,
       fl: 86.9,
-      glass: "S-NPH4 (OHARA)",
+      glass: "S-TIH23 (OHARA)",
       role: "Positive corrector in front diverging group — distortion reduction per cond. (3)",
     },
     {
@@ -147,7 +147,7 @@ const LENS_DATA = {
       nd: 1.6398,
       vd: 34.5,
       fl: -32.9,
-      glass: "S-NBH52 (OHARA)",
+      glass: "S-TIM27 (OHARA)",
       role: "Sole negative in G2 — distortion correction and chromatic balance against L23/L24",
     },
     {

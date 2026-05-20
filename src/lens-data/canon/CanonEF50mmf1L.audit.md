@@ -53,3 +53,20 @@ Updated [CanonEF50mmf1L.analysis.md](CanonEF50mmf1L.analysis.md):
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 All passed. Catalog mismatch scan: canon-ef-50f10l surfaces 1 and 3 no longer appear in the mismatch report after relabeling.
+
+## 2026-05-20 — Glass relabel follow-up
+
+### Patent evidence
+
+- Re-opened `patents/US4717245.pdf` and confirmed Example 2 rows for the repeated nd=1.51742, vd=52.4 glass.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L3 / S5 | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Stored nd/vd matches the coefficient-backed OHARA S-NSL36 catalog row. |
+| L5 / S9 | `S-NSL5 (OHARA)` | `S-NSL36 (OHARA)` | Same repeated patent glass as L3. |
+
+### Remaining disposition
+
+- L11 `S-BSL10 (OHARA)` remains outside current Sellmeier coverage and was not part of this relabel.
