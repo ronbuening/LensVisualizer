@@ -3,7 +3,7 @@ import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeom
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, renderSag } from "../../../src/optics/optics.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
-import { LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
 

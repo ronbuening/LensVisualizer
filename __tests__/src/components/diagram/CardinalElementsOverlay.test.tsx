@@ -3,7 +3,7 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import CardinalElementsOverlay from "../../../../src/components/diagram/CardinalElementsOverlay.js";
-import themes from "../../../../src/utils/themes.js";
+import themes from "../../../../src/utils/theme/themes.js";
 import type { CardinalElements } from "../../../../src/optics/cardinalElements.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 

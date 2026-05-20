@@ -56,9 +56,9 @@ const LENS_DATA = {
    *  apertureMarketing     Marketed/nominal max f-number (e.g. 1.8 for an "f/1.8" lens).
    *  apertureDesign        Patent/computed max f-number (precise value, e.g. 1.85).
    *                        Omit if identical to apertureMarketing.
-   *  lensMounts            Optional canonical mount ids from src/utils/lensTaxonomy.ts.
+   *  lensMounts            Optional canonical mount ids from src/utils/catalog/lensTaxonomy.ts.
    *                        A lens may declare multiple mounts; do not free-type display labels.
-   *  imageFormat           Optional single canonical format id from src/utils/lensTaxonomy.ts.
+   *  imageFormat           Optional single canonical format id from src/utils/catalog/lensTaxonomy.ts.
    *                        Used by lens index filters now and future image-field analysis.
    *  patentYear            Year the patent was published or granted (e.g. 2019).
    *  elementCount          Total number of glass elements.

@@ -12,8 +12,8 @@ import { createElement } from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ControlsBar from "../../../../src/components/layout/ControlsBar.js";
-import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../../../src/utils/lensReducer.js";
-import themes from "../../../../src/utils/themes.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../../../src/utils/state/lensReducer.js";
+import themes from "../../../../src/utils/theme/themes.js";
 
 describe("ControlsBar", () => {
   const dispatch = vi.fn();

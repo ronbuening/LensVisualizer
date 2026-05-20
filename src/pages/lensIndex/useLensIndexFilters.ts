@@ -16,7 +16,7 @@ import {
 } from "./catalog.js";
 import { isSameCustomFilter } from "./urlState.js";
 import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
-import type { ImageFormatId, LensMountId } from "../../utils/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 
 export interface NumericFilterConfig {
   min: number;

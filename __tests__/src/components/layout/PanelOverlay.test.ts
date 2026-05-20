@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { PANEL_OVERLAY_BACKDROP, panelOverlayContent } from "../../../../src/utils/styles.js";
+import { PANEL_OVERLAY_BACKDROP, panelOverlayContent } from "../../../../src/utils/style/styles.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 const mockTheme = {

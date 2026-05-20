@@ -11,7 +11,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
-import themes from "../../../../src/utils/themes.js";
+import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
 vi.mock("../../../../src/components/diagram/RayPolylines.js", () => ({

@@ -137,7 +137,7 @@ in prose, a smaller table, or a dedicated visual.
 ## What Is Not Necessary
 
 - No manual imports or route registration are needed for article Markdown files.
-- Do not edit `src/utils/homepageContent.ts` for a new article; it is populated from generated metadata.
+- Do not edit `src/utils/content/homepageContent.ts` for a new article; it is populated from generated metadata.
 - Do not edit `src/generated/build-metadata.json` by hand.
 - Do not add CSS files for article formatting; article styling lives in `ThemedMarkdown.tsx` and theme tokens.
 - Do not wrap ordinary Markdown content in raw HTML for styling.

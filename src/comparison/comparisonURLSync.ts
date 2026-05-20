@@ -5,8 +5,8 @@
  */
 
 import type { LensData } from "../types/optics.js";
-import type { BuildURLSliders } from "../utils/parseComparisonParams.js";
-import { encodeSliderParams } from "../utils/parseComparisonParams.js";
+import type { BuildURLSliders } from "../utils/state/parseComparisonParams.js";
+import { encodeSliderParams } from "../utils/state/parseComparisonParams.js";
 
 const SITE_NAME = "Surface & Stop";
 const SITE_URL = "https://surfaceandstop.com";

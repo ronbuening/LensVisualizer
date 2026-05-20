@@ -1,1 +1,6 @@
-export { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "../../utils/pageStyles.js";
+export {
+  H1_STYLE,
+  LENS_LINK_BASE_STYLE,
+  PAGE_BASE_STYLE,
+  SECTION_HEADING_BASE_STYLE,
+} from "../../utils/style/pageStyles.js";

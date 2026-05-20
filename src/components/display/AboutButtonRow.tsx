@@ -4,7 +4,7 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { topBarBtn, labelStyle } from "../../utils/styles.js";
+import { topBarBtn, labelStyle } from "../../utils/style/styles.js";
 
 interface AboutButtonRowProps {
   theme: Theme;

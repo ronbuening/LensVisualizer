@@ -9,13 +9,13 @@ import { useEffect } from "react";
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import ArticleCard from "../components/homepage/ArticleCard.js";
-import SeriesCard from "../components/homepage/SeriesCard.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLES, ARTICLE_SERIES } from "../utils/homepageContent.js";
-import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import ArticleCard from "../components/content/ArticleCard.js";
+import SeriesCard from "../components/content/SeriesCard.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { ARTICLES, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
+import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 
 export default function ArticlesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();

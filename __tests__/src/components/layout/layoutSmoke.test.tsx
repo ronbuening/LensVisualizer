@@ -13,8 +13,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import { installMatchMediaMock, clearBrowserState, renderWithLensContext } from "../../../testUtils.js";
-import { createInitialState } from "../../../../src/utils/lensReducer.js";
-import themes from "../../../../src/utils/themes.js";
+import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
+import themes from "../../../../src/utils/theme/themes.js";
 import type { LensState } from "../../../../src/types/state.js";
 
 /* ─────────────────── Mock Setup ─────────────────── */

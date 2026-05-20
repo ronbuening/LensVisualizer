@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeCardinalElementsAtState } from "../../../src/optics/cardinalElements.js";
 import { doLayout } from "../../../src/optics/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
 function cardinalsFor(L: RuntimeLens, focusT = 0, zoomT = 0) {

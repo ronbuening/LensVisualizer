@@ -6,15 +6,15 @@ import type { Dispatch, ReactNode } from "react";
 import LensDiagramPanel from "../../../../src/components/layout/LensDiagramPanel.js";
 import type { LensAction, LensState } from "../../../../src/types/state.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
-import { CATALOG_KEYS } from "../../../../src/utils/lensCatalog.js";
+import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import {
   LensDispatchContext,
   LensStateContext,
   PanelStateContext,
   type LensCtxValue,
-} from "../../../../src/utils/LensContext.js";
-import { createInitialState } from "../../../../src/utils/lensReducer.js";
-import themes from "../../../../src/utils/themes.js";
+} from "../../../../src/utils/state/LensContext.js";
+import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
+import themes from "../../../../src/utils/theme/themes.js";
 
 const mocks = vi.hoisted(() => {
   const adapters = {
@@ -114,7 +114,7 @@ vi.mock("../../../../src/components/controls/DiagramHeader.js", () => ({
   default: () => <div data-testid="diagram-header">Header</div>,
 }));
 
-vi.mock("../../../../src/components/display/BokehPreviewOverlay.js", () => ({
+vi.mock("../../../../src/components/display/overlays/BokehPreviewOverlay.js", () => ({
   default: () => <div data-testid="bokeh-preview">Bokeh preview</div>,
 }));
 

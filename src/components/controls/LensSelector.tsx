@@ -6,7 +6,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Theme } from "../../types/theme.js";
-import { selector } from "../../utils/styles.js";
+import { selector } from "../../utils/style/styles.js";
 import DropdownPanel from "../layout/DropdownPanel.js";
 
 interface LensSelectorProps {

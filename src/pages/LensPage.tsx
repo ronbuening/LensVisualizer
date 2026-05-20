@@ -9,7 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/lensCatalog.js";
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/catalog/lensCatalog.js";
 import {
   lensPageTitle,
   lensPageDescription,
@@ -17,8 +17,8 @@ import {
   lensJsonLd,
   deriveMaker,
   SITE_URL,
-} from "../utils/lensMetadata.js";
-import { breadcrumbJsonLd } from "../utils/structuredData.js";
+} from "../utils/catalog/lensMetadata.js";
+import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,

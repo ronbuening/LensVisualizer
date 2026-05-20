@@ -10,7 +10,7 @@ import OverlayModal from "../OverlayModal.js";
 import DiagramControlPanel from "../DiagramControlPanel.js";
 import DiagramViewport from "./DiagramViewport.js";
 import AbbeDiagram from "../../display/AbbeDiagram.js";
-import AsphericComparisonOverlay from "../../display/AsphericComparisonOverlay.js";
+import AsphericComparisonOverlay from "../../display/overlays/AsphericComparisonOverlay.js";
 import type { LensDiagramLoadedStateProps } from "./panelModel.js";
 
 export default function LensDiagramLoadedState({

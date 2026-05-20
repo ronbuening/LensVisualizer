@@ -7,7 +7,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
-import { OVERLAY_BACKDROP, overlayModal, closeBtn } from "../../utils/styles.js";
+import { OVERLAY_BACKDROP, overlayModal, closeBtn } from "../../utils/style/styles.js";
 
 interface OverlayModalProps {
   onClose: () => void;

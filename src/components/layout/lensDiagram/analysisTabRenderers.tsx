@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import AberrationsPanel from "../../display/AberrationsPanel.js";
-import ComaTab from "../../display/ComaTab.js";
-import DistortionTab from "../../display/DistortionTab.js";
-import FocusBreathingTab from "../../display/FocusBreathingTab.js";
-import PupilAberrationTab from "../../display/PupilAberrationTab.js";
-import VignettingTab from "../../display/VignettingTab.js";
+import AberrationsPanel from "../../display/analysis/AberrationsPanel.js";
+import ComaTab from "../../display/analysis/ComaTab.js";
+import DistortionTab from "../../display/analysis/DistortionTab.js";
+import FocusBreathingTab from "../../display/analysis/FocusBreathingTab.js";
+import PupilAberrationTab from "../../display/analysis/PupilAberrationTab.js";
+import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { AnalysisTabId } from "../../../types/state.js";

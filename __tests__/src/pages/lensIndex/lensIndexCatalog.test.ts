@@ -7,7 +7,7 @@ import {
 } from "../../../../src/pages/lensIndex/catalog.js";
 import type { CatalogLensEntry, FilterBounds } from "../../../../src/pages/lensIndex/types.js";
 import type { LensData } from "../../../../src/types/optics.js";
-import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../../../src/utils/lensTaxonomy.js";
+import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 
 const TEST_BOUNDS: FilterBounds = {
   focalMin: 20,

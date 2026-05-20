@@ -7,7 +7,12 @@
  */
 
 import type { LensData } from "../../types/optics.js";
-import type { ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata } from "../../utils/lensTaxonomy.js";
+import type {
+  ImageFormatId,
+  ImageFormatMetadata,
+  LensMountId,
+  LensMountMetadata,
+} from "../../utils/catalog/lensTaxonomy.js";
 
 export type GroupMode = "maker" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
 

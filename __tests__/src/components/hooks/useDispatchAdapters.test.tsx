@@ -13,9 +13,9 @@ import {
   SET_PANEL_EXPANDED,
   SET_ANALYSIS_TAB,
   SET_GROUP_MOVEMENT,
-} from "../../../../src/utils/lensReducer.js";
+} from "../../../../src/utils/state/lensReducer.js";
 import { renderWithLensContext } from "../../../testUtils.js";
-import { createInitialState } from "../../../../src/utils/lensReducer.js";
+import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 import type { LensState } from "../../../../src/types/state.js";
 
 function makeState(): LensState {

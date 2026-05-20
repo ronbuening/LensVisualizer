@@ -10,7 +10,7 @@
  */
 
 import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
-import { isImageFormatId, isLensMountId } from "../utils/lensTaxonomy.js";
+import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 

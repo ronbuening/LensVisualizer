@@ -4,7 +4,7 @@ import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import { LENS_CATALOG } from "../../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 /* This test uses a real lens key from the catalog. The LENS_CATALOG is populated
  * at import time via import.meta.glob so all *.data.ts lenses are available. */

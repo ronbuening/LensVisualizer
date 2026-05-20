@@ -12,7 +12,7 @@ import { createElement } from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ComparisonLayout from "../../../src/comparison/ComparisonLayout.js";
-import themes from "../../../src/utils/themes.js";
+import themes from "../../../src/utils/theme/themes.js";
 
 const lensDiagramPanelMock = vi.fn((props: { panelId: string; lensKey: string }) =>
   createElement("div", { "data-testid": `panel-${props.panelId}` }, props.lensKey),

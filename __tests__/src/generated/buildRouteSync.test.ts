@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { allMakerSlugs } from "../../../src/utils/lensMetadata.js";
-import { CATALOG_KEYS } from "../../../src/utils/lensCatalog.js";
+import { allMakerSlugs } from "../../../src/utils/catalog/lensMetadata.js";
+import { CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 import { CATALOG_ENTRIES } from "../../../src/pages/lensIndex/catalog.js";
 import buildMeta from "../../../src/generated/build-metadata.json";
 

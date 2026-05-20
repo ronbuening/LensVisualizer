@@ -3,12 +3,12 @@
 ## Overview
 
 The site changelog is a manually curated list of user-facing changes displayed
-on `/updates`. The data lives in `src/utils/changelogData.ts` as a flat array of
+on `/updates`. The data lives in `src/utils/content/changelogData.ts` as a flat array of
 `ChangelogEntry` objects.
 
 `src/pages/UpdatesPage.tsx` groups entries by date automatically and renders
 them with color-coded type badges. No other file needs to be updated when adding
-entries. `src/components/homepage/ChangelogBox.tsx` is a reusable compact
+entries. `src/components/content/ChangelogBox.tsx` is a reusable compact
 version, but it is not currently mounted on the home page.
 
 ---
@@ -59,7 +59,7 @@ Add an entry when merging a PR that does any of the following:
 
 ## Adding an Entry
 
-Open `src/utils/changelogData.ts` and **prepend** a new object to the top of
+Open `src/utils/content/changelogData.ts` and **prepend** a new object to the top of
 the `CHANGELOG` array (before the first existing entry):
 
 ```ts
@@ -113,8 +113,8 @@ The initial entries cover **2026-03-26 through 2026-03-28** and include:
 
 | File | Role |
 |------|------|
-| `src/utils/changelogData.ts` | Data - `CHANGELOG` array, `ChangelogEntry` type |
+| `src/utils/content/changelogData.ts` | Data - `CHANGELOG` array, `ChangelogEntry` type |
 | `src/pages/UpdatesPage.tsx` | Main UI - renders changelog plus full lens-addition history |
-| `src/components/homepage/ChangelogBox.tsx` | Reusable compact changelog panel, currently not mounted |
+| `src/components/content/ChangelogBox.tsx` | Reusable compact changelog panel, currently not mounted |
 
 The homepage links to `/updates` from the "Recently Added" section.

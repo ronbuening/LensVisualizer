@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, overlayModal, closeBtn } from "../../../../src/utils/styles.js";
+import { OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, overlayModal, closeBtn } from "../../../../src/utils/style/styles.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 /**

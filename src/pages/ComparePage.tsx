@@ -9,8 +9,8 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { deriveMaker } from "../utils/lensMetadata.js";
+import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { deriveMaker } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
 const CONTENT_STYLE: React.CSSProperties = {

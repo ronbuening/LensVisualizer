@@ -19,21 +19,27 @@
 import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/lensCatalog.js";
-import usePreferences from "../../utils/usePreferences.js";
-import useURLSync from "../../utils/useURLSync.js";
-import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/LensContext.js";
-import { resolveDarkPreference, resolveTheme } from "../../utils/themePreferences.js";
+import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/catalog/lensCatalog.js";
+import usePreferences from "../../utils/state/usePreferences.js";
+import useURLSync from "../../utils/state/useURLSync.js";
+import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/state/LensContext.js";
+import { resolveDarkPreference, resolveTheme } from "../../utils/theme/themePreferences.js";
 import _ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import _ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
 import _OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
 import _OPTICS_PRIMER_INTERMEDIATE_MD from "../../content/OpticsPrimerIntermediate.md?raw";
 import _ABERRATIONS_PRIMER_SIMPLE_MD from "../../content/AberrationsPrimerSimple.md?raw";
 import _ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimerIntermediate.md?raw";
-import { stripFrontmatter } from "../../utils/homepageContent.js";
-import useLensState from "../../utils/useLensState.js";
+import { stripFrontmatter } from "../../utils/content/homepageContent.js";
+import useLensState from "../../utils/state/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
-import { SET_LENS_A, SET_LENS_B, SWAP_LENSES, SET_MOBILE_VIEW, SET_DESKTOP_VIEW } from "../../utils/lensReducer.js";
+import {
+  SET_LENS_A,
+  SET_LENS_B,
+  SWAP_LENSES,
+  SET_MOBILE_VIEW,
+  SET_DESKTOP_VIEW,
+} from "../../utils/state/lensReducer.js";
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
 import useOverlays from "../hooks/useOverlays.js";
 import ViewerChrome from "./lensViewer/ViewerChrome.js";

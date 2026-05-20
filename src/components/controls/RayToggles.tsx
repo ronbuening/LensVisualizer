@@ -6,7 +6,7 @@
  */
 import type { ReactNode } from "react";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
-import { toggleGroup, toggleBtn } from "../../utils/styles.js";
+import { toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 

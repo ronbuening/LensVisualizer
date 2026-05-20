@@ -13,7 +13,7 @@ import type { ComponentProps } from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import TopBar from "../../../../src/components/layout/TopBar.js";
-import themes from "../../../../src/utils/themes.js";
+import themes from "../../../../src/utils/theme/themes.js";
 
 const baseProps: ComponentProps<typeof TopBar> = {
   theme: themes.dark,

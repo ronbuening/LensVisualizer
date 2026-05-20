@@ -11,9 +11,9 @@
 
 import type { ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
-import type { ThemeMode } from "../../utils/themePreferences.js";
-import { headerStrip, toggleGroup, toggleBtn } from "../../utils/styles.js";
-import { THEME_ICON, THEME_LABEL } from "../../utils/themeConstants.js";
+import type { ThemeMode } from "../../utils/theme/themePreferences.js";
+import { headerStrip, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
+import { THEME_ICON, THEME_LABEL } from "../../utils/theme/themeConstants.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface PageNavBarProps {

@@ -7,12 +7,18 @@
 import { useParams, Navigate, Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { deriveMaker, makerDisplayName, makerCanonicalURL, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { getMakerDetails } from "../utils/makerDetails.js";
-import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import {
+  deriveMaker,
+  makerDisplayName,
+  makerCanonicalURL,
+  SITE_NAME,
+  SITE_URL,
+} from "../utils/catalog/lensMetadata.js";
+import { getMakerDetails } from "../utils/catalog/makerDetails.js";
+import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {

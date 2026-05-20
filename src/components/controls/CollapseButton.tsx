@@ -5,7 +5,7 @@
 
 import type { CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
-import { collapseBtn } from "../../utils/styles.js";
+import { collapseBtn } from "../../utils/style/styles.js";
 
 interface CollapseButtonProps {
   expanded: boolean;

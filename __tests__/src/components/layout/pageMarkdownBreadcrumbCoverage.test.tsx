@@ -9,12 +9,12 @@ import BreadcrumbBar from "../../../../src/components/layout/BreadcrumbBar.js";
 import DescriptionPanel from "../../../../src/components/layout/DescriptionPanel.js";
 import UpdatesPage from "../../../../src/pages/UpdatesPage.js";
 import type { LensAction, LensState } from "../../../../src/types/state.js";
-import { CATALOG_KEYS, ALL_LENSES_BY_DATE, LENS_CATALOG } from "../../../../src/utils/lensCatalog.js";
-import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../../../../src/utils/LensContext.js";
-import { createInitialState } from "../../../../src/utils/lensReducer.js";
-import { deriveMaker } from "../../../../src/utils/lensMetadata.js";
-import { CHANGELOG } from "../../../../src/utils/changelogData.js";
-import themes from "../../../../src/utils/themes.js";
+import { CATALOG_KEYS, ALL_LENSES_BY_DATE, LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../../../../src/utils/state/LensContext.js";
+import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
+import { deriveMaker } from "../../../../src/utils/catalog/lensMetadata.js";
+import { CHANGELOG } from "../../../../src/utils/content/changelogData.js";
+import themes from "../../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../../testUtils.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {

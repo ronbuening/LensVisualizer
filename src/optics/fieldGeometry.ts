@@ -1,5 +1,5 @@
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../types/optics.js";
-import { resolveImageFormatMetadata } from "../utils/lensTaxonomy.js";
+import { resolveImageFormatMetadata } from "../utils/catalog/lensTaxonomy.js";
 import { stateSurfaces, thick, FOCUS_INFINITY_THRESHOLD } from "./layout.js";
 import {
   traceSurfacesParaxial,

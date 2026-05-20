@@ -9,7 +9,7 @@ import {
   SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
-} from "../../../src/utils/lensMetadata.js";
+} from "../../../src/utils/catalog/lensMetadata.js";
 
 function renderHead(element: ReactElement) {
   const context: { helmet?: HelmetServerState } = {};

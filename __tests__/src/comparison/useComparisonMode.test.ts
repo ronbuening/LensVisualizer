@@ -6,7 +6,7 @@ import useComparisonMode, {
   isComparisonOk,
   type ComparisonLensesResult,
 } from "../../../src/comparison/useComparisonMode.js";
-import { CATALOG_KEYS } from "../../../src/utils/lensCatalog.js";
+import { CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* Pick two valid catalog keys for testing */
 const keyA = CATALOG_KEYS[0];

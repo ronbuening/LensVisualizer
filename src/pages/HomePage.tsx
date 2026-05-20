@@ -12,16 +12,16 @@ import PageNavBar from "../components/layout/PageNavBar.js";
 import HeroSection from "../components/homepage/HeroSection.js";
 import TrustStrip from "../components/homepage/TrustStrip.js";
 import QuickNavCards from "../components/homepage/QuickNavCards.js";
-import ArticleList from "../components/homepage/ArticleList.js";
+import ArticleList from "../components/content/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
-import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/lensCatalog.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/homepageContent.js";
-import { publisherJsonLd, webApplicationJsonLd, websiteJsonLd } from "../utils/structuredData.js";
+import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/catalog/lensCatalog.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/content/homepageContent.js";
+import { publisherJsonLd, webApplicationJsonLd, websiteJsonLd } from "../utils/seo/structuredData.js";
 import useMediaQuery from "../utils/useMediaQuery.js";
-import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();

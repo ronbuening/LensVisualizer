@@ -108,7 +108,7 @@ These must be specified in every lens file — they have no defaults.
 
 ## Mount And Image-Format Metadata
 
-Use canonical ids from `src/utils/lensTaxonomy.ts`; do not free-type labels such as `"Full Frame"` or `"Nikon Z mount"`.
+Use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; do not free-type labels such as `"Full Frame"` or `"Nikon Z mount"`.
 See [LENS_MOUNT_FORMAT_OPTIONS.md](LENS_MOUNT_FORMAT_OPTIONS.md) for the current list of allowed ids. These ids drive
 lens-index filtering now and will be reused by distortion and aberration views.
 

@@ -11,7 +11,7 @@ import {
   traceSkewRay,
 } from "../../../src/optics/optics.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const REPRESENTATIVE_KEYS = [
   "apo-lanthar-50f2",

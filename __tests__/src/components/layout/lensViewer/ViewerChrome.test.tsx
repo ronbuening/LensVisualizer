@@ -3,8 +3,8 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ViewerChrome from "../../../../../src/components/layout/lensViewer/ViewerChrome.js";
-import { SET_RAY_TOGGLE } from "../../../../../src/utils/lensReducer.js";
-import themes from "../../../../../src/utils/themes.js";
+import { SET_RAY_TOGGLE } from "../../../../../src/utils/state/lensReducer.js";
+import themes from "../../../../../src/utils/theme/themes.js";
 
 vi.mock("../../../../../src/components/layout/BreadcrumbBar.js", () => ({
   default: () => <div data-testid="breadcrumb" />,

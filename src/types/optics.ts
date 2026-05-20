@@ -5,7 +5,7 @@
 
 /* ── Raw lens data types (as declared in .data.ts files) ── */
 
-import type { ImageFormatId, LensMountId } from "../utils/lensTaxonomy.js";
+import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 
 export interface SurfaceData {
   label: string;

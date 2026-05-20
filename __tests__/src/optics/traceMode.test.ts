@@ -6,7 +6,7 @@ import {
   type SurfaceTraceRolloutMode,
 } from "../../../src/optics/traceMode.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
-import { LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 function lensWithKey(key: string): RuntimeLens {
   return { data: { key } } as unknown as RuntimeLens;

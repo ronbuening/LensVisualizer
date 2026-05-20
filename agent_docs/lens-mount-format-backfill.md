@@ -2,7 +2,7 @@
 
 Track progress for optional `lensMounts` and `imageFormat` metadata in `src/lens-data/**/*.data.ts`.
 
-Canonical ids live in `src/utils/lensTaxonomy.ts`. Do not free-type labels in lens files. If a lens is ambiguous, leave
+Canonical ids live in `src/utils/catalog/lensTaxonomy.ts`. Do not free-type labels in lens files. If a lens is ambiguous, leave
 the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage

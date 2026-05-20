@@ -3,7 +3,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useOverlays from "../../../../src/components/hooks/useOverlays.js";
-import { SET_OVERLAY, CLOSE_ALL_OVERLAYS } from "../../../../src/utils/lensReducer.js";
+import { SET_OVERLAY, CLOSE_ALL_OVERLAYS } from "../../../../src/utils/state/lensReducer.js";
 import type { LensAction } from "../../../../src/types/state.js";
 import type { Dispatch } from "react";
 

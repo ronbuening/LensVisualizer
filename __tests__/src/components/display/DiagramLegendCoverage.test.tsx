@@ -3,7 +3,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import DiagramLegend from "../../../../src/components/display/DiagramLegend.js";
-import themes from "../../../../src/utils/themes.js";
+import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 
 function lens(hasAbbeData = true): RuntimeLens {

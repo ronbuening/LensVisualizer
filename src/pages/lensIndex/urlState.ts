@@ -5,8 +5,13 @@
  * taxonomy before they can affect the UI.
  */
 
-import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID, isImageFormatId, isLensMountId } from "../../utils/lensTaxonomy.js";
-import { allMakerSlugs } from "../../utils/lensMetadata.js";
+import {
+  IMAGE_FORMAT_BY_ID,
+  LENS_MOUNT_BY_ID,
+  isImageFormatId,
+  isLensMountId,
+} from "../../utils/catalog/lensTaxonomy.js";
+import { allMakerSlugs } from "../../utils/catalog/lensMetadata.js";
 import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, NumericFilterField } from "./types.js";
 

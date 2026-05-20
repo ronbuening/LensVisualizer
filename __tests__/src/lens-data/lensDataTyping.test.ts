@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { LENS_CATALOG, CATALOG_KEYS } from "../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG, CATALOG_KEYS } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 /**

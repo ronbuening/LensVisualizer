@@ -13,13 +13,18 @@
 import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/styles.js";
-import { THEME_ICON, THEME_LABEL } from "../../utils/themeConstants.js";
-import { LENS_CATALOG } from "../../utils/lensCatalog.js";
-import { deriveMaker } from "../../utils/lensMetadata.js";
-import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID, isImageFormatId, isLensMountId } from "../../utils/lensTaxonomy.js";
-import { useLensCtx, useLensDispatch } from "../../utils/LensContext.js";
-import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/lensReducer.js";
+import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
+import { THEME_ICON, THEME_LABEL } from "../../utils/theme/themeConstants.js";
+import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
+import {
+  IMAGE_FORMAT_BY_ID,
+  LENS_MOUNT_BY_ID,
+  isImageFormatId,
+  isLensMountId,
+} from "../../utils/catalog/lensTaxonomy.js";
+import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
+import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/state/lensReducer.js";
 import { FILTER_BOUNDS } from "../../pages/lensIndex/catalog.js";
 import { isValidLensLibraryReturnPath } from "../../pages/lensIndex/urlState.js";
 import {
@@ -27,7 +32,7 @@ import {
   nextThemeMode,
   themeModeFromDarkPreference,
   type ThemeMode,
-} from "../../utils/themePreferences.js";
+} from "../../utils/theme/themePreferences.js";
 import DropdownPanel from "./DropdownPanel.js";
 import type { DropdownPanelPos } from "./DropdownPanel.js";
 

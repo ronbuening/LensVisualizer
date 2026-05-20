@@ -20,6 +20,8 @@ persisted or URL-provided strings should be normalized at the boundary.
 
 ## Reducer And Persistence
 
+State modules live under `src/utils/state/`.
+
 | Module | Purpose |
 | --- | --- |
 | `lensReducer.ts` | Pure reducer and initial-state derivation. Guards invalid analysis tab, view, and off-axis values. The `APPLY_URL_VIEW_STATE` action hydrates panels and sliders from the URL using the `VIEW_STATE_FIELDS` table from `lensViewUrlState.ts`. |
@@ -61,7 +63,7 @@ belong in a shareable URL). All other diagram overlays live in the panels slice.
 
 ## Contexts
 
-`src/utils/LensContext.ts` exports:
+`src/utils/state/LensContext.ts` exports:
 
 - `LensStateContext`
 - `LensDispatchContext`
@@ -73,6 +75,8 @@ keeps panel consumers from rerendering unnecessarily during slider changes.
 
 ## Theme System
 
+Theme modules live under `src/utils/theme/`.
+
 | Module | Purpose |
 | --- | --- |
 | `themes.ts` | Theme factory and four theme definitions: dark, light, darkHC, lightHC. |
@@ -80,11 +84,13 @@ keeps panel consumers from rerendering unnecessarily during slider changes.
 | `themePreferences.ts` | Theme-mode conversion and system dark/high-contrast resolution. |
 | `usePageTheme.ts` | Resolves page theme from prefs and media query state. |
 | `usePageThemeToggle.ts` | Adds dark/high-contrast toggle cycling for static pages. |
-| `styles.ts` | Shared inline style factories and static style constants. |
 
 When adding or changing color tokens, update all four theme definitions.
 
 ## Catalog And Metadata Utilities
+
+Catalog and metadata modules live under `src/utils/catalog/`, content registries live under `src/utils/content/`, and
+JSON-LD helpers live under `src/utils/seo/`.
 
 | Module | Purpose |
 | --- | --- |
@@ -92,9 +98,22 @@ When adding or changing color tokens, update all four theme definitions.
 | `lensTaxonomy.ts` | Canonical lens mount ids and image-format dimensions used by lens data and the lens index. |
 | `lensMetadata.ts` | SEO metadata, maker extraction, page titles/descriptions, canonical URLs, JSON-LD helpers. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |
+| `mountDetails.ts` | Mount display names, descriptions, and metadata. |
+| `imageFormatDetails.ts` | Image-format display names, dimensions, descriptions, and metadata. |
 | `homepageContent.ts` | Generated homepage/article/lens content registries. |
 | `changelogData.ts` | Update-history entries rendered on `/updates`. |
+| `changelogHelpers.ts` | Changelog grouping and archive helpers. |
 | `structuredData.ts` | JSON-LD structured-data helpers. |
+
+## Style Utilities
+
+Style modules live under `src/utils/style/`.
+
+| Module | Purpose |
+| --- | --- |
+| `pageStyles.ts` | Shared static-page base styles and fallback link styles. |
+| `sliderStops.ts` | Slider stop helpers and shared stop collections. |
+| `styles.ts` | Shared inline style factories and static style constants. |
 
 ## Other Shared Utilities
 

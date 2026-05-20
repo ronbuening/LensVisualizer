@@ -12,7 +12,7 @@ import {
   SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
-} from "../utils/lensMetadata.js";
+} from "../utils/catalog/lensMetadata.js";
 
 export interface JsonLdSchema {
   [key: string]: unknown;

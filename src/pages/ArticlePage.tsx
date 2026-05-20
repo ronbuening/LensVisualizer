@@ -10,13 +10,13 @@ import type { CSSProperties } from "react";
 import { useParams, Navigate, Link, useLocation } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import ArticleTOC from "../components/display/ArticleTOC.js";
+import ArticleTOC from "../components/content/ArticleTOC.js";
 import ThemedMarkdown from "../components/markdown/ThemedMarkdown.js";
-import { SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
-import { articleJsonLd, breadcrumbJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/homepageContent.js";
+import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { articleJsonLd, breadcrumbJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { ARTICLE_CONTENT, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
 
 const NAV_STYLE: CSSProperties = { marginTop: "1.5rem", marginBottom: "1.5rem", fontSize: "0.8rem" };
 

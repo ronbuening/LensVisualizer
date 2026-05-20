@@ -24,7 +24,7 @@ No manual imports or catalog edits required.
 
 ### Auto-Registration
 
-`src/utils/lensCatalog.ts` uses `import.meta.glob` to discover all `*.data.ts` files anywhere under `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field and use `satisfies LensDataInput` for compile-time type checking. Analysis files are matched by the same relative stem path with a `.analysis.md` suffix.
+`src/utils/catalog/lensCatalog.ts` uses `import.meta.glob` to discover all `*.data.ts` files anywhere under `src/lens-data/`. Each file must default-export a `LENS_DATA` object with a unique `key` field and use `satisfies LensDataInput` for compile-time type checking. Analysis files are matched by the same relative stem path with a `.analysis.md` suffix.
 
 ### Defaults Merge
 
@@ -37,7 +37,7 @@ Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Z
 ### Mount And Image Format Fields
 
 Use `lensMounts` and `imageFormat` when the production system and coverage are clear. Values must be canonical ids from
-`src/utils/lensTaxonomy.ts`; see `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` for the available options and do not
+`src/utils/catalog/lensTaxonomy.ts`; see `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` for the available options and do not
 free-type display labels.
 
 ```typescript

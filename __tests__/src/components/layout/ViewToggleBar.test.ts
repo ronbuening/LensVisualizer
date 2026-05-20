@@ -11,7 +11,7 @@ import { createElement } from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import ViewToggleBar from "../../../../src/components/layout/ViewToggleBar.js";
-import themes from "../../../../src/utils/themes.js";
+import themes from "../../../../src/utils/theme/themes.js";
 
 describe("ViewToggleBar", () => {
   afterEach(() => {

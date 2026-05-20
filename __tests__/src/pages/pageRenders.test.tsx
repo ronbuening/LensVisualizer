@@ -10,8 +10,8 @@ import ArticlesPage from "../../../src/pages/ArticlesPage.js";
 import ArticlePage from "../../../src/pages/ArticlePage.js";
 import ComparePage from "../../../src/pages/ComparePage.js";
 import NotFoundPage from "../../../src/pages/NotFoundPage.js";
-import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/homepageContent.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({

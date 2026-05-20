@@ -2,7 +2,7 @@
 
 Reference for the canonical `lensMounts` and `imageFormat` ids used in `*.data.ts` files.
 
-The code source of truth is `src/utils/lensTaxonomy.ts`. Keep this document in sync when adding or renaming taxonomy
+The code source of truth is `src/utils/catalog/lensTaxonomy.ts`. Keep this document in sync when adding or renaming taxonomy
 entries. Lens files should store ids, not display labels.
 
 ```ts

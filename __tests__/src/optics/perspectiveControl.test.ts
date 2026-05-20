@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { LENS_CATALOG } from "../../../src/utils/lensCatalog.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const ENABLED_PC_KEYS = [
   "fujifilm-gf-30mm-f56-ts",

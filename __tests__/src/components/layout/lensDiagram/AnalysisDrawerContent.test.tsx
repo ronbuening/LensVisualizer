@@ -24,42 +24,42 @@ const {
   mockVignettingTab: vi.fn(),
 }));
 
-vi.mock("../../../../../src/components/display/AberrationsPanel.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/AberrationsPanel.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockAberrationsPanel(props);
     return <div>{`Aberrations:${String(props.expanded)}`}</div>;
   },
 }));
 
-vi.mock("../../../../../src/components/display/DistortionTab.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/DistortionTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockDistortionTab(props);
     return <div>Distortion</div>;
   },
 }));
 
-vi.mock("../../../../../src/components/display/ComaTab.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/ComaTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockComaTab(props);
     return <div>Coma</div>;
   },
 }));
 
-vi.mock("../../../../../src/components/display/FocusBreathingTab.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/FocusBreathingTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockFocusBreathingTab(props);
     return <div>Breathing</div>;
   },
 }));
 
-vi.mock("../../../../../src/components/display/PupilAberrationTab.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/PupilAberrationTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockPupilAberrationTab(props);
     return <div>Pupils</div>;
   },
 }));
 
-vi.mock("../../../../../src/components/display/VignettingTab.js", () => ({
+vi.mock("../../../../../src/components/display/analysis/VignettingTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockVignettingTab(props);
     return <div>Vignetting</div>;

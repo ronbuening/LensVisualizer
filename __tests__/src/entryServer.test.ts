@@ -11,11 +11,11 @@
 
 import { describe, it, expect } from "vitest";
 import { render } from "../../src/entry-server.js";
-import { ARTICLES } from "../../src/utils/homepageContent.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../src/utils/lensCatalog.js";
+import { ARTICLES } from "../../src/utils/content/homepageContent.js";
+import { CATALOG_KEYS, LENS_CATALOG } from "../../src/utils/catalog/lensCatalog.js";
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/catalog.js";
-import { getMountDetails } from "../../src/utils/mountDetails.js";
-import { getImageFormatDetails } from "../../src/utils/imageFormatDetails.js";
+import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
+import { getImageFormatDetails } from "../../src/utils/catalog/imageFormatDetails.js";
 import {
   allMakerSlugs,
   makerDisplayName,
@@ -25,7 +25,7 @@ import {
   SOCIAL_IMAGE_TYPE,
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
-} from "../../src/utils/lensMetadata.js";
+} from "../../src/utils/catalog/lensMetadata.js";
 
 /* ── Fixtures (dynamic, drawn from real catalog) ── */
 

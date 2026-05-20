@@ -7,12 +7,12 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/lensCatalog.js";
-import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/lensMetadata.js";
-import { getMakerDetails } from "../utils/makerDetails.js";
-import { collectionPageJsonLd, itemListJsonLd } from "../utils/structuredData.js";
-import { usePageThemeToggle } from "../utils/usePageThemeToggle.js";
-import { PAGE_BASE_STYLE } from "../utils/pageStyles.js";
+import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { getMakerDetails } from "../utils/catalog/makerDetails.js";
+import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
+import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 
 interface MakerEntry {
   display: string;

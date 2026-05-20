@@ -8,8 +8,8 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import type { RecentLensEntry } from "../../utils/lensCatalog.js";
-import { LENS_CATALOG } from "../../utils/lensCatalog.js";
+import type { RecentLensEntry } from "../../utils/catalog/lensCatalog.js";
+import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 
 interface RecentLensesProps {
   entries: RecentLensEntry[];

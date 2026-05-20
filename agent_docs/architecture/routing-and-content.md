@@ -28,7 +28,7 @@ build metadata.
 ## Static Page Shells
 
 - `PageNavBar.tsx` provides themed static-page navigation with theme and high-contrast toggles.
-- `src/utils/pageStyles.ts` exports shared static page base styles and fallback link styles.
+- `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.
 
 ## SSR And Prerender Flow
@@ -48,8 +48,8 @@ hydration.
 ## SEO Metadata
 
 - `SEOHead.tsx` sets page title, meta tags, Open Graph, Twitter Card, canonical URL, and JSON-LD.
-- `src/utils/lensMetadata.ts` owns lens page titles, descriptions, canonical URLs, maker extraction, and lens JSON-LD.
-- `src/utils/structuredData.ts` owns page-level JSON-LD helpers.
+- `src/utils/catalog/lensMetadata.ts` owns lens page titles, descriptions, canonical URLs, maker extraction, and lens JSON-LD.
+- `src/utils/seo/structuredData.ts` owns page-level JSON-LD helpers.
 - Maker prefixes are generated from the script-owned source of truth in `scripts/maker-prefixes.mjs` into
   `src/generated/maker-prefixes.json`, which runtime metadata helpers consume.
 
@@ -67,7 +67,8 @@ The shared renderer preserves:
 - Description-panel compact typography and safe external links.
 
 Article markdown files live in `src/content/**/*.md`. Their frontmatter flows through
-`scripts/generate-build-metadata.mjs` into generated homepage/article registries in `src/utils/homepageContent.ts`.
+`scripts/generate-build-metadata.mjs` into generated homepage/article registries in
+`src/utils/content/homepageContent.ts`.
 
 Lens description markdown files live beside lens data files as `*.analysis.md` and render in `DescriptionPanel.tsx`.
 

@@ -3,7 +3,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import SharedSlidersBar from "../../../src/comparison/SharedSlidersBar.js";
-import themes from "../../../src/utils/themes.js";
+import themes from "../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 import type {
   AperturePairResult,

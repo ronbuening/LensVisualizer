@@ -4,8 +4,8 @@ import type { Dispatch, ReactElement, ReactNode } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { vi } from "vitest";
-import themes from "../src/utils/themes.js";
-import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../src/utils/LensContext.js";
+import themes from "../src/utils/theme/themes.js";
+import { LensDispatchContext, LensStateContext, type LensCtxValue } from "../src/utils/state/LensContext.js";
 import type { LensAction, LensState } from "../src/types/state.js";
 import type { Theme } from "../src/types/theme.js";
 

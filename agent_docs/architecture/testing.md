@@ -24,7 +24,7 @@ Coverage configuration lives in `vite.config.js` and includes:
 
 Most tests mirror the files they cover:
 
-- `src/components/display/AberrationsPanel.tsx` -> `__tests__/src/components/display/AberrationsPanel.test.tsx`
+- `src/components/display/analysis/AberrationsPanel.tsx` -> `__tests__/src/components/display/analysis/AberrationsPanel.test.tsx`
 - `src/optics/internal/exactSurfaceTrace.ts` -> `__tests__/src/optics/internal/exactSurfaceTrace.test.ts`
 - `src/pages/lensIndex/catalog.ts` -> `__tests__/src/pages/lensIndex/lensIndexCatalog.test.ts`
 

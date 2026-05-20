@@ -8,8 +8,8 @@
 
 import CardinalControls from "../controls/CardinalControls.js";
 import { ENABLE_CARDINAL_ELEMENTS, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
-import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/lensReducer.js";
-import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/styles.js";
+import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../utils/state/lensReducer.js";
+import { toggleGroup, toggleBtn, chromChannelBtn, headerStrip } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
 import type { BooleanRayField, LensAction, OffAxisMode, RayDensity } from "../../types/state.js";
 import type { Dispatch } from "react";

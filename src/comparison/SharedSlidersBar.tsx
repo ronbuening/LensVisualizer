@@ -32,7 +32,7 @@ import { formatSharedFocusDist, sharedFNumber } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import { formatDist, eflAtZoom } from "../optics/optics.js";
 import { getGroupMovementAvailability } from "../optics/groupMovement.js";
-import { snapToZeroStop } from "../utils/sliderStops.js";
+import { snapToZeroStop } from "../utils/style/sliderStops.js";
 import type { RuntimeLens } from "../types/optics.js";
 import type { Theme } from "../types/theme.js";
 import type { GroupMovementMode } from "../types/groupMovement.js";

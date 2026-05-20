@@ -13,7 +13,7 @@ describe("AboutFooter", () => {
   });
 
   it("imports style factories from styles module", async () => {
-    const styles = await import("../../../../src/utils/styles.js");
+    const styles = await import("../../../../src/utils/style/styles.js");
     expect(typeof styles.headerStrip).toBe("function");
     expect(typeof styles.topBarBtn).toBe("function");
   });
