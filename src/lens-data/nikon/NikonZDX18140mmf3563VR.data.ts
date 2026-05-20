@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.80809,
       vd: 22.74,
       fl: 20.6,
-      glass: "S-TIH53 (OHARA)",
+      glass: "J-SFH1 (Hikari)",
       role: "Biconvex positive; dense flint chromatic corrector in variator",
     },
     {
@@ -181,7 +181,7 @@ const LENS_DATA = {
       nd: 1.60342,
       vd: 38.03,
       fl: 86.3,
-      glass: "S-TIM2 (OHARA)",
+      glass: "S-TIM5 (OHARA)",
       role: "Biconvex positive singlet in G3",
     },
     {
@@ -242,7 +242,7 @@ const LENS_DATA = {
       nd: 1.66755,
       vd: 41.87,
       fl: -131.9,
-      glass: "L-LAM60 (OHARA, tentative, Δνd ≈ 0.06)",
+      glass: "J-BASF6 (Hikari)",
       cemented: "T1",
       role: "Negative meniscus; concave toward object, VR sub-group rear, cemented to L35g",
     },
@@ -282,7 +282,7 @@ const LENS_DATA = {
       nd: 1.90265,
       vd: 35.77,
       fl: -37.7,
-      glass: "S-LAH58 (OHARA)",
+      glass: "J-LASFH9 (Hikari)",
       role: "Negative meniscus; concave toward object, field flattener",
     },
     {

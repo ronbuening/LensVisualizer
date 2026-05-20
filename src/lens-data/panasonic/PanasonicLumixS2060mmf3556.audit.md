@@ -36,3 +36,10 @@ The solve treats the patent's published direction as authoritative and estimates
 - `npm run lint` — passed.
 - `npm run test -- buildLens` — passed, 51 tests.
 - `npm run test` — passed, 118 files / 1543 tests. React error-boundary tests emitted expected throw stacks while still passing.
+
+## 2026-05-20 — Glass relabel follow-up
+
+- Opened the data, analysis, and local patent PDF `patents/JP2021179551A.pdf`; local text confirms the queued rows at surfaces 6, 8, 11A, and 15.
+- Updated surface 6 to a code-only `859300` annotation because no exact public coefficient-backed catalog match was found.
+- Updated surface 8 to `J-LASF021 (Hikari)`, surface 11A to `K-VC89 (Sumita)`, and surface 15 to `NBFD15 (HOYA)`.
+- Remaining incomplete Sellmeier coverage is from the code-only 859300 row and unrelated `L-PHL1` / `S-NPH7` no-catalog rows.

@@ -60,3 +60,11 @@ Changes made:
 - Added Hikari J-KZFH6 to `glassCatalogData.ts`.
 - Relabeled L62 in `NikonNikkorZ24200mmf463VR.data.ts` to `J-KZFH6 (Hikari) — titanium flint (684376)`.
 - Updated `NikonNikkorZ24200mmf463VR.analysis.md` so L62 is no longer described as catalog-unresolved.
+
+## 2026-05-20 — Glass relabel follow-up
+
+- Opened the data, analysis, and local patent PDF `patents/JPWO2020157904A1.pdf`; local text confirms the queued rows.
+- Updated L11 and L42 to `S-LAH95 (OHARA)`.
+- Updated L13 to `S-LAH59 (OHARA)`.
+- Updated the L12/L13 ED pair to `J-PSKH1 (Hikari)` to improve Sellmeier coverage for the repeated 593/679 glass.
+- Remaining coverage gaps are unrelated no-catalog patent glasses at 157957/5374 and 182080/4251 plus existing code-only rows.

@@ -73,3 +73,9 @@ Catalog version: 5c81522
 - `npm run generate:glass-reports` - passed; the 531559 row remains in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 - `npm run typecheck` - passed.
 - `npm run format:check` - passed.
+
+## 2026-05-20 - Glass relabel follow-up
+
+- Opened the data, analysis, and local patent PDF `patents/US20200142167A1.pdf`; local text confirms the queued rows at surfaces 10, 27, and 32.
+- Updated L6 to `E-FDS1 (HOYA)`, L15 to `S-NBH56 (OHARA)`, and L18 to `S-TIH6 (OHARA)`.
+- The lens remains below full Sellmeier coverage only because the previously audited code-only 531559 row and unmatched 593686 row still lack defensible coefficient-backed public matches.

@@ -16,7 +16,7 @@ The following convergent evidence links Example 2 to the production Sony Carl Ze
 2. **Focal length.** The patent's computed EFL of 23.28 mm corresponds to the marketed 24 mm focal length on an APS-C sensor (36 mm equivalent in 35 mm format).
 3. **Maximum aperture.** Patent Fno = 1.85, consistent with the marketed f/1.8 specification.
 4. **Aspherical element count and placement.** The patent places aspherical surfaces on two elements — one before the aperture stop (G2, rear surface S4) and one after (G6, both surfaces S11–S12). Sony's product literature describes two aspherical elements, confirming placement bracketing the stop.
-5. **ED element.** The patent design includes the phosphate crown PCD4 (Hoya) / S-PHM53 (OHARA) at $n_d = 1.618$, $\nu_d = 63.40$ in the cemented doublet position (G5), consistent with Sony's specification of one ED element.
+5. **ED element.** The patent design includes the phosphate crown S-PHM52 (OHARA) at $n_d = 1.618$, $\nu_d = 63.40$ in the cemented doublet position (G5), consistent with Sony's specification of one ED element.
 6. **Close-focus magnification.** The patent's $\beta = -0.25$ at close focus matches the production lens's stated 0.25× maximum magnification.
 7. **Focus mechanism.** A single negative meniscus lens (G7) constitutes the focus group (GR2), consistent with the production lens's linear-motor inner-focus system designed for fast, quiet AF in both stills and video.
 8. **Patent timing.** The Japanese priority date of August 4, 2011 precedes the lens's announcement in late 2011 by only a few months, consistent with standard filing-to-product timelines.
@@ -46,7 +46,7 @@ G1 is the front element of the GR1a wide-converter subgroup. Its strongly curved
 
 ### G2 — Negative Meniscus, Convex to Object (Rear Surface Aspherical)
 
-$n_d = 1.589$, $\nu_d = 61.25$. Glass: S-BAL2 (OHARA) — barium silicate crown. $f \approx -60.5$ mm.
+$n_d = 1.589$, $\nu_d = 61.25$. Glass: N-SK5 (Schott) — borosilicate crown. $f \approx -60.5$ mm.
 
 G2 continues the diverging action of GR1a with weaker negative power. Its rear surface (S4) is the first aspherical surface in the system, with $K = 0$ and a dominant negative $A_4 = -3.659 \times 10^{-5}$. At the estimated clear aperture, the aspherical departure produces a meaningful peripheral flattening that corrects for the large field angle. This aspherical surface primarily addresses distortion and coma introduced by the steep curvature of G1, consistent with the patent's description of distortion control by the pre-stop aspherical element. The barium crown glass provides a good balance between refractive power and low dispersion at moderate index ($n_d \approx 1.59$).
 
@@ -64,9 +64,9 @@ G4 is the negative component of the cemented achromatic doublet immediately afte
 
 ### G5 — Positive Biconvex (Cemented with G4) — ED Element
 
-$n_d = 1.618$, $\nu_d = 63.40$. Glass: PCD4 (Hoya) / S-PHM53 (OHARA) — phosphate crown (ED-class). $f \approx +20.3$ mm.
+$n_d = 1.618$, $\nu_d = 63.40$. Glass: S-PHM52 (OHARA) — phosphate crown (ED-class). $f \approx +20.3$ mm.
 
-G5 is the positive component of the cemented doublet and the element most likely designated as the "ED element" in Sony's specifications. PCD4 is a phosphate-crown glass with anomalous partial dispersion — its $\nu_d = 63.4$ places it in the ED-class range, and its phosphate composition provides a higher $P_{g,F}$ than a normal crown of similar Abbe number. Cemented to the dense flint G4, G5 provides achromatic correction with partial secondary-spectrum reduction. The G4+G5 cemented doublet has a combined focal length of approximately $-44.9$ mm (net weakly negative), confirming that this pair functions primarily as a chromatic corrector rather than a power element — the net system power is carried by G3 and G6. The 4.655 mm thickness of G5 relative to G4's 1.0 mm reflects the typical thick-crown / thin-flint asymmetry of ED doublets designed for optimal secondary-spectrum cancellation.
+G5 is the positive component of the cemented doublet and the element most likely designated as the "ED element" in Sony's specifications. S-PHM52 is a phosphate-crown glass with anomalous partial dispersion — its $\nu_d = 63.4$ places it in the ED-class range, and its phosphate composition provides a higher $P_{g,F}$ than a normal crown of similar Abbe number. Cemented to the dense flint G4, G5 provides achromatic correction with partial secondary-spectrum reduction. The G4+G5 cemented doublet has a combined focal length of approximately $-44.9$ mm (net weakly negative), confirming that this pair functions primarily as a chromatic corrector rather than a power element — the net system power is carried by G3 and G6. The 4.655 mm thickness of G5 relative to G4's 1.0 mm reflects the typical thick-crown / thin-flint asymmetry of ED doublets designed for optimal secondary-spectrum cancellation.
 
 ### G6 — Positive Biconvex, Double Aspherical
 
@@ -81,7 +81,7 @@ Together, these surfaces form a complementary aspherical pair: the front surface
 
 ### G7 — Negative Meniscus, Convex to Object (Focus Group)
 
-$n_d = 1.697$, $\nu_d = 55.46$. Glass: TAC4 (Hoya) / N-SK2 (Schott) — tantalum crown / dense crown. $f \approx -35.0$ mm.
+$n_d = 1.697$, $\nu_d = 55.46$. Glass: N-LAK14 (Schott) — lanthanum crown. $f \approx -35.0$ mm.
 
 G7 is the sole element of GR2, the inner-focus group. It is a negative meniscus with a steep image-side surface ($R_{14} = 20.701$ mm) and a nearly flat object-side surface ($R_{13} = 138.976$ mm). The patent specifies that the image-side curvature must be greater than the object-side curvature to suppress spherical aberration during focus motion (¶0052–0053). During focusing from infinity to close range ($\beta = -0.25$), G7 moves 4.13 mm toward the image, expanding the air gap D12 from 1.005 mm to 5.133 mm while contracting D14 from 7.603 mm to 3.474 mm. The total gap sum is conserved at $\approx 8.61$ mm, confirming that GR3 remains stationary during focus.
 
@@ -89,26 +89,26 @@ The light weight of this single 1.0 mm-thick lens — combined with the dense cr
 
 ### G8 — Positive Biconvex (Rear Relay)
 
-$n_d = 1.618$, $\nu_d = 63.40$. Glass: PCD4 (Hoya) / S-PHM53 (OHARA) — phosphate crown (ED-class, same glass as G5). $f \approx +49.7$ mm.
+$n_d = 1.618$, $\nu_d = 63.40$. Glass: S-PHM52 (OHARA) — phosphate crown (ED-class, same glass as G5). $f \approx +49.7$ mm.
 
-G8 is the sole element of GR3, a fixed rear relay group. Its weak positive power gently converges the beam toward the sensor while maintaining nearly telecentric exit geometry — an important requirement for digital sensors with microlens arrays. The biconvex shape with a weak front surface ($R_{15} = 344.293$ mm) and stronger rear surface ($R_{16} = -33.618$ mm) concentrates most of the refracting power at the rear, which keeps the chief-ray angle small at the image plane. Using the same PCD4 glass as G5 provides a measure of chromatic symmetry between the pre- and post-focus groups, reducing secondary spectrum variation during focus travel. The patent notes that condition equation (3), $0.5 < \text{EXP}/|R_{3b}| < 2.5$, ensures that changes in the light-beam path through G8 remain small during focusing, suppressing field-curvature shift (¶0063–0066). For Example 2, $\text{EXP}/|R_{3b}| = 1.583$.
+G8 is the sole element of GR3, a fixed rear relay group. Its weak positive power gently converges the beam toward the sensor while maintaining nearly telecentric exit geometry — an important requirement for digital sensors with microlens arrays. The biconvex shape with a weak front surface ($R_{15} = 344.293$ mm) and stronger rear surface ($R_{16} = -33.618$ mm) concentrates most of the refracting power at the rear, which keeps the chief-ray angle small at the image plane. Using the same S-PHM52 glass as G5 provides a measure of chromatic symmetry between the pre- and post-focus groups, reducing secondary spectrum variation during focus travel. The patent notes that condition equation (3), $0.5 < \text{EXP}/|R_{3b}| < 2.5$, ensures that changes in the light-beam path through G8 remain small during focusing, suppressing field-curvature shift (¶0063–0066). For Example 2, $\text{EXP}/|R_{3b}| = 1.583$.
 
 ## Glass Selection
 
-The design uses seven distinct glass types across eight elements, with one glass (PCD4 / S-PHM53) shared between G5 and G8.
+The design uses seven distinct glass types across eight elements, with one glass (S-PHM52) shared between G5 and G8.
 
 | Element | Glass | Vendor | $n_d$ | $\nu_d$ | Code | Role |
 |---------|-------|--------|-------|---------|------|------|
 | G1 | S-FSL5 | OHARA | 1.487 | 70.44 | 487/704 | Fluorophosphate crown; low dispersion at front for minimal chromatic load |
-| G2 | S-BAL2 | OHARA | 1.589 | 61.25 | 589/612 | Barium silicate crown; moderate index for aspherical meniscus substrate |
+| G2 | N-SK5 | Schott | 1.589 | 61.25 | 589/612 | Borosilicate crown; moderate index for aspherical meniscus substrate |
 | G3 | S-LAH55V | OHARA | 1.835 | 42.72 | 835/427 | Lanthanum dense crown; high index for strong positive power at low curvature |
 | G4 | S-TIH4 | OHARA | 1.755 | 27.53 | 755/275 | Titanium (dense) flint; high dispersion for achromatic pairing with G5 |
-| G5 | PCD4 / S-PHM53 | Hoya / OHARA | 1.618 | 63.40 | 618/634 | Phosphate crown (ED); anomalous dispersion for chromatic correction |
+| G5 | S-PHM52 | OHARA | 1.618 | 63.40 | 618/634 | Phosphate crown (ED); anomalous dispersion for chromatic correction |
 | G6 | Unmatched | — | 1.801 | 45.45 | 801/454 | High-index dense crown; double-asph PGM biconvex with strong power |
-| G7 | TAC4 / N-SK2 | Hoya / Schott | 1.697 | 55.46 | 697/555 | Dense crown; moderate index and weight for lightweight focus element |
-| G8 | PCD4 / S-PHM53 | Hoya / OHARA | 1.618 | 63.40 | 618/634 | Same as G5; chromatic symmetry across the focus group |
+| G7 | N-LAK14 | Schott | 1.697 | 55.46 | 697/555 | Lanthanum crown; moderate index and weight for lightweight focus element |
+| G8 | S-PHM52 | OHARA | 1.618 | 63.40 | 618/634 | Same as G5; chromatic symmetry across the focus group |
 
-The chromatic correction strategy centers on the G4+G5 cemented doublet, which pairs the high-dispersion S-TIH4 ($\nu_d = 27.5$) against the low-dispersion ED-class PCD4 ($\nu_d = 63.4$). The Abbe-number difference of $\Delta\nu_d = 35.9$ provides strong achromatic leverage. By placing a second PCD4 element (G8) in the rear relay, the design achieves partial chromatic symmetry across the focus group, reducing longitudinal color shift during focus travel.
+The chromatic correction strategy centers on the G4+G5 cemented doublet, which pairs the high-dispersion S-TIH4 ($\nu_d = 27.5$) against the low-dispersion ED-class S-PHM52 ($\nu_d = 63.4$). The Abbe-number difference of $\Delta\nu_d = 35.9$ provides strong achromatic leverage. By placing a second S-PHM52 element (G8) in the rear relay, the design achieves partial chromatic symmetry across the focus group, reducing longitudinal color shift during focus travel.
 
 The glass palette is consistent with Sony/Zeiss lens production practices of this era, drawing primarily from Hoya and OHARA catalogs. One glass — the lanthanum dense crown used for G6 ($n_d = 1.801$, $\nu_d = 45.45$) — does not match any published standard catalog entry within typical matching tolerances; it is likely a restricted-catalog moldable formulation optimized for precision glass molding of the double-aspherical element. The patent, being vendor-agnostic in its prescription, does not specify glass suppliers explicitly.
 
@@ -182,7 +182,7 @@ The positive–negative–positive three-group architecture distributes aberrati
 
 **Spherical aberration** is managed primarily by the G4+G5 cemented doublet (which provides a strong negative SA contribution from the biconcave G4) and the double-aspherical G6 (whose front surface S11 provides zonal fine-tuning). The patent's aberration diagrams (Fig. 5) show well-corrected SA at f/1.85, with residual curves staying within $\pm 0.25$ mm across d, C, and g wavelengths.
 
-**Chromatic aberration** is corrected by the G4+G5 cemented ED doublet at the chromatic-leverage point immediately after the aperture stop, and supplemented by the low-dispersion G1 at the front (which minimizes the chromatic load from the steep front-group surfaces). The shared PCD4 glass between G5 and G8 provides chromatic balance across the focus group.
+**Chromatic aberration** is corrected by the G4+G5 cemented ED doublet at the chromatic-leverage point immediately after the aperture stop, and supplemented by the low-dispersion G1 at the front (which minimizes the chromatic load from the steep front-group surfaces). The shared S-PHM52 glass between G5 and G8 provides chromatic balance across the focus group.
 
 **Field curvature** is controlled through the Petzval sum. The computed surface-by-surface Petzval sum is $+0.00691$ mm$^{-1}$, corresponding to a Petzval radius of $\approx +145$ mm. For an APS-C image circle of 28.4 mm diagonal, the Petzval field sag at the corner is approximately $\frac{14.2^2}{2 \times 145} \approx 0.70$ mm — a moderate value that is corrected by residual astigmatism and field curvature from the aspherical surfaces.
 
@@ -231,6 +231,6 @@ The computed EFL of 23.298 mm differs from the patent's stated 23.28 mm by 0.018
 
 1. US 2013/0033768 A1, *Imaging Lens and Imaging Apparatus*, Sony Corporation (Sunaga, Otake, Hosoi). Published February 7, 2013. Priority: JP 2011-171294, August 4, 2011.
 2. Sony SEL24F18Z product page: Lens diagram, specifications, MTF data. Confirms 8 elements / 7 groups, 2 aspherical elements, 1 ED element, 7 aperture blades, MFD 16 cm, 0.25× magnification, 49 mm filter thread.
-3. OHARA Glass Catalog: S-FSL5, S-BAL2, S-LAH55V, S-TIH4, S-PHM53 glass data.
-4. Hoya Glass Cross Reference Index: PCD4, TAFD25, TAFD33, TAC4, BSC7 glass data.
-5. Schott Optical Glass Catalog: N-FK5, N-SK2 cross-reference equivalents.
+3. OHARA Glass Catalog: S-FSL5, S-LAH55V, S-TIH4, S-PHM52 glass data.
+4. Hoya Glass Cross Reference Index: TAFD25, TAFD33, BSC7 glass data.
+5. Schott Optical Glass Catalog: N-FK5, N-SK5, N-LAK14 cross-reference equivalents.
