@@ -84,7 +84,7 @@ $n_d$ = 1.49845, $\nu_d$ = 81.6. Glass: S-FPL51 class (OHARA) — extra-low-disp
 
 #### L32 — Positive Meniscus, convex to object
 
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: TAFD30 (HOYA) or S-TIH53 equivalent — ultra-high-index dense flint. $f$ = +100.9 mm.
+$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code ultra-high-index dense flint. $f$ = +100.9 mm.
 
 L31 and L32 form a cemented doublet with a combined group focal length of $f_{GR3}$ = −214.8 mm. The cemented interface at R10 = +63.489 mm is the achromatizing surface: the transition from the low-index, low-dispersion ED crown (L31) to the high-index, high-dispersion dense flint (L32) produces a strong negative chromatic contribution that compensates for zoom-induced color shifts. The ED + dense flint pairing ($\nu_d$ = 81.6 vs. 24.8, a span of 56.8 Abbe units) provides more effective achromatization per unit of power than a conventional crown–flint doublet. The overall negative power of GR3 supplements GR2's zooming action, while the cemented construction eliminates the air-gap alignment sensitivity that would otherwise arise in a moving group.
 
@@ -112,17 +112,17 @@ The aperture stop sits between L51 and L52 at surface S16, within GR5. This posi
 
 #### L52 — Biconcave Negative
 
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: TAFD30 (HOYA) — ultra-high-index dense flint, same glass as L32. $f$ = −47.5 mm.
+$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code ultra-high-index dense flint, same glass as L32. $f$ = −47.5 mm.
 
 L52 follows the stop and provides strong negative power to achromatize GR5 against the positive ED element L51. The $\nu_d$ = 24.8 flint paired with the $\nu_d$ = 81.6 ED crown yields a chromatic lever of 56.8 Abbe units, identical to the GR3 doublet pairing. L52's biconcave shape (R17 = −192.404, R18 = +52.285) places the stronger curvature on the rear surface, which faces toward the incoming converging beam from the stop, maximizing its effectiveness at correcting spherical and coma contributions from L51.
 
 #### L53 + L54 — Cemented Doublet (OIS Group)
 
 **L53** — Negative Meniscus, convex to object.
-$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: TAFD30 (HOYA). $f$ = −145.7 mm.
+$n_d$ = 1.86290, $\nu_d$ = 24.8. Glass: 863248 patent-code dense flint. $f$ = −145.7 mm.
 
 **L54** — Biconvex Positive, 1× Aspherical (rear surface S21).
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: S-BAL41 (OHARA) — barium crown, exact catalog match. $f$ = +40.7 mm.
+$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: 585594 patent-code barium crown; no unique public catalog match found. $f$ = +40.7 mm.
 
 The cemented L53 + L54 doublet is identified by the patent (¶0091) as the optical image stabilization (OIS) group: "the cemented lens composed of L53 and L54 can be used as the stabilization lens group by moving perpendicular to the optical axis." This is the "decentering" element that shifts laterally to counteract hand-shake blur. The cemented construction ensures that L53 and L54 move as a rigid unit during OIS operation without introducing decenter-induced coma from an air gap.
 
@@ -132,9 +132,9 @@ The net power of the cemented pair ($f$ ≈ +56 mm) is positive, contributing to
 
 #### L55 — Biconvex Positive, 2× Aspherical (XA Element)
 
-$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: S-BAL41 (OHARA) — same barium crown as L54. $f$ = +126.2 mm.
+$n_d$ = 1.58547, $\nu_d$ = 59.4. Glass: 585594 patent-code barium crown, same glass as L54. $f$ = +126.2 mm.
 
-L55 is a standalone biconvex element with both surfaces (S22, S23) aspherical. This is the XA (Extreme Aspherical) element, manufactured to 0.01-micron surface precision per Sony's specification. The XA designation indicates a glass-molded aspherical element with surface accuracy an order of magnitude tighter than standard aspherical elements, specifically designed to suppress "onion ring" bokeh patterns that arise from periodic surface irregularities in conventional aspherics. The S-BAL41 barium crown glass ($n_d$ = 1.58547) is well-suited to precision glass molding (PGM), with a glass transition temperature and thermal expansion compatible with high-accuracy molding processes.
+L55 is a standalone biconvex element with both surfaces (S22, S23) aspherical. This is the XA (Extreme Aspherical) element, manufactured to 0.01-micron surface precision per Sony's specification. The XA designation indicates a glass-molded aspherical element with surface accuracy an order of magnitude tighter than standard aspherical elements, specifically designed to suppress "onion ring" bokeh patterns that arise from periodic surface irregularities in conventional aspherics. The patent-code barium crown glass ($n_d$ = 1.58547) is well-suited to precision glass molding (PGM), but the audit did not find a unique public catalog entry for the exact pair.
 
 S22 has very weak base curvature (R = +325.773 mm) but significant aspherical departure (A4 = 6.525 × 10⁻⁶), functioning almost as a Schmidt-plate-type corrector that manages field-dependent spherical aberration. S23 has stronger base curvature (R = −95.070) with aspherical terms extending to A14, providing combined sagittal and tangential field correction. Together, L55's two aspherical surfaces fine-tune the wavefront across the field at all zoom positions, balancing sharpness against bokeh quality — a hallmark of the G Master design philosophy.
 
@@ -143,14 +143,14 @@ S22 has very weak base curvature (R = +325.773 mm) but significant aspherical de
 #### L61 + L62 — Cemented Doublet
 
 **L61** — Plano-Convex, convex to image.
-$n_d$ = 1.93323, $\nu_d$ = 20.9. Glass: S-NPH53 (OHARA) — ultra-high-index ultra-dense flint, exact catalog match. $f$ = +58.6 mm.
+$n_d$ = 1.93323, $\nu_d$ = 20.9. Glass: 933209 patent-code ultra-high-index ultra-dense flint; no unique public catalog match found. $f$ = +58.6 mm.
 
 **L62** — Biconcave Negative.
-$n_d$ = 1.65803, $\nu_d$ = 39.7. Glass: S-TIM22 (OHARA) — titanium flint, exact catalog match. $f$ = −29.7 mm.
+$n_d$ = 1.65803, $\nu_d$ = 39.7. Glass: 658397 patent-code short flint; no unique public catalog match found. $f$ = −29.7 mm.
 
 GR6 is the first of two floating focus groups, with a combined group focal length of $f_{GR6}$ = −61.0 mm. During focusing from infinity to close range, GR6 moves toward the image side (¶0091). At the telephoto end, GR6's focus travel is largest: d23 increases from 2.30 mm (infinity) to 11.53 mm (close focus at 1000 mm), corresponding to 9.23 mm of rearward motion. At the wide end the travel is much smaller (1.14 mm), consistent with the reduced sensitivity of the system to focus shifts at shorter focal lengths.
 
-L61's flat front surface (R24 = ∞) simplifies manufacturing and alignment, while its ultra-high-index S-NPH53 glass ($n_d$ = 1.933, $\nu_d$ = 20.9) provides strong positive surface power at the cemented junction (R25 = −54.730). The junction transition from $n_d$ = 1.933 to $n_d$ = 1.658 produces a large index step (Δ$n$ = 0.275) that is the primary source of GR6's chromatic correction. The net negative power of the doublet provides divergence that is partially compensated by GR7's convergence, and the floating relationship between GR6 and GR7 controls the aberration balance (particularly spherical aberration and field curvature) as the object distance changes.
+L61's flat front surface (R24 = ∞) simplifies manufacturing and alignment, while its ultra-high-index 933209 patent-code glass ($n_d$ = 1.933, $\nu_d$ = 20.9) provides strong positive surface power at the cemented junction (R25 = −54.730). The junction transition from $n_d$ = 1.933 to $n_d$ = 1.658 produces a large index step (Δ$n$ = 0.275) that is the primary source of GR6's chromatic correction. The net negative power of the doublet provides divergence that is partially compensated by GR7's convergence, and the floating relationship between GR6 and GR7 controls the aberration balance (particularly spherical aberration and field curvature) as the object distance changes.
 
 Two of the lens's four XD Linear Motors are dedicated to driving GR6.
 
@@ -194,20 +194,20 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L13     | 1.43810 | 95.1    | S-FPL55 (OHARA) / FCD100 (HOYA) | Super ED crown  | Close      |
 | L21     | 1.77621 | 49.6    | S-LAH66 class (OHARA)     | Lanthanum crown     | Close      |
 | L31     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
-| L32     | 1.86290 | 24.8    | TAFD30 (HOYA)              | Ultra-dense flint   | Exact      |
+| L32     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
 | L41     | 1.79191 | 25.7    | Dense flint (792/257)      | Dense flint         | Uncertain  |
 | L51     | 1.49856 | 81.6    | S-FPL51 class (OHARA)     | ED crown (moldable) | Close      |
-| L52     | 1.86290 | 24.8    | TAFD30 (HOYA)              | Ultra-dense flint   | Exact      |
-| L53     | 1.86290 | 24.8    | TAFD30 (HOYA)              | Ultra-dense flint   | Exact      |
-| L54     | 1.58547 | 59.4    | S-BAL41 (OHARA)            | Barium crown        | Exact      |
-| L55     | 1.58547 | 59.4    | S-BAL41 (OHARA)            | Barium crown (XA)   | Exact      |
-| L61     | 1.93323 | 20.9    | S-NPH53 (OHARA)            | Ultra-dense flint   | Exact      |
-| L62     | 1.65803 | 39.7    | S-TIM22 (OHARA)            | Titanium flint      | Exact      |
+| L52     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
+| L53     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
+| L54     | 1.58547 | 59.4    | 585594 patent-code         | Barium crown        | Patent-code |
+| L55     | 1.58547 | 59.4    | 585594 patent-code         | Barium crown (XA)   | Patent-code |
+| L61     | 1.93323 | 20.9    | 933209 patent-code         | Ultra-dense flint   | Patent-code |
+| L62     | 1.65803 | 39.7    | 658397 patent-code         | Short flint         | Patent-code |
 | L71     | 1.61669 | 44.3    | E-FEL6 class (HOYA)        | Eco flint (617/443) | Close      |
 | L81     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
 | L82     | 2.00912 | 29.1    | FD225 (HOYA)               | Ultra-dense flint   | Exact      |
 
-The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: TAFD30 ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. The use of HOYA FD225 ($n_d$ = 2.009) in L82 pushes the index to the extreme high end of the glass map, allowing very compact negative elements at the rear of the system.
+The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. The use of HOYA FD225 ($n_d$ = 2.009) in L82 pushes the index to the extreme high end of the glass map, allowing very compact negative elements at the rear of the system.
 
 Two elements — L11 (1.77660/29.7) and L41 (1.79191/25.7) — resist confident identification against any public catalog. The nearest matches (S-NPH4 / FD110 at $n_d$ = 1.78472, $\nu_d$ = 26.1) fall short on both index and Abbe number, suggesting proprietary melt compositions or deliberate obfuscation in the patent. L21 (1.77621/49.6) matches S-LAH66 (OHARA) in Abbe number exactly ($\nu_d$ = 49.6) with $\Delta n_d$ = 0.004, a reasonable class match for a lanthanum crown. Elements marked "Close" in confidence have $\Delta n_d$ in the range 0.001–0.004 from their nearest catalog match. For the Super ED elements (L12, L13), S-FPL55 from OHARA ($n_d$ = 1.43875, $\nu_d$ = 95.0) is the closer match by refractive index ($\Delta n_d$ = 0.00065), while HOYA FCD100 ($n_d$ = 1.43700, $\nu_d$ = 95.1) matches the Abbe number exactly ($\Delta \nu_d$ = 0). Either glass is plausible; Sony patents have used both OHARA and HOYA Super ED glasses in different designs. For the ED elements (L31, L51, L81), S-FPL51 / FCD1 ($n_d$ = 1.49700, $\nu_d$ = 81.6) is the clear family match, with the 0.0015 index offset likely reflecting a modified melt or patent obfuscation.
 
@@ -329,5 +329,5 @@ The design also reflects Sony's vertically integrated glass and manufacturing ca
 1. JP 2023-039817 A, Sony Group Corporation, published March 22, 2023. Example 2.
 2. Sony Corporation, "FE 70-200mm F2.8 GM OSS II" official product specifications, https://www.sony.com/.
 3. OpticalLimits review of the Sony FE 70-200mm f/2.8 GM OSS II, June 2024.
-4. OHARA Optical Glass catalog (S-FPL51, S-FPL55, S-LAH66, S-NPH53, S-NPH4, S-BAL41, S-TIM22).
-5. HOYA Optical Glass catalog (TAFD30, FD110, FD225, FCD100, E-FEL6).
+4. OHARA and HOYA optical glass catalogs, checked during the 2026-05-20 audit; L32/L52/L53, L54/L55, L61, and L62 remain patent-code labels where no unique coefficient-backed public match was found.
+5. HOYA Optical Glass catalog (FD110, FD225, FCD100, E-FEL6).

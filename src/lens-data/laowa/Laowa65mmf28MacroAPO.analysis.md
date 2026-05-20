@@ -54,7 +54,7 @@ The following walks through each element from front (object side) to rear (image
 
 #### L1 — Negative Meniscus, convex to object (cemented with L2)
 
-$n_d = 1.61800$, $\nu_d = 63.39$. Glass: H-QK3L (CDGM) — fluorophosphate crown. $f = -156.9$ mm.
+$n_d = 1.61800$, $\nu_d = 63.39$. Glass: S-PHM52 (OHARA) — phosphate crown. $f = -156.9$ mm.
 
 L1 is the front element of the lens. It is a meniscus with both surfaces convex toward the object (R1 = +131.04, R2 = +55.57), meaning both centers of curvature lie on the image side. The rear surface is more steeply curved, giving the element net negative power. As a negative-power crown with $\nu_d = 63.4$, L1's chromatic contribution is small and opposite in sign to that of its cemented partner L2 — the two together form a weakly powered achromatic pair.
 
@@ -90,9 +90,9 @@ H-FK61 is the CDGM equivalent of OHARA S-FPL51 and Hoya FCD1. At a relative pric
 
 #### L5 — Biconcave Negative (cemented with L6)
 
-$n_d = 1.80518$, $\nu_d = 25.46$. Glass: H-ZF6 (CDGM) — dense flint. $f = -11.4$ mm.
+$n_d = 1.80518$, $\nu_d = 25.46$. Glass: H-ZF7LA (CDGM) — dense flint. $f = -11.4$ mm.
 
-L5 is a strongly negative biconcave element (R1 = −65.89, R2 = +10.70) that forms the front half of a cemented doublet with L6. With its short focal length of −11.4 mm and high dispersion ($\nu_d = 25.5$), it introduces substantial negative chromatic aberration that counterbalances the undercorrection from the preceding positive elements L3 and L4. The very tight rear radius of R = +10.70 mm creates a strongly diverging interface — this is one of the most steeply curved surfaces in the entire lens and is critical for Petzval sum correction. H-ZF6 is equivalent to Schott N-SF6 / OHARA S-TIH6.
+L5 is a strongly negative biconcave element (R1 = −65.89, R2 = +10.70) that forms the front half of a cemented doublet with L6. With its short focal length of −11.4 mm and high dispersion ($\nu_d = 25.5$), it introduces substantial negative chromatic aberration that counterbalances the undercorrection from the preceding positive elements L3 and L4. The very tight rear radius of R = +10.70 mm creates a strongly diverging interface — this is one of the most steeply curved surfaces in the entire lens and is critical for Petzval sum correction. H-ZF7LA is the exact CDGM catalog match for this nd/νd pair.
 
 #### L6 — Positive Meniscus, convex to object (cemented with L5)
 
@@ -104,7 +104,7 @@ The L5–L6 cemented doublet ($f_{D2} \approx -17.6$ mm) is a net-negative pair 
 
 #### L7 — Negative Meniscus, convex to object (cemented with L8)
 
-$n_d = 1.80420$, $\nu_d = 46.50$. Glass: H-ZLAF68C (CDGM) — lanthanum dense flint. $f = -61.8$ mm.
+$n_d = 1.80420$, $\nu_d = 46.50$. Glass: H-ZLAF50D (CDGM) — lanthanum dense flint. $f = -61.8$ mm.
 
 L7 is a meniscus with both surfaces convex to the object (R1 = +15.20, R2 = +11.30); the rear surface is more steeply curved, giving net negative power. It is equivalent to Schott N-LASF44 / OHARA S-LAH64. As a lanthanum dense flint with moderate dispersion, L7 contributes negative power while adding controlled positive chromatic aberration — the opposite sign to its cemented partner L8.
 
@@ -146,13 +146,13 @@ L10's strong negative power diverges the beam exiting the stop. This is essentia
 
 #### L11 — Biconcave Negative (cemented with L12)
 
-$n_d = 1.76182$, $\nu_d = 26.61$. Glass: H-ZF4A (CDGM) — dense flint. $f = -14.8$ mm.
+$n_d = 1.76182$, $\nu_d = 26.61$. Glass: S-TIH14 (OHARA) — dense flint. $f = -14.8$ mm.
 
-L11 is a strongly negative biconcave element (R1 = −40.27, R2 = +15.90) cemented to L12. The high dispersion contributes negative (overcorrecting) chromatic aberration in the rear group, counterbalancing any residual undercorrection from the front groups and providing the third leg of the apochromatic color correction. H-ZF4A is approximately equivalent to Schott N-SF14.
+L11 is a strongly negative biconcave element (R1 = −40.27, R2 = +15.90) cemented to L12. The high dispersion contributes negative (overcorrecting) chromatic aberration in the rear group, counterbalancing any residual undercorrection from the front groups and providing the third leg of the apochromatic color correction. S-TIH14 is the closest catalog-backed match for the patent pair.
 
 #### L12 — Biconvex Positive (cemented with L11)
 
-$n_d = 1.90366$, $\nu_d = 31.31$. Glass: H-ZLAF50D (CDGM) — lanthanum dense flint. $f = +10.9$ mm.
+$n_d = 1.90366$, $\nu_d = 31.31$. Glass: S-LAH95 / TAFD25 class (904313) — lanthanum dense flint. $f = +10.9$ mm.
 
 L12 is strongly positive (R1 = +15.90, R2 = −20.92), with the shortest focal length of any element in G3. It is cemented to L11, forming a net-positive doublet ($f_{D4} \approx +28.4$ mm). The use of a high-index lanthanum flint ($n_d = 1.904$) rather than a crown in a positive role is a deliberate choice to minimize Petzval contribution — the high index reduces $\phi/(n \cdot n')$ per unit of power. This glass is approximately equivalent to Hoya TAFD40.
 
@@ -184,18 +184,18 @@ The following table summarizes the glass palette. Laowa, being a Chinese manufac
 
 | Element | $n_d$ | $\nu_d$ | Best CDGM Match | Equivalent | Class | Confidence |
 |---------|-------|---------|-----------------|------------|-------|------------|
-| L1 | 1.61800 | 63.39 | H-QK3L | — | Fluorophosphate crown | High |
+| L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | High |
 | L2 | 1.60342 | 38.01 | H-QF50 | — | Light flint | High |
 | L3 | 1.77250 | 53.00 | Unmatched (LAK class) | — | Lanthanum crown | Uncertain |
 | L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
-| L5 | 1.80518 | 25.46 | H-ZF6 | N-SF6 / S-TIH6 | Dense flint | High |
+| L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | High |
 | L6 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
-| L7 | 1.80420 | 46.50 | H-ZLAF68C | N-LASF44 / S-LAH64 | Lanthanum dense flint | High |
+| L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | High |
 | L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
 | L10 | 1.72916 | 57.67 | Unmatched (LAK class) | — | Lanthanum crown | Uncertain ($\Delta\nu_d = +3.0$ vs H-LAK52) |
-| L11 | 1.76182 | 26.61 | H-ZF4A | ≈ N-SF14 | Dense flint | High |
-| L12 | 1.90366 | 31.31 | H-ZLAF50D | ≈ TAFD40 | Lanthanum dense flint | High |
+| L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | High |
+| L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | High |
 | L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L14 | 1.51823 | 58.96 | H-K8 | ≈ K7 | Crown | High |
 

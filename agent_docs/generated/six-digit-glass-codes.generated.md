@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **214** total code-only elements found
-- **214** elements in this report
-- **79** distinct lens files affected
+- **234** total code-only elements found
+- **234** elements in this report
+- **83** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -35,6 +35,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720503 | 3 | 1 |
 | 744495 | 3 | 3 |
 | 806333 | 3 | 3 |
+| 863248 | 3 | 1 |
 | 903357 | 3 | 3 |
 | 911353 | 3 | 3 |
 | 051269 | 2 | 1 |
@@ -42,6 +43,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 519699 | 2 | 1 |
 | 531559 | 2 | 2 |
 | 561453 | 2 | 2 |
+| 585594 | 2 | 1 |
 | 586609 | 2 | 1 |
 | 603380 | 2 | 1 |
 | 666356 | 2 | 1 |
@@ -68,9 +70,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 520636 | 1 | 1 |
 | 531621 | 1 | 1 |
 | 534554 | 1 | 1 |
+| 534556 | 1 | 1 |
 | 541468 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 553717 | 1 | 1 |
+| 554381 | 1 | 1 |
 | 561575 | 1 | 1 |
 | 567428 | 1 | 1 |
 | 571560 | 1 | 1 |
@@ -78,6 +82,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 576414 | 1 | 1 |
 | 581408 | 1 | 1 |
 | 581409 | 1 | 1 |
+| 585417 | 1 | 1 |
+| 586595 | 1 | 1 |
 | 592670 | 1 | 1 |
 | 593355 | 1 | 1 |
 | 593686 | 1 | 1 |
@@ -89,11 +95,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 614563 | 1 | 1 |
 | 618634 | 1 | 1 |
 | 623581 | 1 | 1 |
+| 624470 | 1 | 1 |
 | 624584 | 1 | 1 |
 | 625533 | 1 | 1 |
 | 626357 | 1 | 1 |
 | 639554 | 1 | 1 |
 | 642581 | 1 | 1 |
+| 658397 | 1 | 1 |
 | 667311 | 1 | 1 |
 | 670575 | 1 | 1 |
 | 672323 | 1 | 1 |
@@ -113,20 +121,25 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728403 | 1 | 1 |
 | 738493 | 1 | 1 |
 | 741278 | 1 | 1 |
+| 741527 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
+| 754260 | 1 | 1 |
 | 755523 | 1 | 1 |
 | 757316 | 1 | 1 |
 | 760492 | 1 | 1 |
 | 764491 | 1 | 1 |
 | 768465 | 1 | 1 |
+| 769497 | 1 | 1 |
 | 770479 | 1 | 1 |
+| 770494 | 1 | 1 |
 | 772493 | 1 | 1 |
 | 772496 | 1 | 1 |
 | 773498 | 1 | 1 |
 | 774472 | 1 | 1 |
 | 774494 | 1 | 1 |
 | 781446 | 1 | 1 |
+| 786275 | 1 | 1 |
 | 789284 | 1 | 1 |
 | 792257 | 1 | 1 |
 | 792450 | 1 | 1 |
@@ -148,11 +161,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 852402 | 1 | 1 |
 | 854404 | 1 | 1 |
 | 855399 | 1 | 1 |
+| 877370 | 1 | 1 |
+| 882408 | 1 | 1 |
 | 892371 | 1 | 1 |
 | 893204 | 1 | 1 |
 | 903354 | 1 | 1 |
 | 904293 | 1 | 1 |
+| 916364 | 1 | 1 |
 | 930240 | 1 | 1 |
+| 933209 | 1 | 1 |
 | 946179 | 1 | 1 |
 | 954323 | 1 | 1 |
 | 959175 | 1 | 1 |
@@ -340,6 +357,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | 1.83481 / 44.72 | No catalog entry | abbe |
 | L12 (Element 12) | 19 | `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)` | 1.90366 / 29.31 | No catalog entry | abbe |
 
+### [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L6 (Element 6) | 12A | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | 1.87722 / 37.00 | No catalog entry | abbe |
+
 ### [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
@@ -394,6 +417,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L11 (L11) | 1 | `517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)` | 1.51680 / 63.88 | No catalog entry | abbe |
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe |
+
+### [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) - US 7,359,125 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | 1.74100 / 52.67 | No catalog entry | abbe |
+| L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe |
+| L8 (Element 8) | 13 | `624470 — barium flint (patent nd=1.62374, nu_d=47.04)` | 1.62374 / 47.04 | No catalog entry | abbe |
 
 ### [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) - JP 2014-209144 A
 
@@ -612,6 +643,24 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | 1.68250 / 44.65 | No catalog entry | abbe |
 
+### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L2 (Element 2) | 3A | `585417 — light flint (patent nd=1.58542, nu_d=41.7)` | 1.58542 / 41.70 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)` | 1.88234 / 40.80 | No catalog entry | abbe |
+| L4 (Element 4) | 6 | `754260 — dense flint (patent nd=1.75409, nu_d=26.0)` | 1.75409 / 26.00 | No catalog entry | abbe |
+| L5 (Element 5) | 8 | `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)` | 1.91597 / 36.40 | No catalog entry | abbe |
+| L6 (Element 6) | 11 | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | 1.78630 / 27.50 | No catalog entry | abbe |
+| L7 (Element 7) | 12 | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | 1.76864 / 49.70 | No catalog entry | abbe |
+
+### [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - US 2023/0367186 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe |
+| L9 (Element 9) | 15A | `586595 — barium crown (patent nd=1.58575, nu_d=59.5)` | 1.58575 / 59.50 | No catalog entry | abbe |
+
 ### [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts)
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
@@ -691,6 +740,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L11 (Element 1) | 1 | `Dense flint (870/200, uncertain — no OHARA catalog match)` | 1.86966 / 20.00 | No catalog entry | abbe |
 | L13 (Element 3) | 4 | `Lanthanum crown (764/485, uncertain — no exact OHARA match)` | 1.76385 / 48.50 | No catalog entry | abbe |
+| L22 (Element 5) | 8A | `770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)` | 1.77002 / 49.40 | No catalog entry | abbe |
 | L23 (Element 6) | 10 | `Crown (639/554, uncertain — no exact OHARA match)` | 1.63854 / 55.40 | No catalog entry | abbe |
 | L44 (Element 15) | 26 | `Dense flint (806/333, uncertain — no exact OHARA match)` | 1.80610 / 33.30 | No catalog entry | abbe |
 | L72 (Element 20) | 36 | `Lanthanum dense flint (911/352, uncertain — no exact OHARA match)` | 1.91082 / 35.20 | No catalog entry | abbe |
@@ -715,7 +765,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L11 (Element 1) | 1 | `Dense flint (777/297, uncertain)` | 1.77660 / 29.70 | No catalog entry | abbe |
+| L32 (Element 6) | 10 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe |
 | L41 (Element 7) | 12 | `Dense flint (792/257, uncertain)` | 1.79191 / 25.70 | No catalog entry | abbe |
+| L52 (Element 9) | 17 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe |
+| L53 (Element 10) | 19 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe |
+| L54 (Element 11) | 20 | `585594 — barium crown (patent nd=1.58547, nu_d=59.4)` | 1.58547 / 59.40 | No catalog entry | abbe |
+| L55 (Element 12) | 22A | `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element` | 1.58547 / 59.40 | No catalog entry | abbe |
+| L61 (Element 13) | 24 | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | 1.93323 / 20.90 | No catalog entry | abbe |
+| L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe |
 
 ### [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) - WO 2025/239028 A1
 

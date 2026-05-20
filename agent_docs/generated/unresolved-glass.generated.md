@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **519** non-explicit-unmatched annotations did not resolve
-- **175** distinct unresolved glass-like tokens found
+- **539** non-explicit-unmatched annotations did not resolve
+- **192** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -24,10 +24,12 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 770297 | 3 | 2 | |
+| 863248 | 3 | 1 | |
 | S-TIF6 | 3 | 3 | |
 | 159319 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
+| 585594 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 694508 | 2 | 1 | |
 | 755516 | 2 | 1 | |
@@ -54,19 +56,25 @@ or per-lens patent backfills.
 | 517639 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 534554 | 1 | 1 | |
+| 534556 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
+| 554381 | 1 | 1 | |
 | 561453 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
+| 585417 | 1 | 1 | |
+| 586595 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 606637 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
+| 624470 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 640601 | 1 | 1 | |
+| 658397 | 1 | 1 | |
 | 667311 | 1 | 1 | |
 | 667330 | 1 | 1 | |
 | 670393 | 1 | 1 | |
@@ -77,12 +85,16 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 741527 | 1 | 1 | |
 | 749547 | 1 | 1 | |
+| 754260 | 1 | 1 | |
 | 757316 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
+| 769497 | 1 | 1 | |
 | 770479 | 1 | 1 | |
+| 770494 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 774472 | 1 | 1 | |
@@ -90,6 +102,7 @@ or per-lens patent backfills.
 | 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
 | 781446 | 1 | 1 | |
+| 786275 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797454 | 1 | 1 | |
 | 801455 | 1 | 1 | |
@@ -106,11 +119,15 @@ or per-lens patent backfills.
 | 855399 | 1 | 1 | |
 | 863415 | 1 | 1 | |
 | 870200 | 1 | 1 | |
+| 877370 | 1 | 1 | |
+| 882408 | 1 | 1 | |
 | 893204 | 1 | 1 | |
 | 903354 | 1 | 1 | |
 | 904293 | 1 | 1 | |
 | 911352 | 1 | 1 | |
+| 916364 | 1 | 1 | |
 | 930240 | 1 | 1 | |
+| 933209 | 1 | 1 | |
 | 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BACD4 | 1 | 1 | |
@@ -234,6 +251,12 @@ or per-lens patent backfills.
 - [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 7: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
 - [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
+### 863248 — 3 occurrences
+
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+
 ### S-TIF6 — 3 occurrences
 
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
@@ -254,6 +277,11 @@ or per-lens patent backfills.
 
 - [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
 - [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
+
+### 585594 — 2 occurrences
+
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 22A: `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element`
 
 ### 666356 — 2 occurrences
 
@@ -378,6 +406,10 @@ or per-lens patent backfills.
 
 - [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) 15: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`
 
+### 534556 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
+
 ### 552981 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)`
@@ -385,6 +417,10 @@ or per-lens patent backfills.
 ### 553555 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 31: `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)`
+
+### 554381 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — dense flint (patent nd=1.55389, nu_d=38.09)`
 
 ### 561453 — 1 occurrence
 
@@ -401,6 +437,14 @@ or per-lens patent backfills.
 ### 575413 — 1 occurrence
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 4: `LF7 (Schott 575413)`
+
+### 585417 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
+
+### 586595 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 15A: `586595 — barium crown (patent nd=1.58575, nu_d=59.5)`
 
 ### 595686 — 1 occurrence
 
@@ -422,6 +466,10 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
+### 624470 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 13: `624470 — barium flint (patent nd=1.62374, nu_d=47.04)`
+
 ### 624584 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
@@ -429,6 +477,10 @@ or per-lens patent backfills.
 ### 640601 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
+
+### 658397 — 1 occurrence
+
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 25: `658397 — short flint (patent nd=1.65803, nu_d=39.7)`
 
 ### 667311 — 1 occurrence
 
@@ -470,9 +522,17 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
 
+### 741527 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 5: `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)`
+
 ### 749547 — 1 occurrence
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 1: `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)`
+
+### 754260 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 6: `754260 — dense flint (patent nd=1.75409, nu_d=26.0)`
 
 ### 757316 — 1 occurrence
 
@@ -490,9 +550,17 @@ or per-lens patent backfills.
 
 - [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
 
+### 769497 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)`
+
 ### 770479 — 1 occurrence
 
 - [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) 5: `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)`
+
+### 770494 — 1 occurrence
+
+- [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) 8A: `770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)`
 
 ### 772493 — 1 occurrence
 
@@ -521,6 +589,10 @@ or per-lens patent backfills.
 ### 781446 — 1 occurrence
 
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 25: `781446 - high-index mid-dispersion glass (unresolved)`
+
+### 786275 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `786275 — dense flint (patent nd=1.78630, nu_d=27.5)`
 
 ### 792450 — 1 occurrence
 
@@ -586,6 +658,14 @@ or per-lens patent backfills.
 
 - [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 25: `870200 — dense flint (patent nd=1.86966, νd=20.0)`
 
+### 877370 — 1 occurrence
+
+- [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 12A: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`
+
+### 882408 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
+
 ### 893204 — 1 occurrence
 
 - [HASSELBLAD XCD 3,5/120mm Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) 8: `893204 - ultra-high-dispersion flint (patent nd=1.89286, vd=20.36; unresolved)`
@@ -602,9 +682,17 @@ or per-lens patent backfills.
 
 - [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 11: `911352 - ultra-high-index glass (patent nd=1.91082, vd=35.2; unresolved)`
 
+### 916364 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 8: `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)`
+
 ### 930240 — 1 occurrence
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 9: `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)`
+
+### 933209 — 1 occurrence
+
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 24: `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)`
 
 ### 986165 — 1 occurrence
 
