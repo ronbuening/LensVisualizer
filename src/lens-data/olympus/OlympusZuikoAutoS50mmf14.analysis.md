@@ -137,7 +137,7 @@ The cemented doublet L4+L5 has a combined focal length of approximately −1.105
 
 **Shape:** Positive meniscus, convex toward the object. R₃ = +0.4738 (steep front) and R₄ = +0.8002 (moderately curved rear). The curvature ratio R₃/R₄ ≈ 0.59.
 
-**Glass:** nd = 1.6935, νd = 50.8. Six-digit code 694-508. This falls in the lanthanum crown (LaK) family. No exact match was found in current standard catalogs — the glass may be an OHARA or HOYA formulation that has been discontinued or reformulated since 1975. The same glass is reused for L7.
+**Glass:** nd = 1.6935, νd = 50.8. Six-digit code 694508. This falls in the lanthanum crown (LaK) family. No exact coefficient-backed public catalog match was found — the glass may be an OHARA or HOYA formulation that has been discontinued or reformulated since 1975. The same glass is reused for L7.
 
 **Optical role:** L2 shares the positive power of the front group with L1, but its steeper curvatures and higher refractive index give it a shorter radius ratio. This element contributes to spherical aberration correction through its shape factor — the bending of this meniscus helps balance the higher-order spherical aberration terms against L1. The air gap d₂ = 0.0019 between L1 and L2 is extremely thin (≈ 0.1 mm scaled), almost resembling a cemented contact but deliberately left as an air space for the additional refractive index discontinuity, which provides an extra design variable.
 
@@ -145,7 +145,7 @@ The cemented doublet L4+L5 has a combined focal length of approximately −1.105
 
 **Shape:** Negative meniscus, convex toward the object. Both surfaces have positive R (R₅ = +1.0617 and R₆ = +0.2764), but since R₆ < R₅, the rear surface is much steeper, causing the element to diverge light.
 
-**Glass:** nd = 1.5814, νd = 40.8. Six-digit code 581-408. This is a barium flint type glass (BaF family). Nearest catalog match: OHARA S-TIM25 (nd = 1.5814, νd = 40.75) — close but not exact (Δνd = 0.05). Confidence: near match. The lower refractive index (relative to L1 and L2) and moderate Abbe number are typical of the negative meniscus in front of the stop in Gauss-type designs.
+**Glass:** PBL25 (OHARA, 581408), nd = 1.5814, νd = 40.8. This is a barium flint type glass (BaF family) with a coefficient-backed catalog entry matching the patent code. The lower refractive index (relative to L1 and L2) and moderate Abbe number are typical of the negative meniscus in front of the stop in Gauss-type designs.
 
 **Optical role:** L3 is the critical negative element of the front group. Its steep concave rear surface (R₆ = +0.2764 toward image, meaning a concave face toward the stop) generates strong negative surface power (φ₆ = −2.10 normalized). This surface is one of the most important in the entire design: it largely determines the Petzval sum, coma balance, and astigmatism of the front group. The patent's condition (1) specifically constrains the relationship between r₆ and the opposing surface r₇, recognizing that these two surfaces straddling the stop are where most of the higher-order coma ("flare due to coma") originates.
 
@@ -165,7 +165,7 @@ The very high dispersion (νd = 27.5) is the lowest Abbe number in the system an
 
 **Shape:** Biconvex, though the front surface (the junction with L4) is nearly flat (R₈ = +15.8469). Essentially all of L5's positive power comes from its concave rear surface (R₉ = −0.5113).
 
-**Glass:** nd = 1.6935, νd = 53.3. Six-digit code 694-533. This is a lanthanum crown, with the same refractive index as L2/L7 but a distinctly higher Abbe number (53.3 vs. 50.8). No exact match in current standard catalogs. This deliberate differentiation — using two glasses with identical nd but different νd — is a subtle but important design choice. The higher Abbe number of L5 provides a larger dispersion difference (Δν = 53.3 − 27.5 = 25.8) within the cemented doublet, strengthening chromatic correction.
+**Glass:** LAC13 (HOYA, 694533), nd = 1.6935, νd = 53.3. This is a lanthanum crown, with the same refractive index as L2/L7 but a distinctly higher Abbe number (53.3 vs. 50.8). This deliberate differentiation — using two glasses with identical nd but different νd — is a subtle but important design choice. The higher Abbe number of L5 provides a larger dispersion difference (Δν = 53.3 − 27.5 = 25.8) within the cemented doublet, strengthening chromatic correction.
 
 **Optical role:** L5 is the thicker, positive component of the doublet. Its rear surface r₉ is constrained by condition (2) to lie within 0.48f < |r₉| < 0.55f. This range balances two competing requirements: strong enough curvature to correct upper-ray coma at intermediate field angles, but not so strong that paraxial spherical aberration becomes under-corrected. The patent notes that this surface (along with r₁₁) deliberately under-corrects spherical aberration for paraxial rays — a strategy that pays off at close focus distances, where the under-correction compensates for the over-correction that unit focusing would otherwise introduce.
 
@@ -187,7 +187,7 @@ The rear surface r₁₁ is constrained by condition (3): 0.4f < |r₁₁| < 0.4
 
 **Shape:** Biconvex. R₁₂ = +1.8784 (weakly curved front) and R₁₃ = −2.2973 (weakly curved rear). Both surfaces have gentle curvatures, so L7 is only weakly positive.
 
-**Glass:** nd = 1.6935, νd = 50.8. Six-digit code 694-508. Same glass as L2 — the LaK-type lanthanum crown. Reusing the same glass for L2 and L7 simplifies manufacturing logistics and suggests that this glass was a standard stock item for Olympus at the time.
+**Glass:** nd = 1.6935, νd = 50.8. Six-digit code 694508. Same glass as L2 — the unresolved LaK-type lanthanum crown. Reusing the same glass for L2 and L7 simplifies manufacturing logistics and suggests that this glass was a standard stock item for Olympus at the time.
 
 **Optical role:** L7 serves as a weak positive field-flattening and aberration-trimming element at the rear of the system. Its gentle curvatures and near-symmetric biconvex shape minimize its own aberration contributions while providing a small positive power boost. This element also helps control distortion and lateral chromatic aberration by adjusting the chief-ray exit angle. The very thin air gap d₁₁ = 0.0023 (≈ 0.12 mm scaled) between L6 and L7 is almost a contact — the two elements are very nearly touching, forming what could be considered a closely spaced doublet that acts nearly as a single thick component.
 
@@ -200,10 +200,10 @@ The design uses four distinct glass types across seven elements:
 | Glass | Used in | nd | νd | Six-digit code | Catalog match |
 |:--|:--|--:|--:|:--|:--|
 | SK16-type | L1 | 1.6204 | 60.3 | 620-603 | Schott SK16 / HOYA BACD5 — exact |
-| LaK-type A | L2, L7 | 1.6935 | 50.8 | 694-508 | No exact current catalog match (likely discontinued OHARA or HOYA formulation) |
-| BaF-type | L3 | 1.5814 | 40.8 | 581-408 | OHARA S-TIM25 family — close (Δνd = 0.05) |
+| LaK-type A | L2, L7 | 1.6935 | 50.8 | 694508 | No exact coefficient-backed current catalog match (likely discontinued OHARA or HOYA formulation) |
+| PBL25 | L3 | 1.5814 | 40.8 | 581408 | OHARA PBL25 — coefficient-backed match |
 | SF4-type | L4 | 1.7552 | 27.5 | 755-275 | Schott SF4 / OHARA S-TIH4 — exact |
-| LaK-type B | L5 | 1.6935 | 53.3 | 694-533 | No exact current catalog match |
+| LAC13 | L5 | 1.6935 | 53.3 | 694533 | HOYA LAC13 — coefficient-backed match |
 | LaSF3-type | L6 | 1.8061 | 40.9 | 806-409 | Schott LaSF3 / HOYA NBFD3 — exact |
 
 A notable feature is the use of two glasses with identical refractive index (nd = 1.6935) but different Abbe numbers (50.8 for L2/L7 vs. 53.3 for L5). This is unusual and intentional: by keeping the nd identical, these elements produce identical monochromatic refraction at any given surface curvature, but differ in their chromatic contributions. This allows the designer to fine-tune chromatic correction independently of monochromatic aberration balance — effectively decoupling the two optimization problems at the glass-selection level.

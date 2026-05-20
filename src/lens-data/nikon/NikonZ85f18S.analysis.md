@@ -93,13 +93,13 @@ The following table identifies each element's optical properties, glass identifi
 | L11 | Gr1 | 1.77250 | 49.62 | **S-LAH66** (confirmed) | OHARA | Biconvex positive | +139.5 |
 | L12 | Gr1 | 1.55032 | 75.50 | Fluorophosphate crown (see §4.3) | — | Pos. meniscus (convex obj.) | +114.2 |
 | L13 | Gr1 | 1.49700 | 81.61 | **S-FPL51** (confirmed) | OHARA | Biconvex positive | +91.6 |
-| L14 | Gr1 | 1.85025 | 30.05 | Dense flint (see §4.3) | — | Biconcave negative | −64.7 |
+| L14 | Gr1 | 1.85025 | 30.05 | **H-ZLaF76** (confirmed) | CDGM | Biconcave negative | −64.7 |
 | L21 | Gr2 | 1.92286 | 20.88 | **S-NPH2** (confirmed) | OHARA | Biconvex positive | +76.6 |
 | L22 | Gr2 | 1.60342 | 38.01 | Flint (code 603380; see §4.3) | — | Biconcave negative | −36.7 |
 | L31 | Gr3 | 1.59349 | 67.00 | Phosphate crown (nearest: S-FPM2; see §4.3) | — | Biconvex positive | +67.9 |
 | L41 | Gr4 | 1.91082 | 35.25 | Lanthanum dense flint (code 911353; see §4.3) | — | Plano-convex positive | +48.0 |
 | L42 | Gr4 | 1.67270 | 32.17 | Dense flint (code 673322) | — | Biconcave negative | −38.8 |
-| L43 | Gr4 | 1.84850 | 43.79 | Lanthanum crown (code 849438) | — | Biconvex positive | +71.0 |
+| L43 | Gr4 | 1.84850 | 43.79 | **J-LASFH22** (confirmed) | Hikari | Biconvex positive | +71.0 |
 | L44 | Gr4 | 1.60342 | 38.01 | Flint (same glass as L22) | — | Biconcave negative | −164.3 |
 | L45 | Gr4 | 1.64769 | 33.72 | Dense flint (nearest: Schott SF2, Δνd = −0.07) | — | Neg. meniscus (concave obj.) | −111.5 |
 
@@ -117,11 +117,11 @@ Nikon specifies that the production lens contains **two ED (Extra-low Dispersion
 
 ### 4.3 Glass Notes
 
-Of the 12 elements, only three can be identified with certainty from published catalog data: L11 (OHARA S-LAH66, nd = 1.77250, νd = 49.62 — exact), L13 (OHARA S-FPL51, nd = 1.49700, νd = 81.61 — exact), and L21 (OHARA S-NPH2, nd = 1.92286, νd = 20.88 — exact). The cover glass (nd = 1.51680, νd = 64.20) is standard N-BK7 (Schott) or S-BSL7 (OHARA). The remaining elements are classified below by glass family with nearest catalog matches where possible.
+Five lens elements can now be identified with coefficient-backed public catalog data: L11 (OHARA S-LAH66, nd = 1.77250, νd = 49.62), L13 (OHARA S-FPL51, nd = 1.49700, νd = 81.61), L14 (CDGM H-ZLaF76, nd = 1.85013, νd = 30.06), L21 (OHARA S-NPH2, nd = 1.92286, νd = 20.88), and L43 (Hikari J-LASFH22, nd = 1.84850, νd = 43.79). The cover glass (nd = 1.51680, νd = 64.20) is standard N-BK7 (Schott) or S-BSL7 (OHARA). The remaining elements are classified below by glass family with nearest catalog matches where possible.
 
 **L12 (nd = 1.55032, νd = 75.50):** Fluorophosphate crown in the FK/FPL family. The six-digit code 550755 is close to several catalog entries — HIKARI J-FK5 and HOYA FCD515 are plausible matches, but the exact designation cannot be confirmed from publicly available catalog data. The glass is unambiguously a positive-anomalous-dispersion fluorophosphate, consistent with Nikon's ED classification.
 
-**L14 (nd = 1.85025, νd = 30.05):** High-index dense flint, code 850301. No confirmed match in the major OHARA, Schott, or HOYA catalogs. The nearest OHARA entry is S-LAH55V (nd ≈ 1.850, νd ≈ 32.3), which matches in nd but differs by approximately 2.3 in νd — a substantial mismatch. This glass may come from a smaller Japanese supplier (Sumita, HIKARI, NHG) or may be a specialty melt. It serves as the flint partner in the L13+L14 achromatic cemented doublet, where its high dispersion complements L13's anomalously low dispersion for secondary spectrum correction.
+**L14 (nd = 1.85025, νd = 30.05):** High-index dense flint, code 850301. CDGM H-ZLaF76 is a coefficient-backed public match within normal patent rounding (catalog nd = 1.85013, νd = 30.06). It serves as the flint partner in the L13+L14 achromatic cemented doublet, where its high dispersion complements L13's anomalously low dispersion for secondary spectrum correction.
 
 **L22 and L44 (nd = 1.60342, νd = 38.01):** Flint glass, code 603380. These two elements use the same glass type. The six-digit code places it in the F (flint) family. Using the same glass in multiple positions reduces the number of distinct glass types in the bill of materials, lowering production costs and simplifying inventory.
 
@@ -131,7 +131,7 @@ Of the 12 elements, only three can be identified with certainty from published c
 
 **L42 (nd = 1.67270, νd = 32.17):** Dense flint, code 673322. HOYA E-FD4 is a plausible match. The patent describes L42 as "plano-concave" (平凹), but the numerical prescription shows R16 = +64.87 mm — a finite curvature, not flat. This discrepancy between the patent prose and the numerical data is minor; the patent text uses approximate shape terminology while the numerical prescription is authoritative. The element is technically biconcave (both surfaces have curvature), though the rear surface is relatively weak.
 
-**L43 (nd = 1.84850, νd = 43.79):** Lanthanum crown, code 849438. The same nd value (1.84850) appears in all four patent examples, but with different νd values (43.79 in EX1/EX3, 42.72 in EX2/EX4). This suggests the patent may use slightly adjusted νd values between examples. OHARA S-LAH65V or an equivalent is a plausible match for this glass family.
+**L43 (nd = 1.84850, νd = 43.79):** Lanthanum crown, code 849438. Hikari J-LASFH22 is a coefficient-backed public match for Example 3. The same nd value appears in all four patent examples, but with different νd values (43.79 in EX1/EX3, 42.72 in EX2/EX4), so the J-LASFH22 label is specific to the Example 3 prescription used here.
 
 **L45 (nd = 1.64769, νd = 33.72):** Dense flint, code 648337. Schott SF2 (nd = 1.64769, νd = 33.79, Δνd = −0.07) is the nearest confirmed catalog entry — an excellent match within normal melt tolerance.
 

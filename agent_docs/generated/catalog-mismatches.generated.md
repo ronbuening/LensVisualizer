@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **235** lenses scanned
 - **2678** glass surfaces examined
 - **2672** surfaces with non-empty `glass` strings
-- **2072** of those resolved to a catalog entry
-- **271** mismatches found (13.1% of resolved surfaces)
-- **102** distinct lens files affected
+- **2094** of those resolved to a catalog entry
+- **270** mismatches found (12.9% of resolved surfaces)
+- **101** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -43,7 +43,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH4 | 4 | |
 | S-NBH55 | 4 | |
 | S-TIH53 | 4 | |
-| S-TIM25 | 4 | |
 | S-NPH53 | 4 | |
 | S-LAM60 | 4 | |
 | S-NPH4 | 4 | |
@@ -56,6 +55,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-BSL7 | 3 | |
 | S-LAH65 | 3 | |
 | S-TIM28 | 3 | |
+| S-TIM25 | 3 | |
 | E-FD5 | 3 | |
 | S-FPM2 | 3 | |
 | S-FPM4 | 3 | |
@@ -847,12 +847,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-TIM2 (OHARA)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
-
-### [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) — US 4,094,588
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 5 | `BaF-type (581-408; OHARA S-TIM25 family — close)` | S-TIM25 | 1.58140 | 1.67270 | +0.0913 |
 
 ### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) — US 4,210,388
 

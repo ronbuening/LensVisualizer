@@ -117,10 +117,10 @@ L3 is the thickest element in the system, forming the front half of Patent Group
 | Surfaces | r₇ = +4.9772 → r₈ = +0.3856 |
 | Center thickness | 0.0233 (norm) → 1.17 mm |
 | Glass | nd = 1.58144, νd = 40.75 |
-| Catalog match | 581/408 glass code; HOYA FF5 nearest (Δνd ≈ 0.23); short flint family |
+| Catalog match | PBL25 (OHARA, 581408); short flint family |
 | Thick-lens focal length | −36.0 mm |
 
-L4 is a thin, strongly negative meniscus that dominates Group II's overall negative power. The deeply concave rear surface (r₈ = +0.3856 — a very short radius, steeply curved and facing the stop) is the defining feature of this element. The large air gap d₈ following L4 contains the aperture stop. This configuration — a strongly negative element immediately before the stop — is the hallmark of the Gauss inner doublet. The glass (581/408 code, short flint family) provides moderate dispersion for chromatic correction without excessive Petzval contribution. This glass type does not have an exact match in current catalogs and may have been a 1980s-era HOYA or OHARA type that has since been reformulated.
+L4 is a thin, strongly negative meniscus that dominates Group II's overall negative power. The deeply concave rear surface (r₈ = +0.3856 — a very short radius, steeply curved and facing the stop) is the defining feature of this element. The large air gap d₈ following L4 contains the aperture stop. This configuration — a strongly negative element immediately before the stop — is the hallmark of the Gauss inner doublet. The PBL25 (OHARA, 581408) glass provides moderate dispersion for chromatic correction without excessive Petzval contribution.
 
 ### 4.5 L5 — Biconcave Negative (cemented with L6)
 
@@ -129,10 +129,10 @@ L4 is a thin, strongly negative meniscus that dominates Group II's overall negat
 | Surfaces | r₉ = −0.4730 → r₁₀ = +4.6709 (junction) |
 | Center thickness | 0.0216 (norm) → 1.08 mm |
 | Glass | nd = 1.68250, νd = 44.65 |
-| Catalog match | 683/447 glass code; no exact modern catalog match; barium/lanthanum flint family |
+| Catalog match | 683447; no exact coefficient-backed public catalog match; barium/lanthanum flint family |
 | Thick-lens focal length | −31.4 mm |
 
-L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The glass (683/447 code) does not have a precise match in current catalogs; it is likely a 1980s-era OHARA or HOYA type that has since been discontinued or reformulated.
+L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass does not have a precise coefficient-backed public catalog match; it is likely a 1980s-era OHARA or HOYA type that has since been discontinued or reformulated.
 
 ### 4.6 L6 — Biconvex Positive (cemented with L5)
 
@@ -141,10 +141,10 @@ L5 is the negative component of the first cemented doublet in Group III, located
 | Surfaces | r₁₀ = +4.6709 (junction) → r₁₁ = −0.7102 |
 | Center thickness | 0.0929 (norm) → 4.65 mm |
 | Glass | nd = 1.72000, νd = 46.03 |
-| Catalog match | 720/460 glass code; no exact modern catalog match; lanthanum crown/flint border |
+| Catalog match | S-LAM61 (OHARA, 720460); lanthanum crown/flint border |
 | Thick-lens focal length | +43.1 mm |
 
-L6 is the positive component of the L5+L6 doublet. With a thick center (4.65 mm) and strongly concave rear surface, it provides most of the positive power in the cemented pair. The lanthanum-containing glass (nd = 1.720, νd = 46.03) sits at the boundary between lanthanum crown and lanthanum flint classifications. The doublet as a whole (f = −154.6 mm, weakly negative) functions primarily as a field-flattening and chromatic correction element in the rear group, rather than a primary power contributor.
+L6 is the positive component of the L5+L6 doublet. With a thick center (4.65 mm) and strongly concave rear surface, it provides most of the positive power in the cemented pair. The S-LAM61 (OHARA, 720460) glass sits at the boundary between lanthanum crown and lanthanum flint classifications. The doublet as a whole (f = −154.6 mm, weakly negative) functions primarily as a field-flattening and chromatic correction element in the rear group, rather than a primary power contributor.
 
 ### 4.7 L7 — Positive Meniscus (concave toward object)
 
@@ -193,14 +193,14 @@ The design uses seven distinct glass types. Four have exact matches in current c
 | L1 | 1.60342 | 38.01 | 603/380 | Schott F5 / HOYA E-F5 | Flint |
 | L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL59 / HOYA LACL60 | Lanthanum crown |
 | L3, L7, L8 | 1.77250 | 49.66 | 773/497 | HOYA LAC14 | Lanthanum crown |
-| L4 | 1.58144 | 40.75 | 581/408 | No exact modern match (nearest: HOYA FF5) | Short flint |
-| L5 | 1.68250 | 44.65 | 683/447 | No exact modern match | Barium/lanthanum flint |
-| L6 | 1.72000 | 46.03 | 720/460 | No exact modern match | Lanthanum crown/flint border |
+| L4 | 1.58144 | 40.75 | 581408 | OHARA PBL25 | Short flint |
+| L5 | 1.68250 | 44.65 | 683447 | No exact coefficient-backed public match | Barium/lanthanum flint |
+| L6 | 1.72000 | 46.03 | 720460 | OHARA S-LAM61 | Lanthanum crown/flint border |
 | L9 | 1.75520 | 27.51 | 755/275 | Schott SF4 / OHARA S-TIH4 / HOYA FD4 | Dense flint |
 
 Three elements (L3, L7, L8) share the same glass — HOYA LAC14 type (nd = 1.773, νd = 49.66) — which simplifies procurement. This lanthanum crown glass has both high index and moderate Abbe number, making it useful for high-power elements where some dispersion is tolerable.
 
-The six-digit glass codes given above are manufacturer-agnostic identifiers (first three digits = (nd − 1) × 1000, last three = νd × 10). Olympus, as a Japanese manufacturer, most likely sourced glass from OHARA or HOYA. The catalog names given above reflect exact matches where available; for the three glasses without modern equivalents (L4, L5, L6), the six-digit codes remain the authoritative identifiers. These may correspond to older catalog types that were reformulated or discontinued during the industry's transition to lead-free and arsenic-free glass compositions in the 1990s–2000s.
+The six-digit glass codes given above are manufacturer-agnostic identifiers (first three digits = (nd − 1) × 1000, last three = νd × 10). Olympus, as a Japanese manufacturer, most likely sourced glass from OHARA or HOYA. The catalog names given above reflect exact matches where available; for L5, the unbroken 683447 code remains the authoritative identifier for future catalog backfill.
 
 No anomalous partial dispersion (APD) glasses or ED glasses are used in this design. The chromatic correction relies entirely on conventional crown/flint pairings with adequate Abbe number separation.
 
@@ -328,7 +328,7 @@ US 4,708,445 contains six embodiments. They all share the same three-group archi
 
 Embodiment 6 distinguishes itself through a slightly different glass pairing in Group I: L2 uses a 729/547 lanthanum crown (nd = 1.72916, νd = 54.68 — OHARA S-LAL59 type) rather than the 713/538 glass (nd = 1.71300, νd = 53.84) used in Embodiments 1, 3, 4, and 5. This higher-index crown gives L2 a slightly longer focal length at the same surface curvatures, which appears to have been the final optimization for the production design. The overall Group I focal length of 3.15f places it between Embodiment 1's more aggressive 2.91f and Embodiment 5's conservative 4.05f.
 
-Embodiment 6 also uses a slightly different glass for L6 (nd = 1.72000, νd = 46.03 — glass code 720/460) compared to most other embodiments (which use νd ≈ 41.98 — a 720/420 glass). The higher Abbe number in Embodiment 6's L6 provides slightly better chromatic balance in the rear cemented doublet.
+Embodiment 6 also uses a slightly different glass for L6 (nd = 1.72000, νd = 46.03 — S-LAM61 / 720460) compared to most other embodiments (which use νd ≈ 41.98 — a 720420 glass). The higher Abbe number in Embodiment 6's L6 provides slightly better chromatic balance in the rear cemented doublet.
 
 ---
 
@@ -354,10 +354,10 @@ Surface numbering follows the patent convention (r₁ through r₁₆, d₁ thro
 | r₄ | −86.94 | 0.12 | 1.0 (air) | L2 rear | **Variable gap (focusing)** |
 | r₅ | +20.50 | 6.08 | 1.77250 | L3 front | Pos. meniscus, LAC14 glass |
 | r₆ | +37.71 | 1.52 | 1.0 (air) | L3 rear | |
-| r₇ | +248.9 | 1.17 | 1.58144 | L4 front | Neg. meniscus, 581/408 glass |
+| r₇ | +248.9 | 1.17 | 1.58144 | L4 front | Neg. meniscus, PBL25 / 581408 glass |
 | r₈ | +19.29 | 10.16 | 1.0 (air) | L4 rear | **Contains aperture stop** |
-| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, 683/447 glass |
-| r₁₀ | +233.6 | 4.65 | 1.72000 | L5/L6 junction | Cemented; 720/460 glass |
+| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, unresolved 683447 glass |
+| r₁₀ | +233.6 | 4.65 | 1.72000 | L5/L6 junction | Cemented; S-LAM61 / 720460 glass |
 | r₁₁ | −35.52 | 0.10 | 1.0 (air) | L6 rear | |
 | r₁₂ | −82.55 | 2.87 | 1.77250 | L7 front | Pos. meniscus, LAC14 glass |
 | r₁₃ | −29.72 | 0.10 | 1.0 (air) | L7 rear | |

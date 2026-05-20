@@ -162,21 +162,21 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L1 — Component I: Front Positive Meniscus
 
 - **Shape:** Positive meniscus, convex to object (R₁ = +167.6, R₂ = +428.3)
-- **Glass:** nd = 1.6073, νd = 59.5 — Dense Crown (SK family), code 607/595
+- **Glass:** K-SK7 (Sumita, 607595), nd = 1.6073, νd = 59.5 — dense crown (SK family)
 - **Focal length:** +447.8 mm (very weak positive, 4.5× the system EFL)
 - **Role:** L1 is a low-power positive meniscus that serves primarily to extend the front group, distributing the convergence burden more gently across the front half of the lens. Its weak power means it contributes minimally to aberration while allowing the subsequent elements to work at reduced incidence angles. This element is *not* one of the three lanthanum elements — it uses conventional barium-based dense crown glass, likely a HIKARI (Nikon subsidiary) equivalent of Schott SK4 or a similar 1950s-era dense crown.
 
 ### L2 — Component II: Second Positive Meniscus
 
 - **Shape:** Positive meniscus, convex to object (R₃ = +93.0, R₄ = +163.8)
-- **Glass:** nd = 1.6073, νd = 59.5 — same glass as L1
+- **Glass:** K-SK7 (Sumita, 607595), nd = 1.6073, νd = 59.5 — same glass as L1
 - **Focal length:** +338.9 mm (moderate weak positive, 3.4× EFL)
 - **Role:** L2 is the stronger of the two front meniscus elements. It works together with L1 to gradually converge the on-axis marginal ray bundle before it enters the more strongly curved Component III. The pair L1 + L2 contributes gentle positive power from the front, akin to a "power supplement" that transforms the classical four-element Gauss core into a wider-aperture design. Using the same glass as L1 simplifies manufacturing and ensures matched chromatic behavior.
 
 ### L3 — Component III, front element (cemented doublet D1)
 
 - **Shape:** Positive meniscus, convex to object (R₅ = +53.5, R₆ = +122.5)
-- **Glass:** nd = 1.7700, νd = 47.9 — **Lanthanum Crown/Flint (LaK/LaF)**, code 770/479
+- **Glass:** 770479 — lanthanum crown/flint patent glass, nd = 1.7700, νd = 47.9; no exact public coefficient-backed catalog match
 - **Focal length (standalone):** +109.9 mm
 - **Role:** L3 is the first and most powerful of the three lanthanum elements. It carries the highest refractive index in the entire system (nd = 1.77). Its strongly curved front surface (r₅ = +53.5) does the bulk of the refracting in the front group, while the high refractive index keeps the surface curvatures more moderate than they would otherwise need to be — directly reducing spherical aberration contributions.
 
@@ -187,7 +187,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L4 — Component III, rear element (cemented doublet D1)
 
 - **Shape:** Negative meniscus, convex to object (R₆ = +122.5, R₇ = +33.3)
-- **Glass:** nd = 1.5927, νd = 35.4 — Light Flint (LLF family), code 593/354
+- **Glass:** S-FTM16 (OHARA, 593353), nd = 1.5927, νd = 35.4 — light flint (LLF family)
 - **Focal length (standalone):** −78.5 mm
 - **Role:** L4 is the chromatic correction partner to L3. Its lower Abbe number (higher dispersion) balances the chromatic aberration introduced by L3's positive power. The cemented pair III has a combined focal length of −823.7 mm — a very weak negative meniscus that acts primarily as a chromatic corrector rather than a significant power element.
 
@@ -196,7 +196,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L5 — Component IV, front element (cemented doublet D2)
 
 - **Shape:** Biconcave negative (R₈ = −42.6, R₉ = +135.7)
-- **Glass:** nd = 1.6483, νd = 33.8 — Flint (F family), code 648/338
+- **Glass:** S-TIM22 (OHARA, 648338), nd = 1.6483, νd = 33.8 — flint (F family)
 - **Focal length (standalone):** −49.4 mm
 - **Role:** L5 is the strongest negative element in the system. Positioned immediately behind the aperture stop, it forms the front half of the rear achromatic doublet (Component IV). Its high dispersion (low νd) and strong negative power are essential for chromatic correction of the rear group.
 
@@ -205,7 +205,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L6 — Component IV, rear element (cemented doublet D2)
 
 - **Shape:** Biconvex positive (R₉ = +135.7, R₁₀ = −58.1)
-- **Glass:** nd = 1.7170, νd = 47.9 — **Lanthanum Crown (LaK)**, code 717/479
+- **Glass:** S-LAM3 (OHARA, 717479), nd = 1.7170, νd = 47.9 — lanthanum crown (LaK)
 - **Focal length (standalone):** +59.4 mm
 - **Role:** L6 is the second lanthanum element and the strongest single positive element in the rear group. Its biconvex form provides strong convergence immediately behind the stop. The lanthanum glass (shared with L7) provides high refractive index with moderate dispersion, allowing the biconvex curvatures to be less extreme than they would with conventional crown glass.
 
@@ -214,7 +214,7 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L7 — Component V: Single Plano-Convex
 
 - **Shape:** Plano-convex (R₁₁ = +116.3, R₁₂ = flat)
-- **Glass:** nd = 1.7170, νd = 47.9 — **Lanthanum Crown (LaK)**, same glass as L6, code 717/479
+- **Glass:** S-LAM3 (OHARA, 717479), nd = 1.7170, νd = 47.9 — same glass as L6, lanthanum crown (LaK)
 - **Focal length:** +162.2 mm (1.62× EFL)
 - **Role:** L7 is the third lanthanum element and the principal power element of the rear group — at f = 162.2, it is the shortest focal length of any single component. Its plano-convex form with the flat surface facing the image is geometrically simple but optically significant: the single curved surface contributes positive power while the flat rear surface contributes zero power and no primary (Seidel) aberrations, making L7 a clean, efficient power contributor.
 
@@ -223,14 +223,14 @@ Every component focal length matches to within 0.1% after the r₆ correction. T
 ### L8 — Component VI, front element (cemented doublet D3)
 
 - **Shape:** Negative meniscus, convex to object (R₁₃ = +142.3, R₁₄ = +96.9)
-- **Glass:** nd = 1.6259, νd = 35.6 — Light Flint (LF family), code 626/356
+- **Glass:** E-F1 (HOYA, 626357), nd = 1.6259, νd = 35.6 — light flint (LF family)
 - **Focal length (standalone):** −497.5 mm (very weak negative)
 - **Role:** L8 is a weak negative element providing final chromatic correction in the rear group. Its meniscus form means it contributes minimally to Petzval field curvature — a meniscus element's contributions to Petzval sum nearly cancel between its two surfaces. This makes it an effective chromatic tuning element without disturbing the already well-corrected field curvature.
 
 ### L9 — Component VI, rear element (cemented doublet D3)
 
 - **Shape:** Positive meniscus, convex to object (R₁₄ = +96.9, R₁₅ = +518.0)
-- **Glass:** nd = 1.6385, νd = 55.5 — Dense Crown (SK/LaK border), code 639/555
+- **Glass:** K-SK18 (Sumita, 639555), nd = 1.6385, νd = 55.5 — dense crown (SK/LaK border)
 - **Focal length (standalone):** +185.3 mm
 - **Role:** L9 is the final element and the rearmost positive power contributor. Its high Abbe number (low dispersion) paired with L8's high-dispersion flint forms the third and final achromatic doublet. Component VI collectively has a focal length of +300.2 mm, contributing moderate positive power while correcting residual longitudinal chromatic aberration.
 
@@ -246,9 +246,9 @@ Nikon's own documentation identifies the key innovation as "the use of a newly d
 
 | Element | nd | νd | Code | Position |
 |---------|-----|-----|------|----------|
-| L3 | 1.7700 | 47.9 | 770/479 | Positive element, front cemented doublet |
-| L6 | 1.7170 | 47.9 | 717/479 | Positive element, rear cemented doublet |
-| L7 | 1.7170 | 47.9 | 717/479 | Positive element, single plano-convex |
+| L3 | 1.7700 | 47.9 | 770479 | Positive element, front cemented doublet; no exact public coefficient-backed match |
+| L6 | 1.7170 | 47.9 | S-LAM3 / 717479 | Positive element, rear cemented doublet |
+| L7 | 1.7170 | 47.9 | S-LAM3 / 717479 | Positive element, single plano-convex |
 
 All three share the same Abbe number (νd = 47.9), and L6/L7 use identical glass. The lanthanum content provides refractive indices of 1.717–1.770, which is substantially higher than what conventional crown glasses could achieve at the same dispersion level. For comparison, a non-lanthanum crown with νd ≈ 48 would typically have nd around 1.52–1.56 — the lanthanum glasses provide roughly 0.16–0.25 higher refractive index.
 
@@ -260,9 +260,9 @@ The three negative elements (L4, L5, L8) use conventional flint glasses with νd
 
 | Element | nd | νd | Code | Family |
 |---------|-----|-----|------|--------|
-| L4 | 1.5927 | 35.4 | 593/354 | Light Flint (LLF) |
-| L5 | 1.6483 | 33.8 | 648/338 | Flint (F) |
-| L8 | 1.6259 | 35.6 | 626/356 | Light Flint (LF) |
+| L4 | 1.5927 | 35.4 | S-FTM16 / 593353 | Light Flint (LLF) |
+| L5 | 1.6483 | 33.8 | S-TIM22 / 648338 | Flint (F) |
+| L8 | 1.6259 | 35.6 | E-F1 / 626357 | Light Flint (LF) |
 
 ### 6.3 Glass Manufacturer
 
@@ -274,13 +274,13 @@ Seven distinct glass types are used across nine elements, with two duplications 
 
 | Glass type | nd | νd | Elements | Family |
 |-----------|-----|-----|----------|--------|
-| 607/595 | 1.6073 | 59.5 | L1, L2 | Dense Crown (SK) |
-| 770/479 | 1.7700 | 47.9 | L3 | Lanthanum Crown/Flint (LaK/LaF) |
-| 717/479 | 1.7170 | 47.9 | L6, L7 | Lanthanum Crown (LaK) |
-| 593/354 | 1.5927 | 35.4 | L4 | Light Flint (LLF) |
-| 648/338 | 1.6483 | 33.8 | L5 | Flint (F) |
-| 626/356 | 1.6259 | 35.6 | L8 | Light Flint (LF) |
-| 639/555 | 1.6385 | 55.5 | L9 | Dense Crown (SK) |
+| K-SK7 / 607595 | 1.6073 | 59.5 | L1, L2 | Dense Crown (SK) |
+| 770479 | 1.7700 | 47.9 | L3 | Lanthanum Crown/Flint (LaK/LaF); unresolved exact catalog match |
+| S-LAM3 / 717479 | 1.7170 | 47.9 | L6, L7 | Lanthanum Crown (LaK) |
+| S-FTM16 / 593353 | 1.5927 | 35.4 | L4 | Light Flint (LLF) |
+| S-TIM22 / 648338 | 1.6483 | 33.8 | L5 | Flint (F) |
+| E-F1 / 626357 | 1.6259 | 35.6 | L8 | Light Flint (LF) |
+| K-SK18 / 639555 | 1.6385 | 55.5 | L9 | Dense Crown (SK) |
 
 The use of identical glass for L6 and L7 is notable: both are lanthanum crown elements in the rear group, and sharing a glass type was a practical decision that reduced manufacturing complexity.
 

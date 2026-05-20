@@ -73,7 +73,7 @@ All prescription data below is at the patent normalization of f = 100 mm. To obt
 
 **Focal length:** f_L1 ≈ +96.8 mm (thick-lens, ABCD matrix computation)
 
-**Glass:** nd = 1.720, νd = 50.25 (six-digit code: 720/503). This places the glass in the lanthanum crown (LaK) family. The nearest modern catalog match is OHARA S-LAH53 (nd = 1.720, νd = 50.31, Δνd = 0.06), though the 1970s glass may have been a now-discontinued formulation from OHARA or HOYA. Confidence: family-level.
+**Glass:** J-LAK10 (Hikari, 720503), nd = 1.720, νd = 50.25. This places the glass in the lanthanum crown (LaK) family, and the Hikari coefficient-backed catalog entry matches the six-digit code.
 
 **Optical role:** L1 is the first of two strong positive elements that collectively form the front converging group. Its high refractive index (1.72) is mandated by condition (9) of the patent (n₁ > 1.68) and serves two purposes: it provides converging power while keeping the Petzval sum low. A high-index positive element contributes less to field curvature than an equivalent low-index positive element. The meniscus shape directs the strongly curved surface toward the incoming collimated beam, which reduces the angle of incidence at each surface and thereby limits spherical aberration. No patent condition directly constrains L1's radii; instead, its curvature is set to balance power sharing with L2 while maintaining the total front-group focal length within condition (1) (0.4f < f₁₂ < 0.5f).
 
@@ -88,7 +88,7 @@ All prescription data below is at the patent normalization of f = 100 mm. To obt
 
 **Focal length:** f_L2 ≈ +86.2 mm
 
-**Glass:** nd = 1.623, νd = 58.14 (six-digit code: 623/581). This glass falls in the dense phosphate crown (SK/PSK) family. No exact match was found in modern catalogs; it is likely a proprietary melt or discontinued catalog type from the 1970s OHARA or HOYA catalogs. The Abbe number (58.14) satisfies condition (12) (ν₁, ν₂ > 45), ensuring low chromatic contribution from the front group. Confidence: family-level.
+**Glass:** BACD15 (HOYA, 623581), nd = 1.623, νd = 58.14. This glass falls in the dense barium/phosphate crown (SK/PSK) family. The Abbe number (58.14) satisfies condition (12) (ν₁, ν₂ > 45), ensuring low chromatic contribution from the front group.
 
 **Optical role:** L2 is the strongest single element in the design, slightly more powerful than L1 (f_L2 ≈ 86 mm vs f_L1 ≈ 97 mm). Together with L1, it produces a combined focal length of f₁₂ = 45.3 mm — substantially shorter than the system focal length of 100 mm. This strong convergence is essential to the telephoto compression: it is the short f₁₂ that allows the back focal distance to be reduced, achieving the 1.07 telephoto ratio. L2's front radius r₃ is tightly constrained by condition (3) (0.28f < r₃ < 0.35f = 28.0 to 35.0 mm; actual r₃ = 31.522), and its rear radius r₄ by condition (4) (0.6f < r₄ < 0.75f = 60.0 to 75.0 mm; actual r₄ = 64.950). These radii are critical for spherical aberration control: too-short radii undercorrect, while too-long radii overcorrect.
 
@@ -131,7 +131,7 @@ All prescription data below is at the patent normalization of f = 100 mm. To obt
 **L4 alone (in air):** f_L4 ≈ +27.8 mm
 **L5 alone (in air):** f_L5 ≈ −42.4 mm
 
-**L4 glass:** nd = 1.700, νd = 48.08 (six-digit code: 700/481). Lanthanum crown (LaK) family. The index satisfies conditions (9) (n₄ > 1.68) and (10) (n₄/n₅ > 1.05; actual ratio = 1.074). No exact catalog match was found in modern databases; nd = 1.70 is an unusual value that may correspond to a discontinued 1970s glass type. Confidence: family-level.
+**L4 glass:** J-LAF01 (Hikari, 700481), nd = 1.700, νd = 48.08. Lanthanum crown/flint (LaK/LaF) family. The index satisfies conditions (9) (n₄ > 1.68) and (10) (n₄/n₅ > 1.05; actual ratio = 1.074).
 
 **L5 glass:** nd = 1.583 (1.58313 at full precision from Embodiment 4), νd = 59.36 (six-digit code: 583/594). Barium crown (BaK) family. The nearest match is **OHARA S-BAL42** (nd = 1.58313, νd = 59.37, Δνd = 0.01). Confidence: high (near-exact match).
 
@@ -149,13 +149,13 @@ All prescription data below is at the patent normalization of f = 100 mm. To obt
 
 | Element | nd | νd | Six-digit | Family | Catalog Match | Confidence |
 |---|---|---|---|---|---|---|
-| L1 | 1.720 | 50.25 | 720/503 | LaK | OHARA S-LAH53 (Δνd = 0.06) | Family |
-| L2 | 1.623 | 58.14 | 623/581 | SK/PSK | No exact match (discontinued?) | Family |
+| L1 | 1.720 | 50.25 | 720503 | LaK | Hikari J-LAK10 | High |
+| L2 | 1.623 | 58.14 | 623581 | SK/PSK | HOYA BACD15 | High |
 | L3 | 1.7847 | 25.71 | 785/257 | SF | **HOYA FD110** (exact) | High |
-| L4 | 1.700 | 48.08 | 700/481 | LaK | No exact match (discontinued?) | Family |
+| L4 | 1.700 | 48.08 | 700481 | LaK/LaF | Hikari J-LAF01 | High |
 | L5 | 1.583 | 59.36 | 583/594 | BaK | **OHARA S-BAL42** (Δνd = 0.01) | High |
 
-The design uses three distinct glass families: lanthanum crowns for the positive power elements (L1, L4), a dense phosphate crown for the second positive meniscus (L2), and a dense flint for the negative spacer (L3), with a lighter barium crown for the correcting element (L5). This distribution of high-index positive elements paired with a high-dispersion negative element is characteristic of well-corrected telephoto designs of the era.
+The design uses three distinct glass families: lanthanum crown/flint glasses for the positive power elements (L1, L4), a dense barium/phosphate crown for the second positive meniscus (L2), and a dense flint for the negative spacer (L3), with a lighter barium crown for the correcting element (L5). This distribution of high-index positive elements paired with a high-dispersion negative element is characteristic of well-corrected telephoto designs of the era.
 
 Note: Embodiments 3 and 4 use different glass choices for L2 (nd = 1.61375, νd = 56.36 — an exact match for Schott SK4) and slightly different formulations for L4 and L5, suggesting that Olympus evaluated multiple glass combinations during the design process. The glass selections for L3 and L5 are highly consistent across all four embodiments, indicating that the SF-family diverger and BaK-family corrector were considered essential to the design's aberration balance.
 
