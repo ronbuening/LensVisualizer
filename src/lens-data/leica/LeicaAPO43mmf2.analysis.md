@@ -58,15 +58,15 @@ This gives 4 + 1 + 1 + 1 + 1 = **8 air-separated groups**, matching the Leica sp
 | Element | Shape | nd | νd | Glass (best match) | f (mm) | Asph | Cemented | Role |
 |---|---|---|---|---|---|---|---|---|
 | L1 | Biconcave | 1.64769 | 33.8 | S-TIM22 (OHARA) | −35.6 | — | — | Front negative; field flattening, retrofocus contribution |
-| L2 | Biconvex | 2.00069 | 25.5 | S-NPH4 (OHARA) | +29.9 | — | — | Ultra-high-index positive; strong refraction at minimum curvature |
+| L2 | Biconvex | 2.00069 | 25.5 | TAFD40 (HOYA) | +29.9 | — | — | Ultra-high-index positive; strong refraction at minimum curvature |
 | L3 | Biconvex | 1.59282 | 68.6 | FCD515 (HOYA) | +28.7 | — | D1 (with L4) | Positive crown; primary positive power in G1; APD glass |
-| L4 | Biconcave | 1.76182 | 26.6 | S-TIH6 (OHARA) | −24.4 | — | D1 (with L3) | Negative flint; chromatic correction partner for L3 |
+| L4 | Biconcave | 1.76182 | 26.6 | S-TIH14 (OHARA) | −24.4 | — | D1 (with L3) | Negative flint; chromatic correction partner for L3 |
 | L5 | Biconvex (2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | +66.0 | 8A, 9A | — | OIS element; weak positive with aspherics for SA/coma |
 | L6 | Biconcave (1× Asph) | 1.68948 | 31.0 | S-TIM28 / L-TIM28 (OHARA) | −22.3 | 10A | D2 (with L7) | Negative flint; aberration control at stop |
-| L7 | Biconvex | 1.95375 | 32.3 | S-LAH99 / TAFD33 (OHARA) | +19.0 | — | D2 (with L6) | Ultra-high-index positive; primary power in G2 |
+| L7 | Biconvex | 1.95375 | 32.3 | S-LAH98 (OHARA) | +19.0 | — | D2 (with L6) | Ultra-high-index positive; primary power in G2 |
 | L8 | Pos. Meniscus (convex to image) | 1.90366 | 31.3 | S-NPH53 / TAFD30 (OHARA) | +37.8 | — | D3 (with L9) | Positive meniscus; high-index short flint for Petzval correction |
 | L9 | Biconcave | 1.69895 | 30.1 | S-TIM35 (OHARA) | −31.0 | — | D3 (with L8) | Negative flint; G3 diverging power for field correction |
-| L10 | Biconvex (2× Asph) | 1.55332 | 71.7 | S-FPM3 / L-FPM3 (OHARA) | +40.0 | 16A, 17A | — | Fluorophosphate positive; main APD contributor; focus group |
+| L10 | Biconvex (2× Asph) | 1.55332 | 71.7 | M-FCD500 (HOYA) | +40.0 | 16A, 17A | — | Fluorophosphate positive; main APD contributor; focus group |
 | L11 | Neg. Meniscus (convex to image, 2× Asph) | 1.58660 | 59.0 | K-SKLD200 (Sumita) | −31.2 | 18A, 19A | — | Rear field-flattener; G5 negative for Petzval balance |
 
 ---
@@ -79,9 +79,9 @@ The APO designation on this lens is not merely marketing. The glass selection re
 
 Three elements use glasses with refractive indices approaching or exceeding 1.9:
 
-**L2 — S-NPH4 (nd = 2.00069, νd = 25.5).** This OHARA super-high-index heavy flint is one of the highest-index optical glasses in current production. Its extreme refractive index means that the same optical power can be achieved with much shallower curvatures than lower-index alternatives. For L2, this is critical: as a biconvex element contributing strong positive power to G1 (f = +29.9 mm), using S-NPH4 allows the surface radii (R3 = +37.97, R4 = −131.51) to remain moderate, reducing both spherical aberration and higher-order monochromatic residuals. The low Abbe number (25.5) means L2 also serves as the primary chromatic dispersion source in the front group, which is then corrected by L3.
+**L2 — TAFD40 (nd = 2.00069, νd = 25.5).** This HOYA super-high-index heavy flint is one of the highest-index optical glasses in current production. Its extreme refractive index means that the same optical power can be achieved with much shallower curvatures than lower-index alternatives. For L2, this is critical: as a biconvex element contributing strong positive power to G1 (f = +29.9 mm), using TAFD40 allows the surface radii (R3 = +37.97, R4 = −131.51) to remain moderate, reducing both spherical aberration and higher-order monochromatic residuals. The low Abbe number (25.5) means L2 also serves as the primary chromatic dispersion source in the front group, which is then corrected by L3.
 
-**L7 — S-LAH99 (nd = 1.95375, νd = 32.3).** This ultra-high-index lanthanum glass carries the primary positive power of G2 (f = +19.0 mm), the strongest positive element in the rear half of the system. Its placement immediately behind the aperture stop, cemented to the negative L6, forms a powerful doublet that handles both axial color and spherical aberration in the post-stop region.
+**L7 — S-LAH98 (nd = 1.95375, νd = 32.3).** This ultra-high-index lanthanum glass carries the primary positive power of G2 (f = +19.0 mm), the strongest positive element in the rear half of the system. Its placement immediately behind the aperture stop, cemented to the negative L6, forms a powerful doublet that handles both axial color and spherical aberration in the post-stop region.
 
 **L8 — S-NPH53 (nd = 1.90366, νd = 31.3).** Another ultra-high-index short flint, used as a positive meniscus in G3. The high index reduces curvature demands on the meniscus surfaces, limiting the introduction of higher-order astigmatism.
 
@@ -89,9 +89,9 @@ Three elements use glasses with refractive indices approaching or exceeding 1.9:
 
 The APO correction depends on anomalous partial dispersion (APD) to bring a third wavelength (typically g-line at 435.8 nm) to a common focus alongside the standard d-line and C-line correction of an ordinary achromat.
 
-**L3 — FCD515 (HOYA, nd = 1.59282, νd = 68.6).** This glass sits in the phosphate/fluor crown region of the glass map, characteristic of low-dispersion positive crown glasses. The 2026-05-19 audit matched the patent's 593686 row to the coefficient-backed HOYA FCD515 catalog entry. A glass at this position on the nd/νd diagram has positive anomalous partial dispersion (ΔPgF > 0). Paired with the normal-dispersion flint L4 (S-TIH6, νd = 26.6) in a cemented doublet, L3's APD helps pull the short-wavelength (blue/violet) focus closer to the long-wavelength focus, reducing secondary spectrum in the front group.
+**L3 — FCD515 (HOYA, nd = 1.59282, νd = 68.6).** This glass sits in the phosphate/fluor crown region of the glass map, characteristic of low-dispersion positive crown glasses. The 2026-05-19 audit matched the patent's 593686 row to the coefficient-backed HOYA FCD515 catalog entry. A glass at this position on the nd/νd diagram has positive anomalous partial dispersion (ΔPgF > 0). Paired with the normal-dispersion flint L4 (S-TIH14, νd = 26.6) in a cemented doublet, L3's APD helps pull the short-wavelength (blue/violet) focus closer to the long-wavelength focus, reducing secondary spectrum in the front group.
 
-**L10 — S-FPM3 (nd = 1.55332, νd = 71.7).** This fluorophosphate glass is the cornerstone of the APO correction. With a high Abbe number (71.7) and positive APD, it provides the same kind of secondary-spectrum reduction as ED (extra-low dispersion) glass does in telephoto designs, but here applied to a fast normal lens. L10 is a powerful biconvex element (f = +40.0 mm) with two aspherical surfaces — the most optically complex single element in the design. The patent's Inequality (7) requires νd4G > 62, and the actual value of 71.7 provides substantial margin, indicating that chromatic correction was a primary design driver for this element.
+**L10 — M-FCD500 (nd = 1.55332, νd = 71.7).** This fluorophosphate glass is the cornerstone of the APO correction. With a high Abbe number (71.7) and positive APD, it provides the same kind of secondary-spectrum reduction as ED (extra-low dispersion) glass does in telephoto designs, but here applied to a fast normal lens. L10 is a powerful biconvex element (f = +40.0 mm) with two aspherical surfaces — the most optically complex single element in the design. The patent's Inequality (7) requires νd4G > 62, and the actual value of 71.7 provides substantial margin, indicating that chromatic correction was a primary design driver for this element.
 
 **L5 and L11 — K-SKLD200 (Sumita, nd = 1.58660, νd = 59.0).** Both the OIS element and the rear field-flattener use the same 587590 crown. The 2026-05-19 audit found Sumita K-SKLD200 as the exact coefficient-backed catalog match, including the published d-code 587590 and formula constants. While not as strongly anomalous as fluorophosphate glass, the νd = 59.0 of these elements contributes to keeping the overall secondary spectrum low. The patent's Inequality (8) requires νd5G > 50 for L11; the value of 59.0 satisfies this comfortably.
 
@@ -142,7 +142,7 @@ The extreme aspherization of surface 18A reflects L11's role as a field-flattene
 The four aspherical elements span two glass types:
 
 - **L5 and L11** use Sumita K-SKLD200, an exact 587590 coefficient-backed precision-molding glass.
-- **L10** uses OHARA S-FPM3 (nd = 1.55332), a fluorophosphate glass. OHARA offers L-FPM3 as the low-Tg PGM variant with identical optical constants. Given the production volumes of the Q3 43, PGM is the likely manufacturing method.
+- **L10** uses HOYA M-FCD500 (nd = 1.55332), a fluorophosphate glass. Given the production volumes of the Q3 43, PGM is the likely manufacturing method.
 - **L6** uses S-TIM28 (nd = 1.68948). OHARA offers L-TIM28 as the PGM variant, suggesting this element is also glass-molded.
 
 ---
@@ -213,7 +213,7 @@ This lens represents a sophisticated modern approach to the classical "fast norm
 
 **Three cemented doublets in rapid succession.** The rear half of the lens contains three cemented doublets (D2, D3) plus the powerful L10 singlet, all operating at high ray incidence angles immediately after the stop. This dense packing of high-index doublets is characteristic of modern computational optimization — each doublet provides a paired correction "knob" for simultaneous chromatic and monochromatic aberration control that would be impossible to achieve with singlets alone.
 
-**Extreme index range.** The design spans an extraordinary range of refractive indices, from 1.553 (L10, S-FPM3) to 2.001 (L2, S-NPH4). This 0.45-unit range is among the widest in any production camera lens. The high-index elements minimize surface curvatures and thus higher-order aberrations, while the low-index fluorophosphate elements provide the anomalous dispersion needed for APO correction.
+**Extreme index range.** The design spans an extraordinary range of refractive indices, from 1.553 (L10, M-FCD500) to 2.001 (L2, TAFD40). This 0.45-unit range is among the widest in any production camera lens. The high-index elements minimize surface curvatures and thus higher-order aberrations, while the low-index fluorophosphate elements provide the anomalous dispersion needed for APO correction.
 
 **Aspherics placed for maximum leverage.** Rather than distributing aspherics uniformly, the design concentrates them at four strategic positions: at the OIS element (L5, near the stop for SA correction), at the first post-stop surface (L6, for coma and oblique SA), and at the two rear elements (L10 and L11, for field curvature, astigmatism, and distortion). No aspherics appear on the front three elements (L1, L2, L3/L4), where the ultra-high-index glasses already provide sufficient curvature latitude.
 

@@ -48,7 +48,7 @@ L1 is a weakly positive equi-biconvex element ($R_1 = +135.67$, $R_2 = -135.67$)
 
 ### L2 — Biconcave Negative
 
-$n_d = 1.72342$, $\nu_d = 38.0$. Glass: E-FD5 (HOYA). $f = -28.4\text{ mm}$.
+$n_d = 1.72342$, $\nu_d = 38.0$. Glass: S-BAH28 (OHARA). $f = -28.4\text{ mm}$.
 
 L2 is the strongest negative element in the system and the linchpin of the First Front Group's aberration strategy. Its strongly concave image-side surface ($R_4 = +36.38$) produces powerful divergence close to the marginal-ray height maximum. The patent's conditional expression (2) governs this surface: $R_{N1}/f = 0.3638$, within the specified range $0.3 < R_{N1}/f < 0.5$. This radius balances spherical aberration correction against field curvature — too short a radius (below 0.3) produces overcorrected spherical aberration and tilted field; too long (above 0.5) produces undercorrected spherical aberration (¶0018–¶0019).
 
@@ -64,7 +64,7 @@ Together, L1–L3 form a positive triplet whose net focal length is $f_{G_1} \ap
 
 ### L4 — Biconcave Negative
 
-$n_d = 1.67270$, $\nu_d = 32.2$. Glass: E-FD4 (HOYA) — dense flint. $f = -33.4\text{ mm}$.
+$n_d = 1.67270$, $\nu_d = 32.2$. Glass: E-FD5 (HOYA) — dense flint. $f = -33.4\text{ mm}$.
 
 L4 is the sole negative element in the Second Front Group and the element closest to the aperture stop on its image side. The patent identifies this element as critical for controlling spherical aberration in $G_{II}$ (¶0020–¶0022). Its strongly concave object-side surface ($R_8 = -23.80$) is the sharpest curvature in the entire system, creating a powerful divergence that counteracts the convergence of L5 and L6 downstream. Condition (3) governs this surface: $R_{N2}/f = -0.2380$, within the required range $-0.5 < R_{N2}/f < -0.18$. Departing below $-0.5$ would weaken the negative power and leave spherical aberration undercorrected with outer coma; departing above $-0.18$ would overcorrect spherical aberration and produce inner coma (¶0022).
 
@@ -72,7 +72,7 @@ The nearly flat rear surface ($R_9 = +444.65$) minimises the element's contribut
 
 ### L5 — Positive Meniscus, Convex to Image
 
-$n_d = 1.77250$, $\nu_d = 49.6$. Glass: TAFD30 (HOYA) — lanthanum dense flint. $f = +57.7\text{ mm}$.
+$n_d = 1.77250$, $\nu_d = 49.6$. Glass: S-LAH66 (OHARA) — lanthanum dense flint. $f = +57.7\text{ mm}$.
 
 L5 is a positive meniscus with both surfaces concave toward the object ($R_{10} = -125.58$, $R_{11} = -33.77$). The much shorter radius on the rear surface gives the element its positive power. The high-index lanthanum dense flint glass ($n_d = 1.773$) allows strong convergence with moderate curvatures, contributing to coma correction through its meniscus geometry. L5's role, together with L6, is to provide the positive power of $G_{II}$ while maintaining low residual spherical aberration and coma — the two positive elements balance L4's strong divergence to produce a net weakly positive second front group ($f_{G_{II}} \approx 131.8\text{ mm}$).
 
@@ -84,7 +84,7 @@ L6 is the last element of the front group and the first of two FK5-class element
 
 ### L7 — Equi-Biconvex Positive
 
-$n_d = 1.80518$, $\nu_d = 25.5$. Glass: E-FD2 (HOYA) — dense flint (SF6 class). $f = +94.1\text{ mm}$.
+$n_d = 1.80518$, $\nu_d = 25.5$. Glass: S-TIH6 (OHARA) — dense flint (SF6 class). $f = +94.1\text{ mm}$.
 
 L7 opens the rear group with a symmetric equi-biconvex element ($R_{14} = +150.55$, $R_{15} = -150.55$) made from the highest-index glass in the system ($n_d = 1.805$). The patent explains (¶0014) that placing a positive element at the front of the negative rear group is essential for macro performance: as the front group extends toward the object at close focus, the off-axis ray height at L7 increases, and the positive power of L7 grows in its effect on the off-axis beam, providing increased correction to compensate for the growing front-group/rear-group separation. Without L7's positive contribution, the rear group's overall negative power would produce uncorrectable astigmatism and field curvature at high magnifications.
 
@@ -109,12 +109,12 @@ The glass palette of Example 4 uses 6 distinct glass types across 9 elements. Si
 | Element | $n_d$   | $\nu_d$ | Likely Glass         | Type                    | Role in Design                       |
 |---------|---------|---------|----------------------|-------------------------|--------------------------------------|
 | L1      | 1.76182 | 26.5    | E-SF3 (HOYA)         | Dense flint             | High-index front collector           |
-| L2      | 1.72342 | 38.0    | E-FD5 (HOYA)         | Dense flint             | Strong negative, SA/chromatic control|
+| L2      | 1.72342 | 38.0    | S-BAH28 (OHARA)      | Dense barium flint      | Strong negative, SA/chromatic control|
 | L3      | 1.69680 | 55.6    | LAC14 (HOYA)         | Lanthanum crown         | Strong positive, low chromatic load  |
-| L4      | 1.67270 | 32.2    | E-FD4 (HOYA)         | Dense flint             | Near-stop negative, SA control       |
-| L5      | 1.77250 | 49.6    | TAFD30 (HOYA)        | Lanthanum dense flint   | Positive meniscus, coma correction   |
+| L4      | 1.67270 | 32.2    | E-FD5 (HOYA)         | Dense flint             | Near-stop negative, SA control       |
+| L5      | 1.77250 | 49.6    | S-LAH66 (OHARA)      | Lanthanum dense flint   | Positive meniscus, coma correction   |
 | L6      | 1.48749 | 70.2    | FC5 (HOYA)           | Fluorophosphate crown   | Chromatic corrector (lateral colour) |
-| L7      | 1.80518 | 25.5    | E-FD2 (HOYA)         | Dense flint (SF6 class) | Positive collector in rear group     |
+| L7      | 1.80518 | 25.5    | S-TIH6 (OHARA)       | Dense flint (SF6 class) | Positive collector in rear group     |
 | L8      | 1.80440 | 39.6    | NBFD10 (HOYA)        | Lanthanum dense flint   | Negative diverger, field flatness    |
 | L9      | 1.48749 | 70.2    | FC5 (HOYA)           | Fluorophosphate crown   | Field flattener, lateral colour      |
 
@@ -205,4 +205,4 @@ An updated Mark II version was introduced with an improved leaf shutter mechanis
 2. Hasselblad HC Macro 4/120 II product page: https://www.hasselblad.com/h-system/lenses/hc-macro-4-120mm/
 3. Hasselblad HC Macro 4/120 II specifications (B&H Photo): 9 elements / 9 groups, f = 118.7 mm, f/4–f/45, MFD 0.39 m, 67 mm filter, 1410 g.
 4. Global Media Pro specification sheet: focal length 118.7 mm, diagonal angle of view 33°, coverage 56 × 41.5 mm at close range.
-5. HOYA optical glass catalog: FC5, E-FD2, E-FD4, E-FD5, NBFD10, TAFD30, LAC14, E-SF3.
+5. Public optical glass catalogs: HOYA FC5, E-FD5, NBFD10, LAC14, E-SF3; OHARA S-BAH28, S-LAH66, S-TIH6.

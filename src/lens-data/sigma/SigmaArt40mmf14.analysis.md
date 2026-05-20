@@ -59,7 +59,7 @@ L3 duplicates L2's material but with weaker power (longer front radius R = +424.
 
 ### L4 (LX1) — Biconcave Negative, cemented with L5 (Component X, G1B)
 
-nd = 1.64769, νd = 33.84. Glass: E-FD15 (HOYA) — dense flint. f = −48.3 mm (standalone).
+nd = 1.64769, νd = 33.84. Glass: E-FD2 (HOYA) — dense flint. f = −48.3 mm (standalone).
 
 L4 is the negative element of Component X, a cemented doublet in subgroup G1B that the patent identifies as serving a "new-type achromatism" (新色消し) role (¶0026). The biconcave shape (R7 = −38.18, R8 = +172.54 mm) generates strong divergence. Its dense-flint glass provides the high-dispersion partner needed for achromatization. In Component X, where the chief ray is high relative to the marginal ray, the chromatic effect is leveraged primarily toward field-curvature correction rather than axial color correction (¶0026).
 
@@ -81,7 +81,7 @@ The shape factor of L6 — condition (4), (RY11 + RY12)/(RY11 − RY12) = 1.04 �
 
 ### L7 (LY2) — Biconcave Negative, cemented with L6 (Component Y, G1B)
 
-nd = 1.60342, νd = 38.01. Glass: E-F3 (HOYA) — flint. f = −47.9 mm (standalone).
+nd = 1.60342, νd = 38.01. Glass: S-TIM5 (OHARA) — flint. f = −47.9 mm (standalone).
 
 L7 provides the high-dispersion negative partner in the classical achromatic doublet of Component Y. Its biconcave shape (R11 = −32.70, R12 = +246.88 mm) generates divergence. Component Y as a whole has a focal length of approximately −226 mm, acting as a net weak negative unit that trims the beam geometry entering G2 while completing the chromatic correction of subgroup G1B.
 
@@ -117,7 +117,7 @@ L12 is the third and final FLD element. Positioned immediately after the apertur
 
 ### L13 (L32) — Biconcave Negative, cemented with L12 (Component L3a, G3)
 
-nd = 1.64769, νd = 33.84. Glass: E-FD15 (HOYA) — dense flint, same glass as L4. f = −33.5 mm (standalone).
+nd = 1.64769, νd = 33.84. Glass: E-FD2 (HOYA) — dense flint, same glass as L4. f = −33.5 mm (standalone).
 
 L13 is the achromatizing partner in Component L3a. The cemented interface between L12 and L13 has a refractive-index difference of Δn = 1.64769 − 1.43700 = 0.211, which combined with the Abbe-number difference of ΔV = 33.84 − 95.10 = −61.26 yields the condition (10) value of 100 × (N32−N31)/(V32−V31) = −0.34 (range −0.7 to −0.05). This interface provides strong spherical-aberration correction while maintaining axial color balance.
 
@@ -125,7 +125,7 @@ The component L3a as a whole is a net negative doublet (f ≈ −93 mm), positio
 
 ### L14 (L33) — Negative Meniscus, concave to object (G3)
 
-nd = 1.62588, νd = 35.74. Glass: S-TIM35 (OHARA) — titanium flint. f = −55.5 mm.
+nd = 1.62588, νd = 35.74. Glass: E-F1 (HOYA) — flint. f = −55.5 mm.
 
 L14 is the concentric negative meniscus that the patent identifies as the critical sagittal-coma-flare corrector (¶0054). Its concave-to-object shape (R24 = −26.99, R25 = −121.03 mm) creates a surface configuration approximately concentric with the aperture stop. Condition (12) — R33/Ds33, where Ds33 is the on-axis distance from the stop to L14's front surface (17.75 mm) — evaluates to −1.52 (range −1.8 to −1.0), confirming the near-concentric geometry. This concentricity minimizes the angle of incidence of off-axis ray bundles, suppressing sagittal coma and enabling flat image performance across the field at F/1.4.
 
@@ -149,14 +149,14 @@ The design uses eleven distinct glass types across sixteen elements, drawing fro
 |---|---|---|---|---|---|---|---|
 | L1, L8 | 1.77250 | 49.62 | −0.009 | S-LAH66 | OHARA | Standard | Lanthanum crown, moderate-dispersion positive |
 | L2, L3, L12 | 1.43700 | 95.10 | +0.053 | FCD100 | HOYA | FLD | Fluorite-equivalent ED fluorophosphate |
-| L4, L13 | 1.64769 | 33.84 | +0.003 | E-FD15 | HOYA | Standard | Dense flint, achromatizing partner |
+| L4, L13 | 1.64769 | 33.84 | +0.003 | E-FD2 | HOYA | Standard | Dense flint, achromatizing partner |
 | L5 | 1.83481 | 42.72 | −0.011 | S-LAH55V | OHARA | Standard | Lanthanum dense crown |
 | L6 | 1.55032 | 75.50 | +0.028 | M-FCD500 | HOYA | SLD | PGM fluorophosphate crown |
-| L7 | 1.60342 | 38.01 | ±0.000 | E-F3 | HOYA | Standard | Flint |
+| L7 | 1.60342 | 38.01 | ±0.000 | S-TIM5 | OHARA | Standard | Flint |
 | L9 | 1.92286 | 20.88 | +0.029 | S-NPH2 | OHARA | Standard | Super-dense lanthanum flint |
 | L10, L15 | 1.59282 | 68.63 | +0.015 | PCD51 | HOYA | SLD | Phosphate crown |
 | L11 | 1.58144 | 40.89 | +0.005 | E-FL5 | HOYA | Standard | Light flint |
-| L14 | 1.62588 | 35.74 | +0.006 | S-TIM35 | OHARA | Standard | Titanium flint |
+| L14 | 1.62588 | 35.74 | +0.006 | E-F1 | HOYA | Standard | Flint |
 | L16 | 1.85135 | 40.10 | −0.006 | S-NBH56 | OHARA | Standard | Niobium-phosphate dense crown |
 
 The chromatic correction strategy employs a front-loaded secondary-spectrum architecture: the three FLD elements (L2, L3 in G1A and L12 in G3) carry the bulk of the anomalous dispersion correction, with their high positive ΔPgF (+0.053) used at positions of maximum chief-ray or marginal-ray height respectively. The three SLD elements (L6 in G1B, L10 and L15 in G2/G3) provide secondary support with moderate positive anomalous character (ΔPgF = +0.015 to +0.028), distributed across the central and rear regions.
@@ -268,5 +268,5 @@ The patent was filed by inventor Yamanaka Kenji, with the publication appearing 
 - Sigma Corporation product page: "40mm F1.4 DG HSM | Art" — specifications, lens construction diagram, and technology descriptions. https://www.sigma-global.com/en/lenses/a018_40_14/
 - Sigma Corporation press release (September 2018): development announcement confirming cine-lens origin of the optical design.
 - Kazuto Yamaki (Sigma CEO), interview with Imaging Resource (September 2020): discussion of FLD glass equivalence to fluorite and Sigma's glass selection methodology.
-- HOYA Corporation optical glass catalog: FCD100, M-FCD500, PCD51, E-FD15, E-F3, E-FL5 catalog entries.
-- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, S-NPH2, S-TIM35, S-NBH56 catalog entries.
+- HOYA Corporation optical glass catalog: FCD100, M-FCD500, PCD51, E-FD2, E-F1, E-FL5 catalog entries.
+- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, S-NPH2, S-TIM5, S-NBH56 catalog entries.

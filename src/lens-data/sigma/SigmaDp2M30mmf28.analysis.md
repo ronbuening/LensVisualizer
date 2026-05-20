@@ -77,11 +77,11 @@ The flint glass S-TIM25 has moderate dispersion ($\nu_d = 32.17$), paired with L
 
 ### L3 — Symmetric Biconcave Negative (G1B, cemented front)
 
-$n_d = 1.69895$, $\nu_d = 30.05$. Glass: S-TIM28 (OHARA) — dense short flint. $f = -11.0$ mm.
+$n_d = 1.69895$, $\nu_d = 30.05$. Glass: S-TIM35 (OHARA) — dense short flint. $f = -11.0$ mm.
 
 L3 has a remarkable property: it is **exactly symmetric**, with $R_5 = -15.47$ mm and $R_6 = +15.47$ mm. A symmetric biconcave element generates no coma or astigmatism for an axial beam, placing the entire burden of these aberrations on adjacent elements where they can be controlled more precisely. The strong negative power ($f = -11.0$ mm) of L3 makes it the dominant Petzval-flattening element within G1; its front surface alone contributes $-0.0266$ mm$^{-1}$ to the Petzval sum, one of the two largest negative contributions in the system (the other being L7's front surface at $-0.0280$ mm$^{-1}$).
 
-L3 is cemented to L4 to form the G1B doublet. S-TIM28 is a dense short flint with low Abbe number ($\nu_d = 30.05$); L4's S-LAH58 ($\nu_d = 40.80$) has lower dispersion, and the $\Delta\nu_d = 10.75$ difference provides partial chromatic balancing within the doublet.
+L3 is cemented to L4 to form the G1B doublet. S-TIM35 is a dense short flint with low Abbe number ($\nu_d = 30.05$); L4's S-LAH58 ($\nu_d = 40.80$) has lower dispersion, and the $\Delta\nu_d = 10.75$ difference provides partial chromatic balancing within the doublet.
 
 ### L4 — Biconvex Positive (G1B, cemented rear)
 
@@ -93,15 +93,15 @@ The use of the same glass (S-LAH58) in both L1 and L4 is typical of designs that
 
 ### L5 — Biconvex Positive, rear surface aspherical (G1B singlet)
 
-$n_d = 1.77250$, $\nu_d = 49.47$. Glass: S-LAL59 (OHARA, probable) — lanthanum crown. $f = +19.8$ mm.
+$n_d = 1.77250$, $\nu_d = 49.47$. Glass: S-LAH66 (OHARA) — lanthanum crown. $f = +19.8$ mm.
 
 L5 ($R_8 = +34.82$ mm, $R_9 = -26.18$ mm*) is the only element in the design with an aspherical surface. Its rear surface (S9) carries the aspherical correction described below. L5 contributes significant positive power ($f = +19.8$ mm) and is the last element of G1 before the air gap to G2. Its position at the rear of G1, where the marginal ray height is decreasing and the chief ray height is increasing, makes it effective for controlling both spherical aberration (via the marginal ray) and field curvature (via the chief ray).
 
-The glass S-LAL59 is a high-index lanthanum crown ($n_d = 1.773$, $\nu_d \approx 49.6$). The slightly lower Abbe number compared to a conventional crown (such as BK7 at $\nu_d = 64$) means L5 contributes some residual chromatic aberration, but its high index keeps surface curvatures manageable for the strongly positive power required at this position.
+The glass S-LAH66 is a high-index lanthanum crown ($n_d = 1.773$, $\nu_d \approx 49.6$). The slightly lower Abbe number compared to a conventional crown (such as BK7 at $\nu_d = 64$) means L5 contributes some residual chromatic aberration, but its high index keeps surface curvatures manageable for the strongly positive power required at this position.
 
 ### L6 — Negative Meniscus, convex to object (G2 front element)
 
-$n_d = 1.58144$, $\nu_d = 40.89$. Glass: S-TIM2 (OHARA) — light flint. $f = -107.0$ mm.
+$n_d = 1.58144$, $\nu_d = 40.89$. Glass: S-TIL25 (OHARA) — light flint. $f = -107.0$ mm.
 
 L6 ($R_{10} = +150.15$ mm, $R_{11} = +43.88$ mm) is a weakly negative meniscus that begins the G2 diverging relay. Its power is intentionally weak ($f = -107.0$ mm) to avoid introducing large aberrations at this position, where the beam has already converged significantly. L6 primarily serves a field-flattening role: its Petzval contribution ($-0.006$ mm$^{-1}$, combining both surfaces) gently bends the image surface toward flatness.
 
@@ -117,11 +117,11 @@ The relatively low refractive index ($n_d = 1.532$) is unusual for a strongly cu
 
 ### L8 — Biconvex Positive (G2 rear element)
 
-$n_d = 1.91082$, $\nu_d = 35.25$. Glass: S-LAH79 (OHARA) — very high-index lanthanum glass. $f = +31.1$ mm.
+$n_d = 1.91082$, $\nu_d = 35.25$. Glass: TAFD35 (HOYA) — very high-index lanthanum glass. $f = +31.1$ mm.
 
 L8 ($R_{14} = +63.82$ mm, $R_{15} = -49.10$ mm) is the final optical element before the image plane. It is strongly positive ($f = +31.1$ mm) and serves two purposes: it bends the peripheral ray bundles back toward the optical axis to achieve image-side quasi-telecentricity (controlling the exit angle for the Foveon sensor), and it contributes positive Petzval to partially offset L7's strong negative contribution, keeping the net Petzval sum small and positive.
 
-S-LAH79 is the highest-index glass in the system ($n_d = 1.911$). At this position near the image plane, where both marginal and chief rays are at significant heights, a high-index glass minimizes surface curvatures and the associated higher-order aberrations that would otherwise degrade corner performance. The moderate Abbe number ($\nu_d = 35.25$) places it in the flint regime by classical dispersion criteria, though its lanthanum chemistry gives it optical properties distinct from traditional flint glasses; its chromatic contribution is balanced against L7's contribution in the opposite sense.
+TAFD35 is the highest-index glass in the system ($n_d = 1.911$). At this position near the image plane, where both marginal and chief rays are at significant heights, a high-index glass minimizes surface curvatures and the associated higher-order aberrations that would otherwise degrade corner performance. The moderate Abbe number ($\nu_d = 35.25$) places it in the flint regime by classical dispersion criteria, though its lanthanum chemistry gives it optical properties distinct from traditional flint glasses; its chromatic contribution is balanced against L7's contribution in the opposite sense.
 
 
 ## Glass Identification and Selection
@@ -132,11 +132,11 @@ The design uses a palette of six distinct glasses, all from the OHARA catalog (c
 |---------|-------|---------|-------|--------|------|------------|
 | L1, L4 | 1.88300 | 40.80 | S-LAH58 | OHARA | High-index lanthanum (LaH) | Exact ($\Delta\nu_d \leq 0.04$) |
 | L2 | 1.67270 | 32.17 | S-TIM25 | OHARA | Short flint | Exact ($\Delta\nu_d \leq 0.07$) |
-| L3 | 1.69895 | 30.05 | S-TIM28 | OHARA | Dense short flint | Exact |
-| L5 | 1.77250 | 49.47 | S-LAL59 | OHARA | Lanthanum crown (LaL) | Probable ($\Delta\nu_d \approx 0.15$) |
-| L6 | 1.58144 | 40.89 | S-TIM2 | OHARA | Light flint | Probable ($\Delta\nu_d \approx 0.14$) |
+| L3 | 1.69895 | 30.05 | S-TIM35 | OHARA | Dense short flint | Exact |
+| L5 | 1.77250 | 49.47 | S-LAH66 | OHARA | Lanthanum crown (LaH) | Exact |
+| L6 | 1.58144 | 40.89 | S-TIL25 | OHARA | Light flint | Exact |
 | L7 | 1.53172 | 48.84 | S-TIL6 | OHARA | Titanium flint, low-index | Exact (code 532/489) |
-| L8 | 1.91082 | 35.25 | S-LAH79 | OHARA | Very high-index lanthanum (LaH) | Exact |
+| L8 | 1.91082 | 35.25 | TAFD35 | HOYA | Very high-index lanthanum | Exact |
 
 ### Chromatic strategy
 
@@ -216,7 +216,7 @@ Surface 9 is the concave rear surface of L5 ($R = -26.18$ mm). The positive $A_4
 
 The choice to place the asphere on L5's rear surface — rather than on L1's front as in Examples 1–3 — is a manufacturing simplification. L5 is a smaller element than L1, and its rear surface sees a converging beam of reduced diameter, allowing the aspherical departure to be achieved with less absolute sag excursion. The trade-off is slightly less direct control over marginal-ray aberrations (which are larger at the front of the lens), but Example 4's aberration plots in the patent show performance comparable to the two-asphere designs.
 
-Given the moderate departure and the glass type (S-LAL59, a moldable lanthanum crown), this surface is likely manufactured as a precision glass-molded (PGM) asphere.
+Given the moderate departure and the glass type (S-LAH66, a lanthanum crown), this surface is likely manufactured as a precision glass-molded (PGM) asphere.
 
 
 ## Conditional Expressions

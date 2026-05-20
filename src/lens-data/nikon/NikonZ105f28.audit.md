@@ -22,3 +22,24 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
 - Public catalog search did not produce a coefficient-backed exact `855252` match.
 - Updated the analysis glass table to flag the local patent-source blocker rather than implying the row was reverified from the absent patent.
 
+## 2026-05-20 - Catalog-mismatch queue audit
+
+### Patent evidence
+
+- The referenced patent `WO 2022/097401 A1` is still not present in `patents/`.
+- Local searches for `097401` / `97401` found no patent file.
+- Because the source patent was unavailable locally, the current queue rows were not promoted from data-file values alone.
+
+### Glass disposition
+
+| Element / surface | Current label | Disposition |
+|---|---|---|
+| L2 / S4 | `S-FPM3 (OHARA)` | No change; source-patent blocker. |
+| L3 / S6 | `S-FPM3 (OHARA)` | No change; source-patent blocker. |
+| L8 / S17 | `S-FPM3 (OHARA)` | No change; source-patent blocker. |
+| L9 / S19 | `S-LAH79 (OHARA)` | No change; source-patent blocker. |
+
+### Catalog-search disposition
+
+- Public lookup was not used to override labels without the local patent table.
+- This lens remains unresolved until `WO2022097401A1` or an equivalent local patent source is available.

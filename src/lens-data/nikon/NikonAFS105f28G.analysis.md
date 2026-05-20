@@ -77,7 +77,7 @@ The all-spherical design is notable for a 2006-era macro lens of this complexity
 | Property | Value |
 |----------|-------|
 | Shape | Biconcave (R₁ = −301.40, R₂ = +36.66) |
-| Glass | nd = 1.7174, νd = 29.52 → OHARA S-TIH13 (heavy flint) |
+| Glass | nd = 1.7174, νd = 29.52 → OHARA S-TIH1 (heavy flint) |
 | Center thickness | 1.300 mm |
 | Focal length | −45.5 mm |
 | Role | Negative high-dispersion element within G1. This is the chromatic corrector for the G1 group — its high dispersion (low νd) and negative power counteract the longitudinal chromatic aberration introduced by the positive L1 and L2. The biconcave form with a weak front surface and strong rear surface concentrates the diverging action near the strongly curved R₂ = +36.66 surface. The very thin center thickness (1.3 mm) and short air gap to L4 (0.26 mm) suggest this element is designed to work as a close pair with L4 for chromatic-spherical aberration balancing. |
@@ -101,7 +101,7 @@ The all-spherical design is notable for a 2006-era macro lens of this complexity
 | Property | Value |
 |----------|-------|
 | Shape | Biconcave (R₁ = −184.46, R₂ = +27.39) |
-| Glass | nd = 1.5827, νd = 46.43 → OHARA S-TIM22 (light flint) |
+| Glass | nd = 1.5827, νd = 46.43 → Schott BAF3 (barium flint) |
 | Center thickness | 1.100 mm |
 | Focal length | −40.9 mm |
 | Role | Strong negative singlet. The asymmetric biconcave form (steep rear surface) concentrates diverging power. The light flint glass places this element between the crown and flint families on the glass map — a deliberate choice to provide negative power with moderate dispersion, contributing to Petzval field flattening without excessive chromatic overcorrection. |
@@ -163,11 +163,11 @@ L10:
 | Property | Value |
 |----------|-------|
 | Shape | Biconvex (R₁ = +26.56, R₂ = −77.90) |
-| Glass | nd = 1.6204, νd = 60.29 → OHARA S-LAL59 (lanthanum crown) |
+| Glass | nd = 1.6204, νd = 60.29 → OHARA S-BSM16 (barium crown) |
 | Center thickness | 6.991 mm |
 | Focal length | +31.9 mm |
 
-| Doublet role | This is a classical achromatic doublet in the new-achromat sense: a high-dispersion negative flint (L9, SF57 equivalent) cemented to a low-dispersion positive crown (L10, S-LAL59). The combined power is strongly positive and provides the majority of G3's convergence. The thick positive element L10 (6.99 mm) carries substantial refracting power at both surfaces. The extremely high-index flint L9 (nd = 1.847) paired with the ED element L8 forms a quasi-apochromatic correction cell: L8's anomalous partial dispersion combined with L9's extreme dispersion allows the designer to attack secondary spectrum across the G3 group, reducing longitudinal chromatic aberration to very low levels across the visible spectrum. This is the chromatic correction engine of the entire lens. |
+| Doublet role | This is a classical achromatic doublet in the new-achromat sense: a high-dispersion negative flint (L9, SF57 equivalent) cemented to a low-dispersion positive crown (L10, S-BSM16). The combined power is strongly positive and provides the majority of G3's convergence. The thick positive element L10 (6.99 mm) carries substantial refracting power at both surfaces. The extremely high-index flint L9 (nd = 1.847) paired with the ED element L8 forms a quasi-apochromatic correction cell: L8's anomalous partial dispersion combined with L9's extreme dispersion allows the designer to attack secondary spectrum across the G3 group, reducing longitudinal chromatic aberration to very low levels across the visible spectrum. This is the chromatic correction engine of the entire lens. |
 
 **G3 summary:** Three elements (one ED singlet + one cemented doublet) providing combined f ≈ +42 mm. During focusing, G3 moves monotonically toward the object side (D14 decreases from 14.5 to 0.0 mm, D20 increases from 2.0 to 16.5 mm). At maximum magnification, D14 reaches zero, but the fixed 2.47 mm air space between surface 15 (a dummy reference plane) and L8's front surface means G3 approaches within approximately 2.5 mm of the aperture stop — it does not contact it. G3 is the primary focusing group.
 
@@ -181,7 +181,7 @@ L11:
 | Property | Value |
 |----------|-------|
 | Shape | Negative meniscus, weakly convex to object (R₁ = +754.47, R₂ = +21.42) |
-| Glass | nd = 1.8061, νd = 40.94 → closest OHARA S-TIH53 (νd = 40.73, Δνd = 0.21); alt. CDGM H-LAF3B (νd = 40.95, Δνd = 0.01) |
+| Glass | nd = 1.8061, νd = 40.94 → OHARA S-LAH53 |
 | Center thickness | 1.100 mm |
 | Focal length | −27.4 mm |
 
@@ -265,20 +265,20 @@ The cemented doublet construction of the VR group is specifically called out in 
 |---------|------|-------|---------------|--------------|-----|
 | L1 | 1.7725 | 49.61 | S-LAH66 (OHARA) | Lanthanum crown | Normal |
 | L2 | 1.6127 | 58.75 | S-BSM2 (OHARA) | Barium crown | Normal |
-| L3 | 1.7174 | 29.52 | S-TIH13 (OHARA) | Heavy flint | Normal |
+| L3 | 1.7174 | 29.52 | S-TIH1 (OHARA) | Heavy flint | Normal |
 | L4 | 1.7725 | 49.61 | S-LAH66 (OHARA) | Lanthanum crown | Normal |
-| L5 | 1.5827 | 46.43 | S-TIM22 (OHARA) | Light flint | Normal |
+| L5 | 1.5827 | 46.43 | BAF3 (Schott) | Barium flint | Normal |
 | L6 | 1.5317 | 48.87 | *No exact match* | Crown (proprietary) | Unknown |
 | L7 | 1.8052 | 25.43 | S-TIH6 (OHARA) | Dense flint | Normal |
 | **L8** | **1.4970** | **81.61** | **S-FPL51 (OHARA)** | **Fluorophosphate ED** | **Anomalous** |
 | L9 | 1.8467 | 23.78 | S-TIH53W (OHARA) / SF57 (SCHOTT) | Very dense flint | Normal |
-| L10 | 1.6204 | 60.29 | S-LAL59 (OHARA) | Lanthanum crown | Normal |
-| L11 | 1.8061 | 40.94 | S-TIH53 (OHARA), Δνd = 0.21; alt. CDGM H-LAF3B (Δνd = 0.01) | Dense flint (TIH series) | Normal |
+| L10 | 1.6204 | 60.29 | S-BSM16 (OHARA) | Barium crown | Normal |
+| L11 | 1.8061 | 40.94 | S-LAH53 (OHARA) | Dense lanthanum flint | Normal |
 | L12 | 1.8052 | 25.43 | S-TIH6 (OHARA) | Dense flint | Normal |
 | L13 | 1.5182 | 58.96 | S-NSL3 (OHARA) | Normal crown | Normal |
 | L14 | 1.7859 | 44.20 | S-LAH51 (OHARA) | Lanthanum crown | Normal |
 
-Glass identifications are inferred from nd/νd matching against published catalogs (OHARA, SCHOTT, HOYA, CDGM). Patent prescriptions typically use nd/νd values rounded from catalog specifications, so matches within Δnd < 0.0001 and Δνd < 0.1 are considered positive identifications. L6 (nd = 1.5317, νd = 48.87) has no close match in current public catalogs and may represent a proprietary formulation, discontinued glass, or Nikon-specified melt. L11 (nd = 1.8061, νd = 40.94) is closest to OHARA S-TIH53 (νd = 40.73, Δνd = 0.21) among Japanese glass manufacturers; however, CDGM H-LAF3B (νd = 40.95, Δνd = 0.01) is a near-exact match. The CDGM match is noteworthy but a 2004-era Nikon design would more typically source from OHARA, SCHOTT, or HOYA. The discrepancy with S-TIH53 is small enough to reflect catalog revisions or melt-to-melt variation, but cannot be confirmed as an exact match without manufacturer documentation.
+Glass identifications are inferred from nd/νd matching against published catalogs (OHARA, SCHOTT, HOYA, CDGM). Patent prescriptions typically use nd/νd values rounded from catalog specifications, so matches within Δnd < 0.0001 and Δνd < 0.1 are considered positive identifications. L6 (nd = 1.5317, νd = 48.87) has no close match in current public catalogs and may represent a proprietary formulation, discontinued glass, or Nikon-specified melt. L11 (nd = 1.8061, νd = 40.94) matches OHARA S-LAH53 within rounding tolerance.
 
 ### 8.2 Chromatic Correction Strategy
 
