@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **236** total code-only elements found
-- **165** elements in this report
-- **67** distinct lens files affected
+- **239** total code-only elements found
+- **168** elements in this report
+- **69** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -54,6 +54,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 534554 | 1 | 1 |
 | 534556 | 1 | 1 |
 | 541468 | 1 | 1 |
+| 545486 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 554381 | 1 | 1 |
 | 561575 | 1 | 1 |
@@ -130,6 +131,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 855399 | 1 | 1 |
+| 859300 | 1 | 1 |
+| 866450 | 1 | 1 |
 | 877370 | 1 | 1 |
 | 882408 | 1 | 1 |
 | 892371 | 1 | 1 |
@@ -259,6 +262,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)` | 1.74916 / 54.67 | No catalog entry | abbe |
 | L5 (Element 5) | 8 | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | 1.83481 / 44.72 | No catalog entry | abbe |
 | L12 (Element 12) | 19 | `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)` | 1.90366 / 29.31 | No catalog entry | abbe |
+
+### [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts)
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe |
+| L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe |
 
 ### [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
 
@@ -485,6 +495,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe |
 | L9 (Element 9) | 15A | `586595 — barium crown (patent nd=1.58575, nu_d=59.5)` | 1.58575 / 59.50 | No catalog entry | abbe |
+
+### [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - JP 2021-179551 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `859300 - high-index flint (patent nd=1.85883, vd=30.0)` | 1.85883 / 30.00 | No catalog entry | abbe |
 
 ### [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts)
 

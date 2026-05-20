@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **541** non-explicit-unmatched annotations did not resolve
-- **192** distinct unresolved glass-like tokens found
+- **538** non-explicit-unmatched annotations did not resolve
+- **194** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,7 +27,6 @@ or per-lens patent backfills.
 | 855252 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | S-TIF6 | 3 | 3 | |
-| 159319 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
@@ -58,6 +57,7 @@ or per-lens patent backfills.
 | 518523 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
+| 545486 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
@@ -117,7 +117,9 @@ or per-lens patent backfills.
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
 | 855399 | 1 | 1 | |
+| 859300 | 1 | 1 | |
 | 863415 | 1 | 1 | |
+| 866450 | 1 | 1 | |
 | 870200 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
@@ -269,11 +271,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
-### 159319 — 2 occurrences
-
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 3: `PCD4 equiv. (159319/6790)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 5: `PCD4 equiv. (159319/6790)`
-
 ### 514428 — 2 occurrences
 
 - [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
@@ -415,6 +412,10 @@ or per-lens patent backfills.
 ### 534556 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
+
+### 545486 — 1 occurrence
+
+- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 20: `545486 - crown glass (patent nd=1.54517, vd=48.63)`
 
 ### 552981 — 1 occurrence
 
@@ -652,9 +653,17 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 14: `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)`
 
+### 859300 — 1 occurrence
+
+- [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 6: `859300 - high-index flint (patent nd=1.85883, vd=30.0)`
+
 ### 863415 — 1 occurrence
 
 - [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 10: `Lanthanum special flint (high-index) [863415] — OHARA LASF07`
+
+### 866450 — 1 occurrence
+
+- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 1: `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)`
 
 ### 870200 — 1 occurrence
 
