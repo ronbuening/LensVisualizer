@@ -2,6 +2,27 @@
 
 Patent: WO2019/220618 A1, Example 9
 
+## 2026-05-20 — Six-digit missing-Sellmeier code review
+
+### Phase 1 — Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L12 / S2 | `glass` | `946180 — ultra-high-index short flint (proprietary, patent nd=1.94595, νd=18.0)` | `FDS18 (HOYA, 946180)` | Google Patents text for WO2019/220618 A1 confirms the Example 9/Table 9 row at nd=1.94595 and νd=18.0; HOYA FDS18 is a coefficient-backed public match with code `946180`. The local PDF is present but image-only under `pdftotext`, so the searchable patent-family text was used to confirm the row. |
+| L22 / S16 | `glass` | `774472 — lanthanum dense flint (proprietary, patent nd=1.77377, νd=47.2)` | `774472 — lanthanum dense flint (patent nd=1.77377, νd=47.2; no exact public catalog match)` | The patent text confirms nd=1.77377 and νd=47.2. Public catalog search found no coefficient-backed exact `774472` match. Removing the `proprietary` marker keeps the code future-upgradeable. |
+| L31 / S20 | `glass` | `946180 — ultra-high-index short flint (proprietary, patent nd=1.94595, νd=18.0)` | `FDS18 (HOYA, 946180)` | Same confirmed nd/νd pair as L12; relabeled to the existing FDS18 catalog entry. |
+
+### Catalog-search disposition
+
+- Confirmed HOYA FDS18 through refractiveindex.info / HOYA Zemax data: code `946180`, nd=1.94595, νd=17.98, formula-3 coefficients.
+- Searched public sources for `774472`; no coefficient-backed exact match was found.
+- No catalog entries were added.
+
+### Analysis sync
+
+- Updated the ultra-high-index glass narrative and complete glass map to identify FDS18 / 946180.
+- Updated L22 from `774/472` wording to unbroken `774472`.
+
 ## 2026-05-04 — Glass relabel + patent prescription audit
 
 ### Phase 1 — Glass corrections

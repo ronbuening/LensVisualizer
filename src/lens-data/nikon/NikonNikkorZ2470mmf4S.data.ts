@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.74353,
       vd: 49.5,
       fl: -24.0,
-      glass: "Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)",
+      glass: "744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)",
       apd: false,
       role: "G2 variator — strongest single element, paraboloidal rear asph corrects off-axis aberrations",
     },

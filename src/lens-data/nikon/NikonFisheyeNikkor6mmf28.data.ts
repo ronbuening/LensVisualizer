@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.53375,
       vd: 55.4,
       fl: 35.6,
-      glass: "Unmatched crown (534/554; no current HIKARI catalog match)",
+      glass: "534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)",
       role: "Positive crown component of the first rear cemented doublet.",
       cemented: "D1",
     },

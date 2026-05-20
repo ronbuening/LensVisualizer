@@ -92,7 +92,7 @@ const LENS_DATA = {
       vd: 57.53,
       fl: 13.34,
       glass:
-        "Unmatched (Nikon patent glass, code 670/575; no current public OHARA/SCHOTT catalog match within tolerance)",
+        "670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)",
       apd: false,
       cemented: "D1",
       role: "Sole positive image-forming element; works with the L2/L3 cemented interface to form a compact corrected rear group.",

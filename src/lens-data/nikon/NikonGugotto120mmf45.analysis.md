@@ -41,13 +41,13 @@ The glass should not be identified as OHARA S-BAL14. The patent value is a 589/6
 
 ### L2 — Biconcave negative element, rear element of cemented doublet
 
-$n_d = 1.80384$, $\nu_d = 33.89$. Glass: unmatched 804/339 dense flint; exact public catalog match not identified. $f = -72.95$ mm production scale, or $-60.79$ mm at the patent scale.
+$n_d = 1.80384$, $\nu_d = 33.89$. Glass: 804339 dense flint; exact public catalog match not identified. $f = -72.95$ mm production scale, or $-60.79$ mm at the patent scale.
 
 L2 is the high-index, high-dispersion negative partner in the cemented achromat. Its Abbe number is much lower than L1's, so it provides the flint-side dispersion needed to cancel the chromatic error produced by the positive crown. The index difference is also substantial: $n_2 - n_1 = 0.21471$. The patent explicitly uses that index difference as a manufacturing and aberration-control parameter, because a higher negative-element index allows the cemented interface to carry useful power without becoming excessively steep.
 
 The element is biconcave in the patent sign convention: surface 2 has a negative radius and surface 3 has a positive radius. Its rear surface radius, $r_3 = 129.1860$ at the patent scale, enters condition (6), $1.8 < r_3 / \{ f (n_2 - n_1)^{1/2} \} < 3.5$. Example 4 gives 2.788, a value consistent with the patent's stated astigmatism control range.
 
-No current public OHARA, Nikon Q-series, HOYA, or cross-reference table match was found close enough to assign a specific catalog name confidently to $n_d = 1.80384$, $\nu_d = 33.89$. It is therefore stored as `Unmatched (804/339 dense flint)` rather than forced into a near but incorrect catalog identity.
+No current public OHARA, Nikon Q-series, HOYA, or cross-reference table match was found close enough to assign a specific catalog name confidently to $n_d = 1.80384$, $\nu_d = 33.89$. It is therefore stored as a future-upgrade code label, `804339`, rather than forced into a near but incorrect catalog identity.
 
 ### L3 — Negative meniscus rear group, convex to image
 
@@ -64,7 +64,7 @@ The high Abbe number of L3 matters because rear-group lateral color would be dif
 | Element | Patent $n_d$ | Patent $\nu_d$ | Responsible identification | Role |
 |---|---:|---:|---|---|
 | L1 | 1.58913 | 61.09 | Q-SK55S / L-BAL35 / S-BAL35 class, exact 1995 melt uncertain | Positive crown element |
-| L2 | 1.80384 | 33.89 | Unmatched 804/339 dense flint | Achromatizing negative element |
+| L2 | 1.80384 | 33.89 | 804339 dense flint, unresolved | Achromatizing negative element |
 | L3 | 1.58913 | 61.09 | Q-SK55S / L-BAL35 / S-BAL35 class, exact 1995 melt uncertain | Weak negative field flattener / telephoto rear group |
 
 The glass strategy is simple but deliberate. L1 and L3 use the same low-dispersion crown class, while L2 uses a much higher-index, higher-dispersion flint. This lets the cemented front group act as a compact achromat while keeping the rear group chromatically mild. It is also consistent with the production objective: a very low-cost lens with the fewest possible glass types.

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **531** non-explicit-unmatched annotations did not resolve
-- **162** distinct unresolved glass-like tokens found
+- **537** non-explicit-unmatched annotations did not resolve
+- **170** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,6 +25,7 @@ or per-lens patent backfills.
 | 770297 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
 | 159319 | 2 | 1 | |
+| 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 666356 | 2 | 1 | |
 | 755516 | 2 | 1 | |
@@ -47,8 +48,10 @@ or per-lens patent backfills.
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
+| 514530 | 1 | 1 | |
 | 517639 | 1 | 1 | |
 | 518523 | 1 | 1 | |
+| 534554 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 561453 | 1 | 1 | |
@@ -66,6 +69,7 @@ or per-lens patent backfills.
 | 667330 | 1 | 1 | |
 | 670393 | 1 | 1 | |
 | 670573 | 1 | 1 | |
+| 670575 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
@@ -73,8 +77,10 @@ or per-lens patent backfills.
 | 749547 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
+| 768465 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
+| 774472 | 1 | 1 | |
 | 774494 | 1 | 1 | |
 | 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
@@ -82,8 +88,10 @@ or per-lens patent backfills.
 | 792450 | 1 | 1 | |
 | 797454 | 1 | 1 | |
 | 803404 | 1 | 1 | |
+| 804339 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 808409 | 1 | 1 | |
+| 821426 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 849438 | 1 | 1 | |
 | 850301 | 1 | 1 | |
@@ -206,7 +214,7 @@ or per-lens patent backfills.
 ### 744495 — 3 occurrences
 
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
-- [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)`
+- [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
 
 ### 770297 — 3 occurrences
@@ -225,6 +233,11 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 3: `PCD4 equiv. (159319/6790)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 5: `PCD4 equiv. (159319/6790)`
+
+### 514428 — 2 occurrences
+
+- [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
+- [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 19: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
 
 ### 531559 — 2 occurrences
 
@@ -333,6 +346,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)`
 
+### 514530 — 1 occurrence
+
+- [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
+
 ### 517639 — 1 occurrence
 
 - [Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) 1: `517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)`
@@ -340,6 +357,10 @@ or per-lens patent backfills.
 ### 518523 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
+
+### 534554 — 1 occurrence
+
+- [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) 15: `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)`
 
 ### 552981 — 1 occurrence
 
@@ -409,6 +430,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
 
+### 670575 — 1 occurrence
+
+- [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
+
 ### 683548 — 1 occurrence
 
 - [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
@@ -437,6 +462,10 @@ or per-lens patent backfills.
 
 - [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
 
+### 768465 — 1 occurrence
+
+- [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
+
 ### 772493 — 1 occurrence
 
 - [FUJIFILM FUJINON GF55mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
@@ -444,6 +473,10 @@ or per-lens patent backfills.
 ### 773498 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 6: `773498 - dense lanthanum-flint boundary class (unresolved)`
+
+### 774472 — 1 occurrence
+
+- [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) 16A: `774472 — lanthanum dense flint (patent nd=1.77377, νd=47.2; no exact public catalog match)`
 
 ### 774494 — 1 occurrence
 
@@ -473,6 +506,10 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
 
+### 804339 — 1 occurrence
+
+- [Nikon Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) 2: `804339 — dense flint (patent nd=1.80384, νd=33.89; exact public catalog match not identified)`
+
 ### 805410 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
@@ -480,6 +517,10 @@ or per-lens patent backfills.
 ### 808409 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)`
+
+### 821426 — 1 occurrence
+
+- [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
 
 ### 835447 — 1 occurrence
 

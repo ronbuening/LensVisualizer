@@ -94,7 +94,7 @@ The glass is close to the HIKARI J-SF2 / Schott SF2 family but not an exact curr
 
 ### L7 + L8 — First Rear Cemented Doublet, Net Positive
 
-L7: `nd = 1.53375`, `νd = 55.4`. Glass: unmatched crown, six-digit code approximately 534/554. Isolated `f ≈ +35.6 mm`.  
+L7: `nd = 1.53375`, `νd = 55.4`. Glass: unresolved crown, six-digit code 534554. Isolated `f ≈ +35.6 mm`.  
 L8: `nd = 1.77250`, `νd = 49.5`. Glass: J-LASF016 / S-LAH66 / TAF1 / N-LAF34 equivalent. Isolated `f ≈ -59.6 mm`.  
 Combined doublet: `f ≈ +84.7 mm`.
 
@@ -133,7 +133,7 @@ The patent gives refractive indices and Abbe numbers but does not name the glass
 | L5 | 1.72825 | 28.3 | J-SF10; N-SF10 / S-TIH10 equivalent | Dense flint partner for L4. |
 | Filter, L9 | 1.51823 | 59.0 | J-K3; S-NSL3 equivalent | Filter glass and crown component of D2. |
 | L6 | 1.64831 | 33.8 | J-SF2 class | Close to J-SF2 but not exact in `nd`; treated as historical/proprietary. |
-| L7 | 1.53375 | 55.4 | Unmatched crown, 534/554 | No reliable current HIKARI match. |
+| L7 | 1.53375 | 55.4 | 534554 crown, unresolved | No reliable current HIKARI match. |
 | L8 | 1.77250 | 49.5 | J-LASF016; S-LAH66 / TAF1 / N-LAF34 equivalent | High-index lanthanum glass; not S-LAM52. |
 | L10 | 1.79631 | 40.8 | Unmatched lanthanum dense flint, 796/408 | Near LASF class but not an exact current catalog match. |
 | L11 | 1.71736 | 29.5 | J-SF1; N-SF1 / S-TIH1 equivalent | Dense flint leading element of final achromat. |

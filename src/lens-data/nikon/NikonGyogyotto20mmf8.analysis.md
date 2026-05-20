@@ -59,7 +59,7 @@ The thickness of L2 is not incidental. The patent explicitly treats the object-s
 
 ### L3 — Biconvex Positive Image-Forming Lens
 
-nd = 1.67025, νd = 57.53. Glass: Unmatched Nikon patent glass, code 670/575; no current public OHARA or SCHOTT catalog match found within the project tolerance. f = +13.34 mm standalone in air.
+nd = 1.67025, νd = 57.53. Glass: 670575 Nikon patent glass; no current public OHARA or SCHOTT catalog match found within the project tolerance. f = +13.34 mm standalone in air.
 
 L3 is the only positive element in the optical system. It is biconvex, with the stronger surface at the cemented L2/L3 interface and a much weaker rear surface, $R_5 = -82.2908$ mm after scaling. The patent describes L3 as the lens that forms the final image from the virtual image produced by L1 and L2.
 
@@ -75,7 +75,7 @@ The patent gives refractive index and Abbe number but no glass names. Current ma
 |---|---:|---:|---:|---|---|
 | L1 | 1.62041 | 60.14 | 620/601 | SCHOTT N-SK16 and OHARA S-BSM16 share the same nd but modern catalog νd is about 60.3, slightly higher than the patent value. | `N-SK16 / S-BSM16 class (620/601)` |
 | L2 | 1.80518 | 25.35 | 805/254 | SCHOTT N-SF6 is an especially close match; OHARA S-TIH6 is the Japanese equivalent class with the same nd and very close νd. | `N-SF6 / S-TIH6 class (805/254)` |
-| L3 | 1.67025 | 57.53 | 670/575 | No current OHARA or SCHOTT catalog glass located within the normal Δnd ≤ 0.005 tolerance. Prior draft's S-LAL12 / LaK12 suggestion was too far away in nd. | `Unmatched (Nikon patent glass, code 670/575)` |
+| L3 | 1.67025 | 57.53 | 670575 | No current OHARA or SCHOTT catalog glass located within the normal Δnd ≤ 0.005 tolerance. Prior draft's S-LAL12 / LaK12 suggestion was too far away in nd. | Future-upgrade code label |
 
 The most important material relationship is not the individual catalog name of L3 but the L2/L3 pair. Example 8 gives $n_2 - n_3 = 0.13493$, satisfying the patent's $n_2 - n_3 > 0.08$ requirement. The chromatic material condition
 

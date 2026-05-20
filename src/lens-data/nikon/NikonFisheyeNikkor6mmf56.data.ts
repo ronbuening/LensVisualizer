@@ -129,7 +129,7 @@ const LENS_DATA = {
       nd: 1.76764,
       vd: 46.5,
       fl: 24.83,
-      glass: "Unmatched (lanthanum flint, 768/465 patent melt)",
+      glass: "768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)",
       apd: false,
       role: "Air-spaced positive meniscus; field-shaping and rear-group power balance.",
     },
