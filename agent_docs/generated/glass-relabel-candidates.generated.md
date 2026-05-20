@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 271 mismatched surfaces across 207 unique groups.
+**Scope**: 270 mismatched surfaces across 206 unique groups.
 
 ## stored (nd=1.43700, vd=95.10)  — 2 surfaces, current label resolves to S-FPM2
 
@@ -189,16 +189,6 @@ Candidates:
 
 Surfaces:
 - [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) `20`: `S-BAL42 (OHARA)`
-
-## stored (nd=1.58140, vd=40.80) [code=581/408]  — 1 surface, current label resolves to S-TIM25
-
-Candidates:
-- **PBL25** (nd=1.58144, vd=40.75, Δnd=+0.0000, Δvd=-0.05, codeΔ=0.9)
-- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=+0.0000, Δvd=-0.05, codeΔ=1.0)
-- **E-FL5** (nd=1.58144, vd=40.89, Δnd=+0.0000, Δvd=+0.09, codeΔ=1.3)
-
-Surfaces:
-- [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) `5`: `BaF-type (581-408; OHARA S-TIM25 family — close)`
 
 ## stored (nd=1.58144, vd=40.75)  — 1 surface, current label resolves to S-TIH14
 
@@ -1667,7 +1657,8 @@ Surfaces:
 
 ## stored (nd=1.84850, vd=43.79)  — 1 surface, current label resolves to H-ZLAF68C
 
-**No catalog candidate within tolerance** — needs per-lens follow-up.
+Candidates:
+- **J-LASFH22** (nd=1.84850, vd=43.79, Δnd=+0.0000, Δvd=+0.00)
 
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `7`: `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)`
@@ -1675,6 +1666,7 @@ Surfaces:
 ## stored (nd=1.85000, vd=32.40)  — 1 surface, current label resolves to S-TIH10
 
 Candidates:
+- **H-ZLaF76** (nd=1.85013, vd=30.06, Δnd=+0.0001, Δvd=-2.34)
 - **S-LAH71** (nd=1.85026, vd=32.27, Δnd=+0.0003, Δvd=-0.13)
 - **J-LASF021** (nd=1.85026, vd=32.35, Δnd=+0.0003, Δvd=-0.05)
 
@@ -1686,6 +1678,7 @@ Surfaces:
 Candidates:
 - **S-LAH89** (nd=1.85150, vd=40.78, Δnd=-0.0000, Δvd=-0.02, codeΔ=0.7)
 - **L-LAH85V** (nd=1.85400, vd=40.38, Δnd=+0.0025, Δvd=-0.42, codeΔ=7.2)
+- **J-LASFH22** (nd=1.84850, vd=43.79, Δnd=-0.0030, Δvd=+2.99, codeΔ=32.4)
 
 Surfaces:
 - [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) `8`: `851408 — S-LAH65V (OHARA)`
@@ -2026,4 +2019,4 @@ Surfaces:
 ## Summary
 
 - **184** (nd, vd) groups have at least one candidate (246 surfaces) — actionable relabels.
-- **23** (nd, vd) groups have NO candidate (25 surfaces) — needs patent verification or Unmatched relabeling.
+- **22** (nd, vd) groups have NO candidate (24 surfaces) — needs patent verification or Unmatched relabeling.

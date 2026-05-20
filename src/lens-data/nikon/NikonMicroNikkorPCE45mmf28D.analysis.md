@@ -82,13 +82,13 @@ The prescription specifies nine distinct glass types. Using six-digit glass code
 |---|---|---|---|---|---|
 | L22 | 1.78800 | 47.38 | 788/474 | Schott N-LAF21 (nd = 1.78800, νd = 47.49) | Very close (Δnd = 0, Δνd = 0.11) |
 | L21 | 1.49782 | 82.56 | 498/826 | OHARA S-FPL51 (1.497/81.6) / HOYA FCD1 | Near (Δnd = 0.0008, Δνd = 0.95) — **ED glass** |
+| L23 | 1.56732 | 42.72 | 567/427 | OHARA S-TIL26 (1.56739/42.84; code 567428) | Close coefficient-backed match within patent rounding tolerance |
 
 ### 4.3 Unmatched Glasses
 
 | Element | nd | νd | Code | Assessment |
 |---|---|---|---|---|
 | L12 | 1.75692 | 31.59 | 757/316 | No standard catalog match. High-index, high-dispersion lanthanum flint in the SF/TIH family. Likely a Nikon proprietary melt or special-order glass. Nearest standard types are OHARA S-TIH4 (755/275, Δνd = 4.1) and OHARA S-LAM54 (757/478, Δνd = 16). |
-| L23 | 1.56732 | 42.72 | 567/427 | No standard catalog match. Moderate-index flint glass. Nearest types are OHARA S-TIL25 (1.5658/43.09, Δnd = 0.0015) and Schott LF7 (1.5750/41.49, Δnd = 0.008). Likely a custom melt or discontinued type. |
 
 ### 4.4 The ED Element
 
@@ -112,7 +112,7 @@ The following analysis describes the shape, power, and role of each element in t
 ### L12 — Biconvex Positive (G1, rear element)
 
 - **Shape:** Biconvex (R₁ = +130.000, R₂ = −492.062)
-- **Glass:** Proprietary high-dispersion lanthanum glass (nd = 1.75692, νd = 31.59) — no standard catalog match
+- **Glass:** 757316 — high-dispersion lanthanum flint (nd = 1.75692, νd = 31.59); no exact public coefficient-backed catalog match
 - **Focal length:** f ≈ +136 mm (weakly positive)
 - **Role:** L12 partially compensates L11's negative power, reducing G1's net divergence to a very weak negative (f_G1 ≈ −1023 mm). More importantly, its high-dispersion glass (νd = 31.59) is paired with L11's moderate-dispersion glass in a chromatic near-doublet arrangement: the opposite-sign powers with different νd values produce a degree of axial color correction within G1 itself. The Coddington shape factor of approximately +0.58 indicates a front-biased biconvex shape, intermediate between equiconvex (q = 0) and plano-convex (q = 1) — the front surface (R₁ = 130 mm) carries substantially more refractive power than the weak rear surface (R₂ = −492 mm). The patent's conditional expression (5) constrains L12's shape factor to the range 0.5–3.0, and the value of 0.58 sits near the lower bound, favoring controlled spherical aberration variation during focusing.
 
@@ -133,7 +133,7 @@ The following analysis describes the shape, power, and role of each element in t
 ### L23 — Biconcave Negative (G2, cemented with L22)
 
 - **Shape:** Biconcave (R₁ = −310.529, R₂ = +73.800)
-- **Glass:** Unmatched; possibly proprietary (nd = 1.56732, νd = 42.72)
+- **Glass:** S-TIL26 (OHARA, 567428), close coefficient-backed match to the patent nd = 1.56732, νd = 42.72 row
 - **Focal length (standalone):** f ≈ −105 mm
 - **Role:** L23 is the negative element of the cemented doublet. Together, L22+L23 form a net positive doublet (f ≈ +81 mm) that corrects the chromatic aberrations introduced by L21's strong negative ED element. The cemented junction at R = −310.529 mm is nearly flat, which minimizes cementing-induced stress and simplifies manufacturing. The L22+L23 doublet also helps balance the Petzval sum: by adding negative Petzval contributions from L23's diverging surfaces while maintaining net positive power, the doublet flattens the field curvature.
 

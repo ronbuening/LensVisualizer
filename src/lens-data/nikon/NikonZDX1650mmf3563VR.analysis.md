@@ -41,7 +41,7 @@ The total element count is 9 elements in 7 air-separated groups: two elements in
 
 ### L11 — Negative Meniscus, Hybrid Composite Asphere (G1)
 
-nd = 1.83481 (glass body), νd = 42.73; nd = 1.56093 (resin layer), νd = 36.64. Glass body: dense lanthanum flint (six-digit code 835/427). Resin: UV-curable optical resin. Combined f = −15.6 mm.
+nd = 1.83481 (glass body), νd = 42.73; nd = 1.56093 (resin layer), νd = 36.64. Glass body: OHARA S-LAH55 / Hikari J-LASF05 code 835427. Resin: UV-curable optical resin. Combined f = −15.6 mm.
 
 L11 is a negative meniscus with its convex surface facing the object, formed as a hybrid composite: a glass body (surfaces 1–2, center thickness 1.20 mm) with a thin aspherical resin layer (surfaces 2–3, center thickness 0.12 mm) bonded to the image-side glass surface. The outer resin surface (surface 3) carries the aspherical profile.
 
@@ -61,7 +61,7 @@ The use of S-NPH2 here also lowers the Petzval contribution of G1: because Petzv
 
 ### L21 — Negative Meniscus, Aspherical (G2a, front element of cemented doublet)
 
-nd = 1.83441, νd = 37.28, ng = 1.86310. Glass: dense lanthanum flint (six-digit code 834/373). f = −32.8 mm (standalone, in air).
+nd = 1.83441, νd = 37.28, ng = 1.86310. Glass: dense lanthanum flint code 834373, still unresolved after catalog search. f = −32.8 mm (standalone, in air).
 
 L21 is a negative meniscus with its convex surface facing the object. Its front surface (surface 6) is aspherical (K = 0, polynomial corrections to 10th order). In situ within the G2a cemented doublet, L21 serves as the high-index flint partner to L22's lanthanum crown. Its νd = 37.28 places it firmly in flint territory, and the negative power of this meniscus, combined with the positive power of L22 behind it, produces a net positive cemented doublet (f ≈ +27.6 mm) that corrects axial chromatic aberration in the stop region.
 
@@ -69,7 +69,7 @@ The aspherical surface on L21's front face introduces negative C4 and C6 coeffic
 
 ### L22 — Positive Meniscus (G2a, rear element of cemented doublet)
 
-nd = 1.75500, νd = 52.34, ng = 1.77295. Glass: lanthanum crown (six-digit code 755/523). f = +14.4 mm (standalone, in air).
+nd = 1.75500, νd = 52.34, ng = 1.77295. Glass: Hikari J-LASKH2, code 755523. f = +14.4 mm (standalone, in air).
 
 L22 is a positive meniscus with its convex surface facing the object, cemented to the rear of L21 to form the G2a doublet. Its Abbe number of 52.34 places it at the crown–flint boundary — technically a light crown — providing moderate chromatic contrast against L21's νd = 37.28 (Δνd ≈ 15.1). G2a provides secondary axial chromatic correction near the stop; the primary achromatic load falls on G2b, whose ED–flint pairing offers substantially greater dispersion contrast.
 
@@ -93,7 +93,7 @@ The Abbe number contrast within the G2b doublet is Δνd = 81.61 − 32.33 = 49.
 
 ### L25 — Negative Meniscus, Aspherical (G2c)
 
-nd = 1.79526, νd = 45.25, ng = 1.81739. Glass: dense lanthanum flint (six-digit code 795/452). f = −42.1 mm.
+nd = 1.79526, νd = 45.25, ng = 1.81739. Glass: Hikari Q-LASFPH3S, catalog code 795453. f = −42.1 mm.
 
 L25 is a negative meniscus with its convex surface facing the object, constituting G2c as a single-element subgroup. Its front surface (surface 13) is aspherical with K = 0 and a strongly negative C4 = −8.284×10⁻⁵, which flattens the surface toward the rim. G2c's negative power (f = −42.13 mm for the subgroup) serves as a compensating element after the positive G2b, controlling coma and spherical aberration in the exit cone from G2. Notably, this is the element whose glass differs from Examples 1–7 in the patent: Example 8 uses nd = 1.79526/νd = 45.25, while Examples 1–7 share nd = 1.80139/νd = 45.45. The distinction is minor — both are dense lanthanum flints in the same region of the glass map — but it may reflect a manufacturing or availability substitution specific to the production design.
 
@@ -101,7 +101,7 @@ G2c also plays a role in compensating the decentering aberrations of G2b during 
 
 ### L31 — Biconcave Negative, Dual-Aspherical (G3 — Focus Group)
 
-nd = 1.80139, νd = 45.46, ng = 1.82357. Glass: dense lanthanum flint (six-digit code 801/455). f = −24.1 mm.
+nd = 1.80139, νd = 45.46, ng = 1.82357. Glass: dense lanthanum flint code 801455, still unresolved after catalog search. f = −24.1 mm.
 
 L31 is a biconcave negative element and the sole component of G3, the focusing group. Both surfaces are aspherical: surface 15 (front, R = −29.6878) and surface 16 (rear, R = +56.3004), each with K = 0 in the standard convention. This is the most aspherically active element in the system.
 
@@ -129,20 +129,20 @@ The glass palette for this 9-element design uses 6 distinct glass types plus one
 
 | Element | nd | νd | Six-digit code | Catalog match | Role |
 |---------|------|-------|------|------|------|
-| L11 body | 1.83481 | 42.73 | 835/427 | Dense LaF class | Wide-angle diverger substrate |
+| L11 body | 1.83481 | 42.73 | 835427 | S-LAH55 / J-LASF05 | Wide-angle diverger substrate |
 | L11r resin | 1.56093 | 36.64 | — | Optical resin | Hybrid asphere correction layer |
 | L12 | 1.92286 | 20.88 | 923/209 | S-NPH2 (OHARA) | High-index Petzval reducer in G1 |
-| L21 | 1.83441 | 37.28 | 834/373 | Dense LaF class | Flint partner in G2a achromat |
-| L22 | 1.75500 | 52.34 | 755/523 | LaK class | Crown partner in G2a achromat |
+| L21 | 1.83441 | 37.28 | 834373 | Unresolved dense LaF class | Flint partner in G2a achromat |
+| L22 | 1.75500 | 52.34 | 755523 | J-LASKH2 (Hikari) | Crown partner in G2a achromat |
 | L23 | 1.95375 | 32.33 | 954/323 | S-LAH79 (OHARA) | High-index flint in G2b achromat + VR |
 | L24 | 1.49700 | 81.61 | 497/816 | S-FPL51 / FCD1 | ED crown in G2b achromat |
-| L25 | 1.79526 | 45.25 | 795/452 | Dense LaF class | G2c VR compensator |
-| L31 | 1.80139 | 45.46 | 801/455 | Dense LaF class | Focus group (dual asphere) |
+| L25 | 1.79526 | 45.25 | 795453 | Q-LASFPH3S (Hikari) | G2c VR compensator |
+| L31 | 1.80139 | 45.46 | 801455 | Unresolved dense LaF class | Focus group (dual asphere) |
 | L41 | 1.95375 | 32.33 | 954/323 | S-LAH79 (OHARA) | Field flattener |
 
 The chromatic strategy centers on the G2b doublet (L23 + L24). The Abbe number contrast of Δνd ≈ 49.3 is the largest in the system, and the ED glass (L24) provides anomalous partial dispersion for secondary spectrum reduction. The G2a doublet (L21 + L22) provides a secondary achromatic correction site with a more modest Δνd ≈ 15.1. Together, these two cemented pairs — both positioned near the aperture stop where axial ray bundles are tallest — control longitudinal chromatic aberration across the full zoom range.
 
-Two of the three confidently identified catalog glasses are OHARA types: S-NPH2 (L12) and S-LAH79 (L23, L41). The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. The remaining four glass types (L11 body, L21, L25, L31) are dense lanthanum flints in the nd = 1.79–1.84, νd = 37–46 region; their exact catalog identities cannot be determined from the patent data alone without full Sellmeier coefficients, and they may include OHARA L-prefix moldable glass variants consistent with the production lens's compact, cost-optimized design.
+The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA S-NPH2 for L12, and OHARA S-LAH79 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L21 (834373) and L31 (801455) remain code-labeled dense lanthanum flints until a public coefficient-backed source is found.
 
 ## Focus Mechanism
 

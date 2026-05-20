@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **271** mismatched surfaces across **102** lens files
+- **270** mismatched surfaces across **101** lens files
 - **246** surfaces have at least one candidate
 - **61** surfaces have high-confidence candidate ranking
-- **25** surfaces have no catalog candidate and need patent review
+- **24** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
 
@@ -268,7 +268,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 6 | `S-TIH14 (OHARA)` | 1.85883 / 30.00 | S-TIH14 (Δnd=-0.0970) | No catalog candidate | Patent review | Yes - no catalog match |
-| 8 | `S-TIH10 (OHARA)` | 1.85000 / 32.40 | S-TIH10 (Δnd=-0.1218) | S-LAH71 (Δnd=+0.0003, Δvd=-0.13)<br>J-LASF021 (Δnd=+0.0003, Δvd=-0.05) | Medium | Yes - choose candidate |
+| 8 | `S-TIH10 (OHARA)` | 1.85000 / 32.40 | S-TIH10 (Δnd=-0.1218) | H-ZLaF76 (Δnd=+0.0001, Δvd=-2.34)<br>S-LAH71 (Δnd=+0.0003, Δvd=-0.13)<br>J-LASF021 (Δnd=+0.0003, Δvd=-0.05) | Choose by context | Yes - choose candidate |
 | 11A | `S-LAH63Q (OHARA)` | 1.80998 / 40.90 | S-LAH63Q (Δnd=-0.0056) | K-VC89 (Δnd=-0.0000, Δvd=+0.10)<br>D-ZLAF81-25 (Δnd=-0.0024, Δvd=+0.07)<br>NBFD13 (Δnd=-0.0039, Δvd=-0.17) | Choose by context | Yes - choose candidate |
 | 15 | `S-TIH4 (OHARA)` | 1.80610 / 33.30 | S-TIH4 (Δnd=-0.0509) | NBFD15 (Δnd=-0.0000, Δvd=-0.03) | High | Check lens notes |
 
@@ -368,6 +368,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 13 | `TAFD25 equiv. (181600/4659)` | 1.81600 / 46.59 | TAFD25 (Δnd=+0.0877) | S-LAH59 (Δnd=-0.0000, Δvd=+0.03)<br>TAF5 (Δnd=-0.0000, Δvd=-0.02) | Medium | Yes - choose candidate |
 | 24 | `S-LAH96 / TAFD45 (190366/3127)` | 1.90366 / 31.27 | S-LAH96 (Δnd=-0.1398) | S-LAH95 (Δnd=-0.0000, Δvd=+0.07)<br>TAFD25 (Δnd=-0.0000, Δvd=+0.05) | Medium | Yes - choose candidate |
 
+### [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) - WO2019/229849 A1
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | 1.84850 / 43.79 | H-ZLAF68C (Δnd=+0.0345) | J-LASFH22 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
+| 24 | `Dense flint (near S-NBH52V)` | 1.69895 / 30.13 | S-NBH52V (Δnd=-0.0260) | E-FD15 (Δnd=-0.0000, Δvd=-0.08)<br>S-TIM35 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
+| 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | 1.76554 / 46.76 | TAFD5F (Δnd=+0.0693) | Q-LASFPH2S (Δnd=-0.0001, Δvd=-0.01)<br>S-LAH96 (Δnd=-0.0017, Δvd=+1.73)<br>MC-TAF101-100 (Δnd=+0.0035, Δvd=+2.53) | Choose by context | Yes - choose candidate |
+
 ### [NIKON PC-E NIKKOR 24mm f/3.5D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) - JP 2008-151949A
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
@@ -430,7 +438,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 8 | `851408 — S-LAH65V (OHARA)` | 1.85150 / 40.80 | S-LAH65V (Δnd=-0.0475) | S-LAH89 (Δnd=-0.0000, Δvd=-0.02, codeΔ=0.7)<br>L-LAH85V (Δnd=+0.0025, Δvd=-0.42, codeΔ=7.2) | High | Check lens notes |
+| 8 | `851408 — S-LAH65V (OHARA)` | 1.85150 / 40.80 | S-LAH65V (Δnd=-0.0475) | S-LAH89 (Δnd=-0.0000, Δvd=-0.02, codeΔ=0.7)<br>L-LAH85V (Δnd=+0.0025, Δvd=-0.42, codeΔ=7.2)<br>J-LASFH22 (Δnd=-0.0030, Δvd=+2.99, codeΔ=32.4) | High | Check lens notes |
 | 15 | `770297 — S-TIH18 family (OHARA)` | 1.77047 / 29.70 | S-TIH18 (Δnd=-0.0490) | No catalog candidate | Patent review | Yes - no catalog match |
 | 26 | `744448 — S-LAL14 family (OHARA)` | 1.74400 / 44.80 | S-LAL14 (Δnd=-0.0472) | S-LAM2 (Δnd=-0.0000, Δvd=-0.01, codeΔ=0.1)<br>H-LAF3B (Δnd=-0.0000, Δvd=+0.10, codeΔ=1.0) | High | Check lens notes |
 
@@ -441,14 +449,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 1 | `S-NSL3 (OHARA)` | 1.53172 / 49.10 | S-NSL3 (Δnd=-0.0135) | S-TIL6 (Δnd=-0.0000, Δvd=-0.26) | Medium | Yes - choose candidate |
 | 3 | `TAFD25 (HOYA)` | 1.84042 / 43.30 | TAFD25 (Δnd=+0.0632) | No catalog candidate | Patent review | Yes - no catalog match |
 | 4 | `E-FD4 (HOYA)` | 1.64831 / 33.80 | E-FD4 (Δnd=+0.1069) | E-FD2 (Δnd=-0.0006, Δvd=+0.04)<br>SF2 (Δnd=-0.0006, Δvd=+0.05)<br>S-TIM22 (Δnd=-0.0006, Δvd=-0.01) | Choose by context | Yes - choose candidate |
-
-### [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) - WO2019/229849 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | 1.84850 / 43.79 | H-ZLAF68C (Δnd=+0.0345) | No catalog candidate | Patent review | Yes - no catalog match |
-| 24 | `Dense flint (near S-NBH52V)` | 1.69895 / 30.13 | S-NBH52V (Δnd=-0.0260) | E-FD15 (Δnd=-0.0000, Δvd=-0.08)<br>S-TIM35 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
-| 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | 1.76554 / 46.76 | TAFD5F (Δnd=+0.0693) | Q-LASFPH2S (Δnd=-0.0001, Δvd=-0.01)<br>S-LAH96 (Δnd=-0.0017, Δvd=+1.73)<br>MC-TAF101-100 (Δnd=+0.0035, Δvd=+2.53) | Choose by context | Yes - choose candidate |
 
 ### [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) - JP 2013-3324 A
 
@@ -700,12 +700,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 4 | `S-TIM2 (OHARA)` | 1.59270 / 35.30 | S-TIM2 (Δnd=+0.0273) | S-FTM16 (Δnd=+0.0000, Δvd=+0.01) | High | Check lens notes |
-
-### [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) - US 4,094,588
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 5 | `BaF-type (581-408; OHARA S-TIM25 family — close)` | 1.58140 / 40.80 | S-TIM25 (Δnd=+0.0913) | PBL25 (Δnd=+0.0000, Δvd=-0.05, codeΔ=0.9)<br>S-TIL25 (Δnd=+0.0000, Δvd=-0.05, codeΔ=1.0)<br>E-FL5 (Δnd=+0.0000, Δvd=+0.09, codeΔ=1.3) | High | Check lens notes |
 
 ### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) - US 4,210,388
 

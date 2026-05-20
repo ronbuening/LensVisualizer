@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **537** non-explicit-unmatched annotations did not resolve
-- **170** distinct unresolved glass-like tokens found
+- **519** non-explicit-unmatched annotations did not resolve
+- **175** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
+| 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 770297 | 3 | 2 | |
@@ -28,6 +29,7 @@ or per-lens patent backfills.
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 666356 | 2 | 1 | |
+| 694508 | 2 | 1 | |
 | 755516 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
@@ -70,14 +72,17 @@ or per-lens patent backfills.
 | 670393 | 1 | 1 | |
 | 670573 | 1 | 1 | |
 | 670575 | 1 | 1 | |
+| 683447 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 749547 | 1 | 1 | |
+| 757316 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
+| 770479 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 774472 | 1 | 1 | |
@@ -87,14 +92,14 @@ or per-lens patent backfills.
 | 781446 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797454 | 1 | 1 | |
+| 801455 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 804339 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 808409 | 1 | 1 | |
 | 821426 | 1 | 1 | |
+| 834373 | 1 | 1 | |
 | 835447 | 1 | 1 | |
-| 849438 | 1 | 1 | |
-| 850301 | 1 | 1 | |
 | 851401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
@@ -205,6 +210,12 @@ or per-lens patent backfills.
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 20: `S-NPH7 (OHARA)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 31: `S-NPH7 (OHARA)`
 
+### 516565 — 3 occurrences
+
+- [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 13A: `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)`
+- [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 15A: `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)`
+- [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 17A: `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)`
+
 ### 585587 — 3 occurrences
 
 - [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 1A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
@@ -249,6 +260,11 @@ or per-lens patent backfills.
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 8: `666356 — dense flint (nd=1.66565, νd=35.64)`
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 16: `666356 — dense flint (nd=1.66565, νd=35.64)`
 
+### 694508 — 2 occurrences
+
+- [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) 3: `694508 — LaK-type A (patent nd=1.69350, νd=50.8; no exact current catalog match)`
+- [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) 12: `694508 — LaK-type A (same glass as L2; no exact current catalog match)`
+
 ### 755516 — 2 occurrences
 
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 10: `755516 - high-index crown (unresolved)`
@@ -271,8 +287,8 @@ or per-lens patent backfills.
 
 ### 855252 — 2 occurrences
 
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `High-index APD flint (glass code 855252)`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `High-index APD flint (glass code 855252)`
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `855252 — high-index APD flint (source patent not locally available; no exact public catalog match verified)`
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `855252 — high-index APD flint (same as L12; source patent not locally available; no exact public catalog match verified)`
 
 ### 856401 — 2 occurrences
 
@@ -344,7 +360,7 @@ or per-lens patent backfills.
 
 ### 487698 — 1 occurrence
 
-- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)`
+- [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
 
 ### 514530 — 1 occurrence
 
@@ -434,6 +450,10 @@ or per-lens patent backfills.
 
 - [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
 
+### 683447 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 9: `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)`
+
 ### 683548 — 1 occurrence
 
 - [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
@@ -454,6 +474,10 @@ or per-lens patent backfills.
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 1: `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)`
 
+### 757316 — 1 occurrence
+
+- [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) 3: `757316 — high-dispersion lanthanum flint (patent nd=1.75692, νd=31.59; no exact public coefficient match)`
+
 ### 757479 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 1: `J-LAF04 class (HIKARI), 757479`
@@ -465,6 +489,10 @@ or per-lens patent backfills.
 ### 768465 — 1 occurrence
 
 - [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
+
+### 770479 — 1 occurrence
+
+- [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) 5: `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)`
 
 ### 772493 — 1 occurrence
 
@@ -502,6 +530,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
 
+### 801455 — 1 occurrence
+
+- [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) 15A: `801455 — dense lanthanum flint (patent nd=1.80139, νd=45.46; no exact public coefficient match)`
+
 ### 803404 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
@@ -522,17 +554,13 @@ or per-lens patent backfills.
 
 - [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
 
+### 834373 — 1 occurrence
+
+- [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) 6A: `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)`
+
 ### 835447 — 1 occurrence
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 8: `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)`
-
-### 849438 — 1 occurrence
-
-- [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) 17: `Lanthanum crown (code 849438)`
-
-### 850301 — 1 occurrence
-
-- [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) 6: `Dense flint (code 850301)`
 
 ### 851401 — 1 occurrence
 

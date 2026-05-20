@@ -110,7 +110,7 @@ The patent lists 10 distinct glass types across the 16 elements. The table below
 | Glass | nd | νd | θgF | Used In | Catalog Match (OHARA) | Family |
 |-------|----|----|-----|---------|----------------------|--------|
 | A | 1.83481 | 42.73 | — | L11, L31 | OHARA S-LAH55V (nd=1.835, νd=42.73) | Lanthanum dense crown |
-| B | 1.85451 | 25.15 | 0.6103 | L12, L32 | No exact catalog match (glass code 855252) | High-index flint — anomalous partial dispersion |
+| B | 1.85451 | 25.15 | 0.6103 | L12, L32 | No exact catalog match verified (855252; source patent not locally available during 2026-05-20 review) | High-index flint — anomalous partial dispersion |
 | C | 1.59319 | 67.90 | — | L13, L14, L33 | S-FPM3 (nd=1.593, νd=67.9) | Fluorophosphate crown |
 | D | 1.51860 | 69.89 | — | L21, L42 | No exact catalog match (glass code 519699) | Phosphate crown (FK/PK region) |
 | E | 1.72047 | 34.71 | — | L22 | Glass code 720347 — OHARA region (S-TIH or S-LAH family) | Lanthanum/titanium flint |

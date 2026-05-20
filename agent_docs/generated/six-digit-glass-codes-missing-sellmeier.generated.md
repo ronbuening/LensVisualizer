@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **235** total code-only elements found
-- **164** elements in this report
-- **64** distinct lens files affected
+- **214** total code-only elements found
+- **143** elements in this report
+- **62** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -29,12 +29,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 531559 | 2 | 2 |
 | 561453 | 2 | 2 |
 | 586609 | 2 | 1 |
-| 607595 | 2 | 1 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
-| 717479 | 2 | 1 |
 | 755516 | 2 | 1 |
-| 755523 | 2 | 2 |
 | 774492 | 2 | 1 |
 | 777297 | 2 | 2 |
 | 806333 | 2 | 2 |
@@ -43,7 +40,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
-| 946180 | 2 | 2 |
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
@@ -56,14 +52,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 541468 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 561575 | 1 | 1 |
-| 567427 | 1 | 1 |
 | 571560 | 1 | 1 |
 | 574425 | 1 | 1 |
 | 576414 | 1 | 1 |
-| 581408 | 1 | 1 |
 | 581409 | 1 | 1 |
 | 592670 | 1 | 1 |
-| 593354 | 1 | 1 |
 | 593355 | 1 | 1 |
 | 593670 | 1 | 1 |
 | 593686 | 1 | 1 |
@@ -73,14 +66,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 612313 | 1 | 1 |
 | 614551 | 1 | 1 |
 | 614563 | 1 | 1 |
-| 623581 | 1 | 1 |
 | 624584 | 1 | 1 |
 | 625533 | 1 | 1 |
-| 626356 | 1 | 1 |
 | 639554 | 1 | 1 |
-| 639555 | 1 | 1 |
 | 642581 | 1 | 1 |
-| 648338 | 1 | 1 |
 | 667311 | 1 | 1 |
 | 670575 | 1 | 1 |
 | 672323 | 1 | 1 |
@@ -88,20 +77,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 694532 | 1 | 1 |
-| 694533 | 1 | 1 |
-| 700481 | 1 | 1 |
 | 700555 | 1 | 1 |
 | 702411 | 1 | 1 |
 | 713433 | 1 | 1 |
 | 717295 | 1 | 1 |
 | 720347 | 1 | 1 |
-| 720460 | 1 | 1 |
-| 720503 | 1 | 1 |
 | 728403 | 1 | 1 |
 | 738493 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
+| 755523 | 1 | 1 |
 | 757316 | 1 | 1 |
 | 760492 | 1 | 1 |
 | 764485 | 1 | 1 |
@@ -116,7 +102,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 781446 | 1 | 1 |
 | 792257 | 1 | 1 |
 | 792450 | 1 | 1 |
-| 795452 | 1 | 1 |
 | 797454 | 1 | 1 |
 | 801349 | 1 | 1 |
 | 801454 | 1 | 1 |
@@ -127,10 +112,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 808409 | 1 | 1 |
 | 821426 | 1 | 1 |
 | 834373 | 1 | 1 |
-| 835427 | 1 | 1 |
 | 835447 | 1 | 1 |
-| 849438 | 1 | 1 |
-| 850301 | 1 | 1 |
 | 850324 | 1 | 1 |
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
@@ -141,6 +123,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 904293 | 1 | 1 |
 | 930240 | 1 | 1 |
 | 946179 | 1 | 1 |
+| 946180 | 1 | 1 |
 | 959175 | 1 | 1 |
 | 986165 | 1 | 1 |
 | 995293 | 1 | 1 |
@@ -403,89 +386,58 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L61 (Element 13) | 24 | `Dense flint (850-324, no exact match)` | 1.85026 / 32.35 | No catalog entry | abbe |
 | L64 (Element 16) | 29 | `Dense flint (801-349, no exact match)` | 1.80100 / 34.92 | No catalog entry | abbe |
 
-### [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) - JP2020-173366A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L14 (Element 4) | 6 | `Dense flint (code 850301)` | 1.85025 / 30.05 | No catalog entry | abbe |
-| L43 (Element 10) | 17 | `Lanthanum crown (code 849438)` | 1.84850 / 43.79 | No catalog entry | abbe |
-
 ### [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) - WO 2020/012638 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11b (Element 1 (glass body)) | 1 | `Dense lanthanum flint (835/427)` | 1.83481 / 42.73 | No catalog entry | abbe |
-| L21 (Element 3) | 6A | `Dense lanthanum flint (834/373)` | 1.83441 / 37.28 | No catalog entry | abbe |
-| L22 (Element 4) | 7 | `Lanthanum crown (755/523)` | 1.75500 / 52.34 | No catalog entry | abbe |
-| L25 (Element 7) | 13A | `Dense lanthanum flint (795/452)` | 1.79526 / 45.25 | No catalog entry | abbe |
-| L31 (Element 8) | 15A | `Dense lanthanum flint (801/455)` | 1.80139 / 45.46 | No catalog entry | abbe |
+| L21 (Element 3) | 6A | `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)` | 1.83441 / 37.28 | No catalog entry | abbe |
+| L31 (Element 8) | 15A | `801455 — dense lanthanum flint (patent nd=1.80139, νd=45.46; no exact public coefficient match)` | 1.80139 / 45.46 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) - WO 2022/097401 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L12 (Element 2) | 3 | `High-index APD flint (glass code 855252)` | 1.85451 / 25.15 | No catalog entry | abbe |
-| L32 (Element 9) | 16 | `High-index APD flint (glass code 855252)` | 1.85451 / 25.15 | No catalog entry | abbe |
+| L12 (Element 2) | 3 | `855252 — high-index APD flint (source patent not locally available; no exact public catalog match verified)` | 1.85451 / 25.15 | No catalog entry | abbe |
+| L32 (Element 9) | 16 | `855252 — high-index APD flint (same as L12; source patent not locally available; no exact public catalog match verified)` | 1.85451 / 25.15 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - US 2,828,671
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `SK (Dense Crown), 607/595 — likely HIKARI equivalent` | 1.60730 / 59.50 | No catalog entry | abbe |
-| L2 (Element 2) | 3 | `SK (Dense Crown), 607/595 — same as L1` | 1.60730 / 59.50 | No catalog entry | abbe |
-| L3 (Element 3) | 5 | `LaK/LaF (Lanthanum Crown/Flint), 770/479` | 1.77000 / 47.90 | No catalog entry | abbe |
-| L4 (Element 4) | 6 | `LLF (Light Flint), 593/354` | 1.59270 / 35.40 | No catalog entry | abbe |
-| L5 (Element 5) | 8 | `F (Flint), 648/338` | 1.64830 / 33.80 | No catalog entry | abbe |
-| L6 (Element 6) | 9 | `LaK (Lanthanum Crown), 717/479` | 1.71700 / 47.90 | No catalog entry | abbe |
-| L7 (Element 7) | 11 | `LaK (Lanthanum Crown), 717/479 — same as L6` | 1.71700 / 47.90 | No catalog entry | abbe |
-| L8 (Element 8) | 13 | `LF (Light Flint), 626/356` | 1.62590 / 35.60 | No catalog entry | abbe |
-| L9 (Element 9) | 14 | `SK (Dense Crown), 639/555` | 1.63850 / 55.50 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | 1.77000 / 47.90 | No catalog entry | abbe |
 
 ### [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) - US 7,656,591 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L12 (Element 2) | 3 | `Proprietary high-dispersion lanthanum flint (757/316)` | 1.75692 / 31.59 | No catalog entry | abbe |
-| L23 (Element 5) | 8 | `Proprietary flint (567/427)` | 1.56732 / 42.72 | No catalog entry | abbe |
+| L12 (Element 2) | 3 | `757316 — high-dispersion lanthanum flint (patent nd=1.75692, νd=31.59; no exact public coefficient match)` | 1.75692 / 31.59 | No catalog entry | abbe |
 
 ### [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) - US 3,838,911
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `FK / FSL low-dispersion crown class (≈487698, vintage melt — no exact modern catalog match)` | 1.48749 / 69.80 | No catalog entry | abbe |
+| L2 (Element 2) | 3 | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | 1.48749 / 69.80 | No catalog entry | abbe |
 
 ### [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) - US 4,094,588
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `LaK-type A (694-508; no exact current catalog match — likely discontinued OHARA or HOYA formulation)` | 1.69350 / 50.80 | No catalog entry | abbe |
-| L5 (Element 5) | 8 | `LaK-type B (694-533; same nd as L2/L7 but higher νd — no exact current catalog match)` | 1.69350 / 53.30 | No catalog entry | abbe |
-| L7 (Element 7) | 12 | `LaK-type A (694-508; same glass as L2)` | 1.69350 / 50.80 | No catalog entry | abbe |
+| L2 (Element 2) | 3 | `694508 — LaK-type A (patent nd=1.69350, νd=50.8; no exact current catalog match)` | 1.69350 / 50.80 | No catalog entry | abbe |
+| L7 (Element 7) | 12 | `694508 — LaK-type A (same glass as L2; no exact current catalog match)` | 1.69350 / 50.80 | No catalog entry | abbe |
 
 ### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - US 4,708,445
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `581/408 (short flint family)` | 1.58144 / 40.75 | No catalog entry | abbe |
-| L5 (Element 5) | 9 | `683/447 (barium/lanthanum flint family)` | 1.68250 / 44.65 | No catalog entry | abbe |
-| L6 (Element 6) | 10 | `720/460 (lanthanum crown/flint border)` | 1.72000 / 46.03 | No catalog entry | abbe |
-
-### [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) - US 4,063,802
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `LaK family (720/503)` | 1.72000 / 50.25 | No catalog entry | abbe |
-| L2 (Element 2) | 3 | `SK/PSK family (623/581)` | 1.62300 / 58.14 | No catalog entry | abbe |
-| L4 (Element 4) | 7 | `LaK family (700/481)` | 1.70000 / 48.08 | No catalog entry | abbe |
+| L5 (Element 5) | 9 | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | 1.68250 / 44.65 | No catalog entry | abbe |
 
 ### [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts)
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L11 (Element 1) | 1 | `Unmatched (ultra-dense niobium flint, 946/180 — no public catalog match; probable proprietary Chinese composition)` | 1.94595 / 18.00 | No catalog entry | abbe |
-| L18 (Element 8) | 13A | `PGM moldable crown, code 516/565 (unmatched — probable proprietary low-Tg borosilicate for glass molding)` | 1.51602 / 56.50 | No catalog entry | abbe |
-| L21 (Element 9) | 15A | `PGM moldable crown, code 516/565 (same as L18, L31)` | 1.51602 / 56.50 | No catalog entry | abbe |
-| L31 (Element 10) | 17A | `PGM moldable crown, code 516/565 (same as L18, L21)` | 1.51602 / 56.50 | No catalog entry | abbe |
+| L18 (Element 8) | 13A | `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe |
+| L21 (Element 9) | 15A | `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe |
+| L31 (Element 10) | 17A | `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe |
 
 ### [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) - WO 2020/158622 A1
 
