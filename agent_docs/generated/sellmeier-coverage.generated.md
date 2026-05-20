@@ -1,0 +1,2057 @@
+# Sellmeier Coverage by Lens (auto-generated)
+
+Completeness-ranked view of the lens catalog using the strict runtime Sellmeier path.
+A surface counts as covered only when its element's `glass` annotation resolves to a catalog entry
+and the catalog d-line index agrees with the stored `surface.nd` within 0.005.
+
+**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.
+Regenerate the full glass report set with `npm run generate:glass-reports`.
+
+## Summary
+
+- **235** lenses scanned
+- **234** visible lenses scanned
+- **34** lenses fully covered
+- **34** visible lenses fully covered
+- **1887 / 2678** non-air surfaces use trusted Sellmeier data
+- **70.5%** surface coverage overall
+
+## Fully Covered Lenses
+
+| Lens | Glass elements | Non-air surfaces |
+|---|---:|---:|
+| [FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | 23 | 23 |
+| [LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4](../../src/lens-data/leica/LeicaAPOVarioElmaritSL90280mmf284.data.ts) | 23 | 23 |
+| [CANON RF 24-70mm f/2.8L IS USM](../../src/lens-data/canon/CanonRF2470f28.data.ts) | 21 | 21 |
+| [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | 17 | 17 |
+| [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | 17 | 17 |
+| [CANON RF 15-35mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF1535f28.data.ts) | 16 | 16 |
+| [FUJIFILM FUJINON XF 80mm f/2.8 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmXF80f28.data.ts) | 16 | 16 |
+| [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) | 16 | 16 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) | 16 | 16 |
+| [CANON EF 100mm f/2.8L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LMacroIS.data.ts) | 15 | 15 |
+| [FUJIFILM FUJINON GF 110mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmGF110mmf2RLM.data.ts) | 14 | 14 |
+| [FUJIFILM FUJINON GF23mmF4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | 14 | 14 |
+| [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) | 14 | 14 |
+| [OLYMPUS M.ZUIKO DIGITAL ED 12–40 mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) | 14 | 14 |
+| [FUJIFILM FUJINON GF80mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | 12 | 12 |
+| [FUJIFILM FUJINON GF45mmF2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 11 | 11 |
+| [LEICA APO-SUMMICRON 43mm f/2 ASPH. (Q3 43)](../../src/lens-data/leica/LeicaAPO43mmf2.data.ts) | 11 | 11 |
+| [Canon EF-M 28mm f/3.5 Macro IS STM](../../src/lens-data/canon/CanonEFM28mmf34MacroISSTM.data.ts) | 10 | 10 |
+| [HASSELBLAD HC 4/210](../../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) | 10 | 10 |
+| [HASSELBLAD XCD 2,8/65](../../src/lens-data/hasselblad/HasselbladXCD65mmf28.data.ts) | 10 | 10 |
+| [LEICA APO-MACRO-ELMARIT-TL 60 mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaAPOMacroElmaritTL60mmf28.data.ts) | 10 | 10 |
+| [LEICA APO-SUMMICRON-M 35 f/2 ASPH.](../../src/lens-data/leica/LeicaAPO35mmf2.data.ts) | 10 | 10 |
+| [HASSELBLAD HC 4.5/300](../../src/lens-data/hasselblad/HasselbladHC300mmf45.data.ts) | 9 | 9 |
+| [Olympus M.Zuiko Digital 17mm f/1.8](../../src/lens-data/olympus/OlympusMZuiko17mmf18.data.ts) | 9 | 9 |
+| [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) | 8 | 8 |
+| [FUJIFILM FUJINON XF 18mm f/2 R](../../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | 8 | 8 |
+| [SIGMA 30mm f/2.8 (DP2 Merrill)](../../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) | 8 | 8 |
+| [Canon EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | 7 | 7 |
+| [FUJIFILM Super EBC Fujinon 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | 7 | 7 |
+| [FUJIFILM Super EBC Fujinon 60mm f/4 (Fujifilm GA645 Professional)](../../src/lens-data/fujifilm/FujifilmGA645Pro60mmf4.data.ts) | 7 | 7 |
+| [NIKON AI NIKKOR 85mm f/1.4S](../../src/lens-data/nikon/Nikon85f14AIS.data.ts) | 7 | 7 |
+| [OLYMPUS XA F.ZUIKO 35mm f/2.8](../../src/lens-data/olympus/OlympusXAZuiko35mmf28.data.ts) | 6 | 6 |
+| [NIKON AI Nikkor 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | 5 | 5 |
+| [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) | 4 | 4 |
+
+## Incomplete Lenses by Completeness
+
+Fully covered lenses are listed above; this table focuses on the remaining catalog work.
+
+| Rank | Lens | Coverage | Sellmeier surfaces | Elements covered | Missing surfaces | Missing quality mix |
+|---:|---|---:|---:|---:|---:|---|
+|  | **95-99.9% coverage** |  |  |  |  |  |
+| 1 | [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) | 95.5% | 21/22 | 21/22 | 1 | abbe: 1 |
+|  | **90-94.9% coverage** |  |  |  |  |  |
+| 2 | [CANON RF 28-70mm F2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | 94.7% | 18/19 | 18/19 | 1 | abbe: 1 |
+| 3 | [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | 94.7% | 18/19 | 18/19 | 1 | abbe: 1 |
+| 4 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 5 | [NIKON PC NIKKOR 19mm f/4E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 6 | [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 7 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 8 | [Olympus M.Zuiko Digital ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 9 | [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) | 93.8% | 15/16 | 15/16 | 1 | abbe: 1 |
+| 10 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 11 | [CANON RF 85mm f/1.2L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 12 | [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 13 | [Laowa 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 14 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 15 | [CANON RF24-105mm F2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | 91.7% | 22/24 | 22/24 | 2 | abbe: 2 |
+| 16 | [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 17 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 18 | [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
+| 19 | [HASSELBLAD XCD 3,5/120mm Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+|  | **85-89.9% coverage** |  |  |  |  |  |
+| 20 | [Nikon 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 21 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 22 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 23 | [FUJIFILM FUJINON XF 35mmF1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 24 | [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 25 | [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 26 | [SIGMA 40mm F1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
+| 27 | [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
+| 28 | [RICOH GR IIIx 26.1mm f/2.8](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 29 | [RICOH GR IV 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR428f28.data.ts) | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 30 | [Canon EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 31 | [FUJIFILM FUJINON GF55mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 32 | [Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 33 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 34 | [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 35 | [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 36 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 85.7% | 18/21 | 18/21 | 3 | lineIndices: 3 |
+| 37 | [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | 85.2% | 23/27 | 23/27 | 4 | abbe: 4 |
+|  | **80-84.9% coverage** |  |  |  |  |  |
+| 38 | [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | 84.2% | 16/19 | 16/19 | 3 | abbe: 3 |
+| 39 | [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 40 | [RICOH GR III  18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 41 | [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 83.3% | 10/12 | 10/12 | 2 | abbe: 2 |
+| 42 | [NIKON AF-S NIKKOR 16-35mm f/4G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | 83.3% | 15/18 | 15/18 | 3 | abbe: 3 |
+| 43 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
+| 44 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
+| 45 | [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
+| 46 | [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 47 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | 81.0% | 17/21 | 17/21 | 4 | abbe: 4 |
+| 48 | [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) | 80.0% | 4/5 | 4/5 | 1 | abbe: 1 |
+| 49 | [HASSELBLAD HC 3.5/50](../../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 50 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 51 | [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 52 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 53 | [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) | 80.0% | 12/15 | 12/15 | 3 | abbe: 3 |
+|  | **75-79.9% coverage** |  |  |  |  |  |
+| 54 | [Nikon AF-S NIKKOR 24mm f/1.4G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 55 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 56 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | 78.6% | 11/14 | 11/12 | 3 | constant: 2, abbe: 1 |
+| 57 | [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 58 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 59 | [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 60 | [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 61 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 62 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
+| 63 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | 76.5% | 13/17 | 13/17 | 4 | abbe: 4 |
+| 64 | [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 76.2% | 16/21 | 16/21 | 5 | abbe: 5 |
+| 65 | [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 76.0% | 19/25 | 19/25 | 6 | abbe: 6 |
+| 66 | [FUJIFILM FUJINON 23mm f/2 (X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | 75.0% | 6/8 | 6/8 | 2 | abbe: 2 |
+| 67 | [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | 75.0% | 9/12 | 9/12 | 3 | abbe: 3 |
+| 68 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 75.0% | 9/12 | 9/12 | 3 | abbe: 3 |
+| 69 | [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) | 75.0% | 9/12 | 9/12 | 3 | abbe: 3 |
+| 70 | [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | 75.0% | 12/16 | 12/16 | 4 | abbe: 4 |
+| 71 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | 75.0% | 12/16 | 12/16 | 4 | abbe: 4 |
+|  | **70-74.9% coverage** |  |  |  |  |  |
+| 72 | [CANON EF 50mm f/1.0L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
+| 73 | [FUJIFILM FUJINON XF 23mm F1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
+| 74 | [SIGMA dp0 Quattro 14mm f/4](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
+| 75 | [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 76 | [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 77 | [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 78 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 79 | [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 80 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
+| 81 | [Laowa 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
+| 82 | [SIGMA 50mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
+| 83 | [SIGMA 85mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
+| 84 | [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 85 | [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 86 | [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 87 | [NIKON AF-S NIKKOR 85mm f/1.4G](../../src/lens-data/nikon/NikonNikkor85f14G.data.ts) | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 88 | [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | 70.0% | 14/20 | 14/20 | 6 | abbe: 6 |
+| 89 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 70.0% | 14/20 | 14/20 | 6 | abbe: 6 |
+|  | **65-69.9% coverage** |  |  |  |  |  |
+| 90 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | 69.2% | 18/26 | 18/26 | 8 | abbe: 8 |
+| 91 | [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) | 68.8% | 11/16 | 11/16 | 5 | abbe: 5 |
+| 92 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | 68.4% | 13/19 | 13/19 | 6 | abbe: 6 |
+| 93 | [Nikon Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) | 66.7% | 2/3 | 2/3 | 1 | abbe: 1 |
+| 94 | [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) | 66.7% | 2/3 | 2/3 | 1 | abbe: 1 |
+| 95 | [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) | 66.7% | 4/6 | 4/6 | 2 | abbe: 1, lineIndices: 1 |
+| 96 | [PENTAX-110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 97 | [SCHNEIDER SUPER-SYMMAR XL 5.6/110 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 98 | [SCHNEIDER-KREUZNACH APO-SYMMAR 5.6/100](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 99 | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 100 | [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 101 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 102 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 103 | [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 104 | [PENTAX FA 31mm F1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 105 | [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 106 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 107 | [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) | 66.7% | 8/12 | 8/12 | 4 | abbe: 4 |
+| 108 | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+| 109 | [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+| 110 | [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+| 111 | [NIKON PC-E NIKKOR 24mm f/3.5D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+| 112 | [SONY FE 90 mm F2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+|  | **60-64.9% coverage** |  |  |  |  |  |
+| 113 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | 64.7% | 11/17 | 11/17 | 6 | abbe: 6 |
+| 114 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 63.6% | 7/11 | 7/11 | 4 | abbe: 4 |
+| 115 | [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | 63.6% | 7/11 | 7/11 | 4 | abbe: 4 |
+| 116 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | 63.2% | 12/19 | 12/19 | 7 | abbe: 7 |
+| 117 | [CANON RF 24-50mm F4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
+| 118 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
+| 119 | [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
+| 120 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
+| 121 | [PENTAX-110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
+| 122 | [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | 60.0% | 6/10 | 6/10 | 4 | abbe: 4 |
+| 123 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | 60.0% | 6/10 | 6/10 | 4 | abbe: 4 |
+| 124 | [SIGMA 35mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) | 60.0% | 9/15 | 9/15 | 6 | abbe: 6 |
+| 125 | [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | 60.0% | 12/20 | 12/20 | 8 | abbe: 8 |
+|  | **55-59.9% coverage** |  |  |  |  |  |
+| 126 | [SONY PLANAR T* FE 50mm F1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | 58.3% | 7/12 | 7/12 | 5 | abbe: 5 |
+| 127 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 128 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 129 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 130 | [RICOH GR/GR2 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 131 | [SONY SONNAR T* FE 55mm F1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 132 | [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) | 55.6% | 5/9 | 5/9 | 4 | abbe: 4 |
+|  | **50-54.9% coverage** |  |  |  |  |  |
+| 133 | [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | 52.6% | 10/19 | 10/19 | 9 | abbe: 9 |
+| 134 | [CARL ZEISS HOLOGON 15 mm f/8](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) *(hidden)* | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 135 | [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 136 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 137 | [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 138 | [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 139 | [NIKON AI Nikkor 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 140 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 141 | [FUJIFILM FUJINON 23mm f/2 (X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 142 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
+| 143 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) | 50.0% | 6/12 | 6/12 | 6 | abbe: 6 |
+| 144 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) | 50.0% | 6/12 | 6/12 | 6 | abbe: 6 |
+| 145 | [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | 50.0% | 8/16 | 8/16 | 8 | abbe: 8 |
+| 146 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | 50.0% | 8/16 | 8/16 | 8 | abbe: 8 |
+| 147 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 50.0% | 8/16 | 8/16 | 8 | abbe: 8 |
+| 148 | [SONY FE 20–70 mm F4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | 50.0% | 8/16 | 8/16 | 8 | abbe: 8 |
+|  | **45-49.9% coverage** |  |  |  |  |  |
+| 149 | [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) | 45.5% | 5/11 | 5/11 | 6 | abbe: 6 |
+| 150 | [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | 45.5% | 5/11 | 5/11 | 6 | abbe: 6 |
+|  | **40-44.9% coverage** |  |  |  |  |  |
+| 151 | [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 44.4% | 4/9 | 4/9 | 5 | abbe: 5 |
+| 152 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | 44.4% | 8/18 | 8/17 | 10 | abbe: 9, constant: 1 |
+| 153 | [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 154 | [SIGMA DP2X 24mm f/2.8](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 155 | [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 156 | [NIKON L35AF 35mm f/2.8](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 157 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 158 | [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
+|  | **35-39.9% coverage** |  |  |  |  |  |
+| 159 | [Nikon AF-P NIKKOR 70-300mm f/4.5-5.6E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) | 38.9% | 7/18 | 7/18 | 11 | abbe: 11 |
+| 160 | [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) | 38.5% | 5/13 | 5/13 | 8 | abbe: 8 |
+| 161 | [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 38.5% | 5/13 | 5/13 | 8 | abbe: 8 |
+| 162 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 163 | [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 164 | [SONY PLANAR T* 50mm F1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 165 | [SONY SONNAR T* E 24mm F1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 166 | [Nikon NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | 37.5% | 6/16 | 6/16 | 10 | abbe: 10 |
+| 167 | [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 35.3% | 6/17 | 6/17 | 11 | abbe: 11 |
+|  | **30-34.9% coverage** |  |  |  |  |  |
+| 168 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 169 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 170 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 171 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 172 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 173 | [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | 33.3% | 3/9 | 3/9 | 6 | abbe: 6 |
+| 174 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
+| 175 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
+|  | **25-29.9% coverage** |  |  |  |  |  |
+| 176 | [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 177 | [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | 28.6% | 4/14 | 4/14 | 10 | abbe: 10 |
+| 178 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | 27.3% | 3/11 | 3/11 | 8 | abbe: 8 |
+| 179 | [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | 25.0% | 3/12 | 3/9 | 9 | abbe: 6, constant: 3 |
+|  | **20-24.9% coverage** |  |  |  |  |  |
+| 180 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 181 | [Nikon AI Nikkor 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 182 | [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+|  | **15-19.9% coverage** |  |  |  |  |  |
+| 183 | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 184 | [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 185 | [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 15.0% | 3/20 | 3/20 | 17 | abbe: 17 |
+|  | **10-14.9% coverage** |  |  |  |  |  |
+| 186 | [SIGMA 85mm F/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 13.3% | 2/15 | 2/15 | 13 | abbe: 13 |
+| 187 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) | 12.5% | 1/8 | 1/8 | 7 | abbe: 7 |
+| 188 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
+|  | **5-9.9% coverage** |  |  |  |  |  |
+| 189 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 8.3% | 1/12 | 1/12 | 11 | abbe: 11 |
+|  | **0-4.9% coverage** |  |  |  |  |  |
+| 190 | [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) | 0.0% | 0/2 | 0/2 | 2 | abbe: 2 |
+| 191 | [CARL ZEISS TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 192 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 193 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 194 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 195 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 196 | [Nikon AI Nikkor 28mm f/3.5](../../src/lens-data/nikon/NikonAI28mmf35.data.ts) | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 197 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 198 | [CARL ZEISS SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 199 | [NIKON NIKKOR-S AUTO 50mm f/1.4](../../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 200 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 201 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
+
+## Missing Surface Details
+
+Incomplete visible lenses, still ordered by descending completeness.
+
+### [NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) - 95.5% (21/22) - WO 2019/097669 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `Fluorite (CaF₂)` | No catalog match |
+
+### [CANON RF 28-70mm F2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) - 94.7% (18/19) - JP 2020-118807 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `M-TAFD305 (HOYA)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) - 94.7% (18/19) - JP 2014-209144 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 26 | Element 16 | abbe | `E-ADF10 (HOYA)` | No catalog match |
+
+### [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) - 94.4% (17/18) - US 2019/0278068 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 29A | Element 17 | abbe | `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)` | No catalog match |
+
+### [NIKON PC NIKKOR 19mm f/4E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) - 94.4% (17/18) - JP 2017-161685 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 30A | Element 17 (resin) | abbe | `UV-cure aspherical resin` | No catalog match |
+
+### [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) - 94.4% (17/18) - US 7,289,274 B1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 25 | Element 15 | abbe | `S-LAL12 (OHARA)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) - 94.1% (16/17) - US 2016/0154221 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | Element 4 (L21) | abbe | `HOYA M-TAFD305` | No catalog match |
+
+### [Olympus M.Zuiko Digital ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) - 94.1% (16/17) - JP2017-090535A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | Element 4 | abbe | `M-TAFD307 / MC-TAFD307-class (HOYA, moldable)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) - 93.8% (15/16) - US 2020/0166735 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | Element 4 | abbe | `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)` | No catalog match |
+
+### [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) - 92.9% (13/14) - JP 2015-31869 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `PMo optical plastic (cyclo-olefin polymer)` | No catalog match |
+
+### [CANON RF 85mm f/1.2L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) - 92.9% (13/14) - US 2020/0012073 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 15 | Element 9 (Lp2 / BR) | abbe | `BR optics (Canon proprietary organic)` | Explicit unmatched/proprietary annotation |
+
+### [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) - 92.9% (13/14) - US 2018/0059384 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `S-LAH85V (OHARA)` | No catalog match |
+
+### [Laowa 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) - 91.7% (11/12) - US 2018/0149842 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 18 | Element 10 | abbe | `TAFD5G class (835-427)` | No catalog match |
+
+### [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) - 91.7% (11/12) - JP2020-173366A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `Fluorophosphate crown (ED)` | No catalog match |
+
+### [CANON RF24-105mm F2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) - 91.7% (22/24) - US 2024/0192474 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 14 | Element 8 | abbe | `Heavy flint (770/297)` | No catalog match |
+| 22A | Element 12 (resin) | abbe | `UV-curing optical resin (replica aspheric)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) - 90.9% (10/11) - US 2015/0212302 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 16 | Element 9 | abbe | `S-TIF6 (OHARA)` | No catalog match |
+
+### [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) - 90.9% (10/11) - JP 2019-090947A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 16 | Element 9 | abbe | `Fluorophosphate crown (family-level ID only)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - 90.5% (19/21) - US 2020/0142168 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)` | No catalog match |
+| 3A | Element 2r | abbe | `UV-curing resin` | No catalog match |
+
+### [HASSELBLAD XCD 3,5/120mm Macro](../../src/lens-data/hasselblad/HasselbladXCD120mmf35Macro.data.ts) - 90.0% (9/10) - US 2020/0192060 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `893204 - ultra-high-dispersion flint (patent nd=1.89286, vd=20.36; unresolved)` | No catalog match |
+
+### [Nikon 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) - 88.9% (8/9) - WO 2014/061226 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | L13 high-index positive meniscus | abbe | `TAF2 class (HOYA; patent nd/vd close but not exact)` | No catalog match |
+
+### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - 88.9% (8/9) - US 2,828,671
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | No catalog match |
+
+### [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) - 88.9% (8/9) - US 7,656,591 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `757316 — high-dispersion lanthanum flint (patent nd=1.75692, νd=31.59; no exact public coefficient match)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 35mmF1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) - 87.5% (7/8) - US 2014/0285903 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10A | Element 5 | abbe | `BSC7 family (glass-molded, proprietary PGM)` | Explicit unmatched/proprietary annotation |
+
+### [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - 87.5% (7/8) - US 4,764,000
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | Element 7 | abbe | `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)` | No catalog match |
+
+### [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) - 87.5% (7/8) - JP 2012-003015 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10 | Element 6 | abbe | `S-TIF6 (OHARA) / N-SF5 (SCHOTT)` | No catalog match |
+
+### [SIGMA 40mm F1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) - 87.5% (14/16) - JP 2020-012952 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 17 | Element 10 | abbe | `PCD51 (HOYA)` | No catalog match |
+| 26 | Element 15 | abbe | `PCD51 (HOYA)` | No catalog match |
+
+### [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) - 86.7% (13/15) - US 10,191,246 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | L21 aspherical resin layer | abbe | `UV-curing aspherical resin (patent-listed)` | No catalog match |
+| 10 | L24 | abbe | `S-BAM12 (OHARA)` | No catalog match |
+
+### [RICOH GR IIIx 26.1mm f/2.8](../../src/lens-data/ricoh/RicohGR3x.data.ts) - 85.7% (6/7) - US 2022/0026670 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 12A | Element 7 | abbe | `OHARA L-LAH86 (PGM)` | No catalog match |
+
+### [RICOH GR IV 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR428f28.data.ts) - 85.7% (6/7) - JP2025-069516A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 12A | Element 7 | abbe | `M-TAF101 (HOYA)` | No catalog match |
+
+### [Canon EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - 85.7% (12/14) - JP2018180366A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | LR negative member | abbe | `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)` | Explicit unmatched/proprietary annotation |
+| 19 | Rear moving aspherical positive member | abbe | `MP-TAFD305 / MC-TAFD305 (HOYA, 851401)` | No catalog match |
+
+### [FUJIFILM FUJINON GF55mmF1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) - 85.7% (12/14) - US 2023/0341664 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | L11 | abbe | `FF5 (HOYA, 593-354 code)` | No catalog match |
+| 11A | L24 | abbe | `772493 — molded lanthanum-crown class (no exact public catalog match)` | No catalog match |
+
+### [Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) - 85.7% (12/14) - US 2021/0026133 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | L11 | abbe | `517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)` | No catalog match |
+| 3 | L12 | abbe | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) - 85.7% (12/14) - WO2019/116563 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `Specialty APD glass (Nikon)` | No catalog match |
+| 14 | Element 9 | abbe | `Specialty high-dispersion flint` | No catalog match |
+
+### [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) - 85.7% (12/14) - US 7,218,457 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `S-BSM2 (OHARA)` | No catalog match |
+| 11 | Element 6 | abbe | `Crown (no exact catalog match — likely proprietary or discontinued)` | Explicit unmatched/proprietary annotation |
+
+### [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) - 85.7% (12/14) - US 4,758,073
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 5 | abbe | `S-LAH65 class (Ohara)` | S-LAH65 rejected by nd safety net (Δnd=+0.0310) |
+| 9 | Element 6 | abbe | `S-BSM71 (Ohara)` | S-BSM71 rejected by nd safety net (Δnd=+0.0085) |
+
+### [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) - 85.7% (18/21) - JP 2007-108398 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | Element 4 (resin) | lineIndices | `UV-curing resin` | No catalog match |
+| 29A | Element 17 (resin) | lineIndices | `UV-curing resin` | No catalog match |
+| 34 | Element 21 | lineIndices | `NBFD13 (HOYA)` | NBFD13 rejected by nd safety net (Δnd=+0.0566) |
+
+### [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) - 85.2% (23/27)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `H-ZLaF4A (CDGM)` | No catalog match |
+| 3 | Element 2 | abbe | `H-ZLaF75B (CDGM, tentative)` | No catalog match |
+| 44 | Element 26 | abbe | `H-ZF2 (CDGM)` | No catalog match |
+| 46 | Element 27 | abbe | `H-ZLaF4A (CDGM)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 200mm F2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) - 84.2% (16/19) - US 2019/0265504 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 9 | Element 6 | abbe | `S-LAH58 family (OHARA, 911 353)` | S-LAH58 rejected by nd safety net (Δnd=-0.0278) |
+| 13 | Element 8 | abbe | `S-NBH5 / S-LAH53 family (OHARA, 800 298)` | S-NBH5 rejected by nd safety net (Δnd=-0.1459) |
+| 33 | Element 19 | abbe | `S-NBH5 / S-LAH53 family (OHARA, 800 298)` | S-NBH5 rejected by nd safety net (Δnd=-0.1459) |
+
+### [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) - 83.3% (5/6) - US 8,970,966 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `S-TIL25 (OHARA)` | S-TIL25 rejected by nd safety net (Δnd=+0.0497) |
+
+### [RICOH GR III  18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR328f28.data.ts) - 83.3% (5/6) - US 2019/0154946 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10A | Element 6 (L23) | abbe | `HOYA M-TAFD307 (PGM)` | No catalog match |
+
+### [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - 83.3% (10/12) - US 2023/0367186 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | Element 2 | abbe | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | No catalog match |
+| 15A | Element 9 | abbe | `586595 — barium crown (patent nd=1.58575, nu_d=59.5)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 16-35mm f/4G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) - 83.3% (15/18) - US 2010/0238560 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | Element 1 | abbe | `LAM family (cf. HOYA E-FD5)` | E-FD5 rejected by nd safety net (Δnd=-0.0942) |
+| 6 | Element 3r | abbe | `UV-cure resin` | No catalog match |
+| 16 | Element 8 | abbe | `S-LAM54 (OHARA)` | S-LAM54 rejected by nd safety net (Δnd=+0.0555) |
+
+### [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) - 82.4% (14/17) - WO2020/136749 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | Element 4 | abbe | `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)` | No catalog match |
+| 26 | Element 14 | abbe | `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)` | No catalog match |
+| 30A | Element 16 | abbe | `852402 — dense lanthanum flint (patent nd=1.85207, νd=40.15; no exact public catalog match)` | No catalog match |
+
+### [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) - 82.4% (14/17) - JP 2025-52870A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaK family (640601, CDGM H-LAK3)` | No catalog match |
+| 25A | Element 13 | abbe | `PGM lanthanum (775473, OHARA L-LAH85)` | No catalog match |
+| 32A | Element 17 | abbe | `Barium crown / LaK family (624584, no exact catalog match)` | No catalog match |
+
+### [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - 81.8% (9/11) - US 2016/0266350 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 12A | Element 6 | abbe | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | No catalog match |
+| 20A | Element 11 | abbe | `H-ZF52A (CDGM)` | No catalog match |
+
+### [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - 81.3% (13/16) - JP 2016-021011 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | L12 resin layer | abbe | `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)` | No catalog match |
+| 9 | LS cement layer | abbe | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | No catalog match |
+| 19 | Rear doublet cement layer | abbe | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | No catalog match |
+
+### [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) - 81.0% (17/21) - WO2020/105104
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `CaF₂ Fluorite (434-952)` | No catalog match |
+| 10 | Element 6 | abbe | `Nikon SR glass (proprietary)` | Explicit unmatched/proprietary annotation |
+| 24 | Element 13 | abbe | `Dense flint (850-324, no exact match)` | No catalog match |
+| 29 | Element 16 | abbe | `Dense flint (801-349, no exact match)` | No catalog match |
+
+### [OLYMPUS ZUIKO AUTO-T 85mm f/2](../../src/lens-data/olympus/OlympusZuiko85mmf2.data.ts) - 80.0% (4/5) - US 4,063,802
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `HOYA FD110 (exact match, SF family, 785/257)` | No catalog match |
+
+### [HASSELBLAD HC 3.5/50](../../src/lens-data/hasselblad/HasselbladHC50mmf4.data.ts) - 80.0% (8/10) - US 2003/0011895 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `S-NPH4 (OHARA)` | S-NPH4 rejected by nd safety net (Δnd=+0.1082) |
+| 14 | Element 8 | abbe | `S-NBH52 (OHARA)` | S-NBH52 rejected by nd safety net (Δnd=+0.0332) |
+
+### [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) - 80.0% (8/10) - US 3,830,559
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `J-LAF04 class (HIKARI), 757479` | No catalog match |
+| 7 | Element 4 | abbe | `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573` | No catalog match |
+
+### [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) - 80.0% (8/10) - US 3,850,509
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | Element 8 | abbe | `S-APL1 (OHARA)` | No catalog match |
+| 16 | Element 10 | abbe | `S-APL1 (OHARA)` | No catalog match |
+
+### [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) - 80.0% (8/10) - JP 2002-090622 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `SF5 (Schott) / K-SFS5 (Sumita)` | No catalog match |
+| 12 | Element 7 | abbe | `S-BAL14 (OHARA) / K-BAL14 (Sumita)` | S-BAL14 rejected by nd safety net (Δnd=-0.0203) |
+
+### [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) - 80.0% (12/15) - US 2024/0329367 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `851408 — S-LAH65V (OHARA)` | S-LAH65V rejected by nd safety net (Δnd=-0.0475) |
+| 15 | Element 8 | abbe | `770297 — S-TIH18 family (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=-0.0490) |
+| 26 | Element 14 | abbe | `744448 — S-LAL14 family (OHARA)` | S-LAL14 rejected by nd safety net (Δnd=-0.0472) |
+
+### [Nikon AF-S NIKKOR 24mm f/1.4G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) - 78.6% (11/14) - US 8,416,512 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | L23a | abbe | `LBC3N class (606637 phosphate crown)` | No catalog match |
+| 14 | Cement layer 1 | abbe | `Patent cement medium (nd=1.51400, νd=42.83)` | No catalog match |
+| 19 | Cement layer 2 | abbe | `Patent cement medium (nd=1.51400, νd=42.83)` | No catalog match |
+
+### [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) - 78.6% (11/14) - WO2019/049372
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)` | No catalog match |
+| 11A | Element 6 | abbe | `E-FPL51 (HOYA)` | No catalog match |
+| 21 | Element 12 | abbe | `M-PCD51 (HOYA)` | No catalog match |
+
+### [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) - 78.6% (11/14) - WO2019/220618 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | element | constant | `(none)` | No glass annotation |
+| 16A | Element 8 | abbe | `774472 — lanthanum dense flint (patent nd=1.77377, νd=47.2; no exact public catalog match)` | No catalog match |
+| 25 | element | constant | `(none)` | No glass annotation |
+
+### [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) - 78.6% (11/14) - WO 2025/239028 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 16 | Element 9 | abbe | `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)` | No catalog match |
+| 22 | Element 12 | abbe | `986165 — ultra-high-index dense flint (patent nd=1.98613, νd=16.5)` | No catalog match |
+| 25 | Element 14 | abbe | `870200 — dense flint (patent nd=1.86966, νd=20.0)` | No catalog match |
+
+### [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) - 77.8% (7/9) - US 3,915,558
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `LLF1 (Schott)` | No catalog match |
+| 11A | Element 6 | abbe | `LLF1 (Schott)` | No catalog match |
+
+### [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) - 77.8% (7/9) - US 2002/0075570 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 9 | Element 5 | abbe | `Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)` | H-LAK6A rejected by nd safety net (Δnd=+0.0235) |
+| 12 | Element 7 | abbe | `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)` | No catalog match |
+
+### [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) - 77.8% (7/9) - US 3,524,697
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Patent L1 | abbe | `BACD4 / N-SK4 class (613/586)` | No catalog match |
+| 11 | Patent L8 | abbe | `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)` | No catalog match |
+
+### [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) - 77.8% (7/9) - WO 2023/190222 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 2 | abbe | `S-TIM2 (OHARA)` | S-TIM2 rejected by nd safety net (Δnd=+0.0273) |
+| 14A | Element 8a (resin) | abbe | `UV-curing resin (composite asphere)` | No catalog match |
+
+### [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) - 76.9% (10/13) - WO 2020/158622 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `Dense flint (581/409, uncertain)` | No catalog match |
+| 7A | Element 4 | abbe | `808409 — PGM-moldable lanthanum crown (patent nd=1.80755, νd=40.9; no exact public catalog match)` | No catalog match |
+| 17 | Element 9 | abbe | `Dense flint (717/295, unknown vendor)` | Explicit unmatched/proprietary annotation |
+
+### [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) - 76.5% (13/17) - US 2023/0213745 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `770297 — S-TIH18 family (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=-0.0490) |
+| 9 | Element 6 | abbe | `770297 — S-TIH18 family (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=-0.0490) |
+| 24 | Element 14 | abbe | `S-NPH7 (OHARA)` | No catalog match |
+| 26 | Element 15 | abbe | `S-LAL8 (OHARA)` | S-LAL8 rejected by nd safety net (Δnd=+0.0546) |
+
+### [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - 76.2% (16/21) - US 2020/0142167 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10 | Element 6 | abbe | `E-FD15 type (923/209)` | E-FD15 rejected by nd safety net (Δnd=-0.2239) |
+| 25A | Element 14 | abbe | `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)` | No catalog match |
+| 27 | Element 15 | abbe | `S-TIH53W type (855/248)` | S-TIH53W rejected by nd safety net (Δnd=-0.0081) |
+| 28 | Element 16 | abbe | `Unmatched (593686 borosilicate crown; catalog S-BSM81 does not round-trip patent nd=1.59282, vd=68.6)` | Explicit unmatched/proprietary annotation |
+| 32 | Element 18 | abbe | `S-TIH10 type (805/254)` | S-TIH10 rejected by nd safety net (Δnd=-0.0769) |
+
+### [NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) - 76.0% (19/25) - JP 2020-177057 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `CaF₂ (Fluorite)` | No catalog match |
+| 8 | Element 5 | abbe | `HOYA E-ADF10` | No catalog match |
+| 14 | Element 9 | abbe | `HOYA M-TAFD305 type (1871/407)` | No catalog match |
+| 18 | Element 11 | abbe | `CaF₂ (Fluorite)` | No catalog match |
+| 34 | Element 19 | abbe | `HOYA M-TAFD305 type (1871/407)` | No catalog match |
+| 45 | Element 25 | abbe | `OHARA S-LAH75` | No catalog match |
+
+### [FUJIFILM FUJINON 23mm f/2 (X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) - 75.0% (6/8) - US 2012/0069456 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10A | Element 6 | abbe | `K-VC89 (Sumita)` | K-VC89 rejected by nd safety net (Δnd=+0.2413) |
+| 12 | Element 7 | abbe | `S-NBH55 (OHARA)` | S-NBH55 rejected by nd safety net (Δnd=-0.0081) |
+
+### [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) - 75.0% (9/12) - US 2021/0072505 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 11 | Element 6 | abbe | `S-LAH58 (OHARA)` | S-LAH58 rejected by nd safety net (Δnd=-0.0174) |
+| 13 | Element 7 | abbe | `S-TIH4 (OHARA)` | S-TIH4 rejected by nd safety net (Δnd=+0.0347) |
+| 21 | Element 11 | abbe | `S-LAH65 (OHARA)` | S-LAH65 rejected by nd safety net (Δnd=-0.0308) |
+
+### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) - 75.0% (9/12) - US 7,898,744 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `H-LAK6A (CDGM) or Nikon melt` | H-LAK6A rejected by nd safety net (Δnd=+0.0550) |
+| 5 | Element 3 | abbe | `TAFD5 (HOYA)` | No catalog match |
+| 13 | Element 7 | abbe | `S-FPM4 (OHARA) — ED glass` | S-FPM4 rejected by nd safety net (Δnd=+0.0306) |
+
+### [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - 75.0% (9/12) - US 3,737,214
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | Element 6 | abbe | `J-SF2 class (HIKARI; patent nd is +0.00062 above current J-SF2)` | No catalog match |
+| 15 | Element 7 | abbe | `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)` | No catalog match |
+| 19 | Element 10 | abbe | `Unmatched lanthanum dense flint (796/408; nearest current HIKARI glasses are J-LASF02/J-LASF03 class)` | Explicit unmatched/proprietary annotation |
+
+### [FUJIFILM FUJINON GF30mmF5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) - 75.0% (12/16) - WO 2024/195273 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | Element L11 | abbe | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | No catalog match |
+| 20A | Element L25 | abbe | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | No catalog match |
+| 24A | Element L31 | abbe | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | No catalog match |
+| 26 | Element L32 | abbe | `N-LASF44 (Schott)` | No catalog match |
+
+### [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) - 75.0% (12/16) - WO 2022/259649 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4A | Element 3 | abbe | `Moldable lanthanum crown (no exact catalog match; nearest HOYA M-TAFD305 1.77377/47.17)` | No catalog match |
+| 8 | Element 5 | abbe | `855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)` | No catalog match |
+| 13A | Element 7 | abbe | `Moldable phosphate crown (no exact catalog match)` | No catalog match |
+| 28A | Element 15 | abbe | `Moldable lanthanum crown (same as L3)` | No catalog match |
+
+### [CANON EF 50mm f/1.0L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) - 72.7% (8/11) - US 4,717,245
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5A | Element 3 | abbe | `S-NSL5 (OHARA)` | S-NSL5 rejected by nd safety net (Δnd=+0.0051) |
+| 8 | Element 5 | abbe | `S-NSL5 (OHARA)` | S-NSL5 rejected by nd safety net (Δnd=+0.0051) |
+| 19 | Element 11 | abbe | `S-BSL10 (OHARA)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 23mm F1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) - 72.7% (8/11) - US 2014/0368926 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `S-TIM28 (OHARA)` | S-TIM28 rejected by nd safety net (Δnd=+0.0760) |
+| 10 | Element 6 | abbe | `S-LAL13 (OHARA)` | S-LAL13 rejected by nd safety net (Δnd=-0.0195) |
+| 16 | Element 9 | abbe | `S-TIM25 (OHARA)` | S-TIM25 rejected by nd safety net (Δnd=-0.0162) |
+
+### [SIGMA dp0 Quattro 14mm f/4](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) - 72.7% (8/11) - JP 2016-139087 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `M-TAC80 (HOYA)` | No catalog match |
+| 12 | Element 7 | abbe | `TAFD25 (HOYA) / S-LAH55 (OHARA)` | TAFD25 rejected by nd safety net (Δnd=+0.0688) |
+| 18 | Element 11 | abbe | `E-FDS1 (HOYA) / S-TIH6 (OHARA)` | E-FDS1 rejected by nd safety net (Δnd=+0.1168) |
+
+### [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) - 71.4% (5/7) - US 4,364,643
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `Dense flint [667330] — OHARA SF19` | No catalog match |
+| 10 | Element 6 | abbe | `Lanthanum special flint (high-index) [863415] — OHARA LASF07` | No catalog match |
+
+### [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) - 71.4% (5/7) - US 2,645,973
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `LLF6 (Schott, ≈)` | No catalog match |
+| 9 | Element 6 | abbe | `KzFS2 (Schott)` | No catalog match |
+
+### [OLYMPUS G.ZUIKO AUTO-S 50mm f/1.4](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf14.data.ts) - 71.4% (5/7) - US 4,094,588
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `694508 — LaK-type A (patent nd=1.69350, νd=50.8; no exact current catalog match)` | No catalog match |
+| 12 | Element 7 | abbe | `694508 — LaK-type A (same glass as L2; no exact current catalog match)` | No catalog match |
+
+### [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) - 71.4% (5/7) - US 3,743,387
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `NbF/SF (dense flint family)` | No catalog match |
+| 8 | Element 5 | abbe | `LaK (lanthanum crown family)` | No catalog match |
+
+### [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) - 71.4% (5/7) - US 5,760,973
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 — L(2,2) | abbe | `S-TIM35 (OHARA) / FD110 (HOYA)` | S-TIM35 rejected by nd safety net (Δnd=+0.0100) |
+| 9 | Element 6 — L(3,3) | abbe | `EFD4 (HOYA)` | No catalog match |
+
+### [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) - 71.4% (10/14) - US 2022/0236544 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | L12 | abbe | `MP/MC-BACD12 (HOYA precision-molding class; 583/595)` | No catalog match |
+| 14 | L32 | abbe | `H-LaF6L / lanthanum flint class (757/477)` | No catalog match |
+| 17A | L34 | abbe | `Unmatched (ED fluorophosphate, 496/813; near FCD1/S-FPL51 family)` | Explicit unmatched/proprietary annotation |
+| 22A | L43 | abbe | `MP/MC-LAC130 (HOYA precision-molding class; 694/532)` | No catalog match |
+
+### [Laowa 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - 71.4% (10/14)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `H-QF50 (CDGM)` | No catalog match |
+| 4 | Element 3 | abbe | `Unmatched (lanthanum crown 773/530 — no exact CDGM catalog match; nearest H-LAK51 at νd ≈ 49.6)` | Explicit unmatched/proprietary annotation |
+| 16 | Element 10 | abbe | `Unmatched (lanthanum crown 729/577 — H-LAK52 matches nd exactly but νd = 54.68, Δνd = +3.0)` | Explicit unmatched/proprietary annotation |
+| 23 | Element 14 | abbe | `H-K8 (CDGM)` | No catalog match |
+
+### [SIGMA 50mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) - 71.4% (10/14) - JP 2023-183894 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7A | Element 4 | abbe | `Aspherical mold glass (764/491)` | No catalog match |
+| 17 | Element 9 | abbe | `Lanthanum crown (755/523)` | No catalog match |
+| 18 | Element 10 | abbe | `Dense flint (855/252)` | No catalog match |
+| 22 | Element 12 | abbe | `Ultra-dispersive flint (946/180)` | No catalog match |
+
+### [SIGMA 85mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) - 71.4% (10/14) - JP2018-5099A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `TAC8 (HOYA)` | No catalog match |
+| 5 | Element 3 | abbe | `E-ADF10 (HOYA)` | No catalog match |
+| 17 | Element 9 | abbe | `TAF105 (HOYA)` | No catalog match |
+| 26A | Element 14 | abbe | `M-TAFD305 (HOYA)` | No catalog match |
+
+### [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) - 70.0% (7/10) - US 2025/0362482 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | L15 | abbe | `PCD40 (HOYA) / H-PK65 class` | No catalog match |
+| 12A | L17 | abbe | `M-TAF101 (HOYA) / D-LaF050 class` | No catalog match |
+| 14A | L21 | abbe | `M-FD80 (HOYA) / D-ZF10 class (probable)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) - 70.0% (7/10) - US 2014/0247506 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | No catalog match |
+| 9 | Element 5 | abbe | `S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)` | S-TIL27 rejected by nd safety net (Δnd=+0.0576) |
+| 12A | Element 7 | abbe | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | No catalog match |
+
+### [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) - 70.0% (7/10) - US 5,640,277
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `Dense Lanthanum Flint (LaSF3 / NBFD15)` | NBFD15 rejected by nd safety net (Δnd=+0.0098) |
+| 15 | Element 8 | abbe | `Very Dense Lanthanum Flint (TAFD30)` | TAFD30 rejected by nd safety net (Δnd=+0.0131) |
+| 19 | Element 10 | abbe | `Lanthanum Crown (S-LAM66)` | S-LAM66 rejected by nd safety net (Δnd=+0.0529) |
+
+### [NIKON AF-S NIKKOR 85mm f/1.4G](../../src/lens-data/nikon/NikonNikkor85f14G.data.ts) - 70.0% (7/10) - US 8,767,319 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `S-NBH56 (OHARA)` | S-NBH56 rejected by nd safety net (Δnd=+0.0487) |
+| 10 | Element 5 | abbe | `S-TIH18 (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=+0.0226) |
+| 17 | Element 9 | abbe | `S-TIH53 (OHARA)` | S-TIH53 rejected by nd safety net (Δnd=+0.1990) |
+
+### [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) - 70.0% (14/20) - US 2020/0049962 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaH dense flint (1903/357)` | No catalog match |
+| 14 | Element 9 | abbe | `Phosphate crown (ED)` | No catalog match |
+| 17 | Element 11 | abbe | `Phosphate crown (ED)` | No catalog match |
+| 20 | Element 13 | abbe | `LaH dense flint (1903/357)` | No catalog match |
+| 29 | Element 18 | abbe | `S-TIF6 (OHARA)` | No catalog match |
+| 30 | Element 19 | abbe | `Phosphate crown (proprietary)` | Explicit unmatched/proprietary annotation |
+
+### [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) - 70.0% (14/20) - WO 2023/181666 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense flint (870/200, uncertain — no OHARA catalog match)` | No catalog match |
+| 4 | Element 3 | abbe | `Lanthanum crown (764/485, uncertain — no exact OHARA match)` | No catalog match |
+| 8A | Element 5 | abbe | `770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)` | No catalog match |
+| 10 | Element 6 | abbe | `Crown (639/554, uncertain — no exact OHARA match)` | No catalog match |
+| 26 | Element 15 | abbe | `Dense flint (806/333, uncertain — no exact OHARA match)` | No catalog match |
+| 36 | Element 20 | abbe | `Lanthanum dense flint (911/352, uncertain — no exact OHARA match)` | No catalog match |
+
+### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - 69.2% (18/26) - JP2022-92388A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 13 | Element 8 | abbe | `S-LAM3 (OHARA)` | S-LAM3 rejected by nd safety net (Δnd=-0.0240) |
+| 14 | Element 9 | abbe | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | No catalog match |
+| 18 | Element 11 | abbe | `S-SK14 (OHARA)` | No catalog match |
+| 31 | Element 17 (VR) | abbe | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | No catalog match |
+| 32 | Element 18 (VR) | abbe | `S-LAH99 (OHARA)` | S-LAH99 rejected by nd safety net (Δnd=+0.0473) |
+| 34 | Element 19 | abbe | `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)` | No catalog match |
+| 41 | Element 23 | abbe | `903354 — ultra-high-index lanthanum (patent nd=1.90265, νd≈35.4; no exact public catalog match)` | No catalog match |
+| 45 | Element 25 | abbe | `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)` | No catalog match |
+
+### [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) - 68.8% (11/16)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)` | No catalog match |
+| 8 | Element 5 | abbe | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | No catalog match |
+| 10 | Element 6 | abbe | `FD140 class (HOYA, 762/266)` | No catalog match |
+| 18 | Element 11 | abbe | `FD110 class (HOYA, 785/257)` | No catalog match |
+| 19 | Element 12 | abbe | `904293 - dense flint class (patent nd=1.90366, vd=29.31; unresolved)` | No catalog match |
+
+### [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) - 68.4% (13/19) - WO 2022/264542 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10 | Element 6 | abbe | `S-TIH53 (OHARA)` | S-TIH53 rejected by nd safety net (Δnd=+0.0386) |
+| 15A | Element 8 | abbe | `UV-curing resin (composite aspheric layer)` | No catalog match |
+| 18 | Element 10 | abbe | `S-TIM2 (OHARA)` | S-TIM2 rejected by nd safety net (Δnd=+0.0166) |
+| 23A | Element 13 | abbe | `UV-curing resin (composite aspheric layer)` | No catalog match |
+| 25 | Element 15 | abbe | `L-LAM60 (OHARA, tentative, Δνd ≈ 0.06)` | S-LAM60 rejected by nd safety net (Δnd=+0.0756) |
+| 30 | Element 18 | abbe | `S-LAH58 (OHARA)` | S-LAH58 rejected by nd safety net (Δnd=-0.0197) |
+
+### [Nikon Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) - 66.7% (2/3) - US 5,764,425
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Rear element of front doublet | abbe | `804339 — dense flint (patent nd=1.80384, νd=33.89; exact public catalog match not identified)` | No catalog match |
+
+### [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) - 66.7% (2/3) - US 5,949,588
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)` | No catalog match |
+
+### [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) - 66.7% (4/6) - JP 2011-248340 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Pre-stop positive meniscus | lineIndices | `S-LAM7 (OHARA)` | No catalog match |
+| 13 | Rear positive field-corrector asphere | abbe | `M-PCD51 (HOYA, molded phosphate crown)` | No catalog match |
+
+### [PENTAX-110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) - 66.7% (4/6) - US 4,223,982
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SF6 (Schott) / S-TIH6 (Ohara)` | SF6 rejected by nd safety net (Δnd=+0.0769) |
+| 7 | Element 4 | abbe | `TiSF6 (Schott) / FD4 (Hoya)` | No catalog match |
+
+### [SCHNEIDER SUPER-SYMMAR XL 5.6/110 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) - 66.7% (4/6) - US 5,870,234
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `KF9 (Schott)` | No catalog match |
+| 10 | Element 6 | abbe | `K10 (Schott)` | No catalog match |
+
+### [SCHNEIDER-KREUZNACH APO-SYMMAR 5.6/100](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) - 66.7% (4/6) - US 6,028,720
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `N-PK51 (Schott)` | No catalog match |
+
+### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - 66.7% (6/9) - US 3,748,022
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `BaF (702411, S-BAH10 family)` | No catalog match |
+| 9 | Element 5 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
+| 14 | Element 8 | abbe | `LaK (774492, probable thoriated)` | No catalog match |
+
+### [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) - 66.7% (6/9) - JP 2004-302170 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `E-SF3 (HOYA)` | No catalog match |
+| 5 | Element 3 | abbe | `LAC14 (HOYA)` | No catalog match |
+| 16 | Element 8 | abbe | `NBFD10 (HOYA)` | No catalog match |
+
+### [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) - 66.7% (6/9) - US 3,622,227
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `BSC3 (Hoya) / historical crown equivalent` | No catalog match |
+| 10 | Element 6 | abbe | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 rejected by nd safety net (Δnd=+0.0205) |
+| 12 | Element 7 | abbe | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 rejected by nd safety net (Δnd=+0.0205) |
+
+### [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) - 66.7% (6/9) - US 3,736,049
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `LACL60 (HOYA) / equiv. LaK` | No catalog match |
+| 12 | Element 7 | abbe | `FDS9 (HOYA) / SF56A (Schott)` | No catalog match |
+| 14 | Element 8 | abbe | `Discontinued LaF/LaK type (1970s)` | No catalog match |
+
+### [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) - 66.7% (6/9) - JP 2013-3324 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-NPH2 (OHARA)` | S-NPH2 rejected by nd safety net (Δnd=-0.0777) |
+| 14A | Element 8 | abbe | `S-LAL8 (OHARA)` | S-LAL8 rejected by nd safety net (Δnd=-0.0178) |
+| 16A | Element 9 | abbe | `S-LAH51 (OHARA)` | S-LAH51 rejected by nd safety net (Δnd=+0.0134) |
+
+### [PENTAX FA 31mm F1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) - 66.7% (6/9) - US 6,560,042 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `TAC8 (HOYA)` | No catalog match |
+| 7 | Element 4 | abbe | `TAFD30 (HOYA)` | TAFD30 rejected by nd safety net (Δnd=+0.0820) |
+| 13 | Element 8 | abbe | `Lanthanum flint (728/403, uncertain vendor)` | No catalog match |
+
+### [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) - 66.7% (6/9) - JP 2003-270529 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 10 | Element 6 | abbe | `S-LAH51 (OHARA)` | S-LAH51 rejected by nd safety net (Δnd=-0.0202) |
+| 11 | Element 7 | abbe | `S-TIH4 (OHARA)` | S-TIH4 rejected by nd safety net (Δnd=+0.0269) |
+| 15 | Element 9 | abbe | `S-LAH51 (OHARA)` | S-LAH51 rejected by nd safety net (Δnd=-0.0202) |
+
+### [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) - 66.7% (6/9) - JP 2025-58577 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=+0.0211) |
+| 9 | Element 5 | abbe | `S-TIH18 (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=-0.0403) |
+| 17 | Element 9 | abbe | `E-ADF50 (HOYA)` | No catalog match |
+
+### [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) - 66.7% (8/12) - US 3,975,089
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `BSM-type crown (531/621)` | No catalog match |
+| 8 | Element 5 | abbe | `LaSF5 (Schott)` | No catalog match |
+| 10 | Element 6 | abbe | `BK3 (Schott)` | No catalog match |
+| 18 | Element 11 | abbe | `BaSF52 (Schott)` | No catalog match |
+
+### [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) - 66.7% (10/15) - US 2019/0265441 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `S-NPH7 (OHARA)` | No catalog match |
+| 6 | Element 4 | abbe | `S-TIL27 (OHARA)` | S-TIL27 rejected by nd safety net (Δnd=-0.0791) |
+| 8 | Element 5 | abbe | `666356 — dense flint (nd=1.66565, νd=35.64)` | No catalog match |
+| 16 | Element 10 | abbe | `666356 — dense flint (nd=1.66565, νd=35.64)` | No catalog match |
+| 21 | Element 13 | abbe | `S-TIM1 (OHARA)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 14-24mm f/2.8G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) - 66.7% (10/15) - US 7,359,125 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | No catalog match |
+| 6 | Element 4 | abbe | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | No catalog match |
+| 8 | Element 5 | abbe | `ED glass (FPL family, OHARA)` | No catalog match |
+| 13 | Element 8 | abbe | `624470 — barium flint (patent nd=1.62374, nu_d=47.04)` | No catalog match |
+| 23 | Element 13 | abbe | `ED glass (FPL family, OHARA)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) - 66.7% (10/15) - JP2017-227799A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-TIH18 (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=+0.0326) |
+| 4 | Element 2 (resin) | abbe | `UV-curing resin (composite)` | No catalog match |
+| 15 | Element 8 | abbe | `S-LAL61 (OHARA)` | No catalog match |
+| 18 | Element 10 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=+0.0238) |
+| 26A | Element 14 | abbe | `S-LAL8 (OHARA)` | S-LAL8 rejected by nd safety net (Δnd=+0.0195) |
+
+### [NIKON PC-E NIKKOR 24mm f/3.5D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) - 66.7% (10/15) - JP 2008-151949A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 1 (resin layer) | abbe | `UV-cure resin` | No catalog match |
+| 7 | Element 3 (resin layer) | abbe | `UV-cure resin` | No catalog match |
+| 9 | Element 4 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=+0.1804) |
+| 13 | Element 6 | abbe | `S-BAL14 (OHARA)` | S-BAL14 rejected by nd safety net (Δnd=+0.0207) |
+| 17 | Element 9 | abbe | `S-BAL14 (OHARA)` | S-BAL14 rejected by nd safety net (Δnd=+0.0207) |
+
+### [SONY FE 90 mm F2.8 Macro G OSS](../../src/lens-data/sony/SonyFE90mmf28.data.ts) - 66.7% (10/15) - WO 2016/136352 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `S-LAM61 (OHARA)` | S-LAM61 rejected by nd safety net (Δnd=-0.0480) |
+| 8 | Element 5 | abbe | `M-TAC60 (HOYA)` | No catalog match |
+| 20 | Element 12 | abbe | `S-TIM35 (OHARA)` | S-TIM35 rejected by nd safety net (Δnd=+0.0262) |
+| 22 | Element 13 | abbe | `S-NBH55 (OHARA)` | S-NBH55 rejected by nd safety net (Δnd=-0.1037) |
+| 24 | Element 14 | abbe | `S-BAH27 (OHARA)` | S-BAH27 rejected by nd safety net (Δnd=+0.0431) |
+
+### [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) - 64.7% (11/17) - WO 2021/241230 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 (L12) | abbe | `E-FDS1-W (HIKARI)` | E-FDS1 rejected by nd safety net (Δnd=-0.0231) |
+| 5 | Element 3 (L13) | abbe | `S-TIL25 (OHARA)` | S-TIL25 rejected by nd safety net (Δnd=+0.0285) |
+| 16 | Element 9 (L19) | abbe | `S-NBH52V (OHARA)` | S-NBH52V rejected by nd safety net (Δnd=-0.0650) |
+| 25A | Element 13 (L32) | abbe | `S-NBH56 (OHARA)` | S-NBH56 rejected by nd safety net (Δnd=+0.0903) |
+| 29 | Element 15 (L42) | abbe | `S-LAH79 (OHARA)` | S-LAH79 rejected by nd safety net (Δnd=+0.1007) |
+| 30 | Element 16 (L43) | abbe | `S-NBM52 (OHARA)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) - 63.6% (7/11) - US 2016/0274335 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `S-NBH53 (OHARA)` | No catalog match |
+| 10 | Element 6 | abbe | `S-BAM4 (OHARA)` | S-BAM4 rejected by nd safety net (Δnd=-0.0329) |
+| 15 | Element 9 | abbe | `S-TIM22 (OHARA)` | S-TIM22 rejected by nd safety net (Δnd=-0.0250) |
+| 17 | Element 10 | abbe | `S-LAM60 (OHARA)` | S-LAM60 rejected by nd safety net (Δnd=+0.0302) |
+
+### [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) - 63.6% (7/11) - US 5,315,441
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `Phosphate crown (no exact modern catalog match; 1990s-era type)` | No catalog match |
+| 8 | Element 5 | abbe | `Crown-flint boundary (no exact modern catalog match; 1990s-era type)` | No catalog match |
+| 12 | Element 7 | abbe | `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)` | No catalog match |
+| 18 | Element 11 | abbe | `Very dense flint (no exact modern catalog match; possibly Sumita or Nikon-specified 1990s melt)` | No catalog match |
+
+### [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) - 63.2% (12/19) - JPWO2020/157904 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-LAH96 / TAFD45 (190366/3127)` | S-LAH96 rejected by nd safety net (Δnd=-0.1398) |
+| 3 | Element 2 | abbe | `PCD4 equiv. (159319/6790)` | No catalog match |
+| 5 | Element 3 | abbe | `PCD4 equiv. (159319/6790)` | No catalog match |
+| 13 | Element 7 | abbe | `TAFD25 equiv. (181600/4659)` | TAFD25 rejected by nd safety net (Δnd=+0.0877) |
+| 19 | Element 10 | abbe | `N-BAF4 equiv. (157957/5374)` | No catalog match |
+| 24 | Element 13 | abbe | `S-LAH96 / TAFD45 (190366/3127)` | S-LAH96 rejected by nd safety net (Δnd=-0.1398) |
+| 32 | Element 18 | abbe | `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)` | No catalog match |
+
+### [CANON RF 24-50mm F4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) - 62.5% (5/8) - US 2023/0213739 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 (G1) | abbe | `S-BSL7 (OHARA 639/554)` | S-BSL7 rejected by nd safety net (Δnd=-0.1223) |
+| 3A | Element 2 (G2, PMo) | abbe | `COP resin / ZEONEX E48R (531/559)` | No catalog match |
+| 17A | Element 8 (L4, PMo) | abbe | `COP resin / ZEONEX E48R (531/559)` | No catalog match |
+
+### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - 62.5% (5/8) - US 3,591,257
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `SF6 (SCHOTT)` | SF6 rejected by nd safety net (Δnd=-0.0075) |
+| 10 | Element 6 | abbe | `LaF10 (SCHOTT)` | No catalog match |
+| 11 | Element 7 | abbe | `SF6 (SCHOTT)` | SF6 rejected by nd safety net (Δnd=-0.0075) |
+
+### [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) - 62.5% (10/16) - US 7,301,711 B2
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `S-BAL42 (OHARA)` | S-BAL42 rejected by nd safety net (Δnd=-0.1299) |
+| 4 | Element 3 | abbe | `S-LAH63Q (OHARA)` | S-LAH63Q rejected by nd safety net (Δnd=+0.0319) |
+| 6A | Element 4 (resin) | abbe | `UV-cure aspherical resin (not catalog glass)` | No catalog match |
+| 11 | Element 6 | abbe | `S-TIM27 (OHARA)` | S-TIM27 rejected by nd safety net (Δnd=-0.0079) |
+| 18 | Element 10 | abbe | `BSM-class (586/609, vendor uncertain)` | No catalog match |
+| 27A | Element 15 | abbe | `BSM-class (586/609, vendor uncertain)` | No catalog match |
+
+### [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) - 60.0% (3/5) - US 3,838,911
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | No catalog match |
+| 6 | Element 4 | abbe | `S-BAH32 (OHARA) exact match (670393)` | No catalog match |
+
+### [PENTAX-110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) - 60.0% (3/5) - US 4,289,385
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7 | Element 4 | abbe | `S-TIH11 (OHARA)` | S-TIH11 rejected by nd safety net (Δnd=+0.0440) |
+| 9 | Element 5 | abbe | `S-TIM22 (OHARA)` | S-TIM22 rejected by nd safety net (Δnd=-0.0168) |
+
+### [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) - 60.0% (6/10) - JP 2014-126652 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `H-ZF52 (CDGM) — exact match, unconfirmed in Ohara/Hoya/Schott` | H-ZF52 rejected by nd safety net (Δnd=+0.0406) |
+| 10 | Element 6 | abbe | `H-LAF51 (CDGM) or J-LASF019 (Hikari) — unconfirmed` | No catalog match |
+| 12 | Element 7 | abbe | `CF6 (Hoya) — tentative (ΔVd = +0.04)` | No catalog match |
+| 18 | Element 10 | abbe | `Uncertain; TACD5 (Hoya) possible — no confirmed catalog match` | No catalog match |
+
+### [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) - 60.0% (6/10) - JP 2004-101880A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `S-BAM4 (OHARA)` | S-BAM4 rejected by nd safety net (Δnd=+0.0383) |
+| 7 | Element 5 | abbe | `S-TIF1 (OHARA)` | No catalog match |
+| 12 | Element 7 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=-0.0434) |
+| 17 | Element 10 | abbe | `S-TIL2 (OHARA)` | S-TIL2 rejected by nd safety net (Δnd=-0.0074) |
+
+### [SIGMA 35mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - 60.0% (9/15) - JP 2022-33487 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 7A | Element 4 | abbe | `HOYA M-TAF105 (773/495)` | No catalog match |
+| 8 | Element 5 | abbe | `Heavy flint, code 593/355 (vendor uncertain)` | No catalog match |
+| 11 | Element 7 | abbe | `HOYA FCD10A (459/902)` | No catalog match |
+| 18 | Element 10 | abbe | `HOYA NBFD25 (854/252)` | No catalog match |
+| 25A | Element 14 | abbe | `HOYA M-TAF105 (773/495)` | No catalog match |
+| 26 | Element 15 | abbe | `Dense flint, code 770/297 (no exact catalog match)` | No catalog match |
+
+### [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - 60.0% (12/20) - US 2010/0220400 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | G1 front negative meniscus | abbe | `J-LASFH13 (HIKARI)` | No catalog match |
+| 4 | G1 positive meniscus | abbe | `J-PSK03 (HIKARI)` | No catalog match |
+| 6A | G2 front aspherical variator lens | abbe | `Unmatched (near HIKARI J-LASFH2; patent nd=1.76546, νd=46.73)` | Explicit unmatched/proprietary annotation |
+| 20 | G3 negative meniscus | abbe | `J-LASF09A (HIKARI)` | No catalog match |
+| 26 | G4 molded resin layer | abbe | `UV-cure optical resin (patent-listed)` | No catalog match |
+| 29 | G5 positive relay lens | abbe | `J-SK11 (HIKARI)` | No catalog match |
+| 32 | G5 dense flint negative lens | abbe | `J-LASFH13 (HIKARI)` | No catalog match |
+| 34 | G5 rear aspherical negative lens | abbe | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | No catalog match |
+
+### [SONY PLANAR T* FE 50mm F1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) - 58.3% (7/12) - WO 2017/138250 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | Element 2 | abbe | `High-index lanthanum crown, 851/401 class (uncertain)` | No catalog match |
+| 6 | Element 4 | abbe | `S-TIM27 (OHARA)` | S-TIM27 rejected by nd safety net (Δnd=-0.0776) |
+| 10 | Element 6 | abbe | `Fluorophosphate crown, 593/686 class (uncertain) — ED glass` | No catalog match |
+| 12 | Element 7 | abbe | `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)` | No catalog match |
+| 14 | Element 8 | abbe | `Ultra-high-dispersion titanium heavy flint, 946/179 class (uncertain)` | No catalog match |
+
+### [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) - 57.1% (4/7) - DE 1,170,157 B
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 4 | Element 3 | abbe | `LF7 (Schott 575413)` | No catalog match |
+| 7 | Element 5 | abbe | `LaF10 (Schott 784438)` | No catalog match |
+| 9 | Element 6 | abbe | `LaF10 (Schott 784438)` | No catalog match |
+
+### [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) - 57.1% (4/7) - US 4,182,550
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LAC14 (OHARA)` | No catalog match |
+| 3 | Element 2 | abbe | `E-LAF7 / TAFD5F (HOYA)` | TAFD5F rejected by nd safety net (Δnd=+0.0698) |
+| 10 | Element 6 | abbe | `S-NBH55 class (OHARA, near match Δnd = 0.001)` | S-NBH55 rejected by nd safety net (Δnd=+0.0190) |
+
+### [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) - 57.1% (4/7) - US 4,099,843
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `S-LAH65 (OHARA) / TAFD25 (HOYA)` | S-LAH65 rejected by nd safety net (Δnd=-0.0300) |
+| 5 | Element 3 | abbe | `S-TIF8 (OHARA) / TIF6 (HOYA)` | No catalog match |
+| 8 | Element 5 | abbe | `E-CF6 (HOYA)` | E-CF6 rejected by nd safety net (Δnd=-0.1605) |
+
+### [RICOH GR/GR2 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) - 57.1% (4/7) - US 2013/0321936 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `M-FCD1 (HOYA)` | No catalog match |
+| 5 | Element 3 | abbe | `FDS90 (HOYA)` | No catalog match |
+| 12 | Element 7 | abbe | `M-TAFD51 (HOYA)` | No catalog match |
+
+### [SONY SONNAR T* FE 55mm F1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) - 57.1% (4/7) - US 2015/0092100 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-TIM2 (OHARA)` | S-TIM2 rejected by nd safety net (Δnd=+0.0386) |
+| 5 | Element 4 | abbe | `M-TAF101 (HOYA)` | No catalog match |
+| 10A | Element 6 | abbe | `Fluorocrown / phosphate crown, PGM class (592/670, uncertain)` | No catalog match |
+
+### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - 55.6% (5/9) - US 4,708,445
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `LAC14 (773/497)` | No catalog match |
+| 9 | Element 5 | abbe | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | No catalog match |
+| 12 | Element 7 | abbe | `LAC14 (773/497)` | No catalog match |
+| 14 | Element 8 | abbe | `LAC14 (773/497)` | No catalog match |
+
+### [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - 52.6% (10/19) - JP 2004-109559 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `Unmatched (proprietary Minolta AD/ED fluorophosphate-type, nd=1.49310, νd=83.58)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unmatched (proprietary Minolta AD/ED fluorophosphate-type, nd=1.49310, νd=83.58)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `755516 - high-index crown (unresolved)` | No catalog match |
+| 13 | Element 8 | abbe | `670571 - moderate-index crown (unresolved)` | No catalog match |
+| 17 | Element 10 | abbe | `755516 - high-index crown (unresolved)` | No catalog match |
+| 21 | Element 12 | abbe | `Unmatched (proprietary Minolta AD/ED fluorophosphate-type, nd=1.49310, νd=83.58)` | Explicit unmatched/proprietary annotation |
+| 22 | Element 13 | abbe | `E-LAF7 (HOYA) / N-LAF7 class` | No catalog match |
+| 25 | Element 14 | abbe | `781446 - high-index mid-dispersion glass (unresolved)` | No catalog match |
+| ... | ... | ... | ... | 1 more missing surface |
+
+### [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) - 50.0% (2/4) - FR 1.066.698
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `612372 F (≈ Schott F3 legacy)` | No catalog match |
+| 5 | Element 3 | abbe | `574425 — light flint (no exact public catalog match)` | No catalog match |
+
+### [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) - 50.0% (2/4) - CH 314381
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `F8 historical (Schott, discontinued)` | No catalog match |
+| 5 | Element 3 | abbe | `LF5 (Schott)` | No catalog match |
+
+### [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) - 50.0% (3/6) - US 2,645,975
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `SK7 (Schott)` | No catalog match |
+| 4 | Element 3 | abbe | `LF5/LF7 (Schott)` | No catalog match |
+| 6 | Element 4 | abbe | `LF5/LF7 (Schott)` | No catalog match |
+
+### [HASSELBLAD HC 80mm f/2.8](../../src/lens-data/hasselblad/HasselbladHC80mmf28.data.ts) - 50.0% (3/6) - US 2001/0050819 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `S-TIM2 (OHARA)` | S-TIM2 rejected by nd safety net (Δnd=+0.0166) |
+| 7 | Element 4 | abbe | `S-TIH18 (OHARA)` | S-TIH18 rejected by nd safety net (Δnd=-0.0067) |
+| 11 | Element 6 | abbe | `S-LAL14 (OHARA)` | S-LAL14 rejected by nd safety net (Δnd=-0.0465) |
+
+### [NIKON AI Nikkor 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) - 50.0% (3/6) - US 4,062,630
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `HOYA NBFD3 (717/481)` | NBFD3 rejected by nd safety net (Δnd=+0.0875) |
+| 3 | Element 2 | abbe | `HOYA FD60 (626/391)` | No catalog match |
+| 6 | Element 4 | abbe | `HOYA FD110 (740/282)` | No catalog match |
+
+### [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) - 50.0% (3/6) - US 3,942,876
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `PSK2 (Schott) / S-PHM51 (OHARA)` | No catalog match |
+| 10 | Element 5 | abbe | `713-433 region (LaF/BaSF boundary; likely discontinued Japanese type)` | No catalog match |
+| 12 | Element 6 | abbe | `BaLF4 (Schott)` | No catalog match |
+
+### [FUJIFILM FUJINON 23mm f/2 (X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) - 50.0% (4/8) - US 2020/0333569 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `TAFD25 (HOYA)` | TAFD25 rejected by nd safety net (Δnd=+0.1863) |
+| 2 | Element 2 | abbe | `Unmatched (lanthanum-dense flint, near S-LAH79 (OHARA) nd match, Δνd ≈ 1.5)` | Explicit unmatched/proprietary annotation |
+| 7A | Element 5 | abbe | `Unmatched (near TAFD33 (HOYA), Δnd = 0.0017; possibly precision-molded proprietary)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 8 | abbe | `Unmatched (same as L12; lanthanum-dense flint, near S-LAH79 (OHARA) nd match, Δνd ≈ 1.5)` | Explicit unmatched/proprietary annotation |
+
+### [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) - 50.0% (5/10) - WO 2020/012638 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 1r (resin layer) | abbe | `UV-curable optical resin` | No catalog match |
+| 6A | Element 3 | abbe | `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)` | No catalog match |
+| 10 | Element 5 | abbe | `S-LAH79 (OHARA)` | S-LAH79 rejected by nd safety net (Δnd=+0.0496) |
+| 15A | Element 8 | abbe | `801455 — dense lanthanum flint (patent nd=1.80139, νd=45.46; no exact public coefficient match)` | No catalog match |
+| 17 | Element 9 | abbe | `S-LAH79 (OHARA)` | S-LAH79 rejected by nd safety net (Δnd=+0.0496) |
+
+### [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) - 50.0% (6/12)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `H-LAK7 (CDGM)` | No catalog match |
+| 3 | Element 2 | abbe | `H-ZLAF2 (CDGM)` | No catalog match |
+| 8 | Element 4b | abbe | `H-LAK5A (CDGM)` | No catalog match |
+| 15 | Element 7a | abbe | `H-K9L (CDGM)` | No catalog match |
+| 16 | Element 7b | abbe | `H-LAF3 (CDGM)` | No catalog match |
+| 18 | Element 8 | abbe | `H-ZF1 (CDGM)` | No catalog match |
+
+### [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) - 50.0% (6/12) - JP 2021-189377 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-BSM10 (OHARA)` | No catalog match |
+| 3A | Element 2 | abbe | `COP resin (ZEONEX-type)` | No catalog match |
+| 10 | Cement | abbe | `UV-cure adhesive` | No catalog match |
+| 11 | Element 6 | abbe | `NBFD12 (HOYA)` | No catalog match |
+| 14A | Element 7 | abbe | `M-BACD12 (HOYA)` | No catalog match |
+| 20A | Element 10 | abbe | `COP resin (ZEONEX-type)` | No catalog match |
+
+### [Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - 50.0% (8/16) - WO2021039813A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | L11 resin layer | abbe | `Resin / polymer layer (patent-specified)` | No catalog match |
+| 4A | L12 resin layer | abbe | `Resin / polymer layer (patent-specified)` | No catalog match |
+| 5 | L12 glass body | abbe | `J-LASF03 / N-LASF43 class (catalog-equivalent dense lanthanum flint)` | No catalog match |
+| 7 | L13 | abbe | `683548 - patent-specified glass (theta_gF=0.5501; unresolved)` | No catalog match |
+| 9 | L14 | abbe | `J-SF1 (Hikari-equivalent dense flint)` | No catalog match |
+| 12 | L21 | abbe | `J-SF10 (Hikari-equivalent dense flint)` | No catalog match |
+| 18 | L24 | abbe | `J-LLF6 (Hikari-equivalent light flint)` | No catalog match |
+| 25 | L41 | abbe | `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)` | No catalog match |
+
+### [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) - 50.0% (8/16) - WO 2024/147268 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SR glass (Nikon proprietary)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Anomalous high-index flint (Nf, non-catalog)` | No catalog match |
+| 17 | Element 9 | abbe | `Anomalous high-index flint (same as L5)` | No catalog match |
+| 20 | Element 11 | abbe | `Lanthanum dense flint` | No catalog match |
+| 22 | Element 12 | abbe | `Dense lanthanum flint` | No catalog match |
+| 24 | Element 13 | abbe | `Dense lanthanum short flint (non-catalog)` | No catalog match |
+| 26 | Element 14 | abbe | `Lanthanum flint (near S-LAM55)` | S-LAM55 rejected by nd safety net (Δnd=-0.0239) |
+| 30 | Element 16 | abbe | `Lanthanum flint (non-catalog)` | No catalog match |
+
+### [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) - 50.0% (8/16) - WO 2022/097401 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `855252 — high-index APD flint (source patent not locally available; no exact public catalog match verified)` | No catalog match |
+| 4 | Element 3 | abbe | `S-FPM3 (OHARA)` | S-FPM3 rejected by nd safety net (Δnd=-0.0554) |
+| 6 | Element 4 | abbe | `S-FPM3 (OHARA)` | S-FPM3 rejected by nd safety net (Δnd=-0.0554) |
+| 11 | Element 7 | abbe | `E-FDS3HT (Hikari) or equiv.` | No catalog match |
+| 16 | Element 9 | abbe | `855252 — high-index APD flint (same as L12; source patent not locally available; no exact public catalog match verified)` | No catalog match |
+| 17 | Element 10 | abbe | `S-FPM3 (OHARA)` | S-FPM3 rejected by nd safety net (Δnd=-0.0554) |
+| 19 | Element 11 | abbe | `S-LAH79 (OHARA)` | S-LAH79 rejected by nd safety net (Δnd=+0.0496) |
+| 22 | Element 13 | abbe | `E-FDS3HT (Hikari) or equiv.` | No catalog match |
+
+### [SONY FE 20–70 mm F4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) - 50.0% (8/16) - WO 2023/153076 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-NPH53 (OHARA)` | S-NPH53 rejected by nd safety net (Δnd=-0.0993) |
+| 8 | Element 5 | abbe | `S-LAH98 (OHARA)` | S-LAH98 rejected by nd safety net (Δnd=+0.0990) |
+| 13A | Element 7 | abbe | `Unmatched (694/532, mold-optimized lanthanum crown)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 8 | abbe | `S-LAH79 (OHARA)` | S-LAH79 rejected by nd safety net (Δnd=+0.0496) |
+| 19 | Element 11 | abbe | `Dense flint class (855/252)` | No catalog match |
+| 23 | Element 13 | abbe | `S-NPH53 (OHARA)` | S-NPH53 rejected by nd safety net (Δnd=-0.0993) |
+| 27 | Element 15 | abbe | `Fluorophosphate crown class (593/670)` | No catalog match |
+| 29 | Element 16 | abbe | `Dense flint class (720/347)` | No catalog match |
+
+### [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - 45.5% (5/11) - JP 2021-179551 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6 | Element 4 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=-0.0970) |
+| 8 | Element 5 | abbe | `S-TIH10 (OHARA)` | S-TIH10 rejected by nd safety net (Δnd=-0.1218) |
+| 11A | Element 6 | abbe | `S-LAH63Q (OHARA)` | S-LAH63Q rejected by nd safety net (Δnd=-0.0056) |
+| 15 | Element 8 | abbe | `S-TIH4 (OHARA)` | S-TIH4 rejected by nd safety net (Δnd=-0.0509) |
+| 18A | Element 10 | abbe | `L-PHL1 (OHARA)` | No catalog match |
+| 20 | Element 11 | abbe | `S-NPH7 (OHARA)` | No catalog match |
+
+### [PANASONIC LUMIX S 35mm F1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - 45.5% (5/11)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 5 | Element 3 | abbe | `H-ZF13 (CDGM) — dense flint` | H-ZF13 rejected by nd safety net (Δnd=+0.0958) |
+| 8 | Element 5 | abbe | `H-LAK53A (CDGM) / S-LAL8 class (OHARA) — lanthanum crown, code 729/547` | S-LAL8 rejected by nd safety net (Δnd=-0.0162) |
+| 11 | Element 7 | abbe | `S-LAH55 (OHARA) / CDGM equivalent — dense lanthanum flint, code 806/333` | S-LAH55 rejected by nd safety net (Δnd=+0.0287) |
+| 13A | Element 8 | abbe | `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)` | No catalog match |
+| 15A | Element 9 | abbe | `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)` | No catalog match |
+| 17A | Element 10 | abbe | `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)` | No catalog match |
+
+### [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) - 44.4% (4/9) - JP2023063766A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | Element 1 | abbe | `LaSF (LASF35 melt)` | No catalog match |
+| 3 | Element 2 | abbe | `LaSF family` | No catalog match |
+| 8 | Element 4 | abbe | `Dense flint (SF14 family)` | No catalog match |
+| 14 | Element 8 | abbe | `Standard crown (selected melt)` | No catalog match |
+| 16A | Element 9 | abbe | `LaF/LaSF boundary` | No catalog match |
+
+### [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) - 44.4% (8/18) - WO2019/229849 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | Element 1 | abbe | `Ultra-high-index LaH (no confirmed catalog match; nd 1.903, νd 35.77)` | No catalog match |
+| 2 | Element 2 | abbe | `Anomalous dispersion special (no confirmed catalog match)` | No catalog match |
+| 7 | Element 5 | abbe | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | H-ZLAF68C rejected by nd safety net (Δnd=+0.0345) |
+| 9 | Element 6 | abbe | `ED phosphate crown (same as L14)` | No catalog match |
+| 11 | Element 7 | abbe | `ED phosphate crown (same as L14)` | No catalog match |
+| 15 | Element 9 | abbe | `KZFS-type (same as L13)` | No catalog match |
+| 21 | Element 13 | abbe | `High-dispersion flint (same as L24)` | No catalog match |
+| 24 | Element 15 | abbe | `Dense flint (near S-NBH52V)` | S-NBH52V rejected by nd safety net (Δnd=-0.0260) |
+| ... | ... | ... | ... | 2 more missing surfaces |
+
+### [FUJIFILM FUJINON 18.5 mm f/2.8 (X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) - 42.9% (3/7) - US 2017/0075089 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-TIH1 (OHARA)` | S-TIH1 rejected by nd safety net (Δnd=+0.1247) |
+| 5 | Element 3 | abbe | `S-TIH53 (OHARA)` | S-TIH53 rejected by nd safety net (Δnd=+0.1477) |
+| 8A | Element 5 | abbe | `Unmatched (moldable crown, nd = 1.56867, νd = 58.50)` | Explicit unmatched/proprietary annotation |
+| 10A | Element 6 | abbe | `Unmatched (moldable flint, nd = 1.68201, νd = 31.43)` | Explicit unmatched/proprietary annotation |
+
+### [SIGMA DP2X 24mm f/2.8](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) - 42.9% (3/7) - JP 2010-101979 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-LAL7 / LACL5 (OHARA / HOYA)` | S-LAL7 rejected by nd safety net (Δnd=-0.0614) |
+| 10 | Element 5 | abbe | `S-TIH family / FD series (OHARA / HOYA)` | No catalog match |
+| 11 | Element 6 | abbe | `S-LAM55 (≈) / LACL60 (OHARA / HOYA)` | S-LAM55 rejected by nd safety net (Δnd=+0.0202) |
+| 13 | Element 7 | abbe | `BaCD / SK family (various)` | No catalog match |
+
+### [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) - 42.9% (3/7) - JP 2015-41012 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense flint, 800/255 class — S-TIH6 (OHARA) or FD60 (Hoya)` | S-TIH6 rejected by nd safety net (Δnd=+0.0052) |
+| 5A | Element 3 | abbe | `Lanthanum flint (LAF class), 760/492 — unresolved; likely PGM-compatible proprietary melt` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `NBFD11 (Hoya)` | NBFD11 rejected by nd safety net (Δnd=+0.1559) |
+| 12A | Element 7 | abbe | `S-TIM28 (OHARA)` | S-TIM28 rejected by nd safety net (Δnd=+0.0089) |
+
+### [NIKON L35AF 35mm f/2.8](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) - 40.0% (2/5) - US 4,457,596
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaK 8 (1713/540)` | No catalog match |
+| 3 | Element 2 | abbe | `TAF5 (1773/494)` | TAF5 rejected by nd safety net (Δnd=+0.0432) |
+| 7 | Element 4 | abbe | `TAF5 (1773/494)` | TAF5 rejected by nd safety net (Δnd=+0.0432) |
+
+### [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) - 40.0% (2/5) - US 716,035
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element a (front) | abbe | `Light Flint (LF, probable discontinued Schott type)` | No catalog match |
+| 4 | Element c (central) | abbe | `Light Flint (LF, same glass as elements a/a′)` | No catalog match |
+| 7 | Element a′ (rear) | abbe | `Light Flint (LF, same glass as elements a/c)` | No catalog match |
+
+### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) - 40.0% (4/10) - JP2022-100641A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 (Mnb) | abbe | `E-F3 (HOYA) / SF2 (Schott)` | E-F3 rejected by nd safety net (Δnd=-0.0348) |
+| 4 | Element 3 (Mpa) | abbe | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | S-LAH58 rejected by nd safety net (Δnd=-0.0278) |
+| 6 | Element 4 (Mpb) | abbe | `S-LAH58 (OHARA)` | S-LAH58 rejected by nd safety net (Δnd=-0.0278) |
+| 7 | Element 5 (Mnc) | abbe | `E-FD15 (HOYA) / N-SF14 (Schott)` | E-FD15 rejected by nd safety net (Δnd=-0.0629) |
+| 13 | Element 8 (Npb) | abbe | `S-LAH60MQ (OHARA)` | No catalog match |
+| 15 | Element 9 (Nnb) | abbe | `Unconfirmed (no exact catalog match)` | No catalog match |
+
+### [Nikon AF-P NIKKOR 70-300mm f/4.5-5.6E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) - 38.9% (7/18) - US 2019/0353880 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | L12 front-doublet negative | abbe | `J-F2 (Hikari)` | No catalog match |
+| 6 | L21 variator entrance | abbe | `J-LAK14 (Hikari)` | No catalog match |
+| 8 | L22 variator positive compensator | abbe | `J-SF11 (Hikari)` | No catalog match |
+| 10 | L23 variator biconcave | abbe | `J-LASF016 (Hikari)` | No catalog match |
+| 15 | L32 VR positive member | abbe | `J-LAK01 (Hikari)` | No catalog match |
+| 18 | L34 pre-stop negative | abbe | `J-LASF03 (Hikari)` | No catalog match |
+| 21 | L35 post-stop negative | abbe | `J-LASF010 (Hikari)` | No catalog match |
+| 26 | L41 focus-group positive | abbe | `J-SF6 (Hikari)` | No catalog match |
+| ... | ... | ... | ... | 3 more missing surfaces |
+
+### [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) - 38.5% (5/13) - US 4,871,239
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `670571 - high-index crown / lanthanum-crown class (unresolved)` | No catalog match |
+| 6 | Element 4 | abbe | `773498 - dense lanthanum-flint boundary class (unresolved)` | No catalog match |
+| 8 | Element 5 | abbe | `670571 - high-index crown / lanthanum-crown class (unresolved)` | No catalog match |
+| 12 | Element 7 | abbe | `N-PSK53A (Schott exact match; production vendor unproven)` | No catalog match |
+| 14 | Element 8 | abbe | `670571 - high-index crown / lanthanum-crown class (unresolved)` | No catalog match |
+| 17 | Element 10 | abbe | `807316 - high-index dense flint class (unresolved)` | No catalog match |
+| 21A | Element 12 | abbe | `518523 - thin hybrid aspheric layer (unresolved)` | No catalog match |
+| 22 | Element 13 | abbe | `805410 - dense lanthanum-flint / LASF-class glass (unresolved)` | No catalog match |
+
+### [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) - 38.5% (5/13) - WO 2019/187633
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `FPL53 class (fluorophosphate, Super ED — 437/951)` | No catalog match |
+| 9A | Element 5 | abbe | `S-BAL35 (OHARA)` | S-BAL35 rejected by nd safety net (Δnd=+0.0060) |
+| 11 | Element 6 | abbe | `Dense flint (959/175, vendor uncertain — anomalous dispersion, θgF ≈ 0.660)` | No catalog match |
+| 12 | Element 7 | abbe | `Lanthanum crown (772/496, class S-LAM)` | No catalog match |
+| 14 | Element 8 | abbe | `S-LAL14 (OHARA)` | S-LAL14 rejected by nd safety net (Δnd=-0.0324) |
+| 17 | Element 9 | abbe | `Titanium flint (741/278, class S-TIH)` | No catalog match |
+| 20 | Element 11 | abbe | `Lanthanum heavy flint (806/333, vendor uncertain)` | No catalog match |
+| 23 | Element 13 | abbe | `Lanthanum heavy flint (892/371, class S-LAH)` | No catalog match |
+
+### [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) - 37.5% (3/8) - US 2,721,499
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `BK crown (504/667)` | No catalog match |
+| 5 | Element 3 | abbe | `LaK10 lanthanum crown (721/503)` | No catalog match |
+| 8 | Element 5 | abbe | `BaK/SK crown (561/575)` | No catalog match |
+| 9 | Element 6 | abbe | `SK-type dense crown (625/533)` | No catalog match |
+| 12 | Element 8 | abbe | `LaK/SK crown (642/581)` | No catalog match |
+
+### [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) - 37.5% (3/8) - JP 2021-189351A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | Element 2 | abbe | `S-TIH23 (OHARA)` | S-TIH23 rejected by nd safety net (Δnd=+0.0673) |
+| 5 | Element 3 | abbe | `PBM18Y (OHARA)` | No catalog match |
+| 6 | Element 4 | abbe | `S-LAH64 (OHARA)` | S-LAH64 rejected by nd safety net (Δnd=-0.0160) |
+| 7 | Element 4 (resin) | abbe | `UV-curable photopolymer (Nikon)` | No catalog match |
+| 11A | Element 6 (resin) | abbe | `UV-curable photopolymer (Nikon)` | No catalog match |
+
+### [SONY PLANAR T* 50mm F1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) - 37.5% (3/8) - US 2014/0071331 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `E-FD5 class (HOYA/HIKARI equivalent, 593/355)` | E-FD5 rejected by nd safety net (Δnd=+0.0800) |
+| 5A | Element 3 | abbe | `E-LASFH13 (HIKARI)` | No catalog match |
+| 6 | Element 4 | abbe | `E-FD7 class (HOYA/HIKARI equivalent, 613/370)` | No catalog match |
+| 9 | Element 5 | abbe | `S-TIF4 (OHARA)` | No catalog match |
+| 13 | Element 8 | abbe | `E-LASKH2 (HIKARI)` | No catalog match |
+
+### [SONY SONNAR T* E 24mm F1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - 37.5% (3/8) - US 2013/0033768 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | G2 | abbe | `S-BAL2 (OHARA)` | S-BAL2 rejected by nd safety net (Δnd=-0.0180) |
+| 9 | G5 | abbe | `PCD4 (Hoya) / S-PHM53 (OHARA)` | S-PHM53 rejected by nd safety net (Δnd=-0.0150) |
+| 11A | G6 | abbe | `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)` | Explicit unmatched/proprietary annotation |
+| 13 | G7 | abbe | `TAC4 (Hoya) / N-SK2 (Schott)` | N-SK2 rejected by nd safety net (Δnd=-0.0896) |
+| 15 | G8 | abbe | `PCD4 (Hoya) / S-PHM53 (OHARA)` | S-PHM53 rejected by nd safety net (Δnd=-0.0150) |
+
+### [Nikon NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) - 37.5% (6/16) - WO2020/105107 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | L11 | abbe | `J-BK7A (Hikari)` | No catalog match |
+| 3 | L12 | abbe | `J-F5 (Hikari)` | No catalog match |
+| 6 | L21 | abbe | `J-LASF016 (Hikari)` | No catalog match |
+| 8 | L22 | abbe | `J-LASF03 (Hikari)` | No catalog match |
+| 14 | L33 | abbe | `J-K3 (Hikari)` | No catalog match |
+| 17 | L34 | abbe | `J-LASFH24 (Hikari)` | No catalog match |
+| 19 | L35 | abbe | `J-LAF2 (Hikari)` | No catalog match |
+| 23 | L41 | abbe | `J-SF6 (Hikari)` | No catalog match |
+| ... | ... | ... | ... | 2 more missing surfaces |
+
+### [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) - 35.3% (6/17) - JP 2023-039817 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense flint (777/297, uncertain)` | No catalog match |
+| 10 | Element 6 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
+| 12 | Element 7 | abbe | `Dense flint (792/257, uncertain)` | No catalog match |
+| 17 | Element 9 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
+| 19 | Element 10 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
+| 20 | Element 11 | abbe | `585594 — barium crown (patent nd=1.58547, nu_d=59.4)` | No catalog match |
+| 22A | Element 12 | abbe | `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element` | No catalog match |
+| 24 | Element 13 | abbe | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | No catalog match |
+| ... | ... | ... | ... | 3 more missing surfaces |
+
+### [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) - 33.3% (2/6) - JP 2015-111192 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-LAH55V (OHARA)` | S-LAH55V rejected by nd safety net (Δnd=-0.0760) |
+| 5 | Element 3 | abbe | `S-BAL42 (OHARA)` | S-BAL42 rejected by nd safety net (Δnd=-0.1137) |
+| 6 | Element 4 | abbe | `S-TIH10 (OHARA)` | S-TIH10 rejected by nd safety net (Δnd=-0.0779) |
+| 10A | Element 6 | abbe | `E-C3 / BSC3 class (HOYA)` | No catalog match |
+
+### [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) - 33.3% (2/6) - US 2,645,974
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SK4 (Schott)` | No catalog match |
+| 4 | Element 3 | abbe | `F7 (Schott)` | No catalog match |
+| 7 | Element 5 | abbe | `SK14 (Schott)` | N-SK14 rejected by nd safety net (Δnd=-0.0173) |
+| 9 | Element 6 | abbe | `SK14 (Schott)` | N-SK14 rejected by nd safety net (Δnd=-0.0173) |
+
+### [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) - 33.3% (2/6) - US 1,998,704
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `BaLF5 (Schott barium light flint)` | No catalog match |
+| 5 | Element 4 | abbe | `SF-type (Schott dense flint)` | No catalog match |
+| 7 | Element 5 | abbe | `BaK4 (Schott barium crown)` | No catalog match |
+| 8 | Element 6 | abbe | `BaLF5 (Schott barium light flint)` | No catalog match |
+
+### [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) - 33.3% (2/6) - US 4,124,276
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `749501 - proprietary lanthanum crown (unresolved)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `541468 - proprietary light flint (unresolved)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Lanthanum crown, LaK10 family (720/521)` | No catalog match |
+| 10 | Element 6 | abbe | `576414 - proprietary light flint (unresolved)` | Explicit unmatched/proprietary annotation |
+
+### [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) - 33.3% (2/6) - US 2,627,204
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `High-index crown (SSK/LaK type — possibly La₂O₃ or ThO₂ formulation)` | No catalog match |
+| 7 | Element 4 | abbe | `F/BaF type (barium flint)` | No catalog match |
+| 8 | Element 5 | abbe | `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)` | No catalog match |
+| 10 | Element 6 | abbe | `LaF type (high-index lanthanum flint or thorium flint)` | No catalog match |
+
+### [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) - 33.3% (3/9) - JP2013-019993A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1A | Element 1 | abbe | `Lanthanum dense flint (LASF-type, nd/νd match uncertain)` | No catalog match |
+| 3 | Element 2 | abbe | `S-LAL14 / N-LAK12 (lanthanum crown)` | S-LAL14 rejected by nd safety net (Δnd=-0.0582) |
+| 6 | Element 4 | abbe | `S-TIH4 / N-SF8 (dense flint)` | S-TIH4 rejected by nd safety net (Δnd=+0.0663) |
+| 9 | Element 5 | abbe | `S-TIH11 / N-SF10 (dense flint)` | S-TIH11 rejected by nd safety net (Δnd=+0.0565) |
+| 13 | Element 8 | abbe | `Unmatched (KZFS2-type short flint; S-NBM51 name rejected by stored nd/vd)` | Explicit unmatched/proprietary annotation |
+| 14 | Element 9 | abbe | `Same as La (lanthanum dense flint, LASF-type)` | No catalog match |
+
+### [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) - 30.0% (3/10) - WO 2022/071249 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-TIL 2 (OHARA)` | No catalog match |
+| 6 | Element 3 | abbe | `S-NPH1 (OHARA)` | S-NPH1 rejected by nd safety net (Δnd=-0.1929) |
+| 7 | Element 4 | abbe | `S-TIH14 (OHARA)` | S-TIH14 rejected by nd safety net (Δnd=-0.0434) |
+| 9 | Element 5 | abbe | `S-TIH 18 (OHARA)` | No catalog match |
+| 12 | Element 6 (resin layer) | abbe | `UV-curing resin (proprietary)` | Explicit unmatched/proprietary annotation |
+| 14A | Element 7 | abbe | `S-BAL 41 (OHARA)` | No catalog match |
+| 18 | Element 9 | abbe | `S-TIM 22 (OHARA)` | No catalog match |
+
+### [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) - 30.0% (3/10) - JP2021-43376A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (likely Sumita proprietary)` | Explicit unmatched/proprietary annotation |
+| 3A | Element 2 | abbe | `Unmatched (dense lanthanum; nd=1.852/νd=42.1 unregistered across OHARA, Schott, Hoya, Sumita public catalogs)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 5 | abbe | `Unmatched (likely Sumita proprietary)` | Explicit unmatched/proprietary annotation |
+| 12 | Element 6 | abbe | `Unmatched (KZFS-adjacent, dPgF ≈ −0.01 est.)` | Explicit unmatched/proprietary annotation |
+| 13 | Element 7 | abbe | `Unmatched (S-LAH64-type lanthanum; nd=1.793/νd=47.2; S-LAH64 not in catalog)` | Explicit unmatched/proprietary annotation |
+| 15 | Element 8 | abbe | `Unmatched (lanthanum; nd=1.803/νd=46.6; S-LAH65V catalog nd=1.804 exceeds 1e-4 tolerance)` | Explicit unmatched/proprietary annotation |
+| 16 | Element 9 | abbe | `Unmatched (conventional)` | Explicit unmatched/proprietary annotation |
+
+### [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) - 28.6% (2/7) - US 5,528,428
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-NSL3 (OHARA)` | S-NSL3 rejected by nd safety net (Δnd=-0.0135) |
+| 3 | Element 2 | abbe | `TAFD25 (HOYA)` | TAFD25 rejected by nd safety net (Δnd=+0.0632) |
+| 4 | Element 3 | abbe | `E-FD4 (HOYA)` | E-FD4 rejected by nd safety net (Δnd=+0.1069) |
+| 7 | Element 5 | abbe | `EF3 (HOYA)` | No catalog match |
+| 9 | Element 6 | abbe | `797454 — discontinued lanthanum glass (no exact public catalog match)` | No catalog match |
+
+### [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - 28.6% (4/14)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `H-LAF3B (CDGM)` | H-LAF3B rejected by nd safety net (Δnd=-0.1227) |
+| 3 | Element 2 | abbe | `H-ZF88 (CDGM)` | H-ZF88 rejected by nd safety net (Δnd=+0.1612) |
+| 7 | Element 4 | abbe | `H-LAK53A (CDGM)` | No catalog match |
+| 9 | Element 5 | abbe | `H-ZF72 (CDGM)` | No catalog match |
+| 10 | Element 6 | abbe | `H-ZLAF92 (CDGM)` | No catalog match |
+| 12 | Element 7 | abbe | `H-ZF13 (CDGM)` | H-ZF13 rejected by nd safety net (Δnd=-0.0619) |
+| 15 | Element 9 | abbe | `H-ZLAF68N (CDGM)` | No catalog match |
+| 18 | Element 10 | abbe | `H-LAF4 (CDGM)` | No catalog match |
+| ... | ... | ... | ... | 2 more missing surfaces |
+
+### [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) - 27.3% (3/11) - US 4,210,388
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LAC14 / BaLF5 (OHARA / Schott)` | No catalog match |
+| 3 | Element 2 | abbe | `LAC10 / LaK9 (OHARA / Schott)` | No catalog match |
+| 5 | Element 3 | abbe | `LAC12 / LaK10 (OHARA / Schott)` | LAC12 rejected by nd safety net (Δnd=-0.0946) |
+| 11 | Element 5 | abbe | `LAC7 / LaK8 (OHARA / Schott)` | No catalog match |
+| 12 | Element 6 | abbe | `LF7 (Schott)` | No catalog match |
+| 14 | Element 7 | abbe | `LaF3 / LAF2 (Schott / HOYA)` | No catalog match |
+| 17 | Element 9 | abbe | `LaK21 / LAC11 (Schott / HOYA)` | No catalog match |
+| 19 | Element 10 | abbe | `LaK14 / LAC9 (Schott / HOYA)` | No catalog match |
+
+### [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) - 25.0% (3/12) - JP 2022-99402 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `S-LAH55V (OHARA)` | S-LAH55V rejected by nd safety net (Δnd=+0.1056) |
+| 4 | element | constant | `(none)` | No glass annotation |
+| 5 | Element 3 | abbe | `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)` | No catalog match |
+| 7 | Element 4 | abbe | `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)` | No catalog match |
+| 9 | Element 5 | abbe | `S-NPH4 (OHARA)` | S-NPH4 rejected by nd safety net (Δnd=+0.0339) |
+| 10 | element | constant | `(none)` | No glass annotation |
+| 11 | Element 6 | abbe | `911352 - ultra-high-index glass (patent nd=1.91082, vd=35.2; unresolved)` | No catalog match |
+| 14 | element | constant | `(none)` | No glass annotation |
+| ... | ... | ... | ... | 1 more missing surface |
+
+### [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) - 20.0% (1/5) - US 2,995,980
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaK9 (SCHOTT)` | No catalog match |
+| 4 | Element 3 | abbe | `1640/346 (F-family flint)` | No catalog match |
+| 6 | Element 4 | abbe | `BaSF1 (SCHOTT)` | No catalog match |
+| 7 | Element 5 | abbe | `LaF2 (SCHOTT)` | No catalog match |
+
+### [Nikon AI Nikkor 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) - 20.0% (1/5) - US 4,338,001
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched Nikon ED fluorophosphate (near S-FPL51/FCD1 class; nd offset +0.0033)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `LAFN7 / E-LAF7 class (750/350 lanthanum flint)` | No catalog match |
+| 7 | Element 4 | abbe | `KF3-class crown-flint (obsolete Schott KF3-type; nd=1.51454, νd≈54.6)` | No catalog match |
+| 9 | Element 5 | abbe | `Unmatched (TAF/LaSF-class high-index flint, nd=1.79668, νd=45.4; near HOYA TAF2 / HIKARI J-LASF017)` | Explicit unmatched/proprietary annotation |
+
+### [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) - 20.0% (1/5) - US 5,267,086
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `BACD14 (HOYA)` | No catalog match |
+| 2 | Element 2 | abbe | `FD110 (HOYA)` | No catalog match |
+| 4 | Element 3 | abbe | `FD60 (HOYA)` | No catalog match |
+| 6 | Element 4 | abbe | `TAFD25 (HOYA)` | TAFD25 rejected by nd safety net (Δnd=+0.0993) |
+
+### [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) - 16.7% (1/6) - US 2,681,594 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `BAFD7 (HOYA)` | No catalog match |
+| 4 | Element 3 | abbe | `NBFD3 (HOYA)` | NBFD3 rejected by nd safety net (Δnd=+0.0645) |
+| 6 | Element 4 | abbe | `K10 (Schott)` | No catalog match |
+| 7 | Element 5 | abbe | `SK18 (Schott)` | No catalog match |
+| 9 | Element 6 | abbe | `SK18 (Schott)` | No catalog match |
+
+### [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) - 16.7% (1/6) - US 5,243,468
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)` | N-SK16 rejected by nd safety net (Δnd=-0.0764) |
+| 3 | Element 2 | abbe | `Unidentified light flint (no standard catalog match within Δnd=0.01, Δνd=1.0)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Unidentified proprietary glass (possibly Nikon/Hoya c.1990; above-normal Abbe for nd class)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 5 | abbe | `Unidentified proprietary glass (possibly Nikon/Hoya c.1990; very high nd with above-average νd)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)` | No catalog match |
+
+### [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) - 15.0% (3/20) - WO 2025/263124 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense flint (≈S-NPH1W, OHARA; Δnd = +0.0008, probable proprietary melt)` | Explicit unmatched/proprietary annotation |
+| 2 | Element 2 | abbe | `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)` | No catalog match |
+| 4 | Element 3 | abbe | `S-FPM4 (OHARA)` | S-FPM4 rejected by nd safety net (Δnd=-0.0672) |
+| 6A | Element 4 | abbe | `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)` | No catalog match |
+| 8 | Element 5 | abbe | `777297 — dense flint (patent nd=1.77660, νd=29.7)` | No catalog match |
+| 9 | Element 6 | abbe | `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)` | No catalog match |
+| 11 | Element 7 | abbe | `700555 — barium crown (patent nd=1.69980, νd=55.5)` | No catalog match |
+| 14A | Element 8 | abbe | `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)` | No catalog match |
+| ... | ... | ... | ... | 9 more missing surfaces |
+
+### [SIGMA 85mm F/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) - 13.3% (2/15) - JP 2021-85935
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense LPH flint (νd=17.98; high g-line anomalous dispersion)` | No catalog match |
+| 7 | Element 4 | abbe | `Phosphate SLD class (νd=68.6)` | No catalog match |
+| 8 | Element 5 | abbe | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 rejected by nd safety net (Δnd=-0.1340) |
+| 10 | Element 6 | abbe | `Phosphate SLD class (νd=68.6)` | No catalog match |
+| 13 | Element 7 | abbe | `SLD-class crown (νd=67.0)` | No catalog match |
+| 15 | Element 8 | abbe | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 rejected by nd safety net (Δnd=-0.1340) |
+| 16 | Element 9 | abbe | `Phosphate SLD class (νd=68.6)` | No catalog match |
+| 18 | Element 10 | abbe | `Anomalous flint (S-NBH8-class, νd=25.15)` | S-NBH8 rejected by nd safety net (Δnd=-0.1340) |
+| ... | ... | ... | ... | 5 more missing surfaces |
+
+### [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) - 12.5% (1/8) - US 3,376,091
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `LaF3 (Schott)` | No catalog match |
+| 4 | Element 3 | abbe | `SSK class (614/551, Schott — probable discontinued formulation)` | No catalog match |
+| 5 | Element 4 | abbe | `BaLF class (561/453, Schott — uncertain identification)` | No catalog match |
+| 7 | Element 5 | abbe | `BaK4 (Schott)` | No catalog match |
+| 8 | Element 6 | abbe | `SSK class (614/563, Schott — probable discontinued formulation)` | No catalog match |
+| 9 | Element 7 | abbe | `BaSF class (702/411, Schott — probable discontinued formulation)` | No catalog match |
+| 11 | Element 8 | abbe | `K/BK class (520/636, Schott — uncertain identification)` | No catalog match |
+
+### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - 11.1% (1/9) - US 2015/0268449 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `FPL51 class (499/801, OHARA family)` | No catalog match |
+| 3A | Element 2 | abbe | `585417 — light flint (patent nd=1.58542, nu_d=41.7)` | No catalog match |
+| 5 | Element 3 | abbe | `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)` | No catalog match |
+| 6 | Element 4 | abbe | `754260 — dense flint (patent nd=1.75409, nu_d=26.0)` | No catalog match |
+| 8 | Element 5 | abbe | `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)` | No catalog match |
+| 11 | Element 6 | abbe | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | No catalog match |
+| 12 | Element 7 | abbe | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | No catalog match |
+| 14 | Element 8 | abbe | `L-LAH83 (OHARA)` | No catalog match |
+
+### [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) - 8.3% (1/12) - US 2021/0231927 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 (L1b) — ED ① | abbe | `ED fluorophosphate crown (unidentified)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 (L1c) — ED ② | abbe | `ED fluorophosphate crown (unidentified)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 (L1d) — LA | abbe | `S-NPH53 (Ohara)` | S-NPH53 rejected by nd safety net (Δnd=-0.1124) |
+| 9 | Element 5 (L1e) | abbe | `LaK (nd=1.788, νd=47.5)` | No catalog match |
+| 10 | Element 6 (L1f) | abbe | `NPH-class short flint (nd=1.893, νd=20.4)` | No catalog match |
+| 12 | Element 7 (L1g) | abbe | `SF/NPH (nd=1.808, νd=22.8)` | No catalog match |
+| 15A | Element 8 (L2a) — Aspherical | abbe | `NbF/SF (nd=1.689, νd=31.2)` | No catalog match |
+| 17 | Element 9 (L2b) | abbe | `LaF (nd=1.883, νd=39.2)` | No catalog match |
+| ... | ... | ... | ... | 3 more missing surfaces |
+
+### [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) - 0.0% (0/2) - US 5,796,530
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Front element in Fuwatto state (patent L12) | abbe | `E-LAFH2 (HIKARI, historical/obsolete; 804/339)` | No catalog match |
+| 2 | Rear element in Fuwatto state (patent L11) | abbe | `S-BSM10 (OHARA; 623/570)` | No catalog match |
+
+### [CARL ZEISS TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) - 0.0% (0/4) - US 721,240
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense barium crown (Schott ~O.381, SK-type)` | No catalog match |
+| 3 | Element 2 | abbe | `Dense flint (Schott ~O.163, F/SF-type)` | No catalog match |
+| 5 | Element 3 | abbe | `Light crown / light flint (Schott ~O.332, K/LLF-type)` | No catalog match |
+| 6 | Element 4 | abbe | `Dense barium crown / barium flint (Schott ~O.382, SK/BaF-type)` | No catalog match |
+
+### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - 0.0% (0/4) - US 3,649,104
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaK9 (Schott / Leitz)` | No catalog match |
+| 3 | Element 2 | abbe | `≈BaF10 (Leitz proprietary)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `≈SF4 (dense flint)` | SF4 rejected by nd safety net (Δnd=+0.0081) |
+| 7 | Element 4 | abbe | `≈LAFN7 (lanthanum flint)` | No catalog match |
+
+### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - 0.0% (0/6) - GB 850,117 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
+| 3 | Element 2 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
+| 4 | Element 3 | abbe | `Dense flint (672/323, Jena in-house; no exact public catalog match)` | No catalog match |
+| 6 | Element 4 | abbe | `Special light flint (Jena in-house, 602/352)` | No catalog match |
+| 7 | Element 5 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
+| 9 | Element 6 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
+
+### [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) - 0.0% (0/6) - US 4,123,144
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Lanthanum crown (proprietary Leitz melt; nearest: Schott TaF4 / LaFN21)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Barium flint / dense barium crown (proprietary; nearest: Schott BaSF6)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `Dense flint (proprietary; nearest: Schott SF3 / SF10)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Light/medium flint (proprietary; nearest: Schott F2)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Lanthanum crown (proprietary; nearest: Schott LaF10). Same glass as L6.` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Lanthanum crown (same glass as L5)` | No catalog match |
+
+### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - 0.0% (0/6) - US 4,277,149
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Lanthanum flint (781/445 class, Minolta proprietary; nearest: S-LAH52, OHARA)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Lanthanum crown (750/501 class, Minolta proprietary; nearest: LAC14, HOYA)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Dense flint (700/301 class, Minolta proprietary; nearest: FD4, HOYA / S-TIM25, OHARA)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Medium flint (640/353 class, Minolta proprietary; nearest: S-TIM28, OHARA)` | Explicit unmatched/proprietary annotation |
+| 8 | Element 5 | abbe | `Lanthanum crown (755/501 class, Minolta proprietary; no exact catalog match — Δnd = +0.005 from nearest LAC14, HOYA)` | Explicit unmatched/proprietary annotation |
+| 10 | Element 6 | abbe | `Lanthanum crown (697/555 class, Minolta proprietary; nearest: LAC9, HOYA / S-LAL14, OHARA)` | Explicit unmatched/proprietary annotation |
+
+### [Nikon AI Nikkor 28mm f/3.5](../../src/lens-data/nikon/NikonAI28mmf35.data.ts) - 0.0% (0/6) - US 4,099,850
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `J-BAF8 (HIKARI)` | No catalog match |
+| 3 | Element 2 | abbe | `J-SK16 (HIKARI)` | No catalog match |
+| 5 | Element 3 | abbe | `J-BASF7 (HIKARI)` | No catalog match |
+| 7 | Element 4 | abbe | `J-SF4 (HIKARI)` | No catalog match |
+| 9 | Element 5 | abbe | `J-SK16 (HIKARI)` | No catalog match |
+| 11 | Element 6 | abbe | `J-SK5 (HIKARI)` | No catalog match |
+
+### [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) - 0.0% (0/7) - US 3,874,771
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LaK 21 (SCHOTT)` | No catalog match |
+| 3 | Element 2 | abbe | `LaF 21 (SCHOTT)` | No catalog match |
+| 5 | Element 3 | abbe | `SF 56 (SCHOTT)` | No catalog match |
+| 7 | Element 4 | abbe | `SF 10 family (SCHOTT)` | No catalog match |
+| 8 | Element 5 | abbe | `LaF 21 (SCHOTT)` | No catalog match |
+| 10 | Element 6 | abbe | `LaF 21 (SCHOTT)` | No catalog match |
+| 12 | Element 7 | abbe | `LaF 2 (SCHOTT)` | No catalog match |
+
+### [CARL ZEISS SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) - 0.0% (0/7) - US 1,975,678
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Dense Crown (SK/SSK family, Schott Jena)` | No catalog match |
+| 3 | Element 2 | abbe | `Barium Flint (BaF10 type, Schott)` | No catalog match |
+| 4 | Element 3 | abbe | `Specialty Low-Index Crown (hist. Schott, possibly fluoride-bearing)` | No catalog match |
+| 5 | Element 4 | abbe | `Dense Flint (SF family, Schott Jena)` | No catalog match |
+| 7 | Element 5 | abbe | `Light Flint (hist. Schott Jena)` | No catalog match |
+| 8 | Element 6 | abbe | `Very Dense Crown (SSK51 type, Schott)` | No catalog match |
+| 9 | Element 7 | abbe | `Crown (PSK3 type, Schott)` | No catalog match |
+
+### [NIKON NIKKOR-S AUTO 50mm f/1.4](../../src/lens-data/nikon/NikonNikkorSAuto50mmf14.data.ts) - 0.0% (0/7) - US 3,560,079
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SF2 / NSL36 (dense flint)` | SF2 rejected by nd safety net (Δnd=-0.0168) |
+| 3 | Element 2 | abbe | `LaK9 / LAL7 (lanthanum crown)` | No catalog match |
+| 4 | Element 3 | abbe | `SF4 / PBM5 (dense flint)` | SF4 rejected by nd safety net (Δnd=+0.1069) |
+| 6 | Element 4 | abbe | `SF6 / PBM6 (dense flint)` | SF6 rejected by nd safety net (Δnd=+0.1062) |
+| 7 | Element 5 | abbe | `LaK8 / LAL14 (lanthanum crown)` | No catalog match |
+| 9 | Element 6 | abbe | `SK16 / BSL7 (barium crown)` | N-SK16 rejected by nd safety net (Δnd=-0.0575) |
+| 11 | Element 7 | abbe | `LaK8 / LAL14 (lanthanum crown)` | No catalog match |
+
+### [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) - 0.0% (0/8) - DE 1,089,183
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 (L_I) | abbe | `SF3 (Schott)` | No catalog match |
+| 2 | Element 2 (L_II) | abbe | `LaF2 (Schott)` | No catalog match |
+| 4 | Element 3 (L_III) | abbe | `PK1 (Schott)` | No catalog match |
+| 6 | Element 4 (L_IV) | abbe | `PK1 (Schott)` | No catalog match |
+| 8 | Element 5 (L_V) | abbe | `LaF2 (Schott)` | No catalog match |
+| 10 | Element 6 (L_VII) | abbe | `F7 (Schott)` | No catalog match |
+| 12 | Element 7 (L_VIII) | abbe | `LLF7 (Schott)` | No catalog match |
+| 13 | Element 8 (L_IX) | abbe | `LaK10 (Schott)` | No catalog match |
+
+### [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) - 0.0% (0/9) - US 4,792,219
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `TAC4 (HOYA)` | No catalog match |
+| 3 | Element 2 | abbe | `TACL1 (HOYA)` | No catalog match |
+| 5 | Element 3 | abbe | `FD4 (HOYA)` | No catalog match |
+| 7 | Element 4 | abbe | `BACL1 (HOYA)` | No catalog match |
+| 9 | Element 5 | abbe | `LAF7 (HOYA)` | No catalog match |
+| 11 | Element 6 | abbe | `TAFL3 (HOYA)` | No catalog match |
+| 13 | Element 7 | abbe | `CFKL2 (HOYA)` | No catalog match |
+| 15 | Element 8 | abbe | `FD5 (HOYA)` | No catalog match |
+| ... | ... | ... | ... | 1 more missing surface |
+
