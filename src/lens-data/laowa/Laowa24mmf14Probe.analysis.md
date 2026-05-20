@@ -23,7 +23,7 @@ Chinese Utility Model patent CN 210573001 U, titled "一种细长微距镜头" (
 2. **Focal length and f-number.** The patent states f = 23.70 mm, F/14.0, half-angle ω = 44.6° (2ω ≈ 89.2°). The production lens is marketed as 24 mm, f/14, with 84.1–85° diagonal angle of view on a 135 full-frame sensor. The small focal-length discrepancy (23.7 vs. 24 mm) is within normal rounding for marketing purposes. The wider patent field angle (89.2° vs. 84.8°) reflects the design image circle (Ymax = 23.38 mm half-height, ≈ 46.8 mm diameter), which intentionally exceeds the 135-format half-diagonal of 21.65 mm; the production FOV of ~84.8° corresponds to arctan(21.65 / 23.7) ≈ 42.4° half-angle, confirming that the optical design covers the sensor with margin.
 3. **Macro capability.** The patent prescription includes variable-gap data from infinity to 1.0× magnification, consistent with the production lens's 2:1 maximum reproduction ratio. The focusing element travels 3.25 mm to reach 1.0× from infinity; an extended version of the same mechanism reaches the marketed 2:1.
 4. **Three-section architecture.** Laowa describes the production lens as comprising three functional sub-systems — Objective + Relay + Macro (Magnification) group — which matches the patent's description of 物镜 (Objective) + 接力镜头 (Relay) + 放大镜头 (Magnification lens) exactly (¶0044).
-5. **Special glass count.** Laowa markets the lens as having "2 Extra-Low Dispersion elements and 1 Extra Refractive Index element." The prescription contains exactly two elements made of nd = 1.49700 / νd = 81.61 glass (H-FK61-class ED fluorophosphate) and two elements of nd = 1.92286 / νd = 20.88 glass (H-ZF7LA-class ultra-dense flint), the latter being the "Extra Refractive Index" glass. The marketing claim of "1 ERI element" likely refers to the glass type rather than the individual element count.
+5. **Special glass count.** Laowa markets the lens as having "2 Extra-Low Dispersion elements and 1 Extra Refractive Index element." The prescription contains exactly two elements made of nd = 1.49700 / νd = 81.61 glass (H-FK61-class ED fluorophosphate) and two elements of nd = 1.92286 / νd = 20.88 glass (N-SF66 / E-FDS1 class), the latter being the "Extra Refractive Index" glass. The marketing claim of "1 ERI element" likely refers to the glass type rather than the individual element count.
 6. **Patent timing.** Filing date August 2019 aligns with the period after the production lens's 2018 launch; the patent documents the optical formula behind the already-shipping product.
 
 ---
@@ -77,9 +77,9 @@ The prescription uses 10 distinct glass types. Laowa is a Chinese company, and C
 | 1.49700 | 81.61 | **H-FK61** | **ED fluorophosphate** | S-FPL51 (OHARA) | L3, L21 |
 | 1.84666 | 23.78 | H-ZF88A | Dense flint | S-TIH53 (OHARA) | L4, L5, P2, P3, L8, L9, L16, L17, L20, Foc/L23 |
 | 1.48749 | 70.44 | H-QK3L | Borosilicate crown | S-FSL5 (OHARA) | L6, L18 |
-| 1.92286 | 20.88 | **H-ZF7LA** | **Ultra-dense flint (ERI)** | SF66 (Schott) | L7, L19 |
+| 1.92286 | 20.88 | **N-SF66 / E-FDS1 class** | **Ultra-dense flint (ERI)** | SF66 (Schott) | L7, L19 |
 | 1.72825 | 28.32 | H-ZF4A | Dense flint | S-TIH10 (OHARA) | L10, L15 |
-| 1.80518 | 25.46 | H-ZF6 | Dense flint | SF6 (Schott) | L11, L14, L22 |
+| 1.80518 | 25.46 | H-ZF7LA | Dense flint | CDGM catalog match | L11, L14, L22 |
 | 1.80610 | 40.73 | H-ZLaF52A | Lanthanum flint | S-LAH65V (OHARA) | L12, L13 |
 | 1.67270 | 32.17 | H-ZF2 | Flint | N-SF5 (Schott) | L24 |
 
@@ -135,7 +135,7 @@ D2 is a flint-leading doublet (reversed order from D1) with the negative element
 
 #### L7 — Biconvex Positive, Extra Refractive Index (ERI) Element
 
-nd = 1.92286, νd = 20.88. Glass: H-ZF7LA (CDGM) — **ultra-dense flint (ERI)**. f = +21.8 mm.
+nd = 1.92286, νd = 20.88. Glass: N-SF66 / E-FDS1 class (923209) — **ultra-dense flint (ERI)**. f = +21.8 mm.
 
 L7 is a symmetric biconvex element (R = ±39.496 mm) made of the highest-index glass in the system. The extremely high refractive index (nd = 1.923) means that moderate surface curvatures produce substantial power — the focal length of +21.8 mm is achieved with relatively gentle curves, which reduces higher-order spherical aberration. The trade-off is very high dispersion (νd = 20.88), but L7 sits immediately before the relay prisms where marginal ray height is already decreasing, so its chromatic contribution is manageable.
 
@@ -172,7 +172,7 @@ D3 is a strongly powered cemented doublet that performs the primary converging a
 
 #### D4: L11 + L12 — Cemented Relay Doublet (first half)
 
-**L11:** nd = 1.80518, νd = 25.46. Glass: H-ZF6 (CDGM). f = −56.9 mm.
+**L11:** nd = 1.80518, νd = 25.46. Glass: H-ZF7LA (CDGM). f = −56.9 mm.
 **L12:** nd = 1.80610, νd = 40.73. Glass: H-ZLaF52A (CDGM). f = +9.2 mm.
 
 D4 completes the first half of the relay. L11 is a weakly negative meniscus (dense flint) cemented to L12, a strongly positive lanthanum-flint element. The L12 glass (H-ZLaF52A, νd = 40.73) provides the highest Abbe number of any glass used in the relay section, giving D4 a modest achromatic contribution (Δνd ≈ 15.3 units). The 1.593 mm air gap that follows D4 (between surfaces 26 and 27) is the geometric symmetry plane of the relay — optically, this corresponds to the relay's internal pupil, not an image plane. The intermediate image from the objective is reimaged by the full relay to a conjugate point after L17.
@@ -180,7 +180,7 @@ D4 completes the first half of the relay. L11 is a weakly negative meniscus (den
 #### D5: L13 + L14 — Cemented Relay Doublet (second half, mirror of D4)
 
 **L13:** nd = 1.80610, νd = 40.73. Glass: H-ZLaF52A (CDGM). f = +9.2 mm.
-**L14:** nd = 1.80518, νd = 25.46. Glass: H-ZF6 (CDGM). f = −56.9 mm.
+**L14:** nd = 1.80518, νd = 25.46. Glass: H-ZF7LA (CDGM). f = −56.9 mm.
 
 D5 is the sign-reversed twin of D4. The radii and glass types are mirrored: L13 corresponds to L12, L14 to L11. This symmetry ensures that odd-order aberrations (coma, distortion, lateral color) generated by D4 are exactly cancelled by D5 at the system level.
 
@@ -209,7 +209,7 @@ The 47.48 mm air gap following L18 is the largest gap in the entire system and r
 
 #### L19 — Positive Element, ERI Glass
 
-nd = 1.92286, νd = 20.88. Glass: H-ZF7LA (CDGM) — **ultra-dense flint (ERI)**. f = +33.7 mm.
+nd = 1.92286, νd = 20.88. Glass: N-SF66 / E-FDS1 class (923209) — **ultra-dense flint (ERI)**. f = +33.7 mm.
 
 L19 is the second "Extra Refractive Index" element, performing the same role in the macro section that L7 performs in the objective: its extremely high refractive index (nd = 1.923) produces strong positive power (+33.7 mm) with relatively gentle curvatures (R₁ = 36.48, R₂ = −194.0 mm), suppressing higher-order spherical aberration at a surface where ray heights are now substantial. The heavy dispersion is compensated by the adjacent cemented triplet T1.
 
@@ -217,7 +217,7 @@ L19 is the second "Extra Refractive Index" element, performing the same role in 
 
 **L20:** nd = 1.84666, νd = 23.78. Glass: H-ZF88A (CDGM). f = −17.9 mm.
 **L21:** nd = 1.49700, νd = 81.61. Glass: H-FK61 (CDGM) — **ED fluorophosphate**. f = +15.3 mm.
-**L22:** nd = 1.80518, νd = 25.46. Glass: H-ZF6 (CDGM). f = −27.2 mm.
+**L22:** nd = 1.80518, νd = 25.46. Glass: H-ZF7LA (CDGM). f = −27.2 mm.
 
 T1 is the only cemented triplet in the design and is the most sophisticated chromatic corrector in the macro section. Its structure — dense flint / ED crown / dense flint — is a classical negative-positive-negative achromatizing triplet, with the central ED element (L21, H-FK61, νd = 81.61) providing the positive power while the outer flints supply negative power and chromatic correction. The νd contrasts are extreme: 57.83 units (L20→L21) and 56.15 units (L21→L22), providing robust correction of both primary axial color and lateral color.
 

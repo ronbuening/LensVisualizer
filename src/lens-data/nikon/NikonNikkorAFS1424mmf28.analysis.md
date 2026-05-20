@@ -53,13 +53,13 @@ Thick-lens focal length: **−91.3 mm**.
 This is a large-diameter lanthanum-crown meniscus serving as the first field-flattening element. Its high index (1.804) reduces the surface curvatures needed, keeping Petzval contributions manageable despite the large clear aperture. It acts as a gentle diverging element, beginning to spread the wide-angle ray bundle while controlling the tangential/sagittal field balance.
 
 **Element 2 (surfaces 3–4A): Negative meniscus, convex to object — 1× aspherical**
-Glass: nd = 1.67790, νd = 55.34 → **S-BAH11** (OHARA); code 678/553.
+Glass: nd = 1.67790, νd = 55.34 → **LAC12** (HOYA); code 678/553.
 Thick-lens focal length: **−71.1 mm**.
 Surface 4A is the first aspherical surface, with conic constant κ = 0.0913 (K = −0.9087, nearly paraboloidal). The aspherical departure on this surface is the primary corrector for field curvature and distortion across the ultra-wide field. The moderate-index barium crown glass is likely a PGM (Precision Glass Moulding) candidate — consistent with Nikon's marketing reference to "large-diameter PGM elements" in the front group. The polynomial coefficients are small (C4 ≈ −5.12 × 10⁻⁷), indicating that the conic term does most of the work, with higher-order terms providing fine correction.
 
 **Elements 3 + 4 (surfaces 5–7A): Cemented doublet (J1) — negative meniscus pair**
 E3 glass: nd = 1.74100, νd = 52.67 → **S-LAH53** (OHARA); code 741/527.
-E4 glass: nd = 1.55389, νd = 38.09 → **S-TIM25** (OHARA); code 554/381.
+E4 glass: nd = 1.55389, νd = 38.09 → **554381 patent-code dense flint**; no unique public catalog match found.
 Combined thick-lens focal length: **−60.3 mm** (E3 individually: −51.9 mm; E4: +357.6 mm).
 Surface 7A is the second aspherical surface, with κ = −6.3795 (K = −7.380, a strong hyperboloid). This is the most aggressive asphere in the design, with large C4 (4.22 × 10⁻⁵) indicating substantial departure from the base sphere. The cemented interface between E3 (lanthanum crown, νd = 52.67, lower dispersion) and E4 (titanium flint, νd = 38.09, higher dispersion) provides chromatic correction within the front group — essential because the front group's strong negative power would otherwise introduce severe lateral chromatic aberration. The aspherical exit surface controls sagittal coma flare, a historically difficult aberration in retrofocus ultra-wide-angle designs, as noted in Nikon's own "Thousand and One Nights" series.
 
@@ -79,7 +79,7 @@ The patent describes G2's internal structure as: **L1** (first positive lens com
 
 **Elements 7 + 8 (surfaces 12–14): Cemented doublet (J2) — L1, the focusing component**
 E7 glass: nd = 1.83481, νd = 42.72 → **S-LAH55** (OHARA); code 835/427.
-E8 glass: nd = 1.62374, νd = 47.04 → **S-BSM81** (OHARA); code 624/470.
+E8 glass: nd = 1.62374, νd = 47.04 → **624470 patent-code barium flint**; no unique public catalog match found.
 Combined thick-lens focal length: **+80.3 mm** (E7: −54.9 mm; E8: +32.1 mm).
 E7 is a negative meniscus convex to the object; E8 is a positive element with a nearly flat rear surface (R = 611.6 mm). Together they form L1, the internal focusing component. Focusing is performed by translating L1 along the optical axis: at wide/infinity, d14 = 5.86 mm; at wide/close (300 mm), d14 = 1.43 mm — L1 moves toward the image by approximately 4.4 mm. The patent states that focusing via L1 minimizes variation in curvature of field during close-focus operation. The Abbe number ratio νdn/νdp = 42.72 / 47.04 = 0.908, satisfying conditional expression (4): 0.25 < νdn/νdp < 0.95.
 
@@ -97,7 +97,7 @@ Thick-lens focal length: **−27.7 mm**.
 This is the strongest single element in the entire system. The patent describes it as the "negative lens L3" and states that making it biconcave is critical for correcting sagittal field curvature and sagittal coma. Its placement at a large separation from L2 (D1 = 9.07 mm) pushes the principal point of G2 toward the object, which is essential for securing adequate zoom working distance and keeping the exit pupil distant from the image plane — an important consideration for digital sensors that are sensitive to the angle of incidence of light.
 
 **Element 11 (surfaces 20–21): Biconvex positive**
-Glass: nd = 1.57099, νd = 50.80 → **S-BAL42** (OHARA); code 571/508.
+Glass: nd = 1.57099, νd = 50.80 → **S-BAL2** (OHARA); code 571/508.
 Thick-lens focal length: **+42.4 mm**.
 A moderately powered biconvex element that works with E10 and E9 to form a triplet-like correction system around the stop. It provides positive power to counterbalance E10's strong divergence while contributing to coma correction.
 
@@ -140,15 +140,15 @@ The design uses 13 distinct glass types, all identifiable as OHARA catalog glass
 | Glass code | OHARA designation | Elements | nd | νd | Category |
 |-----------|------------------|----------|------|------|---------|
 | 804/466 | S-LAH65 | E1 | 1.804 | 46.6 | Lanthanum crown (high-index) |
-| 678/553 | S-BAH11 | E2 | 1.678 | 55.3 | Barium crown |
+| 678/553 | LAC12 | E2 | 1.678 | 55.3 | Barium crown |
 | 741/527 | S-LAH53 | E3 | 1.741 | 52.7 | Lanthanum crown |
-| 554/381 | S-TIM25 | E4 | 1.554 | 38.1 | Titanium flint |
+| 554/381 | 554381 patent-code | E4 | 1.554 | 38.1 | Dense flint |
 | 498/825 | FPL family (see note) | E5, E13 | 1.498 | 82.5 | Fluorophosphate — **ED glass** |
 | 804/396 | S-LAH66 | E6 | 1.804 | 39.6 | Lanthanum crown (high-dispersion) |
 | 835/427 | S-LAH55 | E7, E10 | 1.835 | 42.7 | Lanthanum crown (very high-index) |
-| 624/470 | S-BSM81 | E8 | 1.624 | 47.0 | Barium dense flint |
+| 624/470 | 624470 patent-code | E8 | 1.624 | 47.0 | Barium flint |
 | 517/641 | S-BSL7 | E9 | 1.517 | 64.1 | Borosilicate crown (BK7 equiv.) |
-| 571/508 | S-BAL42 | E11 | 1.571 | 50.8 | Barium crown |
+| 571/508 | S-BAL2 | E11 | 1.571 | 50.8 | Barium crown |
 | 773/495 | Uncertain (see note) | E12 | 1.773 | 49.5 | Lanthanum crown family |
 | 806/409 | S-LAH58 | E14 | 1.806 | 40.9 | Lanthanum crown |
 | 589/612 | S-BAL35 | E15 | 1.589 | 61.2 | Barium crown |

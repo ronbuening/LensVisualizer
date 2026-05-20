@@ -72,7 +72,7 @@ nd = 1.72916, νd = 54.7. Glass: S-LAL18 (OHARA) — lanthanum crown. f = −34.
 L21 is the first negative element encountered by the converging beam from Gr1. Its strongly curved rear surface (R2 = 17.636 mm) provides most of its negative power and redirects the converging cone into a strongly diverging beam. The lanthanum crown glass provides a good balance of index and dispersion for managing the Petzval sum contribution.
 
 **L22 — Negative Meniscus (convex to object, 2× Asph)**
-nd = 1.77002, νd = 49.4. Glass: S-LAH52 class (OHARA) — lanthanum dense crown. f = −83.9 mm.
+nd = 1.77002, νd = 49.4. Glass: 770494 patent-code lanthanum crown; no unique public catalog match found. f = −83.9 mm.
 
 L22 is the only aspherical element in Gr2, with both surfaces (S8 and S9) carrying aspherical coefficients. The aspherical departures on both surfaces are negative (flatter than the spherical base) at the clear aperture, providing −76 µm on S8 and −68 µm on S9 of departure. This pair of aspherical corrections addresses the coma and astigmatism that arise from the strongly diverging beam passing through the variator at wide-angle settings. The weak base curvature on S8 (R = 307.0 mm, nearly flat) allows the aspheric polynomial to dominate the surface profile, effectively creating a Schmidt-plate-like corrector within the variator.
 
@@ -99,12 +99,12 @@ nd = 1.85108, νd = 40.1. Glass: S-LAH89 (OHARA) — lanthanum dense crown. f = 
 L31 is designated Lmp_asp in the patent (¶0053) — the aspherical middle-group positive lens. Its object-side surface (S16) carries aspherical coefficients, with a departure of −114 µm (flatter than the base sphere) at the clear aperture. The patent explicitly describes this element's role (¶0054): the middle group, having overall positive power, naturally contains many positive refracting surfaces. Rather than using a strongly negative-power spherical surface to counteract the resulting spherical aberration (which would require thick edges), the designer uses an aspherical surface that is positive in the paraxial zone but becomes progressively negative in the peripheral zone. This elegantly corrects spherical aberration without the compactness penalty of adding a thick negative element. This element is inferred to be one of the two XA (extreme aspherical) elements in the production lens, given its critical position immediately after the aperture stop where the on-axis beam is at its most sensitive to surface figure errors.
 
 **L32 — Biconvex Positive (cemented to L33) — Super ED**
-nd = 1.43700, νd = 95.1. Glass: S-FPM2 (OHARA) / FCD100 (HOYA) — fluorophosphate, Super ED class. f = +69.9 mm.
+nd = 1.43700, νd = 95.1. Glass: FCD100 (HOYA) — fluorophosphate, Super ED class. f = +69.9 mm.
 
 L32 is one of the two Super ED elements in the design. Its νd = 95.1 identifies it unambiguously as a fluorophosphate glass with exceptionally low dispersion and strong positive anomalous partial dispersion. It satisfies condition (9), the Lmp criterion: θgF − (−0.001801 × νd + 0.64826) > 0.045 (¶0061). Placed at a position where on-axis marginal ray heights are significant (just past the stop), it provides large chromatic correction leverage for both axial and lateral color from g-line to F-line across the entire zoom range.
 
 **L33 — Biconcave Negative (cemented to L32)**
-nd = 1.77250, νd = 49.6. Glass: S-LAH52Q (OHARA) — lanthanum dense crown. f = −58.2 mm.
+nd = 1.77250, νd = 49.6. Glass: S-LAH66 (OHARA) — lanthanum crown. f = −58.2 mm.
 
 L33 is cemented to L32 and serves as the achromatizing flint partner. The doublet L32+L33 has a combined focal length of approximately −422 mm — weakly negative. This is a deliberate design choice: the Super ED positive element provides the chromatic correction while the cemented doublet as a whole contributes only mild negative power, keeping Gr3's total power at +63.87 mm.
 
@@ -113,7 +113,7 @@ L33 is cemented to L32 and serves as the achromatizing flint partner. The double
 Gr4 carries the strongest positive power in the system at +26.64 mm and contains 5 elements in 3 sub-groups. A flare-cutter aperture (surface 21) of variable diameter may be placed on its object side, according to the patent (¶0143), accounting for the distinctive R = ∞, d = −1.10 mm entry in the prescription table.
 
 **L41 — Negative Meniscus (convex to object, cemented to L42)**
-nd = 2.00100, νd = 29.1. Glass: S-NPH5 (OHARA) — ultra-high-index dense flint. f = −52.6 mm.
+nd = 2.00100, νd = 29.1. Glass: S-LAH99 (OHARA) — ultra-high-index dense flint. f = −52.6 mm.
 
 L41 is the second element in the system with nd > 2.0, a testament to the design's aggressive use of exotic high-index glasses. Its negative meniscus shape with a strongly curved rear surface (R2 = 18.620 mm, which is also the cemented junction) creates a powerfully diverging interface at the cemented boundary. This element is the leading flint in the L41+L42 cemented doublet.
 
@@ -123,7 +123,7 @@ nd = 1.49700, νd = 81.6. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) — fluorophospha
 L42 is one of the two ED elements in the design. S-FPL51 (νd = 81.6) is the workhorse ED glass of modern Japanese optical design, offering strong positive anomalous partial dispersion (ΔPgF ≈ +0.038). The cemented doublet L41+L42 has a combined focal length of approximately +68.3 mm. The extreme index contrast at the junction (Δnd = 0.504) creates an exceptionally strong achromatizing interface. This doublet simultaneously contributes positive power to Gr4 and corrects secondary chromatic aberration across the zoom range.
 
 **L43 — Positive Meniscus (concave to object, cemented to L44) — Super ED**
-nd = 1.43700, νd = 95.1. Glass: S-FPM2 (OHARA) / FCD100 (HOYA) — fluorophosphate, Super ED class. f = +72.7 mm.
+nd = 1.43700, νd = 95.1. Glass: FCD100 (HOYA) — fluorophosphate, Super ED class. f = +72.7 mm.
 
 L43 is the second Super ED element in the design and, like L32, satisfies condition (9) for Lmp (¶0061). The use of two Super ED elements — one in Gr3 and one in Gr4 — is characteristic of the most demanding high-aperture zoom designs, where a single ED element cannot sufficiently control the secondary spectrum at the system's extreme f/2.8 aperture across a nearly 3× zoom ratio.
 
@@ -158,7 +158,7 @@ The patent notes (¶0045) that using single-lens groups for both Grrn and Grrp i
 ### Gr7 — Fixed Rear Group (f = −169.85 mm)
 
 **L71 — Positive Meniscus (concave to object)**
-nd = 1.94595, νd = 18.0. Glass: S-NPH4 (OHARA) — ultra-high-dispersion dense flint. f = +56.5 mm.
+nd = 1.94595, νd = 18.0. Glass: FDS18 (HOYA) — ultra-high-dispersion dense flint. f = +56.5 mm.
 
 L71 is a positive element made from the most dispersive glass in the system (νd = 18.0, nd = 1.94595). Its extreme dispersion makes it an effective lateral-color corrector when paired with the negative L72. The meniscus shape (both radii negative: R1 = −795.9, R2 = −50.2 mm) directs the converging beam toward the sensor while keeping the Petzval surface contribution under control.
 
@@ -179,21 +179,21 @@ The design uses 12 distinct glass types across its 20 elements. Glass identifica
 | L12 | 1.61800 | 63.4 | S-PHM52 (OHARA) | Phosphate crown with +ΔPgF | L1p — ED element |
 | L13 | 1.76385 | 48.5 | Lanthanum crown (764/485, uncertain) | Lanthanum crown | Positive power carrier |
 | L21 | 1.72916 | 54.7 | S-LAL18 (OHARA) | Lanthanum crown | Variator negative |
-| L22 | 1.77002 | 49.4 | S-LAH52 class (OHARA) | Lanthanum dense crown | Aspheric aberration corrector |
+| L22 | 1.77002 | 49.4 | 770494 patent-code | Lanthanum crown | Aspheric aberration corrector |
 | L23 | 1.63854 | 55.4 | Crown (639/554, uncertain) | Crown | Achromatizing partner |
 | L24 | 2.00069 | 25.5 | S-LAH79 (OHARA) | Ultra-high-index lanthanum dense flint | L2p compact positive |
 | L25 | 1.61800 | 63.4 | S-PHM52 (OHARA) | Phosphate crown | Beam management |
 | L31 | 1.85108 | 40.1 | S-LAH89 (OHARA) | Lanthanum dense crown | Lmp_asp aspheric positive |
-| L32 | 1.43700 | 95.1 | S-FPM2 (OHARA) | Fluorophosphate — Super ED | Lmp chromatic corrector |
-| L33 | 1.77250 | 49.6 | S-LAH52Q (OHARA) | Lanthanum dense crown | Flint partner for L32 |
-| L41 | 2.00100 | 29.1 | S-NPH5 (OHARA) | Ultra-high-index dense flint | Cemented flint |
+| L32 | 1.43700 | 95.1 | FCD100 (HOYA) | Fluorophosphate — Super ED | Lmp chromatic corrector |
+| L33 | 1.77250 | 49.6 | S-LAH66 (OHARA) | Lanthanum crown | Flint partner for L32 |
+| L41 | 2.00100 | 29.1 | S-LAH99 (OHARA) | Ultra-high-index dense flint | Cemented flint |
 | L42 | 1.49700 | 81.6 | S-FPL51 (OHARA) | Fluorophosphate — ED | Cemented ED positive |
-| L43 | 1.43700 | 95.1 | S-FPM2 (OHARA) | Fluorophosphate — Super ED | Lmp chromatic corrector |
+| L43 | 1.43700 | 95.1 | FCD100 (HOYA) | Fluorophosphate — Super ED | Lmp chromatic corrector |
 | L44 | 1.80610 | 33.3 | Dense flint (806/333, uncertain) | Dense flint | Cemented flint partner |
 | L45 | 1.85108 | 40.1 | S-LAH89 (OHARA) | Lanthanum dense crown | XA aspheric biconvex |
 | L51 | 1.85155 | 40.1 | S-LAH89 class (OHARA) | Lanthanum dense crown | Negative focus singlet |
 | L61 | 1.61875 | 63.7 | S-PHM52 class (OHARA) | Phosphate crown | Positive focus singlet |
-| L71 | 1.94595 | 18.0 | S-NPH4 (OHARA) | Ultra-high-dispersion dense flint | Lateral color corrector |
+| L71 | 1.94595 | 18.0 | FDS18 (HOYA) | Ultra-high-dispersion dense flint | Lateral color corrector |
 | L72 | 1.91082 | 35.2 | Lanthanum dense flint (911/352, uncertain) | Lanthanum dense flint | Lrr field corrector |
 
 The chromatic correction strategy uses three distinct tiers. The first tier is primary achromatization via cemented doublets: L11+L12 in Gr1, L23+L24 in Gr2, L32+L33 in Gr3, L41+L42 in Gr4, and L43+L44 in Gr4. The second tier is secondary-spectrum correction via anomalous partial dispersion glasses. The patent identifies four elements satisfying its ΔPgF conditions: L12 (condition 7, ΔPgF > 0.005), L32 (condition 9, ΔPgF > 0.045), L43 (condition 9), and L42 (S-FPL51, which is known to have ΔPgF ≈ +0.038). These four elements are the production lens's "2 ED + 2 Super ED" special elements. The third tier is ultra-high-dispersion flints (L11 at νd = 20.0, L71 at νd = 18.0) in the front and rear groups, which act as chromatic levers at positions where beam diameters are large but ray heights are very different, providing independent control of axial and lateral color.

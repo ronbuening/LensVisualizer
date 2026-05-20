@@ -14,7 +14,7 @@ The patent presents three numerical embodiments. **Example 2** (第二实施例,
 3. **Half-field angle.** $\omega = 55.199°$, yielding a full field of $110.4°$ — consistent with the marketed $110°$ angle of view.
 4. **Focus mechanism.** Example 2 employs two moving positive groups (SF and MF) achieving a maximum magnification of $0.7836\times$ at closest focus (¶0065). The production lens extends this to $1{:}1$ magnification through greater mechanical focus travel. The patent's dual-group floating focus architecture matches the production description of "internal focusing."
 5. **Patent timing.** Filed April 2015, with the production lens announced in mid-2015 and shipping from late 2015 — consistent with the utility model patent being filed during the pre-production engineering phase.
-6. **Special glass count.** Example 2 uses three distinct high-refractive-index glass types (CDGM H-ZLAF50D, H-ZLAF2, H-ZF52) and one extra-low-dispersion glass type (H-FK71), matching the production marketing claim of "three High Refractive elements and one Extra-low Dispersion element" when counted by distinct glass type.
+6. **Special glass count.** Example 2 uses three distinct high-refractive-index glass types (904313-class LaF, H-ZLAF2, H-ZF52) and one low-dispersion crown type (H-QK3L), matching the production marketing claim of "three High Refractive elements and one Extra-low Dispersion element" when counted by distinct glass type.
 
 ## Optical Architecture
 
@@ -48,9 +48,9 @@ L2 is the first of the strongly negative elements that establish the retrofocus 
 
 ### L3 — Negative Meniscus, Convex to Object (HR)
 
-$n_d = 1.90366$, $\nu_d = 31.31$. Glass: H-ZLAF50D (CDGM) — heavy lanthanum flint, high-refractive. $f = -17.9$ mm.
+$n_d = 1.90366$, $\nu_d = 31.31$. Glass: S-LAH95 / TAFD25 class (904313) — heavy lanthanum flint, high-refractive. $f = -17.9$ mm.
 
-L3 is the strongest single negative element in the design. Its power distribution continues the divergence begun by L2, and together L1–L3 form a sub-group with a combined focal length of approximately $-11.2$ mm. This strong negative front sub-group is the hallmark of a retrofocus architecture: it displaces the rear principal plane far behind the physical lens, yielding a back focal distance ($38.9$ mm) much larger than the system focal length ($16.0$ mm). The meniscus shape ($R_5 = +28.23$, $R_6 = +10.06$) places the element's strong surface (S6) deep inside the converging beam from L1, where it also contributes to controlling oblique spherical aberration. H-ZLAF50D appears three times in this design (L3, L5, L9a), making it the most-used glass type.
+L3 is the strongest single negative element in the design. Its power distribution continues the divergence begun by L2, and together L1–L3 form a sub-group with a combined focal length of approximately $-11.2$ mm. This strong negative front sub-group is the hallmark of a retrofocus architecture: it displaces the rear principal plane far behind the physical lens, yielding a back focal distance ($38.9$ mm) much larger than the system focal length ($16.0$ mm). The meniscus shape ($R_5 = +28.23$, $R_6 = +10.06$) places the element's strong surface (S6) deep inside the converging beam from L1, where it also contributes to controlling oblique spherical aberration. The 904313-class glass appears three times in this design (L3, L5, L9a), making it the most-used high-index type.
 
 ### L4 — Cemented Doublet (Negative)
 
@@ -62,13 +62,13 @@ This cemented doublet is unusual in its glass pairing: the flint element (L4a, $
 
 ### L5 — Thick Biconvex (HR)
 
-$n_d = 1.90366$, $\nu_d = 31.31$. Glass: H-ZLAF50D (CDGM) — heavy lanthanum flint, high-refractive. $f = +124.7$ mm.
+$n_d = 1.90366$, $\nu_d = 31.31$. Glass: S-LAH95 / TAFD25 class (904313) — heavy lanthanum flint, high-refractive. $f = +124.7$ mm.
 
 L5 is the thickest element in the design ($ct = 8.0$ mm) and one of the most unusual. Both surfaces are nearly flat ($R_{10} = +230.1$, $R_{11} = -217.2$), giving it very weak positive power despite the high refractive index. An element of this form serves several roles in a complex retrofocus design. First, its 8 mm of high-index glass ($n_d = 1.904$) shifts the principal planes of the SF group rearward, which adjusts the relative ray heights at all downstream surfaces — an effective tool for controlling higher-order aberrations without adding strong refractive surfaces. Second, as a positive element it contributes a positive Petzval term that partially counteracts the strong negative Petzval contributions from L2 and L3, aiding field flattening. Third, as a weakly positive element with low Abbe number ($\nu_d = 31.31$), it contributes a small undercorrecting chromatic term that participates in the overall chromatic balance of the front group. Its exact aberration role is best understood as an optimizer's tool: the thick high-index body gives the design program a parameter (center thickness and weak curvatures) to fine-tune multiple aberrations simultaneously without disrupting the primary power distribution.
 
 ### L6 — Biconvex Positive (ED)
 
-$n_d = 1.48749$, $\nu_d = 70.44$. Glass: H-FK71 (CDGM) — fluoride crown, extra-low dispersion (FK5 equivalent, Schott). $f = +25.1$ mm.
+$n_d = 1.48749$, $\nu_d = 70.44$. Glass: H-QK3L (CDGM) — low-dispersion crown. $f = +25.1$ mm.
 
 L6 is the strongest positive singlet in the front group and serves as the main collector/converging element of the SF assembly. Its high Abbe number ($\nu_d = 70.44$) makes it the primary chromatic corrector for the front section: as a positive element with low dispersion, it contributes converging power with minimal chromatic spread, helping to offset the strong overcorrecting chromatic contributions from the negative elements L2 and L3. The biconvex shape ($R_{12} = +60.20$, $R_{13} = -14.88$) places the stronger surface ($R_{13}$) facing the aperture stop, which is advantageous for controlling coma. The large center thickness ($ct = 6.04$ mm) and the asymmetric radii indicate that this element also contributes meaningfully to spherical aberration correction.
 
@@ -94,11 +94,11 @@ L8 is the primary positive power element of the MF group and the element most re
 
 ### L9 — Cemented Doublet (Weakly Negative)
 
-**L9a:** $n_d = 1.90366$, $\nu_d = 31.31$. Glass: H-ZLAF50D (CDGM) — heavy lanthanum flint, high-refractive. $f = -14.7$ mm.
-**L9b:** $n_d = 1.48749$, $\nu_d = 70.44$. Glass: H-FK71 (CDGM) — fluoride crown, extra-low dispersion (FK5 equivalent). $f = +17.7$ mm.
+**L9a:** $n_d = 1.90366$, $\nu_d = 31.31$. Glass: S-LAH95 / TAFD25 class (904313) — heavy lanthanum flint, high-refractive. $f = -14.7$ mm.
+**L9b:** $n_d = 1.48749$, $\nu_d = 70.44$. Glass: H-QK3L (CDGM) — low-dispersion crown. $f = +17.7$ mm.
 **Combined doublet:** $f \approx -161$ mm.
 
-L9 is the final optical element before the image plane and forms the last achromatic correcting group. The glass pairing is a high-index heavy flint (L9a, H-ZLAF50D) cemented to a low-index ED crown (L9b, H-FK71) — a classic flint-ahead achromatic doublet producing weakly negative net power. The nearly flat front surface of L9a ($R_{20} = +597.6$) accepts the converging beam from L8 with minimal aberration introduction, while the strongly curved cemented junction ($R_{21} = +12.94$) and the biconvex L9b rear surface ($R_{22} = -22.17$) perform the chromatic splitting and recombination. The combined doublet's weak negative power ($f = -161$ mm) means it functions primarily as a chromatic and field corrector rather than a power element. Its proximity to the image plane gives it strong leverage over lateral chromatic aberration, astigmatism, and field curvature — the same role that a field-flattening group plays in many macro lens designs.
+L9 is the final optical element before the image plane and forms the last achromatic correcting group. The glass pairing is a high-index heavy flint (L9a, 904313 class) cemented to a low-index crown (L9b, H-QK3L) — a classic flint-ahead achromatic doublet producing weakly negative net power. The nearly flat front surface of L9a ($R_{20} = +597.6$) accepts the converging beam from L8 with minimal aberration introduction, while the strongly curved cemented junction ($R_{21} = +12.94$) and the biconvex L9b rear surface ($R_{22} = -22.17$) perform the chromatic splitting and recombination. The combined doublet's weak negative power ($f = -161$ mm) means it functions primarily as a chromatic and field corrector rather than a power element. Its proximity to the image plane gives it strong leverage over lateral chromatic aberration, astigmatism, and field curvature — the same role that a field-flattening group plays in many macro lens designs.
 
 The variable air gap D(22) follows L9b's rear surface and constitutes the back focal distance. At infinity focus, $D(22) = 38.90$ mm.
 
@@ -110,17 +110,17 @@ The design uses 7 distinct glass types drawn from the CDGM (成都光明, Chengd
 |:---:|:---:|:---:|:---:|:---|:---|
 | L1 | H-LAK7 | 1.77250 | 49.62 | Lanthanum crown | N-LAK33B (Schott) |
 | L2 | H-ZLAF2 | 1.91082 | 35.25 | Heavy La flint (HR) | — |
-| L3, L5, L9a | H-ZLAF50D | 1.90366 | 31.31 | Heavy La flint (HR) | ~N-LASF46A (Schott) |
+| L3, L5, L9a | S-LAH95 / TAFD25 class | 1.90366 | 31.31 | Heavy La flint (HR) | 904313 catalog-backed class |
 | L4a | H-ZF52 | 1.84666 | 23.78 | Dense flint (HR) | SF57 (Schott) |
 | L4b | H-LAK5A | 1.72916 | 54.67 | Lanthanum crown | ~S-LAL54 (OHARA) |
-| L6, L9b | H-FK71 | 1.48749 | 70.44 | Fluoride crown (ED) | FK5 (Schott) |
+| L6, L9b | H-QK3L | 1.48749 | 70.44 | Low-dispersion crown | CDGM catalog match |
 | L7a | H-K9L | 1.51680 | 64.20 | Borosilicate crown | N-BK7 (Schott) |
 | L7b | H-LAF3 | 1.80420 | 46.50 | Lanthanum flint | LaF3 (Schott) |
 | L8 | H-ZF1 | 1.64769 | 33.84 | Flint | SF2 (Schott) |
 
-**High-refractive (HR) glasses:** Three distinct types with $n_d > 1.84$ are used across five elements: H-ZLAF50D ($n_d = 1.904$) in L3, L5, and L9a; H-ZLAF2 ($n_d = 1.911$) in L2; and H-ZF52 ($n_d = 1.847$) in L4a. The production lens marketing refers to "three High Refractive elements," likely counting the three distinct HR glass types. These high-index glasses enable the strong negative meniscus elements (L2, L3) to achieve the required diverging power with physically compact curvatures, and provide the thick dispersive element (L5) and the rear corrector (L9a) with their characteristic high optical-path contributions.
+**High-refractive (HR) glasses:** Three distinct types with $n_d > 1.84$ are used across five elements: 904313-class glass ($n_d = 1.904$) in L3, L5, and L9a; H-ZLAF2 ($n_d = 1.911$) in L2; and H-ZF52 ($n_d = 1.847$) in L4a. The production lens marketing refers to "three High Refractive elements," likely counting the three distinct HR glass types. These high-index glasses enable the strong negative meniscus elements (L2, L3) to achieve the required diverging power with physically compact curvatures, and provide the thick dispersive element (L5) and the rear corrector (L9a) with their characteristic high optical-path contributions.
 
-**Extra-low-dispersion (ED) glass:** H-FK71 ($n_d = 1.487$, $\nu_d = 70.44$, FK5 equivalent) is used in L6 and L9b — the two principal positive corrector elements. The marketing refers to "one Extra-low Dispersion element," counting the single ED glass type. These fluoride crown elements are placed at optically strategic locations: L6 at the rear of the front group (where it provides the main positive collecting power with minimal chromatic spread) and L9b at the final element (where it corrects lateral color and field curvature close to the image plane).
+**Extra-low-dispersion glass:** H-QK3L ($n_d = 1.487$, $\nu_d = 70.44$) is used in L6 and L9b — the two principal positive corrector elements. The marketing refers to "one Extra-low Dispersion element," counting the single low-dispersion glass type. These crown elements are placed at optically strategic locations: L6 at the rear of the front group (where it provides the main positive collecting power with minimal chromatic spread) and L9b at the final element (where it corrects lateral color and field curvature close to the image plane).
 
 **Chromatic strategy:** The design achieves chromatic balance through a deliberate interplay of high-dispersion negative elements and low-dispersion positive elements. The strongly negative meniscus elements L2 and L3 produce the dominant overcorrecting chromatic contributions in the front group (negative power, low Abbe numbers). The positive ED elements (L6, L9b) and the conventional positive elements (L1, L8) produce undercorrecting contributions that counterbalance this overcorrection. The most unusual chromatic feature is the L4 doublet's inverted glass assignment (flint-positive, crown-negative), which produces net undercorrecting chromatic aberration despite having net negative optical power — flipping the expected chromatic sign and providing additional counterbalance to L2 and L3. The three cemented doublets (L4, L7, L9) each pair glasses with substantially different Abbe numbers, but only L4 departs from the classical achromatic configuration: L7 and L9 both use the standard crown-positive / flint-negative pairing, while L4 inverts it.
 

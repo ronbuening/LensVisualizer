@@ -96,9 +96,9 @@ G1 is the stationary front group, carrying the bulk of the lens's positive optic
 
 **L1 — Biconcave Negative (f = −31.0 mm)**
 R1 = −111.98 mm, R2 = +20.94 mm; d = 1.4 mm; nd = 1.56732, vd = 42.8.
-Glass: **S-BAL42 (OHARA)** — barium light crown. Exact catalog match.
+Glass: **S-TIL26 (OHARA)** — light flint. Exact catalog match.
 
-L1 is a strongly negative element whose steeply curved rear surface (R2 = 20.94 mm) diverges the incoming ray bundle. As the first element in the system, it accepts light at the full field angle of ±40° and spreads the beam, allowing the downstream positive elements to collect it at manageable angles. The moderate-index barium crown glass provides adequate dispersion control at this position, where the on-axis ray height is still modest. The biconcave shape with a much stronger rear surface introduces substantial negative Petzval contribution — essential for counteracting the strong positive Petzval from the downstream high-index positive elements.
+L1 is a strongly negative element whose steeply curved rear surface (R2 = 20.94 mm) diverges the incoming ray bundle. As the first element in the system, it accepts light at the full field angle of ±40° and spreads the beam, allowing the downstream positive elements to collect it at manageable angles. The moderate-index light flint glass provides adequate dispersion control at this position, where the on-axis ray height is still modest. The biconcave shape with a much stronger rear surface introduces substantial negative Petzval contribution — essential for counteracting the strong positive Petzval from the downstream high-index positive elements.
 
 **L2 — Biconvex Positive (f = +30.7 mm)**
 R1 = +33.30 mm, R2 = −131.60 mm; d = 6.17 mm; nd = 1.881, vd = 40.1.
@@ -114,13 +114,13 @@ L3 is notable for its perfectly symmetric biconcave form (|R1| = |R2|), which el
 
 **L4 — Biconvex Positive (f = +31.2 mm)**
 R1 = +23.77 mm, R2 = −76.96 mm; d = 4.64 mm; nd = 1.59282, vd = 68.6.
-Glass: **L-LAM60 (OHARA)** — low-softening-temperature lanthanum crown (PGM glass). Exact catalog match.
+Glass: **FCD515 (HOYA)** — low-dispersion crown. Exact catalog match.
 
-L4 is the second strong positive element in G1, and its glass choice is significant: L-LAM60 is a precision glass moulding (PGM) type with an unusually high Abbe number for its index class (vd = 68.6), meaning very low dispersion. This element restores positive power while introducing minimal chromatic aberration.
+L4 is the second strong positive element in G1, and its glass choice is significant: FCD515 has an unusually high Abbe number for its index class (vd = 68.6), meaning very low dispersion. This element restores positive power while introducing minimal chromatic aberration.
 
 **L5 — Positive Meniscus, Convex to Object (f = +80.2 mm)**
 R1 = +62.55 mm, R2 = +428.74 mm; d = 1.81 mm; nd = 1.91082, vd = 35.2.
-Glass: **S-LAH79 (OHARA)** — ultra-high-index lanthanum dense flint. Exact catalog match.
+Glass: **TAFD35 (HOYA)** — ultra-high-index lanthanum dense flint. Exact catalog match.
 
 L5 is the final element before the aperture stop. Its very high refractive index (nd = 1.911, the highest in the system) allows the gently curved meniscus to contribute positive power while keeping surface slopes moderate. The meniscus shape acts as a weak positive field lens, guiding the chief ray through the stop at a favourable angle.
 
@@ -139,7 +139,7 @@ G2 is a cemented doublet comprising a positive meniscus and a negative meniscus,
 
 G3 is a fixed cemented doublet. Its very weak positive power means it contributes almost nothing to the system's focal length; its role is corrective and stabilising. G3 shifts perpendicular to the optical axis to provide optical image stabilisation (OIS).
 
-**L8 — Biconcave Negative (f = −21.7 mm)** — niobium heavy flint (S-NBH55).
+**L8 — Biconcave Negative (f = −21.7 mm)** — dense flint (S-TIH13).
 **L9 — Biconvex Positive (f = +22.5 mm)** — same glass as L2 (S-LAH58).
 
 ### Group 4: Second Focusing Singlet (L10, f = +33.98 mm)
