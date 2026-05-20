@@ -41,7 +41,7 @@ The design invokes the Sonnar heritage primarily through its rear-heavy power di
 
 ### L111 — Negative Meniscus, Concave to Object
 
-$n_d = 1.80$, $\nu_d = 25.46$. Glass: dense flint, 800/255 class — S-TIH6 (OHARA) or FD60 (Hoya). $f = -39.8$ mm.
+$n_d = 1.80$, $\nu_d = 25.46$. Glass: code-backed dense flint `800255`; no exact public coefficient-backed match was found. $f = -39.8$ mm.
 
 L111 is the first optical surface the incoming light encounters. It is a thin negative meniscus ($d = 0.80$ mm) with its concave side facing the object ($R_1 = -23.10$ mm, $R_2 = -85.23$ mm). Its strong negative curvature on the front surface serves two functions: it diverges the incoming ray bundle to establish a wide field of view, and it introduces negative Petzval contribution that helps flatten the field. The patent identifies $r_1/f = -0.64$ (¶0086), falling within the conditional expression (6) range of $-1.96 \leq r_1/f \leq -0.38$ (¶0049), which governs the balance between field curvature correction and element diameter.
 
@@ -93,15 +93,15 @@ The use of the same high-index lanthanum glass as L112 ($n_d = 1.83$, $\nu_d = 4
 
 ### L132 — Biconcave Negative (Cemented Rear of G3 Doublet)
 
-$n_d = 1.63$, $\nu_d = 34.57$. Glass: niobium-containing dense flint, 630/346 class — NBFD11 (Hoya) or equivalent. $f = -14.2$ mm.
+$n_d = 1.63$, $\nu_d = 34.57$. Glass: code-backed dense flint `630346`; no exact public coefficient-backed match was found. $f = -14.2$ mm.
 
 L132 is cemented to L131 at the junction surface $R = -10.02$ mm. Its biconcave form ($R_1 = -10.02$ mm, $R_2 = +86.11$ mm) provides strong negative power that partially counterbalances L131. The cemented doublet L131 + L132 has a combined focal length of approximately $+35.2$ mm — the net is positive, but substantially less than L131 alone ($+10.5$ mm). This power tempering is the hallmark of an achromatic doublet: the lower-dispersion positive partner (L131, $\nu_d = 42.72$) paired with the higher-dispersion negative partner (L132, $\nu_d = 34.57$) corrects longitudinal chromatic aberration in the relay group.
 
-The Abbe number difference $\Delta\nu_d = 42.72 - 34.57 = 8.15$ is modest, reflecting the use of moderate-dispersion glasses rather than the extreme-dispersion pairings found in apochromatic designs. The glass code 630/346 is consistent with Hoya NBFD11 ($n_d = 1.63980$, $\nu_d = 34.57$), a niobium-containing flint with moderate anomalous partial dispersion — a pragmatic choice for a compact, cost-effective design.
+The Abbe number difference $\Delta\nu_d = 42.72 - 34.57 = 8.15$ is modest, reflecting the use of moderate-dispersion glasses rather than the extreme-dispersion pairings found in apochromatic designs. The glass code `630346` is retained for future catalog upgrade instead of forcing the row to a nearby public glass.
 
 ### L133 — Negative Meniscus, Concave to Object (2× Aspherical) — Field Flattener
 
-$n_d = 1.68$, $\nu_d = 31.16$. Glass: flint, 680/312 class — S-TIM28 (OHARA) or E-FDS2 (Hoya). $f = -68.1$ mm.
+$n_d = 1.68$, $\nu_d = 31.16$. Glass: code-backed flint `680312`; no exact public coefficient-backed match was found. $f = -68.1$ mm.
 
 L133 is the final element before the image plane, separated from the cemented doublet by a 4.95 mm air gap. Its negative meniscus form ($R_1 = -10.55$ mm, $R_2 = -14.19$ mm) with both surfaces concave to the object places it in the classic field-flattener position. The negative power reduces the system's Petzval sum, directly flattening the image surface.
 
@@ -115,13 +115,13 @@ The design uses a palette of seven glass types. The patent truncates refractive 
 
 | Element | $n_d$ | $\nu_d$ | Code | Best candidate | Confidence |
 |---------|-------|--------|------|---------------|------------|
-| L111 | 1.80 | 25.46 | 800/255 | S-TIH6 (OHARA) / FD60 (Hoya) | Medium-high — $n_d$ consistent after truncation; $\nu_d$ close but not exact ($\Delta\nu_d = 0.04$ vs. catalog 25.42) |
+| L111 | 1.80 | 25.46 | 800255 | Code-backed dense flint | No exact public coefficient-backed catalog match |
 | L112 | 1.83 | 42.72 | 830/427 | S-LAH55V (OHARA) / TAFD5F (Hoya) | High — exact $\nu_d$ match, standard La high-index |
 | L113 | 1.76 | 49.24 | 760/492 | Lanthanum flint class (LAF), unresolved | Medium — no exact catalog match; PGM-compatible melt likely |
 | L121 | 1.58 | 59.46 | 580/595 | L-BAL42 (OHARA) | High — exact $\nu_d$ match, confirmed PGM glass |
 | L131 | 1.83 | 42.72 | 830/427 | S-LAH55V (OHARA) / TAFD5F (Hoya) | High — same glass as L112 |
-| L132 | 1.63 | 34.57 | 630/346 | NBFD11 (Hoya) | Medium-high — exact $\nu_d$, $\Delta n_d = 0.010$ |
-| L133 | 1.68 | 31.16 | 680/312 | S-TIM28 (OHARA) / E-FDS2 (Hoya) | High — exact $\nu_d$ match |
+| L132 | 1.63 | 34.57 | 630346 | Code-backed dense flint | No exact public coefficient-backed catalog match |
+| L133 | 1.68 | 31.16 | 680312 | Code-backed flint | No exact public coefficient-backed catalog match |
 
 The glass selection reflects a design philosophy of pragmatic cost and manufacturability over exotic materials. There are no ED (extra-low dispersion) or fluorophosphate glasses in the prescription. Chromatic correction is achieved through conventional achromatic doublet pairings (L111+L112 in G1, L131+L132 in G3) rather than through anomalous-dispersion elements. This is consistent with the lens's positioning as a compact, moderately-priced wide-angle prime.
 
@@ -235,4 +235,4 @@ The joint Tamron–Sony development is consistent with the cooperative model in 
 - JP 2015-41012 A (P2015-41012A), published March 2, 2015. Japan Patent Office.
 - Sony SEL35F28Z product specification page (sony.co.uk/electronics/camera-lenses/sel35f28z/specifications).
 - OHARA Optical Glass catalog (pocket edition, May 2023) — for glass identification and PGM designation cross-reference.
-- Hoya Glass Cross Reference Index — for NBFD11 and FD60 identification.
+- Public HOYA/OHARA/refractiveindex.info lookup — no exact coefficient-backed matches found for `800255`, `630346`, or `680312`.

@@ -116,14 +116,14 @@ The nd value of 1.71300 is an exact match to a well-known lanthanum crown family
 
 **L2 and L4 — nd = 1.77279, νd = 49.4 (six-digit code: 1773/494)**
 
-These two elements share identical glass. The nd/νd pair matches exactly to HOYA TAF5, a tantalum-containing lanthanum flint glass.
+These two elements share identical glass. The nd/νd pair is a close coefficient-backed match to OHARA S-LAH66, a lanthanum crown glass.
 
 | Candidate | nd | νd | Δnd | Δνd | Confidence |
 |-----------|-----|-----|------|------|------------|
-| HOYA TAF5 | 1.77279 | 49.40 | 0 | 0 | Exact match |
+| OHARA S-LAH66 | 1.77250 | 49.60 | 0.00029 | 0.20 | Close catalog match |
 | HOYA NBFD3 / TAF1 | 1.77250 | 49.62 | 0.00029 | 0.22 | Close |
 
-**Identification: HOYA TAF5 (tantalum flint / dense lanthanum flint)**. The exact match to TAF5 is striking — both nd and νd agree to the last reported digit. This high-index, moderate-dispersion glass provides strong refracting power while maintaining reasonable chromatic behavior. Using the same glass for L2 and L4 simplifies procurement and quality control in production, and is a characteristic Sonnar-design technique (the converging elements share the same glass type while the diverging element uses a high-dispersion partner).
+**Identification: OHARA S-LAH66 (lanthanum crown)**. This high-index, moderate-dispersion glass provides strong refracting power while maintaining reasonable chromatic behavior. Using the same glass for L2 and L4 simplifies procurement and quality control in production, and is a characteristic Sonnar-design technique (the converging elements share the same glass type while the diverging element uses a high-dispersion partner).
 
 **L3 — nd = 1.68893, νd = 31.1 (six-digit code: 1689/311)**
 
@@ -166,7 +166,7 @@ In a traditional Sonnar, L1 and L2 would be a single thick element or a cemented
 
 ### L2 — Second Positive Meniscus (f₂ = 100.6 mm)
 
-L2 (r₃ = +38.655, r₄ = +72.381) continues the converging action begun by L1, sharing the same glass type as L4 (HOYA TAF5). Together, L1 and L2 form a positive front group with composite focal length f₁,₂ = 56.9 mm. The patent's condition (6) constrains L2's bending via r₃/f₂, governing the image-side surface's converging action on oblique rays and thereby controlling the meridional field curvature.
+L2 (r₃ = +38.655, r₄ = +72.381) continues the converging action begun by L1, sharing the same glass type as L4 (OHARA S-LAH66). Together, L1 and L2 form a positive front group with composite focal length f₁,₂ = 56.9 mm. The patent's condition (6) constrains L2's bending via r₃/f₂, governing the image-side surface's converging action on oblique rays and thereby controlling the meridional field curvature.
 
 L2's rear surface (r₄ = +72.381) is notably weaker than its front surface. This asymmetry controls the convergence angle of the marginal ray bundle as it enters L3, managing the balance between coma and spherical aberration.
 
@@ -285,7 +285,7 @@ The Nikon L35AF lens was designed in a competitive landscape dominated by Tessar
 
 - **Design type:** Sonnar-type / behind-diaphragm (derived from modified Tessar lineage per patent), 5 elements in 4 groups
 - **Aspherical surfaces:** None — the design is entirely spherical
-- **Glasses used:** Four distinct glass types from the HOYA/OHARA catalog families (LaK 8, TAF5, FD60, SK 16)
+- **Glasses used:** Four distinct glass types from the HOYA/OHARA catalog families (LaK 8, S-LAH66, FD60, SK 16)
 - **Focus method:** Unit focus (entire lens translates forward), ~1.6 mm extension at 0.8 m; BFD increases from 26.007 mm to 27.608 mm
 - **Key innovation:** Careful chromatic coma correction through nine bounded parametric conditions governing glass dispersion, element bending, and power distribution
 - **Patent–production relationship:** f = 100 prescription scaled ×0.35 to production f = 35 mm

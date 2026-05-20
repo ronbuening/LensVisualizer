@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.6,
       fl: 45.04,
-      glass: "Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)",
+      glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Primary convergence; positive meniscus facing the object to gather the wide-angle bundle",
     },

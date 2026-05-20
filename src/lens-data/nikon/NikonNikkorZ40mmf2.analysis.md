@@ -85,14 +85,14 @@ The steep front curvature imposes a tight edge thickness constraint on the semi-
 | Property | Value |
 |----------|-------|
 | Type | Biconcave negative |
-| Glass | S-TIH23 (OHARA), six-digit code 1717/296 |
+| Glass | S-TIH1 (OHARA), six-digit code 717/295 |
 | nd / νd | 1.71736 / 29.57 |
 | Surfaces | R₂ = −105.070 (cemented to L11), R₃ = +45.469 |
 | Center thickness | 0.90 mm |
 | Focal length | −44.1 mm (thick-lens) |
 | Cemented to | L11 |
 
-L12 is cemented to L11 to form the G1 achromatic doublet. S-TIH23 is a titanium-series flint glass with high dispersion (νd = 29.57), providing the chromatic correction counterpart to L11's crown glass. The doublet's combined focal length is +63.3 mm, roughly 1.54× the system focal length. The cement interface at R₂ = −105.070 is weakly curved, indicating that L12 primarily contributes negative power and dispersive correction without strongly affecting the doublet's net convergence. As a biconcave element, L12 grows thicker toward the edges, so its edge thickness is not a binding constraint.
+L12 is cemented to L11 to form the G1 achromatic doublet. S-TIH1 is a titanium-series flint glass with high dispersion (νd = 29.57), providing the chromatic correction counterpart to L11's crown glass. The doublet's combined focal length is +63.3 mm, roughly 1.54× the system focal length. The cement interface at R₂ = −105.070 is weakly curved, indicating that L12 primarily contributes negative power and dispersive correction without strongly affecting the doublet's net convergence. As a biconcave element, L12 grows thicker toward the edges, so its edge thickness is not a binding constraint.
 
 ### L21 — Negative Flint (G2, cemented doublet front)
 
@@ -113,7 +113,7 @@ L21 is a high-dispersion flint glass positioned at the front of G2's cemented as
 | Property | Value |
 |----------|-------|
 | Type | Biconvex positive (glass body) with cemented resin aspherical layer |
-| Glass body | S-LAH64 (OHARA), six-digit code 1804/466 |
+| Glass body | S-LAH65 (OHARA), six-digit code 804/466 |
 | Resin layer | UV-curable photopolymer, nd = 1.56093, νd = 36.64 |
 | Surfaces | R₆ = +105.597 (cemented to L21), R₇ = −33.838 (glass/resin junction), R₈* = −31.063 (resin rear, aspherical) |
 | Glass center thickness | 4.55 mm |
@@ -121,7 +121,7 @@ L21 is a high-dispersion flint glass positioned at the front of G2's cemented as
 | Glass body focal length | +32.3 mm (thick-lens) |
 | Resin layer focal length | +666.5 mm (negligible power) |
 
-L22 is the most structurally complex element in the lens. The glass body (S-LAH64) provides strong positive power to balance L21's divergence, while the thin UV-curable resin layer bonded to its image-side surface carries the system's primary aspherical correction (surface 8A). This hybrid composite construction — where the aspherical shape is molded in low-melting-point resin rather than ground into the glass — is a classic Nikon cost-reduction technique that avoids the expense of glass-molded or polished aspherics. The resin layer itself has negligible optical power (f ≈ +667 mm); its sole purpose is to introduce the aspherical departure.
+L22 is the most structurally complex element in the lens. The glass body (S-LAH65) provides strong positive power to balance L21's divergence, while the thin UV-curable resin layer bonded to its image-side surface carries the system's primary aspherical correction (surface 8A). This hybrid composite construction — where the aspherical shape is molded in low-melting-point resin rather than ground into the glass — is a classic Nikon cost-reduction technique that avoids the expense of glass-molded or polished aspherics. The resin layer itself has negligible optical power (f ≈ +667 mm); its sole purpose is to introduce the aspherical departure.
 
 The cemented glass doublet L21 + L22 (glass body only, exiting into air) has a combined focal length of −55.0 mm from the thick-lens ABCD computation, acting as an achromatizing diverger that corrects both spherical and chromatic aberrations simultaneously.
 
@@ -235,9 +235,9 @@ Because only G2 moves, the front element is fixed and the overall lens length do
 
 With no ED glass and no anomalous partial dispersion materials anywhere in the system, the lens relies entirely on classical achromatic doublet pairing for chromatic correction. The system uses two achromatic cemented pairs:
 
-**G1 doublet (L11 + L12):** S-LAH55 (νd = 42.73, crown) cemented with S-TIH23 (νd = 29.57, flint). The Abbe number difference of 13.16 provides moderate chromatic leverage. This pair corrects primary longitudinal chromatic aberration for the front converging group.
+**G1 doublet (L11 + L12):** S-LAH55 (νd = 42.73, crown) cemented with S-TIH1 (νd = 29.57, flint). The Abbe number difference of 13.16 provides moderate chromatic leverage. This pair corrects primary longitudinal chromatic aberration for the front converging group.
 
-**G2 cemented pair (L21 + L22):** PBM18Y (νd = 27.57, flint) cemented with S-LAH64 (νd = 46.60, crown). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, positive crown L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
+**G2 cemented pair (L21 + L22):** PBM18Y (νd = 27.57, flint) cemented with S-LAH65 (νd = 46.60, crown). The Abbe number difference of 19.03 is larger, providing stronger chromatic correction in the group that carries the most optical power. The flint-ahead configuration (negative flint L21 in front, positive crown L22 behind) is the Steinheil achromat topology, which is preferred in post-stop positions because it reduces the Petzval contribution while maintaining chromatic correction.
 
 The absence of ED glass means that secondary spectrum (the residual chromatic aberration after primary achromatization) is not explicitly controlled. This is a deliberate trade-off consistent with the lens's budget positioning — secondary spectrum becomes increasingly visible at long focal lengths and very fast apertures, but at 40 mm f/2 its effect on image quality is modest, particularly when combined with Nikon's in-camera chromatic aberration correction algorithms.
 

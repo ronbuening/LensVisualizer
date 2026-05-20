@@ -116,7 +116,7 @@ Both radii are positive (centres of curvature to the right), but R1 > R2, so the
 
 The relatively high refractive index (nd = 1.713) allows the strong curvature required in a compact element. The moderately high Abbe number (νd ≈ 54) means this negative lens contributes proportionally less lateral chromatic aberration than a conventional glass would, helping the system meet its chromatic balance without over-burdening the positive elements.
 
-**Probable glass identification:** OHARA S-LAL7 (nd = 1.71300, νd = 53.87) or HOYA LACL5 (same index). The Δνd of +0.07 relative to the S-LAL7 catalogue entry is within a single melt's typical variation. Confidence: high.
+**Probable glass identification:** OHARA S-LAL8. The nd/νd pair is a close coefficient-backed catalog match for the patent row. Confidence: high.
 
 ---
 
@@ -218,7 +218,7 @@ The principal planes of G1b are widely displaced relative to the physical elemen
 
 **Glass identification:**
 - **L5 (nd = 1.72825, νd = 28.32):** A dense flint glass in the high-index region. The combination nd ≈ 1.728, νd ≈ 28 places this glass in the OHARA S-TIH or HOYA FD series. This specific glass appears identically in Examples 1, 3, and 5, suggesting it is a single standard catalogue entry used consistently across the design family. Confidence: moderate.
-- **L6 (nd = 1.74180, νd = 49.23):** A lanthanum crown glass. The closest standard entries are OHARA S-LAM55 (nd = 1.74000, νd = 49.24, Δnd = +0.00180, Δνd = 0.01) and HOYA LACL60 (same values). The small but nonzero Δnd = +0.0018 could indicate a separate catalogue entry, a known melt variant of S-LAM55, or a glass from a third manufacturer (Sumita, Hikari). Confidence: moderate-high.
+- **L6 (nd = 1.74180, νd = 49.23):** A lanthanum crown glass. The closest coefficient-backed catalog entry is OHARA S-LAM60, close enough for the runtime Sellmeier label while retaining the patent's stored constants. Confidence: high.
 
 ---
 
@@ -439,12 +439,12 @@ The graduated increase from stop (~5.4 mm) to L7 rear (~12.8 mm) is characterist
 
 | Element | nd | νd | 6-digit code | Probable Glass | Catalogue | Confidence |
 |---------|------|------|-------------|---------------|-----------|-----------|
-| L1 | 1.71300 | 53.94 | 713/539 | S-LAL7 / LACL5 | OHARA / HOYA | High |
+| L1 | 1.71300 | 53.94 | 713/539 | S-LAL8 | OHARA | High |
 | L2 | 1.60342 | 38.01 | 603/380 | S-TIM5 (≈) | OHARA | Moderate |
 | L3 | 1.83481 | 42.72 | 835/427 | S-LAH55 / TAFD5 | OHARA / HOYA | Very high |
 | L4 | 1.88300 | 40.80 | 883/408 | ~S-LAH65 / TaFD30 / N-LASF41A | OHARA/HOYA/Schott | High |
 | L5 | 1.72825 | 28.32 | 728/283 | S-TIH family / FD series | OHARA / HOYA | Moderate |
-| L6 | 1.74180 | 49.23 | 742/492 | ~S-LAM55 / LACL60 | OHARA / HOYA | Moderate–High |
+| L6 | 1.74180 | 49.23 | 742/492 | S-LAM60 | OHARA | High |
 | L7 | 1.58763 | 61.09 | 588/611 | ~BaCD family / SK family | Various | Moderate |
 
 The four front elements (L1–L4) span a wide range of Abbe numbers (38–54), creating a dispersively mixed group that would introduce significant chromatic aberration in isolation. The doublet L5+L6 (Δν = 20.9) is the primary chromatic corrector, balancing the accumulated dispersion of G1a. The rear focusing element L7 uses the lowest-dispersion glass in the system (νd = 61.09), minimising focus-induced chromatic shift.

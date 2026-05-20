@@ -44,7 +44,7 @@ The Petzval sum of the complete system is $\Sigma P = 0.0032$ mm$^{-1}$, corresp
 
 ### L11 — Negative Meniscus (convex to object)
 
-$n_d = 1.71736$, $\nu_d = 29.51$. Glass: TAFD25 (HOYA). $f \approx -29.3$ mm.
+$n_d = 1.71736$, $\nu_d = 29.51$. Glass: S-TIH1 (OHARA). $f \approx -29.3$ mm.
 
 L11 is the front element and the negative component of the G1 cemented doublet. Its convex-to-object meniscus shape serves two purposes: the convex front surface ($R = +30.98$ mm) admits the marginal ray bundle at a gentle angle, reducing spherical aberration at the entrance; the strongly curved rear surface ($R = +12.43$ mm) creates the cemented interface with L12. The high-dispersion glass TAFD25 ($\nu_d = 29.5$) partners with L12's lower-dispersion lanthanum-dense flint ($\nu_d = 39.2$) to correct axial chromatic aberration across the G1 doublet. Although both L11 and L12 are flint-type glasses by conventional classification ($\nu_d < 50$), the Abbe-number differential of approximately 10 units between them is sufficient for effective primary chromatic correction at this aperture. As a dense flint with relatively high refractive index ($n_d = 1.717$), TAFD25 also keeps the Petzval contribution of L11 moderate despite its negative power.
 
@@ -108,7 +108,7 @@ The design uses six distinct glass types across eight elements. Two glasses — 
 
 | Element | $n_d$ | $\nu_d$ | Best catalog match | Confidence | Role |
 |---------|-------|---------|-------------------|------------|------|
-| L11 | 1.71736 | 29.51 | TAFD25 (HOYA) | Exact | Dense flint, chromatic partner in G1 doublet |
+| L11 | 1.71736 | 29.51 | S-TIH1 (OHARA) | Exact | Dense flint, chromatic partner in G1 doublet |
 | L12, L33 | 1.88300 | 39.22 | Unmatched (near S-LAH79 (OHARA), $\Delta\nu_d = 1.54$) | Approximate | High-index LaF, positive power carriers |
 | L21, L32 | 1.69895 | 30.05 | S-TIM35 (OHARA) | Exact | Titanium flint, chromatic correction and field flattening |
 | L22 | 1.77250 | 49.61 | S-LAH66 (OHARA) | Exact | Lanthanum flint, lower-dispersion partner in G2 doublet |
@@ -175,5 +175,5 @@ All conditional expressions (1) through (6) are satisfied within the specified b
 - US 2020/0333569 A1 (primary source for all optical prescription data and design rationale).
 - Fujifilm X100V product page, https://fujifilm-x.com/global/products/cameras/x100v/specifications/ — confirms 8 elements / 6 groups, 2 aspherical elements, fixed FUJINON 23mm f/2 lens, MFD ≈ 10 cm.
 - Fujifilm X100VI specifications, https://fujifilm-dsc.com/en/manual/x100vi/technical_notes/spec/ — confirms sensor dimensions (23.5 × 15.7 mm APS-C), focal length f = 23 mm, maximum aperture F2.0.
-- OHARA optical glass catalog (May 2023) — used for S-TIM35, S-LAH66, S-BSL7, S-LAH79 identification.
+- OHARA optical glass catalog — used for S-TIH1, S-TIM35, S-LAH66, S-BSL7, and S-LAH79 identification.
 - HOYA optical glass catalog — used for TAFD25, TAFD33 identification.

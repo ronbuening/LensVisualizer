@@ -107,7 +107,7 @@ L3c is a standalone singlet of FLD glass positioned between the first doublet (J
 
 ### L3d — Negative Meniscus, Convex to Object (Cemented with L3e)
 
-nd = 1.83481, νd = 42.72. Glass: TAFD25 (HOYA) or S-LAH55 (OHARA) — lanthanum dense flint. f = −31.5 mm.
+nd = 1.83481, νd = 42.72. Glass: S-LAH55V (OHARA) — lanthanum dense flint. f = −31.5 mm.
 
 L3d is the negative flint element of the second cemented doublet (Jb: L3d + L3e, combined f = +67.1 mm). The high-index lanthanum flint (nd = 1.835) paired against the FLD crown L3e (nd = 1.437) creates a very large Δν at the cemented junction (νd = 42.72 vs. 95.10, a difference of 52.4 Abbe units). This is one of the design's primary chromatic correction interfaces. The large Δν means that even with relatively weak surface curvatures, the doublet achieves strong achromatization — the FLD element's near-zero dispersion lets the flint's dispersive contribution dominate the cemented interface's chromatic behavior, driving axial color toward correction.
 
@@ -133,7 +133,7 @@ L3g is the highest-index glass in the design (nd = 1.883). Its junction with L3f
 
 ### L3h — Negative Meniscus, Concave to Object (1× Aspherical)
 
-nd = 1.80610, νd = 40.73. Glass: E-FDS1 (HOYA) or S-TIH6 (OHARA) — titanium flint. f = −84.4 mm.
+nd = 1.80610, νd = 40.73. Glass: NBFD13 (HOYA) — dense flint. f = −84.4 mm.
 
 L3h is the last element before the image plane, separated from the L3f/L3g doublet by a 2.57 mm air gap. Its rear surface (surface 21 in the patent, surface "19A" in the data file) is aspherical with K = 0 (spherical base) and positive polynomial coefficients (A4 = +4.28 × 10⁻⁵, A6 = +8.81 × 10⁻⁸, A8 = +3.93 × 10⁻¹⁰, A10 = +2.22 × 10⁻¹²). The positive departure steepens the concave surface at the periphery, which has two effects: it introduces negative field curvature contribution at the image end (countering the system's residual Petzval), and it corrects residual astigmatism by differentially adjusting sagittal and tangential ray paths at the edge of the field.
 
@@ -143,7 +143,7 @@ The titanium flint glass (nd = 1.806, νd = 40.73) is a high-index, high-dispers
 
 ## Glass Identification and Selection
 
-The glass palette is dominated by two families: HOYA FCD100 (super-ED fluoride crown, Sigma's "FLD") and various flints paired against them for achromatization. The prevalence of HOYA designations (FCD100, M-TAC80, BSC7, TAFD25, TAFD30, E-FDS1) suggests HOYA as the primary glass vendor for this design, consistent with Sigma's known use of HOYA glass in its dp-series compact cameras.
+The glass palette is dominated by HOYA FCD100 (super-ED fluoride crown, Sigma's "FLD") and high-index flints paired against it for achromatization. The catalog matches are mixed HOYA/OHARA equivalents, consistent with the patent listing optical constants rather than vendor glass names.
 
 | Element | nd | νd | Glass (Best Match) | Vendor | Family | Sigma Class |
 |---------|----|----|-------------------|--------|--------|-------------|
@@ -157,7 +157,7 @@ The glass palette is dominated by two families: HOYA FCD100 (super-ED fluoride c
 | L3e | 1.43700 | 95.10 | FCD100 | HOYA | Super-ED fluoride | FLD |
 | L3f | 1.43700 | 95.10 | FCD100 | HOYA | Super-ED fluoride | FLD |
 | L3g | 1.88300 | 40.80 | TAFD30 / N-LASF31A | HOYA / SCHOTT | Lanthanum dense flint | — |
-| L3h | 1.80610 | 40.73 | E-FDS1 / S-TIH6 | HOYA / OHARA | Titanium flint | — |
+| L3h | 1.80610 | 40.73 | NBFD13 | HOYA | Dense flint | — |
 
 All 11 glass identifications match catalog entries to within Δnd ≤ 0.00012 and Δνd ≤ 0.04 — effectively exact matches. The TAFD30 catalog entry lists νd = 40.76, differing from the patent's stated 40.80 by 0.04 Abbe units; this is within normal rounding tolerance.
 
@@ -243,7 +243,7 @@ The positive A4 coefficient (+3.36 × 10⁻⁵) adds mild positive departure to 
 
 All polynomial coefficients are positive, producing aspherical departure that is positive relative to the base sphere (i.e., less sag in the negative/concave direction — the surface curves less strongly toward the object than a sphere would). The positive departure effectively steepens the local curvature for peripheral rays relative to paraxial, providing a field-flattening action that compensates the system's positive Petzval sum (+0.00560 mm⁻¹, corresponding to a Petzval radius of +178.7 mm, backward-curving field). The correction is most significant at higher ray heights, where it also addresses residual astigmatism by differentially adjusting sagittal and tangential ray paths at the edge of the field.
 
-This is the only aspherical surface on a flint-glass element. The E-FDS1 / S-TIH6 titanium flint is not a moldable glass (it does not carry a PGM-class designation), suggesting this surface is likely polished rather than glass-molded. The departure at the expected semi-diameter (~9 mm) is relatively modest — approximately +0.03 mm — consistent with conventional aspherical polishing.
+This is the only aspherical surface on a flint-glass element. The NBFD13 dense flint is not a moldable glass (it does not carry a PGM-class designation), suggesting this surface is likely polished rather than glass-molded. The departure at the expected semi-diameter (~9 mm) is relatively modest — approximately +0.03 mm — consistent with conventional aspherical polishing.
 
 ### Manufacturing Summary
 

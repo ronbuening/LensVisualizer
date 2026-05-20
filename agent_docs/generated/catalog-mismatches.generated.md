@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **235** lenses scanned
 - **2678** glass surfaces examined
 - **2672** surfaces with non-empty `glass` strings
-- **2070** of those resolved to a catalog entry
-- **82** mismatches found (4.0% of resolved surfaces)
-- **48** distinct lens files affected
+- **2067** of those resolved to a catalog entry
+- **53** mismatches found (2.6% of resolved surfaces)
+- **30** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,56 +28,41 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 4 | |
-| S-TIH18 | 3 | |
-| TAFD25 | 3 | |
-| S-TIH6 | 3 | |
 | S-FPM3 | 3 | |
-| S-TIL25 | 2 | |
-| S-BSL7 | 2 | |
+| S-TIH18 | 2 | |
 | S-TIL27 | 2 | |
-| NBFD3 | 2 | |
 | H-LAK6A | 2 | |
-| S-LAL14 | 2 | |
-| S-TIH11 | 2 | |
 | TAFD30 | 2 | |
 | S-FPM4 | 2 | |
-| TAF5 | 2 | |
-| E-FDS1 | 2 | |
+| S-TIH6 | 2 | |
 | S-NBH52V | 2 | |
-| S-LAM55 | 2 | |
 | S-TIM2 | 2 | |
-| S-TIH14 | 2 | |
-| S-LAH65 | 2 | |
 | S-LAH58 | 2 | |
-| NBFD13 | 1 | |
 | S-LAL8 | 1 | |
-| S-NPH53 | 1 | |
 | SF4 | 1 | |
-| N-SK16 | 1 | |
+| S-LAL14 | 1 | |
 | S-TIH4 | 1 | |
+| S-TIH11 | 1 | |
 | NBFD15 | 1 | |
 | S-LAM66 | 1 | |
 | S-LAM3 | 1 | |
 | S-LAH99 | 1 | |
-| S-TIH23 | 1 | |
-| S-LAH64 | 1 | |
+| E-FDS1 | 1 | |
+| S-TIL25 | 1 | |
 | S-NBH56 | 1 | |
+| S-LAM55 | 1 | |
 | S-NPH1 | 1 | |
+| S-TIH14 | 1 | |
 | H-ZLAF68C | 1 | |
 | TAFD5F | 1 | |
 | LAC12 | 1 | |
-| E-CF6 | 1 | |
+| S-BSL7 | 1 | |
 | SF6 | 1 | |
-| S-TIM22 | 1 | |
+| TAFD25 | 1 | |
 | S-TIM35 | 1 | |
-| S-LAL7 | 1 | |
 | H-ZF52 | 1 | |
-| S-BAL35 | 1 | |
-| NBFD11 | 1 | |
-| S-TIM28 | 1 | |
 | S-TIM27 | 1 | |
 | E-FD5 | 1 | |
-| S-BSM71 | 1 | |
 | S-BAL14 | 1 | |
 | E-F3 | 1 | |
 | E-FD15 | 1 | |
@@ -144,27 +129,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 24 | `Dense flint (near S-NBH52V)` | S-NBH52V | 1.69895 | 1.67300 | -0.0260 |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | TAFD5F | 1.76554 | 1.83481 | +0.0693 |
 
-### [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) — JP 2015-41012 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `Dense flint, 800/255 class — S-TIH6 (OHARA) or FD60 (Hoya)` | S-TIH6 | 1.80000 | 1.80518 | +0.0052 |
-| 10 | `NBFD11 (Hoya)` | NBFD11 | 1.63000 | 1.78590 | +0.1559 |
-| 12A | `S-TIM28 (OHARA)` | S-TIM28 | 1.68000 | 1.68893 | +0.0089 |
-
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) — US 7,898,744 B2
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 3 | `H-LAK6A (CDGM) or Nikon melt` | H-LAK6A | 1.63854 | 1.69350 | +0.0550 |
 | 13 | `S-FPM4 (OHARA) — ED glass` | S-FPM4 | 1.49782 | 1.52841 | +0.0306 |
-
-### [NIKON L35AF 35mm f/2.8](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) — US 4,457,596
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `TAF5 (1773/494)` | TAF5 | 1.77279 | 1.81600 | +0.0432 |
-| 7 | `TAF5 (1773/494)` | TAF5 | 1.77279 | 1.81600 | +0.0432 |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) — JP2022-92388A
 
@@ -180,13 +150,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 6 | `S-NPH1 (OHARA)` | S-NPH1 | 2.00100 | 1.80809 | -0.1929 |
 | 7 | `S-TIH14 (OHARA)` | S-TIH14 | 1.80518 | 1.76182 | -0.0434 |
 
-### [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) — JP 2021-189351A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-TIH23 (OHARA)` | S-TIH23 | 1.71736 | 1.78470 | +0.0673 |
-| 6 | `S-LAH64 (OHARA)` | S-LAH64 | 1.80400 | 1.78800 | -0.0160 |
-
 ### [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) — WO 2020/012638 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -201,96 +164,11 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 10 | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 | 1.78470 | 1.80518 | +0.0205 |
 | 12 | `SF56A (Schott) / S-TIH6 (Ohara)` | S-TIH6 | 1.78470 | 1.80518 | +0.0205 |
 
-### [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) — US 4,099,843
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 3 | `S-LAH65 (OHARA) / TAFD25 (HOYA)` | S-LAH65 | 1.83400 | 1.80400 | -0.0300 |
-| 8 | `E-CF6 (HOYA)` | E-CF6 | 1.67790 | 1.51742 | -0.1605 |
-
-### [PENTAX-110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) — US 4,289,385
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-TIH11 (OHARA)` | S-TIH11 | 1.74077 | 1.78472 | +0.0440 |
-| 9 | `S-TIM22 (OHARA)` | S-TIM22 | 1.66446 | 1.64769 | -0.0168 |
-
-### [SIGMA dp0 Quattro 14mm f/4](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) — JP 2016-139087 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 12 | `TAFD25 (HOYA) / S-LAH55 (OHARA)` | TAFD25 | 1.83481 | 1.90366 | +0.0688 |
-| 18 | `E-FDS1 (HOYA) / S-TIH6 (OHARA)` | E-FDS1 | 1.80610 | 1.92286 | +0.1168 |
-
-### [SIGMA DP2X 24mm f/2.8](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) — JP 2010-101979 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-LAL7 / LACL5 (OHARA / HOYA)` | S-LAL7 | 1.71300 | 1.65160 | -0.0614 |
-| 11 | `S-LAM55 (≈) / LACL60 (OHARA / HOYA)` | S-LAM55 | 1.74180 | 1.76200 | +0.0202 |
-
-### [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) — WO 2019/187633
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 9A | `S-BAL35 (OHARA)` | S-BAL35 | 1.58313 | 1.58913 | +0.0060 |
-| 14 | `S-LAL14 (OHARA)` | S-LAL14 | 1.72916 | 1.69680 | -0.0324 |
-
-### [VIVITAR SERIES 1 70–210mm f/2.8–4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) — US 4,758,073
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-LAH65 class (Ohara)` | S-LAH65 | 1.77300 | 1.80400 | +0.0310 |
-| 9 | `S-BSM71 (Ohara)` | S-BSM71 | 1.64000 | 1.64850 | +0.0085 |
-
-### [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) — JP 2025-58577 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-TIH14 (OHARA)` | S-TIH14 | 1.74077 | 1.76182 | +0.0211 |
-| 9 | `S-TIH18 (OHARA)` | S-TIH18 | 1.76182 | 1.72151 | -0.0403 |
-
-### [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) — US 8,970,966 B2
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 2 | `S-TIL25 (OHARA)` | S-TIL25 | 1.53172 | 1.58144 | +0.0497 |
-
-### [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) — JP 2007-108398 A
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 34 | `NBFD13 (HOYA)` | NBFD13 | 1.74950 | 1.80610 | +0.0566 |
-
-### [CANON RF 24-50mm F4.5-6.3 IS STM](../../src/lens-data/canon/CanonRF2450mmf463.data.ts) — US 2023/0213739 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `S-BSL7 (OHARA 639/554)` | S-BSL7 | 1.63854 | 1.51624 | -0.1223 |
-
 ### [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) — US 2019/0265441 A1
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 6 | `S-TIL27 (OHARA)` | S-TIL27 | 1.65412 | 1.57501 | -0.0791 |
-
-### [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) — US 2,681,594 C
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 4 | `NBFD3 (HOYA)` | NBFD3 | 1.74000 | 1.80450 | +0.0645 |
-
-### [FUJIFILM FUJINON 23mm f/2 (X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) — US 2020/0333569 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `TAFD25 (HOYA)` | TAFD25 | 1.71736 | 1.90366 | +0.1863 |
-
-### [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) — US 2021/0231927 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-NPH53 (Ohara)` | S-NPH53 | 1.95906 | 1.84666 | -0.1124 |
 
 ### [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) — US 2014/0247506 A1
 
@@ -309,18 +187,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 5 | `≈SF4 (dense flint)` | SF4 | 1.74710 | 1.75520 | +0.0081 |
-
-### [NIKON AI Nikkor 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) — US 4,062,630
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `HOYA NBFD3 (717/481)` | NBFD3 | 1.71700 | 1.80450 | +0.0875 |
-
-### [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) — US 5,243,468
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `Hoya BACD5 (nd=1.69680 / νd=55.5; Δnd≈0, Δνd=+0.1)` | N-SK16 | 1.69680 | 1.62041 | -0.0764 |
 
 ### [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) — WO 2024/147268 A1
 

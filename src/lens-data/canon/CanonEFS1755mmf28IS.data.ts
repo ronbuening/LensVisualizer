@@ -375,7 +375,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35.3,
       fl: -85.6,
-      glass: "NBFD13 (HOYA)",
+      glass: "S-NBH51 (OHARA)",
       nC: 1.74326,
       nF: 1.76447,
       ng: 1.77681,

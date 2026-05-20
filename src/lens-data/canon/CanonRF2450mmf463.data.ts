@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.63854,
       vd: 55.4,
       fl: -31.45,
-      glass: "S-BSL7 (OHARA 639/554)",
+      glass: "S-BSM18 (OHARA)",
       apd: false,
       role: "First negative lens — diverges beam for wide-angle coverage. Steeply curved rear surface (R₂ = 18.5 mm) carries the dominant refraction in L1.",
     },

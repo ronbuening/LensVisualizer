@@ -99,7 +99,7 @@ L2 is the convex component of the front cemented doublet. Its front surface r₃
 | Glass | nd = 1.7400, νd = 28.2 |
 | Thickness | d = 0.044 |
 | Element focal length | −16.2 mm (at 50 mm scale) |
-| Glass match | **HOYA NBFD3** (nd = 1.7400, νd = 28.2) — exact match; nearest Schott type is SF10 (nd = 1.728, νd = 28.4, Δnd = +0.012) |
+| Glass match | **OHARA S-TIH3** (nd = 1.7400, νd = 28.2) — coefficient-backed catalog match |
 
 L3 is the concave component of the front doublet, and it is the single most critical element in the patent's innovation. Its glass has the highest refractive index in the entire system (nd = 1.7400), and the patent's central claim depends on this fact.
 
@@ -181,12 +181,12 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 |---|---|---|---|---|---|
 | L1 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
 | L2 | 1.6261 | 39.1 | 626/391 | HOYA BAFD7 (1.6261/39.2) | Excellent (Δνd = +0.1) |
-| L3 | 1.7400 | 28.2 | 740/282 | HOYA NBFD3 (1.7400/28.2) | Exact |
+| L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 | Exact |
 | L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
 | L5 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
 | L6 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
 
-Four of the six elements match Schott catalog glasses with high confidence. The two most optically critical elements — L2 and L3, which carry the Ito innovation — match HOYA catalog types (BAFD7 and NBFD3 respectively) with excellent to exact precision. These are modern catalog designations; the specific glass names available in 1950 would have differed, but the nd/νd values identify equivalent compositions within the barium dense flint and dense flint families. Canon likely sourced these glasses from early Japanese manufacturers such as HOYA (founded 1941) or Ohara (founded 1935), who were producing their own optical glass formulations by this period.
+Four of the six elements match Schott catalog glasses with high confidence. The two most optically critical elements — L2 and L3, which carry the Ito innovation — match modern catalog types with excellent to exact precision; L3 now uses the coefficient-backed OHARA S-TIH3 label. These are modern catalog designations; the specific glass names available in 1950 would have differed, but the nd/νd values identify equivalent compositions within the barium dense flint and dense flint families.
 
 It is worth noting that L5 and L6 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
 
@@ -221,4 +221,4 @@ The power is concentrated in the inner elements (S3 and S5), with the two outer 
 
 ---
 
-*Analysis based on US Patent 2,681,594 (Ito, 1954); Canon Camera Museum product pages for the Serenar 50mm f/1.8 I and Canon II C camera; and independent paraxial ray trace verification. Glass identifications are inferred from nd/νd matching against the Schott and HOYA catalogs. Modern HOYA catalog designations (BAFD7, NBFD3) identify equivalent glass families but may not reflect the specific trade names used in 1950. Production volume estimates from Kitchingman (2008).*
+*Analysis based on US Patent 2,681,594 (Ito, 1954); Canon Camera Museum product pages for the Serenar 50mm f/1.8 I and Canon II C camera; and independent paraxial ray trace verification. Glass identifications are inferred from nd/νd matching against public Schott, OHARA, and HOYA catalogs. Modern catalog designations identify equivalent glass families but may not reflect the specific trade names used in 1950. Production volume estimates from Kitchingman (2008).*

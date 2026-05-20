@@ -69,15 +69,15 @@ L3 is separated from the L1–L2 doublet by only 0.10 mm and provides supplement
 
 **L4 — Positive Meniscus, Concave to Object.** nd = 1.83400, νd = 37.3. Glass: S-LAH55 (Ohara) — lanthanum dense flint. f = +81.2 mm.
 
-**L5 — Biconcave Negative.** nd = 1.77300, νd = 49.6. Glass: S-LAH65 class (Ohara) — lanthanum crown. f = −29.6 mm.
+**L5 — Biconcave Negative.** nd = 1.77300, νd = 49.6. Glass: S-LAH66 (OHARA) — lanthanum crown. f = −29.6 mm.
 
-This doublet is the primary power carrier of G2. L5's strong biconcave shape (R₁ = −59.69, R₂ = 37.58 mm) generates the bulk of the group's negative power. L4, although individually positive, is paired with L5 to form a net-negative cemented group while correcting chromatic aberration across the G2 complex. Both elements use lanthanum-series rare-earth glasses — L4 is a lanthanum dense flint (S-LAH55) and L5 is a lanthanum crown (S-LAH65 class). The high refractive indices (1.834 and 1.773) permit the strong curvatures needed for a short, powerful negative group while controlling Petzval sum contributions.
+This doublet is the primary power carrier of G2. L5's strong biconcave shape (R₁ = −59.69, R₂ = 37.58 mm) generates the bulk of the group's negative power. L4, although individually positive, is paired with L5 to form a net-negative cemented group while correcting chromatic aberration across the G2 complex. Both elements use lanthanum-series rare-earth glasses — L4 is a lanthanum dense flint (S-LAH55) and L5 is a lanthanum crown (S-LAH66). The high refractive indices (1.834 and 1.773) permit the strong curvatures needed for a short, powerful negative group while controlling Petzval sum contributions.
 
 The junction surface at S7 (R = −59.685 mm) transitions from nd = 1.834 to nd = 1.773. This modest index step produces relatively little refraction at the cemented interface; the interface instead serves primarily to correct longitudinal chromatic aberration by exploiting the difference in dispersion between L4 (νd = 37.3) and L5 (νd = 49.6).
 
 #### L6 + L7 — Cemented Doublet (f = −71.6 mm)
 
-**L6 — Biconcave Negative.** nd = 1.64048, νd = 60.2. Glass: S-BSM71 (Ohara) — barium crown. f = −31.7 mm.
+**L6 — Biconcave Negative.** nd = 1.64048, νd = 60.2. Glass: S-BSM81 (OHARA) — barium crown. f = −31.7 mm.
 
 **L7 — Positive Meniscus, Convex to Object.** nd = 1.80518, νd = 25.5. Glass: SF6 (Schott) / S-TIH6 (Ohara) — dense flint. f = +57.2 mm.
 
@@ -144,12 +144,12 @@ The design uses 9 distinct glass types across 14 elements. The palette is domina
 | L2, L3, L8, L10 | 1.487 | 70.4 | FK5 / S-FSL5 | Schott / Ohara | Fluor crown | Low-dispersion positive power carriers |
 | L7, L11 | 1.805 | 25.5 | SF6 / S-TIH6 | Schott / Ohara | Dense flint | Achromatic correctors (high dispersion) |
 | L4, L13 | 1.834 | 37.3 | S-LAH55 | Ohara | Lanthanum dense flint | High-index elements for Petzval/field correction |
-| L5 | 1.773 | 49.6 | S-LAH65 class | Ohara | Lanthanum crown | High-index moderate-dispersion negative |
+| L5 | 1.773 | 49.6 | S-LAH66 | OHARA | Lanthanum crown | High-index moderate-dispersion negative |
 | L1 | 1.785 | 26.1 | Dense flint (785/261, SF11 class) | Schott (probable) | Dense flint | Front achromatic corrector |
 | L14 | 1.762 | 26.6 | SF14 / S-TIH14 | Schott / Ohara | Dense flint | Lateral color corrector |
 | L12 | 1.603 | 38.0 | F5 / S-TIM5 | Schott / Ohara | Barium flint | Lateral color / field corrector |
 | L9 | 1.589 | 61.3 | SK5 | Schott | Barium crown | Relay positive element |
-| L6 | 1.640 | 60.2 | S-BSM71 | Ohara | Barium crown | Negative power in G2 |
+| L6 | 1.640 | 60.2 | S-BSM81 | OHARA | Barium crown | Negative power in G2 |
 
 L1's glass (nd = 1.785, νd = 26.1) differs from that used in several other examples of the patent (Examples 1, 2, and 6 use nd = 1.805/νd = 25.5, i.e. SF6, for L1). The closest catalog match for the Example 4 values is Schott SF11 (nd = 1.78472, νd = 25.76), with a νd discrepancy of 0.34 that slightly exceeds typical rounding tolerance for a confident assignment. The glass is therefore identified at the class level with the six-digit code 785/261.
 

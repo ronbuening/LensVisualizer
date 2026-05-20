@@ -96,7 +96,7 @@ The patent identifies the second lens unit L2 as the image stabilization group. 
 | Thick-lens f | −31.45 mm |
 | Shape factor | −1.168 |
 
-**Glass identification:** The nd/νd pair matches OHARA S-BSL7 or HOYA BSL7 exactly (Δnd = 0, Δνd < 0.1). This is a barium silicate crown glass — a workhorse optical material with moderate refractive index and moderate dispersion. S-BSL7 is inexpensive, easy to process, and chemically stable.
+**Glass identification:** The nd/νd pair matches OHARA S-BSM18. This is a barium silicate crown glass — a workhorse optical material with moderate refractive index and moderate dispersion.
 
 **Optical role:** G1 is the first element the light encounters. Its strong negative meniscus shape — a gently curved front surface (R₁ = +238.756 mm) paired with a steeply curved rear surface (R₂ = +18.479 mm), both convex toward the object — provides the bulk of L1's negative refractive power. The rear surface carries the dominant refraction: with a radius of just 18.5 mm, it is the most steeply curved surface in the entire lens. As the outermost element in a negative-lead zoom, G1 must diverge the beam sharply to widen the field of view at the wide-angle end.
 
@@ -258,7 +258,7 @@ The lens uses six distinct optical materials: four conventional optical glasses 
 
 | Element | Material | nd | νd | Glass family | Role |
 |---------|----------|----|----|-------------|------|
-| G1 | S-BSL7 / BSL7 | 1.63854 | 55.4 | Barium silicate crown | Structural negative |
+| G1 | S-BSM18 | 1.63854 | 55.4 | Barium silicate crown | Structural negative |
 | G2 | PMo resin (COP) | 1.53110 | 55.9 | Cyclo-olefin polymer | Aspherical corrector |
 | L1P | S-TIH6 / FD60 | 1.69895 | 30.1 | Dense flint | Chromatic balance for L1 |
 | L2a | S-LAH55V | 1.90366 | 31.3 | Lanthanum heavy flint | Primary convergence |

@@ -78,7 +78,7 @@ The aperture stop is located in the 2.59 mm air gap between the rear surface of 
 | Center thickness | 8.22 mm (patent) / 11.1 mm (production) |
 | Focal length | +98.1 mm (patent) / +132.5 mm (production) |
 
-**Glass identification:** The n_d/ν_d pair (1.717 / 48.1) matches HOYA NBFD3 with near-zero residuals (Δn_d = 0.000, Δν_d = −0.1). This is a niobium-containing dense flint with high refractive index and moderate dispersion — positioned at the boundary between lanthanum crowns and dense flints on the Abbe diagram. Its six-digit glass code is 717/481.
+**Glass identification:** The n_d/ν_d pair (1.717 / 48.1) matches OHARA S-LAM3 closely enough for a coefficient-backed Sellmeier label. This high-index moderate-dispersion glass sits near the boundary between lanthanum crowns and dense flints on the Abbe diagram.
 
 **Optical role:** L1 is the primary converging element at the front of the system. Its individual focal length (+98.1 mm) is close to the system focal length (+100 mm), but in a telephoto arrangement this comparison is misleading: the rear negative group partially cancels the front group's convergence, so L1 must contribute far more power than the system's net figure suggests. Within the front positive group (f = +45.3 mm), L1 provides roughly half the total power. Its strong front curvature (R₁ = +58) combined with a weak rear surface (R₂ = +311) gives a deeply bent meniscus that minimizes spherical aberration contribution while introducing the convergence needed to feed the downstream groups. The high refractive index (1.717) reduces surface curvatures for a given power, which further controls higher-order aberrations at f/2. This element bears the full entrance pupil diameter and is the most mechanically prominent component of the lens.
 
@@ -188,7 +188,7 @@ The six elements use only four distinct glass types:
 
 | Glass Code | n_d | ν_d | Elements | Catalog Match |
 |---|---|---|---|---|
-| 717/481 | 1.717 | 48.1 | L1 | HOYA NBFD3 |
+| 717/481 | 1.717 | 48.1 | L1 | OHARA S-LAM3 |
 | 626/391 | 1.626 | 39.1 | L2 | HOYA FD60 |
 | 589/612 | 1.589 | 61.2 | L3 | OHARA S-BAL35 / HOYA BACD5 |
 | 740/282 | 1.740 | 28.2 | L4 | HOYA FD110 |
