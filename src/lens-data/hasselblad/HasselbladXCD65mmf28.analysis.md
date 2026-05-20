@@ -76,9 +76,9 @@ The aperture stop is located in the air gap between G1 and G2, at surface [7] in
 
 ### L21 — Negative Meniscus, Concave to Object (B21 front element)
 
-nd = 1.59551, νd = 39.24. Glass: S-TIM3 (OHARA) — titanium flint. f ≈ −51.9 mm.
+nd = 1.59551, νd = 39.24. Glass: S-TIM8 (OHARA) — titanium flint. f ≈ −51.9 mm.
 
-L21 is the negative element of the third cemented doublet B21, positioned immediately behind the aperture stop. Its concave-toward-object meniscus form mirrors the convex-toward-object form of B12's negative element L14 on the other side of the stop, contributing to the patent's symmetrical power arrangement. S-TIM3 provides moderate dispersion to create the chromatic differential at the B21 cemented interface.
+L21 is the negative element of the third cemented doublet B21, positioned immediately behind the aperture stop. Its concave-toward-object meniscus form mirrors the convex-toward-object form of B12's negative element L14 on the other side of the stop, contributing to the patent's symmetrical power arrangement. S-TIM8 provides moderate dispersion to create the chromatic differential at the B21 cemented interface.
 
 ### L22 — Positive Meniscus, Concave to Object (B21 rear element) — *ED Glass*
 
@@ -86,29 +86,29 @@ nd = 1.49700, νd = 81.54. Glass: S-FPL51 (OHARA) — fluorophosphate, anomalous
 
 L22 is marked with an asterisk (*) in the patent's prescription table, indicating anomalous dispersion glass. S-FPL51 is OHARA's widely used extra-low-dispersion (ED) fluorophosphate glass — the same material used in premium telephoto and apochromatic designs across the industry (cross-referenced to HOYA FCD1). With νd = 81.54 and anomalous partial dispersion (positive ΔPgF), it provides secondary-spectrum correction that simple crown–flint achromats cannot achieve. The patent identifies the second lens group G2 as the group with the highest refractive power, and notes that using anomalous dispersion glass here is most effective for chromatic correction (¶0088).
 
-Within the cemented doublet B21, L22's S-FPL51 is paired with L21's S-TIM3 flint, creating the largest Abbe differential of any cemented interface in the system (Δνd ≈ 42.3) at the cemented surface S9. The doublet B21 has a net focal length of approximately −110.8 mm — negative despite containing the strongest ED element — because L21's stronger negative power prevails. Within G2, B21 functions primarily as a chromatic corrector: L23 behind it provides the group's dominant positive power (f ≈ +50.2 mm), and B21's negative contribution reduces the group's net power to the moderate f₂ ≈ 73.4 mm while correcting both primary and secondary chromatic aberration.
+Within the cemented doublet B21, L22's S-FPL51 is paired with L21's S-TIM8 flint, creating the largest Abbe differential of any cemented interface in the system (Δνd ≈ 42.3) at the cemented surface S9. The doublet B21 has a net focal length of approximately −110.8 mm — negative despite containing the strongest ED element — because L21's stronger negative power prevails. Within G2, B21 functions primarily as a chromatic corrector: L23 behind it provides the group's dominant positive power (f ≈ +50.2 mm), and B21's negative contribution reduces the group's net power to the moderate f₂ ≈ 73.4 mm while correcting both primary and secondary chromatic aberration.
 
 ### L23 — Biconvex Positive — *Anomalous Dispersion Glass*
 
-nd = 1.53775, νd = 74.70. Glass: S-FPM2 (OHARA) — fluorophosphate (moderate dispersion). f ≈ +50.2 mm.
+nd = 1.53775, νd = 74.70. Glass: S-FPM3 (OHARA) — fluorophosphate (moderate dispersion). f ≈ +50.2 mm.
 
-L23 is also marked with an asterisk in the patent, indicating anomalous dispersion glass. S-FPM2 is a fluorophosphate glass in OHARA's FPM family — lower dispersion than conventional crowns (νd = 74.7) with anomalous partial dispersion, though less pronounced than S-FPL51. As the strongest individual positive element behind the stop (f ≈ 50.2 mm), L23 provides the bulk of G2's converging power. Its biconvex form (R₁ = +271.9 mm, R₂ = −29.7 mm) is heavily asymmetric, with the steep rear surface S12 doing most of the refractive work. This surface also forms the variable air gap that changes during focusing.
+L23 is also marked with an asterisk in the patent, indicating anomalous dispersion glass. S-FPM3 is a fluorophosphate glass in OHARA's FPM family — lower dispersion than conventional crowns (νd = 74.7) with anomalous partial dispersion, though less pronounced than S-FPL51. As the strongest individual positive element behind the stop (f ≈ 50.2 mm), L23 provides the bulk of G2's converging power. Its biconvex form (R₁ = +271.9 mm, R₂ = −29.7 mm) is heavily asymmetric, with the steep rear surface S12 doing most of the refractive work. This surface also forms the variable air gap that changes during focusing.
 
-The use of two anomalous-dispersion glasses in G2 (S-FPL51 in L22 and S-FPM2 in L23) enables the patent to claim favorable chromatic correction — particularly secondary spectrum — without resorting to aspherical surfaces or exotic materials. This dual-ED strategy in the highest-power group is the design's primary chromatic correction mechanism.
+The use of two anomalous-dispersion glasses in G2 (S-FPL51 in L22 and S-FPM3 in L23) enables the patent to claim favorable chromatic correction — particularly secondary spectrum — without resorting to aspherical surfaces or exotic materials. This dual-ED strategy in the highest-power group is the design's primary chromatic correction mechanism.
 
 ### L31 — Positive Meniscus, Concave to Object (B31 front element)
 
-nd = 1.89190, νd = 37.13. Glass: S-LAH79 (OHARA) — dense lanthanum flint, high index. f ≈ +36.5 mm.
+nd = 1.89190, νd = 37.13. Glass: S-LAH92 (OHARA) — dense lanthanum flint, high index. f ≈ +36.5 mm.
 
-L31 is the positive element of the fourth cemented doublet B31, and at nd = 1.892, it carries the highest refractive index in the entire system. S-LAH79 is OHARA's dense lanthanum glass optimized for high-index, moderate-dispersion applications. The patent identifies this element as satisfying Condition (7d): 1.88 ≤ nB31a ≤ 2.0 (¶0077), which enables the cemented surface S14 to carry substantial chromatic-correcting curvature while keeping the doublet physically compact.
+L31 is the positive element of the fourth cemented doublet B31, and at nd = 1.892, it carries the highest refractive index in the entire system. S-LAH92 is OHARA's dense lanthanum glass optimized for high-index, moderate-dispersion applications. The patent identifies this element as satisfying Condition (7d): 1.88 ≤ nB31a ≤ 2.0 (¶0077), which enables the cemented surface S14 to carry substantial chromatic-correcting curvature while keeping the doublet physically compact.
 
 L31 has the shortest focal length of any element in G3 (f ≈ +36.5 mm), providing the positive power that the doublet B31 contributes. The cemented surface S14 (R = −31.09 mm) is concave toward the object and serves as the symmetrical counterpart to B11's cemented surface S2 (R = +26.2 mm), which is convex toward the object. The patent describes this mirror-image arrangement as improving the overall system symmetry and being effective in reducing the Petzval sum (¶0074).
 
 ### L32 — Negative Meniscus, Concave to Object (B31 rear element)
 
-nd = 1.69895, νd = 30.13. Glass: S-TIM22 (OHARA) — titanium flint, high dispersion. f ≈ −70.8 mm.
+nd = 1.69895, νd = 30.13. Glass: S-TIM35 (OHARA) — titanium flint, high dispersion. f ≈ −70.8 mm.
 
-L32 is the negative flint element of B31. S-TIM22 has the lowest Abbe number in the system (νd = 30.1), providing the strongest dispersion among all elements. The Abbe differential between L31 and L32 at the cemented interface S14 is modest (Δνd ≈ 7.0) — the smallest of any cemented interface in this design. Chromatic correction at B31 relies instead on the large refractive index step between the two elements (Δnd = 0.193 — comparable to B11's Δnd = 0.195, and far exceeding B12's 0.014 or B21's 0.099), combined with the strong curvature of S14 (R = −31.09 mm). This index differential creates substantial surface power at the cement, allowing chromatic correction even with the limited Abbe spread. The patent's Condition (8) — nB31b/nB31a < 1 — is satisfied (0.90), confirming that the positive element carries the higher index, which concentrates refractive power at the cemented interface concave toward the object (¶0078).
+L32 is the negative flint element of B31. S-TIM35 has the lowest Abbe number in the system (νd = 30.1), providing the strongest dispersion among all elements. The Abbe differential between L31 and L32 at the cemented interface S14 is modest (Δνd ≈ 7.0) — the smallest of any cemented interface in this design. Chromatic correction at B31 relies instead on the large refractive index step between the two elements (Δnd = 0.193 — comparable to B11's Δnd = 0.195, and far exceeding B12's 0.014 or B21's 0.099), combined with the strong curvature of S14 (R = −31.09 mm). This index differential creates substantial surface power at the cement, allowing chromatic correction even with the limited Abbe spread. The patent's Condition (8) — nB31b/nB31a < 1 — is satisfied (0.90), confirming that the positive element carries the higher index, which concentrates refractive power at the cemented interface concave toward the object (¶0078).
 
 The cemented doublet B31 has a net focal length of approximately +79.5 mm. This is a moderately strong positive power, which is almost entirely cancelled by the trailing negative element L33 to produce G3's near-zero net power.
 
@@ -131,18 +131,18 @@ The design uses an all-OHARA glass palette with 10 distinct glass types — ever
 | L12 | S-LAH55V (OHARA) | 1.83481 | 42.74 | Lanthanum crown (high-nd) | Primary positive power in G1 |
 | L13 | S-BAL35 (OHARA) | 1.58913 | 61.13 | Barium crown | Positive power in B12 |
 | L14 | S-TIM5 (OHARA) | 1.60342 | 38.03 | Titanium flint | Beam collimation / field correction |
-| L21 | S-TIM3 (OHARA) | 1.59551 | 39.24 | Titanium flint | Chromatic partner in B21 |
+| L21 | S-TIM8 (OHARA) | 1.59551 | 39.24 | Titanium flint | Chromatic partner in B21 |
 | L22 | S-FPL51 (OHARA) | 1.49700 | 81.54 | Fluorophosphate (ED) | Secondary-spectrum correction |
-| L23 | S-FPM2 (OHARA) | 1.53775 | 74.70 | Fluorophosphate (anomalous) | Primary positive power in G2 |
-| L31 | S-LAH79 (OHARA) | 1.89190 | 37.13 | Dense lanthanum flint | Positive power in B31 + symmetry partner to L12 |
-| L32 | S-TIM22 (OHARA) | 1.69895 | 30.13 | Titanium flint (high disp.) | Chromatic partner in B31 |
+| L23 | S-FPM3 (OHARA) | 1.53775 | 74.70 | Fluorophosphate (anomalous) | Primary positive power in G2 |
+| L31 | S-LAH92 (OHARA) | 1.89190 | 37.13 | Dense lanthanum flint | Positive power in B31 + symmetry partner to L12 |
+| L32 | S-TIM35 (OHARA) | 1.69895 | 30.13 | Titanium flint (high disp.) | Chromatic partner in B31 |
 | L33 | S-FSL5 (OHARA) | 1.48749 | 70.24 | Fluorosilicate crown | Negative field flattener / image expander |
 
 The chromatic strategy employs three mechanisms operating at different positions in the system:
 
-**Cemented-doublet achromatism** at B11, B12, B21, and B31: in each doublet, the positive element has lower dispersion (higher νd) than the negative element, providing the differential dispersion needed for longitudinal chromatic correction. The Abbe differentials at the four cemented interfaces vary substantially: B21 has the largest spread (Δνd = 42.3, S-TIM3 vs S-FPL51), followed by B12 (Δνd = 23.1, S-BAL35 vs S-TIM5), B11 (Δνd = 8.3, S-TIM27 vs S-LAH55V), and B31 with the smallest (Δνd = 7.0, S-LAH79 vs S-TIM22). Only B12 and B21 are classical crown–flint pairs; B11 and B31 pair two glasses that are both flints by the traditional νd < 50 classification, achieving achromatism through the modest dispersion contrast between them and, more importantly, through their large refractive index steps (Δnd ≈ 0.195 and 0.193 respectively).
+**Cemented-doublet achromatism** at B11, B12, B21, and B31: in each doublet, the positive element has lower dispersion (higher νd) than the negative element, providing the differential dispersion needed for longitudinal chromatic correction. The Abbe differentials at the four cemented interfaces vary substantially: B21 has the largest spread (Δνd = 42.3, S-TIM8 vs S-FPL51), followed by B12 (Δνd = 23.1, S-BAL35 vs S-TIM5), B11 (Δνd = 8.3, S-TIM27 vs S-LAH55V), and B31 with the smallest (Δνd = 7.0, S-LAH92 vs S-TIM35). Only B12 and B21 are classical crown–flint pairs; B11 and B31 pair two glasses that are both flints by the traditional νd < 50 classification, achieving achromatism through the modest dispersion contrast between them and, more importantly, through their large refractive index steps (Δnd ≈ 0.195 and 0.193 respectively).
 
-**Anomalous partial dispersion** in G2: the two ED-class elements L22 (S-FPL51) and L23 (S-FPM2) provide secondary-spectrum correction. Both glasses have positive ΔPgF (anomalous partial dispersion above the Schott normal line), which reduces the secondary spectrum that conventional crown–flint achromats leave uncorrected.
+**Anomalous partial dispersion** in G2: the two ED-class elements L22 (S-FPL51) and L23 (S-FPM3) provide secondary-spectrum correction. Both glasses have positive ΔPgF (anomalous partial dispersion above the Schott normal line), which reduces the secondary spectrum that conventional crown–flint achromats leave uncorrected.
 
 **Petzval sum control** through the negative meniscus doublets B12 and B21 flanking the stop: the strongly curved exit surface of B12 (S6, R = +15.62 mm) and entry surface of B21 (S8, R = −17.67 mm) are the dominant field-flattening surfaces, contributing −0.0241 and −0.0211 respectively to the Petzval sum. The high-index lanthanum glasses at the cemented interfaces of B11 and B31 play an indirect supporting role: by enabling strong refractive power at internal cemented surfaces, they allow the overall power distribution to be arranged so that the exit/entry surfaces near the stop can carry the extreme curvatures needed for Petzval correction. The trailing negative element L33 provides additional field flattening (−0.0092 at S16). The computed Petzval sum for the entire system is 0.00145, corresponding to a Petzval radius of approximately 691 mm — about 10.6× the focal length, indicating very well-corrected field curvature.
 

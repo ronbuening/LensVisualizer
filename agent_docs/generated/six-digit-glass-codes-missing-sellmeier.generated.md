@@ -10,18 +10,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **234** total code-only elements found
-- **163** elements in this report
-- **66** distinct lens files affected
+- **236** total code-only elements found
+- **165** elements in this report
+- **67** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
 | 770297 | 5 | 4 |
+| 855252 | 5 | 4 |
 | 662561 | 4 | 1 |
 | 670571 | 4 | 2 |
-| 855252 | 4 | 3 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 744495 | 3 | 3 |
@@ -38,6 +38,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 777297 | 2 | 2 |
 | 806333 | 2 | 2 |
 | 807316 | 2 | 2 |
+| 808409 | 2 | 2 |
 | 856401 | 2 | 1 |
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
@@ -122,7 +123,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 803404 | 1 | 1 |
 | 804339 | 1 | 1 |
 | 805410 | 1 | 1 |
-| 808409 | 1 | 1 |
 | 821426 | 1 | 1 |
 | 834373 | 1 | 1 |
 | 835447 | 1 | 1 |
@@ -383,6 +383,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L23 (Element 23) | 41 | `903354 — ultra-high-index lanthanum (patent nd=1.90265, νd≈35.4; no exact public catalog match)` | 1.90265 / 35.40 | No catalog entry | abbe |
 | L25 (Element 25) | 45 | `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)` | 1.73800 / 49.30 | No catalog entry | abbe |
 
+### [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) - WO 2022/259649 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L5 (Element 5) | 8 | `855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)` | 1.85451 / 25.15 | No catalog entry | abbe |
+
 ### [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) - WO2020/136749 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
@@ -493,6 +499,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `Dense flint (581/409, uncertain)` | 1.58144 / 40.90 | No catalog entry | abbe |
+| L4 (Element 4) | 7A | `808409 — PGM-moldable lanthanum crown (patent nd=1.80755, νd=40.9; no exact public catalog match)` | 1.80755 / 40.90 | No catalog entry | abbe |
 | L9 (Element 9) | 17 | `Dense flint (717/295, unknown vendor)` | 1.71736 / 29.50 | No catalog entry | abbe |
 
 ### [PENTAX FA 31mm F1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) - US 6,560,042 B2

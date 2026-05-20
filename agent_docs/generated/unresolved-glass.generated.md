@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **539** non-explicit-unmatched annotations did not resolve
+- **541** non-explicit-unmatched annotations did not resolve
 - **192** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -24,6 +24,7 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 770297 | 3 | 2 | |
+| 855252 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | S-TIF6 | 3 | 3 | |
 | 159319 | 2 | 1 | |
@@ -36,7 +37,7 @@ or per-lens patent backfills.
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 807316 | 2 | 2 | |
-| 855252 | 2 | 1 | |
+| 808409 | 2 | 2 | |
 | 856401 | 2 | 1 | |
 | 863252 | 2 | 1 | |
 | BSC3 | 2 | 2 | |
@@ -109,7 +110,6 @@ or per-lens patent backfills.
 | 803404 | 1 | 1 | |
 | 804339 | 1 | 1 | |
 | 805410 | 1 | 1 | |
-| 808409 | 1 | 1 | |
 | 821426 | 1 | 1 | |
 | 834373 | 1 | 1 | |
 | 835447 | 1 | 1 | |
@@ -251,6 +251,12 @@ or per-lens patent backfills.
 - [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 7: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
 - [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
+### 855252 — 3 occurrences
+
+- [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) 8: `855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)`
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `855252 — high-index APD flint (source patent not locally available; no exact public catalog match verified)`
+- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `855252 — high-index APD flint (same as L12; source patent not locally available; no exact public catalog match verified)`
+
 ### 863248 — 3 occurrences
 
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
@@ -313,10 +319,10 @@ or per-lens patent backfills.
 - [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) 13: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 17: `807316 - high-index dense flint class (unresolved)`
 
-### 855252 — 2 occurrences
+### 808409 — 2 occurrences
 
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 3: `855252 — high-index APD flint (source patent not locally available; no exact public catalog match verified)`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 16: `855252 — high-index APD flint (same as L12; source patent not locally available; no exact public catalog match verified)`
+- [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)`
+- [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) 7A: `808409 — PGM-moldable lanthanum crown (patent nd=1.80755, νd=40.9; no exact public catalog match)`
 
 ### 856401 — 2 occurrences
 
@@ -617,10 +623,6 @@ or per-lens patent backfills.
 ### 805410 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
-
-### 808409 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)`
 
 ### 821426 — 1 occurrence
 

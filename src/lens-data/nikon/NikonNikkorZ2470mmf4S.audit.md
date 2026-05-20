@@ -18,3 +18,32 @@ Patent: JP WO2019/049372 A1, Example 1
 ### Analysis sync
 
 - Updated the L21 wording to use the code-led label and avoid an unnecessary proprietary marker.
+
+## 2026-05-20 - Catalog-mismatch queue audit
+
+### Patent evidence
+
+- Local patent file checked: `patents/JPWO2019049372A1.pdf`.
+- Example 1 / Table 1 rows confirmed from local patent text:
+  - S2 / L12: nd = 1.75500, vd = 52.3.
+  - S6 / L22: nd = 1.75500, vd = 52.3.
+  - S17 / L35: nd = 1.59319, vd = 67.9.
+  - S19 / L41: nd = 1.80100, vd = 34.9.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L12 / S2 | `S-LAL14 (OHARA)` | `J-LASKH2 (Hikari)` | Exact nd/vd catalog match. |
+| L22 / S6 | `S-LAL14 (OHARA)` | `J-LASKH2 (Hikari)` | Same glass as L12. |
+| L35 / S17 | `L-LAM60 (OHARA)` | `J-PSKH1 (Hikari)` | Exact nd/vd catalog match. |
+| L41 / S19 | `S-TIH18 (OHARA)` | `J-LAF016 (Hikari)` | Exact nd/vd catalog match. |
+
+### Catalog-search disposition
+
+- Checked public Hikari catalog pages/refractiveindex.info-style entries and existing coefficient-backed catalog entries.
+- No new catalog entries were required.
+
+### Analysis sync
+
+- Updated the affected element notes, glass sourcing summary, ED note, and table rows.

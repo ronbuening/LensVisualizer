@@ -64,9 +64,9 @@ L3 continues the beam divergence initiated by L2. Its negative power is weaker t
 
 ### L4 — Biconvex Positive (both surfaces aspherical)
 
-$n_d = 1.80755$, $\nu_d = 40.9$. Glass: 808/409 code — LAH-type lanthanum glass, likely PGM-moldable. OHARA's S-LAH93 occupies this region of the $n_d$–$\nu_d$ diagram; a moldable L-prefix variant may be used for the aspherical surfaces but cannot be confirmed. $f = +72.5\ \text{mm}$.
+$n_d = 1.80755$, $\nu_d = 40.9$. Glass: 808/409 patent code — LAH-type lanthanum glass, likely PGM-moldable. Public catalogs do not expose an exact coefficient-backed match, so the data file keeps this as a patent-code label. $f = +72.5\ \text{mm}$.
 
-L4 is one of the two aspherical elements in the design and the only aspherical element in the front group. Both surfaces carry aspherical profiles. The glass code 808/409 places it in the LAH (lanthanum, high-index) family in OHARA's nomenclature. OHARA lists S-LAH93 as a polished-lens glass in this region; a moldable (L-prefix) variant may exist for PGM fabrication, but the exact catalog match cannot be confirmed from publicly available data. Given that both surfaces are aspherical, L4 is almost certainly manufactured by precision glass molding (PGM), requiring a low-Tg glass formulation in this index/dispersion range.
+L4 is one of the two aspherical elements in the design and the only aspherical element in the front group. Both surfaces carry aspherical profiles. The glass code 808/409 places it in the LAH (lanthanum, high-index) family, but the exact catalog match cannot be confirmed from publicly available data. Given that both surfaces are aspherical, L4 is almost certainly manufactured by precision glass molding (PGM), requiring a low-Tg glass formulation in this index/dispersion range.
 
 The aspherical profiles are mild — the fourth-order coefficients are small ($A_4 \approx 4.0 \times 10^{-7}$ on S7, $A_4 \approx 3.9 \times 10^{-6}$ on S8) — reflecting the element's role as a zonal spherical aberration corrector rather than a gross wavefront reshaper. The patent's conditional expression (5) governs this element: $|f_{LG1a}/f_{G1}| = |72.46/43.57| = 1.663$, within the preferred range 0.6–6.0 (¶0122). A value near the lower bound would mean L4's power is too strong relative to G1 and the spherical component would overwhelm the aspherical correction; a value near the upper bound would mean L4 is too weak to contribute meaningfully to optical track compactness. At 1.66, the balance is toward moderate power with effective aspherical correction of 3rd- and 5th-order spherical aberration.
 
@@ -116,25 +116,25 @@ The unidentified glass (717/295) is a dense flint type with moderate refractive 
 
 ### L10 — Biconvex Positive (Focus Element Fp)
 
-$n_d = 1.94595$, $\nu_d = 18.0$, $\Delta P_{gF} = +0.0386$. Glass: S-NPH5 (OHARA) — ultra-high-index, ultra-high-dispersion short flint. $f = +52.0\ \text{mm}$.
+$n_d = 1.94595$, $\nu_d = 18.0$, $\Delta P_{gF} = +0.0386$. Glass: FDS18 (HOYA) — ultra-high-index, ultra-high-dispersion short flint. $f = +52.0\ \text{mm}$.
 
 L10 is the second focus element, designated Fp in the patent. It constitutes G3 and moves 1.28 mm toward the object during focusing — counter-directionally to L9. The patent explains (¶0105) that Fp's motion compensates the field curvature introduced by Fn's movement, preserving flat-field performance from infinity to close focus.
 
-L10 uses S-NPH5, the highest-index glass in the system ($n_d = 1.946$) and also the most dispersive ($\nu_d = 18.0$). Its anomalous partial dispersion is the largest in the system ($\Delta P_{gF} = +0.0386$). Despite being a positive element with extremely high dispersion — which would normally introduce severe axial color — L10 operates at very small ray heights (it sits in the narrow beam zone just behind the stop) and its center thickness is only 5.1 mm, limiting its total chromatic contribution. The patent's condition (8) notes that having a positive element with $\nu_d < 35$ behind the stop aids lateral color correction (¶0136); at $\nu_d = 18.0$, L10 strongly satisfies this condition.
+L10 uses FDS18, the highest-index glass in the system ($n_d = 1.946$) and also the most dispersive ($\nu_d = 18.0$). Its anomalous partial dispersion is the largest in the system ($\Delta P_{gF} = +0.0386$). Despite being a positive element with extremely high dispersion — which would normally introduce severe axial color — L10 operates at very small ray heights (it sits in the narrow beam zone just behind the stop) and its center thickness is only 5.1 mm, limiting its total chromatic contribution. The patent's condition (8) notes that having a positive element with $\nu_d < 35$ behind the stop aids lateral color correction (¶0136); at $\nu_d = 18.0$, L10 strongly satisfies this condition.
 
 The choice of ultra-high-index glass for a biconvex focus element also minimizes surface curvatures (R19 = +147.4, R20 = −72.7 — relatively gentle for a 52 mm focal length), which reduces the sensitivity of spherical aberration to focus position. This is critical because L10 moves during focusing and any change in its aberration contribution would degrade image quality at intermediate distances.
 
 ### L11 — Biconcave Negative, cemented with L12
 
-$n_d = 1.56732$, $\nu_d = 42.8$. Glass: S-BAH11 (OHARA) — barium crown. $f = -62.1\ \text{mm}$.
+$n_d = 1.56732$, $\nu_d = 42.8$. Glass: S-TIL26 (OHARA) — light flint. $f = -62.1\ \text{mm}$.
 
-L11 is the negative component of the L11+L12 cemented doublet in the rear group G4. This doublet provides chromatic correction for the rear section of the lens, compensating the residual lateral color that the focus elements and the post-stop geometry introduce. S-BAH11 is a moderate-index barium crown, serving as the lower-dispersion partner in the doublet. Its biconcave shape (R21 = −154.2, R22 = +45.8) creates a strongly diverging surface on the image side that counteracts the convergence of L10 and prevents over-correction of field curvature.
+L11 is the negative component of the L11+L12 cemented doublet in the rear group G4. This doublet provides chromatic correction for the rear section of the lens, compensating the residual lateral color that the focus elements and the post-stop geometry introduce. S-TIL26 is a moderate-index light flint, serving as the dispersive partner in the doublet. Its biconcave shape (R21 = −154.2, R22 = +45.8) creates a strongly diverging surface on the image side that counteracts the convergence of L10 and prevents over-correction of field curvature.
 
 ### L12 — Biconvex Positive (ED), cemented with L11
 
-$n_d = 1.55032$, $\nu_d = 75.5$, $\Delta P_{gF} = +0.0277$. Glass: S-FPM4 (OHARA) — fluorophosphate crown, exact catalog match. $f = +47.0\ \text{mm}$.
+$n_d = 1.55032$, $\nu_d = 75.5$, $\Delta P_{gF} = +0.0277$. Glass: FCD705 (HOYA) — fluorophosphate crown, exact catalog match. $f = +47.0\ \text{mm}$.
 
-L12 is the third and final ED element in the design, and the only one in the rear group. S-FPM4 has the highest Abbe number in the system ($\nu_d = 75.5$), making it the lowest-dispersion glass used. Its anomalous partial dispersion ($\Delta P_{gF} = +0.0277$) contributes to secondary-spectrum correction in the image-side section of the lens — particularly important for controlling lateral chromatic aberration at the field edges, which is difficult to correct from the front group alone.
+L12 is the third and final ED element in the design, and the only one in the rear group. FCD705 has the highest Abbe number in the system ($\nu_d = 75.5$), making it the lowest-dispersion glass used. Its anomalous partial dispersion ($\Delta P_{gF} = +0.0277$) contributes to secondary-spectrum correction in the image-side section of the lens — particularly important for controlling lateral chromatic aberration at the field edges, which is difficult to correct from the front group alone.
 
 The cemented doublet L11+L12 has a combined focal length of $f = +162.0\ \text{mm}$, meaning it is weakly positive. Its primary role is chromatic rather than power-related: the high-dispersion/low-dispersion interface (R22, where $\Delta n = 1.55032 - 1.56732 = -0.017$) provides a color-dependent refraction that fine-tunes both axial and lateral color across the image field.
 
@@ -159,20 +159,20 @@ Given that both surfaces are aspherical, L13 is almost certainly manufactured by
 | L1 | 1.92286 | 20.9 | +0.028 | S-NPH2 | OHARA | Ultra-high-index short flint; front collector |
 | L2 | 1.51680 | 64.2 | — | S-BSL7 | OHARA | Borosilicate crown; achromatic partner to L1 |
 | L3 | 1.58144 | 40.9 | — | 581/409 | Uncertain | Light flint; beam divergence corrector |
-| L4 | 1.80755 | 40.9 | — | 808/409 (LAH-type) | Uncertain (PGM) | Moldable La glass; aspherical SA corrector |
+| L4 | 1.80755 | 40.9 | — | 808409 patent code | Uncertain (PGM) | Moldable La glass; aspherical SA corrector |
 | L5 | 1.59282 | 68.6 | +0.019 | FCD515 (ED) | Hoya | ED fluorophosphate crown; SA correction |
 | L6 | 1.59282 | 68.6 | +0.019 | FCD515 (ED) | Hoya | ED crown; achromatic in L6+L7 doublet |
 | L7 | 1.85478 | 24.8 | — | S-NBH56 | OHARA | Dense Ba short flint; chromatic corrector |
 | L8 | 1.80420 | 46.5 | — | S-LAH65VS | OHARA | LAH-type La glass; beam concentrator (LG1R) |
 | L9 | 1.71736 | 29.5 | — | 717/295 | Unknown | Focus element Fn; proprietary or uncommon |
-| L10 | 1.94595 | 18.0 | +0.039 | S-NPH5 | OHARA | Ultra-high-index short flint; focus Fp |
-| L11 | 1.56732 | 42.8 | — | S-BAH11 | OHARA | Ba-crown; rear doublet negative component |
-| L12 | 1.55032 | 75.5 | +0.028 | S-FPM4 | OHARA | ED fluorophosphate crown; rear chromatic corrector |
+| L10 | 1.94595 | 18.0 | +0.039 | FDS18 | HOYA | Ultra-high-index short flint; focus Fp |
+| L11 | 1.56732 | 42.8 | — | S-TIL26 | OHARA | Light flint; rear doublet negative component |
+| L12 | 1.55032 | 75.5 | +0.028 | FCD705 | HOYA | ED fluorophosphate crown; rear chromatic corrector |
 | L13 | 1.68822 | 31.1 | — | L-TIM28(P) class | OHARA (PGM) | Moldable Ti-flint; aspherical field corrector |
 
 L5/L6 glass: the patent values ($n_d = 1.59282$, $\nu_d = 68.6$, $\Delta P_{gF} = 0.0194$) match Hoya FCD515 exactly on all three parameters ($n_d = 1.59282$, $\nu_d = 68.63$, $\Delta P_{gF} = 0.0194$). No OHARA catalog glass matches these values (closest is S-FPM2 with $\Delta n_d = 0.0024$, $\Delta\nu_d = 0.87$). Hoya sourcing for ED elements in a Panasonic design with Leica collaboration is plausible — Hoya is a major Japanese optical glass supplier with an established ED fluorophosphate line.
 
-**Chromatic correction strategy.** The design uses a distributed chromatic architecture. In the front group, the L6+L7 cemented doublet is the primary achromatizing element, pairing ED crown (Hoya FCD515) with dense flint (S-NBH56). The cemented doublet is deliberately over-corrected chromatically to compensate the substantial positive chromatic residual introduced by L1 (S-NPH2, $\nu_d = 20.9$ — an ultra-high-dispersion glass used in a positive element). The L1+L2 air-spaced pair is *not* an achromatic doublet; L2 (S-BSL7) only partially cancels L1's color, leaving a designed residual for downstream correction. In the rear group, the L11+L12 cemented doublet provides lateral color correction using S-BAH11 and the third ED element (S-FPM4). The three ED elements (L5, L6, L12) all have positive $\Delta P_{gF}$ exceeding 0.015, satisfying the patent's condition (6) for secondary-spectrum correction. The design does not achieve full APO correction — the front group's anomalous-dispersion strategy reduces secondary spectrum but does not eliminate it — which is typical for fast f/1.4 primes where aperture-dependent aberrations take priority over chromatic perfection.
+**Chromatic correction strategy.** The design uses a distributed chromatic architecture. In the front group, the L6+L7 cemented doublet is the primary achromatizing element, pairing ED crown (Hoya FCD515) with dense flint (S-NBH56). The cemented doublet is deliberately over-corrected chromatically to compensate the substantial positive chromatic residual introduced by L1 (S-NPH2, $\nu_d = 20.9$ — an ultra-high-dispersion glass used in a positive element). The L1+L2 air-spaced pair is *not* an achromatic doublet; L2 (S-BSL7) only partially cancels L1's color, leaving a designed residual for downstream correction. In the rear group, the L11+L12 cemented doublet provides lateral color correction using S-TIL26 and the third ED element (FCD705). The three ED elements (L5, L6, L12) all have positive $\Delta P_{gF}$ exceeding 0.015, satisfying the patent's condition (6) for secondary-spectrum correction. The design does not achieve full APO correction — the front group's anomalous-dispersion strategy reduces secondary spectrum but does not eliminate it — which is typical for fast f/1.4 primes where aperture-dependent aberrations take priority over chromatic perfection.
 
 ---
 
@@ -253,7 +253,7 @@ This is the strongest aspherical surface in the design, with $A_4$ roughly 30× 
 
 The rear surface of L13 ($R = -215.6\ \text{mm}$, nearly flat) carries a complementary aspherical profile to S24. The weaker $A_4$ coefficient and similar sign pattern ($+/+/-/+$) indicate that this surface provides fine-tuning of the distortion and astigmatism correction established by S24. Because S25 faces the image plane across a long air gap ($d_{25} = 13.42\ \text{mm}$ to the cover glass), its aspherical profile has significant leverage over the ray angles entering the sensor — making it effective for controlling telecentricity and chief-ray incidence angle at the image periphery, which is critical for uniform sensor illumination in mirrorless cameras.
 
-**Manufacturing summary.** L4 (808/409 LAH-type lanthanum glass, PGM-grade) and L13 (L-TIM28(P) class, PGM-grade) are both precision-glass-molded aspherical elements. PGM fabrication is the standard method for volume production of aspherical lens elements in interchangeable camera lenses, offering high surface accuracy (sub-wavelength form error) at lower cost per unit than polished glass aspherics. Both elements use glass compositions in regions of the $n_d$–$\nu_d$ diagram where OHARA lists moldable (L-prefix) variants.
+**Manufacturing summary.** L4 (808409 LAH-type lanthanum glass, PGM-grade) and L13 (L-TIM28(P) class, PGM-grade) are both precision-glass-molded aspherical elements. PGM fabrication is the standard method for volume production of aspherical lens elements in interchangeable camera lenses, offering high surface accuracy (sub-wavelength form error) at lower cost per unit than polished glass aspherics. Both elements use glass compositions in regions of the $n_d$–$\nu_d$ diagram where low-Tg moldable variants are commonly offered.
 
 ---
 
@@ -305,5 +305,5 @@ All 13 individual element focal lengths were verified to within ±0.0004 mm of t
 
 1. WO 2020/158622 A1, "撮像光学系と、撮像光学系を用いる撮像装置およびカメラシステム," Panasonic IP Management, published 2020-08-06. Numerical Example 3, Tables 3A–3D.
 2. Panasonic official product page, LUMIX S PRO 50mm F1.4 (S-X50): 13 elements / 11 groups, 2 aspherical, 3 ED, f/1.4, MFD 0.44 m, 0.15× max magnification, 47° diagonal FOV, 77 mm filter, 11 blades, 955 g.
-3. OHARA optical glass catalog (current edition): S-NPH2, S-BSL7, S-NBH56, S-LAH65VS, S-NPH5, S-BAH11, S-FPM4, L-TIM28(P) — referenced for $n_d$, $\nu_d$, and moldability classification.
+3. Public optical glass catalogs: OHARA S-NPH2, S-BSL7, S-NBH56, S-LAH65VS, S-TIL26, L-TIM28(P); HOYA FDS18 and FCD705 — referenced for $n_d$, $\nu_d$, and moldability classification.
 4. Hoya optical glass catalog: FCD515 ($n_d = 1.59282$, $\nu_d = 68.63$, $\Delta P_{gF} = 0.0194$) — exact match for L5 and L6 ED elements. Data verified via refractiveindex.info (Hoya optical glass spec sheets).

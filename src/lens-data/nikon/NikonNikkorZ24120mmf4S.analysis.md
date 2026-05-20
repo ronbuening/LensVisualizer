@@ -97,7 +97,7 @@ G4 is the second positive relay group, with total focal length of +67.49 mm — 
 
 G5 is the first of two internal-focus groups. During close focusing, G5 moves toward the object side. Its long positive focal length (+135.76 mm) means it introduces only mild convergence, minimizing aberration sensitivity to focus position.
 
-- **L12** (nd = 1.78472, νd = 25.64, f ≈ −77.4 mm): A negative meniscus (concave toward the object). Despite being in a positively powered group, L12 is individually negative. Its very high-dispersion glass (consistent with OHARA S-TIM25) works as a chromatic corrector within G5.
+- **L12** (nd = 1.78472, νd = 25.64, f ≈ −77.4 mm): A negative meniscus (concave toward the object). Despite being in a positively powered group, L12 is individually negative. Its very high-dispersion glass (consistent with OHARA S-TIH11) works as a chromatic corrector within G5.
 
 - **L13** (nd = 1.77250, νd = 49.62, f ≈ +51.6 mm): A biconvex positive element providing the group's net positive power. The glass code (1.77250/49.62) is consistent with the OHARA S-LAM66 family.
 
@@ -153,15 +153,15 @@ The following table summarizes the inferred glass identifications. Glasses label
 | L1 | 1.903660 | 31.27 | S-LAH79 (OHARA) | Confident | Dense lanthanum flint |
 | L2 | 1.618000 | 63.34 | S-PHM52 (OHARA) | Confident | Phosphate crown |
 | L3 | 1.775030 | 47.31 | Moldable lanthanum crown | Uncertain | No exact catalog match; nearest is HOYA M-TAFD305 (1.77377/47.17) |
-| L4 | 1.834000 | 37.18 | S-LAH66 (OHARA) | Confident | Dense lanthanum flint |
-| L5 | 1.854510 | 25.15 | S-TIM35 (OHARA) or K-VC89 (Sumita) | Likely | Very high-dispersion titanium flint |
+| L4 | 1.834000 | 37.18 | S-LAH60 (OHARA) | Confident | Dense lanthanum flint |
+| L5 | 1.854510 | 25.15 | 855252 patent code | Unresolved | Very high-dispersion flint; no exact public catalog match |
 | L6 | 1.497820 | 82.57 | **S-FPL53 (OHARA)** | Confident | Fluorophosphate ED glass |
 | L7 | 1.593060 | 66.97 | Moldable phosphate crown | Uncertain | No exact catalog match; aspherical, requires mold glass |
 | L8 | 1.618000 | 63.34 | S-PHM52 (OHARA) | Confident | Same glass as L2 |
 | L9 | 1.497820 | 82.57 | **S-FPL53 (OHARA)** | Confident | Fluorophosphate ED glass |
 | L10 | 1.900430 | 37.38 | S-LAH58 (OHARA) | Likely | Dense lanthanum flint |
 | L11 | 1.497820 | 82.57 | **S-FPL53 (OHARA)** | Confident | Fluorophosphate ED glass |
-| L12 | 1.784720 | 25.64 | S-TIM25 (OHARA) | Likely | High-dispersion titanium flint |
+| L12 | 1.784720 | 25.64 | S-TIH11 (OHARA) | Confident | High-dispersion dense flint |
 | L13 | 1.772500 | 49.62 | S-LAM66 (OHARA) | Likely | Lanthanum crown |
 | L14 | 1.553320 | 71.67 | **HOYA M-FCD500** | Confident | Moldable fluorophosphate ED glass |
 | L15 | 1.775030 | 47.31 | Same mold glass as L3 | Uncertain | Aspherical — shares glass with L3 |

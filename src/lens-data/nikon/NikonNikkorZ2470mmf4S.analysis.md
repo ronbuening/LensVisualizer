@@ -75,7 +75,7 @@ The 3.5× increase in focus throw from wide to tele is expected: at longer focal
 
 **L12 — Positive meniscus, convex toward object**
 - Radii: R₁ = +47.495 (junction), R₂ = +417.043
-- Glass: nd = 1.75500, νd = 52.3 → **S-LAL14 (OHARA)** or E-TAF2 (HOYA)
+- Glass: nd = 1.75500, νd = 52.3 → **J-LASKH2 (Hikari)**
 - Center thickness: 8.60 mm
 - Element focal length: +70.3 mm (thick lens)
 
@@ -98,7 +98,7 @@ L21 is the most powerful single element in the entire lens. Its nearly flat fron
 
 **L22 — Biconcave negative**
 - Radii: R₁ = −181.132, R₂ = +49.985
-- Glass: nd = 1.75500, νd = 52.3 → **S-LAL14 (OHARA)** — same glass as L12
+- Glass: nd = 1.75500, νd = 52.3 → **J-LASKH2 (Hikari)** — same glass as L12
 - Center thickness: 1.35 mm
 - Element focal length: −51.8 mm
 
@@ -132,7 +132,7 @@ This is the element Nikon designates as the **"aspherical ED glass"** (AS-ED). T
 
 **L34 + L35 — Cemented doublet (biconcave negative + biconvex positive)**
 - L34: nd = 1.81600, νd = 46.6 → **S-LAH59 (OHARA)**, lanthanum flint
-- L35: nd = 1.59319, νd = 67.9 → **L-LAM60 (OHARA)** (nd = 1.59319, νd = 67.87, exact match)
+- L35: nd = 1.59319, νd = 67.9 → **J-PSKH1 (Hikari)** (nd = 1.59319, νd = 67.90, exact match)
 - Doublet EFL: −137.3 mm
 
 L35 is the most likely candidate for Nikon's second designated **ED glass** element. Its low dispersion (νd = 67.9) provides secondary spectrum correction when paired with the high-dispersion L34.
@@ -140,7 +140,7 @@ L35 is the most likely candidate for Nikon's second designated **ED glass** elem
 ### 3.4 Group 4 — Focusing Group (L41, L42)
 
 **L41 — Negative meniscus, concave toward object**
-- Glass: nd = 1.80100, νd = 34.9 → **S-TIH18 (OHARA)**
+- Glass: nd = 1.80100, νd = 34.9 → **J-LAF016 (Hikari)**
 - Element focal length: −63.4 mm
 
 **L42 — Biconvex positive, rear surface aspherical**
@@ -208,14 +208,14 @@ The patent provides coefficients only through A10. A12 and A14 are zero (not use
 
 ### 5.1 Glass Palette
 
-The design uses 10 distinct glass types across 14 elements (plus one filter glass). Three glasses are reused: S-LAL14 appears in both L12 and L22, S-PHM52 in both L33 and L52. Glasses are sourced from at least two manufacturers — OHARA and HOYA. One glass (L21, code 744495, nd = 1.74353, νd = 49.5) has no confirmed catalog match.
+The design uses 10 distinct glass types across 14 elements (plus one filter glass). Three glasses are reused: J-LASKH2 appears in both L12 and L22, S-PHM52 in both L33 and L52. Glasses are sourced from at least three manufacturers — OHARA, HOYA, and Hikari. One glass (L21, code 744495, nd = 1.74353, νd = 49.5) has no confirmed catalog match.
 
 ### 5.2 ED (Extra-low Dispersion) Glasses
 
 Nikon's marketing identifies **two** ED glass elements:
 
 1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (E-FPL51 or equivalent). APD classification: inferred.
-2. **L35 (νd = 67.9):** The non-aspherical ED element. Confirmed match L-LAM60 (OHARA). APD classification: inferred.
+2. **L35 (νd = 67.9):** The non-aspherical ED element. Confirmed match J-PSKH1 (Hikari). APD classification: inferred.
 
 ### 5.3 Ultra-High Index Glass
 
@@ -295,16 +295,16 @@ The 0.30 m minimum focus distance is exceptional for a standard zoom. The G4 foc
 | Element | Type | nd | νd | EFL (mm) | Glass (probable) |
 |---|---|---|---|---|---|
 | L11 | Neg. meniscus | 1.84666 | 23.8 | −167.0 | S-TIH53 |
-| L12 | Pos. meniscus | 1.75500 | 52.3 | +70.3 | S-LAL14 |
+| L12 | Pos. meniscus | 1.75500 | 52.3 | +70.3 | J-LASKH2 |
 | L21 | Neg. meniscus (1× asph) | 1.74353 | 49.5 | −24.0 | Uncertain (see §10) |
-| L22 | Biconcave neg. | 1.75500 | 52.3 | −51.8 | S-LAL14 |
+| L22 | Biconcave neg. | 1.75500 | 52.3 | −51.8 | J-LASKH2 |
 | L23 | Pos. meniscus | 2.00069 | 25.5 | +44.6 | TAFD40 (HOYA) |
 | L31 | Biconvex pos. (1× asph, AS-ED) | 1.55332 | 71.7 | +42.7 | E-FPL51 |
 | L32 | Neg. meniscus | 1.83481 | 42.7 | −65.1 | S-LAH55V |
 | L33 | Biconvex pos. | 1.61800 | 63.3 | +36.6 | S-PHM52 |
 | L34 | Biconcave neg. | 1.81600 | 46.6 | −13.9 | S-LAH59 |
-| L35 | Biconvex pos. (ED) | 1.59319 | 67.9 | +17.7 | L-LAM60 |
-| L41 | Neg. meniscus | 1.80100 | 34.9 | −63.4 | S-TIH18 |
+| L35 | Biconvex pos. (ED) | 1.59319 | 67.9 | +17.7 | J-PSKH1 |
+| L41 | Neg. meniscus | 1.80100 | 34.9 | −63.4 | J-LAF016 |
 | L42 | Biconvex pos. (1× asph) | 1.59201 | 67.0 | +31.7 | M-PCD51 (HOYA) |
 | L51 | Pos. meniscus (1× asph) | 1.58913 | 61.2 | +92.4 | L-BAL35 (OHARA) |
 | L52 | Biconcave neg. | 1.61800 | 63.3 | −32.0 | S-PHM52 |
