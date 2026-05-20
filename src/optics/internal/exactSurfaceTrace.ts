@@ -31,6 +31,20 @@ export interface ExactSurfaceTraceInput {
   uy0: number;
 }
 
+/**
+ * Vector-native ray input for the exact surface tracer. Use this when the caller
+ * already has a 3D ray (origin + normalized direction) and wants to bypass the
+ * slope-based `[ux, uy, 1] / ||·||` construction.
+ *
+ * Direction must be normalized with `direction[2] > 0`. Bounding-sphere launch
+ * for fisheye fields that exceed the forward cone is a future change tracked in
+ * `TRACE_MODEL_IMPROVEMENT_PLAN.md` Phase 5.
+ */
+export interface VectorRayInput {
+  origin: Vector3;
+  direction: Vector3;
+}
+
 export interface ExactSurfaceTraceOptions {
   zPos?: readonly number[];
   stopAt?: number;
@@ -40,6 +54,7 @@ export interface ExactSurfaceTraceOptions {
   stopSemiDiameter?: number;
   ghost?: boolean;
   stopOnClip?: boolean;
+  /** Slope-entry only: distance to back-project the origin behind the first surface vertex. Ignored by `traceExactSurfaceStackVector`. */
   leadDistance?: number;
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
 }
@@ -117,6 +132,18 @@ export function refractDirection(direction: Vector3, normal: Vector3, n: number,
 export function traceExactSurfaceStack(
   lens: ExactTraceLens,
   { x0 = 0, y0, ux0 = 0, uy0 }: ExactSurfaceTraceInput,
+  options: ExactSurfaceTraceOptions = {},
+): ExactSurfaceTraceResult {
+  const zPos = options.zPos ?? buildSurfaceZPositions(lens.S);
+  const lead = Math.max(0, options.leadDistance ?? inferLeadDistance(lens));
+  const origin: Vector3 = [x0 - ux0 * lead, y0 - uy0 * lead, (zPos[0] ?? 0) - lead];
+  const direction = normalizeDirection(ux0, uy0);
+  return traceExactSurfaceStackVector(lens, { origin, direction }, { ...options, zPos, leadDistance: 0 });
+}
+
+export function traceExactSurfaceStackVector(
+  lens: ExactTraceLens,
+  { origin: originIn, direction: directionIn }: VectorRayInput,
   {
     zPos = buildSurfaceZPositions(lens.S),
     stopAt,
@@ -126,7 +153,6 @@ export function traceExactSurfaceStack(
     stopSemiDiameter,
     ghost = false,
     stopOnClip = false,
-    leadDistance = inferLeadDistance(lens),
     indexAtSurface,
   }: ExactSurfaceTraceOptions = {},
 ): ExactSurfaceTraceResult {
@@ -134,9 +160,8 @@ export function traceExactSurfaceStack(
   const tracedCount = clampTraceCount(stopAt ?? total, total);
   const heights: number[] | null = recordHeights ? [] : null;
   const hits: ExactSurfaceTraceHit[] = [];
-  const lead = Math.max(0, leadDistance);
-  let origin: Vector3 = [x0 - ux0 * lead, y0 - uy0 * lead, (zPos[0] ?? 0) - lead];
-  let direction: Vector3 = normalizeDirection(ux0, uy0);
+  let origin: Vector3 = [originIn[0], originIn[1], originIn[2]];
+  let direction: Vector3 = [directionIn[0], directionIn[1], directionIn[2]];
   let n = 1.0;
   let clipped = false;
   let terminalPoint: Vector3 = origin;
