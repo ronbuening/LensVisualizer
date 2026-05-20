@@ -28,3 +28,20 @@ Patent: JP 2022-99402 A, Example 1
 ### Analysis sync
 
 - Updated glass-selection text and tables to describe 770297 and 911352 as unresolved code-backed patent glasses rather than slash-form unmatched labels.
+
+## 2026-05-20 - Glass relabel follow-up
+
+### Patent evidence
+
+- Re-opened `patents/JP2022099402A.pdf` and confirmed Example 1 rows for the front crown and high-index positive element.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L1 / S1 | `S-LAH55V (OHARA)` | `S-LAL18 (OHARA)` | Patent nd=1.72916, vd=54.7 matches the OHARA S-LAL18 catalog row. |
+| L5 / S10 | `S-NPH4 (OHARA)` | `S-NPH5 (OHARA)` | Patent nd=1.85896, vd=22.7 matches the OHARA S-NPH5 catalog row. |
+
+### Remaining disposition
+
+- The private/code-only rows `770297` and `911352` remain unresolved after public catalog search.

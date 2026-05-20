@@ -11,19 +11,19 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **538** non-explicit-unmatched annotations did not resolve
-- **194** distinct unresolved glass-like tokens found
+- **543** non-explicit-unmatched annotations did not resolve
+- **197** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
 | 670571 | 4 | 2 | |
+| 770297 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
-| 770297 | 3 | 2 | |
 | 855252 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | S-TIF6 | 3 | 3 | |
@@ -37,6 +37,7 @@ or per-lens patent backfills.
 | 784438 | 2 | 1 | |
 | 807316 | 2 | 2 | |
 | 808409 | 2 | 2 | |
+| 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
 | 863252 | 2 | 1 | |
 | BSC3 | 2 | 2 | |
@@ -85,6 +86,7 @@ or per-lens patent backfills.
 | 683548 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
+| 731405 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 741527 | 1 | 1 | |
 | 749547 | 1 | 1 | |
@@ -113,6 +115,7 @@ or per-lens patent backfills.
 | 821426 | 1 | 1 | |
 | 834373 | 1 | 1 | |
 | 835447 | 1 | 1 | |
+| 840433 | 1 | 1 | |
 | 851401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
@@ -222,6 +225,13 @@ or per-lens patent backfills.
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 14: `670571 - high-index crown / lanthanum-crown class (unresolved)`
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 13: `670571 - moderate-index crown (unresolved)`
 
+### 770297 — 4 occurrences
+
+- [CANON RF 28-70mm F2.8 IS STM](../../src/lens-data/canon/CanonRF2870mmf28.data.ts) 15: `770297 - dense flint (patent nd=1.77047, vd=29.70; no exact public catalog match)`
+- [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 5: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
+- [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 7: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
+- [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
+
 ### S-NPH7 — 4 occurrences
 
 - [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
@@ -246,12 +256,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
-
-### 770297 — 3 occurrences
-
-- [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 5: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
-- [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 7: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
-- [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
 ### 855252 — 3 occurrences
 
@@ -320,6 +324,11 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR](../../src/lens-data/fujifilm/FujifilmXF1680mmf4.data.ts) 6A: `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)`
 - [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) 7A: `808409 — PGM-moldable lanthanum crown (patent nd=1.80755, νd=40.9; no exact public catalog match)`
+
+### 813252 — 2 occurrences
+
+- [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 6: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
+- [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 11: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
 
 ### 856401 — 2 occurrences
 
@@ -525,6 +534,10 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 
+### 731405 — 1 occurrence
+
+- [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) 14A: `731405 - moldable flint (patent nd=1.73077, vd=40.50; no exact public catalog match)`
+
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
@@ -636,6 +649,10 @@ or per-lens patent backfills.
 ### 835447 — 1 occurrence
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 8: `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)`
+
+### 840433 — 1 occurrence
+
+- [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
 
 ### 851401 — 1 occurrence
 
