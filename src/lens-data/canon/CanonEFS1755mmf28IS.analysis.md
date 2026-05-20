@@ -172,9 +172,9 @@ $n_d = 1.49700$, $\nu_d = 81.5$. Glass: S-FPL51 (OHARA) — ED fluorophosphate c
 The second UD element, also a biconvex positive with asymmetric curvatures ($R_{33} = +64.8$ mm, $R_{34} = -23.8$ mm — rear surface much more strongly curved). Like L17, it provides positive power with anomalous partial dispersion for secondary-spectrum correction. The patent (¶0050) confirms that both positive lenses in Group 5 satisfy conditions (3) and (4).
 
 *L19: Negative Meniscus, concave to object.*
-$n_d = 1.74950$, $\nu_d = 35.3$. Glass: NBFD13 (HOYA) — dense lanthanum flint. $f \approx -86$ mm.
+$n_d = 1.74950$, $\nu_d = 35.3$. Glass: S-NBH51 (OHARA) — dense flint. $f \approx -86$ mm.
 
-The achromatizing flint partner cemented to L18. Both surfaces ($R_{34} = -23.8$ mm, $R_{35} = -38.9$ mm) are concave toward the object. This element's moderate negative power partially offsets L18's positive power while its high dispersion achromatizes the UD element. The glass identification is confirmed by the patent's spectral data: $n_C = 1.743260$, $n_F = 1.764470$ match HOYA NBFD13 exactly ($n_d = 1.74950$, $\nu_d = 35.28$). OHARA S-NBH5, though sharing the same $n_d$, has $\nu_d = 35.04$ and non-matching line indices. Canon's use of both OHARA and HOYA glass in production is well-documented.
+The achromatizing flint partner cemented to L18. Both surfaces ($R_{34} = -23.8$ mm, $R_{35} = -38.9$ mm) are concave toward the object. This element's moderate negative power partially offsets L18's positive power while its high dispersion achromatizes the UD element. The coefficient-backed relabel uses OHARA S-NBH51, which matches the patent nd/νd pair closely enough for the runtime Sellmeier path.
 
 ## Glass Identification and Selection
 
@@ -193,7 +193,7 @@ The design employs 11 distinct glass types (plus UV-curing resin). Ten are from 
 | S-BAL42 (OHARA) | 1.58313 | 59.4 | L10 | Barium crown — glass-molded aspherical positive in L3 |
 | S-LAL14 (OHARA) | 1.69680 | 55.5 | L13 | Lanthanum crown — negative in IS group cemented doublet |
 | S-FPL51 (OHARA) | 1.49700 | 81.5 | L17, L18 | ED fluorophosphate crown (UD) — secondary-spectrum correction |
-| NBFD13 (HOYA) | 1.74950 | 35.3 | L19 | Dense lanthanum flint — achromatizer for rear UD doublet |
+| S-NBH51 (OHARA) | 1.74950 | 35.3 | L19 | Dense flint — achromatizer for rear UD doublet |
 | UV-curing resin | 1.51640 | 52.2 | L4 front, L16 front | Hybrid aspheric resin layer |
 
 The prevalence of S-TIH53 ($n_d = 1.84666$, $\nu_d = 23.9$) is notable — it appears in four separate elements across Groups 1, 3, and 4. This very dense flint provides the high dispersion needed to achromatize the numerous positive elements throughout the design. Its repeated use simplifies manufacturing logistics (fewer glass blanks to source) while maintaining consistent chromatic balance.
@@ -321,4 +321,4 @@ Group focal lengths and all conditional expressions match Table 1 values to the 
 2. Canon Camera Museum, "EF-S17-55mm f/2.8 IS USM" (global.canon/en/c-museum/product/ef390.html). Production specifications, marketing date, aspherical element type confirmation.
 3. Canon South & Southeast Asia product page (asia.canon/en/consumer/ef-s17-55mm-f-2-8-is-usm/product). Aspherical and UD element count confirmation.
 4. OHARA optical glass catalog (oharacorp.com). Glass identification reference for S-TIH53, S-BSM14, S-LAL8, S-LAH65V, S-LAH55V, S-LAH60, S-TIH6, S-BAL35, S-BAL42, S-LAL14, S-FPL51.
-5. HOYA optical glass catalog (hoya-opticalworld.com). Glass identification reference for NBFD13 (L19). Confirmed via patent spectral data match ($n_C$, $n_F$).
+5. OHARA/HOYA optical glass catalogs. Glass identification reference for the L19 relabel to S-NBH51.

@@ -52,7 +52,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 48.1,
       fl: 98.1,
-      glass: "HOYA NBFD3 (717/481)",
+      glass: "S-LAM3 (OHARA)",
       role: "Front positive meniscus — primary converging element, bears full EP diameter",
     },
     {

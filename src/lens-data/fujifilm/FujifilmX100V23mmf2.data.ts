@@ -60,7 +60,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.51,
       fl: -29.3,
-      glass: "TAFD25 (HOYA)",
+      glass: "S-TIH1 (OHARA)",
       apd: false,
       role: "Front negative element of G1 cemented doublet; high-dispersion flint for axial chromatic correction",
       cemented: "D1",

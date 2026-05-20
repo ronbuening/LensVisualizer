@@ -48,7 +48,7 @@ The biconvex shape (R1 = +38.185, R2 = −93.918 mm) distributes the positive po
 
 ### L12 — Biconcave Negative (Element 2 of cemented doublet Lp1)
 
-nd = 1.53172, νd = 48.8. Glass: S-TIL25 (OHARA) — light titanium flint. f = −21.7 mm.
+nd = 1.53172, νd = 48.8. Glass: S-TIL6 (OHARA) — light titanium flint. f = −21.7 mm.
 
 L12 is cemented to L11's rear surface and provides strong negative power that establishes the cemented doublet's net negative focal length (f_Lp1 = −76.5 mm). The low refractive index (nd = 1.53172) creates the large Δn with L11 that the Petzval correction requires.
 
@@ -97,13 +97,13 @@ The design uses four distinct glass compositions across six elements. The glass 
 | Element | nd | νd | Glass | Vendor | Role |
 |---------|--------|------|-------|--------|------|
 | L11 | 1.83481 | 42.7 | S-LAH55V | OHARA | High-index positive collector |
-| L12 | 1.53172 | 48.8 | S-TIL25 | OHARA | Low-index Petzval corrector |
+| L12 | 1.53172 | 48.8 | S-TIL6 | OHARA | Low-index Petzval corrector |
 | L13 | 1.69680 | 55.5 | S-LAL14 | OHARA | Moderate-index positive meniscus |
 | L21 | 1.69895 | 30.1 | S-TIM35 | OHARA | Dense flint, chromatic corrector |
 | L22 | 1.83481 | 42.7 | S-LAH55V | OHARA | High-index positive (same as L11) |
 | L23 | 1.58313 | 59.4 | S-BAL42 | OHARA | Barium crown, GMo-compatible |
 
-Cross-vendor equivalents exist for all glasses: S-LAH55V ≈ TAFD30 (HOYA); S-TIL25 ≈ E-CF6 (HOYA); S-LAL14 ≈ LAC14 (HOYA) ≈ N-LAK14 (Schott); S-TIM35 ≈ E-FD15 (HOYA) ≈ N-SF15 (Schott); S-BAL42 ≈ BACD12 (HOYA). The OHARA designations are preferred here because Canon's patent practice during this era consistently used OHARA catalog entries, and all glass types have exact nd matches to OHARA S-series glasses. No ED, super-ED, or anomalous-dispersion specialty glasses are used. The design achieves its performance through architectural choices (the negative-power cemented doublets, the aspherical meniscus) rather than exotic materials.
+Cross-vendor equivalents exist for all glasses: S-LAH55V ≈ TAFD30 (HOYA); S-TIL6 is the coefficient-backed OHARA match for L12; S-LAL14 ≈ LAC14 (HOYA) ≈ N-LAK14 (Schott); S-TIM35 ≈ E-FD15 (HOYA) ≈ N-SF15 (Schott); S-BAL42 ≈ BACD12 (HOYA). The OHARA designations are preferred here because Canon's patent practice during this era consistently used OHARA catalog entries, and all glass types have exact nd matches to OHARA S-series glasses. No ED, super-ED, or anomalous-dispersion specialty glasses are used. The design achieves its performance through architectural choices (the negative-power cemented doublets, the aspherical meniscus) rather than exotic materials.
 
 The chromatic correction strategy is unusual. Rather than pairing a high-νd crown with a low-νd flint in the traditional achromatic doublet arrangement, the front doublet Lp1 pairs two glasses with similar Abbe numbers (42.7 and 48.8, ratio 0.88). The patent's conditional expression (2) explicitly permits this close-Abbe pairing, explaining that it keeps the cemented junction surface's curvature moderate so that spherical aberration remains correctable (¶col. 4, lines 35–50). The chromatic correction burden is therefore carried primarily by the rear doublet Lp2, where S-TIM35 (νd = 30.1) and S-LAH55V (νd = 42.7) provide a conventional crown/flint Abbe spread (ratio 1.42) for longitudinal chromatic and spherochromatism correction.
 

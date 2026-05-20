@@ -75,7 +75,7 @@ const LENS_DATA = {
       nd: 1.74,
       vd: 28.2,
       fl: -16.2,
-      glass: "NBFD3 (HOYA)",
+      glass: "S-TIH3 (OHARA)",
       apd: false,
       cemented: "D1",
       role: "Front doublet concave — highest nd; Ito innovation surface for coma correction",

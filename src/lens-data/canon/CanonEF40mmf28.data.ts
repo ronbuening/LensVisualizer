@@ -64,7 +64,7 @@ const LENS_DATA = {
       nd: 1.53172,
       vd: 48.8,
       fl: -21.7,
-      glass: "S-TIL25 (OHARA)",
+      glass: "S-TIL6 (OHARA)",
       apd: false,
       role: "Negative Petzval corrector; low nd creates index difference for flat field. Cemented with L11 to form Lp1 (f = −76.5 mm).",
       cemented: "Lp1",

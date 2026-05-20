@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.95906,
       vd: 17.47,
       fl: 158.4,
-      glass: "S-NPH53 (Ohara)",
+      glass: "S-NPH3 (OHARA)",
       apd: "patent",
       dPgF: 0.047, apdNote:
         "ΔθgF = +0.047; LA positive lens per patent — high-index high-dispersion element for secondary spectrum correction",

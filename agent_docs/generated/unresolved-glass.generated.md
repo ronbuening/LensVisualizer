@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **235** lenses scanned
 - **2678** non-air surfaces examined
 - **2672** element glass declarations examined
-- **543** non-explicit-unmatched annotations did not resolve
-- **197** distinct unresolved glass-like tokens found
+- **546** non-explicit-unmatched annotations did not resolve
+- **200** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -75,6 +75,7 @@ or per-lens patent backfills.
 | 612372 | 1 | 1 | |
 | 624470 | 1 | 1 | |
 | 624584 | 1 | 1 | |
+| 630346 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 658397 | 1 | 1 | |
 | 667311 | 1 | 1 | |
@@ -82,6 +83,7 @@ or per-lens patent backfills.
 | 670393 | 1 | 1 | |
 | 670573 | 1 | 1 | |
 | 670575 | 1 | 1 | |
+| 680312 | 1 | 1 | |
 | 683447 | 1 | 1 | |
 | 683548 | 1 | 1 | |
 | 700555 | 1 | 1 | |
@@ -108,6 +110,7 @@ or per-lens patent backfills.
 | 786275 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 797454 | 1 | 1 | |
+| 800255 | 1 | 1 | |
 | 801455 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 804339 | 1 | 1 | |
@@ -490,6 +493,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
 
+### 630346 — 1 occurrence
+
+- [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 10: `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)`
+
 ### 640601 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
@@ -517,6 +524,10 @@ or per-lens patent backfills.
 ### 670575 — 1 occurrence
 
 - [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
+
+### 680312 — 1 occurrence
+
+- [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
 
 ### 683447 — 1 occurrence
 
@@ -621,6 +632,10 @@ or per-lens patent backfills.
 ### 797454 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
+
+### 800255 — 1 occurrence
+
+- [SONY SONNAR T* FE 35mm F2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 1: `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)`
 
 ### 801455 — 1 occurrence
 

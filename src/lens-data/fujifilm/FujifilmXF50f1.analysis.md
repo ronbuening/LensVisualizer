@@ -113,7 +113,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** This is the **LA positive lens** — the patent's core innovation element. It satisfies the patent's conditional expressions (1): 1.86 < NdA = 1.959 < 2.2, (2): 10 < νdA = 17.47 < 35. The strongly anomalous partial dispersion (ΔθgF = +0.047) provides controlled secondary spectrum that partially cancels the residual secondary spectrum from the ED elements. The very high refractive index prevents the radius of curvature from becoming excessively small despite the lens's relatively weak individual power.
 
-**Glass:** nd = 1.95906, νd = 17.47, θgF = 0.65993 — exact match across all three constants to **Ohara S-NPH53** (high-density lanthanum flint). High-confidence identification.
+**Glass:** nd = 1.95906, νd = 17.47, θgF = 0.65993 — exact match across all three constants to **OHARA S-NPH3** (high-density lanthanum flint). High-confidence identification.
 
 ### 3.5 — Elements 5–6 (L1e + L1f): Cemented Doublet D1
 
@@ -240,7 +240,7 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications: L1a = Ohara S-FPM3, L1d = Ohara S-NPH53 (both exact on nd, νd, θgF). The ED glass (L1b, L1c; nd = 1.59282, νd = 68.62) does not match any current Ohara catalog entry and remains unidentified.
+The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications: L1a = OHARA S-FPM3, L1d = OHARA S-NPH3 (both exact on nd, νd, θgF). The ED glass (L1b, L1c; nd = 1.59282, νd = 68.62) does not match any current Ohara catalog entry and remains unidentified.
 
 ---
 

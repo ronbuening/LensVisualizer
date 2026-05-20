@@ -95,23 +95,23 @@ L3 is the strongest single contributor to the negative Petzval sum (S6 contribut
 
 ### L4 — Weakly Positive Meniscus, Concave to Object
 
-nd = 1.74077, νd = 27.8. Glass: S-TIH11 (OHARA) — dense flint (SF13 equivalent). f = +273.7.
+nd = 1.74077, νd = 27.8. Glass: S-TIH13 (OHARA) — dense flint. f = +273.7.
 
 L4 is a meniscus element with its concave surface facing the object: r₇ = −33.391 and r₈ = −29.895 (both radii negative, both surfaces curving in the same direction). The thick-lens computation reveals it is very weakly positive (f ≈ +274), contributing negligible net power to the system. Its primary role is aberration correction — specifically coma and astigmatism — rather than beam convergence.
 
 The concave-to-object orientation produces a Petzval contribution pattern opposite to that of L1 and L2: the front surface r₇ contributes −0.01274 while the rear surface r₈ contributes +0.01423 to the Petzval sum, for a net near-zero element-level Petzval contribution. This is by design — L4's role is to correct off-axis aberrations without disturbing the Petzval balance already established by L1–L3.
 
-The glass choice is again a dense flint (S-TIH11, νd = 27.8), though with a lower refractive index than L3 (nd = 1.741 vs. 1.805). This pairing with the rear positive L5 forms a second achromatic correction stage: L4 as the high-dispersion partner, L5 as the lower-dispersion partner. The double achromatic correction (L1/L2 vs. L3 in the front, L4 vs. L5 in the rear) provides better longitudinal color control than a single achromatizing pair.
+The glass choice is again a dense flint (S-TIH13, νd = 27.8), though with a lower refractive index than L3 (nd = 1.741 vs. 1.805). This pairing with the rear positive L5 forms a second achromatic correction stage: L4 as the high-dispersion partner, L5 as the lower-dispersion partner. The double achromatic correction (L1/L2 vs. L3 in the front, L4 vs. L5 in the rear) provides better longitudinal color control than a single achromatizing pair.
 
 The patent's condition (3) constrains r₇: −0.46f < r₇ < −0.24f. Below −0.46f (|r₇| too large), outward coma flare from high-incidence off-axis rays would appear and astigmatism correction would be insufficient. Above −0.24f (|r₇| too small), inward coma flare would dominate and astigmatism correction would overshoot.
 
 ### L5 — Positive Meniscus, Convex to Object
 
-nd = 1.66446, νd = 35.8. Glass: S-TIM22 (OHARA) — flint (SF2 equivalent). f = +79.7.
+nd = 1.66446, νd = 35.8. Glass: J-BASF2 (Hikari) — barium flint. f = +79.7.
 
 L5 is the final converging element, refocusing the divergent beam from L3/L4 onto the image plane. Its front surface r₉ = +43.549 carries moderate positive power (φ = +0.01526) and its rear surface r₁₀ = +238.081 contributes only weak negative power (φ = −0.00279). Both radii are positive (both surfaces curve in the same direction), making L5 a meniscus rather than a biconvex element — convex toward the object, gently concave toward the image. The result is a strong positive element (f ≈ +79.7), the most powerful positive element in the system.
 
-The glass selection is notable: S-TIM22 / SF2 is a flint glass (νd = 35.8), not a crown. This is unusual for a positive element, where one might expect a crown to maintain achromatism. The choice reflects the designer's prioritization of the Petzval sum and higher-order aberration balance over simple chromatic correction. A flint glass with nd = 1.664 provides a higher refractive index than BK7 for the same element thickness, allowing a weaker front curvature for a given power — which in turn reduces the spherical aberration introduced by this last refracting surface before the image. The chromatic penalty is absorbed by the overall two-stage achromatizing strategy described above.
+The glass selection is notable: J-BASF2 is a flint glass (νd = 35.8), not a crown. This is unusual for a positive element, where one might expect a crown to maintain achromatism. The choice reflects the designer's prioritization of the Petzval sum and higher-order aberration balance over simple chromatic correction. A flint glass with nd = 1.664 provides a higher refractive index than BK7 for the same element thickness, allowing a weaker front curvature for a given power — which in turn reduces the spherical aberration introduced by this last refracting surface before the image. The chromatic penalty is absorbed by the overall two-stage achromatizing strategy described above.
 
 L5 is the last element before the rear stop diaphragm. Because the stop sits behind L5 (rather than between elements as in a conventional design), the chief ray passes through L5 at a significant height above the axis. This means L5's aberration contributions for off-axis imagery are unusually sensitive to its shape and position — a constraint that shaped the entire architectural approach of the patent.
 
@@ -124,8 +124,8 @@ The glass palette uses five distinct types spanning a wide dispersion range, all
 | L1 | 1.60311 | 60.7 | 603/607 | S-BSM14 | SK14 | Barium crown — front collector |
 | L2 | 1.51633 | 64.1 | 516/641 | S-BSL7 | N-BK7 | Borosilicate crown — achromatizer |
 | L3 | 1.80518 | 25.4 | 805/254 | S-TIH6 | SF6 | Dense flint — diverger / color corrector |
-| L4 | 1.74077 | 27.8 | 741/278 | S-TIH11 | SF13 | Dense flint — coma/astigmatism corrector |
-| L5 | 1.66446 | 35.8 | 664/358 | S-TIM22 | SF2 | Flint — rear converger |
+| L4 | 1.74077 | 27.8 | 741/278 | S-TIH13 | — | Dense flint — coma/astigmatism corrector |
+| L5 | 1.66446 | 35.8 | 664/358 | J-BASF2 | — | Barium flint — rear converger |
 
 All five identifications have high confidence: the patent's nd values match the respective catalog entries to 5-decimal precision (Δnd < 0.00001 in all cases), and νd values agree within ±0.1 of published catalog data.
 
@@ -246,4 +246,4 @@ At production scale, the lens measures approximately 27 mm from front vertex to 
 2. Camerapedia, "Pentax Auto 110" — confirms 5 elements / 5 groups, filter Ø 37.5 mm.
 3. allphotolenses.com, "Pentax-110 50mm f/2.8" — MFD 0.9 m, weight 53 g, length 27 mm.
 4. Vintage Camera Lab, "Pentax Auto 110" — confirms body-integral shutter/aperture mechanism.
-5. OHARA Optical Glass Catalog — glass identification reference for S-BSM14, S-BSL7, S-TIH6, S-TIH11, S-TIM22.
+5. OHARA and Hikari optical glass catalogs — glass identification reference for S-BSM14, S-BSL7, S-TIH6, S-TIH13, and J-BASF2.

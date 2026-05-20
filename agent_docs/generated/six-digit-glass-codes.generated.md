@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **244** total code-only elements found
-- **244** elements in this report
+- **247** total code-only elements found
+- **247** elements in this report
 - **89** distinct lens files affected
 
 ## Codes by Frequency
@@ -102,6 +102,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 624584 | 1 | 1 |
 | 625533 | 1 | 1 |
 | 626357 | 1 | 1 |
+| 630346 | 1 | 1 |
 | 639554 | 1 | 1 |
 | 642581 | 1 | 1 |
 | 658397 | 1 | 1 |
@@ -110,6 +111,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 672323 | 1 | 1 |
 | 673322 | 1 | 1 |
 | 675348 | 1 | 1 |
+| 680312 | 1 | 1 |
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 694532 | 1 | 1 |
@@ -148,6 +150,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 792257 | 1 | 1 |
 | 792450 | 1 | 1 |
 | 797454 | 1 | 1 |
+| 800255 | 1 | 1 |
 | 801349 | 1 | 1 |
 | 801454 | 1 | 1 |
 | 801455 | 1 | 1 |
@@ -853,7 +856,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L111 (Element 1) | 1 | `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)` | 1.80000 / 25.46 | No catalog entry | abbe |
 | L113 (Element 3) | 5A | `Lanthanum flint (LAF class), 760/492 — unresolved; likely PGM-compatible proprietary melt` | 1.76000 / 49.24 | No catalog entry | abbe |
+| L132 (Element 6) | 10 | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | 1.63000 / 34.57 | No catalog entry | abbe |
+| L133 (Element 7) | 12A | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | 1.68000 / 31.16 | No catalog entry | abbe |
 
 ### [SONY SONNAR T* FE 55mm F1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) - US 2015/0092100 A1
 

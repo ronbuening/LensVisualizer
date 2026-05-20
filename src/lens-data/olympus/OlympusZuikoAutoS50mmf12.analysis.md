@@ -188,13 +188,13 @@ Olympus was a long-standing customer of both OHARA and HOYA glass manufacturers 
 | L2 | 1.83400 | 37.19 | 834/372 | OHARA S-LAH65 / HOYA TAFD25 | Lanthanum heavy crown (LaH) | Confirmed (Δnd = 0, Δνd ≈ 0.03) |
 | L3 | 1.72825 | 28.46 | 728/285 | OHARA S-TIF8 / HOYA TIF6 | Titanium flint (TiF) | Confirmed exact (Δnd = 0, Δνd = 0) |
 | L4a | 1.84666 | 23.90 | 847/239 | OHARA S-TIH53 / HOYA E-TIH53 | Heavy titanium flint (TiH) | Confirmed (Δnd = 0, Δνd ≈ 0.12) |
-| L4b | 1.67790 | 55.33 | 678/553 | HOYA E-CF6 | Crown flint (CF) | Confirmed (Δnd = 0, Δνd ≈ 0.01) |
+| L4b | 1.67790 | 55.33 | 678/553 | HOYA LAC12 | Crown glass | Coefficient-backed catalog relabel |
 | L5 | 1.77250 | 49.60 | 772/496 | OHARA S-LAH51 / HOYA TAF1 | Lanthanum crown (LaH) | Confirmed exact (Δnd = 0, Δνd = 0) |
 | L6 | 1.79952 | 42.24 | 800/422 | OHARA S-LAH52 / HOYA TAFD30 | Lanthanum heavy crown (LaH) | Confirmed (Δnd = 0, Δνd ≈ 0.02) |
 
 **Observations on glass selection:**
 
-The design makes heavy use of lanthanum-based glasses (L1, L2, L5, L6), which provide the high refractive indices needed to satisfy conditions (7) and (8) while maintaining adequate Abbe numbers. The two flint elements in the front group (L3: titanium flint) and the doublet (L4a: heavy titanium flint) are chosen for their high dispersion to provide chromatic correction, while L4b — a crown flint with an unusually specific nd/νd combination — is the most distinctive glass choice in the design. The HOYA E-CF6 match for L4b is the only glass in the system found in only one catalog, which may indicate that Olympus specified this particular melt for its precise nd/νd balance within the cemented doublet.
+The design makes heavy use of lanthanum-based glasses (L1, L2, L5, L6), which provide the high refractive indices needed to satisfy conditions (7) and (8) while maintaining adequate Abbe numbers. The two flint elements in the front group (L3: titanium flint) and the doublet (L4a: heavy titanium flint) are chosen for their high dispersion to provide chromatic correction, while L4b uses HOYA LAC12 for its high-Abbe crown role within the cemented doublet.
 
 No anomalous partial dispersion (APD) behavior is required or specified. All glasses are conventional types available from standard optical glass catalogs of the 1970s.
 

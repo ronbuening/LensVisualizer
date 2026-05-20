@@ -110,7 +110,7 @@ The production lens has BFD ≈ **21.0 mm** at f ≈ 35 mm scale (= 60.0 × 0.34
 
 **Optical role:** L1 contributes the majority of the primary convergence needed to gather the wide-angle bundle at the stop. Its front surface carries the largest surface power in the system (φ₁ = (1.69680 − 1.0) / 37.198 = +0.01873 normalized⁻¹). The meniscus form — rather than a simple biconvex — reduces coma and astigmatism at the large off-axis angles required for 2ω ≈ 63°. The refractive power of each individual component is kept moderate (a stated design goal to reduce sensitivity to manufacturing decentre), with L1's power being roughly 78 % of the full-system power.
 
-**Glass:** nd = 1.69680, νd = 55.6. This matches Hoya BACD5 (nd = 1.6968, νd = 55.5) within Δnd ≈ 0.0000, Δνd ≈ +0.1 — an effectively perfect match. BACD5 is a barium crown glass with moderate to high Abbe number, contributing relatively low chromatic dispersion for its refractive index class.
+**Glass:** nd = 1.69680, νd = 55.6. This matches OHARA S-LAL14 within normal patent/catalog rounding. S-LAL14 is a lanthanum crown glass with moderate to high Abbe number, contributing relatively low chromatic dispersion for its refractive index class.
 
 **Asphericity:** None. The patent text suggests an aspherical L1 could improve field curvature and astigmatism at wide angles; the production lens retains the spherical form.
 
@@ -259,7 +259,7 @@ The focusing helix advances the entire barrel toward the object, and the BFD inc
 
 | Element | nd | νd | Six-Digit Code | Best Catalog Match | Δnd | Δνd | Confidence |
 |:-------:|:--:|:--:|:--------------:|:------------------:|:---:|:---:|:----------:|
-| L1 | 1.69680 | 55.6 | 697556 | Hoya BACD5 (1.6968 / 55.5) | ≈0 | +0.1 | High |
+| L1 | 1.69680 | 55.6 | 697556 | OHARA S-LAL14 | ≈0 | +0.1 | High |
 | L21 | 1.59507 | 35.5 | 595355 | No standard catalog match identified | — | — | Low |
 | L22 | 1.74443 | 49.5 | 744495 | No standard catalog match | — | — | Unidentified |
 | L31 | 1.64831 | 33.8 | 648338 | Ohara S-TIM22 / Schott N-SF2 equiv. (1.64769 / 33.82) | +0.001 | −0.02 | High |
