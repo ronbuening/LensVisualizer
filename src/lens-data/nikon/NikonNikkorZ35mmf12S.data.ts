@@ -231,7 +231,7 @@ const LENS_DATA = {
       nd: 1.94594,
       vd: 17.98,
       fl: +95.2,
-      glass: "S-NPH7 (946180, OHARA S-NPH7)",
+      glass: "FDS18 / H-ZF75A family (946180)",
       apd: "patent",
       apdNote:
         "θgF = 0.6546 (patent-listed); condition (14) value = 0.692; strong anomalous partial dispersion for secondary spectrum correction",

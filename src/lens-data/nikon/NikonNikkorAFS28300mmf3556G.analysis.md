@@ -177,7 +177,7 @@ L53 is the dense flint partner of L52. This rear cemented pair corrects lateral 
 
 #### L54 — Rear negative meniscus with image-side asphere
 
-nd = 1.82080, νd = 42.64. Glass: Unmatched patent glass, 821/426 code. f = −45.1 mm.
+nd = 1.82080, νd = 42.64. Glass: unresolved patent glass, 821426 code. f = −45.1 mm.
 
 L54 is the final optical element before the image plane. Surface 35 is the aspherical surface in the numerical table, even though the prose says the asphere faces the object side. The prescription table is controlling. Its negative power and rear-surface asphere provide final field-curvature and astigmatism correction.
 
@@ -201,7 +201,7 @@ The glass palette is strongly Nikon / HIKARI-compatible. Several earlier third-p
 | L43r | 1.55389 / 38.09 | UV-cure optical resin | Hybrid aspherical layer |
 | L51 | 1.56384 / 60.69 | J-SK11 (HIKARI) | Not S-BAM4 |
 | L52 | 1.54814 / 45.79 | S-TIL1 (OHARA) | Exact OHARA match |
-| L54 | 1.82080 / 42.64 | Unmatched, 821/426 patent glass | No exact public HIKARI / OHARA match found |
+| L54 | 1.82080 / 42.64 | 821426 patent glass, unresolved | No exact public HIKARI / OHARA match found |
 
 The chromatic correction strategy places one ED achromat in the front collector and one in the rear relay. L12 corrects color generated before the variator; L32-L33 corrects color after the zoom magnification state has been established. The G2 variator itself uses a high-dispersion positive L23 between negative flint-class elements so that the variator's chromatic contribution is internally balanced rather than pushed entirely onto the front and rear groups.
 

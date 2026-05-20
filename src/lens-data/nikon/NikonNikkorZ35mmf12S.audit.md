@@ -2,6 +2,24 @@
 
 Patent: JP 2025-052870 A, Example 1
 
+## 2026-05-20 - Six-digit missing-Sellmeier code review
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L42 / S29 | `glass` | `S-NPH7 (946180, OHARA S-NPH7)` | `FDS18 / H-ZF75A family (946180)` | Local patent `patents/JP2025052870A.pdf`, Example 1 row 29 lists nd=1.94594, vd=17.98, and theta_gF=0.6546. Public HOYA FDS18 has coefficient-backed code `946180` and nd=1.94595 / vd=17.98; public cross-tables also map `946180` to FDS18/H-ZF75A rather than a current OHARA S-NPH entry. |
+| L44 / S32 | `glass` | `Barium crown / LaK family (624584, no exact catalog match)` | unchanged | Local patent row 32 lists nd=1.62372 and vd=58.4. Public catalog search found no coefficient-backed exact match for `624584`, so the existing unbroken code label remains. |
+
+### Catalog-search disposition
+
+- Confirmed `946180` against HOYA FDS18 / NHG H-ZF75A public data; no new catalog entry was needed because FDS18 is already present.
+- Searched public catalog/refractiveindex.info-style sources for `624584` and the exact 1.62372 / 58.4 pair; no defensible coefficient-backed match was found.
+
+### Phase 4 - Analysis sync
+
+- Updated the L42 analysis from OHARA S-NPH7 wording to the FDS18/H-ZF75A property-family interpretation.
+
 ## 2026-05-19 - Glass relabel + patent-code fallback
 
 ### Phase 1 - Glass corrections

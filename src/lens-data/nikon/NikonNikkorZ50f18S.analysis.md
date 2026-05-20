@@ -53,7 +53,7 @@ G1 consists of six elements arranged from the object side:
    - L11: Biconcave negative meniscus (nd = 1.67270, νd = 32.2)
    - L12: Positive meniscus, convex toward object (nd = 1.94595, νd = 18.0)
 
-   This front cemented doublet serves as an **aberration pre-corrector**. The leading negative element, placed at the very front of the system, is unusual for a lens of this type — most traditional double-Gauss derivatives begin with a positive element. The patent (paragraph 0054) specifically notes that placing a negative lens at the front of G1 enables effective coma correction. L12 uses an ultra-high-index, high-dispersion short flint glass (nd = 1.94595, νd = 18.0, 946/180 code), the highest refractive index in the system. This provides strong chromatic correction in a compact cemented pair, and the large index difference between L11 and L12 at the cemented interface creates a powerfully correcting buried surface.
+   This front cemented doublet serves as an **aberration pre-corrector**. The leading negative element, placed at the very front of the system, is unusual for a lens of this type — most traditional double-Gauss derivatives begin with a positive element. The patent (paragraph 0054) specifically notes that placing a negative lens at the front of G1 enables effective coma correction. L12 uses the coefficient-backed HOYA FDS18 / 946180 ultra-high-index, high-dispersion short flint family (nd = 1.94595, νd = 18.0), the highest refractive index in the system. This provides strong chromatic correction in a compact cemented pair, and the large index difference between L11 and L12 at the cemented interface creates a powerfully correcting buried surface.
 
 2. **L13 — Positive Meniscus** (Surfaces 4–5)
    - Concave toward object (nd = 1.72916, νd = 54.6)
@@ -147,7 +147,7 @@ G3 consists of three elements:
    - L31: Positive meniscus, concave toward object (nd = 1.94595, νd = 18.0)
    - L32: Negative meniscus, concave toward object (nd = 1.64769, νd = 33.7)
 
-   This cemented pair uses the same ultra-high-index short flint glass (nd = 1.94595, νd = 18.0, 946/180 code) seen in L12, now functioning in a different context. L31's positive power combined with L32's negative power creates a net weakly-negative doublet that performs **lateral chromatic aberration correction** and contributes to field flattening. The cemented interface between two relatively high-dispersion glasses with different partial dispersions provides a buried surface for fine-tuning color correction independent of monochromatic power. The patent (paragraph 0025) confirms that having both positive and negative elements in G3 enables good correction of chromatic aberration and other residual aberrations.
+   This cemented pair uses the same HOYA FDS18 / 946180 ultra-high-index short flint family (nd = 1.94595, νd = 18.0) seen in L12, now functioning in a different context. L31's positive power combined with L32's negative power creates a net weakly-negative doublet that performs **lateral chromatic aberration correction** and contributes to field flattening. The cemented interface between two relatively high-dispersion glasses with different partial dispersions provides a buried surface for fine-tuning color correction independent of monochromatic power. The patent (paragraph 0025) confirms that having both positive and negative elements in G3 enables good correction of chromatic aberration and other residual aberrations.
 
 9. **L33 — Plano-Concave Negative Lens** (Surfaces 23–24)
    - Concave toward object, flat on the image side (nd = 1.64769, νd = 33.7)
@@ -192,7 +192,7 @@ The two ED elements work in concert despite being in different groups:
 
 ### Ultra-High-Index Elements (nd = 1.94595)
 
-Two elements use this extreme refractive index (L12 in G1 and L31 in G3). The patent gives nd = 1.94595 and νd = 18.0, corresponding to 946/180 code glass rather than the public S-NPH2 catalog entry currently in the project. Its extremely high refractive index allows strong optical power from gentle surface curvatures, while its high dispersion helps create a chromatic correction lever in cemented doublets. The symmetric placement of these elements near the front and rear of the system contributes to overall chromatic balance.
+Two elements use this extreme refractive index (L12 in G1 and L31 in G3). The patent gives nd = 1.94595 and νd = 18.0, corresponding to 946180 code glass. HOYA FDS18 is a coefficient-backed public match for this code and nd/νd pair; the patent itself does not prove the production vendor. Its extremely high refractive index allows strong optical power from gentle surface curvatures, while its high dispersion helps create a chromatic correction lever in cemented doublets. The symmetric placement of these elements near the front and rear of the system contributes to overall chromatic balance.
 
 ### Dense Flint Group (nd = 1.64769, νd = 33.7)
 
@@ -203,16 +203,16 @@ This glass type appears in four elements: L16, L21, L32, and L33. Its moderate-h
 | Element | nd | νd | Glass Class | Optical Role |
 |---------|-----|-----|-------------|-------------|
 | L11 | 1.67270 | 32.2 | Dense flint (S-TIM25 class) | Front negative corrector |
-| L12 | 1.94595 | 18.0 | 946/180 ultra-high-index short flint | Chromatic correction, high-power cemented surface |
+| L12 | 1.94595 | 18.0 | FDS18 / 946180 ultra-high-index short flint | Chromatic correction, high-power cemented surface |
 | L13 | 1.72916 | 54.6 | Lanthanum crown (S-LAL18 class) | Positive convergence |
 | L14 layer | 1.56093 | 36.6 | Probable UV-curing optical resin (inferred) | Aspherical layer on glass substrate |
 | L14 glass | 1.80400 | 46.6 | Lanthanum dense flint (S-LAH65V class) | Aspherical convergence element |
 | L15 | 1.59319 | 67.9 | ED glass (S-FPM2 / FCD505 class) | Primary chromatic correction |
 | L16 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Achromatizing partner to L15 |
 | L21 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field curvature control in focus group |
-| L22 | 1.77377 | 47.2 | 774/472 lanthanum dense flint | Double-aspherical corrector |
+| L22 | 1.77377 | 47.2 | 774472 lanthanum dense flint, unresolved | Double-aspherical corrector |
 | L23 | 1.49782 | 82.6 | ED glass (S-FPL51 / FCD1 class) | Focus-tracking chromatic correction |
-| L31 | 1.94595 | 18.0 | 946/180 ultra-high-index short flint | Rear chromatic balance |
+| L31 | 1.94595 | 18.0 | FDS18 / 946180 ultra-high-index short flint | Rear chromatic balance |
 | L32 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Lateral color correction |
 | L33 | 1.64769 | 33.7 | Dense flint (S-TIM22 class) | Field flattener |
 

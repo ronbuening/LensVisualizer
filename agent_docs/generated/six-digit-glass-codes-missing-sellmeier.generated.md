@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **235** lenses scanned
-- **237** total code-only elements found
-- **166** elements in this report
+- **235** total code-only elements found
+- **164** elements in this report
 - **64** distinct lens files affected
 
 ## Codes by Frequency
@@ -22,7 +22,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 662561 | 4 | 1 |
 | 670571 | 4 | 2 |
 | 855252 | 4 | 3 |
-| 946180 | 4 | 3 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 744495 | 3 | 3 |
@@ -44,6 +43,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
+| 946180 | 2 | 2 |
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
@@ -313,9 +313,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L12r (L12 resin layer) | 4 | `Patent UV-cure resin (514/530)` | 1.51380 / 53.00 | No catalog entry | abbe |
-| C1 (LS cement layer) | 9 | `Patent cement layer (514/428)` | 1.51400 / 42.80 | No catalog entry | abbe |
-| C2 (Rear doublet cement layer) | 19 | `Patent cement layer (514/428)` | 1.51400 / 42.80 | No catalog entry | abbe |
+| L12r (L12 resin layer) | 4 | `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)` | 1.51380 / 53.00 | No catalog entry | abbe |
+| C1 (LS cement layer) | 9 | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | 1.51400 / 42.80 | No catalog entry | abbe |
+| C2 (Rear doublet cement layer) | 19 | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | 1.51400 / 42.80 | No catalog entry | abbe |
 
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - US 2020/0142168 A1
 
@@ -327,31 +327,31 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L54 (G5 rear aspherical negative lens) | 34 | `Unmatched (patent glass 821/426; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe |
+| L54 (G5 rear aspherical negative lens) | 34 | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe |
 
 ### [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L7 (Element 7) | 15 | `Unmatched crown (534/554; no current HIKARI catalog match)` | 1.53375 / 55.40 | No catalog entry | abbe |
+| L7 (Element 7) | 15 | `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)` | 1.53375 / 55.40 | No catalog entry | abbe |
 
 ### [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) - US 3,524,697
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L8 (Patent L8) | 11 | `Unmatched (lanthanum flint, 768/465 patent melt)` | 1.76764 / 46.50 | No catalog entry | abbe |
+| L8 (Patent L8) | 11 | `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)` | 1.76764 / 46.50 | No catalog entry | abbe |
 
 ### [Nikon Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) - US 5,764,425
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L2 (Rear element of front doublet) | 2 | `Unmatched (804/339 dense flint; exact public catalog match not identified)` | 1.80384 / 33.89 | No catalog entry | abbe |
+| L2 (Rear element of front doublet) | 2 | `804339 — dense flint (patent nd=1.80384, νd=33.89; exact public catalog match not identified)` | 1.80384 / 33.89 | No catalog entry | abbe |
 
 ### [Nikon Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) - US 5,949,588
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 4 | `Unmatched (Nikon patent glass, code 670/575; no current public OHARA/SCHOTT catalog match within tolerance)` | 1.67025 / 57.53 | No catalog entry | abbe |
+| L3 (Element 3) | 4 | `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)` | 1.67025 / 57.53 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) - US 5,528,428
 
@@ -381,7 +381,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L21 (Element 3) | 4 | `Uncertain (glass code 744495, no exact catalog match; PGM low-Tg lanthanum crown)` | 1.74353 / 49.50 | No catalog entry | abbe |
+| L21 (Element 3) | 4 | `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)` | 1.74353 / 49.50 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) - JP 2025-52870A
 
@@ -393,9 +393,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L12 (Element 2) | 2 | `946180 — ultra-high-index short flint (proprietary, patent nd=1.94595, νd=18.0)` | 1.94595 / 18.00 | No catalog entry | abbe |
-| L22 (Element 8) | 16A | `774472 — lanthanum dense flint (proprietary, patent nd=1.77377, νd=47.2)` | 1.77377 / 47.20 | No catalog entry | abbe |
-| L31 (Element 10) | 20 | `946180 — ultra-high-index short flint (proprietary, patent nd=1.94595, νd=18.0)` | 1.94595 / 18.00 | No catalog entry | abbe |
+| L22 (Element 8) | 16A | `774472 — lanthanum dense flint (patent nd=1.77377, νd=47.2; no exact public catalog match)` | 1.77377 / 47.20 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) - WO2020/105104
 

@@ -293,7 +293,7 @@ const LENS_DATA = {
       nd: 1.8208,
       vd: 42.64,
       fl: -45.1,
-      glass: "Unmatched (patent glass 821/426; no public HIKARI/OHARA match found)",
+      glass: "821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)",
       role: "Final negative field-flattener; rear asphere corrects residual field curvature and astigmatism.",
     },
   ],

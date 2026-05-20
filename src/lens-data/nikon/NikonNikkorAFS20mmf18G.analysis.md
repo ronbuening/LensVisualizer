@@ -36,7 +36,7 @@ L11 is the large front diverging member of the retrofocus group. Its two positiv
 ### L12 — Negative Meniscus with Hybrid Aspherical Rear Layer
 
 Glass body: nd = 1.72916, νd = 54.7. Glass: S-LAL18 / TAC8 class. Glass-body f = −71.6 mm. Composite f = −51.9 mm.  
-Resin layer: nd = 1.51380, νd = 53.0. Glass: patent UV-cure resin layer.
+Resin layer: nd = 1.51380, νd = 53.0. Glass: patent UV-cure resin layer, code 514530.
 
 L12 is a hybrid composite asphere: a glass meniscus body with a thin resin layer bonded to the rear surface. The aspheric profile is on surface 5. The patent's design discussion states that a first-group negative lens with an aspherical surface is desirable for correcting the distortion produced by the negative front group (¶0034). The computed standalone glass-body focal length is −71.6 mm, while the composite glass-plus-resin pair is −51.9 mm; that difference is why the resin layer is modeled explicitly in the data file.
 
@@ -49,7 +49,7 @@ L13 is the low-dispersion negative element satisfying the patent's condition tha
 ### L14 + Cement + L15 — First Cemented Doublet LS
 
 L14: nd = 1.80610, νd = 33.3. Glass: HOYA NBFD15 class (806/333). f = +37.9 mm.  
-Cement: nd = 1.51400, νd = 42.8. Patent 0.01 mm cement layer.  
+Cement: nd = 1.51400, νd = 42.8. Patent 0.01 mm cement layer, code 514428.  
 L15: nd = 1.84666, νd = 23.8. Glass: S-TIH53 / FDS90 class (847/238). f = −78.2 mm.  
 Doublet f = +71.6 mm.
 
@@ -78,7 +78,7 @@ The previous analysis identified this element as S-BAL42. That was not supported
 ### L23 + Cement + L24 — Rear Near-Afocal Cemented Doublet
 
 L23: nd = 1.59282, νd = 68.6. Glass: HOYA FCD515 ED phosphate-crown class (593/686). f = +51.0 mm.  
-Cement: nd = 1.51400, νd = 42.8. Patent 0.01 mm cement layer.  
+Cement: nd = 1.51400, νd = 42.8. Patent 0.01 mm cement layer, code 514428.  
 L24: nd = 1.80610, νd = 33.3. Glass: HOYA NBFD15 class (806/333). f = −45.6 mm.  
 Doublet f = −377.7 mm.
 
@@ -111,7 +111,7 @@ The patent itself gives only nd and νd, not vendor names. The following identif
 | Element   |      nd |   νd | Corrected identification            | Confidence                | Role                         |
 | --------- | ------: | ---: | ----------------------------------- | ------------------------- | ---------------------------- |
 | L11, L12  | 1.72916 | 54.7 | S-LAL18 / TAC8 class                | Exact class match         | High-index negative menisci  |
-| L12 resin | 1.51380 | 53.0 | Patent UV-cure resin                | Patent-listed only        | Hybrid aspherical layer      |
+| L12 resin | 1.51380 | 53.0 | Patent UV-cure resin, 514530        | Patent-listed only        | Hybrid aspherical layer      |
 | L13       | 1.49700 | 81.6 | S-FPL51 / FCD1 class                | Exact class match         | ED negative lens             |
 | L14, L24  | 1.80610 | 33.3 | HOYA NBFD15 class                   | Exact match to 806/333    | Dense flint in doublets      |
 | L15       | 1.84666 | 23.8 | S-TIH53 / FDS90 class               | Exact class match         | Very dense flint in LS       |

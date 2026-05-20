@@ -83,11 +83,11 @@ The previous draft correctly recognized the role of the L6-L7 pair but assigned 
 
 ### L8 — Positive Meniscus, concave toward the object
 
-nd = 1.76764, νd = 46.5. Glass: unmatched lanthanum-flint / lanthanum-barium-flint patent melt, 768/465 code. f = +24.83 mm after production scaling.
+nd = 1.76764, νd = 46.5. Glass: unresolved lanthanum-flint / lanthanum-barium-flint patent melt, 768465 code. f = +24.83 mm after production scaling.
 
 L8 is an air-spaced positive meniscus between the L6-L7 doublet and the final cemented doublet. Its front radius is very weak (R13 = -305.981 patent units), while the rear radius is much stronger (R14 = -28.988 patent units). This gives the element positive power while keeping the front surface nearly neutral.
 
-The earlier draft identified this glass as HOYA NBFD3. That is not supported by the HOYA cross-reference: NBFD3 is listed in the 805/396 family, not the patent's 768/465 family.[^hoya-crossref] No exact public modern catalog match was found in the checked HOYA, SCHOTT, and OHARA cross-reference families. The data file therefore uses the explicit `Unmatched` convention rather than preserving a wrong catalog label.
+The earlier draft identified this glass as HOYA NBFD3. That is not supported by the HOYA cross-reference: NBFD3 is listed in the 805/396 family, not the patent's 768465 family.[^hoya-crossref] No exact public modern catalog match was found in the checked HOYA, SCHOTT, and OHARA cross-reference families. The data file therefore uses a future-upgrade code label rather than preserving a wrong catalog label.
 
 ### L9-L10 — Final Cemented Doublet
 
@@ -109,7 +109,7 @@ L10 is better identified as OHARA S-BSM22 / Schott N-SSK2 class than as generic 
 | L4 | 1.78470 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L6 | 1.78477 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L7 | 1.74372 | 45.0 | 744/450 | LAF2 / N-LAF2 / S-LAM2 class | Not S-LAM3-class |
-| L8 | 1.76764 | 46.5 | 768/465 | Unmatched patent melt | Not HOYA NBFD3 |
+| L8 | 1.76764 | 46.5 | 768465 | Unresolved patent melt | Not HOYA NBFD3 |
 | L9 | 1.78485 | 26.0 | 785/260 | FD110 / N-SF11 / S-TIH11 class | Not specifically SF56A |
 | L10 | 1.62230 | 53.1 | 622/531 | S-BSM22 / N-SSK2 class | More precise OHARA match added |
 

@@ -73,7 +73,7 @@ const LENS_DATA = {
       nd: 1.80384,
       vd: 33.89,
       fl: -72.95,
-      glass: "Unmatched (804/339 dense flint; exact public catalog match not identified)",
+      glass: "804339 — dense flint (patent nd=1.80384, νd=33.89; exact public catalog match not identified)",
       apd: false,
       role: "High-index negative achromatizing element cemented to L1; controls axial and lateral color and doublet spherical aberration.",
       cemented: "L12",

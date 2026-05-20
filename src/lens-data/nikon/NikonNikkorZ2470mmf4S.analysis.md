@@ -89,7 +89,7 @@ The variator is the engine of any zoom lens — its axial position relative to G
 
 **L21 — Negative meniscus, convex toward object, rear surface aspherical**
 - Radii: R₁ = +400.000, R₂ = +17.042 (aspherical)
-- Glass: nd = 1.74353, νd = 49.5 → **Uncertain.** Glass code 744495 does not match any standard OHARA S- or L-prefix glass precisely. Nearest candidate S-LAM2 (nd ≈ 1.744, νd ≈ 44.8) has a ~5-unit νd discrepancy. The glass sits in the lanthanum crown region of the nd–νd diagram and requires a low-Tg formulation for precision glass molding. May be a HOYA M-prefix type or a proprietary formulation.
+- Glass: nd = 1.74353, νd = 49.5 → **Uncertain.** Glass code 744495 does not match any standard OHARA S- or L-prefix glass precisely. Nearest candidate S-LAM2 (nd ≈ 1.744, νd ≈ 44.8) has a ~5-unit νd discrepancy. The glass sits in the lanthanum crown region of the nd–νd diagram and requires a low-Tg formulation for precision glass molding. May be a HOYA M-prefix type or a special formulation.
 - Center thickness: 1.80 mm
 - Element focal length: −24.0 mm (thick lens)
 - Aspherical surface: K = −1 (paraboloid base conic, patent κ = 0)
@@ -208,7 +208,7 @@ The patent provides coefficients only through A10. A12 and A14 are zero (not use
 
 ### 5.1 Glass Palette
 
-The design uses 10 distinct glass types across 14 elements (plus one filter glass). Three glasses are reused: S-LAL14 appears in both L12 and L22, S-PHM52 in both L33 and L52. Glasses are sourced from at least two manufacturers — OHARA and HOYA. One glass (L21, nd = 1.74353, νd = 49.5) has no confirmed catalog match and may be proprietary.
+The design uses 10 distinct glass types across 14 elements (plus one filter glass). Three glasses are reused: S-LAL14 appears in both L12 and L22, S-PHM52 in both L33 and L52. Glasses are sourced from at least two manufacturers — OHARA and HOYA. One glass (L21, code 744495, nd = 1.74353, νd = 49.5) has no confirmed catalog match.
 
 ### 5.2 ED (Extra-low Dispersion) Glasses
 
