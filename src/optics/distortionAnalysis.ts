@@ -26,6 +26,8 @@ import {
   projectionFieldAngleForImageHeight,
   projectionFieldSlopesForImagePoint,
   projectionImageHeightForAngle,
+  projectionLaunchSlopeForField,
+  projectionLaunchVectorForFieldAngles,
   type ProjectionReference,
   type ProjectionReferenceKind,
 } from "./projection.js";
@@ -137,7 +139,9 @@ function computeDistortionReference(
     aberrationT,
     options,
   );
-  const probeTan = Math.tan((scaleProbeAngleDeg * Math.PI) / 180);
+  const probeLaunch = projectionLaunchSlopeForField(L, scaleProbeAngleDeg);
+  if (probeLaunch.status === "out-of-domain") return null;
+  const probeTan = -probeLaunch.uField;
   if (!isFinite(probeImageHeight) || Math.abs(probeTan) < 1e-12) return null;
 
   const rectilinearScale = -probeImageHeight / probeTan;
@@ -278,9 +282,12 @@ function buildPupilCorrectionTable(
     : PUPIL_CORRECTION_SAMPLE_COUNT_FULL;
   for (let i = 0; i < sampleCount; i++) {
     const angleDeg = (i / (sampleCount - 1)) * reference.geometry.halfFieldDeg;
-    const thetaRad = (angleDeg * Math.PI) / 180;
-    const tanTheta = Math.tan(thetaRad);
-    const paraxialYChief = reference.geometry.epRatio * tanTheta;
+    const launch = projectionLaunchSlopeForField(L, angleDeg);
+    if (launch.status === "out-of-domain") {
+      table.push({ angleDeg, ratio: 1 });
+      continue;
+    }
+    const paraxialYChief = -reference.geometry.epRatio * launch.uField;
     const solvedYChief = solveChiefRayLaunchHeight(
       angleDeg,
       focusT,
@@ -309,6 +316,48 @@ function interpolatePupilCorrection(table: PupilCorrectionEntry[], angleDeg: num
   return 1;
 }
 
+interface DistortionGridLaunch {
+  fieldSlopeX: number;
+  fieldSlopeY: number;
+  equivalentAngleDeg: number;
+  idealX: number;
+  idealY: number;
+}
+
+function resolveDistortionGridLaunch(
+  xNormalized: number,
+  yNormalized: number,
+  reference: DistortionReference,
+): DistortionGridLaunch | null {
+  if (reference.projectionReference.kind === "fisheye-equidistant") {
+    const launch = projectionLaunchVectorForFieldAngles(
+      reference.projectionReference,
+      xNormalized * reference.geometry.halfFieldDeg,
+      yNormalized * reference.geometry.halfFieldDeg,
+    );
+    if (launch.status === "out-of-domain") return null;
+    return {
+      fieldSlopeX: launch.fieldSlopeX,
+      fieldSlopeY: launch.fieldSlopeY,
+      equivalentAngleDeg: launch.totalFieldDeg,
+      idealX: launch.idealImageX,
+      idealY: launch.idealImageY,
+    };
+  }
+
+  const idealX = xNormalized * reference.idealFieldRadius;
+  const idealY = yNormalized * reference.idealFieldRadius;
+  const fieldSlopes = projectionFieldSlopesForImagePoint(reference.projectionReference, idealX, idealY);
+  if (fieldSlopes === null) return null;
+  return {
+    fieldSlopeX: fieldSlopes.fieldSlopeX,
+    fieldSlopeY: fieldSlopes.fieldSlopeY,
+    equivalentAngleDeg: fieldSlopes.equivalentAngleDeg,
+    idealX,
+    idealY,
+  };
+}
+
 function traceDistortionGridPoint(
   xNormalized: number,
   yNormalized: number,
@@ -323,13 +372,14 @@ function traceDistortionGridPoint(
 ): DistortionGridPoint {
   const radiusNormalized = Math.hypot(xNormalized, yNormalized);
   const insideImageCircle = radiusNormalized <= 1 + 1e-9;
-  const idealX = xNormalized * reference.idealFieldRadius;
-  const idealY = yNormalized * reference.idealFieldRadius;
+
+  const fallbackIdealX = xNormalized * reference.idealFieldRadius;
+  const fallbackIdealY = yNormalized * reference.idealFieldRadius;
 
   if (!insideImageCircle) {
     return {
-      idealX,
-      idealY,
+      idealX: fallbackIdealX,
+      idealY: fallbackIdealY,
       tracedX: null,
       tracedY: null,
       radiusNormalized,
@@ -338,11 +388,11 @@ function traceDistortionGridPoint(
     };
   }
 
-  const fieldSlopes = projectionFieldSlopesForImagePoint(reference.projectionReference, idealX, idealY);
-  if (fieldSlopes === null) {
+  const launch = resolveDistortionGridLaunch(xNormalized, yNormalized, reference);
+  if (launch === null) {
     return {
-      idealX,
-      idealY,
+      idealX: fallbackIdealX,
+      idealY: fallbackIdealY,
       tracedX: null,
       tracedY: null,
       radiusNormalized,
@@ -350,7 +400,7 @@ function traceDistortionGridPoint(
       usable: false,
     };
   }
-  const { fieldSlopeX, fieldSlopeY, equivalentAngleDeg } = fieldSlopes;
+  const { fieldSlopeX, fieldSlopeY, equivalentAngleDeg, idealX, idealY } = launch;
 
   /* Apply pupil-aberration correction based on the equivalent field angle */
   const correction = interpolatePupilCorrection(pupilCorrection, equivalentAngleDeg);

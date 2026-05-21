@@ -376,4 +376,34 @@ describe("computeDistortionFieldGrid", () => {
     expect(grid.referenceKind).toBe("fisheye-equidistant");
     expect(grid.idealFieldRadius).toBeCloseTo(6.3 * ((geometry.halfFieldDeg * Math.PI) / 180), 5);
   });
+
+  it("Nikon 6mm fisheye: angular sampling fills the inscribed disk to the slope-launch cap", () => {
+    const L = build(NikonFisheye6mmf28Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+
+    expect(grid.referenceKind).toBe("fisheye-equidistant");
+    expect(grid.lines.length).toBeGreaterThan(0);
+
+    // Every grid point whose normalized radius is comfortably inside the inscribed
+    // disk (`hypot(xNorm, yNorm) <= 0.95`) should now be usable — the previous
+    // image-space + inverse-map path returned `null` for many such samples on the
+    // Nikon 6mm because their inverse-mapped θ exceeded π/2.
+    let interiorUsable = 0;
+    let interiorTotal = 0;
+    for (const line of grid.lines) {
+      for (const point of line.points) {
+        if (point.radiusNormalized <= 0.95) {
+          interiorTotal += 1;
+          if (point.usable) interiorUsable += 1;
+        }
+      }
+    }
+    expect(interiorTotal).toBeGreaterThan(0);
+    expect(interiorUsable / interiorTotal).toBeGreaterThan(0.9);
+  });
 });

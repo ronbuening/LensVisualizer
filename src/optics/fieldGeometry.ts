@@ -8,9 +8,10 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import { projectionLaunchSlopeForField } from "./projection.js";
+import { MAX_FIELD_LAUNCH_DEG, projectionLaunchSlopeForField } from "./projection.js";
 import { traceRay, type RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
+import { recordChiefRayStatus } from "./chiefRayDiagnostics.js";
 
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 
@@ -59,11 +60,12 @@ function reportChiefRayFallback(
   zoomT: number,
   status: ChiefRaySolveResult["status"],
 ): void {
+  const key = L.data?.key ?? "<unknown-lens>";
+  recordChiefRayStatus(key, status);
   if (status === "converged" || status === "paraxial-fallback") return;
   if (typeof import.meta === "undefined") return;
   const env = (import.meta as { env?: { DEV?: boolean } }).env;
   if (!env?.DEV) return;
-  const key = L.data?.key ?? "<unknown-lens>";
   console.warn(
     `[chiefRaySolver] ${status} key=${key} field=${fieldAngleDeg.toFixed(3)}° focus=${focusT.toFixed(4)} zoom=${zoomT.toFixed(4)}`,
   );
@@ -104,7 +106,9 @@ export function computeFieldGeometryAtState(
   let halfFieldDeg = (Math.atan(minU) * 180) / Math.PI;
 
   const testChief = (deg: number): boolean => {
-    const uField = -Math.tan((deg * Math.PI) / 180);
+    const launch = projectionLaunchSlopeForField(L, deg);
+    if (launch.status === "out-of-domain") return false;
+    const uField = launch.uField;
     const yChiefIn = -epRatio * uField;
     const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
     return isFinite(trace.y) && !trace.clipped;
@@ -120,9 +124,9 @@ export function computeFieldGeometryAtState(
     }
     halfFieldDeg = lo;
   }
-  if (L.projection?.kind === "fisheye-equidistant" && L.projection.maxTraceFieldDeg !== undefined) {
-    halfFieldDeg = Math.min(halfFieldDeg, L.projection.maxTraceFieldDeg);
-  }
+  const projectionClampDeg =
+    L.projection?.kind === "fisheye-equidistant" ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
+  halfFieldDeg = Math.min(halfFieldDeg, projectionClampDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
 
   return { halfFieldDeg, yRatio, b, epRatio };
 }
@@ -185,8 +189,8 @@ export function traceChiefRayAtAngle(
   options?: RayTraceOptions,
 ): RayTraceResult {
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  const uField = launch.uField;
   const yChief = -geom.epRatio * uField;
   return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
 }
@@ -252,11 +256,7 @@ function computeChiefRaySolve(
 ): ChiefRaySolveResult {
   const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
   if (launch.status === "out-of-domain") {
-    const geomFallback = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-    const fallbackTheta = (fieldAngleDeg * Math.PI) / 180;
-    const fallbackU = isFinite(fallbackTheta) ? -Math.tan(fallbackTheta) : NaN;
-    const paraxialYChief = isFinite(fallbackU) ? -geomFallback.epRatio * fallbackU : NaN;
-    return { yLaunch: paraxialYChief, uField: fallbackU, status: "out-of-domain", iterations: 0 };
+    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0 };
   }
 
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
@@ -325,8 +325,8 @@ export function chiefRayImageHeightAccurate(
   aberrationT = 0,
   options?: RayTraceOptions,
 ): number {
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  const uField = launch.uField;
   const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);

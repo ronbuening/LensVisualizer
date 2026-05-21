@@ -1,7 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay, solveChiefRayLaunchHeight } from "../../../src/optics/fieldGeometry.js";
+import {
+  computeFieldGeometryAtState,
+  solveChiefRay,
+  solveChiefRayLaunchHeight,
+} from "../../../src/optics/fieldGeometry.js";
 import { projectionLaunchSlopeForField, MAX_FIELD_LAUNCH_DEG } from "../../../src/optics/projection.js";
+import { getChiefRayDiagnostics, resetChiefRayDiagnostics } from "../../../src/optics/chiefRayDiagnostics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";
@@ -74,5 +79,47 @@ describe("solveChiefRay", () => {
       expect(result.iterations).toBeLessThanOrEqual(30);
       expect(Number.isFinite(result.yLaunch)).toBe(true);
     }
+  });
+});
+
+describe("computeFieldGeometryAtState halfField clamp", () => {
+  it("clamps halfFieldDeg below MAX_FIELD_LAUNCH_DEG for the fisheye fixture", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const geom = computeFieldGeometryAtState(0, 0, L);
+    expect(geom.halfFieldDeg).toBeLessThan(MAX_FIELD_LAUNCH_DEG);
+  });
+
+  it("never publishes halfFieldDeg outside projectionLaunchSlopeForField's in-domain region", () => {
+    for (const key of [RECTILINEAR_FIXTURE, FISHEYE_FIXTURE]) {
+      const L = buildLens(LENS_CATALOG[key]);
+      const geom = computeFieldGeometryAtState(0, 0, L);
+      const edge = projectionLaunchSlopeForField(L, geom.halfFieldDeg);
+      expect(edge.status).toBe("ok");
+    }
+  });
+});
+
+describe("chiefRayDiagnostics", () => {
+  afterEach(() => {
+    resetChiefRayDiagnostics();
+  });
+
+  it("counts converged solves under the lens key", () => {
+    resetChiefRayDiagnostics();
+    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    solveChiefRay(10, 0, 0, L);
+    solveChiefRay(20, 0, 0, L);
+    const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");
+    expect(counts).toBeDefined();
+    expect((counts?.converged ?? 0) + (counts?.["paraxial-fallback"] ?? 0)).toBeGreaterThanOrEqual(2);
+  });
+
+  it("counts out-of-domain solves separately from converged ones", () => {
+    resetChiefRayDiagnostics();
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
+    const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");
+    expect(counts?.["out-of-domain"]).toBe(1);
+    expect(counts?.converged ?? 0).toBe(0);
   });
 });

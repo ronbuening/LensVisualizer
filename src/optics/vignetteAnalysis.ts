@@ -23,6 +23,7 @@
  */
 
 import { traceRay, solveChiefRayLaunchHeight, computeAnalysisFieldGeometryAtState } from "./optics.js";
+import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
 import type { RayTraceOptions } from "./rayTrace.js";
@@ -106,11 +107,15 @@ export function computeVignettingCurve(
 
   for (let i = 0; i < fieldSamples; i++) {
     const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
-    const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+    const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+    if (launch.status === "out-of-domain") {
+      rawGT.push(0);
+      continue;
+    }
+    const uField = launch.uField;
 
     /* Solved chief-ray launch: iteratively corrects for pupil aberration.
      * Falls back to paraxial for small angles (<1°) automatically. */
-    const uField = -Math.tan(thetaRad);
     const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
 
     /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */

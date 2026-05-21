@@ -17,6 +17,7 @@ import {
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "../optics.js";
+import { projectionLaunchSlopeForField } from "../projection.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
@@ -104,7 +105,9 @@ export function computeParaxialOffAxisFieldGeometry(
   const fieldAngleDeg = halfFieldDeg * fieldFraction;
   if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
 
-  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  if (launch.status === "out-of-domain") return null;
+  const uField = launch.uField;
   const yChief = -(bAtZoom(zoomT, L) / yRatio) * uField;
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + (L.S[L.N - 1]?.d ?? 0);
@@ -141,7 +144,9 @@ export function computeStateAwareOffAxisFieldGeometry(
   const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
   if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
 
-  const uField = -Math.tan((fieldAngleDeg * Math.PI) / 180);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  if (launch.status === "out-of-domain") return null;
+  const uField = launch.uField;
   const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);

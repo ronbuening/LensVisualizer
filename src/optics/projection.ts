@@ -86,6 +86,88 @@ export function projectionLaunchSlopeForField(
   return { uField: -Math.tan(thetaRad), status: "ok" };
 }
 
+export interface ProjectionAngularLaunch {
+  fieldSlopeX: number;
+  fieldSlopeY: number;
+  totalFieldDeg: number;
+  idealImageX: number;
+  idealImageY: number;
+  status: "ok" | "on-axis" | "out-of-domain";
+}
+
+/**
+ * Forward-map an object-space field direction into chief-ray launch slopes and
+ * the ideal image-plane coordinate under the lens's declared projection.
+ *
+ * Input semantics: `(θ_x, θ_y)` are the azimuthal projections of a single
+ * off-axis direction, with `θ_total = hypot(θ_x, θ_y)` and image-plane azimuth
+ * `atan2(θ_y, θ_x)`. For fisheye-equidistant this means the angular Cartesian
+ * grid maps directly to image-space Cartesian via `(θ_x, θ_y) → (f·θ_x, f·θ_y)`,
+ * unblocking grid corners that would inverse-map past π/2 through
+ * `projectionFieldSlopesForImagePoint`.
+ *
+ * Sign convention matches the legacy distortion grid: `idealImageY` is positive
+ * for positive `θ_y` (the image-plane Y flip happens at trace time, not at
+ * forward-map time), while `fieldSlopeY` is negated relative to `θ_y` to match
+ * the object-to-image flip used by `traceSkewRay`.
+ */
+export function projectionLaunchVectorForFieldAngles(
+  reference: ProjectionReference,
+  fieldAngleXDeg: number,
+  fieldAngleYDeg: number,
+): ProjectionAngularLaunch {
+  if (!isFinite(fieldAngleXDeg) || !isFinite(fieldAngleYDeg)) {
+    return {
+      fieldSlopeX: NaN,
+      fieldSlopeY: NaN,
+      totalFieldDeg: NaN,
+      idealImageX: NaN,
+      idealImageY: NaN,
+      status: "out-of-domain",
+    };
+  }
+  const totalFieldDeg = Math.hypot(fieldAngleXDeg, fieldAngleYDeg);
+  if (totalFieldDeg < 1e-9) {
+    return { fieldSlopeX: 0, fieldSlopeY: 0, totalFieldDeg: 0, idealImageX: 0, idealImageY: 0, status: "on-axis" };
+  }
+
+  const thetaTotalRad = (totalFieldDeg * Math.PI) / 180;
+  const azimuthX = fieldAngleXDeg / totalFieldDeg;
+  const azimuthY = fieldAngleYDeg / totalFieldDeg;
+
+  let idealImageX: number;
+  let idealImageY: number;
+  switch (reference.kind) {
+    case "fisheye-equidistant": {
+      const imageRadius = reference.focalScaleMm * thetaTotalRad;
+      idealImageX = azimuthX * imageRadius;
+      idealImageY = azimuthY * imageRadius;
+      break;
+    }
+    case "rectilinear":
+    default: {
+      const imageRadius = reference.focalScaleMm * Math.tan(thetaTotalRad);
+      idealImageX = azimuthX * imageRadius;
+      idealImageY = azimuthY * imageRadius;
+      break;
+    }
+  }
+
+  if (totalFieldDeg >= MAX_FIELD_LAUNCH_DEG) {
+    return { fieldSlopeX: NaN, fieldSlopeY: NaN, totalFieldDeg, idealImageX, idealImageY, status: "out-of-domain" };
+  }
+
+  const slopeMagnitude = Math.tan(thetaTotalRad);
+  return {
+    fieldSlopeX: azimuthX * slopeMagnitude,
+    fieldSlopeY: -azimuthY * slopeMagnitude,
+    totalFieldDeg,
+    idealImageX,
+    idealImageY,
+    status: "ok",
+  };
+}
+
 export function projectionFieldSlopesForImagePoint(
   reference: ProjectionReference,
   imageX: number,
