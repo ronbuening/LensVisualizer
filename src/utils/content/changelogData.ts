@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-21",
     type: "lens",
-    summary: "Added the Canon EF 8-15mm f/4L Fisheye USM",
+    summary: "Added six Canon EF L-series lenses from fisheye zoom to macro and telephoto",
   },
   {
     date: "2026-05-21",
