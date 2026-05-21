@@ -18,6 +18,36 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - Offers lens-library filters and groupings by maker, focal length, patent year, mount, and image format
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
 
+## How It Works
+
+```mermaid
+flowchart TD
+  A[User opens Surface & Stop] --> B[React Router route manifest]
+  B --> C{Route type}
+  C -->|Lens page| D[Lens catalog + generated metadata]
+  C -->|Article/static page| E[Markdown content + SEO metadata]
+  C -->|Compare page| F[Comparison module]
+
+  D --> G[buildLens validates prescription]
+  G --> H[RuntimeLens: frozen optical model]
+  H --> I[Viewer state: reducer, URL sync, persisted prefs]
+  I --> J[Layout + ray hooks]
+  J --> K[Pure optics engine]
+  K --> L[Exact surface tracing, projection model, aberration analysis]
+  L --> M[SVG diagram layers + analysis drawer]
+
+  F --> I
+  E --> N[ThemedMarkdown renderer]
+  N --> O[Prerendered HTML]
+  M --> O
+
+  P[src/lens-data] --> D
+  Q[src/content] --> E
+  R[Glass catalog + dispersion cascade] --> K
+  S[Build scripts] --> T[metadata, prerender, sitemap]
+  T --> U[Cloudflare Pages deploys dist/]
+```
+
 ## Current Scope
 
 - `240` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
@@ -153,6 +183,7 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 ## Documentation
 
 - [Architecture notes](agent_docs/architecture.md)
+- [Program flow diagram](agent_docs/architecture/program-flow.md)
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
 - [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)

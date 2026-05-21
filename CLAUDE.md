@@ -70,6 +70,7 @@ Read only the relevant focused doc before changing that area:
 
 - `agent_docs/README.md` - agent-docs layout and generated-report index
 - `agent_docs/architecture.md` - architecture index and subsystem routing
+- `agent_docs/architecture/program-flow.md` - high-level Mermaid program flow diagram
 - `agent_docs/architecture/routing-and-content.md` - routes, SSR, SEO, articles, generated metadata
 - `agent_docs/architecture/viewer-and-diagram.md` - LensViewer, diagram panels, zoom/pan, error tiers
 - `agent_docs/architecture/ui-components.md` - controls, display components, markdown renderer, analysis tabs
