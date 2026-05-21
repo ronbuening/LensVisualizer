@@ -314,6 +314,31 @@ describe("computeElementShapes", () => {
     expect(shapes[2].eid).toBe(2);
   });
 
+  it("uses explicit span endpoints when a stop sits inside an element", () => {
+    const L = {
+      ES: [[1, 0, 2]],
+      S: [
+        { label: "1", R: 80, sd: 8, nd: 1.5, d: 4 },
+        { label: "STO", R: 1e15, sd: 3, nd: 1.5, d: 4, elemId: 1, stopPlacement: "inside-element" },
+        { label: "2", R: -80, sd: 8, nd: 1.0, d: 40 },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 3,
+    } as unknown as RuntimeLens;
+    const zPos = [0, 4, 8];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const shapes = computeElementShapes(L, zPos, sx, sy);
+
+    expect(diagnostics[0].front.surfaceLabel).toBe("1");
+    expect(diagnostics[0].rear.surfaceLabel).toBe("2");
+    expect(shapes).toHaveLength(1);
+    expect(shapes[0].z1).toBe(0);
+    expect(shapes[0].z2).toBe(8);
+  });
+
   it("gap trimming: rear surface with positive sag into narrow gap", () => {
     // Element 0: front flat, rear with R=15 (positive sag curves forward)
     // Element 1: front flat, rear flat

@@ -46,13 +46,17 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
 
 **`halfField` vs `tracingHalfField`.** Rectilinear lenses set both to the same slope-launch-bisected value
-(real chief ray vignetting check). Fisheye lenses set `halfField = projection.maxTraceFieldDeg` (the
-declared coverage — the patent-stated half-field, which can be wider than what slope-launch chief rays can
-traverse) and `tracingHalfField = halfFieldBisected × TRACING_SAFETY_FACTOR` (the bisection-narrowed value
-with a small safety margin). The diagram's off-axis ray rendering uses `tracingHalfField` so bundle rays
-actually reach the image plane on fisheyes; `halfField` drives distortion grid extent, projection metadata,
-and info displays. Zoom variants use `zoomHalfFields[]` / `zoomTracingHalfFields[]` accessed via
-`halfFieldAtZoom()` / `tracingHalfFieldAtZoom()`.
+(real chief ray vignetting check) by default. Fisheye lenses set `halfField = projection.maxTraceFieldDeg`
+(the declared coverage — the patent-stated half-field, which can be wider than what slope-launch chief rays
+can traverse) and `tracingHalfField = halfFieldBisected × TRACING_SAFETY_FACTOR` (the bisection-narrowed
+value with a small safety margin). The diagram's off-axis ray rendering uses `tracingHalfField` so bundle
+rays actually reach the image plane on fisheyes; `halfField` drives distortion grid extent, projection
+metadata, and info displays. Zoom variants use `zoomHalfFields[]` / `zoomTracingHalfFields[]` accessed via
+`halfFieldAtZoom()` / `tracingHalfFieldAtZoom()`. Rectilinear lenses may opt into the declared-coverage
+behavior by setting `projection: { kind: "rectilinear", fullFieldDeg, maxTraceFieldDeg }` — used for
+ultrawides like the Carl Zeiss Hologon 15 mm f/8 where the paraxial chief-ray bisector under-counts the
+published 120° coverage. The override only changes `halfField`; `tracingHalfField` still uses the bisected
+value so rendered ray bundles stay safely within what real surfaces can carry.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
@@ -271,7 +275,10 @@ These functions feed `AsphericComparisonOverlay.tsx` exclusively and must not be
 ## Validation And Rendering Geometry
 
 `validateLensData.ts` checks required fields, references, STO presence, element edge thickness, SD consistency, rim slope,
-boundary-surface cross-gap overlap, conic limits, and zoom field consistency.
+boundary-surface cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
+(via `fromSurface`/`toSurface`) and stops marked `stopPlacement: "inside-element"` are validated against tighter rules:
+explicit spans must be ordered and confined to one `elemId`, internal stops must be flat with `nd` matching the
+containing glass, and every interior surface inside a multi-surface element must itself be a flagged internal stop.
 
 `diagramGeometry.ts` provides:
 

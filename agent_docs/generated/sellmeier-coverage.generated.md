@@ -10,7 +10,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **241** lenses scanned
-- **240** visible lenses scanned
+- **241** visible lenses scanned
 - **50** lenses fully covered
 - **50** visible lenses fully covered
 - **2123 / 2783** non-air surfaces use trusted Sellmeier data
@@ -226,7 +226,7 @@ Fully covered lenses are listed above; this table focuses on the remaining catal
 |  | **50-54.9% coverage** |  |  |  |  |  |
 | 138 | [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 53.8% | 7/13 | 7/13 | 6 | abbe: 6 |
 | 139 | [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | 52.6% | 10/19 | 10/19 | 9 | abbe: 9 |
-| 140 | [CARL ZEISS HOLOGON 15 mm f/8](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) *(hidden)* | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 140 | [CARL ZEISS HOLOGON 15 mm f/8](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) | 50.0% | 2/4 | 2/3 | 2 | abbe: 2 |
 | 141 | [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
 | 142 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
 | 143 | [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
@@ -1325,6 +1325,13 @@ Incomplete visible lenses, still ordered by descending completeness.
 | 22 | Element 13 | abbe | `E-LAF7 (HOYA) / N-LAF7 class` | No catalog match |
 | 25 | Element 14 | abbe | `781446 - high-index mid-dispersion glass (unresolved)` | No catalog match |
 | ... | ... | ... | ... | 1 more missing surface |
+
+### [CARL ZEISS HOLOGON 15 mm f/8](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) - 50.0% (2/4) - DE 1,241,637 B
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `LAK8 (Schott)` | No catalog match |
+| STO | Element 2 | abbe | `LAK8 (Schott)` | No catalog match |
 
 ### [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) - 50.0% (2/4) - FR 1.066.698
 

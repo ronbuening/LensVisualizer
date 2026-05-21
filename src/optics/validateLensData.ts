@@ -12,7 +12,7 @@
 import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
-import { conicPolySag, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -67,13 +67,6 @@ function validateProjection(value: unknown, errors: string[]): void {
   }
 
   const config = value as Record<string, unknown>;
-  if (config.kind === "rectilinear") return;
-
-  if (config.kind !== "fisheye-equidistant" && config.kind !== "fisheye-equisolid") {
-    errors.push(`"projection.kind" must be "rectilinear", "fisheye-equidistant", or "fisheye-equisolid"`);
-    return;
-  }
-
   const validateProjectionNumber = (
     field: "focalLengthMm" | "fullFieldDeg" | "imageCircleMm" | "maxTraceFieldDeg",
     candidate: unknown,
@@ -97,6 +90,44 @@ function validateProjection(value: unknown, errors: string[]): void {
       }
     }
   };
+
+  if (config.kind === "rectilinear") {
+    if (Array.isArray(config.fullFieldDeg)) {
+      errors.push(`"projection.fullFieldDeg" must be a finite number for rectilinear projections`);
+    }
+    if (Array.isArray(config.maxTraceFieldDeg)) {
+      errors.push(`"projection.maxTraceFieldDeg" must be a finite number for rectilinear projections`);
+    }
+    validateProjectionNumber(
+      "fullFieldDeg",
+      config.fullFieldDeg,
+      false,
+      (n) => n > 0 && n < 180,
+      `must be finite and between 0 and 180 degrees when provided for rectilinear projections`,
+    );
+    validateProjectionNumber(
+      "maxTraceFieldDeg",
+      config.maxTraceFieldDeg,
+      false,
+      (n) => n > 0 && n < 89,
+      `must be finite and between 0 and 89 degrees when provided for rectilinear projections`,
+    );
+    if (
+      typeof config.fullFieldDeg === "number" &&
+      typeof config.maxTraceFieldDeg === "number" &&
+      isFinite(config.fullFieldDeg) &&
+      isFinite(config.maxTraceFieldDeg) &&
+      config.maxTraceFieldDeg > config.fullFieldDeg / 2 + 1e-9
+    ) {
+      errors.push(`"projection.maxTraceFieldDeg" must not exceed half of "projection.fullFieldDeg"`);
+    }
+    return;
+  }
+
+  if (config.kind !== "fisheye-equidistant" && config.kind !== "fisheye-equisolid") {
+    errors.push(`"projection.kind" must be "rectilinear", "fisheye-equidistant", or "fisheye-equisolid"`);
+    return;
+  }
 
   validateProjectionNumber(
     "focalLengthMm",
@@ -256,6 +287,12 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof s.d !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid d`);
     if (typeof s.nd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid nd`);
     if (typeof s.sd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
+    if (s.stopPlacement !== undefined && s.stopPlacement !== "inside-element") {
+      errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement must be "inside-element" when provided`);
+    }
+    if (s.stopPlacement !== undefined && s.label !== "STO") {
+      errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement is only valid on the "STO" surface`);
+    }
   }
   if (stoCount === 0) errors.push('No surface with label "STO" found');
   if (stoCount > 1) errors.push(`Multiple surfaces with label "STO" found (${stoCount})`);
@@ -323,7 +360,102 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   const labelToIdx = buildLabelIndex(
     data.surfaces.filter((surface: SurfaceData) => typeof surface.label === "string") as Pick<SurfaceData, "label">[],
   );
+  const S = data.surfaces;
   const nz = isZoom ? data.zoomPositions.length : 0;
+
+  const explicitSpans = new Map<number, { from: number; to: number; element: UntrustedLensData }>();
+  for (const elem of data.elements) {
+    const hasFrom = elem.fromSurface !== undefined;
+    const hasTo = elem.toSurface !== undefined;
+    if (hasFrom !== hasTo) {
+      errors.push(`Element ${elem.id} ("${elem.name}"): fromSurface and toSurface must be provided together`);
+      continue;
+    }
+    if (!hasFrom) continue;
+    if (typeof elem.fromSurface !== "string" || typeof elem.toSurface !== "string") {
+      errors.push(`Element ${elem.id} ("${elem.name}"): fromSurface and toSurface must be surface labels`);
+      continue;
+    }
+    if (!surfaceLabels.has(elem.fromSurface)) {
+      errors.push(`Element ${elem.id} ("${elem.name}"): fromSurface "${elem.fromSurface}" not found`);
+      continue;
+    }
+    if (!surfaceLabels.has(elem.toSurface)) {
+      errors.push(`Element ${elem.id} ("${elem.name}"): toSurface "${elem.toSurface}" not found`);
+      continue;
+    }
+
+    const from = labelToIdx[elem.fromSurface];
+    const to = labelToIdx[elem.toSurface];
+    if (from >= to) {
+      errors.push(
+        `Element ${elem.id} ("${elem.name}"): fromSurface "${elem.fromSurface}" must come before toSurface "${elem.toSurface}"`,
+      );
+      continue;
+    }
+    explicitSpans.set(elem.id, { from, to, element: elem });
+
+    if (S[from]?.elemId !== elem.id) {
+      errors.push(
+        `Element ${elem.id} ("${elem.name}"): fromSurface "${elem.fromSurface}" must reference elemId ${elem.id}`,
+      );
+    }
+
+    for (let i = from + 1; i < to; i++) {
+      const surface = S[i];
+      if (surface.label !== "STO" || surface.stopPlacement !== "inside-element") {
+        errors.push(
+          `Element ${elem.id} ("${elem.name}"): internal surface "${surface.label}" requires stopPlacement: "inside-element"`,
+        );
+      }
+    }
+
+    if (typeof elem.nd === "number" && isFinite(elem.nd)) {
+      for (let i = from; i < to; i++) {
+        if (typeof S[i].nd !== "number") continue;
+        if (Math.abs(S[i].nd - elem.nd) > 1e-6) {
+          errors.push(
+            `Element ${elem.id} ("${elem.name}"): medium after surface "${S[i].label}" must match element nd=${elem.nd} within explicit span`,
+          );
+        }
+      }
+    }
+  }
+
+  const stopIdx = typeof labelToIdx.STO === "number" ? labelToIdx.STO : -1;
+  if (stopIdx >= 0) {
+    const stop = S[stopIdx];
+    if (stop.stopPlacement === "inside-element") {
+      if (Math.abs(stop.R) <= FLAT_R_THRESHOLD) {
+        errors.push(`Surface "STO": stopPlacement "inside-element" requires a flat stop surface`);
+      }
+      const containers = [...explicitSpans.values()].filter(({ from, to }) => from < stopIdx && stopIdx < to);
+      if (containers.length !== 1) {
+        errors.push(
+          `Surface "STO": stopPlacement "inside-element" requires exactly one explicit containing element span`,
+        );
+      } else {
+        const [{ from, element }] = containers;
+        if (stop.elemId !== element.id) {
+          errors.push(`Surface "STO": internal stop elemId must match containing element id ${element.id}`);
+        }
+        if (
+          typeof element.nd === "number" &&
+          typeof stop.nd === "number" &&
+          isFinite(element.nd) &&
+          isFinite(stop.nd) &&
+          Math.abs(stop.nd - element.nd) > 1e-6
+        ) {
+          errors.push(`Surface "STO": internal stop nd must match containing element nd=${element.nd}`);
+        }
+        if (from <= stopIdx - 1 && Math.abs(S[stopIdx - 1].nd - stop.nd) > 1e-6) {
+          errors.push(`Surface "STO": internal stop nd must match the glass medium before the stop`);
+        }
+      }
+    } else if (typeof stop.nd === "number" && stop.nd !== 1.0) {
+      errors.push(`Surface "STO": glass-side stop surfaces require stopPlacement: "inside-element"`);
+    }
+  }
 
   /* ── var keys reference real surface labels ── */
   if (data.var && typeof data.var === "object") {
@@ -444,22 +576,24 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── Element geometry: edge thickness and SD consistency ──
    *  For each element, find its front/rear surface pair (same logic as buildLens ES)
    *  and check that (a) the element has positive edge thickness at the rendering SD,
-   *  and (b) the front/rear SDs are consistent (ratio ≤ 1.25).
+   *  and (b) the front/rear SDs are consistent.
    */
-  const S = data.surfaces;
-
   const asphByIdx = buildAsphereIndex(data.asph as Record<string, AsphericCoefficients> | undefined, labelToIdx);
 
   for (const elem of data.elements) {
-    let s1 = -1;
-    for (let i = 0; i < S.length; i++) {
-      if (S[i].elemId === elem.id) {
-        s1 = i;
-        break;
+    const explicitSpan = explicitSpans.get(elem.id);
+    let s1 = explicitSpan?.from ?? -1;
+    let s2 = explicitSpan?.to ?? -1;
+    if (!explicitSpan) {
+      for (let i = 0; i < S.length; i++) {
+        if (S[i].elemId === elem.id) {
+          s1 = i;
+          break;
+        }
       }
+      s2 = s1 + 1;
     }
-    if (s1 < 0 || s1 + 1 >= S.length) continue;
-    const s2 = s1 + 1;
+    if (s1 < 0 || s2 <= s1 || s2 >= S.length) continue;
     const front = S[s1],
       rear = S[s2];
     if (typeof front.sd !== "number" || typeof rear.sd !== "number") continue;
@@ -470,7 +604,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     /* Edge thickness check (uses aspherical sag when available) */
     const sagFront = conicPolySag(sd, front.R, asphByIdx[s1]);
     const sagRear = conicPolySag(sd, rear.R, asphByIdx[s2]);
-    const edgeThickness = front.d + sagRear - sagFront;
+    let centerThickness = 0;
+    for (let i = s1; i < s2; i++) centerThickness += typeof S[i].d === "number" ? S[i].d : 0;
+    const edgeThickness = centerThickness + sagRear - sagFront;
     if (edgeThickness <= 0)
       errors.push(
         `Element ${elem.id} ("${elem.name}"): negative edge thickness (${edgeThickness.toFixed(3)} mm) at sd=${sd} — surfaces "${front.label}" / "${rear.label}" cross at the rim`,

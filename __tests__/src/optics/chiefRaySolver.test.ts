@@ -11,6 +11,7 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";
 const FISHEYE_FIXTURE = "nikon-fisheye-nikkor-6mm-f28";
+const HOLOGON_FIXTURE = "zeiss-hologon-15f8";
 
 describe("projectionLaunchSlopeForField", () => {
   it("returns -tan(theta) for rectilinear lenses at moderate fields", () => {
@@ -72,6 +73,18 @@ describe("solveChiefRay", () => {
       expect(Number.isFinite(result.yLaunch)).toBe(true);
     }
   });
+
+  it("converges for representative wide Hologon object-plane chief rays", () => {
+    const L = buildLens(LENS_CATALOG[HOLOGON_FIXTURE]);
+
+    for (const deg of [30, 35]) {
+      const result = solveChiefRay(deg, 0, 0, L);
+      expect(result.launchSurface).toBe("object-plane");
+      expect(result.status).toBe("converged");
+      expect(result.iterations).toBeLessThanOrEqual(30);
+      expect(Number.isFinite(result.yLaunch)).toBe(true);
+    }
+  });
 });
 
 describe("computeFieldGeometryAtState halfField clamp", () => {
@@ -91,6 +104,16 @@ describe("computeFieldGeometryAtState halfField clamp", () => {
     const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
     const edge = projectionLaunchSlopeForField(L, geom.halfFieldDeg);
+    expect(edge.status).toBe("ok");
+  });
+
+  it("uses declared rectilinear Hologon coverage without fisheye dispatch", () => {
+    const L = buildLens(LENS_CATALOG[HOLOGON_FIXTURE]);
+    const geom = computeFieldGeometryAtState(0, 0, L);
+    const edge = projectionLaunchSlopeForField(L, geom.halfFieldDeg);
+
+    expect(L.projection.kind).toBe("rectilinear");
+    expect(geom.halfFieldDeg).toBeCloseTo(60, 6);
     expect(edge.status).toBe("ok");
   });
 

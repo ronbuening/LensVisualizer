@@ -91,7 +91,7 @@ These must be specified in every lens file — they have no defaults.
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional tilt/shift movement limits for perspective-control lenses. Omit for all ordinary lenses. |
-| `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use only when the published focal length is a projection constant rather than the Gaussian EFL used by the centered paraxial trace, e.g. circular fisheyes. |
+| `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use for non-rectilinear lenses, or for rare rectilinear designs whose published coverage should override the paraxial field estimate. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
@@ -135,7 +135,19 @@ Suggested backfill order:
 
 ## Projection Metadata
 
-Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions.
+Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions. For unusual rectilinear ultrawides, projection metadata may also declare the published coverage when the paraxial chief-ray estimate is known to undercount the design.
+
+For unusual rectilinear ultrawides whose published coverage overrides the paraxial estimate:
+
+```javascript
+projection: {
+  kind: "rectilinear",
+  fullFieldDeg: 120,
+  maxTraceFieldDeg: 60,
+},
+```
+
+For non-rectilinear (fisheye) projections:
 
 ```javascript
 projection: {
@@ -147,7 +159,8 @@ projection: {
 },
 ```
 
-- `kind: "rectilinear"` is the implicit default.
+- `kind: "rectilinear"` is the implicit default. Omit it for ordinary lenses. When declared, `fullFieldDeg` is the published full field and `maxTraceFieldDeg` is the authoritative half-field used for `halfField`. Rectilinear launch slopes remain `tan(theta)`, and per-ray tracing still clips rays that do not pass the physical surfaces.
+- Rectilinear `fullFieldDeg` and `maxTraceFieldDeg` are single numbers, not zoom arrays. `maxTraceFieldDeg` must be less than 89° and cannot exceed half of `fullFieldDeg`.
 - `kind: "fisheye-equidistant"` (r = f·θ) uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics. Distortion residuals are measured against the equidistant reference.
 - `kind: "fisheye-equisolid"` (r = 2f·sin(θ/2)) — the common photographic fisheye projection used by lenses like the Sigma 15mm, Nikkor AF 8mm, and Olympus 8mm. Behaves like `fisheye-equidistant` for aperture/EFL handling but evaluates distortion residuals against the equal-area reference instead.
 - Zoom fisheyes may provide arrays for `focalLengthMm`, `fullFieldDeg`, `imageCircleMm`, and `maxTraceFieldDeg`; values are interpolated across the zoom range just like `zoomPositions`.
@@ -198,6 +211,8 @@ Each entry in the `elements` array describes one physical glass element.
   nC:       1.49514,                        // optional: measured refractive index at C line (656.3 nm), when published
   nF:       1.50123,                        // optional: measured refractive index at F line (486.1 nm), when published
   ng:       1.50632,                        // optional: measured refractive index at g line (435.8 nm), when published
+  fromSurface: "3",                         // optional: explicit physical span start for special internal surfaces
+  toSurface:   "4",                         // optional: explicit physical span end; provide with fromSurface
   role:     "Front positive meniscus...",    // optional: optical role description
   cemented: "D1",                           // optional: doublet/triplet group name
 }
@@ -219,6 +234,7 @@ the patent publishes partial dispersion or line indices, prefer transcribing the
 **Validation rules:**
 - Each `id` must be unique across all elements
 - Every element must be referenced by at least one surface's `elemId`
+- `fromSurface` and `toSurface` are normally omitted. Use them only when one physical element contains an optically neutral internal surface, currently the supported case is an embedded aperture stop. Both labels must exist, `fromSurface` must precede `toSurface`, and the internal surfaces between them must be explicitly flagged as internal stops.
 
 ---
 
@@ -306,6 +322,7 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   nd:     1.85249,    // REQUIRED: refractive index of medium AFTER this surface
   elemId: 2,          // REQUIRED: element ID (0 = air interface)
   sd:     14.5,       // REQUIRED: semi-diameter (half clear aperture) in mm
+  stopPlacement: "inside-element", // optional: only valid on an embedded STO surface
 }
 ```
 
@@ -346,6 +363,7 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   { label: "10",  R: -17.503, d: 0.14, nd: 1.56093, elemId: 6, sd: ... },  // Glass/resin junction — elemId: 6
   { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
   ```
+- **Embedded stop inside glass:** Rare designs may put the aperture stop inside a glass element. In that case the `STO` surface stays optically neutral and flat, uses the same `nd` and `elemId` as the containing element, and sets `stopPlacement: "inside-element"`. The containing element must declare `fromSurface` and `toSurface` so the renderer uses the real outer glass surfaces as the element silhouette.
 - **Last surface:** `d` = back focal distance to image plane
 
 ### Aperture Stop
@@ -355,6 +373,7 @@ Exactly one surface must have `label: "STO"`. This is typically a flat surface (
 **Determining stop position:**
 - **Patent specifies stop:** Use the exact surface index or gap from the patent table.
 - **Patent does not specify (common in older patents):** Estimate from the patent figure drawing. Split the air gap at the inferred iris location — the preceding surface's `d` is the distance from that surface to the stop, and the STO surface's `d` is the remaining distance to the next surface. Document the estimate in a code comment (e.g., "STO position inferred from Fig. 1 iris placement").
+- **Patent places stop inside a glass element:** Use `stopPlacement: "inside-element"` on `STO`, keep the stop flat, set `STO.nd` to the containing glass index, set `STO.elemId` to the containing element id, and add `fromSurface`/`toSurface` to that element. Do not use this flag for ordinary air stops.
 
 ---
 

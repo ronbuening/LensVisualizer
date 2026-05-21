@@ -14,6 +14,7 @@ export interface SurfaceData {
   nd: number;
   sd: number;
   elemId: number;
+  stopPlacement?: "inside-element";
 }
 
 export interface AsphericCoefficients {
@@ -50,6 +51,9 @@ export interface ElementData {
   nF?: number;
   /** Measured refractive index at the g line (435.8 nm), when published. */
   ng?: number;
+  /** Explicit physical span for elements that contain optically neutral internal surfaces such as an embedded stop. */
+  fromSurface?: string;
+  toSurface?: string;
 }
 
 export interface AnnotationData {
@@ -73,6 +77,8 @@ export interface PerspectiveControlConfig {
 
 export interface RectilinearProjectionConfig {
   kind: "rectilinear";
+  fullFieldDeg?: number;
+  maxTraceFieldDeg?: number;
 }
 
 export type ProjectionZoomValue = number | number[];
