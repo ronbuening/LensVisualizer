@@ -2,7 +2,7 @@
 
 ## Status
 
-The chromatic engine uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe) instead of unconditional Abbe. The vendor-published Sellmeier catalog covers the most-used ~38 glasses across the lens library (24 → 32 → 38 across the Apr 2026 buildout, past the documented 30-entry diminishing-returns line); remaining catalog buildout follows [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md).
+The chromatic engine uses a four-tier preference cascade (Sellmeier catalog → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe) instead of unconditional Abbe. The vendor-published dispersion catalog now contains 247 verified entries (Phase 18, May 2026), including Sellmeier, Zemax polynomial, and explicit power-series vendor coefficients. Remaining catalog buildout follows [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md), while per-lens mismatch work is driven by the generated reports under [agent_docs/generated/](agent_docs/generated/).
 
 The chromatic ray trace now spans four channels: R = C-line (656 nm), G = d-line (588 nm), B = F-line (486 nm), V = g-line (436 nm). The V channel is opt-in via the COLOR controls and reveals secondary spectrum residuals — the residual focus shift between G and V is what distinguishes a true APO lens from a conventional achromat.
 
@@ -35,16 +35,16 @@ to the C/F correction pair.
    on 71 elements across 25 lens files.
 3. ✅ New preference cascade in `src/optics/dispersion.ts`: Sellmeier (catalog) → line indices (`nC`/`nF`) →
    Abbe + dPgF (when g-line tracing lands) → plain Abbe. Cached as a per-surface closure on `RuntimeLens.indexByIdx`.
-4. ✅ Glass catalog at `src/optics/glassCatalog.ts` with starter entries (N-BK7, S-BSL7, CaF2) and a string resolver
-   that handles real-world `glass:` strings including 6-digit Schott CIDs and aliases.
+4. ✅ Glass catalog at `src/optics/glassCatalog.ts` with vendor-published entries and a string resolver
+   that handles real-world `glass:` strings including 6-digit Schott-style codes and aliases.
 5. ✅ `assertCatalogConsistent` validates that every entry round-trips Sellmeier-at-d-line back to its listed `nd`
    within 1e-4 — enforced as a unit test in `__tests__/dispersion.test.ts`.
 
 ## Remaining Approximations and Follow-ups
 
-1. ✅ Glass catalog now has ~24 vendor-verified Sellmeier entries, covering the headline regression cases plus the most-used Ohara/Schott/Hoya/Sumita glasses. Further buildout per [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md) remains optional — diminishing returns past the top 30.
+1. ✅ Glass catalog now has 247 vendor-verified entries, covering the headline regression cases plus broad Ohara, Schott, Hoya, Hikari, Sumita, CDGM, NHG, and special-material queues. Further buildout per [agent_docs/glass-catalog-buildout.md](agent_docs/glass-catalog-buildout.md) is now mostly targeted source work from generated reports, not a broad top-N expansion.
 2. ✅ g-line (435.8 nm) tracing landed as the V channel. The dPgF data populated by the Phase 1 codemod is now active across all three cascade tiers (Sellmeier always was; line-indices honors `ng`; Abbe uses Schott normal-line + dPgF).
 3. **Open**: backfill `nC`/`nF`/`ng` on truly proprietary glass elements (Sumita unidentified melts, vintage Leitz, manufacturer-internal placeholders). This is per-lens patent-reading work, not catalog buildout. The prioritized list of lenses needing this is in [agent_docs/proprietary-glass-backfill.md](agent_docs/proprietary-glass-backfill.md), and the workflow for capturing line indices during lens authoring is in [agent_docs/adding_a_lens.md](agent_docs/adding_a_lens.md).
 
-   **Companion mismatch tracking** (Apr 2026 update): two auto-generated reports drive the verified mismatch sweep — [agent_docs/generated/catalog-mismatches.generated.md](agent_docs/generated/catalog-mismatches.generated.md) (raw mismatches, regenerate with `npm test -- catalogMismatchScan`) and [agent_docs/generated/glass-relabel-candidates.generated.md](agent_docs/generated/glass-relabel-candidates.generated.md) (per-mismatch candidate suggestions filtered by stored `(nd, vd)`, regenerate with `npm test -- glassRelabelCandidatesScan`). Per-lens authoring decisions and follow-up worklist live in [agent_docs/glass-relabel-followup.md](agent_docs/glass-relabel-followup.md). Current state: 144 mismatched surfaces (down from 117→160→144 — the Phase 1 catalog buildout exposed previously-hidden mislabels that the resolver couldn't reach before, then the high-confidence relabel batch resolved 16 of them).
+   **Companion mismatch tracking** (May 2026 update): the generated glass reports drive the verified mismatch sweep — [agent_docs/generated/catalog-mismatches.generated.md](agent_docs/generated/catalog-mismatches.generated.md), [agent_docs/generated/glass-relabel-candidates.generated.md](agent_docs/generated/glass-relabel-candidates.generated.md), [agent_docs/generated/glass-relabel-by-lens.generated.md](agent_docs/generated/glass-relabel-by-lens.generated.md), [agent_docs/generated/six-digit-glass-codes.generated.md](agent_docs/generated/six-digit-glass-codes.generated.md), [agent_docs/generated/six-digit-glass-codes-missing-sellmeier.generated.md](agent_docs/generated/six-digit-glass-codes-missing-sellmeier.generated.md), and [agent_docs/generated/sellmeier-coverage.generated.md](agent_docs/generated/sellmeier-coverage.generated.md). Regenerate the full set with `npm run generate:glass-reports`; current counts live in those generated files.
 4. ✅ Quality badge in the LCA inset/overlay surfaces `summarizeDispersionQuality(L)` to the user.

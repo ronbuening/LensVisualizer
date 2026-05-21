@@ -195,7 +195,7 @@ function computeStatePupilBaselines(
  * Compute the entrance-pupil aberration profile across the field.
  *
  * Samples fieldAngle from 0 to halfField at evenly-spaced intervals.  For each
- * sample, calls solveChiefRayLaunchHeight to find the exact chief-ray launch
+ * sample, calls solveChiefRay to find the exact chief-ray launch
  * height, compares it to the paraxial prediction, and computes the resulting
  * EP z-shift in mm.
  *
@@ -348,7 +348,7 @@ export interface BothPupilAberrationProfiles {
  * Compute both entrance- and exit-pupil aberration profiles in a single pass.
  *
  * Equivalent to calling computePupilAberrationProfile and computeExitPupilAberrationProfile
- * separately, but shares the per-angle solveChiefRayLaunchHeight bisection call and the
+ * separately, but shares the per-angle solveChiefRay bisection call and the
  * doLayout call, halving the bisection work when both profiles are needed.
  */
 export function computeBothPupilAberrationProfiles(

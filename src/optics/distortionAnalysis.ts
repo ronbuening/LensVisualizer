@@ -126,8 +126,8 @@ function computeDistortionReference(
    * commonly have a half-field past MAX_FIELD_LAUNCH_DEG where the traced
    * `chiefRayImageHeightAccurate` would return NaN, so we use the analytic
    * ideal edge instead. Per-sample distortion residuals still come from the
-   * traced bisection in `computeDistortionCurve`; samples that bracket-fail
-   * past the slope-launch cap simply drop out of the curve. */
+   * traced bisection in `computeDistortionCurve`; `chiefRayImageHeightAccurate`
+   * uses vector chief-ray launches when the scalar slope domain is exceeded. */
   if (isFisheyeProjection(L.projection)) {
     const projectionReference = distortionProjectionReferenceForLens(L, 0, zoomT);
     const idealFieldRadius = Math.abs(projectionImageHeightForAngle(projectionReference, halfFieldRad));

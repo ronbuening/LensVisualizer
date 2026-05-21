@@ -2,7 +2,7 @@
 
 A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
 
-The catalog currently has **234 verified entries** (38 after Phase 2, +15 in Phase 3 Apr 2026, +12 in Phase 4 Apr 2026, +27 in Phase 5 May 2026, +19 in Phase 6 May 2026, +4 in Phase 7 May 2026, +14 in Phase 8 May 2026, +20 in Phase 9 May 2026, +20 in Phase 10 May 2026, +11 in Phase 11 May 2026, +5 in Phase 12 May 2026, +6 in Phase 13 May 2026, +30 in Phase 14 May 2026, +4 in Phase 15 May 2026, +3 in Phase 16 May 2026, +5 in Phase 17 May 2026, plus one earlier bookkeeping correction). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **247 verified entries** as of Phase 18 (May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -81,6 +81,27 @@ already in the catalog.
 | ★ BSC7 | 6 | Hoya | (aliased → S-BSL7) |
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
+
+**Phase 18 additions** (May 2026 — Nikon six-digit missing-Sellmeier audit; Hikari entries use vendor-published formula-3 power-series coefficients from 2023 Hikari/Nikon catalog data, and N-SSK5 uses Schott Sellmeier constants; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ J-FK5 | Hikari | 487703 | Low-dispersion crown used in Nikon AF-P / Z DX telephoto and wide zoom rows |
+| ★ J-FK01A | Hikari | 497817 | ED fluorophosphate crown used in Nikon AF-P / Z DX rows |
+| ★ J-FKH1 | Hikari | 498826 | ED fluorophosphate crown used in Nikon AF-S 200-500 and Z 24-70 audits |
+| ★ J-BASF2 | Hikari | 664359 | Barium short flint used in the Nikkor-S Auto 50mm audit |
+| ★ J-BASF6 | Hikari | 668419 | Barium short flint used in the Z DX 18-140 audit |
+| ★ J-SFH1 | Hikari | 808227 | Anomalous-dispersion dense flint used in AF-P DX 70-300 and Z DX 18-140 audits |
+| ★ J-SFH5 | Hikari | 756247 | Anomalous-dispersion dense flint used in the AF-S 120-300 audit |
+| ★ N-SSK5 | Schott | 658509 | Extra-dense crown used in the AF-S 200-500 audit |
+| ★ J-KZFH6 | Hikari | 684376 | Titanium flint used in the Z 24-200 audit |
+| ★ J-LAF01 | Hikari | 700481 | Lanthanum flint backfill from Nikon code rows |
+| ★ Q-LASFPH2S | Hikari | 765468 | Q-series lanthanum flint/phosphate backfill from Nikon code rows |
+| ★ J-LAF016 | Hikari | 801349 | High-index lanthanum flint backfill from Nikon code rows |
+| ★ J-LASF017 | Hikari | 795453 | Dense lanthanum short-flint backfill from Nikon code rows |
+| ★ Q-LASFPH3S | Hikari | 795453 | Q-series lanthanum flint/phosphate backfill from Nikon code rows |
+| ★ J-LASF021 | Hikari | 850324 | Dense lanthanum short-flint backfill from Nikon code rows |
+| ★ J-LASFH23 | Hikari | 850270 | High-index dense lanthanum flint backfill from Nikon code rows |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

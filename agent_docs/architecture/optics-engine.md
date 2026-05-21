@@ -22,7 +22,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
 | `traceMode.ts` | Test/debug escape hatch for switching between `legacy` and `exact` surface tracing on a per-call basis; production always resolves to `exact`. |
-| `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg)` selector, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
+| `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg, projection)` selector, `ABSOLUTE_HALF_FIELD_CEILING`, `TRACING_SAFETY_FACTOR`, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
 | `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
@@ -78,9 +78,9 @@ Major public helpers:
   vs object-plane at θ < 89°). Rectilinear projections keep cap-based dispatch: object-plane below
   `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere at/above. The bounding-sphere bisection varies the
   EP-crossing y `yEP` and traces directly via `traceExactSurfaceStackVector`; both paths return `yLaunch`
-  projected to z=0 for semantic consistency. `solveChiefRayLaunchHeight()` remains as a thin shim that
-  returns the `yLaunch` field for callers that don't need the status. New analysis code should prefer
-  `solveChiefRay` and respect non-converged statuses.
+  projected to z=0 for semantic consistency. Callers that only need a scalar launch height should read
+  `solve.yLaunch`; new analysis code should still inspect `solve.status` and `solve.vectorLaunch` instead of
+  assuming every field has a finite slope.
 - Utilities: `conjugateK()`, `formatDist()`, `formatPetzvalRadius()`.
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
@@ -129,10 +129,12 @@ inverse-map's π/2 rejection.
 
 For past-cap fisheye fields (θ ≥ 89°), `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` builds a vector launch
 from a bounding sphere centered near the entrance pupil. The chief-ray solver auto-dispatches to this path
-via `launchSurfaceForFieldDeg(fieldDeg)`. Analysis modules don't consume this directly yet — they're gated by
-the halfField clamp at `MAX_FIELD_LAUNCH_DEG - 1e-3`, so past-cap fields never reach them. See
-[TRACE_MODEL_IMPROVEMENT_PLAN.md](../../TRACE_MODEL_IMPROVEMENT_PLAN.md) "PR 8 — Remaining: tracer surgery"
-for steps 5–7 (visual smoke + catalog promotion + clamp loosening).
+via `launchSurfaceForFieldDeg(fieldDeg, projection)`, and fisheye projections use the bounding-sphere path at
+every field angle. Vector-aware callers consume `solve.vectorLaunch` directly: visible off-axis and chromatic
+diagram rays promote to vector launch when the declared fisheye off-axis field exceeds `tracingHalfField`;
+vignetting and pupil-aberration loops trace vector rays when the scalar slope is out of domain; the distortion
+field grid traces vector skew rays for fisheye angular cells beyond the slope cap. Scalar-only logic must still
+check `projectionLaunchSlopeForField(...).status` before using `uField`.
 
 ## Ray Sampling Policy
 
@@ -209,12 +211,13 @@ primers aligned to that convention.
 
 - `computeDistortionCurve()` - 21-sample 1D distortion curve from center to edge. Residual is measured against
   the lens's declared projection (rectilinear, fisheye-equidistant, or fisheye-equisolid), not always
-  rectilinear.
+  rectilinear. The image-height solver uses `chiefRayImageHeightAccurate`, so it can consume vector chief rays
+  when `solveChiefRay` returns a bounding-sphere launch.
 - `computeDistortionFieldGrid()` - traced 2D chief-ray field grid. The internal `resolveDistortionGridLaunch`
   helper forks on `reference.projectionReference.kind`: rectilinear uses the existing image-space Cartesian
   sampler + inverse-map (bit-identical to pre-PR-6 behavior); fisheye kinds sample angular Cartesian and
-  forward-map through `projectionLaunchVectorForFieldAngles`, so corner cells fill out to the slope-launch
-  cap instead of stopping at the inverse-map's π/2 rejection.
+  forward-map through `projectionLaunchVectorForFieldAngles`. Cells inside the slope cap use the slope/skew path;
+  out-of-domain angular cells trace through `computeBoundingSphereVectorFieldLaunch` + `traceSkewRayVector`.
 - `computeDistortionReference()` - near-axis reference setup; picks `rectilinear`, `fisheye-equidistant`, or
   `fisheye-equisolid` based on `L.projection.kind` via `distortionProjectionReferenceForLens()`.
 
@@ -226,7 +229,8 @@ three functions accept an optional precomputed `FieldGeometryState`.
 `vignetteAnalysis.ts` computes relative illumination using solved chief rays, adaptive field spacing
 (~3° spacing, min 7 samples), and dense meridional pupil sweeps. The per-field pupil sweep is 192 rays for
 rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD, or ≥40° half-field).
-`computeVignettingCurve()` accepts optional precomputed field geometry.
+`computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
+fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
 
 ## Pupil Aberration
 
@@ -237,6 +241,8 @@ rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD
 - `computeBothPupilAberrationProfiles()` - combined single-loop version that shares the per-angle bisection call.
 
 Prefer `computeBothPupilAberrationProfiles()` in UI code. All accept optional precomputed field geometry.
+Exit-pupil back-projection uses vector chief rays when available; entrance-pupil correction ratios remain tied
+to finite slope launches and fall back to neutral correction when no scalar reference exists.
 
 ## Bokeh
 

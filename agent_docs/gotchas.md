@@ -4,14 +4,15 @@
 - Exact surface tracing is the production default; `src/optics/traceMode.ts` retains only a `"legacy"` mode as a
   test/debug escape hatch. Do not reintroduce a per-lens rollout or put trace-mode state in lens data files
 - Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
-  than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; raising any fisheye's
-  `projection.maxTraceFieldDeg` past that requires the bounding-sphere launch tracked in TRACE_MODEL_IMPROVEMENT_PLAN.md
+  than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; fisheye chief-ray solves
+  route through the bounding-sphere vector path via `solveChiefRay`, and vector-aware callers should consume
+  `solve.vectorLaunch` when it is present
 - The chief-ray solver `solveChiefRay` in `fieldGeometry.ts` is memoized per-`RuntimeLens` via a `WeakMap` keyed on
-  `(focusT, zoomT, aberrationT, fieldAngleDeg, mode)`. Cache invalidation relies on `RuntimeLens` being a fresh
-  object per `buildLens()` call — never mutate `L` in place
+  `(focusT, zoomT, aberrationT, fieldAngleDeg, mode, launchSurface)`. Cache invalidation relies on `RuntimeLens` being
+  a fresh object per `buildLens()` call — never mutate `L` in place
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
-- `vite.config.js` sets `base: '/'` — GitHub Actions deploy workflow handles the Pages base path
+- `vite.config.js` sets `base: '/'` — Cloudflare Pages serves the production site from the domain root
 - Lens data globs scan recursively for `**/*.data.ts`; analysis globs scan recursively for `**/*.analysis.md` and match by relative stem path — naming convention matters for auto-registration
 - `src/lens-data/defaults.ts` values are merged under each lens — per-lens values in `.data.ts` take precedence
 - Glob paths in `lensCatalog.ts` are relative to the file's location (`../lens-data/`)
@@ -44,9 +45,16 @@
 - Distortion computation uses the same state-aware solved-chief-ray convention as `useOffAxisRays.ts`; keep visible off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh aligned if the convention changes
 - Maker prefixes have one source of truth in `scripts/maker-prefixes.mjs`; `generate-build-metadata.mjs` writes `src/generated/maker-prefixes.json` for runtime metadata helpers
 - SD validation uses slope-based rim check (`sagSlopeRaw`, threshold ~64.2°) not the old `sd/|R| ≤ 0.90` spherical proxy — aspherical surfaces (K near −1) can have sd/|R| well above 0.9. Element front/rear SD ratio limit is 3.0 (sanity check). Cross-gap validation checks the two boundary surfaces that face each other and requires combined sag intrusion ≤ `gapSagFrac × gap`; the default is 0.90, leaving visible clearance instead of accepting mathematical rim contact. Rendering shares this rim and gap policy; production tests fail if `computeElementRenderDiagnostics()` would hide more than 0.25 mm of a surface
-- Chief ray solver (`solveChiefRayLaunchHeight`) skips iteration below 1° field angle — retrofocus designs can have pupil aberration even at 2-3°. Above 1° it uses 30-iteration bisection. The vignetting analysis uses the same solver for physically correct pupil-sweep centering
+- Chief ray solver (`solveChiefRay`) skips iteration below 1° field angle — retrofocus designs can have pupil
+  aberration even at 2-3°. Above 1° it uses bounded bisection/scanning and returns typed status plus
+  `vectorLaunch` when applicable. Vignetting, pupil, distortion, and off-axis tracing share this solver for
+  physically correct pupil-sweep centering
 - SVG element outlines use 96 subdivisions per surface — sufficient for strong aspherics. Element shapes render each surface to its diagnostic render SD, with straight connecting edges where front/rear SDs differ (trapezoidal barrel cuts), so hidden clipping cannot create artificial edge "wings"
-- Vignetting field samples are adaptive (~3° spacing, min 7 samples) — ultra-wide lenses get denser sampling automatically. Pupil sweep uses 192 rays per field angle
-- Distortion analysis uses 17-sample pupil correction table and adaptive 1°-per-segment bracket search in `solveFieldAngleForImageHeight` — both scale with half-field angle for ultra-wide accuracy
+- Vignetting field samples are adaptive (~3° spacing, min 7 samples) — ultra-wide lenses get denser sampling
+  automatically. Pupil sweep uses 192 rays per field angle on ordinary lenses and 96 on heavy lenses via
+  `isHeavyLensForRayWork`
+- Distortion analysis uses a 17-sample pupil correction table, 9 samples on heavy lenses, and adaptive
+  1°-per-segment bracket search in `solveFieldAngleForImageHeightAccurate`; fisheye grid samples use the vector branch
+  when angular cells exceed the slope-launch domain
 - Cross-gap overlap is often the binding constraint when increasing SDs on extreme wide-angle lenses — thin air gaps between strongly curved boundary surfaces set the practical SD limit
 - Layout tuning (`scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac`) is a final visual calibration pass after the prescription and SDs already validate. Use it to better match published optical sections, not to paper over bad geometry
