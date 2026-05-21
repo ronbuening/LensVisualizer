@@ -8,7 +8,13 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import { isFisheyeProjection, MAX_FIELD_LAUNCH_DEG, projectionLaunchSlopeForField } from "./projection.js";
+import {
+  isFisheyeProjection,
+  launchSurfaceForFieldDeg,
+  MAX_FIELD_LAUNCH_DEG,
+  projectionLaunchSlopeForField,
+  type LaunchSurface,
+} from "./projection.js";
 import { traceRay, type RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
 import { recordChiefRayStatus } from "./chiefRayDiagnostics.js";
@@ -34,6 +40,7 @@ export interface ChiefRaySolveResult {
   uField: number;
   status: "converged" | "paraxial-fallback" | "bracket-failed" | "out-of-domain";
   iterations: number;
+  launchSurface: LaunchSurface;
 }
 
 const CHIEF_RAY_MAX_ITERATIONS = 30;
@@ -50,7 +57,8 @@ function chiefRaySolveCacheKey(
   options: RayTraceOptions | undefined,
 ): string {
   const mode = options?.mode ?? "default";
-  return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${mode}`;
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg);
+  return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${mode}|${launchSurface}`;
 }
 
 function reportChiefRayFallback(
@@ -253,9 +261,10 @@ function computeChiefRaySolve(
   aberrationT: number,
   options: RayTraceOptions | undefined,
 ): ChiefRaySolveResult {
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg);
   const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
   if (launch.status === "out-of-domain") {
-    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0 };
+    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
   }
 
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
@@ -263,7 +272,7 @@ function computeChiefRaySolve(
   const paraxialYChief = -geom.epRatio * uField;
 
   if (Math.abs(fieldAngleDeg) < 1) {
-    return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0 };
+    return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0, launchSurface };
   }
 
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
@@ -281,25 +290,31 @@ function computeChiefRaySolve(
   const yLo = heightAtStop(lo);
   const yHi = heightAtStop(hi);
   if (yLo === null || yHi === null || yLo * yHi > 0) {
-    return { yLaunch: paraxialYChief, uField, status: "bracket-failed", iterations: 0 };
+    return { yLaunch: paraxialYChief, uField, status: "bracket-failed", iterations: 0, launchSurface };
   }
 
   for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
     const mid = (lo + hi) / 2;
     const yMid = heightAtStop(mid);
     if (yMid === null) {
-      return { yLaunch: paraxialYChief, uField, status: "paraxial-fallback", iterations: i + 1 };
+      return { yLaunch: paraxialYChief, uField, status: "paraxial-fallback", iterations: i + 1, launchSurface };
     }
     if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
-      return { yLaunch: mid, uField, status: "converged", iterations: i + 1 };
+      return { yLaunch: mid, uField, status: "converged", iterations: i + 1, launchSurface };
     }
     if (yMid < 0 === yLo < 0) lo = mid;
     else hi = mid;
     if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
-      return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1 };
+      return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1, launchSurface };
     }
   }
-  return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: CHIEF_RAY_MAX_ITERATIONS };
+  return {
+    yLaunch: (lo + hi) / 2,
+    uField,
+    status: "converged",
+    iterations: CHIEF_RAY_MAX_ITERATIONS,
+    launchSurface,
+  };
 }
 
 export function solveChiefRayLaunchHeight(

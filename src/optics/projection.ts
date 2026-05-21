@@ -97,6 +97,65 @@ export interface ProjectionLaunchSlope {
  */
 export const MAX_FIELD_LAUNCH_DEG = 89;
 
+export type LaunchSurface = "object-plane" | "bounding-sphere";
+
+/**
+ * Decide which launch-surface strategy applies for a given field angle. Today
+ * the threshold is hard-cut: object-plane below `MAX_FIELD_LAUNCH_DEG`,
+ * bounding-sphere at or above. Bounding-sphere launch is scaffolded but not yet
+ * wired into the tracer (see TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8), so solvers
+ * still surface `out-of-domain` past the gate while the cache key already
+ * distinguishes the two paths.
+ */
+export function launchSurfaceForFieldDeg(fieldAngleDeg: number): LaunchSurface {
+  return Math.abs(fieldAngleDeg) >= MAX_FIELD_LAUNCH_DEG ? "bounding-sphere" : "object-plane";
+}
+
+export interface BoundingSphereLaunch {
+  origin: [number, number, number];
+  direction: [number, number, number];
+  launchRadiusMm: number;
+  status: "ok" | "invalid";
+}
+
+/**
+ * Compute the origin and unit direction for a bounding-sphere chief-ray launch
+ * at a given object-space field direction. The sphere is centered near the
+ * entrance pupil z-position and sized large enough to bound the lens; the
+ * launch ray then enters the lens from outside the forward cone.
+ *
+ * Direction follows the standard fisheye convention: `θ_total` is the off-axis
+ * magnitude, azimuth from `(θ_x, θ_y)`. For θ > 90° the direction's z-component
+ * is negative — exactly the rays today's slope-based `surfaceIntersectionMaxT`
+ * rejects. Wiring this into the exact tracer is the remaining work for PR 8.
+ */
+export function boundingSphereLaunchVector(
+  epZ: number,
+  fieldAngleXDeg: number,
+  fieldAngleYDeg: number,
+  launchRadiusMm: number,
+): BoundingSphereLaunch {
+  if (!isFinite(fieldAngleXDeg) || !isFinite(fieldAngleYDeg) || !isFinite(launchRadiusMm) || launchRadiusMm <= 0) {
+    return { origin: [NaN, NaN, NaN], direction: [NaN, NaN, NaN], launchRadiusMm: NaN, status: "invalid" };
+  }
+  const totalFieldDeg = Math.hypot(fieldAngleXDeg, fieldAngleYDeg);
+  const thetaRad = (totalFieldDeg * Math.PI) / 180;
+  const azimuthRad = Math.atan2(fieldAngleYDeg, fieldAngleXDeg);
+
+  const sinTheta = Math.sin(thetaRad);
+  const cosTheta = Math.cos(thetaRad);
+  const cosAz = totalFieldDeg < 1e-12 ? 1 : Math.cos(azimuthRad);
+  const sinAz = totalFieldDeg < 1e-12 ? 0 : Math.sin(azimuthRad);
+
+  const direction: [number, number, number] = [-sinTheta * cosAz, -sinTheta * sinAz, cosTheta];
+  const origin: [number, number, number] = [
+    -launchRadiusMm * direction[0],
+    -launchRadiusMm * direction[1],
+    epZ - launchRadiusMm * direction[2],
+  ];
+  return { origin, direction, launchRadiusMm, status: "ok" };
+}
+
 export function projectionLaunchSlopeForField(
   L: Pick<RuntimeLens, "projection">,
   fieldAngleDeg: number,

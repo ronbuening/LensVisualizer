@@ -1,6 +1,13 @@
 # Trace Model Improvement Plan
 
-Status: revised after PRs 1–4 landed on `ronbuening/SlowLensOptimization`, 2026-05-20.
+Status: revised after PRs 1–7 landed and PR 8 scaffolding shipped on `ronbuening/SlowLensOptimization`, 2026-05-20.
+
+The current branch state: every analysis module's field-launch slope routes through the shared projection helper,
+the Distortion tab's field grid samples in angular space for fisheyes, equisolid-angle projection is a recognized
+projection kind, and the chief-ray solver carries a `LaunchSurface` discriminator that toggles between
+`"object-plane"` and `"bounding-sphere"` at θ ≥ 89°. The remaining work for true 110° fisheye tracing is the
+deep tracer surgery to make `surfaceIntersectionMaxT` and `intersectSagSurface` accept `direction[2] ≤ 0` rays —
+see "PR 8 — Remaining: tracer surgery" below.
 
 This document explains why heavy ultra-wide and fisheye lenses stress the current optics engine, what parts of the
 trace model need to change, and how to stage the work without destabilizing ordinary rectilinear lenses.
@@ -432,10 +439,10 @@ Every trace-heavy analysis should handle failure without runaway retries:
 
 ## Next Concrete PRs
 
-PR ordering picks small, independently shippable changes. Each cites precise call sites and a risk level so it
-can be picked up out of order.
+PRs 5–7 are landed (commits `be230d1` and `7ca5706`). PR 8 has scaffolding shipped but the deeper tracer surgery
+is still required to actually enable 110° launches. See "PR 8 — Remaining: tracer surgery" below.
 
-### PR 5 — Migrate analysis slope launches to projectionLaunchSlopeForField
+### Landed: PR 5 — Migrate analysis slope launches to projectionLaunchSlopeForField
 
 **Goal.** Centralize every `uField = -Math.tan(θ)` in the optics layer on the projection helper added in
 PR `704dfbf`, so raising the field clamp later is a one-line change rather than a cross-file hunt.
@@ -464,7 +471,7 @@ PR `704dfbf`, so raising the field clamp later is a one-line change rather than 
 bit-identical because `projectionLaunchSlopeForField` currently returns `-tan(θ)` regardless of kind below the
 89° gate.
 
-### PR 6 — Projection-aware distortion field grid
+### Landed: PR 6 — Projection-aware distortion field grid
 
 **Goal.** Make the Distortion tab's 2D field grid honor `projection.kind` instead of sampling rectilinear
 image-plane coordinates.
@@ -486,7 +493,7 @@ or sparse.
 **Risk.** Medium. Visual regression on the rectilinear path must be ruled out. Snapshot tests catch
 unintended changes.
 
-### PR 7 — Equisolid-angle projection support
+### Landed: PR 7 — Equisolid-angle projection support
 
 **Goal.** Add the most common photographic fisheye projection so a Sigma 15mm / Nikkor AF 8mm / Olympus 8mm
 can be catalogued with the right model.
@@ -501,28 +508,52 @@ can be catalogued with the right model.
 
 **Risk.** Low. Purely additive; no existing lens declares this kind.
 
-### PR 8 — Lift the slope-launch cap with bounding-sphere origin
+### Landed (scaffolding only): PR 8 — Bounding-sphere launch type infrastructure
 
-**Goal.** Allow chief and pupil rays to launch from outside the forward cone, enabling true 110° fisheye
-tracing on the Nikon 6mm. **PR 5 is a precondition.**
+Shipped in the same commit as PR 7's follow-up:
 
-**Scope.**
-- Define a `LaunchSurface` type with two variants: `"object-plane"` (today's behavior — origin at
-  `z = zPos[0]`, slope-encoded direction) and `"bounding-sphere"` (origin on a large sphere centered near the
-  entrance pupil, direction toward the lens vertex).
-- In `solveChiefRay` and the field-traversal loops migrated by PR 5, dispatch on `fieldAngleDeg` vs
-  `MAX_FIELD_LAUNCH_DEG`. Below 89°: object-plane. At or above: bounding-sphere. The cache key extends with
-  launch-surface kind so the two paths cache independently.
-- In [surfaceIntersectionMaxT()](src/optics/internal/exactSurfaceTrace.ts#L298), replace the
-  `direction[2] <= 1e-12` early return with a path that handles small-positive-z directions. A conservative
-  `maxT` based on a bounding-sphere radius keeps the intersection search bounded without rejecting valid rays.
-- Add `solveChiefRayLaunch` parity tests: a 70° fisheye ray traced via object-plane should match the same ray
-  traced via bounding-sphere within tolerance.
-- Raise `maxTraceFieldDeg` on the Nikon 6mm to 110° once snapshot/visual smoke tests pass.
+- `LaunchSurface = "object-plane" | "bounding-sphere"` exported from
+  [projection.ts](src/optics/projection.ts).
+- `launchSurfaceForFieldDeg(fieldDeg)` selects the launch surface (today: object-plane below the cap,
+  bounding-sphere at or above).
+- `boundingSphereLaunchVector(epZ, θ_x, θ_y, radius)` computes a unit direction and bounded origin for the
+  bounding-sphere chief ray. For θ > 90° the direction's z-component is correctly negative — exactly the rays
+  the tracer currently rejects.
+- `ChiefRaySolveResult` now carries `launchSurface`; the cache key includes it so object-plane and
+  bounding-sphere solves at the same field magnitude cache independently.
+- At θ ≥ `MAX_FIELD_LAUNCH_DEG`, the solver still surfaces `"out-of-domain"`, but the result correctly tags
+  `launchSurface: "bounding-sphere"` — telegraphing the future path to consumers.
 
-**Risk.** High — touches the tracer's deepest forward-cone assumption. Land behind a feature flag (e.g.
-`projection.bounceSphereLaunch?: boolean` or per-lens override) that defaults off, enable per-lens after smoke
-tests, then promote to default for `kind === "fisheye-*"` only.
+### PR 8 — Remaining: tracer surgery
+
+The above scaffolding is correct but currently dead — `surfaceIntersectionMaxT()` and `intersectSagSurface()`
+still reject any ray that isn't safely in the forward cone. Wiring the bounding-sphere launch end-to-end
+requires:
+
+1. **Lift `direction[2] > 1e-12` in [exactSurfaceTrace.ts:323](src/optics/internal/exactSurfaceTrace.ts#L323).**
+   For bounding-sphere launches, derive `maxT` from the launch radius (`maxT ≈ 2 · launchRadiusMm`) instead of
+   the z-projected distance. This bound is valid for any direction.
+2. **Lift the matching gate in [surfaceIntersection.ts:104](src/optics/internal/surfaceIntersection.ts#L104).**
+   `intersectSagSurface` rejects `direction[2] <= MIN_DZ`. The Newton seed at
+   [surfaceIntersection.ts:127](src/optics/internal/surfaceIntersection.ts#L127) uses
+   `t = (vertexZ - origin[2]) / direction[2]` which is undefined at `direction[2] ≈ 0` — needs a robust
+   alternative (e.g., seed at `t = launchRadius` when the z-projected seed is non-finite).
+3. **Add a vector-launch dispatch in `solveChiefRay`.** When `launchSurface === "bounding-sphere"`, build the
+   ray via `boundingSphereLaunchVector` and call `traceExactSurfaceStackVector` directly instead of going
+   through `traceStateSurfacesReal`. The free parameter to bisect on is the EP-crossing y, identical in
+   meaning to today's `yLaunch`.
+4. **Parity test.** A 70° fisheye chief ray traced via the object-plane path and via the bounding-sphere path
+   must produce the same stop-center crossing to ~1e-9. Synthetic lens fixture is fine; this is a numerical
+   parity check, not a physics validation.
+5. **Visual smoke test.** Open the Nikon Fisheye-Nikkor 6mm in the running dev app and confirm Distortion /
+   vignette / pupil-aberration tabs render without warnings at the existing 80° clamp, then raise
+   `maxTraceFieldDeg` to 110° in the lens data and confirm the same.
+6. **Catalog promotion.** Once the per-lens 110° flip ships, promote bounding-sphere launch to default for any
+   `isFisheyeProjection(L.projection)` rather than gating on `fieldDeg`.
+
+**Risk profile.** Steps 1–2 are numerics work and need careful Newton convergence testing on synthetic curved
+surfaces. Step 5 requires a browser session — automated tests cannot substitute for the visual smoke check
+because the result is "the analysis tab renders sensibly," not a numerical assertion.
 
 ### Smaller follow-ups, opportunistic
 
