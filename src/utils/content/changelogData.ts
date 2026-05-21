@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-20 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-20",
+    type: "improvement",
+    summary: "Nikon Fisheye-Nikkor 6mm lenses now show their full 110° patent-declared half-field",
+  },
+  {
+    date: "2026-05-20",
+    type: "improvement",
+    summary: "Distortion field grid now fills in for fisheye lenses where it previously left corners blank",
+  },
+  {
+    date: "2026-05-20",
     type: "lens",
     summary: "Added 12 Nikon lenses, from 1 NIKKOR primes to fisheyes and FX classics",
   },

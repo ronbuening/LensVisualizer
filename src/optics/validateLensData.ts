@@ -60,6 +60,48 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
   }
 }
 
+function validateProjection(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"projection" must be an object when provided`);
+    return;
+  }
+
+  const config = value as Record<string, unknown>;
+  if (config.kind === "rectilinear") return;
+
+  if (config.kind !== "fisheye-equidistant" && config.kind !== "fisheye-equisolid") {
+    errors.push(`"projection.kind" must be "rectilinear", "fisheye-equidistant", or "fisheye-equisolid"`);
+    return;
+  }
+
+  if (typeof config.focalLengthMm !== "number" || !isFinite(config.focalLengthMm) || config.focalLengthMm <= 0) {
+    errors.push(`"projection.focalLengthMm" must be a finite positive number for fisheye projections`);
+  }
+  if (
+    typeof config.fullFieldDeg !== "number" ||
+    !isFinite(config.fullFieldDeg) ||
+    config.fullFieldDeg <= 0 ||
+    config.fullFieldDeg > 360
+  ) {
+    errors.push(`"projection.fullFieldDeg" must be finite and between 0 and 360 degrees for fisheye projections`);
+  }
+  if (
+    config.imageCircleMm !== undefined &&
+    (typeof config.imageCircleMm !== "number" || !isFinite(config.imageCircleMm) || config.imageCircleMm <= 0)
+  ) {
+    errors.push(`"projection.imageCircleMm" must be a finite positive number when provided`);
+  }
+  if (
+    config.maxTraceFieldDeg !== undefined &&
+    (typeof config.maxTraceFieldDeg !== "number" ||
+      !isFinite(config.maxTraceFieldDeg) ||
+      config.maxTraceFieldDeg <= 0 ||
+      config.maxTraceFieldDeg >= 180)
+  ) {
+    errors.push(`"projection.maxTraceFieldDeg" must be finite and between 0 and 180 degrees when provided`);
+  }
+}
+
 function validateLensMounts(value: unknown, errors: string[]): void {
   if (!Array.isArray(value)) {
     errors.push(`"lensMounts" must be a non-empty array of canonical mount ids when provided`);
@@ -164,6 +206,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
   if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
+  if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
   if (data.imageFormat !== undefined) validateImageFormat(data.imageFormat, errors);
 

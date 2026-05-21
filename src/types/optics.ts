@@ -71,6 +71,31 @@ export interface PerspectiveControlConfig {
   tiltStepDeg?: number;
 }
 
+export interface RectilinearProjectionConfig {
+  kind: "rectilinear";
+}
+
+export interface FisheyeEquidistantProjectionConfig {
+  kind: "fisheye-equidistant";
+  focalLengthMm: number;
+  fullFieldDeg: number;
+  imageCircleMm?: number;
+  maxTraceFieldDeg?: number;
+}
+
+export interface FisheyeEquisolidProjectionConfig {
+  kind: "fisheye-equisolid";
+  focalLengthMm: number;
+  fullFieldDeg: number;
+  imageCircleMm?: number;
+  maxTraceFieldDeg?: number;
+}
+
+export type LensProjectionConfig =
+  | RectilinearProjectionConfig
+  | FisheyeEquidistantProjectionConfig
+  | FisheyeEquisolidProjectionConfig;
+
 export interface AberrationControlConfig {
   label: string;
   description?: string;
@@ -113,6 +138,7 @@ export interface LensData {
   groupCount?: number;
   visible?: boolean;
   perspectiveControl?: PerspectiveControlConfig;
+  projection?: LensProjectionConfig;
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
@@ -208,13 +234,24 @@ export interface RuntimeLens {
   readonly doublets: ResolvedAnnotation[];
   readonly perspectiveControl: PerspectiveControlConfig | null;
   readonly aberrationControl: ResolvedAberrationControlConfig | null;
+  readonly projection: LensProjectionConfig;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;
+  readonly apertureReferenceFocalLength: number;
   readonly EP: EntrancePupil;
   readonly B: number;
   readonly FOPEN: number;
   readonly halfField: number;
+  /**
+   * Half-field within which off-axis ray bundles physically traverse the lens
+   * without clipping, with a safety margin applied. Equal to `halfField` for
+   * most rectilinear lenses (scaled by `TRACING_SAFETY_FACTOR`); for fisheyes
+   * it's the slope-launch-bisected coverage (much smaller than the declared
+   * projection halfField). Diagram ray rendering uses this so off-axis traces
+   * land safely on the image plane.
+   */
+  readonly tracingHalfField: number;
   readonly petzvalSum: number;
   readonly totalTrack: number;
   readonly maxSD: number;
@@ -256,6 +293,7 @@ export interface RuntimeLens {
   readonly zoomEFLs: number[] | null;
   readonly zoomEPs: number[] | null;
   readonly zoomHalfFields: number[] | null;
+  readonly zoomTracingHalfFields: number[] | null;
   readonly zoomYRatios: number[] | null;
   readonly zoomBs: number[] | null;
   readonly epZRelStop: number;

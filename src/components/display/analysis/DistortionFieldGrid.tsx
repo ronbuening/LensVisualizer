@@ -39,6 +39,12 @@ function linePath(
 export default function DistortionFieldGrid({ grid, t, width = VB_W, height = VB_H }: DistortionFieldGridProps) {
   const { lines, idealFieldRadius } = grid;
   if (lines.length === 0) return null;
+  const idealGridLabel =
+    grid.referenceKind === "fisheye-equidistant"
+      ? "ideal equidistant grid"
+      : grid.referenceKind === "fisheye-equisolid"
+        ? "ideal equisolid grid"
+        : "ideal rectilinear grid";
 
   const plotSize = Math.min(width - PAD_X * 2, height - PAD_Y * 2 - 28);
   const plotX = (width - plotSize) / 2;
@@ -67,8 +73,8 @@ export default function DistortionFieldGrid({ grid, t, width = VB_W, height = VB
   return (
     <svg viewBox={`0 0 ${width} ${height}`} width="100%" style={{ maxWidth: width, display: "block" }}>
       <title>
-        Traced chief-ray field grid. Dashed lines show the ideal rectilinear field grid clipped to the current image
-        circle; solid lines show the traced chief-ray image positions for the same 2D field samples.
+        Traced chief-ray field grid. Dashed lines show the {idealGridLabel} clipped to the current image circle; solid
+        lines show the traced chief-ray image positions for the same 2D field samples.
       </title>
 
       <rect x={plotX} y={plotY} width={plotSize} height={plotSize} rx={4} fill="none" stroke={t.panelBorder} />
@@ -134,7 +140,7 @@ export default function DistortionFieldGrid({ grid, t, width = VB_W, height = VB
       <g transform={`translate(${plotX}, ${plotY + plotSize + 16})`}>
         <line x1={0} y1={0} x2={16} y2={0} stroke={idealColor} strokeWidth={0.9} strokeDasharray="4,3" />
         <text x={22} y={3} fill={t.muted} fontSize={8} fontFamily="inherit">
-          Dashed = ideal rectilinear grid
+          Dashed = {idealGridLabel}
         </text>
       </g>
 

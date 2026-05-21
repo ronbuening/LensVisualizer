@@ -27,12 +27,14 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { isFisheyeProjection, TRACING_SAFETY_FACTOR } from "./projection.js";
 import { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";
 import type {
   LensData,
   SurfaceData,
   AsphericCoefficients,
   EntrancePupil,
+  LensProjectionConfig,
   RuntimeLens,
   ParaxialTraceResult,
 } from "../types/optics.js";
@@ -203,6 +205,30 @@ function traceSurfaceStackReal(
   };
 }
 
+function resolveProjection(data: LensData): LensProjectionConfig {
+  return data.projection ?? { kind: "rectilinear" };
+}
+
+function firstFiniteScalar(value: number | [number, number] | number[] | undefined): number | null {
+  if (typeof value === "number" && isFinite(value)) return value;
+  if (Array.isArray(value) && typeof value[0] === "number" && isFinite(value[0])) return value[0];
+  return null;
+}
+
+function assertRectilinearFocalReference(data: LensData, projection: LensProjectionConfig, EFL: number): void {
+  if (projection.kind !== "rectilinear") return;
+  const designFocalLength = firstFiniteScalar(data.focalLengthDesign);
+  if (designFocalLength === null || designFocalLength <= 0) return;
+
+  const ratio = EFL / designFocalLength;
+  if (ratio < 0.8 || ratio > 1.25) {
+    throw new Error(
+      `Lens "${data.key}": computed Gaussian EFL ${EFL.toFixed(3)} mm differs from focalLengthDesign ${designFocalLength.toFixed(3)} mm by ${(Math.abs(ratio - 1) * 100).toFixed(1)}%. ` +
+        `If this is an intentional fisheye/projection constant, declare data.projection so aperture and analysis use the correct reference.`,
+    );
+  }
+}
+
 /**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
@@ -227,6 +253,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const S: SurfaceData[] = data.surfaces.map((s) => ({ ...s }));
   const N = S.length;
   const traceMode = resolveSurfaceTraceMode({ data } as Pick<RuntimeLens, "data">, options.traceMode);
+  const projection = resolveProjection(data);
 
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
   const labelIdx = buildLabelIndex(S);
@@ -262,7 +289,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
 
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
    *  nominalFno is a required field (validated).  We back-compute:
-   *    epSD = EFL / (2·Fno)  →  the entrance pupil semi-diameter
+   *    epSD = aperture-reference focal length / (2·Fno)
+   *  where the reference is Gaussian EFL for rectilinear lenses and an
+   *  explicit projection focal length for non-rectilinear fisheyes.
    *  then trace a real (Snell's law) ray at that height to the stop to get
    *  the physical stop SD.  This accounts for aspherics and higher-order
    *  aberrations that the paraxial model ignores — without it, real rays
@@ -271,8 +300,10 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
+  assertRectilinearFocalReference(data, projection, nomEFL);
+  const apertureReferenceFocalLength = isFisheyeProjection(projection) ? projection.focalLengthMm : nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
-  const nominalEPSD = nomEFL / (2 * baseNomFno);
+  const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx, traceMode);
   S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
 
@@ -347,9 +378,11 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   }
 
   const stopPhysSD = S[stopIdx].sd;
-  const FOPEN = EFL / (2 * EP.epSD); /* wide-open f-number */
+  const FOPEN = apertureReferenceFocalLength / (2 * EP.epSD); /* wide-open f-number */
   if (!isFinite(FOPEN))
-    throw new Error(`Lens "${data.key}": Wide-open f-number is not finite (EFL=${EFL}, epSD=${EP.epSD})`);
+    throw new Error(
+      `Lens "${data.key}": Wide-open f-number is not finite (apertureReferenceFocalLength=${apertureReferenceFocalLength}, epSD=${EP.epSD})`,
+    );
 
   /* ── Half-field angle (vignetting-limited) ──
    *  Find the maximum chief-ray angle (field angle) before any surface
@@ -379,29 +412,39 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   /* Refine half-field with real (Snell's law) chief ray vignetting check.
    * The paraxial two-ray model can overestimate the field angle for strongly
    * curved or aspheric front groups.  Bisect to find the real clipping angle.
-   * Uses the real EP position (realB/realYRatio) for chief ray entry. */
-  let halfField = halfFieldParaxial;
-  {
-    const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
-    const testChief = (deg: number): boolean => {
-      const uTest = -Math.tan((deg * Math.PI) / 180);
-      const yIn = -epRatio * uTest;
-      const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest, traceMode);
-      return isFinite(result.y) && !result.clipped;
-    };
-    if (!testChief(halfFieldParaxial)) {
-      /* Paraxial overestimates — bisect downward */
-      let lo = 0,
-        hi = halfFieldParaxial;
-      for (let iter = 0; iter < 40; iter++) {
-        const mid = (lo + hi) / 2;
-        if (testChief(mid)) lo = mid;
-        else hi = mid;
-      }
-      halfField = lo;
+   * Uses the real EP position (realB/realYRatio) for chief ray entry.
+   *
+   * Rectilinear lenses use the bisected value as both `halfField` and
+   * `tracingHalfField` (no safety margin applied — preserves pre-PR-8 behavior
+   * exactly). Fisheye lenses use the declared `maxTraceFieldDeg` for
+   * `halfField` (which can be much wider than slope-launch chief rays can
+   * traverse) and the bisected value × `TRACING_SAFETY_FACTOR` for
+   * `tracingHalfField`, so off-axis ray bundles in the diagram still render
+   * in a safe zone where rays actually reach the image plane. */
+  const fisheye = isFisheyeProjection(projection);
+  const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
+  const testChief = (deg: number): boolean => {
+    const uTest = -Math.tan((deg * Math.PI) / 180);
+    const yIn = -epRatio * uTest;
+    const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest, traceMode);
+    return isFinite(result.y) && !result.clipped;
+  };
+  let halfFieldBisected = halfFieldParaxial;
+  if (!testChief(halfFieldParaxial)) {
+    /* Paraxial overestimates — bisect downward */
+    let lo = 0,
+      hi = halfFieldParaxial;
+    for (let iter = 0; iter < 40; iter++) {
+      const mid = (lo + hi) / 2;
+      if (testChief(mid)) lo = mid;
+      else hi = mid;
     }
-    /* If the paraxial field passes the real check, keep it (conservative). */
+    halfFieldBisected = lo;
   }
+  /* If the paraxial field passes the real check, keep it (conservative). */
+
+  const halfField = fisheye ? (projection.maxTraceFieldDeg ?? halfFieldParaxial) : halfFieldBisected;
+  const tracingHalfField = fisheye ? halfFieldBisected * TRACING_SAFETY_FACTOR : halfFieldBisected;
 
   /* ── Petzval sum ──
    * P = Σ (n'−n) / (n'·n·R) over all refracting surfaces.
@@ -495,7 +538,8 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
    */
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
-    zoomHalfFields: number[] | null = null;
+    zoomHalfFields: number[] | null = null,
+    zoomTracingHalfFields: number[] | null = null;
   let zoomYRatios: number[] | null = null,
     zoomBs: number[] | null = null;
   let zoomEpZRelStops: number[] | null = null,
@@ -506,6 +550,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     zoomEFLs = [];
     zoomEPs = [];
     zoomHalfFields = [];
+    zoomTracingHalfFields = [];
     zoomYRatios = [];
     zoomBs = [];
     zoomEpZRelStops = [];
@@ -577,8 +622,11 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
           if (uMax < zMinU) zMinU = uMax;
         }
       }
-      let zHalfField = (Math.atan(zMinU) * 180) / Math.PI;
-      /* Refine with real chief ray bisection (same as baseline) */
+      const zHalfFieldParaxial = (Math.atan(zMinU) * 180) / Math.PI;
+      /* Always run the slope-launch bisection (its result feeds
+       * zoomTracingHalfFields, the diagram's ray-rendering safe zone).
+       * Fisheyes use the declared maxTraceFieldDeg for zHalfField; rectilinear
+       * uses the bisected value. */
       const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
       const zTestChief = (deg: number): boolean => {
         const uTest = -Math.tan((deg * Math.PI) / 180);
@@ -586,17 +634,21 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceMode);
         return isFinite(result.y) && !result.clipped;
       };
-      if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
+      let zHalfFieldBisected = zHalfFieldParaxial;
+      if (isFinite(zHalfFieldParaxial) && !zTestChief(zHalfFieldParaxial)) {
         let lo = 0,
-          hi = zHalfField;
+          hi = zHalfFieldParaxial;
         for (let iter = 0; iter < 40; iter++) {
           const mid = (lo + hi) / 2;
           if (zTestChief(mid)) lo = mid;
           else hi = mid;
         }
-        zHalfField = lo;
+        zHalfFieldBisected = lo;
       }
+      const zFisheye = isFisheyeProjection(projection);
+      const zHalfField = zFisheye ? (projection.maxTraceFieldDeg ?? zHalfFieldParaxial) : zHalfFieldBisected;
       zoomHalfFields.push(zHalfField);
+      zoomTracingHalfFields.push(zFisheye ? zHalfFieldBisected * TRACING_SAFETY_FACTOR : zHalfFieldBisected);
     }
   }
 
@@ -627,13 +679,16 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     doublets,
     perspectiveControl: data.perspectiveControl ?? null,
     aberrationControl,
+    projection,
     stopIdx,
     stopPhysSD,
     EFL,
+    apertureReferenceFocalLength,
     EP,
     B,
     FOPEN,
     halfField,
+    tracingHalfField,
     petzvalSum,
     totalTrack,
     maxSD,
@@ -675,6 +730,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     zoomEFLs,
     zoomEPs,
     zoomHalfFields,
+    zoomTracingHalfFields,
     zoomYRatios,
     zoomBs,
     epZRelStop,

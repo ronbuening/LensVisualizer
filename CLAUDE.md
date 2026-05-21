@@ -102,8 +102,8 @@ Read only the relevant focused doc before changing that area:
 ## Core Working Rules
 
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
-- Keep exact surface tracing rollout state centralized in `src/optics/traceMode.ts`; default to `per-lens` with an empty
-  allowlist unless deliberately enabling exact tracing for selected catalog keys.
+- Exact surface tracing is the production default for every lens; `"legacy"` mode in `src/optics/traceMode.ts` is a
+  test/debug escape hatch only.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.

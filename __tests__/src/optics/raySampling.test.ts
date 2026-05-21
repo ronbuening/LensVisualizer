@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { rayFractionsForDensity, raySampleCountForDensity } from "../../../src/optics/raySampling.js";
+import {
+  isHeavyLensForRayWork,
+  rayFractionsForDensity,
+  raySampleCountForDensity,
+} from "../../../src/optics/raySampling.js";
+import buildLens from "../../../src/optics/buildLens.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 function expectSymmetric(fractions: number[]) {
   for (let i = 0; i < fractions.length; i++) {
@@ -47,5 +53,37 @@ describe("raySampling", () => {
     expect(raySampleCountForDensity(normal, "normal")).toBe(5);
     expect(raySampleCountForDensity(normal, "dense")).toBeGreaterThanOrEqual(10);
     expect(raySampleCountForDensity(normal, "diagnostic")).toBeGreaterThanOrEqual(15);
+  });
+});
+
+describe("isHeavyLensForRayWork", () => {
+  it("returns false for an ordinary rectilinear 50mm prime", () => {
+    const L = buildLens(LENS_CATALOG["nokton-50f1"]);
+    expect(isHeavyLensForRayWork(L)).toBe(false);
+  });
+
+  it("returns true for a fisheye lens regardless of size", () => {
+    const L = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    expect(isHeavyLensForRayWork(L)).toBe(true);
+  });
+
+  it("returns true when any single criterion is met", () => {
+    const baseline = {
+      projection: { kind: "rectilinear" },
+      N: 10,
+      maxSD: 20,
+      halfField: 20,
+    } as const;
+    expect(isHeavyLensForRayWork(baseline)).toBe(false);
+
+    expect(isHeavyLensForRayWork({ ...baseline, N: 32 })).toBe(true);
+    expect(isHeavyLensForRayWork({ ...baseline, maxSD: 50 })).toBe(true);
+    expect(isHeavyLensForRayWork({ ...baseline, halfField: 40 })).toBe(true);
+    expect(
+      isHeavyLensForRayWork({
+        ...baseline,
+        projection: { kind: "fisheye-equidistant", focalLengthMm: 6, fullFieldDeg: 180 },
+      }),
+    ).toBe(true);
   });
 });

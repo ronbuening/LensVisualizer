@@ -153,6 +153,60 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes("perspectiveControl.tiltStepDeg"))).toBe(true);
   });
 
+  it("accepts valid fisheye projection metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          projection: {
+            kind: "fisheye-equidistant",
+            focalLengthMm: 6.3,
+            fullFieldDeg: 220,
+            imageCircleMm: 23,
+            maxTraceFieldDeg: 80,
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("catches invalid fisheye projection metadata", () => {
+    const unknownKindErrors = validateLensData(makeValid({ projection: { kind: "panini" } }));
+    expect(unknownKindErrors.some((error) => error.includes("projection.kind"))).toBe(true);
+
+    const missingRequiredErrors = validateLensData(
+      makeValid({
+        projection: {
+          kind: "fisheye-equidistant",
+          fullFieldDeg: 400,
+          imageCircleMm: -1,
+          maxTraceFieldDeg: 200,
+        },
+      }),
+    );
+    expect(missingRequiredErrors.some((error) => error.includes("projection.focalLengthMm"))).toBe(true);
+    expect(missingRequiredErrors.some((error) => error.includes("projection.fullFieldDeg"))).toBe(true);
+    expect(missingRequiredErrors.some((error) => error.includes("projection.imageCircleMm"))).toBe(true);
+    expect(missingRequiredErrors.some((error) => error.includes("projection.maxTraceFieldDeg"))).toBe(true);
+  });
+
+  it("accepts maxTraceFieldDeg up to but not including 180 degrees", () => {
+    // Past the old 90° slope-launch cap is now valid — bounding-sphere dispatch
+    // in solveChiefRay handles fields ≥ MAX_FIELD_LAUNCH_DEG. The physical
+    // ceiling is the forward hemisphere (180°).
+    const ok = validateLensData(
+      makeValid({
+        projection: {
+          kind: "fisheye-equidistant",
+          focalLengthMm: 6.3,
+          fullFieldDeg: 220,
+          imageCircleMm: 23,
+          maxTraceFieldDeg: 110,
+        },
+      }),
+    );
+    expect(ok.some((error) => error.includes("projection.maxTraceFieldDeg"))).toBe(false);
+  });
+
   it("catches missing STO surface", () => {
     const data = makeValid({
       surfaces: [

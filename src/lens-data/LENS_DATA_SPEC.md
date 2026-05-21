@@ -91,6 +91,7 @@ These must be specified in every lens file — they have no defaults.
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional tilt/shift movement limits for perspective-control lenses. Omit for all ordinary lenses. |
+| `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use only when the published focal length is a projection constant rather than the Gaussian EFL used by the centered paraxial trace, e.g. circular fisheyes. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
@@ -131,6 +132,26 @@ Suggested backfill order:
 2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
 3. Fixed-lens cameras by format only.
 4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
+
+## Projection Metadata
+
+Most lenses should omit `projection`; they default to rectilinear behavior, and `focalLengthDesign` is expected to be close to the computed Gaussian EFL. Add projection metadata for non-rectilinear lenses when the published focal length is the imaging/projection constant used for f-number and image-circle descriptions.
+
+```javascript
+projection: {
+  kind: "fisheye-equidistant",
+  focalLengthMm: 6.3,
+  fullFieldDeg: 220,
+  imageCircleMm: 23,
+  maxTraceFieldDeg: 110,
+},
+```
+
+- `kind: "rectilinear"` is the implicit default.
+- `kind: "fisheye-equidistant"` (r = f·θ) uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics. Distortion residuals are measured against the equidistant reference.
+- `kind: "fisheye-equisolid"` (r = 2f·sin(θ/2)) — the common photographic fisheye projection used by lenses like the Sigma 15mm, Nikkor AF 8mm, and Olympus 8mm. Behaves like `fisheye-equidistant` for aperture/EFL handling but evaluates distortion residuals against the equal-area reference instead.
+- `fullFieldDeg` and `imageCircleMm` describe the published circular fisheye projection.
+- `maxTraceFieldDeg` sets the lens's authoritative half-field for fisheyes. The validator accepts values up to (but not including) 180°; chief rays past `MAX_FIELD_LAUNCH_DEG = 89°` route through the bounding-sphere launch arm. The diagram's off-axis ray rendering respects a separate, bisected `tracingHalfField` so bundle rays land safely on the image plane regardless of the declared coverage.
 
 ---
 

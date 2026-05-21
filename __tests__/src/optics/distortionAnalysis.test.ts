@@ -17,6 +17,7 @@ import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLant
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonZ100400Raw from "../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
+import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 
@@ -192,6 +193,29 @@ describe("computeDistortionCurve", () => {
     const maxAbs = samples.reduce((m, s) => Math.max(m, Math.abs(s.distortionPercent)), 0);
     expect(maxAbs).toBeLessThan(15);
   });
+
+  it("uses the declared equidistant projection reference for fisheye lenses", () => {
+    const L = build(NikonFisheye6mmf28Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const dynamicEFL = eflAtFocus(0, 0, L);
+    const { currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+
+    // halfFieldDeg matches the declared maxTraceFieldDeg (Step 7: fisheyes
+    // skip the paraxial-chief-ray bisection that would narrow it).
+    expect(geometry.halfFieldDeg).toBeCloseTo(110, 6);
+
+    const samples = computeDistortionCurve(L, zPos, 0, 0, dynamicEFL, currentPhysStopSD, geometry);
+    // Samples that can't be solved past the slope-launch cap (~89°) drop out
+    // naturally; the curve covers the slope-launchable range and labels
+    // everything against the fisheye-equidistant reference.
+    expect(samples.length).toBeGreaterThan(5);
+    expect(samples.every((sample) => sample.referenceKind === "fisheye-equidistant")).toBe(true);
+
+    const outerSample = samples[samples.length - 1];
+    const thetaRad = (outerSample.fieldAngleDeg * Math.PI) / 180;
+    expect(outerSample.idealHeight).toBeCloseTo(-6.3 * thetaRad, 5);
+  });
 });
 
 describe("computeDistortionFieldGrid", () => {
@@ -343,5 +367,44 @@ describe("computeDistortionFieldGrid", () => {
     expect(edgePoint.tracedX).toBeCloseTo(currentImage!.x, 8);
     expect(edgePoint.tracedY).toBeCloseTo(-currentImage!.y, 8);
     expect(Math.abs(edgePoint.tracedX! - staleImage!.x)).toBeGreaterThan(1);
+  });
+
+  it("uses equidistant ideal grid coordinates for fisheye projection residuals", () => {
+    const L = build(NikonFisheye6mmf28Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+
+    expect(grid.referenceKind).toBe("fisheye-equidistant");
+    expect(grid.idealFieldRadius).toBeCloseTo(6.3 * ((geometry.halfFieldDeg * Math.PI) / 180), 5);
+  });
+
+  it("Nikon 6mm fisheye: angular grid sampler produces a properly-typed grid", () => {
+    // After Step 7 the Nikon 6mm reports halfFieldDeg=110°, well past the
+    // slope-launch cap. The angular sampler successfully forward-maps for all
+    // grid points (no `null` from inverse-mapping past π/2 as the legacy
+    // image-space sampler used to produce); chief-ray usability at the
+    // resulting angles depends on the lens's individual chief-ray geometry
+    // (the Nikon 6mm's paraxial chief ray clips past ~10° regardless of
+    // launch surface), so we only assert structural invariants here.
+    const L = build(NikonFisheye6mmf28Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+    const grid = computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, geometry);
+
+    expect(grid.referenceKind).toBe("fisheye-equidistant");
+    expect(grid.lines.length).toBeGreaterThan(0);
+    // On-axis grid points (the center line) are always usable: the angular
+    // sampler doesn't fail there regardless of halfFieldDeg.
+    const centerLine = grid.lines.find((line) => line.idealCoordinate === 0);
+    expect(centerLine).toBeDefined();
+    const centerPoint = centerLine!.points.find((p) => p.radiusNormalized < 1e-6);
+    expect(centerPoint?.usable).toBe(true);
   });
 });

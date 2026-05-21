@@ -12,6 +12,7 @@ import FocusBreathingTab from "../../../../../src/components/display/analysis/Fo
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import type { DistortionSample } from "../../../../../src/optics/distortionAnalysis.js";
 import type { LensData, RuntimeLens } from "../../../../../src/types/optics.js";
 
@@ -88,6 +89,33 @@ describe("analysis display tabs", () => {
     expect(html).toContain("HEIGHT");
     expect(html).toContain("ANGLE");
     expect(html).not.toContain(">FIELD<");
+  });
+
+  it("DistortionTab switches to projection-residual copy for fisheye lenses", () => {
+    const L = build(NikonFisheye6mmf28Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
+
+    const html = renderToStaticMarkup(
+      React.createElement(DistortionTab, {
+        L,
+        t: themes.dark,
+        zPos,
+        focusT,
+        zoomT,
+        dynamicEFL,
+        currentPhysStopSD,
+      }),
+    );
+
+    expect(html).toContain("Equidistant projection residual");
+    expect(html).toContain("declared equidistant fisheye projection");
+    expect(html).toContain("No residual");
+    expect(html).toContain("Dashed = ideal equidistant grid");
+    expect(html).not.toContain("Rectilinear distortion (F-Tan(theta))");
   });
 
   it("AberrationsPanel renders spherical aberration and field-curve content", () => {

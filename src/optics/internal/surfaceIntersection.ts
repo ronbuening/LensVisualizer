@@ -101,7 +101,7 @@ export function intersectSagSurface(
   }: SurfaceIntersectionOptions = {},
 ): SurfaceIntersectionResult {
   const direction = normalizeVector3(ray.direction);
-  if (direction === null || direction[2] <= MIN_DZ) {
+  if (direction === null) {
     return failure(surfaceIdx, "invalidRayDirection", null, 0);
   }
   if (!isFinite(minT) || minT < 0 || maxT < minT || (!isFinite(maxT) && maxT !== Infinity)) {
@@ -124,7 +124,13 @@ export function intersectSagSurface(
   }
 
   let { lo, hi, fLo } = bracket;
-  let t = clamp((vertexZ - ray.origin[2]) / direction[2], lo, hi);
+  // Z-projected seed is meaningless when direction[2] ≈ 0 (bounding-sphere
+  // launch). Fall back to the bracket midpoint, which is a slower but always
+  // valid starting guess for the Newton iteration below.
+  const zProjectedSeed = Math.abs(direction[2]) > MIN_DZ ? (vertexZ - ray.origin[2]) / direction[2] : NaN;
+  const initialSeed =
+    isFinite(zProjectedSeed) && zProjectedSeed > lo && zProjectedSeed < hi ? zProjectedSeed : (lo + hi) / 2;
+  let t = clamp(initialSeed, lo, hi);
 
   for (let iterations = 1; iterations <= maxIterations; iterations++) {
     const current = evalAt(t);
@@ -229,12 +235,12 @@ function findBracket(
   if (!isFinite(maxT)) return { kind: "failure", failureReason: "invalidBounds", residual: null, iterations: 0 };
 
   const loEval = evalAt(minT);
-  if (!isFiniteEvaluation(loEval))
+  if (!isFiniteValueEvaluation(loEval))
     return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
   if (Math.abs(loEval.value) <= tolerance) return { kind: "success", value: loEval, iterations: 0 };
 
   const hiEval = evalAt(maxT);
-  if (!isFiniteEvaluation(hiEval))
+  if (!isFiniteValueEvaluation(hiEval))
     return { kind: "failure", failureReason: "noBracket", residual: null, iterations: 0 };
   if (Math.abs(hiEval.value) <= tolerance) return { kind: "success", value: hiEval, iterations: 0 };
   if (!sameSign(loEval.value, hiEval.value)) {
@@ -247,7 +253,7 @@ function findBracket(
   for (let i = 1; i <= samples; i++) {
     const t = minT + ((maxT - minT) * i) / samples;
     const current = evalAt(t);
-    if (!isFiniteEvaluation(current)) continue;
+    if (!isFiniteValueEvaluation(current)) continue;
     if (Math.abs(current.value) < Math.abs(best.value)) best = current;
     if (Math.abs(current.value) <= tolerance) return { kind: "success", value: current, iterations: i };
     if (!sameSign(prev.value, current.value)) {
@@ -299,7 +305,7 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-function isFiniteEvaluation(evaluation: SurfaceEvaluation): boolean {
+function isFiniteValueEvaluation(evaluation: SurfaceEvaluation): boolean {
   return (
     isFinite(evaluation.t) &&
     isFinite(evaluation.x) &&
@@ -308,8 +314,17 @@ function isFiniteEvaluation(evaluation: SurfaceEvaluation): boolean {
     isFinite(evaluation.radius) &&
     isFinite(evaluation.sag) &&
     isFinite(evaluation.slope) &&
-    isFinite(evaluation.value) &&
-    isFinite(evaluation.derivative) &&
-    Math.abs(evaluation.derivative) > 1e-14
+    isFinite(evaluation.value)
+  );
+}
+
+// Newton iteration divides by `derivative`; reject evaluations where it would
+// blow up. Endpoint and bracket-sample checks should use `isFiniteValueEvaluation`
+// instead — a vanishing derivative (e.g., a grazing meridional ray at the
+// optical axis where `slope = drdt = 0`) is geometrically meaningful even when
+// it's useless for stepping.
+function isFiniteEvaluation(evaluation: SurfaceEvaluation): boolean {
+  return (
+    isFiniteValueEvaluation(evaluation) && isFinite(evaluation.derivative) && Math.abs(evaluation.derivative) > 1e-14
   );
 }

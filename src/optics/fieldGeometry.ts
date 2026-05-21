@@ -7,9 +7,20 @@ import {
   type RealSurfaceTraceOptions,
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { traceExactSurfaceStack, traceExactSurfaceStackVector } from "./internal/exactSurfaceTrace.js";
+import type { Vector3 } from "./internal/exactSurfaceTrace.js";
+import {
+  ABSOLUTE_HALF_FIELD_CEILING,
+  boundingSphereLaunchVector,
+  isFisheyeProjection,
+  launchSurfaceForFieldDeg,
+  MAX_FIELD_LAUNCH_DEG,
+  projectionLaunchSlopeForField,
+  type LaunchSurface,
+} from "./projection.js";
 import { traceRay, type RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
+import { recordChiefRayStatus } from "./chiefRayDiagnostics.js";
 
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 
@@ -25,6 +36,51 @@ export interface EntrancePupilState {
   yRatio: number;
   b: number;
   epRatio: number;
+}
+
+export interface ChiefRaySolveResult {
+  yLaunch: number;
+  uField: number;
+  status: "converged" | "paraxial-fallback" | "bracket-failed" | "out-of-domain";
+  iterations: number;
+  launchSurface: LaunchSurface;
+}
+
+const CHIEF_RAY_MAX_ITERATIONS = 30;
+const CHIEF_RAY_BRACKET_EPSILON = 1e-9;
+const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-6;
+
+const chiefRaySolveCache: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult>> = new WeakMap();
+
+function chiefRaySolveCacheKey(
+  L: RuntimeLens,
+  focusT: number,
+  zoomT: number,
+  aberrationT: number,
+  fieldAngleDeg: number,
+  options: RayTraceOptions | undefined,
+): string {
+  const mode = options?.mode ?? "default";
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg, L.projection);
+  return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${mode}|${launchSurface}`;
+}
+
+function reportChiefRayFallback(
+  L: RuntimeLens,
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  status: ChiefRaySolveResult["status"],
+): void {
+  const key = L.data?.key ?? "<unknown-lens>";
+  recordChiefRayStatus(key, status);
+  if (status === "converged" || status === "paraxial-fallback") return;
+  if (typeof import.meta === "undefined") return;
+  const env = (import.meta as { env?: { DEV?: boolean } }).env;
+  if (!env?.DEV) return;
+  console.warn(
+    `[chiefRaySolver] ${status} key=${key} field=${fieldAngleDeg.toFixed(3)}° focus=${focusT.toFixed(4)} zoom=${zoomT.toFixed(4)}`,
+  );
 }
 
 export function computeFieldGeometryAtState(
@@ -61,8 +117,26 @@ export function computeFieldGeometryAtState(
   }
   let halfFieldDeg = (Math.atan(minU) * 180) / Math.PI;
 
+  const fisheye = isFisheyeProjection(L.projection);
+
+  if (fisheye) {
+    // Fisheye lenses don't use the paraxial-chief-ray bisection. Their real
+    // chief rays are far from paraxial (they enter through the highly-curved
+    // front element at angles where slope-launch is meaningless), so the
+    // paraxial testChief drastically undercounts the lens's true coverage —
+    // e.g., the Nikon Fisheye-Nikkor 6mm has a 110° patent-declared half-field
+    // but a paraxial-chief-ray bisection narrows to ~32°. The declared
+    // `maxTraceFieldDeg` is the source of truth; individual rays in the
+    // diagram or analysis tabs that don't trace at extreme angles get
+    // filtered out per-ray via the tracer's `clipped` flag.
+    halfFieldDeg = Math.min(L.projection.maxTraceFieldDeg ?? halfFieldDeg, ABSOLUTE_HALF_FIELD_CEILING);
+    return { halfFieldDeg, yRatio, b, epRatio };
+  }
+
   const testChief = (deg: number): boolean => {
-    const uField = -Math.tan((deg * Math.PI) / 180);
+    const launch = projectionLaunchSlopeForField(L, deg);
+    if (launch.status === "out-of-domain") return false;
+    const uField = launch.uField;
     const yChiefIn = -epRatio * uField;
     const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
     return isFinite(trace.y) && !trace.clipped;
@@ -78,6 +152,8 @@ export function computeFieldGeometryAtState(
     }
     halfFieldDeg = lo;
   }
+
+  halfFieldDeg = Math.min(halfFieldDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
 
   return { halfFieldDeg, yRatio, b, epRatio };
 }
@@ -140,8 +216,8 @@ export function traceChiefRayAtAngle(
   options?: RayTraceOptions,
 ): RayTraceResult {
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  const uField = launch.uField;
   const yChief = -geom.epRatio * uField;
   return traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
 }
@@ -172,7 +248,7 @@ export function chiefRayImageHeight(
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
-export function solveChiefRayLaunchHeight(
+export function solveChiefRay(
   fieldAngleDeg: number,
   focusT: number,
   zoomT: number,
@@ -180,13 +256,47 @@ export function solveChiefRayLaunchHeight(
   geometry?: FieldGeometryState,
   aberrationT = 0,
   options?: RayTraceOptions,
-): number {
+): ChiefRaySolveResult {
+  let perLensCache = chiefRaySolveCache.get(L);
+  if (!perLensCache) {
+    perLensCache = new Map();
+    chiefRaySolveCache.set(L, perLensCache);
+  }
+  const cacheKey = chiefRaySolveCacheKey(L, focusT, zoomT, aberrationT, fieldAngleDeg, options);
+  const cached = perLensCache.get(cacheKey);
+  if (cached) return cached;
+
+  const result = computeChiefRaySolve(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  perLensCache.set(cacheKey, result);
+  reportChiefRayFallback(L, fieldAngleDeg, focusT, zoomT, result.status);
+  return result;
+}
+
+function computeChiefRaySolve(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState | undefined,
+  aberrationT: number,
+  options: RayTraceOptions | undefined,
+): ChiefRaySolveResult {
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg, L.projection);
+  if (launchSurface === "bounding-sphere") {
+    return solveChiefRayBoundingSphere(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  }
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  if (launch.status === "out-of-domain") {
+    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
+  }
+
   const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const uField = launch.uField;
   const paraxialYChief = -geom.epRatio * uField;
 
-  if (Math.abs(fieldAngleDeg) < 1) return paraxialYChief;
+  if (Math.abs(fieldAngleDeg) < 1) {
+    return { yLaunch: paraxialYChief, uField, status: "converged", iterations: 0, launchSurface };
+  }
 
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const stopIdx = L.stopIdx;
@@ -202,18 +312,220 @@ export function solveChiefRayLaunchHeight(
 
   const yLo = heightAtStop(lo);
   const yHi = heightAtStop(hi);
-  if (yLo === null || yHi === null) return paraxialYChief;
-  if (yLo * yHi > 0) return paraxialYChief;
+  if (yLo === null || yHi === null || yLo * yHi > 0) {
+    return { yLaunch: paraxialYChief, uField, status: "bracket-failed", iterations: 0, launchSurface };
+  }
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
     const mid = (lo + hi) / 2;
     const yMid = heightAtStop(mid);
-    if (yMid === null) return paraxialYChief;
-    if (Math.abs(yMid) < 1e-6) return mid;
+    if (yMid === null) {
+      return { yLaunch: paraxialYChief, uField, status: "paraxial-fallback", iterations: i + 1, launchSurface };
+    }
+    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      return { yLaunch: mid, uField, status: "converged", iterations: i + 1, launchSurface };
+    }
     if (yMid < 0 === yLo < 0) lo = mid;
     else hi = mid;
+    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
+      return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1, launchSurface };
+    }
   }
-  return (lo + hi) / 2;
+  return {
+    yLaunch: (lo + hi) / 2,
+    uField,
+    status: "converged",
+    iterations: CHIEF_RAY_MAX_ITERATIONS,
+    launchSurface,
+  };
+}
+
+// Launch-sphere radius for bounding-sphere chief-ray launches. Must be large
+// enough that the launch origin is unambiguously outside the lens for any
+// reasonable field direction, but small enough that the per-surface bracket
+// finder doesn't waste samples sweeping empty space. Takes the paraxial chief
+// b-factor directly so it can be called from inside `computeFieldGeometryAtState`
+// (where the geometry struct isn't yet assembled) as well as from
+// `solveChiefRayBoundingSphere` (with a full `FieldGeometryState`).
+function computeBoundingSphereLaunchRadiusMm(L: RuntimeLens, chiefB: number): number {
+  let totalThickness = 0;
+  let maxSD = 0;
+  for (const s of L.S) {
+    totalThickness += Math.abs(s.d ?? 0);
+    if (s.sd && s.sd > maxSD) maxSD = s.sd;
+  }
+  return Math.max(2 * maxSD, totalThickness + Math.abs(chiefB) + 5);
+}
+
+export function solveChiefRayBoundingSphere(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState | undefined,
+  aberrationT: number,
+  options: RayTraceOptions | undefined,
+): ChiefRaySolveResult {
+  const launchSurface: LaunchSurface = "bounding-sphere";
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+
+  // Paraxial entrance pupil z relative to the front vertex. Derived from the
+  // identity `yLaunch(z=0) = -epRatio · uField` that drives the object-plane
+  // bisection: a ray launched at `(y = -epRatio·u, slope = u)` from z=0 passes
+  // through `(y=0, z=epRatio)` for any u, which is the paraxial EP definition.
+  const epZ = geom.epRatio;
+  const launchRadius = computeBoundingSphereLaunchRadiusMm(L, geom.b);
+  // Meridional convention: object-plane bisection slope-launches along the
+  // y axis (uy0 = -tan θ), so the bounding-sphere meridional direction lives
+  // in the y-z plane. Pass `fieldAngleDeg` as θ_y, not θ_x.
+  const launch = boundingSphereLaunchVector(epZ, 0, fieldAngleDeg, launchRadius);
+  if (launch.status !== "ok") {
+    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
+  }
+
+  // Perpendicular to direction in the (y, z) plane, used as the bisection
+  // free-parameter axis. Offsetting the origin by `yEP` along this axis sweeps
+  // the chief-ray candidate through the entrance-pupil plane in object-space y.
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  const sinTheta = Math.sin(thetaRad);
+  const cosTheta = Math.cos(thetaRad);
+  const perpY = cosTheta;
+  const perpZ = sinTheta;
+  const direction = launch.direction;
+  const baseOrigin = launch.origin;
+
+  // The slope-launch equivalent uField, finite only for forward-cone fields.
+  // Past 89° the consumer can't legitimately use this as a slope anyway; the
+  // launchSurface tag tells callers to consult the vector geometry instead.
+  const uFieldEquivalent = Math.abs(cosTheta) > 1e-9 ? -sinTheta / cosTheta : NaN;
+
+  // Project the bounding-sphere ray (offset by yEP) back to z=0 so the
+  // returned `yLaunch` keeps the same geometric meaning as the object-plane
+  // path: "y where the chief ray crosses the z=0 plane." Pathological when
+  // direction[2] ≈ 0, hence the cosTheta guard.
+  const projectYLaunchToZ0 = (yEP: number): number => {
+    if (Math.abs(direction[2]) < 1e-12) return NaN;
+    const oy = baseOrigin[1] + yEP * perpY;
+    const oz = baseOrigin[2] + yEP * perpZ;
+    const t = (0 - oz) / direction[2];
+    return oy + t * direction[1];
+  };
+
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
+  const stopIdx = L.stopIdx;
+  const launchBoundT = 2 * launchRadius;
+
+  const heightAtStop = (yEP: number): number | null => {
+    const origin: Vector3 = [baseOrigin[0], baseOrigin[1] + yEP * perpY, baseOrigin[2] + yEP * perpZ];
+    const result = traceExactSurfaceStackVector(
+      { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+      { origin, direction },
+      { stopAt: stopIdx, launchBoundT },
+    );
+    if (result.failureReason !== null) return null;
+    return result.y;
+  };
+
+  // Paraxial seed for yEP: with origin already centered such that yEP=0 passes
+  // through the paraxial EP center `(0, 0, epRatio)`, the paraxial chief ray
+  // sits at yEP = 0 by construction. Bracket width mirrors the existing
+  // object-plane formula `max(|paraxialYChief|·0.5, 0.5)`, converted to yEP
+  // space via `· cos(θ)`. Equivalently: `0.5 · epRatio · |sin θ|`.
+  const paraxialYEP = 0;
+
+  if (Math.abs(fieldAngleDeg) < 1) {
+    return {
+      yLaunch: projectYLaunchToZ0(paraxialYEP),
+      uField: uFieldEquivalent,
+      status: "converged",
+      iterations: 0,
+      launchSurface,
+    };
+  }
+
+  const bracketHalf = Math.max(0.5 * Math.abs(geom.epRatio * sinTheta), 0.5);
+  let lo = paraxialYEP - bracketHalf;
+  let hi = paraxialYEP + bracketHalf;
+  let yLo = heightAtStop(lo);
+  let yHi = heightAtStop(hi);
+
+  // Widen the bracket if the initial guess doesn't straddle the stop center.
+  // Bounding-sphere launches at past-cap fields can have less-predictable
+  // paraxial seeds than the object-plane path; allow a few doublings before
+  // giving up.
+  for (let attempt = 0; attempt < 3 && (yLo === null || yHi === null || yLo * yHi > 0); attempt++) {
+    lo = paraxialYEP - bracketHalf * (2 << attempt);
+    hi = paraxialYEP + bracketHalf * (2 << attempt);
+    yLo = heightAtStop(lo);
+    yHi = heightAtStop(hi);
+  }
+  if (yLo === null || yHi === null || yLo * yHi > 0) {
+    return {
+      yLaunch: projectYLaunchToZ0(paraxialYEP),
+      uField: uFieldEquivalent,
+      status: "bracket-failed",
+      iterations: 0,
+      launchSurface,
+    };
+  }
+
+  let fLo = yLo;
+  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
+    const mid = (lo + hi) / 2;
+    const yMid = heightAtStop(mid);
+    if (yMid === null) {
+      return {
+        yLaunch: projectYLaunchToZ0(paraxialYEP),
+        uField: uFieldEquivalent,
+        status: "paraxial-fallback",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      return {
+        yLaunch: projectYLaunchToZ0(mid),
+        uField: uFieldEquivalent,
+        status: "converged",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+    if (yMid < 0 === fLo < 0) {
+      lo = mid;
+      fLo = yMid;
+    } else {
+      hi = mid;
+    }
+    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
+      return {
+        yLaunch: projectYLaunchToZ0((lo + hi) / 2),
+        uField: uFieldEquivalent,
+        status: "converged",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+  }
+  return {
+    yLaunch: projectYLaunchToZ0((lo + hi) / 2),
+    uField: uFieldEquivalent,
+    status: "converged",
+    iterations: CHIEF_RAY_MAX_ITERATIONS,
+    launchSurface,
+  };
+}
+
+export function solveChiefRayLaunchHeight(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState,
+  aberrationT = 0,
+  options?: RayTraceOptions,
+): number {
+  return solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options).yLaunch;
 }
 
 export function chiefRayImageHeightAccurate(
@@ -226,8 +538,8 @@ export function chiefRayImageHeightAccurate(
   aberrationT = 0,
   options?: RayTraceOptions,
 ): number {
-  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  const uField = -Math.tan(thetaRad);
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  const uField = launch.uField;
   const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);

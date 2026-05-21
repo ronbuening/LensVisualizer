@@ -55,10 +55,20 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   /* ── Edge distortion annotation ── */
   const edgeSample = samples[samples.length - 1];
   const edgeLabel = `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
+  const isProjectionResidual =
+    edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
 
   /* ── Barrel / pincushion direction ── */
   const dominantDirection =
-    edgeSample.distortionPercent > 0.01 ? "barrel" : edgeSample.distortionPercent < -0.01 ? "pincushion" : "";
+    edgeSample.distortionPercent > 0.01
+      ? isProjectionResidual
+        ? "outward residual"
+        : "barrel"
+      : edgeSample.distortionPercent < -0.01
+        ? isProjectionResidual
+          ? "inward residual"
+          : "pincushion"
+        : "";
 
   /* ── Y-axis tick values ── */
   const yTicks = niceTicks(yMin, yMax, 6);
@@ -77,8 +87,8 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
       xTickLabel={(tick) => `${tick.toFixed(0)}%`}
       yTickLabel={formatSignedCompactTick}
       xLabel="Image height (% of edge)"
-      yLabel="Distortion (%)"
-      referenceLines={[{ value: 0, label: "No distortion", opacity: 0.6 }]}
+      yLabel={isProjectionResidual ? "Residual (%)" : "Distortion (%)"}
+      referenceLines={[{ value: 0, label: isProjectionResidual ? "No residual" : "No distortion", opacity: 0.6 }]}
     >
       {/* ── Curve ── */}
       <path d={pathD} fill="none" stroke={t.sliderAccent} strokeWidth={1.5} strokeLinejoin="round" />

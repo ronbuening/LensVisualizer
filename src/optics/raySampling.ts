@@ -1,4 +1,27 @@
 import type { RayDensity } from "../types/state.js";
+import type { RuntimeLens } from "../types/optics.js";
+
+/**
+ * Heuristic for "expensive" lenses where ray-bundle analyses should drop to a
+ * lower sample density to keep settled-compute time and memory tolerable.
+ *
+ * Triggers on any of:
+ *   - non-rectilinear projection (fisheye), which forces wide ray cones
+ *   - high surface count (≥32), which multiplies trace cost linearly
+ *   - large physical aperture (maxSD ≥ 50 mm), which forces dense pupil sweeps
+ *   - very wide field (halfField ≥ 40°), which forces dense field sampling
+ *
+ * Shared by [LensDiagramPanel.tsx](../components/layout/LensDiagramPanel.tsx)
+ * for interactive ray-density downgrade and by analysis modules for settled
+ * sample-count reduction.
+ */
+export function isHeavyLensForRayWork(L: Pick<RuntimeLens, "projection" | "N" | "maxSD" | "halfField">): boolean {
+  if ((L.projection?.kind ?? "rectilinear") !== "rectilinear") return true;
+  if (L.N >= 32) return true;
+  if (L.maxSD >= 50) return true;
+  if (L.halfField >= 40) return true;
+  return false;
+}
 
 const DENSITY_MULTIPLIERS: Record<RayDensity, number> = {
   normal: 1,

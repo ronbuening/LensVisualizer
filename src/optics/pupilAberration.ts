@@ -44,6 +44,7 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { projectionLaunchSlopeForField } from "./projection.js";
 import type { RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -218,13 +219,17 @@ export function computePupilAberrationProfile(
   for (let i = 0; i < n; i++) {
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
-    const tanTheta = Math.tan((fieldDeg * Math.PI) / 180);
+    const launch = projectionLaunchSlopeForField(L, fieldDeg);
+    if (launch.status === "out-of-domain") {
+      samples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
+      continue;
+    }
 
     let chiefRayCorrection = 1;
     let epShiftMm = 0;
 
-    // paraxialYChief = epRatio × tanTheta (mm).  Zero at fieldDeg = 0.
-    const paraxialYChief = epRatio * tanTheta;
+    // paraxialYChief = −epRatio × uField (mm).  Zero at fieldDeg = 0.
+    const paraxialYChief = -epRatio * launch.uField;
     if (Math.abs(paraxialYChief) > 1e-12) {
       const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
       chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
@@ -288,7 +293,12 @@ export function computeExitPupilAberrationProfile(
   for (let i = 0; i < n; i++) {
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
-    const uField = -Math.tan((fieldDeg * Math.PI) / 180);
+    const launch = projectionLaunchSlopeForField(L, fieldDeg);
+    if (launch.status === "out-of-domain") {
+      samples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
+      continue;
+    }
+    const uField = launch.uField;
 
     let xpZRelLastSurf = paraxialXpZRelLastSurf;
     let xpShiftMm = 0;
@@ -365,8 +375,12 @@ export function computeBothPupilAberrationProfiles(
       for (let i = 0; i < n; i++) {
         const fieldFrac = i / (n - 1);
         const fieldDeg = fieldFrac * halfFieldDeg;
-        const tanTheta = Math.tan((fieldDeg * Math.PI) / 180);
-        const paraxialYChief = epRatio * tanTheta;
+        const launch = projectionLaunchSlopeForField(L, fieldDeg);
+        if (launch.status === "out-of-domain") {
+          samples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
+          continue;
+        }
+        const paraxialYChief = -epRatio * launch.uField;
         let chiefRayCorrection = 1;
         let epShiftMm = 0;
         if (Math.abs(paraxialYChief) > 1e-12) {
@@ -404,15 +418,20 @@ export function computeBothPupilAberrationProfiles(
   for (let i = 0; i < n; i++) {
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
-    const tanTheta = Math.tan((fieldDeg * Math.PI) / 180);
-    const uField = -tanTheta;
+    const launch = projectionLaunchSlopeForField(L, fieldDeg);
+    if (launch.status === "out-of-domain") {
+      epSamples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
+      xpSamples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
+      continue;
+    }
+    const uField = launch.uField;
 
     let chiefRayCorrection = 1;
     let epShiftMm = 0;
     let xpZRelLastSurf = paraxialXpZRelLastSurf;
     let xpShiftMm = 0;
 
-    const paraxialYChief = epRatio * tanTheta;
+    const paraxialYChief = -epRatio * uField;
 
     if (Math.abs(fieldDeg) > 1e-9) {
       const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);

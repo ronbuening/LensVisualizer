@@ -9,6 +9,7 @@ import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorN5cmf11Raw from "../../../src/lens-data/nikon/NikonN5cmf11.data.js";
+import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
@@ -17,6 +18,7 @@ const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;
 const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw } as LensData;
 const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
 const NikkorN5cmf11 = { ...LENS_DEFAULTS, ...NikkorN5cmf11Raw } as LensData;
+const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
 const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
 
 describe("paraxialTrace", () => {
@@ -117,6 +119,28 @@ describe("buildLens — production lenses", () => {
     expect(L.FOPEN).toBeCloseTo(1.85, 1);
   });
 
+  it("Nikon 6mm f/2.8 fisheye uses projection focal length for aperture sizing", () => {
+    const L = buildLens(NikonFisheye6mmf28);
+
+    expect(L.projection.kind).toBe("fisheye-equidistant");
+    expect(L.EFL).toBeCloseTo(37.4, 1);
+    expect(L.apertureReferenceFocalLength).toBeCloseTo(6.3, 6);
+    expect(L.FOPEN).toBeCloseTo(2.8, 2);
+    expect(L.stopPhysSD).toBeCloseTo(5.4, 1);
+    expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 4);
+    // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
+    // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
+    // but fisheyes skip that bisection — see buildLens.ts comment block and
+    // TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8 step 7.
+    expect(L.halfField).toBeCloseTo(110, 6);
+  });
+
+  it("throws when a large focalLengthDesign mismatch lacks projection metadata", () => {
+    const rectilinearData = { ...NikonFisheye6mmf28, projection: undefined } as LensData;
+
+    expect(() => buildLens(rectilinearData)).toThrow(/computed Gaussian EFL/);
+  });
+
   /* ── Structural checks ── */
   it("all lenses have frozen output", () => {
     for (const data of [ApoLanthar, Nokton, Nikkor, Nikkor105, Sonnar50f15]) {
@@ -166,6 +190,7 @@ describe("buildLens — RuntimeLens property shape", () => {
     // Core optics scalars
     expect(typeof L.N).toBe("number");
     expect(typeof L.EFL).toBe("number");
+    expect(typeof L.apertureReferenceFocalLength).toBe("number");
     expect(typeof L.B).toBe("number");
     expect(typeof L.FOPEN).toBe("number");
     expect(typeof L.stopIdx).toBe("number");
@@ -186,6 +211,7 @@ describe("buildLens — RuntimeLens property shape", () => {
     expect(typeof L.focusStep).toBe("number");
     expect(typeof L.apertureStep).toBe("number");
     expect(L.perspectiveControl).toBeNull();
+    expect(L.projection.kind).toBe("rectilinear");
     // Zoom scalars
     expect(typeof L.isZoom).toBe("boolean");
     expect(typeof L.zoomStep).toBe("number");
