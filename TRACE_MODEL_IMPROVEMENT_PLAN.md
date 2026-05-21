@@ -532,32 +532,35 @@ fails before the intersection algorithm gets a chance to converge. Wiring the bo
 takes six numbered steps below, ordered so each builds on the previous. Steps 1–3 are the load-bearing numerics
 work; without them, steps 4–7 are dead code.
 
-**Update.** Steps 1, 2a+2b, 3, 4, and 6 have landed (commits `beb040e`, `8e8c225`, and `<pending>`). The
-tracer accepts grazing and backward rays when given a `launchBoundT`; `computeChiefRaySolve` dispatches
-past-cap fields through `solveChiefRayBoundingSphere` that bisects on EP-crossing y; parity tests confirm
-both launch surfaces produce bit-identical chief-ray geometry (~1e-12 mm at z=0) for fields where the lens
-itself converges. The validator cap on `maxTraceFieldDeg` is raised from 90° to 180° (`6ce2906`) and the
-Nikon 6mm now declares `maxTraceFieldDeg: 110`. As of Step 6, `launchSurfaceForFieldDeg(fieldDeg, projection)`
-routes every fisheye projection through the bounding-sphere arm regardless of field angle; rectilinear
-projections keep cap-based dispatch (`object-plane` below `MAX_FIELD_LAUNCH_DEG`, `bounding-sphere`
-at/above). This exercises the bounding-sphere code on every fisheye solve in the catalog rather than only
-past the cap. Step 2c is intentionally deferred — see note under step 2 below.
+**Update.** Steps 1, 2a+2b, 3, 4, 6, and 7 have landed (commits `beb040e`, `8e8c225`, `c60c601`, and
+`<pending>`). The tracer accepts grazing and backward rays when given a `launchBoundT`;
+`computeChiefRaySolve` dispatches past-cap fields through `solveChiefRayBoundingSphere` that bisects on
+EP-crossing y; parity tests confirm both launch surfaces produce bit-identical chief-ray geometry (~1e-12 mm
+at z=0) for fields where the lens itself converges. The validator cap on `maxTraceFieldDeg` is raised from
+90° to 180° (`6ce2906`) and the Nikon 6mm now declares `maxTraceFieldDeg: 110`. As of Step 6,
+`launchSurfaceForFieldDeg(fieldDeg, projection)` routes every fisheye projection through the bounding-sphere
+arm regardless of field angle.
 
-**Step 7 finding (2026-05-20).** A first attempt at Step 7's analysis-time clamp loosening surfaced that
-the lifted clamp exposes the lens's full paraxial half-field (~42° on the Nikon 6mm) to
-`computeFieldGeometryAtState`, which previously was narrowed by the slope-based `testChief` bisection. The
-testChief bisection itself can't see past `MAX_FIELD_LAUNCH_DEG`, so skipping it for fisheyes makes
-`halfFieldDeg` too permissive — analysis modules (`computeDistortionCurve` in particular) then iterate to
-field samples where chief rays don't actually trace cleanly, producing sparse/NaN samples. A proper Step 7
-implementation needs to port the `testChief` bisection to use `solveChiefRay` (which now dispatches to
-bounding-sphere for fisheyes thanks to Step 6) so the empirical "can this lens trace a chief ray here?"
-check spans the full angular domain. Until then, the bounding-sphere code is reachable via direct
-`solveChiefRay` calls on fisheye lenses (now exercised at every angle by Step 6, plus past-cap angles by
-the integration tests in [boundingSphereLaunch.test.ts](__tests__/src/optics/boundingSphereLaunch.test.ts))
-— but not through the UI's analysis-tab loops, which remain capped at 89° by the unchanged analysis-time
-clamp.
+**Step 7 landed.** The fisheye half-field clamp loosened from `MAX_FIELD_LAUNCH_DEG - 1e-3` to
+`ABSOLUTE_HALF_FIELD_CEILING` (175°), and `computeFieldGeometryAtState`'s `testChief` bisection grew a
+bounding-sphere fallback for past-cap angles. The implementation preserves bit-identity for the entire
+current catalog because no fisheye's paraxial halfFieldDeg exceeds `MAX_FIELD_LAUNCH_DEG` — the Nikon 6mm
+sits at 42.73°, well below the cap, so the new fallback is dead code today. It defends against a future
+fisheye whose paraxial halfFieldDeg lands past 89°: the bisection now tries the bounding-sphere test
+instead of failing immediately. Rectilinear lenses are untouched (still capped at `MAX_FIELD_LAUNCH_DEG`).
 
-Step 5 (visual smoke) and Step 7 (clamp loosening + analysis-module migration) remain.
+Step 2c is intentionally deferred — see note under step 2 below. Step 5 (visual smoke on the Nikon 6mm at
+110°) requires browser access and remains.
+
+**Analysis-module past-cap visibility — still not done.** Step 7's clamp loosening alone doesn't make the
+bounding-sphere code visible through the UI's analysis tabs. Those loops (`computeVignettingCurve`,
+`computeDistortionCurve`, `computePupilAberrationProfile`, off-axis) consume `projectionLaunchSlopeForField`
+and short-circuit at `status === "out-of-domain"`, so they never call `solveChiefRay` for past-cap fields
+regardless of `halfFieldDeg`. Migrating those loops to use `solveChiefRay` (and thus the bounding-sphere
+arm) is a separate refactor — multi-hour work touching each analysis module. The bounding-sphere code is
+exercised today by direct `solveChiefRay` calls on fisheye lenses (every angle, via the Step 6 dispatch)
+and by the past-cap integration tests in
+[boundingSphereLaunch.test.ts](__tests__/src/optics/boundingSphereLaunch.test.ts).
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering

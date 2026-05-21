@@ -10,6 +10,7 @@ import {
 import { traceExactSurfaceStack, traceExactSurfaceStackVector } from "./internal/exactSurfaceTrace.js";
 import type { Vector3 } from "./internal/exactSurfaceTrace.js";
 import {
+  ABSOLUTE_HALF_FIELD_CEILING,
   boundingSphereLaunchVector,
   isFisheyeProjection,
   launchSurfaceForFieldDeg,
@@ -116,13 +117,37 @@ export function computeFieldGeometryAtState(
   }
   let halfFieldDeg = (Math.atan(minU) * 180) / Math.PI;
 
+  const fisheye = isFisheyeProjection(L.projection);
+
+  const testChiefBoundingSphere = (deg: number): boolean => {
+    // Past-cap fisheye fallback: build a bounding-sphere chief ray at the
+    // declared angle and check whether it traverses the lens without
+    // semi-diameter clipping. Mirrors the slope-launch test's semantic — we're
+    // not asserting stop-center landing, just "does a representative chief
+    // ray at this field angle physically make it through?"
+    const launchRadius = computeBoundingSphereLaunchRadiusMm(L, b);
+    const launch = boundingSphereLaunchVector(epRatio, 0, deg, launchRadius);
+    if (launch.status !== "ok") return false;
+    const result = traceExactSurfaceStackVector(
+      { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+      { origin: launch.origin, direction: launch.direction },
+      { stopAt: L.stopIdx, launchBoundT: 2 * launchRadius, checkSemiDiameter: true },
+    );
+    return result.failureReason === null && !result.clipped;
+  };
+
   const testChief = (deg: number): boolean => {
     const launch = projectionLaunchSlopeForField(L, deg);
-    if (launch.status === "out-of-domain") return false;
-    const uField = launch.uField;
-    const yChiefIn = -epRatio * uField;
-    const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
-    return isFinite(trace.y) && !trace.clipped;
+    if (launch.status === "ok") {
+      const uField = launch.uField;
+      const yChiefIn = -epRatio * uField;
+      const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
+      return isFinite(trace.y) && !trace.clipped;
+    }
+    // Slope launch out-of-domain (deg ≥ MAX_FIELD_LAUNCH_DEG). For fisheyes,
+    // try bounding-sphere; for rectilinear, there's no past-cap representation.
+    if (!fisheye) return false;
+    return testChiefBoundingSphere(deg);
   };
 
   if (isFinite(halfFieldDeg) && halfFieldDeg > 0 && !testChief(halfFieldDeg)) {
@@ -135,8 +160,10 @@ export function computeFieldGeometryAtState(
     }
     halfFieldDeg = lo;
   }
-  const projectionClampDeg = isFisheyeProjection(L.projection) ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
-  halfFieldDeg = Math.min(halfFieldDeg, projectionClampDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
+
+  const projectionClampDeg = fisheye ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
+  const upperBound = fisheye ? ABSOLUTE_HALF_FIELD_CEILING : MAX_FIELD_LAUNCH_DEG - 1e-3;
+  halfFieldDeg = Math.min(halfFieldDeg, projectionClampDeg, upperBound);
 
   return { halfFieldDeg, yRatio, b, epRatio };
 }
@@ -326,15 +353,18 @@ function computeChiefRaySolve(
 // Launch-sphere radius for bounding-sphere chief-ray launches. Must be large
 // enough that the launch origin is unambiguously outside the lens for any
 // reasonable field direction, but small enough that the per-surface bracket
-// finder doesn't waste samples sweeping empty space.
-function computeBoundingSphereLaunchRadiusMm(L: RuntimeLens, geom: FieldGeometryState): number {
+// finder doesn't waste samples sweeping empty space. Takes the paraxial chief
+// b-factor directly so it can be called from inside `computeFieldGeometryAtState`
+// (where the geometry struct isn't yet assembled) as well as from
+// `solveChiefRayBoundingSphere` (with a full `FieldGeometryState`).
+function computeBoundingSphereLaunchRadiusMm(L: RuntimeLens, chiefB: number): number {
   let totalThickness = 0;
   let maxSD = 0;
   for (const s of L.S) {
     totalThickness += Math.abs(s.d ?? 0);
     if (s.sd && s.sd > maxSD) maxSD = s.sd;
   }
-  return Math.max(2 * maxSD, totalThickness + Math.abs(geom.b) + 5);
+  return Math.max(2 * maxSD, totalThickness + Math.abs(chiefB) + 5);
 }
 
 export function solveChiefRayBoundingSphere(
@@ -354,7 +384,7 @@ export function solveChiefRayBoundingSphere(
   // bisection: a ray launched at `(y = -epRatio·u, slope = u)` from z=0 passes
   // through `(y=0, z=epRatio)` for any u, which is the paraxial EP definition.
   const epZ = geom.epRatio;
-  const launchRadius = computeBoundingSphereLaunchRadiusMm(L, geom);
+  const launchRadius = computeBoundingSphereLaunchRadiusMm(L, geom.b);
   // Meridional convention: object-plane bisection slope-launches along the
   // y axis (uy0 = -tan θ), so the bounding-sphere meridional direction lives
   // in the y-z plane. Pass `fieldAngleDeg` as θ_y, not θ_x.

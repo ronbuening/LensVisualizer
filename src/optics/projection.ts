@@ -91,11 +91,22 @@ export interface ProjectionLaunchSlope {
 
 /**
  * Forward-cone field-angle limit beyond which slope-based ray launch overflows
- * and the exact tracer's `direction[2] > 0` precondition fails. Bounding-sphere
- * launch (see TRACE_MODEL_IMPROVEMENT_PLAN.md Phase 5) will relax this for
- * fisheye projections; until then every callsite shares the same cap.
+ * and the exact tracer's `direction[2] > 0` precondition fails. For fisheye
+ * projections, `solveChiefRay` dispatches past this cap through the
+ * bounding-sphere arm (`solveChiefRayBoundingSphere`); analysis modules that
+ * still consume slopes directly use this cap to short-circuit. Non-fisheye
+ * lenses always clamp at this value.
  */
 export const MAX_FIELD_LAUNCH_DEG = 89;
+
+/**
+ * Physical/numerical ceiling on the half-field a lens may declare. The
+ * forward hemisphere is 180°; we leave a margin so a ray exactly anti-parallel
+ * to the optical axis (cos θ = -1, the bounding-sphere geometry's singular
+ * point) is not representable as a finite-cap field. Used by `computeFieldGeometryAtState`
+ * for fisheye lenses where the slope-launch cap doesn't apply.
+ */
+export const ABSOLUTE_HALF_FIELD_CEILING = 175;
 
 export type LaunchSurface = "object-plane" | "bounding-sphere";
 
