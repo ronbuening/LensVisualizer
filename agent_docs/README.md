@@ -5,7 +5,7 @@ links outward only when the task crosses boundaries.
 
 ## Layout
 
-- [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map and focused architecture notes.
+- [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map, program flow, public functions, and focused architecture notes.
 - Lens/content workflow docs at the root — lens authoring, patent audits, articles, changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
 - [`generated/`](generated/) — auto-generated reports and work queues; regenerate these instead of hand-editing them.

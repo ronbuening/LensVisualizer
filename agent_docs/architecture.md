@@ -21,6 +21,8 @@ links outward if the change crosses subsystem boundaries.
   [`architecture/testing.md`](architecture/testing.md).
 - For a high-level Mermaid data/control-flow diagram, read
   [`architecture/program-flow.md`](architecture/program-flow.md).
+- For stable project-internal functions, types, and import boundaries, read
+  [`architecture/public-functions.md`](architecture/public-functions.md).
 
 ## System Shape
 
@@ -69,6 +71,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
 - [`architecture/program-flow.md`](architecture/program-flow.md) - high-level Mermaid program flow.
+- [`architecture/public-functions.md`](architecture/public-functions.md) - stable project-internal functions, types, and import boundaries.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.
 - [`commenting_guide.md`](commenting_guide.md) - project commenting standards.
 - [`gotchas.md`](gotchas.md) - non-obvious constraints and failure modes.
