@@ -150,6 +150,7 @@ projection: {
 - `kind: "rectilinear"` is the implicit default.
 - `kind: "fisheye-equidistant"` (r = f·θ) uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics. Distortion residuals are measured against the equidistant reference.
 - `kind: "fisheye-equisolid"` (r = 2f·sin(θ/2)) — the common photographic fisheye projection used by lenses like the Sigma 15mm, Nikkor AF 8mm, and Olympus 8mm. Behaves like `fisheye-equidistant` for aperture/EFL handling but evaluates distortion residuals against the equal-area reference instead.
+- Zoom fisheyes may provide arrays for `focalLengthMm`, `fullFieldDeg`, `imageCircleMm`, and `maxTraceFieldDeg`; values are interpolated across the zoom range just like `zoomPositions`.
 - `fullFieldDeg` and `imageCircleMm` describe the published circular fisheye projection.
 - `maxTraceFieldDeg` sets the lens's authoritative half-field for fisheyes. The validator accepts values up to (but not including) 180°; chief rays past `MAX_FIELD_LAUNCH_DEG = 89°` route through the bounding-sphere launch arm. The diagram's off-axis ray rendering respects a separate, bisected `tracingHalfField` so bundle rays land safely on the image plane regardless of the declared coverage.
 

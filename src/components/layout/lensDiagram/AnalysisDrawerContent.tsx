@@ -3,7 +3,7 @@ import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
-import { isFisheyeProjection } from "../../../optics/projection.js";
+import { isFisheyeProjection, projectionValueAtZoom } from "../../../optics/projection.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 
 interface AnalysisDrawerContentProps {
@@ -71,11 +71,14 @@ export default function AnalysisDrawerContent({
 
   const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
   const projection = L.projection ?? { kind: "rectilinear" };
-  const fisheyeProjectionText = isFisheyeProjection(projection)
-    ? `Circular fisheye projection (${projection.kind === "fisheye-equisolid" ? "equisolid" : "equidistant"}): ${projection.fullFieldDeg.toFixed(0)}° field${
-        projection.imageCircleMm ? ` over a ${projection.imageCircleMm.toFixed(1)} mm image circle` : ""
-      }. Analysis tabs use the central forward-traced cone; the full field is projection metadata, not a rectilinear trace.`
-    : null;
+  const fisheyeProjectionText = (() => {
+    if (!isFisheyeProjection(projection)) return null;
+    const fullFieldDeg = projectionValueAtZoom(projection.fullFieldDeg, analysisInputs.zoomT);
+    const imageCircleMm = projectionValueAtZoom(projection.imageCircleMm, analysisInputs.zoomT);
+    return `Circular fisheye projection (${projection.kind === "fisheye-equisolid" ? "equisolid" : "equidistant"}): ${fullFieldDeg?.toFixed(0) ?? "unknown"}° field${
+      imageCircleMm ? ` over a ${imageCircleMm.toFixed(1)} mm image circle` : ""
+    }. Analysis tabs use the central forward-traced cone; the full field is projection metadata, not a rectilinear trace.`;
+  })();
   const withAnalysisNotices = (content: ReactNode) => (
     <>
       {fisheyeProjectionText && (

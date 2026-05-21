@@ -74,32 +74,58 @@ function validateProjection(value: unknown, errors: string[]): void {
     return;
   }
 
-  if (typeof config.focalLengthMm !== "number" || !isFinite(config.focalLengthMm) || config.focalLengthMm <= 0) {
-    errors.push(`"projection.focalLengthMm" must be a finite positive number for fisheye projections`);
-  }
-  if (
-    typeof config.fullFieldDeg !== "number" ||
-    !isFinite(config.fullFieldDeg) ||
-    config.fullFieldDeg <= 0 ||
-    config.fullFieldDeg > 360
-  ) {
-    errors.push(`"projection.fullFieldDeg" must be finite and between 0 and 360 degrees for fisheye projections`);
-  }
-  if (
-    config.imageCircleMm !== undefined &&
-    (typeof config.imageCircleMm !== "number" || !isFinite(config.imageCircleMm) || config.imageCircleMm <= 0)
-  ) {
-    errors.push(`"projection.imageCircleMm" must be a finite positive number when provided`);
-  }
-  if (
-    config.maxTraceFieldDeg !== undefined &&
-    (typeof config.maxTraceFieldDeg !== "number" ||
-      !isFinite(config.maxTraceFieldDeg) ||
-      config.maxTraceFieldDeg <= 0 ||
-      config.maxTraceFieldDeg >= 180)
-  ) {
-    errors.push(`"projection.maxTraceFieldDeg" must be finite and between 0 and 180 degrees when provided`);
-  }
+  const validateProjectionNumber = (
+    field: "focalLengthMm" | "fullFieldDeg" | "imageCircleMm" | "maxTraceFieldDeg",
+    candidate: unknown,
+    required: boolean,
+    check: (n: number) => boolean,
+    message: string,
+  ): void => {
+    if (candidate === undefined) {
+      if (required) errors.push(`"projection.${field}" ${message}`);
+      return;
+    }
+    const values = Array.isArray(candidate) ? candidate : [candidate];
+    if (Array.isArray(candidate) && candidate.length === 0) {
+      errors.push(`"projection.${field}" array must not be empty`);
+      return;
+    }
+    for (let i = 0; i < values.length; i++) {
+      const n = values[i];
+      if (typeof n !== "number" || !isFinite(n) || !check(n)) {
+        errors.push(`"projection.${field}${Array.isArray(candidate) ? `[${i}]` : ""}" ${message}`);
+      }
+    }
+  };
+
+  validateProjectionNumber(
+    "focalLengthMm",
+    config.focalLengthMm,
+    true,
+    (n) => n > 0,
+    `must be a finite positive number for fisheye projections`,
+  );
+  validateProjectionNumber(
+    "fullFieldDeg",
+    config.fullFieldDeg,
+    true,
+    (n) => n > 0 && n <= 360,
+    `must be finite and between 0 and 360 degrees for fisheye projections`,
+  );
+  validateProjectionNumber(
+    "imageCircleMm",
+    config.imageCircleMm,
+    false,
+    (n) => n > 0,
+    `must be a finite positive number when provided`,
+  );
+  validateProjectionNumber(
+    "maxTraceFieldDeg",
+    config.maxTraceFieldDeg,
+    false,
+    (n) => n > 0 && n < 180,
+    `must be finite and between 0 and 180 degrees when provided`,
+  );
 }
 
 function validateLensMounts(value: unknown, errors: string[]): void {

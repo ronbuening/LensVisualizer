@@ -12,6 +12,7 @@ import type { Vector3 } from "./internal/exactSurfaceTrace.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
   boundingSphereLaunchVector,
+  fisheyeProjectionMaxTraceFieldAtZoom,
   isFisheyeProjection,
   launchSurfaceForFieldDeg,
   MAX_FIELD_LAUNCH_DEG,
@@ -150,7 +151,10 @@ export function computeFieldGeometryAtState(
     // `maxTraceFieldDeg` is the source of truth; individual rays in the
     // diagram or analysis tabs that don't trace at extreme angles get
     // filtered out per-ray via the tracer's `clipped` flag.
-    halfFieldDeg = Math.min(L.projection.maxTraceFieldDeg ?? halfFieldDeg, ABSOLUTE_HALF_FIELD_CEILING);
+    halfFieldDeg = Math.min(
+      fisheyeProjectionMaxTraceFieldAtZoom(L.projection, zoomT) ?? halfFieldDeg,
+      ABSOLUTE_HALF_FIELD_CEILING,
+    );
     return { halfFieldDeg, yRatio, b, epRatio };
   }
 

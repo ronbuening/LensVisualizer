@@ -169,6 +169,22 @@ describe("validateLensData", () => {
     ).toEqual([]);
   });
 
+  it("accepts zoom-array fisheye projection metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          projection: {
+            kind: "fisheye-equisolid",
+            focalLengthMm: [8.05, 11.85, 15.14],
+            fullFieldDeg: [180, 180, 175.5],
+            imageCircleMm: [22.3, 33.54, 43.28],
+            maxTraceFieldDeg: [90, 90, 87.75],
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
   it("catches invalid fisheye projection metadata", () => {
     const unknownKindErrors = validateLensData(makeValid({ projection: { kind: "panini" } }));
     expect(unknownKindErrors.some((error) => error.includes("projection.kind"))).toBe(true);
