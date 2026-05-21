@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **43** mismatched surfaces across **20** lens files
-- **37** surfaces have at least one candidate
-- **7** surfaces have high-confidence candidate ranking
+- **45** mismatched surfaces across **21** lens files
+- **39** surfaces have at least one candidate
+- **8** surfaces have high-confidence candidate ranking
 - **6** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
@@ -67,6 +67,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | 1.84850 / 43.79 | H-ZLAF68C (Δnd=+0.0345) | J-LASFH22 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
 | 24 | `Dense flint (near S-NBH52V)` | 1.69895 / 30.13 | S-NBH52V (Δnd=-0.0260) | E-FD15 (Δnd=-0.0000, Δvd=-0.08)<br>S-TIM35 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | 1.76554 / 46.76 | TAFD5F (Δnd=+0.0693) | Q-LASFPH2S (Δnd=-0.0001, Δvd=-0.01)<br>S-LAH96 (Δnd=-0.0017, Δvd=+1.73)<br>MC-TAF101-100 (Δnd=+0.0035, Δvd=+2.53) | Choose by context | Yes - choose candidate |
+
+### [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) - US 8,736,971 B2
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 11 | `S-TIM2 (OHARA; titanium flint)` | 1.59270 / 35.30 | S-TIM2 (Δnd=+0.0273) | S-FTM16 (Δnd=+0.0000, Δvd=+0.01) | High | Check lens notes |
+| 23 | `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)` | 1.72047 / 34.70 | S-NBH5 (Δnd=-0.0664) | N-KZFS8 (Δnd=-0.0000, Δvd=+0.00)<br>S-NBH8 (Δnd=-0.0000, Δvd=+0.01) | Medium | Yes - choose candidate |
 
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) - US 7,898,744 B2
 

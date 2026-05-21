@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **235** lenses scanned
-- **2678** non-air surfaces examined
-- **2672** element glass declarations examined
-- **547** non-explicit-unmatched annotations did not resolve
+- **241** lenses scanned
+- **2783** non-air surfaces examined
+- **2777** element glass declarations examined
+- **550** non-explicit-unmatched annotations did not resolve
 - **201** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -47,6 +47,7 @@ or per-lens patent backfills.
 | H-ZLAF4A | 2 | 1 | |
 | S-APL1 | 2 | 1 | |
 | S-BSM10 | 2 | 2 | |
+| S-LAL12 | 2 | 2 | |
 | S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | SK18 | 2 | 1 | |
@@ -195,7 +196,6 @@ or per-lens patent backfills.
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
-| S-LAL12 | 1 | 1 | |
 | S-LAL52 | 1 | 1 | |
 | S-LAL61 | 1 | 1 | |
 | S-NBH53 | 1 | 1 | |
@@ -378,6 +378,11 @@ or per-lens patent backfills.
 
 - [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
+
+### S-LAL12 — 2 occurrences
+
+- [Canon EF 70-200mm f/2.8L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) 18: `S-LAL12 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
 
 ### S-LAM7 — 2 occurrences
 
@@ -973,10 +978,6 @@ or per-lens patent backfills.
 ### S-LAH85V — 1 occurrence
 
 - [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 6: `S-LAH85V (OHARA)`
-
-### S-LAL12 — 1 occurrence
-
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
 
 ### S-LAL52 — 1 occurrence
 
