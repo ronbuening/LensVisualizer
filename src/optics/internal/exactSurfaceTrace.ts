@@ -36,9 +36,10 @@ export interface ExactSurfaceTraceInput {
  * already has a 3D ray (origin + normalized direction) and wants to bypass the
  * slope-based `[ux, uy, 1] / ||·||` construction.
  *
- * Direction must be normalized with `direction[2] > 0`. Bounding-sphere launch
- * for fisheye fields that exceed the forward cone is a future change tracked in
- * `TRACE_MODEL_IMPROVEMENT_PLAN.md` Phase 5.
+ * Direction must be normalized. For rays outside the forward cone
+ * (`direction[2] ≤ 0`), callers must pass `launchBoundT` so the per-surface
+ * intersection search has a finite parametric bound — the z-projected bound is
+ * meaningless for grazing or backward rays.
  */
 export interface VectorRayInput {
   origin: Vector3;
@@ -56,6 +57,13 @@ export interface ExactSurfaceTraceOptions {
   stopOnClip?: boolean;
   /** Slope-entry only: distance to back-project the origin behind the first surface vertex. Ignored by `traceExactSurfaceStackVector`. */
   leadDistance?: number;
+  /**
+   * Parametric bound for per-surface intersection search when `direction[2]` is
+   * too small for the z-projected bound to be meaningful (bounding-sphere launch
+   * for past-cap fisheye fields). Typically `2 × launchRadiusMm`. Ignored on
+   * forward-cone rays where the z-projected bound is tighter.
+   */
+  launchBoundT?: number;
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
 }
 
@@ -153,6 +161,7 @@ export function traceExactSurfaceStackVector(
     stopSemiDiameter,
     ghost = false,
     stopOnClip = false,
+    launchBoundT,
     indexAtSurface,
   }: ExactSurfaceTraceOptions = {},
 ): ExactSurfaceTraceResult {
@@ -171,7 +180,7 @@ export function traceExactSurfaceStackVector(
   for (let i = 0; i < tracedCount; i++) {
     const surface = lens.S[i];
     const vertexZ = zPos[i] ?? 0;
-    const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, lens);
+    const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, lens, launchBoundT);
     const hit = intersectSagSurface({ origin, direction } satisfies SurfaceIntersectionRay, i, vertexZ, lens, {
       maxT,
       refractiveIndex: n,
@@ -319,15 +328,22 @@ function surfaceIntersectionMaxT(
   direction: Vector3,
   zPos: readonly number[],
   lens: ExactTraceLens,
+  launchBoundT: number | undefined,
 ): number {
-  if (direction[2] <= 1e-12) return 0;
-
-  const vertexZ = zPos[surfIdx] ?? 0;
-  const nextZ =
-    surfIdx < lens.S.length - 1 ? (zPos[surfIdx + 1] ?? vertexZ) : vertexZ + Math.abs(lens.S[surfIdx]?.d ?? 0);
-  const surfaceSag = Math.abs(conicPolySag(lens.S[surfIdx]?.sd ?? 0, lens.S[surfIdx]?.R ?? 0, lens.asphByIdx[surfIdx]));
-  const boundZ = Math.max(vertexZ + surfaceSag + 1, nextZ, origin[2] + 1e-6);
-  return Math.max(1e-6, (boundZ - origin[2]) / direction[2]);
+  if (direction[2] > 1e-12) {
+    const vertexZ = zPos[surfIdx] ?? 0;
+    const nextZ =
+      surfIdx < lens.S.length - 1 ? (zPos[surfIdx + 1] ?? vertexZ) : vertexZ + Math.abs(lens.S[surfIdx]?.d ?? 0);
+    const surfaceSag = Math.abs(
+      conicPolySag(lens.S[surfIdx]?.sd ?? 0, lens.S[surfIdx]?.R ?? 0, lens.asphByIdx[surfIdx]),
+    );
+    const boundZ = Math.max(vertexZ + surfaceSag + 1, nextZ, origin[2] + 1e-6);
+    return Math.max(1e-6, (boundZ - origin[2]) / direction[2]);
+  }
+  // Grazing or backward ray (bounding-sphere launch). The z-projected bound is
+  // meaningless; fall back to the caller-supplied launch bound. Returning 0 when
+  // unset preserves the original reject-and-fail behavior.
+  return launchBoundT && launchBoundT > 0 ? launchBoundT : 0;
 }
 
 function fallbackSurfacePoint(

@@ -532,6 +532,11 @@ fails before the intersection algorithm gets a chance to converge. Wiring the bo
 takes six numbered steps below, ordered so each builds on the previous. Steps 1–3 are the load-bearing numerics
 work; without them, steps 4–7 are dead code.
 
+**Update.** Steps 1 and 2a+2b landed (commit `<pending>`); the tracer now accepts grazing and backward rays
+when given a `launchBoundT` option. Step 2c is intentionally deferred — see note under step 2 below. Steps 3–7
+remain. Synthetic 1-surface analytic tests at `direction[2] = 0` and `direction[2] < 0` confirm convergence
+against closed-form ground truth in [surfaceIntersection.test.ts](__tests__/src/optics/internal/surfaceIntersection.test.ts).
+
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering
 session, but it MUST include browser access because step 5 is the only thing that catches the failure mode
@@ -618,6 +623,13 @@ Currently `if (Math.abs(direction[2]) <= 1e-12) return null;`. The fallback's jo
 visualizer something to draw when the real intersection fails. For grazing rays, project to the bounding-sphere
 intersection with the vertex plane via the `(lo, hi)` midpoint instead of dividing by `direction[2]`. If even
 that fails (e.g., the ray completely misses the sphere), return `null` is correct.
+
+**Deferred from steps 1–2** (commit `<commit-pending>`): Step 2c was not implemented in the steps-1+2 commit
+because `fallbackSurfacePoint` is only called from the `ghost: true` visualization branch in
+[exactSurfaceTrace.ts:195](src/optics/internal/exactSurfaceTrace.ts#L195), and no chief-ray-solving or analysis
+path enables ghost mode. With ghost mode off (today's default everywhere), failed intersections just break out
+of the trace loop. Step 2c becomes necessary only when the diagram panel (which does use ghost-mode rays) is
+asked to render a bounding-sphere launch — i.e., as part of step 6's catalog promotion. Wire it then.
 
 **Risk assessment for steps 1–2.** This is the genuine numerics work. The intersection algorithm has been stable
 for forward-cone rays for many lens generations; opening it up to sideways and backward rays creates new failure

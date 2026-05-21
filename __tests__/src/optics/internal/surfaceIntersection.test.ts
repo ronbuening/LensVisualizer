@@ -95,13 +95,17 @@ describe("surface intersection helpers", () => {
     expect(result.failureReason).toBe("noConvergedIntersection");
   });
 
-  it("rejects rays that do not travel toward increasing z", () => {
+  it("reports noBracket when a grazing ray does not actually intersect the surface", () => {
+    // Ray traveling in +x at y=0, z=-1: a horizontal line that never reaches
+    // the flat surface at z=0. With the post-PR-8 forward-cone gate lifted,
+    // the algorithm runs bracket-finding and correctly reports `noBracket`
+    // instead of pre-emptively rejecting as `invalidRayDirection`.
     const L = lensWithSurface(1e15);
     const result = intersectSagSurface({ origin: [0, 0, -1], direction: [1, 0, 0] }, 0, 0, L, { maxT: 5 });
 
     expect(result.ok).toBe(false);
     if (result.ok) return;
-    expect(result.failureReason).toBe("invalidRayDirection");
+    expect(result.failureReason).toBe("noBracket");
   });
 
   it("computes rotationally symmetric normals at hit points", () => {
@@ -112,5 +116,52 @@ describe("surface intersection helpers", () => {
     expect(positive[0]).toBeCloseTo(-negative[0], 12);
     expect(positive[1]).toBeCloseTo(negative[1], 12);
     expect(positive[2]).toBeCloseTo(negative[2], 12);
+  });
+});
+
+describe("intersectSagSurface — past-forward-cone rays (PR 8 surgery)", () => {
+  // Spherical surface with R=50, vertex at z=0. Analytic sag at r=21.79 is 5.0
+  // (verified: 475 / (50 + sqrt(2500 - 475)) = 475/95 = 5).
+  const R = 50;
+  const L = lensWithSurface(R);
+
+  it("traces a grazing ray with direction[2] = 0 to the analytic intersection", () => {
+    // Ray at z=5, traveling in -y from y=30. Surface z=5 occurs at r=sqrt(475)≈21.79.
+    // Expected intersection: t = 30 - sqrt(475), point (0, sqrt(475), 5).
+    // Tolerance 1e-8 matches the intersection algorithm's own 1e-9 residual cap.
+    const expectedY = Math.sqrt(475);
+    const expectedT = 30 - expectedY;
+    const result = intersectSagSurface({ origin: [0, 30, 5], direction: [0, -1, 0] }, 0, 0, L, { maxT: 30 });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.t).toBeCloseTo(expectedT, 8);
+    expect(result.point[0]).toBeCloseTo(0, 12);
+    expect(result.point[1]).toBeCloseTo(expectedY, 8);
+    expect(result.point[2]).toBeCloseTo(5, 12);
+  });
+
+  it("traces a backward ray with direction[2] < 0 to the analytic intersection", () => {
+    // Ray at y=30, traveling in -z from z=100. Sphere surface at r=30 has sag=10.
+    // Expected intersection: t = 100 - 10 = 90, point (0, 30, 10).
+    const result = intersectSagSurface({ origin: [0, 30, 100], direction: [0, 0, -1] }, 0, 0, L, { maxT: 200 });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.t).toBeCloseTo(90, 9);
+    expect(result.point[0]).toBeCloseTo(0, 12);
+    expect(result.point[1]).toBeCloseTo(30, 9);
+    expect(result.point[2]).toBeCloseTo(10, 9);
+  });
+
+  it("bit-identical convergence for a steep forward-cone ray (regression check)", () => {
+    // Ray at y=30 from z=-100 toward +z. Hits sphere at (0, 30, 10), so t=110.
+    const result = intersectSagSurface({ origin: [0, 30, -100], direction: [0, 0, 1] }, 0, 0, L, { maxT: 200 });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.t).toBeCloseTo(110, 9);
+    expect(result.point[1]).toBeCloseTo(30, 9);
+    expect(result.point[2]).toBeCloseTo(10, 9);
   });
 });
