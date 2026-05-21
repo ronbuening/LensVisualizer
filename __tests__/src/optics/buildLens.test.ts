@@ -128,7 +128,11 @@ describe("buildLens — production lenses", () => {
     expect(L.FOPEN).toBeCloseTo(2.8, 2);
     expect(L.stopPhysSD).toBeCloseTo(5.4, 1);
     expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 4);
-    expect(L.halfField).toBeLessThanOrEqual(80);
+    // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
+    // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
+    // but fisheyes skip that bisection — see buildLens.ts comment block and
+    // TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8 step 7.
+    expect(L.halfField).toBeCloseTo(110, 6);
   });
 
   it("throws when a large focalLengthDesign mismatch lacks projection metadata", () => {

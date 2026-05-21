@@ -541,26 +541,38 @@ at z=0) for fields where the lens itself converges. The validator cap on `maxTra
 `launchSurfaceForFieldDeg(fieldDeg, projection)` routes every fisheye projection through the bounding-sphere
 arm regardless of field angle.
 
-**Step 7 landed.** The fisheye half-field clamp loosened from `MAX_FIELD_LAUNCH_DEG - 1e-3` to
+**Step 7 landed in two passes.**
+
+*First pass:* The fisheye half-field clamp loosened from `MAX_FIELD_LAUNCH_DEG - 1e-3` to
 `ABSOLUTE_HALF_FIELD_CEILING` (175°), and `computeFieldGeometryAtState`'s `testChief` bisection grew a
-bounding-sphere fallback for past-cap angles. The implementation preserves bit-identity for the entire
-current catalog because no fisheye's paraxial halfFieldDeg exceeds `MAX_FIELD_LAUNCH_DEG` — the Nikon 6mm
-sits at 42.73°, well below the cap, so the new fallback is dead code today. It defends against a future
-fisheye whose paraxial halfFieldDeg lands past 89°: the bisection now tries the bounding-sphere test
-instead of failing immediately. Rectilinear lenses are untouched (still capped at `MAX_FIELD_LAUNCH_DEG`).
+bounding-sphere fallback for past-cap angles. That alone didn't surface a visible difference because the
+paraxial bisection still narrowed the Nikon 6mm's halfFieldDeg to ~32° — the lens's paraxial chief ray
+clips around 40° even though the patent declares 110° coverage.
+
+*Second pass:* Skip the paraxial-chief-ray bisection entirely for fisheye projections (both in
+`buildLens.ts`'s baseline + zoom-position branches and in `computeFieldGeometryAtState`). For fisheyes the
+declared `maxTraceFieldDeg` is the source of truth — real fisheye chief rays are far from paraxial and the
+bisection drastically undercounts coverage. `computeDistortionReference` falls back to the analytic
+projection's edge height for fisheyes (the chief-ray-traced edge is NaN past the slope-launch cap).
+Per-ray clipping in the diagram and analysis tabs filters individual rays naturally. Rectilinear lenses
+keep the bisection unchanged.
+
+After this, the Nikon 6mm's `L.halfField` and `computeFieldGeometryAtState`'s `halfFieldDeg` both report
+**110°** matching the declared `maxTraceFieldDeg`. The diagram and analysis tabs see the full declared field;
+rays that physically can't traverse the lens at extreme angles (the Nikon 6mm bracket-fails its chief ray
+past ~10° regardless of launch surface — a lens-specific pathology of this patent) just don't render
+visually.
 
 Step 2c is intentionally deferred — see note under step 2 below. Step 5 (visual smoke on the Nikon 6mm at
-110°) requires browser access and remains.
+110° in the running app) is still pending; it requires browser access.
 
-**Analysis-module past-cap visibility — still not done.** Step 7's clamp loosening alone doesn't make the
-bounding-sphere code visible through the UI's analysis tabs. Those loops (`computeVignettingCurve`,
-`computeDistortionCurve`, `computePupilAberrationProfile`, off-axis) consume `projectionLaunchSlopeForField`
-and short-circuit at `status === "out-of-domain"`, so they never call `solveChiefRay` for past-cap fields
-regardless of `halfFieldDeg`. Migrating those loops to use `solveChiefRay` (and thus the bounding-sphere
-arm) is a separate refactor — multi-hour work touching each analysis module. The bounding-sphere code is
-exercised today by direct `solveChiefRay` calls on fisheye lenses (every angle, via the Step 6 dispatch)
-and by the past-cap integration tests in
-[boundingSphereLaunch.test.ts](__tests__/src/optics/boundingSphereLaunch.test.ts).
+**Analysis-module past-cap visibility — partial.** The distortion curve / vignette / pupil-aberration
+loops still consume `projectionLaunchSlopeForField` and short-circuit at `status === "out-of-domain"`, so
+samples past 89° drop out of those curves. The distortion field grid now covers the full halfFieldDeg=110°
+via its angular sampler (PR 6 work), with the understanding that chief rays which can't trace are marked
+`usable: false` per-cell. Migrating the curve loops to consume bounding-sphere chief rays directly remains
+a future refactor, but the current state is honest: the curves show what's traceable, the grid shows the
+declared coverage, the diagram shows rays out to the declared half-field.
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering

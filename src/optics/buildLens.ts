@@ -412,9 +412,19 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   /* Refine half-field with real (Snell's law) chief ray vignetting check.
    * The paraxial two-ray model can overestimate the field angle for strongly
    * curved or aspheric front groups.  Bisect to find the real clipping angle.
-   * Uses the real EP position (realB/realYRatio) for chief ray entry. */
+   * Uses the real EP position (realB/realYRatio) for chief ray entry.
+   *
+   * Fisheye lenses skip this bisection entirely: their real chief rays enter
+   * through highly-curved front elements at angles where slope-launch is
+   * meaningless, so the paraxial-chief-ray test drastically undercounts the
+   * lens's true coverage (e.g., the Nikon 6mm has a 110° patent-declared
+   * half-field but the bisection would narrow to ~32°). For fisheyes the
+   * declared `maxTraceFieldDeg` is authoritative; per-ray clipping in the
+   * diagram or analysis tabs filters individual rays naturally. */
   let halfField = halfFieldParaxial;
-  {
+  if (isFisheyeProjection(projection)) {
+    halfField = projection.maxTraceFieldDeg ?? halfFieldParaxial;
+  } else {
     const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
     const testChief = (deg: number): boolean => {
       const uTest = -Math.tan((deg * Math.PI) / 180);
@@ -434,9 +444,6 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
       halfField = lo;
     }
     /* If the paraxial field passes the real check, keep it (conservative). */
-  }
-  if (isFisheyeProjection(projection) && projection.maxTraceFieldDeg !== undefined) {
-    halfField = Math.min(halfField, projection.maxTraceFieldDeg);
   }
 
   /* ── Petzval sum ──
@@ -614,26 +621,29 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         }
       }
       let zHalfField = (Math.atan(zMinU) * 180) / Math.PI;
-      /* Refine with real chief ray bisection (same as baseline) */
-      const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
-      const zTestChief = (deg: number): boolean => {
-        const uTest = -Math.tan((deg * Math.PI) / 180);
-        const yIn = -zEpRatio * uTest;
-        const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceMode);
-        return isFinite(result.y) && !result.clipped;
-      };
-      if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
-        let lo = 0,
-          hi = zHalfField;
-        for (let iter = 0; iter < 40; iter++) {
-          const mid = (lo + hi) / 2;
-          if (zTestChief(mid)) lo = mid;
-          else hi = mid;
+      if (isFisheyeProjection(projection)) {
+        /* Fisheye: trust the declared maxTraceFieldDeg (see baseline-halfField
+         * comment above for why the paraxial bisection undercounts here). */
+        zHalfField = projection.maxTraceFieldDeg ?? zHalfField;
+      } else {
+        /* Refine with real chief ray bisection (same as baseline) */
+        const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
+        const zTestChief = (deg: number): boolean => {
+          const uTest = -Math.tan((deg * Math.PI) / 180);
+          const yIn = -zEpRatio * uTest;
+          const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceMode);
+          return isFinite(result.y) && !result.clipped;
+        };
+        if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
+          let lo = 0,
+            hi = zHalfField;
+          for (let iter = 0; iter < 40; iter++) {
+            const mid = (lo + hi) / 2;
+            if (zTestChief(mid)) lo = mid;
+            else hi = mid;
+          }
+          zHalfField = lo;
         }
-        zHalfField = lo;
-      }
-      if (isFisheyeProjection(projection) && projection.maxTraceFieldDeg !== undefined) {
-        zHalfField = Math.min(zHalfField, projection.maxTraceFieldDeg);
       }
       zoomHalfFields.push(zHalfField);
     }

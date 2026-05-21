@@ -119,35 +119,27 @@ export function computeFieldGeometryAtState(
 
   const fisheye = isFisheyeProjection(L.projection);
 
-  const testChiefBoundingSphere = (deg: number): boolean => {
-    // Past-cap fisheye fallback: build a bounding-sphere chief ray at the
-    // declared angle and check whether it traverses the lens without
-    // semi-diameter clipping. Mirrors the slope-launch test's semantic — we're
-    // not asserting stop-center landing, just "does a representative chief
-    // ray at this field angle physically make it through?"
-    const launchRadius = computeBoundingSphereLaunchRadiusMm(L, b);
-    const launch = boundingSphereLaunchVector(epRatio, 0, deg, launchRadius);
-    if (launch.status !== "ok") return false;
-    const result = traceExactSurfaceStackVector(
-      { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
-      { origin: launch.origin, direction: launch.direction },
-      { stopAt: L.stopIdx, launchBoundT: 2 * launchRadius, checkSemiDiameter: true },
-    );
-    return result.failureReason === null && !result.clipped;
-  };
+  if (fisheye) {
+    // Fisheye lenses don't use the paraxial-chief-ray bisection. Their real
+    // chief rays are far from paraxial (they enter through the highly-curved
+    // front element at angles where slope-launch is meaningless), so the
+    // paraxial testChief drastically undercounts the lens's true coverage —
+    // e.g., the Nikon Fisheye-Nikkor 6mm has a 110° patent-declared half-field
+    // but a paraxial-chief-ray bisection narrows to ~32°. The declared
+    // `maxTraceFieldDeg` is the source of truth; individual rays in the
+    // diagram or analysis tabs that don't trace at extreme angles get
+    // filtered out per-ray via the tracer's `clipped` flag.
+    halfFieldDeg = Math.min(L.projection.maxTraceFieldDeg ?? halfFieldDeg, ABSOLUTE_HALF_FIELD_CEILING);
+    return { halfFieldDeg, yRatio, b, epRatio };
+  }
 
   const testChief = (deg: number): boolean => {
     const launch = projectionLaunchSlopeForField(L, deg);
-    if (launch.status === "ok") {
-      const uField = launch.uField;
-      const yChiefIn = -epRatio * uField;
-      const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
-      return isFinite(trace.y) && !trace.clipped;
-    }
-    // Slope launch out-of-domain (deg ≥ MAX_FIELD_LAUNCH_DEG). For fisheyes,
-    // try bounding-sphere; for rectilinear, there's no past-cap representation.
-    if (!fisheye) return false;
-    return testChiefBoundingSphere(deg);
+    if (launch.status === "out-of-domain") return false;
+    const uField = launch.uField;
+    const yChiefIn = -epRatio * uField;
+    const trace = traceStateSurfacesReal(S, L, yChiefIn, uField, { checkSemiDiameter: true }, options);
+    return isFinite(trace.y) && !trace.clipped;
   };
 
   if (isFinite(halfFieldDeg) && halfFieldDeg > 0 && !testChief(halfFieldDeg)) {
@@ -161,9 +153,7 @@ export function computeFieldGeometryAtState(
     halfFieldDeg = lo;
   }
 
-  const projectionClampDeg = fisheye ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
-  const upperBound = fisheye ? ABSOLUTE_HALF_FIELD_CEILING : MAX_FIELD_LAUNCH_DEG - 1e-3;
-  halfFieldDeg = Math.min(halfFieldDeg, projectionClampDeg, upperBound);
+  halfFieldDeg = Math.min(halfFieldDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
 
   return { halfFieldDeg, yRatio, b, epRatio };
 }

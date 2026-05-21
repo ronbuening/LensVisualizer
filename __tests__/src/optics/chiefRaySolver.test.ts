@@ -89,15 +89,16 @@ describe("solveChiefRay", () => {
 });
 
 describe("computeFieldGeometryAtState halfField clamp", () => {
-  it("clamps halfFieldDeg below MAX_FIELD_LAUNCH_DEG for the fisheye fixture (paraxial-bounded)", () => {
-    // The Nikon 6mm's paraxial halfFieldDeg (~42°) sits well below the
-    // slope-launch cap, so the bisection narrows there regardless of which
-    // launch surface the past-cap fallback uses. After Step 7 the absolute
-    // ceiling for fisheyes is `ABSOLUTE_HALF_FIELD_CEILING`, but the lens's
-    // paraxial bound still dominates.
+  it("uses declared maxTraceFieldDeg for the fisheye fixture (skips paraxial bisection)", () => {
+    // Fisheye lenses skip the slope-based testChief bisection — see
+    // computeFieldGeometryAtState's comment block. The Nikon 6mm declares
+    // `maxTraceFieldDeg: 110°` and `halfFieldDeg` matches it. This is well
+    // past MAX_FIELD_LAUNCH_DEG (89°); per-ray dispatch to bounding-sphere or
+    // graceful clipping handles the past-cap angles.
     const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
     const geom = computeFieldGeometryAtState(0, 0, L);
-    expect(geom.halfFieldDeg).toBeLessThan(MAX_FIELD_LAUNCH_DEG);
+    expect(geom.halfFieldDeg).toBeCloseTo(110, 6);
+    expect(geom.halfFieldDeg).toBeGreaterThan(MAX_FIELD_LAUNCH_DEG);
   });
 
   it("rectilinear halfFieldDeg never exits projectionLaunchSlopeForField's in-domain region", () => {

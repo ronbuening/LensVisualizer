@@ -23,6 +23,7 @@ import {
 } from "./optics.js";
 import {
   distortionProjectionReferenceForLens,
+  isFisheyeProjection,
   projectionFieldAngleForImageHeight,
   projectionFieldSlopesForImagePoint,
   projectionImageHeightForAngle,
@@ -112,8 +113,34 @@ function computeDistortionReference(
   const geometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
-  /* Use the iteratively corrected chief ray for the edge image height so
-     pupil aberration at wide field angles is accounted for. */
+  const halfFieldRad = (geometry.halfFieldDeg * Math.PI) / 180;
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  if (!isFinite(imagePlaneZ)) return null;
+
+  /* Fisheye projections don't need the rectilinear scale-probe path — the
+   * declared focal length sets the projection reference directly. They also
+   * commonly have a half-field past MAX_FIELD_LAUNCH_DEG where the traced
+   * `chiefRayImageHeightAccurate` would return NaN, so we use the analytic
+   * ideal edge instead. Per-sample distortion residuals still come from the
+   * traced bisection in `computeDistortionCurve`; samples that bracket-fail
+   * past the slope-launch cap simply drop out of the curve. */
+  if (isFisheyeProjection(L.projection)) {
+    const projectionReference = distortionProjectionReferenceForLens(L, 0);
+    const idealFieldRadius = Math.abs(projectionImageHeightForAngle(projectionReference, halfFieldRad));
+    if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0) return null;
+    return {
+      geometry,
+      projectionReference,
+      edgeImageHeight: -idealFieldRadius,
+      idealFieldRadius,
+      lastSurfZ,
+      imagePlaneZ,
+    };
+  }
+
+  /* Rectilinear path: trace the edge chief ray and calibrate the rectilinear
+   * scale from a near-axis probe (where paraxial EP is exact). */
   const edgeImageHeight = chiefRayImageHeightAccurate(
     geometry.halfFieldDeg,
     zPos,
@@ -126,8 +153,6 @@ function computeDistortionReference(
   );
   if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
 
-  /* The near-axis scale probe uses the paraxial chief ray — the probe angle
-     is always tiny (0.05–0.25 deg), where the paraxial EP is exact. */
   const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.01, 0.02), 0.5);
   const probeImageHeight = chiefRayImageHeight(
     scaleProbeAngleDeg,
@@ -148,12 +173,8 @@ function computeDistortionReference(
   if (!isFinite(rectilinearScale) || Math.abs(rectilinearScale) < 1e-9) return null;
 
   const projectionReference = distortionProjectionReferenceForLens(L, rectilinearScale);
-  const idealFieldRadius = Math.abs(
-    projectionImageHeightForAngle(projectionReference, (geometry.halfFieldDeg * Math.PI) / 180),
-  );
-  const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
-  if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0 || !isFinite(imagePlaneZ)) return null;
+  const idealFieldRadius = Math.abs(projectionImageHeightForAngle(projectionReference, halfFieldRad));
+  if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0) return null;
 
   return {
     geometry,
