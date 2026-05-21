@@ -119,3 +119,42 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
     expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 9);
   });
 });
+
+describe("past-cap chief rays exercise the bounding-sphere tracer (PR 8 integration)", () => {
+  // These tests prove the post-Step-3 dispatch + post-Step-1/2 tracer surgery
+  // actually run the bounding-sphere geometry on past-cap fields. Convergence
+  // is not asserted because the Nikon 6mm's runtime bracket-finding past 89°
+  // depends on launch-radius tuning that is still part of Step 7 (catalog
+  // promotion). What IS asserted: the solver routes through bounding-sphere,
+  // dispatches without exception, and reports a launchSurface tag consistent
+  // with the field angle.
+  it.each([90, 100, 110])("solveChiefRay at θ=%d° dispatches to the bounding-sphere arm on the Nikon 6mm", (deg) => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const result = solveChiefRay(deg, 0, 0, L);
+    expect(result.launchSurface).toBe("bounding-sphere");
+    // The solver must complete without throwing and surface a real status.
+    expect(["converged", "paraxial-fallback", "bracket-failed"]).toContain(result.status);
+    // iterations may be 0 on a paraxial-fallback or bracket-failed path; the
+    // important thing is the cache key separation (object-plane vs
+    // bounding-sphere) is exercised distinctly from the < 89° path.
+    const objectPlaneAt89 = solveChiefRay(88, 0, 0, L);
+    expect(objectPlaneAt89.launchSurface).toBe("object-plane");
+  });
+
+  it("solveChiefRay caches past-cap and within-cap results independently", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const below1 = solveChiefRay(88, 0, 0, L);
+    const below2 = solveChiefRay(88, 0, 0, L);
+    const above1 = solveChiefRay(95, 0, 0, L);
+    const above2 = solveChiefRay(95, 0, 0, L);
+
+    // Same field angle: identical reference (cache hit).
+    expect(below2).toBe(below1);
+    expect(above2).toBe(above1);
+    // Different launch surfaces: different objects (cache key includes
+    // launchSurface).
+    expect(above1).not.toBe(below1);
+    expect(above1.launchSurface).toBe("bounding-sphere");
+    expect(below1.launchSurface).toBe("object-plane");
+  });
+});

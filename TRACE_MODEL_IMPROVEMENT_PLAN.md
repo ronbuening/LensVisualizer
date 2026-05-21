@@ -532,12 +532,27 @@ fails before the intersection algorithm gets a chance to converge. Wiring the bo
 takes six numbered steps below, ordered so each builds on the previous. Steps 1–3 are the load-bearing numerics
 work; without them, steps 4–7 are dead code.
 
-**Update.** Steps 1, 2a+2b, 3, and 4 have landed (commits `beb040e` and `<pending>`). The tracer accepts
+**Update.** Steps 1, 2a+2b, 3, and 4 have landed (commits `beb040e` and `8e8c225`). The tracer accepts
 grazing and backward rays when given a `launchBoundT`; `computeChiefRaySolve` dispatches past-cap fields
-through a new `solveChiefRayBoundingSphere` that bisects on EP-crossing y; parity tests confirm both launch
+through `solveChiefRayBoundingSphere` that bisects on EP-crossing y; parity tests confirm both launch
 surfaces produce bit-identical chief-ray geometry (~1e-12 mm at z=0) for fields where the lens itself
-converges. Step 2c is intentionally deferred — see note under step 2 below. Steps 5–7 remain (visual smoke,
-catalog promotion, semantic cleanup).
+converges. The validator cap on `maxTraceFieldDeg` is raised from 90° to 180° (`6ce2906`) and the Nikon 6mm
+now declares `maxTraceFieldDeg: 110`. Step 2c is intentionally deferred — see note under step 2 below.
+
+**Step 6 partial finding (2026-05-20).** A first attempt at Step 7's analysis-time clamp loosening surfaced
+that the lifted clamp exposes the lens's full paraxial half-field (~42° on the Nikon 6mm) to
+`computeFieldGeometryAtState`, which previously was narrowed by the slope-based `testChief` bisection. The
+testChief bisection itself can't see past `MAX_FIELD_LAUNCH_DEG`, so skipping it for fisheyes makes
+`halfFieldDeg` too permissive — analysis modules (`computeDistortionCurve` in particular) then iterate to
+field samples where chief rays don't actually trace cleanly, producing sparse/NaN samples. A proper Step 7
+implementation needs to port the `testChief` bisection to also try the bounding-sphere path at past-cap
+angles so the empirical "can this lens trace a chief ray here?" check spans the full angular domain. Until
+then, the bounding-sphere code is reachable via direct `solveChiefRay(>=89°, ...)` calls — exercised by
+new past-cap integration tests in
+[boundingSphereLaunch.test.ts](__tests__/src/optics/boundingSphereLaunch.test.ts) — but not through the
+UI's analysis-tab loops, which remain capped at 89° by the unchanged analysis-time clamp.
+
+Steps 5, 6, and 7 remain (visual smoke, catalog promotion, semantic cleanup).
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering
