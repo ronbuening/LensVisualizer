@@ -184,6 +184,7 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 
 - [Architecture notes](agent_docs/architecture.md)
 - [Program flow diagram](agent_docs/architecture/program-flow.md)
+- [Public functions](agent_docs/architecture/public-functions.md)
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
 - [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)
