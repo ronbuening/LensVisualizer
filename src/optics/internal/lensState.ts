@@ -53,7 +53,14 @@ export function resolveAnnotations(
 }
 
 export function buildElementSpans(surfaces: SurfaceData[], elements: ElementData[]): ElementSpan[] {
+  const labelIdx = buildLabelIndex(surfaces);
   return elements.map((element) => {
+    if (element.fromSurface !== undefined && element.toSurface !== undefined) {
+      const startIdx = labelIdx[element.fromSurface];
+      const endIdx = labelIdx[element.toSurface];
+      return [element.id, startIdx ?? -1, endIdx ?? -1];
+    }
+
     let startIdx = -1;
     for (let i = 0; i < surfaces.length; i++) {
       if (surfaces[i].elemId === element.id) {

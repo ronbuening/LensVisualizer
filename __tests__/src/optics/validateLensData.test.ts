@@ -223,6 +223,35 @@ describe("validateLensData", () => {
     expect(ok.some((error) => error.includes("projection.maxTraceFieldDeg"))).toBe(false);
   });
 
+  it("accepts rectilinear declared coverage metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          projection: {
+            kind: "rectilinear",
+            fullFieldDeg: 120,
+            maxTraceFieldDeg: 60,
+          },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("rejects invalid rectilinear declared coverage metadata", () => {
+    const errors = validateLensData(
+      makeValid({
+        projection: {
+          kind: "rectilinear",
+          fullFieldDeg: 200,
+          maxTraceFieldDeg: 100,
+        },
+      }),
+    );
+
+    expect(errors.some((error) => error.includes("projection.fullFieldDeg"))).toBe(true);
+    expect(errors.some((error) => error.includes("projection.maxTraceFieldDeg"))).toBe(true);
+  });
+
   it("catches missing STO surface", () => {
     const data = makeValid({
       surfaces: [
@@ -302,6 +331,82 @@ describe("validateLensData", () => {
     });
     const errors = validateLensData(data);
     expect(errors.some((e) => e.includes("Element 99"))).toBe(true);
+  });
+
+  it("accepts an explicitly flagged internal stop inside one element span", () => {
+    const data = makeValid({
+      elements: [
+        {
+          id: 1,
+          name: "L1",
+          label: "E1",
+          type: "test",
+          nd: 1.5,
+          vd: 50,
+          fl: 50,
+          glass: "test",
+          fromSurface: "1",
+          toSurface: "2",
+        },
+      ],
+      surfaces: [
+        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 8 },
+        { label: "STO", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 4, stopPlacement: "inside-element" },
+        { label: "2", R: -100, d: 40, nd: 1.0, elemId: 0, sd: 8 },
+      ],
+    });
+
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("rejects an unflagged stop inside an explicit element span", () => {
+    const data = makeValid({
+      elements: [
+        {
+          id: 1,
+          name: "L1",
+          label: "E1",
+          type: "test",
+          nd: 1.5,
+          fromSurface: "1",
+          toSurface: "2",
+        },
+      ],
+      surfaces: [
+        { label: "1", R: 100, d: 5, nd: 1.5, elemId: 1, sd: 8 },
+        { label: "STO", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 4 },
+        { label: "2", R: -100, d: 40, nd: 1.0, elemId: 0, sd: 8 },
+      ],
+    });
+
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('requires stopPlacement: "inside-element"'))).toBe(true);
+  });
+
+  it("rejects malformed explicit element spans", () => {
+    const missing = validateLensData(
+      makeValid({
+        elements: [{ id: 1, name: "L1", label: "E1", type: "test", nd: 1.5, fromSurface: "1" }],
+      }),
+    );
+    expect(missing.some((error) => error.includes("fromSurface and toSurface must be provided together"))).toBe(true);
+
+    const reversed = validateLensData(
+      makeValid({
+        elements: [
+          {
+            id: 1,
+            name: "L1",
+            label: "E1",
+            type: "test",
+            nd: 1.5,
+            fromSurface: "2",
+            toSurface: "1",
+          },
+        ],
+      }),
+    );
+    expect(reversed.some((error) => error.includes("must come before"))).toBe(true);
   });
 
   it("catches elemId referencing nonexistent element", () => {
@@ -466,6 +571,7 @@ import NoktonRaw from "../../../src/lens-data/voigtlander/VoigtlanderNokton50f1.
 import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import Hologon15f8Raw from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.js";
 import CanonRF1535Raw from "../../../src/lens-data/canon/CanonRF1535f28.data.js";
 import Nikkor1424Raw from "../../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.js";
 import Nikkor1635Raw from "../../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.js";
@@ -477,6 +583,7 @@ describe("validateLensData — production lenses", () => {
     ["NikkorZ50", { ...LENS_DEFAULTS, ...NikkorRaw }],
     ["Nikkor105", { ...LENS_DEFAULTS, ...Nikkor105Raw }],
     ["Sonnar50f15", { ...LENS_DEFAULTS, ...Sonnar50f15Raw }],
+    ["Hologon15f8", { ...LENS_DEFAULTS, ...Hologon15f8Raw }],
     ["Canon RF 15-35", { ...LENS_DEFAULTS, ...CanonRF1535Raw }],
     ["Nikkor 14-24", { ...LENS_DEFAULTS, ...Nikkor1424Raw }],
     ["Nikkor 16-35", { ...LENS_DEFAULTS, ...Nikkor1635Raw }],

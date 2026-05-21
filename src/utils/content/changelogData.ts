@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-21",
     type: "lens",
+    summary: "Added the Carl Zeiss Hologon 15 mm f/8 with its stop modeled inside the central element",
+  },
+  {
+    date: "2026-05-21",
+    type: "lens",
     summary: "Added six Canon EF L-series lenses from fisheye zoom to macro and telephoto",
   },
   {

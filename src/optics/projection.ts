@@ -59,6 +59,17 @@ export function fisheyeProjectionMaxTraceFieldAtZoom(
   return projectionValueAtZoom(projection.maxTraceFieldDeg, zoomT);
 }
 
+export function rectilinearProjectionMaxTraceField(projection: LensProjectionConfig | undefined): number | undefined {
+  if (projection?.kind !== "rectilinear") return undefined;
+  if (typeof projection.maxTraceFieldDeg === "number" && isFinite(projection.maxTraceFieldDeg)) {
+    return projection.maxTraceFieldDeg;
+  }
+  if (typeof projection.fullFieldDeg === "number" && isFinite(projection.fullFieldDeg)) {
+    return projection.fullFieldDeg / 2;
+  }
+  return undefined;
+}
+
 export function distortionProjectionReferenceForLens(
   L: RuntimeLens,
   rectilinearScale: number,

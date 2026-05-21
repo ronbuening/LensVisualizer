@@ -17,6 +17,7 @@ import {
   launchSurfaceForFieldDeg,
   MAX_FIELD_LAUNCH_DEG,
   projectionLaunchSlopeForField,
+  rectilinearProjectionMaxTraceField,
   type LaunchSurface,
 } from "./projection.js";
 import { traceRay, traceRayVector, type RayTraceOptions } from "./rayTrace.js";
@@ -70,6 +71,7 @@ export interface OffsetVectorFieldRay {
 const CHIEF_RAY_MAX_ITERATIONS = 30;
 const CHIEF_RAY_BRACKET_EPSILON = 1e-9;
 const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
+const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 
 const chiefRaySolveCache: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult>> = new WeakMap();
@@ -178,6 +180,7 @@ export function computeFieldGeometryAtState(
     halfFieldDeg = lo;
   }
 
+  halfFieldDeg = rectilinearProjectionMaxTraceField(L.projection) ?? halfFieldDeg;
   halfFieldDeg = Math.min(halfFieldDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
 
   return { halfFieldDeg, yRatio, b, epRatio };
@@ -337,8 +340,51 @@ function computeChiefRaySolve(
 
   const yLo = heightAtStop(lo);
   const yHi = heightAtStop(hi);
-  if (yLo === null || yHi === null || yLo * yHi > 0) {
-    return { yLaunch: paraxialYChief, uField, status: "bracket-failed", iterations: 0, launchSurface };
+  let fLo: number;
+  if (yLo !== null && yHi !== null && yLo * yHi <= 0) {
+    fLo = yLo;
+  } else {
+    let bracket: { lo: number; hi: number; yLo: number } | null = null;
+    let nearestYLaunch = paraxialYChief;
+    let nearestAbsHeight = Infinity;
+
+    for (let attempt = 0; attempt < 4 && bracket === null; attempt++) {
+      const scanHalf = bracketHalf * (2 << attempt);
+      const scanLo = paraxialYChief - scanHalf;
+      const scanHi = paraxialYChief + scanHalf;
+      let prev: { yLaunch: number; height: number } | null = null;
+
+      for (let i = 0; i <= OBJECT_PLANE_BRACKET_SCAN_SAMPLES; i++) {
+        const yLaunch = scanLo + ((scanHi - scanLo) * i) / OBJECT_PLANE_BRACKET_SCAN_SAMPLES;
+        const height = heightAtStop(yLaunch);
+        if (height === null) {
+          prev = null;
+          continue;
+        }
+
+        const absHeight = Math.abs(height);
+        if (absHeight < nearestAbsHeight) {
+          nearestAbsHeight = absHeight;
+          nearestYLaunch = yLaunch;
+        }
+        if (absHeight < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+          return { yLaunch, uField, status: "converged", iterations: 0, launchSurface };
+        }
+
+        if (prev !== null && prev.height * height <= 0) {
+          bracket = { lo: prev.yLaunch, hi: yLaunch, yLo: prev.height };
+          break;
+        }
+        prev = { yLaunch, height };
+      }
+    }
+
+    if (bracket === null) {
+      return { yLaunch: nearestYLaunch, uField, status: "bracket-failed", iterations: 0, launchSurface };
+    }
+    lo = bracket.lo;
+    hi = bracket.hi;
+    fLo = bracket.yLo;
   }
 
   for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
@@ -350,8 +396,12 @@ function computeChiefRaySolve(
     if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
       return { yLaunch: mid, uField, status: "converged", iterations: i + 1, launchSurface };
     }
-    if (yMid < 0 === yLo < 0) lo = mid;
-    else hi = mid;
+    if (yMid < 0 === fLo < 0) {
+      lo = mid;
+      fLo = yMid;
+    } else {
+      hi = mid;
+    }
     if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
       return { yLaunch: (lo + hi) / 2, uField, status: "converged", iterations: i + 1, launchSurface };
     }

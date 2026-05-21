@@ -105,7 +105,7 @@ After the SDs validate, compare the rendered silhouette against any published op
 
 ### Validation
 
-`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, canonical mount/format ids when present, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0).
+`buildLens()` calls `validateLensData()` internally. Malformed data throws descriptive errors listing all issues. The validator checks: required fields, canonical mount/format ids when present, surface label uniqueness, element ID references, STO surface presence, edge thickness, SD ratio (max 3.0 sanity check), rim slope (actual aspherical slope at SD, threshold 64.2°), cross-gap overlap (at all zoom positions for zoom lenses), and conic height limits (K > 0). Rare designs with the aperture stop physically inside a glass element use `stopPlacement: "inside-element"` on `STO` and `fromSurface`/`toSurface` on the containing element; see `src/lens-data/LENS_DATA_SPEC.md` for the embedded-stop rules.
 
 ### Zoom Lenses
 

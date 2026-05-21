@@ -31,6 +31,7 @@ import {
   fisheyeProjectionFocalLengthAtZoom,
   fisheyeProjectionMaxTraceFieldAtZoom,
   isFisheyeProjection,
+  rectilinearProjectionMaxTraceField,
   TRACING_SAFETY_FACTOR,
 } from "./projection.js";
 import { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";
@@ -292,6 +293,8 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
 
   const stopIdx = S.findIndex((row) => row.label === "STO");
 
+  const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
+
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
    *  nominalFno is a required field (validated).  We back-compute:
    *    epSD = aperture-reference focal length / (2·Fno)
@@ -301,6 +304,8 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
    *  the physical stop SD.  This accounts for aspherics and higher-order
    *  aberrations that the paraxial model ignores — without it, real rays
    *  overshoot the stop on lenses with strong aspherics (e.g. Nikon 60mm).
+   *  Embedded glass stops preserve their authored SD because that surface is
+   *  also part of the drawn physical element geometry.
    *  Falls back to the paraxial yRatio if the real trace hits TIR. */
   const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
@@ -310,7 +315,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx, traceMode);
-  S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
+  if (!preserveAuthoredStopSD) {
+    S[stopIdx].sd = isFinite(nomRealY) && Math.abs(nomRealY) > 1e-15 ? nomRealY : nominalEPSD * nomYRatio;
+  }
 
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
@@ -450,7 +457,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
 
   const halfField = fisheye
     ? (fisheyeProjectionMaxTraceFieldAtZoom(projection, 0) ?? halfFieldParaxial)
-    : halfFieldBisected;
+    : (rectilinearProjectionMaxTraceField(projection) ?? halfFieldBisected);
   const tracingHalfField = fisheye ? halfFieldBisected * TRACING_SAFETY_FACTOR : halfFieldBisected;
 
   /* ── Petzval sum ──
@@ -657,7 +664,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
       const zFisheye = isFisheyeProjection(projection);
       const zHalfField = zFisheye
         ? (fisheyeProjectionMaxTraceFieldAtZoom(projection, zZoomT) ?? zHalfFieldParaxial)
-        : zHalfFieldBisected;
+        : (rectilinearProjectionMaxTraceField(projection) ?? zHalfFieldBisected);
       zoomHalfFields.push(zHalfField);
       zoomTracingHalfFields.push(zFisheye ? zHalfFieldBisected * TRACING_SAFETY_FACTOR : zHalfFieldBisected);
     }

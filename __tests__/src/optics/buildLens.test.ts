@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
+import { doLayout } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData, SurfaceData } from "../../../src/types/optics.js";
 
@@ -13,6 +14,7 @@ import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikk
 import NikonFisheye6mmf56Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.js";
 import CanonEF815mmf4LFisheyeRaw from "../../../src/lens-data/canon/CanonEF815mmf4LFisheye.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
+import Hologon15f8Raw from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
@@ -24,6 +26,7 @@ const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as Len
 const NikonFisheye6mmf56 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf56Raw } as LensData;
 const CanonEF815mmf4LFisheye = { ...LENS_DEFAULTS, ...CanonEF815mmf4LFisheyeRaw } as LensData;
 const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
+const Hologon15f8 = { ...LENS_DEFAULTS, ...Hologon15f8Raw } as LensData;
 
 describe("paraxialTrace", () => {
   const simpleSurfaces = [
@@ -168,6 +171,32 @@ describe("buildLens — production lenses", () => {
     const rectilinearData = { ...NikonFisheye6mmf28, projection: undefined } as LensData;
 
     expect(() => buildLens(rectilinearData)).toThrow(/computed Gaussian EFL/);
+  });
+
+  it("Hologon uses rectilinear declared coverage while retaining safe trace metadata", () => {
+    const L = buildLens(Hologon15f8);
+    const surfaceSDs = Object.fromEntries(L.S.map((s) => [s.label, s.sd]));
+    const infinityLayout = doLayout(0, 0, L);
+    const closeFocusLayout = doLayout(1, 0, L);
+
+    expect(L.elements).toHaveLength(3);
+    expect(L.ES).toContainEqual([2, 2, 4]);
+    expect(surfaceSDs["1"]).toBeCloseTo(11.45, 6);
+    expect(surfaceSDs["2"]).toBeCloseTo(3.82, 6);
+    expect(surfaceSDs["3"]).toBeCloseTo(3.83, 6);
+    expect(surfaceSDs.STO).toBeCloseTo(0.9375, 6);
+    expect(surfaceSDs["4"]).toBeCloseTo(3.83, 6);
+    expect(surfaceSDs["5"]).toBeCloseTo(3.6, 6);
+    expect(surfaceSDs["6"]).toBeCloseTo(8.84, 6);
+    expect(L.stopPhysSD).toBeCloseTo(0.9375, 6);
+    expect(L.data.maxRimAngleDeg).toBe(84);
+    expect(closeFocusLayout.th[L.N - 1]).toBeCloseTo(5.7612, 6);
+    expect(closeFocusLayout.imgZ - infinityLayout.imgZ).toBeCloseTo(1.2162, 4);
+    expect(L.projection.kind).toBe("rectilinear");
+    expect(L.apertureReferenceFocalLength).toBeCloseTo(L.EFL, 12);
+    expect(L.halfField).toBeCloseTo(60, 6);
+    expect(L.tracingHalfField).toBeGreaterThan(0);
+    expect(L.tracingHalfField).toBeLessThan(L.halfField);
   });
 
   /* ── Structural checks ── */
@@ -380,6 +409,37 @@ describe("buildLens — error handling", () => {
     const L = buildLens(data as unknown as LensData);
     expect(L.EFL).toBeGreaterThan(0);
     expect(L.N).toBe(3);
+  });
+
+  it("builds explicit element spans across an internal stop", () => {
+    const data = makeMinimalData({
+      elements: [
+        {
+          id: 1,
+          name: "L1",
+          label: "E1",
+          type: "test",
+          nd: 1.5,
+          vd: 50,
+          fl: 50,
+          glass: "test",
+          fromSurface: "1",
+          toSurface: "2",
+        },
+      ],
+      surfaces: [
+        { label: "1", R: 80, d: 4, nd: 1.5, elemId: 1, sd: 8 },
+        { label: "STO", R: 1e15, d: 4, nd: 1.5, elemId: 1, sd: 3, stopPlacement: "inside-element" },
+        { label: "2", R: -80, d: 40, nd: 1.0, elemId: 0, sd: 8 },
+      ],
+    });
+    const L = buildLens(data as unknown as LensData);
+
+    expect(L.ES).toEqual([[1, 0, 2]]);
+    expect(L.stopIdx).toBe(1);
+    expect(L.S[L.stopIdx].elemId).toBe(1);
+    expect(L.stopPhysSD).toBeCloseTo(3, 6);
+    expect(L.vdByIdx[L.stopIdx]).toBe(50);
   });
 
   it("throws when EFL is not finite (afocal system)", () => {
