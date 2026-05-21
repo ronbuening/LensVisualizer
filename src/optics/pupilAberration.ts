@@ -33,8 +33,9 @@ import {
   epZRelStopAtZoom,
   xpZRelLastSurfAtZoom,
   doLayout,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
   traceRay,
+  traceRayVector,
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
 import { stateSurfaces } from "./layout.js";
@@ -220,6 +221,7 @@ export function computePupilAberrationProfile(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
     if (launch.status === "out-of-domain") {
       samples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
       continue;
@@ -231,7 +233,7 @@ export function computePupilAberrationProfile(
     // paraxialYChief = −epRatio × uField (mm).  Zero at fieldDeg = 0.
     const paraxialYChief = -epRatio * launch.uField;
     if (Math.abs(paraxialYChief) > 1e-12) {
-      const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+      const solvedYChief = solve.yLaunch;
       chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
       epShiftMm = (chiefRayCorrection - 1) * epRatio;
     }
@@ -294,7 +296,8 @@ export function computeExitPupilAberrationProfile(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
-    if (launch.status === "out-of-domain") {
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+    if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       samples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
       continue;
     }
@@ -306,8 +309,10 @@ export function computeExitPupilAberrationProfile(
     // At θ = 0, uField = 0 and the chief ray is the optical axis — no useful
     // back-projection is possible.  Use the paraxial baseline directly.
     if (Math.abs(fieldDeg) > 1e-9) {
-      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
-      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
+      const yChief = solve.yLaunch;
+      const result = solve.vectorLaunch
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, options)
+        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
 
       // Back-project: XP z = −y_last / u_last (relative to last surface).
       // Guard against near-zero exit slope (XP at infinity).
@@ -384,7 +389,7 @@ export function computeBothPupilAberrationProfiles(
         let chiefRayCorrection = 1;
         let epShiftMm = 0;
         if (Math.abs(paraxialYChief) > 1e-12) {
-          const solvedYChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+          const solvedYChief = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options).yLaunch;
           chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
           epShiftMm = (chiefRayCorrection - 1) * epRatio;
         }
@@ -419,7 +424,8 @@ export function computeBothPupilAberrationProfiles(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
-    if (launch.status === "out-of-domain") {
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+    if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       epSamples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
       xpSamples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
       continue;
@@ -434,16 +440,18 @@ export function computeBothPupilAberrationProfiles(
     const paraxialYChief = -epRatio * uField;
 
     if (Math.abs(fieldDeg) > 1e-9) {
-      const yChief = solveChiefRayLaunchHeight(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+      const yChief = solve.yLaunch;
 
       // EP fields
-      if (Math.abs(paraxialYChief) > 1e-12) {
+      if (launch.status !== "out-of-domain" && Math.abs(paraxialYChief) > 1e-12) {
         chiefRayCorrection = isFinite(yChief) ? yChief / paraxialYChief : 1;
         epShiftMm = (chiefRayCorrection - 1) * epRatio;
       }
 
       // XP fields — trace the same solved chief ray through the full system
-      const result = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
+      const result = solve.vectorLaunch
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, options)
+        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
       if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
         xpZRelLastSurf = -result.y / result.u;
         xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;

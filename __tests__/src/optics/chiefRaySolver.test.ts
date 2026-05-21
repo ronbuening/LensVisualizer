@@ -1,10 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import {
-  computeFieldGeometryAtState,
-  solveChiefRay,
-  solveChiefRayLaunchHeight,
-} from "../../../src/optics/fieldGeometry.js";
+import { computeFieldGeometryAtState, solveChiefRay } from "../../../src/optics/fieldGeometry.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
   MAX_FIELD_LAUNCH_DEG,
@@ -44,16 +40,6 @@ describe("projectionLaunchSlopeForField", () => {
 });
 
 describe("solveChiefRay", () => {
-  it("returns yLaunch matching the legacy solveChiefRayLaunchHeight for rectilinear lenses", () => {
-    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
-    for (const deg of [0, 5, 15, 25]) {
-      const typed = solveChiefRay(deg, 0, 0, L);
-      const legacy = solveChiefRayLaunchHeight(deg, 0, 0, L);
-      expect(typed.yLaunch).toBeCloseTo(legacy, 12);
-      expect(typed.status === "converged" || typed.status === "paraxial-fallback").toBe(true);
-    }
-  });
-
   it("memoizes repeat solves on the same lens/state/field", () => {
     const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const first = solveChiefRay(20, 0, 0, L);

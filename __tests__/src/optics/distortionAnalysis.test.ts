@@ -6,7 +6,7 @@ import {
   eflAtFocus,
   fopenAtZoom,
   skewImagePlaneIntercept,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
   thick,
   traceSkewRay,
 } from "../../../src/optics/optics.js";
@@ -329,7 +329,7 @@ describe("computeDistortionFieldGrid", () => {
     const fieldSlopeY = -edgePoint.idealY / rectilinearScale;
     const equivalentAngleDeg = (Math.atan(Math.hypot(fieldSlopeX, fieldSlopeY)) * 180) / Math.PI;
     const paraxialYChief = geometry.epRatio * Math.tan((equivalentAngleDeg * Math.PI) / 180);
-    const solvedYChief = solveChiefRayLaunchHeight(equivalentAngleDeg, focusT, zoomT, L, geometry);
+    const solvedYChief = solveChiefRay(equivalentAngleDeg, focusT, zoomT, L, geometry).yLaunch;
     const correction = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
     const correctedEpRatio = geometry.epRatio * correction;
     const trace = traceSkewRay(

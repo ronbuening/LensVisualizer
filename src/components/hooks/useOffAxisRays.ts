@@ -7,7 +7,7 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { traceRay } from "../../optics/optics.js";
+import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
 import { rayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -76,14 +76,29 @@ export default function useOffAxisRays({
         showOffAxis,
       });
       if (geometry === null) return { segments: [], error: null };
-      const { uField, yChief, edgeEnd, useEdge } = geometry;
-
       for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
         const h = f * currentEPSD;
-        const y0 = yChief + h;
         const uConverge = rayTracksF ? h * focusK : 0;
-        const uIn = uField + uConverge;
-        const rawResult = traceRay(y0, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
+        const rawResult =
+          geometry.kind === "vector"
+            ? traceRayVector(
+                offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
+                zPos,
+                currentPhysStopSD,
+                true,
+                L,
+              )
+            : traceRay(
+                geometry.yChief + h,
+                geometry.uField + uConverge,
+                zPos,
+                focusT,
+                zoomT,
+                currentPhysStopSD,
+                true,
+                L,
+                aberrationT,
+              );
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
           compileRaySegment(
@@ -95,7 +110,7 @@ export default function useOffAxisRays({
             sy,
             clampedRayEnd,
             IMG_MM,
-            useEdge ? edgeEnd : undefined,
+            geometry.useEdge ? geometry.edgeEnd : undefined,
           ),
         );
       }

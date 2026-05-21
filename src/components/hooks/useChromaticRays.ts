@@ -7,7 +7,12 @@
  * monochrome off-axis fan.
  */
 import { useMemo } from "react";
-import { traceRayChromatic, computeChromaticSpread } from "../../optics/optics.js";
+import {
+  computeChromaticSpread,
+  offsetVectorFieldRay,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+} from "../../optics/optics.js";
 import { rayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -175,25 +180,32 @@ export default function useChromaticRays({
           showOffAxis,
         });
         if (geometry) {
-          const { uField, yChief, edgeEnd, useEdge } = geometry;
           for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
             const h = f * currentEPSD;
-            const y0 = yChief + h;
             const uConverge = rayTracksF ? h * focusK : 0;
-            const uIn = uField + uConverge;
             for (const ch of channels) {
-              const rawResult = traceRayChromatic(
-                y0,
-                uIn,
-                zPos,
-                focusT,
-                zoomT,
-                currentPhysStopSD,
-                true,
-                L,
-                ch,
-                aberrationT,
-              );
+              const rawResult =
+                geometry.kind === "vector"
+                  ? traceRayVectorChromatic(
+                      offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
+                      zPos,
+                      currentPhysStopSD,
+                      true,
+                      L,
+                      ch,
+                    )
+                  : traceRayChromatic(
+                      geometry.yChief + h,
+                      geometry.uField + uConverge,
+                      zPos,
+                      focusT,
+                      zoomT,
+                      currentPhysStopSD,
+                      true,
+                      L,
+                      ch,
+                      aberrationT,
+                    );
               const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
               const seg = compileRaySegment(
                 result.pts,
@@ -204,7 +216,7 @@ export default function useChromaticRays({
                 sy,
                 clampedRayEnd,
                 IMG_MM,
-                useEdge ? edgeEnd : undefined,
+                geometry.useEdge ? geometry.edgeEnd : undefined,
               );
               out.push({
                 ...seg,
