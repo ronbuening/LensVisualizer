@@ -87,4 +87,14 @@ describe("useInteractionSignal", () => {
     act(() => vi.advanceTimersByTime(300));
     expect(result.current.interacting).toBe(false);
   });
+
+  it("clears the pending safety timeout on unmount", () => {
+    const { result, unmount } = renderHook(() => useInteractionSignal());
+
+    act(() => result.current.onChangeActivity());
+    expect(vi.getTimerCount()).toBe(1);
+
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
+  });
 });

@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 const SAFETY_TIMEOUT_MS = 150;
 
@@ -24,6 +24,14 @@ export default function useInteractionSignal(): InteractionSignal {
   const [interacting, setInteracting] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(
+    () => () => {
+      if (timeoutRef.current != null) clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    },
+    [],
+  );
+
   const beginInteraction = useCallback(() => {
     if (timeoutRef.current != null) clearTimeout(timeoutRef.current);
     timeoutRef.current = null;
@@ -39,7 +47,10 @@ export default function useInteractionSignal(): InteractionSignal {
   const onChangeActivity = useCallback(() => {
     if (timeoutRef.current != null) clearTimeout(timeoutRef.current);
     setInteracting(true);
-    timeoutRef.current = setTimeout(() => setInteracting(false), SAFETY_TIMEOUT_MS);
+    timeoutRef.current = setTimeout(() => {
+      timeoutRef.current = null;
+      setInteracting(false);
+    }, SAFETY_TIMEOUT_MS);
   }, []);
 
   return { interacting, beginInteraction, endInteraction, onChangeActivity };
