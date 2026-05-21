@@ -414,19 +414,14 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
    * curved or aspheric front groups.  Bisect to find the real clipping angle.
    * Uses the real EP position (realB/realYRatio) for chief ray entry.
    *
-   * Fisheye lenses skip this bisection entirely: their real chief rays enter
-   * through highly-curved front elements at angles where slope-launch is
-   * meaningless, so the paraxial-chief-ray test drastically undercounts the
-   * lens's true coverage (e.g., the Nikon 6mm has a 110° patent-declared
-   * half-field but the bisection would narrow to ~32°). For fisheyes the
-   * declared `maxTraceFieldDeg` is authoritative; per-ray clipping in the
-   * diagram or analysis tabs filters individual rays naturally. */
-  /* Run the slope-launch bisection unconditionally — its result feeds
-   * `tracingHalfField`, the half-field that the diagram uses for off-axis ray
-   * placement. For rectilinear lenses this is also what `halfField` reports.
-   * For fisheyes, `halfField` instead uses the declared `maxTraceFieldDeg`
-   * (which can be much wider than slope-launch chief rays can traverse), and
-   * `tracingHalfField` keeps off-axis rays in the bisection-narrowed safe zone. */
+   * Rectilinear lenses use the bisected value as both `halfField` and
+   * `tracingHalfField` (no safety margin applied — preserves pre-PR-8 behavior
+   * exactly). Fisheye lenses use the declared `maxTraceFieldDeg` for
+   * `halfField` (which can be much wider than slope-launch chief rays can
+   * traverse) and the bisected value × `TRACING_SAFETY_FACTOR` for
+   * `tracingHalfField`, so off-axis ray bundles in the diagram still render
+   * in a safe zone where rays actually reach the image plane. */
+  const fisheye = isFisheyeProjection(projection);
   const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
   const testChief = (deg: number): boolean => {
     const uTest = -Math.tan((deg * Math.PI) / 180);
@@ -448,10 +443,8 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   }
   /* If the paraxial field passes the real check, keep it (conservative). */
 
-  const halfField = isFisheyeProjection(projection)
-    ? (projection.maxTraceFieldDeg ?? halfFieldParaxial)
-    : halfFieldBisected;
-  const tracingHalfField = halfFieldBisected * TRACING_SAFETY_FACTOR;
+  const halfField = fisheye ? (projection.maxTraceFieldDeg ?? halfFieldParaxial) : halfFieldBisected;
+  const tracingHalfField = fisheye ? halfFieldBisected * TRACING_SAFETY_FACTOR : halfFieldBisected;
 
   /* ── Petzval sum ──
    * P = Σ (n'−n) / (n'·n·R) over all refracting surfaces.
@@ -652,11 +645,10 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         }
         zHalfFieldBisected = lo;
       }
-      const zHalfField = isFisheyeProjection(projection)
-        ? (projection.maxTraceFieldDeg ?? zHalfFieldParaxial)
-        : zHalfFieldBisected;
+      const zFisheye = isFisheyeProjection(projection);
+      const zHalfField = zFisheye ? (projection.maxTraceFieldDeg ?? zHalfFieldParaxial) : zHalfFieldBisected;
       zoomHalfFields.push(zHalfField);
-      zoomTracingHalfFields.push(zHalfFieldBisected * TRACING_SAFETY_FACTOR);
+      zoomTracingHalfFields.push(zFisheye ? zHalfFieldBisected * TRACING_SAFETY_FACTOR : zHalfFieldBisected);
     }
   }
 

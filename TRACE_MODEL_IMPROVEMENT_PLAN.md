@@ -575,15 +575,18 @@ a future refactor.
 
 **Off-axis ray rendering — `tracingHalfField`.** After the Step 7 bisection-skip surfaced that
 `offAxisFieldFrac × halfField = 0.6 × 110° = 66°` puts the diagram's default off-axis bundle into a
-region where every bundle ray clips, `RuntimeLens` gained a separate `tracingHalfField`. The bisection
-that used to determine `halfField` for all lenses still runs unconditionally and feeds this new field
-with a `TRACING_SAFETY_FACTOR` (0.9) applied. The Nikon 6mm's `tracingHalfField` lands at ~29°, so the
-diagram's off-axis bundle renders at `0.6 × 29° = 17.5°` where all 6 bundle rays survive. Rectilinear
-lenses use `tracingHalfField = halfField × 0.9` (slight visual headroom; the Nokton 50/1's natural ray
-survival was already 4/6 at the default position, unchanged by the margin). Zoom-aware via
+region where every bundle ray clips on the Nikon 6mm, `RuntimeLens` gained a separate `tracingHalfField`
+field. **Rectilinear lenses are bit-identical to pre-PR-8 behavior**: their `tracingHalfField === halfField`
+(both are the bisection-narrowed value), so off-axis ray rendering is unchanged. **Fisheye lenses** get
+`tracingHalfField = halfFieldBisected × TRACING_SAFETY_FACTOR` (0.9) — the slope-launch bisection that
+the fisheye path skips for `halfField` still runs to produce a separate, conservative ray-rendering
+bound. The Nikon 6mm's `tracingHalfField` lands at ~29°, so the diagram's off-axis bundle renders at
+`0.6 × 29° = 17.5°` where all 6 bundle rays survive (was 0/6 at 66°). Zoom-aware via
 `zoomTracingHalfFields[]` parallel to `zoomHalfFields[]`. Consumed in
-[offAxisRayUtils.ts](src/components/hooks/offAxisRayUtils.ts) so both `useOffAxisRays` and
-`useChromaticRays` benefit automatically.
+[offAxisRayUtils.ts](src/components/hooks/offAxisRayUtils.ts) by scaling `offAxisFieldFrac` by
+`tracingHalfField / halfField` — the ratio is 1.0 for rectilinear (no change) and ~0.3 for the Nikon 6mm
+(shrinks the rendered bundle into the safe zone). Both `useOffAxisRays` and `useChromaticRays` benefit
+automatically.
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering
