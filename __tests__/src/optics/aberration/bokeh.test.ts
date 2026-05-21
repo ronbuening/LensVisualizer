@@ -22,7 +22,7 @@ import {
   doLayout,
   epAtZoom,
   fopenAtZoom,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
 } from "../../../../src/optics/optics.js";
 import { computeOffAxisFieldGeometry } from "../../../../src/optics/aberration/offAxis.js";
 import buildLens from "../../../../src/optics/buildLens.js";
@@ -159,10 +159,7 @@ describe("state-aware off-axis geometry", () => {
     const result = computeStateAwareOffAxisFieldGeometry(L, layout.z, focusT, 0, 0.75);
 
     expect(result).not.toBeNull();
-    expect(result!.yChief).toBeCloseTo(
-      solveChiefRayLaunchHeight(result!.fieldAngleDeg, focusT, 0, L, stateGeometry),
-      6,
-    );
+    expect(result!.yChief).toBeCloseTo(solveChiefRay(result!.fieldAngleDeg, focusT, 0, L, stateGeometry).yLaunch, 6);
   });
 
   it("differs from the paraxial chief-ray launch on a vignetted wide-angle field", () => {

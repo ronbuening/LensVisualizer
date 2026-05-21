@@ -5,7 +5,9 @@ import {
   normalizeDirection,
   refractDirection,
   traceExactSurfaceStack,
+  traceExactSurfaceStackVector,
   type ExactSurfaceTraceHit,
+  type Vector3,
 } from "./internal/exactSurfaceTrace.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
@@ -21,6 +23,12 @@ export interface SkewRayTraceResult {
   ux: number;
   uy: number;
   clipped: boolean;
+}
+
+export interface VectorRayTraceInput {
+  origin: Vector3;
+  direction: Vector3;
+  launchBoundT?: number;
 }
 
 export interface SkewImagePlaneIntercept {
@@ -172,12 +180,25 @@ function appendExactTracePoints(
 ): void {
   for (const hit of hits) {
     const pt = [hit.point[2], hit.point[1]];
+    if (!isFinite(pt[0]) || !isFinite(pt[1])) continue;
     if (hit.clipped) {
       if (ghost) ghostPts.push(pt);
     } else {
       pts.push(pt);
     }
   }
+}
+
+function vectorLeadPoint(
+  input: VectorRayTraceInput,
+  firstHit: ExactSurfaceTraceHit | undefined,
+  leadDistance: number,
+): [number, number] {
+  const reference = firstHit?.point ?? input.origin;
+  const lead = Math.max(0, leadDistance);
+  const z = reference[2] - input.direction[2] * lead;
+  const y = reference[1] - input.direction[1] * lead;
+  return isFinite(z) && isFinite(y) ? [z, y] : [input.origin[2], input.origin[1]];
 }
 
 function surfaceZPositions(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number[] {
@@ -304,6 +325,39 @@ function traceSkewRayExactCore(
   };
 }
 
+function traceSkewRayVectorExactCore(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
+): SkewRayTraceResult {
+  const result = traceExactSurfaceStackVector(
+    L,
+    { origin: input.origin, direction: input.direction },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      launchBoundT: input.launchBoundT,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
+
+  return {
+    x: result.x,
+    y: result.y,
+    ux: result.ux,
+    uy: result.uy,
+    clipped: result.clipped,
+  };
+}
+
 export function traceSkewRay(
   x0: number,
   y0: number,
@@ -341,6 +395,33 @@ export function traceSkewRayChromatic(
   return mode === "exact"
     ? traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
     : traceSkewRayLegacyCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+}
+
+export function traceSkewRayVector(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  options?: RayTraceOptions,
+): SkewRayTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode !== "exact") return { x: NaN, y: NaN, ux: NaN, uy: NaN, clipped: true };
+  return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined);
+}
+
+export function traceSkewRayVectorChromatic(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel,
+  options?: RayTraceOptions,
+): SkewRayTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode !== "exact") return { x: NaN, y: NaN, ux: NaN, uy: NaN, clipped: true };
+  return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, channel);
 }
 
 export function skewImagePlaneIntercept(
@@ -509,6 +590,65 @@ export function traceRayChromatic(
   return mode === "exact"
     ? traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT)
     : traceRayLegacyCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
+}
+
+function traceRayVectorExactCore(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel | undefined,
+): RayTraceResult {
+  const result = traceExactSurfaceStackVector(
+    L,
+    { origin: input.origin, direction: input.direction },
+    {
+      zPos,
+      checkSemiDiameter: true,
+      stopSemiDiameter: stopSD,
+      ghost,
+      stopOnClip: true,
+      launchBoundT: input.launchBoundT,
+      indexAtSurface: channel
+        ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
+        : undefined,
+    },
+  );
+
+  const pts: number[][] = [];
+  const ghostPts: number[][] = [];
+  const lead = L.rayLead ?? 0;
+  pts.push(vectorLeadPoint(input, result.hits[0], lead));
+  appendExactTracePoints(result.hits, pts, ghostPts, ghost);
+  return { pts, ghostPts, y: result.y, u: result.uy, clipped: result.clipped };
+}
+
+export function traceRayVector(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  options?: RayTraceOptions,
+): RayTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode !== "exact") return { pts: [], ghostPts: [], y: NaN, u: NaN, clipped: true };
+  return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined);
+}
+
+export function traceRayVectorChromatic(
+  input: VectorRayTraceInput,
+  zPos: number[],
+  stopSD: number | undefined,
+  ghost: boolean,
+  L: RuntimeLens,
+  channel: ChromaticChannel,
+  options?: RayTraceOptions,
+): RayTraceResult {
+  const mode = resolveSurfaceTraceMode(L, options?.mode);
+  if (mode !== "exact") return { pts: [], ghostPts: [], y: NaN, u: NaN, clipped: true };
+  return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, channel);
 }
 
 interface MarginalRayData {

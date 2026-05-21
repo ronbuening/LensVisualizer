@@ -66,6 +66,25 @@ export function projectionImageHeightForAngle(reference: ProjectionReference, fi
   }
 }
 
+// Ideal projection image height for a lens at a given field angle, using the
+// lens's declared projection (fisheye focal length) or falling back to
+// `rectilinearScaleMm * tan(θ)` for rectilinear lenses.
+export function projectionImageHeightForLensAngle(
+  L: RuntimeLens,
+  rectilinearScaleMm: number,
+  fieldAngleRad: number,
+): number {
+  const projection = resolveProjection(L.projection);
+  switch (projection.kind) {
+    case "fisheye-equidistant":
+      return projection.focalLengthMm * fieldAngleRad;
+    case "fisheye-equisolid":
+      return 2 * projection.focalLengthMm * Math.sin(fieldAngleRad / 2);
+    default:
+      return rectilinearScaleMm * Math.tan(fieldAngleRad);
+  }
+}
+
 export function projectionFieldAngleForImageHeight(reference: ProjectionReference, imageHeight: number): number {
   const radius = Math.abs(imageHeight);
   if (!isFinite(radius) || reference.focalScaleMm <= 0) return NaN;

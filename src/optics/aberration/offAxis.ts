@@ -5,7 +5,7 @@ import {
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
   thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
@@ -147,7 +147,7 @@ export function computeStateAwareOffAxisFieldGeometry(
   const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
   if (launch.status === "out-of-domain") return null;
   const uField = launch.uField;
-  const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  const yChief = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options).yLaunch;
   const lastSurfZ = zPos[L.N - 1];
   const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(uField) || !isFinite(yChief) || !isFinite(imagePlaneZ)) return null;

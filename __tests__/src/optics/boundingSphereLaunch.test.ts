@@ -10,6 +10,7 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const RECTILINEAR_FIXTURE = "nokton-50f1";
 const FISHEYE_FIXTURE = "nikon-fisheye-nikkor-6mm-f28";
+const FISHEYE_F56_FIXTURE = "nikon-fisheye-nikkor-6mm-f56";
 
 describe("launchSurfaceForFieldDeg", () => {
   it("returns object-plane for fields below the cap", () => {
@@ -112,18 +113,17 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
       expect(boundingSphere.status).toBe("converged");
       expect(boundingSphere.launchSurface).toBe("bounding-sphere");
 
-      // Bit-identity to ~1e-12: both paths describe the same physical chief
-      // ray; the only divergence comes from the bisection's convergence
-      // tolerance (1e-9 mm at the stop). Projecting back to z=0 scales that
-      // by ~1/cos(θ), still well within the test bound.
-      expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 9);
+      // Both paths describe the same physical chief ray; divergence comes from
+      // the bisection's residual tolerance (~1e-7 mm at the stop). Projected
+      // back to z=0 scales that by ~1/cos(θ), still well within the bound.
+      expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 6);
     },
   );
 
   it("rectilinear cap boundary: solveChiefRay at 88° agrees with bounding-sphere at 88° on the Nokton", () => {
     // The dispatch routes rectilinear lenses through object-plane below the
-    // cap. Calling solveChiefRayBoundingSphere directly should agree to ~1e-12
-    // mm with the object-plane result it would otherwise replace.
+    // cap. Calling solveChiefRayBoundingSphere directly should agree to within
+    // the bisection's residual tolerance (~1e-7 mm) with the object-plane result.
     const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const dispatched = solveChiefRay(15, 0, 0, L);
     const directBoundingSphere = solveChiefRayBoundingSphere(15, 0, 0, L, undefined, 0, undefined);
@@ -132,7 +132,7 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
     expect(directBoundingSphere.launchSurface).toBe("bounding-sphere");
     expect(dispatched.status).toBe("converged");
     expect(directBoundingSphere.status).toBe("converged");
-    expect(directBoundingSphere.yLaunch).toBeCloseTo(dispatched.yLaunch, 9);
+    expect(directBoundingSphere.yLaunch).toBeCloseTo(dispatched.yLaunch, 6);
   });
 });
 
@@ -167,5 +167,29 @@ describe("past-cap chief rays exercise the bounding-sphere tracer (PR 8 integrat
     expect(above1).not.toBe(below1);
     expect(below1.launchSurface).toBe("object-plane");
     expect(above1.launchSurface).toBe("bounding-sphere");
+  });
+});
+
+describe("wide fisheye chief-ray bracketing", () => {
+  it("finds an internal valid bracket for the Nikon 6mm f/2.8 default off-axis field", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const result = solveChiefRay(66, 0, 0, L);
+
+    expect(result.launchSurface).toBe("bounding-sphere");
+    expect(result.status).toBe("converged");
+    expect(result.vectorLaunch).toBeDefined();
+    expect(result.vectorLaunch?.totalFieldDeg).toBeCloseTo(66, 8);
+    expect(Number.isFinite(result.yLaunch)).toBe(true);
+  });
+
+  it("keeps a vector fallback when the Nikon 6mm f/5.6 field is physically blocked", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_F56_FIXTURE]);
+    const result = solveChiefRay(66, 0, 0, L);
+
+    expect(result.launchSurface).toBe("bounding-sphere");
+    expect(result.status).toBe("bracket-failed");
+    expect(result.vectorLaunch).toBeDefined();
+    expect(result.vectorLaunch?.totalFieldDeg).toBeCloseTo(66, 8);
+    expect(Number.isFinite(result.yLaunch)).toBe(true);
   });
 });

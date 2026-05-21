@@ -4,6 +4,7 @@ import {
   traceExactSurfaceStack,
   traceExactSurfaceStackVector,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
+import { doLayout, solveChiefRay, traceRay, traceRayVector } from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
@@ -85,5 +86,46 @@ describe("traceExactSurfaceStackVector", () => {
     expect(vector.returnVertexIdx).toBe(slope.returnVertexIdx);
     expect(vector.y).toBeCloseTo(slope.y, 10);
     expect(vector.uy).toBeCloseTo(slope.uy, 10);
+  });
+
+  it("public traceRayVector matches slope tracing below the object-plane cap", () => {
+    const L = lensFor("nokton-50f1");
+    const { z: zPos } = doLayout(0, 0, L);
+    const fieldDeg = 15;
+    const thetaRad = (fieldDeg * Math.PI) / 180;
+    const y0 = 1.25;
+
+    const slope = traceRay(y0, -Math.tan(thetaRad), zPos, 0, 0, L.stopPhysSD, true, L);
+    const vector = traceRayVector(
+      {
+        origin: [0, y0, 0],
+        direction: [0, -Math.sin(thetaRad), Math.cos(thetaRad)],
+      },
+      zPos,
+      L.stopPhysSD,
+      true,
+      L,
+    );
+
+    expect(vector.y).toBeCloseTo(slope.y, 10);
+    expect(vector.u).toBeCloseTo(slope.u, 10);
+    expect(vector.clipped).toBe(slope.clipped);
+    expect(vector.pts.length).toBeGreaterThan(0);
+  });
+
+  it("public traceRayVector draws finite ghost points for past-cap fisheye launches", () => {
+    const L = lensFor("nikon-fisheye-nikkor-6mm-f28");
+    const { z: zPos } = doLayout(0, 0, L);
+    const launch = solveChiefRay(110, 0, 0, L).vectorLaunch;
+
+    expect(launch).toBeDefined();
+    const result = traceRayVector(launch!, zPos, L.stopPhysSD, true, L);
+    const points = [...result.pts, ...result.ghostPts];
+
+    expect(points.length).toBeGreaterThan(0);
+    for (const [z, y] of points) {
+      expect(Number.isFinite(z)).toBe(true);
+      expect(Number.isFinite(y)).toBe(true);
+    }
   });
 });

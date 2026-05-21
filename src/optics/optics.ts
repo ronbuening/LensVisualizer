@@ -32,11 +32,13 @@ export {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
   computeAnalysisFieldGeometryAtState,
+  computeBoundingSphereVectorFieldLaunch,
   computeFieldGeometryAtState,
+  computeBoundingSphereLaunchRadiusMm,
   conjugateK,
   entrancePupilAtState,
+  offsetVectorFieldRay,
   solveChiefRay,
-  solveChiefRayLaunchHeight,
   solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate,
   traceChiefRayAtAngle,
@@ -44,6 +46,8 @@ export {
   type ChiefRaySolveResult,
   type EntrancePupilState,
   type FieldGeometryState,
+  type OffsetVectorFieldRay,
+  type VectorFieldRayLaunch,
 } from "./fieldGeometry.js";
 export {
   DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -56,8 +60,12 @@ export {
   traceChiefRelativeSkewRayChromatic,
   traceRay,
   traceRayChromatic,
+  traceRayVector,
+  traceRayVectorChromatic,
   traceSkewRay,
   traceSkewRayChromatic,
+  traceSkewRayVector,
+  traceSkewRayVectorChromatic,
   traceToImage,
   wavelengthNd,
   type CircularPupilSample,
@@ -65,6 +73,7 @@ export {
   type RayTraceOptions,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
+  type VectorRayTraceInput,
 } from "./rayTrace.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
 export { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";

@@ -14,12 +14,14 @@ import {
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
   computeAnalysisFieldGeometryAtState,
+  computeBoundingSphereVectorFieldLaunch,
   computeFieldGeometryAtState,
   skewImagePlaneIntercept,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
   solveFieldAngleForImageHeightAccurate,
   thick,
   traceSkewRay,
+  traceSkewRayVector,
 } from "./optics.js";
 import {
   distortionProjectionReferenceForLens,
@@ -32,7 +34,7 @@ import {
   type ProjectionReference,
   type ProjectionReferenceKind,
 } from "./projection.js";
-import type { FieldGeometryState } from "./optics.js";
+import type { FieldGeometryState, SkewRayTraceResult } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
 import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -95,6 +97,7 @@ interface DistortionReference {
   projectionReference: ProjectionReference;
   edgeImageHeight: number;
   idealFieldRadius: number;
+  zPos: number[];
   lastSurfZ: number;
   imagePlaneZ: number;
 }
@@ -134,6 +137,7 @@ function computeDistortionReference(
       projectionReference,
       edgeImageHeight: -idealFieldRadius,
       idealFieldRadius,
+      zPos,
       lastSurfZ,
       imagePlaneZ,
     };
@@ -181,6 +185,7 @@ function computeDistortionReference(
     projectionReference,
     edgeImageHeight,
     idealFieldRadius,
+    zPos,
     lastSurfZ,
     imagePlaneZ,
   };
@@ -309,15 +314,7 @@ function buildPupilCorrectionTable(
       continue;
     }
     const paraxialYChief = -reference.geometry.epRatio * launch.uField;
-    const solvedYChief = solveChiefRayLaunchHeight(
-      angleDeg,
-      focusT,
-      zoomT,
-      L,
-      reference.geometry,
-      aberrationT,
-      options,
-    );
+    const solvedYChief = solveChiefRay(angleDeg, focusT, zoomT, L, reference.geometry, aberrationT, options).yLaunch;
     const ratio = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
     table.push({ angleDeg, ratio: isFinite(ratio) ? ratio : 1 });
   }
@@ -337,13 +334,23 @@ function interpolatePupilCorrection(table: PupilCorrectionEntry[], angleDeg: num
   return 1;
 }
 
-interface DistortionGridLaunch {
-  fieldSlopeX: number;
-  fieldSlopeY: number;
-  equivalentAngleDeg: number;
-  idealX: number;
-  idealY: number;
-}
+type DistortionGridLaunch =
+  | {
+      kind: "slope";
+      fieldSlopeX: number;
+      fieldSlopeY: number;
+      equivalentAngleDeg: number;
+      idealX: number;
+      idealY: number;
+    }
+  | {
+      kind: "vector";
+      fieldAngleXDeg: number;
+      fieldAngleYDeg: number;
+      equivalentAngleDeg: number;
+      idealX: number;
+      idealY: number;
+    };
 
 function resolveDistortionGridLaunch(
   xNormalized: number,
@@ -351,13 +358,21 @@ function resolveDistortionGridLaunch(
   reference: DistortionReference,
 ): DistortionGridLaunch | null {
   if (reference.projectionReference.kind !== "rectilinear") {
-    const launch = projectionLaunchVectorForFieldAngles(
-      reference.projectionReference,
-      xNormalized * reference.geometry.halfFieldDeg,
-      yNormalized * reference.geometry.halfFieldDeg,
-    );
-    if (launch.status === "out-of-domain") return null;
+    const fieldAngleXDeg = xNormalized * reference.geometry.halfFieldDeg;
+    const fieldAngleYDeg = yNormalized * reference.geometry.halfFieldDeg;
+    const launch = projectionLaunchVectorForFieldAngles(reference.projectionReference, fieldAngleXDeg, fieldAngleYDeg);
+    if (launch.status === "out-of-domain") {
+      return {
+        kind: "vector",
+        fieldAngleXDeg,
+        fieldAngleYDeg,
+        equivalentAngleDeg: launch.totalFieldDeg,
+        idealX: launch.idealImageX,
+        idealY: launch.idealImageY,
+      };
+    }
     return {
+      kind: "slope",
       fieldSlopeX: launch.fieldSlopeX,
       fieldSlopeY: launch.fieldSlopeY,
       equivalentAngleDeg: launch.totalFieldDeg,
@@ -371,12 +386,69 @@ function resolveDistortionGridLaunch(
   const fieldSlopes = projectionFieldSlopesForImagePoint(reference.projectionReference, idealX, idealY);
   if (fieldSlopes === null) return null;
   return {
+    kind: "slope",
     fieldSlopeX: fieldSlopes.fieldSlopeX,
     fieldSlopeY: fieldSlopes.fieldSlopeY,
     equivalentAngleDeg: fieldSlopes.equivalentAngleDeg,
     idealX,
     idealY,
   };
+}
+
+type DistortionGridLaunchVector = Extract<DistortionGridLaunch, { kind: "vector" }>;
+type DistortionGridLaunchSlope = Extract<DistortionGridLaunch, { kind: "slope" }>;
+
+function traceDistortionGridPointVector(
+  launch: DistortionGridLaunchVector,
+  reference: DistortionReference,
+  currentPhysStopSD: number,
+  L: RuntimeLens,
+  aberrationT: number,
+  options?: RayTraceOptions,
+): SkewRayTraceResult | null {
+  const vectorLaunch = computeBoundingSphereVectorFieldLaunch(
+    L,
+    reference.geometry,
+    launch.fieldAngleXDeg,
+    launch.fieldAngleYDeg,
+    aberrationT,
+  );
+  if (vectorLaunch === null) return null;
+  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L, options);
+}
+
+// The slope launch starts from the paraxial EP; pupil aberration is applied
+// post-hoc by scaling `epRatio` with the interpolated correction at the
+// equivalent field angle. The vector branch doesn't need this — the
+// bounding-sphere chief-ray bisection lands on the real stop center directly.
+function traceDistortionGridPointSlope(
+  launch: DistortionGridLaunchSlope,
+  reference: DistortionReference,
+  focusT: number,
+  zoomT: number,
+  currentPhysStopSD: number,
+  L: RuntimeLens,
+  pupilCorrection: PupilCorrectionEntry[],
+  aberrationT: number,
+  options?: RayTraceOptions,
+): SkewRayTraceResult {
+  const correction = interpolatePupilCorrection(pupilCorrection, launch.equivalentAngleDeg);
+  const correctedEpRatio = reference.geometry.epRatio * correction;
+  const chiefLaunchX = -correctedEpRatio * launch.fieldSlopeX;
+  const chiefLaunchY = -correctedEpRatio * launch.fieldSlopeY;
+  return traceSkewRay(
+    chiefLaunchX,
+    chiefLaunchY,
+    launch.fieldSlopeX,
+    launch.fieldSlopeY,
+    focusT,
+    zoomT,
+    currentPhysStopSD,
+    true,
+    L,
+    aberrationT,
+    options,
+  );
 }
 
 function traceDistortionGridPoint(
@@ -421,27 +493,34 @@ function traceDistortionGridPoint(
       usable: false,
     };
   }
-  const { fieldSlopeX, fieldSlopeY, equivalentAngleDeg, idealX, idealY } = launch;
+  const { idealX, idealY } = launch;
 
-  /* Apply pupil-aberration correction based on the equivalent field angle */
-  const correction = interpolatePupilCorrection(pupilCorrection, equivalentAngleDeg);
-  const correctedEpRatio = reference.geometry.epRatio * correction;
+  const trace =
+    launch.kind === "vector"
+      ? traceDistortionGridPointVector(launch, reference, currentPhysStopSD, L, aberrationT, options)
+      : traceDistortionGridPointSlope(
+          launch,
+          reference,
+          focusT,
+          zoomT,
+          currentPhysStopSD,
+          L,
+          pupilCorrection,
+          aberrationT,
+          options,
+        );
 
-  const chiefLaunchX = -correctedEpRatio * fieldSlopeX;
-  const chiefLaunchY = -correctedEpRatio * fieldSlopeY;
-  const trace = traceSkewRay(
-    chiefLaunchX,
-    chiefLaunchY,
-    fieldSlopeX,
-    fieldSlopeY,
-    focusT,
-    zoomT,
-    currentPhysStopSD,
-    true,
-    L,
-    aberrationT,
-    options,
-  );
+  if (trace === null) {
+    return {
+      idealX,
+      idealY,
+      tracedX: null,
+      tracedY: null,
+      radiusNormalized,
+      insideImageCircle: true,
+      usable: false,
+    };
+  }
 
   if (trace.clipped) {
     return {

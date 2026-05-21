@@ -2,7 +2,7 @@
  * Edge-case tests for optics engine — targeting uncovered branches in
  * optics.ts, buildLens.ts, bokeh.ts, and coma.ts.
  *
- * Focuses on: traceParaxialRay, solveChiefRayLaunchHeight fallbacks,
+ * Focuses on: traceParaxialRay, solveChiefRay fallbacks,
  * solveFieldAngleForImageHeight(Accurate) null paths, bokeh unusable-field
  * paths, and coma insufficient-samples paths.
  */
@@ -11,7 +11,7 @@ import { describe, it, expect } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   traceParaxialRay,
-  solveChiefRayLaunchHeight,
+  solveChiefRay,
   solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate,
   chiefRayImageHeight,
@@ -69,31 +69,31 @@ describe("traceParaxialRay", () => {
   });
 });
 
-/* ── solveChiefRayLaunchHeight ── */
+/* ── solveChiefRay launch height ── */
 
-describe("solveChiefRayLaunchHeight", () => {
+describe("solveChiefRay (launch height)", () => {
   const L = build(ApoLantharRaw);
 
   it("returns a finite launch height at 0 degrees", () => {
-    const result = solveChiefRayLaunchHeight(0, 0, 0, L);
+    const result = solveChiefRay(0, 0, 0, L).yLaunch;
     expect(isFinite(result)).toBe(true);
     expect(result).toBeCloseTo(0, 6);
   });
 
   it("returns a finite launch height at moderate field angle", () => {
-    const result = solveChiefRayLaunchHeight(10, 0, 0, L);
+    const result = solveChiefRay(10, 0, 0, L).yLaunch;
     expect(isFinite(result)).toBe(true);
     expect(Math.abs(result)).toBeGreaterThan(0);
   });
 
   it("returns a finite result even at the half-field angle", () => {
-    const result = solveChiefRayLaunchHeight(L.halfField, 0, 0, L);
+    const result = solveChiefRay(L.halfField, 0, 0, L).yLaunch;
     expect(isFinite(result)).toBe(true);
   });
 
   it("returns paraxial fallback for extreme beyond-field angles", () => {
     /* Beyond the vignetting limit — the bisection bracket may have no sign change */
-    const result = solveChiefRayLaunchHeight(85, 0, 0, L);
+    const result = solveChiefRay(85, 0, 0, L).yLaunch;
     expect(isFinite(result)).toBe(true);
   });
 });

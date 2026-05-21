@@ -10,6 +10,7 @@ import NikkorRaw from "../../../src/lens-data/nikon/NikonNikkorZ50f18S.data.js";
 import Nikkor105Raw from "../../../src/lens-data/nikon/NikonNikkor105f14E.data.js";
 import NikkorN5cmf11Raw from "../../../src/lens-data/nikon/NikonN5cmf11.data.js";
 import NikonFisheye6mmf28Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
+import NikonFisheye6mmf56Raw from "../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 
@@ -19,6 +20,7 @@ const Nikkor = { ...LENS_DEFAULTS, ...NikkorRaw } as LensData;
 const Nikkor105 = { ...LENS_DEFAULTS, ...Nikkor105Raw } as LensData;
 const NikkorN5cmf11 = { ...LENS_DEFAULTS, ...NikkorN5cmf11Raw } as LensData;
 const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
+const NikonFisheye6mmf56 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf56Raw } as LensData;
 const Sonnar50f15 = { ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData;
 
 describe("paraxialTrace", () => {
@@ -133,6 +135,16 @@ describe("buildLens — production lenses", () => {
     // but fisheyes skip that bisection — see buildLens.ts comment block and
     // TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8 step 7.
     expect(L.halfField).toBeCloseTo(110, 6);
+  });
+
+  it("Nikon 6mm fisheyes keep declared 110° half-field metadata", () => {
+    const fast = buildLens(NikonFisheye6mmf28);
+    const slow = buildLens(NikonFisheye6mmf56);
+
+    expect(fast.halfField).toBeCloseTo(110, 6);
+    expect(slow.halfField).toBeCloseTo(110, 6);
+    expect(fast.tracingHalfField).toBeLessThan(fast.halfField);
+    expect(slow.tracingHalfField).toBeLessThan(slow.halfField);
   });
 
   it("throws when a large focalLengthDesign mismatch lacks projection metadata", () => {

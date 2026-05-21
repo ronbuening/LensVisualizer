@@ -201,7 +201,7 @@ export function traceExactSurfaceStackVector(
       failureReason = hit.failureReason;
       if (!ghost) break;
 
-      const fallbackPoint = fallbackSurfacePoint(origin, direction, vertexZ, i, lens);
+      const fallbackPoint = fallbackSurfacePoint(origin, direction, vertexZ, i, lens, maxT);
       if (fallbackPoint === null) continue;
       point = fallbackPoint.point;
       normal = fallbackPoint.normal;
@@ -346,16 +346,40 @@ function surfaceIntersectionMaxT(
   return launchBoundT && launchBoundT > 0 ? launchBoundT : 0;
 }
 
+// Only reached on the ghost-render path for grazing or backward rays from
+// bounding-sphere launches (forward production rays never trip the
+// `|direction[2]| < 1e-12` brute-force scan).
 function fallbackSurfacePoint(
   origin: Vector3,
   direction: Vector3,
   vertexZ: number,
   surfIdx: number,
   lens: ExactTraceLens,
+  maxT: number,
 ): { point: Vector3; normal: Vector3 } | null {
-  if (Math.abs(direction[2]) <= 1e-12) return null;
-  const t = (vertexZ - origin[2]) / direction[2];
-  if (!isFinite(t) || t < 0) return null;
+  const projectedT = Math.abs(direction[2]) > 1e-12 ? (vertexZ - origin[2]) / direction[2] : NaN;
+  let t = isFinite(projectedT) && projectedT >= 0 && (!isFinite(maxT) || projectedT <= maxT) ? projectedT : NaN;
+
+  if (!isFinite(t)) {
+    if (!isFinite(maxT) || maxT <= 0) return null;
+    const samples = 32;
+    let bestT = NaN;
+    let bestResidual = Infinity;
+    for (let i = 0; i <= samples; i++) {
+      const candidateT = (maxT * i) / samples;
+      const x = origin[0] + direction[0] * candidateT;
+      const y = origin[1] + direction[1] * candidateT;
+      const z = origin[2] + direction[2] * candidateT;
+      const surfaceZ = vertexZ + conicPolySag(Math.hypot(x, y), lens.S[surfIdx].R, lens.asphByIdx[surfIdx]);
+      const residual = Math.abs(z - surfaceZ);
+      if (isFinite(residual) && residual < bestResidual) {
+        bestResidual = residual;
+        bestT = candidateT;
+      }
+    }
+    if (!isFinite(bestT)) return null;
+    t = bestT;
+  }
 
   const x = origin[0] + direction[0] * t;
   const y = origin[1] + direction[1] * t;

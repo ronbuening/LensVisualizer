@@ -22,7 +22,13 @@
  * state in a React hook rather than embedding in a component.
  */
 
-import { traceRay, solveChiefRayLaunchHeight, computeAnalysisFieldGeometryAtState } from "./optics.js";
+import {
+  computeAnalysisFieldGeometryAtState,
+  offsetVectorFieldRay,
+  solveChiefRay,
+  traceRay,
+  traceRayVector,
+} from "./optics.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
@@ -107,23 +113,31 @@ export function computeVignettingCurve(
 
   for (let i = 0; i < fieldSamples; i++) {
     const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
+    const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
     const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
-    if (launch.status === "out-of-domain") {
+    if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       rawGT.push(0);
       continue;
     }
-    const uField = launch.uField;
 
-    /* Solved chief-ray launch: iteratively corrects for pupil aberration.
-     * Falls back to paraxial for small angles (<1°) automatically. */
-    const yChief = solveChiefRayLaunchHeight(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
+    const uField = launch.uField;
+    const yChief = solve.vectorLaunch ? NaN : solve.yLaunch;
 
     /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
     let surviving = 0;
     for (let j = 0; j < nPupil; j++) {
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
-      const y0 = yChief + pupilFrac * currentEPSD;
-      const trace = traceRay(y0, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
+      const pupilOffset = pupilFrac * currentEPSD;
+      const trace = solve.vectorLaunch
+        ? traceRayVector(
+            offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset),
+            zPos,
+            currentPhysStopSD,
+            true,
+            L,
+            options,
+          )
+        : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
       if (!trace.clipped) surviving++;
     }
 
