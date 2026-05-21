@@ -96,9 +96,9 @@ function validateProjection(value: unknown, errors: string[]): void {
     (typeof config.maxTraceFieldDeg !== "number" ||
       !isFinite(config.maxTraceFieldDeg) ||
       config.maxTraceFieldDeg <= 0 ||
-      config.maxTraceFieldDeg >= 90)
+      config.maxTraceFieldDeg >= 180)
   ) {
-    errors.push(`"projection.maxTraceFieldDeg" must be finite and between 0 and 90 degrees when provided`);
+    errors.push(`"projection.maxTraceFieldDeg" must be finite and between 0 and 180 degrees when provided`);
   }
 }
 

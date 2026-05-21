@@ -44,7 +44,7 @@ const LENS_DATA = {
     focalLengthMm: 6.3,
     fullFieldDeg: 220,
     imageCircleMm: 23,
-    maxTraceFieldDeg: 80,
+    maxTraceFieldDeg: 110,
   },
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
