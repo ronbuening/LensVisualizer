@@ -36,12 +36,12 @@
 > migration remain — see `TRACE_MODEL_IMPROVEMENT_PLAN.md` for the running checklist.
 
 ## Summary
-- Added an internal exact ray-to-sag-surface trace mode with a central rollout control.
-- Finalized the migration so exact surface tracing is the production default through `SURFACE_TRACE_ROLLOUT_MODE =
-  "exact"`.
+- Added the internal exact ray-to-sag-surface tracer and later removed the temporary rollout control.
+- Finalized the migration so exact surface tracing is the production default; `resolveSurfaceTraceMode()` now returns
+  a requested override or `"exact"`.
 
 ## Changes
-- Added `traceMode.ts` with `legacy` / `exact` / `per-lens` resolution and explicit trace-mode override support.
+- Added `traceMode.ts`; it now supports only `legacy` / `exact` resolution with explicit trace-mode override support.
 - Added `internal/surfaceIntersection.ts` for flat, spherical, conic, and polynomial-aspheric surface intersections.
 - Added `internal/exactSurfaceTrace.ts` as the shared exact surface-stack tracer.
 - Wired exact mode through meridional, chromatic meridional, skew, chromatic skew, chief-relative skew trace paths,

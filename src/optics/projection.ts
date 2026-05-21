@@ -207,8 +207,9 @@ export interface BoundingSphereLaunch {
  *
  * Direction follows the standard fisheye convention: `θ_total` is the off-axis
  * magnitude, azimuth from `(θ_x, θ_y)`. For θ > 90° the direction's z-component
- * is negative — exactly the rays today's slope-based `surfaceIntersectionMaxT`
- * rejects. Wiring this into the exact tracer is the remaining work for PR 8.
+ * is negative, which is why vector callers must provide a finite
+ * `launchBoundT` to the exact tracer instead of relying on a slope-style
+ * z-projected intersection bound.
  */
 export function boundingSphereLaunchVector(
   epZ: number,

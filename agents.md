@@ -5,7 +5,7 @@
 LensVisualizer (public site: Surface & Stop) is an interactive React + TypeScript optical lens cross-section visualizer.
 It renders patent-derived camera lens sections as inline SVG, traces rays in real time, and exposes analysis tools for
 aberrations, pupils, distortion, vignetting, bokeh, chromatic behavior, glass, lens comparison, and perspective-control
-movement. The site is prerendered for SEO and deployed to GitHub Pages.
+movement, including projection-aware fisheye tracing. The site is prerendered for SEO and deployed to Cloudflare Pages.
 
 ## Tech Stack
 
@@ -82,6 +82,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
 - `agent_docs/generated/` - generated glass reports and queues; refresh all with `npm run generate:glass-reports`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
+- `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
@@ -103,7 +104,9 @@ Read only the relevant focused doc before changing that area:
 
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
 - Exact surface tracing is the production default for every lens; `"legacy"` mode in `src/optics/traceMode.ts` is a
-  test/debug escape hatch only.
+  test/debug escape hatch only. Do not add per-lens trace rollout state.
+- Fisheye and ultra-wide field launch must go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
+  `Math.tan(field)` or bypass the bounding-sphere vector path.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.
@@ -134,8 +137,8 @@ Before commits or PRs, prefer:
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
-Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Deployment uses
-GitHub Actions and GitHub Pages; see `agent_docs/workflow.md`.
+Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
+through Cloudflare Pages; see `agent_docs/workflow.md`.
 
 ## Compaction Instructions
 

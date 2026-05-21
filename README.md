@@ -21,8 +21,9 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 ## Current Scope
 
 - `240` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
-- The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm, Leica,
-  Nikon, Olympus, Ricoh, Sony, Vivitar, and Voigtländer
+- The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm,
+  Hasselblad, Laowa, Leica, Minolta, Nikon, Olympus, Panasonic, Pentax, Ricoh, Schneider-Kreuznach, Sigma, Sony,
+  Vivitar, and Voigtländer
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
 The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.
@@ -30,7 +31,8 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, ray density, chromatic channels, and comparison scale mode all update live
-- **Ray-tracing engine controls**: the legacy real-ray trace remains the default, with an experimental exact sag-surface trace mode available through a central per-lens rollout switch for diagnostics
+- **Exact surface tracing**: the production tracer intersects spherical/aspheric sag surfaces directly; the legacy vertex-plane trace remains only as a test/debug comparison mode
+- **Projection-aware fisheyes**: equidistant and equisolid fisheye metadata use projection-native distortion references, vector/bounding-sphere chief-ray launches, and safe diagram bundle fields for lenses with extreme declared coverage
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Lens-group movement**: focus and zoom sliders can open a URL-shareable overlay that stacks inferred lens groups vertically and charts each group center against the fixed focus plane
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
@@ -62,7 +64,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - `react-markdown` + `remark-gfm`
 - Vitest + Testing Library
 - ESLint + Prettier
-- GitHub Actions for quality checks; Cloudflare Pages is the intended production host after migration
+- GitHub Actions for quality checks; Cloudflare Pages for production hosting
 
 ## Getting Started
 
@@ -154,6 +156,9 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
 - [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)
+- [Trace model and fisheye launch status](TRACE_MODEL_IMPROVEMENT_PLAN.md)
+- [Glass catalog buildout](agent_docs/glass-catalog-buildout.md)
+- [Chromatic dispersion notes](CHROMATIC_DISPERSION_NOTES.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
 - [Lens mount/format options](src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md)
 - [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)

@@ -36,7 +36,7 @@ bokeh shape across the frame.
 ### EP aberration
 The paraxial chief-ray launch height for field angle θ is `epRatio × tan(θ)`.
 The actual chief ray that passes through the stop center has a different launch
-height (found by `solveChiefRayLaunchHeight`).  The ratio `r = solved / paraxial`
+height (found by `solveChiefRay().yLaunch`).  The ratio `r = solved / paraxial`
 is the "correction factor"; the EP z-shift is `(r − 1) × epRatio`.
 
 ### XP aberration

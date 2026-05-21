@@ -35,13 +35,11 @@ CI enforces the same checks via `.github/workflows/quality.yml` — failing them
 
 ## Deployment
 
-- **Current legacy path:** GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`) until the manual
-  Surface & Stop Cloudflare Pages cutover is complete.
-- **Target production path:** Cloudflare Pages using `npm run build` and `dist/`; see
-  `SURFACE_AND_STOP_MIGRATION.md` for the exact cutover and redirect steps.
-- Triggers on push to `main` or manual dispatch
-- Builds with `npm ci && npm run build`, deploys `dist/` to Pages
-- Base path set to `/` in `vite.config.js` — GitHub Actions deploy handles the Pages base path
+- **Current production path:** Cloudflare Pages builds with `npm run build` and serves `dist/`.
+- The former GitHub Pages deploy workflow is legacy infrastructure and should not be treated as the production deploy
+  path unless a future task explicitly reactivates it.
+- Cloudflare Pages deploys from the connected production branch after a successful build.
+- Builds use the normal pipeline and deploy the generated `dist/` output.
+- Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
-- Deploy is conditional — only runs after quality checks pass (or manual dispatch)
 - Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML + manifest validation) → `generate-sitemap.mjs` (reads routes from `src/generated/build-metadata.json`)

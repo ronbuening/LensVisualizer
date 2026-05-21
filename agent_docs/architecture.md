@@ -40,7 +40,10 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 ## Cross-Cutting Rules
 
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; do not introduce module-level optical state.
-- Keep trace rollout policy in `src/optics/traceMode.ts`; lens data should not carry experimental exact-trace enablement.
+- Keep trace-mode policy in `src/optics/traceMode.ts`; exact tracing is the production default and lens data should not
+  carry experimental trace enablement.
+- Keep fisheye/ultra-wide launch logic centralized in `src/optics/projection.ts` and `solveChiefRay`; avoid inline
+  `Math.tan(field)` launch math in analysis modules.
 - Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time
   and infinity/default-state oriented.
 - Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis
