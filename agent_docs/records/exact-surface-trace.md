@@ -6,6 +6,20 @@
 > `requestedMode ?? "exact"`. `SurfaceTraceMode = "legacy" | "exact"` is retained
 > as a test/debug escape hatch only.
 
+> **2026-05-20 trace-model staging.** Six commits on `ronbuening/SlowLensOptimization`
+> build on top of the exact-tracer foundation: field-launch slope construction is
+> centralized through `projectionLaunchSlopeForField` (commit `be230d1`), fisheye-equisolid
+> joins fisheye-equidistant as a recognized projection kind (`7ca5706`), a `LaunchSurface`
+> discriminator plus `boundingSphereLaunchVector` scaffold the past-cap launch path
+> (`0a2442c`), the exact tracer's `direction[2] > 1e-12` gates in `surfaceIntersectionMaxT`
+> and `intersectSagSurface` are lifted for grazing/backward rays (`beb040e`), and
+> past-cap chief rays now dispatch through `solveChiefRayBoundingSphere`, which
+> bisects on the EP-crossing y and traces via the vector entry point (`8e8c225`). Parity
+> tests confirm both launch surfaces produce bit-identical chief-ray geometry on
+> moderate-angle in-field samples. Visual smoke on the Nikon 6mm at 110° plus catalog
+> promotion remain — see `TRACE_MODEL_IMPROVEMENT_PLAN.md` "PR 8 — Remaining: tracer
+> surgery" steps 5–7.
+
 ## Summary
 - Added an internal exact ray-to-sag-surface trace mode with a central rollout control.
 - Finalized the migration so exact surface tracing is the production default through `SURFACE_TRACE_ROLLOUT_MODE =

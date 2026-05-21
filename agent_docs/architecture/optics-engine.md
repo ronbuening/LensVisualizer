@@ -22,7 +22,8 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
 | `traceMode.ts` | Test/debug escape hatch for switching between `legacy` and `exact` surface tracing on a per-call basis; production always resolves to `exact`. |
-| `projection.ts` | Projection model (rectilinear, fisheye-equidistant), forward/inverse maps, distortion residual reference, and `projectionLaunchSlopeForField` (the canonical way to derive `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`). |
+| `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg)` selector, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
+| `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
 | `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
@@ -60,10 +61,14 @@ Major public helpers:
 - Current-state pupil geometry: `entrancePupilAtState(stopSD, focusT, zoomT, L, geometry?)`.
 - Current-state field geometry: `computeFieldGeometryAtState()`.
 - Chief ray solving: `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback`
-  / `bracket-failed` / `out-of-domain` + iteration count), memoized per-lens via `WeakMap` keyed on focusT /
-  zoomT / aberrationT / fieldAngleDeg / mode. `solveChiefRayLaunchHeight()` remains as a thin shim that
-  returns the `yLaunch` field for callers that don't need the status. New analysis code should prefer
-  `solveChiefRay` and respect non-converged statuses.
+  / `bracket-failed` / `out-of-domain` + iteration count + `launchSurface: "object-plane" \| "bounding-sphere"`),
+  memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / mode /
+  launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg)`: fields below
+  `MAX_FIELD_LAUNCH_DEG` (89°) route through the object-plane slope-bisection path; past-cap fields go
+  through `solveChiefRayBoundingSphere`, which bisects on the EP-crossing y `yEP` and traces directly via
+  `traceExactSurfaceStackVector`. Both paths return `yLaunch` projected to z=0 for semantic consistency.
+  `solveChiefRayLaunchHeight()` remains as a thin shim that returns the `yLaunch` field for callers that
+  don't need the status. New analysis code should prefer `solveChiefRay` and respect non-converged statuses.
 - Utilities: `conjugateK()`, `formatDist()`, `formatPetzvalRadius()`.
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
@@ -81,22 +86,41 @@ The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
 - `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes
   `[ux0, uy0, 1]` into a `Vector3` direction and applies the configured lead distance.
 - `traceExactSurfaceStackVector({ origin, direction }, options)` — vector-native launch for callers that
-  already have a 3D ray. Direction must be normalized with `direction[2] > 0`; the slope entry is a thin
-  adapter that calls into this core.
+  already have a 3D ray. Direction must be normalized. For forward-cone rays (`direction[2] > 0`) the
+  per-surface bracket bound is z-projected; for grazing or backward rays the caller must supply
+  `launchBoundT` so the intersection search has a finite parametric bound (typically `2 × launchRadiusMm`
+  for bounding-sphere launches). The slope entry is a thin adapter that calls into this core.
 
 Both solve each ray/sag intersection via `internal/surfaceIntersection.ts` and project the outgoing ray back
-to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. The legacy vertex-plane
-real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal` compatibility
-alias in production optics code.
+to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. `surfaceIntersection.ts`
+splits its finiteness predicate into `isFiniteValueEvaluation` (used by `findBracket` endpoints and samples)
+and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside Newton iteration) so a
+grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
+The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite. The legacy
+vertex-plane real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal`
+compatibility alias in production optics code.
 
 ## Field-Launch Convention
 
-Every analysis launch slope should flow through `projectionLaunchSlopeForField(L, fieldAngleDeg)` in
+Every analysis launch slope flows through `projectionLaunchSlopeForField(L, fieldAngleDeg)` in
 `projection.ts` rather than computing `uField = -Math.tan(θ)` inline. The helper returns
 `{ uField, status: "ok" | "out-of-domain" }` and applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard so
-overflow cannot leak into downstream tracers. As of 2026-05-20 only the chief-ray solver consumes the helper;
-the analysis modules (vignette, distortion, pupil-aberration, off-axis, parts of field-geometry) still inline
-their slope and remain on the migration list. See [TRACE_MODEL_IMPROVEMENT_PLAN.md](../../TRACE_MODEL_IMPROVEMENT_PLAN.md) PR 5.
+overflow cannot leak into downstream tracers. All chief-ray, vignette, distortion, pupil-aberration, and
+off-axis-aberration call sites consume the helper; loops that sample across the field skip iterations whose
+`status === "out-of-domain"`.
+
+For 2D angular sampling (the distortion field grid), `projectionLaunchVectorForFieldAngles(reference, θ_x,
+θ_y)` is the 2D analog. It takes azimuthal projections of a single off-axis direction and returns
+`{ fieldSlopeX, fieldSlopeY, idealImageX, idealImageY, totalFieldDeg, status }`. The Distortion tab routes
+non-rectilinear projections through this helper to sample angular Cartesian grids that don't suffer the
+inverse-map's π/2 rejection.
+
+For past-cap fisheye fields (θ ≥ 89°), `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` builds a vector launch
+from a bounding sphere centered near the entrance pupil. The chief-ray solver auto-dispatches to this path
+via `launchSurfaceForFieldDeg(fieldDeg)`. Analysis modules don't consume this directly yet — they're gated by
+the halfField clamp at `MAX_FIELD_LAUNCH_DEG - 1e-3`, so past-cap fields never reach them. See
+[TRACE_MODEL_IMPROVEMENT_PLAN.md](../../TRACE_MODEL_IMPROVEMENT_PLAN.md) "PR 8 — Remaining: tracer surgery"
+for steps 5–7 (visual smoke + catalog promotion + clamp loosening).
 
 ## Ray Sampling Policy
 
@@ -172,12 +196,15 @@ primers aligned to that convention.
 `distortionAnalysis.ts` computes:
 
 - `computeDistortionCurve()` - 21-sample 1D distortion curve from center to edge. Residual is measured against
-  the lens's declared projection (rectilinear or fisheye-equidistant), not always rectilinear.
-- `computeDistortionFieldGrid()` - traced 2D chief-ray field grid; sampled as image-plane Cartesian coordinates
-  today, which leaves blank cells at the image-circle edge for non-rectilinear projections. A projection-native
-  sampler is queued as PR 6 in the trace-model plan.
-- `computeDistortionReference()` - near-axis reference setup; picks `rectilinear` or `fisheye-equidistant`
-  based on `L.projection.kind` via `distortionProjectionReferenceForLens()`.
+  the lens's declared projection (rectilinear, fisheye-equidistant, or fisheye-equisolid), not always
+  rectilinear.
+- `computeDistortionFieldGrid()` - traced 2D chief-ray field grid. The internal `resolveDistortionGridLaunch`
+  helper forks on `reference.projectionReference.kind`: rectilinear uses the existing image-space Cartesian
+  sampler + inverse-map (bit-identical to pre-PR-6 behavior); fisheye kinds sample angular Cartesian and
+  forward-map through `projectionLaunchVectorForFieldAngles`, so corner cells fill out to the slope-launch
+  cap instead of stopping at the inverse-map's π/2 rejection.
+- `computeDistortionReference()` - near-axis reference setup; picks `rectilinear`, `fisheye-equidistant`, or
+  `fisheye-equisolid` based on `L.projection.kind` via `distortionProjectionReferenceForLens()`.
 
 The per-field pupil correction table size halves on heavy lenses (17 → 9) via `isHeavyLensForRayWork`. All
 three functions accept an optional precomputed `FieldGeometryState`.
