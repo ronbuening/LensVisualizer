@@ -19,6 +19,8 @@ links outward if the change crosses subsystem boundaries.
   [`architecture/comparison.md`](architecture/comparison.md).
 - For test layout, coverage expectations, and shared test helpers, read
   [`architecture/testing.md`](architecture/testing.md).
+- For a high-level Mermaid data/control-flow diagram, read
+  [`architecture/program-flow.md`](architecture/program-flow.md).
 
 ## System Shape
 
@@ -66,6 +68,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - [`generated/`](generated/) - generated glass reports; regenerate before glass-audit work with `npm run generate:glass-reports`.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
+- [`architecture/program-flow.md`](architecture/program-flow.md) - high-level Mermaid program flow.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.
 - [`commenting_guide.md`](commenting_guide.md) - project commenting standards.
 - [`gotchas.md`](gotchas.md) - non-obvious constraints and failure modes.
