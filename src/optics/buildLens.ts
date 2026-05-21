@@ -27,7 +27,12 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import { isFisheyeProjection, TRACING_SAFETY_FACTOR } from "./projection.js";
+import {
+  fisheyeProjectionFocalLengthAtZoom,
+  fisheyeProjectionMaxTraceFieldAtZoom,
+  isFisheyeProjection,
+  TRACING_SAFETY_FACTOR,
+} from "./projection.js";
 import { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";
 import type {
   LensData,
@@ -301,7 +306,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
   assertRectilinearFocalReference(data, projection, nomEFL);
-  const apertureReferenceFocalLength = isFisheyeProjection(projection) ? projection.focalLengthMm : nomEFL;
+  const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx, traceMode);
@@ -443,7 +448,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   }
   /* If the paraxial field passes the real check, keep it (conservative). */
 
-  const halfField = fisheye ? (projection.maxTraceFieldDeg ?? halfFieldParaxial) : halfFieldBisected;
+  const halfField = fisheye
+    ? (fisheyeProjectionMaxTraceFieldAtZoom(projection, 0) ?? halfFieldParaxial)
+    : halfFieldBisected;
   const tracingHalfField = fisheye ? halfFieldBisected * TRACING_SAFETY_FACTOR : halfFieldBisected;
 
   /* ── Petzval sum ──
@@ -567,7 +574,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
       const zEfl = -1.0 / zMargLast.u;
       const zNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno!;
-      const zNomEP = zEfl / (2 * zNomFno);
+      const zZoomT = zoomIndexToT(zi, nz);
+      const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
+      const zNomEP = zApertureReferenceFocalLength / (2 * zNomFno);
       const zRealY = realTraceToStop(tmpS, asphByIdx, zNomEP, 0, stopIdx, traceMode);
       if (isFinite(zRealY) && Math.abs(zRealY) > 1e-15) tmpS[stopIdx].sd = zRealY;
       zoomEPs.push(zNomEP);
@@ -646,7 +655,9 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         zHalfFieldBisected = lo;
       }
       const zFisheye = isFisheyeProjection(projection);
-      const zHalfField = zFisheye ? (projection.maxTraceFieldDeg ?? zHalfFieldParaxial) : zHalfFieldBisected;
+      const zHalfField = zFisheye
+        ? (fisheyeProjectionMaxTraceFieldAtZoom(projection, zZoomT) ?? zHalfFieldParaxial)
+        : zHalfFieldBisected;
       zoomHalfFields.push(zHalfField);
       zoomTracingHalfFields.push(zFisheye ? zHalfFieldBisected * TRACING_SAFETY_FACTOR : zHalfFieldBisected);
     }
@@ -660,7 +671,11 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   let zoomFOPENs: number[] | null = null;
   if (isZoom && zoomEFLs && zoomEPs) {
     const epValues = zoomEPs;
-    zoomFOPENs = zoomEFLs.map((efl, i) => efl / (2 * epValues[i]));
+    zoomFOPENs = zoomEFLs.map((efl, i) => {
+      const zoomT = zoomIndexToT(i, zoomEFLs.length);
+      const referenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? efl;
+      return referenceFocalLength / (2 * epValues[i]);
+    });
   }
 
   return Object.freeze({

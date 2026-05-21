@@ -33,7 +33,7 @@ export type OffAxisTraceGeometry =
 
 function idealOffAxisImageHeight(L: RuntimeLens, zoomT: number, fieldAngleDeg: number): number {
   const thetaRad = (fieldAngleDeg * Math.PI) / 180;
-  return -projectionImageHeightForLensAngle(L, eflAtZoom(zoomT, L), thetaRad);
+  return -projectionImageHeightForLensAngle(L, eflAtZoom(zoomT, L), thetaRad, zoomT);
 }
 
 export function computeOffAxisTraceGeometry({

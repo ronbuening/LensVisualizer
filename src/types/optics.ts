@@ -75,20 +75,22 @@ export interface RectilinearProjectionConfig {
   kind: "rectilinear";
 }
 
+export type ProjectionZoomValue = number | number[];
+
 export interface FisheyeEquidistantProjectionConfig {
   kind: "fisheye-equidistant";
-  focalLengthMm: number;
-  fullFieldDeg: number;
-  imageCircleMm?: number;
-  maxTraceFieldDeg?: number;
+  focalLengthMm: ProjectionZoomValue;
+  fullFieldDeg: ProjectionZoomValue;
+  imageCircleMm?: ProjectionZoomValue;
+  maxTraceFieldDeg?: ProjectionZoomValue;
 }
 
 export interface FisheyeEquisolidProjectionConfig {
   kind: "fisheye-equisolid";
-  focalLengthMm: number;
-  fullFieldDeg: number;
-  imageCircleMm?: number;
-  maxTraceFieldDeg?: number;
+  focalLengthMm: ProjectionZoomValue;
+  fullFieldDeg: ProjectionZoomValue;
+  imageCircleMm?: ProjectionZoomValue;
+  maxTraceFieldDeg?: ProjectionZoomValue;
 }
 
 export type LensProjectionConfig =

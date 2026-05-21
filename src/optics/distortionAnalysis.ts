@@ -129,7 +129,7 @@ function computeDistortionReference(
    * traced bisection in `computeDistortionCurve`; samples that bracket-fail
    * past the slope-launch cap simply drop out of the curve. */
   if (isFisheyeProjection(L.projection)) {
-    const projectionReference = distortionProjectionReferenceForLens(L, 0);
+    const projectionReference = distortionProjectionReferenceForLens(L, 0, zoomT);
     const idealFieldRadius = Math.abs(projectionImageHeightForAngle(projectionReference, halfFieldRad));
     if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0) return null;
     return {
@@ -176,7 +176,7 @@ function computeDistortionReference(
   const rectilinearScale = -probeImageHeight / probeTan;
   if (!isFinite(rectilinearScale) || Math.abs(rectilinearScale) < 1e-9) return null;
 
-  const projectionReference = distortionProjectionReferenceForLens(L, rectilinearScale);
+  const projectionReference = distortionProjectionReferenceForLens(L, rectilinearScale, zoomT);
   const idealFieldRadius = Math.abs(projectionImageHeightForAngle(projectionReference, halfFieldRad));
   if (!isFinite(idealFieldRadius) || idealFieldRadius <= 0) return null;
 

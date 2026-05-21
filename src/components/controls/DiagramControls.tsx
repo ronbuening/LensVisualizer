@@ -5,7 +5,7 @@
 
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
-import { isFisheyeProjection } from "../../optics/projection.js";
+import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
@@ -163,7 +163,7 @@ export default function DiagramControls({
   const projection = L.projection ?? { kind: "rectilinear" };
   const isFisheye = isFisheyeProjection(projection);
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
-  const apertureReferenceValue = isFisheye ? L.apertureReferenceFocalLength : dynamicEFL;
+  const apertureReferenceValue = fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;
   const effApertureDiffers = Math.abs(effectiveFNum - fNumber) > 0.05;
   const availableFStops = L.fstopSeries.filter((value) => value >= currentFOPEN - 0.1 && value <= L.maxFstop);

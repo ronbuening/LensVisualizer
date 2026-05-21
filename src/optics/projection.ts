@@ -20,6 +20,7 @@ export function resolveProjection(projection?: LensProjectionConfig): LensProjec
 }
 
 type FisheyeProjectionConfig = Extract<LensProjectionConfig, { kind: `fisheye-${string}` }>;
+type ProjectionZoomValue = FisheyeProjectionConfig["focalLengthMm"];
 
 export function isFisheyeProjection(
   projection: LensProjectionConfig | undefined,
@@ -27,14 +28,49 @@ export function isFisheyeProjection(
   return projection?.kind === "fisheye-equidistant" || projection?.kind === "fisheye-equisolid";
 }
 
-export function distortionProjectionReferenceForLens(L: RuntimeLens, rectilinearScale: number): ProjectionReference {
+export function projectionValueAtZoom(value: ProjectionZoomValue | undefined, zoomT = 0): number | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value === "number") return value;
+  if (value.length === 0) return undefined;
+  if (value.length === 1) return value[0];
+
+  const t = Math.max(0, Math.min(1, isFinite(zoomT) ? zoomT : 0));
+  const scaled = t * (value.length - 1);
+  const lo = Math.floor(scaled);
+  const hi = Math.min(value.length - 1, lo + 1);
+  const localT = scaled - lo;
+  return value[lo] + (value[hi] - value[lo]) * localT;
+}
+
+export function fisheyeProjectionFocalLengthAtZoom(
+  projection: LensProjectionConfig | undefined,
+  zoomT = 0,
+): number | null {
+  if (!isFisheyeProjection(projection)) return null;
+  const value = projectionValueAtZoom(projection.focalLengthMm, zoomT);
+  return typeof value === "number" && isFinite(value) ? value : null;
+}
+
+export function fisheyeProjectionMaxTraceFieldAtZoom(
+  projection: LensProjectionConfig | undefined,
+  zoomT = 0,
+): number | undefined {
+  if (!isFisheyeProjection(projection)) return undefined;
+  return projectionValueAtZoom(projection.maxTraceFieldDeg, zoomT);
+}
+
+export function distortionProjectionReferenceForLens(
+  L: RuntimeLens,
+  rectilinearScale: number,
+  zoomT = 0,
+): ProjectionReference {
   const projection = resolveProjection(L.projection);
   if (projection.kind === "fisheye-equidistant") {
     return {
       kind: "fisheye-equidistant",
       label: "Equidistant projection residual",
       shortLabel: "equidistant",
-      focalScaleMm: projection.focalLengthMm,
+      focalScaleMm: projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN,
     };
   }
   if (projection.kind === "fisheye-equisolid") {
@@ -42,7 +78,7 @@ export function distortionProjectionReferenceForLens(L: RuntimeLens, rectilinear
       kind: "fisheye-equisolid",
       label: "Equisolid-angle projection residual",
       shortLabel: "equisolid",
-      focalScaleMm: projection.focalLengthMm,
+      focalScaleMm: projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN,
     };
   }
 
@@ -73,13 +109,14 @@ export function projectionImageHeightForLensAngle(
   L: RuntimeLens,
   rectilinearScaleMm: number,
   fieldAngleRad: number,
+  zoomT = 0,
 ): number {
   const projection = resolveProjection(L.projection);
   switch (projection.kind) {
     case "fisheye-equidistant":
-      return projection.focalLengthMm * fieldAngleRad;
+      return (projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN) * fieldAngleRad;
     case "fisheye-equisolid":
-      return 2 * projection.focalLengthMm * Math.sin(fieldAngleRad / 2);
+      return 2 * (projectionValueAtZoom(projection.focalLengthMm, zoomT) ?? NaN) * Math.sin(fieldAngleRad / 2);
     default:
       return rectilinearScaleMm * Math.tan(fieldAngleRad);
   }
