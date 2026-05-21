@@ -16,9 +16,24 @@
 > past-cap chief rays now dispatch through `solveChiefRayBoundingSphere`, which
 > bisects on the EP-crossing y and traces via the vector entry point (`8e8c225`). Parity
 > tests confirm both launch surfaces produce bit-identical chief-ray geometry on
-> moderate-angle in-field samples. Visual smoke on the Nikon 6mm at 110° plus catalog
-> promotion remain — see `TRACE_MODEL_IMPROVEMENT_PLAN.md` "PR 8 — Remaining: tracer
-> surgery" steps 5–7.
+> moderate-angle in-field samples.
+
+> **2026-05-20 PR 8 completion (Steps 6+7).** Seven follow-up commits land Steps 6 and 7
+> of PR 8: the `maxTraceFieldDeg` validator cap raises from 90° → 180° (`6ce2906`);
+> past-cap integration tests cover the Nikon 6mm at 90°/100°/110° (`b64479d`);
+> `launchSurfaceForFieldDeg(fieldDeg, projection)` routes every fisheye chief ray through
+> the bounding-sphere arm regardless of field angle (`c60c601`); `computeFieldGeometryAtState`'s
+> `testChief` bisection grows a bounding-sphere fallback and the fisheye half-field clamp
+> loosens to `ABSOLUTE_HALF_FIELD_CEILING` (175°) (`308ee10`); the paraxial-chief-ray
+> bisection is skipped entirely for fisheyes so `halfField` reports the declared
+> `maxTraceFieldDeg` (`847d856`); `RuntimeLens.tracingHalfField` (sibling to `halfField`)
+> drives off-axis ray rendering through a safety-margined bisected value (`97c6c42`); the
+> tracing-margin is restricted to fisheyes only so rectilinear behavior is bit-identical
+> to pre-PR-8 (`c707fe9`). After this batch the Nikon Fisheye-Nikkor 6mm f/2.8 and f/5.6
+> render at their full patent-declared 110° half-field with off-axis ray bundles that
+> actually reach the image plane (~17° default off-axis target via the safety margin).
+> Step 5 (visual smoke verification in the running app) and the analysis-module past-cap
+> migration remain — see `TRACE_MODEL_IMPROVEMENT_PLAN.md` for the running checklist.
 
 ## Summary
 - Added an internal exact ray-to-sag-surface trace mode with a central rollout control.

@@ -1,13 +1,17 @@
 # Trace Model Improvement Plan
 
-Status: revised after PRs 1–7 landed and PR 8 scaffolding shipped on `ronbuening/SlowLensOptimization`, 2026-05-20.
+Status: revised after PRs 1–8 landed on `ronbuening/SlowLensOptimization`, 2026-05-20.
 
-The current branch state: every analysis module's field-launch slope routes through the shared projection helper,
-the Distortion tab's field grid samples in angular space for fisheyes, equisolid-angle projection is a recognized
-projection kind, and the chief-ray solver carries a `LaunchSurface` discriminator that toggles between
-`"object-plane"` and `"bounding-sphere"` at θ ≥ 89°. The remaining work for true 110° fisheye tracing is the
-deep tracer surgery to make `surfaceIntersectionMaxT` and `intersectSagSurface` accept `direction[2] ≤ 0` rays —
-see "PR 8 — Remaining: tracer surgery" below.
+The current branch state: every analysis module's field-launch slope routes through the shared projection helper;
+the Distortion tab's field grid samples in angular space for fisheyes; equisolid-angle projection is a recognized
+projection kind; the chief-ray solver carries a `LaunchSurface` discriminator that routes fisheye projections
+through the bounding-sphere arm unconditionally and rectilinear projections through the slope-launch arm below
+89°; the exact tracer accepts grazing and backward rays via a `launchBoundT` option; the fisheye half-field
+clamp respects the declared `maxTraceFieldDeg` (Nikon Fisheye-Nikkor 6mm now reports 110°); and
+`RuntimeLens.tracingHalfField` (with a 10% safety margin for fisheyes only) keeps diagram off-axis ray bundles in
+a zone where rays actually reach the image plane. The remaining work is Step 5 (visual smoke verification in
+the running app) and migrating the 1D distortion/vignette/pupil-aberration curve loops to consume bounding-sphere
+chief rays directly so their charts also cover past-cap angles — see "PR 8 — Tracer surgery (landed)" below.
 
 This document explains why heavy ultra-wide and fisheye lenses stress the current optics engine, what parts of the
 trace model need to change, and how to stage the work without destabilizing ordinary rectilinear lenses.
@@ -524,75 +528,70 @@ Shipped in the same commit as PR 7's follow-up:
 - At θ ≥ `MAX_FIELD_LAUNCH_DEG`, the solver still surfaces `"out-of-domain"`, but the result correctly tags
   `launchSurface: "bounding-sphere"` — telegraphing the future path to consumers.
 
-### PR 8 — Remaining: tracer surgery
+### PR 8 — Tracer surgery (landed)
 
-The scaffolding from commit `0a2442c` is correct but currently dead. Two tracer-internal forward-cone gates
-plus a Newton seed that divides by `direction[2]` mean any bounding-sphere launch with `|direction[2]| < MIN_DZ`
-fails before the intersection algorithm gets a chance to converge. Wiring the bounding-sphere path end-to-end
-takes six numbered steps below, ordered so each builds on the previous. Steps 1–3 are the load-bearing numerics
-work; without them, steps 4–7 are dead code.
+Originally seven numbered steps. Six landed across the commits below; **Step 5 (visual smoke on the Nikon
+6mm at 110° in the running app)** still requires browser access. **Step 2c (`fallbackSurfacePoint` for
+ghost-mode visualization)** is deferred — see note under step 2.
 
-**Update.** Steps 1, 2a+2b, 3, 4, 6, and 7 have landed (commits `beb040e`, `8e8c225`, `c60c601`, and
-`<pending>`). The tracer accepts grazing and backward rays when given a `launchBoundT`;
-`computeChiefRaySolve` dispatches past-cap fields through `solveChiefRayBoundingSphere` that bisects on
-EP-crossing y; parity tests confirm both launch surfaces produce bit-identical chief-ray geometry (~1e-12 mm
-at z=0) for fields where the lens itself converges. The validator cap on `maxTraceFieldDeg` is raised from
-90° to 180° (`6ce2906`) and the Nikon 6mm now declares `maxTraceFieldDeg: 110`. As of Step 6,
-`launchSurfaceForFieldDeg(fieldDeg, projection)` routes every fisheye projection through the bounding-sphere
-arm regardless of field angle.
+```
+beb040e  Lift exact-tracer forward-cone gates for bounding-sphere launches  (Steps 1, 2a, 2b)
+8e8c225  Dispatch past-cap chief rays through bounding-sphere launch        (Steps 3, 4)
+6ce2906  Raise maxTraceFieldDeg validator cap to 180°                       (preconditional)
+b64479d  Past-cap integration tests on the Nikon 6mm                        (Step 4 augment)
+c60c601  Route every fisheye chief-ray solve through bounding-sphere        (Step 6)
+308ee10  Loosen halfField clamp; bounding-sphere testChief fallback         (Step 7 pass 1)
+847d856  Skip paraxial bisection for fisheyes; trust maxTraceFieldDeg       (Step 7 pass 2)
+97c6c42  RuntimeLens.tracingHalfField for safe off-axis ray rendering       (off-axis fix)
+c707fe9  Restrict tracingHalfField safety margin to fisheyes only           (rectilinear bit-identity)
+```
 
-**Step 7 landed in two passes.**
+**End-state behavior:**
 
-*First pass:* The fisheye half-field clamp loosened from `MAX_FIELD_LAUNCH_DEG - 1e-3` to
-`ABSOLUTE_HALF_FIELD_CEILING` (175°), and `computeFieldGeometryAtState`'s `testChief` bisection grew a
-bounding-sphere fallback for past-cap angles. That alone didn't surface a visible difference because the
-paraxial bisection still narrowed the Nikon 6mm's halfFieldDeg to ~32° — the lens's paraxial chief ray
-clips around 40° even though the patent declares 110° coverage.
+- Fisheye lenses (Nikon Fisheye-Nikkor 6mm f/2.8 and f/5.6) report their patent-declared half-field
+  (110°) at both build time (`L.halfField`) and state time (`computeFieldGeometryAtState().halfFieldDeg`).
+  The distortion grid covers the full 110° via its angular sampler; chief rays past
+  `MAX_FIELD_LAUNCH_DEG = 89°` dispatch through `solveChiefRayBoundingSphere`.
+- Off-axis ray bundles in the diagram render against `RuntimeLens.tracingHalfField` (sibling to
+  `halfField`). For fisheyes this is the slope-launch-bisected coverage × `TRACING_SAFETY_FACTOR`
+  (0.9) — Nikon 6mm tracingHalfField ≈ 29°, so the default off-axis bundle target lands at 17.5° where
+  all six bundle rays survive (was 0/6 at the unconstrained 66°). Rectilinear lenses have
+  `tracingHalfField === halfField` (no safety factor applied) — their off-axis rendering is
+  bit-identical to pre-PR-8 behavior.
+- Bounding-sphere launch is exercised on every fisheye chief-ray solve via Step 6's
+  `launchSurfaceForFieldDeg(fieldDeg, projection)` dispatch. Parity tests at θ ∈ [3°, 5°, 10°, 15°, 20°]
+  on the Nokton 50/1 and θ = 5° on the Nikon 6mm confirm bit-identical results between launch surfaces
+  (~1e-12 mm at z=0).
+- Validator `projection.maxTraceFieldDeg` cap raised from 90° to 180° (`6ce2906`).
 
-*Second pass:* Skip the paraxial-chief-ray bisection entirely for fisheye projections (both in
-`buildLens.ts`'s baseline + zoom-position branches and in `computeFieldGeometryAtState`). For fisheyes the
-declared `maxTraceFieldDeg` is the source of truth — real fisheye chief rays are far from paraxial and the
-bisection drastically undercounts coverage. `computeDistortionReference` falls back to the analytic
-projection's edge height for fisheyes (the chief-ray-traced edge is NaN past the slope-launch cap).
-Per-ray clipping in the diagram and analysis tabs filters individual rays naturally. Rectilinear lenses
-keep the bisection unchanged.
+**What's still partial:**
 
-After this, the Nikon 6mm's `L.halfField` and `computeFieldGeometryAtState`'s `halfFieldDeg` both report
-**110°** matching the declared `maxTraceFieldDeg`. The diagram and analysis tabs see the full declared field;
-rays that physically can't traverse the lens at extreme angles (the Nikon 6mm bracket-fails its chief ray
-past ~10° regardless of launch surface — a lens-specific pathology of this patent) just don't render
-visually.
+- **Step 5 — visual smoke.** Cannot be automated. Open the running app on the Nikon 6mm, click through
+  diagram + distortion + vignette + pupil-aberration + off-axis tabs, confirm no NaN gaps, console
+  warnings, or visually nonsense rays. Easiest after the next dev-server start.
+- **Step 2c — ghost-mode fallback.** `fallbackSurfacePoint()` in
+  [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) still rejects rays with
+  `|direction[2]| <= 1e-12`. Only reached via `ghost: true` visualization (not used by chief-ray
+  solving), so deferred until the diagram dispatches bounding-sphere launches for visualization.
+- **Analysis-module past-cap visibility.** The 1D distortion curve / vignette curve / pupil-aberration
+  loops still consume `projectionLaunchSlopeForField` and short-circuit at `status === "out-of-domain"`,
+  so samples past 89° drop out of those curves. The distortion field grid (PR 6) and diagram ray
+  rendering already work past 89°. Migrating the 1D-curve loops to consume bounding-sphere chief rays
+  directly is a multi-hour follow-up — each module replaces its `(yChief, uField) → traceRay` slope
+  pattern with a `traceExactSurfaceStackVector` call using a bounding-sphere origin/direction. The
+  Nikon 6mm's lens-specific pathology (chief-ray bracket-failures past ~10° even on bounding-sphere)
+  limits how much past-cap distortion data is meaningful for that specific lens, but the migration
+  would be correct for other fisheyes.
+- **Catalog audit.** Walk every catalog lens; any with `fullFieldDeg ≥ 100` and missing
+  `projection.kind` should be flagged for fisheye classification review. Also: profile fisheye
+  performance after the bounding-sphere routing — solveChiefRayBoundingSphere is bracket-failed for
+  most Nikon 6mm angles, which produces `console.warn`s in dev mode; might be worth promoting the
+  diagnostics aggregator to a CI gate.
 
-Step 2c is intentionally deferred — see note under step 2 below. Step 5 (visual smoke on the Nikon 6mm at
-110° in the running app) is still pending; it requires browser access.
-
-**Analysis-module past-cap visibility — partial.** The distortion curve / vignette / pupil-aberration
-loops still consume `projectionLaunchSlopeForField` and short-circuit at `status === "out-of-domain"`, so
-samples past 89° drop out of those curves. The distortion field grid now covers the full halfFieldDeg=110°
-via its angular sampler (PR 6 work), with the understanding that chief rays which can't trace are marked
-`usable: false` per-cell. Migrating the curve loops to consume bounding-sphere chief rays directly remains
-a future refactor.
-
-**Off-axis ray rendering — `tracingHalfField`.** After the Step 7 bisection-skip surfaced that
-`offAxisFieldFrac × halfField = 0.6 × 110° = 66°` puts the diagram's default off-axis bundle into a
-region where every bundle ray clips on the Nikon 6mm, `RuntimeLens` gained a separate `tracingHalfField`
-field. **Rectilinear lenses are bit-identical to pre-PR-8 behavior**: their `tracingHalfField === halfField`
-(both are the bisection-narrowed value), so off-axis ray rendering is unchanged. **Fisheye lenses** get
-`tracingHalfField = halfFieldBisected × TRACING_SAFETY_FACTOR` (0.9) — the slope-launch bisection that
-the fisheye path skips for `halfField` still runs to produce a separate, conservative ray-rendering
-bound. The Nikon 6mm's `tracingHalfField` lands at ~29°, so the diagram's off-axis bundle renders at
-`0.6 × 29° = 17.5°` where all 6 bundle rays survive (was 0/6 at 66°). Zoom-aware via
-`zoomTracingHalfFields[]` parallel to `zoomHalfFields[]`. Consumed in
-[offAxisRayUtils.ts](src/components/hooks/offAxisRayUtils.ts) by scaling `offAxisFieldFrac` by
-`tracingHalfField / halfField` — the ratio is 1.0 for rectilinear (no change) and ~0.3 for the Nikon 6mm
-(shrinks the rendered bundle into the safe zone). Both `useOffAxisRays` and `useChromaticRays` benefit
-automatically.
-
-**Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
-afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering
-session, but it MUST include browser access because step 5 is the only thing that catches the failure mode
-"the trace converges to a wrong answer that still looks finite." No automated assertion catches that —
-distortion-tab plausibility is a visual judgment.
+**Realistic effort for the remaining work:** Step 5 is 30 minutes with browser access. The
+analysis-module migration is 2–4 hours per module (vignette, distortion-curve, pupil-aberration,
+off-axis), but most of the value lands with vignette (which drives the user-visible falloff curve at
+wide fields). Step 2c and the catalog audit are opportunistic.
 
 #### Step 1 — Lift the forward-cone gate in `surfaceIntersectionMaxT()`
 

@@ -41,9 +41,18 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 `buildLens(data)` validates lens data and constructs a frozen `RuntimeLens` with:
 
 - Effective focal length, entrance pupil, field angle, total track, Petzval sum, and scale constants.
-- Zoom metadata: positions, EFLs, EPs, half-fields, y-ratios, and back focal distances.
+- Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
+
+**`halfField` vs `tracingHalfField`.** Rectilinear lenses set both to the same slope-launch-bisected value
+(real chief ray vignetting check). Fisheye lenses set `halfField = projection.maxTraceFieldDeg` (the
+declared coverage — the patent-stated half-field, which can be wider than what slope-launch chief rays can
+traverse) and `tracingHalfField = halfFieldBisected × TRACING_SAFETY_FACTOR` (the bisection-narrowed value
+with a small safety margin). The diagram's off-axis ray rendering uses `tracingHalfField` so bundle rays
+actually reach the image plane on fisheyes; `halfField` drives distortion grid extent, projection metadata,
+and info displays. Zoom variants use `zoomHalfFields[]` / `zoomTracingHalfFields[]` accessed via
+`halfFieldAtZoom()` / `tracingHalfFieldAtZoom()`.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
@@ -56,19 +65,22 @@ Major public helpers:
 - Ray tracing: `traceRay()`, `traceSkewRay()`, `traceToImage()`.
 - Current-state paraxial references: `traceParaxialRay()`.
 - Chromatic tracing: `wavelengthNd()`, `traceRayChromatic()`, `computeChromaticSpread()`.
-- Zoom interpolation: `eflAtZoom()`, `epAtZoom()`, `fopenAtZoom()`, `halfFieldAtZoom()`, `yRatioAtZoom()`,
-  `bAtZoom()`.
+- Zoom interpolation: `eflAtZoom()`, `epAtZoom()`, `fopenAtZoom()`, `halfFieldAtZoom()`,
+  `tracingHalfFieldAtZoom()`, `yRatioAtZoom()`, `bAtZoom()`.
 - Current-state pupil geometry: `entrancePupilAtState(stopSD, focusT, zoomT, L, geometry?)`.
 - Current-state field geometry: `computeFieldGeometryAtState()`.
 - Chief ray solving: `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback`
   / `bracket-failed` / `out-of-domain` + iteration count + `launchSurface: "object-plane" \| "bounding-sphere"`),
   memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / mode /
-  launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg)`: fields below
-  `MAX_FIELD_LAUNCH_DEG` (89°) route through the object-plane slope-bisection path; past-cap fields go
-  through `solveChiefRayBoundingSphere`, which bisects on the EP-crossing y `yEP` and traces directly via
-  `traceExactSurfaceStackVector`. Both paths return `yLaunch` projected to z=0 for semantic consistency.
-  `solveChiefRayLaunchHeight()` remains as a thin shim that returns the `yLaunch` field for callers that
-  don't need the status. New analysis code should prefer `solveChiefRay` and respect non-converged statuses.
+  launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`:
+  **fisheye projections always route through `solveChiefRayBoundingSphere`** regardless of angle, exercising
+  the bounding-sphere code on every fisheye solve in the catalog (parity tests prove bit-identical results
+  vs object-plane at θ < 89°). Rectilinear projections keep cap-based dispatch: object-plane below
+  `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere at/above. The bounding-sphere bisection varies the
+  EP-crossing y `yEP` and traces directly via `traceExactSurfaceStackVector`; both paths return `yLaunch`
+  projected to z=0 for semantic consistency. `solveChiefRayLaunchHeight()` remains as a thin shim that
+  returns the `yLaunch` field for callers that don't need the status. New analysis code should prefer
+  `solveChiefRay` and respect non-converged statuses.
 - Utilities: `conjugateK()`, `formatDist()`, `formatPetzvalRadius()`.
 
 All trace/layout functions accept `zoomT`; prime lenses ignore it.
