@@ -100,14 +100,19 @@ export const MAX_FIELD_LAUNCH_DEG = 89;
 export type LaunchSurface = "object-plane" | "bounding-sphere";
 
 /**
- * Decide which launch-surface strategy applies for a given field angle. Today
- * the threshold is hard-cut: object-plane below `MAX_FIELD_LAUNCH_DEG`,
- * bounding-sphere at or above. Bounding-sphere launch is scaffolded but not yet
- * wired into the tracer (see TRACE_MODEL_IMPROVEMENT_PLAN.md PR 8), so solvers
- * still surface `out-of-domain` past the gate while the cache key already
- * distinguishes the two paths.
+ * Decide which launch-surface strategy applies for a given field angle.
+ *
+ * For non-rectilinear projections (fisheye-equidistant, fisheye-equisolid) the
+ * bounding-sphere arm is used at every field angle. At θ < `MAX_FIELD_LAUNCH_DEG`
+ * the two paths describe the same physical chief ray to ~1e-12 mm (see the
+ * parity tests in `boundingSphereLaunch.test.ts`), but routing all fisheye
+ * solves through the bounding-sphere path exercises that code on every fisheye
+ * lens in the catalog rather than only past the cap. Rectilinear projections
+ * keep the slope-launch / past-cap dispatch since they have no past-cap
+ * representation in the engine.
  */
-export function launchSurfaceForFieldDeg(fieldAngleDeg: number): LaunchSurface {
+export function launchSurfaceForFieldDeg(fieldAngleDeg: number, projection?: LensProjectionConfig): LaunchSurface {
+  if (isFisheyeProjection(projection)) return "bounding-sphere";
   return Math.abs(fieldAngleDeg) >= MAX_FIELD_LAUNCH_DEG ? "bounding-sphere" : "object-plane";
 }
 

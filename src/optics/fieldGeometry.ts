@@ -52,6 +52,7 @@ const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-6;
 const chiefRaySolveCache: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult>> = new WeakMap();
 
 function chiefRaySolveCacheKey(
+  L: RuntimeLens,
   focusT: number,
   zoomT: number,
   aberrationT: number,
@@ -59,7 +60,7 @@ function chiefRaySolveCacheKey(
   options: RayTraceOptions | undefined,
 ): string {
   const mode = options?.mode ?? "default";
-  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg);
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg, L.projection);
   return `${focusT}|${zoomT}|${aberrationT}|${fieldAngleDeg}|${mode}|${launchSurface}`;
 }
 
@@ -244,7 +245,7 @@ export function solveChiefRay(
     perLensCache = new Map();
     chiefRaySolveCache.set(L, perLensCache);
   }
-  const cacheKey = chiefRaySolveCacheKey(focusT, zoomT, aberrationT, fieldAngleDeg, options);
+  const cacheKey = chiefRaySolveCacheKey(L, focusT, zoomT, aberrationT, fieldAngleDeg, options);
   const cached = perLensCache.get(cacheKey);
   if (cached) return cached;
 
@@ -263,7 +264,7 @@ function computeChiefRaySolve(
   aberrationT: number,
   options: RayTraceOptions | undefined,
 ): ChiefRaySolveResult {
-  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg);
+  const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg, L.projection);
   if (launchSurface === "bounding-sphere") {
     return solveChiefRayBoundingSphere(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
   }

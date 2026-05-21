@@ -73,12 +73,23 @@ describe("solveChiefRay launchSurface dispatch", () => {
     expect(result.launchSurface).toBe("bounding-sphere");
   });
 
-  it("caches object-plane and bounding-sphere solves independently for the same field magnitude", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+  it("rectilinear lenses cap-dispatch: object-plane below MAX_FIELD_LAUNCH_DEG, bounding-sphere at/above", () => {
+    // Cap-based dispatch only applies to rectilinear projections after Step 6.
+    // Fisheye lenses route through bounding-sphere unconditionally — see the
+    // "fisheye always routes through bounding-sphere" suite below.
+    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const below = solveChiefRay(MAX_FIELD_LAUNCH_DEG - 1, 0, 0, L);
     const above = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
     expect(below.launchSurface).toBe("object-plane");
     expect(above.launchSurface).toBe("bounding-sphere");
+  });
+
+  it("fisheye lenses always route through bounding-sphere regardless of field angle", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    for (const deg of [0.5, 5, 30, 60, 88, 95, 110]) {
+      const result = solveChiefRay(deg, 0, 0, L);
+      expect(result.launchSurface).toBe("bounding-sphere");
+    }
   });
 });
 
@@ -109,14 +120,19 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
     },
   );
 
-  it("agrees at θ=5° on the fisheye fixture", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
-    const objectPlane = solveChiefRay(5, 0, 0, L);
-    const boundingSphere = solveChiefRayBoundingSphere(5, 0, 0, L, undefined, 0, undefined);
+  it("rectilinear cap boundary: solveChiefRay at 88° agrees with bounding-sphere at 88° on the Nokton", () => {
+    // The dispatch routes rectilinear lenses through object-plane below the
+    // cap. Calling solveChiefRayBoundingSphere directly should agree to ~1e-12
+    // mm with the object-plane result it would otherwise replace.
+    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const dispatched = solveChiefRay(15, 0, 0, L);
+    const directBoundingSphere = solveChiefRayBoundingSphere(15, 0, 0, L, undefined, 0, undefined);
 
-    expect(objectPlane.status).toBe("converged");
-    expect(boundingSphere.status).toBe("converged");
-    expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 9);
+    expect(dispatched.launchSurface).toBe("object-plane");
+    expect(directBoundingSphere.launchSurface).toBe("bounding-sphere");
+    expect(dispatched.status).toBe("converged");
+    expect(directBoundingSphere.status).toBe("converged");
+    expect(directBoundingSphere.yLaunch).toBeCloseTo(dispatched.yLaunch, 9);
   });
 });
 
@@ -126,27 +142,22 @@ describe("past-cap chief rays exercise the bounding-sphere tracer (PR 8 integrat
   // is not asserted because the Nikon 6mm's runtime bracket-finding past 89°
   // depends on launch-radius tuning that is still part of Step 7 (catalog
   // promotion). What IS asserted: the solver routes through bounding-sphere,
-  // dispatches without exception, and reports a launchSurface tag consistent
-  // with the field angle.
-  it.each([90, 100, 110])("solveChiefRay at θ=%d° dispatches to the bounding-sphere arm on the Nikon 6mm", (deg) => {
+  // dispatches without exception, and reports a real status.
+  it.each([90, 100, 110])("solveChiefRay at θ=%d° on the Nikon 6mm runs without exception", (deg) => {
     const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
     const result = solveChiefRay(deg, 0, 0, L);
     expect(result.launchSurface).toBe("bounding-sphere");
-    // The solver must complete without throwing and surface a real status.
     expect(["converged", "paraxial-fallback", "bracket-failed"]).toContain(result.status);
-    // iterations may be 0 on a paraxial-fallback or bracket-failed path; the
-    // important thing is the cache key separation (object-plane vs
-    // bounding-sphere) is exercised distinctly from the < 89° path.
-    const objectPlaneAt89 = solveChiefRay(88, 0, 0, L);
-    expect(objectPlaneAt89.launchSurface).toBe("object-plane");
   });
 
-  it("solveChiefRay caches past-cap and within-cap results independently", () => {
-    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
-    const below1 = solveChiefRay(88, 0, 0, L);
-    const below2 = solveChiefRay(88, 0, 0, L);
-    const above1 = solveChiefRay(95, 0, 0, L);
-    const above2 = solveChiefRay(95, 0, 0, L);
+  it("rectilinear cache separation: object-plane and bounding-sphere solves cache distinctly", () => {
+    // Cache-key separation is tested on a rectilinear lens because fisheyes
+    // always route through bounding-sphere (no within-vs-past-cap split).
+    const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+    const below1 = solveChiefRay(MAX_FIELD_LAUNCH_DEG - 1, 0, 0, L);
+    const below2 = solveChiefRay(MAX_FIELD_LAUNCH_DEG - 1, 0, 0, L);
+    const above1 = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
+    const above2 = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
 
     // Same field angle: identical reference (cache hit).
     expect(below2).toBe(below1);
@@ -154,7 +165,7 @@ describe("past-cap chief rays exercise the bounding-sphere tracer (PR 8 integrat
     // Different launch surfaces: different objects (cache key includes
     // launchSurface).
     expect(above1).not.toBe(below1);
-    expect(above1.launchSurface).toBe("bounding-sphere");
     expect(below1.launchSurface).toBe("object-plane");
+    expect(above1.launchSurface).toBe("bounding-sphere");
   });
 });
