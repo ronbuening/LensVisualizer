@@ -95,6 +95,11 @@ export function halfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
   return lerpZoomArray(zoomT, L.zoomHalfFields!);
 }
 
+export function tracingHalfFieldAtZoom(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.tracingHalfField;
+  return lerpZoomArray(zoomT, L.zoomTracingHalfFields!);
+}
+
 export function yRatioAtZoom(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EP.yRatio;
   return lerpZoomArray(zoomT, L.zoomYRatios!);

@@ -571,8 +571,19 @@ loops still consume `projectionLaunchSlopeForField` and short-circuit at `status
 samples past 89° drop out of those curves. The distortion field grid now covers the full halfFieldDeg=110°
 via its angular sampler (PR 6 work), with the understanding that chief rays which can't trace are marked
 `usable: false` per-cell. Migrating the curve loops to consume bounding-sphere chief rays directly remains
-a future refactor, but the current state is honest: the curves show what's traceable, the grid shows the
-declared coverage, the diagram shows rays out to the declared half-field.
+a future refactor.
+
+**Off-axis ray rendering — `tracingHalfField`.** After the Step 7 bisection-skip surfaced that
+`offAxisFieldFrac × halfField = 0.6 × 110° = 66°` puts the diagram's default off-axis bundle into a
+region where every bundle ray clips, `RuntimeLens` gained a separate `tracingHalfField`. The bisection
+that used to determine `halfField` for all lenses still runs unconditionally and feeds this new field
+with a `TRACING_SAFETY_FACTOR` (0.9) applied. The Nikon 6mm's `tracingHalfField` lands at ~29°, so the
+diagram's off-axis bundle renders at `0.6 × 29° = 17.5°` where all 6 bundle rays survive. Rectilinear
+lenses use `tracingHalfField = halfField × 0.9` (slight visual headroom; the Nokton 50/1's natural ray
+survival was already 4/6 at the default position, unchanged by the margin). Zoom-aware via
+`zoomTracingHalfFields[]` parallel to `zoomHalfFields[]`. Consumed in
+[offAxisRayUtils.ts](src/components/hooks/offAxisRayUtils.ts) so both `useOffAxisRays` and
+`useChromaticRays` benefit automatically.
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering

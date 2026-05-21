@@ -19,6 +19,7 @@ export {
   fopenAtZoom,
   gapTrimHeight,
   halfFieldAtZoom,
+  tracingHalfFieldAtZoom,
   renderSag,
   sagSlope,
   slopeTrimHeight,

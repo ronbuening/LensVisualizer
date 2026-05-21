@@ -1,5 +1,5 @@
 import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
-import { eflAtZoom, traceRay } from "../../optics/optics.js";
+import { eflAtZoom, halfFieldAtZoom, tracingHalfFieldAtZoom, traceRay } from "../../optics/optics.js";
 import { ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { OffAxisMode } from "../../types/state.js";
@@ -32,15 +32,15 @@ export function computeOffAxisTraceGeometry({
   sy: (y: number) => number;
   showOffAxis: OffAxisMode;
 }): OffAxisTraceGeometry | null {
-  const geometry = computeStateAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    L.offAxisFieldFrac,
-    undefined,
-    aberrationT,
-  );
+  // Off-axis ray rendering uses `tracingHalfField` (slope-launch-bisected with
+  // safety margin), not the declared `halfField`. For fisheyes the declared
+  // half-field can be much wider than what chief rays can physically traverse,
+  // and we want the visible off-axis bundle to actually reach the image plane.
+  // For rectilinear lenses the ratio is `TRACING_SAFETY_FACTOR` (e.g., 0.9).
+  const halfDeg = halfFieldAtZoom(zoomT, L);
+  const tracingDeg = tracingHalfFieldAtZoom(zoomT, L);
+  const safeFieldFrac = halfDeg > 0 ? L.offAxisFieldFrac * (tracingDeg / halfDeg) : L.offAxisFieldFrac;
+  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, safeFieldFrac, undefined, aberrationT);
   if (geometry === null) return null;
   const { fieldAngleDeg: currentOffAxisDeg, uField, yChief } = geometry;
 

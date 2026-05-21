@@ -108,6 +108,15 @@ export const MAX_FIELD_LAUNCH_DEG = 89;
  */
 export const ABSOLUTE_HALF_FIELD_CEILING = 175;
 
+/**
+ * Safety margin applied to the slope-launch-bisected half-field when
+ * producing `RuntimeLens.tracingHalfField`. The diagram renders off-axis
+ * ray bundles at `tracingHalfField × offAxisFieldFrac`, so this factor sets
+ * the visual headroom between the widest drawn ray and the lens's clipping
+ * boundary. 0.9 = 10% margin.
+ */
+export const TRACING_SAFETY_FACTOR = 0.9;
+
 export type LaunchSurface = "object-plane" | "bounding-sphere";
 
 /**

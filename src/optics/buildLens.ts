@@ -27,7 +27,7 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import { isFisheyeProjection } from "./projection.js";
+import { isFisheyeProjection, TRACING_SAFETY_FACTOR } from "./projection.js";
 import { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";
 import type {
   LensData,
@@ -421,30 +421,37 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
    * half-field but the bisection would narrow to ~32°). For fisheyes the
    * declared `maxTraceFieldDeg` is authoritative; per-ray clipping in the
    * diagram or analysis tabs filters individual rays naturally. */
-  let halfField = halfFieldParaxial;
-  if (isFisheyeProjection(projection)) {
-    halfField = projection.maxTraceFieldDeg ?? halfFieldParaxial;
-  } else {
-    const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
-    const testChief = (deg: number): boolean => {
-      const uTest = -Math.tan((deg * Math.PI) / 180);
-      const yIn = -epRatio * uTest;
-      const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest, traceMode);
-      return isFinite(result.y) && !result.clipped;
-    };
-    if (!testChief(halfFieldParaxial)) {
-      /* Paraxial overestimates — bisect downward */
-      let lo = 0,
-        hi = halfFieldParaxial;
-      for (let iter = 0; iter < 40; iter++) {
-        const mid = (lo + hi) / 2;
-        if (testChief(mid)) lo = mid;
-        else hi = mid;
-      }
-      halfField = lo;
+  /* Run the slope-launch bisection unconditionally — its result feeds
+   * `tracingHalfField`, the half-field that the diagram uses for off-axis ray
+   * placement. For rectilinear lenses this is also what `halfField` reports.
+   * For fisheyes, `halfField` instead uses the declared `maxTraceFieldDeg`
+   * (which can be much wider than slope-launch chief rays can traverse), and
+   * `tracingHalfField` keeps off-axis rays in the bisection-narrowed safe zone. */
+  const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
+  const testChief = (deg: number): boolean => {
+    const uTest = -Math.tan((deg * Math.PI) / 180);
+    const yIn = -epRatio * uTest;
+    const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest, traceMode);
+    return isFinite(result.y) && !result.clipped;
+  };
+  let halfFieldBisected = halfFieldParaxial;
+  if (!testChief(halfFieldParaxial)) {
+    /* Paraxial overestimates — bisect downward */
+    let lo = 0,
+      hi = halfFieldParaxial;
+    for (let iter = 0; iter < 40; iter++) {
+      const mid = (lo + hi) / 2;
+      if (testChief(mid)) lo = mid;
+      else hi = mid;
     }
-    /* If the paraxial field passes the real check, keep it (conservative). */
+    halfFieldBisected = lo;
   }
+  /* If the paraxial field passes the real check, keep it (conservative). */
+
+  const halfField = isFisheyeProjection(projection)
+    ? (projection.maxTraceFieldDeg ?? halfFieldParaxial)
+    : halfFieldBisected;
+  const tracingHalfField = halfFieldBisected * TRACING_SAFETY_FACTOR;
 
   /* ── Petzval sum ──
    * P = Σ (n'−n) / (n'·n·R) over all refracting surfaces.
@@ -538,7 +545,8 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
    */
   let zoomEFLs: number[] | null = null,
     zoomEPs: number[] | null = null,
-    zoomHalfFields: number[] | null = null;
+    zoomHalfFields: number[] | null = null,
+    zoomTracingHalfFields: number[] | null = null;
   let zoomYRatios: number[] | null = null,
     zoomBs: number[] | null = null;
   let zoomEpZRelStops: number[] | null = null,
@@ -549,6 +557,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     zoomEFLs = [];
     zoomEPs = [];
     zoomHalfFields = [];
+    zoomTracingHalfFields = [];
     zoomYRatios = [];
     zoomBs = [];
     zoomEpZRelStops = [];
@@ -620,32 +629,34 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
           if (uMax < zMinU) zMinU = uMax;
         }
       }
-      let zHalfField = (Math.atan(zMinU) * 180) / Math.PI;
-      if (isFisheyeProjection(projection)) {
-        /* Fisheye: trust the declared maxTraceFieldDeg (see baseline-halfField
-         * comment above for why the paraxial bisection undercounts here). */
-        zHalfField = projection.maxTraceFieldDeg ?? zHalfField;
-      } else {
-        /* Refine with real chief ray bisection (same as baseline) */
-        const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
-        const zTestChief = (deg: number): boolean => {
-          const uTest = -Math.tan((deg * Math.PI) / 180);
-          const yIn = -zEpRatio * uTest;
-          const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceMode);
-          return isFinite(result.y) && !result.clipped;
-        };
-        if (isFinite(zHalfField) && !zTestChief(zHalfField)) {
-          let lo = 0,
-            hi = zHalfField;
-          for (let iter = 0; iter < 40; iter++) {
-            const mid = (lo + hi) / 2;
-            if (zTestChief(mid)) lo = mid;
-            else hi = mid;
-          }
-          zHalfField = lo;
+      const zHalfFieldParaxial = (Math.atan(zMinU) * 180) / Math.PI;
+      /* Always run the slope-launch bisection (its result feeds
+       * zoomTracingHalfFields, the diagram's ray-rendering safe zone).
+       * Fisheyes use the declared maxTraceFieldDeg for zHalfField; rectilinear
+       * uses the bisected value. */
+      const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
+      const zTestChief = (deg: number): boolean => {
+        const uTest = -Math.tan((deg * Math.PI) / 180);
+        const yIn = -zEpRatio * uTest;
+        const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceMode);
+        return isFinite(result.y) && !result.clipped;
+      };
+      let zHalfFieldBisected = zHalfFieldParaxial;
+      if (isFinite(zHalfFieldParaxial) && !zTestChief(zHalfFieldParaxial)) {
+        let lo = 0,
+          hi = zHalfFieldParaxial;
+        for (let iter = 0; iter < 40; iter++) {
+          const mid = (lo + hi) / 2;
+          if (zTestChief(mid)) lo = mid;
+          else hi = mid;
         }
+        zHalfFieldBisected = lo;
       }
+      const zHalfField = isFisheyeProjection(projection)
+        ? (projection.maxTraceFieldDeg ?? zHalfFieldParaxial)
+        : zHalfFieldBisected;
       zoomHalfFields.push(zHalfField);
+      zoomTracingHalfFields.push(zHalfFieldBisected * TRACING_SAFETY_FACTOR);
     }
   }
 
@@ -685,6 +696,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     B,
     FOPEN,
     halfField,
+    tracingHalfField,
     petzvalSum,
     totalTrack,
     maxSD,
@@ -726,6 +738,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     zoomEFLs,
     zoomEPs,
     zoomHalfFields,
+    zoomTracingHalfFields,
     zoomYRatios,
     zoomBs,
     epZRelStop,

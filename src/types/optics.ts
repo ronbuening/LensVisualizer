@@ -243,6 +243,15 @@ export interface RuntimeLens {
   readonly B: number;
   readonly FOPEN: number;
   readonly halfField: number;
+  /**
+   * Half-field within which off-axis ray bundles physically traverse the lens
+   * without clipping, with a safety margin applied. Equal to `halfField` for
+   * most rectilinear lenses (scaled by `TRACING_SAFETY_FACTOR`); for fisheyes
+   * it's the slope-launch-bisected coverage (much smaller than the declared
+   * projection halfField). Diagram ray rendering uses this so off-axis traces
+   * land safely on the image plane.
+   */
+  readonly tracingHalfField: number;
   readonly petzvalSum: number;
   readonly totalTrack: number;
   readonly maxSD: number;
@@ -284,6 +293,7 @@ export interface RuntimeLens {
   readonly zoomEFLs: number[] | null;
   readonly zoomEPs: number[] | null;
   readonly zoomHalfFields: number[] | null;
+  readonly zoomTracingHalfFields: number[] | null;
   readonly zoomYRatios: number[] | null;
   readonly zoomBs: number[] | null;
   readonly epZRelStop: number;
