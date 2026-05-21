@@ -69,8 +69,8 @@ function validateProjection(value: unknown, errors: string[]): void {
   const config = value as Record<string, unknown>;
   if (config.kind === "rectilinear") return;
 
-  if (config.kind !== "fisheye-equidistant") {
-    errors.push(`"projection.kind" must be "rectilinear" or "fisheye-equidistant"`);
+  if (config.kind !== "fisheye-equidistant" && config.kind !== "fisheye-equisolid") {
+    errors.push(`"projection.kind" must be "rectilinear", "fisheye-equidistant", or "fisheye-equisolid"`);
     return;
   }
 

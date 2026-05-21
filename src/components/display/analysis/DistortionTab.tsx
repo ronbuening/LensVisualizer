@@ -80,7 +80,8 @@ export default function DistortionTab({
   }
 
   const edgeSample = samples[samples.length - 1];
-  const isProjectionResidual = edgeSample.referenceKind === "fisheye-equidistant";
+  const isProjectionResidual =
+    edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
   const directionLabel =
     edgeSample.distortionPercent > 0.01
       ? isProjectionResidual

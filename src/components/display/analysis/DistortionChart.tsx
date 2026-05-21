@@ -55,7 +55,8 @@ export default function DistortionChart({ samples, t, width = 320, height = 220 
   /* ── Edge distortion annotation ── */
   const edgeSample = samples[samples.length - 1];
   const edgeLabel = `${edgeSample.distortionPercent >= 0 ? "+" : ""}${edgeSample.distortionPercent.toFixed(2)}%`;
-  const isProjectionResidual = edgeSample.referenceKind === "fisheye-equidistant";
+  const isProjectionResidual =
+    edgeSample.referenceKind === "fisheye-equidistant" || edgeSample.referenceKind === "fisheye-equisolid";
 
   /* ── Barrel / pincushion direction ── */
   const dominantDirection =

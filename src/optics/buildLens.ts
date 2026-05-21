@@ -27,6 +27,7 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { isFisheyeProjection } from "./projection.js";
 import { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";
 import type {
   LensData,
@@ -300,7 +301,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
   const nomEFL = -1.0 / nomUe;
   assertRectilinearFocalReference(data, projection, nomEFL);
-  const apertureReferenceFocalLength = projection.kind === "fisheye-equidistant" ? projection.focalLengthMm : nomEFL;
+  const apertureReferenceFocalLength = isFisheyeProjection(projection) ? projection.focalLengthMm : nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
   const nominalEPSD = apertureReferenceFocalLength / (2 * baseNomFno);
   const nomRealY = realTraceToStop(S, asphByIdx, nominalEPSD, 0, stopIdx, traceMode);
@@ -434,7 +435,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
     }
     /* If the paraxial field passes the real check, keep it (conservative). */
   }
-  if (projection.kind === "fisheye-equidistant" && projection.maxTraceFieldDeg !== undefined) {
+  if (isFisheyeProjection(projection) && projection.maxTraceFieldDeg !== undefined) {
     halfField = Math.min(halfField, projection.maxTraceFieldDeg);
   }
 
@@ -631,7 +632,7 @@ export default function buildLens(data: LensData, options: BuildLensOptions = {}
         }
         zHalfField = lo;
       }
-      if (projection.kind === "fisheye-equidistant" && projection.maxTraceFieldDeg !== undefined) {
+      if (isFisheyeProjection(projection) && projection.maxTraceFieldDeg !== undefined) {
         zHalfField = Math.min(zHalfField, projection.maxTraceFieldDeg);
       }
       zoomHalfFields.push(zHalfField);

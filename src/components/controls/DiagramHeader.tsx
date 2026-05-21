@@ -12,6 +12,7 @@
 
 import { forwardRef, memo } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
 import CollapseButton from "./CollapseButton.js";
 import CardinalControls from "./CardinalControls.js";
@@ -132,10 +133,9 @@ const DiagramHeader = memo(
     ref,
   ) {
     const projection = L.projection ?? { kind: "rectilinear" };
-    const compactFocalReadout =
-      projection.kind === "fisheye-equidistant"
-        ? `Proj f ${L.apertureReferenceFocalLength.toFixed(1)}`
-        : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
+    const compactFocalReadout = isFisheyeProjection(projection)
+      ? `Proj f ${L.apertureReferenceFocalLength.toFixed(1)}`
+      : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
 
     return (
       <div

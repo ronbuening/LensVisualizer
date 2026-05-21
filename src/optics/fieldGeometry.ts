@@ -8,7 +8,7 @@ import {
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
-import { MAX_FIELD_LAUNCH_DEG, projectionLaunchSlopeForField } from "./projection.js";
+import { isFisheyeProjection, MAX_FIELD_LAUNCH_DEG, projectionLaunchSlopeForField } from "./projection.js";
 import { traceRay, type RayTraceOptions } from "./rayTrace.js";
 import { resolveSurfaceTraceMode } from "./traceMode.js";
 import { recordChiefRayStatus } from "./chiefRayDiagnostics.js";
@@ -124,8 +124,7 @@ export function computeFieldGeometryAtState(
     }
     halfFieldDeg = lo;
   }
-  const projectionClampDeg =
-    L.projection?.kind === "fisheye-equidistant" ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
+  const projectionClampDeg = isFisheyeProjection(L.projection) ? (L.projection.maxTraceFieldDeg ?? Infinity) : Infinity;
   halfFieldDeg = Math.min(halfFieldDeg, projectionClampDeg, MAX_FIELD_LAUNCH_DEG - 1e-3);
 
   return { halfFieldDeg, yRatio, b, epRatio };

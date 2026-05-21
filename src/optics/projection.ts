@@ -1,6 +1,6 @@
 import type { LensProjectionConfig, RuntimeLens } from "../types/optics.js";
 
-export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant";
+export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant" | "fisheye-equisolid";
 
 export interface ProjectionReference {
   kind: ProjectionReferenceKind;
@@ -19,6 +19,14 @@ export function resolveProjection(projection?: LensProjectionConfig): LensProjec
   return projection ?? { kind: "rectilinear" };
 }
 
+type FisheyeProjectionConfig = Extract<LensProjectionConfig, { kind: `fisheye-${string}` }>;
+
+export function isFisheyeProjection(
+  projection: LensProjectionConfig | undefined,
+): projection is FisheyeProjectionConfig {
+  return projection?.kind === "fisheye-equidistant" || projection?.kind === "fisheye-equisolid";
+}
+
 export function distortionProjectionReferenceForLens(L: RuntimeLens, rectilinearScale: number): ProjectionReference {
   const projection = resolveProjection(L.projection);
   if (projection.kind === "fisheye-equidistant") {
@@ -26,6 +34,14 @@ export function distortionProjectionReferenceForLens(L: RuntimeLens, rectilinear
       kind: "fisheye-equidistant",
       label: "Equidistant projection residual",
       shortLabel: "equidistant",
+      focalScaleMm: projection.focalLengthMm,
+    };
+  }
+  if (projection.kind === "fisheye-equisolid") {
+    return {
+      kind: "fisheye-equisolid",
+      label: "Equisolid-angle projection residual",
+      shortLabel: "equisolid",
       focalScaleMm: projection.focalLengthMm,
     };
   }
@@ -42,6 +58,8 @@ export function projectionImageHeightForAngle(reference: ProjectionReference, fi
   switch (reference.kind) {
     case "fisheye-equidistant":
       return reference.focalScaleMm * fieldAngleRad;
+    case "fisheye-equisolid":
+      return 2 * reference.focalScaleMm * Math.sin(fieldAngleRad / 2);
     case "rectilinear":
     default:
       return reference.focalScaleMm * Math.tan(fieldAngleRad);
@@ -55,6 +73,11 @@ export function projectionFieldAngleForImageHeight(reference: ProjectionReferenc
   switch (reference.kind) {
     case "fisheye-equidistant":
       return radius / reference.focalScaleMm;
+    case "fisheye-equisolid": {
+      const sinHalf = radius / (2 * reference.focalScaleMm);
+      if (sinHalf > 1) return NaN;
+      return 2 * Math.asin(sinHalf);
+    }
     case "rectilinear":
     default:
       return Math.atan(radius / reference.focalScaleMm);
@@ -135,23 +158,9 @@ export function projectionLaunchVectorForFieldAngles(
   const azimuthX = fieldAngleXDeg / totalFieldDeg;
   const azimuthY = fieldAngleYDeg / totalFieldDeg;
 
-  let idealImageX: number;
-  let idealImageY: number;
-  switch (reference.kind) {
-    case "fisheye-equidistant": {
-      const imageRadius = reference.focalScaleMm * thetaTotalRad;
-      idealImageX = azimuthX * imageRadius;
-      idealImageY = azimuthY * imageRadius;
-      break;
-    }
-    case "rectilinear":
-    default: {
-      const imageRadius = reference.focalScaleMm * Math.tan(thetaTotalRad);
-      idealImageX = azimuthX * imageRadius;
-      idealImageY = azimuthY * imageRadius;
-      break;
-    }
-  }
+  const imageRadius = projectionImageHeightForAngle(reference, thetaTotalRad);
+  const idealImageX = azimuthX * imageRadius;
+  const idealImageY = azimuthY * imageRadius;
 
   if (totalFieldDeg >= MAX_FIELD_LAUNCH_DEG) {
     return { fieldSlopeX: NaN, fieldSlopeY: NaN, totalFieldDeg, idealImageX, idealImageY, status: "out-of-domain" };

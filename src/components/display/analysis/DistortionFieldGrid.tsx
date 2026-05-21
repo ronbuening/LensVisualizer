@@ -40,7 +40,11 @@ export default function DistortionFieldGrid({ grid, t, width = VB_W, height = VB
   const { lines, idealFieldRadius } = grid;
   if (lines.length === 0) return null;
   const idealGridLabel =
-    grid.referenceKind === "fisheye-equidistant" ? "ideal equidistant grid" : "ideal rectilinear grid";
+    grid.referenceKind === "fisheye-equidistant"
+      ? "ideal equidistant grid"
+      : grid.referenceKind === "fisheye-equisolid"
+        ? "ideal equisolid grid"
+        : "ideal rectilinear grid";
 
   const plotSize = Math.min(width - PAD_X * 2, height - PAD_Y * 2 - 28);
   const plotX = (width - plotSize) / 2;

@@ -329,7 +329,7 @@ function resolveDistortionGridLaunch(
   yNormalized: number,
   reference: DistortionReference,
 ): DistortionGridLaunch | null {
-  if (reference.projectionReference.kind === "fisheye-equidistant") {
+  if (reference.projectionReference.kind !== "rectilinear") {
     const launch = projectionLaunchVectorForFieldAngles(
       reference.projectionReference,
       xNormalized * reference.geometry.halfFieldDeg,

@@ -5,6 +5,7 @@
 
 import { useCallback, useEffect } from "react";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
+import { isFisheyeProjection } from "../../optics/projection.js";
 import { getGroupMovementAvailability } from "../../optics/groupMovement.js";
 import { perspectiveControlSteps } from "../../optics/lensMovement.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
@@ -160,7 +161,7 @@ export default function DiagramControls({
 
   const infinityEFL = L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   const projection = L.projection ?? { kind: "rectilinear" };
-  const isFisheye = projection.kind === "fisheye-equidistant";
+  const isFisheye = isFisheyeProjection(projection);
   const apertureReferenceLabel = isFisheye ? "Projection f" : "EFL";
   const apertureReferenceValue = isFisheye ? L.apertureReferenceFocalLength : dynamicEFL;
   const eflChanged = Math.abs(dynamicEFL - infinityEFL) > 0.1;

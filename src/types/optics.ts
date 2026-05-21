@@ -83,7 +83,18 @@ export interface FisheyeEquidistantProjectionConfig {
   maxTraceFieldDeg?: number;
 }
 
-export type LensProjectionConfig = RectilinearProjectionConfig | FisheyeEquidistantProjectionConfig;
+export interface FisheyeEquisolidProjectionConfig {
+  kind: "fisheye-equisolid";
+  focalLengthMm: number;
+  fullFieldDeg: number;
+  imageCircleMm?: number;
+  maxTraceFieldDeg?: number;
+}
+
+export type LensProjectionConfig =
+  | RectilinearProjectionConfig
+  | FisheyeEquidistantProjectionConfig
+  | FisheyeEquisolidProjectionConfig;
 
 export interface AberrationControlConfig {
   label: string;

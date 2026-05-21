@@ -19,6 +19,13 @@ const FISHEYE_REFERENCE: ProjectionReference = {
   focalScaleMm: 6,
 };
 
+const EQUISOLID_REFERENCE: ProjectionReference = {
+  kind: "fisheye-equisolid",
+  label: "Equisolid-angle projection residual",
+  shortLabel: "equisolid",
+  focalScaleMm: 15,
+};
+
 describe("projectionLaunchVectorForFieldAngles", () => {
   it("returns on-axis at (0, 0)", () => {
     const r = projectionLaunchVectorForFieldAngles(RECTILINEAR_REFERENCE, 0, 0);
@@ -73,5 +80,20 @@ describe("projectionLaunchVectorForFieldAngles", () => {
     const slopeMag = Math.tan((total * Math.PI) / 180);
     expect(r.fieldSlopeX).toBeCloseTo((40 / total) * slopeMag, 12);
     expect(r.fieldSlopeY).toBeCloseTo(-(30 / total) * slopeMag, 12);
+  });
+
+  it("fisheye-equisolid: image radius follows r = 2f·sin(θ/2)", () => {
+    const r = projectionLaunchVectorForFieldAngles(EQUISOLID_REFERENCE, 60, 0);
+    expect(r.status).toBe("ok");
+    const expectedRadius = 2 * EQUISOLID_REFERENCE.focalScaleMm * Math.sin((60 * Math.PI) / 180 / 2);
+    expect(r.idealImageX).toBeCloseTo(expectedRadius, 10);
+    expect(r.idealImageY).toBeCloseTo(0, 12);
+  });
+
+  it("fisheye-equisolid: 60°/60° corner is out-of-domain but image point remains finite", () => {
+    const r = projectionLaunchVectorForFieldAngles(EQUISOLID_REFERENCE, 70, 70);
+    expect(r.status).toBe("out-of-domain");
+    expect(Number.isFinite(r.idealImageX)).toBe(true);
+    expect(Number.isFinite(r.idealImageY)).toBe(true);
   });
 });

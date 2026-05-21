@@ -92,6 +92,8 @@ const LENS_DATA = {
   // },
 
   // Optional: declare non-rectilinear projection metadata for fisheyes.
+  // Use "fisheye-equidistant" (r = f·θ) or "fisheye-equisolid" (r = 2f·sin(θ/2),
+  // common in photographic fisheyes like the Sigma 15mm or Nikkor AF 8mm).
   // projection: {
   //   kind: "fisheye-equidistant",
   //   focalLengthMm: 6.3,

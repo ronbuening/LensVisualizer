@@ -148,7 +148,8 @@ projection: {
 ```
 
 - `kind: "rectilinear"` is the implicit default.
-- `kind: "fisheye-equidistant"` uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics.
+- `kind: "fisheye-equidistant"` (r = f·θ) uses `focalLengthMm` for aperture sizing while preserving the separately computed Gaussian EFL for optical diagnostics. Distortion residuals are measured against the equidistant reference.
+- `kind: "fisheye-equisolid"` (r = 2f·sin(θ/2)) — the common photographic fisheye projection used by lenses like the Sigma 15mm, Nikkor AF 8mm, and Olympus 8mm. Behaves like `fisheye-equidistant` for aperture/EFL handling but evaluates distortion residuals against the equal-area reference instead.
 - `fullFieldDeg` and `imageCircleMm` describe the published circular fisheye projection. Analysis tabs still use the central forward-traced cone rather than pretending the whole fisheye field is rectilinear.
 
 ---
