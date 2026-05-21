@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **235** lenses scanned
-- **2678** glass surfaces examined
-- **2672** surfaces with non-empty `glass` strings
-- **2066** of those resolved to a catalog entry
-- **43** mismatches found (2.1% of resolved surfaces)
-- **20** distinct lens files affected
+- **241** lenses scanned
+- **2783** glass surfaces examined
+- **2777** surfaces with non-empty `glass` strings
+- **2168** of those resolved to a catalog entry
+- **45** mismatches found (2.1% of resolved surfaces)
+- **21** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -29,6 +29,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|
 | S-LAH79 | 4 | |
 | S-FPM3 | 3 | |
+| S-TIM2 | 2 | |
 | S-TIH18 | 2 | |
 | S-TIL27 | 2 | |
 | H-LAK6A | 2 | |
@@ -36,6 +37,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIH6 | 2 | |
 | S-NBH52V | 2 | |
 | S-LAH58 | 2 | |
+| S-NBH5 | 1 | |
 | S-LAL8 | 1 | |
 | S-LAL14 | 1 | |
 | S-TIH4 | 1 | |
@@ -49,7 +51,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-TIL25 | 1 | |
 | S-NBH56 | 1 | |
 | S-LAM55 | 1 | |
-| S-TIM2 | 1 | |
 | S-NPH1 | 1 | |
 | S-TIH14 | 1 | |
 | H-ZLAF68C | 1 | |
@@ -120,6 +121,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | H-ZLAF68C | 1.84850 | 1.88300 | +0.0345 |
 | 24 | `Dense flint (near S-NBH52V)` | S-NBH52V | 1.69895 | 1.67300 | -0.0260 |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | TAFD5F | 1.76554 | 1.83481 | +0.0693 |
+
+### [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) — US 8,736,971 B2
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 11 | `S-TIM2 (OHARA; titanium flint)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
+| 23 | `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)` | S-NBH5 | 1.72047 | 1.65412 | -0.0664 |
 
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) — US 7,898,744 B2
 
