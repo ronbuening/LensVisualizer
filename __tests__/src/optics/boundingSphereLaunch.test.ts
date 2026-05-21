@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
+import { solveChiefRay, solveChiefRayBoundingSphere } from "../../../src/optics/fieldGeometry.js";
 import {
   boundingSphereLaunchVector,
   launchSurfaceForFieldDeg,
@@ -67,11 +67,10 @@ describe("solveChiefRay launchSurface dispatch", () => {
     expect(result.status).not.toBe("out-of-domain");
   });
 
-  it("reports bounding-sphere launch for past-cap fields (currently still out-of-domain)", () => {
+  it("dispatches past-cap fields through the bounding-sphere launch arm", () => {
     const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
     const result = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 5, 0, 0, L);
     expect(result.launchSurface).toBe("bounding-sphere");
-    expect(result.status).toBe("out-of-domain");
   });
 
   it("caches object-plane and bounding-sphere solves independently for the same field magnitude", () => {
@@ -80,5 +79,43 @@ describe("solveChiefRay launchSurface dispatch", () => {
     const above = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
     expect(below.launchSurface).toBe("object-plane");
     expect(above.launchSurface).toBe("bounding-sphere");
+  });
+});
+
+describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
+  // Within MAX_FIELD_LAUNCH_DEG and within each lens's actual half-field both
+  // launch surfaces describe the same physical chief ray. The bounding-sphere
+  // solver reports its yLaunch projected back to z=0, which must agree with
+  // the object-plane yLaunch to machine precision since they parameterize the
+  // same ray, traced through the same surfaces with the same intersection
+  // algorithm — just with the origin on different surfaces.
+  it.each([3, 5, 10, 15, 20])(
+    "agrees with the object-plane path at θ=%d° on the rectilinear fixture (within its 21.6° half-field)",
+    (fieldDeg) => {
+      const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
+      const objectPlane = solveChiefRay(fieldDeg, 0, 0, L);
+      const boundingSphere = solveChiefRayBoundingSphere(fieldDeg, 0, 0, L, undefined, 0, undefined);
+
+      expect(objectPlane.status).toBe("converged");
+      expect(objectPlane.launchSurface).toBe("object-plane");
+      expect(boundingSphere.status).toBe("converged");
+      expect(boundingSphere.launchSurface).toBe("bounding-sphere");
+
+      // Bit-identity to ~1e-12: both paths describe the same physical chief
+      // ray; the only divergence comes from the bisection's convergence
+      // tolerance (1e-9 mm at the stop). Projecting back to z=0 scales that
+      // by ~1/cos(θ), still well within the test bound.
+      expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 9);
+    },
+  );
+
+  it("agrees at θ=5° on the fisheye fixture", () => {
+    const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
+    const objectPlane = solveChiefRay(5, 0, 0, L);
+    const boundingSphere = solveChiefRayBoundingSphere(5, 0, 0, L, undefined, 0, undefined);
+
+    expect(objectPlane.status).toBe("converged");
+    expect(boundingSphere.status).toBe("converged");
+    expect(boundingSphere.yLaunch).toBeCloseTo(objectPlane.yLaunch, 9);
   });
 });

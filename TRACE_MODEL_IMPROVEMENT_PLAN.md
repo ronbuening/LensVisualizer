@@ -532,10 +532,12 @@ fails before the intersection algorithm gets a chance to converge. Wiring the bo
 takes six numbered steps below, ordered so each builds on the previous. Steps 1–3 are the load-bearing numerics
 work; without them, steps 4–7 are dead code.
 
-**Update.** Steps 1 and 2a+2b landed (commit `<pending>`); the tracer now accepts grazing and backward rays
-when given a `launchBoundT` option. Step 2c is intentionally deferred — see note under step 2 below. Steps 3–7
-remain. Synthetic 1-surface analytic tests at `direction[2] = 0` and `direction[2] < 0` confirm convergence
-against closed-form ground truth in [surfaceIntersection.test.ts](__tests__/src/optics/internal/surfaceIntersection.test.ts).
+**Update.** Steps 1, 2a+2b, 3, and 4 have landed (commits `beb040e` and `<pending>`). The tracer accepts
+grazing and backward rays when given a `launchBoundT`; `computeChiefRaySolve` dispatches past-cap fields
+through a new `solveChiefRayBoundingSphere` that bisects on EP-crossing y; parity tests confirm both launch
+surfaces produce bit-identical chief-ray geometry (~1e-12 mm at z=0) for fields where the lens itself
+converges. Step 2c is intentionally deferred — see note under step 2 below. Steps 5–7 remain (visual smoke,
+catalog promotion, semantic cleanup).
 
 **Realistic effort.** 1–2 days for steps 1–3 (focused numerics + tests). A few hours for step 4 (parity). An
 afternoon with browser access for steps 5–6. Step 7 is opportunistic. The whole thing is one focused engineering

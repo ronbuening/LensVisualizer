@@ -57,11 +57,13 @@ describe("solveChiefRay", () => {
     expect(second).toBe(first);
   });
 
-  it("reports out-of-domain for field angles past MAX_FIELD_LAUNCH_DEG without iterating", () => {
+  it("routes past-cap field angles through the bounding-sphere launch path", () => {
     const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
     const result = solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
-    expect(result.status).toBe("out-of-domain");
-    expect(result.iterations).toBe(0);
+    expect(result.launchSurface).toBe("bounding-sphere");
+    // Past-cap convergence depends on lens geometry; we only assert the
+    // dispatch found the bounding-sphere arm (rather than the old
+    // unconditional out-of-domain pre-empt).
   });
 
   it("returns paraxial fallback (iterations=0) for near-axis fields", () => {
@@ -117,7 +119,10 @@ describe("chiefRayDiagnostics", () => {
   it("counts out-of-domain solves separately from converged ones", () => {
     resetChiefRayDiagnostics();
     const L = buildLens(LENS_CATALOG[FISHEYE_FIXTURE]);
-    solveChiefRay(MAX_FIELD_LAUNCH_DEG + 1, 0, 0, L);
+    // NaN input deterministically triggers the boundingSphereLaunchVector
+    // out-of-domain branch regardless of lens geometry — unlike a past-cap
+    // numeric angle which may now converge or bracket-fail via Step 3.
+    solveChiefRay(Number.NaN, 0, 0, L);
     const counts = getChiefRayDiagnostics().get(L.data?.key ?? "<unknown-lens>");
     expect(counts?.["out-of-domain"]).toBe(1);
     expect(counts?.converged ?? 0).toBe(0);

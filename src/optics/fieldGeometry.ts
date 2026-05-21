@@ -7,8 +7,10 @@ import {
   type RealSurfaceTraceOptions,
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { traceExactSurfaceStack, traceExactSurfaceStackVector } from "./internal/exactSurfaceTrace.js";
+import type { Vector3 } from "./internal/exactSurfaceTrace.js";
 import {
+  boundingSphereLaunchVector,
   isFisheyeProjection,
   launchSurfaceForFieldDeg,
   MAX_FIELD_LAUNCH_DEG,
@@ -262,6 +264,9 @@ function computeChiefRaySolve(
   options: RayTraceOptions | undefined,
 ): ChiefRaySolveResult {
   const launchSurface = launchSurfaceForFieldDeg(fieldAngleDeg);
+  if (launchSurface === "bounding-sphere") {
+    return solveChiefRayBoundingSphere(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT, options);
+  }
   const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
   if (launch.status === "out-of-domain") {
     return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
@@ -311,6 +316,179 @@ function computeChiefRaySolve(
   return {
     yLaunch: (lo + hi) / 2,
     uField,
+    status: "converged",
+    iterations: CHIEF_RAY_MAX_ITERATIONS,
+    launchSurface,
+  };
+}
+
+// Launch-sphere radius for bounding-sphere chief-ray launches. Must be large
+// enough that the launch origin is unambiguously outside the lens for any
+// reasonable field direction, but small enough that the per-surface bracket
+// finder doesn't waste samples sweeping empty space.
+function computeBoundingSphereLaunchRadiusMm(L: RuntimeLens, geom: FieldGeometryState): number {
+  let totalThickness = 0;
+  let maxSD = 0;
+  for (const s of L.S) {
+    totalThickness += Math.abs(s.d ?? 0);
+    if (s.sd && s.sd > maxSD) maxSD = s.sd;
+  }
+  return Math.max(2 * maxSD, totalThickness + Math.abs(geom.b) + 5);
+}
+
+export function solveChiefRayBoundingSphere(
+  fieldAngleDeg: number,
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState | undefined,
+  aberrationT: number,
+  options: RayTraceOptions | undefined,
+): ChiefRaySolveResult {
+  const launchSurface: LaunchSurface = "bounding-sphere";
+  const geom = geometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+
+  // Paraxial entrance pupil z relative to the front vertex. Derived from the
+  // identity `yLaunch(z=0) = -epRatio · uField` that drives the object-plane
+  // bisection: a ray launched at `(y = -epRatio·u, slope = u)` from z=0 passes
+  // through `(y=0, z=epRatio)` for any u, which is the paraxial EP definition.
+  const epZ = geom.epRatio;
+  const launchRadius = computeBoundingSphereLaunchRadiusMm(L, geom);
+  // Meridional convention: object-plane bisection slope-launches along the
+  // y axis (uy0 = -tan θ), so the bounding-sphere meridional direction lives
+  // in the y-z plane. Pass `fieldAngleDeg` as θ_y, not θ_x.
+  const launch = boundingSphereLaunchVector(epZ, 0, fieldAngleDeg, launchRadius);
+  if (launch.status !== "ok") {
+    return { yLaunch: NaN, uField: NaN, status: "out-of-domain", iterations: 0, launchSurface };
+  }
+
+  // Perpendicular to direction in the (y, z) plane, used as the bisection
+  // free-parameter axis. Offsetting the origin by `yEP` along this axis sweeps
+  // the chief-ray candidate through the entrance-pupil plane in object-space y.
+  const thetaRad = (fieldAngleDeg * Math.PI) / 180;
+  const sinTheta = Math.sin(thetaRad);
+  const cosTheta = Math.cos(thetaRad);
+  const perpY = cosTheta;
+  const perpZ = sinTheta;
+  const direction = launch.direction;
+  const baseOrigin = launch.origin;
+
+  // The slope-launch equivalent uField, finite only for forward-cone fields.
+  // Past 89° the consumer can't legitimately use this as a slope anyway; the
+  // launchSurface tag tells callers to consult the vector geometry instead.
+  const uFieldEquivalent = Math.abs(cosTheta) > 1e-9 ? -sinTheta / cosTheta : NaN;
+
+  // Project the bounding-sphere ray (offset by yEP) back to z=0 so the
+  // returned `yLaunch` keeps the same geometric meaning as the object-plane
+  // path: "y where the chief ray crosses the z=0 plane." Pathological when
+  // direction[2] ≈ 0, hence the cosTheta guard.
+  const projectYLaunchToZ0 = (yEP: number): number => {
+    if (Math.abs(direction[2]) < 1e-12) return NaN;
+    const oy = baseOrigin[1] + yEP * perpY;
+    const oz = baseOrigin[2] + yEP * perpZ;
+    const t = (0 - oz) / direction[2];
+    return oy + t * direction[1];
+  };
+
+  const S = stateSurfaces(focusT, zoomT, L, aberrationT);
+  const stopIdx = L.stopIdx;
+  const launchBoundT = 2 * launchRadius;
+
+  const heightAtStop = (yEP: number): number | null => {
+    const origin: Vector3 = [baseOrigin[0], baseOrigin[1] + yEP * perpY, baseOrigin[2] + yEP * perpZ];
+    const result = traceExactSurfaceStackVector(
+      { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+      { origin, direction },
+      { stopAt: stopIdx, launchBoundT },
+    );
+    if (result.failureReason !== null) return null;
+    return result.y;
+  };
+
+  // Paraxial seed for yEP: with origin already centered such that yEP=0 passes
+  // through the paraxial EP center `(0, 0, epRatio)`, the paraxial chief ray
+  // sits at yEP = 0 by construction. Bracket width mirrors the existing
+  // object-plane formula `max(|paraxialYChief|·0.5, 0.5)`, converted to yEP
+  // space via `· cos(θ)`. Equivalently: `0.5 · epRatio · |sin θ|`.
+  const paraxialYEP = 0;
+
+  if (Math.abs(fieldAngleDeg) < 1) {
+    return {
+      yLaunch: projectYLaunchToZ0(paraxialYEP),
+      uField: uFieldEquivalent,
+      status: "converged",
+      iterations: 0,
+      launchSurface,
+    };
+  }
+
+  const bracketHalf = Math.max(0.5 * Math.abs(geom.epRatio * sinTheta), 0.5);
+  let lo = paraxialYEP - bracketHalf;
+  let hi = paraxialYEP + bracketHalf;
+  let yLo = heightAtStop(lo);
+  let yHi = heightAtStop(hi);
+
+  // Widen the bracket if the initial guess doesn't straddle the stop center.
+  // Bounding-sphere launches at past-cap fields can have less-predictable
+  // paraxial seeds than the object-plane path; allow a few doublings before
+  // giving up.
+  for (let attempt = 0; attempt < 3 && (yLo === null || yHi === null || yLo * yHi > 0); attempt++) {
+    lo = paraxialYEP - bracketHalf * (2 << attempt);
+    hi = paraxialYEP + bracketHalf * (2 << attempt);
+    yLo = heightAtStop(lo);
+    yHi = heightAtStop(hi);
+  }
+  if (yLo === null || yHi === null || yLo * yHi > 0) {
+    return {
+      yLaunch: projectYLaunchToZ0(paraxialYEP),
+      uField: uFieldEquivalent,
+      status: "bracket-failed",
+      iterations: 0,
+      launchSurface,
+    };
+  }
+
+  let fLo = yLo;
+  for (let i = 0; i < CHIEF_RAY_MAX_ITERATIONS; i++) {
+    const mid = (lo + hi) / 2;
+    const yMid = heightAtStop(mid);
+    if (yMid === null) {
+      return {
+        yLaunch: projectYLaunchToZ0(paraxialYEP),
+        uField: uFieldEquivalent,
+        status: "paraxial-fallback",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+    if (Math.abs(yMid) < CHIEF_RAY_RESIDUAL_TOLERANCE) {
+      return {
+        yLaunch: projectYLaunchToZ0(mid),
+        uField: uFieldEquivalent,
+        status: "converged",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+    if (yMid < 0 === fLo < 0) {
+      lo = mid;
+      fLo = yMid;
+    } else {
+      hi = mid;
+    }
+    if (Math.abs(hi - lo) < CHIEF_RAY_BRACKET_EPSILON) {
+      return {
+        yLaunch: projectYLaunchToZ0((lo + hi) / 2),
+        uField: uFieldEquivalent,
+        status: "converged",
+        iterations: i + 1,
+        launchSurface,
+      };
+    }
+  }
+  return {
+    yLaunch: projectYLaunchToZ0((lo + hi) / 2),
+    uField: uFieldEquivalent,
     status: "converged",
     iterations: CHIEF_RAY_MAX_ITERATIONS,
     launchSurface,
