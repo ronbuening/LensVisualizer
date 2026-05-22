@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 45 mismatched surfaces across 37 unique groups.
+**Scope**: 49 mismatched surfaces across 40 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -142,6 +142,15 @@ Candidates:
 
 Surfaces:
 - [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) `4`: `S-TIM35 (OHARA) / FD110 (HOYA)`
+
+## stored (nd=1.69416, vd=31.20) [code=694/312]  — 1 surface, current label resolves to S-TIM28
+
+Candidates:
+- **S-TIM35** (nd=1.69895, vd=30.13, Δnd=+0.0048, Δvd=-1.07, codeΔ=15.7)
+- **E-FD15** (nd=1.69895, vd=30.05, Δnd=+0.0048, Δvd=-1.15, codeΔ=16.4)
+
+Surfaces:
+- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `7`: `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)`
 
 ## stored (nd=1.69895, vd=30.13)  — 1 surface, current label resolves to S-NBH52V
 
@@ -301,6 +310,15 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `7`: `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)`
 
+## stored (nd=1.86252, vd=25.20) [code=862/252]  — 2 surfaces, current label resolves to S-NBH56
+
+Candidates:
+- **S-NPH5** (nd=1.85896, vd=22.73, Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8)
+
+Surfaces:
+- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `18`: `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)`
+- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `22`: `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)`
+
 ## stored (nd=1.86994, vd=39.82)  — 1 surface, current label resolves to TAFD30
 
 Candidates:
@@ -319,6 +337,13 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `29`: `S-LAH79 (OHARA)`
+
+## stored (nd=1.91048, vd=31.30) [code=910/313]  — 1 surface, current label resolves to S-LAH95
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `9`: `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)`
 
 ## stored (nd=1.91082, vd=35.25)  — 2 surfaces, current label resolves to S-LAH58
 
@@ -374,5 +399,5 @@ Surfaces:
 
 ## Summary
 
-- **32** (nd, vd) groups have at least one candidate (39 surfaces) — actionable relabels.
-- **5** (nd, vd) groups have NO candidate (6 surfaces) — needs patent verification or Unmatched relabeling.
+- **34** (nd, vd) groups have at least one candidate (42 surfaces) — actionable relabels.
+- **6** (nd, vd) groups have NO candidate (7 surfaces) — needs patent verification or Unmatched relabeling.

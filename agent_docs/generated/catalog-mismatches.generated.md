@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **241** lenses scanned
-- **2783** glass surfaces examined
-- **2777** surfaces with non-empty `glass` strings
-- **2168** of those resolved to a catalog entry
-- **45** mismatches found (2.1% of resolved surfaces)
-- **21** distinct lens files affected
+- **249** lenses scanned
+- **2866** glass surfaces examined
+- **2860** surfaces with non-empty `glass` strings
+- **2228** of those resolved to a catalog entry
+- **49** mismatches found (2.2% of resolved surfaces)
+- **22** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,6 +28,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 4 | |
+| S-NBH56 | 3 | |
 | S-FPM3 | 3 | |
 | S-TIM2 | 2 | |
 | S-TIH18 | 2 | |
@@ -49,7 +50,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH99 | 1 | |
 | E-FDS1 | 1 | |
 | S-TIL25 | 1 | |
-| S-NBH56 | 1 | |
 | S-LAM55 | 1 | |
 | S-NPH1 | 1 | |
 | S-TIH14 | 1 | |
@@ -57,6 +57,8 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | TAFD5F | 1 | |
 | S-TIM35 | 1 | |
 | H-ZF52 | 1 | |
+| S-TIM28 | 1 | |
+| S-LAH95 | 1 | |
 | E-F3 | 1 | |
 | E-FD15 | 1 | |
 
@@ -80,6 +82,15 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 6 | `S-FPM3 (OHARA)` | S-FPM3 | 1.59319 | 1.53775 | -0.0554 |
 | 17 | `S-FPM3 (OHARA)` | S-FPM3 | 1.59319 | 1.53775 | -0.0554 |
 | 19 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
+
+### [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) — WO 2021/199923 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 7 | `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)` | S-TIM28 | 1.69416 | 1.68893 | -0.0052 |
+| 9 | `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)` | S-LAH95 | 1.91048 | 1.90366 | -0.0068 |
+| 18 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | S-NBH56 | 1.86252 | 1.85478 | -0.0077 |
+| 22 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | S-NBH56 | 1.86252 | 1.85478 | -0.0077 |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) — JP2022-100641A
 

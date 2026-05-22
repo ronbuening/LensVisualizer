@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **241** lenses scanned
-- **248** total code-only elements found
-- **177** elements in this report
-- **73** distinct lens files affected
+- **249** lenses scanned
+- **254** total code-only elements found
+- **183** elements in this report
+- **75** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -24,7 +24,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 670571 | 4 | 2 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
+| 672472 | 3 | 1 |
 | 744495 | 3 | 3 |
+| 777297 | 3 | 3 |
 | 863248 | 3 | 1 |
 | 514428 | 2 | 1 |
 | 531559 | 2 | 2 |
@@ -35,7 +37,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 694508 | 2 | 1 |
 | 755516 | 2 | 1 |
 | 774492 | 2 | 1 |
-| 777297 | 2 | 2 |
 | 806333 | 2 | 2 |
 | 807316 | 2 | 2 |
 | 808409 | 2 | 2 |
@@ -44,6 +45,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
+| 933209 | 2 | 2 |
 | 434952 | 1 | 1 |
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
@@ -52,6 +54,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
 | 531621 | 1 | 1 |
+| 533489 | 1 | 1 |
 | 534554 | 1 | 1 |
 | 534556 | 1 | 1 |
 | 541468 | 1 | 1 |
@@ -148,7 +151,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 904293 | 1 | 1 |
 | 916364 | 1 | 1 |
 | 930240 | 1 | 1 |
-| 933209 | 1 | 1 |
 | 946179 | 1 | 1 |
 | 946180 | 1 | 1 |
 | 959175 | 1 | 1 |
@@ -203,6 +205,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 8 | `BaK/SK crown (561/575)` | 1.56093 / 57.50 | No catalog entry | abbe |
 | L6 (Element 6) | 9 | `SK-type dense crown (625/533)` | 1.62500 / 53.30 | No catalog entry | abbe |
 | L8 (Element 8) | 12 | `LaK/SK crown (642/581)` | 1.64200 / 58.10 | No catalog entry | abbe |
+
+### [Carl Zeiss Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) - US 2,084,309
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched vintage Zeiss/Schott 672/472 (nd=1.6716, νd=47.2)` | 1.67160 / 47.20 | No catalog entry | abbe |
+| L2 (Element 2) | 3 | `Unmatched vintage Zeiss/Schott 672/472 (nd=1.6716, νd=47.2)` | 1.67160 / 47.20 | No catalog entry | abbe |
+| L6 (Element 6) | 8 | `Unmatched vintage Zeiss/Schott 672/472 (nd=1.6716, νd=47.2)` | 1.67160 / 47.20 | No catalog entry | abbe |
+| L7 (Element 7) | 10 | `Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)` | 1.53330 / 48.90 | No catalog entry | abbe |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - GB 850,117 C
 
@@ -599,6 +610,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L31 (Element 9) | 17 | `Titanium flint (741/278, class S-TIH)` | 1.74077 / 27.76 | No catalog entry | abbe |
 | L41 (Element 11) | 20 | `Lanthanum heavy flint (806/333, vendor uncertain)` | 1.80610 / 33.27 | No catalog entry | abbe |
 | L43 (Element 13) | 23 | `Lanthanum heavy flint (892/371, class S-LAH)` | 1.89190 / 37.13 | No catalog entry | abbe |
+
+### [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L6 (LN rear element) | 10 | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | 1.77660 / 29.70 | No catalog entry | abbe |
+| L11 (High-index relay positive) | 20 | `Unmatched (933/209 ultra-high-index short flint)` | 1.93323 / 20.90 | No catalog entry | abbe |
 
 ### [SONY FE 20–70 mm F4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) - WO 2023/153076 A1
 
