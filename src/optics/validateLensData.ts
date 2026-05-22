@@ -18,6 +18,9 @@ import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "
  * so dynamic-key checks compile without casts on every property access. */
 type UntrustedLensData = Record<string, any>;
 
+const REQUIRED_ASPHERIC_COEFFICIENTS = ["K", "A4", "A6", "A8", "A10", "A12", "A14"] as const;
+const OPTIONAL_ASPHERIC_COEFFICIENTS = ["A16", "A18", "A20"] as const;
+
 function validateNumberRange(
   config: PerspectiveControlConfig,
   field: "shiftRangeMm" | "tiltRangeDeg",
@@ -326,6 +329,23 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   if (data.asph && typeof data.asph === "object") {
     for (const label of Object.keys(data.asph)) {
       if (!surfaceLabels.has(label)) errors.push(`asph key "${label}" does not match any surface label`);
+      const coeffs = data.asph[label];
+      if (!coeffs || typeof coeffs !== "object" || Array.isArray(coeffs)) {
+        errors.push(`asph key "${label}" must be an object of numeric coefficients`);
+        continue;
+      }
+      for (const field of REQUIRED_ASPHERIC_COEFFICIENTS) {
+        const value = coeffs[field];
+        if (typeof value !== "number" || !isFinite(value)) {
+          errors.push(`asph key "${label}" is missing finite numeric coefficient ${field}`);
+        }
+      }
+      for (const field of OPTIONAL_ASPHERIC_COEFFICIENTS) {
+        const value = coeffs[field];
+        if (value !== undefined && (typeof value !== "number" || !isFinite(value))) {
+          errors.push(`asph key "${label}" has non-finite optional coefficient ${field}`);
+        }
+      }
     }
   }
 

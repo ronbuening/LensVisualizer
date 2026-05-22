@@ -282,6 +282,16 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes('asph key "BOGUS"'))).toBe(true);
   });
 
+  it("catches missing required aspheric coefficients", () => {
+    const data = makeValid({
+      asph: {
+        "1": { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0 },
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes('asph key "1"') && e.includes("A14"))).toBe(true);
+  });
+
   it("catches invalid var label reference", () => {
     const data = makeValid({
       var: { MISSING: [1, 2] },

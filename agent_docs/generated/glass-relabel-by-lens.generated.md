@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **45** mismatched surfaces across **21** lens files
-- **39** surfaces have at least one candidate
+- **49** mismatched surfaces across **22** lens files
+- **42** surfaces have at least one candidate
 - **8** surfaces have high-confidence candidate ranking
-- **6** surfaces have no catalog candidate and need patent review
+- **7** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
 
@@ -43,6 +43,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 4 | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | 1.91082 / 35.25 | S-LAH58 (Δnd=-0.0278) | TAFD35 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
 | 6 | `S-LAH58 (OHARA)` | 1.91082 / 35.25 | S-LAH58 (Δnd=-0.0278) | TAFD35 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
 | 7 | `E-FD15 (HOYA) / N-SF14 (Schott)` | 1.76182 / 26.61 | E-FD15 (Δnd=-0.0629) | S-TIH14 (Δnd=+0.0000, Δvd=-0.09) | High | Check lens notes |
+
+### [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 7 | `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)` | 1.69416 / 31.20 | S-TIM28 (Δnd=-0.0052) | S-TIM35 (Δnd=+0.0048, Δvd=-1.07, codeΔ=15.7)<br>E-FD15 (Δnd=+0.0048, Δvd=-1.15, codeΔ=16.4) | Medium | Yes - choose candidate |
+| 9 | `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)` | 1.91048 / 31.30 | S-LAH95 (Δnd=-0.0068) | No catalog candidate | Patent review | Yes - no catalog match |
+| 18 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | 1.86252 / 25.20 | S-NBH56 (Δnd=-0.0077) | S-NPH5 (Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8) | Medium | Yes - choose candidate |
+| 22 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | 1.86252 / 25.20 | S-NBH56 (Δnd=-0.0077) | S-NPH5 (Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8) | Medium | Yes - choose candidate |
 
 ### [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) - US 5,640,277
 

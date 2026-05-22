@@ -1,0 +1,326 @@
+import type { LensDataInput } from "../../types/optics.js";
+
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║             LENS DATA — Sony FE 14mm f/1.8 GM                      ║
+ * ╠══════════════════════════════════════════════════════════════════════╣
+ * ║  Data source: WO 2021/199923 A1, Numerical Example 1 (Sony).       ║
+ * ║  Retrofocus full-frame ultra-wide prime, 14 elements, six          ║
+ * ║  aspherical surfaces, and inner focusing by the L8-L13 subgroup.   ║
+ * ║                                                                    ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                           ║
+ * ║    Patent Table 1 lists full effective diameters; surface `sd`      ║
+ * ║    values below are half of those diameters. The stop-row patent    ║
+ * ║    effective diameter is a ray-clearance diameter, not the iris     ║
+ * ║    opening. The STO `sd` is therefore derived from the verified     ║
+ * ║    design focal length and F/1.85 entrance pupil geometry.          ║
+ * ║                                                                    ║
+ * ║  Verification: paraxial EFL = 14.4219367 mm; BFD = 15.44 mm        ║
+ * ║  from total optical length 114.70 mm. Table 2 field-height and      ║
+ * ║  half-angle rows are not used for the production format metadata.    ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
+const LENS_DATA = {
+  key: "sony-fe-14mm-f18-gm",
+  maker: "Sony",
+  name: "Sony FE 14mm f/1.8 GM",
+  subtitle: "WO 2021/199923 A1 — Numerical Example 1",
+  specs: [
+    "14 elements / 11 groups",
+    "f = 14.42 mm design",
+    "F/1.85 design (marketed F/1.8)",
+    "114° official diagonal angle",
+    "6 aspherical surfaces",
+  ],
+
+  focalLengthMarketing: 14,
+  focalLengthDesign: 14.4219366746,
+  apertureMarketing: 1.8,
+  apertureDesign: 1.85,
+  lensMounts: ["sony-fe"],
+  imageFormat: "135-full-frame",
+  patentYear: 2021,
+  elementCount: 14,
+  groupCount: 11,
+  apertureBlades: 9,
+  apertureBladeRoundedness: 1,
+
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Front negative XA element",
+      type: "Neg. Meniscus (2× Asph)",
+      nd: 1.58547,
+      vd: 59.5,
+      fl: -50.3116,
+      glass: "S-BAL42-class (OHARA; patent index aligns with catalog ne, 585/595)",
+      role: "Low-density high-curvature front negative meniscus for retrofocus field expansion and sagittal-coma control.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Second negative meniscus",
+      type: "Negative Meniscus",
+      nd: 1.73234,
+      vd: 54.7,
+      fl: -49.2208,
+      glass: "S-LAL18-class (OHARA; patent index aligns with catalog ne, 732/547)",
+      role: "Shares the front negative power with L1 while using higher index to reduce surface curvature.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Front ED negative element",
+      type: "Biconcave Negative",
+      nd: 1.59489,
+      vd: 68.6,
+      fl: -34.07,
+      glass: "S-FPM2-class ED fluorophosphate (OHARA; soft match, 595/686)",
+      role: "Low-dispersion negative element at high chief-ray height for lateral-color correction.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Positive contact partner",
+      type: "Biconvex Positive",
+      nd: 1.69416,
+      vd: 31.2,
+      fl: 29.1009,
+      glass: "S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)",
+      role: "Positive high-dispersion partner after the zero air gap from L3; begins the positive recovery section of G1.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "LN front element",
+      type: "Negative Meniscus",
+      nd: 1.91048,
+      vd: 31.3,
+      fl: -12.5008,
+      glass: "S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)",
+      cemented: "LN",
+      role: "Strong high-index negative element of the cemented LN unit before the stop.",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "LN rear element",
+      type: "Positive Meniscus",
+      nd: 1.7766,
+      vd: 29.7,
+      fl: 22.1391,
+      glass: "Unmatched (777/297 dense short flint; no close OHARA public-catalog match)",
+      cemented: "LN",
+      role: "Positive cemented partner in LN; with L5 gives the unit a verified focal length of -31.20 mm.",
+    },
+    {
+      id: 7,
+      name: "L7",
+      label: "Positive XA element LP",
+      type: "Biconvex Positive (2× Asph)",
+      nd: 1.77173,
+      vd: 49.2,
+      fl: 27.7553,
+      glass: "S-LAH66-class dense lanthanum flint (OHARA; soft match, 772/492)",
+      role: "Strong positive aspherical lens immediately before the stop; the patent's LP element.",
+    },
+    {
+      id: 8,
+      name: "L8",
+      label: "Super-ED focus-group opener",
+      type: "Biconvex Positive",
+      nd: 1.4381,
+      vd: 95.1,
+      fl: 34.0183,
+      glass: "S-FPL53/S-FPL55-class super-ED fluorophosphate (OHARA; soft match, 438/951)",
+      role: "Low-dispersion positive element at the entrance of the moving G2F focus group.",
+    },
+    {
+      id: 9,
+      name: "L9",
+      label: "ED doublet crown",
+      type: "Biconvex Positive",
+      nd: 1.49845,
+      vd: 81.6,
+      fl: 31.1897,
+      glass: "S-FPL51-class ED fluorophosphate (OHARA; patent index aligns with catalog ne, 498/816)",
+      cemented: "D2",
+      role: "ED crown element in the rear cemented doublet.",
+    },
+    {
+      id: 10,
+      name: "L10",
+      label: "Rear doublet flint",
+      type: "Biconcave Negative",
+      nd: 1.86252,
+      vd: 25.2,
+      fl: -15.5537,
+      glass: "S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)",
+      cemented: "D2",
+      role: "Dense flint cemented partner to L9; the doublet focal length verifies as -32.55 mm.",
+    },
+    {
+      id: 11,
+      name: "L11",
+      label: "High-index relay positive",
+      type: "Biconvex Positive",
+      nd: 1.93323,
+      vd: 20.9,
+      fl: 21.165,
+      glass: "Unmatched (933/209 ultra-high-index short flint)",
+      role: "Very-high-index positive relay element that supplies strong rear-group power with moderated Petzval contribution.",
+    },
+    {
+      id: 12,
+      name: "L12",
+      label: "Negative Petzval element",
+      type: "Biconcave Negative",
+      nd: 1.86252,
+      vd: 25.2,
+      fl: -36.1899,
+      glass: "S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)",
+      role: "Negative element before the patent's strongest negative air lens LA.",
+    },
+    {
+      id: 13,
+      name: "L13",
+      label: "Rear aspherical negative element",
+      type: "Biconcave Negative (2× Asph)",
+      nd: 1.85639,
+      vd: 40.1,
+      fl: -218.1765,
+      glass: "S-LAH89-class lanthanum flint (OHARA; patent index aligns with catalog ne, 856/401)",
+      role: "Weak-base-power rear asphere for field-dependent correction behind the LA air lens.",
+    },
+    {
+      id: 14,
+      name: "L14",
+      label: "Rear field/telecentricity corrector",
+      type: "Positive Meniscus",
+      nd: 1.62228,
+      vd: 63.9,
+      fl: 166.8523,
+      glass: "S-PHM52-class phosphate crown (OHARA; soft match, 622/639)",
+      role: "Stationary weak positive rear meniscus for final field and chief-ray-angle trim.",
+    },
+  ],
+
+  surfaces: [
+    { label: "1A", R: 32.125, d: 1.87, nd: 1.58547, elemId: 1, sd: 26.39 },
+    { label: "2A", R: 15.036, d: 11.07, nd: 1, elemId: 0, sd: 19.365 },
+    { label: "3", R: 36.239, d: 1.5, nd: 1.73234, elemId: 2, sd: 18.41 },
+    { label: "4", R: 17.755, d: 11.66, nd: 1, elemId: 0, sd: 14.735 },
+    { label: "5", R: -57.581, d: 1.5, nd: 1.59489, elemId: 3, sd: 13.57 },
+    { label: "6", R: 31.581, d: 0, nd: 1, elemId: 0, sd: 12.465 },
+    { label: "7", R: 30.073, d: 7.9, nd: 1.69416, elemId: 4, sd: 12.46 },
+    { label: "8", R: -54.912, d: 2.58, nd: 1, elemId: 0, sd: 11.595 },
+    { label: "9", R: -27.601, d: 1.2, nd: 1.91048, elemId: 5, sd: 10.49 },
+    { label: "10", R: 19.77, d: 6, nd: 1.7766, elemId: 6, sd: 10.18 },
+    { label: "11", R: -114.412, d: 0.6, nd: 1, elemId: 0, sd: 10.15 },
+    { label: "12A", R: 36.344, d: 8, nd: 1.77173, elemId: 7, sd: 11.365 },
+    { label: "13A", R: -47.16, d: 5.71, nd: 1, elemId: 0, sd: 11.855 },
+    { label: "STO", R: 1e15, d: 6.35, nd: 1, elemId: 0, sd: 10.8026 },
+    { label: "15", R: 24.591, d: 6.96, nd: 1.4381, elemId: 8, sd: 11.425 },
+    { label: "16", R: -34.569, d: 0.2, nd: 1, elemId: 0, sd: 11.02 },
+    { label: "17", R: 106.589, d: 5.92, nd: 1.49845, elemId: 9, sd: 10.98 },
+    { label: "18", R: -17.865, d: 1.2, nd: 1.86252, elemId: 10, sd: 10.905 },
+    { label: "19", R: 55.538, d: 0.75, nd: 1, elemId: 0, sd: 11.58 },
+    { label: "20", R: 32.194, d: 6.1, nd: 1.93323, elemId: 11, sd: 12.485 },
+    { label: "21", R: -46.433, d: 0.2, nd: 1, elemId: 0, sd: 12.465 },
+    { label: "22", R: -123.478, d: 0.9, nd: 1.86252, elemId: 12, sd: 12.055 },
+    { label: "23", R: 41.916, d: 2.81, nd: 1, elemId: 0, sd: 11.7 },
+    { label: "24A", R: -500, d: 1.4, nd: 1.85639, elemId: 13, sd: 11.715 },
+    { label: "25A", R: 298.71, d: 4.78, nd: 1, elemId: 0, sd: 11.99 },
+    { label: "26", R: -418.53, d: 2.1, nd: 1.62228, elemId: 14, sd: 14.65 },
+    { label: "27", R: -83.351, d: 15.44, nd: 1, elemId: 0, sd: 14.96 },
+  ],
+
+  asph: {
+    "1A": {
+      K: 0,
+      A4: -3.2157e-7,
+      A6: -8.9102e-9,
+      A8: 7.2086e-12,
+      A10: -4.2574e-15,
+      A12: -2.1368e-19,
+      A14: 0,
+    },
+    "2A": {
+      K: -5.94e-1,
+      A4: 5.9716e-6,
+      A6: -2.5549e-9,
+      A8: -4.95e-11,
+      A10: 8.1327e-14,
+      A12: -3.5142e-16,
+      A14: 0,
+    },
+    "12A": {
+      K: 0,
+      A4: -6.7796e-6,
+      A6: -1.9157e-8,
+      A8: 9.9948e-11,
+      A10: -9.2684e-13,
+      A12: 2.2031e-15,
+      A14: 0,
+    },
+    "13A": {
+      K: 0,
+      A4: 2.4694e-6,
+      A6: -2.2906e-8,
+      A8: 1.266e-10,
+      A10: -9.188e-13,
+      A12: 1.9071e-15,
+      A14: 0,
+    },
+    "24A": {
+      K: 0,
+      A4: -7.4318e-5,
+      A6: 2.573e-7,
+      A8: 3.0021e-9,
+      A10: -2.8311e-11,
+      A12: 6.5427e-14,
+      A14: 0,
+    },
+    "25A": {
+      K: 0,
+      A4: -3.0668e-5,
+      A6: 3.5429e-7,
+      A8: 2.3165e-9,
+      A10: -2.1595e-11,
+      A12: 4.6042e-14,
+      A14: 0,
+    },
+  },
+
+  var: {
+    STO: [6.35, 4.66],
+    "25A": [4.78, 6.47],
+  },
+  varLabels: [
+    ["STO", "D14"],
+    ["25A", "D25"],
+  ],
+
+  groups: [
+    { text: "G1", fromSurface: "1A", toSurface: "13A" },
+    { text: "G2", fromSurface: "15", toSurface: "27" },
+  ],
+  doublets: [
+    { text: "LN", fromSurface: "9", toSurface: "11" },
+    { text: "D2", fromSurface: "17", toSurface: "19" },
+  ],
+
+  closeFocusM: 0.25,
+  focusDescription: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
+
+  nominalFno: 1.8,
+  fstopSeries: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+  maxFstop: 16,
+
+  scFill: 0.56,
+  yScFill: 0.58,
+} satisfies LensDataInput;
+
+export default LENS_DATA;
