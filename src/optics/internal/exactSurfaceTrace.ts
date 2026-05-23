@@ -1,4 +1,4 @@
-import type { AsphericCoefficients } from "../../types/optics.js";
+import type { AsphericCoefficients, SurfaceReflectance } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "./surfaceMath.js";
 import {
   intersectSagSurface,
@@ -15,6 +15,7 @@ export interface ExactTraceSurface {
   nd: number;
   d: number;
   sd?: number;
+  reflect?: SurfaceReflectance;
 }
 
 export interface ExactTraceLens {
@@ -22,6 +23,11 @@ export interface ExactTraceLens {
   asphByIdx: Record<number, AsphericCoefficients>;
   stopIdx?: number;
   clipMargin?: number;
+  /** Optional explicit trace sequence (resolved to surface indices). When
+   *  present, the trace engine walks these indices in order rather than
+   *  inferring the path from a single `reflect` field. Allows the same index
+   *  to repeat (a surface hit more than once on the round trip). */
+  traceSequence?: readonly number[] | null;
 }
 
 export interface ExactSurfaceTraceInput {
@@ -67,6 +73,8 @@ export interface ExactSurfaceTraceOptions {
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
 }
 
+export type TraceFailureReason = SurfaceIntersectionFailureReason | "totalInternalReflection" | "absorbed";
+
 export interface ExactSurfaceTraceHit {
   surfaceIdx: number;
   point: Vector3;
@@ -74,7 +82,7 @@ export interface ExactSurfaceTraceHit {
   radius: number;
   clipped: boolean;
   fallback: boolean;
-  failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | null;
+  failureReason: TraceFailureReason | null;
 }
 
 export interface ExactSurfaceTraceResult {
@@ -90,7 +98,7 @@ export interface ExactSurfaceTraceResult {
   terminalDirection: Vector3;
   terminalSurfaceIdx: number;
   returnVertexIdx: number;
-  failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | null;
+  failureReason: TraceFailureReason | null;
 }
 
 const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
@@ -119,22 +127,68 @@ export function projectCoordinateToZ(
 
 export function refractDirection(direction: Vector3, normal: Vector3, n: number, nn: number): Vector3 | null {
   const eta = n / nn;
-  const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
-  const tangentX = direction[0] - cosIncident * normal[0];
-  const tangentY = direction[1] - cosIncident * normal[1];
-  const tangentZ = direction[2] - cosIncident * normal[2];
+  /* The standard refraction law decomposes the incoming direction into the
+   * surface normal and tangent components. When the ray approaches the surface
+   * from the side opposite to the supplied normal (cosIncident < 0), flip the
+   * normal so the formula's transmitted normal component aligns with the
+   * direction of propagation. Without this, post-reflection backward rays
+   * would refract in the wrong z-direction. */
+  let nx = normal[0];
+  let ny = normal[1];
+  let nz = normal[2];
+  let cosIncident = direction[0] * nx + direction[1] * ny + direction[2] * nz;
+  if (cosIncident < 0) {
+    nx = -nx;
+    ny = -ny;
+    nz = -nz;
+    cosIncident = -cosIncident;
+  }
+  const tangentX = direction[0] - cosIncident * nx;
+  const tangentY = direction[1] - cosIncident * ny;
+  const tangentZ = direction[2] - cosIncident * nz;
   const tangentSq = tangentX * tangentX + tangentY * tangentY + tangentZ * tangentZ;
   const scaledTangentSq = eta * eta * tangentSq;
   if (scaledTangentSq > 1 + 1e-12) return null;
 
   const normalScale = Math.sqrt(Math.max(0, 1 - scaledTangentSq));
   const transmitted: Vector3 = [
-    eta * tangentX + normalScale * normal[0],
-    eta * tangentY + normalScale * normal[1],
-    eta * tangentZ + normalScale * normal[2],
+    eta * tangentX + normalScale * nx,
+    eta * tangentY + normalScale * ny,
+    eta * tangentZ + normalScale * nz,
   ];
   const invMag = 1 / Math.hypot(transmitted[0], transmitted[1], transmitted[2]);
   return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
+}
+
+/**
+ * Specular reflection law. Returns the reflected direction for an incoming ray
+ * hitting a surface with the given outward normal. Both inputs must be unit
+ * vectors; the output is unit-magnitude.
+ *
+ * Implements `d' = d - 2 (d·n) n`. The refractive index is unchanged by a
+ * specular reflection — callers must NOT update `n` after invoking this.
+ */
+export function reflectDirection(direction: Vector3, normal: Vector3): Vector3 {
+  const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
+  return [
+    direction[0] - 2 * cosIncident * normal[0],
+    direction[1] - 2 * cosIncident * normal[1],
+    direction[2] - 2 * cosIncident * normal[2],
+  ];
+}
+
+/**
+ * Whether a hit radius falls within a surface's silvered region. A missing
+ * region (full silvering) always returns true. A disk region is silvered for
+ * `radius ≤ rMax`. An annulus region is silvered for `rMin ≤ radius ≤ rMax`
+ * (or `radius ≥ rMin` when `rMax` is unset). Used by the trace engine to
+ * disambiguate reflect-vs-transmit at partially silvered surfaces.
+ */
+function hitInReflectRegion(radius: number, region: SurfaceReflectance["region"] | undefined): boolean {
+  if (!region) return true;
+  if (region.shape === "disk") return radius <= region.rMax;
+  const outerOk = region.rMax === undefined ? true : radius <= region.rMax;
+  return radius >= region.rMin && outerOk;
 }
 
 export function traceExactSurfaceStack(
@@ -147,6 +201,108 @@ export function traceExactSurfaceStack(
   const origin: Vector3 = [x0 - ux0 * lead, y0 - uy0 * lead, (zPos[0] ?? 0) - lead];
   const direction = normalizeDirection(ux0, uy0);
   return traceExactSurfaceStackVector(lens, { origin, direction }, { ...options, zPos, leadDistance: 0 });
+}
+
+/**
+ * One step in the trace sequence: visit a surface and apply an action.
+ *
+ * For legacy refractive lenses (no `reflect` field anywhere) the sequence is
+ * the identity `[{0,refract}, {1,refract}, ...]` and the per-step body reduces
+ * to the pre-refactor loop exactly.
+ *
+ * `defaultNextN` carries the medium the ray enters AFTER this surface in the
+ * direction it is traveling. For forward refract steps that's `S[idx].nd`; for
+ * backward refract steps (after a reflection) it's the medium on the −z side
+ * of the surface, i.e. `S[idx-1].nd` (or 1.0 at the front face).
+ */
+interface TraceStep {
+  surfaceIdx: number;
+  action: "refract" | "reflect";
+  defaultNextN: number;
+}
+
+/**
+ * Build the per-trace step sequence. The returned sequence is iterated by the
+ * vector tracer once per call; for legacy lenses it's just the identity
+ * surface-by-surface walk, byte-identical to the pre-refactor loop.
+ *
+ * For a single reflective surface (whether `kind: "first"` or `kind: "second"`)
+ * the inferred sequence is:
+ *   1. Refract forward through every surface prior to the mirror.
+ *   2. Reflect at the mirror (direction reverses; refractive index unchanged).
+ *   3. Refract backward through prior surfaces in reverse order until the
+ *      ray exits the front of the system.
+ *
+ * The medium-after-surface (`defaultNextN`) for backward refract steps tracks
+ * the medium on the −z side of each surface, which is `S[i-1].nd` (or 1.0 at
+ * the front). For a first-surface mirror this medium is air all the way; for
+ * a Mangin (second-surface) the ray reflects inside glass and walks backward
+ * through the glass, exiting to air at the element's front surface.
+ *
+ * Lenses with multiple reflective surfaces require an explicit `traceSequence`
+ * (Phase C) and are not yet supported.
+ */
+function buildTraceStepSequence(lens: ExactTraceLens, tracedCount: number): TraceStep[] {
+  if (lens.traceSequence && lens.traceSequence.length > 0) {
+    return buildExplicitStepSequence(lens, lens.traceSequence);
+  }
+
+  let reflectIdx = -1;
+  let reflectCount = 0;
+  for (let i = 0; i < tracedCount; i++) {
+    if (lens.S[i].reflect !== undefined) {
+      if (reflectCount === 0) reflectIdx = i;
+      reflectCount++;
+    }
+  }
+
+  if (reflectCount === 0) {
+    const steps = new Array<TraceStep>(tracedCount);
+    for (let i = 0; i < tracedCount; i++) {
+      steps[i] = { surfaceIdx: i, action: "refract", defaultNextN: lens.S[i].nd };
+    }
+    return steps;
+  }
+
+  if (reflectCount > 1) {
+    throw new Error(
+      "exactSurfaceTrace: multiple reflective surfaces require an explicit traceSequence (not yet supported)",
+    );
+  }
+
+  const steps: TraceStep[] = [];
+  for (let i = 0; i < reflectIdx; i++) {
+    steps.push({ surfaceIdx: i, action: "refract", defaultNextN: lens.S[i].nd });
+  }
+  steps.push({ surfaceIdx: reflectIdx, action: "reflect", defaultNextN: 0 });
+  for (let i = reflectIdx - 1; i >= 0; i--) {
+    const nextN = i > 0 ? lens.S[i - 1].nd : 1.0;
+    steps.push({ surfaceIdx: i, action: "refract", defaultNextN: nextN });
+  }
+  return steps;
+}
+
+/**
+ * Build the step list from an explicit surface-index sequence. Direction
+ * tracking is purely bookkeeping: every reflective visit flips a forward/
+ * backward flag, which the refract steps consult to choose `defaultNextN`
+ * (forward = `S[i].nd`; backward = previous surface's `nd`, or air at i=0).
+ */
+function buildExplicitStepSequence(lens: ExactTraceLens, sequence: readonly number[]): TraceStep[] {
+  const steps: TraceStep[] = new Array(sequence.length);
+  let forward = true;
+  for (let k = 0; k < sequence.length; k++) {
+    const idx = sequence[k];
+    const surface = lens.S[idx];
+    if (surface.reflect !== undefined) {
+      steps[k] = { surfaceIdx: idx, action: "reflect", defaultNextN: 0 };
+      forward = !forward;
+    } else {
+      const defaultNextN = forward ? surface.nd : idx > 0 ? lens.S[idx - 1].nd : 1.0;
+      steps[k] = { surfaceIdx: idx, action: "refract", defaultNextN };
+    }
+  }
+  return steps;
 }
 
 export function traceExactSurfaceStackVector(
@@ -177,7 +333,11 @@ export function traceExactSurfaceStackVector(
   let terminalSurfaceIdx = -1;
   let failureReason: ExactSurfaceTraceResult["failureReason"] = null;
 
-  for (let i = 0; i < tracedCount; i++) {
+  const steps = buildTraceStepSequence(lens, tracedCount);
+
+  for (let stepIdx = 0; stepIdx < steps.length; stepIdx++) {
+    const step = steps[stepIdx];
+    const i = step.surfaceIdx;
     const surface = lens.S[i];
     const vertexZ = zPos[i] ?? 0;
     const maxT = surfaceIntersectionMaxT(i, origin, direction, zPos, lens, launchBoundT);
@@ -234,7 +394,55 @@ export function traceExactSurfaceStackVector(
 
     if (hitClipped && stopOnClip && !ghost) break;
 
-    const nn = indexAtSurface ? indexAtSurface(i, surface.nd) : surface.nd === 1.0 ? 1.0 : surface.nd;
+    if (step.action === "reflect") {
+      const reflect = surface.reflect;
+      const inSilveredRegion = hitInReflectRegion(radius, reflect?.region);
+      if (inSilveredRegion && reflect?.opaqueFrom) {
+        /* One-sided opacity: rays approaching from the absorptive side are
+         * blocked within the silvered region. Forward (+z) rays are absorbed
+         * by `opaqueFrom: "front"`; backward (−z) rays by `opaqueFrom: "back"`. */
+        const isForward = direction[2] > 0;
+        const fromFront = isForward;
+        const absorbed = (reflect.opaqueFrom === "front" && fromFront) || (reflect.opaqueFrom === "back" && !fromFront);
+        if (absorbed) {
+          clipped = true;
+          failureReason = "absorbed";
+          hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
+          if (!ghost) break;
+          origin = point;
+          continue;
+        }
+      }
+      if (!inSilveredRegion) {
+        /* Outside the silvered region: transmit (refract) instead of reflect.
+         * The post-transit medium depends on the ray's current propagation
+         * sense — forward rays cross into `surface.nd`, backward rays cross
+         * into the medium on the −z side of the surface. */
+        const isForward = direction[2] > 0;
+        const transitNextN = isForward ? surface.nd : i > 0 ? lens.S[i - 1].nd : 1.0;
+        const nn = indexAtSurface ? indexAtSurface(i, transitNextN) : transitNextN;
+        if (nn !== n) {
+          const refracted = refractDirection(direction, normal, n, nn);
+          if (refracted === null) {
+            clipped = true;
+            failureReason = "totalInternalReflection";
+            hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
+            if (!ghost) break;
+          } else {
+            direction = refracted;
+          }
+        }
+        n = nn;
+        origin = point;
+        continue;
+      }
+      direction = reflectDirection(direction, normal);
+      origin = point;
+      // Refractive index is unchanged across a specular reflection.
+      continue;
+    }
+
+    const nn = indexAtSurface ? indexAtSurface(i, step.defaultNextN) : step.defaultNextN;
     if (nn !== n) {
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: propagate straight.
@@ -340,10 +548,15 @@ function surfaceIntersectionMaxT(
     const boundZ = Math.max(vertexZ + surfaceSag + 1, nextZ, origin[2] + 1e-6);
     return Math.max(1e-6, (boundZ - origin[2]) / direction[2]);
   }
-  // Grazing or backward ray (bounding-sphere launch). The z-projected bound is
-  // meaningless; fall back to the caller-supplied launch bound. Returning 0 when
-  // unset preserves the original reject-and-fail behavior.
-  return launchBoundT && launchBoundT > 0 ? launchBoundT : 0;
+  // Grazing or backward ray. Prefer the caller-supplied launch bound (used by
+  // bounding-sphere fisheye launches with a known sphere radius). Otherwise
+  // fall back to a generous lens-extent bound — this is what post-reflection
+  // backward rays use to find their target surface within the lens envelope.
+  if (launchBoundT && launchBoundT > 0) return launchBoundT;
+  const firstZ = zPos[0] ?? 0;
+  const lastZ = zPos[zPos.length - 1] ?? firstZ;
+  const extent = Math.abs(lastZ - firstZ);
+  return Math.max(1, extent * 2 + 1);
 }
 
 // Only reached on the ghost-render path for grazing or backward rays from

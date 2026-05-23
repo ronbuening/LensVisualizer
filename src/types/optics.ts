@@ -7,6 +7,32 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 
+/**
+ * Reflective surface specification. Marks a surface as a mirror.
+ *
+ * - `kind: "first"` — silvered front surface in air. The ray reflects without
+ *   ever entering glass; the refractive medium is unchanged.
+ * - `kind: "second"` — silvered rear surface of a glass element (Mangin
+ *   mirror). The ray refracts into the glass through the element's front,
+ *   reflects off this silvered rear, and refracts back out through the front.
+ *   The medium on both sides of this surface in the data must be glass.
+ * - `region` — optional radial coverage of the silvering. Inside the silvered
+ *   region the ray reflects; outside it transmits (refracts) through. Default
+ *   is a fully-silvered disk out to `sd`.
+ */
+export interface SurfaceReflectance {
+  kind: "first" | "second";
+  region?: { shape: "disk"; rMax: number } | { shape: "annulus"; rMin: number; rMax?: number };
+  /**
+   * Optional one-sided opacity. When set, the surface absorbs rays
+   * approaching from the given direction (within the silvered region) and
+   * reflects rays approaching from the other direction. Used to model a
+   * secondary mirror that blocks direct forward light but reflects light
+   * returning from a primary. Default: bidirectional reflection.
+   */
+  opaqueFrom?: "front" | "back";
+}
+
 export interface SurfaceData {
   label: string;
   R: number;
@@ -15,6 +41,17 @@ export interface SurfaceData {
   sd: number;
   elemId: number;
   stopPlacement?: "inside-element";
+  reflect?: SurfaceReflectance;
+  /**
+   * Optional host-element marker for surfaces that are geometrically embedded
+   * inside another element's volume (e.g. a secondary mirror spot embedded
+   * within the front corrector of a Maksutov-Cassegrain). The value is the
+   * label of a surface belonging to the host element. The host element's span
+   * (its `fromSurface` / `toSurface` range) must include this embedded
+   * surface's vertex z. Diagram rendering treats embedded surfaces as a
+   * separate overlay rather than part of the host element's outline.
+   */
+  embeddedIn?: string;
 }
 
 export interface AsphericCoefficients {
@@ -182,6 +219,20 @@ export interface LensData {
   apertureBlades?: number;
   /** Blade roundedness 0–1 (future: 0 = straight polygon, 1 = circular). */
   apertureBladeRoundedness?: number;
+  /**
+   * Optional explicit hit-order sequence for catadioptric lenses where the
+   * inferred order (forward through every surface, reflect at the silvered
+   * one, backward through prior surfaces) does not describe the physical
+   * light path. Each entry is a surface label; a label may repeat to express
+   * a surface that the ray traverses more than once (e.g. a Cassegrain's
+   * corrector plate on both the forward and return passes).
+   *
+   * The engine derives the action at each step from the surface itself: a
+   * surface with `reflect` set always reflects when visited; otherwise the
+   * step refracts. The medium-after-surface is inferred from the current
+   * direction sign (positive z = forward, negative z = backward).
+   */
+  traceSequence?: string[];
 }
 
 /** Fields provided by LENS_DEFAULTS — optional in raw lens data files */
@@ -314,6 +365,9 @@ export interface RuntimeLens {
   readonly zoomStep: number;
   readonly zoomLabels: string[] | null;
   readonly labelIdx: Record<string, number>;
+  /** Resolved trace sequence (surface indices) for catadioptric lenses with
+   *  explicit hit-order. Null when the legacy/inferred sequence applies. */
+  readonly traceSequence: readonly number[] | null;
 }
 
 /* ── Ray-trace result types ── */
@@ -373,12 +427,18 @@ export interface AsphPathData {
   labelY: number;
 }
 
+export interface MirrorPathData {
+  surfIdx: number;
+  pathD: string;
+}
+
 export interface ElementShape {
   eid: number;
   d: string;
   z1: number;
   z2: number;
   asphPaths: AsphPathData[];
+  mirrorPaths: MirrorPathData[];
 }
 
 export type ElementRenderTrimCause = "none" | "slope" | "gap" | "conic-limit";

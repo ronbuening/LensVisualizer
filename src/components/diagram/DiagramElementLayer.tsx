@@ -85,6 +85,20 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
         )),
       )}
 
+      {shapes.flatMap(({ mirrorPaths }) =>
+        (mirrorPaths || []).map(({ surfIdx, pathD }) => (
+          <path
+            key={`mirror-${surfIdx}`}
+            d={pathD}
+            fill="none"
+            stroke={t.mirrorStroke}
+            strokeWidth={t.mirrorStrokeWidth}
+            strokeLinecap="round"
+            style={{ pointerEvents: "none" }}
+          />
+        )),
+      )}
+
       {shapes.flatMap(({ asphPaths }) =>
         (asphPaths || []).map(({ surfIdx, labelX, labelY }) => (
           <text

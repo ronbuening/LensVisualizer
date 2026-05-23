@@ -296,6 +296,172 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (s.stopPlacement !== undefined && s.label !== "STO") {
       errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement is only valid on the "STO" surface`);
     }
+    if (s.reflect !== undefined) {
+      if (typeof s.reflect !== "object" || s.reflect === null || Array.isArray(s.reflect)) {
+        errors.push(`surfaces[${i}] ("${s.label}"): reflect must be an object when provided`);
+      } else if (s.reflect.kind !== "first" && s.reflect.kind !== "second") {
+        errors.push(`surfaces[${i}] ("${s.label}"): reflect.kind must be "first" or "second"`);
+      } else if (s.reflect.kind === "first") {
+        if (typeof s.nd === "number" && Math.abs(s.nd - 1.0) > 1e-6) {
+          errors.push(
+            `surfaces[${i}] ("${s.label}"): first-surface mirror requires nd=1.0 (air) on the back side, got ${s.nd}`,
+          );
+        }
+        if (i > 0) {
+          const prev = data.surfaces[i - 1];
+          if (typeof prev?.nd === "number" && Math.abs(prev.nd - 1.0) > 1e-6) {
+            errors.push(
+              `surfaces[${i}] ("${s.label}"): first-surface mirror requires air (nd=1.0) before the surface; previous surface "${prev.label}" has nd=${prev.nd}`,
+            );
+          }
+        }
+      } else {
+        /* kind: "second" — Mangin / silvered rear. The medium on both sides of
+         * this surface in the data must be the same glass index. The ray
+         * physically reflects within the glass; the data convention treats the
+         * surface as fully embedded in the glass medium so that backward
+         * propagation through the corrector stays in glass until it refracts
+         * back out through the front. */
+        if (i === 0) {
+          errors.push(
+            `surfaces[${i}] ("${s.label}"): second-surface mirror (Mangin) requires a glass entry surface before it`,
+          );
+        }
+        /* Full silvering (no `region`) enforces glass on both sides — the
+         * Mangin convention. Partial silvering (with `region`) only requires
+         * glass on the entry side, since the transmissive portion of the
+         * surface may exit into air (e.g. a Mak-Cass corrector rear with a
+         * central silvered spot). */
+        const isPartialSilvering = s.reflect.region !== undefined;
+        if (!isPartialSilvering && typeof s.nd === "number" && Math.abs(s.nd - 1.0) <= 1e-6) {
+          errors.push(
+            `surfaces[${i}] ("${s.label}"): second-surface mirror requires glass (nd>1) on the back side, got nd=${s.nd}`,
+          );
+        }
+        if (i > 0) {
+          const prev = data.surfaces[i - 1];
+          if (typeof prev?.nd === "number" && Math.abs(prev.nd - 1.0) <= 1e-6) {
+            errors.push(
+              `surfaces[${i}] ("${s.label}"): second-surface mirror requires glass (nd>1) before the surface; previous surface "${prev.label}" has nd=${prev.nd}`,
+            );
+          } else if (
+            !isPartialSilvering &&
+            typeof prev?.nd === "number" &&
+            typeof s.nd === "number" &&
+            Math.abs(prev.nd - s.nd) > 1e-6
+          ) {
+            errors.push(
+              `surfaces[${i}] ("${s.label}"): second-surface mirror requires identical glass on both sides; previous nd=${prev.nd} ≠ this nd=${s.nd}`,
+            );
+          }
+        }
+      }
+      if (
+        s.reflect &&
+        typeof s.reflect === "object" &&
+        s.reflect.opaqueFrom !== undefined &&
+        s.reflect.opaqueFrom !== "front" &&
+        s.reflect.opaqueFrom !== "back"
+      ) {
+        errors.push(`surfaces[${i}] ("${s.label}"): reflect.opaqueFrom must be "front" or "back" when provided`);
+      }
+      if (s.reflect && typeof s.reflect === "object" && s.reflect.region !== undefined) {
+        const region = s.reflect.region;
+        if (typeof region !== "object" || region === null || Array.isArray(region)) {
+          errors.push(`surfaces[${i}] ("${s.label}"): reflect.region must be an object`);
+        } else if (region.shape === "disk") {
+          if (typeof region.rMax !== "number" || !isFinite(region.rMax) || region.rMax <= 0) {
+            errors.push(`surfaces[${i}] ("${s.label}"): reflect.region.rMax must be a positive number`);
+          } else if (typeof s.sd === "number" && region.rMax > s.sd + 1e-9) {
+            errors.push(
+              `surfaces[${i}] ("${s.label}"): reflect.region.rMax (${region.rMax}) exceeds surface sd (${s.sd})`,
+            );
+          }
+        } else if (region.shape === "annulus") {
+          if (typeof region.rMin !== "number" || !isFinite(region.rMin) || region.rMin < 0) {
+            errors.push(`surfaces[${i}] ("${s.label}"): reflect.region.rMin must be a non-negative number`);
+          }
+          if (
+            region.rMax !== undefined &&
+            (typeof region.rMax !== "number" || !isFinite(region.rMax) || region.rMax <= region.rMin)
+          ) {
+            errors.push(`surfaces[${i}] ("${s.label}"): reflect.region.rMax must be greater than rMin when provided`);
+          }
+          if (
+            region.rMax !== undefined &&
+            typeof region.rMax === "number" &&
+            typeof s.sd === "number" &&
+            region.rMax > s.sd + 1e-9
+          ) {
+            errors.push(
+              `surfaces[${i}] ("${s.label}"): reflect.region.rMax (${region.rMax}) exceeds surface sd (${s.sd})`,
+            );
+          }
+        } else {
+          errors.push(`surfaces[${i}] ("${s.label}"): reflect.region.shape must be "disk" or "annulus"`);
+        }
+      }
+    }
+    if (s.embeddedIn !== undefined) {
+      if (typeof s.embeddedIn !== "string") {
+        errors.push(`surfaces[${i}] ("${s.label}"): embeddedIn must be a surface label`);
+      } else if (!data.surfaces.some((row: any) => row.label === s.embeddedIn)) {
+        errors.push(`surfaces[${i}] ("${s.label}"): embeddedIn label "${s.embeddedIn}" not found`);
+      }
+    }
+  }
+  let reflectiveSurfaceCount = 0;
+  for (let i = 0; i < data.surfaces.length; i++) {
+    if (data.surfaces[i].reflect !== undefined) reflectiveSurfaceCount++;
+  }
+  if (reflectiveSurfaceCount > 1 && !Array.isArray(data.traceSequence)) {
+    errors.push(`Multiple reflective surfaces (${reflectiveSurfaceCount}) require an explicit traceSequence`);
+  }
+
+  if (data.traceSequence !== undefined) {
+    if (!Array.isArray(data.traceSequence) || data.traceSequence.length === 0) {
+      errors.push(`"traceSequence" must be a non-empty array of surface labels when provided`);
+    } else {
+      const labelToIdx: Record<string, number> = {};
+      for (let i = 0; i < data.surfaces.length; i++) {
+        const surface = data.surfaces[i];
+        if (typeof surface.label === "string") labelToIdx[surface.label] = i;
+      }
+      let prevIdx: number | null = null;
+      let prevSurface: any = null;
+      for (let k = 0; k < data.traceSequence.length; k++) {
+        const label = data.traceSequence[k];
+        if (typeof label !== "string") {
+          errors.push(`traceSequence[${k}] must be a surface label string`);
+          continue;
+        }
+        const idx = labelToIdx[label];
+        if (idx === undefined) {
+          errors.push(`traceSequence[${k}]: surface label "${label}" not found`);
+          continue;
+        }
+        if (k === 0 && idx !== 0) {
+          errors.push(
+            `traceSequence[0]: must start at the first physical surface (index 0, label "${data.surfaces[0]?.label}"); got "${label}" (index ${idx})`,
+          );
+        }
+        if (prevIdx !== null) {
+          /* When the surface index decreases (or stays the same while heading
+           * to a "behind" surface), the ray has reversed direction. That can
+           * only happen at a reflective surface — the immediately previous
+           * step in the sequence must have `reflect` set. */
+          const reversed = idx < prevIdx;
+          const prevHasReflect = prevSurface && prevSurface.reflect !== undefined;
+          if (reversed && !prevHasReflect) {
+            errors.push(
+              `traceSequence[${k}]: surface "${label}" at index ${idx} comes after "${prevSurface?.label}" at index ${prevIdx} (reverse direction), but the previous surface is not reflective`,
+            );
+          }
+        }
+        prevIdx = idx;
+        prevSurface = data.surfaces[idx];
+      }
+    }
   }
   if (stoCount === 0) errors.push('No surface with label "STO" found');
   if (stoCount > 1) errors.push(`Multiple surfaces with label "STO" found (${stoCount})`);

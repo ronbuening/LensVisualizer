@@ -10,6 +10,7 @@ import type {
   CoordinateTransforms,
   ElementShape,
   AsphPathData,
+  MirrorPathData,
   ElementSpan,
   SurfaceRenderDiagnostics,
   ElementRenderDiagnostics,
@@ -307,6 +308,53 @@ export function computeElementShapes(
         labelY: labelY - 4,
       });
     }
-    return { eid, d: d + "Z", z1, z2, asphPaths };
+    /* Mirror overlay paths — one (or two, for annular silvering) per silvered
+     * surface in the element span. The silvered arc traces the same sag as the
+     * underlying glass surface but is stroked with the mirror style so it
+     * visually overrides the element fill on the silvered side. */
+    const mirrorPaths: MirrorPathData[] = [];
+    for (const { idx, vertexZ, trim } of [
+      { idx: s1, vertexZ: z1, trim: trim1 },
+      { idx: s2, vertexZ: z2, trim: trim2 },
+    ]) {
+      const surface = L.S[idx];
+      if (!surface.reflect) continue;
+      const region = surface.reflect.region;
+      const ranges = silveredYRanges(region, trim);
+      for (const [yLo, yHi] of ranges) {
+        let p = "";
+        for (let i = 0; i <= NN; i++) {
+          const y = yLo + ((yHi - yLo) * i) / NN;
+          p += `${i ? "L" : "M"}${pathPoint(vertexZ + renderSag(Math.abs(y), idx, L), y)} `;
+        }
+        mirrorPaths.push({ surfIdx: idx, pathD: p });
+      }
+    }
+    return { eid, d: d + "Z", z1, z2, asphPaths, mirrorPaths };
   });
+}
+
+/**
+ * Resolve a reflect.region into one or two y-coordinate ranges to draw with
+ * the mirror stroke. Full silvering returns a single range from −trim to
+ * +trim; a disk shrinks that to ±rMax; an annulus splits into two ranges
+ * mirrored about the axis. Returned y-values are clamped to ±trim so partial
+ * mirrors never extend past the underlying element's rendered semi-diameter.
+ */
+function silveredYRanges(
+  region: { shape: "disk"; rMax: number } | { shape: "annulus"; rMin: number; rMax?: number } | undefined,
+  trim: number,
+): [number, number][] {
+  if (!region) return [[-trim, trim]];
+  if (region.shape === "disk") {
+    const r = Math.min(Math.max(0, region.rMax), trim);
+    return [[-r, r]];
+  }
+  const inner = Math.min(Math.max(0, region.rMin), trim);
+  const outer = Math.min(region.rMax ?? trim, trim);
+  if (outer <= inner) return [];
+  return [
+    [-outer, -inner],
+    [inner, outer],
+  ];
 }

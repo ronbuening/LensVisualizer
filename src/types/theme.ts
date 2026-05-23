@@ -93,6 +93,8 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   asphLabel: string;
   asphStrokeWidth: number;
   asphDiamondFill: string;
+  mirrorStroke: string;
+  mirrorStrokeWidth: number;
   rayWidthScale: number;
   elemStrokeIdle: number;
   elemStrokeActive: number;

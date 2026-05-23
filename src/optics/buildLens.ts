@@ -249,6 +249,9 @@ export default function buildLens(data: LensData): RuntimeLens {
 
   const isZoom = Array.isArray(data.zoomPositions) && data.zoomPositions.length >= 2;
   const labelIdx = buildLabelIndex(S);
+  const traceSequence: readonly number[] | null = Array.isArray(data.traceSequence)
+    ? data.traceSequence.map((label) => labelIdx[label])
+    : null;
   const asphByIdx = buildAsphereIndex(data.asph, labelIdx);
   const varByIdx = buildVarIndex(data.var, labelIdx);
   const aberrationControl = data.aberrationControl
@@ -294,7 +297,9 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  also part of the drawn physical element geometry.
    *  Falls back to the paraxial yRatio if the real trace hits TIR. */
   const { y: nomYRatio } = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
-  const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
+  /* EFL trace walks the explicit trace sequence for catadioptric lenses so
+   * the computed Gaussian focal length reflects the round-trip path. */
+  const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true, traceSequence });
   const nomEFL = -1.0 / nomUe;
   assertRectilinearFocalReference(data, projection, nomEFL);
   const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
@@ -308,7 +313,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   /* ── Optical constants ──
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
    *  exit slope u; EFL = −1/u (standard paraxial formula). */
-  const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true });
+  const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true, traceSequence });
   const EFL = -1.0 / eflTrace.u;
   if (!isFinite(EFL))
     throw new Error(
@@ -751,6 +756,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     zoomStep: data.zoomStep || 0.004,
     zoomLabels: data.zoomLabels || null,
     labelIdx,
+    traceSequence,
   }) as RuntimeLens;
 }
 
