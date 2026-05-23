@@ -1,8 +1,8 @@
 # Gotchas — LensVisualizer
 
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- Exact surface tracing is the production default; `src/optics/traceMode.ts` retains only a `"legacy"` mode as a
-  test/debug escape hatch. Do not reintroduce a per-lens rollout or put trace-mode state in lens data files
+- Exact surface tracing is the only trace path. The legacy vertex-plane tracer has been removed; do not
+  reintroduce a per-lens rollout, a `traceMode` option, or trace-mode state in lens data files
 - Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
   than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; fisheye chief-ray solves
   route through the bounding-sphere vector path via `solveChiefRay`, and vector-aware callers should consume

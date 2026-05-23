@@ -1,5 +1,7 @@
 # Trace Model Improvement Plan
 
+> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+
 Status: revised after the PR 8 follow-ups and PR #506 landed, 2026-05-21.
 
 The current branch state: every analysis module's field-launch slope routes through the shared projection helper;

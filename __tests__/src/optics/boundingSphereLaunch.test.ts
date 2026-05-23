@@ -106,7 +106,7 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
     (fieldDeg) => {
       const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
       const objectPlane = solveChiefRay(fieldDeg, 0, 0, L);
-      const boundingSphere = solveChiefRayBoundingSphere(fieldDeg, 0, 0, L, undefined, 0, undefined);
+      const boundingSphere = solveChiefRayBoundingSphere(fieldDeg, 0, 0, L, undefined, 0);
 
       expect(objectPlane.status).toBe("converged");
       expect(objectPlane.launchSurface).toBe("object-plane");
@@ -126,7 +126,7 @@ describe("bounding-sphere parity vs object-plane (PR 8 Step 4)", () => {
     // the bisection's residual tolerance (~1e-7 mm) with the object-plane result.
     const L = buildLens(LENS_CATALOG[RECTILINEAR_FIXTURE]);
     const dispatched = solveChiefRay(15, 0, 0, L);
-    const directBoundingSphere = solveChiefRayBoundingSphere(15, 0, 0, L, undefined, 0, undefined);
+    const directBoundingSphere = solveChiefRayBoundingSphere(15, 0, 0, L, undefined, 0);
 
     expect(dispatched.launchSurface).toBe("object-plane");
     expect(directBoundingSphere.launchSurface).toBe("bounding-sphere");

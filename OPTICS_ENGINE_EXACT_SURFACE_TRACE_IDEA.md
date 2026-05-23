@@ -1,5 +1,7 @@
 # Exact Surface Ray-Tracing Migration State
 
+> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+
 ## Summary
 
 Exact surface tracing is now the default production path for public runtime tracing and real-ray-derived optical

@@ -105,8 +105,8 @@ Read only the relevant focused doc before changing that area:
 ## Core Working Rules
 
 - Keep optics helpers pure and pass the runtime lens object `L` explicitly; avoid module-level optical state.
-- Exact surface tracing is the production default for every lens; `"legacy"` mode in `src/optics/traceMode.ts` is a
-  test/debug escape hatch only. Do not add per-lens trace rollout state.
+- Exact surface tracing is the only trace path; there is no legacy mode. Do not add per-lens trace rollout state
+  or thread `mode` / `traceMode` options through new helpers.
 - Fisheye and ultra-wide field launch must go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.

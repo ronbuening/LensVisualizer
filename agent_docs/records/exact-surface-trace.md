@@ -1,5 +1,7 @@
 # Exact Surface Trace
 
+> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+
 > **2026-05-20 update.** The rollout machinery described below has been removed.
 > `SURFACE_TRACE_ROLLOUT_MODE`, `EXACT_SURFACE_TRACE_LENS_KEYS`, and
 > `SurfaceTraceRolloutMode` are gone; `resolveSurfaceTraceMode` now simply returns

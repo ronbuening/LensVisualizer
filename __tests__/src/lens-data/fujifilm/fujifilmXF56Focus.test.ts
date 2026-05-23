@@ -1,14 +1,12 @@
 import { describe, expect, it } from "vitest";
-import buildLens, { type BuildLensOptions } from "../../../../src/optics/buildLens.js";
+import buildLens from "../../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import FujifilmXF56Raw from "../../../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
 import { conjugateK, doLayout, entrancePupilAtState, traceRay } from "../../../../src/optics/optics.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 
-const LEGACY_TRACE_OPTIONS = { mode: "legacy" } as const;
-
-function build(raw: object, options?: BuildLensOptions): RuntimeLens {
-  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData, options);
+function build(raw: object): RuntimeLens {
+  return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
 }
 
 function focusTForDistance(distanceM: number, L: RuntimeLens): number {
@@ -49,7 +47,6 @@ function solveKForImageHeight(L: RuntimeLens, focusT: number, h: number): number
 
 describe("Fujifilm XF 56mm f/1.2 focus tracking", () => {
   const L = build(FujifilmXF56Raw);
-  const legacyL = build(FujifilmXF56Raw, { traceMode: "legacy" });
 
   it("matches the solved near-axis tracked-focus slope near minimum focus", () => {
     for (const distanceM of [0.73, 0.71, 0.7]) {
@@ -58,44 +55,6 @@ describe("Fujifilm XF 56mm f/1.2 focus tracking", () => {
       const solvedNearAxisK = solveKForImageHeight(L, focusT, currentEPSD * 0.1);
       expect(solvedNearAxisK, `${distanceM} m should yield a finite near-axis solve`).not.toBeNull();
       expect(conjugateK(focusT, 0, L)).toBeCloseTo(solvedNearAxisK!, 4);
-    }
-  });
-
-  it("preserves the legacy outer-ray no-inversion focus-tracking characterization", () => {
-    for (const distanceM of [0.73, 0.71, 0.7]) {
-      const focusT = focusTForDistance(distanceM, legacyL);
-      const { z } = doLayout(focusT, 0, legacyL);
-      const currentEPSD = entrancePupilAtState(
-        legacyL.stopPhysSD,
-        focusT,
-        0,
-        legacyL,
-        undefined,
-        0,
-        LEGACY_TRACE_OPTIONS,
-      ).epSD;
-      const outerHeight = currentEPSD * 0.83;
-      const focusK = conjugateK(focusT, 0, legacyL, 0, LEGACY_TRACE_OPTIONS);
-      const tracked = traceRay(
-        outerHeight,
-        outerHeight * focusK,
-        z,
-        focusT,
-        0,
-        legacyL.stopPhysSD,
-        true,
-        legacyL,
-        0,
-        LEGACY_TRACE_OPTIONS,
-      );
-
-      expect(tracked.clipped, `${distanceM} m outer tracked legacy ray should stay inside the lens`).toBe(false);
-
-      const l24RearHeight = tracked.pts[18]?.[1];
-      const l25FrontHeight = tracked.pts[19]?.[1];
-      expect(typeof l24RearHeight).toBe("number");
-      expect(typeof l25FrontHeight).toBe("number");
-      expect(Math.sign(l24RearHeight!)).toBe(Math.sign(l25FrontHeight!));
     }
   });
 });

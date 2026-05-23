@@ -1,6 +1,5 @@
 import { traceRay } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import type { RayTraceOptions } from "../rayTrace.js";
 
 /** Candidate fractions of the entrance pupil for the marginal ray sample. */
 export const MARGINAL_FRACS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
@@ -55,10 +54,9 @@ export function computeRealRayHit(
   imagePlaneZ: number,
   signedFraction: number,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): RealRayHit | null {
   const h = signedFraction * currentEPSD;
-  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
+  const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
   if (ray.clipped) return null;
 
   const intercept = axialIntercept(ray.y, ray.u, lastSurfZ);
@@ -88,7 +86,6 @@ export function computeSymmetricRealSample(
   imagePlaneZ: number,
   fraction: number,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): SymmetricRealSample | null {
   const plusHit = computeRealRayHit(
     L,
@@ -101,7 +98,6 @@ export function computeSymmetricRealSample(
     imagePlaneZ,
     fraction,
     aberrationT,
-    options,
   );
   const minusHit = computeRealRayHit(
     L,
@@ -114,7 +110,6 @@ export function computeSymmetricRealSample(
     imagePlaneZ,
     -fraction,
     aberrationT,
-    options,
   );
   if (plusHit === null || minusHit === null) return null;
 

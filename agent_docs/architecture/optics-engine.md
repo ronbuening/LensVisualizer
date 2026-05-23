@@ -21,7 +21,6 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
-| `traceMode.ts` | Test/debug escape hatch for switching between `legacy` and `exact` surface tracing on a per-call basis; production always resolves to `exact`. |
 | `projection.ts` | Projection model (rectilinear, fisheye-equidistant, fisheye-equisolid), forward/inverse maps, distortion residual reference, the `isFisheyeProjection` type guard for the recurring kind-fork, `projectionLaunchSlopeForField` (1D meridional `uField` from a field angle, with the 89° out-of-domain guard `MAX_FIELD_LAUNCH_DEG`), and its 2D companion `projectionLaunchVectorForFieldAngles` (azimuthal `(θ_x, θ_y)` → slopes + ideal image point). Also exposes the `LaunchSurface = "object-plane" \| "bounding-sphere"` discriminator, `launchSurfaceForFieldDeg(fieldDeg, projection)` selector, `ABSOLUTE_HALF_FIELD_CEILING`, `TRACING_SAFETY_FACTOR`, and `boundingSphereLaunchVector(epZ, θ_x, θ_y, R)` geometric helper for past-cap fisheye fields. |
 | `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
@@ -75,8 +74,7 @@ Major public helpers:
 - Current-state field geometry: `computeFieldGeometryAtState()`.
 - Chief ray solving: `solveChiefRay()` returns a typed `ChiefRaySolveResult` (`converged` / `paraxial-fallback`
   / `bracket-failed` / `out-of-domain` + iteration count + `launchSurface: "object-plane" \| "bounding-sphere"`),
-  memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / mode /
-  launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`:
+  memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`:
   **fisheye projections always route through `solveChiefRayBoundingSphere`** regardless of angle, exercising
   the bounding-sphere code on every fisheye solve in the catalog (parity tests prove bit-identical results
   vs object-plane at θ < 89°). Rectilinear projections keep cap-based dispatch: object-plane below
@@ -91,11 +89,10 @@ All trace/layout functions accept `zoomT`; prime lenses ignore it.
 
 ## Exact Surface Trace
 
-Exact tracing is the production default for every lens. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,
-`traceSkewRayChromatic()`, and the chief-relative skew wrappers accept an optional final `RayTraceOptions`
-object with `mode?: "legacy" | "exact"`; omit it in production. `resolveSurfaceTraceMode()` simply returns the
-caller's requested mode or `"exact"`. The `"legacy"` value is retained only so tests and diagnostics can
-compare the legacy vertex-plane transfer model against the exact path on the same lens.
+Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `traceSkewRay()`,
+`traceSkewRayChromatic()`, and the chief-relative skew wrappers take their full positional parameters and
+have no mode/options surface — every call resolves to the exact path. The legacy vertex-plane tracer has
+been removed; do not reintroduce a `RayTraceOptions` parameter or a `traceMode` flag.
 
 The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
 
@@ -112,9 +109,7 @@ to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy
 splits its finiteness predicate into `isFiniteValueEvaluation` (used by `findBracket` endpoints and samples)
 and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside Newton iteration) so a
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
-The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite. The legacy
-vertex-plane real-ray helper is named `traceSurfacesVertexReal`; avoid importing the `traceSurfacesReal`
-compatibility alias in production optics code.
+The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
 ## Field-Launch Convention
 

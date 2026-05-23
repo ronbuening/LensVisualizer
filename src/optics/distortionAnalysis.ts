@@ -36,7 +36,6 @@ import {
 } from "./projection.js";
 import type { FieldGeometryState, SkewRayTraceResult } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
-import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
@@ -109,11 +108,10 @@ function computeDistortionReference(
   zoomT: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): DistortionReference | null {
   if (L.N < 1) return null;
 
-  const geometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (geometry.halfFieldDeg <= 0 || !isFinite(geometry.halfFieldDeg)) return null;
 
   const halfFieldRad = (geometry.halfFieldDeg * Math.PI) / 180;
@@ -153,21 +151,11 @@ function computeDistortionReference(
     L,
     geometry,
     aberrationT,
-    options,
   );
   if (!isFinite(edgeImageHeight) || Math.abs(edgeImageHeight) < 1e-9) return null;
 
   const scaleProbeAngleDeg = Math.min(Math.max(geometry.halfFieldDeg * 0.01, 0.02), 0.5);
-  const probeImageHeight = chiefRayImageHeight(
-    scaleProbeAngleDeg,
-    zPos,
-    focusT,
-    zoomT,
-    L,
-    geometry,
-    aberrationT,
-    options,
-  );
+  const probeImageHeight = chiefRayImageHeight(scaleProbeAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
   const probeLaunch = projectionLaunchSlopeForField(L, scaleProbeAngleDeg);
   if (probeLaunch.status === "out-of-domain") return null;
   const probeTan = -probeLaunch.uField;
@@ -218,9 +206,8 @@ export function computeDistortionCurve(
   _currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): DistortionSample[] {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT, options);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) return [];
 
   const samples: DistortionSample[] = [];
@@ -252,7 +239,6 @@ export function computeDistortionCurve(
       L,
       reference.geometry,
       aberrationT,
-      options,
     );
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
@@ -300,7 +286,6 @@ function buildPupilCorrectionTable(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): PupilCorrectionEntry[] {
   const table: PupilCorrectionEntry[] = [];
   const sampleCount = isHeavyLensForRayWork(L)
@@ -314,7 +299,7 @@ function buildPupilCorrectionTable(
       continue;
     }
     const paraxialYChief = -reference.geometry.epRatio * launch.uField;
-    const solvedYChief = solveChiefRay(angleDeg, focusT, zoomT, L, reference.geometry, aberrationT, options).yLaunch;
+    const solvedYChief = solveChiefRay(angleDeg, focusT, zoomT, L, reference.geometry, aberrationT).yLaunch;
     const ratio = Math.abs(paraxialYChief) > 1e-12 ? solvedYChief / paraxialYChief : 1;
     table.push({ angleDeg, ratio: isFinite(ratio) ? ratio : 1 });
   }
@@ -404,7 +389,6 @@ function traceDistortionGridPointVector(
   currentPhysStopSD: number,
   L: RuntimeLens,
   aberrationT: number,
-  options?: RayTraceOptions,
 ): SkewRayTraceResult | null {
   const vectorLaunch = computeBoundingSphereVectorFieldLaunch(
     L,
@@ -414,7 +398,7 @@ function traceDistortionGridPointVector(
     aberrationT,
   );
   if (vectorLaunch === null) return null;
-  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L, options);
+  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L);
 }
 
 // The slope launch starts from the paraxial EP; pupil aberration is applied
@@ -430,7 +414,6 @@ function traceDistortionGridPointSlope(
   L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
   aberrationT: number,
-  options?: RayTraceOptions,
 ): SkewRayTraceResult {
   const correction = interpolatePupilCorrection(pupilCorrection, launch.equivalentAngleDeg);
   const correctedEpRatio = reference.geometry.epRatio * correction;
@@ -447,7 +430,6 @@ function traceDistortionGridPointSlope(
     true,
     L,
     aberrationT,
-    options,
   );
 }
 
@@ -461,7 +443,6 @@ function traceDistortionGridPoint(
   L: RuntimeLens,
   pupilCorrection: PupilCorrectionEntry[],
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): DistortionGridPoint {
   const radiusNormalized = Math.hypot(xNormalized, yNormalized);
   const insideImageCircle = radiusNormalized <= 1 + 1e-9;
@@ -497,7 +478,7 @@ function traceDistortionGridPoint(
 
   const trace =
     launch.kind === "vector"
-      ? traceDistortionGridPointVector(launch, reference, currentPhysStopSD, L, aberrationT, options)
+      ? traceDistortionGridPointVector(launch, reference, currentPhysStopSD, L, aberrationT)
       : traceDistortionGridPointSlope(
           launch,
           reference,
@@ -507,7 +488,6 @@ function traceDistortionGridPoint(
           L,
           pupilCorrection,
           aberrationT,
-          options,
         );
 
   if (trace === null) {
@@ -562,9 +542,8 @@ export function computeDistortionFieldGrid(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): DistortionFieldGridResult {
-  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT, options);
+  const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) {
     return {
       lines: [],
@@ -579,7 +558,7 @@ export function computeDistortionFieldGrid(
     (_, index) => -1 + (2 * index) / (DISTORTION_GRID_SEGMENT_COUNT - 1),
   );
 
-  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L, aberrationT, options);
+  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L, aberrationT);
 
   return {
     idealFieldRadius: reference.idealFieldRadius,
@@ -600,7 +579,6 @@ export function computeDistortionFieldGrid(
             L,
             pupilCorrection,
             aberrationT,
-            options,
           ),
         ),
       };
@@ -618,7 +596,6 @@ export function computeDistortionFieldGrid(
             L,
             pupilCorrection,
             aberrationT,
-            options,
           ),
         ),
       };

@@ -1,12 +1,7 @@
 import { describe, expect, it } from "vitest";
-import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
-import Sonnar50f15Raw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
-import buildLens from "../../../../src/optics/buildLens.js";
 import { traceExactSurfaceStack } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import { sag } from "../../../../src/optics/internal/surfaceMath.js";
-import { computeFieldGeometryAtState } from "../../../../src/optics/optics.js";
-import { computeBothPupilAberrationProfiles } from "../../../../src/optics/pupilAberration.js";
-import type { LensData, SurfaceData } from "../../../../src/types/optics.js";
+import type { SurfaceData } from "../../../../src/types/optics.js";
 
 const flatSurfaces = [
   { label: "1", R: 1e15, nd: 1.0, d: 5, sd: 10, elemId: 0 },
@@ -87,51 +82,15 @@ describe("traceExactSurfaceStack", () => {
   });
 });
 
-describe("exact trace migration coverage", () => {
-  it("build-derived constants can be compared deterministically between legacy and exact modes", () => {
-    const legacy = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData, { traceMode: "legacy" });
-    const exact = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData, { traceMode: "exact" });
-    const deltas = [
-      Math.abs(exact.stopPhysSD - legacy.stopPhysSD),
-      Math.abs(exact.epZRelStop - legacy.epZRelStop),
-      Math.abs(exact.xpZRelLastSurf - legacy.xpZRelLastSurf),
-      Math.abs(exact.halfField - legacy.halfField),
-    ];
-
-    expect(deltas.some((delta) => delta > 1e-6)).toBe(true);
-    expect(isFinite(exact.stopPhysSD)).toBe(true);
-    expect(isFinite(exact.epZRelStop)).toBe(true);
-  });
-
-  it("field geometry and pupil baselines honor forced exact and legacy trace modes", () => {
-    const L = buildLens({ ...LENS_DEFAULTS, ...Sonnar50f15Raw } as LensData);
-    const legacyGeometry = computeFieldGeometryAtState(0, 0, L, 0, { mode: "legacy" });
-    const exactGeometry = computeFieldGeometryAtState(0, 0, L, 0, { mode: "exact" });
-    const legacyPupils = computeBothPupilAberrationProfiles(0.25, 0, L, undefined, undefined, 0, { mode: "legacy" });
-    const exactPupils = computeBothPupilAberrationProfiles(0.25, 0, L, undefined, undefined, 0, { mode: "exact" });
-
-    expect(
-      Math.abs(exactGeometry.yRatio - legacyGeometry.yRatio) +
-        Math.abs(exactGeometry.b - legacyGeometry.b) +
-        Math.abs(exactGeometry.halfFieldDeg - legacyGeometry.halfFieldDeg),
-    ).toBeGreaterThan(1e-8);
-    expect(isFinite(exactPupils.ep.paraxialEpZRelStop)).toBe(true);
-    expect(isFinite(exactPupils.xp.paraxialXpZRelLastSurf)).toBe(true);
-    expect(
-      Math.abs(exactPupils.ep.paraxialEpZRelStop - legacyPupils.ep.paraxialEpZRelStop) +
-        Math.abs(exactPupils.xp.paraxialXpZRelLastSurf - legacyPupils.xp.paraxialXpZRelLastSurf),
-    ).toBeGreaterThan(1e-8);
-  });
-
-  it("keeps production optics code off the legacy traceSurfacesReal alias", () => {
-    const opticsSources = import.meta.glob<string>("../../../../src/optics/**/*.ts", {
+describe("exact trace coverage", () => {
+  it("keeps the deleted traceSurfacesReal alias out of every source file", () => {
+    const allSources = import.meta.glob<string>(["../../../../src/**/*.ts", "../../../../__tests__/**/*.ts"], {
       eager: true,
       import: "default",
       query: "?raw",
     });
-    const offenders = Object.entries(opticsSources)
-      .filter(([path]) => !path.endsWith("internal/traceSurfaces.ts"))
-      .filter(([, source]) => source.includes("traceSurfacesReal"))
+    const offenders = Object.entries(allSources)
+      .filter(([, source]) => /\btraceSurfacesReal\b/.test(source) || /\btraceSurfacesVertexReal\b/.test(source))
       .map(([path]) => path);
 
     expect(offenders).toEqual([]);

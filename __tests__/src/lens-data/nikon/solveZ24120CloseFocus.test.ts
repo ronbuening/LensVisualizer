@@ -29,7 +29,7 @@
 
 import { describe, it, expect } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
-import { traceSurfacesReal } from "../../../../src/optics/internal/traceSurfaces.js";
+import { traceExactSurfaceStack } from "../../../../src/optics/internal/exactSurfaceTrace.js";
 import { buildStateSurfaces } from "../../../../src/optics/internal/lensState.js";
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import NikkorZ24120Raw from "../../../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.js";
@@ -100,10 +100,10 @@ function rayInterceptAtImage(
   objDistFromS1: number,
 ): number {
   const u0 = y0 / objDistFromS1; // slope from (-D, 0) to (0, y0)
-  const tr = traceSurfacesReal(S, asphByIdx, y0, u0);
-  if (!isFinite(tr.y) || !isFinite(tr.u)) return NaN;
+  const tr = traceExactSurfaceStack({ S, asphByIdx }, { y0, uy0: u0 }, {});
+  if (!isFinite(tr.y) || !isFinite(tr.uy)) return NaN;
   const dLast = S[IDX_LAST].d;
-  return tr.y + dLast * tr.u;
+  return tr.y + dLast * tr.uy;
 }
 
 /**
@@ -270,8 +270,8 @@ function estimateMagnification(
   // At S1: y = y_s1, u as above
   const trace = (y_s1: number) => {
     const u0 = (y_s1 - h_obj) / objDistFromS1;
-    const tr = traceSurfacesReal(S, asphByIdx, y_s1, u0);
-    return tr.y + S[IDX_LAST].d * tr.u;
+    const tr = traceExactSurfaceStack({ S, asphByIdx }, { y0: y_s1, uy0: u0 }, {});
+    return tr.y + S[IDX_LAST].d * tr.uy;
   };
   const y_image_lo = trace(0.3);
   const y_image_hi = trace(-0.3);

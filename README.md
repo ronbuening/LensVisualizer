@@ -61,7 +61,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 ## Key Features
 
 - **Interactive optical state**: focus, aperture, zoom, ray mode, ray density, chromatic channels, and comparison scale mode all update live
-- **Exact surface tracing**: the production tracer intersects spherical/aspheric sag surfaces directly; the legacy vertex-plane trace remains only as a test/debug comparison mode
+- **Exact surface tracing**: the tracer intersects spherical/aspheric sag surfaces directly
 - **Projection-aware fisheyes**: equidistant and equisolid fisheye metadata use projection-native distortion references, vector/bounding-sphere chief-ray launches, and safe diagram bundle fields for lenses with extreme declared coverage
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Lens-group movement**: focus and zoom sliders can open a URL-shareable overlay that stacks inferred lens groups vertically and charts each group center against the fixed focus plane
