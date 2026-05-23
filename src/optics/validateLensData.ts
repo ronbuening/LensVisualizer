@@ -223,7 +223,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     "offAxisFieldFrac",
     "maxAspectRatio",
   ];
-  const requiredArrays = ["elements", "surfaces", "fstopSeries", "rayFractions", "offAxisFractions"];
+  const requiredArrays = ["surfaces", "fstopSeries", "rayFractions", "offAxisFractions"];
 
   for (const f of requiredStrings) {
     if (typeof data[f] !== "string" || !data[f]) errors.push(`Missing or empty required string field: "${f}"`);
@@ -239,6 +239,16 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
   for (const f of requiredArrays) {
     if (!Array.isArray(data[f]) || data[f].length === 0) errors.push(`Missing or empty required array field: "${f}"`);
+  }
+  /* `elements` is required but may be empty for purely catadioptric lenses
+   * (mirror-only assemblies have no glass elements to enumerate). When empty,
+   * at least one surface must declare `reflect` so we know it's an
+   * intentional pure-mirror design rather than a forgotten field. */
+  if (!Array.isArray(data.elements)) {
+    errors.push(`Missing required array field: "elements"`);
+  } else if (data.elements.length === 0) {
+    const hasReflect = Array.isArray(data.surfaces) && data.surfaces.some((s: any) => s?.reflect !== undefined);
+    if (!hasReflect) errors.push(`Missing or empty required array field: "elements"`);
   }
 
   /* ── nominalFno: required, number or number[] (for variable-aperture zooms) ── */

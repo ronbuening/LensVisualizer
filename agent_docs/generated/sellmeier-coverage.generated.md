@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **249** lenses scanned
+- **253** lenses scanned
 - **249** visible lenses scanned
-- **50** lenses fully covered
+- **53** lenses fully covered
 - **50** visible lenses fully covered
-- **2179 / 2866** non-air surfaces use trusted Sellmeier data
-- **76.0%** surface coverage overall
+- **2183 / 2870** non-air surfaces use trusted Sellmeier data
+- **76.1%** surface coverage overall
 
 ## Fully Covered Lenses
 
@@ -70,6 +70,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [NIKON AI Nikkor 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | 5 | 5 |
 | [PENTAX-110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | 5 | 5 |
 | [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) | 4 | 4 |
+| [REFERENCE MANGIN MIRROR 156 mm f/4](../../src/lens-data/reference/ReferenceMangin156mmf4.data.ts) *(hidden)* | 1 | 2 |
+| [REFERENCE MAKSUTOV-CASSEGRAIN](../../src/lens-data/reference/ReferenceMaksutovCassegrain.data.ts) *(hidden)* | 1 | 1 |
+| [REFLEX-NIKKOR 500 mm f/8](../../src/lens-data/nikon/ReflexNikkor500mmf8.data.ts) *(hidden)* | 1 | 1 |
 
 ## Incomplete Lenses by Completeness
 

@@ -592,6 +592,87 @@ describe("mirror Phase E — one-sided opacity", () => {
   });
 });
 
+describe("mirror reference lenses — catalog entries build and trace", () => {
+  /* Each phase has a corresponding hidden (visible:false) catalog entry that
+   * exercises the schema features end-to-end through buildLens. These tests
+   * confirm the lens data files validate and the runtime trace produces a
+   * complete hit list matching the declared traceSequence. */
+
+  const REFERENCE_LENS_KEYS = [
+    "reference-mangin-156f4",
+    "reference-cassegrain-100f8",
+    "reference-maksutov-cassegrain",
+    "reflex-nikkor-500f8",
+  ] as const;
+
+  it("every reference catadioptric lens builds and is hidden from the public catalog", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    for (const key of REFERENCE_LENS_KEYS) {
+      const data = LENS_CATALOG[key];
+      expect(data, `${key}: missing from catalog`).toBeDefined();
+      expect(data.visible, `${key}: must be visible:false`).toBe(false);
+      const lens = buildLens(data);
+      expect(isFinite(lens.EFL), `${key}: EFL must be finite`).toBe(true);
+      expect(lens.S.length, `${key}: must have at least one surface`).toBeGreaterThan(0);
+    }
+  });
+
+  it("Mangin reference lens trace hits its silvered rear and returns through the front", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const lens = buildLens(LENS_CATALOG["reference-mangin-156f4"]);
+    const result = traceExactSurfaceStack(lens, { y0: 5, uy0: 0 }, { leadDistance: 5 });
+    /* Inferred sequence: refract front (idx 1), reflect at silvered rear
+     * (idx 2), refract back through front (idx 1). */
+    expect(result.hits.length).toBeGreaterThanOrEqual(3);
+    expect(result.hits.some((h) => h.surfaceIdx === 2)).toBe(true);
+    expect(result.terminalDirection[2]).toBeLessThan(0);
+  });
+
+  it("Cassegrain reference lens trace follows STO → primary → secondary order", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const lens = buildLens(LENS_CATALOG["reference-cassegrain-100f8"]);
+    const result = traceExactSurfaceStack(lens, { y0: 1, uy0: 0 }, { leadDistance: 5 });
+    /* Explicit traceSequence ["STO", "M1", "M2"] → 3 hits in that surface
+     * order (idx 0, idx 2, idx 1). */
+    expect(result.hits.length).toBe(3);
+    expect(result.hits.map((h) => h.surfaceIdx)).toEqual([0, 2, 1]);
+  });
+
+  it("Maksutov-Cassegrain reference lens trace visits the corrector rear and primary twice", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const lens = buildLens(LENS_CATALOG["reference-maksutov-cassegrain"]);
+    const result = traceExactSurfaceStack(lens, { y0: 20, uy0: 0 }, { leadDistance: 5 });
+    /* Explicit traceSequence has 6 entries: STO, corr_front, corr_rear,
+     * primary, corr_rear, primary. */
+    expect(result.hits.length).toBe(6);
+    const idxSequence = result.hits.map((h) => h.surfaceIdx);
+    expect(idxSequence).toEqual([0, 1, 2, 3, 2, 3]);
+  });
+
+  it("Reflex-Nikkor reference lens trace executes its full 6-step catadioptric path", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const lens = buildLens(LENS_CATALOG["reflex-nikkor-500f8"]);
+    const result = traceExactSurfaceStack(lens, { y0: 25, uy0: 0 }, { leadDistance: 5 });
+    expect(result.hits.length).toBe(6);
+    const idxSequence = result.hits.map((h) => h.surfaceIdx);
+    expect(idxSequence).toEqual([0, 1, 2, 3, 2, 3]);
+  });
+
+  it("Reflex-Nikkor opaqueFrom:'front' absorbs a forward ray hitting the secondary silvered spot region", async () => {
+    /* Trace a ray at y₀ near the optical axis — it lands inside the silvered
+     * disk at the corrector rear on the forward pass and is absorbed before
+     * reaching the primary. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const lens = buildLens(LENS_CATALOG["reflex-nikkor-500f8"]);
+    const result = traceExactSurfaceStack(lens, { y0: 0.5, uy0: 0 }, { leadDistance: 5 });
+    /* Forward ray at small y hits the silvered central disk at the corrector
+     * rear; opaqueFrom: "front" absorbs it. The trace clips with the
+     * "absorbed" failure reason before reaching the primary. */
+    expect(result.clipped).toBe(true);
+    expect(result.failureReason).toBe("absorbed");
+  });
+});
+
 describe("mirror Phase A — first-surface mirror trace fixture", () => {
   /* Synthetic test fixture: single flat mirror in air, normal incidence and
    * off-axis. Verifies the inferred step sequence applies reflectDirection at

@@ -95,8 +95,9 @@ function realTraceToStopFull(
   y0: number,
   u0: number,
   stopIdx: number,
+  traceSequence: readonly number[] | null = null,
 ): RealTraceToStopResult {
-  const result = traceSurfaceStackReal(S, asphByIdx, y0, u0, { stopAt: stopIdx });
+  const result = traceSurfaceStackReal(S, asphByIdx, y0, u0, { stopAt: stopIdx, traceSequence });
   return { y: result.y, u: result.u };
 }
 
@@ -112,8 +113,9 @@ function realTraceToStop(
   y0: number,
   u0: number,
   stopIdx: number,
+  traceSequence: readonly number[] | null = null,
 ): number {
-  return realTraceToStopFull(S, asphByIdx, y0, u0, stopIdx).y;
+  return realTraceToStopFull(S, asphByIdx, y0, u0, stopIdx, traceSequence).y;
 }
 
 /** Result of a real ray trace through the full system with per-surface heights. */
@@ -135,8 +137,9 @@ function realTraceFullSystem(
   asphByIdx: Record<number, AsphericCoefficients>,
   y0: number,
   u0: number,
+  traceSequence: readonly number[] | null = null,
 ): RealTraceToStopResult {
-  const r = realTraceFullSystemDetailed(S, asphByIdx, y0, u0);
+  const r = realTraceFullSystemDetailed(S, asphByIdx, y0, u0, traceSequence);
   return { y: r.y, u: r.u };
 }
 
@@ -150,11 +153,13 @@ function realTraceFullSystemDetailed(
   asphByIdx: Record<number, AsphericCoefficients>,
   y0: number,
   u0: number,
+  traceSequence: readonly number[] | null = null,
 ): RealTraceFullResult {
   const result: RealSurfaceTraceResult = traceSurfaceStackReal(S, asphByIdx, y0, u0, {
     skipLastTransfer: true,
     recordHeights: true,
     checkSemiDiameter: true,
+    traceSequence,
   });
   return {
     y: result.y,
@@ -169,6 +174,7 @@ interface ExactStackOptions {
   skipLastTransfer?: boolean;
   recordHeights?: boolean;
   checkSemiDiameter?: boolean;
+  traceSequence?: readonly number[] | null;
 }
 
 function traceSurfaceStackReal(
@@ -179,7 +185,7 @@ function traceSurfaceStackReal(
   options: ExactStackOptions,
 ): RealSurfaceTraceResult {
   const result = traceExactSurfaceStack(
-    { S, asphByIdx },
+    { S, asphByIdx, traceSequence: options.traceSequence ?? null },
     { y0, uy0: u0 },
     {
       stopAt: options.stopAt,
@@ -355,8 +361,8 @@ export default function buildLens(data: LensData): RuntimeLens {
    * rays with exact refraction, then combine to find the chief ray that
    * passes through the stop center.  Back-project from the last surface
    * to find XP position and size.  Falls back to paraxial on TIR. */
-  const realMargFull = realTraceFullSystem(S, asphByIdx, realEpDelta, 0);
-  const realChiefFull = realTraceFullSystem(S, asphByIdx, 0, realEpDelta);
+  const realMargFull = realTraceFullSystem(S, asphByIdx, realEpDelta, 0, traceSequence);
+  const realChiefFull = realTraceFullSystem(S, asphByIdx, 0, realEpDelta, traceSequence);
   let xpZRelLastSurf: number;
   let xpSD: number;
   if (isFinite(realMargFull.y) && isFinite(realChiefFull.y)) {
@@ -373,7 +379,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     xpSD = isFinite(xpZRelLastSurf) ? Math.abs(mY + mU * xpZRelLastSurf) * EP.epSD : Infinity;
   } else {
     /* Fallback: paraxial exit pupil */
-    const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
+    const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true, traceSequence });
     const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
     const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
     xpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : Infinity;
@@ -394,8 +400,8 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  The minimum sd/|coefficient| across all surfaces gives the
    *  vignetting-limited half-field angle.
    */
-  const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
-  const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hA = paraxialTrace(S, 1, 0, { skipLastTransfer: true, recordHeights: true, traceSequence }).heights!;
+  const hB = paraxialTrace(S, 0, 1, { skipLastTransfer: true, recordHeights: true, traceSequence }).heights!;
   if (Math.abs(hA[stopIdx]) < 1e-15)
     throw new Error(`Lens "${data.key}": Chief-ray height ratio undefined — marginal ray height at stop ≈ 0`);
   const r = hB[stopIdx] / hA[stopIdx];
@@ -429,7 +435,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const testChief = (deg: number): boolean => {
     const uTest = -Math.tan((deg * Math.PI) / 180);
     const yIn = -epRatio * uTest;
-    const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest);
+    const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest, traceSequence);
     return isFinite(result.y) && !result.clipped;
   };
   let halfFieldBisected = halfFieldParaxial;
@@ -565,7 +571,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       const tmpS = buildStateSurfaces(S, varByIdx, true, 0, zoomIndexToT(zi, nz));
 
       /* EFL — capture y and u at last surface for exit pupil computation */
-      const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true });
+      const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, traceSequence });
       zoomEFLs.push(-1.0 / zMargLast.u);
 
       /* Entrance pupil and yRatio — use real trace for EP, same as baseline */
@@ -594,8 +600,8 @@ export default function buildLens(data: LensData): RuntimeLens {
       zoomEpZRelStops.push(zEpRelStop);
 
       /* Exit pupil — real full-system two-ray decomposition */
-      const zRealMargFull = realTraceFullSystem(tmpS, asphByIdx, realEpDelta, 0);
-      const zRealChiefFull = realTraceFullSystem(tmpS, asphByIdx, 0, realEpDelta);
+      const zRealMargFull = realTraceFullSystem(tmpS, asphByIdx, realEpDelta, 0, traceSequence);
+      const zRealChiefFull = realTraceFullSystem(tmpS, asphByIdx, 0, realEpDelta, traceSequence);
       if (isFinite(zRealMargFull.y) && isFinite(zRealChiefFull.y)) {
         const zmY = zRealMargFull.y / realEpDelta,
           zmU = zRealMargFull.u / realEpDelta;
@@ -608,7 +614,7 @@ export default function buildLens(data: LensData): RuntimeLens {
         zoomXpSDs.push(isFinite(zXpRelLast) ? Math.abs(zmY + zmU * zXpRelLast) * zNomEP : Infinity);
       } else {
         /* Fallback: paraxial exit pupil */
-        const zChiefFull = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true });
+        const zChiefFull = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, traceSequence });
         const zXpNumer = -(epT.y * zChiefFull.y - zMargLast.y * zBValue);
         const zXpDenom = epT.y * zChiefFull.u - zMargLast.u * zBValue;
         const zXpRelLast = Math.abs(zXpDenom) > 1e-9 ? zXpNumer / zXpDenom : Infinity;
@@ -617,8 +623,8 @@ export default function buildLens(data: LensData): RuntimeLens {
       }
 
       /* Half-field (vignetting-limited) — paraxial estimate refined with real ray */
-      const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
-      const zB2 = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+      const zA = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, recordHeights: true, traceSequence }).heights!;
+      const zB2 = paraxialTrace(tmpS, 0, 1, { skipLastTransfer: true, recordHeights: true, traceSequence }).heights!;
       const zr = Math.abs(zA[stopIdx]) > 1e-15 ? zB2[stopIdx] / zA[stopIdx] : r;
       let zMinU = Infinity;
       for (let j = 0; j < N; j++) {
@@ -638,7 +644,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       const zTestChief = (deg: number): boolean => {
         const uTest = -Math.tan((deg * Math.PI) / 180);
         const yIn = -zEpRatio * uTest;
-        const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest);
+        const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest, traceSequence);
         return isFinite(result.y) && !result.clipped;
       };
       let zHalfFieldBisected = zHalfFieldParaxial;
