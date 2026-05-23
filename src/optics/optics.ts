@@ -70,10 +70,8 @@ export {
   wavelengthNd,
   type CircularPupilSample,
   type OrthogonalPupilSample,
-  type RayTraceOptions,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
   type VectorRayTraceInput,
 } from "./rayTrace.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
-export { resolveSurfaceTraceMode, type SurfaceTraceMode } from "./traceMode.js";

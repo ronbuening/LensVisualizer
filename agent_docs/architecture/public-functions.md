@@ -31,10 +31,8 @@ implementation details.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics/buildLens.ts` | `buildLens(data, options?)` | Validate a defaulted `LensData` object, resolve labels/glass/state indices, compute default optical constants, and return a frozen `RuntimeLens`. |
-| `src/optics/buildLens.ts` | `BuildLensOptions` | Supports `traceMode`; production should use the exact default. |
+| `src/optics/buildLens.ts` | `buildLens(data)` | Validate a defaulted `LensData` object, resolve labels/glass/state indices, compute default optical constants, and return a frozen `RuntimeLens`. |
 | `src/optics/validateLensData.ts` | `validateLensData(data)` | Return validation error strings for untrusted lens data; callers decide whether to throw or show errors. |
-| `src/optics/traceMode.ts` | `SurfaceTraceMode`, `resolveSurfaceTraceMode()` | Central trace-mode policy. `"legacy"` is only for tests/debug escape hatches. |
 
 Use `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into pure
 optics helpers. Do not store runtime lens state in module globals.

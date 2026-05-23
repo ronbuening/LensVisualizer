@@ -7,7 +7,6 @@ import {
   traceChiefRelativeSkewRay,
   traceRay,
   traceRayChromatic,
-  resolveSurfaceTraceMode,
   traceSkewRay,
   traceSkewRayChromatic,
 } from "../../../src/optics/optics.js";
@@ -93,43 +92,15 @@ describe("traceSkewRay", () => {
     expect(isFinite(intercept!.y)).toBe(true);
   });
 
-  it("keeps default skew tracing equivalent to the resolved rollout mode", () => {
-    const defaultTrace = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
-    const explicitResolved = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L, 0, {
-      mode: resolveSurfaceTraceMode(L),
-    });
-
-    expect(explicitResolved).toEqual(defaultTrace);
-  });
-
-  it("matches exact meridional tracing when launched in the tangential plane", () => {
-    const skew = traceSkewRay(0, 5, 0, 0, 0, 0, 15, false, L, 0, { mode: "exact" });
-    const meridional = traceRay(5, 0, zPos, 0, 0, 15, false, L, 0, { mode: "exact" });
+  it("matches meridional tracing when launched in the tangential plane (large height)", () => {
+    const skew = traceSkewRay(0, 5, 0, 0, 0, 0, 15, false, L);
+    const meridional = traceRay(5, 0, zPos, 0, 0, 15, false, L);
 
     expect(skew.clipped).toBe(false);
     expect(skew.x).toBeCloseTo(0, 10);
     expect(skew.y).toBeCloseTo(meridional.y, 8);
     expect(skew.ux).toBeCloseTo(0, 10);
     expect(skew.uy).toBeCloseTo(meridional.u, 8);
-  });
-
-  it("preserves rotational symmetry in exact skew mode", () => {
-    const positive = traceSkewRay(3, 1, 0, -0.04, 0, 0, 15, false, L, 0, { mode: "exact" });
-    const negative = traceSkewRay(-3, 1, 0, -0.04, 0, 0, 15, false, L, 0, { mode: "exact" });
-
-    expect(positive.x).toBeCloseTo(-negative.x, 8);
-    expect(positive.y).toBeCloseTo(negative.y, 8);
-    expect(positive.ux).toBeCloseTo(-negative.ux, 8);
-    expect(positive.uy).toBeCloseTo(negative.uy, 8);
-  });
-
-  it("projects finite exact skew intercepts to the image plane", () => {
-    const skew = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L, 0, { mode: "exact" });
-    const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ);
-
-    expect(intercept).not.toBeNull();
-    expect(isFinite(intercept!.x)).toBe(true);
-    expect(isFinite(intercept!.y)).toBe(true);
   });
 });
 
@@ -385,13 +356,11 @@ describe("traceSkewRayChromatic", () => {
     expect(chromatic.uy).toBeCloseTo(monochromatic.uy, 2);
   });
 
-  it("matches exact monochromatic skew tracing at channel G in exact mode", () => {
+  it("matches monochromatic skew tracing at channel G on the Sonnar 50/1.5", () => {
     const L = build(Sonnar50f15Raw);
 
-    const chromatic = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "G", 0, {
-      mode: "exact",
-    });
-    const monochromatic = traceSkewRay(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, 0, { mode: "exact" });
+    const chromatic = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "G");
+    const monochromatic = traceSkewRay(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L);
 
     expect(chromatic.x).toBeCloseTo(monochromatic.x, 8);
     expect(chromatic.y).toBeCloseTo(monochromatic.y, 6);

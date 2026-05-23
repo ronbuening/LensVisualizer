@@ -1,6 +1,5 @@
 import { computeAnalysisFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept, thick } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import type { RayTraceOptions } from "../rayTrace.js";
 import type {
   BokehPoint,
   SAProfilePoint,
@@ -34,7 +33,6 @@ export function computeSphericalAberration(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): SphericalAberrationResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -53,7 +51,6 @@ export function computeSphericalAberration(
     imagePlaneZ,
     NEAR_AXIS_REAL_FRAC,
     aberrationT,
-    options,
   );
   if (nearAxisSample === null) return null;
 
@@ -70,7 +67,6 @@ export function computeSphericalAberration(
       imagePlaneZ,
       fraction,
       aberrationT,
-      options,
     );
     if (marginalSample !== null) break;
   }
@@ -88,7 +84,6 @@ export function computeSphericalAberration(
       imagePlaneZ,
       fraction,
       aberrationT,
-      options,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -101,7 +96,6 @@ export function computeSphericalAberration(
       imagePlaneZ,
       -fraction,
       aberrationT,
-      options,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
@@ -147,7 +141,6 @@ export function computeSAProfile(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): SAProfilePoint[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
@@ -167,7 +160,6 @@ export function computeSAProfile(
       imagePlaneZ,
       fraction,
       aberrationT,
-      options,
     );
     const minusHit = computeRealRayHit(
       L,
@@ -180,7 +172,6 @@ export function computeSAProfile(
       imagePlaneZ,
       -fraction,
       aberrationT,
-      options,
     );
     if (plusHit === null || minusHit === null) return [];
     return [plusHit, minusHit];
@@ -273,29 +264,18 @@ export function computeSphericalAberrationBlurCharacter(
   currentPhysStopSD: number,
   baseResult: Pick<SphericalAberrationResult, "bestFocusZ" | "longitudinalSaMm"> | null = null,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): SphericalAberrationBlurCharacterResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const resolvedBase =
-    baseResult ??
-    computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, options);
+    baseResult ?? computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
   if (resolvedBase === null) return null;
 
   const defocusOffsetMm = Math.abs(resolvedBase.longitudinalSaMm) * SA_BLUR_CHARACTER_DEFOCUS_SCALE;
   if (!isFinite(defocusOffsetMm) || defocusOffsetMm < SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM) return null;
 
-  const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
-  const geometry = computeStateAwareOffAxisFieldGeometry(
-    L,
-    zPos,
-    focusT,
-    zoomT,
-    0,
-    geometryState,
-    aberrationT,
-    options,
-  );
+  const geometryState = computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, 0, geometryState, aberrationT);
   if (geometry === null) return null;
 
   const bundle = traceOffAxisBundleFromSamples(
@@ -308,7 +288,6 @@ export function computeSphericalAberrationBlurCharacter(
     currentPhysStopSD,
     undefined,
     aberrationT,
-    options,
   );
   if (bundle === null || bundle.validSampleCount < SA_BLUR_CHARACTER_MIN_VALID_SAMPLES) return null;
 

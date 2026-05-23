@@ -7,7 +7,6 @@ import {
   resolveVariableThickness,
 } from "../../../../src/optics/internal/lensState.js";
 import { conicPolySag, sagSlopeRaw } from "../../../../src/optics/internal/surfaceMath.js";
-import { traceSurfacesReal } from "../../../../src/optics/internal/traceSurfaces.js";
 import type { AsphericCoefficients, SurfaceData } from "../../../../src/types/optics.js";
 
 describe("lensState helpers", () => {
@@ -80,47 +79,6 @@ describe("lensState helpers", () => {
       ),
     ).toBe(2);
     expect(firstInfinityThickness("bad", true)).toBeNull();
-  });
-});
-
-describe("traceSurfacesReal", () => {
-  it("transfers to the target plane when stopAt is provided", () => {
-    const surfaces = [
-      { R: 1e15, nd: 1.0, d: 5, sd: 10 },
-      { R: 1e15, nd: 1.0, d: 10, sd: 10 },
-    ] as SurfaceData[];
-
-    const result = traceSurfacesReal(surfaces, {}, 1, 0.2, { stopAt: 1, recordHeights: true });
-
-    expect(result.heights).toEqual([1]);
-    expect(result.y).toBeCloseTo(2, 10);
-    expect(result.u).toBeCloseTo(0.2, 10);
-  });
-
-  it("marks total internal reflection as clipped and returns NaN coordinates", () => {
-    const surfaces = [
-      { R: 10, nd: 2.0, d: 5, sd: 20 },
-      { R: 1e15, nd: 1.0, d: 10, sd: 20 },
-    ] as SurfaceData[];
-
-    const result = traceSurfacesReal(surfaces, {}, 9, 0.5, { checkSemiDiameter: true });
-
-    expect(result.clipped).toBe(true);
-    expect(Number.isNaN(result.y)).toBe(true);
-    expect(Number.isNaN(result.u)).toBe(true);
-  });
-
-  it("flags semi-diameter clipping without breaking finite traces", () => {
-    const surfaces = [
-      { R: 1e15, nd: 1.0, d: 5, sd: 1 },
-      { R: 1e15, nd: 1.0, d: 10, sd: 10 },
-    ] as SurfaceData[];
-
-    const result = traceSurfacesReal(surfaces, {}, 2, 0.1, { checkSemiDiameter: true });
-
-    expect(result.clipped).toBe(true);
-    expect(result.y).toBeCloseTo(2.5, 10);
-    expect(result.u).toBeCloseTo(0.1, 10);
   });
 });
 

@@ -39,15 +39,9 @@ import {
 } from "./optics.js";
 import type { FieldGeometryState } from "./optics.js";
 import { stateSurfaces } from "./layout.js";
-import {
-  traceSurfacesVertexReal,
-  type RealSurfaceTraceOptions,
-  type RealSurfaceTraceResult,
-} from "./internal/traceSurfaces.js";
+import { type RealSurfaceTraceOptions, type RealSurfaceTraceResult } from "./internal/traceSurfaces.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
-import type { RayTraceOptions } from "./rayTrace.js";
-import { resolveSurfaceTraceMode } from "./traceMode.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -154,7 +148,6 @@ function computeStatePupilBaselines(
   L: RuntimeLens,
   geometry: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): { paraxialEpZRelStop: number; paraxialXpZRelLastSurf: number } {
   if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
     return {
@@ -166,15 +159,15 @@ function computeStatePupilBaselines(
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   const delta = 1e-4;
-  const marginalStop = traceStateSurfacesReal(S, L, delta, 0, { stopAt: L.stopIdx }, options);
-  const chiefStop = traceStateSurfacesReal(S, L, 0, delta, { stopAt: L.stopIdx }, options);
+  const marginalStop = traceStateSurfacesReal(S, L, delta, 0, { stopAt: L.stopIdx });
+  const chiefStop = traceStateSurfacesReal(S, L, 0, delta, { stopAt: L.stopIdx });
   const realYRatio = isFinite(marginalStop.y) ? marginalStop.y / delta : geometry.yRatio;
   const realB = isFinite(chiefStop.y) ? chiefStop.y / delta : geometry.b;
   const paraxialEpZRelStop =
     Math.abs(realYRatio) > 1e-9 ? realB / realYRatio - layout.z[L.stopIdx] : epZRelStopAtZoom(zoomT, L);
 
-  const marginalFull = traceStateSurfacesReal(S, L, delta, 0, { skipLastTransfer: true }, options);
-  const chiefFull = traceStateSurfacesReal(S, L, 0, delta, { skipLastTransfer: true }, options);
+  const marginalFull = traceStateSurfacesReal(S, L, delta, 0, { skipLastTransfer: true });
+  const chiefFull = traceStateSurfacesReal(S, L, 0, delta, { skipLastTransfer: true });
   let paraxialXpZRelLastSurf = xpZRelLastSurfAtZoom(zoomT, L);
   if (isFinite(marginalFull.y) && isFinite(chiefFull.y)) {
     const mY = marginalFull.y / delta;
@@ -208,11 +201,10 @@ export function computePupilAberrationProfile(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): PupilAberrationProfile {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
-  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT, options);
+  const { paraxialEpZRelStop } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
 
   const n = Math.max(sampleCount, 2);
   const samples: PupilAberrationSample[] = [];
@@ -221,7 +213,7 @@ export function computePupilAberrationProfile(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
-    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);
     if (launch.status === "out-of-domain") {
       samples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
       continue;
@@ -268,11 +260,10 @@ export function computeExitPupilAberrationProfile(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): ExitPupilAberrationProfile {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg } = geom;
-  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT, options);
+  const { paraxialXpZRelLastSurf } = computeStatePupilBaselines(focusT, zoomT, L, geom, aberrationT);
 
   const n = Math.max(sampleCount, 2);
 
@@ -296,7 +287,7 @@ export function computeExitPupilAberrationProfile(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
-    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       samples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
       continue;
@@ -311,8 +302,8 @@ export function computeExitPupilAberrationProfile(
     if (Math.abs(fieldDeg) > 1e-9) {
       const yChief = solve.yLaunch;
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, options)
-        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L)
+        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
 
       // Back-project: XP z = −y_last / u_last (relative to last surface).
       // Guard against near-zero exit slope (XP at infinity).
@@ -358,9 +349,8 @@ export function computeBothPupilAberrationProfiles(
   sampleCount = PUPIL_ABERRATION_SAMPLE_COUNT,
   geometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): BothPupilAberrationProfiles {
-  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geom = geometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const { halfFieldDeg, epRatio } = geom;
   const { paraxialEpZRelStop, paraxialXpZRelLastSurf } = computeStatePupilBaselines(
     focusT,
@@ -368,7 +358,6 @@ export function computeBothPupilAberrationProfiles(
     L,
     geom,
     aberrationT,
-    options,
   );
 
   const n = Math.max(sampleCount, 2);
@@ -389,7 +378,7 @@ export function computeBothPupilAberrationProfiles(
         let chiefRayCorrection = 1;
         let epShiftMm = 0;
         if (Math.abs(paraxialYChief) > 1e-12) {
-          const solvedYChief = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options).yLaunch;
+          const solvedYChief = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT).yLaunch;
           chiefRayCorrection = isFinite(solvedYChief) ? solvedYChief / paraxialYChief : 1;
           epShiftMm = (chiefRayCorrection - 1) * epRatio;
         }
@@ -424,7 +413,7 @@ export function computeBothPupilAberrationProfiles(
     const fieldFrac = i / (n - 1);
     const fieldDeg = fieldFrac * halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, fieldDeg);
-    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT, options);
+    const solve = solveChiefRay(fieldDeg, focusT, zoomT, L, geom, aberrationT);
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       epSamples.push({ fieldFrac, fieldDeg, chiefRayCorrection: 1, epShiftMm: 0 });
       xpSamples.push({ fieldFrac, fieldDeg, xpZRelLastSurf: paraxialXpZRelLastSurf, xpShiftMm: 0 });
@@ -450,8 +439,8 @@ export function computeBothPupilAberrationProfiles(
 
       // XP fields — trace the same solved chief ray through the full system
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, options)
-        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT, options);
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L)
+        : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
       if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
         xpZRelLastSurf = -result.y / result.u;
         xpShiftMm = xpZRelLastSurf - paraxialXpZRelLastSurf;
@@ -487,11 +476,7 @@ function traceStateSurfacesReal(
   y0: number,
   u0: number,
   traceOptions: RealSurfaceTraceOptions = {},
-  options?: RayTraceOptions,
 ): RealSurfaceTraceResult {
-  const mode = resolveSurfaceTraceMode(L, options?.mode);
-  if (mode === "legacy") return traceSurfacesVertexReal(S, L.asphByIdx, y0, u0, traceOptions);
-
   const result = traceExactSurfaceStack(
     { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
     { y0, uy0: u0 },

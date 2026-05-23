@@ -32,7 +32,6 @@ import {
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
-import type { RayTraceOptions } from "./rayTrace.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -91,14 +90,13 @@ export function computeVignettingCurve(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
-  options?: RayTraceOptions,
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   /* Pre-compute field geometry for the solved chief ray — accounts for
    * pupil aberration (EP position shifts with field angle) which the old
    * paraxial (B/yRatio) launch ignored.  Critical for retrofocus designs. */
-  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT, options);
+  const geom = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   const halfFieldDeg = geom.halfFieldDeg;
   if (halfFieldDeg <= 0 || !isFinite(halfFieldDeg)) return [];
 
@@ -113,7 +111,7 @@ export function computeVignettingCurve(
 
   for (let i = 0; i < fieldSamples; i++) {
     const fieldAngleDeg = (i / (fieldSamples - 1)) * halfFieldDeg;
-    const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT, options);
+    const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geom, aberrationT);
     const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
     if (launch.status === "out-of-domain" && !solve.vectorLaunch) {
       rawGT.push(0);
@@ -129,15 +127,8 @@ export function computeVignettingCurve(
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
       const pupilOffset = pupilFrac * currentEPSD;
       const trace = solve.vectorLaunch
-        ? traceRayVector(
-            offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset),
-            zPos,
-            currentPhysStopSD,
-            true,
-            L,
-            options,
-          )
-        : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT, options);
+        ? traceRayVector(offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset), zPos, currentPhysStopSD, true, L)
+        : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
       if (!trace.clipped) surviving++;
     }
 
