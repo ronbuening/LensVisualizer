@@ -14,16 +14,14 @@ import type { LensDataInput } from "../../types/optics.js";
  *   t  =    8.00 mm   (axial thickness)
  *   nd =    1.517     (Schott BK7)
  *
- * Marked `visible: false` because the build pipeline does not yet handle
- * the negative-EFL / image-plane-behind-the-lens conventions that
- * catadioptrics require for full analysis-tab support. Production code
- * paths still load and trace this lens via `buildLens` (verified by the
- * mirror regression tests).
+ * Note: the build pipeline does not yet handle the image-plane-behind-the-
+ * lens convention that catadioptrics require for full analysis-tab support,
+ * so the displayed image position and EFL sign are approximate. Verified
+ * end-to-end by the mirror regression tests.
  */
 const LENS_DATA = {
   key: "reference-mangin-156f4",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE MANGIN MIRROR 156 mm f/4",
   subtitle: "Single-element catadioptric (Smith MOE 3rd ed., §13.5)",
   specs: ["1 ELEMENT", "f ≈ 156 mm", "F/4"],

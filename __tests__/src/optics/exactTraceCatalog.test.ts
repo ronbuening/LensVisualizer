@@ -82,6 +82,12 @@ describe("exact surface trace catalog smoke coverage", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
 
     for (const key of CATALOG_KEYS) {
+      /* Catadioptric lenses have a central obstruction (a silvered spot or
+       * folded mirror) that physically blocks the on-axis ray. Skip them
+       * here — the mirror regression tests verify their off-axis trace
+       * topology separately. */
+      const hasMirror = LENS_CATALOG[key].surfaces.some((s) => s.reflect !== undefined);
+      if (hasMirror) continue;
       const L = buildCatalogLens(key);
       for (const zoomT of zoomSamples(L)) {
         const layout = doLayout(0, zoomT, L);

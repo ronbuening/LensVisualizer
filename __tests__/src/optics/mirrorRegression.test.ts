@@ -605,12 +605,11 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     "reflex-nikkor-500f8",
   ] as const;
 
-  it("every reference catadioptric lens builds and is hidden from the public catalog", async () => {
+  it("every reference catadioptric lens builds with a finite EFL", async () => {
     const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
     for (const key of REFERENCE_LENS_KEYS) {
       const data = LENS_CATALOG[key];
       expect(data, `${key}: missing from catalog`).toBeDefined();
-      expect(data.visible, `${key}: must be visible:false`).toBe(false);
       const lens = buildLens(data);
       expect(isFinite(lens.EFL), `${key}: EFL must be finite`).toBe(true);
       expect(lens.S.length, `${key}: must have at least one surface`).toBeGreaterThan(0);

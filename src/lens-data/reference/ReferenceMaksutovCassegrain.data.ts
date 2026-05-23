@@ -20,13 +20,11 @@ import type { LensDataInput } from "../../types/optics.js";
  * geometrically self-consistent (entry rays land in the silvered annulus of
  * the primary; returning rays converge into the silvered central disk of the
  * corrector rear; exit rays pass through the central transmissive hole of
- * the primary). `visible: false`; production code paths build and trace it
- * via the mirror regression tests but it does not appear in the catalog UI.
+ * the primary). Verified end-to-end by the mirror regression tests.
  */
 const LENS_DATA = {
   key: "reference-maksutov-cassegrain",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE MAKSUTOV-CASSEGRAIN",
   subtitle: "Three-surface catadioptric (engine demo, not a real lens)",
   specs: ["1 ELEMENT + 2 MIRRORS", "Engine demo", "F/12 nominal"],

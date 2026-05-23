@@ -5,9 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * Synthetic prescription used to exercise the explicit `traceSequence` path
  * for catadioptric lenses with more than one reflective surface. Not a real
- * commercial lens. Marked `visible: false` so it does not appear in the
- * catalog UI; production code paths (validation, paraxial trace, exact trace,
- * diagram geometry) still load and build it.
+ * commercial lens — included in the catalog as a visible engine demo.
  *
  * Geometry: light enters at the STO, traverses past the secondary mirror
  * (which sits between the stop and the primary), reflects off the primary,
@@ -23,7 +21,6 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-cassegrain-100f8",
   maker: "Reference",
-  visible: false,
   name: "REFERENCE CASSEGRAIN 100 mm f/8",
   subtitle: "Synthetic two-mirror catadioptric (engine demo, not a real lens)",
   specs: ["2 MIRRORS / 0 ELEMENTS", "f ≈ 100 mm", "F/8"],

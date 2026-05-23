@@ -22,4 +22,5 @@ export const MAKER_PREFIXES = [
   { prefix: "SIGMA", display: "Sigma", slug: "sigma" },
   { prefix: "SONY", display: "Sony", slug: "sony" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
+  { prefix: "REFERENCE", display: "Reference", slug: "reference" },
 ];

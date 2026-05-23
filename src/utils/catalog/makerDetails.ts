@@ -228,6 +228,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
   },
 };
 
+MAKER_DETAILS.reference = {
+  founded: 2026,
+  headquarters: "—",
+  summary:
+    "Synthetic reference designs used to exercise the optical engine's catadioptric trace path. Not commercial products.",
+  history:
+    "Reference designs are placeholder prescriptions for engine demonstration. Each lens under this slug exercises a specific schema feature (Mangin mirrors, explicit traceSequence, partial silvering, embedded surfaces) end-to-end through the production buildLens pipeline so the catadioptric trace is verified the same way every other catalog lens is. Replace with published patent prescriptions when those become available.",
+};
+
 /** Look up maker details by slug; returns null if unknown. */
 export function getMakerDetails(slug: string): MakerDetails | null {
   return MAKER_DETAILS[slug] ?? null;

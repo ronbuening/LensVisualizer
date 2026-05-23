@@ -21,14 +21,14 @@ import type { LensDataInput } from "../../types/optics.js";
  *               light hitting the silvered central disk is absorbed rather
  *               than reflecting back through the corrector
  *
- * Marked `visible: false` until the analysis-tab donut-pupil work lands
- * (vignetting / bokeh / MTF for annular pupils + backward-image-plane
- * conventions).
+ * Caveat: analysis-tab donut-pupil work (vignetting / bokeh / MTF for
+ * annular pupils + backward-image-plane conventions) is not yet wired up,
+ * so those tabs will not reflect the central obstruction. The diagram and
+ * ray-trace views render correctly.
  */
 const LENS_DATA = {
   key: "reflex-nikkor-500f8",
   maker: "Nikon",
-  visible: false,
   name: "REFLEX-NIKKOR 500 mm f/8",
   subtitle: "Catadioptric mirror tele (placeholder; full patent prescription pending)",
   specs: ["1 ELEMENT + 2 MIRRORS", "f ≈ 500 mm (nominal)", "F/8"],

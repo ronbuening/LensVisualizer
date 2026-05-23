@@ -306,7 +306,12 @@ export default function buildLens(data: LensData): RuntimeLens {
   /* EFL trace walks the explicit trace sequence for catadioptric lenses so
    * the computed Gaussian focal length reflects the round-trip path. */
   const { u: nomUe } = paraxialTrace(S, 1, 0, { skipLastTransfer: true, traceSequence });
-  const nomEFL = -1.0 / nomUe;
+  /* Catadioptric lenses produce a paraxial u_final with the opposite sign
+   * from a refractive lens (the exit ray heads in -z after the round trip),
+   * which would yield a negative computed EFL. The downstream EP-SD and
+   * f-number formulas expect a positive focal-length magnitude — take abs.
+   * For refractive lenses, u_final is already negative, so abs is a no-op. */
+  const nomEFL = Math.abs(-1.0 / nomUe);
   assertRectilinearFocalReference(data, projection, nomEFL);
   const apertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, 0) ?? nomEFL;
   const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
@@ -320,7 +325,7 @@ export default function buildLens(data: LensData): RuntimeLens {
    *  EFL: trace a unit-height marginal ray (y=1, u=0) and read off the
    *  exit slope u; EFL = −1/u (standard paraxial formula). */
   const eflTrace = paraxialTrace(S, 1, 0, { skipLastTransfer: true, traceSequence });
-  const EFL = -1.0 / eflTrace.u;
+  const EFL = Math.abs(-1.0 / eflTrace.u);
   if (!isFinite(EFL))
     throw new Error(
       `Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`,
@@ -572,11 +577,11 @@ export default function buildLens(data: LensData): RuntimeLens {
 
       /* EFL — capture y and u at last surface for exit pupil computation */
       const zMargLast = paraxialTrace(tmpS, 1, 0, { skipLastTransfer: true, traceSequence });
-      zoomEFLs.push(-1.0 / zMargLast.u);
+      zoomEFLs.push(Math.abs(-1.0 / zMargLast.u));
 
       /* Entrance pupil and yRatio — use real trace for EP, same as baseline */
       const epT = paraxialTrace(tmpS, 1, 0, { stopAt: stopIdx });
-      const zEfl = -1.0 / zMargLast.u;
+      const zEfl = Math.abs(-1.0 / zMargLast.u);
       const zNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[zi] : data.nominalFno!;
       const zZoomT = zoomIndexToT(zi, nz);
       const zApertureReferenceFocalLength = fisheyeProjectionFocalLengthAtZoom(projection, zZoomT) ?? zEfl;
