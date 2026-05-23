@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **249** lenses scanned
-- **2866** non-air surfaces examined
-- **2859** element glass declarations examined
-- **566** non-explicit-unmatched annotations did not resolve
+- **252** lenses scanned
+- **2890** non-air surfaces examined
+- **2883** element glass declarations examined
+- **568** non-explicit-unmatched annotations did not resolve
 - **216** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 4 | 2 | |
 | 770297 | 4 | 3 | |
+| S-LAL12 | 4 | 4 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
@@ -52,7 +53,6 @@ or per-lens patent backfills.
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-BSM10 | 2 | 2 | |
-| S-LAL12 | 2 | 2 | |
 | S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | SK18 | 2 | 1 | |
@@ -251,6 +251,13 @@ or per-lens patent backfills.
 - [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 7: `770297 - dense flint (patent nd=1.77047, vd=29.7, PgF=0.5951; unresolved)`
 - [SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) 16: `770297 — dense titanium flint (patent nd=1.77047, νd=29.7)`
 
+### S-LAL12 — 4 occurrences
+
+- [Canon EF 70-200mm f/2.8L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) 18: `S-LAL12 (OHARA)`
+- [smc PENTAX-FA645 120mm F4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) 13: `S-LAL12 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
+- [smc Pentax 67 Macro 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) 9: `S-LAL12 (OHARA)`
+
 ### S-NPH7 — 4 occurrences
 
 - [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
@@ -418,11 +425,6 @@ or per-lens patent backfills.
 
 - [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
-
-### S-LAL12 — 2 occurrences
-
-- [Canon EF 70-200mm f/2.8L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) 18: `S-LAL12 (OHARA)`
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
 
 ### S-LAM7 — 2 occurrences
 
