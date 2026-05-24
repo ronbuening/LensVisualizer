@@ -54,6 +54,7 @@ export {
   DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
   computeChromaticSpread,
   sampleCircularPupil,
+  remapCircularPupilToAnnulus,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
   traceChiefRelativeSkewRay,

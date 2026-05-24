@@ -292,6 +292,29 @@ export function sampleOrthogonalPupilFan(
   });
 }
 
+/**
+ * Remap a unit-disk pupil sample's radial position into an annular band
+ * `[obstrFrac, 1]` so the sample lands in the unobstructed portion of an
+ * annular entrance pupil. xFraction, yFraction, radiusFraction are scaled
+ * in place; weights and azimuths are unchanged. When `obstrFrac` is ≤ 0
+ * the function is a no-op.
+ */
+export function remapCircularPupilToAnnulus(
+  samples: readonly CircularPupilSample[],
+  obstrFrac: number,
+): CircularPupilSample[] {
+  if (!isFinite(obstrFrac) || obstrFrac <= 0 || obstrFrac >= 1) return samples.map((s) => ({ ...s }));
+  return samples.map((s) => {
+    const rNew = obstrFrac + s.radiusFraction * (1 - obstrFrac);
+    return {
+      ...s,
+      xFraction: rNew * Math.cos(s.azimuthRad),
+      yFraction: rNew * Math.sin(s.azimuthRad),
+      radiusFraction: rNew,
+    };
+  });
+}
+
 export function sampleCircularPupil(
   ringSamples: readonly number[] = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
 ): CircularPupilSample[] {

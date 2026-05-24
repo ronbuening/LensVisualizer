@@ -701,6 +701,26 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("remapCircularPupilToAnnulus moves every sample into the annular band", async () => {
+    const { sampleCircularPupil, remapCircularPupilToAnnulus } = await import("../../../src/optics/optics.js");
+    const base = sampleCircularPupil([1, 6, 12]);
+    const remapped = remapCircularPupilToAnnulus(base, 0.4);
+    expect(remapped.length).toBe(base.length);
+    /* Every output sample's radial position must lie in [0.4, 1]. */
+    for (const s of remapped) {
+      expect(s.radiusFraction).toBeGreaterThanOrEqual(0.4 - 1e-12);
+      expect(s.radiusFraction).toBeLessThanOrEqual(1 + 1e-12);
+      const r = Math.hypot(s.xFraction, s.yFraction);
+      expect(r).toBeCloseTo(s.radiusFraction, 10);
+    }
+    /* The center sample (radius 0 on the input disk) maps to the inner
+     * annulus edge at radius = obstrFrac. */
+    expect(remapped[0].radiusFraction).toBeCloseTo(0.4, 10);
+    /* Annular monotonicity: ring i+1's radius > ring i's radius. */
+    expect(remapped[1].radiusFraction).toBeGreaterThan(remapped[0].radiusFraction);
+    expect(remapped[7].radiusFraction).toBeGreaterThan(remapped[1].radiusFraction);
+  });
+
   it("vignetting curve for catadioptric lenses samples the annular pupil, not the obstructed center", async () => {
     /* Without the annular remap, the dense pupil sweep would place rays
      * inside the central obstruction and count them as clipped, deflating

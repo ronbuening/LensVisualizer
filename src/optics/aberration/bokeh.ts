@@ -15,6 +15,7 @@
 import {
   computeAnalysisFieldGeometryAtState,
   doLayout,
+  remapCircularPupilToAnnulus,
   sampleCircularPupil,
   skewImagePlaneIntercept,
   type CircularPupilSample,
@@ -153,6 +154,12 @@ function buildBokehTraceContext(
   aberrationT = 0,
 ): BokehTraceContext {
   const layout = doLayout(focusT, zoomT, L, aberrationT);
+  /* For catadioptric lenses with a central obstruction, remap the circular
+   * pupil samples to land in the annular zone only. Without the remap the
+   * inner-ring samples are absorbed (or refused) at the obstruction and the
+   * bokeh disc collapses; with it, the disc renders correctly as a donut. */
+  const epOuter = L.EP.epSD;
+  const obstrFrac = epOuter > 0 ? (L.EP.epObstructionSD ?? 0) / epOuter : 0;
   return {
     focusT,
     zoomT,
@@ -160,7 +167,10 @@ function buildBokehTraceContext(
     layout,
     bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
     fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
-    circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
+    circularPupilSamples: remapCircularPupilToAnnulus(
+      sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
+      obstrFrac,
+    ),
   };
 }
 
