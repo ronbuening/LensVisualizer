@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "zeiss-distagon-35mm-f4-contarex",
   maker: "Carl Zeiss Oberkochen",
-  name: "Carl Zeiss B-Distagon 35mm f/4 (Contarex)",
+  name: "CARL ZEISS B-Distagon 35mm f/4 (Contarex)",
   subtitle: "US 3,038,380 — Eismann / Lange",
   specs: ["7 elements / 4 groups", "f = 35 mm", "F/4", "2ω = 64°", "all spherical"],
 

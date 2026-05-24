@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "zeiss-biogon-35mm-f28-prewar",
   maker: "Carl Zeiss Jena",
-  name: "Carl Zeiss Jena Biogon 3.5 cm f/2.8 (pre-war)",
+  name: "CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)",
   subtitle: "US 2,084,309 — Ludwig Bertele / Zeiss Ikon",
   specs: ["7 elements / 4 groups", "f = 35.0 mm", "f/2.8", "63.4° diagonal field", "all-spherical"],
 
