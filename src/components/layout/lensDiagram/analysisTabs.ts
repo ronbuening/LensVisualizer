@@ -6,5 +6,6 @@ export const ANALYSIS_TABS = [
   { id: "distortion", label: "DISTORTION" },
   { id: "breathing", label: "BREATHING" },
   { id: "vignetting", label: "VIGNETTING" },
+  { id: "mtf", label: "MTF" },
   { id: "pupils", label: "PUPILS" },
 ] as const satisfies readonly AnalysisTab[];

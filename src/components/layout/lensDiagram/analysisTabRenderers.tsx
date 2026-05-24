@@ -3,6 +3,7 @@ import AberrationsPanel from "../../display/analysis/AberrationsPanel.js";
 import ComaTab from "../../display/analysis/ComaTab.js";
 import DistortionTab from "../../display/analysis/DistortionTab.js";
 import FocusBreathingTab from "../../display/analysis/FocusBreathingTab.js";
+import MTFTab from "../../display/analysis/MTFTab.js";
 import PupilAberrationTab from "../../display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -17,6 +18,7 @@ export interface AnalysisDrawerInputs {
   currentEPSD: number;
   currentPhysStopSD: number;
   dynamicEFL: number;
+  fNumber: number;
   fieldGeometry?: FieldGeometryState | null;
 }
 
@@ -89,6 +91,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       fieldGeometry={inputs.fieldGeometry}
     />
   ),
+  mtf: ({ L, t, inputs }) => <MTFTab L={L} t={t} fNumber={inputs.fNumber} />,
   pupils: ({ L, t, inputs }) => (
     <PupilAberrationTab
       L={L}

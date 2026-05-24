@@ -467,6 +467,7 @@ export default function LensDiagramPanel({
                 dynamicEFL={dynamicEFL}
                 currentEPSD={currentEPSD}
                 currentPhysStopSD={currentPhysStopSD}
+                fNumber={fNumber}
                 fieldGeometry={fieldGeometry}
                 movementActive={resolvedMovement.active}
                 sliderInteracting={sliderInteracting}

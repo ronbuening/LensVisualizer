@@ -76,6 +76,7 @@ const baseProps = {
   dynamicEFL: 50,
   currentEPSD: 10,
   currentPhysStopSD: 5,
+  fNumber: 5.6,
   aberrationsExpanded: true,
   onAberrationsExpandedChange: vi.fn(),
 };

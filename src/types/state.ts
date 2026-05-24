@@ -14,7 +14,15 @@ export const OFF_AXIS_MODES = ["off", "trueAngle", "edge"] as const;
 export const RAY_DENSITIES = ["normal", "dense", "diagnostic"] as const;
 export const MOBILE_VIEWS = ["diagram", "description"] as const;
 export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
-export const ANALYSIS_TAB_IDS = ["aberrations", "coma", "distortion", "breathing", "vignetting", "pupils"] as const;
+export const ANALYSIS_TAB_IDS = [
+  "aberrations",
+  "coma",
+  "distortion",
+  "breathing",
+  "vignetting",
+  "mtf",
+  "pupils",
+] as const;
 
 export type OffAxisMode = (typeof OFF_AXIS_MODES)[number];
 export type RayDensity = (typeof RAY_DENSITIES)[number];

@@ -1,4 +1,5 @@
 import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortionAnalysis.js";
+import { computeMTFCurves } from "./mtfAnalysis.js";
 import { computeVignettingCurve } from "./vignetteAnalysis.js";
 import type { FieldGeometryState } from "./optics.js";
 import type { RuntimeLens } from "../types/optics.js";
@@ -40,5 +41,9 @@ export const analysisJobs = {
     aberrationT = 0,
   ) {
     return computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
+  },
+
+  computeMTFCurves(L: RuntimeLens, fNumber: number) {
+    return computeMTFCurves(L, fNumber);
   },
 };

@@ -701,6 +701,51 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("computeMTFCurves emits 3 channels with the correct cutoff ordering", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { computeMTFCurves } = await import("../../../src/optics/mtfAnalysis.js");
+    const lens = buildLens(LENS_CATALOG["apo-lanthar-50f2"]);
+    const set = computeMTFCurves(lens, 4);
+    expect(set).not.toBeNull();
+    expect(set!.curves.length).toBe(3);
+    /* Cutoff frequency is inversely proportional to wavelength, so the blue
+     * (shortest λ) curve has the highest cutoff and the red (longest λ) the
+     * lowest. The shared x-domain runs to max cutoff = blue cutoff. */
+    const byChannel = Object.fromEntries(set!.curves.map((c) => [c.channel, c]));
+    expect(byChannel.blue.cutoffCyclesPerMm).toBeGreaterThan(byChannel.green.cutoffCyclesPerMm);
+    expect(byChannel.green.cutoffCyclesPerMm).toBeGreaterThan(byChannel.red.cutoffCyclesPerMm);
+    /* Solid pupil for a refractive lens. */
+    expect(set!.obstructionRatio).toBe(0);
+    /* All samples in [0, 1] and start at 1. */
+    for (const curve of set!.curves) {
+      expect(curve.samples[0][1]).toBeCloseTo(1, 6);
+      for (const [, mtf] of curve.samples) {
+        expect(mtf).toBeGreaterThanOrEqual(0);
+        expect(mtf).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
+  it("MTF for catadioptric lenses reports the annular-pupil obstruction ratio", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { computeMTFCurves } = await import("../../../src/optics/mtfAnalysis.js");
+    const lens = buildLens(LENS_CATALOG["reference-cassegrain-100f8"]);
+    const set = computeMTFCurves(lens, 8);
+    expect(set).not.toBeNull();
+    expect(set!.obstructionRatio).toBeGreaterThan(0);
+    expect(set!.obstructionRatio).toBeLessThan(1);
+    /* The annular MTF at moderate frequency should be lower than the
+     * unobstructed (solid-pupil) MTF at the same F-number. */
+    const lensSolid = buildLens({
+      ...LENS_CATALOG["reference-cassegrain-100f8"],
+      entrancePupilObstructionSD: 0,
+    });
+    const setSolid = computeMTFCurves(lensSolid, 8);
+    expect(setSolid).not.toBeNull();
+    const idx = Math.floor(set!.curves[1].samples.length * 0.4);
+    expect(set!.curves[1].samples[idx][1]).toBeLessThan(setSolid!.curves[1].samples[idx][1]);
+  });
+
   it("circular and annular Airy MTF utilities return values in [0, 1] and reduce correctly", async () => {
     const { circularAiryMTF, annularAiryMTF } = await import("../../../src/optics/aberration/diffractionMTF.js");
     /* Circular MTF: starts at 1 (DC), reaches 0 at cutoff, monotonically

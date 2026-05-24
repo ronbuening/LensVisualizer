@@ -17,6 +17,7 @@ interface AnalysisDrawerContentProps {
   dynamicEFL: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  fNumber: number;
   fieldGeometry?: FieldGeometryState | null;
   movementActive?: boolean;
   sliderInteracting?: boolean;
@@ -35,6 +36,7 @@ export default function AnalysisDrawerContent({
   dynamicEFL,
   currentEPSD,
   currentPhysStopSD,
+  fNumber,
   fieldGeometry = null,
   movementActive = false,
   sliderInteracting = false,
@@ -49,6 +51,7 @@ export default function AnalysisDrawerContent({
   const dEPSD = useDeferredValue(currentEPSD);
   const dStopSD = useDeferredValue(currentPhysStopSD);
   const dDynamicEFL = useDeferredValue(dynamicEFL);
+  const dFNumber = useDeferredValue(fNumber);
   const dFieldGeometry = useDeferredValue(fieldGeometry);
   const deferredInputs = useMemo(
     () => ({
@@ -58,9 +61,10 @@ export default function AnalysisDrawerContent({
       currentEPSD: dEPSD,
       currentPhysStopSD: dStopSD,
       dynamicEFL: dDynamicEFL,
+      fNumber: dFNumber,
       fieldGeometry: dFieldGeometry,
     }),
-    [dFocusT, dZoomT, dAberrationT, dEPSD, dStopSD, dDynamicEFL, dFieldGeometry],
+    [dFocusT, dZoomT, dAberrationT, dEPSD, dStopSD, dDynamicEFL, dFNumber, dFieldGeometry],
   );
   const lastSettledInputsRef = useRef(deferredInputs);
 
