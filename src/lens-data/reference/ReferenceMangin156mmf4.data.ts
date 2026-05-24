@@ -23,6 +23,7 @@ const LENS_DATA = {
   key: "reference-mangin-156f4",
   maker: "Reference",
   name: "REFERENCE MANGIN MIRROR 156 mm f/4",
+  visible: false,
   subtitle: "Single-element catadioptric (Smith MOE 3rd ed., §13.5)",
   specs: ["1 ELEMENT", "f ≈ 156 mm", "F/4"],
 

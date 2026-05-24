@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **252** lenses scanned
-- **2890** non-air surfaces examined
-- **2883** element glass declarations examined
-- **568** non-explicit-unmatched annotations did not resolve
-- **216** distinct unresolved glass-like tokens found
+- **259** lenses scanned
+- **2934** non-air surfaces examined
+- **2926** element glass declarations examined
+- **572** non-explicit-unmatched annotations did not resolve
+- **218** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -53,6 +53,7 @@ or per-lens patent backfills.
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-BSM10 | 2 | 2 | |
+| S-BSM15 | 2 | 1 | |
 | S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | SK18 | 2 | 1 | |
@@ -204,6 +205,7 @@ or per-lens patent backfills.
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
+| S-BSM25 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
@@ -328,8 +330,8 @@ or per-lens patent backfills.
 
 ### 744448 — 2 occurrences
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 
 ### 755516 — 2 occurrences
 
@@ -403,13 +405,13 @@ or per-lens patent backfills.
 
 ### N-BAF4 — 2 occurrences
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 8: `BAF4 / N-BAF4 class (Schott, 606439; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 8: `BAF4 / N-BAF4 class (Schott, 606439; patent values retained)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 19: `N-BAF4 equiv. (157957/5374)`
 
 ### N-LAF2 — 2 occurrences
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 
 ### S-APL1 — 2 occurrences
 
@@ -425,6 +427,11 @@ or per-lens patent backfills.
 
 - [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
+
+### S-BSM15 — 2 occurrences
+
+- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 3: `S-BSM15 (OHARA)`
+- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 5: `S-BSM15 (OHARA)`
 
 ### S-LAM7 — 2 occurrences
 
@@ -523,7 +530,7 @@ or per-lens patent backfills.
 
 ### 606439 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 8: `BAF4 / N-BAF4 class (Schott, 606439; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 8: `BAF4 / N-BAF4 class (Schott, 606439; patent values retained)`
 
 ### 606637 — 1 occurrence
 
@@ -551,7 +558,7 @@ or per-lens patent backfills.
 
 ### 639554 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
 
 ### 640601 — 1 occurrence
 
@@ -563,7 +570,7 @@ or per-lens patent backfills.
 
 ### 664358 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
 
 ### 667311 — 1 occurrence
 
@@ -607,7 +614,7 @@ or per-lens patent backfills.
 
 ### 720504 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
 
 ### 731405 — 1 occurrence
 
@@ -955,7 +962,7 @@ or per-lens patent backfills.
 
 ### N-BASF2 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
 
 ### N-LAF7 — 1 occurrence
 
@@ -963,15 +970,15 @@ or per-lens patent backfills.
 
 ### N-LAK10 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
 
 ### N-LAK7 — 1 occurrence
 
-- [Carl Zeiss B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 6: `N-LAK7 / LAK7 (Schott)`
+- [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 6: `N-LAK7 / LAK7 (Schott)`
 
 ### N-LAK9 — 1 occurrence
 
-- [Carl Zeiss B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
+- [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
 
 ### N-LASF43 — 1 occurrence
 
@@ -995,11 +1002,11 @@ or per-lens patent backfills.
 
 ### N-SF8 — 1 occurrence
 
-- [Carl Zeiss Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
+- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
 
 ### N-SK18 — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
 
 ### N-SK4 — 1 occurrence
 
@@ -1032,6 +1039,10 @@ or per-lens patent backfills.
 ### S-BSM2 — 1 occurrence
 
 - [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) 3: `S-BSM2 (OHARA)`
+
+### S-BSM25 — 1 occurrence
+
+- [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) 21: `S-BSM25 (OHARA)`
 
 ### S-FPM5 — 1 occurrence
 
@@ -1115,11 +1126,11 @@ or per-lens patent backfills.
 
 ### SF8 — 1 occurrence
 
-- [Carl Zeiss Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
+- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
 
 ### SK18A — 1 occurrence
 
-- [Carl Zeiss Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
+- [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 1: `SK18A / N-SK18 class (Schott, 639554; patent νd retained)`
 
 ### SK4 — 1 occurrence
 

@@ -22,6 +22,7 @@ const LENS_DATA = {
   key: "reference-cassegrain-100f8",
   maker: "Reference",
   name: "REFERENCE CASSEGRAIN 100 mm f/8",
+  visible: false,
   subtitle: "Synthetic two-mirror catadioptric (engine demo, not a real lens)",
   specs: ["2 MIRRORS / 0 ELEMENTS", "f ≈ 100 mm", "F/8"],
 

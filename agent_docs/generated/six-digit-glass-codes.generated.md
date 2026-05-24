@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **252** lenses scanned
+- **259** lenses scanned
 - **254** total code-only elements found
 - **254** elements in this report
 - **92** distinct lens files affected
@@ -285,7 +285,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `SK/SSK family (623581, discontinued?)` | 1.62299 / 58.12 | BACD15 (trusted Sellmeier) | sellmeier |
 
-### [Carl Zeiss Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) - US 2,084,309
+### [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) - US 2,084,309
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|

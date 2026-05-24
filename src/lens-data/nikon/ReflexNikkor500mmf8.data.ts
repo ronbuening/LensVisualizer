@@ -42,6 +42,7 @@ const LENS_DATA = {
   key: "reflex-nikkor-500f8",
   maker: "Nikon",
   name: "REFLEX-NIKKOR 500 mm f/8",
+  visible: false,
   subtitle: "Catadioptric mirror tele (placeholder; full patent prescription pending)",
   specs: ["1 ELEMENT + 2 MIRRORS", "f ≈ 500 mm (nominal)", "F/8"],
   patentYear: 1984,

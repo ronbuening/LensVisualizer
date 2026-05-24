@@ -26,6 +26,7 @@ const LENS_DATA = {
   key: "reference-maksutov-cassegrain",
   maker: "Reference",
   name: "REFERENCE MAKSUTOV-CASSEGRAIN",
+  visible: false,
   subtitle: "Three-surface catadioptric (engine demo, not a real lens)",
   specs: ["1 ELEMENT + 2 MIRRORS", "Engine demo", "F/12 nominal"],
 

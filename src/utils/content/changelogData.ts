@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-24 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-24",
+    type: "improvement",
+    summary: "Laid groundwork for future support of lenses with reflective surfaces",
+  },
+  {
+    date: "2026-05-24",
     type: "lens",
     summary: "Added three Canon APS-C format lenses for EF mount",
   },
