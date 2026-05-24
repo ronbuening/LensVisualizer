@@ -247,7 +247,7 @@ export function computeElementShapes(
     return `${x},${yy}`;
   };
 
-  return L.ES.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
+  const shapes: ElementShape[] = L.ES.map(([eid, s1, s2]: ElementSpan, elementIndex: number) => {
     const trim1 = diagnostics[elementIndex].front.renderSD;
     const trim2 = diagnostics[elementIndex].rear.renderSD;
     const z1 = zPos[s1],
@@ -332,6 +332,76 @@ export function computeElementShapes(
     }
     return { eid, d: d + "Z", z1, z2, asphPaths, mirrorPaths };
   });
+
+  /* Append synthetic entries for free-standing reflective surfaces (mirrors
+   * with elemId=0 that don't sit inside any element span — typical of
+   * pure-mirror catadioptrics or the primary mirror of a Mak-Cass). These
+   * carry only mirror paths; the diagram layer renders the silvered arcs
+   * without an associated glass outline. */
+  const looseMirrorEntries: ElementShape[] = [];
+  for (const looseMirror of computeLooseMirrorPaths(L, zPos, sx, sy, pointTransform)) {
+    const vertexZ = zPos[looseMirror.surfIdx] ?? 0;
+    looseMirrorEntries.push({
+      eid: -1,
+      d: "",
+      z1: vertexZ,
+      z2: vertexZ,
+      asphPaths: [],
+      mirrorPaths: [looseMirror],
+    });
+  }
+  return [...shapes, ...looseMirrorEntries];
+}
+
+/**
+ * Build SVG paths for reflective surfaces that aren't contained inside any
+ * element span (typically elemId=0 mirrors in pure-mirror or Cassegrain-style
+ * catadioptric lenses). Surfaces inside element spans already get their
+ * mirror overlay through `computeElementShapes`; this fills in the rest so a
+ * Cassegrain's primary and secondary are visible.
+ */
+export function computeLooseMirrorPaths(
+  L: RuntimeLens,
+  zPos: number[],
+  sx: (z: number) => number,
+  sy: (y: number) => number,
+  pointTransform?: DiagramPointTransform,
+): MirrorPathData[] {
+  const screenPoint = (z: number, y: number): [number, number] => {
+    const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
+    return [sx(zz), sy(yy)];
+  };
+  const pathPoint = (z: number, y: number): string => {
+    const [x, yy] = screenPoint(z, y);
+    return `${x},${yy}`;
+  };
+
+  const coveredSurfaces = new Set<number>();
+  for (const [, s1, s2] of L.ES) {
+    coveredSurfaces.add(s1);
+    coveredSurfaces.add(s2);
+  }
+
+  const out: MirrorPathData[] = [];
+  const NN = SVG_PATH_SUBDIVISIONS;
+  for (let i = 0; i < L.S.length; i++) {
+    const surface = L.S[i];
+    if (!surface.reflect) continue;
+    if (coveredSurfaces.has(i)) continue;
+    const sd = typeof surface.sd === "number" ? surface.sd : 0;
+    if (sd <= 0) continue;
+    const ranges = silveredYRanges(surface.reflect.region, sd);
+    const vertexZ = zPos[i] ?? 0;
+    for (const [yLo, yHi] of ranges) {
+      let p = "";
+      for (let k = 0; k <= NN; k++) {
+        const y = yLo + ((yHi - yLo) * k) / NN;
+        p += `${k ? "L" : "M"}${pathPoint(vertexZ + renderSag(Math.abs(y), i, L), y)} `;
+      }
+      out.push({ surfIdx: i, pathD: p });
+    }
+  }
+  return out;
 }
 
 /**

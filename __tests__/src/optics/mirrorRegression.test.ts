@@ -616,6 +616,50 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("computeFieldGeometryAtState walks the catadioptric traceSequence", async () => {
+    /* This catches the regression where `fieldGeometry.ts` (called from the
+     * React diagram render hook) tripped the "multiple reflective surfaces
+     * require an explicit traceSequence" guard for Cassegrain/Mak-Cass/Reflex
+     * lenses. Loading the lens diagram now must run the field-geometry
+     * computation without throwing. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { computeFieldGeometryAtState } = await import("../../../src/optics/fieldGeometry.js");
+    for (const key of REFERENCE_LENS_KEYS) {
+      const lens = buildLens(LENS_CATALOG[key]);
+      expect(() => computeFieldGeometryAtState(0, 0, lens), `${key}: field geometry threw`).not.toThrow();
+    }
+  });
+
+  it("loose mirror surfaces (elemId=0, with reflect) emit drawable mirror paths", async () => {
+    /* Pure-mirror Cassegrains have reflective surfaces that don't sit inside
+     * any element span. computeElementShapes must still emit mirror paths for
+     * them so the diagram can draw the silvered arcs. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { computeElementShapes } = await import("../../../src/optics/diagramGeometry.js");
+    const lens = buildLens(LENS_CATALOG["reference-cassegrain-100f8"]);
+    const zPos = lens.S.reduce<number[]>(
+      (acc, s, i) => (i === 0 ? [0] : [...acc, acc[acc.length - 1] + lens.S[i - 1].d]),
+      [],
+    );
+    const shapes = computeElementShapes(
+      lens,
+      zPos,
+      (z) => z,
+      (y) => y,
+    );
+    const allMirrorPaths = shapes.flatMap((s) => s.mirrorPaths);
+    /* Cassegrain has 2 reflective surfaces (primary + secondary), both full
+     * silvering → one mirror path each. */
+    expect(allMirrorPaths.length).toBeGreaterThanOrEqual(2);
+    const reflectiveSurfaceIndices = lens.S.reduce<number[]>((acc, s, i) => (s.reflect ? [...acc, i] : acc), []);
+    for (const idx of reflectiveSurfaceIndices) {
+      expect(
+        allMirrorPaths.some((m) => m.surfIdx === idx),
+        `surface ${idx} (label ${lens.S[idx].label}) must have a mirror path drawn`,
+      ).toBe(true);
+    }
+  });
+
   it("Mangin reference lens trace hits its silvered rear and returns through the front", async () => {
     const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
     const lens = buildLens(LENS_CATALOG["reference-mangin-156f4"]);

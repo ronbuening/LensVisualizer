@@ -59,8 +59,9 @@ export function computeCardinalElementsAtState(
     L.aberrationControl?.varByIdx,
     aberrationT,
   );
-  const marginal = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
-  const chief = traceSurfacesParaxial(S, 0, 1, { skipLastTransfer: true });
+  const traceSequence = L.traceSequence ?? null;
+  const marginal = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true, traceSequence });
+  const chief = traceSurfacesParaxial(S, 0, 1, { skipLastTransfer: true, traceSequence });
   const objectIndex = 1;
   const imageIndex = marginal.n;
 

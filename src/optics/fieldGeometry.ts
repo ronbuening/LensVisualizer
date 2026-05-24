@@ -113,6 +113,7 @@ export function computeFieldGeometryAtState(
   const stopIdx = L.stopIdx;
   const delta = 1e-4;
 
+  const traceSequence = L.traceSequence ?? null;
   const paraxMarg = traceSurfacesParaxial(S, 1, 0, { stopAt: stopIdx });
   const paraxChief = traceSurfacesParaxial(S, 0, 1, { stopAt: stopIdx });
   const realMarg = traceStateSurfacesReal(S, L, delta, 0, { stopAt: stopIdx });
@@ -122,8 +123,16 @@ export function computeFieldGeometryAtState(
   const b = isFinite(realChief.y) ? realChief.y / delta : paraxChief.y;
   const epRatio = Math.abs(yRatio) > 1e-9 ? b / yRatio : 0;
 
-  const hA = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true, recordHeights: true }).heights!;
-  const hB = traceSurfacesParaxial(S, 0, 1, { skipLastTransfer: true, recordHeights: true }).heights!;
+  const hA = traceSurfacesParaxial(S, 1, 0, {
+    skipLastTransfer: true,
+    recordHeights: true,
+    traceSequence,
+  }).heights!;
+  const hB = traceSurfacesParaxial(S, 0, 1, {
+    skipLastTransfer: true,
+    recordHeights: true,
+    traceSequence,
+  }).heights!;
   const r = Math.abs(hA[stopIdx]) > 1e-15 ? hB[stopIdx] / hA[stopIdx] : 0;
   let minU = Infinity;
   for (let i = 0; i < L.N; i++) {
@@ -249,7 +258,10 @@ export function traceParaxialRay(
   L: RuntimeLens,
 ): Pick<ParaxialTraceResult, "y" | "u"> {
   const S = stateSurfaces(focusT, zoomT, L);
-  const result = traceSurfacesParaxial(S, y0, u0, { skipLastTransfer: true });
+  const result = traceSurfacesParaxial(S, y0, u0, {
+    skipLastTransfer: true,
+    traceSequence: L.traceSequence ?? null,
+  });
   return { y: result.y, u: result.u };
 }
 
@@ -875,8 +887,12 @@ function traceStateSurfacesReal(
   u0: number,
   traceOptions: RealSurfaceTraceOptions = {},
 ): RealSurfaceTraceResult {
+  /* When the trace runs across the FULL surface stack (no `stopAt`), thread
+   * the lens's explicit `traceSequence` so catadioptric paths are walked in
+   * hit order rather than tripping the "multiple reflective surfaces" guard. */
+  const traceSequence = traceOptions.stopAt === undefined ? (L.traceSequence ?? null) : null;
   const result = traceExactSurfaceStack(
-    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx, traceSequence },
     { y0, uy0: u0 },
     {
       stopAt: traceOptions.stopAt,

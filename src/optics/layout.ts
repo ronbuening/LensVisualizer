@@ -142,9 +142,12 @@ export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberra
     return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   }
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
-  const trace = traceSurfacesParaxial(S, 1, 0, { skipLastTransfer: true });
+  const trace = traceSurfacesParaxial(S, 1, 0, {
+    skipLastTransfer: true,
+    traceSequence: L.traceSequence ?? null,
+  });
   if (Math.abs(trace.u) < 1e-15) return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
-  return -1.0 / trace.u;
+  return Math.abs(-1.0 / trace.u);
 }
 
 export function effectiveFNumber(

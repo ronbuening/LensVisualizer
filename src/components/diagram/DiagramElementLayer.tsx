@@ -35,12 +35,16 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
 }: DiagramElementLayerProps) {
   return (
     <>
-      {shapes.map(({ eid, d: path }) => {
+      {shapes.map(({ eid, d: path }, shapeIndex) => {
+        /* Loose mirror entries (eid=-1) carry only mirror paths and skip the
+         * glass-element render entirely. They're emitted by computeElementShapes
+         * for reflective surfaces that don't sit inside an element span. */
+        if (eid < 0) return null;
         const element = L.elements.find((candidate) => candidate.id === eid)!;
         const highlighted = act === eid;
         return (
           <path
-            key={eid}
+            key={`elem-${eid}-${shapeIndex}`}
             d={path}
             fill={t.elemFill(element, highlighted)}
             stroke={t.elemStroke(element, highlighted)}

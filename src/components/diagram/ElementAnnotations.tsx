@@ -35,14 +35,16 @@ export default function ElementAnnotations({
 
   return (
     <>
-      {/* Element number labels */}
-      {shapes.map(({ eid, z1, z2 }) => {
+      {/* Element number labels. Synthetic loose-mirror shape entries (eid=−1)
+       * have no associated element record and are skipped. */}
+      {shapes.map(({ eid, z1, z2 }, shapeIndex) => {
+        if (eid < 0) return null;
         const e = L.elements.find((x) => x.id === eid)!;
         const on = act === eid;
         const [x, y] = screenPoint((z1 + z2) / 2, L.lyElemNum);
         return (
           <text
-            key={`n${eid}`}
+            key={`n${eid}-${shapeIndex}`}
             x={x}
             y={y}
             textAnchor="middle"

@@ -509,6 +509,6 @@ export function traceToImage(
   aberrationT = 0,
 ): number {
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);
-  const trace = traceSurfacesParaxial(S, y0, u0);
+  const trace = traceSurfacesParaxial(S, y0, u0, { traceSequence: L.traceSequence ?? null });
   return trace.y + S[S.length - 1].d * trace.u;
 }
