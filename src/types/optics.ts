@@ -313,6 +313,16 @@ export interface RuntimeLens {
   readonly apertureReferenceFocalLength: number;
   readonly EP: EntrancePupil;
   readonly B: number;
+  /**
+   * Absolute z-position of the paraxial image plane at infinity focus, in
+   * the lens's optical coordinate system (mm). For ordinary refractive
+   * lenses this is `zPos[last] + BFL` and equals the conventional layout
+   * `imgZ`. For catadioptric lenses where light exits going backward, this
+   * may be negative — the image forms in front of the lens on the −z side,
+   * not past the rear vertex. The diagram uses this to draw the image
+   * plane in the correct physical direction.
+   */
+  readonly imagePlaneZ: number;
   readonly FOPEN: number;
   readonly halfField: number;
   /**

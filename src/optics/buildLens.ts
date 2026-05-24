@@ -331,6 +331,22 @@ export default function buildLens(data: LensData): RuntimeLens {
       `Lens "${data.key}": EFL is not finite (paraxial u=${eflTrace.u}) — system may be afocal or surface data is invalid`,
     );
 
+  /* Absolute image-plane z. For refractive lenses this matches the
+   * conventional `zPos[last] + BFL`. For catadioptric lenses with
+   * backward-exiting rays, the explicit trace terminates at the FIRST
+   * surface (the front of the corrector, on the return pass), so the image
+   * plane projects from there along the negative-z direction — it may end
+   * up in front of the lens at z < 0. */
+  const terminalSurfaceIdx =
+    traceSequence && traceSequence.length > 0 ? traceSequence[traceSequence.length - 1] : S.length - 1;
+  const terminalZ = (() => {
+    let z = 0;
+    for (let i = 0; i < terminalSurfaceIdx; i++) z += S[i].d;
+    return z;
+  })();
+  const imagePlaneZ =
+    Math.abs(eflTrace.u) > 1e-15 ? terminalZ - eflTrace.y / eflTrace.u : terminalZ + S[S.length - 1].d;
+
   /* Entrance pupil: trace marginal ray to the stop; the height ratio
    * epTrace.y maps between entrance pupil SD and physical stop SD.
    * EP.epSD = stop SD / yRatio = entrance pupil semi-diameter in object space. */
@@ -718,6 +734,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     apertureReferenceFocalLength,
     EP,
     B,
+    imagePlaneZ,
     FOPEN,
     halfField,
     tracingHalfField,

@@ -109,7 +109,15 @@ export default function useLensComputation({
    * the current layout so the image plane stays at a fixed SVG position
    * regardless of focus or zoom changes. */
   const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
-  const IMG_MM = ref ? ref.imgZ : 0;
+  /* Layout coordinate uses the magnitude of the image distance so the
+   * diagram always extends in the +z direction. For ordinary refractive
+   * lenses this equals the paraxial image plane unchanged; for backward-
+   * image catadioptrics the image actually forms at z < 0, but the
+   * existing coordinate transform assumes +z growth — mirror to +z so the
+   * lens stays on-screen. The IMG label honors |imagePlaneZ| as the image
+   * distance; the signed value remains on L.imagePlaneZ for any code that
+   * needs the physical direction. */
+  const IMG_MM = L ? Math.abs(L.imagePlaneZ) : 0;
   const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
   const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
   const zPosRef = useRef<number[]>([]);

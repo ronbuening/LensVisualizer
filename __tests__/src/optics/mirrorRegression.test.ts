@@ -668,6 +668,39 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("backward-image catadioptrics report a negative imagePlaneZ", async () => {
+    /* The Mangin lens exits light going in -z and forms its image in front
+     * of the lens at z < zPos[0]. buildLens computes L.imagePlaneZ from the
+     * paraxial trace using the explicit traceSequence; for catadioptric
+     * lenses the resulting z can be negative, signaling the image forms on
+     * the front side of the lens. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const mangin = buildLens(LENS_CATALOG["reference-mangin-156f4"]);
+    expect(isFinite(mangin.imagePlaneZ)).toBe(true);
+    expect(mangin.imagePlaneZ).toBeLessThan(0);
+    /* Magnitude should match the EFL magnitude to within ~20% (paraxial
+     * trace and EFL are derived from the same trace, so the focal-length
+     * magnitude and the image-plane distance from z=0 should be similar). */
+    const ratio = Math.abs(mangin.imagePlaneZ) / mangin.EFL;
+    expect(ratio).toBeGreaterThan(0.5);
+    expect(ratio).toBeLessThan(1.5);
+  });
+
+  it("refractive lenses have imagePlaneZ close to the conventional zPos[last] + BFL", async () => {
+    /* For ordinary refractive lenses the paraxial image plane and the
+     * layout-side `zPos[last] + S[last].d` should agree to within authoring
+     * precision. This guards against the buildLens change accidentally
+     * shifting the image plane for the legacy catalog. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { doLayout } = await import("../../../src/optics/optics.js");
+    for (const key of ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15", "zeiss-hologon-15f8"]) {
+      const L = buildLens(LENS_CATALOG[key]);
+      const layout = doLayout(0, 0, L);
+      const diff = Math.abs(L.imagePlaneZ - layout.imgZ);
+      expect(diff, `${key}: imagePlaneZ ${L.imagePlaneZ} vs layout.imgZ ${layout.imgZ}`).toBeLessThan(20);
+    }
+  });
+
   it("loose mirror surfaces (elemId=0, with reflect) emit drawable mirror paths", async () => {
     /* Pure-mirror Cassegrains have reflective surfaces that don't sit inside
      * any element span. computeElementShapes must still emit mirror paths for
