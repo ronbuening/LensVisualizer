@@ -31,7 +31,7 @@ import {
 } from "./optics.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
-import { isHeavyLensForRayWork } from "./raySampling.js";
+import { isHeavyLensForRayWork, rayHeightForPupilFraction } from "./raySampling.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -105,6 +105,13 @@ export function computeVignettingCurve(
    * near the field edge. */
   const fieldSamples = Math.max(Math.ceil(halfFieldDeg / 3) + 1, 7);
   const nPupil = isHeavyLensForRayWork(L) ? N_PUPIL_HEAVY : N_PUPIL_FULL;
+  /* For catadioptric lenses with an annular entrance pupil, redistribute
+   * pupil samples across the unobstructed annulus instead of the full disk
+   * so each sample represents an equal slice of usable pupil. Without this,
+   * up to obstrFrac × 2 of the samples would land inside the central
+   * obstruction and be flagged as clipped, artificially deflating the
+   * on-axis transmission and hiding the actual off-axis vignetting. */
+  const epObstructionSD = L.EP.epObstructionSD ?? 0;
 
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];
@@ -121,11 +128,13 @@ export function computeVignettingCurve(
     const uField = launch.uField;
     const yChief = solve.vectorLaunch ? NaN : solve.yLaunch;
 
-    /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1] */
+    /* Dense meridional pupil sweep: nPupil evenly-spaced fractions in [−1, +1],
+     * remapped into the annular band for catadioptric lenses with a central
+     * obstruction. */
     let surviving = 0;
     for (let j = 0; j < nPupil; j++) {
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
-      const pupilOffset = pupilFrac * currentEPSD;
+      const pupilOffset = rayHeightForPupilFraction(pupilFrac, currentEPSD, epObstructionSD);
       const trace = solve.vectorLaunch
         ? traceRayVector(offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset), zPos, currentPhysStopSD, true, L)
         : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);

@@ -701,6 +701,27 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("vignetting curve for catadioptric lenses samples the annular pupil, not the obstructed center", async () => {
+    /* Without the annular remap, the dense pupil sweep would place rays
+     * inside the central obstruction and count them as clipped, deflating
+     * the on-axis transmission below the surviving annular flux. With the
+     * remap the on-axis (= field-angle 0) sample should pass essentially
+     * every annular pupil ray. */
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { computeVignettingCurve } = await import("../../../src/optics/vignetteAnalysis.js");
+    const { doLayout } = await import("../../../src/optics/optics.js");
+    const lens = buildLens(LENS_CATALOG["reference-cassegrain-100f8"]);
+    const layout = doLayout(0, 0, lens);
+    const curve = computeVignettingCurve(lens, layout.z, 0, 0, lens.EP.epSD, lens.stopPhysSD);
+    expect(curve.length, "vignetting curve must produce samples").toBeGreaterThan(0);
+    /* On-axis is by-definition normalized to 1.0 since the curve renormalizes.
+     * What we really verify here is that the curve EXISTS — without the
+     * annular remap fix, every catadioptric trace would have gtAxis === 0
+     * (central rays all clipped) and the function would return []. */
+    expect(curve[0].geometricTransmission).toBeCloseTo(1.0, 6);
+    expect(curve[0].relativeIllumination).toBeCloseTo(1.0, 6);
+  });
+
   it("loose mirror surfaces (elemId=0, with reflect) emit drawable mirror paths", async () => {
     /* Pure-mirror Cassegrains have reflective surfaces that don't sit inside
      * any element span. computeElementShapes must still emit mirror paths for
