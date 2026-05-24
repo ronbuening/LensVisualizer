@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "zeiss-distagon-28mm-f2",
   maker: "Carl Zeiss Oberkochen",
-  name: "Carl Zeiss Distagon T* 28mm f/2",
+  name: "CARL ZEISS Distagon T* 28mm f/2",
   subtitle: "DE 2359156 A1 Example 12 — Erhard Glatzel / Carl Zeiss",
   specs: ["9 elements / 8 groups", "f = 28.8 mm design", "f/2 marketed; f/2.1 patent", "2ω = 74.5°", "all-spherical"],
 
