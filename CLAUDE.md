@@ -109,6 +109,14 @@ Read only the relevant focused doc before changing that area:
   or thread `mode` / `traceMode` options through new helpers.
 - Fisheye and ultra-wide field launch must go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
+- Catadioptric (mirror) lenses use the step-sequence machinery in `internal/exactSurfaceTrace.ts` and
+  `internal/traceSurfaces.ts`. A lens with multiple reflective surfaces MUST declare an explicit
+  `traceSequence`; a single reflective surface gets an inferred forward-reflect-backward path. Thread
+  `L.traceSequence` through any new full-system trace callsite (the inferred-vs-explicit fork lives in
+  `buildTraceStepSequence`/`buildParaxialStepSequence`). For ray-fan and analysis work on annular-pupil
+  lenses, use `rayHeightForPupilFraction` and `remapCircularPupilToAnnulus` from `raySampling.ts` rather
+  than `f * currentEPSD` directly. See `agent_docs/architecture/optics-engine.md` and the
+  "Catadioptric Mirror Surfaces" section of `src/lens-data/LENS_DATA_SPEC.md` for the full schema.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.

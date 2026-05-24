@@ -104,6 +104,8 @@ These must be specified in every lens file — they have no defaults.
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
 | `apertureBlades` | `number` | | Number of aperture blades (reserved for future polygonal bokeh rendering) |
 | `apertureBladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 = straight polygon, 1 = circular) |
+| `traceSequence` | `string[]` | | Optional explicit hit-order of surface labels for catadioptric lenses where the same surface is visited more than once on the round-trip path. See [Catadioptric Mirror Surfaces](#catadioptric-mirror-surfaces). |
+| `entrancePupilObstructionSD` | `number` | `0` | Inner radius of an annular entrance pupil (mm). Set for catadioptric lenses where a secondary mirror or central spot blocks the inner zone of the pupil. Used by ray sampling, vignetting, bokeh, and MTF to redistribute work into the annular band. |
 
 ---
 
@@ -323,6 +325,8 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   elemId: 2,          // REQUIRED: element ID (0 = air interface)
   sd:     14.5,       // REQUIRED: semi-diameter (half clear aperture) in mm
   stopPlacement: "inside-element", // optional: only valid on an embedded STO surface
+  reflect: { kind: "first" }, // optional: marks the surface as a mirror — see Catadioptric Mirror Surfaces
+  embeddedIn: "2",            // optional: another surface's label this one is geometrically nested inside
 }
 ```
 
@@ -374,6 +378,88 @@ Exactly one surface must have `label: "STO"`. This is typically a flat surface (
 - **Patent specifies stop:** Use the exact surface index or gap from the patent table.
 - **Patent does not specify (common in older patents):** Estimate from the patent figure drawing. Split the air gap at the inferred iris location — the preceding surface's `d` is the distance from that surface to the stop, and the STO surface's `d` is the remaining distance to the next surface. Document the estimate in a code comment (e.g., "STO position inferred from Fig. 1 iris placement").
 - **Patent places stop inside a glass element:** Use `stopPlacement: "inside-element"` on `STO`, keep the stop flat, set `STO.nd` to the containing glass index, set `STO.elemId` to the containing element id, and add `fromSurface`/`toSurface` to that element. Do not use this flag for ordinary air stops.
+
+---
+
+## Catadioptric Mirror Surfaces
+
+Mirror telephotos (Mangin, Cassegrain, Maksutov-Cassegrain, Reflex-Nikkor, etc.) reflect light off one or more silvered surfaces and may traverse the same surface more than once on the round trip. Three optional fields on `SurfaceData` plus one top-level `traceSequence` field cover the full schema.
+
+### `reflect` on a surface
+
+Marks a surface as a mirror.
+
+```javascript
+reflect: { kind: "first" }                                          // silvered front surface in air
+reflect: { kind: "second" }                                         // silvered rear of a Mangin element (in glass)
+reflect: { kind: "first", region: { shape: "disk", rMax: 5 } }      // central silvered spot, outer transmits
+reflect: { kind: "first", region: { shape: "annulus", rMin: 10, rMax: 80 } } // annular silvered ring, central transmits
+reflect: { kind: "second", region: { shape: "disk", rMax: 8 }, opaqueFrom: "front" } // silvered spot that ALSO blocks forward light
+```
+
+| `kind` | When to use | nd requirements |
+|---|---|---|
+| `"first"` | Silvered front surface in air. Light reflects without ever entering glass. | `nd = 1.0` on this surface; previous surface's `nd = 1.0`. |
+| `"second"` | Silvered rear of a glass element (Mangin / Bouwers / corrector with silvered back). Light refracts in, reflects off the silvered rear, refracts back out the front. | Previous surface must be glass (`nd > 1`). When fully silvered (no `region`), this surface's `nd` must also be glass and match the previous nd. When `region` is set (partial silvering), `nd` may be air — the transmissive part exits to whatever this surface's `nd` says. |
+
+`region` describes the silvered portion of the surface; outside the region the surface transmits. Disk silvering covers `[0, rMax]`. Annulus silvering covers `[rMin, rMax]` (with `rMax` defaulting to `sd`). Validation requires `rMax ≤ sd` and `rMin < rMax`.
+
+`opaqueFrom` is an optional one-sided-opacity flag. `"front"` absorbs forward-traveling rays inside the silvered region; `"back"` absorbs backward rays. Used to model secondary mirror spots that physically block the direct optical path to the primary.
+
+### `embeddedIn` on a surface
+
+Optional label of another surface this one is geometrically nested inside. Used for secondary mirror spots that sit on or within another element's volume. The host element's `fromSurface`/`toSurface` span must include this embedded surface's vertex z.
+
+### `traceSequence` on the lens
+
+Optional `string[]` of surface labels describing the round-trip light path. Required whenever the same surface is visited more than once (any catadioptric with two or more reflective surfaces, or a Mangin where the explicit sequence is more convenient than relying on inference). When omitted, a single reflective surface gets an inferred forward-reflect-backward sequence automatically.
+
+```javascript
+// Cassegrain (pure two-mirror):
+traceSequence: ["STO", "M1", "M2"]
+// Maksutov-Cassegrain (corrector + primary + silvered spot on corrector rear):
+traceSequence: ["STO", "1", "2", "M_pri", "2", "M_pri"]
+```
+
+Validation rules: first label must be the first physical surface in z-order; whenever consecutive labels imply a direction reversal (surface index decreases), the previous surface must have `reflect` set.
+
+### `entrancePupilObstructionSD` on the lens
+
+Inner radius (mm) of an annular entrance pupil for lenses with a central obstruction. Default `0` (solid pupil). When set, the ray-sampling pipeline (on-axis fan, off-axis fan, chromatic fan, bokeh disc samples, vignetting pupil sweep) redistributes pupil work into the annular band `[entrancePupilObstructionSD, EP.epSD]` so authored ray fractions don't all get absorbed by the obstruction.
+
+### Worked example — Mangin (one element, silvered rear)
+
+```javascript
+elements: [
+  { id: 1, name: "L_I", label: "Mangin meniscus", type: "Mangin Mirror", nd: 1.517, vd: 64.17, glass: "BK7" },
+],
+surfaces: [
+  { label: "STO", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 20 },
+  { label: "1", R: -147.69, d: 8, nd: 1.517, elemId: 1, sd: 30 },
+  { label: "M1", R: -228.34, d: 200, nd: 1.517, elemId: 1, sd: 30,
+    reflect: { kind: "second" } },
+],
+// traceSequence is inferred: STO → 1 → M1 → 1 → STO (one reflective surface)
+```
+
+### Worked example — Cassegrain (pure two-mirror, no glass)
+
+```javascript
+elements: [],  // pure-mirror lenses may have empty elements when at least one surface has `reflect`
+surfaces: [
+  { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 10 },
+  { label: "M2",  R: 200,  d: 100, nd: 1.0, elemId: 0, sd: 15,
+    reflect: { kind: "first" } },
+  { label: "M1",  R: -400, d: 100, nd: 1.0, elemId: 0, sd: 80,
+    reflect: { kind: "first" } },
+],
+traceSequence: ["STO", "M1", "M2"],
+entrancePupilObstructionSD: 2.5,
+```
+
+### Reference lenses
+
+See `src/lens-data/reference/ReferenceMangin156mmf4.data.ts`, `ReferenceCassegrain100mmf8.data.ts`, `ReferenceMaksutovCassegrain.data.ts`, and `src/lens-data/nikon/ReflexNikkor500mmf8.data.ts` for full annotated examples of every feature.
 
 ---
 

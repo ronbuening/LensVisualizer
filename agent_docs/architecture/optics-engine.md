@@ -111,6 +111,59 @@ and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
+## Catadioptric Trace
+
+Catadioptric (mirror) lenses are first-class. The exact and paraxial tracers both iterate a **step
+sequence** — an ordered list of `{ surfaceIdx, action: "refract" | "reflect", defaultNextN }` entries —
+rather than walking `lens.S` directly. For ordinary refractive lenses the step sequence is the identity
+`[{0,refract}, {1,refract}, ...]` and per-step behavior reduces to the pre-refactor loop byte-identically.
+
+`buildTraceStepSequence(lens, tracedCount)` builds the sequence:
+
+1. **No reflective surfaces** — identity sequence.
+2. **One reflective surface, no explicit `traceSequence`** — inferred forward-reflect-backward path:
+   refract through surfaces `0..k-1`, reflect at `k`, refract back through surfaces `k-1..0`.
+3. **`lens.traceSequence` set** — walk the explicit label-resolved indices. The same index may repeat;
+   direction tracking flips a `forward` flag at every reflect step so refract steps after a reflection
+   pick the medium on the −z side of the surface (i.e. `S[i-1].nd` instead of `S[i].nd`).
+4. **Multiple reflective surfaces without an explicit `traceSequence`** — throws. Catadioptric lenses
+   with two or more mirrors must author the explicit path.
+
+Per-step body in `traceExactSurfaceStackVector` and `traceSurfacesParaxial`:
+
+- **Refract step.** Standard Snell's-law refraction with `defaultNextN` as the target index.
+  `refractDirection` auto-flips the surface normal when `direction · normal < 0` so post-reflection
+  backward rays refract in the correct z-direction.
+- **Reflect step (`kind: "first"` or `"second"`).** Apply `reflectDirection(direction, normal)`. The
+  refractive index is unchanged for a specular reflection. Direction's z-component flips.
+- **Reflect step with `region`.** Radial check first: when the hit point's radius falls outside the
+  silvered region the surface transmits instead of reflects. The transmit branch refracts using
+  `surface.nd` (forward) or `S[surfaceIdx-1].nd` (backward) per the current direction sign.
+- **Reflect step with `opaqueFrom`.** Side-aware absorption: inside the silvered region, a forward ray
+  is absorbed when `opaqueFrom === "front"` (or backward ray when `"back"`). Trace clips with
+  `failureReason: "absorbed"`.
+
+The paraxial tracer uses the same step shape plus a signed `transferD` (positive for forward steps,
+negative for the backward walk after reflection). Reflection is encoded by the standard `n → −n` trick:
+the formula `u' = (n·u − y·(n' − n)/R) / n'` with `n' = −n` reduces to `u' = −u − 2y/R`. Subsequent
+backward-direction refract steps consume the signed `n` so the medium transitions remain consistent;
+the public return restores `n` to its magnitude. `buildLens` stores
+`L.imagePlaneZ = z_terminal + (−y/u)` from this trace, signed — negative when the image forms in front
+of the lens for a backward-image catadioptric.
+
+For surfaces outside any element span (pure-mirror lenses where `elements: []`), `validateLensData`
+allows the empty `elements` array provided at least one surface has `reflect` set.
+
+## Annular Entrance Pupil
+
+Catadioptric lenses declare `entrancePupilObstructionSD` (mm) to mark the inner radius of an annular
+entrance pupil. `buildLens` carries this onto `L.EP.epObstructionSD`; the helpers
+`rayHeightForPupilFraction` (1-D pupil fractions) and `remapCircularPupilToAnnulus` (2-D pupil samples)
+redistribute pupil sampling into the unobstructed band `[epObstructionSD, epSD]`. The vignetting,
+bokeh, and MTF analyses consume these helpers so per-lens ray fans, vignetting curves, bokeh discs, and
+diffraction MTF all reflect the annular pupil instead of treating the obstructed inner zone as part of
+the usable aperture.
+
 ## Field-Launch Convention
 
 Every analysis launch slope flows through `projectionLaunchSlopeForField(L, fieldAngleDeg)` in
@@ -230,6 +283,22 @@ three functions accept an optional precomputed `FieldGeometryState`.
 rectilinear primes and 96 for heavy lenses (fisheye, ≥32 surfaces, ≥50 mm SD, or ≥40° half-field).
 `computeVignettingCurve()` accepts optional precomputed field geometry and traces `solve.vectorLaunch` for
 fisheye/past-cap fields when the scalar slope helper reports `out-of-domain`.
+
+When `L.EP.epObstructionSD > 0` the pupil sweep redistributes its 192 (or 96) samples across the annular
+band via `rayHeightForPupilFraction` so a catadioptric lens's on-axis transmission reflects the actual
+unobstructed-annulus flux rather than the deflated baseline you'd get from counting central samples as
+clipped.
+
+## MTF
+
+`mtfAnalysis.ts` computes diffraction-limited MTF curves at the current working F-number for three
+Fraunhofer wavelengths (F=486.1 nm, d=587.6 nm, C=656.3 nm). The pure-math kernel
+`aberration/diffractionMTF.ts` exposes `circularAiryMTF(nu)` and `annularAiryMTF(nu, epsilon)`; the
+analysis wraps them with per-channel cutoff frequencies `nu_c = 1 / (λ · F#)`. For catadioptric lenses
+`L.EP.epObstructionSD / L.EP.epSD` is fed to `annularAiryMTF` as `epsilon`, picking up the annular
+mid-frequency suppression that gives mirror telephotos their characteristic MTF rolloff. The current
+implementation is the diffraction-limit upper bound — aberration-induced degradation (PSF → FFT → OTF)
+is a separate compute path.
 
 ## Pupil Aberration
 

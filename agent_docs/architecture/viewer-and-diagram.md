@@ -52,10 +52,10 @@ Key responsibilities:
 
 | Hook | Purpose |
 | --- | --- |
-| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. |
-| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments. |
-| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry. |
+| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. Image-plane coordinate (`IMG_MM`) uses `|L.imagePlaneZ|` so backward-image catadioptrics still extend the diagram in +z. Exposes `currentEPObstructionSD` (scaled by stop-down) for downstream ray hooks. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Threads `currentEPObstructionSD` to the sub-hooks so annular pupils get the right ray distribution. |
+| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments. Remaps ray fractions through `rayHeightForPupilFraction` so annular-pupil lenses sample the unobstructed band only. |
+| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry. Same annular-pupil remap as the on-axis hook. |
 | `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |
 | `useChromaticRays.ts` | Computes density-derived axial and off-axis chromatic R/G/B tracing plus axial LCA/TCA spread. |
 | `useFlashOverlay.ts` | Sticky-slider flash animation state. |
@@ -83,7 +83,7 @@ Key responsibilities:
 | `DiagramSVG.tsx` | Top-level SVG renderer. Accepts viewBox override, zoom handlers, optional movement transforms, and the subtle moved-lens axis; wrapped in `React.memo`. |
 | `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
 | `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements. |
-| `DiagramElementLayer.tsx` | Lens element paths and aspheric overlays. |
+| `DiagramElementLayer.tsx` | Lens element paths, aspheric overlays, and mirror-stroke overlays. Synthetic `eid: -1` shape entries (for free-standing reflective surfaces with `elemId: 0` that don't sit inside any element span — typical of pure-mirror Cassegrains) skip the glass-fill render but still paint their `mirrorPaths`. |
 | `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. |
 | `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |

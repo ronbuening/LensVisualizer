@@ -74,9 +74,9 @@ closed, preventing hidden analysis work during slider drag.
 
 New analysis tabs require:
 
-1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
+1. Add the tab id to `ANALYSIS_TAB_IDS` in `src/types/state.ts` and the tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
 2. Create tab content under `src/components/display/analysis/`.
-3. Add the conditional render in `AnalysisDrawerContent.tsx`.
+3. Wire the renderer in `src/components/layout/lensDiagram/analysisTabRenderers.tsx` and, if the tab needs new shared inputs, extend `AnalysisDrawerInputs` and thread them through `AnalysisDrawerContent.tsx` and `LensDiagramPanel.tsx`.
 4. Add reducer/URL/persistence typing only if the tab can be externally addressed.
 
 ## Analysis Display Modules
@@ -89,9 +89,11 @@ New analysis tabs require:
 | `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
 | `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
 | `analysis/FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
-| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. |
+| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. Honors `L.EP.epObstructionSD` so catadioptric lenses sample the annular pupil only. |
+| `analysis/MTFTab.tsx` | Diffraction-limited MTF tab; renders R/G/B Airy curves at the current working F-number via `analysisJobs.computeMTFCurves`. For catadioptric lenses (`L.EP.epObstructionSD > 0`) the header switches to "Diffraction-limited MTF (annular pupil)" and an "Obstruction" metric appears. The curves are the diffraction-limit *upper bound* — aberration-induced degradation is a separate future tab. |
+| `analysis/MTFChart.tsx` | SVG chart primitive for the MTF tab. Three colored curves vs spatial frequency in cycles/mm, with a 0.5-MTF reference line. |
 | `analysis/PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
-| `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
+| `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. Honors `L.EP.epObstructionSD` via `remapCircularPupilToAnnulus` so catadioptric bokeh renders as a donut disc. |
 
 ## Display Overlays
 
