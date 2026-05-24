@@ -701,6 +701,34 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("circular and annular Airy MTF utilities return values in [0, 1] and reduce correctly", async () => {
+    const { circularAiryMTF, annularAiryMTF } = await import("../../../src/optics/aberration/diffractionMTF.js");
+    /* Circular MTF: starts at 1 (DC), reaches 0 at cutoff, monotonically
+     * decreasing in between. */
+    expect(circularAiryMTF(0)).toBeCloseTo(1, 10);
+    expect(circularAiryMTF(0.5)).toBeGreaterThan(0);
+    expect(circularAiryMTF(0.5)).toBeLessThan(1);
+    expect(circularAiryMTF(1)).toBeCloseTo(0, 10);
+    expect(circularAiryMTF(1.1)).toBe(0);
+    /* Monotonically decreasing. */
+    expect(circularAiryMTF(0.3)).toBeGreaterThan(circularAiryMTF(0.5));
+    expect(circularAiryMTF(0.5)).toBeGreaterThan(circularAiryMTF(0.7));
+    /* Annular MTF reduces to circular when epsilon = 0. */
+    for (const nu of [0.1, 0.25, 0.5, 0.75, 0.95]) {
+      expect(annularAiryMTF(nu, 0)).toBeCloseTo(circularAiryMTF(nu), 8);
+    }
+    /* Annular MTF at moderate obstruction: still bounded in [0, 1]. */
+    for (const nu of [0.05, 0.25, 0.5, 0.75, 0.95]) {
+      const m = annularAiryMTF(nu, 0.3);
+      expect(m).toBeGreaterThanOrEqual(0);
+      expect(m).toBeLessThanOrEqual(1);
+    }
+    /* Heavier obstruction reduces mid-frequency response. The standard
+     * annular signature: an obstructed pupil has LOWER mid-frequency MTF
+     * than an unobstructed pupil of the same outer diameter. */
+    expect(annularAiryMTF(0.4, 0.5)).toBeLessThan(circularAiryMTF(0.4));
+  });
+
   it("remapCircularPupilToAnnulus moves every sample into the annular band", async () => {
     const { sampleCircularPupil, remapCircularPupilToAnnulus } = await import("../../../src/optics/optics.js");
     const base = sampleCircularPupil([1, 6, 12]);
