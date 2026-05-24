@@ -8,7 +8,7 @@
  */
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { rayFractionsForDensity, rayHeightForPupilFraction } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -32,6 +32,7 @@ interface UseOnAxisRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  currentEPObstructionSD?: number;
   rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
@@ -56,6 +57,7 @@ export default function useOnAxisRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  currentEPObstructionSD = 0,
   rayDensity,
   rayTracksF,
   focusK,
@@ -66,7 +68,7 @@ export default function useOnAxisRays({
     try {
       const out: RaySegment[] = [];
       for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
-        const h = f * currentEPSD;
+        const h = rayHeightForPupilFraction(f, currentEPSD, currentEPObstructionSD);
         const uIn = rayTracksF ? h * focusK : 0;
         const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
@@ -88,6 +90,7 @@ export default function useOnAxisRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,

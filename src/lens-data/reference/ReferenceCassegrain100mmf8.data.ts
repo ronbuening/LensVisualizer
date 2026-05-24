@@ -28,6 +28,10 @@ const LENS_DATA = {
   focalLengthMarketing: 100,
   apertureMarketing: 8,
   nominalFno: 8,
+  /* Inner radius of the annular entrance pupil. Sized to ~40% of the
+   * computed EP so the default ray fractions land cleanly in the annular
+   * band that actually clears the secondary mirror. */
+  entrancePupilObstructionSD: 2.5,
 
   elements: [],
 

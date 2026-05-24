@@ -67,6 +67,7 @@ interface UseLensComputationResult {
   currentPhysStopSD: number;
   baseEPSD: number;
   currentEPSD: number;
+  currentEPObstructionSD: number;
   fieldGeometry: FieldGeometryState | null;
   cardinalElements: CardinalElements | null;
   varReadouts: VarReadout[];
@@ -203,6 +204,10 @@ export default function useLensComputation({
   const baseEPSD =
     L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
+  /* Inner radius of the entrance pupil for catadioptric lenses with a
+   * central obstruction. Scales with the aperture down-stop in the same
+   * proportion as `currentEPSD`. */
+  const currentEPObstructionSD = L && L.EP.epObstructionSD > 0 ? (L.EP.epObstructionSD * currentEPSD) / L.EP.epSD : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
@@ -254,6 +259,7 @@ export default function useLensComputation({
     currentPhysStopSD,
     baseEPSD,
     currentEPSD,
+    currentEPObstructionSD,
     fieldGeometry,
     cardinalElements,
     varReadouts,

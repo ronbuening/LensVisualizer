@@ -37,6 +37,12 @@ const LENS_DATA = {
   focalLengthMarketing: 500,
   apertureMarketing: 8,
   nominalFno: 8,
+  /* Inner radius of the annular entrance pupil. Set smaller than the
+   * silvered spot's surface rMax because the placeholder prescription's
+   * front aperture is narrower than a real 500 mm f/8 mirror tele — the
+   * patent-accurate values (Item 3 follow-up) will widen the EP and
+   * restore proportional obstruction sizing. */
+  entrancePupilObstructionSD: 2,
 
   elements: [
     {
@@ -63,7 +69,11 @@ const LENS_DATA = {
       sd: 35,
       reflect: {
         kind: "second",
-        region: { shape: "disk", rMax: 10 },
+        /* Silvered spot sized to match the entrance-pupil obstruction so
+         * default-fraction rays in the annular band transmit through the
+         * outer corrector rear and only the converging beam returning from
+         * the primary lands inside the silvered spot. */
+        region: { shape: "disk", rMax: 1.8 },
         opaqueFrom: "front",
       },
     },

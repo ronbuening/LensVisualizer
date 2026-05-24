@@ -337,7 +337,15 @@ export default function buildLens(data: LensData): RuntimeLens {
   const epTrace = paraxialTrace(S, 1, 0, { stopAt: stopIdx });
   if (Math.abs(epTrace.y) < 1e-15)
     throw new Error(`Lens "${data.key}": Entrance pupil trace y≈0 at stop — cannot compute entrance pupil`);
-  const EP: EntrancePupil = { epSD: S[stopIdx].sd / epTrace.y, yRatio: epTrace.y };
+  const declaredObstructionSD =
+    typeof data.entrancePupilObstructionSD === "number" && isFinite(data.entrancePupilObstructionSD)
+      ? Math.max(0, data.entrancePupilObstructionSD)
+      : 0;
+  const EP: EntrancePupil = {
+    epSD: S[stopIdx].sd / epTrace.y,
+    yRatio: epTrace.y,
+    epObstructionSD: declaredObstructionSD,
+  };
 
   /* Override EP with the nominal value.  The paraxial EP.epSD (= stopSD /
    * paraxialYRatio) is inconsistent because the stop SD was set via real trace

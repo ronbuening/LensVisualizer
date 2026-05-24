@@ -630,6 +630,44 @@ describe("mirror reference lenses — catalog entries build and trace", () => {
     }
   });
 
+  it("annular entrance pupil remaps ray fractions into the unobstructed annulus", async () => {
+    /* Catadioptric lenses declare `entrancePupilObstructionSD` to describe a
+     * central obstruction. The ray-sampling helper must remap unit fractions
+     * to the annular band so that no authored ray fraction lands inside the
+     * obstruction (where it would be absorbed by the secondary spot). */
+    const { rayHeightForPupilFraction } = await import("../../../src/optics/raySampling.js");
+    /* Solid pupil: no remapping, exact f·epSD. */
+    expect(rayHeightForPupilFraction(0.5, 10, 0)).toBeCloseTo(5, 10);
+    expect(rayHeightForPupilFraction(-0.83, 10, 0)).toBeCloseTo(-8.3, 10);
+    /* Annular pupil with rInner=4: f=0.5 maps into the annulus [4, 10]. */
+    const f = 0.5;
+    const epSD = 10;
+    const obstr = 4;
+    const expected = obstr + f * (epSD - obstr); // = 4 + 0.5*6 = 7
+    expect(rayHeightForPupilFraction(f, epSD, obstr)).toBeCloseTo(expected, 10);
+    /* Symmetric: negative f maps to the negative annulus. */
+    expect(rayHeightForPupilFraction(-f, epSD, obstr)).toBeCloseTo(-expected, 10);
+    /* Endpoints reach the full pupil edge; obstruction-edge is reached at f=0+. */
+    expect(rayHeightForPupilFraction(1, epSD, obstr)).toBeCloseTo(epSD, 10);
+    expect(rayHeightForPupilFraction(-1, epSD, obstr)).toBeCloseTo(-epSD, 10);
+  });
+
+  it("Reflex-Nikkor declares an annular EP that puts every default ray fraction outside the obstruction", async () => {
+    const { LENS_CATALOG } = await import("../../../src/utils/catalog/lensCatalog.js");
+    const { rayHeightForPupilFraction } = await import("../../../src/optics/raySampling.js");
+    const lens = buildLens(LENS_CATALOG["reflex-nikkor-500f8"]);
+    expect(lens.EP.epObstructionSD, "obstruction must be > 0").toBeGreaterThan(0);
+    expect(lens.EP.epObstructionSD).toBeLessThan(lens.EP.epSD);
+    for (const f of lens.rayFractions) {
+      const h = Math.abs(rayHeightForPupilFraction(f, lens.EP.epSD, lens.EP.epObstructionSD));
+      expect(
+        h,
+        `f=${f}: h=${h.toFixed(3)} must lie in [${lens.EP.epObstructionSD}, ${lens.EP.epSD}]`,
+      ).toBeGreaterThanOrEqual(lens.EP.epObstructionSD - 1e-9);
+      expect(h).toBeLessThanOrEqual(lens.EP.epSD + 1e-9);
+    }
+  });
+
   it("loose mirror surfaces (elemId=0, with reflect) emit drawable mirror paths", async () => {
     /* Pure-mirror Cassegrains have reflective surfaces that don't sit inside
      * any element span. computeElementShapes must still emit mirror paths for

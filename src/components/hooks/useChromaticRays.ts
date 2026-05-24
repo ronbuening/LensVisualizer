@@ -13,7 +13,7 @@ import {
   traceRayChromatic,
   traceRayVectorChromatic,
 } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { rayFractionsForDensity, rayHeightForPupilFraction } from "../../optics/raySampling.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -43,6 +43,7 @@ interface UseChromaticRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  currentEPObstructionSD?: number;
   rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
@@ -105,6 +106,7 @@ export default function useChromaticRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  currentEPObstructionSD = 0,
   rayDensity,
   rayTracksF,
   focusK,
@@ -128,7 +130,7 @@ export default function useChromaticRays({
       const out: ChromaticRaySegment[] = [];
       if (showOnAxis) {
         for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
-          const h = f * currentEPSD;
+          const h = rayHeightForPupilFraction(f, currentEPSD, currentEPObstructionSD);
           const uIn = rayTracksF ? h * focusK : 0;
           for (const ch of channels) {
             const rawResult = traceRayChromatic(
@@ -181,7 +183,7 @@ export default function useChromaticRays({
         });
         if (geometry) {
           for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
-            const h = f * currentEPSD;
+            const h = rayHeightForPupilFraction(f, currentEPSD, currentEPObstructionSD);
             const uConverge = rayTracksF ? h * focusK : 0;
             for (const ch of channels) {
               const rawResult =
@@ -249,6 +251,7 @@ export default function useChromaticRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,

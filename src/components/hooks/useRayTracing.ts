@@ -30,6 +30,7 @@ interface UseRayTracingParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  currentEPObstructionSD?: number;
   rayDensity: RayDensity;
   rayTracksF: boolean;
   showOnAxis: boolean;
@@ -66,6 +67,7 @@ export default function useRayTracing({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  currentEPObstructionSD = 0,
   rayDensity,
   rayTracksF,
   showOnAxis,
@@ -97,6 +99,7 @@ export default function useRayTracing({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,
@@ -116,6 +119,7 @@ export default function useRayTracing({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,
@@ -141,6 +145,7 @@ export default function useRayTracing({
     movementTransform,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,

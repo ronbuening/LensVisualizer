@@ -8,7 +8,7 @@
  */
 import { useMemo } from "react";
 import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { rayFractionsForDensity, rayHeightForPupilFraction } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
@@ -29,6 +29,7 @@ interface UseOffAxisRaysParams {
   movementTransform?: LensMovementTransform;
   currentPhysStopSD: number;
   currentEPSD: number;
+  currentEPObstructionSD?: number;
   rayDensity: RayDensity;
   rayTracksF: boolean;
   focusK: number;
@@ -54,6 +55,7 @@ export default function useOffAxisRays({
   movementTransform,
   currentPhysStopSD,
   currentEPSD,
+  currentEPObstructionSD = 0,
   rayDensity,
   rayTracksF,
   focusK,
@@ -77,7 +79,7 @@ export default function useOffAxisRays({
       });
       if (geometry === null) return { segments: [], error: null };
       for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
-        const h = f * currentEPSD;
+        const h = rayHeightForPupilFraction(f, currentEPSD, currentEPObstructionSD);
         const uConverge = rayTracksF ? h * focusK : 0;
         const rawResult =
           geometry.kind === "vector"
@@ -128,6 +130,7 @@ export default function useOffAxisRays({
     sy,
     currentPhysStopSD,
     currentEPSD,
+    currentEPObstructionSD,
     rayDensity,
     rayTracksF,
     focusK,

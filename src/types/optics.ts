@@ -220,6 +220,12 @@ export interface LensData {
   /** Blade roundedness 0–1 (future: 0 = straight polygon, 1 = circular). */
   apertureBladeRoundedness?: number;
   /**
+   * Inner radius of an annular entrance pupil, in mm. Use for catadioptric
+   * lenses where a secondary mirror or central obstruction blocks the
+   * inner zone of the entrance pupil. Default 0 (no obstruction).
+   */
+  entrancePupilObstructionSD?: number;
+  /**
    * Optional explicit hit-order sequence for catadioptric lenses where the
    * inferred order (forward through every surface, reflect at the silvered
    * one, backward through prior surfaces) does not describe the physical
@@ -259,6 +265,13 @@ export type LensDataInput = Omit<LensData, DefaultedFields> & Partial<Pick<LensD
 export interface EntrancePupil {
   epSD: number;
   yRatio: number;
+  /**
+   * Inner radius of the entrance pupil for lenses with a central obstruction
+   * (catadioptric mirror lenses, etc.). When > 0 the pupil is annular: rays
+   * inside `epObstructionSD` from the axis are blocked. Zero (the default)
+   * means a solid disk pupil.
+   */
+  epObstructionSD: number;
 }
 
 /** Element span: [elementId, frontSurfaceIndex, rearSurfaceIndex] */

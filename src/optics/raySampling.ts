@@ -66,3 +66,22 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
 export function raySampleCountForDensity(fractions: readonly number[], density: RayDensity): number {
   return rayFractionsForDensity(fractions, density).length;
 }
+
+/**
+ * Map a unit pupil fraction in [−1, 1] to an actual ray height (mm), accounting
+ * for an annular entrance pupil. Solid pupils (epObstructionSD ≤ 0) collapse to
+ * the standard `f · epSD`. Annular pupils compress the [|f| > 0] domain into
+ * the annular band [obstrFrac, 1] so every authored ray fraction lands in the
+ * unobstructed portion of the pupil. The chief ray (f === 0) is left at the
+ * axis — callers that filter chief rays for catadioptric diagrams should do so
+ * upstream.
+ */
+export function rayHeightForPupilFraction(f: number, epSD: number, epObstructionSD: number): number {
+  if (!isFinite(f) || !isFinite(epSD) || epSD <= 0) return f * epSD;
+  if (epObstructionSD <= 0 || epObstructionSD >= epSD) return f * epSD;
+  if (f === 0) return 0;
+  const obstrFrac = epObstructionSD / epSD;
+  const sign = f < 0 ? -1 : 1;
+  const annularFrac = obstrFrac + Math.abs(f) * (1 - obstrFrac);
+  return sign * annularFrac * epSD;
+}

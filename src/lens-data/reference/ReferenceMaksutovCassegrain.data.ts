@@ -32,6 +32,10 @@ const LENS_DATA = {
   focalLengthMarketing: 30,
   apertureMarketing: 12,
   nominalFno: 12,
+  /* Inner radius of the annular entrance pupil. Sized to ~40% of the
+   * computed EP so default ray fractions land in the unobstructed annulus
+   * that clears the silvered central spot on the corrector rear. */
+  entrancePupilObstructionSD: 1.9,
 
   elements: [
     {
