@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-23 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-23",
+    type: "lens",
+    summary: "Added three Pentax medium-format lenses for 645 and 67 systems",
+  },
+  {
+    date: "2026-05-23",
+    type: "improvement",
+    summary: "Completed the transition to the updated exact surface ray tracing method",
+  },
   // ── 2026-05-22 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-22",
