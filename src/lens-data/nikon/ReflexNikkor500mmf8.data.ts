@@ -3,12 +3,24 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * Reflex-Nikkor 500 mm f/8 — full-feature catadioptric demo.
  *
- * Approximation of the Nikon Reflex-Nikkor 500 mm f/8 mirror telephoto
- * (USP 4,447,141, 1984) used to exercise every Phase A–E mirror feature
- * end-to-end. Prescription values are NOT the patent's published table —
- * they are plausible placeholder values that produce a geometrically valid
- * traceable system. A future commit should replace these with the patent's
- * surface data and a companion analysis-tab donut-pupil treatment.
+ * The Reflex-Nikkor 500 mm f/8 (New) was designed by Teruyoshi Tsunashima
+ * of Nikon's 1st Optical Section in August 1982 and shipped from 1983 as a
+ * compact mirror telephoto for the Nikon F-mount system. The canonical
+ * Nikon-assigned patent on the underlying design family is US 4,666,259 A
+ * (Iizuka, 1985), which discloses a 500 mm f/6.7 catadioptric with a
+ * biconvex front L1, a Mangin primary mirror, a Mangin secondary mirror
+ * inside the primary's annular obstruction, and a six-surface rear
+ * refocusing group L2 threaded through the primary mirror's central hole.
+ *
+ * This catalog entry is a SIMPLIFIED proportional representation of that
+ * family: one corrector + primary mirror + silvered secondary spot. It
+ * exercises every Phase A–E mirror feature (kind:"second" silvered rear,
+ * partial silvering, opaqueFrom:"front", annular entrance pupil, explicit
+ * traceSequence) without requiring the four-element, multi-traversal L2
+ * group. A future commit should transcribe US 4,666,259 Example 1
+ * verbatim — Section 5 of the patent (`focal length f=499.482 mm,
+ * F/6.7`) — and add the rear L2 group as nested surfaces inside the
+ * primary's central hole.
  *
  * Features exercised:
  *   • Phase B — `reflect: { kind: "second" }` on the corrector rear
