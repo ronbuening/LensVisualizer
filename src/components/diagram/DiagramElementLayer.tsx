@@ -35,7 +35,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
 }: DiagramElementLayerProps) {
   return (
     <>
-      {shapes.map(({ eid, d: path }) => {
+      {shapes.map(({ eid, d: path, fillRule }) => {
         const element = L.elements.find((candidate) => candidate.id === eid)!;
         const highlighted = act === eid;
         return (
@@ -43,6 +43,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             key={eid}
             d={path}
             fill={t.elemFill(element, highlighted)}
+            fillRule={fillRule}
             stroke={t.elemStroke(element, highlighted)}
             strokeWidth={highlighted ? t.elemStrokeActive : t.elemStrokeIdle}
             style={{

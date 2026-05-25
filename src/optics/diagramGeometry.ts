@@ -265,6 +265,19 @@ export function computeElementShapes(
       const y = -trim2 + (2 * trim2 * i) / NN;
       d += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
     }
+    const inner = Math.min(Math.min(trim1, trim2), Math.max(L.S[s1].innerSd ?? 0, L.S[s2].innerSd ?? 0));
+    const fillRule = inner > 0 ? "evenodd" : undefined;
+    if (inner > 0) {
+      d += "Z ";
+      for (let i = 0; i <= NN; i++) {
+        const y = -inner + (2 * inner * i) / NN;
+        d += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
+      }
+      for (let i = NN; i >= 0; i--) {
+        const y = -inner + (2 * inner * i) / NN;
+        d += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
+      }
+    }
     /* Aspheric surface overlay paths + diamond half-fill paths */
     const asphPaths: AsphPathData[] = [];
     const midZ = (z1 + z2) / 2;
@@ -307,6 +320,6 @@ export function computeElementShapes(
         labelY: labelY - 4,
       });
     }
-    return { eid, d: d + "Z", z1, z2, asphPaths };
+    return { eid, d: d + "Z", z1, z2, fillRule, asphPaths };
   });
 }

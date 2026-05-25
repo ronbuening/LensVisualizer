@@ -430,6 +430,7 @@ export interface ElementShape {
   d: string;
   z1: number;
   z2: number;
+  fillRule?: "evenodd";
   asphPaths: AsphPathData[];
 }
 

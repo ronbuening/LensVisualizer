@@ -13,7 +13,7 @@ import {
   traceRayChromatic,
   traceRayVectorChromatic,
 } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -127,7 +127,7 @@ export default function useChromaticRays({
     try {
       const out: ChromaticRaySegment[] = [];
       if (showOnAxis) {
-        for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
+        for (const f of obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD)) {
           const h = f * currentEPSD;
           const uIn = rayTracksF ? h * focusK : 0;
           for (const ch of channels) {
@@ -182,7 +182,7 @@ export default function useChromaticRays({
           showOffAxis,
         });
         if (geometry) {
-          for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
+          for (const f of obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD)) {
             const h = f * currentEPSD;
             const uConverge = rayTracksF ? h * focusK : 0;
             for (const ch of channels) {

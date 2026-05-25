@@ -63,6 +63,30 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
   return Array.from({ length: count }, (_, i) => -maxAbs + i * step).map((f) => (Math.abs(f) < 1e-12 ? 0 : f));
 }
 
+export function obstructionAwareRayFractionsForDensity(
+  L: Pick<RuntimeLens, "isFoldedOptics" | "S">,
+  fractions: readonly number[],
+  density: RayDensity,
+  entrancePupilSemiDiameter: number,
+): number[] {
+  const samples = rayFractionsForDensity(fractions, density);
+  if (!L.isFoldedOptics || entrancePupilSemiDiameter <= 0) return samples;
+
+  const blockedRadius = L.S.reduce((max, surface) => {
+    if (surface.interaction?.type === "block" && (surface.innerSd ?? 0) <= 0) return Math.max(max, surface.sd);
+    if (surface.interaction?.type === "reflect" && (surface.innerSd ?? 0) > 0) return Math.max(max, surface.innerSd!);
+    return max;
+  }, 0);
+  if (blockedRadius <= 0) return samples;
+
+  const minFraction = blockedRadius / entrancePupilSemiDiameter;
+  const filtered = samples.filter((fraction) => Math.abs(fraction) >= minFraction - 1e-9);
+  if (filtered.length > 0) return filtered;
+
+  const maxAbs = Math.max(...samples.map((fraction) => Math.abs(fraction)), 0);
+  return maxAbs > 0 ? [-maxAbs, maxAbs] : [];
+}
+
 export function raySampleCountForDensity(fractions: readonly number[], density: RayDensity): number {
   return rayFractionsForDensity(fractions, density).length;
 }

@@ -1,12 +1,15 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
+import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
 import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensData;
+const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -73,5 +76,38 @@ describe("mirror optics support", () => {
     expect(result.y).toBeCloseTo(0, 2);
     expect(lastPoint[0]).toBeCloseTo(L.imagePlane.z, 10);
     expect(lastPoint[1]).toBeCloseTo(result.y, 10);
+  });
+
+  it("clips central rays on an obstruction while sampling the usable annular pupil", () => {
+    const L = buildLens(annularData);
+    const layout = doLayout(0, 0, L);
+    const central = traceExactSurfaceStack(L, { y0: 0, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
+    const obstructionHit = central.hits.find((hit) => hit.surfaceIdx === L.labelIdx.OBS);
+
+    expect(validateLensData(annularData)).toEqual([]);
+    expect(obstructionHit).toBeDefined();
+    expect(obstructionHit!.clipped).toBe(true);
+    expect(central.clipped).toBe(true);
+
+    const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
+    const blockedFraction = L.S[L.labelIdx.OBS].sd / L.EP.epSD;
+    expect(samples.length).toBeGreaterThan(0);
+    expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
+  });
+
+  it("renders annular mirror elements with an even-odd aperture hole", () => {
+    const L = buildLens(annularData);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(
+      L,
+      layout.z,
+      (z) => z,
+      (y) => y,
+    );
+    const mirrorShape = shapes.find((shape) => shape.eid === 1);
+
+    expect(mirrorShape).toBeDefined();
+    expect(mirrorShape!.fillRule).toBe("evenodd");
+    expect((mirrorShape!.d.match(/M/g) ?? []).length).toBeGreaterThan(1);
   });
 });
