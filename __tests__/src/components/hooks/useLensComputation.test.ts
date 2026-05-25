@@ -11,6 +11,7 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 describe("useLensComputation", () => {
   const baseLensKey = "sonnar-50f15";
+  const focusLensKey = "sony-fe-14mm-f18-gm";
 
   it("returns a valid RuntimeLens and geometry for a known lens key", () => {
     const { result } = renderHook(() =>
@@ -68,6 +69,23 @@ describe("useLensComputation", () => {
     );
     expect(result.current.shapes.length).toBeGreaterThan(0);
     expect(result.current.shapeError).toBeNull();
+  });
+
+  it("omits cardinal elements for folded mirror fixtures", () => {
+    const { result } = renderHook(() =>
+      useLensComputation({
+        lensKey: "reference-newtonian-side-focus",
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+        scaleRatio: null,
+        panelId: "test",
+        includeCardinalExtents: true,
+      }),
+    );
+
+    expect(result.current.L?.isFoldedOptics).toBe(true);
+    expect(result.current.cardinalElements).toBeNull();
   });
 
   it("computes aperture metrics", () => {
@@ -201,7 +219,7 @@ describe("useLensComputation", () => {
   it("zPos shifts when focus changes but IMG_MM stays fixed", () => {
     const { result: r0 } = renderHook(() =>
       useLensComputation({
-        lensKey: baseLensKey,
+        lensKey: focusLensKey,
         focusT: 0,
         zoomT: 0,
         stopdownT: 0,
@@ -211,7 +229,7 @@ describe("useLensComputation", () => {
     );
     const { result: r1 } = renderHook(() =>
       useLensComputation({
-        lensKey: baseLensKey,
+        lensKey: focusLensKey,
         focusT: 0.8,
         zoomT: 0,
         stopdownT: 0,

@@ -456,11 +456,13 @@ function traceGeneralizedSurfaceStackVector(
       interaction.incidentSide === "both" ||
       interaction.incidentSide === incidentSide;
     const apertureClip = apertureSemiDiameter(nextSurfaceIdx, surface, lens, stopSemiDiameter);
-    const withinAperture = apertureClip === null || radiusWithinTraceAperture(radius, surface, apertureClip);
+    const apertureState = traceApertureState(radius, surface, apertureClip);
+    const withinAperture = apertureState === "inside";
 
     if (!sideActive) {
-      if (interaction.inactiveSide === "block") clipped = true;
-      if (clipped) {
+      const inactiveClipped = interaction.inactiveSide === "block" && withinAperture;
+      if (inactiveClipped) {
+        clipped = true;
         hits.push({
           surfaceIdx: nextSurfaceIdx,
           point,
@@ -494,7 +496,25 @@ function traceGeneralizedSurfaceStackVector(
       continue;
     }
 
-    if (checkSemiDiameter && !withinAperture) clipped = true;
+    if (!withinAperture) {
+      const apertureClipped = checkSemiDiameter && apertureState === "outside";
+      if (apertureClipped) {
+        clipped = true;
+        hits.push({
+          surfaceIdx: nextSurfaceIdx,
+          point,
+          normal,
+          radius,
+          clipped: true,
+          fallback: false,
+          failureReason: null,
+        });
+        if (stopOnClip && !ghost) break;
+      }
+      origin = advanceOrigin(point, direction);
+      continue;
+    }
+
     hits.push({
       surfaceIdx: nextSurfaceIdx,
       point,
@@ -589,11 +609,19 @@ function apertureSemiDiameter(
 }
 
 function radiusWithinTraceAperture(radius: number, surface: ExactTraceSurface, semiDiameter: number): boolean {
-  if (exceedsTraceAperture(radius, semiDiameter)) return false;
+  return traceApertureState(radius, surface, semiDiameter) === "inside";
+}
+
+function traceApertureState(
+  radius: number,
+  surface: ExactTraceSurface,
+  semiDiameter: number | null,
+): "inside" | "inside-hole" | "outside" {
+  if (semiDiameter !== null && exceedsTraceAperture(radius, semiDiameter)) return "outside";
   const inner = surface.innerSd ?? 0;
-  if (inner <= 0) return true;
+  if (inner <= 0) return "inside";
   const tolerance = Math.max(TRACE_CLIP_ABS_TOLERANCE, Math.abs(inner) * 1e-12);
-  return radius >= inner - tolerance;
+  return radius >= inner - tolerance ? "inside" : "inside-hole";
 }
 
 function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {

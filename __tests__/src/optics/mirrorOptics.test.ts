@@ -12,6 +12,7 @@ const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensDat
 const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensData;
 const manginData = LENS_CATALOG["reference-mangin-second-surface-mirror"] as LensData;
 const newtonianData = LENS_CATALOG["reference-newtonian-side-focus"] as LensData;
+const cassegrainData = LENS_CATALOG["reference-cassegrain-back-focus"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -146,5 +147,25 @@ describe("mirror optics support", () => {
     expect(result.clipped).toBe(false);
     expect(result.terminalPoint[1]).toBeCloseTo(25, 10);
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
+  });
+
+  it("supports a Cassegrain-style obstruction and back-focus image plane fixture", () => {
+    const L = buildLens(cassegrainData);
+    const layout = doLayout(0, 0, L);
+    const central = traceExactSurfaceStack(L, { y0: 0, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
+    const marginal = traceExactSurfaceStack(L, { y0: 12, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
+    const centralSecondary = central.hits.find((hit) => hit.surfaceIdx === L.labelIdx.SEC);
+    const marginalHitLabels = marginal.hits.map((hit) => L.S[hit.surfaceIdx].label);
+    const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
+    const blockedFraction = L.S[L.labelIdx.SEC].sd / L.EP.epSD;
+
+    expect(validateLensData(cassegrainData)).toEqual([]);
+    expect(centralSecondary?.clipped).toBe(true);
+    expect(central.clipped).toBe(true);
+    expect(marginalHitLabels).toEqual(["M1", "SEC"]);
+    expect(marginal.reachedImagePlane).toBe(true);
+    expect(marginal.clipped).toBe(false);
+    expect(marginal.terminalPoint[2]).toBeCloseTo(L.imagePlane.z, 10);
+    expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
   });
 });

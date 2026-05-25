@@ -135,7 +135,7 @@ export default function useLensComputation({
   );
 
   const cardinalElements = useMemo(
-    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
+    () => (L && !L.isFoldedOptics ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
     [L, focusT, zoomT, zPos, IMG_MM, aberrationT],
   );
 

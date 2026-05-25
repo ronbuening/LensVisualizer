@@ -68,8 +68,8 @@ vi.mock("../../../../../src/components/display/analysis/VignettingTab.js", () =>
 
 const baseProps = {
   activeTab: "aberrations",
-  L: { N: 2 } as RuntimeLens,
-  t: { value: "#0f0" } as Theme,
+  L: { N: 2, isFoldedOptics: false } as RuntimeLens,
+  t: { value: "#0f0", panelDivider: "#333", panelBg: "#111", desc: "#aaa" } as Theme,
   zPos: [0, 5],
   focusT: 0,
   zoomT: 0,
@@ -137,6 +137,14 @@ describe("AnalysisDrawerContent", () => {
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
     expect(mockPupilAberrationTab.mock.calls[0][0].aberrationT).toBe(0.37);
     expect(mockVignettingTab).not.toHaveBeenCalled();
+  });
+
+  it("shows a folded-optics guard instead of invoking sequential analysis tabs", () => {
+    render(<AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="pupils" />);
+
+    expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
+    expect(screen.getByText(/not available for folded mirror systems yet/)).toBeTruthy();
+    expect(mockPupilAberrationTab).not.toHaveBeenCalled();
   });
 
   it("has exactly one renderer for every registered analysis tab", () => {

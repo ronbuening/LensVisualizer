@@ -73,7 +73,10 @@ export function obstructionAwareRayFractionsForDensity(
   if (!L.isFoldedOptics || entrancePupilSemiDiameter <= 0) return samples;
 
   const blockedRadius = L.S.reduce((max, surface) => {
-    if (surface.interaction?.type === "block" && (surface.innerSd ?? 0) <= 0) return Math.max(max, surface.sd);
+    const centralBlocker =
+      surface.interaction?.type === "block" ||
+      (surface.interaction?.type === "reflect" && surface.interaction.inactiveSide === "block");
+    if (centralBlocker && (surface.innerSd ?? 0) <= 0) return Math.max(max, surface.sd);
     if (surface.interaction?.type === "reflect" && (surface.innerSd ?? 0) > 0) return Math.max(max, surface.innerSd!);
     return max;
   }, 0);

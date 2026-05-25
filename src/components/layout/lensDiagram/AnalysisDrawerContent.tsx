@@ -24,6 +24,15 @@ interface AnalysisDrawerContentProps {
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
+const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>([
+  "aberrations",
+  "coma",
+  "distortion",
+  "breathing",
+  "vignetting",
+  "pupils",
+]);
+
 export default function AnalysisDrawerContent({
   activeTab,
   L,
@@ -71,6 +80,16 @@ export default function AnalysisDrawerContent({
 
   const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
   const projection = L.projection ?? { kind: "rectilinear" };
+  const noticeStyle = {
+    margin: "0 0 12px",
+    padding: "8px 10px",
+    border: `1px solid ${t.panelDivider}`,
+    borderRadius: 6,
+    color: t.desc,
+    background: t.panelBg,
+    fontSize: 10,
+    lineHeight: 1.5,
+  };
   const fisheyeProjectionText = (() => {
     if (!isFisheyeProjection(projection)) return null;
     const fullFieldDeg = projectionValueAtZoom(projection.fullFieldDeg, analysisInputs.zoomT);
@@ -79,37 +98,23 @@ export default function AnalysisDrawerContent({
       imageCircleMm ? ` over a ${imageCircleMm.toFixed(1)} mm image circle` : ""
     }. Analysis tabs use the central forward-traced cone; the full field is projection metadata, not a rectilinear trace.`;
   })();
+  const foldedOpticsText = L.isFoldedOptics
+    ? "Folded mirror optical path detected. Ray drawing uses the generalized folded tracer; sequential paraxial diagnostics are guarded until mirror-safe analysis is enabled for each tab."
+    : null;
+  const foldedUnsupported = L.isFoldedOptics && FOLDED_OPTICS_UNSUPPORTED_TABS.has(activeTab);
+  const foldedUnsupportedContent = (
+    <div style={noticeStyle}>
+      This analysis tab is not available for folded mirror systems yet. Its current math assumes a front-to-rear
+      refractive sequence, so the tab is hidden here instead of showing misleading cardinal, pupil, field, or focus
+      results.
+    </div>
+  );
   const withAnalysisNotices = (content: ReactNode) => (
     <>
-      {fisheyeProjectionText && (
-        <div
-          style={{
-            margin: "0 0 12px",
-            padding: "8px 10px",
-            border: `1px solid ${t.panelDivider}`,
-            borderRadius: 6,
-            color: t.desc,
-            background: t.panelBg,
-            fontSize: 10,
-            lineHeight: 1.5,
-          }}
-        >
-          {fisheyeProjectionText}
-        </div>
-      )}
+      {fisheyeProjectionText && <div style={noticeStyle}>{fisheyeProjectionText}</div>}
+      {foldedOpticsText && <div style={noticeStyle}>{foldedOpticsText}</div>}
       {movementActive && (
-        <div
-          style={{
-            margin: "0 0 12px",
-            padding: "8px 10px",
-            border: `1px solid ${t.panelDivider}`,
-            borderRadius: 6,
-            color: t.desc,
-            background: t.panelBg,
-            fontSize: 10,
-            lineHeight: 1.5,
-          }}
-        >
+        <div style={noticeStyle}>
           Tilt/shift is active. Analysis tabs use the centered-lens diagnostics in this first movement pass.
         </div>
       )}
@@ -118,13 +123,15 @@ export default function AnalysisDrawerContent({
   );
 
   return withAnalysisNotices(
-    ANALYSIS_TAB_RENDERERS[activeTab]({
-      L,
-      t,
-      zPos,
-      inputs: analysisInputs,
-      aberrationsExpanded,
-      onAberrationsExpandedChange,
-    }),
+    foldedUnsupported
+      ? foldedUnsupportedContent
+      : ANALYSIS_TAB_RENDERERS[activeTab]({
+          L,
+          t,
+          zPos,
+          inputs: analysisInputs,
+          aberrationsExpanded,
+          onAberrationsExpandedChange,
+        }),
   );
 }
