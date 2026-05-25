@@ -161,6 +161,30 @@ describe("mirror optics support", () => {
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
   });
 
+  it("keeps auto folded hit order stable under small ray-height and aperture perturbations", () => {
+    const cases = [
+      { data: newtonianData, y0: 12, expectedHitLabels: ["M1", "SEC"] },
+      { data: cassegrainData, y0: 12, expectedHitLabels: ["M1", "SEC"] },
+    ] as const;
+
+    for (const { data, y0, expectedHitLabels } of cases) {
+      const L = buildLens(data);
+      const layout = doLayout(0, 0, L);
+
+      for (const yOffset of [-0.15, 0, 0.15]) {
+        for (const stopScale of [0.98, 1, 1.02]) {
+          const result = traceRay(y0 + yOffset, 0, layout.z, 0, 0, L.stopPhysSD * stopScale, true, L);
+
+          expect(result.clipped, `${data.key} yOffset=${yOffset} stopScale=${stopScale}`).toBe(false);
+          expect(result.reachedImagePlane, `${data.key} yOffset=${yOffset} stopScale=${stopScale}`).toBe(true);
+          expect(result.diagnostics?.hitSurfaceLabels, `${data.key} yOffset=${yOffset} stopScale=${stopScale}`).toEqual(
+            expectedHitLabels,
+          );
+        }
+      }
+    }
+  });
+
   it("exposes folded-path diagnostics through the public ray trace result", () => {
     const L = buildLens(newtonianData);
     const layout = doLayout(0, 0, L);

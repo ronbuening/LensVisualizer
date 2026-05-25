@@ -59,7 +59,10 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 
 ## Verification Backlog
 
-- Add production smoke tests that intentionally include hidden reference fixtures for folded-path validation while keeping public-catalog assertions scoped to visible lenses.
-- Add screenshot or SVG-geometry tests for side image-plane rendering and tilted flat mirror backing planes.
-- Add path-stability tests for `mode: "auto"` under small focus/zoom/aperture perturbations once folded zoom/focus fixtures exist.
-- Run the full gate after any mirror-path change: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build`.
+- Done: production smoke tests intentionally include hidden reference fixtures for folded-path validation while keeping
+  public-catalog assertions scoped to visible lenses.
+- Done: SVG-geometry coverage includes side image-plane rendering and tilted flat mirror backing planes.
+- Partly done: `mode: "auto"` path-stability tests cover small ray-height and aperture perturbations for the current
+  folded fixtures. Focus/zoom perturbations remain pending until folded zoom/focus fixtures exist.
+- Done for this pass: run the full gate after any mirror-path change: `npm run typecheck`, `npm run format:check`,
+  `npm run lint`, `npm run test`, and `npm run build`.

@@ -11,6 +11,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
+import buildLens from "../../../../src/optics/buildLens.js";
+import { doLayout } from "../../../../src/optics/optics.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
@@ -249,6 +252,63 @@ describe("DiagramSVG", () => {
     expect(imageLine?.getAttribute("y2")).toBe("325");
     expect(label?.getAttribute("x")).toBe("147");
     expect(label?.getAttribute("y")).toBe("325");
+  });
+
+  it("renders the hidden Newtonian fixture image plane from its side-focus metadata", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const layout = doLayout(0, 0, L);
+    const { container } = render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={[]}
+        filterId="diagram-newtonian-side-image-plane"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const imageLine = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+      (line) => line.getAttribute("stroke") === themes.dark.imgLine,
+    );
+    const label = Array.from(container.querySelectorAll("text")).find((text) => text.textContent === "IMG");
+
+    expect(imageLine).toBeDefined();
+    expect(label).toBeDefined();
+    expect(Number(imageLine!.getAttribute("y1"))).toBeCloseTo(325, 10);
+    expect(Number(imageLine!.getAttribute("y2"))).toBeCloseTo(325, 10);
+    expect(Number(imageLine!.getAttribute("x1"))).toBeCloseTo(100 + L.imagePlane.z - L.lyImgLine, 10);
+    expect(Number(imageLine!.getAttribute("x2"))).toBeCloseTo(100 + L.imagePlane.z + L.lyImgLine, 10);
+    expect(Number(label!.getAttribute("x"))).toBeCloseTo(100 + L.imagePlane.z + L.lyImgLabel, 10);
+    expect(Number(label!.getAttribute("y"))).toBeCloseTo(325, 10);
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

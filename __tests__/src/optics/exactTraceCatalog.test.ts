@@ -21,6 +21,49 @@ const REPRESENTATIVE_KEYS = [
   "sony-fe-90mm-f2p8-macro",
 ] as const;
 
+const HIDDEN_FOLDED_TRACE_CASES = [
+  {
+    key: "reference-spherical-primary-mirror",
+    y0: 5,
+    expectedHitLabels: ["STO", "M1"],
+  },
+  {
+    key: "reference-annular-obscured-mirror",
+    y0: 12,
+    expectedHitLabels: ["STO", "M1"],
+  },
+  {
+    key: "reference-mangin-second-surface-mirror",
+    y0: 4,
+    expectedHitLabels: ["STO", "MG1", "MG2", "MG1"],
+  },
+  {
+    key: "reference-newtonian-side-focus",
+    y0: 12,
+    expectedHitLabels: ["M1", "SEC"],
+  },
+  {
+    key: "reference-cassegrain-back-focus",
+    y0: 12,
+    expectedHitLabels: ["M1", "SEC"],
+  },
+  {
+    key: "reference-maksutov-cassegrain-meniscus",
+    y0: 12,
+    expectedHitLabels: ["MEN1", "MEN2", "M1", "SEC"],
+  },
+  {
+    key: "reference-gregorian-secondary",
+    y0: 12,
+    expectedHitLabels: ["M1", "SEC"],
+  },
+  {
+    key: "reference-annular-ring-blocker",
+    y0: 0,
+    expectedHitLabels: [],
+  },
+] as const;
+
 function buildCatalogLens(key: string): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...LENS_CATALOG[key] } as LensData);
 }
@@ -93,6 +136,23 @@ describe("exact surface trace catalog smoke coverage", () => {
         expectFiniteTraceResult(meridional);
         expectFiniteTraceResult(skew);
       }
+    }
+  });
+
+  it("keeps hidden folded reference fixtures covered outside the public catalog smoke test", () => {
+    for (const { key, y0, expectedHitLabels } of HIDDEN_FOLDED_TRACE_CASES) {
+      expect(LENS_CATALOG[key]?.visible, key).toBe(false);
+      expect(CATALOG_KEYS, key).not.toContain(key);
+
+      const L = buildCatalogLens(key);
+      const layout = doLayout(0, 0, L);
+      const trace = traceRay(y0, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+      expect(trace.clipped, key).toBe(false);
+      expect(trace.reachedImagePlane, key).toBe(true);
+      expect(trace.diagnostics?.hitSurfaceLabels, key).toEqual(expectedHitLabels);
+      expect(trace.diagnostics?.finalMedium, key).toBeCloseTo(1, 12);
+      expectFiniteTraceResult(trace);
     }
   });
 
