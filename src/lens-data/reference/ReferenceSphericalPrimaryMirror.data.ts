@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-spherical-primary-mirror",
   maker: "Reference",
-  visible: true,
+  visible: false,
   name: "REFERENCE Spherical Primary Mirror",
   subtitle: "Hidden folded-optics regression fixture",
   specs: ["FIRST-SURFACE MIRROR", "f = 100 mm", "F/4", "FRONT IMAGE PLANE"],

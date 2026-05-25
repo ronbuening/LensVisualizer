@@ -161,6 +161,14 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel).toHaveBeenCalledTimes(1);
   });
 
+  it("allows folded optics to use the metadata-only focus breathing tab", () => {
+    render(<AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="breathing" />);
+
+    expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
+    expect(screen.getByText("Breathing")).toBeTruthy();
+    expect(mockFocusBreathingTab).toHaveBeenCalledTimes(1);
+  });
+
   it("has exactly one renderer for every registered analysis tab", () => {
     expect(Object.keys(ANALYSIS_TAB_RENDERERS).sort()).toEqual(ANALYSIS_TABS.map((tab) => tab.id).sort());
   });

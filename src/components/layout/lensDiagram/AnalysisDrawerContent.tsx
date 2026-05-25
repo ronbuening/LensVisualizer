@@ -3,6 +3,7 @@ import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
+import { traceRay } from "../../../optics/optics.js";
 import { isFisheyeProjection, projectionValueAtZoom } from "../../../optics/projection.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 
@@ -24,13 +25,7 @@ interface AnalysisDrawerContentProps {
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
-const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>([
-  "coma",
-  "distortion",
-  "breathing",
-  "vignetting",
-  "pupils",
-]);
+const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["coma", "distortion", "vignetting", "pupils"]);
 
 export default function AnalysisDrawerContent({
   activeTab,
@@ -100,18 +95,48 @@ export default function AnalysisDrawerContent({
   const foldedOpticsText = L.isFoldedOptics
     ? "Folded mirror optical path detected. Ray drawing uses the generalized folded tracer; sequential paraxial diagnostics are guarded until mirror-safe analysis is enabled for each tab."
     : null;
+  const foldedTraceDiagnostics = useMemo(() => {
+    const env = (import.meta as { env?: { DEV?: boolean } }).env;
+    if (!env?.DEV || !L.isFoldedOptics || !Array.isArray(L.S) || zPos.length < L.N) return null;
+
+    try {
+      return traceRay(
+        0,
+        0,
+        zPos,
+        analysisInputs.focusT,
+        analysisInputs.zoomT,
+        analysisInputs.currentPhysStopSD,
+        true,
+        L,
+      ).diagnostics;
+    } catch {
+      return null;
+    }
+  }, [L, zPos, analysisInputs.focusT, analysisInputs.zoomT, analysisInputs.currentPhysStopSD]);
+  const foldedTraceDiagnosticsText = foldedTraceDiagnostics
+    ? `Trace diagnostics: ${foldedTraceDiagnostics.expectedPathMode} path, hits ${
+        foldedTraceDiagnostics.hitSurfaceLabels.length > 0
+          ? foldedTraceDiagnostics.hitSurfaceLabels.join(" -> ")
+          : "none"
+      }, image plane ${foldedTraceDiagnostics.reachedImagePlane ? "reached" : "not reached"}, final n=${foldedTraceDiagnostics.finalMedium.toFixed(3)}${
+        foldedTraceDiagnostics.clipEvents.length > 0
+          ? `, clips ${foldedTraceDiagnostics.clipEvents.map((event) => event.reason).join(", ")}`
+          : ""
+      }.`
+    : null;
   const foldedUnsupported = L.isFoldedOptics && FOLDED_OPTICS_UNSUPPORTED_TABS.has(activeTab);
   const foldedUnsupportedContent = (
     <div style={noticeStyle}>
       This analysis tab is not available for folded mirror systems yet. Its current math assumes a front-to-rear
-      refractive sequence, so the tab is hidden here instead of showing misleading cardinal, pupil, field, or focus
-      results.
+      refractive sequence, so the tab is hidden here instead of showing misleading pupil, field, or off-axis results.
     </div>
   );
   const withAnalysisNotices = (content: ReactNode) => (
     <>
       {fisheyeProjectionText && <div style={noticeStyle}>{fisheyeProjectionText}</div>}
       {foldedOpticsText && <div style={noticeStyle}>{foldedOpticsText}</div>}
+      {foldedTraceDiagnosticsText && <div style={noticeStyle}>{foldedTraceDiagnosticsText}</div>}
       {movementActive && (
         <div style={noticeStyle}>
           Tilt/shift is active. Analysis tabs use the centered-lens diagnostics in this first movement pass.

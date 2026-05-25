@@ -71,7 +71,7 @@ describe("useLensComputation", () => {
     expect(result.current.shapeError).toBeNull();
   });
 
-  it("omits cardinal elements for folded mirror fixtures", () => {
+  it("omits cardinal elements for tilted-image folded mirror fixtures", () => {
     const { result } = renderHook(() =>
       useLensComputation({
         lensKey: "reference-newtonian-side-focus",
@@ -86,6 +86,24 @@ describe("useLensComputation", () => {
 
     expect(result.current.L?.isFoldedOptics).toBe(true);
     expect(result.current.cardinalElements).toBeNull();
+  });
+
+  it("computes cardinal elements for axial folded mirror fixtures", () => {
+    const { result } = renderHook(() =>
+      useLensComputation({
+        lensKey: "reference-spherical-primary-mirror",
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+        scaleRatio: null,
+        panelId: "test",
+        includeCardinalExtents: true,
+      }),
+    );
+
+    expect(result.current.L?.isFoldedOptics).toBe(true);
+    expect(result.current.cardinalElements).not.toBeNull();
+    expect(result.current.cardinalElements?.points.rearFocal.z).toBeCloseTo(result.current.L!.imagePlane.z, 8);
   });
 
   it("computes aperture metrics", () => {

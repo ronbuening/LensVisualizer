@@ -10,29 +10,37 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 - Visible ray sampling avoids central blocking geometry for folded systems.
 - Analysis guardrails prevent folded systems from showing sequential paraxial/cardinal/pupil/field results until each tab is adapted. Mirror-safe spherical aberration and related blur helpers have an initial generalized image-plane path.
 
-## Highest-Priority Follow-Ups
+## Completed Highest-Priority Follow-Ups
 
-1. **Expose Folded Path Diagnostics**
-   - Add a lightweight public diagnostic object on `RuntimeLens` or trace results for expected path mode, final medium, image-plane hit status, surface hit labels, and clipping/blocking reasons.
-   - Surface these diagnostics in development UI and fixture tests without requiring imports from `src/optics/internal/`.
+1. **Expose Folded Path Diagnostics** - Done.
+   - Public `RayTraceResult.diagnostics` now reports expected path mode, expected/hit surface labels, final medium,
+     image-plane hit status, terminal surface, termination reason, clip/block events, auto skipped-candidate reasons,
+     and loop detection state.
+   - Development analysis UI shows a compact folded trace diagnostic readout, and fixture tests assert the public
+     diagnostic result without importing generalized trace internals.
 
-2. **Adapt More Analysis Tabs Safely**
-   - Generalize cardinal, pupil, distortion, vignetting, focus-breathing, field-curvature, and coma calculations only where the math is valid for folded systems.
-   - Keep unsupported tabs gated until each tab has reference-fixture coverage and a clear physical interpretation for arbitrary image-plane normals.
+2. **Adapt More Analysis Tabs Safely** - Done for currently valid surfaces; still gated where the interpretation is not
+   physically settled.
+   - Axial folded mirror systems can now compute first-order cardinal overlays through the shared cardinal helper.
+   - Focus-breathing remains available for folded systems because it is metadata/state based for fixed mirror fixtures.
+   - Pupil, distortion, vignetting, field-curvature, and coma tabs remain gated for folded systems until their math uses
+     generalized image-plane normals and each tab has fixture-backed physical interpretation.
 
-3. **Improve First-Order Mirror Math**
-   - Add paraxial matrix support for reflective surfaces and folded coordinate frames.
-   - Decide how to report effective focal length, principal planes, nodal points, and pupil locations for systems whose final imaging plane is not normal to the original z axis.
+3. **Improve First-Order Mirror Math** - Done for axial reflective folded systems.
+   - Reflective paraxial path support handles signed folded transfers and mirror slope reversal/power.
+   - Systems whose final image plane is not normal to the original z axis intentionally return no cardinal result until
+     the UI has a clear convention for reporting principal/nodal points in that rotated frame.
 
-4. **Strengthen Auto-Path Robustness**
-   - Add richer loop detection beyond `maxInteractions`.
-   - Record why candidate surfaces were skipped in auto mode.
-   - Stress-test near-grazing fold mirrors, close repeated hits, and mixed block/reflect/refract surfaces.
+4. **Strengthen Auto-Path Robustness** - Done.
+   - Auto mode now records skipped candidates and distinguishes intersection failures, passive same-index surfaces,
+     self-hits, and non-forward hits.
+   - Auto mode detects repeated surface/point/direction/index states before falling back to the generic
+     `maxInteractions` ceiling.
+   - Fixture tests cover auto skip reasons, blocking reasons, and a deliberately looping flat-mirror path.
 
-5. **Broaden Fixture Coverage**
-   - Add a compact Schmidt-Cassegrain or Maksutov-style meniscus/primary/secondary reference fixture.
-   - Add a Gregorian-style secondary fixture to exercise alternate secondary curvature/sign behavior.
-   - Add a ring blocker fixture where an annular obstruction blocks the ring while the center passes.
+5. **Broaden Fixture Coverage** - Done.
+   - Added hidden reference fixtures for a Maksutov-Cassegrain-style meniscus/primary/secondary path, a Gregorian-style
+     secondary path, and an annular ring blocker that clips the ring while allowing the center through.
 
 ## UI And Authoring Improvements
 
@@ -55,4 +63,3 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 - Add screenshot or SVG-geometry tests for side image-plane rendering and tilted flat mirror backing planes.
 - Add path-stability tests for `mode: "auto"` under small focus/zoom/aperture perturbations once folded zoom/focus fixtures exist.
 - Run the full gate after any mirror-path change: `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build`.
-

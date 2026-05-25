@@ -104,6 +104,7 @@ function traceRayExactCore(
     u: result.uy,
     clipped: result.clipped,
     reachedImagePlane: result.reachedImagePlane,
+    diagnostics: result.diagnostics,
   };
 }
 
@@ -471,6 +472,7 @@ function traceRayVectorExactCore(
     u: result.uy,
     clipped: result.clipped,
     reachedImagePlane: result.reachedImagePlane,
+    diagnostics: result.diagnostics,
   };
 }
 

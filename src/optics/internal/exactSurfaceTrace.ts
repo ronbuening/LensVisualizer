@@ -1,5 +1,11 @@
 import type {
   AsphericCoefficients,
+  FoldedPathAutoCandidateSkip,
+  FoldedPathAutoStepDiagnostics,
+  FoldedPathClipEvent,
+  FoldedPathClipReason,
+  FoldedPathTraceDiagnostics,
+  FoldedPathTraceTermination,
   ResolvedImagePlane,
   ResolvedOpticalPath,
   SurfaceInteraction,
@@ -18,6 +24,7 @@ import {
 export type { Vector3 } from "./surfaceIntersection.js";
 
 export interface ExactTraceSurface {
+  label?: string;
   R: number;
   nd: number;
   d: number;
@@ -87,6 +94,7 @@ export interface ExactSurfaceTraceHit {
   clipped: boolean;
   fallback: boolean;
   failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | null;
+  clipReason?: FoldedPathClipReason;
 }
 
 export interface ExactSurfaceTraceResult {
@@ -102,8 +110,14 @@ export interface ExactSurfaceTraceResult {
   terminalDirection: Vector3;
   terminalSurfaceIdx: number;
   returnVertexIdx: number;
-  failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | null;
+  failureReason:
+    | SurfaceIntersectionFailureReason
+    | "totalInternalReflection"
+    | "loopDetected"
+    | "maxInteractions"
+    | null;
   reachedImagePlane?: boolean;
+  diagnostics: FoldedPathTraceDiagnostics;
 }
 
 const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
@@ -200,6 +214,7 @@ export function traceExactSurfaceStackVector(
   const tracedCount = clampTraceCount(stopAt ?? total, total);
   const heights: number[] | null = recordHeights ? [] : null;
   const hits: ExactSurfaceTraceHit[] = [];
+  const clipEvents: FoldedPathClipEvent[] = [];
   let origin: Vector3 = [originIn[0], originIn[1], originIn[2]];
   let direction: Vector3 = [directionIn[0], directionIn[1], directionIn[2]];
   let n = 1.0;
@@ -230,6 +245,7 @@ export function traceExactSurfaceStackVector(
     } else {
       clipped = true;
       failureReason = hit.failureReason;
+      pushClipEvent(clipEvents, lens, i, "intersection-failure", hit.failureReason);
       if (!ghost) break;
 
       const fallbackPoint = fallbackSurfacePoint(origin, direction, vertexZ, i, lens, maxT);
@@ -248,8 +264,11 @@ export function traceExactSurfaceStackVector(
     }
 
     const apertureClip = apertureSemiDiameter(i, surface, lens, stopSemiDiameter);
+    let clipReason: FoldedPathClipReason | undefined;
     if (checkSemiDiameter && apertureClip !== null && !radiusWithinTraceAperture(radius, surface, apertureClip)) {
       clipped = true;
+      clipReason = traceApertureState(radius, surface, apertureClip) === "inside-hole" ? "inner-hole" : "semi-diameter";
+      pushClipEvent(clipEvents, lens, i, clipReason);
     }
 
     const hitClipped = clipped;
@@ -261,6 +280,7 @@ export function traceExactSurfaceStackVector(
       clipped: hitClipped,
       fallback,
       failureReason: hitFailure,
+      clipReason,
     });
 
     if (hitClipped && stopOnClip && !ghost) break;
@@ -274,7 +294,13 @@ export function traceExactSurfaceStackVector(
         if (refracted === null) {
           clipped = true;
           failureReason = "totalInternalReflection";
-          hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
+          pushClipEvent(clipEvents, lens, i, "total-internal-reflection", failureReason);
+          hits[hits.length - 1] = {
+            ...hits[hits.length - 1],
+            clipped: true,
+            failureReason,
+            clipReason: "total-internal-reflection",
+          };
           if (!ghost) break;
         } else {
           direction = refracted;
@@ -308,6 +334,18 @@ export function traceExactSurfaceStackVector(
     returnVertexIdx,
     failureReason,
     reachedImagePlane: false,
+    diagnostics: buildFoldedPathDiagnostics(lens, {
+      hits,
+      finalMedium: n,
+      reachedImagePlane: false,
+      terminalSurfaceIdx,
+      clipped,
+      failureReason,
+      terminationReason: "sequential-return",
+      clipEvents,
+      autoSteps: [],
+      loopKey: null,
+    }),
   };
 }
 
@@ -358,6 +396,9 @@ function traceGeneralizedSurfaceStackVector(
   const maxInteractions = path?.maxInteractions ?? Math.max(lens.S.length + 1, 1);
   const heights: number[] | null = recordHeights ? [] : null;
   const hits: ExactSurfaceTraceHit[] = [];
+  const clipEvents: FoldedPathClipEvent[] = [];
+  const autoSteps: FoldedPathAutoStepDiagnostics[] = [];
+  const seenAutoStates = new Set<string>();
   let origin: Vector3 = [originIn[0], originIn[1], originIn[2]];
   let direction: Vector3 = [directionIn[0], directionIn[1], directionIn[2]];
   let n = 1.0;
@@ -367,6 +408,8 @@ function traceGeneralizedSurfaceStackVector(
   let failureReason: ExactSurfaceTraceResult["failureReason"] = null;
   let reachedImagePlane = false;
   let explicitCursor = 0;
+  let terminationReason: FoldedPathTraceTermination = "max-interactions";
+  let loopKey: string | null = null;
 
   for (let interactionCount = 0; interactionCount < maxInteractions; interactionCount++) {
     const imageHit =
@@ -387,7 +430,17 @@ function traceGeneralizedSurfaceStackVector(
         { maxT, refractiveIndex: n },
       );
     } else if (path?.mode === "auto") {
-      const next = findNearestGeneralizedSurfaceHit(origin, direction, zPos, lens, launchBoundT, n, indexAtSurface);
+      const next = findNearestGeneralizedSurfaceHit(
+        origin,
+        direction,
+        zPos,
+        lens,
+        launchBoundT,
+        n,
+        indexAtSurface,
+        terminalSurfaceIdx,
+      );
+      autoSteps.push({ step: interactionCount, skippedCandidates: next.skippedCandidates });
       nextSurfaceIdx = next?.surfaceIdx ?? null;
       nextSurfaceHit = next?.hit ?? null;
     }
@@ -398,6 +451,7 @@ function traceGeneralizedSurfaceStackVector(
     ) {
       terminalPoint = imageHit.point;
       reachedImagePlane = true;
+      terminationReason = "image-plane";
       break;
     }
 
@@ -405,6 +459,10 @@ function traceGeneralizedSurfaceStackVector(
       if (imageHit) {
         terminalPoint = imageHit.point;
         reachedImagePlane = true;
+        terminationReason = "image-plane";
+      } else {
+        terminationReason =
+          explicitOrder && explicitCursor >= explicitOrder.length ? "explicit-path-complete" : "no-next-surface";
       }
       break;
     }
@@ -412,6 +470,8 @@ function traceGeneralizedSurfaceStackVector(
     if (!nextSurfaceHit.ok) {
       clipped = true;
       failureReason = nextSurfaceHit.failureReason;
+      terminationReason = "trace-failure";
+      pushClipEvent(clipEvents, lens, nextSurfaceIdx, "intersection-failure", nextSurfaceHit.failureReason);
       if (!ghost) break;
 
       const fallbackPoint = fallbackSurfacePoint(
@@ -432,6 +492,7 @@ function traceGeneralizedSurfaceStackVector(
         clipped: true,
         fallback: true,
         failureReason: nextSurfaceHit.failureReason,
+        clipReason: "intersection-failure",
       });
       terminalPoint = fallbackPoint.point;
       terminalSurfaceIdx = nextSurfaceIdx;
@@ -463,6 +524,7 @@ function traceGeneralizedSurfaceStackVector(
       const inactiveClipped = interaction.inactiveSide === "block" && withinAperture;
       if (inactiveClipped) {
         clipped = true;
+        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "inactive-side-block");
         hits.push({
           surfaceIdx: nextSurfaceIdx,
           point,
@@ -471,7 +533,9 @@ function traceGeneralizedSurfaceStackVector(
           clipped: true,
           fallback: false,
           failureReason: null,
+          clipReason: "inactive-side-block",
         });
+        terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }
       origin = advanceOrigin(point, direction);
@@ -481,6 +545,7 @@ function traceGeneralizedSurfaceStackVector(
     if (interaction.type === "block") {
       if (withinAperture) {
         clipped = true;
+        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "block-surface");
         hits.push({
           surfaceIdx: nextSurfaceIdx,
           point,
@@ -489,7 +554,9 @@ function traceGeneralizedSurfaceStackVector(
           clipped: true,
           fallback: false,
           failureReason: null,
+          clipReason: "block-surface",
         });
+        terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }
       origin = advanceOrigin(point, direction);
@@ -500,6 +567,7 @@ function traceGeneralizedSurfaceStackVector(
       const apertureClipped = checkSemiDiameter && apertureState === "outside";
       if (apertureClipped) {
         clipped = true;
+        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "semi-diameter");
         hits.push({
           surfaceIdx: nextSurfaceIdx,
           point,
@@ -508,7 +576,9 @@ function traceGeneralizedSurfaceStackVector(
           clipped: true,
           fallback: false,
           failureReason: null,
+          clipReason: "semi-diameter",
         });
+        terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }
       origin = advanceOrigin(point, direction);
@@ -536,7 +606,14 @@ function traceGeneralizedSurfaceStackVector(
         if (refracted === null) {
           clipped = true;
           failureReason = "totalInternalReflection";
-          hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, failureReason };
+          terminationReason = "trace-failure";
+          pushClipEvent(clipEvents, lens, nextSurfaceIdx, "total-internal-reflection", failureReason);
+          hits[hits.length - 1] = {
+            ...hits[hits.length - 1],
+            clipped: true,
+            failureReason,
+            clipReason: "total-internal-reflection",
+          };
           if (!ghost) break;
         } else {
           direction = refracted;
@@ -545,7 +622,27 @@ function traceGeneralizedSurfaceStackVector(
       n = nn;
     }
 
+    if (path?.mode === "auto") {
+      const stateKey = autoLoopStateKey(nextSurfaceIdx, point, direction, n);
+      if (seenAutoStates.has(stateKey)) {
+        clipped = true;
+        failureReason = "loopDetected";
+        terminationReason = "loop-detected";
+        loopKey = stateKey;
+        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "loop-detected");
+        hits[hits.length - 1] = { ...hits[hits.length - 1], clipped: true, clipReason: "loop-detected" };
+        break;
+      }
+      seenAutoStates.add(stateKey);
+    }
+
     origin = advanceOrigin(point, direction);
+  }
+
+  if (terminationReason === "max-interactions") {
+    clipped = true;
+    failureReason = failureReason ?? "maxInteractions";
+    pushClipEvent(clipEvents, lens, terminalSurfaceIdx >= 0 ? terminalSurfaceIdx : null, "max-interactions");
   }
 
   const returnVertexIdx = terminalSurfaceIdx >= 0 ? terminalSurfaceIdx : 0;
@@ -574,6 +671,18 @@ function traceGeneralizedSurfaceStackVector(
     returnVertexIdx,
     failureReason,
     reachedImagePlane,
+    diagnostics: buildFoldedPathDiagnostics(lens, {
+      hits,
+      finalMedium: n,
+      reachedImagePlane,
+      terminalSurfaceIdx,
+      clipped,
+      failureReason,
+      terminationReason,
+      clipEvents,
+      autoSteps,
+      loopKey,
+    }),
   };
 }
 
@@ -664,6 +773,10 @@ function generalizedHitTolerance(t: number): number {
   return Math.max(1e-7, Math.abs(t) * 1e-9);
 }
 
+function selfHitTolerance(t: number): number {
+  return Math.max(1e-5, Math.abs(t) * 1e-7);
+}
+
 function surfaceIntersectionMaxTForTarget(
   surfIdx: number,
   origin: Vector3,
@@ -695,8 +808,14 @@ function findNearestGeneralizedSurfaceHit(
   launchBoundT: number | undefined,
   refractiveIndex: number,
   indexAtSurface: ((surfaceIdx: number, nd: number) => number) | undefined,
-): { surfaceIdx: number; hit: SurfaceIntersectionResult } | null {
+  previousSurfaceIdx: number,
+): {
+  surfaceIdx: number | null;
+  hit: SurfaceIntersectionResult | null;
+  skippedCandidates: FoldedPathAutoCandidateSkip[];
+} {
   let best: { surfaceIdx: number; hit: SurfaceIntersectionResult } | null = null;
+  const skippedCandidates: FoldedPathAutoCandidateSkip[] = [];
   for (let i = 0; i < lens.S.length; i++) {
     const maxT = surfaceIntersectionMaxTForTarget(i, origin, direction, zPos, lens, launchBoundT);
     const hit = intersectGeneralizedSurface(
@@ -710,13 +829,42 @@ function findNearestGeneralizedSurfaceHit(
         refractiveIndex,
       },
     );
-    if (!hit.ok) continue;
-    if (isPassiveAutoSurface(i, hit, direction, lens, refractiveIndex, indexAtSurface)) continue;
+    if (!hit.ok) {
+      skippedCandidates.push({
+        surfaceIdx: i,
+        surfaceLabel: surfaceLabel(lens, i),
+        reason: "intersection-failed",
+        failureReason: hit.failureReason,
+      });
+      continue;
+    }
+    if (hit.t <= 0) {
+      skippedCandidates.push({
+        surfaceIdx: i,
+        surfaceLabel: surfaceLabel(lens, i),
+        reason: "non-forward-hit",
+        t: hit.t,
+      });
+      continue;
+    }
+    if (i === previousSurfaceIdx && hit.t <= selfHitTolerance(hit.t)) {
+      skippedCandidates.push({ surfaceIdx: i, surfaceLabel: surfaceLabel(lens, i), reason: "self-hit", t: hit.t });
+      continue;
+    }
+    if (isPassiveAutoSurface(i, hit, direction, lens, refractiveIndex, indexAtSurface)) {
+      skippedCandidates.push({
+        surfaceIdx: i,
+        surfaceLabel: surfaceLabel(lens, i),
+        reason: "passive-same-index",
+        t: hit.t,
+      });
+      continue;
+    }
     if (!best || hit.t < (best.hit.ok ? best.hit.t : Infinity)) {
       best = { surfaceIdx: i, hit };
     }
   }
-  return best;
+  return { surfaceIdx: best?.surfaceIdx ?? null, hit: best?.hit ?? null, skippedCandidates };
 }
 
 function isPassiveAutoSurface(
@@ -867,6 +1015,88 @@ function resolvedNextIndex(
   const physicalNextNd = incidentSide === "front" ? surface.nd : surfaceIdx > 0 ? lens.S[surfaceIdx - 1].nd : 1.0;
   if (!indexAtSurface) return physicalNextNd === 1.0 ? 1.0 : physicalNextNd;
   return physicalNextNd === 1.0 ? 1.0 : indexAtSurface(surfaceIdx, physicalNextNd);
+}
+
+function surfaceLabel(lens: ExactTraceLens, surfaceIdx: number | null): string {
+  if (surfaceIdx === null || surfaceIdx < 0) return "";
+  return lens.S[surfaceIdx]?.label ?? `S${surfaceIdx + 1}`;
+}
+
+function pushClipEvent(
+  events: FoldedPathClipEvent[],
+  lens: ExactTraceLens,
+  surfaceIdx: number | null,
+  reason: FoldedPathClipReason,
+  failureReason: string | null = null,
+): void {
+  events.push({
+    surfaceIdx,
+    surfaceLabel: surfaceIdx === null ? null : surfaceLabel(lens, surfaceIdx),
+    reason,
+    failureReason,
+  });
+}
+
+function autoLoopStateKey(surfaceIdx: number, point: Vector3, direction: Vector3, n: number): string {
+  const bucket = (value: number, scale: number) => Math.round(value / scale);
+  return [
+    surfaceIdx,
+    bucket(point[0], 1e-5),
+    bucket(point[1], 1e-5),
+    bucket(point[2], 1e-5),
+    bucket(direction[0], 1e-7),
+    bucket(direction[1], 1e-7),
+    bucket(direction[2], 1e-7),
+    bucket(n, 1e-9),
+  ].join(":");
+}
+
+function buildFoldedPathDiagnostics(
+  lens: ExactTraceLens,
+  {
+    hits,
+    finalMedium,
+    reachedImagePlane,
+    terminalSurfaceIdx,
+    clipped,
+    failureReason,
+    terminationReason,
+    clipEvents,
+    autoSteps,
+    loopKey,
+  }: {
+    hits: readonly ExactSurfaceTraceHit[];
+    finalMedium: number;
+    reachedImagePlane: boolean;
+    terminalSurfaceIdx: number;
+    clipped: boolean;
+    failureReason: ExactSurfaceTraceResult["failureReason"];
+    terminationReason: FoldedPathTraceTermination;
+    clipEvents: FoldedPathClipEvent[];
+    autoSteps: FoldedPathAutoStepDiagnostics[];
+    loopKey: string | null;
+  },
+): FoldedPathTraceDiagnostics {
+  const hitSurfaceIndexes = hits.map((hit) => hit.surfaceIdx);
+  return {
+    expectedPathMode: lens.opticalPath?.mode ?? "sequential",
+    expectedSurfaceLabels: lens.opticalPath?.surfaceLabels ?? null,
+    maxInteractions: lens.opticalPath?.maxInteractions ?? Math.max(lens.S.length + 1, 1),
+    hitSurfaceIndexes,
+    hitSurfaceLabels: hitSurfaceIndexes.map((idx) => surfaceLabel(lens, idx)),
+    finalMedium,
+    reachedImagePlane,
+    imagePlaneLabel: lens.imagePlane?.label ?? null,
+    terminalSurfaceIndex: terminalSurfaceIdx,
+    terminalSurfaceLabel: terminalSurfaceIdx >= 0 ? surfaceLabel(lens, terminalSurfaceIdx) : null,
+    clipped,
+    failureReason,
+    terminationReason,
+    clipEvents,
+    autoSteps,
+    loopDetected: terminationReason === "loop-detected",
+    loopKey,
+  };
 }
 
 // Only reached on the ghost-render path for grazing or backward rays from

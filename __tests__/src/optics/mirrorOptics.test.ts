@@ -18,6 +18,9 @@ const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensDat
 const manginData = LENS_CATALOG["reference-mangin-second-surface-mirror"] as LensData;
 const newtonianData = LENS_CATALOG["reference-newtonian-side-focus"] as LensData;
 const cassegrainData = LENS_CATALOG["reference-cassegrain-back-focus"] as LensData;
+const maksutovData = LENS_CATALOG["reference-maksutov-cassegrain-meniscus"] as LensData;
+const gregorianData = LENS_CATALOG["reference-gregorian-secondary"] as LensData;
+const ringBlockerData = LENS_CATALOG["reference-annular-ring-blocker"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -158,6 +161,26 @@ describe("mirror optics support", () => {
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
   });
 
+  it("exposes folded-path diagnostics through the public ray trace result", () => {
+    const L = buildLens(newtonianData);
+    const layout = doLayout(0, 0, L);
+    const result = traceRay(12, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const diagnostics = result.diagnostics;
+
+    expect(diagnostics).toBeDefined();
+    expect(diagnostics!.expectedPathMode).toBe("auto");
+    expect(diagnostics!.hitSurfaceLabels).toEqual(["M1", "SEC"]);
+    expect(diagnostics!.reachedImagePlane).toBe(true);
+    expect(diagnostics!.finalMedium).toBeCloseTo(1, 12);
+    expect(diagnostics!.terminationReason).toBe("image-plane");
+    expect(diagnostics!.autoSteps.some((step) => step.skippedCandidates.length > 0)).toBe(true);
+    expect(
+      diagnostics!.autoSteps
+        .flatMap((step) => step.skippedCandidates)
+        .some((skip) => skip.reason === "passive-same-index"),
+    ).toBe(true);
+  });
+
   it("renders the Newtonian secondary as a tilted fold mirror", () => {
     const L = buildLens(newtonianData);
     const layout = doLayout(0, 0, L);
@@ -197,6 +220,120 @@ describe("mirror optics support", () => {
     expect(marginal.clipped).toBe(false);
     expect(marginal.terminalPoint[2]).toBeCloseTo(L.imagePlane.z, 10);
     expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
+  });
+
+  it("records inactive-side blocking as a folded-path clip reason", () => {
+    const L = buildLens(cassegrainData);
+    const layout = doLayout(0, 0, L);
+    const result = traceRay(0, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(result.clipped).toBe(true);
+    expect(result.diagnostics?.clipEvents).toContainEqual({
+      surfaceIdx: L.labelIdx.SEC,
+      surfaceLabel: "SEC",
+      reason: "inactive-side-block",
+      failureReason: null,
+    });
+  });
+
+  it("detects repeated auto-path states before maxInteractions is exhausted", () => {
+    const L = buildLens({
+      ...mirrorData,
+      key: "reference-looping-flat-mirrors",
+      name: "REFERENCE Looping Flat Mirrors",
+      elements: [
+        {
+          id: 1,
+          name: "LOOP",
+          label: "Loop mirrors",
+          type: "Flat Mirror Pair",
+          nd: 1.0,
+          vd: 0,
+          glass: "Aluminized front surfaces",
+          apd: false,
+          fromSurface: "STO",
+          toSurface: "M1",
+        },
+      ],
+      surfaces: [
+        {
+          label: "STO",
+          R: 1e15,
+          d: 10,
+          nd: 1.0,
+          elemId: 1,
+          sd: 20,
+          interaction: { type: "reflect", incidentSide: "rear", mirrorKind: "first-surface" },
+        },
+        {
+          label: "M1",
+          R: 1e15,
+          d: 0,
+          nd: 1.0,
+          elemId: 1,
+          sd: 20,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" },
+        },
+      ],
+      groups: [{ text: "Loop", fromSurface: "STO", toSurface: "M1" }],
+      opticalPath: {
+        mode: "auto",
+        imagePlane: { z: 50, label: "IMG" },
+        maxInteractions: 8,
+      },
+    } satisfies LensData);
+    const layout = doLayout(0, 0, L);
+    const result = traceRay(5, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(result.clipped).toBe(true);
+    expect(result.diagnostics?.loopDetected).toBe(true);
+    expect(result.diagnostics?.terminationReason).toBe("loop-detected");
+    expect(result.diagnostics?.hitSurfaceLabels).toEqual(["M1", "STO", "M1"]);
+    expect(result.diagnostics?.hitSurfaceLabels.length).toBeLessThan(L.opticalPath.maxInteractions);
+  });
+
+  it("supports a compact Maksutov-Cassegrain-style meniscus fixture", () => {
+    const L = buildLens(maksutovData);
+    const layout = doLayout(0, 0, L);
+    const marginal = traceRay(12, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(validateLensData(maksutovData)).toEqual([]);
+    expect(L.isFoldedOptics).toBe(true);
+    expect(marginal.diagnostics?.hitSurfaceLabels).toEqual(["MEN1", "MEN2", "M1", "SEC"]);
+    expect(marginal.reachedImagePlane).toBe(true);
+    expect(marginal.clipped).toBe(false);
+    expect(marginal.diagnostics?.finalMedium).toBeCloseTo(1, 12);
+  });
+
+  it("supports a Gregorian-style secondary fixture with alternate secondary curvature", () => {
+    const L = buildLens(gregorianData);
+    const layout = doLayout(0, 0, L);
+    const marginal = traceRay(12, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(validateLensData(gregorianData)).toEqual([]);
+    expect(L.isFoldedOptics).toBe(true);
+    expect(layout.z[L.labelIdx.SEC]).toBeLessThan(layout.z[L.labelIdx.STO]);
+    expect(marginal.diagnostics?.hitSurfaceLabels).toEqual(["M1", "SEC"]);
+    expect(marginal.reachedImagePlane).toBe(true);
+    expect(marginal.clipped).toBe(false);
+  });
+
+  it("supports an annular blocker that clips a ring while allowing the center through", () => {
+    const L = buildLens(ringBlockerData);
+    const layout = doLayout(0, 0, L);
+    const central = traceRay(0, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const ring = traceRay(8, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(validateLensData(ringBlockerData)).toEqual([]);
+    expect(central.clipped).toBe(false);
+    expect(central.reachedImagePlane).toBe(true);
+    expect(ring.clipped).toBe(true);
+    expect(ring.diagnostics?.clipEvents).toContainEqual({
+      surfaceIdx: L.labelIdx.RING,
+      surfaceLabel: "RING",
+      reason: "block-surface",
+      failureReason: null,
+    });
   });
 
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {
