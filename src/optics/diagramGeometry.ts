@@ -145,6 +145,14 @@ function boundaryIntrusion(
   return renderSag(height, rearSurfaceIndex, L) - renderSag(height, frontSurfaceIndex, L);
 }
 
+function renderedSurfaceZ(surfaceIndex: number, vertexZ: number, y: number, L: RuntimeLens): number {
+  const normal = L.S[surfaceIndex].interaction?.normal;
+  if (normal && Math.abs(normal.z) > 1e-12) {
+    return vertexZ - (normal.y * y) / normal.z;
+  }
+  return vertexZ + renderSag(Math.abs(y), surfaceIndex, L);
+}
+
 function boundaryTrimHeight(
   rearSurfaceIndex: number,
   frontSurfaceIndex: number,
@@ -259,11 +267,11 @@ export function computeElementShapes(
     let d = "";
     for (let i = 0; i <= NN; i++) {
       const y = -trim1 + (2 * trim1 * i) / NN;
-      d += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
+      d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s1, z1, y, L), y)} `;
     }
     for (let i = NN; i >= 0; i--) {
       const y = -trim2 + (2 * trim2 * i) / NN;
-      d += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
+      d += `L${pathPoint(renderedSurfaceZ(s2, z2, y, L), y)} `;
     }
     const inner = Math.min(Math.min(trim1, trim2), Math.max(L.S[s1].innerSd ?? 0, L.S[s2].innerSd ?? 0));
     const fillRule = inner > 0 ? "evenodd" : undefined;
@@ -271,11 +279,11 @@ export function computeElementShapes(
       d += "Z ";
       for (let i = 0; i <= NN; i++) {
         const y = -inner + (2 * inner * i) / NN;
-        d += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
+        d += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s1, z1, y, L), y)} `;
       }
       for (let i = NN; i >= 0; i--) {
         const y = -inner + (2 * inner * i) / NN;
-        d += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
+        d += `L${pathPoint(renderedSurfaceZ(s2, z2, y, L), y)} `;
       }
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
@@ -285,11 +293,11 @@ export function computeElementShapes(
       let p = "";
       for (let i = 0; i <= NN; i++) {
         const y = -trim1 + (2 * trim1 * i) / NN;
-        p += `${i ? "L" : "M"}${pathPoint(z1 + renderSag(Math.abs(y), s1, L), y)} `;
+        p += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s1, z1, y, L), y)} `;
       }
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
       const hp = p + `L${pathPoint(midZ, trim1)} L${pathPoint(midZ, -trim1)} Z`;
-      const [labelX, labelY] = screenPoint(z1 + renderSag(trim1, s1, L), -trim1);
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ(s1, z1, -trim1, L), -trim1);
       asphPaths.push({
         surfIdx: s1,
         pathD: p,
@@ -302,16 +310,16 @@ export function computeElementShapes(
       let p = "";
       for (let i = 0; i <= NN; i++) {
         const y = -trim2 + (2 * trim2 * i) / NN;
-        p += `${i ? "L" : "M"}${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
+        p += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s2, z2, y, L), y)} `;
       }
       /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
       let hp = `M${pathPoint(midZ, -trim2)} L${pathPoint(midZ, trim2)} `;
       for (let i = NN; i >= 0; i--) {
         const y = -trim2 + (2 * trim2 * i) / NN;
-        hp += `L${pathPoint(z2 + renderSag(Math.abs(y), s2, L), y)} `;
+        hp += `L${pathPoint(renderedSurfaceZ(s2, z2, y, L), y)} `;
       }
       hp += "Z";
-      const [labelX, labelY] = screenPoint(z2 + renderSag(trim2, s2, L), -trim2);
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ(s2, z2, -trim2, L), -trim2);
       asphPaths.push({
         surfIdx: s2,
         pathD: p,

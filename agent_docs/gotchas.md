@@ -3,6 +3,17 @@
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
 - Exact surface tracing is the only trace path. The legacy vertex-plane tracer has been removed; do not
   reintroduce a per-lens rollout, a `traceMode` option, or trace-mode state in lens data files
+- Mirror and telescope prescriptions opt into folded behavior with `opticalPath`, `SurfaceData.interaction`, and
+  `innerSd`. Ordinary refractive lenses should omit those fields so they keep the default sequential front-to-rear model
+- `opticalPath.surfaceOrder` is a hit order, not a physical ordering requirement, and labels may repeat. Use it for
+  Mangin/second-surface or known folded paths; use `mode: "auto"` only when nearest-valid-surface selection is needed and
+  set a conservative `maxInteractions`
+- `opticalPath.imagePlane.normal` is a meridional normal. `{ z: 1, y: 0 }` is the ordinary vertical IMG plane, while
+  `{ z: 0, y: 1 }` is a horizontal side-focus plane. Do not assume folded systems image at the last surface's BFD
+- `interaction.normal` makes a surface a tilted meridional plane for tracing and SVG rendering. For a flat fold mirror
+  with a visible backing plane, put the same normal on the backing surface or it will render as an untilted plate
+- `innerSd` means a central hole in the active aperture; rays inside the hole pass through. Solid central obstructions
+  should be separate `interaction: { type: "block" }` surfaces
 - Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
   than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; fisheye chief-ray solves
   route through the bounding-sphere vector path via `solveChiefRay`, and vector-aware callers should consume
@@ -30,6 +41,9 @@
 - Perspective-control movement is opt-in via `perspectiveControl`. Do not add SHIFT/TILT controls to ordinary lenses.
   The v1 movement layer is a 2D meridional visualization against a fixed IMG plane; analysis tabs remain centered-lens
   diagnostics and show a notice when movement is active
+- Folded mirror analysis is intentionally guarded by tab. Spherical aberration and mirror-safe blur helpers can use the
+  explicit image plane; cardinal, pupil, field, distortion, vignetting, and focus-breathing paths must stay hidden for
+  `L.isFoldedOptics` until their math is explicitly adapted and fixture-tested
 - Ray density is a persisted preference (`normal`, `dense`, `diagnostic`), not a URL field. `normal` must preserve the
   lens-authored `rayFractions` / `offAxisFractions` exactly; denser modes should go through `src/optics/raySampling.ts`
   so symmetry and chief rays stay predictable

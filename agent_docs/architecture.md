@@ -48,6 +48,9 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   per-lens rollout state.
 - Keep fisheye/ultra-wide launch logic centralized in `src/optics/projection.ts` and `solveChiefRay`; avoid inline
   `Math.tan(field)` launch math in analysis modules.
+- Keep mirror/folded optics on the generalized path model: `LensData.opticalPath` resolves hit order and image plane,
+  `SurfaceData.interaction` controls refract/reflect/block behavior, `innerSd` controls annular apertures, and ordinary
+  lenses must retain their no-`opticalPath` sequential defaults.
 - Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time
   and infinity/default-state oriented.
 - Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis
@@ -70,6 +73,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - [`generated/`](generated/) - generated glass reports; regenerate before glass-audit work with `npm run generate:glass-reports`.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
+- [`../MIRROR_LENS_FUTURE_ENHANCEMENTS.md`](../MIRROR_LENS_FUTURE_ENHANCEMENTS.md) - root backlog for future mirror-lens hardening.
 - [`architecture/program-flow.md`](architecture/program-flow.md) - high-level Mermaid program flow.
 - [`architecture/public-functions.md`](architecture/public-functions.md) - stable project-internal functions, types, and import boundaries.
 - [`code_conventions.md`](code_conventions.md) - TypeScript, naming, formatting, and architecture constraints.

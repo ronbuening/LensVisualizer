@@ -14,7 +14,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-newtonian-side-focus",
   maker: "Reference",
-  visible: false,
+  visible: true,
   name: "REFERENCE Newtonian Side Focus",
   subtitle: "Hidden automatic folded-path regression fixture",
   specs: ["AUTO PATH", "DIAGONAL SECONDARY", "SIDE IMAGE PLANE", "f = 100 mm"],
@@ -89,7 +89,7 @@ const LENS_DATA = {
         normal: { z: 1, y: 1 },
       },
     },
-    { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10 },
+    { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10, interaction: { type: "refract", normal: { z: 1, y: 1 } } },
     {
       label: "M1",
       R: -200,

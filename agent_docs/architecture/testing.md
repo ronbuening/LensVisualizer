@@ -50,6 +50,8 @@ Existing tests cover:
 
 - Pure optics functions and edge cases.
 - Lens build and data validation.
+- Mirror/folded optics fixtures: first-surface reflection, annular clipping/rendering, second-surface repeated hit order,
+  automatic Newtonian path resolution, side/front/back image-plane termination, and folded analysis guardrails.
 - Aberration, distortion, vignetting, pupil aberration, bokeh, and diagram geometry.
 - Catalog/metadata utilities.
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
@@ -65,6 +67,9 @@ When refactoring:
 - Add equality tests when adding optional precomputed inputs to optics helpers.
 - Add reducer guard tests when tightening string state into literal unions.
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
+- Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
+  image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer hidden reference fixtures under
+  `src/lens-data/reference/` for canonical mirror/telescope behavior.
 
 Run the normal gate before committing:
 

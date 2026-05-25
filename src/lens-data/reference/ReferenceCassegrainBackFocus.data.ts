@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-cassegrain-back-focus",
   maker: "Reference",
-  visible: false,
+  visible: true,
   name: "REFERENCE Cassegrain Back Focus",
   subtitle: "Hidden folded-analysis guard fixture",
   specs: ["CASSEGRAIN-STYLE", "CENTRAL SECONDARY", "ANNULAR PRIMARY", "BACK FOCUS"],

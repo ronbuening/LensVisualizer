@@ -7,7 +7,7 @@ import {
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
 import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import { doLayout, traceRay } from "../../../src/optics/optics.js";
+import { doLayout, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData } from "../../../src/types/optics.js";
@@ -25,6 +25,10 @@ function reflectYz(incidentY: number, incidentZ: number, normalY: number, normal
   const z = incidentZ - 2 * dot * normalZ;
   const inv = 1 / Math.hypot(y, z);
   return [y * inv, z * inv];
+}
+
+function pathCoords(pathD: string): [number, number][] {
+  return [...pathD.matchAll(/[ML]([\d.e+-]+),([\d.e+-]+)/g)].map((match) => [Number(match[1]), Number(match[2])]);
 }
 
 describe("mirror optics support", () => {
@@ -152,6 +156,27 @@ describe("mirror optics support", () => {
     expect(result.clipped).toBe(false);
     expect(result.terminalPoint[1]).toBeCloseTo(25, 10);
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
+  });
+
+  it("renders the Newtonian secondary as a tilted fold mirror", () => {
+    const L = buildLens(newtonianData);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(
+      L,
+      layout.z,
+      (z) => z,
+      (y) => y,
+    );
+    const secondaryShape = shapes.find((shape) => shape.eid === 2);
+    const coords = pathCoords(secondaryShape?.d ?? "");
+    const frontTop = coords[0];
+    const frontBottom = coords[SVG_PATH_SUBDIVISIONS];
+
+    expect(secondaryShape).toBeDefined();
+    expect(frontTop[1]).toBeCloseTo(-10, 10);
+    expect(frontTop[0]).toBeCloseTo(layout.z[L.labelIdx.SEC] + 10, 10);
+    expect(frontBottom[1]).toBeCloseTo(10, 10);
+    expect(frontBottom[0]).toBeCloseTo(layout.z[L.labelIdx.SEC] - 10, 10);
   });
 
   it("supports a Cassegrain-style obstruction and back-focus image plane fixture", () => {

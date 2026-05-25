@@ -11,7 +11,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-annular-obscured-mirror",
   maker: "Reference",
-  visible: false,
+  visible: true,
   name: "REFERENCE Annular Obscured Mirror",
   subtitle: "Hidden annular-pupil regression fixture",
   specs: ["ANNULAR FIRST-SURFACE MIRROR", "CENTRAL OBSTRUCTION", "f = 100 mm", "F/4"],

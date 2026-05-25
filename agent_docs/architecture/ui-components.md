@@ -72,6 +72,11 @@ panels slice.
 Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer is
 closed, preventing hidden analysis work during slider drag.
 
+`AnalysisDrawerContent` owns global analysis notices. It shows a folded-optics notice for `L.isFoldedOptics`, allows the
+mirror-safe aberrations path, and replaces tabs that still assume a sequential front-to-rear paraxial model with an
+explicit unsupported message. When adapting a tab for mirror systems, remove it from the folded unsupported set only
+after its math uses generalized image-plane/ray intersections and has fixture-backed tests.
+
 New analysis tabs require:
 
 1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.

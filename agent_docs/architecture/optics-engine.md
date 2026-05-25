@@ -43,6 +43,8 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
+- Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
+  normals when mirror data opts into the generalized model.
 
 **`halfField` vs `tracingHalfField`.** Rectilinear lenses set both to the same slope-launch-bisected value
 (real chief ray vignetting check) by default. Fisheye lenses set `halfField = projection.maxTraceFieldDeg`
@@ -111,6 +113,36 @@ and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
 
+## Mirror And Folded Optical Paths
+
+Folded systems opt into the generalized exact tracer through lens data, not through a trace-mode flag:
+
+- `SurfaceData.innerSd` defines an annular active aperture. Rays interact only inside `[innerSd, sd]`; central holes pass
+  without reflecting, refracting, or blocking.
+- `SurfaceData.interaction.type` selects `"refract"`, `"reflect"`, or `"block"`. Side-specific `incidentSide` /
+  `inactiveSide` controls whether a surface is active from the front, rear, both sides, ignored from the inactive side,
+  or treated as a blocker from the inactive side.
+- `interaction.mirrorKind` documents first-surface vs second-surface mirrors. Refractive-index transitions still come
+  from the physical `nd` sequence so explicit repeated orders can enter a Mangin body, reflect, and exit through the
+  same front surface.
+- `interaction.normal` turns a surface into a tilted meridional plane for both intersection and SVG element rendering.
+  Use it for flat fold mirrors and their passive backing planes; omit it for curved mirrors so sag-derived normals are
+  used.
+- `LensData.opticalPath.surfaceOrder` is an explicit label sequence and may repeat labels. This is the preferred path
+  for known Mangin or Cassegrain hit orders.
+- `LensData.opticalPath.mode: "auto"` uses nearest-valid-surface selection with self-hit tolerance, passive same-index
+  refractive-surface skipping, image-plane termination, and `maxInteractions` protection.
+- `LensData.opticalPath.imagePlane` supplies arbitrary meridional image planes. `doLayout()` reports `imgZ` from this
+  plane for folded systems, and ray traces terminate at the plane rather than assuming the final right-hand BFD.
+
+`traceRay*` remains the public caller surface for diagram rays. Focused optics tests can import
+`internal/exactSurfaceTrace.ts` to inspect generalized-path details such as hit labels, terminal direction, final medium,
+and whether the explicit image plane was reached.
+
+Analysis support is deliberately incremental. Spherical aberration and mirror-safe blur/bokeh helpers use generalized
+image-plane intersections where valid; sequential paraxial/cardinal/pupil/field tabs are guarded in the UI for
+`L.isFoldedOptics` until each tab is adapted.
+
 ## Field-Launch Convention
 
 Every analysis launch slope flows through `projectionLaunchSlopeForField(L, fieldAngleDeg)` in
@@ -141,6 +173,10 @@ Lens data owns the baseline ray fans through `rayFractions` and `offAxisFraction
 those arrays exactly for `normal`, then derives symmetric denser viewport-only samples for `dense` and
 `diagnostic`. Use the helper from display/tracing hooks instead of mutating runtime lens data or adding
 density-specific arrays to lens files.
+
+For folded systems, `obstructionAwareRayFractionsForDensity()` scans usable pupil bands so visible on-axis/off-axis rays
+avoid central blockers and annular mirror holes automatically. Do not work around a secondary obstruction by hand-editing
+`rayFractions`; fix the physical blocker or `innerSd` data instead.
 
 `raySampling.ts` also exports `isHeavyLensForRayWork(L)` — the shared heaviness heuristic. `LensDiagramPanel`
 uses it to downgrade interactive diagram ray density during slider drag; analysis modules use it to halve

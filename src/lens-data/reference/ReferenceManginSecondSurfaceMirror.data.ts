@@ -11,7 +11,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "reference-mangin-second-surface-mirror",
   maker: "Reference",
-  visible: false,
+  visible: true,
   name: "REFERENCE Mangin Second-Surface Mirror",
   subtitle: "Hidden repeated-surface regression fixture",
   specs: ["SECOND-SURFACE MIRROR", "REPEATED FRONT SURFACE", "n = 1.5"],
