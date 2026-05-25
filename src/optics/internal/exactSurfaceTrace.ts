@@ -9,7 +9,9 @@ import {
   intersectSagSurface,
   surfaceNormalAtHit,
   type SurfaceIntersectionFailureReason,
+  type SurfaceIntersectionOptions,
   type SurfaceIntersectionRay,
+  type SurfaceIntersectionResult,
   type Vector3,
 } from "./surfaceIntersection.js";
 
@@ -372,12 +374,12 @@ function traceGeneralizedSurfaceStackVector(
         ? intersectImagePlane(origin, direction, lens.imagePlane)
         : null;
     let nextSurfaceIdx: number | null = null;
-    let nextSurfaceHit: ReturnType<typeof intersectSagSurface> | null = null;
+    let nextSurfaceHit: SurfaceIntersectionResult | null = null;
 
     if (explicitOrder && explicitCursor < explicitOrder.length) {
       nextSurfaceIdx = explicitOrder[explicitCursor++];
       const maxT = surfaceIntersectionMaxTForTarget(nextSurfaceIdx, origin, direction, zPos, lens, launchBoundT);
-      nextSurfaceHit = intersectSagSurface(
+      nextSurfaceHit = intersectGeneralizedSurface(
         { origin, direction } satisfies SurfaceIntersectionRay,
         nextSurfaceIdx,
         zPos[nextSurfaceIdx] ?? 0,
@@ -385,7 +387,7 @@ function traceGeneralizedSurfaceStackVector(
         { maxT, refractiveIndex: n },
       );
     } else if (path?.mode === "auto") {
-      const next = findNearestGeneralizedSurfaceHit(origin, direction, zPos, lens, launchBoundT, n);
+      const next = findNearestGeneralizedSurfaceHit(origin, direction, zPos, lens, launchBoundT, n, indexAtSurface);
       nextSurfaceIdx = next?.surfaceIdx ?? null;
       nextSurfaceHit = next?.hit ?? null;
     }
@@ -644,7 +646,8 @@ function surfaceIntersectionMaxTForTarget(
 ): number {
   const vertexZ = zPos[surfIdx] ?? 0;
   const surfaceSag = Math.abs(conicPolySag(lens.S[surfIdx]?.sd ?? 0, lens.S[surfIdx]?.R ?? 0, lens.asphByIdx[surfIdx]));
-  if (Math.abs(direction[2]) > 1e-12) {
+  const hasTiltedPlaneNormal = Boolean(lens.S[surfIdx]?.interaction?.normal);
+  if (!hasTiltedPlaneNormal && Math.abs(direction[2]) > 1e-12) {
     const projectedT = (vertexZ - origin[2]) / direction[2];
     if (isFinite(projectedT) && projectedT > 0) {
       return Math.max(1e-6, projectedT + (surfaceSag + 2) / Math.abs(direction[2]));
@@ -663,21 +666,127 @@ function findNearestGeneralizedSurfaceHit(
   lens: ExactTraceLens,
   launchBoundT: number | undefined,
   refractiveIndex: number,
-): { surfaceIdx: number; hit: ReturnType<typeof intersectSagSurface> } | null {
-  let best: { surfaceIdx: number; hit: ReturnType<typeof intersectSagSurface> } | null = null;
+  indexAtSurface: ((surfaceIdx: number, nd: number) => number) | undefined,
+): { surfaceIdx: number; hit: SurfaceIntersectionResult } | null {
+  let best: { surfaceIdx: number; hit: SurfaceIntersectionResult } | null = null;
   for (let i = 0; i < lens.S.length; i++) {
     const maxT = surfaceIntersectionMaxTForTarget(i, origin, direction, zPos, lens, launchBoundT);
-    const hit = intersectSagSurface({ origin, direction } satisfies SurfaceIntersectionRay, i, zPos[i] ?? 0, lens, {
-      minT: 1e-6,
-      maxT,
-      refractiveIndex,
-    });
+    const hit = intersectGeneralizedSurface(
+      { origin, direction } satisfies SurfaceIntersectionRay,
+      i,
+      zPos[i] ?? 0,
+      lens,
+      {
+        minT: 1e-6,
+        maxT,
+        refractiveIndex,
+      },
+    );
     if (!hit.ok) continue;
+    if (isPassiveAutoSurface(i, hit, direction, lens, refractiveIndex, indexAtSurface)) continue;
     if (!best || hit.t < (best.hit.ok ? best.hit.t : Infinity)) {
       best = { surfaceIdx: i, hit };
     }
   }
   return best;
+}
+
+function isPassiveAutoSurface(
+  surfaceIdx: number,
+  hit: SurfaceIntersectionResult,
+  direction: Vector3,
+  lens: ExactTraceLens,
+  refractiveIndex: number,
+  indexAtSurface: ((surfaceIdx: number, nd: number) => number) | undefined,
+): boolean {
+  if (!hit.ok) return true;
+  const surface = lens.S[surfaceIdx];
+  if (surface.interaction && surface.interaction.type !== "refract") return false;
+  const incidentSide = incidentSideFor(direction, hit.normal);
+  const nextIndex = resolvedNextIndex(surfaceIdx, incidentSide, surface, lens, indexAtSurface);
+  return Math.abs(nextIndex - refractiveIndex) <= 1e-12;
+}
+
+function intersectGeneralizedSurface(
+  ray: SurfaceIntersectionRay,
+  surfaceIdx: number,
+  vertexZ: number,
+  lens: ExactTraceLens,
+  options: SurfaceIntersectionOptions = {},
+): SurfaceIntersectionResult {
+  const normal = lens.S[surfaceIdx]?.interaction?.normal;
+  if (!normal) return intersectSagSurface(ray, surfaceIdx, vertexZ, lens, options);
+  return intersectTiltedMeridionalPlane(ray, surfaceIdx, vertexZ, normal, options);
+}
+
+function intersectTiltedMeridionalPlane(
+  ray: SurfaceIntersectionRay,
+  surfaceIdx: number,
+  vertexZ: number,
+  normal: { z: number; y: number },
+  {
+    minT = 0,
+    maxT = Infinity,
+    tolerance = 1e-9,
+    refractiveIndex,
+  }: Pick<SurfaceIntersectionOptions, "minT" | "maxT" | "tolerance" | "refractiveIndex"> = {},
+): SurfaceIntersectionResult {
+  const directionLength = Math.hypot(ray.direction[0], ray.direction[1], ray.direction[2]);
+  if (!isFinite(directionLength) || directionLength <= 0) {
+    return surfaceIntersectionFailure(surfaceIdx, "invalidRayDirection", null, 0);
+  }
+  if (!isFinite(minT) || minT < 0 || maxT < minT || (!isFinite(maxT) && maxT !== Infinity)) {
+    return surfaceIntersectionFailure(surfaceIdx, "invalidBounds", null, 0);
+  }
+
+  const normalLength = Math.hypot(normal.z, normal.y);
+  if (!isFinite(normalLength) || normalLength <= 1e-12) {
+    return surfaceIntersectionFailure(surfaceIdx, "invalidRayDirection", null, 0);
+  }
+  const normalY = normal.y / normalLength;
+  const normalZ = normal.z / normalLength;
+  const direction: Vector3 = [
+    ray.direction[0] / directionLength,
+    ray.direction[1] / directionLength,
+    ray.direction[2] / directionLength,
+  ];
+  const denom = normalY * direction[1] + normalZ * direction[2];
+  if (Math.abs(denom) <= 1e-12) return surfaceIntersectionFailure(surfaceIdx, "noBracket", null, 0);
+
+  const numer = normalY * ray.origin[1] + normalZ * (ray.origin[2] - vertexZ);
+  const t = -numer / denom;
+  if (!isFinite(t) || t < minT - tolerance || t > maxT + tolerance) {
+    return surfaceIntersectionFailure(surfaceIdx, "noBracket", null, 0);
+  }
+
+  const clampedT = Math.min(Math.max(t, minT), maxT);
+  const point: Vector3 = [
+    ray.origin[0] + direction[0] * clampedT,
+    ray.origin[1] + direction[1] * clampedT,
+    ray.origin[2] + direction[2] * clampedT,
+  ];
+  const residual = normalY * point[1] + normalZ * (point[2] - vertexZ);
+  return {
+    ok: true,
+    surfaceIdx,
+    t: clampedT,
+    point,
+    radius: Math.hypot(point[0], point[1]),
+    normal: [0, normalY, normalZ],
+    residual,
+    iterations: 0,
+    segmentLength: clampedT,
+    opticalPathLength: refractiveIndex === undefined ? null : refractiveIndex * clampedT,
+  };
+}
+
+function surfaceIntersectionFailure(
+  surfaceIdx: number,
+  failureReason: SurfaceIntersectionFailureReason,
+  residual: number | null,
+  iterations: number,
+): SurfaceIntersectionResult {
+  return { ok: false, surfaceIdx, failureReason, residual, iterations };
 }
 
 function intersectImagePlane(

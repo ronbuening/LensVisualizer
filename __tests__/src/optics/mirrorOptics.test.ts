@@ -11,6 +11,7 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensData;
 const annularData = LENS_CATALOG["reference-annular-obscured-mirror"] as LensData;
 const manginData = LENS_CATALOG["reference-mangin-second-surface-mirror"] as LensData;
+const newtonianData = LENS_CATALOG["reference-newtonian-side-focus"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -127,5 +128,23 @@ describe("mirror optics support", () => {
     expect(result.n).toBeCloseTo(1, 12);
     expect(result.terminalPoint[2]).toBeCloseTo(L.imagePlane.z, 10);
     expect(Number.isFinite(result.terminalPoint[1])).toBe(true);
+  });
+
+  it("automatically resolves a folded Newtonian path to a side image plane", () => {
+    const L = buildLens(newtonianData);
+    const layout = doLayout(0, 0, L);
+    const result = traceExactSurfaceStack(L, { y0: 12, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
+    const hitLabels = result.hits.map((hit) => L.S[hit.surfaceIdx].label);
+
+    expect(validateLensData(newtonianData)).toEqual([]);
+    expect(L.opticalPath.mode).toBe("auto");
+    expect(L.opticalPath.surfaceOrder).toBeNull();
+    expect(L.imagePlane.normal).toEqual({ z: 0, y: 1 });
+    expect(hitLabels).toEqual(["M1", "SEC"]);
+    expect(result.reachedImagePlane).toBe(true);
+    expect(result.failureReason).toBeNull();
+    expect(result.clipped).toBe(false);
+    expect(result.terminalPoint[1]).toBeCloseTo(25, 10);
+    expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
   });
 });

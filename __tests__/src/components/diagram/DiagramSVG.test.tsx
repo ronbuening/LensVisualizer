@@ -61,6 +61,7 @@ const baseLens = {
   lyStoPad: 4,
   lyImgLine: 40,
   lyImgLabel: 55,
+  imagePlane: { z: 43, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
   stopIdx: 0,
   epZRelStop: 0,
   N: 1,
@@ -189,6 +190,65 @@ describe("DiagramSVG", () => {
     expect(onSelect).toHaveBeenCalledWith(1);
     expect(onLcaInsetClick).toHaveBeenCalledTimes(1);
     expect(onPetzvalBadgeClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders a side image plane using its resolved normal", () => {
+    const sideLens = {
+      ...baseLens,
+      lyImgLine: 10,
+      lyImgLabel: 12,
+      imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "SIDE" },
+    } as RuntimeLens;
+    const { container } = render(
+      <DiagramSVG
+        L={sideLens}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={[120]}
+        IMG_MM={43}
+        shapes={[]}
+        filterId="diagram-side-image-plane"
+        stopZ={220}
+        currentPhysStopSD={8}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const imageLine = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+      (line) => line.getAttribute("stroke") === themes.dark.imgLine,
+    );
+    const label = Array.from(container.querySelectorAll("text")).find((text) => text.textContent === "SIDE");
+
+    expect(imageLine?.getAttribute("x1")).toBe("125");
+    expect(imageLine?.getAttribute("y1")).toBe("325");
+    expect(imageLine?.getAttribute("x2")).toBe("145");
+    expect(imageLine?.getAttribute("y2")).toBe("325");
+    expect(label?.getAttribute("x")).toBe("147");
+    expect(label?.getAttribute("y")).toBe("325");
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

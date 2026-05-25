@@ -178,24 +178,7 @@ function validateImagePlane(value: unknown, errors: string[]): void {
   if (imagePlane.label !== undefined && typeof imagePlane.label !== "string") {
     errors.push(`"opticalPath.imagePlane.label" must be a string when provided`);
   }
-  if (imagePlane.normal !== undefined) {
-    const normal = imagePlane.normal;
-    if (
-      !normal ||
-      typeof normal !== "object" ||
-      Array.isArray(normal) ||
-      typeof normal.z !== "number" ||
-      typeof normal.y !== "number" ||
-      !isFinite(normal.z) ||
-      !isFinite(normal.y)
-    ) {
-      errors.push(`"opticalPath.imagePlane.normal" must contain finite z and y numbers`);
-      return;
-    }
-    if (Math.hypot(normal.z, normal.y) <= 1e-12) {
-      errors.push(`"opticalPath.imagePlane.normal" must not be the zero vector`);
-    }
-  }
+  validateYzNormal(imagePlane.normal, `"opticalPath.imagePlane.normal"`, errors);
 }
 
 function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors: string[]): void {
@@ -255,6 +238,26 @@ function validateLensMounts(value: unknown, errors: string[]): void {
       errors.push(`"lensMounts" must not contain duplicate mount id "${mount}"`);
     }
     seen.add(mount);
+  }
+}
+
+function validateYzNormal(value: unknown, label: string, errors: string[]): void {
+  if (value === undefined) return;
+  if (
+    !value ||
+    typeof value !== "object" ||
+    Array.isArray(value) ||
+    typeof (value as Record<string, unknown>).z !== "number" ||
+    typeof (value as Record<string, unknown>).y !== "number" ||
+    !isFinite((value as { z: number }).z) ||
+    !isFinite((value as { y: number }).y)
+  ) {
+    errors.push(`${label} must contain finite z and y numbers`);
+    return;
+  }
+  const normal = value as { z: number; y: number };
+  if (Math.hypot(normal.z, normal.y) <= 1e-12) {
+    errors.push(`${label} must not be the zero vector`);
   }
 }
 
@@ -401,6 +404,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
             `surfaces[${i}] ("${s.label}"): interaction.mirrorKind must be "first-surface" or "second-surface"`,
           );
         }
+        validateYzNormal(interaction.normal, `surfaces[${i}] ("${s.label}"): interaction.normal`, errors);
       }
     }
     if (s.stopPlacement !== undefined && s.stopPlacement !== "inside-element") {

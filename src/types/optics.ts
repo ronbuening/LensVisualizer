@@ -29,6 +29,7 @@ export interface SurfaceInteraction {
   incidentSide?: SurfaceIncidentSide;
   inactiveSide?: SurfaceInactiveSideBehavior;
   mirrorKind?: MirrorKind;
+  normal?: ImagePlaneNormal;
 }
 
 export interface ImagePlaneNormal {

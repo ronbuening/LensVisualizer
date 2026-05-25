@@ -95,6 +95,20 @@ export default function DiagramOverlayLayer({
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
   };
+  const imageNormal = L.imagePlane.normal;
+  const imageTangent = { z: imageNormal.y, y: -imageNormal.z };
+  const imageLineStart = screenPoint(
+    L.imagePlane.z - imageTangent.z * L.lyImgLine,
+    L.imagePlane.y - imageTangent.y * L.lyImgLine,
+  );
+  const imageLineEnd = screenPoint(
+    L.imagePlane.z + imageTangent.z * L.lyImgLine,
+    L.imagePlane.y + imageTangent.y * L.lyImgLine,
+  );
+  const imageLabel = screenPoint(
+    L.imagePlane.z + imageTangent.z * L.lyImgLabel,
+    L.imagePlane.y + imageTangent.y * L.lyImgLabel,
+  );
 
   return (
     <>
@@ -112,24 +126,24 @@ export default function DiagramOverlayLayer({
       />
 
       <line
-        x1={IX}
-        y1={sy(-L.lyImgLine)}
-        x2={IX}
-        y2={sy(L.lyImgLine)}
+        x1={imageLineStart[0]}
+        y1={imageLineStart[1]}
+        x2={imageLineEnd[0]}
+        y2={imageLineEnd[1]}
         stroke={t.imgLine}
         strokeWidth={t.imgLineWidth}
         strokeDasharray="4,3"
       />
       <text
-        x={IX}
-        y={sy(L.lyImgLabel)}
+        x={imageLabel[0]}
+        y={imageLabel[1]}
         textAnchor="middle"
         fill={t.imgLabel}
         fontSize={9.5}
         fontFamily="inherit"
         style={{ letterSpacing: "0.12em" }}
       >
-        IMG
+        {L.imagePlane.label}
       </text>
 
       {showChromatic && chromSpread && Object.keys(chromSpread.intercepts).length >= 2 && (
