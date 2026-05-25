@@ -1,4 +1,9 @@
 import { describe, expect, it } from "vitest";
+import {
+  computeBestFocusZ,
+  computeSAProfile,
+  computeSphericalAberration,
+} from "../../../src/optics/aberrationAnalysis.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
 import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
@@ -167,5 +172,20 @@ describe("mirror optics support", () => {
     expect(marginal.clipped).toBe(false);
     expect(marginal.terminalPoint[2]).toBeCloseTo(L.imagePlane.z, 10);
     expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
+  });
+
+  it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {
+    const L = buildLens(mirrorData);
+    const layout = doLayout(0, 0, L);
+    const result = computeSphericalAberration(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
+    const profile = computeSAProfile(L, layout.z, 0, 0, L.EP.epSD, L.stopPhysSD);
+    const bestFocusZ = computeBestFocusZ(L, 0, 0, L.EP.epSD, L.stopPhysSD);
+
+    expect(result).not.toBeNull();
+    expect(result!.imagePlaneZ).toBeCloseTo(L.imagePlane.z, 10);
+    expect(Number.isFinite(result!.bestFocusZ)).toBe(true);
+    expect(Number.isFinite(result!.currentPlaneRmsMm)).toBe(true);
+    expect(profile.length).toBeGreaterThan(2);
+    expect(Number.isFinite(bestFocusZ)).toBe(true);
   });
 });

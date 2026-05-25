@@ -25,7 +25,6 @@ interface AnalysisDrawerContentProps {
 }
 
 const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>([
-  "aberrations",
   "coma",
   "distortion",
   "breathing",

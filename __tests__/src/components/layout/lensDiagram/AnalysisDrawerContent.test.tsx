@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi, beforeEach } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
 import AnalysisDrawerContent from "../../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js";
 import { ANALYSIS_TAB_RENDERERS } from "../../../../../src/components/layout/lensDiagram/analysisTabRenderers.js";
 import { ANALYSIS_TABS } from "../../../../../src/components/layout/lensDiagram/analysisTabs.js";
@@ -81,6 +81,10 @@ const baseProps = {
 };
 
 describe("AnalysisDrawerContent", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   beforeEach(() => {
     mockAberrationsPanel.mockReset();
     mockComaTab.mockReset();
@@ -145,6 +149,16 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
     expect(screen.getByText(/not available for folded mirror systems yet/)).toBeTruthy();
     expect(mockPupilAberrationTab).not.toHaveBeenCalled();
+  });
+
+  it("allows folded optics to use the mirror-safe aberrations tab", () => {
+    render(
+      <AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="aberrations" />,
+    );
+
+    expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
+    expect(screen.getByText("Aberrations:true")).toBeTruthy();
+    expect(mockAberrationsPanel).toHaveBeenCalledTimes(1);
   });
 
   it("has exactly one renderer for every registered analysis tab", () => {

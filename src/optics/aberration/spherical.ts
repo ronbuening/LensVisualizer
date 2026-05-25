@@ -19,6 +19,7 @@ import {
   computeSymmetricRealSample,
   peakAtPlane,
   rmsAtPlane,
+  transverseCoordinateAtPlane,
 } from "./shared.js";
 
 const SA_BLUR_CHARACTER_MIN_VALID_SAMPLES = 5;
@@ -37,7 +38,7 @@ export function computeSphericalAberration(
   if (currentEPSD <= 0 || L.N < 1) return null;
 
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return null;
 
   const nearAxisSample = computeSymmetricRealSample(
@@ -145,7 +146,7 @@ export function computeSAProfile(
   if (currentEPSD <= 0 || L.N < 1) return [];
 
   const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  const imagePlaneZ = L.isFoldedOptics ? L.imagePlane.z : lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return [];
 
   const hits = PROFILE_FRACS.flatMap((fraction) => {
@@ -182,7 +183,7 @@ export function computeSAProfile(
   const nearAxisPlusHit = hits.find((hit) => hit.signedFraction === NEAR_AXIS_REAL_FRAC) ?? null;
   if (nearAxisPlusHit === null) return [];
 
-  const nearAxisHeightAtBestFocus = nearAxisPlusHit.y + nearAxisPlusHit.u * (bestFocusZ - lastSurfZ);
+  const nearAxisHeightAtBestFocus = transverseCoordinateAtPlane(nearAxisPlusHit, lastSurfZ, bestFocusZ);
   const points: SAProfilePoint[] = [];
 
   for (const fraction of PROFILE_FRACS) {
@@ -191,7 +192,7 @@ export function computeSAProfile(
 
     points.push({
       fraction,
-      transverseSaMm: plusHit.y + plusHit.u * (bestFocusZ - lastSurfZ) - nearAxisHeightAtBestFocus,
+      transverseSaMm: transverseCoordinateAtPlane(plusHit, lastSurfZ, bestFocusZ) - nearAxisHeightAtBestFocus,
     });
   }
 
