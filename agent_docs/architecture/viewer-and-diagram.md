@@ -85,7 +85,7 @@ Key responsibilities:
 | `DiagramSVG.tsx` | Top-level SVG renderer. Accepts viewBox override, zoom handlers, optional movement transforms, and the subtle moved-lens axis; wrapped in `React.memo`. |
 | `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
 | `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements, including explicit folded-system image planes that may be in front of, behind, or above the axial layout. |
-| `DiagramElementLayer.tsx` | Lens element paths and aspheric overlays. Annular elements use even-odd fill, and tilted flat mirrors render from `interaction.normal`. |
+| `DiagramElementLayer.tsx` | Lens element paths, aspheric overlays, and surface accents. Annular elements use even-odd fill, tilted flat mirrors render from `interaction.normal`, and second-surface mirror coatings render as dashed substrate accents. |
 | `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. Folded ray polylines follow the generalized tracer rather than surface-list order. |
 | `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |

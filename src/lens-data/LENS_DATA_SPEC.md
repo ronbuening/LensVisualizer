@@ -242,6 +242,7 @@ Field meanings:
 
 - `type: "refract"` applies normal Snell refraction. It is also useful for a passive backing plane that needs the same tilted visual geometry as a mirror face.
 - `type: "reflect"` reflects the ray using the solved surface normal. Use `mirrorKind: "first-surface"` for front-coated mirrors and `mirrorKind: "second-surface"` for substrate-backed reflective surfaces.
+- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed coating accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path.
 - `type: "block"` clips rays within the surface's active aperture. It is intended for central obstructions, baffles, and synthetic regression fixtures.
 - `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits the inactive side, `inactiveSide: "ignore"` lets it pass and `inactiveSide: "block"` clips it inside the active disk or annulus.
 - `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
@@ -344,6 +345,9 @@ Mirror/telescope regression fixtures live under `src/lens-data/reference/`. They
 - `ReferenceCassegrainBackFocus.data.ts` — obstruction plus folded back-focus behavior.
 
 Use these as authoring examples and regression anchors, not as polished public catalog entries.
+
+For a compact audit of hidden mirror fixture metadata, run `npm run generate:mirror-reports` and review
+`agent_docs/generated/mirror-fixtures.generated.md`.
 
 ---
 

@@ -12,6 +12,8 @@
   `{ z: 0, y: 1 }` is a horizontal side-focus plane. Do not assume folded systems image at the last surface's BFD
 - `interaction.normal` makes a surface a tilted meridional plane for tracing and SVG rendering. For a flat fold mirror
   with a visible backing plane, put the same normal on the backing surface or it will render as an untilted plate
+- Second-surface mirrors with `mirrorKind: "second-surface"` render a dashed coating accent in the SVG. That accent is
+  visual-only; reflection/refraction behavior still comes from `SurfaceData.interaction` and the resolved path
 - `innerSd` means a central hole in the active aperture; rays inside the hole pass through. Solid central obstructions
   should be separate `interaction: { type: "block" }` surfaces
 - Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather

@@ -12,6 +12,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
 import { doLayout } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
@@ -357,6 +358,60 @@ describe("DiagramSVG", () => {
 
     expect(screen.getByText("1 M1")).toBeTruthy();
     expect(screen.getByText("2 SEC")).toBeTruthy();
+  });
+
+  it("renders second-surface mirror coating accents from element shapes", () => {
+    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(
+      L,
+      layout.z,
+      (z) => z + 100,
+      (y) => 300 + y,
+    );
+    const { container } = render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={shapes}
+        filterId="diagram-mangin-second-surface"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const coating = container.querySelector(`[data-testid="surface-accent-second-surface-coating-${L.labelIdx.MG2}"]`);
+    expect(coating).toBeTruthy();
+    expect(coating?.getAttribute("stroke")).toBe(themes.dark.imgLine);
+    expect(coating?.getAttribute("stroke-dasharray")).toBe("3,2");
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

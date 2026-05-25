@@ -24,6 +24,7 @@ implementation details.
 | `src/types/optics.ts` | `OpticalPathData`, `ResolvedOpticalPath`, `ImagePlaneData`, `ResolvedImagePlane`, `ImagePlaneNormal` | Generalized optical path metadata, explicit/repeated surface hit order, automatic path mode, and arbitrary meridional image-plane placement. |
 | `src/types/optics.ts` | `LensProjectionConfig`, `PerspectiveControlConfig` | Fisheye/rectilinear projection metadata and shift/tilt capability metadata. |
 | `src/types/optics.ts` | `RayTraceResult`, `ParaxialTraceResult`, `LayoutResult`, `ChromaticChannel` | Shared optics result shapes. |
+| `src/types/optics.ts` | `ElementShape`, `AsphPathData`, `SurfaceAccentPathData` | SVG-ready element outline, aspheric overlay, and mirror-coating accent path data returned by `computeElementShapes()`. |
 | `src/types/state.ts` | `LensState`, `LensAction`, `Preferences`, `URLState` | Reducer state, actions, persisted preferences, and shareable URL state. |
 | `src/types/state.ts` | `OffAxisMode`, `RayDensity`, `MobileView`, `DesktopView`, `AnalysisTabId` | UI state unions plus `is*` guards for parsing external values. |
 | `src/types/groupMovement.ts` | `GroupMovementMode`, `isGroupMovementMode` | Shared group-movement mode ids and guard. |

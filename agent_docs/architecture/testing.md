@@ -51,12 +51,14 @@ Existing tests cover:
 - Pure optics functions and edge cases.
 - Lens build and data validation.
 - Mirror/folded optics fixtures: first-surface reflection, annular clipping/rendering, second-surface repeated hit order,
-  automatic Newtonian path resolution, side/front/back image-plane termination, and folded analysis guardrails.
+  automatic Newtonian path resolution, side/front/back image-plane termination, second-surface coating accents, and
+  folded analysis guardrails.
 - Aberration, distortion, vignetting, pupil aberration, bokeh, and diagram geometry.
 - Catalog/metadata utilities.
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
+- Generated authoring reports, including glass queues and the hidden mirror fixture report.
 
 ## Refactor Test Expectations
 

@@ -57,6 +57,8 @@ npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run preview
 npm run test
 npm run test:coverage
+npm run generate:glass-reports
+npm run generate:mirror-reports
 npm run typecheck
 npm run lint
 npm run lint:fix
@@ -83,7 +85,8 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
-- `agent_docs/generated/` - generated glass reports and queues; refresh all with `npm run generate:glass-reports`
+- `agent_docs/generated/` - generated glass and mirror fixture reports; refresh glass reports with
+  `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` - follow-up backlog for mirror-lens analysis, tracing, UI, and authoring improvements
@@ -130,7 +133,8 @@ Read only the relevant focused doc before changing that area:
 For a lens: start from `src/lens-data/TEMPLATE.data.ts.template`, use `satisfies LensDataInput`, optionally add a matching
 `*.analysis.md`, and populate `lensMounts` / `imageFormat` when the mount and format are unambiguous. For mirror or
 telescope designs, use the hidden fixtures under `src/lens-data/reference/` and the folded-path section of
-`src/lens-data/LENS_DATA_SPEC.md` as examples. Track backfill status in `agent_docs/lens-mount-format-backfill.md`.
+`src/lens-data/LENS_DATA_SPEC.md` as examples, then run `npm run generate:mirror-reports` if a hidden mirror fixture
+changed. Track backfill status in `agent_docs/lens-mount-format-backfill.md`.
 `npm run generate:metadata` or `npm run build` will move root-level draft lens files into maker folders and fix nested
 imports.
 

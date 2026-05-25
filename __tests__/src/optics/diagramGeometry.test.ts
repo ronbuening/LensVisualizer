@@ -189,6 +189,7 @@ describe("computeElementShapes", () => {
     expect(shapes[0].z2).toBe(5);
     expect(shapes[0].d).toMatch(/^M.*Z$/); // starts with M, ends with Z (closed)
     expect(shapes[0].asphPaths).toEqual([]);
+    expect(shapes[0].surfaceAccentPaths).toEqual([]);
   });
 
   it("zero point transform preserves element shape coordinates", () => {
@@ -565,5 +566,19 @@ describe("computeElementShapes", () => {
     expect(rearTop[0]).toBeCloseTo(layout.z[L.labelIdx.SECB] + 10, 10);
     expect(rearBottom[1]).toBeCloseTo(10, 10);
     expect(rearBottom[0]).toBeCloseTo(layout.z[L.labelIdx.SECB] - 10, 10);
+  });
+
+  it("emits a coating accent path for second-surface mirror fixtures", () => {
+    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(L, layout.z, sx, sy);
+    const manginShape = shapes.find((shape) => shape.eid === 1);
+    const coating = manginShape?.surfaceAccentPaths.find(
+      (path) => path.kind === "second-surface-coating" && path.surfIdx === L.labelIdx.MG2,
+    );
+
+    expect(coating).toBeDefined();
+    expect(coating?.pathD).toMatch(/^M/);
+    expect(pathCoords(coating?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
   });
 });

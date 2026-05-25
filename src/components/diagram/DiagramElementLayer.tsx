@@ -86,6 +86,22 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
         )),
       )}
 
+      {shapes.flatMap(({ surfaceAccentPaths }) =>
+        (surfaceAccentPaths || []).map(({ surfIdx, pathD, kind }) => (
+          <path
+            key={`surface-accent-${kind}-${surfIdx}`}
+            data-testid={`surface-accent-${kind}-${surfIdx}`}
+            d={pathD}
+            fill="none"
+            stroke={t.imgLine}
+            strokeWidth={Math.max(t.asphStrokeWidth, t.imgLineWidth + 0.4)}
+            strokeDasharray="3,2"
+            strokeLinecap="round"
+            style={{ pointerEvents: "none" }}
+          />
+        )),
+      )}
+
       {shapes.flatMap(({ asphPaths }) =>
         (asphPaths || []).map(({ surfIdx, labelX, labelY }) => (
           <text

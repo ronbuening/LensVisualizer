@@ -10,6 +10,7 @@ import type {
   CoordinateTransforms,
   ElementShape,
   AsphPathData,
+  SurfaceAccentPathData,
   ElementSpan,
   SurfaceRenderDiagnostics,
   ElementRenderDiagnostics,
@@ -260,6 +261,14 @@ export function computeElementShapes(
     const z1 = zPos[s1],
       z2 = zPos[s2],
       NN = SVG_PATH_SUBDIVISIONS;
+    const surfacePath = (surfaceIndex: number, vertexZ: number, trim: number): string => {
+      let path = "";
+      for (let i = 0; i <= NN; i++) {
+        const y = -trim + (2 * trim * i) / NN;
+        path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(surfaceIndex, vertexZ, y, L), y)} `;
+      }
+      return path;
+    };
     /* Element outline path — each surface rendered to its own SD.
      * Front sweeps from −trim1 to +trim1, rear from +trim2 to −trim2.
      * SVG path commands create straight connecting edges at top/bottom
@@ -288,13 +297,10 @@ export function computeElementShapes(
     }
     /* Aspheric surface overlay paths + diamond half-fill paths */
     const asphPaths: AsphPathData[] = [];
+    const surfaceAccentPaths: SurfaceAccentPathData[] = [];
     const midZ = (z1 + z2) / 2;
     if (L.asphByIdx[s1]) {
-      let p = "";
-      for (let i = 0; i <= NN; i++) {
-        const y = -trim1 + (2 * trim1 * i) / NN;
-        p += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s1, z1, y, L), y)} `;
-      }
+      const p = surfacePath(s1, z1, trim1);
       /* Half-path: front surface top-to-bottom, then straight line back at midpoint */
       const hp = p + `L${pathPoint(midZ, trim1)} L${pathPoint(midZ, -trim1)} Z`;
       const [labelX, labelY] = screenPoint(renderedSurfaceZ(s1, z1, -trim1, L), -trim1);
@@ -307,11 +313,7 @@ export function computeElementShapes(
       });
     }
     if (L.asphByIdx[s2]) {
-      let p = "";
-      for (let i = 0; i <= NN; i++) {
-        const y = -trim2 + (2 * trim2 * i) / NN;
-        p += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ(s2, z2, y, L), y)} `;
-      }
+      const p = surfacePath(s2, z2, trim2);
       /* Half-path: straight line at midpoint top-to-bottom, then rear surface bottom-to-top */
       let hp = `M${pathPoint(midZ, -trim2)} L${pathPoint(midZ, trim2)} `;
       for (let i = NN; i >= 0; i--) {
@@ -328,6 +330,19 @@ export function computeElementShapes(
         labelY: labelY - 4,
       });
     }
-    return { eid, d: d + "Z", z1, z2, fillRule, asphPaths };
+    for (const { surfaceIndex, vertexZ, trim } of [
+      { surfaceIndex: s1, vertexZ: z1, trim: trim1 },
+      { surfaceIndex: s2, vertexZ: z2, trim: trim2 },
+    ]) {
+      const interaction = L.S[surfaceIndex].interaction;
+      if (interaction?.type === "reflect" && interaction.mirrorKind === "second-surface") {
+        surfaceAccentPaths.push({
+          surfIdx: surfaceIndex,
+          pathD: surfacePath(surfaceIndex, vertexZ, trim),
+          kind: "second-surface-coating",
+        });
+      }
+    }
+    return { eid, d: d + "Z", z1, z2, fillRule, asphPaths, surfaceAccentPaths };
   });
 }

@@ -6,7 +6,8 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 
 - Lens data can describe `SurfaceData.innerSd`, side-aware `SurfaceData.interaction`, first-surface and second-surface mirrors, blockers, tilted meridional planes, explicit/repeated `opticalPath.surfaceOrder`, `mode: "auto"` next-surface resolution, and arbitrary meridional `opticalPath.imagePlane`.
 - Hidden reference fixtures under `src/lens-data/reference/` exercise first-surface primary mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, and Cassegrain-style folded paths.
-- Diagram rendering supports annular element paths, tilted flat fold mirrors, and non-default image planes.
+- Diagram rendering supports annular element paths, tilted flat fold mirrors, second-surface coating accents, and
+  non-default image planes.
 - Visible ray sampling avoids central blocking geometry for folded systems.
 - Analysis guardrails prevent folded systems from showing sequential paraxial/cardinal/pupil/field results until each tab is adapted. Mirror-safe spherical aberration and related blur helpers have an initial generalized image-plane path.
 
@@ -49,13 +50,15 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 - Done: folded diagrams label the resolved/declared hit order as a compact debugging overlay.
 - Done: the lens library accepts `?view=all` for all lens files and `?view=debug` for hidden/reference fixtures.
 - Done: validation flags tilted flat mirror backing planes that omit the reflective face's `interaction.normal`.
+- Done: hidden/reference mirror fixtures have an authoring report at
+  `agent_docs/generated/mirror-fixtures.generated.md`, regenerated with `npm run generate:mirror-reports`.
 - Done: `src/lens-data/LENS_DATA_SPEC.md` includes incident-side examples for curved mirrors, returning beams, and
   second-surface paths.
 
 ## Physics And Rendering Improvements
 
 - Model reflectivity/transmission losses for mirror coatings, obstructions, and second-surface substrates when relative illumination or bokeh brightness needs it.
-- Decide whether second-surface mirrors should optionally render a coating line distinct from the glass substrate.
+- Done: second-surface mirrors render a dashed coating accent line distinct from the glass substrate.
 - Support optional spider-vane diffraction or obstruction metadata as display annotations without letting mechanical details pollute optical tracing.
 - Consider 3D folded assemblies only after the 2D meridional model is exhausted; the current pass intentionally supports rotationally symmetric optics plus meridional fold mirrors.
 

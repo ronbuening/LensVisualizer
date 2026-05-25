@@ -489,6 +489,12 @@ export interface AsphPathData {
   labelY: number;
 }
 
+export interface SurfaceAccentPathData {
+  surfIdx: number;
+  pathD: string;
+  kind: "second-surface-coating";
+}
+
 export interface ElementShape {
   eid: number;
   d: string;
@@ -496,6 +502,7 @@ export interface ElementShape {
   z2: number;
   fillRule?: "evenodd";
   asphPaths: AsphPathData[];
+  surfaceAccentPaths: SurfaceAccentPathData[];
 }
 
 export type ElementRenderTrimCause = "none" | "slope" | "gap" | "conic-limit";

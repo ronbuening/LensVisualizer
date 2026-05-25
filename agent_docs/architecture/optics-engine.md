@@ -17,7 +17,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | --- | --- |
 | `buildLens.ts` | Validates lens data and constructs frozen `RuntimeLens` objects. |
 | `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
-| `diagramGeometry.ts` | SVG coordinate transforms and element shape/render diagnostics. |
+| `diagramGeometry.ts` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
@@ -125,6 +125,9 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
 - `interaction.mirrorKind` documents first-surface vs second-surface mirrors. Refractive-index transitions still come
   from the physical `nd` sequence so explicit repeated orders can enter a Mangin body, reflect, and exit through the
   same front surface.
+- Second-surface mirrors also emit a diagram surface accent from `computeElementShapes()` so the SVG can draw the
+  coating separately from the glass substrate. This is visual-only; tracing behavior still comes from
+  `SurfaceData.interaction`.
 - `interaction.normal` turns a surface into a tilted meridional plane for both intersection and SVG element rendering.
   Use it for flat fold mirrors and their passive backing planes; omit it for curved mirrors so sag-derived normals are
   used.

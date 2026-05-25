@@ -18,6 +18,7 @@ No manual imports or catalog edits required.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
 - **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples for first-surface mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, and Cassegrain-style obstruction/back-focus behavior.
+- **Mirror fixture authoring report:** `agent_docs/generated/mirror-fixtures.generated.md` — regenerate with `npm run generate:mirror-reports` after changing hidden mirror/telescope fixtures.
 - **Mount/format backfill status:** [lens-mount-format-backfill.md](lens-mount-format-backfill.md)
 - **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — use this when revisiting a data file already in the catalog, not when authoring a new one.
 
@@ -93,7 +94,9 @@ Authoring rules that matter most:
 - Use `opticalPath.mode: "auto"` only when nearest-valid-surface selection is required. Set a conservative `maxInteractions` so an invalid folded path cannot loop.
 - Put `opticalPath.imagePlane` wherever the design really images. For side focus, set both `y` and a non-axial `normal` such as `{ z: 0, y: 1 }`.
 - Use `interaction.normal` for tilted flat fold mirrors. Put the same normal on the passive backing plane so the SVG element renders at the physical angle.
+- Use `mirrorKind: "second-surface"` for substrate-backed coatings. The diagram draws those coating surfaces as dashed accents, but ray behavior still comes entirely from `interaction.type`, `incidentSide`, and the resolved optical path.
 - Use `innerSd` for annular active surfaces. Use a separate `interaction: { type: "block" }` surface for a solid central obstruction.
+- Run `npm run generate:mirror-reports` after adding or materially changing a hidden mirror fixture so the generated authoring matrix stays current.
 - Expect analysis guardrails: mirror-safe spherical aberration and related blur helpers can run, while tabs that still assume a sequential front-to-rear paraxial model are hidden for folded systems.
 
 ### Aberration-Control Lenses
