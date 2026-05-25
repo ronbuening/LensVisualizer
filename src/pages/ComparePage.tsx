@@ -9,7 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import { deriveMaker } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
@@ -47,7 +47,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
 export default function ComparePage() {
   const { slugA, slugB } = useParams<{ slugA: string; slugB: string }>();
 
-  if (!slugA || !slugB || !CATALOG_KEYS.includes(slugA) || !CATALOG_KEYS.includes(slugB)) {
+  if (!slugA || !slugB || !LENS_CATALOG[slugA] || !LENS_CATALOG[slugB]) {
     return <Navigate to="/lenses" replace />;
   }
 
@@ -60,7 +60,7 @@ export default function ComparePage() {
         title={comparePageTitle(lensA, lensB)}
         description={comparePageDescription(lensA, lensB)}
         canonicalURL={compareCanonicalURL(slugA, slugB)}
-        robots="noindex,follow"
+        robots={lensA.visible === false || lensB.visible === false ? "noindex,nofollow" : "noindex,follow"}
         ogType="article"
       />
 

@@ -246,6 +246,18 @@ Field meanings:
 - `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits the inactive side, `inactiveSide: "ignore"` lets it pass and `inactiveSide: "block"` clips it inside the active disk or annulus.
 - `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
 
+Choosing `incidentSide`:
+
+- For an incoming beam traveling left-to-right into a concave primary whose sag-derived normal faces the object side,
+  start with `incidentSide: "front"`. This is the usual first-surface primary case.
+- For a beam returning right-to-left toward a diagonal flat after the primary reflection, use `incidentSide: "rear"` on
+  the diagonal so the first pass can ignore the inactive face and the return pass reflects.
+- For a Mangin or other second-surface mirror, set `incidentSide` on the reflective coating side reached after the ray
+  enters the substrate. Keep the refractive front surface ordinary, then repeat that front label in `surfaceOrder` for
+  the exit path.
+- When the SVG looks correct but every ray is blocked or ignored, flip only `incidentSide` first. If the design then
+  works, leave the surface normal alone unless it is a flat fold plane whose visual tilt is wrong.
+
 ### Annular Apertures And Obstructions
 
 Any surface may declare `innerSd` to define an annular active aperture:
@@ -785,7 +797,7 @@ doublets: [
 14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
 15. Element render diagnostics: production lenses must not require material hidden trim (>0.25 mm) from slope, conic, or cross-gap limits
 16. `innerSd` must be finite, non-negative, and smaller than `sd`
-17. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components
+17. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
 18. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer
 
 On failure, `buildLens()` throws with all errors listed.

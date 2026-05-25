@@ -40,6 +40,7 @@ import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverl
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { foldedHitOrderLabelsForDisplay } from "../../optics/foldedPathDisplay.js";
 import { isHeavyLensForRayWork } from "../../optics/raySampling.js";
 import { normalizePanelId, selectedElementKeyForPanel } from "../../types/state.js";
 
@@ -208,6 +209,19 @@ export default function LensDiagramPanel({
     includeCardinalExtents: ENABLE_CARDINAL_ELEMENTS && (showCardinals || showCardinalDimensions),
   });
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
+  const foldedHitOrderLabels = useMemo(
+    () =>
+      foldedHitOrderLabelsForDisplay({
+        L,
+        zPos,
+        focusT,
+        zoomT,
+        aberrationT,
+        currentPhysStopSD,
+        currentEPSD,
+      }),
+    [L, zPos, focusT, zoomT, aberrationT, currentPhysStopSD, currentEPSD],
+  );
 
   useEffect(() => {
     if (!L || sel == null) return;
@@ -365,6 +379,7 @@ export default function LensDiagramPanel({
             act,
             sel,
             cardinalElements,
+            foldedHitOrderLabels,
           }}
           rayData={{
             chromSpread: chromSpread ?? null,

@@ -21,10 +21,30 @@ for (const [path, mod] of Object.entries(_modules)) {
     console.warn(`[LensVisualizer] Skipped ${path}: no "key" field in default export`);
   }
 }
+function sortLensKeysByName(keys: string[]): string[] {
+  return keys.sort((a, b) => LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name));
+}
+
+function isDebugLensKey(key: string): boolean {
+  const data = LENS_CATALOG[key];
+  return (
+    data.visible === false ||
+    key.startsWith("reference-") ||
+    data.maker === "Reference" ||
+    data.name.startsWith("REFERENCE ")
+  );
+}
+
+/* All lenses sorted alphabetically by display name, including hidden fixtures. */
+const ALL_CATALOG_KEYS: string[] = sortLensKeysByName(Object.keys(LENS_CATALOG));
+
 /* Visible lenses sorted alphabetically by display name */
-const CATALOG_KEYS: string[] = Object.keys(LENS_CATALOG)
-  .filter((k) => LENS_CATALOG[k].visible !== false)
-  .sort((a, b) => LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name));
+const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].visible !== false).sort((a, b) =>
+  LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name),
+);
+
+/* Debug/reference lenses sorted alphabetically by display name. */
+const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
 
 const _mdModules = import.meta.glob<string>("../../lens-data/**/*.analysis.md", {
   eager: true,
@@ -72,5 +92,14 @@ const ALL_LENSES_BY_DATE: RecentLensEntry[] = Object.entries(
 /** Up to 7 most recently added lenses, newest-first. */
 const RECENT_LENS_KEYS: RecentLensEntry[] = ALL_LENSES_BY_DATE.slice(0, 7);
 
-export { LENS_CATALOG, CATALOG_KEYS, mdForKey, RECENT_LENS_KEYS, ALL_LENSES_BY_DATE };
+export {
+  LENS_CATALOG,
+  ALL_CATALOG_KEYS,
+  CATALOG_KEYS,
+  DEBUG_CATALOG_KEYS,
+  isDebugLensKey,
+  mdForKey,
+  RECENT_LENS_KEYS,
+  ALL_LENSES_BY_DATE,
+};
 export type { RecentLensEntry };

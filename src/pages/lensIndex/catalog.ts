@@ -7,7 +7,7 @@
  * instead of a 1000-line mix of SEO, state, and grouping math.
  */
 
-import { CATALOG_KEYS, LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, CATALOG_KEYS, DEBUG_CATALOG_KEYS, LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/catalog/lensTaxonomy.js";
 import type {
@@ -17,6 +17,7 @@ import type {
   FocalSubGroup,
   ImageFormatGroup,
   ImageFormatOption,
+  LensIndexViewMode,
   MakerGroup,
   MakerOption,
   MountGroup,
@@ -67,8 +68,8 @@ function lensAperture(data: LensData): number | null {
   return data.nominalFno ?? null;
 }
 
-function buildCatalogEntries(): CatalogLensEntry[] {
-  return CATALOG_KEYS.map((key) => {
+function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
+  return keys.map((key) => {
     const data = LENS_CATALOG[key];
     const lensMounts = (data.lensMounts ?? []).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
     const imageFormat = data.imageFormat ? IMAGE_FORMAT_BY_ID[data.imageFormat] : null;
@@ -128,7 +129,7 @@ export function defaultCustomFilter(bounds: FilterBounds): CustomFilterState {
   };
 }
 
-function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
+export function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
   const counts = new Map<string, MakerOption>();
   for (const entry of entries) {
     const existing = counts.get(entry.maker.slug);
@@ -141,7 +142,7 @@ function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
 }
 
-function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
+export function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
   const counts = new Map<LensMountId, MountOption>();
   for (const entry of entries) {
     for (const mount of entry.lensMounts) {
@@ -158,7 +159,7 @@ function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
   );
 }
 
-function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageFormatOption[] {
+export function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageFormatOption[] {
   const counts = new Map<ImageFormatId, ImageFormatOption>();
   for (const entry of entries) {
     if (!entry.imageFormat) continue;
@@ -404,6 +405,17 @@ export function numericFilterInputValues(filter: CustomFilterState): Record<Nume
   };
 }
 
+export function catalogEntriesForView(viewMode: LensIndexViewMode): CatalogLensEntry[] {
+  switch (viewMode) {
+    case "all":
+      return ALL_CATALOG_ENTRIES;
+    case "debug":
+      return DEBUG_CATALOG_ENTRIES;
+    case "visible":
+      return CATALOG_ENTRIES;
+  }
+}
+
 function countStepDecimals(step: number): number {
   const [, decimals = ""] = step.toString().split(".");
   return decimals.length;
@@ -429,7 +441,9 @@ export function clampNumericFilterValue(value: number, min: number, max: number,
   return Number(snapped.toFixed(precision));
 }
 
-export const CATALOG_ENTRIES = buildCatalogEntries();
+export const CATALOG_ENTRIES = buildCatalogEntries(CATALOG_KEYS);
+export const ALL_CATALOG_ENTRIES = buildCatalogEntries(ALL_CATALOG_KEYS);
+export const DEBUG_CATALOG_ENTRIES = buildCatalogEntries(DEBUG_CATALOG_KEYS);
 export const FILTER_BOUNDS = buildFilterBounds(CATALOG_ENTRIES);
 export const MAKER_OPTIONS = buildMakerOptions(CATALOG_ENTRIES);
 export const MOUNT_OPTIONS = buildMountOptions(CATALOG_ENTRIES);

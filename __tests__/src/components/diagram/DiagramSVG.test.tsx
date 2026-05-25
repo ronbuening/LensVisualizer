@@ -311,6 +311,54 @@ describe("DiagramSVG", () => {
     expect(Number(label!.getAttribute("y"))).toBeCloseTo(325, 10);
   });
 
+  it("renders folded hit-order labels for debug fixtures", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const layout = doLayout(0, 0, L);
+
+    render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={[]}
+        filterId="diagram-folded-hit-order"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        foldedHitOrderLabels={["M1", "SEC"]}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    expect(screen.getByText("1 M1")).toBeTruthy();
+    expect(screen.getByText("2 SEC")).toBeTruthy();
+  });
+
   it("switches into grab-mode event wiring when zoom-pan is active", () => {
     const onSvgWheel = vi.fn();
     const onSvgPointerDown = vi.fn();

@@ -8,6 +8,7 @@ import { Route, Routes, useLocation } from "react-router";
 import HomePage from "../../../src/pages/HomePage.js";
 import ArticlesPage from "../../../src/pages/ArticlesPage.js";
 import ArticlePage from "../../../src/pages/ArticlePage.js";
+import LensPage from "../../../src/pages/LensPage.js";
 import ComparePage from "../../../src/pages/ComparePage.js";
 import NotFoundPage from "../../../src/pages/NotFoundPage.js";
 import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
@@ -169,6 +170,20 @@ describe("static page renders", () => {
 
     expect(screen.getByText(`${LENS_CATALOG[slugA].name} vs ${LENS_CATALOG[slugB].name}`)).toBeTruthy();
     expect(screen.getByText(/Interactive side-by-side comparison available in the viewer above/i)).toBeTruthy();
+  });
+
+  it("renders hidden reference lens fallback content for debug library links", () => {
+    const hiddenKey = "reference-newtonian-side-focus";
+
+    renderRoutes(
+      `/lens/${hiddenKey}`,
+      <Routes>
+        <Route path="/lens/:slug" element={<LensPage />} />
+      </Routes>,
+    );
+
+    expect(screen.getByText(LENS_CATALOG[hiddenKey].name)).toBeTruthy();
+    expect(screen.getByText(/Hidden automatic folded-path regression fixture/i)).toBeTruthy();
   });
 
   it("redirects invalid compare slugs to the lenses index", async () => {

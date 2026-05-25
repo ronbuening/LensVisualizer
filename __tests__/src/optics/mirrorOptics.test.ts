@@ -6,6 +6,7 @@ import {
 } from "../../../src/optics/aberrationAnalysis.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
+import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
 import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { doLayout, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
@@ -51,6 +52,14 @@ describe("mirror optics support", () => {
       opticalPath: { ...mirrorData.opticalPath, surfaceOrder: ["MISSING"] },
     });
     expect(badPath.some((error) => error.includes("opticalPath.surfaceOrder"))).toBe(true);
+
+    const badBackingNormal = validateLensData({
+      ...newtonianData,
+      surfaces: newtonianData.surfaces.map((surface) =>
+        surface.label === "SECB" ? { ...surface, interaction: { type: "refract" } } : surface,
+      ),
+    });
+    expect(badBackingNormal.some((error) => error.includes("tilted mirror backing plane"))).toBe(true);
   });
 
   it("builds the hidden spherical mirror fixture as folded optics", () => {
@@ -183,6 +192,23 @@ describe("mirror optics support", () => {
         }
       }
     }
+  });
+
+  it("derives display hit-order labels for automatic folded paths", () => {
+    const L = buildLens(newtonianData);
+    const layout = doLayout(0, 0, L);
+
+    expect(
+      foldedHitOrderLabelsForDisplay({
+        L,
+        zPos: layout.z,
+        focusT: 0,
+        zoomT: 0,
+        aberrationT: 0,
+        currentPhysStopSD: L.stopPhysSD,
+        currentEPSD: L.EP.epSD,
+      }),
+    ).toEqual(["M1", "SEC"]);
   });
 
   it("exposes folded-path diagnostics through the public ray trace result", () => {

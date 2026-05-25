@@ -15,6 +15,7 @@ import type {
 } from "../../utils/catalog/lensTaxonomy.js";
 
 export type GroupMode = "maker" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
+export type LensIndexViewMode = "visible" | "all" | "debug";
 
 export interface CatalogLensEntry {
   key: string;

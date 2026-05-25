@@ -51,6 +51,7 @@ export interface PanelComputedModel {
   act: number | null;
   sel: number | null;
   cardinalElements: CardinalElements | null;
+  foldedHitOrderLabels: string[];
 }
 
 export interface PanelRayDataModel {

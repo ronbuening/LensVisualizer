@@ -45,6 +45,7 @@ interface DiagramOverlayLayerProps {
   showCardinalHiatus?: boolean;
   showCardinalTotalTrack?: boolean;
   cardinalElements?: CardinalElements | null;
+  foldedHitOrderLabels?: string[];
   zoomT: number;
   act: number | null;
   flashVisible: boolean;
@@ -83,6 +84,7 @@ export default function DiagramOverlayLayer({
   showCardinalHiatus = true,
   showCardinalTotalTrack = true,
   cardinalElements,
+  foldedHitOrderLabels = [],
   zoomT,
   act,
   flashVisible,
@@ -171,6 +173,36 @@ export default function DiagramOverlayLayer({
         act={act}
         showChromatic={showChromatic}
       />
+
+      {foldedHitOrderLabels.length > 0 &&
+        (() => {
+          const seen = new Map<string, number>();
+          return foldedHitOrderLabels.map((label, index) => {
+            const surfaceIdx = L.labelIdx[label];
+            if (surfaceIdx === undefined) return null;
+            const previousCount = seen.get(label) ?? 0;
+            seen.set(label, previousCount + 1);
+            const surface = L.S[surfaceIdx];
+            const labelOffset = previousCount * 8;
+            const [x, y] = screenPoint(zPos[surfaceIdx], -(surface.sd + 8 + labelOffset));
+            return (
+              <text
+                key={`folded-hit-${index}-${label}`}
+                x={x}
+                y={y}
+                textAnchor="middle"
+                fill={t.groupLabel}
+                fontSize={8.5}
+                fontFamily="inherit"
+                fontWeight={600}
+                opacity={0.92}
+                style={{ pointerEvents: "none", letterSpacing: "0.06em" }}
+              >
+                {index + 1} {label}
+              </text>
+            );
+          });
+        })()}
 
       {showPupils && (
         <>

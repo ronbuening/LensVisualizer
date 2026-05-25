@@ -92,6 +92,7 @@ export default function DiagramViewport({
   showCardinalHiatus,
   showCardinalTotalTrack,
   cardinalElements,
+  foldedHitOrderLabels,
   act,
   onHover,
   onSelect,
@@ -227,6 +228,7 @@ export default function DiagramViewport({
         showCardinalHiatus={showCardinalHiatus}
         showCardinalTotalTrack={showCardinalTotalTrack}
         cardinalElements={cardinalElements}
+        foldedHitOrderLabels={foldedHitOrderLabels}
         zoomT={zoomT}
         act={act}
         onHover={onHover}

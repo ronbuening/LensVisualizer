@@ -44,11 +44,13 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 
 ## UI And Authoring Improvements
 
-- Add an inspector readout for `interaction.type`, mirror kind, active side, `innerSd`, and explicit image-plane geometry.
-- Add a diagram overlay that labels folded hit order for reference fixtures and debugging.
-- Make hidden reference fixtures easier to temporarily expose without hand-editing `visible`.
-- Add a small authoring validator that suggests when a tilted mirror backing plane is missing the same `interaction.normal` as the reflective face.
-- Add docs/examples for choosing `incidentSide` on curved mirrors, especially when the surface normal orientation is not obvious from the SVG.
+- Done: the element inspector surfaces folded metadata for `interaction.type`, mirror kind, active side, `innerSd`, tilted
+  normals, and explicit image-plane geometry.
+- Done: folded diagrams label the resolved/declared hit order as a compact debugging overlay.
+- Done: the lens library accepts `?view=all` for all lens files and `?view=debug` for hidden/reference fixtures.
+- Done: validation flags tilted flat mirror backing planes that omit the reflective face's `interaction.normal`.
+- Done: `src/lens-data/LENS_DATA_SPEC.md` includes incident-side examples for curved mirrors, returning beams, and
+  second-surface paths.
 
 ## Physics And Rendering Improvements
 

@@ -261,6 +261,60 @@ function validateYzNormal(value: unknown, label: string, errors: string[]): void
   }
 }
 
+function normalizedNormal(value: unknown): { z: number; y: number } | null {
+  if (
+    !value ||
+    typeof value !== "object" ||
+    typeof (value as Record<string, unknown>).z !== "number" ||
+    typeof (value as Record<string, unknown>).y !== "number"
+  ) {
+    return null;
+  }
+  const normal = value as { z: number; y: number };
+  const len = Math.hypot(normal.z, normal.y);
+  if (!isFinite(len) || len <= 1e-12) return null;
+  return { z: normal.z / len, y: normal.y / len };
+}
+
+function samePlaneNormal(a: unknown, b: unknown): boolean {
+  const na = normalizedNormal(a);
+  const nb = normalizedNormal(b);
+  if (!na || !nb) return false;
+  return Math.abs(Math.abs(na.z * nb.z + na.y * nb.y) - 1) < 1e-6;
+}
+
+function validateTiltedMirrorBackingNormals(
+  S: UntrustedLensData[],
+  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  errors: string[],
+): void {
+  const spanForElement = (elemId: number): { from: number; to: number } | null => {
+    const explicit = explicitSpans.get(elemId);
+    if (explicit) return explicit;
+    const from = S.findIndex((surface) => surface.elemId === elemId);
+    if (from < 0 || from + 1 >= S.length) return null;
+    return { from, to: from + 1 };
+  };
+
+  for (let i = 0; i < S.length; i++) {
+    const surface = S[i];
+    if (surface.elemId === 0 || surface.interaction?.type !== "reflect" || !surface.interaction.normal) continue;
+    if (typeof surface.R !== "number" || Math.abs(surface.R) <= FLAT_R_THRESHOLD) continue;
+
+    const span = spanForElement(surface.elemId);
+    if (!span || i < span.from || i > span.to) continue;
+    const backingIdx = i === span.from ? span.to : span.from;
+    if (backingIdx === i || backingIdx < 0 || backingIdx >= S.length) continue;
+    const backing = S[backingIdx];
+    if (typeof backing.R !== "number" || Math.abs(backing.R) <= FLAT_R_THRESHOLD) continue;
+    if (samePlaneNormal(surface.interaction.normal, backing.interaction?.normal)) continue;
+
+    errors.push(
+      `surfaces[${backingIdx}] ("${backing.label}"): tilted mirror backing plane should repeat interaction.normal from reflective surface "${surface.label}"`,
+    );
+  }
+}
+
 function validateImageFormat(value: unknown, errors: string[]): void {
   if (!isImageFormatId(value)) {
     errors.push(`"imageFormat" must be a known canonical format id when provided`);
@@ -559,6 +613,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       }
     }
   }
+
+  validateTiltedMirrorBackingNormals(S, explicitSpans, errors);
 
   const stopIdx = typeof labelToIdx.STO === "number" ? labelToIdx.STO : -1;
   if (stopIdx >= 0) {

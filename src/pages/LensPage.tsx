@@ -9,7 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../utils/catalog/lensCatalog.js";
+import { LENS_CATALOG, mdForKey } from "../utils/catalog/lensCatalog.js";
 import {
   lensPageTitle,
   lensPageDescription,
@@ -46,7 +46,7 @@ const TD_STYLE: React.CSSProperties = {
 export default function LensPage() {
   const { slug } = useParams<{ slug: string }>();
 
-  if (!slug || !CATALOG_KEYS.includes(slug)) {
+  if (!slug || !LENS_CATALOG[slug]) {
     return <Navigate to="/lenses" replace />;
   }
 
@@ -60,6 +60,7 @@ export default function LensPage() {
         title={lensPageTitle(lens)}
         description={lensPageDescription(lens)}
         canonicalURL={lensCanonicalURL(slug)}
+        robots={lens.visible === false ? "noindex,nofollow" : undefined}
         ogType="article"
         jsonLd={[
           lensJsonLd(lens, slug),
