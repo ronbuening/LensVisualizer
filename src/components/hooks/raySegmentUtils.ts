@@ -32,6 +32,7 @@ export function compileRaySegment(
   clampedRayEnd: (lastZ: number, lastY: number, u: number, targetZ: number) => [number, number],
   IMG_MM: number,
   endOverride?: number[],
+  reachedImagePlane = false,
 ): RaySegment {
   const sp: number[][] = pts.map(([z, yy]) => [sx(z), sy(yy)]);
   let gp: number[][] = [];
@@ -45,7 +46,7 @@ export function compileRaySegment(
       gp.push(endOverride ?? clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
     }
   }
-  if (!clipped) {
+  if (!clipped && !reachedImagePlane) {
     const last = pts[pts.length - 1];
     if (last) {
       sp.push(endOverride ?? clampedRayEnd(last[0], last[1], u, IMG_MM));

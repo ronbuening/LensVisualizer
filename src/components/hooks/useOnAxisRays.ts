@@ -71,7 +71,18 @@ export default function useOnAxisRays({
         const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
-          compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
+          compileRaySegment(
+            result.pts,
+            result.ghostPts,
+            result.u,
+            result.clipped,
+            sx,
+            sy,
+            clampedRayEnd,
+            IMG_MM,
+            undefined,
+            result.reachedImagePlane,
+          ),
         );
       }
       return { segments: out, error: null };

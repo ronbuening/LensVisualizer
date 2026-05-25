@@ -9,7 +9,7 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
@@ -162,6 +162,78 @@ function validateProjection(value: unknown, errors: string[]): void {
   );
 }
 
+function validateImagePlane(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"opticalPath.imagePlane" must be an object when provided`);
+    return;
+  }
+
+  const imagePlane = value as ImagePlaneData;
+  if (typeof imagePlane.z !== "number" || !isFinite(imagePlane.z)) {
+    errors.push(`"opticalPath.imagePlane.z" must be a finite number`);
+  }
+  if (imagePlane.y !== undefined && (typeof imagePlane.y !== "number" || !isFinite(imagePlane.y))) {
+    errors.push(`"opticalPath.imagePlane.y" must be a finite number when provided`);
+  }
+  if (imagePlane.label !== undefined && typeof imagePlane.label !== "string") {
+    errors.push(`"opticalPath.imagePlane.label" must be a string when provided`);
+  }
+  if (imagePlane.normal !== undefined) {
+    const normal = imagePlane.normal;
+    if (
+      !normal ||
+      typeof normal !== "object" ||
+      Array.isArray(normal) ||
+      typeof normal.z !== "number" ||
+      typeof normal.y !== "number" ||
+      !isFinite(normal.z) ||
+      !isFinite(normal.y)
+    ) {
+      errors.push(`"opticalPath.imagePlane.normal" must contain finite z and y numbers`);
+      return;
+    }
+    if (Math.hypot(normal.z, normal.y) <= 1e-12) {
+      errors.push(`"opticalPath.imagePlane.normal" must not be the zero vector`);
+    }
+  }
+}
+
+function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"opticalPath" must be an object when provided`);
+    return;
+  }
+
+  const path = value as Record<string, unknown>;
+  if (path.mode !== undefined && path.mode !== "sequential" && path.mode !== "auto") {
+    errors.push(`"opticalPath.mode" must be "sequential" or "auto" when provided`);
+  }
+
+  if (path.surfaceOrder !== undefined) {
+    if (!Array.isArray(path.surfaceOrder) || path.surfaceOrder.length === 0) {
+      errors.push(`"opticalPath.surfaceOrder" must be a non-empty array of surface labels when provided`);
+    } else {
+      path.surfaceOrder.forEach((label, index) => {
+        if (typeof label !== "string" || !surfaceLabels.has(label)) {
+          errors.push(`"opticalPath.surfaceOrder[${index}]" must match a surface label`);
+        }
+      });
+    }
+  }
+
+  if (path.imagePlane !== undefined) validateImagePlane(path.imagePlane, errors);
+
+  if (
+    path.maxInteractions !== undefined &&
+    (typeof path.maxInteractions !== "number" ||
+      !isFinite(path.maxInteractions) ||
+      path.maxInteractions < 1 ||
+      Math.round(path.maxInteractions) !== path.maxInteractions)
+  ) {
+    errors.push(`"opticalPath.maxInteractions" must be a positive integer when provided`);
+  }
+}
+
 function validateLensMounts(value: unknown, errors: string[]): void {
   if (!Array.isArray(value)) {
     errors.push(`"lensMounts" must be a non-empty array of canonical mount ids when provided`);
@@ -290,6 +362,47 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof s.d !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid d`);
     if (typeof s.nd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid nd`);
     if (typeof s.sd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
+    if (s.innerSd !== undefined) {
+      if (typeof s.innerSd !== "number" || !isFinite(s.innerSd) || s.innerSd < 0) {
+        errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be a finite non-negative number when provided`);
+      } else if (typeof s.sd === "number" && isFinite(s.sd) && s.innerSd >= s.sd) {
+        errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be smaller than sd`);
+      }
+    }
+    if (s.interaction !== undefined) {
+      if (!s.interaction || typeof s.interaction !== "object" || Array.isArray(s.interaction)) {
+        errors.push(`surfaces[${i}] ("${s.label}"): interaction must be an object when provided`);
+      } else {
+        const interaction = s.interaction as Record<string, unknown>;
+        if (interaction.type !== "refract" && interaction.type !== "reflect" && interaction.type !== "block") {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.type must be "refract", "reflect", or "block"`);
+        }
+        if (
+          interaction.incidentSide !== undefined &&
+          interaction.incidentSide !== "front" &&
+          interaction.incidentSide !== "rear" &&
+          interaction.incidentSide !== "both"
+        ) {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.incidentSide must be "front", "rear", or "both"`);
+        }
+        if (
+          interaction.inactiveSide !== undefined &&
+          interaction.inactiveSide !== "ignore" &&
+          interaction.inactiveSide !== "block"
+        ) {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.inactiveSide must be "ignore" or "block"`);
+        }
+        if (
+          interaction.mirrorKind !== undefined &&
+          interaction.mirrorKind !== "first-surface" &&
+          interaction.mirrorKind !== "second-surface"
+        ) {
+          errors.push(
+            `surfaces[${i}] ("${s.label}"): interaction.mirrorKind must be "first-surface" or "second-surface"`,
+          );
+        }
+      }
+    }
     if (s.stopPlacement !== undefined && s.stopPlacement !== "inside-element") {
       errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement must be "inside-element" when provided`);
     }
@@ -299,6 +412,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
   if (stoCount === 0) errors.push('No surface with label "STO" found');
   if (stoCount > 1) errors.push(`Multiple surfaces with label "STO" found (${stoCount})`);
+  if (data.opticalPath !== undefined) validateOpticalPath(data.opticalPath, surfaceLabels, errors);
 
   /* ── Element IDs: unique ── */
   const elemIds = new Set<number>();

@@ -39,6 +39,8 @@ import type {
   AsphericCoefficients,
   EntrancePupil,
   LensProjectionConfig,
+  ResolvedImagePlane,
+  ResolvedOpticalPath,
   RuntimeLens,
   ParaxialTraceResult,
 } from "../types/optics.js";
@@ -222,6 +224,41 @@ function assertRectilinearFocalReference(data: LensData, projection: LensProject
   }
 }
 
+function normalizeImagePlaneNormal(normal: { z: number; y: number } | undefined): { z: number; y: number } {
+  const candidate = normal ?? { z: 1, y: 0 };
+  const length = Math.hypot(candidate.z, candidate.y);
+  if (!isFinite(length) || length <= 1e-12) return { z: 1, y: 0 };
+  return { z: candidate.z / length, y: candidate.y / length };
+}
+
+function resolveImagePlane(data: LensData, fallbackZ: number): ResolvedImagePlane {
+  const configured = data.opticalPath?.imagePlane;
+  return {
+    z: configured?.z ?? fallbackZ,
+    y: configured?.y ?? 0,
+    normal: normalizeImagePlaneNormal(configured?.normal),
+    label: configured?.label ?? "IMG",
+  };
+}
+
+function resolveOpticalPath(data: LensData, labelIdx: Record<string, number>): ResolvedOpticalPath {
+  const surfaceLabels = data.opticalPath?.surfaceOrder ?? null;
+  return {
+    mode: data.opticalPath?.mode ?? "sequential",
+    surfaceOrder: surfaceLabels
+      ? surfaceLabels.map((label) => labelIdx[label]).filter((idx) => idx !== undefined)
+      : null,
+    surfaceLabels,
+    maxInteractions: data.opticalPath?.maxInteractions ?? Math.max(data.surfaces.length + 1, 1),
+  };
+}
+
+function hasFoldedOptics(data: LensData): boolean {
+  return Boolean(
+    data.opticalPath || data.surfaces.some((surface) => surface.interaction && surface.interaction.type !== "refract"),
+  );
+}
+
 /**
  * Build a frozen runtime lens object from validated LENS_DATA.
  *
@@ -278,8 +315,153 @@ export default function buildLens(data: LensData): RuntimeLens {
   const doublets = resolveAnnotations(data.doublets, labelIdx);
 
   const stopIdx = S.findIndex((row) => row.label === "STO");
+  const opticalPath = resolveOpticalPath(data, labelIdx);
 
   const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
+
+  if (hasFoldedOptics(data)) {
+    const z = [0];
+    for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
+    const fallbackImageZ = z[N - 1] + S[N - 1].d;
+    const imagePlane = resolveImagePlane(data, fallbackImageZ);
+    const zMin = Math.min(imagePlane.z, ...z);
+    const zMax = Math.max(imagePlane.z, ...z);
+    const axialExtent = Math.max(1, zMax - zMin);
+    const maxSD = Math.max(...S.map((s) => s.sd));
+    const referenceFocalLength =
+      firstFiniteScalar(data.focalLengthDesign) ?? firstFiniteScalar(data.focalLengthMarketing) ?? axialExtent;
+    const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
+    const stopPhysSD = S[stopIdx].sd;
+    const EP: EntrancePupil = {
+      epSD: referenceFocalLength / (2 * baseNomFno),
+      yRatio: stopPhysSD > 0 ? stopPhysSD / Math.max(referenceFocalLength / (2 * baseNomFno), 1e-12) : 1,
+    };
+    const FOPEN = baseNomFno;
+    const halfField =
+      rectilinearProjectionMaxTraceField(projection) ??
+      Math.max(1, (Math.atan(Math.max(1, maxSD) / Math.max(referenceFocalLength, 1)) * 180) / Math.PI);
+    const tracingHalfField = halfField;
+    const totalTrack = axialExtent;
+
+    const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
+    const SC = (svgW * scFill) / totalTrack;
+    let YSC: number;
+    let effectiveSvgH: number;
+    if (ENABLE_UNIFORM_SCALING) {
+      YSC = SC;
+      const verticalMargin = 1.45 * maxSD;
+      effectiveSvgH = Math.round(Math.max(2 * verticalMargin * SC + 20, 290));
+    } else {
+      YSC = (svgH * yScFill) / maxSD;
+      const maxAR = data.maxAspectRatio;
+      if (maxAR > 0 && YSC / SC > maxAR) YSC = SC * maxAR;
+      effectiveSvgH = svgH;
+    }
+    const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+    const maxRimTan = Math.tan((maxRimAngleDeg * Math.PI) / 180);
+    const gridPitch = totalTrack / 15;
+    const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
+    const lyDoublet = -1.1 * maxSD;
+    const lyImgLine = 1.133 * maxSD;
+    const lyImgLabel = -1.233 * maxSD;
+    const lyElemNum = 1.2 * maxSD;
+    const lyVdBadge = 1.36 * maxSD;
+    const lyGroup = 1.37 * maxSD;
+    const lyStoPad = 0.12 * maxSD;
+    const rayHeights = data.rayFractions.map((f: number) => f * EP.epSD);
+    const rayLead = totalTrack * data.rayLeadFrac;
+    const bladeStubFrac = 0.1;
+    const prevSD = stopIdx > 0 ? S[stopIdx - 1].sd : stopPhysSD;
+    const nextSD = stopIdx < N - 1 ? S[stopIdx + 1].sd : stopPhysSD;
+    const stopHousingSD = Math.max(stopPhysSD, Math.min(prevSD, nextSD));
+    const offAxisFieldDeg = halfField * data.offAxisFieldFrac;
+    const offAxisHeights = data.offAxisFractions.map((f: number) => f * EP.epSD);
+
+    return Object.freeze({
+      data,
+      S,
+      N,
+      ES,
+      elements: data.elements,
+      asphByIdx,
+      varByIdx,
+      vdByIdx,
+      spectralByIdx,
+      indexByIdx,
+      varLabels,
+      groups,
+      doublets,
+      perspectiveControl: data.perspectiveControl ?? null,
+      aberrationControl,
+      projection,
+      opticalPath,
+      imagePlane,
+      isFoldedOptics: true,
+      stopIdx,
+      stopPhysSD,
+      EFL: referenceFocalLength,
+      apertureReferenceFocalLength: referenceFocalLength,
+      EP,
+      B: 0,
+      FOPEN,
+      halfField,
+      tracingHalfField,
+      petzvalSum: 0,
+      totalTrack,
+      maxSD,
+      svgW: data.svgW,
+      svgH: effectiveSvgH,
+      SC,
+      YSC,
+      maxRimSin,
+      maxRimTan,
+      gapSagFrac,
+      clipMargin,
+      gridPitch,
+      gridCount,
+      lyDoublet,
+      lyImgLine,
+      lyImgLabel,
+      lyElemNum,
+      lyVdBadge,
+      lyGroup,
+      lyStoPad,
+      lensShiftFrac: data.lensShiftFrac || 0,
+      rayFractions: data.rayFractions,
+      rayHeights,
+      rayLead,
+      bladeStubFrac,
+      stopHousingSD,
+      offAxisFieldDeg,
+      offAxisFieldFrac: data.offAxisFieldFrac,
+      offAxisFractions: data.offAxisFractions,
+      offAxisHeights,
+      closeFocusM: data.closeFocusM,
+      focusStep: data.focusStep,
+      focusDescription: data.focusDescription,
+      maxFstop: data.maxFstop,
+      apertureStep: data.apertureStep,
+      fstopSeries: data.fstopSeries,
+      isZoom: false,
+      zoomPositions: null,
+      zoomEFLs: null,
+      zoomEPs: null,
+      zoomHalfFields: null,
+      zoomTracingHalfFields: null,
+      zoomYRatios: null,
+      zoomBs: null,
+      epZRelStop: 0,
+      xpZRelLastSurf: 0,
+      xpSD: EP.epSD,
+      zoomEpZRelStops: null,
+      zoomXpZRelLastSurfs: null,
+      zoomXpSDs: null,
+      zoomFOPENs: null,
+      zoomStep: data.zoomStep || 0.004,
+      zoomLabels: null,
+      labelIdx,
+    }) as RuntimeLens;
+  }
 
   /* ── Derive stop SD and entrance pupil from nominal f-number ──
    *  nominalFno is a required field (validated).  We back-compute:
@@ -486,6 +668,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     for (let i = 0; i < N - 1; i++) z.push(z[i] + S[i].d);
     totalTrack = z[N - 1] + S[N - 1].d;
   }
+  const imagePlane = resolveImagePlane(data, totalTrack);
   const maxSD = Math.max(...S.map((s) => s.sd));
 
   const { svgW, svgH, scFill, yScFill, maxRimAngleDeg, gapSagFrac, clipMargin } = data;
@@ -688,6 +871,9 @@ export default function buildLens(data: LensData): RuntimeLens {
     perspectiveControl: data.perspectiveControl ?? null,
     aberrationControl,
     projection,
+    opticalPath,
+    imagePlane,
+    isFoldedOptics: false,
     stopIdx,
     stopPhysSD,
     EFL,

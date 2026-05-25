@@ -13,8 +13,55 @@ export interface SurfaceData {
   d: number;
   nd: number;
   sd: number;
+  innerSd?: number;
   elemId: number;
   stopPlacement?: "inside-element";
+  interaction?: SurfaceInteraction;
+}
+
+export type SurfaceIncidentSide = "front" | "rear" | "both";
+export type SurfaceInactiveSideBehavior = "ignore" | "block";
+export type SurfaceInteractionType = "refract" | "reflect" | "block";
+export type MirrorKind = "first-surface" | "second-surface";
+
+export interface SurfaceInteraction {
+  type: SurfaceInteractionType;
+  incidentSide?: SurfaceIncidentSide;
+  inactiveSide?: SurfaceInactiveSideBehavior;
+  mirrorKind?: MirrorKind;
+}
+
+export interface ImagePlaneNormal {
+  z: number;
+  y: number;
+}
+
+export interface ImagePlaneData {
+  z: number;
+  y?: number;
+  normal?: ImagePlaneNormal;
+  label?: string;
+}
+
+export interface ResolvedImagePlane {
+  z: number;
+  y: number;
+  normal: ImagePlaneNormal;
+  label: string;
+}
+
+export interface OpticalPathData {
+  mode?: "sequential" | "auto";
+  surfaceOrder?: string[];
+  imagePlane?: ImagePlaneData;
+  maxInteractions?: number;
+}
+
+export interface ResolvedOpticalPath {
+  mode: "sequential" | "auto";
+  surfaceOrder: number[] | null;
+  surfaceLabels: string[] | null;
+  maxInteractions: number;
 }
 
 export interface AsphericCoefficients {
@@ -147,6 +194,7 @@ export interface LensData {
   visible?: boolean;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
+  opticalPath?: OpticalPathData;
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
@@ -243,6 +291,9 @@ export interface RuntimeLens {
   readonly perspectiveControl: PerspectiveControlConfig | null;
   readonly aberrationControl: ResolvedAberrationControlConfig | null;
   readonly projection: LensProjectionConfig;
+  readonly opticalPath: ResolvedOpticalPath;
+  readonly imagePlane: ResolvedImagePlane;
+  readonly isFoldedOptics: boolean;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;
@@ -324,6 +375,7 @@ export interface RayTraceResult {
   y: number;
   u: number;
   clipped: boolean;
+  reachedImagePlane?: boolean;
 }
 
 export interface ParaxialTraceResult {

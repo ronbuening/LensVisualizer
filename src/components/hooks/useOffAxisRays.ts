@@ -111,6 +111,7 @@ export default function useOffAxisRays({
             clampedRayEnd,
             IMG_MM,
             geometry.useEdge ? geometry.edgeEnd : undefined,
+            result.reachedImagePlane,
           ),
         );
       }

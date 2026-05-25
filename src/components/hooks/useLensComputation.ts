@@ -140,11 +140,18 @@ export default function useLensComputation({
   );
 
   const cardinalZExtent = useMemo(() => {
-    if (!includeCardinalExtents || !cardinalElements) return null;
+    const foldedExtent =
+      L && L.isFoldedOptics && zPos.length > 0
+        ? { min: Math.min(IMG_MM, ...zPos), max: Math.max(IMG_MM, ...zPos) }
+        : null;
+    if (!includeCardinalExtents || !cardinalElements) return foldedExtent;
     const pointZ = Object.values(cardinalElements.points).map((point) => point.z);
     const distanceZ = Object.values(cardinalElements.distances).flatMap((distance) => [distance.fromZ, distance.toZ]);
-    return { min: Math.min(...pointZ, ...distanceZ), max: Math.max(...pointZ, ...distanceZ) };
-  }, [includeCardinalExtents, cardinalElements]);
+    return {
+      min: Math.min(foldedExtent?.min ?? Infinity, ...pointZ, ...distanceZ),
+      max: Math.max(foldedExtent?.max ?? -Infinity, ...pointZ, ...distanceZ),
+    };
+  }, [includeCardinalExtents, cardinalElements, L, zPos, IMG_MM]);
 
   /* ── Coordinate transforms (optical mm → SVG pixels) ── */
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(

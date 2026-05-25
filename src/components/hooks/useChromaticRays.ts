@@ -153,6 +153,8 @@ export default function useChromaticRays({
               sy,
               clampedRayEnd,
               IMG_MM,
+              undefined,
+              result.reachedImagePlane,
             );
             out.push({
               ...seg,
@@ -217,6 +219,7 @@ export default function useChromaticRays({
                 clampedRayEnd,
                 IMG_MM,
                 geometry.useEdge ? geometry.edgeEnd : undefined,
+                result.reachedImagePlane,
               );
               out.push({
                 ...seg,
