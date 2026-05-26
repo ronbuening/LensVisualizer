@@ -62,7 +62,7 @@ function tagsForFixture(key: string): Set<ParityStateTag> {
   return new Set(fixture?.states.flatMap((state) => state.tags) ?? []);
 }
 
-describe("Optics 2 Stage 01 migration policy", () => {
+describe("Optics 2 staged migration policy", () => {
   it("locks the Stage 01 migration rules in an importable place", () => {
     expect(OPTICS_2_STAGE_01_MIGRATION_RULES.map((rule) => rule.id)).toEqual([
       "additive-optics-2",
@@ -75,18 +75,20 @@ describe("Optics 2 Stage 01 migration policy", () => {
     ]);
   });
 
-  it("keeps production source imports off src/optics-2 during Stage 01", () => {
+  it("keeps production source imports off src/optics-2 except the internal selector bridge", () => {
     const offenders = Object.entries(SRC_MODULES)
       .filter(([file]) => !file.includes("/src/optics-2/"))
       .filter(([, source]) => /from\s+["'][^"']*optics-2|import\s*\([^)]*optics-2/.test(source))
+      .filter(([file]) => file !== "../../../src/optics/engineSelector.ts")
       .map(([file]) => file);
 
     expect(offenders).toEqual([]);
   });
 
-  it("creates the additive src/optics-2 testing island without a production engine entry point", () => {
+  it("keeps src/optics-2 additive with testing and compatibility barrels present", () => {
     expect(Object.keys(OPTICS_2_MODULES)).toContain("../../../src/optics-2/testing/benchmarkHarness.ts");
-    expect(Object.keys(OPTICS_2_MODULES)).not.toContain("../../../src/optics-2/index.ts");
+    expect(Object.keys(OPTICS_2_MODULES)).toContain("../../../src/optics-2/compat.ts");
+    expect(Object.keys(OPTICS_2_MODULES)).toContain("../../../src/optics-2/index.ts");
   });
 });
 

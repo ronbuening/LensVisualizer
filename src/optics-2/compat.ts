@@ -1,5 +1,5 @@
 import buildLens from "../optics/buildLens.js";
-import type { LensData, RuntimeLens } from "../types/optics.js";
+import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { EngineLens, PreparedOpticalState } from "./types.js";
 import { normalizeRuntimeLens, withLensDefaults } from "./prescription/normalizeLensData.js";
 import { prepareState } from "./state/prepareState.js";
@@ -27,6 +27,43 @@ export function prepareLegacyState(
   aberrationT = 0,
 ): PreparedOpticalState {
   return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT);
+}
+
+export function doLayout2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): LayoutResult {
+  const state = prepareLegacyState(L, focusT, zoomT, aberrationT);
+  return {
+    z: [...state.z],
+    th: state.surfaces.map((surface) => surface.d),
+    imgZ: state.imgZ,
+  };
+}
+
+export function thick2(i: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
+  return prepareLegacyState(L, focusT, zoomT, aberrationT).surfaces[i]?.d ?? 0;
+}
+
+export function eflAtZoom2(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.EFL;
+  return interpolateZoomArray2(zoomT, L.zoomEFLs!);
+}
+
+export function epAtZoom2(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom) return L.EP.epSD;
+  return interpolateZoomArray2(zoomT, L.zoomEPs!);
+}
+
+export function fopenAtZoom2(zoomT: number, L: RuntimeLens): number {
+  if (!L.isZoom || !L.zoomFOPENs) return L.FOPEN;
+  return interpolateZoomArray2(zoomT, L.zoomFOPENs);
+}
+
+function interpolateZoomArray2(zoomT: number, values: readonly number[]): number {
+  if (values.length === 1) return values[0];
+  const t = Math.max(0, Math.min(1, Number.isFinite(zoomT) ? zoomT : 0));
+  const pos = t * (values.length - 1);
+  const idx = Math.min(Math.floor(pos), values.length - 2);
+  const frac = pos - idx;
+  return values[idx] + (values[idx + 1] - values[idx]) * frac;
 }
 
 export {
@@ -99,3 +136,88 @@ export {
 } from "./first-order/cardinals.js";
 export { effectiveFNumber2 } from "./first-order/fNumber.js";
 export { eflAtFocus2 } from "./first-order/focusBreathing.js";
+export {
+  CHANNEL_WAVELENGTH_NM_2,
+  CHROMATIC_CHANNELS_2,
+  channelIndexResolverForState2,
+  indexAtPreparedSurface2,
+  indexAtRuntimeSurface2,
+  wavelengthNd2,
+  type SurfaceIndexResolver2,
+} from "./chromatic/indexResolver.js";
+export { computeChromaticSpread2, traceEngineRayChromatic2 } from "./chromatic/chromaticTrace.js";
+export { dispersionTableFromRuntime2, makeSurfaceDispersion2 } from "./chromatic/dispersionAdapter.js";
+export {
+  summarizeDispersionQuality2,
+  summarizeDispersionQualityForLens2,
+  summarizeDispersionQualityForState2,
+} from "./chromatic/dispersionQuality.js";
+export {
+  computeElementRenderDiagnostics2,
+  computeElementShapes2,
+  createCoordinateTransforms2,
+  stateForLegacyDiagram2,
+} from "./diagram/legacyDiagramAdapter.js";
+export { computeElementRenderDiagnosticsForState2 } from "./diagram/renderDiagnostics.js";
+export { computeElementShapesForState2 } from "./diagram/elementShapes.js";
+export { surfacePathD2, SVG_PATH_SUBDIVISIONS_2, type DiagramPointTransform2 } from "./diagram/surfaceOutline.js";
+export { analysisJobs2, analysisJobsForState2 } from "./analysis/analysisJobs.js";
+export {
+  computeComaAnalysis2,
+  computeComaAnalysisForState2,
+  computeComaPointCloudPreview2,
+  computeComaPreview2,
+  computeFieldCurvature2,
+  computeFieldCurvatureForState2,
+  computeMeridionalComa2,
+  computeSAProfile2,
+  computeSAProfileForState2,
+  computeSagittalComa2,
+  computeSphericalAberration2,
+  computeSphericalAberrationBlurCharacter2,
+  computeSphericalAberrationBlurCharacterForState2,
+  computeSphericalAberrationForState2,
+} from "./analysis/aberrations.js";
+export {
+  buildBokehDensityGrid2,
+  buildBokehRadialProfile2,
+  classifyBokehBrightnessCharacter2,
+  computeBestFocusZ2,
+  computeBestFocusZForState2,
+  computeBokehPreview2,
+  computeBokehPreviewPair2,
+  computeBokehPreviewPairForState2,
+  describeBokehDefocusSide2,
+} from "./analysis/bokeh.js";
+export {
+  computeDistortionCurve2,
+  computeDistortionCurveForState2,
+  computeDistortionFieldGrid2,
+  computeDistortionFieldGridForState2,
+} from "./analysis/distortion.js";
+export { computeVignettingCurve2, computeVignettingCurveForState2 } from "./analysis/vignetting.js";
+export {
+  computeBothPupilAberrationProfiles2,
+  computeBothPupilAberrationProfilesForState2,
+  computeExitPupilAberrationProfile2,
+  computePupilAberrationProfile2,
+  PUPIL_ABERRATION_SAMPLE_COUNT_2,
+} from "./analysis/pupilAberration.js";
+export {
+  computeGroupMovementProfile2,
+  computeGroupMovementProfileForState2,
+  firstAvailableGroupMovementMode2,
+  getGroupMovementAvailability2,
+  inferLensMovementGroups2,
+  isGroupMovementModeAvailable2,
+} from "./analysis/groupMovement.js";
+export {
+  computeAsphericDeparture2,
+  computeBestFitSphereR2,
+  computeDepartureProfile2,
+  nearestSurfaceForClick2,
+  peakAbsDeparture2,
+  rmsDeparture2,
+  type DepartureSample2,
+} from "./analysis/asphericComparison.js";
+export { computeLcaBarOffsets2, REFERENCE_LCA_MM_2, type LcaBarResult2 } from "./analysis/lcaScaling.js";

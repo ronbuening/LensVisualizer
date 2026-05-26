@@ -6,7 +6,7 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobs } from "../../../optics/analysisJobs.js";
+import { getSelectedOpticsEngine } from "../../../optics/engineSelector.js";
 import { probe } from "../../../utils/perfProbe.js";
 import { eflAtZoom } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
@@ -39,10 +39,11 @@ export default function DistortionTab({
   currentPhysStopSD,
   fieldGeometry,
 }: DistortionTabProps) {
+  const opticsEngine = getSelectedOpticsEngine();
   const samples = useMemo(
     () =>
       probe("computeDistortionCurve", () =>
-        analysisJobs.computeDistortionCurve(
+        opticsEngine.analysisJobs.computeDistortionCurve(
           L,
           zPos,
           focusT,
@@ -53,12 +54,12 @@ export default function DistortionTab({
           aberrationT,
         ),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, dynamicEFL, currentPhysStopSD, fieldGeometry],
+    [L, zPos, focusT, zoomT, aberrationT, dynamicEFL, currentPhysStopSD, fieldGeometry, opticsEngine],
   );
   const fieldGrid = useMemo(
     () =>
       probe("computeDistortionFieldGrid", () =>
-        analysisJobs.computeDistortionFieldGrid(
+        opticsEngine.analysisJobs.computeDistortionFieldGrid(
           L,
           zPos,
           focusT,
@@ -68,7 +69,7 @@ export default function DistortionTab({
           aberrationT,
         ),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, currentPhysStopSD, fieldGeometry],
+    [L, zPos, focusT, zoomT, aberrationT, currentPhysStopSD, fieldGeometry, opticsEngine],
   );
 
   if (samples.length < 2) {

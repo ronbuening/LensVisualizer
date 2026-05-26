@@ -1,9 +1,10 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, vi } from "vitest";
+import { afterEach, describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import { selectedOpticsEngineId, setOpticsEngineForTests } from "../../../../src/optics/engineSelector.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 /* This test uses a real lens key from the catalog. The LENS_CATALOG is populated
@@ -12,6 +13,10 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 describe("useLensComputation", () => {
   const baseLensKey = "sonnar-50f15";
   const focusLensKey = "sony-fe-14mm-f18-gm";
+
+  afterEach(() => {
+    setOpticsEngineForTests(null);
+  });
 
   it("returns a valid RuntimeLens and geometry for a known lens key", () => {
     const { result } = renderHook(() =>
@@ -36,6 +41,28 @@ describe("useLensComputation", () => {
     expect(r.IX).toBeGreaterThan(0);
     expect(r.effectiveSC).toBeGreaterThan(0);
     expect(r.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
+  });
+
+  it("can render through the internal optics-2 selector without changing hook props", () => {
+    setOpticsEngineForTests("optics-2");
+    expect(selectedOpticsEngineId()).toBe("optics-2");
+
+    const { result } = renderHook(() =>
+      useLensComputation({
+        lensKey: baseLensKey,
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+        scaleRatio: null,
+        panelId: "test",
+      }),
+    );
+
+    expect(result.current.L).toBeDefined();
+    expect(result.current.buildError).toBeUndefined();
+    expect(result.current.zPos.length).toBe(result.current.L!.N);
+    expect(result.current.shapes.length).toBeGreaterThan(0);
+    expect(result.current.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
   });
 
   it("uses a supplied runtime lens instead of rebuilding from the catalog", () => {

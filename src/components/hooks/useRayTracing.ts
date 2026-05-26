@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from "react";
-import { conjugateK } from "../../optics/optics.js";
+import { getSelectedOpticsEngine } from "../../optics/engineSelector.js";
 import useOnAxisRays from "./useOnAxisRays.js";
 import useOffAxisRays from "./useOffAxisRays.js";
 import useChromaticRays from "./useChromaticRays.js";
@@ -77,11 +77,13 @@ export default function useRayTracing({
   chromV,
   lensKey,
 }: UseRayTracingParams): UseRayTracingResult {
+  const opticsEngine = getSelectedOpticsEngine();
+
   /* focusK = convergence curvature at the entrance pupil for "tracks focus"
    * ray mode; 0 when rays arrive from infinity. */
   const focusK = useMemo(
-    () => (L && rayTracksF ? conjugateK(focusT, zoomT, L, aberrationT) : 0),
-    [focusT, zoomT, aberrationT, rayTracksF, L],
+    () => (L && rayTracksF ? opticsEngine.conjugateK(focusT, zoomT, L, aberrationT) : 0),
+    [focusT, zoomT, aberrationT, rayTracksF, L, opticsEngine],
   );
 
   const { segments: rays, error: onAxisError } = useOnAxisRays({
