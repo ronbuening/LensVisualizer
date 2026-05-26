@@ -1,4 +1,7 @@
-# Optics 2 Stage 05 Performance Pass
+# Historical Optics 2 Stage 05 Performance Pass
+
+Status update, 2026-05-26: the migration safe window is closed. The old engine files, parity-only tests, and
+`benchmark:optics-2` script were removed after the new engine moved into `src/optics`.
 
 Generated: 2026-05-26T19:43:48.563Z
 
@@ -9,8 +12,8 @@ Generated: 2026-05-26T19:43:48.563Z
 - Branch: ronbuening/NewOpticsEngineProposal
 - Commit: 4e93a05
 - Sample count: 7; warmups per case: 2
-- Old engine: retained legacy builder/barrels under `src/optics/*Legacy.ts`
-- New engine: `src/optics-2` compatibility facades selected by stable `src/optics` imports
+- Old engine: retained builder/barrels under `src/optics/*Legacy.ts` at the time of this benchmark
+- New engine: then-current `src/optics-2` compatibility facades selected by stable `src/optics` imports
 - Counts are successful/clipped/failed trace or sampled-point counts accumulated across measured samples.
 
 ## Results
@@ -28,12 +31,13 @@ Generated: 2026-05-26T19:43:48.563Z
 
 ## Exit Assessment
 
-- Normal display rendering: accepted for this migration pass. The repeated on-axis microbenchmark remains slower by
+- Normal display rendering: accepted for this migration pass. The repeated on-axis microbenchmark remained slower by
   0.0046 ms/ray, and the full off-axis display fan delta is 0.026 ms;
-  both paths preserved trace/clipped/failed counts exactly. Follow-up target: reduce sequential adapter overhead by
-  moving legacy result projection closer to the engine-native trace result.
+  both paths preserved trace/clipped/failed counts exactly.
 - Nested analysis path faster: Distortion grid.
-- Regressions over 15%: Sequential on-axis display rays, Sequential off-axis display rays, Skew ray trace, Chromatic fan. These are accepted only for the post-flip safe window because absolute display deltas are below a frame-budget concern and counts match.
+- Regressions over 15%: Sequential on-axis display rays, Sequential off-axis display rays, Skew ray trace, Chromatic fan.
+  These were accepted for the post-flip safe window because absolute display deltas were below a frame-budget concern
+  and counts matched.
 
 ## Notes
 

@@ -1,10 +1,3 @@
-/**
- * Stable field/chief-ray geometry surface backed by Optics 2.
- *
- * The Stage 04 implementation is retained in `fieldGeometryLegacy.ts` for
- * rollback and parity debugging during the post-migration safe window.
- */
-
 export {
   chiefRayImageHeight2 as chiefRayImageHeight,
   chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
@@ -26,4 +19,4 @@ export {
   type FieldGeometryState2 as FieldGeometryState,
   type OffsetVectorFieldRay2 as OffsetVectorFieldRay,
   type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "../optics-2/compat.js";
+} from "./compat.js";

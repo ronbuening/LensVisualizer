@@ -7,8 +7,8 @@ implementation details.
 ## Import Boundaries
 
 - Prefer the barrel or focused module listed here before importing from a deeper file.
-- `src/optics-2/` is the authoritative optics implementation after Stage 05. App code should still prefer the stable
-  `src/optics/*` public paths; those files bridge to Optics 2 and preserve rollback coverage.
+- `src/optics/` is the authoritative optics implementation. App code should prefer the stable `src/optics/*` public
+  paths; deeper engine modules are for optics internals and focused tests.
 - Do not import from `src/optics/internal/` unless the work is inside the optics implementation or a targeted optics test.
 - Treat `src/generated/` as read-only build output. Regenerate metadata instead of editing it.
 - Lens data modules are auto-discovered through `import.meta.glob`; do not manually import individual lens files for
@@ -36,8 +36,8 @@ implementation details.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics/buildLens.ts` | `buildLens(data)` | Stable constructor backed by `buildLens2`; validates/defaults lens data, resolves labels/glass/state indices, computes optical constants, returns a frozen `RuntimeLens`, and registers an Optics 2 engine lens for prepared-state work. |
-| `src/optics/buildLensLegacy.ts` | `buildLensLegacy(data)` | Retained rollback/parity reference only. Do not use for new app features. |
+| `src/optics/buildLens.ts` | `buildLens(data)` | Stable constructor backed by `buildLens2`; validates/defaults lens data, resolves labels/glass/state indices, computes optical constants, returns a frozen `RuntimeLens`, and registers an engine lens for prepared-state work. |
+| `src/optics/runtimeLens.ts` | `paraxialTrace`, `realTraceToStop` | Runtime-lens construction internals and low-level first-order helpers used by focused optics tests. |
 | `src/optics/validateLensData.ts` | `validateLensData(data)` | Return validation error strings for untrusted lens data; callers decide whether to throw or show errors. |
 
 Use `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into pure
@@ -51,9 +51,8 @@ rather than relying on sequential partial tracing.
 
 ## Optics Engine
 
-`src/optics/optics.ts` is the compatibility barrel for the most commonly consumed pure optics helpers. It delegates to
-`src/optics-2` for migrated build/layout, field/chief-ray, trace, chromatic, and first-order helpers while preserving
-stable import paths.
+`src/optics/optics.ts` is the stable barrel for the most commonly consumed pure optics helpers. It preserves app-facing
+import paths over the engine implementation.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
@@ -66,13 +65,12 @@ stable import paths.
 | `src/optics/optics.ts` | `traceSkewRay`, `traceSkewRayVector`, `sampleOrthogonalPupilFan`, `sampleCircularPupil`, `computeChromaticSpread` | Skew-ray and pupil-sampling utilities for aberration and bokeh analysis. |
 | `src/optics/opticsFormat.ts` | `formatDist`, `formatPetzvalRadius` | Display formatting for optics values. |
 
-Optics 2 native modules are public only to engine work and focused tests:
+Engine-native modules are public only to engine work and focused tests:
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics-2/compat.ts` | `buildLens2`, `prepareLegacyState`, `engineLensFromRuntime`, `traceRay2`, `solveChiefRay2`, analysis `*2` facades | Compatibility adapters for stable `RuntimeLens` callers and parity/benchmark tests. |
-| `src/optics-2/state/prepareState.ts` | `prepareState(engineLens, focusT, zoomT, aberrationT)` | Compile current optical state for engine-native callers. Use caches when repeated state preparation is measured as overhead. |
-| `src/optics-2/testing/benchmarkHarness.ts` | `runOpticsBenchmarkSuite`, `OPTICS_2_REQUIRED_BENCHMARK_CASES` | Informational performance comparison harness used by Stage 05 and future engine regressions. |
+| `src/optics/compat.ts` | `buildLens2`, `prepareRuntimeState`, `engineLensFromRuntime`, `traceRay2`, `solveChiefRay2`, analysis `*2` facades | Runtime-lens adapters for stable `RuntimeLens` callers and engine-native prepared-state work. |
+| `src/optics/state/prepareState.ts` | `prepareState(engineLens, focusT, zoomT, aberrationT)` | Compile current optical state for engine-native callers. Use caches when repeated state preparation is measured as overhead. |
 
 Specialized optics modules are also public when work is in that domain:
 

@@ -38,7 +38,7 @@ describe("useLensComputation", () => {
     expect(r.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
   });
 
-  it("renders through the stable Optics 2 imports without changing hook props", () => {
+  it("renders through the stable optics imports without changing hook props", () => {
     const { result } = renderHook(() =>
       useLensComputation({
         lensKey: baseLensKey,

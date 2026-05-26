@@ -1,12 +1,3 @@
-/**
- * Compatibility barrel for the pure optics engine.
- *
- * Stable imports from `src/optics/optics.ts` now route through Optics 2 where
- * parity is complete. Legacy implementations remain in explicit `*Legacy`
- * modules and focused internals for rollback/debug comparison during the safe
- * window after Stage 05.
- */
-
 export { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 export {
   FOCUS_INFINITY_THRESHOLD,
@@ -31,7 +22,7 @@ export {
   epAtZoom2 as epAtZoom,
   fopenAtZoom2 as fopenAtZoom,
   thick2 as thick,
-} from "../optics-2/compat.js";
+} from "./compat.js";
 export {
   chiefRayImageHeight2 as chiefRayImageHeight,
   chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,
@@ -52,7 +43,7 @@ export {
   type FieldGeometryState2 as FieldGeometryState,
   type OffsetVectorFieldRay2 as OffsetVectorFieldRay,
   type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
-} from "../optics-2/compat.js";
+} from "./compat.js";
 export {
   traceRay2 as traceRay,
   traceRayChromatic2 as traceRayChromatic,
@@ -63,14 +54,14 @@ export {
   traceSkewRayVector2 as traceSkewRayVector,
   traceSkewRayVectorChromatic2 as traceSkewRayVectorChromatic,
   type VectorRayTraceInput2 as VectorRayTraceInput,
-} from "../optics-2/compat.js";
+} from "./compat.js";
 export {
   CHANNEL_WAVELENGTH_NM_2 as CHANNEL_WAVELENGTH_NM,
   CHROMATIC_CHANNELS_2 as CHROMATIC_CHANNELS,
   computeChromaticSpread2 as computeChromaticSpread,
   wavelengthNd2 as wavelengthNd,
   type SurfaceIndexResolver2 as SurfaceIndexResolver,
-} from "../optics-2/compat.js";
+} from "./compat.js";
 export {
   DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
   DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,

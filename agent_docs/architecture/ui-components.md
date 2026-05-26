@@ -72,9 +72,8 @@ panels slice.
 Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer is
 closed, preventing hidden analysis work during slider drag.
 
-Analysis tabs use stable `src/optics/*` imports only. The temporary Optics 2 selector has been removed; those stable
-imports now bridge to Optics 2 for migrated build/layout/trace/field/diagram behavior. Do not add a user-facing or
-developer-only old-vs-new selector back to analysis components.
+Analysis tabs use stable `src/optics/*` imports only. The temporary engine selector has been removed; do not add a
+user-facing or developer-only old-vs-new selector back to analysis components.
 
 `AnalysisDrawerContent` owns global analysis notices. It shows a folded-optics notice for `L.isFoldedOptics`, allows the
 mirror-safe aberrations path, and replaces complex tabs that still assume a sequential front-to-rear paraxial model with

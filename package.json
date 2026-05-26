@@ -14,7 +14,6 @@
     "preview": "vite preview",
     "test": "vitest run --testTimeout 30000",
     "test:coverage": "vitest run --coverage --testTimeout 30000",
-    "benchmark:optics-2": "node scripts/benchmark-optics-2.mjs",
     "generate:glass-reports": "vitest run --testTimeout 30000 unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan sixDigitGlassCodeScan sellmeierCoverageScan",
     "generate:mirror-reports": "vitest run --testTimeout 30000 mirrorFixtureAuthoringReport",
     "typecheck": "tsc --noEmit",

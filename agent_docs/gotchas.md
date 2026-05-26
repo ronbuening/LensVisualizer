@@ -1,10 +1,10 @@
 # Gotchas — LensVisualizer
 
 - Optical calculations use paraxial approximation (small-angle) — standard for patent data
-- `src/optics-2` is the authoritative engine. Stable `src/optics/*` files are compatibility bridges; explicit
-  `*Legacy.ts` files are rollback/parity references only and should not receive new feature work
-- Do not reintroduce an old-vs-new production or developer selector. If rollback is needed, revert the stable bridge
-  file to its legacy counterpart and keep the Optics 2 regression test that exposed the issue
+- `src/optics` is the authoritative engine. Stable `src/optics/*` files are the app-facing public surface; deeper
+  subdirectories are for engine internals and focused tests
+- Do not reintroduce an old-vs-new production or developer selector. If rollback is needed, use git history or a focused
+  current-engine fix with regression coverage
 - Exact surface tracing is the only trace path. The legacy vertex-plane tracer has been removed; do not
   reintroduce a per-lens rollout, a `traceMode` option, or trace-mode state in lens data files
 - Mirror and telescope prescriptions opt into folded behavior with `opticalPath`, `SurfaceData.interaction`, and
@@ -27,9 +27,9 @@
 - The chief-ray solver `solveChiefRay` in `fieldGeometry.ts` is memoized per-`RuntimeLens` via a `WeakMap` keyed on
   `(focusT, zoomT, aberrationT, fieldAngleDeg, mode, launchSurface)`. Cache invalidation relies on `RuntimeLens` being
   a fresh object per `buildLens()` call — never mutate `L` in place
-- Optics 2 compatibility trace adapters cache prepared state by `RuntimeLens`, `focusT`, `zoomT`, and `aberrationT`, and
-  cache shifted diagram `zPos` states by array identity. If adding a state-dependent optical input, include it in the
-  cache key or bypass the cache in the focused test
+- Runtime trace adapters cache prepared state by `RuntimeLens`, `focusT`, `zoomT`, and `aberrationT`, and cache shifted
+  diagram `zPos` states by array identity. If adding a state-dependent optical input, include it in the cache key or
+  bypass the cache in the focused test
 - `buildLens()` calls `validateLensData()` internally; malformed data throws descriptive errors with all issues listed
 - Theme colors use semantic names (`rayWarm`, `rayCool`, `apdPatentBg`) — update all 4 themes when changing colors
 - `vite.config.js` sets `base: '/'` — Cloudflare Pages serves the production site from the domain root

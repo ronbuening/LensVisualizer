@@ -22,7 +22,7 @@ import {
   FOCUS_INFINITY_THRESHOLD,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
-import { resolveVariableThickness } from "../../../src/optics-2/prescription/variables.js";
+import { resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
@@ -248,7 +248,7 @@ describe("traceRay — exact Snell", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { pts, clipped } = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     expect(clipped).toBe(false);
-    // pts: lead point + surface points, with Optics 2 also appending image-plane intercepts.
+    // pts: lead point + surface points, with the current tracer also appending image-plane intercepts.
     expect(pts.length).toBeGreaterThanOrEqual(L.N + 1);
   });
 
