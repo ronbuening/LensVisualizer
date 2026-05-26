@@ -1,3 +1,10 @@
+/**
+ * Chief-ray cache and diagnostics — memoizes solved field launches per RuntimeLens state.
+ *
+ * Stores both solve results and status counters so expensive field/chief-ray consumers share work
+ * and audit scripts can inspect fallback behavior.
+ */
+
 import type { RuntimeLens } from "../../types/optics.js";
 import { launchSurfaceForFieldDeg2 } from "./projection.js";
 import type { ChiefRaySolveResult2 } from "./chiefRay.js";

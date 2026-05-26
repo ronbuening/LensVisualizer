@@ -1,3 +1,9 @@
+/**
+ * Group-movement analysis adapter — prepared-state wrappers for inferred focus/zoom group profiles.
+ *
+ * Reuses RuntimeLens group movement logic from the prepared state's lens reference to avoid duplicate movement rules.
+ */
+
 import {
   computeGroupMovementProfile,
   firstAvailableGroupMovementMode,

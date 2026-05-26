@@ -1,3 +1,9 @@
+/**
+ * Trace result types — shared exact-trace hit, failure, option, and diagnostics contracts.
+ *
+ * Defines the data exchanged by sequential, generalized, ray-adapter, and folded-diagnostic trace modules.
+ */
+
 import type {
   FoldedPathClipReason,
   FoldedPathTraceDiagnostics,

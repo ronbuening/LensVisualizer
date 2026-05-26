@@ -1,3 +1,10 @@
+/**
+ * Prescription dispersion compiler — attaches per-surface spectral metadata to engine surfaces.
+ *
+ * Preserves catalog/line-index information from lens data so chromatic tracing can resolve n(lambda)
+ * without reparsing element records.
+ */
+
 import type { ElementData, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
 import { makeSurfaceDispersion } from "../dispersion.js";
 import type { SurfaceDispersion } from "../types.js";

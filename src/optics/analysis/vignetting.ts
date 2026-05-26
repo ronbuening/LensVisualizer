@@ -1,3 +1,9 @@
+/**
+ * Vignetting analysis adapter — prepared-state and RuntimeLens wrappers for relative illumination curves.
+ *
+ * Keeps vignetting calculations current-state aware while preserving the public compatibility exports.
+ */
+
 import type { FieldGeometryState } from "../optics.js";
 import { computeVignettingCurve } from "../vignetteAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";

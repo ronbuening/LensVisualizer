@@ -1,3 +1,10 @@
+/**
+ * Chief-ray and field geometry solver — projection-aware launch, pupil, and image-height helpers.
+ *
+ * Owns the state-aware bridge between RuntimeLens controls and exact tracing, including fisheye
+ * bounding-sphere launches and fallback diagnostics.
+ */
+
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
@@ -56,6 +63,18 @@ export interface ChiefRaySolveResult2 {
 
 export type { FieldGeometryState2, OffsetVectorFieldRay2, VectorFieldRayLaunch2 };
 
+/**
+ * Compute current-state field geometry from paraxial and real stop traces.
+ *
+ * The returned ratios express how marginal and chief rays reach the stop and are
+ * used to seed chief-ray solving for the current focus/zoom/aberration state.
+ *
+ * @param focusT - normalized focus position, 0 at infinity
+ * @param zoomT - normalized zoom position, 0 at wide
+ * @param L - runtime lens prescription
+ * @param aberrationT - normalized aberration control position
+ * @returns field half-angle and entrance-pupil ratios for this state
+ */
 export function computeFieldGeometryAtState2(
   focusT: number,
   zoomT: number,
@@ -97,6 +116,8 @@ export function computeFieldGeometryAtState2(
     return { halfFieldDeg, yRatio, b, epRatio };
   }
 
+  /* The paraxial aperture estimate can overstate the real field. Bisect it down
+   * until an exact chief ray reaches the image side without clipping. */
   const testChief = (deg: number): boolean => {
     const launch = projectionLaunchSlopeForField2(L, deg);
     if (launch.status === "out-of-domain") return false;
@@ -121,6 +142,15 @@ export function computeFieldGeometryAtState2(
   return { halfFieldDeg, yRatio, b, epRatio };
 }
 
+/**
+ * Limit field geometry to the declared image format when the traced edge exceeds it.
+ *
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param aberrationT - normalized aberration control position
+ * @returns field geometry capped to the active format diagonal when possible
+ */
 export function computeAnalysisFieldGeometryAtState2(
   focusT: number,
   zoomT: number,
@@ -160,6 +190,18 @@ export function computeAnalysisFieldGeometryAtState2(
   return { ...geometry, halfFieldDeg: Math.min(geometry.halfFieldDeg, Math.max(0, formatHalfFieldDeg)) };
 }
 
+/**
+ * Trace the chief ray for a meridional field angle using current-state geometry.
+ *
+ * @param fieldAngleDeg - signed field angle in degrees
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns runtime ray trace result for the chief ray
+ */
 export function traceChiefRayAtAngle2(
   fieldAngleDeg: number,
   zPos: number[],
@@ -176,6 +218,16 @@ export function traceChiefRayAtAngle2(
   return traceRay2(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
 }
 
+/**
+ * Trace a paraxial reference ray through the current prepared state.
+ *
+ * @param y0 - launch height in mm
+ * @param u0 - paraxial launch slope
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @returns paraxial image-side height and slope before final transfer
+ */
 export function traceParaxialRay2(
   y0: number,
   u0: number,
@@ -188,6 +240,18 @@ export function traceParaxialRay2(
   return { y: result.y, u: result.u };
 }
 
+/**
+ * Compute chief-ray image height with the scalar slope-launch solver.
+ *
+ * @param fieldAngleDeg - signed field angle in degrees
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns signed image height in mm, or NaN when tracing fails
+ */
 export function chiefRayImageHeight2(
   fieldAngleDeg: number,
   zPos: number[],
@@ -202,6 +266,20 @@ export function chiefRayImageHeight2(
   return trace.y + trace.u * lastThicknessAtState(focusT, zoomT, L, aberrationT);
 }
 
+/**
+ * Solve the launch height that makes a chief ray pass through the stop center.
+ *
+ * Results are cached per RuntimeLens and state because distortion, vignetting, and
+ * off-axis analyses repeatedly ask for the same field solves.
+ *
+ * @param fieldAngleDeg - signed field angle in degrees
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns chief-ray solve result including fallback status and launch surface
+ */
 export function solveChiefRay2(
   fieldAngleDeg: number,
   focusT: number,
@@ -220,6 +298,20 @@ export function solveChiefRay2(
   return result;
 }
 
+/**
+ * Solve a chief ray by sliding a vector launch across the entrance-pupil tangent.
+ *
+ * This handles fisheye/past-cap fields where a scalar object-plane slope would hit
+ * tan(theta)'s singularity before the physical field edge.
+ *
+ * @param fieldAngleDeg - signed meridional field angle in degrees
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional current-state field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns vector chief-ray solve result with projected yLaunch for legacy callers
+ */
 export function solveChiefRayBoundingSphere2(
   fieldAngleDeg: number,
   focusT: number,
@@ -248,6 +340,8 @@ export function solveChiefRayBoundingSphere2(
   const stopIndex = state.lens.stop.surfaceIndex;
   const launchBoundT = baseLaunch.launchBoundT;
 
+  /* yLaunch remains a legacy scalar at z=0. Vector callers should consume
+   * vectorLaunch directly; projection keeps logs and old displays comparable. */
   const projectYLaunchToZ0 = (yEP: number): number => {
     if (Math.abs(direction[2]) < 1e-12) return NaN;
     const oy = baseOrigin[1] + yEP * perpY;
@@ -286,6 +380,8 @@ export function solveChiefRayBoundingSphere2(
     };
   }
 
+  /* The solve variable yEP moves the launch origin along the field-radial pupil
+   * axis. A sign change in stop height brackets the true chief ray. */
   const bracketHalf = Math.max(0.5 * Math.abs(geom.epRatio * sinTheta), 0.5);
   let bracket: { lo: number; hi: number; yLo: number } | null = null;
   let nearestYEP = paraxialYEP;
@@ -393,6 +489,18 @@ export function solveChiefRayBoundingSphere2(
   };
 }
 
+/**
+ * Compute chief-ray image height using scalar or vector launch as required.
+ *
+ * @param fieldAngleDeg - signed field angle in degrees
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns signed image height in mm, or NaN when the trace clips
+ */
 export function chiefRayImageHeightAccurate2(
   fieldAngleDeg: number,
   zPos: number[],
@@ -415,6 +523,18 @@ export function chiefRayImageHeightAccurate2(
   return trace.y + trace.u * lastThicknessAtState(focusT, zoomT, L, aberrationT);
 }
 
+/**
+ * Invert traced image height to field angle using the accurate chief-ray path.
+ *
+ * @param targetImageHeight - unsigned or signed image height in mm
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns field angle in degrees, or null when no monotonic bracket is found
+ */
 export function solveFieldAngleForImageHeightAccurate2(
   targetImageHeight: number,
   zPos: number[],
@@ -471,6 +591,17 @@ export function solveFieldAngleForImageHeightAccurate2(
   return (loAngle + hiAngle) / 2;
 }
 
+/**
+ * Invert image height to field angle using the scalar chief-ray approximation.
+ *
+ * @param targetImageHeight - unsigned or signed image height in mm
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @returns field angle in degrees, or null when the target is outside the field
+ */
 export function solveFieldAngleForImageHeight2(
   targetImageHeight: number,
   zPos: number[],
@@ -500,6 +631,17 @@ export function solveFieldAngleForImageHeight2(
   return (lo + hi) / 2;
 }
 
+/**
+ * Compute entrance-pupil diameter and ratios for the current state.
+ *
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param geometry - optional precomputed field geometry
+ * @param aberrationT - normalized aberration control position
+ * @returns entrance-pupil state used by UI readouts and analysis
+ */
 export function entrancePupilAtState2(
   stopSD: number,
   focusT: number,
@@ -513,6 +655,15 @@ export function entrancePupilAtState2(
   return { epSD, yRatio: geom.yRatio, b: geom.b, epRatio: geom.epRatio };
 }
 
+/**
+ * Estimate focus-dependent conjugate correction from exact real-ray sensitivity.
+ *
+ * @param focusT - normalized focus position
+ * @param zoomT - normalized zoom position
+ * @param L - runtime lens prescription
+ * @param aberrationT - normalized aberration control position
+ * @returns relative conjugate correction, zero at infinity focus
+ */
 export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   if (focusT < FOCUS_INFINITY_THRESHOLD) return 0;
   const du = 1e-5;
@@ -557,6 +708,8 @@ function computeChiefRaySolve2(
     return Number.isFinite(result.y) ? result.y : null;
   };
 
+  /* Object-plane solves vary launch height until the exact stop trace crosses
+   * y=0. The paraxial chief ray is only the seed, not the final answer. */
   const bracketHalf = Math.max(Math.abs(paraxialYChief) * 0.5, 0.5);
   let lo = paraxialYChief - bracketHalf;
   let hi = paraxialYChief + bracketHalf;

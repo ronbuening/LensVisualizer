@@ -1,3 +1,10 @@
+/**
+ * Diagram element-shape builder — converts prepared surfaces into SVG-ready glass and coating outlines.
+ *
+ * Uses current-state surface positions and folded mirror metadata to describe rendered element spans without
+ * affecting physical trace behavior.
+ */
+
 import type { AsphPathData, ElementShape, ElementSpan, SurfaceAccentPathData } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import {

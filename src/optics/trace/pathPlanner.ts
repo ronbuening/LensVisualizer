@@ -1,3 +1,10 @@
+/**
+ * Trace path planning — surface and image-plane intersection selection for exact tracing.
+ *
+ * Supplies bounded hit searches, nearest-surface selection, loop guards, and fallback geometry
+ * used by sequential and generalized paths.
+ */
+
 import type { FoldedPathAutoCandidateSkip } from "../../types/optics.js";
 import { intersectSurfaceProfile, type SurfaceIntersectionResult } from "../math/intersection.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
@@ -16,6 +23,16 @@ export interface ImagePlaneIntersection {
   t: number;
 }
 
+/**
+ * Compute the bounded search length for the next sequential surface.
+ *
+ * @param state - prepared optical state
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param launchBoundT - optional caller-provided bound for grazing/vector launches
+ * @returns positive parametric maxT for intersection search, or 0 when unbounded search is unsafe
+ */
 export function sequentialSurfaceMaxT(
   state: PreparedOpticalState,
   surfaceIndex: number,
@@ -37,6 +54,19 @@ export function sequentialSurfaceMaxT(
   return launchBoundT && launchBoundT > 0 ? launchBoundT : 0;
 }
 
+/**
+ * Compute a bounded search length for an explicitly targeted surface.
+ *
+ * Tilted planes and grazing vector launches cannot rely on z projection alone,
+ * so the fallback bound includes total lens extent and clear aperture margins.
+ *
+ * @param state - prepared optical state
+ * @param surfaceIndex - surface being targeted
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param launchBoundT - optional caller-provided vector-launch bound
+ * @returns positive parametric maxT for the surface intersection search
+ */
 export function targetedSurfaceMaxT(
   state: PreparedOpticalState,
   surfaceIndex: number,
@@ -60,6 +90,15 @@ export function targetedSurfaceMaxT(
   return Math.max(10, extent + 4 * maxSD + surfaceSag);
 }
 
+/**
+ * Intersect the current ray with a prepared surface profile.
+ *
+ * @param ray - current ray origin and normalized direction
+ * @param state - prepared optical state
+ * @param surfaceIndex - surface index to test
+ * @param options - search bounds and current refractive index
+ * @returns surface intersection result with typed failure reason
+ */
 export function intersectStateSurface(
   ray: Ray3,
   state: PreparedOpticalState,
@@ -74,6 +113,14 @@ export function intersectStateSurface(
   return intersectSurfaceProfile(ray, surface.profile, surface.z, { ...options, directionNormalized: true });
 }
 
+/**
+ * Intersect a ray with the current image plane.
+ *
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param state - prepared optical state carrying the image plane
+ * @returns image-plane hit, or null when the ray is parallel/behind the origin
+ */
 export function intersectImagePlane(
   origin: Vec3,
   direction: Vec3,
@@ -95,6 +142,22 @@ export function intersectImagePlane(
   };
 }
 
+/**
+ * Find the nearest valid generalized-trace surface hit.
+ *
+ * Auto-mode folded tracing scans all candidate surfaces, skipping self-hits,
+ * inactive annular zones, and passive same-index refractive surfaces.
+ *
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param state - prepared optical state
+ * @param launchBoundT - optional bound for grazing/vector launches
+ * @param refractiveIndex - current medium index
+ * @param indexAtSurface - optional chromatic index resolver
+ * @param previousSurfaceIndex - last hit surface, used to suppress self-hits
+ * @param allowedSurfaceIndexes - optional explicit candidate set
+ * @returns nearest valid candidate and diagnostics for skipped candidates
+ */
 export function findNearestGeneralizedSurfaceHit(
   origin: Vec3,
   direction: Vec3,
@@ -154,10 +217,25 @@ export function findNearestGeneralizedSurfaceHit(
   return { surfaceIndex: best?.surfaceIndex ?? null, hit: best?.hit ?? null, skippedCandidates };
 }
 
+/**
+ * Compute a tolerance for repeated-hit suppression.
+ *
+ * @param t - parametric hit distance
+ * @returns absolute tolerance scaled to the current ray step
+ */
 export function generalizedHitTolerance(t: number): number {
   return Math.max(1e-7, Math.abs(t) * 1e-9);
 }
 
+/**
+ * Bucket ray state for generalized-trace loop detection.
+ *
+ * @param surfaceIndex - current surface index
+ * @param point - current hit point
+ * @param direction - outgoing direction
+ * @param n - current refractive index
+ * @returns stable coarse key for repeated-state detection
+ */
 export function loopStateKey(surfaceIndex: number, point: Vec3, direction: Vec3, n: number): string {
   const bucket = (value: number, scale: number) => Math.round(value / scale);
   return [
@@ -172,6 +250,16 @@ export function loopStateKey(surfaceIndex: number, point: Vec3, direction: Vec3,
   ].join(":");
 }
 
+/**
+ * Build best-effort hit geometry when a diagnostic trace reaches a target without a solved hit.
+ *
+ * @param origin - current ray origin
+ * @param direction - normalized ray direction
+ * @param state - prepared optical state
+ * @param surfaceIndex - target surface index
+ * @param maxT - search bound used for sampling
+ * @returns approximate surface point and normal, or null when no finite point is available
+ */
 export function fallbackSurfacePoint(
   origin: Vec3,
   direction: Vec3,

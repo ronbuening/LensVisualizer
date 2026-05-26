@@ -1,3 +1,10 @@
+/**
+ * Sequential exact tracer — left-to-right real-ray traversal for ordinary refractive lenses.
+ *
+ * Uses prepared state and surface profiles for the default optical path while delegating
+ * folded systems to the generalized tracer.
+ */
+
 import type { FoldedPathClipEvent } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
@@ -14,6 +21,17 @@ import {
   resolveReturnVertexIndex,
 } from "./utils.js";
 
+/**
+ * Trace a ray through ordinary sequential surface order.
+ *
+ * Each surface hit is solved against its exact sag profile, then refracted with
+ * vector Snell's law. Folded systems use generalizedTrace instead.
+ *
+ * @param state - prepared optical state
+ * @param input - ray origin and direction
+ * @param options - stop, aperture, ghost, and chromatic trace controls
+ * @returns engine trace result with hits, clipping, and terminal ray state
+ */
 export function traceSequential(
   state: PreparedOpticalState,
   input: Ray3,
@@ -118,6 +136,8 @@ export function traceSequential(
       break;
     }
 
+    /* Chromatic traces replace the physical d-line nd with channel-specific
+     * n(lambda), while air stays exactly 1. */
     const nn = indexAtSurface ? indexAtSurface(i, surface.nd) : surface.nd === 1 ? 1 : surface.nd;
     let stopAfterHit = false;
     if (nn !== n) {

@@ -1,3 +1,9 @@
+/**
+ * First-order system matrix — paraxial ABCD accumulation for prepared optical states.
+ *
+ * Provides the linear reference model used by cardinal elements and pupil/f-number calculations.
+ */
+
 import type { PreparedOpticalState } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 

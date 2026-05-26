@@ -1,3 +1,9 @@
+/**
+ * Effective f-number helper — current-state focal length divided by entrance-pupil diameter.
+ *
+ * Keeps f-number reporting consistent with focus breathing and zoom interpolation.
+ */
+
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { eflAtFocus2 } from "./focusBreathing.js";

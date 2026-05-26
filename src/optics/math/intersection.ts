@@ -1,3 +1,10 @@
+/**
+ * Surface-profile intersection solver — finds exact ray hits on sag and tilted-plane surfaces.
+ *
+ * Combines bracketed root search with Newton refinement so trace modules can distinguish
+ * aperture misses from true intersection failures.
+ */
+
 import {
   INTERSECTION_BRACKET_SAMPLES,
   INTERSECTION_MAX_ITERATIONS,
@@ -53,6 +60,19 @@ interface SurfaceEvaluation {
   derivative: number;
 }
 
+/**
+ * Intersect a normalized ray with a surface profile at a vertex plane.
+ *
+ * Flat and tilted planes solve analytically. Curved profiles solve
+ * f(t) = ray.z(t) - surface.z(ray.x(t), ray.y(t)) with a bracketed
+ * Newton iteration so grazing roots remain bounded.
+ *
+ * @param ray - origin and direction in engine coordinates
+ * @param profile - surface sag/normal evaluator
+ * @param vertexZ - axial vertex position in mm
+ * @param options - search bounds, tolerances, and optional optical-path index
+ * @returns success with hit geometry or a typed failure reason
+ */
 export function intersectSurfaceProfile(
   ray: Ray3,
   profile: SurfaceProfile,
@@ -83,6 +103,9 @@ export function intersectSurfaceProfile(
   if (bracket.kind === "failure") return failure(bracket.failureReason, bracket.residual, bracket.iterations);
 
   let { lo, hi, fLo } = bracket;
+  /* Seed Newton from the vertex-plane projection when possible; curved or tilted
+   * profiles can move the real hit away from that plane, so the seed stays clamped
+   * inside the bracket. */
   const zProjectedSeed = Math.abs(direction[2]) > VECTOR_EPSILON ? (vertexZ - ray.origin[2]) / direction[2] : NaN;
   let t = isFinite(zProjectedSeed) && zProjectedSeed > lo && zProjectedSeed < hi ? zProjectedSeed : (lo + hi) / 2;
   t = clamp(t, lo, hi);
@@ -101,6 +124,8 @@ export function intersectSurfaceProfile(
       hi = t;
     }
 
+    /* Hybrid Newton/bisection: Newton is fast near the root, while bisection
+     * keeps the solve inside the sign-changing bracket for steep rim hits. */
     const newtonT = t - current.value / current.derivative;
     t = isFinite(newtonT) && newtonT > lo && newtonT < hi ? newtonT : (lo + hi) / 2;
   }
@@ -159,6 +184,8 @@ function evaluateProfile(
   const point = addRay(origin, direction, t);
   const radius = Math.hypot(point[0], point[1]);
   const slope = profile.slope(radius);
+  /* Chain rule for f(t) = z_ray(t) - z_surface(r(t)):
+   * df/dt = dz/dt - (dz/dr) * dr/dt. */
   const drdt = radius > VECTOR_EPSILON ? (point[0] * direction[0] + point[1] * direction[1]) / radius : 0;
   const value = point[2] - profile.pointAt(vertexZ, point[0], point[1])[2];
   const derivative = direction[2] - slope * drdt;

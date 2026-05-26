@@ -1,3 +1,10 @@
+/**
+ * Off-axis aberration tracing — shared chief-ray-relative bundle construction and focus metrics.
+ *
+ * Supplies tangential, sagittal, circular, and state-aware field geometry helpers used by coma, bokeh,
+ * field-curvature, distortion, and vignetting analysis.
+ */
+
 import {
   bAtZoom,
   computeFieldGeometryAtState,

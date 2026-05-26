@@ -1,3 +1,10 @@
+/**
+ * Prescription label utilities — resolve authored surface labels into stable numeric indices.
+ *
+ * Used during lens normalization so optical paths, stops, aspheres, and annotations can reference
+ * human-readable labels without carrying string lookups into hot trace loops.
+ */
+
 import type { SurfaceData } from "../../types/optics.js";
 
 export class Optics2LensNormalizationError extends Error {

@@ -1,9 +1,26 @@
+/**
+ * Surface profile factories — convert normalized surface data into geometric sag profiles.
+ *
+ * Exact tracing uses these profiles to evaluate spherical, aspheric, flat, and tilted mirror
+ * planes with a common point/normal/slope interface.
+ */
+
 import { FLAT_R_THRESHOLD, VECTOR_EPSILON } from "../constants.js";
 import type { SurfaceProfile, Vec3 } from "../types.js";
 import type { AsphericCoefficients, SurfaceData } from "../../types/optics.js";
 import { conicPolySag, sag, sagSlopeRaw } from "../internal/surfaceMath.js";
 import { normalize } from "./vector.js";
 
+/**
+ * Create the geometric profile used by exact tracing for one prepared surface.
+ *
+ * Tilted interaction normals take precedence because folded flat mirrors are
+ * planes even when their authored radius is flat-like.
+ *
+ * @param surface - authored radius and optional interaction normal
+ * @param asphere - optional aspheric coefficients for this surface
+ * @returns immutable profile with sag, slope, normal, and point evaluators
+ */
 export function createSurfaceProfile(
   surface: Pick<SurfaceData, "R" | "interaction">,
   asphere?: AsphericCoefficients,
@@ -20,6 +37,11 @@ export function createSurfaceProfile(
   return createSphericalProfile(surface.R);
 }
 
+/**
+ * Create a z-normal flat profile.
+ *
+ * @returns profile with zero sag and a +z surface normal
+ */
 export function createFlatProfile(): SurfaceProfile {
   return Object.freeze({
     kind: "flat" as const,
@@ -31,6 +53,12 @@ export function createFlatProfile(): SurfaceProfile {
   });
 }
 
+/**
+ * Create a spherical surface profile.
+ *
+ * @param R - signed radius of curvature in mm
+ * @returns sag profile using the shared spherical sag equation
+ */
 export function createSphericalProfile(R: number): SurfaceProfile {
   return Object.freeze({
     kind: "spherical" as const,
@@ -42,6 +70,13 @@ export function createSphericalProfile(R: number): SurfaceProfile {
   });
 }
 
+/**
+ * Create a conic-polynomial aspheric surface profile.
+ *
+ * @param R - signed base radius in mm
+ * @param asphere - conic constant and even-order polynomial coefficients
+ * @returns sag profile with finite-radius limits derived from the conic domain
+ */
 export function createAsphericProfile(R: number, asphere: AsphericCoefficients): SurfaceProfile {
   return Object.freeze({
     kind: "aspheric" as const,
@@ -54,6 +89,15 @@ export function createAsphericProfile(R: number, asphere: AsphericCoefficients):
   });
 }
 
+/**
+ * Create a tilted meridional plane profile for fold mirrors and image-plane-like surfaces.
+ *
+ * The engine stores tilted normals as y/z pairs because current folded fixtures
+ * tilt only in the meridional section drawn by the SVG diagram.
+ *
+ * @param normal - meridional plane normal components
+ * @returns plane profile whose sag is solved from n·(p - p0) = 0
+ */
 export function createTiltedPlaneProfile(normal: { z: number; y: number }): SurfaceProfile {
   const unit = normalize([0, normal.y, normal.z]);
   const planeNormal = unit ?? ([0, 0, 1] as Vec3);

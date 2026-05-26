@@ -1,3 +1,10 @@
+/**
+ * Exact surface stack tracer — RuntimeLens-shaped real-ray tracing for sequential and folded systems.
+ *
+ * Traces vector or slope launches through refractive, reflective, blocking, annular, and arbitrary
+ * image-plane interactions; this is the only runtime real-ray path.
+ */
+
 import type {
   AsphericCoefficients,
   FoldedPathAutoCandidateSkip,

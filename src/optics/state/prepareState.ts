@@ -1,3 +1,10 @@
+/**
+ * Prepared-state builder — applies focus, zoom, and aberration controls to engine surfaces.
+ *
+ * Produces the state object consumed by trace, field, diagram, and first-order modules while
+ * validating state-dependent thicknesses before tracing.
+ */
+
 import type { VarRange } from "../../types/optics.js";
 import { formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";

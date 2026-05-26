@@ -1,3 +1,9 @@
+/**
+ * Runtime ray-result adapters — convert engine trace results to legacy diagram-friendly shapes.
+ *
+ * Preserves y/u and x/y/ux/uy result contracts while exact tracing records richer hit diagnostics internally.
+ */
+
 import type { RayTraceResult } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
 import type { EngineTraceResult } from "./types.js";

@@ -1,3 +1,9 @@
+/**
+ * Dispersion quality summaries — reports catalog and approximation coverage for a lens state.
+ *
+ * Used by chromatic UI and reports to explain whether a lens is using Sellmeier, line-index, or Abbe fallback data.
+ */
+
 import type { DispersionQuality } from "../dispersion.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";

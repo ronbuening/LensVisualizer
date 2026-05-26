@@ -1,3 +1,9 @@
+/**
+ * Diagram coordinate transforms — maps optical millimetres into SVG viewport coordinates.
+ *
+ * Defines the shared z/y to x/y conversion used by element outlines, traces, stops, and overlays.
+ */
+
 import type { CoordinateTransforms } from "../../types/optics.js";
 
 interface CoordTransformParams {

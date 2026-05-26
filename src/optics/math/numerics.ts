@@ -1,3 +1,10 @@
+/**
+ * Numeric utility helpers — finite checks, clamping, interpolation, and cache formatting.
+ *
+ * Shared by state preparation, projection, and trace code where tiny representation differences
+ * can otherwise fragment memoization keys.
+ */
+
 export function isFiniteNumber(value: number): boolean {
   return Number.isFinite(value);
 }

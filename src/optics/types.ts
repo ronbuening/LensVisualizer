@@ -1,3 +1,10 @@
+/**
+ * Engine-native optics types — compiled lenses, surfaces, states, vectors, and path metadata.
+ *
+ * These types sit below RuntimeLens and describe the normalized structures consumed by exact
+ * tracing, prepared-state caches, field launch, and first-order analysis.
+ */
+
 import type { DispersionQuality } from "./dispersion.js";
 import type { GlassEntry } from "./glassCatalog.js";
 import type {

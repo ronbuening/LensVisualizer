@@ -1,3 +1,10 @@
+/**
+ * Engine analysis job registry — grouped synchronous analysis entry points for UI dispatch.
+ *
+ * Collects RuntimeLens and PreparedOpticalState helpers under stable keys so the
+ * call surface can later move to workers.
+ */
+
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";

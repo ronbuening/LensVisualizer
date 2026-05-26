@@ -1,3 +1,10 @@
+/**
+ * Lens-group movement inference — pure focus/zoom group profile calculations.
+ *
+ * Uses runtime lens variables and element spans to infer how groups move relative to the fixed
+ * image plane for comparison overlays and analysis displays.
+ */
+
 import { GROUP_MOVEMENT_MODES, type GroupMovementMode } from "../types/groupMovement.js";
 import type { RuntimeLens, ResolvedAnnotation, VarRange } from "../types/optics.js";
 import { doLayout } from "./optics.js";

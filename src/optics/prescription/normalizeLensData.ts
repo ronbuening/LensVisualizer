@@ -1,3 +1,10 @@
+/**
+ * Lens prescription normalization — builds EngineLens objects from authored or runtime data.
+ *
+ * Consolidates defaults, labels, aspheres, interactions, groups, and dispersion descriptors before
+ * state preparation and exact tracing consume the lens.
+ */
+
 import buildRuntimeLens from "../runtimeLens.js";
 import LENS_DEFAULTS from "../../lens-data/defaults.js";
 import type { LensData, RuntimeLens, SurfaceData } from "../../types/optics.js";

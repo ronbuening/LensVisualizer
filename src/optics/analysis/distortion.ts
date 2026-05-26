@@ -1,3 +1,9 @@
+/**
+ * Distortion analysis adapter — prepared-state and RuntimeLens wrappers for distortion sampling.
+ *
+ * Lets engine-native callers reuse prepared state while preserving the legacy RuntimeLens function signatures.
+ */
+
 import { computeDistortionCurve, computeDistortionFieldGrid } from "../distortionAnalysis.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";

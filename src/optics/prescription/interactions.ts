@@ -1,3 +1,9 @@
+/**
+ * Surface interaction compiler — normalizes mirror, blocker, refraction, and image-plane metadata.
+ *
+ * Translates lens-data folded-path fields into engine Vec3/Plane3 structures used by generalized tracing.
+ */
+
 import type { CompiledSurfaceInteraction, Plane3, Vec3 } from "../types.js";
 import type { ImagePlaneData, ResolvedImagePlane, SurfaceInteraction } from "../../types/optics.js";
 import { normalize } from "../math/vector.js";

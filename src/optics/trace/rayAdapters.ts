@@ -1,3 +1,9 @@
+/**
+ * Trace ray adapters — public v2 meridional, skew, vector, and chromatic trace wrappers.
+ *
+ * Converts RuntimeLens/state inputs to engine trace calls and returns legacy-compatible ray result shapes for callers.
+ */
+
 import type { ChromaticChannel, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import { directionFromMeridionalSlope, directionFromSkewSlope } from "../math/vector.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";

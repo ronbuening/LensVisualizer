@@ -1,3 +1,9 @@
+/**
+ * Folded-path display labels — derives human-readable hit order summaries for mirror systems.
+ *
+ * Bridges generalized trace diagnostics to UI copy without changing the physical trace model.
+ */
+
 import type { RuntimeLens } from "../types/optics.js";
 import { traceRay } from "./optics.js";
 import { obstructionAwareRayFractionsForDensity } from "./raySampling.js";

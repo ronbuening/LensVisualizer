@@ -1,3 +1,9 @@
+/**
+ * Optics formatting helpers — small presentation strings for distance and Petzval values.
+ *
+ * Kept in the pure optics layer so analysis displays share unit conventions without importing React components.
+ */
+
 import type { RuntimeLens } from "../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "./layout.js";
 

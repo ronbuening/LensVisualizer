@@ -1,3 +1,10 @@
+/**
+ * Field launch helpers — constructs bounding-sphere vector rays for wide-field tracing.
+ *
+ * Used by chief-ray, distortion, vignetting, and diagram code when slope launches cannot represent
+ * fisheye or past-cap fields safely.
+ */
+
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
 import { boundingSphereLaunchVector2 } from "./projection.js";
@@ -28,6 +35,13 @@ export interface OffsetVectorFieldRay2 {
   launchBoundT: number;
 }
 
+/**
+ * Choose a sphere large enough to start vector field rays outside the lens envelope.
+ *
+ * @param L - runtime lens prescription
+ * @param chiefB - current chief-ray/pupil axial reference in mm
+ * @returns launch radius in mm, including margin beyond glass and stop geometry
+ */
 export function computeBoundingSphereLaunchRadiusMm2(L: RuntimeLens, chiefB: number): number {
   let totalThickness = 0;
   let maxSD = 0;
@@ -38,6 +52,16 @@ export function computeBoundingSphereLaunchRadiusMm2(L: RuntimeLens, chiefB: num
   return Math.max(2 * maxSD, totalThickness + Math.abs(chiefB) + 5);
 }
 
+/**
+ * Build a vector launch for a 2D field angle using the bounding-sphere convention.
+ *
+ * @param L - runtime lens prescription
+ * @param geometry - current field geometry and entrance-pupil reference
+ * @param fieldAngleXDeg - sagittal field angle in degrees
+ * @param fieldAngleYDeg - meridional field angle in degrees
+ * @param aberrationT - reserved for callers whose current state also varies by aberration control
+ * @returns vector launch metadata, or null when the launch is outside the numeric domain
+ */
 export function computeBoundingSphereVectorFieldLaunch2(
   L: RuntimeLens,
   geometry: FieldGeometryState2,
@@ -65,6 +89,15 @@ export function computeBoundingSphereVectorFieldLaunch2(
   };
 }
 
+/**
+ * Offset a vector field ray across sagittal/radial pupil coordinates.
+ *
+ * @param launch - base chief-like vector field launch
+ * @param sagittalOffsetMm - offset perpendicular to the field meridian in mm
+ * @param radialOffsetMm - offset inside the field meridian in mm
+ * @param radialDirectionDelta - optional direction perturbation along the radial pupil axis
+ * @returns origin/direction pair ready for exact vector tracing
+ */
 export function offsetVectorFieldRay2(
   launch: VectorFieldRayLaunch2,
   sagittalOffsetMm: number,

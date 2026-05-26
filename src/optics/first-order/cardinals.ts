@@ -1,3 +1,9 @@
+/**
+ * Cardinal element solver — first-order focal, principal, nodal, and distance calculations.
+ *
+ * Uses the prepared system matrix and current image-plane geometry to feed the diagram's axial first-order overlays.
+ */
+
 import type { RuntimeLens } from "../../types/optics.js";
 import { traceParaxialSurfaces2, transferParaxialRay2, type ParaxialState } from "../math/paraxial.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";

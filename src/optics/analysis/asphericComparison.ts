@@ -1,3 +1,9 @@
+/**
+ * Aspheric comparison analysis adapter — v2-named departure, best-fit sphere, and click helpers.
+ *
+ * Mirrors the public asphericComparison utilities for callers that import through the engine analysis namespace.
+ */
+
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../constants.js";
 import { createAsphericProfile, createSphericalProfile } from "../math/surfaceProfile.js";

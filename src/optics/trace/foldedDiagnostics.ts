@@ -1,3 +1,9 @@
+/**
+ * Folded trace diagnostics — converts trace clip and failure state into structured messages.
+ *
+ * Gives mirror and annular systems explainable trace failures without coupling diagnostics to rendering components.
+ */
+
 import type { FoldedPathClipEvent, FoldedPathClipReason, FoldedPathTraceDiagnostics } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { TraceDiagnosticsInput } from "./types.js";

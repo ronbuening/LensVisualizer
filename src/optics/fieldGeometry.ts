@@ -1,3 +1,9 @@
+/**
+ * Field-geometry compatibility barrel — stable public exports for field/chief-ray helpers.
+ *
+ * Keeps legacy imports working while the implementation lives under optics/field.
+ */
+
 export {
   chiefRayImageHeight2 as chiefRayImageHeight,
   chiefRayImageHeightAccurate2 as chiefRayImageHeightAccurate,

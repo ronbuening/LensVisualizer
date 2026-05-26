@@ -1,3 +1,9 @@
+/**
+ * Analysis job facade — stable synchronous analysis registry for RuntimeLens callers.
+ *
+ * Re-exports the engine job table while leaving room for future worker-backed execution behind the same API.
+ */
+
 import { computeDistortionCurve, computeDistortionFieldGrid } from "./distortionAnalysis.js";
 import { computeVignettingCurve } from "./vignetteAnalysis.js";
 import type { FieldGeometryState } from "./optics.js";

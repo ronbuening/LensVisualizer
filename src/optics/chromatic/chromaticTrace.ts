@@ -1,3 +1,9 @@
+/**
+ * Chromatic trace adapter — exact tracing with wavelength-specific refractive indices.
+ *
+ * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
+ */
+
 import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { Ray3, PreparedOpticalState } from "../types.js";
 import {

@@ -1,3 +1,10 @@
+/**
+ * Diagram render diagnostics — classifies element visibility and surface geometry warnings.
+ *
+ * Gives the UI structured reasons for hidden or clipped elements without mixing presentation state into the
+ * optics engine.
+ */
+
 import type {
   ElementRenderDiagnostics,
   ElementRenderTrimCause,

@@ -1,3 +1,9 @@
+/**
+ * Focus-breathing helper — current-state effective focal length for focus/zoom positions.
+ *
+ * Exposes the first-order EFL calculation through a RuntimeLens-friendly signature.
+ */
+
 import type { RuntimeLens } from "../../types/optics.js";
 import { FOCUS_INFINITY_THRESHOLD } from "../layout.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";

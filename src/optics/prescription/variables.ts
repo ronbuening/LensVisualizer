@@ -1,3 +1,10 @@
+/**
+ * Prescription variable compiler — resolves focus, zoom, and aberration-controlled gaps.
+ *
+ * Converts authored variable thickness ranges into normalized metadata and state-specific distances
+ * for RuntimeLens and prepared engine states.
+ */
+
 import type { VarRange } from "../../types/optics.js";
 import { lerp } from "../math/numerics.js";
 import { resolveLabel } from "./labels.js";

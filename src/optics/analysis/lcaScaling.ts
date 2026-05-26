@@ -1,3 +1,9 @@
+/**
+ * LCA scaling analysis adapter — v2-compatible exports for fixed-reference chromatic bar offsets.
+ *
+ * Delegates to the public lcaScaling helper so analysis callers share the same display scale.
+ */
+
 import type { ChromaticChannel } from "../../types/optics.js";
 
 export const REFERENCE_LCA_MM_2 = 0.15;

@@ -1,3 +1,9 @@
+/**
+ * Aberration analysis adapter — prepared-state wrappers for spherical, field-curvature, and coma helpers.
+ *
+ * Bridges engine-native PreparedOpticalState calls to the existing RuntimeLens analysis implementations.
+ */
+
 import {
   computeComaAnalysis,
   computeComaPointCloudPreview,

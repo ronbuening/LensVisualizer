@@ -1,3 +1,9 @@
+/**
+ * Chromatic index resolver — maps channels and surfaces to refractive indices for exact tracing.
+ *
+ * Encapsulates wavelength selection and per-surface dispersion closures so trace loops only request n(lambda).
+ */
+
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { LINE_NM } from "../glassCatalog.js";
 import type { PreparedOpticalState } from "../types.js";

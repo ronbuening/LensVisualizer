@@ -1,3 +1,9 @@
+/**
+ * Runtime diagram adapter — prepares RuntimeLens data for engine-native diagram helpers.
+ *
+ * Bridges legacy layout arrays to PreparedOpticalState so SVG rendering can use the new diagram geometry module.
+ */
+
 import type { ElementRenderDiagnostics, ElementShape, RuntimeLens } from "../../types/optics.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import { prepareState } from "../state/prepareState.js";

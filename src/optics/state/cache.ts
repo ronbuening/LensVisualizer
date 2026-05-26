@@ -1,3 +1,10 @@
+/**
+ * Prepared-state cache container — WeakMap-backed storage for compiled optical states.
+ *
+ * Keeps per-runtime-lens state memoization explicit and local to callers instead of hiding mutable
+ * optical state in module globals.
+ */
+
 import type { PreparedOpticalState } from "../types.js";
 
 export interface PreparedStateCache {

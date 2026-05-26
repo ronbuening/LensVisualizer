@@ -1,3 +1,9 @@
+/**
+ * Stop-trace helpers — generalized tracing utilities for locating aperture-stop hits.
+ *
+ * Supports folded systems where the same stop may appear multiple times and sequential stopAt tracing is insufficient.
+ */
+
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { traceGeneralized } from "./generalizedTrace.js";

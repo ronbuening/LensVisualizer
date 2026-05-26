@@ -1,3 +1,10 @@
+/**
+ * Generalized exact tracer — data-driven folded-path and mirror-system ray traversal.
+ *
+ * Uses compiled optical paths, surface interactions, and image planes to trace systems
+ * that cannot be represented by simple left-to-right sequential order.
+ */
+
 import type {
   FoldedPathAutoStepDiagnostics,
   FoldedPathClipEvent,
@@ -27,6 +34,13 @@ import {
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import { finalizeTraceResult, normalizeTraceDirection, projectCoordinateToZ } from "./utils.js";
 
+/**
+ * Decide whether a trace needs generalized folded-path traversal.
+ *
+ * @param state - prepared optical state
+ * @param stopAt - optional sequential stop target
+ * @returns true when surface order, reflections, blockers, or folded metadata require generalized tracing
+ */
 export function shouldUseGeneralizedTrace(state: PreparedOpticalState, stopAt: number | undefined): boolean {
   if (stopAt !== undefined) return false;
   return (
@@ -37,6 +51,17 @@ export function shouldUseGeneralizedTrace(state: PreparedOpticalState, stopAt: n
   );
 }
 
+/**
+ * Trace a ray through explicit or auto-discovered generalized optical paths.
+ *
+ * Unlike sequential tracing, this path may repeat surfaces, reflect, skip passive
+ * same-index hits, and terminate on an arbitrary image plane.
+ *
+ * @param state - prepared optical state
+ * @param input - ray origin and direction
+ * @param options - aperture, ghost, chromatic, and launch-bound controls
+ * @returns engine trace result with folded diagnostics and hit history
+ */
 export function traceGeneralized(
   state: PreparedOpticalState,
   input: Ray3,
@@ -103,6 +128,8 @@ export function traceGeneralized(
   let loopKey: string | null = null;
 
   for (let interactionCount = 0; interactionCount < maxInteractions; interactionCount++) {
+    /* In auto mode the image plane competes with candidate surfaces; explicit
+     * paths only consider it after the requested surface sequence is exhausted. */
     const imageHit =
       !explicitOrder || explicitCursor >= explicitOrder.length ? intersectImagePlane(origin, direction, state) : null;
     let nextSurfaceIndex: number | null = null;
@@ -209,6 +236,8 @@ export function traceGeneralized(
     const withinAperture = isInsideActiveAperture(aperture);
 
     if (!sideActive) {
+      /* Inactive-side behavior is data-driven. Some mirror backs are blockers;
+       * passive refractive surfaces simply let the ray continue through. */
       const inactiveClipped = surface.interaction.inactiveSide === "block" && withinAperture;
       if (inactiveClipped) {
         clipped = true;
@@ -256,6 +285,8 @@ export function traceGeneralized(
     }
 
     if (!withinAperture) {
+      /* Central annular holes are not clips unless the caller asked for
+       * semi-diameter clipping; they represent clear space through a mirror. */
       const apertureClipped = checkSemiDiameter && aperture.state === "outside";
       if (apertureClipped) {
         clipped = true;

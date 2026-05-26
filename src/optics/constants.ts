@@ -1,3 +1,10 @@
+/**
+ * Shared optics constants — numerical tolerances and wavelength references for the engine.
+ *
+ * Centralizes trace, intersection, vector, and chromatic constants so low-level modules use
+ * one set of physical and numerical thresholds.
+ */
+
 import { LINE_NM } from "./glassCatalog.js";
 import { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN } from "./internal/surfaceMath.js";
 import type { ChromaticChannel } from "../types/optics.js";

@@ -1,3 +1,10 @@
+/**
+ * Coma analysis — meridional, sagittal, and point-cloud previews for off-axis ray bundles.
+ *
+ * Builds on chief-ray-relative sampling to separate tail direction, asymmetry, and
+ * preview footprints without UI dependencies.
+ */
+
 import {
   computeAnalysisFieldGeometryAtState,
   sampleCircularPupil,

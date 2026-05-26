@@ -1,3 +1,10 @@
+/**
+ * Runtime ray-trace facade — legacy meridional, skew, vector, and chromatic trace helpers.
+ *
+ * Converts RuntimeLens calls into prepared engine traces while keeping the public trace API used
+ * by diagram layers and analysis modules stable.
+ */
+
 import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../types/optics.js";
 import {
   traceExactSurfaceStack,

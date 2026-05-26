@@ -1,3 +1,9 @@
+/**
+ * First-order pupil helpers — paraxial entrance-pupil geometry derived from stop traces.
+ *
+ * Supplies lightweight pupil references for chief-ray solving and first-order display calculations.
+ */
+
 import type { PreparedOpticalState } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 

@@ -1,3 +1,9 @@
+/**
+ * Aperture evaluation — classifies ray hits against clear apertures and annular obstructions.
+ *
+ * Shared by sequential and generalized tracers so clipping, holes, and inactive surfaces use the same radial rules.
+ */
+
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 
 export type ApertureState = "inside" | "inside-hole" | "outside";
@@ -11,6 +17,19 @@ export interface ApertureEvaluation {
 
 const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
 
+/**
+ * Classify a ray/surface hit against the active radial aperture.
+ *
+ * Outer semi-diameters clip ordinary rays. `innerSd` creates an annular inactive
+ * zone for secondary obstructions or mirror holes, so a hit can be geometrically
+ * on the surface but optically pass through the center.
+ *
+ * @param state - prepared optical state carrying stop and display margins
+ * @param surface - prepared surface being hit
+ * @param radius - radial hit distance from the local optical axis in mm
+ * @param stopSemiDiameter - optional current physical stop radius override
+ * @returns aperture classification and effective radial limits
+ */
 export function evaluateAperture(
   state: PreparedOpticalState,
   surface: CompiledStateSurface,
@@ -36,6 +55,12 @@ export function evaluateAperture(
   };
 }
 
+/**
+ * Check whether a hit should participate in optical interaction.
+ *
+ * @param evaluation - result from evaluateAperture()
+ * @returns true when the hit is inside the active annular aperture band
+ */
 export function isInsideActiveAperture(evaluation: ApertureEvaluation): boolean {
   return evaluation.state === "inside";
 }

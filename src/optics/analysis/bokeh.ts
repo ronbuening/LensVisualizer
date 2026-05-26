@@ -1,3 +1,9 @@
+/**
+ * Bokeh analysis adapter — prepared-state and RuntimeLens wrappers for defocus footprint previews.
+ *
+ * Allows state-aware callers to reuse the current bokeh implementation while preserving legacy exports.
+ */
+
 import {
   buildBokehDensityGrid,
   buildBokehRadialProfile,

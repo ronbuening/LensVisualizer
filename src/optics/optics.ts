@@ -1,3 +1,10 @@
+/**
+ * Public optics barrel — stable pure-helper exports for rendering, tracing, fields, and analysis.
+ *
+ * App code imports this path by default while focused engine modules import deeper
+ * implementation files only when needed.
+ */
+
 export { FLAT_R_THRESHOLD, conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";
 export {
   FOCUS_INFINITY_THRESHOLD,

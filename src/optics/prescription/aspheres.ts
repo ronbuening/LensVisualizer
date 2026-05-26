@@ -1,3 +1,9 @@
+/**
+ * Asphere compiler — maps authored aspheric coefficients to zero-based surface indices.
+ *
+ * Keeps conic polynomial data in a trace-friendly lookup table shared by layout and exact surface math.
+ */
+
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { resolveLabel } from "./labels.js";
 

@@ -1,3 +1,9 @@
+/**
+ * Field-geometry barrel — re-exports current-state field and pupil helpers from chiefRay.
+ *
+ * Maintains a focused import path for analysis modules without duplicating launch logic.
+ */
+
 export {
   chiefRayImageHeight2,
   chiefRayImageHeightAccurate2,

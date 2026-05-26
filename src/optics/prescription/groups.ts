@@ -1,3 +1,10 @@
+/**
+ * Prescription group compiler — converts authored element and annotation ranges into engine spans.
+ *
+ * Keeps UI grouping, glass dispersion ownership, and annotation references aligned with the normalized
+ * surface index model.
+ */
+
 import type { AnnotationData, ElementData, ResolvedAnnotation, SurfaceData } from "../../types/optics.js";
 import type { CompiledElement } from "../types.js";
 import { resolveLabel } from "./labels.js";

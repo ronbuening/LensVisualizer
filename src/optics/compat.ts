@@ -1,3 +1,10 @@
+/**
+ * Engine compatibility facade — maps runtime-lens APIs onto optics-engine modules.
+ *
+ * Preserves the historical helper names consumed by UI code and tests while the
+ * implementation lives in focused prescription, state, trace, field, and analysis modules.
+ */
+
 import buildRuntimeLens from "./runtimeLens.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { EngineLens, PreparedOpticalState } from "./types.js";

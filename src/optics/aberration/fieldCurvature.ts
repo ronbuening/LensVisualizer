@@ -1,3 +1,9 @@
+/**
+ * Field-curvature analysis — computes sagittal/tangential best-focus surfaces across field height.
+ *
+ * Uses state-aware off-axis bundles and chromatic field shifts to summarize Petzval-like focus bend for display tabs.
+ */
+
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { ChromaticFieldShift, FieldCurvatureFieldResult, FieldCurvatureResult } from "./types.js";
 import {

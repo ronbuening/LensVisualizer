@@ -1,3 +1,9 @@
+/**
+ * Chromatic dispersion adapter — legacy RuntimeLens wrappers over compiled surface dispersions.
+ *
+ * Keeps public chromatic helpers stable while the normalized prescription layer owns dispersion compilation.
+ */
+
 import type { ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../../types/optics.js";
 import { makeSurfaceDispersion } from "../dispersion.js";
 import type { SurfaceDispersion } from "../types.js";

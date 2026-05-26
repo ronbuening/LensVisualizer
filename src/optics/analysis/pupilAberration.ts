@@ -1,3 +1,9 @@
+/**
+ * Pupil aberration analysis adapter — prepared-state and RuntimeLens wrappers for entrance/exit profiles.
+ *
+ * Keeps pupil calculations state-aware without duplicating the public pupilAberration implementation.
+ */
+
 import type { FieldGeometryState } from "../optics.js";
 import {
   computeBothPupilAberrationProfiles,

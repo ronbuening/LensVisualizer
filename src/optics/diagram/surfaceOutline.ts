@@ -1,3 +1,10 @@
+/**
+ * Diagram surface outlines — SVG path generation for spherical, aspheric, flat, and tilted surfaces.
+ *
+ * Samples optical sag in millimetres and delegates coordinate mapping to diagram transforms so SVG rendering
+ * stays separate from trace geometry.
+ */
+
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 
 export const SVG_PATH_SUBDIVISIONS_2 = 96;

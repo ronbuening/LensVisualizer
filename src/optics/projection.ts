@@ -1,3 +1,9 @@
+/**
+ * Projection public barrel — stable exports for field-angle and fisheye launch helpers.
+ *
+ * Keeps callers on the historic optics/projection path while implementation lives in optics/field/projection.
+ */
+
 export {
   ABSOLUTE_HALF_FIELD_CEILING,
   MAX_FIELD_LAUNCH_DEG,
