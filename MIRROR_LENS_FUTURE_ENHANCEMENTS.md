@@ -29,7 +29,8 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
    - Folded field and pupil real-ray wrappers now carry `opticalPath`, `imagePlane`, and folded context into generalized
      tracing, so future tab enablement can build on correct stop and image-plane geometry.
    - Focus-breathing remains available for folded systems because it is metadata/state based for fixed mirror fixtures.
-   - Pupil, distortion, vignetting, field-curvature, and coma tabs remain gated for folded systems until each tab has
+   - Pupil analysis is enabled for folded systems with hidden-fixture coverage.
+   - Distortion, vignetting, field-curvature, and coma tabs remain gated for folded systems until each tab has
      fixture-backed physical interpretation and UI copy for folded image-plane conventions.
 
 3. **Improve First-Order Mirror Math** - Done for axial reflective folded systems.

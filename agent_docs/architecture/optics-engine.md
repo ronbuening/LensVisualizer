@@ -169,11 +169,11 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
 `internal/exactSurfaceTrace.ts` to inspect generalized-path details such as hit labels, terminal direction, final medium,
 and whether the explicit image plane was reached.
 
-Analysis support is deliberately incremental. Spherical aberration and mirror-safe blur/bokeh helpers use generalized
-image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray solves, and
-axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a settled folded
-interpretation, such as coma, distortion, vignetting, field curvature, and pupils, remain guarded in the UI until each
-tab has fixture-backed validation.
+Analysis support is deliberately incremental. Spherical aberration, pupil aberration, and mirror-safe blur/bokeh helpers
+use generalized image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray
+solves, and axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a
+settled folded interpretation, such as coma, distortion, vignetting, and field curvature, remain guarded in the UI until
+each tab has fixture-backed validation.
 
 ## Field-Launch Convention
 

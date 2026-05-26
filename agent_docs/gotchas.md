@@ -51,7 +51,7 @@
   The v1 movement layer is a 2D meridional visualization against a fixed IMG plane; analysis tabs remain centered-lens
   diagnostics and show a notice when movement is active
 - Folded mirror analysis is intentionally guarded by path. Spherical aberration and mirror-safe blur helpers can use the
-  explicit image plane; the analysis drawer guards coma, distortion, vignetting, and pupils for `L.isFoldedOptics`, and
+  explicit image plane; the analysis drawer guards coma, distortion, and vignetting for `L.isFoldedOptics`, and
   the Aberrations tab hides its field-curvature/astigmatism section until that math is explicitly adapted and
   fixture-tested
 - Ray density is a persisted preference (`normal`, `dense`, `diagnostic`), not a URL field. `normal` must preserve the

@@ -56,7 +56,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   lenses must retain their no-`opticalPath` sequential defaults. Folded stop/chief-ray solves must use generalized
   tracing and path-aware image-plane math rather than sequential `stopAt` shortcuts.
 - Keep folded-system complex analysis guarded until the specific path is mirror-safe. Axial cardinal overlays and
-  mirror-safe spherical/blur paths are adapted; the drawer guards coma, distortion, vignetting, and pupils, while
+  mirror-safe spherical/blur/pupil paths are adapted; the drawer guards coma, distortion, and vignetting, while
   folded field curvature/astigmatism remains section-guarded inside the Aberrations tab until fixture-backed validation
   says otherwise.
 - Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time

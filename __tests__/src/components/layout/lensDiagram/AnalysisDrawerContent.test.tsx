@@ -179,11 +179,13 @@ describe("AnalysisDrawerContent", () => {
   });
 
   it("shows a folded-optics guard instead of invoking sequential analysis tabs", () => {
-    render(<AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="pupils" />);
+    render(
+      <AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="vignetting" />,
+    );
 
     expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
     expect(screen.getByText(/not available for folded mirror systems yet/)).toBeTruthy();
-    expect(mockPupilAberrationTab).not.toHaveBeenCalled();
+    expect(mockVignettingTab).not.toHaveBeenCalled();
   });
 
   it("allows folded optics to use the mirror-safe aberrations tab", () => {
@@ -202,6 +204,14 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
     expect(screen.getByText("Breathing")).toBeTruthy();
     expect(mockFocusBreathingTab).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows folded optics to use the mirror-safe pupils tab", () => {
+    render(<AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="pupils" />);
+
+    expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
+    expect(screen.getByText("Pupils")).toBeTruthy();
+    expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
   });
 
   it("has exactly one renderer for every registered analysis tab", () => {
