@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
+import { buildLens2, engineLensFromRuntime } from "../../../src/optics-2/compat.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import {
   OPTICS_2_STAGE_01_MIGRATION_RULES,
@@ -214,5 +215,36 @@ describe("Optics 2 benchmark harness scaffold", () => {
 });
 
 describe("Optics 2 buildLens parity", () => {
-  it.skip("compares buildLens against missing buildLens2 from src/optics-2/buildLens", () => {});
+  it("compares buildLens against the buildLens2 compatibility facade", () => {
+    for (const fixture of OPTICS_2_PARITY_FIXTURES) {
+      const legacy = buildLens(LENS_CATALOG[fixture.key]);
+      const optics2 = buildLens2(LENS_CATALOG[fixture.key]);
+      const engine = engineLensFromRuntime(optics2);
+
+      expect(optics2.data.key, fixture.key).toBe(legacy.data.key);
+      expect(optics2.N, fixture.key).toBe(legacy.N);
+      expect(optics2.stopIdx, fixture.key).toBe(legacy.stopIdx);
+      expect(optics2.stopPhysSD, fixture.key).toBe(legacy.stopPhysSD);
+      expect(optics2.isZoom, fixture.key).toBe(legacy.isZoom);
+      expect(optics2.isFoldedOptics, fixture.key).toBe(legacy.isFoldedOptics);
+      expect(optics2.imagePlane, fixture.key).toEqual(legacy.imagePlane);
+      expect(optics2.opticalPath, fixture.key).toEqual(legacy.opticalPath);
+      expect(optics2.projection, fixture.key).toEqual(legacy.projection);
+      expect(optics2.S, fixture.key).toEqual(legacy.S);
+      expect(optics2.ES, fixture.key).toEqual(legacy.ES);
+      expect(optics2.elements, fixture.key).toEqual(legacy.elements);
+      expect(optics2.asphByIdx, fixture.key).toEqual(legacy.asphByIdx);
+      expect(optics2.varByIdx, fixture.key).toEqual(legacy.varByIdx);
+      expect(optics2.vdByIdx, fixture.key).toEqual(legacy.vdByIdx);
+      expect(optics2.spectralByIdx, fixture.key).toEqual(legacy.spectralByIdx);
+      expect(optics2.labelIdx, fixture.key).toEqual(legacy.labelIdx);
+      expect(optics2.rayFractions, fixture.key).toEqual(legacy.rayFractions);
+      expect(optics2.offAxisFractions, fixture.key).toEqual(legacy.offAxisFractions);
+      expect(optics2.zoomPositions, fixture.key).toEqual(legacy.zoomPositions);
+      expect(optics2.zoomEFLs, fixture.key).toEqual(legacy.zoomEFLs);
+      expect(optics2.zoomFOPENs, fixture.key).toEqual(legacy.zoomFOPENs);
+      expect(engine.runtime, fixture.key).toBe(optics2);
+      expect(engine.surfaces, fixture.key).toHaveLength(legacy.N);
+    }
+  });
 });
