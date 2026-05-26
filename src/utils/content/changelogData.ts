@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-26",
     type: "lens",
-    summary: "Added three Minolta AF lenses, from 35-70mm f/4 zoom to APO telephotos",
+    summary: "Added three Minolta AF lenses, a 35-70mm f/4 zoom and APO telephotos",
   },
   // ── 2026-05-25 ──────────────────────────────────────────────────────────
   {
