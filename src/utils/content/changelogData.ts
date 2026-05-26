@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-26 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-26",
+    type: "feature",
+    summary: "Added hidden mirror and folded-path optics fixtures with accurate folded ray tracing",
+  },
+  {
+    date: "2026-05-26",
+    type: "lens",
+    summary: "Added three Minolta AF lenses, a 35-70mm f/4 zoom and APO telephotos",
+  },
   // ── 2026-05-25 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-25",

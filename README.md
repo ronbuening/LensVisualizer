@@ -52,7 +52,7 @@ flowchart TD
 
 ## Current Scope
 
-- `258` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
+- `261` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm,
   Hasselblad, Laowa, Leica, Minolta, Nikon, Olympus, Panasonic, Pentax, Ricoh, Schneider-Kreuznach, Sigma, Sony,
   Vivitar, and Voigtländer
@@ -117,6 +117,7 @@ npm run build         # Production build + prerender + sitemap
 npm run preview       # Preview built output
 npm run test          # Full Vitest suite
 npm run test:coverage # Coverage run
+npm run generate:glass-reports # Generated glass catalog reports
 npm run generate:mirror-reports # Hidden mirror fixture authoring report
 npm run typecheck     # TypeScript checks
 npm run lint          # ESLint
