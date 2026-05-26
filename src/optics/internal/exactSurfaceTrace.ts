@@ -616,7 +616,8 @@ function traceGeneralizedSurfaceStackVector(
     const withinAperture = apertureState === "inside";
 
     if (!sideActive) {
-      const inactiveClipped = interaction.inactiveSide === "block" && withinAperture;
+      const inactiveSideBehavior = interaction.inactiveSide ?? (interaction.type === "reflect" ? "block" : "ignore");
+      const inactiveClipped = inactiveSideBehavior === "block" && withinAperture;
       if (inactiveClipped) {
         clipped = true;
         pushClipEvent(clipEvents, lens, nextSurfaceIdx, "inactive-side-block");

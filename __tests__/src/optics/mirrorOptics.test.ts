@@ -7,7 +7,12 @@ import {
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
 import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
-import { traceExactSurfaceStack, traceToStopViaGeneralized } from "../../../src/optics/internal/exactSurfaceTrace.js";
+import {
+  traceExactSurfaceStack,
+  traceExactSurfaceStackVector,
+  traceToStopViaGeneralized,
+  type ExactTraceLens,
+} from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { doLayout, solveChiefRay, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
@@ -41,6 +46,37 @@ function imagePlaneCoordinateFromTrace(result: { pts: number[][] }, L: RuntimeLe
   const tangentZ = -L.imagePlane.normal.y;
   const tangentY = L.imagePlane.normal.z;
   return (point[0] - L.imagePlane.z) * tangentZ + (point[1] - L.imagePlane.y) * tangentY;
+}
+
+function singleSurfaceBackHitMirror(
+  interaction: ExactTraceLens["S"][number]["interaction"],
+  surface?: Partial<ExactTraceLens["S"][number]>,
+): ExactTraceLens {
+  return {
+    S: [
+      {
+        label: "M1",
+        R: 1e15,
+        d: 0,
+        nd: 1,
+        sd: 10,
+        ...surface,
+        interaction,
+      },
+    ],
+    asphByIdx: {},
+    opticalPath: { mode: "sequential", surfaceOrder: [0], surfaceLabels: ["M1"], maxInteractions: 3 },
+    imagePlane: { z: -10, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
+    isFoldedOptics: true,
+  };
+}
+
+function traceBackSideMirror(lens: ExactTraceLens, y: number) {
+  return traceExactSurfaceStackVector(
+    lens,
+    { origin: [0, y, 10], direction: [0, 0, -1] },
+    { zPos: [0], launchBoundT: 25, stopOnClip: true },
+  );
 }
 
 describe("mirror optics support", () => {
@@ -114,6 +150,60 @@ describe("mirror optics support", () => {
     const [expectedY, expectedZ] = reflectYz(0, 1, mirrorHit!.normal[1], mirrorHit!.normal[2]);
     expect(result.terminalDirection[1]).toBeCloseTo(expectedY, 10);
     expect(result.terminalDirection[2]).toBeCloseTo(expectedZ, 10);
+  });
+
+  it("blocks inactive-side hits on reflective surfaces by default", () => {
+    const lens = singleSurfaceBackHitMirror({
+      type: "reflect",
+      incidentSide: "front",
+      mirrorKind: "first-surface",
+    });
+    const result = traceBackSideMirror(lens, 5);
+
+    expect(result.clipped).toBe(true);
+    expect(result.reachedImagePlane).toBe(false);
+    expect(result.hits).toHaveLength(1);
+    expect(result.hits[0]!.clipReason).toBe("inactive-side-block");
+    expect(result.diagnostics.clipEvents).toContainEqual({
+      surfaceIdx: 0,
+      surfaceLabel: "M1",
+      reason: "inactive-side-block",
+      failureReason: null,
+    });
+  });
+
+  it("lets explicitly ignored inactive mirror sides pass through", () => {
+    const lens = singleSurfaceBackHitMirror({
+      type: "reflect",
+      incidentSide: "front",
+      inactiveSide: "ignore",
+      mirrorKind: "first-surface",
+    });
+    const result = traceBackSideMirror(lens, 5);
+
+    expect(result.clipped).toBe(false);
+    expect(result.hits).toHaveLength(0);
+    expect(result.reachedImagePlane).toBe(true);
+    expect(result.terminalPoint[2]).toBeCloseTo(-10, 10);
+    expect(result.diagnostics.clipEvents).toEqual([]);
+  });
+
+  it("blocks inactive annular mirror rings while passing central holes", () => {
+    const lens = singleSurfaceBackHitMirror(
+      {
+        type: "reflect",
+        incidentSide: "front",
+        mirrorKind: "first-surface",
+      },
+      { innerSd: 3 },
+    );
+    const central = traceBackSideMirror(lens, 2);
+    const ring = traceBackSideMirror(lens, 5);
+
+    expect(central.clipped).toBe(false);
+    expect(central.reachedImagePlane).toBe(true);
+    expect(ring.clipped).toBe(true);
+    expect(ring.hits[0]!.clipReason).toBe("inactive-side-block");
   });
 
   it("traces finite visible rays to the explicit front image plane", () => {
@@ -401,7 +491,7 @@ describe("mirror optics support", () => {
           nd: 1.0,
           elemId: 1,
           sd: 20,
-          interaction: { type: "reflect", incidentSide: "rear", mirrorKind: "first-surface" },
+          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "ignore", mirrorKind: "first-surface" },
         },
         {
           label: "M1",

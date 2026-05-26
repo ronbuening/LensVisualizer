@@ -174,7 +174,7 @@ const LENS_DATA = {
    *    interaction (object, optional)  Folded-path behavior:
    *      type: "refract" | "reflect" | "block"   (default "refract")
    *      incidentSide?: "front" | "rear" | "both"  (default both)
-   *      inactiveSide?: "ignore" | "block"         (default ignore)
+   *      inactiveSide?: "ignore" | "block"         (reflect defaults block, others ignore)
    *      mirrorKind?: "first-surface" | "second-surface"
    *      normal?: { z: number, y: number }          tilted meridional plane normal
    *
@@ -237,8 +237,10 @@ const LENS_DATA = {
    *      and STO.elemId to the containing glass, and add fromSurface/toSurface to that element.
    *    - Mirror elements: tag the reflective face with the mirror element's elemId and
    *      use a passive backing surface with elemId: 0 unless modeling a distinct physical
-   *      element. For tilted flat mirrors, put the same interaction.normal on the backing
-   *      surface so the SVG element renders at the correct angle.
+   *      element. A reflective face blocks inactive-side hits by default; set
+   *      inactiveSide: "ignore" only when an intentional first pass must go through it.
+   *      For tilted flat mirrors, put the same interaction.normal on the backing surface
+   *      so the SVG element renders at the correct angle.
    *    - Blocker surfaces normally use elemId: 0. Give them an element only when they
    *      should draw as a physical rendered part.
    *

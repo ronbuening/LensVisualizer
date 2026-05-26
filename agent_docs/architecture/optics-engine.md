@@ -126,7 +126,8 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
   without reflecting, refracting, or blocking.
 - `SurfaceData.interaction.type` selects `"refract"`, `"reflect"`, or `"block"`. Side-specific `incidentSide` /
   `inactiveSide` controls whether a surface is active from the front, rear, both sides, ignored from the inactive side,
-  or treated as a blocker from the inactive side.
+  or treated as a blocker from the inactive side. Reflective surfaces block inactive-side hits by default unless
+  `inactiveSide: "ignore"` is explicit.
 - `interaction.mirrorKind` documents first-surface vs second-surface mirrors. Refractive-index transitions still come
   from the physical `nd` sequence so explicit repeated orders can enter a Mangin body, reflect, and exit through the
   same front surface.
