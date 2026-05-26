@@ -133,6 +133,7 @@ describe("AnalysisDrawerContent", () => {
 
     expect(screen.getByText("Distortion")).toBeTruthy();
     expect(mockDistortionTab).toHaveBeenCalledTimes(1);
+    expect(mockDistortionTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
@@ -167,6 +168,7 @@ describe("AnalysisDrawerContent", () => {
 
     expect(screen.getByText("Vignetting")).toBeTruthy();
     expect(mockVignettingTab).toHaveBeenCalledTimes(1);
+    expect(mockVignettingTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
   });
 
   it("maps the pupils tab to PupilAberrationTab", () => {
@@ -175,6 +177,7 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText("Pupils")).toBeTruthy();
     expect(mockPupilAberrationTab).toHaveBeenCalledTimes(1);
     expect(mockPupilAberrationTab.mock.calls[0][0].aberrationT).toBe(0.37);
+    expect(mockPupilAberrationTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
     expect(mockVignettingTab).not.toHaveBeenCalled();
   });
 

@@ -18,9 +18,10 @@ import {
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 function zPosFromState(state: PreparedOpticalState): number[] {
-  return [...state.z];
+  return zPosForPreparedAnalysis2(state);
 }
 
 export function computeSphericalAberrationForState2(

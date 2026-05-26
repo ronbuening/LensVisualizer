@@ -21,7 +21,10 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
   const actual = await vi.importActual("../../../../../src/optics/compat.js");
   return {
     ...actual,
-    computeBokehPreviewPairForState2: mockComputeBokehPreviewPair,
+    analysisJobsForState2: {
+      ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
+      computeBokehPreviewPair: mockComputeBokehPreviewPair,
+    },
     prepareRuntimeState: mockPrepareRuntimeState,
   };
 });

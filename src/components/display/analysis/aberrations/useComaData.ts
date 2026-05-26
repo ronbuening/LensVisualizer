@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { computeComaAnalysisForState2 } from "../../../../optics/compat.js";
+import { analysisJobsForState2 } from "../../../../optics/compat.js";
 import { computeComaAnalysis } from "../../../../optics/aberrationAnalysis.js";
 import { probe } from "../../../../utils/perfProbe.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
@@ -36,7 +36,12 @@ export default function useComaData({
       pointCloudPreview: comaPreviewResult,
     } = preparedState
       ? probe("computeComaAnalysis", () =>
-          computeComaAnalysisForState2(preparedState, currentEPSD, currentPhysStopSD, fieldGeometry ?? undefined),
+          analysisJobsForState2.computeComaAnalysis(
+            preparedState,
+            currentEPSD,
+            currentPhysStopSD,
+            fieldGeometry ?? undefined,
+          ),
         )
       : probe("computeComaAnalysis", () =>
           computeComaAnalysis(

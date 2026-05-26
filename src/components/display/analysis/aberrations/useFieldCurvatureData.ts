@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { computeFieldCurvatureForState2 } from "../../../../optics/compat.js";
+import { analysisJobsForState2 } from "../../../../optics/compat.js";
 import { computeFieldCurvature } from "../../../../optics/aberrationAnalysis.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
 import type { FieldGeometryState } from "../../../../optics/optics.js";
@@ -30,7 +30,13 @@ export default function useFieldCurvatureData({
 }: Params) {
   return useMemo(() => {
     const fieldCurvatureResult = preparedState
-      ? computeFieldCurvatureForState2(preparedState, currentEPSD, currentPhysStopSD, false, fieldGeometry ?? undefined)
+      ? analysisJobsForState2.computeFieldCurvature(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          false,
+          fieldGeometry ?? undefined,
+        )
       : computeFieldCurvature(
           L,
           zPos,
@@ -43,7 +49,13 @@ export default function useFieldCurvatureData({
           fieldGeometry ?? undefined,
         );
     const chromaticFieldCurvatureResult = preparedState
-      ? computeFieldCurvatureForState2(preparedState, currentEPSD, currentPhysStopSD, true, fieldGeometry ?? undefined)
+      ? analysisJobsForState2.computeFieldCurvature(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          true,
+          fieldGeometry ?? undefined,
+        )
       : computeFieldCurvature(
           L,
           zPos,

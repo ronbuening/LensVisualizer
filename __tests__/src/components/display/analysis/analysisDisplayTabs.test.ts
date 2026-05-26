@@ -63,7 +63,6 @@ describe("analysis display tabs", () => {
     const L = build(Sonnar50f15Raw);
     const focusT = 0.5;
     const zoomT = 0;
-    const { z: zPos } = doLayout(focusT, zoomT, L);
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
 
@@ -71,7 +70,6 @@ describe("analysis display tabs", () => {
       React.createElement(DistortionTab, {
         L,
         t: themes.dark,
-        zPos,
         focusT,
         zoomT,
         dynamicEFL,
@@ -95,7 +93,6 @@ describe("analysis display tabs", () => {
     const L = build(NikonFisheye6mmf28Raw);
     const focusT = 0;
     const zoomT = 0;
-    const { z: zPos } = doLayout(focusT, zoomT, L);
     const dynamicEFL = eflAtFocus(focusT, zoomT, L);
     const { currentPhysStopSD } = apertureAt(L, zoomT, 0);
 
@@ -103,7 +100,6 @@ describe("analysis display tabs", () => {
       React.createElement(DistortionTab, {
         L,
         t: themes.dark,
-        zPos,
         focusT,
         zoomT,
         dynamicEFL,

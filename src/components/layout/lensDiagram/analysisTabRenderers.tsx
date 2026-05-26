@@ -77,36 +77,36 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       preparedState={preparedState}
     />
   ),
-  distortion: ({ L, t, zPos, inputs }) => (
+  distortion: ({ L, t, preparedState, inputs }) => (
     <DistortionTab
       L={L}
       t={t}
-      zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
       aberrationT={inputs.aberrationT}
       dynamicEFL={inputs.dynamicEFL}
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
+      preparedState={preparedState}
     />
   ),
   breathing: ({ L, t, inputs }) => (
     <FocusBreathingTab L={L} t={t} focusT={inputs.focusT} zoomT={inputs.zoomT} dynamicEFL={inputs.dynamicEFL} />
   ),
-  vignetting: ({ L, t, zPos, inputs }) => (
+  vignetting: ({ L, t, preparedState, inputs }) => (
     <VignettingTab
       L={L}
       t={t}
-      zPos={zPos}
       focusT={inputs.focusT}
       zoomT={inputs.zoomT}
       aberrationT={inputs.aberrationT}
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
+      preparedState={preparedState}
     />
   ),
-  pupils: ({ L, t, inputs }) => (
+  pupils: ({ L, t, preparedState, inputs }) => (
     <PupilAberrationTab
       L={L}
       t={t}
@@ -114,6 +114,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       zoomT={inputs.zoomT}
       aberrationT={inputs.aberrationT}
       fieldGeometry={inputs.fieldGeometry}
+      preparedState={preparedState}
     />
   ),
 };

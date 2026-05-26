@@ -6,12 +6,14 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobs } from "../../../optics/analysisJobs.js";
+import { analysisJobsForState2 } from "../../../optics/compat.js";
 import { probe } from "../../../utils/perfProbe.js";
 import { eflAtZoom } from "../../../optics/optics.js";
 import DistortionChart from "./DistortionChart.js";
 import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
+import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
+import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -19,56 +21,45 @@ import type { FieldGeometryState } from "../../../optics/optics.js";
 interface DistortionTabProps {
   L: RuntimeLens;
   t: Theme;
-  zPos: number[];
   focusT: number;
   zoomT: number;
   aberrationT?: number;
   dynamicEFL: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  preparedState?: PreparedOpticalState | null;
 }
 
 export default function DistortionTab({
   L,
   t,
-  zPos,
   focusT,
   zoomT,
   aberrationT = 0,
   dynamicEFL,
   currentPhysStopSD,
   fieldGeometry,
+  preparedState: preparedStateProp,
 }: DistortionTabProps) {
+  const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
   const samples = useMemo(
     () =>
       probe("computeDistortionCurve", () =>
-        analysisJobs.computeDistortionCurve(
-          L,
-          zPos,
-          focusT,
-          zoomT,
+        analysisJobsForState2.computeDistortionCurve(
+          preparedState,
           dynamicEFL,
           currentPhysStopSD,
           fieldGeometry ?? undefined,
-          aberrationT,
         ),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, dynamicEFL, currentPhysStopSD, fieldGeometry],
+    [preparedState, dynamicEFL, currentPhysStopSD, fieldGeometry],
   );
   const fieldGrid = useMemo(
     () =>
       probe("computeDistortionFieldGrid", () =>
-        analysisJobs.computeDistortionFieldGrid(
-          L,
-          zPos,
-          focusT,
-          zoomT,
-          currentPhysStopSD,
-          fieldGeometry ?? undefined,
-          aberrationT,
-        ),
+        analysisJobsForState2.computeDistortionFieldGrid(preparedState, currentPhysStopSD, fieldGeometry ?? undefined),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, currentPhysStopSD, fieldGeometry],
+    [preparedState, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {

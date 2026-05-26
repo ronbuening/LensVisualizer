@@ -8,6 +8,7 @@ import { computeDistortionCurve, computeDistortionFieldGrid } from "../distortio
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 export function computeDistortionCurveForState2(
   state: PreparedOpticalState,
@@ -17,7 +18,7 @@ export function computeDistortionCurveForState2(
 ) {
   return computeDistortionCurve(
     state.lens.runtime,
-    [...state.z],
+    zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,
     dynamicEFL,
@@ -34,7 +35,7 @@ export function computeDistortionFieldGridForState2(
 ) {
   return computeDistortionFieldGrid(
     state.lens.runtime,
-    [...state.z],
+    zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,
     currentPhysStopSD,

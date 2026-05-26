@@ -8,6 +8,7 @@ import type { FieldGeometryState } from "../optics.js";
 import { computeVignettingCurve } from "../vignetteAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 export function computeVignettingCurveForState2(
   state: PreparedOpticalState,
@@ -17,7 +18,7 @@ export function computeVignettingCurveForState2(
 ) {
   return computeVignettingCurve(
     state.lens.runtime,
-    [...state.z],
+    zPosForPreparedAnalysis2(state),
     state.focusT,
     state.zoomT,
     currentEPSD,

@@ -1,9 +1,5 @@
 import { useMemo } from "react";
-import {
-  computeSAProfileForState2,
-  computeSphericalAberrationBlurCharacterForState2,
-  computeSphericalAberrationForState2,
-} from "../../../../optics/compat.js";
+import { analysisJobsForState2 } from "../../../../optics/compat.js";
 import {
   computeSphericalAberration,
   computeSphericalAberrationBlurCharacter,
@@ -37,16 +33,21 @@ export default function useSphericalAberrationData({
   return useMemo(() => {
     const saResult = preparedState
       ? probe("computeSphericalAberration", () =>
-          computeSphericalAberrationForState2(preparedState, currentEPSD, currentPhysStopSD),
+          analysisJobsForState2.computeSphericalAberration(preparedState, currentEPSD, currentPhysStopSD),
         )
       : probe("computeSphericalAberration", () =>
           computeSphericalAberration(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
         );
     const saProfile = preparedState
-      ? computeSAProfileForState2(preparedState, currentEPSD, currentPhysStopSD)
+      ? analysisJobsForState2.computeSAProfile(preparedState, currentEPSD, currentPhysStopSD)
       : computeSAProfile(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
     const saBlurCharacter = preparedState
-      ? computeSphericalAberrationBlurCharacterForState2(preparedState, currentEPSD, currentPhysStopSD, saResult)
+      ? analysisJobsForState2.computeSphericalAberrationBlurCharacter(
+          preparedState,
+          currentEPSD,
+          currentPhysStopSD,
+          saResult,
+        )
       : computeSphericalAberrationBlurCharacter(
           L,
           zPos,
