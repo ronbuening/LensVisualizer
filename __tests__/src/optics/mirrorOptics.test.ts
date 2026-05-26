@@ -527,6 +527,44 @@ describe("mirror optics support", () => {
     expect(marginal.diagnostics?.finalMedium).toBeCloseTo(1, 12);
   });
 
+  it("continues tracing active mirrors after an explicit folded opening sequence", () => {
+    const lens: ExactTraceLens = {
+      S: [
+        { label: "STO", R: 1e15, d: 100, nd: 1, sd: 30 },
+        {
+          label: "M1",
+          R: -200,
+          d: 2,
+          nd: 1,
+          sd: 30,
+          innerSd: 7,
+          interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+        { label: "M1B", R: 1e15, d: -127, nd: 1, sd: 30, innerSd: 7 },
+        {
+          label: "SEC",
+          R: 80,
+          d: 1,
+          nd: 1,
+          sd: 12,
+          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
+        },
+        { label: "SECB", R: 1e15, d: 159, nd: 1, sd: 12 },
+      ],
+      asphByIdx: {},
+      opticalPath: { mode: "sequential", surfaceOrder: [1, 3], surfaceLabels: ["M1", "SEC"], maxInteractions: 6 },
+      imagePlane: { z: 135, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
+      isFoldedOptics: true,
+    };
+    const result = traceExactSurfaceStack(lens, { y0: 12, uy0: 0 }, { leadDistance: 40, checkSemiDiameter: true });
+    const hitLabels = result.hits.map((hit) => lens.S[hit.surfaceIdx].label);
+    const repeatedPrimary = result.hits.find((hit, index) => index > 1 && hit.surfaceIdx === 1);
+
+    expect(hitLabels.slice(0, 3)).toEqual(["M1", "SEC", "M1"]);
+    expect(repeatedPrimary?.outgoingDirection?.[2]).toBeLessThan(0);
+    expect(result.reachedImagePlane).toBe(false);
+  });
+
   it("supports a Gregorian-style secondary fixture with alternate secondary curvature", () => {
     const L = buildLens(gregorianData);
     const layout = doLayout(0, 0, L);

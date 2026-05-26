@@ -107,10 +107,10 @@ const LENS_DATA = {
       nd: 1.0,
       elemId: 3,
       sd: 30,
-      innerSd: 7,
+      innerSd: 8.1,
       interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
-    { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 3, sd: 30, innerSd: 7 },
+    { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 3, sd: 30, innerSd: 8.1 },
   ],
 
   asph: {},

@@ -492,6 +492,9 @@ function traceGeneralizedSurfaceStackVector(
   const clipEvents: FoldedPathClipEvent[] = [];
   const autoSteps: FoldedPathAutoStepDiagnostics[] = [];
   const seenAutoStates = new Set<string>();
+  const reflectiveSurfaceIndexes = new Set(
+    lens.S.flatMap((surface, index) => (surface.interaction?.type === "reflect" ? [index] : [])),
+  );
   let origin: Vector3 = [originIn[0], originIn[1], originIn[2]];
   let direction: Vector3 = [directionIn[0], directionIn[1], directionIn[2]];
   let n = 1.0;
@@ -522,7 +525,7 @@ function traceGeneralizedSurfaceStackVector(
         lens,
         { maxT, refractiveIndex: n },
       );
-    } else if (path?.mode === "auto") {
+    } else if (path?.mode === "auto" || (explicitOrder !== null && explicitCursor >= explicitOrder.length)) {
       const next = findNearestGeneralizedSurfaceHit(
         origin,
         direction,
@@ -532,6 +535,7 @@ function traceGeneralizedSurfaceStackVector(
         n,
         indexAtSurface,
         terminalSurfaceIdx,
+        path?.mode === "auto" ? undefined : reflectiveSurfaceIndexes,
       );
       autoSteps.push({ step: interactionCount, skippedCandidates: next.skippedCandidates });
       nextSurfaceIdx = next?.surfaceIdx ?? null;
@@ -555,7 +559,9 @@ function traceGeneralizedSurfaceStackVector(
         terminationReason = "image-plane";
       } else {
         terminationReason =
-          explicitOrder && explicitCursor >= explicitOrder.length ? "explicit-path-complete" : "no-next-surface";
+          explicitOrder && explicitCursor >= explicitOrder.length && path?.mode !== "auto"
+            ? "explicit-path-complete"
+            : "no-next-surface";
       }
       break;
     }
@@ -1020,6 +1026,7 @@ function findNearestGeneralizedSurfaceHit(
   refractiveIndex: number,
   indexAtSurface: ((surfaceIdx: number, nd: number) => number) | undefined,
   previousSurfaceIdx: number,
+  allowedSurfaceIndexes?: ReadonlySet<number>,
 ): {
   surfaceIdx: number | null;
   hit: SurfaceIntersectionResult | null;
@@ -1028,6 +1035,7 @@ function findNearestGeneralizedSurfaceHit(
   let best: { surfaceIdx: number; hit: SurfaceIntersectionResult } | null = null;
   const skippedCandidates: FoldedPathAutoCandidateSkip[] = [];
   for (let i = 0; i < lens.S.length; i++) {
+    if (allowedSurfaceIndexes && !allowedSurfaceIndexes.has(i)) continue;
     const maxT = surfaceIntersectionMaxTForTarget(i, origin, direction, zPos, lens, launchBoundT);
     const hit = intersectGeneralizedSurface(
       { origin, direction } satisfies SurfaceIntersectionRay,

@@ -103,7 +103,7 @@ describe("ElementInspector", () => {
     render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={false} />);
 
     expect(screen.getByText("SEC:")).toBeTruthy();
-    expect(screen.getByText(/reflect, first-surface, active rear, inactive ignore, normal z=1 y=1/)).toBeTruthy();
+    expect(screen.getByText(/reflect, first-surface, active rear, inactive block, normal z=1 y=1/)).toBeTruthy();
     expect(screen.getByText("SECB:")).toBeTruthy();
     expect(screen.getByText(/refract, active both, normal z=1 y=1/)).toBeTruthy();
     expect(screen.getByText("Image plane IMG:")).toBeTruthy();
