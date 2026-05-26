@@ -1,8 +1,12 @@
 import type { RuntimeLens } from "../types/optics.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
 import { buildStateSurfaces } from "./internal/lensState.js";
-import { FLAT_R_THRESHOLD } from "./internal/surfaceMath.js";
-import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
+import {
+  interactParaxialSurface,
+  traceSurfacesParaxial,
+  transferParaxialRay,
+  type ParaxialRayState,
+} from "./internal/traceSurfaces.js";
 
 const CARDINAL_EPSILON = 1e-12;
 const FOLDED_PARAXIAL_SAMPLE_FRACTIONS = [0.04, 0.08, 0.16, 0.32, 0.5, 0.7, 0.9] as const;
@@ -232,10 +236,8 @@ function traceFoldedReflectiveParaxialPath(
   order: readonly number[],
   y0: number,
   u0: number,
-): { y: number; u: number; n: number } | null {
-  let y = y0;
-  let u = u0;
-  let n = 1;
+): ParaxialRayState | null {
+  let state: ParaxialRayState = { y: y0, u: u0, n: 1 };
   let currentZ = zPos[0];
 
   for (const surfaceIdx of order) {
@@ -243,18 +245,16 @@ function traceFoldedReflectiveParaxialPath(
     const targetZ = zPos[surfaceIdx];
     if (!surface || !isFinite(targetZ)) return null;
 
-    y += (targetZ - currentZ) * u;
+    state = transferParaxialRay(state, targetZ - currentZ);
     currentZ = targetZ;
 
-    if (surface.interaction?.type === "reflect") {
-      u = Math.abs(surface.R) < FLAT_R_THRESHOLD ? -u - (2 * y) / surface.R : -u;
-      continue;
-    }
-
-    const nextIndex = surface.nd === 1.0 ? 1.0 : surface.nd;
-    if (Math.abs(nextIndex - n) > 1e-12) return null;
-    n = nextIndex;
+    const nextState = interactParaxialSurface(state, surface, {
+      allowReflect: true,
+      requireSameIndexRefraction: true,
+    });
+    if (nextState === null) return null;
+    state = nextState;
   }
 
-  return { y, u, n };
+  return state;
 }
