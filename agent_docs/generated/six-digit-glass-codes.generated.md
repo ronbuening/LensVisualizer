@@ -9,21 +9,21 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **258** lenses scanned
-- **254** total code-only elements found
-- **254** elements in this report
-- **92** distinct lens files affected
+- **261** lenses scanned
+- **264** total code-only elements found
+- **264** elements in this report
+- **95** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
 | 593670 | 7 | 4 |
+| 670571 | 7 | 4 |
 | 593679 | 6 | 4 |
 | 770297 | 6 | 5 |
 | 855252 | 5 | 4 |
 | 662561 | 4 | 1 |
-| 670571 | 4 | 2 |
 | 694533 | 4 | 3 |
 | 738323 | 4 | 4 |
 | 764485 | 4 | 4 |
@@ -41,6 +41,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 903357 | 3 | 3 |
 | 911353 | 3 | 3 |
 | 051269 | 2 | 1 |
+| 493836 | 2 | 1 |
 | 514428 | 2 | 1 |
 | 519699 | 2 | 1 |
 | 531559 | 2 | 2 |
@@ -48,6 +49,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 585594 | 2 | 1 |
 | 586609 | 2 | 1 |
 | 603380 | 2 | 1 |
+| 654339 | 2 | 1 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
 | 720347 | 2 | 2 |
@@ -115,6 +117,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 673322 | 1 | 1 |
 | 675348 | 1 | 1 |
 | 680312 | 1 | 1 |
+| 682366 | 1 | 1 |
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 694532 | 1 | 1 |
@@ -124,6 +127,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 713433 | 1 | 1 |
 | 717295 | 1 | 1 |
 | 720502 | 1 | 1 |
+| 720521 | 1 | 1 |
+| 721334 | 1 | 1 |
 | 728284 | 1 | 1 |
 | 728285 | 1 | 1 |
 | 728403 | 1 | 1 |
@@ -436,6 +441,31 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L8 (Element 8) | 13 | `670571 - moderate-index crown (unresolved)` | 1.67000 / 57.07 | No catalog entry | abbe |
 | L10 (Element 10) | 17 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe |
 | L14 (Element 14) | 25 | `781446 - high-index mid-dispersion glass (unresolved)` | 1.78100 / 44.55 | No catalog entry | abbe |
+
+### [Minolta AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) - US 4,786,152
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched AD fluorophosphate crown (493/836; θgF = 0.539 patent-listed)` | 1.49310 / 83.55 | No catalog entry | abbe |
+| L2 (Element 2) | 3 | `Unmatched AD fluorophosphate crown (493/836; θgF = 0.539 patent-listed)` | 1.49310 / 83.55 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `Unmatched high-index lanthanum crown (720/521)` | 1.72000 / 52.14 | No catalog entry | abbe |
+| L4 (Element 4) | 7 | `Unmatched dense lanthanum flint (721/334)` | 1.72100 / 33.40 | No catalog entry | abbe |
+
+### [Minolta AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) - US 4,518,229
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched dense flint class (682/366)` | 1.68150 / 36.64 | No catalog entry | abbe |
+| L4 (Element 4) | 7 | `Unmatched dense flint class (654/339)` | 1.65446 / 33.86 | No catalog entry | abbe |
+| L8 (Element 8) | 14 | `Unmatched high-index crown / lanthanum-crown class (670/571)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L10 (Element 10) | 17 | `Unmatched dense flint class (654/339)` | 1.65446 / 33.86 | No catalog entry | abbe |
+
+### [Minolta AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) - US 4,560,253
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L3 (Component II-1) | 5 | `Unmatched lanthanum crown code 670/571 (historic/proprietary catalog match not verified)` | 1.67000 / 57.07 | No catalog entry | abbe |
+| L4 (Component II-2) | 7 | `Unmatched lanthanum crown code 670/571 (historic/proprietary catalog match not verified)` | 1.67000 / 57.07 | No catalog entry | abbe |
 
 ### [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) - US 4,124,276
 
