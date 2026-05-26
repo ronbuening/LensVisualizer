@@ -73,9 +73,10 @@ Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab 
 closed, preventing hidden analysis work during slider drag.
 
 `AnalysisDrawerContent` owns global analysis notices. It shows a folded-optics notice for `L.isFoldedOptics`, allows the
-mirror-safe aberrations path, and replaces tabs that still assume a sequential front-to-rear paraxial model with an
-explicit unsupported message. When adapting a tab for mirror systems, remove it from the folded unsupported set only
-after its math uses generalized image-plane/ray intersections and has fixture-backed tests.
+mirror-safe aberrations path, and replaces complex tabs that still assume a sequential front-to-rear paraxial model with
+an explicit unsupported message. When adapting a tab for mirror systems, remove it from the folded unsupported set only
+after its math uses generalized stop/image-plane ray intersections, has fixture-backed tests, and has clear UI copy for
+folded image-plane conventions.
 
 New analysis tabs require:
 

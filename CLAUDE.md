@@ -115,8 +115,11 @@ Read only the relevant focused doc before changing that area:
 - Fisheye and ultra-wide field launch must go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
 - Mirror/folded systems opt into `LensData.opticalPath` and per-surface `interaction` / `innerSd`. Preserve ordinary
-  sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and keep folded-system
-  paraxial analysis guarded until the specific tab is mirror-safe.
+  sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and route folded
+  stop/chief-ray solves through the generalized tracer instead of sequential `stopAt` partial traces.
+- Keep folded-system complex analysis tabs guarded until the specific tab is mirror-safe. Axial cardinal overlays and
+  mirror-safe spherical/blur paths are adapted; do not assume that for coma, distortion, vignetting, field curvature, or
+  pupil tabs without fixture-backed validation.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.

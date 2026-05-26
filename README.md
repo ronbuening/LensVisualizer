@@ -12,7 +12,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - Traces density-controlled on-axis, off-axis, and chromatic rays through the current focus, aperture, and zoom state
 - Adds opt-in, URL-shareable tilt/shift visualization controls for supported perspective-control lenses
 - Supports hidden/reference mirror fixtures with folded paths, annular apertures, tilted fold planes, side image planes,
-  and second-surface coating accents
+  second-surface coating accents, and real-ray folded off-axis pupil/chief-ray geometry
 - Shows analysis views for spherical aberration, a real 2D coma point cloud, meridional and sagittal coma, distortion, focus breathing, lens-group movement, vignetting, pupil aberration, chromatic field curvature, and aspheric surface deviation
 - Includes Abbe-diagram and Petzval overlays, plus enlarged LCA visualization
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
@@ -66,7 +66,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Exact surface tracing**: the tracer intersects spherical/aspheric sag surfaces directly
 - **Projection-aware fisheyes**: equidistant and equisolid fisheye metadata use projection-native distortion references, vector/bounding-sphere chief-ray launches, and safe diagram bundle fields for lenses with extreme declared coverage
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
-- **Mirror and folded-path fixtures**: hidden reference prescriptions exercise first-surface mirrors, Mangin-style second-surface mirrors, annular obstructions, tilted fold mirrors, automatic folded path selection, and non-default image planes; the lens library can expose them with `?view=debug`
+- **Mirror and folded-path fixtures**: hidden reference prescriptions exercise first-surface mirrors, Mangin-style second-surface mirrors, annular obstructions, tilted fold mirrors, automatic folded path selection, and non-default image planes; off-axis ray bundles solve against the generalized folded stop and image plane instead of using sequential refractive approximations, and the lens library can expose the fixtures with `?view=debug`
 - **Lens-group movement**: focus and zoom sliders can open a URL-shareable overlay that stacks inferred lens groups vertically and charts each group center against the fixed focus plane
 - **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
 - **Aspheric deviation inspector**: click any aspheric element to compare its surface profile against the base sphere or a least-squares best-fit sphere, with adjustable exaggeration and click-to-measure Δsag (mm or μm)
@@ -193,6 +193,8 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Adding a lens](agent_docs/adding_a_lens.md)
 - [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)
 - [Trace model and fisheye launch status](TRACE_MODEL_IMPROVEMENT_PLAN.md)
+- [Mirror/folded optics accuracy status](MIRROR_OPTICS_ACCURACY_PLAN.md)
+- [Mirror-lens follow-up backlog](MIRROR_LENS_FUTURE_ENHANCEMENTS.md)
 - [Glass catalog buildout](agent_docs/glass-catalog-buildout.md)
 - [Chromatic dispersion notes](CHROMATIC_DISPERSION_NOTES.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)

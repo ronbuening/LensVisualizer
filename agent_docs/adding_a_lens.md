@@ -17,7 +17,7 @@ No manual imports or catalog edits required.
 - **Companion analysis-file format:** `src/lens-data/LENS_ANALYSIS_SPEC.md` — required skeleton, conditional sections, voice and conventions for `*.analysis.md`.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
-- **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples for first-surface mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, and Cassegrain-style obstruction/back-focus behavior.
+- **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples for first-surface mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, Cassegrain/Gregorian/Maksutov-style folded paths, and annular blocker behavior.
 - **Mirror fixture authoring report:** `agent_docs/generated/mirror-fixtures.generated.md` — regenerate with `npm run generate:mirror-reports` after changing hidden mirror/telescope fixtures.
 - **Mount/format backfill status:** [lens-mount-format-backfill.md](lens-mount-format-backfill.md)
 - **Re-auditing an existing lens against its patent:** [lens-patent-audit.md](lens-patent-audit.md) — use this when revisiting a data file already in the catalog, not when authoring a new one.
@@ -87,15 +87,19 @@ Use `src/lens-data/LENS_DATA_SPEC.md` as the source of truth, and start from the
 - `ReferenceManginSecondSurfaceMirror.data.ts` for a second-surface mirror with an explicit repeated hit order.
 - `ReferenceNewtonianSideFocus.data.ts` for automatic next-surface selection, a tilted diagonal secondary, and a side image plane.
 - `ReferenceCassegrainBackFocus.data.ts` for obstruction plus folded back-focus behavior.
+- `ReferenceGregorianSecondary.data.ts` for Gregorian secondary behavior and declared back focus.
+- `ReferenceMaksutovCassegrainMeniscus.data.ts` for refractive meniscus plus folded mirror path.
+- `ReferenceAnnularRingBlocker.data.ts` for annular blocker behavior.
 
 Authoring rules that matter most:
 
 - Keep `surfaces` in physical axial order. Use `opticalPath.surfaceOrder` when the ray hit order is known and not the same as the list order; labels may repeat.
-- Use `opticalPath.mode: "auto"` only when nearest-valid-surface selection is required. Set a conservative `maxInteractions` so an invalid folded path cannot loop.
+- Use `opticalPath.mode: "auto"` only when nearest-valid-surface selection is required. Set a conservative `maxInteractions` so an invalid folded path cannot loop; for explicit `surfaceOrder`, it must still cover every listed hit plus image-plane termination.
 - Put `opticalPath.imagePlane` wherever the design really images. For side focus, set both `y` and a non-axial `normal` such as `{ z: 0, y: 1 }`.
 - Use `interaction.normal` for tilted flat fold mirrors. Put the same normal on the passive backing plane so the SVG element renders at the physical angle.
 - Use `mirrorKind: "second-surface"` for substrate-backed coatings. The diagram draws those coating surfaces as dashed accents, but ray behavior still comes entirely from `interaction.type`, `incidentSide`, and the resolved optical path.
-- Use `innerSd` for annular active surfaces. Use a separate `interaction: { type: "block" }` surface for a solid central obstruction.
+- Use `innerSd` for annular active surfaces. Keep paired mirror/backing `innerSd` values consistent, and use a separate `interaction: { type: "block" }` surface for a solid central obstruction.
+- Do not hand-tune `rayFractions` or pupil constants to compensate for a folded path. Folded off-axis rays now solve stop and image-plane geometry through the generalized tracer; fix the physical path metadata instead.
 - Run `npm run generate:mirror-reports` after adding or materially changing a hidden mirror fixture so the generated authoring matrix stays current.
 - Expect analysis guardrails: mirror-safe spherical aberration and related blur helpers can run, while tabs that still assume a sequential front-to-rear paraxial model are hidden for folded systems.
 

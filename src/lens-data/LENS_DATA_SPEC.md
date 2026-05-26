@@ -203,7 +203,7 @@ opticalPath: {
 - `mode: "sequential"` preserves the historical behavior unless `surfaceOrder` is present. With a `surfaceOrder`, the generalized tracer follows that label list exactly and then intersects the configured image plane. This is the safest choice for Mangin mirrors and other designs where the physical surface order is not the optical hit order.
 - `mode: "auto"` asks the generalized tracer to choose the nearest valid optical surface at each step. It skips passive same-index refractive surfaces, respects side-specific reflection/blocking behavior, avoids immediate self-hits, stops at the image plane when it is the next intersection, and stops at `maxInteractions` if a path does not terminate.
 - `surfaceOrder` entries are surface labels, not indices. Labels must exist, and labels may repeat when a ray intentionally re-enters or exits through the same physical surface.
-- `maxInteractions` should be high enough for the expected path plus the image plane, but not so high that an invalid folded system can loop for many interactions.
+- `maxInteractions` should be high enough for the expected path plus the image plane, but not so high that an invalid folded system can loop for many interactions. For an explicit `surfaceOrder`, validation requires enough interactions to cover every listed surface hit plus image-plane termination.
 
 ### Image Plane
 
@@ -214,7 +214,7 @@ opticalPath: {
 - Side-focus Newtonian: use a horizontal plane such as `normal: { z: 0, y: 1 }` with `y` above or below the optical axis.
 - The normal is normalized by `buildLens()`. `{ z: 1, y: 0 }` means a vertical plane of constant z. `{ z: 0, y: 1 }` means a horizontal side plane of constant y.
 
-Diagram layout, ray termination, and mirror-safe spherical aberration use this explicit plane for folded systems. Sequential paraxial analysis tabs that still assume a right-hand image plane are guarded in the UI instead of showing misleading results.
+Diagram layout, ray termination, off-axis folded pupil/chief-ray geometry, and mirror-safe spherical aberration use this explicit plane for folded systems. Complex analysis tabs that still assume a sequential right-hand image plane remain guarded in the UI instead of showing misleading results.
 
 ### Surface Interactions
 
@@ -278,6 +278,8 @@ For a solid central obstruction, omit `innerSd` and use a `block` surface:
 For an annular blocker, combine `innerSd` with `type: "block"`; only the ring clips and the hole passes.
 
 Visible on-axis and off-axis ray sampling is obstruction-aware for folded systems. The sampler scans the usable pupil bands and avoids the central blocked region automatically, so mirror fixtures should not hand-tune `rayFractions` just to route around a secondary obstruction.
+
+If a tilted or paired backing surface belongs to the same annular mirror element, keep `innerSd` consistent between the reflective face and its backing plane. Validation rejects mismatched paired annular faces because the SVG element and active optical aperture would otherwise disagree.
 
 ### Authoring Patterns
 
@@ -343,6 +345,9 @@ Mirror/telescope regression fixtures live under `src/lens-data/reference/`. They
 - `ReferenceManginSecondSurfaceMirror.data.ts` — repeated front-surface hit around a second-surface mirror.
 - `ReferenceNewtonianSideFocus.data.ts` — auto path selection, tilted secondary, and side image plane.
 - `ReferenceCassegrainBackFocus.data.ts` — obstruction plus folded back-focus behavior.
+- `ReferenceGregorianSecondary.data.ts` — Gregorian-style secondary and declared back focus.
+- `ReferenceMaksutovCassegrainMeniscus.data.ts` — refractive meniscus plus folded mirror path.
+- `ReferenceAnnularRingBlocker.data.ts` — annular blocker behavior that clips the ring while passing the center.
 
 Use these as authoring examples and regression anchors, not as polished public catalog entries.
 

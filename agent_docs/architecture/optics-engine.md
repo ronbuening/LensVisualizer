@@ -45,6 +45,8 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
+- Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite
+  geometric fallbacks when a folded path cannot produce reliable stop/full traces.
 
 **`halfField` vs `tracingHalfField`.** Rectilinear lenses set both to the same slope-launch-bisected value
 (real chief ray vignetting check) by default. Fisheye lenses set `halfField = projection.maxTraceFieldDeg`
@@ -105,6 +107,9 @@ The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
   per-surface bracket bound is z-projected; for grazing or backward rays the caller must supply
   `launchBoundT` so the intersection search has a finite parametric bound (typically `2 × launchRadiusMm`
   for bounding-sphere launches). The slope entry is a thin adapter that calls into this core.
+- `traceToStopViaGeneralized(lens, input, stopIdx, options)` — helper for folded callers that need a stop hit.
+  It runs a full generalized trace, scans `hits` for the first unclipped requested stop occurrence by default, and
+  can select a later repeated stop occurrence when the optical path intentionally crosses the same stop more than once.
 
 Both solve each ray/sag intersection via `internal/surfaceIntersection.ts` and project the outgoing ray back
 to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. `surfaceIntersection.ts`
@@ -143,8 +148,10 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
 and whether the explicit image plane was reached.
 
 Analysis support is deliberately incremental. Spherical aberration and mirror-safe blur/bokeh helpers use generalized
-image-plane intersections where valid; sequential paraxial/cardinal/pupil/field tabs are guarded in the UI for
-`L.isFoldedOptics` until each tab is adapted.
+image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray solves, and
+axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a settled folded
+interpretation, such as coma, distortion, vignetting, field curvature, and pupils, remain guarded in the UI until each
+tab has fixture-backed validation.
 
 ## Field-Launch Convention
 
@@ -192,7 +199,9 @@ helper instead of reimplementing the criteria.
 surface spacings, receives the visible `zPos`/image-plane positions from the diagram computation pipeline, and returns
 all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. For ordinary same-index
 photographic lenses, H/N and H′/N′ are marked coincident explicitly; non-unity image-side systems compute N/N′
-independently.
+independently. Axial folded reflective systems share the same paraxial transfer/interaction stepper with an enabled
+reflect branch; folded systems with tilted image planes still return no cardinal result until a rotated-frame reporting
+convention exists.
 
 ## Off-Axis Geometry Policy
 
@@ -203,8 +212,10 @@ Use explicit naming:
 - `computeOffAxisFieldGeometry` remains as a legacy compatibility alias for paraxial geometry.
 
 Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
-state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Keep legacy paraxial behavior only
-where the UI or test explicitly needs first-order comparison.
+state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Folded callers that need the stop
+height use generalized stop tracing rather than sequential `stopAt`, and folded image-plane coordinates use the same
+plane-normal intersection helper as sequential callers. Keep legacy paraxial behavior only where the UI or test
+explicitly needs first-order comparison.
 
 ## Perspective-Control Movement
 

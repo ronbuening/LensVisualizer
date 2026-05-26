@@ -1,20 +1,40 @@
-# Plan: Improve mirror/folded optics accuracy and shared structure
+# Completed Plan: Improve mirror/folded optics accuracy and shared structure
+
+## Status
+
+Completed on branch `ronbuening/MirrorLensTest`.
+
+- Accuracy implementation: `1c2d783 fix: improve folded mirror off-axis accuracy`
+- Optional shared paraxial stepper: `a6af1fc refactor: share paraxial cardinal stepper`
+
+Workstreams A, B, C, E, and F were implemented, and the optional Workstream D was also completed. Complex folded-system
+analysis tabs that are not mirror-safe remain guarded; the pass intentionally updates off-axis geometry, mirror-safe
+spherical/blur paths, validation, tests, and shared internal stepping only.
+
+Verification completed:
+
+- `npm run typecheck`
+- `npm run format:check`
+- `npm run lint`
+- `npm run test`
+- `npm run build`
+
+The build passed with the existing `%VITE_GOATCOUNTER_URL%` and large chunk warnings.
 
 ## Context
 
-This branch (`claude/compassionate-mayer-ix92F`, commits `e696eeb`..`22072d5`) adds mirror/telescope
-support: `SurfaceData.interaction` (reflect/refract/block), `innerSd` annular obstructions,
-`opticalPath` (explicit `surfaceOrder` or `auto`), tilted meridional planes, and 8 hidden reference
-fixtures. The trace engine is already well-built: `exactSurfaceTrace.ts` has **one** generalized loop
-that branches on `interaction.type`, so on-axis tracing through mirrors is correct and tested.
+The earlier mirror/telescope support added `SurfaceData.interaction` (reflect/refract/block), `innerSd` annular
+obstructions, `opticalPath` (explicit `surfaceOrder` or `auto`), tilted meridional planes, and hidden reference
+fixtures. The trace engine already had **one** generalized loop in `exactSurfaceTrace.ts` that branches on
+`interaction.type`, so on-axis tracing through mirrors was correct and tested before this pass.
 
-The problem is everything *around* the trace. Off-axis (chief/field) rays are launched from an
+The problem was everything *around* the trace. Off-axis (chief/field) rays were launched from an
 entrance-pupil position and ratio that, for folded systems, are **stubbed** rather than solved from
-real rays. So the trace math is right but its *inputs* are approximate for mirrors. There is also
-duplication (`isFoldedOptics ? generalized : sequential` forks) and **zero off-axis test coverage** —
-every fixture/test is on-axis.
+real rays. The trace math was right but its *inputs* were approximate for mirrors. There was also
+duplication (`isFoldedOptics ? generalized : sequential` forks) and no off-axis test coverage for the
+reference mirror fixtures.
 
-**Goal (approved scope):** make off-axis ray geometry genuinely accurate for mirror systems, refactor
+**Goal achieved:** make off-axis ray geometry genuinely accurate for mirror systems, refactor
 the folded and refractive paths onto shared helpers, harden validation/numerics, and anchor the
 reference fixtures to closed-form ground truth. Keep the complex analysis tabs (coma, distortion,
 vignetting, field curvature, pupils) guarded — re-enabling them is explicitly out of scope this pass.
@@ -34,7 +54,7 @@ Both feed the same downstream consumer: off-axis ray launch uses `EP.yRatio`/`ep
 
 ## Workstreams
 
-### A. Thread folded context into the real-ray trace wrappers  *(root cause, do first)*
+### A. Thread folded context into the real-ray trace wrappers  *(done)*
 - In `fieldGeometry.ts` (`traceStateSurfacesReal`, ~:871) and `pupilAberration.ts` (~:480), include
   `isFoldedOptics`, `opticalPath`, `imagePlane` in the `ExactTraceLens` they construct, so folded
   lenses actually reach the generalized tracer.
@@ -43,7 +63,7 @@ Both feed the same downstream consumer: off-axis ray launch uses `EP.yRatio`/`ep
   `traceToStopViaGeneralized` helper (Workstream B) instead.
 - Leave non-folded behavior byte-for-byte unchanged: only folded lenses get the new context/path.
 
-### B. Real-ray chief/marginal + pupil solve for the `buildLens` folded branch
+### B. Real-ray chief/marginal + pupil solve for the `buildLens` folded branch  *(done)*
 - Add `traceToStopViaGeneralized(lens, input, stopIdx, options)` to `exactSurfaceTrace.ts`. It runs a
   full generalized vector trace (no `stopAt`), scans the existing `hits` array for the first unclipped
   hit with `surfaceIdx === stopIdx`, and returns `{ y, x, uy, ux, found }`. Returns `found: false`
@@ -58,7 +78,7 @@ Both feed the same downstream consumer: off-axis ray launch uses `EP.yRatio`/`ep
 - **Fallback:** when the chief/marginal trace reports `found: false` or clips, keep the current
   geometric `EP.yRatio`/`B: 0` so a hard-to-trace fold never produces NaNs.
 
-### C. Unify the image-plane intercept
+### C. Unify the image-plane intercept  *(done)*
 - Replace the duplicated `L.isFoldedOptics ? generalizedImagePlaneIntercept : imagePlaneIntercept`
   (`aberration/shared.ts:93-95`, `aberration/spherical.ts:41,149`) with a single
   `imagePlaneCoordinate(y, u, referenceZ, L, planeZ)` that runs the generalized normal math against an
@@ -67,13 +87,13 @@ Both feed the same downstream consumer: off-axis ray launch uses `EP.yRatio`/`ep
   compute today — this preserves focus-dependent sequential intercepts exactly while removing the fork.
   (Safe because `RuntimeLens.imagePlane` is always populated — verified.)
 
-### D. Share the paraxial stepper for cardinal elements  *(optional, lower priority)*
+### D. Share the paraxial stepper for cardinal elements  *(done)*
 - `traceFoldedReflectiveParaxialPath` (`cardinalElements.ts:229`) and the refractive `paraxialTrace`
   duplicate a transfer/refract step. Consider one interaction-aware step function with a reflect branch
   (`u' = -u - 2y/R`). Only pursue if it doesn't complicate the refractive path; the cardinal guards
   (meridional-only image plane, air-to-air) stay as-is.
 
-### E. Validation & numerical hardening (`validateLensData.ts`, `exactSurfaceTrace.ts`)
+### E. Validation & numerical hardening (`validateLensData.ts`, `exactSurfaceTrace.ts`)  *(done)*
 - Flag `opticalPath.maxInteractions` that is too low for the declared `surfaceOrder` length (+ image
   plane) — currently silent runtime clipping.
 - Warn when `imagePlane.z` is unreachable by any forward/folded path (no surface can direct a ray to it).
@@ -81,7 +101,7 @@ Both feed the same downstream consumer: off-axis ray launch uses `EP.yRatio`/`ep
 - Fix `inferLeadDistance` (`exactSurfaceTrace.ts:741`) for a tilted/flat first surface — `conicPolySag`
   returns 0 for a tilted plane, giving a ~1 mm lead that can mis-place the launch origin.
 
-### F. Off-axis fixtures + analytic anchors (tests)
+### F. Off-axis fixtures + analytic anchors (tests)  *(done)*
 - Add field-angle (off-axis) variants for at least the spherical-primary, Cassegrain, and Newtonian
   reference fixtures; assert the chief ray reaches the expected meridional image height and that
   reflection preserves the meridional symmetry.

@@ -9,7 +9,10 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 - Diagram rendering supports annular element paths, tilted flat fold mirrors, second-surface coating accents, and
   non-default image planes.
 - Visible ray sampling avoids central blocking geometry for folded systems.
-- Analysis guardrails prevent folded systems from showing sequential paraxial/cardinal/pupil/field results until each tab is adapted. Mirror-safe spherical aberration and related blur helpers have an initial generalized image-plane path.
+- Folded off-axis launch geometry now uses generalized stop/chief-ray traces and path-aware image-plane intersections
+  instead of sequential refractive approximations.
+- Analysis guardrails prevent folded systems from showing complex sequential analysis tabs until each tab is adapted.
+  Axial cardinal overlays and mirror-safe spherical aberration/blur helpers have generalized folded paths.
 
 ## Completed Highest-Priority Follow-Ups
 
@@ -23,9 +26,11 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 2. **Adapt More Analysis Tabs Safely** - Done for currently valid surfaces; still gated where the interpretation is not
    physically settled.
    - Axial folded mirror systems can now compute first-order cardinal overlays through the shared cardinal helper.
+   - Folded field and pupil real-ray wrappers now carry `opticalPath`, `imagePlane`, and folded context into generalized
+     tracing, so future tab enablement can build on correct stop and image-plane geometry.
    - Focus-breathing remains available for folded systems because it is metadata/state based for fixed mirror fixtures.
-   - Pupil, distortion, vignetting, field-curvature, and coma tabs remain gated for folded systems until their math uses
-     generalized image-plane normals and each tab has fixture-backed physical interpretation.
+   - Pupil, distortion, vignetting, field-curvature, and coma tabs remain gated for folded systems until each tab has
+     fixture-backed physical interpretation and UI copy for folded image-plane conventions.
 
 3. **Improve First-Order Mirror Math** - Done for axial reflective folded systems.
    - Reflective paraxial path support handles signed folded transfers and mirror slope reversal/power.
@@ -42,6 +47,22 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 5. **Broaden Fixture Coverage** - Done.
    - Added hidden reference fixtures for a Maksutov-Cassegrain-style meniscus/primary/secondary path, a Gregorian-style
      secondary path, and an annular ring blocker that clips the ring while allowing the center through.
+
+6. **Fix Folded Off-Axis Accuracy** - Done.
+   - Folded stop-height solves now use `traceToStopViaGeneralized()` rather than sequential `stopAt` tracing.
+   - `buildLens()` derives folded entrance/exit pupil geometry from generalized real-ray basis traces, with finite
+     fallback values for hard-to-trace paths.
+   - Image-plane coordinate math is shared across folded and sequential callers while preserving focus-adjusted
+     sequential behavior.
+   - Regression tests cover off-axis spherical primary, Cassegrain, and Newtonian chief-ray behavior, meridional
+     symmetry, repeated stop selection, and a representative non-folded refractive snapshot.
+
+7. **Harden Folded Validation And Numerics** - Done.
+   - Validation rejects explicit paths whose `maxInteractions` cannot cover the declared hit order plus image plane.
+   - Validation rejects mismatched paired `innerSd` values on annular mirror/backing surfaces.
+   - Folded image-plane reachability now reports conservative errors only when probe traces clearly cannot reach the
+     declared image plane.
+   - Tilted/flat first-surface lead distance inference uses tilted-plane aperture extent rather than spherical sag only.
 
 ## UI And Authoring Improvements
 

@@ -42,7 +42,9 @@ optics helpers. Do not store runtime lens state in module globals.
 
 For mirror or telescope data, inspect `L.opticalPath`, `L.imagePlane`, and `L.isFoldedOptics` instead of inferring behavior
 from surface order. Public `traceRay*` helpers report folded termination through `reachedImagePlane`; targeted optics
-tests may import the exact tracer to assert generalized-path `hits`, `terminalPoint`, and `terminalDirection`.
+tests may import the exact tracer to assert generalized-path `hits`, `terminalPoint`, `terminalDirection`, and repeated
+stop behavior. Folded callers that need an intermediate stop hit should use the generalized stop helper internally
+rather than relying on sequential partial tracing.
 
 ## Optics Engine
 
