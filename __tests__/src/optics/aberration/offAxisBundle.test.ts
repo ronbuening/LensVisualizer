@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   bestFocusPlaneForDirection,
   computeOffAxisFieldGeometry,
+  computeProjectionAwareOffAxisFieldGeometry,
+  isOffAxisVectorFieldGeometry,
   traceCircularOffAxisBundle,
   traceOffAxisBundleFromSamples,
   traceOrthogonalOffAxisBundle,
@@ -11,6 +13,7 @@ import { DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES, doLayout, epAtZoom, fopenAtZoom } 
 import buildLens from "../../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 
 function build(raw: object): RuntimeLens {
@@ -142,6 +145,24 @@ describe("off-axis aberration helpers", () => {
     expect(geometry).not.toBeNull();
     expect(geometry!.fieldFraction).toBe(1.0);
     expect(geometry!.fieldAngleDeg).toBeGreaterThan(0);
+  });
+
+  it("promotes representative fisheye fields beyond the slope-safe cone to vector geometry", () => {
+    const L = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const geometry = computeProjectionAwareOffAxisFieldGeometry(L, zPos, 0, 0, 0.4);
+
+    expect(geometry).not.toBeNull();
+    expect(isOffAxisVectorFieldGeometry(geometry!)).toBe(true);
+    expect(geometry!.fieldAngleDeg).toBeCloseTo(44, 8);
+
+    const bundle = traceCircularOffAxisBundle([1, 6, 12], geometry!, L, 0, 0, currentEPSD * 0.05, currentPhysStopSD);
+
+    expect(bundle).not.toBeNull();
+    expect(bundle!.sampleCount).toBe(19);
+    expect(bundle!.validSampleCount).toBeGreaterThan(0);
+    expect(bundle!.samples.some((sample) => Math.abs(sample.trace.x) > 1e-9)).toBe(true);
   });
 
   it("rejects invalid field fractions", () => {

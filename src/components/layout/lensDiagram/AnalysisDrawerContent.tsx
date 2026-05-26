@@ -97,7 +97,7 @@ export default function AnalysisDrawerContent({
     const imageCircleMm = projectionValueAtZoom(projection.imageCircleMm, analysisInputs.zoomT);
     return `Circular fisheye projection (${projection.kind === "fisheye-equisolid" ? "equisolid" : "equidistant"}): ${fullFieldDeg?.toFixed(0) ?? "unknown"}° field${
       imageCircleMm ? ` over a ${imageCircleMm.toFixed(1)} mm image circle` : ""
-    }. Analysis tabs use the central forward-traced cone; the full field is projection metadata, not a rectilinear trace.`;
+    }. Projection-aware tabs use vector field launch beyond the slope-safe cone; scalar-only sections stay within their validated tracing range.`;
   })();
   const foldedOpticsText = L.isFoldedOptics
     ? "Folded mirror optical path detected. Ray drawing uses the generalized folded tracer; sequential paraxial diagnostics are guarded until mirror-safe analysis is enabled for each tab."

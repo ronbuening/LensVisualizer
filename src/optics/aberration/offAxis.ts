@@ -9,6 +9,7 @@ import {
   bAtZoom,
   computeFieldGeometryAtState,
   halfFieldAtZoom,
+  offsetVectorFieldRay,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
@@ -16,14 +17,18 @@ import {
   thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
+  traceSkewRayVector,
+  traceSkewRayVectorChromatic,
+  tracingHalfFieldAtZoom,
   yRatioAtZoom,
   type CircularPupilSample,
   type FieldGeometryState,
   type OrthogonalPupilSample,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
+  type VectorFieldRayLaunch,
 } from "../optics.js";
-import { projectionLaunchSlopeForField } from "../projection.js";
+import { isFisheyeProjection, projectionLaunchSlopeForField } from "../projection.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
@@ -40,6 +45,18 @@ export interface OffAxisFieldGeometry {
   lastSurfZ: number;
   imagePlaneZ: number;
 }
+
+export interface OffAxisVectorFieldGeometry {
+  kind: "vector";
+  fieldFraction: number;
+  fieldAngleDeg: number;
+  vectorLaunch: VectorFieldRayLaunch;
+  zPos: number[];
+  lastSurfZ: number;
+  imagePlaneZ: number;
+}
+
+export type ProjectionAwareOffAxisFieldGeometry = OffAxisFieldGeometry | OffAxisVectorFieldGeometry;
 
 export interface OffAxisChiefRaySample {
   trace: SkewRayTraceResult;
@@ -62,7 +79,7 @@ export interface OffAxisTracedSample {
 }
 
 export interface OffAxisBundle {
-  geometry: OffAxisFieldGeometry;
+  geometry: ProjectionAwareOffAxisFieldGeometry;
   chiefRay: OffAxisChiefRaySample;
   sampleCount: number;
   validSampleCount: number;
@@ -76,6 +93,8 @@ function mapTracedSample(
   yChief: number,
   trace: SkewRayTraceResult,
   imagePoint: SkewImagePlaneIntercept,
+  launchX = sample.xFraction * entrancePupilSemiDiameter,
+  launchY = yChief + sample.yFraction * entrancePupilSemiDiameter,
 ): OffAxisTracedSample {
   return {
     index: sample.index,
@@ -86,11 +105,17 @@ function mapTracedSample(
     radiusFraction: "radiusFraction" in sample ? sample.radiusFraction : null,
     azimuthRad: "azimuthRad" in sample ? sample.azimuthRad : null,
     weight: "weight" in sample ? sample.weight : null,
-    launchX: sample.xFraction * entrancePupilSemiDiameter,
-    launchY: yChief + sample.yFraction * entrancePupilSemiDiameter,
+    launchX,
+    launchY,
     trace,
     imagePoint,
   };
+}
+
+export function isOffAxisVectorFieldGeometry(
+  geometry: ProjectionAwareOffAxisFieldGeometry,
+): geometry is OffAxisVectorFieldGeometry {
+  return "kind" in geometry && geometry.kind === "vector";
 }
 
 export function computeParaxialOffAxisFieldGeometry(
@@ -167,8 +192,71 @@ export function computeStateAwareOffAxisFieldGeometry(
   };
 }
 
+function shouldUseVectorOffAxisGeometry(L: RuntimeLens, zoomT: number, fieldAngleDeg: number): boolean {
+  if (fieldAngleDeg <= 0) return false;
+  if (isFisheyeProjection(L.projection)) {
+    const tracingHalfFieldDeg = tracingHalfFieldAtZoom(zoomT, L);
+    return !isFinite(tracingHalfFieldDeg) || fieldAngleDeg > tracingHalfFieldDeg;
+  }
+  return false;
+}
+
+export function computeProjectionAwareOffAxisFieldGeometry(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  fieldFraction: number,
+  stateGeometry?: FieldGeometryState,
+  aberrationT = 0,
+): ProjectionAwareOffAxisFieldGeometry | null {
+  if (L.N < 1) return null;
+  if (!isFinite(fieldFraction) || fieldFraction < 0 || fieldFraction > 1) return null;
+
+  const geometry = stateGeometry ?? computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  if (!isFinite(geometry.halfFieldDeg) || geometry.halfFieldDeg < 0) return null;
+
+  const fieldAngleDeg = geometry.halfFieldDeg * fieldFraction;
+  if (!isFinite(fieldAngleDeg) || fieldAngleDeg < 0) return null;
+
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  if (!isFinite(imagePlaneZ)) return null;
+
+  const launch = projectionLaunchSlopeForField(L, fieldAngleDeg);
+  const solve = solveChiefRay(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
+  if (
+    solve.vectorLaunch &&
+    (launch.status === "out-of-domain" || shouldUseVectorOffAxisGeometry(L, zoomT, fieldAngleDeg))
+  ) {
+    return {
+      kind: "vector",
+      fieldFraction,
+      fieldAngleDeg,
+      vectorLaunch: solve.vectorLaunch,
+      zPos,
+      lastSurfZ,
+      imagePlaneZ,
+    };
+  }
+
+  if (launch.status === "out-of-domain") return null;
+  const uField = launch.uField;
+  const yChief = solve.yLaunch;
+  if (!isFinite(uField) || !isFinite(yChief)) return null;
+
+  return {
+    fieldFraction,
+    fieldAngleDeg,
+    uField,
+    yChief,
+    lastSurfZ,
+    imagePlaneZ,
+  };
+}
+
 export function traceOffAxisChiefRay(
-  geometry: OffAxisFieldGeometry,
+  geometry: ProjectionAwareOffAxisFieldGeometry,
   L: RuntimeLens,
   focusT: number,
   zoomT: number,
@@ -177,6 +265,38 @@ export function traceOffAxisChiefRay(
   channel?: ChromaticChannel,
   aberrationT = 0,
 ): OffAxisChiefRaySample | null {
+  if (isOffAxisVectorFieldGeometry(geometry)) {
+    const trace = channel
+      ? traceSkewRayVectorChromatic(
+          geometry.vectorLaunch,
+          geometry.zPos,
+          stopSemiDiameter,
+          true,
+          L,
+          channel,
+          focusT,
+          zoomT,
+          aberrationT,
+        )
+      : traceSkewRayVector(geometry.vectorLaunch, geometry.zPos, stopSemiDiameter, true, L, focusT, zoomT, aberrationT);
+    if (trace.clipped) return null;
+
+    const imagePoint = skewImagePlaneIntercept(
+      trace.x,
+      trace.y,
+      trace.ux,
+      trace.uy,
+      geometry.lastSurfZ,
+      geometry.imagePlaneZ,
+    );
+    if (imagePoint === null) return null;
+
+    return {
+      trace,
+      imagePoint,
+    };
+  }
+
   const trace = channel
     ? traceChiefRelativeSkewRayChromatic(
         0,
@@ -225,7 +345,7 @@ export function traceOffAxisChiefRay(
 
 export function traceOffAxisBundleFromSamples(
   samples: readonly SkewBundleSourceSample[],
-  geometry: OffAxisFieldGeometry,
+  geometry: ProjectionAwareOffAxisFieldGeometry,
   L: RuntimeLens,
   focusT: number,
   zoomT: number,
@@ -249,6 +369,50 @@ export function traceOffAxisBundleFromSamples(
   if (chiefRay === null) return null;
 
   const tracedSamples = samples.flatMap((sample) => {
+    if (isOffAxisVectorFieldGeometry(geometry)) {
+      const vectorRay = offsetVectorFieldRay(
+        geometry.vectorLaunch,
+        sample.xFraction * entrancePupilSemiDiameter,
+        sample.yFraction * entrancePupilSemiDiameter,
+      );
+      const trace = channel
+        ? traceSkewRayVectorChromatic(
+            vectorRay,
+            geometry.zPos,
+            stopSemiDiameter,
+            true,
+            L,
+            channel,
+            focusT,
+            zoomT,
+            aberrationT,
+          )
+        : traceSkewRayVector(vectorRay, geometry.zPos, stopSemiDiameter, true, L, focusT, zoomT, aberrationT);
+      if (trace.clipped) return [];
+
+      const imagePoint = skewImagePlaneIntercept(
+        trace.x,
+        trace.y,
+        trace.ux,
+        trace.uy,
+        geometry.lastSurfZ,
+        geometry.imagePlaneZ,
+      );
+      if (imagePoint === null) return [];
+
+      return [
+        mapTracedSample(
+          sample,
+          entrancePupilSemiDiameter,
+          0,
+          trace,
+          imagePoint,
+          vectorRay.origin[0],
+          vectorRay.origin[1],
+        ),
+      ];
+    }
+
     const trace = channel
       ? traceChiefRelativeSkewRayChromatic(
           sample.xFraction,
@@ -305,7 +469,7 @@ export function traceOffAxisBundleFromSamples(
 export function traceOrthogonalOffAxisBundle(
   orientation: OffAxisFanOrientation,
   sampleCount: number,
-  geometry: OffAxisFieldGeometry,
+  geometry: ProjectionAwareOffAxisFieldGeometry,
   L: RuntimeLens,
   focusT: number,
   zoomT: number,
@@ -329,7 +493,7 @@ export function traceOrthogonalOffAxisBundle(
 
 export function traceCircularOffAxisBundle(
   ringSamples: readonly number[],
-  geometry: OffAxisFieldGeometry,
+  geometry: ProjectionAwareOffAxisFieldGeometry,
   L: RuntimeLens,
   focusT: number,
   zoomT: number,
